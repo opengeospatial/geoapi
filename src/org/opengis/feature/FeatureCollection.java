@@ -205,8 +205,10 @@ public interface FeatureCollection extends Feature, Collection {
     /**
      * Indicate the duration, and any additional information for any
      * subsequent lock opperations.
+     * <p>
+     * You can use LockRequest.TRANSACTION_LOCK to request 
      */
-    public void setLock(LockRequest lock);
+    public void setLockRequest(LockRequest lock);
 
     /**
      * Lock indicated features.
