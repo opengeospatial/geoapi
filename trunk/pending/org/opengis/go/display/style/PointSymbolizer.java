@@ -34,7 +34,7 @@ public interface PointSymbolizer extends GraphicStyle {
     public static final Color DEFAULT_FILL_BACKGROUND_COLOR = Color.BLACK;
 
     /**  Default fill gradient points value.  */
-    //public static final float[] DEFAULT_FILL_GRADIENT_POINTS = new float[2];
+    public static final float[] DEFAULT_FILL_GRADIENT_POINTS = new float[2];
 
     /**  Default fill opacity value.  */
     public static final float DEFAULT_FILL_OPACITY = 1.f;
@@ -79,7 +79,7 @@ public interface PointSymbolizer extends GraphicStyle {
     public static final Color DEFAULT_STROKE_FILL_BACKGROUND_COLOR = Color.BLACK;
 
     /**  Default fill gradient points value.  */
-    //public static final float[] DEFAULT_STROKE_FILL_GRADIENT_POINTS = new float[2];
+    public static final float[] DEFAULT_STROKE_FILL_GRADIENT_POINTS = new float[2];
 
     /**  Default fill opacity value.  */
     public static final float DEFAULT_STROKE_FILL_OPACITY = 1.f;

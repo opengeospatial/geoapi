@@ -1,4 +1,4 @@
-package org.opengis.go.display.style;
+package org.opengis.go.display.event;
 
 /**
  * Interface to be implemented by application code that wishes to be notified

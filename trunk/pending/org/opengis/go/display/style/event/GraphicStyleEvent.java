@@ -1,4 +1,6 @@
-package org.opengis.go.display.style;
+package org.opengis.go.display.event;
+
+import org.opengis.go.display.style.GraphicStyle;
 
 /**
  * Event that contains information about a modification to a
