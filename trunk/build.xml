@@ -1,0 +1,57 @@
+<project name="GO-1" default="main" basedir=".">
+  <property file="ant.properties"/>
+  <property name="src.dir" value="src"/>
+  <property name="javadoc.dir" value="${basedir}/doc/javadoc"/>
+  <property name="build.dir" value="${basedir}/build"/>
+  <property name="build.classes" value="${build.dir}/classes"/>
+  <path id="project.lib.path">
+    <pathelement path="lib/units.jar"/>
+  </path>
+  <target name="main">
+    <echo>         Use             ant -projecthelp          for a list of ant targets. To build a target listed         with ant -projecthelp use              ant &lt;target&gt;          To compile within a subdirectory use              ant -find build.xml &lt;target&gt;         </echo>
+  </target>
+  <target name="prepare">
+    <tstamp>
+      <format property="version.stamp" pattern="MMddyy:1"/>
+    </tstamp>
+    <mkdir dir="${javadoc.dir}"/>
+    <mkdir dir="${build.dir}"/>
+    <mkdir dir="${build.classes}"/>
+  </target>
+  <target name="compile" depends="prepare" description="Compile java code.">
+    <javac destdir="${build.classes}" srcdir="${src.dir}" debug="${debug.flag}">
+      <classpath refid="project.lib.path"/>
+      <include name="**/*.java"/>
+    </javac>
+  </target>
+  <target name="jar" depends="compile" description="Create jar file.">
+    <jar jarfile="${build.dir}/go1.jar">
+      <fileset dir="${build.classes}" excludes="org/ogc/go1/tests/**"/>
+      <fileset dir="${src.dir}" includes="org/**" excludes="**/*.java,**/CVS,**/*.swp,**/*.ppt,**/*.gif,**/*.jpg,**/*.db"/>
+    </jar>
+  </target>
+  <target name="javadoc" depends="prepare" description="Build javadoc files">
+    <javadoc packagenames="org.*" sourcepath="${src.dir}" destdir="${javadoc.dir}" author="true" version="true" doctitle="${version.name}" windowtitle="${version.name}">
+      <classpath refid="project.lib.path"/>
+      <link href="http://java.sun.com/j2se/1.4.1/docs/api/"/>
+    </javadoc>
+  </target>
+  <target name="javadoc-images">
+    <copy todir="${javadoc.dir}">
+      <fileset dir="${src.dir}" includes="**/*.gif"/>
+      <fileset dir="${src.dir}" includes="**/*.jpg"/>
+    </copy>
+  </target>
+  <target name="clean" description="Deletes jar and .class files.">
+    <delete dir="${build.dir}"/>
+    <delete>
+      <fileset dir="${src.dir}">
+        <include name="**/*.class"/>
+      </fileset>
+    </delete>
+  </target>
+  <target name="cleanall" depends="clean" description="Reset to repository proper.">
+    <delete dir="${javadoc.dir}"/>
+  </target>
+  <target name="rebuild" depends="cleanall,compile,javadoc" description="Rebuild before commit: (cleanall, compile, javadoc)">     </target>
+</project>
