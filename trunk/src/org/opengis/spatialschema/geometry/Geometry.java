@@ -18,6 +18,7 @@ import org.opengis.referencing.operation.IncompatibleOperationException;
 import org.opengis.referencing.operation.MathTransform;
 import org.opengis.referencing.operation.TransformException;
 import org.opengis.spatialschema.geometry.complex.Complex;
+import org.opengis.util.Cloneable; // For javadoc
 
 // Annotations
 ///import org.opengis.annotation.UML;
@@ -61,7 +62,7 @@ public interface Geometry extends TransfiniteSet {
      * @see #getCoordinateDimension
      */
 /// @UML (identifier="CRS", obligation=MANDATORY)
-    public CoordinateReferenceSystem getCoordinateReferenceSystem();
+    CoordinateReferenceSystem getCoordinateReferenceSystem();
 
     /**
      * Returns a region in the coordinate reference system that contains this <code>Geometry</code>.
@@ -78,7 +79,7 @@ public interface Geometry extends TransfiniteSet {
      * @see #getBoundary
      */
 /// @UML (identifier="mbRegion", obligation=MANDATORY)
-    public Geometry getMbRegion();
+    Geometry getMbRegion();
 
     /**
      * Returns a point value that is guaranteed to be on this <code>Geometry</code>. The default
@@ -91,7 +92,7 @@ public interface Geometry extends TransfiniteSet {
      * @see #getCentroid
      */
 /// @UML (identifier="representativePoint", obligation=MANDATORY)
-    public DirectPosition getRepresentativePoint();
+    DirectPosition getRepresentativePoint();
 
     /**
      * Returns a finite set of <code>Geometry</code>s containing all of the direct positions on the
@@ -112,7 +113,7 @@ public interface Geometry extends TransfiniteSet {
      * @see #getDistance
      */
 /// @UML (identifier="boundary", obligation=MANDATORY)
-    public Boundary getBoundary();
+    Boundary getBoundary();
 
     /**
      * Returns a finite set of <code>Geometry</code>s containing all of the points on the boundary of
@@ -129,7 +130,7 @@ public interface Geometry extends TransfiniteSet {
      * @see #getBoundary
      */
 /// @UML (identifier="closure", obligation=MANDATORY)
-    public Complex getClosure();
+    Complex getClosure();
 
     /**
      * Returns <code>true</code> if this <code>Geometry</code> has no interior point of
@@ -151,7 +152,7 @@ public interface Geometry extends TransfiniteSet {
      * @see #isCycle
      */
 /// @UML (identifier="isSimple", obligation=MANDATORY)
-    public boolean isSimple();
+    boolean isSimple();
 
     /**
      * Returns <code>true</code> if this <code>Geometry</code> has an empty boundary after topological
@@ -172,7 +173,7 @@ public interface Geometry extends TransfiniteSet {
      * @see #isSimple
      */
 /// @UML (identifier="isCycle", obligation=MANDATORY)
-    public boolean isCycle();
+    boolean isCycle();
 
     /**
      * Returns the distance between this <code>Geometry</code> and another <code>Geometry</code>.
@@ -213,7 +214,7 @@ public interface Geometry extends TransfiniteSet {
      * @see org.opengis.referencing.cs.CoordinateSystem#getAxis
      */
 /// @UML (identifier="distance", obligation=MANDATORY)
-    public double getDistance(Geometry geometry);
+    double getDistance(Geometry geometry);
 
     /**
      * Returns the inherent dimension of this <code>Geometry</code>, which shall be less than or
@@ -233,7 +234,7 @@ public interface Geometry extends TransfiniteSet {
      * @see #getCoordinateDimension
      */
 /// @UML (identifier="dimension", obligation=MANDATORY)
-    public int getDimension(DirectPosition point);
+    int getDimension(DirectPosition point);
 
     /**
      * Returns the dimension of the coordinates that define this <code>Geometry</code>, which must
@@ -246,7 +247,7 @@ public interface Geometry extends TransfiniteSet {
      * @see #getCoordinateReferenceSystem
      */
 /// @UML (identifier="coordinateDimension", obligation=MANDATORY)
-    public int getCoordinateDimension();
+    int getCoordinateDimension();
 
     /**
      * Returns the set of maximal complexes within which this <code>Geometry</code> is contained.
@@ -257,7 +258,7 @@ public interface Geometry extends TransfiniteSet {
      * @return The set of maximal complexes within which this <code>Geometry</code> is contained.
      */
 /// @UML (identifier="maximalComplex", obligation=MANDATORY)
-    public Set getMaximalComplex();
+    Set getMaximalComplex();
 
     /**
      * Returns a new <code>Geometry</code> that is the coordinate transformation of this
@@ -269,7 +270,7 @@ public interface Geometry extends TransfiniteSet {
      * @throws TransformException if the transformation failed.
      */
 /// @UML (identifier="transform", obligation=MANDATORY)
-    public Geometry transform(CoordinateReferenceSystem newCRS) throws TransformException;
+    Geometry transform(CoordinateReferenceSystem newCRS) throws TransformException;
 
     /**
      * Returns a new <code>Geometry</code> that is the coordinate transformation of this
@@ -283,7 +284,7 @@ public interface Geometry extends TransfiniteSet {
      * @throws TransformException if the transformation failed.
      * @return The transformed <code>Geometry</code>.
      */
-    public Geometry transform(CoordinateReferenceSystem newCRS, MathTransform transform) throws TransformException;
+    Geometry transform(CoordinateReferenceSystem newCRS, MathTransform transform) throws TransformException;
 
     /**
      * Returns the minimum bounding box for this <code>Geometry</code>. This shall be the
@@ -299,7 +300,7 @@ public interface Geometry extends TransfiniteSet {
      * @see #getMbRegion
      */
 /// @UML (identifier="envelope", obligation=MANDATORY)
-    public Envelope getEnvelope();
+    Envelope getEnvelope();
 
     /**
      * Returns the mathematical centroid for this <code>Geometry</code>. The result is not guaranteed
@@ -313,7 +314,7 @@ public interface Geometry extends TransfiniteSet {
      * @see #getRepresentativePoint
      */
 /// @UML (identifier="centroid", obligation=MANDATORY)
-    public DirectPosition getCentroid();
+    DirectPosition getCentroid();
 
     /**
      * Returns a <code>Geometry</code> that represents the convex hull of this <code>Geometry</code>.
@@ -326,7 +327,7 @@ public interface Geometry extends TransfiniteSet {
      * @return The convex hull.
      */
 /// @UML (identifier="convexHull", obligation=MANDATORY)
-    public Geometry getConvexHull();
+    Geometry getConvexHull();
 
     /**
      * Returns a <code>Geometry</code> containing all points whose distance from this
@@ -348,5 +349,62 @@ public interface Geometry extends TransfiniteSet {
      * @see org.opengis.referencing.cs.CoordinateSystem#getAxis
      */
 /// @UML (identifier="buffer", obligation=MANDATORY)
-    public Geometry getBuffer(double distance);
+    Geometry getBuffer(double distance);
+
+    /**
+     * Returns <code>false</code> if this geometry is immutable. Immutable geometries are
+     * guarantee to never change their state, neither directly (through a change in this object)
+     * or indirectly (through a change in an other object this geometry depends upon). Immutable
+     * geometries avoid the need for {@linkplain #clone cloning them}. More specifically:
+     *
+     * <UL>
+     *   <LI><P>If <code>false</code>, then this geometry is <cite>immutable</cite>. It is
+     *       guarantee that a call to any <code>setFoo(...)</code> method will throws an
+     *       {@link UnmodifiableGeometryException} (that said, <cite>immutable</cite> geometries
+     *       are necessarily <cite>unmodifiable</cite>. The converse is not true, see next point
+     *       below). This geometry will never change its state, and there is no need for
+     *       {@linkplain #clone cloning it}.</P></LI>
+     *   <LI><P>If <code>true</code>, then this geometry is <cite>mutable</cite>. Note that
+     *       <cite>mutable</cite> geometry is not synonymous of <cite>modifiable</cite>
+     *       geometry. The nuance lays in whatever the geometry may changes its state
+     *       directly (as of user request) or indirectly:<P></LI>
+     *       <UL>
+     *         <LI><P>This geometry may be <cite>modifiable</cite>, in which case invoking
+     *             <code>setFoo(...)</code> methods is legal and will not throws exception.</P></LI>
+     *         <LI><P>This geometry may still <cite>unmodifiable</cite>. User is not allowed to
+     *             modify it himself and invoking any <code>setFoo(...)</code> method will throws
+     *             an {@link UnmodifiableGeometryException}. However, the implementation may change
+     *             the geometry itself (for example a time-varying geometry).</P></LI>
+     *       </UL>
+     *   </LI>
+     * </UL>
+     */
+    boolean isMutable();
+
+    /**
+     * Returns a clone of this geometry with <em>deep</em> copy semantic. Any change on this object
+     * will have no impact on the returned clone, and conversely. For big geometries, implementations
+     * are encouraged to share as much internal data as possible (as opposed to performing a real
+     * copy of the data), while preserving the deep copy semantic.
+     *
+     * <P>Special cases:</P>
+     *
+     * <UL>
+     *   <LI><P>If this geometry is immutable (<code>{@linkplain #isMutable} == false</code>), then
+     *       there is no need for cloning this object. This method may return <code>this</code>
+     *       or returns a modifiable copy of this object, at implementation choice.</P></LI>
+     *   <LI><P>If a deep copy semantic is not possible at a reasonable cost (for example for some
+     *       database backend), then this method throws a {@link CloneNotSupportedException}.</P></LI>
+     *   <LI><P>If a deep cloning is possible for all case (i.e. if this method never throws
+     *       {@link CloneNotSupportedException}, then the implementation should implements
+     *       the {@link Cloneable} interface.</P></LI>
+     * </UL>
+     *
+     * @throws CloneNotSupportedException if this object do not support clone. This exception is
+     *         never throws if this object implements {@link Cloneable}.
+     *
+     * @see Cloneable
+     * @see #isMutable
+     */
+    /*{Geometry}*/ Object clone() throws CloneNotSupportedException;
 }

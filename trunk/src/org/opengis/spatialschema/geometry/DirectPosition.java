@@ -88,5 +88,5 @@ public interface DirectPosition extends Position, Cloneable {
     /**
      * Makes an exact copy of this coordinate.
      */
-/// DirectPosition clone();
+    /*{DirectPosition}*/ Object clone();
 }
