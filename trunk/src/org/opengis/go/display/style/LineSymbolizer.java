@@ -59,7 +59,7 @@ public interface LineSymbolizer {
     public static final Color DEFAULT_LINE_STROKE_COLOR = Color.BLACK;
 
     /**  Default dash array value.  */
-    public static final DashArray DEFAULT_LINE_STROKE_DASH_ARRAY = (DashArray)LinePattern.NONE;
+    public static final DashArray DEFAULT_LINE_STROKE_DASH_ARRAY = DashArray.NONE;
 
     /**  Default dash offset value.  */
     public static final float DEFAULT_LINE_STROKE_DASH_OFFSET = 0.f;
