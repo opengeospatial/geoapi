@@ -67,7 +67,7 @@ public final class DataType implements Comparable, Serializable, Cloneable {
      * Returns an exact copy of this object.  Since instances of this class are
      * immutable, this actually just returns this object.
      */
-    public Object clone() {
+    public /*{DataType}*/ Object clone() {
         return this;
     }
 
