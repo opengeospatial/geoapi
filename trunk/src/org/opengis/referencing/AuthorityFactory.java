@@ -54,8 +54,6 @@ public interface AuthorityFactory {
     /**
      * Returns the organization or party responsible for definition and maintenance of the
      * database.
-     *
-     * @UML mandatory CS_CoordinateSystemAuthorityFactory.authority in 1.0 specification.
      */
     Citation getAuthority();
 
@@ -92,8 +90,6 @@ public interface AuthorityFactory {
      *         corresponding to the specified <code>code</code> has no description.
      * @throws NoSuchAuthorityCodeException if the specified <code>code</code> was not found.
      * @throws FactoryException if the query failed for some other reason.
-     *
-     * @UML operation CS_CoordinateSystemAuthorityFactory.descriptionText in 1.0 specification.
      */
     InternationalString getDescriptionText(String code) throws FactoryException;
 
@@ -108,8 +104,6 @@ public interface AuthorityFactory {
      *         corresponding to the specified <code>code</code> has no description.
      * @throws NoSuchAuthorityCodeException if the specified <code>code</code> was not found.
      * @throws FactoryException if the query failed for some other reason.
-     *
-     * @UML operation CS_CoordinateSystemAuthorityFactory.descriptionText in 1.0 specification.
      *
      * @deprecated Replaced by {@link #getDescriptionText(String)}.
      */

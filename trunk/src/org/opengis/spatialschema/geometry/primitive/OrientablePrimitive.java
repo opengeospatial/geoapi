@@ -9,6 +9,10 @@
  *************************************************************************************************/
 package org.opengis.spatialschema.geometry.primitive;
 
+// Annotations
+///import org.opengis.annotation.UML;
+///import static org.opengis.annotation.Obligation.*;
+
 
 /**
  * Primitives that can be mirrored into new geometric objects in terms of their internal local
@@ -39,18 +43,18 @@ package org.opengis.spatialschema.geometry.primitive;
  * corresponding primitive subtype) while negatively oriented primitives are not.
  * </font></blockquote>
  *  
- * @UML type GM_OrientablePrimitive
  * @author ISO/DIS 19107
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 2.0
  */
+///@UML (identifier="GM_OrientablePrimitive")
 public interface OrientablePrimitive extends Primitive {
     /**
      * Determines which of the two possible orientations this object represents.
      *
      * @return +1 for a positive orientation, or -1 for a negative orientation.
-     * @UML operation orientation
      */
+/// @UML (identifier="orientation", obligation=MANDATORY)
     public int getOrientation();
 
     /**
@@ -61,9 +65,9 @@ public interface OrientablePrimitive extends Primitive {
      * for each geometric object.
      *
      * @return The primitive, never <code>null</code>.
-     * @UML association primitive
      *
      * @see Primitive#getProxy
      */
+/// @UML (identifier="primitive", obligation=MANDATORY)
     public Primitive getPrimitive();
 }

@@ -17,6 +17,10 @@ import org.opengis.metadata.Identifier;
 import org.opengis.util.GenericName;
 import org.opengis.util.InternationalString;
 
+// Annotations
+///import org.opengis.annotation.UML;
+///import static org.opengis.annotation.Obligation.*;
+
 
 /**
  * Supplementary identification and remarks information for a CRS or CRS-related object.
@@ -27,34 +31,33 @@ import org.opengis.util.InternationalString;
  * or may not be set. If the authority is EPSG, the implementer may consider using the
  * corresponding metadata values in the EPSG tables.
  *
- * @UML abstract IdentifiedObject
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version Abstract specification 2.0 (revised)
  */
+///@UML (identifier="IdentifiedObject")
 public interface IdentifiedObject {
     /**
      * The primary name by which this object is identified.
-     *         
-     * @UML mandatory name
      *
      * @revisit According latest ISO 19111, the return type should be {@link Identifier}.
      */
+/// @UML (identifier="name", obligation=MANDATORY)
     InternationalString getName();
 
     /**
      * The name by which this object is identified. 
      *         
-     * @UML mandatory name
      * @deprecated Replaced by {@link #getName()}.
      */
+/// @UML (identifier="name", obligation=MANDATORY)
     String getName(Locale locale);
 
     /**
      * An alternative name by which this object is identified..
      *         
      * @return The aliases, or an empty array if there is none.
-     * @UML optional alias
      */
+/// @UML (identifier="alias", obligation=OPTIONAL)
     GenericName[] getAliases();
 
     /**
@@ -62,23 +65,22 @@ public interface IdentifiedObject {
      * Alternatively an identifier by which this object can be referenced.
      *
      * @return This object identifiers, or an empty array if there is none.
-     * @UML optional identifier
      */
+/// @UML (identifier="identifier", obligation=OPTIONAL)
     Identifier[] getIdentifiers();
 
     /**
      * Comments on or information about this object, including data source information.
-     *
-     * @UML optional remarks
      */
+/// @UML (identifier="remarks", obligation=OPTIONAL)
     InternationalString getRemarks();
 
     /**
      * Comments on or information about this object, including data source information.
      *
-     * @UML optional remarks
      * @deprecated Replaced by {@link #getRemarks()}.
      */
+/// @UML (identifier="remarks", obligation=OPTIONAL)
     String getRemarks(Locale locale);
 
     /**
@@ -89,7 +91,6 @@ public interface IdentifiedObject {
      *
      * @return The Well Know Text for this object.
      * @throws UnsupportedOperationException If this object can't be formatted as WKT.
-     * @UML operation toWKT in Implementation specification 1.0
      */
     String toWKT() throws UnsupportedOperationException;
 }

@@ -17,21 +17,24 @@ import java.util.List;
 import org.opengis.util.InternationalString;
 import org.opengis.metadata.citation.ResponsibleParty;
 
+// Annotations
+///import org.opengis.annotation.UML;
+///import static org.opengis.annotation.Obligation.*;
+
 
 /**
  * New metadata element, not found in ISO 19115, which is required to describe geographic data.
  *
- * @UML datatype MD_ExtendedElementInformation
  * @author ISO 19115
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
  */
+///@UML (identifier="MD_ExtendedElementInformation")
 public interface ExtendedElementInformation {
     /**
      * Name of the extended metadata element.
-     *
-     * @UML mandatory name
      */
+/// @UML (identifier="name", obligation=MANDATORY)
     String getName();
 
     /**
@@ -39,48 +42,42 @@ public interface ExtendedElementInformation {
      * NOTE: other methods may be used.
      * Returns <code>null</code> if the {@linkplain #getDataType data type}
      * is {@linkplain Datatype#CODE_LIST_ELEMENT code list element}.
-     *
-     * @UML conditional shortName
      */
+/// @UML (identifier="shortName", obligation=CONDITIONAL)
     String getShortName();
 
     /**
      * Three digit code assigned to the extended element.
      * Returns a non-null value only if the {@linkplain #getDataType data type}
      * is {@linkplain Datatype#CODE_LIST_ELEMENT code list element}.
-     *
-     * @UML conditional domainCode
      */
+/// @UML (identifier="domainCode", obligation=CONDITIONAL)
     Integer getDomainCode();
 
     /**
      * Definition of the extended element.
-     *
-     * @UML mandatory definition
      */
+/// @UML (identifier="definition", obligation=MANDATORY)
     InternationalString getDefinition();
 
     /**
      * Obligation of the extended element.
-     *
-     * @UML conditional obligation
      */
+/// @UML (identifier="obligation", obligation=CONDITIONAL)
     Obligation getObligation();
 
     /**
      * Condition under which the extended element is mandatory.
      * Returns a non-null value only if the {@linkplain #getObligation obligation}
      * is {@linkplain Obligation#CONDITIONAL conditional}.
-     *
-     * @UML conditional condition
      */
+/// @UML (identifier="condition", obligation=CONDITIONAL)
     InternationalString getCondition();
 
     /**
      * Code which identifies the kind of value provided in the extended element.
-     *
-     * @UML mandatory dataType
      */
+/// @UML (identifier="dataType", obligation=MANDATORY)
     Datatype getDataType();
 
     /**
@@ -89,9 +86,8 @@ public interface ExtendedElementInformation {
      * {@linkplain #getDataType data type} is {@linkplain Datatype#ENUMERATION enumeration},
      * {@linkplain Datatype#CODE_LIST code list} or {@linkplain Datatype#CODE_LIST_ELEMENT
      * code list element}.
-     *
-     * @UML conditional maximumOccurrence
      */
+/// @UML (identifier="maximumOccurrence", obligation=CONDITIONAL)
     Integer getMaximumOccurrence();
 
     /**
@@ -100,37 +96,32 @@ public interface ExtendedElementInformation {
      * {@linkplain #getDataType data type} is {@linkplain Datatype#ENUMERATION enumeration},
      * {@linkplain Datatype#CODE_LIST code list} or {@linkplain Datatype#CODE_LIST_ELEMENT
      * code list element}.
-     *
-     * @UML conditional domainValue
      */
+/// @UML (identifier="domainValue", obligation=CONDITIONAL)
     InternationalString getDomainValue();
 
     /**
      * Name of the metadata entity(s) under which this extended metadata element may appear.
      * The name(s) may be standard metadata element(s) or other extended metadata element(s).
-     *
-     * @UML mandatory parentEntity
      */
+/// @UML (identifier="parentEntity", obligation=MANDATORY)
     Set/*<String>*/ getParentEntity();
 
     /**
      * Specifies how the extended element relates to other existing elements and entities.
-     *
-     * @UML mandatory rule
      */
+/// @UML (identifier="rule", obligation=MANDATORY)
     InternationalString getRule();
 
     /**
      * Reason for creating the extended element.
-     *
-     * @UML optional rationale
      */
+/// @UML (identifier="rationale", obligation=OPTIONAL)
     List/*<InternationalString>*/ getRationales();
 
     /**
      * Name of the person or organization creating the extended element.
-     *
-     * @UML mandatory source
      */
+/// @UML (identifier="source", obligation=MANDATORY)
     Set/*<ResponsibleParty>*/ getSources();
 }

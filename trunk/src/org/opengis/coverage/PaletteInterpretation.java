@@ -17,17 +17,21 @@ import java.awt.color.ColorSpace; // For Javadoc
 //OpenGIS direct dependencies
 import org.opengis.util.CodeList;
 
+// Annotations
+///import org.opengis.annotation.UML;
+///import static org.opengis.annotation.Obligation.*;
+
 
 /**
  * Describes the color entry in a color table.
  *
- * @UML codelist CV_PaletteInterpretation
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-004.pdf">Grid Coverage specification 1.0</A>
  *
  * @see ColorInterpretation
  * @see SampleDimension
  */
+///@UML (identifier="CV_PaletteInterpretation")
 public final class PaletteInterpretation extends CodeList {
     /**
      * Serial number for compatibility with different versions.
@@ -43,33 +47,33 @@ public final class PaletteInterpretation extends CodeList {
     /**
      * Gray Scale color palette.
      *
-     * @UML conditional CV_Gray
      * @see ColorSpace#TYPE_GRAY
      */
+/// @UML (identifier="CV_Gray", obligation=CONDITIONAL)
     public static final PaletteInterpretation GRAY = new PaletteInterpretation("GRAY");
 
     /**
      * RGB (Red Green Blue) color palette.
      *
-     * @UML conditional CV_RGB
      * @see ColorSpace#TYPE_RGB
      */
+/// @UML (identifier="CV_RGB", obligation=CONDITIONAL)
     public static final PaletteInterpretation RGB = new PaletteInterpretation("RGB");
 
     /**
      * CYMK (Cyan Yellow Magenta blacK) color palette.
      *
-     * @UML conditional CV_CMYK
      * @see ColorSpace#TYPE_CMYK
      */
+/// @UML (identifier="CV_CMYK", obligation=CONDITIONAL)
     public static final PaletteInterpretation CMYK = new PaletteInterpretation("CMYK");
 
     /**
      * HSL (Hue Saturation Lightness) color palette.
      *
-     * @UML conditional CV_HLS
      * @see ColorSpace#TYPE_HLS
      */
+/// @UML (identifier="CV_HLS", obligation=CONDITIONAL)
     public static final PaletteInterpretation HLS = new PaletteInterpretation("HLS");
 
     /**

@@ -17,6 +17,10 @@ import org.opengis.spatialschema.geometry.Geometry;
 import org.opengis.spatialschema.geometry.Envelope;
 import org.opengis.spatialschema.geometry.complex.Complex;
 
+// Annotations
+///import org.opengis.annotation.UML;
+///import static org.opengis.annotation.Obligation.*;
+
 
 /**
  * Abstract root class of the geometric primitives. Its main purpose is to define the basic
@@ -34,7 +38,6 @@ import org.opengis.spatialschema.geometry.complex.Complex;
  * (except in the trivial case of {@linkplain Point point} where the boundary is empty), while a
  * {@linkplain Complex complex} shall contain its boundary in all cases.
  *
- * @UML type GM_Primitive
  * @author ISO/DIS 19107
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 2.0
@@ -43,6 +46,7 @@ import org.opengis.spatialschema.geometry.complex.Complex;
  *
  * @revisit Some associations are commented out for now.
  */
+///@UML (identifier="GM_Primitive")
 public interface Primitive extends Geometry {
     /**
      * Returns the boundary of a <code>Primitive</code> as a set of 
@@ -52,8 +56,8 @@ public interface Primitive extends Geometry {
      * type of the primitive.
      *
      * @return The sets of positions on the boundary.
-     * @UML operation boundary
      */
+/// @UML (identifier="boundary", obligation=MANDATORY)
 /// public PrimitiveBoundary getBoundary();
 
     /**
@@ -73,20 +77,19 @@ public interface Primitive extends Geometry {
      * computer calculations.
      *
      * @return The set of primitives contained into this primitive.
-     * @UML association containedPrimitive
      *
      * @revisit Using a {@link Set} returns type allows the user to add or remove element in
      *          this set at his convenience. Is it the right interpretation of this specification?
      *
      * @see #getContainingPrimitives
      */
+/// @UML (identifier="containedPrimitive", obligation=MANDATORY)
     public Set/*<Primitive>*/ getContainedPrimitives();
 
     /**
      * Returns the <code>Primitive</code>s which are by definition coincident with this one.
      *
      * @return The set of primitives which contains this primitive.
-     * @UML association containingPrimitive
      *
      * @revisit Using a {@link Set} returns type allows the user to add or remove element in
      *          this set at his convenience. Is it the right interpretation of this specification?
@@ -98,6 +101,7 @@ public interface Primitive extends Geometry {
      *
      * @see #getContainedPrimitives
      */
+/// @UML (identifier="containingPrimitive", obligation=MANDATORY)
     public Set/*<Primitive>*/ getContainingPrimitives();
 
     /**
@@ -106,11 +110,11 @@ public interface Primitive extends Geometry {
      * direction (from primitive to complex), depending on the implementation.
      *
      * @return The set of complexex which contains this primitive.
-     * @UML association complex
      *
      * @revisit Does it means that <code>Primitive</code> can't be immutable, since
      *          adding this primitive to a complex will change this set?
      */
+/// @UML (identifier="complex", obligation=MANDATORY)
     public Set/*<Complex>*/ getComplexes();
 
     /**
@@ -122,12 +126,12 @@ public interface Primitive extends Geometry {
      * {@linkplain Curve curve} or {@linkplain Surface surface}.
      *
      * @return The orientable primitives as an array of length 2, or <code>null</code> if none.
-     * @UML association proxy
      *
      * @see OrientablePrimitive#getPrimitive
      *
      * @revisit Should we use the plural form for the method names?
      */
+/// @UML (identifier="proxy", obligation=MANDATORY)
     public OrientablePrimitive[] getProxy();
 
 //    public org.opengis.spatialschema.topology.primitive.TP_Primitive topology[];

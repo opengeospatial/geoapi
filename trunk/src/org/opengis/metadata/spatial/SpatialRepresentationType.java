@@ -16,15 +16,19 @@ import java.util.ArrayList;
 // OpenGIS direct dependencies
 import org.opengis.util.CodeList;
 
+// Annotations
+///import org.opengis.annotation.UML;
+///import static org.opengis.annotation.Obligation.*;
+
 
 /**
  * Method used to represent geographic information in the dataset.
  *
- * @UML codelist MD_SpatialRepresentationTypeCode
  * @author ISO 19115
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
  */
+///@UML (identifier="MD_SpatialRepresentationTypeCode")
 public final class SpatialRepresentationType extends CodeList {
     /**
      * Serial number for compatibility with different versions.
@@ -39,45 +43,39 @@ public final class SpatialRepresentationType extends CodeList {
 
     /**
      * Vector data is used to represent geographic data.
-     *
-     * @UML conditional vector
      */
+/// @UML (identifier="vector", obligation=CONDITIONAL)
     public static final SpatialRepresentationType VECTOR = new SpatialRepresentationType("VECTOR");
 
     /**
      * Grid data is used to represent geographic data.
-     *
-     * @UML conditional grid
      */
+/// @UML (identifier="grid", obligation=CONDITIONAL)
     public static final SpatialRepresentationType GRID = new SpatialRepresentationType("GRID");
 
     /**
      * Textual or tabular data is used to represent geographic data.
-     *
-     * @UML conditional textTable
      */
+/// @UML (identifier="textTable", obligation=CONDITIONAL)
     public static final SpatialRepresentationType TEXT_TABLE = new SpatialRepresentationType("TEXT_TABLE");
 
     /**
      * Triangulated irregular network.
-     *
-     * @UML conditional tin
      */
+/// @UML (identifier="tin", obligation=CONDITIONAL)
     public static final SpatialRepresentationType TIN = new SpatialRepresentationType("TIN");
 
     /**
      * Three-dimensional view formed by the intersecting homologous rays of an
      * overlapping pair of images.
-     *
-     * @UML conditional stereoModel
      */
+/// @UML (identifier="stereoModel", obligation=CONDITIONAL)
     public static final SpatialRepresentationType STEREO_MODEL = new SpatialRepresentationType("STEREO_MODEL");
 
     /**
      * Scene from a video recording.
-     *
-     * @UML conditional video
      */
+/// @UML (identifier="video", obligation=CONDITIONAL)
     public static final SpatialRepresentationType VIDEO = new SpatialRepresentationType("VIDEO");
 
     /**

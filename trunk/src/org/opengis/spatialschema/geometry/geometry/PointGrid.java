@@ -15,6 +15,10 @@ import java.util.List;
 // OpenGIS direct dependencies
 import org.opengis.spatialschema.geometry.DirectPosition;
 
+// Annotations
+///import org.opengis.annotation.UML;
+///import static org.opengis.annotation.Obligation.*;
+
 
 /**
  * A grid of points. The grid may be see as a sequences of equal length {@linkplain PointArray
@@ -22,7 +26,6 @@ import org.opengis.spatialschema.geometry.DirectPosition;
  * provides convenience methods for fetching directly the {@linkplain DirectPosition direct positions}
  * instead.
  *  
- * @UML datatype GM_PointGrid
  * @author ISO/DIS 19107
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 2.0
@@ -30,6 +33,7 @@ import org.opengis.spatialschema.geometry.DirectPosition;
  * @see Position
  * @see PointArray
  */
+///@UML (identifier="GM_PointGrid")
 public interface PointGrid {
     /**
      * Returns the width of this grid. All {@linkplain PointArray point array}
@@ -116,7 +120,7 @@ public interface PointGrid {
      * {@linkplain PointArray point array} are reflected in the grid, and vice-versa.
      *
      * @return The rows in this grid.
-     * @UML mandatory row
      */
+/// @UML (identifier="row", obligation=MANDATORY)
     public List/*<PointArray>*/ rows();
 }

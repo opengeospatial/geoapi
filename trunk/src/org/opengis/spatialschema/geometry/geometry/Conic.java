@@ -12,6 +12,10 @@ package org.opengis.spatialschema.geometry.geometry;
 // OpenGIS direct dependencies
 import org.opengis.spatialschema.geometry.primitive.CurveSegment;
 
+// Annotations
+///import org.opengis.annotation.UML;
+///import static org.opengis.annotation.Obligation.*;
+
 
 /**
  * Any general conic curve. Any of the conic section curves can be canonically represented
@@ -40,11 +44,11 @@ import org.opengis.spatialschema.geometry.primitive.CurveSegment;
  *
  * (TODO: paste the matrix there).
  *  
- * @UML abstract GM_Conic
  * @author ISO/DIS 19107
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 2.0
  */
+///@UML (identifier="GM_Conic")
 public interface Conic extends CurveSegment {
 //    public GM_AffinePlacement position;
 //    public boolean shifted;

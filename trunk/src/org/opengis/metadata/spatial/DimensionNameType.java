@@ -16,15 +16,19 @@ import java.util.ArrayList;
 // OpenGIS direct dependencies
 import org.opengis.util.CodeList;
 
+// Annotations
+///import org.opengis.annotation.UML;
+///import static org.opengis.annotation.Obligation.*;
+
 
 /**
  * Name of the dimension.
  *
- * @UML codelist MD_DimensionNameTypeCode
  * @author ISO 19115
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
  */
+///@UML (identifier="MD_DimensionNameTypeCode")
 public final class DimensionNameType extends CodeList {
     /**
      * Serial number for compatibility with different versions.
@@ -39,58 +43,50 @@ public final class DimensionNameType extends CodeList {
 
     /**
      * Ordinate (y) axis.
-     *
-     * @UML conditional row
      */
+/// @UML (identifier="row", obligation=CONDITIONAL)
     public static final DimensionNameType ROW = new DimensionNameType("ROW");
 
     /**
      * Abscissa (x) axis.
-     *
-     * @UML conditional column
      */
+/// @UML (identifier="column", obligation=CONDITIONAL)
     public static final DimensionNameType COLUMN = new DimensionNameType("COLUMN");
 
     /**
      * Vertical (z) axis.
-     *
-     * @UML conditional vertical
      */
+/// @UML (identifier="vertical", obligation=CONDITIONAL)
     public static final DimensionNameType VERTICAL = new DimensionNameType("VERTICAL");
 
     /**
      * Along the direction of motion of the scan point
-     *
-     * @UML conditional track
      */
+/// @UML (identifier="track", obligation=CONDITIONAL)
     public static final DimensionNameType TRACK = new DimensionNameType("TRACK");
 
     /**
      * Perpendicular to the direction of motion of the scan point.
-     *
-     * @UML conditional crossTrack
      */
+/// @UML (identifier="crossTrack", obligation=CONDITIONAL)
     public static final DimensionNameType CROSS_TRACK = new DimensionNameType("CROSS_TRACK");
 
     /**
      * Scan line of a sensor.
-     *
-     * @UML conditional line
      */
+/// @UML (identifier="line", obligation=CONDITIONAL)
     public static final DimensionNameType LINE = new DimensionNameType("LINE");
 
     /**
      * Element along a scan line.
-     *
-     * @UML conditional sample
      */
+/// @UML (identifier="sample", obligation=CONDITIONAL)
     public static final DimensionNameType SAMPLE = new DimensionNameType("SAMPLE");
 
     /**
      * Duration.
-     *
-     * @UML conditional time
      */
+/// @UML (identifier="time", obligation=CONDITIONAL)
     public static final DimensionNameType TIME = new DimensionNameType("TIME");
 
     /**

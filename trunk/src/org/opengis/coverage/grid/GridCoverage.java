@@ -18,34 +18,38 @@ import java.awt.image.RenderedImage;   // For Javadoc
 // OpenGIS direct dependencies
 import org.opengis.coverage.Coverage;
 
+// Annotations
+///import org.opengis.annotation.UML;
+///import static org.opengis.annotation.Obligation.*;
+
 
 /**
  * Represent the basic implementation which provides access to grid coverage data.
  * A <code>GridCoverage</code> implementation may provide the ability to update
  * grid values.
  *
- * @UML abstract CV_GridCoverage
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-004.pdf">Grid Coverage specification 1.0</A>
  *
  * @see RenderedImage
  * @see javax.media.jai.PixelAccessor
  */
+///@UML (identifier="CV_GridCoverage")
 public interface GridCoverage extends Coverage {
     /**
      * Returns <code>true</code> if grid data can be edited.
      *
      * @return <code>true</code> if grid data can be edited.
-     * @UML mandatory dataEditable
      */
+/// @UML (identifier="dataEditable", obligation=MANDATORY)
     boolean isDataEditable();
 
     /**
      * Information for the packing of grid coverage values.
      *
      * @return The information for the packing of grid coverage values.
-     * @UML mandatory gridPacking
      */
+/// @UML (identifier="gridPacking", obligation=MANDATORY)
     GridPacking getGridPacking();
 
     /**
@@ -53,8 +57,8 @@ public interface GridCoverage extends Coverage {
      * Grid geometry includes the valid range of grid coordinates and the georeferencing.
      *
      * @return The information for the grid coverage geometry.
-     * @UML mandatory gridGeometry
      */
+/// @UML (identifier="gridGeometry", obligation=MANDATORY)
     GridGeometry getGridGeometry();
 
     /**
@@ -69,16 +73,16 @@ public interface GridCoverage extends Coverage {
      *
      * @return The optimal size to use for each dimension when accessing grid values,
      *         or <code>null</code> if none.
-     * @UML optional optimalDataBlockSizes
      */
+/// @UML (identifier="optimalDataBlockSizes", obligation=OPTIONAL)
     int[] getOptimalDataBlockSizes();
 
     /**
      * Number of predetermined overviews for the grid.
      *
      * @return The number of predetermined overviews for the grid.
-     * @UML mandatory numOverviews
      */
+/// @UML (identifier="numOverviews", obligation=MANDATORY)
     int getNumOverviews();
 
     /**
@@ -87,8 +91,8 @@ public interface GridCoverage extends Coverage {
      * @param overviewIndex Overview index for which to retrieve grid geometry. Indices start at 0.
      * @return The grid geometry for an overview.
      * @throws IndexOutOfBoundsException if <code>overviewIndex</code> is out of bounds.
-     * @UML operation getOverviewGridGeometry
      */
+/// @UML (identifier="getOverviewGridGeometry", obligation=MANDATORY)
     GridGeometry getOverviewGridGeometry(int overviewIndex) throws IndexOutOfBoundsException;
 
     /**
@@ -125,8 +129,8 @@ public interface GridCoverage extends Coverage {
      * @param overviewIndex Index of grid coverage overview to retrieve. Indexes start at 0.
      * @return a pre-calculated overview for a grid coverage.
      * @throws IndexOutOfBoundsException if <code>overviewIndex</code> is out of bounds.
-     * @UML operation getOverview
      */
+/// @UML (identifier="getOverview", obligation=MANDATORY)
     GridCoverage getOverview(int overviewIndex) throws IndexOutOfBoundsException;
 
     /**
@@ -162,10 +166,10 @@ public interface GridCoverage extends Coverage {
      * @throws InvalidRangeException if <code>gridRange</code> is out of this grid range bounds.
      * @throws ArrayIndexOutOfBoundsException if the <code>destination</code> array is not null
      *         and too small to hold the output.
-     * @UML operation getDataBlockAsBoolean
      *
      * @see #setDataBlock(GridRange, boolean[])
      */
+/// @UML (identifier="getDataBlockAsBoolean", obligation=MANDATORY)
     boolean[] getDataBlock(GridRange gridRange, boolean[] destination)
             throws InvalidRangeException, ArrayIndexOutOfBoundsException;
 
@@ -184,11 +188,11 @@ public interface GridCoverage extends Coverage {
      * @throws InvalidRangeException if <code>gridRange</code> is out of this grid range bounds.
      * @throws ArrayIndexOutOfBoundsException if the <code>destination</code> array is not null
      *         and too small to hold the output.
-     * @UML operation getDataBlockAsByte
      *
      * @see #setDataBlock(GridRange, byte[])
      * @see javax.media.jai.UnpackedImageData#getByteData()
      */
+/// @UML (identifier="getDataBlockAsByte", obligation=MANDATORY)
     byte[] getDataBlock(GridRange gridRange, byte[] destination)
             throws InvalidRangeException, ArrayIndexOutOfBoundsException;
 
@@ -207,11 +211,11 @@ public interface GridCoverage extends Coverage {
      * @throws InvalidRangeException if <code>gridRange</code> is out of this grid range bounds.
      * @throws ArrayIndexOutOfBoundsException if the <code>destination</code> array is not null
      *         and too small to hold the output.
-     * @UML operation getDataBlockAsInteger
      *
      * @see #setDataBlock(GridRange, int[])
      * @see javax.media.jai.UnpackedImageData#getShortData()
      */
+/// @UML (identifier="getDataBlockAsInteger", obligation=MANDATORY)
     short[] getDataBlock(GridRange gridRange, short[] destination)
             throws InvalidRangeException, ArrayIndexOutOfBoundsException;
 
@@ -230,12 +234,12 @@ public interface GridCoverage extends Coverage {
      * @throws InvalidRangeException if <code>gridRange</code> is out of this grid range bounds.
      * @throws ArrayIndexOutOfBoundsException if the <code>destination</code> array is not null
      *         and too small to hold the output.
-     * @UML operation getDataBlockAsInteger
      *
      * @see #setDataBlock(GridRange, int[])
      * @see Raster#getPixels(int,int,int,int,int[])
      * @see javax.media.jai.UnpackedImageData#getIntData()
      */
+/// @UML (identifier="getDataBlockAsInteger", obligation=MANDATORY)
     int[] getDataBlock(GridRange gridRange, int[] destination)
             throws InvalidRangeException, ArrayIndexOutOfBoundsException;
 
@@ -304,7 +308,6 @@ public interface GridCoverage extends Coverage {
      * @throws InvalidRangeException if <code>gridRange</code> is out of this grid range bounds.
      * @throws ArrayIndexOutOfBoundsException if the <code>destination</code> array is not null
      *         and too small to hold the output.
-     * @UML operation getValueBlockAsDouble
      *
      * @rename Renamed <code>getValueBlockAsDouble</code> as <code>getDataBlockAsDouble</code>
      *         for consistency with all others <code>getDataBlock...</code> methods and
@@ -316,6 +319,7 @@ public interface GridCoverage extends Coverage {
      * @see Raster#getPixels(int,int,int,int,double[])
      * @see javax.media.jai.UnpackedImageData#getDoubleData()
      */
+/// @UML (identifier="getValueBlockAsDouble", obligation=MANDATORY)
     double[] getDataBlock(GridRange gridRange, double[] destination)
             throws InvalidRangeException, ArrayIndexOutOfBoundsException;
 
@@ -365,13 +369,13 @@ public interface GridCoverage extends Coverage {
      * @param gridRange Grid range for block of data to be accessed.
      * @return a block of grid coverage data for all sample dimensions.
      * @throws InvalidRangeException if <code>gridRange</code> is out of this grid range bounds.
-     * @UML operation #getPackedDataBlock
      *
      * @revisit This operation can't be implemented efficiently in Java with a <code>byte[]</code>
      *          return type, since there is no way to cast an array of arbitrary type to an array
      *          of type <code>byte[]</code>. Even the <code>java.nio.Buffer</code> doesnt allow
      *          that (it allows the opposite way however).
      */
+/// @UML (identifier="#getPackedDataBlock", obligation=MANDATORY)
     byte[] getPackedDataBlock(GridRange gridRange) throws InvalidRangeException;
 
     /**
@@ -383,11 +387,11 @@ public interface GridCoverage extends Coverage {
      * @throws InvalidRangeException if <code>gridRange</code> is out of this grid range bounds.
      * @throws GridNotEditableException if the grid coverage is not {@linkplain #isDataEditable editable}.
      * @throws ArrayIndexOutOfBoundsException if the <code>values</code> array is too small.
-     * @UML operation setDataBlockAsBoolean
      *
      * @see #isDataEditable
      * @see #getDataBlock(GridRange, boolean[])
      */
+/// @UML (identifier="setDataBlockAsBoolean", obligation=MANDATORY)
     void setDataBlock(GridRange gridRange, boolean[] values)
             throws InvalidRangeException, GridNotEditableException, ArrayIndexOutOfBoundsException;
 
@@ -400,11 +404,11 @@ public interface GridCoverage extends Coverage {
      * @throws InvalidRangeException if <code>gridRange</code> is out of this grid range bounds.
      * @throws GridNotEditableException if the grid coverage is not {@linkplain #isDataEditable editable}.
      * @throws ArrayIndexOutOfBoundsException if the <code>values</code> array is too small.
-     * @UML operation setDataBlockAsByte
      *
      * @see #isDataEditable
      * @see #getDataBlock(GridRange, byte[])
      */
+/// @UML (identifier="setDataBlockAsByte", obligation=MANDATORY)
     void setDataBlock(GridRange gridRange, byte[] values)
             throws InvalidRangeException, GridNotEditableException, ArrayIndexOutOfBoundsException;
 
@@ -417,11 +421,11 @@ public interface GridCoverage extends Coverage {
      * @throws InvalidRangeException if <code>gridRange</code> is out of this grid range bounds.
      * @throws GridNotEditableException if the grid coverage is not {@linkplain #isDataEditable editable}.
      * @throws ArrayIndexOutOfBoundsException if the <code>values</code> array is too small.
-     * @UML operation setDataBlockAsByte
      *
      * @see #isDataEditable
      * @see #getDataBlock(GridRange, short[])
      */
+/// @UML (identifier="setDataBlockAsByte", obligation=MANDATORY)
     void setDataBlock(GridRange gridRange, short[] values)
             throws InvalidRangeException, GridNotEditableException, ArrayIndexOutOfBoundsException;
 
@@ -434,12 +438,12 @@ public interface GridCoverage extends Coverage {
      * @throws InvalidRangeException if <code>gridRange</code> is out of this grid range bounds.
      * @throws GridNotEditableException if the grid coverage is not {@linkplain #isDataEditable editable}.
      * @throws ArrayIndexOutOfBoundsException if the <code>values</code> array is too small.
-     * @UML operation setDataBlockAsInteger
      *
      * @see #isDataEditable
      * @see #getDataBlock(GridRange, int[])
      * @see WritableRaster#setPixels(int,int,int,int,int[])
      */
+/// @UML (identifier="setDataBlockAsInteger", obligation=MANDATORY)
     void setDataBlock(GridRange gridRange, int[] values)
             throws InvalidRangeException, GridNotEditableException, ArrayIndexOutOfBoundsException;
 
@@ -452,12 +456,12 @@ public interface GridCoverage extends Coverage {
      * @throws InvalidRangeException if <code>gridRange</code> is out of this grid range bounds.
      * @throws GridNotEditableException if the grid coverage is not {@linkplain #isDataEditable editable}.
      * @throws ArrayIndexOutOfBoundsException if the <code>values</code> array is too small.
-     * @UML operation setDataBlockAsInteger
      *
      * @see #isDataEditable
      * @see #getDataBlock(GridRange, float[])
      * @see WritableRaster#setPixels(int,int,int,int,float[])
      */
+/// @UML (identifier="setDataBlockAsInteger", obligation=MANDATORY)
     void setDataBlock(GridRange gridRange, float[] values)
             throws InvalidRangeException, GridNotEditableException, ArrayIndexOutOfBoundsException;
 
@@ -489,12 +493,12 @@ public interface GridCoverage extends Coverage {
      * @throws InvalidRangeException if <code>gridRange</code> is out of this grid range bounds.
      * @throws GridNotEditableException if the grid coverage is not {@linkplain #isDataEditable editable}.
      * @throws ArrayIndexOutOfBoundsException if the <code>values</code> array is too small.
-     * @UML operation setDataBlockAsDouble
      *
      * @see #isDataEditable
      * @see #getDataBlock(GridRange, double[])
      * @see WritableRaster#setPixels(int,int,int,int,double[])
      */
+/// @UML (identifier="setDataBlockAsDouble", obligation=MANDATORY)
     void setDataBlock(GridRange gridRange, double[] values)
             throws InvalidRangeException, GridNotEditableException, ArrayIndexOutOfBoundsException;
 
@@ -507,12 +511,12 @@ public interface GridCoverage extends Coverage {
      * @throws InvalidRangeException if <code>gridRange</code> is out of this grid range bounds.
      * @throws GridNotEditableException if the grid coverage is not {@linkplain #isDataEditable editable}.
      * @throws ArrayIndexOutOfBoundsException if the <code>values</code> array is too small.
-     * @UML operation setPackedDataBlock
      *
      * @revisit This operation can hardly be implemented efficiently in Java with a
      *          <code>byte[]</code> argument type, since we can't easily cast an array
      *          of <code>byte[]</code> to an array of arbitrary type.
      */
+/// @UML (identifier="setPackedDataBlock", obligation=MANDATORY)
     void setPackedDataBlock(GridRange gridRange, byte[] values)
             throws InvalidRangeException, GridNotEditableException, ArrayIndexOutOfBoundsException;
 }

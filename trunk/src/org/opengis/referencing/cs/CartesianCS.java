@@ -9,6 +9,10 @@
  *************************************************************************************************/
 package org.opengis.referencing.cs;
 
+// Annotations
+///import org.opengis.annotation.UML;
+///import static org.opengis.annotation.Obligation.*;
+
 
 /**
  * A 1-, 2-, or 3-dimensional coordinate system. Gives the position of points relative to
@@ -26,12 +30,12 @@ package org.opengis.referencing.cs;
  *   {@link org.opengis.referencing.crs.ImageCRS       Image}
  * </TD></TR></TABLE>
  *
- * @UML abstract CS_CartesianCS
  * @author ISO 19111
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/03-073r1.zip">Abstract specification 2.0</A>
  *
  * @see AffineCS
  */
+///@UML (identifier="CS_CartesianCS")
 public interface CartesianCS extends AffineCS {
 }

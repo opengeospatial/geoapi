@@ -16,15 +16,18 @@ import java.util.ArrayList;
 // OpenGIS direct dependencies
 import org.opengis.util.CodeList;
 
+// Annotations
+///import org.opengis.annotation.UML;
+
 
 /**
  * Obligation of the element or entity.
  *
- * @UML codelist MD_ObligationCode
  * @author ISO 19115
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
  */
+///@UML (identifier="MD_ObligationCode")
 public final class Obligation extends CodeList {
     /**
      * Serial number for compatibility with different versions.
@@ -39,23 +42,20 @@ public final class Obligation extends CodeList {
 
     /**
      * Element is always required.
-     *
-     * @UML conditional mandatory
      */
+/// @UML (identifier="mandatory", obligation=org.opengis.annotation.Obligation.CONDITIONAL)
     public static final Obligation MANDATORY = new Obligation("MANDATORY");
 
     /**
      * Element is not required.
-     *
-     * @UML conditional optional
      */
+/// @UML (identifier="optional", obligation=org.opengis.annotation.Obligation.CONDITIONAL)
     public static final Obligation OPTIONAL = new Obligation("OPTIONAL");
 
     /**
      * Element is required when a specific condition is met.
-     *
-     * @UML conditional conditional
      */
+/// @UML (identifier="conditional", obligation=org.opengis.annotation.Obligation.CONDITIONAL)
     public static final Obligation CONDITIONAL = new Obligation("CONDITIONAL");
 
     /**

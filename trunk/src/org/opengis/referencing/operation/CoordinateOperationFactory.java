@@ -19,7 +19,6 @@ import org.opengis.referencing.crs.CoordinateReferenceSystem;
  * Creates coordinate {@linkplain Transformation transformations} or
  * {@linkplain Conversion conversions} between two coordinate reference systems.
  *
- * @UML abstract CT_CoordinateTransformationFactory
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-009.pdf">Implementation specification 1.0</A>
  */
@@ -33,8 +32,6 @@ public interface CoordinateOperationFactory extends Factory {
      * @param  targetCRS Output coordinate reference system.
      * @throws FactoryException if no transformation path was found from <code>sourceCRS</code>
      *         to <code>targetCRS</code>.
-     *
-     * @UML operation createFromCoordinateSystems in 1.0 specification
      *
      * @revisit Should we create a more accurate subclass of <code>FactoryException</code>?
      */

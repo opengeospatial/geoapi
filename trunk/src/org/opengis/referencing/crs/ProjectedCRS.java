@@ -13,6 +13,11 @@ package org.opengis.referencing.crs;
 import org.opengis.referencing.cs.CartesianCS;
 import org.opengis.referencing.operation.Projection;
 
+// Annotations
+///import org.opengis.annotation.UML;
+///import static org.opengis.annotation.Obligation.*;
+
+
 /**
  * A 2D coordinate reference system used to approximate the shape of the earth on a planar surface.
  * It is done in such a way that the distortion that is inherent to the approximation is carefully
@@ -25,31 +30,25 @@ import org.opengis.referencing.operation.Projection;
  *   {@link org.opengis.referencing.cs.CartesianCS Cartesian}
  * </TD></TR></TABLE>
  *
- * @UML abstract SC_ProjectedCRS
  * @author ISO 19111
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/03-073r1.zip">Abstract specification 2.0</A>
  */
+///@UML (identifier="SC_ProjectedCRS")
 public interface ProjectedCRS extends GeneralDerivedCRS {
     /**
      * Returns the base coordinate reference system, which must be geographic.
-     *
-     * @return The base coordinate reference system.
      */
 /// GeographicCRS getBaseCRS();
 
     /**
      * Returns the map projection from the {@linkplain #getBaseCRS base CRS} to this CRS.
-     *
-     * @return The projection to this CRS.
      */
 /// Projection getConversionFromBase();
 
     /**
      * Returns the coordinate system, which must be cartesian.
-     *
-     * @return The coordinate system.
-     * @UML association usesCS
      */
+/// @UML (identifier="usesCS", obligation=MANDATORY)
 /// CartesianCS getCoordinateSystem();
 }

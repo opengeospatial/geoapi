@@ -16,6 +16,10 @@ import java.util.List;
 import org.opengis.spatialschema.geometry.primitive.CurveInterpolation;
 import org.opengis.spatialschema.geometry.primitive.CurveSegment;
 
+// Annotations
+///import org.opengis.annotation.UML;
+///import static org.opengis.annotation.Obligation.*;
+
 
 /**
  * Similar to a {@linkplain LineString line string} except that the interpolation is
@@ -26,7 +30,6 @@ import org.opengis.spatialschema.geometry.primitive.CurveSegment;
  * this {@linkplain Position position} is not repeated in the {@linkplain #getControlPoints
  * control points} sequence.
  *
- * @UML abstract GM_ArcString
  * @author ISO/DIS 19107
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 2.0
@@ -34,6 +37,7 @@ import org.opengis.spatialschema.geometry.primitive.CurveSegment;
  * @see GeometryFactory#createArcString
  * @see ArcStringByBulge#asArcString
  */
+///@UML (identifier="GM_ArcString")
 public interface ArcString extends CurveSegment {
     /**
      * Returns the number of circular arcs in the string. Since the interpolation method
@@ -45,8 +49,8 @@ public interface ArcString extends CurveSegment {
      * </blockquote>
      *
      * @return The number of circular arcs.
-     * @UML operation numArc
      */
+/// @UML (identifier="numArc", obligation=MANDATORY)
     public int getNumArc();
 
     /**
@@ -56,8 +60,8 @@ public interface ArcString extends CurveSegment {
      * another arc in the string.
      *
      * @return The control points. The array size is <code>2*{@link #getNumArc numArc}&nbsp;+1</code>.
-     * @UML operation controlPoints
      */
+/// @UML (identifier="controlPoints", obligation=MANDATORY)
     public PointArray getControlPoints();
 
     /**
@@ -65,15 +69,15 @@ public interface ArcString extends CurveSegment {
      * "{@linkplain CurveInterpolation#CIRCULAR_ARC_3_POINTS circular arc by 3 points}".
      *
      * @return Always {@link CurveInterpolation#CIRCULAR_ARC_3_POINTS}.
-     * @UML operation interpolation
      */
+/// @UML (identifier="interpolation", obligation=MANDATORY)
     public CurveInterpolation getInterpolation();
 
     /**
      * Constructs a sequence of arcs that is the geometric equivalent of this arc string.
      *
      * @return The sequence of arcs.
-     * @UML operation asGM_Arc
      */
+/// @UML (identifier="asGM_Arc", obligation=MANDATORY)
     public List/*<Arc>*/ asArcs();
 }

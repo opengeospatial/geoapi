@@ -47,7 +47,6 @@ import org.opengis.parameter.GeneralParameterValue;
  * not have codes for NAD83 state plane coordinate systems that use feet units.  This
  * factory lets an application create such a hybrid coordinate system.
  *
- * @UML abstract CS_CoordinateSystemFactory
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-009.pdf">Implementation specification 1.0</A>
  *
@@ -63,7 +62,6 @@ public interface CRSFactory extends Factory {
      *         Available properties are {@linkplain Factory listed there}.
      * @param  elements ordered array of <code>CoordinateReferenceSystem</code> objects.
      * @throws FactoryException if the object creation failed.
-     * @UML operation createCompoundCoordinateSystem
      */
     CompoundCRS createCompoundCRS(Map                       properties,
                                   CoordinateReferenceSystem[] elements) throws FactoryException;
@@ -76,7 +74,6 @@ public interface CRSFactory extends Factory {
      * @param  datum Engineering datum to use in created CRS.
      * @param  cs The coordinate system for the created CRS.
      * @throws FactoryException if the object creation failed.
-     * @UML operation createLocalCoordinateSystem
      */
     EngineeringCRS createEngineeringCRS(Map         properties,
                                         EngineeringDatum datum,
@@ -120,7 +117,6 @@ public interface CRSFactory extends Factory {
      * @param  datum Geodetic datum to use in created CRS.
      * @param  cs The ellipsoidal coordinate system for the created CRS.
      * @throws FactoryException if the object creation failed.
-     * @UML operation createGeographicCoordinateSystem
      */
     GeographicCRS createGeographicCRS(Map      properties,
                                       GeodeticDatum datum,
@@ -158,7 +154,6 @@ public interface CRSFactory extends Factory {
      *         of axes must match the target dimension of the transform
      *         <code>baseToDerived</code>.
      * @throws FactoryException if the object creation failed.
-     * @UML operation createFittedCoordinateSystem
      */
     DerivedCRS createDerivedCRS(Map                 properties,
                                 CoordinateReferenceSystem base,
@@ -227,7 +222,6 @@ public interface CRSFactory extends Factory {
      * @param  datum Vertical datum to use in created CRS.
      * @param  cs The Vertical coordinate system for the created CRS.
      * @throws FactoryException if the object creation failed.
-     * @UML operation createVerticalCoordinateSystem
      */
     VerticalCRS createVerticalCRS(Map     properties,
                                   VerticalDatum datum,
@@ -238,7 +232,6 @@ public interface CRSFactory extends Factory {
      *
      * @param  xml Coordinate reference system encoded in XML format.
      * @throws FactoryException if the object creation failed.
-     * @UML operation createFromXML
      */
     CoordinateReferenceSystem createFromXML(String xml) throws FactoryException;
 
@@ -249,7 +242,6 @@ public interface CRSFactory extends Factory {
      *
      * @param  wkt Coordinate system encoded in Well-Known Text format.
      * @throws FactoryException if the object creation failed.
-     * @UML operation createFromWKT
      */
     CoordinateReferenceSystem createFromWKT(String wkt) throws FactoryException;
 }

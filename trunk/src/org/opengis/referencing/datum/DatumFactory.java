@@ -27,7 +27,6 @@ import org.opengis.referencing.FactoryException;
  * So {@link DatumAuthorityFactory} can be used to make "standard" datums, and
  * <code>DatumFactory</code> can be used to make "special" datums.
  *
- * @UML abstract CS_CoordinateSystemFactory
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-009.pdf">Implementation specification 1.0</A>
  *
@@ -41,7 +40,6 @@ public interface DatumFactory extends Factory {
      * @param  properties Name and other properties to give to the new object.
      *         Available properties are {@linkplain Factory listed there}.
      * @throws FactoryException if the object creation failed.
-     * @UML operation createLocalDatum
      */
     EngineeringDatum createEngineeringDatum(Map properties) throws FactoryException;
 
@@ -53,8 +51,6 @@ public interface DatumFactory extends Factory {
      * @param  ellipsoid Ellipsoid to use in new geodetic datum.
      * @param  primeMeridian Prime meridian to use in new geodetic datum.
      * @throws FactoryException if the object creation failed.
-     *
-     * @UML operation createHorizontalDatum
      */
     GeodeticDatum createGeodeticDatum(Map           properties,
                                       Ellipsoid     ellipsoid,
@@ -88,7 +84,6 @@ public interface DatumFactory extends Factory {
      *         Available properties are {@linkplain Factory listed there}.
      * @param  type The type of this vertical datum (often “geoidal”).
      * @throws FactoryException if the object creation failed.
-     * @UML operation createVerticalDatum
      */
     VerticalDatum createVerticalDatum(Map properties, VerticalDatumType type) throws FactoryException;
 
@@ -101,7 +96,6 @@ public interface DatumFactory extends Factory {
      * @param  semiMinorAxis Polar radius in supplied linear units.
      * @param  unit Linear units of ellipsoid axes.
      * @throws FactoryException if the object creation failed.
-     * @UML operation createEllipsoid
      */
     Ellipsoid createEllipsoid(Map    properties,
                               double semiMajorAxis,
@@ -117,7 +111,6 @@ public interface DatumFactory extends Factory {
      * @param  inverseFlattening Eccentricity of ellipsoid.
      * @param  unit Linear units of major axis.
      * @throws FactoryException if the object creation failed.
-     * @UML operation createFlattenedSphere
      */
     Ellipsoid createFlattenedSphere(Map    properties,
                                     double semiMajorAxis,
@@ -132,7 +125,6 @@ public interface DatumFactory extends Factory {
      * @param  longitude Longitude of prime meridian in supplied angular units East of Greenwich.
      * @param  angularUnit Angular units of longitude.
      * @throws FactoryException if the object creation failed.
-     * @UML operation createPrimeMeridian
      */
     PrimeMeridian createPrimeMeridian(Map    properties,
                                       double longitude,

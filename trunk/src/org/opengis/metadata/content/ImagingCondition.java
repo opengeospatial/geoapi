@@ -16,15 +16,19 @@ import java.util.ArrayList;
 // OpenGIS direct dependencies
 import org.opengis.util.CodeList;
 
+// Annotations
+///import org.opengis.annotation.UML;
+///import static org.opengis.annotation.Obligation.*;
+
 
 /**
  * Code which indicates conditions which may affect the image.
  *
- * @UML codelist MD_ImagingConditionCode
  * @author ISO 19115
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
  */
+///@UML (identifier="MD_ImagingConditionCode")
 public final class ImagingCondition extends CodeList {
     /**
      * Serial number for compatibility with different versions.
@@ -39,82 +43,71 @@ public final class ImagingCondition extends CodeList {
 
     /**
      * Portion of the image is blurred.
-     *
-     * @UML conditional blurredImage
      */
+/// @UML (identifier="blurredImage", obligation=CONDITIONAL)
     public static final ImagingCondition BLURRED_IMAGE = new ImagingCondition("BLURRED_IMAGE");
 
     /**
      * Portion of the image is partially obscured by cloud cover
-     *
-     * @UML conditional cloud
      */
+/// @UML (identifier="cloud", obligation=CONDITIONAL)
     public static final ImagingCondition CLOUD = new ImagingCondition("CLOUD");
 
     /**
      * Acute angle between the plane of the ecliptic (the plane of the Earth’s orbit) and
      * the plane of the celestial equator.
-     *
-     * @UML conditional degradingObliquity
      */
+/// @UML (identifier="degradingObliquity", obligation=CONDITIONAL)
     public static final ImagingCondition DEGRADING_OBLIQUITY = new ImagingCondition("DEGRADING_OBLIQUITY");
 
     /**
      * Portion of the image is partially obscured by fog.
-     *
-     * @UML conditional fog
      */
+/// @UML (identifier="fog", obligation=CONDITIONAL)
     public static final ImagingCondition FOG = new ImagingCondition("FOG");
 
     /**
      * Portion of the image is partially obscured by heavy smoke or dust.
-     *
-     * @UML conditional heavySmokeOrDust
      */
+/// @UML (identifier="heavySmokeOrDust", obligation=CONDITIONAL)
     public static final ImagingCondition HEAVY_SMOKE_OR_DUST = new ImagingCondition("HEAVY_SMOKE_OR_DUST");
 
     /**
      * Image was taken at night.
-     *
-     * @UML conditional night
      */
+/// @UML (identifier="night", obligation=CONDITIONAL)
     public static final ImagingCondition NIGHT = new ImagingCondition("NIGHT");
 
     /**
      * Image was taken during rainfall.
-     *
-     * @UML conditional rain
      */
+/// @UML (identifier="rain", obligation=CONDITIONAL)
     public static final ImagingCondition RAIN = new ImagingCondition("RAIN");
 
     /**
      * Image was taken during semi-dark conditions—twilight conditions.
-     *
-     * @UML conditional semiDarkness
      */
+/// @UML (identifier="semiDarkness", obligation=CONDITIONAL)
     public static final ImagingCondition SEMI_DARKNESS = new ImagingCondition("SEMI_DARKNESS");
 
     /**
      * Portion of the image is obscured by shadow.
-     *
-     * @UML conditional shadow
      */
+/// @UML (identifier="shadow", obligation=CONDITIONAL)
     public static final ImagingCondition SHADOW = new ImagingCondition("SHADOW");
 
     /**
      * Portion of the image is obscured by snow.
-     *
-     * @UML conditional snow
      */
+/// @UML (identifier="snow", obligation=CONDITIONAL)
     public static final ImagingCondition SNOW = new ImagingCondition("SNOW");
 
     /**
      * The absence of collection data of a given point or area caused by the relative
      * location of topographic features which obstruct the collection path between the
      * collector(s) and the subject(s) of interest.
-     *
-     * @UML conditional terrainMasking
      */
+/// @UML (identifier="terrainMasking", obligation=CONDITIONAL)
     public static final ImagingCondition TERRAIN_MASKING = new ImagingCondition("TERRAIN_MASKING");
 
     /**

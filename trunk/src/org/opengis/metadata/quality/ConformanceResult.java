@@ -13,35 +13,36 @@ package org.opengis.metadata.quality;
 import org.opengis.util.InternationalString;
 import org.opengis.metadata.citation.Citation;
 
+// Annotations
+///import org.opengis.annotation.UML;
+///import static org.opengis.annotation.Obligation.*;
+
 
 /**
  * Information about the outcome of evaluating the obtained value (or set of values) against
  * a specified acceptable conformance quality level.
  *
- * @UML datatype DQ_ConformanceResult
  * @author ISO 19115
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
  */
+///@UML (identifier="DQ_ConformanceResult")
 public interface ConformanceResult extends Result {
     /**
      * Citation of product specification or user requirement against which data is being evaluated.
-     *
-     * @UML mandatory specification
      */
+/// @UML (identifier="specification", obligation=MANDATORY)
     Citation getSpecification();
 
     /**
      * Explanation of the meaning of conformance for this result.
-     *
-     * @UML mandatory explanation
      */
+/// @UML (identifier="explanation", obligation=MANDATORY)
     InternationalString getExplanation();
 
     /**
      * Indication of the conformance result.
-     *
-     * @UML mandatory pass
      */
+/// @UML (identifier="pass", obligation=MANDATORY)
     boolean pass();
 }

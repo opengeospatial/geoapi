@@ -12,6 +12,10 @@ package org.opengis.metadata.extent;
 // OpenGIS direct dependencies
 import org.opengis.util.InternationalString;
 
+// Annotations
+///import org.opengis.annotation.UML;
+///import static org.opengis.annotation.Obligation.*;
+
 
 /**
  * Information about spatial, vertical, and temporal extent.
@@ -22,49 +26,48 @@ import org.opengis.util.InternationalString;
  *  {@linkplain #getDescription description}.
  *  At least one of the four shall be used.
  *
- * @UML datatype EX_Extent
  * @author ISO 19115
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
  */
+///@UML (identifier="EX_Extent")
 public interface Extent {
     /**
      * Returns the spatial and temporal extent for the referring object.
-     * 
-     * @UML conditional description
      */
+/// @UML (identifier="description", obligation=CONDITIONAL)
     InternationalString getDescription();
 
     /**
      * Provides geographic component of the extent of the referring object
      *
      * @return The geographic extent, or <code>null</code> if none.
-     * @UML conditional geographicElement
      *
      * @revisit The UML allows an arbitrary number of components.
      *          Should we return an array?
      */
+/// @UML (identifier="geographicElement", obligation=CONDITIONAL)
     GeographicExtent getGeographicElement();
 
     /**
      * Provides temporal component of the extent of the referring object
      *
      * @return The temporal extent, or <code>null</code> if none.
-     * @UML conditional temporalElement
      *
      * @revisit The UML allows an arbitrary number of components.
      *          Should we return an array?
      */
+/// @UML (identifier="temporalElement", obligation=CONDITIONAL)
     TemporalExtent getTemporalElement();
 
     /**
      * Provides vertical component of the extent of the referring object
      *
      * @return The vertical extent, or <code>null</code> if none.
-     * @UML conditional verticalElement
      *
      * @revisit The UML allows an arbitrary number of components.
      *          Should we return an array?
      */
+/// @UML (identifier="verticalElement", obligation=CONDITIONAL)
     VerticalExtent getVerticalElement();
 }

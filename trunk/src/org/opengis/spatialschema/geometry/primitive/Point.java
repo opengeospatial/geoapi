@@ -13,6 +13,10 @@ package org.opengis.spatialschema.geometry.primitive;
 import org.opengis.spatialschema.geometry.DirectPosition;
 import org.opengis.spatialschema.geometry.geometry.Position;
 
+// Annotations
+///import org.opengis.annotation.UML;
+///import static org.opengis.annotation.Obligation.*;
+
 
 /**
  * Basic data type for a geometric object consisting of one and only one point.
@@ -21,7 +25,6 @@ import org.opengis.spatialschema.geometry.geometry.Position;
  * has been subclassed to provide additional non-geometric information such as
  * symbology.
  *
- * @UML type GM_Point
  * @author ISO/DIS 19107
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 2.0
@@ -30,6 +33,7 @@ import org.opengis.spatialschema.geometry.geometry.Position;
  *
  * @revisit Some associations are commented out for now.
  */
+///@UML (identifier="GM_Point")
 public interface Point extends Primitive, Position {
     /**
      * Returns the direct position of this point. <code>Point</code> is the only subclass
@@ -41,16 +45,16 @@ public interface Point extends Primitive, Position {
      * are prevented.
      *
      * @return The direct position.
-     * @UML mandatory position
      */
+/// @UML (identifier="position", obligation=MANDATORY)
     public DirectPosition getPosition();
 
     /**
      * Returns always <code>null</code>, since point has no boundary.
      *
      * @return Always <code>null</code>.
-     * @UML operation boundary
      */
+/// @UML (identifier="boundary", obligation=MANDATORY)
 /// public PrimitiveBoundary getBoundary();
 
     /**
@@ -66,8 +70,8 @@ public interface Point extends Primitive, Position {
      *
      * @param toPoint the destination point.
      * @return The tangent to the curve between this point and the passed position.
-     * @UML operation bearing
      */
+/// @UML (identifier="bearing", obligation=MANDATORY)
     public Bearing getBearing(Position toPoint);
 
 //    public org.opengis.spatialschema.geometry.complex.GM_CompositePoint composite[];

@@ -9,13 +9,16 @@
  *************************************************************************************************/
 package org.opengis.spatialschema.geometry;
 
+// Annotations
+///import org.opengis.annotation.UML;
+///import static org.opengis.annotation.Obligation.*;
+
 
 /**
  * A possibly infinite set; restricted only to values. For example, the integers and the real
  * numbers are transfinite sets. This is actually the usual definition of set in mathematics,
  * but programming languages restrict the term set to mean finite set.
  *
- * @UML type TransfiniteSet<DirectPosition>
  * @author ISO TS 19103
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 2.0
@@ -23,6 +26,7 @@ package org.opengis.spatialschema.geometry;
  * @revisit This interface should uses generic type. It focus on {@link DirectPosition}
  *          for now because it is the only type used at this time.
  */
+///@UML (identifier="TransfiniteSet<DirectPosition>")
 public interface TransfiniteSet {
     /**
      * Returns <code>true</code> if this <code>TransfiniteSet</code> contains another

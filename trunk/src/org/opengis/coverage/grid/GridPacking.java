@@ -12,6 +12,10 @@ package org.opengis.coverage.grid;
 // OpenGIS direct dependencies
 import org.opengis.coverage.SampleDimensionType;  // For Javadoc
 
+// Annotations
+///import org.opengis.annotation.UML;
+///import static org.opengis.annotation.Obligation.*;
+
 
 /**
  * Describes the packing of data values within grid coverages.
@@ -19,16 +23,15 @@ import org.opengis.coverage.SampleDimensionType;  // For Javadoc
  * within a byte, byte packing (Little Endian / Big Endian) for values with more
  * than 8 bits and the packing of the values within the dimensions.
  *
- * @UML abstract GC_GridPacking
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-004.pdf">Grid Coverage specification 1.0</A>
  */
+///@UML (identifier="GC_GridPacking")
 public interface GridPacking {
     /**
      * Order of bytes packed in values for sample dimensions with greater than 8 bits.
-     *
-     * @UML mandatory byteInValuePacking
      */
+/// @UML (identifier="byteInValuePacking", obligation=MANDATORY)
     ByteInValuePacking getByteInValuePacking();
 
     /**
@@ -37,9 +40,8 @@ public interface GridPacking {
      * {@link SampleDimensionType#UNSIGNED_1BIT UNSIGNED_1BIT},
      * {@link SampleDimensionType#UNSIGNED_2BITS UNSIGNED_2BITS} and
      * {@link SampleDimensionType#UNSIGNED_4BITS UNSIGNED_4BITS} data types.
-     *
-     * @UML mandatory valueInBytePacking
      */
+/// @UML (identifier="valueInBytePacking", obligation=MANDATORY)
     ValueInBytePacking getValueInBytePacking();
 
     /**
@@ -65,10 +67,10 @@ public interface GridPacking {
      *  For 2 dimensional grids, band packing of 0 is referred to as band sequential,
      *  1 line interleaved and 2 pixel interleaved.
      *
-     * @UML mandatory bandPacking
      *
      * @see java.awt.image.BandedSampleModel
      * @see java.awt.image.PixelInterleavedSampleModel
      */
+/// @UML (identifier="bandPacking", obligation=MANDATORY)
     int getBandPacking();
 }

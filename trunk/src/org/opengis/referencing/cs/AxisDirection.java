@@ -16,6 +16,10 @@ import java.util.ArrayList;
 // OpenGIS direct dependencies
 import org.opengis.util.CodeList;
 
+// Annotations
+///import org.opengis.annotation.UML;
+///import static org.opengis.annotation.Obligation.*;
+
 
 /**
  * The direction of positive increments in the coordinate value for a coordinate system
@@ -26,10 +30,10 @@ import org.opengis.util.CodeList;
  * East. This information is obviously relevant for algorithms converting
  * South African grid coordinates into Lat/Long.
  *
- * @UML codelist CS_AxisDirection
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/03-073r1.zip">Abstract specification 2.0</A>
  */
+///@UML (identifier="CS_AxisDirection")
 public final class AxisDirection extends CodeList {
     /**
      * Serial number for compatibility with different versions.
@@ -55,233 +59,202 @@ public final class AxisDirection extends CodeList {
      * north is defined through the geodetic datum. In an engineering CRS,
      * north may be defined with respect to an engineering object rather
      * than a geographical direction.
-     *
-     * @UML conditional north
      */
+/// @UML (identifier="north", obligation=CONDITIONAL)
     public static final AxisDirection NORTH = new AxisDirection("NORTH");
 
     /**
      * Axis positive direction is approximately north-north-east.
-     *
-     * @UML conditional northNorthEast
      */
+/// @UML (identifier="northNorthEast", obligation=CONDITIONAL)
     public static final AxisDirection NORTH_NORTH_EAST = new AxisDirection("NORTH_NORTH_EAST");
 
     /**
      * Axis positive direction is approximately north-east.
-     *
-     * @UML conditional northEast
      */
+/// @UML (identifier="northEast", obligation=CONDITIONAL)
     public static final AxisDirection NORTH_EAST = new AxisDirection("NORTH_EAST");
 
     /**
      * Axis positive direction is approximately east-north-east.
-     *
-     * @UML conditional eastNorthEast
      */
+/// @UML (identifier="eastNorthEast", obligation=CONDITIONAL)
     public static final AxisDirection EAST_NORTH_EAST = new AxisDirection("EAST_NORTH_EAST");
 
     /**
      * Axis positive direction is &pi;/2 radians clockwise from north.
      * This is usually used for Grid X coordinates and Longitude.
-     *
-     * @UML conditional east
      */
+/// @UML (identifier="east", obligation=CONDITIONAL)
     public static final AxisDirection EAST = new AxisDirection("EAST");
 
     /**
      * Axis positive direction is approximately east-south-east.
-     *
-     * @UML conditional eastSouthEast
      */
+/// @UML (identifier="eastSouthEast", obligation=CONDITIONAL)
     public static final AxisDirection EAST_SOUTH_EAST = new AxisDirection("EAST_SOUTH_EAST");
 
     /**
      * Axis positive direction is approximately south-east.
-     *
-     * @UML conditional southEast
      */
+/// @UML (identifier="southEast", obligation=CONDITIONAL)
     public static final AxisDirection SOUTH_EAST = new AxisDirection("SOUTH_EAST");
 
     /**
      * Axis positive direction is approximately south-south-east.
-     *
-     * @UML conditional southSouthEast
      */
+/// @UML (identifier="southSouthEast", obligation=CONDITIONAL)
     public static final AxisDirection SOUTH_SOUTH_EAST = new AxisDirection("SOUTH_SOUTH_EAST");
 
     /**
      * Axis positive direction is &pi; radians clockwise from north.
-     *
-     * @UML conditional south
      */
+/// @UML (identifier="south", obligation=CONDITIONAL)
     public static final AxisDirection SOUTH = new AxisDirection("SOUTH", NORTH);
 
     /**
      * Axis positive direction is approximately south-south-west.
-     *
-     * @UML conditional southSouthWest
      */
+/// @UML (identifier="southSouthWest", obligation=CONDITIONAL)
     public static final AxisDirection SOUTH_SOUTH_WEST = new AxisDirection("SOUTH_SOUTH_WEST", NORTH_NORTH_EAST);
 
     /**
      * Axis positive direction is approximately south-west.
-     *
-     * @UML conditional southWest
      */
+/// @UML (identifier="southWest", obligation=CONDITIONAL)
     public static final AxisDirection SOUTH_WEST = new AxisDirection("SOUTH_WEST", NORTH_EAST);
 
     /**
      * Axis positive direction is approximately west-south-west.
-     *
-     * @UML conditional westSouthWest
      */
+/// @UML (identifier="westSouthWest", obligation=CONDITIONAL)
     public static final AxisDirection WEST_SOUTH_WEST = new AxisDirection("WEST_SOUTH_WEST", EAST_NORTH_EAST);
 
     /**
      * Axis positive direction is 3&pi;/2 radians clockwise from north.
      * This is usually used for Grid X coordinates and Longitude.
-     *
-     * @UML conditional west
      */
+/// @UML (identifier="west", obligation=CONDITIONAL)
     public static final AxisDirection WEST = new AxisDirection("WEST", EAST);
 
     /**
      * Axis positive direction is approximately west-north-west.
-     *
-     * @UML conditional westNorthWest
      */
+/// @UML (identifier="westNorthWest", obligation=CONDITIONAL)
     public static final AxisDirection WEST_NORTH_WEST = new AxisDirection("WEST_NORTH_WEST", EAST_SOUTH_EAST);
 
     /**
      * Axis positive direction is approximately north-west.
-     *
-     * @UML conditional northWest
      */
+/// @UML (identifier="northWest", obligation=CONDITIONAL)
     public static final AxisDirection NORTH_WEST = new AxisDirection("NORTH_WEST", SOUTH_EAST);
 
     /**
      * Axis positive direction is approximately north-north-west.
-     *
-     * @UML conditional northNorthWest
      */
+/// @UML (identifier="northNorthWest", obligation=CONDITIONAL)
     public static final AxisDirection NORTH_NORTH_WEST = new AxisDirection("NORTH_NORTH_WEST", SOUTH_SOUTH_EAST);
 
     /**
      * Axis positive direction is up relative to gravity.
      * This is used for {@linkplain org.opengis.referencing.crs.VerticalCRS vertical}
      * coordinate reference systems.
-     *
-     * @UML conditional up
      */
+/// @UML (identifier="up", obligation=CONDITIONAL)
     public static final AxisDirection UP = new AxisDirection("UP");
 
     /**
      * Axis positive direction is down relative to gravity.
      * This is used for {@linkplain org.opengis.referencing.crs.VerticalCRS vertical}
      * coordinate reference systems.
-     *
-     * @UML conditional down
      */
+/// @UML (identifier="down", obligation=CONDITIONAL)
     public static final AxisDirection DOWN = new AxisDirection("DOWN", UP);
 
     /**
      * Axis positive direction is in the equatorial plane from the centre of the
      * modelled earth towards the intersection of the equator with the prime meridian.
-     *
-     * @UML conditional geocentricX
      */
+/// @UML (identifier="geocentricX", obligation=CONDITIONAL)
     public static final AxisDirection GEOCENTRIC_X = new AxisDirection("GEOCENTRIC_X");
 
     /**
      * Axis positive direction is in the equatorial plane from the centre of the
      * modelled earth towards the intersection of the equator and the meridian &pi;/2
      * radians eastwards from the prime meridian.
-     *
-     * @UML conditional geocentricY
      */
+/// @UML (identifier="geocentricY", obligation=CONDITIONAL)
     public static final AxisDirection GEOCENTRIC_Y = new AxisDirection("GEOCENTRIC_Y");
 
     /**
      * Axis positive direction is from the centre of the modelled earth parallel to
      * its rotation axis and towards its north pole.
-     *
-     * @UML conditional geocentricZ
      */
+/// @UML (identifier="geocentricZ", obligation=CONDITIONAL)
     public static final AxisDirection GEOCENTRIC_Z = new AxisDirection("GEOCENTRIC_Z");
 
     /**
      * Axis positive direction is towards the future.
      * This is used for {@linkplain org.opengis.referencing.crs.TemporalCRS temporal}
      * coordinate reference systems.
-     *
-     * @UML conditional future
      */
+/// @UML (identifier="future", obligation=CONDITIONAL)
     public static final AxisDirection FUTURE = new AxisDirection("FUTURE");
 
     /**
      * Axis positive direction is towards the past.
      * This is used for {@linkplain org.opengis.referencing.crs.TemporalCRS temporal}
      * coordinate reference systems.
-     *
-     * @UML conditional past
      */
+/// @UML (identifier="past", obligation=CONDITIONAL)
     public static final AxisDirection PAST = new AxisDirection("PAST", FUTURE);
 
     /**
      * Axis positive direction is towards higher pixel column.
-     *
-     * @UML conditional columnPositive
      */
+/// @UML (identifier="columnPositive", obligation=CONDITIONAL)
     public static final AxisDirection COLUMN_POSITIVE = new AxisDirection("COLUMN_POSITIVE");
 
     /**
      * Axis positive direction is towards lower pixel column.
-     *
-     * @UML conditional columnNegative
      */
+/// @UML (identifier="columnNegative", obligation=CONDITIONAL)
     public static final AxisDirection COLUMN_NEGATIVE = new AxisDirection("COLUMN_NEGATIVE", COLUMN_POSITIVE);
 
     /**
      * Axis positive direction is towards higher pixel row.
-     *
-     * @UML conditional rowPositive
      */
+/// @UML (identifier="rowPositive", obligation=CONDITIONAL)
     public static final AxisDirection ROW_POSITIVE = new AxisDirection("ROW_POSITIVE");
 
     /**
      * Axis positive direction is towards lower pixel row.
-     *
-     * @UML conditional rowNegative
      */
+/// @UML (identifier="rowNegative", obligation=CONDITIONAL)
     public static final AxisDirection ROW_NEGATIVE = new AxisDirection("ROW_NEGATIVE");
 
     /**
      * Axis positive direction is right in display.
-     *
-     * @UML conditional displayRight
      */
+/// @UML (identifier="displayRight", obligation=CONDITIONAL)
     public static final AxisDirection DISPLAY_RIGHT = new AxisDirection("DISPLAY_RIGHT");
 
     /**
      * Axis positive direction is left in display.
-     *
-     * @UML conditional displayLeft
      */
+/// @UML (identifier="displayLeft", obligation=CONDITIONAL)
     public static final AxisDirection DISPLAY_LEFT = new AxisDirection("DISPLAY_LEFT", DISPLAY_RIGHT);
 
     /**
      * Axis positive direction is towards top of approximately vertical display surface.
-     *
-     * @UML conditional displayUp
      */
+/// @UML (identifier="displayUp", obligation=CONDITIONAL)
     public static final AxisDirection DISPLAY_UP = new AxisDirection("DISPLAY_UP");
 
     /**
      * Axis positive direction is towards bottom of approximately vertical display surface.
-     *
-     * @UML conditional displayDown
      */
+/// @UML (identifier="displayDown", obligation=CONDITIONAL)
     public static final AxisDirection DISPLAY_DOWN = new AxisDirection("DISPLAY_DOWN", DISPLAY_UP);
 
     /**

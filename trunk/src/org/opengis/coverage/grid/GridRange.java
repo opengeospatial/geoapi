@@ -9,15 +9,19 @@
  *************************************************************************************************/
 package org.opengis.coverage.grid;
 
+// Annotations
+///import org.opengis.annotation.UML;
+///import static org.opengis.annotation.Obligation.*;
+
 
 /**
  * Specifies the range of valid coordinates for each dimension of the coverage.
  * For example this data type is used to access a block of grid coverage data values.
  *
- * @UML datatype CV_GridRange
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-004.pdf">Grid Coverage specification 1.0</A>
  */
+///@UML (identifier="CV_GridRange")
 public interface GridRange {
     /**
      * Returns the number of dimensions.
@@ -30,8 +34,8 @@ public interface GridRange {
      * The lowest valid grid coordinate is zero.
      *
      * @return The valid minimum inclusive grid coordinate.
-     * @UML mandatory lo
      */
+/// @UML (identifier="lo", obligation=MANDATORY)
     int[] getLowers();
 
     /**
@@ -39,8 +43,8 @@ public interface GridRange {
      * The sequence contains a maximum value for each dimension of the grid coverage.
      *
      * @return The valid maximum exclusive grid coordinate.
-     * @UML mandatory hi
      */
+/// @UML (identifier="hi", obligation=MANDATORY)
     int[] getUppers();
     
     /**

@@ -9,14 +9,18 @@
  *************************************************************************************************/
 package org.opengis.metadata.quality;
 
+// Annotations
+///import org.opengis.annotation.UML;
+///import static org.opengis.annotation.Obligation.*;
+
 
 /**
  * Accuracy of the position of features.
  *
- * @UML datatype DQ_PositionalAccuracy
  * @author ISO 19115
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
  */
+///@UML (identifier="DQ_PositionalAccuracy")
 public interface PositionalAccuracy extends Element {
 }

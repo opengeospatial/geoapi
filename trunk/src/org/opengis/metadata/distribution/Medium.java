@@ -16,58 +16,56 @@ import javax.units.Unit;
 // OpenGIS direct dependencies
 import org.opengis.util.InternationalString;
 
+// Annotations
+///import org.opengis.annotation.UML;
+///import static org.opengis.annotation.Obligation.*;
+
 
 /**
  * Information about the media on which the resource can be distributed.
  *
- * @UML datatype MD_Medium
  * @author ISO 19115
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
  */
+///@UML (identifier="MD_Medium")
 public interface Medium {
     /**
      * Name of the medium on which the resource can be received.
-     *
-     * @UML optional name
      */
+/// @UML (identifier="name", obligation=OPTIONAL)
     MediumName getName();
 
     /**
      * Density at which the data is recorded.
      * Returns <code>null</code> if unknown.
      * If non-null, then the number should be greater than zero.
-     *
-     * @UML optional density
      */
+/// @UML (identifier="density", obligation=OPTIONAL)
     List/*<Number>*/ getDensities();
 
     /**
      * Units of measure for the recording density.
-     *
-     * @UML conditional densityUnits
      */
+/// @UML (identifier="densityUnits", obligation=CONDITIONAL)
     Unit getDensityUnits();
 
     /**
      * Number of items in the media identified.
      * Returns <code>null</code> if unknown.
-     *
-     * @UML optional volumes
      */
+/// @UML (identifier="volumes", obligation=OPTIONAL)
     Integer getVolumes();
 
     /**
      * Method used to write to the medium.
-     *
-     * @UML optional mediumFormat
      */
+/// @UML (identifier="mediumFormat", obligation=OPTIONAL)
     MediumFormat getMediumFormat();
 
     /**
      * Description of other limitations or requirements for using the medium.
-     *
-     * @UML optional mediumNote
      */
+/// @UML (identifier="mediumNote", obligation=OPTIONAL)
     InternationalString getMediumNote();
 }

@@ -16,15 +16,19 @@ import java.util.ArrayList;
 // OpenGIS direct dependencies
 import org.opengis.util.CodeList;
 
+// Annotations
+///import org.opengis.annotation.UML;
+///import static org.opengis.annotation.Obligation.*;
+
 
 /**
  * Point in a pixel corresponding to the Earth location of the pixel.
  *
- * @UML codelist MD_PixelOrientationCode
  * @author ISO 19115
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
  */
+///@UML (identifier="MD_PixelOrientationCode")
 public final class PixelOrientation extends CodeList {
     /**
      * Serial number for compatibility with different versions.
@@ -39,38 +43,33 @@ public final class PixelOrientation extends CodeList {
 
     /**
      * Point in a pixel corresponding to the Earth location of the pixel.
-     *
-     * @UML conditional center
      */
+/// @UML (identifier="center", obligation=CONDITIONAL)
     public static final CellGeometry CENTER = new CellGeometry("CENTER");
 
     /**
      * The corner in the pixel closest to the origin of the SRS; if two are at the same
      * distance from the origin, the one with the smallest x-value.
-     *
-     * @UML conditional lowerLeft
      */
+/// @UML (identifier="lowerLeft", obligation=CONDITIONAL)
     public static final CellGeometry LOWER_LEFT = new CellGeometry("LOWER_LEFT");
 
     /**
      * Next corner counterclockwise from the lower left.
-     *
-     * @UML conditional lowerRight
      */
+/// @UML (identifier="lowerRight", obligation=CONDITIONAL)
     public static final CellGeometry LOWER_RIGHT = new CellGeometry("LOWER_RIGHT");
 
     /**
      * Next corner counterclockwise from the lower right.
-     *
-     * @UML conditional upperRight
      */
+/// @UML (identifier="upperRight", obligation=CONDITIONAL)
     public static final CellGeometry UPPER_RIGHT = new CellGeometry("UPPER_RIGHT");
 
     /**
      * Next corner counterclockwise from the upper right.
-     *
-     * @UML conditional upperLeft
      */
+/// @UML (identifier="upperLeft", obligation=CONDITIONAL)
     public static final CellGeometry UPPER_LEFT = new CellGeometry("UPPER_LEFT");
 
     /**

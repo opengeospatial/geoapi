@@ -13,6 +13,10 @@ package org.opengis.spatialschema.geometry.geometry;
 import org.opengis.spatialschema.geometry.DirectPosition;
 import org.opengis.spatialschema.geometry.primitive.Point;
 
+// Annotations
+///import org.opengis.annotation.UML;
+///import static org.opengis.annotation.Obligation.*;
+
 
 /**
  * A type consisting of either a {@linkplain DirectPosition direct position} or of a
@@ -25,17 +29,17 @@ import org.opengis.spatialschema.geometry.primitive.Point;
  *   <li>In the variant indirect case, cast this position to a {@link Point}.</li>
  * </ul>
  *  
- * @UML datatype GM_Position
  * @author ISO/DIS 19107
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 2.0
  */
+///@UML (identifier="GM_Position")
 public interface Position {
     /**
      * Returns the direct position.
      *
      * @return The direct position.
-     * @UML conditional direct
      */
+/// @UML (identifier="direct", obligation=CONDITIONAL)
     public DirectPosition getPosition();
 }

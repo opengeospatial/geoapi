@@ -13,38 +13,39 @@ package org.opengis.metadata.quality;
 import org.opengis.metadata.extent.Extent;
 import org.opengis.metadata.maintenance.ScopeCode;
 
+// Annotations
+///import org.opengis.annotation.UML;
+///import static org.opengis.annotation.Obligation.*;
+
 
 /**
  * Description of the data specified by the scope.
  *
- * @UML datatype DQ_Scope
  * @author ISO 19115
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
  */
+///@UML (identifier="DQ_Scope")
 public interface Scope {
     /**
      * Hierarchical level of the data specified by the scope.
-     *
-     * @UML mandatory level
      */
+/// @UML (identifier="level", obligation=MANDATORY)
     ScopeCode getLevel();
 
     /**
      * Information about the spatial, vertical and temporal extent of the data specified by the
      * scope.
-     *
-     * @UML optional extent
      */
+/// @UML (identifier="extent", obligation=OPTIONAL)
     Extent getExtent();
 
     /**
      * Detailed description about the level of the data specified by the scope.
      *
-     * @UML conditional levelDescription
-     *
      * @revisit Need to define the <code>ScopeDescription</code> union. This union depends
      *          on <code>FeatureType</code> and <code>AttributeType</code>.
      */
-//    ScopeDescription[] getLevelDescription();
+//  @UML (identifier="levelDescription", obligation=CONDITIONAL)
+//  ScopeDescription[] getLevelDescription();
 }

@@ -16,6 +16,10 @@ import org.opengis.referencing.FactoryException;
 import org.opengis.referencing.NoSuchIdentifierException;
 import org.opengis.parameter.GeneralParameterValue;
 
+// Annotations
+///import org.opengis.annotation.UML;
+///import static org.opengis.annotation.Obligation.*;
+
 
 /**
  * Low level factory for creating {@linkplain MathTransform math transforms}.
@@ -51,10 +55,10 @@ import org.opengis.parameter.GeneralParameterValue;
  * and target coordinate systems mean, it is not necessary or desirable for a math
  * transform object to keep information on its source and target coordinate systems.
  *
- * @UML abstract CT_MathTransformFactory
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-009.pdf">Implementation specification 1.0</A>
  */
+///@UML (identifier="CT_MathTransformFactory")
 public interface MathTransformFactory extends Factory {
     /**
      * Returns the default parameter values for the specified operation method.
@@ -89,8 +93,8 @@ public interface MathTransformFactory extends Factory {
      *         operation method identifier.
      * @throws FactoryException if the object creation failed. This exception is thrown
      *         if some required parameter has not been supplied, or has illegal value.
-     * @UML operation createParameterizedTransform
      */
+/// @UML (identifier="createParameterizedTransform", obligation=MANDATORY)
     MathTransform createParameterizedTransform(String identifier,
                                                GeneralParameterValue[] parameters) throws FactoryException;
 
@@ -107,8 +111,8 @@ public interface MathTransformFactory extends Factory {
      * @param matrix The matrix used to define the affine transform.
      * @return The affine transform.
      * @throws FactoryException if the object creation failed.
-     * @UML operation createAffineTransform
      */
+/// @UML (identifier="createAffineTransform", obligation=MANDATORY)
     MathTransform createAffineTransform(Matrix matrix) throws FactoryException;
 
     /**
@@ -125,8 +129,8 @@ public interface MathTransformFactory extends Factory {
      * @param  transform2 The second transform to apply to points.
      * @return The concatenated transform.
      * @throws FactoryException if the object creation failed.
-     * @UML operation createConcatenatedTransform
      */
+/// @UML (identifier="createConcatenatedTransform", obligation=MANDATORY)
     MathTransform createConcatenatedTransform(MathTransform transform1,
                                               MathTransform transform2) throws FactoryException;
 
@@ -147,8 +151,8 @@ public interface MathTransformFactory extends Factory {
      * Source: firstAffectedOrdinate + subTransform.getDimSource() + numTrailingOrdinates
      * Target: firstAffectedOrdinate + subTransform.getDimTarget() + numTrailingOrdinates</pre>
      * @throws FactoryException if the object creation failed.
-     * @UML operation createPassThroughTransform
      */
+/// @UML (identifier="createPassThroughTransform", obligation=MANDATORY)
     MathTransform createPassThroughTransform(int firstAffectedOrdinate,
                                              MathTransform subTransform,
                                              int numTrailingOrdinates) throws FactoryException;
@@ -158,8 +162,8 @@ public interface MathTransformFactory extends Factory {
      *
      * @param  xml Math transform encoded in XML format.
      * @throws FactoryException if the object creation failed.
-     * @UML operation createFromXML
      */
+/// @UML (identifier="createFromXML", obligation=MANDATORY)
     MathTransform createFromXML(String xml) throws FactoryException;
 
     /**
@@ -171,7 +175,7 @@ public interface MathTransformFactory extends Factory {
      * @return The math transform (never <code>null</code>).
      * @throws FactoryException if the Well-Known Text can't be parsed,
      *         or if the math transform creation failed from some other reason.
-     * @UML operation createFromWKT
      */
+/// @UML (identifier="createFromWKT", obligation=MANDATORY)
     MathTransform createFromWKT(String wkt) throws FactoryException;
 }

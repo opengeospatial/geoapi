@@ -16,6 +16,10 @@ import java.util.Set;
 import org.opengis.spatialschema.geometry.Geometry;
 import org.opengis.spatialschema.geometry.primitive.Primitive; // For javadoc
 
+// Annotations
+///import org.opengis.annotation.UML;
+///import static org.opengis.annotation.Obligation.*;
+
 
 /**
  * A collection of geometrically disjoint, simple {@linkplain Primitive primitives}. If a
@@ -38,29 +42,29 @@ import org.opengis.spatialschema.geometry.primitive.Primitive; // For javadoc
  * complex, primitives may be aggregated many-to-many into composites for use as attributes
  * of features.
  *
- * @UML type GM_Complex
  * @author ISO/DIS 19107
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 2.0
  *
  * @revisit Some associations are commented out for now.
  */
+///@UML (identifier="GM_Complex")
 public interface Complex extends Geometry {
     /**
      * Returns <code>true</code> if and only if this <code>Complex</code> is maximal.
      * A complex is maximal if it is a subcomplex of no larger complex.
      *
      * @return <code>true</code> if this GM_Complex is maximal.
-     * @UML operation isMaximal
      */
+/// @UML (identifier="isMaximal", obligation=MANDATORY)
     public boolean isMaximal();
 
     /**
      * Returns a superset of primitives that is also a complex.
      *
      * @return The supercomplexes, or an empty array if none.
-     * @UML operation superComplex
      */
+/// @UML (identifier="superComplex", obligation=MANDATORY)
     public Complex[] getSuperComplexex();
 
     /**
@@ -68,16 +72,16 @@ public interface Complex extends Geometry {
      * that is, in its own right, a geometric complex.
      *
      * @return The subcomplexes, or an empty array if none.
-     * @UML operation subComplex
      */
+/// @UML (identifier="subComplex", obligation=MANDATORY)
     public Complex[] getSubComplexes();
 
     /**
      * Returns the set of primitives contained in this complex.
      *
      * @return The set of primitives for this complex.
-     * @UML operation element
      */
+/// @UML (identifier="element", obligation=MANDATORY)
     public Set/*<Primitive>*/ getElements();
 
 //    public org.opengis.spatialschema.topology.complex.TP_Complex topology[];

@@ -12,33 +12,35 @@ package org.opengis.metadata.citation;
 // OpenGIS direct dependencies
 import org.opengis.util.InternationalString;
 
+// Annotations
+///import org.opengis.annotation.UML;
+///import static org.opengis.annotation.Obligation.*;
+
 
 /**
  * Identification of, and means of communication with, person(s) and
  * organizations associated with the dataset.
  *
- * @UML datatype CI_ResponsibleParty
  * @author ISO 19115
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
  */
+///@UML (identifier="CI_ResponsibleParty")
 public interface ResponsibleParty {
     /**
      * Name of the responsible person- surname, given name, title separated by a delimiter.
      * Only one of <code>individualName</code>, {@link #getOrganisationName organisationName}
      * and {@link #getPositionName positionName} should be provided.
-     *
-     * @UML conditional individualName
      */
+/// @UML (identifier="individualName", obligation=CONDITIONAL)
     String getIndividualName();
 
     /**
      * Name of the responsible organization.
      * Only one of {@link #getIndividualName individualName}, </code>organisationName</code>
      * and {@link #getPositionName positionName} should be provided.
-     *
-     * @UML conditional organisationName
      */
+/// @UML (identifier="organisationName", obligation=CONDITIONAL)
     InternationalString getOrganisationName();
 
     /**
@@ -46,22 +48,19 @@ public interface ResponsibleParty {
      * Only one of {@link #getIndividualName individualName},
      * {@link #getOrganisationName organisationName} and <code>getPositionName</code>
      * should be provided.
-     *
-     * @UML conditional positionName
      */
+/// @UML (identifier="positionName", obligation=CONDITIONAL)
     InternationalString getPositionName();
 
     /**
      * Address of the responsible party.
-     *
-     * @UML optional contactInfo
      */
+/// @UML (identifier="contactInfo", obligation=OPTIONAL)
     Contact getContactInfo();
 
     /**
      * Function performed by the responsible party.
-     *
-     * @UML mandatory role
      */
+/// @UML (identifier="role", obligation=MANDATORY)
     Role getRole();
 }

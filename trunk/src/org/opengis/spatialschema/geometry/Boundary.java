@@ -12,6 +12,10 @@ package org.opengis.spatialschema.geometry;
 // OpenGIS direct dependencies
 import org.opengis.spatialschema.geometry.complex.Complex;
 
+// Annotations
+///import org.opengis.annotation.UML;
+///import static org.opengis.annotation.Obligation.*;
+
 
 /**
  * The abstract root data type for all the data types used to represent the boundary of geometric
@@ -19,11 +23,11 @@ import org.opengis.spatialschema.geometry.complex.Complex;
  * represent its boundary through the operation {@link Geometry#getBoundary}. By the nature of
  * geometry, boundary objects are cycles.
  *
- * @UML type GM_Boundary
  * @author ISO/DIS 19107
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 2.0
  */
+///@UML (identifier="GM_Boundary")
 public interface Boundary extends Complex {
     /**
      * Always returns <code>true</code> since boundary objects are cycles.

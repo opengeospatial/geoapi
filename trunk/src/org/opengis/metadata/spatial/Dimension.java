@@ -9,35 +9,37 @@
  *************************************************************************************************/
 package org.opengis.metadata.spatial;
 
+// Annotations
+///import org.opengis.annotation.UML;
+///import static org.opengis.annotation.Obligation.*;
+
 
 /**
  * Axis properties.
  *
- * @UML datatype MD_Dimension
  * @author ISO 19115
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
  */
+///@UML (identifier="MD_Dimension")
 public interface Dimension {
     /**
      * Name of the axis.
-     *
-     * @UML mandatory dimensionName
      */
+/// @UML (identifier="dimensionName", obligation=MANDATORY)
     DimensionNameType getDimensionName();
 
     /**
      * Number of elements along the axis.
-     *
-     * @UML mandatory dimensionSize
      */
+/// @UML (identifier="dimensionSize", obligation=MANDATORY)
     int getDimensionSize();
 
     /**
      * Degree of detail in the grid dataset.
      *
-     * @UML optional resolution
      * @unitof Measure
      */
+/// @UML (identifier="resolution", obligation=OPTIONAL)
     double getResolution();
 }

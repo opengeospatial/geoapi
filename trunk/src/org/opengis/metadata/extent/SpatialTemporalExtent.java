@@ -12,22 +12,26 @@ package org.opengis.metadata.extent;
 // J2SE direct dependencies
 import java.util.Set;
 
+// Annotations
+///import org.opengis.annotation.UML;
+///import static org.opengis.annotation.Obligation.*;
+
 
 /**
  * Extent with respect to date/time and spatial boundaries.
  *
- * @UML abstract EX_SpatialTemporalExtent
  * @author ISO 19115
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
  */
+///@UML (identifier="EX_SpatialTemporalExtent")
 public interface SpatialTemporalExtent extends TemporalExtent {
     /**
      * Returns the spatial extent component of composite
      * spatial and temporal extent.
      *
      * @return The list of geographic extents (never <code>null</code>).
-     * @UML mandatory spatialExtent
      */
+/// @UML (identifier="spatialExtent", obligation=MANDATORY)
     Set/*<GeographicExtent>*/ getSpatialExtent();
 }

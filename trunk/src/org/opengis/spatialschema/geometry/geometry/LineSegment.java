@@ -9,6 +9,10 @@
  *************************************************************************************************/
 package org.opengis.spatialschema.geometry.geometry;
 
+// Annotations
+///import org.opengis.annotation.UML;
+///import static org.opengis.annotation.Obligation.*;
+
 
 /**
  * Two distinct {@linkplain org.opengis.spatialschema.geometry.DirectPosition direct positions}
@@ -33,12 +37,12 @@ package org.opengis.spatialschema.geometry.geometry;
  * <var>c</var>(<var>t</var>) = <var>c</var>(0)(1-<var>t</var>) + <var>c</var>(1)<var>t</var>
  * </blockquote>
  *  
- * @UML datatype GM_LineSegment
  * @author ISO/DIS 19107
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 2.0
  *
  * @see GeometryFactory#createLineSegment
  */
+///@UML (identifier="GM_LineSegment")
 public interface LineSegment extends LineString {
 }

@@ -15,6 +15,10 @@ import javax.units.Unit;
 // OpenGIS direct dependencies
 import org.opengis.referencing.IdentifiedObject;
 
+// Annotations
+///import org.opengis.annotation.UML;
+///import static org.opengis.annotation.Obligation.*;
+
 
 /**
  * Geometric figure that can be used to describe the approximate shape of the earth.
@@ -27,11 +31,11 @@ import org.opengis.referencing.IdentifiedObject;
  *       {@linkplain #getSemiMinorAxis semi-minor axis}.</li>
  * </ul>
  *
- * @UML abstract CD_Ellipsoid
  * @author ISO 19111
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/03-073r1.zip">Abstract specification 2.0</A>
  */
+///@UML (identifier="CD_Ellipsoid")
 public interface Ellipsoid extends IdentifiedObject {
     /**
      * Returns the linear unit of the {@linkplain #getSemiMajorAxis semi-major}
@@ -47,8 +51,8 @@ public interface Ellipsoid extends IdentifiedObject {
      *
      * @return Length of semi-major axis.
      * @unitof Length
-     * @UML mandatory semiMajorAxis
      */
+/// @UML (identifier="semiMajorAxis", obligation=MANDATORY)
     double getSemiMajorAxis();
 
     /**
@@ -57,8 +61,8 @@ public interface Ellipsoid extends IdentifiedObject {
      *
      * @return Length of semi-minor axis.
      * @unitof Length
-     * @UML conditional secondDefiningParameter.semiMinorAxis
      */
+/// @UML (identifier="secondDefiningParameter.semiMinorAxis", obligation=CONDITIONAL)
     double getSemiMinorAxis();
 
     /**
@@ -72,8 +76,8 @@ public interface Ellipsoid extends IdentifiedObject {
      *
      * @return The inverse flattening value.
      * @unitof Scale
-     * @UML conditional secondDefiningParameter.inverseFlattening
      */
+/// @UML (identifier="secondDefiningParameter.inverseFlattening", obligation=CONDITIONAL)
     double getInverseFlattening();
 
     /**
@@ -94,7 +98,7 @@ public interface Ellipsoid extends IdentifiedObject {
      * radius of the sphere.
      *
      * @return <code>true</code> if the ellipsoid is degenerate and is actually a sphere.
-     * @UML conditional secondDefiningParameter.isSphere
      */
+/// @UML (identifier="secondDefiningParameter.isSphere", obligation=CONDITIONAL)
     boolean isSphere();
 }

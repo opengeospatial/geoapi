@@ -13,6 +13,10 @@ package org.opengis.referencing.crs;
 import org.opengis.referencing.cs.TemporalCS;
 import org.opengis.referencing.datum.TemporalDatum;
 
+// Annotations
+///import org.opengis.annotation.UML;
+///import static org.opengis.annotation.Obligation.*;
+
 
 /**
  * A 1D coordinate reference system used for the recording of time.
@@ -23,25 +27,21 @@ import org.opengis.referencing.datum.TemporalDatum;
  *   {@link org.opengis.referencing.cs.TemporalCS Temporal}
  * </TD></TR></TABLE>
  *
- * @UML abstract SC_TemporalCRS
  * @author ISO 19111
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/03-073r1.zip">Abstract specification 2.0</A>
  */
+///@UML (identifier="SC_TemporalCRS")
 public interface TemporalCRS extends SingleCRS {
     /** 	 
      * Returns the coordinate system, which must be temporal. 	 
-     * 	 
-     * @return The coordinate system. 	 
-     * @UML association usesCS 	 
      */ 	 
+/// @UML (identifier="usesCS", obligation=MANDATORY)
 /// TemporalCS getCoordinateSystem(); 	 
 
     /** 	 
      * Returns the datum, which must be temporal. 	 
-     * 	 
-     * @return The datum. 	 
-     * @UML association usesDatum 	 
      */ 	 
+/// @UML (identifier="usesDatum", obligation=MANDATORY)
 /// TemporalDatum getDatum();
 }

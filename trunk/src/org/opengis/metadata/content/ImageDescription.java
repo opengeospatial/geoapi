@@ -12,15 +12,19 @@ package org.opengis.metadata.content;
 // OpenGIS direct dependencies
 import org.opengis.metadata.Identifier;
 
+// Annotations
+///import org.opengis.annotation.UML;
+///import static org.opengis.annotation.Obligation.*;
+
 
 /**
  * Information about an image’s suitability for use.
  *
- * @UML datatype MD_ImageDescription
  * @author ISO 19115
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
  */
+///@UML (identifier="MD_ImageDescription")
 public interface ImageDescription extends CoverageDescription {
     /**
      * Illumination elevation measured in degrees clockwise from the target plane at
@@ -28,8 +32,8 @@ public interface ImageDescription extends CoverageDescription {
      * scanning device, refer to the centre pixel of the image.
      *
      * @return A value between -90° and +90°, or <code>null</code> if unspecified.
-     * @UML optional illuminationElevationAngle
      */
+/// @UML (identifier="illuminationElevationAngle", obligation=OPTIONAL)
     Number getIlluminationElevationAngle();
 
     /**
@@ -37,83 +41,74 @@ public interface ImageDescription extends CoverageDescription {
      * image is taken. For images from a scanning device, refer to the centre pixel of the image.
      *
      * @return A value between 0° and 360°, or <code>null</code> if unspecified.
-     * @UML optional illuminationAzimuthAngle
      */
+/// @UML (identifier="illuminationAzimuthAngle", obligation=OPTIONAL)
     Number getIlluminationAzimuthAngle();
 
     /**
      * Conditions affected the image.
-     *
-     * @UML optional imagingCondition
      */
+/// @UML (identifier="imagingCondition", obligation=OPTIONAL)
     ImagingCondition getImagingCondition();
 
     /**
      * Specifies the image quality.
-     *
-     * @UML optional imageQualityCode
      */
+/// @UML (identifier="imageQualityCode", obligation=OPTIONAL)
     Identifier getImageQualityCode();
 
     /**
      * Area of the dataset obscured by clouds, expressed as a percentage of the spatial extent.
      *
      * @return A value between 0 and 100, or <code>null</code> if unknow.
-     * @UML optional cloudCoverPercentage
      */
+/// @UML (identifier="cloudCoverPercentage", obligation=OPTIONAL)
     Number getCloudCoverPercentage();
 
     /**
      * Image distributor’s code that identifies the level of radiometric and geometric
      * processing that has been applied.
-     *
-     * @UML optional processingLevelCode
      */
+/// @UML (identifier="processingLevelCode", obligation=OPTIONAL)
     Identifier getProcessingLevelCode();
 
     /**
      * Count of the number the number of lossy compression cycles performed on the image.
      * Returns <code>null</code> if the information is not provided.
-     *
-     * @UML optional compressionGenerationQuantity
      */
+/// @UML (identifier="compressionGenerationQuantity", obligation=OPTIONAL)
     Integer getCompressionGenerationQuantity();
 
     /**
      * Indication of whether or not triangulation has been performed upon the image.
      * Returns <code>null</code> if the information is not provided.
-     *
-     * @UML optional triangulationIndicator
      */
+/// @UML (identifier="triangulationIndicator", obligation=OPTIONAL)
     Boolean getTriangulationIndicator();
 
     /**
      * Indication of whether or not the radiometric calibration information for generating the
      * radiometrically calibrated standard data product is available.
-     *
-     * @UML optional radiometricCalibrationDataAvailability
      */
+/// @UML (identifier="radiometricCalibrationDataAvailability", obligation=OPTIONAL)
     boolean isRadiometricCalibrationDataAvailable();
 
     /**
      * Indication of whether or not constants are available which allow for camera calibration
      * corrections.
-     *
-     * @UML optional cameraCalibrationInformationAvailability
      */
+/// @UML (identifier="cameraCalibrationInformationAvailability", obligation=OPTIONAL)
     boolean isCameraCalibrationInformationAvailable();
 
     /**
      * Indication of whether or not Calibration Reseau information is available.
-     *
-     * @UML optional filmDistortionInformationAvailability
      */
+/// @UML (identifier="filmDistortionInformationAvailability", obligation=OPTIONAL)
     boolean isFilmDistortionInformationAvailable();
 
     /**
      * Indication of whether or not lens aberration correction information is available.
-     *
-     * @UML optional lensDistortionInformationAvailability
      */
+/// @UML (identifier="lensDistortionInformationAvailability", obligation=OPTIONAL)
     boolean isLensDistortionInformationAvailable();
 }

@@ -9,6 +9,10 @@
  *************************************************************************************************/
 package org.opengis.referencing.datum;
 
+// Annotations
+///import org.opengis.annotation.UML;
+///import static org.opengis.annotation.Obligation.*;
+
 
 /**
  * Defines the origin of an engineering coordinate reference system. An engineering datum is used
@@ -16,10 +20,10 @@ package org.opengis.referencing.datum;
  * defined point at a construction site), or be a defined point on a moving vehicle (such as on a
  * ship or satellite).
  *
- * @UML abstract CD_EngineeringDatum
  * @author ISO 19111
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/03-073r1.zip">Abstract specification 2.0</A>
  */
+///@UML (identifier="CD_EngineeringDatum")
 public interface EngineeringDatum extends Datum {
 }

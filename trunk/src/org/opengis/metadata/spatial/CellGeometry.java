@@ -16,15 +16,19 @@ import java.util.ArrayList;
 // OpenGIS direct dependencies
 import org.opengis.util.CodeList;
 
+// Annotations
+///import org.opengis.annotation.UML;
+///import static org.opengis.annotation.Obligation.*;
+
 
 /**
  * Code indicating whether grid data is point or area.
  *
- * @UML codelist MD_CellGeometryCode
  * @author ISO 19115
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
  */
+///@UML (identifier="MD_CellGeometryCode")
 public final class CellGeometry extends CodeList {
     /**
      * Serial number for compatibility with different versions.
@@ -39,16 +43,14 @@ public final class CellGeometry extends CodeList {
 
     /**
      * Each cell represents a point.
-     *
-     * @UML conditional point
      */
+/// @UML (identifier="point", obligation=CONDITIONAL)
     public static final CellGeometry POINT = new CellGeometry("POINT");
 
     /**
      * Each cell represents an area.
-     *
-     * @UML conditional area
      */
+/// @UML (identifier="area", obligation=CONDITIONAL)
     public static final CellGeometry AREA = new CellGeometry("AREA");
 
     /**

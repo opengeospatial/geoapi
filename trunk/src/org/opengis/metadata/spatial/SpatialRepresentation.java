@@ -9,14 +9,18 @@
  *************************************************************************************************/
 package org.opengis.metadata.spatial;
 
+// Annotations
+///import org.opengis.annotation.UML;
+///import static org.opengis.annotation.Obligation.*;
+
 
 /**
  * Digital mechanism used to represent spatial information.
  *
- * @UML datatype MD_SpatialRepresentation
  * @author ISO 19115
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
  */
+///@UML (identifier="MD_SpatialRepresentation")
 public interface SpatialRepresentation {
 }

@@ -17,6 +17,10 @@ import java.util.ArrayList;
 import org.opengis.util.CodeList;
 import org.opengis.spatialschema.geometry.DirectPosition; // For javadoc
 
+// Annotations
+///import org.opengis.annotation.UML;
+///import static org.opengis.annotation.Obligation.*;
+
 
 /**
  * List of codes that may be used to identify the interpolation mechanisms. As a code list,
@@ -25,11 +29,11 @@ import org.opengis.spatialschema.geometry.DirectPosition; // For javadoc
  * by specifying an interpolation method and an associated control parameters record to support
  * it.
  *
- * @UML codelist GM_CurveInterpolation
  * @author ISO/DIS 19107
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 2.0
  */
+///@UML (identifier="GM_CurveInterpolation")
 public final class CurveInterpolation extends CodeList {
     /**
      * Serial number for compatibility with different versions.

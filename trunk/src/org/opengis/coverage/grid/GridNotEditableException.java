@@ -9,16 +9,20 @@
  *************************************************************************************************/
 package org.opengis.coverage.grid;
 
+// Annotations
+///import org.opengis.annotation.UML;
+///import static org.opengis.annotation.Obligation.*;
+
 
 /**
  * Thrown when an attempt is made to write in a non-editable grid.
  *
- * @UML exception GC_GridNotEditable
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-004.pdf">Grid Coverage specification 1.0</A>
  *
  * @see GridCoverage#isDataEditable
  */
+///@UML (identifier="GC_GridNotEditable")
 public class GridNotEditableException extends IllegalStateException {
     /**
      * Serial number for interoperability with different versions.

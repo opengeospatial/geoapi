@@ -15,58 +15,57 @@ import java.util.Date;
 // OpenGIS direct dependencies
 import org.opengis.util.InternationalString;
 
+// Annotations
+///import org.opengis.annotation.UML;
+///import static org.opengis.annotation.Obligation.*;
+
 
 /**
  * Information about the scope and frequency of updating.
  *
- * @UML datatype MD_MaintenanceInformation
  * @author ISO 19115
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
  */
+///@UML (identifier="MD_MaintenanceInformation")
 public interface MaintenanceInformation {
     /**
      * Frequency with which changes and additions are made to the resource after the
      * initial resource is completed.
-     *
-     * @UML mandatory maintenanceAndUpdateFrequency
      */
+/// @UML (identifier="maintenanceAndUpdateFrequency", obligation=MANDATORY)
     MaintenanceFrequency getMaintenanceAndUpdateFrequency();
 
     /**
      * Scheduled revision date for resource.
-     *
-     * @UML optional dateOfNextUpdate
      */
+/// @UML (identifier="dateOfNextUpdate", obligation=OPTIONAL)
     Date getDateOfNextUpdate();
 
     /**
      * Maintenance period other than those defined.
      *
      * @return The period, in milliseconds.
-     * @UML optional userDefinedMaintenanceFrequency
      * @unitof PeriodDuration
      */
+/// @UML (identifier="userDefinedMaintenanceFrequency", obligation=OPTIONAL)
     long getUserDefinedMaintenanceFrequency();
 
     /**
      * Scope of data to which maintenance is applied.
-     *
-     * @UML optional updateScope
      */
+/// @UML (identifier="updateScope", obligation=OPTIONAL)
     ScopeCode getUpdateScope();
 
     /**
      * Additional information about the range or extent of the resource.
-     *
-     * @UML optional updateScopeDescription
      */
+/// @UML (identifier="updateScopeDescription", obligation=OPTIONAL)
     ScopeDescription getUpdateScopeDescription();
 
     /**
      * Information regarding specific requirements for maintaining the resource.
-     *
-     * @UML conditional maintenanceNote
      */
+/// @UML (identifier="maintenanceNote", obligation=CONDITIONAL)
     InternationalString getMaintenanceNote();
 }

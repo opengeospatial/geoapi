@@ -12,6 +12,10 @@ package org.opengis.spatialschema.geometry.geometry;
 // OpenGIS direct dependencies
 import org.opengis.spatialschema.geometry.DirectPosition;
 
+// Annotations
+///import org.opengis.annotation.UML;
+///import static org.opengis.annotation.Obligation.*;
+
 
 /**
  * Common interface for {@linkplain org.opengis.spatialschema.geometry.primitive.Curve curve} and
@@ -19,11 +23,11 @@ import org.opengis.spatialschema.geometry.DirectPosition;
  * and <code>CurveSegment</code> both represent sections of curvilinear
  * geometry, and therefore share a number of operation signatures.
  *
- * @UML datatype GM_GenericCurve
  * @author ISO/DIS 19107
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 2.0
  */
+///@UML (identifier="GM_GenericCurve")
 public interface GenericCurve {
     /**
      * Returns the direct position of the first point on the <code>GenericCurve</code>.
@@ -31,11 +35,11 @@ public interface GenericCurve {
      * since it returns only the values of this point, not representative objects.
      *
      * @return The first point on the <code>GenericCurve</code>.
-     * @UML operation startPoint
      *
      * @see #getStartParam
      * @see #getEndPoint
      */
+/// @UML (identifier="startPoint", obligation=MANDATORY)
     public DirectPosition getStartPoint();
 
     /**
@@ -44,11 +48,11 @@ public interface GenericCurve {
      * since it returns only the values of this point, not representative objects.
      *
      * @return The last point on the <code>GenericCurve</code>.
-     * @UML operation startPoint
      *
      * @see #getEndParam
      * @see #getStartPoint
      */
+/// @UML (identifier="startPoint", obligation=MANDATORY)
     public DirectPosition getEndPoint();
 
     /**
@@ -60,11 +64,11 @@ public interface GenericCurve {
      * @param s The parameter value along this curve.
      * @return The tangent unit vector.
      * @unitof Distance
-     * @UML operation tangent
      *
      * @see #getStartParam
      * @see #getEndParam
      */
+/// @UML (identifier="tangent", obligation=MANDATORY)
     public double[] getTangent(double s);
 
     /**
@@ -79,13 +83,13 @@ public interface GenericCurve {
      *
      * @return The parameter for the {@linkplain #getStartPoint start point}.
      * @unitof Distance
-     * @UML operation startParam
      *
      * @see #getStartPoint
      * @see #getStartConstructiveParam
      * @see #getEndParam
      * @see #getParam
      */
+/// @UML (identifier="startParam", obligation=MANDATORY)
     public double getStartParam();
 
     /**
@@ -100,13 +104,13 @@ public interface GenericCurve {
      *
      * @return The parameter for the {@linkplain #getEndPoint end point}.
      * @unitof Distance
-     * @UML operation endParam
      *
      * @see #getEndPoint
      * @see #getEndConstructiveParam
      * @see #getStartParam
      * @see #getParam
      */
+/// @UML (identifier="endParam", obligation=MANDATORY)
     public double getEndParam();
 
     /**
@@ -124,12 +128,12 @@ public interface GenericCurve {
      * </font></blockquote>
      *
      * @return The parameter used in the constructive paramerization for the start point.
-     * @UML operation startConstrParam
      *
      * @see #getStartParam
      * @see #getEndConstructiveParam
      * @see #getConstructiveParam
      */
+/// @UML (identifier="startConstrParam", obligation=MANDATORY)
     public double getStartConstructiveParam();
 
     /**
@@ -147,12 +151,12 @@ public interface GenericCurve {
      * </font></blockquote>
      *
      * @return The parameter used in the constructive paramerization for the end point.
-     * @UML operation endConstrParam
      *
      * @see #getEndParam
      * @see #getStartConstructiveParam
      * @see #getConstructiveParam
      */
+/// @UML (identifier="endConstrParam", obligation=MANDATORY)
     public double getEndConstructiveParam();
 
     /**
@@ -166,12 +170,12 @@ public interface GenericCurve {
      *
      * @param cp The constructive parameter.
      * @return The direct position for the given constructive parameter.
-     * @UML operation constrParam
      *
      * @see #getStartConstructiveParam
      * @see #getEndConstructiveParam
      * @see #getParam
      */
+/// @UML (identifier="constrParam", obligation=MANDATORY)
     public DirectPosition getConstructiveParam(double cp);
 
     /**
@@ -183,12 +187,12 @@ public interface GenericCurve {
      *
      * @param s The distance from the start point and added to the start parameter.
      * @return The direct position for the given parameter.
-     * @UML operation param
      *
      * @see #getStartParam
      * @see #getEndParam
      * @see #getConstructiveParam
      */
+/// @UML (identifier="param", obligation=MANDATORY)
     public DirectPosition getParam(double s);
 
     /**
@@ -197,12 +201,12 @@ public interface GenericCurve {
      *
      * @param p The direct position on the curve.
      * @return The parameter closest to the given position.
-     * @UML operation paramForPoint
      *
      * @see #getStartPoint
      * @see #getEndPoint
      * @see #getParam
      */
+/// @UML (identifier="paramForPoint", obligation=MANDATORY)
     public ParamForPoint getParamForPoint(DirectPosition p);
 
     /**
@@ -223,8 +227,8 @@ public interface GenericCurve {
      *               {@linkplain #getEndPoint end point}.
      * @return The length between the two specified points.
      * @unitof Length
-     * @UML operation length
      */
+/// @UML (identifier="length", obligation=MANDATORY)
     public double length(Position point1, Position point2);
 
     /**
@@ -246,8 +250,8 @@ public interface GenericCurve {
      * @param cparam2 The second constructive parameter.
      * @return The length between the two specified constructive parameter.
      * @unitof Length
-     * @UML operation length
      */
+/// @UML (identifier="length", obligation=MANDATORY)
     public double length(double cparam1, double cparam2);
 
     /**
@@ -279,7 +283,7 @@ public interface GenericCurve {
      *                   curve, or 0 for no constraint.
      * @return The an approximation of this curve as a line string.
      * @unitof Distance (for arguments)
-     * @UML operation asLineString
      */
+/// @UML (identifier="asLineString", obligation=MANDATORY)
     public LineString asLineString(double maxSpacing, double maxOffset);
 }

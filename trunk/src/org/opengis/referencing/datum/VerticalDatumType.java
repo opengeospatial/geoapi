@@ -16,15 +16,19 @@ import java.util.ArrayList;
 // OpenGIS direct dependencies
 import org.opengis.util.CodeList;
 
+// Annotations
+///import org.opengis.annotation.UML;
+///import static org.opengis.annotation.Obligation.*;
+
 
 /**
  * Type of a vertical datum. 
  *
- * @UML codelist CD_VerticalDatumType
  * @author ISO 19111
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/03-073r1.zip">Abstract specification 2.0</A>
  */
+///@UML (identifier="CD_VerticalDatumType")
 public final class VerticalDatumType extends CodeList {
     /**
      * Serial number for compatibility with different versions.
@@ -42,18 +46,16 @@ public final class VerticalDatumType extends CodeList {
      * or bottom of a geologically identifiable and meaningful subsurface layer, is used as a
      * vertical datum. Other variations to the above three vertical datum types may exist
      * and are all included in this type.
-     *
-     * @UML conditional other&nbsp;surface
      */
+/// @UML (identifier="other&nbsp;surface", obligation=CONDITIONAL)
     public static final VerticalDatumType OTHER_SURFACE = new VerticalDatumType("OTHER_SURFACE");
 
     /**
      * The zero value of the associated vertical coordinate system axis is defined to approximate
      * a constant potential surface, usually the geoid. Such a reference surface is usually
      * determined by a national or scientific authority, and is then a well-known, named datum.
-     *
-     * @UML conditional geoidal
      */
+/// @UML (identifier="geoidal", obligation=CONDITIONAL)
     public static final VerticalDatumType GEOIDAL = new VerticalDatumType("GEOIDAL");
 
     /**
@@ -69,9 +71,8 @@ public final class VerticalDatumType extends CodeList {
      * effects) that occurs at low tide. Depths are measured in the direction perpendicular
      * (approximately) to the actual equipotential surfaces of the earth's gravity field,
      * using such procedures as echo-sounding.
-     *
-     * @UML conditional depth
      */
+/// @UML (identifier="depth", obligation=CONDITIONAL)
     public static final VerticalDatumType DEPTH = new VerticalDatumType("DEPTH");
 
     /**
@@ -81,9 +82,8 @@ public final class VerticalDatumType extends CodeList {
      * altimeter. These values are usually expressed in one of the following units:
      * meters, feet, millibars (used to measure pressure levels), or theta value
      * (units used to measure geopotential height).
-     *
-     * @UML conditional barometric
      */
+/// @UML (identifier="barometric", obligation=CONDITIONAL)
     public static final VerticalDatumType BAROMETRIC = new VerticalDatumType("BAROMETRIC");
 
     /**

@@ -13,6 +13,10 @@ package org.opengis.referencing.crs;
 import org.opengis.referencing.datum.Datum;
 import org.opengis.referencing.cs.CoordinateSystem;
 
+// Annotations
+///import org.opengis.annotation.UML;
+///import static org.opengis.annotation.Obligation.*;
+
 
 /**
  * Abstract coordinate reference system, consisting of a single
@@ -31,7 +35,6 @@ import org.opengis.referencing.cs.CoordinateSystem;
  * covered by that type of CRS with an acceptable degree of error. The exception to the rule is
  * the subtype "Temporal" which has been added by analogy.
  *
- * @UML abstract SC_CoordinateReferenceSystem
  * @author ISO 19111
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/03-073r1.zip">Abstract specification 2.0</A>
@@ -39,22 +42,19 @@ import org.opengis.referencing.cs.CoordinateSystem;
  * @see org.opengis.referencing.cs.CoordinateSystem
  * @see org.opengis.referencing.datum.Datum
  */
+///@UML (identifier="SC_CoordinateReferenceSystem")
 public interface SingleCRS extends CoordinateReferenceSystem {
     /**
      * Returns the coordinate system.
      *
-     * @return The coordinate system.
-     * @UML association usesCS
-     *
      * @rename Expanded the "CS" abbreviation into "CoordinateSystem".
      */
+/// @UML (identifier="usesCS", obligation=MANDATORY)
     CoordinateSystem getCoordinateSystem();
 
     /**
      * Returns the datum.
-     *
-     * @return The datum.
-     * @UML association usesDatum
      */
+/// @UML (identifier="usesDatum", obligation=MANDATORY)
     Datum getDatum();
 }

@@ -12,6 +12,10 @@ package org.opengis.coverage.grid;
 // J2SE direct dependencies
 import java.io.IOException;
 
+// Annotations
+///import org.opengis.annotation.UML;
+///import static org.opengis.annotation.Obligation.*;
+
 
 /**
  * Support for creation of grid coverages from persistent formats as well as exporting
@@ -23,13 +27,13 @@ import java.io.IOException;
  * database and the {@link #dispose} method will need to be invoked in order to close this
  * connection.
  *
- * @UML abstract CV_GridCoverageExchange
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 2.0
  *
  * @see GridCoverageReader
  * @see GridCoverageWriter
  */
+///@UML (identifier="CV_GridCoverageExchange")
 public interface GridCoverageExchange {
     /**
      * Retrieve information on file formats or resources available with the
@@ -37,10 +41,8 @@ public interface GridCoverageExchange {
      *
      * @return Information on file formats or resources available with
      *         the <code>GridCoverageExchange</code> implementation.
-     *
-     * @UML operation getFormat
-     * @UML mandatory numFormats
      */
+/// @UML (identifier="getFormat", obligation=MANDATORY)
     Format[] getFormats();
 
     /**

@@ -12,6 +12,10 @@ package org.opengis.spatialschema.geometry.primitive;
 // OpenGIS direct dependencies
 import org.opengis.spatialschema.geometry.complex.CompositeCurve;
 
+// Annotations
+///import org.opengis.annotation.UML;
+///import static org.opengis.annotation.Obligation.*;
+
 
 /**
  * Represent a single connected component of a {@linkplain SurfaceBoundary surface boundary}.
@@ -27,7 +31,6 @@ import org.opengis.spatialschema.geometry.complex.CompositeCurve;
  * case of this is where one of the interior rings of a surface is tangent to its exterior ring.
  * Implementations may enforce stronger restrictions on the interaction of boundary elements.
  *
- * @UML type GM_Ring
  * @author ISO/DIS 19107
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 2.0
@@ -35,6 +38,7 @@ import org.opengis.spatialschema.geometry.complex.CompositeCurve;
  * @see SurfaceBoundary
  * @see Shell
  */
+///@UML (identifier="GM_Ring")
 public interface Ring extends CompositeCurve {
     /**
      * Always returns <code>true</code> since ring objects are simples.

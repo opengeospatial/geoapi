@@ -21,6 +21,10 @@ import org.opengis.spatialschema.geometry.DirectPosition;
 import org.opengis.spatialschema.geometry.Envelope;
 import org.opengis.util.InternationalString;
 
+// Annotations
+///import org.opengis.annotation.UML;
+///import static org.opengis.annotation.Obligation.*;
+
 
 /**
  * Provides access to a coverage.
@@ -55,13 +59,13 @@ import org.opengis.util.InternationalString;
  * of {@link javax.media.jai.PropertySource} methods must be consistent with {@link #getMetadataNames}
  * and {@link #getMetadataValue} methods.
  *
- * @UML abstract CV_Coverage
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-004.pdf">Grid Coverage specification 1.0</A>
  *
  * @see RenderableImage
  * @see javax.media.jai.ImageFunction
  */
+///@UML (identifier="CV_Coverage")
 public interface Coverage {
     /**
      * Specifies the coordinate reference system used when accessing a coverage or grid
@@ -82,8 +86,8 @@ public interface Coverage {
      *
      * @return The coordinate reference system used when accessing a coverage or
      *         grid coverage with the <code>evaluate(...)</code> methods, or <code>null</code>.
-     * @UML mandatory coordinateSystem
      */
+/// @UML (identifier="coordinateSystem", obligation=MANDATORY)
     CoordinateReferenceSystem getCoordinateReferenceSystem();
 
     /**
@@ -100,8 +104,8 @@ public interface Coverage {
      * the minimum and maximum coordinate points for the envelope will be empty sequences.
      *
      * @return The bounding box for the coverage domain in coordinate system coordinates.
-     * @UML mandatory envelope
      */
+/// @UML (identifier="envelope", obligation=MANDATORY)
     Envelope getEnvelope();
 
     /**
@@ -113,9 +117,8 @@ public interface Coverage {
      * 4D (<var>x</var>, <var>y</var>, <var>z</var>, <var>t</var>).
      * The number of dimensions of the coverage is the number of entries in the
      * list of dimension names.
-     *
-     * @UML mandatory dimensionNames
      */
+/// @UML (identifier="dimensionNames", obligation=MANDATORY)
     InternationalString[] getDimensionNames();
 
     /**
@@ -125,10 +128,10 @@ public interface Coverage {
      *         locale.
      * @return The names of each dimension in the coverage. If no name is available in the
      *         specified locale, then a default locale is used.
-     * @UML mandatory dimensionNames
      *
      * @deprecated Replaced by {@link #getDimensionNames()}.
      */
+/// @UML (identifier="dimensionNames", obligation=MANDATORY)
     String[] getDimensionNames(Locale locale);
 
     /**
@@ -136,8 +139,8 @@ public interface Coverage {
      * For grid coverages, a sample dimension is a band.
      *
      * @return The number of sample dimensions in the coverage.
-     * @UML mandatory numSampleDimensions
      */
+/// @UML (identifier="numSampleDimensions", obligation=MANDATORY)
     int getNumSampleDimensions();
 
     /**
@@ -151,8 +154,8 @@ public interface Coverage {
      *         (<var>{@linkplain #getNumSampleDimensions n}</var>-1).
      * @return Sample dimension information for the coverage.
      * @throws IndexOutOfBoundsException if <code>index</code> is out of bounds.
-     * @UML operation getSampleDimension
      */
+/// @UML (identifier="getSampleDimension", obligation=MANDATORY)
     SampleDimension getSampleDimension(int index) throws IndexOutOfBoundsException;
 
     /**
@@ -165,9 +168,8 @@ public interface Coverage {
      * an adapted grid coverage, or zero indicating a raw grid coverage.
      *
      * @return The list of sources data for a coverage.
-     * @UML operation getSource
-     * @UML mandatory numSource
      */
+/// @UML (identifier="getSource, numSource", obligation=MANDATORY)
     List/*<? extends Coverage>*/ getSources();
 
     /**
@@ -175,11 +177,11 @@ public interface Coverage {
      * If no metadata is available, the sequence will be empty.
      *
      * @return the list of metadata keywords for a coverage.
-     * @UML mandatory metadataNames
      *
      * @see #getMetadataValue
      * @see javax.media.jai.PropertySource#getPropertyNames
      */
+/// @UML (identifier="metadataNames", obligation=MANDATORY)
     String[] getMetadataNames();
 
     /**
@@ -188,11 +190,11 @@ public interface Coverage {
      * @param name Metadata keyword for which to retrieve data.
      * @return the metadata value for a given metadata name.
      * @throws MetadataNameNotFoundException if there is no value for the specified metadata name.
-     * @UML operation getMetadataValue
      *
      * @see #getMetadataNames
      * @see javax.media.jai.PropertySource#getProperty
      */
+/// @UML (identifier="getMetadataValue", obligation=MANDATORY)
     String getMetadataValue(String name) throws MetadataNameNotFoundException;
 
     /**
@@ -208,10 +210,10 @@ public interface Coverage {
      * @throws PointOutsideCoverageException if the point is outside the coverage
      *         {@linkplain #getEnvelope envelope}.
      * @throws CannotEvaluateException If the point can't be evaluate for some othe reason.
-     * @UML operation evaluate
      *
      * @see Raster#getDataElements(int, int, Object)
      */
+/// @UML (identifier="evaluate", obligation=MANDATORY)
     Object evaluate(DirectPosition point) throws CannotEvaluateException;
 
     /**
@@ -233,8 +235,8 @@ public interface Coverage {
      * @throws CannotEvaluateException if the point can't be evaluate for some othe reason.
      * @throws ArrayIndexOutOfBoundsException if the <code>destination</code> array is not null
      *         and too small to hold the output.
-     * @UML operation evaluateAsBoolean
      */
+/// @UML (identifier="evaluateAsBoolean", obligation=MANDATORY)
     boolean[] evaluate(DirectPosition point, boolean[] destination)
             throws CannotEvaluateException, ArrayIndexOutOfBoundsException;
 
@@ -257,8 +259,8 @@ public interface Coverage {
      * @throws CannotEvaluateException if the point can't be evaluate for some othe reason.
      * @throws ArrayIndexOutOfBoundsException if the <code>destination</code> array is not null
      *         and too small to hold the output.
-     * @UML operation evaluateAsByte
      */
+/// @UML (identifier="evaluateAsByte", obligation=MANDATORY)
     byte[] evaluate(DirectPosition point, byte[] destination)
             throws CannotEvaluateException, ArrayIndexOutOfBoundsException;
 
@@ -281,10 +283,10 @@ public interface Coverage {
      * @throws CannotEvaluateException if the point can't be evaluate for some othe reason.
      * @throws ArrayIndexOutOfBoundsException if the <code>destination</code> array is not null
      *         and too small to hold the output.
-     * @UML operation evaluateAsInteger
      *
      * @see Raster#getPixel(int, int, int[])
      */
+/// @UML (identifier="evaluateAsInteger", obligation=MANDATORY)
     int[] evaluate(DirectPosition point, int[] destination)
             throws CannotEvaluateException, ArrayIndexOutOfBoundsException;
 
@@ -332,10 +334,10 @@ public interface Coverage {
      * @throws CannotEvaluateException If the point can't be evaluate for some othe reason.
      * @throws ArrayIndexOutOfBoundsException if the <code>destination</code> array is not null
      *         and too small to hold the output.
-     * @UML operation evaluateAsDouble
      *
      * @see Raster#getPixel(int, int, double[])
      */
+/// @UML (identifier="evaluateAsDouble", obligation=MANDATORY)
     double[] evaluate(DirectPosition point, double[] destination)
             throws CannotEvaluateException, ArrayIndexOutOfBoundsException;
     

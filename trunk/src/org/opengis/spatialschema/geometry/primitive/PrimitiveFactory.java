@@ -18,6 +18,10 @@ import org.opengis.spatialschema.geometry.DirectPosition;
 import org.opengis.spatialschema.geometry.geometry.Position;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 
+// Annotations
+///import org.opengis.annotation.UML;
+///import static org.opengis.annotation.Obligation.*;
+
 
 /**
  * A factory of {@linkplain Primitive primitive} geometric objects.
@@ -78,9 +82,8 @@ public interface PrimitiveFactory {
      *
      * So that the {@linkplain SurfaceBoundary surface boundary} record contains the above-cited
      * exterior ring, and an empty set of interior rings (convex sets have no "interior" holes).
-     *
-     * @UML constructor GM_Primitive(GM_Envelope)
      */
+/// @UML (identifier="GM_Primitive(GM_Envelope)", obligation=MANDATORY)
     public Primitive createPrimitive(Envelope envelope);
 
     /**
@@ -95,25 +98,22 @@ public interface PrimitiveFactory {
 
     /**
      * Creates a point at the specified position.
-     *
-     * @UML constructor GM_Point(GM_Position)
      */
+/// @UML (identifier="GM_Point(GM_Position)", obligation=MANDATORY)
     public Point createPoint(Position position);
 
     /**
      * Takes a list of {@linkplain CurveSegment curve segments} with the appropriate
      * end-to-start relationships and creates a {@linkplain Curve curve}.
-     *
-     * @UML constructor GM_Curve(GM_CurveSegment[1..n])
      */
+/// @UML (identifier="GM_Curve(GM_CurveSegment[1..n])", obligation=MANDATORY)
     public Curve createCurve(List/*<CurveSegment>*/ segments);
 
     /**
      * Takes a list of {@linkplain SurfacePatch surface patches} with the appropriate
      * side-toside relationships and creates a {@linkplain Surface surface}.
-     *
-     * @UML constructor GM_Surface(GM_SurfacePatch[1..n])
      */
+/// @UML (identifier="GM_Surface(GM_SurfacePatch[1..n])", obligation=MANDATORY)
     public Surface createSurface(List/*<SurfacePatch>*/ surfaces);
 
     /**
@@ -123,9 +123,8 @@ public interface PrimitiveFactory {
      * In 3D coordinate spaces, this method shall require all of the defining boundary
      * {@linkplain Curve curve} instances to be coplanar (lie in a single plane) which will
      * define the surface interior.
-     *
-     * @UML constructor GM_Surface(GM_SurfaceBoundary)
      */
+/// @UML (identifier="GM_Surface(GM_SurfaceBoundary)", obligation=MANDATORY)
     public Surface createSurface(SurfaceBoundary boundary);
 
     /**
@@ -133,8 +132,7 @@ public interface PrimitiveFactory {
      * {@linkplain Shell shells} organized into a {@linkplain SolidBoundary solid boundary}.
      * Since this specification is limited to 3-dimensional coordinate reference systems,
      * any solid is definable by its boundary.
-     *
-     * @UML constructor GM_Solid(GM_SolidBoundary)
      */
+/// @UML (identifier="GM_Solid(GM_SolidBoundary)", obligation=MANDATORY)
     public Solid createSolid(SolidBoundary boundary);
 }

@@ -13,6 +13,10 @@ package org.opengis.spatialschema.geometry.geometry;
 import org.opengis.spatialschema.geometry.DirectPosition;
 import org.opengis.spatialschema.geometry.primitive.Bearing;
 
+// Annotations
+///import org.opengis.annotation.UML;
+///import static org.opengis.annotation.Obligation.*;
+
 
 /**
  * Arc of the circle determined by 3 points, starting at the first, passing through the second
@@ -47,7 +51,6 @@ import org.opengis.spatialschema.geometry.primitive.Bearing;
  * but it is not absolutely necessary for the mathematics to work.
  * </font></blockquote>
  *
- * @UML abstract GM_Arc
  * @author ISO/DIS 19107
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 2.0
@@ -55,6 +58,7 @@ import org.opengis.spatialschema.geometry.primitive.Bearing;
  * @see GeometryFactory#createArc(Position,Position,Position)
  * @see GeometryFactory#createArc(Position,Position,double,double[])
  */
+///@UML (identifier="GM_Arc")
 public interface Arc extends ArcString {
     /**
      * Calculates the center of the circle of which this arc is a portion as a direct position.
@@ -66,17 +70,17 @@ public interface Arc extends ArcString {
      * radius). Implementations may choose an appropriate course of action in such cases.
      *
      * @return The center of the circle of which this arc is a portion.
-     * @UML operation center
      */
+/// @UML (identifier="center", obligation=MANDATORY)
     public DirectPosition getCenter();
 
     /**
      * Calculates the radius of the circle of which this arc is a portion.
      *
      * @return The radius of the circle of which this arc is a portion.
-     * @UML operation radius
      * @unitof Distance
      */
+/// @UML (identifier="radius", obligation=MANDATORY)
     public double getRadius();
 
     /**
@@ -87,11 +91,11 @@ public interface Arc extends ArcString {
      *
      * @return The bearing from the {@linkplain #getCenter center} of the circle to the
      *         {@link #getStartPoint start point} of this arc.
-     * @UML operation startAngle
      *
      * @revisit Inconsistent UML: "startAngle" and "startOfArc" are both used.
      *          Which one is the right one?
      */
+/// @UML (identifier="startAngle", obligation=MANDATORY)
     public Bearing getStartAngle();
 
     /**
@@ -102,10 +106,10 @@ public interface Arc extends ArcString {
      *
      * @return The bearing from the {@linkplain #getCenter center} of the circle to the
      *         {@link #getEndPoint end point} of this arc.
-     * @UML operation endAngle
      *
      * @revisit Inconsistent UML: "endAngle" and "endOfArc" are both used.
      *          Which one is the right one?
      */
+/// @UML (identifier="endAngle", obligation=MANDATORY)
     public Bearing getEndAngle();
 }

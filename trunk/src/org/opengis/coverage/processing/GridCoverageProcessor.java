@@ -18,6 +18,10 @@ import org.opengis.parameter.ParameterNotFoundException;
 import org.opengis.parameter.InvalidParameterNameException;
 import org.opengis.parameter.InvalidParameterValueException;
 
+// Annotations
+///import org.opengis.annotation.UML;
+///import static org.opengis.annotation.Obligation.*;
+
 
 /**
  * Provides operations for different ways of accessing the grid coverage values as well as
@@ -53,18 +57,18 @@ import org.opengis.parameter.InvalidParameterValueException;
  *   <li><i>etc.</i></li>
  * </ul>
  *
- * @UML abstract GP_GridCoverageProcessor
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-004.pdf">Grid Coverage specification 1.0</A>
  */
+///@UML (identifier="GP_GridCoverageProcessor")
 public interface GridCoverageProcessor {
     /**
      * Retrieve the list of metadata keywords for the interface.
      * An empty list will returned if no metadata is available.
      *
      * @return The list of metadata keywords for the interface.
-     * @UML mandatory metadataNames
      */
+/// @UML (identifier="metadataNames", obligation=MANDATORY)
     String[] getMetadataNames();
 
     /**
@@ -73,16 +77,16 @@ public interface GridCoverageProcessor {
      * @param  name Metadata keyword for which to retrieve metadata.
      * @return The metadata value for a given metadata name.
      * @throws MetadataNameNotFoundException if there is no value for the specified metadata name.
-     * @UML operation getMetadataValue
      */
+/// @UML (identifier="getMetadataValue", obligation=MANDATORY)
     String getMetadataValue(String name) throws MetadataNameNotFoundException;
 
     /**
      * The number of operations supported by the <code>GridCoverageProcessor</code>.
      *
      * @return The number of operations supported by the <code>GridCoverageProcessor</code>.
-     * @UML mandatory numOperations
      */
+/// @UML (identifier="numOperations", obligation=MANDATORY)
     int getNumOperations();
 
     /**
@@ -93,8 +97,8 @@ public interface GridCoverageProcessor {
      * @param  index Index for which to retrieve the operation information.
      * @return A grid processing operation information.
      * @throws IndexOutOfBoundsException if <code>index</code> is out of bounds.
-     * @UML operation getOperation
      */
+/// @UML (identifier="getOperation", obligation=MANDATORY)
     Operation getOperation(int index) throws IndexOutOfBoundsException;
 
     /**
@@ -103,8 +107,8 @@ public interface GridCoverageProcessor {
      *
      * @param  gridCoverage Grid coverage on which the analysis will be performed.
      * @return A new {@link GridAnalysis} interface.
-     * @UML operation analyze
      */
+/// @UML (identifier="analyze", obligation=MANDATORY)
     GridAnalysis analyse(GridCoverage gridCoverage);
 
     /**
@@ -118,8 +122,8 @@ public interface GridCoverageProcessor {
      *         not provided in the <code>parameters</code> list.
      * @throws InvalidParameterNameException if a parameter doesn't have a recognized name.
      * @throws InvalidParameterValueException if a parameter doesn't have a valid value.
-     * @UML operation doOperation
      */
+/// @UML (identifier="doOperation", obligation=MANDATORY)
     GridCoverage doOperation(String operationName, GeneralParameterValue[] parameters)
             throws OperationNotFoundException, ParameterNotFoundException,
                    InvalidParameterNameException, InvalidParameterValueException;

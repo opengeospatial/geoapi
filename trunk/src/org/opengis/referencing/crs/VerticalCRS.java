@@ -13,6 +13,10 @@ package org.opengis.referencing.crs;
 import org.opengis.referencing.cs.VerticalCS; 	 
 import org.opengis.referencing.datum.VerticalDatum;
 
+// Annotations
+///import org.opengis.annotation.UML;
+///import static org.opengis.annotation.Obligation.*;
+
 
 /**
  * A 1D coordinate reference system used for recording heights or depths. Vertical CRSs make use
@@ -28,25 +32,21 @@ import org.opengis.referencing.datum.VerticalDatum;
  *   {@link org.opengis.referencing.cs.VerticalCS Vertical}
  * </TD></TR></TABLE>
  *
- * @UML abstract SC_VerticalCRS
  * @author ISO 19111
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/03-073r1.zip">Abstract specification 2.0</A>
  */
+///@UML (identifier="SC_VerticalCRS")
 public interface VerticalCRS extends SingleCRS {
     /**
      * Returns the coordinate system, which must be vertical.
-     *
-     * @return The coordinate system.
-     * @UML association usesCS
      */
+/// @UML (identifier="usesCS", obligation=MANDATORY)
 /// VerticalCS getCoordinateSystem();
 
     /**
      * Returns the datum, which must be vertical.
-     *
-     * @return The datum.
-     * @UML association usesDatum
      */
+/// @UML (identifier="usesDatum", obligation=MANDATORY)
 /// VerticalDatum getDatum();
 }

@@ -9,6 +9,10 @@
  *************************************************************************************************/
 package org.opengis.referencing.operation;
 
+// Annotations
+///import org.opengis.annotation.UML;
+///import static org.opengis.annotation.Obligation.*;
+
 
 /**
  * An operation on coordinates that usually includes a change of Datum. The parameters
@@ -18,20 +22,20 @@ package org.opengis.referencing.operation;
  * for the transformation. Also, the stochastic nature of the parameters may result
  * in multiple (different) versions of the same coordinate transformation. 
  *  
- * @UML abstract CC_Transformation
  * @author ISO 19111
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/03-073r1.zip">Abstract specification 2.0</A>
  *
  * @see Conversion
  */
+///@UML (identifier="CC_Transformation")
 public interface Transformation extends Operation {
     /**
      * Version of the coordinate transformation (i.e., instantiation due to the stochastic
      * nature of the parameters). This attribute is mandatory in a Transformation.
      *
      * @return The coordinate operation version.
-     * @UML mandatory operationVersion
      */
+/// @UML (identifier="operationVersion", obligation=MANDATORY)
     String getOperationVersion();
 }

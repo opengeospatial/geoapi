@@ -15,6 +15,10 @@ import java.util.List;
 // OpenGIS direct dependencies
 import org.opengis.spatialschema.geometry.geometry.GenericSurface;
 
+// Annotations
+///import org.opengis.annotation.UML;
+///import static org.opengis.annotation.Obligation.*;
+
 
 /**
  * Surface with a positive orientation.
@@ -33,7 +37,6 @@ import org.opengis.spatialschema.geometry.geometry.GenericSurface;
  * <strong>NOTE:</strong> Other than the restriction on orientability, no other "validity" condition is required for GM_Surface.
  * </font></blockquote>
  *
- * @UML type GM_Surface
  * @author ISO/DIS 19107
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 2.0
@@ -41,6 +44,7 @@ import org.opengis.spatialschema.geometry.geometry.GenericSurface;
  * @see PrimitiveFactory#createSurface(List)
  * @see PrimitiveFactory#createSurface(SurfaceBoundary)
  */
+///@UML (identifier="GM_Surface")
 public interface Surface extends OrientableSurface, GenericSurface {
     /**
      * Relates this <code>Surface</code> to a set of {@linkplain SurfacePatch surface patches} that
@@ -52,9 +56,9 @@ public interface Surface extends OrientableSurface, GenericSurface {
      * boundary.
      *
      * @return The list of surface patches. Should never be <code>null</code> neither empty.
-     * @UML association patch
      *
      * @see SurfacePatch#getSurface
      */
+/// @UML (identifier="patch", obligation=MANDATORY)
     public List/*<SurfacePatch>*/ getPatches();
 }

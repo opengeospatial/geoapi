@@ -15,6 +15,10 @@ import java.util.List;
 // OpenGIS direct dependencies
 import org.opengis.spatialschema.geometry.primitive.CurveSegment;
 
+// Annotations
+///import org.opengis.annotation.UML;
+///import static org.opengis.annotation.Obligation.*;
+
 
 /**
  * A sequence of line segments, each having a parameterization like the one
@@ -22,13 +26,13 @@ import org.opengis.spatialschema.geometry.primitive.CurveSegment;
  * {@link List List&lt;LineSegment&gt;} into a single object,
  * with the obvious savings of storage space.
  *  
- * @UML datatype GM_LineString
  * @author ISO/DIS 19107
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 2.0
  *
  * @see GeometryFactory#createLineString
  */
+///@UML (identifier="GM_LineString")
 public interface LineString extends CurveSegment {
     /**
      * Returns a sequence of positions between which the curve is linearly interpolated.
@@ -37,15 +41,15 @@ public interface LineString extends CurveSegment {
      * {@linkplain #getEndPoint end point} of this <code>LineString</code>.
      *
      * @return The control points between which the curve is linearly interpolated.
-     * @UML operation controlPoint
      */
+/// @UML (identifier="controlPoint", obligation=MANDATORY)
     public PointArray getControlPoints();
 
     /**
      * Decomposes a line string into an equivalent sequence of line segments.
      *
      * @return The sequence of line segments.
-     * @UML operation asGM_LineSegment
      */
+/// @UML (identifier="asGM_LineSegment", obligation=MANDATORY)
     public List/*<LineSegment>*/ asLineSegments();
 }

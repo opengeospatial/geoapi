@@ -15,6 +15,10 @@ import java.util.List;
 // OpenGIS direct dependencies
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 
+// Annotations
+///import org.opengis.annotation.UML;
+///import static org.opengis.annotation.Obligation.*;
+
 
 /**
  * A factory of {@linkplain org.opengis.spatialschema.geometry.Geometry geometries}.
@@ -42,16 +46,14 @@ public interface GeometryFactory {
      *
      * @param startPoint The {@linkplain LineSegment#getStartPoint start point}.
      * @param   endPoint The {@linkplain LineSegment#getEndPoint end point}.
-     *
-     * @UML constructor GM_LineSegment(GM_Position[2])
      */
+/// @UML (identifier="GM_LineSegment(GM_Position[2])", obligation=MANDATORY)
     public LineSegment createLineSegment(Position startPoint, Position endPoint);
 
     /**
      * Takes two or more positions and creates the appropriate line string joining them.
-     *
-     * @UML constructor GM_LineString(GM_Position[2..n])
      */
+/// @UML (identifier="GM_LineString(GM_Position[2..n])", obligation=MANDATORY)
     public LineString createLineString(List/*<Position>*/ points);
 
     /**
@@ -67,9 +69,8 @@ public interface GeometryFactory {
      * the geoid (or {@linkplain org.opengis.referencing.datum.Ellipsoid ellipsoid}) of the
      * {@linkplain org.opengis.referencing.crs.CoordinateReferenceSystem coordinate reference system}
      * being used, and creates the appropriate geodesic string joining them.
-     *
-     * @UML constructor GM_GeodesicString(GM_Position[2..n])
      */
+/// @UML (identifier="GM_GeodesicString(GM_Position[2..n])", obligation=MANDATORY)
     public GeodesicString createGeodesicString(List/*<Position>*/ points);
 
     /**
@@ -78,9 +79,8 @@ public interface GeometryFactory {
      * @param startPoint The {@linkplain Arc#getStartPoint start point}.
      * @param   midPoint Some point on the arc neither at the start or end.
      * @param   endPoint The {@linkplain Arc#getEndPoint end point}.
-     *
-     * @UML constructor GM_Arc(GM_Position[3])
      */
+/// @UML (identifier="GM_Arc(GM_Position[3])", obligation=MANDATORY)
     public Arc createArc(Position startPoint, Position midPoint, Position endPoint);
 
     /**
@@ -129,18 +129,16 @@ public interface GeometryFactory {
      * @param   endPoint The {@linkplain Arc#getEndPoint end point}.
      * @param      bulge The distance of the midpoint of the arc from the midpoint of the chord.
      * @param     normal A direction normal to the chord.
-     *
-     * @UML constructor GM_Arc(GM_Position[2],Real,Vector)
      */
+/// @UML (identifier="GM_Arc(GM_Position[2],Real,Vector)", obligation=MANDATORY)
     public Arc createArc(Position startPoint, Position endPoint, double bulge, double[] normal);
 
     /**
      * Takes a sequence of {@linkplain Position positions} and constructs a sequence of
      * 3-point arcs jointing them. By the nature of an arc string, the sequence must have
      * an odd number of positions.
-     *
-     * @UML constructor GM_ArcString(GM_Position[3, 5, 7...])
      */
+/// @UML (identifier="GM_ArcString(GM_Position[3, 5, 7...])", obligation=MANDATORY)
     public ArcString createArcString(List/*<Position>*/ points);
 
     /**
@@ -154,9 +152,8 @@ public interface GeometryFactory {
      * @param   endPoint The {@linkplain ArcByBulge#getEndPoint end point}.
      * @param      bulge The distance of the midpoint of the arc from the midpoint of the chord.
      * @param     normal A direction normal to the chord.
-     *
-     * @UML constructor GM_ArcByBulge(GM_Position[2],Real,Vector)
      */
+/// @UML (identifier="GM_ArcByBulge(GM_Position[2],Real,Vector)", obligation=MANDATORY)
     public ArcByBulge createArcByBulge(Position startPoint, Position endPoint, double bulge, double[] normal);
 
     /**
@@ -174,9 +171,8 @@ public interface GeometryFactory {
      * @param  bulges The distances of the midpoint of the arc from the midpoint of the chord.
      * @param normals The directions normal to the chord. This list size must be the same than
      *                the <code>bulge</code> array length.
-     *
-     * @UML constructor GM_ArcStringByBulge(GM_Position[2..n],Real[1..n],Vector[1..n])
      */
+/// @UML (identifier="GM_ArcStringByBulge(GM_Position[2..n],Real[1..n],Vector[1..n])", obligation=MANDATORY)
     public ArcStringByBulge createArcStringByBulge(List/*<Position>*/ points, double[] bulges,
                                                    List/*<double[]>*/ normals);
 }

@@ -9,16 +9,20 @@
  *************************************************************************************************/
 package org.opengis.coverage.processing;
 
+// Annotations
+///import org.opengis.annotation.UML;
+///import static org.opengis.annotation.Obligation.*;
+
 
 /**
  * Throws if an operation name given to
  * <code>{@linkplain GridCoverageProcessor#doOperation doOperation}(&hellip;)</code>
  * is not a know operation.
  *
- * @UML exception GP_OperationNotFound
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-004.pdf">Grid Coverage specification 1.0</A>
  */
+///@UML (identifier="GP_OperationNotFound")
 public class OperationNotFoundException extends IllegalArgumentException {
     /**
      * Serial number for interoperability with different versions.

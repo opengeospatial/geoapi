@@ -15,6 +15,10 @@ import javax.units.Unit;
 // OpenGIS direct dependencies
 import org.opengis.referencing.IdentifiedObject;
 
+// Annotations
+///import org.opengis.annotation.UML;
+///import static org.opengis.annotation.Obligation.*;
+
 
 /**
  * A prime meridian defines the origin from which longitude values are determined.
@@ -22,11 +26,11 @@ import org.opengis.referencing.IdentifiedObject;
  * used when the {@linkplain #getGreenwichLongitude greenwich longitude} value is
  * zero.
  *
- * @UML abstract CD_PrimeMeridian
  * @author ISO 19111
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/03-073r1.zip">Abstract specification 2.0</A>
  */
+///@UML (identifier="CD_PrimeMeridian")
 public interface PrimeMeridian extends IdentifiedObject {
     /**
      * Longitude of the prime meridian measured from the Greenwich meridian, positive eastward.
@@ -35,8 +39,8 @@ public interface PrimeMeridian extends IdentifiedObject {
      *
      * @return The prime meridian Greenwich longitude, in {@linkplain #getAngularUnit angular unit}.
      * @unitof Length
-     * @UML conditional greenwichLongitude
      */
+/// @UML (identifier="greenwichLongitude", obligation=CONDITIONAL)
     double getGreenwichLongitude();
 
     /**
