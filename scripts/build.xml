@@ -123,8 +123,10 @@
       <replacefilter token="&lt;OrientableSurface&gt;"/>
       <replacefilter token="&lt;SurfacePatch&gt;"/>
       <replacefilter token="&lt;Complex&gt;"/>
+      <replacefilter token="&lt;String&gt;"/>
 
       <replacefilter token=" assert " value=" // assert "/>
+      <replacefilter token="super(message, cause);" value="super(message);"/>
     </replace>
 
     <mkdir dir="1.3/classes"/>
@@ -203,12 +205,12 @@
         &lt;/TD&gt;&lt;/TR&gt;&lt;/TABLE&gt;
       </bottom>
 
+      <tag name="unitof" scope="fields,methods" description="Unit of" enabled="false"/>
       <taglet name="org.opengis.tools.UmlTaglet" path="${homepath}/scripts"/>
-      <tag name="rename" scope="types,fields,methods"
-           description="Name change from UML &lt;FONT COLOR='#A01020'&gt;(a GeoAPI proposal)&lt;/FONT&gt;:"/>
+      <tag name="rename" scope="types,fields,methods" description="Name change from the UML:"/>
       <taglet name="org.opengis.tools.RevisitTaglet" path="${homepath}/scripts"/>
 
-      <link href="http://java.sun.com/j2se/1.4/docs/api"/>
+      <link href="http://java.sun.com/j2se/1.5.0/docs/api"/>
       <link href="http://java.sun.com/products/java-media/jai/forDevelopers/jai-apidocs"/>
       <link href="http://java.sun.com/products/java-media/3D/forDevelopers/j3dapi"/>
       <link href="http://jsr-108.sourceforge.net/javadoc"/>
