@@ -20,7 +20,7 @@ import org.opengis.metadata.citation.Citation;
  * Information about the outcome of evaluating the obtained value (or set of values) against
  * a specified acceptable conformance quality level.
  *
- * @UML abstract DQ_ConformanceResult
+ * @UML datatype DQ_ConformanceResult
  * @author ISO 19115
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
