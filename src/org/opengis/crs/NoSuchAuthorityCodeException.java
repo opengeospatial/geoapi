@@ -37,7 +37,7 @@ public class NoSuchAuthorityCodeException extends FactoryException {
     private final String code;
 
     /**
-     * Construct an exception with the specified detail message and cause.
+     * Construct an exception with the specified detail message and authority code.
      *
      * @param  message The detail message. The detail message is saved
      *         for later retrieval by the {@link #getMessage()} method.

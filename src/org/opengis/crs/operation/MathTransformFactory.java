@@ -12,6 +12,7 @@ package org.opengis.crs.operation;
 // OpenGIS direct dependencies
 import org.opengis.crs.Factory;
 import org.opengis.crs.FactoryException;
+import org.opengis.crs.NoSuchClassificationException;
 
 
 /**
@@ -104,4 +105,68 @@ public interface MathTransformFactory extends Factory {
      * @revisit Should we add a <code>numTrailing</code> argument like in Geotools?
      */
     MathTransform createPassThroughTransform(int firstAffectedOrdinate, MathTransform subTransform) throws FactoryException;
+
+    /**
+     * Creates a transform from a classification name and parameters.
+     * The client must supply <code>"semi_major"</code> and <code>"semi_minor"</code>
+     * parameters for cartographic projection transforms. 
+     *
+     * @param  classification The classification name of the transform
+     *         (e.g. "Transverse_Mercator"). It should be one of the name
+     *         returned by {@link #getAvailableTransforms}. Leading and
+     *         trailing spaces are ignored. Comparisons are case-insensitive.
+     * @param  parameters The parameter values. A default set can be obtained with
+     *         <code>{@linkplain #getDefaultParameters getDefaultParameters}(classification)}</code>
+     *         and modified before to be given to this method.
+     * @return The parameterized transform.
+     * @throws NoSuchClassificationException if there is no transform registered
+     *         with the specified classification name.
+     * @throws FactoryException if the object creation failed. This exception is thrown
+     *         if some required parameter has not been supplied, or has illegal value.
+     * @UML operation createParameterizedTransform
+     *
+     * @revisit Is the classification name the same than
+     *          {@linkplain OperationMethod#getName operation method name}?
+     */
+    MathTransform createParameterizedTransform(String classification, GeneralParameterValue[] parameters) throws FactoryException;
+
+    /**
+     * Returns the default parameter values for the specified classification.
+     * This method always returns clones. It is safe to modify the returned
+     * parameter values and give them to
+     * <code>{@linkplain #createParameterizedTransform createParameterizedTransform}(classification, parameters)</code>.
+     *
+     * @param  classification The classification name of the transform
+     *         (e.g. "Transverse_Mercator"). It should be one of the name
+     *         returned by {@link #getAvailableTransforms}. Leading and
+     *         trailing spaces are ignored. Comparisons are case-insensitive.
+     * @return The default parameter values.
+     * @throws NoSuchClassificationException if there is no provider registered
+     *         with the specified classification name.
+     */
+    GeneralParameterValue[] getDefaultParameters(String classification) throws NoSuchClassificationException;
+
+    /**
+     * Creates a math transform object from a XML string.
+     *
+     * @param  xml Math transform encoded in XML format.
+     * @throws FactoryException if the object creation failed.
+     * @UML operation createFromXML
+     *
+     * @revisit Is it the right place for this method? XML parser may need its own class.
+     */
+    MathTransform createFromXML(String xml) throws FactoryException;
+
+    /**
+     * Creates a math transform object from a string.
+     * The <A HREF="../doc-files/WKT.html">definition for WKT</A> is
+     * shown using Extended Backus Naur Form (EBNF).
+     *
+     * @param  wkt Kath transform encoded in Well-Known Text format.
+     * @throws FactoryException if the object creation failed.
+     * @UML operation createFromWKT
+     *
+     * @revisit Is it the right place for this method? WKT parser may need its own class.
+     */
+    MathTransform createFromWKT(String wkt) throws FactoryException;
 }
