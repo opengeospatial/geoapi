@@ -154,6 +154,13 @@ public final class UmlTaglet implements Taglet {
                 type = "operation";
             } else if (type.equalsIgnoreCase("constructor")) {
                 type = "constructor";
+            } else if (type.equalsIgnoreCase("inferred")) {
+                type = tokens.nextToken();
+                if (type.equalsIgnoreCase("from")) {
+                    type = "inferred from";
+                } else {
+                    type = "inferred "+type;
+                }
             } else {
                 warning(tag, "Unknow UML type: "+type);
             }

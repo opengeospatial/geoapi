@@ -252,15 +252,27 @@
       <group title="&lt;TABLE WIDTH='100%'&gt;&lt;TR&gt;&lt;TD&gt;Spatial Referencing by Coordinates
                     &lt;/TD&gt;&lt;TD ALIGN='right'&gt;&lt;FONT SIZE='-1' COLOR='Navy'&gt;ISO-19111
                     &lt;/FONT&gt;&lt;/TD&gt;&lt;/TR&gt;&lt;/TABLE&gt;"
-             packages="org.opengis.crs*"/>
+             packages="org.opengis.crs*:org.opengis.parameter*"/>
 
       <group title="&lt;TABLE WIDTH='100%'&gt;&lt;TR&gt;&lt;TD&gt;Feature Geometry
                     &lt;/TD&gt;&lt;TD ALIGN='right'&gt;&lt;FONT SIZE='-1' COLOR='Navy'&gt;ISO-19107
                     &lt;/FONT&gt;&lt;/TD&gt;&lt;/TR&gt;&lt;/TABLE&gt;"
              packages="org.opengis.spatialschema*"/>
 
-      <group title="Grid Coverage"   packages="org.opengis.coverage*"/>
-      <group title="User interface"  packages="org.opengis.go*"      />
+      <group title="&lt;TABLE WIDTH='100%'&gt;&lt;TR&gt;&lt;TD&gt;Grid Coverage
+                    &lt;/TD&gt;&lt;TD ALIGN='right'&gt;&lt;FONT SIZE='-1' COLOR='Navy'&gt;OGC 01-004
+                    &lt;/FONT&gt;&lt;/TD&gt;&lt;/TR&gt;&lt;/TABLE&gt;"
+             packages="org.opengis.coverage*"/>
+
+      <group title="&lt;TABLE WIDTH='100%'&gt;&lt;TR&gt;&lt;TD&gt;Catalog Services
+                    &lt;/TD&gt;&lt;TD ALIGN='right'&gt;&lt;FONT SIZE='-1' COLOR='Navy'&gt;OGC 02-087
+                    &lt;/FONT&gt;&lt;/TD&gt;&lt;/TR&gt;&lt;/TABLE&gt;"
+             packages="org.opengis.catalog*"/>
+
+      <group title="&lt;TABLE WIDTH='100%'&gt;&lt;TR&gt;&lt;TD&gt;User interface
+                    &lt;/TD&gt;&lt;TD ALIGN='right'&gt;&lt;FONT SIZE='-1' COLOR='Navy'&gt;GO-1
+                    &lt;/FONT&gt;&lt;/TD&gt;&lt;/TR&gt;&lt;/TABLE&gt;"
+             packages="org.opengis.go*"/>
 
       <fileset dir="tiger/sources">
         <include name="org/**/*.java"/>

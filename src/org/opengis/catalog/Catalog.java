@@ -8,7 +8,11 @@
  **
  *************************************************************************************************/
 package org.opengis.catalog;
+
+// J2SE direct dependencies
 import java.util.Iterator;
+
+
 /**
  * A Catalog is simply a collection of Catalog Entries that is organized to assist in the discovery,
  * access, and retrieval of geospatial resources that are of interest to the user, especially when the
@@ -31,70 +35,70 @@ import java.util.Iterator;
  * @version <A HREF="http://www.opengis.org/docs/02-087r3.pdf">Catalog Services 1.1.1</A> 
  */
 public interface Catalog {
-	/**
-	 * Searches through the catalog and finds the CatalogEntries that match the
-	 * query
-	 * 
-	 * @param query
-	 *            A QueryDefinition used to select CatalogEntries
-	 * @return QueryResult containing all matching CatalogEntries
-	 * @UML inferred from section 3.1.1.1.1 <i>Query Functions </i> in the
-	 *      <A HREF="http://www.opengis.org/docs/99-113.pdf">OGC Abstract
+    /**
+     * Searches through the catalog and finds the CatalogEntries that match the
+     * query
+     * 
+     * @param query
+     *            A QueryDefinition used to select CatalogEntries
+     * @return QueryResult containing all matching CatalogEntries
+     *
+     * @UML inferred from section 3.1.1.1.1 <i>Query Functions </i> in the
+     *      <A HREF="http://www.opengis.org/docs/99-113.pdf">OGC Abstract
      *      Catalog Services </A> Specification 
      */
-	public QueryResult query(QueryDefinition query);
-	/**
-	 * Adds a CatalogEntry to the Catalog
-	 * <p>
-	 * Not all catalogs can provide this functionality so a
-	 * NotImplementedException is provided
-	 * </p>
-	 * <p>
-	 * For example A GridCoverageExchange implementation maybe implement catalog
-	 * as well, however it may not bepossible for for GridCoverageExchange to
-	 * remove or add to its catalog because it maybe dependent on another
-	 * resource such as a database.
-	 * </p>
-	 * 
-	 * @param entry
-	 *            CatalogEntry to add
-	 * @throws NotImplementedException
-	 *             if Catalog does not provide this functionality then
-	 *             NotImplementedException will be thrown
+    public QueryResult query(QueryDefinition query);
+
+    /**
+     * Adds a {@linkplain CatalogEntry catalog entry} to the catalog.
+     * Not all catalogs can provide this functionality so an
+     * exception may be throws.
+     *
+     * For example A {@link org.opengis.coverage.grid.GridCoverageExchange} implementation
+     * maybe implement catalog as well, however it may not be possible for for
+     * <code>GridCoverageExchange</code> to remove or add to its catalog because
+     * it maybe dependent on another resource such as a database.
+     * 
+     * @param entry
+     *             Catalog entry to add.
+     * @throws IllegalStateException
+     *             if the catalog does not provide this functionality.
+     *
      * @UML inferred from section 3.1.1.1.2 <i>Other Functions on Catalog </i> in the
      *      <A HREF="http://www.opengis.org/docs/99-113.pdf">OGC Abstract
      *      Catalog Services </A> Specification 
      */
-	public void add(CatalogEntry entry) throws IllegalStateException;
-	/**
-	 * Removes a CatalogEntry from the Catalog
-	 * <p>
-	 * Not all catalogs can provide this functionality so a
-	 * NotImplementedException is provided.
-	 * </p>
-	 * <p>
-	 * For example A GridCoverageExchange implementation maybe implement catalog
-	 * as well, however it may not bepossible for for GridCoverageExchange to
-	 * remove or add to its catalog because it maybe dependent on another
-	 * resource such as a database.
-	 * </p>
-	 * 
-	 * @param entry
-	 *            CatalogEntry to remove
-	 * @throws NotImplementedException
-	 *             if Catalog does not provide this functionality then
-	 *             NotImplementedException will be thrown
+    public void add(CatalogEntry entry) throws IllegalStateException;
+
+    /**
+     * Removes a {@linkplain CatalogEntry catalog entry} from the catalog.
+     * Not all catalogs can provide this functionality so an
+     * exception may be throws.
+     *
+     * For example A {@link org.opengis.coverage.grid.GridCoverageExchange} implementation
+     * maybe implement catalog as well, however it may not be possible for for
+     * <code>GridCoverageExchange</code> to remove or add to its catalog because
+     * it maybe dependent on another resource such as a database.
+     * 
+     * @param entry
+     *            CatalogEntry to remove
+     * @throws IllegalStateException
+     *             if the catalog does not provide this functionality.
+     *
      * @UML inferred from section 3.1.1.1.2 <i>Other Functions on Catalog </i> in the
      *      <A HREF="http://www.opengis.org/docs/99-113.pdf">OGC Abstract
      *      Catalog Services </A> Specification 
      */
-	public void remove(CatalogEntry entry) throws IllegalStateException;
-	/**
-	 * creates an iterator that traverses through catalog
-	 * @return An iterator which can be used to traverse the catalog
+    public void remove(CatalogEntry entry) throws IllegalStateException;
+
+    /**
+     * creates an iterator that traverses through catalog.
+     *
+     * @return An iterator which can be used to traverse the catalog
+     *
      * @UML inferred from section 3.1.1.1.2 <i>Other Functions on Catalog </i> in the
      *      <A HREF="http://www.opengis.org/docs/99-113.pdf">OGC Abstract
      *      Catalog Services </A> Specification 
      */
-	public Iterator iterator();
+    public Iterator iterator();
 }

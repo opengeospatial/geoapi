@@ -47,5 +47,5 @@ public interface Citation {
      *         If no name is available in the given locale, then some default locale is used.
      * @UML optional alternateTitle
      */
-    String[] getAlternateTitle(Locale locale);
+    String[] getAlternateTitles(Locale locale);
 }
