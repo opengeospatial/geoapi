@@ -32,16 +32,6 @@ import org.opengis.util.InternationalString;
  */
 public interface AuthorityFactory extends Factory {
     /**
-     * Returns the low-level {@linkplain ObjectFactory object factory} used for
-     * {@linkplain #createObject object creation}. For example an authority factory backed by an
-     * EPSG database will fetch informations from the database and use this low-level factory for
-     * creating objects from those informations.
-     *
-     * @deprecated Will be removed.
-     */
-    ObjectFactory getObjectFactory();
-
-    /**
      * Returns the organization or party responsible for definition and maintenance of the
      * database.
      */

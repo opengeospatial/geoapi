@@ -285,55 +285,13 @@ public interface CRSFactory extends ObjectFactory {
      * @param  cs The coordinate system for the projected CRS.
      * @throws FactoryException if the object creation failed.
      *
-     * @deprecated Replaced by {@link #createProjectedCRS(Map,GeographicCRS,ParameterValueGroup,CartesianCS)}
-     *             for concistency with the rest of the API, which work with {@link ParameterValueGroup}
-     *             rather than an array of {@link GeneralParameterValue}.
-     */
-    ProjectedCRS createProjectedCRS(Map                     properties,
-                                    GeographicCRS               geoCRS,
-                                    String                      method,
-                                    GeneralParameterValue[] parameters,
-                                    CartesianCS                     cs) throws FactoryException;
-
-    /**
-     * Creates a projected coordinate reference system from a set of parameter values. The method name
-     * is inferred from the {@linkplain ParameterDescriptorGroup#getName parameter group name}.
-     * The client must supply at least the <code>"semi_major"</code> and <code>"semi_minor"</code>
-     * parameters for cartographic projections. Example:
-     * <br><br>
-     * <blockquote><pre>
-     * ParameterValueGroup parameters = factory.{@linkplain #getDefaultParameters getDefaultParameters}("Transverse_Mercator");
-     * p.parameter("semi_major").setValue(6378137.000);
-     * p.parameter("semi_minor").setValue(6356752.314);
-     * ProjectedCRS crs = factory.createProjectedCRS(..., parameters, ...);
-     * </pre></blockquote>
-     * <br><br>
-     * Implementations must check for axis order and units. For example map projections
-     * are often implemented as transforms operating on (<var>longitude</var>,<var>latitude</var>)
-     * values in degrees. If the geographic CRS uses the (<var>latitude</var>,<var>longitude</var>)
-     * axis order, then this method shall (conceptually) concatenates an affine transform that swaps
-     * ordinate values before the projection is applied.
-     *
-     * @param  properties Name and other properties to give to the new object.
-     *         Available properties are {@linkplain ObjectFactory listed there}.
-     *         Properties for the {@link Projection} object to be created can be specified
-     *         with the <code>"conversion."</code> prefix added in front of property names
-     *         (example: <code>"conversion.name"</code>).
-     * @param  base Geographic coordinate reference system to base projection on.
-     * @param  parameters The parameter values to give to the projection.
-     * @param  derivedCS The coordinate system for the projected CRS.
-     * @throws FactoryException if the object creation failed.
-     *
-     * @see #getDefaultParameters
-     *
-     * @deprecated This method will be removed (as well as {@link #getDefaultParameters}) for
-     *             the following reasons:
+     * @deprecated This method will be removed for the following reasons:
      * <ul>
      *   <li>It introduces a dependency to {@link org.opengis.referencing.operation.MathTransformFactory}
      *       at the implementation level of this method. This is against the orthogonal aspect of
      *       factories (no other methods force this kind of cross-dependency).</li>
      *   <li>It brings duplication with {@link org.opengis.referencing.operation.MathTransformFactory}
-     *       API ({@link #getDefaultParameters}).</li>
+     *       API.</li>
      *   <li>This is mostly a convenience method; user can do the same with similar
      *       efficiency in their own code.</li>
      *   <li>Experience gained in implementation and usage suggests that it is hard to get
@@ -345,38 +303,11 @@ public interface CRSFactory extends ObjectFactory {
      *       {@link org.opengis.referencing.operation.OperationMethod}, etc.</li>
      * </ul>
      */
-    ProjectedCRS createProjectedCRS(Map                 properties,
-                                    GeographicCRS             base,
-                                    ParameterValueGroup parameters,
-                                    CartesianCS          derivedCS) throws FactoryException;
-
-    /**
-     * Returns the default parameter values for a derived or projected CRS using the given method.
-     * The method argument is the name of any {@linkplain OperationMethod operation method} returned
-     * by the <code>{@linkplain MathTransformFactory#getAvailableMethods
-     * getAvailableMethods}({@linkplain Conversion}.class)</code> method.
-     * A typical example is
-     * <code>"<A HREF="http://www.remotesensing.org/geotiff/proj_list/transverse_mercator.html">Transverse_Mercator</A>"</code>).
-     *
-     * <P>The {@linkplain ParameterDescriptorGroup#getName parameter group name} shall be the
-     * method name, or an alias to be understood by
-     * <code>{@linkplain #createProjectedCRS(Map,GeographicCRS,ParameterValueGroup,CartesianCS)
-     * createProjectedCRS}(..., parameters, ...)</code>. This method creates new parameter instances
-     * at every call. Parameters are intented to be modified by the user before to be given to the
-     * above-cited <code>createProjectedCRS</code> method.</P>
-     *
-     * @param  method The case insensitive name of the method to search for.
-     * @return The default parameter values.
-     * @throws NoSuchIdentifierException if there is no operation registered for the specified method.
-     *
-     * @see MathTransformFactory#getAvailableMethods
-     * @see #createProjectedCRS(Map,GeographicCRS,ParameterValueGroup,CartesianCS)
-     *
-     * @deprecated Deprecated since
-     *  {@link #createProjectedCRS(Map,GeographicCRS,ParameterValueGroup,CartesianCS)} has been
-     *  deprecated.
-     */
-    ParameterValueGroup getDefaultParameters(String method) throws NoSuchIdentifierException;
+    ProjectedCRS createProjectedCRS(Map                     properties,
+                                    GeographicCRS               geoCRS,
+                                    String                      method,
+                                    GeneralParameterValue[] parameters,
+                                    CartesianCS                     cs) throws FactoryException;
 
     /**
      * Creates a coordinate reference system object from a XML string.
