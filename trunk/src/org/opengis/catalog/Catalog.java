@@ -12,6 +12,10 @@ package org.opengis.catalog;
 // J2SE direct dependencies
 import java.util.Iterator;
 
+// Annotations
+///import org.opengis.annotation.UML;
+///import static org.opengis.annotation.Obligation.*;
+
 
 /**
  * A collection of {@linkplain CatalogEntry catalog entries} that is organized to assist in the discovery,
@@ -30,10 +34,10 @@ import java.util.Iterator;
  *        were inferred from reading the abstract catalog specification: 
  *        <A HREF="http://www.opengis.org/docs/99-113.pdf">Catalog Services</A> section 3.1.1
  * 
- * @UML abstract CG_Catalog
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A> 
  * @version <A HREF="http://www.opengis.org/docs/02-087r3.pdf">Catalog Services 1.1.1</A> 
  */
+///@UML (identifier="CG_Catalog")
 public interface Catalog {
     /**
      * Searches through the catalog and finds the {@linkplain CatalogEntry catalog entries}
@@ -97,5 +101,5 @@ public interface Catalog {
      *      <A HREF="http://www.opengis.org/docs/99-113.pdf">OGC Abstract
      *      Catalog Services </A> Specification
      */
-    Iterator iterator();
+    Iterator/*<CatalogEntry>*/ iterator();
 }
