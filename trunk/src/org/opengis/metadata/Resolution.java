@@ -25,7 +25,7 @@ public interface Resolution {
      * {@linkplain #getDistance ground sample distance} may be provided.
      *
      * @UML conditional equivalentScale
-     * @unitof MD_RepresentativeFraction
+     * @unitof RepresentativeFraction
      */
     double getEquivalentScale();
 

@@ -112,7 +112,7 @@ public interface MetaData {
      *
      * @UML optional spatialRepresentationInfo
      */
-//    SpatialRepresentation[] getSpatialRepresentationInfo();
+    SpatialRepresentation[] getSpatialRepresentationInfo();
 
     /**
      * Description of the spatial and temporal reference systems used in the dataset.
@@ -185,5 +185,5 @@ public interface MetaData {
       *
       * @UML optional metadataMaintenance
       */
-//     MaintenanceInformation getMetadataMaintenance();
+     MaintenanceInformation getMetadataMaintenance();
 }

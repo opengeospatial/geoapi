@@ -9,6 +9,9 @@
  *************************************************************************************************/
 package org.opengis.metadata.quality;
 
+// OpenGIS direct dependencies
+import org.opengis.metadata.lineage.Lineage;
+
 
 /**
  * Quality information for the data specified by a data quality scope.
@@ -42,5 +45,5 @@ public interface DataQuality {
      *
      * @UMl conditional lineage
      */
-//    Lineage getLineage();
+    Lineage getLineage();
 }
