@@ -50,9 +50,6 @@ public interface OrientablePrimitive extends Primitive {
      *
      * @return +1 for a positive orientation, or -1 for a negative orientation.
      * @UML operation orientation
-     *
-     * @revisit The UML specify a <code>Sign</code> return type.
-     *          Should we create a <code>Sign</code> class?
      */
     public int getOrientation();
 

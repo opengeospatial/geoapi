@@ -31,8 +31,6 @@ import org.opengis.referencing.datum.ImageDatum;
  * @author ISO 19111
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/03-073r1.zip">Abstract specification 2.0</A>
- *
- * @revisit If this is an engineering CRS, why it doesn't extends {@link EngineeringCRS}?
  */
 public interface ImageCRS extends CoordinateReferenceSystem {
     /**

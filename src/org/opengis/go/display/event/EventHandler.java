@@ -17,7 +17,7 @@ import java.util.EventListener;
  * handlers with a Component to switch key handling states easily.
  *
  * @version $Revision$, $Date$
-* @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
+ * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @see EventManager
  */
 public interface EventHandler extends EventListener {

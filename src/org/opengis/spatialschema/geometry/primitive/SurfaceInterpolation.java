@@ -24,8 +24,6 @@ import org.opengis.util.CodeList;
  * @author ISO/DIS 19107
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 2.0
- *
- * @revisit Provide a public constructor for allowing custom codes.
  */
 public final class SurfaceInterpolation extends CodeList {
     /**

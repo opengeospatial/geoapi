@@ -27,10 +27,7 @@ import org.opengis.referencing.crs.CoordinateReferenceSystem;
  * @UML datatype DirectPosition
  * @author ISO/DIS 19107
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
- * @version $Revision$, $Date$
- *
- * @revisit Version number: I suggest to use <strong>specification</strong> version number
- *          (here 2.0).
+ * @version 2.0
  */
 public interface DirectPosition extends Cloneable {
     /**
@@ -49,10 +46,6 @@ public interface DirectPosition extends Cloneable {
      *
      * @return The coordinates
      * @UML mandatory coordinates
-     *
-     * @revisit Should we said that this array is a clone (i.e. change to this array will
-     *          not affect the underlying coordinates). Or should we provides an optionnaly
-     *          pre-allocated array argument?
      */
     public double[] getCoordinates();
 
@@ -89,8 +82,6 @@ public interface DirectPosition extends Cloneable {
 
     /**
      * Makes an exact copy of this coordinate.
-     *
-     * @revisit Before to enable, need to update implementation in "typical" packages.
      */
-//  public DirectPosition clone();
+/// public DirectPosition clone();
 }

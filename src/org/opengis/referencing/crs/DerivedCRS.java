@@ -25,11 +25,4 @@ import org.opengis.spatialschema.geometry.DirectPosition;
  * @version <A HREF="http://www.opengis.org/docs/03-073r1.zip">Abstract specification 2.0</A>
  */
 public interface DerivedCRS extends GeneralDerivedCRS {
-    /**
-     * Type of this derived coordinate reference system.
-     *
-     * @return The type of this derived coordinate reference system.
-     * @UML mandatory derivedCRStype
-     */
-    DerivedCRSType getDerivedCRSType();
 }
