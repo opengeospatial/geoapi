@@ -9,7 +9,8 @@ import java.util.Date;
 
 /**
  * A temporal datum defines the origin of a temporal coordinate reference system.
- *  
+ *
+ * @UML abstract CD_TemporalDatum
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 2.0
  */
@@ -18,7 +19,7 @@ public interface TemporalDatum extends Datum {
      * The date and time origin of this temporal datum.
      *
      * @return The date and time origin of this temporal datum.
-     * @mandatory
+     * @UML mandatory origin
      */
     public Date getOrigin();
 

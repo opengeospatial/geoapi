@@ -6,6 +6,7 @@ package org.opengis.ci;
 
 /**
  *
+ * @UML datatype CI_Citation
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 2.0
  */

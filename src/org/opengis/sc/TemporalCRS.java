@@ -17,6 +17,7 @@ import org.opengis.cd.TemporalDatum;
  *   {@link org.opengis.cs.TemporalCS Temporal}
  * </TD></TR></TABLE>
  *
+ * @UML abstract SC_TemporalCRS
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 2.0
  */
@@ -25,23 +26,15 @@ public interface TemporalCRS extends CoordinateReferenceSystem {
      * Returns the coordinate system, which must be temporal.
      *
      * @return The coordinate system.
-     * @association usesCS
-     *
-     * @rename Expanded the "CS" abbreviation into "CoordinateSystem".
-     *
-     * @revisit Change the return type from <code>CoordinateSystem</code> to
-     *          {@link TemporalCS} when the J2SE 1.5 compiler will be available.
+     * @UML association usesCS
      */
-    public /*TemporalCS*/ org.opengis.cs.CoordinateSystem getCoordinateSystem();
+    public TemporalCS getCoordinateSystem();
 
     /**
      * Returns the datum, which must be temporal.
      *
      * @return The datum.
-     * @association usesDatum
-     *
-     * @revisit Change the return type from <code>Datum</code> to
-     *          {@link TemporalDatum} when the J2SE 1.5 compiler will be available.
+     * @UML association usesDatum
      */
-    public /*TemporalDatum*/ org.opengis.cd.Datum getDatum();
+    public TemporalDatum getDatum();
 }

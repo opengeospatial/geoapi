@@ -15,6 +15,7 @@ import org.opengis.util.CodeList;
 /**
  * Type of a vertical datum. 
  *
+ * @UML codelist CD_VerticalDatumType
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 2.0
  */
@@ -28,6 +29,8 @@ public final class VerticalDatumType extends CodeList {
      * The zero value of the associated vertical coordinate system axis is defined to approximate
      * a constant potential surface, usually the geoid. Such a reference surface is usually
      * determined by a national or scientific authority, and is then a well-known, named datum.
+     *
+     * @UML conditional geoidal
      */
     public static final VerticalDatumType GEOIDAL = new VerticalDatumType(0, "geoidal");
 
@@ -36,12 +39,16 @@ public final class VerticalDatumType extends CodeList {
      * purpose which the associated vertical measurements are used for. For hydrographic charts,
      * this is often a predicted nominal sea surface (i.e., without waves or other wind and current
      * effects) that occurs at low tide.
+     *
+     * @UML conditional depth
      */
     public static final VerticalDatumType DEPTH = new VerticalDatumType(1, "depth");
 
     /**
      * Atmospheric pressure is the basis for the definition of the origin of the
      * associated vertical coordinate system axis.
+     *
+     * @UML conditional barometric
      */
     public static final VerticalDatumType BAROMETRIC = new VerticalDatumType(2, "barometric");
 
@@ -50,6 +57,8 @@ public final class VerticalDatumType extends CodeList {
      * or bottom of a geologically identifiable and meaningful subsurface layer, is used as a
      * vertical datum. Other variations to the above three vertical datum types may exist
      * and are all included in this type.
+     *
+     * @UML conditional other&nbsp;surface
      */
     public static final VerticalDatumType OTHER_SURFACE = new VerticalDatumType(3, "other surface");
 

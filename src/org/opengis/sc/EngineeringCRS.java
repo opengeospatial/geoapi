@@ -29,6 +29,7 @@ import org.opengis.cd.EngineeringDatum;
  *   {@link org.opengis.cs.LinearCS           Linear}
  * </TD></TR></TABLE>
  *
+ * @UML abstract SC_EngineeringCRS
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 2.0
  */
@@ -37,9 +38,10 @@ public interface EngineeringCRS extends CoordinateReferenceSystem {
      * Returns the coordinate system.
      *
      * @return The coordinate system.
-     * @association usesCS
+     * @UML association usesCS
      *
-     * @rename Expanded the "CS" abbreviation into "CoordinateSystem".
+     * @revisit This method was already defined in {@link CoordinateReferenceSystem}.
+     *          Why is it defined again here?
      */
     public CoordinateSystem getCoordinateSystem();
 
@@ -47,11 +49,8 @@ public interface EngineeringCRS extends CoordinateReferenceSystem {
      * Returns the datum, which must be an engineering one.
      *
      * @return The datum.
-     * @association usesDatum
-     *
-     * @revisit Change the return type from <code>Datum</code> to
-     *          {@link EngineeringDatum} when the J2SE 1.5 compiler will be available.
+     * @UML association usesDatum
      */
-    public /*EngineeringDatum*/ org.opengis.cd.Datum getDatum();
+    public EngineeringDatum getDatum();
 }
 

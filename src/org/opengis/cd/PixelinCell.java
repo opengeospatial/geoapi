@@ -15,6 +15,7 @@ import org.opengis.util.CodeList;
 /**
  * Specification of the way the image grid is associated with the image data attributes.
  *
+ * @UML codelist CD_PixelinCell
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 2.0
  */
@@ -26,12 +27,16 @@ public final class PixelinCell extends CodeList {
 
     /**
      * The origin of the image coordinate system is the centre of a grid cell or image pixel.
+     *
+     * @UML conditional cell&nbsp;center
      */
     public static final PixelinCell CELL_CENTER = new PixelinCell(0, "cell center");
 
     /**
      * The origin of the image coordinate system is the corner of a grid cell, or half-way
      * between the centres of adjacent image pixels.
+     *
+     * @UML conditional cell&nbsp;corner
      */
     public static final PixelinCell CELL_CORNER = new PixelinCell(1, "cell corner");
 

@@ -15,6 +15,7 @@ package org.opengis.cs;
  *   {@link org.opengis.sc.TemporalCRS Temporal}
  * </TD></TR></TABLE>
  *
+ * @UML abstract CS_TemporalCS
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 2.0
  */

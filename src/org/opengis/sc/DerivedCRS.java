@@ -13,6 +13,7 @@ import org.opengis.cs.CoordinateSystem;
  * category includes coordinate reference systems derived from a projected coordinate
  * reference system.
  *
+ * @UML abstract SC_DerivedCRS
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 2.0
  *
@@ -26,9 +27,7 @@ public interface DerivedCRS extends GeneralDerivedCRS {
      * Returns the coordinate system.
      *
      * @return The coordinate system.
-     * @association usesCS
-     *
-     * @rename Expanded the "CS" abbreviation into "CoordinateSystem".
+     * @UML association usesCS
      *
      * @revisit This method was already defined in {@link CoordinateReferenceSystem}.
      *          Why is it defined again here?
@@ -39,7 +38,7 @@ public interface DerivedCRS extends GeneralDerivedCRS {
      * Type of this derived coordinate reference system.
      *
      * @return The type of this derived coordinate reference system.
-     * @mandatory
+     * @UML mandatory derivedCRStype
      */
     public DerivedCRSType getDerivedCRSType();
 }

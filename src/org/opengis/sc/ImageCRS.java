@@ -21,6 +21,7 @@ import org.opengis.cd.ImageDatum;
  *   {@link org.opengis.cs.ObliqueCartesianCS ObliqueCartesian}
  * </TD></TR></TABLE>
  *
+ * @UML abstract SC_ImageCRS
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 2.0
  *
@@ -38,7 +39,7 @@ public interface ImageCRS extends CoordinateReferenceSystem {
      * Returns the cartesian coordinate system.
      *
      * @return The cartesian coordinate system, or <code>null</code> if none.
-     * @association usesCartesianCS
+     * @UML association usesCartesianCS
      */
     public CartesianCS getCartesianCS();
 
@@ -46,7 +47,7 @@ public interface ImageCRS extends CoordinateReferenceSystem {
      * Returns the oblique cartesian coordinate system.
      *
      * @return The oblique cartesian coordinate system, or <code>null</code> if none.
-     * @association usesObliqueCartesianCS
+     * @UML association usesObliqueCartesianCS
      */
     public ObliqueCartesianCS getObliqueCartesianCS();
 
@@ -54,10 +55,7 @@ public interface ImageCRS extends CoordinateReferenceSystem {
      * Returns the datum, which must be an image one.
      *
      * @return The datum.
-     * @association usesDatum
-     *
-     * @revisit Change the return type from <code>Datum</code> to
-     *          {@link ImageDatum} when the J2SE 1.5 compiler will be available.
+     * @UML association usesDatum
      */
-    public /*ImageDatum*/ org.opengis.cd.Datum getDatum();
+    public ImageDatum getDatum();
 }
