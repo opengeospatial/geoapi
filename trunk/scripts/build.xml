@@ -313,6 +313,7 @@
       </fileset>
 
       <link href="http://java.sun.com/j2se/1.4/docs/api"/>
+      <link href="http://jsr-108.sourceforge.net/javadoc"/>
       <link href="../javadoc"/>
 
       <group title="Coordinate Transformation services" packages="org.opengis.cs:org.opengis.ct:org.opengis.pt"/>
