@@ -134,6 +134,8 @@ public final class UmlTaglet implements Taglet {
             String type = tokens.nextToken();
             if (type.equalsIgnoreCase("codelist")) {
                 type = "code list";
+            } else if (type.equalsIgnoreCase("exception")) {
+                type = "exception";
             } else if (type.equalsIgnoreCase("abstract")) {
                 type = "abstract type";
             } else if (type.equalsIgnoreCase("type")) {
