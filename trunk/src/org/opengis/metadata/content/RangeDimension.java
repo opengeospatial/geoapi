@@ -27,6 +27,8 @@ public interface RangeDimension {
      * operates.
      *
      * @UML optional sequenceIdentifier
+     *
+     * @revisit Uncomment this method when <code>MemberName</code> will be defined.
      */
 //    MemberName getSequenceIdentifier();
 

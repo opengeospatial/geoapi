@@ -50,6 +50,8 @@ public interface FeatureCatalogueDescription extends ContentInformation {
      * Subset of feature types from cited feature catalogue occurring in dataset.
      *
      * @UML optional featureTypes
+     *
+     * @revisit Uncomment this method when <code>GenericName</code> will be defined.
      */
 //    GenericName[] getFeatureTypes();
 
