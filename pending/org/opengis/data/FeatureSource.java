@@ -135,12 +135,12 @@ public interface FeatureSource {
      *
      * @return the schema of features created by this datasource.
      *
-     * @task REVISIT: Our current FeatureType model is not yet advanced enough
+     * @revisit Our current FeatureType model is not yet advanced enough
      *       to handle multiple featureTypes.  Should getSchema take a
      *       typeName now that a query takes a typeName, and thus DataSources
      *       can now support multiple types? Or just wait until we can
      *       programmatically make powerful enough schemas?
-     * @task REVISIT: we could also just use DataStore to capture multi
+     * @revisit we could also just use DataStore to capture multi
      *       FeatureTypes?
      */
     FeatureType getSchema();
@@ -164,7 +164,7 @@ public interface FeatureSource {
      *
      * @throws IOException if there are errors getting the bounding box.
      *
-     * @task REVISIT: Do we need this or can we use getBounds( Query.ALL )?
+     * @revisit Do we need this or can we use getBounds( Query.ALL )?
      */
     Envelope getBounds() throws IOException;
 

@@ -130,7 +130,6 @@ public interface Graphic {
      * Sets the <code>GraphicStyle</code> for this <code>Graphic</code>.
      * <code>Graphic</code>s may share style property objects with other
      * <code>Graphic</code>s.
-     * @return @return	the <code>GraphicStyle</code>.
      */
     public void setGraphicStyle(GraphicStyle style);
 
@@ -178,7 +177,7 @@ public interface Graphic {
      * will not be passed to the parent.  If the boolean is true, then the
      * event will be passed to the parent after having been passed to the
      * listeners on this object.
-     * @param passEventsToParent true, if events should be passed to the
+     * @param passToParent true, if events should be passed to the
      *     parent graphic.  false if they should not.
      */
     public void setPassingEventsToParent(boolean passToParent);

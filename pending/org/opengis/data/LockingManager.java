@@ -41,7 +41,7 @@ public interface LockingManager {
      * (remember that the lock may have expired)
      * </p>
      *
-     * @param lockID Authorization for lock
+     * @param authID Authorization for lock
      *
      * @return <code>true</code> if lock was found
      */
@@ -54,7 +54,7 @@ public interface LockingManager {
      * (remember that the lock may have expired)
      * </p>
      *
-     * @param lockID Authorization for lock
+     * @param authID Authorization for lock
      * @param transaction Transaction with authorization for lockID
      *
      * @return <code>true</code> if lock was found and released
@@ -72,7 +72,7 @@ public interface LockingManager {
      * (remember that the lock may have expired)
      * </p>
      *
-     * @param lockID Authorization for lock
+     * @param authID Authorization for lock
      * @param transaction Transaction with authorization for lockID
      *
      * @return <code>true</code> if lock was found and refreshed

@@ -330,8 +330,6 @@ public interface Transaction {
      *
      * @author jgarnett, Refractions Reasearch Inc.
      * @version CVS Version
-     *
-     * @see org.geotools.data
      */
     static public interface State {
         /**
@@ -379,6 +377,8 @@ public interface Transaction {
  * </p>
  *
  * @author jgarnett
+ *
+ * @revisit Implementation should not be part of GeoAPI...
  */
 class AutoCommitTransaction implements Transaction {
     /**

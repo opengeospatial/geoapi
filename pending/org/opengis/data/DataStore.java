@@ -163,7 +163,7 @@ public interface DataStore {
      * that we could steal. GeoServerFeatureSource, GeoServerFeatureStore and
      * GeoServerFeatureLocking serve as a working prototype.
      * </p> 
-     * @param Query Query.getTypeName() locates FeatureType being viewed
+     * @param query Query.getTypeName() locates FeatureType being viewed
      *
      * @return FeatureSource providing opperations for featureType
      * @throws IOException If FeatureSource is not available
