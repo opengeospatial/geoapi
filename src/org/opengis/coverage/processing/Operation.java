@@ -10,7 +10,7 @@
 package org.opengis.coverage.processing;
 
 // OpenGIS dependencies
-import org.opengis.parameter.GeneralOperationParameter;
+import org.opengis.parameter.ParameterValueGroup;
 
 
 /**
@@ -84,5 +84,5 @@ public interface Operation {
      * @UML mandatory numParameters
      * @UML operation getParameterInfo
      */
-    GeneralOperationParameter[] getParameters();
+    ParameterValueGroup getParameters();
 }

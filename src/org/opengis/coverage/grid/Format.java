@@ -10,7 +10,7 @@
 package org.opengis.coverage.grid;
 
 // OpenGIS dependencies
-import org.opengis.parameter.GeneralOperationParameter;
+import org.opengis.parameter.ParameterValueGroup;
 
 
 /**
@@ -70,10 +70,10 @@ public interface Format {
      * @UML operation getParameterInfo
      * @UML mandatory numParameters
      */
-    GeneralOperationParameter[] getReadParameters();
+    ParameterValueGroup getReadParameters();
 
     /**
      * Retrieve the parameter information for a {@link GridCoverageWriter#write write} operation.
      */
-    GeneralOperationParameter[] getWriteParameters();
+    ParameterValueGroup getWriteParameters();
 }
