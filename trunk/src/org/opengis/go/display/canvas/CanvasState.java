@@ -51,9 +51,6 @@ public interface CanvasState {
      */
     public boolean equals(Object object);
 
-    /**
-     * Returns a the CanvasParameterAccessor object.
-     */
-    public CanvasParameterAccessor getCanvasParameterAccessor();
+    
 
 }

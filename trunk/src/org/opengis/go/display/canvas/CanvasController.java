@@ -40,9 +40,6 @@ public interface CanvasController {
      */
     public void setCenter(DirectPosition newCenter);
 
-    /**
-     * Returns a the CanvasParameterMutator object.
-     */
-    public CanvasParameterMutator getCanvasParameterMutator();
+    
 
 }
