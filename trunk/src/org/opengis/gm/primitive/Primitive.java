@@ -3,12 +3,12 @@
  */
 package org.opengis.gm.primitive;
 
+// J2SE direct dependencies
+import java.util.Set;
+
 // OpenGIS direct dependencies
 import org.opengis.gm.Geometry;
 import org.opengis.gm.complex.Complex;
-
-// J2SE direct dependencies
-import java.util.Set;
 
 
 /**
@@ -32,8 +32,9 @@ import java.util.Set;
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 2.0
  *
- * @revisit The "UML to Java" script generaged some operations that are not described in the
- *          specification. They are commented out for now.
+ * @see org.opengis.gm.geometry.Envelope#toPrimitive
+ *
+ * @revisit Some associations are commented out for now.
  */
 public interface Primitive extends Geometry {
     /**
@@ -65,7 +66,7 @@ public interface Primitive extends Geometry {
      * computer calculations.
      *
      * @return The set of primitives contained into this primitive.
-     * @UML operation containedPrimitive
+     * @UML association containedPrimitive
      *
      * @revisit Using a {@link Set} returns type allows the user to add or remove element in
      *          this set at his convenience. Is it the right interpretation of this specification?
@@ -78,7 +79,7 @@ public interface Primitive extends Geometry {
      * Returns the <code>Primitive</code>s which are by definition coincident with this one.
      *
      * @return The set of primitives which contains this primitive.
-     * @UML operation containedPrimitive
+     * @UML association containedPrimitive
      *
      * @revisit Using a {@link Set} returns type allows the user to add or remove element in
      *          this set at his convenience. Is it the right interpretation of this specification?
@@ -98,14 +99,31 @@ public interface Primitive extends Geometry {
      * (from primitive to complex), depending on the implementation.
      *
      * @return The set of complexex which contains this primitive.
-     * @UML operation complex
+     * @UML association complex
      *
      * @revisit Does it means that <code>Primitive</code> can't be immutable, since
      *          adding this primitive to a complex will change this set?
      */
     public Set/*<Complex>*/ getComplexes();
 
+    /**
+     * Returns the orientable primitives associated with this primitive.
+     * Each <code>Primitive</code> of dimension 1 or 2 is associated to two
+     * {@link OrientablePrimitive}s, one for each possible orientation.
+     * For curves and surfaces, there are exactly two orientable primitives
+     * for each geometric object. For the positive orientation, the
+     * {@link OrientablePrimitive} shall be the corresponding {@link Curve}
+     * or {@link Surface}.
+     *
+     * @return The orientable primitives as an array of length 2, or <code>null</code> if none.
+     * @UML association proxy
+     *
+     * @see OrientablePrimitive#getPrimitive
+     *
+     * @revisit Should we use the plural form for the method names?
+     */
+    public OrientablePrimitive[] getProxy();
+
 //    public org.opengis.spatialschema.topology.primitive.TP_Primitive topology[];
 //    public org.opengis.spatialschema.geometry.complex.GM_Composite composite[];
-//    public GM_OrientablePrimitive proxy[];
 }

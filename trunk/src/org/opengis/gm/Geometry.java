@@ -3,7 +3,7 @@
  */
 package org.opengis.gm;
 
-// J2SE dependencies
+// J2SE direct dependencies
 import java.util.Set;
 
 // OpenGIS direct dependencies
@@ -35,11 +35,11 @@ public interface Geometry extends TransfiniteSet {
      * <code>Geometry</code> in which it is contained.
      *
      * The most common example where the CRS is <code>null</code> is the elements and
-     * subcomplexes of a maximal {@link Complex}. The <code>Complex</code> can carry
-     * the CRS for all {@link org.opengis.gm.primitive.Primitive} elements and for all
-     * {@link Complex} subcomplexes.
+     * subcomplexes of a maximal {@link Complex}. The {@link Complex} can carry the
+     * {@link CRS} for all {@link org.opengis.gm.primitive.Primitive} elements and
+     * for all {@link Complex} subcomplexes.
      * <br><br>
-     * This association is only navigable from <code>Geometry</code> to <code>CRS</code>.
+     * This association is only navigable from <code>Geometry</code> to {@link CRS}.
      * This means that the coordinate reference system objects in a data set do not keep
      * a list of <code>Geometry</code>s that use them.
      *
@@ -86,7 +86,7 @@ public interface Geometry extends TransfiniteSet {
      * structure where appropriate. The finite set of <code>Geometry</code>s returned shall be in
      * the same coordinate reference system as this <code>Geometry</code>. If the <code>Geometry</code>
      * is in a {@link Complex}, then the boundary <code>Geometry</code>s returned shall be in the
-     * same <code>Complex</code>. If the <code>Geometry</code> is not in any <code>Complex</code>,
+     * same {@link Complex}. If the <code>Geometry</code> is not in any {@link Complex},
      * then the boundary <code>Geometry</code>s returned may have been constructed in response to the
      * operation. The elements of a boundary shall be smaller in dimension than the original element.
      *
@@ -106,8 +106,8 @@ public interface Geometry extends TransfiniteSet {
      * object collections shall have further internal structure where appropriate. The finite set
      * of <code>Geometry</code>s returned shall be in the same coordinate reference system as this
      * <code>Geometry</code>. If the <code>Geometry</code> is in a {@link Complex}, then the boundary
-     * <code>Geometry</code>s returned shall be in the same <code>Complex</code>. If the
-     * <code>Geometry</code> is not in any <code>Complex</code>, then the boundary
+     * <code>Geometry</code>s returned shall be in the same {@link Complex}. If the
+     * <code>Geometry</code> is not in any {@link Complex}, then the boundary
      * <code>Geometry</code>s returned may have been constructed in response to the operation.
      *
      * @return The sets of points on the union of this object and its boundary.
@@ -211,7 +211,7 @@ public interface Geometry extends TransfiniteSet {
      * of a local neighborhood of the point – that is the dimension of any coordinate neighborhood
      * of the point. Dimension is unambiguously defined only for {@link DirectPosition}s interior
      * to this <code>Geometry</code>. If the passed {@link DirectPosition} is <code>null</code>, then
-     * the operation shall return the largest possible dimension for any <code>DirectPosition</code>
+     * the operation shall return the largest possible dimension for any {@link DirectPosition}
      * in this <code>Geometry</code>.
      *
      * @param point The point where to evaluate the dimension, or <code>null</code>.
@@ -238,14 +238,11 @@ public interface Geometry extends TransfiniteSet {
     /**
      * Returns the set of maximal complexes within which this <code>Geometry</code> is contained.
      * As a set of primitives, a {@link Complex} may be contained as a set in another larger
-     * <code>Complex</code>, referred to as a "super complex" of the original. A <code>Complex</code>
+     * {@link Complex}, referred to as a "super complex" of the original. A {@link Complex}
      * is maximal if there is no such larger super complex.
      *
      * @return The set of maximal complexes within which this <code>Geometry</code> is contained.
      * @UML operation maximalComplex
-     *
-     * @revisit If allowed to use generic type, the returns type should be
-     *          <code>Set&lgt;Complex&gt;</code>.
      */
     public Set/*<Complex>*/ getMaximalComplex();
 

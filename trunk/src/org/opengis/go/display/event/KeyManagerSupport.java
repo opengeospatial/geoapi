@@ -3,7 +3,7 @@
  */
 package org.opengis.go.display.event;
 
-// J2SE dependencies
+// J2SE direct dependencies
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 

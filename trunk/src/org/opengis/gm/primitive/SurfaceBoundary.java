@@ -10,7 +10,8 @@ package org.opengis.gm.primitive;
  * one of these rings is distinguished as being the exterior boundary. In a general manifold this
  * is not always possible, in which case all boundaries shall be listed as interior boundaries,
  * and the exterior will be empty.
- * <br><br>
+ *
+ * <blockquote><font size=2>
  * <strong>NOTE:</strong> The use of exterior and interior here is not intended to invoke the
  * definitions of "interior" and "exterior" of geometric objects. The terms are in common usage,
  * and reflect a linguistic metaphor that uses the same linguistic constructs for the concept of
@@ -28,11 +29,12 @@ package org.opengis.gm.primitive;
  * unbounded portions of the cylinders. In this case, either cut could reasonably be called
  * exterior. In cases of such ambiguity, the standard chooses to list all boundaries in the
  * "interior" set. The only guarantee of an exterior boundary being unique is in the 2-dimensional
- * plane, E2.
+ * plane, E<sup>2</sup>.
  * <br><br>
  * <strong>EXAMPLE 2:</strong> Taking the equator of a sphere, and generating a 1 meter buffer,
  * we have a surface with two isomorphic boundary components. There is no unbiased manner to
  * distinguish one of these as an exterior.
+ * </font></blockquote>
  *
  * @UML type GM_SurfaceBoundary
  * @author ISO/DIS 19107
@@ -59,4 +61,17 @@ public interface SurfaceBoundary extends PrimitiveBoundary {
      * @revisit Should we use the plural form for this method name?
      */
     public Ring[] getInterior();
+
+    /**
+     * Constructs a {@link Surface} by indicating its boundary as a collection
+     * of {@link Curve}s organized into this <code>SurfaceBoundary</code>.
+     * This method is guaranteed to work always in 2D coordinate spaces,
+     * In 3D coordinate spaces, this method shall require all of the defining boundary
+     * {@link Curve} instances to be coplanar (lie in a single plane) which will define
+     * the surface interior.
+     *
+     * @return The surface.
+     * @UML constructor Surface(SurfaceBoundary)
+     */
+    public Surface toSurface();
 }

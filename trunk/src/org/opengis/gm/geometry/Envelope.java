@@ -8,31 +8,35 @@ import org.opengis.gm.primitive.Primitive;
 
 
 /**
- * GM_Envelope is often referred to as a minimum bounding box or rectangle. Regardless
- * of dimension, a GM_Envelope can be represented without ambiguity as two direct positions
- * (coordinate points). To encode a GM_Envelope, it is sufficient to encode these two
- * points. This is consistent with all of the data types in this standard, their state
- * is represented by their publicly accessible attributes. 
- *  
- * @author GeoAPI
- * @version 1.0
+ * A minimum bounding box or rectangle. Regardless of dimension, an <code>Envelope</code> can
+ * be represented without ambiguity as two direct positions (coordinate points). To encode an
+ * <code>Envelope</code>, it is sufficient to encode these two points. This is consistent with
+ * all of the data types in this specification, their state is represented by their publicly
+ * accessible attributes.
+ *
+ * @UML datatype GM_Envelope
+ * @author ISO/DIS 19107
+ * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
+ * @version 2.0
  */
 public interface Envelope {
     /**
-     * A coordinate consisting of all maximal values of the ordinates of all points within
-     * the GM_Envelope. The "upperCorner" of a GM_Envelope is a coordinate position consisting
-     * of all the maximal ordinates for each dimension for all points within the GM_Envelope.
-     * GM_Envelope::upperCorner : DirectPosition 
+     * A coordinate position consisting of all the maximal ordinates for each
+     * dimension for all points within the <code>Envelope</code>.
+     *
+     * @return The upper corner.
+     * @UML mandatory upperCorner
      */
-//    public DirectPosition upperCorner;
+    public DirectPosition getUpperCorner();
 
     /**
-     * A coordinate consisting of all minimal values of the ordinates of all points within
-     * the GM_Envelope. The "lowerCorner" of a GM_Envelope is a coordinate position consisting
-     * of all the minimal ordinates for each dimension for all points within the GM_Envelope.
-     * GM_Envelope::lowerCorner : DirectPosition 
+     * A coordinate position consisting of all the minimal ordinates for each
+     * dimension for all points within the <code>Envelope</code>.
+     *
+     * @return The lower corner.
+     * @UML mandatory lowerCorner
      */
-//    public DirectPosition lowerCorner;
+    public DirectPosition getLowerCorner();
 
     /**
      * Returns this envelope as a primitive. <code>Envelope</code> will often be used
@@ -76,6 +80,8 @@ public interface Envelope {
      *
      * @return This envelope as a primitive.
      * @UML constructor Primitive(Envelope)
+     *
+     * @revisit We should probably put constructors in a factory instead.
      */
     public Primitive toPrimitive();
 }
