@@ -10,6 +10,7 @@
 package org.opengis.referencing;
 
 // OpenGIS dependencies
+import org.opengis.metadata.Identifier;
 import org.opengis.metadata.citation.Citation;
 
 

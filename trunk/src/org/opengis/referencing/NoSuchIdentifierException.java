@@ -10,7 +10,7 @@
 package org.opengis.referencing;
 
 // OpenGIS dependencies
-import org.opengis.referencing.Identifier;   // For javadoc
+import org.opengis.metadata.Identifier;   // For javadoc
 
 /**
  * Thrown when a {@linkplain org.opengis.referencing.operation.MathTransform math transform}

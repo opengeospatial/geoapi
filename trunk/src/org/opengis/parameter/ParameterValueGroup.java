@@ -10,7 +10,7 @@
 package org.opengis.parameter;
 
 // OpenGIS dependencies
-import org.opengis.referencing.Identifier;  // For javadoc
+import org.opengis.metadata.Identifier;  // For javadoc
 
 
 /**
