@@ -76,10 +76,10 @@ public interface FeatureStyle {
      *   <li><code>generic:any</code></li>
      * </ul>
      */
-    public String getSemanticTypeIdentifier();
+    public String[] getSemanticTypeIdentifiers();
     
     /**
-     * This sets the string that identifies the more general "type" of geometry
+     * This sets the string array that identifies the more general "type" of geometry
      * that this style is meant to act upon.
      * In the current OGC specifications, this is an experimental element and
      * can take only one of the following values:
@@ -92,7 +92,7 @@ public interface FeatureStyle {
      *   <li><code>generic:any</code></li>
      * </ul>
      */
-    public void setSemanticTypeIdentifier(String sti);
+    public void setSemanticTypeIdentifiers(String sti[]);
 
     /**
      * Returns the list of Rules contained by this style.  The returned List is
