@@ -64,27 +64,33 @@
     </LI>
 
     <LI><P ALIGN="justify">Added a
-        <A HREF="../crs/operation/Projection.html"><CODE>Projection</CODE></A> interface as a special kind of
-        <A HREF="../crs/operation/Conversion.html"><CODE>Conversion</CODE></A>. Subinterfaces of
+        <A HREF="../referencing/operation/Projection.html"><CODE>Projection</CODE></A> interface as a special kind of
+        <A HREF="../referencing/operation/Conversion.html"><CODE>Conversion</CODE></A>. Subinterfaces of
         <CODE>Projection</CODE> make it possible to check which kind of projection is applied
         (planar, cylindrical, conical...).</P>
     </LI>
 
     <LI><P ALIGN="justify">Added a
-        <A HREF="../crs/operation/Matrix.html"><CODE>Matrix</CODE></A> interface</A>.
+        <A HREF="../referencing/operation/Matrix.html"><CODE>Matrix</CODE></A> interface</A>.
         The legacy 2001-09 specification defined a
         <A HREF=../../../../legacy/org/opengis/pt/PT_Matrix.html><CODE>PT_Matrix</CODE></A>
         interface, which is required for derivative computation.</P>
     </LI>
 
     <LI><P ALIGN="justify">Added the following methods into
-        <A HREF="../crs/cs/AxisDirection.html"><CODE>AxisDirection</CODE></A>:
+        <A HREF="../referencing/cs/AxisDirection.html"><CODE>AxisDirection</CODE></A>:
         <CODE>inverse()</CODE> and <CODE>absolute()</CODE>.</P>
     </LI>
   </UL>
 
   <H3>Omission</H3>
   <UL>
+    <LI><P ALIGN="justify">Omitted the <CODE>IdentifiedObjectBase</CODE> interface, since the split
+        between <CODE>IdentifiedObject</CODE> and <CODE>IdentifiedObjectBase</CODE> in OGC specification
+        is mostly a workaround for introducing <CODE>IdentifiedObject</CODE> in ISO 19111 without changing
+        ISO 19115, where a base <CODE>ReferenceSystem</CODE> is already defined.</P>
+    </LI>
+
     <LI><P ALIGN="justify">Union structures avoided. While it is possible to mimic C's <CODE>union</CODE>
         in Java, the hacks are usually unconvenient. Furthermore, <CODE>union</CODE> are not type-safe even
         in C. Consequently, the following structures were omitted:
@@ -100,6 +106,18 @@
 
   <H3>Changes</H3>
   <UL>
+    <LI><P ALIGN="justify">Defined <A HREF="../referencing/cs/CartesianCS.html"><CODE>CartesianCS</CODE></A>
+        as a sub-interface of <A HREF="../referencing/cs/AffineCS.html"><CODE>AffineCS</CODE></A>.</P></LI>
+
+    <LI><P ALIGN="justify">Allows <A HREF="../referencing/crs/CompoundCRS.html"><CODE>CompoundCRS</CODE></A>
+        to contains other <CODE>CompoundCRS</CODE>. This is a violation of the ISO
+        <A HREF="../referencing/crs/CompoundCRS.html"><CODE>CompoundCRS</CODE></A>'s contract ("<cite>A Compound
+        CRS is a coordinate reference system that combines two or more coordinate reference systems, <U>none
+        of which can itself be compound</U></cite>"). However, the need for this constraint is not obvious.
+        Note also that in "<u>Coordinate Transformation Services</u>" (OGC document 01-009), compound CRS was
+        specified as a pair of arbitrary CRS ("head" and "tail"). Each of them can be an other compound CRS,
+        allowing the creation of a tree.</P></LI>
+
     <LI><P ALIGN="justify">Renamed <CODE>ParameterOperation</CODE> and related interfaces as
         <A HREF="../parameter/ParameterDescriptor.html"> <code>ParameterDescriptor</code></A>.
         Discussion on the mailing list suggested that the previous naming was confusing, since
@@ -154,15 +172,6 @@
         <A HREF="../parameter/ParameterDescriptorGroup.html"><CODE>ParameterDescriptorGroup</CODE></A> into the
         <A HREF="../parameter/GeneralParameterDescriptor.html"><CODE>GeneralParameterDescriptor</CODE></A>
         super-interface, in order to be on per with the "<CODE>minimumOccurs</CODE>" attribute.</P></LI>
-
-    <LI><P ALIGN="justify">Allows <A HREF="../crs/crs/CompoundCRS.html"><CODE>CompoundCRS</CODE></A>
-        to contains other <CODE>CompoundCRS</CODE>. This is a violation of the ISO
-        <A HREF="../crs/crs/CompoundCRS.html"><CODE>CompoundCRS</CODE></A>'s contract ("<cite>A Compound
-        CRS is a coordinate reference system that combines two or more coordinate reference systems, <U>none
-        of which can itself be compound</U></cite>"). However, the need for this constraint is not obvious.
-        Note also that in "<u>Coordinate Transformation Services</u>" (OGC document 01-009), compound CRS was
-        specified as a pair of arbitrary CRS ("head" and "tail"). Each of them can be an other compound CRS,
-        allowing the creation of a tree.</P>
   </UL>
 
 
