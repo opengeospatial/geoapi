@@ -9,75 +9,77 @@
  *************************************************************************************************/
 package org.opengis.referencing;
 
+// J2SE direct dependencies
+import java.util.Locale;
+
 // OpenGIS direct dependencies
 import org.opengis.metadata.Identifier;
+import org.opengis.util.GenericName;
 import org.opengis.util.InternationalString;
 
 
 /**
- * A base interface for metadata applicable to reference system objects.
- * This specification does not dictate what the contents of these items
- * should be. However, the following guidelines are suggested:
+ * Supplementary identification and remarks information for a CRS or CRS-related object.
+ * When {@link org.opengis.referencing.crs.CRSAuthorityFactory} is used to create an object,
+ * the {@linkplain Identifier#getAuthority authority} and {@linkplain Identifier#getCode
+ * authority code} values should be set to the authority name of the factory object,
+ * and the authority code supplied by the client, respectively. The other values may
+ * or may not be set. If the authority is EPSG, the implementer may consider using the
+ * corresponding metadata values in the EPSG tables.
  *
- * <UL>
- *   <LI> When {@link org.opengis.referencing.crs.CRSAuthorityFactory} is used to create an object,
- *        the {@linkplain Identifier#getAuthority authority} and {@linkplain Identifier#getCode
- *        authority code} values should be set to the authority name of the factory object,
- *        and the authority code supplied by the client, respectively. The other values may
- *        or may not be set. If the authority is EPSG, the implementer may consider using the
- *        corresponding metadata values in the EPSG tables.</LI>
- *
- *    <LI>When {@link org.opengis.referencing.crs.CRSFactory} creates an object, the {@linkplain #getName name}
- *        should be set to the value supplied by the client. All of the other metadata items may
- *        be left empty.</LI>
- * </UL>
- *
- * @UML abstract CS_Info
+ * @UML abstract IdentifiedObject
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
- * @version <A HREF="http://www.opengis.org/docs/01-009.pdf">Implementation specification 1.0</A>
+ * @version Abstract specification 2.0 (revised)
  */
 public interface IdentifiedObject {
     /**
-     * The name by which this object is identified. 
-     * @return The object name in a locale independent wrapper.
+     * The primary name by which this object is identified.
      *         
-     * @UML mandatory &lt;prefix&gt;Name
+     * @UML mandatory name
      *
-     * @rename  Omitted the
-     *          "{@link org.opengis.referencing.ReferenceSystem srs}",
-     *          "{@link org.opengis.referencing.cs.CoordinateSystem cs}",
-     *          "{@link org.opengis.referencing.cs.CoordinateSystemAxis axis}",
-     *          "{@link org.opengis.referencing.datum.Datum datum}",
-     *          "{@link org.opengis.referencing.datum.PrimeMeridian meridian}",
-     *          "{@link org.opengis.referencing.datum.Ellipsoid ellipsoid}",
-     *          "{@link org.opengis.referencing.operation.CoordinateOperation coordinateOperation}",
-     *          "{@link org.opengis.referencing.operation.OperationMethod method}",
-     *          "{@link org.opengis.parameter.ParameterDescriptor parameter}" and
-     *          "{@link org.opengis.parameter.ParameterDescriptorGroup group}"
-     *          prefix, which stands as an abbreviation for the enclosing class.
+     * @revisit According latest ISO 19111, the return type should be {@link Identifier}.
      */
     public InternationalString getName();
 
     /**
-     * Set of alternative identifications of this object. The first identifier, if
-     * any, is normally the primary identification code, and any others are aliases.
+     * The name by which this object is identified. 
+     *         
+     * @UML mandatory name
+     * @deprecated Replaced by {@link #getName()}.
+     */
+    public String getName(Locale locale);
+
+    /**
+     * An alternative name by which this object is identified..
+     *         
+     * @return The aliases, or an empty array if there is none.
+     * @UML optional alias
+     */
+    public GenericName[] getAliases();
+
+    /**
+     * An identifier which references elsewhere the object's defining information.
+     * Alternatively an identifier by which this object can be referenced.
      *
      * @return This object identifiers, or an empty array if there is none.
-     * @UML optional &lt;prefix&gt;ID
-     *
-     * @rename  Omitted the same prefix than {@link #getName}. Also replaced
-     *          "<code>ID</code>" by "<code>Identifiers</code>" in order to
-     *          1) use the return type class name and 2) use the plural form.
+     * @UML optional identifier
      */
     Identifier[] getIdentifiers();
 
     /**
      * Comments on or information about this object, including data source information.
      *
-     * @return The remarks in the a locale independent wrapper.
      * @UML optional remarks
      */
     InternationalString getRemarks();
+
+    /**
+     * Comments on or information about this object, including data source information.
+     *
+     * @UML optional remarks
+     * @deprecated Replaced by {@link #getRemarks()}.
+     */
+    String getRemarks(Locale locale);
 
     /**
      * Returns a <A HREF="doc-files/WKT.html"><cite>Well Known Text</cite> (WKT)</A> for this object.

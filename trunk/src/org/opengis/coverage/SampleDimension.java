@@ -13,7 +13,8 @@ package org.opengis.coverage;
 import java.util.Locale;
 import javax.units.Unit;
 
-// OpenGIS dependencies
+// OpenGIS direct dependencies
+import org.opengis.util.InternationalString;
 import org.opengis.referencing.operation.MathTransform1D;
 
 
@@ -32,9 +33,19 @@ public interface SampleDimension {
      * Sample dimension title or description.
      * This string may be null or empty if no description is present.
      *
+     * @UML mandatory description
+     */
+    InternationalString getDescription();
+
+    /**
+     * Sample dimension title or description.
+     * This string may be null or empty if no description is present.
+     *
      * @param  locale The locale, or <code>null</code> for a default locale.
      * @return The sample dimension title or description.
      * @UML mandatory description
+     *
+     * @deprecated Replaced by {@link #getDescription()}.
      */
     String getDescription(Locale locale);
 
@@ -62,9 +73,21 @@ public interface SampleDimension {
      *  </UL>
      * Note: If no category names exist, an empty sequence is returned.
      *
+     * @UML mandatory categoryNames
+     */
+    InternationalString[] getCategoryNames();
+
+    /**
+     * Sequence of category names for the values contained in a sample dimension.
+     * This allows for names to be assigned to numerical values.
+     * The first entry in the sequence relates to a cell value of zero.
+     * For grid coverages, category names are only valid for a classified grid data.
+     *
      * @param  locale The locale, or <code>null</code> for a default locale.
      * @return The sequence of category names for the values contained in a sample dimension.
      * @UML mandatory categoryNames
+     *
+     * @deprecated Replaced by {@link #getCategoryNames()}.
      */
     String[] getCategoryNames(Locale locale);
 

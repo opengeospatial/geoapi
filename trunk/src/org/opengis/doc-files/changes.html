@@ -67,6 +67,10 @@
         <code>parameter</code>, which avoid strange expression like
         <code>getValue("some_name").setValue(someValue)</code>. The idiom is now
         <code>parameter("some_name").setValue(someValue)</code> instead.</P></LI>
+
+    <LI><P>For all methods expecting a <CODE>Locale</CODE> argument, removed this argument and replaced the
+         <CODE>String</CODE> return type by <A HREF="../util/InternationalString.html"><CODE>InternationalString</CODE></A>.
+         This change was done for consistency with the metadata package.</P></LI>
   </UL>
   <H3>Changes in Geometry packages</H3>
   <UL>
@@ -82,13 +86,10 @@
   </UL>
   <H3>Changes in Grid Coverage packages</H3>
   <UL>
-    <LI><P>In <code><A HREF="../coverage/SampleDimension.html">SampleDimension</A></code> interface,
-        added a <code>Locale</code> argument for methods <code>getDescription</code> and <code>getCategoryNames</code>.
+    <LI><P>In <code><A HREF="../coverage/SampleDimension.html">SampleDimension</A></code> interface (methods
+        <code>getDescription</code> and <code>getCategoryNames</code>) and in <code><A HREF="../coverage/Coverage.html">Coverage</A></code>
+        interface (method <code>getDimensionNames</code>), replaced the <code>String</code> returns type by <code>InternationalString</code>.
         This change is required for localization support and was forgotten in previous release.</P></LI>
-
-    <LI><P>In <code><A HREF="../coverage/Coverage.html">Coverage</A></code> interface, added a
-        <code>Locale</code> argument for method <code>getDimensionNames</code>. This change is required
-        for localization support and was forgotten in previous release.</P></LI>
 
     <LI><P>In <code><A HREF="../coverage/Coverage.html">Coverage</A></code> interface, changed
         the return type from <code>double[]</code> to <code>float[]</code> for the method

@@ -15,6 +15,7 @@ import java.util.Set;
 
 // OpenGIS direct dependencies
 import org.opengis.metadata.citation.Citation;
+import org.opengis.util.InternationalString;
 
 
 /**
@@ -87,6 +88,19 @@ public interface AuthorityFactory {
      * Gets a description of the object corresponding to a code.
      *
      * @param  code Value allocated by authority.
+     * @return A description of the object, or <code>null</code> if the object
+     *         corresponding to the specified <code>code</code> has no description.
+     * @throws NoSuchAuthorityCodeException if the specified <code>code</code> was not found.
+     * @throws FactoryException if the query failed for some other reason.
+     *
+     * @UML operation CS_CoordinateSystemAuthorityFactory.descriptionText in 1.0 specification.
+     */
+    InternationalString getDescriptionText(String code) throws FactoryException;
+
+    /**
+     * Gets a description of the object corresponding to a code.
+     *
+     * @param  code Value allocated by authority.
      * @param  locale The desired locale for the description to be returned, or <code>null</code>
      *         for a description in some default locale (may or may not be the
      *         {@linkplain Locale#getDefault() system default}).
@@ -96,6 +110,8 @@ public interface AuthorityFactory {
      * @throws FactoryException if the query failed for some other reason.
      *
      * @UML operation CS_CoordinateSystemAuthorityFactory.descriptionText in 1.0 specification.
+     *
+     * @deprecated Replaced by {@link #getDescriptionText(String)}.
      */
     String getDescriptionText(String code, Locale locale) throws FactoryException;
 

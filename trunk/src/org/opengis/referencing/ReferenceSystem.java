@@ -14,6 +14,7 @@ import java.util.Locale;
 
 // OpenGIS direct dependencies
 import org.opengis.metadata.extent.Extent;
+import org.opengis.util.InternationalString;
 
 
 /**
@@ -39,12 +40,22 @@ public interface ReferenceSystem extends IdentifiedObject {
      * Description of domain of usage, or limitations of usage, for which this
      * (coordinate) reference system object is valid.
      *
+     * @UML optional scope
+     */
+    InternationalString getScope();
+
+    /**
+     * Description of domain of usage, or limitations of usage, for which this
+     * (coordinate) reference system object is valid.
+     *
      * @param  locale The desired locale for the scope to be returned, or <code>null</code>
      *         for a scope in some default locale (may or may not be the
      *         {@linkplain Locale#getDefault() system default}).
      * @return The Coordinate reference system scope in the given locale, or <code>null</code> if
      *         none. If no scope is available in the given locale, then some default locale is used.
      * @UML optional scope
+     *
+     * @deprecated Replaced by {@link #getScope()}.
      */
     String getScope(Locale locale);
 }
