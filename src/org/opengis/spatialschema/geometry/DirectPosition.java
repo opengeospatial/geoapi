@@ -11,6 +11,7 @@ package org.opengis.spatialschema.geometry;
 
 // OpenGIS direct dependencies
 import org.opengis.util.Cloneable;
+import org.opengis.spatialschema.geometry.geometry.Position;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 
 
@@ -29,7 +30,7 @@ import org.opengis.referencing.crs.CoordinateReferenceSystem;
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 2.0
  */
-public interface DirectPosition extends Cloneable {
+public interface DirectPosition extends Position, Cloneable {
     /**
      * The length of coordinate sequence (the number of entries). This is determined by
      * the {@linkplain #getCoordinateReferenceSystem() coordinate reference system}.

@@ -11,51 +11,40 @@ package org.opengis.referencing.crs;
 
 // OpenGIS direct dependencies
 import org.opengis.referencing.ReferenceSystem;
-import org.opengis.referencing.cs.CoordinateSystem;
-import org.opengis.referencing.datum.Datum;
+import org.opengis.referencing.cs.CoordinateSystem; // For javadoc
+import org.opengis.referencing.cs.CoordinateSystemAxis;
 
 
 /**
- * Abstract coordinate reference system, consisting of a single
- * {@linkplain CoordinateSystem Coordinate System} and a single
- * {@linkplain Datum Datum} (as opposed to {@linkplain CompoundCRS Compound CRS}).
+ * Abstract coordinate reference system, usually defined by a coordinate system and a datum.
  *
- * A coordinate reference system consists of an ordered sequence of coordinate system
- * axes that are related to the earth through a datum. A coordinate reference system
- * is defined by one datum and by one coordinate system. Most coordinate reference system
- * do not move relative to the earth, except for engineering coordinate reference systems
- * defined on moving platforms such as cars, ships, aircraft, and spacecraft.
- *
- * Coordinate reference systems are commonly divided into sub-types. The common classification
- * criterion for sub-typing of coordinate reference systems is the way in which they deal with
- * earth curvature. This has a direct effect on the portion of the earth's surface that can be
- * covered by that type of CRS with an acceptable degree of error. The exception to the rule is
- * the subtype "Temporal" which has been added by analogy.
- *
- * @UML abstract SC_CoordinateReferenceSystem
+ * @UML abstract SC_CRS
  * @author ISO 19111
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
- * @version <A HREF="http://www.opengis.org/docs/03-073r1.zip">Abstract specification 2.0</A>
- *
- * @see org.opengis.referencing.cs.CoordinateSystem
- * @see org.opengis.referencing.datum.Datum
+ * @version 2.0
  */
 public interface CoordinateReferenceSystem extends ReferenceSystem {
     /**
-     * Returns the coordinate system.
+     * Returns the dimension of the underlying {@linkplain CoordinateSystem coordinate system}.
+     * For {@linkplain SingleCRS single CRS}, this is equivalent to
+     * <code>{@linkplain SingleCRS#getCoordinateSystem() getCoordinateSystem}().{@linkplain
+     * CoordinateSystem#getDimension getDimension}()</code>.
+     * For {@linkplain CompoundCRS compound CRS}, this is equals to the sum of the dimension of
+     * each inner CRS.
      *
-     * @return The coordinate system.
-     * @UML association usesCS
-     *
-     * @rename Expanded the "CS" abbreviation into "CoordinateSystem".
+     * @return The dimension of this coordinate reference system.
      */
-    CoordinateSystem getCoordinateSystem();
+    int getDimension();
 
     /**
-     * Returns the datum.
+     * Returns the axis for the underlying {@linkplain CoordinateSystem coordinate system} at
+     * the specified dimension. For {@linkplain SingleCRS single CRS}, this is equivalent to
+     * <code>{@linkplain SingleCRS#getCoordinateSystem() getCoordinateSystem}().{@linkplain
+     * CoordinateSystem#getAxis getAxis}(dimension)</code>.
      *
-     * @return The datum.
-     * @UML association usesDatum
+     * @param  dimension The zero based index of axis.
+     * @return The axis at the specified dimension.
+     * @throws IndexOutOfBoundsException if <code>dimension</code> is out of bounds.
      */
-    Datum getDatum();
+    CoordinateSystemAxis getAxis(int dimension) throws IndexOutOfBoundsException;
 }

@@ -34,7 +34,7 @@ import org.opengis.referencing.datum.GeodeticDatum;
  *          A <CODE>getWGS84Parameters()</CODE> method was also defined in the datum.
  *          I see no equivalent in this ISO 19111 specification.
  */
-public interface GeographicCRS extends CoordinateReferenceSystem {
+public interface GeographicCRS extends SingleCRS {
     /**
      * Returns the coordinate system, which must be ellipsoidal.
      *

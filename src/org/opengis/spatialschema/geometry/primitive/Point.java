@@ -30,7 +30,7 @@ import org.opengis.spatialschema.geometry.geometry.Position;
  *
  * @revisit Some associations are commented out for now.
  */
-public interface Point extends Primitive {
+public interface Point extends Primitive, Position {
     /**
      * Returns the direct position of this point. <code>Point</code> is the only subclass
      * of {@linkplain Primitive primitive} that cannot use {@linkplain Position positions}

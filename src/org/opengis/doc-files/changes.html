@@ -5,22 +5,27 @@
     <title>List of changes</title>
   </head>
   <body>
-  <H1>Changes from GeoAPI 1.0 to GeoAPI 1.1</H1>
+  <H1>List of changes</H1>
+  <H2>Changes from 1.0 to 1.1</H2>
+  <BLOCKQUOTE>
+  <H3>Changes in Referencing</H3>
   <UL>
+    <LI><P>Added <code><A HREF="../referencing/crs/SingleCRS.html">SingleCRS</A></code> interface.
+        This change reflect a part of ISO 19111 which was omitted in previous release.</P></LI>
+
+    <LI><P>Renamed <code>ObliqueCartesianCS</code> as <code><A HREF="../referencing/cs/AffineCS.html">AffineCS</A></code>.
+        This reflect a change in OGC Topic 2 voted in July 16, 2004.</P></LI>
+
     <LI><P>In <code>CRSFactory.createImageCRS(...)</code> method, changed the <code>cs</code> argument
-        type from <code>CoordinateSystem</code> to <code>ObliqueCartesianCS</code>. This change is
+        type from <code>CoordinateSystem</code> to <code>AffineCS</code>. This change is
         required for type safety and was forgotten in previous release.</P></LI>
 
-    <LI><P>In <code>CSFactory</code> interface, added methods for <code>UserDefinedCS</code>
-        creation.</P></LI>
+    <LI><P>In <code><A HREF="../referencing/cs/CSFactory.html">CSFactory</A></code> interface,
+        added methods for <code>UserDefinedCS</code> creation.</P></LI>
 
-    <LI><P>In <code>MathTransformFactory</code> interface, added <code>createAffineTransform(AffineTransform)</code>
-        convenience method for interoperability with Java2D.</P></LI>
+    <LI><P>Added <code>toWKT()</code> method in <code>Info</code>.</P></LI>
 
     <LI><P>Renamed <code>NoSuchClassificationException</code> as <code>NoSuchIdentifierException</code>.</P></LI>
-
-    <LI><P>In <code>Envelope</code> interface, added convenience methods <code>getMinimum</code>,
-        <code>getMaximum</code>, <code>getCenter</code> and <code>getLength</code>.</P></LI>
 
     <LI><P>For convenience method <code>getParameter(String)</code> in <code>OperationParameterGroup</code> interface,
         changed the return type from <code>GeneralOperationParameter</code> to <code>OperationParameter</code>.
@@ -29,7 +34,18 @@
     <LI><P>For convenience method <code>getValue(String)</code> in <code>ParameterValueGroup</code> interface,
         changed the return type from <code>GeneralParameterValue</code> to <code>ParameterValue</code>.
         This change make the convenience method more... convenient.</P></LI>
+  </UL>
+  <H3>Changes in Geometry</H3>
+  <UL>
+    <LI><P>Set <code>Position</code> as the super-interface for <code>DirectPosition</code> or
+        <code>Point</code> interfaces instead of an union of them. The union type do no exists
+        in Java and this change lead to a more object oriented approach.</P></LI>
 
+    <LI><P>In <code>Envelope</code> interface, added convenience methods <code>getMinimum</code>,
+        <code>getMaximum</code>, <code>getCenter</code> and <code>getLength</code>.</P></LI>
+  </UL>
+  <H3>Changes in Grid Coverage</H3>
+  <UL>
     <LI><P>In <code>SampleDimension</code> interface, added a <code>Locale</code> argument for methods
         <code>getDescription</code> and <code>getCategoryNames</code>. This change is required for
         localization support and was forgotten in previous release.</P></LI>
@@ -50,8 +66,7 @@
 
     <LI><P>In <code>GridRange</code>, added <code>getLower(int)</code>, <code>getUpper(int)</code>,
         <code>getLength(int)</code> and <code>getDimension</code> convenience methods.</P></LI>
-
-    <LI><P>Javadoc fixes.</P></LI>
   </UL>
+  </BLOCKQUOTE>
   </body>
 </html>

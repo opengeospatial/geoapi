@@ -31,7 +31,7 @@ package org.opengis.referencing.cs;
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/03-073r1.zip">Abstract specification 2.0</A>
  *
- * @see ObliqueCartesianCS
+ * @see AffineCS
  */
-public interface CartesianCS extends ObliqueCartesianCS {
+public interface CartesianCS extends AffineCS {
 }

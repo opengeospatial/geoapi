@@ -10,8 +10,8 @@
 package org.opengis.referencing.crs;
 
 // OpenGIS direct dependencies
+import org.opengis.referencing.cs.AffineCS;
 import org.opengis.referencing.cs.CartesianCS;
-import org.opengis.referencing.cs.ObliqueCartesianCS;
 import org.opengis.referencing.datum.ImageDatum;
  
 
@@ -23,8 +23,8 @@ import org.opengis.referencing.datum.ImageDatum;
  * <TABLE CELLPADDING='6' BORDER='1'>
  * <TR BGCOLOR="#EEEEFF"><TH NOWRAP>Used with CS type(s)</TH></TR>
  * <TR><TD>
- *   {@link org.opengis.referencing.cs.CartesianCS        Cartesian},
- *   {@link org.opengis.referencing.cs.ObliqueCartesianCS ObliqueCartesian}
+ *   {@link org.opengis.referencing.cs.CartesianCS Cartesian},
+ *   {@link org.opengis.referencing.cs.AffineCS    Affine}
  * </TD></TR></TABLE>
  *
  * @UML abstract SC_ImageCRS
@@ -32,7 +32,7 @@ import org.opengis.referencing.datum.ImageDatum;
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/03-073r1.zip">Abstract specification 2.0</A>
  */
-public interface ImageCRS extends CoordinateReferenceSystem {
+public interface ImageCRS extends SingleCRS {
     /**
      * Returns the cartesian coordinate system.
      *
@@ -40,7 +40,7 @@ public interface ImageCRS extends CoordinateReferenceSystem {
      * @UML association usesObliqueCartesianCS
      * @UML association usesCartesianCS
      */
-/// ObliqueCartesianCS getCoordinateSystem();
+/// AffineCS getCoordinateSystem();
 	 
     /**
      * Returns the datum, which must be an image one.
