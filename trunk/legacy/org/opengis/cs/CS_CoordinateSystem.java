@@ -9,7 +9,7 @@
  * on the SEAGIS web site (seagis.sourceforge.net). THIS FILE WILL LIKELY
  * BE REPLACED BY NEXT VERSION OF OPENGIS SPECIFICATIONS.
  */
-package org.opengis.cs;
+package org.opengis.crs.cs;
 
 // OpenGIS dependencies
 import org.opengis.pt.PT_Envelope;
@@ -41,7 +41,7 @@ import java.rmi.RemoteException;
  * @since   1.00
  * @author Martin Daly
  *
- * @deprecated Replaced by {@link org.opengis.sc.CoordinateReferenceSystem}.
+ * @deprecated Replaced by {@link org.opengis.crs.crs.CoordinateReferenceSystem}.
  */
 public interface CS_CoordinateSystem extends CS_Info {
     /**

@@ -9,7 +9,7 @@
  * on the SEAGIS web site (seagis.sourceforge.net). THIS FILE WILL LIKELY
  * BE REPLACED BY NEXT VERSION OF OPENGIS SPECIFICATIONS.
  */
-package org.opengis.cs;
+package org.opengis.crs.cs;
 
 // JDK's classes
 import java.rmi.Remote;

@@ -9,10 +9,10 @@
  * You can redistribute it, but should not modify it unless
  * for greater OpenGIS compliance.
  */
-package org.opengis.cv;
+package org.opengis.coverage;
 
 // CSS dependencies
-import org.opengis.cs.CS_Unit;
+import org.opengis.crs.cs.CS_Unit;
 
 // Remote Method Invocation
 import java.rmi.Remote;
@@ -112,7 +112,7 @@ public interface CV_SampleDimension extends Remote {
     /**
      * The minimum value occurring in the sample dimension.
      * If this value is not available, this value can be determined from the
-     * {@link org.opengis.gp.GP_GridAnalysis#getMinValue} operation.
+     * {@link org.opengis.coverage.processing.GP_GridAnalysis#getMinValue} operation.
      * This value can be empty if this value is not provided by the implementation.
      *
      * @return the minimum value occurring in the sample dimension.
@@ -123,7 +123,7 @@ public interface CV_SampleDimension extends Remote {
     /**
      * The maximum value occurring in the sample dimension.
      * If this value is not available, this value can be determined from the
-     * {@link org.opengis.gp.GP_GridAnalysis#getMaxValue} operation.
+     * {@link org.opengis.coverage.processing.GP_GridAnalysis#getMaxValue} operation.
      * This value can be empty if this value is not provided by the implementation.
      *
      * @return the maximum value occurring in the sample dimension.

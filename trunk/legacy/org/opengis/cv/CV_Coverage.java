@@ -9,15 +9,15 @@
  * You can redistribute it, but should not modify it unless
  * for greater OpenGIS compliance.
  */
-package org.opengis.cv;
+package org.opengis.coverage;
 
 // CSS dependencies
 import org.opengis.pt.PT_Envelope;
 import org.opengis.pt.PT_CoordinatePoint;
-import org.opengis.cs.CS_CoordinateSystem;
+import org.opengis.crs.cs.CS_CoordinateSystem;
 
 // Forward GCS dependencies
-import org.opengis.gc.GC_GridCoverage;
+import org.opengis.coverage.grid.GC_GridCoverage;
 
 // Remote Method Invocation
 import java.rmi.Remote;
@@ -101,16 +101,16 @@ public interface CV_Coverage extends Remote {
      * This specifies the coordinate system used when accessing a coverage or grid
      * coverage with the <code>evaluate</code> methods. It is also the coordinate
      * system of the coordinates used with the math transform (see {@link
-     * org.opengis.gc.GC_GridGeometry#getGridToCoordinateSystem gridToCoordinateSystem}).
+     * org.opengis.coverage.grid.GC_GridGeometry#getGridToCoordinateSystem gridToCoordinateSystem}).
      *
      * This coordinate system is usually different than the grid coordinate system
      * of the grid. Grid coverage can be accessed (re-projected) with new coordinate
-     * system with the {@link org.opengis.gp.GP_GridCoverageProcessor} component.
+     * system with the {@link org.opengis.coverage.processing.GP_GridCoverageProcessor} component.
      * In this case, a new instance of a grid coverage is created.
      * <br><br>
      * Note: If a coverage does not have an associated coordinate system,
      * the returned value will be <code>null</code>.
-     * The {@link org.opengis.gc.GC_GridGeometry#getGridToCoordinateSystem
+     * The {@link org.opengis.coverage.grid.GC_GridGeometry#getGridToCoordinateSystem
      * gridToCoordinateSystem}) attribute should also be <code>null</code>
      * if the coordinate system is <code>null</code>.
      *
@@ -159,7 +159,7 @@ public interface CV_Coverage extends Remote {
      * method should not be called.
      *
      * If the <code>GC_GridCoverage}</code> was produced using
-     * {link org.opengis.gp.GP_GridCoverageProcessor} then it should return the source
+     * {link org.opengis.coverage.processing.GP_GridCoverageProcessor} then it should return the source
      * grid coverage of the one used as input to <code>GP_GridCoverageProcessor</code>.
      * In general the source() method is intended to return the original
      * <code>GC_GridCoverage</code> on which it depends.
