@@ -57,7 +57,7 @@ public class DataStoreEvent extends EventObject {
         buf.append( "DataStore " );
         DataStore dataStore = getDataStore();
         if( dataStore != null ){
-            buf.append( dataStore.getDisplayName() != null ? dataStore.getDisplayName() : dataStore );
+            buf.append( dataStore.getDisplayName() != null ? dataStore.getDisplayName().toString() : dataStore.toString() );
         }
         switch( type ){
         case ADD: buf.append( " ADD" ); // I want my Java 5 enum class :-)
