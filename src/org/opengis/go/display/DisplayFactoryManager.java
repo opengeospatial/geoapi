@@ -43,7 +43,7 @@ public class DisplayFactoryManager {
     //  Static Fields
     //*************************************************************************
 
-    private static String DISPLAY_FACTORY_NAME = "DISPLAY_FACTORY_NAME";
+    public static String DISPLAY_FACTORY_NAME = "DISPLAY_FACTORY_NAME";
 
     /**
      * The mapping of DisplayFactory class names to DisplayFactory instances.
@@ -63,17 +63,17 @@ public class DisplayFactoryManager {
         try {
 
             // Get the system property.
-            String dfClassName = System.getProperty("org.ogc.go1.DisplayFactoryClass");
+            String dfClassName = System.getProperty("org.opengis.go.DisplayFactoryClass");
 
             // If the system property was not set, try to read from the file
-            // "org/ogc/go1/display/Display.properties".
+            // "org/opengis/go/Display.properties".
             if (dfClassName == null) {
                 try {
                     ResourceBundle displayResources =
-                    ResourceBundle.getBundle("org.ogc.go1.Display");
+                    ResourceBundle.getBundle("org.opengis.go.Display");
 
                     if (displayResources != null) {
-                        dfClassName = displayResources.getString("org.ogc.go1.DisplayFactoryClass");
+                        dfClassName = displayResources.getString("org.opengis.go.DisplayFactoryClass");
                     }
 
                 } catch (MissingResourceException mie) {

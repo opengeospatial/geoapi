@@ -10,9 +10,7 @@
 package org.opengis.crs.operation;
 
 // J2SE direct dependencies
-import java.util.Properties;
-
-// OpenGIS dependencies
+import org.opengis.crs.Factory;
 import org.opengis.crs.FactoryException;
 import org.opengis.crs.crs.CoordinateReferenceSystem;
 
@@ -25,7 +23,7 @@ import org.opengis.crs.crs.CoordinateReferenceSystem;
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-009.pdf">Implementation specification 1.0</A>
  */
-public interface CoordinateOperationFactory {
+public interface CoordinateOperationFactory extends Factory {
     /**
      * Returns an operation for conversion or transformation between two coordinate reference systems.
      * If an operation exists, it is returned. If more than one operation exists, the default is returned.
