@@ -48,30 +48,6 @@ import org.opengis.spatialschema.geometry.DirectPosition;
  */
 public interface CRSFactory extends Factory {
     /**
-     * Creates a coordinate reference system object from an XML string.
-     *
-     * @param  xml Coordinate reference system encoded in XML format.
-     * @throws FactoryException if the object creation failed.
-     * @UML operation createFromXML
-     *
-     * @revisit Is it the right place for this method? XML parser may need its own class.
-     */
-    CoordinateReferenceSystem createFromXML(String xml) throws FactoryException;
-
-    /**
-     * Creates a coordinate reference system object from a string.
-     * The <A HREF="doc-files/WKT.html">definition for WKT</A> is
-     * shown using Extended Backus Naur Form (EBNF).
-     *
-     * @param  wkt Coordinate system encoded in Well-Known Text format.
-     * @throws FactoryException if the object creation failed.
-     * @UML operation createFromWKT
-     *
-     * @revisit Is it the right place for this method? WKT parser may need its own class.
-     */
-    CoordinateReferenceSystem createFromWKT(String wkt) throws FactoryException;
-
-    /**
      * Creates a compound coordinate reference system from an ordered
      * list of <code>CoordinateReferenceSystem</code> objects.
      *
@@ -152,4 +128,28 @@ public interface CRSFactory extends Factory {
      * @revisit Explain how this method is related to <code>createDerivedCRS</code>.
      */
     DerivedCRS anchor(CoordinateReferenceSystem subjectCRS, CoordinateReferenceSystem anchorCRS, DirectPosition anchorPoint) throws FactoryException;
+
+    /**
+     * Creates a coordinate reference system object from a XML string.
+     *
+     * @param  xml Coordinate reference system encoded in XML format.
+     * @throws FactoryException if the object creation failed.
+     * @UML operation createFromXML
+     *
+     * @revisit Is it the right place for this method? XML parser may need its own class.
+     */
+    CoordinateReferenceSystem createFromXML(String xml) throws FactoryException;
+
+    /**
+     * Creates a coordinate reference system object from a string.
+     * The <A HREF="../doc-files/WKT.html">definition for WKT</A>
+     * is shown using Extended Backus Naur Form (EBNF).
+     *
+     * @param  wkt Coordinate system encoded in Well-Known Text format.
+     * @throws FactoryException if the object creation failed.
+     * @UML operation createFromWKT
+     *
+     * @revisit Is it the right place for this method? WKT parser may need its own class.
+     */
+    CoordinateReferenceSystem createFromWKT(String wkt) throws FactoryException;
 }
