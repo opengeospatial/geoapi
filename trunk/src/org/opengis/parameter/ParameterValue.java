@@ -10,7 +10,7 @@
 package org.opengis.parameter;
 
 // J2SE direct dependencies and extensions
-import java.net.URL;
+import java.net.URI;
 import javax.units.Unit;
 
 // Annotations
@@ -190,17 +190,17 @@ public interface ParameterValue extends GeneralParameterValue {
      * file can reference another part of the same or different files, as allowed in XML documents.
      *
      * @return The reference to a file containing parameter values.
-     * @throws InvalidParameterTypeException if the value is not a reference to a file or an URL.
+     * @throws InvalidParameterTypeException if the value is not a reference to a file or an URI.
      *
      * @see #getValue
      * @see #setValue(Object)
      */
 /// @UML (identifier="valueFile", obligation=CONDITIONAL)
-    URL valueFile() throws InvalidParameterTypeException;
+    URI valueFile() throws InvalidParameterTypeException;
 
     /**
      * Returns the parameter value as an object. The object type is typically a {@link Double},
-     * {@link Integer}, {@link Boolean}, {@link String}, {@link URL}, <code>double[]</code> or
+     * {@link Integer}, {@link Boolean}, {@link String}, {@link URI}, <code>double[]</code> or
      * <code>int[]</code>.
      *
      * @return The parameter value as an object.
@@ -271,7 +271,7 @@ public interface ParameterValue extends GeneralParameterValue {
 
     /**
      * Set the parameter value as an object. The object type is typically a {@link Double},
-     * {@link Integer}, {@link Boolean}, {@link String}, {@link URL}, <code>double[]</code>
+     * {@link Integer}, {@link Boolean}, {@link String}, {@link URI}, <code>double[]</code>
      * or <code>int[]</code>.
      *
      * @param  value The parameter value.
