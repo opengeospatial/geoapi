@@ -60,4 +60,9 @@ public interface Symbol {
      * This can be any string and can consist of any amount of text.
      */
     public void setAbstract(String abs);
+
+    /**
+     * Helps implement the visitor design pattern.
+     */
+    public Object accept(SymbolVisitor visitor, Object extraData);
 }
