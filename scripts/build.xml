@@ -41,6 +41,10 @@
   <target name="clear">
 
     <delete includeEmptyDirs="true" failonerror="false">
+      <fileset dir="1.3"/>
+    </delete>
+
+    <delete includeEmptyDirs="true" failonerror="false">
       <fileset dir="sources"/>
     </delete>
 
@@ -49,15 +53,15 @@
     </delete>
 
     <delete includeEmptyDirs="true" failonerror="false">
-      <fileset dir="binaries"/>
-    </delete>
-
-    <delete includeEmptyDirs="true" failonerror="false">
       <fileset dir="javadoc"/>
     </delete>
 
     <delete includeEmptyDirs="true" failonerror="false">
-      <fileset dir="download"/>
+      <fileset file="binaries/*.jar"/>
+    </delete>
+
+    <delete includeEmptyDirs="true" failonerror="false">
+      <fileset file="download/*.zip"/>
     </delete>
 
   </target>
@@ -73,16 +77,21 @@
 
   <target name="sources" depends="clear">
 
-    <copy todir="sources" includeEmptyDirs="false" overwrite="true">
+    <copy todir="sources" includeEmptyDirs="false">
       <fileset dir="${homepath}/src">
-        <exclude name="**/.*"/>
-        <exclude name="**/*.class"/>
+        <include name="**/*.MF"/>
+        <include name="**/*.png"/>
+        <include name="**/*.xml"/>
+        <include name="**/*.html"/>
+        <include name="**/*.java"/>
+        <include name="**/*.properties"/>
       </fileset>
     </copy>
 
     <fixcrlf srcdir="sources" tab="remove" eof="remove">
-      <include name="**/*.java"/>
       <include name="**/*.html"/>
+      <include name="**/*.java"/>
+      <include name="**/*.properties"/>
     </fixcrlf>
 
   </target>
@@ -92,7 +101,52 @@
 
   <!-- ======================================================================
 
-       COMPILE: Compile source code (create *.class files)
+       COMPILE FOR J2SE 1.3: Compile source code (create *.class files)
+
+       ====================================================================== -->
+
+  <target name="compile-1.3" depends="sources">
+
+    <mkdir dir="1.3/sources"/>
+    <copy todir="1.3/sources">
+      <fileset dir="sources"/>
+    </copy>
+    <replace dir="1.3/sources">
+      <include name="**/*.java"/>
+      <replacefilter token="&lt;? extends Primitive&gt;"/>
+      <replacefilter token="&lt;Primitive&gt;"/>
+      <replacefilter token="&lt;Position&gt;"/>
+      <replacefilter token="&lt;PointArray&gt;"/>
+      <replacefilter token="&lt;LineSegment&gt;"/>
+      <replacefilter token="&lt;CurveSegment&gt;"/>
+      <replacefilter token="&lt;OrientableCurve&gt;"/>
+      <replacefilter token="&lt;OrientableSurface&gt;"/>
+      <replacefilter token="&lt;SurfacePatch&gt;"/>
+      <replacefilter token="&lt;Complex&gt;"/>
+
+      <replacefilter token=" assert " value=" // assert "/>
+    </replace>
+
+    <mkdir dir="1.3/classes"/>
+    <javac srcdir      = "1.3/sources"
+           destdir     = "1.3/classes"
+           encoding    = "ISO-8859-1"
+           includes    = "org/**/*.java"
+           source      = "1.3"
+           target      = "1.3"
+           optimize    = "true"
+           debug       = "false"
+           failonerror = "true">
+    </javac>
+
+  </target>
+
+
+
+
+  <!-- ======================================================================
+
+       COMPILE FOR J2SE 1.5: Compile source code (create *.class files)
 
        ====================================================================== -->
 
@@ -129,6 +183,7 @@
              destdir          = "javadoc"
              charset          = "ISO-8859-1"
              encoding         = "ISO-8859-1"
+             source           = "1.5"
              use              = "true"
              nodeprecatedlist = "true"
              author           = "true"
@@ -234,14 +289,21 @@
 
        ====================================================================== -->
 
-  <target name="jars" depends="compile">
+  <target name="jars" depends="compile,compile-1.3">
 
     <mkdir dir="binaries"/>
 
-    <jar destfile = "binaries/opengis.jar"
+    <jar destfile = "binaries/opengis-tiger.jar"
          basedir  = "classes"
          index    = "true"
          manifest = "sources/META-INF/MANIFEST.MF">
+      <include name="org/**"/>
+    </jar>
+
+    <jar destfile = "binaries/opengis.jar"
+         basedir  = "1.3/classes"
+         index    = "true"
+         manifest = "1.3/sources/META-INF/MANIFEST.MF">
       <include name="org/**"/>
     </jar>
 
