@@ -1,4 +1,4 @@
-/**************************************************************************************************
+/*$************************************************************************************************
  **
  ** $Id$
  **
@@ -9,36 +9,36 @@
  *************************************************************************************************/
 package org.opengis.crs.operation;
 
+
 /**
- * Thrown when an operation is applied in a manner inconsistent with one or both of two particular CRS objects. 
+ * Thrown when an operation is applied in a manner inconsistent with one or both of
+ * two particular CRS objects. 
  *
  * @author  Open GIS Consortium, Inc.
  * @version $Revision$, $Date$
  */
-
 public class IncompatibleOperationException extends Exception {
+    /**
+     * The invalid Operation name.
+     */
+    private final String operationName;
 
-	/**
-	 * The invalid Operation name.
-	 */
-	private final String operationName;
-	
-	/**
-	 * Creates an exception with the specified message and Operation name.
-	 *
-	 * @param  message The detail message. The detail message is saved for 
-	 *         later retrieval by the {@link #getMessage()} method.
-	 * @param crsName The invalid CRS name.
-	 */
-	public IncompatibleOperationException(String message, String operationName) {
-		super(message);
-		this.operationName = operationName;
-	}
+    /**
+     * Creates an exception with the specified message and operation name.
+     *
+     * @param  message The detail message. The detail message is saved for 
+     *         later retrieval by the {@link #getMessage()} method.
+     * @param  operationName The invalid operation name.
+     */
+    public IncompatibleOperationException(String message, String operationName) {
+        super(message);
+        this.operationName = operationName;
+    }
 
-	/**
-	 * Returns the invalid Operation name.
-	 */
-	public String getOperationName() {
-		return operationName;
-	}
+    /**
+     * Returns the invalid Operation name.
+     */
+    public String getOperationName() {
+        return operationName;
+    }
 }

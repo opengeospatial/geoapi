@@ -21,7 +21,7 @@ import org.opengis.crs.ReferenceSystem;
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 2.0
  *
- * @revisit <P ALIGN="justify">Is this interface really needed? This interface stands between
+ * @deprecated <P ALIGN="justify">Is this interface really needed? This interface stands between
  *          {@link ReferenceSystem} and {@link CoordinateReferenceSystem} and looks like an
  *          anomaly in an otherwise quite natural hierarchy
  *          (<code>CoordinateReferenceSystem extends ReferenceSystem</code>).

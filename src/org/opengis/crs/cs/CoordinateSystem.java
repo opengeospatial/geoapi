@@ -9,7 +9,7 @@
  *************************************************************************************************/
 package org.opengis.crs.cs;
 
-// J2SE direct dependencies and extensions
+// OpenGIS direct dependencies
 import org.opengis.crs.Info;
 
 

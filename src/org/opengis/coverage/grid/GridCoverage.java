@@ -10,6 +10,11 @@
 package org.opengis.coverage.grid;
 
 // J2SE direct dependencies
+import java.awt.image.Raster;              // For Javadoc
+import java.awt.image.WritableRaster;      // For Javadoc
+import java.awt.image.RenderedImage;       // For Javadoc
+
+// OpenGIS direct dependencies
 import org.opengis.coverage.Coverage;
 
 
@@ -23,7 +28,7 @@ import org.opengis.coverage.Coverage;
  * @version 1.1
  *
  * @see RenderedImage
- * @see PixelAccessor
+ * @see javax.media.jai.PixelAccessor
  */
 public interface GridCoverage extends Coverage {
     /**
@@ -187,7 +192,7 @@ public interface GridCoverage extends Coverage {
      * @UML operation getDataBlockAsByte
      *
      * @see #setDataBlock(GridRange, byte[])
-     * @see UnpackedImageData#getByteData()
+     * @see javax.media.jai.UnpackedImageData#getByteData()
      */
     byte[] getDataBlock(GridRange gridRange, byte[] destination)
             throws InvalidRangeException, ArrayIndexOutOfBoundsException;
@@ -210,7 +215,7 @@ public interface GridCoverage extends Coverage {
      * @UML operation getDataBlockAsInteger
      *
      * @see #setDataBlock(GridRange, int[])
-     * @see UnpackedImageData#getShortData()
+     * @see javax.media.jai.UnpackedImageData#getShortData()
      */
     short[] getDataBlock(GridRange gridRange, short[] destination)
             throws InvalidRangeException, ArrayIndexOutOfBoundsException;
@@ -234,7 +239,7 @@ public interface GridCoverage extends Coverage {
      *
      * @see #setDataBlock(GridRange, int[])
      * @see Raster#getPixels(int,int,int,int,int[])
-     * @see UnpackedImageData#getIntData()
+     * @see javax.media.jai.UnpackedImageData#getIntData()
      */
     int[] getDataBlock(GridRange gridRange, int[] destination)
             throws InvalidRangeException, ArrayIndexOutOfBoundsException;
@@ -257,7 +262,7 @@ public interface GridCoverage extends Coverage {
      *
      * @see #setDataBlock(GridRange, float[])
      * @see Raster#getPixels(int,int,int,int,float[])
-     * @see UnpackedImageData#getFloatData()
+     * @see javax.media.jai.UnpackedImageData#getFloatData()
      */
     float[] getDataBlock(GridRange gridRange, float[] destination)
             throws InvalidRangeException, ArrayIndexOutOfBoundsException;
@@ -314,7 +319,7 @@ public interface GridCoverage extends Coverage {
      *
      * @see #setDataBlock(GridRange, double[])
      * @see Raster#getPixels(int,int,int,int,double[])
-     * @see UnpackedImageData#getDoubleData()
+     * @see javax.media.jai.UnpackedImageData#getDoubleData()
      */
     double[] getDataBlock(GridRange gridRange, double[] destination)
             throws InvalidRangeException, ArrayIndexOutOfBoundsException;
@@ -335,10 +340,10 @@ public interface GridCoverage extends Coverage {
      * {@linkplain GridRange#getUpper() grid range maximum} <= maximum grid coordinate
      * </center>
      *
-     * The sequence of bytes returned will match the data type of the dimension.
-     * For example, a grid with one 16 bit unsigned
-     * ({@link SampleDimensionType#UNSIGNED_16BITS UNSIGNED_16BITS}) sample dimension
-     * will return 2 bytes for every cell in the block.
+     * The sequence of bytes returned will match the data type of
+     * the dimension. For example, a grid with one 16 bit unsigned
+     * ({@link org.opengis.coverage.SampleDimensionType#UNSIGNED_16BITS UNSIGNED_16BITS})
+     * sample dimension will return 2 bytes for every cell in the block.
      * <br><br>
      * <strong>Byte padding rules for grid values of less than 8 bits</strong><br>
      * For 2D grid coverages, padding is to the nearest byte for the following cases:

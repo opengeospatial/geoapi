@@ -9,7 +9,10 @@
  *************************************************************************************************/
 package org.opengis.coverage;
 
-//J2SE direct dependencies
+// J2SE direct dependencies
+import java.awt.image.DataBuffer; // For Javadoc
+
+// OpenGIS direct dependencies
 import org.opengis.util.CodeList;
 
 

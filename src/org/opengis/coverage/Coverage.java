@@ -10,8 +10,10 @@
 package org.opengis.coverage;
 
 // J2SE direct dependencies and extensions
+import java.awt.image.Raster;                     // For Javadoc
 import java.awt.image.renderable.RenderableImage;
 
+// OpenGIS direct dependencies
 import org.opengis.crs.crs.CoordinateReferenceSystem;
 import org.opengis.spatialschema.geometry.DirectPosition;
 import org.opengis.spatialschema.geometry.Envelope;
@@ -43,41 +45,43 @@ import org.opengis.spatialschema.geometry.Envelope;
  * dimension in the coverage.
  * <br><br>
  * <STRONG>Implementation note:</STRONG><BR>
- * We expect that many implementations of {@link org.opengis.coverage.grid.GridCoverage} will want to leverage the rich
- * set of <A HREF="http://java.sun.com/products/java-media/jai/">Java Advanced Imaging (JAI)</A> features.
- * For those implementations, it is recommended (but not required) to implement the {@link PropertySource}
- * interface as well. In this case, implementation of {@link PropertySource} methods must be consistent
- * with {@link #getMetadataNames} and {@link #getMetadataValue} methods.
+ * We expect that many implementations of {@link org.opengis.coverage.grid.GridCoverage} will want
+ * to leverage the rich set of <A HREF="http://java.sun.com/products/java-media/jai/">Java Advanced
+ * Imaging (JAI)</A> features. For those implementations, it is recommended (but not required) to
+ * implement the {@link javax.media.jai.PropertySource} interface as well. In this case, implementation
+ * of {@link javax.media.jai.PropertySource} methods must be consistent with {@link #getMetadataNames}
+ * and {@link #getMetadataValue} methods.
  *
  * @UML abstract CV_Coverage
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 1.1
  *
  * @see RenderableImage
- * @see ImageFunction
+ * @see javax.media.jai.ImageFunction
  */
 public interface Coverage {
     /**
-     * Specifies the coordinate reference system (CoordinateReferenceSystem) used when accessing a coverage or grid
-     * coverage with the <code>evaluate(...)</code> methods. It is also the CoordinateReferenceSystem of the coordinates
-     * used with the math transform (see {@link org.opengis.coverage.grid.GridGeometry#getGridToCoordinateSystem
+     * Specifies the coordinate reference system used when accessing a coverage or grid
+     * coverage with the <code>evaluate(...)</code> methods. It is also the coordinate
+     * reference system of the coordinates used with the math transform (see
+     * {@link org.opengis.coverage.grid.GridGeometry#getGridToCoordinateSystem
      * gridToCoordinateSystem}).
      *
      * This coordinate reference system is usually different than coordinate system of the grid.
-     * Grid coverage can be accessed (re-projected) with new CoordinateReferenceSystem with the
+     * Grid coverage can be accessed (re-projected) with new coordinate reference system with the
      * {@link org.opengis.coverage.processing.GridCoverageProcessor} component. In this case, a new instance of a
      * grid coverage is created.
      * <br><br>
      * Note: If a coverage does not have an associated coordinate reference system,
      * the returned value will be <code>null</code>.
      * The {@link org.opengis.coverage.grid.GridGeometry#getGridToCoordinateSystem gridToCoordinateSystem})
-     * attribute should also be <code>null</code> if the CoordinateReferenceSystem is <code>null</code>.
+     * attribute should also be <code>null</code> if the coordinate reference system is <code>null</code>.
      *
      * @return The coordinate reference system used when accessing a coverage or
      *         grid coverage with the <code>evaluate(...)</code> methods, or <code>null</code>.
      * @UML mandatory coordinateSystem
      */
-	CoordinateReferenceSystem getCoordinateReferenceSystem();
+    CoordinateReferenceSystem getCoordinateReferenceSystem();
 
     /**
      * The bounding box for the coverage domain in {@linkplain #getCoordinateReferenceSystem coordinate reference system}
@@ -170,7 +174,7 @@ public interface Coverage {
      * @UML mandatory metadataNames
      *
      * @see #getMetadataValue
-     * @see PropertySource#getPropertyNames
+     * @see javax.media.jai.PropertySource#getPropertyNames
      */
     String[] getMetadataNames();
 
@@ -183,7 +187,7 @@ public interface Coverage {
      * @UML operation getMetadataValue
      *
      * @see #getMetadataNames
-     * @see PropertySource#getProperty
+     * @see javax.media.jai.PropertySource#getProperty
      */
     String getMetadataValue(String name) throws MetadataNameNotFoundException;
 
@@ -212,7 +216,7 @@ public interface Coverage {
      * The default interpolation type used when accessing grid values for points which
      * fall between grid cells is nearest neighbor.
      * The coordinate reference system of the point is the same as the grid coverage
-     * {@linkplain #getCoordinateReferenceSystem CoordinateReferenceSystem}.
+     * {@linkplain #getCoordinateReferenceSystem coordinate reference system}.
      *
      * @param  point Point at which to find the coverage values.
      * @param  destination An optionally preallocated array in which to store the values,
@@ -236,7 +240,7 @@ public interface Coverage {
      * The default interpolation type used when accessing grid values for points which
      * fall between grid cells is nearest neighbor.
      * The coordinate reference system of the point is the same as the grid coverage
-     * {@linkplain #getCoordinateReferenceSystem CoordinateReferenceSystem}.
+     * {@linkplain #getCoordinateReferenceSystem coordinate reference system}.
      *
      * @param point Point at which to find the coverage values.
      * @param  destination An optionally preallocated array in which to store the values,
@@ -260,7 +264,7 @@ public interface Coverage {
      * The default interpolation type used when accessing grid values for points which
      * fall between grid cells is nearest neighbor.
      * The coordinate reference system of the point is the same as the grid coverage
-     * {@linkplain #getCoordinateReferenceSystem CoordinateReferenceSystem}.
+     * {@linkplain #getCoordinateReferenceSystem coordinate reference system}.
      *
      * @param point Point at which to find the grid values.
      * @param  destination An optionally preallocated array in which to store the values,
@@ -286,7 +290,7 @@ public interface Coverage {
      * The default interpolation type used when accessing grid values for points which
      * fall between grid cells is nearest neighbor.
      * The coordinate reference system of the point is the same as the grid coverage
-     * {@linkplain #getCoordinateReferenceSystem CoordinateReferenceSystem}.
+     * {@linkplain #getCoordinateReferenceSystem coordinate reference system}.
      *
      * @param point Point at which to find the grid values.
      * @param  destination An optionally preallocated array in which to store the values,
@@ -311,7 +315,7 @@ public interface Coverage {
      * The default interpolation type used when accessing grid values for points which
      * fall between grid cells is nearest neighbor.
      * The coordinate reference system of the point is the same as the grid coverage
-     * {@linkplain #getCoordinateReferenceSystem CoordinateReferenceSystem}.
+     * {@linkplain #getCoordinateReferenceSystem coordinate reference system}.
      *
      * @param point Point at which to find the grid values.
      * @param  destination An optionally preallocated array in which to store the values,
@@ -336,12 +340,11 @@ public interface Coverage {
      * This optional operation allows interoperability with
      * <A HREF="http://java.sun.com/products/java-media/2D/">Java2D</A>.
      * If this coverage is a {@link org.opengis.coverage.grid.GridCoverage} backed
-     * by a {@link RenderedImage}, the underlying image can be obtained
+     * by a {@link java.awt.image.RenderedImage}, the underlying image can be obtained
      * with:
      *
      * <code>getRenderableImage(0,1).{@linkplain RenderableImage#createDefaultRendering()
      * createDefaultRendering()}</code>
-     *
      *
      * @param  xAxis Dimension to use for the <var>x</var> axis.
      * @param  yAxis Dimension to use for the <var>y</var> axis.

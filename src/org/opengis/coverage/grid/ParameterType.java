@@ -11,6 +11,8 @@ package org.opengis.coverage.grid;
 
 //OpenGIS direct dependencies
 import org.opengis.util.CodeList;
+import org.opengis.crs.operation.Conversion;           // For Javadoc
+import org.opengis.crs.crs.CoordinateReferenceSystem;  // For Javadoc
 
 
 /**
@@ -75,7 +77,7 @@ public final class ParameterType extends CodeList {
     public static final ParameterType CONVERSION_TYPE = new ParameterType("CONVERSION_TYPE", 5);
 
     /**
-     * Coordinate reference system instance ({@link CRS}).
+     * Coordinate reference system instance ({@link CoordinateReferenceSystem}).
      *
      * @UML conditional CS_CoordinateSystemType
      */

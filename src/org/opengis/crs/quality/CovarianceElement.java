@@ -12,6 +12,7 @@ package org.opengis.crs.quality;
 // J2SE extensions
 import javax.units.Unit;
 
+
 /**
  * An element of a covariance matrix.
  *  

@@ -9,8 +9,6 @@
  *************************************************************************************************/
 package org.opengis.spatialschema.geometry;
 
-// OpenGIS direct dependencies
-
 
 /**
  * A minimum bounding box or rectangle. Regardless of dimension, an <code>Envelope</code> can

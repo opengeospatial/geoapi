@@ -12,6 +12,8 @@ package org.opengis.spatialschema.geometry.complex;
 // J2SE direct dependencies
 import java.util.List;
 
+// OpenGIS direct dependencies
+import org.opengis.spatialschema.geometry.primitive.Primitive;
 
 /**
  * A geometric complex with an underlying core geometry that is isomorphic to a primitive. Thus,

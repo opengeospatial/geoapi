@@ -9,9 +9,12 @@
  *************************************************************************************************/
 package org.opengis.crs.datum;
 
-// J2SE direct dependencies and extensions
-import org.opengis.crs.Info;
+// J2SE extensions
 import javax.units.Unit;
+
+// OpenGIS direct dependencies
+import org.opengis.crs.Info;
+
 
 /**
  * Geometric figure that can be used to describe the approximate shape of the earth.

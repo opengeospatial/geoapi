@@ -9,7 +9,8 @@
  *************************************************************************************************/
 package org.opengis.coverage.grid;
 
-// J2SE direct dependencies
+// OpenGIS direct dependencies
+import org.opengis.coverage.SampleDimensionType;  // For Javadoc
 
 
 /**
@@ -66,8 +67,8 @@ public interface GridPacking {
      *
      * @UML mandatory bandPacking
      *
-     * @see BandedSampleModel
-     * @see PixelInterleavedSampleModel
+     * @see java.awt.image.BandedSampleModel
+     * @see java.awt.image.PixelInterleavedSampleModel
      */
     int getBandPacking();
 }

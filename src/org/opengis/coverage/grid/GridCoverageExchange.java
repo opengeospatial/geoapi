@@ -11,10 +11,12 @@ package org.opengis.coverage.grid;
 
 // J2SE direct dependencies
 import java.io.IOException;
+import java.io.FileNotFoundException;  // For Javadoc
 
-import org.opengis.coverage.MetadataNameNotFoundException;
-import org.opengis.crs.crs.CoordinateReferenceSystem;
+// OpenGIS direct dependencies
 import org.opengis.crs.operation.Conversion;
+import org.opengis.crs.crs.CoordinateReferenceSystem;
+import org.opengis.coverage.MetadataNameNotFoundException;
 
 
 /**
@@ -28,13 +30,14 @@ import org.opengis.crs.operation.Conversion;
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 1.1
  *
- * @see ImageReader
- * @see ImageWriter
+ * @see javax.imageio.ImageReader
+ * @see javax.imageio.ImageWriter
  *
  * @revisit Using this interface means reopening the same file every time a new information
  *          is required for a given file. It would be better to gets this interface once from
- *          a given file or {@link ImageInputStream}, then invokes various methods without the
- *          file name argument. It would also allows {@link #getMetadataValue} method to work.
+ *          a given file or {@link javax.imageio.stream.ImageInputStream}, then invokes various
+ *          methods without the file name argument. It would also allows {@link #getMetadataValue}
+ *          method to work.
  *          <STRONG>IN SUMMARY: </STRONG> This interface need to be splitted into something like
  *          a <code>GridCoverageExchange</code>, <code>GridCoverageReader</code> and
  *          <code>GridCoverageWriter</code> interfaces.

@@ -23,7 +23,8 @@ import java.io.IOException;
  *
  * @see GridCoverageExchange#exportTo
  *
- * @revisit In a J2SE 1.4 profile, this exception should extends {@link IIOException}.
+ * @revisit In a J2SE 1.4 profile, this exception should extends
+ *          {@link javax.imageio.IIOException}.
  *          This is also quite a long name. Can we make it shorter?
  */
 public class FileFormatNotCompatibleWithGridCoverageException extends IOException {
