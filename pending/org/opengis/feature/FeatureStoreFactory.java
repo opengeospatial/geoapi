@@ -1,9 +1,9 @@
 /*
  * $ Id $
  * $ Source $
- * Created on Jan 10, 2005
+ * Created on Nov 23, 2004
  */
-package org.opengis.go.display.primitive.store;
+package org.opengis.feature;
 
 import java.io.IOException;
 import java.lang.reflect.Constructor;
@@ -15,96 +15,137 @@ import java.util.Map;
 import org.opengis.util.InternationalString;
 
 /**
- * The <code>GraphicStoreFactory</code> class/interface...
- * 
- * @author SYS Technologies
- * @author crossley
- * @version $Revision $
+ * A provider of spatial information.
+ * <p>
+ * A provider, or service, implementing this API may range from a single
+ * shapefile, to a complete Web Feature Server or OracleSpatial instance.
+ * </p>
+ * <p>
+ * This API does need to consider the:
+ * <ul>
+ * <li>Identity: currently captured as a URI, completly defines a server
+ * or provider. Usually via a URL or JDBC URL as required.
+ * <li>Configuration: currently captured as a Map
+ * </ul>
+ * </p>
+ * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  */
-public interface GraphicStoreFactory {
+public interface FeatureStoreFactory {
 
-    /**
-     * Well-known param key indicating service requires a username for
-     * authentication
+    /** 
+     * Well-known param key indicating service requires a username for authentication.
      */
     public static final Param USERNAME = 
-        new Param("user", String.class, "Username for authentication");
-
-    /**
-     * Well-known param key indicating service requires a username for
-     * authentication
-     */
+        new Param( "user", String.class, "Username for authentication" );
+    
+    /** 
+     * Well-known param key indicating service requires a username for authentication
+     */ 
     public static final Param PASSWORD = 
-        new Param("password", String.class, "Password for authentication");
-
+        new Param( "password", String.class, "Password for authentication" );
+    
     /**
-     * Ask for a GraphicStore connecting to the indicated provider or service.
-     * The GraphicStore may have been previously cached.
+     * Ask for a FeatureStore connecting to the indicated provider or service.
+     * The returned FeatureStore may have been previously cached.
      * <p>
      * Additional hints or configuration information may be provided according
-     * to the metadata indicated by getParametersInfo. This information often
-     * includes security information such as username and password.
+     * to the metadata indicated by getParametersInfo. This information often includes
+     * security information such as username and password.
      * </p>
      * 
-     * @param provider Often a URL or JDBC URL locating the serivce to connect
-     *            to
+     * @param provider Often a URL or JDBC URL locating the serivce to connect to
      * @param params Map of hints or configuration information.
-     * @return GraphicStore connected to the indicated provider or service
+     * @return FeatureStore connected to the indicated provider or service
+     * @throws IOException if the FeatureStore cannot connect to its source
+     */
+    FeatureStore createFeatureStore(URI provider, Map params) throws IOException;
+
+    /**
+     * Ask for a new FeatureStore connecting to the indicated provider or service.
+     * <p>
+     * Additional hints or configuration information may be provided according
+     * to the metadata indicated by getParametersInfo. This information often includes
+     * security information such as username and password.
+     * </p>
+     * 
+     * @param provider Often a URL or JDBC URL locating the serivce to connect to
+     * @param params Map of hints or configuration information.
+     * @return FeatureStore Datastore connected to the newly created provider or serivce.
      * @throws IOException
      */
-    GraphicStore createGraphicStore(URI provider, Map params) throws IOException;
-
+    FeatureStore createNewFeatureStore(URI provider, Map params) throws IOException;
+    
     /**
      * Icon representing this category of datastores.
      * <p>
      * Assumed to point to a 16x16 icon?
      * </p>
-     * 
      * @return the icon.
      */
     URL getIcon();
 
-    /** Display name used to communicate this type of GraphicStore to end users */
+    /**
+     *  Display name used to communicate this type of FeatureStore to end users.
+     * @return
+     */
     InternationalString getDisplayName();
-
-    /** Descrption of this type of Datastore */
+    
+    /** 
+     * Descrption of this type of FeatureStore.
+     * @return
+     */
     InternationalString getDescription();
 
+    /**
+     * DOCUMENT ME.
+     * @return
+     */
     Param[] getParametersInfo();
 
     /**
-     * Indicates this GraphicStoreFactory communicate with the indicated
-     * provider or service.
+     * Indicates this FeatureStoreFactory communicate with the indicated provider or service.
+     * <p>
+     * This method should not fail, if a connection needs to be made
+     * to parse a GetCapabilities file or negotiate WMS versions any
+     * IO problems simply indicate the inabiity to process.
+     * </p>
+     * <p>
+     * This method may be considered the same as: canProcess( provider, hints )
+     * where hints was generated by using all the default values specified by the
+     * getParameterInfo method.
+     * </p>
+     * @param provider Provider or Server of spatial information. 
+     */
+    boolean canProcess(URI provider);
+    
+    /**
+     * Indicates this FeatureStoreFactory communicate with the indicated provider or service.
      * <p>
      * This method differs from canProcess in that additional configuration
-     * information may be supplied.
+     * information may be supplied. 
      * </p>
-     * 
      * @param provider
      * @param params
-     * @return <code>true</code> if this factory can communicate with the
-     *         provider.
+     * @return <code>true</code> if this factory can communicate with the provider.
      */
     boolean canProcess(URI provider, Map params);
 
     /**
-     * Allows a GraphicStoreFactory to ensure all its preconditions are met,
+     * Allows a FeatureStoreFactory to ensure all its preconditions are met,
      * such as the presense of required libraries.
      */
     boolean isAvailable();
 
     /**
-     * Simple service metadata - should be replaced by ISO19119 interfaces as
-     * they are made available.
+     * Simple service metadata - should be replaced by ISO19119 interfaces
+     * as they are made available.
      * <p>
-     * Differences from geotools - no param is required. Sensible defaults
-     * should always be available.
+     * Differences from geotools - no param is required. Sensible
+     * defaults should always be available.
      * </p>
-     * 
      * @author Jody Garnett
      */
     class Param {
-
         /** True if Param is required. */
         final public boolean required;
 
@@ -132,13 +173,20 @@ public interface GraphicStoreFactory {
             this(key, type, description, true);
         }
 
-        public Param(final String key, final Class type, final String description,
+        public Param(
+                final String key, 
+                final Class type, 
+                final String description, 
                 final boolean required) {
             this(key, type, description, required, null);
         }
 
-        public Param(final String key, final Class type, final String description,
-                final boolean required, final Object sample) {
+        public Param(
+                final String key, 
+                final Class type, 
+                final String description, 
+                final boolean required, 
+                final Object sample) {
             this.key = key;
             this.type = type;
             this.description = description;
@@ -149,14 +197,13 @@ public interface GraphicStoreFactory {
         /**
          * Utility method for implementors of canProcess.
          * <p>
-         * Willing to check all known constraints and parse Strings to requred
-         * value if needed.
+         * Willing to check all known constraints and parse Strings to requred value
+         * if needed.
          * </p>
          * 
          * @param map Map of parameter values
          * @return Value of the correct type from map
-         * @throws IOException if parameter was of the wrong type, or a required
-         *             parameter is not present
+         * @throws IOException if parameter was of the wrong type, or a required parameter is not present
          */
         public Object lookUp(final Map map) throws IOException {
             if (!map.containsKey(key)) {
@@ -202,7 +249,7 @@ public interface GraphicStoreFactory {
             } catch (IOException ioException) {
                 throw ioException;
             } catch (Throwable throwable) {
-                throw new GraphicStoreException("Problem creating " + type.getName() + " from '"
+                throw new FeatureStoreException("Problem creating " + type.getName() + " from '"
                         + text + "'", throwable);
             }
         }
@@ -227,13 +274,13 @@ public interface GraphicStoreFactory {
                     text,
                 });
             } catch (IllegalArgumentException illegalArgumentException) {
-                throw new GraphicStoreException("Could not create " + type.getName() + ": from '"
+                throw new FeatureStoreException("Could not create " + type.getName() + ": from '"
                         + text + "'", illegalArgumentException);
             } catch (InstantiationException instantiaionException) {
-                throw new GraphicStoreException("Could not create " + type.getName() + ": from '"
+                throw new FeatureStoreException("Could not create " + type.getName() + ": from '"
                         + text + "'", instantiaionException);
             } catch (IllegalAccessException illegalAccessException) {
-                throw new GraphicStoreException("Could not create " + type.getName() + ": from '"
+                throw new FeatureStoreException("Could not create " + type.getName() + ": from '"
                         + text + "'", illegalAccessException);
             } catch (InvocationTargetException targetException) {
                 throw targetException.getCause();
