@@ -14,6 +14,13 @@ is within nested double and single quotes -->
 is within nested double and single quotes. -->
 <xsl:variable name="Interface" select="'false'"/>
 
+<!--	********************************************************
+		modification : add variable Version for class comment tag @version
+		modified by Stephane, November 17 2003
+		********************************************************-->
+<xsl:variable name="Version" select="'1.0'"/>		
+		
+		
 <xsl:key name="classes" match="//class | //dataType | //codeList" use="name"/>
 <xsl:key name="interfaces" match="//interface" use="name"/>
 
@@ -43,6 +50,9 @@ is within nested double and single quotes. -->
       		<xsl:text>  **/ </xsl:text>
       </xsl:element>
 </xsl:template>
+
+
+
 
 <!-- package Template -->
 <xsl:template match="package">
@@ -120,17 +130,27 @@ is within nested double and single quotes. -->
  				********************************************************-->
 			<xsl:choose>
 				<xsl:when test="name()='codeList'">
-					<xsl:text>//opengis dependencies&#xA;</xsl:text>
-					<xsl:text>import org.opengis.lang.CodeList;&#xA;</xsl:text>
+					<xsl:text>//J2SE dependencies&#xA;</xsl:text>
+					<xsl:text>import java.util.Arrays;&#xA;</xsl:text>
+					<xsl:text>import java.util.Collections;&#xA;&#xA;</xsl:text>
+					<xsl:text>//OpenGIS dependencies&#xA;</xsl:text>
+					<xsl:text>import org.opengis.util.CodeList;&#xA;</xsl:text>
 				</xsl:when>
 			</xsl:choose>
 		<!-- end of codeList import section -->
 		
-		
+		<!--	********************************************************
+ 				modification : add @author and @version tag for all classes
+				modified by Stephane, November 17 2003
+ 				********************************************************-->
 			<xsl:call-template name="comment">
 				<xsl:with-param name="indent" select="''"/>
-			</xsl:call-template>
-			
+				<xsl:with-param name="author">true</xsl:with-param>
+				<xsl:with-param name="version">true</xsl:with-param>
+			</xsl:call-template>		
+ 		<!-- end of class comment section -->		
+ 		
+ 		
 			<xsl:call-template name="Visibility"/>
 			<xsl:if test="isAbstract">
 				<xsl:text> abstract</xsl:text>
@@ -172,7 +192,7 @@ is within nested double and single quotes. -->
 				modification : add extends for codeList type
 				modified by Stephane, October 22 2003
 				********************************************************-->
-				<xsl:choose>
+			<xsl:choose>
 				<xsl:when test="name()='codeList'">
 					<xsl:text>&#x20;extends CodeList</xsl:text>
 				</xsl:when>
@@ -225,17 +245,6 @@ is within nested double and single quotes. -->
 	</xsl:element>
 </xsl:template>
 
-<!-- codeList Template -->
-<!-- <xsl:template name="codeList">
-old xsl code : codeList Template
-       <xsl:text>    private static String[] values = {</xsl:text>
-        <xsl:call-template name="AttributesForEnumType"/>
-        <xsl:text>};&#xA;</xsl:text>
-        <xsl:text>    public int code;&#xA;</xsl:text>
-        <xsl:text>    public String value() { return values[code];}&#xA;</xsl:text>
-</xsl:template>
--->
-
 <!--	********************************************************
  		modification of codeList Template
 		modified by Stephane, October 22 2003
@@ -243,16 +252,39 @@ old xsl code : codeList Template
 <xsl:template name="codeList">
 	<xsl:param name="JavaPrefix"/>
 	<xsl:param name="name"/>
+	<xsl:variable name="indent" select="'    '"/>
     <xsl:apply-templates select="attribute">
     	<xsl:with-param name="className" select="name" />
+    	<xsl:with-param name="indent" select="$indent"/>
     </xsl:apply-templates>
+    <xsl:call-template name="attributeListJavaAPI1.5">
+    	<xsl:with-param name="className" select="name"/>
+    	<xsl:with-param name="indent" select="$indent"/>
+    </xsl:call-template>
+    
     <xsl:text>&#xA;</xsl:text>
+    <xsl:value-of select="$indent"/>
+    <xsl:text>/**&#xA;</xsl:text>
+    <xsl:call-template name="subComment">
+    	<xsl:with-param name="comment" select="'Constructs an enum with the given name.'"/>
+    	<xsl:with-param name="lineLength" select="80"/>
+    	<xsl:with-param name="indent" select="$indent"/>
+    	<xsl:with-param name="pos" select="1"/>
+    </xsl:call-template>
+    <xsl:value-of select="$indent"/>
+    <xsl:text> */&#xA;</xsl:text>
     <xsl:text>    private </xsl:text>
     <xsl:value-of select="name"/>
     <xsl:text>(int ordinal, String name)&#xA;</xsl:text>
     <xsl:text>    {&#xA;</xsl:text>
     <xsl:text>        super(ordinal, name);&#xA;</xsl:text>
     <xsl:text>    }&#xA;</xsl:text>
+    
+    <xsl:call-template name="accessorListJavaAPI1.5">
+    	<xsl:with-param name="className" select="name"/>
+    	<xsl:with-param name="indent" select="$indent"/>
+    </xsl:call-template>
+    
     <xsl:call-template name="Method">
 		<xsl:with-param name="JavaPrefix" select="$JavaPrefix"/>
 	</xsl:call-template>
@@ -403,14 +435,21 @@ old xsl code : codeList Template
   
 <!--	********************************************************
  		modification of AttributesForEnumType for type codeList
-		modified by Stephane, October 23 2003
+		modified by Stephane,	October 23 2003
+								November 17 2003 
  		********************************************************-->
   <xsl:template match="attribute">
   	<xsl:param name="className"/>
+  	<xsl:param name="indent"/>
   	<xsl:variable name="indice">
     	<xsl:number level="any" from="codeList"/>
     </xsl:variable>
-    <xsl:text>    public static final </xsl:text>
+     <xsl:call-template name="comment">
+    	<xsl:with-param name="comment" select="/comment"/>
+    	<xsl:with-param name="indent" select="$indent"/>
+    </xsl:call-template>    
+    <xsl:value-of select="$indent"/>
+    <xsl:text>public static final </xsl:text>
     <xsl:call-template name="UppercaseName">
     	<xsl:with-param name="attributeName" select="name"/>
     </xsl:call-template>
@@ -434,8 +473,63 @@ old xsl code : codeList Template
 	<xsl:value-of select="translate($attributeName, $lowerCase, $upperCase)"/>
 </xsl:template>
 
-<!-- end of section attribute for codeList type  -->
+<!--	*****************************************************************
+		add template list for Java 1.5 API
+		added by Stephane, November 17 2003
+		***************************************************************** -->
+<xsl:template name="attributeListJavaAPI1.5">
+	<xsl:param name="className"/>
+	<xsl:param name="indent"/>
+	<xsl:text>&#xA;</xsl:text>
+	<xsl:value-of select="$indent"/>
+	<xsl:text>/**&#xA;</xsl:text>
+	<xsl:call-template name="subComment">
+			<xsl:with-param name="comment" select="'List of all enumeration of this type.'"/>
+			<xsl:with-param name="lineLength" select="80"/>
+			<xsl:with-param name="indent" select="$indent"/>
+			<xsl:with-param name="pos" select="1"/>
+	</xsl:call-template>
+	<xsl:value-of select="$indent"/>
+	<xsl:text>&#x20;*/&#xA;</xsl:text>
+	<xsl:value-of select="$indent"/>
+	<xsl:text>private static final List&lt;</xsl:text>
+	<xsl:value-of select="$className"/>	
+	<xsl:text>&gt; FAMILY = Collections.unmodifiableList(Array.asList( { </xsl:text>
+	<xsl:for-each select="attribute">
+        <xsl:call-template name="UppercaseName">
+    		<xsl:with-param name="attributeName" select="name"/>
+    	</xsl:call-template>
+    	<xsl:if test="position()!=last()"> , </xsl:if>
+    </xsl:for-each>
+    <xsl:text> } ));&#xA;</xsl:text>
+</xsl:template>
 
+<xsl:template name="accessorListJavaAPI1.5">
+	<xsl:param name="className"/>
+	<xsl:param name="indent"/>
+	<xsl:text>&#xA;</xsl:text>
+	<xsl:value-of select="$indent"/>
+	<xsl:text>/**&#xA;</xsl:text>
+	<xsl:call-template name="subComment">
+			<xsl:with-param name="comment" select="'@inheritDoc'"/>
+			<xsl:with-param name="lineLength" select="80"/>
+			<xsl:with-param name="indent" select="$indent"/>
+			<xsl:with-param name="pos" select="1"/>
+	</xsl:call-template>
+	<xsl:value-of select="$indent"/>
+	<xsl:text>&#x20;*/&#xA;</xsl:text>
+    <xsl:value-of select="$indent"/>
+    <xsl:text>public List&lt;</xsl:text>
+    <xsl:value-of select="$className"/>
+    <xsl:text>&gt; family()&#xA;</xsl:text>
+    <xsl:value-of select="$indent"/>
+    <xsl:text>{&#xA;</xsl:text>
+    <xsl:value-of select="$indent"/><xsl:value-of select="$indent"/>
+    <xsl:text>return FAMILY;&#xA;</xsl:text>
+    <xsl:value-of select="$indent"/>
+    <xsl:text>}&#xA;</xsl:text>
+</xsl:template>
+<!-- end of section attribute for codeList type  -->
 
   
 <!-- EnumAttributeDefinition -->
@@ -660,8 +754,14 @@ old xsl code : codeList Template
 </xsl:template>
 
 <!-- Comment -->
+<!--	********************************************************
+ 		modification : add @author and @version tag for all classes
+		modified by Stephane, November 17 2003
+ 		********************************************************-->
 <xsl:template name="comment">
 	<xsl:param name="indent"/>
+	<xsl:param name="author"/>
+	<xsl:param name="version"/>
 	<xsl:if test="comment">
 		<xsl:text>&#xA;</xsl:text>	
 		<xsl:value-of select="$indent"/>
@@ -673,9 +773,33 @@ old xsl code : codeList Template
 			<xsl:with-param name="pos" select="1"/>
 		</xsl:call-template>
 		<xsl:value-of select="$indent"/>
+		
+		<xsl:if test="$author='true'">
+			<xsl:call-template name="subComment">
+				<xsl:with-param name="comment" select="' '"/>
+				<xsl:with-param name="lineLength" select="80"/>
+				<xsl:with-param name="indent" select="$indent"/>
+				<xsl:with-param name="pos" select="0"/>
+			</xsl:call-template>
+			<xsl:call-template name="subComment">
+				<xsl:with-param name="comment" select="'@author GeoAPI'"/>
+				<xsl:with-param name="lineLength" select="80"/>
+				<xsl:with-param name="indent" select="$indent"/>
+				<xsl:with-param name="pos" select="1"/>
+			</xsl:call-template>
+		</xsl:if>		
+		<xsl:if test="$version='true'">
+			<xsl:call-template name="subComment">
+				<xsl:with-param name="comment" select="concat('@version ',$Version)"/>
+				<xsl:with-param name="lineLength" select="80"/>
+				<xsl:with-param name="indent" select="$indent"/>
+				<xsl:with-param name="pos" select="1"/>
+			</xsl:call-template>
+		</xsl:if>		
 		<xsl:text> */&#xA;</xsl:text>
 	</xsl:if>
 </xsl:template>
+
 
 <!-- SubComment -->
 <xsl:template name="subComment">
