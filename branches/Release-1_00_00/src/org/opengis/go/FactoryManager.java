@@ -47,6 +47,13 @@ import org.opengis.go.display.DisplayFactory;
  * and on native code. The usual pattern for more complex services is to register a lightweight
  * proxy for the heavyweight service.</P>
  *
+ * <TABLE WIDTH="80%" ALIGN="center" CELLPADDING="18" BORDER="4" BGCOLOR="#FFE0B0"><TR><TD>
+ * This class is for demonstration purpose only and may be removed in future GeoAPI release.
+ * As long as <code>Factory</code> implementations register themselves in the
+ * <code>META-INF/services</code> directory, any implementation of a <code>FactoryManager</code>
+ * can find them. It doesn't need to be this one.
+ * </TD></TR></TABLE>
+ *
  * @author Open GIS Consortium, Inc.
  * @version 1.0
  */
@@ -88,8 +95,6 @@ public final class FactoryManager {
      * @return The default implementation of the {@link CommonFactory} interface.
      * @throws NoSuchElementException if no implementation was found for the
      *         {@link CommonFactory} interface.
-     *
-     * @revisit Allows the user to set ordering (i.e. preferred implementation).
      */
     public static synchronized CommonFactory getCommonFactory() throws NoSuchElementException {
         return (CommonFactory) getRegistry().getServiceProviders(CommonFactory.class, false).next();
@@ -112,8 +117,6 @@ public final class FactoryManager {
      * @return The default implementation of the {@link DisplayFactory} interface.
      * @throws NoSuchElementException if no implementation was found for the
      *         {@link DisplayFactory} interface.
-     *
-     * @revisit Allows the user to set ordering (i.e. preferred implementation).
      */
     public static synchronized DisplayFactory getDisplayFactory() throws NoSuchElementException {
         return (DisplayFactory) getRegistry().getServiceProviders(DisplayFactory.class, false).next();

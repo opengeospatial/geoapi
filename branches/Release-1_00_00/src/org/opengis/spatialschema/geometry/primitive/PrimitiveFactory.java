@@ -14,6 +14,7 @@ import java.util.List;
 
 // OpenGIS direct dependencies
 import org.opengis.spatialschema.geometry.Envelope;
+import org.opengis.spatialschema.geometry.DirectPosition;
 import org.opengis.spatialschema.geometry.geometry.Position;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 
@@ -81,6 +82,16 @@ public interface PrimitiveFactory {
      * @UML constructor GM_Primitive(GM_Envelope)
      */
     public Primitive createPrimitive(Envelope envelope);
+
+    /**
+     * Create a direct position at the specified location specified by coordinates.
+     */
+    public DirectPosition createDirectPosition(double[] coordinates);
+
+    /**
+     * Creates a point at the specified location specified by coordinates.
+     */
+    public Point createPoint(double[] coordinates);
 
     /**
      * Creates a point at the specified position.

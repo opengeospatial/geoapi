@@ -54,7 +54,6 @@ public interface DatumFactory extends Factory {
      * @param  primeMeridian Prime meridian to use in new geodetic datum.
      * @throws FactoryException if the object creation failed.
      *
-     * @revisit We need to define something equivalent to <code>WGS84ConversionInfo</code>.
      * @UML operation createHorizontalDatum
      */
     GeodeticDatum createGeodeticDatum(Map           properties,

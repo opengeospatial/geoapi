@@ -23,10 +23,6 @@ import org.opengis.spatialschema.geometry.DirectPosition;
  * @author ISO/DIS 19107
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 2.0
- *
- * @revisit Why this interface is not defined in the primitive package, since the sub-interfaces
- *          ({@link org.opengis.spatialschema.geometry.primitive.Curve} and {@link org.opengis.spatialschema.geometry.primitive.CurveSegment})
- *          belong to that package?
  */
 public interface GenericCurve {
     /**

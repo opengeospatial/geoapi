@@ -194,21 +194,6 @@ public interface ParameterValue extends GeneralParameterValue {
      *
      * @see #getValue
      * @see #setValue(Object)
-     *
-     * @revisit According the UML diagram, the return type should be {@link String}. However, a
-     *          {@link URL} has some advantages:
-     *          <ul>
-     *            <li>It allows the client to differenciate between {@link #stringValue} and
-     *                {@link #valueFile} using <code>{@linkplain #getValue()}.getClass()</code>.
-     *                This idiom can't work if both methods have the same return type.</li>
-     *            <li>{@link URL} imposes restrictions on the string format. It make easier for
-     *                the client to parse the string, especially since {@link URL} provides
-     *                convenience methods for that.</li>
-     *          </ul>
-     *          Should we stick with the less restrictive {@link String}? {@link java.net.URI} would
-     *          be an other alternative (it is little more than a structured string that supports some
-     *          operations), but unfortunatly {@link java.net.URI} is is not available for J2SE versions
-     *          prior to 1.4.
      */
     URL valueFile() throws InvalidParameterTypeException;
 

@@ -342,11 +342,4 @@ public interface Geometry extends TransfiniteSet {
      * @see org.opengis.referencing.cs.CoordinateSystem#getAxis
      */
     public Geometry getBuffer(double distance);
-
-    /**
-     * Releases any resources that may have been allocated for this object.
-     * It is an error to reference a geometry after its <code>dispose</code>
-     * method has been called.
-     */
-    public void dispose();
 }
