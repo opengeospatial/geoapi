@@ -1,3 +1,6 @@
+Specification-Title: GeoAPI
+Specification-Version: 1.1
+Specification-Vendor: OpenGIS Consortium
 
 Name: org/opengis/metadata*
 Specification-Title: Meta data

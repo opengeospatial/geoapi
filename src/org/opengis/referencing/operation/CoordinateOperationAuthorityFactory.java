@@ -9,6 +9,9 @@
  *************************************************************************************************/
 package org.opengis.referencing.operation;
 
+// J2SE dependencies
+import java.util.Set;
+
 // OpenGIS direct dependencies and extensions
 import org.opengis.referencing.AuthorityFactory;
 import org.opengis.referencing.FactoryException;
@@ -47,18 +50,6 @@ public interface CoordinateOperationAuthorityFactory extends AuthorityFactory {
      *
      * @throws NoSuchAuthorityCodeException if a specified code was not found.
      * @throws FactoryException if the object creation failed for some other reason.
-     *
-     * @revisit For datum shifts (geographic crs to geographic crs) the epsg database may define
-     *          many different coordinate operations for a single shift. For example, the EPSG
-     *          database defines 20 operations for shifting from a nad27 (epsg code 4267) to wgs84
-     *          (4326) CRS's. Possibles solutions:
-     *          <ul>
-     *            <li>change the return type from CoordinateOperation to some kind of java.util.Collection.
-     *                The collection would have a lazy iterator implementation, which creates the
-     *                CoordinateOperations only the first time the user invokes Iterator.next().</li>
-     *            <li>Allow some kind of Filter argument.</li>
-     *            <li>Return only the list of codes rather than the CoordinateOperations.</li>
-     *          </ul>
      */
-    CoordinateOperation createFromCoordinateReferenceSystemCodes(String sourceCode, String targetCode) throws FactoryException;
+    Set/*<CoordinateOperation>*/ createFromCoordinateReferenceSystemCodes(String sourceCode, String targetCode) throws FactoryException;
 }
