@@ -101,11 +101,17 @@ public class CommonFactoryManager {
             commonFactoryMap.put(cfClassName, commonFactory);
             
             // add subfactories to the factory lists
+            boundsFactoryList = new ArrayList(1);
             boundsFactoryList.add(commonFactory.getBoundsFactory());
+            crsFactoryList = new ArrayList(1);
             crsFactoryList.add(commonFactory.getCRSFactory());
+            crsAuthorityFactoryList = new ArrayList(1);
             crsAuthorityFactoryList.add(commonFactory.getCRSAuthorityFactory());
+            datumAuthorityFactoryList = new ArrayList(1);
             datumAuthorityFactoryList.add(commonFactory.getDatumAuthorityFactory());
+            datumFactoryList = new ArrayList(1);
             datumFactoryList.add(commonFactory.getDatumFactory());
+            spatialschemaFactoryList = new ArrayList(1);
             spatialschemaFactoryList.add(commonFactory.getSpatialschemaFactory());
 
         } catch (Exception e) {
