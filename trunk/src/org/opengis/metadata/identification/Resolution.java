@@ -11,7 +11,9 @@ package org.opengis.metadata.identification;
 
 // Annotations
 ///import org.opengis.annotation.UML;
+///import org.opengis.annotation.Profile;
 ///import static org.opengis.annotation.Obligation.*;
+///import static org.opengis.annotation.ComplianceLevel.*;
 
 
 /**
@@ -21,6 +23,7 @@ package org.opengis.metadata.identification;
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
  */
+///@Profile (level=CORE)
 ///@UML (identifier="MD_Resolution")
 public interface Resolution {
     /**
@@ -31,6 +34,7 @@ public interface Resolution {
      *
      * @unitof RepresentativeFraction
      */
+/// @Profile (level=CORE)
 /// @UML (identifier="equivalentScale", obligation=CONDITIONAL)
     double getEquivalentScale();
 
@@ -41,6 +45,7 @@ public interface Resolution {
      *
      * @unitof Distance
      */
+/// @Profile (level=CORE)
 /// @UML (identifier="distance", obligation=CONDITIONAL)
     double getDistance();
 }

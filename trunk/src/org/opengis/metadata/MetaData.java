@@ -28,7 +28,9 @@ import org.opengis.referencing.ReferenceSystem;
 
 // Annotations
 ///import org.opengis.annotation.UML;
+///import org.opengis.annotation.Profile;
 ///import static org.opengis.annotation.Obligation.*;
+///import static org.opengis.annotation.ComplianceLevel.*;
 
 
 /**
@@ -41,17 +43,20 @@ import org.opengis.referencing.ReferenceSystem;
  * @revisit Many method in this interface returns an array. Should we returns a
  *          {@link java.util.List} or {@link java.util.Set} instead?
  */
+///@Profile (level=CORE)
 ///@UML (identifier="MD_MetaData")
 public interface MetaData {
     /**
      * Unique identifier for this metadata file, or <code>null</code> if none.
      */
+/// @Profile (level=CORE)
 /// @UML (identifier="fileIdentifier", obligation=OPTIONAL)
     String getFileIdentifier();
 
     /**
      * Language used for documenting metadata.
      */
+/// @Profile (level=CORE)
 /// @UML (identifier="language", obligation=CONDITIONAL)
     Locale getLanguage();
 
@@ -60,6 +65,7 @@ public interface MetaData {
      *
      * @revisit We should use {@link java.nio.charset.Charset} if J2SE 1.4 is allowed.
      */
+/// @Profile (level=CORE)
 /// @UML (identifier="characterSet", obligation=OPTIONAL)
     String getCharacterSet();
 
@@ -88,24 +94,28 @@ public interface MetaData {
     /**
      * Party responsible for the metadata information.
      */
+/// @Profile (level=CORE)
 /// @UML (identifier="contact", obligation=MANDATORY)
     ResponsibleParty getContact();
 
     /**
      * Date that the metadata was created.
      */
+/// @Profile (level=CORE)
 /// @UML (identifier="dateStamp", obligation=MANDATORY)
     Date getDateStamp();
 
     /**
      * Name of the metadata standard (including profile name) used.
      */
+/// @Profile (level=CORE)
 /// @UML (identifier="metadataStandardName", obligation=OPTIONAL)
     String getMetadataStandardName();
 
     /**
      * Version (profile) of the metadata standard used.
      */
+/// @Profile (level=CORE)
 /// @UML (identifier="metadataStandardVersion", obligation=OPTIONAL)
     String getMetadataStandardVersion();
 
@@ -120,61 +130,65 @@ public interface MetaData {
      *
      * @revisit ISO 19115 use a <code>MD_ReferenceSystem</code> object instead of the ISO 19111 object.
      */
+/// @Profile (level=CORE)
 /// @UML (identifier="referenceSystemInfo", obligation=OPTIONAL)
-     Set/*<ReferenceSystem>*/ getReferenceSystemInfo();
+    Set/*<ReferenceSystem>*/ getReferenceSystemInfo();
 
-     /**
-      * Information describing metadata extensions.
-      */
+    /**
+     * Information describing metadata extensions.
+     */
 /// @UML (identifier="metadataExtensionInfo", obligation=OPTIONAL)
-     Set/*<MetadataExtensionInformation>*/ getMetadataExtensionInfo();
+    Set/*<MetadataExtensionInformation>*/ getMetadataExtensionInfo();
 
-     /**
-      * Basic information about the resource(s) to which the metadata applies.
-      */
+    /**
+     * Basic information about the resource(s) to which the metadata applies.
+     */
+/// @Profile (level=CORE)
 /// @UML (identifier="identificationInfo", obligation=MANDATORY)
-     Set/*<Identification>*/ getIdentificationInfo();
+    Set/*<Identification>*/ getIdentificationInfo();
 
-     /**
-      * Provides information about the feature catalogue and describes the coverage and
-      * image data characteristics.
-      */
+    /**
+     * Provides information about the feature catalogue and describes the coverage and
+     * image data characteristics.
+     */
 /// @UML (identifier="contentInfo", obligation=OPTIONAL)
-     Set/*<ContentInformation>*/ getContentInfo();
+    Set/*<ContentInformation>*/ getContentInfo();
 
-     /**
-      * Provides information about the distributor of and options for obtaining the resource(s).
-      */
+    /**
+     * Provides information about the distributor of and options for obtaining the resource(s).
+     */
+/// @Profile (level=CORE)
 /// @UML (identifier="distributionInfo", obligation=OPTIONAL)
-     Distribution getDistributionInfo();
+    Distribution getDistributionInfo();
 
-     /**
-      * Provides overall assessment of quality of a resource(s).
-      */
+    /**
+     * Provides overall assessment of quality of a resource(s).
+     */
+/// @Profile (level=CORE)
 /// @UML (identifier="dataQualityInfo", obligation=OPTIONAL)
-     Set/*<DataQuality>*/ getDataQualityInfo();
+    Set/*<DataQuality>*/ getDataQualityInfo();
 
-     /**
-      * Provides information about the catalogue of rules defined for the portrayal of a resource(s).
-      */
+    /**
+     * Provides information about the catalogue of rules defined for the portrayal of a resource(s).
+     */
 /// @UML (identifier="portrayalCatalogueInfo", obligation=OPTIONAL)
-     Set/*<PortrayalCatalogueReference>*/ getPortrayalCatalogueInfo();
+    Set/*<PortrayalCatalogueReference>*/ getPortrayalCatalogueInfo();
 
-     /**
-      * Provides restrictions on the access and use of data.
-      */
+    /**
+     * Provides restrictions on the access and use of data.
+     */
 /// @UML (identifier="metadataConstraints", obligation=OPTIONAL)
-     Set/*<Constraints>*/ getMetadataConstraints();
+    Set/*<Constraints>*/ getMetadataConstraints();
 
-     /**
-      * Provides information about the conceptual schema of a dataset.
-      */
+    /**
+     * Provides information about the conceptual schema of a dataset.
+     */
 /// @UML (identifier="applicationSchemaInfo", obligation=OPTIONAL)
-     Set/*<ApplicationSchemaInformation>*/ getApplicationSchemaInfo();
+    Set/*<ApplicationSchemaInformation>*/ getApplicationSchemaInfo();
      
-     /**
-      * Provides information about the frequency of metadata updates, and the scope of those updates.
-      */
+    /**
+     * Provides information about the frequency of metadata updates, and the scope of those updates.
+     */
 /// @UML (identifier="metadataMaintenance", obligation=OPTIONAL)
-     MaintenanceInformation getMetadataMaintenance();
+    MaintenanceInformation getMetadataMaintenance();
 }

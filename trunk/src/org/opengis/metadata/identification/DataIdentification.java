@@ -22,7 +22,9 @@ import org.opengis.util.InternationalString;
 
 // Annotations
 ///import org.opengis.annotation.UML;
+///import org.opengis.annotation.Profile;
 ///import static org.opengis.annotation.Obligation.*;
+///import static org.opengis.annotation.ComplianceLevel.*;
 
 
 /**
@@ -32,11 +34,13 @@ import org.opengis.util.InternationalString;
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
  */
+///@Profile (level=CORE)
 ///@UML (identifier="MD_DataIdentification")
 public interface DataIdentification extends Identification {
     /**
      * Method used to spatially represent geographic information.
      */
+/// @Profile (level=CORE)
 /// @UML (identifier="spatialRepresentationType", obligation=OPTIONAL)
     Set/*<SpatialRepresentationType>*/ getSpatialRepresentationTypes();
 
@@ -44,12 +48,14 @@ public interface DataIdentification extends Identification {
      * Factor which provides a general understanding of the density of spatial data
      * in the dataset.
      */
+/// @Profile (level=CORE)
 /// @UML (identifier="spatialResolution", obligation=OPTIONAL)
     Set/*<Resolution>*/ getSpatialResolutions();
 
     /**
      * Language(s) used within the dataset.
      */
+/// @Profile (level=CORE)
 /// @UML (identifier="language", obligation=MANDATORY)
     Set/*<Locale>*/ getLanguage();
 
@@ -58,12 +64,14 @@ public interface DataIdentification extends Identification {
      *
      * @revisit We should use {@link java.nio.charset.Charset} if J2SE 1.4 is allowed.
      */
+/// @Profile (level=CORE)
 /// @UML (identifier="characterSet", obligation=CONDITIONAL)
     String getCharacterSet();
 
     /**
      * Main theme(s) of the datset.
      */
+/// @Profile (level=CORE)
 /// @UML (identifier="topicCategory", obligation=MANDATORY)
     Set/*<TopicCategory>*/ getTopicCategories();
 
@@ -72,6 +80,7 @@ public interface DataIdentification extends Identification {
      * Only one of <code>getGeographicBox()</code> and {@link #getGeographicDescription()}
      * should be provided.
      */
+/// @Profile (level=CORE)
 /// @UML (identifier="geographicBox", obligation=CONDITIONAL)
     Set/*<GeographicBoundingBox>*/ getGeographicBox();
 
@@ -80,6 +89,7 @@ public interface DataIdentification extends Identification {
      * Only one of {@link #getGeographicBox()} and <code>getGeographicDescription()</code>
      * should be provided.
      */
+/// @Profile (level=CORE)
 /// @UML (identifier="geographicDescription", obligation=CONDITIONAL)
     Set/*<GeographicDescription>*/ getGeographicDescription();
 
@@ -94,6 +104,7 @@ public interface DataIdentification extends Identification {
      * Additional extent information including the bounding polygon, vertical, and temporal
      * extent of the dataset.
      */
+/// @Profile (level=CORE)
 /// @UML (identifier="extent", obligation=OPTIONAL)
     Set/*<Extent>*/ getExtent();
 
