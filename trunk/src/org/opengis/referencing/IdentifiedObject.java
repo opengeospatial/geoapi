@@ -58,8 +58,8 @@ public interface IdentifiedObject {
      *          "{@link org.opengis.referencing.datum.Ellipsoid ellipsoid}",
      *          "{@link org.opengis.referencing.operation.CoordinateOperation coordinateOperation}",
      *          "{@link org.opengis.referencing.operation.OperationMethod method}",
-     *          "{@link org.opengis.parameter.OperationParameter parameter}" and
-     *          "{@link org.opengis.parameter.OperationParameterGroup group}"
+     *          "{@link org.opengis.parameter.ParameterValueDescriptor parameter}" and
+     *          "{@link org.opengis.parameter.ParameterValueGroupDescriptor group}"
      *          prefix, which stands as an abbreviation for the enclosing class.
      */
     String getName(Locale locale);
