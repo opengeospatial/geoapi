@@ -57,4 +57,12 @@ public interface CoordinateReferenceSystem extends CRS {
      * @UML association usesDatum
      */
     public Datum getDatum();
+    
+	/**
+	 * Returns true if the CoordinateReferenceSystems are the same.
+	 * @param otherCrs the CoordinateReferenceSystem to compare this object to.
+	 * @return true if the two CoordinateReferenceSystems are the same.
+	 */
+	public boolean equals(CoordinateReferenceSystem otherCrs);
+
 }
