@@ -10,6 +10,7 @@
 package org.opengis.metadata.identification;
 
 // J2SE direct dependencies
+import java.nio.charset.Charset;
 import java.util.Collection;
 import java.util.Locale;
 
@@ -61,12 +62,10 @@ public interface DataIdentification extends Identification {
 
     /**
      * Full name of the character coding standard used for the dataset.
-     *
-     * @revisit We should use {@link java.nio.charset.Charset} if J2SE 1.4 is allowed.
      */
 /// @Profile (level=CORE)
 /// @UML (identifier="characterSet", obligation=CONDITIONAL)
-    String getCharacterSet();
+    Charset getCharacterSet();
 
     /**
      * Main theme(s) of the datset.

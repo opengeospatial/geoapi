@@ -26,7 +26,6 @@ public interface CoverageDescription extends ContentInformation {
     /**
      * Description of the attribute described by the measurement value.
      *
-     *
      * @revisit In the UML, the return type is <code>RecordType</code>, which is defined in
      *          ISO 19103. We currently map <code>RecordType</code> to a Java {@link Class},
      *          but it may be revisited in a future version.

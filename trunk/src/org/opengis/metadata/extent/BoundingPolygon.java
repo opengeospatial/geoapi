@@ -9,6 +9,9 @@
  *************************************************************************************************/
 package org.opengis.metadata.extent;
 
+// J2SE direct dependencies
+import java.util.Collection;
+
 // OpenGIS direct dependencies
 import org.opengis.spatialschema.geometry.Geometry;
 
@@ -30,13 +33,7 @@ import org.opengis.spatialschema.geometry.Geometry;
 public interface BoundingPolygon extends GeographicExtent {
     /**
      * Returns the sets of points defining the bounding polygon.
-     *
-     *
-     * @revisit The UML allow an arbitrary number of object to be returned. Should we return
-     *          an array? Furthermore, the UML return the most general type ({@link Geometry}).
-     *          We could returns an array of some more restrictive type, or allow this method
-     *          to returns some aggregate.
      */
 /// @UML (identifier="polygon", obligation=MANDATORY)
-    Geometry getPolygon();
+    Collection/*<Geometry>*/ getPolygon();
 }

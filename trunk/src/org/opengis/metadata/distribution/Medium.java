@@ -58,12 +58,9 @@ public interface Medium {
 
     /**
      * Method used to write to the medium.
-     *
-     * @revisit This is a list [0..N] in ISO 19115.
-     *          Maybe we should returns a Map<MediumFormat,Number> instead?
      */
 /// @UML (identifier="mediumFormat", obligation=OPTIONAL)
-    MediumFormat getMediumFormat();
+    Collection/*<MediumFormat>*/ getMediumFormat();
 
     /**
      * Description of other limitations or requirements for using the medium.
