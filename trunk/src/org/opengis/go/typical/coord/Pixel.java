@@ -11,7 +11,6 @@ package org.opengis.go.typical.coord;
 
 import java.awt.geom.Point2D;
 
-import org.opengis.crs.FactoryException;
 import org.opengis.crs.crs.CoordinateReferenceSystem;
 import org.opengis.crs.crs.ImageCRS;
 import org.opengis.go.CommonFactoryManager;
@@ -89,7 +88,7 @@ public class Pixel extends Point2D implements DirectPosition {
      * Initializes using the default Coordinate Reference System.
      */
     public Pixel() {
-        setCRS(findCRS(DEFAULT_COORDINATE_REFERENCE_SYSTEM_URL));
+        setCRS((ImageCRS)CommonFactoryManager.createCoordinateReferenceSystem(DEFAULT_COORDINATE_REFERENCE_SYSTEM_URL));
     }
 
     //*************************************************************************
@@ -103,22 +102,6 @@ public class Pixel extends Point2D implements DirectPosition {
         } else {
             ordinates = new double[2];
         }
-    }
-
-    /**
-     * Returns the Coordinate Reference System for the given URL.
-     * 
-     * @param crsURL Coordinate Reference System URL.
-     * @return Coordinate Reference System.
-     */
-    private ImageCRS findCRS(String crsURL) {
-        ImageCRS crs = null;
-        try {
-            crs = CommonFactoryManager.getCRSAuthorityFactory().createImageCRS(crsURL);
-        } catch(FactoryException fe) {
-            System.err.println(fe.getMessage());
-        }
-        return crs;
     }
 
     /**

@@ -13,7 +13,6 @@ import javax.units.NonSI;
 import javax.units.SI;
 import javax.units.Unit;
 
-import org.opengis.crs.FactoryException;
 import org.opengis.crs.crs.CoordinateReferenceSystem;
 import org.opengis.go.CommonFactoryManager;
 import org.opengis.go.spatial.PathType;
@@ -107,7 +106,7 @@ public class RangeBearing implements DirectPosition {
      * Initializes using the default Coordinate Reference System.
      */
     public RangeBearing() {
-        setCRS(findCRS(DEFAULT_COORDINATE_REFERENCE_SYSTEM_URL));
+        setCRS(CommonFactoryManager.createCoordinateReferenceSystem(DEFAULT_COORDINATE_REFERENCE_SYSTEM_URL));
     }
 
     //*************************************************************************
@@ -121,22 +120,6 @@ public class RangeBearing implements DirectPosition {
         } else {
             ordinates = new double[3];
         }
-    }
-
-    /**
-     * Returns the Coordinate Reference System for the given URL.
-     * 
-     * @param Coordinate Reference System URL.
-     * @return Coordinate Reference System.
-     */
-    private CoordinateReferenceSystem findCRS(String crsURL) {
-        CoordinateReferenceSystem crs = null;
-        try {
-            crs = CommonFactoryManager.getCRSAuthorityFactory().createCoordinateReferenceSystem(crsURL);
-        } catch(FactoryException fe) {
-            System.err.println(fe.getMessage());
-        }
-        return crs;
     }
 
     /**

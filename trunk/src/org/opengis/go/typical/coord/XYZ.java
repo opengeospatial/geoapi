@@ -9,7 +9,6 @@
  *************************************************************************************************/
 package org.opengis.go.typical.coord;
 
-import org.opengis.crs.FactoryException;
 import org.opengis.crs.crs.CoordinateReferenceSystem;
 import org.opengis.go.CommonFactoryManager;
 
@@ -78,7 +77,7 @@ public class XYZ {
      * Initializes the Coordinate Reference System to the supplied parameter.
      */
     public XYZ() {
-        setCRS(findCRS(DEFAULT_COORDINATE_REFERENCE_SYSTEM_URL));
+        setCRS(CommonFactoryManager.createCoordinateReferenceSystem(DEFAULT_COORDINATE_REFERENCE_SYSTEM_URL));
     }
 
     //*************************************************************************
@@ -92,21 +91,6 @@ public class XYZ {
         } else {
             ordinates = new double[3];
         }
-    }
-
-    /**
-     * Returns the Coordinate Reference System for the given URL.
-     * @param crsURL Coordinate Reference System URL.
-     * @return Coordinate Reference System.
-     */
-    private CoordinateReferenceSystem findCRS(String crsURL) {
-        CoordinateReferenceSystem crs = null;
-        try {
-            crs = CommonFactoryManager.getCRSAuthorityFactory().createCoordinateReferenceSystem(crsURL);
-        } catch(FactoryException fe) {
-            System.err.println(fe.getMessage());
-        }
-        return crs;  
     }
 
     /**
