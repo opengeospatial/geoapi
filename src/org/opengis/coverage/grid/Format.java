@@ -22,8 +22,6 @@ package org.opengis.coverage.grid;
 public interface Format {
     /**
      * Name of the file format.
-     * This name is used as the name of the file in the
-     * {@link GridCoverageExchange#exportTo exportTo} operation.
      *
      * @return the name of the file format.
      * @UML mandatory name
@@ -64,24 +62,15 @@ public interface Format {
     String getVersion();
 
     /**
-     * Number of optional parameters for the
-     * {@link GridCoverageExchange#exportTo exportTo} operation.
+     * Retrieve the parameter information for a {@link GridCoverageReader#read read} operation.
      *
-     * @return the number of optional parameters for the exportTo operation.
+     * @UML operation getParameterInfo
      * @UML mandatory numParameters
      */
-    int getNumParameters();
+    ParameterInfo[] getReadParameters();
 
     /**
-     * Retrieve the parameter information for a given index.
-     *
-     * @param index Index to the parameter.
-     * @return the parameter information for the given index.
-     * @throws IndexOutOfBoundsException if <code>index</code> is out of bounds.
-     * @UML operation getParameterInfo
-     *
-     * @revisit Need <code>getReadParameterInfo</code> and
-     *          <code>getWriteParameterInfo</code> methods.
+     * Retrieve the parameter information for a {@link GridCoverageWriter#write write} operation.
      */
-    ParameterInfo getParameterInfo(int index) throws IndexOutOfBoundsException;
+    ParameterInfo[] getWriteParameters();
 }
