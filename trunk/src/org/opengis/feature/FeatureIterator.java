@@ -1,3 +1,12 @@
+/*$************************************************************************************************
+ **
+ ** $Id$
+ **
+ ** $Source$
+ **
+ ** Copyright (C) 2003 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
+ **
+ *************************************************************************************************/
 package org.opengis.feature;
 
 import java.io.IOException;
@@ -26,7 +35,7 @@ public interface FeatureIterator extends Iterator/*<Feature>*/ {
      * exceptions that occur while executing this method must be wrapped in
      * a RuntimeException before being thrown.
      */
-    public Object /*Feature*/ next();
+    public /*{Feature}*/ Object next();
 
     /**
      * If supported by the underlying FeatureCollection, invoking this method
