@@ -122,7 +122,7 @@
              destdir          = "javadoc"
              use              = "true"
              nodeprecatedlist = "true"
-             author           = "false"
+             author           = "true"
              version          = "true"
              overview         = "sources/org/opengis/overview.html"
              windowtitle      = "OpenGIS API"
@@ -149,6 +149,7 @@
       <link href="http://java.sun.com/j2se/1.4/docs/api"/>
 
       <group title="Spatial Referencing by Coordinates" packages="org.opengis.rs:org.opengis.sc:org.opengis.cs:org.opengis.cd:org.opengis.cc:org.opengis.dq"/>
+      <group title="Feature Geometry" packages="org.opengis.gm*:org.opengis.tp*"/>
     </javadoc>
 
     <copy todir="javadoc/org/opengis/doc-files">
