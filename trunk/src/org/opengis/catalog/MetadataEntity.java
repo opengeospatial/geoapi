@@ -78,13 +78,13 @@ import java.util.List;
  */
 public interface MetadataEntity {
     /**
-     * Access to the values associated with metadata elements.
-     * The list is returned in the same order as described by the EntityType
+     * Access to the values associated with metadata {@linkplain Element elements}.
+     * The list is returned in the same order as described by the {@link EntityType}
      * schema information.
      *
-     * @return List of Elements
+     * @return List of {@linkplain Element element} values.
      */
-    List elements();
+    List/*<Object>*/ elements();
 
     /**
      * Access to Metadata element values specified by the xPath expression.
@@ -105,10 +105,9 @@ public interface MetadataEntity {
      * did not exist at all. Both these questions may answered by working
      * through the EntityType schema information.
      * </p>
-     * @param xPath XPath representation of element location.
      *
-     * @return element value, List of element value, or null if xPath did not
-     *         match anything.
+     * @param xPath XPath representation of element location.
+     * @return element value, List of element value, or null if xPath did not match anything.
      */
     Object getElement(String xPath);
 
@@ -122,9 +121,9 @@ public interface MetadataEntity {
     Object getElement(Element element);
 
     /**
-     * EntityType describes schema of this Metadata.
+     * Returns the entity type that describes the schema of this Metadata.
      *
-     * @return the EntityType that describes the current Metadata object
+     * @return the entity type that describes the current Metadata object
      */
     EntityType getEntityType();
 
@@ -135,8 +134,8 @@ public interface MetadataEntity {
      */
     public static interface EntityType {
         /**
-         * The cPath is used to identify Elements in the Metadata data hierarchy
-         * If the xpath has wild cards a List of Metadata Elements will be returned.
+         * The xPath is used to identify {@linkplain Element elements} in the Metadata data
+         * hierarchy. If the xPath has wild cards a list of Metadata Elements will be returned.
          * 
          * @param xpath an XPath statement that indicates 0 or more Elements.
          * @return Null if no elements are found to match the xpath 
@@ -146,14 +145,13 @@ public interface MetadataEntity {
         Object getElement(String xpath);
 
         /**
-         * Get a List of all the Elements this Entity contains.
-         * Only the elements contained by the current Entity are returned,
-         * in other words this method is not recursive, elements in sub-enities
-         * are not returned.
+         * Get a List of all the {@linkplain Element elements} this <code>EntityType</code> contains.
+         * Only the elements contained by the current <code>EntityType</code> are returned,
+         * in other words this method is not recursive, elements in sub-enties are not returned.
          *
-         * @return a List of all the Elements this Entity contains
+         * @return a List of all the {@linkplain Element elements} this <code>EntityType</code> contains.
          */
-        List getElements();
+        List/*<Element>*/ getElements();
     }
 
     /**
