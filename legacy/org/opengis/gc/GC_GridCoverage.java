@@ -9,14 +9,14 @@
  * You can redistribute it, but should not modify it unless
  * for greater OpenGIS compliance.
  */
-package org.opengis.coverage.grid;
+package org.opengis.gc;
 
 // Remote Method Invocation
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 
 // GCS dependencies
-import org.opengis.coverage.CV_Coverage;
+import org.opengis.cv.CV_Coverage;
 
 
 /**

@@ -9,7 +9,7 @@
  * on the SEAGIS web site (seagis.sourceforge.net). THIS FILE WILL LIKELY
  * BE REPLACED BY NEXT VERSION OF OPENGIS SPECIFICATIONS.
  */
-package org.opengis.crs.cs;
+package org.opengis.cs;
 
 // Various JDK's classes
 import java.io.Serializable;

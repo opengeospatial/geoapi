@@ -9,7 +9,7 @@
  * You can redistribute it, but should not modify it unless
  * for greater OpenGIS compliance.
  */
-package org.opengis.coverage.grid;
+package org.opengis.gc;
 
 // CSS dependencies
 import org.opengis.ct.CT_MathTransform;
@@ -36,7 +36,7 @@ public interface GC_GridGeometry {
      * The math transform allows for the transformations from grid coordinates to real
      * world earth coordinates. The transform is often an affine transformation. The
      * coordinate system of the real world coordinates is given by the
-     * {@link org.opengis.coverage.CV_Coverage#getCoordinateSystem} method.
+     * {@link org.opengis.cv.CV_Coverage#getCoordinateSystem} method.
      * If no math transform is given, this attribute will be <code>null</code>.
      */
     CT_MathTransform getGridToCoordinateSystem();

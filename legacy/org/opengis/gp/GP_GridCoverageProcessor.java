@@ -9,11 +9,11 @@
  * You can redistribute it, but should not modify it unless
  * for greater OpenGIS compliance.
  */
-package org.opengis.coverage.processing;
+package org.opengis.gp;
 
 // GCS dependencies
-import org.opengis.coverage.grid.GC_Parameter;
-import org.opengis.coverage.grid.GC_GridCoverage;
+import org.opengis.gc.GC_Parameter;
+import org.opengis.gc.GC_GridCoverage;
 
 // Remote Method Invocation
 import java.rmi.Remote;

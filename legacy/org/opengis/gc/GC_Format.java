@@ -9,7 +9,7 @@
  * You can redistribute it, but should not modify it unless
  * for greater OpenGIS compliance.
  */
-package org.opengis.coverage.grid;
+package org.opengis.gc;
 
 // Remote Method Invocation
 import java.rmi.Remote;
