@@ -7,7 +7,7 @@ import org.opengis.filter.expression.Expression;
  * indicate that text should be drawn starting at a particular point and
  * extending in a straight line.
  */
-public interface PointPlacement {
+public interface PointPlacement extends TextPlacement {
     /**
      * Returns an expression that indicates the position within the bounding
      * box of the text that is anchored to the geometry point.

@@ -4,7 +4,7 @@ package org.opengis.sld;
  * Instances of this interface point to an external file that contains an image
  * of some kind, such as a CGM, JPG, or SVG.
  */
-public interface ExternalGraphic {
+public interface ExternalGraphic extends ExternalGraphicOrMark {
     /**
      * Returns a URL to a file (perhaps a local file) that contains an image.
      * This can be null if the image is already loaded locally and the

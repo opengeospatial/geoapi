@@ -6,7 +6,7 @@ import org.opengis.filter.expression.Expression;
  * Implementations of this interface indicate that one of a few predefined
  * shapes will be drawn at the points of the geometry.
  */
-public interface Mark {
+public interface Mark extends ExternalGraphicOrMark {
     /**
      * Returns the expression whose value will indicate the symbol to draw.
      * At least the following values must be accepted: "square", "circle",

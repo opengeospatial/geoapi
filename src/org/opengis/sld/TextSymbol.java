@@ -29,44 +29,18 @@ public interface TextSymbol extends Symbol {
     public List getFonts();
 
     /**
-     * Returns the object that indicates that the text should be drawn relative
-     * to the points in the geometry.
-     * Between the PointPlacement and LinePlacement property, exactly one must
-     * be non-null since a TextSymbol has either a PointPlacement or a
-     * LinePlacement, but not both.
+     * Returns the object that indicates how the text should be placed with
+     * respect to the feature geometry.  This object will either be an instance
+     * of <code>LinePlacement</code> or <code>PointPlacement</code>.
      */
-    public PointPlacement getPointPlacement();
+    public TextPlacement getPlacement();
 
     /**
-     * Sets the object that indicates that the text should be drawn relative
-     * to the points in the geometry.
-     * Between the PointPlacement and LinePlacement property, exactly one must
-     * be non-null since a TextSymbol has either a PointPlacement or a
-     * LinePlacement, but not both.
-     * Setting this property to a non-null value will immediately set the
-     * LinePlacement property to null.
+     * Sets the object that indicates how the text should be placed with
+     * respect to the feature geometry.  This object must either be an instance
+     * of <code>LinePlacement</code> or <code>PointPlacement</code>.
      */
     public void setPointPlacement(PointPlacement pointPlacement);
-
-    /**
-     * Returns the object that indicates that the text should be drawn bending
-     * around the lines of the geometry.
-     * Between the PointPlacement and LinePlacement property, exactly one must
-     * be non-null since a TextSymbol has either a PointPlacement or a
-     * LinePlacement, but not both.
-     */
-    public LinePlacement getLinePlacement();
-
-    /**
-     * Returns the object that indicates that the text should be drawn bending
-     * around the lines of the geometry.
-     * Between the PointPlacement and LinePlacement property, exactly one must
-     * be non-null since a TextSymbol has either a PointPlacement or a
-     * LinePlacement, but not both.
-     * Setting this property to a non-null value will immediately set the
-     * PointPlacement property to null.
-     */
-    public void setLinePlacement(LinePlacement linePlacement);
 
     /**
      * Returns the object that indicates if a Halo will be drawn around the

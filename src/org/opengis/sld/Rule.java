@@ -78,45 +78,33 @@ public interface Rule {
 
     /**
      * Returns the Filter that will limit the features for which this Rule will
-     * fire.  Of this method and the getElseFilter method, only one may return a
-     * non-null value since a Rule has either a Filter or an ElseFilter, but not
-     * both.
-     * If both the Filter and ElseFilter properties are null (the default), then
-     * this rule will fire for all features.
+     * fire.  This can only be non-null if <code>isElseFilter</code> returns
+     * false.  If this value is null and <code>isElseFilter</code> is false,
+     * this means that this Rule should fire for all features.
      */
     public Filter getFilter();
 
     /**
      * Sets the Filter that will limit the features for which this Rule will
-     * fire.  Between the getFilter and the getElseFilter methods, only one may
-     * return a non-null value since a Rule has either a Filter or an
-     * ElseFilter, but not both.  Therefore, setting the filter to a non-null
-     * value will have the effect of immediately setting the ElseFilter to null.
-     * If both the Filter and ElseFilter properties are null (the default), then
-     * this rule will fire for all features.
+     * fire.  This can only be non-null if <code>isElseFilter</code> returns
+     * false.  If this value is null and <code>isElseFilter</code> is false,
+     * this means that this Rule should fire for all features.
      */
     public void setFilter(Filter filter);
 
     /**
-     * Returns a non-null value if this Rule is to fire for features that have
-     * not yet had a Rule fire in our enclosing FeatureStyle.
-     * Of this method and the getFilter method, only one may return a non-null
-     * value since a Rule has either a Filter or an ElseFilter, but not both.
-     * If both the Filter and ElseFilter properties are null (the default), then
-     * this rule will fire for all features.
+     * Returns true if this Rule is to fire only if no other Rules in the
+     * containing style have fired yet.  If this is true, then the filter must
+     * be null.
      */
-    public ElseFilter getElseFilter();
+    public boolean isElseFilter();
 
     /**
-     * If a non-null value is passed to this method, it indicates that this Rule
-     * is to fire for features that have not yet had a Rule fire in our
-     * enclosing FeatureStyle.  Between the getFilter and getElseFilter methods,
-     * only one may return a non-null value since a Rule has either a Filter or
-     * an ElseFilter, but not both.  If both the Filter and ElseFilter
-     * properties are null (the default), then this rule will fire for all
-     * features.
+     * Sets the flag that indicates whether this Rule is an "else filter".  A
+     * value of true indicates that this rule is to fire only if no other Rules
+     * in the containing style have fired.
      */
-    public void setElseFilter(ElseFilter elseFilter);
+    public void setElseFilter(boolean newValue);
 
     /**
      * Returns the minimum value in the denominator of the current map scale
@@ -126,7 +114,7 @@ public interface Rule {
      * A value of zero indicates that there is no minimum.
      */
     public double getMinScaleDenominator();
-    
+
     /**
      * Sets the minimum value in the denominator of the current map scale at
      * which this Rule will fire.
