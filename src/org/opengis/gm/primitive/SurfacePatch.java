@@ -8,12 +8,13 @@ import org.opengis.gm.geometry.GenericSurface;
 
 
 /**
- * GM_SurfacePatch (Figure 20) defines a homogeneous portion of a GM_Surface. The multiplicity
- * of the association "Segmentation" (Figure 12) specifies that each GM_SurfacePatch
- * shall be in at most one GM_Surface. 
- *  
- * @author GeoAPI
- * @version 1.0
+ * Defines a homogeneous portion of a {@link Surface}.
+ * Each <code>SurfacePatch</code> shall be in at most one {@link Surface}.
+ *
+ * @UML type GM_SurfacePatch
+ * @author ISO/DIS 19107
+ * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
+ * @version 2.0
  */
 public interface SurfacePatch extends GenericSurface {
     /**
@@ -34,7 +35,43 @@ public interface SurfacePatch extends GenericSurface {
      */
     public Surface getSurface();
 
-//    public GM_SurfaceInterpolation interpolation;
-//    public  numDerivativesOnBoundary[0..1];
-//    public GM_SurfaceBoundary boundary () { return null; }
+    /**
+     * Determines the surface interpolation mechanism used for this <code>SurfacePatch</code>.
+     * This mechanism uses the control points and control parameters defined in the various
+     * subclasses to determine the position of this <code>SurfacePatch</code>.
+     *
+     * @return The interpolation mechanism.
+     * @UML operation interpolation
+     */
+    public SurfaceInterpolation getInterpolation();
+
+    /**
+     * Specifies the type of continuity between this surface patch and its immediate neighbors
+     * with which it shares a boundary curve. The sequence of values corresponds to the
+     * {@link Ring}s in the {@link SurfaceBoundary} returned by {@link #getBoundary} for this patch.
+     * The default value of "0" means simple continuity, which is a mandatory minimum level of
+     * continuity. This level is referred to as "C<sup>0</sup>" in mathematical texts. A value of
+     * 1 means that the functions are continuous and differentiable at the appropriate end point:
+     * "C<sup>1</sup>" continuity. A value of "n" for any integer means <var>n</var>-times
+     * differentiable: "C<sup>n</sup>" continuity.
+     *
+     * @return The type of continuity between this surface patch and its immediate neighbors.
+     * @UML operation numDerivativesOnBoundary
+     */
+    public int getNumDerivativesOnBoundary();
+
+    /**
+     * Returns the boundary of this <code>SurfacePatch</code> represented as a collection of
+     * {@link OrientableCurve}s organized into {@link Ring}s by a {@link SurfaceBoundary}.
+     * The semantics of this operation is the same as that of
+     * {@link Surface#getBoundary()}, except that the curves used here may be not be persistent
+     * {@link OrientableCurve} instances. Transient data type values of {@link Curve} are also
+     * valid. In the normal case, <code>SurfacePatch</code>es will share parts of their boundary
+     * with the aggregate {@link Surface}, and other parts with <code>SurfacePatch</code>es (not
+     * necessarily distinct).
+     *
+     * @return The boundary of this <code>SurfacePatch</code>
+     * @UML operation boundary
+     */
+    public SurfaceBoundary getBoundary();
 }

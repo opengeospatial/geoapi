@@ -13,7 +13,7 @@ import org.opengis.gm.primitive.CurveSegment;
 /**
  * A sequence of line segments, each having a parameterization like the one
  * {@link LineSegment}. The class essentially combines a
- * {@link List List&lt;LineSegments&gt;} into a single object,
+ * {@link List List&lt;LineSegment&gt;} into a single object,
  * with the obvious savings of storage space.
  *  
  * @UML datatype GM_LineString

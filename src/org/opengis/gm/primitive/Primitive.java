@@ -79,7 +79,7 @@ public interface Primitive extends Geometry {
      * Returns the <code>Primitive</code>s which are by definition coincident with this one.
      *
      * @return The set of primitives which contains this primitive.
-     * @UML association containedPrimitive
+     * @UML association containingPrimitive
      *
      * @revisit Using a {@link Set} returns type allows the user to add or remove element in
      *          this set at his convenience. Is it the right interpretation of this specification?
