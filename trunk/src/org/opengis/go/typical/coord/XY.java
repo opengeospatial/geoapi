@@ -15,7 +15,7 @@ import org.opengis.crs.crs.CoordinateReferenceSystem;
 import org.opengis.crs.crs.CoordinateReferenceSystemFactory;
 import org.opengis.crs.crs.UnsupportedCRSException;
 import org.opengis.go.CommonFactoryManager;
-import org.opengis.spatialschema.DirectPosition;
+import org.opengis.spatialschema.geometry.DirectPosition;
 
 /**
  * <code>XY</code> represents
@@ -56,7 +56,7 @@ public class XY implements DirectPosition {
      */
     public XY(double x, double y, CoordinateReferenceSystem crs) throws UnsupportedCRSException {
         this.crs = crs;
-        ordinates = new double[crs.getDimension()];
+        ordinates = new double[crs.getCoordinateSystem().getDimension()];
         ordinates[0] = x;
         ordinates[1] = y;
     }
@@ -67,7 +67,7 @@ public class XY implements DirectPosition {
      */
     public XY(CoordinateReferenceSystem crs) throws UnsupportedCRSException {
         this.crs = crs;
-        ordinates = new double[crs.getDimension()];
+        ordinates = new double[crs.getCoordinateSystem().getDimension()];
     }
 
     /**
@@ -75,7 +75,7 @@ public class XY implements DirectPosition {
      */
     public XY() throws UnsupportedCRSException {
         this.crs = findCRS(DEFAULT_COORDINATE_REFERENCE_SYSTEM_URL);
-        ordinates = new double[crs.getDimension()];
+        ordinates = new double[crs.getCoordinateSystem().getDimension()];
     }
 
     ////
@@ -175,7 +175,7 @@ public class XY implements DirectPosition {
      * @return the dimension.
      */
     public int getDimension() {
-        return crs.getDimension();
+        return crs.getCoordinateSystem().getDimension();
     }
     
     /**
@@ -193,7 +193,14 @@ public class XY implements DirectPosition {
     public double getOrdinate(int dimension) {
         return ordinates[dimension];
     }
-    
+
+    /**
+     * Returns all coordinates.
+     */
+    public double[] getCoordinates() {
+        return (double[]) ordinates.clone();
+    }
+
     /** 
      * Dispose of this class.
      */

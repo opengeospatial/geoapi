@@ -1,8 +1,8 @@
 package org.opengis.go.display.style;
 
 import org.opengis.go.display.primitive.Graphic;
-import org.opengis.spatialschema.DirectPosition;
-import org.opengis.spatialschema.geometry.PointArray;
+import org.opengis.spatialschema.geometry.DirectPosition;
+import org.opengis.spatialschema.geometry.geometry.PointArray;
 
 /**
  * The <code>GraphicSymbol</code> interface is used to draw a symbolic graphic

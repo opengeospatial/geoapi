@@ -9,7 +9,7 @@
  *************************************************************************************************/
 package org.opengis.go.geometry;
 
-import org.opengis.spatialschema.DirectPosition;
+import org.opengis.spatialschema.geometry.DirectPosition;
 
 /**
  * The <code>BoundingPolygon</code> class represents a bounds object

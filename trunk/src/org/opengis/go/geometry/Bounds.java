@@ -10,7 +10,7 @@
 package org.opengis.go.geometry;
 
 import org.opengis.crs.crs.CoordinateReferenceSystem;
-import org.opengis.spatialschema.DirectPosition;
+import org.opengis.spatialschema.geometry.DirectPosition;
 
 /**
  * The <code>Bounds</code> interface serves as the base interface

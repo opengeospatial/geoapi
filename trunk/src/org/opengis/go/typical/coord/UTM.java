@@ -18,7 +18,7 @@ import org.opengis.crs.crs.CoordinateReferenceSystem;
 import org.opengis.crs.crs.CoordinateReferenceSystemFactory;
 import org.opengis.crs.crs.UnsupportedCRSException;
 import org.opengis.go.CommonFactoryManager;
-import org.opengis.spatialschema.DirectPosition;
+import org.opengis.spatialschema.geometry.DirectPosition;
 
 /**
  * <code>UTM</code> represents
@@ -81,7 +81,7 @@ public class UTM implements DirectPosition {
         CoordinateReferenceSystem crs)
         throws UnsupportedCRSException {
         this.crs = crs;
-        ordinates = new double[crs.getDimension()];
+        ordinates = new double[crs.getCoordinateSystem().getDimension()];
         setNorthing(northing, unit);
         setEasting(easting, unit);
         setAltitude(altitude, altitudeUnit);
@@ -92,14 +92,14 @@ public class UTM implements DirectPosition {
      */
     public UTM(CoordinateReferenceSystem crs) throws UnsupportedCRSException {
         this.crs = crs;
-        ordinates = new double[crs.getDimension()];
+        ordinates = new double[crs.getCoordinateSystem().getDimension()];
     }
     /**
      * Initializes using the default Coordinate Reference System.
      */
     public UTM() throws UnsupportedCRSException {
         this.crs = findCRS(DEFAULT_COORDINATE_REFERENCE_SYSTEM_URL);
-        ordinates = new double[crs.getDimension()];
+        ordinates = new double[crs.getCoordinateSystem().getDimension()];
     }
     ////
     // Methods for UTM.
@@ -209,7 +209,7 @@ public class UTM implements DirectPosition {
      * @return the dimension.
      */
     public int getDimension() {
-        return crs.getDimension();
+        return crs.getCoordinateSystem().getDimension();
     }
     /**
      * Generically sets the generic value if this coordinate for the given dimension.
@@ -225,7 +225,13 @@ public class UTM implements DirectPosition {
     public double getOrdinate(int dimension) {
         return ordinates[dimension];
     }
-    /** 
+    /**
+     * Returns all coordinates.
+     */
+    public double[] getCoordinates() {
+        return (double[]) ordinates.clone();
+    }
+    /**
      * Dispose of this class.
      */
     public void dispose() {

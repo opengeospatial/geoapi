@@ -9,7 +9,7 @@
  *************************************************************************************************/
 package org.opengis.go.display.primitive;
 
-import org.opengis.spatialschema.geometry.SurfaceBoundary;
+import org.opengis.spatialschema.geometry.primitive.SurfaceBoundary;
 
 /**
  * Defines a common abstraction for implementations that drawing the

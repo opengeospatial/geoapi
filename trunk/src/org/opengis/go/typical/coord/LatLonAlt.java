@@ -18,7 +18,7 @@ import org.opengis.crs.crs.CoordinateReferenceSystem;
 import org.opengis.crs.crs.CoordinateReferenceSystemFactory;
 import org.opengis.crs.crs.UnsupportedCRSException;
 import org.opengis.go.CommonFactoryManager;
-import org.opengis.spatialschema.DirectPosition;
+import org.opengis.spatialschema.geometry.DirectPosition;
 
 /**
  * <code>LatLonAlt</code> represents a position on the Earth denoted by 
@@ -119,8 +119,11 @@ public class LatLonAlt implements DirectPosition {
     private void setCRS(CoordinateReferenceSystem crs) {
         this.crs = crs;
         if (crs != null) {
-            units = crs.getUnits();
-            ordinates = new double[crs.getDimension()];
+            ordinates = new double[crs.getCoordinateSystem().getDimension()];
+            units = new Unit[ordinates.length];
+            for (int i=0; i<units.length; i++) {
+                units[i] = crs.getCoordinateSystem().getAxis(i).getUnit();
+            }
         } else {
             units = new Unit[] {SI.RADIAN, SI.RADIAN, SI.METER};
             ordinates = new double[3];
@@ -288,7 +291,7 @@ public class LatLonAlt implements DirectPosition {
      * @return the dimension.
      */
     public int getDimension() {
-        return crs.getDimension();
+        return crs.getCoordinateSystem().getDimension();
     }
     
     /**
@@ -305,6 +308,13 @@ public class LatLonAlt implements DirectPosition {
      */
     public double getOrdinate(int dimension) {
         return ordinates[dimension];
+    }
+
+    /**
+     * Returns all coordinates.
+     */
+    public double[] getCoordinates() {
+        return (double[]) ordinates.clone();
     }
     
     /** 

@@ -17,8 +17,8 @@ import org.opengis.util.Cloneable;
 /**
  * Holds the coordinates for a position within some coordinate reference system. Since
  * <code>DirectPosition</code>s, as data types, will often be included in larger objects
- * (such as {@linkplain org.opengis.gm.Geometry geometries}) that have references to
- * {@linkplain CRS}, the {@link #getCoordinateReferenceSystem} method may returns
+ * (such as {@linkplain org.opengis.spatialschema.geometry.Geometry geometries}) that have
+ * references to {@linkplain CRS}, the {@link #getCoordinateReferenceSystem} method may returns
  * <code>null</code> if this particular <code>DirectPosition</code> is included in a larger
  * object with such a reference to a {@linkplain CRS}. In this case, the cordinate reference
  * system is implicitly assumed to take on the value of the containing object's {@linkplain CRS}.
@@ -28,8 +28,8 @@ import org.opengis.util.Cloneable;
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version $Revision$, $Date$
  *
- * @revisit: Version number: I suggest to use <strong>specification</strong> version number
- *           (here 2.0).
+ * @revisit Version number: I suggest to use <strong>specification</strong> version number
+ *          (here 2.0).
  */
 public interface DirectPosition extends Cloneable {
     /**

@@ -23,9 +23,11 @@ import org.opengis.crs.operation.CoordinateTransformation;
  * @version $Revision$, $Date$
  */
 public interface CoordinateReferenceSystemFactory {
-	
-	public static String COORDINATE_REFERECE_SYSTEM_URL = "COORDINATE_REFERECE_SYSTEM_URL";
-	
+    /**
+     * @revisit What is it for?
+     */
+    public static String COORDINATE_REFERECE_SYSTEM_URL = "COORDINATE_REFERECE_SYSTEM_URL";
+
     /**
      * Gets a <code>CoordinateReferenceSystem</code> by a criteria set in the form of a <code>Properties</code> object. 
      * The criteria are implementation-specific, and the implementation choses which <code>CoordinateReferenceSystem</code> 
@@ -35,7 +37,7 @@ public interface CoordinateReferenceSystemFactory {
      * @throws UnsupportedCRSException if the criteria cannot be met
      */
     public CoordinateReferenceSystem getCoordinateReferenceSystem(Properties criteria) throws UnsupportedCRSException;
-    
+
     /**
      * Returns the <code>CoordinateTransformation</code> object for this
      * <code>CoordinateReferenceSystem</code>. This allows the 
@@ -44,7 +46,8 @@ public interface CoordinateReferenceSystemFactory {
      * PENDING(jdc): this definition doesn't make sense...this is a Factory, not a CRS.  
      * is this method misplaced?
      * @return the coordinate transformation object
+     *
+     * @revisit This method should be defined in a coordinate transformation factory.
      */    
     public CoordinateTransformation getCoordinateTransformation();
-
 }

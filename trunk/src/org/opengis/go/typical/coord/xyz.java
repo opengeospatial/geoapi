@@ -54,7 +54,7 @@ public class XYZ {
     public XYZ(double x, double y, double z, CoordinateReferenceSystem crs)
         throws UnsupportedCRSException {
         this.crs = crs;
-        ordinates = new double[crs.getDimension()];
+        ordinates = new double[crs.getCoordinateSystem().getDimension()];
         ordinates[0] = x;
         ordinates[1] = y;
         ordinates[2] = z;
@@ -66,7 +66,7 @@ public class XYZ {
      */
     public XYZ(CoordinateReferenceSystem crs) throws UnsupportedCRSException {
         this.crs = crs;
-        ordinates = new double[crs.getDimension()];
+        ordinates = new double[crs.getCoordinateSystem().getDimension()];
     }
 
     /**
@@ -75,7 +75,7 @@ public class XYZ {
      */
     public XYZ() throws UnsupportedCRSException {
         crs = findCRS(DEFAULT_COORDINATE_REFERENCE_SYSTEM_URL);
-        ordinates = new double[crs.getDimension()];
+        ordinates = new double[crs.getCoordinateSystem().getDimension()];
     }
 
     ////
@@ -143,6 +143,13 @@ public class XYZ {
      */
     public double getOrdinate(int dimension) {
         return ordinates[dimension];
+    }
+
+    /**
+     * Returns all coordinates.
+     */
+    public double[] getCoordinates() {
+        return (double[]) ordinates.clone();
     }
 
     /**

@@ -9,7 +9,7 @@
  *************************************************************************************************/
 package org.opengis.go.display.canvas;
 
-import org.opengis.spatialschema.DirectPosition;
+import org.opengis.spatialschema.geometry.DirectPosition;
 
 /**
  * Instances of this interface (and its sub-interfaces) describe the current
