@@ -12,11 +12,13 @@ package org.opengis.feature;
 // J2SE direct dependencies
 import java.util.List;
 import java.io.IOException;
+import java.net.URL;
 
 // OpenGIS direct dependencies
 import org.opengis.filter.Filter;
 import org.opengis.sld.FeatureStyle;
 import org.opengis.util.GenericName;
+import org.opengis.util.InternationalString;
 
 
 /**
@@ -26,6 +28,34 @@ import org.opengis.util.GenericName;
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  */
 public interface DataStore {
+    /**
+     * Icon representing this DataStore.
+     * <p>
+     * Assumed 16x16 in size.
+     * </p>
+     * @return URL to a icon (GIF or PNG) representing this DataStore.
+     */
+    URL getIcon();
+    
+    /** Display name for this Datastore. */
+    InternationalString getDisplayName();
+    
+    /**
+     * Description of this DataStore.
+     */
+    InternationalString getDescription();
+    
+    /**
+     * Access to metadata about this DataStore.
+     * <p>
+     * Note this is an example of the bridge pattern, client code should not
+     * cache this metadata object to ensure that they are never out of date.
+     * </p>
+     * <p>
+     * It is too much overhead to indicate metadata changing with an extra set of
+     * events, DataStoreEvents will be used to indicate new content is available. 
+     */
+    // Metadata getMetadata();
     /**
      * Gets a list of all the names of the types held in this data store.
      * Objects in the returned list will be instances of GenericName.
