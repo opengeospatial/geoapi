@@ -57,10 +57,8 @@ public interface SurfaceBoundary extends PrimitiveBoundary {
      *
      * @return The interior rings. Never <code>null</code>, but may be an empty array.
      * @UML operation interior
-     *
-     * @revisit Should we use the plural form for this method name?
      */
-    public Ring[] getInterior();
+    public Ring[] getInteriors();
 
     /**
      * Constructs a {@link Surface} by indicating its boundary as a collection

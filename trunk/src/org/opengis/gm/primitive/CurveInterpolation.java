@@ -113,7 +113,7 @@ public class CurveInterpolation extends CodeList {
     /**
      * List of all enumeration of this type.
      */
-    private static final List/*<CurveInterpolation>*/ FAMILY = Collections.unmodifiableList(
+    private static final List/*<CurveInterpolation>*/ VALUES = Collections.unmodifiableList(
         Arrays.asList( new CurveInterpolation[] {
                        LINEAR, GEODESIC, CIRCULAR_ARC_3POINTS, CIRCULAR_ARC_2POINTS_WITH_BULGE,
                        ELLIPTICAL, CLOTHOID, CONIC, POLYNOMIAL_SPLINE, CUBIC_SPLINE,
@@ -129,7 +129,14 @@ public class CurveInterpolation extends CodeList {
     /**
      * Returns the list of <code>CurveInterpolation</code>s.
      */
+    public static List values() {
+        return VALUES;
+    }
+
+    /**
+     * Returns the list of enumerations of the same kind than this enum.
+     */
     public List/*<CurveInterpolation>*/ family() {
-        return FAMILY;
+        return VALUES;
     }
 }

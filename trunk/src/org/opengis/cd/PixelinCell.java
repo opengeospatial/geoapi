@@ -44,7 +44,7 @@ public final class PixelinCell extends CodeList {
     /**
      * List of all enumerations of this type.
      */
-    private static final List FAMILY = Collections.unmodifiableList(Arrays.asList(new PixelinCell[]{
+    private static final List VALUES = Collections.unmodifiableList(Arrays.asList(new PixelinCell[]{
             CELL_CENTER, CELL_CORNER }));
 
     /**
@@ -55,9 +55,16 @@ public final class PixelinCell extends CodeList {
     }
 
     /**
-     * Returns the list of <code>PixelinCell</code> codes.
+     * Returns the list of <code>PixelinCell</code>s.
+     */
+    public static List values() {
+        return VALUES;
+    }
+
+    /**
+     * Returns the list of enumerations of the same kind than this enum.
      */
     public List family() {
-        return FAMILY;
+        return VALUES;
     }
 }

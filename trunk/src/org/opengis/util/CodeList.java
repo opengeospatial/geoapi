@@ -5,6 +5,7 @@ package org.opengis.util;
 
 // J2SE direct dependencies
 import java.util.List;
+import java.util.Collection;
 import java.io.Serializable;
 import java.io.ObjectStreamException;
 import java.io.InvalidObjectException;
@@ -44,7 +45,42 @@ public abstract class CodeList implements Serializable {
     }
 
     /**
-     * Returns the list of codes for this type.
+     * Create a new code list instance and add it to the given collection.
+     *
+     * @param ordinal The collection to add the enum to.
+     * @param name The code name.
+     */
+    CodeList(final Collection values, final String name) {
+        this.name = name;
+        synchronized(values) {
+            this.ordinal = values.size();
+            if (!values.add(this)) {
+                throw new IllegalArgumentException(String.valueOf(values));
+            }
+        }
+    }
+
+    /**
+     * Returns the ordinal of this enumeration constant (its position in its enum declaration,
+     * where the initial constant is assigned an ordinal of zero).
+     *
+     * @return  the ordinal of this enumeration constant.
+     */
+    public final int ordinal() {
+        return ordinal;
+    }
+
+    /**
+     * Returns the name of this enum constant.
+     *
+     * @return the name of this enum constant.
+     */
+    public final String name() {
+        return name;
+    }
+
+    /**
+     * Returns the list of enumerations of the same kind than this enum.
      */
     public abstract List family();
 

@@ -1,6 +1,12 @@
-/*
- * Copyright (C) 2003 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
- */
+/**************************************************************************************************
+ **
+ ** $Id$
+ **
+ ** $Source$
+ **
+ ** Copyright (C) 2003 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
+ **
+ *************************************************************************************************/
 package org.opengis.go.display.event;
 
 // J2SE direct dependencies
@@ -15,8 +21,9 @@ import java.awt.event.MouseMotionListener;
  * @version 0.2
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  */
-public class MouseManagerSupport extends EventManagerSupport implements MouseManager, MouseListener, MouseMotionListener {
-
+public class MouseManagerSupport extends EventManagerSupport
+                              implements MouseManager, MouseListener, MouseMotionListener
+{
     /**
      * Construct a default mouse manager.
      */
@@ -95,7 +102,6 @@ public class MouseManagerSupport extends EventManagerSupport implements MouseMan
      */
     public synchronized MouseHandler[] getFallbackMouseHandlers() {
         MouseHandler[] fallbackHandlers = new MouseHandler[0];
-
         if (eventStack != null && !eventStack.isEmpty()) {
             int size = eventStack.size();
             if (eventStack.peek() == currentEventHandler) {
@@ -107,7 +113,6 @@ public class MouseManagerSupport extends EventManagerSupport implements MouseMan
                 fallbackHandlers[j] = (MouseHandler)eventStack.elementAt(i);
             }
         }
-
         return fallbackHandlers;
     }
 
@@ -123,15 +128,15 @@ public class MouseManagerSupport extends EventManagerSupport implements MouseMan
      * @param e the <code>MouseEvent</code> to process.
      */
     public void mousePressed(final MouseEvent e) {
-
-        // System.err.println("manager got mousePressed! during...");
-        // new Exception().printStackTrace();
+        if (TRACE) {
+            System.err.println("manager got mousePressed! during...");
+            new Exception().printStackTrace();
+        }
         final MouseHandler mouseHandler;
 
         synchronized (this) {
             mouseHandler = (MouseHandler)currentEventHandler;
         }
-
         if (mouseHandler != null) {
             mouseHandler.mousePressed(e);
 
@@ -167,20 +172,18 @@ public class MouseManagerSupport extends EventManagerSupport implements MouseMan
      *          other implementations? (<code>if (keyHandler != fallback[i])</code>)
      */
     public void mouseReleased(final MouseEvent e) {
-
-        // System.err.println("manager got mouseReleased!");
+        if (TRACE) {
+            System.err.println("manager got mouseReleased!");
+        }
         final MouseHandler mouseHandler;
 
         synchronized (this) {
             mouseHandler = (MouseHandler)currentEventHandler;
         }
-
         if (mouseHandler != null) {
             mouseHandler.mouseReleased(e);
-
             if (!e.isConsumed()) {
                 MouseHandler[] fallback = getFallbackMouseHandlers();
-
                 for (int i = 0; (i < fallback.length) && !e.isConsumed(); i++) {
                     fallback[i].mouseReleased(e);
                 }
@@ -199,20 +202,18 @@ public class MouseManagerSupport extends EventManagerSupport implements MouseMan
      *          other implementations? (<code>if (keyHandler != fallback[i])</code>)
      */
     public void mouseClicked(final MouseEvent e) {
-
-        // System.err.println("manager got mouseClicked!");
+        if (TRACE) {
+            System.err.println("manager got mouseClicked!");
+        }
         final MouseHandler mouseHandler;
 
         synchronized (this) {
             mouseHandler = (MouseHandler)currentEventHandler;
         }
-
         if (mouseHandler != null) {
             mouseHandler.mouseClicked(e);
-
             if (!e.isConsumed()) {
                 MouseHandler[] fallback = getFallbackMouseHandlers();
-
                 for (int i = 0; (i < fallback.length) && !e.isConsumed(); i++) {
                     fallback[i].mouseClicked(e);
                 }
@@ -240,13 +241,10 @@ public class MouseManagerSupport extends EventManagerSupport implements MouseMan
         synchronized (this) {
             mouseHandler = (MouseHandler)currentEventHandler;
         }
-
         if (mouseHandler != null) {
             mouseHandler.mouseEntered(e);
-
             if (!e.isConsumed()) {
                 MouseHandler[] fallback = getFallbackMouseHandlers();
-
                 for (int i = 0; (i < fallback.length) && !e.isConsumed(); i++) {
                     fallback[i].mouseEntered(e);
                 }
@@ -270,13 +268,10 @@ public class MouseManagerSupport extends EventManagerSupport implements MouseMan
         synchronized (this) {
             mouseHandler = (MouseHandler)currentEventHandler;
         }
-
         if (mouseHandler != null) {
             mouseHandler.mouseExited(e);
-
             if (!e.isConsumed()) {
                 MouseHandler[] fallback = getFallbackMouseHandlers();
-
                 for (int i = 0; (i < fallback.length) && !e.isConsumed(); i++) {
                     fallback[i].mouseExited(e);
                 }
@@ -300,13 +295,10 @@ public class MouseManagerSupport extends EventManagerSupport implements MouseMan
         synchronized (this) {
             mouseHandler = (MouseHandler)currentEventHandler;
         }
-
         if (mouseHandler != null) {
             mouseHandler.mouseMoved(e);
-
             if (!e.isConsumed()) {
                 MouseHandler[] fallback = getFallbackMouseHandlers();
-
                 for (int i = 0; (i < fallback.length) && !e.isConsumed(); i++) {
                     fallback[i].mouseMoved(e);
                 }
@@ -330,13 +322,10 @@ public class MouseManagerSupport extends EventManagerSupport implements MouseMan
         synchronized (this) {
             mouseHandler = (MouseHandler)currentEventHandler;
         }
-
         if (mouseHandler != null) {
             mouseHandler.mouseDragged(e);
-
             if (!e.isConsumed()) {
                 MouseHandler[] fallback = getFallbackMouseHandlers();
-
                 for (int i = 0; (i < fallback.length) && !e.isConsumed(); i++) {
                     fallback[i].mouseDragged(e);
                 }
