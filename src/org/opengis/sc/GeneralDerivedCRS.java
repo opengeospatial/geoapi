@@ -3,10 +3,14 @@
  */
 package org.opengis.sc;
 
+// OpenGIS direct dependencies
+import org.opengis.cc.Conversion;
+
 
 /**
- * A coordinate reference system that is defined by its coordinate conversion from another
- * coordinate reference system (not by a datum).
+ * A coordinate reference system that is defined by its coordinate
+ * {@linkplain Conversion conversion} from another coordinate reference system
+ * (not by a {@linkplain org.opengis.cd.Datum datum}).
  *
  * @UML abstract SC_GeneralDerivedCRS
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
@@ -22,10 +26,16 @@ public interface GeneralDerivedCRS extends CoordinateReferenceSystem {
     public CoordinateReferenceSystem getBaseCRS();
 
     /**
+     * Returns the conversion from the {@linkplain #getBaseCRS base CRS} to
+     * this CRS.
      *
+     * @return The conversion to this CRS.
      * @UML association definedByConversion
      *
-     * @revisit Uncomment
+     * @revisit <code>definedByConversion</code> may be a precise description of the association,
+     *          but is confusing as a method name. OGC document 01-009 used <code>toBase()</code>
+     *          name. For this specification, waybe we should use <code>fromBase()</code> method
+     *          name.
      */
-//    public org.opengis.crs.coordops.Conversion getDefinedByConversion();
+    public Conversion getDefinedByConversion();
 }
