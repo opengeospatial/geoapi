@@ -141,4 +141,10 @@ public interface Layer {
      * use this to receive notification when the style has changed.
      */
     public void addLayerListener(LayerListener ll);
+
+    /**
+     * Removes a listener that was previously added with the addLayerListener
+     * method.
+     */
+    public void removeLayerListener(LayerListener ll);
 }
