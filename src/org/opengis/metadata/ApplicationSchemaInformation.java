@@ -10,7 +10,7 @@
 package org.opengis.metadata;
 
 // J2SE direct dependencies
-import java.net.URL;
+import java.net.URI;
 
 // OpenGIS direct dependencies
 import org.opengis.metadata.citation.Citation;
@@ -54,13 +54,13 @@ public interface ApplicationSchemaInformation {
      *          it should be the file name or the file content.
      */
 /// @UML (identifier="schemaAscii", obligation=OPTIONAL)
-    URL getSchemaAscii();
+    URI getSchemaAscii();
 
     /**
      * Full application schema given as a graphics file.
      */
 /// @UML (identifier="graphicsFile", obligation=OPTIONAL)
-    URL getGraphicsFile();
+    URI getGraphicsFile();
 
     /**
      * Full application schema given as a software development file.
@@ -69,7 +69,7 @@ public interface ApplicationSchemaInformation {
      *          it was intented to be the file content.
      */
 /// @UML (identifier="softwareDevelopmentFile", obligation=OPTIONAL)
-    URL getSoftwareDevelopmentFile();
+    URI getSoftwareDevelopmentFile();
 
     /**
      * Software dependent format used for the application schema software dependent file.

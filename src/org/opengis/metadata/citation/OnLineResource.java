@@ -10,7 +10,7 @@
 package org.opengis.metadata.citation;
 
 // J2SE direct dependencies
-import java.net.URL;
+import java.net.URI;
 
 // OpenGIS direct dependencies
 import org.opengis.util.InternationalString;
@@ -38,7 +38,7 @@ public interface OnLineResource {
      * similar addressing scheme such as http://www.statkart.no/isotc211.
      */
 /// @UML (identifier="linkage", obligation=MANDATORY)
-    URL getLinkage();
+    URI getLinkage();
 
     /**
      * connection protocol to be used. Returns <code>null</code> if none.

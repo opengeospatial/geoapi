@@ -10,7 +10,7 @@
 package org.opengis.metadata.identification;
 
 // J2SE direct dependencies
-import java.net.URL;
+import java.net.URI;
 
 // OpenGIS direct dependencies
 import org.opengis.util.InternationalString;
@@ -33,7 +33,7 @@ public interface BrowseGraphic {
      * Name of the file that contains a graphic that provides an illustration of the dataset.
      */
 /// @UML (identifier="fileName", obligation=MANDATORY)
-    URL getFileName();
+    URI getFileName();
 
     /**
      * Text description of the illustration.
