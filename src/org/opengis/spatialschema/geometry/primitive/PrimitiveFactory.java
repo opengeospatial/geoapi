@@ -15,10 +15,15 @@ import java.util.List;
 // OpenGIS direct dependencies
 import org.opengis.spatialschema.geometry.Envelope;
 import org.opengis.spatialschema.geometry.geometry.Position;
+import org.opengis.crs.crs.CoordinateReferenceSystem;
 
 
 /**
  * A factory of {@linkplain Primitive primitive} geometric objects.
+ * All primitives created through this interface will use the
+ * {@linkplain #getCoordinateReferenceSystem factory's coordinate reference system}.
+ * Creating primitives in a different CRS may requires a different instance of
+ * <code>PrimitiveFactory</code>.
  *
  * @author ISO/DIS 19107
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
@@ -27,6 +32,12 @@ import org.opengis.spatialschema.geometry.geometry.Position;
  * @revisit Should we extend {@link org.opengis.crs.Factory}?
  */
 public interface PrimitiveFactory {
+    /**
+     * Returns the coordinate reference system in use for all {@linkplain Primitive primitive}
+     * geometric objects to be created through this interface.
+     */
+    public CoordinateReferenceSystem getCoordinateReferenceSystem();
+
     /**
      * Returns an envelope as a primitive. An {@linkplain Envelope envelope} will often be
      * used in query operations, and therefore must have a cast operation that returns a

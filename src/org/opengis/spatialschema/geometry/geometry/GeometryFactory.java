@@ -12,9 +12,16 @@ package org.opengis.spatialschema.geometry.geometry;
 // J2SE direct dependencies
 import java.util.List;
 
+// OpenGIS direct dependencies
+import org.opengis.crs.crs.CoordinateReferenceSystem;
+
 
 /**
  * A factory of {@linkplain org.opengis.spatialschema.geometry.Geometry geometries}.
+ * All geometries created through this interface will use the
+ * {@linkplain #getCoordinateReferenceSystem factory's coordinate reference system}.
+ * Creating geometries in a different CRS may requires a different instance of
+ * <code>GeometryFactory</code>.
  *
  * @author ISO/DIS 19107
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
@@ -23,6 +30,13 @@ import java.util.List;
  * @revisit Should we extend {@link org.opengis.crs.Factory}?
  */
 public interface GeometryFactory {
+    /**
+     * Returns the coordinate reference system in use for all
+     * {@linkplain org.opengis.spatialschema.geometry.Geometry geometries}
+     * to be created through this interface.
+     */
+    public CoordinateReferenceSystem getCoordinateReferenceSystem();
+
     /**
      * Takes two positions and creates the appropriate line segment joining them.
      *
