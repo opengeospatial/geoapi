@@ -78,6 +78,34 @@ public interface CSFactory extends ObjectFactory {
                                   CoordinateSystemAxis axis2) throws FactoryException;
 
     /**
+     * Creates a two dimensional coordinate system from the given pair of axis.
+     *
+     * @param  properties Name and other properties to give to the new object.
+     *         Available properties are {@linkplain ObjectFactory listed there}.
+     * @param  axis0 The first  axis.
+     * @param  axis1 The second axis.
+     * @throws FactoryException if the object creation failed.
+     */
+    AffineCS createAffineCS(Map             properties,
+                            CoordinateSystemAxis axis0,
+                            CoordinateSystemAxis axis1) throws FactoryException;
+
+    /**
+     * Creates a three dimensional coordinate system from the given set of axis.
+     *
+     * @param  properties Name and other properties to give to the new object.
+     *         Available properties are {@linkplain ObjectFactory listed there}.
+     * @param  axis0 The first  axis.
+     * @param  axis1 The second axis.
+     * @param  axis2 The third  axis.
+     * @throws FactoryException if the object creation failed.
+     */
+    AffineCS createAffineCS(Map             properties,
+                            CoordinateSystemAxis axis0,
+                            CoordinateSystemAxis axis1,
+                            CoordinateSystemAxis axis2) throws FactoryException;
+
+    /**
      * Creates a polar coordinate system from the given pair of axis.
      *
      * @param  properties Name and other properties to give to the new object.
@@ -99,10 +127,27 @@ public interface CSFactory extends ObjectFactory {
      * @param  polarCS The polar coordinate system.
      * @param  axis The perpendicular axis.
      * @throws FactoryException if the object creation failed.
+     *
+     * @deprecated Uses the method expecting 3 axis instead.
      */
     CylindricalCS createCylindricalCS(Map            properties,
                                       PolarCS           polarCS,
                                       CoordinateSystemAxis axis) throws FactoryException;
+
+    /**
+     * Creates a cylindrical coordinate system from the given set of axis.
+     *
+     * @param  properties Name and other properties to give to the new object.
+     *         Available properties are {@linkplain ObjectFactory listed there}.
+     * @param  axis0 The first  axis.
+     * @param  axis1 The second axis.
+     * @param  axis2 The third  axis.
+     * @throws FactoryException if the object creation failed.
+     */
+    CylindricalCS createCylindricalCS(Map            properties,
+                                      CoordinateSystemAxis axis0,
+                                      CoordinateSystemAxis axis1,
+                                      CoordinateSystemAxis axis2) throws FactoryException;
 
     /**
      * Creates a spherical coordinate system from the given set of axis.
