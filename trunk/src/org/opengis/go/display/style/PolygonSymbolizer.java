@@ -81,7 +81,7 @@ public interface PolygonSymbolizer {
     public static final Color DEFAULT_POLYGON_STROKE_COLOR = Color.BLACK;
    
     /**  Default dash array value.  */
-	public static final DashArray DEFAULT_POLYGON_STROKE_DASH_ARRAY = (DashArray) LinePattern.NONE;
+	public static final DashArray DEFAULT_POLYGON_STROKE_DASH_ARRAY = DashArray.NONE;
     
 	/**  Default dash offset value.  */
 	public static final float DEFAULT_POLYGON_STROKE_DASH_OFFSET = 0.f;
