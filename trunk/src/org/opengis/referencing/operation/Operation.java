@@ -44,6 +44,10 @@ public interface Operation extends SingleOperation {
      * @return The parameter values, or an empty array if none.
      *
      * @rename Added "<code>Parameter</code>" prefix for more consistency with the return type.
+     *
+     * @revisit Change the return type to <code>ParameterValueGroup</code>
+     *          for consistency with the rest of the API (this is the only
+     *          method to return an array).
      */
 /// @UML (identifier="usesValue", obligation=MANDATORY)
     GeneralParameterValue[] getParameterValues();
