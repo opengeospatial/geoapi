@@ -14,6 +14,7 @@ import java.util.Set;
 import java.util.Locale;
 
 // OpenGIS direct dependencies
+import org.opengis.util.GenericName;
 import org.opengis.metadata.citation.Citation;
 
 
@@ -51,10 +52,8 @@ public interface FeatureCatalogueDescription extends ContentInformation {
      * Subset of feature types from cited feature catalogue occurring in dataset.
      *
      * @UML optional featureTypes
-     *
-     * @revisit Uncomment this method when <code>GenericName</code> will be defined.
      */
-//    GenericName[] getFeatureTypes();
+    Set/*<GenericName>*/ getFeatureTypes();
 
     /**
      * Complete bibliographic reference to one or more external feature catalogues.
