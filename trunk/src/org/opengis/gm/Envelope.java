@@ -1,7 +1,7 @@
 /*
  * Copyright (C) 2003 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
  */
-package org.opengis.gm.geometry;
+package org.opengis.gm;
 
 // OpenGIS direct dependencies
 import org.opengis.gm.primitive.Primitive;

@@ -4,7 +4,7 @@
 package org.opengis.cv;
 
 // OpenGIS direct dependencies
-import org.opengis.gm.geometry.DirectPosition;  // For Javadoc
+import org.opengis.gm.DirectPosition;  // For Javadoc
 
 
 /**

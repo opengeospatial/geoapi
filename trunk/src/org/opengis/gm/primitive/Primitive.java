@@ -8,6 +8,7 @@ import java.util.Set;
 
 // OpenGIS direct dependencies
 import org.opengis.gm.Geometry;
+import org.opengis.gm.DirectPosition;
 import org.opengis.gm.complex.Complex;
 
 
@@ -32,7 +33,7 @@ import org.opengis.gm.complex.Complex;
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 2.0
  *
- * @see org.opengis.gm.geometry.Envelope#toPrimitive
+ * @see org.opengis.gm.Envelope#toPrimitive
  *
  * @revisit Some associations are commented out for now.
  */

@@ -3,6 +3,9 @@
  */
 package org.opengis.gm.geometry;
 
+// OpenGIS direct dependencies
+import org.opengis.gm.DirectPosition;
+
 
 /**
  * The curve parameter for a point. This is the result of call to

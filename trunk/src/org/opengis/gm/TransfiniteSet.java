@@ -4,7 +4,7 @@
 package org.opengis.gm;
 
 // OpenGIS direct dependencies
-import org.opengis.gm.geometry.DirectPosition;
+import org.opengis.gm.DirectPosition;
 
 
 /**

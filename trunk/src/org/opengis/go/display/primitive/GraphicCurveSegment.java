@@ -10,7 +10,7 @@
 package org.opengis.go.display.primitive;
 
 // OpenGIS direct dependencies
-import org.opengis.gm.geometry.DirectPosition;
+import org.opengis.gm.DirectPosition;
 import org.opengis.gm.geometry.PointArray;
 import org.opengis.gm.primitive.CurveSegment;
 import org.opengis.go.spatial.PathType;
@@ -31,14 +31,14 @@ public interface GraphicCurveSegment extends Graphic {
      * @param curveSegment a geometry CurveSegment.
      */
     public void setCurveSegment(CurveSegment curveSegment);
-    
+
     /**
      * Returns the geometry based on ISO 19107 geometric forms.
      *
      * @return the geometry CurveSegment.
      */
     public CurveSegment getCurveSegment();  
-      
+
     /**
      * Returns this <code>GraphicCurveSegment</code>'s set of positions as a 
      * <code>PointArray</code>.  The returned <code>PointArray</code>

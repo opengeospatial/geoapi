@@ -4,6 +4,7 @@
 package org.opengis.gm.geometry;
 
 // OpenGIS direct dependencies
+import org.opengis.gm.DirectPosition;
 import org.opengis.gm.primitive.Point;
 
 
