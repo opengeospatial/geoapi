@@ -16,11 +16,10 @@ import org.opengis.spatialschema.geometry.MismatchedDimensionException;
 
 
 /**
- * Transforms multi-dimensional coordinate points. This interface transforms coordinate value
- * for a point given in the {@linkplain CoordinateOperation#getSourceCoordinateReferenceSystem
- * source coordinate reference system} to coordinate value for the same point in the
- * {@linkplain CoordinateOperation#getTargetCoordinateReferenceSystem target coordinate
- * reference system}.
+ * Transforms multi-dimensional coordinate points. This interface transforms coordinate
+ * value for a point given in the {@linkplain CoordinateOperation#getSourceCRS source
+ * coordinate reference system} to coordinate value for the same point in the
+ * {@linkplain CoordinateOperation#getTargetCRS target coordinate reference system}.
  *
  * In a {@linkplain Conversion conversion}, the transformation is accurate to within the
  * limitations of the computer making the calculations. In a {@linkplain Transformation

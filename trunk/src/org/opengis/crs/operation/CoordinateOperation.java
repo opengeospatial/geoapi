@@ -108,9 +108,9 @@ public interface CoordinateOperation extends Info {
     
     /**
      * Gets the math transform. The math transform will transform positions in the
-     * {@linkplain #getSourceCoordinateReferenceSystem source coordinate reference system}
+     * {@linkplain #getSourceCRS source coordinate reference system}
      * into positions in the
-     * {@linkplain #getTargetCoordinateReferenceSystem target coordinate reference system}.
+     * {@linkplain #getTargetCRS target coordinate reference system}.
      *
      * @UML mandatory mathTransform in 1.0 specification.
      */
