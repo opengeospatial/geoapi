@@ -14,11 +14,11 @@ import java.util.Date;
 import java.util.Locale;
 
 // OpenGIS direct dependencies
-import org.opengis.metadata.citation.Contact;
 import org.opengis.metadata.quality.DataQuality;
 import org.opengis.metadata.maintenance.ScopeCode;
 import org.opengis.metadata.constraint.Constraints;
 import org.opengis.metadata.distribution.Distribution;
+import org.opengis.metadata.citation.ResponsibleParty;
 import org.opengis.metadata.content.ContentInformation;
 import org.opengis.metadata.spatial.SpatialRepresentation;
 import org.opengis.metadata.identification.Identification;
@@ -91,7 +91,7 @@ public interface MetaData {
      *
      * @UML mandatory contact
      */
-    Contact getContact();
+    ResponsibleParty getContact();
 
     /**
      * Date that the metadata was created.
@@ -135,7 +135,7 @@ public interface MetaData {
       *
       * @UML optional metadataExtensionInfo
       */
-//     MetadataExtensionInformation[] getMetadataExtensionInfo();
+     MetadataExtensionInformation[] getMetadataExtensionInfo();
 
      /**
       * Basic information about the resource(s) to which the metadata applies.
@@ -164,7 +164,7 @@ public interface MetaData {
       *
       * @UML optional dataQualityInfo
       */
-     DataQuality[] dataQualityInfo();
+     DataQuality[] getDataQualityInfo();
 
      /**
       * Provides information about the catalogue of rules defined for the portrayal of a resource(s).
@@ -185,7 +185,7 @@ public interface MetaData {
       *
       * @UML optional applicationSchemaInfo
       */
-//     ApplicationSchemaInformation[] getApplicationSchemaInfo();
+     ApplicationSchemaInformation[] getApplicationSchemaInfo();
      
      /**
       * Provides information about the frequency of metadata updates, and the scope of those updates.
