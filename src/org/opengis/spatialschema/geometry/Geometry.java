@@ -270,21 +270,16 @@ public interface Geometry extends TransfiniteSet {
 
     /**
      * Returns a new <code>Geometry</code> that is the coordinate transformation of this
-     * <code>Geometry</code> into the passed coordinate reference system within the accuracy
-     * of the transformation.
+     * <code>Geometry</code> into the passed coordinate reference system
+     * correlating to the transformation.
      *
-     * @param  newCRS The newCRS.
      * @param trans the trasformation that converts between the existing Coordinate Reference System and the new Coordinate Reference System.
      * @throws IncompatibleOperationException when the specified transformation does not apply to either the existing or new Coordinate Reference Systems.
      * @return The transformed <code>Geometry</code>.
      * @UML operation transform
      *
-     * @deprecated The user should not needs to specify a transformation here.
-     *             The library has enough informations to figure it out from the
-     *             current geometry CRS and the new CRS only.
      */
-    public Geometry transform(CoordinateReferenceSystem newCRS,
-                              org.opengis.crs.operation.CoordinateTransformation trans)
+    public Geometry transform(org.opengis.crs.operation.CoordinateTransformation trans)
             throws org.opengis.crs.operation.IncompatibleOperationException;
 
     /**
