@@ -13,7 +13,7 @@ package org.opengis.referencing.operation;
 import java.util.Locale;
 
 // OpenGIS direct dependencies
-import org.opengis.referencing.Info;
+import org.opengis.referencing.IdentifiedObject;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 import org.opengis.metadata.quality.PositionalAccuracy;
 import org.opengis.metadata.extent.Extent;
@@ -39,7 +39,7 @@ import org.opengis.metadata.extent.Extent;
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/03-073r1.zip">Abstract specification 2.0</A>
  */
-public interface CoordinateOperation extends Info {
+public interface CoordinateOperation extends IdentifiedObject {
     /**
      * Returns the source CRS. The source CRS is mandatory for {@linkplain Transformation
      * transformations} only. {@linkplain Conversion Conversions} may have a source CRS that

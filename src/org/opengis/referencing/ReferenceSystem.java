@@ -26,7 +26,7 @@ import org.opengis.metadata.extent.Extent;
  *
  * @see org.opengis.referencing.crs.CoordinateReferenceSystem
  */
-public interface ReferenceSystem extends Info {
+public interface ReferenceSystem extends IdentifiedObject {
     /**
      * Area for which the (coordinate) reference system is valid.
      *

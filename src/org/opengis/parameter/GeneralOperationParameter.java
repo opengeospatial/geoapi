@@ -10,7 +10,7 @@
 package org.opengis.parameter;
 
 // OpenGIS direct dependencies
-import org.opengis.referencing.Info;
+import org.opengis.referencing.IdentifiedObject;
 
 
 /**
@@ -23,7 +23,7 @@ import org.opengis.referencing.Info;
  *
  * @see GeneralParameterValue
  */
-public interface GeneralOperationParameter extends Info {
+public interface GeneralOperationParameter extends IdentifiedObject {
     /**
      * Creates a new instance of {@linkplain GeneralParameterValue parameter value or group}
      * initialized with the {@linkplain OperationParameter#getDefaultValue default value(s)}.
