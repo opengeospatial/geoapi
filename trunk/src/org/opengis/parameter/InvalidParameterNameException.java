@@ -11,15 +11,12 @@ package org.opengis.parameter;
 
 
 /**
- * Thrown when an invalid parameter name was requested in a
+ * Thrown when an unexpected parameter was found in a
  * {@linkplain OperationParameterGroup parameter group}.
  *
  * @UML exception GC_InvalidParameterName
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-004.pdf">Grid Coverage specification 1.0</A>
- *
- * @see OperationParameterGroup#getParameter
- * @see ParameterValueGroup#getValue
  */
 public class InvalidParameterNameException extends IllegalArgumentException {
     /**

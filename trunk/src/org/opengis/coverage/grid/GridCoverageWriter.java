@@ -15,9 +15,9 @@ import java.io.IOException;
 // OpenGIS direct dependencies
 import org.opengis.coverage.MetadataNameNotFoundException;
 import org.opengis.parameter.GeneralParameterValue;
-import org.opengis.parameter.ParameterNotFoundException;
-import org.opengis.parameter.InvalidParameterNameException;
-import org.opengis.parameter.InvalidParameterValueException;
+import org.opengis.parameter.ParameterNotFoundException;     // For javadoc
+import org.opengis.parameter.InvalidParameterNameException;  // For javadoc
+import org.opengis.parameter.InvalidParameterValueException; // For javadoc
 
 
 /**
@@ -100,7 +100,7 @@ public interface GridCoverageWriter {
      *         image library.
      */
     void write(GridCoverage coverage, GeneralParameterValue[] parameters)
-        throws InvalidParameterNameException, InvalidParameterValueException, ParameterNotFoundException, IOException;
+            throws IllegalArgumentException, IOException;
 
     /**
      * Allows any resources held by this object to be released. The result of calling any other
