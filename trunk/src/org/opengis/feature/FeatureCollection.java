@@ -13,6 +13,8 @@ import java.io.IOException;
 import java.util.Collection;
 import java.util.Iterator;
 
+import org.opengis.filter.Filter;
+
 public interface FeatureCollection extends Feature, Collection {
     /**
      * Returns an iterator that enumerates all of the features in this
@@ -157,6 +159,17 @@ public interface FeatureCollection extends Feature, Collection {
      * for completeness.
      */
     public boolean retainAll(Collection/*<Feature>*/ c);
+
+    /**
+     * Returns a collection whose contents are the subset of features in this
+     * collection that pass the given filter.  This is semantically equivalent
+     * to going back to the DataStore that created this collection and AND-ing
+     * the filter that produced this collection with the given filter.
+     * <p>
+     * Compare this method to <code>List.subList(int,int)</code> from the Java
+     * Collections framework.
+     */
+    public FeatureCollection subCollection(Filter filter);
 
     /**
      * If some sort of connection was opened to a backing store to support this
