@@ -22,11 +22,15 @@ package org.opengis.feature;
 public class LockRequest {
     /** Special value used to ask for a Lock until the next commit or rollback */
     public static final LockRequest TRANSACTION_LOCK = new LockRequest(-1);
-    
+
     /** Duration in miliseconds the lock is requested for */
     private long duration;
-    
+
     public LockRequest( long duration ){
         this.duration = duration;
     }    
+
+    public long getDuration() {
+        return duration;
+    }
 }
