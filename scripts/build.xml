@@ -7,11 +7,6 @@
      Before running, make sure to set 'basedir' and 'homepath' properties.
      'basedir' is the destination directory; 'homepath' is the CVS installation.
 
-     NOTE: The following environment variable should be set
-           for using the generic compiler with Ant:
-
-           set ANT_OPTS=-Xbootclasspath/p:<path to JSR-14 installation>\javac.jar
-
      Author:  Martin Desruisseaux
      Version: $Id$
      ======================================================================== -->
@@ -218,11 +213,11 @@
       <link href="http://java.sun.com/products/java-media/3D/forDevelopers/j3dapi"/>
       <link href="http://jsr-108.sourceforge.net/javadoc"/>
 
-      <group title="Meta Data"                             packages="org.opengis.metadata*"/>
-      <group title="Spatial Referencing by Coordinates"    packages="org.opengis.crs*"/>
-      <group title="Feature Geometry (WORK IN PROGRESS)"   packages="org.opengis.gm*:org.opengis.tp*"/>
-      <group title="Grid Coverage"                         packages="org.opengis.coverage*"/>
-      <group title="User interface (WORK IN PROGRESS)"     packages="org.opengis.go*"/>
+      <group title="Meta Data                           &lt;FONT size=3 color='Navy'&gt;(ISO-19115)&lt;/FONT&gt;"  packages="org.opengis.metadata*"      />
+      <group title="Spatial Referencing by Coordinates  &lt;FONT size=3 color='Navy'&gt;(ISO-19111)&lt;/FONT&gt;"  packages="org.opengis.crs*"           />
+      <group title="Feature Geometry (WORK IN PROGRESS) &lt;FONT size=3 color='Navy'&gt;(ISO-19107)&lt;/FONT&gt;"  packages="org.opengis.spatialschema*" />
+      <group title="Grid Coverage"                                                                                 packages="org.opengis.coverage*"      />
+      <group title="User interface (WORK IN PROGRESS)"                                                             packages="org.opengis.go*"            />
 
       <fileset dir="sources">
         <include name="org/**/*.java"/>
