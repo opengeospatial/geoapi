@@ -8,7 +8,7 @@ import java.util.List;
 
 
 /**
- * A factory of {@linkplain org.opengis.gm.Geometry geometries}.
+ * A factory of {@linkplain org.opengis.spatialschema.geometry.Geometry geometries}.
  *
  * @author ISO/DIS 19107
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>

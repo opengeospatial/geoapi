@@ -7,7 +7,7 @@ package org.opengis.spatialschema.geometry.complex;
 import java.util.List;
 
 // OpenGIS direct dependencies
-import org.opengis.gm.primitive.OrientableSurface;
+import org.opengis.spatialschema.geometry.primitive.OrientableSurface;
 
 
 /**
@@ -21,8 +21,8 @@ import org.opengis.gm.primitive.OrientableSurface;
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 2.0
  *
- * @revisit This interface extends (indirectly) both {@link org.opengis.gm.primitive.Primitive} and
- *          {@link org.opengis.gm.complex.Complex}. Concequently, there is a clash in the semantics
+ * @revisit This interface extends (indirectly) both {@link org.opengis.spatialschema.geometry.primitive.Primitive} and
+ *          {@link org.opengis.spatialschema.geometry.complex.Complex}. Concequently, there is a clash in the semantics
  *          of some set theoretic operation. Specifically, <code>Primitive.contains(...)</code>
  *          (returns FALSE for end points) is different from <code>Complex.contains(...)</code>
  *          (returns TRUE for end points).
@@ -32,8 +32,8 @@ public interface CompositeSurface extends Composite, OrientableSurface {
      * Returns the list of orientable surfaces in this composite.
      *
      * To get a full representation of the elements in the {@linkplain Complex complex}, the
-     * {@linkplain org.opengis.gm.primitive.Curve curves} and {@link org.opengis.gm.primitive.Point
-     * points} on the boundary of the generator set of {@linkplain org.opengis.gm.primitive.Surface
+     * {@linkplain org.opengis.spatialschema.geometry.primitive.Curve curves} and {@link org.opengis.spatialschema.geometry.primitive.Point
+     * points} on the boundary of the generator set of {@linkplain org.opengis.spatialschema.geometry.primitive.Surface
      * surfaces} would be added to the curves in the generator list.
      *
      * @return The list of orientable surfaces in this composite.

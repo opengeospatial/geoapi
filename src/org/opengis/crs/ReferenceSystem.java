@@ -7,7 +7,7 @@ package org.opengis.crs;
 import java.util.Locale;
 
 // OpenGIS direct dependencies
-import org.opengis.gm.Envelope;
+import org.opengis.spatialschema.geometry.Envelope;
 
 
 /**

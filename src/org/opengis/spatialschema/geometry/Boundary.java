@@ -4,7 +4,7 @@
 package org.opengis.spatialschema.geometry;
 
 // OpenGIS direct dependencies
-import org.opengis.gm.complex.Complex;
+import org.opengis.spatialschema.geometry.complex.Complex;
 
 
 /**

@@ -4,7 +4,7 @@
 package org.opengis.spatialschema.geometry.primitive;
 
 // OpenGIS direct dependencies
-import org.opengis.gm.complex.CompositeCurve;
+import org.opengis.spatialschema.geometry.complex.CompositeCurve;
 
 
 /**

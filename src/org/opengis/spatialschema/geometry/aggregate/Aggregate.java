@@ -4,7 +4,7 @@
 package org.opengis.spatialschema.geometry.aggregate;
 
 // OpenGIS direct dependencies
-import org.opengis.gm.Geometry;
+import org.opengis.spatialschema.geometry.Geometry;
 
 
 public interface Aggregate extends Geometry {

@@ -7,7 +7,7 @@ package org.opengis.spatialschema.geometry.primitive;
 import java.util.List;
 
 // OpenGIS direct dependencies
-import org.opengis.gm.geometry.GenericSurface;
+import org.opengis.spatialschema.geometry.geometry.GenericSurface;
 
 
 /**

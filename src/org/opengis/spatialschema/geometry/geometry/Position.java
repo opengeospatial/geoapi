@@ -4,8 +4,8 @@
 package org.opengis.spatialschema.geometry.geometry;
 
 // OpenGIS direct dependencies
-import org.opengis.gm.DirectPosition;
-import org.opengis.gm.primitive.Point;
+import org.opengis.spatialschema.geometry.DirectPosition;
+import org.opengis.spatialschema.geometry.primitive.Point;
 
 
 /**

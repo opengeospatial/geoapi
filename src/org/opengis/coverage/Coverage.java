@@ -12,8 +12,8 @@ import javax.media.jai.ImageFunction;             // For Javadoc
 
 // OpenGIS direct dependencies
 import org.opengis.crs.crs.CRS;
-import org.opengis.gm.Envelope;
-import org.opengis.gm.DirectPosition;
+import org.opengis.spatialschema.geometry.Envelope;
+import org.opengis.spatialschema.geometry.DirectPosition;
 
 
 /**
