@@ -28,7 +28,7 @@ import org.opengis.metadata.citation.Citation;
 public interface Identifier {
     /**
      * Identifier code or name, optionally from a controlled list or pattern
-     * defined by a code space.
+     * defined by a {@linkplain #getCodeSpace code space}.
      *
      * @return The code.
      * @UML mandatory code
@@ -49,7 +49,7 @@ public interface Identifier {
     /**
      * Identifier of the version of the associated code space or code, as specified
      * by the code space or code authority. This version is included only when the
-     * {@linkplain #getCode code} or {@linkplain #getCodeSpace codeSpace} uses versions.
+     * {@linkplain #getCode code} or {@linkplain #getCodeSpace code space} uses versions.
      * When appropriate, the edition is identified by the effective date, coded using
      * ISO 8601 date format.
      *
@@ -60,7 +60,7 @@ public interface Identifier {
 
     /**
      * Organization or party responsible for definition and maintenance of the
-     * code space or code.
+     * {@linkplain #getCodeSpace code space} or {@linkplain #getCode code}.
      *
      * @return The authority, or <code>null</code> if not available.
      * @UML optional authority
@@ -68,13 +68,13 @@ public interface Identifier {
     Citation getAuthority();
 
     /**
-     * Comments on or information about this object or code. In the first use of an
-     * <code>Identifier</code> for an object, these remarks are information about this
+     * Comments on or information about this identifier. In the first use of an
+     * <code>Identifier</code> for an {@link Info} object, these remarks are information about this
      * object, including data source information. Additional uses of a <code>Identifier</code>
      * for an object, if any, are aliases, and the remarks are then about that alias.
      *
      * @param  locale The desired locale for the remarks to be returned,
-     *         or <code>null</code> for a non-localized string (or a default default locale).
+     *         or <code>null</code> for a non-localized string (or a default locale).
      * @return The remarks, or <code>null</code> if not available.
      * @UML optional remarks
      */

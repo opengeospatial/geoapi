@@ -29,6 +29,10 @@ public final class AxisDirection extends CodeList {
      * Serial number for compatibility with different versions.
      */
     private static final long serialVersionUID = -4405275475770755714L;
+    
+    // NOTE: The following enum values are from the OpenGIS specification.
+    //       IF THOSE VALUES CHANGE, THEN inverse() AND absolute() MUST BE
+    //       UPDATED.
 
     /**
      * Unknown or unspecified axis orientation.
@@ -106,6 +110,12 @@ public final class AxisDirection extends CodeList {
     public static final AxisDirection PAST = new AxisDirection("PAST", 8);
 
     /**
+     * The last paired value. Paired values are NORTH-SOUTH, EAST-WEST,
+     * UP-DOWN, FUTURE-PAST.
+     */
+    private static final int LAST_PAIRED_VALUE = 8;
+
+    /**
      * List of all enumeration of this type.
      */
     private static final AxisDirection[] VALUES = new AxisDirection[] {
@@ -130,5 +140,56 @@ public final class AxisDirection extends CodeList {
      */
     public /*{AxisDirection}*/ CodeList[] family() {
         return values();
+    }
+
+    /**
+     * Returns the opposite direction of this axis. The opposite direction of
+     * {@linkplain #NORTH North} is {@linkplain #SOUTH South}, and the opposite
+     * direction of {@linkplain #SOUTH South} is {@linkplain #NORTH North}. The
+     * same applies to {@linkplain #EAST East}-{@linkplain #WEST West},
+     * {@linkplain #UP Up}-{@linkplain #DOWN Down} and
+     * {@linkplain #FUTURE Future}-{@linkplain #PAST Past}.
+     * {@linkplain #OTHER Other} axis directions are returned unchanged.
+     */
+    public AxisDirection inverse() {
+        final int value = ordinal()-1;
+        if (value>=0 && value<LAST_PAIRED_VALUE) {
+            return VALUES[(value ^ 1)+1];
+        } else {
+            return this;
+        }
+    }
+
+    /**
+     * Returns the "absolute" direction of this axis.
+     * This "absolute" operation is similar to the <code>Math.abs(int)</code>
+     * method in that "negative" directions ({@link #SOUTH}, {@link #WEST},
+     * {@link #DOWN}, {@link #PAST} are changed for their "positive" counterparts
+     * ({@link #NORTH}, {@link #EAST}, {@link #UP}, {@link #FUTURE})
+     * More specifically, the following conversion table is applied.
+     * <br>&nbsp;
+     * <table align="center" cellpadding="3" border="1" bgcolor="F4F8FF">
+     *   <tr bgcolor="#B9DCFF">
+     *     <th>&nbsp;&nbsp;Direction&nbsp;&nbsp;</th>
+     *     <th>&nbsp;&nbsp;Absolute value&nbsp;&nbsp;</th>
+     *   </tr>
+     *   <tr align="center"><td>NORTH</td> <td>NORTH</td> </tr>
+     *   <tr align="center"><td>SOUTH</td> <td>NORTH</td> </tr>
+     *   <tr align="center"><td>EAST</td>  <td>EAST</td>  </tr>
+     *   <tr align="center"><td>WEST</td>  <td>EAST</td>  </tr>
+     *   <tr align="center"><td>UP</td>    <td>UP</td>    </tr>
+     *   <tr align="center"><td>DOWN</td>  <td>UP</td>    </tr>
+     *   <tr align="center"><td>FUTURE</td><td>FUTURE</td></tr>
+     *   <tr align="center"><td>PAST</td>  <td>FUTURE</td></tr>
+     *   <tr align="center"><td>OTHER</td> <td>OTHER</td> </tr>
+     * </table>
+     */
+    public AxisDirection absolute() {
+        final int value = ordinal()-1;
+        if (value>=0 && value<LAST_PAIRED_VALUE) {
+            return VALUES[(value & ~1)+1];
+        } else {
+            return this;
+        }
     }
 }
