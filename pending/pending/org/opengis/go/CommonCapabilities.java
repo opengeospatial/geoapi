@@ -14,9 +14,9 @@ import org.opengis.go.spatial.PathType;
 import org.opengis.crs.coordrefsys.CoordinateReferenceSystem;
 
 /**
- * Objects implementing the interface <code>CommonCapabilities</code> provide
- * runtime information about the capabilities of a given implementation. Objects 
- * implementing this interface are acquired through the 
+ * The <code>CommonCapabilities</code> interface provides
+ * runtime information about the capabilities of a given GO-1 implementation. Objects 
+ * implementing this interface are obtained through the 
  * <code>CommonFactory.getCapabilities()</code> method.
  *
  * @author  Open GIS Consortium, Inc.
@@ -25,7 +25,7 @@ import org.opengis.crs.coordrefsys.CoordinateReferenceSystem;
 public interface CommonCapabilities {
     
     /**
-     * Returns an array of <code>Class</code> objects for the bounds
+     * Returns an array of <code>Class</code> objects for the <code>Bounds</code>
      * interfaces that are supported by a given implementation.
      * These Class objects can be used in a call to 
      * <code>BoundsFactory.getBounds(Class)</code>.

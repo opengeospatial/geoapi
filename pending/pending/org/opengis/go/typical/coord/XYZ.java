@@ -7,7 +7,6 @@
  ** Copyright (C) 2003 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
  **
  *************************************************************************************************/
-
 package org.opengis.go.typical.coord;
 
 import java.util.Properties;
@@ -16,6 +15,7 @@ import org.opengis.crs.coordrefsys.CoordinateReferenceSystem;
 import org.opengis.crs.coordrefsys.CoordinateReferenceSystemFactory;
 import org.opengis.crs.coordrefsys.UnsupportedCRSException;
 import org.opengis.go.CommonFactoryManager;
+
 /**
  * <code>XYZ</code> represents
  * 3-dimensional vectors in some vector space over the real numbers.
@@ -26,22 +26,24 @@ import org.opengis.go.CommonFactoryManager;
  * @version $Revision$, $Date$
  */
 public class XYZ {
-	/**
-	 * The Default Coordinate Reference System URL for this coordinate.
-	 */
-	// TODO: Fix the default value.
-	public static final String DEFAULT_COORDINATE_REFERENCE_SYSTEM_URL = "urn:x-ogc:srs:OGC::XXXXXX";
-
-	/**
-	 * The Coordinate Reference System for this coordinate.
-	 */
-	private CoordinateReferenceSystem crs;
+    
+    /**
+     * The Default Coordinate Reference System URL for this coordinate.
+     */
+    // TODO: Fix the default value.
+    public static final String DEFAULT_COORDINATE_REFERENCE_SYSTEM_URL =
+        "urn:x-ogc:srs:OGC::XXXXXX";
+        
+    /**
+     * The Coordinate Reference System for this coordinate.
+     */
+    private CoordinateReferenceSystem crs;
     
     /**
      * The values of this coordinate. Overrides XY field.
      */
     private double[] ordinates;
-
+    
     ////
     // Constructors.
     
@@ -51,11 +53,12 @@ public class XYZ {
      * @param y         y value
      * @param crs       the Coordinate Reference System 
      */
-    public XYZ(double x, double y, double z, CoordinateReferenceSystem crs) throws UnsupportedCRSException {
-		this.crs = crs;
-		ordinates = new double[crs.getDimension()];       
-		ordinates[0] = x;
-		ordinates[1] = y;
+    public XYZ(double x, double y, double z, CoordinateReferenceSystem crs)
+        throws UnsupportedCRSException {
+        this.crs = crs;
+        ordinates = new double[crs.getDimension()];
+        ordinates[0] = x;
+        ordinates[1] = y;
         ordinates[2] = z;
     }
     
@@ -64,43 +67,47 @@ public class XYZ {
      * @param crs       the Coordinate Reference System 
      */
     public XYZ(CoordinateReferenceSystem crs) throws UnsupportedCRSException {
-		this.crs = crs;
-		ordinates = new double[crs.getDimension()];
+        this.crs = crs;
+        ordinates = new double[crs.getDimension()];
     }
     
-	/**
-	 * Initializes the Coordinate Reference System to the supplied parameter.
-	 * @param crs       the Coordinate Reference System
-	 */
-	public XYZ() throws UnsupportedCRSException {
-		crs = findCRS(DEFAULT_COORDINATE_REFERENCE_SYSTEM_URL);
+    /**
+     * Initializes the Coordinate Reference System to the supplied parameter.
+     * @param crs       the Coordinate Reference System
+     */
+    public XYZ() throws UnsupportedCRSException {
+        crs = findCRS(DEFAULT_COORDINATE_REFERENCE_SYSTEM_URL);
         ordinates = new double[crs.getDimension()];
-	}
+    }
     
-	////
-	// Methods for XYZ.
-	
-	/**
-	 * Returns the Coordinate Reference System for the given URL.
-	 * @param crsURL Coordinate Reference System URL.
-	 * @return Coordinate Reference System.
-	 */
-	private CoordinateReferenceSystem findCRS(String crsURL) throws UnsupportedCRSException {
-	   Properties props = new Properties();
-	   props.setProperty(CoordinateReferenceSystemFactory.COORDINATE_REFERECE_SYSTEM_URL, crsURL);
-	   CoordinateReferenceSystem crs;
-	   try {
-			crs = CommonFactoryManager.getCommonFactory("CommonFactory").getCoordinateReferenceSystemFactory().getCoordinateReferenceSystem(props);
-	   } catch (ClassNotFoundException e) {
-			throw new UnsupportedCRSException("ClassNotFoundException: " + e);
-	   } catch (IllegalAccessException e) {
-			throw new UnsupportedCRSException ("IllegalAccessExceptione: " + e);
-	   } catch (InstantiationException e) {
-			throw new UnsupportedCRSException ("InstantiationExceptione: " + e);
-	   }
-	   return crs;
-	}
-	
+    ////
+    // Methods for XYZ.
+    
+    /**
+     * Returns the Coordinate Reference System for the given URL.
+     * @param crsURL Coordinate Reference System URL.
+     * @return Coordinate Reference System.
+     */
+    private CoordinateReferenceSystem findCRS(String crsURL) throws UnsupportedCRSException {
+        Properties props = new Properties();
+        props.setProperty(CoordinateReferenceSystemFactory.COORDINATE_REFERECE_SYSTEM_URL, crsURL);
+        CoordinateReferenceSystem crs;
+        try {
+            crs =
+                CommonFactoryManager
+                    .getCommonFactory("CommonFactory")
+                    .getCoordinateReferenceSystemFactory()
+                    .getCoordinateReferenceSystem(props);
+        } catch (ClassNotFoundException e) {
+            throw new UnsupportedCRSException("ClassNotFoundException: " + e);
+        } catch (IllegalAccessException e) {
+            throw new UnsupportedCRSException("IllegalAccessExceptione: " + e);
+        } catch (InstantiationException e) {
+            throw new UnsupportedCRSException("InstantiationExceptione: " + e);
+        }
+        return crs;
+    }
+    
     /**
      * Sets the X, Y, and Z values held by this coordinante.
      * @param x The new X value.
@@ -117,13 +124,13 @@ public class XYZ {
      * Returns the Z coordinate of this tuple.
      * @return The Z coordinate of this tuple.
      */
-    public double getZ(){
+    public double getZ() {
         return ordinates[2];
     }
     
     ////
     // Methods supporting DirectPosition (override XY methods).
-	
+    
     /**
      * Generically sets the generic value if this coordinate for the given dimension.
      * @param dimension
@@ -139,7 +146,7 @@ public class XYZ {
     public double getOrdinate(int dimension) {
         return ordinates[dimension];
     }
-
+    
     /**
      * Clone this XYZ.
      */

@@ -7,7 +7,6 @@
  ** Copyright (C) 2003 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
  **
  *************************************************************************************************/
-
 package org.opengis.go.typical.geometry;
 
 import org.opengis.go.geometry.BoundingPolygon;
@@ -26,16 +25,16 @@ import org.opengis.go.typical.coord.LatLonAlt;
  * @version $Revision$, $Date$
  */
 public interface LatLonBoundingPolygon extends BoundingPolygon {
-	/**
-	 * Returns a list of vertices of this object cast as LatLonAlt
-	 * instead of DirectPosition.
-	 */
-	public LatLonAlt[] getVerticesLatLon();
 
-	/**
-	 * Sets the vertices of this object from an array of LatLon objects
-	 * (rather than an array of DirectPosition objects).
-	 */
-	public void setVertices(LatLonAlt[] vertices);
+    /**
+     * Returns a list of vertices of this object cast as LatLonAlt
+     * instead of DirectPosition.
+     */
+    public LatLonAlt[] getVerticesLatLon();
+
+    /**
+     * Sets the vertices of this object from an array of LatLon objects
+     * (rather than an array of DirectPosition objects).
+     */
+    public void setVertices(LatLonAlt[] vertices);
 }
-

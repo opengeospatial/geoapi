@@ -7,7 +7,6 @@
  ** Copyright (C) 2003 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
  **
  *************************************************************************************************/
-
 package org.opengis.go.display.canvas;
 
 import org.opengis.spatialschema.coordinate.DirectPosition;
@@ -33,16 +32,17 @@ import org.opengis.spatialschema.coordinate.DirectPosition;
  * @version $Revision$, $Date$
  */
 public interface CanvasController {
-    
+
     /**
      * Sets the position of the center pixel of the <code>Canvas</code> this
      * controller works for, if it is the active controller.
      * @see CanvasState#getCenter()
      */
     public void setCenter(DirectPosition newCenter);
-    
+
     /**
      * Returns a the CanvasParameterMutator object.
      */
     public CanvasParameterMutator getCanvasParameterMutator();
+
 }

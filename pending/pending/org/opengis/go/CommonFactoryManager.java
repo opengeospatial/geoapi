@@ -19,6 +19,7 @@ import java.util.ResourceBundle;
 import org.opengis.crs.coordops.CoordinateTransformation;
 import org.opengis.crs.coordrefsys.CoordinateReferenceSystem;
 import org.opengis.crs.coordrefsys.CoordinateReferenceSystemFactory;
+import org.opengis.crs.coordrefsys.UnsupportedCRSException;
 import org.opengis.crs.datum.Datum;
 import org.opengis.crs.datum.DatumFactory;
 import org.opengis.go.geometry.Bounds;
@@ -75,17 +76,17 @@ public class CommonFactoryManager {
             
             // Get the system property.
             String cfClassName =
-                System.getProperty("org.ogc.go1.CommonFactoryClass");
+                System.getProperty("org.opengis.go.CommonFactoryClass");
             
             // If the system property was not set, try to read from the file
             // "org/ogc/go1/common/Common.properties".
             if (cfClassName == null) {
                 try {
                     ResourceBundle commonResources =
-                        ResourceBundle.getBundle("org.ogc.go1.Common");
+                        ResourceBundle.getBundle("org.opengis.go.Common");
                     if (commonResources != null) {
                         cfClassName = commonResources.
-                            getString("org.ogc.go1.CommonFactoryClass");
+                            getString("org.opengis.go.CommonFactoryClass");
                     }
                 } catch (MissingResourceException mie) {
                     // If the properties file was not present, then we'll
@@ -192,7 +193,7 @@ public class CommonFactoryManager {
      * @param crs the <code>CoordinateReferenceSystem</code> to be used.
      * @return Returns the newly created spatialschema <code>Object</code>.
      */
-    public static Object createObjectWithCRS(Class coordInterface, CoordinateReferenceSystem crs) {
+    public static Object createObjectWithCRS(Class coordInterface, CoordinateReferenceSystem crs) throws UnsupportedCRSException {
         return spatialschemaFactory.createObjectWithCRS(coordInterface, crs);
     }
 

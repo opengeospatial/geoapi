@@ -7,7 +7,6 @@
  ** Copyright (C) 2003 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
  **
  *************************************************************************************************/
-
 package org.opengis.go.geometry;
 
 import org.opengis.crs.coordrefsys.CoordinateReferenceSystem;
@@ -23,6 +22,7 @@ import org.opengis.spatialschema.coordinate.DirectPosition;
  * @version $Revision$, $Date$
  */
 public interface Bounds {
+
     /**
      * This function returns true if two conditions are met: first, that the
      * object has been initialized with valid values; and second, that those
@@ -58,17 +58,15 @@ public interface Bounds {
      */
     public void expandToInclude(DirectPosition location);
 
-	/**
-	 * Returns the Coordinate Reference System for this Bounds. Used by subclasses of Bounds.
-	 * @return the Coordinate Reference System for this Bounds.
-	 */
-	public CoordinateReferenceSystem getCoordinateReferenceSystem();
-	
-	/**
-	 * Sets the Coordinate Reference System for this Bounds. Used by subclasses of Bounds.
-	 * @param crs the Coordinate Reference System for this Bounds.
-	 */
-	public void setCoordinateReferenceSystem(CoordinateReferenceSystem crs);
-	
-}
+    /**
+     * Returns the Coordinate Reference System for this Bounds. Used by subclasses of Bounds.
+     * @return the Coordinate Reference System for this Bounds.
+     */
+    public CoordinateReferenceSystem getCoordinateReferenceSystem();
 
+    /**
+     * Sets the Coordinate Reference System for this Bounds. Used by subclasses of Bounds.
+     * @param crs the Coordinate Reference System for this Bounds.
+     */
+    public void setCoordinateReferenceSystem(CoordinateReferenceSystem crs);
+}

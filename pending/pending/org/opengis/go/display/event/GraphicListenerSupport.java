@@ -7,33 +7,31 @@
  ** Copyright (C) 2003 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
  **
  *************************************************************************************************/
-
 package org.opengis.go.display.event;
 
 import org.opengis.go.display.primitive.Graphic;
 
 public class GraphicListenerSupport {
-    
+
     //*************************************************************************
     //  Fields
     //*************************************************************************
-    
+
     private GraphicListener[] listeners;
-    
+
     /**
      * an optional field.  if this Support object knows the graphic it works
      * for, then it can also handle the passingEventsToParent stuff.
      */
     private Graphic graphic;
-    
+
     //*************************************************************************
     //  Constructors
     //*************************************************************************
-    
+
     public GraphicListenerSupport() {
-        
     }
-    
+
     /**
      * Constructs a new <code>GraphicListenerSupport</code> that works for the
      * given <code>Graphic</code>.  The <code>Graphic</code> is given to this
@@ -41,13 +39,13 @@ public class GraphicListenerSupport {
      * @param graphic the <code>Graphic</code> this support object works for.
      */
     public GraphicListenerSupport(Graphic graphic) {
-        this.graphic = graphic;   
+        this.graphic = graphic;
     }
-    
+
     //*************************************************************************
     //
     //*************************************************************************
-    
+
     /**
      * Adds the given listener to this <code>GraphicListenerSupport</code>'s 
      * list of listeners.  Listeners are notified of key, mouse, and change 
@@ -60,7 +58,8 @@ public class GraphicListenerSupport {
             listeners = new GraphicListener[] { listener };
             return;
         }
-        GraphicListener[] newListeners = new GraphicListener[listeners.length + 1];
+        GraphicListener[] newListeners =
+            new GraphicListener[listeners.length + 1];
         System.arraycopy(listeners, 0, newListeners, 0, listeners.length);
         newListeners[listeners.length] = listener;
         listeners = newListeners;
@@ -75,19 +74,34 @@ public class GraphicListenerSupport {
         int length = (listeners != null) ? listeners.length : 0;
         for (int i = 0; i < length; i++) {
             if (listeners[i] == listener) {
-                GraphicListener[] newListeners = new GraphicListener[length - 1];   
-                
+                GraphicListener[] newListeners =
+                    new GraphicListener[length - 1];
                 if (length > 1) {
                     if (i == length) {
                         // removing the last listener from the array
-                        System.arraycopy(listeners, 0, newListeners, 0, length - 1);
+                        System.arraycopy(
+                            listeners,
+                            0,
+                            newListeners,
+                            0,
+                            length - 1);
                     } else if (i == 0) {
                         // removing the first listener from the array
-                        System.arraycopy(listeners, 1, newListeners, 0, length - 1);
+                        System.arraycopy(
+                            listeners,
+                            1,
+                            newListeners,
+                            0,
+                            length - 1);
                     } else {
                         // removing a listener from the middle of the array
                         System.arraycopy(listeners, 0, newListeners, 0, i);
-                        System.arraycopy(listeners, i + 1, newListeners, i, length - i - 1);
+                        System.arraycopy(
+                            listeners,
+                            i + 1,
+                            newListeners,
+                            i,
+                            length - i - 1);
                     }
                     break;
                 }
@@ -95,11 +109,67 @@ public class GraphicListenerSupport {
             }
         }
     }
-    
+
     private boolean isEmpty() {
         return listeners == null || listeners.length == 0;
     }
     
+    /**
+     * Determines which subclass of the given <code>GraphicEvent</code> 
+     * and which type has been fired and calls the appropriate 
+     * <code>fireGraphic***()</code> method.
+     */
+    public void fireGraphicEvent(GraphicEvent ge) {
+        if (ge instanceof GraphicChangeEvent) {
+            GraphicChangeEvent gce = (GraphicChangeEvent)ge;
+            int type = gce.getID();
+            switch(type) {
+                case(GraphicChangeEvent.EDITABLE_CHANGED) :
+                    fireGraphicEditableChanged(gce);
+                    break;                      
+                case(GraphicChangeEvent.EDITABLE_END) :
+                    fireGraphicEditableEnd(gce);
+                    break;  
+                case(GraphicChangeEvent.EDITABLE_START) :
+                    fireGraphicEditableStart(gce);
+                    break;
+                case(GraphicChangeEvent.GRAPHIC_CHANGED) :
+                    fireGraphicChanged(gce);
+                    break;
+                case(GraphicChangeEvent.GRAPHIC_DESELECTED) :
+                    fireGraphicDeselected(gce);
+                    break;
+                case(GraphicChangeEvent.GRAPHIC_DISPOSED) :
+                    fireGraphicDisposed(gce);
+                    break;
+                case(GraphicChangeEvent.GRAPHIC_SELECTED) :
+                    fireGraphicSelected(gce);
+                    break;
+                default :
+                    break;
+            }
+        } else if (ge instanceof GraphicMouseEvent) {
+            GraphicMouseEvent gme = (GraphicMouseEvent)ge;
+            int type = gme.getID();
+            switch(type) {
+                case(GraphicMouseEvent.MOUSE_CLICKED) :
+                    fireMouseClicked(gme);
+                    break;
+                case(GraphicMouseEvent.MOUSE_DWELLED) :
+                    fireMouseDwelled(gme);
+                    break;
+                case(GraphicMouseEvent.MOUSE_PRESSED) :
+                    fireMousePressed(gme);
+                    break;
+                case(GraphicMouseEvent.MOUSE_RELEASED) :
+                    fireMouseReleased(gme);
+                    break;
+                default :
+                    break;
+            }               
+        }
+    }
+
     /**
      * Calls the <code>mouseClicked()</code> method of all listeners in this 
      * <code>GraphicListenerSupport<code>'s array of listeners.
@@ -111,16 +181,16 @@ public class GraphicListenerSupport {
         }
         GraphicListener[] holder = listeners;
         for (int i = 0; i < holder.length; i++) {
-            holder[i].mouseClicked(gme);   
+            holder[i].mouseClicked(gme);
         }
         if (graphic != null && graphic.isPassingEventsToParent()) {
             Graphic parent = graphic.getParent();
             if (parent != null) {
-                parent.fireGraphicEvent(gme);   
+                parent.fireGraphicEvent(gme);
             }
         }
     }
-    
+
     /**
      * Calls the <code>mousePressed()</code> method of all listeners in this 
      * <code>GraphicListenerSupport<code>'s array of listeners.
@@ -132,7 +202,7 @@ public class GraphicListenerSupport {
         }
         GraphicListener[] holder = listeners;
         for (int i = 0; i < holder.length; i++) {
-            holder[i].mousePressed(gme);   
+            holder[i].mousePressed(gme);
         }
         if (graphic != null && graphic.isPassingEventsToParent()) {
             Graphic parent = graphic.getParent();
@@ -141,7 +211,7 @@ public class GraphicListenerSupport {
             }
         }
     }
-    
+
     /**
      * Calls the <code>mouseReleased()</code> method of all listeners in this 
      * <code>GraphicListenerSupport<code>'s array of listeners.
@@ -153,16 +223,16 @@ public class GraphicListenerSupport {
         }
         GraphicListener[] holder = listeners;
         for (int i = 0; i < holder.length; i++) {
-            holder[i].mouseReleased(gme);   
+            holder[i].mouseReleased(gme);
         }
         if (graphic != null && graphic.isPassingEventsToParent()) {
             Graphic parent = graphic.getParent();
             if (parent != null) {
-                parent.fireGraphicEvent(gme);   
+                parent.fireGraphicEvent(gme);
             }
         }
     }
-    
+
     /**
      * Calls the <code>mouseDwelled()</code> method of all listeners in this 
      * <code>GraphicListenerSupport<code>'s array of listeners.
@@ -174,16 +244,16 @@ public class GraphicListenerSupport {
         }
         GraphicListener[] holder = listeners;
         for (int i = 0; i < holder.length; i++) {
-            holder[i].mouseDwelled(gme);   
+            holder[i].mouseDwelled(gme);
         }
         if (graphic != null && graphic.isPassingEventsToParent()) {
             Graphic parent = graphic.getParent();
             if (parent != null) {
-                parent.fireGraphicEvent(gme);   
+                parent.fireGraphicEvent(gme);
             }
         }
     }
-    
+
     /**
      * Calls the <code>graphicSelected()</code> method of all listeners in this 
      * <code>GraphicListenerSupport<code>'s array of listeners.
@@ -195,10 +265,10 @@ public class GraphicListenerSupport {
         }
         GraphicListener[] holder = listeners;
         for (int i = 0; i < holder.length; i++) {
-            holder[i].graphicSelected(gce);   
+            holder[i].graphicSelected(gce);
         }
     }
-    
+
     /**
      * Calls the <code>graphicdeSelected()</code> method of all listeners in 
      * this <code>GraphicListenerSupport<code>'s array of listeners.
@@ -210,10 +280,10 @@ public class GraphicListenerSupport {
         }
         GraphicListener[] holder = listeners;
         for (int i = 0; i < holder.length; i++) {
-            holder[i].graphicDeselected(gce);   
+            holder[i].graphicDeselected(gce);
         }
     }
-    
+
     /**
      * Calls the <code>graphicDisposed()</code> method of all listeners in this 
      * <code>GraphicListenerSupport<code>'s array of listeners.
@@ -225,10 +295,10 @@ public class GraphicListenerSupport {
         }
         GraphicListener[] holder = listeners;
         for (int i = 0; i < holder.length; i++) {
-            holder[i].graphicDisposed(gce);   
+            holder[i].graphicDisposed(gce);
         }
     }
-    
+
     /**
      * Calls the <code>graphicEditableStart()</code> method of all listeners in
      * this <code>GraphicListenerSupport<code>'s array of listeners.
@@ -240,10 +310,10 @@ public class GraphicListenerSupport {
         }
         GraphicListener[] holder = listeners;
         for (int i = 0; i < holder.length; i++) {
-            holder[i].graphicEditableStart(gce);   
+            holder[i].graphicEditableStart(gce);
         }
     }
-    
+
     /**
      * Calls the <code>graphicEditableChanged()</code> method of all listeners 
      * in this <code>GraphicListenerSupport<code>'s array of listeners.
@@ -255,10 +325,10 @@ public class GraphicListenerSupport {
         }
         GraphicListener[] holder = listeners;
         for (int i = 0; i < holder.length; i++) {
-            holder[i].graphicEditableChanged(gce);   
+            holder[i].graphicEditableChanged(gce);
         }
     }
-    
+
     /**
      * Calls the <code>graphicEditableEnd()</code> method of all listeners in
      * this <code>GraphicListenerSupport<code>'s array of listeners.
@@ -270,23 +340,22 @@ public class GraphicListenerSupport {
         }
         GraphicListener[] holder = listeners;
         for (int i = 0; i < holder.length; i++) {
-            holder[i].graphicEditableEnd(gce);   
+            holder[i].graphicEditableEnd(gce);
         }
     }
-    
+
     /**
      * Calls the <code>graphicChanged()</code> method of all listeners in this
      * <code>GraphicListenerSupport<code>'s array of listeners.
      * @param gme the <code>GraphicChangeEvent</code> to give to the listeners.
      */
     public void fireGraphicChanged(GraphicChangeEvent gce) {
-    if (isEmpty()) {
+        if (isEmpty()) {
             return;
         }
         GraphicListener[] holder = listeners;
         for (int i = 0; i < holder.length; i++) {
-            holder[i].graphicChanged(gce);   
+            holder[i].graphicChanged(gce);
         }
     }
-    
 }

@@ -7,7 +7,6 @@
  ** Copyright (C) 2003 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
  **
  *************************************************************************************************/
-
 package org.opengis.go.display.event;
 
 /**
@@ -35,7 +34,7 @@ public interface AggregationChangeEvent {
 	public static final int ELEMENTS_REORDERD = 2;
 	
 	/**
-	 * Get the ID flag for this event.
+	 * Get the ID flag for this <code>AggregationChangeEvent</code>.
 	 */
 	public int getID();
     

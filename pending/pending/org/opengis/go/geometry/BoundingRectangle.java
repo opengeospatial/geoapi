@@ -7,7 +7,6 @@
  ** Copyright (C) 2003 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
  **
  *************************************************************************************************/
-
 package org.opengis.go.geometry;
 
 import org.opengis.spatialschema.coordinate.DirectPosition;
@@ -21,6 +20,7 @@ import org.opengis.spatialschema.coordinate.DirectPosition;
  * @version $Revision$, $Date$
  */
 public interface BoundingRectangle extends Bounds {
+
     /**
      * Sets the <code>DirectPosition</code> for the top-left position of the
      * rectangle.
@@ -62,8 +62,7 @@ public interface BoundingRectangle extends Bounds {
      * two BoundingRectangles do not intersect.  The return value should
      * never be null.
      */
-    public BoundingRectangle getIntersection(BoundingRectangle bounds,
-                                             BoundingRectangle result);
+    public BoundingRectangle getIntersection(BoundingRectangle bounds, BoundingRectangle result);
 
     /**
      * Returns the smallest <code>BoundingRectangle</code> that contains both
@@ -78,9 +77,7 @@ public interface BoundingRectangle extends Bounds {
      * which may be invalid (according to the <code>isValid()</code> function)
      * if it is not possible to construct a rectangle that encompasses
      * both of the given rectangles.  The return value should never
-	 * be null.
+     * be null.
      */
-    public BoundingRectangle getCombinedExtent(BoundingRectangle bounds,
-                                               BoundingRectangle result);
+    public BoundingRectangle getCombinedExtent(BoundingRectangle bounds, BoundingRectangle result);
 }
-

@@ -7,7 +7,6 @@
  ** Copyright (C) 2003 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
  **
  *************************************************************************************************/
-
 package org.opengis.go.geometry;
 
 import org.opengis.spatialschema.coordinate.DirectPosition;
@@ -21,13 +20,14 @@ import org.opengis.spatialschema.coordinate.DirectPosition;
  * @version $Revision$, $Date$
  */
 public interface BoundingPolygon extends Bounds {
-	/**
-	 * Returns the list of vertices for this object.
-	 */
-	public DirectPosition[] getVertices();
-
-	/**
-	 * Sets the list of vertices for this object.
-	 */
-	public void setVertices(DirectPosition[] vertices);
+    
+    /**
+     * Returns the list of vertices for this object.
+     */
+    public DirectPosition[] getVertices();
+    
+    /**
+     * Sets the list of vertices for this object.
+     */
+    public void setVertices(DirectPosition[] vertices);
 }

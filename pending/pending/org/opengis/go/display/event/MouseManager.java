@@ -7,7 +7,6 @@
  ** Copyright (C) 2003 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
  **
  *************************************************************************************************/
-
 package org.opengis.go.display.event;
 
 /**
@@ -21,49 +20,52 @@ package org.opengis.go.display.event;
 public interface MouseManager extends EventManager {
 
     /**
-     * The window will pass mouse events to only this MouseHandler, until
-     * the MouseHandler is changed or removed.
-     * @param mouseHandler  the current mouse handler.
+     * Enables the given <code>MouseHandler</code>.  This <code>MouseManager</code>
+     * then passes events only to the given <code>MouseHandler</code> until it is
+     * either removed or another <code>MouseHandler</code> is enabled.
+     * @param mouseHandler  the new <code>MouseHandler</code> to enable.
      */
     public void enableMouseHandler(MouseHandler mouseHandler);
 
     /**
-     * Enable the given MouseHandler, and push it on the stack so that if
-     * another MouseHandler gets enabled, this one will be reenabled when
-     * that MouseHandler is removed.
-     * @param mouseHandler  The MouseHandler to enable and push.
+     * Enables the given <code>MouseHandler</code>, and pushes it on the stack so that if
+     * another <code>MouseHandler</code> gets enabled, this one will be reenabled when
+     * that <code>MouseHandler</code> is removed.
+     * @param mouseHandler  The <code>MouseHandler</code> to enable and push.
      * @see #enableMouseHandler
      */
     public void pushMouseHandler(MouseHandler mouseHandler);
 
     /**
-     * Remove the given MouseHandler and reinstate the MouseHandler at the
+     * Removes the given <code>MouseHandler</code> and reinstate the <code>MouseHandler</code> at the
      * top of the stack, if any.
-     * @param mouseHandler  the MouseHandler to disable and remove.
+     * @param mouseHandler  the <code>MouseHandler</code> to disable and remove.
      */
     public void removeMouseHandler(MouseHandler mouseHandler);
 
     /**
-     * Replace a MouseHandler in the stack with another MouseHandler.
-     * @param existingHandler the MouseHandler to be replaced.
-     * @param replacementHandler the MouseHandler that is replacing the
-     * existingHandler.
-     * @return true if existingHandler was found and replaced
-     * existingHandler.
+     * Replaces a <code>MouseHandler</code> in the stack with another <code>MouseHandler</code>.
+     * @param existingHandler the <code>MouseHandler</code> to be replaced.
+     * @param replacementHandler the <code>MouseHandler</code> that is replacing the.
+     * @return true if existingHandler was found and replaced by replacementHandler.
      */
-    public boolean replaceMouseHandler(MouseHandler existingHandler,
-                                       MouseHandler replacementHandler);
+    public boolean replaceMouseHandler(
+        MouseHandler existingHandler,
+        MouseHandler replacementHandler);
 
     /**
-     * @return the current MouseHandler or null if none.
+     * Returns the current <code>MouseHandler</code> or null if none.
+     * @return the current <code>MouseHandler</code> or null if none.
      */
     public MouseHandler getCurrentMouseHandler();
 
     /**
-     * @return an array of additional MouseHandlers to call for a given
-     * MouseEvent, if the current mouse handler doesn't handle it. These
-     * handlers will be called in ascending index order until the MouseEvent
+     * Returns an array of additional <code>MouseHandler</code>s to call for a given
+     * <code>MouseEvent</code>, if the current <code>MouseHandler</code> doesn't handle it. These
+     * handlers will be called in ascending index order until the <code>MouseEvent</code>
      * isConsumed().
+     * @return an array of additional <code>MouseHandler</code>s
      */
     public MouseHandler[] getFallbackMouseHandlers();
+
 }

@@ -7,11 +7,9 @@
  ** Copyright (C) 2003 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
  **
  *************************************************************************************************/
-
 package org.opengis.spatialschema.coordinate;
 
 import org.opengis.crs.coordrefsys.CoordinateReferenceSystem;
-
 
 /**
  * The <code>PointArray</code> interface outlines a means of efficiently storing large
@@ -38,7 +36,7 @@ public interface PointArray {
      * @return the elements as an array of DirectPositions.
      */
     public DirectPosition[] toArray();
-       
+    
     /**
      * Returns the Coordinate Reference System of this
      * <code>PointArray</code>.
@@ -72,5 +70,4 @@ public interface PointArray {
      * @return the DirectPosition corresponding to the index.
      */
     public DirectPosition getDirectPosition(int index, DirectPosition directPosition);
-
 }

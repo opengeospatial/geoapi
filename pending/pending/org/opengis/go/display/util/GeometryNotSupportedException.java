@@ -18,6 +18,7 @@ import org.opengis.spatialschema.Geometry;
  * @version $Revision$, $Date$
  */
 public class GeometryNotSupportedException extends Exception {
+    
     private Geometry value;
 
     /**

@@ -10,14 +10,14 @@
 
 package org.opengis.go.display.primitive;
 
-import org.opengis.spatialschema.coordinate.Conic;
-import org.opengis.spatialschema.coordinate.DirectPosition;
+import com.dautelle.units.Unit;
+
+import org.opengis.go.display.util.GeometryNotSupportedException;
 import org.opengis.go.spatial.PathType;
 import org.opengis.go.util.NoSuchEnumerationException;
 import org.opengis.go.util.SimpleEnumerationType;
-import org.opengis.go.display.util.GeometryNotSupportedException;
-
-import com.dautelle.units.Unit;
+import org.opengis.spatialschema.coordinate.Conic;
+import org.opengis.spatialschema.coordinate.DirectPosition;
 
 /**
  * A <code>GraphicArc</code> represents a portion of an ellipse.
@@ -83,130 +83,137 @@ public interface GraphicArc extends Graphic {
      * measured positively as a clockwise angle, starting from a reference line within the 
      * Coordinate Reference System and ending at the x-axis of the local Cartesian plane.
      * <p>
-     * The geometric values are set on the underlying Conic geometry for this Graphic.
+     * The geometric values are set on the underlying <code>Conic</code> geometry for this <code>Graphic</code>.
      * 
-     * @param center the location of the centerpoint of the ellipse defining this arc.
-     * @param width the length of the major axis of the ellipse defining this arc.
-     * @param height the length of the minor axis of the ellipse defining this arc.
+     * @param center the location of the centerpoint of the ellipse defining this <code>GraphicArc</code>.
+     * @param width the length of the major axis of the ellipse defining this <code>GraphicArc</code>.
+     * @param height the length of the minor axis of the ellipse defining this <code>GraphicArc</code>.
      * @param lengthUnit the unit of width and height.
-     * @param rotation the rotation of the ellipse defining this arc with respect to the Coordinate Reference System of the centerpoint DirectPosition.
+     * @param rotation the rotation of the ellipse defining this <code>GraphicArc</code> with respect to the Coordinate Reference System of the centerpoint DirectPosition.
      * @param start the angle of starting point of the arc, drawn clockwise from the positive side of the major axis.
      * @param end the angle of the ending point of the arc, drawn clockwise from the positive side of the major axis.
      * @param angleUnit the unit of rotation.
      * @throws GeometryNotSupportedException if the width value is smaller than the height value is not an ellipse.
      */
-    public void setArc(DirectPosition center, double width, double height, Unit lengthUnit, 
-    		double rotation, double start, double end, Unit angleUnit);
-    
+    public void setArc(
+        DirectPosition center,
+        double width,
+        double height,
+        Unit lengthUnit,
+        double rotation,
+        double start,
+        double end,
+        Unit angleUnit);
+
     /**
-     * Convenience method to set the location of the center of the ellipse defining this arc. 
-     * Value is set on the underlying Conic geometry for this Graphic.
+     * Sets the center of the ellipse defining this <code>GraphicArc</code>. 
+     * Value is set on the underlying <code>Conic</code> geometry for this <code>Graphic</code>.
      */
     public void setCenter(DirectPosition center);
 
     /**
-     * Convenience method to return the center of the of the ellipse defining this arc.
-     * Value is acquired from the underlying Conic geometry for this Graphic.
+     * Returns the center of the ellipse defining this <code>GraphicArc</code>.
+     * Value is acquired from the underlying <code>Conic</code> geometry for this <code>Graphic</code>.
      */
     public DirectPosition getCenter();
 
     /**
-     * Convenience method to set the size of the width axis 
-     * of the ellipse defining this arc, in terms of the given Unit.
-     * Value is set on the underlying Conic geometry for this Graphic.
+     * Sets the size of the width axis 
+     * of the ellipse defining this <code>GraphicArc</code>, in terms of the given <code>Unit</code>.
+     * Value is set on the underlying <code>Conic</code> geometry for this <code>Graphic</code>.
      * @param width Size of the width axis.
-     * @param unit the Unit of the width value.
+     * @param unit the <code>Unit</code> of the width value.
      */
     public void setWidth(double width, Unit unit);
 
     /**
-     * Convenience method to return the size of the width axis 
-     * of the ellipse defining this arc, in terms of the given Unit.
-     * Value is acquired from the underlying Conic geometry for this Graphic.
-     * @param unit the Unit of the width value.
+     * Returns the size of the width axis 
+     * of the ellipse defining this <code>GraphicArc</code>, in terms of the given <code>Unit</code>.
+     * Value is acquired from the underlying <code>Conic</code> geometry for this <code>Graphic</code>.
+     * @param unit the <code>Unit</code> of the width value.
      * @return The size of the width axis of the arc.
      */
     public double getWidth(Unit unit);
 
     /**
-     * Convenience method to set the size of the height axis 
-     * of the ellipse defining this arc, in terms of the given Unit.
-     * Value is set on the underlying Conic geometry for this Graphic.
+     * Sets the size of the height axis 
+     * of the ellipse defining this <code>GraphicArc</code>, in terms of the given <code>Unit</code>.
+     * Value is set on the underlying <code>Conic</code> geometry for this <code>Graphic</code>.
      * @param height Size of the height axis.
-     * @param unit the Unit of the height value.
+     * @param unit the <code>Unit</code> of the height value.
      */
     public void setHeight(double height, Unit unit);
 
     /**
-     * Convenience method to return the size of the height axis 
-     * of the ellipse defining this arc, in terms of the given Unit.
-     * Value is acquired from the underlying Conic geometry for this Graphic.
-     * @param unit the Unit of the height value.
+     * Returns the size of the height axis 
+     * of the ellipse defining this <code>GraphicArc</code>, in terms of the given <code>Unit</code>.
+     * Value is acquired from the underlying <code>Conic</code> geometry for this <code>Graphic</code>.
+     * @param unit the <code>Unit</code> of the height value.
      * @return The size of the height axis of the arc.
      */
     public double getHeight(Unit unit);
 
     /**
-     * Sets the geometry based on ISO 19107 Conic geometry for this Graphic. 
-     * The Conic must be an ellipse (or a circle), otherwise 
-     * GeometryNotSupportedException is thrown.
-     * @param conic the elliptic conic for this Graphic.
-     * @throws GeometryNotSupportedException if Conic is not an ellipse.
+     * Sets the geometry based on ISO 19107 <code>Conic</code> geometry for this <code>Graphic</code>. 
+     * The <code>Conic</code> must be an ellipse (or a circle), otherwise 
+     * <code>GeometryNotSupportedException</code> is thrown.
+     * @param conic the elliptic conic for this <code>Graphic</code>.
+     * @throws GeometryNotSupportedException if <code>Conic</code> is not an ellipse.
      */
     public void setConic(Conic conic) throws GeometryNotSupportedException;
-    
+
     /**
-     * Sets the orientation for the width axis.  On a canvas, this
+     * Sets the orientation for the width axis.  On a <code>Canvas</code>, this
      * might be the angle between the positive X axis and the width
      * axis of the arc. For a projected arc, this might be the angle
      * between due north and the width axis.
      * @param orientation  orientation of the arc.
-     * @param unit the Unit for the angle value.
+     * @param unit the <code>Unit</code> for the angle value.
      */
     public void setRotation(double rotation, Unit unit);
 
     /**
-     * Returns the arc's orientation source.
-     * @param unit the Unit for the angle value.
+     * Returns this <code>GraphicArc</code>'s orientation source.
+     * @param unit the <code>Unit</code> for the angle value.
      * @return orientation of the arc.
      */
     public double getRotation(Unit unit);
 
     /**
-     * Set the arc's start bearing. The arc is stroked
+     * Sets this <code>GraphicArc</code>'s start bearing. The arc is stroked
      * counter-clockwise from start to end.
      * @param start the start Orientation.
-     * @param unit the Unit for the angle value.
+     * @param unit the <code>Unit</code> for the angle value.
      */
     public void setStart(double start, Unit unit);
 
     /**
-     * Get the arc's start bearing. The arc is stroked
+     * Returns this <code>GraphicArc</code>'s start bearing. The arc is stroked
      * counter-clockwise from start to end.
-     * @param unit the Unit for the angle value.
+     * @param unit the <code>Unit</code> for the angle value.
      * @return the arc start Orientation. 
      */
     public double getStart(Unit unit);
 
     /**
-     * Set the arc's end bearing.  The arc is stroked
+     * Sets this <code>GraphicArc</code>'s end bearing.  The arc is stroked
      * counter-clockwise from start to end.
      * @param end the end orientation.
-     * @param unit the Unit for the angle value.
+     * @param unit the <code>Unit</code> for the angle value.
      */
     public void setEnd(double end, Unit unit);
 
     /**
-     * Get the arc's ending bearing. The arc is stroked
+     * Returns this <code>GraphicArc</code>'s ending bearing. The arc is stroked
      * counter-clockwise from start to end.
-     * @param unit the Unit for the angle value.
+     * @param unit the <code>Unit</code> for the angle value.
      * @return the arc end orientation.
      */
     public double getEnd(Unit unit);
 
     /**
-     * Sets the closureType, which determines how the endpoints of the
-     * arc are connected.  This is one of the constants defined in the
+     * Sets the closureType, which determines how the endpoints of this
+     * <code>GraphicArc</code> are connected.  This is one of the constants defined in the
      * <code>ArcClosure</code> class.  The integer values corresponding to
      * these constants are the same as the closure type values in
      * <code>java.awt.geom.Arc2D</code>.
@@ -217,7 +224,7 @@ public interface GraphicArc extends Graphic {
 
     /**
      * Returns the closureType.
-     * @return Closure type of the arc (one of ArcClosure constants
+     * @return Closure type of the arc (one of <code>ArcClosure</code> constants
      * OPEN, CHORD, or PIE).  The integer values corresponding to these
      * constants are the same as the constants OPEN, CHORD, and PIE from
      * <code>java.awt.geom.Arc2d</code>.
@@ -225,50 +232,50 @@ public interface GraphicArc extends Graphic {
     public ArcClosure getClosureType();
 
     /**
-     * Indicates whether this primitive is displaying an anchor handle for changing
-     * the rotation of the ellipse that contains this arc.
+     * Indicates whether this <code>GraphicArc</code> is displaying an anchor handle for changing
+     * the rotation of the defining ellipse.
      */
     public boolean isAllowingRotation();
 
     /**
-     * Sets the boolean that indicates whether this primitive displays a
-     * an anchor handle for changing the rotation of the ellipse containing this arc.
+     * Sets the boolean that indicates whether this <code>GraphicArc</code> displays 
+     * an anchor handle for changing the rotation of the defining ellipse.
      */
     public void setAllowingRotation(boolean newValue);
-    
+
     /**
-     * Indicates whether this primitive is a circle. The implementation should
+     * Indicates whether this <code>GraphicArc</code> is a circle. The implementation should
      * test for this based on the geometry settings.
      */
     public boolean isCircle();
-    
+
     /**
-     * Indicates whether this primitive is a closed ellipse. The implementation should
+     * Indicates whether this <code>GraphicArc</code> is a closed ellipse. The implementation should
      * test for this based on the geometry settings.
      */
     public boolean isClosedEllipse();
-    
+
     //**  EDITABLE/ANIMATION  **
 
     /**
-     * Indicates whether this primitive is displaying edit handles for changing
-     * the angular extents of this arc.
+     * Indicates whether this <code>GraphicArc</code> is displaying edit handles for changing
+     * the angular extents of the defining ellipse.
      */
     public boolean isAllowingExtentsChange();
 
     /**
-     * Sets the boolean that indicates whether this primitive is displaying
-     * edit handles for changing the angular extents of this arc.
+     * Sets the boolean that indicates whether this <code>GraphicArc</code> is displaying
+     * edit handles for changing the angular extents of the defining ellipse.
      */
     public void setAllowingExtentsChange(boolean newValue);
-    
+
     //**  PROJECTED  **
-    
+
     /**
      * Sets the algorithm that is used in computing the "in-between" pixels
-     * of the ArcClosure verteces when the arc is rendered. This does not
+     * of the <code>ArcClosure</code> verteces when the arc is rendered. This does not
      * when there is no closure, i.e. when isClosedEllipse() is false, or
-     * for ArcClosure.OPEN.
+     * for <code>ArcClosure.OPEN</code>.
      *
      * @param newPathType This must be one of the static constants in
      *   the PathType class or one of its subclasses.
@@ -277,12 +284,12 @@ public interface GraphicArc extends Graphic {
 
     /**
      * Retrieves the algorithm that is used in computing the "in-between" pixels
-     * of the ArcClosure verteces when the arc is rendered. This does not
+     * of the <code>ArcClosure</code> verteces when the arc is rendered. This does not
      * when there is no closure, i.e. when isClosedEllipse() is false, or
-     * for ArcClosure.OPEN.
+     * for <code>ArcClosure.OPEN</code>.
      */
     public PathType getClosurePathType();
-    
+
     /**
      * Instances of the <code>ArcClosure</code> class represent the various
      * methods of connecting the endpoints of an arc.  There are three static
@@ -292,30 +299,33 @@ public interface GraphicArc extends Graphic {
      * @author Open GIS Consortium, Inc.
      */
     public static class ArcClosure extends SimpleEnumerationType {
+
         /**
          * Closure type that indicates that the endpoints of the arc
          * should not be connected.
          */
-        public static final ArcClosure OPEN  = new ArcClosure(
-            java.awt.geom.Arc2D.OPEN, "Open", "");
+        public static final ArcClosure OPEN = new ArcClosure(java.awt.geom.Arc2D.OPEN, "Open", "");
+
         /**
          * Closure type that indicates that one line should be drawn between
          * the endpoints of the arc.
          */
-        public static final ArcClosure CHORD = new ArcClosure(
-            java.awt.geom.Arc2D.CHORD, "Chord", "");
+        public static final ArcClosure CHORD =
+            new ArcClosure(java.awt.geom.Arc2D.CHORD, "Chord", "");
+
         /**
          * Closure type that indicates that two lines, one from each
          * endpoint of the arc, should be drawn to the center of the ellipse
          * defining the arc.
          */
-        public static final ArcClosure PIE   = new ArcClosure(
-            java.awt.geom.Arc2D.PIE, "Pie", "");
+        public static final ArcClosure PIE = new ArcClosure(java.awt.geom.Arc2D.PIE, "Pie", "");
 
         /** Enumeration value of the <code>OPEN</code> constant. */
         public static final int OPEN_VALUE = OPEN.getValue();
+
         /** Enumeration value of the <code>CHORD</code> constant. */
         public static final int CHORD_VALUE = CHORD.getValue();
+
         /** Enumeration value of the <code>PIE</code> constant. */
         public static final int PIE_VALUE = PIE.getValue();
 
@@ -323,11 +333,7 @@ public interface GraphicArc extends Graphic {
          * A list containing all the enumerators so that the list can be
          * "walked" and also to do reverse lookups (id to object).
          */
-        private static final ArcClosure[] enumList = {
-            OPEN,
-            CHORD,
-            PIE
-        };
+        private static final ArcClosure[] enumList = { OPEN, CHORD, PIE };
 
         /**
          * Constructor that should only be called to create the static
@@ -344,15 +350,12 @@ public interface GraphicArc extends Graphic {
          * @throws NoSuchEnumerationException If there is no object for the
          *         given value.
          */
-        public static ArcClosure getByValue(int value)
-                      throws NoSuchEnumerationException {
-
+        public static ArcClosure getByValue(int value) throws NoSuchEnumerationException {
             for (int i = 0; i < enumList.length; i++) {
                 if (enumList[i].getValue() == value) {
                     return enumList[i];
                 }
             }
-
             throw new NoSuchEnumerationException(value);
         }
 

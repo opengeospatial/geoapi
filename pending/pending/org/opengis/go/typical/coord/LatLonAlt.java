@@ -7,12 +7,12 @@
  ** Copyright (C) 2003 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
  **
  *************************************************************************************************/
-
 package org.opengis.go.typical.coord;
 
-import java.util.Properties;
-
+import com.dautelle.units.SI;
 import com.dautelle.units.Unit;
+
+import java.util.Properties;
 
 import org.opengis.crs.coordrefsys.CoordinateReferenceSystem;
 import org.opengis.crs.coordrefsys.CoordinateReferenceSystemFactory;
@@ -34,15 +34,24 @@ import org.opengis.spatialschema.coordinate.DirectPosition;
  * @version $Revision$, $Date$
  */
 public class LatLonAlt implements DirectPosition {
-	
-	/**
-	 * The default Coordinate Reference System URL for this coordinate.
-	 * This constant referes to CRS's based on the "WGS 1984 (3D deg)" datum, corresponding
-	 * to EPSG Code 63266420. Latitude and Longitude are in degrees, and altitude 
-	 * is in meters.
-	 */
-	public static final String DEFAULT_COORDINATE_REFERENCE_SYSTEM_URL = "urn:x-ogc:srs:EPSG::63266413";
-
+    
+    //*************************************************************************
+    //  Static Fields
+    //*************************************************************************
+    
+    /**
+     * The default Coordinate Reference System URL for this coordinate.
+     * This constant referes to CRS's based on the "WGS 1984 (3D deg)" datum, corresponding
+     * to EPSG Code 63266420. Latitude and Longitude are in degrees, and altitude 
+     * is in meters.
+     */
+    public static final String DEFAULT_COORDINATE_REFERENCE_SYSTEM_URL =
+        "urn:x-ogc:srs:EPSG::63266413";
+        
+    //*************************************************************************
+    //  Fields
+    //*************************************************************************
+    
     /**
      * The Coordinate Reference System for this coordinate.
      */
@@ -51,21 +60,21 @@ public class LatLonAlt implements DirectPosition {
     /**
      * The values of this coordinate.
      */
-	private double[] ordinates;
-			
-	/**
-	 * The units for this coordinate.
-	 */
-	private Unit[] units;
-	  
+    private double[] ordinates;
+    
+    /**
+     * The units for this coordinate.
+     */
+    private Unit[] units;
+    
     /**
      * A flag for whether the altitude is known.
      */
     private boolean isAltKnown = false;
-
-
-    ////
-    // Constructors.
+    
+    //*************************************************************************
+    //  Constructors
+    //*************************************************************************
     
     /**
      * Initializes latitude, longitude, altitude, and Coordinate Reference System to the supplied parameters.
@@ -77,58 +86,65 @@ public class LatLonAlt implements DirectPosition {
      * @param altUnit   the unit for altitude
      * @param crsURL       the Coordinate Reference System URL
      */
-    public LatLonAlt(double lat, double lon, double alt, Unit unit, Unit altUnit, 
-    		CoordinateReferenceSystem crs) throws UnsupportedCRSException {
-    	this.crs = crs;
-		units = crs.getUnits();
-        ordinates = new double[crs.getDimension()];
+    public LatLonAlt(
+        double lat,
+        double lon,
+        double alt,
+        Unit unit,
+        Unit altUnit,
+        CoordinateReferenceSystem crs)
+        throws UnsupportedCRSException {
+        setCRS(crs);
         setLatLonAlt(lat, lon, alt, unit, altUnit);
     }
-    
     /**
      * Initializes Coordinate Reference System to the supplied parameter.
      * @param crs       the Coordinate Reference System
      */
     public LatLonAlt(CoordinateReferenceSystem crs) throws UnsupportedCRSException {
-		this.crs = crs;
-    	units = crs.getUnits();
-        ordinates = new double[crs.getDimension()];
+        setCRS(crs);
+    }
+    /**
+     * Initializes using the default Coordinate Reference System for this coordinate type.
+     */
+    public LatLonAlt() throws UnsupportedCRSException {
+        setCRS(findCRS(DEFAULT_COORDINATE_REFERENCE_SYSTEM_URL));
+        
     }
     
-	/**
-     * Initializes using the default Coordinate Reference System for this coordinate type.
-	 */
-	public LatLonAlt() throws UnsupportedCRSException {
-		this.crs = findCRS(DEFAULT_COORDINATE_REFERENCE_SYSTEM_URL);
-		units = crs.getUnits();
-		ordinates = new double[crs.getDimension()];
-	}
-	
-    ////
-    // Methods for LatLonAlt.
-	
-	/**
-	 * Returns the Coordinate Reference System for the given URL.
-	 * @param crsURL Coordinate Reference System URL.
-	 * @return Coordinate Reference System.
-	 */
-	private CoordinateReferenceSystem findCRS(String crsURL) 
-			throws UnsupportedCRSException {
-	   Properties props = new Properties();
-	   props.setProperty(CoordinateReferenceSystemFactory.COORDINATE_REFERECE_SYSTEM_URL, crsURL);
-	   CoordinateReferenceSystem crs;
-	   try {
-			crs = CommonFactoryManager.getCommonFactory("CommonFactory").getCoordinateReferenceSystemFactory().getCoordinateReferenceSystem(props);
-	   } catch (ClassNotFoundException e) {
-	   		throw new UnsupportedCRSException("ClassNotFoundException: " + e);
-	   } catch (IllegalAccessException e) {
-			throw new UnsupportedCRSException ("IllegalAccessExceptione: " + e);
-	   } catch (InstantiationException e) {
-			throw new UnsupportedCRSException ("InstantiationExceptione: " + e);
-	   }
-	   return crs;
-	}
-	
+    //*************************************************************************
+    //  implement the LatLonAlt interface, err, LatLonAlt methods
+    //*************************************************************************
+    
+    private void setCRS(CoordinateReferenceSystem crs) {
+        this.crs = crs;
+        if (crs != null) {
+            units = crs.getUnits();
+            ordinates = new double[crs.getDimension()];
+        } else {
+            units = new Unit[] {SI.RADIAN, SI.RADIAN, SI.METER};
+            ordinates = new double[3];
+        }
+    }
+
+    /**
+     * Returns the Coordinate Reference System for the given URL.
+     * @param crsURL Coordinate Reference System URL.
+     * @return Coordinate Reference System.
+     */
+    private CoordinateReferenceSystem findCRS(String crsURL) throws UnsupportedCRSException {
+        Properties props = new Properties();
+        props.setProperty(CoordinateReferenceSystemFactory.COORDINATE_REFERECE_SYSTEM_URL, crsURL);
+        CoordinateReferenceSystem crs;
+            crs =
+                CommonFactoryManager
+                    .getCoordinateReferenceSystemFactory()
+                    .getCoordinateReferenceSystem(props);
+        return crs;        
+    }
+    
+    //**  accessors/mutators
+    
     /**
      * Sets the coordinate to the given parameters.
      * Calling this method will cause the <code>isAltitudeKnown()</code>
@@ -141,11 +157,10 @@ public class LatLonAlt implements DirectPosition {
      * @param alt The new altitude coordinate.
      * @param altUnit The Unit for the alt coordinate.
      */
-    public void setLatLonAlt(double lat, double lon, double alt, Unit unit,
-       		Unit altUnit){
-		setLat(lat, unit);
-		setLon(lon, unit);
-		setAlt(alt, altUnit);
+    public void setLatLonAlt(double lat, double lon, double alt, Unit unit, Unit altUnit) {
+        setLat(lat, unit);
+        setLon(lon, unit);
+        setAlt(alt, altUnit);
     }
     
     /**
@@ -155,49 +170,49 @@ public class LatLonAlt implements DirectPosition {
      * @param lon The new longitude coordinate.
      * @param unit The Unit for the lat and lon coordinates.
      */
-    public void setLatLon(double lat, double lon, Unit unit){
-		setLat(lat, unit);
-		setLon(lon, unit);
+    public void setLatLon(double lat, double lon, Unit unit) {
+        setLat(lat, unit);
+        setLon(lon, unit);
     }
-
+    
     /**
      * Sets the latitude of this LatLonAlt to the given value.
      *
      * @param lat The new latitude.
      * @param unit The Unit for the latitude coordinate.
      */
-    public void setLat(double lat, Unit unit){
-     	ordinates[0] = unit.getConverterTo(units[0]).convert(lat);
+    public void setLat(double lat, Unit unit) {
+        ordinates[0] = unit.getConverterTo(units[0]).convert(lat);
     }
-
+    
     /**
      * Returns the latitude of this LatLonAlt in terms of the specified Unit.
      * @param unit The Unit for the latitude coordinate.
      * @return The latitude of this LatLonAlt.
      */
-    public double getLat(Unit unit){
+    public double getLat(Unit unit) {
         return units[0].getConverterTo(unit).convert(ordinates[0]);
     }
-
+    
     /**
      * Sets the longitude of this LatLonAlt to the given value.
      *
      * @param lon The new longitude.
      * @param unit The Unit for the longitude coordinate.
      */
-    public void setLon(double lon, Unit unit){
-    	ordinates[1] = unit.getConverterTo(units[1]).convert(lon);
+    public void setLon(double lon, Unit unit) {
+        ordinates[1] = unit.getConverterTo(units[1]).convert(lon);
     }
-
+    
     /**
      * Returns the longitude of this LatLonAlt in terms of the specified Unit.
      * @param unit The Unit for the longitude coordinate.
      * @return The longitude of this LatLonAlt.
      */
-    public double getLon(Unit unit){
+    public double getLon(Unit unit) {
         return units[1].getConverterTo(unit).convert(ordinates[1]);
     }
-
+    
     /**
      * Sets the altitude coordinate to the given parameter.
      * Calling this method will cause the <code>isAltitudeKnown()</code>
@@ -207,19 +222,30 @@ public class LatLonAlt implements DirectPosition {
      * @param alt The new altitude coordinate.
      * @param unit The Unit of the altitude coordinate.
      */
-    public void setAlt(double alt, Unit unit){
-       	ordinates[2] = unit.getConverterTo(units[2]).convert(alt);
+    public void setAlt(double alt, Unit unit) {
+        ordinates[2] = unit.getConverterTo(units[2]).convert(alt);
         isAltKnown = true;
     }
-
+    
     /**
      * Returns the altitude of this LatLonAlt in terms of the specified Unit.
      * @param unit The Unit for the altitude coordinate.
      * @return The altitude of this LatLonAlt.
      */
-    public double getAlt(Unit unit){
+    public double getAlt(Unit unit) {
         return units[2].getConverterTo(unit).convert(ordinates[2]);
     }
+    
+    /**
+     * Returns true if the altitude value in this LatLonAlt object is
+     * known to be valid.  For coordinates where the altitude is not known
+     * or not important, this function will return false.
+     */
+    public boolean isAltitudeKnown() {
+        return isAltKnown;
+    }
+    
+    //**  equals  **
     
     /**
      * Returns true if the given object is a LatLonAlt object, and
@@ -242,28 +268,20 @@ public class LatLonAlt implements DirectPosition {
      * @param lla   LatLonAlt to compare with this coordinate.
      * @return true if they are equal, false otherwise.
      */
-    public boolean equals(LatLonAlt lla){
-    	boolean equiv = true;
+    public boolean equals(LatLonAlt lla) {
+        boolean equiv = true;
         equiv &= (lla.getCoordinateReferenceSystem().equals(crs));
-    	equiv &= (lla.getLat(units[0]) == ordinates[0]);
-    	equiv &= (lla.getLon(units[1]) == ordinates[1]);
-    	if (getDimension() > 2) {
-    		equiv &= (lla.getAlt(units[2]) == ordinates[2]);
-    	}
-    	return equiv;
+        equiv &= (lla.getLat(units[0]) == ordinates[0]);
+        equiv &= (lla.getLon(units[1]) == ordinates[1]);
+        if (getDimension() > 2) {
+            equiv &= (lla.getAlt(units[2]) == ordinates[2]);
+        }
+        return equiv;
     }
-
-    /**
-     * Returns true if the altitude value in this LatLonAlt object is
-     * known to be valid.  For coordinates where the altitude is not known
-     * or not important, this function will return false.
-     */
-    public boolean isAltitudeKnown() {
-    	return isAltKnown;
-    }
-
-    ////
-    // Methods supporting DirectPosition.
+    
+    //*************************************************************************
+    //  implement the DirectPosition interface
+    //*************************************************************************
     
     /**
      * Returns the dimension of this coordiante.
@@ -288,36 +306,35 @@ public class LatLonAlt implements DirectPosition {
     public double getOrdinate(int dimension) {
         return ordinates[dimension];
     }
-
-	/** 
-	 * Dispose of this class.
-	 */
-	public void dispose() {
-		crs = null;
-		ordinates = null;
-		units = null;
-	}
-
-	/**
+    
+    /** 
+     * Dispose of this class.
+     */
+    public void dispose() {
+        crs = null;
+        ordinates = null;
+        units = null;
+    }
+    
+    /**
      * Clone this LatLonAlt
-	 */
+     */
     public Object clone() {
         LatLonAlt result = new LatLonAlt(crs);
         result.ordinates[0] = ordinates[0];
         result.ordinates[1] = ordinates[1];
         result.ordinates[2] = ordinates[2];
-		result.units[0] = units[0];
-		result.units[1] = units[1];
-		result.units[2] = units[2];
+        result.units[0] = units[0];
+        result.units[1] = units[1];
+        result.units[2] = units[2];
         result.isAltKnown = isAltKnown;
         return result;
     }
-
-	/**
-	 * Returns the Coordinate Reference System for this LatLonAlt.
-	 */
-	public CoordinateReferenceSystem getCoordinateReferenceSystem() {
-		return crs;
-	}
-
+    
+    /**
+     * Returns the Coordinate Reference System for this LatLonAlt.
+     */
+    public CoordinateReferenceSystem getCoordinateReferenceSystem() {
+        return crs;
+    }
 }

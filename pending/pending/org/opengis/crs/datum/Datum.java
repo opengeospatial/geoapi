@@ -7,14 +7,12 @@
  ** Copyright (C) 2003 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
  **
  *************************************************************************************************/
-
 package org.opengis.crs.datum;
 
 import java.util.Date;
 
 import org.opengis.crs.extent.Extent;
 import org.opengis.crs.refsys.Identifier;
-
 
 /**
  * <code>Datum</code> defines a common abstraction for implementations that
@@ -39,41 +37,40 @@ public interface Datum {
      * @return the name of this Datum
      */
     public String toString();
-    
+
     /**
      * Returns the anchor point for this datum.
      * @return the anchor point for this datum.
      */
     public String getAnchorPoint();
-    
-	/**
-	 * Returns the datum identifier.
-	 * @return the datum identifier.
-	 */
-	public Identifier getDatumID();
-	
-	/**
-	 * Returns the datum epoch.
-	 * @return the datum epoch.
-	 */
-	public Date getRealizationEpoch();
-	
+
     /**
- 	 * Returns the datum remarks.
-	 * @return the datum remarks.
-	 */
+     * Returns the datum identifier.
+     * @return the datum identifier.
+     */
+    public Identifier getDatumID();
+
+    /**
+     * Returns the datum epoch.
+     * @return the datum epoch.
+     */
+    public Date getRealizationEpoch();
+
+    /**
+  	 * Returns the datum remarks.
+     * @return the datum remarks.
+     */
     public String getRemarks();
 
     /**
      * Returns the datum scope.
-	 * @return the datum scope.
+     * @return the datum scope.
      */
     public String getScope();
-    
-	/**
-	 * Returns the datum valid area.
-	 * @return the datum valid area.
-	 */
-	public Extent getValidArea();
-    
+
+    /**
+     * Returns the datum valid area.
+     * @return the datum valid area.
+     */
+    public Extent getValidArea();
 }

@@ -41,14 +41,14 @@ import org.opengis.go.display.event.AggregationListener;
 public interface GraphicCompositeCurve extends Graphic {
 
     /**
-     * Returns whether this composite curve is topologically closed.
+     * Returns whether this <code>GraphicCompositeCurve</code> is topologically closed.
      * If the endpoint of the last <code>Graphic</code> in the aggregation 
      * is in the same location as the startpoint of the first <code>Graphic</code>,
      * then the <code>GraphicCompositeCurve</code> is <i>closed</i>, and the 
      * <code>isClosed()</code> method returns true. Otherwise this method returns
      * false.
      * 
-     * @return true if the composite curve is closed.
+     * @return true if this <code>GraphicCompositeCurve</code> is closed.
      */
     public boolean isClosed();
     
@@ -87,7 +87,7 @@ public interface GraphicCompositeCurve extends Graphic {
 	 * Removes the segment at the given index.
 	 * 
 	 * @param index
-	 * @return Returns the segment just removed.
+	 * @return the segment just removed.
 	 */
 	Graphic removeSegment(int index);
 
@@ -102,13 +102,13 @@ public interface GraphicCompositeCurve extends Graphic {
 	boolean isValid();
 
 	/**
-	 * Adds a segment into this composite curve, inserting it before the segment
+	 * Adds a segment into this <code>GraphicCompositeCurve</code>, inserting it before the segment
 	 * at the given index.  The existing segment at the given index and
 	 * all those with a larger index have their index increased by one.
 	 * 
-	 * @param index Index where the new segment will be added.
-	 * @param segment New segment Graphic to add.
-	 * @return Returns the segment just added.
+	 * @param index where the new segment will be added.
+	 * @param segment new <code>Graphic</code> segment to add.
+	 * @return the segment just added.
 	 */
 	Graphic insertSegment(int index, Graphic segment);
 
@@ -127,7 +127,7 @@ public interface GraphicCompositeCurve extends Graphic {
 	int getSegmentCount();
 
 	/**
-	 * Retrieves the segment Graphic at the given index.
+	 * Retrieves the segment <code>Graphic</code> at the given index.
 	 * @param index the index of the segment of interest.
 	 * @return the segment at the index.
 	 */

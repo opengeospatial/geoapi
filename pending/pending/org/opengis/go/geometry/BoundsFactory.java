@@ -7,7 +7,6 @@
  ** Copyright (C) 2003 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
  **
  *************************************************************************************************/
-
 package org.opengis.go.geometry;
 
 /**
@@ -19,6 +18,7 @@ package org.opengis.go.geometry;
  * @version $Revision$, $Date$
  */
 public interface BoundsFactory {
+    
     /**
      * Creates a <code>Bounds</code> instance that implements the given
      * bounds interface
@@ -27,4 +27,3 @@ public interface BoundsFactory {
      */
     public Bounds createBounds(Class boundsInterface);
 }
-

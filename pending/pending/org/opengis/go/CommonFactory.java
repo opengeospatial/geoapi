@@ -24,6 +24,7 @@ import org.opengis.spatialschema.SpatialschemaFactory;
  * @version $Revision$, $Date$
  */
 public interface CommonFactory {
+
     /**
      * Returns an object that represents the capabilities of this
      * common factory and its associated canvas.

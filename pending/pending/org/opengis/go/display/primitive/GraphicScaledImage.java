@@ -7,7 +7,6 @@
  ** Copyright (C) 2003 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
  **
  *************************************************************************************************/
-
 package org.opengis.go.display.primitive;
 
 import java.awt.Image;
@@ -23,90 +22,90 @@ import org.opengis.spatialschema.coordinate.Envelope;
  * @version $Revision$, $Date$
  */
 public interface GraphicScaledImage extends Graphic {
-
+    
     /**
      * Sets the geometry based on ISO 19107 geometric forms.
-     * @param envelope a geometry Envelope.
+     * @param envelope a geometry <code>Envelope</code>.
      */
     public void setEnvelope(Envelope envelope);
     
     /**
      * Returns the geometry based on ISO 19107 geometric forms.
-     * @return the geometry Envelope.
+     * @return the geometry <code>Envelope</code>.
      */
     public Envelope getEnvelope();
     
     /**
-     * Sets the image represented by this GraphicScaledImage.
-     * @param image the Image to be rendered.
+     * Sets the image represented by this <code>GraphicScaledImage</code>.
+     * @param image the <code>Image</code> to be rendered.
      */
     public void setScaledImage(Image image);
-
+    
     /**
-     * Returns the image represented by this GraphicScaledImage.
-     * @return the image to be rendered.
+     * Returns the image represented by this <code>GraphicScaledImage</code>.
+     * @return the <code>Image</code> to be rendered.
      */
     public Image getScaledImage();
-
+    
     /**
-     * Convenience menthod to set the DirectPosition for the upper-left position of the image.
-     * Value is set on the underlying Envelope geometry for this Graphic.
+     * Convenience menthod to set the <code>DirectPosition</code> for the upper-left position of this <code>GraphicScaledImage</code>.
+     * Value is set on the underlying <code>Envelope</code> geometry for this <code>GraphicScaledImage</code>.
      * @param coord the upper-left positon.
      */
     public void setUpperLeft(DirectPosition coord);
-
+    
     /**
-     * Returns the DirectPosition for the upper-left position of the image.
-     * Value is acquired from the underlying Envelope geometry for this Graphic.
+     * Returns the <code>DirectPosition</code> for the upper-left position of this <code>GraphicScaledImage</code>.
+     * Value is acquired from the underlying <code>Envelope</code> geometry for this <code>GraphicScaledImage</code>.
      * @return the upper-left position.
      */
     public DirectPosition getUpperLeft();
-
+    
     /**
-     * Convenience menthod to set the DirectPosition for the lower-right position of the image.
-     * Value is set on the underlying Envelope geometry for this Graphic.
+     * Convenience menthod to set the <code>DirectPosition</code> for the lower-right position of this <code>GraphicScaledImage</code>.
+     * Value is set on the underlying <code>Envelope</code> geometry for this <code>GraphicScaledImage</code>.
      * @param coord the lower-right positon.
      */
     public void setLowerRight(DirectPosition coord);
-
+    
     /**
-     * Convenience menthod to return the DirectPosition for the lower-right position of the image.
-     * Value is acquired from the underlying Envelope geometry for this Graphic.
+     * Convenience menthod to return the <code>DirectPosition</code> for the lower-right position of this <code>GraphicScaledImage</code>.
+     * Value is acquired from the underlying <code>Envelope</code> geometry for this <code>GraphicScaledImage</code>.
      * @return the lower-right position.
      */
     public DirectPosition getLowerRight();
-
+    
     /**
-     * Sets the intensity of the image, as an integer from 0 to 100.
+     * Sets the intensity of this <code>GraphicScaledImage</code>, as an integer from 0 to 100.
      * The value 0 is as dark as possible and 100 is as bright as possible.
      * @param intensity the intensity (brightness) of the image.
      */
     public void setIntensity(int intensity);
-
+    
     /**
-     * Returns the intensity of the image, as an integer from 0 to 100.
+     * Returns the intensity of this <code>GraphicScaledImage</code>, as an integer from 0 to 100.
      * The value 0 is as dark as possible and 100 is as bright as possible.
      * @return the intensity (brightness) of the image .
      */
     public int getIntensity();
-
+    
     /**
-     * Sets the transparency of the image, as an integer from 0 to 100.
+     * Sets the transparency of this <code>GraphicScaledImage</code>, as an integer from 0 to 100.
      * The value 0 is completely opaque and 100 is completely transparent.
      * @param transparency the transparency of the image.
      */
     public void setTransparency(int transparency);
-
+    
     /**
-     * Returns the transparency of the image, as an integer from 0 to 100.
+     * Returns the transparency of this <code>GraphicScaledImage</code>, as an integer from 0 to 100.
      * The value 0 is completely opaque and 100 is completely transparent.
      * @return the transparency of the image.
      */
     public int getTransparency();
-
+    
     /**
-     * This sets a string that specifies the projection that was used
-     * to create the image that this object represents.  The format of
+     * Sets a string that specifies the projection used
+     * to create the image that this <code>GraphicScaledImage</code> represents.  The format of
      * the string is as specified in the OpenGIS Consortium Web Map Server
      * Interfaces Implementation Specification, Revision 1.1.0, section 6.5.5
      * (see <a href="http://www.opengis.org">http://www.opengis.org</a>).
@@ -149,12 +148,11 @@ public interface GraphicScaledImage extends Graphic {
      * to be considered the same projection.
      */
     public void setSRS(String srs);
-
+    
     /**
-     * This returns the string that specifies the projection that
-     * was used to create the image this object represents.
+     * Returns the string specifying the projection used to create the 
+     * image this <code>GraphicScaledImage</code> represents.
      * @see #setSRS(String)
      */
     public String getSRS();
 }
-

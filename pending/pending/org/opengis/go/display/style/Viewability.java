@@ -7,7 +7,6 @@
  ** Copyright (C) 2003 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
  **
  *************************************************************************************************/
-
 package org.opengis.go.display.style;
 
 /**
@@ -18,141 +17,130 @@ package org.opengis.go.display.style;
  * @version $Revision$, $Date$
  */
 public interface Viewability {
+    
+    //*************************************************************************
+    //  Static Fields
+    //*************************************************************************
  
-    /**
-     * Default max scale value.
-     */
-    public static final int DEFAULT_MAX_SCALE = Integer.MAX_VALUE;
-
-    /**
-     * Default min scale value.
-     */
-    public static final int DEFAULT_MIN_SCALE = 1;
+    //**  Viewability property names  **
     
-    /**
-     * Default visible value.
-     */
-    public static final boolean DEFAULT_VISIBLE = true;
+    public static final String VIEWABILITY_MAX_SCALE = "VIEWABILITY_MAX_SCALE";    
+    public static final String VIEWABILITY_MIN_SCALE = "VIEWABILITY_MIN_SCALE";    
+    public static final String VIEWABILITY_VISIBLE = "VIEWABILITY_VISIBLE";    
+    public static final String VIEWABILITY_Z_ORDER = "VIEWABILITY_Z_ORDER";
 
-    /**
-     * Default z order value.
-     */
-    public static final double DEFAULT_Z_ORDER = 0.0;
+    //**  Default Viewability property values  **
     
-    /**
-     * Max scale attribute name.
-     */
-    public static final String MAX_SCALE = "VIEWABILITY_MAX_SCALE";
+    /**  Default max scale value.  */
+    public static final int DEFAULT_VIEWABILITY_MAX_SCALE = Integer.MAX_VALUE;
 
-    /**
-     * Min scale attribute name.
-     */
-    public static final String MIN_SCALE = "VIEWABILITY_MIN_SCALE";
+    /**  Default min scale value.  */
+    public static final int DEFAULT_VIEWABILITY_MIN_SCALE = 1;
     
-    /**
-     * Visible attribute name.
-     */
-    public static final String VISIBLE = "VIEWABILITY_VISIBLE";
+    /**  Default visible value.  */
+    public static final boolean DEFAULT_VIEWABILITY_VISIBLE = true;
 
-    /**
-     * Z Order attribute name.
-     */
-    public static final String Z_ORDER = "VIEWABILITY_Z_ORDER";
+    /**  Default z order value.  */
+    public static final double DEFAULT_VIEWABILITY_Z_ORDER = 0.0;
+    
+    //*************************************************************************
+    //  Methods
+    //*************************************************************************
     
     /**
      * Returns the max scale value.
      * @return the max scale value.
      */
-    public double getMaxScale();
+    public double getViewabilityMaxScale();
     
     /**
      * Returns whether the max scale value has been set.
      * @return true if the max scale value has been set, false otherwise.
      */    
-    public boolean isMaxScaleSet();
+    public boolean isViewabilityMaxScaleSet();
     
     /**
      * Sets the max scale value.
      * @param maxScale the max scale value.
      */    
-    public void setMaxScale(double maxScale);
+    public void setViewabilityMaxScale(double maxScale);
     
     /**
      * Sets the fact that the max scale value has been set.
      * @param flag true if the max scale value has been set, false otherwise.
      */    
-    public void setMaxScaleSet(boolean flag);
+    public void setViewabilityMaxScaleSet(boolean flag);
   
     /**
      * Returns the min scale value.
      * @return the min scale value.
      */
-    public double getMinScale();
+    public double getViewabilityMinScale();
     
     /**
      * Returns whether the min scale value has been set.
      * @return true if the min scale value has been set, false otherwise.
      */    
-    public boolean isMinScaleSet();
+    public boolean isViewabilityMinScaleSet();
     
     /**
      * Sets the min scale value.
      * @param minScale the min scale value.
      */    
-    public void setMinScale(double minScale);
+    public void setViewabilityMinScale(double minScale);
     
     /**
      * Sets the fact that the min scale value has been set.
      * @param flag true if the min scale value has been set, false otherwise.
      */    
-    public void setMinScaleSet(boolean flag);
+    public void setViewabilityMinScaleSet(boolean flag);
     
     /**
      * Returns the z order hint value.
      * @return the z order hint value.
      */
-    public double getZOrderHint();
+    public double getViewabilityZOrderHint();
     
     /**
      * Returns whether the z order hint value has been set.
      * @return true if the z order hint value has been set, false otherwise.
      */    
-    public boolean isZOrderHintSet();
+    public boolean isViewabilityZOrderHintSet();
     
     /**
      * Sets the z order hint value.
      * @param zOrderHint the z order hint value.
      */    
-    public void setZOrderHint(double zOrderHint);
+    public void setViewabilityZOrderHint(double zOrderHint);
     
     /**
      * Sets the fact that the z order hint value has been set.
      * @param flag true if the z order hint value has been set, false otherwise.
      */    
-    public void setZOrderHintSet(boolean flag);
+    public void setViewabilityZOrderHintSet(boolean flag);
     
     /**
      * Returns the visible value.
      * @return the visible value.
      */
-    public boolean getVisible();
+    public boolean getViewabilityVisible();
     
     /**
      * Returns whether the visible value has been set.
      * @return true if the visible value has been set, false otherwise.
      */    
-    public boolean isVisibleSet();
+    public boolean isViewabilityVisibleSet();
     
     /**
      * Sets the visible value.
      * @param visible the visible value.
      */    
-    public void setVisible(boolean visible);
+    public void setViewabilityVisible(boolean visible);
     
     /**
      * Sets the fact that the visible value has been set.
      * @param flag true if the visible value has been set, false otherwise.
      */    
-    public void setVisibleSet(boolean flag);
+    public void setViewabilityVisibleSet(boolean flag);
     
 }

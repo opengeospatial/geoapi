@@ -7,7 +7,6 @@
  ** Copyright (C) 2003 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
  **
  *************************************************************************************************/
-
 package org.opengis.go.display.style;
 
 import org.opengis.go.util.SimpleEnumerationType;
@@ -47,7 +46,7 @@ import org.opengis.go.util.SimpleEnumerationType;
  * @version $Revision$, $Date$
  */
 public class FillPattern extends SimpleEnumerationType {
-    
+
     //*************************************************************************
     //  Static Fields
     //*************************************************************************
@@ -55,76 +54,89 @@ public class FillPattern extends SimpleEnumerationType {
     /**
      * No fill pattern.
      */
-    public static final FillPattern NONE
-        = new FillPattern("NONE", "No fill.");
+    public static final FillPattern NONE = new FillPattern("NONE", "No fill.");
+
     /**
      * Regularly spaced single pixels.
      */
-    public static final FillPattern DOTS
-        = new FillPattern("DOTS", "Regularly spaced single pixels.");
+    public static final FillPattern DOTS =
+        new FillPattern("DOTS", "Regularly spaced single pixels.");
+
     /**
      * Parallel vertical lines.
      */
-    public static final FillPattern VERTICAL_LINES
-        = new FillPattern("VERTICAL_LINES", "Parallel vertical lines.");
+    public static final FillPattern VERTICAL_LINES =
+        new FillPattern("VERTICAL_LINES", "Parallel vertical lines.");
+
     /**
      * Parallel horizontal lines.
      */
-    public static final FillPattern HORIZONTAL_LINES
-        = new FillPattern("HORIZONTAL_LINES", "Parallel horizontal lines.");
+    public static final FillPattern HORIZONTAL_LINES =
+        new FillPattern("HORIZONTAL_LINES", "Parallel horizontal lines.");
+
     /**
      * Parallel slanted lines running from upper left to lower right.
      */
-    public static final FillPattern NEGATIVE_SLANTS
-        = new FillPattern("NEGATIVE_SLANTS", "Parallel slanted lines running from upper left to lower right.");
+    public static final FillPattern NEGATIVE_SLANTS =
+        new FillPattern(
+            "NEGATIVE_SLANTS",
+            "Parallel slanted lines running from upper left to lower right.");
+
     /**
      * Parallel slanted lines running from lower left to upper right.
      */
-    public static final FillPattern POSITIVE_SLANTS
-        = new FillPattern("POSITIVE_SLANTS", "Parallel slanted lines running from lower left to upper right.");
+    public static final FillPattern POSITIVE_SLANTS =
+        new FillPattern(
+            "POSITIVE_SLANTS",
+            "Parallel slanted lines running from lower left to upper right.");
+
     /**
      * Small closely spaced '+' marks.
      */
-    public static final FillPattern PLUSSES
-        = new FillPattern("PLUSSES", "Small closely spaced '+' marks.");
+    public static final FillPattern PLUSSES =
+        new FillPattern("PLUSSES", "Small closely spaced '+' marks.");
+
     /**
      * Two series of intersecting parallel lines.
      */
-    public static final FillPattern XHATCH
-        = new FillPattern("XHATCH", "Two series of intersecting parallel lines.");
+    public static final FillPattern XHATCH =
+        new FillPattern("XHATCH", "Two series of intersecting parallel lines.");
+
     /**
      * 25% fill.  Can be used to simulate transparency.
      */
-    public static final FillPattern FILL_25_PERCENT
-        = new FillPattern("FILL_25_PERCENT", "25% fill.  Can be used to simulate transparency.");
+    public static final FillPattern FILL_25_PERCENT =
+        new FillPattern("FILL_25_PERCENT", "25% fill.  Can be used to simulate transparency.");
+
     /**
      * 50% fill.  Can be used to simulate transparency.
      */
-    public static final FillPattern FILL_50_PERCENT
-        = new FillPattern("FILL_50_PERCENT", "50% fill.  Can be used to simulate transparency.");
+    public static final FillPattern FILL_50_PERCENT =
+        new FillPattern("FILL_50_PERCENT", "50% fill.  Can be used to simulate transparency.");
+
     /**
      * 75% fill.  Can be used to simulate transparency.
      */
-    public static final FillPattern FILL_75_PERCENT
-        = new FillPattern("FILL_75_PERCENT", "75% fill.  Can be used to simulate transparency.");
+    public static final FillPattern FILL_75_PERCENT =
+        new FillPattern("FILL_75_PERCENT", "75% fill.  Can be used to simulate transparency.");
 
     /**
      * The next value to be assigned and the count of number of styles
      * actually given out.
      */
     private static int next_value = 0;
-    
+
     //*************************************************************************
     //  Static Methods
     //*************************************************************************
-    
+
     /**
      * Give out the next value.
      */
     private static synchronized int nextValue() {
         return next_value++;
     }
-    
+
     /**
      * Gets the number of <code>FillPattern</code> objects that have
      * been created.
@@ -137,9 +149,9 @@ public class FillPattern extends SimpleEnumerationType {
     //*************************************************************************
     //  Constructor
     //*************************************************************************
-    
+
     /**
-     * Construct a new FillPattern with the give name and description.
+     * Construct a new <code>FillPattern</code> with the give name and description.
      * This constructor should only be used to make the static
      * constants in this class or by a provider subclasses to create
      * implementation specific styles that can be accessed by
@@ -150,5 +162,4 @@ public class FillPattern extends SimpleEnumerationType {
     protected FillPattern(String name, String description) {
         super(nextValue(), name, description, loadIconResource(FillPattern.class, name + ".gif"));
     }
-    
 }

@@ -7,7 +7,6 @@
  ** Copyright (C) 2003 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
  **
  *************************************************************************************************/
-
 package org.opengis.go.typical.geometry;
 
 import org.opengis.go.geometry.BoundingPolygon;
@@ -25,16 +24,16 @@ import org.opengis.go.typical.coord.XY;
  * @version $Revision$, $Date$
  */
 public interface XYBoundingPolygon extends BoundingPolygon {
-	/**
-	 * Returns a list of vertices of this object cast as XY
-	 * instead of DirectPosition.
-	 */
-	public XY [] getVerticesXY();
 
-	/**
-	 * Sets the vertices of this object from an array of XY objects
-	 * (rather than an array of DirectPosition objects).
-	 */
-	public void setVertices(XY [] vertices);
+    /**
+     * Returns a list of vertices of this object cast as XY
+     * instead of DirectPosition.
+     */
+    public XY[] getVerticesXY();
+
+    /**
+     * Sets the vertices of this object from an array of XY objects
+     * (rather than an array of DirectPosition objects).
+     */
+    public void setVertices(XY[] vertices);
 }
-

@@ -7,7 +7,6 @@
  ** Copyright (C) 2003 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
  **
  *************************************************************************************************/
-
 package org.opengis.go.display.style;
 
 import org.opengis.go.display.primitive.Graphic;
@@ -23,326 +22,217 @@ import org.opengis.go.display.primitive.Graphic;
  * @version $Revision$, $Date$
  * @author Open GIS Consortium, Inc.
  */
-public interface GraphicStyle {
-	
-	/**
-	 * Editability attribute name.
-	 */
-	public static final String EDITABILITY = "EDITABILITY";
-	
-	/**
-	 * Inheritance attribute name.
-	 */
-	public static final String INHERITANCE = "INHERITANCE";
-	
-	/**
-	 * Highlight attribute name.
-	 */
-	public static final String HIGHLIGHT = "HIGHLIGHT";
-	
-	/**
-	 * Viewability attribute name.
-	 */
-	public static final String VIEWABILITY = "VIEWABILITY";
-	
-	/**
-	 * LineSymbolizer attribute name.
-	 */
-	public static final String LINESYMBOLIZER = "LINESYMBOLIZER";
-	
-	/**
-	 * PolygonSymbolizer attribute name.
-	 */
-	public static final String POLYGONSYMBOLIZER = "POLYGONSYMBOLIZER";
-	
-	/**
-	 * PointSymbolizer attribute name.
-	 */
-	public static final String POINTSYMBOLIZER = "POINTSYMBOLIZER";
-	
-	/**
-	 * TextSymbolizer attribute name.
-	 */
-	public static final String TEXTSYMBOLIZER = "TEXTSYMBOLIZER";
-	
-	//
-	// External configuration code.
-	
-	/**
-	 * Returns the <code>Graphic</code> object associated with this <code>GraphicStyle</code> object.
-	 * @return the Graphic associtated with this GraphicStyle.
-	 */
-	public Graphic getGraphic();
-
-	/**
-	 * Returns the given implementation-specific hint for the given name.
-	 * @param hintName
-	 * @return the hint object associated with the hint name.
-	 */
-	public Object getImplHint(String hintName);
-
-	/**
-	 * Sets the given implementation-specific hint for the given name.
-	 * @param hintname
-	 * @param hint Nanme the name of the hint.
-	 */
-	public void setImplHint(String hintname, Object hint);
-
-	/**
-	 * Sets the properties of this <code>GraphicStyle</code> from the
-	 * properties of the specified <code>GraphicStyle</code>.
-	 * @param style the GraphicStyle used to set this GraphicStyle properties.
-	 * 
-	 */
-	public void setPropertiesFrom(GraphicStyle style);
-
-
-    //
-    // Generic value-based accessors and mutators.
+public interface GraphicStyle extends Editability, Highlight, Viewability, 
+        LineSymbolizer, PointSymbolizer, PolygonSymbolizer, TextSymbolizer {
     
-	/**
-	 * Returns the attribute value specified by the attribute name.
-	 * @param name the name of the attribute.
-	 * @return the value of the attribute.
-	 */
-	public Object getValue(String name);
-
-	/**
-	 * Returns whether the attribute value has been set.
-	 * @param name the name of the attribute.
-	 * @return true if the value has been set, false otherwise.
-	 */
-	public boolean isValueSet(String name);
-
-	/**
-	 * Sets the attribute value specified by the attribute name.
-	 * @param name the name of the attribute.
-	 * @param value
-	 */
-	public void setValue(String name, Object value);
-
-	/**
-	 * Sets the fact that the attribute value has been set.
-	 * @param name the name of the attribute.
-	 * @param flag true if the value has been set, false otherwise.
-	 * 
-	 */
-	public void setValueSet(String name, boolean flag);
-
-
-    //
-    // GO-1 specific styling values.
+    //*************************************************************************
+    //  Static Fields
+    //*************************************************************************
     
-	/**
-	 * Returns the Editability object.
-	 * @return the Editability object.
-	 */
-	public Editability getEditability();
+    //**  String names for the symbolizers  **
+    
+    /**  <code>Editability</code> attribute name. */
+    public static final String EDITABILITY = "EDITABILITY";
+    
+    /**  <code>Highlight</code> attribute name.  */
+    public static final String HIGHLIGHT = "HIGHLIGHT";
+    
+    /**  <code>Viewability</code> attribute name.  */
+    public static final String VIEWABILITY = "VIEWABILITY";
+    
+    /**  <code>LineSymbolizer</code> attribute name.  */
+    public static final String LINE_SYMBOLIZER = "LINE_SYMBOLIZER";
+    
+    /**  <code>PolygonSymbolizer</code> attribute name.  */
+    public static final String POLYGON_SYMBOLIZER = "POLYGON_SYMBOLIZER";
+    
+    /**  <code>PointSymbolizer</code> attribute name.  */
+    public static final String POINT_SYMBOLIZER = "POINT_SYMBOLIZER";
+    
+    /**  <code>TextSymbolizer</code> attribute name.  */
+    public static final String TEXT_SYMBOLIZER = "TEXT_SYMBOLIZER";
+    
+    //**  Inheritance property names **
+    
+    /**  Inherit style from parent attribute name.  */
+    public static final String INHERIT_STYLE_FROM_PARENT = "INHERIT_STYLE_FROM_PARENT";
 
-	/**
-	 * Returns whether the Editability object has been set.
-	 * @return true if the Editability object has been set, false otherwise.
-	 */
-	public boolean isEditabilitySet();
+    /**  Override aggregated graphics attribute name.  */
+    public static final String OVERRIDE_AGGREGATED_GRAPHICS = "OVERRIDE_AGGREGATED_GRAPHICS";
+    
+    //**  Default Inheritance property values  **
+    
+    /**  Default inherit style from parent value.  */
+    public static final boolean DEFAULT_INHERIT_STYLE_FROM_PARENT = false;
 
-	/**
-	 * Sets the Editability object.
-	 * @param object the Editability object.
-	 * 
-	 */
-	public void setEditability(Editability object);
+    /**  Default override aggregated graphics value.  */
+    public static final boolean DEFAULT_OVERRIDE_AGGREGATED_GRAPHICS = false;
+                       
+    //*************************************************************************
+    //  Methods
+    //*************************************************************************
 
-	/**
-	 * Sets the fact that the Editability object has been set.
-	 * @param flag true if the Editability object has been set, false otherwise.
-	 * 
-	 */
-	public void setEditabilitySet(boolean flag);
-
-	/**
-	 * Returns the Highlight object.
-	 * @return the Highlight object.
-	 */
-	public Highlight getHighlight();
-
-	/**
-	 * Returns whether the Highlight object has been set.
-	 * @return true if the Highlight object has been set, false otherwise.
-	 */
-	public boolean isHighlightSet();
-
-	/**
-	 * Sets the Highlight object.
-	 * @param object the Highlight object.
-	 * 
-	 */
-	public void setHighlight(Highlight object);
-
-	/**
-	 * Sets the fact that the Highlight object has been set.
-	 * @param flag true if the Highlight object has been set, false otherwise.
-	 * 
-	 */
-	public void setHighlightSet(boolean flag);
-
-	/**
-	 * Returns the Inheritance object.
-	 * @return the Inheritance object.
-	 */
-	public Inheritance getInheritance();
-
-	/**
-	 * Returns whether the Inheritance object has been set.
-	 * @return true if the Inheritance object has been set, false otherwise.
-	 */
-	public boolean isInheritanceSet();
-
-	/**
-	 * Sets the Inheritance object.
-	 * @param object the Inheritance object.
-	 * 
-	 */
-	public void setInheritance(Inheritance object);
-
-	/**
-	 * Sets the fact that the Inheritance object has been set.
-	 * @param flag true if the Inheritance object has been set, false otherwise.
-	 * 
-	 */
-	public void setInheritanceSet(boolean flag);
-
-	/**
-	 * Returns the Viewability object.
-	 * @return the Viewability object.
-	 */
-	public Viewability getViewability();
-
-	/**
-	 * Returns whether the Viewability object has been set.
-	 * @return true if the Viewability object has been set, false otherwise.
-	 */
-	public boolean isViewabilitySet();
-
-	/**
-	 * Sets the Viewability object.
-	 * @param object the Viewability object.
-	 * 
-	 */
-	public void setViewability(Viewability object);
+    //**  External configuration code.  **
     
     /**
-     * Sets the fact that the Viewability object has been set.
-     * @param flag true if the Viewability object has been set, false otherwise.
+     * Returns the <code>Graphic</code> object associated with this <code>GraphicStyle</code> object.
+     * @return the Graphic associtated with this <code>GraphicStyle</code>.
+     */
+    public Graphic getGraphic();
+    
+    /**
+     * Returns the given implementation-specific hint for the given name.
+     * @param hintName
+     * @return the hint object associated with the hint name.
+     */
+    public Object getImplHint(String hintName);
+    
+    /**
+     * Sets the given implementation-specific hint for the given name.
+     * @param hintname
+     * @param hint Nanme the name of the hint.
+     */
+    public void setImplHint(String hintname, Object hint);
+    
+    /**
+     * Sets the properties of this <code>GraphicStyle</code> from the
+     * properties of the specified <code>GraphicStyle</code>.
+     * @param style the GraphicStyle used to set this <code>GraphicStyle</code> properties.
      * 
      */
-	public void setViewabilitySet(boolean flag);
-	
-	
-	//
-	// Standard SLD Symbolizers
-	
-	/**
-	 * Returns the PointSymbolizer object.
-	 * @return the PointSymbolizer object.
-	 */
-	public PointSymbolizer getPointSymbolizer();
+    public void setPropertiesFrom(GraphicStyle style);
+    
+    //**  Accessors/Mutators for Symbolizers  **
+    
+    /**
+     * Returns an <code>Editability</code> object with the same values as this 
+     * GraphicStyle's <code>Editability</code> properties.  Setting values on the returned 
+     * <code>Editability</code> should not affect this <code>GraphicStyle</code>'s values
+     * @return the <code>Editability</code> object.
+     */
+    public Editability getEditability();
+    
+    /**
+     * Sets the <code>Editability</code> properties on this <code>GraphicStyle</code> from the given
+     * <code>Editability</code> object.
+     * @param object the <code>Editability</code> object.
+     */
+    public void setEditability(Editability object);
+    
+    /**
+     * Returns a <code>Highlight</code> object with the same values as this <code>GraphicStyle</code>'s
+     * <code>Highlight</code> properties.  Setting values on the returned <code>Highlight</code> should
+     * not affect this <code>GraphicStyle</code>'s values.
+     * @return the <code>Highlight</code> object.
+     */
+    public Highlight getHighlight();
+    
+    /**
+     * Sets the <code>Highlight</code> properties on this <code>GraphicStyle</code> from the given
+     * <code>Highlight</code> object.
+     * @param object the <code>Highlight</code> object.
+     */
+    public void setHighlight(Highlight object);
+    
+    /**
+     * Returns a <code>Viewability</code> object with the same values as this <code>GraphicStyle</code>'s
+     * <code>Viewability</code> properties.  Setting values on the returned Viewability
+     * should not affect this <code>GraphicStyle</code>'s values.
+     * @return the <code>Viewability</code> object.
+     */
+    public Viewability getViewability();
+    
+    /**
+     * Sets the <code>Viewability</code> properties on this <code>GraphicStyle</code> from the given
+     * <code>Viewability</code> object.
+     * @param object the <code>Viewability</code> object.
+     */
+    public void setViewability(Viewability object);    
+    
+    /**
+     * Returns a <code>LineSymbolizer</code> object with the same values as this
+     * GraphicStyle's <code>LineSymbolizer</code> properties.  Setting values on the
+     * returned <code>LineSymbolizer</code> should not affect this <code>GraphicStyle</code>'s values.
+     * @return the <code>LineSymbolizer</code> object.
+     */
+    public LineSymbolizer getLineSymbolizer();
 
-	/**
-	 * Returns whether the PointSymbolizer object has been set.
-	 * @return true if the PointSymbolizer object has been set, false otherwise.
-	 */
-	public boolean isPointSymbolizerSet();
+    /**
+     * Sets the <code>LineSymbolizer</code> properties on this <code>GraphicStyle</code> from the given
+     * <code>LineSymbolizer</code> object.
+     * @param object the <code>LineSymbolizer</code> object.
+     */
+    public void setLineSymbolizer(LineSymbolizer object);
+    
+    /**
+     * Returns a <code>PointSymbolizer</code> object with the same values as this 
+     * GraphicStyle's <code>PointSymbolizer</code> properties.  Setting values on the 
+     * returned <code>PointSymbolizer</code> should not affect this <code>GraphicStyle</code>'s values.
+     * @return the <code>PointSymbolizer</code> object.
+     */
+    public PointSymbolizer getPointSymbolizer();
 
-	/**
-	 * Sets the PointSymbolizer object.
-	 * @param object the PointSymbolizer object.
-	 * 
-	 */
-	public void setPointSymbolizer(PointSymbolizer object);
+    /**
+     * Sets the <code>PointSymbolizer</code> properties on this <code>GraphicStyle</code> from the given
+     * <code>PointSymbolizer</code> object.
+     * @param object the <code>PointSymbolizer</code> object.
+     */
+    public void setPointSymbolizer(PointSymbolizer object);
 
-	/**
-	 * Sets the fact that the PointSymbolizer object has been set.
-	 * @param flag true if the PointSymbolizer object has been set, false otherwise.
-	 * 
-	 */
-	public void setPointSymbolizerSet(boolean flag);
-	
-	/**
-	 * Returns the PolygonSymbolizer object.
-	 * @return the PolygonSymbolizer object.
-	 */
-	public PolygonSymbolizer getPolygonSymbolizer();
+    /**
+     * Returns a <code>PolygonSymbolizer</code> object with the same values as this
+     * GraphicStyle's <code>PolygonSymbolizer</code> properties.  Setting values on the
+     * returned <code>PolygonSymbolizer</code> should not affect this <code>GraphicStyle</code>'s values.
+     * @return the <code>PolygonSymbolizer</code> object.
+     */
+    public PolygonSymbolizer getPolygonSymbolizer();
 
-	/**
-	 * Returns whether the PolygonSymbolizer object has been set.
-	 * @return true if the PolygonSymbolizer object has been set, false otherwise.
-	 */
-	public boolean isPolygonSymbolizerSet();
+    /**
+     * Sets the <code>PolygonSymbolizer</code> properties on this <code>GraphicStyle</code> from the 
+     * given <code>PolygonSymbolizer</code> object.
+     * @param object the <code>PolygonSymbolizer</code> object.
+     */
+    public void setPolygonSymbolizer(PolygonSymbolizer object);
 
-	/**
-	 * Sets the PolygonSymbolizer object.
-	 * @param object the PolygonSymbolizer object.
-	 * 
-	 */
-	public void setPolygonSymbolizer(PolygonSymbolizer object);
+    /**
+     * Returns a <code>TextSymbolizer</code> object with the same values as this
+     * GraphicStyle's <code>TextSymbolizer</code> properties.  Setting values on the
+     * returned <code>TextSymbolizer</code> should not affect this <code>GraphicStyle</code>'s values.
+     * @return the <code>TextSymbolizer</code> object.
+     */
+    public TextSymbolizer getTextSymbolizer();
 
-	/**
-	 * Sets the fact that the PolygonSymbolizer object has been set.
-	 * @param flag true if the PolygonSymbolizer object has been set, false otherwise.
-	 * 
-	 */
-	public void setPolygonSymbolizerSet(boolean flag);
-	
-	/**
-	 * Returns the TextSymbolizer object.
-	 * @return the TextSymbolizer object.
-	 */
-	public TextSymbolizer getTextSymbolizer();
+    /**
+     * Sets the <code>TextSymbolizer</code> properties on this <code>GraphicStyle</code> from the given
+     * <code>TextSymbolizer</code> object.
+     * @param object the <code>TextSymbolizer</code> object.
+     */
+    public void setTextSymbolizer(TextSymbolizer object);
 
-	/**
-	 * Returns whether the TextSymbolizer object has been set.
-	 * @return true if the TextSymbolizer object has been set, false otherwise.
-	 */
-	public boolean isTextSymbolizerSet();
-
-	/**
-	 * Sets the TextSymbolizer object.
-	 * @param object the TextSymbolizer object.
-	 * 
-	 */
-	public void setTextSymbolizer(TextSymbolizer object);
-
-	/**
-	 * Sets the fact that the TextSymbolizer object has been set.
-	 * @param flag true if the TextSymbolizer object has been set, false otherwise.
-	 * 
-	 */
-	public void setTextSymbolizerSet(boolean flag);
-	
-	/**
-	 * Returns the LineSymbolizer object.
-	 * @return the LineSymbolizer object.
-	 */
-	public LineSymbolizer getLineSymbolizer();
-
-	/**
-	 * Returns whether the LineSymbolizer object has been set.
-	 * @return true if the LineSymbolizer object has been set, false otherwise.
-	 */
-	public boolean isLineSymbolizerSet();
-
-	/**
-	 * Sets the LineSymbolizer object.
-	 * @param object the LineSymbolizer object.
-	 * 
-	 */
-	public void setLineSymbolizer(LineSymbolizer object);
-
-	/**
-	 * Sets the fact that the LineSymbolizer object has been set.
-	 * @param flag true if the LineSymbolizer object has been set, false otherwise.
-	 * 
-	 */
-	public void setLineSymbolizerSet(boolean flag);
-	
+    //**  Inheritance  **
+    
+    /**
+     * Returns the inherit style from parent value.
+     * @return the inherit style from parent value.
+     */
+    public boolean isInheritingStyleFromParent();
+    
+    /**
+     * Sets the inherit style from parent value.
+     * @param inheritStyleFromParent the inherit style from parent value.
+     */    
+    public void setInheritingStyleFromParent(boolean inheritStyleFromParent);
+    
+    /**
+     * Returns the override aggregated graphics value.
+     * @return the override aggregated graphics value.
+     */
+    public boolean isOverridingAggregatedGraphics();
+    
+    /**
+     * Sets the override aggregated graphics value.
+     * @param overrideAggregatedGraphics the override aggregated graphics value.
+     */    
+    public void setOverridingAggregatedGraphics(boolean overrideAggregatedGraphics);
+           
 }

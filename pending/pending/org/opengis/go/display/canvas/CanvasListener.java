@@ -7,7 +7,6 @@
  ** Copyright (C) 2003 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
  **
  *************************************************************************************************/
-
 package org.opengis.go.display.canvas;
 
 /**
@@ -18,12 +17,13 @@ package org.opengis.go.display.canvas;
  * @version $Revision$, $Date$
  */
 public interface CanvasListener {
+
     /**
      * This method is called by a <code>Canvas</code> when its state has
      * changed.
-	 * @param canvas The Canvas whose state has changed
-	 * @param newState The state of the canvas (for convenience)
+     * @param canvas The Canvas whose state has changed
+     * @param newState The state of the canvas (for convenience)
      */
     public void canvasChanged(Canvas canvas, CanvasState newState);
-}
 
+}
