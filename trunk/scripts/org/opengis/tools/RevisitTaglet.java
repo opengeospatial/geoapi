@@ -17,7 +17,8 @@ import com.sun.tools.doclets.standard.tags.SimpleTaglet;
 /**
  * The <code>@revisit</code> tag.
  *
- * @version 1.0
+ * @version $Id$
+ * @author Martin Desruisseaux
  */
 public final class RevisitTaglet extends SimpleTaglet {
     /**
