@@ -14,7 +14,7 @@ Specification-Title: "Grid Coverage"
 Specification-Version: "1.00"
 Specification-Vendor: "OpenGIS Consortium"
 
-Name: org/opengis/gm*
+Name: org/opengis/spatialschema*
 Specification-Title: Feature Geometry
 Specification-Version: 2.00
 Specification-Vendor: OpenGIS Consortium, Inc.
