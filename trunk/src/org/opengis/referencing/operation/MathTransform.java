@@ -43,18 +43,26 @@ public interface MathTransform {
     /**
      * Gets the dimension of input points.
      *
-     * @revisit Consider renaming <code>getSourceDimensions()</code> for consistency with
-     *          {@link OperationMethod}.
+     * @deprecated Renamed {@link #getSourceDimensions} for consistency with {@link OperationMethod}.
      */
     int getDimSource();
+
+    /**
+     * Gets the dimension of input points.
+     */
+    int getSourceDimensions();
     
     /**
      * Gets the dimension of output points.
      *
-     * @revisit Consider renaming <code>getTargetDimensions()</code> for consistency with
-     *          {@link OperationMethod}.
+     * @deprecated Renamed {@link #getTargetDimensions} for consistency with {@link OperationMethod}.
      */
     int getDimTarget();
+    
+    /**
+     * Gets the dimension of output points.
+     */
+    int getTargetDimensions();
     
     /**
      * Transforms the specified <code>ptSrc</code> and stores the result in

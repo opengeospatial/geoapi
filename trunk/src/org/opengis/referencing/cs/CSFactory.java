@@ -168,6 +168,16 @@ public interface CSFactory extends ObjectFactory {
     TimeCS createTimeCS(Map properties, CoordinateSystemAxis axis) throws FactoryException;
 
     /**
+     * Creates a linear coordinate system.
+     *
+     * @param  properties Name and other properties to give to the new object.
+     *         Available properties are {@linkplain ObjectFactory listed there}.
+     * @param  axis The axis.
+     * @throws FactoryException if the object creation failed.
+     */
+    LinearCS createLinearCS(Map properties, CoordinateSystemAxis axis) throws FactoryException;
+
+    /**
      * Creates a two-dimensional user defined coordinate system.
      *
      * @param  properties Name and other properties to give to the new object.
