@@ -51,11 +51,7 @@ public interface GridCoverageExchange {
      *         {@link java.nio.channels.FileChannel}, whatever. It's up to the associated
      *         grid coverage reader to make meaningful use of it.
      * @return The grid coverage reader.
-     * @throws IOException if an error occurs during reading.
-     *
-     * @revisit We need a mechanism to allow the right GridCoverageReader
-     *          Something like an SPI. What if we can't find a GridCoverageReader?
-     *          Do we return null or throw an Exception?
+     * @throws IOException if the format is not recognized, or if an error occurs during reading.
      */
     GridCoverageReader getReader(Object source) throws IOException;
 

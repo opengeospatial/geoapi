@@ -69,10 +69,6 @@ public interface CoordinateOperation extends Info {
      *
      * @return The coordinate operation version, or <code>null</code> in none.
      * @UML conditional operationVersion
-     *
-     * @revisit Since version is mandatory for transformation only, why not rename it
-     *          as <code>getTransformationVersion()</code>? Or why it is not an attribute
-     *          of the {@link Transformation} interface only?
      */
     String getOperationVersion();
 

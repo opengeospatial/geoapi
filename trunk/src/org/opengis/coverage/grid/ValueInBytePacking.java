@@ -31,8 +31,6 @@ import org.opengis.coverage.SampleDimensionType; // For Javadoc
  *
  * @see GridPacking
  * @see ByteInValuePacking
- *
- * @revisit Localize. Defines serialVersionUID.
  */
 public final class ValueInBytePacking extends CodeList {
     /**

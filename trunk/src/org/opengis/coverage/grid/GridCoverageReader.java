@@ -99,8 +99,15 @@ public interface GridCoverageReader {
     String getCurrentSubname() throws IOException;
 
     /**
+     * Returns <code>true</code> if there is at least one more grid coverage
+     * available on the stream.
+     */
+    boolean hasMoreGridCoverages() throws IOException;
+
+    /**
      * Read the grid coverage from the current stream position, and move to the next grid
-     * coverage.
+     * coverage. The method {@link #hasMoreGridCoverages} should be invoked first in order
+     * to verify that a coverage is available.
      *
      * @param  parameters An optional set of parameters. Should be any or all of the
      *         parameters returned by {@link Format#getReadParameters}.
@@ -120,6 +127,14 @@ public interface GridCoverageReader {
      */
     GridCoverage read(GeneralParameterValue[] parameters)
             throws InvalidParameterNameException, InvalidParameterValueException, ParameterNotFoundException, IOException;
+
+    /**
+     * Skip the current grid coverage without reading it, and move the stream position to
+     * the next grid coverage.
+     *
+     * @throws IOException if the operation failed.
+     */
+    void skip() throws IOException;
 
     /**
      * Allows any resources held by this object to be released. The result of calling any other
