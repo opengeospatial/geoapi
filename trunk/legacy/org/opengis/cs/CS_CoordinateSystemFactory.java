@@ -168,6 +168,8 @@ public interface CS_CoordinateSystemFactory extends Remote {
      * @param ellipsoid Ellipsoid to use in new horizontal datum.
      * @param toWGS84 Suggested approximate conversion from new datum to WGS84.
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated Replaced by {@link org.opengis.crs.datum.DatumFactory#createGeodeticDatum}.
      */
     CS_HorizontalDatum createHorizontalDatum(String name,CS_DatumType horizontalDatumType,CS_Ellipsoid ellipsoid,CS_WGS84ConversionInfo toWGS84) throws RemoteException;
 
@@ -178,6 +180,8 @@ public interface CS_CoordinateSystemFactory extends Remote {
      * @param angularUnit Angular units of longitude.
      * @param longitude Longitude of prime meridian in supplied angular units East of Greenwich.
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated Replaced by {@link org.opengis.crs.datum.DatumFactory#createPrimeMeridian}.
      */
     CS_PrimeMeridian createPrimeMeridian(String name,CS_AngularUnit angularUnit,double longitude) throws RemoteException;
 
@@ -191,6 +195,8 @@ public interface CS_CoordinateSystemFactory extends Remote {
      * @param axis0 Details of 0th ordinates in returned GCS coordinates.
      * @param axis1 Details of 1st ordinates in returned GCS coordinates.
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated Replaced by {@link org.opengis.crs.crs.CRSFactory#createGeographicCRS}.
      */
     CS_GeographicCoordinateSystem createGeographicCoordinateSystem(String name, CS_AngularUnit angularUnit, CS_HorizontalDatum horizontalDatum, CS_PrimeMeridian primeMeridian, CS_AxisInfo axis0, CS_AxisInfo axis1) throws RemoteException;
 
@@ -200,6 +206,8 @@ public interface CS_CoordinateSystemFactory extends Remote {
      * @param name Name to give new object.
      * @param localDatumType Type of local datum to create.
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated Replaced by {@link org.opengis.crs.datum.DatumFactory#createEngineeringDatumDatum}.
      */
     CS_LocalDatum createLocalDatum(String name, CS_DatumType localDatumType) throws RemoteException;
 
@@ -209,6 +217,8 @@ public interface CS_CoordinateSystemFactory extends Remote {
      * @param name Name to give new object.
      * @param verticalDatumType Type of vertical datum to create.
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated Replaced by {@link org.opengis.crs.datum.DatumFactory#createVerticalDatum}.
      */
     CS_VerticalDatum createVerticalDatum(String name,CS_DatumType verticalDatumType) throws RemoteException;
 
@@ -220,6 +230,8 @@ public interface CS_CoordinateSystemFactory extends Remote {
      * @param verticalUnit Units to use for new coordinate system.
      * @param axis Axis to use for new coordinate system.
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated Replaced by {@link org.opengis.crs.crs.CRSFactory#createVerticalCRS}.
      */
     CS_VerticalCoordinateSystem createVerticalCoordinateSystem(String name, CS_VerticalDatum verticalDatum, CS_LinearUnit verticalUnit, CS_AxisInfo axis) throws RemoteException;
 }

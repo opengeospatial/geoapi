@@ -28,6 +28,8 @@ public interface CS_Ellipsoid extends CS_Info {
      * The returned length is expressed in this object's axis units.
      *
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated Replaced by {@link org.opengis.crs.datum.Ellipsoid#getSemiMajorAxis}.
      */
     double getSemiMajorAxis() throws RemoteException;
 
@@ -36,6 +38,8 @@ public interface CS_Ellipsoid extends CS_Info {
      * The returned length is expressed in this object's axis units.
      *
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated Replaced by {@link org.opengis.crs.datum.Ellipsoid#getSemiMinorAxis}.
      */
     double getSemiMinorAxis() throws RemoteException;
 
@@ -46,6 +50,8 @@ public interface CS_Ellipsoid extends CS_Info {
      * spheres, this formula breaks down, and a special IVF value of zero is used.
      *
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated Replaced by {@link org.opengis.crs.datum.Ellipsoid#getInverseFlattening}.
      */
     double getInverseFlattening() throws RemoteException;
 
@@ -57,6 +63,8 @@ public interface CS_Ellipsoid extends CS_Info {
      * avoid floating-point rounding errors.
      *
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated Replaced by {@link org.opengis.crs.datum.Ellipsoid#isIvfDefinitive}.
      */
     boolean isIvfDefinitive() throws RemoteException;
 
@@ -65,6 +73,8 @@ public interface CS_Ellipsoid extends CS_Info {
      * The units of the semi-major and semi-minor axis values.
      *
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated Replaced by {@link org.opengis.crs.datum.Ellipsoid#getAxisUnit}.
      */
     CS_LinearUnit getAxisUnit() throws RemoteException;
 }

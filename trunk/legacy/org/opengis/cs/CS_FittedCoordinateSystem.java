@@ -30,6 +30,8 @@ public interface CS_FittedCoordinateSystem extends CS_CoordinateSystem {
      * Gets underlying coordinate system.
      *
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated Replaced by {@link org.opengis.crs.crs.DerivedCRS#getBaseCRS}.
      */
     CS_CoordinateSystem getBaseCoordinateSystem() throws RemoteException;
 
@@ -42,6 +44,9 @@ public interface CS_FittedCoordinateSystem extends CS_CoordinateSystem {
      * at least as big as the dimension of this coordinate system.
      *
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated Replaced by {@link org.opengis.crs.crs.DerivedCRS#getConversionFromBase},
+     *             except that the transform needs to be inverted.
      */
     String getToBase() throws RemoteException;
 }

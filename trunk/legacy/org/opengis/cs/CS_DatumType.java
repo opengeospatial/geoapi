@@ -26,6 +26,7 @@ import java.io.Serializable;
  * @author Martin Desruisseaux
  *
  * @deprecated Replaced by {@link org.opengis.crs.datum.VerticalDatumType}.
+ *             for the vertical case. No replacement for other cases.
  */
 public class CS_DatumType implements Serializable {
     /**
@@ -36,6 +37,8 @@ public class CS_DatumType implements Serializable {
 
     /**
      * Lowest possible value for horizontal datum types.
+     *
+     * @deprecated No replacement.
      */
     public static final int CS_HD_Min=1000;
 
@@ -43,6 +46,8 @@ public class CS_DatumType implements Serializable {
      * Unspecified horizontal datum type.
      * Horizontal datums with this type should never supply
      * a conversion to WGS84 using Bursa Wolf parameters.
+     *
+     * @deprecated No replacement, since this is a horizontal datum type.
      */
     public static final int CS_HD_Other=1000;
 
@@ -52,6 +57,8 @@ public class CS_DatumType implements Serializable {
      * in 3-D space.  These datums were designed mainly to support a horizontal
      * component of a position in a domain of limited extent, such as a country,
      * a region or a continent.
+     *
+     * @deprecated No replacement, since this is a horizontal datum type.
      */
     public static final int CS_HD_Classic=1001;
 
@@ -62,33 +69,45 @@ public class CS_DatumType implements Serializable {
      * component of position and a vertical component of position (through
      * ellipsoidal heights).  The regional realizations of ITRF, such as
      * ETRF, are also included in this category.
+     *
+     * @deprecated No replacement, since this is a horizontal datum type.
      */
     public static final int CS_HD_Geocentric=1002;
 
     /**
      * Highest possible value for horizontal datum types.
+     *
+     * @deprecated No replacement.
      */
     public static final int CS_HD_Max=1999;
 
     /**
      * Lowest possible value for vertical datum types.
+     *
+     * @deprecated No replacement.
      */
     public static final int CS_VD_Min=2000;
 
     /**
      * Unspecified vertical datum type.
+     *
+     * @deprecated Replaced by {@link org.opengis.crs.datum.VerticalDatumType#OTHER_SURFACE}.
      */
     public static final int CS_VD_Other=2000;
 
     /**
      * A vertical datum for orthometric heights that are measured along the
      * plumb line.
+     *
+     * @deprecated No replacement at this time.
      */
     public static final int CS_VD_Orthometric=2001;
 
     /**
      * A vertical datum for ellipsoidal heights that are measured along the
      * normal to the ellipsoid used in the definition of horizontal datum.
+     *
+     * @deprecated No replacement at this time.
      */
     public static final int CS_VD_Ellipsoidal=2002;
 
@@ -99,11 +118,15 @@ public class CS_DatumType implements Serializable {
      * expressed in one of the following units: meters, feet, millibars
      * (used to measure pressure levels),  or theta value (units used to
      * measure geopotential height).
+     *
+     * @deprecated Replaced by {@link org.opengis.crs.datum.VerticalDatumType#BAROMETRIC}.
      */
     public static final int CS_VD_AltitudeBarometric=2003;
 
     /**
      * A normal height system.
+     *
+     * @deprecated No replacement at this time.
      */
     public static final int CS_VD_Normal=2004;
 
@@ -114,6 +137,8 @@ public class CS_DatumType implements Serializable {
      * ellipsoidal heights (<var>h</var>) by the use of the given
      * geoid undulation model (<var>N</var>) through the equation:
      * <var>H</var>=<var>h</var>-<var>N</var>.
+     *
+     * @deprecated Replaced by {@link org.opengis.crs.datum.VerticalDatumType#GEOIDAL}.
      */
     public static final int CS_VD_GeoidModelDerived=2005;
 
@@ -124,21 +149,29 @@ public class CS_DatumType implements Serializable {
      * datum. Depths are measured in the direction perpendicular
      * (approximately) to the actual equipotential surfaces of the earth's
      * gravity field, using such procedures as echo-sounding.
+     *
+     * @deprecated Replaced by {@link org.opengis.crs.datum.VerticalDatumType#DEPTH}.
      */
     public static final int CS_VD_Depth=2006;
 
     /**
      * Highest possible value for vertical datum types.
+     *
+     * @deprecated No replacement.
      */
     public static final int CS_VD_Max=2999;
 
     /**
      * Lowest possible value for local datum types.
+     *
+     * @deprecated No replacement.
      */
     public static final int CS_LD_Min=10000;
 
     /**
      * Highest possible value for local datum types.
+     *
+     * @deprecated No replacement.
      */
     public static final int CS_LD_Max=32767;
 

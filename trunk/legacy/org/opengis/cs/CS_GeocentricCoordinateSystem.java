@@ -36,6 +36,8 @@ public interface CS_GeocentricCoordinateSystem extends CS_CoordinateSystem {
      * center of the Earth, and not the surface.
      *
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated Replaced by {@link org.opengis.crs.crs.GeocentricCRS#getDatum}.
      */
     CS_HorizontalDatum getHorizontalDatum() throws RemoteException;
 
@@ -43,6 +45,8 @@ public interface CS_GeocentricCoordinateSystem extends CS_CoordinateSystem {
      * Gets the units used along all the axes.
      *
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated Replaced by {@link org.opengis.crs.cs.CoordinateSystemAxis#getUni}.
      */
     CS_LinearUnit getLinearUnit() throws RemoteException;
 
@@ -50,6 +54,8 @@ public interface CS_GeocentricCoordinateSystem extends CS_CoordinateSystem {
      * Returns the PrimeMeridian.
      *
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated Replaced by {@link org.opengis.crs.datum.GeodeticDatum#getPrimeMeridian}.
      */
     CS_PrimeMeridian getPrimeMeridian() throws RemoteException;
 }
