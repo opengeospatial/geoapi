@@ -3,12 +3,12 @@
  */
 package org.opengis.cs;
 
-// J2SE direct dependencies
+// J2SE direct dependencies and extensions
 import java.util.Locale;
+import javax.units.Unit;
 
 // OpenGIS direct dependencies
 import org.opengis.rs.Identifier;
-import org.opengis.cs.UnitOfMeasure;
 
 
 /**
@@ -20,7 +20,7 @@ import org.opengis.cs.UnitOfMeasure;
  * @version 2.0
  *
  * @see CoordinateSystem
- * @see UnitOfMeasure
+ * @see Unit
  */
 public interface CoordinateSystemAxis {
     /**
@@ -91,7 +91,7 @@ public interface CoordinateSystemAxis {
      *          Removed also the "<code>ID</code>" suffix, since this method returns a real unit
      *          object (not an ID).
      */
-    public UnitOfMeasure getUnit();
+    public Unit getUnit();
 
     /**
      * Comments on or information about the coordinate system, including data source information.

@@ -3,8 +3,8 @@
  */
 package org.opengis.dq;
 
-// OpenGIS direct dependencies
-import org.opengis.cs.UnitOfMeasure;
+// J2SE extensions
+import javax.units.Unit;
 
 
 /**
@@ -37,7 +37,10 @@ public interface CovarianceMatrix extends PositionalAccuracy {
      * @UML mandatory unitsOfMeasure
      *
      * @revisit It would be more efficient and more convenient to provides a
-     *          <code>getUnitOfMeasureAt(<var>row</var>, <var>column</var>)</code> method instead.
+     *          <code>getUnitAt(<var>row</var>, <var>column</var>)</code> method instead.
+     *
+     * @rename Renamed <code>getUnitOfMeasures</code> as <code>getUnits</code> since this method
+     *         returns a {@link Unit} object from JSR-108.
      */
-    public UnitOfMeasure[] getUnitOfMeasures();
+    public Unit[] getUnits();
 }

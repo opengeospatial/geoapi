@@ -3,8 +3,9 @@
  */
 package org.opengis.cs;
 
-// J2SE direct dependencies
+// J2SE direct dependencies and extensions
 import java.util.Locale;
+import javax.units.Unit;  // For Javadoc
 
 // OpenGIS direct dependencies
 import org.opengis.rs.Identifier;
@@ -23,7 +24,7 @@ import org.opengis.rs.Identifier;
  * @version 2.0
  *
  * @see org.opengis.cs.CoordinateSystemAxis
- * @see org.opengis.cs.UnitOfMeasure
+ * @see javax.units.Unit
  * @see org.opengis.cd.Datum
  * @see org.opengis.sc.CoordinateReferenceSystem
  */
