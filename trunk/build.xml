@@ -79,6 +79,9 @@
         <exclude name="**/OrderedAggregateGraphic.java"/>
         <exclude name="org/opengis/go/display/style/*.*"/>
       </fileset>
+    </copy>
+    <!-- do the pending separate so we can force it to overwrite -->
+    <copy todir="${pending.src.dir}" includeEmptyDirs="false" overwrite="true">
       <fileset dir="${pending.src}">
         <exclude name="**/com/**/*.*"/>
       </fileset>
