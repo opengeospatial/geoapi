@@ -56,12 +56,13 @@ public interface ParameterValueGroup extends GeneralParameterValue {
     List/*<GeneralParameterValue>*/ values();
     
     /**
-     * Returns the first value in this group for the specified {@linkplain Identifier#getCode
-     * identifier code}. If no {@linkplain ParameterDescriptor parameter descriptor} is found
-     * for the given code, then this method search recursively in subgroups (if any). If a
-     * parameter descriptor is found but there is no {@linkplain ParameterValue value} for it
-     * (because it is an optional parameter), then a {@linkplain ParameterValue parameter value}
-     * is automatically created and initialized to its default value (if any).
+     * Returns the value in this group for the specified {@linkplain Identifier#getCode
+     * identifier code}. If no {@linkplain ParameterValue parameter value} is found but
+     * a {@linkplain ParameterDescriptor parameter descriptor} is found (which may occurs
+     * if the parameter is optional, i.e. <code>{@linkplain ParameterDescriptor#getMinimumOccurs
+     * minimumOccurs} == 0</code>), then a {@linkplain ParameterValue parameter value} is
+     * automatically created and initialized to its {@linkplain ParameterDescriptor#getDefaultValue
+     * default value} (if any).
      *
      * <P>This convenience method provides a way to get and set parameter values by name. For
      * example the following idiom fetches a floating point value for the
@@ -70,7 +71,12 @@ public interface ParameterValueGroup extends GeneralParameterValue {
      * <blockquote><code>
      * double value = parameter("false_easting").{@linkplain ParameterValue#doubleValue() doubleValue()};
      * </code></blockquote>
-     * 
+     *
+     * <P>This method do not search recursively in subgroups. This is because more than one
+     * subgroup may exist for the same {@linkplain ParameterDescriptorGroup descriptor}.
+     * The user must {@linkplain #groups query all subgroups} and select explicitly the
+     * appropriate one to use.</P>
+     *
      * @param  name The case insensitive {@linkplain Identifier#getCode identifier code} of the
      *              parameter to search for. 
      * @return The parameter value for the given identifier code.
@@ -78,6 +84,36 @@ public interface ParameterValueGroup extends GeneralParameterValue {
      */
     ParameterValue parameter(String name) throws ParameterNotFoundException;
     
+    /**
+     * Returns all subgroups with the specified name. This method do not create new groups.
+     * If the requested group is optional (i.e.
+     * <code>{@linkplain ParameterDescriptor#getMinimumOccurs minimumOccurs} == 0</code>)
+     * and no value were defined previously, then this method returns an empty set.
+     *
+     * @param  name The case insensitive {@linkplain Identifier#getCode identifier code} of the
+     *              parameter group to search for.
+     * @return The set of all parameter group for the given identifier code.
+     * @throws ParameterNotFoundException if no {@linkplain ParameterDescriptorGroup descriptor}
+     *         was found for the given name.
+     */
+    List/*<ParameterValueGroup>*/ groups(String name) throws ParameterNotFoundException;
+    
+    /**
+     * Create a new group of the specified name. The specified name must be the
+     * {@linkplain Identifier#getCode identifier code} of a {@linkplain ParameterDescriptorGroup
+     * descriptor group}.
+     *
+     * @param  name The case insensitive {@linkplain Identifier#getCode identifier code} of the
+     *              parameter group to create.
+     * @return A newly created parameter group for the given identifier code.
+     * @throws ParameterNotFoundException if no {@linkplain ParameterDescriptorGroup descriptor}
+     *         was found for the given name.
+     * @throws IllegalStateException if this parameter group already contains the
+     *         {@linkplain ParameterDescriptorGroup#getMaximumOccurs maximum number of occurences}
+     *         of subgroups of the given name.
+     */
+    ParameterValueGroup addGroup(String name) throws ParameterNotFoundException, IllegalStateException;
+
     /**
      * Adds a parameter to this group.
      * If an existing ParameterValue is already included:
@@ -115,10 +151,9 @@ public interface ParameterValueGroup extends GeneralParameterValue {
      *  would result in more parameters than allowed by maxOccurs, or if this
      *  parameter is not allowable by the groups descriptor.
      *
-     * @deprecated User should not add <code>ParameterValueGroup</code> objects himself. Creation
-     *             of those objects should be controlled by <code>ParameterDescriptor</code>. A
-     *             different API will be needed, maybe an <code>add(String)</code> method returning
-     *             a <code>ParameterGroup</code>.
+     * @deprecated Use {@link #addGroup} instead.
+     *             User should not add <code>ParameterValueGroup</code> objects himself. Creation
+     *             of those objects should be controlled by <code>ParameterDescriptor</code>.
      */
     void add(ParameterValueGroup group) throws InvalidParameterTypeException;
     

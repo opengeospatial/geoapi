@@ -66,25 +66,16 @@ public interface ParameterDescriptorGroup extends GeneralParameterDescriptor {
     GeneralParameterDescriptor[] getParameters();
 
     /**
-     * Returns the first parameter descriptor in this group for the specified
+     * Returns the parameter descriptor in this group for the specified
      * {@linkplain Identifier#getCode identifier code}.
-     * If no {@linkplain ParameterDescriptor parameter descriptor} is found for
-     * the given code, then this method search recursively in subgroups (if any).
-     *
-     * <P>This convenience method provides a way to get parameter information by name.
-     * For example the following idiom fetches the default value for the
-     * <code>"false_easting"</code> parameter:</P>
-     *
-     * <blockquote><code>
-     * Object defaultValue = descriptor("false_easting").{@linkplain ParameterDescriptor#getDefaultValue() getDefaultValue()};
-     * </code></blockquote>
      *
      * @param  name The case insensitive {@linkplain Identifier#getCode identifier code} of the
      *              parameter to search for.
      * @return The parameter for the given identifier code.
      * @throws ParameterNotFoundException if there is no parameter for the given identifier code.
      */
-    ParameterDescriptor descriptor(String name) throws ParameterNotFoundException;
+//    GeneralParameterDescriptor descriptor(String name) throws ParameterNotFoundException;
+//    (temporarily disabled; will be uncommented soon)
 
     /**
      * Returns the first parameter descriptor in this group for the specified
