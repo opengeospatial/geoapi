@@ -23,7 +23,7 @@ public interface PassThroughOperation extends SingleOperation {
     /**
      * Returns the operation to apply on the subset of a coordinate tuple.
      *
-     * @return The operation, or <code>null</code> if none.
+     * @return The operation.
      * @UML association usesOperation
      */
     Operation getOperation();
