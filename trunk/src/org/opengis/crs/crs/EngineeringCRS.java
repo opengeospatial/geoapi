@@ -37,7 +37,7 @@ import org.opengis.crs.datum.EngineeringDatum;
  * @UML abstract SC_EngineeringCRS
  * @author ISO 19111
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
- * @version 2.0
+ * @version <A HREF="http://www.opengis.org/docs/03-073r1.zip">Abstract specification 2.0</A>
  */
 public interface EngineeringCRS extends CoordinateReferenceSystem {
     /**
@@ -46,5 +46,5 @@ public interface EngineeringCRS extends CoordinateReferenceSystem {
      * @return The datum.
      * @UML association usesDatum
      */
-/// public EngineeringDatum getDatum();
+/// EngineeringDatum getDatum();
 }

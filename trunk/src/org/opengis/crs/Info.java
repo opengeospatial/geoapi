@@ -31,8 +31,9 @@ import java.util.Locale;
  *        be left empty.</LI>
  * </UL>
  *
+ * @UML abstract CS_Info
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
- * @version 2.0
+ * @version <A HREF="http://www.opengis.org/docs/01-009.pdf">Implementation specification 1.0</A>
  */
 public interface Info {
     /**
@@ -58,7 +59,7 @@ public interface Info {
      *          "{@link org.opengis.crs.operation.OperationParameterGroup group}"
      *          prefix, which stands as an abbreviation for the enclosing class.
      */
-    public String getName(Locale locale);
+    String getName(Locale locale);
 
     /**
      * Set of alternative identifications of this object. The first identifier, if
@@ -71,7 +72,7 @@ public interface Info {
      *          "<code>ID</code>" by "<code>Identifiers</code>" in order to
      *          1) use the return type class name and 2) use the plural form.
      */
-    public Identifier[] getIdentifiers();
+    Identifier[] getIdentifiers();
 
     /**
      * Comments on or information about this object, including data source information.
@@ -83,5 +84,5 @@ public interface Info {
      *         If no remark is available in the given locale, then some default locale is used.
      * @UML optional remarks
      */
-    public String getRemarks(Locale locale);
+    String getRemarks(Locale locale);
 }

@@ -32,7 +32,7 @@ import org.opengis.metadata.extent.Extent;
  * @UML abstract CC_CoordinateOperation
  * @author ISO 19111
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
- * @version 2.0
+ * @version <A HREF="http://www.opengis.org/docs/03-073r1.zip">Abstract specification 2.0</A>
  *
  * @revisit We need to define transformation methods!
  */
@@ -45,7 +45,7 @@ public interface CoordinateOperation extends Info {
      * @return The source CRS.
      * @UML association sourceCRS
      */
-    public CoordinateReferenceSystem getSourceCoordinateReferenceSystem();
+    CoordinateReferenceSystem getSourceCoordinateReferenceSystem();
 
     /**
      * Returns the target CRS. The target CRS is mandatory for Transformations only.
@@ -55,7 +55,7 @@ public interface CoordinateOperation extends Info {
      * @return The source CRS.
      * @UML association targetCRS
      */
-    public CoordinateReferenceSystem getTargetCoordinateReferenceSystem();
+    CoordinateReferenceSystem getTargetCoordinateReferenceSystem();
 
     /**
      * Version of the coordinate transformation (i.e., instantiation due to the stochastic
@@ -69,7 +69,7 @@ public interface CoordinateOperation extends Info {
      *          as <code>getTransformationVersion()</code>? Or why it is not an attribute
      *          of the {@link Transformation} interface only?
      */
-    public String getOperationVersion();
+    String getOperationVersion();
 
     /**
      * Estimate(s) of the impact of this operation on point accuracy. Gives
@@ -79,7 +79,7 @@ public interface CoordinateOperation extends Info {
      * @return The position error estimates, or an empty array if not available.
      * @UML optional positionalAccuracy
      */
-    public PositionalAccuracy[] getPositionalAccuracy();
+    PositionalAccuracy[] getPositionalAccuracy();
 
     /**
      * Area in which this operation is valid.
@@ -87,7 +87,7 @@ public interface CoordinateOperation extends Info {
      * @return Coordinate operation valid area, or <code>null</code> if not available.
      * @UML optional validArea
      */
-    public Extent getValidArea();
+    Extent getValidArea();
 
     /**
      * Description of domain of usage, or limitations of usage, for which this operation is valid.
@@ -99,5 +99,5 @@ public interface CoordinateOperation extends Info {
      *         If no scope is available in the given locale, then some default locale is used.
      * @UML optional scope
      */
-    public String getScope(Locale locale);
+    String getScope(Locale locale);
 }

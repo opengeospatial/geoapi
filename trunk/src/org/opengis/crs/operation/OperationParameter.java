@@ -17,7 +17,7 @@ package org.opengis.crs.operation;
  * @UML abstract CC_OperationParameter
  * @author ISO 19111
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
- * @version 2.0
+ * @version <A HREF="http://www.opengis.org/docs/03-073r1.zip">Abstract specification 2.0</A>
  *
  * @see ParameterValue
  * @see OperationParameterGroup
@@ -28,7 +28,7 @@ public interface OperationParameter extends GeneralOperationParameter {
      *
      * @return The parameter value class.
      */
-    public Class getValueClass();
+    Class getValueClass();
 
     /**
      * Returns the default value for the parameter. The return type can be any type
@@ -37,7 +37,7 @@ public interface OperationParameter extends GeneralOperationParameter {
      *
      * @return The default value, or <code>null</code> in none.
      */
-    public Object getDefaultValue();
+    Object getDefaultValue();
 
     /**
      * Returns the minimum parameter value. If there is no minimum value, then

@@ -21,7 +21,7 @@ package org.opengis.crs.operation;
  * @UML abstract CC_Transformation
  * @author ISO 19111
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
- * @version 2.0
+ * @version <A HREF="http://www.opengis.org/docs/03-073r1.zip">Abstract specification 2.0</A>
  *
  * @see Conversion
  */
@@ -33,5 +33,5 @@ public interface Transformation extends Operation {
      * @return The coordinate operation version.
      * @UML mandatory operationVersion
      */
-    public String getOperationVersion();
+    String getOperationVersion();
 }

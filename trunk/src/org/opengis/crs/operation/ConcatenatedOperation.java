@@ -23,7 +23,7 @@ package org.opengis.crs.operation;
  * @UML abstract CC_ConcatenatedOperation
  * @author ISO 19111
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
- * @version 2.0
+ * @version <A HREF="http://www.opengis.org/docs/03-073r1.zip">Abstract specification 2.0</A>
  */
 public interface ConcatenatedOperation extends CoordinateOperation {
     /**
@@ -32,5 +32,5 @@ public interface ConcatenatedOperation extends CoordinateOperation {
      * @return The sequence of operations.
      * @UML association usesOperation
      */
-    public SingleOperation[] getOperations();
+    SingleOperation[] getOperations();
 }

@@ -19,7 +19,7 @@ package org.opengis.crs.operation;
  * @UML abstract CC_ParameterValueGroup
  * @author ISO 19111
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
- * @version 2.0
+ * @version <A HREF="http://www.opengis.org/docs/03-073r1.zip">Abstract specification 2.0</A>
  *
  * @see OperationParameterGroup
  * @see ParameterValue
@@ -37,7 +37,7 @@ public interface ParameterValueGroup extends GeneralParameterValue {
      *         Java extensions (e.g.
      *         {@link javax.media.jai.ParameterList.html#getParameterListDescriptor ParameterList}).
      */
-/// public OperationParameterGroup getDescriptor();
+/// OperationParameterGroup getDescriptor();
 
     /**
      * Returns the values in this group.
@@ -45,7 +45,7 @@ public interface ParameterValueGroup extends GeneralParameterValue {
      * @return The values.
      * @UML association includesValue
      */
-    public GeneralParameterValue[] getValues();
+    GeneralParameterValue[] getValues();
 
     /**
      * Returns the first value in this group for the specified name. If no
@@ -56,7 +56,7 @@ public interface ParameterValueGroup extends GeneralParameterValue {
      * @return The parameter value for the given name.
      * @throws InvalidParameterNameException if there is no parameter for the given name.
      */
-    public GeneralParameterValue getValue(String name) throws InvalidParameterNameException;
+    GeneralParameterValue getValue(String name) throws InvalidParameterNameException;
 
     /**
      * Returns a copy of this group of parameter values.
@@ -64,5 +64,5 @@ public interface ParameterValueGroup extends GeneralParameterValue {
      *
      * @return A copy of this group of parameter values.
      */
-    public /*{ParameterValueGroup}*/ Object clone();
+    /*{ParameterValueGroup}*/ Object clone();
 }

@@ -19,7 +19,7 @@ import java.util.Date;
  * @UML abstract CD_TemporalDatum
  * @author ISO 19111
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
- * @version 2.0
+ * @version <A HREF="http://www.opengis.org/docs/03-073r1.zip">Abstract specification 2.0</A>
  */
 public interface TemporalDatum extends Datum {
     /**
@@ -28,7 +28,7 @@ public interface TemporalDatum extends Datum {
      * @return The date and time origin of this temporal datum.
      * @UML mandatory origin
      */
-    public Date getOrigin();
+    Date getOrigin();
 
     /**
      * Description of the point or points used to anchor the datum to the Earth.
@@ -37,7 +37,7 @@ public interface TemporalDatum extends Datum {
      *
      * @return Always <code>null</code>.
      */
-    public String getAnchorPoint();
+    String getAnchorPoint();
 
     /**
      * The time after which this datum definition is valid. 
@@ -46,5 +46,5 @@ public interface TemporalDatum extends Datum {
      *
      * @return Always <code>null</code>.
      */
-    public Date getRealizationEpoch();
+    Date getRealizationEpoch();
 }

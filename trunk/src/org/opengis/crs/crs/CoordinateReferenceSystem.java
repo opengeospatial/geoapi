@@ -35,7 +35,7 @@ import org.opengis.crs.datum.Datum;
  * @UML abstract SC_CoordinateReferenceSystem
  * @author ISO 19111
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
- * @version 2.0
+ * @version <A HREF="http://www.opengis.org/docs/03-073r1.zip">Abstract specification 2.0</A>
  *
  * @see org.opengis.crs.cs.CoordinateSystem
  * @see org.opengis.crs.datum.Datum
@@ -49,7 +49,7 @@ public interface CoordinateReferenceSystem extends ReferenceSystem {
      *
      * @rename Expanded the "CS" abbreviation into "CoordinateSystem".
      */
-    public CoordinateSystem getCoordinateSystem();
+    CoordinateSystem getCoordinateSystem();
 
     /**
      * Returns the datum.
@@ -57,7 +57,7 @@ public interface CoordinateReferenceSystem extends ReferenceSystem {
      * @return The datum.
      * @UML association usesDatum
      */
-    public Datum getDatum();
+    Datum getDatum();
     
     /**
      * Returns true if the CoordinateReferenceSystems are the same.
@@ -66,8 +66,8 @@ public interface CoordinateReferenceSystem extends ReferenceSystem {
      * @return true if the two CoordinateReferenceSystems are the same.
      *
      * @deprecated This method is not really needed, since interfaces inherit
-     * {@link java,lang,Object#equals} (even if interfaces are not classes, they inherit
-     * all methods from {@link java,lang,Object} anyway as a special case). Consequently,
+     * {@link java.lang.Object#equals} (even if interfaces are not classes, they inherit
+     * all methods from {@link java.lang.Object} anyway as a special case). Consequently,
      * this declaration doesn't bring any new feature. It doesn't bring type safety neither,
      * because a call like «code»myCRS.equals(someDatum)</code> will compile successfully
      * because of the inherited <code>equals(Object)</code> method. This declaration may
@@ -76,14 +76,14 @@ public interface CoordinateReferenceSystem extends ReferenceSystem {
      * in exactly the same way. Failing to do that may lead to unexpected behavior when
      * using this interface with the collection framework.
      */
-    public boolean equals(CoordinateReferenceSystem otherCrs);
+    boolean equals(CoordinateReferenceSystem otherCrs);
 
     /**
      * Returns the type for this CoordinateReferenceSystem.
      *
      * @return the type for this CoordinateReferenceSystem.
      */
-    public CoordinateReferenceSystemType getCoordinateReferenceSystemType();
+    CoordinateReferenceSystemType getCoordinateReferenceSystemType();
 
     /**
      * Returns the name of this CoordinateReferenceSystem.
@@ -91,7 +91,7 @@ public interface CoordinateReferenceSystem extends ReferenceSystem {
      *
      * @deprecated This method was already declared in {@link org.opengis.crs.Info}.
      */
-    public String getName();
+    String getName();
 
     /**
      * Returns the alias value for this CoordinateReferenceSystem.
@@ -99,7 +99,7 @@ public interface CoordinateReferenceSystem extends ReferenceSystem {
      *
      * @deprecated This method was already declared in {@link org.opengis.crs.Info}.
      */
-    public String getAlias();
+    String getAlias();
 
     /**
      * Returns the scope of this CoordinateReferenceSystem.
@@ -107,7 +107,7 @@ public interface CoordinateReferenceSystem extends ReferenceSystem {
      *
      * @deprecated This method was already declared in {@link ReferenceSystem}.
      */
-    public String getScope();
+    String getScope();
 
     /**
      * Returns the remarks of this CoordinateReferenceSystem.
@@ -115,5 +115,5 @@ public interface CoordinateReferenceSystem extends ReferenceSystem {
      *
      * @deprecated This method was already declared in {@link org.opengis.crs.Info}.
      */
-    public String getRemarks();
+    String getRemarks();
 }

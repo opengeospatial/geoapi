@@ -19,7 +19,7 @@ import javax.units.Unit;
  * @UML datatype DQ_CovarianceElement
  * @author ISO 19111
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
- * @version 2.0
+ * @version <A HREF="http://www.opengis.org/docs/03-073r1.zip">Abstract specification 2.0</A>
  */
 public interface CovarianceElement {
     /**
@@ -28,7 +28,7 @@ public interface CovarianceElement {
      * @return The row identifier.
      * @UML mandatory rowIndex;
      */
-    public int getRowIndex();
+    int getRowIndex();
 
     /**
      * The column number of the covariance element.
@@ -36,7 +36,7 @@ public interface CovarianceElement {
      * @return The column identifier.
      * @UML mandatory columnIndex
      */
-    public int getColumnIndex();
+    int getColumnIndex();
 
     /**
      * The covariance element value.
@@ -45,7 +45,7 @@ public interface CovarianceElement {
      * @see CovarianceMatrix#getElement
      * @UML mandatory covariance
      */
-    public double getCovariance();
+    double getCovariance();
 
     /**
      * The covariance unit from the relevant ordinate.
@@ -53,5 +53,5 @@ public interface CovarianceElement {
      * @return The covariance unit.
      * @see CovarianceMatrix#getUnit
      */
-    public Unit getUnit();
+    Unit getUnit();
 }

@@ -36,7 +36,7 @@ import java.util.Set;
  * that the latest edition is intended.
  *
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
- * @version 1.0
+ * @version <A HREF="http://www.opengis.org/docs/01-009.pdf">Implementation specification 1.0</A>
  */
 public interface AuthorityFactory extends Factory {
     /**
@@ -93,16 +93,16 @@ public interface AuthorityFactory extends Factory {
      * {@link org.opengis.crs.ReferenceSystem} or {@link org.opengis.crs.operation.CoordinateOperation}.
      * If the type of the object is know at compile time, it is recommended to invoke the
      * most precise method instead of this one (for example
-     * <code>&nbsp;{@linkplain org.opengis.crs.crs.CRSAuthorityFactory#createCRS createCRS}(code)&nbsp;</code>
-     * instead of <code>&nbsp;createObject(code)&nbsp;</code> if the caller know he is asking for a
-     * {@linkplain org.opengis.crs.crs.CRS coordinate reference system}).
+     * <code>&nbsp;{@linkplain org.opengis.crs.crs.CRSAuthorityFactory#createCoordinateReferenceSystem
+     * createCoordinateReferenceSystem}(code)&nbsp;</code> instead of <code>&nbsp;createObject(code)&nbsp;</code>
+     * if the caller know he is asking for a {@linkplain org.opengis.crs.crs.CRS coordinate reference system}).
      *
      * @param  code Value allocated by authority.
      * @throws NoSuchAuthorityCodeException if the specified <code>code</code> was not found.
      * @throws FactoryException if the object creation failed for some other reason.
      *
      * @see org.opengis.crs.datum.DatumAuthorityFactory#createDatum
-     * @see org.opengis.crs.crs.CRSAuthorityFactory#createCRS
+     * @see org.opengis.crs.crs.CRSAuthorityFactory#createCoordinateReferenceSystem
      */
     Object createObject(String code) throws FactoryException;
 }

@@ -26,7 +26,7 @@ import org.opengis.crs.datum.TemporalDatum;
  * @UML abstract SC_TemporalCRS
  * @author ISO 19111
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
- * @version 2.0
+ * @version <A HREF="http://www.opengis.org/docs/03-073r1.zip">Abstract specification 2.0</A>
  */
 public interface TemporalCRS extends CoordinateReferenceSystem {
     /**
@@ -35,7 +35,7 @@ public interface TemporalCRS extends CoordinateReferenceSystem {
      * @return The coordinate system.
      * @UML association usesCS
      */
-/// public TemporalCS getCoordinateSystem();
+/// TemporalCS getCoordinateSystem();
 
     /**
      * Returns the datum, which must be temporal.
@@ -43,5 +43,5 @@ public interface TemporalCRS extends CoordinateReferenceSystem {
      * @return The datum.
      * @UML association usesDatum
      */
-/// public TemporalDatum getDatum();
+/// TemporalDatum getDatum();
 }

@@ -20,7 +20,7 @@ package org.opengis.crs.crs;
  * @UML abstract SC_CompoundCRS
  * @author ISO 19111
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
- * @version 2.0
+ * @version <A HREF="http://www.opengis.org/docs/03-073r1.zip">Abstract specification 2.0</A>
  */
 public interface CompoundCRS extends CoordinateReferenceSystem {
     /**
@@ -31,5 +31,5 @@ public interface CompoundCRS extends CoordinateReferenceSystem {
      *
      * @revisit We should use the plural name, sinec this method returns an array.
      */
-    public CoordinateReferenceSystem[] getCoordinateReferenceSystem();
+    CoordinateReferenceSystem[] getCoordinateReferenceSystem();
 }

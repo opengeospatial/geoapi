@@ -24,7 +24,7 @@ import org.opengis.crs.Info;
  * @UML abstract CS_CoordinateSystemAxis
  * @author ISO 19111
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
- * @version 2.0
+ * @version <A HREF="http://www.opengis.org/docs/03-073r1.zip">Abstract specification 2.0</A>
  *
  * @see CoordinateSystem
  * @see Unit
@@ -38,7 +38,28 @@ public interface CoordinateSystemAxis extends Info {
      * @return The coordinate system axis abbreviation.
      * @UML mandatory axisAbbrev
      */
-    public String getAbbreviation();
+    String getAbbreviation();
+
+    /**
+     * Direction of this coordinate system axis. In the case of Cartesian projected
+     * coordinates, this is the direction of this coordinate system axis locally.
+     * Examples:
+     * {@linkplain AxisDirection#NORTH north} or {@linkplain AxisDirection#SOUTH south},
+     * {@linkplain AxisDirection#EAST  east}  or {@linkplain AxisDirection#WEST  west},
+     * {@linkplain AxisDirection#UP    up}    or {@linkplain AxisDirection#DOWN  down}.
+     * Within any set of coordinate system axes, only one of each pair of terms
+     * can be used. For earth-fixed coordinate reference systems, this direction is often
+     * approximate and intended to provide a human interpretable meaning to the axis. When a
+     * geodetic datum is used, the precise directions of the axes may therefore vary slightly
+     * from this approximate direction.
+     *
+     * Note that an {@link org.opengis.crs.crs.EngineeringCRS} often requires
+     * specific descriptions of the directions of its coordinate system axes.
+     *
+     * @return The coordinate system axis direction.
+     * @UML mandatory axisDirection
+     */
+    AxisDirection getDirection();
 
     /**
      * Direction of this coordinate system axis. In the case of Cartesian projected coordinates,
@@ -58,8 +79,10 @@ public interface CoordinateSystemAxis extends Info {
      * @return The coordinate system axis direction in the given locale. If no direction
      *         is available in the given locale, then some default locale is used.
      * @UML mandatory axisDirection
+     *
+     * @deprecated Use {@link #getDirection()} instead. Localization will be provided in the code list.
      */
-    public String getDirection(Locale locale);
+    String getDirection(Locale locale);
 
     /**
      * The unit of measure used for this coordinate system axis. The value of this
@@ -70,5 +93,5 @@ public interface CoordinateSystemAxis extends Info {
      * @return  The coordinate system axis unit.
      * @UML mandatory axisUnitID
      */
-    public Unit getUnit();
+    Unit getUnit();
 }

@@ -15,7 +15,7 @@ package org.opengis.crs;
  * the requested authority code.
  *
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
- * @version 2.0
+ * @version 1.0
  *
  * @see org.opengis.crs.datum.DatumAuthorityFactory
  * @see org.opengis.crs.crs.CRSAuthorityFactory

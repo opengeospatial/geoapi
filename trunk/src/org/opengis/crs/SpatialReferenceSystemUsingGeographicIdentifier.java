@@ -18,7 +18,7 @@ package org.opengis.crs;
  * @UML abstract RS_SpatialReferenceSystemUsingGeographicIdentifier
  * @author ISO 19111
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
- * @version 2.0
+ * @version <A HREF="http://www.opengis.org/docs/03-073r1.zip">Abstract specification 2.0</A>
  */
 public interface SpatialReferenceSystemUsingGeographicIdentifier extends ReferenceSystem {
 }

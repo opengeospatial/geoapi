@@ -18,7 +18,7 @@ package org.opengis.crs.datum;
  * @UML abstract CD_GeodeticDatum
  * @author ISO 19111
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
- * @version 2.0
+ * @version <A HREF="http://www.opengis.org/docs/03-073r1.zip">Abstract specification 2.0</A>
  *
  * @see Ellipsoid
  * @see PrimeMeridian
@@ -30,7 +30,7 @@ public interface GeodeticDatum extends Datum {
      * @return The ellipsoid.
      * @UML association usesEllipsoid
      */
-    public Ellipsoid getEllipsoid();
+    Ellipsoid getEllipsoid();
 
     /**
      * Returns the prime meridian.
@@ -38,5 +38,5 @@ public interface GeodeticDatum extends Datum {
      * @return The prime meridian.
      * @UML association usesPrimeMeridian
      */
-    public PrimeMeridian getPrimeMeridian();
+    PrimeMeridian getPrimeMeridian();
 }

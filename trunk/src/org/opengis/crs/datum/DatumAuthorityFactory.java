@@ -24,9 +24,9 @@ import org.opengis.crs.NoSuchAuthorityCodeException;
  * which is also used in the <A HREF="http://www.remotesensing.org/geotiff/geotiff.html">GeoTIFF</A>
  * standard.
  *
- * @UML abstract CS_CoordinateSystemAuthorityFactory in 1.0 specification
+ * @UML abstract CS_CoordinateSystemAuthorityFactory
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
- * @version 1.0
+ * @version <A HREF="http://www.opengis.org/docs/01-009.pdf">Implementation specification 1.0</A>
  */
 public interface DatumAuthorityFactory extends AuthorityFactory {
     /**

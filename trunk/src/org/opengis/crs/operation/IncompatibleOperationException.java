@@ -14,8 +14,8 @@ package org.opengis.crs.operation;
  * Thrown when an operation is applied in a manner inconsistent with one or both of
  * two particular CRS objects. 
  *
- * @author  Open GIS Consortium, Inc.
- * @version $Revision$, $Date$
+ * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
+ * @version 2.0
  */
 public class IncompatibleOperationException extends Exception {
     /**

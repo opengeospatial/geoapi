@@ -30,7 +30,7 @@ import org.opengis.crs.Info;
  * @UML abstract CD_Ellipsoid
  * @author ISO 19111
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
- * @version 2.0
+ * @version <A HREF="http://www.opengis.org/docs/03-073r1.zip">Abstract specification 2.0</A>
  */
 public interface Ellipsoid extends Info {
     /**
@@ -39,7 +39,7 @@ public interface Ellipsoid extends Info {
      *
      * @return The axis linear unit.
      */
-    public Unit getAxisUnit();
+    Unit getAxisUnit();
 
     /**
      * Length of the semi-major axis of the ellipsoid. This is the
@@ -49,7 +49,7 @@ public interface Ellipsoid extends Info {
      * @unitof Length
      * @UML mandatory semiMajorAxis
      */
-    public double getSemiMajorAxis();
+    double getSemiMajorAxis();
 
     /**
      * Length of the semi-minor axis of the ellipsoid. This is the
@@ -59,7 +59,7 @@ public interface Ellipsoid extends Info {
      * @unitof Length
      * @UML conditional secondDefiningParameter.semiMinorAxis
      */
-    public double getSemiMinorAxis();
+    double getSemiMinorAxis();
 
     /**
      * Returns the value of the inverse of the flattening constant. The inverse
@@ -74,7 +74,7 @@ public interface Ellipsoid extends Info {
      * @unitof Scale
      * @UML conditional secondDefiningParameter.inverseFlattening
      */
-    public double getInverseFlattening();
+    double getInverseFlattening();
 
     /**
      * Indicates if the {@linkplain #getInverseFlattening inverse flattening} is definitive for
@@ -86,7 +86,7 @@ public interface Ellipsoid extends Info {
      *         definitive, or <code>false</code> if the {@linkplain #getSemiMinorAxis polar radius}
      *         is definitive.
      */
-    public boolean isIvfDefinitive();
+    boolean isIvfDefinitive();
 
     /**
      * <code>true</code> if the ellipsoid is degenerate and is actually a sphere. The sphere is
@@ -96,5 +96,5 @@ public interface Ellipsoid extends Info {
      * @return <code>true</code> if the ellipsoid is degenerate and is actually a sphere.
      * @UML conditional secondDefiningParameter.isSphere
      */
-    public boolean isSphere();
+    boolean isSphere();
 }

@@ -23,7 +23,7 @@ import org.opengis.crs.Info;
  * @UML abstract CS_CoordinateSystem
  * @author ISO 19111
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
- * @version 2.0
+ * @version <A HREF="http://www.opengis.org/docs/03-073r1.zip">Abstract specification 2.0</A>
  *
  * @see org.opengis.crs.cs.CoordinateSystemAxis
  * @see javax.units.Unit
@@ -36,7 +36,7 @@ public interface CoordinateSystem extends Info {
      *
      * @return The dimension of the coordinate system.
      */
-    public int getDimension();
+    int getDimension();
 
     /**
      * Returns the axis for this coordinate system at the specified dimension.
@@ -47,5 +47,5 @@ public interface CoordinateSystem extends Info {
      * @throws IndexOutOfBoundsException if <code>dimension</code> is out of bounds.
      * @UML association usesAxis
      */
-    public CoordinateSystemAxis getAxis(int dimension) throws IndexOutOfBoundsException;
+    CoordinateSystemAxis getAxis(int dimension) throws IndexOutOfBoundsException;
 }

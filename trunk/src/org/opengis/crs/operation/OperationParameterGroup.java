@@ -16,7 +16,7 @@ package org.opengis.crs.operation;
  * @UML abstract CC_OperationParameterGroup
  * @author ISO 19111
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
- * @version 2.0
+ * @version <A HREF="http://www.opengis.org/docs/03-073r1.zip">Abstract specification 2.0</A>
  *
  * @see ParameterValueGroup
  * @see OperationParameter
@@ -34,7 +34,7 @@ public interface OperationParameterGroup extends GeneralOperationParameter {
      * @revisit Why this method is not declared in the same interface than
      *          {@link #getMinimumOccurs}?
      */
-    public int getMaximumOccurs();
+    int getMaximumOccurs();
 
     /**
      * Returns the parameters in this group.
@@ -42,7 +42,7 @@ public interface OperationParameterGroup extends GeneralOperationParameter {
      * @return The parameters.
      * @UML association includesParameter
      */
-    public GeneralOperationParameter[] getParameters();
+    GeneralOperationParameter[] getParameters();
 
     /**
      * Returns the first parameter in this group for the specified name. If no
@@ -53,5 +53,5 @@ public interface OperationParameterGroup extends GeneralOperationParameter {
      * @return The parameter for the given name.
      * @throws InvalidParameterNameException if there is no parameter for the given name.
      */
-    public GeneralOperationParameter getParameter(String name) throws InvalidParameterNameException;
+    GeneralOperationParameter getParameter(String name) throws InvalidParameterNameException;
 }

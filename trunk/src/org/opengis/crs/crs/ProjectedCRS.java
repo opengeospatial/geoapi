@@ -28,7 +28,7 @@ import org.opengis.crs.cs.CartesianCS;
  * @UML abstract SC_ProjectedCRS
  * @author ISO 19111
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
- * @version 2.0
+ * @version <A HREF="http://www.opengis.org/docs/03-073r1.zip">Abstract specification 2.0</A>
  */
 public interface ProjectedCRS extends GeneralDerivedCRS {
     /**
@@ -37,5 +37,5 @@ public interface ProjectedCRS extends GeneralDerivedCRS {
      * @return The coordinate system.
      * @UML association usesCS
      */
-/// public CartesianCS getCoordinateSystem();
+/// CartesianCS getCoordinateSystem();
 }

@@ -22,7 +22,7 @@ import org.opengis.metadata.extent.Extent;
  * @UML abstract RS_ReferenceSystem
  * @author ISO 19111
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
- * @version 2.0
+ * @version <A HREF="http://www.opengis.org/docs/03-073r1.zip">Abstract specification 2.0</A>
  *
  * @see org.opengis.crs.crs.CoordinateReferenceSystem
  */
@@ -33,7 +33,7 @@ public interface ReferenceSystem extends Info {
      * @return Coordinate reference system valid area, or <code>null</code> if not available.
      * @UML optional validArea
      */
-    public Extent getValidArea();
+    Extent getValidArea();
 
     /**
      * Description of domain of usage, or limitations of usage, for which this
@@ -46,5 +46,5 @@ public interface ReferenceSystem extends Info {
      *         none. If no scope is available in the given locale, then some default locale is used.
      * @UML optional scope
      */
-    public String getScope(Locale locale);
+    String getScope(Locale locale);
 }

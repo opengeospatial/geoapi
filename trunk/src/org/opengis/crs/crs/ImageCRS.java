@@ -30,7 +30,7 @@ import org.opengis.crs.datum.ImageDatum;
  * @UML abstract SC_ImageCRS
  * @author ISO 19111
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
- * @version 2.0
+ * @version <A HREF="http://www.opengis.org/docs/03-073r1.zip">Abstract specification 2.0</A>
  *
  * @revisit <ul>
  *            <li>If this is an engineering CRS, why it doesn't extends {@link EngineeringCRS}?</li>
@@ -48,7 +48,7 @@ public interface ImageCRS extends CoordinateReferenceSystem {
      * @return The cartesian coordinate system, or <code>null</code> if none.
      * @UML association usesCartesianCS
      */
-    public CartesianCS getCartesianCS();
+    CartesianCS getCartesianCS();
 
     /**
      * Returns the oblique cartesian coordinate system.
@@ -56,7 +56,7 @@ public interface ImageCRS extends CoordinateReferenceSystem {
      * @return The oblique cartesian coordinate system, or <code>null</code> if none.
      * @UML association usesObliqueCartesianCS
      */
-    public ObliqueCartesianCS getObliqueCartesianCS();
+    ObliqueCartesianCS getObliqueCartesianCS();
 
     /**
      * Returns the datum, which must be an image one.
@@ -64,5 +64,5 @@ public interface ImageCRS extends CoordinateReferenceSystem {
      * @return The datum.
      * @UML association usesDatum
      */
-/// public ImageDatum getDatum();
+/// ImageDatum getDatum();
 }

@@ -27,7 +27,7 @@ import org.opengis.metadata.extent.Extent;
  * @UML abstract CD_Datum
  * @author ISO 19111
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
- * @version 2.0
+ * @version <A HREF="http://www.opengis.org/docs/03-073r1.zip">Abstract specification 2.0</A>
  *
  * @see org.opengis.crs.cs.CoordinateSystem
  * @see org.opengis.crs.crs.CoordinateReferenceSystem
@@ -61,7 +61,7 @@ public interface Datum extends Info {
      *         anchor point is available in the given locale, then some default locale is used.
      * @UML optional anchorPoint
      */
-    public String getAnchorPoint(Locale locale);
+    String getAnchorPoint(Locale locale);
 
     /**
      * The time after which this datum definition is valid. This time may be precise (e.g. 1997
@@ -75,7 +75,7 @@ public interface Datum extends Info {
      * @return The datum realization epoch, or <code>null</code> if not available.
      * @UML optional realizationEpoch
      */
-    public Date getRealizationEpoch();
+    Date getRealizationEpoch();
 
     /**
      * Area or region in which this datum object is valid.
@@ -83,7 +83,7 @@ public interface Datum extends Info {
      * @return The datum valid area, or <code>null</code> if not available.
      * @UML optional validArea
      */
-    public Extent getValidArea();
+    Extent getValidArea();
 
     /**
      * Description of domain of usage, or limitations of usage, for which this
@@ -96,5 +96,5 @@ public interface Datum extends Info {
      *         scope is available in the given locale, then some default locale is used.
      * @UML optional scope
      */
-    public String getScope(Locale locale);
+    String getScope(Locale locale);
 }

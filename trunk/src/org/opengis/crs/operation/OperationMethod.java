@@ -24,7 +24,7 @@ import org.opengis.crs.Info;
  * @UML abstract CC_OperationMethod
  * @author ISO 19111
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
- * @version 2.0
+ * @version <A HREF="http://www.opengis.org/docs/03-073r1.zip">Abstract specification 2.0</A>
  *
  * @see Operation
  */
@@ -41,7 +41,7 @@ public interface OperationMethod extends Info {
      *         is available in the given locale, then some default locale is used.
      * @UML mandatory formula
      */
-    public String getFormula(Locale locale);
+    String getFormula(Locale locale);
 
     /**
      * Number of dimensions in the source CRS of this operation method.
@@ -49,7 +49,7 @@ public interface OperationMethod extends Info {
      * @return The dimension of source CRS.
      * @UML mandatory sourceDimensions
      */
-    public int getSourceDimensions();
+    int getSourceDimensions();
 
     /**
      * Number of dimensions in the target CRS of this operation method.
@@ -57,7 +57,7 @@ public interface OperationMethod extends Info {
      * @return The dimension of target CRS.
      * @UML mandatory targetDimensions
      */
-    public int getTargetDimensions();
+    int getTargetDimensions();
 
     /**
      * The set of parameters.
@@ -65,5 +65,5 @@ public interface OperationMethod extends Info {
      * @return The parameters, or an empty array if none.
      * @UML association usesParameter
      */
-    public GeneralOperationParameter[] getParameters();
+    GeneralOperationParameter[] getParameters();
 }

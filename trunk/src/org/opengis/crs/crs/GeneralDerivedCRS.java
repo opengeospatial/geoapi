@@ -21,7 +21,7 @@ import org.opengis.crs.operation.Conversion;
  * @UML abstract SC_GeneralDerivedCRS
  * @author ISO 19111
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
- * @version 2.0
+ * @version <A HREF="http://www.opengis.org/docs/03-073r1.zip">Abstract specification 2.0</A>
  */
 public interface GeneralDerivedCRS extends CoordinateReferenceSystem {
     /**
@@ -30,7 +30,7 @@ public interface GeneralDerivedCRS extends CoordinateReferenceSystem {
      * @return The base coordinate reference system.
      * @UML association baseCRS
      */
-    public CoordinateReferenceSystem getBaseCRS();
+    CoordinateReferenceSystem getBaseCRS();
 
     /**
      * Returns the conversion from the {@linkplain #getBaseCRS base CRS} to this CRS.
@@ -43,5 +43,5 @@ public interface GeneralDerivedCRS extends CoordinateReferenceSystem {
      *         method name.   By analogy with 01-009, this new interface specifies a method name
      *         which contains the <code>FromBase</code> words.
      */
-    public Conversion getConversionFromBase();
+    Conversion getConversionFromBase();
 }
