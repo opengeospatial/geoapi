@@ -30,9 +30,10 @@ public interface ParameterDescriptorGroup extends GeneralParameterDescriptor {
      * initialized with the {@linkplain ParameterDescriptor#getDefaultValue default values}.
      * The {@linkplain ParameterValueGroup#getDescriptor parameter value descriptor}
      * for the created group will be <code>this</code> object.
-     * <br><br>
-     * The number of {@link ParameterValue} objects included will matchs the
-     * {@linkplain ParameterDescriptor#getMinimumOccurs minimum occurences} required.
+     *
+     * The number of {@link ParameterValue} objects included must be between the
+     * {@linkplain ParameterDescriptor#getMinimumOccurs minimum} and 
+     * {@linkplain ParameterDescriptor#getMaximumOccurs maximum occurences} required.
      * For example:
      * <ul>
      * <li>For {@link ParameterDescriptor} with cardinality 1:* a {@link ParameterValue} will
@@ -40,7 +41,7 @@ public interface ParameterDescriptorGroup extends GeneralParameterDescriptor {
      *     (even if this default value is null).</li>
      * <li>For {@link ParameterDescriptor} with cardinality 0:* no entry will be generated,
      *     client code will need to look up the correct descriptor and create these optional
-     *     {@link ParameterValue}.</li>
+     *     {@link ParameterValue}s.</li>
      * </ul>
      */
  /// ParameterValueGroup createValue();     
