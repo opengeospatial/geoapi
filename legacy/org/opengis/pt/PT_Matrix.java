@@ -22,7 +22,7 @@ import java.io.Serializable;
  * @author Martin Daly
  * @author Martin Desruisseaux
  *
- * @deprecated Replaced by {@link org.opengis.crs.operation.Matrix}.
+ * @deprecated Replaced by {@link org.opengis.referencing.operation.Matrix}.
  */
 public class PT_Matrix implements Cloneable, Serializable {
     /**

@@ -24,7 +24,7 @@ import java.rmi.RemoteException;
  * @since   1.00
  * @author Martin Daly
  *
- * @deprecated Replaced by {@link org.opengis.crs.crs.CompoundCRS}.
+ * @deprecated Replaced by {@link org.opengis.referencing.crs.CompoundCRS}.
  */
 public interface CS_CompoundCoordinateSystem extends CS_CoordinateSystem {
     /**
@@ -32,7 +32,7 @@ public interface CS_CompoundCoordinateSystem extends CS_CoordinateSystem {
      *
      * @throws RemoteException if a remote method call failed.
      *
-     * @deprecated Replaced by {@link org.opengis.crs.crs.CompoundCRS#getCoordinateReferenceSystems}.
+     * @deprecated Replaced by {@link org.opengis.referencing.crs.CompoundCRS#getCoordinateReferenceSystems}.
      */
     CS_CoordinateSystem getHeadCS() throws RemoteException;
 
@@ -41,7 +41,7 @@ public interface CS_CompoundCoordinateSystem extends CS_CoordinateSystem {
      *
      * @throws RemoteException if a remote method call failed.
      *
-     * @deprecated Replaced by {@link org.opengis.crs.crs.CompoundCRS#getCoordinateReferenceSystems}.
+     * @deprecated Replaced by {@link org.opengis.referencing.crs.CompoundCRS#getCoordinateReferenceSystems}.
      */
     CS_CoordinateSystem getTailCS() throws RemoteException;
 }

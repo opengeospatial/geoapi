@@ -30,7 +30,7 @@ import java.rmi.RemoteException;
  * @since   1.00
  * @author Martin Daly
  *
- * @deprecated Replaced by {@link org.opengis.crs.crs.EngineeringCRS}.
+ * @deprecated Replaced by {@link org.opengis.referencing.crs.EngineeringCRS}.
  */
 public interface CS_LocalCoordinateSystem extends CS_CoordinateSystem {
     /**
@@ -38,7 +38,7 @@ public interface CS_LocalCoordinateSystem extends CS_CoordinateSystem {
      *
      * @throws RemoteException if a remote method call failed.
      *
-     * @deprecated Replaced by {@link org.opengis.crs.crs.EngineeringCRS#getDatum}.
+     * @deprecated Replaced by {@link org.opengis.referencing.crs.EngineeringCRS#getDatum}.
      */
     CS_LocalDatum getLocalDatum() throws RemoteException;
 }

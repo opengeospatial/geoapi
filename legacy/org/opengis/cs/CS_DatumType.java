@@ -25,7 +25,7 @@ import java.io.Serializable;
  * @author Martin Daly
  * @author Martin Desruisseaux
  *
- * @deprecated Replaced by {@link org.opengis.crs.datum.VerticalDatumType}.
+ * @deprecated Replaced by {@link org.opengis.referencing.datum.VerticalDatumType}.
  *             for the vertical case. No replacement for other cases.
  */
 public class CS_DatumType implements Serializable {
@@ -91,7 +91,7 @@ public class CS_DatumType implements Serializable {
     /**
      * Unspecified vertical datum type.
      *
-     * @deprecated Replaced by {@link org.opengis.crs.datum.VerticalDatumType#OTHER_SURFACE}.
+     * @deprecated Replaced by {@link org.opengis.referencing.datum.VerticalDatumType#OTHER_SURFACE}.
      */
     public static final int CS_VD_Other=2000;
 
@@ -99,7 +99,7 @@ public class CS_DatumType implements Serializable {
      * A vertical datum for orthometric heights that are measured along the
      * plumb line.
      *
-     * @deprecated Replaced by {@link org.opengis.crs.datum.VerticalDatumType#ORTHOMETRIC}.
+     * @deprecated Replaced by {@link org.opengis.referencing.datum.VerticalDatumType#ORTHOMETRIC}.
      */
     public static final int CS_VD_Orthometric=2001;
 
@@ -107,7 +107,7 @@ public class CS_DatumType implements Serializable {
      * A vertical datum for ellipsoidal heights that are measured along the
      * normal to the ellipsoid used in the definition of horizontal datum.
      *
-     * @deprecated Replaced by {@link org.opengis.crs.datum.VerticalDatumType#ELLIPSOIDAL}.
+     * @deprecated Replaced by {@link org.opengis.referencing.datum.VerticalDatumType#ELLIPSOIDAL}.
      */
     public static final int CS_VD_Ellipsoidal=2002;
 
@@ -119,7 +119,7 @@ public class CS_DatumType implements Serializable {
      * (used to measure pressure levels),  or theta value (units used to
      * measure geopotential height).
      *
-     * @deprecated Replaced by {@link org.opengis.crs.datum.VerticalDatumType#BAROMETRIC}.
+     * @deprecated Replaced by {@link org.opengis.referencing.datum.VerticalDatumType#BAROMETRIC}.
      */
     public static final int CS_VD_AltitudeBarometric=2003;
 
@@ -138,7 +138,7 @@ public class CS_DatumType implements Serializable {
      * geoid undulation model (<var>N</var>) through the equation:
      * <var>H</var>=<var>h</var>-<var>N</var>.
      *
-     * @deprecated Replaced by {@link org.opengis.crs.datum.VerticalDatumType#GEOIDAL}.
+     * @deprecated Replaced by {@link org.opengis.referencing.datum.VerticalDatumType#GEOIDAL}.
      */
     public static final int CS_VD_GeoidModelDerived=2005;
 
@@ -150,7 +150,7 @@ public class CS_DatumType implements Serializable {
      * (approximately) to the actual equipotential surfaces of the earth's
      * gravity field, using such procedures as echo-sounding.
      *
-     * @deprecated Replaced by {@link org.opengis.crs.datum.VerticalDatumType#DEPTH}.
+     * @deprecated Replaced by {@link org.opengis.referencing.datum.VerticalDatumType#DEPTH}.
      */
     public static final int CS_VD_Depth=2006;
 

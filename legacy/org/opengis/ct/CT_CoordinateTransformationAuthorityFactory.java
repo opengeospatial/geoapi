@@ -27,14 +27,14 @@ import java.rmi.RemoteException;
  * @since   1.00
  * @author Martin Daly
  *
- * @deprecated Replaced by {@link org.opengis.crs.operation.CoordinateOperationAuthorityFactory}.
+ * @deprecated Replaced by {@link org.opengis.referencing.operation.CoordinateOperationAuthorityFactory}.
  */
 public interface CT_CoordinateTransformationAuthorityFactory extends Remote {
     /**
      * The name of the authority.
      * @throws RemoteException if a remote method call failed.
      *
-     * @deprecated Replaced by {@link org.opengis.crs.operation.CoordinateOperationAuthorityFactory#getAuthority}.
+     * @deprecated Replaced by {@link org.opengis.referencing.operation.CoordinateOperationAuthorityFactory#getAuthority}.
      */
     String getAuthority() throws RemoteException;
 
@@ -47,7 +47,7 @@ public interface CT_CoordinateTransformationAuthorityFactory extends Remote {
      * @param code Coded value for transformation.
      * @throws RemoteException if a remote method call failed.
      *
-     * @deprecated Replaced by {@link org.opengis.crs.operation.CoordinateOperationAuthorityFactory#createCoordinateOperation}.
+     * @deprecated Replaced by {@link org.opengis.referencing.operation.CoordinateOperationAuthorityFactory#createCoordinateOperation}.
      */
     CT_CoordinateTransformation createFromTransformationCode(String code) throws RemoteException;
 
@@ -58,7 +58,7 @@ public interface CT_CoordinateTransformationAuthorityFactory extends Remote {
      * @param targetCode   Coded value of target coordinate system.
      * @throws RemoteException if a remote method call failed.
      *
-     * @deprecated Replaced by {@link org.opengis.crs.operation.CoordinateOperationAuthorityFactory#createFromCoordinateReferenceSystemCodes}.
+     * @deprecated Replaced by {@link org.opengis.referencing.operation.CoordinateOperationAuthorityFactory#createFromCoordinateReferenceSystemCodes}.
      */
     CT_CoordinateTransformation createFromCoordinateSystemCodes(String sourceCode, String targetCode) throws RemoteException;
 }

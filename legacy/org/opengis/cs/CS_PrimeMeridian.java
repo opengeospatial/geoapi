@@ -20,7 +20,7 @@ import java.rmi.RemoteException;
  * @since   1.00
  * @author Martin Daly
  *
- * @deprecated Replaced by {@link org.opengis.crs.datum.PrimeMeridian}.
+ * @deprecated Replaced by {@link org.opengis.referencing.datum.PrimeMeridian}.
  */
 public interface CS_PrimeMeridian extends CS_Info {
     /**
@@ -29,7 +29,7 @@ public interface CS_PrimeMeridian extends CS_Info {
      *
      * @throws RemoteException if a remote method call failed.
      *
-     * @deprecated Replaced by {@link org.opengis.crs.datum.PrimeMeridian#getGreenwichLongitude}.
+     * @deprecated Replaced by {@link org.opengis.referencing.datum.PrimeMeridian#getGreenwichLongitude}.
      */
     double getLongitude() throws RemoteException;
 
@@ -38,7 +38,7 @@ public interface CS_PrimeMeridian extends CS_Info {
      *
      * @throws RemoteException if a remote method call failed.
      *
-     * @deprecated Replaced by {@link org.opengis.crs.datum.PrimeMeridian#getAngularUnit}.
+     * @deprecated Replaced by {@link org.opengis.referencing.datum.PrimeMeridian#getAngularUnit}.
      */
     CS_AngularUnit getAngularUnit() throws RemoteException;
 }

@@ -22,8 +22,8 @@ import java.io.Serializable;
  * @author Martin Desruisseaux
  *
  * @deprecated No direct replacement. Check for instance of
- *             {@link org.opengis.crs.operation.Conversion} or
- *             {@link org.opengis.crs.operation.Transformation} instead.
+ *             {@link org.opengis.referencing.operation.Conversion} or
+ *             {@link org.opengis.referencing.operation.Transformation} instead.
  */
 public class CT_TransformType implements Serializable {
     /**

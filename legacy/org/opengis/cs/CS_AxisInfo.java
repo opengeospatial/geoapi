@@ -22,7 +22,7 @@ import java.io.Serializable;
  * @author Martin Daly
  * @author Martin Desruisseaux
  *
- * @deprecated Replaced by {@link org.opengis.crs.cs.CoordinateSystemAxis}.
+ * @deprecated Replaced by {@link org.opengis.referencing.cs.CoordinateSystemAxis}.
  */
 public class CS_AxisInfo implements Cloneable, Serializable {
     /**
@@ -35,14 +35,14 @@ public class CS_AxisInfo implements Cloneable, Serializable {
      * Human readable name for axis. 
      * Possible values are X, Y, Long, Lat or any other short string.
      *
-     * @deprecated Replaced by {@link org.opengis.crs.cs.CoordinateSystemAxis#getName}.
+     * @deprecated Replaced by {@link org.opengis.referencing.cs.CoordinateSystemAxis#getName}.
      */
     public String name;
 
     /**
      * Gets enumerated value for orientation.
      *
-     * @deprecated Replaced by {@link org.opengis.crs.cs.CoordinateSystemAxis#getDirection}.
+     * @deprecated Replaced by {@link org.opengis.referencing.cs.CoordinateSystemAxis#getDirection}.
      */
     public CS_AxisOrientationEnum orientation;
 

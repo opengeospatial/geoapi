@@ -25,7 +25,7 @@ import java.io.Serializable;
  * @author Martin Daly
  * @author Martin Desruisseaux
  *
- * @deprecated Replaced by {@link org.opengis.crs.cs.AxisDirection}.
+ * @deprecated Replaced by {@link org.opengis.referencing.cs.AxisDirection}.
  */
 public class CS_AxisOrientationEnum implements Serializable {
     /**
@@ -38,7 +38,7 @@ public class CS_AxisOrientationEnum implements Serializable {
      * Unknown or unspecified axis orientation.
      * This can be used for local or fitted coordinate systems. 
      *
-     * @deprecated Replaced by {@link org.opengis.crs.cs.AxisDirection#OTHER}.
+     * @deprecated Replaced by {@link org.opengis.referencing.cs.AxisDirection#OTHER}.
      */
     public static final int CS_AO_Other=0;
 
@@ -46,7 +46,7 @@ public class CS_AxisOrientationEnum implements Serializable {
      * Increasing ordinates values go North.
      * This is usually used for Grid Y coordinates and Latitude.
      *
-     * @deprecated Replaced by {@link org.opengis.crs.cs.AxisDirection#NORTH}.
+     * @deprecated Replaced by {@link org.opengis.referencing.cs.AxisDirection#NORTH}.
      */
     public static final int CS_AO_North=1;
 
@@ -54,7 +54,7 @@ public class CS_AxisOrientationEnum implements Serializable {
      * Increasing ordinates values go South.
      * This is rarely used.
      *
-     * @deprecated Replaced by {@link org.opengis.crs.cs.AxisDirection#SOUTH}.
+     * @deprecated Replaced by {@link org.opengis.referencing.cs.AxisDirection#SOUTH}.
      */
     public static final int CS_AO_South=2;
 
@@ -62,7 +62,7 @@ public class CS_AxisOrientationEnum implements Serializable {
      * Increasing ordinates values go East.
      * This is rarely used.
      *
-     * @deprecated Replaced by {@link org.opengis.crs.cs.AxisDirection#EAST}.
+     * @deprecated Replaced by {@link org.opengis.referencing.cs.AxisDirection#EAST}.
      */
     public static final int CS_AO_East=3;
 
@@ -70,7 +70,7 @@ public class CS_AxisOrientationEnum implements Serializable {
      * Increasing ordinates values go West.
      * This is usually used for Grid X coordinates and Longitude.
      *
-     * @deprecated Replaced by {@link org.opengis.crs.cs.AxisDirection#WEST}.
+     * @deprecated Replaced by {@link org.opengis.referencing.cs.AxisDirection#WEST}.
      */
     public static final int CS_AO_West=4;
 
@@ -78,7 +78,7 @@ public class CS_AxisOrientationEnum implements Serializable {
      * Increasing ordinates values go up.
      * This is used for vertical coordinate systems.
      *
-     * @deprecated Replaced by {@link org.opengis.crs.cs.AxisDirection#UP}.
+     * @deprecated Replaced by {@link org.opengis.referencing.cs.AxisDirection#UP}.
      */
     public static final int CS_AO_Up=5;
 
@@ -86,7 +86,7 @@ public class CS_AxisOrientationEnum implements Serializable {
      * Increasing ordinates values go down.
      * This is used for vertical coordinate systems.
      *
-     * @deprecated Replaced by {@link org.opengis.crs.cs.AxisDirection#DOWN}.
+     * @deprecated Replaced by {@link org.opengis.referencing.cs.AxisDirection#DOWN}.
      */
     public static final int CS_AO_Down=6;
 

@@ -20,7 +20,7 @@ import java.rmi.RemoteException;
  * @since   1.00
  * @author Martin Daly
  *
- * @deprecated Replaced by {@link org.opengis.crs.crs.VerticalCRS}.
+ * @deprecated Replaced by {@link org.opengis.referencing.crs.VerticalCRS}.
  */
 public interface CS_VerticalCoordinateSystem extends CS_CoordinateSystem {
     /**
@@ -28,7 +28,7 @@ public interface CS_VerticalCoordinateSystem extends CS_CoordinateSystem {
      *
      * @throws RemoteException if a remote method call failed.
      *
-     * @deprecated Replaced by {@link org.opengis.crs.crs.VerticalCRS#getDatum}.
+     * @deprecated Replaced by {@link org.opengis.referencing.crs.VerticalCRS#getDatum}.
      */
     CS_VerticalDatum getVerticalDatum() throws RemoteException;
 
@@ -38,7 +38,7 @@ public interface CS_VerticalCoordinateSystem extends CS_CoordinateSystem {
      *
      * @throws RemoteException if a remote method call failed.
      *
-     * @deprecated Replaced by {@link org.opengis.crs.cs.CoordinateSystemAxis#getUnit}.
+     * @deprecated Replaced by {@link org.opengis.referencing.cs.CoordinateSystemAxis#getUnit}.
      */
     CS_LinearUnit getVerticalUnit() throws RemoteException;
 }
