@@ -18,6 +18,7 @@ import org.opengis.spatialschema.geometry.DirectPosition;
 import org.opengis.spatialschema.geometry.Envelope;
 import org.opengis.spatialschema.geometry.MismatchedDimensionException;
 import org.opengis.spatialschema.geometry.MismatchedReferenceSystemException;
+import org.opengis.spatialschema.geometry.primitive.Ring;
 import org.opengis.spatialschema.geometry.primitive.Surface;
 import org.opengis.spatialschema.geometry.primitive.SurfaceBoundary;
 
@@ -269,20 +270,6 @@ public interface GeometryFactory {
             throws MismatchedReferenceSystemException, MismatchedDimensionException;
 
     /**
-     * Constructs polyhedral surface from the facet polygons.
-     *
-     * @param tiles The facet polygons. Must contains at least one polygon.
-     *
-     * @throws MismatchedReferenceSystemException If geometric objects given in argument don't
-     *         use compatible {@linkplain CoordinateReferenceSystem coordinate reference system}.
-     * @throws MismatchedDimensionException If geometric objects given in argument don't have
-     *         the expected dimension.
-     */
-/// @UML (identifier="GM_PolyhedralSurace(GM_Polygon)", obligation=MANDATORY)
-    PolyhedralSurface createPolyhedralSurface(List/*<Polygon>*/ tiles)
-            throws MismatchedReferenceSystemException, MismatchedDimensionException;
-
-    /**
      * Creates a polygon directly from a set of boundary curves (organized into a
      * surface boundary) which shall be defined using coplanar {@linkplain Position positions}
      * as control points.
@@ -341,4 +328,23 @@ public interface GeometryFactory {
     Tin createTin(Set/*<Position>*/ post, Set/*<LineString>*/ stopLines,
                   Set/*<LineString>*/ breakLines, double maxLength)
             throws MismatchedReferenceSystemException, MismatchedDimensionException;
+
+    /**
+     * Constructs a new {@linkplain SurfaceBoundary} object representing the
+     * boundary of a two-dimensional surface.
+     *
+     * @param exterior In the normal 2D case, this identifies the curve that is
+     *        the exterior curve of the surface.  In cases where an exterior
+     *        cannot be unambiguously chosen (a bounded cylinder, for example),
+     *        this parameter may be null.
+     * @param interiors All of the curve components of the boundary that are not
+     *        the exterior.
+     * @throws MismatchedReferenceSystemException If geometric objects given in
+     *         argument don't use a {@linkplain CoordinateReferenceSystem
+     *         coordinate reference system} compatible with the one held by this
+     *         factory.
+     */
+    SurfaceBoundary createSurfaceBoundary(Ring exterior,
+            List/*<Ring>*/ interiors)
+    	throws MismatchedReferenceSystemException;
 }
