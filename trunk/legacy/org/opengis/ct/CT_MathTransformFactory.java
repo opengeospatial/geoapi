@@ -61,7 +61,7 @@ import java.rmi.RemoteException;
  * @since   1.00
  * @author Martin Daly
  *
- * @deprecated Replaced by {@link org.opengis.crs.operation.MathTransformFactory}.
+ * @deprecated Replaced by {@link org.opengis.referencing.operation.MathTransformFactory}.
  */
 public interface CT_MathTransformFactory extends Remote {
     /**
@@ -78,7 +78,7 @@ public interface CT_MathTransformFactory extends Remote {
      * @return The affine transform.
      * @throws RemoteException if a remote method call failed.
      *
-     * @deprecated Replaced by {@link org.opengis.crs.operation.MathTransformFactory#createAffineTransform}
+     * @deprecated Replaced by {@link org.opengis.referencing.operation.MathTransformFactory#createAffineTransform}
      */
     CT_MathTransform createAffineTransform(PT_Matrix matrix) throws RemoteException;
 
@@ -97,7 +97,7 @@ public interface CT_MathTransformFactory extends Remote {
      * @return The concatenated transform.
      * @throws RemoteException if a remote method call failed.
      *
-     * @deprecated Replaced by {@link org.opengis.crs.operation.MathTransformFactory#createConcatenatedTransform}
+     * @deprecated Replaced by {@link org.opengis.referencing.operation.MathTransformFactory#createConcatenatedTransform}
      */
     CT_MathTransform createConcatenatedTransform(CT_MathTransform transform1, CT_MathTransform transform2) throws RemoteException;
 
@@ -115,7 +115,7 @@ public interface CT_MathTransformFactory extends Remote {
      * @return The pass through transform.
      * @throws RemoteException if a remote method call failed.
      *
-     * @deprecated Replaced by {@link org.opengis.crs.operation.MathTransformFactory#createPassThroughTransform}
+     * @deprecated Replaced by {@link org.opengis.referencing.operation.MathTransformFactory#createPassThroughTransform}
      */
     CT_MathTransform createPassThroughTransform(int firstAffectedOrdinate, CT_MathTransform subTransform) throws RemoteException;
 
@@ -131,7 +131,7 @@ public interface CT_MathTransformFactory extends Remote {
      * @return The parameterized transform.
      * @throws RemoteException if a remote method call failed.
      *
-     * @deprecated Replaced by {@link org.opengis.crs.operation.MathTransformFactory#createParameterizedTransform}
+     * @deprecated Replaced by {@link org.opengis.referencing.operation.MathTransformFactory#createParameterizedTransform}
      */
     CT_MathTransform createParameterizedTransform(String classification, CT_Parameter[] parameters) throws RemoteException;
 
@@ -142,7 +142,7 @@ public interface CT_MathTransformFactory extends Remote {
      * @return The transform.
      * @throws RemoteException if a remote method call failed.
      *
-     * @deprecated Replaced by {@link org.opengis.crs.operation.MathTransformFactory#createFromWKT}
+     * @deprecated Replaced by {@link org.opengis.referencing.operation.MathTransformFactory#createFromWKT}
      */
     CT_MathTransform createFromWKT(String wellKnownText) throws RemoteException;
 
@@ -153,7 +153,7 @@ public interface CT_MathTransformFactory extends Remote {
      * @return The transform.
      * @throws RemoteException if a remote method call failed.
      *
-     * @deprecated Replaced by {@link org.opengis.crs.operation.MathTransformFactory#createFromXML}
+     * @deprecated Replaced by {@link org.opengis.referencing.operation.MathTransformFactory#createFromXML}
      */
     CT_MathTransform createFromXML(String xml) throws RemoteException;
 

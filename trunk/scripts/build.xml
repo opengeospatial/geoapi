@@ -239,7 +239,7 @@
       <tag name="rename" scope="types,fields,methods" description="Name change from the UML:"/>
       <taglet name="org.opengis.tools.RevisitTaglet" path="${homepath}/scripts"/>
 
-      <link href="http://java.sun.com/j2se/1.5.0/docs/api"/>
+      <link href="http://java.sun.com/j2se/1.5/docs/api"/>
       <link href="http://java.sun.com/products/java-media/jai/forDevelopers/jai-apidocs"/>
       <link href="http://java.sun.com/products/java-media/3D/forDevelopers/j3dapi"/>
       <link href="http://jsr-108.sourceforge.net/javadoc"/>
@@ -252,7 +252,7 @@
       <group title="&lt;TABLE WIDTH='100%'&gt;&lt;TR&gt;&lt;TD&gt;Spatial Referencing by Coordinates
                     &lt;/TD&gt;&lt;TD ALIGN='right'&gt;&lt;FONT SIZE='-1' COLOR='Navy'&gt;ISO-19111
                     &lt;/FONT&gt;&lt;/TD&gt;&lt;/TR&gt;&lt;/TABLE&gt;"
-             packages="org.opengis.crs*:org.opengis.parameter*"/>
+             packages="org.opengis.referencing*:org.opengis.parameter*"/>
 
       <group title="&lt;TABLE WIDTH='100%'&gt;&lt;TR&gt;&lt;TD&gt;Feature Geometry
                     &lt;/TD&gt;&lt;TD ALIGN='right'&gt;&lt;FONT SIZE='-1' COLOR='Navy'&gt;ISO-19107

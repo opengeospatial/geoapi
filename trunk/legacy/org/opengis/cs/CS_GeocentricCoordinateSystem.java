@@ -26,7 +26,7 @@ import java.rmi.RemoteException;
  * @since   1.00
  * @author Martin Daly
  *
- * @deprecated Replaced by {@link org.opengis.crs.crs.GeocentricCRS}.
+ * @deprecated Replaced by {@link org.opengis.referencing.crs.GeocentricCRS}.
  */
 public interface CS_GeocentricCoordinateSystem extends CS_CoordinateSystem {
     /**
@@ -37,7 +37,7 @@ public interface CS_GeocentricCoordinateSystem extends CS_CoordinateSystem {
      *
      * @throws RemoteException if a remote method call failed.
      *
-     * @deprecated Replaced by {@link org.opengis.crs.crs.GeocentricCRS#getDatum}.
+     * @deprecated Replaced by {@link org.opengis.referencing.crs.GeocentricCRS#getDatum}.
      */
     CS_HorizontalDatum getHorizontalDatum() throws RemoteException;
 
@@ -46,7 +46,7 @@ public interface CS_GeocentricCoordinateSystem extends CS_CoordinateSystem {
      *
      * @throws RemoteException if a remote method call failed.
      *
-     * @deprecated Replaced by {@link org.opengis.crs.cs.CoordinateSystemAxis#getUnit}.
+     * @deprecated Replaced by {@link org.opengis.referencing.cs.CoordinateSystemAxis#getUnit}.
      */
     CS_LinearUnit getLinearUnit() throws RemoteException;
 
@@ -55,7 +55,7 @@ public interface CS_GeocentricCoordinateSystem extends CS_CoordinateSystem {
      *
      * @throws RemoteException if a remote method call failed.
      *
-     * @deprecated Replaced by {@link org.opengis.crs.datum.GeodeticDatum#getPrimeMeridian}.
+     * @deprecated Replaced by {@link org.opengis.referencing.datum.GeodeticDatum#getPrimeMeridian}.
      */
     CS_PrimeMeridian getPrimeMeridian() throws RemoteException;
 }

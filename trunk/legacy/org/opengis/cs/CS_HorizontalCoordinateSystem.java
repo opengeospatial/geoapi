@@ -21,7 +21,7 @@ import java.rmi.RemoteException;
  * @author Martin Daly
  *
  * @deprecated No direct replacement. The nearest parent is
- *             {@link org.opengis.crs.crs.CoordinateReferenceSystem}.
+ *             {@link org.opengis.referencing.crs.CoordinateReferenceSystem}.
  */
 public interface CS_HorizontalCoordinateSystem extends CS_CoordinateSystem {
     /**
@@ -29,7 +29,7 @@ public interface CS_HorizontalCoordinateSystem extends CS_CoordinateSystem {
      *
      * @throws RemoteException if a remote method call failed.
      *
-     * @deprecated Replaced by {@link org.opengis.crs.crs.CoordinateReferenceSystem#getDatum}.
+     * @deprecated Replaced by {@link org.opengis.referencing.crs.CoordinateReferenceSystem#getDatum}.
      */
     CS_HorizontalDatum getHorizontalDatum() throws RemoteException;
 }

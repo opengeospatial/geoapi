@@ -39,7 +39,7 @@ import java.rmi.RemoteException;
  * @since   1.00
  * @author Martin Daly
  *
- * @deprecated Replaced by {@link org.opengis.crs.crs.CoordinateReferenceSystem}.
+ * @deprecated Replaced by {@link org.opengis.referencing.crs.CoordinateReferenceSystem}.
  */
 public interface CS_CoordinateSystem extends CS_Info {
     /**
@@ -47,7 +47,7 @@ public interface CS_CoordinateSystem extends CS_Info {
      *
      * @throws RemoteException if a remote method call failed.
      *
-     * @deprecated Replaced by {@link org.opengis.crs.cs.CoordinateSystem#getDimension}.
+     * @deprecated Replaced by {@link org.opengis.referencing.cs.CoordinateSystem#getDimension}.
      */
     int getDimension() throws RemoteException;
 
@@ -58,7 +58,7 @@ public interface CS_CoordinateSystem extends CS_Info {
      * @param dimension Zero based index of axis.
      * @throws RemoteException if a remote method call failed.
      *
-     * @deprecated Replaced by {@link org.opengis.crs.cs.CoordinateSystem#getAxis}.
+     * @deprecated Replaced by {@link org.opengis.referencing.cs.CoordinateSystem#getAxis}.
      */
     CS_AxisInfo getAxis(int dimension) throws RemoteException;
 
@@ -69,7 +69,7 @@ public interface CS_CoordinateSystem extends CS_Info {
      * @param dimension Zero based index of axis.
      * @throws RemoteException if a remote method call failed.
      *
-     * @deprecated Replaced by {@link org.opengis.crs.cs.CoordinateSystemAxis#getUnit}.
+     * @deprecated Replaced by {@link org.opengis.referencing.cs.CoordinateSystemAxis#getUnit}.
      */
     CS_Unit getUnits(int dimension) throws RemoteException;
 
@@ -85,7 +85,7 @@ public interface CS_CoordinateSystem extends CS_Info {
      *
      * @throws RemoteException if a remote method call failed.
      *
-     * @deprecated Replaced by {@link org.opengis.crs.datum.Datum#getValidArea}.
+     * @deprecated Replaced by {@link org.opengis.referencing.datum.Datum#getValidArea}.
      */
     PT_Envelope getDefaultEnvelope() throws RemoteException;
 }

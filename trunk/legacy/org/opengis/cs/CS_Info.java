@@ -38,7 +38,7 @@ import java.rmi.RemoteException;
  * @since   1.00
  * @author Martin Daly
  *
- * @deprecated Replaced by {@link org.opengis.crs.Info} and {@link org.opengis.crs.Identifier}.
+ * @deprecated Replaced by {@link org.opengis.referencing.Info} and {@link org.opengis.referencing.Identifier}.
  */
 public interface CS_Info extends Remote {
     /**
@@ -46,7 +46,7 @@ public interface CS_Info extends Remote {
      *
      * @throws RemoteException if a remote method call failed.
      *
-     * @deprecated Replaced by {@link org.opengis.crs.Info#getName}.
+     * @deprecated Replaced by {@link org.opengis.referencing.Info#getName}.
      */
     String getName() throws RemoteException;
 
@@ -60,7 +60,7 @@ public interface CS_Info extends Remote {
      *
      * @throws RemoteException if a remote method call failed.
      *
-     * @deprecated Replaced by {@link org.opengis.crs.Identifier#getAuthority}.
+     * @deprecated Replaced by {@link org.opengis.referencing.Identifier#getAuthority}.
      */
     String getAuthority() throws RemoteException;
 
@@ -76,7 +76,7 @@ public interface CS_Info extends Remote {
      *
      * @throws RemoteException if a remote method call failed.
      *
-     * @deprecated Replaced by {@link org.opengis.crs.Identifier#getCode}.
+     * @deprecated Replaced by {@link org.opengis.referencing.Identifier#getCode}.
      */
     String getAuthorityCode() throws RemoteException;
 
@@ -85,7 +85,7 @@ public interface CS_Info extends Remote {
      *
      * @throws RemoteException if a remote method call failed.
      *
-     * @deprecated Replaced by {@link org.opengis.crs.Info#getIdentifiers}.
+     * @deprecated Replaced by {@link org.opengis.referencing.Info#getIdentifiers}.
      */
     String getAlias() throws RemoteException;
 
@@ -103,7 +103,7 @@ public interface CS_Info extends Remote {
      *
      * @throws RemoteException if a remote method call failed.
      *
-     * @deprecated Replaced by {@link org.opengis.crs.Info#getRemarks}.
+     * @deprecated Replaced by {@link org.opengis.referencing.Info#getRemarks}.
      */
     String getRemarks() throws RemoteException;
 

@@ -20,7 +20,7 @@ import java.rmi.RemoteException;
  * @since   1.00
  * @author Martin Daly
  *
- * @deprecated Replaced by {@link org.opengis.crs.datum.Ellipsoid}.
+ * @deprecated Replaced by {@link org.opengis.referencing.datum.Ellipsoid}.
  */
 public interface CS_Ellipsoid extends CS_Info {
     /**
@@ -29,7 +29,7 @@ public interface CS_Ellipsoid extends CS_Info {
      *
      * @throws RemoteException if a remote method call failed.
      *
-     * @deprecated Replaced by {@link org.opengis.crs.datum.Ellipsoid#getSemiMajorAxis}.
+     * @deprecated Replaced by {@link org.opengis.referencing.datum.Ellipsoid#getSemiMajorAxis}.
      */
     double getSemiMajorAxis() throws RemoteException;
 
@@ -39,7 +39,7 @@ public interface CS_Ellipsoid extends CS_Info {
      *
      * @throws RemoteException if a remote method call failed.
      *
-     * @deprecated Replaced by {@link org.opengis.crs.datum.Ellipsoid#getSemiMinorAxis}.
+     * @deprecated Replaced by {@link org.opengis.referencing.datum.Ellipsoid#getSemiMinorAxis}.
      */
     double getSemiMinorAxis() throws RemoteException;
 
@@ -51,7 +51,7 @@ public interface CS_Ellipsoid extends CS_Info {
      *
      * @throws RemoteException if a remote method call failed.
      *
-     * @deprecated Replaced by {@link org.opengis.crs.datum.Ellipsoid#getInverseFlattening}.
+     * @deprecated Replaced by {@link org.opengis.referencing.datum.Ellipsoid#getInverseFlattening}.
      */
     double getInverseFlattening() throws RemoteException;
 
@@ -64,7 +64,7 @@ public interface CS_Ellipsoid extends CS_Info {
      *
      * @throws RemoteException if a remote method call failed.
      *
-     * @deprecated Replaced by {@link org.opengis.crs.datum.Ellipsoid#isIvfDefinitive}.
+     * @deprecated Replaced by {@link org.opengis.referencing.datum.Ellipsoid#isIvfDefinitive}.
      */
     boolean isIvfDefinitive() throws RemoteException;
 
@@ -74,7 +74,7 @@ public interface CS_Ellipsoid extends CS_Info {
      *
      * @throws RemoteException if a remote method call failed.
      *
-     * @deprecated Replaced by {@link org.opengis.crs.datum.Ellipsoid#getAxisUnit}.
+     * @deprecated Replaced by {@link org.opengis.referencing.datum.Ellipsoid#getAxisUnit}.
      */
     CS_LinearUnit getAxisUnit() throws RemoteException;
 }

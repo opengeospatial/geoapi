@@ -17,7 +17,7 @@ package org.opengis.cs;
  * @since   1.00
  * @author Martin Daly
  *
- * @deprecated Replaced by {@link org.opengis.crs.datum.VerticalDatum}.
+ * @deprecated Replaced by {@link org.opengis.referencing.datum.VerticalDatum}.
  */
 public interface CS_VerticalDatum extends CS_Datum {
 }

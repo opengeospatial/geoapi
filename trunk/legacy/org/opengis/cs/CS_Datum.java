@@ -31,7 +31,7 @@ import java.rmi.RemoteException;
  * @author Martin Daly
  * @author Martin Desruisseaux
  *
- * @deprecated Replaced by {@link org.opengis.crs.datum.Datum}.
+ * @deprecated Replaced by {@link org.opengis.referencing.datum.Datum}.
  */
 public interface CS_Datum extends CS_Info {
     /**
@@ -39,7 +39,7 @@ public interface CS_Datum extends CS_Info {
      *
      * @throws RemoteException if a remote method call failed.
      *
-     * @deprecated Replaced by {@link org.opengis.crs.datum.VerticalDatum#getVerticalDatumType}
+     * @deprecated Replaced by {@link org.opengis.referencing.datum.VerticalDatum#getVerticalDatumType}
      *             for the vertical case. No replacement for other cases.
      */
     CS_DatumType getDatumType() throws RemoteException;

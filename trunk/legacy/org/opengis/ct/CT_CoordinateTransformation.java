@@ -30,7 +30,7 @@ import java.rmi.RemoteException;
  * @since   1.00
  * @author Martin Daly
  *
- * @deprecated Replaced by {@link org.opengis.crs.operation.CoordinateOperation}.
+ * @deprecated Replaced by {@link org.opengis.referencing.operation.CoordinateOperation}.
  */
 public interface CT_CoordinateTransformation extends Remote {
     /**
@@ -38,7 +38,7 @@ public interface CT_CoordinateTransformation extends Remote {
      *
      * @throws RemoteException if a remote method call failed.
      *
-     * @deprecated Replaced by {@link org.opengis.crs.operation.CoordinateOperation#getName}.
+     * @deprecated Replaced by {@link org.opengis.referencing.operation.CoordinateOperation#getName}.
      */
     String getName() throws RemoteException;
 
@@ -52,7 +52,7 @@ public interface CT_CoordinateTransformation extends Remote {
      *
      * @throws RemoteException if a remote method call failed.
      *
-     * @deprecated Replaced by {@link org.opengis.crs.Identifier#getAuthority}.
+     * @deprecated Replaced by {@link org.opengis.referencing.Identifier#getAuthority}.
      */
     String getAuthority() throws RemoteException;
 
@@ -68,7 +68,7 @@ public interface CT_CoordinateTransformation extends Remote {
      *
      * @throws RemoteException if a remote method call failed.
      *
-     * @deprecated Replaced by {@link org.opengis.crs.Identifier#getCode}.
+     * @deprecated Replaced by {@link org.opengis.referencing.Identifier#getCode}.
      */
     String getAuthorityCode() throws RemoteException;
 
@@ -77,7 +77,7 @@ public interface CT_CoordinateTransformation extends Remote {
      *
      * @throws RemoteException if a remote method call failed.
      *
-     * @deprecated Replaced by {@link org.opengis.crs.operation.CoordinateOperation#getRemarks}.
+     * @deprecated Replaced by {@link org.opengis.referencing.operation.CoordinateOperation#getRemarks}.
      */
     String getRemarks() throws RemoteException;
 
@@ -86,7 +86,7 @@ public interface CT_CoordinateTransformation extends Remote {
      *
      * @throws RemoteException if a remote method call failed.
      *
-     * @deprecated Replaced by {@link org.opengis.crs.operation.CoordinateOperation#getScope}.
+     * @deprecated Replaced by {@link org.opengis.referencing.operation.CoordinateOperation#getScope}.
      */
     String getAreaOfUse() throws RemoteException;
 
@@ -97,8 +97,8 @@ public interface CT_CoordinateTransformation extends Remote {
      * @throws RemoteException if a remote method call failed.
      *
      * @deprecated No direct replacement. Check for instance of
-     *             {@link org.opengis.crs.operation.Conversion} or
-     *             {@link org.opengis.crs.operation.Transformation} instead.
+     *             {@link org.opengis.referencing.operation.Conversion} or
+     *             {@link org.opengis.referencing.operation.Transformation} instead.
      */
     CT_TransformType getTransformType() throws RemoteException;
 
@@ -107,7 +107,7 @@ public interface CT_CoordinateTransformation extends Remote {
      *
      * @throws RemoteException if a remote method call failed.
      *
-     * @deprecated Replaced by {@link org.opengis.crs.operation.CoordinateOperation#getSourceCRS}.
+     * @deprecated Replaced by {@link org.opengis.referencing.operation.CoordinateOperation#getSourceCRS}.
      */
     CS_CoordinateSystem getSourceCS() throws RemoteException;
 
@@ -116,7 +116,7 @@ public interface CT_CoordinateTransformation extends Remote {
      *
      * @throws RemoteException if a remote method call failed.
      *
-     * @deprecated Replaced by {@link org.opengis.crs.operation.CoordinateOperation#getTargetCRS}.
+     * @deprecated Replaced by {@link org.opengis.referencing.operation.CoordinateOperation#getTargetCRS}.
      */
     CS_CoordinateSystem getTargetCS() throws RemoteException;
 
@@ -125,7 +125,7 @@ public interface CT_CoordinateTransformation extends Remote {
      *
      * @throws RemoteException if a remote method call failed.
      *
-     * @deprecated Replaced by {@link org.opengis.crs.operation.CoordinateOperation#getMathTransform}.
+     * @deprecated Replaced by {@link org.opengis.referencing.operation.CoordinateOperation#getMathTransform}.
      */
     CT_MathTransform getMathTransform() throws RemoteException;
 }

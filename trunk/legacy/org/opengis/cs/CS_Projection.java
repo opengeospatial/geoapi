@@ -20,7 +20,7 @@ import java.rmi.RemoteException;
  * @since   1.00
  * @author Martin Daly
  *
- * @deprecated Replaced by {@link org.opengis.crs.projection.Projection}.
+ * @deprecated Replaced by {@link org.opengis.referencing.operation.Projection}.
  */
 public interface CS_Projection extends CS_Info {
     /**
@@ -28,7 +28,7 @@ public interface CS_Projection extends CS_Info {
      *
      * @throws RemoteException if a remote method call failed.
      *
-     * @deprecated Replaced by {@link org.opengis.crs.projection.Projection#getParameterValues}.
+     * @deprecated Replaced by {@link org.opengis.referencing.operation.Projection#getParameterValues}.
      */
     int getNumParameters() throws RemoteException;
 
@@ -38,7 +38,7 @@ public interface CS_Projection extends CS_Info {
      * @param index Zero based index of parameter to fetch.
      * @throws RemoteException if a remote method call failed.
      *
-     * @deprecated Replaced by {@link org.opengis.crs.projection.Projection#getParameterValues}.
+     * @deprecated Replaced by {@link org.opengis.referencing.operation.Projection#getParameterValues}.
      */
     CS_ProjectionParameter getParameter(int index) throws RemoteException;
 

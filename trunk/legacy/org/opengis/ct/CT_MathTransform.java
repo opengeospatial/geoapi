@@ -29,7 +29,7 @@ import java.rmi.RemoteException;
  * @since   1.00
  * @author Martin Daly
  *
- * @deprecated Replaced by {@link org.opengis.crs.operation.MathTransform}.
+ * @deprecated Replaced by {@link org.opengis.referencing.operation.MathTransform}.
  */
 public interface CT_MathTransform extends Remote {
     /**
@@ -105,7 +105,7 @@ public interface CT_MathTransform extends Remote {
      * @return The transformed point.
      * @throws RemoteException if a remote method call failed.
      *
-     * @deprecated Replaced by {@link org.opengis.crs.operation.MathTransform#transform}.
+     * @deprecated Replaced by {@link org.opengis.referencing.operation.MathTransform#transform}.
      */
     PT_CoordinatePoint transform(PT_CoordinatePoint cp) throws RemoteException;
 
@@ -135,7 +135,7 @@ public interface CT_MathTransform extends Remote {
      * @return The packed transformed points. May be <code>ord</code>.
      * @throws RemoteException if a remote method call failed.
      *
-     * @deprecated Replaced by {@link org.opengis.crs.operation.MathTransform#transform(double[],int,double[],int,int)}.
+     * @deprecated Replaced by {@link org.opengis.referencing.operation.MathTransform#transform(double[],int,double[],int,int)}.
      */
     double[] transformList(double[] ord) throws RemoteException;
 
@@ -156,7 +156,7 @@ public interface CT_MathTransform extends Remote {
      * @return The derivative of this transform at the suplied point.
      * @throws RemoteException if a remote method call failed.
      *
-     * @deprecated Replaced by {@link org.opengis.crs.operation.MathTransform#derivative}.
+     * @deprecated Replaced by {@link org.opengis.referencing.operation.MathTransform#derivative}.
      */
     PT_Matrix derivative(PT_CoordinatePoint cp) throws RemoteException;
 
@@ -168,7 +168,7 @@ public interface CT_MathTransform extends Remote {
      * @return The inverse transform.
      * @throws RemoteException if a remote method call failed.
      *
-     * @deprecated Replaced by {@link org.opengis.crs.operation.MathTransform#inverse}.
+     * @deprecated Replaced by {@link org.opengis.referencing.operation.MathTransform#inverse}.
      */
     CT_MathTransform inverse() throws RemoteException;
 
@@ -177,7 +177,7 @@ public interface CT_MathTransform extends Remote {
      *
      * @throws RemoteException if a remote method call failed.
      *
-     * @deprecated Replaced by {@link org.opengis.crs.operation.MathTransform#getDimSource}.
+     * @deprecated Replaced by {@link org.opengis.referencing.operation.MathTransform#getDimSource}.
      */
     int getDimSource() throws RemoteException;
 
@@ -186,7 +186,7 @@ public interface CT_MathTransform extends Remote {
      *
      * @throws RemoteException if a remote method call failed.
      *
-     * @deprecated Replaced by {@link org.opengis.crs.operation.MathTransform#getDimTarget}.
+     * @deprecated Replaced by {@link org.opengis.referencing.operation.MathTransform#getDimTarget}.
      */
     int getDimTarget() throws RemoteException;
 
@@ -197,7 +197,7 @@ public interface CT_MathTransform extends Remote {
      *         an identity transform; <code>false</code> otherwise.
      * @throws RemoteException if a remote method call failed.
      *
-     * @deprecated Replaced by {@link org.opengis.crs.operation.MathTransform#isIdentity}.
+     * @deprecated Replaced by {@link org.opengis.referencing.operation.MathTransform#isIdentity}.
      */
     boolean isIdentity() throws RemoteException;
 }

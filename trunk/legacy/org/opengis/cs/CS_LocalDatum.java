@@ -21,7 +21,7 @@ package org.opengis.cs;
  * @since   1.00
  * @author Martin Daly
  *
- * @deprecated Replaced by {@link org.opengis.crs.datum.EngineeringDatum}.
+ * @deprecated Replaced by {@link org.opengis.referencing.datum.EngineeringDatum}.
  */
 public interface CS_LocalDatum extends CS_Datum {
 }

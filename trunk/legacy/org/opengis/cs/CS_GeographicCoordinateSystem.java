@@ -24,7 +24,7 @@ import java.rmi.RemoteException;
  * @since   1.00
  * @author Martin Daly
  *
- * @deprecated Replaced by {@link org.opengis.crs.crs.GeographicCRS}.
+ * @deprecated Replaced by {@link org.opengis.referencing.crs.GeographicCRS}.
  */
 public interface CS_GeographicCoordinateSystem extends CS_HorizontalCoordinateSystem { 
     /**
@@ -33,7 +33,7 @@ public interface CS_GeographicCoordinateSystem extends CS_HorizontalCoordinateSy
      *
      * @throws RemoteException if a remote method call failed.
      *
-     * @deprecated Replaced by {@link org.opengis.crs.cs.CoordinateSystemAxis#getUnit}.
+     * @deprecated Replaced by {@link org.opengis.referencing.cs.CoordinateSystemAxis#getUnit}.
      */
     CS_AngularUnit getAngularUnit() throws RemoteException;
 
@@ -42,7 +42,7 @@ public interface CS_GeographicCoordinateSystem extends CS_HorizontalCoordinateSy
      *
      * @throws RemoteException if a remote method call failed.
      *
-     * @deprecated Replaced by {@link org.opengis.crs.datum.GeodeticDatum#getPrimeMeridian}.
+     * @deprecated Replaced by {@link org.opengis.referencing.datum.GeodeticDatum#getPrimeMeridian}.
      */
     CS_PrimeMeridian getPrimeMeridian() throws RemoteException;
 

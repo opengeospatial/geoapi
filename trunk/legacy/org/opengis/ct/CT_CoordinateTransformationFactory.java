@@ -24,7 +24,7 @@ import java.rmi.RemoteException;
  * @since   1.00
  * @author Martin Daly
  *
- * @deprecated Replaced by {@link org.opengis.crs.operation.CoordinateOperationFactory}.
+ * @deprecated Replaced by {@link org.opengis.referencing.operation.CoordinateOperationFactory}.
  */
 public interface CT_CoordinateTransformationFactory extends Remote {
     /**
@@ -38,7 +38,7 @@ public interface CT_CoordinateTransformationFactory extends Remote {
      * @param targetCS Output coordinate system.
      * @throws RemoteException if a remote method call failed.
      *
-     * @deprecated Replaced by {@link org.opengis.crs.operation.CoordinateOperationFactory#createOperation}.
+     * @deprecated Replaced by {@link org.opengis.referencing.operation.CoordinateOperationFactory#createOperation}.
      */
     CT_CoordinateTransformation createFromCoordinateSystems(CS_CoordinateSystem sourceCS, CS_CoordinateSystem targetCS) throws RemoteException;
 }
