@@ -38,7 +38,7 @@ import java.rmi.RemoteException;
  * @since   1.00
  * @author Martin Daly
  *
- * @deprecated Replaced by {@link org.opengis.referencing.Info} and {@link org.opengis.referencing.Identifier}.
+ * @deprecated Replaced by {@link org.opengis.referencing.IdentifiedObject} and {@link org.opengis.metadata.Identifier}.
  */
 public interface CS_Info extends Remote {
     /**
