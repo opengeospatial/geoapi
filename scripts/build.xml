@@ -216,6 +216,8 @@
       <replacefilter token="&lt;Constraints&gt;"/>
       <replacefilter token="&lt;ContentInformation&gt;"/>
       <replacefilter token="&lt;DataQuality&gt;"/>
+      <replacefilter token="&lt;DataStore&gt;"/>
+      <replacefilter token="&lt;DataStore,String&gt;"/>
       <replacefilter token="&lt;Date&gt;"/>
       <replacefilter token="&lt;DateType,Date&gt;"/>
       <replacefilter token="&lt;DigitalTransferOptions&gt;"/>
@@ -228,6 +230,7 @@
       <replacefilter token="&lt;Feature&gt;"/>
       <replacefilter token="&lt;FeatureType&gt;"/>
       <replacefilter token="&lt;FeatureTypeList&gt;"/>
+      <replacefilter token="&lt;FeatureLayer&gt;"/>
       <replacefilter token="&lt;Filter&gt;"/>
       <replacefilter token="&lt;Format&gt;"/>
       <replacefilter token="&lt;GeneralParameterDescriptor&gt;"/>
