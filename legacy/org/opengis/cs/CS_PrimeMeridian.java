@@ -28,6 +28,8 @@ public interface CS_PrimeMeridian extends CS_Info {
      * The longitude is expressed in this objects angular units.
      *
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated Replaced by {@link org.opengis.crs.datum.PrimeMeridian#getGreenwichLongitude}.
      */
     double getLongitude() throws RemoteException;
 
@@ -35,6 +37,8 @@ public interface CS_PrimeMeridian extends CS_Info {
      * Returns the AngularUnits.
      *
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated Replaced by {@link org.opengis.crs.datum.PrimeMeridian#getAngularUnit}.
      */
     CS_AngularUnit getAngularUnit() throws RemoteException;
 }

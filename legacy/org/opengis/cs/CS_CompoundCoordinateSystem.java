@@ -31,6 +31,8 @@ public interface CS_CompoundCoordinateSystem extends CS_CoordinateSystem {
      * Gets first sub-coordinate system.
      *
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated Replaced by {@link org.opengis.crs.crs.CompoundCRS#getCoordinateReferenceSystems}.
      */
     CS_CoordinateSystem getHeadCS() throws RemoteException;
 
@@ -38,6 +40,8 @@ public interface CS_CompoundCoordinateSystem extends CS_CoordinateSystem {
      * Gets second sub-coordinate system.
      *
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated Replaced by {@link org.opengis.crs.crs.CompoundCRS#getCoordinateReferenceSystems}.
      */
     CS_CoordinateSystem getTailCS() throws RemoteException;
 }

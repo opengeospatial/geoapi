@@ -171,7 +171,7 @@ public interface CS_CoordinateSystemFactory extends Remote {
      *
      * @deprecated Replaced by {@link org.opengis.crs.datum.DatumFactory#createGeodeticDatum}.
      */
-    CS_HorizontalDatum createHorizontalDatum(String name,CS_DatumType horizontalDatumType,CS_Ellipsoid ellipsoid,CS_WGS84ConversionInfo toWGS84) throws RemoteException;
+    CS_HorizontalDatum createHorizontalDatum(String name, CS_DatumType horizontalDatumType, CS_Ellipsoid ellipsoid, CS_WGS84ConversionInfo toWGS84) throws RemoteException;
 
     /**
      * Creates a prime meridian, relative to Greenwich. 
@@ -183,7 +183,7 @@ public interface CS_CoordinateSystemFactory extends Remote {
      *
      * @deprecated Replaced by {@link org.opengis.crs.datum.DatumFactory#createPrimeMeridian}.
      */
-    CS_PrimeMeridian createPrimeMeridian(String name,CS_AngularUnit angularUnit,double longitude) throws RemoteException;
+    CS_PrimeMeridian createPrimeMeridian(String name, CS_AngularUnit angularUnit, double longitude) throws RemoteException;
 
     /**
      * Creates a GCS, which could be Lat/Lon or Lon/Lat.

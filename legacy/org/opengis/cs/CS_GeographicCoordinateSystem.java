@@ -32,6 +32,8 @@ public interface CS_GeographicCoordinateSystem extends CS_HorizontalCoordinateSy
      * The angular unit must be the same as the {@link CS_CoordinateSystem} units.
      *
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated Replaced by {@link org.opengis.crs.cs.CoordinateSystemAxis#getUnit}.
      */
     CS_AngularUnit getAngularUnit() throws RemoteException;
 
@@ -39,6 +41,8 @@ public interface CS_GeographicCoordinateSystem extends CS_HorizontalCoordinateSy
      * Returns the PrimeMeridian.
      *
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated Replaced by {@link org.opengis.crs.datum.GeodeticDatum#getPrimeMeridian}.
      */
     CS_PrimeMeridian getPrimeMeridian() throws RemoteException;
 

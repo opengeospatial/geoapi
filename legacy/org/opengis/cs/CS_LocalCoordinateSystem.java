@@ -37,6 +37,8 @@ public interface CS_LocalCoordinateSystem extends CS_CoordinateSystem {
      * Gets the local datum.
      *
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated Replaced by {@link org.opengis.crs.crs.EngineeringCRS#getDatum}.
      */
     CS_LocalDatum getLocalDatum() throws RemoteException;
 }

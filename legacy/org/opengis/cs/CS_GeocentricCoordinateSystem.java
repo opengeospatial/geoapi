@@ -46,7 +46,7 @@ public interface CS_GeocentricCoordinateSystem extends CS_CoordinateSystem {
      *
      * @throws RemoteException if a remote method call failed.
      *
-     * @deprecated Replaced by {@link org.opengis.crs.cs.CoordinateSystemAxis#getUni}.
+     * @deprecated Replaced by {@link org.opengis.crs.cs.CoordinateSystemAxis#getUnit}.
      */
     CS_LinearUnit getLinearUnit() throws RemoteException;
 
