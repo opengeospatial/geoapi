@@ -87,7 +87,7 @@ public interface GenericCurve {
      * @see #getStartPoint
      * @see #getStartConstructiveParam
      * @see #getEndParam
-     * @see #getParam
+     * @see #forParam
      */
 /// @UML (identifier="startParam", obligation=MANDATORY)
     public double getStartParam();
@@ -108,7 +108,7 @@ public interface GenericCurve {
      * @see #getEndPoint
      * @see #getEndConstructiveParam
      * @see #getStartParam
-     * @see #getParam
+     * @see #forParam
      */
 /// @UML (identifier="endParam", obligation=MANDATORY)
     public double getEndParam();
@@ -131,7 +131,7 @@ public interface GenericCurve {
      *
      * @see #getStartParam
      * @see #getEndConstructiveParam
-     * @see #getConstructiveParam
+     * @see #forConstructiveParam
      */
 /// @UML (identifier="startConstrParam", obligation=MANDATORY)
     public double getStartConstructiveParam();
@@ -154,7 +154,7 @@ public interface GenericCurve {
      *
      * @see #getEndParam
      * @see #getStartConstructiveParam
-     * @see #getConstructiveParam
+     * @see #forConstructiveParam
      */
 /// @UML (identifier="endConstrParam", obligation=MANDATORY)
     public double getEndConstructiveParam();
@@ -173,13 +173,13 @@ public interface GenericCurve {
      *
      * @see #getStartConstructiveParam
      * @see #getEndConstructiveParam
-     * @see #getParam
+     * @see #forParam
      */
 /// @UML (identifier="constrParam", obligation=MANDATORY)
-    public DirectPosition getConstructiveParam(double cp);
+    public DirectPosition forConstructiveParam(double cp);
 
     /**
-     * Returns the direct position for a parameter. This method is shall be the parameterized
+     * Returns the direct position for a parameter. This method shall be the parameterized
      * representation of the curve as the continuous image of a real number interval. The
      * method returns the direct position on the <code>GenericCurve</code> at the distance
      * passed. The parameterization shall be by arc length, i.e. distance along the
@@ -190,10 +190,10 @@ public interface GenericCurve {
      *
      * @see #getStartParam
      * @see #getEndParam
-     * @see #getConstructiveParam
+     * @see #forConstructiveParam
      */
 /// @UML (identifier="param", obligation=MANDATORY)
-    public DirectPosition getParam(double s);
+    public DirectPosition forParam(double s);
 
     /**
      * Returns the parameter for this <code>GenericCurve</code> at the passed direct position.
@@ -204,7 +204,7 @@ public interface GenericCurve {
      *
      * @see #getStartPoint
      * @see #getEndPoint
-     * @see #getParam
+     * @see #forParam
      */
 /// @UML (identifier="paramForPoint", obligation=MANDATORY)
     public ParamForPoint getParamForPoint(DirectPosition p);
