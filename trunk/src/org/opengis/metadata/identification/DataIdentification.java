@@ -85,7 +85,7 @@ public interface DataIdentification extends Identification {
 
     /**
      * Description of the dataset in the producer’s processing environment, including items
-     * such as the software, the computer operating system, file name, and the dataset size
+     * such as the software, the computer operating system, file name, and the dataset size.
      */
 /// @UML (identifier="environmentDescription", obligation=OPTIONAL)
     InternationalString getEnvironmentDescription();
