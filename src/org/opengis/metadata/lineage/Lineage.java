@@ -25,7 +25,7 @@ import org.opengis.util.InternationalString;
  * the scope or lack of knowledge about lineage.
  *
  * Only one of {@linkplain #getStatement statement}, {@linkplain #getProcessSteps process steps}
- * and {@link #getSources sources} should be provided.
+ * and {@linkplain #getSources sources} should be provided.
  *
  * @author ISO 19115
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>

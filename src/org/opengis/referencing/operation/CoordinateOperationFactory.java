@@ -9,6 +9,9 @@
  *************************************************************************************************/
 package org.opengis.referencing.operation;
 
+// J2SE dependencies
+import java.util.Map;
+
 // OpenGIS dependencies
 import org.opengis.referencing.Factory;
 import org.opengis.referencing.FactoryException;
@@ -16,13 +19,26 @@ import org.opengis.referencing.crs.CoordinateReferenceSystem;
 
 
 /**
- * Creates coordinate {@linkplain Transformation transformations} or
- * {@linkplain Conversion conversions} between two coordinate reference systems.
+ * Creates {@linkplain CoordinateOperation coordinate operations}.
+ * This factory is capable to find coordinate {@linkplain Transformation transformations}
+ * or {@linkplain Conversion conversions} between two
+ * {@linkplain CoordinateReferenceSystem coordinate reference systems}.
  *
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-009.pdf">Implementation specification 1.0</A>
  */
 public interface CoordinateOperationFactory extends Factory {
+    /**
+     * Creates a concatenated operation from a sequence of operations.
+     *
+     * @param  properties Name and other properties to give to the new object.
+     *         Available properties are {@linkplain Factory listed there}.
+     * @param  operations The sequence of operations.
+     * @throws FactoryException if the object creation failed.
+     */
+    CoordinateOperation createConcatenatedOperation(Map properties, CoordinateOperation[] operations)
+            throws FactoryException;
+
     /**
      * Returns an operation for conversion or transformation between two coordinate reference systems.
      * If an operation exists, it is returned. If more than one operation exists, the default is returned.
@@ -30,12 +46,12 @@ public interface CoordinateOperationFactory extends Factory {
      *
      * @param  sourceCRS Input coordinate reference system.
      * @param  targetCRS Output coordinate reference system.
-     * @throws FactoryException if no transformation path was found from <code>sourceCRS</code>
+     * @throws OperationNotFoundException if no operation path was found from <code>sourceCRS</code>
      *         to <code>targetCRS</code>.
-     *
-     * @revisit Should we create a more accurate subclass of <code>FactoryException</code>?
+     * @throws FactoryException if the operation creation failed for some other reason.
      */
-    CoordinateOperation createOperation(CoordinateReferenceSystem sourceCRS, CoordinateReferenceSystem targetCRS) throws FactoryException;
+    CoordinateOperation createOperation(CoordinateReferenceSystem sourceCRS, CoordinateReferenceSystem targetCRS)
+            throws OperationNotFoundException, FactoryException;
 
     /**
      * Returns an operation using a particular method for conversion or transformation
@@ -48,13 +64,15 @@ public interface CoordinateOperationFactory extends Factory {
      * @param  method the algorithmic method for conversion or transformation
      * @param  sourceCRS Input coordinate reference system.
      * @param  targetCRS Output coordinate reference system.
-     * @throws FactoryException if no transformation path was found from <code>sourceCRS</code>
+     * @throws OperationNotFoundException if no operation path was found from <code>sourceCRS</code>
      *         to <code>targetCRS</code>.
+     * @throws FactoryException if the operation creation failed for some other reason.
      *
      * @revisit More than one operation step may be involved in the path from <code>sourceCRS</code>
      *          to <code>targetCRS</code>, but this method has only one <code>method</code> argument.
      *          The user could have more fine grain control with {@link MathTransformFactory} (ported
      *          from OGC 2001-09).
      */
-    CoordinateOperation createOperation(CoordinateReferenceSystem sourceCRS, CoordinateReferenceSystem targetCRS, OperationMethod method) throws FactoryException;
+    CoordinateOperation createOperation(CoordinateReferenceSystem sourceCRS, CoordinateReferenceSystem targetCRS, OperationMethod method)
+            throws OperationNotFoundException, FactoryException;
 }
