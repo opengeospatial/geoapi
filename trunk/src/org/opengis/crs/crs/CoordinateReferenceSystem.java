@@ -64,5 +64,35 @@ public interface CoordinateReferenceSystem extends CRS {
 	 * @return true if the two CoordinateReferenceSystems are the same.
 	 */
 	public boolean equals(CoordinateReferenceSystem otherCrs);
+	
+	/**
+	 * Returns the type for this CoordinateReferenceSystem.
+	 * @return the type for this CoordinateReferenceSystem.
+	 */
+	public CoordinateReferenceSystemType getCoordinateReferenceSystemType();
+	
+	/**
+	 * Returns the name of this CoordinateReferenceSystem.
+	 * @return the name of this CoordinateReferenceSystem.
+	 */
+	public String getName();
+	
+	/**
+	 * Returns the alias value for this CoordinateReferenceSystem.
+	 * @return the alias value for this CoordinateReferenceSystem.
+	 */
+	public String getAlias();
+	 
+	/**
+	 * Returns the scope of this CoordinateReferenceSystem.
+	 * @return the scope of this CoordinateReferenceSystem.
+	 */
+	public String getScope();
+	
+	/**
+	 * Returns the remarks of this CoordinateReferenceSystem.
+	 * @return the remarks of this CoordinateReferenceSystem.
+	 */
+	public String getRemarks();
 
 }

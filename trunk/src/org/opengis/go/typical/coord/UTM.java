@@ -46,6 +46,7 @@ public class UTM implements DirectPosition {
      * to EPSG Code 2041.
      */
     public static final String DEFAULT_COORDINATE_REFERENCE_SYSTEM_URL = "urn:x-ogc:srs:EPSG::2041";
+    
     /**
      * The Coordinate Reference System for this coordinate.
      */
@@ -113,7 +114,7 @@ public class UTM implements DirectPosition {
         props.setProperty(CoordinateReferenceSystemFactory.COORDINATE_REFERECE_SYSTEM_URL, crsURL);
         CoordinateReferenceSystem crs;
         try {
-            crs = (CoordinateReferenceSystem)
+            crs =
                 CommonFactoryManager
                     .getCommonFactory("CommonFactory")
                     .getCoordinateReferenceSystemFactory()
