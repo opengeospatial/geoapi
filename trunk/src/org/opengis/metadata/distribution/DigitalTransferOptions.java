@@ -10,7 +10,7 @@
 package org.opengis.metadata.distribution;
 
 // J2SE direct dependencies
-import java.util.Set;
+import java.util.Collection;
 
 // OpenGIS direct dependencies
 import org.opengis.util.InternationalString;
@@ -52,7 +52,7 @@ public interface DigitalTransferOptions {
      */
 /// @Profile (level=CORE)
 /// @UML (identifier="onLine", obligation=OPTIONAL)
-    Set/*<OnLineResource>*/ getOnLines();
+    Collection/*<OnLineResource>*/ getOnLines();
 
     /**
      * Information about offline media on which the resource can be obtained.

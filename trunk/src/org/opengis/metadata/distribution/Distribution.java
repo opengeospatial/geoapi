@@ -10,7 +10,7 @@
 package org.opengis.metadata.distribution;
 
 // J2SE dependencies
-import java.util.Set;
+import java.util.Collection;
 
 // Annotations
 ///import org.opengis.annotation.UML;
@@ -34,13 +34,13 @@ public interface Distribution {
      */
 /// @Profile (level=CORE)
 /// @UML (identifier="distributionFormat", obligation=CONDITIONAL)
-    Set/*<Format>*/ getDistributionFormats();
+    Collection/*<Format>*/ getDistributionFormats();
 
     /**
      * Provides information about the distributor.
      */
 /// @UML (identifier="distributor", obligation=OPTIONAL)
-    Set/*<Distributor>*/ getDistributors();
+    Collection/*<Distributor>*/ getDistributors();
 
     /**
      * Provides information about technical means and media by which a resource is obtained
@@ -48,5 +48,5 @@ public interface Distribution {
      */
 /// @Profile (level=CORE)
 /// @UML (identifier="transferOptions", obligation=OPTIONAL)
-    Set/*<DigitalTransferOptions>*/ getTransferOptions();
+    Collection/*<DigitalTransferOptions>*/ getTransferOptions();
 }

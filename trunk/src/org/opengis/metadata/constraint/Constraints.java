@@ -10,7 +10,7 @@
 package org.opengis.metadata.constraint;
 
 // J2SE dependencies
-import java.util.List;
+import java.util.Collection;
 
 // OpenGIS direct dependencies
 import org.opengis.util.InternationalString;
@@ -34,5 +34,5 @@ public interface Constraints {
      * Example, "not to be used for navigation".
      */
 /// @UML (identifier="useLimitation", obligation=OPTIONAL)
-    List/*<InternationalString>*/ getUseLimitation();
+    Collection/*<InternationalString>*/ getUseLimitation();
 }

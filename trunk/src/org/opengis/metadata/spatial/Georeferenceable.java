@@ -10,7 +10,7 @@
 package org.opengis.metadata.spatial;
 
 // J2SE direct dependencies
-import java.util.Set;
+import java.util.Collection;
 
 // OpenGIS direct dependencies
 import org.opengis.util.InternationalString;
@@ -62,5 +62,5 @@ public interface Georeferenceable extends GridSpatialRepresentation {
      * Reference providing description of the parameters.
      */
 /// @UML (identifier="parameterCitation", obligation=OPTIONAL)
-    Set/*<Citation>*/ getParameterCitation();
+    Collection/*<Citation>*/ getParameterCitation();
 }

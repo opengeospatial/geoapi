@@ -9,6 +9,9 @@
  *************************************************************************************************/
 package org.opengis.metadata.maintenance;
 
+// J2SE directdependencies
+import java.util.Set;
+
 // Annotations
 ///import org.opengis.annotation.UML;
 ///import static org.opengis.annotation.Obligation.*;
@@ -21,9 +24,26 @@ package org.opengis.metadata.maintenance;
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
  *
- * @revisit Methods in this interface are not yet defined, because they require
+ * @revisit Collection types in this interface are not yet defined, because they require
  *          <code>Feature</code> and <code>FeatureType</code>.
  */
 ///@UML (identifier="MD_ScopeDescription")
 public interface ScopeDescription {
+    /**
+     * Attributes to which the information applies.
+     */
+/// @UML (identifier="attributes", obligation=CONDITIONAL)
+    public Set getAttributes();
+
+    /**
+     * Features to which the information applies.
+     */
+/// @UML (identifier="features", obligation=CONDITIONAL)
+    public Set getFeatures();
+
+    /**
+     * Reature instances to which the information applies.
+     */
+/// @UML (identifier="featureInstances", obligation=CONDITIONAL)
+    public Set getFeatureInstances();
 }

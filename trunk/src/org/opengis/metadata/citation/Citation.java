@@ -10,9 +10,8 @@
 package org.opengis.metadata.citation;
 
 // J2SE direct dependencies
+import java.util.Collection;
 import java.util.Map;
-import java.util.Set;
-import java.util.List;
 import java.util.Date;
 
 // OpenGIS direct dependencies
@@ -47,7 +46,7 @@ public interface Citation {
      * Example: "DCW" as an alternative title for "Digital Chart of the World".
      */
 /// @UML (identifier="alternateTitle", obligation=OPTIONAL)
-    List/*<InternationalString>*/ getAlternateTitles();
+    Collection/*<InternationalString>*/ getAlternateTitles();
 
     /**
      * Reference date for the cited resource.
@@ -80,7 +79,7 @@ public interface Citation {
      *          {@link java.util.Map} instead?
      */
 /// @UML (identifier="identifier", obligation=OPTIONAL)
-    Set/*<String>*/ getIdentifiers();
+    Collection/*<String>*/ getIdentifiers();
 
     /**
      * Reference form of the unique identifier (ID). Example: Universal Product Code (UPC),
@@ -90,20 +89,20 @@ public interface Citation {
      *          {@link java.util.Map} instead?
      */
 /// @UML (identifier="identifierType", obligation=OPTIONAL)
-    Set/*<String>*/ getIdentifierTypes();
+    Collection/*<String>*/ getIdentifierTypes();
 
     /**
      * Name and position information for an individual or organization that is responsible
      * for the resource. Returns an empty string if there is none.
      */
 /// @UML (identifier="citedResponsibleParty", obligation=OPTIONAL)
-    Set/*<ResponsibleParty>*/ getCitedResponsibleParties();
+    Collection/*<ResponsibleParty>*/ getCitedResponsibleParties();
 
     /**
      * Mode in which the resource is represented, or an empty string if none.
      */
 /// @UML (identifier="presentationForm", obligation=OPTIONAL)
-    Set/*<PresentationForm>*/ getPresentationForm();
+    Collection/*<PresentationForm>*/ getPresentationForm();
 
     /**
      * Information about the series, or aggregate dataset, of which the dataset is a part.

@@ -10,7 +10,7 @@
 package org.opengis.metadata;
 
 // J2SE direct dependencies
-import java.util.Set;
+import java.util.Collection;
 
 // Annotations
 ///import org.opengis.annotation.UML;
@@ -28,8 +28,7 @@ import java.util.Set;
 public interface SpatialAttributeSupplement {
     /**
      * Provides information about the list of feature types with the same spatial representation.
-     *
      */
 /// @UML (identifier="theFeatureTypeList", obligation=MANDATORY)
-    Set/*<FeatureTypeList>*/ getFeatureTypeList();
+    Collection/*<FeatureTypeList>*/ getFeatureTypeList();
 }

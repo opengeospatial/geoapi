@@ -10,7 +10,7 @@
 package org.opengis.metadata.distribution;
 
 // J2SE direct dependencies
-import java.util.Set;
+import java.util.Collection;
 
 // OpenGIS direct dependencies
 import org.opengis.util.InternationalString;
@@ -70,5 +70,5 @@ public interface Format {
      * Provides information about the distributor’s format.
      */
 /// @UML (identifier="formatDistributor", obligation=OPTIONAL)
-    Set/*<Distributor>*/ getFormatDistributors();
+    Collection/*<Distributor>*/ getFormatDistributors();
 }

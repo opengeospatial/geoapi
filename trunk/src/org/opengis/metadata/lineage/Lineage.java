@@ -10,7 +10,7 @@
 package org.opengis.metadata.lineage;
 
 // J2SE direct dependencies
-import java.util.Set;
+import java.util.Collection;
 
 // OpenGIS direct dependencies
 import org.opengis.util.InternationalString;
@@ -51,11 +51,11 @@ public interface Lineage {
      * Information about an event in the creation process for the data specified by the scope.
      */
 /// @UML (identifier="processStep", obligation=CONDITIONAL)
-    Set/*<ProcessStep>*/ getProcessSteps();
+    Collection/*<ProcessStep>*/ getProcessSteps();
 
     /**
      * Information about the source data used in creating the data specified by the scope.
      */
 /// @UML (identifier="source", obligation=CONDITIONAL)
-    Set/*<Source>*/ getSources();
+    Collection/*<Source>*/ getSources();
 }

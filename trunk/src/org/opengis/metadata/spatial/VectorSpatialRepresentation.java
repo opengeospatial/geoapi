@@ -10,7 +10,7 @@
 package org.opengis.metadata.spatial;
 
 // J2SE direct dependencies
-import java.util.Set;
+import java.util.Collection;
 
 // Annotations
 ///import org.opengis.annotation.UML;
@@ -36,5 +36,5 @@ public interface VectorSpatialRepresentation extends SpatialRepresentation {
      * Information about the geometric objects used in the dataset.
      */
 /// @UML (identifier="geometricObjects", obligation=OPTIONAL)
-    Set/*<GeometricObjects>*/ getGeometricObjects();
+    Collection/*<GeometricObjects>*/ getGeometricObjects();
 }

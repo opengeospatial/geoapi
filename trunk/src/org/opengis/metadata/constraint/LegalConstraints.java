@@ -10,7 +10,7 @@
 package org.opengis.metadata.constraint;
 
 // J2SE direct dependencies
-import java.util.Set;
+import java.util.Collection;
 
 // OpenGIS direct dependencies
 import org.opengis.util.InternationalString;
@@ -34,14 +34,14 @@ public interface LegalConstraints extends Constraints {
      * and any special restrictions or limitations on obtaining the resource.
      */
 /// @UML (identifier="accessConstraints", obligation=OPTIONAL)
-    Set/*<Restriction>*/ getAccessConstraints();
+    Collection/*<Restriction>*/ getAccessConstraints();
 
     /**
      * Constraints applied to assure the protection of privacy or intellectual property, and any
      * special restrictions or limitations or warnings on using the resource.
      */
 /// @UML (identifier="useConstraints", obligation=OPTIONAL)
-    Set/*<Restriction>*/ getUseConstraints();
+    Collection/*<Restriction>*/ getUseConstraints();
 
     /**
      * Other restrictions and legal prerequisites for accessing and using the resource.

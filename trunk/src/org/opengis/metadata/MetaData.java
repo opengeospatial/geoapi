@@ -10,7 +10,7 @@
 package org.opengis.metadata;
 
 // J2SE direct dependencies
-import java.util.Set;
+import java.util.Collection;
 import java.util.Date;
 import java.util.Locale;
 
@@ -39,9 +39,6 @@ import org.opengis.referencing.ReferenceSystem;
  * @author ISO 19115
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
- *
- * @revisit Many method in this interface returns an array. Should we returns a
- *          {@link java.util.List} or {@link java.util.Set} instead?
  */
 ///@Profile (level=CORE)
 ///@UML (identifier="MD_MetaData")
@@ -81,7 +78,7 @@ public interface MetaData {
      * @revisit Add a link toward annex I in ISO 19115 (to be inserted in the javadoc).
      */
 /// @UML (identifier="hierarchyLevel", obligation=OPTIONAL)
-    Set/*<ScopeCode>*/ getHierarchyLevels();
+    Collection/*<ScopeCode>*/ getHierarchyLevels();
 
     /**
      * Name of the hierarchy levels for which the metadata is provided.
@@ -89,7 +86,7 @@ public interface MetaData {
      * @revisit Should we merge with {@link #getHierarchyLevels} using a {@link java.util.Map}?
      */
 /// @UML (identifier="hierarchyLevelName", obligation=OPTIONAL)
-    Set/*<String>*/ getHierarchyLevelNames();
+    Collection/*<String>*/ getHierarchyLevelNames();
 
     /**
      * Party responsible for the metadata information.
@@ -123,7 +120,7 @@ public interface MetaData {
      * Digital representation of spatial information in the dataset.
      */
 /// @UML (identifier="spatialRepresentationInfo", obligation=OPTIONAL)
-    Set/*<SpatialRepresentation>*/ getSpatialRepresentationInfo();
+    Collection/*<SpatialRepresentation>*/ getSpatialRepresentationInfo();
 
     /**
      * Description of the spatial and temporal reference systems used in the dataset.
@@ -132,27 +129,27 @@ public interface MetaData {
      */
 /// @Profile (level=CORE)
 /// @UML (identifier="referenceSystemInfo", obligation=OPTIONAL)
-    Set/*<ReferenceSystem>*/ getReferenceSystemInfo();
+    Collection/*<ReferenceSystem>*/ getReferenceSystemInfo();
 
     /**
      * Information describing metadata extensions.
      */
 /// @UML (identifier="metadataExtensionInfo", obligation=OPTIONAL)
-    Set/*<MetadataExtensionInformation>*/ getMetadataExtensionInfo();
+    Collection/*<MetadataExtensionInformation>*/ getMetadataExtensionInfo();
 
     /**
      * Basic information about the resource(s) to which the metadata applies.
      */
 /// @Profile (level=CORE)
 /// @UML (identifier="identificationInfo", obligation=MANDATORY)
-    Set/*<Identification>*/ getIdentificationInfo();
+    Collection/*<Identification>*/ getIdentificationInfo();
 
     /**
      * Provides information about the feature catalogue and describes the coverage and
      * image data characteristics.
      */
 /// @UML (identifier="contentInfo", obligation=OPTIONAL)
-    Set/*<ContentInformation>*/ getContentInfo();
+    Collection/*<ContentInformation>*/ getContentInfo();
 
     /**
      * Provides information about the distributor of and options for obtaining the resource(s).
@@ -166,25 +163,25 @@ public interface MetaData {
      */
 /// @Profile (level=CORE)
 /// @UML (identifier="dataQualityInfo", obligation=OPTIONAL)
-    Set/*<DataQuality>*/ getDataQualityInfo();
+    Collection/*<DataQuality>*/ getDataQualityInfo();
 
     /**
      * Provides information about the catalogue of rules defined for the portrayal of a resource(s).
      */
 /// @UML (identifier="portrayalCatalogueInfo", obligation=OPTIONAL)
-    Set/*<PortrayalCatalogueReference>*/ getPortrayalCatalogueInfo();
+    Collection/*<PortrayalCatalogueReference>*/ getPortrayalCatalogueInfo();
 
     /**
      * Provides restrictions on the access and use of data.
      */
 /// @UML (identifier="metadataConstraints", obligation=OPTIONAL)
-    Set/*<Constraints>*/ getMetadataConstraints();
+    Collection/*<Constraints>*/ getMetadataConstraints();
 
     /**
      * Provides information about the conceptual schema of a dataset.
      */
 /// @UML (identifier="applicationSchemaInfo", obligation=OPTIONAL)
-    Set/*<ApplicationSchemaInformation>*/ getApplicationSchemaInfo();
+    Collection/*<ApplicationSchemaInformation>*/ getApplicationSchemaInfo();
      
     /**
      * Provides information about the frequency of metadata updates, and the scope of those updates.

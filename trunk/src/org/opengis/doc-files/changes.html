@@ -10,7 +10,10 @@
   <BLOCKQUOTE>
   <H3>Changes in Metadata packages</H3>
   <UL>
-    <LI>Completed interfaces and code list derived from ISO 19115.</LI>
+    <LI><P>Completed interfaces and code list derived from ISO 19115.</P></LI>
+    <LI><P>Replaced all <code>Set</code> references by <code>Collection</code>, except in the
+           very few places where ISO 19115 defines explicitly the collection type.</P></LI>
+    <LI><P>Replaced all <code>URL</code> references by <code>URI</code>.</P></LI>
   </UL>
   <H3>Changes in Referencing packages</H3>
   <UL>
@@ -74,6 +77,8 @@
     <LI><P>For all methods expecting a <CODE>Locale</CODE> argument, removed this argument and replaced the
          <CODE>String</CODE> return type by <A HREF="../util/InternationalString.html"><CODE>InternationalString</CODE></A>.
          This change was done for consistency with the metadata package.</P></LI>
+
+    <LI><P>In <code>valueFile()</code> method, replaced the <code>URL</code> return type by <code>URI</code>.</P></LI>
   </UL>
   <H3>Changes in Geometry packages</H3>
   <UL>

@@ -10,7 +10,7 @@
 package org.opengis.metadata.identification;
 
 // J2SE direct dependencies
-import java.util.Set;
+import java.util.Collection;
 import java.util.Locale;
 
 // OpenGIS direct dependencies
@@ -42,7 +42,7 @@ public interface DataIdentification extends Identification {
      */
 /// @Profile (level=CORE)
 /// @UML (identifier="spatialRepresentationType", obligation=OPTIONAL)
-    Set/*<SpatialRepresentationType>*/ getSpatialRepresentationTypes();
+    Collection/*<SpatialRepresentationType>*/ getSpatialRepresentationTypes();
 
     /**
      * Factor which provides a general understanding of the density of spatial data
@@ -50,14 +50,14 @@ public interface DataIdentification extends Identification {
      */
 /// @Profile (level=CORE)
 /// @UML (identifier="spatialResolution", obligation=OPTIONAL)
-    Set/*<Resolution>*/ getSpatialResolutions();
+    Collection/*<Resolution>*/ getSpatialResolutions();
 
     /**
      * Language(s) used within the dataset.
      */
 /// @Profile (level=CORE)
 /// @UML (identifier="language", obligation=MANDATORY)
-    Set/*<Locale>*/ getLanguage();
+    Collection/*<Locale>*/ getLanguage();
 
     /**
      * Full name of the character coding standard used for the dataset.
@@ -73,7 +73,7 @@ public interface DataIdentification extends Identification {
      */
 /// @Profile (level=CORE)
 /// @UML (identifier="topicCategory", obligation=MANDATORY)
-    Set/*<TopicCategory>*/ getTopicCategories();
+    Collection/*<TopicCategory>*/ getTopicCategories();
 
     /**
      * Minimum bounding rectangle within which data is available.
@@ -82,7 +82,7 @@ public interface DataIdentification extends Identification {
      */
 /// @Profile (level=CORE)
 /// @UML (identifier="geographicBox", obligation=CONDITIONAL)
-    Set/*<GeographicBoundingBox>*/ getGeographicBox();
+    Collection/*<GeographicBoundingBox>*/ getGeographicBox();
 
     /**
      * Description of the geographic area within which data is available.
@@ -91,7 +91,7 @@ public interface DataIdentification extends Identification {
      */
 /// @Profile (level=CORE)
 /// @UML (identifier="geographicDescription", obligation=CONDITIONAL)
-    Set/*<GeographicDescription>*/ getGeographicDescription();
+    Collection/*<GeographicDescription>*/ getGeographicDescription();
 
     /**
      * Description of the dataset in the producer’s processing environment, including items
@@ -106,7 +106,7 @@ public interface DataIdentification extends Identification {
      */
 /// @Profile (level=CORE)
 /// @UML (identifier="extent", obligation=OPTIONAL)
-    Set/*<Extent>*/ getExtent();
+    Collection/*<Extent>*/ getExtent();
 
     /**
      * Any other descriptive information about the dataset.

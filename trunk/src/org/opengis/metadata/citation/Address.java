@@ -10,7 +10,7 @@
 package org.opengis.metadata.citation;
 
 // J2SE direct dependencies
-import java.util.Set;
+import java.util.Collection;
 
 // OpenGIS direct dependencies
 import org.opengis.util.InternationalString;
@@ -34,7 +34,7 @@ public interface Address {
      * Returns an empty array if none.
      */
 /// @UML (identifier="deliveryPoint", obligation=OPTIONAL)
-    Set/*<String>*/ getDeliveryPoints();
+    Collection/*<String>*/ getDeliveryPoints();
 
     /**
      * Returns the city of the location
@@ -69,5 +69,5 @@ public interface Address {
      * Returns an empty array if none.
      */
 /// @UML (identifier="electronicMailAddress", obligation=OPTIONAL)
-    Set/*<String>*/ getElectronicMailAddresses();
+    Collection/*<String>*/ getElectronicMailAddresses();
 }

@@ -10,7 +10,7 @@
 package org.opengis.metadata.lineage;
 
 // J2SE direct dependencies
-import java.util.Set;
+import java.util.Collection;
 
 // OpenGIS direct dependencies
 import org.opengis.metadata.extent.Extent;
@@ -62,11 +62,11 @@ public interface Source {
      * Information about the spatial, vertical and temporal extent of the source data.
      */
 /// @UML (identifier="sourceExtent", obligation=OPTIONAL)
-    Set/*<Extent>*/ getSourceExtents();
+    Collection/*<Extent>*/ getSourceExtents();
 
     /**
      * Information about an event in the creation process for the source data.
      */
 /// @UML (identifier="sourceStep", obligation=OPTIONAL)
-    Set/*<ProcessStep>*/ getSourceSteps();
+    Collection/*<ProcessStep>*/ getSourceSteps();
 }

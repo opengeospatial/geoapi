@@ -10,6 +10,7 @@
 package org.opengis.metadata.spatial;
 
 // J2SE direct dependencies
+import java.util.Collection;
 import java.util.List;
 
 // OpenGIS direct dependencies
@@ -80,5 +81,5 @@ public interface Georectified extends GridSpatialRepresentation {
      * Information about which grid dimensions are the spatial dimensions.
      */
 /// @UML (identifier="transformationDimensionMapping", obligation=OPTIONAL)
-    List/*<InternationalString>*/ getTransformationDimensionMapping();
+    Collection/*<InternationalString>*/ getTransformationDimensionMapping();
 }
