@@ -9,6 +9,10 @@
  *************************************************************************************************/
 package org.opengis.referencing.operation;
 
+// Annotations
+///import org.opengis.annotation.UML;
+///import static org.opengis.annotation.Obligation.*;
+
 
 /**
  * An operation on coordinates that does not include any change of Datum. The best-known
@@ -16,13 +20,13 @@ package org.opengis.referencing.operation;
  * coordinate conversions are defined rather than empirically derived. Note that some
  * conversions have no parameters. 
  *  
- * @UML abstract CC_Conversion
  * @author ISO 19111
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/03-073r1.zip">Abstract specification 2.0</A>
  *
  * @see Transformation
  */
+///@UML (identifier="CC_Conversion")
 public interface Conversion extends Operation {
     /**
      * Version of the coordinate transformation.

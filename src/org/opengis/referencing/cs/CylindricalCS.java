@@ -9,6 +9,10 @@
  *************************************************************************************************/
 package org.opengis.referencing.cs;
 
+// Annotations
+///import org.opengis.annotation.UML;
+///import static org.opengis.annotation.Obligation.*;
+
 
 /**
  * A three-dimensional coordinate system consisting of a {@linkplain PolarCS polar coordinate
@@ -22,12 +26,12 @@ package org.opengis.referencing.cs;
  *   {@link org.opengis.referencing.crs.EngineeringCRS Engineering}
  * </TD></TR></TABLE>
  *
- * @UML abstract CS_CylindricalCS
  * @author ISO 19111
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/03-073r1.zip">Abstract specification 2.0</A>
  *
  * @see PolarCS
  */
+///@UML (identifier="CS_CylindricalCS")
 public interface CylindricalCS extends CoordinateSystem {
 }

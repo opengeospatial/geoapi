@@ -16,6 +16,10 @@ import java.util.List;
 import org.opengis.spatialschema.geometry.primitive.CurveInterpolation;
 import org.opengis.spatialschema.geometry.primitive.CurveSegment;
 
+// Annotations
+///import org.opengis.annotation.UML;
+///import static org.opengis.annotation.Obligation.*;
+
 
 /**
  * A variant of the arc that stores the parameters of the second constructor of
@@ -25,13 +29,13 @@ import org.opengis.spatialschema.geometry.primitive.CurveSegment;
  * {@linkplain Position position} is not needed since it is to be calculated.
  * The control point sequence shall consist of the start and end points of each arc.
  *  
- * @UML abstract GM_ArcStringByBulge
  * @author ISO/DIS 19107
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 2.0
  *
  * @see GeometryFactory#createArcStringByBulge
  */
+///@UML (identifier="GM_ArcStringByBulge")
 public interface ArcStringByBulge extends CurveSegment {
     /**
      * Returns the offset of each arc's midpoint. The attribute "bulge" is the real number
@@ -55,8 +59,8 @@ public interface ArcStringByBulge extends CurveSegment {
      * </code></blockquote>
      *
      * @return The offset of each arc's midpoint.
-     * @UML operation bulge
      */
+/// @UML (identifier="bulge", obligation=MANDATORY)
     public double[] getBulges();
 
     /**
@@ -69,8 +73,8 @@ public interface ArcStringByBulge extends CurveSegment {
      * </blockquote>
      *
      * @return The number of circular arcs.
-     * @UML operation numArc
      */
+/// @UML (identifier="numArc", obligation=MANDATORY)
     public int getNumArc();
 
     /**
@@ -88,8 +92,8 @@ public interface ArcStringByBulge extends CurveSegment {
      * {@linkplain #getBulges bulge} sequence, 1 less than the control point sequence length.
      *
      * @return The sequence of normal vectors.
-     * @UML operation normal
      */
+/// @UML (identifier="normal", obligation=MANDATORY)
     public List/*<double[]>*/ getNormals();
 
     /**
@@ -98,15 +102,15 @@ public interface ArcStringByBulge extends CurveSegment {
      * Circular arc by 2 points and bulge factor}".
      *
      * @return Always {@link CurveInterpolation#CIRCULAR_ARC_2_POINTS_WITH_BULGE}.
-     * @UML operation interpolation
      */
+/// @UML (identifier="interpolation", obligation=MANDATORY)
     public CurveInterpolation getInterpolation();
 
     /**
      * Recast as a base {@linkplain ArcString arc string}.
      *
      * @return This arc string by bulge as a base {@linkplain ArcString arc string}.
-     * @UML operation asGM_ArcString
      */
+/// @UML (identifier="asGM_ArcString", obligation=MANDATORY)
     public ArcString asArcString();
 }

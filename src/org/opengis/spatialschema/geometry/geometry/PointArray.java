@@ -16,6 +16,10 @@ import java.util.List;
 import org.opengis.spatialschema.geometry.DirectPosition;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 
+// Annotations
+///import org.opengis.annotation.UML;
+///import static org.opengis.annotation.Obligation.*;
+
 
 /**
  * A sequence of points. The <code>PointArray</code> interface outlines a means of efficiently
@@ -34,7 +38,6 @@ import org.opengis.referencing.crs.CoordinateReferenceSystem;
  * by implementing the {@link java.util.RandomAccess} interface. Otherwise, users should read
  * the positions through the <code>{@linkplain #positions()}.iterator()</code> instead.
  *  
- * @UML datatype GM_PointArray
  * @author ISO/DIS 19107
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 2.0
@@ -42,6 +45,7 @@ import org.opengis.referencing.crs.CoordinateReferenceSystem;
  * @see Position
  * @see PointGrid
  */
+///@UML (identifier="GM_PointArray")
 public interface PointArray {
     /**
      * Returns the length (the number of elements) of this array. This is equivalent to
@@ -175,7 +179,7 @@ public interface PointArray {
      * reflected in the list, and vice-versa.
      *
      * @return The list of positions in this array.
-     * @UML mandatory column
      */
+/// @UML (identifier="column", obligation=MANDATORY)
     public List/*<Position>*/ positions();
 }

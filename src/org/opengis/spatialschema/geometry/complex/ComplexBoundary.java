@@ -12,6 +12,10 @@ package org.opengis.spatialschema.geometry.complex;
 // OpenGIS direct dependencies
 import org.opengis.spatialschema.geometry.Boundary;
 
+// Annotations
+///import org.opengis.annotation.UML;
+///import static org.opengis.annotation.Obligation.*;
+
 
 /**
  * The boundary of {@linkplain Complex complex} objects. The
@@ -19,10 +23,10 @@ import org.opengis.spatialschema.geometry.Boundary;
  * objects shall return a <code>ComplexBoundary</code>, which is a collection of primitives
  * and a {@linkplain Complex complex} of dimension 1 less than the original object.
  *
- * @UML type GM_ComplexBoundary
  * @author ISO/DIS 19107
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 2.0
  */
+///@UML (identifier="GM_ComplexBoundary")
 public interface ComplexBoundary extends Boundary {
 }

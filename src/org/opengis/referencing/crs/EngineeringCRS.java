@@ -11,7 +11,11 @@ package org.opengis.referencing.crs;
 
 // OpenGIS direct dependencies
 import org.opengis.referencing.datum.EngineeringDatum;
- 
+
+// Annotations
+///import org.opengis.annotation.UML;
+///import static org.opengis.annotation.Obligation.*;
+
 
 /**
  * A contextually local coordinate reference system. It can be divided into two broad categories:
@@ -34,17 +38,15 @@ import org.opengis.referencing.datum.EngineeringDatum;
  *   {@link org.opengis.referencing.cs.LinearCS           Linear}
  * </TD></TR></TABLE>
  *
- * @UML abstract SC_EngineeringCRS
  * @author ISO 19111
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/03-073r1.zip">Abstract specification 2.0</A>
  */
+///@UML (identifier="SC_EngineeringCRS")
 public interface EngineeringCRS extends SingleCRS {
     /**
      * Returns the datum, which must be an engineering one.
-     *
-     * @return The datum.
-     * @UML association usesDatum
      */
+/// @UML (identifier="usesDatum", obligation=MANDATORY)
 /// EngineeringDatum getDatum();
 }

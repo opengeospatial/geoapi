@@ -12,6 +12,10 @@ package org.opengis.referencing.operation;
 // OpenGIS direct dependencies
 import org.opengis.util.Cloneable;
 
+// Annotations
+///import org.opengis.annotation.UML;
+///import static org.opengis.annotation.Obligation.*;
+
 
 /**
  * A two dimensional array of numbers. Row and column numbering begins with zero. The API for
@@ -21,7 +25,6 @@ import org.opengis.util.Cloneable;
  * case and optimized versions for 3&times;3 and 4&times;4 cases, which are quite common in a
  * transformation package.
  *
- * @UML abstract PT_Matrix
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-009.pdf">Implementation specification 1.0</A>
  *
@@ -34,6 +37,7 @@ import org.opengis.util.Cloneable;
  * @see <A HREF="http://math.nist.gov/javanumerics/jama/">Jama matrix</A>
  * @see <A HREF="http://jcp.org/jsr/detail/83.jsp">JSR-83 Multiarray package</A>
  */
+///@UML (identifier="PT_Matrix")
 public interface Matrix extends Cloneable {
     /**
      * Returns the number of rows in this matrix.

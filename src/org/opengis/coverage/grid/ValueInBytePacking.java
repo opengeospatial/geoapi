@@ -16,7 +16,11 @@ import java.util.ArrayList;
 //OpenGIS direct dependencies
 import org.opengis.util.CodeList;
 import org.opengis.coverage.SampleDimensionType; // For Javadoc
- 
+
+// Annotations
+///import org.opengis.annotation.UML;
+///import static org.opengis.annotation.Obligation.*;
+
 
 /**
  * Order of values packed in a byte for sample dimensions with less than 8 bits.
@@ -25,13 +29,13 @@ import org.opengis.coverage.SampleDimensionType; // For Javadoc
  * {@link SampleDimensionType#UNSIGNED_2BITS UNSIGNED_2BITS} and
  * {@link SampleDimensionType#UNSIGNED_4BITS UNSIGNED_4BITS} data types.
  *
- * @UML codelist GC_ValueInBytePacking
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-004.pdf">Grid Coverage specification 1.0</A>
  *
  * @see GridPacking
  * @see ByteInValuePacking
  */
+///@UML (identifier="GC_ValueInBytePacking")
 public final class ValueInBytePacking extends CodeList {
     /**
      * Serial number for compatibility with different versions.
@@ -46,16 +50,14 @@ public final class ValueInBytePacking extends CodeList {
 
     /**
      * Low bit firts (little endian order).
-     *
-     * @UML conditional GC_LoBitFirst
      */
+/// @UML (identifier="GC_LoBitFirst", obligation=CONDITIONAL)
     public static final ValueInBytePacking LO_BIT_FIRST = new ValueInBytePacking("LO_BIT_FIRST");
 
     /**
      * High bit first (big endian order).
-     *
-     * @UML conditional GC_HiBitFirst
      */
+/// @UML (identifier="GC_HiBitFirst", obligation=CONDITIONAL)
     public static final ValueInBytePacking HI_BIT_FIRST = new ValueInBytePacking("HI_BIT_FIRST");
 
     /**

@@ -13,15 +13,19 @@ package org.opengis.referencing.crs;
 import org.opengis.referencing.ReferenceSystem;
 import org.opengis.referencing.cs.CoordinateSystem;
 
+// Annotations
+///import org.opengis.annotation.UML;
+///import static org.opengis.annotation.Obligation.*;
+
 
 /**
  * Abstract coordinate reference system, usually defined by a coordinate system and a datum.
  *
- * @UML abstract SC_CRS
  * @author ISO 19111
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 2.0
  */
+///@UML (identifier="SC_CRS")
 public interface CoordinateReferenceSystem extends ReferenceSystem {
     /**
      * Returns the coordinate system. One of {@link CoordinateSystem coordinate system}
@@ -30,8 +34,6 @@ public interface CoordinateReferenceSystem extends ReferenceSystem {
      * system in order to allow users to access to two commonly requested information:
      * {@linkplain CoordinateSystem#getDimension dimension} and
      * {@linkplain CoordinateSystem#getAxis axis}.
-     *
-     * @return The coordinate system.
      */
     CoordinateSystem getCoordinateSystem();
 }

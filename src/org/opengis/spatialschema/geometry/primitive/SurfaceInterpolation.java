@@ -16,15 +16,19 @@ import java.util.ArrayList;
 // OpenGIS direct dependencies
 import org.opengis.util.CodeList;
 
+// Annotations
+///import org.opengis.annotation.UML;
+///import static org.opengis.annotation.Obligation.*;
+
 
 /**
  * List of codes that may be used to identify the interpolation mechanisms.
  *
- * @UML codelist GM_SurfaceInterpolation
  * @author ISO/DIS 19107
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 2.0
  */
+///@UML (identifier="GM_SurfaceInterpolation")
 public final class SurfaceInterpolation extends CodeList {
     /**
      * Serial number for compatibility with different versions.

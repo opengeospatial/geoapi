@@ -12,16 +12,20 @@ package org.opengis.coverage.grid;
 // OpenGIS direct dependencies
 import org.opengis.referencing.operation.MathTransform;
 
+// Annotations
+///import org.opengis.annotation.UML;
+///import static org.opengis.annotation.Obligation.*;
+
 
 /**
  * Describes the geometry and georeferencing information of the grid coverage.
  * The grid range attribute determines the valid grid coordinates and allows
  * for calculation of grid size. A grid coverage may or may not have georeferencing.
  *
- * @UML datatype CV_GridGeometry
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-004.pdf">Grid Coverage specification 1.0</A>
  */
+///@UML (identifier="CV_GridGeometry")
 public interface GridGeometry {
     /**
      * The valid coordinate range of a grid coverage.
@@ -30,7 +34,6 @@ public interface GridGeometry {
      * with 511 as the highest valid index.
      *
      * @return The valid coordinate range of a grid coverage.
-     * @UML mandatory gridRange
      *
      * @revisit Should we relax the constraint that the lowest valid grid coordinate is zero?
      *          {@link java.awt.image.RenderedImage} allow arbitrary integer coordinates for
@@ -39,6 +42,7 @@ public interface GridGeometry {
      *          then the package description need to be updated as well, and
      *          {@link GridRange#getLower} too).
      */
+/// @UML (identifier="gridRange", obligation=MANDATORY)
     GridRange getGridRange();
 
     /**
@@ -51,7 +55,7 @@ public interface GridGeometry {
      * @return The conversion from grid coordinates to
      *         {@linkplain org.opengis.coverage.Coverage#getCoordinateReferenceSystem
      *         real world earth coordinates}.
-     * @UML mandatory gridToCoordinateSystem
      */
+/// @UML (identifier="gridToCoordinateSystem", obligation=MANDATORY)
     MathTransform getGridToCoordinateSystem();
 }

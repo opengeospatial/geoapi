@@ -16,15 +16,19 @@ import java.util.ArrayList;
 // OpenGIS direct dependencies
 import org.opengis.util.CodeList;
 
+// Annotations
+///import org.opengis.annotation.UML;
+///import static org.opengis.annotation.Obligation.*;
+
 
 /**
  * Methods used to group similar keywords.
  *
- * @UML codelist MD_KeywordTypeCode
  * @author ISO 19115
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
  */
+///@UML (identifier="MD_KeywordTypeCode")
 public final class KeywordType extends CodeList {
     /**
      * Serial number for compatibility with different versions.
@@ -39,37 +43,32 @@ public final class KeywordType extends CodeList {
 
     /**
      * Keyword identifies a branch of instruction or specialized learning.
-     *
-     * @UML conditional discipline
      */
+/// @UML (identifier="discipline", obligation=CONDITIONAL)
     public static final KeywordType DISCIPLINE = new KeywordType("DISCIPLINE");
 
     /**
      * Keyword identifies a location.
-     *
-     * @UML conditional place
      */
+/// @UML (identifier="place", obligation=CONDITIONAL)
     public static final KeywordType PLACE = new KeywordType("PLACE");
 
     /**
      * Keyword identifies the layer(s) of any deposited substance.
-     *
-     * @UML conditional stratum
      */
+/// @UML (identifier="stratum", obligation=CONDITIONAL)
     public static final KeywordType STRATUM = new KeywordType("STRATUM");
 
     /**
      * Keyword identifies a time period related to the dataset.
-     *
-     * @UML conditional temporal
      */
+/// @UML (identifier="temporal", obligation=CONDITIONAL)
     public static final KeywordType TEMPORAL = new KeywordType("TEMPORAL");
 
     /**
      * Keyword identifies a particular subject or topic.
-     *
-     * @UML conditional theme
      */
+/// @UML (identifier="theme", obligation=CONDITIONAL)
     public static final KeywordType THEME = new KeywordType("THEME");
 
     /**

@@ -16,15 +16,19 @@ import java.util.ArrayList;
 // OpenGIS direct dependencies
 import org.opengis.util.CodeList;
 
+// Annotations
+///import org.opengis.annotation.UML;
+///import static org.opengis.annotation.Obligation.*;
+
 
 /**
  * Specific type of information represented in the cell.
  *
- * @UML codelist MD_CoverageContentTypeCode
  * @author ISO 19115
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
  */
+///@UML (identifier="MD_CoverageContentTypeCode")
 public final class CoverageContentType extends CodeList {
     /**
      * Serial number for compatibility with different versions.
@@ -40,23 +44,20 @@ public final class CoverageContentType extends CodeList {
     /**
      * Meaningful numerical representation of a physical parameter that is not the actual
      * value of the physical parameter.
-     *
-     * @UML conditional image
      */
+/// @UML (identifier="image", obligation=CONDITIONAL)
     public static final CoverageContentType IMAGE = new CoverageContentType("IMAGE");
 
     /**
      * Code value with no quantitative meaning, used to represent a physical quantity.
-     *
-     * @UML conditional thematicClassification
      */
+/// @UML (identifier="thematicClassification", obligation=CONDITIONAL)
     public static final CoverageContentType THEMATIC_CLASSIFICATION = new CoverageContentType("THEMATIC_CLASSIFICATION");
 
     /**
      * Value in physical units of the quantity being measured.
-     *
-     * @UML conditional physicalMeasurement
      */
+/// @UML (identifier="physicalMeasurement", obligation=CONDITIONAL)
     public static final CoverageContentType PHYSICAL_MEASUREMENT = new CoverageContentType("PHYSICAL_MEASUREMENT");
 
     /**

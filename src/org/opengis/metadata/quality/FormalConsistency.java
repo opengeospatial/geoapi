@@ -9,15 +9,19 @@
  *************************************************************************************************/
 package org.opengis.metadata.quality;
 
+// Annotations
+///import org.opengis.annotation.UML;
+///import static org.opengis.annotation.Obligation.*;
+
 
 /**
  * Degree to which data is stored in accordance with the physical structure of
  * the dataset, as described by the scope.
  *
- * @UML datatype DQ_FormalConsistency
  * @author ISO 19115
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
  */
+///@UML (identifier="DQ_FormalConsistency")
 public interface FormalConsistency extends LogicalConsistency {
 }

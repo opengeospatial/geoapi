@@ -14,6 +14,10 @@ import org.opengis.util.Cloneable;
 import org.opengis.spatialschema.geometry.geometry.Position;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 
+// Annotations
+///import org.opengis.annotation.UML;
+///import static org.opengis.annotation.Obligation.*;
+
 
 /**
  * Holds the coordinates for a position within some coordinate reference system. Since
@@ -25,19 +29,19 @@ import org.opengis.referencing.crs.CoordinateReferenceSystem;
  * coordinate reference system}. In this case, the cordinate reference system is implicitly
  * assumed to take on the value of the containing object's {@link CoordinateReferenceSystem}.
  * 
- * @UML datatype DirectPosition
  * @author ISO/DIS 19107
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 2.0
  */
+///@UML (identifier="DirectPosition")
 public interface DirectPosition extends Position, Cloneable {
     /**
      * The length of coordinate sequence (the number of entries). This is determined by
      * the {@linkplain #getCoordinateReferenceSystem() coordinate reference system}.
      *
      * @return The dimensionality of this position.
-     * @UML mandatory dimension
      */
+/// @UML (identifier="dimension", obligation=MANDATORY)
     int getDimension();
 
     /**
@@ -46,8 +50,8 @@ public interface DirectPosition extends Position, Cloneable {
      *
      * @return A copy of the coordinates. Changes in the returned array will not be reflected
      *         back in this <code>DirectPosition</code> object.
-     * @UML mandatory coordinates
      */
+/// @UML (identifier="coordinates", obligation=MANDATORY)
     double[] getCoordinates();
 
     /**
@@ -77,8 +81,8 @@ public interface DirectPosition extends Position, Cloneable {
      * coordinate reference system}.
      *
      * @return The coordinate reference system, or <code>null</code>.
-     * @UML association coordinateReferenceSystem
      */
+/// @UML (identifier="coordinateReferenceSystem", obligation=MANDATORY)
     CoordinateReferenceSystem getCoordinateReferenceSystem();
 
     /**

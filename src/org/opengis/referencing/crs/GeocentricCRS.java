@@ -15,6 +15,10 @@ import org.opengis.referencing.cs.SphericalCS;
 import org.opengis.referencing.cs.CoordinateSystem;
 import org.opengis.referencing.datum.GeodeticDatum;
 
+// Annotations
+///import org.opengis.annotation.UML;
+///import static org.opengis.annotation.Obligation.*;
+
 
 /**
  * A 3D coordinate reference system with the origin at the approximate centre of mass of the earth.
@@ -28,27 +32,22 @@ import org.opengis.referencing.datum.GeodeticDatum;
  *   {@link org.opengis.referencing.cs.SphericalCS Spherical}
  * </TD></TR></TABLE>
  *
- * @UML abstract SC_GeocentricCRS
  * @author ISO 19111
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/03-073r1.zip">Abstract specification 2.0</A>
  */
+///@UML (identifier="SC_GeocentricCRS")
 public interface GeocentricCRS extends SingleCRS {
     /**
      * Returns the coordinate system, which must be {@linkplain CartesianCS cartesian}
      * or {@linkplain SphericalCS spherical}.
-     *
-     * @return The cartesian or spherical coordinate system.
-     * @UML association usesCartesianCS
-     * @UML association usesSphericalCS
      */
+/// @UML (identifier="usesCartesianCS, usesSphericalCS", obligation=MANDATORY)
     CoordinateSystem getCoordinateSystem();
   	 
     /**
      * Returns the datum, which must be geodetic.
-     *
-     * @return The datum.
-     * @UML association usesDatum
      */
+/// @UML (identifier="usesDatum", obligation=MANDATORY)
 /// GeodeticDatum getDatum();
 }

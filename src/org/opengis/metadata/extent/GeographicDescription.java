@@ -12,20 +12,23 @@ package org.opengis.metadata.extent;
 // OpenGIS direct dependencies
 import org.opengis.metadata.Identifier;
 
+// Annotations
+///import org.opengis.annotation.UML;
+///import static org.opengis.annotation.Obligation.*;
+
 
 /**
  * Description of the geographic area using identifiers.
  *
- * @UML abstract EX_GeographicDescription
  * @author ISO 19115
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
  */
+///@UML (identifier="EX_GeographicDescription")
 public interface GeographicDescription extends GeographicExtent {
     /**
      * Returns the identifier used to represent a geographic area.
-     *
-     * @UML mandatory geographicIdentifier
      */
+/// @UML (identifier="geographicIdentifier", obligation=MANDATORY)
     Identifier getGeographicIdentifier();
 }

@@ -12,6 +12,10 @@ package org.opengis.spatialschema.geometry.primitive;
 // OpenGIS direct dependencies
 import org.opengis.spatialschema.geometry.complex.CompositeSurface;
 
+// Annotations
+///import org.opengis.annotation.UML;
+///import static org.opengis.annotation.Obligation.*;
+
 
 /**
  * Represents a single connected component of a {@linkplain SolidBoundary solid boundary}.
@@ -20,7 +24,6 @@ import org.opengis.spatialschema.geometry.complex.CompositeSurface;
  * {@linkplain Ring ring}, a <code>Shell</code>'s elements have no natural sort order. Like
  * {@linkplain Ring rings}, <code>Shell</code>s are simple.
  *
- * @UML type GM_Shell
  * @author ISO/DIS 19107
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 2.0
@@ -28,6 +31,7 @@ import org.opengis.spatialschema.geometry.complex.CompositeSurface;
  * @see SolidBoundary
  * @see Ring
  */
+///@UML (identifier="GM_Shell")
 public interface Shell extends CompositeSurface {
     /**
      * Always returns <code>true</code> since shell objects are simples.

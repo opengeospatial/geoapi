@@ -12,6 +12,10 @@ package org.opengis.spatialschema.geometry.geometry;
 // OpenGIS direct dependencies
 import org.opengis.spatialschema.geometry.DirectPosition;
 
+// Annotations
+///import org.opengis.annotation.UML;
+///import static org.opengis.annotation.Obligation.*;
+
 
 /**
  * Common interface for {@linkplain org.opengis.spatialschema.geometry.primitive.Surface surface} and
@@ -19,11 +23,11 @@ import org.opengis.spatialschema.geometry.DirectPosition;
  * and <code>SurfacePatch</code> represent sections of surface geometry,
  * and therefore share a number of operation signatures.
  *
- * @UML type GM_GenericSurface
  * @author ISO/DIS 19107
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 2.0
  */
+///@UML (identifier="GM_GenericSurface")
 public interface GenericSurface {
     /**
      * Returns a vector perpendicular to the <code>GenericSurface</code> at the
@@ -53,8 +57,8 @@ public interface GenericSurface {
      *
      * @param point The point on this <code>GenericSurface</code> where to compute the upNormal.
      * @return The upNormal unit vector.
-     * @UML operation upNormal
      */
+/// @UML (identifier="upNormal", obligation=MANDATORY)
     public double[] getUpNormal(DirectPosition point);
 
     /**
@@ -72,8 +76,8 @@ public interface GenericSurface {
      *
      * @return The perimeter.
      * @unitof Length
-     * @UML operation perimeter
      */
+/// @UML (identifier="perimeter", obligation=MANDATORY)
     public double getPerimeter();
 
     /**
@@ -93,7 +97,7 @@ public interface GenericSurface {
      *
      * @return The area.
      * @unitof Area
-     * @UML operation area
      */
+/// @UML (identifier="area", obligation=MANDATORY)
     public double getArea();
 }

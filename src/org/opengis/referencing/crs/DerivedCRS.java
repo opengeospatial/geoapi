@@ -9,6 +9,10 @@
  *************************************************************************************************/
 package org.opengis.referencing.crs;
 
+// Annotations
+///import org.opengis.annotation.UML;
+///import static org.opengis.annotation.Obligation.*;
+
 
 /**
  * A coordinate reference system that is defined by its coordinate conversion from another
@@ -16,10 +20,10 @@ package org.opengis.referencing.crs;
  * category includes coordinate reference systems derived from a projected coordinate
  * reference system.
  *
- * @UML abstract SC_DerivedCRS
  * @author ISO 19111
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/03-073r1.zip">Abstract specification 2.0</A>
  */
+///@UML (identifier="SC_DerivedCRS")
 public interface DerivedCRS extends GeneralDerivedCRS {
 }

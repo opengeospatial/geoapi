@@ -15,6 +15,10 @@ import java.util.List;
 // OpenGIS direct dependencies
 import org.opengis.spatialschema.geometry.geometry.GenericCurve;
 
+// Annotations
+///import org.opengis.annotation.UML;
+///import static org.opengis.annotation.Obligation.*;
+
 
 /**
  * Curve with a positive orientation. <code>Curve</code> is
@@ -53,13 +57,13 @@ import org.opengis.spatialschema.geometry.geometry.GenericCurve;
  * with the end point of each segment except the last being the start point of the next segment in
  * the segment list.
  *
- * @UML type GM_Curve
  * @author ISO/DIS 19107
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 2.0
  *
  * @see PrimitiveFactory#createCurve
  */
+///@UML (identifier="GM_Curve")
 public interface Curve extends OrientableCurve, GenericCurve {
     /**
      * Lists the components {@linkplain CurveSegment curve segments} of <code>Curve</code>, each
@@ -69,9 +73,9 @@ public interface Curve extends OrientableCurve, GenericCurve {
      * {@link CurveSegment} agree.
      *
      * @return The list of curve segments. Should never be <code>null</code> neither empty.
-     * @UML association segment
      *
      * @see CurveSegment#getCurve
      */
+/// @UML (identifier="segment", obligation=MANDATORY)
     public List/*<CurveSegment>*/ getSegments();
 }

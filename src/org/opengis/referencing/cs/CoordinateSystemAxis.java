@@ -13,12 +13,15 @@ package org.opengis.referencing.cs;
 import javax.units.Unit;
 import org.opengis.referencing.IdentifiedObject;
 
+// Annotations
+///import org.opengis.annotation.UML;
+///import static org.opengis.annotation.Obligation.*;
+
 
 /**
  * Definition of a coordinate system axis.
  * See <A HREF="package-summary.html#AxisNames">axis name constraints</A>.
  *
- * @UML abstract CS_CoordinateSystemAxis
  * @author ISO 19111
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/03-073r1.zip">Abstract specification 2.0</A>
@@ -26,6 +29,7 @@ import org.opengis.referencing.IdentifiedObject;
  * @see CoordinateSystem
  * @see Unit
  */
+///@UML (identifier="CS_CoordinateSystemAxis")
 public interface CoordinateSystemAxis extends IdentifiedObject {
     /**
      * The abbreviation used for this coordinate system axes. This abbreviation is also
@@ -33,8 +37,8 @@ public interface CoordinateSystemAxis extends IdentifiedObject {
      * and "<var>Y</var>".
      *
      * @return The coordinate system axis abbreviation.
-     * @UML mandatory axisAbbrev
      */
+/// @UML (identifier="axisAbbrev", obligation=MANDATORY)
     String getAbbreviation();
 
     /**
@@ -54,8 +58,8 @@ public interface CoordinateSystemAxis extends IdentifiedObject {
      * specific descriptions of the directions of its coordinate system axes.
      *
      * @return The coordinate system axis direction.
-     * @UML mandatory axisDirection
      */
+/// @UML (identifier="axisDirection", obligation=MANDATORY)
     AxisDirection getDirection();
 
     /**
@@ -65,7 +69,7 @@ public interface CoordinateSystemAxis extends IdentifiedObject {
      * coordinate system that uses this axis.
      *
      * @return  The coordinate system axis unit.
-     * @UML mandatory axisUnitID
      */
+/// @UML (identifier="axisUnitID", obligation=MANDATORY)
     Unit getUnit();
 }

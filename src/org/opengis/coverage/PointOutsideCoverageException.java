@@ -12,19 +12,23 @@ package org.opengis.coverage;
 // OpenGIS direct dependencies
 import org.opengis.spatialschema.geometry.DirectPosition;  // For Javadoc
 
+// Annotations
+///import org.opengis.annotation.UML;
+///import static org.opengis.annotation.Obligation.*;
+
 
 /**
  * Thrown when a
  * <code>{@linkplain Coverage#evaluate(DirectPosition, double[]) evaluate}(&hellip;)</code>
  * method is invoked with a point outside coverage.
  *
- * @UML exception CV_PointOutsideCoverage
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-004.pdf">Grid Coverage specification 1.0</A>
  *
  * @see Coverage#evaluate(DirectPosition, byte[])
  * @see Coverage#evaluate(DirectPosition, double[])
  */
+///@UML (identifier="CV_PointOutsideCoverage")
 public class PointOutsideCoverageException extends CannotEvaluateException {
     /**
      * Serial number for interoperability with different versions.

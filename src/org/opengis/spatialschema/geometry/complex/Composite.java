@@ -15,6 +15,11 @@ import java.util.List;
 // OpenGIS direct dependencies
 import org.opengis.spatialschema.geometry.primitive.Primitive;
 
+// Annotations
+///import org.opengis.annotation.UML;
+///import static org.opengis.annotation.Obligation.*;
+
+
 /**
  * A geometric complex with an underlying core geometry that is isomorphic to a primitive. Thus,
  * a composite curve is a collection of curves whose geometry interface could be satisfied by a
@@ -22,11 +27,11 @@ import org.opengis.spatialschema.geometry.primitive.Primitive;
  * values in datasets in which the underlying geometry has been decomposed, usually to expose its
  * topological nature.
  *
- * @UML type GM_Composite
  * @author ISO/DIS 19107
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 2.0
  */
+///@UML (identifier="GM_Composite")
 public interface Composite extends Complex {
     /**
      * Returns a homogeneous collection of {@linkplain Primitive primitives} whose union would be
@@ -37,7 +42,7 @@ public interface Composite extends Complex {
      * {@linkplain Complex#getElements elements} on {@linkplain Complex complex}.
      *
      * @return The list of primitives in this composite.
-     * @UML association generator
      */
+/// @UML (identifier="generator", obligation=MANDATORY)
     public List/*<? extends Primitive>*/ getGenerators();
 }

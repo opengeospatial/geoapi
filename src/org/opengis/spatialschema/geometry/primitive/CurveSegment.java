@@ -13,16 +13,20 @@ package org.opengis.spatialschema.geometry.primitive;
 import org.opengis.spatialschema.geometry.geometry.GenericCurve;
 import org.opengis.spatialschema.geometry.geometry.PointArray;
 
+// Annotations
+///import org.opengis.annotation.UML;
+///import static org.opengis.annotation.Obligation.*;
+
 
 /**
  * Defines a homogeneous segment of a {@linkplain Curve curve}.
  * Each <code>CurveSegment</code> shall be in, at most, one {@linkplain Curve curve}.
  *
- * @UML type GM_CurveSegment
  * @author ISO/DIS 19107
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 2.0
  */
+///@UML (identifier="GM_CurveSegment")
 public interface CurveSegment extends GenericCurve {
     /**
      * Returns the curve which own this curve segment.
@@ -36,10 +40,10 @@ public interface CurveSegment extends GenericCurve {
      * </font></blockquote>
      *
      * @return The owner of this curve segment, or <code>null</code> if none.
-     * @UML association curve
      *
      * @see Curve#getSegments
      */
+/// @UML (identifier="curve", obligation=MANDATORY)
     public Curve getCurve();
 
     /**
@@ -48,8 +52,8 @@ public interface CurveSegment extends GenericCurve {
      * <code>CurveSegment</code>.
      *
      * @return The interpolation mechanism used for this segment.
-     * @UML operation interpolation
      */
+/// @UML (identifier="interpolation", obligation=MANDATORY)
     public CurveInterpolation getInterpolation();
 
     /**
@@ -66,11 +70,11 @@ public interface CurveSegment extends GenericCurve {
      * </font></blockquote>
      *
      * @return The type of continuity between this curve semgent and its immediate neighbors.
-     * @UML operation numDerivativesAtStart
      *
      * @see #getNumDerivativeInterior
      * @see #getNumDerivativesAtEnd
      */
+/// @UML (identifier="numDerivativesAtStart", obligation=MANDATORY)
     public int getNumDerivativesAtStart();
 
     /**
@@ -82,11 +86,11 @@ public interface CurveSegment extends GenericCurve {
      * first <var>n</var> derivatives are continuous: "C<sup>n</sup>" continuity.
      *
      * @return The type of continuity that is guaranteed interior to the curve.
-     * @UML operation numDerivativeInterior
      *
      * @see #getNumDerivativesAtStart
      * @see #getNumDerivativesAtEnd
      */
+/// @UML (identifier="numDerivativeInterior", obligation=MANDATORY)
     public int getNumDerivativeInterior();
 
     /**
@@ -103,11 +107,11 @@ public interface CurveSegment extends GenericCurve {
      * </font></blockquote>
      *
      * @return The type of continuity between this curve semgent and its immediate neighbors.
-     * @UML operation numDerivativesAtEnd
      *
      * @see #getNumDerivativesAtStart
      * @see #getNumDerivativeInterior
      */
+/// @UML (identifier="numDerivativesAtEnd", obligation=MANDATORY)
     public int getNumDerivativesAtEnd();
 
     /**
@@ -122,8 +126,8 @@ public interface CurveSegment extends GenericCurve {
      * segment.
      *
      * @return The control points.
-     * @UML operation samplePoint
      */
+/// @UML (identifier="samplePoint", obligation=MANDATORY)
     public PointArray getSamplePoints();
 
     /**
@@ -143,15 +147,15 @@ public interface CurveSegment extends GenericCurve {
      * </font></blockquote>
      *
      * @return The sets of positions on the boundary.
-     * @UML operation boundary
      */
+/// @UML (identifier="boundary", obligation=MANDATORY)
     public CurveBoundary getBoundary();
 
     /**
      * Reverses the orientation of the parameterizations of the segment.
      *
      * @return The reverse of this curve segment.
-     * @UML operation reverse
      */
+/// @UML (identifier="reverse", obligation=MANDATORY)
     public CurveSegment reverse();
 }

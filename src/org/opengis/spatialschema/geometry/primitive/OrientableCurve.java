@@ -12,6 +12,10 @@ package org.opengis.spatialschema.geometry.primitive;
 // OpenGIS direct dependencies
 import org.opengis.spatialschema.geometry.complex.CompositeCurve;
 
+// Annotations
+///import org.opengis.annotation.UML;
+///import static org.opengis.annotation.Obligation.*;
+
 
 /**
  * A curve and an orientation inherited from {@link OrientablePrimitive}. If the orientation is
@@ -19,29 +23,29 @@ import org.opengis.spatialschema.geometry.complex.CompositeCurve;
  * is negative, then the <code>OrientableCurve</code> is related to another {@linkplain Curve curve}
  * with a parameterization that reverses the sense of the curve traversal.
  *
- * @UML type GM_OrientableCurve
  * @author ISO/DIS 19107
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 2.0
  */
+///@UML (identifier="GM_OrientableCurve")
 public interface OrientableCurve extends OrientablePrimitive {
     /**
      * Returns an ordered pair of points, which are the start point and end point of the curve.
      * If the curve is closed, then the boundary shall be empty.
      *
      * @return The sets of positions on the boundary.
-     * @UML operation boundary
      */
+/// @UML (identifier="boundary", obligation=MANDATORY)
 /// public CurveBoundary getBoundary();
 
     /**
      * Returns the owner of this orientable curve, or <code>null</code> if none.
      *
      * @return The owner of this orientable curve, or <code>null</code> if none.
-     * @UML association composite
      *
      * @revisit I'm not sure to interpret correctly the ISO specification.
      *          Sound like ISO returns an array (or a sequence) here.
      */
+/// @UML (identifier="composite", obligation=MANDATORY)
     public CompositeCurve getComposite();
 }

@@ -25,7 +25,6 @@ import org.opengis.referencing.NoSuchAuthorityCodeException;  // For javadoc
  * which is also used in the <A HREF="http://www.remotesensing.org/geotiff/geotiff.html">GeoTIFF</A>
  * standard.
  *
- * @UML abstract CS_CoordinateSystemAuthorityFactory in 1.0 specification
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-009.pdf">Implementation specification 1.0</A>
  *
@@ -116,8 +115,6 @@ public interface CSAuthorityFactory extends AuthorityFactory {
      * @param  code Value allocated by authority.
      * @throws NoSuchAuthorityCodeException if the specified <code>code</code> was not found.
      * @throws FactoryException if the object creation failed for some other reason.
-     *
-     * @UML operation createLinearUnit createAngularUnit in 1.0 specification
      */
     CoordinateSystemAxis createCoordinateSystemAxis(String code) throws FactoryException;
 
@@ -127,8 +124,6 @@ public interface CSAuthorityFactory extends AuthorityFactory {
      * @param  code Value allocated by authority.
      * @throws NoSuchAuthorityCodeException if the specified <code>code</code> was not found.
      * @throws FactoryException if the object creation failed for some other reason.
-     *
-     * @UML operation createLinearUnit createAngularUnit in 1.0 specification
      */
     Unit createUnit(String code) throws FactoryException;
 }

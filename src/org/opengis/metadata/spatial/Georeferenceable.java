@@ -16,52 +16,51 @@ import java.util.Set;
 import org.opengis.util.InternationalString;
 import org.opengis.metadata.citation.Citation;
 
+// Annotations
+///import org.opengis.annotation.UML;
+///import static org.opengis.annotation.Obligation.*;
+
 
 /**
  * Grid with cells irregularly spaced in any given geographic/map projection coordinate
  * system, whose individual cells can be geolocated using geolocation information
  * supplied with the data but cannot be geolocated from the grid properties alone.
  *
- * @UML datatype MD_Georeferenceable
  * @author ISO 19115
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
  */
+///@UML (identifier="MD_Georeferenceable")
 public interface Georeferenceable extends GridSpatialRepresentation {
     /**
      * Indication of whether or not control point(s) exists.
-     *
-     * @UML mandatory controlPointAvailability
      */
+/// @UML (identifier="controlPointAvailability", obligation=MANDATORY)
     boolean isControlPointAvailable();
 
     /**
      * Indication of whether or not orientation parameters are available.
-     *
-     * @UML mandatory orientationParameterAvailability
      */
+/// @UML (identifier="orientationParameterAvailability", obligation=MANDATORY)
     boolean isOrientationParameterAvailable();
 
     /**
      * Description of parameters used to describe sensor orientation.
-     *
-     * @UML optional orientationParameterDescription
      */
+/// @UML (identifier="orientationParameterDescription", obligation=OPTIONAL)
     InternationalString getOrientationParameterDescription();
 
     /**
      * Terms which support grid data georeferencing.
      *
-     * @UML optional parameters
-     *
      * @revisit Return type in UML is <code>Record</code>.
      */
+/// @UML (identifier="parameters", obligation=OPTIONAL)
     Object getParameters();
 
     /**
      * Reference providing description of the parameters.
-     *
-     * @UML optional parameterCitation
      */
+/// @UML (identifier="parameterCitation", obligation=OPTIONAL)
     Set/*<Citation>*/ getParameterCitation();
 }

@@ -17,43 +17,43 @@ import java.util.Date;
 import org.opengis.util.InternationalString;
 import org.opengis.metadata.citation.ResponsibleParty;
 
+// Annotations
+///import org.opengis.annotation.UML;
+///import static org.opengis.annotation.Obligation.*;
+
 
 /**
  * Brief description of ways in which the resource(s) is/are currently used.
  *
- * @UML datatype MD_Usage
  * @author ISO 19115
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
  */
+///@UML (identifier="MD_Usage")
 public interface Usage {
     /**
      * Brief description of the resource and/or resource series usage.
-     *
-     * @UML mandatory specificUsage
      */
+/// @UML (identifier="specificUsage", obligation=MANDATORY)
     InternationalString getSpecificUsage();
 
     /**
      * Date and time of the first use or range of uses of the resource and/or resource series.
-     *
-     * @UML optional usageDateTime
      */
+/// @UML (identifier="usageDateTime", obligation=OPTIONAL)
     Date getUsageDate();
 
     /**
      * Applications, determined by the user for which the resource and/or resource series
      * is not suitable.
-     *
-     * @UML optional userDeterminedLimitations
      */
+/// @UML (identifier="userDeterminedLimitations", obligation=OPTIONAL)
     InternationalString getUserDeterminedLimitations();
 
     /**
      * Identification of and means of communicating with person(s) and organization(s)
      * using the resource(s).
-     *
-     * @UML mandatory userContactInfo
      */
+/// @UML (identifier="userContactInfo", obligation=MANDATORY)
     Set/*<ResponsibleParty>*/ getUserContactInfo();
 }

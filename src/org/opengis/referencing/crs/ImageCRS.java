@@ -13,7 +13,11 @@ package org.opengis.referencing.crs;
 import org.opengis.referencing.cs.AffineCS;
 import org.opengis.referencing.cs.CartesianCS;
 import org.opengis.referencing.datum.ImageDatum;
- 
+
+// Annotations
+///import org.opengis.annotation.UML;
+///import static org.opengis.annotation.Obligation.*;
+
 
 /**
  * An engineering coordinate reference system applied to locations in images. Image coordinate
@@ -27,26 +31,21 @@ import org.opengis.referencing.datum.ImageDatum;
  *   {@link org.opengis.referencing.cs.AffineCS    Affine}
  * </TD></TR></TABLE>
  *
- * @UML abstract SC_ImageCRS
  * @author ISO 19111
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/03-073r1.zip">Abstract specification 2.0</A>
  */
+///@UML (identifier="SC_ImageCRS")
 public interface ImageCRS extends SingleCRS {
     /**
      * Returns the cartesian coordinate system.
-     *
-     * @return The cartesian coordinate system.
-     * @UML association usesObliqueCartesianCS
-     * @UML association usesCartesianCS
      */
+/// @UML (identifier="usesObliqueCartesianCS, usesCartesianCS", obligation=MANDATORY)
 /// AffineCS getCoordinateSystem();
 	 
     /**
      * Returns the datum, which must be an image one.
-     *
-     * @return The datum.
-     * @UML association usesDatum
      */
+/// @UML (identifier="usesDatum", obligation=MANDATORY)
 /// ImageDatum getDatum();
 }

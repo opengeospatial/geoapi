@@ -12,16 +12,20 @@ package org.opengis.spatialschema.geometry.primitive;
 // OpenGIS direct dependencies
 import org.opengis.spatialschema.geometry.geometry.GenericSurface;
 
+// Annotations
+///import org.opengis.annotation.UML;
+///import static org.opengis.annotation.Obligation.*;
+
 
 /**
  * Defines a homogeneous portion of a {@linkplain Surface surface}.
  * Each <code>SurfacePatch</code> shall be in at most one {@linkplain Surface surface}.
  *
- * @UML type GM_SurfacePatch
  * @author ISO/DIS 19107
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 2.0
  */
+///@UML (identifier="GM_SurfacePatch")
 public interface SurfacePatch extends GenericSurface {
     /**
      * Returns the patch which own this surface patch.
@@ -35,10 +39,10 @@ public interface SurfacePatch extends GenericSurface {
      * </font></blockquote>
      *
      * @return The owner of this surface patch, or <code>null</code> if none.
-     * @UML association surface
      *
      * @see Surface#getPatches
      */
+/// @UML (identifier="surface", obligation=MANDATORY)
     public Surface getSurface();
 
     /**
@@ -47,8 +51,8 @@ public interface SurfacePatch extends GenericSurface {
      * subclasses to determine the position of this <code>SurfacePatch</code>.
      *
      * @return The interpolation mechanism.
-     * @UML operation interpolation
      */
+/// @UML (identifier="interpolation", obligation=MANDATORY)
     public SurfaceInterpolation getInterpolation();
 
     /**
@@ -62,8 +66,8 @@ public interface SurfacePatch extends GenericSurface {
      * <var>n</var>-times differentiable: "C<sup>n</sup>" continuity.
      *
      * @return The type of continuity between this surface patch and its immediate neighbors.
-     * @UML operation numDerivativesOnBoundary
      */
+/// @UML (identifier="numDerivativesOnBoundary", obligation=MANDATORY)
     public int getNumDerivativesOnBoundary();
 
     /**
@@ -78,7 +82,7 @@ public interface SurfacePatch extends GenericSurface {
      * necessarily distinct).
      *
      * @return The boundary of this <code>SurfacePatch</code>
-     * @UML operation boundary
      */
+/// @UML (identifier="boundary", obligation=MANDATORY)
     public SurfaceBoundary getBoundary();
 }

@@ -9,6 +9,10 @@
  *************************************************************************************************/
 package org.opengis.spatialschema.geometry.geometry;
 
+// Annotations
+///import org.opengis.annotation.UML;
+///import static org.opengis.annotation.Obligation.*;
+
 
 /**
  * Two distinct positions joined by a geodesic curve. The control points of a <code>Geodesic</code>
@@ -18,12 +22,12 @@ package org.opengis.spatialschema.geometry.geometry;
  * be used to interpolate other positions. Any other point in the {@link #getControlPoints controlPoint}
  * array must fall on this geodesic.
  *  
- * @UML abstract GM_Geodesic
  * @author ISO/DIS 19107
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 2.0
  *
  * @see GeometryFactory#createGeodesic
  */
+///@UML (identifier="GM_Geodesic")
 public interface Geodesic extends GeodesicString {
 }

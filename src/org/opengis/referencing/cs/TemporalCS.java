@@ -9,6 +9,10 @@
  *************************************************************************************************/
 package org.opengis.referencing.cs;
 
+// Annotations
+///import org.opengis.annotation.UML;
+///import static org.opengis.annotation.Obligation.*;
+
 
 /**
  * A one-dimensional coordinate system containing a single time axis, used to describe the
@@ -21,10 +25,10 @@ package org.opengis.referencing.cs;
  *   {@link org.opengis.referencing.crs.TemporalCRS Temporal}
  * </TD></TR></TABLE>
  *
- * @UML abstract CS_TemporalCS
  * @author ISO 19111
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/03-073r1.zip">Abstract specification 2.0</A>
  */
+///@UML (identifier="CS_TemporalCS")
 public interface TemporalCS extends CoordinateSystem {
 }

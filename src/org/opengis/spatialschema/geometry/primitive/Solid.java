@@ -9,12 +9,15 @@
  *************************************************************************************************/
 package org.opengis.spatialschema.geometry.primitive;
 
+// Annotations
+///import org.opengis.annotation.UML;
+///import static org.opengis.annotation.Obligation.*;
+
 
 /**
  * Basis for 3-dimensional geometry. The extent of a solid is
  * defined by the boundary surfaces.
  *
- * @UML type GM_Solid
  * @author ISO/DIS 19107
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 2.0
@@ -23,6 +26,7 @@ package org.opengis.spatialschema.geometry.primitive;
  *
  * @revisit Some associations are commented out for now.
  */
+///@UML (identifier="GM_Solid")
 public interface Solid extends Primitive {
     /**
      * Returns a sequence of sets of {@linkplain Surface surfaces} that limit the extent of this
@@ -44,18 +48,18 @@ public interface Solid extends Primitive {
      * a composite surface, shall be a cycle.
      *
      * @return The sets of positions on the boundary.
-     * @UML operation boundary
      */
+/// @UML (identifier="boundary", obligation=MANDATORY)
 /// public SolidBoundary getBoundary();
 
     /**
      * Returns the sum of the surface areas of all of the boundary components of a solid.
      *
      * @return The area of this solid.
-     * @UML operation area
      *
      * @revisit In UML diagram, this operation has an <code>Area</code> return type.
      */
+/// @UML (identifier="area", obligation=MANDATORY)
     public double getArea();
 
     /**
@@ -64,10 +68,10 @@ public interface Solid extends Primitive {
      * shell.
      *
      * @return The volume of this solid.
-     * @UML operation volume
      *
      * @revisit In UML diagram, this operation has a <code>Volume</code> return type.
      */
+/// @UML (identifier="volume", obligation=MANDATORY)
     public double getVolume();
     
 //    public org.opengis.spatialschema.geometry.complex.GM_CompositeSolid composite[];

@@ -15,29 +15,31 @@ import java.util.Set;
 // OpenGIS direct dependencies
 import org.opengis.metadata.citation.OnLineResource;
 
+// Annotations
+///import org.opengis.annotation.UML;
+///import static org.opengis.annotation.Obligation.*;
+
 
 /**
  * Information describing metadata extensions.
  *
- * @UML datatype MD_MetadataExtensionInformation
  * @author ISO 19115
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
  */
+///@UML (identifier="MD_MetadataExtensionInformation")
 public interface MetadataExtensionInformation {
     /**
      * Information about on-line sources containing the community profile name and
      * the extended metadata elements. Information for all new metadata elements.
-     *
-     * @UML optional extensionOnLineResource
      */
+/// @UML (identifier="extensionOnLineResource", obligation=OPTIONAL)
     OnLineResource getExtensionOnLineResource();
 
     /**
      * Provides information about a new metadata element, not found in ISO 19115, which is
      * required to describe geographic data.
-     *
-     * @UML optional extendedElementInformation
      */
+/// @UML (identifier="extendedElementInformation", obligation=OPTIONAL)
     Set/*<ExtendedElementInformation>*/ getExtendedElementInformation();
 }

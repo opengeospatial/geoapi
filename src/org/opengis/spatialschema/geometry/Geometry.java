@@ -19,6 +19,10 @@ import org.opengis.referencing.operation.MathTransform;
 import org.opengis.referencing.operation.TransformException;
 import org.opengis.spatialschema.geometry.complex.Complex;
 
+// Annotations
+///import org.opengis.annotation.UML;
+///import static org.opengis.annotation.Obligation.*;
+
 
 /**
  * Root class of the geometric object taxonomy. <code>Geometry</code> supports interfaces common
@@ -27,7 +31,6 @@ import org.opengis.spatialschema.geometry.complex.Complex;
  * be regarded as an infinite set of points that satisfies the set operation interfaces for a set
  * of direct positions, {@link TransfiniteSet TransfiniteSet&lt;DirectPosition&gt;}.
  *
- * @UML type GM_Object
  * @rename Renamed as <code>Geometry</code> in order to avoid ambiguity with
  *         {@link java.lang.Object}.
  *
@@ -35,6 +38,7 @@ import org.opengis.spatialschema.geometry.complex.Complex;
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 2.0
  */
+///@UML (identifier="GM_Object")
 public interface Geometry extends TransfiniteSet {
     /**
      * Returns the coordinate reference system used in {@linkplain DirectPosition direct position}
@@ -53,10 +57,10 @@ public interface Geometry extends TransfiniteSet {
      *
      * @return The coordinate reference system used in {@linkplain DirectPosition direct position}
      *         coordinates.
-     * @UML association CRS
      *
      * @see #getCoordinateDimension
      */
+/// @UML (identifier="CRS", obligation=MANDATORY)
     public CoordinateReferenceSystem getCoordinateReferenceSystem();
 
     /**
@@ -69,11 +73,11 @@ public interface Geometry extends TransfiniteSet {
      * types are not defined within this specification.
      *
      * @return The minimum bounding region.
-     * @UML operation mbRegion
      *
      * @see #getEnvelope
      * @see #getBoundary
      */
+/// @UML (identifier="mbRegion", obligation=MANDATORY)
     public Geometry getMbRegion();
 
     /**
@@ -83,10 +87,10 @@ public interface Geometry extends TransfiniteSet {
      * be for the placement of labels in systems based on graphic presentation.
      *
      * @return The representative point.
-     * @UML operation representativePoint
      *
      * @see #getCentroid
      */
+/// @UML (identifier="representativePoint", obligation=MANDATORY)
     public DirectPosition getRepresentativePoint();
 
     /**
@@ -101,13 +105,13 @@ public interface Geometry extends TransfiniteSet {
      * dimension than the original element.
      *
      * @return The sets of positions on the boundary.
-     * @UML operation boundary
      *
      * @see #getMbRegion
      * @see #getClosure
      * @see #getBuffer
      * @see #getDistance
      */
+/// @UML (identifier="boundary", obligation=MANDATORY)
     public Boundary getBoundary();
 
     /**
@@ -121,10 +125,10 @@ public interface Geometry extends TransfiniteSet {
      * <code>Geometry</code>s returned may have been constructed in response to the operation.
      *
      * @return The sets of points on the union of this object and its boundary.
-     * @UML operation closure
      *
      * @see #getBoundary
      */
+/// @UML (identifier="closure", obligation=MANDATORY)
     public Complex getClosure();
 
     /**
@@ -143,10 +147,10 @@ public interface Geometry extends TransfiniteSet {
      *
      * @return <code>true</code> if this object has no interior point of self-intersection or
      *         selftangency.
-     * @UML operation isSimple
      *
      * @see #isCycle
      */
+/// @UML (identifier="isSimple", obligation=MANDATORY)
     public boolean isSimple();
 
     /**
@@ -164,10 +168,10 @@ public interface Geometry extends TransfiniteSet {
      *
      * @return <code>true</code> if this <code>Geometry</code> has an empty boundary after
      *         topological simplification.
-     * @UML operation isCycle
      *
      * @see #isSimple
      */
+/// @UML (identifier="isCycle", obligation=MANDATORY)
     public boolean isCycle();
 
     /**
@@ -203,12 +207,12 @@ public interface Geometry extends TransfiniteSet {
      * @param  geometry The other object.
      * @return The distance between the two objects.
      * @unitof Distance
-     * @UML operation distance
      *
      * @see #getBoundary
      * @see #getBuffer
      * @see org.opengis.referencing.cs.CoordinateSystem#getAxis
      */
+/// @UML (identifier="distance", obligation=MANDATORY)
     public double getDistance(Geometry geometry);
 
     /**
@@ -225,10 +229,10 @@ public interface Geometry extends TransfiniteSet {
      *
      * @param point The point where to evaluate the dimension, or <code>null</code>.
      * @return The inherent dimension.
-     * @UML operation dimension
      *
      * @see #getCoordinateDimension
      */
+/// @UML (identifier="dimension", obligation=MANDATORY)
     public int getDimension(DirectPosition point);
 
     /**
@@ -237,11 +241,11 @@ public interface Geometry extends TransfiniteSet {
      * <code>Geometry</code>.
      *
      * @return The coordinate dimension.
-     * @UML operation coordinateDimension
      *
      * @see #getDimension
      * @see #getCoordinateReferenceSystem
      */
+/// @UML (identifier="coordinateDimension", obligation=MANDATORY)
     public int getCoordinateDimension();
 
     /**
@@ -251,8 +255,8 @@ public interface Geometry extends TransfiniteSet {
      * A {@linkplain Complex complex} is maximal if there is no such larger super complex.
      *
      * @return The set of maximal complexes within which this <code>Geometry</code> is contained.
-     * @UML operation maximalComplex
      */
+/// @UML (identifier="maximalComplex", obligation=MANDATORY)
     public Set getMaximalComplex();
 
     /**
@@ -263,8 +267,8 @@ public interface Geometry extends TransfiniteSet {
      * @param  newCRS The new coordinate reference system.
      * @return The transformed <code>Geometry</code>.
      * @throws TransformException if the transformation failed.
-     * @UML operation transform
      */
+/// @UML (identifier="transform", obligation=MANDATORY)
     public Geometry transform(CoordinateReferenceSystem newCRS) throws TransformException;
 
     /**
@@ -291,10 +295,10 @@ public interface Geometry extends TransfiniteSet {
      * domain of validity of the object's coordinate reference system.
      *
      * @return The envelope.
-     * @UML operation envelope
      *
      * @see #getMbRegion
      */
+/// @UML (identifier="envelope", obligation=MANDATORY)
     public Envelope getEnvelope();
 
     /**
@@ -305,10 +309,10 @@ public interface Geometry extends TransfiniteSet {
      * contribute to the average.
      *
      * @return The centroid.
-     * @UML operation centroid
      *
      * @see #getRepresentativePoint
      */
+/// @UML (identifier="centroid", obligation=MANDATORY)
     public DirectPosition getCentroid();
 
     /**
@@ -320,8 +324,8 @@ public interface Geometry extends TransfiniteSet {
      * the transformed image of the convex hull of the same object in the other.
      *
      * @return The convex hull.
-     * @UML operation convexHull
      */
+/// @UML (identifier="convexHull", obligation=MANDATORY)
     public Geometry getConvexHull();
 
     /**
@@ -338,11 +342,11 @@ public interface Geometry extends TransfiniteSet {
      * @return A geometry containing all points whose distance from this <code>Geometry</code>
      *         is less than or equal to the specified distance.
      * @unitof Distance (for the argument)
-     * @UML operation buffer
      *
      * @see #getBoundary
      * @see #getDistance
      * @see org.opengis.referencing.cs.CoordinateSystem#getAxis
      */
+/// @UML (identifier="buffer", obligation=MANDATORY)
     public Geometry getBuffer(double distance);
 }

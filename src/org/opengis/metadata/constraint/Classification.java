@@ -16,15 +16,19 @@ import java.util.ArrayList;
 // OpenGIS direct dependencies
 import org.opengis.util.CodeList;
 
+// Annotations
+///import org.opengis.annotation.UML;
+///import static org.opengis.annotation.Obligation.*;
+
 
 /**
  * Name of the handling restrictions on the dataset.
  *
- * @UML codelist MD_ClassificationCode
  * @author ISO 19115
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
  */
+///@UML (identifier="MD_ClassificationCode")
 public final class Classification extends CodeList {
     /**
      * Serial number for compatibility with different versions.
@@ -39,37 +43,32 @@ public final class Classification extends CodeList {
 
     /**
      * Available for general disclosure.
-     *
-     * @UML conditional unclassified
      */
+/// @UML (identifier="unclassified", obligation=CONDITIONAL)
     public static final Classification UNCLASSIFIED = new Classification("UNCLASSIFIED");
 
     /**
      * Not for general disclosure.
-     *
-     * @UML conditional restricted
      */
+/// @UML (identifier="restricted", obligation=CONDITIONAL)
     public static final Classification RESTRICTED = new Classification("RESTRICTED");
 
     /**
      * Available for someone who can be entrusted with information.
-     *
-     * @UML conditional confidential
      */
+/// @UML (identifier="confidential", obligation=CONDITIONAL)
     public static final Classification CONFIDENTIAL = new Classification("CONFIDENTIAL");
 
     /**
      * Kept or meant to be kept private, unknown, or hidden from all but a select group of people.
-     *
-     * @UML conditional secret
      */
+/// @UML (identifier="secret", obligation=CONDITIONAL)
     public static final Classification SECRET = new Classification("SECRET");
 
     /**
      * Of the highest secrecy.
-     *
-     * @UML conditional topsecret
      */
+/// @UML (identifier="topsecret", obligation=CONDITIONAL)
     public static final Classification TOP_SECRET = new Classification("TOP_SECRET");
 
     /**

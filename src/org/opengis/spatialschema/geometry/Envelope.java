@@ -9,6 +9,10 @@
  *************************************************************************************************/
 package org.opengis.spatialschema.geometry;
 
+// Annotations
+///import org.opengis.annotation.UML;
+///import static org.opengis.annotation.Obligation.*;
+
 
 /**
  * A minimum bounding box or rectangle. Regardless of dimension, an <code>Envelope</code> can
@@ -17,11 +21,11 @@ package org.opengis.spatialschema.geometry;
  * all of the data types in this specification, their state is represented by their publicly
  * accessible attributes.
  *
- * @UML datatype GM_Envelope
  * @author ISO/DIS 19107
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 2.0
  */
+///@UML (identifier="GM_Envelope")
 public interface Envelope {
     /**
      * The length of coordinate sequence (the number of entries) in this envelope.
@@ -57,8 +61,8 @@ public interface Envelope {
      * dimension for all points within the <code>Envelope</code>.
      *
      * @return The upper corner.
-     * @UML mandatory upperCorner
      */
+/// @UML (identifier="upperCorner", obligation=MANDATORY)
     DirectPosition getUpperCorner();
 
     /**
@@ -66,7 +70,7 @@ public interface Envelope {
      * dimension for all points within the <code>Envelope</code>.
      *
      * @return The lower corner.
-     * @UML mandatory lowerCorner
      */
+/// @UML (identifier="lowerCorner", obligation=MANDATORY)
     DirectPosition getLowerCorner();
 }

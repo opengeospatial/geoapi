@@ -19,6 +19,10 @@ import org.opengis.metadata.quality.PositionalAccuracy;
 import org.opengis.metadata.extent.Extent;
 import org.opengis.util.InternationalString;
 
+// Annotations
+///import org.opengis.annotation.UML;
+///import static org.opengis.annotation.Obligation.*;
+
 
 /**
  * A mathematical operation on coordinates that transforms or converts coordinates to
@@ -35,11 +39,11 @@ import org.opengis.util.InternationalString;
  * entirely different parameter values are needed, a different coordinate operation
  * shall be defined.
  *  
- * @UML abstract CC_CoordinateOperation
  * @author ISO 19111
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/03-073r1.zip">Abstract specification 2.0</A>
  */
+///@UML (identifier="CC_CoordinateOperation")
 public interface CoordinateOperation extends IdentifiedObject {
     /**
      * Returns the source CRS. The source CRS is mandatory for {@linkplain Transformation
@@ -48,8 +52,8 @@ public interface CoordinateOperation extends IdentifiedObject {
      * {@link org.opengis.referencing.crs.GeneralDerivedCRS#getBaseCRS} instead.
      *
      * @return The source CRS, or <code>null</code> if not available.
-     * @UML association sourceCRS
      */
+/// @UML (identifier="sourceCRS", obligation=MANDATORY)
     CoordinateReferenceSystem getSourceCRS();
 
     /**
@@ -59,8 +63,8 @@ public interface CoordinateOperation extends IdentifiedObject {
      * {@link org.opengis.referencing.crs.GeneralDerivedCRS} instead.
      *
      * @return The target CRS, or <code>null</code> if not available.
-     * @UML association targetCRS
      */
+/// @UML (identifier="targetCRS", obligation=MANDATORY)
     CoordinateReferenceSystem getTargetCRS();
 
     /**
@@ -69,8 +73,8 @@ public interface CoordinateOperation extends IdentifiedObject {
      * be supplied for a conversion.
      *
      * @return The coordinate operation version, or <code>null</code> in none.
-     * @UML conditional operationVersion
      */
+/// @UML (identifier="operationVersion", obligation=CONDITIONAL)
     String getOperationVersion();
 
     /**
@@ -79,23 +83,22 @@ public interface CoordinateOperation extends IdentifiedObject {
      * operation, assuming no errors in source coordinates.
      *
      * @return The position error estimates, or an empty array if not available.
-     * @UML optional positionalAccuracy
      */
+/// @UML (identifier="positionalAccuracy", obligation=OPTIONAL)
     PositionalAccuracy[] getPositionalAccuracy();
 
     /**
      * Area in which this operation is valid.
      *
      * @return Coordinate operation valid area, or <code>null</code> if not available.
-     * @UML optional validArea
      */
+/// @UML (identifier="validArea", obligation=OPTIONAL)
     Extent getValidArea();
 
     /**
      * Description of domain of usage, or limitations of usage, for which this operation is valid.
-     *
-     * @UML optional scope
      */
+/// @UML (identifier="scope", obligation=OPTIONAL)
     InternationalString getScope();
 
     /**
@@ -106,10 +109,10 @@ public interface CoordinateOperation extends IdentifiedObject {
      *         {@linkplain Locale#getDefault() system default}).
      * @return The coordinate operation scope in the given locale, or <code>null</code> if none.
      *         If no scope is available in the given locale, then some default locale is used.
-     * @UML optional scope
      *
      * @deprecated Replaced by {@link #getScope()}.
      */
+/// @UML (identifier="scope", obligation=OPTIONAL)
     String getScope(Locale locale);
     
     /**
@@ -117,8 +120,6 @@ public interface CoordinateOperation extends IdentifiedObject {
      * {@linkplain #getSourceCRS source coordinate reference system}
      * into positions in the
      * {@linkplain #getTargetCRS target coordinate reference system}.
-     *
-     * @UML mandatory mathTransform in 1.0 specification.
      */
     MathTransform getMathTransform();
 }

@@ -9,14 +9,19 @@
  *************************************************************************************************/
 package org.opengis.metadata.identification;
 
+// Annotations
+///import org.opengis.annotation.UML;
+///import static org.opengis.annotation.Obligation.*;
+
+
 /**
  * Level of detail expressed as a scale factor or a ground distance.
  *
- * @UML datatype MD_Resolution
  * @author ISO 19115
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
  */
+///@UML (identifier="MD_Resolution")
 public interface Resolution {
     /**
      * Level of detail expressed as the scale of a comparable hardcopy map or chart.
@@ -24,9 +29,9 @@ public interface Resolution {
      * Only one of {@linkplain #getEquivalentScale equivalent scale} and
      * {@linkplain #getDistance ground sample distance} may be provided.
      *
-     * @UML conditional equivalentScale
      * @unitof RepresentativeFraction
      */
+/// @UML (identifier="equivalentScale", obligation=CONDITIONAL)
     double getEquivalentScale();
 
     /**
@@ -34,8 +39,8 @@ public interface Resolution {
      * Only one of {@linkplain #getEquivalentScale equivalent scale} and
      * {@linkplain #getDistance ground sample distance} may be provided.
      *
-     * @UML conditional distance
      * @unitof Distance
      */
+/// @UML (identifier="distance", obligation=CONDITIONAL)
     double getDistance();
 }

@@ -12,35 +12,36 @@ package org.opengis.metadata.citation;
 // OpenGIS direct dependencies
 import org.opengis.util.InternationalString;
 
+// Annotations
+///import org.opengis.annotation.UML;
+///import static org.opengis.annotation.Obligation.*;
+
 
 /**
  * Information about the series, or aggregate dataset, to which a dataset belongs.
  *
- * @UML datatype CI_Series
  * @author ISO 19115
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
  */
+///@UML (identifier="CI_Series")
 public interface Series {
     /**
      * Name of the series, or aggregate dataset, of which the dataset is a part.
      * Returns <code>null</code> if none.
-     *
-     * @UML optional name
      */
+/// @UML (identifier="name", obligation=OPTIONAL)
     InternationalString getName();
 
     /**
      * Information identifying the issue of the series.
-     *
-     * @UML optional issueIdentification
      */
+/// @UML (identifier="issueIdentification", obligation=OPTIONAL)
     String getIssueIdentification();
 
     /**
      * Details on which pages of the publication the article was published.
-     *
-     * @UML optional page
      */
+/// @UML (identifier="page", obligation=OPTIONAL)
     String getPage();
 }

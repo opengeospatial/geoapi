@@ -27,7 +27,6 @@ import org.opengis.referencing.FactoryException;
  * So {@link CSAuthorityFactory} can be used to make "standard" coordinate systems, and
  * <code>CSFactory</code> can be used to make "special" coordinate systems.
  *
- * @UML abstract CS_CoordinateSystemFactory
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-009.pdf">Implementation specification 1.0</A>
  *

@@ -16,15 +16,19 @@ import java.util.ArrayList;
 // OpenGIS direct dependencies
 import org.opengis.util.CodeList;
 
+// Annotations
+///import org.opengis.annotation.UML;
+///import static org.opengis.annotation.Obligation.*;
+
 
 /**
  * Function performed by the responsible party.
  *
- * @UML codelist CI_RoleCode
  * @author ISO 19115
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
  */
+///@UML (identifier="CI_RoleCode")
 public final class Role extends CodeList {
     /**
      * Serial number for compatibility with different versions.
@@ -39,73 +43,63 @@ public final class Role extends CodeList {
 
     /**
      * Party that supplies the resource.
-     *
-     * @UML conditional resourceProvider
      */
+/// @UML (identifier="resourceProvider", obligation=CONDITIONAL)
     public static final Role RESOURCE_PROVIDER = new Role("RESOURCE_PROVIDER");
 
     /**
      * Party that accepts accountability and responsibility for the data and ensures
      * appropriate care and maintenance of the resource.
-     *
-     * @UML conditional custodian
      */
+/// @UML (identifier="custodian", obligation=CONDITIONAL)
     public static final Role CUSTODIAN = new Role("CUSTODIAN");
 
     /**
      * Party that owns the resource.
-     *
-     * @UML conditional owner
      */
+/// @UML (identifier="owner", obligation=CONDITIONAL)
     public static final Role OWNER = new Role("OWNER");
 
     /**
      * Party who uses the resource.
-     *
-     * @UML conditional user
      */
+/// @UML (identifier="user", obligation=CONDITIONAL)
     public static final Role USER = new Role("USER");
 
     /**
      * Party who distributes the resource.
-     *
-     * @UML conditional distributor
      */
+/// @UML (identifier="distributor", obligation=CONDITIONAL)
     public static final Role DISTRIBUTOR = new Role("DISTRIBUTOR");
 
     /**
      * Party who created the resource.
-     *
-     * @UML conditional originator
      */
+/// @UML (identifier="originator", obligation=CONDITIONAL)
     public static final Role ORIGINATOR = new Role("ORIGINATOR");
 
     /**
      * Party who can be contacted for acquiring knowledge about or acquisition of the resource.
-     *
-     * @UML conditional pointOfContact
      */
+/// @UML (identifier="pointOfContact", obligation=CONDITIONAL)
     public static final Role POINT_OF_CONTACT = new Role("POINT_OF_CONTACT");
 
     /**
      * Key party responsible for gathering information and conducting research.
-     *
-     * @UML conditional principalInvestigator
      */
+/// @UML (identifier="principalInvestigator", obligation=CONDITIONAL)
     public static final Role PRINCIPAL_INVESTIGATOR = new Role("PRINCIPAL_INVESTIGATOR");
 
     /**
      * Party who has processed the data in a manner such that the resource has been modified.
-     *
-     * @UML conditional processor
      */
+/// @UML (identifier="processor", obligation=CONDITIONAL)
     public static final Role PROCESSOR = new Role("PROCESSOR");
 
     /**
      * Party who published the resource.
-     *
-     * @UML conditional publisher
      */
+/// @UML (identifier="publisher", obligation=CONDITIONAL)
     public static final Role PUBLISHER = new Role("PUBLISHER");
 
     /**

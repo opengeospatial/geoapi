@@ -16,16 +16,20 @@ import java.util.ArrayList;
 // OpenGIS direct dependencies
 import org.opengis.util.CodeList;
 
+// Annotations
+///import org.opengis.annotation.UML;
+///import static org.opengis.annotation.Obligation.*;
+
 
 /**
  * Frequency with which modifications and deletions are made to the data after it is
  * first produced.
  *
- * @UML codelist MD_MaintenanceFrequencyCode
  * @author ISO 19115
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
  */
+///@UML (identifier="MD_MaintenanceFrequencyCode")
 public final class MaintenanceFrequency extends CodeList {
     /**
      * Serial number for compatibility with different versions.
@@ -40,86 +44,74 @@ public final class MaintenanceFrequency extends CodeList {
 
     /**
      * Data is repeatedly and frequently updated.
-     *
-     * @UML conditional continual
      */
+/// @UML (identifier="continual", obligation=CONDITIONAL)
     public static final MaintenanceFrequency CONTINUAL = new MaintenanceFrequency("CONTINUAL");
 
     /**
      * Data is updated each day.
-     *
-     * @UML conditional daily
      */
+/// @UML (identifier="daily", obligation=CONDITIONAL)
     public static final MaintenanceFrequency DAILY = new MaintenanceFrequency("DAILY");
 
     /**
      * Data is updated on a weekly basis.
-     *
-     * @UML conditional daily
      */
+/// @UML (identifier="daily", obligation=CONDITIONAL)
     public static final MaintenanceFrequency WEEKLY = new MaintenanceFrequency("WEEKLY");
 
     /**
      * Data is updated every two weeks.
-     *
-     * @UML conditional fortnightly
      */
+/// @UML (identifier="fortnightly", obligation=CONDITIONAL)
     public static final MaintenanceFrequency FORTNIGHTLY = new MaintenanceFrequency("FORTNIGHTLY");
 
     /**
      * Data is updated each month.
-     *
-     * @UML conditional monthly
      */
+/// @UML (identifier="monthly", obligation=CONDITIONAL)
     public static final MaintenanceFrequency MONTHLY = new MaintenanceFrequency("MONTHLY");
 
     /**
      * Data is updated every three months.
-     *
-     * @UML conditional quarterly
      */
+/// @UML (identifier="quarterly", obligation=CONDITIONAL)
     public static final MaintenanceFrequency QUARTERLY = new MaintenanceFrequency("QUARTERLY");
 
     /**
      * Data is updated twice each year.
-     *
-     * @UML conditional biannually
      */
+/// @UML (identifier="biannually", obligation=CONDITIONAL)
     public static final MaintenanceFrequency BIANNUALLY = new MaintenanceFrequency("BIANNUALLY");
 
     /**
      * Data is updated every year.
-     *
-     * @UML conditional annually
      */
+/// @UML (identifier="annually", obligation=CONDITIONAL)
     public static final MaintenanceFrequency ANNUALLY = new MaintenanceFrequency("ANNUALLY");
 
     /**
      * Data is updated as deemed necessary.
-     *
-     * @UML conditional asNeeded
      */
+/// @UML (identifier="asNeeded", obligation=CONDITIONAL)
     public static final MaintenanceFrequency AS_NEEDED = new MaintenanceFrequency("AS_NEEDED");
 
     /**
      * Data is updated in intervals that are uneven in duration.
-     *
-     * @UML conditional irregular
      */
+/// @UML (identifier="irregular", obligation=CONDITIONAL)
     public static final MaintenanceFrequency IRREGULAR = new MaintenanceFrequency("IRREGULAR");
 
     /**
      * There are no plans to update the data.
-     *
-     * @UML conditional notPlanned
      */
+/// @UML (identifier="notPlanned", obligation=CONDITIONAL)
     public static final MaintenanceFrequency NOT_PLANNED = new MaintenanceFrequency("NOT_PLANNED");
 
     /**
      * Frequency of maintenance for the data is not known
-     *
-     * @UML conditional unknow
      */
+/// @UML (identifier="unknow", obligation=CONDITIONAL)
     public static final MaintenanceFrequency UNKNOW = new MaintenanceFrequency("UNKNOW");
 
     /**

@@ -16,15 +16,19 @@ import java.util.ArrayList;
 // OpenGIS direct dependencies
 import org.opengis.util.CodeList;
 
+// Annotations
+///import org.opengis.annotation.UML;
+///import static org.opengis.annotation.Obligation.*;
+
 
 /**
  * Status of the dataset or progress of a review.
  *
- * @UML codelist MD_ProgressCode
  * @author ISO 19115
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
  */
+///@UML (identifier="MD_ProgressCode")
 public final class Progress extends CodeList {
     /**
      * Serial number for compatibility with different versions.
@@ -39,51 +43,44 @@ public final class Progress extends CodeList {
 
     /**
      * Production of the data has been completed.
-     *
-     * @UML conditional completed
      */
+/// @UML (identifier="completed", obligation=CONDITIONAL)
     public static final Progress COMPLETED = new Progress("COMPLETED");
 
     /**
      * Data has been stored in an offline storage facility
-     *
-     * @UML conditional historicalArchive
      */
+/// @UML (identifier="historicalArchive", obligation=CONDITIONAL)
     public static final Progress HISTORICAL_ARCHIVE = new Progress("HISTORICAL_ARCHIVE");
 
     /**
      * Data is no longer relevant.
-     *
-     * @UML conditional obsolete
      */
+/// @UML (identifier="obsolete", obligation=CONDITIONAL)
     public static final Progress OBSOLETE = new Progress("OBSOLETE");
 
     /**
      * Data is continually being updated.
-     *
-     * @UML conditional onGoing
      */
+/// @UML (identifier="onGoing", obligation=CONDITIONAL)
     public static final Progress ON_GOING = new Progress("ON_GOING");
 
     /**
      * Fixed date has been established upon or by which the data will be created or updated.
-     *
-     * @UML conditional planned
      */
+/// @UML (identifier="planned", obligation=CONDITIONAL)
     public static final Progress PLANNED = new Progress("PLANNED");
 
     /**
      * Data needs to be generated or updated.
-     *
-     * @UML conditional required
      */
+/// @UML (identifier="required", obligation=CONDITIONAL)
     public static final Progress REQUIRED = new Progress("REQUIRED");
 
     /**
      * Data is currently in the process of being created.
-     *
-     * @UML conditional underdevelopment
      */
+/// @UML (identifier="underdevelopment", obligation=CONDITIONAL)
     public static final Progress UNDER_DEVELOPMENT = new Progress("UNDER_DEVELOPMENT");
 
     /**

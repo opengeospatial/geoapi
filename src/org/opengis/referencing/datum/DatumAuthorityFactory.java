@@ -17,6 +17,7 @@ import org.opengis.referencing.AuthorityFactory;
 import org.opengis.referencing.FactoryException;
 import org.opengis.referencing.NoSuchAuthorityCodeException;
 
+
 /**
  * Creates {@linkplain Datum datum} objects using authority codes. External authorities are used to
  * manage definitions of objects used in this interface. The definitions of these objects are
@@ -24,7 +25,6 @@ import org.opengis.referencing.NoSuchAuthorityCodeException;
  * which is also used in the <A HREF="http://www.remotesensing.org/geotiff/geotiff.html">GeoTIFF</A>
  * standard.
  *
- * @UML abstract CS_CoordinateSystemAuthorityFactory
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-009.pdf">Implementation specification 1.0</A>
  *
@@ -78,7 +78,6 @@ public interface DatumAuthorityFactory extends AuthorityFactory {
      * @throws NoSuchAuthorityCodeException if the specified <code>code</code> was not found.
      * @throws FactoryException if the object creation failed for some other reason.
      *
-     * @UML operation createVerticalDatum in 1.0 specification
      * @see org.opengis.referencing.crs.CRSAuthorityFactory#createVerticalCRS
      */
     VerticalDatum createVerticalDatum(String code) throws FactoryException;
@@ -101,7 +100,6 @@ public interface DatumAuthorityFactory extends AuthorityFactory {
      * @throws NoSuchAuthorityCodeException if the specified <code>code</code> was not found.
      * @throws FactoryException if the object creation failed for some other reason.
      *
-     * @UML operation createHorizontalDatum in 1.0 specification
      * @see #createEllipsoid
      * @see #createPrimeMeridian
      * @see org.opengis.referencing.crs.CRSAuthorityFactory#createGeographicCRS
@@ -116,7 +114,6 @@ public interface DatumAuthorityFactory extends AuthorityFactory {
      * @throws NoSuchAuthorityCodeException if the specified <code>code</code> was not found.
      * @throws FactoryException if the object creation failed for some other reason.
      *
-     * @UML operation createEllipsoid in 1.0 specification
      * @see #createGeodeticDatum
      */
     Ellipsoid createEllipsoid(String code) throws FactoryException;
@@ -128,7 +125,6 @@ public interface DatumAuthorityFactory extends AuthorityFactory {
      * @throws NoSuchAuthorityCodeException if the specified <code>code</code> was not found.
      * @throws FactoryException if the object creation failed for some other reason.
      *
-     * @UML operation createPrimeMeridian in 1.0 specification
      * @see #createGeodeticDatum
      */
     PrimeMeridian createPrimeMeridian(String code) throws FactoryException;
@@ -142,11 +138,7 @@ public interface DatumAuthorityFactory extends AuthorityFactory {
      *
      * @param wkt Name of geoid defined by OGC (e.g. "European_Datum_1950").
      *
-     * @UML operation geoidFromWKTName in 1.0 specification
      * @see #createGeodeticDatum
-     *
-     * @revisit WKT are not yet specified in this 2.0 version of interfaces.
-     *          Does the OGC names still the same?
      */
     String geoidFromWktName(String wkt);
 
@@ -158,11 +150,7 @@ public interface DatumAuthorityFactory extends AuthorityFactory {
      *
      * @param geoid Code value for geoid allocated by authority.
      *
-     * @UML operation wktGeoidName in 1.0 specification
      * @see #createGeodeticDatum
-     *
-     * @revisit WKT are not yet specified in this 2.0 version of interfaces.
-     *          Does the OGC names still the same?
      */
     String wktFromGeoidName(String geoid);
 }

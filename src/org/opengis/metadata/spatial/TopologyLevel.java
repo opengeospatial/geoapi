@@ -16,15 +16,19 @@ import java.util.ArrayList;
 // OpenGIS direct dependencies
 import org.opengis.util.CodeList;
 
+// Annotations
+///import org.opengis.annotation.UML;
+///import static org.opengis.annotation.Obligation.*;
+
 
 /**
  * Degree of complexity of the spatial relationships.
  *
- * @UML codelist MD_TopologyLevelCode
  * @author ISO 19115
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
  */
+///@UML (identifier="MD_TopologyLevelCode")
 public final class TopologyLevel extends CodeList {
     /**
      * Serial number for compatibility with different versions.
@@ -39,66 +43,56 @@ public final class TopologyLevel extends CodeList {
 
     /**
      * Geometry objects without any additional structure which describes topology.
-     *
-     * @UML conditional geometryOnly
      */
+/// @UML (identifier="geometryOnly", obligation=CONDITIONAL)
     public static final TopologyLevel GEOMETRY_ONLY = new TopologyLevel("GEOMETRY_ONLY");
 
     /**
      * 1-dimensional topological complex.
-     *
-     * @UML conditional topology1D
      */
+/// @UML (identifier="topology1D", obligation=CONDITIONAL)
     public static final TopologyLevel TOPOLOGY_1D = new TopologyLevel("TOPOLOGY_1D");
 
     /**
      * 1-dimensional topological complex which is planar.
-     *
-     * @UML conditional planarGraph
      */
+/// @UML (identifier="planarGraph", obligation=CONDITIONAL)
     public static final TopologyLevel PLANAR_GRAPH = new TopologyLevel("PLANAR_GRAPH");
 
     /**
      * 2-dimensional topological complex which is planar.
-     *
-     *
-     * @UML conditional fullPlanarGraph
      */
+/// @UML (identifier="fullPlanarGraph", obligation=CONDITIONAL)
     public static final TopologyLevel FULL_PLANAR_GRAPH = new TopologyLevel("FULL_PLANAR_GRAPH");
 
     /**
      * 1-dimensional topological complex which is isomorphic to a subset of a surface.
-     *
-     * @UML conditional surfaceGraph
      */
+/// @UML (identifier="surfaceGraph", obligation=CONDITIONAL)
     public static final TopologyLevel SURFACE_GRAPH = new TopologyLevel("SURFACE_GRAPH");
 
     /**
      * 2-dimensional topological complex which is isomorphic to a subset of a surface.
-     *
-     * @UML conditional fullSurfaceGraph
      */
+/// @UML (identifier="fullSurfaceGraph", obligation=CONDITIONAL)
     public static final TopologyLevel FULL_SURFACE_GRAPH = new TopologyLevel("FULL_SURFACE_GRAPH");
 
     /**
      * 3-dimensional topological complex.
-     *
-     * @UML conditional topology3D
      */
+/// @UML (identifier="topology3D", obligation=CONDITIONAL)
     public static final TopologyLevel TOPOLOGY_3D = new TopologyLevel("TOPOLOGY_3D");
 
     /**
      * Complete coverage of a 3D coordinate space.
-     *
-     * @UML conditional fullTopology3D
      */
+/// @UML (identifier="fullTopology3D", obligation=CONDITIONAL)
     public static final TopologyLevel FULL_TOPOLOGY_3D = new TopologyLevel("FULL_TOPOLOGY_3D");
 
     /**
      * Topological complex without any specified geometric realization.
-     *
-     * @UML conditional abstract
      */
+/// @UML (identifier="abstract", obligation=CONDITIONAL)
     public static final TopologyLevel ABSTRACT = new TopologyLevel("ABSTRACT");
 
     /**

@@ -16,16 +16,20 @@ import java.util.ArrayList;
 // OpenGIS direct dependencies
 import org.opengis.util.CodeList;
 
+// Annotations
+///import org.opengis.annotation.UML;
+///import static org.opengis.annotation.Obligation.*;
+
 
 /**
  * Name of point and vector spatial objects used to locate zero-, one-, and twodimensional
  * spatial locations in the dataset.
  *
- * @UML codelist MD_GeometricObjectTypeCode
  * @author ISO 19115
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
  */
+///@UML (identifier="MD_GeometricObjectTypeCode")
 public final class GeometricObjectType extends CodeList {
     /**
      * Serial number for compatibility with different versions.
@@ -41,46 +45,40 @@ public final class GeometricObjectType extends CodeList {
     /**
      * Set of geometric primitives such that their boundaries can be represented as a
      * union of other primitives.
-     *
-     * @UML conditional complexes
      */
+/// @UML (identifier="complexes", obligation=CONDITIONAL)
     public static final GeometricObjectType COMPLEXES = new GeometricObjectType("COMPLEXES");
 
     /**
      * Connected set of curves, solids or surfaces.
-     *
-     * @UML conditional composites
      */
+/// @UML (identifier="composites", obligation=CONDITIONAL)
     public static final GeometricObjectType COMPOSITES = new GeometricObjectType("COMPOSITES");
 
     /**
      * Bounded, 1-dimensional geometric primitive, representing the continuous image of a line.
-     *
-     * @UML conditional curve
      */
+/// @UML (identifier="curve", obligation=CONDITIONAL)
     public static final GeometricObjectType CURVE = new GeometricObjectType("CURVE");
 
     /**
      * Zero-dimensional geometric primitive, representing a position but not having an extent.
-     *
-     * @UML conditional point
      */
+/// @UML (identifier="point", obligation=CONDITIONAL)
     public static final GeometricObjectType POINT = new GeometricObjectType("POINT");
 
     /**
      * Bounded, connected 3-dimensional geometric primitive, representing the
      * continuous image of a region of space.
-     *
-     * @UML conditional solid
      */
+/// @UML (identifier="solid", obligation=CONDITIONAL)
     public static final GeometricObjectType SOLID = new GeometricObjectType("SOLID");
 
     /**
      * Bounded, connected 2-dimensional geometric, representing the continuous image
      * of a region of a plane.
-     *
-     * @UML conditional surface
      */
+/// @UML (identifier="surface", obligation=CONDITIONAL)
     public static final GeometricObjectType SURFACE = new GeometricObjectType("SURFACE");
 
     /**

@@ -15,6 +15,10 @@ import java.util.List;
 // OpenGIS direct dependencies
 import org.opengis.spatialschema.geometry.primitive.OrientableSurface;
 
+// Annotations
+///import org.opengis.annotation.UML;
+///import static org.opengis.annotation.Obligation.*;
+
 
 /**
  * A {@linkplain Complex complex} with all the geometric properties of a surface. Thus, this
@@ -22,7 +26,6 @@ import org.opengis.spatialschema.geometry.primitive.OrientableSurface;
  * Essentially, a composite surface is a collection of oriented surfaces that join in pairs on
  * common boundary curves and which, when considered as a whole, form a single surface.
  *
- * @UML type GM_CompositeSurface
  * @author ISO/DIS 19107
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 2.0
@@ -33,6 +36,7 @@ import org.opengis.spatialschema.geometry.primitive.OrientableSurface;
  *          (returns FALSE for end points) is different from <code>Complex.contains(...)</code>
  *          (returns TRUE for end points).
  */
+///@UML (identifier="GM_CompositeSurface")
 public interface CompositeSurface extends Composite, OrientableSurface {
     /**
      * Returns the list of orientable surfaces in this composite.
@@ -43,7 +47,7 @@ public interface CompositeSurface extends Composite, OrientableSurface {
      * surfaces} would be added to the curves in the generator list.
      *
      * @return The list of orientable surfaces in this composite.
-     * @UML association generator
      */
+/// @UML (identifier="generator", obligation=MANDATORY)
     public List/*<OrientableSurface>*/ getGenerators();
 }

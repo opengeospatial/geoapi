@@ -16,11 +16,14 @@ import java.util.ArrayList;
 // OpenGIS direct dependencies
 import org.opengis.util.CodeList;
 
+// Annotations
+///import org.opengis.annotation.UML;
+///import static org.opengis.annotation.Obligation.*;
+
 
 /**
  * Specifies the order of the bytes in multi-byte values.
  *
- * @UML codelist GC_ByteInValuePacking
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-004.pdf">Grid Coverage specification 1.0</A>
  *
@@ -28,6 +31,7 @@ import org.opengis.util.CodeList;
  * @see ValueInBytePacking
  * @see java.nio.ByteOrder
  */
+///@UML (identifier="GC_ByteInValuePacking")
 public final class ByteInValuePacking extends CodeList {
     /**
      * Serial number for compatibility with different versions.
@@ -43,17 +47,17 @@ public final class ByteInValuePacking extends CodeList {
     /**
      * Big Endian.
      *
-     * @UML conditional GC_wkbXDR
      * @see java.nio.ByteOrder#BIG_ENDIAN
      */
+/// @UML (identifier="GC_wkbXDR", obligation=CONDITIONAL)
     public static final ByteInValuePacking WKB_XDR = new ByteInValuePacking("WKB_XDR");
 
     /**
      * Little Endian.
      *
-     * @UML conditional GC_wkbNDR
      * @see java.nio.ByteOrder#LITTLE_ENDIAN
      */
+/// @UML (identifier="GC_wkbNDR", obligation=CONDITIONAL)
     public static final ByteInValuePacking WKB_NDR = new ByteInValuePacking("WKB_NDR");
 
     /**

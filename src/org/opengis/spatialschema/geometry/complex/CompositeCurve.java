@@ -15,6 +15,10 @@ import java.util.List;
 // OpenGIS direct dependencies
 import org.opengis.spatialschema.geometry.primitive.OrientableCurve;
 
+// Annotations
+///import org.opengis.annotation.UML;
+///import static org.opengis.annotation.Obligation.*;
+
 
 /**
  * A {@linkplain Complex complex} with all the geometric properties of a curve. Thus, this
@@ -23,7 +27,6 @@ import org.opengis.spatialschema.geometry.primitive.OrientableCurve;
  * agreeing in orientation in a manner such that each curve (except the first) begins where
  * the previous one ends.
  *
- * @UML type GM_CompositeCurve
  * @author ISO/DIS 19107
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 2.0
@@ -34,6 +37,7 @@ import org.opengis.spatialschema.geometry.primitive.OrientableCurve;
  *          (returns FALSE for end points) is different from <code>Complex.contains(...)</code>
  *          (returns TRUE for end points).
  */
+///@UML (identifier="GM_CompositeCurve")
 public interface CompositeCurve extends Composite, OrientableCurve {
     /**
      * Returns the list of orientable curves in this composite.
@@ -44,7 +48,7 @@ public interface CompositeCurve extends Composite, OrientableCurve {
      * added to the curves in the generator list.
      *
      * @return The list of orientable curves in this composite.
-     * @UML association generator
      */
+/// @UML (identifier="generator", obligation=MANDATORY)
     public List/*<OrientableCurve>*/ getGenerators();
 }

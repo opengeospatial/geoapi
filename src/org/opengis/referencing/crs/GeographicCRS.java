@@ -13,6 +13,10 @@ package org.opengis.referencing.crs;
 import org.opengis.referencing.cs.EllipsoidalCS;
 import org.opengis.referencing.datum.GeodeticDatum;
 
+// Annotations
+///import org.opengis.annotation.UML;
+///import static org.opengis.annotation.Obligation.*;
+
 
 /**
  * A coordinate reference system based on an ellipsoidal approximation of the geoid; this provides
@@ -25,7 +29,6 @@ import org.opengis.referencing.datum.GeodeticDatum;
  *   {@link org.opengis.referencing.cs.EllipsoidalCS Ellipsoidal}
  * </TD></TR></TABLE>
  *
- * @UML abstract SC_GeographicCRS
  * @author ISO 19111
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/03-073r1.zip">Abstract specification 2.0</A>
@@ -34,20 +37,17 @@ import org.opengis.referencing.datum.GeodeticDatum;
  *          A <CODE>getWGS84Parameters()</CODE> method was also defined in the datum.
  *          I see no equivalent in this ISO 19111 specification.
  */
+///@UML (identifier="SC_GeographicCRS")
 public interface GeographicCRS extends SingleCRS {
     /**
      * Returns the coordinate system, which must be ellipsoidal.
-     *
-     * @return The coordinate system.
-     * @UML association usesCS
      */
+/// @UML (identifier="usesCS", obligation=MANDATORY)
 /// EllipsoidalCS getCoordinateSystem();
 
     /**
      * Returns the datum, which must be geodetic.
-     *
-     * @return The datum.
-     * @UML association usesDatum
      */
+/// @UML (identifier="usesDatum", obligation=MANDATORY)
 /// GeodeticDatum getDatum();
 }

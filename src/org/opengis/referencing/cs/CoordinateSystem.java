@@ -12,6 +12,10 @@ package org.opengis.referencing.cs;
 // OpenGIS direct dependencies
 import org.opengis.referencing.IdentifiedObject;
 
+// Annotations
+///import org.opengis.annotation.UML;
+///import static org.opengis.annotation.Obligation.*;
+
 
 /**
  * The set of coordinate system axes that spans a given coordinate space. A coordinate system (CS)
@@ -20,7 +24,6 @@ import org.opengis.referencing.IdentifiedObject;
  * the order in which the coordinate system axes associations are recorded, whenever those
  * coordinates use a coordinate reference system that uses this coordinate system.
  *
- * @UML abstract CS_CoordinateSystem
  * @author ISO 19111
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/03-073r1.zip">Abstract specification 2.0</A>
@@ -30,6 +33,7 @@ import org.opengis.referencing.IdentifiedObject;
  * @see org.opengis.referencing.datum.Datum
  * @see org.opengis.referencing.crs.CoordinateReferenceSystem
  */
+///@UML (identifier="CS_CoordinateSystem")
 public interface CoordinateSystem extends IdentifiedObject {
     /**
      * Returns the dimension of the coordinate system.
@@ -45,7 +49,7 @@ public interface CoordinateSystem extends IdentifiedObject {
      * @param  dimension The zero based index of axis.
      * @return The axis at the specified dimension.
      * @throws IndexOutOfBoundsException if <code>dimension</code> is out of bounds.
-     * @UML association usesAxis
      */
+/// @UML (identifier="usesAxis", obligation=MANDATORY)
     CoordinateSystemAxis getAxis(int dimension) throws IndexOutOfBoundsException;
 }

@@ -30,7 +30,6 @@ import org.opengis.spatialschema.geometry.MismatchedDimensionException;
  * of an operation, then it should keep hold of the {@link CoordinateOperation} interface,
  * and use the contained math transform object whenever it wishes to perform a transform.
  *
- * @UML abstract CT_MathTransform
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-009.pdf">Implementation specification 1.0</A>
  *
@@ -44,8 +43,6 @@ public interface MathTransform {
     /**
      * Gets the dimension of input points.
      *
-     * @UML mandatory dimSource
-     *
      * @revisit Consider renaming <code>getSourceDimensions()</code> for consistency with
      *          {@link OperationMethod}.
      */
@@ -53,8 +50,6 @@ public interface MathTransform {
     
     /**
      * Gets the dimension of output points.
-     *
-     * @UML mandatory dimTarget
      *
      * @revisit Consider renaming <code>getTargetDimensions()</code> for consistency with
      *          {@link OperationMethod}.
@@ -80,8 +75,6 @@ public interface MathTransform {
      * @throws MismatchedDimensionException if <code>ptSrc</code> or
      *         <code>ptDst</code> doesn't have the expected dimension.
      * @throws TransformException if the point can't be transformed.
-     *
-     * @UML operation transform
      */
     DirectPosition transform(DirectPosition ptSrc, DirectPosition ptDst)
             throws MismatchedDimensionException, TransformException;
@@ -107,8 +100,6 @@ public interface MathTransform {
      *               destination array.
      * @param numPts the number of point objects to be transformed.
      * @throws TransformException if a point can't be transformed.
-     *
-     * @UML operation transformList
      */
     void transform(double[] srcPts, int srcOff,
                    double[] dstPts, int dstOff,
@@ -186,8 +177,6 @@ public interface MathTransform {
      *         the expected dimension.
      * @throws TransformException if the derivative can't be evaluated at the
      *         specified point.
-     *
-     * @UML operation derivative
      */
     Matrix derivative(final DirectPosition point)
             throws MismatchedDimensionException, TransformException;
@@ -202,8 +191,6 @@ public interface MathTransform {
      *
      * @return The inverse transform.
      * @throws NoninvertibleTransformException if the transform can't be inversed.
-     *
-     * @UML operation inverse
      */
     MathTransform inverse() throws NoninvertibleTransformException;
     
@@ -212,8 +199,6 @@ public interface MathTransform {
      *
      * @return <code>true</code> if this <code>MathTransform</code> is
      *         an identity transform; <code>false</code> otherwise.
-     *
-     * @UML operation isIdentity
      */
     boolean isIdentity();
 
@@ -223,7 +208,6 @@ public interface MathTransform {
      *
      * @return The Well Know Text for this object.
      * @throws UnsupportedOperationException If this object can't be formatted as WKT.
-     * @UML operation toWKT in Implementation specification 1.0
      */
     String toWKT() throws UnsupportedOperationException;
 }

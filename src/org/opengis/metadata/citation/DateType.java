@@ -16,15 +16,19 @@ import java.util.ArrayList;
 // OpenGIS direct dependencies
 import org.opengis.util.CodeList;
 
+// Annotations
+///import org.opengis.annotation.UML;
+///import static org.opengis.annotation.Obligation.*;
+
 
 /**
  * Identification of when a given event occurred
  *
- * @UML codelist CI_DateType
  * @author ISO 19115
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
  */
+///@UML (identifier="CI_DateType")
 public final class DateType extends CodeList {
     /**
      * Serial number for compatibility with different versions.
@@ -39,23 +43,20 @@ public final class DateType extends CodeList {
 
     /**
      * Date identifies when the resource was brought into existence.
-     *
-     * @UML conditional creation
      */
+/// @UML (identifier="creation", obligation=CONDITIONAL)
     public static final DateType CREATION = new DateType("CREATION");
 
     /**
      * Date identifies when the resource was issued.
-     *
-     * @UML conditional publication
      */
+/// @UML (identifier="publication", obligation=CONDITIONAL)
     public static final DateType PUBLICATION = new DateType("PUBLICATION");
 
     /**
      * Date identifies when the resource was examined or re-examined and improved or amended.
-     *
-     * @UML conditional revision
      */
+/// @UML (identifier="revision", obligation=CONDITIONAL)
     public static final DateType REVISION = new DateType("REVISION");
 
     /**

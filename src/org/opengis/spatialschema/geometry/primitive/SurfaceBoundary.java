@@ -9,6 +9,10 @@
  *************************************************************************************************/
 package org.opengis.spatialschema.geometry.primitive;
 
+// Annotations
+///import org.opengis.annotation.UML;
+///import static org.opengis.annotation.Obligation.*;
+
 
 /**
  * The boundary of {@linkplain Surface surfaces}. A <code>SurfaceBoundary</code> consists of some number
@@ -42,27 +46,27 @@ package org.opengis.spatialschema.geometry.primitive;
  * distinguish one of these as an exterior.
  * </font></blockquote>
  *
- * @UML type GM_SurfaceBoundary
  * @author ISO/DIS 19107
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 2.0
  *
  * @see SolidBoundary
  */
+///@UML (identifier="GM_SurfaceBoundary")
 public interface SurfaceBoundary extends PrimitiveBoundary {
     /**
      * Returns the exterior ring, or <code>null</code> if none.
      *
      * @return The exterior ring, or <code>null</code>.
-     * @UML operation exterior
      */
+/// @UML (identifier="exterior", obligation=MANDATORY)
     public Ring getExterior();
 
     /**
      * Returns the interior rings.
      *
      * @return The interior rings. Never <code>null</code>, but may be an empty array.
-     * @UML operation interior
      */
+/// @UML (identifier="interior", obligation=MANDATORY)
     public Ring[] getInteriors();
 }
