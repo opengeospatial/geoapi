@@ -9,9 +9,8 @@
  *************************************************************************************************/
 package org.opengis.crs.cs;
 
-// J2SE direct dependencies and extensions
+// Direct dependencies
 import javax.units.Unit;
-
 import org.opengis.crs.Info;
 
 

@@ -9,9 +9,7 @@
  *************************************************************************************************/
 package org.opengis.spatialschema.geometry;
 
-// J2SE direct dependencies
 import java.util.Set;
-
 import org.opengis.crs.crs.CoordinateReferenceSystem;
 import org.opengis.crs.operation.IncompatibleOperationException;
 import org.opengis.crs.operation.MathTransform;
@@ -279,6 +277,11 @@ public interface Geometry extends TransfiniteSet {
      * @return The transformed <code>Geometry</code>.
      * @UML operation transform
      *
+     * @revisit How could an implementation know that it should throws <code>IncompatibleOperationException</code>
+     *          since (by design) a math transform doesn't store the source and target CRS? What should be the
+     *          target CRS for the transformed geometry? This methods duplicates
+     *          {@link MathTransform#createTransformedGeometry}; which one should we keep?
+     *          This method should also throws {@link TransformException}.
      */
     public Geometry transform(MathTransform trans) throws IncompatibleOperationException;
 

@@ -77,7 +77,7 @@ public interface DatumFactory extends Factory {
      *
      * @param  properties Name and other properties to give to the new object.
      *         Available properties are {@linkplain Factory listed there}.
-     * @paral  origin The date and time origin of this temporal datum.
+     * @param  origin The date and time origin of this temporal datum.
      * @throws FactoryException if the object creation failed.
      */
     TemporalDatum createTemporalDatum(Map properties, Date origin) throws FactoryException;
@@ -87,7 +87,7 @@ public interface DatumFactory extends Factory {
      *
      * @param  properties Name and other properties to give to the new object.
      *         Available properties are {@linkplain Factory listed there}.
-     * @paral  type The type of this vertical datum (often “geoidal”).
+     * @param  type The type of this vertical datum (often “geoidal”).
      * @throws FactoryException if the object creation failed.
      * @UML operation createVerticalDatum
      */

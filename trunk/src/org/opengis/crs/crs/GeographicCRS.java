@@ -10,6 +10,8 @@
 package org.opengis.crs.crs;
 
 // OpenGIS direct dependencies
+import org.opengis.crs.cs.EllipsoidalCS; 	 
+import org.opengis.crs.datum.GeodeticDatum;
 
 
 /**
@@ -30,8 +32,22 @@ package org.opengis.crs.crs;
  *
  * @revisit OGC document 01-009 defines a <CODE>getWGS84ConversionInfo()</CODE> method.
  *          A <CODE>getWGS84Parameters()</CODE> method was also defined in the datum.
- *          I see no equivalent in this ISO 19107 specification.
+ *          I see no equivalent in this ISO 19111 specification.
  */
 public interface GeographicCRS extends CoordinateReferenceSystem {
+    /** 	 
+     * Returns the coordinate system, which must be ellipsoidal. 	 
+     * 	 
+     * @return The coordinate system. 	 
+     * @UML association usesCS 	 
+     */ 	 
+/// EllipsoidalCS getCoordinateSystem(); 	 
 
+    /** 	 
+     * Returns the datum, which must be geodetic. 	 
+     * 	 
+     * @return The datum. 	 
+     * @UML association usesDatum 	 
+     */ 	 
+/// GeodeticDatum getDatum();
 }

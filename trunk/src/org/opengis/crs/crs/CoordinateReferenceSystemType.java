@@ -18,9 +18,11 @@ import org.opengis.util.CodeList;
  * allowable types of {@link CoordinateReferenceSystem}s.
  *
  * @UML codelist SC_CoordinateReferenceSystemType
- * @author ISO 19111
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
- * @version <A HREF="http://www.opengis.org/docs/03-073r1.zip">Abstract specification 2.0</A>
+ * @version 2.0
+ *
+ * @revisit This enumeration, as well as {@link DerivedCRSType}, duplicate
+ *          <code>instanceof</code> work. Do we really need those enumerations?
  */
 public final class CoordinateReferenceSystemType extends CodeList {
     /**
@@ -105,26 +107,26 @@ public final class CoordinateReferenceSystemType extends CodeList {
      * List of all enumeration of this type.
      */
     private static final CoordinateReferenceSystemType[] VALUES = new CoordinateReferenceSystemType[] {
-                            GEOGRAPHIC, VERTICAL, ENGINEERING, IMAGE, TEMPORAL, GEOCENTRIC, PROJECTED, COMPOUND, DERIVED };
+        GEOGRAPHIC, VERTICAL, ENGINEERING, IMAGE, TEMPORAL, GEOCENTRIC, PROJECTED, COMPOUND, DERIVED };
 
     /**
      * Constructs an enum with the given name.
      */
     private CoordinateReferenceSystemType(final String name, final int ordinal) {
-            super(name, ordinal);
+        super(name, ordinal);
     }
 
     /**
      * Returns the list of <code>CoordinateReferenceSystemType</code>s.
      */
     public static CoordinateReferenceSystemType[] values() {
-            return (CoordinateReferenceSystemType[]) VALUES.clone();
+        return (CoordinateReferenceSystemType[]) VALUES.clone();
     }
 
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
     public /*{CoordinateReferenceSystemType}*/ CodeList[] family() {
-            return values();
+        return values();
     }
 }

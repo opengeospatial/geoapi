@@ -10,7 +10,8 @@
 package org.opengis.crs.crs;
 
 // OpenGIS direct dependencies
-
+import org.opengis.crs.datum.EngineeringDatum;
+ 
 
 /**
  * A contextually local coordinate reference system. It can be divided into two broad categories:
@@ -39,5 +40,11 @@ package org.opengis.crs.crs;
  * @version <A HREF="http://www.opengis.org/docs/03-073r1.zip">Abstract specification 2.0</A>
  */
 public interface EngineeringCRS extends CoordinateReferenceSystem {
-
+    /**
+     * Returns the datum, which must be an engineering one.
+     *
+     * @return The datum.
+     * @UML association usesDatum
+     */
+/// EngineeringDatum getDatum();
 }
