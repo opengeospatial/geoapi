@@ -7,7 +7,7 @@
  ** Copyright (C) 2003 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
  **
  *************************************************************************************************/
-package org.opengis.metadata;
+package org.opengis.metadata.spatial;
 
 // J2SE directdependencies
 import java.util.List;
@@ -30,7 +30,7 @@ public final class GeometricObjectType extends CodeList {
     /**
      * Serial number for compatibility with different versions.
      */
-//    private static final long serialVersionUID = -1901029875497457189L;
+    private static final long serialVersionUID = -8910485325021913980L;
 
     /**
      * List of all enumerations of this type.

@@ -7,7 +7,7 @@
  ** Copyright (C) 2003 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
  **
  *************************************************************************************************/
-package org.opengis.metadata;
+package org.opengis.metadata.spatial;
 
 // J2SE directdependencies
 import java.util.List;
@@ -18,38 +18,60 @@ import org.opengis.util.CodeList;
 
 
 /**
- * Code indicating whether grid data is point or area.
+ * Point in a pixel corresponding to the Earth location of the pixel.
  *
- * @UML codelist MD_CellGeometryCode
+ * @UML codelist MD_PixelOrientationCode
  * @author ISO 19115
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
  */
-public final class CellGeometry extends CodeList {
+public final class PixelOrientation extends CodeList {
     /**
      * Serial number for compatibility with different versions.
      */
-    private static final long serialVersionUID = -1901029875497457189L;
+    private static final long serialVersionUID = 7885677198357949308L;
 
     /**
      * List of all enumerations of this type.
      * Must be declared before any enum declaration.
      */
-    private static final List VALUES = new ArrayList(2);
+    private static final List VALUES = new ArrayList(5);
 
     /**
-     * Each cell represents a point.
+     * Point in a pixel corresponding to the Earth location of the pixel.
      *
-     * @UML conditional point
+     * @UML conditional center
      */
-    public static final CellGeometry POINT = new CellGeometry("POINT");
+    public static final CellGeometry CENTER = new CellGeometry("CENTER");
 
     /**
-     * Each cell represents an area.
+     * The corner in the pixel closest to the origin of the SRS; if two are at the same
+     * distance from the origin, the one with the smallest x-value.
      *
-     * @UML conditional area
+     * @UML conditional lowerLeft
      */
-    public static final CellGeometry AREA = new CellGeometry("AREA");
+    public static final CellGeometry LOWER_LEFT = new CellGeometry("LOWER_LEFT");
+
+    /**
+     * Next corner counterclockwise from the lower left.
+     *
+     * @UML conditional lowerRight
+     */
+    public static final CellGeometry LOWER_RIGHT = new CellGeometry("LOWER_RIGHT");
+
+    /**
+     * Next corner counterclockwise from the lower right.
+     *
+     * @UML conditional upperRight
+     */
+    public static final CellGeometry UPPER_RIGHT = new CellGeometry("UPPER_RIGHT");
+
+    /**
+     * Next corner counterclockwise from the upper right.
+     *
+     * @UML conditional upperLeft
+     */
+    public static final CellGeometry UPPER_LEFT = new CellGeometry("UPPER_LEFT");
 
     /**
      * Constructs an enum with the given name. The new enum is
@@ -57,7 +79,7 @@ public final class CellGeometry extends CodeList {
      *
      * @param name The enum name. This name must not be in use by an other enum of this type.
      */
-    public CellGeometry(final String name) {
+    public PixelOrientation(final String name) {
         super(name, VALUES);
     }
 

@@ -7,7 +7,7 @@
  ** Copyright (C) 2003 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
  **
  *************************************************************************************************/
-package org.opengis.metadata;
+package org.opengis.metadata.spatial;
 
 
 /**
@@ -31,7 +31,7 @@ public interface GridSpatialRepresentation extends SpatialRepresentation {
      *
      * @UML mandatory axisDimensionsProperties
      */
-//    Dimension[] getAxisDimensionsProperties();
+    Dimension[] getAxisDimensionsProperties();
 
     /**
      * Identification of grid data as point or cell.
