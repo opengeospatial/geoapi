@@ -31,7 +31,10 @@ import java.util.Date;
 public interface TemporalExtent {
     /**
      * Returns the date and time for the content of the dataset.
+     *
+     * @revisit ISO 19115 use a TM_Primitive return type from ISO 19108.
+     *          We need to give a closer look at this specification.
      */
-/// @UML (identifier="extent", obligation=MANDATORY)
-    Date getExtent();
+//  @UML (identifier="extent", obligation=MANDATORY)
+//  Date getExtent();
 }
