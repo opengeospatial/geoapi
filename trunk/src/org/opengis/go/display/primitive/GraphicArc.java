@@ -164,6 +164,12 @@ public interface GraphicArc extends Graphic {
      * @throws GeometryNotSupportedException if <code>Conic</code> is not an ellipse.
      */
     public void setConic(Conic conic) throws GeometryNotSupportedException;
+    
+    /**
+     * Returns the ISO 19107 <code>Conic</code> geometry for this <code>Graphic</code>
+     * @return the Conic representing this GraphicArc
+     */
+    public Conic getConic();
 
     /**
      * Sets the orientation for the width axis.  On a <code>Canvas</code>, this
