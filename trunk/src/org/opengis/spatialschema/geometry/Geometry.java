@@ -382,6 +382,18 @@ public interface Geometry extends TransfiniteSet {
     boolean isMutable();
 
     /**
+     * Returns an immutable copy of this geometry.  The returned Geometry is
+     * guaranteed to have an <code>isMutable()</code> value of false.  Moreover,
+     * as per the contract of <code>isMutable()</code>, its values will never
+     * change.  Any attempts to change the values of the returned object will
+     * result in a <code>UnmodifiableGeometryException</code>.
+     * <p>
+     * Implementors are free to return <code>this</code> if this object is
+     * already immutable.
+     */
+    Geometry toImmutable();
+
+    /**
      * Returns a clone of this geometry with <em>deep</em> copy semantic. Any change on this object
      * will have no impact on the returned clone, and conversely. For big geometries, implementations
      * are encouraged to share as much internal data as possible (as opposed to performing a real
