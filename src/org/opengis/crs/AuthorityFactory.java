@@ -51,7 +51,7 @@ public interface AuthorityFactory extends Factory {
      * argument specify the base class. For example if this factory is an instance
      * of {@link org.opengis.crs.crs.CRSAuthorityFactory}, then:
      * <ul>
-     *   <li><strong><code>{@linkplain org.opengis.crs.crs.CRS}.class&nbsp;</code></strong>
+     *   <li><strong><code>{@linkplain org.opengis.crs.crs.CoordinateReferenceSystem}.class&nbsp;</code></strong>
      *       asks for all authority codes accepted by
      *       {@link org.opengis.crs.crs.CRSAuthorityFactory#createGeographicCRS createGeographicCRS},
      *       {@link org.opengis.crs.crs.CRSAuthorityFactory#createProjectedCRS createProjectedCRS},
@@ -95,7 +95,8 @@ public interface AuthorityFactory extends Factory {
      * most precise method instead of this one (for example
      * <code>&nbsp;{@linkplain org.opengis.crs.crs.CRSAuthorityFactory#createCoordinateReferenceSystem
      * createCoordinateReferenceSystem}(code)&nbsp;</code> instead of <code>&nbsp;createObject(code)&nbsp;</code>
-     * if the caller know he is asking for a {@linkplain org.opengis.crs.crs.CRS coordinate reference system}).
+     * if the caller know he is asking for a {@linkplain org.opengis.crs.crs.CoordinateReferenceSystem coordinate
+     * reference system}).
      *
      * @param  code Value allocated by authority.
      * @throws NoSuchAuthorityCodeException if the specified <code>code</code> was not found.

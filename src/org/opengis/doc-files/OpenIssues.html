@@ -130,20 +130,6 @@
         <A HREF="../crs/operation/GeneralOperationParameter.html"><CODE>GeneralOperationParameter</CODE></A>
         super-interface, in order to be on per with the "<CODE>minimumOccurs</CODE>" attribute.</FONT></P></TD></TR></TABLE>
 
-    <LI><P ALIGN="justify">Some attribute names are misleading regarding the type. For example "<CODE>includesCRS</CODE>"
-        in <A HREF="../crs/crs/CompoundCRS.html"><CODE>CompoundCRS</CODE></A> is of type
-        <A HREF="../crs/crs/CoordinateReferenceSystem.html"><CODE>CoordinateReferenceSystem</CODE></A>, not
-        <A HREF="../crs/crs/CRS.html"><CODE>CRS</CODE></A> (which exists as an other interface).
-        <STRONG>NOTE:</STRONG> The ambiguity would disaspear if the next point (below) is accepted.</P></LI>
-
-    <LI><P ALIGN="justify">It may be worth to drop the <A HREF="../crs/crs/CRS.html"><CODE>CRS</CODE></A>
-         interface (see its javadoc for a rational).</P></LI>
-
-        <TABLE cellpadding='0' cellspacing='0'><TR VALIGN="top"><TD><STRONG>PROPOSAL:&nbsp;</STRONG></TD><TD>
-        <P ALIGN="justify"><FONT COLOR="red">Allows
-        <A HREF="../crs/crs/CompoundCRS.html"><CODE>CompoundCRS</CODE></A> to contains other <CODE>CompoundCRS</CODE>,
-        then drop the <A HREF="../crs/crs/CRS.html"><CODE>CRS</CODE></A> interface.</FONT></P></TD></TR></TABLE>
-
     <LI><P ALIGN="justify"><A HREF="../spatialschema/geometry/complex/CompositeCurve.html"><CODE>CompositeCurve</CODE></A>
             extends (indirectly) both <CODE>Primitive</CODE> and <CODE>Complex</CODE>. Consequently,
             there is a clash in the semantics of some set theoretic operation. Specifically,
@@ -164,6 +150,73 @@
   <H1><A NAME="Changes">Previous issues (now fixed)</A></H1>
   <H2>Changes in Spatial Referencing by Coordinates</H2>
   <UL>
+    <LI><P ALIGN="justify">It may be worth to drop the <CODE>CRS</CODE> interface.
+        This interface stands between
+        <A HREF="../crs/ReferenceSystem.html"><CODE>ReferenceSystem</CODE></A> and
+        <A HREF="../crs/crs/CoordinateReferenceSystem.html"><CODE>CoordinateReferenceSystem</CODE></A>
+        and looks like an anomaly in an otherwise quite natural hierarchy
+        (<code>CoordinateReferenceSystem extends ReferenceSystem</code>).
+        "<code>CRS</code>" is just an abbreviation for "<code>CoordinateReferenceSystem</code>";
+        its name doesn't give any clue about the difference between those two interfaces.
+        Furthermore, the main "raison d'être" for <code>CRS</code> seems to be related to the
+        <A HREF="../crs/crs/CompoundCRS.html"><CODE>CompoundCRS</CODE></A>'s contract ("<cite>A Compound
+        CRS is a coordinate reference system that combines two or more coordinate reference systems, <U>none
+        of which can itself be compound</U></cite>" - emphasis is mine). This contract is enforced
+        by the hierarchy (<code>CompoundCRS</code> is the only "<code>FooCRS</code>" interface that
+        extends directly <code>CRS</code>) and by the <code>getCoordinateReferenceSystem</code>
+        return type. But I question it for the following reasons:</P>
+        <ul>
+         <li><P ALIGN="justify">In "<u>Coordinate Transformation Services</u>" (OGC document
+              01-009), compound CRS was specified as a pair of arbitrary CRS ("head" and "tail").
+              Each of them can be an other compound CRS, allowing the creation of a tree.
+              This design was convenient to use (see next points below) and avoid a special
+              hierarchy for compound CRS; it is just like any other CRS.</P></li>
+
+          <li><P ALIGN="justify">It is convenient to use <code>CompoundCRS</code> as building
+              block for more complex <code>CompoundCRS</code>, and get back the original one
+              later. For example a user could creates the following:</P>
+              <pre>
+                  CRS  vertical = new VerticalCRS(...);
+                  CRS  temporal = new TemporalCRS(...);
+                  CRS  cs2D = new GeographicCRS(...);
+                  CRS  cs3D = new CompoundCRS(cs2D, vertical);
+                  CRS  cs4D = new CompoundCRS(cs3D, temporal);
+              </pre>
+              <P ALIGN="justify">Then, at some later stage, breaks <code>cs4D</code> in its two
+              components (<code>headCS</code> and <code>tailCS</code> in OGC 01-009's terminology)
+              and compares the head CRS with <code>cs3D</code>. The user may wants to do
+              that because its own code may have some special hooks for <code>cs3D</code>,
+              since he has built this CRS himself. With the current <code>CompoundCRS</code>
+              speficiation, this approach is not possible since <code>getCoordinateReferenceSystem</code>
+              allow only a flat view of component's CRS; any user custom
+              <code>CompoundCRS</code> are lost.</P></li>
+        </ul>
+        <P ALIGN="justify">If this <code>CRS</code> interface were removed and
+        <A HREF="../crs/crs/CompoundCRS.html"><CODE>CompoundCRS</CODE></A>
+        put on the same level than all other CRS in the hierarchy, then the
+        most important difficulty would probably by the semantic of 
+        <code>getCoordinateSystem()</code> and <code>getDatum()</code> methods.
+        Various proposal may be considered:</P>
+        <ul>
+          <li>they may return <code>null</code>;</li>
+          <li>they may throw a <code>UnsupportedOperationException</code>;</li>
+          <li>they may return a special implementation of <code>CoordinateSystem</code>
+              and <code>Datum</code>, which don't need to be public: the
+              <code>CompoundCRS</code> implementation can generate them as needed.
+              Note that this behaviour may actually be quite useful. For example,
+              a <code>CompoundCRS</code> made of a <code>ProjectedCRS</code> with
+              a <code>VerticalCRS</code> have a 3-D <code>CartesianCS</code>.</li>
+        </ul>
+        <BR>
+
+        <TABLE cellpadding='0' cellspacing='0'><TR VALIGN="top"><TD><STRONG>FIX:&nbsp;</STRONG></TD><TD>
+        <P ALIGN="justify"><FONT COLOR="green">Allows
+        <A HREF="../crs/crs/CompoundCRS.html"><CODE>CompoundCRS</CODE></A> to contains other <CODE>CompoundCRS</CODE>,
+        then drop the <CODE>CRS</CODE> interface. This fix resolves also some misleading attribute name. For example
+        "<CODE>includesCRS</CODE>" in <A HREF="../crs/crs/CompoundCRS.html"><CODE>CompoundCRS</CODE></A> is of type
+        <A HREF="../crs/crs/CoordinateReferenceSystem.html"><CODE>CoordinateReferenceSystem</CODE></A>, not
+        <CODE>CRS</CODE>.</FONT></P></TD></TR></TABLE>
+
     <LI><P ALIGN="justify">The 2003-073 specification duplicates the name and identifier attributes in many
         interfaces, with different identifier name (e.g. "<CODE>ellipsoidName</CODE>", "<CODE>datumName</CODE>",
         "<CODE>csName</CODE>", "<CODE>crsName</CODE>", etc.). A common super-interface like the legacy
