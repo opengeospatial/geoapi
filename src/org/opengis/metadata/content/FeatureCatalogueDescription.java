@@ -10,7 +10,7 @@
 package org.opengis.metadata.content;
 
 // J2SE direct dependencies
-import java.util.Set;
+import java.util.Collection;
 import java.util.Locale;
 
 // OpenGIS direct dependencies
@@ -41,7 +41,7 @@ public interface FeatureCatalogueDescription extends ContentInformation {
      * Language(s) used within the catalogue
      */
 /// @UML (identifier="language", obligation=OPTIONAL)
-    Set/*<Locale>*/ getLanguages();
+    Collection/*<Locale>*/ getLanguages();
 
     /**
      * Indication of whether or not the feature catalogue is included with the dataset.
@@ -53,11 +53,11 @@ public interface FeatureCatalogueDescription extends ContentInformation {
      * Subset of feature types from cited feature catalogue occurring in dataset.
      */
 /// @UML (identifier="featureTypes", obligation=OPTIONAL)
-    Set/*<GenericName>*/ getFeatureTypes();
+    Collection/*<GenericName>*/ getFeatureTypes();
 
     /**
      * Complete bibliographic reference to one or more external feature catalogues.
      */
 /// @UML (identifier="featureCatalogueCitation", obligation=MANDATORY)
-    Set/*<Citation>*/ getFeatureCatalogueCitations();
+    Collection/*<Citation>*/ getFeatureCatalogueCitations();
 }

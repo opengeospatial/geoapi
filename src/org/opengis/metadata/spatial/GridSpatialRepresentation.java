@@ -10,7 +10,7 @@
 package org.opengis.metadata.spatial;
 
 // J2SE direct dependencies
-import java.util.Set;
+import java.util.List;
 
 // Annotations
 ///import org.opengis.annotation.UML;
@@ -36,7 +36,7 @@ public interface GridSpatialRepresentation extends SpatialRepresentation {
      * Information about spatial-temporal axis properties.
      */
 /// @UML (identifier="axisDimensionsProperties", obligation=MANDATORY)
-    Set/*<Dimension>*/ getAxisDimensionsProperties();
+    List/*<Dimension>*/ getAxisDimensionsProperties();
 
     /**
      * Identification of grid data as point or cell.

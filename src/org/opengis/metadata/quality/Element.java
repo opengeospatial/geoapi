@@ -10,7 +10,7 @@
 package org.opengis.metadata.quality;
 
 // J2SE direct dependencies
-import java.util.List;
+import java.util.Collection;
 import java.util.Date;
 
 // OpenGIS direct dependencies
@@ -36,7 +36,7 @@ public interface Element {
      * Name of the test applied to the data.
      */
 /// @UML (identifier="nameOfMeasure", obligation=OPTIONAL)
-    List/*<InternationalString>*/ getNamesOfMeasure();
+    Collection/*<InternationalString>*/ getNamesOfMeasure();
 
     /**
      * Code identifying a registered standard procedure, or <code>null</code> if none.

@@ -10,7 +10,7 @@
 package org.opengis.metadata.lineage;
 
 // J2SE direct dependencies
-import java.util.Set;
+import java.util.Collection;
 import java.util.Date;
 
 // OpenGIS direct dependencies
@@ -54,11 +54,11 @@ public interface ProcessStep {
      * organization(s) associated with the process step.
      */
 /// @UML (identifier="processor", obligation=OPTIONAL)
-    Set/*<ResponsibleParty>*/ getProcessors();
+    Collection/*<ResponsibleParty>*/ getProcessors();
 
     /**
      * Information about the source data used in creating the data specified by the scope.
      */
 /// @UML (identifier="source", obligation=OPTIONAL)
-    Set/*<Source>*/ getSources();
+    Collection/*<Source>*/ getSources();
 }

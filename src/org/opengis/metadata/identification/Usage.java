@@ -10,7 +10,7 @@
 package org.opengis.metadata.identification;
 
 // J2SE direct dependencies
-import java.util.Set;
+import java.util.Collection;
 import java.util.Date;
 
 // OpenGIS direct dependencies
@@ -55,5 +55,5 @@ public interface Usage {
      * using the resource(s).
      */
 /// @UML (identifier="userContactInfo", obligation=MANDATORY)
-    Set/*<ResponsibleParty>*/ getUserContactInfo();
+    Collection/*<ResponsibleParty>*/ getUserContactInfo();
 }

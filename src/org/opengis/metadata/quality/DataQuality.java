@@ -10,7 +10,7 @@
 package org.opengis.metadata.quality;
 
 // J2SE direct dependencies
-import java.util.Set;
+import java.util.Collection;
 
 // OpenGIS direct dependencies
 import org.opengis.metadata.lineage.Lineage;
@@ -44,7 +44,7 @@ public interface DataQuality {
      * {@linkplain org.opengis.metadata.maintenance.ScopeCode#DATASET dataset}.
      */
 /// @UML (identifier="report", obligation=CONDITIONAL)
-    Set/*<Element>*/ getReports();
+    Collection/*<Element>*/ getReports();
 
     /**
      * Non-quantitative quality information about the lineage of the data specified by the scope.

@@ -10,7 +10,7 @@
 package org.opengis.metadata.identification;
 
 // J2SE direct dependencies
-import java.util.List;
+import java.util.Collection;
 
 // OpenGIS direct dependencies
 import org.opengis.util.InternationalString;
@@ -34,7 +34,7 @@ public interface Keywords {
      * Commonly used word(s) or formalised word(s) or phrase(s) used to describe the subject.
      */
 /// @UML (identifier="keyword", obligation=MANDATORY)
-    List/*<InternationalString>*/ getKeywords();
+    Collection/*<InternationalString>*/ getKeywords();
 
     /**
      * Subject matter used to group similar keywords.

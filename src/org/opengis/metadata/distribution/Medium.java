@@ -10,7 +10,7 @@
 package org.opengis.metadata.distribution;
 
 // J2SE direct dependencies and extensions
-import java.util.List;
+import java.util.Collection;
 import javax.units.Unit;
 
 // OpenGIS direct dependencies
@@ -41,7 +41,7 @@ public interface Medium {
      * The numbers should be greater than zero.
      */
 /// @UML (identifier="density", obligation=OPTIONAL)
-    List/*<Number>*/ getDensities();
+    Collection/*<Number>*/ getDensities();
 
     /**
      * Units of measure for the recording density.

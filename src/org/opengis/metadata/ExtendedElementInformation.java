@@ -10,8 +10,7 @@
 package org.opengis.metadata;
 
 // J2SE direct dependencies
-import java.util.Set;
-import java.util.List;
+import java.util.Collection;
 
 // OpenGIS direct dependencies
 import org.opengis.util.InternationalString;
@@ -105,7 +104,7 @@ public interface ExtendedElementInformation {
      * The name(s) may be standard metadata element(s) or other extended metadata element(s).
      */
 /// @UML (identifier="parentEntity", obligation=MANDATORY)
-    Set/*<String>*/ getParentEntity();
+    Collection/*<String>*/ getParentEntity();
 
     /**
      * Specifies how the extended element relates to other existing elements and entities.
@@ -117,11 +116,11 @@ public interface ExtendedElementInformation {
      * Reason for creating the extended element.
      */
 /// @UML (identifier="rationale", obligation=OPTIONAL)
-    List/*<InternationalString>*/ getRationales();
+    Collection/*<InternationalString>*/ getRationales();
 
     /**
      * Name of the person or organization creating the extended element.
      */
 /// @UML (identifier="source", obligation=MANDATORY)
-    Set/*<ResponsibleParty>*/ getSources();
+    Collection/*<ResponsibleParty>*/ getSources();
 }

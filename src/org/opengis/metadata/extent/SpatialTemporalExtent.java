@@ -10,7 +10,7 @@
 package org.opengis.metadata.extent;
 
 // J2SE direct dependencies
-import java.util.Set;
+import java.util.Collection;
 
 // Annotations
 ///import org.opengis.annotation.UML;
@@ -33,5 +33,5 @@ public interface SpatialTemporalExtent extends TemporalExtent {
      * @return The list of geographic extents (never <code>null</code>).
      */
 /// @UML (identifier="spatialExtent", obligation=MANDATORY)
-    Set/*<GeographicExtent>*/ getSpatialExtent();
+    Collection/*<GeographicExtent>*/ getSpatialExtent();
 }
