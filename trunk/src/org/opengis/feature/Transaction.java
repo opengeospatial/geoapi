@@ -64,7 +64,7 @@ import java.util.Set;
  * <li>A new transaction is created (an instanceof DefaultTransaction with a handle)</li>
  * <li>A hint is provided using Transaction.putProperty( key, value )</li>
  * <li>Transaction is provided to two FeatureStores, this may result
- *     in Transaction.State instances being registered</li>
+ *     in several Transaction.State instances being registered</li>
  *     <ul>
  *     <li>TransactionStateDiff (stored by DataStore):
  *         Used for in memory locking is used by many DataStore's
@@ -110,6 +110,17 @@ import java.util.Set;
  * @version $Id$
  */
 public interface Transaction {
+    
+    /**
+     * Marker constant used to indicate immidiate response.
+     * <p>
+     * The constant is a pure Marker (similar in spirit to a Null Object pattern).
+     * All methods do nothing, this constant can be detected by interested parties
+     * as a request to perform actions immidiately.
+     * </p>
+     */
+    public static final Transaction AUTO_COMMIT = new AutoCommit();
+    
     /**
      * Retrieve a Transaction property held by this transaction.
      * <p>
@@ -300,4 +311,72 @@ public interface Transaction {
          */
         void rollback() throws IOException;
     }
+}
+
+/**
+ * NullObject indicating AUTO_COMMIT mode.
+ * <p>
+ * It follows the pattern of "Null Object" or more accuratly "Special Case".
+ * </p>
+ * @author jgarnett
+ */
+class AutoCommit implements Transaction {
+    /** AutoCommit cannot retain properties */
+    public Object getProperty(Object key) {
+        return null;
+    }
+    /** AutoCommit cannot retain authorizations */ 
+    public Set getAuthorizations() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+    /** AutoCommit cannot retain state - it is infact stateless */
+    public void putState(Object key, State state) {
+        // TODO Auto-generated method stub        
+    }
+    /** AutoCommit cannot retain state - it is infact stateless */
+    public void removeState(Object key) {
+        // TODO Auto-generated method stub
+        
+    }
+    /** AutoCommit cannot retain state - it is infact stateless */
+    public State getState(Object key) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+    /** AutoCommit commits all the time - so this is a NOP */
+    public void commit() throws IOException {
+        // TODO Auto-generated method stub
+        
+    }
+    /**
+     * AutoCommit does not support rollback - it is already too late.
+     * 
+     * @throws IOException Indicating to client code that rollback cannot be supported
+     */
+    public void rollback() throws IOException {
+        // Conversly we could treat this as a a NOP
+        // Justification - the commit has already occured a rollback
+        // would acomplish nothing. And nothing is just what we can do.
+        throw new IOException("AUTO_COMMIT does not support rollback");
+    }
+    /** AutoCommit cannot retain authorizations */ 
+    public void addAuthorization(String authID) throws IOException {
+        throw new IOException("Authorization IDs are not valid for AutoCommit Transaction");
+    }
+
+    /**
+     * AutoCommit does not support properties.
+     * 
+     * @throws IOException Indicating to client code that properties are not supported
+     */
+    public void putProperty(Object key, Object value) throws IOException {
+        throw new UnsupportedOperationException("AUTO_COMMIT does not support properties");        
+    }
+
+    /** AutoCommit does not maintain State - so this is a NOP */
+    public void close() throws IOException {
+        // We have no state to clean up after
+    }
+    
 }
