@@ -2,40 +2,70 @@
 
 <HTML>
   <HEAD>
-    <TITLE>Open issues about OpenGIS's UML</TITLE>
+    <TITLE>Open issues about UML</TITLE>
   </HEAD>
   <BODY>
-  <H1>Open issues about OpenGIS's UML</H1>
-  <P ALIGN="justify">The following are GeoAPI comments (not OGC comments):</P>
+  <H1>Open issues about UML</H1>
+  <P ALIGN="justify">The following are <A HREF="http://geoapi.sourceforge.net">GeoAPI</A> comments
+  (not <A HREF="http://www.opengis.org">OGC</A> comments). Those observations were collected during
+  the process of hand-editing the Java interfaces that were created automatically from the UML by a
+  script. In the following discussion, "specification 2003-73" refers to the <EM>abstract</EM>
+  specification <A HREF="http://www.opengis.org/docs/03-073r1.zip">Spatial Referencing by Coordinates
+  (Topic 2)</A>, while "specification 2001-009" refers to the <EM>implementation</EM> specification
+  <A HREF="http://www.opengis.org/docs/01-009.pdf">Coordinate Transformation Services</A>. The
+  later was based on a older abstract specification.
+  </P>
   <P>&nbsp;</P>
   <H2>General remarks</H2>
   <UL>
-    <LI><P ALIGN="justify">UML found in the 2003-073 specification contains only attributes or
-        associations, no methods. Many services found in the legacy 2001-009 specification are
-        not available in latest UML. More specifically:</P>
+    <LI><P ALIGN="justify">UML found in the 2003-073 specification contains only <EM>attributes</EM>
+        or <EM>associations</EM>, no <EM>operations</EM>. Many services found in the legacy 2001-009
+        specification are not available in latest UML. More specifically:</P>
         <UL>
-          <LI><P ALIGN="justify">There is nothing like a transform method taking
-          a point in argument and returning a transformed point (e.g. the legacy
+          <LI>There is nothing like a transformation method taking a point or an array
+          in argument and returning a transformed point or array (e.g. the legacy
           <A HREF=../../../../legacy/org/opengis/ct/CT_MathTransform.html><CODE>CT_MathTransform</CODE></A>
-          interface).</P></LI>
+          interface).</LI>
 
-          <LI><P ALIGN="justify">There is no factory at all (e.g. the legacy
+          <LI>There is no factory at all (e.g. the legacy
           <A HREF=../../../../legacy/org/opengis/ct/CT_CoordinateTransformationFactory.html><CODE>CT_CoordinateTransformationFactory</CODE></A>
-          interface).</P></LI>
+          interface).</LI>
         </UL>
+        <P ALIGN="justify"><STRONG>PROPOSAL:</STRONG> <FONT COLOR="red">Factory and operations from
+        the legacy 2001-009 specification should be ported to the 2003-073 specification.</FONT></P>
     </LI>
 
-    <LI><P ALIGN="justify">The "<CITE>Well Know Text</CITE>" (WKT) format described in the 2001-009
-        specification is not mentioned in the 2003-073 specification. The 2003-073 specification do
-        not proposes any standard parameter name. The 2001-009 specification proposed some of them
-        (e.g. "<CODE>semi_major</CODE>", "<CODE>semi_minor</CODE>", "<CODE>standard_parallel_1</CODE>").
-        Those parameter names are listed on the <A HREF="http://www.remotesensing.org/geotiff/proj_list/">remotesensing.org</A>
-        web site.</P></LI>
+    <LI><P ALIGN="justify">There is no standard parameter names and no "<CITE>Well Know Text</CITE>"
+        (WKT) format in the 2003-073 specification. Standard parameter names and format were proposed
+        in the 2001-009 specification (e.g. "<CODE>semi_major</CODE>", "<CODE>semi_minor</CODE>",
+        "<CODE>standard_parallel_1</CODE>", <I>etc.</I>). Some developpers have already accepted
+        those names as "standard". For example, OGC parameter names are listed on the
+        <A HREF="http://www.remotesensing.org/geotiff/proj_list/">remotesensing.org</A> web site.</P>
+        <P ALIGN="justify"><STRONG>PROPOSAL:</STRONG> <FONT COLOR="red"><CITE>Well Know Text</CITE>
+        format and parameter names from the legacy 2001-009 specification should be ported to the
+        2003-073 specification. They are <U>proposed</U> standards; we recognize that different vendors
+        already use different sets of parameter names.</FONT></P>
+    </LI>
 
-    <LI><P ALIGN="justify">There is no localization support in both specifications. Localization is an
-        European Union requirement. UML should specify which <CODE>CharacterString</CODE> are localizable
-        and which ones are not. A proposal is to add a new stereotype in UML:
-        <CODE>LocalizableCharacterString</CODE>.</P></LI>
+    <LI><P ALIGN="justify">No exception are defined in case of failure (for example if a map projection
+        fails to converge because the coordinate point is outside the valid area).</P>
+        <P ALIGN="justify"><STRONG>PROPOSAL:</STRONG> <FONT COLOR="red">The specification should
+        defines some minimal set of exceptions (e.g. <CODE>ConversionException</CODE>,
+        <CODE>MapProjectionException</CODE>, <CODE>IllegalCoordinateSystemException</CODE>,
+        <I>etc.</I>).</FONT></P>
+     </LI>
+
+    <LI><P ALIGN="justify">There is no localization support in all specifications I have read up to date.
+        Localization is an European Union requirement. Some country like Canada requires bilingual software
+        in their administrations. However, not all <CODE>CharacterString</CODE> should be localizable; for
+        example <CITE>Well Know Text</CITE> or code name should probably be language neutral. The way to
+        localize a character string is profile-dependent, but the UMLs should at least specify which
+        <CODE>CharacterString</CODE> are localizable and which ones are not.</P>
+        <P ALIGN="justify"><STRONG>PROPOSAL:</STRONG> <FONT COLOR="red">Add a new stereotype in UML:
+        <CODE>LocalizableCharacterString</CODE>. Update all UML accordingly. Only
+        <CODE>LocalizableCharacterString</CODE> can be localized. The localization is performed in
+        a profile-dependent way.</FONT></P>
+     </LI>
   </UL>
 
   <P>&nbsp;</P>
@@ -45,36 +75,67 @@
         interfaces, with different identifier name (e.g. "<CODE>ellipsoidName</CODE>", "<CODE>datumName</CODE>",
         "<CODE>csName</CODE>", "<CODE>crsName</CODE>", etc.). A common super-interface like the legacy
         <A HREF=../../../../legacy/org/opengis/cs/CS_Info.html><CODE>CS_Info</CODE></A> would be more
-        convenient.</P></LI>
+        convenient.</P>
+        <P ALIGN="justify"><STRONG>PROPOSAL:</STRONG> <FONT COLOR="red">Drop all classname prefix in
+        "<code>name</code>" and "<code>ID</code>" attributes. Moves "<code>name</code>", "<code>ID</code>"
+        and "<code>remarks</code>" attributes in a common super-interface like the legacy
+        <A HREF=../../../../legacy/org/opengis/cs/CS_Info.html><CODE>CS_Info</CODE></A>.</FONT></P>
+    </LI>
 
     <LI><P ALIGN="justify">Interface <A HREF="../cs/CartesianCS.html"><CODE>CartesianCS</CODE></A>
         looks like a special case of <A HREF="../cs/ObliqueCartesianCS.html"><CODE>ObliqueCartesianCS</CODE></A>.
-        Maybe it should extends <CODE>ObliqueCartesianCS</CODE>. It would help to clarify the semantic of
+        Maybe it should extends <CODE>ObliqueCartesianCS</CODE>. This is a similar argument than the
+        one used in ISO-19107, which said that <code>Circle</code> is a sub-class of <code>Ellipse</code>
+        since the former is a special case of the later. Doing so would help to clarify the semantic of
         <A HREF="../sc/ImageCRS.html"><CODE>ImageCRS</CODE></A> (no need for separated <CODE>getCartesianCS()</CODE>
-        and <CODE>getObliqueCartesianCS()</CODE> methods).</P></LI>
+        and <CODE>getObliqueCartesianCS()</CODE> methods).</P>
+        <P ALIGN="justify"><STRONG>PROPOSAL:</STRONG> <FONT COLOR="red">Move (in the hierarchy)
+        <A HREF="../cs/CartesianCS.html"><CODE>CartesianCS</CODE></A> as a sub-interface of
+        <A HREF="../cs/ObliqueCartesianCS.html"><CODE>ObliqueCartesianCS</CODE></A>. Drop
+        "<CODE>cartesianCS</CODE>" and "<CODE>obliqueCartesianCS</CODE>" attributes in
+        <A HREF="../sc/ImageCRS.html"><CODE>ImageCRS</CODE></A>. Replace them by a restriction on the
+        "<CODE>usesCS</CODE>" association, exactly like what is done in
+        <A HREF="../sc/ProjectedCRS.html"><CODE>ProjectedCRS</CODE></A>.</FONT></P>
+    </LI>
 
     <LI><P ALIGN="justify">The <A HREF="../sc/ImageCRS.html"><CODE>ImageCRS</CODE></A> interface is defined as a kind
         of engineering CRS, but doesn't extend <A HREF="../sc/EngineeringCRS.html"><CODE>EngineeringCRS</CODE></A>.
-        Maybe it should (there is no obvious technical reason preventing that).</P></LI>
+        Maybe it should (there is no obvious technical reason preventing that).</P>
+        <P ALIGN="justify"><STRONG>PROPOSAL:</STRONG> <FONT COLOR="red">Move (in the hierarchy)
+        <A HREF="../sc/ImageCRS.html"><CODE>ImageCRS</CODE></A> as a sub-interface of
+        <A HREF="../sc/EngineeringCRS.html"><CODE>EngineeringCRS</CODE></A>.</FONT></P>
+    </LI>
 
     <LI><P ALIGN="justify">"<CODE>operationMethod</CODE>" attribute is defined in
         <A HREF="../cc/CoordinateOperation.html"><CODE>CoordinateOperation</CODE></A>, but applied only to
         <A HREF="../cc/Transformation.html"><CODE>Transformation</CODE></A> (a sub-interface). Maybe
-        it should be defined only in <CODE>Transformation</CODE> interface.</P></LI>
+        it should be defined only in <CODE>Transformation</CODE> interface.</P>
+        <P ALIGN="justify"><STRONG>PROPOSAL:</STRONG> <FONT COLOR="red">Move down (in the hierarchy)
+        the "<CODE>operationMethod</CODE>" attribute into the
+        <A HREF="../cc/Transformation.html"><CODE>Transformation</CODE></A> sub-interface.</FONT></P>
+    </LI>
 
     <LI><P ALIGN="justify">"<CODE>minimumOccurs</CODE>" attribute is declared in
         <A HREF="../cc/GeneralOperationParameter.html"><CODE>GeneralOperationParameter</CODE></A>,
         but "<CODE>maximumOccurs</CODE>" is declared in
         <A HREF="../cc/OperationParameterGroup.html"><CODE>OperationParameterGroup</CODE></A>
-        (a sub-interface). Maybe they should be declared in the same place.</P></LI>
+        (a sub-interface). Maybe they should be declared in the same place.</P>
+        <P ALIGN="justify"><STRONG>PROPOSAL:</STRONG> <FONT COLOR="red">Move up (in the hierarchy)
+        the "<CODE>maximumOccurs</CODE>" attribute into the
+        <A HREF="../cc/GeneralOperationParameter.html"><CODE>GeneralOperationParameter</CODE></A>
+        super-interface, in order to be on per with the "<CODE>minimumOccurs</CODE>" attribute.</FONT></P>
 
     <LI><P ALIGN="justify">Some attribute names are misleading regarding the type. For example "<CODE>includesCRS</CODE>"
         in <A HREF="../sc/CompoundCRS.html"><CODE>CompoundCRS</CODE></A> is of type
         <A HREF="../sc/CoordinateReferenceSystem.html"><CODE>CoordinateReferenceSystem</CODE></A>, not
-        <A HREF="../sc/CRS.html"><CODE>CRS</CODE></A> (which exists as an other interface).</P></LI>
+        <A HREF="../sc/CRS.html"><CODE>CRS</CODE></A> (which exists as an other interface).
+        <STRONG>NOTE:</STRONG> The ambiguity would disaspear if the next point (below) is accepted.</P></LI>
 
-    <LI><P ALIGN="justify">It may be worth to get ride of the <A HREF="../sc/CRS.html"><CODE>CRS</CODE></A>
+    <LI><P ALIGN="justify">It may be worth to drop the <A HREF="../sc/CRS.html"><CODE>CRS</CODE></A>
          interface (see its javadoc for a rational).</P></LI>
+        <P ALIGN="justify"><STRONG>PROPOSAL:</STRONG> <FONT COLOR="red">Allows
+        <A HREF="../sc/CompoundCRS.html"><CODE>CompoundCRS</CODE></A> to contains other <CODE>CompoundCRS</CODE>,
+        then drop the <A HREF="../sc/CRS.html"><CODE>CRS</CODE></A> interface.</FONT></P>
   </UL>
   </BODY>
 </HTML>
