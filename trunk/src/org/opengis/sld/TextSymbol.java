@@ -40,7 +40,7 @@ public interface TextSymbol extends Symbol {
      * respect to the feature geometry.  This object must either be an instance
      * of <code>LinePlacement</code> or <code>PointPlacement</code>.
      */
-    public void setPointPlacement(PointPlacement pointPlacement);
+    public void setPlacement(TextPlacement placement);
 
     /**
      * Returns the object that indicates if a Halo will be drawn around the
