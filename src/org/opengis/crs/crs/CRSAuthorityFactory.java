@@ -12,8 +12,7 @@ package org.opengis.crs.crs;
 // OpenGIS direct dependencies and extensions
 import org.opengis.crs.AuthorityFactory;
 import org.opengis.crs.FactoryException;
-import org.opengis.crs.NoSuchAuthorityCodeException; // For Javadoc
-import org.opengis.spatialschema.geometry.DirectPosition;
+import org.opengis.crs.NoSuchAuthorityCodeException;
 
 
 /**
@@ -31,6 +30,7 @@ import org.opengis.spatialschema.geometry.DirectPosition;
  * @see org.opengis.crs.datum.DatumAuthorityFactory
  */
 public interface CRSAuthorityFactory extends AuthorityFactory {
+    
     /**
      * Returns an arbitrary {@linkplain CoordinateReferenceSystem coordinate reference system} from a code. If the
      * CoordinateReferenceSystem type is know at compile time, it is recommended to invoke the most precise method
@@ -50,6 +50,35 @@ public interface CRSAuthorityFactory extends AuthorityFactory {
      * @see #createCompoundCRS
      */
     CoordinateReferenceSystem createCoordinateReferenceSystem(String code) throws FactoryException;
+
+    /**
+     * Creates a 3D coordinate reference system from a code.
+     *
+     * @param code Value allocated by authority.
+     * @throws NoSuchAuthorityCodeException if the specified <code>code</code> was not found.
+     * @throws FactoryException if the object creation failed for some other reason.
+     *
+     * @UML operation createCompoundCoordinateSystem in 1.0 specification
+     */
+    CompoundCRS createCompoundCRS(String code) throws FactoryException;
+
+    /**
+     * Creates a derived coordinate reference system from a code.
+     *
+     * @param code Value allocated by authority.
+     * @throws NoSuchAuthorityCodeException if the specified <code>code</code> was not found.
+     * @throws FactoryException if the object creation failed for some other reason.
+     */
+    DerivedCRS createDerivedCRS(String code) throws FactoryException;        
+    
+    /**
+     * Create a {@linkplain EngineeringCRS engineering coordinate reference system} from a code.
+     *
+     * @param code Value allocated by authority.
+     * @throws NoSuchAuthorityCodeException if the specified <code>code</code> was not found.
+     * @throws FactoryException if the object creation failed for some other reason.
+     */
+    EngineeringCRS createEngineeringCRS(String code) throws FactoryException;
 
     /**
      * Returns a {@linkplain GeographicCRS geographic coordinate reference system} from a code.
@@ -75,6 +104,15 @@ public interface CRSAuthorityFactory extends AuthorityFactory {
     GeocentricCRS createGeocentricCRS(String code) throws FactoryException;
 
     /**
+     * Create a {@linkplain ImageCRS image coordinate reference system} from a code.
+     *
+     * @param code Value allocated by authority.
+     * @throws NoSuchAuthorityCodeException if the specified <code>code</code> was not found.
+     * @throws FactoryException if the object creation failed for some other reason.
+     */
+    ImageCRS createImageCRS(String code) throws FactoryException;
+
+    /**
      * Returns a {@linkplain ProjectedCRS projected coordinate reference system} from a code.
      *
      * @param code Value allocated by authority.
@@ -85,36 +123,6 @@ public interface CRSAuthorityFactory extends AuthorityFactory {
      * @see org.opengis.crs.datum.DatumAuthorityFactory#createGeodeticDatum
      */
     ProjectedCRS createProjectedCRS(String code) throws FactoryException;
-
-    /**
-     * Create a {@linkplain VerticalCRS vertical coordinate reference system} from a code.
-     *
-     * @param code Value allocated by authority.
-     * @throws NoSuchAuthorityCodeException if the specified <code>code</code> was not found.
-     * @throws FactoryException if the object creation failed for some other reason.
-     *
-     * @UML operation createVerticalCoordinateSystem in 1.0 specification
-     * @see org.opengis.crs.datum.DatumAuthorityFactory#createVerticalDatum
-     */
-    VerticalCRS createVerticalCRS(String code) throws FactoryException;
-
-    /**
-     * Create a {@linkplain ImageCRS image coordinate reference system} from a code.
-     *
-     * @param code Value allocated by authority.
-     * @throws NoSuchAuthorityCodeException if the specified <code>code</code> was not found.
-     * @throws FactoryException if the object creation failed for some other reason.
-     */
-    ImageCRS createImageCRS(String code) throws FactoryException;
-
-    /**
-     * Create a {@linkplain EngineeringCRS engineering coordinate reference system} from a code.
-     *
-     * @param code Value allocated by authority.
-     * @throws NoSuchAuthorityCodeException if the specified <code>code</code> was not found.
-     * @throws FactoryException if the object creation failed for some other reason.
-     */
-    EngineeringCRS createEngineeringCRS(String code) throws FactoryException;
 
     /**
      * Create a {@linkplain TemporalCRS temporal coordinate reference system} from a code.
@@ -128,22 +136,14 @@ public interface CRSAuthorityFactory extends AuthorityFactory {
     TemporalCRS createTemporalCRS(String code) throws FactoryException;
 
     /**
-     * Creates a 3D coordinate reference system from a code.
+     * Create a {@linkplain VerticalCRS vertical coordinate reference system} from a code.
      *
      * @param code Value allocated by authority.
      * @throws NoSuchAuthorityCodeException if the specified <code>code</code> was not found.
      * @throws FactoryException if the object creation failed for some other reason.
      *
-     * @UML operation createCompoundCoordinateSystem in 1.0 specification
+     * @UML operation createVerticalCoordinateSystem in 1.0 specification
+     * @see org.opengis.crs.datum.DatumAuthorityFactory#createVerticalDatum
      */
-    CompoundCRS createCompoundCRS(String code) throws FactoryException;
-
-    /**
-     * Creates a derived coordinate reference system from a code.
-     *
-     * @param code Value allocated by authority.
-     * @throws NoSuchAuthorityCodeException if the specified <code>code</code> was not found.
-     * @throws FactoryException if the object creation failed for some other reason.
-     */
-    DerivedCRS createDerivedCRS(String code) throws FactoryException;        
+    VerticalCRS createVerticalCRS(String code) throws FactoryException;
 }
