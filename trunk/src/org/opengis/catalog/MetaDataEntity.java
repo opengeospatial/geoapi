@@ -11,7 +11,10 @@
 package org.opengis.catalog;
 
 /**
- * This is a temporary place holder class until it has been decided what 
+ * This is a temporary place holder class
+ * When the Metadata interface is added to the org.opengis.metadata package
+ * then this class can be removed and all references should be redirected to 
+ * the new interface
  * 
  * @author jeichar
  */
