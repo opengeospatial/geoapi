@@ -7,7 +7,7 @@
  ** Copyright (C) 2003 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
  **
  *************************************************************************************************/
-package org.opengis.metadata.quality;
+package org.opengis.metadata;
 
 // J2SE directdependencies
 import java.util.List;
@@ -18,18 +18,18 @@ import org.opengis.util.CodeList;
 
 
 /**
- * Type of method for evaluating an identified data quality measure.
+ * Specific type of information represented in the cell.
  *
- * @UML codelist DQ_EvaluationMethodTypeCode
+ * @UML codelist MD_CoverageContentTypeCode
  * @author ISO 19115
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
  */
-public final class EvaluationMethodType extends CodeList {
+public final class CoverageContentType extends CodeList {
     /**
      * Serial number for compatibility with different versions.
      */
-    private static final long serialVersionUID = -2481257874205996202L;
+    private static final long serialVersionUID = -346887088822021485L;
 
     /**
      * List of all enumerations of this type.
@@ -38,27 +38,26 @@ public final class EvaluationMethodType extends CodeList {
     private static final List VALUES = new ArrayList(3);
 
     /**
-     * Method of evaluating the quality of a dataset based on inspection of items within
-     * the dataset, where all data required is internal to the dataset being evaluated.
+     * Meaningful numerical representation of a physical parameter that is not the actual
+     * value of the physical parameter.
      *
-     * @UML conditional directInternal
+     * @UML conditional image
      */
-    public static final EvaluationMethodType DIRECT_INTERNAL = new EvaluationMethodType("DIRECT_INTERNAL");
+    public static final CoverageContentType IMAGE = new CoverageContentType("IMAGE");
 
     /**
-     * Method of evaluating the quality of a dataset based on inspection of items within
-     * the dataset, where reference data external to the dataset being evaluated is required.
+     * Code value with no quantitative meaning, used to represent a physical quantity.
      *
-     * @UML conditional directExternal
+     * @UML conditional thematicClassification
      */
-    public static final EvaluationMethodType DIRECT_EXTERNAL = new EvaluationMethodType("DIRECT_EXTERNAL");
+    public static final CoverageContentType THEMATIC_CLASSIFICATION = new CoverageContentType("THEMATIC_CLASSIFICATION");
 
     /**
-     * Method of evaluating the quality of a dataset based on external knowledge.
+     * Value in physical units of the quantity being measured.
      *
-     * @UML conditional indirect
+     * @UML conditional physicalMeasurement
      */
-    public static final EvaluationMethodType INDIRECT = new EvaluationMethodType("INDIRECT");
+    public static final CoverageContentType PHYSICAL_MEASUREMENT = new CoverageContentType("PHYSICAL_MEASUREMENT");
 
     /**
      * Constructs an enum with the given name. The new enum is
@@ -66,23 +65,23 @@ public final class EvaluationMethodType extends CodeList {
      *
      * @param name The enum name. This name must not be in use by an other enum of this type.
      */
-    public EvaluationMethodType(final String name) {
+    public CoverageContentType(final String name) {
         super(name, VALUES);
     }
 
     /**
-     * Returns the list of <code>EvaluationMethodType</code>s.
+     * Returns the list of <code>CoverageContentType</code>s.
      */
-    public static EvaluationMethodType[] values() {
+    public static CoverageContentType[] values() {
         synchronized (VALUES) {
-            return (EvaluationMethodType[]) VALUES.toArray(new EvaluationMethodType[VALUES.size()]);
+            return (CoverageContentType[]) VALUES.toArray(new CoverageContentType[VALUES.size()]);
         }
     }
 
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
-    public /*{EvaluationMethodType}*/ CodeList[] family() {
+    public /*{CoverageContentType}*/ CodeList[] family() {
         return values();
     }
 }

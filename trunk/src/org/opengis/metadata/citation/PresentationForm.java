@@ -24,9 +24,6 @@ import org.opengis.util.CodeList;
  * @author ISO 19115
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
- *
- * @revisit Domain code not yet implemented. In current implementation, they are equal
- *          to {@linkplain #ordinal ordinal}+1.
  */
 public final class PresentationForm extends CodeList {
     /**

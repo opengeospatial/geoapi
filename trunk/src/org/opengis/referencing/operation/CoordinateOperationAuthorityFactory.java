@@ -50,6 +50,18 @@ public interface CoordinateOperationAuthorityFactory extends AuthorityFactory {
      * @UML operation createFromCoordinateSystemCodes in 1.0 specification
      * @throws NoSuchAuthorityCodeException if a specified code was not found.
      * @throws FactoryException if the object creation failed for some other reason.
+     *
+     * @revisit For datum shifts (geographic crs to geographic crs) the epsg database may define
+     *          many different coordinate operations for a single shift. For example, the EPSG
+     *          database defines 20 operations for shifting from a nad27 (epsg code 4267) to wgs84
+     *          (4326) CRS's. Possibles solutions:
+     *          <ul>
+     *            <li>change the return type from CoordinateOperation to some kind of java.util.Collection.
+     *                The collection would have a lazy iterator implementation, which creates the
+     *                CoordinateOperations only the first time the user invokes Iterator.next().</li>
+     *            <li>Allow some kind of Filter argument.</li>
+     *            <li>Return only the list of codes rather than the CoordinateOperations.</li>
+     *          </ul>
      */
     CoordinateOperation createFromCoordinateReferenceSystemCodes(String sourceCode, String targetCode) throws FactoryException;
 }
