@@ -37,7 +37,8 @@ import org.opengis.util.SimpleEnumerationType;
  * @version 2.0
  *
  * @revisit Should we really define this enumeration? Should it be plain
- *          {@link String} objects instead?
+ *          {@link String} objects instead? Or yet better,
+ *          {@link org.opengis.crs.operation.OperationMethod}?
  */
 public class ProjectionKey extends SimpleEnumerationType {
     //*************************************************************************
