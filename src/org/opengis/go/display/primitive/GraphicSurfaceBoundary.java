@@ -25,12 +25,14 @@ import org.opengis.gm.primitive.SurfaceBoundary;
 public interface GraphicSurfaceBoundary extends Graphic {
     /**
      * Sets the geometry based on ISO 19107 geometric forms.
+     *
      * @param surfaceBoundary a geometry SurfaceBoundary 
      */
     public void setSurfaceBoundary(SurfaceBoundary surfaceBoundary);
     
     /**
      * Returns the geometry based on ISO 19107 geometric forms.
+     *
      * @return the geometry SurfaceBoundary 
      */
     public SurfaceBoundary getSurfaceBoundary();
@@ -38,6 +40,7 @@ public interface GraphicSurfaceBoundary extends Graphic {
     /**
      * Converts the exterior Ring in the underlying SurfaceBoundary 
      * to a GraphicRing, and returns that GraphicRing.
+     *
      * @return the exterior GraphicRing.
      */    
     public GraphicRing getExterior();
@@ -45,13 +48,13 @@ public interface GraphicSurfaceBoundary extends Graphic {
     /**
      * Converts the GraphicRing to a Ring and sets it as the exterior Ring 
      * in the underlying SurfaceBoundary.
-     * @return the exterior GraphicRing.
      */
     public void setExterior(GraphicRing exterior);
     
     /**
      * Converts the interior Rings in the underlying SurfaceBoundary 
      * to a GraphicRing, and returns that GraphicRing.
+     *
      * @return an array of interior GraphicRings, or null if there are no interior Rings.
      */    
     public GraphicRing[] getInteriors();
