@@ -19,35 +19,38 @@ import org.opengis.gc.ParameterInfo;
  */
 public interface Operation {
     /**
-     * Name of the processing operation.
+     * Name of the processing operation. This name is passed as a parameter to the
+     * {@link GridCoverageProcessor#doOperation doOperation} method to instantiate
+     * a new grid coverage on which the processing operation is performed.
      *
-     * @return the name of the processing operation.
+     * @return The name of the processing operation.
      * @UML mandatory name
      */
     String getName();
 
     /**
      * Description of the processing operation.
-     * If no description, the value will be <code>null</code>.
+     * If no description is available, the value will be <code>null</code>.
      *
-     * @return the description of the processing operation.
+     * @return The description of the processing operation, or <code>null</code>.
      * @UML optional description
      */
     String getDescription();
 
     /**
-     * Implementation vendor name.
+     * Vendor of the processing operation implementation.
+     * If no vendor name is available, the value will be <code>null</code>.
      *
-     * @return the implementation vendor name.
+     * @return The implementation vendor name, or <code>null</code>.
      * @UML optional vendor
      */
     String getVendor();
 
     /**
      * URL for documentation on the processing operation.
-     * If no online documentation is available the string will be empty.
+     * If no online documentation is available the string will be <code>null</code>.
      *
-     * @return the URL for documentation on the processing operation.
+     * @return The URL for documentation on the processing operation, or <code>null</code>.
      * @UML optional docURL
      */
     String getDocURL();
@@ -55,7 +58,7 @@ public interface Operation {
     /**
      * Version number for the implementation.
      *
-     * @return the version number for the implementation.
+     * @return The version number for the implementation, or <code>null</code>.
      * @UML optional version
      */
     String getVersion();
@@ -63,7 +66,7 @@ public interface Operation {
     /**
      * Number of source grid coverages required for the operation.
      *
-     * @return the number of source grid coverages required for the operation.
+     * @return The number of source grid coverages required for the operation.
      * @UML optional numSources
      */
     int getNumSources();
@@ -71,7 +74,7 @@ public interface Operation {
     /**
      * Number of parameters for the operation.
      *
-     * @return the number of parameters for the operation.
+     * @return The number of parameters for the operation.
      * @UML mandatory numParameters
      */
     int getNumParameters();
@@ -79,8 +82,8 @@ public interface Operation {
     /**
      * Retrieve the parameter information for a given index.
      *
-     * @param index Parameter information index to retrieve. Index starts at 0.
-     * @return the parameter information for a given index.
+     * @param  index Parameter information index to retrieve. Index starts at 0.
+     * @return The parameter information for a given index.
      * @throws IndexOutOfBoundsException if <code>index</code> is out of bounds.
      * @UML operation getParameterInfo
      */
