@@ -13,7 +13,6 @@ package org.opengis.crs.datum;
 import java.util.Date;
 import java.util.Locale;
 
-// OpenGIS direct dependencies
 import org.opengis.crs.Info;
 import org.opengis.metadata.extent.Extent;
 

@@ -12,11 +12,7 @@ package org.opengis.spatialschema.geometry.primitive;
 // J2SE direct dependencies
 import java.util.Set;
 
-// OpenGIS direct dependencies
 import org.opengis.spatialschema.geometry.Geometry;
-import org.opengis.spatialschema.geometry.Envelope;
-import org.opengis.spatialschema.geometry.DirectPosition;
-import org.opengis.spatialschema.geometry.complex.Complex;
 
 
 /**

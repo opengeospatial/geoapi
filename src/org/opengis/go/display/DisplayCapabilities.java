@@ -18,9 +18,9 @@ import org.opengis.go.display.style.LineJoin;
 import org.opengis.go.display.style.LinePattern;
 import org.opengis.go.display.style.LineStyle;
 import org.opengis.go.display.style.Mark;
+import org.opengis.go.display.style.SymbologyInfo;
 import org.opengis.go.display.style.XAnchor;
 import org.opengis.go.display.style.YAnchor;
-import org.opengis.go.display.style.SymbologyInfo;
 
 /**
  * Objects implementing the interface <code>DisplayCapabilities</code> provide

@@ -10,9 +10,6 @@
 package org.opengis.coverage.grid;
 
 //J2SE direct dependencies
-import java.nio.ByteOrder;  // For Javadoc
-
-//OpenGIS direct dependencies
 import org.opengis.util.CodeList;
 
 

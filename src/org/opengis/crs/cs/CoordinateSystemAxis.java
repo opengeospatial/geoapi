@@ -13,7 +13,6 @@ package org.opengis.crs.cs;
 import java.util.Locale;
 import javax.units.Unit;
 
-// OpenGIS direct dependencies
 import org.opengis.crs.Info;
 
 

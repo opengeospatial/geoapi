@@ -11,8 +11,8 @@
 package org.opengis.go.display.primitive;
 
 // OpenGIS dependencies
-import org.opengis.go.display.event.AggregationListener;
 import org.opengis.go.display.event.AggregationChangeEvent;
+import org.opengis.go.display.event.AggregationListener;
 
 
 /**

@@ -12,7 +12,6 @@ package org.opengis.spatialschema.geometry.primitive;
 // J2SE direct dependencies
 import java.util.List;
 
-// OpenGIS direct dependencies
 import org.opengis.spatialschema.geometry.geometry.GenericCurve;
 
 

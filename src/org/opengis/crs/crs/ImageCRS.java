@@ -12,7 +12,6 @@ package org.opengis.crs.crs;
 // OpenGIS direct dependencies
 import org.opengis.crs.cs.CartesianCS;
 import org.opengis.crs.cs.ObliqueCartesianCS;
-import org.opengis.crs.datum.ImageDatum;
 
 
 /**

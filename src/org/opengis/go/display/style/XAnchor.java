@@ -10,12 +10,11 @@
 package org.opengis.go.display.style;
 
 // J2SE direct dependencies
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
 
-// OpenGIS direct dependencies
-import org.opengis.util.SimpleEnumerationType;
 import org.opengis.util.CodeList;
+import org.opengis.util.SimpleEnumerationType;
 
 
 /**

@@ -10,10 +10,10 @@
 package org.opengis.go.display.primitive;
 
 // OpenGIS direct dependencies
+import org.opengis.go.spatial.PathType;
 import org.opengis.spatialschema.geometry.DirectPosition;
 import org.opengis.spatialschema.geometry.geometry.PointArray;
 import org.opengis.spatialschema.geometry.primitive.CurveSegment;
-import org.opengis.go.spatial.PathType;
 
 
 /**

@@ -10,17 +10,17 @@
 
 package org.opengis.go.display.primitive;
 
-// J2SE direct dependencies
-import java.util.List;
-import java.util.ArrayList;
-
 import javax.units.Unit;
 
+// J2SE direct dependencies
+import java.util.ArrayList;
+import java.util.List;
+
 import org.opengis.go.spatial.PathType;
-import org.opengis.util.SimpleEnumerationType;
 import org.opengis.spatialschema.geometry.DirectPosition;
 import org.opengis.spatialschema.geometry.geometry.Conic;
 import org.opengis.util.CodeList;
+import org.opengis.util.SimpleEnumerationType;
 
 /**
  * A <code>GraphicArc</code> represents a portion of an ellipse.

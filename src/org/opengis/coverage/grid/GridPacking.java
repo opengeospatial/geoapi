@@ -10,11 +10,6 @@
 package org.opengis.coverage.grid;
 
 // J2SE direct dependencies
-import java.awt.image.BandedSampleModel;            // For Javadoc
-import java.awt.image.PixelInterleavedSampleModel;  // For Javadoc
-
-// OpenGIS direct dependencies
-import org.opengis.coverage.SampleDimensionType;  // For Javadoc
 
 
 /**

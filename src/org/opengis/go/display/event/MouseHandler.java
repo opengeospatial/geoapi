@@ -12,7 +12,6 @@ package org.opengis.go.display.event;
 
 // J2SE direct dependencies
 import java.awt.event.MouseListener;
-
 import java.awt.event.MouseMotionListener;
 
 /**

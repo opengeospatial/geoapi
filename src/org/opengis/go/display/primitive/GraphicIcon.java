@@ -10,7 +10,6 @@
 package org.opengis.go.display.primitive;
 
 import javax.units.Unit;
-
 import javax.swing.Icon;
 
 import org.opengis.go.typical.coord.Pixel;

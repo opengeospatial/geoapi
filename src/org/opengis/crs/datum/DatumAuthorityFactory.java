@@ -10,13 +10,9 @@
 package org.opengis.crs.datum;
 
 // J2SE direct dependencies and extensions
-import javax.units.Unit;
-
-// OpenGIS direct dependencies
 import org.opengis.crs.AuthorityFactory;
 import org.opengis.crs.FactoryException;
-import org.opengis.crs.NoSuchAuthorityCodeException;
-
+import javax.units.Unit;
 
 /**
  * Creates {@linkplain Datum datum} objects using authority codes. External authorities are used to

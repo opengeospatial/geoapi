@@ -12,11 +12,10 @@ package org.opengis.crs.operation;
 // J2SE direct dependencies
 import java.util.Locale;
 
-// OpenGIS direct dependencies
-import org.opengis.crs.crs.CRS;
 import org.opengis.crs.Info;
-import org.opengis.metadata.extent.Extent;
+import org.opengis.crs.crs.CRS;
 import org.opengis.crs.quality.PositionalAccuracy;
+import org.opengis.metadata.extent.Extent;
 
 
 /**

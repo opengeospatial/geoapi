@@ -11,9 +11,6 @@ package org.opengis.coverage;
 
 // J2SE direct dependencies and extensions
 import javax.units.Unit;
-import javax.media.jai.PropertySource; // For Javadoc
-import java.awt.image.IndexColorModel; // For Javadoc
-
 
 /**
  * Contains information for an individual sample dimension of {@linkplain Coverage coverage}.

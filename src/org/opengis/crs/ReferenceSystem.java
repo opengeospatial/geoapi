@@ -12,7 +12,6 @@ package org.opengis.crs;
 // J2SE direct dependencies
 import java.util.Locale;
 
-// OpenGIS direct dependencies
 import org.opengis.metadata.extent.Extent;
 
 

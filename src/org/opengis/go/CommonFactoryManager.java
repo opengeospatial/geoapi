@@ -16,12 +16,12 @@ import java.util.HashMap;
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
 
-import org.opengis.crs.operation.CoordinateTransformation;
 import org.opengis.crs.crs.CoordinateReferenceSystem;
 import org.opengis.crs.crs.CoordinateReferenceSystemFactory;
 import org.opengis.crs.crs.UnsupportedCRSException;
 import org.opengis.crs.datum.Datum;
 import org.opengis.crs.datum.DatumFactory;
+import org.opengis.crs.operation.CoordinateTransformation;
 import org.opengis.go.geometry.Bounds;
 import org.opengis.go.geometry.BoundsFactory;
 import org.opengis.spatialschema.SpatialschemaFactory;
