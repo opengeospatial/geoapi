@@ -60,7 +60,45 @@ import org.opengis.parameter.GeneralParameterValue;
  */
 public interface MathTransformFactory extends Factory {
     /**
-     * Wrap an affine transform into a math transform object.
+     * Returns the default parameter values for the specified operation method.
+     * This method always returns clones. It is safe to modify the returned
+     * parameter values and give them to
+     * <code>{@linkplain #createParameterizedTransform createParameterizedTransform}(identifier, parameters)</code>.
+     *
+     * @param  identifier The case insensitive {@linkplain Identifier#getCode identifier code} of the
+     *         operation method to search for (e.g. "Transverse_Mercator"). If this string contains
+     *         the <code>':'</code> character, then the part before <code>':'</code> is the
+     *         {@linkplain Identifier#getCodeSpace code space}.
+     * @return The default parameter values.
+     * @throws NoSuchIdentifierException if there is no transform registered for the specified
+     *         operation method identifier.
+     */
+    GeneralParameterValue[] getDefaultParameters(String identifier) throws NoSuchIdentifierException;
+
+    /**
+     * Creates a transform from an {@linkplain OperationMethod operation method} identifier and
+     * parameters. The client must supply <code>"semi_major"</code> and <code>"semi_minor"</code>
+     * parameters for cartographic projection transforms.
+     *
+     * @param  identifier The case insensitive {@linkplain Identifier#getCode identifier code} of the
+     *         operation method to search for (e.g. "Transverse_Mercator"). If this string contains
+     *         the <code>':'</code> character, then the part before <code>':'</code> is the
+     *         {@linkplain Identifier#getCodeSpace code space}.
+     * @param  parameters The parameter values. A default set can be obtained with
+     *         <code>{@linkplain #getDefaultParameters getDefaultParameters}(identifier)}</code>
+     *         and modified before to be given to this method.
+     * @return The parameterized transform.
+     * @throws NoSuchIdentifierException if there is no transform registered for the specified
+     *         operation method identifier.
+     * @throws FactoryException if the object creation failed. This exception is thrown
+     *         if some required parameter has not been supplied, or has illegal value.
+     * @UML operation createParameterizedTransform
+     */
+    MathTransform createParameterizedTransform(String identifier,
+                                               GeneralParameterValue[] parameters) throws FactoryException;
+
+    /**
+     * Wrap a Java2D affine transform into a math transform object.
      * This method is provided for interoperability with
      * <A HREF="http://java.sun.com/products/java-media/2D/index.jsp">Java2D</A>.
      *
@@ -103,7 +141,8 @@ public interface MathTransformFactory extends Factory {
      * @throws FactoryException if the object creation failed.
      * @UML operation createConcatenatedTransform
      */
-    MathTransform createConcatenatedTransform(MathTransform transform1, MathTransform transform2) throws FactoryException;
+    MathTransform createConcatenatedTransform(MathTransform transform1,
+                                              MathTransform transform2) throws FactoryException;
 
     /**
      * Creates a transform which passes through a subset of ordinates to another transform.
@@ -124,44 +163,9 @@ public interface MathTransformFactory extends Factory {
      * @throws FactoryException if the object creation failed.
      * @UML operation createPassThroughTransform
      */
-    MathTransform createPassThroughTransform(int firstAffectedOrdinate, MathTransform subTransform, int numTrailingOrdinates) throws FactoryException;
-
-    /**
-     * Creates a transform from an {@linkplain OperationMethod operation method} identifier and
-     * parameters. The client must supply <code>"semi_major"</code> and <code>"semi_minor"</code>
-     * parameters for cartographic projection transforms. 
-     *
-     * @param  identifier The case insensitive {@linkplain Identifier#getCode identifier code} of the
-     *         operation method to search for (e.g. "Transverse_Mercator"). If this string contains
-     *         the <code>':'</code> character, then the part before <code>':'</code> is the
-     *         {@linkplain Identifier#getCodeSpace code space}.
-     * @param  parameters The parameter values. A default set can be obtained with
-     *         <code>{@linkplain #getDefaultParameters getDefaultParameters}(identifier)}</code>
-     *         and modified before to be given to this method.
-     * @return The parameterized transform.
-     * @throws NoSuchIdentifierException if there is no transform registered for the specified
-     *         operation method identifier.
-     * @throws FactoryException if the object creation failed. This exception is thrown
-     *         if some required parameter has not been supplied, or has illegal value.
-     * @UML operation createParameterizedTransform
-     */
-    MathTransform createParameterizedTransform(String identifier, GeneralParameterValue[] parameters) throws FactoryException;
-
-    /**
-     * Returns the default parameter values for the specified operation method.
-     * This method always returns clones. It is safe to modify the returned
-     * parameter values and give them to
-     * <code>{@linkplain #createParameterizedTransform createParameterizedTransform}(identifier, parameters)</code>.
-     *
-     * @param  identifier The case insensitive {@linkplain Identifier#getCode identifier code} of the
-     *         operation method to search for (e.g. "Transverse_Mercator"). If this string contains
-     *         the <code>':'</code> character, then the part before <code>':'</code> is the
-     *         {@linkplain Identifier#getCodeSpace code space}.
-     * @return The default parameter values.
-     * @throws NoSuchIdentifierException if there is no transform registered for the specified
-     *         operation method identifier.
-     */
-    GeneralParameterValue[] getDefaultParameters(String identifier) throws NoSuchIdentifierException;
+    MathTransform createPassThroughTransform(int firstAffectedOrdinate,
+                                             MathTransform subTransform,
+                                             int numTrailingOrdinates) throws FactoryException;
 
     /**
      * Creates a math transform object from a XML string.
@@ -177,8 +181,10 @@ public interface MathTransformFactory extends Factory {
      * The <A HREF="../doc-files/WKT.html">definition for WKT</A> is
      * shown using Extended Backus Naur Form (EBNF).
      *
-     * @param  wkt Kath transform encoded in Well-Known Text format.
-     * @throws FactoryException if the object creation failed.
+     * @param  wkt Math transform encoded in Well-Known Text format.
+     * @return The math transform (never <code>null</code>).
+     * @throws FactoryException if the Well-Known Text can't be parsed,
+     *         or if the math transform creation failed from some other reason.
      * @UML operation createFromWKT
      */
     MathTransform createFromWKT(String wkt) throws FactoryException;
