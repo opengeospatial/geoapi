@@ -12,7 +12,6 @@ package org.opengis.crs.quality;
 // J2SE direct dependencies and extensions
 import javax.units.Unit;
 
-
 /**
  * Closeness of the relative positions of two or more positions to their respective
  * relative positions accepted as or being true.

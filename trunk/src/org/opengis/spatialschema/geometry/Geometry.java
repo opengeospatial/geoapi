@@ -12,10 +12,7 @@ package org.opengis.spatialschema.geometry;
 // J2SE direct dependencies
 import java.util.Set;
 
-// OpenGIS direct dependencies
 import org.opengis.crs.crs.CRS;
-import org.opengis.spatialschema.geometry.Envelope;
-import org.opengis.spatialschema.geometry.DirectPosition;
 import org.opengis.spatialschema.geometry.complex.Complex;
 
 
@@ -215,7 +212,7 @@ public interface Geometry extends TransfiniteSet {
      * a collection of geometric objects shall be the largest dimension of any of its pieces.
      * Points are 0-dimensional, curves are 1-dimensional, surfaces are 2-dimensional, and solids
      * are 3-dimensional. Locally, the dimension of a geometric object at a point is the dimension
-     * of a local neighborhood of the point – that is the dimension of any coordinate neighborhood
+     * of a local neighborhood of the point ï¿½ that is the dimension of any coordinate neighborhood
      * of the point. Dimension is unambiguously defined only for {@linkplain DirectPosition direct
      * positions} interior to this <code>Geometry</code>. If the passed {@linkplain DirectPosition
      * direct position} is <code>null</code>, then the operation shall return the largest possible

@@ -12,7 +12,6 @@ package org.opengis.crs.quality;
 // J2SE direct dependencies and extensions
 import javax.units.Unit;
 
-
 /**
  * Closeness of reported coordinate values to values accepted as or being true.
  *  

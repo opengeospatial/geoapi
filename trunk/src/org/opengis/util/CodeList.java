@@ -10,10 +10,10 @@
 package org.opengis.util;
 
 // J2SE direct dependencies
-import java.util.Collection;
-import java.io.Serializable;
-import java.io.ObjectStreamException;
 import java.io.InvalidObjectException;
+import java.io.ObjectStreamException;
+import java.io.Serializable;
+import java.util.Collection;
 
 
 /**

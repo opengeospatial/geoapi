@@ -11,8 +11,6 @@ package org.opengis.coverage.grid;
 
 //OpenGIS direct dependencies
 import org.opengis.util.CodeList;
-import org.opengis.crs.crs.CRS;         // For Javadoc
-import org.opengis.crs.operation.Conversion;  // For Javadoc
 
 
 /**

@@ -10,11 +10,8 @@
 package org.opengis.metadata.extent;
 
 // J2SE direct dependencies and extensions
-import javax.units.Unit;
-
-// OpenGIS direct dependencies
 import org.opengis.crs.datum.VerticalDatum;
-
+import javax.units.Unit;
 
 /**
  * Vertical domain of dataset.

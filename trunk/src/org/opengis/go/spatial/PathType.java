@@ -10,11 +10,11 @@
 package org.opengis.go.spatial;
 
 // J2SE direct dependencies
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
 
-import org.opengis.util.SimpleEnumerationType;
 import org.opengis.util.CodeList;
+import org.opengis.util.SimpleEnumerationType;
 
 /**
  * <p>

@@ -10,7 +10,6 @@
 package org.opengis.spatialschema.geometry;
 
 // OpenGIS direct dependencies
-import org.opengis.spatialschema.geometry.primitive.Primitive;
 
 
 /**

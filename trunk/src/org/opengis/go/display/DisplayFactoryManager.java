@@ -13,6 +13,7 @@ import java.util.HashMap;
 import java.util.MissingResourceException;
 import java.util.Properties;
 import java.util.ResourceBundle;
+
 import org.opengis.go.FactoryManagerInitializationException;
 /**
  * <code>DisplayFactoryManager</code> defines static variables and methods used

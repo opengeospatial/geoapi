@@ -11,7 +11,6 @@ package org.opengis.coverage.grid;
 
 // J2SE direct dependencies
 import java.io.IOException;
-import javax.imageio.IIOException; // For Javadoc
 
 
 /**

@@ -10,8 +10,6 @@
 package org.opengis.crs.crs;
 
 // OpenGIS direct dependencies
-import org.opengis.crs.cs.EllipsoidalCS;
-import org.opengis.crs.datum.GeodeticDatum;
 
 
 /**

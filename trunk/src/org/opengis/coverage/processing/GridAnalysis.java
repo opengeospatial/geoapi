@@ -10,11 +10,8 @@
 package org.opengis.coverage.processing;
 
 // J2SE extensions
-import javax.media.jai.Histogram; // For Javadoc
-
-// OpenGIS direct dependencies
-import org.opengis.crs.operation.Matrix;
 import org.opengis.coverage.grid.GridCoverage;
+import org.opengis.crs.operation.Matrix;
 
 
 /**

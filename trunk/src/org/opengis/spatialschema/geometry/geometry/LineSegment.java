@@ -10,7 +10,6 @@
 package org.opengis.spatialschema.geometry.geometry;
 
 // OpenGIS direct dependencies
-import org.opengis.spatialschema.geometry.DirectPosition;
 
 
 /**
@@ -20,7 +19,7 @@ import org.opengis.spatialschema.geometry.DirectPosition;
  * parameterization is:
  *
  * <blockquote><pre>
- * L = {@linkplain #getEndParam endParam} – {@linkplain #getStartParam startParam}
+ * L = {@linkplain #getEndParam endParam} ï¿½ {@linkplain #getStartParam startParam}
  * c(s) = ControlPoint[1]+((s-{@linkplain #getStartParam startParam})/L)*(ControlPoint[2]-ControlPoint[1])
  * </pre></blockquote>
  *

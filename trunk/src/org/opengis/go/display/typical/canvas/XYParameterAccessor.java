@@ -9,10 +9,10 @@
  *************************************************************************************************/
 package org.opengis.go.display.typical.canvas;
 
-import org.opengis.go.geometry.BoundingRectangle;
-import org.opengis.go.display.canvas.CanvasParameterAccessor;
-
 import javax.units.Unit;
+
+import org.opengis.go.display.canvas.CanvasParameterAccessor;
+import org.opengis.go.geometry.BoundingRectangle;
 
 /**
  * Instances of this interface describe the current

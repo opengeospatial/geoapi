@@ -12,9 +12,8 @@ package org.opengis.spatialschema.geometry.geometry;
 // J2SE direct dependencies
 import java.util.List;
 
-// OpenGIS direct dependencies
-import org.opengis.spatialschema.geometry.primitive.CurveSegment;
 import org.opengis.spatialschema.geometry.primitive.CurveInterpolation;
+import org.opengis.spatialschema.geometry.primitive.CurveSegment;
 
 
 /**

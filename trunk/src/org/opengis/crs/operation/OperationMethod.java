@@ -12,7 +12,6 @@ package org.opengis.crs.operation;
 // J2SE direct dependencies
 import java.util.Locale;
 
-// OpenGIS direct dependencies
 import org.opengis.crs.Info;
 
 

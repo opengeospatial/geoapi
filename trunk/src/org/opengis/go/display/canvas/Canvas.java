@@ -10,13 +10,13 @@
 
 package org.opengis.go.display.canvas;
 
-import org.opengis.crs.operation.CoordinateTransformation;
 import org.opengis.crs.crs.CoordinateReferenceSystem;
-import org.opengis.go.geometry.BoundingRectangle;
-import org.opengis.spatialschema.geometry.DirectPosition;
+import org.opengis.crs.operation.CoordinateTransformation;
 import org.opengis.go.display.DisplayFactory;
 import org.opengis.go.display.event.EventManager;
 import org.opengis.go.display.primitive.Graphic;
+import org.opengis.go.geometry.BoundingRectangle;
+import org.opengis.spatialschema.geometry.DirectPosition;
 
 /**
  * <code>Canvas</code> defines a common abstraction for implementations that

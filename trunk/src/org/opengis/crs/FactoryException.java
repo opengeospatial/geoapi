@@ -10,8 +10,6 @@
 package org.opengis.crs;
 
 // J2SE direct dependencies
-import java.io.IOException;    // For Javadoc
-import java.sql.SQLException;  // For Javadoc 
 
 
 /**

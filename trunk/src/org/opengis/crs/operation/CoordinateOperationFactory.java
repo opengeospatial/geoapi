@@ -10,8 +10,8 @@
 package org.opengis.crs.operation;
 
 // OpenGIS dependencies
-import org.opengis.crs.crs.CRS;
 import org.opengis.crs.FactoryException;
+import org.opengis.crs.crs.CRS;
 
 
 /**

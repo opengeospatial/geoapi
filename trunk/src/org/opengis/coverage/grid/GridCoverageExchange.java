@@ -11,17 +11,10 @@ package org.opengis.coverage.grid;
 
 // J2SE direct dependencies
 import java.io.IOException;
-import java.io.FileNotFoundException;         // For Javadoc
-import javax.imageio.IIOException;            // For Javadoc
-import javax.imageio.ImageReader;             // For Javadoc
-import javax.imageio.ImageWriter;             // For Javadoc
-import javax.imageio.stream.ImageInputStream; // For Javadoc
 
-// OpenGIS direct dependencies
+import org.opengis.coverage.MetadataNameNotFoundException;
 import org.opengis.crs.crs.CRS;
 import org.opengis.crs.operation.Conversion;
-// import org.opengis.ct.MathTransform;
-import org.opengis.coverage.MetadataNameNotFoundException;
 
 
 /**

@@ -10,8 +10,8 @@
 package org.opengis.spatialschema.geometry.primitive;
 
 // OpenGIS direct dependencies
-import org.opengis.spatialschema.geometry.geometry.PointArray;
 import org.opengis.spatialschema.geometry.geometry.GenericCurve;
+import org.opengis.spatialschema.geometry.geometry.PointArray;
 
 
 /**

@@ -10,12 +10,8 @@
 package org.opengis.crs.crs;
 
 // J2SE direct dependencies and extensions
-import javax.units.Unit;
-
-// OpenGIS direct dependencies
 import org.opengis.crs.AuthorityFactory;
 import org.opengis.crs.FactoryException;
-import org.opengis.crs.NoSuchAuthorityCodeException;
 
 
 /**

@@ -10,8 +10,8 @@
 
 package org.opengis.go;
 
-import org.opengis.go.spatial.PathType;
 import org.opengis.crs.crs.CoordinateReferenceSystem;
+import org.opengis.go.spatial.PathType;
 
 /**
  * The <code>CommonCapabilities</code> interface provides

@@ -10,16 +10,11 @@
 package org.opengis.coverage;
 
 // J2SE direct dependencies and extensions
-import java.awt.image.Raster;                     // For Javadoc
-import java.awt.image.RenderedImage;              // For Javadoc
 import java.awt.image.renderable.RenderableImage;
-import javax.media.jai.PropertySource;            // For Javadoc
-import javax.media.jai.ImageFunction;             // For Javadoc
 
-// OpenGIS direct dependencies
 import org.opengis.crs.crs.CRS;
-import org.opengis.spatialschema.geometry.Envelope;
 import org.opengis.spatialschema.geometry.DirectPosition;
+import org.opengis.spatialschema.geometry.Envelope;
 
 
 /**

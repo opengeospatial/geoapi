@@ -10,9 +10,8 @@
 package org.opengis.crs;
 
 // J2SE direct dependencies
-import java.util.Set;
 import java.util.Locale;
-import java.util.Collections;  // For Javadoc
+import java.util.Set;
 
 
 /**
