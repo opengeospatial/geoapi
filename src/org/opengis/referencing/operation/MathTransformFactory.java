@@ -105,27 +105,6 @@ public interface MathTransformFactory extends Factory {
     MathTransform createParameterizedTransform(ParameterValueGroup parameters) throws FactoryException;
 
     /**
-     * Creates a transform from an {@linkplain OperationMethod operation method} identifier and
-     * parameters. The client must supply <code>"semi_major"</code> and <code>"semi_minor"</code>
-     * parameters for cartographic projection transforms.
-     *
-     * @param  identifier The case insensitive {@linkplain Identifier#getCode identifier code} of the
-     *         operation method to search for (e.g. "Transverse_Mercator").
-     * @param  parameters The parameter values. A default set can be obtained with
-     *         <code>{@linkplain #getDefaultParameters getDefaultParameters}(identifier)}</code>
-     *         and modified before to be given to this method.
-     * @return The parameterized transform.
-     * @throws NoSuchIdentifierException if there is no transform registered for the specified
-     *         operation method identifier.
-     * @throws FactoryException if the object creation failed. This exception is thrown
-     *         if some required parameter has not been supplied, or has illegal value.
-     *
-     * @deprecated Use {@link #createParameterizedTransform(ParameterValueGroup)} instead.
-     */
-    MathTransform createParameterizedTransform(String identifier,
-            org.opengis.parameter.GeneralParameterValue[] parameters) throws FactoryException;
-
-    /**
      * Creates an affine transform from a matrix.
      * If the transform's input dimension is <code>M</code>, and output dimension
      * is <code>N</code>, then the matrix will have size <code>[N+1][M+1]</code>.
