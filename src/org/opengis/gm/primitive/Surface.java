@@ -3,29 +3,61 @@
  */
 package org.opengis.gm.primitive;
 
+// J2SE direct dependencies
+import java.util.List;
+
 // OpenGIS direct dependencies
 import org.opengis.gm.geometry.GenericSurface;
 
 
 /**
- * GM_Surface (Figure 12) a subclass of GM_Primitive and is the basis for 2-dimensional
- * geometry. Unorientable surfaces such as the Mobius band are not allowed. The orientation
- * of a surface chooses an "up" direction through the choice of the upward normal, which,
- * if the surface is not a cycle, is the side of the surface from which the exterior
- * boundary appears counterclockwise. Reversal of the surface orientation reverses the
- * curve orientation of each boundary component, and interchanges the conceptual "up"
- * and "down" direction of the surface. If the surface is the boundary of a solid, the
- * "up" direction is usually outward. For closed surfaces, which have no boundary, the
- * up direction is that of the surface patches, which must be consistent with one another.
- * Its included GM_SurfacePatches describe the interior structure of a GM_Surface. NOTE
- * Other than the restriction on orientability, no other "validity" condition is required
- * for GM_Surface. 
- *  
- * @author GeoAPI
- * @version 1.0
+ * Surface with a positive orientation.
+ * <code>Surface</code> is a subclass of {@link Primitive} and is the basis for 2-dimensional
+ * geometry. Unorientable surfaces such as the Möbius band are not allowed. The orientation of
+ * a surface chooses an "up" direction through the choice of the upward normal, which, if the
+ * surface is not a cycle, is the side of the surface from which the exterior boundary appears
+ * counterclockwise. Reversal of the surface orientation reverses the curve orientation of each
+ * boundary component, and interchanges the conceptual "up" and "down" direction of the surface.
+ * If the surface is the boundary of a solid, the "up" direction is usually outward. For closed
+ * surfaces, which have no boundary, the up direction is that of the surface patches, which must
+ * be consistent with one another. Its included {@link SurfacePatch}es describe the interior
+ * structure of a <code>Surface</code>.
+ *
+ * <blockquote><font size=2>
+ * <strong>NOTE:</strong> Other than the restriction on orientability, no other "validity" condition is required for GM_Surface.
+ * </font></blockquote>
+ *
+ * @UML type GM_Surface
+ * @author ISO/DIS 19107
+ * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
+ * @version 2.0
+ *
+ * @see SurfaceBoundary#toSurface
+ *
+ * @revisit The specification ask for a constructor:
+ *
+ *          "Takes a list of {@link SurfacePatch}es with the appropriate side-toside
+ *           relationships and creates a {@link Surface}."
+ *
+ *          Where to put this constructor? The "toFoo" idiom don't work here.
  */
 public interface Surface extends OrientableSurface, GenericSurface {
-//    public GM_SurfacePatch patch[];
-//    public void setPatch(GM_SurfacePatch patch[]) {  }
-//    public GM_SurfacePatch[] getPatch() { return null; }
+    /**
+     * Relates this <code>Surface</code> to a set of {@link SurfacePatch}es that shall be
+     * joined together to form this surface. Depending on the interpolation method, the set of
+     * patches may require significant additional structure.
+     *
+     * If the surface {@linkplain #getCoordinateDimension coordinate dimension} is 2, then the
+     * entire <code>Surface</code> is one logical patch defined by linear interpolation from the
+     * boundary.
+     *
+     * @return The list of surface patches. Should never be <code>null</code> neither empty.
+     * @UML association patch
+     *
+     * @see SurfacePatch#getSurface
+     *
+     * @revisit The specification said: "In general, the form of the patches
+     *          shall be defined in the application schema.". Not done yet.
+     */
+    public List/*<SurfacePatch>*/ getPatches();
 }

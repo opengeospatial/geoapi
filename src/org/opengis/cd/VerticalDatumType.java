@@ -3,12 +3,12 @@
  */
 package org.opengis.cd;
 
-//J2SE direct dependencies
+// J2SE direct dependencies
 import java.util.List;
 import java.util.Arrays;
 import java.util.Collections;
 
-//OpenGIS direct dependencies
+// OpenGIS direct dependencies
 import org.opengis.util.CodeList;
 
 

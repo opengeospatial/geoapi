@@ -5,18 +5,27 @@ package org.opengis.gm.primitive;
 
 
 /**
- * GM_OrientableCurve consists of a curve and an orientation inherited from GM_OrientablePrimitive.
- * If the orientation is "+", then the GM_OrientableCurve is a GM_Curve. If the orientation
- * is "-", then the GM_OrientableCurve is related to another GM_Curve with a parameterization
- * that reverses the sense of the curve traversal. GM_OrientableCurve: {Orientation
- * = "+" implies primitive = self}; {Orientation = "-" implies primitive.parameterization(length()-s)
- * = parameterization(s)}; 
- *  
- * @author GeoAPI
- * @version 1.0
+ * A curve and an orientation inherited from {@link OrientablePrimitive}. If the orientation is
+ * positive, then the <code>OrientableCurve</code> is a {@link Curve}. If the orientation is
+ * negative, then the <code>OrientableCurve</code> is related to another {@link Curve} with a
+ * parameterization that reverses the sense of the curve traversal.
+ *
+ * @UML type GM_OrientableCurve
+ * @author ISO/DIS 19107
+ * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
+ * @version 2.0
+ *
+ * @revisit Some associations are commented out for now.
  */
 public interface OrientableCurve extends OrientablePrimitive {
+    /**
+     * Returns an ordered pair of points, which are the start point and end point of the curve.
+     * If the curve is closed, then the boundary shall be empty.
+     *
+     * @return The sets of positions on the boundary.
+     * @UML operation boundary
+     */
+    public CurveBoundary getBoundary();
+
 //    public org.opengis.spatialschema.geometry.complex.GM_CompositeCurve composite[];
-//    public void setComposite(org.opengis.spatialschema.geometry.complex.GM_CompositeCurve composite[]) {  }
-//    public org.opengis.spatialschema.geometry.complex.GM_CompositeCurve[] getComposite() { return null; }
 }

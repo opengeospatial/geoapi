@@ -8,25 +8,44 @@ import org.opengis.gm.primitive.Point;
 
 
 /**
- * The data type GM_Position is a union type consisting of either a DirectPosition or
- * of a reference to a GM_Point from which a DirectPosition shall be obtained. The use
- * of this data type allows the identification of a position either directly as a coordinate
- * (variant direct) or indirectly as a reference to a GM_Point (variant indirect). GM_Position::direct
- * [0,1] : DirectPosition; GM_Position::indirect [0,1] : GM_PointRef; GM_Position: {direct.isNull
- * = indirect.isNotNull} 
+ * A union type consisting of either a {@link DirectPosition} or of a reference to a {@link Point}
+ * from which a {@link DirectPosition} shall be obtained. The use of this data type allows the
+ * identification of a position either directly as a coordinate (variant direct) or indirectly as a
+ * reference to a {@link Point} (variant indirect).
  *  
- * @author GeoAPI
- * @version 1.0
+ * @UML datatype GM_Position
+ * @author ISO/DIS 19107
+ * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
+ * @version 2.0
+ *
+ * @revisit Is this interface really needed for a Java profile?
  */
 public interface Position {
-//    public void setDirect(DirectPosition direct);
-//    public DirectPosition getDirect();
+    /**
+     * Returns the direct position.
+     * If <code>null</code>, then {@link #getIndirect} must returns a non-null value.
+     *
+     * @return The direct position, or <code>null</code>.
+     * @UML conditional direct
+     */
+    public DirectPosition getDirect();
+
+    /**
+     * Returns the point.
+     * If <code>null</code>, then {@link #getDirect} must returns a non-null value.
+     *
+     * @return The point, or <code>null</code>.
+     * @UML conditional indirect
+     */
+    public Point getIndirect();
 
     /**
      * Creates a point at this position.
      *
      * @return The point at this position.
      * @UML constructor Point(Position)
+     *
+     * @revisit We should probably move this constructor in a factory instead.
      */
     public Point toPoint();
 }

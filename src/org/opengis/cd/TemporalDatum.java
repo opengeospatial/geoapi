@@ -3,7 +3,7 @@
  */
 package org.opengis.cd;
 
-// Direct J2SE dependencies
+// J2SE direct dependencies
 import java.util.Date;
 
 
