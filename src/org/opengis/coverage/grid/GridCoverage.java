@@ -10,9 +10,10 @@
 package org.opengis.coverage.grid;
 
 // J2SE direct dependencies
-import java.awt.image.Raster;              // For Javadoc
-import java.awt.image.WritableRaster;      // For Javadoc
-import java.awt.image.RenderedImage;       // For Javadoc
+import java.util.List;
+import java.awt.image.Raster;          // For Javadoc
+import java.awt.image.WritableRaster;  // For Javadoc
+import java.awt.image.RenderedImage;   // For Javadoc
 
 // OpenGIS direct dependencies
 import org.opengis.coverage.Coverage;
@@ -129,27 +130,22 @@ public interface GridCoverage extends Coverage {
     GridCoverage getOverview(int overviewIndex) throws IndexOutOfBoundsException;
 
     /**
-     * Returns the source data for a grid coverage.
-     * If the <code>GridCoverage</code> was produced from an underlying dataset
-     * (by {@link GridCoverageReader#read read(...)} for instance) the
-     * {@link #getNumSources getNumSources()} method should returns
-     * zero, and this method should not be called.
+     * Returns the sources data for a grid coverage. If the <code>GridCoverage</code> was
+     * produced from an underlying dataset (by {@link GridCoverageReader#read read(...)}
+     * for instance), this method should returns an empty list.
      *
      * If the <code>GridCoverage</code> was produced using
-     * {link org.opengis.coverage.processing.GridCoverageProcessor} then it should return the source
-     * grid coverage of the one used as input to <code>GridCoverageProcessor</code>.
-     * In general the <code>getSource(i)</code> method is intended to return the original
-     * <code>GridCoverage</code> on which it depends.
+     * {link org.opengis.coverage.processing.GridCoverageProcessor} then it should return the
+     * source grid coverages of the one used as input to <code>GridCoverageProcessor</code>.
+     * In general this method is intended to return the original <code>GridCoverage</code>
+     * on which it depends.
      *
      * This is intended to allow applications to establish what <code>GridCoverage</code>s
      * will be affected when others are updated, as well as to trace back to the "raw data".
      *
-     * @param sourceDataIndex Source grid coverage index. Indexes start at 0.
-     * @return The source data for a grid coverage.
-     * @throws IndexOutOfBoundsException if <code>sourceDataIndex</code> is out of bounds.
-     * @UML operation Coverage.getSource
+     * @return The sources data for a grid coverage.
      */
-/// GridCoverage getSource(int sourceDataIndex) throws IndexOutOfBoundsException;
+/// List<GridCoverage> getSources();
 
     /**
      * Return a sequence of boolean values for a block.
