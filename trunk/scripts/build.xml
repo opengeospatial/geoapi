@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="windows-1252"?>
+<!-- ========================================================================
+
+     Build GeoAPI interfaces, javadoc, jars and zip file.
+     Before running on a new system, make sure to adapt
+     'basedir' and 'sourcepath' properties.
+
+     ======================================================================== -->
+
+<project name="GeoAPI" default="release" basedir="D:/Application/GeoAPI">
+
+  <property name="sourcepath"  value="P:/CVSROOT/GeoAPI/src"/>
+  <property name="version"     value="2.0"/>
+
+
+
+
+  <!-- ======================================================================
+
+       CLEAN: Delete old directories
+
+       ====================================================================== -->
+
+  <target name="clear">
+
+    <delete includeEmptyDirs="true" failonerror="false">
+      <fileset dir="sources"/>
+    </delete>
+
+    <delete includeEmptyDirs="true" failonerror="false">
+      <fileset dir="classes"/>
+    </delete>
+
+    <delete includeEmptyDirs="true" failonerror="false">
+      <fileset dir="binaries"/>
+    </delete>
+
+    <delete includeEmptyDirs="true" failonerror="false">
+      <fileset dir="javadoc"/>
+    </delete>
+
+    <delete includeEmptyDirs="true" failonerror="false">
+      <fileset dir="download"/>
+    </delete>
+
+  </target>
+
+
+
+
+  <!-- ======================================================================
+
+       SOURCES: Copy source code and fix carriage returns
+
+       ====================================================================== -->
+
+  <target name="sources" depends="clear">
+
+    <tstamp>
+      <format property="TODAY" pattern="d MMMM yyyy" locale="fr"/>
+    </tstamp>
+
+    <copy todir="sources" includeEmptyDirs="false" overwrite="true">
+      <fileset dir="${sourcepath}">
+        <exclude name="**/.*"/>
+        <exclude name="**/*.class"/>
+      </fileset>
+    </copy>
+
+    <fixcrlf srcdir="sources" tab="remove" eof="remove">
+      <include name="**/*.java"/>
+      <include name="**/*.html"/>
+    </fixcrlf>
+
+  </target>
+
+
+
+
+  <!-- ======================================================================
+
+       COMPILE: Compile source code (create *.class files)
+
+       ====================================================================== -->
+
+  <target name="compile" depends="sources">
+
+    <mkdir dir="classes"/>
+
+    <javac srcdir      = "sources"
+           destdir     = "classes"
+           includes    = "org/**/*.java"
+           optimize    = "true"
+           debug       = "false"
+           debuglevel  = "source,lines,vars"
+           failonerror = "true">
+    </javac>
+
+  </target>
+
+
+
+
+  <!-- ======================================================================
+
+       JAVADOC: Create HTML javadoc
+
+       ====================================================================== -->
+
+  <target name="javadoc" depends="compile">
+
+    <javadoc sourcepath       = "sources"
+             classpath        = "classes"
+             destdir          = "javadoc"
+             use              = "true"
+             nodeprecatedlist = "true"
+             author           = "false"
+             version          = "true"
+             overview         = "sources/org/opengis/overview.html"
+             windowtitle      = "OpenGIS API"
+             doctitle         = "OpenGIS API"
+             header           = "OpenGIS API"
+             additionalparam  = "-quiet -noqualifier all
+                                 -tag datatype:t:&quot;Data type&quot;
+                                 -tag mandatory:m:&quot;Attribute type: mandatory&quot;
+                                 -tag conditional:m:&quot;Attribute type: conditional&quot;
+                                 -tag optional:m:&quot;Attribute type: optional&quot;
+                                 -tag association:Xm:&quot;Association&quot;
+                                 -tag rename:m:&quot;Name change from UML &lt;FONT COLOR='#A01020'&gt;(a GeoAPI's proposal)&lt;/FONT&gt;:&quot;
+                                 -tag revisit:a:&quot;REVISIT OPEN ISSUE &lt;FONT COLOR='#A01020'&gt;(a GeoAPI's comment, &lt;U&gt;not&lt;/U&gt; an OpenGIS's one)&lt;/FONT&gt;:&quot;">
+
+      <bottom>
+        &lt;TABLE WIDTH='100%'&gt;&lt;TR&gt;&lt;TD NOWRAP&gt;
+        &lt;A HREF=&quot;{@docRoot}/org/opengis/doc-files/Terms.html&quot;&gt;Symbols, terms and definitions&lt;/A&gt;&lt;BR&gt;
+        &lt;/TD&gt;&lt;TD NOWRAP ALIGN='right'&gt;
+        &lt;FONT SIZE='2'&gt;Copyright &lt;A HREF=&quot;http://www.opengis.org/&quot;&gt;OpenGIS&amp;reg; Consortium&lt;/A&gt;&lt;/FONT&gt;
+        &lt;/TD&gt;&lt;/TR&gt;&lt;/TABLE&gt;
+      </bottom>
+
+      <fileset dir="sources">
+        <include name="org/**/*.java"/>
+      </fileset>
+
+      <link href="http://java.sun.com/j2se/1.4/docs/api"/>
+
+      <group title="Spatial Referencing by Coordinates" packages="org.opengis.cd:org.opengis.cs:org.opengis.rs:org.opengis.sc"/>
+    </javadoc>
+
+    <copy todir="javadoc/org/opengis/doc-files">
+      <fileset dir="sources/org/opengis/doc-files"/>
+    </copy>
+
+  </target>
+
+
+
+
+  <!-- ======================================================================
+
+       JARS: Create jar files and their manifest
+
+       ====================================================================== -->
+
+  <target name="jars" depends="compile">
+
+    <mkdir dir="binaries"/>
+
+    <jar destfile = "binaries/opengis.jar"
+         basedir  = "classes"
+         index    = "true">
+      <include name="org/**"/>
+      <manifest>
+        <section name="org/opengis/ci">
+          <attribute name="Sealed"                 value="true"                              />
+          <attribute name="Specification-Title"    value="Spatial Referencing by Coordinates"/>
+          <attribute name="Specification-Version"  value="2.00"                              />
+          <attribute name="Specification-Vendor"   value="OpenGIS Consortium, Inc."          />
+        </section>
+        <section name="org/opengis/ex">
+          <attribute name="Sealed"                 value="true"                              />
+          <attribute name="Specification-Title"    value="Spatial Referencing by Coordinates"/>
+          <attribute name="Specification-Version"  value="2.00"                              />
+          <attribute name="Specification-Vendor"   value="OpenGIS Consortium, Inc."          />
+        </section>
+        <section name="org/opengis/cd">
+          <attribute name="Sealed"                 value="true"                              />
+          <attribute name="Specification-Title"    value="Spatial Referencing by Coordinates"/>
+          <attribute name="Specification-Version"  value="2.00"                              />
+          <attribute name="Specification-Vendor"   value="OpenGIS Consortium, Inc."          />
+        </section>
+        <section name="org/opengis/cs">
+          <attribute name="Sealed"                 value="true"                              />
+          <attribute name="Specification-Title"    value="Spatial Referencing by Coordinates"/>
+          <attribute name="Specification-Version"  value="2.00"                              />
+          <attribute name="Specification-Vendor"   value="OpenGIS Consortium, Inc."          />
+        </section>
+        <section name="org/opengis/rs">
+          <attribute name="Sealed"                 value="true"                              />
+          <attribute name="Specification-Title"    value="Spatial Referencing by Coordinates"/>
+          <attribute name="Specification-Version"  value="2.00"                              />
+          <attribute name="Specification-Vendor"   value="OpenGIS Consortium, Inc."          />
+        </section>
+        <section name="org/opengis/sc">
+          <attribute name="Sealed"                 value="true"                              />
+          <attribute name="Specification-Title"    value="Spatial Referencing by Coordinates"/>
+          <attribute name="Specification-Version"  value="2.00"                              />
+          <attribute name="Specification-Vendor"   value="OpenGIS Consortium, Inc."          />
+        </section>
+        <section name="org/opengis/util">
+          <attribute name="Sealed"                 value="true"                              />
+          <attribute name="Specification-Title"    value="GeoAPI"                            />
+          <attribute name="Specification-Version"  value="1.00"                              />
+          <attribute name="Specification-Vendor"   value="OpenGIS Consortium, Inc."          />
+        </section>
+      </manifest>
+    </jar>
+
+  </target>
+
+
+
+  <!-- ======================================================================
+
+       RELEASE: Create everything and package in a ZIP file
+
+       ====================================================================== -->
+
+  <target name="release" depends="sources,jars,javadoc">
+
+    <mkdir dir="download"/>
+
+    <zip destfile="download/opengis.zip">
+      <fileset dir=".">
+        <include name="javadoc/**"/>
+        <include name="sources/**"/>
+        <include name="binaries/**"/>
+      </fileset>
+    </zip>
+
+  </target>
+
+</project>
