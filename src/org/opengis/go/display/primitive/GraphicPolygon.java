@@ -22,6 +22,7 @@ import org.opengis.spatialschema.geometry.geometry.PointArray;
  *
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version $Revision$, $Date$
+ * @since GO 1.1
  */
 public interface GraphicPolygon extends Graphic {
     /**
