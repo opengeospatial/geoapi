@@ -30,14 +30,8 @@ import java.util.Date;
 ///@UML (identifier="EX_TemporalExtent")
 public interface TemporalExtent {
     /**
-     * Returns the start date and time for the content of the dataset.
+     * Returns the date and time for the content of the dataset.
      */
 /// @UML (identifier="extent", obligation=MANDATORY)
-    Date getStartTime();
-
-    /**
-     * Returns the end date and time for the content of the dataset.
-     */
-/// @UML (identifier="extent", obligation=MANDATORY)
-    Date getEndTime();
+    Date getExtent();
 }
