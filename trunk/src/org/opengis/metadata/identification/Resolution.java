@@ -7,7 +7,7 @@
  ** Copyright (C) 2003 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
  **
  *************************************************************************************************/
-package org.opengis.metadata.spatial;
+package org.opengis.metadata.identification;
 
 /**
  * Level of detail expressed as a scale factor or a ground distance.

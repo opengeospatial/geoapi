@@ -19,6 +19,7 @@ import org.opengis.metadata.quality.DataQuality;
 import org.opengis.metadata.distribution.Distribution;
 import org.opengis.metadata.content.ContentInformation;
 import org.opengis.metadata.spatial.SpatialRepresentation;
+import org.opengis.metadata.identification.Identification;
 import org.opengis.referencing.ReferenceSystem;
 
 
