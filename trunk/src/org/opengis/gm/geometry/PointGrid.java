@@ -21,7 +21,7 @@ public interface PointGrid {
      * in this grid must have this length.
      *
      * @return The grid width.
-     * @see PointArray#length
+     * @see PointArray#size
      */
     public int width();
 

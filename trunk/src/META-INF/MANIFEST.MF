@@ -1,55 +1,15 @@
 
-Name: org/opengis/rs
+Name: org/opengis/metadata*
+Specification-Title: Meta data
+Specification-Version: 2.00
+Specification-Vendor: OpenGIS Consortium, Inc.
+
+Name: org/opengis/crs*
 Specification-Title: Spatial Referencing by Coordinates
 Specification-Version: 2.00
 Specification-Vendor: OpenGIS Consortium, Inc.
 
-Name: org/opengis/sc
-Specification-Title: Spatial Referencing by Coordinates
-Specification-Version: 2.00
-Specification-Vendor: OpenGIS Consortium, Inc.
-
-Name: org/opengis/cs
-Specification-Title: Spatial Referencing by Coordinates
-Specification-Version: 2.00
-Specification-Vendor: OpenGIS Consortium, Inc.
-
-Name: org/opengis/cd
-Specification-Title: Spatial Referencing by Coordinates
-Specification-Version: 2.00
-Specification-Vendor: OpenGIS Consortium, Inc.
-
-Name: org/opengis/cc
-Specification-Title: Spatial Referencing by Coordinates
-Specification-Version: 2.00
-Specification-Vendor: OpenGIS Consortium, Inc.
-
-Name: org/opengis/dq
-Specification-Title: Spatial Referencing by Coordinates
-Specification-Version: 2.00
-Specification-Vendor: OpenGIS Consortium, Inc.
-
-Name: org/opengis/ci
-Specification-Title: Spatial Referencing by Coordinates
-Specification-Version: 2.00
-Specification-Vendor: OpenGIS Consortium, Inc.
-
-Name: org/opengis/ex
-Specification-Title: Spatial Referencing by Coordinates
-Specification-Version: 2.00
-Specification-Vendor: OpenGIS Consortium, Inc.
-
-Name: org/opengis/cv
-Specification-Title: "Grid Coverage"
-Specification-Version: "1.00"
-Specification-Vendor: "OpenGIS Consortium"
-
-Name: org/opengis/gc
-Specification-Title: "Grid Coverage"
-Specification-Version: "1.00"
-Specification-Vendor: "OpenGIS Consortium"
-
-Name: org/opengis/gp
+Name: org/opengis/coverage*
 Specification-Title: "Grid Coverage"
 Specification-Version: "1.00"
 Specification-Vendor: "OpenGIS Consortium"
@@ -64,7 +24,7 @@ Specification-Title: Geospatial objects
 Specification-Version: 0.2
 Specification-Vendor: OpenGIS Consortium, Inc.
 
-Name: org/opengis/util
+Name: org/opengis/util*
 Specification-Title: GeoAPI
 Specification-Version: 1.00
 Specification-Vendor: OpenGIS Consortium, Inc.

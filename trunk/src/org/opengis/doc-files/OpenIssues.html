@@ -146,7 +146,7 @@
     <LI><P ALIGN="justify">The 2003-073 specification duplicates the name and identifier attributes in many
         interfaces, with different identifier name (e.g. "<CODE>ellipsoidName</CODE>", "<CODE>datumName</CODE>",
         "<CODE>csName</CODE>", "<CODE>crsName</CODE>", etc.). A common super-interface like the legacy
-        <A HREF=../../../../legacy/org/opengis/crs/cs/CS_Info.html><CODE>CS_Info</CODE></A> would be more
+        <A HREF=../../../../legacy/org/opengis/cs/CS_Info.html><CODE>CS_Info</CODE></A> would be more
         convenient.</P>
         <P ALIGN="justify"><STRONG>FIX:</STRONG> <FONT COLOR="green">Drop all classname prefix in
         "<code>name</code>" and "<code>ID</code>" attributes. Moves "<code>name</code>", "<code>ID</code>"
@@ -158,11 +158,11 @@
         are usually unconvenient. Furthermore, <CODE>union</CODE> are not type-safe even in C. It
         may be better to avoid the <CODE>CD_SecondDefiningParameter</CODE> construct, which is used
         in only one place instead. A more convient and type-safe approach would be the legacy
-        <A HREF=../../../../legacy/org/opengis/crs/cs/CS_Ellipsoid.html><CODE>CS_Ellipsoid</CODE></A>
+        <A HREF=../../../../legacy/org/opengis/cs/CS_Ellipsoid.html><CODE>CS_Ellipsoid</CODE></A>
         API.</P>
         <P ALIGN="justify"><STRONG>FIX:</STRONG> <FONT COLOR="green">Remove the
         <CODE>SecondDefiningParameter</CODE> construct. Uses the legacy
-        <A HREF=../../../../legacy/org/opengis/crs/cs/CS_Ellipsoid.html><CODE>CS_Ellipsoid</CODE></A>
+        <A HREF=../../../../legacy/org/opengis/cs/CS_Ellipsoid.html><CODE>CS_Ellipsoid</CODE></A>
         API instead.</FONT></P>
     </LI>
   </UL>
