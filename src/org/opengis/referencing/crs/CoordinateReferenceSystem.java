@@ -11,8 +11,7 @@ package org.opengis.referencing.crs;
 
 // OpenGIS direct dependencies
 import org.opengis.referencing.ReferenceSystem;
-import org.opengis.referencing.cs.CoordinateSystem; // For javadoc
-import org.opengis.referencing.cs.CoordinateSystemAxis;
+import org.opengis.referencing.cs.CoordinateSystem;
 
 
 /**
@@ -25,26 +24,14 @@ import org.opengis.referencing.cs.CoordinateSystemAxis;
  */
 public interface CoordinateReferenceSystem extends ReferenceSystem {
     /**
-     * Returns the dimension of the underlying {@linkplain CoordinateSystem coordinate system}.
-     * For {@linkplain SingleCRS single CRS}, this is equivalent to
-     * <code>{@linkplain SingleCRS#getCoordinateSystem() getCoordinateSystem}().{@linkplain
-     * CoordinateSystem#getDimension getDimension}()</code>.
-     * For {@linkplain CompoundCRS compound CRS}, this is equals to the sum of the dimension of
-     * each inner CRS.
+     * Returns the coordinate system. One of {@link CoordinateSystem coordinate system}
+     * sub-interfaces is associated with {@linkplain SingleCRS single CRS}. Other CRS
+     * like {@linkplain CompoundCRS compound CRS} may also provides a synthetic coordinate
+     * system in order to allow users to access to two commonly requested information:
+     * {@linkplain CoordinateSystem#getDimension dimension} and
+     * {@linkplain CoordinateSystem#getAxis axis}.
      *
-     * @return The dimension of this coordinate reference system.
+     * @return The coordinate system.
      */
-    int getDimension();
-
-    /**
-     * Returns the axis for the underlying {@linkplain CoordinateSystem coordinate system} at
-     * the specified dimension. For {@linkplain SingleCRS single CRS}, this is equivalent to
-     * <code>{@linkplain SingleCRS#getCoordinateSystem() getCoordinateSystem}().{@linkplain
-     * CoordinateSystem#getAxis getAxis}(dimension)</code>.
-     *
-     * @param  dimension The zero based index of axis.
-     * @return The axis at the specified dimension.
-     * @throws IndexOutOfBoundsException if <code>dimension</code> is out of bounds.
-     */
-    CoordinateSystemAxis getAxis(int dimension) throws IndexOutOfBoundsException;
+    CoordinateSystem getCoordinateSystem();
 }
