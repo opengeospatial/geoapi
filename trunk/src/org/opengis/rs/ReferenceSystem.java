@@ -20,7 +20,7 @@ public interface ReferenceSystem {
      * @return The reference system name.
      *
      * @mandatory
-     * @task REVISIT: Should we ask for a (possibly null) java.util.Locale argument?
+     * @todo Should we ask for a (possibly null) java.util.Locale argument?
      */
     public String getSrsName();
 
@@ -53,7 +53,7 @@ public interface ReferenceSystem {
      *         or <code>null</code> if not available.
      *
      * @optional
-     * @task REVISIT: Should we ask for a (possibly null) java.util.Locale argument?
+     * @todo Should we ask for a (possibly null) java.util.Locale argument?
      */
     public String getScope();
 
@@ -65,7 +65,7 @@ public interface ReferenceSystem {
      *         or <code>null</code> if not available.
      *
      * @optional
-     * @task REVISIT: Should we ask for a (possibly null) java.util.Locale argument?
+     * @todo Should we ask for a (possibly null) java.util.Locale argument?
      */
     public String getRemarks();
 }
