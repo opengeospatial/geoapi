@@ -3,10 +3,11 @@
  * $ Source $
  * Created on Jan 12, 2005
  */
-package org.opengis.layer;
+package org.opengis.layer.source;
 
 import java.net.URL;
 
+import org.opengis.layer.Layer;
 import org.opengis.util.InternationalString;
 
 
