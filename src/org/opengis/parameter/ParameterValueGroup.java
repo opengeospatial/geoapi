@@ -48,21 +48,25 @@ public interface ParameterValueGroup extends GeneralParameterValue {
 /// ParameterDescriptorGroup getDescriptor();
     
     /**
-     * Returns the values in this group.
+     * Returns the values in this group. The returned list may or may not be unmodifiable;
+     * this is implementation-dependent. However, if some aspects of this list are modifiables,
+     * then the modification shall be reflected back into this <code>ParameterValueGroup</code>.
      */
 /// @UML (identifier="includesValue", obligation=MANDATORY)
     List/*<GeneralParameterValue>*/ values();
     
     /**
-     * Returns the first value in this group for the specified
-     * {@linkplain Identifier#getCode identifier code}.
-     * If no {@linkplain ParameterValue parameter value} is found for the given
-     * code, then this method search recursively in subgroups (if any).
-     * <P>
-     * This convenience method provides a way to get and set parameter values by
-     * name. For example the following idiom fetches a floating point value for
-     * the <code>"false_easting"</code> parameter:
-     * </P>
+     * Returns the first value in this group for the specified {@linkplain Identifier#getCode
+     * identifier code}. If no {@linkplain ParameterDescriptor parameter descriptor} is found
+     * for the given code, then this method search recursively in subgroups (if any). If a
+     * parameter descriptor is found but there is no {@linkplain ParameterValue value} for it
+     * (because it is an optional parameter), then a {@linkplain ParameterValue parameter value}
+     * is automatically created and initialized to its default value (if any).
+     *
+     * <P>This convenience method provides a way to get and set parameter values by name. For
+     * example the following idiom fetches a floating point value for the
+     * <code>"false_easting"</code> parameter:</P>
+     *
      * <blockquote><code>
      * double value = parameter("false_easting").{@linkplain ParameterValue#doubleValue() doubleValue()};
      * </code></blockquote>
@@ -89,8 +93,10 @@ public interface ParameterValueGroup extends GeneralParameterValue {
      *  would result in more parameters than allowed by maxOccurs, or if this
      *  parameter is not allowable by the groups descriptor.
      *
-     * @revisit This method is not strictly necessary, since {@link #parameter}
-     *          can do the job.
+     * @deprecated Use {@link #parameter(String)} instead. The reason is that user should not
+     *             create <code>ParameterValue</code> object himself. Creation of those object
+     *             should be controlled by <code>ParameterDescriptor</code>, and the user should
+     *             only edit them.
      */
     void add(ParameterValue parameter) throws InvalidParameterTypeException;
     
@@ -109,25 +115,12 @@ public interface ParameterValueGroup extends GeneralParameterValue {
      *  would result in more parameters than allowed by maxOccurs, or if this
      *  parameter is not allowable by the groups descriptor.
      *
-     * @revisit Which use case for this method?
+     * @deprecated User should not add <code>ParameterValueGroup</code> objects himself. Creation
+     *             of those objects should be controlled by <code>ParameterDescriptor</code>. A
+     *             different API will be needed, maybe an <code>add(String)</code> method returning
+     *             a <code>ParameterGroup</code>.
      */
     void add(ParameterValueGroup group) throws InvalidParameterTypeException;
-    
-    /**
-     * Convenience method used to locate ParameterValue(s) by descriptor.
-     * 
-     * @param type ParameterDescriptor used for lookup
-     * @return Array of ParameterValuelength corasponding to cardinality of the descriptor
-     */
-//    ParameterValue[] parameter(ParameterDescriptor parameterType);
-
-    /**
-     * Convenience method used to locate ParameterValueGroup(s) by descriptor.
-     * 
-     * @param groupType ParameterDescriptorGroup
-     * @return Array of ParameterValueGroup length corasponding to cardinality of the descriptor
-     */
-//    ParameterValueGroup[] group(ParameterDescriptorGroup groupType);
     
     /**
      * Returns a copy of this group of parameter values.

@@ -9,9 +9,6 @@
  *************************************************************************************************/
 package org.opengis.referencing.operation;
 
-// J2SE direct dependencies
-import java.util.Locale;
-
 // OpenGIS direct dependencies
 import org.opengis.referencing.IdentifiedObject;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
@@ -100,20 +97,6 @@ public interface CoordinateOperation extends IdentifiedObject {
      */
 /// @UML (identifier="scope", obligation=OPTIONAL)
     InternationalString getScope();
-
-    /**
-     * Description of domain of usage, or limitations of usage, for which this operation is valid.
-     *
-     * @param  locale The desired locale for the coordinate operation scope to be returned,
-     *         of <code>null</code> for scope in some default locale (may or may not be the
-     *         {@linkplain Locale#getDefault() system default}).
-     * @return The coordinate operation scope in the given locale, or <code>null</code> if none.
-     *         If no scope is available in the given locale, then some default locale is used.
-     *
-     * @deprecated Replaced by {@link #getScope()}.
-     */
-/// @UML (identifier="scope", obligation=OPTIONAL)
-    String getScope(Locale locale);
     
     /**
      * Gets the math transform. The math transform will transform positions in the

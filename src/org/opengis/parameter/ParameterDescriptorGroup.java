@@ -9,7 +9,10 @@
  *************************************************************************************************/
 package org.opengis.parameter;
 
-// OpenGIS dependencies
+// J2SE direct dependencies
+import java.util.List;
+
+// OpenGIS direct dependencies
 import org.opengis.metadata.Identifier;  // For javadoc
 
 // Annotations
@@ -43,36 +46,51 @@ public interface ParameterDescriptorGroup extends GeneralParameterDescriptor {
      * <li>For {@link ParameterDescriptor} with cardinality 1:* a {@link ParameterValue} will
      *     be included with the {@linkplain ParameterDescriptor#getDefaultValue default value}
      *     (even if this default value is null).</li>
-     * <li>For {@link ParameterDescriptor} with cardinality 0:* no entry will be generated,
-     *     client code will need to look up the correct descriptor and create these optional
-     *     {@link ParameterValue}s.</li>
+     * <li>For {@link ParameterDescriptor} with cardinality 0:* no entry is required.
+     *     {@link ParameterValue} entries may be created only as needed.</li>
      * </ul>
      */
- /// ParameterValueGroup createValue();     
+ /// ParameterValueGroup createValue();
  
     /**
      * Returns the parameters in this group.
      */
 /// @UML (identifier="includesParameter", obligation=MANDATORY)
+    List/*<GeneralParameterDescriptor>*/ descriptors();
+ 
+    /**
+     * Returns the parameters in this group.
+     *
+     * @deprecated use {@link #descriptors} instead.
+     */
     GeneralParameterDescriptor[] getParameters();
 
     /**
-     * Returns the first parameter in this group for the specified
+     * Returns the first parameter descriptor in this group for the specified
      * {@linkplain Identifier#getCode identifier code}.
-     * If no {@linkplain ParameterDescriptor operation parameter} is found for
+     * If no {@linkplain ParameterDescriptor parameter descriptor} is found for
      * the given code, then this method search recursively in subgroups (if any).
-     * This convenience method provides a way to get and set parameter information by name.
+     *
+     * <P>This convenience method provides a way to get parameter information by name.
      * For example the following idiom fetches the default value for the
-     * <code>"false_easting"</code> parameter:
-     * <br>
+     * <code>"false_easting"</code> parameter:</P>
+     *
      * <blockquote><code>
-     * Object defaultValue = getParameter("false_easting").{@linkplain ParameterDescriptor#getDefaultValue() getDefaultValue()};
+     * Object defaultValue = descriptor("false_easting").{@linkplain ParameterDescriptor#getDefaultValue() getDefaultValue()};
      * </code></blockquote>
      *
      * @param  name The case insensitive {@linkplain Identifier#getCode identifier code} of the
      *              parameter to search for.
      * @return The parameter for the given identifier code.
      * @throws ParameterNotFoundException if there is no parameter for the given identifier code.
+     */
+    ParameterDescriptor descriptor(String name) throws ParameterNotFoundException;
+
+    /**
+     * Returns the first parameter descriptor in this group for the specified
+     * {@linkplain Identifier#getCode identifier code}.
+     *
+     * @deprecated Use {@link #descriptor} instead.
      */
     ParameterDescriptor getParameter(String name) throws ParameterNotFoundException;
 }
