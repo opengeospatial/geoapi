@@ -20,6 +20,7 @@ package org.opengis.coverage.grid;
  * @version 1.1
  *
  * @revisit This interface duplicates {@link org.opengis.crs.operation.OperationParameter}.
+ *          If we keep it, it need a <code>Parameter createParameter()</code> method.
  */
 public interface ParameterInfo {
     /**

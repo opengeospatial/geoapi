@@ -79,6 +79,9 @@ public interface Format {
      * @return the parameter information for the given index.
      * @throws IndexOutOfBoundsException if <code>index</code> is out of bounds.
      * @UML operation getParameterInfo
+     *
+     * @revisit Need <code>getReadParameterInfo</code> and
+     *          <code>getWriteParameterInfo</code> methods.
      */
     ParameterInfo getParameterInfo(int index) throws IndexOutOfBoundsException;
 }
