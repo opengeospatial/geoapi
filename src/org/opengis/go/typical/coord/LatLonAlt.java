@@ -12,7 +12,6 @@ package org.opengis.go.typical.coord;
 import javax.units.SI;
 import javax.units.Unit;
 
-import org.opengis.crs.FactoryException;
 import org.opengis.crs.crs.CoordinateReferenceSystem;
 import org.opengis.go.CommonFactoryManager;
 import org.opengis.spatialschema.geometry.DirectPosition;
@@ -104,7 +103,7 @@ public class LatLonAlt implements DirectPosition {
      * Initializes using the default Coordinate Reference System for this coordinate type.
      */
     public LatLonAlt() {
-        setCRS(findCRS(DEFAULT_COORDINATE_REFERENCE_SYSTEM_URL));
+        setCRS(CommonFactoryManager.createCoordinateReferenceSystem(DEFAULT_COORDINATE_REFERENCE_SYSTEM_URL));
         
     }
     
@@ -126,21 +125,6 @@ public class LatLonAlt implements DirectPosition {
         }
     }
 
-    /**
-     * Returns the Coordinate Reference System for the given URL.
-     * @param crsURL Coordinate Reference System URL.
-     * @return Coordinate Reference System.
-     */
-    private CoordinateReferenceSystem findCRS(String crsURL) {
-        CoordinateReferenceSystem crs = null;
-        try {
-            crs = CommonFactoryManager.getCRSAuthorityFactory().createCoordinateReferenceSystem(crsURL);
-        } catch(FactoryException fe) {
-            System.err.println(fe.getMessage());
-        }
-        return crs;
-    }
-    
     //**  accessors/mutators
     
     /**
