@@ -28,17 +28,17 @@
   may be assigned a token allowing it to work on previously locked features.
   WFS allows a lock to be taken out across multiple FeatureCollections in a single
   request. We have extended this idea to support FeatureCollection from different
-  DataStores - although we confess that the authorization tokens are still on a 
-  per DataStore basis.
+  FeatureStores - although we confess that the authorization tokens are still on a 
+  per FeatureStore basis.
   </p>
   <p>
   Code example: <pre><code>
   // The FilterFactory.bnf( "" ) method is unfortuantly mythical
   //
-  DataStore dataStore = DataStoreFactory.create( new URI("myfile.gml") );
-  GenericName roads = dataStore.getTypeNames().iterator().next();
+  FeatureStore featureStore = FeatureStoreFactory.create( new URI("myfile.gml") );
+  GenericName roads = featureStore.getTypeNames().iterator().next();
   
-  FeatureCollection kaslo = dataStore.getFeatures( roads, FilterFactory.bnf( "CITY='kaslo'" );
+  FeatureCollection kaslo = featureStore.getFeatures( roads, FilterFactory.bnf( "CITY='kaslo'" );
   LockRequest lockRequest = new LockRequest( 45678 );
   Transaction t = new Transaction();
   

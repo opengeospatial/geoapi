@@ -12,23 +12,23 @@ package org.opengis.feature;
 import java.util.EventListener;
 
 /**
- * Interface whose methods are invoked when types are modified in a DataStore.
+ * Interface whose methods are invoked when types are modified in a FeatureStore.
  * To use this interface, implement its methods and invoke the
- * addDataStoreListener() method on DataStore.
+ * addFeatureStoreListener() method on FeatureStore.
  */
-public interface DataStoreListener extends EventListener {
+public interface FeatureStoreListener extends EventListener {
     /**
      * Invoked when a new FeatureType has been created.
      */
-    public void typeAdded(DataStoreEvent dse);
+    public void typeAdded(FeatureStoreEvent dse);
 
     /**
-     * Invoked when a FeatureType has been removed from a DataStore.
+     * Invoked when a FeatureType has been removed from a FeatureStore.
      */
-    public void typeRemoved(DataStoreEvent dse);
+    public void typeRemoved(FeatureStoreEvent dse);
 
     /**
      * Invoked when the schema for a type has been changed.
      */
-    public void typeModified(DataStoreEvent dse);
+    public void typeModified(FeatureStoreEvent dse);
 }

@@ -163,7 +163,7 @@ public interface FeatureCollection extends Feature, Collection {
     /**
      * Returns a collection whose contents are the subset of features in this
      * collection that pass the given filter.  This is semantically equivalent
-     * to going back to the DataStore that created this collection and AND-ing
+     * to going back to the FeatureStore that created this collection and AND-ing
      * the filter that produced this collection with the given filter.
      * <p>
      * Compare this method to <code>List.subList(int,int)</code> from the Java

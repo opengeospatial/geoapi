@@ -27,13 +27,13 @@ import org.opengis.util.InternationalString;
  *
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  */
-public interface DataStore {
+public interface FeatureStore {
     /**
-     * Icon representing this DataStore.
+     * Icon representing this FeatureStore.
      * <p>
      * Assumed 16x16 in size.
      * </p>
-     * @return URL to a icon (GIF or PNG) representing this DataStore.
+     * @return URL to a icon (GIF or PNG) representing this FeatureStore.
      */
     URL getIcon();
 
@@ -41,19 +41,19 @@ public interface DataStore {
     InternationalString getDisplayName();
 
     /**
-     * Description of this DataStore.
+     * Description of this FeatureStore.
      */
     InternationalString getDescription();
 
     /**
-     * Access to metadata about this DataStore.
+     * Access to metadata about this FeatureStore.
      * <p>
      * Note this is an example of the bridge pattern, client code should not
      * cache this metadata object to ensure that they are never out of date.
      * </p>
      * <p>
      * It is too much overhead to indicate metadata changing with an extra set of
-     * events, DataStoreEvents will be used to indicate new content is available. 
+     * events, FeatureStoreEvents will be used to indicate new content is available. 
      */
     // Metadata getMetadata();
 
@@ -112,25 +112,25 @@ public interface DataStore {
     FeatureCollection getFeatures(Query q, Transaction t) throws IOException;
 
     /**
-     * If the DataStore wants to provide a default style for the given type, it
+     * If the FeatureStore wants to provide a default style for the given type, it
      * may return something here.  Otherwise, it should return null.
      */
     FeatureStyle getDefaultStyle(GenericName type);
 
     /**
-     * Creates a new type.  If this DataStore is backed by a persistent store of
+     * Creates a new type.  If this FeatureStore is backed by a persistent store of
      * some kind, then structures corresponding to the given type should be
      * created in this persistent store.
      * @throws IllegalArgumentException If a type of the given name already
      *   exists.
      * @throws IllegalArgumentException If the given feature schema is somehow
-     *   incompatible with the persisten store that backs this DataStore.
+     *   incompatible with the persisten store that backs this FeatureStore.
      */
     void createType(FeatureType type) throws IOException, UnsupportedOperationException;
 
     /**
      * Completely removes all the features of the given type and removes the
-     * type itself.  If this DataStore is backed by a persistent store of some
+     * type itself.  If this FeatureStore is backed by a persistent store of some
      * kind, then the corresponding structures in that store should be removed.
      * This may throw UnsupportedOperationException if the removal of whole
      * feature types is not supported.
@@ -150,11 +150,11 @@ public interface DataStore {
      * feature type is added, a feature type is deleted, or a feature type's
      * schema has been modified.
      */
-    void addDataStoreListener(DataStoreListener dsl);
+    void addFeatureStoreListener(FeatureStoreListener dsl);
 
     /**
      * Removes a listener that was previously added using the
-     * addDataStoreListener method.
+     * addFeatureStoreListener method.
      */
-    void removeDataStoreListener(DataStoreListener dsl);
+    void removeFeatureStoreListener(FeatureStoreListener dsl);
 }

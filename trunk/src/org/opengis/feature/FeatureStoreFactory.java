@@ -30,7 +30,7 @@ import org.opengis.util.InternationalString;
  * </p>
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  */
-public interface DataStoreFactory {
+public interface FeatureStoreFactory {
 
     /** Well-known param key indicating service requires a username for authentication */
     public static final Param USERNAME = new Param( "user", String.class, "Username for authentication" );
@@ -39,7 +39,7 @@ public interface DataStoreFactory {
     public static final Param PASSWORD = new Param( "password", String.class, "Password for authentication" );
     
     /**
-     * Ask for a DataStore connecting to the indicated provider or service.
+     * Ask for a FeatureStore connecting to the indicated provider or service.
      * <p>
      * Additional hints or configuration information may be provided according
      * to the metadata indicated by getParametersInfo. This information often includes
@@ -48,19 +48,19 @@ public interface DataStoreFactory {
      * 
      * @param provider Often a URL or JDBC URL locating the serivce to connect to
      * @param params Map of hints or configuration information.
-     * @return DataStore connected to the indicated provider or service
+     * @return FeatureStore connected to the indicated provider or service
      * @throws IOException
      */
-    DataStore createDataStore( URI provider, Map params) throws IOException;
+    FeatureStore createFeatureStore( URI provider, Map params) throws IOException;
 
     /**
-     * Ask the physical creation of a new provicer for a DataStore to connect to.
+     * Ask the physical creation of a new provicer for a FeatureStore to connect to.
      * 
      * @param provider Often a URL or JDBC URL locating the serivce to connect to
-     * @return DataStore Datastore connected to the newly created provider or serivce.
+     * @return FeatureStore Datastore connected to the newly created provider or serivce.
      * @throws IOException
      */
-    DataStore createNewDataStore( URI provider ) throws IOException;
+    FeatureStore createNewFeatureStore( URI provider ) throws IOException;
     
     /**
      * Icon representing this category of datastores.
@@ -71,7 +71,7 @@ public interface DataStoreFactory {
      */
     URL getIcon();
 
-    /** Display name used to communicate this type of DataStore to end users */
+    /** Display name used to communicate this type of FeatureStore to end users */
     InternationalString getDisplayName();
     
     /** Descrption of this type of Datastore */
@@ -80,7 +80,7 @@ public interface DataStoreFactory {
     Param[] getParametersInfo();
 
     /**
-     * Indicates this DataStoreFactory communicate with the indicated provider or service.
+     * Indicates this FeatureStoreFactory communicate with the indicated provider or service.
      * <p>
      * This method should not fail, if a connection needs to be made
      * to parse a GetCapabilities file or negotiate WMS versions any
@@ -96,7 +96,7 @@ public interface DataStoreFactory {
     boolean canProcess( URI provider );
     
     /**
-     * Indicates this DataStoreFactory communicate with the indicated provider or service.
+     * Indicates this FeatureStoreFactory communicate with the indicated provider or service.
      * <p>
      * This method differs from canProcess in that additional configuration
      * information may be supplied. 
@@ -108,7 +108,7 @@ public interface DataStoreFactory {
     boolean canProcess( URI provider, Map params);
 
     /**
-     * Allows a DataStoreFactory to ensure all its preconditions are met,
+     * Allows a FeatureStoreFactory to ensure all its preconditions are met,
      * such as the presense of required libraries.
      */
     boolean isAvailable();
@@ -226,7 +226,7 @@ public interface DataStoreFactory {
             } catch (IOException ioException) {
                 throw ioException;
             } catch (Throwable throwable) {
-                throw new DataStoreException("Problem creating " + type.getName() + " from '"
+                throw new FeatureStoreException("Problem creating " + type.getName() + " from '"
                         + text + "'", throwable);
             }
         }
@@ -251,13 +251,13 @@ public interface DataStoreFactory {
                     text,
                 });
             } catch (IllegalArgumentException illegalArgumentException) {
-                throw new DataStoreException("Could not create " + type.getName() + ": from '"
+                throw new FeatureStoreException("Could not create " + type.getName() + ": from '"
                         + text + "'", illegalArgumentException);
             } catch (InstantiationException instantiaionException) {
-                throw new DataStoreException("Could not create " + type.getName() + ": from '"
+                throw new FeatureStoreException("Could not create " + type.getName() + ": from '"
                         + text + "'", instantiaionException);
             } catch (IllegalAccessException illegalAccessException) {
-                throw new DataStoreException("Could not create " + type.getName() + ": from '"
+                throw new FeatureStoreException("Could not create " + type.getName() + ": from '"
                         + text + "'", illegalAccessException);
             } catch (InvocationTargetException targetException) {
                 throw targetException.getCause();
