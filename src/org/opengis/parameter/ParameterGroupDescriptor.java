@@ -22,12 +22,12 @@ import org.opengis.metadata.Identifier;  // For javadoc
  * @version <A HREF="http://www.opengis.org/docs/03-073r1.zip">Abstract specification 2.0</A>
  *
  * @see ParameterValueGroup
- * @see OperationParameter
+ * @see ParameterDescriptor
  */
-public interface OperationParameterGroup extends GeneralOperationParameter {
+public interface ParameterGroupDescriptor extends GeneralParameterDescriptor {
     /**
      * Creates a new instance of {@linkplain ParameterValueGroup parameter value group}
-     * initialized with the {@linkplain OperationParameter#getDefaultValue default values}.
+     * initialized with the {@linkplain ParameterDescriptor#getDefaultValue default values}.
      * <p>
      * The {@linkplain ParameterValueGroup#getDescriptor parameter value descriptor}
      * for the created group will be <code>this</code> object.
@@ -51,13 +51,13 @@ public interface OperationParameterGroup extends GeneralOperationParameter {
      * @return The parameters.
      * @UML association includesParameter
      */
-    GeneralOperationParameter[] getParameters();
+    GeneralParameterDescriptor[] getParameters();
 
     /**
      * Returns the first parameter in this group for the specified {@linkplain Identifier#getCode
      * identifier code}.
      * <p>
-     * If no {@linkplain OperationParameter operation parameter} is found for
+     * If no {@linkplain ParameterDescriptor operation parameter} is found for
      * the given code, then this method search recursively in subgroups (if any).
      * </p>
      * <p>This convenience method provides a way to get and set parameter information by name.
@@ -65,7 +65,7 @@ public interface OperationParameterGroup extends GeneralOperationParameter {
      * <code>"false_easting"</code> parameter:
      * <br><br>
      * <blockquote><code>
-     * Object defaultValue = getParameter("false_easting").{@linkplain OperationParameter#getDefaultValue() getDefaultValue()};
+     * Object defaultValue = getParameter("false_easting").{@linkplain ParameterDescriptor#getDefaultValue() getDefaultValue()};
      * </code></blockquote>
      *
      * @param  name The case insensitive {@linkplain Identifier#getCode identifier code} of the
@@ -75,6 +75,6 @@ public interface OperationParameterGroup extends GeneralOperationParameter {
      * @return The parameter for the given identifier code.
      * @throws ParameterNotFoundException if there is no parameter for the given identifier code.
      */
-    OperationParameter getParameter(String name) throws ParameterNotFoundException;
+    ParameterDescriptor getParameter(String name) throws ParameterNotFoundException;
         
 }
