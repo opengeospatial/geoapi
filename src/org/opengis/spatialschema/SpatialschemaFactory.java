@@ -19,6 +19,10 @@ import org.opengis.crs.crs.UnsupportedCRSException;
  *
  * @author Open GIS Consortium, Inc.
  * @version $Revision$, $Date$
+ *
+ * @revisit This interfaces seems to duplicate factories found in other packages.
+ *          Furthermore, reflections are more expensive than ordinary methods and
+ *          are not type-safe.
  */
 public interface SpatialschemaFactory {
 

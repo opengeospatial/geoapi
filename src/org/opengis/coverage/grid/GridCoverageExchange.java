@@ -69,6 +69,8 @@ public interface GridCoverageExchange {
      *
      * @return The list of metadata keywords for the interface.
      * @UML mandatory metadataNames
+     *
+     * @revisit Should be defined in <code>GridCoverageReader</code>.
      */
     String[] getMetadataNames();
 
@@ -79,6 +81,8 @@ public interface GridCoverageExchange {
      * @return The metadata value for the given metadata name.
      * @throws MetadataNameNotFoundException if there is no value for the specified metadata name.
      * @UML operation getMetadataValue
+     *
+     * @revisit Should be defined in <code>GridCoverageReader</code>.
      */
     String getMetadataValue(String name) throws MetadataNameNotFoundException;
 
@@ -103,6 +107,9 @@ public interface GridCoverageExchange {
      *         underlying image library.
      *
      * @UML operation createFromName
+     *
+     * @revisit Should be <code>GridCoverageReader createReader(Object source, Format format)</code>,
+     *          followed by <code>GridCoverage GridCoverateReader.read(String name, Parameter[] params)</code>.
      */
     GridCoverage createFromName(String name) throws IOException;
 
@@ -124,6 +131,12 @@ public interface GridCoverageExchange {
      * @throws IOException if a read operation failed.
      *
      * @UML operation listSubNames
+     *
+     * @revisit Should be defined in <code>GridCoverageReader</code>.
+     *          The javadoc should also be more explicit about hierarchical format.
+     *          Should the names be returned as paths?
+     *          Explain what to return if the GridCoverage are accessible by index
+     *          only. A proposal is to name them "grid1", "grid2", etc.
      */
     String[] listSubNames(String name) throws IOException;
 
@@ -149,6 +162,9 @@ public interface GridCoverageExchange {
      *         underlying image library.
      *
      * @UML operation createFromSubName
+     *
+     * @revisit Should be deleted. Functionality will be provided by
+     *          <code>GridCoverageReader.read(String name, Parameter[] parameters)</code>.
      */
     GridCoverage createFromSubName(String name, String subName) throws IOException;
 
@@ -186,6 +202,9 @@ public interface GridCoverageExchange {
      *         {@link javax.imageio.IIOException} if an error was thrown by the underlying
      *         image library.
      * @UML operation exportTo
+     *
+     * @revisit Should be <code>GridCoverageWriter createWriter(Object source, Format format)</code>,
+     *          followed by <code>void GridCoverateWriter.write(String name, Parameter[] params)</code>.
      */
     void exportTo(GridCoverage gridCoverage, String fileFormat, String fileName, Parameter[] creationOptions)
             throws InvalidParameterNameException, InvalidParameterValueException, IOException;
