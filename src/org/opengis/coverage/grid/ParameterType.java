@@ -11,7 +11,7 @@ package org.opengis.coverage.grid;
 
 //OpenGIS direct dependencies
 import org.opengis.util.CodeList;
-import org.opengis.crs.operation.Conversion;           // For Javadoc
+import org.opengis.crs.operation.MathTransform;        // For Javadoc
 import org.opengis.crs.crs.CoordinateReferenceSystem;  // For Javadoc
 
 
@@ -70,7 +70,7 @@ public final class ParameterType extends CodeList {
     public static final ParameterType GRID_COVERAGE_TYPE = new ParameterType("GRID_COVERAGE_TYPE", 4);
 
     /**
-     * Conversion instance ({@linkplain Conversion}).
+     * Math transform instance ({@link MathTransform}).
      *
      * @UML conditional CT_MathTransformType
      */

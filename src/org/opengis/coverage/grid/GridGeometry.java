@@ -10,7 +10,7 @@
 package org.opengis.coverage.grid;
 
 // OpenGIS direct dependencies
-import org.opengis.crs.operation.Conversion;
+import org.opengis.crs.operation.MathTransform;
 
 
 /**
@@ -53,5 +53,5 @@ public interface GridGeometry {
      *         real world earth coordinates}.
      * @UML mandatory gridToCoordinateSystem
      */
-    Conversion getGridToCoordinateSystem();
+    MathTransform getGridToCoordinateSystem();
 }

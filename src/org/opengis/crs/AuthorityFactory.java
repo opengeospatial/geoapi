@@ -38,7 +38,7 @@ import java.util.Set;
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-009.pdf">Implementation specification 1.0</A>
  */
-public interface AuthorityFactory extends Factory {
+public interface AuthorityFactory {
     /**
      * Returns the authority name.
      *

@@ -20,40 +20,49 @@ import org.opengis.metadata.extent.Extent;
 
 
 /**
- * A mathematical operation on coordinates that transforms or converts coordinates to another
- * coordinate reference system. Many but not all coordinate operations (from CoordinateReferenceSystem <VAR>A</VAR>
- * to CoordinateReferenceSystem <VAR>B</VAR>) also uniquely define the inverse operation (from CoordinateReferenceSystem <VAR>B</VAR> to
- * CoordinateReferenceSystem <VAR>A</VAR>). In some cases, the operation method algorithm for the inverse operation
- * is the same as for the forward algorithm, but the signs of some operation parameter values
- * must be reversed. In other cases, different algorithms are required for the forward and inverse
- * operations, but the same operation parameter values are used. If (some) entirely different
- * parameter values are needed, a different coordinate operation shall be defined.
+ * A mathematical operation on coordinates that transforms or converts coordinates to
+ * another coordinate reference system. Many but not all coordinate operations (from
+ * {@linkplain CoordinateReferenceSystem coordinate reference system} <VAR>A</VAR> to
+ * {@linkplain CoordinateReferenceSystem coordinate reference system} <VAR>B</VAR>)
+ * also uniquely define the inverse operation (from
+ * {@linkplain CoordinateReferenceSystem coordinate reference system} <VAR>B</VAR> to
+ * {@linkplain CoordinateReferenceSystem coordinate reference system} <VAR>A</VAR>).
+ * In some cases, the operation method algorithm for the inverse operation is the same
+ * as for the forward algorithm, but the signs of some operation parameter values must
+ * be reversed. In other cases, different algorithms are required for the forward and
+ * inverse operations, but the same operation parameter values are used. If (some)
+ * entirely different parameter values are needed, a different coordinate operation
+ * shall be defined.
  *  
  * @UML abstract CC_CoordinateOperation
  * @author ISO 19111
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/03-073r1.zip">Abstract specification 2.0</A>
- *
- * @revisit We need to define transformation methods!
  */
 public interface CoordinateOperation extends Info {
     /**
-     * Returns the source CRS. The source CRS is mandatory for Transformations only.
-     * Conversions may have a source CRS that is not specified here, but through
+     * Returns the source CRS. The source CRS is mandatory for {@linkplain Transformation
+     * transformations} only. {@linkplain Conversion Conversions} may have a source CRS that
+     * is not specified here, but through
      * {@link org.opengis.crs.crs.GeneralDerivedCRS#getBaseCRS} instead.
      *
      * @return The source CRS.
      * @UML association sourceCRS
+     *
+     * @revisit Should we stick to <code>getSourceCRS</code> name?
      */
     CoordinateReferenceSystem getSourceCoordinateReferenceSystem();
 
     /**
-     * Returns the target CRS. The target CRS is mandatory for Transformations only.
-     * Conversions may have a target CRS that is not specified here, but through
+     * Returns the target CRS. The target CRS is mandatory for {@linkplain Transformation
+     * transformations} only. {@linkplain Conversion Conversions} may have a target CRS
+     * that is not specified here, but through
      * {@link org.opengis.crs.crs.GeneralDerivedCRS} instead.
      *
      * @return The source CRS.
      * @UML association targetCRS
+     *
+     * @revisit Should we stick to <code>getTargetCRS</code> name?
      */
     CoordinateReferenceSystem getTargetCoordinateReferenceSystem();
 
@@ -100,4 +109,14 @@ public interface CoordinateOperation extends Info {
      * @UML optional scope
      */
     String getScope(Locale locale);
+    
+    /**
+     * Gets the math transform. The math transform will transform positions in the
+     * {@linkplain #getSourceCoordinateReferenceSystem source coordinate reference system}
+     * into positions in the
+     * {@linkplain #getTargetCoordinateReferenceSystem target coordinate reference system}.
+     *
+     * @UML mandatory mathTransform in 1.0 specification.
+     */
+    MathTransform getMathTransform();
 }

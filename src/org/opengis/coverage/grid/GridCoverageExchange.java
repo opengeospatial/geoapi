@@ -14,7 +14,7 @@ import java.io.IOException;
 import java.io.FileNotFoundException;  // For Javadoc
 
 // OpenGIS direct dependencies
-import org.opengis.crs.operation.Conversion;
+import org.opengis.crs.operation.MathTransform;
 import org.opengis.crs.crs.CoordinateReferenceSystem;
 import org.opengis.coverage.MetadataNameNotFoundException;
 
@@ -200,13 +200,9 @@ public interface GridCoverageExchange {
      * @throws RemoteException if a remote method call failed.
      * @UML operation move
      *
-     * @revisit <UL>
-     *            <LI>The <code>gridToCoordinateSystem</code> was <code>MathTransform</code>; we don't
-     *                know yet what will be the equivalent in the new CoordinateReferenceSystem architecture.</LI>
-     *            <LI>This method sound like a convenience method for
+     * @revisit This method sound like a convenience method for
      * <code>{@link org.opengis.coverage.processing.GridCoverageProcessor GridCoverageProcessor}("Resample", ...)</code>
-     *                operation. Is <code>GridCoverageExchange</code> really the right place to define it?</LI>
-     *          </UL>
+     *                operation. Is <code>GridCoverageExchange</code> really the right place to define it?
      */
-    GridCoverage move(GridCoverage gridCoverage, CoordinateReferenceSystem crs, Conversion gridToCoordinateSystem);
+    GridCoverage move(GridCoverage gridCoverage, CoordinateReferenceSystem crs, MathTransform gridToCoordinateSystem);
 }
