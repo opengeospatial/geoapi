@@ -132,7 +132,7 @@ public interface MetadataEntity {
      * Allow for progamatic introspection of the Metadata -
      * provides the list of Elements.
      */
-    public static interface EntityType extends Element{
+    public static interface EntityType {
         /**
          * The xPath is used to identify {@linkplain Element elements} in the Metadata data
          * hierarchy. If the xPath has wild cards a list of Metadata Elements will be returned.
@@ -155,9 +155,11 @@ public interface MetadataEntity {
     }
 
     /**
-     * Metadata element schema description - the type of a Metadata element.
+     * Metadata element schema description (name, class, nillable).
+     * <p>
      * Metadata Elements are unique within a Metadata Entity
-     * Used to inspect the type and structure of a metadata element 
+     * Used to inspect the type and structure of a metadata element
+     * </p>
      */
     public static interface Element {
         /**
@@ -190,7 +192,7 @@ public interface MetadataEntity {
          *
          * @return <code>true</code> if Any.
          */
-        // boolean isMetadataEntity(); // please use: element instanceof MetadataEntity
+        boolean isMetadataEntity();
 
         /**
          * If the current element is an entity then the entity object that describes the 
@@ -200,6 +202,6 @@ public interface MetadataEntity {
          * 		The EntityType object describing the current element if current element is
          * 		an entity 
          */
-        //EntityType getEntityType(); // please use cast: (EntityType) element
+        EntityType getEntityType();
     }
 }
