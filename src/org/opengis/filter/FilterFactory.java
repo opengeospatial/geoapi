@@ -49,9 +49,9 @@ public interface FilterFactory {
     public PropertyIsGreaterThanOrEqualTo  greaterOrEqual(Expression expr1, Expression expr2);
     public PropertyIsLessThan              less(Expression expr1, Expression expr2);
     public PropertyIsLessThanOrEqualTo     lessOrEqual(Expression expr1, Expression expr2);
-    public PropertyIsLike                  like(String propName, String pattern);
-    public PropertyIsLike                  like(String propName, String pattern, String wildcard, String singleChar, String escape);
-    public PropertyIsNull                  propIsNull(String propName);
+    public PropertyIsLike                  like(Expression expr, String pattern);
+    public PropertyIsLike                  like(Expression expr, String pattern, String wildcard, String singleChar, String escape);
+    public PropertyIsNull                  propIsNull(Expression expr);
 
 ////////////////////////////////////////////////////////////////////////////////
 //
