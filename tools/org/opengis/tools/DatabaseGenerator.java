@@ -110,12 +110,12 @@ public class DatabaseGenerator {
      * Scan all classes and members and write an SQL script.
      */
     private void writeScripts() throws Exception {
-        Writer sql = new FileWriter(allowTables ? "create.sql" : "create-notables.sql");
+        Writer sql = new FileWriter(allowTables ? "create.sql" : "create-noarrays.sql");
 
         sql.write("CREATE TABLE public.\"Locale\"");                          sql.write(LINE_SEPARATOR);
         sql.write('(');                                                       sql.write(LINE_SEPARATOR);
         sql.write("  code CHARACTER VARYING(5) NOT NULL,");                   sql.write(LINE_SEPARATOR);
-        sql.write("  CONSTRAINT \"Locale.primaryKey\" PRIMARY KEY (code)");   sql.write(LINE_SEPARATOR);
+        sql.write("  CONSTRAINT \"Locale_primaryKey\" PRIMARY KEY (code)");   sql.write(LINE_SEPARATOR);
         sql.write(") WITHOUT OIDS;");                                         sql.write(LINE_SEPARATOR);
         sql.write("INSERT INTO \"Locale\" VALUES ('en');");                   sql.write(LINE_SEPARATOR);
         sql.write("INSERT INTO \"Locale\" VALUES ('fr');");                   sql.write(LINE_SEPARATOR);
@@ -125,7 +125,7 @@ public class DatabaseGenerator {
         sql.write("CREATE TABLE public.\"Unit\"");                            sql.write(LINE_SEPARATOR);
         sql.write('(');                                                       sql.write(LINE_SEPARATOR);
         sql.write("  symbol CHARACTER VARYING(10) NOT NULL,");                sql.write(LINE_SEPARATOR);
-        sql.write("  CONSTRAINT \"Unit.primaryKey\" PRIMARY KEY (symbol)");   sql.write(LINE_SEPARATOR);
+        sql.write("  CONSTRAINT \"Unit_primaryKey\" PRIMARY KEY (symbol)");   sql.write(LINE_SEPARATOR);
         sql.write(") WITHOUT OIDS;");                                         sql.write(LINE_SEPARATOR);
         sql.write("INSERT INTO \"Unit\" VALUES ('m');");                      sql.write(LINE_SEPARATOR);
         sql.write("INSERT INTO \"Unit\" VALUES ('cm');");                     sql.write(LINE_SEPARATOR);
@@ -195,6 +195,7 @@ public class DatabaseGenerator {
         if (className == null) {
             return null;
         }
+        final String unprefixedClassName = unprefixed(className);
         final StringBuilder sql = new StringBuilder();
         sql.append("CREATE TABLE ");
         sql.append(schema);
@@ -209,12 +210,12 @@ public class DatabaseGenerator {
         sql.append("  \"name\" CHARACTER VARYING(32) NOT NULL,");
         sql.append(LINE_SEPARATOR);
         sql.append("  CONSTRAINT \"");
-        sql.append(className);
-        sql.append(".primaryKey\" PRIMARY KEY (\"code\"),");
+        sql.append(unprefixedClassName);
+        sql.append("_primaryKey\" PRIMARY KEY (\"code\"),");
         sql.append(LINE_SEPARATOR);
         sql.append("  CONSTRAINT \"");
-        sql.append(className);
-        sql.append(".uniqueName\" UNIQUE (\"name\")");
+        sql.append(unprefixedClassName);
+        sql.append("_uniqueName\" UNIQUE (\"name\")");
         sql.append(LINE_SEPARATOR);
         sql.append(") WITHOUT OIDS;");
         sql.append(LINE_SEPARATOR);
@@ -270,6 +271,7 @@ public class DatabaseGenerator {
         if (className == null) {
             return null;
         }
+        final String unprefixedClassName = unprefixed(className);
         final StringBuilder sql = new StringBuilder();
         sql.append("CREATE TABLE ");
         sql.append(schema);
@@ -278,6 +280,8 @@ public class DatabaseGenerator {
         sql.append('"');
         sql.append(LINE_SEPARATOR);
         sql.append('(');
+        sql.append(LINE_SEPARATOR);
+        sql.append("  \"id\" OID NOT NULL,");
         sql.append(LINE_SEPARATOR);
         final Method[] attributes = classe.getDeclaredMethods();
 scan:   for (final Method attribute : attributes) {
@@ -342,7 +346,7 @@ scan:   for (final Method attribute : attributes) {
             } else if (attributeType.getName().startsWith(rootPackage)) {
                 inSchema     = true;
                 foreignTable = getIdentifier(attributeType);
-                foreignKey   = "oid";
+                foreignKey   = "id";
             } else {
                 continue;
             }
@@ -351,8 +355,8 @@ scan:   for (final Method attribute : attributes) {
             constraints.append(".\"");
             constraints.append(className);
             constraints.append("\" ADD CONSTRAINT \"");
-            constraints.append(className);
-            constraints.append('.');
+            constraints.append(unprefixedClassName);
+            constraints.append('_');
             constraints.append(attributeName);
             constraints.append("\" FOREIGN KEY (\"");
             constraints.append(attributeName);
@@ -373,8 +377,8 @@ scan:   for (final Method attribute : attributes) {
             }
         }
         sql.append("  CONSTRAINT \"");
-        sql.append(className);
-        sql.append(".primaryKey\" PRIMARY KEY (oid)");
+        sql.append(unprefixedClassName);
+        sql.append("_primaryKey\" PRIMARY KEY (id)");
         sql.append(LINE_SEPARATOR);
         sql.append(')');
         final Class[] parents = classe.getInterfaces();
@@ -395,7 +399,7 @@ scan:   for (final Method attribute : attributes) {
                 sql.append(')');
             }
         }
-        sql.append(" WITH OIDS;");
+        sql.append(" WITHOUT OIDS;");
         sql.append(LINE_SEPARATOR);
         if (owner != null) {
             sql.append("ALTER TABLE ");
@@ -531,5 +535,15 @@ scan:   for (final Method attribute : attributes) {
             return identifier;
         }
         return null;
+    }
+
+    /**
+     * Returns the classname without the prefix.
+     */
+    private static String unprefixed(String className) {
+        if (className.length() >= 4 && className.charAt(2)=='_') {
+            className = className.substring(3);
+        }
+        return className;
     }
 }
