@@ -7,7 +7,7 @@ package org.opengis.rs;
 import java.util.Locale;
 
 // OpenGIS direct dependencies
-import org.opengis.ex.Extent;
+import org.opengis.gm.Envelope;
 
 
 /**
@@ -54,10 +54,10 @@ public interface ReferenceSystem {
      * @return Coordinate reference system valid area, or <code>null</code> if not available.
      * @UML optional validArea
      *
-     * @revisit The method name <code>getValidExtent()</code> would work better with time
+     * @revisit The method name <code>getValidEnvelope()</code> would work better with time
      *          reference systems since their validity holds across a non-spatial extent.
      */
-    public Extent getValidArea();
+    public Envelope getValidArea();
 
     /**
      * Description of domain of usage, or limitations of usage, for which this
