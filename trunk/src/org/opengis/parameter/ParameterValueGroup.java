@@ -49,8 +49,19 @@ public interface ParameterValueGroup extends GeneralParameterValue {
     
     /**
      * Returns the values in this group. The returned list may or may not be unmodifiable;
-     * this is implementation-dependent. However, if some aspects of this list are modifiables,
-     * then the modification shall be reflected back into this <code>ParameterValueGroup</code>.
+     * this is implementation-dependent. However, if some aspects of this list are modifiable,
+     * then any modification shall be reflected back into this <code>ParameterValueGroup</code>.
+     * More specifically:
+     *
+     * <UL>
+     *   <LI><P>If the list supports the {@link List#add(Object) add} operation, then it should
+     *       ensure that the added {@linkplain GenericParameterValue generic parameter value} is
+     *       valid and can be added to this group.
+     *       An {@link InvalidParameterCardinalityException} (or any other appropriate exception)
+     *       shall be thrown if it is not the case.</P></LI>
+     *   <LI><P>The list may also supports the {@link List#remove(Object) remove} operation as a
+     *       way to remove parameter created by the {@link #parameter} method.</P></LI>
+     * </UL>
      */
 /// @UML (identifier="includesValue", obligation=MANDATORY)
     List/*<GeneralParameterValue>*/ values();

@@ -9,31 +9,38 @@
  *************************************************************************************************/
 package org.opengis.parameter;
 
+// J2SE dependencies
+import java.util.List;  // For javadoc
+
 
 /**
- * Thrown when a parameter can't be cast to the requested type. For example this exception
- * is thrown when {@link ParameterValue#doubleValue} is invoked but the value is not
- * convertible to a <code>double</code>.
+ * Throws if adding a {@linkplain ParameterValue parameter value} to a
+ * {@linkplain ParameterValueGroup group} would result in more parameters 
+ * than the {@linkplain ParameterDescriptor#getMaximumOccurs maximum occurence}
+ * allowed. This operation may be throws during {@linkplain List#add} or
+ * {@linkplain List#remove} operation on the list returned by
+ * {@link ParameterValueGroup#values}.
  *
  * <P><strong>Note:</strong> This exception is of kind "{@linkplain IllegalStateException illegal
  * state}" rather than "{@linkplain IllegalArgumentException illegal argument}" because it is
- * not caused by a bad argument. It is rather a consequence of invoking the wrong zero-argument
- * method.</P>
+ * not caused by a bad argument; it is rather a consequence of an {@linkplain ParameterValueGroup
+ * parameter value group} being "full".</P>
  *
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 2.0
  *
- * @see ParameterValue#intValue
- * @see ParameterValue#doubleValue
+ * @see ParameterValueGroup#values
+ * @see ParameterDescriptor#getMinimumOccurs
+ * @see ParameterDescriptor#getMaximumOccurs
  */
-public class InvalidParameterTypeException extends IllegalStateException {
+public class InvalidParameterCardinalityException extends IllegalStateException {
     /**
      * Serial number for interoperability with different versions.
      */
-    private static final long serialVersionUID = 2740762597003093176L;
+    private static final long serialVersionUID = 4030549323541812311L;
 
     /**
-     * The invalid parameter name.
+     * The name of the parameter with invalid cardinality.
      */
     private final String parameterName;
 
@@ -42,15 +49,15 @@ public class InvalidParameterTypeException extends IllegalStateException {
      *
      * @param  message The detail message. The detail message is saved for 
      *         later retrieval by the {@link #getMessage()} method.
-     * @param parameterName The parameter name.
+     * @param parameterName The name of the parameter with invalid cardinality.
      */
-    public InvalidParameterTypeException(String message, String parameterName) {
+    public InvalidParameterCardinalityException(String message, String parameterName) {
         super(message);
         this.parameterName = parameterName;
     }
 
     /**
-     * Returns the parameter name.
+     * Returns the name of the parameter with invalid cardinality.
      */
     public String getParameterName() {
         return parameterName;
