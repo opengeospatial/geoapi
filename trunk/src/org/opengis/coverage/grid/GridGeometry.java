@@ -29,18 +29,11 @@ import org.opengis.referencing.operation.MathTransform;
 public interface GridGeometry {
     /**
      * The valid coordinate range of a grid coverage.
-     * The lowest valid grid coordinate is zero.
-     * A grid with 512 cells can have a minimum coordinate of 0 and maximum of 512,
+     * The lowest valid grid coordinate is often (but not always) zero.
+     * A grid with 512 cells typically have a minimum coordinate of 0 and maximum of 512,
      * with 511 as the highest valid index.
      *
      * @return The valid coordinate range of a grid coverage.
-     *
-     * @revisit Should we relax the constraint that the lowest valid grid coordinate is zero?
-     *          {@link java.awt.image.RenderedImage} allow arbitrary integer coordinates for
-     *          the upper left corner. If we force it to zero, the mapping from Java2D to
-     *          GridCoverage may no longer be direct. (Note: if we relax this specification,
-     *          then the package description need to be updated as well, and
-     *          {@link GridRange#getLower} too).
      */
 /// @UML (identifier="gridRange", obligation=MANDATORY)
     GridRange getGridRange();
