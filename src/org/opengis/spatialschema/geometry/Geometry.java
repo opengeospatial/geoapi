@@ -396,7 +396,7 @@ public interface Geometry extends TransfiniteSet {
      *   <LI><P>If a deep copy semantic is not possible at a reasonable cost (for example for some
      *       database backend), then this method throws a {@link CloneNotSupportedException}.</P></LI>
      *   <LI><P>If a deep cloning is possible for all case (i.e. if this method never throws
-     *       {@link CloneNotSupportedException}, then the implementation should implements
+     *       {@link CloneNotSupportedException}), then the implementation should implements
      *       the {@link Cloneable} interface.</P></LI>
      * </UL>
      *

@@ -41,7 +41,7 @@ public interface PrimitiveFactory {
      * Returns the coordinate reference system in use for all {@linkplain Primitive primitive}
      * geometric objects to be created through this interface.
      */
-    public CoordinateReferenceSystem getCoordinateReferenceSystem();
+    CoordinateReferenceSystem getCoordinateReferenceSystem();
 
     /**
      * Returns an envelope as a primitive. An {@linkplain Envelope envelope} will often be
@@ -84,37 +84,40 @@ public interface PrimitiveFactory {
      * exterior ring, and an empty set of interior rings (convex sets have no "interior" holes).
      */
 /// @UML (identifier="GM_Primitive(GM_Envelope)", obligation=MANDATORY)
-    public Primitive createPrimitive(Envelope envelope);
+    Primitive createPrimitive(Envelope envelope);
 
     /**
      * Create a direct position at the specified location specified by coordinates.
+     *
+     * @deprecated This method moved to the
+     *  {@link org.opengis.spatialschema.geometry.geometry.GeometryFactory} interface.
      */
-    public DirectPosition createDirectPosition(double[] coordinates);
+    DirectPosition createDirectPosition(double[] coordinates);
 
     /**
      * Creates a point at the specified location specified by coordinates.
      */
-    public Point createPoint(double[] coordinates);
+    Point createPoint(double[] coordinates);
 
     /**
      * Creates a point at the specified position.
      */
 /// @UML (identifier="GM_Point(GM_Position)", obligation=MANDATORY)
-    public Point createPoint(Position position);
+    Point createPoint(Position position);
 
     /**
      * Takes a list of {@linkplain CurveSegment curve segments} with the appropriate
      * end-to-start relationships and creates a {@linkplain Curve curve}.
      */
 /// @UML (identifier="GM_Curve(GM_CurveSegment[1..n])", obligation=MANDATORY)
-    public Curve createCurve(List/*<CurveSegment>*/ segments);
+    Curve createCurve(List/*<CurveSegment>*/ segments);
 
     /**
      * Takes a list of {@linkplain SurfacePatch surface patches} with the appropriate
      * side-toside relationships and creates a {@linkplain Surface surface}.
      */
 /// @UML (identifier="GM_Surface(GM_SurfacePatch[1..n])", obligation=MANDATORY)
-    public Surface createSurface(List/*<SurfacePatch>*/ surfaces);
+    Surface createSurface(List/*<SurfacePatch>*/ surfaces);
 
     /**
      * Constructs a {@linkplain Surface surface} by indicating its boundary as a collection
@@ -125,7 +128,7 @@ public interface PrimitiveFactory {
      * define the surface interior.
      */
 /// @UML (identifier="GM_Surface(GM_SurfaceBoundary)", obligation=MANDATORY)
-    public Surface createSurface(SurfaceBoundary boundary);
+    Surface createSurface(SurfaceBoundary boundary);
 
     /**
      * Constructs a {@linkplain Solid solid} by indicating its boundary as a collection of
@@ -134,5 +137,5 @@ public interface PrimitiveFactory {
      * any solid is definable by its boundary.
      */
 /// @UML (identifier="GM_Solid(GM_SolidBoundary)", obligation=MANDATORY)
-    public Solid createSolid(SolidBoundary boundary);
+    Solid createSolid(SolidBoundary boundary);
 }

@@ -55,7 +55,7 @@ public interface ParameterValueGroup extends GeneralParameterValue {
      *
      * <UL>
      *   <LI><P>If the list supports the {@link List#add(Object) add} operation, then it should
-     *       ensure that the added {@linkplain GenericParameterValue generic parameter value} is
+     *       ensure that the added {@linkplain GeneralParameterValue general parameter value} is
      *       valid and can be added to this group.
      *       An {@link InvalidParameterCardinalityException} (or any other appropriate exception)
      *       shall be thrown if it is not the case.</P></LI>
