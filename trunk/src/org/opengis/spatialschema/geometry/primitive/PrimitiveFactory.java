@@ -15,6 +15,7 @@ import java.util.List;
 // OpenGIS direct dependencies
 import org.opengis.spatialschema.geometry.Envelope;
 import org.opengis.spatialschema.geometry.DirectPosition;
+import org.opengis.spatialschema.geometry.geometry.PolyhedralSurface;
 import org.opengis.spatialschema.geometry.geometry.Position;
 import org.opengis.spatialschema.geometry.MismatchedDimensionException;
 import org.opengis.spatialschema.geometry.MismatchedReferenceSystemException;
@@ -197,4 +198,18 @@ public interface PrimitiveFactory {
      */
     Ring createRing(List/*<Curve>*/ curves)
     	throws MismatchedReferenceSystemException, MismatchedDimensionException;
+
+    /**
+     * Constructs polyhedral surface from the facet polygons.
+     *
+     * @param tiles The facet polygons. Must contains at least one polygon.
+     *
+     * @throws MismatchedReferenceSystemException If geometric objects given in argument don't
+     *         use compatible {@linkplain CoordinateReferenceSystem coordinate reference system}.
+     * @throws MismatchedDimensionException If geometric objects given in argument don't have
+     *         the expected dimension.
+     */
+/// @UML (identifier="GM_PolyhedralSurace(GM_Polygon)", obligation=MANDATORY)
+    PolyhedralSurface createPolyhedralSurface(List/*<Polygon>*/ tiles)
+            throws MismatchedReferenceSystemException, MismatchedDimensionException;
 }
