@@ -11,9 +11,8 @@
 package org.opengis.catalog;
 
 /**
- * 
- * 
- * @author jeichar
+ * This Exception is thrown if a method was not implemented intentionally
+ * because it does not make sense in a particular context.
  */
 public class NotImplementedException extends Exception {
 	/**
