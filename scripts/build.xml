@@ -20,7 +20,7 @@
      Version: $Id$
      ======================================================================== -->
 
-<project name="GeoAPI" default="release" basedir="C:/Documents and Settings/All Users/Documents/Releases/GeoAPI/snapshot">
+<project name="GeoAPI" default="release" basedir="C:/Documents and Settings/All Users/Documents/Releases/GeoAPI">
 
   <property name="homepath" value="P:/projects/GeoAPI"/>
   <property name="merlin"   value="C:/Java/1.4"/>
@@ -48,27 +48,18 @@
   <target name="clear">
 
     <delete includeEmptyDirs="true" failonerror="false">
-      <fileset dir="tiger"/>
-    </delete>
-
-    <delete includeEmptyDirs="true" failonerror="false">
-      <fileset dir="sources"/>
-    </delete>
-
-    <delete includeEmptyDirs="true" failonerror="false">
-      <fileset dir="classes"/>
-    </delete>
-
-    <delete includeEmptyDirs="true" failonerror="false">
-      <fileset dir="javadoc"/>
-    </delete>
-
-    <delete includeEmptyDirs="true" failonerror="false">
-      <fileset file="binaries/*.jar"/>
-    </delete>
-
-    <delete includeEmptyDirs="true" failonerror="false">
-      <fileset file="download/*.zip"/>
+      <fileset dir=".">
+        <include name="snapshot/tiger/**"/>
+        <include name="snapshot/sources/**"/>
+        <include name="snapshot/classes/**"/>
+        <include name="snapshot/javadoc/**"/>
+        <include name="snapshot/binaries/*.jar"/>
+        <include name="snapshot/binaries/*.md5"/>
+        <include name="snapshot/download/*.zip"/>
+        <include name="pending/sources/**"/>
+        <include name="pending/classes/**"/>
+        <include name="pending/javadoc/**"/>
+      </fileset>
     </delete>
 
   </target>
@@ -84,7 +75,7 @@
 
   <target name="sources" depends="clear">
 
-    <copy todir="tiger/sources" includeEmptyDirs="false">
+    <copy todir="snapshot/tiger/sources" includeEmptyDirs="false">
       <fileset dir="${homepath}/src">
         <include name="**/*.MF"/>
         <include name="**/*.png"/>
@@ -95,22 +86,33 @@
       </fileset>
     </copy>
 
-    <fixcrlf srcdir="tiger/sources" tab="remove" eol="unix" eof="remove">
+    <copy todir="pending/sources" includeEmptyDirs="false">
+      <fileset dir="${homepath}/pending">
+        <include name="**/*.MF"/>
+        <include name="**/*.png"/>
+        <include name="**/*.xml"/>
+        <include name="**/*.html"/>
+        <include name="**/*.java"/>
+        <include name="**/*.properties"/>
+      </fileset>
+    </copy>
+
+    <fixcrlf srcdir="." tab="remove" eol="unix" eof="remove">
       <include name="**/*.html"/>
       <include name="**/*.java"/>
       <include name="**/*.properties"/>
     </fixcrlf>
 
-    <replace dir="tiger/sources">
+    <replace dir=".">
       <include name="**/*.java"/>
-      <exclude name="org/opengis/go/**"/>
-      <exclude name="org/opengis/util/**"/>
+      <exclude name="**/org/opengis/go/**"/>
+      <exclude name="**/org/opengis/util/**"/>
       <replacefilter token=" CodeList[] family()" value="[] family()" />
       <replacefilter token="Object clone()"       value="clone()"     />
       <replacefilter token="Object next()"        value="next()"      />
     </replace>
 
-    <replace dir="tiger/sources">
+    <replace dir=".">
       <include name="**/*.java"/>
       <replacefilter token="/*&lt;" value="&lt;"/>
       <replacefilter token="&gt;*/" value="&gt;"/>
@@ -135,10 +137,9 @@
 
   <target name="compile-tiger" depends="sources">
 
-    <mkdir dir="tiger/classes"/>
-
-    <javac srcdir      = "tiger/sources"
-           destdir     = "tiger/classes"
+    <mkdir dir="snapshot/tiger/classes"/>
+    <javac srcdir      = "snapshot/tiger/sources"
+           destdir     = "snapshot/tiger/classes"
            encoding    = "ISO-8859-1"
            includes    = "org/**/*.java"
            source      = "1.5"
@@ -149,36 +150,54 @@
            failonerror = "true">
     </javac>
 
-    <mkdir dir="tiger/sources/org/opengis/metadata/doc-files"/>
-    <mkdir dir="tiger/sources/org/opengis/metadata/doc-files/postgre"/>
+    <mkdir dir="pending/classes"/>
+    <javac srcdir      = "pending/sources"
+           destdir     = "pending/classes"
+           encoding    = "ISO-8859-1"
+           includes    = "org/**/*.java"
+           source      = "1.5"
+           target      = "1.5"
+           optimize    = "true"
+           debug       = "false"
+           deprecation = "true"
+           failonerror = "true">
+      <classpath>
+        <pathelement location="snapshot/tiger/classes"/>
+        <pathelement path="${java.class.path}"/>
+      </classpath>
+    </javac>
+
+    <mkdir dir="snapshot/tiger/sources/org/opengis/metadata/doc-files"/>
+    <mkdir dir="snapshot/tiger/sources/org/opengis/metadata/doc-files/postgre"/>
+
     <java classname   = "org.opengis.tools.DatabaseGenerator"
-          dir         = "tiger/sources/org/opengis/metadata/doc-files/postgre"
+          dir         = "snapshot/tiger/sources/org/opengis/metadata/doc-files/postgre"
           failonerror = "true"
           fork        = "true">
       <classpath>
-        <pathelement location="tiger/classes"/>
+        <pathelement location="snapshot/tiger/classes"/>
         <pathelement path="${java.class.path}"/>
       </classpath>
       <arg value="-tables"/>
     </java>
 
     <java classname   = "org.opengis.tools.DatabaseGenerator"
-          dir         = "tiger/sources/org/opengis/metadata/doc-files/postgre"
+          dir         = "snapshot/tiger/sources/org/opengis/metadata/doc-files/postgre"
           failonerror = "true"
           fork        = "true">
       <classpath>
-        <pathelement location="tiger/classes"/>
+        <pathelement location="snapshot/tiger/classes"/>
         <pathelement path="${java.class.path}"/>
       </classpath>
       <arg value="-quiet"/>
     </java>
 
     <java classname   = "org.opengis.tools.ModelComparator"
-          dir         = "tiger/sources/org/opengis/doc-files"
+          dir         = "snapshot/tiger/sources/org/opengis/doc-files"
           failonerror = "true"
           fork        = "true">
       <classpath>
-        <pathelement location="tiger/classes"/>
+        <pathelement location="snapshot/tiger/classes"/>
         <pathelement path="${java.class.path}"/>
       </classpath>
     </java>
@@ -195,14 +214,14 @@
 
   <target name="compile" depends="compile-tiger">
 
-    <mkdir dir="sources"/>
-    <copy todir="sources">
-      <fileset dir="tiger/sources">
+    <mkdir dir="snapshot/sources"/>
+    <copy todir="snapshot/sources">
+      <fileset dir="snapshot/tiger/sources">
         <exclude name="**org/opengis/annotation/**"/>
       </fileset>
     </copy>
-    <replace dir="sources">
-      <include name="**/*.java"/>
+    <replace dir=".">
+      <include name="snapshot/sources/**/*.java"/>
       <replacefilter token="&lt;? extends Coverage&gt;"/>
       <replacefilter token="&lt;? extends Object&gt;"/>
       <replacefilter token="&lt;? extends Polygon&gt;"/>
@@ -301,26 +320,26 @@
     <replaceregexp byline  = "true"
                    match   = "\s\w+\s+clone"
                    replace = " Object clone">
-      <fileset dir="sources">
-        <include name="**/*.java"/>
-        <exclude name="org/opengis/go/**"/>
-        <exclude name="org/opengis/util/**"/>
+      <fileset dir=".">
+        <include name="snapshot/sources/**/*.java"/>
+        <exclude name="**/org/opengis/go/**"/>
+        <exclude name="**/org/opengis/util/**"/>
       </fileset>
     </replaceregexp>
 
     <replaceregexp byline  = "true"
                    match   = "\s\w+\[\]\s+family"
                    replace = " CodeList[] family">
-      <fileset dir="sources">
-        <include name="**/*.java"/>
-        <exclude name="org/opengis/go/**"/>
-        <exclude name="org/opengis/util/**"/>
+      <fileset dir=".">
+        <include name="snapshot/sources/**/*.java"/>
+        <exclude name="**/org/opengis/go/**"/>
+        <exclude name="**/org/opengis/util/**"/>
       </fileset>
     </replaceregexp>
 
-    <mkdir dir="classes"/>
-    <javac srcdir        = "sources"
-           destdir       = "classes"
+    <mkdir dir="snapshot/classes"/>
+    <javac srcdir        = "snapshot/sources"
+           destdir       = "snapshot/classes"
            encoding      = "ISO-8859-1"
            includes      = "org/**/*.java"
            bootclasspath = "${merlin}/jre/lib/rt.jar"
@@ -333,11 +352,11 @@
     </javac>
 
     <java classname   = "org.opengis.tools.NameMapGenerator"
-          dir         = "classes/org/opengis/metadata"
+          dir         = "snapshot/classes/org/opengis/metadata"
           failonerror = "true"
           fork        = "true">
       <classpath>
-        <pathelement location="tiger/classes"/>
+        <pathelement location="snapshot/tiger/classes"/>
         <pathelement path="${java.class.path}"/>
       </classpath>
     </java>
@@ -355,9 +374,9 @@
 
   <target name="javadoc" depends="compile-tiger">
 
-    <javadoc sourcepath       = "tiger/sources"
-             classpath        = "tiger/classes"
-             destdir          = "javadoc"
+    <javadoc sourcepath       = "snapshot/tiger/sources"
+             classpath        = "snapshot/tiger/classes"
+             destdir          = "snapshot/javadoc"
              charset          = "ISO-8859-1"
              encoding         = "ISO-8859-1"
              locale           = "en_US"
@@ -368,7 +387,7 @@
              version          = "true"
              breakiterator    = "true"
              noqualifier      = "all"
-             overview         = "tiger/sources/org/opengis/overview.html"
+             overview         = "snapshot/tiger/sources/org/opengis/overview.html"
              windowtitle      = "GeoAPI ${version}"
              doctitle         = "GeoAPI ${version}"
              header           = "GeoAPI ${version}&lt;br&gt;Build ${TODAY}">
@@ -430,15 +449,62 @@
                     &lt;/FONT&gt;&lt;/TD&gt;&lt;/TR&gt;&lt;/TABLE&gt;"
              packages="org.opengis.go*"/>
 
-      <packageset dir="tiger/sources">
+      <packageset dir="snapshot/tiger/sources">
         <include name="org/opengis/**" />
       </packageset>
 
     </javadoc>
 
-    <copy todir="javadoc/org/opengis/doc-files">
-      <fileset dir="tiger/sources/org/opengis/doc-files"/>
+    <copy todir="snapshot/javadoc/org/opengis/doc-files">
+      <fileset dir="snapshot/tiger/sources/org/opengis/doc-files"/>
     </copy>
+
+
+    <javadoc sourcepath       = "pending/sources"
+             classpath        = "snapshot/tiger/classes:pending/classes"
+             destdir          = "pending/javadoc"
+             charset          = "ISO-8859-1"
+             encoding         = "ISO-8859-1"
+             locale           = "en_US"
+             source           = "1.5"
+             use              = "true"
+             nodeprecatedlist = "false"
+             author           = "true"
+             version          = "true"
+             breakiterator    = "true"
+             noqualifier      = "all"
+             windowtitle      = "GeoAPI ${version} pending interfaces"
+             doctitle         = "GeoAPI ${version} pending interfaces"
+             header           = "GeoAPI ${version}&lt;br&gt;Build ${TODAY}">
+
+      <arg line="-quiet"/>
+      <arg line="-docfilessubdirs"/>
+      <arg line="${proxy}"/>
+
+      <bottom>
+        &lt;TABLE WIDTH='100%'&gt;&lt;TR&gt;&lt;TD NOWRAP&gt;
+        &lt;A HREF=&quot;{@docRoot}/..snapshot/org/opengis/doc-files/Terms.html&quot;&gt;Symbols, terms and definitions&lt;/A&gt;&lt;BR&gt;
+        &lt;/TD&gt;&lt;TD NOWRAP ALIGN='right'&gt;
+        &lt;FONT SIZE='2'&gt;Copyright &lt;A HREF=&quot;http://www.opengis.org/&quot;&gt;OpenGIS&amp;reg; Consortium&lt;/A&gt;&lt;/FONT&gt;
+        &lt;/TD&gt;&lt;/TR&gt;&lt;/TABLE&gt;
+      </bottom>
+
+      <tag name="unitof" scope="fields,methods" description="Unit of" enabled="false"/>
+      <taglet name="org.opengis.tools.UmlTaglet"/>
+      <tag name="rename" scope="types,fields,methods" description="Name change from the UML:"/>
+      <taglet name="org.opengis.tools.RevisitTaglet"/>
+
+      <link href="http://java.sun.com/j2se/1.5/docs/api"/>
+      <link href="http://java.sun.com/products/java-media/jai/forDevelopers/jai-apidocs"/>
+      <link href="http://java.sun.com/products/java-media/3D/forDevelopers/j3dapi"/>
+      <link href="http://jsr-108.sourceforge.net/javadoc"/>
+      <link href="http://geoapi.sourceforge.net/snapshot/javadoc"/>
+
+      <packageset dir="pending/sources">
+        <include name="**" />
+      </packageset>
+
+    </javadoc>
 
   </target>
 
@@ -457,9 +523,9 @@
       <fileset dir="legacy"/>
     </delete>
 
-    <mkdir dir="classes"/>
+    <mkdir dir="legacy/classes"/>
     <javac srcdir        = "${homepath}/legacy"
-           destdir       = "classes"
+           destdir       = "legacy/classes"
            encoding      = "ISO-8859-1"
            includes      = "org/**/*.java"
            bootclasspath = "${merlin}/jre/lib/rt.jar"
@@ -472,8 +538,8 @@
     </javac>
 
     <javadoc sourcepath       = "${homepath}/legacy"
-             classpath        = "classes:tiger/classes"
-             destdir          = "legacy"
+             classpath        = "classes:snapshot/tiger/classes"
+             destdir          = "legacy/javadoc"
              charset          = "ISO-8859-1"
              encoding         = "ISO-8859-1"
              locale           = "en_US"
@@ -502,12 +568,12 @@
       </bottom>
 
       <fileset dir="${homepath}/legacy">
-        <include name="org/**/*.java"/>
+        <include name="org/**"/>
       </fileset>
 
       <link href="http://java.sun.com/j2se/1.4/docs/api"/>
       <link href="http://jsr-108.sourceforge.net/javadoc"/>
-      <link href="../../snapshot/javadoc"/>
+      <link href="http://geoapi.sourceforge.net/snapshot/javadoc"/>
 
       <group title="Coordinate Transformation services" packages="org.opengis.cs:org.opengis.ct:org.opengis.pt"/>
       <group title="Grid Coverages services"            packages="org.opengis.cv:org.opengis.gc:org.opengis.gp"/>
@@ -526,29 +592,29 @@
 
   <target name="jar" depends="compile">
 
-    <mkdir dir="binaries"/>
+    <mkdir dir="snapshot/binaries"/>
 
-    <jar destfile = "binaries/geoapi-SNAPSHOT.jar"
-         basedir  = "classes"
+    <jar destfile = "snapshot/binaries/geoapi-SNAPSHOT.jar"
+         basedir  = "snapshot/classes"
          index    = "true"
-         manifest = "sources/META-INF/MANIFEST.MF">
+         manifest = "snapshot/sources/META-INF/MANIFEST.MF">
       <include name="org/**"/>
     </jar>
 
-    <checksum file="binaries/geoapi-SNAPSHOT.jar"/>
+    <checksum file="snapshot/binaries/geoapi-SNAPSHOT.jar"/>
 
   </target>
 
   <target name="jars" depends="compile-tiger,jar">
 
-    <jar destfile = "binaries/geoapi-tiger-SNAPSHOT.jar"
-         basedir  = "tiger/classes"
+    <jar destfile = "snapshot/binaries/geoapi-tiger-SNAPSHOT.jar"
+         basedir  = "snapshot/tiger/classes"
          index    = "true"
-         manifest = "tiger/sources/META-INF/MANIFEST.MF">
+         manifest = "snapshot/tiger/sources/META-INF/MANIFEST.MF">
       <include name="org/**"/>
     </jar>
 
-    <checksum file="binaries/geoapi-tiger-SNAPSHOT.jar"/>
+    <checksum file="snapshot/binaries/geoapi-tiger-SNAPSHOT.jar"/>
 
   </target>
 
@@ -562,10 +628,10 @@
 
   <target name="release" depends="sources,jars,javadoc">
 
-    <mkdir dir="download"/>
+    <mkdir dir="snapshot/download"/>
 
-    <zip destfile="download/opengis.zip">
-      <fileset dir=".">
+    <zip destfile="snapshot/download/opengis.zip">
+      <fileset dir="snapshot">
         <include name="javadoc/**"/>
         <include name="sources/**"/>
         <include name="binaries/**"/>
