@@ -17,79 +17,80 @@
 	<xsl:template match="packageName"/>
 	<!-- classList Template -->
 	<xsl:template match="classList">
-	<xsl:element name="package">
-					<xsl:element name="packageName">
-					<xsl:text>GeoAPI factories</xsl:text>
-									</xsl:element>
-								<xsl:element name="javaPrefix">
-								<xsl:text>org.geoapi.factories</xsl:text>
-
-									</xsl:element>
-
-		
-	      <xsl:element name="classDefinition">
-			<xsl:attribute name="name">GeometryFactory</xsl:attribute>
-			<xsl:call-template name="Doc"/>
-			<xsl:element name="Java">
-			
-						<xsl:text>&#xA;package org.geoapi.factories;</xsl:text>
-						<xsl:text>public interface GeometryFactory {&#xA;</xsl:text>
-						<xsl:apply-templates/>
-						<xsl:text>}</xsl:text>
+		<xsl:element name="package">
+			<xsl:element name="packageName">
+				<xsl:text>GeoAPI factories</xsl:text>
+			</xsl:element>
+			<xsl:element name="javaPrefix">
+				<xsl:text>org.geoapi.factories</xsl:text>
+			</xsl:element>
+			<xsl:element name="classDefinition">
+				<xsl:attribute name="name">GeometryFactory</xsl:attribute>
+				<xsl:call-template name="Doc"/>
+				<xsl:element name="Java">
+					<xsl:text>&#xA;package org.geoapi.factories;&#x20;</xsl:text>
+					<xsl:text>public interface GeometryFactory {&#xA;</xsl:text>
+					<xsl:apply-templates/>
+					<xsl:text>}</xsl:text>
+				</xsl:element>
 			</xsl:element>
 		</xsl:element>
-		</xsl:element>
-
 	</xsl:template>
 	<xsl:template match="date">
 			</xsl:template>
 	<!-- classList Template -->
 	<!-- package Template -->
 	<xsl:template match="package">
-					<xsl:apply-templates/>
-	
+		<xsl:apply-templates/>
 	</xsl:template>
 	<!-- package Template -->
 	<!-- union Template -->
 	<xsl:template match="union">
 		<xsl:call-template name="Separator"/>
 		<xsl:comment> ================== unions ommited ==================== </xsl:comment>
-			</xsl:template>
+	</xsl:template>
 	<!-- union Template -->
 	<!-- enumeration Template -->
 	<xsl:template match="enumeration">
 		<xsl:comment> ================== enumeration ommited==================== </xsl:comment>
-			
 	</xsl:template>
 	<!-- enumeration Template -->
 	<!-- codeList Template -->
 	<xsl:template match="codeList">
 		<xsl:comment> ================== codeList ommited==================== </xsl:comment>
-			</xsl:template>
+	</xsl:template>
 	<!-- codeList Template -->
 	<!-- measure Template -->
 	<xsl:template match="measure">
 		<xsl:comment> ================== measure ommited==================== </xsl:comment>
-			</xsl:template>
+	</xsl:template>
 	<!-- measure Template -->
 	<!-- class -->
 	<xsl:template match="class">
 		<xsl:call-template name="Separator"/>
 		<xsl:comment> =================== class =================== </xsl:comment>
-	
+		<xsl:text>/* @name needs constructors from </xsl:text>
+		<xsl:for-each select="superclass">
+		
+			<xsl:variable name="pop"><xsl:value-of select="name"/></xsl:variable>
+			<xsl:text>$pop which has the constructors: </xsl:text><xsl:text>;&#x20;</xsl:text>
+			<xsl:for-each select="../../class[name=$pop]/constructor">
+				<xsl:text> super </xsl:text>
+				<xsl:value-of select="methodName"/>
+				<xsl:text>;&#x20;</xsl:text>
+			</xsl:for-each>
 			
-				<xsl:call-template name="Method"/>
-				<xsl:call-template name="Constructor"/>
-	
-
+		</xsl:for-each>
+		<xsl:text>*/</xsl:text>
+		<xsl:call-template name="Method"/>
+		<xsl:call-template name="Constructor"/>
 	</xsl:template>
 	<!-- dataType -->
 	<xsl:template match="dataType">
 		<xsl:call-template name="Separator"/>
 		<xsl:comment> =================== dataType ================ </xsl:comment>
-									<xsl:call-template name="Method"/>
-				<xsl:call-template name="Constructor"/>
-			
+		<xsl:call-template name="Method"/>
+		<xsl:call-template name="Constructor"/>
 	</xsl:template>
 	<!-- AttributesForComplexType -->
 	<xsl:template name="AttributesForComplexType">
@@ -242,37 +243,32 @@
 	<xsl:template name="Method">
 		<xsl:for-each select="method">
 			<xsl:if test="substring(methodName,1,4) = 'init'">
-
-		
-
-					<xsl:for-each select="returnType/packageNameSpace">
-						<xsl:value-of select="."/>
-						<xsl:text>.</xsl:text>
-					</xsl:for-each>
-
-			<xsl:if test="returnType"/>
-			<xsl:text>&#x20; create</xsl:text>
-			<xsl:value-of select="returnType"/>
-			<xsl:text> (</xsl:text>
-			<xsl:call-template name="Parameter"/>
-			<xsl:text> );&#xA;</xsl:text>
+				<xsl:for-each select="returnType/packageNameSpace">
+					<xsl:value-of select="."/>
+					<xsl:text>.</xsl:text>
+				</xsl:for-each>
+				<xsl:value-of select="returnType/type"/>
+				<xsl:if test="returnType"/>
+				<xsl:text>&#x20; create</xsl:text>
+				<xsl:value-of select="returnType"/>
+				<xsl:text> (</xsl:text>
+				<xsl:call-template name="Parameter"/>
+				<xsl:text> );&#xA;</xsl:text>
 			</xsl:if>
-
 		</xsl:for-each>
 	</xsl:template>
 	<!-- Method Template -->
 	<!-- constructor Template -->
 	<xsl:template name="Constructor">
-
 		<xsl:for-each select="constructor">
 			<xsl:text>&#x9;&#x9;</xsl:text>
-			<xsl:text></xsl:text>
-											<xsl:for-each select="returnType/packageNameSpace">
-						<xsl:value-of select="."/>
-						<xsl:text>.</xsl:text>
-					</xsl:for-each>
-					<xsl:value-of select="returnType/type"/>
-														<xsl:if test="returnType"/>
+			<xsl:text/>
+			<xsl:for-each select="returnType/packageNameSpace">
+				<xsl:value-of select="."/>
+				<xsl:text>.</xsl:text>
+			</xsl:for-each>
+			<xsl:value-of select="returnType/type"/>
+			<xsl:if test="returnType"/>
 			<xsl:text>&#x20; create</xsl:text>
 			<xsl:value-of select="translate(substring(returnType, 1,1), $lowerCase, $upperCase)"/>
 			<xsl:value-of select="substring(returnType, 2) "/>
@@ -280,8 +276,6 @@
 			<xsl:call-template name="Parameter"/>
 			<xsl:text> );&#xA;</xsl:text>
 		</xsl:for-each>
-
-
 	</xsl:template>
 	<!-- constructor Template -->
 	<!-- Parameter Template -->
