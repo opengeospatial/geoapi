@@ -148,6 +148,13 @@
         <P ALIGN="justify"><STRONG>PROPOSAL:</STRONG> <FONT COLOR="red">Allows
         <A HREF="../sc/CompoundCRS.html"><CODE>CompoundCRS</CODE></A> to contains other <CODE>CompoundCRS</CODE>,
         then drop the <A HREF="../sc/CRS.html"><CODE>CRS</CODE></A> interface.</FONT></P>
+
+    <LI><P ALIGN="justify"><A HREF="../gm/complex/CompositeCurve.html"><CODE>CompositeCurve</CODE></A>
+            extends (indirectly) both <CODE>Primitive</CODE> and <CODE>Complex</CODE>. Consequently,
+            there is a clash in the semantics of some set theoretic operation. Specifically,
+            <code>Primitive.contains(...)</code> (returns FALSE for end points) is different
+            from <code>Complex.contains(...)</code> (returns TRUE for end points).</P></LI>
+        <P ALIGN="justify"><STRONG>PROPOSAL:</STRONG> <FONT COLOR="red">(none at this stage)</FONT></P>
   </UL>
   </BODY>
 </HTML>

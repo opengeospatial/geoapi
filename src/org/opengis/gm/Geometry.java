@@ -9,13 +9,16 @@ import java.util.Set;
 // OpenGIS direct dependencies
 import org.opengis.sc.CRS;
 import org.opengis.gm.complex.Complex;
+import org.opengis.gm.geometry.Envelope;
 import org.opengis.gm.geometry.DirectPosition;
 
 
 /**
  * Root class of the geometric object taxonomy. <code>Geometry</code> supports interfaces common
  * to all geographically referenced geometric objects. <code>Geometry</code> instances are sets
- * of direct positions in a particular coordinate reference system.
+ * of direct positions in a particular coordinate reference system. A <code>Geometry</code> can
+ * be regarded as an infinite set of points that satisfies the set operation interfaces for a set
+ * of direct positions, {@link TransfiniteSet TransfiniteSet&lt;DirectPosition&gt;}.
  *
  * @UML type GM_Object
  * @rename Renamed as <code>Geometry</code> in order to avoid ambiguity with
@@ -35,12 +38,15 @@ public interface Geometry extends TransfiniteSet {
      * subcomplexes of a maximal {@link Complex}. The <code>Complex</code> can carry
      * the CRS for all {@link org.opengis.gm.primitive.Primitive} elements and for all
      * {@link Complex} subcomplexes.
-     *
+     * <br><br>
      * This association is only navigable from <code>Geometry</code> to <code>CRS</code>.
      * This means that the coordinate reference system objects in a data set do not keep
      * a list of <code>Geometry</code>s that use them.
      *
+     * @return The coordinate reference system used in {@link DirectPosition} coordinates.
      * @UML association CRS
+     *
+     * @see #getCoordinateDimension
      */
     public CRS getCRS();
 
@@ -49,13 +55,15 @@ public interface Geometry extends TransfiniteSet {
      * The default shall be to return an instance of an appropriate <code>Geometry</code> subclass
      * that represents the same spatial set returned from {@link #getEnvelope}. The most common
      * use of <code>mbRegion</code> will be to support indexing methods that use extents other
-     * than minimum bounding rectangles (MBR or envelopes).
+     * than minimum bounding rectangles (MBR or envelopes). This does not restrict the returned
+     * <code>Geometry</code> from being a non-vector geometric representation, although those
+     * types are not defined within this specification.
      *
-     * @return The region. This does not restrict the returned <code>Geometry</code> from being a
-     *         non-vector geometric representation, although those types are not defined within
-     *         this specification.
-     *
+     * @return The minimum bounding region.
      * @UML operation mbRegion
+     *
+     * @see #getEnvelope
+     * @see #getBoundary
      */
     public Geometry getMbRegion();
 
@@ -67,6 +75,8 @@ public interface Geometry extends TransfiniteSet {
      *
      * @return The representative point.
      * @UML operation representativePoint
+     *
+     * @see #getCentroid
      */
     public DirectPosition getRepresentativePoint();
 
@@ -78,11 +88,15 @@ public interface Geometry extends TransfiniteSet {
      * is in a {@link Complex}, then the boundary <code>Geometry</code>s returned shall be in the
      * same <code>Complex</code>. If the <code>Geometry</code> is not in any <code>Complex</code>,
      * then the boundary <code>Geometry</code>s returned may have been constructed in response to the
-     * operation.
+     * operation. The elements of a boundary shall be smaller in dimension than the original element.
      *
-     * @return The sets of positions on the boundary. The elements of a boundary shall
-     *         be smaller in dimension than the original element.
+     * @return The sets of positions on the boundary.
      * @UML operation boundary
+     *
+     * @see #getMbRegion
+     * @see #getClosure
+     * @see #getBuffer
+     * @see #getDistance
      */
     public Boundary getBoundary();
 
@@ -98,6 +112,8 @@ public interface Geometry extends TransfiniteSet {
      *
      * @return The sets of points on the union of this object and its boundary.
      * @UML operation closure
+     *
+     * @see #getBoundary
      */
     public Complex getClosure();
 
@@ -118,6 +134,8 @@ public interface Geometry extends TransfiniteSet {
      * @return <code>true</code> if this object has no interior point of self-intersection or
      *         selftangency.
      * @UML operation isSimple
+     *
+     * @see #isCycle
      */
     public boolean isSimple();
 
@@ -137,6 +155,8 @@ public interface Geometry extends TransfiniteSet {
      * @return <code>true</code> if this <code>Geometry</code> has an empty boundary after
      *         topological simplification.
      * @UML operation isCycle
+     *
+     * @see #isSimple
      */
     public boolean isCycle();
 
@@ -147,7 +167,7 @@ public interface Geometry extends TransfiniteSet {
      * "distance" value shall be a positive number associated to a distance unit such as meter
      * or standard foot. If necessary, the second geometric object shall be transformed into
      * the same coordinate reference system as the first before the distance is calculated.
-     *
+     * <br><br>
      * If the geometric objects overlap, or touch, then their distance apart shall be zero.
      * Some current implementations use a "negative" distance for such cases, but the approach
      * is neither consistent between implementations, nor theoretically viable.
@@ -173,6 +193,11 @@ public interface Geometry extends TransfiniteSet {
      * @param  geometry The other object.
      * @return The distance between the two objects.
      * @UML operation distance
+     *
+     * @see #getBoundary
+     * @see #getBuffer
+     * @see org.opengis.cs.CoordinateSystem#getAxis
+     *
      * @revisit In UML diagram, the returns type is <code>Distance</code>.
      */
     public double getDistance(Geometry geometry);
@@ -192,6 +217,8 @@ public interface Geometry extends TransfiniteSet {
      * @param point The point where to evaluate the dimension, or <code>null</code>.
      * @return The inherent dimension.
      * @UML operation dimension
+     *
+     * @see #getCoordinateDimension
      */
     public int getDimension(DirectPosition point);
 
@@ -200,7 +227,11 @@ public interface Geometry extends TransfiniteSet {
      * be the same as the coordinate dimension of the coordinate reference system for this
      * <code>Geometry</code>.
      *
+     * @return The coordinate dimension.
      * @UML operation coordinateDimension
+     *
+     * @see #getDimension
+     * @see #getCRS
      */
     public int getCoordinateDimension();
 
@@ -212,6 +243,9 @@ public interface Geometry extends TransfiniteSet {
      *
      * @return The set of maximal complexes within which this <code>Geometry</code> is contained.
      * @UML operation maximalComplex
+     *
+     * @revisit If allowed to use generic type, the returns type should be
+     *          <code>Set&lgt;Complex&gt;</code>.
      */
     public Set/*<Complex>*/ getMaximalComplex();
 
@@ -239,8 +273,10 @@ public interface Geometry extends TransfiniteSet {
      *
      * @return The envelope.
      * @UML operation envelope
+     *
+     * @see #getMbRegion
      */
-    public Geometry getEnvelope();
+    public Envelope getEnvelope();
 
     /**
      * Returns the mathematical centroid for this <code>Geometry</code>. The result is not guaranteed
@@ -251,11 +287,18 @@ public interface Geometry extends TransfiniteSet {
      *
      * @return The centroid.
      * @UML operation centroid
+     *
+     * @see #getRepresentativePoint
      */
     public DirectPosition getCentroid();
 
     /**
      * Returns a <code>Geometry</code> that represents the convex hull of this <code>Geometry</code>.
+     * Convexity requires the use of "lines" or "curves of shortest length" and the use of different
+     * coordinate systems may result in different versions of the convex hull of an object. Each
+     * implementation shall decide on an appropriate solution to this ambiguity. For two reasonable
+     * coordinate systems, a convex hull of an object in one will be very closely approximated by
+     * the transformed image of the convex hull of the same object in the other.
      *
      * @return The convex hull.
      * @UML operation convexHull
@@ -272,7 +315,13 @@ public interface Geometry extends TransfiniteSet {
      * but this may be application defined.
      *
      * @param distance The distance.
+     * @return A geometry containing all points whose distance from this <code>Geometry</code>
+     *         is less than or equal to the specified distance.
      * @UML operation buffer
+     *
+     * @see #getBoundary
+     * @see #getDistance
+     * @see org.opengis.cs.CoordinateSystem#getAxis
      *
      * @revisit In UML diagram, the <code>distance</code> argument is a <code>Distance</code> type.
      */
