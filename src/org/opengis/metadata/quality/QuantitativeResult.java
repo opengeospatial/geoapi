@@ -17,7 +17,7 @@ import javax.units.Unit;
 /**
  * Information about the value (or set of values) obtained from applying a data quality measure.
  *
- * @UML abstract DQ_QuantitativeResult
+ * @UML datatype DQ_QuantitativeResult
  * @author ISO 19115
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
@@ -35,6 +35,9 @@ public interface QuantitativeResult extends Result {
      * Value type for reporting a data quality result, or <code>null</code> if none.
      *
      * @UML optional valueType
+     *
+     * @revisit Need to defines a policy for <code>RecordType</code>. Should we
+     *          returns a {@link Class}?
      */
 //    RecordType getValueType();
 

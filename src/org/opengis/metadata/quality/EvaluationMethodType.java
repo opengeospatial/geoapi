@@ -18,7 +18,7 @@ import org.opengis.util.CodeList;
 
 
 /**
- * Type of method for evaluating an identified data quality measure
+ * Type of method for evaluating an identified data quality measure.
  *
  * @UML codelist DQ_EvaluationMethodTypeCode
  * @author ISO 19115
