@@ -12,7 +12,6 @@ package org.opengis.crs.crs;
 // OpenGIS direct dependencies
 import org.opengis.crs.cs.CartesianCS;
 import org.opengis.crs.cs.ObliqueCartesianCS;
-import org.opengis.crs.datum.ImageDatum;
 
 
 /**
@@ -58,11 +57,4 @@ public interface ImageCRS extends CoordinateReferenceSystem {
      */
     ObliqueCartesianCS getObliqueCartesianCS();
 
-    /**
-     * Returns the datum, which must be an image one.
-     *
-     * @return The datum.
-     * @UML association usesDatum
-     */
-/// ImageDatum getDatum();
 }

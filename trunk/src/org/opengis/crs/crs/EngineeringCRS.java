@@ -10,7 +10,6 @@
 package org.opengis.crs.crs;
 
 // OpenGIS direct dependencies
-import org.opengis.crs.datum.EngineeringDatum;
 
 
 /**
@@ -40,11 +39,5 @@ import org.opengis.crs.datum.EngineeringDatum;
  * @version <A HREF="http://www.opengis.org/docs/03-073r1.zip">Abstract specification 2.0</A>
  */
 public interface EngineeringCRS extends CoordinateReferenceSystem {
-    /**
-     * Returns the datum, which must be an engineering one.
-     *
-     * @return The datum.
-     * @UML association usesDatum
-     */
-/// EngineeringDatum getDatum();
+
 }

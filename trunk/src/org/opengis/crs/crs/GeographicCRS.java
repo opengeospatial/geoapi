@@ -10,8 +10,6 @@
 package org.opengis.crs.crs;
 
 // OpenGIS direct dependencies
-import org.opengis.crs.cs.EllipsoidalCS;
-import org.opengis.crs.datum.GeodeticDatum;
 
 
 /**
@@ -35,19 +33,5 @@ import org.opengis.crs.datum.GeodeticDatum;
  *          I see no equivalent in this ISO 19107 specification.
  */
 public interface GeographicCRS extends CoordinateReferenceSystem {
-    /**
-     * Returns the coordinate system, which must be ellipsoidal.
-     *
-     * @return The coordinate system.
-     * @UML association usesCS
-     */
-/// EllipsoidalCS getCoordinateSystem();
 
-    /**
-     * Returns the datum, which must be geodetic.
-     *
-     * @return The datum.
-     * @UML association usesDatum
-     */
-/// GeodeticDatum getDatum();
 }
