@@ -32,7 +32,7 @@ public interface GeneralOperationParameter extends Info {
      * @return The minimum occurrences.
      * @UML optional minimumOccurs
      *
-     * @see OperationParameterGroup#getMaximumOccurs
+     * @see #getMaximumOccurs
      */
     int getMinimumOccurs();
 

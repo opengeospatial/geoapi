@@ -99,7 +99,7 @@ public class CS_DatumType implements Serializable {
      * A vertical datum for orthometric heights that are measured along the
      * plumb line.
      *
-     * @deprecated No replacement at this time.
+     * @deprecated Replaced by {@link org.opengis.crs.datum.VerticalDatumType#ORTHOMETRIC}.
      */
     public static final int CS_VD_Orthometric=2001;
 
@@ -107,7 +107,7 @@ public class CS_DatumType implements Serializable {
      * A vertical datum for ellipsoidal heights that are measured along the
      * normal to the ellipsoid used in the definition of horizontal datum.
      *
-     * @deprecated No replacement at this time.
+     * @deprecated Replaced by {@link org.opengis.crs.datum.VerticalDatumType#ELLIPSOIDAL}.
      */
     public static final int CS_VD_Ellipsoidal=2002;
 
@@ -126,7 +126,7 @@ public class CS_DatumType implements Serializable {
     /**
      * A normal height system.
      *
-     * @deprecated No replacement at this time.
+     * @deprecated No replacement.
      */
     public static final int CS_VD_Normal=2004;
 

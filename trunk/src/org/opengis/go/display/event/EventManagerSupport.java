@@ -132,7 +132,7 @@ public abstract class EventManagerSupport implements EventManager {
      * @return <code>true</code> if <code>existingHandler</code> was found and replaced
      *         by <code>replacementHandler</code>.
      *
-     * @revisit Current implementation do nothing is any argument is <code>null</code>.
+     * @revisit Current implementation do nothing if any argument is <code>null</code>.
      *          May be okay for <code>existingHandler</code>, but it is more questionable
      *          for <code>replacementHandler</code>. For example one could expect that
      *          invoking <code>replaceEventHandler(existingHandler, null)</code> would be

@@ -51,6 +51,18 @@ public class FactoryException extends Exception {
     }
 
     /**
+     * Construct an exception with the specified cause. The detail message
+     * is copied from the cause {@linkplain Exception#getLocalizedMessage
+     * localized message}.
+     *
+     * @param  cause The cause for this exception. The cause is saved
+     *         for later retrieval by the {@link #getCause()} method.
+     */
+    public FactoryException(Exception cause) {
+        super(cause.getLocalizedMessage(), cause);
+    }
+
+    /**
      * Construct an exception with the specified detail message and cause.
      * The cause is the exception thrown in the underlying database
      * (e.g. {@link java.io.IOException} or {@link java.sql.SQLException}).

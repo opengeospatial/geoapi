@@ -17,23 +17,23 @@ package org.opengis.go.display.event;
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  */
 public interface AggregationChangeEvent {
-	
-	/**
-	 * Flag for one or more elements added to the aggregation.
-	 */
-	public static final int ELEMENT_ADDED = 0;
-    
-	/**
-	 * Flag for one or more elements removed from the aggregation.
-	 */
-	public static final int ELEMENT_REMOVED = 1;
-    
-	/**
-	 * Flag for the case of the element order changing within the aggregation.
-	 */
-	public static final int ELEMENTS_REORDERD = 2;
-	
-	/**
+
+    /**
+     * Flag for one or more elements added to the aggregation.
+     */
+    public static final int ELEMENT_ADDED = 0;
+
+    /**
+     * Flag for one or more elements removed from the aggregation.
+     */
+    public static final int ELEMENT_REMOVED = 1;
+
+    /**
+     * Flag for the case of the element order changing within the aggregation.
+     */
+    public static final int ELEMENTS_REORDERD = 2;
+
+    /**
      * Get the ID flag for this event.
      *
      * @return The event type. One of the {@link #ELEMENT_ADDED},
@@ -41,8 +41,6 @@ public interface AggregationChangeEvent {
      *         constants.
      *
      * @revisit Are bitwise combinaisons allowed?
-	 */
-	public int getID();
-    
+     */
+    public int getID();
 }
-
