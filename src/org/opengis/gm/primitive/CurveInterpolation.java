@@ -10,7 +10,7 @@ import java.util.Collections;
 
 // OpenGIS direct dependencies
 import org.opengis.util.CodeList;
-import org.opengis.gm.geometry.DirectPosition; // For javadoc
+import org.opengis.gm.DirectPosition; // For javadoc
 
 
 /**

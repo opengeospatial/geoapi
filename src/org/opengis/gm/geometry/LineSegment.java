@@ -3,6 +3,9 @@
  */
 package org.opengis.gm.geometry;
 
+// OpenGIS direct dependencies
+import org.opengis.gm.DirectPosition;
+
 
 /**
  * Two distinct {@link DirectPosition}s (the {@linkplain #getStartPoint start point} and

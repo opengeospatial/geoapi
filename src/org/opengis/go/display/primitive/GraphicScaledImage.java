@@ -13,8 +13,8 @@ package org.opengis.go.display.primitive;
 import java.awt.Image;
 
 // OpenGIS direct dependencies
-import org.opengis.gm.geometry.DirectPosition;
-import org.opengis.gm.geometry.Envelope;
+import org.opengis.gm.Envelope;
+import org.opengis.gm.DirectPosition;
 
 
 /**

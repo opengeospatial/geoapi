@@ -5,8 +5,8 @@ package org.opengis.gm.primitive;
 
 // OpenGIS direct dependencies
 import org.opengis.gm.Boundary;
+import org.opengis.gm.DirectPosition;
 import org.opengis.gm.geometry.Position;
-import org.opengis.gm.geometry.DirectPosition;
 
 
 /**

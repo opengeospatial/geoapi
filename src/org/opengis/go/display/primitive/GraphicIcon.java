@@ -14,7 +14,7 @@ import javax.swing.Icon;
 import javax.units.Unit;
 
 // OpenGIS direct dependencies
-import org.opengis.gm.geometry.DirectPosition;
+import org.opengis.gm.DirectPosition;
 
 
 /**

@@ -3,6 +3,9 @@
  */
 package org.opengis.gm.geometry;
 
+// OpenGIS direct dependencies
+import org.opengis.gm.DirectPosition;
+
 
 /**
  * Common interface for {@link org.opengis.gm.primitive.Surface} and
