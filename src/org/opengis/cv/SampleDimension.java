@@ -3,15 +3,17 @@
  */
 package org.opengis.cv;
 
-// Java extensions
+// J2SE direct dependencies and extensions
 import javax.units.Unit;
 import javax.media.jai.PropertySource; // For Javadoc
+import java.awt.image.IndexColorModel; // For Javadoc
 
 
 /**
- * Contains information for an individual sample dimension of coverage.
+ * Contains information for an individual sample dimension of {@linkplain Coverage coverage}.
  * This interface is applicable to any coverage type.
- * For grid coverages, the sample dimension refers to an individual band.
+ * For {@linkplain org.opengis.gc.GridCoverage grid coverages},
+ * the sample dimension refers to an individual band.
  *
  * @UML abstract CV_SampleDimension
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
@@ -94,6 +96,7 @@ public interface SampleDimension {
      *
      * @see #getPaletteInterpretation
      * @see #getColorInterpretation
+     * @see IndexColorModel
      */
     int[][] getPalette();
 
@@ -112,7 +115,7 @@ public interface SampleDimension {
     /**
      * The minimum value occurring in the sample dimension.
      * If this value is not available, this value can be determined from the
-     * {@link org.opengis.gp.GP_GridAnalysis#getMinValue} operation.
+     * {@link org.opengis.gp.GridAnalysis#getMinValue} operation.
      * This value can be empty if this value is not provided by the implementation.
      *
      * @return The minimum value occurring in the sample dimension.
@@ -126,7 +129,7 @@ public interface SampleDimension {
     /**
      * The maximum value occurring in the sample dimension.
      * If this value is not available, this value can be determined from the
-     * {@link org.opengis.gp.GP_GridAnalysis#getMaxValue} operation.
+     * {@link org.opengis.gp.GridAnalysis#getMaxValue} operation.
      * This value can be empty if this value is not provided by the implementation.
      *
      * @return The maximum value occurring in the sample dimension.

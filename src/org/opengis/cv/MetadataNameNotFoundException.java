@@ -3,6 +3,7 @@
  */
 package org.opengis.cv;
 
+
 /**
  * Throws when a requested metadata is not found.
  *
@@ -10,8 +11,9 @@ package org.opengis.cv;
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 1.1
  *
- * @see Coverage#getMetadataValue
  * @see SampleDimension#getMetadataValue
+ * @see Coverage#getMetadataValue
+ * @see org.opengis.gc.GridCoverageExchange#getMetadataValue
  */
 public class MetadataNameNotFoundException extends IllegalArgumentException {
     /**

@@ -7,8 +7,6 @@ package org.opengis.cv;
 import java.util.List;
 import java.util.Arrays;
 import java.util.Collections;
-import java.awt.color.ColorSpace;      // For Javadoc
-import java.awt.image.IndexColorModel; // For Javadoc
 
 //OpenGIS direct dependencies
 import org.opengis.util.CodeList;
@@ -20,6 +18,9 @@ import org.opengis.util.CodeList;
  * @UML codelist CV_ColorInterpretation
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 1.1
+ *
+ * @see PaletteInterpretation
+ * @see SampleDimension
  *
  * @revisit Localize. Defines serialVersionUID.
  */
@@ -36,7 +37,7 @@ public final class ColorInterpretation extends CodeList {
      *
      * @UML conditional CV_GrayIndex
      * @see #PALETTE_INDEX
-     * @see ColorSpace#TYPE_GRAY
+     * @see PaletteInterpretation#GRAY
      */
     public static final ColorInterpretation GRAY_INDEX = new ColorInterpretation(1, "GRAY_INDEX");
 
@@ -45,7 +46,6 @@ public final class ColorInterpretation extends CodeList {
      *
      * @UML conditional CV_PaletteIndex
      * @see #GRAY_INDEX
-     * @see IndexColorModel
      */
     public static final ColorInterpretation PALETTE_INDEX = new ColorInterpretation(2, "PALETTE_INDEX");
 
@@ -56,7 +56,7 @@ public final class ColorInterpretation extends CodeList {
      * @see #GREEN_BAND
      * @see #BLUE_BAND
      * @see #ALPHA_BAND
-     * @see ColorSpace#TYPE_RGB
+     * @see PaletteInterpretation#RGB
      */
     public static final ColorInterpretation RED_BAND = new ColorInterpretation(3, "RED_BAND");
 
@@ -67,7 +67,7 @@ public final class ColorInterpretation extends CodeList {
      * @see #RED_BAND
      * @see #BLUE_BAND
      * @see #ALPHA_BAND
-     * @see ColorSpace#TYPE_RGB
+     * @see PaletteInterpretation#RGB
      */
     public static final ColorInterpretation GREEN_BAND = new ColorInterpretation(4, "GREEN_BAND");
 
@@ -78,7 +78,7 @@ public final class ColorInterpretation extends CodeList {
      * @see #RED_BAND
      * @see #GREEN_BAND
      * @see #ALPHA_BAND
-     * @see ColorSpace#TYPE_RGB
+     * @see PaletteInterpretation#RGB
      */
     public static final ColorInterpretation BLUE_BAND = new ColorInterpretation(5, "BLUE_BAND");
 
@@ -90,37 +90,37 @@ public final class ColorInterpretation extends CodeList {
      * @see #RED_BAND
      * @see #GREEN_BAND
      * @see #BLUE_BAND
-     * @see ColorSpace#TYPE_RGB
+     * @see PaletteInterpretation#RGB
      */
     public static final ColorInterpretation ALPHA_BAND = new ColorInterpretation(6, "ALPHA_BAND");
 
     /**
-     * Hue Band for the {@linkplain PaletteInterpretation#HSL HSL} color model.
+     * Hue Band for the {@linkplain PaletteInterpretation#HLS HLS} color model.
      *
      * @UML conditional CV_HueBand
      * @see #SATURATION_BAND
      * @see #LIGHTNESS_BAND
-     * @see ColorSpace#TYPE_HSL
+     * @see PaletteInterpretation#HLS
      */
     public static final ColorInterpretation HUE_BAND = new ColorInterpretation(7, "HUE_BAND");
 
     /**
-     * Saturation Band for the {@linkplain PaletteInterpretation#HSL HSL} color model.
+     * Saturation Band for the {@linkplain PaletteInterpretation#HLS HLS} color model.
      *
      * @UML conditional CV_SaturationBand
      * @see #HUE_BAND
      * @see #LIGHTNESS_BAND
-     * @see ColorSpace#TYPE_HSL
+     * @see PaletteInterpretation#HLS
      */
     public static final ColorInterpretation SATURATION_BAND = new ColorInterpretation(8, "SATURATION_BAND");
 
     /**
-     * Lightness Band for the {@linkplain PaletteInterpretation#HSL HSL} color model.
+     * Lightness Band for the {@linkplain PaletteInterpretation#HLS HLS} color model.
      *
      * @UML conditional CV_LightnessBand
      * @see #HUE_BAND
      * @see #SATURATION_BAND
-     * @see ColorSpace#TYPE_HSL
+     * @see PaletteInterpretation#HLS
      */
     public static final ColorInterpretation LIGHTNESS_BAND = new ColorInterpretation(9, "LIGHTNESS_BAND");
 
@@ -131,7 +131,7 @@ public final class ColorInterpretation extends CodeList {
      * @see #MAGENTA_BAND
      * @see #YELLOW_BAND
      * @see #BLACK_BAND
-     * @see ColorSpace#TYPE_CMYK
+     * @see PaletteInterpretation#CMYK
      */
     public static final ColorInterpretation CYAN_BAND = new ColorInterpretation(10, "CYAN_BAND");
 
@@ -142,7 +142,7 @@ public final class ColorInterpretation extends CodeList {
      * @see #CYAN_BAND
      * @see #YELLOW_BAND
      * @see #BLACK_BAND
-     * @see ColorSpace#TYPE_CMYK
+     * @see PaletteInterpretation#CMYK
      */
     public static final ColorInterpretation MAGENTA_BAND = new ColorInterpretation(11, "MAGENTA_BAND");
 
@@ -153,7 +153,7 @@ public final class ColorInterpretation extends CodeList {
      * @see #CYAN_BAND
      * @see #MAGENTA_BAND
      * @see #BLACK_BAND
-     * @see ColorSpace#TYPE_CMYK
+     * @see PaletteInterpretation#CMYK
      */
     public static final ColorInterpretation YELLOW_BAND = new ColorInterpretation(12, "YELLOW_BAND");
 
@@ -164,7 +164,7 @@ public final class ColorInterpretation extends CodeList {
      * @see #CYAN_BAND
      * @see #MAGENTA_BAND
      * @see #YELLOW_BAND
-     * @see ColorSpace#TYPE_CMYK
+     * @see PaletteInterpretation#CMYK
      */
     public static final ColorInterpretation BLACK_BAND = new ColorInterpretation(13, "BLACK_BAND");
 
