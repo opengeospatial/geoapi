@@ -78,20 +78,20 @@ public interface FeatureCanvas {
     /**
      * Adds the given layer to the map.
      */
-    public void addLayer(Layer layer);
+    public void addFeatureLayer(FeatureLayer layer);
 
     /**
      * Removes the given layer from being displayed on this map.
      */
-    public void deleteLayer(Layer layer);
+    public void deleteFeatureLayer(FeatureLayer layer);
 
     /**
-     * Returns a list containing all of the <code>Layer</code>s currently
+     * Returns a list containing all of the <code>FeatureLayer</code>s currently
      * known to this canvas.  Callers should not attempt to modify this list.
      * Instead, they should call <code>addLayer</code> or
      * <code>deleteLayer</code>.
      */
-    public List/*<Layer>*/ getLayers();
+    public List/*<FeatureLayer>*/ getLayers();
 
     /**
      * Returns the Canvas onto which the Graphics will be rendered.  References to 
