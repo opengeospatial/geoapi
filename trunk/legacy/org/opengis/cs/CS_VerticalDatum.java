@@ -18,6 +18,8 @@ package org.opengis.cs;
  * @version 1.01
  * @since   1.00
  * @author Martin Daly
+ *
+ * @deprecated Replaced by {@link org.opengis.cd.VerticalDatum}.
  */
 public interface CS_VerticalDatum extends CS_Datum {
 }

@@ -22,6 +22,8 @@ import java.io.Serializable;
  * @since   1.00
  * @author Martin Daly
  * @author Martin Desruisseaux
+ *
+ * @deprecated Replaced by {@link org.opengis.cc.GeneralParameterValue}.
  */
 public class CT_Parameter implements Cloneable, Serializable {
     /**
