@@ -13,7 +13,7 @@ package org.opengis.referencing.crs;
 import java.util.Map;
 
 // OpenGIS dependencies
-import org.opengis.referencing.Factory;
+import org.opengis.referencing.ObjectFactory;
 import org.opengis.referencing.FactoryException;
 import org.opengis.referencing.cs.AffineCS;
 import org.opengis.referencing.cs.CartesianCS;
@@ -53,13 +53,13 @@ import org.opengis.parameter.GeneralParameterValue;
  * @see org.opengis.referencing.cs.CSFactory
  * @see org.opengis.referencing.datum.DatumFactory
  */
-public interface CRSFactory extends Factory {
+public interface CRSFactory extends ObjectFactory {
     /**
      * Creates a compound coordinate reference system from an ordered
      * list of <code>CoordinateReferenceSystem</code> objects.
      *
      * @param  properties Name and other properties to give to the new object.
-     *         Available properties are {@linkplain Factory listed there}.
+     *         Available properties are {@linkplain ObjectFactory listed there}.
      * @param  elements ordered array of <code>CoordinateReferenceSystem</code> objects.
      * @throws FactoryException if the object creation failed.
      */
@@ -70,7 +70,7 @@ public interface CRSFactory extends Factory {
      * Creates a engineering coordinate reference system. 
      *
      * @param  properties Name and other properties to give to the new object.
-     *         Available properties are {@linkplain Factory listed there}.
+     *         Available properties are {@linkplain ObjectFactory listed there}.
      * @param  datum Engineering datum to use in created CRS.
      * @param  cs The coordinate system for the created CRS.
      * @throws FactoryException if the object creation failed.
@@ -84,7 +84,7 @@ public interface CRSFactory extends Factory {
      * cartesian coordinate system}.
      *
      * @param  properties Name and other properties to give to the new object.
-     *         Available properties are {@linkplain Factory listed there}.
+     *         Available properties are {@linkplain ObjectFactory listed there}.
      * @param  datum Geodetic datum to use in created CRS.
      * @param  cs The cartesian coordinate system for the created CRS.
      * @throws FactoryException if the object creation failed.
@@ -98,7 +98,7 @@ public interface CRSFactory extends Factory {
      * spherical coordinate system}.
      *
      * @param  properties Name and other properties to give to the new object.
-     *         Available properties are {@linkplain Factory listed there}.
+     *         Available properties are {@linkplain ObjectFactory listed there}.
      * @param  datum Geodetic datum to use in created CRS.
      * @param  cs The spherical coordinate system for the created CRS.
      * @throws FactoryException if the object creation failed.
@@ -113,7 +113,7 @@ public interface CRSFactory extends Factory {
      * <var>Longitude</var>/<var>Latitude</var>.
      *
      * @param  properties Name and other properties to give to the new object.
-     *         Available properties are {@linkplain Factory listed there}.
+     *         Available properties are {@linkplain ObjectFactory listed there}.
      * @param  datum Geodetic datum to use in created CRS.
      * @param  cs The ellipsoidal coordinate system for the created CRS.
      * @throws FactoryException if the object creation failed.
@@ -126,7 +126,7 @@ public interface CRSFactory extends Factory {
      * Creates an image coordinate reference system. 
      *
      * @param  properties Name and other properties to give to the new object.
-     *         Available properties are {@linkplain Factory listed there}.
+     *         Available properties are {@linkplain ObjectFactory listed there}.
      * @param  datum Image datum to use in created CRS.
      * @param  cs The Cartesian or Oblique Cartesian coordinate system for the created CRS.
      * @throws FactoryException if the object creation failed.
@@ -144,7 +144,7 @@ public interface CRSFactory extends Factory {
      * in any other plane.
      *
      * @param  properties Name and other properties to give to the new object.
-     *         Available properties are {@linkplain Factory listed there}.
+     *         Available properties are {@linkplain ObjectFactory listed there}.
      *         Properties for the {@link Conversion} object to be created can be specified
      *         with the <code>"conversion."</code> prefix added in front of property names
      *         (example: <code>"conversion.name"</code>).
@@ -164,7 +164,7 @@ public interface CRSFactory extends Factory {
      * Creates a projected coordinate reference system from a transform.
      * 
      * @param  properties Name and other properties to give to the new object.
-     *         Available properties are {@linkplain Factory listed there}.
+     *         Available properties are {@linkplain ObjectFactory listed there}.
      *         Properties for the {@link Conversion} object to be created can be specified
      *         with the <code>"conversion."</code> prefix added in front of property names
      *         (example: <code>"conversion.name"</code>).
@@ -182,7 +182,7 @@ public interface CRSFactory extends Factory {
      * Creates a projected coordinate reference system from a projection name.
      * 
      * @param  properties Name and other properties to give to the new object.
-     *         Available properties are {@linkplain Factory listed there}.
+     *         Available properties are {@linkplain ObjectFactory listed there}.
      *         Properties for the {@link Conversion} object to be created can be specified
      *         with the <code>"conversion."</code> prefix added in front of property names
      *         (example: <code>"conversion.name"</code>).
@@ -205,7 +205,7 @@ public interface CRSFactory extends Factory {
      * Creates a temporal coordinate reference system. 
      *
      * @param  properties Name and other properties to give to the new object.
-     *         Available properties are {@linkplain Factory listed there}.
+     *         Available properties are {@linkplain ObjectFactory listed there}.
      * @param  datum Temporal datum to use in created CRS.
      * @param  cs The Temporal coordinate system for the created CRS.
      * @throws FactoryException if the object creation failed.
@@ -218,7 +218,7 @@ public interface CRSFactory extends Factory {
      * Creates a vertical coordinate reference system. 
      *
      * @param  properties Name and other properties to give to the new object.
-     *         Available properties are {@linkplain Factory listed there}.
+     *         Available properties are {@linkplain ObjectFactory listed there}.
      * @param  datum Vertical datum to use in created CRS.
      * @param  cs The Vertical coordinate system for the created CRS.
      * @throws FactoryException if the object creation failed.
