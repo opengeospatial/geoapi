@@ -36,7 +36,7 @@ public interface CoordinateReferenceSystem extends CRS {
      * Returns the coordinate system.
      *
      * @return The coordinate system.
-     * @association
+     * @association usesCS
      *
      * @rename Expanded the "CS" abbreviation into "CoordinateSystem".
      */
@@ -46,7 +46,7 @@ public interface CoordinateReferenceSystem extends CRS {
      * Returns the datum.
      *
      * @return The datum.
-     * @association
+     * @association usesDatum
      */
     public Datum getDatum();
 }

@@ -20,6 +20,7 @@ import org.opengis.cs.UnitOfMeasure;
 public interface CoordinateSystemAxis {
     /**
      * Name of the coordinate system axis.
+     * See <A HREF="package-summary.html#AxisNames">axis name constraints</A>.
      *
      * @return The coordinate system axis name.
      * @mandatory
@@ -32,7 +33,7 @@ public interface CoordinateSystemAxis {
      * Set of alternative identifications of the coordinate system axis. The first <code>ID</code>,
      * if any, is normally the primary identification code, and any others are aliases. 
      *
-     * @return The coordinate system axis identifiers, or an empty string if there is none.
+     * @return The coordinate system axis identifiers, or an empty array if there is none.
      * @optional
      *
      * @rename  Omitted the "<code>axis</code>" prefix.
@@ -54,9 +55,9 @@ public interface CoordinateSystemAxis {
     public String getAbbrev();
 
     /**
-     * Direction of this coordinate system axis (or in the case of Cartesian projected coordinates,
-     * the direction of this coordinate system axis locally). Examples: north or south, east or
-     * west, up or down. Within any set of coordinate system axes, only one of each pair of terms
+     * Direction of this coordinate system axis. In the case of Cartesian projected coordinates,
+     * this is the direction of this coordinate system axis locally. Examples: north or south, east
+     * or west, up or down. Within any set of coordinate system axes, only one of each pair of terms
      * can be used. For earth-fixed coordinate reference systems, this direction is often
      * approximate and intended to provide a human interpretable meaning to the axis. When a
      * geodetic datum is used, the precise directions of the axes may therefore vary slightly
@@ -93,7 +94,7 @@ public interface CoordinateSystemAxis {
      * @return  The coordinate system remarks, or <code>null</code> if not available.
      * @optional
      *
-     * @revisit Should we ask for a (possibly null) java.util.Locale argument?
+     * @revisit Should we ask for a (possibly null) {@link java.util.Locale} argument?
      */
     public String getRemarks();
 }

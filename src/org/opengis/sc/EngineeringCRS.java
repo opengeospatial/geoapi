@@ -1,0 +1,57 @@
+/*
+ * Copyright (C) 2003 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
+ */
+package org.opengis.sc;
+
+// OpenGIS direct dependencies
+import org.opengis.cs.CoordinateSystem;
+import org.opengis.cd.EngineeringDatum;
+
+
+/**
+ * A contextually local coordinate reference system. It can be divided into two broad categories:
+ * <ul>
+ *   <li>earth-fixed systems applied to engineering activities on or near the surface of the
+ *       earth;</li>
+ *   <li>CRSs on moving platforms such as road vehicles, vessels, aircraft, or spacecraft.</li>
+ * </ul>
+ *
+ * <TABLE CELLPADDING='6' BORDER='1'>
+ * <TR BGCOLOR="#EEEEFF"><TH NOWRAP>Used with CS type(s)</TH></TR>
+ * <TR><TD>
+ *   {@link org.opengis.cs.CartesianCS        Cartesian},
+ *   {@link org.opengis.cs.ObliqueCartesianCS ObliqueCartesian},
+ *   {@link org.opengis.cs.EllipsoidalCS      Ellipsoidal},
+ *   {@link org.opengis.cs.SphericalCS        Spherical},
+ *   {@link org.opengis.cs.CylindricalCS      Cylindrical},
+ *   {@link org.opengis.cs.PolarCS            Polar},
+ *   {@link org.opengis.cs.VerticalCS         Vertical},
+ *   {@link org.opengis.cs.LinearCS           Linear}
+ * </TD></TR></TABLE>
+ *
+ * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
+ * @version 2.0
+ */
+public interface EngineeringCRS extends CoordinateReferenceSystem {
+    /**
+     * Returns the coordinate system.
+     *
+     * @return The coordinate system.
+     * @association usesCS
+     *
+     * @rename Expanded the "CS" abbreviation into "CoordinateSystem".
+     */
+    public CoordinateSystem getCoordinateSystem();
+
+    /**
+     * Returns the datum, which must be an engineering one.
+     *
+     * @return The datum.
+     * @association usesDatum
+     *
+     * @revisit Change the return type from <code>Datum</code> to
+     *          {@link EngineeringDatum} when the J2SE 1.5 compiler will be available.
+     */
+    public /*EngineeringDatum*/ org.opengis.cd.Datum getDatum();
+}
+

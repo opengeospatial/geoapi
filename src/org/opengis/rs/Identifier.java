@@ -46,7 +46,7 @@ public interface Identifier {
      * @return The version, or <code>null</code> if not available.
      * @optional
      *
-     * @revisit Should we ask for a (possibly null) java.util.Locale argument?
+     * @revisit Should we ask for a (possibly null) {@link java.util.Locale} argument?
      */
     public String getVersion();
 
@@ -68,7 +68,7 @@ public interface Identifier {
      * @return The remarks, or <code>null</code> if not available.
      * @optional
      *
-     * @revisit Should we ask for a (possibly null) java.util.Locale argument?
+     * @revisit Should we ask for a (possibly null) {@link java.util.Locale} argument?
      */
     public String getRemarks();
 }
