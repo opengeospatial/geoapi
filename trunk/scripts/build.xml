@@ -246,7 +246,7 @@
              windowtitle      = "GeoAPI ${version}"
              doctitle         = "GeoAPI ${version}"
              header           = "GeoAPI ${version}&lt;br&gt;Build ${TODAY}"
-             additionalparam  = "-quiet -docfilessubdirs">
+             additionalparam  = "-quiet -docfilessubdirs -subpackages org">
 
       <bottom>
         &lt;TABLE WIDTH='100%'&gt;&lt;TR&gt;&lt;TD NOWRAP&gt;
@@ -291,13 +291,13 @@
                     &lt;/FONT&gt;&lt;/TD&gt;&lt;/TR&gt;&lt;/TABLE&gt;"
              packages="org.opengis.catalog*"/>
 
-      <group title="&lt;TABLE WIDTH='100%'&gt;&lt;TR&gt;&lt;TD&gt;User interface
+      <group title="&lt;TABLE WIDTH='100%'&gt;&lt;TR&gt;&lt;TD&gt;Display objects
                     &lt;/TD&gt;&lt;TD ALIGN='right'&gt;&lt;FONT SIZE='-1' COLOR='Navy'&gt;GO-1
                     &lt;/FONT&gt;&lt;/TD&gt;&lt;/TR&gt;&lt;/TABLE&gt;"
              packages="org.opengis.go*"/>
 
       <fileset dir="tiger/sources">
-        <include name="org/**/*.java"/>
+        <include name="org/opengis/util/*.java"/>
       </fileset>
     </javadoc>
 
