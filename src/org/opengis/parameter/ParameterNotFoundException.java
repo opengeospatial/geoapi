@@ -18,7 +18,7 @@ package org.opengis.parameter;
  * @version 2.0
  *
  * @see ParameterDescriptorGroup#getParameter
- * @see ParameterValueGroup#getValue
+ * @see ParameterValueGroup#parameter
  */
 public class ParameterNotFoundException extends IllegalArgumentException {
     /**
