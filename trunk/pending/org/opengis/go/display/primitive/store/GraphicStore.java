@@ -51,7 +51,6 @@ public interface GraphicStore {
     // Metadata getMetadata();
 
     
-
     Graphic[] getGraphics(DisplayFactory factory);
     
 }

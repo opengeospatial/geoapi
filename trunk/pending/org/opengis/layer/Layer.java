@@ -9,6 +9,7 @@ import java.net.URL;
 
 import org.opengis.feature.display.canvas.FeatureLayer;
 import org.opengis.go.display.primitive.Graphic;
+import org.opengis.referencing.crs.CoordinateReferenceSystem;
 import org.opengis.util.InternationalString;
 
 
@@ -52,20 +53,20 @@ public interface Layer {
      * See ISO/DIS 19128 7.2.4.6.2 Title
      * @return the human-readable Title for this <code>Layer</code> 
      */
-    InternationalString getDisplayName();
+    InternationalString getTitle();
     
     /** 
      * Provides the narrative description of this <code>Layer</code>.
      * See ISO/DIS 19128 7.2.4.6.4 Abstract and KeywordList
      * @return the narrative description of this <code>Layer</code>
      */
-    InternationalString getDescription();
+    InternationalString getAbstract();
     
-    /*List getKeywordList();
+    String[] getKeywordList();
     
-    CoordinateReferenceSystem getCRS();
+    CoordinateReferenceSystem[] getCRSs();
     
-    Envelope getBoundingBox();
+    /*Envelope getBoundingBox();
     
     URL getAttribution_LogoURL_OnlineResource();
     
@@ -82,6 +83,10 @@ public interface Layer {
     double getMinScale();
     
     double getMaxScale();*/
+    
+    //*************************************************************************
+    //  'work' methods?
+    //*************************************************************************
     
     /**
      * Gets the child <code>Layer</code>s of this <code>Layer</code>.  Typically,

@@ -35,20 +35,20 @@ public interface LayerSource {
 
     /**
      *  Display name used to communicate this LayerSource to end users.
-     * @return the display name.
+     * @return
      */
     InternationalString getDisplayName();
     
     /** 
      * Description of this type of LayerSource.
-     * @return the description.
+     * @return
      */
     InternationalString getDescription();
     
     /**
      * Gets the named <code>Layer</code>.
      * @param name the id of the <code>Layer</code>.
-     * @return the layer.
+     * @return
      */
     Layer getLayer(String name);
     
@@ -59,5 +59,5 @@ public interface LayerSource {
      * @return an array of <code>Layer</code>s
      */
     Layer[] getLayers();
-
+    
 }
