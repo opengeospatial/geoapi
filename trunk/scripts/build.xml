@@ -232,6 +232,8 @@
       <replacefilter token="&lt;FeatureType&gt;"/>
       <replacefilter token="&lt;FeatureTypeList&gt;"/>
       <replacefilter token="&lt;FeatureLayer&gt;"/>
+      <replacefilter token="&lt;FeatureStore&gt;"/>
+      <replacefilter token="&lt;FeatureStore,String&gt;"/>
       <replacefilter token="&lt;Filter&gt;"/>
       <replacefilter token="&lt;Format&gt;"/>
       <replacefilter token="&lt;GeneralParameterDescriptor&gt;"/>
