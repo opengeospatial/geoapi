@@ -51,7 +51,7 @@ public class DatabaseGenerator {
     /**
      * The owner for the database to create, or <code>null</code> for the default one.
      */
-    private static final String OWNER = "Martin";
+    private static final String OWNER = "Admin";
 
     /**
      * The line separator.
