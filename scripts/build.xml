@@ -114,6 +114,7 @@
       <include name="**/*.java"/>
       <replacefilter token="/*&lt;" value="&lt;"/>
       <replacefilter token="&gt;*/" value="&gt;"/>
+      <replacefilter token="////"   value="//--"/>
       <replacefilter token="/// "   value="    /* 1.5 specific */ "/>
       <replacefilter token="///i"   value=    "/* 1.5 specific */ i"/>
       <replacefilter token="///@"   value=    "/* 1.5 specific */ @"/>
@@ -158,6 +159,18 @@
         <pathelement location="tiger/classes"/>
         <pathelement path="${java.class.path}"/>
       </classpath>
+      <arg value="-tables"/>
+    </java>
+
+    <java classname   = "org.opengis.tools.DatabaseGenerator"
+          dir         = "tiger/sources/org/opengis/metadata/doc-files/postgre"
+          failonerror = "true"
+          fork        = "true">
+      <classpath>
+        <pathelement location="tiger/classes"/>
+        <pathelement path="${java.class.path}"/>
+      </classpath>
+      <arg value="-quiet"/>
     </java>
 
     <java classname   = "org.opengis.tools.ModelComparator"
@@ -229,6 +242,7 @@
       <replacefilter token="&lt;InternationalString&gt;"/>
       <replacefilter token="&lt;Keywords&gt;"/>
       <replacefilter token="&lt;Knot&gt;"/>
+      <replacefilter token="&lt;Layer&gt;"/>
       <replacefilter token="&lt;LineSegment&gt;"/>
       <replacefilter token="&lt;Locale&gt;"/>
       <replacefilter token="&lt;LocalName&gt;"/>
