@@ -45,7 +45,7 @@ public interface LineSymbolizer extends GraphicStyle {
     /**  Default dash offset value.  */
     public static final float DEFAULT_STROKE_DASH_OFFSET = 0.f;
 
-    //public static final float[] DEFAULT_STROKE_FILL_GRADIENT_POINTS = new float[0];
+    public static final float[] DEFAULT_STROKE_FILL_GRADIENT_POINTS = new float[2];
 
     public static final float DEFAULT_STROKE_FILL_OPACITY = 1.f;
 
