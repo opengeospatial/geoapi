@@ -190,7 +190,7 @@ public interface MetadataEntity {
          *
          * @return <code>true</code> if Any.
          */
-        boolean isMetadataEntity();
+        // boolean isMetadataEntity(); // please use: element instanceof MetadataEntity
 
         /**
          * If the current element is an entity then the entity object that describes the 
@@ -200,6 +200,6 @@ public interface MetadataEntity {
          * 		The EntityType object describing the current element if current element is
          * 		an entity 
          */
-        EntityType getEntityType();
+        //EntityType getEntityType(); // please use cast: (EntityType) element
     }
 }
