@@ -321,8 +321,22 @@
       <fileset dir="legacy"/>
     </delete>
 
+    <mkdir dir="classes"/>
+    <javac srcdir        = "${homepath}/legacy"
+           destdir       = "classes"
+           encoding      = "ISO-8859-1"
+           includes      = "org/**/*.java"
+           bootclasspath = "${kestrel}/jre/lib/rt.jar"
+           extdirs       = "${kestrel}/jre/lib/ext"
+           source        = "1.3"
+           target        = "1.3"
+           optimize      = "true"
+           debug         = "false"
+           failonerror   = "true">
+    </javac>
+
     <javadoc sourcepath       = "${homepath}/legacy"
-             classpath        = "${homepath}/legacy:tiger/classes"
+             classpath        = "classes:tiger/classes"
              destdir          = "legacy"
              charset          = "ISO-8859-1"
              encoding         = "ISO-8859-1"
