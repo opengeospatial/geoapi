@@ -11,7 +11,6 @@
 package org.opengis.go.display.canvas;
 
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
-import org.opengis.referencing.crs.ImageCRS;
 import org.opengis.referencing.operation.IncompatibleOperationException;
 import org.opengis.referencing.operation.MathTransform;
 import org.opengis.go.display.DisplayFactory;
@@ -284,7 +283,7 @@ public interface Canvas {
      * 
      * @return the display Coordinate Reference System
      */
-    ImageCRS getDisplayCoordinateReferenceSystem();
+    CoordinateReferenceSystem getDisplayCoordinateReferenceSystem();
 
     /**
      * Returns the objective Coordinate Reference System (e.g. the projection of
