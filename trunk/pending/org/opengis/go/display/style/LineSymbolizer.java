@@ -40,18 +40,18 @@ public interface LineSymbolizer extends GraphicStyle {
     public static final Color DEFAULT_STROKE_FILL_BACKGROUND_COLOR = Color.WHITE;
 
     /**  Default dash array value.  */
-    public static final DashArray DEFAULT_STROKE_DASH_ARRAY = DashArray.NO_DASH;
+    public static final DashArray DEFAULT_STROKE_DASH_ARRAY = DashArray.NONE;
 
     /**  Default dash offset value.  */
     public static final float DEFAULT_STROKE_DASH_OFFSET = 0.f;
 
-    public static final float[] DEFAULT_STROKE_FILL_GRADIENT_POINTS = new float[0];
+    //public static final float[] DEFAULT_STROKE_FILL_GRADIENT_POINTS = new float[0];
 
     public static final float DEFAULT_STROKE_FILL_OPACITY = 1.f;
 
     public static final FillPattern DEFAULT_STROKE_FILL_PATTERN = FillPattern.NONE;
 
-    public static final FillStyle DEFAULT_STROKE_FILL_STYLE = FillStyle.SOLID;
+    public static final FillStyle DEFAULT_STROKE_FILL_STYLE = FillStyle.EMPTY;
 
     /**  Default line cap value.  */
     public static final LineCap DEFAULT_STROKE_LINE_CAP = LineCap.BUTT;
@@ -66,6 +66,8 @@ public interface LineSymbolizer extends GraphicStyle {
 
     /**  Default line style value.  */
     public static final LineStyle DEFAULT_STROKE_LINE_STYLE = LineStyle.SINGLE;
+
+    public static final float DEFAULT_STROKE_OPACITY = 1.f;
 
     /**  Default stroke width value.  */
     public static final float DEFAULT_STROKE_WIDTH = 1.f;
@@ -159,14 +161,16 @@ public interface LineSymbolizer extends GraphicStyle {
     public void setStrokeFillBackgroundColor(Color fillBackgroundColor);
 
     /**
-     * Returns the fill gradient points value.
+     * Returns the fill gradient points value, or null if there is no
+     * fill gradient.
      * @return the fill gradient points value.
      */
     public float[] getStrokeFillGradientPoints();
 
     /**
      * Sets the fill gradient points value.
-     * @param fillGradientPoints the fill gradient points value.
+     * @param fillGradientPoints the fill gradient points value, or null
+     * to specify no fill gradient.
      */
     public void setStrokeFillGradientPoints(float[] fillGradientPoints);
 
@@ -265,6 +269,18 @@ public interface LineSymbolizer extends GraphicStyle {
      * @param strokeLineStyle the stroke line style value.
      */
     public void setStrokeLineStyle(LineStyle strokeLineStyle);
+
+    /**
+     * Returns the stroke opacity value.
+     * @return the stroke opacity value.
+     */
+    public float getStrokeOpacity();
+
+    /**
+     * Sets the stroke opacity value.
+     * @param strokeOpacity the stroke opacity value.
+     */
+    public void setStrokeOpacity(float strokeOpacity);
 
     /**
      * Returns the width value.

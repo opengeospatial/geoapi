@@ -35,7 +35,7 @@ public interface PolygonSymbolizer extends LineSymbolizer {
     public static final Color DEFAULT_FILL_BACKGROUND_COLOR = Color.BLACK;
 
     /**  Default fill gradient points value.  */
-    public static final float[] DEFAULT_FILL_GRADIENT_POINTS = new float[2];
+    //public static final float[] DEFAULT_FILL_GRADIENT_POINTS = new float[2];
 
     /**  Default fill opacity value.  */
     public static final float DEFAULT_FILL_OPACITY = 1.f;
@@ -44,7 +44,7 @@ public interface PolygonSymbolizer extends LineSymbolizer {
     public static final FillPattern DEFAULT_FILL_PATTERN = FillPattern.NONE;
 
     /**  Default fill style value.  */
-    public static final FillStyle DEFAULT_FILL_STYLE = FillStyle.SOLID;
+    public static final FillStyle DEFAULT_FILL_STYLE = FillStyle.EMPTY;
 
     //*************************************************************************
     //  Methods
@@ -93,7 +93,9 @@ public interface PolygonSymbolizer extends LineSymbolizer {
     public float getFillOpacity();
 
     /**
-     * Sets the fill opacity value.
+     * Sets the fill opacity value.  If semi-transparency is specified in
+     * both this attribute and the alpha value of either the foreground
+     * or background fill color, the two factors should be multiplied.
      * @param fillOpacity the fill opacity value.
      */
     public void setFillOpacity(float fillOpacity);

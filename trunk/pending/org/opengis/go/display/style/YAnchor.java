@@ -24,41 +24,66 @@ import org.opengis.util.SimpleEnumerationType;
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  */
 public class YAnchor extends SimpleEnumerationType {
-
+    
     //*************************************************************************
     //  Static Fields
     //*************************************************************************
-
     /**
      * The list of enumeration available in this virtual machine.
      * <strong>Must be declared first!</strong>.
      */
     private static final List VALUES = new ArrayList(4);
-
+    
     /**
-     * Align to the top of the field.
-     */
+      * Align to the top of the field.
+      */
     public static final YAnchor TOP = new YAnchor("Top", "");
-
+    
     /**
-     * Align the middle of the field.
-     */
+      * Align the middle of the field.
+      */
     public static final YAnchor MIDDLE = new YAnchor("Middle", "");
-
+    
     /**
-     * Align to the baseline of the field.
-     */
+      * Align to the baseline of the field.
+      */
     public static final YAnchor BASELINE = new YAnchor("Baseline", "");
-
+    
     /**
-     * Align to the bottom of the field.
-     */
+      * Align to the bottom of the field.
+      */
     public static final YAnchor BOTTOM = new YAnchor("Bottom", "");
-
+    
+    /**
+     * The next value to be assigned and the count of number of styles
+     * actually given out.
+     */
+    private static int next_value = 0;
+    
+    //*************************************************************************
+    //  Static Methods
+    //*************************************************************************
+    
+    /**
+     * Give out the next value.
+     */
+    private static synchronized int nextValue() {
+        return next_value++;
+    }
+    
+    /**
+     * Gets the number of <code>YAnchor</code>s that have been
+     * created.
+     * @return the number of styles.
+     */
+    public static int getNumberOfStyles() {
+        return next_value;
+    }
+    
     //*************************************************************************
     //  Constructor
     //*************************************************************************
-
+    
     /**
      * Construct a new YAnchor with the given name and description.
      * This constructor should only be used to make the static

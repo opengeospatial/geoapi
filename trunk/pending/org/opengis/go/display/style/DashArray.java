@@ -24,7 +24,7 @@ public class DashArray extends LinePattern {
     //  Static Fields
     //*************************************************************************
    
-	public static final DashArray NO_DASH = new DashArray("NONE", "No Dash Array", new float[0]);
+	public static final DashArray NONE = new DashArray("NONE", "No Dash Array", new float[0]);
 
     //*************************************************************************
     //  Fields
