@@ -10,8 +10,8 @@
 package org.opengis.metadata.quality;
 
 // OpenGIS direct dependencies
-import org.opengis.metadata.ScopeCode;
 import org.opengis.metadata.extent.Extent;
+import org.opengis.metadata.maintenance.ScopeCode;
 
 
 /**

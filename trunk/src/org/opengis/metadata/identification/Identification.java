@@ -13,11 +13,10 @@ package org.opengis.metadata.identification;
 import java.util.Locale;
 
 // OpenGIS direct dependencies
-import org.opengis.metadata.Progress;
-import org.opengis.metadata.Constraints;
-import org.opengis.metadata.MaintenanceInformation;
 import org.opengis.metadata.citation.Citation;
 import org.opengis.metadata.citation.ResponsibleParty;
+import org.opengis.metadata.maintenance.MaintenanceInformation;
+import org.opengis.metadata.constraint.Constraints;
 import org.opengis.metadata.distribution.Format;
 
 

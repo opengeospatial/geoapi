@@ -16,10 +16,13 @@ import java.util.Locale;
 // OpenGIS direct dependencies
 import org.opengis.metadata.citation.Contact;
 import org.opengis.metadata.quality.DataQuality;
+import org.opengis.metadata.maintenance.ScopeCode;
+import org.opengis.metadata.constraint.Constraints;
 import org.opengis.metadata.distribution.Distribution;
 import org.opengis.metadata.content.ContentInformation;
 import org.opengis.metadata.spatial.SpatialRepresentation;
 import org.opengis.metadata.identification.Identification;
+import org.opengis.metadata.maintenance.MaintenanceInformation;
 import org.opengis.referencing.ReferenceSystem;
 
 

@@ -7,7 +7,7 @@
  ** Copyright (C) 2003 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
  **
  *************************************************************************************************/
-package org.opengis.metadata;
+package org.opengis.metadata.constraint;
 
 // J2SE direct dependencies
 import java.util.Locale;
