@@ -32,6 +32,13 @@ import org.opengis.crs.projection.Projection;
  */
 public interface ProjectedCRS extends GeneralDerivedCRS {
     /**
+     * Returns the base coordinate reference system, which must be geographic.
+     *
+     * @return The base coordinate reference system.
+     */
+/// GeographicCRS getBaseCRS();
+
+    /**
      * Returns the map projection from the {@linkplain #getBaseCRS base CRS} to this CRS.
      *
      * @return The projection to this CRS.

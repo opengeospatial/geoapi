@@ -256,11 +256,8 @@ public interface Geometry extends TransfiniteSet {
      * Returns a new <code>Geometry</code> that is the coordinate transformation of this
      * <code>Geometry</code> into the passed coordinate reference system within the accuracy
      * of the transformation.
-     * <br><br>
-     * <strong>NOTE:</strong> If there is more than one shape to transform, then it may be more
-     * efficient to invoke {@link org.opengis.crs.operation.MathTransform#createTransformedGeometry}.
      *
-     * @param  newCRS The newCRS.
+     * @param  newCRS The new coordinate reference system.
      * @return The transformed <code>Geometry</code>.
      * @throws TransformException if the transformation failed.
      * @UML operation transform
@@ -269,21 +266,17 @@ public interface Geometry extends TransfiniteSet {
 
     /**
      * Returns a new <code>Geometry</code> that is the coordinate transformation of this
-     * <code>Geometry</code> into the passed coordinate reference system
-     * correlating to the transformation.
+     * <code>Geometry</code> into the passed coordinate reference system, using the
+     * specified transform. It is the user responsability to ensure that the supplied
+     * transform is appropriate for this geometry.
      *
-     * @param trans the trasformation that converts between the existing Coordinate Reference System and the new Coordinate Reference System.
-     * @throws IncompatibleOperationException when the specified transformation does not apply to either the existing or new Coordinate Reference Systems.
+     * @param  newCRS The new coordinate reference system.
+     * @param  transform The transform from the existing coordinate reference system
+     *         to the new coordinate reference system.
+     * @throws TransformException if the transformation failed.
      * @return The transformed <code>Geometry</code>.
-     * @UML operation transform
-     *
-     * @revisit How could an implementation know that it should throws <code>IncompatibleOperationException</code>
-     *          since (by design) a math transform doesn't store the source and target CRS? What should be the
-     *          target CRS for the transformed geometry? This methods duplicates
-     *          {@link MathTransform#createTransformedGeometry}; which one should we keep?
-     *          This method should also throws {@link TransformException}.
      */
-    public Geometry transform(MathTransform trans) throws IncompatibleOperationException;
+    public Geometry transform(CoordinateReferenceSystem newCRS, MathTransform transform) throws TransformException;
 
     /**
      * Returns the minimum bounding box for this <code>Geometry</code>. This shall be the

@@ -134,18 +134,6 @@ public interface DatumAuthorityFactory extends AuthorityFactory {
     PrimeMeridian createPrimeMeridian(String code) throws FactoryException;
 
     /**
-     * Returns an {@linkplain Unit unit} from a code.
-     *
-     * @param  code Value allocated by authority.
-     * @throws NoSuchAuthorityCodeException if the specified <code>code</code> was not found.
-     * @throws FactoryException if the object creation failed for some other reason.
-     *
-     * @UML operation createLinearUnit createAngularUnit in 1.0 specification
-     * @revisit We should probably move this method into a <code>CSAuthorityFactory</code>.
-     */
-    Unit createUnit(String code) throws FactoryException;
-
-    /**
      * Gets the Geoid code from a WKT name. 
      * In the OGC definition of WKT horizontal datums, the geoid is
      * referenced by a quoted string, which is used as a key value.  This

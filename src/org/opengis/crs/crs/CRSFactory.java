@@ -28,7 +28,6 @@ import org.opengis.crs.datum.VerticalDatum;
 import org.opengis.crs.operation.Conversion;
 import org.opengis.crs.operation.MathTransform;
 import org.opengis.crs.projection.Projection;
-import org.opengis.spatialschema.geometry.DirectPosition;
 
 
 /**
@@ -38,9 +37,8 @@ import org.opengis.spatialschema.geometry.DirectPosition;
  * created by a {@link CRSAuthorityFactory}. This factory is very flexible, whereas the
  * authority factory is easier to use.
  *
- * So {@link CRSAuthorityFactory} can be used to make "standard"
- * coordinate systems, and <code>CRSFactory</code> can be used to
- * make "special" coordinate systems.
+ * So {@link CRSAuthorityFactory} can be used to make "standard" coordinate reference systems,
+ * and <code>CRSFactory</code> can be used to make "special" coordinate reference systems.
  *
  * For example, the EPSG authority has codes for USA state plane coordinate systems
  * using the NAD83 datum, but these coordinate systems always use meters.  EPSG does
@@ -194,7 +192,7 @@ public interface CRSFactory extends Factory {
      * @revisit Explain how this method is related to <code>createDerivedCRS</code>.
      */
     DerivedCRS anchor(CoordinateReferenceSystem subjectCRS, CoordinateReferenceSystem anchorCRS,
-            DirectPosition anchorPoint) throws FactoryException;
+            org.opengis.spatialschema.geometry.DirectPosition anchorPoint) throws FactoryException;
 
     /**
      * Creates a coordinate reference system object from a XML string.

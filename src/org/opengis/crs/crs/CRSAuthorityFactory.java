@@ -12,7 +12,7 @@ package org.opengis.crs.crs;
 // OpenGIS direct dependencies and extensions
 import org.opengis.crs.AuthorityFactory;
 import org.opengis.crs.FactoryException;
-import org.opengis.crs.NoSuchAuthorityCodeException;
+import org.opengis.crs.NoSuchAuthorityCodeException;  // For javadoc
 
 
 /**
@@ -30,10 +30,9 @@ import org.opengis.crs.NoSuchAuthorityCodeException;
  * @see org.opengis.crs.datum.DatumAuthorityFactory
  */
 public interface CRSAuthorityFactory extends AuthorityFactory {
-    
     /**
      * Returns an arbitrary {@linkplain CoordinateReferenceSystem coordinate reference system} from a code. If the
-     * CoordinateReferenceSystem type is know at compile time, it is recommended to invoke the most precise method
+     * coordinate reference system type is know at compile time, it is recommended to invoke the most precise method
      * instead of this one (for example
      * <code>&nbsp;{@linkplain #createGeographicCRS createGeographicCRS}(code)&nbsp;</code>
      * instead of <code>&nbsp;createCoordinateReferenceSystem(code)&nbsp;</code> if the caller
