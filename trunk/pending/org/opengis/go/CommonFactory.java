@@ -14,7 +14,7 @@ import org.opengis.feature.FeatureTypeFactory;
 import org.opengis.feature.display.FeatureDisplayFactory;
 import org.opengis.filter.FilterFactory;
 import org.opengis.go.display.DisplayFactory;
-import org.opengis.go.geometry.BoundsFactory;
+import org.opengis.metadata.MetadataFactory;
 import org.opengis.referencing.crs.CRSAuthorityFactory;
 import org.opengis.referencing.crs.CRSFactory;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
@@ -71,10 +71,10 @@ public interface CommonFactory {
     DisplayFactory getDisplayFactory();
        
     /**
-     * Returns the <code>BoundsFactory</code> singleton.
-     * @return the <code>BoundsFactory</code>
+     * Returns the <code>MetadataFactory</code> singleton.
+     * @return the <code>MetadataFactory</code>
      */
-    BoundsFactory getBoundsFactory();
+    MetadataFactory getMetadataFactory();
 
     /**
      * Returns the <code>CRSAuthorityFactory</code> singleton.

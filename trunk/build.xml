@@ -78,6 +78,7 @@
       <fileset dir="${src.dir}">
         <exclude name="**/OrderedAggregateGraphic.java"/>
         <exclude name="org/opengis/go/display/style/*.*"/>
+        <exclude name="org/opengis/go/geometry/*.*"/>
       </fileset>
     </copy>
     <!-- do the pending separate so we can force it to overwrite -->
@@ -116,7 +117,7 @@
     </copy>
   </target>
   <target name="clean-pending" description="Deletes jar and .class files.">
-    <delete dir="${pending.build.dir}"/>
+    <delete dir="${pending.build.dir}" failonerror="false"/>
     <delete>
       <fileset dir="${pending.src.dir}">
         <include name="**/*.class"/>
@@ -124,8 +125,8 @@
     </delete>
   </target>
   <target name="cleanall-pending" depends="clean-pending" description="Reset to repository proper.">
-    <delete dir="${pending.src.dir}"/>
-    <delete dir="${pending.javadoc.dir}"/>
+    <delete dir="${pending.src.dir}" failonerror="false"/>
+    <delete dir="${pending.javadoc.dir}" failonerror="false"/>
   </target>
 
   <target name="rebuild-pending" depends="cleanall-pending,compile-pending,jar-pending,javadoc-pending"></target>

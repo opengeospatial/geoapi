@@ -12,7 +12,6 @@ import java.util.Map;
 
 import org.opengis.feature.display.canvas.FeatureLayer;
 import org.opengis.go.display.primitive.Graphic;
-import org.opengis.layer.source.LayerSourceFactory.Param;
 import org.opengis.metadata.Identifier;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 import org.opengis.spatialschema.geometry.Envelope;
