@@ -9,6 +9,10 @@
  *************************************************************************************************/
 package org.opengis.referencing.crs;
 
+// J2SE directdependencies
+import java.util.List;
+import java.util.ArrayList;
+
 //OpenGIS direct dependencies
 import org.opengis.util.CodeList;
 
@@ -31,13 +35,19 @@ public final class CoordinateReferenceSystemType extends CodeList {
     private static final long serialVersionUID = 2597510779962798941L;
 
     /**
+     * List of all enumerations of this type.
+     * Must be declared before any enum declaration.
+     */
+    private static final List VALUES = new ArrayList(9);
+
+    /**
      * A coordinate reference system based on an ellipsoidal approximation of the geoid.
      * Provides an accurate representation of the geometry of geographic features for a
      * large portion of the earth's surface.
      *
      * @UML conditional geographic
      */
-    public static final CoordinateReferenceSystemType GEOGRAPHIC = new CoordinateReferenceSystemType("GEOGRAPHIC", 0);
+    public static final CoordinateReferenceSystemType GEOGRAPHIC = new CoordinateReferenceSystemType("GEOGRAPHIC");
 
     /**
      * A coordinate reference system used for recording of heights or depths. Vertical
@@ -46,7 +56,7 @@ public final class CoordinateReferenceSystemType extends CodeList {
      *
      * @UML conditional vertical
      */
-    public static final CoordinateReferenceSystemType VERTICAL = new CoordinateReferenceSystemType("VERTICAL", 1);
+    public static final CoordinateReferenceSystemType VERTICAL = new CoordinateReferenceSystemType("VERTICAL");
 
     /**
      * A contextually local coordinate reference system. It can be divided into two broad
@@ -59,68 +69,67 @@ public final class CoordinateReferenceSystemType extends CodeList {
      *
      * @UML conditional engineering
      */
-    public static final CoordinateReferenceSystemType ENGINEERING = new CoordinateReferenceSystemType("ENGINEERING", 2);
+    public static final CoordinateReferenceSystemType ENGINEERING = new CoordinateReferenceSystemType("ENGINEERING");
 
     /**
      * An engineering coordinate reference system applied to locations in images.
      *
      * @UML conditional image
      */
-    public static final CoordinateReferenceSystemType IMAGE = new CoordinateReferenceSystemType("IMAGE", 3);
+    public static final CoordinateReferenceSystemType IMAGE = new CoordinateReferenceSystemType("IMAGE");
 
     /**
      * A coordinate reference system used for the recording of time.
      *
      * @UML conditional temporal
      */
-    public static final CoordinateReferenceSystemType TEMPORAL = new CoordinateReferenceSystemType("TEMPORAL", 4);
+    public static final CoordinateReferenceSystemType TEMPORAL = new CoordinateReferenceSystemType("TEMPORAL");
 
     /**
      * A coordinate reference system used for the recording of time.
      *
      * @UML conditional temporal
      */
-    public static final CoordinateReferenceSystemType GEOCENTRIC = new CoordinateReferenceSystemType("GEOCENTRIC", 5);
+    public static final CoordinateReferenceSystemType GEOCENTRIC = new CoordinateReferenceSystemType("GEOCENTRIC");
 
     /**
      * A coordinate reference system used for the recording of time.
      *
      * @UML conditional temporal
      */
-    public static final CoordinateReferenceSystemType PROJECTED = new CoordinateReferenceSystemType("PROJECTED", 6);
+    public static final CoordinateReferenceSystemType PROJECTED = new CoordinateReferenceSystemType("PROJECTED");
 
     /**
      * A coordinate reference system used for the recording of time.
      *
      * @UML conditional temporal
      */
-    public static final CoordinateReferenceSystemType COMPOUND = new CoordinateReferenceSystemType("COMPOUND", 7);
+    public static final CoordinateReferenceSystemType COMPOUND = new CoordinateReferenceSystemType("COMPOUND");
 
     /**
      * A coordinate reference system used for the recording of time.
      *
      * @UML conditional temporal
      */
-    public static final CoordinateReferenceSystemType DERIVED = new CoordinateReferenceSystemType("DERIVED", 8);
+    public static final CoordinateReferenceSystemType DERIVED = new CoordinateReferenceSystemType("DERIVED");
 
     /**
-     * List of all enumeration of this type.
+     * Constructs an enum with the given name. The new enum is
+     * automatically added to the list returned by {@link #values}.
+     *
+     * @param name The enum name. This name must not be in use by an other enum of this type.
      */
-    private static final CoordinateReferenceSystemType[] VALUES = new CoordinateReferenceSystemType[] {
-        GEOGRAPHIC, VERTICAL, ENGINEERING, IMAGE, TEMPORAL, GEOCENTRIC, PROJECTED, COMPOUND, DERIVED };
-
-    /**
-     * Constructs an enum with the given name.
-     */
-    private CoordinateReferenceSystemType(final String name, final int ordinal) {
-        super(name, ordinal);
+    public CoordinateReferenceSystemType(final String name) {
+        super(name, VALUES);
     }
 
     /**
      * Returns the list of <code>CoordinateReferenceSystemType</code>s.
      */
     public static CoordinateReferenceSystemType[] values() {
-        return (CoordinateReferenceSystemType[]) VALUES.clone();
+        synchronized (VALUES) {
+            return (CoordinateReferenceSystemType[]) VALUES.toArray(new CoordinateReferenceSystemType[VALUES.size()]);
+        }
     }
 
     /**

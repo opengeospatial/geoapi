@@ -83,7 +83,7 @@ public class LineCap extends SimpleEnumerationType {
         synchronized (VALUES) {
             return (LineCap[]) VALUES.toArray(new LineCap[VALUES.size()]);
         }
-}
+    }
 
     /**
      * Returns the list of enumerations of the same kind than this enum.

@@ -108,8 +108,8 @@ public class YAnchor extends SimpleEnumerationType {
     public static YAnchor[] values() {
         synchronized (VALUES) {
             return (YAnchor[]) VALUES.toArray(new YAnchor[VALUES.size()]);
+        }
     }
-}
 
     /**
      * Returns the list of enumerations of the same kind than this enum.

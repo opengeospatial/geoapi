@@ -14,10 +14,19 @@ import java.io.InvalidObjectException;
 import java.io.ObjectStreamException;
 import java.io.Serializable;
 import java.util.Collection;
+import java.util.Iterator;
 
 
 /**
- * Base class for all code lists.
+ * Base class for all code lists. Subclasses shall provides a <code>values()</code> method
+ * which returns all <code>CodeList</code> element in an array of the appropriate class.
+ * Code list are extensible, i.e. invoking the public constructor in any subclass will
+ * automatically add the newly created <code>CodeList</code> element in the array to be
+ * returned by <code>values()</code>.
+ * <br><br>
+ * Note: This class has an API similar to {@link java.lang.Enum}. In a
+ *       future version, it may extends directly {@link java.lang.Enum}
+ *       for a J2SE 1.5 profile.
  *
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 2.0
@@ -30,41 +39,49 @@ public abstract class CodeList implements Serializable {
 
     /**
      * The code value.
-     * For J2SE 1.3 profile only.
+     * This field may be removed in a J2SE 1.5 profile.
      */
     private transient final int ordinal;
 
     /**
      * The code name.
-     * For J2SE 1.3 profile only.
+     * This field may be removed in a J2SE 1.5 profile.
      */
     private final String name;
 
     /**
-     * Create a new code list instance.
+     * Creates a new code list element and add it to the given collection. Subclasses
+     * will typically give a static reference to an {@link java.util.ArrayList} for
+     * the <code>values</code> argument. This list is used for <code>values()</code>
+     * method implementations.
      *
      * @param name The code name.
-     * @param ordinal The code value.
+     * @param ordinal The collection to add the element to.
      */
-    protected CodeList(final String name, final int ordinal) {
-        this.name    = name;
-        this.ordinal = ordinal;
-    }
-
-    /**
-     * Create a new code list instance and add it to the given collection.
-     *
-     * @param name The code name.
-     * @param ordinal The collection to add the enum to.
-     */
-    CodeList(final String name, final Collection values) {
-        this.name = name;
-        synchronized(values) {
+    protected CodeList(String name, final Collection values) {
+        this.name = (name=name.trim());
+        synchronized (values) {
             this.ordinal = values.size();
+            assert !contains(values, name) : name;
             if (!values.add(this)) {
                 throw new IllegalArgumentException(String.valueOf(values));
             }
         }
+    }
+
+    /**
+     * Verify if the given collection contains a <code>CodeList</code> instance
+     * with the same name than the given <code>name</code> argument.
+     * The comparaison is case-insensitive.
+     */
+    private static boolean contains(final Collection values, final String name) {
+        for (final Iterator it=values.iterator(); it.hasNext();) {
+            final CodeList code = (CodeList) it.next();
+            if (name.equalsIgnoreCase(code.name)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
@@ -114,6 +131,7 @@ public abstract class CodeList implements Serializable {
     protected Object readResolve() throws ObjectStreamException {
         final CodeList[] codes = family();
         for (int i=0; i<codes.length; i++) {
+            assert codes[i].ordinal == i : i;
             if (name.equals(codes[i].name)) {
                 return codes[i];
             }
@@ -121,5 +139,3 @@ public abstract class CodeList implements Serializable {
         throw new InvalidObjectException(toString());
     }
 }
-
-

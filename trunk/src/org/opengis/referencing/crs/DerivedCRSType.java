@@ -9,6 +9,10 @@
  *************************************************************************************************/
 package org.opengis.referencing.crs;
 
+// J2SE directdependencies
+import java.util.List;
+import java.util.ArrayList;
+
 //OpenGIS direct dependencies
 import org.opengis.util.CodeList;
 
@@ -30,13 +34,19 @@ public final class DerivedCRSType extends CodeList {
     private static final long serialVersionUID = -5189026148279410852L;
 
     /**
+     * List of all enumerations of this type.
+     * Must be declared before any enum declaration.
+     */
+    private static final List VALUES = new ArrayList(5);
+
+    /**
      * A coordinate reference system based on an ellipsoidal approximation of the geoid.
      * Provides an accurate representation of the geometry of geographic features for a
      * large portion of the earth's surface.
      *
      * @UML conditional geographic
      */
-    public static final DerivedCRSType GEOGRAPHIC = new DerivedCRSType("GEOGRAPHIC", 0);
+    public static final DerivedCRSType GEOGRAPHIC = new DerivedCRSType("GEOGRAPHIC");
 
     /**
      * A coordinate reference system used for recording of heights or depths. Vertical
@@ -45,7 +55,7 @@ public final class DerivedCRSType extends CodeList {
      *
      * @UML conditional vertical
      */
-    public static final DerivedCRSType VERTICAL = new DerivedCRSType("VERTICAL", 1);
+    public static final DerivedCRSType VERTICAL = new DerivedCRSType("VERTICAL");
 
     /**
      * A contextually local coordinate reference system. It can be divided into two broad
@@ -58,40 +68,39 @@ public final class DerivedCRSType extends CodeList {
      *
      * @UML conditional engineering
      */
-    public static final DerivedCRSType ENGINEERING = new DerivedCRSType("ENGINEERING", 2);
+    public static final DerivedCRSType ENGINEERING = new DerivedCRSType("ENGINEERING");
 
     /**
      * An engineering coordinate reference system applied to locations in images.
      *
      * @UML conditional image
      */
-    public static final DerivedCRSType IMAGE = new DerivedCRSType("IMAGE", 3);
+    public static final DerivedCRSType IMAGE = new DerivedCRSType("IMAGE");
 
     /**
      * A coordinate reference system used for the recording of time.
      *
      * @UML conditional temporal
      */
-    public static final DerivedCRSType TEMPORAL = new DerivedCRSType("TEMPORAL", 4);
+    public static final DerivedCRSType TEMPORAL = new DerivedCRSType("TEMPORAL");
 
     /**
-     * List of all enumeration of this type.
+     * Constructs an enum with the given name. The new enum is
+     * automatically added to the list returned by {@link #values}.
+     *
+     * @param name The enum name. This name must not be in use by an other enum of this type.
      */
-    private static final DerivedCRSType[] VALUES = new DerivedCRSType[] {
-                GEOGRAPHIC, VERTICAL, ENGINEERING, IMAGE, TEMPORAL };
-
-    /**
-     * Constructs an enum with the given name.
-     */
-    private DerivedCRSType(final String name, final int ordinal) {
-        super(name, ordinal);
+    public DerivedCRSType(final String name) {
+        super(name, VALUES);
     }
 
     /**
      * Returns the list of <code>DerivedCRSType</code>s.
      */
     public static DerivedCRSType[] values() {
-        return (DerivedCRSType[]) VALUES.clone();
+        synchronized (VALUES) {
+            return (DerivedCRSType[]) VALUES.toArray(new DerivedCRSType[VALUES.size()]);
+        }
     }
 
     /**

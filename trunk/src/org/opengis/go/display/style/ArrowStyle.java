@@ -101,8 +101,8 @@ public class ArrowStyle extends SimpleEnumerationType {
     public static ArrowStyle[] values() {
         synchronized (VALUES) {
             return (ArrowStyle[]) VALUES.toArray(new ArrowStyle[VALUES.size()]);
+        }
     }
-}
 
     /**
      * Returns the list of enumerations of the same kind than this enum.

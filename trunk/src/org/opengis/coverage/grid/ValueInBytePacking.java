@@ -9,6 +9,10 @@
  *************************************************************************************************/
 package org.opengis.coverage.grid;
 
+// J2SE directdependencies
+import java.util.List;
+import java.util.ArrayList;
+
 //OpenGIS direct dependencies
 import org.opengis.util.CodeList;
 import org.opengis.coverage.SampleDimensionType; // For Javadoc
@@ -37,37 +41,42 @@ public final class ValueInBytePacking extends CodeList {
     private static final long serialVersionUID = 6895036289489868770L;
 
     /**
+     * List of all enumerations of this type.
+     * Must be declared before any enum declaration.
+     */
+    private static final List VALUES = new ArrayList(2);
+
+    /**
      * Low bit firts (little endian order).
      *
      * @UML conditional GC_LoBitFirst
      */
-    public static final ValueInBytePacking LO_BIT_FIRST = new ValueInBytePacking("LO_BIT_FIRST", 0);
+    public static final ValueInBytePacking LO_BIT_FIRST = new ValueInBytePacking("LO_BIT_FIRST");
 
     /**
      * High bit first (big endian order).
      *
      * @UML conditional GC_HiBitFirst
      */
-    public static final ValueInBytePacking HI_BIT_FIRST = new ValueInBytePacking("HI_BIT_FIRST", 1);
+    public static final ValueInBytePacking HI_BIT_FIRST = new ValueInBytePacking("HI_BIT_FIRST");
 
     /**
-     * List of all enumerations of this type.
+     * Constructs an enum with the given name. The new enum is
+     * automatically added to the list returned by {@link #values}.
+     *
+     * @param name The enum name. This name must not be in use by an other enum of this type.
      */
-    private static final ValueInBytePacking[] VALUES = new ValueInBytePacking[] {
-            LO_BIT_FIRST, HI_BIT_FIRST };
-
-    /**
-     * Constructs an enum with the given name.
-     */
-    private ValueInBytePacking(final String name, final int ordinal) {
-        super(name, ordinal);
+    public ValueInBytePacking(final String name) {
+        super(name, VALUES);
     }
 
     /**
      * Returns the list of <code>ValueInBytePacking</code>s.
      */
     public static ValueInBytePacking[] values() {
-        return (ValueInBytePacking[]) VALUES.clone();
+        synchronized (VALUES) {
+            return (ValueInBytePacking[]) VALUES.toArray(new ValueInBytePacking[VALUES.size()]);
+        }
     }
 
     /**

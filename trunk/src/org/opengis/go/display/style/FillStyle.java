@@ -109,7 +109,7 @@ public class FillStyle extends SimpleEnumerationType {
         synchronized (VALUES) {
             return (FillStyle[]) VALUES.toArray(new FillStyle[VALUES.size()]);
         }
-}
+    }
 
     /**
      * Returns the list of enumerations of the same kind than this enum.

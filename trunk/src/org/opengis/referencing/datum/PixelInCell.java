@@ -9,6 +9,10 @@
  *************************************************************************************************/
 package org.opengis.referencing.datum;
 
+// J2SE directdependencies
+import java.util.List;
+import java.util.ArrayList;
+
 // OpenGIS direct dependencies
 import org.opengis.util.CodeList;
 
@@ -30,11 +34,17 @@ public final class PixelInCell extends CodeList {
     private static final long serialVersionUID = 2857889370030758462L;
 
     /**
+     * List of all enumerations of this type.
+     * Must be declared before any enum declaration.
+     */
+    private static final List VALUES = new ArrayList(2);
+
+    /**
      * The origin of the image coordinate system is the centre of a grid cell or image pixel.
      *
      * @UML conditional cell&nbsp;center
      */
-    public static final PixelInCell CELL_CENTER = new PixelInCell("CELL_CENTER", 0);
+    public static final PixelInCell CELL_CENTER = new PixelInCell("CELL_CENTER");
 
     /**
      * The origin of the image coordinate system is the corner of a grid cell, or half-way
@@ -42,26 +52,25 @@ public final class PixelInCell extends CodeList {
      *
      * @UML conditional cell&nbsp;corner
      */
-    public static final PixelInCell CELL_CORNER = new PixelInCell("CELL_CORNER", 1);
+    public static final PixelInCell CELL_CORNER = new PixelInCell("CELL_CORNER");
 
     /**
-     * List of all enumerations of this type.
+     * Constructs an enum with the given name. The new enum is
+     * automatically added to the list returned by {@link #values}.
+     *
+     * @param name The enum name. This name must not be in use by an other enum of this type.
      */
-    private static final PixelInCell[] VALUES = new PixelInCell[] {
-            CELL_CENTER, CELL_CORNER };
-
-    /**
-     * Constructs an enum with the given name.
-     */
-    private PixelInCell(final String name, final int ordinal) {
-        super(name, ordinal);
+    public PixelInCell(final String name) {
+        super(name, VALUES);
     }
 
     /**
      * Returns the list of <code>PixelInCell</code>s.
      */
     public static PixelInCell[] values() {
-        return (PixelInCell[]) VALUES.clone();
+        synchronized (VALUES) {
+            return (PixelInCell[]) VALUES.toArray(new PixelInCell[VALUES.size()]);
+        }
     }
 
     /**
