@@ -112,7 +112,7 @@ is within nested double and single quotes. -->
 					<xsl:value-of select="$JavaPrefix"/>
 					<xsl:text>;&#xA;&#xA;</xsl:text>
 			</xsl:if>
-			
+
 			<xsl:call-template name="comment">
 				<xsl:with-param name="indent" select="''"/>
 			</xsl:call-template>
@@ -199,11 +199,34 @@ is within nested double and single quotes. -->
 
 <!-- codeList Template -->
 <xsl:template name="codeList">
+<!-- old xsl code : codeList Template
        <xsl:text>    private static String[] values = {</xsl:text>
         <xsl:call-template name="AttributesForEnumType"/>
         <xsl:text>};&#xA;</xsl:text>
         <xsl:text>    public int code;&#xA;</xsl:text>
         <xsl:text>    public String value() { return values[code];}&#xA;</xsl:text>
+</xsl:template>
+-->
+<!-- new code modified by Stephane September, 2003, 16th-->
+	<xsl:param name="JavaPrefix"/>
+	<xsl:param name="name"/>
+       <xsl:text>    private final static String[] values = {</xsl:text>
+        <xsl:call-template name="AttributesForEnumType"/>
+        <xsl:text>};&#xA;</xsl:text>
+        <xsl:text>    public final int ordinal;&#xA;</xsl:text>
+        <xsl:text>    public final String name;&#xA;</xsl:text>
+        
+        <xsl:text>    private </xsl:text>
+        <xsl:value-of select="name"/>
+        <xsl:text>(int ordinal, String name) {&#xA;</xsl:text>}
+        <xsl:text>this.name = name;&#xA;</xsl:text>
+        <xsl:text>this.ordinal = ordinal;&#xA;</xsl:text>
+        <xsl:text> }&#xA;</xsl:text>
+                
+        <xsl:text>    public String value() { return values[ordinal];}&#xA;</xsl:text>
+        <xsl:call-template name="Method">
+		<xsl:with-param name="JavaPrefix" select="$JavaPrefix"/>
+	</xsl:call-template>
 </xsl:template>
 <!-- codeList Template -->
 
@@ -571,6 +594,7 @@ is within nested double and single quotes. -->
 <xsl:template name="comment">
 	<xsl:param name="indent"/>
 	<xsl:if test="comment">
+		<xsl:text>&#xA;</xsl:text>	
 		<xsl:value-of select="$indent"/>
 		<xsl:text>/**&#xA;</xsl:text>	
 		<xsl:call-template name="subComment">
