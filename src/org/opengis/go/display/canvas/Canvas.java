@@ -10,8 +10,10 @@
 
 package org.opengis.go.display.canvas;
 
-import org.opengis.crs.crs.CoordinateReferenceSystem;
+import org.opengis.crs.crs.ImageCRS;
+import org.opengis.crs.crs.ProjectedCRS;
 import org.opengis.crs.operation.CoordinateTransformation;
+import org.opengis.crs.operation.IncompatibleOperationException;
 import org.opengis.go.display.DisplayFactory;
 import org.opengis.go.display.event.EventManager;
 import org.opengis.go.display.primitive.Graphic;
@@ -271,28 +273,30 @@ public interface Canvas {
      * planetarium = Spherical).
      * @return the display Coordinate Reference System
      */
-    public CoordinateReferenceSystem getDisplayCoordinateReferenceSystem();
+    public ImageCRS getDisplayCoordinateReferenceSystem();
 
     /**
-     * Returns the Coordinate Reference System for the geospatial model for this
-     * <code>Canvas</code>. This is the default geospatial Coordinate Reference System
-     * for this <code>Canvas</code>.
-     * @return the geospatial Coordinate Reference System
+     * Returns the objective Coordinate Reference System (e.g. the projection of a 
+     * georeferenced Coordinate Reference System) for this <code>Canvas</code>. This is the 
+     * default objective Coordinate Reference System for this <code>Canvas</code>.
+     * @return the objective Coordinate Reference System
      */
-    public CoordinateReferenceSystem getGeospatialCoordinateReferenceSystem();
+    public ProjectedCRS getObjectiveCoordinateReferenceSystem();
 
     /**
-     * Sets the Coordinate Reference System for the geospatial model for this
-     * <code>Canvas</code>. This is the default geospatial Coordinate Reference System
-     * for this <code>Canvas</code>.
-     * @param the geospatial Coordinate Reference System
+     * Sets the objective Coordinate Reference System (e.g. the projection of a 
+     * georeferenced Coordinate Reference System) for this <code>Canvas</code>. This is the 
+     * default objective Coordinate Reference System for this <code>Canvas</code>.
+     * @param crs the objective Coordinate Reference System
+     * @param trans the trasformation that converts between this objective Coordinate Reference System and the Canvas display Coordinate Reference System.
+     * @throws IncompatibleOperationException when the specified transformation does not apply to either the objective or the display Coordinate Reference Systems.
      */
-    public void setGeospatialCoordinateReferenceSystem(CoordinateReferenceSystem crs);
+    public void setObjectiveCoordinateReferenceSystem(ProjectedCRS crs, CoordinateTransformation trans) throws IncompatibleOperationException;
 
     /**
      * Returns the coordinate transformation object for this
      * <code>Canvas</code>. This allows the <code>Canvas</code> to resolve 
-     * conversions of coordinates between different Coordinate Reference Systems.
+     * conversions of coordinates between the objective and display Coordinate Reference Systems.
      * @return the coordinate transformation object
      */
     public CoordinateTransformation getCoordinateTransformation();

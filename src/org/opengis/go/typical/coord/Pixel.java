@@ -14,6 +14,7 @@ import java.util.Properties;
 
 import org.opengis.crs.crs.CoordinateReferenceSystem;
 import org.opengis.crs.crs.CoordinateReferenceSystemFactory;
+import org.opengis.crs.crs.ImageCRS;
 import org.opengis.crs.crs.UnsupportedCRSException;
 import org.opengis.go.CommonFactoryManager;
 import org.opengis.spatialschema.geometry.DirectPosition;
@@ -43,7 +44,7 @@ public class Pixel extends Point2D implements DirectPosition {
     /**
      * The Coordinate Reference System for this coordinate.
      */
-    private CoordinateReferenceSystem crs;
+    private ImageCRS crs;
     /**
      * The values of this coordinate.
      */
@@ -56,7 +57,7 @@ public class Pixel extends Point2D implements DirectPosition {
      * @param y         y value in pixels
      * @param crs       the Coordinate Reference System 
      */
-    public Pixel(double x, double y, CoordinateReferenceSystem crs)
+    public Pixel(double x, double y, ImageCRS crs)
         throws UnsupportedCRSException {
         super();
         this.crs = crs;
@@ -67,7 +68,7 @@ public class Pixel extends Point2D implements DirectPosition {
      * Initializes lat, lon, alt, and datum to the supplied parameters
      * @param crs       the Coordinate Reference System 
      */
-    public Pixel(CoordinateReferenceSystem crs) throws UnsupportedCRSException {
+    public Pixel(ImageCRS crs) throws UnsupportedCRSException {
         super();
         this.crs = crs;
         ordinates = new double[crs.getCoordinateSystem().getDimension()];
@@ -86,12 +87,12 @@ public class Pixel extends Point2D implements DirectPosition {
      * @param crsURL Coordinate Reference System URL.
      * @return Coordinate Reference System.
      */
-    private CoordinateReferenceSystem findCRS(String crsURL) throws UnsupportedCRSException {
+    private ImageCRS findCRS(String crsURL) throws UnsupportedCRSException {
         Properties props = new Properties();
         props.setProperty(CoordinateReferenceSystemFactory.COORDINATE_REFERECE_SYSTEM_URL, crsURL);
-        CoordinateReferenceSystem crs;
+        ImageCRS crs;
         try {
-            crs =
+            crs = (ImageCRS)
                 CommonFactoryManager
                     .getCommonFactory("CommonFactory")
                     .getCoordinateReferenceSystemFactory()
