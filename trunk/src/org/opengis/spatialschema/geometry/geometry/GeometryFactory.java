@@ -13,6 +13,7 @@ package org.opengis.spatialschema.geometry.geometry;
 import java.util.List;
 
 // OpenGIS direct dependencies
+import org.opengis.spatialschema.geometry.DirectPosition;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 
 // Annotations
@@ -39,7 +40,12 @@ public interface GeometryFactory {
      * {@linkplain org.opengis.spatialschema.geometry.Geometry geometries}
      * to be created through this interface.
      */
-    public CoordinateReferenceSystem getCoordinateReferenceSystem();
+    CoordinateReferenceSystem getCoordinateReferenceSystem();
+
+    /**
+     * Create a direct position at the specified location specified by coordinates.
+     */
+    DirectPosition createDirectPosition(double[] coordinates);
 
     /**
      * Takes two positions and creates the appropriate line segment joining them.
@@ -48,13 +54,13 @@ public interface GeometryFactory {
      * @param   endPoint The {@linkplain LineSegment#getEndPoint end point}.
      */
 /// @UML (identifier="GM_LineSegment(GM_Position[2])", obligation=MANDATORY)
-    public LineSegment createLineSegment(Position startPoint, Position endPoint);
+    LineSegment createLineSegment(Position startPoint, Position endPoint);
 
     /**
      * Takes two or more positions and creates the appropriate line string joining them.
      */
 /// @UML (identifier="GM_LineString(GM_Position[2..n])", obligation=MANDATORY)
-    public LineString createLineString(List/*<Position>*/ points);
+    LineString createLineString(List/*<Position>*/ points);
 
     /**
      * Takes two positions and creates the appropriate geodesic joining them.
@@ -62,7 +68,7 @@ public interface GeometryFactory {
      * @param startPoint The {@linkplain Geodesic#getStartPoint start point}.
      * @param   endPoint The {@linkplain Geodesic#getEndPoint end point}.
      */
-    public Geodesic createGeodesic(Position startPoint, Position endPoint);
+    Geodesic createGeodesic(Position startPoint, Position endPoint);
 
     /**
      * Takes two or more positions, interpolates using a geodesic defined from
@@ -71,7 +77,7 @@ public interface GeometryFactory {
      * being used, and creates the appropriate geodesic string joining them.
      */
 /// @UML (identifier="GM_GeodesicString(GM_Position[2..n])", obligation=MANDATORY)
-    public GeodesicString createGeodesicString(List/*<Position>*/ points);
+    GeodesicString createGeodesicString(List/*<Position>*/ points);
 
     /**
      * Takes three positions and constructs the corresponding arc.
@@ -81,7 +87,7 @@ public interface GeometryFactory {
      * @param   endPoint The {@linkplain Arc#getEndPoint end point}.
      */
 /// @UML (identifier="GM_Arc(GM_Position[3])", obligation=MANDATORY)
-    public Arc createArc(Position startPoint, Position midPoint, Position endPoint);
+    Arc createArc(Position startPoint, Position midPoint, Position endPoint);
 
     /**
      * Takes two positions and the offset of the midpoint of the arc from the midpoint of
@@ -131,7 +137,7 @@ public interface GeometryFactory {
      * @param     normal A direction normal to the chord.
      */
 /// @UML (identifier="GM_Arc(GM_Position[2],Real,Vector)", obligation=MANDATORY)
-    public Arc createArc(Position startPoint, Position endPoint, double bulge, double[] normal);
+    Arc createArc(Position startPoint, Position endPoint, double bulge, double[] normal);
 
     /**
      * Takes a sequence of {@linkplain Position positions} and constructs a sequence of
@@ -139,7 +145,7 @@ public interface GeometryFactory {
      * an odd number of positions.
      */
 /// @UML (identifier="GM_ArcString(GM_Position[3, 5, 7...])", obligation=MANDATORY)
-    public ArcString createArcString(List/*<Position>*/ points);
+    ArcString createArcString(List/*<Position>*/ points);
 
     /**
      * Equivalents to the {@linkplain #createArc(Position,Position,double,double[]) second
@@ -154,7 +160,7 @@ public interface GeometryFactory {
      * @param     normal A direction normal to the chord.
      */
 /// @UML (identifier="GM_ArcByBulge(GM_Position[2],Real,Vector)", obligation=MANDATORY)
-    public ArcByBulge createArcByBulge(Position startPoint, Position endPoint, double bulge, double[] normal);
+    ArcByBulge createArcByBulge(Position startPoint, Position endPoint, double bulge, double[] normal);
 
     /**
      * Equivalent to the {@linkplain #createArc(Position,Position,double,double[]) second
@@ -173,6 +179,6 @@ public interface GeometryFactory {
      *                the <code>bulge</code> array length.
      */
 /// @UML (identifier="GM_ArcStringByBulge(GM_Position[2..n],Real[1..n],Vector[1..n])", obligation=MANDATORY)
-    public ArcStringByBulge createArcStringByBulge(List/*<Position>*/ points, double[] bulges,
-                                                   List/*<double[]>*/ normals);
+    ArcStringByBulge createArcStringByBulge(List/*<Position>*/ points, double[] bulges,
+                                            List/*<double[]>*/ normals);
 }
