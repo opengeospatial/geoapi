@@ -17,6 +17,12 @@ public interface DataStore {
     public List/*<QName>*/ getTypeNames();
 
     /**
+     * Returns the schema of the named feature type.  May return null if a type
+     * of the given name does not exist.
+     */
+    public FeatureType getFeatureType(QName typeName);
+
+    /**
      * Gets all features of the given type.
      */
     public FeatureCollection getFeatures(QName type) throws IOException;
