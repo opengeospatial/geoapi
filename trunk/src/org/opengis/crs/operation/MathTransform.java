@@ -10,7 +10,6 @@
 package org.opengis.crs.operation;
 
 // OpenGIS direct dependencies
-import org.opengis.spatialschema.geometry.Geometry;
 import org.opengis.spatialschema.geometry.DirectPosition;
 import org.opengis.spatialschema.geometry.MismatchedDimensionException;
 
@@ -134,19 +133,6 @@ public interface MathTransform {
     void transform(float[] srcPts, int srcOff,
                    float[] dstPts, int dstOff,
                    int numPts) throws TransformException;
-
-    /**
-     * Transform the specified geometry. This method may replace straight lines by
-     * arcs when applicable. It may also do the opposite (replace arcs by straight
-     * lines). The returned geometry doesn't need to have the same number of points
-     * than the original geometry.
-     *
-     * @param  geometry Geometry to transform.
-     * @return Transformed geometry, or <code>geometry</code> if
-     *         this transform is the identity transform.
-     * @throws TransformException if a transform failed.
-     */
-    Geometry createTransformedGeometry(final Geometry geometry) throws TransformException;
 
     /**
      * Gets the derivative of this transform at a point. The derivative is the

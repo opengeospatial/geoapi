@@ -40,7 +40,7 @@ public interface CoordinateOperationFactory {
      *
      * @revisit Should we create a more accurate subclass of <code>FactoryException</code>?
      */
-    CoordinateOperation getOperation(CoordinateReferenceSystem sourceCRS, CoordinateReferenceSystem targetCRS) throws FactoryException;
+    CoordinateOperation createOperation(CoordinateReferenceSystem sourceCRS, CoordinateReferenceSystem targetCRS) throws FactoryException;
 
     /**
      * Returns an operation using a particular method for conversion or transformation
@@ -59,8 +59,7 @@ public interface CoordinateOperationFactory {
      * @revisit More than one operation step may be involved in the path from <code>sourceCRS</code>
      *          to <code>targetCRS</code>, but this method has only one <code>method</code> argument.
      *          The user could have more fine grain control with {@link MathTransformFactory} (ported
-     *          from OGC 2001-09). Maybe we should deprecate this methid if favor of 
-     *          {@link MathTransformFactory}.
+     *          from OGC 2001-09).
      */
-    CoordinateOperation getOperation(OperationMethod method, CoordinateReferenceSystem sourceCRS, CoordinateReferenceSystem targetCRS) throws FactoryException;
+    CoordinateOperation createOperation(CoordinateReferenceSystem sourceCRS, CoordinateReferenceSystem targetCRS, OperationMethod method) throws FactoryException;
 }
