@@ -15,6 +15,7 @@ import java.util.List;
 // OpenGIS direct dependencies
 import org.opengis.spatialschema.geometry.Envelope;
 import org.opengis.spatialschema.geometry.DirectPosition;
+import org.opengis.spatialschema.geometry.geometry.Polygon;
 import org.opengis.spatialschema.geometry.geometry.PolyhedralSurface;
 import org.opengis.spatialschema.geometry.geometry.Position;
 import org.opengis.spatialschema.geometry.MismatchedDimensionException;
@@ -167,6 +168,26 @@ public interface PrimitiveFactory {
      */
 /// @UML (identifier="GM_Surface(GM_SurfaceBoundary)", obligation=MANDATORY)
     Surface createSurface(SurfaceBoundary boundary)
+            throws MismatchedReferenceSystemException, MismatchedDimensionException;
+
+    /**
+     * Constructs a new {@linkplain SurfaceBoundary surface boundary} object
+     * representing the boundary of a two-dimensional surface.
+     *
+     * @param exterior In the normal 2D case, this identifies the curve that is
+     *        the exterior curve of the surface.  In cases where an exterior
+     *        cannot be unambiguously chosen (a bounded cylinder, for example),
+     *        this parameter may be null.
+     * @param interiors All of the curve components of the boundary that are not
+     *        the exterior.
+     * @throws MismatchedReferenceSystemException If geometric objects given in
+     *         argument don't use a {@linkplain CoordinateReferenceSystem
+     *         coordinate reference system} compatible with the one held by this
+     *         factory.
+     * @throws MismatchedDimensionException If geometric objects given in argument don't have
+     *         the expected dimension.
+     */
+    SurfaceBoundary createSurfaceBoundary(Ring exterior, List/*<Ring>*/ interiors)
             throws MismatchedReferenceSystemException, MismatchedDimensionException;
 
     /**

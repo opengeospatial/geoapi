@@ -31,6 +31,7 @@ import org.opengis.spatialschema.geometry.primitive.Surface;
  *
  * @see GeometryFactory#createPolyhedralSurface
  */
+/// @UML (identifier="GM_PolyhedralSurface")
 public interface PolyhedralSurface extends Surface {
     /**
      * Associates this surface with its individual facet polygons.

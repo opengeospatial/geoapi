@@ -7,10 +7,7 @@
  ** Copyright (C) 2003 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
  **
  *************************************************************************************************/
-package org.opengis.spatialschema.geometry.aggregate;
-
-// OpenGIS direct dependencies
-import org.opengis.spatialschema.geometry.primitive.Primitive;
+package org.opengis.spatialschema.geometry.geometry;
 
 // Annotations
 ///import org.opengis.annotation.UML;
@@ -18,14 +15,14 @@ import org.opengis.spatialschema.geometry.primitive.Primitive;
 
 
 /**
- * Specialization of the {@linkplain Aggregate} interface that restricts the
- * elements to only being of type {@linkplain Primitive}.
+ * A {@linkplain GriddedSurface gridded surface} that uses line strings as the horizontal and
+ * vertical curves. This is not a polygonal surface, since each of the grid squares is a ruled
+ * surface, and not necessarily planar.
  *
  * @author ISO/DIS 19107
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 2.0
  */
-///@UML (identifier="GM_MultiPrimitive")
-public interface MultiPrimitive extends Aggregate {
-    // No additional methods or members.
+///@UML (identifier="GM_BilinearGrid")
+public interface BilinearGrid extends GriddedSurface {
 }
