@@ -109,7 +109,9 @@
       <include name="**/*.java"/>
       <replacefilter token="/*&lt;" value="&lt;"/>
       <replacefilter token="&gt;*/" value="&gt;"/>
-      <replacefilter token="/// "   value="    /*@Overrides*/ "/>
+      <replacefilter token="/// "   value="    /* 1.5 specific */ "/>
+      <replacefilter token="///i"   value=    "/* 1.5 specific */ i"/>
+      <replacefilter token="///@"   value=    "/* 1.5 specific */ @"/>
       <replacefilter token="/*{"                />
       <replacefilter token="}*/"                />
     </replace>
@@ -129,7 +131,9 @@
 
     <mkdir dir="sources"/>
     <copy todir="sources">
-      <fileset dir="tiger/sources"/>
+      <fileset dir="tiger/sources">
+        <exclude name="**org/opengis/annotation/**"/>
+      </fileset>
     </copy>
     <replace dir="sources">
       <include name="**/*.java"/>
@@ -156,7 +160,9 @@
       <replacefilter token="&lt;Extent&gt;"/>
       <replacefilter token="&lt;FeatureTypeList&gt;"/>
       <replacefilter token="&lt;Format&gt;"/>
+      <replacefilter token="&lt;GeneralParameterDescriptor&gt;"/>
       <replacefilter token="&lt;GeneralParameterValue&gt;"/>
+      <replacefilter token="&lt;GenericName&gt;"/>
       <replacefilter token="&lt;Geodesic&gt;"/>
       <replacefilter token="&lt;GeographicBoundingBox&gt;"/>
       <replacefilter token="&lt;GeographicDescription&gt;"/>
@@ -167,6 +173,7 @@
       <replacefilter token="&lt;Keywords&gt;"/>
       <replacefilter token="&lt;LineSegment&gt;"/>
       <replacefilter token="&lt;Locale&gt;"/>
+      <replacefilter token="&lt;LocalName&gt;"/>
       <replacefilter token="&lt;MaintenanceInformation&gt;"/>
       <replacefilter token="&lt;MetadataExtensionInformation&gt;"/>
       <replacefilter token="&lt;Number&gt;"/>
@@ -198,7 +205,8 @@
 
       <replacefilter token=" assert "               value=" // assert "    />
       <replacefilter token="super(message, cause);" value="super(message);"/>
-      <replacefilter token="    /*@Overrides*/"     value="// "/>
+      <replacefilter token="    /* 1.5 specific */" value="// "/>
+      <replacefilter token=    "/* 1.5 specific */" value="// "/>
     </replace>
 
     <replaceregexp byline  = "true"
@@ -291,8 +299,11 @@
              overview         = "tiger/sources/org/opengis/overview.html"
              windowtitle      = "GeoAPI ${version}"
              doctitle         = "GeoAPI ${version}"
-             header           = "GeoAPI ${version}&lt;br&gt;Build ${TODAY}"
-             additionalparam  = "-quiet -docfilessubdirs -subpackages org">
+             header           = "GeoAPI ${version}&lt;br&gt;Build ${TODAY}">
+
+      <arg line="-quiet"/>
+      <arg line="-docfilessubdirs"/>
+      <arg line="-subpackages org"/>
 
       <bottom>
         &lt;TABLE WIDTH='100%'&gt;&lt;TR&gt;&lt;TD NOWRAP&gt;
@@ -402,8 +413,10 @@
              overview         = "${homepath}/legacy/org/opengis/overview.html"
              windowtitle      = "Legacy OpenGIS API"
              doctitle         = "Legacy OpenGIS API"
-             header           = "Legacy OpenGIS API"
-             additionalparam  = "-quiet -docfilessubdirs">
+             header           = "Legacy OpenGIS API">
+
+      <arg line="-quiet"/>
+      <arg line="-docfilessubdirs"/>
 
       <bottom>
         &lt;TABLE WIDTH='100%'&gt;&lt;TR&gt;&lt;TD NOWRAP&gt;
