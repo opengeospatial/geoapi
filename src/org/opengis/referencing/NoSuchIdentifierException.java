@@ -9,43 +9,46 @@
  *************************************************************************************************/
 package org.opengis.referencing;
 
+// OpenGIS dependencies
+import org.opengis.referencing.Identifier;   // For javadoc
 
 /**
  * Thrown when a {@linkplain org.opengis.referencing.operation.MathTransform math transform}
- * was requested with an unknow classification name.
+ * as been requested with an unknow {@linkplain org.opengis.referencing.operation.OperationMethod
+ * operation method} identifier.
  *
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 1.0
  *
  * @see org.opengis.referencing.operation.MathTransformFactory#createParameterizedTransform
  */
-public class NoSuchClassificationException extends FactoryException {
+public class NoSuchIdentifierException extends FactoryException {
     /**
      * Serial number for interoperability with different versions.
      */
-    private static final long serialVersionUID = 6749721413001501976L;
+    private static final long serialVersionUID = -6846799994429345902L;
     
     /**
-     * The classification name.
+     * The {@linkplain Identifier#getCode identifier code}.
      */
-    private final String classification;
+    private final String identifier;
 
     /**
      * Construct an exception with the specified detail message and classification name.
      *
      * @param  message The detail message. The detail message is saved
      *         for later retrieval by the {@link #getMessage()} method.
-     * @param classification The classification name.
+     * @param identifier {@linkplain Identifier#getCode identifier code}.
      */
-    public NoSuchClassificationException(final String message, final String classification) {
+    public NoSuchIdentifierException(final String message, final String identifier) {
         super(message);
-        this.classification = classification;
+        this.identifier = identifier;
     }
     
     /**
-     * Returns the classification name.
+     * Returns the {@linkplain Identifier#getCode identifier code}.
      */
-    public String getClassification() {
-        return classification;
+    public String getIdentifierCode() {
+        return identifier;
     }
 }

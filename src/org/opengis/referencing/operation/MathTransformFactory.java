@@ -15,7 +15,7 @@ import java.awt.geom.AffineTransform;
 // OpenGIS direct dependencies
 import org.opengis.referencing.Factory;
 import org.opengis.referencing.FactoryException;
-import org.opengis.referencing.NoSuchClassificationException;
+import org.opengis.referencing.NoSuchIdentifierException;
 import org.opengis.parameter.GeneralParameterValue;
 
 
@@ -126,44 +126,41 @@ public interface MathTransformFactory extends Factory {
     MathTransform createPassThroughTransform(int firstAffectedOrdinate, MathTransform subTransform, int numTrailingOrdinates) throws FactoryException;
 
     /**
-     * Creates a transform from a classification name and parameters.
-     * The client must supply <code>"semi_major"</code> and <code>"semi_minor"</code>
+     * Creates a transform from an {@linkplain OperationMethod operation method} identifier and
+     * parameters. The client must supply <code>"semi_major"</code> and <code>"semi_minor"</code>
      * parameters for cartographic projection transforms. 
      *
-     * @param  classification The classification name of the transform
-     *         (e.g. "Transverse_Mercator"). It should be one of the name
-     *         returned by {@link #getAvailableTransforms}. Leading and
-     *         trailing spaces are ignored. Comparisons are case-insensitive.
+     * @param  identifier The case insensitive {@linkplain Identifier#getCode identifier code} of the
+     *         operation method to search for (e.g. "Transverse_Mercator"). If this string contains
+     *         the <code>':'</code> character, then the part before <code>':'</code> is the
+     *         {@linkplain Identifier#getCodeSpace code space}.
      * @param  parameters The parameter values. A default set can be obtained with
-     *         <code>{@linkplain #getDefaultParameters getDefaultParameters}(classification)}</code>
+     *         <code>{@linkplain #getDefaultParameters getDefaultParameters}(identifier)}</code>
      *         and modified before to be given to this method.
      * @return The parameterized transform.
-     * @throws NoSuchClassificationException if there is no transform registered
-     *         with the specified classification name.
+     * @throws NoSuchIdentifierException if there is no transform registered for the specified
+     *         operation method identifier.
      * @throws FactoryException if the object creation failed. This exception is thrown
      *         if some required parameter has not been supplied, or has illegal value.
      * @UML operation createParameterizedTransform
-     *
-     * @revisit Is the classification name the same than
-     *          {@linkplain OperationMethod#getName operation method name}?
      */
-    MathTransform createParameterizedTransform(String classification, GeneralParameterValue[] parameters) throws FactoryException;
+    MathTransform createParameterizedTransform(String identifier, GeneralParameterValue[] parameters) throws FactoryException;
 
     /**
-     * Returns the default parameter values for the specified classification.
+     * Returns the default parameter values for the specified operation method.
      * This method always returns clones. It is safe to modify the returned
      * parameter values and give them to
-     * <code>{@linkplain #createParameterizedTransform createParameterizedTransform}(classification, parameters)</code>.
+     * <code>{@linkplain #createParameterizedTransform createParameterizedTransform}(identifier, parameters)</code>.
      *
-     * @param  classification The classification name of the transform
-     *         (e.g. "Transverse_Mercator"). It should be one of the name
-     *         returned by {@link #getAvailableTransforms}. Leading and
-     *         trailing spaces are ignored. Comparisons are case-insensitive.
+     * @param  identifier The case insensitive {@linkplain Identifier#getCode identifier code} of the
+     *         operation method to search for (e.g. "Transverse_Mercator"). If this string contains
+     *         the <code>':'</code> character, then the part before <code>':'</code> is the
+     *         {@linkplain Identifier#getCodeSpace code space}.
      * @return The default parameter values.
-     * @throws NoSuchClassificationException if there is no provider registered
-     *         with the specified classification name.
+     * @throws NoSuchIdentifierException if there is no transform registered for the specified
+     *         operation method identifier.
      */
-    GeneralParameterValue[] getDefaultParameters(String classification) throws NoSuchClassificationException;
+    GeneralParameterValue[] getDefaultParameters(String identifier) throws NoSuchIdentifierException;
 
     /**
      * Creates a math transform object from a XML string.
