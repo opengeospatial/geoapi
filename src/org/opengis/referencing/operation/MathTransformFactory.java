@@ -9,6 +9,9 @@
  *************************************************************************************************/
 package org.opengis.referencing.operation;
 
+// J2SE direct dependencies
+import java.util.Set;
+
 // OpenGIS direct dependencies
 import org.opengis.metadata.Identifier;  // For javadoc
 import org.opengis.referencing.Factory;
@@ -64,13 +67,22 @@ import org.opengis.parameter.ParameterValueGroup;
 ///@UML (identifier="CT_MathTransformFactory")
 public interface MathTransformFactory extends Factory {
     /**
+     * Returns a set of all available {@linkplain MathTransform math transform} methods. For each
+     * element in this set, the {@linkplain OperationMethod#getName operation method name} shall be
+     * the classification name to be recognized by the {@link #getDefaultParameters} method.
+     *
+     * @return All {@linkplain MathTransform math transform} methods available in this factory.
+     */
+    public Set/*<OperationMethod>*/ getAvailableTransforms();
+
+    /**
      * Returns the default parameter values for a math transform of the given classification.
      * The {@linkplain ParameterDescriptorGroup#getName parameter group name} shall be the given
      * classification, in order to allows direct use by {@link #createParameterizedTransform
      * createParameterizedTransform}. The list of available classifications is implementation
      * dependent.
      *
-     * <P>This method always returns clones. Consequently, it is safe to modify the returned
+     * <P>This method always returns new values. Consequently, it is safe to modify the returned
      * parameter values group and give them to <code>{@linkplain #createParameterizedTransform
      * createParameterizedTransform}(parameters)</code>.</P>
      *
@@ -78,6 +90,9 @@ public interface MathTransformFactory extends Factory {
      * <code>"<A HREF="http://www.remotesensing.org/geotiff/proj_list/transverse_mercator.html">Transverse_Mercator</A>"</code>).
      * @return The default parameter values.
      * @throws NoSuchIdentifierException if there is no transform registered for the specified classification.
+     *
+     * @see #getAvailableTransforms
+     * @see #createParameterizedTransform
      */
     ParameterValueGroup getDefaultParameters(String classification) throws NoSuchIdentifierException;
 
@@ -100,6 +115,9 @@ public interface MathTransformFactory extends Factory {
      * @throws NoSuchIdentifierException if there is no transform registered for the classification.
      * @throws FactoryException if the object creation failed. This exception is thrown
      *         if some required parameter has not been supplied, or has illegal value.
+     *
+     * @see #getDefaultParameters
+     * @see #getAvailableTransforms
      */
 /// @UML (identifier="createParameterizedTransform", obligation=MANDATORY)
     MathTransform createParameterizedTransform(ParameterValueGroup parameters) throws FactoryException;
