@@ -306,7 +306,7 @@ public interface Coverage {
      *
      * @see Raster#getPixel(int, int, float[])
      */
-    double[] evaluate(DirectPosition point, float[] destination)
+    float[] evaluate(DirectPosition point, float[] destination)
             throws CannotEvaluateException, ArrayIndexOutOfBoundsException;
 
     /**

@@ -46,7 +46,7 @@ public interface CoordinateOperation extends Info {
      * is not specified here, but through
      * {@link org.opengis.referencing.crs.GeneralDerivedCRS#getBaseCRS} instead.
      *
-     * @return The source CRS.
+     * @return The source CRS, or <code>null</code> if not available.
      * @UML association sourceCRS
      */
     CoordinateReferenceSystem getSourceCRS();
@@ -57,7 +57,7 @@ public interface CoordinateOperation extends Info {
      * that is not specified here, but through
      * {@link org.opengis.referencing.crs.GeneralDerivedCRS} instead.
      *
-     * @return The source CRS.
+     * @return The target CRS, or <code>null</code> if not available.
      * @UML association targetCRS
      */
     CoordinateReferenceSystem getTargetCRS();
