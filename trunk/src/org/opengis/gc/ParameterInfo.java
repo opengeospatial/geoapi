@@ -15,7 +15,7 @@ package org.opengis.gc;
  */
 public interface ParameterInfo {
     /**
-     * Parameter name.
+     * Name of parameter. The parameter name is used in {@link Parameter} name.
      *
      * @UML mandatory name
      */
@@ -23,9 +23,9 @@ public interface ParameterInfo {
 
     /**
      * Parameter description.
-     * If no description, the value will be null.
+     * If no description, the value will be <code>null</code>.
      *
-     * @UML mandatory description
+     * @UML optional description
      */
     String getDescription();
 
@@ -43,25 +43,29 @@ public interface ParameterInfo {
      * The type {@link Object} can be any type including a {@link Number} or a
      * {@link String}. For example, a filtering operation could have a default
      * kernel size of 3. If there is no default value, <code>defaultValue</code>
-     * will be null.
+     * will be <code>null</code>.
      *
-     * @UML mandatory defaultValue
+     * @UML optional defaultValue
      */
     Object getDefaultValue();
 
     /**
      * Minimum parameter value.
      * For example, a filtering operation could have a minimum kernel size of 3.
+     * No minimum value will given (indicated by {@link Double#NaN}) if it is
+     * inappropriate for the parameter type.
      *
-     * @UML mandatory minimumValue
+     * @UML optional minimumValue
      */
     double getMinimumValue();
 
     /**
      * Maximum parameter value.
      * For example, a filtering operation could have a maximum kernel size of 9.
+     * No maximum value will given (indicated by {@link Double#NaN}) if it is
+     * inappropriate for the parameter type.
      *
-     * @UML mandatory maximumValue
+     * @UML optional maximumValue
      */
     double getMaximumValue();
 }

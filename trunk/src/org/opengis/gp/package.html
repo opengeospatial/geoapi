@@ -5,10 +5,20 @@
     <TITLE>package org.opengis.gp</TITLE>
   </HEAD>
   <BODY>
-  Grid coverage processor. The following is adapted from
+  {@linkplain org.opengis.gp.GridCoverageProcessor Grid coverage processor}
+  (image processing functionality). The following is adapted from
   <A HREF="http://www.opengis.org/docs/01-004.pdf">OpenGIS&reg;
   Grid Coverages Implementation Specification</A>.
 
-  <P ALIGN="justify">(TODO)</P>
+  <P ALIGN="justify">The following are examples of grid coverage processing operations.
+  This list is not an exhaustive list. Different {@link org.opengis.gp.GridCoverageProcessor}
+  implementations will provide different operations and need not implement the entire list below.</P>
+
+  <P ALIGN="justify">Using one of these operations to change the way the grid is being accessed
+  will not affect the state of the grid coverage controlled by another operations. For example,
+  changing the interpolation method should not affect the number of sample dimensions currently
+  being accessed or value sequence.</P>
+
+  <P ALIGN="justify">(TODO: copy description from OGC spec here)</P>
   </BODY>
 </HTML>

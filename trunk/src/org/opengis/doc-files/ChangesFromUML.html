@@ -6,43 +6,70 @@
   </HEAD>
   <BODY>
   <H1>Changes from UML diagrams</H1>
+
+
+  <P>&nbsp;</P>
+  <H2>Changes in Spatial Referencing by Coordinates</H2>
+  <UL>
+    <LI><P ALIGN="justify">Added a
+        <A HREF="../cc/Matrix.html"><CODE>Matrix</CODE></A> interface as the parent of
+        <A HREF="../dq/CovarianceMatrix.html"><CODE>CovarianceMatrix</CODE></A>.</P></LI>
+  </UL>
+
+
+
+  <P>&nbsp;</P>
   <H2>Changes in Feature Geometry</H2>
   <UL>
-    <LI><P ALIGN="justify">Renamed <CODE>GM_Object</CODE> as <CODE>Geometry</CODE>
+    <LI><P ALIGN="justify">Renamed <CODE>GM_Object</CODE> as
+        <A HREF="../gm/Geometry.html"><CODE>Geometry</CODE></A>
         in order to avoid ambiguity with <CODE>java.lang.Object</CODE>.</P></LI>
-    <LI><P ALIGN="justify">Moved <CODE>Envelope</CODE> and <CODE>DirectPosition</CODE>
+
+    <LI><P ALIGN="justify">Moved <A HREF="../gm/Envelope.html"><CODE>Envelope</CODE></A>
+        and <A HREF="../gm/DirectPosition.html"><CODE>DirectPosition</CODE></A>
         in the root geometry package (<CODE>org.opengis.gm</CODE>) since they are
         used in many places in most packages.</P></LI>
   </UL>
 
 
+  <P>&nbsp;</P>
   <H2>Changes in Grid Coverages</H2>
   <UL>
-    <LI><P ALIGN="justify">In <CODE>Coverage</CODE>, changed <CODE>evaluateAsDouble(DirectPosition)</CODE>
-        into <CODE>evaluate(DirectPosition, double[])</CODE> for reusing optionally pre-allocated
-        array. This is consistent with Java usage in <CODE>Raster</CODE> for example. Same apply to
-        all <CODE>evaluateAsFoo(DirectPosition)</CODE> methods.</P></LI>
-    <LI><P ALIGN="justify">In <CODE>GridCoverage</CODE>, changed <CODE>getDataBlockAsDouble(GridRange)</CODE>
-        into <CODE>getDataBlock(GridCoverage, double[])</CODE> for reusing optionally pre-allocated
-        array. This is consistent with Java usage in <CODE>Raster</CODE> for example. Same apply to
-        all <CODE>getDataBlockAsFoo(GridRange)</CODE> methods.</P></LI>
-    <LI><P ALIGN="justify">Return type of <CODE>Coverage.getSource(int)</CODE> was relaxed from
-        <CODE>GridCoverage</CODE> to <CODE>Coverage</CODE>. Instead, the return type has been
-        constrained to <CODE>GridCoverage</CODE> only in <CODE>GridCoverage.getSource(int)</CODE>.
+    <LI><P ALIGN="justify">In <A HREF="../cv/Coverage.html"><CODE>Coverage</CODE></A>, changed
+        <CODE>evaluateAsDouble(DirectPosition)</CODE> into <CODE>evaluate(DirectPosition, double[])</CODE>
+        for reusing optionally pre-allocated array. This is consistent with Java usage in <CODE>Raster</CODE>
+        for example. Same apply to all <CODE>evaluateAsFoo(DirectPosition)</CODE> methods.</P></LI>
+
+    <LI><P ALIGN="justify">In <A HREF="../gc/GridCoverage.html"><CODE>GridCoverage</CODE></A>, changed
+        <CODE>getDataBlockAsDouble(GridRange)</CODE> into <CODE>getDataBlock(GridCoverage, double[])</CODE>
+        for reusing optionally pre-allocated array. This is consistent with Java usage in <CODE>Raster</CODE>
+        for example. Same apply to all <CODE>getDataBlockAsFoo(GridRange)</CODE> methods.</P></LI>
+
+    <LI><P ALIGN="justify">Return type of
+        <A HREF="../cv/Coverage.html#getSource(int)"><CODE>Coverage.getSource(int)</CODE></A>
+        was relaxed from <CODE>GridCoverage</CODE> to <CODE>Coverage</CODE>. Instead, the return
+        type has been constrained to <CODE>GridCoverage</CODE> only in
+        <A HREF="../gc/GridCoverage.html#getSource(int)"><CODE>GridCoverage.getSource(int)</CODE></A>.
         This approach (return type covariance) was already used in "Spatial Referencing by
         Coordinates" (ISO 19107). It avoid forward dependency of <CODE>Coverage</CODE> toward
         <CODE>GridCoverage</CODE> and give more flexibility for use of <CODE>Coverage</CODE>
         with non-gridded data.</P></LI>
+
     <LI><P ALIGN="justify">In <CODE>Coverage</CODE>, added an optional
-        <CODE>getRenderableImage</CODE> method for interoperability with Java2D.</P></LI>
-    <LI><P ALIGN="justify">Exception <CODE>MetadataNameNotFoundException</CODE> was declared
-        only once in the CV package, not duplicated in every packages.</P></LI>
-    <LI><P ALIGN="justify">Omitted <CODE>InvalidIndexException</CODE>
-        (replaced by <CODE>IndexOutOfBoundsException</CODE>).</P></LI>
-    <LI><P ALIGN="justify">Omitted <CODE>ErrorExportingGridCoverageException</CODE>
-        (replaced by <CODE>IOException</CODE>).</P></LI>
-    <LI><P ALIGN="justify">Added <CODE>CannotEvaluateException</CODE> as a super-class
-        of <CODE>PointOutsideCoverageException</CODE>.</P></LI>
+        <A HREF="../cv/Coverage.html#getRenderableImage(int, int)"><CODE>getRenderableImage</CODE></A>
+        method for interoperability with Java2D.</P></LI>
+
+    <LI><P ALIGN="justify">Exceptions
+        <A HREF="../cv/MetadataNameNotFoundException.html"><CODE>MetadataNameNotFoundException</CODE></A>
+        were declared only once in the CV package, not duplicated in every packages.</P></LI>
+
+    <LI><P ALIGN="justify">Omitted
+        <CODE>InvalidIndexException</CODE> (replaced by <CODE>IndexOutOfBoundsException</CODE>) and
+        <CODE>ErrorExportingGridCoverageException</CODE> (replaced by <CODE>IOException</CODE>).</P></LI>
+
+    <LI><P ALIGN="justify">Added
+        <A HREF="../cv/CannotEvaluateException.html"><CODE>CannotEvaluateException</CODE></A> as a super-class of
+        <A HREF="../cv/PointOutsideCoverageException.html"><CODE>PointOutsideCoverageException</CODE></A>.</P></LI>
   </UL>
   </BODY>
 </HTML>
