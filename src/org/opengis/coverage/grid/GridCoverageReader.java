@@ -128,4 +128,15 @@ public interface GridCoverageReader {
      */
     GridCoverage read(int index, Parameter[] parameters)
             throws InvalidParameterNameException, InvalidParameterValueException, ParameterNotFoundException, IOException;
+
+    /**
+     * Allows any resources held by this object to be released. The result of calling any other
+     * method subsequent to a call to this method is undefined. It is important for applications
+     * to call this method when they know they will no longer be using this <code>GridCoverageReader</code>.
+     * Otherwise, the reader may continue to hold on to resources indefinitely.
+     *
+     * @throws IOException if an error occured while disposing resources (for example while closing
+     *         a file).
+     */
+    void dispose() throws IOException;
 }

@@ -5,7 +5,7 @@
     <TITLE>Open issues about UML diagrams</TITLE>
   </HEAD>
   <BODY>
-  <H1>Open issues about UML diagrams</H1>
+  <H1>Open issues in UML diagrams</H1>
   <P ALIGN="justify">The following are <A HREF="http://geoapi.sourceforge.net">GeoAPI</A> comments
   (not <A HREF="http://www.opengis.org">OGC</A> comments). Those observations were collected during
   the process of hand-editing the Java interfaces that were created automatically from the UML by a
@@ -77,15 +77,15 @@
     </LI>
 
     <LI><P ALIGN="justify">"<CODE>minimumOccurs</CODE>" attribute is declared in
-        <A HREF="../crs/operation/GeneralOperationParameter.html"><CODE>GeneralOperationParameter</CODE></A>,
+        <A HREF="../parameter/GeneralOperationParameter.html"><CODE>GeneralOperationParameter</CODE></A>,
         but "<CODE>maximumOccurs</CODE>" is declared in
-        <A HREF="../crs/operation/OperationParameterGroup.html"><CODE>OperationParameterGroup</CODE></A>
+        <A HREF="../parameter/OperationParameterGroup.html"><CODE>OperationParameterGroup</CODE></A>
         (a sub-interface). Maybe they should be declared in the same place.</P>
 
         <TABLE cellpadding='0' cellspacing='0'><TR VALIGN="top"><TD><STRONG>PROPOSAL:&nbsp;</STRONG></TD><TD>
         <P ALIGN="justify"><FONT COLOR="red">Move up (in the hierarchy)
         the "<CODE>maximumOccurs</CODE>" attribute into the
-        <A HREF="../crs/operation/GeneralOperationParameter.html"><CODE>GeneralOperationParameter</CODE></A>
+        <A HREF="../parameter/GeneralOperationParameter.html"><CODE>GeneralOperationParameter</CODE></A>
         super-interface, in order to be on per with the "<CODE>minimumOccurs</CODE>" attribute.</FONT></P></TD></TR></TABLE>
 
     <LI><P ALIGN="justify"><A HREF="../spatialschema/geometry/complex/CompositeCurve.html"><CODE>CompositeCurve</CODE></A>
@@ -105,7 +105,7 @@
   <P>&nbsp;</P>
   <HR>
   <P>&nbsp;</P>
-  <H1><A NAME="Changes">Previous issues (now fixed)</A></H1>
+  <H1><A NAME="Changes">Differences between abstract specifications and GeoAPI</A></H1>
   <H2>Changes in Spatial Referencing by Coordinates</H2>
   <UL>
     <LI><P ALIGN="justify">Factory and operations from the legacy 2001-009 specification have been
@@ -128,9 +128,10 @@
     <LI><P ALIGN="justify">Dropped the <CODE>CRS</CODE> interface. This has the side effect of
         allowing <A HREF="../crs/crs/CompoundCRS.html"><CODE>CompoundCRS</CODE></A> to contains
         other <CODE>CompoundCRS</CODE>. An other side effect is to resolves some misleading attribute
-        name. For example "<CODE>includesCRS</CODE>" in <A HREF="../crs/crs/CompoundCRS.html"><CODE>CompoundCRS</CODE></A>
-        is of type <A HREF="../crs/crs/CoordinateReferenceSystem.html"><CODE>CoordinateReferenceSystem</CODE></A>, not
-        <CODE>CRS</CODE>.
+        or association name. For example "<CODE>includesCRS</CODE>" in
+        <A HREF="../crs/crs/CompoundCRS.html"><CODE>CompoundCRS</CODE></A> is of type
+        <A HREF="../crs/crs/CoordinateReferenceSystem.html"><CODE>CoordinateReferenceSystem</CODE></A>,
+        not <CODE>CRS</CODE>.
 
         This fix was done because the <CODE>CRS</CODE> interface stands between
         <A HREF="../crs/ReferenceSystem.html"><CODE>ReferenceSystem</CODE></A> and
@@ -177,7 +178,7 @@
         Various proposal may be considered:</P>
         <p><ul>
           <li>they may return <code>null</code>;</li>
-          <li>they may throw a <code>UnsupportedOperationException</code>;</li>
+          <li>they may throw an <code>UnsupportedOperationException</code>;</li>
           <li>they may return a special implementation of <code>CoordinateSystem</code>
               and <code>Datum</code>, which don't need to be public: the
               <code>CompoundCRS</code> implementation can generate them as needed.
@@ -187,35 +188,23 @@
         </ul></p>
     </LI>
 
-    <LI><P ALIGN="justify">Interface <A HREF="../crs/cs/CartesianCS.html"><CODE>CartesianCS</CODE></A>
-        looks like a special case of <A HREF="../crs/cs/ObliqueCartesianCS.html"><CODE>ObliqueCartesianCS</CODE></A>.
-        Maybe it should extends <CODE>ObliqueCartesianCS</CODE>. This is a similar argument than the
-        one used in ISO-19107, which said that <code>Circle</code> is a sub-class of <code>Ellipse</code>
-        since the former is a special case of the later (see 5.1.5 <cite>Strong substitutability</cite>).
-        Doing so would help to clarify the semantic of <A HREF="../crs/crs/ImageCRS.html"><CODE>ImageCRS</CODE></A>
-        (no need for separated <CODE>getCartesianCS()</CODE> and <CODE>getObliqueCartesianCS()</CODE> methods).</P>
-
-        <TABLE cellpadding='0' cellspacing='0'><TR VALIGN="top"><TD><STRONG>FIX:&nbsp;</STRONG></TD><TD>
-        <P ALIGN="justify"><FONT COLOR="green">Move (in the hierarchy)
+    <LI><P ALIGN="justify">Moved (in the hierarchy)
         <A HREF="../crs/cs/CartesianCS.html"><CODE>CartesianCS</CODE></A> as a sub-interface of
-        <A HREF="../crs/cs/ObliqueCartesianCS.html"><CODE>ObliqueCartesianCS</CODE></A>. Drop
-        "<CODE>cartesianCS</CODE>" and "<CODE>obliqueCartesianCS</CODE>" attributes in
-        <A HREF="../crs/crs/ImageCRS.html"><CODE>ImageCRS</CODE></A>. Replace them by a restriction on the
-        "<CODE>usesCS</CODE>" association, exactly like what is done in
-        <A HREF="../crs/crs/ProjectedCRS.html"><CODE>ProjectedCRS</CODE></A>.</FONT></P></TD></TR></TABLE>
+        <A HREF="../crs/cs/ObliqueCartesianCS.html"><CODE>ObliqueCartesianCS</CODE></A>. This is
+        because the interface <A HREF="../crs/cs/CartesianCS.html"><CODE>CartesianCS</CODE></A>
+        looks like a special case of <A HREF="../crs/cs/ObliqueCartesianCS.html"><CODE>ObliqueCartesianCS</CODE></A>.
+        This is a similar argument than the one used in ISO-19107, which said that <code>Circle</code> is a sub-class
+        of <code>Ellipse</code> since the former is a special case of the later (see 5.1.5 <cite>Strong substitutability</cite>).
+        Doing so help to clarify the semantic of <A HREF="../crs/crs/ImageCRS.html"><CODE>ImageCRS</CODE></A>:
+        We dropped "<CODE>cartesianCS</CODE>" and "<CODE>obliqueCartesianCS</CODE>" attributes and
+        replaced them by a restriction on the "<CODE>usesCS</CODE>" association, exactly like what
+        is done in <A HREF="../crs/crs/ProjectedCRS.html"><CODE>ProjectedCRS</CODE></A>.</P>
     </LI>
 
-    <LI><P ALIGN="justify">The 2003-073 specification duplicates the name and identifier attributes in many
-        interfaces, with different identifier name (e.g. "<CODE>ellipsoidName</CODE>", "<CODE>datumName</CODE>",
-        "<CODE>csName</CODE>", "<CODE>crsName</CODE>", etc.). A common super-interface like the legacy
-        <A HREF=../../../../legacy/org/opengis/cs/CS_Info.html><CODE>CS_Info</CODE></A> would be more
-        convenient.</P>
-
-        <TABLE cellpadding='0' cellspacing='0'><TR VALIGN="top"><TD><STRONG>FIX:&nbsp;</STRONG></TD><TD>
-        <P ALIGN="justify"><FONT COLOR="green">Drop all classname prefix in
-        "<code>name</code>" and "<code>ID</code>" attributes. Moves "<code>name</code>", "<code>ID</code>"
-        and "<code>remarks</code>" attributes in a common super-interface:
-        <A HREF="../crs/Info.html"><CODE>Info</CODE></A> which is set as the parent of the following interfaces:
+    <LI><P ALIGN="justify">Dropped all classname prefix in "<code>name</code>" and "<code>ID</code>"
+        attributes. Moved "<code>name</code>", "<code>ID</code>" and "<code>remarks</code>" attributes
+        in a common super-interface,
+        <A HREF="../crs/Info.html"><CODE>Info</CODE></A>, which is set as the parent of the following interfaces:
         <A HREF="../crs/ReferenceSystem.html"><CODE>ReferenceSystem</CODE></A>,
         <A HREF="../crs/cs/CoordinateSystem.html"><CODE>CoordinateSystem</CODE></A>,
         <A HREF="../crs/cs/CoordinateSystemAxis.html"><CODE>CoordinateSystemAxis</CODE></A>,
@@ -224,71 +213,68 @@
         <A HREF="../crs/datum/Ellipsoid.html"><CODE>Ellipsoid</CODE></A>,
         <A HREF="../crs/operation/CoordinateOperation.html"><CODE>CoordinateOperation</CODE></A>,
         <A HREF="../crs/operation/OperationMethod.html"><CODE>OperationMethod</CODE></A>,
-        <A HREF="../crs/operation/GeneralOperationParameter.html"><CODE>GeneralOperationParameter</CODE></A>.
+        <A HREF="../parameter/GeneralOperationParameter.html"><CODE>GeneralOperationParameter</CODE></A>.
         This interface defines the <CODE>getName</CODE>, <CODE>getIdentifiers</CODE> and
         <CODE>getRemarks</CODE> methods, which are common to all above-cited interfaces.
         This <CODE>Info</CODE> root interface is similar to the legacy
         <A HREF=../../../../legacy/org/opengis/cs/CS_Info.html><CODE>CS_Info</CODE></A>
-        interface from the implementation specification 1.0.</FONT></P></TD></TR></TABLE>
+        interface from the implementation specification 1.0. In the 2003-073 specification, the name
+        and identifier attributes were duplicated in many interfaces, with different identifier name
+        (e.g. "<CODE>ellipsoidName</CODE>", "<CODE>datumName</CODE>", "<CODE>csName</CODE>",
+        "<CODE>crsName</CODE>", etc.).</P>
     </LI>
 
-    <LI><P ALIGN="justify">While is is possible to mimic C's <CODE>union</CODE> in Java, the hack
-        are usually unconvenient. Furthermore, <CODE>union</CODE> are not type-safe even in C. It
-        may be better to avoid the <CODE>CD_SecondDefiningParameter</CODE> construct, which is used
-        in only one place instead. A more convient and type-safe approach would be the legacy
-        <A HREF=../../../../legacy/org/opengis/cs/CS_Ellipsoid.html><CODE>CS_Ellipsoid</CODE></A>
-        API.</P>
-
-        <TABLE cellpadding='0' cellspacing='0'><TR VALIGN="top"><TD><STRONG>FIX:&nbsp;</STRONG></TD><TD>
-        <P ALIGN="justify"><FONT COLOR="green">Union structures avoided.
-         Consequently, the following structures were omitted:
-         <CODE>CD_SecondDefiningParameter</CODE> (replaced by an API similar to the legacy
-         <A HREF=../../../../legacy/org/opengis/cs/CS_Ellipsoid.html><CODE>CS_Ellipsoid</CODE></A>).</FONT></P></TD></TR></TABLE>
+    <LI><P ALIGN="justify">Union structures avoided. While it is possible to mimic C's <CODE>union</CODE>
+        in Java, the hacks are usually unconvenient. Furthermore, <CODE>union</CODE> are not type-safe even
+        in C. Consequently, the following structures were omitted:
+        <CODE>CD_SecondDefiningParameter</CODE> (replaced by an API similar to the legacy
+        <A HREF=../../../../legacy/org/opengis/cs/CS_Ellipsoid.html><CODE>CS_Ellipsoid</CODE></A>).</P>
     </LI>
 
-    <LI><P ALIGN="justify">The legacy 2001-09 specification defined a
+    <LI><P ALIGN="justify">Added a
+        <A HREF="../crs/operation/Projection.html"><CODE>Projection</CODE></A> interface as a special kind of
+        <A HREF="../crs/operation/Conversion.html"><CODE>Conversion</CODE></A>. Subinterfaces of
+        <CODE>Projection</CODE> make it possible to check which kind of projection is applied
+        (planar, cylindrical, conical...).</P>
+    </LI>
+
+    <LI><P ALIGN="justify">Added a
+        <A HREF="../crs/operation/Matrix.html"><CODE>Matrix</CODE></A> interface as the parent of
+        <A HREF="../crs/quality/CovarianceMatrix.html"><CODE>CovarianceMatrix</CODE></A>.
+        The legacy 2001-09 specification defined a
         <A HREF=../../../../legacy/org/opengis/pt/PT_Matrix.html><CODE>PT_Matrix</CODE></A>
         interface, which is required for derivative computation. The 2003-073 specification
         defined only <A HREF="../crs/quality/CovarianceMatrix.html"><CODE>CovarianceMatrix</CODE></A>,
         which is too restrictive.</P>
-
-        <TABLE cellpadding='0' cellspacing='0'><TR VALIGN="top"><TD><STRONG>FIX:&nbsp;</STRONG></TD><TD>
-        <P ALIGN="justify"><FONT COLOR="green">Added a
-        <A HREF="../crs/operation/Matrix.html"><CODE>Matrix</CODE></A> interface as the parent of
-        <A HREF="../crs/quality/CovarianceMatrix.html"><CODE>CovarianceMatrix</CODE></A>.</FONT></P></TD></TR></TABLE>
     </LI>
 
-    <LI><P ALIGN="justify">The legacy 2001-09 specification defined a
-        <A HREF=../../../../legacy/org/opengis/cs/CS_AxisOrientationEnum><CODE>CS_AxisOrientationEnum</CODE></A>
-        where the 2003-073 specification just used a plain character string.</P>
-
-        <TABLE cellpadding='0' cellspacing='0'><TR VALIGN="top"><TD><STRONG>FIX:&nbsp;</STRONG></TD><TD>
-        <P ALIGN="justify"><FONT COLOR="green">Added
-        <A HREF="../crs/cs/AxisDirection.html"><CODE>AxisDirection</CODE></A>
+    <LI><P ALIGN="justify">Added <A HREF="../crs/cs/AxisDirection.html"><CODE>AxisDirection</CODE></A>
         code list. It is actually an anticipation on future work planed by the specification team.
         The <A HREF="../crs/cs/CoordinateSystemAxis.html#getDirection()"><code>getDirection()</code></A>
-        return type was adjusted accordingly.</FONT></P></TD></TR></TABLE>
+        return type was adjusted accordingly. Note that the legacy 2001-09 specification defined a
+        <A HREF=../../../../legacy/org/opengis/cs/CS_AxisOrientationEnum><CODE>CS_AxisOrientationEnum</CODE></A>
+        where the 2003-073 specification just used a plain character string.</P>
     </LI>
 
     <LI><P ALIGN="justify">Renamed <CODE>ParameterValueGroup.getGroup()</CODE> method as
-         <A HREF="../crs/operation/ParameterValueGroup.html#getDescriptor()"><CODE>getDescriptor()</CODE></A>
+         <A HREF="../parameter/ParameterValueGroup.html#getDescriptor()"><CODE>getDescriptor()</CODE></A>
          and moved it in the hierarchy up into
-         <A HREF="../crs/operation/GeneralParameterValue.html#getDescriptor()"><CODE>GeneralParameterValue</CODE></A>.
+         <A HREF="../parameter/GeneralParameterValue.html#getDescriptor()"><CODE>GeneralParameterValue</CODE></A>.
          The <CODE>getDescriptor()</CODE> name was choosen because <CODE>getGroup()</CODE> seems too
          restrictive, misleading (it returns an abstract definition of a group of parameters, not the
-         actual group), and for consistency with usage in other Java extensions (e.g.
+         actual group), and for consistency with usage in other Java extensions (e.g. JAI's
          <A HREF="http://java.sun.com/products/java-media/jai/forDevelopers/jai-apidocs/javax/media/jai/ParameterList.html#getParameterListDescriptor()"><CODE>ParameterList</CODE></A>).</P></LI>
 
     <LI><P ALIGN="justify">Moved the
-        <code>GeneralOperationParameter</code>,
-        <code>OperationParameter</code>,
-        <code>OperationParameterGroup</code>,
-        <code>GeneralParameterValue</code>,
-        <code>ParameterValue</code>,
-        <code>ParameterValueGroup</code>,
-        <code>InvalidParameterNameException</code>,
-        <code>InvalidParameterTypeException</code> and
-        <code>InvalidParameterValueException</code>
+        <A HREF="../parameter/GeneralOperationParameter.html">     <code>GeneralOperationParameter</code></A>,
+        <A HREF="../parameter/OperationParameter.html">            <code>OperationParameter</code></A>,
+        <A HREF="../parameter/OperationParameterGroup.html">       <code>OperationParameterGroup</code></A>,
+        <A HREF="../parameter/GeneralParameterValue.html">         <code>GeneralParameterValue</code></A>,
+        <A HREF="../parameter/ParameterValue.html">                <code>ParameterValue</code></A>,
+        <A HREF="../parameter/ParameterValueGroup.html">           <code>ParameterValueGroup</code></A>,
+        <A HREF="../parameter/InvalidParameterNameException.html"> <code>InvalidParameterNameException</code></A>,
+        <A HREF="../parameter/InvalidParameterTypeException.html"> <code>InvalidParameterTypeException</code></A> and
+        <A HREF="../parameter/InvalidParameterValueException.html"><code>InvalidParameterValueException</code></A>
         interfaces from <code>org.opengis.crs.operation</code> to <code>org.opengis.paraneter</code>
         since it is of use for grid coverages as well as operations. The goal is to avoid a
         duplicated API for parameters in coordinate operations and grid coverage operations.</P>
@@ -330,13 +316,17 @@
         type has been constrained to <CODE>GridCoverage</CODE> only in
         <A HREF="../coverage/grid/GridCoverage.html#getSource(int)"><CODE>GridCoverage.getSource(int)</CODE></A>.
         This approach (return type covariance) was already used in "Spatial Referencing by
-        Coordinates" (ISO 19107). It avoid forward dependency of <CODE>Coverage</CODE> toward
+        Coordinates" (ISO 19111). It avoid forward dependency of <CODE>Coverage</CODE> toward
         <CODE>GridCoverage</CODE> and give more flexibility for use of <CODE>Coverage</CODE>
         with non-gridded data.</P></LI>
 
     <LI><P ALIGN="justify">In <CODE>Coverage</CODE>, added an optional
         <A HREF="../coverage/Coverage.html#getRenderableImage(int, int)"><CODE>getRenderableImage</CODE></A>
         method for interoperability with Java2D.</P></LI>
+
+    <LI><P ALIGN="justify">In <CODE>SampleDimension</CODE>, added an optional
+        <A HREF="../coverage/SampleDimension.html#getSampleToGeophysics()"><CODE>getSampleToGeophysics</CODE></A>
+        method as a generalization of <code>scale</code> and <code>offset</code> attributes.</P></LI>
 
     <LI><P ALIGN="justify">Exceptions
         <A HREF="../coverage/MetadataNameNotFoundException.html"><CODE>MetadataNameNotFoundException</CODE></A>
