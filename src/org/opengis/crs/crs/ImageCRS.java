@@ -32,31 +32,17 @@ import org.opengis.crs.datum.ImageDatum;
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/03-073r1.zip">Abstract specification 2.0</A>
  *
- * @revisit <ul>
- *            <li>If this is an engineering CRS, why it doesn't extends {@link EngineeringCRS}?</li>
- *            <li>This interface defines three methods for querying the coordinate system:
- *                {@link #getCoordinateSystem() getCoordinateSystem()}, {@link #getCartesianCS()}
- *                and {@link #getObliqueCartesianCS()}. What is the relationship between those three
- *                methods? Should only one of them be valid at a given time? Why not just stick with
- *                <code>getCoordinateSystem()</code> and lets the user cast the return type?</li>
- *          </ul>
+ * @revisit If this is an engineering CRS, why it doesn't extends {@link EngineeringCRS}?
  */
 public interface ImageCRS extends CoordinateReferenceSystem {
     /**
      * Returns the cartesian coordinate system.
      *
-     * @return The cartesian coordinate system, or <code>null</code> if none.
+     * @return The cartesian coordinate system.
+     * @UML association usesObliqueCartesianCS
      * @UML association usesCartesianCS
      */
-    CartesianCS getCartesianCS();
-
-    /**
-     * Returns the oblique cartesian coordinate system.
-     *
-     * @return The oblique cartesian coordinate system, or <code>null</code> if none.
-     * @UML association usesObliqueCartesianCS
-     */
-    ObliqueCartesianCS getObliqueCartesianCS();
+/// ObliqueCartesianCS getCoordinateSystem();
 	 
     /**
      * Returns the datum, which must be an image one.
