@@ -9,9 +9,6 @@
  *************************************************************************************************/
 package org.opengis.referencing.operation;
 
-// J2SE direct dependencies
-import java.util.Locale;
-
 // OpenGIS direct dependencies
 import org.opengis.referencing.IdentifiedObject;
 import org.opengis.parameter.ParameterDescriptorGroup;
@@ -42,22 +39,6 @@ public interface OperationMethod extends IdentifiedObject {
      */
 /// @UML (identifier="formula", obligation=MANDATORY)
     InternationalString getFormula();
-
-    /**
-     * Formula(s) or procedure used by this operation method. This may be a reference to a
-     * publication. Note that the operation method may not be analytic, in which case this
-     * attribute references or contains the procedure, not an analytic formula.
-     *
-     * @param  locale The desired locale for the formula to be returned, or <code>null</code>
-     *         for a formula in some default locale (may or may not be the
-     *         {@linkplain Locale#getDefault() system default}).
-     * @return The coordinate operation method formula in the given locale. If no formula
-     *         is available in the given locale, then some default locale is used.
-     *
-     * @deprecated Replaced by {@link #getFormula}.
-     */
-/// @UML (identifier="formula", obligation=MANDATORY)
-    String getFormula(Locale locale);
 
     /**
      * Number of dimensions in the source CRS of this operation method.
