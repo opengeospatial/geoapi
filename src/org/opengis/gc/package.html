@@ -1,0 +1,66 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<HTML>
+  <HEAD>
+    <TITLE>package org.opengis.gc</TITLE>
+  </HEAD>
+  <BODY>
+  Grid coverages. The following is adapted from
+  <A HREF="http://www.opengis.org/docs/01-004.pdf">OpenGIS&reg;
+  Grid Coverages Implementation Specification</A>.
+
+  <P ALIGN="justify">This Grid Coverage Implementation specification can accommodate grid
+  coverages with the following characteristics:</P>
+  <UL>
+    <LI>Variable number of bits per grid value (bits per pixel): 
+        1, 2, 4 unsigned integer;
+        8, 16, 32 signed and unsigned integer;
+        32, 64 real numbers.</LI>
+    <LI>1 to <VAR>N</VAR> number of bands.</LI>
+    <LI>1 to <VAR>N</VAR> dimensions.</LI>
+    <LI>For grids with multiple bands, band values can be ordered by dimension.
+        For example, a 2D grid coverage can be ordered row, column, band (pixel interleaved),
+        row, band, column (line interleaved) or band, row, column (band sequential).</LI>
+    <LI>Support for a variable number of "no data values".</LI>
+    <LI>Various color models: Gray Scale, pseudo color (any size), RGB, CMYK and HSL.</LI>
+    <LI>Support of overviews or pyramids (reduced resolution data sets).</LI>
+  </UL>
+
+  <P>&nbsp;</P>
+  <H2>Grid Coordinate System</H2>
+  <P ALIGN="justify">A grid coverage has a grid coordinate reference system which allows for
+  addressing individual cells in the grid. Individual cells are centered on the grid points.
+  A grid has an ordering of cell values with the first cell in this ordering having a grid
+  coordinate of 0,0. A two dimensional grid coverage with 512 rows and 512 columns would have
+  grid coordinates with a range from 0 to 511 rows and 0 to 511 columns. The gridRange attribute
+  {@link org.opengis.gc.GridGeometry} structure defines the grid coordinate range. The number of
+  cells in a dimension of the grid can be calculated as grid range
+  <VAR>maximum</VAR> – <VAR>minimum</VAR>.</P>
+
+  <P>&nbsp;</P>
+  <H2>Grid Coverage Tiling</H2>
+  <P ALIGN="justify">This implementation specification has no explicit interfaces to retrieve
+  data values from a grid coverage in tiles. It is expected that the implementation will
+  efficiently retrieve data values when the client implementation retrieves data values on
+  tile boundaries. The optimal size to access a dimension can be determined from the
+  {@link org.opengis.gc.GridCoverage#getOptimalDataBlockSizes optimalDataBlockSizes} attribute.</P>
+
+  <P>&nbsp;</P>
+  <H2>Interoperability</H2>
+  <P ALIGN="justify">To help interoperability, many interfaces contained in this architecture
+  have been made immutable. The assumption is that the objects supporting these interfaces
+  should be immutable. This means that the objects should not change after a factory has
+  created them. In particular, the following interfaces are assumed to be backed by immutable
+  objects: {@link org.opengis.cv.SampleDimension}, {@link org.opengis.gc.Format},
+  {@link org.opengis.gc.GridCoverageExchange}, {@link org.opengis.gp.Operation},
+  {@link org.opengis.gp.GridAnalysis}, {@link org.opengis.gp.GridCoverageProcessor}.</P>
+
+  <P ALIGN="justify">In a {@link org.opengis.gc.GridCoverage}, only the cell values may change.
+  The size, geometry, interpolation, sequencing etc should never change. However, clients should
+  be aware that the Grid Coverage object behind the {@link org.opengis.gc.GridCoverage} interface
+  may be adapted from other {@link org.opengis.gc.GridCoverage} interfaces, so changing the grid
+  point (pixel) values through one {@link org.opengis.gc.GridCoverage} could change the grid point
+  values in others. To allow client applications to anticipate adapted Grid Coverages being changed
+  indirectly, the source Grid Geometry object(s) for adapted Grid Geometry objects can be traced.</P>
+  </BODY>
+</HTML>

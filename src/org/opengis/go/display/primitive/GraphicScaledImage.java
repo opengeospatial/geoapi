@@ -25,7 +25,7 @@ import org.opengis.gm.DirectPosition;
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  *
  * @revisit Should be based on {@link java.awt.image.RenderedImage}, not on {@link Image}!!!!
- *          Furthermore, this API duplicates <code>org.opengis.gc.GridCoverage</code>.
+ *          Furthermore, this API duplicates {@link org.opengis.gc.GridCoverage}.
  */
 public interface GraphicScaledImage extends Graphic {
     /**

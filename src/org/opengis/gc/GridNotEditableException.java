@@ -1,31 +1,28 @@
 /*
  * Copyright (C) 2003 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
  */
-package org.opengis.cv;
+package org.opengis.gc;
 
 
 /**
- * Throws when a requested metadata is not found.
+ * Throws when an attempt is made to write in a non-editable grid.
  *
- * @UML exception CV_MetadataNameNotFound
+ * @UML exception GC_GridNotEditable
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 1.1
  *
- * @see SampleDimension#getMetadataValue
- * @see Coverage#getMetadataValue
- * @see org.opengis.gc.GridCoverageExchange#getMetadataValue
- * @see org.opengis.gp.GridCoverageProcessor#getMetadataValue
+ * @see GridCoverage#isDataEditable
  */
-public class MetadataNameNotFoundException extends IllegalArgumentException {
+public class GridNotEditableException extends IllegalStateException {
     /**
      * Serial number for interoperability with different versions.
      */
-    private static final long serialVersionUID = 3217010469714161299L;
+    private static final long serialVersionUID = 612186655921122650L;
 
     /**
      * Creates an exception with no message.
      */
-    public MetadataNameNotFoundException() {
+    public GridNotEditableException() {
         super();
     }
 
@@ -35,7 +32,7 @@ public class MetadataNameNotFoundException extends IllegalArgumentException {
      * @param  message The detail message. The detail message is saved for 
      *         later retrieval by the {@link #getMessage()} method.
      */
-    public MetadataNameNotFoundException(String message) {
+    public GridNotEditableException(String message) {
         super(message);
     }
 }
