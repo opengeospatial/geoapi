@@ -68,26 +68,33 @@ import org.opengis.parameter.ParameterValueGroup;
 public interface MathTransformFactory extends Factory {
     /**
      * Returns a set of all available {@linkplain MathTransform math transform} methods. For each
-     * element in this set, the {@linkplain OperationMethod#getName operation method name} shall be
-     * the classification name to be recognized by the {@link #getDefaultParameters} method.
+     * element in this set, the {@linkplain OperationMethod#getName operation method name} must be
+     * a classification name known to the {@link #getDefaultParameters} method in this factory.
+     * The set of available methods is implementation dependent.
      *
      * @return All {@linkplain MathTransform math transform} methods available in this factory.
+     *
+     * @see #getDefaultParameters
+     * @see #createParameterizedTransform
      */
-    public Set/*<OperationMethod>*/ getAvailableTransforms();
+    Set/*<OperationMethod>*/ getAvailableTransforms();
 
     /**
      * Returns the default parameter values for a math transform of the given classification.
-     * The {@linkplain ParameterDescriptorGroup#getName parameter group name} shall be the given
-     * classification, in order to allows direct use by {@link #createParameterizedTransform
-     * createParameterizedTransform}. The list of available classifications is implementation
-     * dependent.
+     * The classification may be the name of any operation method returned by the
+     * {@link #getAvailableTransforms} method. A typical example is
+     * <code>"<A HREF="http://www.remotesensing.org/geotiff/proj_list/transverse_mercator.html">Transverse_Mercator</A>"</code>).
      *
-     * <P>This method always returns new values. Consequently, it is safe to modify the returned
-     * parameter values group and give them to <code>{@linkplain #createParameterizedTransform
+     * <P>The {@link #createParameterizedTransform createParameterizedTransform} method in this factory
+     * shall be able to infer the classification from the parameter group returned by this method. A
+     * possible (but not required) approach is to set the {@linkplain ParameterDescriptorGroup#getName
+     * parameter group name} to the classification name.</P>
+     *
+     * <P>This method must create new parameter instances at every call. It is intented to be modified
+     * by the user before to be passed to <code>{@linkplain #createParameterizedTransform
      * createParameterizedTransform}(parameters)</code>.</P>
      *
-     * @param  classification The case insensitive classification to search for (e.g.
-     * <code>"<A HREF="http://www.remotesensing.org/geotiff/proj_list/transverse_mercator.html">Transverse_Mercator</A>"</code>).
+     * @param  classification The case insensitive classification to search for.
      * @return The default parameter values.
      * @throws NoSuchIdentifierException if there is no transform registered for the specified classification.
      *
@@ -97,11 +104,9 @@ public interface MathTransformFactory extends Factory {
     ParameterValueGroup getDefaultParameters(String classification) throws NoSuchIdentifierException;
 
     /**
-     * Creates a transform from a group of parameters. The {@linkplain ParameterDescriptorGroup#getName
-     * parameter group name} is used as the classification name of the transform to construct (e.g.
-     * <code>"<A HREF="http://www.remotesensing.org/geotiff/proj_list/transverse_mercator.html">Transverse_Mercator</A>"</code>).
-     * The client must supply at least the <code>"semi_major"</code> and <code>"semi_minor"</code>
-     * parameters for cartographic projection transforms. Example:
+     * Creates a transform from a group of parameters. The classification name is inferred either from
+     * the {@linkplain ParameterDescriptorGroup#getName parameter group name}, or any other implementation
+     * dependent way. Example:
      *
      * <blockquote><pre>
      * ParameterValueGroup p = factory.getDefaultParameters("Transverse_Mercator");
