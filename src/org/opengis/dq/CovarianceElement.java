@@ -3,6 +3,9 @@
  */
 package org.opengis.dq;
 
+// J2SE extensions
+import javax.units.Unit;
+
 
 /**
  * An element of a covariance matrix.
@@ -16,7 +19,7 @@ public interface CovarianceElement {
     /**
      * The row number of the covariance element.
      *
-     * @return The row Identifier.
+     * @return The row identifier.
      * @UML mandatory rowIndex;
      */
     public int getRowIndex();
@@ -33,7 +36,16 @@ public interface CovarianceElement {
      * The covariance element value.
      *
      * @return The covariance.
+     * @see CovarianceMatrix#getElement
      * @UML mandatory covariance
      */
     public double getCovariance();
+
+    /**
+     * The covariance unit from the relevant ordinate.
+     *
+     * @return The covariance unit.
+     * @see CovarianceMatrix#getUnit
+     */
+    public Unit getUnit();
 }
