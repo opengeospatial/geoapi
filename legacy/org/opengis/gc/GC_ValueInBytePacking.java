@@ -9,7 +9,7 @@
  * You can redistribute it, but should not modify it unless
  * for greater OpenGIS compliance.
  */
-package org.opengis.gc;
+package org.opengis.coverage.grid;
 
 // Input/output
 import java.io.Serializable;

@@ -12,7 +12,7 @@
 package org.opengis.ct;
 
 // OpenGIS dependencies
-import org.opengis.cs.CS_CoordinateSystem;
+import org.opengis.crs.cs.CS_CoordinateSystem;
 
 // JDK's classes
 import java.rmi.Remote;

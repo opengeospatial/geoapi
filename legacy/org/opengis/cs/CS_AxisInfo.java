@@ -9,7 +9,7 @@
  * on the SEAGIS web site (seagis.sourceforge.net). THIS FILE WILL LIKELY
  * BE REPLACED BY NEXT VERSION OF OPENGIS SPECIFICATIONS.
  */
-package org.opengis.cs;
+package org.opengis.crs.cs;
 
 // Various JDK's classes
 import java.io.Serializable;
@@ -24,7 +24,7 @@ import java.io.Serializable;
  * @author Martin Daly
  * @author Martin Desruisseaux
  *
- * @deprecated Replaced by {@link org.opengis.cs.CoordinateSystemAxis}.
+ * @deprecated Replaced by {@link org.opengis.crs.cs.CoordinateSystemAxis}.
  */
 public class CS_AxisInfo implements Cloneable, Serializable {
     /**

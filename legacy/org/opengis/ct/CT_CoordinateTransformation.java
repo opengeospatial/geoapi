@@ -12,7 +12,7 @@
 package org.opengis.ct;
 
 // OpenGIS dependencies
-import org.opengis.cs.CS_CoordinateSystem;
+import org.opengis.crs.cs.CS_CoordinateSystem;
 
 // JDK's classes
 import java.rmi.Remote;
@@ -32,7 +32,7 @@ import java.rmi.RemoteException;
  * @since   1.00
  * @author Martin Daly
  *
- * @deprecated Replaced by {@link org.opengis.cc.CoordinateOperation}.
+ * @deprecated Replaced by {@link org.opengis.crs.operation.CoordinateOperation}.
  */
 public interface CT_CoordinateTransformation extends Remote {
     /**

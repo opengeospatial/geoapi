@@ -218,10 +218,11 @@
       <link href="http://java.sun.com/products/java-media/3D/forDevelopers/j3dapi"/>
       <link href="http://jsr-108.sourceforge.net/javadoc"/>
 
-      <group title="Spatial Referencing by Coordinates" packages="org.opengis.rs:org.opengis.sc:org.opengis.cs:org.opengis.cd:org.opengis.cc:org.opengis.dq"/>
-      <group title="Feature Geometry (WORK IN PROGRESS)" packages="org.opengis.gm*:org.opengis.tp*"/>
-      <group title="Grid Coverage" packages="org.opengis.cv:org.opengis.gc:org.opengis.gp"/>
-      <group title="User interface (WORK IN PROGRESS)" packages="org.opengis.go*"/>
+      <group title="Meta Data"                             packages="org.opengis.metadata*"/>
+      <group title="Spatial Referencing by Coordinates"    packages="org.opengis.crs*"/>
+      <group title="Feature Geometry (WORK IN PROGRESS)"   packages="org.opengis.gm*:org.opengis.tp*"/>
+      <group title="Grid Coverage"                         packages="org.opengis.coverage*"/>
+      <group title="User interface (WORK IN PROGRESS)"     packages="org.opengis.go*"/>
 
       <fileset dir="sources">
         <include name="org/**/*.java"/>

@@ -9,7 +9,7 @@
  * You can redistribute it, but should not modify it unless
  * for greater OpenGIS compliance.
  */
-package org.opengis.gc;
+package org.opengis.coverage.grid;
 
 
 /**
@@ -29,9 +29,9 @@ public interface GC_GridPacking {
 
     /**
      * Order of values packed in a byte for
-     * {@link org.opengis.cv.CV_SampleDimensionType#CV_1BIT CV_1BIT},
-     * {@link org.opengis.cv.CV_SampleDimensionType#CV_2BIT CV_2BIT} and
-     * {@link org.opengis.cv.CV_SampleDimensionType#CV_4BIT CV_4BIT} data types.
+     * {@link org.opengis.coverage.CV_SampleDimensionType#CV_1BIT CV_1BIT},
+     * {@link org.opengis.coverage.CV_SampleDimensionType#CV_2BIT CV_2BIT} and
+     * {@link org.opengis.coverage.CV_SampleDimensionType#CV_4BIT CV_4BIT} data types.
      */
     GC_ValueInBytePacking getValueInBytePacking();
 
