@@ -9,6 +9,8 @@
   <UL>
     <LI>In <code>CRSFactory.createImageCRS</code>, changed the <code>cs</code> argument type
         from <code>CoordinateSystem</code> to <code>ObliqueCartesianCS</code>.</LI>
+    <LI>In <code>MathTransformFactory</code>, added <code>createAffineTransform(AffineTransform)</code>
+        method for interoperability with Java2D.</LI>
     <LI>In <code>Envelope</code>, added convenience methods <code>getMinimum</code>,
         <code>getMaximum</code>, <code>getCenter</code> and <code>getLength</code>.</LI>
     <LI>In <code>SampleDimension</code>, added a <code>Locale</code> argument for methods
@@ -20,6 +22,10 @@
     <LI>In <code>Coverage</code>, merged <code>getNumSources()</code> and <code>getSource(int)</code>
         methods into a single <code>getSources()</code> method.</LI>
         <code>float[]</code> for the method <code>evaluate(DirectPosition, float[])</code>.</LI>
+    <LI>In <code>GridRange</code>, renamed <code>getLower()</code> and <code>getUpper()</code> as
+        <code>getLowers()</code> and <code>getUppers()</code>.</LI>
+    <LI>In <code>GridRange</code>, add <code>getLower(int)</code>, <code>getUpper(int)</code>,
+        <code>getLength(int)</code> and <code>getDimension</code> convenience methods.</LI>
     <LI>Javadoc fixes.</LI>
   </UL>
   </body>
