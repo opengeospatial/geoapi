@@ -19,10 +19,20 @@ import org.opengis.util.GenericName;
  * the user of the DataStore adds, deletes, or modifies a feature type.
  */
 public class DataStoreEvent extends EventObject {
-    private GenericName type;
+    /**
+     * Comment for <code>serialVersionUID</code>
+     */
+    private static final long serialVersionUID = -1842329357109520014L;
+    public static final int ADD = 1;
+    public static final int MODIFY = 0;
+    public static final int DELETE = -1;
 
-    public DataStoreEvent(DataStore dataStore, GenericName type) {
+    private GenericName typeName;
+    private Transaction transaction;
+    private int type;
+    public DataStoreEvent(DataStore dataStore, GenericName typeName, Transaction transaction, int type) {
         super(dataStore);
+        this.typeName = typeName;
         this.type = type;
     }
 
@@ -30,7 +40,15 @@ public class DataStoreEvent extends EventObject {
         return (DataStore) super.getSource();
     }
 
-    public GenericName getType() {
+    public GenericName getTypeName() {
+        return typeName;
+    }
+
+    public Transaction getTransaction() {
+        return transaction;
+    }
+
+    public int getType() {
         return type;
     }
 }
