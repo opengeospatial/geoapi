@@ -118,7 +118,7 @@ public interface Canvas {
      * 
      * @param graphic the <code>Graphic</code> to add.
      */
-    void add(Graphic graphic);
+    Graphic add(Graphic graphic);
 
     /**
      * Adds the given <code>Graphic</code> to this <code>Canvas</code>,
@@ -130,7 +130,7 @@ public interface Canvas {
      * 
      * @param graphic the <code>Graphic</code> to add as editable.
      */
-    void addAsEditable(Graphic graphic);
+    Graphic addAsEditable(Graphic graphic);
 
     /**
      * Removes the given <code>Graphic</code> from this <code>Canvas</code>.

@@ -13,6 +13,7 @@ package org.opengis.go.display.primitive;
 // OpenGIS dependencies
 import org.opengis.go.display.event.AggregationChangeEvent;
 import org.opengis.go.display.event.AggregationListener;
+import org.opengis.spatialschema.geometry.complex.CompositeCurve;
 
 
 /**
@@ -38,6 +39,18 @@ import org.opengis.go.display.event.AggregationListener;
  * @version $Revision$, $Date$
  */
 public interface GraphicCompositeCurve extends Graphic {
+    
+    /**
+     * Sets the geometry based on ISO 19107 <code>CompositeCurve</code> geometry for this <code>Graphic</code>. 
+     * @param compositeCurve the CompositeCurve for this <code>Graphic</code>.
+     */
+    public void setCompositeCurve(CompositeCurve compositeCurve) throws GeometryNotSupportedException;
+    
+    /**
+     * Returns the ISO 19107 <code>CompositeCurve</code> geometry for this <code>Graphic</code>
+     * @return the CompositeCurve representing this GraphicCompositeCurve
+     */
+    public CompositeCurve getCompositeCurve();
 
     /**
      * Returns whether this composite curve is topologically closed.
