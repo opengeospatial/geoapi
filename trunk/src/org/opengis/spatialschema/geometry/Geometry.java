@@ -13,6 +13,8 @@ package org.opengis.spatialschema.geometry;
 import java.util.Set;
 
 import org.opengis.crs.crs.CoordinateReferenceSystem;
+import org.opengis.crs.operation.CoordinateTransformation;
+import org.opengis.crs.operation.IncompatibleOperationException;
 import org.opengis.spatialschema.geometry.complex.Complex;
 
 
@@ -256,12 +258,12 @@ public interface Geometry extends TransfiniteSet {
      * of the transformation.
      *
      * @param  newCRS The newCRS.
+     * @param trans the trasformation that converts between the existing Coordinate Reference System and the new Coordinate Reference System.
+     * @throws IncompatibleOperationException when the specified transformation does not apply to either the existing or new Coordinate Reference Systems.
      * @return The transformed <code>Geometry</code>.
      * @UML operation transform
-     *
-     * @revisit Which exception to throws if the transformation fails?
      */
-    public Geometry transform(CoordinateReferenceSystem newCRS);
+    public Geometry transform(CoordinateReferenceSystem newCRS, CoordinateTransformation trans) throws IncompatibleOperationException;
 
     /**
      * Returns the minimum bounding box for this <code>Geometry</code>. This shall be the
