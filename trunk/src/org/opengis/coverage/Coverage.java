@@ -10,7 +10,9 @@
 package org.opengis.coverage;
 
 // J2SE direct dependencies and extensions
-import java.awt.image.Raster;                     // For Javadoc
+import java.util.List;
+import java.util.Locale;
+import java.awt.image.Raster;  // For Javadoc
 import java.awt.image.renderable.RenderableImage;
 
 // OpenGIS direct dependencies
@@ -111,10 +113,13 @@ public interface Coverage {
      * The number of dimensions of the coverage is the number of entries in the
      * list of dimension names.
      *
-     * @return The names of each dimension in the coverage.
+     * @param  locale The locale for the name to be returned, or <code>null</code> for a default
+     *         locale.
+     * @return The names of each dimension in the coverage. If no name is available in the
+     *         specified locale, then a default locale is used.
      * @UML mandatory dimensionNames
      */
-    String[] getDimensionNames();
+    String[] getDimensionNames(Locale locale);
 
     /**
      * The number of sample dimensions in the coverage.
@@ -141,30 +146,19 @@ public interface Coverage {
     SampleDimension getSampleDimension(int index) throws IndexOutOfBoundsException;
 
     /**
-     * Number of grid coverages which the grid coverage was derived from.
-     * This implementation specification does not include interfaces for creating
-     * collections of coverages therefore this value will usually be one indicating
-     * an adapted grid coverage, or zero indicating a raw grid coverage.
-     *
-     * @return The number of grid coverages which the grid coverage was derived from.
-     * @UML mandatory numSource
-     */
-    int getNumSources();
-
-    /**
-     * Returns the source data for a coverage.
+     * Returns the sources data for a coverage.
      * This is intended to allow applications to establish what <code>Coverage</code>s
      * will be affected when others are updated, as well as to trace back to the "raw data".
      *
-     * @param sourceDataIndex Source coverage index. Indexes start at 0.
-     * @return The source data for a coverage.
-     * @throws IndexOutOfBoundsException if <code>sourceDataIndex</code> is out of bounds.
-     * @UML operation getSource
+     * This implementation specification does not include interfaces for creating
+     * collections of coverages therefore the list size will usually be one indicating
+     * an adapted grid coverage, or zero indicating a raw grid coverage.
      *
-     * @see #getNumSources
-     * @see org.opengis.coverage.grid.GridCoverage#getSource
+     * @return The list of sources data for a coverage.
+     * @UML operation getSource
+     * @UML mandatory numSource
      */
-    Coverage getSource(int sourceDataIndex) throws IndexOutOfBoundsException;
+    List/*<? extends Coverage>*/ getSources();
 
     /**
      * List of metadata keywords for a coverage.
