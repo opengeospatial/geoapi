@@ -27,6 +27,12 @@ import org.opengis.parameter.ParameterValueGroup;
  * @version <A HREF="http://www.opengis.org/docs/03-073r1.zip">Abstract specification 2.0</A>
  *
  * @see OperationMethod
+ *
+ * @revisit OpenGIS is considering to remove this class from UML diagrams. In this case, all
+ *          methods in this interface will move to the {@link SingleOperation} interface. The
+ *          removal of {@code Operation} interface would simplify the API and brings more
+ *          flexibility: {@link ConcatenatedOperation} would be a legal component in both
+ *          other {@link ConcatenatedOperation} and in {@link PassThroughOperation}.
  */
 ///@UML (identifier="CC_Operation")
 public interface Operation extends SingleOperation {
