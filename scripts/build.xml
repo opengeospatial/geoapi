@@ -177,6 +177,7 @@
       <replacefilter token="&lt;Identification&gt;"/>
       <replacefilter token="&lt;InternationalString&gt;"/>
       <replacefilter token="&lt;Keywords&gt;"/>
+      <replacefilter token="&lt;Knot&gt;"/>
       <replacefilter token="&lt;LineSegment&gt;"/>
       <replacefilter token="&lt;Locale&gt;"/>
       <replacefilter token="&lt;LocalName&gt;"/>
