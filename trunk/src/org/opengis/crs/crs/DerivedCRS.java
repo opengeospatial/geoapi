@@ -37,28 +37,4 @@ public interface DerivedCRS extends GeneralDerivedCRS {
      * @UML mandatory derivedCRStype
      */
     DerivedCRSType getDerivedCRSType();
-
-    /**
-     * Gets the offset (in terms of a "reference position") beween 
-     * the origin of this <code>CoordinateReferenceSystem</code> and a reference 
-     * <code>CoordinateReferenceSystem</code>. The reference position value is a 
-     * <code>DirectPosition</code> in the reference <code>CoordinateReferenceSystem</code>.
-     *
-     * @param referenceCRS the reference <code>CoordinateReferenceSystem</code>.
-     * @return the reference position in the space of the reference <code>CoordinateReferenceSystem</code>.
-     *
-     * @revisit This method is not part of ISO specification.
-     */
-    DirectPosition getReferencePosition(CoordinateReferenceSystem referenceCRS);
-    
-    /**
-     * Gets the orientation vectors of this <code>DerivedCRS</code>.
-     *
-     * @param unit the <code>Unit</code> of measure for the returned orientation values
-     * @return an array of orientation vectors
-     *
-     * @revisit This method is not part of ISO specification.
-     *          PENDING(jdc): is this a correct javadoc?  
-     */
-    double[] getOrientation(javax.units.Unit unit);
 }

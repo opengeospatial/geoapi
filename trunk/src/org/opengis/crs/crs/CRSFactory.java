@@ -177,24 +177,6 @@ public interface CRSFactory extends Factory {
             throws FactoryException;
 
     /**
-     * Creates a <code>DerivedCRS</code> by changing the anchor point of a subject <code>CRS</code>
-     * to be a <code>DirectPosition</code> in another <code>CRS</code>.
-     * Can also be used to reanchor a <code>DerivedCRS</code> (as the subject <code>CRS</code>)
-     * to a new anchor <code>CRS</code>.
-     * The reference to the subject <code>CRS</code> is assigned to the returned <code>DerivedCRS</code>.
-     *
-     * @param subjectCRS the <code>CRS</code> that will become the resulting <code>DerivedCRS</code>.
-     * @param anchorCRS the <code>CRS</code> to which the resulting <code>DerivedCRS</code> will be referenced.
-     * @param anchorPoint the <code>DirectPosition</code> in the anchor <code>CRS</code> that corresponds to the origin in the resulting <code>DerivedCRS</code>.
-     * @return the <code>DerivedCRS</code>, now anchored to the anchor <code>CRS</code>.
-     * @throws FactoryException if the object creation failed.
-     *
-     * @revisit Explain how this method is related to <code>createDerivedCRS</code>.
-     */
-    DerivedCRS anchor(CoordinateReferenceSystem subjectCRS, CoordinateReferenceSystem anchorCRS,
-            org.opengis.spatialschema.geometry.DirectPosition anchorPoint) throws FactoryException;
-
-    /**
      * Creates a coordinate reference system object from a XML string.
      *
      * @param  xml Coordinate reference system encoded in XML format.
