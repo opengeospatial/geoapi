@@ -50,7 +50,6 @@ public interface ParameterValue extends GeneralParameterValue {
      * @see #doubleValueList
      * @see #getValue
      */
-/// @UML (identifier="value", obligation=CONDITIONAL)
     Unit getUnit();
 
     /**
@@ -208,6 +207,7 @@ public interface ParameterValue extends GeneralParameterValue {
      *
      * @see #setValue(Object)
      */
+/// @UML (identifier="value", obligation=CONDITIONAL)
     Object getValue();
 
     /**

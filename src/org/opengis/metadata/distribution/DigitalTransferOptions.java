@@ -54,5 +54,5 @@ public interface DigitalTransferOptions {
      * Information about offline media on which the resource can be obtained.
      */
 /// @UML (identifier="offLine", obligation=OPTIONAL)
-    Medium getOffLines();
+    Medium getOffLine();
 }

@@ -49,7 +49,7 @@ public interface Source {
     /**
      * Spatial reference system used by the source data.
      */
-/// @UML (identifier="sourcReferenceSystem", obligation=OPTIONAL)
+/// @UML (identifier="sourceReferenceSystem", obligation=OPTIONAL)
     ReferenceSystem getSourceReferenceSystem();
 
     /**

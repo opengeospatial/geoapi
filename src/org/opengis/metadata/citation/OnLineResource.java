@@ -28,7 +28,7 @@ import org.opengis.util.InternationalString;
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
  */
-///@UML (identifier="CI_Citation")
+///@UML (identifier="CI_OnlineResource")
 public interface OnLineResource {
     /**
      * Location (address) for on-line access using a Uniform Resource Locator address or

@@ -109,7 +109,7 @@ public interface GridCoverageProcessor {
      * @return A new {@link GridAnalysis} interface.
      */
 /// @UML (identifier="analyze", obligation=MANDATORY)
-    GridAnalysis analyse(GridCoverage gridCoverage);
+    GridAnalysis analyze(GridCoverage gridCoverage);
 
     /**
      * Apply a process operation to a grid coverage.

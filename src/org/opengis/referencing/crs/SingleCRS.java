@@ -42,7 +42,7 @@ import org.opengis.referencing.cs.CoordinateSystem;
  * @see org.opengis.referencing.cs.CoordinateSystem
  * @see org.opengis.referencing.datum.Datum
  */
-///@UML (identifier="SC_CoordinateReferenceSystem")
+///@UML (identifier="SC_SingleCRS")
 public interface SingleCRS extends CoordinateReferenceSystem {
     /**
      * Returns the coordinate system.

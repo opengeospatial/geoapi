@@ -32,7 +32,7 @@ public interface DataQuality {
     /**
      * The specific data to which the data quality information applies.
      */
-/// @UML (identifier="Scope", obligation=MANDATORY)
+/// @UML (identifier="scope", obligation=MANDATORY)
     Scope getScope();
 
     /**

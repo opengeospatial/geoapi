@@ -44,7 +44,7 @@ public interface Contact {
      * On-line information that can be used to contact the individual or organization.
      * Returns <code>null</code> if none.
      */
-/// @UML (identifier="address", obligation=OPTIONAL)
+/// @UML (identifier="onLineResource", obligation=OPTIONAL)
     OnLineResource getOnLineResource();
 
     /**

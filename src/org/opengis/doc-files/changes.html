@@ -83,6 +83,9 @@
     <LI><P>In <code><A HREF="../spatialschema/geometry/Envelope.html">Envelope</A></code> interface,
         added convenience methods <code>getMinimum</code>, <code>getMaximum</code>, <code>getCenter</code>
         and <code>getLength</code>.</P></LI>
+
+    <LI><P>In <code><A HREF="../spatialschema/geometry/complex/Complex.html">Complex</A></code>, renamed the
+        <code>getSuperComplexex</code> method as <code>getSuperComplexes</code>. The former was a typo.</P>
   </UL>
   <H3>Changes in Grid Coverage packages</H3>
   <UL>
@@ -107,6 +110,9 @@
     <LI><P>In <code><A HREF="../coverage/processing/Operation.html">Operation</A></code>, changed the <code>GeneralParameterValue[]</code>,
         return type to <code>ParameterValueGroup</code>. Generally speaking, this change was applied for most processing methods in GeoAPI
         returning parameters. This is a slight departure from specifications, which usually returns a sequence of parameter values.</P>
+
+    <LI><P>In <code><A HREF="../coverage/processing/GridAnalysis.html">GridAnalysis</A></code>, renamed the <code>analyse</code>
+        method as <code>analyze</code>. The former was a typo.</P>
   </UL>
   </BLOCKQUOTE>
   </body>

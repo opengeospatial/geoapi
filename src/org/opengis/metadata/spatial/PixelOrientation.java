@@ -45,32 +45,32 @@ public final class PixelOrientation extends CodeList {
      * Point in a pixel corresponding to the Earth location of the pixel.
      */
 /// @UML (identifier="center", obligation=CONDITIONAL)
-    public static final CellGeometry CENTER = new CellGeometry("CENTER");
+    public static final PixelOrientation CENTER = new PixelOrientation("CENTER");
 
     /**
      * The corner in the pixel closest to the origin of the SRS; if two are at the same
      * distance from the origin, the one with the smallest x-value.
      */
 /// @UML (identifier="lowerLeft", obligation=CONDITIONAL)
-    public static final CellGeometry LOWER_LEFT = new CellGeometry("LOWER_LEFT");
+    public static final PixelOrientation LOWER_LEFT = new PixelOrientation("LOWER_LEFT");
 
     /**
      * Next corner counterclockwise from the lower left.
      */
 /// @UML (identifier="lowerRight", obligation=CONDITIONAL)
-    public static final CellGeometry LOWER_RIGHT = new CellGeometry("LOWER_RIGHT");
+    public static final PixelOrientation LOWER_RIGHT = new PixelOrientation("LOWER_RIGHT");
 
     /**
      * Next corner counterclockwise from the lower right.
      */
 /// @UML (identifier="upperRight", obligation=CONDITIONAL)
-    public static final CellGeometry UPPER_RIGHT = new CellGeometry("UPPER_RIGHT");
+    public static final PixelOrientation UPPER_RIGHT = new PixelOrientation("UPPER_RIGHT");
 
     /**
      * Next corner counterclockwise from the upper right.
      */
 /// @UML (identifier="upperLeft", obligation=CONDITIONAL)
-    public static final CellGeometry UPPER_LEFT = new CellGeometry("UPPER_LEFT");
+    public static final PixelOrientation UPPER_LEFT = new PixelOrientation("UPPER_LEFT");
 
     /**
      * Constructs an enum with the given name. The new enum is
@@ -83,18 +83,18 @@ public final class PixelOrientation extends CodeList {
     }
 
     /**
-     * Returns the list of <code>CellGeometry</code>s.
+     * Returns the list of <code>PixelOrientation</code>s.
      */
-    public static CellGeometry[] values() {
+    public static PixelOrientation[] values() {
         synchronized (VALUES) {
-            return (CellGeometry[]) VALUES.toArray(new CellGeometry[VALUES.size()]);
+            return (PixelOrientation[]) VALUES.toArray(new PixelOrientation[VALUES.size()]);
         }
     }
 
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
-    public /*{CellGeometry}*/ CodeList[] family() {
+    public /*{PixelOrientation}*/ CodeList[] family() {
         return values();
     }
 }

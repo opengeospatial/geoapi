@@ -44,14 +44,14 @@ public final class PixelInCell extends CodeList {
     /**
      * The origin of the image coordinate system is the centre of a grid cell or image pixel.
      */
-/// @UML (identifier="cell&nbsp;center", obligation=CONDITIONAL)
+/// @UML (identifier="cell center", obligation=CONDITIONAL)
     public static final PixelInCell CELL_CENTER = new PixelInCell("CELL_CENTER");
 
     /**
      * The origin of the image coordinate system is the corner of a grid cell, or half-way
      * between the centres of adjacent image pixels.
      */
-/// @UML (identifier="cell&nbsp;corner", obligation=CONDITIONAL)
+/// @UML (identifier="cell corner", obligation=CONDITIONAL)
     public static final PixelInCell CELL_CORNER = new PixelInCell("CELL_CORNER");
 
     /**

@@ -375,7 +375,7 @@ public interface GridCoverage extends Coverage {
      *          of type <code>byte[]</code>. Even the <code>java.nio.Buffer</code> doesnt allow
      *          that (it allows the opposite way however).
      */
-/// @UML (identifier="#getPackedDataBlock", obligation=MANDATORY)
+/// @UML (identifier="getPackedDataBlock", obligation=MANDATORY)
     byte[] getPackedDataBlock(GridRange gridRange) throws InvalidRangeException;
 
     /**
