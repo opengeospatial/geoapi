@@ -9,7 +9,8 @@
  *************************************************************************************************/
 package org.opengis.coverage;
 
-// J2SE extensions
+// J2SE and extensions
+import java.util.Locale;
 import javax.units.Unit;
 
 // OpenGIS dependencies
@@ -31,10 +32,11 @@ public interface SampleDimension {
      * Sample dimension title or description.
      * This string may be null or empty if no description is present.
      *
+     * @param  locale The locale, or <code>null</code> for a default locale.
      * @return The sample dimension title or description.
      * @UML mandatory description
      */
-    String getDescription();
+    String getDescription(Locale locale);
 
     /**
      * A code value indicating grid value data type.
@@ -60,10 +62,11 @@ public interface SampleDimension {
      *  </UL>
      * Note: If no category names exist, an empty sequence is returned.
      *
+     * @param  locale The locale, or <code>null</code> for a default locale.
      * @return The sequence of category names for the values contained in a sample dimension.
      * @UML mandatory categoryNames
      */
-    String[] getCategoryNames();
+    String[] getCategoryNames(Locale locale);
 
     /**
      * Color interpretation of the sample dimension.

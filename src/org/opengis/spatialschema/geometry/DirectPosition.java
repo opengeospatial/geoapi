@@ -40,10 +40,11 @@ public interface DirectPosition extends Cloneable {
     int getDimension();
 
     /**
-     * Returns a sequence of numbers that hold the coordinate of this position in its
-     * reference system.
+     * Returns the sequence of numbers that hold the coordinate of this
+     * position in its reference system.
      *
-     * @return The coordinates
+     * @return A copy of the coordinates. Changes in the returned array will not be reflected
+     *         back in this <code>DirectPosition</code> object.
      * @UML mandatory coordinates
      */
     double[] getCoordinates();
