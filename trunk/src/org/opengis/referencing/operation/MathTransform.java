@@ -10,6 +10,7 @@
 package org.opengis.referencing.operation;
 
 // OpenGIS direct dependencies
+import org.opengis.referencing.Identifier;  // For javadoc
 import org.opengis.spatialschema.geometry.DirectPosition;
 import org.opengis.spatialschema.geometry.MismatchedDimensionException;
 
