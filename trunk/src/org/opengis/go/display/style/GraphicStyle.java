@@ -28,41 +28,7 @@ public interface GraphicStyle extends Editability, Highlight, Symbology, Viewabi
     //*************************************************************************
     //  Static Fields
     //*************************************************************************
-    
-    //**  String names for the symbolizers  **
-    
-    /**  <code>Editability</code> attribute name. */
-    public static final String EDITABILITY = "EDITABILITY";
-    
-    /**  <code>Highlight</code> attribute name.  */
-    public static final String HIGHLIGHT = "HIGHLIGHT";
-    
-    /** <code>Symbology</code> attribute name.  */
-    public static final String SYMBOLOGY = "SYMBOLOGY";
-    
-    /** Viewability attribute name. */
-    public static final String VIEWABILITY = "VIEWABILITY";
-    
-    /**  <code>LineSymbolizer</code> attribute name.  */
-    public static final String LINE_SYMBOLIZER = "LINE_SYMBOLIZER";
-    
-    /**  <code>PolygonSymbolizer</code> attribute name.  */
-    public static final String POLYGON_SYMBOLIZER = "POLYGON_SYMBOLIZER";
-    
-    /**  <code>PointSymbolizer</code> attribute name.  */
-    public static final String POINT_SYMBOLIZER = "POINT_SYMBOLIZER";
-    
-    /**  <code>TextSymbolizer</code> attribute name.  */
-    public static final String TEXT_SYMBOLIZER = "TEXT_SYMBOLIZER";
-    
-    //**  Inheritance property names **
-    
-    /**  Inherit style from parent attribute name.  */
-    public static final String INHERIT_STYLE_FROM_PARENT = "INHERIT_STYLE_FROM_PARENT";
 
-    /**  Override aggregated graphics attribute name.  */
-    public static final String OVERRIDE_AGGREGATED_GRAPHICS = "OVERRIDE_AGGREGATED_GRAPHICS";
-    
     //**  Default Inheritance property values  **
     
     /**  Default inherit style from parent value.  */
@@ -75,8 +41,6 @@ public interface GraphicStyle extends Editability, Highlight, Symbology, Viewabi
     //  Methods
     //*************************************************************************
 
-    //**  External configuration code.  **
-    
     /**
      * Returns the <code>Graphic</code> object associated with this
      * <code>GraphicStyle</code> object.

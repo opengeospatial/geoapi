@@ -26,26 +26,7 @@ public interface TextSymbolizer {
     //*************************************************************************
     //  Static Fields
     //*************************************************************************
-    
-    //**  TextSymbolizer properties  **
-    
-    public static final String TEXT_FILL_BACKGROUND_COLOR = "TEXT_FILL_BACKGROUND_COLOR";
-    public static final String TEXT_FILL_COLOR = "TEXT_FILL_COLOR";
-    public static final String TEXT_FILL_GRADIENT_POINTS = "TEXT_FILL_GRADIENT_POINTS"; 
-    public static final String TEXT_FILL_OPACITY = "TEXT_FILL_OPACITY";
-    public static final String TEXT_FILL_PATTERN = "TEXT_FILL_PATTERN";
-    public static final String TEXT_FILL_STYLE = "TEXT_FILL_STYLE";
-    public static final String TEXT_FONT = "TEXT_FONT";
-    public static final String TEXT_HALO_RADIUS = "TEXT_HALO_RADIUS";
-    public static final String TEXT_LABEL = "TEXT_LABEL"; 
-    public static final String TEXT_LABEL_ROTATION = "TEXT_ROTATION";
-    public static final String TEXT_LABEL_SHOW_LABEL = "TEXT_SHOW_LABEL";
-    public static final String TEXT_LABEL_X_ANCHOR = "TEXT_X_ANCHOR";
-    public static final String TEXT_LABEL_Y_ANCHOR = "TEXT_Y_ANCHOR";
-    public static final String TEXT_LABEL_X_DISPLACEMENT = "TEXT_X_DISPLACEMENT";
-    public static final String TEXT_LABEL_Y_DISPLACEMENT = "TEXT_Y_DISPLACEMENT";
-    
-    
+
     //**  Default values  **
     
     /**  Default fill color value.  */

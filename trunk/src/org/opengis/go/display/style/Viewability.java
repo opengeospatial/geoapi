@@ -21,13 +21,6 @@ public interface Viewability {
     //*************************************************************************
     //  Static Fields
     //*************************************************************************
- 
-    //**  Viewability property names  **
-    
-    public static final String VIEWABILITY_MAX_SCALE = "VIEWABILITY_MAX_SCALE";    
-    public static final String VIEWABILITY_MIN_SCALE = "VIEWABILITY_MIN_SCALE";    
-    public static final String VIEWABILITY_VISIBLE = "VIEWABILITY_VISIBLE";    
-    public static final String VIEWABILITY_Z_ORDER = "VIEWABILITY_Z_ORDER";
 
     //**  Default Viewability property values  **
     

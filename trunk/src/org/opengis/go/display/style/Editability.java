@@ -22,14 +22,7 @@ public interface Editability {
     //*************************************************************************
     //  Static Fields
     //*************************************************************************
-      
-    //**  Editability property names  **
-    
-    public static final String EDITABILITY_AUTO_EDIT = "EDITABILITY_AUTO_EDIT";    
-    public static final String EDITABILITY_DRAG_SELECTABLE = "EDITABILITY_DRAG_SELECTABLE";    
-    public static final String EDITABILITY_PICKABLE = "EDITABILITY_PICKABLE";    
-    public static final String EDITABILITY_SELECTED = "EDITABILITY_SELECTED";  
-    
+
     //**  Default Editability property values  **
     
     /**  Default auto edit value.  */

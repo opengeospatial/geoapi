@@ -25,28 +25,7 @@ public interface LineSymbolizer {
     //*************************************************************************
     //  Static Fields
     //*************************************************************************
-    
-    //**  LineSymbolizer properties  **
-    
-    public static final String LINE_STROKE_BEGIN_ARROW_STYLE = "LINE_STROKE_BEGIN_ARROW_STYLE";
-    public static final String LINE_STROKE_END_ARROW_STYLE = "LINE_STROKE_END_ARROW_STYLE";
-    public static final String LINE_STROKE_COLOR = "LINE_STROKE_COLOR";    
-    public static final String LINE_STROKE_DASH_ARRAY = "LINE_STROKE_DASH_ARRAY";
-    public static final String LINE_STROKE_DASH_OFFSET = "LINE_STROKE_DASH_OFFSET";
-    public static final String LINE_STROKE_FILL_BACKGROUND_COLOR = "LINE_STROKE_FILL_BACKGROUND_COLOR";
-    public static final String LINE_STROKE_FILL_COLOR = "LINE_STROKE_FILL_COLOR";
-    public static final String LINE_STROKE_FILL_GRADIENT_POINTS = "LINE_STROKE_FILL_GRADIENT_POINTS"; 
-    public static final String LINE_STROKE_FILL_OPACITY = "LINE_STROKE_FILL_OPACITY";
-    public static final String LINE_STROKE_FILL_PATTERN = "LINE_STROKE_FILL_PATTERN";
-    public static final String LINE_STROKE_FILL_STYLE = "LINE_STROKE_FILL_STYLE";
-    public static final String LINE_STROKE_LINE_CAP = "LINE_STROKE_LINE_CAP";
-    public static final String LINE_STROKE_LINE_GAP = "LINE_STROKE_LINE_GAP";
-    public static final String LINE_STROKE_LINE_JOIN = "LINE_STROKE_LINE_JOIN";
-    public static final String LINE_STROKE_LINE_STYLE = "LINE_STROKE_LINE_STYLE";
-    public static final String LINE_STROKE_OPACITY = "LINE_STROKE_OPACITY";
-    public static final String LINE_STROKE_PATTERN = "LINE_STROKE_PATTERN";
-    public static final String LINE_STROKE_WIDTH = "LINE_STROKE_WIDTH";
-    
+
     //**  Default LineSymbolizer property values  **
     
     /**  Default begin arrow style value.  */

@@ -22,12 +22,7 @@ public interface Highlight {
     //*************************************************************************
     //  Static Fields
     //*************************************************************************
-    
-    //**  Highlight property names  **
-    
-    public static final String HIGHLIGHT_BLINK_PATTERN = "HIGHLIGHT_BLINK_PATTERN";    
-    public static final String HIGHLIGHT_BLINKING = "HIGHLIGHT_BLINKING";
-    
+
     //**  Default Highlight property values  **    
     
     /**  Default blinking value.  */

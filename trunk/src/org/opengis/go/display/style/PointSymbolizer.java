@@ -24,40 +24,8 @@ public interface PointSymbolizer {
     //*************************************************************************
     //  Static Fields
     //*************************************************************************
-    
-    //**  PointSymbolizer properties  **
-    
-    public static final String POINT_FILL_BACKGROUND_COLOR = "POINT_FILL_BACKGROUND_COLOR";
-    public static final String POINT_FILL_COLOR = "POINT_FILL_COLOR";
-    public static final String POINT_FILL_GRADIENT_POINTS = "POINT_FILL_GRADIENT_POINTS"; 
-    public static final String POINT_FILL_OPACITY = "POINT_FILL_OPACITY";
-    public static final String POINT_FILL_PATTERN = "POINT_FILL_PATTERN";
-    public static final String POINT_FILL_STYLE = "POINT_FILL_STYLE";
-    public static final String POINT_MARK = "POINT_MARK";
-    public static final String POINT_OPACITY = "POINT_OPACITY";
-    public static final String POINT_ROTATION = "POINT_ROTATION";
-    public static final String POINT_SIZE = "POINT_SIZE";
-    public static final String POINT_STROKE_BEGIN_ARROW_STYLE = "POINT_STROKE_BEGIN_ARROW_STYLE";
-    public static final String POINT_STROKE_END_ARROW_STYLE = "POINT_STROKE_END_ARROW_STYLE";
-    public static final String POINT_STROKE_COLOR = "POINT_STROKE_COLOR"; 
-    public static final String POINT_STROKE_DASH_ARRAY = "POINT_STROKE_DASH_ARRAY";
-    public static final String POINT_STROKE_DASH_OFFSET = "POINT_STROKE_DASH_OFFSET";
-    public static final String POINT_STROKE_FILL_BACKGROUND_COLOR = "POINT_STROKE_FILL_BACKGROUND_COLOR";
-    public static final String POINT_STROKE_FILL_COLOR = "POINT_STROKE_FILL_COLOR";
-    public static final String POINT_STROKE_FILL_GRADIENT_POINTS = "POINT_STROKE_FILL_GRADIENT_POINTS"; 
-    public static final String POINT_STROKE_FILL_OPACITY = "POINT_STROKE_FILL_OPACITY";
-    public static final String POINT_STROKE_FILL_PATTERN = "POINT_STROKE_FILL_PATTERN";
-    public static final String POINT_STROKE_FILL_STYLE = "POINT_STROKE_FILL_STYLE";
-    public static final String POINT_STROKE_LINE_CAP = "POINT_STROKE_LINE_CAP";
-    public static final String POINT_STROKE_LINE_GAP = "POINT_STROKE_LINE_GAP";
-    public static final String POINT_STROKE_LINE_JOIN = "POINT_STROKE_LINE_JOIN";
-    public static final String POINT_STROKE_LINE_PATTERN = "POINT_STROKE_LINE_PATTERN";
-    public static final String POINT_STROKE_LINE_STYLE = "POINT_STROKE_LINE_STYLE";
-    public static final String POINT_STROKE_OPACITY = "POINT_STROKE_OPACITY";
-    public static final String POINT_STROKE_WIDTH = "POINT_STROKE_WIDTH";
-    public static final String POINT_STROKE_PATTERN = "POINT_STROKE_PATTERN";
-    
-	//**  Default PointSymbolizer property values
+
+    //**  Default PointSymbolizer property values
     
     /**  Default fill background color value.  */
     public static final Color DEFAULT_POINT_FILL_BACKGROUND_COLOR = Color.BLACK;
@@ -99,7 +67,7 @@ public interface PointSymbolizer {
     public static final Color DEFAULT_POINT_STROKE_COLOR = Color.BLACK;
    
 	/**  Default dash array value.  */
-	public static final DashArray DEFAULT_POINT_STROKE_DASH_ARRAY = (DashArray) DashArray.NONE;
+	public static final DashArray DEFAULT_POINT_STROKE_DASH_ARRAY = DashArray.NONE;
     
 	/**  Default dash offset value.  */
 	public static final float DEFAULT_POINT_STROKE_DASH_OFFSET = 0.f;
