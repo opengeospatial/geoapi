@@ -136,6 +136,8 @@ public final class UmlTaglet implements Taglet {
                 type = "code list";
             } else if (type.equalsIgnoreCase("abstract")) {
                 type = "abstract type";
+            } else if (type.equalsIgnoreCase("type")) {
+                type = "abstract type";
             } else if (type.equalsIgnoreCase("datatype")) {
                 type = "data type";
             } else if (type.equalsIgnoreCase("mandatory")) {
@@ -146,6 +148,8 @@ public final class UmlTaglet implements Taglet {
                 type = "optional attribute";
             } else if (type.equalsIgnoreCase("association")) {
                 type = "association";
+            } else if (type.equalsIgnoreCase("operation")) {
+                type = "operation";
             } else {
                 warning(tag, "Unknow UML type: "+type);
             }
