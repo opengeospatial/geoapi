@@ -36,19 +36,6 @@ public interface Identifier {
     String getCode();
 
     /**
-     * Identifier of a code space within which one or more codes are defined. This code space
-     * is optional but is normally included. This code space is often defined by some authority
-     * organization, where one organization may define multiple code spaces. The range and format
-     * of each Code Space identifier is defined by that code space authority.
-     *
-     * @return The code space, or <code>null</code> if not available.
-     *
-     * @deprecated This method is not defined in ISO 19115. It was defined in ISO 19111,
-     *             but was abandonned in latest revision in favor of ISO 19115 interface.
-     */
-    String getCodeSpace();
-
-    /**
      * Identifier of the version of the associated code space or code, as specified
      * by the code space or code authority. This version is included only when the
      * {@linkplain #getCode code} or {@linkplain #getCodeSpace code space} uses versions.

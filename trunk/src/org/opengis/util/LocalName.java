@@ -33,7 +33,7 @@ public interface LocalName extends GenericName {
      * value than the one returned by the {@linkplain ScopedName scoped} version of this
      * name. In other words, the following relation shall be respected:
      * <blockquote><table border='0'><tr>
-     *   <td nowrap>{@link ScopedName#getLocaleName}</td>
+     *   <td nowrap>{@link ScopedName#asLocalName}</td>
      *   <td nowrap><code>.getScope() ==</code></td>
      *   <td nowrap align="right">{@link ScopedName}</td>
      *   <td nowrap><code>.getScope()</code></td>
@@ -54,6 +54,12 @@ public interface LocalName extends GenericName {
      */
 /// @UML (identifier="parsedName", obligation=MANDATORY)
     List/*<LocalName>*/ getParsedNames();
+
+    /**
+     * Returns a view of this object as a local name. Since this object is already
+     * a local name, this method always returns <code>this</code>.
+     */
+    LocalName asLocalName();
 
     /**
      * Returns a locale-independant string representation of this local name.

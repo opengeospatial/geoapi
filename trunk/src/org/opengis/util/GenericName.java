@@ -52,6 +52,17 @@ public interface GenericName extends Comparable {
     List/*<LocalName>*/ getParsedNames();
 
     /**
+     * Returns a view of this object as a scoped name.
+     */
+    ScopedName asScopedName();
+
+    /**
+     * Returns a view of this object as a local name. The local name returned by this method
+     * will have the same {@linkplain LocalName#getScope scope} than this generic name.
+     */
+    LocalName asLocalName();
+
+    /**
      * Returns a string representation of this generic name. This string representation
      * is local-independant. It contains all elements listed by {@link #getParsedNames}
      * separated by an arbitrary character (usually <code>:</code> or <code>/</code>).
