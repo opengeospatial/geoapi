@@ -28,10 +28,22 @@ public interface OperationParameterGroup extends GeneralOperationParameter {
     /**
      * Creates a new instance of {@linkplain ParameterValueGroup parameter value group}
      * initialized with the {@linkplain OperationParameter#getDefaultValue default values}.
+     * <p>
      * The {@linkplain ParameterValueGroup#getDescriptor parameter value descriptor}
      * for the created group will be <code>this</code> object.
+     * </p>
+     * <p>
+     * Included ParameterValues:
+     * <ul>
+     * <li>For OppertionParameter with cardinality 1:1 a ParameterValue will be included with
+     * the defaultValue (even if this defaultValue is null).
+     * <li>For OpperationParameters that with cardinality 0:* no entry will be generated, client code
+     * will need to look up the correct descriptor and create these optional ParameterValues. 
+     * </ul>
+     * </p>
      */
-/// ParameterValueGroup createValue();
+    // ParameterValueGroup createValue();     
+    GeneralParameterValue createValue(); // override for javadoc comment
 
     /**
      * Returns the parameters in this group.
@@ -43,10 +55,14 @@ public interface OperationParameterGroup extends GeneralOperationParameter {
 
     /**
      * Returns the first parameter in this group for the specified {@linkplain Identifier#getCode
-     * identifier code}. If no {@linkplain OperationParameter operation parameter} is found for
-     * the given code, then this method search recursively in subgroups (if any). This convenience
-     * method provides a way to get and set parameter information by name. For example the following
-     * idiom fetches the default value for the <code>"false_easting"</code> parameter:
+     * identifier code}.
+     * <p>
+     * If no {@linkplain OperationParameter operation parameter} is found for
+     * the given code, then this method search recursively in subgroups (if any).
+     * </p>
+     * <p>This convenience method provides a way to get and set parameter information by name.
+     * For example the following idiom fetches the default value for the
+     * <code>"false_easting"</code> parameter:
      * <br><br>
      * <blockquote><code>
      * Object defaultValue = getParameter("false_easting").{@linkplain OperationParameter#getDefaultValue() getDefaultValue()};
@@ -60,4 +76,5 @@ public interface OperationParameterGroup extends GeneralOperationParameter {
      * @throws ParameterNotFoundException if there is no parameter for the given identifier code.
      */
     OperationParameter getParameter(String name) throws ParameterNotFoundException;
+        
 }
