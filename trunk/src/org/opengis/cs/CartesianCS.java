@@ -24,6 +24,12 @@ package org.opengis.cs;
  * @version 2.0
  *
  * @see ObliqueCartesianCS
+ *
+ * @revisit This interface sounds like a special case of {@link ObliqueCartesianCS}.
+ *          Then, why it doesn't extends <code>ObliqueCartesianCS</code>? It would
+ *          help to clarify the semantic of {@link org.opengis.sc.ImageCRS} (no need
+ *          for separated <code>getCartesianCS()</code> and <code>getObliqueCartesianCS()</code>
+ *          methods).
  */
 public interface CartesianCS extends CoordinateSystem {
 }

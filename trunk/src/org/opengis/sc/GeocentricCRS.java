@@ -23,6 +23,11 @@ import org.opengis.cd.GeodeticDatum;
  *
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 2.0
+ *
+ * @revisit This interface defines three methods for querying the coordinate system:
+ *          {@link #getCoordinateSystem() getCoordinateSystem()}, {@link #getCartesianCS()}
+ *          and {@link #getSphericalCS()}. What is the relationship between those three
+ *          methods? Which coordinate system should <code>getCoordinateSystem()</code> returns?
  */
 public interface GeocentricCRS extends CoordinateReferenceSystem {
     /**

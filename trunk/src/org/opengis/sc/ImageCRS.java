@@ -23,6 +23,15 @@ import org.opengis.cd.ImageDatum;
  *
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 2.0
+ *
+ * @revisit <ul>
+ *            <li>If this is an engineering CRS, why it doesn't extends {@link EngineeringCRS}?</li>
+ *            <li>This interface defines three methods for querying the coordinate system:
+ *                {@link #getCoordinateSystem() getCoordinateSystem()}, {@link #getCartesianCS()}
+ *                and {@link #getObliqueCartesianCS()}. What is the relationship between those three
+ *                methods? Should only one of them be valid at a given time? Why not just stick with
+ *                <code>getCoordinateSystem()</code> and lets the user cast the return type?</li>
+ *          </ul>
  */
 public interface ImageCRS extends CoordinateReferenceSystem {
     /**
