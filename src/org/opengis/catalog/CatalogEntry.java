@@ -40,80 +40,71 @@ import java.util.Iterator;
  * were inferred from reading the abstract catalog specification: 
  * <A HREF="http://www.opengis.org/docs/99-113.pdf">Catalog Services</A> section 3.1.2
  * 
- * @UML abstract CG_CatalogEntity
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A> 
  * @version <A HREF="http://www.opengis.org/docs/02-087r3.pdf">Catalog Services 1.1.1</A> 
+ * @UML abstract CG_CatalogEntity
  */
 public interface CatalogEntry{
 	
 	/**
 	 * Each CatalogEntry describes a resource, this method provides access to that
 	 * resource.
-	 * <p>
-	 * See Section 3.1.2.1 <i>Functions </i> in the <A
-	 * HREF="http://www.opengis.org/docs/99-113.pdf">OGC Abstract Catalog
-	 * Services </A> Specification
-	 * </p>
 	 *  
 	 * @return The resource described by current CatalogEntry
-	 */
+     * @UML inferred from Section 3.1.2.1 <i>Functions </i> in the
+     *      <A HREF="http://www.opengis.org/docs/99-113.pdf">OGC Abstract
+     *      Catalog Services </A> Specification 
+     */
 	public Object getResource();
 	/**
 	 * Used to obtain the name of Associated Data.    
-	 * <p>
-	 * See Section 3.1.2.1 <i>Functions </i> in the <A
-	 * HREF="http://www.opengis.org/docs/99-113.pdf">OGC Abstract Catalog
-	 * Services </A> Specification
-	 * </p>
 	 * 
 	 * @return The name of the associated data
+     * @UML inferred from Section 3.1.2.1 <i>Functions </i> in the
+     *      <A HREF="http://www.opengis.org/docs/99-113.pdf">OGC Abstract
+     *      Catalog Services </A> Specification 
 	 */
 	public String getDataName();
 	/**
 	 * Returns the number of MetaDataEntity associated with the CatalogEntry
 	 * @return The number of MetaDataEntity
+     * @UML inferred from Section 3.1.2.1 <i>Functions </i> in the
+     *      <A HREF="http://www.opengis.org/docs/99-113.pdf">OGC Abstract
+     *      Catalog Services </A> Specification 
 	 */
 	public int getNumMetaDataEntity();
 	/**
 	 * Returns an array of the names of the MetaDataEntity associated with the CatalogEntry
-	 * <p>
-	 * See Section 3.1.2.1 <i>Functions </i> in the <A
-	 * HREF="http://www.opengis.org/docs/99-113.pdf">OGC Abstract Catalog
-	 * Services </A> Specification
-	 * </p>
 	 * @return An array with all the MetaDataEntity names
+     * @UML inferred from Section 3.1.2.1 <i>Functions </i> in the
+     *      <A HREF="http://www.opengis.org/docs/99-113.pdf">OGC Abstract
+     *      Catalog Services </A> Specification 
 	 */
 	public String[] getMetaDataEntityNames();
 	/**
 	 * Obtain the MetaDataEntity referenced by the index
-	 * <p>
-	 * See Section 3.1.2.1 <i>Functions </i> in the <A
-	 * HREF="http://www.opengis.org/docs/99-113.pdf">OGC Abstract Catalog
-	 * Services </A> Specification
-	 * </p>
 	 * @param index the index of the MetaDataEntity required
 	 * @return the indexed MetaDataEntity
+     * @UML inferred from Section 3.1.2.1 <i>Functions </i> in the
+     *      <A HREF="http://www.opengis.org/docs/99-113.pdf">OGC Abstract
+     *      Catalog Services </A> Specification 
 	 */
 	public MetaDataEntity getMetaDataEntity(int index);
 	/**
 	 * Obtain the MetaDataEntity refered to by the name
-	 * <p>
-	 * See Section 3.1.2.1 <i>Functions </i> in the <A
-	 * HREF="http://www.opengis.org/docs/99-113.pdf">OGC Abstract Catalog
-	 * Services </A> Specification
-	 * </p>
 	 * @param name the name of the MetaDataEntity required
 	 * @return the requested MetaDataEntity
+     * @UML inferred from Section 3.1.2.1 <i>Functions </i> in the
+     *      <A HREF="http://www.opengis.org/docs/99-113.pdf">OGC Abstract
+     *      Catalog Services </A> Specification 
 	 */
 	public MetaDataEntity getMetaDataEntity(String name);
 	/**
 	 * Returns an iterator that can be used to iterate through the associated MetaDataEntity 
-	 * <p>
-	 * See Section 3.1.2.1 <i>Functions </i> in the <A
-	 * HREF="http://www.opengis.org/docs/99-113.pdf">OGC Abstract Catalog
-	 * Services </A> Specification
-	 * </p>
 	 * @return An iterator for iterating through the MetaDataEntity
+     * @UML inferred from Section 3.1.2.1 <i>Functions </i> in the
+     *      <A HREF="http://www.opengis.org/docs/99-113.pdf">OGC Abstract
+     *      Catalog Services </A> Specification 
 	 */
 	public Iterator MetaDataEntityIterator();
 }
