@@ -2,7 +2,8 @@
 <!-- ========================================================================
 
      Ant script for building GeoAPI interfaces, javadoc, jars and zip file.
-     Before running, make sure to set 'basedir', 'sourcepath' and 'tagletpath' properties.
+     Before running, make sure to set 'basedir' and 'homepath' properties.
+     'basedir' is the destination directory; 'homepath' is the CVS installation.
 
      NOTE: The following environment variable should be set
            for using the generic compiler with Ant:
@@ -15,9 +16,8 @@
 
 <project name="GeoAPI" default="release" basedir="D:/Application/GeoAPI">
 
-  <property name="sourcepath"  value="P:/CVSROOT/GeoAPI/src"/>
-  <property name="tagletpath"  value="P:/CVSROOT/GeoAPI/scripts"/>
-  <property name="version"     value="2.0"/>
+  <property name="homepath" value="P:/CVSROOT/GeoAPI"/>
+  <property name="version"  value="2.0"/>
 
 
 
@@ -68,7 +68,7 @@
     </tstamp>
 
     <copy todir="sources" includeEmptyDirs="false" overwrite="true">
-      <fileset dir="${sourcepath}">
+      <fileset dir="${homepath}/src">
         <exclude name="**/.*"/>
         <exclude name="**/*.class"/>
       </fileset>
@@ -129,7 +129,7 @@
              doctitle         = "OpenGIS API"
              header           = "OpenGIS API"
              additionalparam  = "-quiet -noqualifier all
-                                 -tagletpath ${tagletpath}
+                                 -tagletpath ${homepath}/scripts
                                  -taglet org.opengis.tools.UmlTaglet
                                  -tag rename:m:&quot;Name change from UML &lt;FONT COLOR='#A01020'&gt;(a GeoAPI's proposal)&lt;/FONT&gt;:&quot;
                                  -taglet org.opengis.tools.RevisitTaglet">
@@ -154,6 +154,55 @@
     <copy todir="javadoc/org/opengis/doc-files">
       <fileset dir="sources/org/opengis/doc-files"/>
     </copy>
+
+  </target>
+
+
+
+
+  <!-- ======================================================================
+
+       LEGACY: Create HTML javadoc for legacy interfaces (version 1.0)
+
+       ====================================================================== -->
+
+  <target name="legacy" depends="javadoc">
+
+    <delete includeEmptyDirs="true" failonerror="false">
+      <fileset dir="legacy"/>
+    </delete>
+
+    <javadoc sourcepath       = "${homepath}/legacy"
+             classpath        = "${homepath}/legacy"
+             destdir          = "legacy"
+             use              = "true"
+             nodeprecatedlist = "true"
+             author           = "false"
+             version          = "true"
+             overview         = "${homepath}/legacy/org/opengis/overview.html"
+             windowtitle      = "Legacy OpenGIS API"
+             doctitle         = "Legacy OpenGIS API"
+             header           = "Legacy OpenGIS API"
+             additionalparam  = "-quiet -noqualifier all">
+
+      <bottom>
+        &lt;TABLE WIDTH='100%'&gt;&lt;TR&gt;&lt;TD NOWRAP&gt;
+        &lt;A HREF=&quot;{@docRoot}/../javadoc/index.html&quot;&gt;New (current) interfaces&lt;/A&gt;&lt;BR&gt;
+        &lt;/TD&gt;&lt;TD NOWRAP ALIGN='right'&gt;
+        &lt;FONT SIZE='2'&gt;Copyright &lt;A HREF=&quot;http://www.opengis.org/&quot;&gt;OpenGIS&amp;reg; Consortium&lt;/A&gt;&lt;/FONT&gt;
+        &lt;/TD&gt;&lt;/TR&gt;&lt;/TABLE&gt;
+      </bottom>
+
+      <fileset dir="${homepath}/legacy">
+        <include name="org/**/*.java"/>
+      </fileset>
+
+      <link href="http://java.sun.com/j2se/1.4/docs/api"/>
+      <link href="../javadoc"/>
+
+      <group title="Coordinate Transformation services" packages="org.opengis.cs:org.opengis.ct:org.opengis.pt"/>
+      <group title="Grid Coverages services"            packages="org.opengis.cv:org.opengis.gc:org.opengis.gp"/>
+    </javadoc>
 
   </target>
 
