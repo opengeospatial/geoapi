@@ -1,6 +1,12 @@
-/*
- * Copyright (C) 2003 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
- */
+/*$************************************************************************************************
+ **
+ ** $Id$
+ **
+ ** $Source$
+ **
+ ** Copyright (C) 2003 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
+ **
+ *************************************************************************************************/
 package org.opengis.crs.operation;
 
 // OpenGIS dependencies

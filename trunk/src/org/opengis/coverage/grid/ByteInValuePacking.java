@@ -1,6 +1,12 @@
-/*
- * Copyright (C) 2003 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
- */
+/*$************************************************************************************************
+ **
+ ** $Id$
+ **
+ ** $Source$
+ **
+ ** Copyright (C) 2003 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
+ **
+ *************************************************************************************************/
 package org.opengis.coverage.grid;
 
 //J2SE direct dependencies
