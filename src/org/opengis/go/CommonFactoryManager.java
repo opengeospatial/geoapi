@@ -7,20 +7,20 @@
  ** Copyright (C) 2003 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
  **
  *************************************************************************************************/
-
 package org.opengis.go;
-
-//import com.dautelle.JADE;
 
 import java.util.HashMap;
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
 
+import org.opengis.crs.FactoryException;
+import org.opengis.crs.crs.CRSAuthorityFactory;
+import org.opengis.crs.crs.CRSFactory;
 import org.opengis.crs.crs.CoordinateReferenceSystem;
-import org.opengis.crs.crs.CoordinateReferenceSystemFactory;
 import org.opengis.crs.crs.UnsupportedCRSException;
 import org.opengis.crs.datum.Datum;
 import org.opengis.crs.datum.DatumAuthorityFactory;
+import org.opengis.crs.datum.DatumFactory;
 import org.opengis.go.geometry.Bounds;
 import org.opengis.go.geometry.BoundsFactory;
 import org.opengis.spatialschema.SpatialschemaFactory;
@@ -30,13 +30,13 @@ import org.opengis.spatialschema.SpatialschemaFactory;
  * to access the application's default <code>CommonFactory</code>
  * implementation.
  * <p>
- * The default <code>CommonFactory</code> implementation may be
- * overridden in one of two ways: by setting the system property
- * <code>org.ogc.go1.CommonFactoryClass</code> to the fully qualified name
- * of a class that implements <code>CommonFactory</code> (using the "-D"
- * option when starting the virtual machine or
- * <code>System.setProperty()</code>) or by adding the line
- * "<code>org.ogc.go1.CommonFactoryClass=<i>className</i></code>" to the
+ * The default <code>CommonFactory</code> implementation may be overridden in
+ * one of two ways: by setting the system property
+ * <code>org.ogc.go1.CommonFactoryClass</code> to the fully qualified name of
+ * a class that implements <code>CommonFactory</code> (using the "-D" option
+ * when starting the virtual machine or <code>System.setProperty()</code>) or
+ * by adding the line "
+ * <code>org.ogc.go1.CommonFactoryClass=<i>className</i></code>" to the
  * file <code>org/ogc/go1/common/Common.properties</code>, where
  * <code><i>className</i></code> is the fully qualified name of a class that
  * implements <code>CommonFactory</code>.
@@ -51,9 +51,9 @@ public class CommonFactoryManager {
     //*************************************************************************
     
     /**
-     * The mapping of CommonFactory class names to CommonFactory instances.
-     * Used to store CommonFactoryImpls other than (but also including) the
-     * default impl.
+     * The mapping of CommonFactory class names to CommonFactory instances. Used
+     * to store CommonFactoryImpls other than (but also including) the default
+     * impl.
      */
     private static HashMap factoryMap;
     
@@ -61,31 +61,33 @@ public class CommonFactoryManager {
      * The default CommonFactoryImpl and its subfactories.
      */
     private static CommonFactory commonFactory;
-    private static CoordinateReferenceSystemFactory coordinateReferenceSystemFactory;
-    private static SpatialschemaFactory spatialschemaFactory;
-    private static DatumAuthorityFactory datumAuthorityFactory;
+
     private static BoundsFactory boundsFactory;
     
+    private static CRSFactory crsFactory;
+
+    private static CRSAuthorityFactory crsAuthorityFactory;
+
+    private static DatumAuthorityFactory datumAuthorityFactory;
+
+    private static DatumFactory datumFactory;
+
+    private static SpatialschemaFactory spatialschemaFactory;
+
     // Initialize our static fields...
     static {
-    	// Initialize the JADE unit database.
-//    	JADE.initialize();
-    	
         try {
             
             // Get the system property.
-            String cfClassName =
-                System.getProperty("org.opengis.go.CommonFactoryClass");
+            String cfClassName = System.getProperty("org.opengis.go.CommonFactoryClass");
             
             // If the system property was not set, try to read from the file
             // "org/ogc/go1/common/Common.properties".
             if (cfClassName == null) {
                 try {
-                    ResourceBundle commonResources =
-                        ResourceBundle.getBundle("org.opengis.go.Common");
+                    ResourceBundle commonResources = ResourceBundle.getBundle("org.opengis.go.Common");
                     if (commonResources != null) {
-                        cfClassName = commonResources.
-                            getString("org.opengis.go.CommonFactoryClass");
+                        cfClassName = commonResources.getString("org.opengis.go.CommonFactoryClass");
                     }
                 } catch (MissingResourceException mie) {
                     // If the properties file was not present, then we'll
@@ -98,10 +100,10 @@ public class CommonFactoryManager {
             if (cfClassName == null) {
                 throw new FactoryManagerInitializationException();
             }
+
             // Otherwise, try to instantiate a new instance.
             Class cfClass = Class.forName(cfClassName);
-            commonFactory = (org.opengis.go.CommonFactory)
-                                cfClass.newInstance();
+            commonFactory = (org.opengis.go.CommonFactory) cfClass.newInstance();
             
             // set up the factoryMap and put the default factory in it
             // factoryMap's size starts out at 1 because in most cases
@@ -110,31 +112,32 @@ public class CommonFactoryManager {
             factoryMap.put(cfClassName, commonFactory);
             
             // Retrieve some information used in the convenience methods.
-            spatialschemaFactory = commonFactory.getSpatialschemaFactory();
-            coordinateReferenceSystemFactory = commonFactory.getCoordinateReferenceSystemFactory();
-            datumAuthorityFactory = commonFactory.getDatumAuthorityFactory();
             boundsFactory = commonFactory.getBoundsFactory();
-        }
-        catch (Exception e) {
+            crsFactory = commonFactory.getCRSFactory();
+            crsAuthorityFactory = commonFactory.getCRSAuthorityFactory();
+            datumAuthorityFactory = commonFactory.getDatumAuthorityFactory();
+            datumFactory = commonFactory.getDatumFactory();
+            spatialschemaFactory = commonFactory.getSpatialschemaFactory();
+
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
     
     /**
      * Returns the <code>CommonFactory</code> instance with the given
-     * className.  If that particular type of <code>CommonFactory</code>
-     * has not been created, then a new instance will be instantiated.
+     * className. If that particular type of <code>CommonFactory</code> has
+     * not been created, then a new instance will be instantiated.
+     * 
      * @param className the class name of the requested 
      *        <code>CommonFactory</code>.
      */
-    public static CommonFactory getCommonFactory(String className) 
-            throws ClassNotFoundException, IllegalAccessException, 
-                   InstantiationException {
+    public static CommonFactory getCommonFactory(String className) throws ClassNotFoundException,
+            IllegalAccessException, InstantiationException {
         if (factoryMap.containsKey(className)) {
             return (CommonFactory)factoryMap.get(className);   
         }
-        CommonFactory factory = 
-            (CommonFactory)Class.forName(className).newInstance();
+        CommonFactory factory = (CommonFactory) Class.forName(className).newInstance();
         factoryMap.put(className, factory);
         return factory;
     }
@@ -144,37 +147,47 @@ public class CommonFactoryManager {
      */
     //public static void releaseCommonFactory(CommonFactory factory) {
     //}
-
+    //** Factory accessors **
     /**
-    * Convenience method that returns the <code>SpatialschemaFactory</code>
-    * instance from the default <code>CommonFactory</code>.
-    */
-   public static SpatialschemaFactory getSpatialschemaFactory() {
-       return spatialschemaFactory;
-   }
-
-    /**
-     * Convenience method that returns the <code>DatumFactory</code> instance
+     * Convenience method that returns the <code>BoundsFactory</code> instance
      * from the default <code>CommonFactory</code>.
      */
-    public static CoordinateReferenceSystemFactory getCoordinateReferenceSystemFactory() {
-        return coordinateReferenceSystemFactory;
+    public static BoundsFactory getBoundsFactory() {
+        return boundsFactory;
     }
 
     /**
-     * Convenience method that returns the <code>DatumFactory</code> instance
-     * from the default <code>CommonFactory</code>.
+     * Convenience method that returns the
+     * <code>CoordinateReferenceSystemFactory</code> instance from the default
+     * <code>CommonFactory</code>.
+    */
+    public static CRSFactory getCRSFactory() {
+        return crsFactory;
+   }
+
+    /**
+     * Convenience method that returns the
+     * <code>CoordinateReferenceSystemFactory</code> instance from the default
+     * <code>CommonFactory</code>.
+     */
+    public static CRSAuthorityFactory getCRSAuthorityFactory() {
+        return crsAuthorityFactory;
+    }
+
+    /**
+     * Convenience method that returns the <code>DatumAuthorityFactory</code>
+     * instance from the default <code>CommonFactory</code>.
      */
     public static DatumAuthorityFactory getDatumAuthorityFactory() {
         return datumAuthorityFactory;
     }
 
     /**
-     * Convenience method that returns the <code>BoundsFactory</code>
+     * Convenience method that returns the <code>SpatialschemaFactory</code>
      * instance from the default <code>CommonFactory</code>.
      */
-    public static BoundsFactory getBoundsFactory() {
-            return boundsFactory;
+    public static SpatialschemaFactory getSpatialschemaFactory() {
+        return spatialschemaFactory;
     }
 
     /**
@@ -188,17 +201,22 @@ public class CommonFactoryManager {
     /**
      * A shortcut method for creating a new spatialschema <code>Object</code> 
      * that has a <code>CoordinateReferenceSystsm</code>.
-     * @param coordInterface The <code>Class</code> of a spatialschema <code>Object</code>.
+     * 
+     * @param coordInterface The <code>Class</code> of a spatialschema
+     *        <code>Object</code>.
      * @param crs the <code>CoordinateReferenceSystem</code> to be used.
      * @return Returns the newly created spatialschema <code>Object</code>.
      */
-    public static Object createObjectWithCRS(Class coordInterface, CoordinateReferenceSystem crs) throws UnsupportedCRSException {
+    public static Object createObjectWithCRS(Class coordInterface, CoordinateReferenceSystem crs)
+            throws UnsupportedCRSException {
         return spatialschemaFactory.createObjectWithCRS(coordInterface, crs);
     }
 
     /**
      * A shortcut method for creating a new spatialschema <code>Object</code>.
-     * @param coordinateInterface The <code>Class</code> of a spatialschema <code>Object</code>.
+     * 
+     * @param coordinateInterface The <code>Class</code> of a spatialschema
+     *        <code>Object</code>.
      * @return Returns the newly created spatialschema <code>Object</code>.
      */
     public static Object createObject(Class coordinateInterface) {
@@ -209,30 +227,24 @@ public class CommonFactoryManager {
 
     /**
      * A shortcut method that gets a Datum by name.
-     * @param datumName The name of the datum to get.
-     * @return Returns the Datum or null if no datum of the given name is
-     *   known.
+     * 
+     * @param code The code of the datum to get.
+     * @return Returns the Datum or null if no datum of the given name is known.
      */
-    public static Datum getDatum(String datumName) {
-        try {
-            return datumAuthorityFactory.createDatum(datumName);
-        } catch (org.opengis.crs.FactoryException exception) {
-            // TODO: WRONG THING TO DO! We should not eat checked exception.
-            //       This is just a temporary hack in order to get the code
-            //       to compile.
-            throw new IllegalArgumentException(datumName);
-        }
+    public static Datum createDatum(String code) throws FactoryException {
+        return datumAuthorityFactory.createDatum(code);
     }
 
     /**
      * A shortcut method that creates a new <code>Bounds</code> object from
      * the default <code>BoundsFactory</code>.
-     * @param boundsInterface The <code>Class</code> of a bounds
-     *   interface (such as <code>XYBoundingRectangle.class</code>).
+     * 
+     * @param boundsInterface The <code>Class</code> of a bounds interface
+     *        (such as <code>XYBoundingRectangle.class</code>).
      * @return Returns a newly created instance of the given interface.
      */
     public static Bounds createBounds(Class boundsInterface) {
         return boundsFactory.createBounds(boundsInterface);
     }
-
 }
+

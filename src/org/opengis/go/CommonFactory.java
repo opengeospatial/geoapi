@@ -10,9 +10,10 @@
 
 package org.opengis.go;
 
-import org.opengis.crs.crs.CoordinateReferenceSystemFactory;
-import org.opengis.crs.datum.DatumFactory;
+import org.opengis.crs.crs.CRSAuthorityFactory;
+import org.opengis.crs.crs.CRSFactory;
 import org.opengis.crs.datum.DatumAuthorityFactory;
+import org.opengis.crs.datum.DatumFactory;
 import org.opengis.go.geometry.BoundsFactory;
 import org.opengis.spatialschema.SpatialschemaFactory;
 
@@ -33,9 +34,19 @@ public interface CommonFactory {
     public CommonCapabilities getCapabilities();
        
     /**
-     * Returns the DatumFactory singleton.
+     * Returns the BoundsFactory singleton.
      */
-    public DatumFactory getDatumFactory();
+    public BoundsFactory getBoundsFactory();
+
+    /**
+     * Returns the CoordinateReferenceSystemFactory singleton.
+     */
+    public CRSFactory getCRSFactory();
+    
+    /**
+     * Returns the CRSAuthorityFactory singleton.
+     */
+    public CRSAuthorityFactory getCRSAuthorityFactory();
        
     /**
      * Returns the DatumAuthorityFactory singleton.
@@ -43,18 +54,14 @@ public interface CommonFactory {
     public DatumAuthorityFactory getDatumAuthorityFactory();
     
     /**
-     * Returns the CoordinateReferenceSystemFactory singleton.
+     * Returns the DatumFactory singleton.
      */
-    public CoordinateReferenceSystemFactory getCoordinateReferenceSystemFactory();
+    public DatumFactory getDatumFactory();
     
     /**
      * Returns the SpatialschemaFactory singleton.
      */
     public SpatialschemaFactory getSpatialschemaFactory();
 
-    /**
-     * Returns the BoundsFactory singleton.
-     */
-    public BoundsFactory getBoundsFactory();
 
 }
