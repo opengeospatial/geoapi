@@ -17,7 +17,6 @@ import java.util.Set;
 import org.opengis.spatialschema.geometry.DirectPosition;
 import org.opengis.spatialschema.geometry.MismatchedDimensionException;
 import org.opengis.spatialschema.geometry.MismatchedReferenceSystemException;
-import org.opengis.spatialschema.geometry.primitive.Curve;
 import org.opengis.spatialschema.geometry.primitive.Ring;
 import org.opengis.spatialschema.geometry.primitive.SurfaceBoundary;
 import org.opengis.spatialschema.geometry.primitive.Surface;
@@ -266,20 +265,6 @@ public interface GeometryFactory {
      */
 /// @UML (identifier="GM_BSplineCurve(Integer,GM_PointArray,Sequence<GM_Knot>,GM_KnotType)", obligation=MANDATORY)
     BSplineCurve createBSplineCurve(int degree, PointArray points, List/*<Knot>*/ knots, KnotType knotSpec)
-            throws MismatchedReferenceSystemException, MismatchedDimensionException;
-
-    /**
-     * Constructs polyhedral surface from the facet polygons.
-     *
-     * @param tiles The facet polygons. Must contains at least one polygon.
-     *
-     * @throws MismatchedReferenceSystemException If geometric objects given in argument don't
-     *         use compatible {@linkplain CoordinateReferenceSystem coordinate reference system}.
-     * @throws MismatchedDimensionException If geometric objects given in argument don't have
-     *         the expected dimension.
-     */
-/// @UML (identifier="GM_PolyhedralSurace(GM_Polygon)", obligation=MANDATORY)
-    PolyhedralSurface createPolyhedralSurface(List/*<Polygon>*/ tiles)
             throws MismatchedReferenceSystemException, MismatchedDimensionException;
 
     /**
