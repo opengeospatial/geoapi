@@ -11,7 +11,7 @@ package org.opengis.crs.crs;
 
 import org.opengis.spatialschema.DirectPosition;
 
-import com.dautelle.units.Unit;
+import javax.units.Unit;
 
 /**
  * 

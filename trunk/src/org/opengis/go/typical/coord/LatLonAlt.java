@@ -9,8 +9,8 @@
  *************************************************************************************************/
 package org.opengis.go.typical.coord;
 
-import com.dautelle.units.SI;
-import com.dautelle.units.Unit;
+import javax.units.Unit;
+import javax.units.SI;
 
 import java.util.Properties;
 

@@ -9,7 +9,7 @@
  *************************************************************************************************/
 package org.opengis.go.display.primitive;
 
-import com.dautelle.units.Unit;
+import javax.units.Unit;
 
 import org.opengis.go.display.style.XAnchor;
 import org.opengis.go.display.style.YAnchor;
