@@ -19,7 +19,7 @@ package org.opengis.coverage;
  *
  * @see SampleDimension#getMetadataValue
  * @see Coverage#getMetadataValue
- * @see org.opengis.coverage.grid.GridCoverageExchange#getMetadataValue
+ * @see org.opengis.coverage.grid.GridCoverageReader#getMetadataValue
  * @see org.opengis.coverage.processing.GridCoverageProcessor#getMetadataValue
  */
 public class MetadataNameNotFoundException extends IllegalArgumentException {

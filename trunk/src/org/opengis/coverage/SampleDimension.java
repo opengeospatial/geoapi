@@ -12,6 +12,9 @@ package org.opengis.coverage;
 // J2SE extensions
 import javax.units.Unit;
 
+// OpenGIS dependencies
+import org.opengis.crs.operation.MathTransform1D;
+
 
 /**
  * Contains information for an individual sample dimension of {@linkplain Coverage coverage}.
@@ -178,6 +181,24 @@ public interface SampleDimension {
      * @see #getOffset
      */
     double getScale();
+
+    /**
+     * The transform which is applied to grid values for this sample dimension.
+     * This transform is often defined as
+     * <var>y</var> = {@linkplain #getOffset offset} + {@link #getScale scale}#times;<var>x</var> where
+     * <var>x</var> is the grid value and <var>y</var> is the geophysics value.
+     * However, this transform may also defines more complex relationship, for
+     * example a logarithmic one. In order words, this transform is a generalization of
+     * {@link #getScale}, {@link #getOffset} and {@link #getNoDataValues} methods.
+     *
+     * @return The transform from sample to geophysics values, or <code>null</code> if
+     *         it doesn't apply.
+     *
+     * @see #getScale
+     * @see #getOffset
+     * @see #getNoDataValues
+     */
+    MathTransform1D getSampleToGeophysics();
 
     /**
      * The list of metadata keywords for a sample dimension.

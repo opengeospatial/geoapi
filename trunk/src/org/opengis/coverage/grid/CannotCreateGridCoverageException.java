@@ -20,8 +20,7 @@ import java.io.IOException;
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 1.1
  *
- * @see GridCoverageExchange#createFromName
- * @see GridCoverageExchange#createFromSubName
+ * @see GridCoverageReader#read
  *
  * @revisit In a J2SE 1.4 profile, this exception should extends
  *          {@link javax.imageio.IIOException}.

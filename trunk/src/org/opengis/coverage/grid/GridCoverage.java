@@ -131,9 +131,8 @@ public interface GridCoverage extends Coverage {
     /**
      * Returns the source data for a grid coverage.
      * If the <code>GridCoverage</code> was produced from an underlying dataset
-     * (by {@link GridCoverageExchange#createFromName createFromName} or
-     * {@link GridCoverageExchange#createFromSubName createFromSubName} for
-     * instance) the {@link #getNumSources getNumSources()} method should returns
+     * (by {@link GridCoverageReader#read read(...)} for instance) the
+     * {@link #getNumSources getNumSources()} method should returns
      * zero, and this method should not be called.
      *
      * If the <code>GridCoverage</code> was produced using
