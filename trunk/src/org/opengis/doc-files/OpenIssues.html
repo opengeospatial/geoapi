@@ -1,0 +1,80 @@
+<!DOCTYPE HTML PUBLIC -//W3C//DTD HTML 4.01 Transitional//EN>
+
+<HTML>
+  <HEAD>
+    <TITLE>Open issues about OpenGIS's UML</TITLE>
+  </HEAD>
+  <BODY>
+  <H1>Open issues about OpenGIS's UML</H1>
+  <P ALIGN="justify">The following are GeoAPI comments (not OGC comments):</P>
+  <P>&nbsp;</P>
+  <H2>General remarks</H2>
+  <UL>
+    <LI><P ALIGN="justify">UML found in the 2003-073 specification contains only attributes or
+        associations, no methods. Many services found in the legacy 2001-009 specification are
+        not available in latest UML. More specifically:</P>
+        <UL>
+          <LI><P ALIGN="justify">There is nothing like a transform method taking
+          a point in argument and returning a transformed point (e.g. the legacy
+          <A HREF=../../../../legacy/org/opengis/ct/CT_MathTransform.html><CODE>CT_MathTransform</CODE></A>
+          interface).</P></LI>
+
+          <LI><P ALIGN="justify">There is no factory at all (e.g. the legacy
+          <A HREF=../../../../legacy/org/opengis/ct/CT_CoordinateTransformationFactory.html><CODE>CT_CoordinateTransformationFactory</CODE></A>
+          interface).</P></LI>
+        </UL>
+    </LI>
+
+    <LI><P ALIGN="justify">The "<CITE>Well Know Text</CITE>" (WKT) format described in the 2001-009
+        specification is not mentioned in the 2003-073 specification. The 2003-073 specification do
+        not proposes any standard parameter name. The 2001-009 specification proposed some of them
+        (e.g. "<CODE>semi_major</CODE>", "<CODE>semi_minor</CODE>", "<CODE>standard_parallel_1</CODE>").
+        Those parameter names are listed on the <A HREF="http://www.remotesensing.org/geotiff/proj_list/">remotesensing.org</A>
+        web site.</P></LI>
+
+    <LI><P ALIGN="justify">There is no localization support in both specifications. Localization is an
+        European Union requirement. UML should specify which <CODE>CharacterString</CODE> are localizable
+        and which ones are not. A proposal is to add a new stereotype in UML:
+        <CODE>LocalizableCharacterString</CODE>.</P></LI>
+  </UL>
+
+  <P>&nbsp;</P>
+  <H2>Remarks relative to hierarchy and attributes</H2>
+  <UL>
+    <LI><P ALIGN="justify">The 2003-073 specification duplicates the name and identifier attributes in many
+        interfaces, with different identifier name (e.g. "<CODE>ellipsoidName</CODE>", "<CODE>datumName</CODE>",
+        "<CODE>csName</CODE>", "<CODE>crsName</CODE>", etc.). A common super-interface like the legacy
+        <A HREF=../../../../legacy/org/opengis/cs/CS_Info.html><CODE>CS_Info</CODE></A> would be more
+        convenient.</P></LI>
+
+    <LI><P ALIGN="justify">Interface <A HREF="../cs/CartesianCS.html"><CODE>CartesianCS</CODE></A>
+        looks like a special case of <A HREF="../cs/ObliqueCartesianCS.html"><CODE>ObliqueCartesianCS</CODE></A>.
+        Maybe it should extends <CODE>ObliqueCartesianCS</CODE>. It would help to clarify the semantic of
+        <A HREF="../sc/ImageCRS.html"><CODE>ImageCRS</CODE></A> (no need for separated <CODE>getCartesianCS()</CODE>
+        and <CODE>getObliqueCartesianCS()</CODE> methods).</P></LI>
+
+    <LI><P ALIGN="justify">The <A HREF="../sc/ImageCRS.html"><CODE>ImageCRS</CODE></A> interface is defined as a kind
+        of engineering CRS, but doesn't extend <A HREF="../sc/EngineeringCRS.html"><CODE>EngineeringCRS</CODE></A>.
+        Maybe it should (there is no obvious technical reason preventing that).</P></LI>
+
+    <LI><P ALIGN="justify">"<CODE>operationMethod</CODE>" attribute is defined in
+        <A HREF="../cc/CoordinateOperation.html"><CODE>CoordinateOperation</CODE></A>, but applied only to
+        <A HREF="../cc/Transformation.html"><CODE>Transformation</CODE></A> (a sub-interface). Maybe
+        it should be defined only in <CODE>Transformation</CODE> interface.</P></LI>
+
+    <LI><P ALIGN="justify">"<CODE>minimumOccurs</CODE>" attribute is declared in
+        <A HREF="../cc/GeneralOperationParameter.html"><CODE>GeneralOperationParameter</CODE></A>,
+        but "<CODE>maximumOccurs</CODE>" is declared in
+        <A HREF="../cc/OperationParameterGroup.html"><CODE>OperationParameterGroup</CODE></A>
+        (a sub-interface). Maybe they should be declared in the same place.</P></LI>
+
+    <LI><P ALIGN="justify">Some attribute names are misleading regarding the type. For example "<CODE>includesCRS</CODE>"
+        in <A HREF="../sc/CompoundCRS.html"><CODE>CompoundCRS</CODE></A> is of type
+        <A HREF="../sc/CoordinateReferenceSystem.html"><CODE>CoordinateReferenceSystem</CODE></A>, not
+        <A HREF="../sc/CRS.html"><CODE>CRS</CODE></A> (which exists as an other interface).</P></LI>
+
+    <LI><P ALIGN="justify">It may be worth to get ride of the <A HREF="../sc/CRS.html"><CODE>CRS</CODE></A>
+         interface (see its javadoc for a rational).</P></LI>
+  </UL>
+  </BODY>
+</HTML>
