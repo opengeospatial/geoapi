@@ -21,7 +21,7 @@ import org.opengis.util.Cloneable;
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/03-073r1.zip">Abstract specification 2.0</A>
  *
- * @see GeneralParameterDescriptor
+ * @see GeneralParameterValueDescriptor
  */
 public interface GeneralParameterValue extends Cloneable {
     /**
@@ -29,7 +29,7 @@ public interface GeneralParameterValue extends Cloneable {
      *
      * @return The abstract definition of this parameter or group of parameters.
      */
-    GeneralParameterDescriptor getDescriptor();
+    GeneralParameterValueDescriptor getDescriptor();
 
     /**
      * Returns a copy of this parameter value or group.

@@ -24,9 +24,9 @@ import javax.units.Unit;
  * @version <A HREF="http://www.opengis.org/docs/03-073r1.zip">Abstract specification 2.0</A>
  *
  * @see ParameterValue
- * @see ParameterGroupDescriptor
+ * @see ParameterValueGroupDescriptor
  */
-public interface ParameterDescriptor extends GeneralParameterDescriptor {
+public interface ParameterValueDescriptor extends GeneralParameterValueDescriptor {
     /**
      * Creates a new instance of {@linkplain ParameterValue parameter value}
      * initialized with the {@linkplain #getDefaultValue default value}.
@@ -49,7 +49,14 @@ public interface ParameterDescriptor extends GeneralParameterDescriptor {
      * This set is usually a {linkplain org.opengis.util.CodeList code list} or
      * enumerations. This method returns <code>null</code> if this parameter
      * doesn't limits values to a finite set.
-     *
+     * <p>
+     * Note even when CodeList is used one can use this set to allow only a
+     * subset of the permissable values provided by the CodeList.
+     * </p>
+     * <p>
+     * When the getValueClass() is an array or Collection getValidValues()
+     * may be used to constrain the contained elements.
+     * </p>
      * @return A finite set of valid values (usually from a
      *         {linkplain org.opengis.util.CodeList code list}),
      *         or <code>null</code> if it doesn't apply.
@@ -68,10 +75,15 @@ public interface ParameterDescriptor extends GeneralParameterDescriptor {
     Object getDefaultValue();
 
     /**
-     * Returns the minimum parameter value. If there is no minimum value, or if minimum
+     * Returns the minimum parameter value.
+     * 
+     * If there is no minimum value, or if minimum
      * value is inappropriate for the {@linkplain #getValueClass parameter type}, then
      * this method returns <code>null</code>.
-     *
+     * <p>
+     * When the getValueClass() is an array or Collection getMinimumValue
+     * may be used to constrain the contained elements.
+     * </p>
      * @return The minimum parameter value (often an instance of {@link Double}), or <code>null</code>.
      *
      * @UML optional minimumValue in Grid Coverage specification
@@ -79,10 +91,15 @@ public interface ParameterDescriptor extends GeneralParameterDescriptor {
     Comparable getMinimumValue();
 
     /**
-     * Returns the maximum parameter value. If there is no maximum value, or if maximum
+     * Returns the maximum parameter value.
+     * 
+     * If there is no maximum value, or if maximum
      * value is inappropriate for the {@linkplain #getValueClass parameter type}, then
      * this method returns <code>null</code>.
-     *
+     * <p>
+     * When the getValueClass() is an array or Collection getMaximumValue
+     * may be used to constratin the contained elements.
+     * </p>
      * @return The minimum parameter value (often an instance of {@link Double}), or <code>null</code>.
      *
      * @UML optional maximumValue in Grid Coverage specification

@@ -64,7 +64,7 @@ import org.opengis.metadata.Identifier;  // For javadoc
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/03-073r1.zip">Abstract specification 2.0</A>
  *
- * @see ParameterGroupDescriptor
+ * @see ParameterValueGroupDescriptor
  * @see ParameterValue
  */
 public interface ParameterValueGroup extends GeneralParameterValue {
@@ -80,12 +80,12 @@ public interface ParameterValueGroup extends GeneralParameterValue {
      *         Java extensions (e.g.
      *         {@link javax.media.jai.ParameterList.html#getParameterListDescriptor ParameterList}).
      */
-    // OperationParameterGroup getDescriptor();
-    GeneralParameterDescriptor getDescriptor(); // needed for javadocs to show up
+    // ParameterValueGroupDescriptor getDescriptor();
+    GeneralParameterValueDescriptor getDescriptor(); // needed for javadocs to show up
     
     /**
      * Returns the values in this group.
-     *
+     * 
      * @return The values.
      * @UML association includesValue
      */
@@ -101,7 +101,9 @@ public interface ParameterValueGroup extends GeneralParameterValue {
     
     /**
      * Returns the first value in this group for the specified {@linkplain Identifier#getCode
-     * identifier code}. If no {@linkplain ParameterValue parameter value} is found for the given
+     * identifier code}.
+     * 
+     * If no {@linkplain ParameterValue parameter value} is found for the given
      * code, then this method search recursively in subgroups (if any). This convenience method
      * provides a way to get and set parameter values by name. For example the following idiom
      * fetches a floating point value for the <code>"false_easting"</code> parameter:
@@ -109,7 +111,7 @@ public interface ParameterValueGroup extends GeneralParameterValue {
      * <blockquote><code>
      * double value = getValue("false_easting").{@linkplain ParameterValue#doubleValue() doubleValue()};
      * </code></blockquote>
-     *
+     * 
      * @param  name The case insensitive {@linkplain Identifier#getCode identifier code} of the
      *              parameter to search for. If this string contains the <code>':'</code> character,
      *              then the part before <code>':'</code> is the {@linkplain Identifier#getCodeSpace
@@ -118,7 +120,62 @@ public interface ParameterValueGroup extends GeneralParameterValue {
      * @throws ParameterNotFoundException if there is no parameter value for the given identifier code.
      */
     ParameterValue getValue(String name) throws ParameterNotFoundException;
+    // reccomend ParameterValue parameter(String name) throws ParameterNotFoundException;
+    
+    /**
+     * Adds a parameter to this group.
+     * <p>
+     * If an existing ParameterValue is already included:
+     * <ul>
+     * <li>For maxOccurs == 1, the new parameter will replace the existing parameter.
+     * <li>For maxOccurs > 1, the new parameter will be added
+     * <li>If adding the new parameter will increase the numbe past what
+     * is allowable by maxOccurs an InvalidParameterTypeException will be thrown.
+     * </p>
+     * <p>
+     * 
+     * @param parameter New parameter to be added to this group
+     * @throws InvalidParameterTypeException if adding this parameter
+     *  would result in more parameters than allowed by maxOccurs, or if this
+     *  parameter is not allowable by the groups descriptor 
+     */
+    void add( ParameterValue parameter ) throws InvalidParameterTypeException;
+    
+    /**
+     * Adds new parameter group to this group.
+     * <p>
+     * If an existing ParameterValueGroup is already included:
+     * <ul>
+     * <li>For maxOccurs == 1, the new group will replace the existing group.
+     * <li>For maxOccurs > 1, the new group will be added
+     * <li>If adding the new group will increase the number past what
+     * is allowable by maxOccurs an InvalidParameterTypeException will be thrown.
+     * </p>
+     * <p>
+     * 
+     * @param group New ParameterValueGroup to be added to this group
+     * @throws InvalidParameterTypeException if adding this parameter
+     *  would result in more parameters than allowed by maxOccurs, or if this
+     *  parameter is not allowable by the groups descriptor 
+     */
+    void add( ParameterValueGroup group ) throws InvalidParameterTypeException;
+    
+    /**
+     * Used to locate value(s) by descriptor.
+     * 
+     * @param type ParameterValueDescriptor used for lookup
+     * @return Array of ParameterValuelength corasponding to cardinality of the descriptor
+     */
+    ParameterValue[] parameter( ParameterValueDescriptor parameterType );
 
+    /**
+     * Lookup ParameterValueGroup(s) by descriptor.
+     * 
+     * @param groupType ParameterValueGroupDescriptor
+     * @return Array of ParameterValueGroup length corasponding to cardinality of the descriptor
+     */
+    ParameterValueGroup[] group( ParameterValueGroupDescriptor groupType );
+    
     /**
      * Returns a copy of this group of parameter values.
      * Included parameter values and subgroups are cloned recursively.
