@@ -14,7 +14,6 @@ import javax.units.Unit;
 
 import org.opengis.crs.FactoryException;
 import org.opengis.crs.crs.CoordinateReferenceSystem;
-import org.opengis.crs.crs.UnsupportedCRSException;
 import org.opengis.go.CommonFactoryManager;
 import org.opengis.spatialschema.geometry.DirectPosition;
 
@@ -93,8 +92,7 @@ public class UTM implements DirectPosition {
         double altitude,
         Unit unit,
         Unit altitudeUnit,
-        CoordinateReferenceSystem crs)
-        throws UnsupportedCRSException {
+        CoordinateReferenceSystem crs) {
         setCRS(crs);
         setNorthing(northing, unit);
         setEasting(easting, unit);
@@ -105,14 +103,14 @@ public class UTM implements DirectPosition {
      * Initializes the Coordinate Reference System to the supplied parameter.
      * @param crs       the Coordinate Reference System
      */
-    public UTM(CoordinateReferenceSystem crs) throws UnsupportedCRSException {
+    public UTM(CoordinateReferenceSystem crs) {
         setCRS(crs);
     }
     
     /**
      * Initializes using the default Coordinate Reference System.
      */
-    public UTM() throws FactoryException {
+    public UTM() {
         setCRS(findCRS(DEFAULT_COORDINATE_REFERENCE_SYSTEM_URL));
     }
     
@@ -134,8 +132,14 @@ public class UTM implements DirectPosition {
      * @param crsURL Coordinate Reference System URL.
      * @return Coordinate Reference System.
      */
-    private CoordinateReferenceSystem findCRS(String crsURL) throws FactoryException {
-        return CommonFactoryManager.getCRSAuthorityFactory().createCoordinateReferenceSystem(crsURL);
+    private CoordinateReferenceSystem findCRS(String crsURL) {
+        CoordinateReferenceSystem crs = null;
+        try {
+            crs = CommonFactoryManager.getCRSAuthorityFactory().createCoordinateReferenceSystem(crsURL);
+        } catch(FactoryException fe) {
+            fe.printStackTrace();
+        }
+        return crs;
     }
     
     /**

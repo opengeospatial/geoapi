@@ -14,7 +14,6 @@ import java.awt.geom.Point2D;
 import org.opengis.crs.FactoryException;
 import org.opengis.crs.crs.CoordinateReferenceSystem;
 import org.opengis.crs.crs.ImageCRS;
-import org.opengis.crs.crs.UnsupportedCRSException;
 import org.opengis.go.CommonFactoryManager;
 import org.opengis.spatialschema.geometry.DirectPosition;
 
@@ -70,7 +69,7 @@ public class Pixel extends Point2D implements DirectPosition {
      * @param y y value in pixels
      * @param crs the Coordinate Reference System
      */
-    public Pixel(double x, double y, ImageCRS crs) throws UnsupportedCRSException {
+    public Pixel(double x, double y, ImageCRS crs) {
         super();
         setCRS(crs);
         setLocation(x, y);
@@ -81,7 +80,7 @@ public class Pixel extends Point2D implements DirectPosition {
      * 
      * @param crs the Coordinate Reference System
      */
-    public Pixel(ImageCRS crs) throws UnsupportedCRSException {
+    public Pixel(ImageCRS crs) {
         super();
         setCRS(crs);
     }
@@ -89,7 +88,7 @@ public class Pixel extends Point2D implements DirectPosition {
     /**
      * Initializes using the default Coordinate Reference System.
      */
-    public Pixel() throws FactoryException {
+    public Pixel() {
         setCRS(findCRS(DEFAULT_COORDINATE_REFERENCE_SYSTEM_URL));
     }
 
@@ -112,8 +111,14 @@ public class Pixel extends Point2D implements DirectPosition {
      * @param crsURL Coordinate Reference System URL.
      * @return Coordinate Reference System.
      */
-    private ImageCRS findCRS(String crsURL) throws FactoryException {
-        return CommonFactoryManager.getCRSAuthorityFactory().createImageCRS(crsURL);
+    private ImageCRS findCRS(String crsURL) {
+        ImageCRS crs = null;
+        try {
+            crs = CommonFactoryManager.getCRSAuthorityFactory().createImageCRS(crsURL);
+        } catch(FactoryException fe) {
+            fe.printStackTrace();
+        }
+        return crs;
     }
 
     /**

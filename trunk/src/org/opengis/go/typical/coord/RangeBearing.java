@@ -15,7 +15,6 @@ import javax.units.Unit;
 
 import org.opengis.crs.FactoryException;
 import org.opengis.crs.crs.CoordinateReferenceSystem;
-import org.opengis.crs.crs.UnsupportedCRSException;
 import org.opengis.go.CommonFactoryManager;
 import org.opengis.go.spatial.PathType;
 import org.opengis.spatialschema.geometry.DirectPosition;
@@ -88,7 +87,7 @@ public class RangeBearing implements DirectPosition {
      * @param crs the Coordinate Reference System
      */
     public RangeBearing(double range, double bearing, Unit rangeUnit, Unit bearingUnit,
-        PathType pathType, CoordinateReferenceSystem crs) throws UnsupportedCRSException {
+        PathType pathType, CoordinateReferenceSystem crs) {
         setCRS(crs);
         setRange(range, rangeUnit);
         setBearing(bearing, bearingUnit);
@@ -100,14 +99,14 @@ public class RangeBearing implements DirectPosition {
      * 
      * @param crs the Coordinate Reference System
      */
-    public RangeBearing(CoordinateReferenceSystem crs) throws UnsupportedCRSException {
+    public RangeBearing(CoordinateReferenceSystem crs) {
         setCRS(crs);
     }
 
     /**
      * Initializes using the default Coordinate Reference System.
      */
-    public RangeBearing() throws FactoryException {
+    public RangeBearing() {
         setCRS(findCRS(DEFAULT_COORDINATE_REFERENCE_SYSTEM_URL));
     }
 
@@ -130,8 +129,14 @@ public class RangeBearing implements DirectPosition {
      * @param Coordinate Reference System URL.
      * @return Coordinate Reference System.
      */
-    private CoordinateReferenceSystem findCRS(String crsURL) throws FactoryException {
-        return CommonFactoryManager.getCRSAuthorityFactory().createCoordinateReferenceSystem(crsURL);
+    private CoordinateReferenceSystem findCRS(String crsURL) {
+        CoordinateReferenceSystem crs = null;
+        try {
+            crs = CommonFactoryManager.getCRSAuthorityFactory().createCoordinateReferenceSystem(crsURL);
+        } catch(FactoryException fe) {
+            fe.printStackTrace();
+        }
+        return crs;
     }
 
     /**
