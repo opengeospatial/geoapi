@@ -46,7 +46,7 @@ public interface ParameterValueGroup extends GeneralParameterValue {
      */
 /// @UML (identifier="valuesOfGroup", obligation=MANDATORY)
 /// ParameterDescriptorGroup getDescriptor();
-    
+
     /**
      * Returns the values in this group. The returned list may or may not be unmodifiable;
      * this is implementation-dependent. However, if some aspects of this list are modifiable,
@@ -65,7 +65,7 @@ public interface ParameterValueGroup extends GeneralParameterValue {
      */
 /// @UML (identifier="includesValue", obligation=MANDATORY)
     List/*<GeneralParameterValue>*/ values();
-    
+
     /**
      * Returns the value in this group for the specified {@linkplain Identifier#getCode
      * identifier code}. If no {@linkplain ParameterValue parameter value} is found but
@@ -94,7 +94,7 @@ public interface ParameterValueGroup extends GeneralParameterValue {
      * @throws ParameterNotFoundException if there is no parameter value for the given identifier code.
      */
     ParameterValue parameter(String name) throws ParameterNotFoundException;
-    
+
     /**
      * Returns all subgroups with the specified name. This method do not create new groups.
      * If the requested group is optional (i.e.
@@ -108,7 +108,7 @@ public interface ParameterValueGroup extends GeneralParameterValue {
      *         was found for the given name.
      */
     List/*<ParameterValueGroup>*/ groups(String name) throws ParameterNotFoundException;
-    
+
     /**
      * Create a new group of the specified name. The specified name must be the
      * {@linkplain Identifier#getCode identifier code} of a {@linkplain ParameterDescriptorGroup
@@ -125,49 +125,6 @@ public interface ParameterValueGroup extends GeneralParameterValue {
      */
     ParameterValueGroup addGroup(String name) throws ParameterNotFoundException, IllegalStateException;
 
-    /**
-     * Adds a parameter to this group.
-     * If an existing ParameterValue is already included:
-     * <ul>
-     *   <li>For maxOccurs == 1, the new parameter will replace the existing parameter.</li>
-     *   <li>For maxOccurs > 1, the new parameter will be added.</li>
-     *   <li>If adding the new parameter will increase the numbe past what
-     *       is allowable by maxOccurs an InvalidParameterTypeException will be thrown.</li>
-     * </ul>
-     * 
-     * @param parameter New parameter to be added to this group
-     * @throws InvalidParameterTypeException if adding this parameter
-     *  would result in more parameters than allowed by maxOccurs, or if this
-     *  parameter is not allowable by the groups descriptor.
-     *
-     * @deprecated Use {@link #parameter(String)} instead. The reason is that user should not
-     *             create <code>ParameterValue</code> object himself. Creation of those object
-     *             should be controlled by <code>ParameterDescriptor</code>, and the user should
-     *             only edit them.
-     */
-    void add(ParameterValue parameter) throws InvalidParameterTypeException;
-    
-    /**
-     * Adds new parameter group to this group.
-     * If an existing ParameterValueGroup is already included:
-     * <ul>
-     * <li>For maxOccurs == 1, the new group will replace the existing group.</li>
-     * <li>For maxOccurs > 1, the new group will be added.</li>
-     * <li>If adding the new group will increase the number past what
-     *     is allowable by maxOccurs an InvalidParameterTypeException will be thrown.</li>
-     * </ul>
-     * 
-     * @param group New ParameterValueGroup to be added to this group
-     * @throws InvalidParameterTypeException if adding this parameter
-     *  would result in more parameters than allowed by maxOccurs, or if this
-     *  parameter is not allowable by the groups descriptor.
-     *
-     * @deprecated Use {@link #addGroup} instead.
-     *             User should not add <code>ParameterValueGroup</code> objects himself. Creation
-     *             of those objects should be controlled by <code>ParameterDescriptor</code>.
-     */
-    void add(ParameterValueGroup group) throws InvalidParameterTypeException;
-    
     /**
      * Returns a copy of this group of parameter values.
      * Included parameter values and subgroups are cloned recursively.

@@ -70,7 +70,7 @@ public interface MathTransformFactory extends Factory {
      * createParameterizedTransform}. The list of available classifications is implementation
      * dependent.
      *
-     * <P>This method always returns clones. Concequently, it is safe to modify the returned
+     * <P>This method always returns clones. Consequently, it is safe to modify the returned
      * parameter values group and give them to <code>{@linkplain #createParameterizedTransform
      * createParameterizedTransform}(parameters)</code>.</P>
      *
