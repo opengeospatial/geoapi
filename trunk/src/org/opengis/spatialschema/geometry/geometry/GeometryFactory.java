@@ -352,6 +352,12 @@ public interface GeometryFactory {
      *        this parameter may be null.
      * @param interiors All of the curve components of the boundary that are not
      *        the exterior.
+     * @throws MismatchedReferenceSystemException If geometric objects given in
+     *         argument don't use a {@linkplain CoordinateReferenceSystem
+     *         coordinate reference system} compatible with the one held by this
+     *         factory.
      */
-    SurfaceBoundary createSurfaceBoundary(Ring exterior, List/*<Ring>*/ interiors);
+    SurfaceBoundary createSurfaceBoundary(Ring exterior,
+            List/*<Ring>*/ interiors)
+    	throws MismatchedReferenceSystemException;
 }
