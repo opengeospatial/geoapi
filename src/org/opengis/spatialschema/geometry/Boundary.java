@@ -34,5 +34,5 @@ public interface Boundary extends Complex {
      *
      * @return Always <code>true</code>.
      */
-    public boolean isCycle();
+    boolean isCycle();
 }

@@ -45,7 +45,7 @@ public interface TransfiniteSet {
      * @param  pointSet The set to be checked for containment in this set.
      * @return <code>true</code> if this set contains all of the elements of the specified set.
      */
-    public boolean contains(TransfiniteSet pointSet);
+    boolean contains(TransfiniteSet pointSet);
 
     /**
      * Returns <code>true</code> if this <code>TransfiniteSet</code> contains a
@@ -54,7 +54,7 @@ public interface TransfiniteSet {
      * @param  point The point to be checked for containment in this set.
      * @return <code>true</code> if this set contains the specified point.
      */
-    public boolean contains(DirectPosition point);
+    boolean contains(DirectPosition point);
 
     /**
      * Returns <code>true</code> if this <code>TransfiniteSet</code> intersects another
@@ -77,7 +77,7 @@ public interface TransfiniteSet {
      * @param  pointSet The set to be checked for intersection with this set.
      * @return <code>true</code> if this set intersects some of the elements of the specified set.
      */
-    public boolean intersects(TransfiniteSet pointSet);
+    boolean intersects(TransfiniteSet pointSet);
 
     /**
      * Returns <code>true</code> if this <code>TransfiniteSet</code> is equal to another
@@ -101,7 +101,7 @@ public interface TransfiniteSet {
      * @param pointSet The set to test for equality.
      * @return <code>true</code> if the two set are equals.
      */
-    public boolean equals(TransfiniteSet pointSet);
+    boolean equals(TransfiniteSet pointSet);
 
     /**
      * Returns the set theoretic union of this <code>TransfiniteSet</code> and the passed
@@ -110,7 +110,7 @@ public interface TransfiniteSet {
      * @param pointSet The second set.
      * @return The union of both sets.
      */
-    public TransfiniteSet union(TransfiniteSet pointSet);
+    TransfiniteSet union(TransfiniteSet pointSet);
 
     /**
      * Returns the set theoretic intersection of this <code>TransfiniteSet</code> and the passed
@@ -119,7 +119,7 @@ public interface TransfiniteSet {
      * @param pointSet The second set.
      * @return The intersection of both sets.
      */
-    public TransfiniteSet intersection(TransfiniteSet pointSet);
+    TransfiniteSet intersection(TransfiniteSet pointSet);
 
     /**
      * Returns the set theoretic difference of this <code>TransfiniteSet</code> and the passed
@@ -128,7 +128,7 @@ public interface TransfiniteSet {
      * @param pointSet The second set.
      * @return The difference between both sets.
      */
-    public TransfiniteSet difference(TransfiniteSet pointSet);
+    TransfiniteSet difference(TransfiniteSet pointSet);
 
     /**
      * Returns the set theoretic symmetric difference of this <code>TransfiniteSet</code> and the
@@ -137,5 +137,5 @@ public interface TransfiniteSet {
      * @param pointSet The second set.
      * @return The symmetric difference between both sets.
      */
-    public TransfiniteSet symmetricDifference(TransfiniteSet pointSet);
+    TransfiniteSet symmetricDifference(TransfiniteSet pointSet);
 }
