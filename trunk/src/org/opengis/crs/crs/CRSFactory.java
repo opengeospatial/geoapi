@@ -27,7 +27,7 @@ import org.opengis.crs.datum.TemporalDatum;
 import org.opengis.crs.datum.VerticalDatum;
 import org.opengis.crs.operation.Conversion;
 import org.opengis.crs.operation.MathTransform;
-import org.opengis.crs.projection.Projection;
+import org.opengis.parameter.GeneralParameterValue;
 
 
 /**
@@ -63,29 +63,8 @@ public interface CRSFactory extends Factory {
      * @throws FactoryException if the object creation failed.
      * @UML operation createCompoundCoordinateSystem
      */
-    CompoundCRS createCompoundCRS(Map properties, CoordinateReferenceSystem[] elements)
-            throws FactoryException;
-
-    /**
-     * Creates a derived coordinate reference system. If the transformation is an affine
-     * map performing a rotation, then any mixed axes must have identical units.
-     * For example, a (<var>lat_deg</var>, <var>lon_deg</var>, <var>height_feet</var>)
-     * system can be rotated in the (<var>lat</var>, <var>lon</var>) plane, since both
-     * affected axes are in degrees.  But you should not rotate this coordinate system
-     * in any other plane.
-     *
-     * @param  properties Name and other properties to give to the new object.
-     *         Available properties are {@linkplain Factory listed there}.
-     * @param  base Coordinate reference system to base the derived CRS on.
-     * @param  baseToDerived The transform from the base CRS to returned CRS.
-     * @param  derivedCS The coordinate system for the derived CRS. The number
-     *         of axes must match the target dimension of the transform
-     *         <code>baseToDerived</code>.
-     * @throws FactoryException if the object creation failed.
-     * @UML operation createFittedCoordinateSystem
-     */
-    DerivedCRS createDerivedCRS(Map properties, CoordinateReferenceSystem base,
-            MathTransform baseToDerived, CoordinateSystem derivedCS) throws FactoryException;
+    CompoundCRS createCompoundCRS(Map                       properties,
+                                  CoordinateReferenceSystem[] elements) throws FactoryException;
 
     /**
      * Creates a engineering coordinate reference system. 
@@ -97,8 +76,9 @@ public interface CRSFactory extends Factory {
      * @throws FactoryException if the object creation failed.
      * @UML operation createLocalCoordinateSystem
      */
-    EngineeringCRS createEngineeringCRS(Map properties, EngineeringDatum datum, CoordinateSystem cs)
-            throws FactoryException;
+    EngineeringCRS createEngineeringCRS(Map         properties,
+                                        EngineeringDatum datum,
+                                        CoordinateSystem    cs) throws FactoryException;
 
     /**
      * Creates a geocentric coordinate reference system. 
@@ -109,8 +89,9 @@ public interface CRSFactory extends Factory {
      * @param  cs The Cartesian or Spherical coordinate system for the created CRS.
      * @throws FactoryException if the object creation failed.
      */
-    GeocentricCRS createGeocentricCRS(Map properties, GeodeticDatum datum, CoordinateSystem cs)
-            throws FactoryException;
+    GeocentricCRS createGeocentricCRS(Map      properties,
+                                      GeodeticDatum datum,
+                                      CoordinateSystem cs) throws FactoryException;
 
     /**
      * Creates a geographic coordinate reference system.
@@ -124,7 +105,9 @@ public interface CRSFactory extends Factory {
      * @throws FactoryException if the object creation failed.
      * @UML operation createGeographicCoordinateSystem
      */
-    GeographicCRS createGeographicCRS(Map properties, GeodeticDatum datum, EllipsoidalCS cs) throws FactoryException;
+    GeographicCRS createGeographicCRS(Map      properties,
+                                      GeodeticDatum datum,
+                                      EllipsoidalCS    cs) throws FactoryException;
     
     /**
      * Creates an image coordinate reference system. 
@@ -135,21 +118,76 @@ public interface CRSFactory extends Factory {
      * @param  cs The Cartesian or Oblique Cartesian coordinate system for the created CRS.
      * @throws FactoryException if the object creation failed.
      */
-    ImageCRS createImageCRS(Map properties, ImageDatum datum, CoordinateSystem cs)
-            throws FactoryException;
+    ImageCRS createImageCRS(Map      properties,
+                            ImageDatum    datum,
+                            CoordinateSystem cs) throws FactoryException;
+
+    /**
+     * Creates a derived coordinate reference system. If the transformation is an affine
+     * map performing a rotation, then any mixed axes must have identical units.
+     * For example, a (<var>lat_deg</var>, <var>lon_deg</var>, <var>height_feet</var>)
+     * system can be rotated in the (<var>lat</var>, <var>lon</var>) plane, since both
+     * affected axes are in degrees.  But you should not rotate this coordinate system
+     * in any other plane.
+     *
+     * @param  properties Name and other properties to give to the new object.
+     *         Available properties are {@linkplain Factory listed there}.
+     *         Properties for the {@link Conversion} object to be created can be specified
+     *         with the <code>"conversion."</code> prefix added in front of property names
+     *         (example: <code>"conversion.name"</code>).
+     * @param  base Coordinate reference system to base the derived CRS on.
+     * @param  baseToDerived The transform from the base CRS to returned CRS.
+     * @param  derivedCS The coordinate system for the derived CRS. The number
+     *         of axes must match the target dimension of the transform
+     *         <code>baseToDerived</code>.
+     * @throws FactoryException if the object creation failed.
+     * @UML operation createFittedCoordinateSystem
+     */
+    DerivedCRS createDerivedCRS(Map                 properties,
+                                CoordinateReferenceSystem base,
+                                MathTransform    baseToDerived,
+                                CoordinateSystem     derivedCS) throws FactoryException;
     
     /**
-     * Creates a projected coordinate reference system.
+     * Creates a projected coordinate reference system from a transform.
      * 
-     * @param properties Name and other properties to give to the new object.
-     *        Available properties are {@linkplain Factory listed there}.
-     * @param geoCRS Geographic coordinate reference system to base projection on.
-     * @param toProjected The conversion from the geographic to the projected CRS.
-     * @param cs The coordinate system for the projected CRS.
+     * @param  properties Name and other properties to give to the new object.
+     *         Available properties are {@linkplain Factory listed there}.
+     *         Properties for the {@link Conversion} object to be created can be specified
+     *         with the <code>"conversion."</code> prefix added in front of property names
+     *         (example: <code>"conversion.name"</code>).
+     * @param  geoCRS Geographic coordinate reference system to base projection on.
+     * @param  toProjected The transform from the geographic to the projected CRS.
+     * @param  cs The coordinate system for the projected CRS.
      * @throws FactoryException if the object creation failed.
      */
-    ProjectedCRS createProjectedCRS(Map properties, GeographicCRS geoCRS, Projection toProjected,
-            CartesianCS cs) throws FactoryException;
+    ProjectedCRS createProjectedCRS(Map            properties,
+                                    GeographicCRS      geoCRS,
+                                    MathTransform toProjected,
+                                    CartesianCS            cs) throws FactoryException;
+
+    /**
+     * Creates a projected coordinate reference system from a projection name.
+     * 
+     * @param  properties Name and other properties to give to the new object.
+     *         Available properties are {@linkplain Factory listed there}.
+     *         Properties for the {@link Conversion} object to be created can be specified
+     *         with the <code>"conversion."</code> prefix added in front of property names
+     *         (example: <code>"conversion.name"</code>).
+     * @param  geoCRS Geographic coordinate reference system to base projection on.
+     * @param  projectionName The classification name for the projection to be created
+     *         (e.g. "Transverse_Mercator", "Mercator_1SP", "Oblique_Stereographic", etc.).
+     * @param  parameterValues The parameter value to give to the projection. Should includes
+     *         "central_meridian", "latitude_of_origin", "scale_factor", "false_easting",
+     *         "false_northing" and any other parameters specific to the projection.
+     * @param  cs The coordinate system for the projected CRS.
+     * @throws FactoryException if the object creation failed.
+     */
+    ProjectedCRS createProjectedCRS(Map                          properties,
+                                    GeographicCRS                    geoCRS,
+                                    String                   projectionName,
+                                    GeneralParameterValue[] parameterValues,
+                                    CartesianCS                          cs) throws FactoryException;
 
     /**
      * Creates a temporal coordinate reference system. 
@@ -160,8 +198,9 @@ public interface CRSFactory extends Factory {
      * @param  cs The Temporal coordinate system for the created CRS.
      * @throws FactoryException if the object creation failed.
      */
-    TemporalCRS createTemporalCRS(Map properties, TemporalDatum datum, TemporalCS cs)
-            throws FactoryException;
+    TemporalCRS createTemporalCRS(Map      properties,
+                                  TemporalDatum datum,
+                                  TemporalCS       cs) throws FactoryException;
 
     /**
      * Creates a vertical coordinate reference system. 
@@ -173,8 +212,9 @@ public interface CRSFactory extends Factory {
      * @throws FactoryException if the object creation failed.
      * @UML operation createVerticalCoordinateSystem
      */
-    VerticalCRS createVerticalCRS(Map properties, VerticalDatum datum, VerticalCS cs)
-            throws FactoryException;
+    VerticalCRS createVerticalCRS(Map     properties,
+                                 VerticalDatum datum,
+                                 VerticalCS       cs) throws FactoryException;
 
     /**
      * Creates a coordinate reference system object from a XML string.
