@@ -11,6 +11,7 @@ package org.opengis.parameter;
 
 // J2SE direct dependencies
 import java.util.Set;
+import javax.units.Unit;
 
 
 /**
@@ -26,6 +27,14 @@ import java.util.Set;
  * @see OperationParameterGroup
  */
 public interface OperationParameter extends GeneralOperationParameter {
+    /**
+     * Creates a new instance of {@linkplain ParameterValue parameter value}
+     * initialized with the {@linkplain #getDefaultValue default value}.
+     * The {@linkplain ParameterValue#getDescriptor parameter value descriptor}
+     * for the created parameter value will be <code>this</code> object.
+     */
+/// ParameterValue createValue();
+
     /**
      * Returns the class that describe the type of the parameter.
      *
@@ -79,4 +88,17 @@ public interface OperationParameter extends GeneralOperationParameter {
      * @UML optional maximumValue in Grid Coverage specification
      */
     Comparable getMaximumValue();
+
+    /**
+     * Returns the unit for
+     * {@linkplain #getDefaultValue default},
+     * {@linkplain #getMinimumValue minimum} and
+     * {@linkplain #getMaximumValue maximum} values.
+     * This attribute apply only if the values is of numeric type (usually an instance
+     * of {@link Double}).
+     *
+     * @return The unit for numeric value, or <code>null</code> if it
+     *         doesn't apply to the value type.
+     */
+    Unit getUnit();
 }
