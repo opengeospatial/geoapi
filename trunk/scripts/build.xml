@@ -211,17 +211,19 @@
              destdir          = "javadoc"
              charset          = "ISO-8859-1"
              encoding         = "ISO-8859-1"
+             locale           = "en_US"
              source           = "1.5"
              use              = "true"
              nodeprecatedlist = "false"
              author           = "true"
              version          = "true"
+             breakiterator    = "true"
              noqualifier      = "all"
              overview         = "tiger/sources/org/opengis/overview.html"
              windowtitle      = "OpenGIS API 2.0"
              doctitle         = "OpenGIS API 2.0"
              header           = "OpenGIS API 2.0&lt;br&gt;Build ${TODAY}"
-             additionalparam  = "-quiet">
+             additionalparam  = "-quiet -docfilessubdirs">
 
       <bottom>
         &lt;TABLE WIDTH='100%'&gt;&lt;TR&gt;&lt;TD NOWRAP&gt;
@@ -286,19 +288,22 @@
     </delete>
 
     <javadoc sourcepath       = "${homepath}/legacy"
-             classpath        = "${homepath}/legacy"
+             classpath        = "${homepath}/legacy:tiger/classes"
              destdir          = "legacy"
              charset          = "ISO-8859-1"
              encoding         = "ISO-8859-1"
+             locale           = "en_US"
              use              = "true"
              nodeprecatedlist = "true"
              author           = "false"
              version          = "true"
+             breakiterator    = "true"
+             noqualifier      = "all"
              overview         = "${homepath}/legacy/org/opengis/overview.html"
              windowtitle      = "Legacy OpenGIS API 1.0"
              doctitle         = "Legacy OpenGIS API 1.0"
              header           = "Legacy OpenGIS API 1.0"
-             additionalparam  = "-quiet -noqualifier all">
+             additionalparam  = "-quiet -docfilessubdirs">
 
       <bottom>
         &lt;TABLE WIDTH='100%'&gt;&lt;TR&gt;&lt;TD NOWRAP&gt;
