@@ -11,7 +11,6 @@ package org.opengis.go.typical.coord;
 
 import org.opengis.crs.FactoryException;
 import org.opengis.crs.crs.CoordinateReferenceSystem;
-import org.opengis.crs.crs.UnsupportedCRSException;
 import org.opengis.go.CommonFactoryManager;
 import org.opengis.spatialschema.geometry.DirectPosition;
 
@@ -60,7 +59,7 @@ public class XY implements DirectPosition {
      * @param y         y value
      * @param crs       the Coordinate Reference System 
      */
-    public XY(double x, double y, CoordinateReferenceSystem crs) throws UnsupportedCRSException {
+    public XY(double x, double y, CoordinateReferenceSystem crs) {
         setCRS(crs);
         ordinates[0] = x;
         ordinates[1] = y;
@@ -70,14 +69,14 @@ public class XY implements DirectPosition {
      * Initializes the Coordinate Reference System to the supplied parameter.
      * @param crs       the Coordinate Reference System 
      */
-    public XY(CoordinateReferenceSystem crs) throws UnsupportedCRSException {
+    public XY(CoordinateReferenceSystem crs) {
         setCRS(crs);
     }
 
     /**
      * Initializes using the default Coordinate Reference System.
      */
-    public XY() throws FactoryException {
+    public XY() {
         setCRS(findCRS(DEFAULT_COORDINATE_REFERENCE_SYSTEM_URL));        
     }
 
@@ -99,8 +98,14 @@ public class XY implements DirectPosition {
      * @param crsURL Coordinate Reference System URL.
      * @return Coordinate Reference System.
      */
-    private CoordinateReferenceSystem findCRS(String crsURL) throws FactoryException {
-        return CommonFactoryManager.getCRSAuthorityFactory().createCoordinateReferenceSystem(crsURL);  
+    private CoordinateReferenceSystem findCRS(String crsURL) {
+        CoordinateReferenceSystem crs = null;
+        try {
+            crs = CommonFactoryManager.getCRSAuthorityFactory().createCoordinateReferenceSystem(crsURL);
+        } catch(FactoryException fe) {
+            fe.printStackTrace();
+        }
+        return crs;
     }
 
     /**

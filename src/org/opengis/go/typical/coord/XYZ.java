@@ -11,7 +11,6 @@ package org.opengis.go.typical.coord;
 
 import org.opengis.crs.FactoryException;
 import org.opengis.crs.crs.CoordinateReferenceSystem;
-import org.opengis.crs.crs.UnsupportedCRSException;
 import org.opengis.go.CommonFactoryManager;
 
 
@@ -60,8 +59,7 @@ public class XYZ {
      * @param y         y value
      * @param crs       the Coordinate Reference System
      */
-    public XYZ(double x, double y, double z, CoordinateReferenceSystem crs)
-        throws UnsupportedCRSException {
+    public XYZ(double x, double y, double z, CoordinateReferenceSystem crs) {
         setCRS(crs);
         ordinates[0] = x;
         ordinates[1] = y;
@@ -72,14 +70,14 @@ public class XYZ {
      * Initializes the Coordinate Reference System to the supplied parameter.
      * @param crs       the Coordinate Reference System
      */
-    public XYZ(CoordinateReferenceSystem crs) throws UnsupportedCRSException {
+    public XYZ(CoordinateReferenceSystem crs) {
         setCRS(crs);
     }
 
     /**
      * Initializes the Coordinate Reference System to the supplied parameter.
      */
-    public XYZ() throws FactoryException {
+    public XYZ() {
         setCRS(findCRS(DEFAULT_COORDINATE_REFERENCE_SYSTEM_URL));
     }
 
@@ -101,8 +99,14 @@ public class XYZ {
      * @param crsURL Coordinate Reference System URL.
      * @return Coordinate Reference System.
      */
-    private CoordinateReferenceSystem findCRS(String crsURL) throws FactoryException {
-        return CommonFactoryManager.getCRSAuthorityFactory().createCoordinateReferenceSystem(crsURL);  
+    private CoordinateReferenceSystem findCRS(String crsURL) {
+        CoordinateReferenceSystem crs = null;
+        try {
+            crs = CommonFactoryManager.getCRSAuthorityFactory().createCoordinateReferenceSystem(crsURL);
+        } catch(FactoryException fe) {
+            fe.printStackTrace();
+        }
+        return crs;  
     }
 
     /**
