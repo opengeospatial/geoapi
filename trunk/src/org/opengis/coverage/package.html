@@ -9,9 +9,30 @@
   <A HREF="http://www.opengis.org/docs/01-004.pdf">OpenGIS&reg; Grid Coverages Implementation Specification</A>.
 
   <P ALIGN="justify">The architecture of the grid coverage specification is composed of three
-  packages. The specification includes a package for the general coverage specification (CV),
-  a package specifically for grid coverages (GC) and a package for grid coverage processing (GP).
-  The GP package is optional and not required for an OGC compliant implementation.</P>
+  packages. The specification includes a package for the general coverage specification,
+  a package specifically for grid coverages and a package for grid coverage processing.
+  The processing package is optional and not required for an OGC compliant implementation.</P>
+
+  <P ALIGN="justify">The essential property of coverage is to be able
+  to generate a value for any point within its domain. How coverage is
+  represented internally is not a concern. For example consider the
+  following different internal representations of coverage:</P>
+
+  <OL>
+    <LI>A coverage may be represented by a set of polygons which exhaustively
+        tile a plane (that is each point on the plane falls in precisely one
+        polygon). The value returned by the coverage for a point is the value
+        of an attribute of the polygon that contains the point.<BR>&nbsp;</LI>
+    <LI>A coverage may be represented by a grid of values. The value returned
+        by the coverage for a point is that of the grid value whose location
+        is nearest the point.<BR>&nbsp;</LI>
+    <LI>Coverage may be represented by a mathematical function. The value
+        returned by the coverage for a point is just the return value of the
+        function when supplied the coordinates of the point as arguments.<BR>&nbsp;</LI>
+    <LI>Coverage may be represented by combination of these. For example,
+        coverage may be represented by a combination of mathematical functions
+        valid over a set of polynomials.</LI>
+  </OL>
 
   <P>&nbsp;</P>
   <H2>Color Palettes</H2>

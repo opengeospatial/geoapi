@@ -19,8 +19,8 @@ import org.opengis.referencing.crs.CoordinateReferenceSystem;
 
 /**
  * A sequence of points. The <code>PointArray</code> interface outlines a means of efficiently
- * storing large numbers of homogeneous {@linkplain Position positions}; i.e. all having the
- * same {@linkplain CoordinateReferenceSystem coordinate reference system}. While a point array
+ * storing large numbers of usually homogeneous {@linkplain Position positions}; i.e. all having
+ * the same {@linkplain CoordinateReferenceSystem coordinate reference system}. While a point array
  * conceptually contains {@linkplain Position positions}, it provides convenience methods for
  * fetching directly the {@linkplain DirectPosition direct positions} instead.
  * <br><br>
@@ -28,6 +28,11 @@ import org.opengis.referencing.crs.CoordinateReferenceSystem;
  * a simple array of {@link Position}s. More efficient implementations will generally stores
  * coordinates in a more compact form (e.g. in a single <code>float[]</code> array) and creates
  * {@link Position} objects on the fly when needed.
+ * <br><br>
+ * If a particular <code>PointArray</code> implementation supports efficiently random access
+ * through any <code>get</code> or <code>set</code> method, it shall announce this capability
+ * by implementing the {@link java.util.RandomAccess} interface. Otherwise, users should read
+ * the positions through the <code>{@linkplain #positions()}.iterator()</code> instead.
  *  
  * @UML datatype GM_PointArray
  * @author ISO/DIS 19107
@@ -58,6 +63,13 @@ public interface PointArray {
      * @return the dimensionality of this array.
      *
      * @see DirectPosition#getDimension
+     *
+     * @deprecated This method definition conflict with section 6.2.2.10 in ISO 19107:
+     *             "<cite>The operation <code>coordinateDimension</code> shall return
+     *             the dimension of the coordinates that define this <code>GM_Object</code>,
+     *             which must be the same as the coordinate dimension of the coordinate
+     *             reference system for this GM_Object.</cite>". This method will be
+     *             removed in a future version.
      */
     public int getDimension();
 
@@ -67,6 +79,10 @@ public interface PointArray {
      * @return the Coordinate Reference System for this array.
      *
      * @see DirectPosition#getCoordinateReferenceSystem
+     *
+     * @deprecated This method should probably not appears. ISO 19107 do not defines such an
+     *             association. It is more than a convenience method, since it put a constraint
+     *             on the points that a <code>PointArray</code> can contains.
      */
     public CoordinateReferenceSystem getCoordinateReferenceSystem();
 
@@ -82,9 +98,12 @@ public interface PointArray {
      * @see List#get
      * @see #get(int, DirectPosition)
      *
-     * @revisit Should we said: "The direct position is backed by this <code>PointArray</code>,
-     *          so changes to the position will be reflected in the <code>PointArray</code>
-     *          and vice-versa."?
+     * @deprecated This method may be removed in a future version. First, it is in the way if an
+     *             implementor wants to implements directly the {@link java.util.List} interface.
+     *             Second, it raise some question: should the direct position be backed by this
+     *             <code>PointArray</code>, so changes to the position will be reflected in the
+     *             <code>PointArray</code> and vice-versa? Using {@link #get(int, DirectPosition)}
+     *             instead avoid those problems.
      */
     public DirectPosition get(int column) throws IndexOutOfBoundsException;
 
