@@ -27,7 +27,7 @@ import org.opengis.util.CodeList;
  *
  * @revisit <strong>Note 2:</strong> Should we rename as <code>Scope</code>?
  */
-public final class ScopeCode extends CodeList {
+public final class Scope extends CodeList {
     /**
      * Serial number for compatibility with different versions.
      */
@@ -46,91 +46,91 @@ public final class ScopeCode extends CodeList {
      *
      * @revisit Should we said "... to the attribute object"?
      */
-    public static final ScopeCode ATTRIBUTE = new ScopeCode("ATTRIBUTE");
+    public static final Scope ATTRIBUTE = new Scope("ATTRIBUTE");
 
     /**
      * Information applies to the characteristic of a feature.
      *
      * @UML conditional attributeType
      */
-    public static final ScopeCode ATTRIBUTE_TYPE = new ScopeCode("ATTRIBUTE_TYPE");
+    public static final Scope ATTRIBUTE_TYPE = new Scope("ATTRIBUTE_TYPE");
 
     /**
      * Information applies to the collection hardware class.
      *
      * @UML conditional collectionHardware
      */
-    public static final ScopeCode COLLECTION_HARDWARE = new ScopeCode("COLLECTION_HARDWARE");
+    public static final Scope COLLECTION_HARDWARE = new Scope("COLLECTION_HARDWARE");
 
     /**
      * Information applies to the collection session.
      *
      * @UML conditional collectionSession
      */
-    public static final ScopeCode COLLECTION_SESSION = new ScopeCode("COLLECTION_SESSION");
+    public static final Scope COLLECTION_SESSION = new Scope("COLLECTION_SESSION");
 
     /**
      * Information applies to the dataset.
      *
      * @UML conditional dataset
      */
-    public static final ScopeCode DATASET = new ScopeCode("DATASET");
+    public static final Scope DATASET = new Scope("DATASET");
 
     /**
      * Information applies to the series.
      *
      * @UML conditional series
      */
-    public static final ScopeCode SERIES = new ScopeCode("SERIES");
+    public static final Scope SERIES = new Scope("SERIES");
 
     /**
      * information applies to non-geographic data;
      *
      * @UML conditional nonGeographicDataset
      */
-    public static final ScopeCode NON_GEOGRAPHIC_DATASET = new ScopeCode("NON_GEOGRAPHIC_DATASET");
+    public static final Scope NON_GEOGRAPHIC_DATASET = new Scope("NON_GEOGRAPHIC_DATASET");
 
     /**
      * Information applies to a dimension group.
      *
      * @UML conditional dimensionGroup
      */
-    public static final ScopeCode DIMENSION_GROUP = new ScopeCode("DIMENSION_GROUP");
+    public static final Scope DIMENSION_GROUP = new Scope("DIMENSION_GROUP");
 
     /**
      * Information applies to a feature.
      *
      * @UML conditional feature
      */
-    public static final ScopeCode FEATURE = new ScopeCode("FEATURE");
+    public static final Scope FEATURE = new Scope("FEATURE");
 
     /**
      * Information applies to a feature type.
      *
      * @UML conditional featureType
      */
-    public static final ScopeCode FEATURE_TYPE = new ScopeCode("FEATURE_TYPE");
+    public static final Scope FEATURE_TYPE = new Scope("FEATURE_TYPE");
 
     /**
      * Information applies to a property type.
      *
      * @UML conditional propertyType
      */
-    public static final ScopeCode PROPERTY_TYPE = new ScopeCode("PROPERTY_TYPE");
+    public static final Scope PROPERTY_TYPE = new Scope("PROPERTY_TYPE");
 
     /**
      * Information applies to a field session.
      *
      * @UML conditional fieldSession
      */
-    public static final ScopeCode FIELD_SESSION = new ScopeCode("FIELD_SESSION");
+    public static final Scope FIELD_SESSION = new Scope("FIELD_SESSION");
 
     /**
      * Information applies to a computer program or routine.
      *
      * @UML conditional software
      */
-    public static final ScopeCode SOFTWARE = new ScopeCode("SOFTWARE");
+    public static final Scope SOFTWARE = new Scope("SOFTWARE");
 
     /**
      * Information applies to a capability which a service provider entity makes available
@@ -139,14 +139,14 @@ public final class ScopeCode extends CodeList {
      *
      * @UML conditional service
      */
-    public static final ScopeCode SERVICE = new ScopeCode("SERVICE");
+    public static final Scope SERVICE = new Scope("SERVICE");
 
     /**
      * Information applies to a copy or imitation of an existing or hypothetical object.
      *
      * @UML conditional model
      */
-    public static final ScopeCode MODEL = new ScopeCode("MODEL");
+    public static final Scope MODEL = new Scope("MODEL");
 
     /**
      * Constructs an enum with the given name. The new enum is
@@ -154,23 +154,23 @@ public final class ScopeCode extends CodeList {
      *
      * @param name The enum name. This name must not be in use by an other enum of this type.
      */
-    public ScopeCode(final String name) {
+    public Scope(final String name) {
         super(name, VALUES);
     }
 
     /**
-     * Returns the list of <code>ScopeCode</code>s.
+     * Returns the list of <code>Scope</code>s.
      */
-    public static ScopeCode[] values() {
+    public static Scope[] values() {
         synchronized (VALUES) {
-            return (ScopeCode[]) VALUES.toArray(new ScopeCode[VALUES.size()]);
+            return (Scope[]) VALUES.toArray(new Scope[VALUES.size()]);
         }
     }
 
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
-    public /*{ScopeCode}*/ CodeList[] family() {
+    public /*{Scope}*/ CodeList[] family() {
         return values();
     }
 }
