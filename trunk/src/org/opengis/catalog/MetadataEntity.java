@@ -1,28 +1,22 @@
-/*
- *    Geotools2 - OpenSource mapping toolkit
- *    http://geotools.org
- *    (C) 2002, Geotools Project Managment Committee (PMC)
- *
- *    This library is free software; you can redistribute it and/or
- *    modify it under the terms of the GNU Lesser General Public
- *    License as published by the Free Software Foundation;
- *    version 2.1 of the License.
- *
- *    This library is distributed in the hope that it will be useful,
- *    but WITHOUT ANY WARRANTY; without even the implied warranty of
- *    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- *    Lesser General Public License for more details.
- *
- */
+/*$************************************************************************************************
+ **
+ ** $Id$
+ **
+ ** $Source$
+ **
+ ** Copyright (C) 2003 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
+ **
+ *************************************************************************************************/
 package org.opengis.catalog;
+
+// J2SE direct dependencies
 import java.util.List;
 
 
 /**
  * Interface for progamatic access to the Metadata content.
- * <p>
  * This API is used by Catalog to query against CatalogEntry Metadata.
- * </p>
+ *
  * <p>
  * Conceptually a Metadata is comprised of a series of elements. These elements
  * are described by an associated EntityType & Element schema
@@ -51,7 +45,7 @@ import java.util.List;
  * Metadata that matches the language you are interested in.
  * <li>Another way is to return a "InternationalString" that knows how to write
  * itself out in the Locale you are interested in.
- * <li>Consider use of a elemnts( Locale ) method
+ * <li>Consider use of a elements( Locale ) method
  * <li>Finally you can ignore the problem
  * </ul> 
  * </p>
@@ -77,24 +71,23 @@ import java.util.List;
  * <p>
  * 
  * @UML abstract CG_Catalog (Figure 6)
- * @see ISO 19101
- * @see ISO 19115 
- * @author jeichar
+ * @author ISO 19101
+ * @author ISO 19115
+ * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A> 
+ * @version <A HREF="http://www.opengis.org/docs/02-087r3.pdf">Catalog Services 1.1.1</A> 
  */
 public interface MetadataEntity {
     /**
      * Access to the values associated with metadata elements.
-     * <p>
      * The list is returned in the same order as described by the EntityType
      * schema information.
-     * </p>
+     *
      * @return List of Elements
      */
-    public List elements();
+    List elements();
 
     /**
      * Access to Metadata element values specified by the xPath expression.
-     * <p>
      * Usually used to return individual objects, if the xPath expression
      * matches multiple elements a List will be returned.
      * <p>
@@ -122,26 +115,23 @@ public interface MetadataEntity {
     /**
      * Gets the value of the provided Element.
      * 
-     * @param Element that indicates the value the caller wishes to obtain
+     * @param  element Element that indicates the value the caller wishes to obtain.
      * @return The value of the element the parameter represents
-     * 		null if the current Metadata does not contain the Element
+     *         null if the current Metadata does not contain the Element.
      */
-    public Object getElement(Element element);
+    Object getElement(Element element);
 
     /**
      * EntityType describes schema of this Metadata.
      *
      * @return the EntityType that describes the current Metadata object
      */
-    public EntityType getEntityType();
+    EntityType getEntityType();
 
     /**
      * Metadata schema description - the "type" of Metadata.
-     * <p>
      * Allow for progamatic introspection of the Metadata -
      * provides the list of Elements.
-     *
-     * @author jeichar
      */
     public static interface EntityType {
         /**
@@ -153,28 +143,23 @@ public interface MetadataEntity {
          * 		A Element if exactly one is found to match the xpath
          * 		A List is many Elements are found to match the xpath.
          */
-        public Object getElement(String xpath);
+        Object getElement(String xpath);
 
         /**
          * Get a List of all the Elements this Entity contains.
-         * <p>
          * Only the elements contained by the current Entity are returned,
          * in other words this method is not recursive, elements in sub-enities
          * are not returned.
-         * </p>
+         *
          * @return a List of all the Elements this Entity contains
          */
-        public List getElements();
+        List getElements();
     }
 
     /**
      * Metadata element schema description - the type of a Metadata element.
-     * <p>
      * Metadata Elements are unique within a Metadata Entity
      * Used to inspect the type and structure of a metadata element 
-     * </p>
-     * @author jeichar
-     *
      */
     public static interface Element {
         /**
@@ -182,21 +167,21 @@ public interface MetadataEntity {
          *
          * @return Type.
          */
-        public Class getType();
+        Class getType();
 
         /**
          * Gets the name of this element.
          *
          * @return Name.
          */
-        public String getName();
+        String getName();
 
         /**
          * Returns whether nulls are allowed for this element.
          *
          * @return true if nulls are permitted, false otherwise.
          */
-        public boolean isNillable();
+        boolean isNillable();
 
         /**
          * Whether or not this element is complex in any way.  If it is
@@ -205,10 +190,9 @@ public interface MetadataEntity {
          * that indicates there is more to be done, and the actual ElementType
          * should be determined and processed accordingly.
          *
-         * @return <code>true</code> if Any
-         *
+         * @return <code>true</code> if Any.
          */
-        public boolean isMetadataEntity();
+        boolean isMetadataEntity();
 
         /**
          * If the current element is an entity then the entity object that describes the 
@@ -218,6 +202,6 @@ public interface MetadataEntity {
          * 		The EntityType object describing the current element if current element is
          * 		an entity 
          */
-        public EntityType getEntityType();
+        EntityType getEntityType();
     }
 }

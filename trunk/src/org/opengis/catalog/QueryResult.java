@@ -8,6 +8,8 @@
  **
  *************************************************************************************************/
 package org.opengis.catalog;
+
+// J2SE direct dependencies
 import java.util.Iterator;
 
 
@@ -19,7 +21,7 @@ import java.util.Iterator;
  *
  * @UML inferred from Section 3.1.1.1 <i>Query Functions</i> in the
  *      <A HREF="http://www.opengis.org/docs/99-113.pdf">OGC Abstract
- *      Catalog Services </A> Specification 
+ *      Catalog Services </A> Specification
  */
 public interface QueryResult {
     /**
@@ -29,22 +31,21 @@ public interface QueryResult {
      *
      * @UML inferred from Section 3.1.1.1 <i>Query Functions</i> in the
      *      <A HREF="http://www.opengis.org/docs/99-113.pdf">OGC Abstract
-     *      Catalog Services </A> Specification 
+     *      Catalog Services </A> Specification
      */
-    public int getNumEntries();
+    int getNumEntries();
 
     /**
      * Returns the indexed {@linkplain CatalogEntry catalog entry}.
      *
-     * @param index
-     *            the index of the CatalogEntry requested.
+     * @param index the index of the {@linkplain CatalogEntry catalog entry} requested.
      * @return the requested {@linkplain CatalogEntry catalog entry}.
      *
      * @UML inferred from Section 3.1.1.1 <i>Query Functions</i> in the
      *      <A HREF="http://www.opengis.org/docs/99-113.pdf">OGC Abstract
-     *      Catalog Services </A> Specification 
+     *      Catalog Services </A> Specification
      */
-    public CatalogEntry getEntry(int index);
+    CatalogEntry getEntry(int index);
 
     /**
      * Returns an iterator that can be used to iterate through
@@ -56,5 +57,5 @@ public interface QueryResult {
      *      <A HREF="http://www.opengis.org/docs/99-113.pdf">OGC Abstract
      *      Catalog Services </A> Specification 
      */
-    public Iterator iterator();
+    Iterator iterator();
 }
