@@ -109,7 +109,7 @@
       <include name="**/*.java"/>
       <replacefilter token="/*&lt;" value="&lt;"/>
       <replacefilter token="&gt;*/" value="&gt;"/>
-      <replacefilter token="/// "   value="    "/>
+      <replacefilter token="/// "   value="    /*@Overrides*/ "/>
       <replacefilter token="/*{"                />
       <replacefilter token="}*/"                />
     </replace>
@@ -125,7 +125,7 @@
 
        ====================================================================== -->
 
-  <target name="compile-1.3" depends="sources">
+  <target name="compile" depends="sources">
 
     <mkdir dir="sources"/>
     <copy todir="sources">
@@ -149,9 +149,30 @@
       <replacefilter token="&lt;String&gt;"/>
       <replacefilter token="&lt;double[]&gt;"/>
 
-      <replacefilter token=" assert " value=" // assert "/>
+      <replacefilter token=" assert "               value=" // assert "    />
       <replacefilter token="super(message, cause);" value="super(message);"/>
+      <replacefilter token="    /*@Overrides*/"     value="// "/>
     </replace>
+
+    <replaceregexp byline  = "true"
+                   match   = "\s\w+\s+clone"
+                   replace = " Object clone">
+      <fileset dir="sources">
+        <include name="**/*.java"/>
+        <exclude name="org/opengis/go/**"/>
+        <exclude name="org/opengis/util/**"/>
+      </fileset>
+    </replaceregexp>
+
+    <replaceregexp byline  = "true"
+                   match   = "\s\w+\[\]\s+family"
+                   replace = " CodeList[] family">
+      <fileset dir="sources">
+        <include name="**/*.java"/>
+        <exclude name="org/opengis/go/**"/>
+        <exclude name="org/opengis/util/**"/>
+      </fileset>
+    </replaceregexp>
 
     <mkdir dir="classes"/>
     <javac srcdir        = "sources"
@@ -178,7 +199,7 @@
 
        ====================================================================== -->
 
-  <target name="compile" depends="sources">
+  <target name="compile-tiger" depends="sources">
 
     <mkdir dir="tiger/classes"/>
 
@@ -205,7 +226,7 @@
 
        ====================================================================== -->
 
-  <target name="javadoc" depends="compile">
+  <target name="javadoc" depends="compile-tiger">
 
     <javadoc sourcepath       = "tiger/sources"
              classpath        = "tiger/classes"
@@ -349,7 +370,7 @@
 
        ====================================================================== -->
 
-  <target name="jars" depends="compile,compile-1.3">
+  <target name="jars" depends="compile-tiger,compile">
 
     <mkdir dir="binaries"/>
 
