@@ -84,7 +84,7 @@ public interface Identification {
      *
      * @UML optional resourceMaintenance
      */
-//    MaintenanceInformation[] getResourceMaintenance();
+    MaintenanceInformation[] getResourceMaintenance();
 
     /**
      * Provides a graphic that illustrates the resource(s) (should include a legend for the graphic).
