@@ -19,10 +19,10 @@ import org.opengis.crs.crs.HeterogeneousCRSObjectException;
 
 /**
  * <code>CoordinateTransformation</code> defines a common abstraction for classes
- * that convert <code>DirectPosition</code>s from one <code>CoordinateReferenceSystem</code> to another
- * using a particular <code>OperationMethod</code>.
+ * that convert <code>DirectPosition</code>s from one <code>CoordinateReferenceSystem</code>
+ * to another using a particular <code>OperationMethod</code>.
  *
- * @see CoordinateReferenceSystem
+ * @see org.opengis.crs.crs.CoordinateReferenceSystem
  * @see DirectPosition
  *
  * @author  Open GIS Consortium, Inc.
@@ -31,6 +31,8 @@ import org.opengis.crs.crs.HeterogeneousCRSObjectException;
  * @revisit Extending {@link Transformation} is not quite right; it could be a
  *          {@link Conversion} as well. It may be better to defines the
  *          <code>MathTransform</code> insteface as in OGC 2001-09.
+ *
+ * @deprecated Use {@link MathTransform} instead.
  */
 public interface CoordinateTransformation extends Transformation {
     /**

@@ -13,20 +13,22 @@ package org.opengis.crs.crs;
 import java.util.Map;
 
 // OpenGIS direct dependencies
-import org.opengis.crs.Info;         // For javadoc
-import org.opengis.crs.Identifier;   // For javadoc
 import org.opengis.crs.Factory;
 import org.opengis.crs.FactoryException;
+import org.opengis.crs.cs.CartesianCS;
 import org.opengis.crs.cs.CoordinateSystem;
+import org.opengis.crs.datum.EngineeringDatum;
+import org.opengis.crs.operation.Conversion;
 import org.opengis.crs.operation.MathTransform;
 import org.opengis.spatialschema.geometry.DirectPosition;
 
 
 /**
- * Builds up complex objects from simpler objects or values.
- * <code>CRSFactory</code> allows applications to make {@linkplain CoordinateReferenceSystem
- * coordinate reference systems} that cannot be created by a {@link CRSAuthorityFactory}.
- * This factory is very flexible, whereas the authority factory is easier to use.
+ * Builds up complex {@linkplain CoordinateReferenceSystem coordinate reference systems}
+ * from simpler objects or values. <code>CRSFactory</code> allows applications to make
+ * {@linkplain CoordinateReferenceSystem coordinate reference systems} that cannot be
+ * created by a {@link CRSAuthorityFactory}. This factory is very flexible, whereas the
+ * authority factory is easier to use.
  *
  * So {@link CRSAuthorityFactory} can be used to make "standard"
  * coordinate systems, and <code>CRSFactory</code> can be used to
@@ -36,64 +38,13 @@ import org.opengis.spatialschema.geometry.DirectPosition;
  * using the NAD83 datum, but these coordinate systems always use meters.  EPSG does
  * not have codes for NAD83 state plane coordinate systems that use feet units.  This
  * factory lets an application create such a hybrid coordinate system.
- * <br><br>
- * <H3><A NAME="ObjectProperties">Object properties</A></H3>
- * <P>Most factory methods expect a {@link Map} argument. The map is often (but is not
- * required to be) a {@link java.util.Properties} instance. The map shall contains at
- * least a <code>"name"</code> property. In the common case where the name is the only
- * property, the map may be constructed with
- * <code>Collections.{@linkplain java.util.Collections#singletonMap singletonMap}("name",
- * <var>theName</var>)</code> where <var>theName</var> is an arbitrary name as free text.
- * Additionally, implementations are encouraged to recognize at least the properties listed
- * in the following table. More implementation-specific properties may be added as well.
- * In any case, unknown properties will be ignored.</P>
- * 
- * <table border='1'>
- *   <tr bgcolor="#CCCCFF" class="TableHeadingColor">
- *     <th nowrap>Property name</th>
- *     <th nowrap>Value type</th>
- *     <th nowrap>Value given to</th>
- *   </tr>
- *   <tr>
- *     <td nowrap>&nbsp;<code>"name"</code>&nbsp;</td>
- *     <td nowrap>&nbsp;{@link String}&nbsp;</td>
- *     <td nowrap>&nbsp;{@link Info#getName}</td>
- *   </tr>
- *   <tr>
- *     <td nowrap>&nbsp;<code>"remarks"</code>&nbsp;</td>
- *     <td nowrap>&nbsp;{@link String}&nbsp;</td>
- *     <td nowrap>&nbsp;{@link Info#getRemarks}</td>
- *   </tr>
- *   <tr>
- *     <td nowrap>&nbsp;<code>"authority"</code>&nbsp;</td>
- *     <td nowrap>&nbsp;{@link String} or {@link org.opengis.metadata.citation.Citation}&nbsp;</td>
- *     <td nowrap>&nbsp;{@link Identifier#getAuthority} on the first identifier</td>
- *   </tr>
- *   <tr>
- *     <td nowrap>&nbsp;<code>"code"</code>&nbsp;</td>
- *     <td nowrap>&nbsp;{@link String}&nbsp;</td>
- *     <td nowrap>&nbsp;{@link Identifier#getCode} on the first identifier</td>
- *   </tr>
- *   <tr>
- *     <td nowrap>&nbsp;<code>"codeSpace"</code>&nbsp;</td>
- *     <td nowrap>&nbsp;{@link String}&nbsp;</td>
- *     <td nowrap>&nbsp;{@link Identifier#getCodeSpace} on the first identifier</td>
- *   </tr>
- *   <tr>
- *     <td nowrap>&nbsp;<code>"version"</code>&nbsp;</td>
- *     <td nowrap>&nbsp;{@link String}&nbsp;</td>
- *     <td nowrap>&nbsp;{@link Identifier#getVersion} on the first identifier</td>
- *   </tr>
- *   <tr>
- *     <td nowrap>&nbsp;<code>"identifiers"</code>&nbsp;</td>
- *     <td nowrap>&nbsp;<code>{@linkplain Identifier}</code>[]&nbsp;</td>
- *     <td nowrap>&nbsp;{@link Info#getIdentifiers}</td>
- *   </tr>
- * </table>
  *
  * @UML abstract CS_CoordinateSystemFactory
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-009.pdf">Implementation specification 1.0</A>
+ *
+ * @see org.opengis.crs.cs.CSFactory
+ * @see org.opengis.crs.datum.DatumFactory
  */
 public interface CRSFactory extends Factory {
     /**
@@ -125,7 +76,7 @@ public interface CRSFactory extends Factory {
      * list of <code>CoordinateReferenceSystem</code> objects.
      *
      * @param  properties Name and other properties to give to the new object.
-     *         Available properties are <A HREF="#ObjectProperties">listed above</A>.
+     *         Available properties are {@linkplain Factory listed there}.
      * @param  elements ordered array of <code>CoordinateReferenceSystem</code> objects.
      * @throws FactoryException if the object creation failed.
      * @UML operation createCompoundCoordinateSystem
@@ -134,15 +85,15 @@ public interface CRSFactory extends Factory {
                                   CoordinateReferenceSystem[] elements) throws FactoryException;
 
     /**
-     * Creates a derived coordinate system. If the transformation is an affine map
-     * performing a rotation, then any mixed axes must have identical units.
+     * Creates a derived coordinate reference system. If the transformation is an affine
+     * map performing a rotation, then any mixed axes must have identical units.
      * For example, a (<var>lat_deg</var>, <var>lon_deg</var>, <var>height_feet</var>)
      * system can be rotated in the (<var>lat</var>, <var>lon</var>) plane, since both
      * affected axes are in degrees.  But you should not rotate this coordinate system
      * in any other plane.
      *
      * @param  properties Name and other properties to give to the new object.
-     *         Available properties are <A HREF="#ObjectProperties">listed above</A>.
+     *         Available properties are {@linkplain Factory listed there}.
      * @param  base Coordinate reference system to base the derived CRS on.
      * @param  baseToDerived The transform from the base CRS to returned CRS.
      * @param  derivedCS The coordinate system for the derived CRS. The number
@@ -155,6 +106,35 @@ public interface CRSFactory extends Factory {
                                 CoordinateReferenceSystem base,
                                 MathTransform    baseToDerived,
                                 CoordinateSystem     derivedCS) throws FactoryException;
+
+    /**
+     * Creates a engineering coordinate reference system. 
+     *
+     * @param  properties Name and other properties to give to the new object.
+     *         Available properties are {@linkplain Factory listed there}.
+     * @param  datum Engineering datum to use in created CRS.
+     * @param  cs The coordinate system for the enginnering CRS.
+     * @throws FactoryException if the object creation failed.
+     * @UML operation createLocalCoordinateSystem
+     */
+    EngineeringCRS createEngineeringCRS(Map         properties,
+                                        EngineeringDatum datum,
+                                        CoordinateSystem    cs) throws FactoryException;
+
+    /**
+     * Creates a projected coordinate reference system.
+     *
+     * @param  properties Name and other properties to give to the new object.
+     *         Available properties are {@linkplain Factory listed there}.
+     * @param  geoCRS Geographic coordinate reference system to base projection on.
+     * @param  toProjected The conversion from the geographic to the projected CRS.
+     * @param  cs The coordinate system for the projected CRS.
+     * @throws FactoryException if the object creation failed.
+     */
+    ProjectedCRS createProjectedCRS(Map         properties,
+                                    GeographicCRS   geoCRS,
+                                    Conversion toProjected,
+                                    CartesianCS         cs) throws FactoryException;
 
     /**
      * Creates a <code>DerivedCRS</code> by changing the anchor point of a subject <code>CRS</code>

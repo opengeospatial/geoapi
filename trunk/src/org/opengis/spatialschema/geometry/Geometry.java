@@ -14,6 +14,7 @@ import java.util.Set;
 
 // OpenGIS direct dependencies
 import org.opengis.crs.crs.CoordinateReferenceSystem;
+import org.opengis.crs.operation.TransformException;
 import org.opengis.spatialschema.geometry.complex.Complex;
 
 
@@ -257,16 +258,15 @@ public interface Geometry extends TransfiniteSet {
      * <code>Geometry</code> into the passed coordinate reference system within the accuracy
      * of the transformation.
      * <br><br>
-     * <strong>NOTE:</strong> If there is more than one shape to transform, then it may be
-     * more efficient to invoke {@link org.opengis.crs.operation.MathTransform#transform(Geometry)}.
+     * <strong>NOTE:</strong> If there is more than one shape to transform, then it may be more
+     * efficient to invoke {@link org.opengis.crs.operation.MathTransform#createTransformedGeometry}.
      *
      * @param  newCRS The newCRS.
      * @return The transformed <code>Geometry</code>.
+     * @throws TransformException if the transformation failed.
      * @UML operation transform
-     *
-     * @revisit Which exception to throws if the transformation fails?
      */
-    public Geometry transform(CoordinateReferenceSystem newCRS);
+    public Geometry transform(CoordinateReferenceSystem newCRS) throws TransformException;
 
     /**
      * Returns a new <code>Geometry</code> that is the coordinate transformation of this

@@ -26,6 +26,9 @@ import org.opengis.spatialschema.geometry.DirectPosition;
  * @UML abstract CS_CoordinateSystemAuthorityFactory in 1.0 specification
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-009.pdf">Implementation specification 1.0</A>
+ *
+ * @see org.opengis.crs.cs.CSAuthorityFactory
+ * @see org.opengis.crs.datum.DatumAuthorityFactory
  */
 public interface CRSAuthorityFactory extends AuthorityFactory {
     /**

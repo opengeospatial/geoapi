@@ -33,7 +33,8 @@ import java.rmi.RemoteException;
  * @since   1.00
  * @author Martin Daly
  *
- * @deprecated Replaced by {@link org.opengis.crs.crs.CRSFactory}.
+ * @deprecated Replaced by {@link org.opengis.crs.crs.CRSFactory}
+ *             and {@link org.opengis.crs.datum.DatumFactory}.
  */
 public interface CS_CoordinateSystemFactory extends Remote {
     /**
@@ -99,6 +100,8 @@ public interface CS_CoordinateSystemFactory extends Remote {
      * @param unit Units to use for all axes in created CS.
      * @param arAxes Axes to use in created CS.
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated Replaced by {@link org.opengis.crs.crs.CRSFactory#createEngineeringCRS}.
      */
     CS_LocalCoordinateSystem createLocalCoordinateSystem(String name, CS_LocalDatum datum, CS_Unit unit, CS_AxisInfo[] arAxes) throws RemoteException;
 
@@ -110,6 +113,8 @@ public interface CS_CoordinateSystemFactory extends Remote {
      * @param semiMinorAxis Polar radius in supplied linear units.
      * @param linearUnit Linear units of ellipsoid axes.
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated Replaced by {@link org.opengis.crs.datum.DatumFactory#createEllipsoid}.
      */
     CS_Ellipsoid createEllipsoid(String name, double semiMajorAxis, double semiMinorAxis, CS_LinearUnit linearUnit) throws RemoteException;
 
@@ -121,6 +126,8 @@ public interface CS_CoordinateSystemFactory extends Remote {
      * @param inverseFlattening Eccentricity of ellipsoid.
      * @param linearUnit Linear units of major axis.
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated Replaced by {@link org.opengis.crs.datum.DatumFactory#createFlattenedSphere}.
      */
     CS_Ellipsoid createFlattenedSphere(String name, double semiMajorAxis, double inverseFlattening, CS_LinearUnit linearUnit) throws RemoteException;
 
@@ -134,6 +141,8 @@ public interface CS_CoordinateSystemFactory extends Remote {
      * @param axis0 Details of 0th ordinates in returned PCS coordinates.
      * @param axis1 Details of 1st ordinates in returned PCS coordinates.
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated Replaced by {@link org.opengis.crs.crs.CRSFactory#createProjectedCRS}.
      */
     CS_ProjectedCoordinateSystem createProjectedCoordinateSystem(String name, CS_GeographicCoordinateSystem gcs, CS_Projection projection, CS_LinearUnit linearUnit, CS_AxisInfo axis0, CS_AxisInfo axis1) throws RemoteException;
 
