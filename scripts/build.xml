@@ -4,8 +4,15 @@
      ANT BUILD FILE (Ref. http://jakarta.apache.org/ant )
 
      Ant script for building GeoAPI interfaces, javadoc, jars and zip file.
-     Before running, make sure to set 'basedir' and 'homepath' properties.
-     'basedir' is the destination directory; 'homepath' is the CVS installation.
+     Before running, make sure to set following properties:
+
+         homepath   :     The CVS installation.
+         basedir    :     The destination directory.
+         kestrel    :     The J2SE 1.3 installation directory.
+                          If no J2SE 1.3 is available on the system,  a 1.4 or 1.5
+                          installation directory may be specified instead, but the
+                          compilation will not guarantee that the source don't use
+                          any feature not present in 1.3.
 
      Author:  Martin Desruisseaux
      Version: $Id$
@@ -14,6 +21,7 @@
 <project name="GeoAPI" default="release" basedir="D:/Application/GeoAPI">
 
   <property name="homepath" value="P:/CVSROOT/GeoAPI"/>
+  <property name="kestrel"  value="C:/Java/J2SDK"/>
   <property name="version"  value="2.0"/>
 
   <description>
@@ -89,6 +97,23 @@
       <include name="**/*.properties"/>
     </fixcrlf>
 
+    <replace dir="tiger/sources">
+      <include name="**/*.java"/>
+      <exclude name="org/opengis/go/**"/>
+      <exclude name="org/opengis/util/**"/>
+      <replacefilter token=" CodeList[] family()" value="[] family()" />
+      <replacefilter token="Object clone()"       value="clone()"     />
+    </replace>
+
+    <replace dir="tiger/sources">
+      <include name="**/*.java"/>
+      <replacefilter token="/*&lt;" value="&lt;"/>
+      <replacefilter token="&gt;*/" value="&gt;"/>
+      <replacefilter token="/// "   value="    "/>
+      <replacefilter token="/*{"                />
+      <replacefilter token="}*/"                />
+    </replace>
+
   </target>
 
 
@@ -128,15 +153,17 @@
     </replace>
 
     <mkdir dir="classes"/>
-    <javac srcdir      = "sources"
-           destdir     = "classes"
-           encoding    = "ISO-8859-1"
-           includes    = "org/**/*.java"
-           source      = "1.3"
-           target      = "1.3"
-           optimize    = "true"
-           debug       = "false"
-           failonerror = "true">
+    <javac srcdir        = "sources"
+           destdir       = "classes"
+           encoding      = "ISO-8859-1"
+           includes      = "org/**/*.java"
+           bootclasspath = "${kestrel}/jre/lib/rt.jar"
+           extdirs       = "${kestrel}/jre/lib/ext"
+           source        = "1.3"
+           target        = "1.3"
+           optimize      = "true"
+           debug         = "false"
+           failonerror   = "true">
     </javac>
 
   </target>
@@ -162,6 +189,7 @@
            target      = "1.5"
            optimize    = "true"
            debug       = "false"
+           deprecation = "true"
            failonerror = "true">
     </javac>
 
