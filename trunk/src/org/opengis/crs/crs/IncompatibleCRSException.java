@@ -1,4 +1,4 @@
-/**************************************************************************************************
+/*$************************************************************************************************
  **
  ** $Id$
  **
@@ -9,35 +9,40 @@
  *************************************************************************************************/
 package org.opengis.crs.crs;
 
+
 /**
- * Thrown when an object that references a CRS is used in a manner inconsistent with that particular CRS. 
+ * Thrown when an object that references a CRS is used in a manner inconsistent
+ * with that particular CRS. 
  *
  * @author  Open GIS Consortium, Inc.
  * @version $Revision$, $Date$
+ *
+ * @revisit This exception is used only in
+ *          {@link org.opengis.crs.operation.CoordinateTransformation}. It may need to
+ *          be revisited if we provide a set of interfaces similar to OGC 2001-09 instead.
  */
-
 public class IncompatibleCRSException extends Exception {
-	/**
-	 * The invalid CRS name.
-	 */
-	private final String crsName;
+    /**
+     * The invalid CRS name.
+     */
+    private final String crsName;
 
-	/**
-	 * Creates an exception with the specified message and CRS name.
-	 *
-	 * @param  message The detail message. The detail message is saved for 
-	 *         later retrieval by the {@link #getMessage()} method.
-	 * @param crsName The invalid CRS name.
-	 */
-	public IncompatibleCRSException(String message, String crsName) {
-		super(message);
-		this.crsName = crsName;
-	}
+    /**
+     * Creates an exception with the specified message and CRS name.
+     *
+     * @param  message The detail message. The detail message is saved for 
+     *         later retrieval by the {@link #getMessage()} method.
+     * @param crsName The invalid CRS name.
+     */
+    public IncompatibleCRSException(String message, String crsName) {
+        super(message);
+        this.crsName = crsName;
+    }
 
-	/**
-	 * Returns the invalid CRS name.
-	 */
-	public String getCRSName() {
-		return crsName;
-	}
+    /**
+     * Returns the invalid CRS name.
+     */
+    public String getCRSName() {
+        return crsName;
+    }
 }

@@ -11,7 +11,8 @@ package org.opengis.coverage.grid;
 
 //OpenGIS direct dependencies
 import org.opengis.util.CodeList;
-
+import org.opengis.coverage.SampleDimensionType; // For Javadoc
+ 
 
 /**
  * Order of values packed in a byte for sample dimensions with less than 8 bits.

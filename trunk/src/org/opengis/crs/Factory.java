@@ -14,7 +14,7 @@ package org.opengis.crs;
  * Base interface for all factories.
  *
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
- * @version 2.0
+ * @version 1.0
  */
 public interface Factory {
 }

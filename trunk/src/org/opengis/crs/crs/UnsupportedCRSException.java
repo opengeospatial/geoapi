@@ -1,5 +1,4 @@
-
-/**************************************************************************************************
+/*$************************************************************************************************
  **
  ** $Id$
  **
@@ -17,6 +16,9 @@ package org.opengis.crs.crs;
  * in an operation.  This may occur if, for example, if a concrete class that 
  * implements <code>DirectPosition</code> is being requested with an incompatible 
  * <code>CoordinateReferenceSystem</code>.
+ *
+ * @revisit This exception may need to be revisited if we provide a set of interfaces
+ *          similar to OGC 2001-09 instead. Furthermore, it needs to be localizable.
  */
 public class UnsupportedCRSException extends RuntimeException {
 

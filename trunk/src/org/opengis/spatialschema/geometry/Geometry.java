@@ -12,9 +12,8 @@ package org.opengis.spatialschema.geometry;
 // J2SE direct dependencies
 import java.util.Set;
 
+// OpenGIS direct dependencies
 import org.opengis.crs.crs.CoordinateReferenceSystem;
-import org.opengis.crs.operation.CoordinateTransformation;
-import org.opengis.crs.operation.IncompatibleOperationException;
 import org.opengis.spatialschema.geometry.complex.Complex;
 
 
@@ -36,21 +35,22 @@ import org.opengis.spatialschema.geometry.complex.Complex;
 public interface Geometry extends TransfiniteSet {
     /**
      * Returns the coordinate reference system used in {@linkplain DirectPosition direct position}
-     * coordinates. If <code>null</code>, then this <code>Geometry</code> uses the CoordinateReferenceSystem from another
-     * <code>Geometry</code> in which it is contained.
+     * coordinates. If <code>null</code>, then this <code>Geometry</code> uses the coordinate reference
+     * system from another <code>Geometry</code> in which it is contained.
      *
-     * The most common example where the CoordinateReferenceSystem is <code>null</code> is the elements and subcomplexes
-     * of a maximal {@linkplain Complex complex}. The {@linkplain Complex complex} can carry the
-     * {@linkplain CoordinateReferenceSystem} for all {@linkplain org.opengis.spatialschema.geometry.primitive.Primitive primitive} elements
+     * The most common example where the coordinate reference system is <code>null</code> is the elements
+     * and subcomplexes of a maximal {@linkplain Complex complex}. The {@linkplain Complex complex} can
+     * carry the {@linkplain CoordinateReferenceSystem coordinate reference system} for all
+     * {@linkplain org.opengis.spatialschema.geometry.primitive.Primitive primitive} elements
      * and for all {@link Complex} subcomplexes.
      * <br><br>
-     * This association is only navigable from <code>Geometry</code> to {@linkplain CoordinateReferenceSystem}.
-     * This means that the coordinate reference system objects in a data set do not keep
-     * a list of <code>Geometry</code>s that use them.
+     * This association is only navigable from <code>Geometry</code> to {@linkplain CoordinateReferenceSystem
+     * coordinate reference system}. This means that the coordinate reference system objects in a data set do
+     * not keep a list of <code>Geometry</code>s that use them.
      *
      * @return The coordinate reference system used in {@linkplain DirectPosition direct position}
      *         coordinates.
-     * @UML association CoordinateReferenceSystem
+     * @UML association CRS
      *
      * @see #getCoordinateDimension
      */
@@ -214,7 +214,7 @@ public interface Geometry extends TransfiniteSet {
      * a collection of geometric objects shall be the largest dimension of any of its pieces.
      * Points are 0-dimensional, curves are 1-dimensional, surfaces are 2-dimensional, and solids
      * are 3-dimensional. Locally, the dimension of a geometric object at a point is the dimension
-     * of a local neighborhood of the point � that is the dimension of any coordinate neighborhood
+     * of a local neighborhood of the point - that is the dimension of any coordinate neighborhood
      * of the point. Dimension is unambiguously defined only for {@linkplain DirectPosition direct
      * positions} interior to this <code>Geometry</code>. If the passed {@linkplain DirectPosition
      * direct position} is <code>null</code>, then the operation shall return the largest possible
@@ -256,14 +256,36 @@ public interface Geometry extends TransfiniteSet {
      * Returns a new <code>Geometry</code> that is the coordinate transformation of this
      * <code>Geometry</code> into the passed coordinate reference system within the accuracy
      * of the transformation.
+     * <br><br>
+     * <strong>NOTE:</strong> If there is more than one shape to transform, then it may be
+     * more efficient to invoke {@link org.opengis.crs.operation.MathTransform#transform(Geometry)}.
+     *
+     * @param  newCRS The newCRS.
+     * @return The transformed <code>Geometry</code>.
+     * @UML operation transform
+     *
+     * @revisit Which exception to throws if the transformation fails?
+     */
+    public Geometry transform(CoordinateReferenceSystem newCRS);
+
+    /**
+     * Returns a new <code>Geometry</code> that is the coordinate transformation of this
+     * <code>Geometry</code> into the passed coordinate reference system within the accuracy
+     * of the transformation.
      *
      * @param  newCRS The newCRS.
      * @param trans the trasformation that converts between the existing Coordinate Reference System and the new Coordinate Reference System.
      * @throws IncompatibleOperationException when the specified transformation does not apply to either the existing or new Coordinate Reference Systems.
      * @return The transformed <code>Geometry</code>.
      * @UML operation transform
+     *
+     * @deprecated The user should not needs to specify a transformation here.
+     *             The library has enough informations to figure it out from the
+     *             current geometry CRS and the new CRS only.
      */
-    public Geometry transform(CoordinateReferenceSystem newCRS, CoordinateTransformation trans) throws IncompatibleOperationException;
+    public Geometry transform(CoordinateReferenceSystem newCRS,
+                              org.opengis.crs.operation.CoordinateTransformation trans)
+            throws org.opengis.crs.operation.IncompatibleOperationException;
 
     /**
      * Returns the minimum bounding box for this <code>Geometry</code>. This shall be the

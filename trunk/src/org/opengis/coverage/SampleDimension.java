@@ -9,8 +9,9 @@
  *************************************************************************************************/
 package org.opengis.coverage;
 
-// J2SE direct dependencies and extensions
+// J2SE extensions
 import javax.units.Unit;
+
 
 /**
  * Contains information for an individual sample dimension of {@linkplain Coverage coverage}.
@@ -99,7 +100,7 @@ public interface SampleDimension {
      *
      * @see #getPaletteInterpretation
      * @see #getColorInterpretation
-     * @see IndexColorModel
+     * @see java.awt.image.IndexColorModel
      */
     int[][] getPalette();
 
@@ -186,7 +187,7 @@ public interface SampleDimension {
      * @UML mandatory metadataNames
      *
      * @see #getMetadataValue
-     * @see PropertySource#getPropertyNames
+     * @see javax.media.jai.PropertySource#getPropertyNames
      */
     String[] getMetaDataNames();
 
@@ -199,7 +200,7 @@ public interface SampleDimension {
      * @UML operation getMetadataValue
      *
      * @see #getMetaDataNames
-     * @see PropertySource#getProperty
+     * @see javax.media.jai.PropertySource#getProperty
      */
     String getMetadataValue(String name) throws MetadataNameNotFoundException;
 }

@@ -9,7 +9,7 @@
  *************************************************************************************************/
 package org.opengis.spatialschema.geometry.geometry;
 
-// J2SE direct dependencies
+// OpenGIS direct dependencies
 import org.opengis.spatialschema.geometry.primitive.CurveSegment;
 
 

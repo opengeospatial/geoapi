@@ -10,8 +10,11 @@
 package org.opengis.crs.quality;
 
 // J2SE extensions
-import org.opengis.crs.operation.Matrix;
 import javax.units.Unit;
+
+// OpenGIS direct dependencies
+import org.opengis.crs.operation.Matrix;
+
 
 /**
  * Error estimate covariance matrix. Individual elements can be obtained with

@@ -9,17 +9,16 @@
  *************************************************************************************************/
 package org.opengis.spatialschema.geometry.geometry;
 
-// OpenGIS direct dependencies
-
 
 /**
- * Two distinct {@linkplain DirectPosition direct positions} (the {@linkplain #getStartPoint start point}
- * and {@linkplain #getEndPoint end point}) joined by a straight line. Thus its interpolation attribute
- * shall be {@link org.opengis.spatialschema.geometry.primitive.CurveInterpolation#LINEAR LINEAR}. The default
- * parameterization is:
+ * Two distinct {@linkplain org.opengis.spatialschema.geometry.DirectPosition direct positions}
+ * (the {@linkplain #getStartPoint start point} and {@linkplain #getEndPoint end point}) joined
+ * by a straight line. Thus its interpolation attribute shall be
+ * {@link org.opengis.spatialschema.geometry.primitive.CurveInterpolation#LINEAR LINEAR}.
+ * The default parameterization is:
  *
  * <blockquote><pre>
- * L = {@linkplain #getEndParam endParam} � {@linkplain #getStartParam startParam}
+ * L = {@linkplain #getEndParam endParam} - {@linkplain #getStartParam startParam}
  * c(s) = ControlPoint[1]+((s-{@linkplain #getStartParam startParam})/L)*(ControlPoint[2]-ControlPoint[1])
  * </pre></blockquote>
  *

@@ -10,10 +10,11 @@
 package org.opengis.coverage.processing;
 
 // OpenGIS direct dependencies
-import org.opengis.coverage.MetadataNameNotFoundException;
-import org.opengis.coverage.grid.GridCoverage;
-import org.opengis.coverage.grid.InvalidParameterNameException;
 import org.opengis.coverage.grid.Parameter;
+import org.opengis.coverage.grid.GridCoverage;
+import org.opengis.coverage.SampleDimensionType; // For javadoc
+import org.opengis.coverage.MetadataNameNotFoundException;
+import org.opengis.coverage.grid.InvalidParameterNameException;
 
 
 /**
@@ -28,7 +29,7 @@ import org.opengis.coverage.grid.Parameter;
  * {@link SampleDimensionType#UNSIGNED_1BIT UNSIGNED_1BIT}). The actual underlying grid data
  * remains unchanged.
  * <br><br>
- * The interface has been designed to allow the adaptations to be done in a �pipe-lined� manner.
+ * The interface has been designed to allow the adaptations to be done in a "pipe-lined" manner.
  * The interface operates on {@link GridCoverage} to create new a {@link GridCoverage}. The
  * interface does not need to make a copy of the source grid data. Instead, it can return a
  * grid coverage object which applies the adaptations on the original grid coverage whenever
@@ -43,7 +44,7 @@ import org.opengis.coverage.grid.Parameter;
  *       Creating a new {@link GridCoverage} with different grid geometry allows for reprojecting
  *       the grid coverage to another projection and another georeferencing type, resampling to
  *       another cell resolution and subsetting the grid coverage.</li>
- *   <li>Modify the way the grid values are accessed (filtered, classified�).</li>
+ *   <li>Modify the way the grid values are accessed (filtered, classified...).</li>
  *   <li>Change the interpolation method used when evaluating points which fall between grid cells.</li>
  *   <li>Filtering.</li>
  *   <li>Image enhancements.</li>

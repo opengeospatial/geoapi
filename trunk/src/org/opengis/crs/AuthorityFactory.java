@@ -36,7 +36,7 @@ import java.util.Set;
  * that the latest edition is intended.
  *
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
- * @version 2.0
+ * @version 1.0
  */
 public interface AuthorityFactory extends Factory {
     /**
@@ -66,7 +66,7 @@ public interface AuthorityFactory extends Factory {
      * @param  type The spatial reference objects type (may be <code>Object.class</code>).
      * @return The set of authority codes for spatial reference objects of the given type.
      *         If this factory doesn't contains any object of the given type, then this method
-     *         returns an {@linkplain Collections#EMPTY_SET empty set}.
+     *         returns an {@linkplain java.util.Collections#EMPTY_SET empty set}.
      * @throws FactoryException if access to the underlying database failed.
      */
     Set/*<String>*/ getAuthorityCodes(Class type) throws FactoryException;

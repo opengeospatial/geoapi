@@ -12,13 +12,14 @@ package org.opengis.spatialschema.geometry.primitive;
 // J2SE direct dependencies
 import java.util.List;
 
+// OpenGIS direct dependencies
 import org.opengis.spatialschema.geometry.geometry.GenericSurface;
 
 
 /**
  * Surface with a positive orientation.
  * <code>Surface</code> is a subclass of {@link Primitive} and is the basis for 2-dimensional
- * geometry. Unorientable surfaces such as the M�bius band are not allowed. The orientation of
+ * geometry. Unorientable surfaces such as the M&ouml;bius band are not allowed. The orientation of
  * a surface chooses an "up" direction through the choice of the upward normal, which, if the
  * surface is not a cycle, is the side of the surface from which the exterior boundary appears
  * counterclockwise. Reversal of the surface orientation reverses the curve orientation of each

@@ -9,7 +9,7 @@
  *************************************************************************************************/
 package org.opengis.coverage.grid;
 
-//J2SE direct dependencies
+// OpenGIS direct dependencies
 import org.opengis.util.CodeList;
 
 
@@ -22,7 +22,7 @@ import org.opengis.util.CodeList;
  *
  * @see GridPacking
  * @see ValueInBytePacking
- * @see ByteOrder
+ * @see java.nio.ByteOrder
  */
 public final class ByteInValuePacking extends CodeList {
     /**
@@ -34,7 +34,7 @@ public final class ByteInValuePacking extends CodeList {
      * Big Endian.
      *
      * @UML conditional GC_wkbXDR
-     * @see ByteOrder#BIG_ENDIAN
+     * @see java.nio.ByteOrder#BIG_ENDIAN
      */
     public static final ByteInValuePacking WKB_XDR = new ByteInValuePacking("WKB_XDR", 0);
 
@@ -42,7 +42,7 @@ public final class ByteInValuePacking extends CodeList {
      * Little Endian.
      *
      * @UML conditional GC_wkbNDR
-     * @see ByteOrder#LITTLE_ENDIAN
+     * @see java.nio.ByteOrder#LITTLE_ENDIAN
      */
     public static final ByteInValuePacking WKB_NDR = new ByteInValuePacking("WKB_NDR", 1);
 

@@ -23,7 +23,8 @@ import java.io.IOException;
  * @see GridCoverageExchange#createFromName
  * @see GridCoverageExchange#createFromSubName
  *
- * @revisit In a J2SE 1.4 profile, this exception should extends {@link IIOException}.
+ * @revisit In a J2SE 1.4 profile, this exception should extends
+ *          {@link javax.imageio.IIOException}.
  */
 public class CannotCreateGridCoverageException extends IOException {
     /**

@@ -10,6 +10,8 @@
 package org.opengis.crs.crs;
 
 // OpenGIS direct dependencies
+import org.opengis.crs.cs.TemporalCS;
+import org.opengis.crs.datum.TemporalDatum;
 
 
 /**

@@ -9,8 +9,6 @@
  *************************************************************************************************/
 package org.opengis.crs;
 
-// J2SE direct dependencies
-
 
 /**
  * Thrown when a {@linkplain Factory factory} can't create an instance
@@ -22,8 +20,8 @@ package org.opengis.crs;
  *
  * If the failure is caused by an illegal authority code, then the actual exception should
  * be {@link NoSuchAuthorityCodeException}. Otherwise, if the failure is caused by some
- * error in the underlying database (e.g. {@link IOException} ou {@link SQLException}),
- * then this cause should be specified.
+ * error in the underlying database (e.g. {@link java.io.IOException} or
+ * {@link java.sql.SQLException}), then this cause should be specified.
  *
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 2.0
@@ -55,7 +53,7 @@ public class FactoryException extends Exception {
     /**
      * Construct an exception with the specified detail message and cause.
      * The cause is the exception thrown in the underlying database
-     * (e.g. {@link IOException} ou {@link SQLException}).
+     * (e.g. {@link java.io.IOException} or {@link java.sql.SQLException}).
      *
      * @param  message The detail message. The detail message is saved
      *         for later retrieval by the {@link #getMessage()} method.

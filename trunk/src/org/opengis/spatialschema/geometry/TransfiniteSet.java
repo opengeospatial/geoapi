@@ -9,8 +9,6 @@
  *************************************************************************************************/
 package org.opengis.spatialschema.geometry;
 
-// OpenGIS direct dependencies
-
 
 /**
  * A possibly infinite set; restricted only to values. For example, the integers and the real

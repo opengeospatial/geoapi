@@ -11,6 +11,7 @@ package org.opengis.spatialschema.geometry.primitive;
 
 // OpenGIS direct dependencies
 import org.opengis.util.CodeList;
+import org.opengis.spatialschema.geometry.DirectPosition; // For javadoc
 
 
 /**

@@ -9,7 +9,7 @@
  *************************************************************************************************/
 package org.opengis.coverage.processing;
 
-// J2SE extensions
+// OpenGIS direct dependencies
 import org.opengis.coverage.grid.GridCoverage;
 import org.opengis.crs.operation.Matrix;
 
@@ -38,7 +38,7 @@ public interface GridAnalysis extends GridCoverage {
      * @throws InvalidSampleDimensionException if the sample dimension index is out of bounds.
      * @UML operation histogram
      *
-     * @see Histogram
+     * @see javax.media.jai.Histogram
      */
     int[] getHistogram(int sampleDimension, double minimumEntryValue, double maximumEntryValue, int numberEntries)
             throws InvalidSampleDimensionException;
