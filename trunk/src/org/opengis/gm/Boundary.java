@@ -8,14 +8,21 @@ import org.opengis.gm.complex.Complex;
 
 
 /**
- * The abstract root data type for all the data types used to represent the boundary
- * of geometric objects is GM_Boundary (Figure 7). Any subclass of GM_Object will use
- * a subclass of GM_Boundary to represent its boundary through the operation GM_Object::boundary.
- * By the nature of geometry, boundary objects are cycles. GM_Boundary: {isCycle() =
- * TRUE} 
- *  
- * @author GeoAPI
- * @version 1.0
+ * The abstract root data type for all the data types used to represent the boundary of geometric
+ * objects. Any subclass of {@link Geometry} will use a subclass of <code>Boundary</code> to
+ * represent its boundary through the operation {@link Geometry#getBoundary}. By the nature of
+ * geometry, boundary objects are cycles.
+ *
+ * @UML type GM_Boundary
+ * @author ISO/DIS 19107
+ * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
+ * @version 2.0
  */
 public interface Boundary extends Complex {
+    /**
+     * Always returns <code>true</code> since boundary objects are cycles.
+     *
+     * @return Always <code>true</code>.
+     */
+    public boolean isCycle();
 }
