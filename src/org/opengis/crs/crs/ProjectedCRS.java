@@ -10,7 +10,6 @@
 package org.opengis.crs.crs;
 
 // OpenGIS direct dependencies
-import org.opengis.crs.cs.CartesianCS;
 import org.opengis.crs.crs.projection.Projection;
 
 
@@ -37,20 +36,13 @@ public interface ProjectedCRS extends GeneralDerivedCRS {
      *
      * @return The member Projection.
      */
-    public Projection getProjection( );
+    Projection getProjection( );
 
     /**
      * Sets the map projection.
      *
      * @param projection The new Projection.
      */
-    public void setProjection(Projection projection);
+    void setProjection(Projection projection);
 
-    /**
-     * Returns the coordinate system, which must be cartesian.
-     *
-     * @return The coordinate system.
-     * @UML association usesCS
-     */
-/// CartesianCS getCoordinateSystem();
 }

@@ -10,8 +10,6 @@
 package org.opengis.crs.crs;
 
 // OpenGIS direct dependencies
-import org.opengis.crs.cs.TemporalCS;
-import org.opengis.crs.datum.TemporalDatum;
 
 
 /**
@@ -29,19 +27,5 @@ import org.opengis.crs.datum.TemporalDatum;
  * @version <A HREF="http://www.opengis.org/docs/03-073r1.zip">Abstract specification 2.0</A>
  */
 public interface TemporalCRS extends CoordinateReferenceSystem {
-    /**
-     * Returns the coordinate system, which must be temporal.
-     *
-     * @return The coordinate system.
-     * @UML association usesCS
-     */
-/// TemporalCS getCoordinateSystem();
 
-    /**
-     * Returns the datum, which must be temporal.
-     *
-     * @return The datum.
-     * @UML association usesDatum
-     */
-/// TemporalDatum getDatum();
 }
