@@ -55,8 +55,8 @@ public abstract class CodeList implements Serializable {
      * the <code>values</code> argument. This list is used for <code>values()</code>
      * method implementations.
      *
-     * @param name The code name.
-     * @param ordinal The collection to add the element to.
+     * @param name   The code name.
+     * @param values The collection to add the element to.
      */
     protected CodeList(String name, final Collection values) {
         this.name = (name=name.trim());
