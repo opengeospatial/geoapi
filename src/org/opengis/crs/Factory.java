@@ -72,6 +72,12 @@ package org.opengis.crs;
  *   </tr>
  * </table>
  *
+ * <P>The <code>"name"</code> property is mandatory. All others are optional. Additionally, all
+ * localizable attributes like <code>"name"</code> and <code>"remarks"</code> may have a language
+ * and country code suffix. For example the <code>"remarks_fr"</code> property stands for remarks
+ * in {@linkplain java.util.Locale#FRENCH French} and the <code>"remarks_fr_CA"</code> property
+ * stands for remarks in {@linkplain java.util.Locale#CANADA_FRENCH French Canadian}.</P>
+ *
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-009.pdf">Implementation specification 1.0</A>
  */
