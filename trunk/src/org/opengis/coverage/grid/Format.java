@@ -67,5 +67,6 @@ public interface Format {
     /**
      * Retrieve the parameter information for a {@link GridCoverageWriter#write write} operation.
      */
+/// @UML (identifier="getParameterInfo, numParameters", obligation=MANDATORY)
     ParameterValueGroup getWriteParameters();
 }

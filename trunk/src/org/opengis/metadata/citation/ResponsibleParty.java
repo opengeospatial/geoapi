@@ -46,7 +46,7 @@ public interface ResponsibleParty {
     /**
      * Role or position of the responsible person.
      * Only one of {@link #getIndividualName individualName},
-     * {@link #getOrganisationName organisationName} and <code>getPositionName</code>
+     * {@link #getOrganisationName organisationName} and <code>positionName</code>
      * should be provided.
      */
 /// @UML (identifier="positionName", obligation=CONDITIONAL)

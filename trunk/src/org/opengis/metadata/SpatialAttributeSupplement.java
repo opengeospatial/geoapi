@@ -24,7 +24,7 @@ import java.util.Set;
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
  */
-///@UML (identifier="MD_ApplicationSchemaInformation")
+///@UML (identifier="MD_SpatialAttributeSupplement")
 public interface SpatialAttributeSupplement {
     /**
      * Provides information about the list of feature types with the same spatial representation.

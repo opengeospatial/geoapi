@@ -47,7 +47,7 @@ public final class VerticalDatumType extends CodeList {
      * vertical datum. Other variations to the above three vertical datum types may exist
      * and are all included in this type.
      */
-/// @UML (identifier="other&nbsp;surface", obligation=CONDITIONAL)
+/// @UML (identifier="other surface", obligation=CONDITIONAL)
     public static final VerticalDatumType OTHER_SURFACE = new VerticalDatumType("OTHER_SURFACE");
 
     /**

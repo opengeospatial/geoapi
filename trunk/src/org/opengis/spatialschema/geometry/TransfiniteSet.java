@@ -26,7 +26,7 @@ package org.opengis.spatialschema.geometry;
  * @revisit This interface should uses generic type. It focus on {@link DirectPosition}
  *          for now because it is the only type used at this time.
  */
-///@UML (identifier="TransfiniteSet<DirectPosition>")
+///@UML (identifier="TransfiniteSet")
 public interface TransfiniteSet {
     /**
      * Returns <code>true</code> if this <code>TransfiniteSet</code> contains another

@@ -57,7 +57,7 @@ public final class MaintenanceFrequency extends CodeList {
     /**
      * Data is updated on a weekly basis.
      */
-/// @UML (identifier="daily", obligation=CONDITIONAL)
+/// @UML (identifier="weekly", obligation=CONDITIONAL)
     public static final MaintenanceFrequency WEEKLY = new MaintenanceFrequency("WEEKLY");
 
     /**

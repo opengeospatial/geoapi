@@ -28,18 +28,16 @@ public interface CurveBoundary extends PrimitiveBoundary {
     /**
      * Returns the start point.
      *
-     * @return The start point.
-     *
      * @see #getEndPoint
      */
+///@UML (identifier="startPoint", obligation=MANDATORY)
     public Point getStartPoint();
 
     /**
      * Returns the end point.
      *
-     * @return The end point.
-     *
      * @see #getStartPoint
      */
+///@UML (identifier="endPoint", obligation=MANDATORY)
     public Point getEndPoint();
 }

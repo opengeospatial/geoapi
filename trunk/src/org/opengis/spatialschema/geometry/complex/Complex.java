@@ -65,7 +65,7 @@ public interface Complex extends Geometry {
      * @return The supercomplexes, or an empty array if none.
      */
 /// @UML (identifier="superComplex", obligation=MANDATORY)
-    public Complex[] getSuperComplexex();
+    public Complex[] getSuperComplexes();
 
     /**
      * Returns a subset of the primitives of that complex

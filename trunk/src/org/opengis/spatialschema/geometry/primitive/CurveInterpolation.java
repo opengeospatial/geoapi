@@ -50,6 +50,7 @@ public final class CurveInterpolation extends CodeList {
      * The interpolation mechanism shall return {@linkplain DirectPosition direct positions}
      * on a straight line between each consecutive pair of control points.
      */
+/// @UML (identifier="linear", obligation=CONDITIONAL)
     public static final CurveInterpolation LINEAR = new CurveInterpolation("LINEAR");
 
     /**
@@ -58,6 +59,7 @@ public final class CurveInterpolation extends CodeList {
      * of shortest length. The geodesic shall be determined in the coordinate reference system of
      * the {@linkplain Curve curve} in which the {@linkplain CurveSegment curve segment} is used.
      */
+/// @UML (identifier="geodesic", obligation=CONDITIONAL)
     public static final CurveInterpolation GEODESIC = new CurveInterpolation("GEODESIC");
 
     /**
@@ -68,6 +70,7 @@ public final class CurveInterpolation extends CodeList {
      * odd number of elements. If the 3 points are co-linear, the circular arc becomes a straight
      * line.
      */
+/// @UML (identifier="circularArc3Points", obligation=CONDITIONAL)
     public static final CurveInterpolation CIRCULAR_ARC_3_POINTS = new CurveInterpolation(
                                           "CIRCULAR_ARC_3_POINTS"); // Circular arc by 3 points
 
@@ -79,6 +82,7 @@ public final class CurveInterpolation extends CodeList {
      * positive for leftward and negative for rightward. This form shall only be used in
      * 2 dimensions because of the restricted nature of the definition technique.
      */
+/// @UML (identifier="circularArc2PointWithBulge", obligation=CONDITIONAL)
     public static final CurveInterpolation CIRCULAR_ARC_2_POINTS_WITH_BULGE = new CurveInterpolation(
                                           "CIRCULAR_ARC_2_POINTS_WITH_BULGE"); // Circular arc by 2 points and bulge factor
 
@@ -89,12 +93,14 @@ public final class CurveInterpolation extends CodeList {
      * the 4 control points are co-linear, the arc becomes a straight line. If the 4 control points
      * are on the same circle, the arc becomes a circular one.
      */
+/// @UML (identifier="elliptical", obligation=CONDITIONAL)
     public static final CurveInterpolation ELLIPTICAL = new CurveInterpolation(
                                           "ELLIPTICAL"); // Elliptical arc
 
     /**
      * Uses a Cornu's spiral or clothoid interpolation.
      */
+/// @UML (identifier="clothoid", obligation=CONDITIONAL)
     public static final CurveInterpolation CLOTHOID = new CurveInterpolation(
                                           "CLOTHOID");
 
@@ -102,6 +108,7 @@ public final class CurveInterpolation extends CodeList {
      * Same as {@linkplain #ELLIPTICAL elliptical arc} but using 5 consecutive control points
      * to determine a conic section.
      */
+/// @UML (identifier="conic", obligation=CONDITIONAL)
     public static final CurveInterpolation CONIC = new CurveInterpolation(
                                           "CONIC"); // Conic arc
     /**
@@ -109,6 +116,7 @@ public final class CurveInterpolation extends CodeList {
      * spline function. Normally, the degree of continuity is determined by the degree of the
      * polynomials chosen.
      */
+/// @UML (identifier="polynomialSpline", obligation=CONDITIONAL)
     public static final CurveInterpolation POLYNOMIAL_SPLINE = new CurveInterpolation(
                                           "POLYNOMIAL_SPLINE"); // Polynomial Spline
 
@@ -116,6 +124,7 @@ public final class CurveInterpolation extends CodeList {
      * The control points are interpolated using initial tangents and cubic polynomials, a
      * form of degree 3 polynomial spline.
      */
+/// @UML (identifier="cubicSpline", obligation=CONDITIONAL)
     public static final CurveInterpolation CUBIC_SPLINE = new CurveInterpolation(
                                           "CUBIC_SPLINE"); // Cubic Spline
 
@@ -124,6 +133,7 @@ public final class CurveInterpolation extends CodeList {
      * rational (quotient of polynomials) spline function. Normally, the degree of continuity
      * is determined by the degree of the polynomials chosen.
      */
+/// @UML (identifier="rationalSpline", obligation=CONDITIONAL)
     public static final CurveInterpolation RATIONAL_SPLINE = new CurveInterpolation(
                                           "RATIONAL_SPLINE"); // Rational Spline
 

@@ -52,7 +52,7 @@ public interface GenericCurve {
      * @see #getEndParam
      * @see #getStartPoint
      */
-/// @UML (identifier="startPoint", obligation=MANDATORY)
+/// @UML (identifier="endPoint", obligation=MANDATORY)
     public DirectPosition getEndPoint();
 
     /**

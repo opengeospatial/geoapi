@@ -40,7 +40,7 @@ public interface Citation {
 
     /**
      * Short name or other language name by which the cited information is known.
-     * Example: "DCW" as an alternative title for "Digital Chart of the World.
+     * Example: "DCW" as an alternative title for "Digital Chart of the World".
      */
 /// @UML (identifier="alternateTitle", obligation=OPTIONAL)
     List/*<InternationalString>*/ getAlternateTitles();
