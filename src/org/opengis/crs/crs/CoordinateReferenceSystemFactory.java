@@ -37,10 +37,10 @@ public interface CoordinateReferenceSystemFactory {
      * @return the <code>CRS</code>.
      * @throws UnsupportedCRSException if the criteria cannot be met
      */
-    public CRS createCRS(Properties criteria) throws UnsupportedCRSException;                       
+    public CoordinateReferenceSystem createCRS(Properties criteria) throws UnsupportedCRSException;                       
                                                                                                                              
 	/**
-	 * Returns a {@linkplain GeographicCRS geographic CRS} from a code.
+	 * Returns a {@linkplain GeographicCRS geographic coordinate reference system} from a code.
 	 *
      * @param criteria the criteria corresponding to a specific <code>CRS</code>.
 	 * @throws FactoryException if the object creation failed.
@@ -51,7 +51,7 @@ public interface CoordinateReferenceSystemFactory {
 	public GeographicCRS createGeographicCRS(Properties criteria) throws FactoryException;
 	
 	/**
-	 * Returns a {@linkplain GeocentricCRS geocentric CRS} from a code.
+	 * Returns a {@linkplain GeocentricCRS geocentric coordinate reference system} from a code.
 	 *
      * @param criteria the criteria corresponding to a specific <code>CRS</code>.
 	 * @throws FactoryException if the object creation failed.
@@ -62,7 +62,7 @@ public interface CoordinateReferenceSystemFactory {
 	public GeocentricCRS createGeocentricCRS(Properties criteria) throws FactoryException;
 	
 	/**
-	 * Returns a {@linkplain ProjectedCRS projected CRS} from a code.
+	 * Returns a {@linkplain ProjectedCRS projected coordinate reference system} from a code.
 	 *
      * @param criteria the criteria corresponding to a specific <code>CRS</code>.
 	 * @throws FactoryException if the object creation failed.
@@ -73,7 +73,7 @@ public interface CoordinateReferenceSystemFactory {
 	ProjectedCRS createProjectedCRS(Properties criteria) throws FactoryException;
                                                                                                                              
 	/**
-	 * Create a {@linkplain VerticalCRS vertical CRS} from a code.
+	 * Create a {@linkplain VerticalCRS vertical coordinate reference system} from a code.
 	 *
      * @param criteria the criteria corresponding to a specific <code>CRS</code>.
 	 * @throws FactoryException if the object creation failed.
@@ -84,7 +84,7 @@ public interface CoordinateReferenceSystemFactory {
 	public VerticalCRS createVerticalCRS(Properties criteria) throws FactoryException;
                                                                                                                              
 	/**
-	 * Create a {@linkplain ImageCRS image CRS} from a code.
+	 * Create a {@linkplain ImageCRS image coordinate reference system} from a code.
 	 *
      * @param criteria the criteria corresponding to a specific <code>CRS</code>.
 	 * @throws FactoryException if the object creation failed.
@@ -92,7 +92,7 @@ public interface CoordinateReferenceSystemFactory {
 	public ImageCRS createImageCRS(Properties criteria) throws FactoryException;
 	
 	/**
-	 * Create a {@linkplain EngineeringCRS engineering CRS} from a code.
+	 * Create a {@linkplain EngineeringCRS engineering coordinate reference system} from a code.
 	 *
      * @param criteria the criteria corresponding to a specific <code>CRS</code>.
 	 * @throws FactoryException if the object creation failed.
@@ -100,7 +100,7 @@ public interface CoordinateReferenceSystemFactory {
 	public EngineeringCRS createEngineeringCRS(Properties criteria) throws FactoryException;
 	
 	/**
-	 * Create a {@linkplain TemporalCRS temporal CRS} from a code.
+	 * Create a {@linkplain TemporalCRS temporal coordinate reference system} from a code.
 	 *
      * @param criteria the criteria corresponding to a specific <code>CRS</code>.
 	 * @throws FactoryException if the object creation failed.

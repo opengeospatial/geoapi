@@ -140,7 +140,7 @@ public class LatLonAlt implements DirectPosition {
         props.setProperty(CoordinateReferenceSystemFactory.COORDINATE_REFERECE_SYSTEM_URL, crsURL);
         CoordinateReferenceSystem crs;
         try {
-            crs = (CoordinateReferenceSystem)
+            crs =
                 CommonFactoryManager.getCommonFactory("CommonFactory")
                     .getCoordinateReferenceSystemFactory()
                     .createCRS(props);

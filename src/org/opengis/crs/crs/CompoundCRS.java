@@ -22,17 +22,12 @@ package org.opengis.crs.crs;
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 2.0
  */
-public interface CompoundCRS extends CRS {
+public interface CompoundCRS extends CoordinateReferenceSystem {
     /**
      * The ordered list of coordinate reference systems.
      *
      * @return The coordinate reference systems.
      * @UML association includesCRS
-     *
-     * @revisit <code>getCoordinateReferenceSystem()</code> would be a better name, since this
-     *          method returns a {@link CoordinateReferenceSystem} object - not a {@link CRS}.
-     *          The <code>getCRS()</code> name may be confusing, especially since the place of
-     *          the {@link CRS} interface in the hierarchy is not self-evident.
      */
-    public CoordinateReferenceSystem[] getCRS();
+    public CoordinateReferenceSystem[] getCoordinateReferenceSystem();
 }

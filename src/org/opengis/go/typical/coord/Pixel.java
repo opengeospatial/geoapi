@@ -38,9 +38,9 @@ public class Pixel extends Point2D implements DirectPosition {
     /**
      * The Default Coordinate Reference System URL for this coordinate.
      */
-    // TODO: Fix the default value.
-    public static final String DEFAULT_COORDINATE_REFERENCE_SYSTEM_URL =
-        "urn:x-ogc:srs:OGC::XXXXXX";
+    // TODO: Fix the default value. This should be an Image Coordinate Reference System.
+    public static final String DEFAULT_COORDINATE_REFERENCE_SYSTEM_URL = "urn:x-ogc:srs:OGC::XXXXXX";
+    
     /**
      * The Coordinate Reference System for this coordinate.
      */
@@ -92,7 +92,7 @@ public class Pixel extends Point2D implements DirectPosition {
         props.setProperty(CoordinateReferenceSystemFactory.COORDINATE_REFERECE_SYSTEM_URL, crsURL);
         CoordinateReferenceSystem crs;
         try {
-            crs = (CoordinateReferenceSystem)
+            crs =
                 CommonFactoryManager
                     .getCommonFactory("CommonFactory")
                     .getCoordinateReferenceSystemFactory()
