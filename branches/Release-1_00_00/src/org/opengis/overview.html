@@ -1,0 +1,39 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<HTML>
+  <HEAD>
+    <TITLE>OpenGIS interface overview</TITLE>
+  </HEAD>
+  <BODY>
+  <A HREF="http://www.opengis.org">OpenGIS&reg;</A> interfaces for
+  <A HREF="http://java.sun.com">Java</A>. Interfaces were created
+  from UML diagrams found in the following specifications:
+
+  <UL>
+    <LI><A HREF="http://www.opengis.org/docs/01-111.pdf">Metadata (Topic 11)</A></LI>
+    <LI><A HREF="http://www.opengis.org/docs/02-087r3.pdf">Catalog Services</A></LI>
+    <LI><A HREF="http://www.opengis.org/docs/03-073r1.zip">Spatial Referencing by Coordinates (Topic 2)</A>
+        completed by <A HREF="http://www.opengis.org/docs/01-009.pdf">Coordinate Transformation Services</A></LI>
+    <LI><A HREF="http://www.opengis.org/docs/01-101.pdf">Feature Geometry (Topic 1)</A></LI>
+    <LI><A HREF="http://www.opengis.org/docs/01-004.pdf">Grid Coverages Implementation</A></LI>
+    <LI><A HREF="http://www.opengis.org/docs/03-064r1.pdf">GO-1 Application Objects Report</A></LI>
+  </UL>
+
+  <P ALIGN="justify">Interfaces are created using a fixed set of
+  <A HREF="org/opengis/doc-files/UML-Java.html">UML to Java mapping</A>.
+  Substantial modifications are declared in the list of
+  <A HREF="org/opengis/doc-files/OpenIssues.html#Changes">changes from UML diagrams</A>.
+  <STRONG>This API is work in progress!</STRONG> See
+  <A HREF="org/opengis/doc-files/OpenIssues.html">open issues</A>.</P>
+
+  <H2>Requirements</H2>
+  <P ALIGN="justify">For <STRONG>execution</STRONG>,
+  <A HREF="http://java.sun.com/j2se/">J2SE&nbsp;1.3</A> or later is sufficient. For
+  <STRONG>compilation</STRONG>, <A HREF="http://java.sun.com/j2se/1.5/">J2SE&nbsp;1.5</A>
+  or later is required. This is because the specification uses covariant return types in
+  method overriding. Such covariance is allowed at the virtual machine level, but not at
+  the compiler level prior to 1.5. See the <A HREF="org/opengis/doc-files/Requirements.html">requirements
+  page</A> for more details. Additionally, a <A HREF="http://jsr-108.sourceforge.net">JSR-108</A>
+  units implementation si required in all cases.</P>
+  </BODY>
+</HTML>

@@ -1,0 +1,159 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<HTML>
+  <HEAD>
+    <TITLE>UML to Java mapping</TITLE>
+  </HEAD>
+  <BODY>
+  <H1>UML to Java mapping</H1>
+  <P ALIGN="justify">The following stereotypes of UML classes and data types
+  are mapped to J2SE objects as below:</P>
+  <BR>
+  <TABLE BORDER='2' CELLPADDING='6'>
+    <TR BGCOLOR="#EEEEFF"><TH>UML</TH><TH>OGC Purpose</TH><TH>Java mapping</TH></TR>
+    <TR><TD nowrap valign='top'><CODE>&lt;&lt;DataType&gt;&gt;</CODE></TD>
+        <TD>A descriptor of a set of values that lack identity (independent
+            existence and the possibility of side effects). A DataType is a
+            class with no operations whose primary purpose is to hold the
+            information.</TD>
+        <TD nowrap>Interface</TD></TR>
+    <TR><TD nowrap valign='top'><CODE>&lt;&lt;CodeList&gt;&gt;</CODE></TD>
+        <TD>A flexible enumeration that uses string values for expressing a list of
+            potential values.</TD>
+        <TD nowrap><CODE><A HREF="../util/CodeList.html">CodeList</A> <strong>extends</strong>
+        <A HREF="http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Enum.html">java.lang.Enum</A><SUP>*</SUP></CODE></TD></TR>
+    <TR><TD nowrap valign='top'><CODE>&lt;&lt;Union&gt;&gt;</CODE></TD>
+        <TD>Contains a list of attributes where only one of those attributes can be
+            present at any time.</TD>
+        <TD nowrap>none</TD></TR>
+    <TR><TD nowrap valign='top'><CODE>&lt;&lt;Abstract&gt;&gt;</CODE></TD>
+        <TD>A polymorphic object class that cannot be instantiated.</TD>
+        <TD nowrap>Interface</TD></TR>
+    <TR><TD nowrap valign='top'>Constructor</TD>
+        <TD>Cast an object into an object of an other type.</TD>
+        <TD>A <CODE>createFoo()</CODE> method in a <CODE>Factory</CODE> interface.</TD></TR>
+    <TR><TD nowrap valign='top'><CODE>Set&lt;DataType&gt;</CODE></TD>
+        <TD>A finite set. Each object is considered to be in the set only once.</TD>
+        <TD nowrap><CODE><A HREF="http://java.sun.com/j2se/1.4/docs/api/java/util/Set.html">java.util.Set</A></CODE></TD></TR>
+    <TR><TD nowrap valign='top'><CODE>Sequence&lt;DataType&gt;</CODE></TD>
+        <TD>A sequence type of collection, which contains an ordered finite list of
+            values (possibly with repeated values) of the specified data type.</TD>
+        <TD>Small array, or
+        <CODE><A HREF="http://java.sun.com/j2se/1.4/docs/api/java/util/List.html">java.util.List</A></CODE>
+            if the sequence is likely to be big.</TD></TR>
+    <TR><TD nowrap valign='top'><CODE>CharacterString</CODE></TD>
+        <TD>A sequence of characters.</TD>
+        <TD><CODE><A HREF="http://java.sun.com/j2se/1.4/docs/api/java/lang/String.html">java.lang.String</A></CODE>
+            in the general case, or
+            <CODE><A HREF="http://java.sun.com/j2se/1.4/docs/api/java/net/URL.html">java.net.URL</A></CODE>
+            for reference to a file.</TD></TR>
+    <TR><TD nowrap valign='top'><CODE>Integer</CODE></TD>
+        <TD>An integer number.</TD>
+        <TD nowrap><CODE>int</CODE></TD></TR>
+    <TR><TD nowrap valign='top'><CODE>Double</CODE></TD>
+        <TD>A double precision floating point number.</TD>
+        <TD nowrap><CODE>double</CODE></TD></TR>
+    <TR><TD nowrap valign='top'><CODE>Boolean</CODE></TD>
+        <TD>A value specifying TRUE or FALSE.</TD>
+        <TD nowrap><CODE>boolean</CODE></TD></TR>
+    <TR><TD nowrap valign='top'><CODE>Sign</CODE></TD>
+        <TD>Sign + or -.</TD>
+        <TD nowrap><CODE>int</CODE> with value +1 ou -1</TD></TR>
+    <TR><TD nowrap valign='top'><CODE>DateTime</CODE></TD>
+        <TD>A character string as specified by ISO 19108, which comprises year,
+            month, day and time of the day to the appropriate level of precision.</TD>
+        <TD nowrap><CODE><A HREF="http://java.sun.com/j2se/1.4/docs/api/java/util/Date.html">java.util.Date</A></CODE></TD></TR>
+    <TR><TD nowrap valign='top'><CODE>Scale</CODE></TD>
+        <TD>A floating point number associated with a dimensionless unit.</TD>
+        <TD nowrap><CODE>double</CODE></TD></TR>
+    <TR><TD nowrap valign='top'><CODE>Length</CODE></TD>
+        <TD>A floating point number associated with a linear unit.</TD>
+        <TD><CODE>double</CODE> with some <CODE>getUnit()</CODE> method
+            (e.g.&nbsp;<CODE>getAxisUnit()</CODE>).</TD></TR>
+    <TR><TD nowrap valign='top'><CODE>Angle</CODE></TD>
+        <TD>A floating point number associated with an angular unit.</TD>
+        <TD><CODE>double</CODE> with some <CODE>getUnit()</CODE> method
+            (e.g.&nbsp;<CODE>getAngularUnit()</CODE>).</TD></TR>
+    <TR><TD nowrap valign='top'><CODE>Measure</CODE></TD>
+        <TD>A floating point number associated with an arbitrary unit.</TD>
+        <TD><CODE>double</CODE> with a <CODE>getUnit()</CODE> method.</TD></TR>
+  </TABLE>
+
+  <P ALIGN="right"><SUP>*</SUP> For platform earlier than J2SE 1.5, the <CODE>CodeList</CODE>
+  class will defines the same attributes than <CODE>Enum</CODE> but will not
+  extends <CODE>Enum</CODE>.</P>
+
+  <P>&nbsp;</P>
+  <H2>Custom Javadoc tags</H2>
+  <P ALIGN=justify>OpenGIS's <CITE>Mandatory</CITE>, <CITE>Conditional</CITE> and
+  <CITE>Optional</CITE> attributes are marked using custom <CODE>@UML&nbsp;mandatory</CODE>,
+  <CODE>@UML&nbsp;conditional</CODE> and <CODE>@UML&nbsp;optional</CODE> javadoc tags respectively.
+  Additional javadoc tags include <CODE>@UML&nbsp;association</CODE> and <CODE>@UML datatype</CODE>.
+  All the above-cited tags imply some renaming rules in order to comply with Java
+  naming conventions.</P>
+
+  <TABLE BORDER='2' CELLPADDING='12'>
+    <TR BGCOLOR="#EEEEFF"><TH NOWRAP>Javadoc tag</TH>
+                          <TH NOWRAP>Usage and renaming rule</TH></TR>
+
+    <TR><TD NOWRAP><CODE>@UML datatype</CODE></TD>
+        <TD><P ALIGN=justify>Interfaces marked with this tag are "datatype"
+        (as opposed to "abstract") in UML diagrams.</P></TD></TR>
+
+    <TR><TD NOWRAP><CODE>@UML mandatory</CODE></TD>
+        <TD><P ALIGN=justify>The Java method maps to a mandatory attribute in the
+            UML diagram. The Java method name is prefixed by "<CODE>get</CODE>".
+            For example, the mandatory "<CODE>code</CODE>" UML attribute maps
+            to a <CODE>getCode()</CODE> Java method.</P></TD></TR>
+
+    <TR><TD NOWRAP><CODE>@UML conditional</CODE></TD>
+        <TD><P ALIGN=justify>The Java method maps to a conditional attribute in the
+            UML diagram. The Java method name is prefixed by "<CODE>get</CODE>".</P></TD></TR>
+
+    <TR><TD NOWRAP><CODE>@UML optional</CODE></TD>
+        <TD><P ALIGN=justify>The Java method maps to an optional attribute in the
+            UML diagram. The Java method name is prefixed by "<CODE>get</CODE>".
+            For example, the optional "<CODE>remarks</CODE>" UML attribute maps
+            to a <CODE>getRemarks()</CODE> Java method.</P></TD></TR>
+
+    <TR><TD NOWRAP><CODE>@UML association</CODE></TD>
+        <TD><P ALIGN=justify>The Java method maps to an association in the UML diagram.
+            The UML's "<CODE>uses</CODE>" or "<CODE>includes</CODE>" prefix are omitted
+            and the Java method name is prefixed by "<CODE>get</CODE>".
+            For example, the <CODE>CoordinateSystem</CODE> class has a "<CODE>usesAxis</CODE>"
+            association. In Java, associations map to ordinary methods. Consequently, the
+            <CODE>usesAxis</CODE> association is mapped into a plain <CODE>getAxis()</CODE>
+            method.</P></TD></TR>
+
+    <TR><TD NOWRAP><CODE>@rename</CODE> <VAR>&lt;reason&gt;</VAR></TD>
+        <TD><P ALIGN=justify>Some other name change has been applied in order to match
+            more closely Java usage. A description of the change and its rational shall
+            follow the <CODE>@rename</CODE> tag. There is two reasons for renaming:</P>
+            <UL>
+              <LI><P ALIGN="justify">In some occasions, abbreviations are expanded.
+                  For example a <CODE>getCS()</CODE> method returning a <CODE>CoordinateSystem</CODE>
+                  object is renamed <CODE>getCoordinateSystem()</CODE>.</P>
+
+              <LI><P ALIGN=justify>In some occasions, supplementary prefix are
+                  omitted. For example, some UML attribute names are prefixed by
+                  some abbreviation of the enclosing class name (e.g. "<CODE>csName</CODE>"
+                  is <CODE>CoordinateSystem</CODE> and "<CODE>srsName</CODE>" in
+                  <CODE>ReferenceSystem</CODE>). For Java interfaces, the above-cited
+                  attributes map to a plain <CODE>getName()</CODE> method.
+                  The same apply to "<CODE>ID</CODE>".</P></LI>
+
+              <LI><P ALIGN=justify>Methods returning an array are renamed to
+                  their plural form (e.g. <CODE>getElement()</CODE> to
+                  <CODE>getElement<U>s</U>()</CODE>).</P></LI>
+            </UL></TD></TR>
+
+    <TR><TD NOWRAP><CODE>@unitof</CODE> <VAR>&lt;quantity&gt;</VAR></TD>
+        <TD><P ALIGN=justify>The method returns a <CODE>double</CODE> value which should be
+            expressed in unit of <CODE>Scale</CODE>, <CODE>Length</CODE> or <CODE>Angle</CODE>.
+            Some <CODE>getUnit()</CODE> method must be provided in addition to this method.</P></TD></TR>
+
+    <TR><TD NOWRAP><CODE>@revisit</CODE> <VAR>&lt;comment&gt;</VAR></TD>
+        <TD><P ALIGN=justify>Somme open issue to revisit.</P></TD></TR>
+  </TABLE>
+  </BODY>
+</HTML>
