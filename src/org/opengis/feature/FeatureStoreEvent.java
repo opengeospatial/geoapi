@@ -84,17 +84,20 @@ public class FeatureStoreEvent extends EventObject {
      */
     public String toString() {
         StringBuffer buf = new StringBuffer();
-        buf.append( "FeatureStore " );
+        buf.append("FeatureStore ");
         FeatureStore featureStore = getFeatureStore();
-        if( featureStore != null ){
+        if (featureStore != null) {
             buf.append( featureStore.getDisplayName() != null ? featureStore.getDisplayName().toString() : featureStore.toString() );
         }
-        switch( eventType ){
-        case ADD: buf.append( " ADD" ); // I want my Java 5 enum class :-)
-        case MODIFY: buf.append( " MODIFY" ); 
-        case DELETE: buf.append( " DELETE" );
+        switch (eventType) {
+            case ADD: 
+                buf.append(" ADD"); // I want my Java 5 enum class :-)
+            case MODIFY: 
+                buf.append(" MODIFY"); 
+            case DELETE: 
+                buf.append(" DELETE");
         }
-        buf.append( " Event" );
+        buf.append(" Event");
 
         return buf.toString();
     }
