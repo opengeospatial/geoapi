@@ -8,8 +8,6 @@
  **
  *************************************************************************************************/
 package org.opengis.catalog;
-
-// J2SE direct dependencies
 import java.util.Iterator;
 
 
