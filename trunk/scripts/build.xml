@@ -522,23 +522,27 @@
 
     <mkdir dir="binaries"/>
 
-    <jar destfile = "binaries/opengis.jar"
+    <jar destfile = "binaries/geoapi-SNAPSHOT.jar"
          basedir  = "classes"
          index    = "true"
          manifest = "sources/META-INF/MANIFEST.MF">
       <include name="org/**"/>
     </jar>
 
+    <checksum file="binaries/geoapi-SNAPSHOT.jar"/>
+
   </target>
 
   <target name="jars" depends="compile-tiger,jar">
 
-    <jar destfile = "binaries/opengis-tiger.jar"
+    <jar destfile = "binaries/geoapi-tiger-SNAPSHOT.jar"
          basedir  = "tiger/classes"
          index    = "true"
          manifest = "tiger/sources/META-INF/MANIFEST.MF">
       <include name="org/**"/>
     </jar>
+
+    <checksum file="binaries/geoapi-tiger-SNAPSHOT.jar"/>
 
   </target>
 
