@@ -148,7 +148,7 @@ public interface GridCoverage extends Coverage {
      * @throws IndexOutOfBoundsException if <code>sourceDataIndex</code> is out of bounds.
      * @UML operation Coverage.getSource
      */
-    GridCoverage getSource(int sourceDataIndex) throws IndexOutOfBoundsException;
+/// GridCoverage getSource(int sourceDataIndex) throws IndexOutOfBoundsException;
 
     /**
      * Return a sequence of boolean values for a block.

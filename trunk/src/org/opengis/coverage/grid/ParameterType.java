@@ -123,7 +123,7 @@ public final class ParameterType extends CodeList {
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
-    public ParameterType[] family() {
+    public /*{ParameterType}*/ CodeList[] family() {
         return values();
     }
 }

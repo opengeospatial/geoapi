@@ -53,5 +53,5 @@ public interface Surface extends OrientableSurface, GenericSurface {
      * @revisit The specification said: "In general, the form of the patches
      *          shall be defined in the application schema.". Not done yet.
      */
-    public List<SurfacePatch> getPatches();
+    public List/*<SurfacePatch>*/ getPatches();
 }

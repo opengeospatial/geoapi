@@ -67,5 +67,5 @@ public interface Curve extends OrientableCurve, GenericCurve {
      *
      * @see CurveSegment#getCurve
      */
-    public List<CurveSegment> getSegments();
+    public List/*<CurveSegment>*/ getSegments();
 }

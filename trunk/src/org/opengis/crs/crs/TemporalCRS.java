@@ -29,7 +29,7 @@ public interface TemporalCRS extends CoordinateReferenceSystem {
      * @return The coordinate system.
      * @UML association usesCS
      */
-    public TemporalCS getCoordinateSystem();
+/// public TemporalCS getCoordinateSystem();
 
     /**
      * Returns the datum, which must be temporal.
@@ -37,5 +37,5 @@ public interface TemporalCRS extends CoordinateReferenceSystem {
      * @return The datum.
      * @UML association usesDatum
      */
-    public TemporalDatum getDatum();
+/// public TemporalDatum getDatum();
 }

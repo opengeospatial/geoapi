@@ -54,5 +54,5 @@ public interface GeocentricCRS extends CoordinateReferenceSystem {
      * @return The datum.
      * @UML association usesDatum
      */
-    public GeodeticDatum getDatum();
+/// public GeodeticDatum getDatum();
 }

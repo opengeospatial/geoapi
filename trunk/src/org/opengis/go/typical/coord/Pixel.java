@@ -12,6 +12,7 @@ package org.opengis.go.typical.coord;
 import java.awt.geom.Point2D;
 import java.util.Properties;
 
+import org.opengis.crs.crs.CRS;
 import org.opengis.crs.crs.CoordinateReferenceSystem;
 import org.opengis.crs.crs.CoordinateReferenceSystemFactory;
 import org.opengis.crs.crs.UnsupportedCRSException;
@@ -203,7 +204,7 @@ public class Pixel extends Point2D implements DirectPosition {
     /**
      * Returns the Coordinate Reference System for this Pixel.
      */
-    public CoordinateReferenceSystem getCoordinateReferenceSystem() {
+    public CRS getCoordinateReferenceSystem() {
         return crs;
     }
 }

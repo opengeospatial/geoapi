@@ -32,7 +32,7 @@ public interface GeometryFactory {
      *
      * @UML constructor GM_LineString(GM_Position[2..n])
      */
-    public LineString createLineString(List<Position> points);
+    public LineString createLineString(List/*<Position>*/ points);
 
     /**
      * Takes two positions and creates the appropriate geodesic joining them.
@@ -50,7 +50,7 @@ public interface GeometryFactory {
      *
      * @UML constructor GM_GeodesicString(GM_Position[2..n])
      */
-    public GeodesicString createGeodesicString(List<Position> points);
+    public GeodesicString createGeodesicString(List/*<Position>*/ points);
 
     /**
      * Takes three positions and constructs the corresponding arc.
@@ -121,7 +121,7 @@ public interface GeometryFactory {
      *
      * @UML constructor GM_ArcString(GM_Position[3, 5, 7...])
      */
-    public ArcString createArcString(List<Position> points);
+    public ArcString createArcString(List/*<Position>*/ points);
 
     /**
      * Equivalents to the {@linkplain #createArc(Position,Position,double,double[]) second
@@ -157,5 +157,6 @@ public interface GeometryFactory {
      *
      * @UML constructor GM_ArcStringByBulge(GM_Position[2..n],Real[1..n],Vector[1..n])
      */
-    public ArcStringByBulge createArcStringByBulge(List<Position> points, double[] bulges, List<double[]> normals);
+    public ArcStringByBulge createArcStringByBulge(List/*<Position>*/ points, double[] bulges,
+                                                   List/*<double[]>*/ normals);
 }

@@ -66,7 +66,7 @@ public final class ByteInValuePacking extends CodeList {
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
-    public ByteInValuePacking[] family() {
+    public /*{ByteInValuePacking}*/ CodeList[] family() {
         return values();
     }
 }

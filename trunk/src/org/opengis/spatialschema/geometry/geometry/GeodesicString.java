@@ -50,5 +50,5 @@ public interface GeodesicString extends CurveSegment {
      * @return The equivalent sequence of geodesic segments.
      * @UML operation asGM_Geodesic
      */
-    public List<Geodesic> asGeodesics();
+    public List/*<Geodesic>*/ asGeodesics();
 }

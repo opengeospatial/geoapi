@@ -81,7 +81,7 @@ public final class PaletteInterpretation extends CodeList {
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
-    public PaletteInterpretation[] family() {
+    public /*{PaletteInterpretation}*/ CodeList[] family() {
         return values();
     }
 }

@@ -84,7 +84,7 @@ public interface ArcStringByBulge extends CurveSegment {
      * @return The sequence of normal vectors.
      * @UML operation normal
      */
-    public List<double[]> getNormals();
+    public List/*<double[]>*/ getNormals();
 
     /**
      * The interpolation for a <code>ArcStringByBulge</code> is
