@@ -14,12 +14,12 @@ package org.opengis.go.display.primitive;
 import java.util.List;
 import java.util.ArrayList;
 
-import com.dautelle.units.Unit;
+import javax.units.Unit;
 
 import org.opengis.go.spatial.PathType;
 import org.opengis.util.SimpleEnumerationType;
-import org.opengis.spatialschema.DirectPosition;
-import org.opengis.spatialschema.geometry.Conic;
+import org.opengis.spatialschema.geometry.DirectPosition;
+import org.opengis.spatialschema.geometry.geometry.Conic;
 import org.opengis.util.CodeList;
 
 /**

@@ -9,7 +9,7 @@
  *************************************************************************************************/
 package org.opengis.go.display.primitive;
 
-import org.opengis.spatialschema.Geometry;
+import org.opengis.spatialschema.geometry.Geometry;
 
 /**
  * Exception thrown by {@link Graphic} objects for Geometries that are not supported

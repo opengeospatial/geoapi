@@ -13,7 +13,7 @@ import javax.units.Unit;
 
 import org.opengis.go.display.style.XAnchor;
 import org.opengis.go.display.style.YAnchor;
-import org.opengis.spatialschema.DirectPosition;
+import org.opengis.spatialschema.geometry.DirectPosition;
 
 /**
  * Defines a common abstraction for implementations that render text on a drawing surface.

@@ -20,7 +20,7 @@ import org.opengis.crs.crs.CoordinateReferenceSystemFactory;
 import org.opengis.crs.crs.UnsupportedCRSException;
 import org.opengis.go.CommonFactoryManager;
 import org.opengis.go.spatial.PathType;
-import org.opengis.spatialschema.DirectPosition;
+import org.opengis.spatialschema.geometry.DirectPosition;
 
 /**
  * <code>RangeBearing</code> defines the position of one object with 
@@ -83,7 +83,7 @@ public class RangeBearing implements DirectPosition {
         CoordinateReferenceSystem crs)
         throws UnsupportedCRSException {
         this.crs = crs;
-        ordinates = new double[crs.getDimension()];
+        ordinates = new double[crs.getCoordinateSystem().getDimension()];
         setRange(range, rangeUnit);
         setBearing(bearing, bearingUnit);
         this.pathType = pathType;
@@ -94,14 +94,14 @@ public class RangeBearing implements DirectPosition {
      */
     public RangeBearing(CoordinateReferenceSystem crs) throws UnsupportedCRSException {
         this.crs = crs;
-        ordinates = new double[crs.getDimension()];
+        ordinates = new double[crs.getCoordinateSystem().getDimension()];
     }
     /**
      * Initializes using the default Coordinate Reference System.
      */
     public RangeBearing() throws UnsupportedCRSException {
         this.crs = findCRS(DEFAULT_COORDINATE_REFERENCE_SYSTEM_URL);
-        ordinates = new double[crs.getDimension()];
+        ordinates = new double[crs.getCoordinateSystem().getDimension()];
     }
     ////
     // Methods for RangeBearing.
@@ -209,7 +209,7 @@ public class RangeBearing implements DirectPosition {
      * @return the dimension.
      */
     public int getDimension() {
-        return crs.getDimension();
+        return crs.getCoordinateSystem().getDimension();
     }
     /**
      * Generically sets the generic value if this coordinate for the given dimension.
@@ -224,6 +224,12 @@ public class RangeBearing implements DirectPosition {
      */
     public double getOrdinate(int dimension) {
         return ordinates[dimension];
+    }
+    /**
+     * Returns all coordinates.
+     */
+    public double[] getCoordinates() {
+        return (double[]) ordinates.clone();
     }
     /** 
      * Dispose of this class.

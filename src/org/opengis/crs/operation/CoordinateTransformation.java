@@ -10,7 +10,7 @@
 package org.opengis.crs.operation;
 
 import org.opengis.crs.crs.CoordinateReferenceSystem;
-import org.opengis.spatialschema.DirectPosition;
+import org.opengis.spatialschema.geometry.DirectPosition;
 
 /**
  * <code>CoordinateTransformation</code> defines a common abstraction for classes

@@ -13,7 +13,7 @@ package org.opengis.go.display.canvas;
 import org.opengis.crs.operation.CoordinateTransformation;
 import org.opengis.crs.crs.CoordinateReferenceSystem;
 import org.opengis.go.geometry.BoundingRectangle;
-import org.opengis.spatialschema.DirectPosition;
+import org.opengis.spatialschema.geometry.DirectPosition;
 import org.opengis.go.display.DisplayFactory;
 import org.opengis.go.display.event.EventManager;
 import org.opengis.go.display.primitive.Graphic;

@@ -3,7 +3,7 @@
  */
 package org.opengis.crs.datum;
 
-//OpenGIS direct dependencies
+// OpenGIS direct dependencies
 import org.opengis.util.CodeList;
 
 

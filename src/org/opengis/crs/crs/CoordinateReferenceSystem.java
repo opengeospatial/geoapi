@@ -1,44 +1,54 @@
-/**************************************************************************************************
- **
- ** $Id$
- **
- ** $Source$
- **
- ** Copyright (C) 2003 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
- **
- *************************************************************************************************/
-
+/*
+ * Copyright (C) 2003 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
+ */
 package org.opengis.crs.crs;
 
-import javax.units.Unit;
+// OpenGIS direct dependencies
+import org.opengis.crs.datum.Datum;
+import org.opengis.crs.cs.CoordinateSystem;
+
 
 /**
- * <code>CoordinateReferenceSystem</code> defines a common abstraction 
- * for implementations that model Coordinate Reference Systems. 
- * <i> This class is currently a placeholder for a parallel effort 
- * that is developing a more detailed interface.</i>
+ * Abstract coordinate reference system, consisting of a single
+ * {@linkplain CoordinateSystem Coordinate System} and a single
+ * {@linkplain Datum Datum} (as opposed to {@linkplain CompoundCRS Compound CRS}).
  *
- * @author  Open GIS Consortium, Inc.
- * @version $Revision$, $Date$
+ * A coordinate reference system consists of an ordered sequence of coordinate system
+ * axes that are related to the earth through a datum. A coordinate reference system
+ * is defined by one datum and by one coordinate system. Most coordinate reference system
+ * do not move relative to the earth, except for engineering coordinate reference systems
+ * defined on moving platforms such as cars, ships, aircraft, and spacecraft.
+ *
+ * Coordinate reference systems are commonly divided into sub-types. The common classification
+ * criterion for sub-typing of coordinate reference systems is the way in which they deal with
+ * earth curvature. This has a direct effect on the portion of the earth's surface that can be
+ * covered by that type of CRS with an acceptable degree of error. The exception to the rule is
+ * the subtype "Temporal" which has been added by analogy.
+ *
+ * @UML abstract SC_CoordinateReferenceSystem
+ * @author ISO 19111
+ * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
+ * @version 2.0
+ *
+ * @see org.opengis.crs.cs.CoordinateSystem
+ * @see org.opengis.crs.datum.Datum
  */
-public interface CoordinateReferenceSystem {
-	
-	/**
-     * Returns the dimension of this <code>CoordinateReferenceSystem</code>.
-	 * @return the dimension of this Coordinate Reference System.
-	 */
-	public int getDimension();
-	
-	/**
-	 * Returns the coordinate system units of this <code>CoordinateReferenceSystem</code>.
-	 * @return the coordinate system units of this Coordinate Reference System.
-	 */
-	public Unit[] getUnits();
-    
+public interface CoordinateReferenceSystem extends CRS {
     /**
-     * Returns true if the <code>CoordinateReferenceSystem</code> are the same.
-     * @param otherCrs the <code>CoordinateReferenceSystem</code> to compare this object to.
-     * @return true if the two <code>CoordinateReferenceSystem</code> are the same.
+     * Returns the coordinate system.
+     *
+     * @return The coordinate system.
+     * @UML association usesCS
+     *
+     * @rename Expanded the "CS" abbreviation into "CoordinateSystem".
      */
-    public boolean equals(CoordinateReferenceSystem otherCrs);
+    public CoordinateSystem getCoordinateSystem();
+
+    /**
+     * Returns the datum.
+     *
+     * @return The datum.
+     * @UML association usesDatum
+     */
+    public Datum getDatum();
 }

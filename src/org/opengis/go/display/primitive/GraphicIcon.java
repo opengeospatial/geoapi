@@ -14,7 +14,7 @@ import javax.units.Unit;
 import javax.swing.Icon;
 
 import org.opengis.go.typical.coord.Pixel;
-import org.opengis.spatialschema.DirectPosition;
+import org.opengis.spatialschema.geometry.DirectPosition;
 
 /**
  * The GraphicIcon defines a common abstraction for implementations that render

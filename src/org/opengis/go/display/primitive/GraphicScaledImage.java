@@ -12,8 +12,8 @@ package org.opengis.go.display.primitive;
 // J2SE direct dependencies
 import java.awt.Image;
 
-import org.opengis.spatialschema.DirectPosition;
-import org.opengis.spatialschema.Envelope;
+import org.opengis.spatialschema.geometry.DirectPosition;
+import org.opengis.spatialschema.geometry.Envelope;
 
 /**
  * Defines a common abstraction for implementations projected images defined

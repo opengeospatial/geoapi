@@ -9,7 +9,7 @@
  *************************************************************************************************/
 package org.opengis.go.display.primitive;
 
-import org.opengis.spatialschema.primitive.Ring;
+import org.opengis.spatialschema.geometry.primitive.Ring;
 
 /**
  * Common abstraction for implementations that drawing the ISO 19107 Geometric {@link Ring}.

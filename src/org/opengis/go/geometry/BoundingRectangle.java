@@ -9,7 +9,7 @@
  *************************************************************************************************/
 package org.opengis.go.geometry;
 
-import org.opengis.spatialschema.DirectPosition;
+import org.opengis.spatialschema.geometry.DirectPosition;
 
 /**
  * <code>BoundingRectangle</code> defines a common abstraction for
