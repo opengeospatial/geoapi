@@ -12,7 +12,7 @@ package org.opengis.parameter;
 
 /**
  * Thrown when an unexpected parameter was found in a
- * {@linkplain ParameterGroupDescriptor parameter group}.
+ * {@linkplain ParameterValueGroupDescriptor parameter group}.
  *
  * @UML exception GC_InvalidParameterName
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
