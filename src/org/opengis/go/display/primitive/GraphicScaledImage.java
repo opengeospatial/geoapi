@@ -12,49 +12,18 @@ package org.opengis.go.display.primitive;
 // J2SE direct dependencies
 import java.awt.Image;
 
-// OpenGIS direct dependencies
-import org.opengis.spatialschema.geometry.Envelope;
-import org.opengis.spatialschema.geometry.DirectPosition;
-
+import org.opengis.spatialschema.DirectPosition;
+import org.opengis.spatialschema.Envelope;
 
 /**
  * Defines a common abstraction for implementations projected images defined
  * by an upper-left point and a lower-right point.
  * 
- * @version 0.2
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
- *
- * @revisit This API uses the {@link java.awt.Image} class (see the {@link #getScaledImage()}
- *          method). Maybe it should uses the {@link java.awt.image.RenderedImage} interface
- *          instead for the following reason:
- *          <UL>
- *            <LI>Image is a legacy class of JDK 1.0. Its functionality is limited.</LI>
- *            <LI>RenderedImage interface was introduced later and has more capabilities
- *                (reading/writing pixels, tiling, informations on color space, etc.)</LI>
- *            <LI>Java Advanced Imaging work with RenderedImage, not Image.</LI>
- *          </UL>
- *          Furthermore, <CODE>>GraphicScaledImage</CODE> API duplicates {@link org.opengis.coverage.grid.GridCoverage}.
- *          More specifically, the following methods are GridCoverage's job: {@link #getEnvelope},
- *          {@link #getUpperLeft}, {@link #getLowerRight}, {@link #getSRS}, maybe {@link #getScaledImage}.
- *          Note also that {@link #getSRS} should probably returns a CRS type rather than a String.
- *          <br><br>
- *          Does the image really need to be scaled at this interface level? Scaling can be done at
- *          the rendering time: <code>Graphics2D.drawRenderedImage(...)</code> has an AffineTransform
- *          argument exactly for that. Using pre-scaled image speedup the rendering, but this is an
- *          implementation issue. Other implementation will rather cache the scaled image in an offscreen
- *          buffer together with other graphics primitives.
- *          <br><br>
- *          Proposal: Remove the following methods:
- *
- *          <code>getEnvelope</code>, <code>setEnvelope</code>, <code>getLowerRight</code>,
- *          <code>setLowerRight</code>, <code>getUpperLeft</code>, <code>setUpperLeft</code>,
- *          <code>getSRS</code>, <code>setSRS</code>, <code>getScaledImage</code>,
- *          <code>setScaledImage</code>.
- *
- *          Provides <code>getGridCoverage</code> and <code>setGridCoverage</code> methods instead.
- *          Rename <code>GraphicScaledImage</code> interface as <code>GraphicGridCoverage</code>.
+ * @version $Revision$, $Date$
  */
 public interface GraphicScaledImage extends Graphic {
+    
     /**
      * Sets the geometry based on ISO 19107 geometric forms.
      * @param envelope a geometry Envelope.
@@ -72,69 +41,69 @@ public interface GraphicScaledImage extends Graphic {
      * @param image the Image to be rendered.
      */
     public void setScaledImage(Image image);
-
+    
     /**
      * Returns the image represented by this GraphicScaledImage.
      * @return the image to be rendered.
      */
     public Image getScaledImage();
-
+    
     /**
      * Convenience menthod to set the DirectPosition for the upper-left position of the image.
      * Value is set on the underlying Envelope geometry for this Graphic.
      * @param coord the upper-left positon.
      */
     public void setUpperLeft(DirectPosition coord);
-
+    
     /**
      * Returns the DirectPosition for the upper-left position of the image.
      * Value is acquired from the underlying Envelope geometry for this Graphic.
      * @return the upper-left position.
      */
     public DirectPosition getUpperLeft();
-
+    
     /**
      * Convenience menthod to set the DirectPosition for the lower-right position of the image.
      * Value is set on the underlying Envelope geometry for this Graphic.
      * @param coord the lower-right positon.
      */
     public void setLowerRight(DirectPosition coord);
-
+    
     /**
      * Convenience menthod to return the DirectPosition for the lower-right position of the image.
      * Value is acquired from the underlying Envelope geometry for this Graphic.
      * @return the lower-right position.
      */
     public DirectPosition getLowerRight();
-
+    
     /**
      * Sets the intensity of the image, as an integer from 0 to 100.
      * The value 0 is as dark as possible and 100 is as bright as possible.
      * @param intensity the intensity (brightness) of the image.
      */
     public void setIntensity(int intensity);
-
+    
     /**
      * Returns the intensity of the image, as an integer from 0 to 100.
      * The value 0 is as dark as possible and 100 is as bright as possible.
      * @return the intensity (brightness) of the image .
      */
     public int getIntensity();
-
+    
     /**
      * Sets the transparency of the image, as an integer from 0 to 100.
      * The value 0 is completely opaque and 100 is completely transparent.
      * @param transparency the transparency of the image.
      */
     public void setTransparency(int transparency);
-
+    
     /**
      * Returns the transparency of the image, as an integer from 0 to 100.
      * The value 0 is completely opaque and 100 is completely transparent.
      * @return the transparency of the image.
      */
     public int getTransparency();
-
+    
     /**
      * This sets a string that specifies the projection that was used
      * to create the image that this object represents.  The format of
@@ -179,17 +148,18 @@ public interface GraphicScaledImage extends Graphic {
      * center points are less than a meter apart on the earth's surface
      * to be considered the same projection.
      *
-     * @revisit Why not a {@link org.opengis.crs.crs.CRS} argument type?
+     * @revisit Why not a {@link org.opengis.sc.CRS} argument type?
      */
     public void setSRS(String srs);
-
+    
     /**
      * This returns the string that specifies the projection that
      * was used to create the image this object represents.
      *
      * @see #setSRS(String)
      *
-     * @revisit Why not a {@link org.opengis.crs.crs.CRS} return type?
+     * @revisit Why not a {@link org.opengis.sc.CRS} return type?
      */
     public String getSRS();
 }
+

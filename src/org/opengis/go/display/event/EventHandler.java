@@ -10,34 +10,32 @@
 package org.opengis.go.display.event;
 
 // J2SE direct dependencies
-import java.awt.Component;
 import java.util.EventListener;
-
 
 /**
  * Common abstraction whose implementations can associate different key
  * handlers with a Component to switch key handling states easily.
  *
- * @version 0.2
- * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
- *
+ * @version $Revision$, $Date$
+* @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @see EventManager
  */
 public interface EventHandler extends EventListener {
+
     /**
      * Invoked when the handler is first enabled, or reenabled after
      * being temporarily disabled.
      *
      * @see #handlerDisabled
      */
-    public void handlerEnabled();
+    public abstract void handlerEnabled();
 
     /**
      * Invoked when the handler is temporarily disabled.
      *
      * @see #handlerEnabled
      */
-    public void handlerDisabled();
+    public abstract void handlerDisabled();
 
     /**
      * Invoked when the handler is permanently removed.
@@ -46,5 +44,7 @@ public interface EventHandler extends EventListener {
      *          is disabled before to be removed. The specification should said
      *          that.
      */
-    public void handlerRemoved();
+    public abstract void handlerRemoved();
+
 }
+

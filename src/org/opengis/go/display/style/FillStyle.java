@@ -15,6 +15,7 @@ import java.util.ArrayList;
 
 // OpenGIS direct dependencies
 import org.opengis.util.SimpleEnumerationType;
+import org.opengis.util.CodeList;
 
 
 /**
@@ -24,12 +25,11 @@ import org.opengis.util.SimpleEnumerationType;
  * color, fill pattern, and gradient points may affect the appearance of
  * an object.
  * 
- * @version 0.2
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
- *
- * @revisit Localize descriptions.
+ * @version $Revision$, $Date$
  */
 public class FillStyle extends SimpleEnumerationType {
+
     //*************************************************************************
     //  Static Fields
     //*************************************************************************
@@ -43,14 +43,12 @@ public class FillStyle extends SimpleEnumerationType {
      * This constant indicates that an object should be completely filled
      * with the color.
      */
-    public static final FillStyle SOLID =
-            new FillStyle("SOLID", "Fill entirely with the color.");
+    public static final FillStyle SOLID = new FillStyle("SOLID", "Fill entirely with the color.");
 
     /**
      * This constant indicates that an object should not be filled at all.
      */
-    public static final FillStyle EMPTY =
-            new FillStyle("EMPTY", "Do not fill.");
+    public static final FillStyle EMPTY = new FillStyle("EMPTY", "Do not fill.");
 
     /**
      * This constant indicates that an object should be filled with the
@@ -60,7 +58,7 @@ public class FillStyle extends SimpleEnumerationType {
      * (The term "stippled" is taken from the X-Windows documentation.)
      */
     public static final FillStyle STIPPLED =
-            new FillStyle("STIPPLED", "Fill using a transparent, tiled pattern.");
+        new FillStyle("STIPPLED", "Fill using a transparent, tiled pattern.");
 
     /**
      * This constant indicates that an object should be filled with the
@@ -71,7 +69,7 @@ public class FillStyle extends SimpleEnumerationType {
      * from the X-Windows documentation.)
      */
     public static final FillStyle OPAQUE_STIPPLED =
-            new FillStyle("OPAQUE_STIPPLED", "Fill using an opaque, tiled pattern.");
+        new FillStyle("OPAQUE_STIPPLED", "Fill using an opaque, tiled pattern.");
 
     /**
      * This constant indicates that an object should be filled with a
@@ -103,7 +101,7 @@ public class FillStyle extends SimpleEnumerationType {
      */
     protected FillStyle(String name, String description) {
         super(VALUES, name, description);
-    }        
+    }
 
     /**
      * Returns the list of <code>FillStyle</code>s.
@@ -112,12 +110,12 @@ public class FillStyle extends SimpleEnumerationType {
         synchronized (VALUES) {
             return (FillStyle[]) VALUES.toArray(new FillStyle[VALUES.size()]);
         }
-    }
+}
 
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
-    public FillStyle[] family() {
+    public CodeList[] family() {
         return values();
     }
 }

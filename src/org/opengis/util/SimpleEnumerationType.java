@@ -23,13 +23,43 @@ import javax.swing.ImageIcon;
  * Two enumeration values are equal if <code>e1 == e2</code> or if
  * <code>e1.getValue() == e2.getValue()</code>.
  *
- * @version 0.2
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
- *
- * @revisit Should we rename this as <code>GraphicalCodeList</code> or something similar?
+ * @version $Revision$, $Date$
  */
 public abstract class SimpleEnumerationType extends CodeList implements Comparable {
-    
+
+    //*************************************************************************
+    //  static methods
+    //*************************************************************************
+
+    /**
+     * Load an icon for this
+     * enumeration. <code>loadIconResource</code> loads the icon found
+     * by <code>a_class.getResource(name)</code>.
+     * @param a_class class to use to find icon resource.
+     * @param name name of icon resource, for example, "SOLID.gif"
+     * @return a loaded icon for this enumeration. When no icon can be
+     * found the null icon is returned.
+     * @see #getNullIcon
+     */
+    protected static Icon loadIconResource(Class a_class, String name) {
+        URL iconURL = a_class.getResource(name);
+        if (iconURL == null) {
+            return getNullIcon();
+        }
+        return new ImageIcon(iconURL);
+    }
+
+    /**
+     * Gets the null icon.
+     * @return a singleton icon that can be used when no icon was
+     * found in <code>loadIconResource</code>. The null icon is a
+     * fixed size, 16x64, and its paint method simply returns.
+     */
+    public static Icon getNullIcon() {
+        return NULL_ICON;
+    }
+
     //*************************************************************************
     //  Static Fields
     //*************************************************************************
@@ -43,14 +73,14 @@ public abstract class SimpleEnumerationType extends CodeList implements Comparab
 
     /** The description */
     private String description;
-    
+
     /** The icon */
     private final Icon icon;
 
     //*************************************************************************
     //  Constructor
     //*************************************************************************
-    
+
     /**
      * Add a new <code>SimpleEnumerationType</code> to the given list
      * using the given <code>name</code> and <code>description</code>.
@@ -65,7 +95,7 @@ public abstract class SimpleEnumerationType extends CodeList implements Comparab
         this.description = description;
         this.icon = getNullIcon();
     }
-    
+
     /**
      * Add a new <code>SimpleEnumerationType</code> to the given list
      * using the given <code>name</code> and <code>description</code>.
@@ -80,11 +110,11 @@ public abstract class SimpleEnumerationType extends CodeList implements Comparab
         this.description = description;
         this.icon = icon;
     }
-    
+
     //*************************************************************************
     //  override the Java toString method
     //*************************************************************************
-    
+
     /**
      * Gets the string representation of this object. This just calls {@link #name()}.
      *
@@ -115,7 +145,7 @@ public abstract class SimpleEnumerationType extends CodeList implements Comparab
     public Icon getIcon() {
         return icon;
     }
-    
+
     //*************************************************************************
     //  comparison method
     //*************************************************************************
@@ -139,44 +169,7 @@ public abstract class SimpleEnumerationType extends CodeList implements Comparab
         }
         return rv;
     }
-    
-    //*************************************************************************
-    //  static methods
-    //*************************************************************************
-    
-    /**
-     * Load an icon for this
-     * enumeration. <code>loadIconResource</code> loads the icon found
-     * by <code>a_class.getResource(name)</code>.
-     *
-     * @param a_class class to use to find icon resource.
-     * @param name name of icon resource, for example, "SOLID.gif"
-     * @return a loaded icon for this enumeration. When no icon can be
-     *         found the null icon is returned.
-     * @see #getNullIcon
-     */
-    protected static Icon loadIconResource(Class a_class, String name) {
-        URL iconURL = a_class.getResource(name);
-        if (iconURL == null) {
-            return getNullIcon();
-        }
-        return new ImageIcon(iconURL);
-    }
-    
-    /**
-     * Gets the null icon.
-     *
-     * @return a singleton icon that can be used when no icon was
-     *         found in <code>loadIconResource</code>. The null icon is a
-     *         fixed size, 16&times;64, and its paint method simply returns.
-     *
-     * @revisit Why a size of 16&times;64? Standard icons are
-     *          16&times;16 or 24&times;24. See for example
-     *          <A HREF="http://java.sun.com/developer/techDocs/hi/repository/TBG_General.html">http://java.sun.com/developer/techDocs/hi/repository/TBG_General.html</A>.
-     */
-    public static Icon getNullIcon() {
-        return NULL_ICON;
-    }
+
     
     //*************************************************************************
     //  the private, static NullIcon inner class
@@ -198,3 +191,5 @@ public abstract class SimpleEnumerationType extends CodeList implements Comparab
         }
     }
 }
+
+

@@ -14,16 +14,15 @@ import org.opengis.go.display.event.GraphicEvent;
 import org.opengis.go.display.event.GraphicListener;
 import org.opengis.go.display.style.GraphicStyle;
 
-
 /**
  * The root abstraction of a graphic object taxonomy, specifying the methods
  * common to a lightweight set of graphic objects.
  *
- * @version 0.2
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
+ * @version $Revision$, $Date$
  */
 public interface Graphic {
-    
+
     //**  deconstructor  **
 
     /**
@@ -52,18 +51,18 @@ public interface Graphic {
     public void refresh();
 
     //**  accessors/mutators  **
-    
+
     /**
      * Sets the name of this <code>Graphic</code> to the given value.
      *
      * @param name the new name to assign to this <code>Graphic</code>.
      */
     public void setName(String name);
-    
+
     /**
      * Returns the name assigned to this <code>Graphic</code>.
      *
-     * @return the name assigned to this <code>Graphic</code>.
+     * @return	the name assigned to this <code>Graphic</code>.
      */
     public String getName();
 
@@ -74,13 +73,13 @@ public interface Graphic {
      *
      * @revisit The argument type is inconsistent with the {@link #getParent} return type.
      */
-    public void setParent(AggregateGraphic parent);
+    public void setParent(Graphic parent);
 
     /**
      * Returns the parent of this <code>Graphic</code>. This is most likely of type
      * <code>AggregateGraphic</code> or <code>GraphicCompositeCurve</code>.
      *
-     * @return the parent of this <code>Graphic</code>.
+     * @return	the parent of this <code>Graphic</code>.
      */
     public Graphic getParent();
 
@@ -91,7 +90,7 @@ public interface Graphic {
      * <code>Graphic</code>'s style properties directly through the
      * style object.
      *
-     * @return @return the <code>GraphicStyle</code>.
+     * @return @return	the <code>GraphicStyle</code>.
      */
     public GraphicStyle getGraphicStyle();
 
@@ -149,7 +148,7 @@ public interface Graphic {
      * @return <code>true</code> if this graphic pass the events to the parent graphic.
      */
     public boolean isPassingEventsToParent();
-    
+
     /**
      * Sets a boolean <code>flag</code> specifying whether this object is to show
      * its edit handles. Edit handles are the small boxes that appear on the
@@ -183,7 +182,7 @@ public interface Graphic {
     public boolean isShowingAnchorHandles();
 
     //**  methods to work with/create other Graphics and Styles
-    
+
     /**
      * Creates a new <code>Graphic</code> of the same type as this object.  The resulting
      * object should be identical in all respects to the original.
@@ -215,8 +214,8 @@ public interface Graphic {
 
     /**
      * Calls the graphic event method of all listeners in this
-     * <code>Graphic</code>'s list of listeners. The listeners need to
-     * determine which subclassed event is called and what event-specific
+     * <code>Graphic</code>'s list of listeners. The listeners need to 
+     * determine which subclassed event is called and what event-specific 
      * action was taken.
      *
      * @param ge the <code>GraphicEvent</code> to give to the listeners.
@@ -231,3 +230,4 @@ public interface Graphic {
      */
     public void fireGraphicEvent(GraphicEvent ge);
 }
+

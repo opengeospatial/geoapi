@@ -15,6 +15,7 @@ import java.util.ArrayList;
 
 // OpenGIS direct dependencies
 import org.opengis.util.SimpleEnumerationType;
+import org.opengis.util.CodeList;
 
 
 /**
@@ -22,12 +23,12 @@ import org.opengis.util.SimpleEnumerationType;
  * constants for all of the valid choices.  Depending on the choice of custom mark, circle,
  * cross, square, star, triangle, x mark, may affect the appearance of an object.
  *
- * @version 0.2
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
- *
- * @revisit Localize descriptions.
+ * @version $Revision$, $Date$
  */
+
 public class Mark extends SimpleEnumerationType {
+
     //*************************************************************************
     //  Static Fields
     //*************************************************************************
@@ -41,37 +42,37 @@ public class Mark extends SimpleEnumerationType {
      * This constant indicates that a point should be symbolized with a custom mark.
      */
     public static final Mark CUSTOM =
-            new Mark("CUSTOM", "Symbolize with a custom mark.");
+        new Mark("CUSTOM", "Symbolize with a custom mark.");
 
     /**
      * This constant indicates that a point should be symbolized with a circle mark.
      */
     public static final Mark CIRCLE =
-            new Mark("CIRCLE", "Symbolize with a circle mark.");
+        new Mark("CIRCLE", "Symbolize with a circle mark.");
 
     /**
      * This constant indicates that a point should be symbolized with a cross mark.
      */
     public static final Mark CROSS =
-            new Mark("CROSS", "Symbolize with a cross mark.");
+        new Mark("CROSS", "Symbolize with a cross mark.");
 
     /**
      * This constant indicates that a point should be symbolized with a square mark.
      */
     public static final Mark SQUARE =
-            new Mark("SQUARE", "Symbolize with a square mark.");
+        new Mark("SQUARE", "Symbolize with a square mark.");
 
     /**
      * This constant indicates that a point should be symbolized with a star mark.
      */
     public static final Mark STAR =
-            new Mark("STAR", "Symbolize with a star mark.");
+        new Mark("STAR", "Symbolize with a star mark.");
 
     /**
      * This constant indicates that a point should be symbolized with a triangle mark.
      */
     public static final Mark TRIANGLE =
-            new Mark("TRIANGLE", "Symbolize with a triangle mark.");
+        new Mark("TRIANGLE", "Symbolize with a triangle mark.");
 
     /**
      * This constant indicates that a point should be symbolized with an X mark.
@@ -107,13 +108,13 @@ public class Mark extends SimpleEnumerationType {
     public static Mark[] values() {
         synchronized (VALUES) {
             return (Mark[]) VALUES.toArray(new Mark[VALUES.size()]);
-        }
     }
+}
 
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
-    public Mark[] family() {
-        return values();
+    public CodeList[] family() {
+        return  values();
     }
 }

@@ -13,12 +13,11 @@ package org.opengis.go.display.event;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-
 /**
  * A helper or delegate for {@link KeyHandler} management.
- * 
- * @version 0.2
+ *
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
+ * @version $Revision$, $Date$
  */
 public class KeyManagerSupport extends EventManagerSupport implements KeyManager, KeyListener {
     /**
@@ -32,39 +31,36 @@ public class KeyManagerSupport extends EventManagerSupport implements KeyManager
     //*************************************************************************
 
     /**
-     * The window will pass key events to only this <code>KeyHandler</code>,
-     * until the <code>KeyHandler</code> is changed or removed.
-     *
-     * @param keyHandler  the new key handler.
+     * Enables the given <code>KeyHandler</code>.  This <code>KeyManager</code>
+     * then passes events only to the given <code>KeyHandler</code> until it is
+     * either removed or another <code>KeyHandler</code> is enabled.
+     * @param keyHandler  the new <code>KeyHandler</code> to enable.
      */
-    public void enableKeyHandler(KeyHandler keyHandler) {
+    public synchronized void enableKeyHandler(KeyHandler keyHandler) {
         super.enableEventHandler(keyHandler);
     }
 
     /**
-     * Enable the given <code>KeyHandler</code>, and push it on the stack so
-     * that if another <code>KeyHandler</code> gets enabled, this one will be
-     * reenabled when that <code>KeyHandler</code> is removed.
-     *
+     * Enables the given <code>KeyHandler</code>, and pushes it on the stack so that if
+     * another <code>KeyHandler</code> gets enabled, this one will be reenabled when
+     * that <code>KeyHandler</code> is removed.
      * @param keyHandler  The <code>KeyHandler</code> to enable and push.
      */
-    public void pushKeyHandler(KeyHandler keyHandler) {
+    public synchronized void pushKeyHandler(KeyHandler keyHandler) {
         super.pushEventHandler(keyHandler);
     }
 
     /**
-     * Remove the given <code>KeyHandler</code> and reinstate the
-     * <code>KeyHandler</code> at the top of the stack, if any.
-     *
+     * Removes the given <code>KeyHandler</code> and reinstates the <code>KeyHandler</code> at the
+     * top of the stack, if any.
      * @param keyHandler  the <code>KeyHandler</code> to disable and remove.
      */
-    public void removeKeyHandler(KeyHandler keyHandler) {
+    public synchronized void removeKeyHandler(KeyHandler keyHandler) {
         super.removeEventHandler(keyHandler);
     }
 
     /**
-     * Replace a <code>KeyHandler</code> in the stack with another <code>KeyHandler</code>.
-     *
+     * Replaces a <code>KeyHandler</code> in the stack with another <code>KeyHandler</code>.
      * @param existingHandler the <code>KeyHandler</code> to be replaced.
      * @param replacementHandler the <code>KeyHandler</code> that is replacing
      *        the <code>existingHandler</code>.
@@ -89,7 +85,7 @@ public class KeyManagerSupport extends EventManagerSupport implements KeyManager
 
     /**
      * Returns an array of additional <code>KeyHandler</code>s to call for a given
-     * <code>KeyEvent</code>, if the current key handler doesn't handle it. These
+     * <code>KeyEvent</code>, if the current event handler doesn't handle it. These
      * handlers will be called in ascending index order until the <code>KeyEvent</code>
      * {@linkplain java.awt.event.InputEvent#isConsumed() is consumed}.
      *
@@ -119,7 +115,7 @@ public class KeyManagerSupport extends EventManagerSupport implements KeyManager
     //*************************************************************************
     //  implement the KeyListener interface
     //*************************************************************************
-    
+
     /**
      * Calls {@link KeyHandler#keyTyped keyTyped} on the current key handler,
      * and then as long as the event is not consumed, continues passing the event
@@ -141,7 +137,7 @@ public class KeyManagerSupport extends EventManagerSupport implements KeyManager
             keyHandler.keyTyped(e);
             if (!e.isConsumed()) {
                 KeyHandler[] fallback = getFallbackKeyHandlers();
-                for (int i = 0; (i < fallback.length) && !e.isConsumed(); i++) {
+                for (int i = 0;(i < fallback.length) && !e.isConsumed(); i++) {
                     // EXPLAIN(CCP): Even though the array returned by the
                     // method getFallbackKeyHandlers() does NOT include the
                     // current key hander, we still have to check here,
@@ -179,7 +175,7 @@ public class KeyManagerSupport extends EventManagerSupport implements KeyManager
             keyHandler.keyPressed(e);
             if (!e.isConsumed()) {
                 KeyHandler[] fallback = getFallbackKeyHandlers();
-                for (int i = 0; (i < fallback.length) && !e.isConsumed(); i++) {
+                for (int i = 0;(i < fallback.length) && !e.isConsumed(); i++) {
                     // EXPLAIN(CCP): Even though the array returned by the
                     // method getFallbackKeyHandlers() does NOT include the
                     // current key hander, we still have to check here,
@@ -219,10 +215,11 @@ public class KeyManagerSupport extends EventManagerSupport implements KeyManager
             keyHandler.keyReleased(e);
             if (!e.isConsumed()) {
                 KeyHandler[] fallback = getFallbackKeyHandlers();
-                for (int i = 0; (i < fallback.length) && !e.isConsumed(); i++) {
+                for (int i = 0;(i < fallback.length) && !e.isConsumed(); i++) {
                     fallback[i].keyReleased(e);
                 }
             }
         }
     }
 }
+

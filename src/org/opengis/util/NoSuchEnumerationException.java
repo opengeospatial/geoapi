@@ -14,15 +14,15 @@ package org.opengis.util;
  * Exception that is thrown when an invalid enumeration lookup is performed
  * in the {@link SimpleEnumerationType} class.
  *
- * @version 0.2
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
+ * @version $Revision$, $Date$
  */
 public class NoSuchEnumerationException extends Exception {
     /**
      * The invalid value.
      */
     private final int value;
-
+    
     /**
      * Constructs an exception with the given invalid value.
      *
@@ -33,7 +33,7 @@ public class NoSuchEnumerationException extends Exception {
         super("No enumeration exists for the value " + value);
         this.value = value;
     }
-
+    
     /**
      * Returns the invalid value.
      *
@@ -43,3 +43,4 @@ public class NoSuchEnumerationException extends Exception {
         return value;
     }
 }
+

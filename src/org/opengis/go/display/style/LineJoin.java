@@ -15,18 +15,20 @@ import java.util.ArrayList;
 
 // OpenGIS direct dependencies
 import org.opengis.util.SimpleEnumerationType;
+import org.opengis.util.CodeList;
 
 
 /**
  * Indicates the various various ways of joining two lines at their intersection.
  * This class defines static constants for all of the standard choices.
  * 
- * @version 0.2
+ * @version $Revision$, $Date$
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  *
  * @revisit Localize descriptions.
  */
 public class LineJoin extends SimpleEnumerationType {
+    
     //*************************************************************************
     //  Static Fields
     //*************************************************************************
@@ -35,23 +37,21 @@ public class LineJoin extends SimpleEnumerationType {
      * <strong>Must be declared first!</strong>.
      */
     private static final List VALUES = new ArrayList(3);
-
+    
     /**
      * This constant indicates that lines should be joined at
      * intersections by extending their outside edges until they meet.
      */
     public static final LineJoin MITER =
-            new LineJoin("MITER",
-                    "Join lines by extending outside edges until they meet.");
-
+        new LineJoin("MITER", "Join lines by extending outside edges until they meet.");
+        
     /**
      * This constant indicates that lines should be joined by a circular
      * arc of radius equal to half the line width.
      */
     public static final LineJoin ROUND =
-            new LineJoin("ROUND",
-                    "Join lines with a circular arc equal to hald the line width.");
-
+        new LineJoin("ROUND", "Join lines with a circular arc equal to hald the line width.");
+        
     /**
      * This constant indicates that lines should be joined by connecting
      * the outer corners of the lines with a straight line segment.
@@ -59,11 +59,11 @@ public class LineJoin extends SimpleEnumerationType {
     public static final LineJoin BEVEL =
             new LineJoin("BEVEL",
                     "Joine lines by connecting outer corners with a segment.");
-
+    
     //*************************************************************************
     //  Constructor
     //*************************************************************************
-
+    
     /**
      * Construct a new LineJoin with the given name and description.
      * This constructor should only be used to make the static
@@ -88,13 +88,13 @@ public class LineJoin extends SimpleEnumerationType {
     public static LineJoin[] values() {
         synchronized (VALUES) {
             return (LineJoin[]) VALUES.toArray(new LineJoin[VALUES.size()]);
-        }
     }
+}
 
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
-    public LineJoin[] family() {
+    public CodeList[] family() {
         return values();
     }
 }

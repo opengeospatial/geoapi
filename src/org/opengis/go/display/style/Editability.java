@@ -7,175 +7,142 @@
  ** Copyright (C) 2003 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
  **
  *************************************************************************************************/
-package org.opengis.go.display.style;
 
+package org.opengis.go.display.style;
 
 /**
  * Encapsulates the editability attributes that can be applied to any
  * {@link org.opengis.go.display.primitive.Graphic}.
  *
- * @version 0.2
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
+ * @version $Revision$, $Date$
  */
 public interface Editability {
-    /**
-     * Default auto edit value.
-     */
-    public static final boolean DEFAULT_AUTO_EDIT = true;
 
-    /**
-     * Default drag selectable value.
-     */
-    public static final boolean DEFAULT_DRAG_SELECTABLE = true;
-
-    /**
-     * Default pickable value.
-     */
-    public static final boolean DEFAULT_PICKABLE = true;
-
-    /**
-     * Default selected value.
-     */
-    public static final boolean DEFAULT_SELECTED = false;
+    //*************************************************************************
+    //  Static Fields
+    //*************************************************************************
+      
+    //**  Editability property names  **
     
-    /**
-     * Auto edit attribute name.
-     */
-    public static final String AUTO_EDIT = "EDITABILITY_AUTO_EDIT";
-
-    /**
-     * Drag selectable attribute name.
-     */
-    public static final String DRAG_SELECTABLE = "EDITABILITY_DRAG_SELECTABLE";
+    public static final String EDITABILITY_AUTO_EDIT = "EDITABILITY_AUTO_EDIT";    
+    public static final String EDITABILITY_DRAG_SELECTABLE = "EDITABILITY_DRAG_SELECTABLE";    
+    public static final String EDITABILITY_PICKABLE = "EDITABILITY_PICKABLE";    
+    public static final String EDITABILITY_SELECTED = "EDITABILITY_SELECTED";  
     
-    /**
-     * Pickable attribute name.
-     */
-    public static final String PICKABLE = "EDITABILITY_PICKABLE";
+    //**  Default Editability property values  **
+    
+    /**  Default auto edit value.  */
+    public static final boolean DEFAULT_EDITABILITY_AUTO_EDIT = true;
 
-    /**
-     * Selected attribute name.
-     */
-    public static final String SELECTED = "EDITABILITY_SELECTED"; 
+    /**  Default drag selectable value.  */
+    public static final boolean DEFAULT_EDITABILITY_DRAG_SELECTABLE = true;
+
+    /** Default pickable value.  */
+    public static final boolean DEFAULT_EDITABILITY_PICKABLE = true;
+
+    /**  Default selected value.  */
+    public static final boolean DEFAULT_EDITABILITY_SELECTED = false;
+    
+    //*************************************************************************
+    //  Methods
+    //*************************************************************************
     
     /**
      * Returns the auto edit value.
-     *
      * @return the auto edit value.
      */
-    public boolean getAutoEdit();
+    public boolean getEditabilityAutoEdit();
     
     /**
      * Returns whether the auto edit value has been set.
-     *
-     * @return <code>true</code> if the auto edit value has been set,
-     *         <code>false</code> otherwise.
+     * @return true if the auto edit value has been set, false otherwise.
      */    
-    public boolean isAutoEditSet();
+    public boolean isEditabilityAutoEditSet();
     
     /**
      * Sets the auto edit value.
-     *
      * @param autoEdit the auto edit value.
      */    
-    public void setAutoEdit(boolean autoEdit);
+    public void setEditabilityAutoEdit(boolean autoEdit);
     
     /**
      * Sets the fact that the auto edit value has been set.
-     *
-     * @param flag <code>true</code> if the auto edit value has been set,
-     *             <code>false</code> otherwise.
+     * @param flag true if the auto edit value has been set, false otherwise.
      */    
-    public void setAutoEditSet(boolean flag);
+    public void setEditabilityAutoEditSet(boolean flag);
    
     /**
      * Returns the drag selectable value.
-     *
      * @return the drag selectable value.
      */
-    public boolean getDragSelectable();
+    public boolean getEditabilityDragSelectable();
     
     /**
      * Returns whether the drag selectable value has been set.
-     *
-     * @return <code>true</code> if the drag selectable value has been set,
-     *         <code>false</code> otherwise.
+     * @return true if the drag selectable value has been set, false otherwise.
      */    
-    public boolean isDragSelectableSet();
+    public boolean isEditabilityDragSelectableSet();
     
     /**
      * Sets the drag selectable value.
-     *
      * @param dragSelectable the drag selectable value.
      */    
-    public void setDragSelectable(boolean dragSelectable);
+    public void setEditabilityDragSelectable(boolean dragSelectable);
     
     /**
      * Sets the fact that the drag selectable value has been set.
-     *
-     * @param flag <code>true</code> if the drag selectable value has been set,
-     *             <code>false</code> otherwise.
+     * @param flag true if the drag selectable value has been set, false otherwise.
      */    
-    public void setDragSelectableSet(boolean flag);
+    public void setEditabilityDragSelectableSet(boolean flag);
       
     /**
      * Returns the pickable value.
-     *
      * @return the pickable value.
      */
-    public boolean getPickable();
+    public boolean getEditabilityPickable();
     
     /**
      * Returns whether the pickable value has been set.
-     *
-     * @return <code>true</code> if the pickable value has been set,
-     *         <code>false</code> otherwise.
+     * @return true if the pickable value has been set, false otherwise.
      */    
-    public boolean isPickableSet();
+    public boolean isEditabilityPickableSet();
     
     /**
      * Sets the pickable value.
-     *
      * @param pickable the pickable value.
      */    
-    public void setPickable(boolean pickable);
+    public void setEditabilityPickable(boolean pickable);
     
     /**
      * Sets the fact that the pickable value has been set.
-     *
-     * @param flag <code>true</code> if the pickable value has been set,
-     *             <code>false</code> otherwise.
+     * @param flag true if the pickable value has been set, false otherwise.
      */    
-    public void setPickableSet(boolean flag);
+    public void setEditabilityPickableSet(boolean flag);
    
     /**
      * Returns the selected value.
-     *
      * @return the selected value.
      */
-    public boolean getSelected();
+    public boolean getEditabilitySelected();
     
     /**
      * Returns whether the selected value has been set.
-     *
-     * @return <code>true</code> if the selected value has been set,
-     *         <code>false</code> otherwise.
+     * @return true if the selected value has been set, false otherwise.
      */    
-    public boolean isSelectedSet();
+    public boolean isEditabilitySelectedSet();
     
     /**
      * Sets the selected value.
-     *
      * @param selected the selected value.
      */    
-    public void setSelected(boolean selected);
+    public void setEditabilitySelected(boolean selected);
     
     /**
      * Sets the fact that the selected value has been set.
-     *
-     * @param flag <code>true</code> if the selected value has been set,
-     *             <code>false</code> otherwise.
+     * @param flag true if the selected value has been set, false otherwise.
      */    
-    public void setSelectedSet(boolean flag);
+    public void setEditabilitySelectedSet(boolean flag);
    
 }
+

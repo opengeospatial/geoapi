@@ -10,9 +10,9 @@
 package org.opengis.go.display.primitive;
 
 // OpenGIS direct dependencies
-import org.opengis.spatialschema.geometry.DirectPosition;
-import org.opengis.spatialschema.geometry.geometry.PointArray;
-import org.opengis.spatialschema.geometry.primitive.CurveSegment;
+import org.opengis.spatialschema.DirectPosition;
+import org.opengis.spatialschema.geometry.PointArray;
+import org.opengis.spatialschema.primitive.CurveSegment;
 import org.opengis.go.spatial.PathType;
 
 
@@ -21,10 +21,11 @@ import org.opengis.go.spatial.PathType;
  * one or more line segments and of 2-dimensional lines made up of a closed set of
  * three or more line segments. The {@link #isClosed()} method provides the distinction.
  * 
- * @version 0.2
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
+ * @version $Revision$, $Date$
  */
 public interface GraphicCurveSegment extends Graphic {
+
     /**
      * Sets the geometry based on ISO 19107 geometric forms.
      *
@@ -37,7 +38,7 @@ public interface GraphicCurveSegment extends Graphic {
      *
      * @return the geometry CurveSegment.
      */
-    public CurveSegment getCurveSegment();  
+    public CurveSegment getCurveSegment();
 
     /**
      * Returns this <code>GraphicCurveSegment</code>'s set of positions as a 
@@ -78,7 +79,7 @@ public interface GraphicCurveSegment extends Graphic {
      * @param coords the array positions.
      */
     public void setPoints(DirectPosition[] coords);
-    
+
     /**
      * Appends the given position to the graphic linestring's array of
      * positions.  If the graphic linestring isClosed(), then the new position is added
@@ -88,7 +89,7 @@ public interface GraphicCurveSegment extends Graphic {
      * @param coord the postion to add.
      */
     public void addPoint(DirectPosition coord);
-    
+
     /**
      * Removes the postion at the specified index from the array of 
      * positions.
@@ -97,7 +98,7 @@ public interface GraphicCurveSegment extends Graphic {
      * @param index the index of the position to remove.
      */
     public void deletePoint(int index);
-    
+
     /**
      * Returns the position at the specified index in the array of
      * positions.
@@ -107,7 +108,7 @@ public interface GraphicCurveSegment extends Graphic {
      * @return the position at the given index.
      */
     public DirectPosition getPoint(int index);
-    
+
     /**
      * Inserts the given position at the specified index in the array
      * of positions.
@@ -117,7 +118,7 @@ public interface GraphicCurveSegment extends Graphic {
      * @param coord the position to insert.
      */
     public void insertPoint(int index, DirectPosition coord);
-    
+
     /**
      * Replaces the position at the specified index in the array of positions
      * with the new, specified position.
@@ -127,7 +128,7 @@ public interface GraphicCurveSegment extends Graphic {
      * @param coord the position to store at the specified index.
      */
     public void setPoint(int index, DirectPosition coord);
-    
+
     /**
      * Returns the boolean flag indicating whether the graphic linestring is closed
      * (representing a polygon) or open (a graphic linestring).
@@ -135,7 +136,7 @@ public interface GraphicCurveSegment extends Graphic {
      * @return whether or not the graphic linestring is closed.
      */
     public boolean isClosed();
-    
+
     /**
      * Sets the graphic linestring open (false) or closed (true).  If the graphic linestring is
      * closed, then the start position will be duplicated and added to the end
@@ -158,15 +159,15 @@ public interface GraphicCurveSegment extends Graphic {
      * graphic linestring should insert a new vertex at that location.
      */
     public void setAllowingNewVertices(boolean newValue);
-    
+
     //**  PROJECTED  **
-    
+
     /**
      * Sets the method that is used in computing the "in-between" pixels
      * between vertices when this object is rendered on the screen.
      *
      * @param pathType The new path type. This must be one of the static constants in
-     *        the PathType class or one of its subclasses.
+     *   the PathType class or one of its subclasses.
      */
     public void setPathType(PathType pathType);
 
@@ -175,4 +176,6 @@ public interface GraphicCurveSegment extends Graphic {
      * pixels between vertices when this object is rendered on the screen.
      */
     public PathType getPathType();
+
 }
+

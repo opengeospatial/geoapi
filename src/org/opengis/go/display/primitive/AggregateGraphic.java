@@ -13,7 +13,6 @@ package org.opengis.go.display.primitive;
 import org.opengis.go.display.event.AggregationChangeEvent;
 import org.opengis.go.display.event.AggregationListener;
 
-
 /**
  * A common abstraction for implementations of aggregated {@link Graphic}s.
  * The abstraction makes no assumptions as to how the <code>Graphic</code>s are
@@ -30,9 +29,9 @@ import org.opengis.go.display.event.AggregationListener;
  * <code>Graphic</code> are to be used in a multi-threaded environment,
  * the implementation will have to address thread safety by synchronizing
  * methods or by invoking all methods from a single thread.
- *
- * @version 0.2
+ * 
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
+ * @version $Revision$, $Date$
  */
 public interface AggregateGraphic extends Graphic {
 
@@ -45,7 +44,7 @@ public interface AggregateGraphic extends Graphic {
      * @param children the new children of the <code>AggregateGraphic</code>.
      */
     public void setChildren(Graphic[] children);
-    
+
     /**
      * Returns the children of this <code>AggregateGraphic</code>. If no
      * children are assigned, the method returns an empty array.
@@ -91,7 +90,7 @@ public interface AggregateGraphic extends Graphic {
      * @return the number of children currently assigned.
      */
     public int getChildCount();
-    
+
     /**
      * Adds the given <code>AggregationListener</code> to this 
      * <code>AggregateGraphic</code>'s list of listeners. The listeners will
@@ -100,7 +99,7 @@ public interface AggregateGraphic extends Graphic {
      * @param listener the <code>AggregationListener</code> to be added.
      */
     public void addAggregationListener(AggregationListener listener);
-    
+
     /**
      * Removes the given <code>AggregationListener</code> from this 
      * <code>AggregateGraphic</code>'s list of listeners.
@@ -108,7 +107,7 @@ public interface AggregateGraphic extends Graphic {
      * @param listener the <code>AggregationListener</code> to be removed.
      */
     public void removeAggregationListener(AggregationListener listener);
-	
+
     /**
      * Calls the <code>aggregationChanged()</code> method of all <code>AggregationListener</code>s
      * in this <code>AggregateGraphic</code>'s list of listeners. This method is called when any 
@@ -121,3 +120,4 @@ public interface AggregateGraphic extends Graphic {
      */
     public void aggregationChanged(AggregationChangeEvent event);
 }
+

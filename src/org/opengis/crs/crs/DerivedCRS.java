@@ -1,34 +1,79 @@
-/*
- * Copyright (C) 2003 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
- */
+/**************************************************************************************************
+ **
+ ** $Id$
+ **
+ ** $Source$
+ **
+ ** Copyright (C) 2003 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
+ **
+ *************************************************************************************************/
 package org.opengis.crs.crs;
 
-// OpenGIS direct dependencies
-import org.opengis.crs.cs.CoordinateSystem;
+import org.opengis.spatialschema.DirectPosition;
 
+import com.dautelle.units.Unit;
 
 /**
- * A coordinate reference system that is defined by its coordinate conversion from another
- * coordinate reference system but is not a projected coordinate reference system. This
- * category includes coordinate reference systems derived from a projected coordinate
- * reference system.
- *
- * @UML abstract SC_DerivedCRS
- * @author ISO 19111
- * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
- * @version 2.0
- *
- * @revisit Do we really need this interface? It is not clear to me why the
- *          {@link #getDerivedCRSType()} method can't be allowed in the {@link ProjectedCRS}
- *          interface (as it would be if we move this method right into the {@link GeneralDerivedCRS}
- *          interface, adding a "projected" enumeration if needed).
+ * 
+ * A <code>DerivedCRS</code> is a <code>CoordinateReferenceSystem</code>
+ * of type Enginnering or Image, that does not have a <code>Datum</code>, but instead has a 
+ * "conversion" to another <code>CoordinateReferenceSystem</code>. This conversion is defined 
+ * as a spatial offset and is measured as a <code>DirectPosition</code>.
+ * A "relative coordinate" is a coordinate in a <code>DerivedCRS</code>. 
+ * 
+ * @author  Open GIS Consortium, Inc.
+ * @version $Revision$, $Date$
  */
-public interface DerivedCRS extends GeneralDerivedCRS {
+public interface DerivedCRS extends CoordinateReferenceSystem {
+		
     /**
-     * Type of this derived coordinate reference system.
-     *
-     * @return The type of this derived coordinate reference system.
-     * @UML mandatory derivedCRStype
+     * Gets the type of this <code>DerivedCRS</code>, usually either 
+	 * <i>Engineering</i> or <i>Image</i>.
+	 * @return the <code>DerivedCRS</code> type.
      */
-    public DerivedCRSType getDerivedCRSType();
+    public String getType();
+		
+    /**
+     * Sets the type of this <code>DerivedCRS</code>, usually either 
+     * <i>Engineering</i> or <i>Image</i>.
+     * @param crs the new <code>DerivedCRS</code> type.
+     */
+    public void setType(String crsType);
+		
+    /**
+	 * Gets the offset (in terms of a "reference position") beween 
+	 * the origin of this <code>CoordinateReferenceSystem</code> and a reference 
+	 * <code>CoordinateReferenceSystem</code>. The reference position value is a 
+	 * <code>DirectPosition</code> in the reference <code>CoordinateReferenceSystem</code>.
+	 * @param referenceCRS the reference <code>CoordinateReferenceSystem</code>.
+	 * @return the reference position in the space of the reference <code>CoordinateReferenceSystem</code>m.
+     */
+    public DirectPosition getReferencePosition(CoordinateReferenceSystem referenceCRS);
+		
+	/**
+	 * Sets the offset (in terms of a "reference position") beween 
+	 * the origin of this <code>CoordinateReferenceSystem</code> and a reference 
+	 * <code>CoordinateReferenceSystem</code>. The reference position value is a 
+	 * <code>DirectPosition</code> in the reference <code>CoordinateReferenceSystem</code>.
+	 * @param referencePosition the reference position in the space of the reference <code>CoordinateReferenceSystem</code>.
+	 * @param referenceCRS the reference <code>CoordinateReferenceSystem</code>.
+	 */		
+	public void setReferencePosition(DirectPosition referencePosition, CoordinateReferenceSystem referenceCRS);
+    
+    /**
+     * Gets the orientation vectors of this <code>DerivedCRS</code>.
+     * PENDING(jdc): is this a correct javadoc?  
+     * @param unit the <code>Unit</code> of measure for the returned orientation values
+     * @return an array of orientation vectors
+     */
+    public double[] getOrientation(Unit unit);
+    
+    /**
+     * Sets the orientation vectors of this <code>DerivedCRS</code>.
+     * PENDING(jdc): is this a correct javadoc?  
+     * @param orientation the new array of orientation vectors
+     * @param unit the <code>Unit</code> of the orientation vectors
+     */
+	public void setOrientation(double[] orientation, Unit unit);
+    
 }

@@ -9,16 +9,14 @@
  *************************************************************************************************/
 package org.opengis.go.display.primitive;
 
-// OpenGIS direct dependencies
-import org.opengis.spatialschema.geometry.Geometry;
-
+import org.opengis.spatialschema.Geometry;
 
 /**
  * Exception thrown by {@link Graphic} objects for Geometries that are not supported
  * by a display implementation.
  *
- * @version 0.2
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
+ * @version $Revision$, $Date$
  */
 public class GeometryNotSupportedException extends Exception {
     /**
@@ -46,3 +44,4 @@ public class GeometryNotSupportedException extends Exception {
         return geometry;
     }
 }
+

@@ -9,15 +9,15 @@
  *************************************************************************************************/
 package org.opengis.go.display.event;
 
-
 /**
  * Defines a common abstraction for classes that handle mouse events.
  * It prescribes a stack mechanism for managing <code>MouseHandler</code>s.
- *
- * @version 0.2
+ * 
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
+ * @version $Revision$, $Date$
  */
 public interface MouseManager extends EventManager {
+
     /**
      * The window will pass mouse events to only this <code>MouseHandler</code>,
      * until the <code>MouseHandler</code> is changed or removed.
@@ -55,7 +55,7 @@ public interface MouseManager extends EventManager {
      *         by <code>replacementHandler</code>.
      */
     public boolean replaceMouseHandler(MouseHandler existingHandler,
-                                       MouseHandler replacementHandler);
+        MouseHandler replacementHandler);
 
     /**
      * Returns the current <code>MouseHandler</code> or <code>null</code> if none.
@@ -73,4 +73,6 @@ public interface MouseManager extends EventManager {
      * @return the array of additional <code>MouseHandler</code>s.
      */
     public MouseHandler[] getFallbackMouseHandlers();
+
 }
+

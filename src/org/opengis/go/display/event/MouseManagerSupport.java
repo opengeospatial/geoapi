@@ -7,6 +7,7 @@
  ** Copyright (C) 2003 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
  **
  *************************************************************************************************/
+
 package org.opengis.go.display.event;
 
 // J2SE direct dependencies
@@ -14,12 +15,11 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
-
 /**
  * A helper or delegate for {@link MouseHandler} management.
  *
- * @version 0.2
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
+ * @version $Revision$, $Date$
  */
 public class MouseManagerSupport extends EventManagerSupport
                               implements MouseManager, MouseListener, MouseMotionListener
@@ -33,14 +33,14 @@ public class MouseManagerSupport extends EventManagerSupport
     //*************************************************************************
     //  implement the MouseManager interface
     //*************************************************************************
-    
+
     /**
      * The window will pass mouse events to only this <code>MouseHandler</code>,
      * until the <code>MouseHandler</code> is changed or removed.
      *
      * @param mouseHandler  the current mouse handler.
      */
-    public void enableMouseHandler(MouseHandler mouseHandler) {
+    public synchronized void enableMouseHandler(MouseHandler mouseHandler) {
         super.enableEventHandler(mouseHandler);
     }
 
@@ -52,7 +52,7 @@ public class MouseManagerSupport extends EventManagerSupport
      * @param mouseHandler  The <code>MouseHandler</code> to enable and push.
      * @see #enableMouseHandler
      */
-    public void pushMouseHandler(MouseHandler mouseHandler) {
+    public synchronized void pushMouseHandler(MouseHandler mouseHandler) {
         super.pushEventHandler(mouseHandler);
     }
 
@@ -76,7 +76,9 @@ public class MouseManagerSupport extends EventManagerSupport
      * @return <code>true</code> if <code>existingHandler</code> was found and replaced
      *         by <code>replacementHandler</code>.
      */
-    public boolean replaceMouseHandler(MouseHandler existingHandler, MouseHandler replacementHandler) {
+    public synchronized boolean replaceMouseHandler(
+        MouseHandler existingHandler,
+        MouseHandler replacementHandler) {
         return super.replaceEventHandler(existingHandler, replacementHandler);
     }
 
@@ -115,11 +117,11 @@ public class MouseManagerSupport extends EventManagerSupport
         }
         return fallbackHandlers;
     }
-
+    
     //*************************************************************************
     //  implement the MouseListener interface
     //*************************************************************************
-    
+
     /**
      * Calls {@link MouseHandler#mousePressed mousePressed} on the current mouse
      * handler, and then as long as the event is not consumed, continues passing
@@ -139,12 +141,9 @@ public class MouseManagerSupport extends EventManagerSupport
         }
         if (mouseHandler != null) {
             mouseHandler.mousePressed(e);
-
             if (!e.isConsumed()) {
                 MouseHandler[] fallback = getFallbackMouseHandlers();
-
-                for (int i = 0; (i < fallback.length) && !e.isConsumed(); i++) {
-
+                for (int i = 0;(i < fallback.length) && !e.isConsumed(); i++) {
                     // EXPLAIN(CCP): Even though the array returned by the
                     // method getFallbackMouseHandlers() does NOT include the
                     // current mouse hander, we still have to check here,
@@ -160,7 +159,7 @@ public class MouseManagerSupport extends EventManagerSupport
             }
         }
     }
-
+    
     /**
      * Calls {@link MouseHandler#mouseReleased mouseReleased} on the current mouse
      * handler, and then as long as the event is not consumed, continues passing
@@ -184,7 +183,7 @@ public class MouseManagerSupport extends EventManagerSupport
             mouseHandler.mouseReleased(e);
             if (!e.isConsumed()) {
                 MouseHandler[] fallback = getFallbackMouseHandlers();
-                for (int i = 0; (i < fallback.length) && !e.isConsumed(); i++) {
+                for (int i = 0;(i < fallback.length) && !e.isConsumed(); i++) {
                     fallback[i].mouseReleased(e);
                 }
             }
@@ -214,13 +213,13 @@ public class MouseManagerSupport extends EventManagerSupport
             mouseHandler.mouseClicked(e);
             if (!e.isConsumed()) {
                 MouseHandler[] fallback = getFallbackMouseHandlers();
-                for (int i = 0; (i < fallback.length) && !e.isConsumed(); i++) {
+                for (int i = 0;(i < fallback.length) && !e.isConsumed(); i++) {
                     fallback[i].mouseClicked(e);
                 }
             }
         }
     }
-    
+
     //*************************************************************************
     //  implement the MouseMotionListener interface
     //*************************************************************************
@@ -245,7 +244,7 @@ public class MouseManagerSupport extends EventManagerSupport
             mouseHandler.mouseEntered(e);
             if (!e.isConsumed()) {
                 MouseHandler[] fallback = getFallbackMouseHandlers();
-                for (int i = 0; (i < fallback.length) && !e.isConsumed(); i++) {
+                for (int i = 0;(i < fallback.length) && !e.isConsumed(); i++) {
                     fallback[i].mouseEntered(e);
                 }
             }
@@ -272,7 +271,7 @@ public class MouseManagerSupport extends EventManagerSupport
             mouseHandler.mouseExited(e);
             if (!e.isConsumed()) {
                 MouseHandler[] fallback = getFallbackMouseHandlers();
-                for (int i = 0; (i < fallback.length) && !e.isConsumed(); i++) {
+                for (int i = 0;(i < fallback.length) && !e.isConsumed(); i++) {
                     fallback[i].mouseExited(e);
                 }
             }
@@ -299,7 +298,7 @@ public class MouseManagerSupport extends EventManagerSupport
             mouseHandler.mouseMoved(e);
             if (!e.isConsumed()) {
                 MouseHandler[] fallback = getFallbackMouseHandlers();
-                for (int i = 0; (i < fallback.length) && !e.isConsumed(); i++) {
+                for (int i = 0;(i < fallback.length) && !e.isConsumed(); i++) {
                     fallback[i].mouseMoved(e);
                 }
             }
@@ -326,10 +325,12 @@ public class MouseManagerSupport extends EventManagerSupport
             mouseHandler.mouseDragged(e);
             if (!e.isConsumed()) {
                 MouseHandler[] fallback = getFallbackMouseHandlers();
-                for (int i = 0; (i < fallback.length) && !e.isConsumed(); i++) {
+                for (int i = 0;(i < fallback.length) && !e.isConsumed(); i++) {
                     fallback[i].mouseDragged(e);
                 }
             }
         }
     }
+
 }
+

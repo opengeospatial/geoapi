@@ -9,9 +9,7 @@
  *************************************************************************************************/
 package org.opengis.go.display.primitive;
 
-// OpenGIS direct dependencies
-import org.opengis.spatialschema.geometry.primitive.SurfaceBoundary;
-
+import org.opengis.spatialschema.geometry.SurfaceBoundary;
 
 /**
  * Defines a common abstraction for implementations that drawing the
@@ -19,10 +17,11 @@ import org.opengis.spatialschema.geometry.primitive.SurfaceBoundary;
  *
  * When a Fill style is applied, any interior rings act as holes, and are not filled.
  * 
- * @version 0.2
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
+ * @version $Revision$, $Date$
  */
 public interface GraphicSurfaceBoundary extends Graphic {
+    
     /**
      * Sets the geometry based on ISO 19107 geometric forms.
      *
@@ -58,9 +57,12 @@ public interface GraphicSurfaceBoundary extends Graphic {
      * @return an array of interior GraphicRings, or null if there are no interior Rings.
      */    
     public GraphicRing[] getInteriors();
-
+    
     /**
-     * Set the interiors.
-     */
-    public void setInteriors(GraphicRing[] interior);
+     * Converts the given <code>GraphicRing</code>s to <code>Ring</code>s and sets them
+     * as the interior <code>Ring</code>s in the underlying <code>SurfaceBoundary</code>.
+     * @param interiors an array of interior <code>GraphicRing</code>s.
+     */               
+    public void setInteriors(GraphicRing[] interiors);
 }
+
