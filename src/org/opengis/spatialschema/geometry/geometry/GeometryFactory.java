@@ -17,6 +17,8 @@ import java.util.Set;
 import org.opengis.spatialschema.geometry.DirectPosition;
 import org.opengis.spatialschema.geometry.MismatchedDimensionException;
 import org.opengis.spatialschema.geometry.MismatchedReferenceSystemException;
+import org.opengis.spatialschema.geometry.primitive.Curve;
+import org.opengis.spatialschema.geometry.primitive.Ring;
 import org.opengis.spatialschema.geometry.primitive.SurfaceBoundary;
 import org.opengis.spatialschema.geometry.primitive.Surface;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
@@ -339,4 +341,17 @@ public interface GeometryFactory {
     Tin createTin(Set/*<Position>*/ post, Set/*<LineString>*/ stopLines,
                   Set/*<LineString>*/ breakLines, double maxLength)
             throws MismatchedReferenceSystemException, MismatchedDimensionException;
+
+    /**
+     * Constructs a new {@linkplain SurfaceBoundary} object representing the
+     * boundary of a two-dimensional surface.
+     *
+     * @param exterior In the normal 2D case, this identifies the curve that is
+     *        the exterior curve of the surface.  In cases where an exterior
+     *        cannot be unambiguously chosen (a bounded cylinder, for example),
+     *        this parameter may be null.
+     * @param interiors All of the curve components of the boundary that are not
+     *        the exterior.
+     */
+    SurfaceBoundary createSurfaceBoundary(Ring exterior, List/*<Ring>*/ interiors);
 }
