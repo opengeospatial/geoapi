@@ -39,6 +39,8 @@ import org.opengis.spatialschema.geometry.MismatchedDimensionException;
  * @see java.awt.geom.AffineTransform
  * @see javax.media.jai.PerspectiveTransform
  * @see javax.media.j3d.Transform3D
+ * @see MathTransformFactory
+ * @see CoordinateOperation#getMathTransform
  */
 public interface MathTransform {
     /**
