@@ -31,6 +31,11 @@ public interface Feature {
      */
     public Object getAttribute(String name);
 
+    /**
+     * Returns the extent of the geometries of this feature.  Can return null
+     * if the extent is not known, not easy to calculate, or this feature has
+     * no geometry.
+     */
     public Envelope getBounds();
 
     /**
