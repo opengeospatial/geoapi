@@ -3,12 +3,12 @@
  */
 package org.opengis.gm.primitive;
 
-//J2SE directdependencies
+// J2SE direct dependencies
 import java.util.List;
 import java.util.Arrays;
 import java.util.Collections;
 
-//OpenGIS direct dependencies
+// OpenGIS direct dependencies
 import org.opengis.util.CodeList;
 import org.opengis.gm.geometry.DirectPosition; // For javadoc
 
@@ -20,7 +20,7 @@ import org.opengis.gm.geometry.DirectPosition; // For javadoc
  * by specifying an interpolation method and an associated control parameters record to support
  * it.
  *
- * @UML type GM_CurveInterpolation
+ * @UML codelist GM_CurveInterpolation
  * @author ISO/DIS 19107
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 2.0

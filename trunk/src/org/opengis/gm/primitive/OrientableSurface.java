@@ -3,6 +3,9 @@
  */
 package org.opengis.gm.primitive;
 
+// OpenGIS direct dependencies
+import org.opengis.gm.complex.CompositeSurface;
+
 
 /**
  * A surface and an orientation inherited from {@link OrientablePrimitive}. If the orientation is
@@ -15,8 +18,6 @@ package org.opengis.gm.primitive;
  * @author ISO/DIS 19107
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 2.0
- *
- * @revisit Some associations are commented out for now.
  */
 public interface OrientableSurface extends OrientablePrimitive {
     /**
@@ -39,7 +40,14 @@ public interface OrientableSurface extends OrientablePrimitive {
      */
     public SurfaceBoundary getBoundary();
 
-//    public org.opengis.spatialschema.geometry.complex.GM_CompositeSurface composite[];
-//    public void setComposite(org.opengis.spatialschema.geometry.complex.GM_CompositeSurface composite[]) {  }
-//    public org.opengis.spatialschema.geometry.complex.GM_CompositeSurface[] getComposite() { return null; }
+    /**
+     * Returns the owner of this orientable surface, or <code>null</code> if none.
+     *
+     * @return The owner of this orientable surface, or <code>null</code> if none.
+     * @UML association composite
+     *
+     * @revisit I'm not sure to interpret correctly the ISO specification.
+     *          Sound like ISO returns an array (or a sequence) here.
+     */
+    public CompositeSurface getComposite();
 }

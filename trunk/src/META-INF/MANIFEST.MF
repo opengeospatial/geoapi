@@ -1,3 +1,4 @@
+
 Name: org/opengis/rs
 Sealed: true
 Specification-Title: Spatial Referencing by Coordinates
