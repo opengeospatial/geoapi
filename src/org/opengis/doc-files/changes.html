@@ -6,9 +6,13 @@
   </head>
   <body>
   <H1>List of changes</H1>
-  <H2>Changes from 1.0 to 1.1</H2>
+  <H2>Changes from GeoAPI 1.0 to 1.1</H2>
   <BLOCKQUOTE>
-  <H3>Changes in Referencing</H3>
+  <H3>Changes in Metadata packages</H3>
+  <UL>
+    <LI>Completed interfaces and code list derived from ISO 19115.</LI>
+  </UL>
+  <H3>Changes in Referencing packages</H3>
   <UL>
     <LI><P>Added <code><A HREF="../referencing/crs/SingleCRS.html">SingleCRS</A></code> interface.
         This change reflect a part of ISO 19111 which was omitted in previous release.</P></LI>
@@ -16,55 +20,72 @@
     <LI><P>Renamed <code>ObliqueCartesianCS</code> as <code><A HREF="../referencing/cs/AffineCS.html">AffineCS</A></code>.
         This reflect a change in OGC Topic 2 voted in July 16, 2004.</P></LI>
 
-    <LI><P>In <code>CRSFactory.createImageCRS(...)</code> method, changed the <code>cs</code> argument
-        type from <code>CoordinateSystem</code> to <code>AffineCS</code>. This change is
-        required for type safety and was forgotten in previous release.</P></LI>
+    <LI><P>In <code><A HREF="../referencing/crs/CRSFactory.html">CRSFactory</A>.createImageCRS(...)</code>
+        method, changed the <code>cs</code> argument type from
+        <code><A HREF="../referencing/cs/CoordinateSystem.html">CoordinateSystem</A></code> to
+        <code><A HREF="../referencing/cs/AffineCS.html">AffineCS</A></code>.
+        This change is required for type safety and was forgotten in previous release.</P></LI>
 
-    <LI><P>In <code><A HREF="../referencing/cs/CSFactory.html">CSFactory</A></code> interface,
-        added methods for <code>UserDefinedCS</code> creation.</P></LI>
+    <LI><P>In <code><A HREF="../referencing/cs/CSFactory.html">CSFactory</A></code> interface, added methods
+        for <code><A HREF="../referencing/cs/UserDefinedCS.html">UserDefinedCS</A></code> creation.
+        This part was forgotten in previous release.</P></LI>
 
-    <LI><P>Added <code>toWKT()</code> method in <code>Info</code>.</P></LI>
+    <LI><P>Added <code>toWKT()</code> method in <code><A HREF="../referencing/Info.html">Info</A></code>.</P></LI>
 
-    <LI><P>Renamed <code>NoSuchClassificationException</code> as <code>NoSuchIdentifierException</code>.</P></LI>
+    <LI><P>Renamed <code>NoSuchClassificationException</code> as
+        <code><A HREF="../referencing/NoSuchIdentifierException.html">NoSuchIdentifierException</A></code>.</P></LI>
 
-    <LI><P>For convenience method <code>getParameter(String)</code> in <code>OperationParameterGroup</code> interface,
-        changed the return type from <code>GeneralOperationParameter</code> to <code>OperationParameter</code>.
+    <LI><P>Removed the <code>org.opengis.referencing.quality</code> package. This package is now
+         replaced by <code>org.opengis.metadata.quality</code>. This reflect a change in OGC Topic
+         2 voted in July 16, 2004.</P></LI>
+
+    <LI><P>For convenience method <code>getParameter(String)</code> in
+        <code><A HREF="../parameter/OperationParameterGroup.html">OperationParameterGroup</A></code> interface,
+        changed the return type from
+        <code><A HREF="../parameter/GeneralOperationParameter.html">GeneralOperationParameter</A></code> to
+        <code><A HREF="../parameter/OperationParameter.html">OperationParameter</A></code>.
         This change make the convenience method more... convenient.</P></LI>
 
-    <LI><P>For convenience method <code>getValue(String)</code> in <code>ParameterValueGroup</code> interface,
-        changed the return type from <code>GeneralParameterValue</code> to <code>ParameterValue</code>.
+    <LI><P>For convenience method <code>getValue(String)</code> in
+        <code><A HREF="../parameter/ParameterValueGroup.html">ParameterValueGroup</A></code> interface,
+        changed the return type from
+        <code><A HREF="../parameter/GeneralParameterValue.html">GeneralParameterValue</A></code> to
+        <code><A HREF="../parameter/ParameterValue.html">ParameterValue</A></code>.
         This change make the convenience method more... convenient.</P></LI>
   </UL>
-  <H3>Changes in Geometry</H3>
+  <H3>Changes in Geometry packages</H3>
   <UL>
-    <LI><P>Set <code>Position</code> as the super-interface for <code>DirectPosition</code> or
-        <code>Point</code> interfaces instead of an union of them. The union type do no exists
-        in Java and this change lead to a more object oriented approach.</P></LI>
+    <LI><P>Set <code><A HREF="../spatialschema/geometry/geometry/Position.html">Position</A></code> as the super-interface
+        for <code><A HREF="../spatialschema/geometry/DirectPosition.html">DirectPosition</A></code> and
+        <code><A HREF="../spatialschema/geometry/primitive/Point.html">Point</A></code> interfaces instead
+        of an union of them. The union type do no exists in Java and this change lead to a more object oriented
+        approach. This change was done after a comment on the GeoAPI mailing list.</P></LI>
 
-    <LI><P>In <code>Envelope</code> interface, added convenience methods <code>getMinimum</code>,
-        <code>getMaximum</code>, <code>getCenter</code> and <code>getLength</code>.</P></LI>
+    <LI><P>In <code><A HREF="../spatialschema/geometry/Envelope.html">Envelope</A></code> interface,
+        added convenience methods <code>getMinimum</code>, <code>getMaximum</code>, <code>getCenter</code>
+        and <code>getLength</code>.</P></LI>
   </UL>
-  <H3>Changes in Grid Coverage</H3>
+  <H3>Changes in Grid Coverage packages</H3>
   <UL>
-    <LI><P>In <code>SampleDimension</code> interface, added a <code>Locale</code> argument for methods
-        <code>getDescription</code> and <code>getCategoryNames</code>. This change is required for
-        localization support and was forgotten in previous release.</P></LI>
+    <LI><P>In <code><A HREF="../coverage/SampleDimension.html">SampleDimension</A></code> interface,
+        added a <code>Locale</code> argument for methods <code>getDescription</code> and <code>getCategoryNames</code>.
+        This change is required for localization support and was forgotten in previous release.</P></LI>
 
-    <LI><P>In <code>Coverage</code> interface, added a <code>Locale</code> argument for method
-        <code>getDimensionNames</code>. This change is required for localization support and was
-        forgotten in previous release.</P></LI>
+    <LI><P>In <code><A HREF="../coverage/Coverage.html">Coverage</A></code> interface, added a
+        <code>Locale</code> argument for method <code>getDimensionNames</code>. This change is required
+        for localization support and was forgotten in previous release.</P></LI>
 
-    <LI><P>In <code>Coverage</code> interface, changed the return type from <code>double[]</code> to
-        <code>float[]</code> for the method <code>evaluate(DirectPosition, float[])</code>. Previous
-        return type was wrong.</P></LI>
+    <LI><P>In <code><A HREF="../coverage/Coverage.html">Coverage</A></code> interface, changed
+        the return type from <code>double[]</code> to <code>float[]</code> for the method
+        <code>evaluate(DirectPosition, float[])</code>. Previous return type was wrong.</P></LI>
 
-    <LI><P>In <code>Coverage</code>, merged <code>getNumSources()</code> and <code>getSource(int)</code>
-        methods into a single <code>getSources()</code> method.</P></LI>
+    <LI><P>In <code><A HREF="../coverage/Coverage.html">Coverage</A></code>, merged <code>getNumSources()</code>
+        and <code>getSource(int)</code> methods into a single <code>getSources()</code> method.</P></LI>
 
-    <LI><P>In <code>GridRange</code>, renamed <code>getLower()</code> and <code>getUpper()</code> as
-        <code>getLowers()</code> and <code>getUppers()</code>.</P></LI>
+    <LI><P>In <code><A HREF="../coverage/grid/GridRange.html">GridRange</A></code>, renamed <code>getLower()</code>
+        and <code>getUpper()</code> as <code>getLowers()</code> and <code>getUppers()</code>.</P></LI>
 
-    <LI><P>In <code>GridRange</code>, added <code>getLower(int)</code>, <code>getUpper(int)</code>,
+    <LI><P>In <code><A HREF="../coverage/grid/GridRange.html">GridRange</A></code>, added <code>getLower(int)</code>, <code>getUpper(int)</code>,
         <code>getLength(int)</code> and <code>getDimension</code> convenience methods.</P></LI>
   </UL>
   </BLOCKQUOTE>

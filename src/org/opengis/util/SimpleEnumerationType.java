@@ -26,6 +26,10 @@ import javax.swing.ImageIcon;
  *
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version $Revision$, $Date$
+ *
+ * @revisit The name doesn't said what is the difference between this class and {@link CodeList}.
+ *          Furthermore, according ISO 19103, enumeration and code list are not the same thing.
+ *          This base class is closer to a code list than an enumeration.
  */
 public abstract class SimpleEnumerationType extends CodeList implements Comparable {
 

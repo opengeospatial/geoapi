@@ -28,6 +28,7 @@ import java.util.Iterator;
  *       future version, it may extends directly {@link java.lang.Enum}
  *       for a J2SE 1.5 profile.
  *
+ * @author ISO 19103
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 2.0
  */

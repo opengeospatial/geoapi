@@ -42,7 +42,7 @@ public interface Distributor {
      *
      * @UML conditional distributorFormat
      */
-    Format[] getDistributorFormat();
+    Format[] getDistributorFormats();
 
     /**
      * Provides information about the technical means and media used by the distributor.
