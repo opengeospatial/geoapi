@@ -16,6 +16,9 @@ import org.opengis.sc.CRS;
  * of direct positions in a particular coordinate reference system.
  *
  * @UML type GM_Object
+ * @renamed Renamed as <code>Geometry</code> in order to avoid ambiguity with
+ *          {@link java.lang.Object}.
+ *
  * @author ISO/DIS 19107
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 2.0
@@ -176,7 +179,7 @@ public interface Geometry /*extends TransfiniteSet<DirectPosition>*/ {
      * @param  geometry The other object.
      * @return The distance between the two objects.
      * @UML operation distance
-     * @revisit In UML schema, the returns type is <code>Distance</code>.
+     * @revisit In UML diagram, the returns type is <code>Distance</code>.
      */
     public double getDistance(Geometry geometry);
 
@@ -216,8 +219,6 @@ public interface Geometry /*extends TransfiniteSet<DirectPosition>*/ {
      * is maximal if there is no such larger super complex.
      *
      * @return The set of maximal complexes within which this <code>Geometry</code> is contained.
-     *         If the schema used does not include <code>Complex</code>, then this operation
-     *         shall return a <code>null</code> value.
      * @UML operation maximalComplex
      */
     public Set/*<Complex>*/ getMaximalComplex();
@@ -282,7 +283,7 @@ public interface Geometry /*extends TransfiniteSet<DirectPosition>*/ {
      * @param distance The distance.
      * @UML operation buffer
      *
-     * @revisit In UML schema, the <code>distance</code> argument is a <code>Distance</code> type.
+     * @revisit In UML diagram, the <code>distance</code> argument is a <code>Distance</code> type.
      */
     public Geometry getBuffer(double distance);
 }
