@@ -9,9 +9,6 @@
  *************************************************************************************************/
 package org.opengis.referencing.crs;
 
-// OpenGIS direct dependencies
-import org.opengis.spatialschema.geometry.DirectPosition;
-
 
 /**
  * A coordinate reference system that is defined by its coordinate conversion from another

@@ -9,7 +9,10 @@
  *************************************************************************************************/
 package org.opengis.spatialschema.geometry;
 
+// J2SE direct dependencies
 import java.util.Set;
+
+// OpenGIS direct dependencies
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 import org.opengis.referencing.operation.IncompatibleOperationException;
 import org.opengis.referencing.operation.MathTransform;
