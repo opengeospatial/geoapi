@@ -23,6 +23,14 @@ package org.opengis.parameter;
  */
 public interface OperationParameterGroup extends GeneralOperationParameter {
     /**
+     * Creates a new instance of {@linkplain ParameterValueGroup parameter value group}
+     * initialized with the {@linkplain OperationParameter#getDefaultValue default values}.
+     * The {@linkplain ParameterValueGroup#getDescriptor parameter value descriptor}
+     * for the created group will be <code>this</code> object.
+     */
+/// ParameterValueGroup createValue();
+
+    /**
      * Returns the parameters in this group.
      *
      * @return The parameters.

@@ -25,6 +25,14 @@ import org.opengis.crs.Info;
  */
 public interface GeneralOperationParameter extends Info {
     /**
+     * Creates a new instance of {@linkplain GeneralParameterValue parameter value or group}
+     * initialized with the {@linkplain OperationParameter#getDefaultValue default value(s)}.
+     * The {@linkplain GeneralParameterValue#getDescriptor parameter value descriptor} for
+     * the created parameter value(s) will be <code>this</code> object.
+     */
+    GeneralParameterValue createValue();
+
+    /**
      * The minimum number of times that values for this parameter group or
      * parameter are required. The default value is one. A value of 0 means
      * an optional parameter.

@@ -37,7 +37,7 @@ public interface ParameterValue extends GeneralParameterValue {
 /// OperationParameter getDescriptor();
 
     /**
-     * Returns the unit of measure of the {@linkplain #doubleValue parameter value}.
+     * Returns the unit of measure of the {@linkplain #doubleValue() parameter value}.
      * If the parameter value has no unit (for example because it is a {@link String} type),
      * then this method returns <code>null</code>. Note that "no unit" doesn't means
      * "dimensionless".
@@ -45,12 +45,27 @@ public interface ParameterValue extends GeneralParameterValue {
      * @return The unit of measure, or <code>null</code> if none.
      * @UML conditional value
      *
-     * @see #doubleValue
+     * @see #doubleValue()
      * @see #doubleValueList
      * @see #getValue
-     * @see #setUnit
      */
     Unit getUnit();
+
+    /**
+     * Returns the numeric value of the coordinate operation parameter in the specified unit
+     * of measure. This convenience method apply unit conversion on the fly as needed.
+     *
+     * @param  unit The unit of measure for the value to be returned.
+     * @return The numeric value represented by this parameter after conversion to type
+     *         <code>double</code> and conversion to <code>unit</code>.
+     * @throws InvalidParameterTypeException if the value is not a numeric type.
+     * @throws IllegalArgumentException if the specified unit is invalid for this parameter.
+     *
+     * @see #getUnit
+     * @see #setValue(double,Unit)
+     * @see #doubleValueList(Unit)
+     */
+    double doubleValue(Unit unit) throws InvalidParameterTypeException;
 
     /**
      * Returns the numeric value of the coordinate operation parameter with its
@@ -114,6 +129,22 @@ public interface ParameterValue extends GeneralParameterValue {
     String stringValue() throws InvalidParameterTypeException;
 
     /**
+     * Returns an ordered sequence of numeric values in the specified unit of measure.
+     * This convenience method apply unit conversion on the fly as needed.
+     *
+     * @param  unit The unit of measure for the value to be returned.
+     * @return The sequence of values represented by this parameter after conversion to type
+     *         <code>double</code> and conversion to <code>unit</code>.
+     * @throws InvalidParameterTypeException if the value is not an array of <code>double</code>s.
+     * @throws IllegalArgumentException if the specified unit is invalid for this parameter.
+     *
+     * @see #getUnit
+     * @see #setValue(double[],Unit)
+     * @see #doubleValue(Unit)
+     */
+    double[] doubleValueList(final Unit unit) throws InvalidParameterTypeException;
+
+    /**
      * Returns an ordered sequence of two or more numeric values of an operation parameter
      * list, where each value has the same associated {@linkplain Unit unit of measure}.
      *
@@ -124,10 +155,10 @@ public interface ParameterValue extends GeneralParameterValue {
      *
      * @see #getUnit
      * @see #setValue(Object)
-     * @see #doubleValue
+     * @see #doubleValue()
      *
      * @rename Renamed <code>valueList</code> as <code>doubleValueList</code> for consistency
-     *         with {@link #doubleValue}. Also because, like <code>doubleValue()</code>, this
+     *         with {@link #doubleValue()}. Also because, like <code>doubleValue()</code>, this
      *         method returns a <code>double</code> value rather than a <code>Measure</code>
      *         object.
      */
@@ -145,7 +176,7 @@ public interface ParameterValue extends GeneralParameterValue {
      * @see #intValue
      *
      * @rename Renamed <code>valueList</code> as <code>doubleValueList</code> for consistency
-     *         with {@link #doubleValue}. Also because, like <code>doubleValue()</code>, this
+     *         with {@link #doubleValue()}. Also because, like <code>doubleValue()</code>, this
      *         method returns a <code>double</code> value rather than a <code>Measure</code>
      *         object.
      */
@@ -193,6 +224,31 @@ public interface ParameterValue extends GeneralParameterValue {
     Object getValue();
 
     /**
+     * Set the parameter value as an array of floating point and their associated unit.
+     *
+     * @param  values The parameter values.
+     * @param  unit The unit for the specified value.
+     * @throws InvalidParameterValueException if the floating point type is inappropriate for this
+     *         parameter, or if the value is illegal for some other reason (for example a value out
+     *         of range).
+     */
+    void setValue(double[] values, Unit unit) throws InvalidParameterValueException;
+
+    /**
+     * Set the parameter value as a floating point and its associated unit.
+     *
+     * @param  value The parameter value.
+     * @param  unit The unit for the specified value.
+     * @throws InvalidParameterValueException if the floating point type is inappropriate for this
+     *         parameter, or if the value is illegal for some other reason (for example a value out
+     *         of range).
+     *
+     * @see #setValue(double)
+     * @see #doubleValue(Unit)
+     */
+    void setValue(double value, Unit unit) throws InvalidParameterValueException;
+
+    /**
      * Set the parameter value as a floating point.
      *
      * @param value The parameter value.
@@ -200,8 +256,8 @@ public interface ParameterValue extends GeneralParameterValue {
      *         parameter, or if the value is illegal for some other reason (for example a value out
      *         of range).
      *
-     * @see #doubleValue
-     * @see #setUnit
+     * @see #setValue(double,Unit)
+     * @see #doubleValue()
      */
     void setValue(double value) throws InvalidParameterValueException;
 
@@ -237,20 +293,8 @@ public interface ParameterValue extends GeneralParameterValue {
      *         the value is numeric and out of range).
      *
      * @see #getValue
-     * @see #setUnit
      */
     void setValue(Object value) throws InvalidParameterValueException;
-
-    /**
-     * Set the unit of measure of the {@linkplain #setValue(double) parameter value}.
-     *
-     * @param  unit The unit of measure.
-     * @throws InvalidParameterTypeException if the parameter value is not a measure (i.e.
-     *         a value to be returned by {@link #doubleValue} or {@link #doubleValueList}).
-     *
-     * @see #getUnit
-     */
-    void setUnit(Unit unit) throws InvalidParameterTypeException;
 
     /**
      * Returns a copy of this parameter value.
