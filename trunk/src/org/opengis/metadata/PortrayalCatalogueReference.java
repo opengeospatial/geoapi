@@ -9,6 +9,9 @@
  *************************************************************************************************/
 package org.opengis.metadata;
 
+// J2SE direct dependencies
+import java.util.Set;
+
 // OpenGIS direct dependencies
 import org.opengis.metadata.citation.Citation;
 
@@ -27,5 +30,5 @@ public interface PortrayalCatalogueReference {
      *
      * @UML mandatory portrayalCatalogueCitation
      */
-    Citation[] getPortrayalCatalogueCitations();
+    Set/*<Citation>*/ getPortrayalCatalogueCitations();
 }

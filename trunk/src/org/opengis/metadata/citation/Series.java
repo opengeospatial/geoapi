@@ -9,8 +9,8 @@
  *************************************************************************************************/
 package org.opengis.metadata.citation;
 
-// J2SE direct dependencies
-import java.util.Locale;
+// OpenGIS direct dependencies
+import org.opengis.util.InternationalString;
 
 
 /**
@@ -26,14 +26,9 @@ public interface Series {
      * Name of the series, or aggregate dataset, of which the dataset is a part.
      * Returns <code>null</code> if none.
      *
-     * @param  locale The desired locale for the name to be returned, or <code>null</code>
-     *         for a name in some default locale (may or may not be the
-     *         {@linkplain Locale#getDefault() system default}).
-     * @return The name in the given locale.
-     *         If no name is available in the given locale, then some default locale is used.
      * @UML optional name
      */
-    String getName(Locale locale);
+    InternationalString getName();
 
     /**
      * Information identifying the issue of the series.

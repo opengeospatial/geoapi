@@ -30,14 +30,14 @@ public interface VerticalExtent {
      *
      * @UML mandatory minimumValue
      */
-    public double getMinimumValue();
+    double getMinimumValue();
 
     /**
      * Returns the highest vertical extent contained in the dataset.
      *
      * @UML mandatory maximumValue
      */
-    public double getMaximumValue();
+    double getMaximumValue();
 
     /**
      * Returns the vertical units used for vertical extent information.
@@ -45,7 +45,7 @@ public interface VerticalExtent {
      *
      * @UML mandatory unitOfMeasure
      */
-    public Unit getUnit();
+    Unit getUnit();
 
     /**
      * Provides information about the origin from which the
@@ -53,5 +53,5 @@ public interface VerticalExtent {
      *
      * @UML mandatory verticalDatum
      */
-    public VerticalDatum getVerticalDatum();
+    VerticalDatum getVerticalDatum();
 }

@@ -9,6 +9,9 @@
  *************************************************************************************************/
 package org.opengis.metadata;
 
+// J2SE direct dependencies
+import java.util.Set;
+
 // OpenGIS direct dependencies
 import org.opengis.metadata.citation.OnLineResource;
 
@@ -36,5 +39,5 @@ public interface MetadataExtensionInformation {
      *
      * @UML optional extendedElementInformation
      */
-    ExtendedElementInformation[] getExtendedElementInformation();
+    Set/*<ExtendedElementInformation>*/ getExtendedElementInformation();
 }

@@ -27,5 +27,5 @@ public interface GeographicDescription extends GeographicExtent {
      *
      * @UML mandatory geographicIdentifier
      */
-    public Identifier getGeographicIdentifier();
+    Identifier getGeographicIdentifier();
 }

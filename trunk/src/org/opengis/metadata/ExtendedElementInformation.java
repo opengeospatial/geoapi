@@ -10,9 +10,11 @@
 package org.opengis.metadata;
 
 // J2SE direct dependencies
-import java.util.Locale;
+import java.util.Set;
+import java.util.List;
 
 // OpenGIS direct dependencies
+import org.opengis.util.InternationalString;
 import org.opengis.metadata.citation.ResponsibleParty;
 
 
@@ -54,14 +56,9 @@ public interface ExtendedElementInformation {
     /**
      * Definition of the extended element.
      *
-     * @param  locale The desired locale for the definition to be returned, or <code>null</code>
-     *         for a definition in some default locale (may or may not be the
-     *         {@linkplain Locale#getDefault() system default}).
-     * @return The definition in the given locale.
-     *         If no definition is available in the given locale, then some default locale is used.
      * @UML mandatory definition
      */
-    String getDefinition(Locale locale);
+    InternationalString getDefinition();
 
     /**
      * Obligation of the extended element.
@@ -77,7 +74,7 @@ public interface ExtendedElementInformation {
      *
      * @UML conditional condition
      */
-    String getCondition(Locale locale);
+    InternationalString getCondition();
 
     /**
      * Code which identifies the kind of value provided in the extended element.
@@ -104,14 +101,9 @@ public interface ExtendedElementInformation {
      * {@linkplain Datatype#CODE_LIST code list} or {@linkplain Datatype#CODE_LIST_ELEMENT
      * code list element}.
      *
-     * @param  locale The desired locale for the description to be returned, or <code>null</code>
-     *         for a description in some default locale (may or may not be the
-     *         {@linkplain Locale#getDefault() system default}).
-     * @return The description in the given locale.
-     *         If no description is available in the given locale, then some default locale is used.
      * @UML conditional domainValue
      */
-    String getDomainValue(Locale locale);
+    InternationalString getDomainValue();
 
     /**
      * Name of the metadata entity(s) under which this extended metadata element may appear.
@@ -119,31 +111,26 @@ public interface ExtendedElementInformation {
      *
      * @UML mandatory parentEntity
      */
-    String[] getParentEntity();
+    Set/*<String>*/ getParentEntity();
 
     /**
      * Specifies how the extended element relates to other existing elements and entities.
      *
      * @UML mandatory rule
      */
-    String getRule(Locale locale);
+    InternationalString getRule();
 
     /**
      * Reason for creating the extended element.
      *
-     * @param  locale The desired locale for the rationale to be returned, or <code>null</code>
-     *         for a rationale in some default locale (may or may not be the
-     *         {@linkplain Locale#getDefault() system default}).
-     * @return The rationale in the given locale.
-     *         If no rationale is available in the given locale, then some default locale is used.
      * @UML optional rationale
      */
-    String[] getRationales(Locale locale);
+    List/*<InternationalString>*/ getRationales();
 
     /**
      * Name of the person or organization creating the extended element.
      *
      * @UML mandatory source
      */
-    ResponsibleParty[] getSources();
+    Set/*<ResponsibleParty>*/ getSources();
 }

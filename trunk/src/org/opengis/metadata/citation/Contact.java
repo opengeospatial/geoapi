@@ -9,8 +9,8 @@
  *************************************************************************************************/
 package org.opengis.metadata.citation;
 
-// J2SE direct dependencies
-import java.util.Locale;
+// OpenGIS direct dependencies
+import org.opengis.util.InternationalString;
 
 
 /**
@@ -50,25 +50,15 @@ public interface Contact {
      * Time period (including time zone) when individuals can contact the organization or
      * individual. Returns <code>null</code> if unspecified.
      *
-     * @param  locale The desired locale for the details to be returned, or <code>null</code>
-     *         for details in some default locale (may or may not be the
-     *         {@linkplain Locale#getDefault() system default}).
-     * @return The details in the given locale.
-     *         If no details is available in the given locale, then some default locale is used.
      * @UML optional hoursOfService
      */
-    String getHoursOfService(Locale locale);
+    InternationalString getHoursOfService();
 
     /**
      * Supplemental instructions on how or when to contact the individual or organization.
      * Returns <code>null</code> if none.
      *
-     * @param  locale The desired locale for the details to be returned, or <code>null</code>
-     *         for details in some default locale (may or may not be the
-     *         {@linkplain Locale#getDefault() system default}).
-     * @return The details in the given locale.
-     *         If no details is available in the given locale, then some default locale is used.
      * @UML optional contactInstructions
      */
-    String getContactInstructions(Locale locale);
+    InternationalString getContactInstructions();
 }

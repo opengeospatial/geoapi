@@ -11,7 +11,9 @@ package org.opengis.metadata.maintenance;
 
 // J2SE direct dependencies
 import java.util.Date;
-import java.util.Locale;
+
+// OpenGIS direct dependencies
+import org.opengis.util.InternationalString;
 
 
 /**
@@ -64,12 +66,7 @@ public interface MaintenanceInformation {
     /**
      * Information regarding specific requirements for maintaining the resource.
      *
-     * @param  locale The desired locale for the note to be returned, or <code>null</code>
-     *         for a note in some default locale (may or may not be the
-     *         {@linkplain Locale#getDefault() system default}).
-     * @return The note in the given locale.
-     *         If no note is available in the given locale, then some default locale is used.
      * @UML conditional maintenanceNote
      */
-    String getMaintenanceNote(Locale locale);
+    InternationalString getMaintenanceNote();
 }

@@ -26,5 +26,5 @@ public interface GeographicExtent {
      * @return <code>true</code> for inclusion, or <code>false</code> for exclusion.
      * @UML optional extentTypeCode
      */
-    public boolean isInclusion();
+    boolean isInclusion();
 }

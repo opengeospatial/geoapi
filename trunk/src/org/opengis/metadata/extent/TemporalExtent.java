@@ -30,12 +30,12 @@ public interface TemporalExtent {
      *
      * @UML mandatory extent
      */
-    public Date getStartTime();
+    Date getStartTime();
 
     /**
      * Returns the end date and time for the content of the dataset.
      *
      * @UML mandatory extent
      */
-    public Date getEndTime();
+    Date getEndTime();
 }

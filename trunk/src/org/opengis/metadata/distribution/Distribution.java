@@ -9,6 +9,9 @@
  *************************************************************************************************/
 package org.opengis.metadata.distribution;
 
+// J2SE dependencies
+import java.util.Set;
+
 
 /**
  * Information about the distributor of and options for obtaining the resource.
@@ -24,14 +27,14 @@ public interface Distribution {
      *
      * @UML conditional distributionFormat
      */
-    Format[] getDistributionFormats();
+    Set/*<Format>*/ getDistributionFormats();
 
     /**
      * Provides information about the distributor.
      *
      * @UML optional distributor
      */
-    Distributor[] getDistributors();
+    Set/*<Distributor>*/ getDistributors();
 
     /**
      * Provides information about technical means and media by which a resource is obtained
@@ -39,5 +42,5 @@ public interface Distribution {
      *
      * @UML optional transferOptions
      */
-    DigitalTransferOptions[] getTransferOptions();
+    Set/*<DigitalTransferOptions>*/ getTransferOptions();
 }

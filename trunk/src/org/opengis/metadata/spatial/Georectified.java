@@ -10,9 +10,10 @@
 package org.opengis.metadata.spatial;
 
 // J2SE direct dependencies
-import java.util.Locale;
+import java.util.List;
 
 // OpenGIS direct dependencies
+import org.opengis.util.InternationalString;
 import org.opengis.spatialschema.geometry.primitive.Point;
 
 
@@ -40,14 +41,9 @@ public interface Georectified extends GridSpatialRepresentation {
      * Description of geographic position points used to test the accuracy of the
      * georeferenced grid data.
      *
-     * @param  locale The desired locale for the description to be returned, or <code>null</code>
-     *         for a description in some default locale (may or may not be the
-     *         {@linkplain Locale#getDefault() system default}).
-     * @return The description in the given locale.
-     *         If no description is available in the given locale, then some default locale is used.
      * @UML optional checkPointDescription
      */
-    String getCheckPointDescription(Locale locale);
+    InternationalString getCheckPointDescription();
 
     /**
      * Earth location in the coordinate system defined by the Spatial Reference System
@@ -57,7 +53,7 @@ public interface Georectified extends GridSpatialRepresentation {
      *
      * @UML mandatory cornerPoints
      */
-    Point[] getCornerPoints();
+    List/*<Point>*/ getCornerPoints();
 
     /**
      * Earth location in the coordinate system defined by the Spatial Reference System
@@ -78,24 +74,14 @@ public interface Georectified extends GridSpatialRepresentation {
     /**
      * Description of the information about which grid dimensions are the spatial dimensions.
      *
-     * @param  locale The desired locale for the description to be returned, or <code>null</code>
-     *         for a description in some default locale (may or may not be the
-     *         {@linkplain Locale#getDefault() system default}).
-     * @return The description in the given locale.
-     *         If no description is available in the given locale, then some default locale is used.
      * @UML optional transformationDimensionDescription
      */
-    String getTransformationDimensionDescription(Locale locale);
+    InternationalString getTransformationDimensionDescription();
 
     /**
      * Information about which grid dimensions are the spatial dimensions.
      *
-     * @param  locale The desired locale for the description to be returned, or <code>null</code>
-     *         for a description in some default locale (may or may not be the
-     *         {@linkplain Locale#getDefault() system default}).
-     * @return The description in the given locale.
-     *         If no description is available in the given locale, then some default locale is used.
      * @UML optional transformationDimensionMapping
      */
-    String[] getTransformationDimensionMapping(Locale locale);
+    List/*<InternationalString>*/ getTransformationDimensionMapping();
 }

@@ -10,9 +10,10 @@
 package org.opengis.metadata.identification;
 
 // J2SE direct dependencies
-import java.util.Locale;
+import java.util.List;
 
 // OpenGIS direct dependencies
+import org.opengis.util.InternationalString;
 import org.opengis.metadata.citation.Citation;
 
 
@@ -28,14 +29,9 @@ public interface Keywords {
     /**
      * Commonly used word(s) or formalised word(s) or phrase(s) used to describe the subject.
      *
-     * @param  locale The desired locale for the keywords to be returned, or <code>null</code>
-     *         for keywords in some default locale (may or may not be the
-     *         {@linkplain Locale#getDefault() system default}).
-     * @return The keywords in the given locale.
-     *         If no keywords is available in the given locale, then some default locale is used.
      * @UML mandatory keyword
      */
-    String[] getKeywords(Locale locale);
+    List/*<InternationalString>*/ getKeywords();
 
     /**
      * Subject matter used to group similar keywords.

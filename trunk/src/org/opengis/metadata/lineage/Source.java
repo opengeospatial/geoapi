@@ -10,12 +10,13 @@
 package org.opengis.metadata.lineage;
 
 // J2SE direct dependencies
-import java.util.Locale;
+import java.util.Set;
 
 // OpenGIS direct dependencies
 import org.opengis.metadata.extent.Extent;
 import org.opengis.metadata.citation.Citation;
 import org.opengis.referencing.ReferenceSystem;
+import org.opengis.util.InternationalString;
 
 
 /**
@@ -30,14 +31,9 @@ public interface Source {
     /**
      * Detailed description of the level of the source data.
      *
-     * @param  locale The desired locale for the description to be returned, or <code>null</code>
-     *         for a description in some default locale (may or may not be the
-     *         {@linkplain Locale#getDefault() system default}).
-     * @return The description in the given locale.
-     *         If no description is available in the given locale, then some default locale is used.
      * @UML mandatory description
      */
-    String getDescription(Locale locale);
+    InternationalString getDescription();
 
     /**
      * Denominator of the representative fraction on a source map.
@@ -68,12 +64,12 @@ public interface Source {
      *
      * @UML optional sourceExtent
      */
-    Extent[] getSourceExtents();
+    Set/*<Extent>*/ getSourceExtents();
 
     /**
      * Information about an event in the creation process for the source data.
      *
      * @UML optional sourceStep
      */
-    ProcessStep[] getSourceSteps();
+    Set/*<ProcessStep>*/ getSourceSteps();
 }

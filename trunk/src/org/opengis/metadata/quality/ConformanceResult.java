@@ -9,10 +9,8 @@
  *************************************************************************************************/
 package org.opengis.metadata.quality;
 
-// J2SE direct dependencies
-import java.util.Locale;
-
 // OpenGIS direct dependencies
+import org.opengis.util.InternationalString;
 import org.opengis.metadata.citation.Citation;
 
 
@@ -36,14 +34,9 @@ public interface ConformanceResult extends Result {
     /**
      * Explanation of the meaning of conformance for this result.
      *
-     * @param  locale The desired locale for the explanation to be returned, or <code>null</code>
-     *         for explanation in some default locale (may or may not be the
-     *         {@linkplain Locale#getDefault() system default}).
-     * @return The explanation in the given locale, or <code>null</code> if none.
-     *         If no explanation is available in the given locale, then some default locale is used.
      * @UML mandatory explanation
      */
-    String getExplanation(Locale locale);
+    InternationalString getExplanation();
 
     /**
      * Indication of the conformance result.

@@ -9,6 +9,9 @@
  *************************************************************************************************/
 package org.opengis.metadata.spatial;
 
+// J2SE direct dependencies
+import java.util.Set;
+
 
 /**
  * Basic information required to uniquely identify a resource or resources.
@@ -31,7 +34,7 @@ public interface GridSpatialRepresentation extends SpatialRepresentation {
      *
      * @UML mandatory axisDimensionsProperties
      */
-    Dimension[] getAxisDimensionsProperties();
+    Set/*<Dimension>*/ getAxisDimensionsProperties();
 
     /**
      * Identification of grid data as point or cell.

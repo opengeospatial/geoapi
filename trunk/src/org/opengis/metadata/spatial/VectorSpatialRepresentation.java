@@ -9,6 +9,9 @@
  *************************************************************************************************/
 package org.opengis.metadata.spatial;
 
+// J2SE direct dependencies
+import java.util.Set;
+
 
 /**
  * Information about the vector spatial objects in the dataset.
@@ -31,5 +34,5 @@ public interface VectorSpatialRepresentation extends SpatialRepresentation {
      *
      * @UML optional geometricObjects
      */
-    GeometricObjects[] getGeometricObjects();
+    Set/*<GeometricObjects>*/ getGeometricObjects();
 }

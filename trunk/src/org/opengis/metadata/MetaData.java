@@ -10,6 +10,7 @@
 package org.opengis.metadata;
 
 // J2SE direct dependencies
+import java.util.Set;
 import java.util.Date;
 import java.util.Locale;
 
@@ -75,7 +76,7 @@ public interface MetaData {
      *
      * @revisit Add a link toward annex I in ISO 19115 (to be inserted in the javadoc).
      */
-    ScopeCode[] getHierarchyLevels();
+    Set/*<ScopeCode>*/ getHierarchyLevels();
 
     /**
      * Name of the hierarchy levels for which the metadata is provided.
@@ -84,7 +85,7 @@ public interface MetaData {
      *
      * @revisit Should we merge with {@link #getHierarchyLevels} using a {@link java.util.Map}?
      */
-    String[] getHierarchyLevelNames();
+    Set/*<String>*/ getHierarchyLevelNames();
 
     /**
      * Party responsible for the metadata information.
@@ -119,7 +120,7 @@ public interface MetaData {
      *
      * @UML optional spatialRepresentationInfo
      */
-    SpatialRepresentation[] getSpatialRepresentationInfo();
+    Set/*<SpatialRepresentation>*/ getSpatialRepresentationInfo();
 
     /**
      * Description of the spatial and temporal reference systems used in the dataset.
@@ -128,21 +129,21 @@ public interface MetaData {
      *
      * @revisit ISO 19115 use a <code>MD_ReferenceSystem</code> object instead of the ISO 19111 object.
      */
-     ReferenceSystem[] getReferenceSystemInfo();
+     Set/*<ReferenceSystem>*/ getReferenceSystemInfo();
 
      /**
       * Information describing metadata extensions.
       *
       * @UML optional metadataExtensionInfo
       */
-     MetadataExtensionInformation[] getMetadataExtensionInfo();
+     Set/*<MetadataExtensionInformation>*/ getMetadataExtensionInfo();
 
      /**
       * Basic information about the resource(s) to which the metadata applies.
       *
       * @UML mandatory identificationInfo
       */
-     Identification[] getIdentificationInfo();
+     Set/*<Identification>*/ getIdentificationInfo();
 
      /**
       * Provides information about the feature catalogue and describes the coverage and
@@ -150,7 +151,7 @@ public interface MetaData {
       *
       * @UML optional contentInfo
       */
-     ContentInformation[] getContentInfo();
+     Set/*<ContentInformation>*/ getContentInfo();
 
      /**
       * Provides information about the distributor of and options for obtaining the resource(s).
@@ -164,28 +165,28 @@ public interface MetaData {
       *
       * @UML optional dataQualityInfo
       */
-     DataQuality[] getDataQualityInfo();
+     Set/*<DataQuality>*/ getDataQualityInfo();
 
      /**
       * Provides information about the catalogue of rules defined for the portrayal of a resource(s).
       *
       * @UML optional portrayalCatalogueInfo
       */
-     PortrayalCatalogueReference[] getPortrayalCatalogueInfo();
+     Set/*<PortrayalCatalogueReference>*/ getPortrayalCatalogueInfo();
 
      /**
       * Provides restrictions on the access and use of data.
       *
       * @UML optional metadataConstraints
       */
-     Constraints[] getMetadataConstraints();
+     Set/*<Constraints>*/ getMetadataConstraints();
 
      /**
       * Provides information about the conceptual schema of a dataset.
       *
       * @UML optional applicationSchemaInfo
       */
-     ApplicationSchemaInformation[] getApplicationSchemaInfo();
+     Set/*<ApplicationSchemaInformation>*/ getApplicationSchemaInfo();
      
      /**
       * Provides information about the frequency of metadata updates, and the scope of those updates.

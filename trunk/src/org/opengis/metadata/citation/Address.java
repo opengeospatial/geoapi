@@ -10,7 +10,10 @@
 package org.opengis.metadata.citation;
 
 // J2SE direct dependencies
-import java.util.Locale;
+import java.util.Set;
+
+// OpenGIS direct dependencies
+import org.opengis.util.InternationalString;
 
 
 /**
@@ -28,33 +31,23 @@ public interface Address {
      *
      * @UML optional deliveryPoint
      */
-    String[] getDeliveryPoints();
+    Set/*<String>*/ getDeliveryPoints();
 
     /**
      * Returns the city of the location
      * Returns <code>null</code> if unspecified.
      *
-     * @param  locale The desired locale for the name to be returned, or <code>null</code>
-     *         for a name in some default locale (may or may not be the
-     *         {@linkplain Locale#getDefault() system default}).
-     * @return The name in the given locale.
-     *         If no name is available in the given locale, then some default locale is used.
      * @UML optional city
      */
-    String getCity(Locale locale);
+    InternationalString getCity();
 
     /**
      * State, province of the location.
      * Returns <code>null</code> if unspecified.
      *
-     * @param  locale The desired locale for the name to be returned, or <code>null</code>
-     *         for a name in some default locale (may or may not be the
-     *         {@linkplain Locale#getDefault() system default}).
-     * @return The name in the given locale.
-     *         If no name is available in the given locale, then some default locale is used.
      * @UML optional administrativeArea
      */
-    String getAdministrativeArea(Locale locale);
+    InternationalString getAdministrativeArea();
 
     /**
      * ZIP or other postal code.
@@ -68,14 +61,9 @@ public interface Address {
      * Country of the physical address.
      * Returns <code>null</code> if unspecified.
      *
-     * @param  locale The desired locale for the name to be returned, or <code>null</code>
-     *         for a name in some default locale (may or may not be the
-     *         {@linkplain Locale#getDefault() system default}).
-     * @return The name in the given locale.
-     *         If no name is available in the given locale, then some default locale is used.
      * @UML optional country
      */
-    String getCountry(Locale locale);
+    InternationalString getCountry();
 
     /**
      * Address of the electronic mailbox of the responsible organization or individual.
@@ -83,5 +71,5 @@ public interface Address {
      *
      * @UML optional electronicMailAddress
      */
-    String[] getElectronicMailAddresses();
+    Set/*<String>*/ getElectronicMailAddresses();
 }

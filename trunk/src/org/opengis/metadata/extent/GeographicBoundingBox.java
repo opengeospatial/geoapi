@@ -29,7 +29,7 @@ public interface GeographicBoundingBox extends GeographicExtent {
      * @UML mandatory westBoundLongitude
      * @unitof Angle
      */
-    public double getWestBoundLongitude();
+    double getWestBoundLongitude();
 
     /**
      * Returns the eastern-most coordinate of the limit of the
@@ -40,7 +40,7 @@ public interface GeographicBoundingBox extends GeographicExtent {
      * @UML mandatory eastBoundLongitude
      * @unitof Angle
      */
-    public double getEastBoundLongitude();
+    double getEastBoundLongitude();
 
     /**
      * Returns the southern-most coordinate of the limit of the
@@ -51,7 +51,7 @@ public interface GeographicBoundingBox extends GeographicExtent {
      * @UML mandatory southBoundLatitude
      * @unitof Angle
      */
-    public double getSouthBoundLatitude();
+    double getSouthBoundLatitude();
 
     /**
      * Returns the northern-most, coordinate of the limit of the
@@ -62,5 +62,5 @@ public interface GeographicBoundingBox extends GeographicExtent {
      * @UML mandatory northBoundLatitude
      * @unitof Angle
      */
-    public double getNorthBoundLatitude();
+    double getNorthBoundLatitude();
 }
