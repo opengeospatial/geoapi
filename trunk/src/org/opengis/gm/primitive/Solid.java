@@ -13,27 +13,29 @@ package org.opengis.gm.primitive;
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 2.0
  *
- * @see SolidBoundary#toSolid
+ * @see PrimitiveFactory#createSolid
  *
  * @revisit Some associations are commented out for now.
  */
 public interface Solid extends Primitive {
     /**
-     * Returns a sequence of sets of {@link Surface}s that limit the extent of this <code>Solid</code>.
-     * These surfaces shall be organized into one set of surfaces for each boundary component of the
-     * <code>Solid</code>. Each of these shells shall be a cycle (closed composite surface without
-     * boundary).
+     * Returns a sequence of sets of {@linkplain Surface surfaces} that limit the extent of this
+     * <code>Solid</code>. These surfaces shall be organized into one set of surfaces for each
+     * boundary component of this <code>Solid</code>. Each of these shells shall be a cycle
+     * (closed composite surface without boundary).
      *
      * <blockquote><font size=2>
      * <strong>NOTE:</strong> The exterior shell of a solid is defined only because the embedding
      * coordinate space is always a 3D Euclidean one. In general, a solid in a bounded 3-dimensional
      * manifold has no distinguished exterior boundary. In cases where "exterior" boundary is not
-     * well defined, all the shells of the {@link SolidBoundary} shall be listed as "interior".
+     * well defined, all the shells of the {@linkplain SolidBoundary solid boundary} shall be
+     * listed as "interior".
      * </font></blockquote>
      *
-     * The {@link OrientableSurface}s that bound a solid shall be oriented outward – that is, the
-     * "top" of each {@link Surface} as defined by its orientation shall face away from the interior
-     * of the solid. Each {@link Shell}, when viewed as a composite surface, shall be a cycle.
+     * The {@linkplain OrientableSurface orientable surfaces} that bound a solid shall be oriented
+     * outward – that is, the "top" of each {@linkplain Surface surface} as defined by its orientation
+     * shall face away from the interior of the solid. Each {@linkplain Shell shell}, when viewed as
+     * a composite surface, shall be a cycle.
      *
      * @return The sets of positions on the boundary.
      * @UML operation boundary

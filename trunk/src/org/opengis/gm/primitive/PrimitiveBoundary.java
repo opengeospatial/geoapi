@@ -8,9 +8,10 @@ import org.opengis.gm.Boundary;
 
 
 /**
- * The boundary of {@link Primitive} objects. This is the root for the various return types of the
- * {@link org.opengis.gm.Geometry#getBoundary getBoundary()} method for subtypes of {@link Primitive}.
- * Since points have no boundary, no special subclass is needed for their boundary.
+ * The boundary of {@linkplain Primitive primitive} objects. This is the root for the various
+ * return types of the {@link org.opengis.gm.Geometry#getBoundary getBoundary()} method for
+ * subtypes of {@link Primitive}. Since points have no boundary, no special subclass is needed
+ * for their boundary.
  *
  * @UML type GM_PrimitiveBoundary
  * @author ISO/DIS 19107

@@ -9,9 +9,9 @@ import org.opengis.gm.complex.CompositeCurve;
 
 /**
  * A curve and an orientation inherited from {@link OrientablePrimitive}. If the orientation is
- * positive, then the <code>OrientableCurve</code> is a {@link Curve}. If the orientation is
- * negative, then the <code>OrientableCurve</code> is related to another {@link Curve} with a
- * parameterization that reverses the sense of the curve traversal.
+ * positive, then the <code>OrientableCurve</code> is a {@linkplain Curve curve}. If the orientation
+ * is negative, then the <code>OrientableCurve</code> is related to another {@linkplain Curve curve}
+ * with a parameterization that reverses the sense of the curve traversal.
  *
  * @UML type GM_OrientableCurve
  * @author ISO/DIS 19107

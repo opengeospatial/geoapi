@@ -52,20 +52,15 @@ import org.opengis.gm.geometry.GenericCurve;
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 2.0
  *
- * @revisit The specification ask for a constructor:
- *
- *          "The constructor for <code>Curve</code> takes a list of {@link CurveSegment}s
- *           with the appropriate end-to-start relationships and creates a <code>Curve</code>."
- *
- *          Where to put this constructor? The "toFoo" idiom don't work here.
+ * @see PrimitiveFactory#createCurve
  */
 public interface Curve extends OrientableCurve, GenericCurve {
     /**
-     * Lists the components {@link CurveSegment}s of <code>Curve</code>, each of which
-     * defines the direct position of points along a portion of the curve. The order of the
-     * {@link CurveSegment}s is the order in which they are used to trace the <code>Curve</code>.
-     * For a particular parameter interval, the <code>Curve</code> and {@link CurveSegment}
-     * agree.
+     * Lists the components {@linkplain CurveSegment curve segments} of <code>Curve</code>, each
+     * of which defines the direct position of points along a portion of the curve. The order of
+     * the {@linkplain CurveSegment curve segments} is the order in which they are used to trace
+     * this <code>Curve</code>. For a particular parameter interval, the <code>Curve</code> and
+     * {@link CurveSegment} agree.
      *
      * @return The list of curve segments. Should never be <code>null</code> neither empty.
      * @UML association segment

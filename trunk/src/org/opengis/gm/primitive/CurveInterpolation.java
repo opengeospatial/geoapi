@@ -24,46 +24,47 @@ import org.opengis.gm.DirectPosition; // For javadoc
  */
 public class CurveInterpolation extends CodeList {
     /**
-     * The interpolation mechanism shall return {@link DirectPosition}s
+     * The interpolation mechanism shall return {@linkplain DirectPosition direct positions}
      * on a straight line between each consecutive pair of control points.
      */
     public static final CurveInterpolation LINEAR = new CurveInterpolation("LINEAR", 0);
 
     /**
-     * The interpolation mechanism shall return {@link DirectPosition}s on a geodesic curve between
-     * each consecutive pair of control points. A geodesic curve is a curve of shortest length. The
-     * geodesic shall be determined in the coordinate reference system of the {@link Curve} in which
-     * the {@link CurveSegment} is used.
+     * The interpolation mechanism shall return {@linkplain DirectPosition direct positions} on a
+     * geodesic curve between each consecutive pair of control points. A geodesic curve is a curve
+     * of shortest length. The geodesic shall be determined in the coordinate reference system of
+     * the {@linkplain Curve curve} in which the {@linkplain CurveSegment curve segment} is used.
      */
     public static final CurveInterpolation GEODESIC = new CurveInterpolation("GEODESIC", 1);
 
     /**
      * For each set of three consecutive control points, the middle one being an even offset from
      * the beginning of the sequence of control points, the interpolation mechanism shall return
-     * {@link DirectPosition}s on a circular arc passing from the first point through the middle
-     * point to the third point. The sequence of control points shall have an odd number of elements.
-     * If the 3 points are co-linear, the circular arc becomes a straight line.
+     * {@linkplain DirectPosition direct positions} on a circular arc passing from the first point
+     * through the middle point to the third point. The sequence of control points shall have an
+     * odd number of elements. If the 3 points are co-linear, the circular arc becomes a straight
+     * line.
      */
-    public static final CurveInterpolation CIRCULAR_ARC_3POINTS = new CurveInterpolation(
-                                          "CIRCULAR_ARC_3POINTS", 2); // Circular arc by 3 points
+    public static final CurveInterpolation CIRCULAR_ARC_3_POINTS = new CurveInterpolation(
+                                          "CIRCULAR_ARC_3_POINTS", 2); // Circular arc by 3 points
 
     /**
      * For each consecutive pair of control points, the interpolation mechanism shall return
-     * {@link DirectPosition}s on a circular arc passing from the first control point to the
-     * second control point, such that the associated control parameter determines the offset
-     * of the center of the arc from the center point of the chord, positive for leftward and
-     * negative for rightward. This form shall only be used in 2 dimensions because of the
-     * restricted nature of the definition technique.
+     * {@linkplain DirectPosition direct positions} on a circular arc passing from the first
+     * control point to the second control point, such that the associated control parameter
+     * determines the offset of the center of the arc from the center point of the chord,
+     * positive for leftward and negative for rightward. This form shall only be used in
+     * 2 dimensions because of the restricted nature of the definition technique.
      */
-    public static final CurveInterpolation CIRCULAR_ARC_2POINTS_WITH_BULGE = new CurveInterpolation(
-                                          "CIRCULAR_ARC_2POINTS_WITH_BULGE", 3); // Circular arc by 2 points and bulge factor
+    public static final CurveInterpolation CIRCULAR_ARC_2_POINTS_WITH_BULGE = new CurveInterpolation(
+                                          "CIRCULAR_ARC_2_POINTS_WITH_BULGE", 3); // Circular arc by 2 points and bulge factor
 
     /**
      * For each set of four consecutive control points, the interpolation mechanism shall return
-     * {@link DirectPosition}s on an elliptical arc passing from the first control point through
-     * the middle control points in order to the fourth control point. If the 4 control points are
-     * co-linear, the arc becomes a straight line. If the 4 control points are on the same circle,
-     * the arc becomes a circular one.
+     * {@linkplain DirectPosition direct positions} on an elliptical arc passing from the first
+     * control point through the middle control points in order to the fourth control point. If
+     * the 4 control points are co-linear, the arc becomes a straight line. If the 4 control points
+     * are on the same circle, the arc becomes a circular one.
      */
     public static final CurveInterpolation ELLIPTICAL = new CurveInterpolation(
                                           "ELLIPTICAL", 4); // Elliptical arc
@@ -107,7 +108,7 @@ public class CurveInterpolation extends CodeList {
      * List of all enumeration of this type.
      */
     private static final CurveInterpolation[] VALUES = new CurveInterpolation[] {
-                       LINEAR, GEODESIC, CIRCULAR_ARC_3POINTS, CIRCULAR_ARC_2POINTS_WITH_BULGE,
+                       LINEAR, GEODESIC, CIRCULAR_ARC_3_POINTS, CIRCULAR_ARC_2_POINTS_WITH_BULGE,
                        ELLIPTICAL, CLOTHOID, CONIC, POLYNOMIAL_SPLINE, CUBIC_SPLINE,
                        RATIONAL_SPLINE };
 

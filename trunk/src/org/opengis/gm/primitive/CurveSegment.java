@@ -9,8 +9,8 @@ import org.opengis.gm.geometry.GenericCurve;
 
 
 /**
- * Defines a homogeneous segment of a {@link Curve}. Each <code>CurveSegment</code>
- * shall be in, at most, one {@link Curve}.
+ * Defines a homogeneous segment of a {@linkplain Curve curve}.
+ * Each <code>CurveSegment</code> shall be in, at most, one {@linkplain Curve curve}.
  *
  * @UML type GM_CurveSegment
  * @author ISO/DIS 19107
@@ -105,10 +105,10 @@ public interface CurveSegment extends GenericCurve {
     public int getNumDerivativesAtEnd();
 
     /**
-     * Returns an ordered array of point values that lie on the {@link CurveSegment}. In most cases,
-     * these will be related to control points used in the construction of the segment. The control
-     * points of a curve segment are use to control its shape, and are not always on the curve
-     * segment itself. For example in a spline curve, the curve segment is given as a weighted
+     * Returns an ordered array of point values that lie on the {@linkplain CurveSegment curve segment}.
+     * In most cases, these will be related to control points used in the construction of the segment.
+     * The control points of a curve segment are use to control its shape, and are not always on the
+     * curve segment itself. For example in a spline curve, the curve segment is given as a weighted
      * vector sum of the control points. Each weight function will have a maximum within the
      * constructive parameter interval, which will roughly correspond to the point on the curve
      * where it passes closest that the corresponding control point. These points, the values of
@@ -122,18 +122,18 @@ public interface CurveSegment extends GenericCurve {
 
     /**
      * Returns an ordered pair of points, which are the start point and end point of the curve.
-     * This method operates with the same semantics as that on {@link Curve#getBoundary Curve}
+     * This method operates with the same semantics as that on {@linkplain Curve#getBoundary curve}
      * except that the end points of a <code>CurveSegment</code> are not necessarily existing
-     * {@link Point}s and thus the boundary may contain transient {@link Point}s.
+     * {@linkplain Point points} and thus the boundary may contain transient {@linkplain Point points}.
      *
      * <blockquote><font size=2>
-     * <strong>NOTE:</strong> The above {@link CurveBoundary} will almost always be two distinct
-     * positions, but, like {@link Curve}s, <code>CurveSegment</code>s can be cycles in themselves.
-     * The most likely scenario is that all of the points used will be transients (constructed to
-     * support the return value), except for the start point and end point of the aggregated
-     * {@link Curve}. These two positions, in the case where the {@link Curve} is involved in
-     * a {@link org.opengis.gm.complex.Complex}, will be represented as {@link Point}s in the
-     * same {@link org.opengis.gm.complex.Complex}.
+     * <strong>NOTE:</strong> The above {@linkplain CurveBoundary curve boundary} will almost always
+     * be two distinct positions, but, like {@linkplain Curve curves}, <code>CurveSegment</code>s can
+     * be cycles in themselves. The most likely scenario is that all of the points used will be transients
+     * (constructed to support the return value), except for the start point and end point of the aggregated
+     * {@linkplain Curve curve}. These two positions, in the case where the {@linkplain Curve curve} is
+     * involved in a {@linkplain org.opengis.gm.complex.Complex complex}, will be represented as
+     * {@linkplain Point points} in the same {@linkplain org.opengis.gm.complex.Complex complex}.
      * </font></blockquote>
      *
      * @return The sets of positions on the boundary.

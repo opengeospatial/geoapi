@@ -30,20 +30,21 @@ import org.opengis.gm.complex.Complex;
  */
 public interface Geometry extends TransfiniteSet {
     /**
-     * Returns the coordinate reference system used in {@link DirectPosition} coordinates.
-     * If <code>null</code>, then this <code>Geometry</code> uses the CRS from another
+     * Returns the coordinate reference system used in {@linkplain DirectPosition direct position}
+     * coordinates. If <code>null</code>, then this <code>Geometry</code> uses the CRS from another
      * <code>Geometry</code> in which it is contained.
      *
-     * The most common example where the CRS is <code>null</code> is the elements and
-     * subcomplexes of a maximal {@link Complex}. The {@link Complex} can carry the
-     * {@link CRS} for all {@link org.opengis.gm.primitive.Primitive} elements and
-     * for all {@link Complex} subcomplexes.
+     * The most common example where the CRS is <code>null</code> is the elements and subcomplexes
+     * of a maximal {@linkplain Complex complex}. The {@linkplain Complex complex} can carry the
+     * {@linkplain CRS} for all {@linkplain org.opengis.gm.primitive.Primitive primitive} elements
+     * and for all {@link Complex} subcomplexes.
      * <br><br>
-     * This association is only navigable from <code>Geometry</code> to {@link CRS}.
+     * This association is only navigable from <code>Geometry</code> to {@linkplain CRS}.
      * This means that the coordinate reference system objects in a data set do not keep
      * a list of <code>Geometry</code>s that use them.
      *
-     * @return The coordinate reference system used in {@link DirectPosition} coordinates.
+     * @return The coordinate reference system used in {@linkplain DirectPosition direct position}
+     *         coordinates.
      * @UML association CRS
      *
      * @see #getCoordinateDimension
@@ -68,10 +69,10 @@ public interface Geometry extends TransfiniteSet {
     public Geometry getMbRegion();
 
     /**
-     * Returns a point value that is guaranteed to be on this <code>Geometry</code>. The default logic
-     * may be to use the {@link DirectPosition} of the point returned by {@link #getCentroid} if
-     * that point is on the object. Another use of representative point may be for the placement
-     * of labels in systems based on graphic presentation.
+     * Returns a point value that is guaranteed to be on this <code>Geometry</code>. The default
+     * logic may be to use the {@linkplain DirectPosition direct position} of the point returned by
+     * {@link #getCentroid} if that point is on the object. Another use of representative point may
+     * be for the placement of labels in systems based on graphic presentation.
      *
      * @return The representative point.
      * @UML operation representativePoint
@@ -85,10 +86,11 @@ public interface Geometry extends TransfiniteSet {
      * boundary of this <code>Geometry</code>. These object collections shall have further internal
      * structure where appropriate. The finite set of <code>Geometry</code>s returned shall be in
      * the same coordinate reference system as this <code>Geometry</code>. If the <code>Geometry</code>
-     * is in a {@link Complex}, then the boundary <code>Geometry</code>s returned shall be in the
-     * same {@link Complex}. If the <code>Geometry</code> is not in any {@link Complex},
-     * then the boundary <code>Geometry</code>s returned may have been constructed in response to the
-     * operation. The elements of a boundary shall be smaller in dimension than the original element.
+     * is in a {@linkplain Complex complex}, then the boundary <code>Geometry</code>s returned shall be
+     * in the same {@linkplain Complex complex}. If the <code>Geometry</code> is not in any
+     * {@linkplain Complex complex}, then the boundary <code>Geometry</code>s returned may have been
+     * constructed in response to the operation. The elements of a boundary shall be smaller in
+     * dimension than the original element.
      *
      * @return The sets of positions on the boundary.
      * @UML operation boundary
@@ -105,9 +107,9 @@ public interface Geometry extends TransfiniteSet {
      * this <code>Geometry</code> and this object (the union of the object and its boundary). These
      * object collections shall have further internal structure where appropriate. The finite set
      * of <code>Geometry</code>s returned shall be in the same coordinate reference system as this
-     * <code>Geometry</code>. If the <code>Geometry</code> is in a {@link Complex}, then the boundary
-     * <code>Geometry</code>s returned shall be in the same {@link Complex}. If the
-     * <code>Geometry</code> is not in any {@link Complex}, then the boundary
+     * <code>Geometry</code>. If the <code>Geometry</code> is in a {@linkplain Complex complex}, then the boundary
+     * <code>Geometry</code>s returned shall be in the same {@linkplain Complex complex}. If the
+     * <code>Geometry</code> is not in any {@linkplain Complex complex}, then the boundary
      * <code>Geometry</code>s returned may have been constructed in response to the operation.
      *
      * @return The sets of points on the union of this object and its boundary.
@@ -192,13 +194,12 @@ public interface Geometry extends TransfiniteSet {
      *
      * @param  geometry The other object.
      * @return The distance between the two objects.
+     * @unitof Distance
      * @UML operation distance
      *
      * @see #getBoundary
      * @see #getBuffer
      * @see org.opengis.cs.CoordinateSystem#getAxis
-     *
-     * @revisit In UML diagram, the returns type is <code>Distance</code>.
      */
     public double getDistance(Geometry geometry);
 
@@ -209,10 +210,10 @@ public interface Geometry extends TransfiniteSet {
      * Points are 0-dimensional, curves are 1-dimensional, surfaces are 2-dimensional, and solids
      * are 3-dimensional. Locally, the dimension of a geometric object at a point is the dimension
      * of a local neighborhood of the point – that is the dimension of any coordinate neighborhood
-     * of the point. Dimension is unambiguously defined only for {@link DirectPosition}s interior
-     * to this <code>Geometry</code>. If the passed {@link DirectPosition} is <code>null</code>, then
-     * the operation shall return the largest possible dimension for any {@link DirectPosition}
-     * in this <code>Geometry</code>.
+     * of the point. Dimension is unambiguously defined only for {@linkplain DirectPosition direct
+     * positions} interior to this <code>Geometry</code>. If the passed {@linkplain DirectPosition
+     * direct position} is <code>null</code>, then the operation shall return the largest possible
+     * dimension for any {@linkplain DirectPosition direct position} in this <code>Geometry</code>.
      *
      * @param point The point where to evaluate the dimension, or <code>null</code>.
      * @return The inherent dimension.
@@ -237,9 +238,9 @@ public interface Geometry extends TransfiniteSet {
 
     /**
      * Returns the set of maximal complexes within which this <code>Geometry</code> is contained.
-     * As a set of primitives, a {@link Complex} may be contained as a set in another larger
-     * {@link Complex}, referred to as a "super complex" of the original. A {@link Complex}
-     * is maximal if there is no such larger super complex.
+     * As a set of primitives, a {@linkplain Complex complex} may be contained as a set in another
+     * larger {@linkplain Complex complex}, referred to as a "super complex" of the original.
+     * A {@linkplain Complex complex} is maximal if there is no such larger super complex.
      *
      * @return The set of maximal complexes within which this <code>Geometry</code> is contained.
      * @UML operation maximalComplex
@@ -260,13 +261,13 @@ public interface Geometry extends TransfiniteSet {
     public Geometry transform(CRS newCRS);
 
     /**
-     * Returns the minimum bounding box for this <code>Geometry</code>. This shall be the coordinate
-     * region spanning the minimum and maximum value for each ordinate taken on by
-     * {@link DirectPosition}s in this <code>Geometry</code>. The simplest representation for an
-     * envelope consists of two {@link DirectPosition}s, the first one containing all the
-     * minimums for each ordinate, and second one containing all the maximums. However, there are
-     * cases for which these two positions would be outside the domain of validity of the object's
-     * coordinate reference system.
+     * Returns the minimum bounding box for this <code>Geometry</code>. This shall be the
+     * coordinate region spanning the minimum and maximum value for each ordinate taken on by
+     * {@linkplain DirectPosition direct positions} in this <code>Geometry</code>. The simplest
+     * representation for an envelope consists of two {@linkplain DirectPosition direct positions},
+     * the first one containing all the minimums for each ordinate, and second one containing all
+     * the maximums. However, there are cases for which these two positions would be outside the
+     * domain of validity of the object's coordinate reference system.
      *
      * @return The envelope.
      * @UML operation envelope
@@ -307,20 +308,20 @@ public interface Geometry extends TransfiniteSet {
      * <code>Geometry</code> is less than or equal to the distance passed as a parameter.
      * The <code>Geometry</code> returned is in the same reference system as this original
      * <code>Geometry</code>. The dimension of the returned <code>Geometry</code> is normally
-     * the same as the coordinate dimension - a collection of {@link org.opengis.gm.primitive.Surface}s
-     * in 2D space and a collection of {@link org.opengis.gm.primitive.Solid}s in 3D space,
-     * but this may be application defined.
+     * the same as the coordinate dimension - a collection of
+     * {@linkplain org.opengis.gm.primitive.Surface surfaces} in 2D space and a collection of
+     * {@linkplain org.opengis.gm.primitive.Solid solids} in 3D space, but this may be application
+     * defined.
      *
      * @param distance The distance.
      * @return A geometry containing all points whose distance from this <code>Geometry</code>
      *         is less than or equal to the specified distance.
+     * @unitof Distance (for the argument)
      * @UML operation buffer
      *
      * @see #getBoundary
      * @see #getDistance
      * @see org.opengis.cs.CoordinateSystem#getAxis
-     *
-     * @revisit In UML diagram, the <code>distance</code> argument is a <code>Distance</code> type.
      */
     public Geometry getBuffer(double distance);
 }

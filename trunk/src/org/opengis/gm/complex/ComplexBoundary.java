@@ -8,9 +8,10 @@ import org.opengis.gm.Boundary;
 
 
 /**
- * The boundary of {@link Complex} objects. The {@link org.opengis.gm.Geometry#getBoundary getBoundary()}
- * method for {@link Complex} objects shall return a <code>ComplexBoundary</code>, which is a collection
- * of primitives and a {@link Complex} of dimension 1 less than the original object.
+ * The boundary of {@linkplain Complex complex} objects. The
+ * {@link org.opengis.gm.Geometry#getBoundary getBoundary()} method for {@link Complex}
+ * objects shall return a <code>ComplexBoundary</code>, which is a collection of primitives
+ * and a {@linkplain Complex complex} of dimension 1 less than the original object.
  *
  * @UML type GM_ComplexBoundary
  * @author ISO/DIS 19107

@@ -8,8 +8,8 @@ import org.opengis.gm.DirectPosition;
 
 
 /**
- * Common interface for {@link org.opengis.gm.primitive.Surface} and
- * {@link org.opengis.gm.primitive.SurfacePatch}. <code>Surface</code>
+ * Common interface for {@linkplain org.opengis.gm.primitive.Surface surface} and
+ * {@linkplain org.opengis.gm.primitive.SurfacePatch surface patch}. <code>Surface</code>
  * and <code>SurfacePatch</code> represent sections of surface geometry,
  * and therefore share a number of operation signatures.
  *
@@ -25,13 +25,14 @@ import org.opengis.gm.DirectPosition;
 public interface GenericSurface {
     /**
      * Returns a vector perpendicular to the <code>GenericSurface</code> at the
-     * {@link DirectPosition} passed, which must be on the <code>GenericSurface</code>.
-     * The upward normal always points upward in a manner consistent with the boundary.
-     * This means that the exterior boundary of the surface is counterclockwise when
-     * viewed from the side of the surface indicated by the <code>upNormal</code>.
-     * Interior boundaries are clockwise. The side of the surface indicated by the
-     * <code>upNormal</code> is referred to as the "top." The function "upNormal"
-     * shall be continuous and the length of the normal shall always be equal to 1.0.
+     * {@linkplain DirectPosition direct position} passed, which must be on this
+     * <code>GenericSurface</code>. The upward normal always points upward in a
+     * manner consistent with the boundary. This means that the exterior boundary
+     * of the surface is counterclockwise when viewed from the side of the surface
+     * indicated by the <code>upNormal</code>. Interior boundaries are clockwise.
+     * The side of the surface indicated by the <code>upNormal</code> is referred
+     * to as the "top." The function "upNormal" shall be continuous and the length
+     * of the normal shall always be equal to 1.0.
      *
      * <blockquote><font size=2>
      * <strong>NOTE:</strong> The upNormal along a boundary of a solid always points away from the
@@ -68,9 +69,8 @@ public interface GenericSurface {
      * </font></blockquote>
      *
      * @return The perimeter.
+     * @unitof Length
      * @UML operation perimeter
-     *
-     * @revisit In UML diagram, the return type is <code>Length</code>.
      */
     public double getPerimeter();
 
@@ -83,8 +83,8 @@ public interface GenericSurface {
      *
      * <blockquote><font size=2>
      * <strong>NOTE:</strong> Consistent with the definition of surface as a set of
-     * {@link DirectPosition}s, holes in the surfaces will not contribute to the total
-     * area. If the usual Green's Theorem (or more general Stokes' Theorem) integral is
+     * {@linkplain DirectPosition direct positions}, holes in the surfaces will not contribute to
+     * the total area. If the usual Green's Theorem (or more general Stokes' Theorem) integral is
      * used, the integral around the holes in the surface are subtracted from the integral
      * about the exterior of the surface patch.
      * </font></blockquote>
