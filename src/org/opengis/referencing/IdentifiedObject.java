@@ -38,11 +38,9 @@ import org.opengis.util.InternationalString;
 public interface IdentifiedObject {
     /**
      * The primary name by which this object is identified.
-     *
-     * @revisit According latest ISO 19111, the return type should be {@link Identifier}.
      */
 /// @UML (identifier="name", obligation=MANDATORY)
-    InternationalString getName();
+    Identifier getName();
 
     /**
      * The name by which this object is identified. 
