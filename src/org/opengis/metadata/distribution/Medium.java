@@ -60,7 +60,7 @@ public interface Medium {
      * Method used to write to the medium.
      */
 /// @UML (identifier="mediumFormat", obligation=OPTIONAL)
-    Collection/*<MediumFormat>*/ getMediumFormat();
+    Collection/*<MediumFormat>*/ getMediumFormats();
 
     /**
      * Description of other limitations or requirements for using the medium.

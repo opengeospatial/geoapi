@@ -15,7 +15,7 @@ package org.opengis.metadata.spatial;
 
 
 /**
- * number of objects, listed by geometric object type, used in the dataset.
+ * Number of objects, listed by geometric object type, used in the dataset.
  *
  * @author ISO 19115
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>

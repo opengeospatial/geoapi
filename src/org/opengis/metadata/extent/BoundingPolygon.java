@@ -35,5 +35,5 @@ public interface BoundingPolygon extends GeographicExtent {
      * Returns the sets of points defining the bounding polygon.
      */
 /// @UML (identifier="polygon", obligation=MANDATORY)
-    Collection/*<Geometry>*/ getPolygon();
+    Collection/*<Geometry>*/ getPolygons();
 }
