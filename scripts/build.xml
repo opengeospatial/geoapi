@@ -1,5 +1,7 @@
-<?xml version="1.0" encoding="windows-1252"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!-- ========================================================================
+
+     ANT BUILD FILE (Ref. http://jakarta.apache.org/ant )
 
      Ant script for building GeoAPI interfaces, javadoc, jars and zip file.
      Before running, make sure to set 'basedir' and 'homepath' properties.
@@ -18,6 +20,14 @@
 
   <property name="homepath" value="P:/CVSROOT/GeoAPI"/>
   <property name="version"  value="2.0"/>
+
+  <description>
+      GeoAPI interfaces.
+  </description>
+
+  <tstamp>
+    <format property="TODAY" pattern="yyyy-MM-dd" locale="ca"/>
+  </tstamp>
 
 
 
@@ -63,10 +73,6 @@
 
   <target name="sources" depends="clear">
 
-    <tstamp>
-      <format property="TODAY" pattern="yyyy-MM-dd" locale="ca"/>
-    </tstamp>
-
     <copy todir="sources" includeEmptyDirs="false" overwrite="true">
       <fileset dir="${homepath}/src">
         <exclude name="**/.*"/>
@@ -96,6 +102,7 @@
 
     <javac srcdir      = "sources"
            destdir     = "classes"
+           encoding    = "ISO-8859-1"
            includes    = "org/**/*.java"
            source      = "1.5"
            target      = "1.4"
@@ -120,19 +127,18 @@
     <javadoc sourcepath       = "sources"
              classpath        = "classes"
              destdir          = "javadoc"
+             charset          = "ISO-8859-1"
+             encoding         = "ISO-8859-1"
              use              = "true"
              nodeprecatedlist = "true"
              author           = "true"
              version          = "true"
+             noqualifier      = "all"
              overview         = "sources/org/opengis/overview.html"
              windowtitle      = "OpenGIS API 2.0"
              doctitle         = "OpenGIS API 2.0"
              header           = "OpenGIS API 2.0&lt;br&gt;Build ${TODAY}"
-             additionalparam  = "-quiet -noqualifier all
-                                 -tagletpath ${homepath}/scripts
-                                 -taglet org.opengis.tools.UmlTaglet
-                                 -tag rename:tm:&quot;Name change from UML &lt;FONT COLOR='#A01020'&gt;(a GeoAPI's proposal)&lt;/FONT&gt;:&quot;
-                                 -taglet org.opengis.tools.RevisitTaglet">
+             additionalparam  = "-quiet">
 
       <bottom>
         &lt;TABLE WIDTH='100%'&gt;&lt;TR&gt;&lt;TD NOWRAP&gt;
@@ -142,15 +148,24 @@
         &lt;/TD&gt;&lt;/TR&gt;&lt;/TABLE&gt;
       </bottom>
 
-      <fileset dir="sources">
-        <include name="org/**/*.java"/>
-      </fileset>
+      <taglet name="org.opengis.tools.UmlTaglet" path="${homepath}/scripts"/>
+      <tag name="rename" scope="types,fields,methods"
+           description="Name change from UML &lt;FONT COLOR='#A01020'&gt;(a GeoAPI's proposal)&lt;/FONT&gt;:"/>
+      <taglet name="org.opengis.tools.RevisitTaglet" path="${homepath}/scripts"/>
 
       <link href="http://java.sun.com/j2se/1.4/docs/api"/>
+      <link href="http://java.sun.com/products/java-media/jai/forDevelopers/jai-apidocs"/>
+      <link href="http://java.sun.com/products/java-media/3D/forDevelopers/j3dapi"/>
+      <link href="http://jsr-108.sourceforge.net/javadoc"/>
 
       <group title="Spatial Referencing by Coordinates" packages="org.opengis.rs:org.opengis.sc:org.opengis.cs:org.opengis.cd:org.opengis.cc:org.opengis.dq"/>
       <group title="Feature Geometry (WORK IN PROGRESS)" packages="org.opengis.gm*:org.opengis.tp*"/>
+      <group title="Grid Coverage" packages="org.opengis.cv:org.opengis.gc:org.opengis.gp"/>
       <group title="User interface (WORK IN PROGRESS)" packages="org.opengis.go*"/>
+
+      <fileset dir="sources">
+        <include name="org/**/*.java"/>
+      </fileset>
     </javadoc>
 
     <copy todir="javadoc/org/opengis/doc-files">
@@ -177,6 +192,8 @@
     <javadoc sourcepath       = "${homepath}/legacy"
              classpath        = "${homepath}/legacy"
              destdir          = "legacy"
+             charset          = "ISO-8859-1"
+             encoding         = "ISO-8859-1"
              use              = "true"
              nodeprecatedlist = "true"
              author           = "false"
