@@ -3,19 +3,23 @@
  */
 package org.opengis.crs.operation;
 
-// J2SE direct dependencies and extensions
-import java.awt.geom.AffineTransform;        // For JavaDoc
-import javax.media.jai.PerspectiveTransform; // For JavaDoc
-import javax.media.j3d.Transform3D;          // For JavaDoc
+// OpenGIS direct dependencies
+import org.opengis.util.Cloneable;
 
 
 /**
- * A two dimensional array of numbers.
- * Row and column numbering begins with zero.
+ * A two dimensional array of numbers. Row and column numbering begins with zero. The API for
+ * this interface matches closely the API in various {@linkplain javax.vecmath.GMatrix matrix}
+ * implementations available in <A HREF="http://java.sun.com/products/java-media/3D/">Java3D</A>,
+ * which should enable straightforward implementations. Java3D provides matrix for the general
+ * case and optimized versions for 3&times;3 and 4&times;4 cases, which are quite common in a
+ * transformation package.
  *
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 2.0
  *
+ * @see javax.vecmath.Matrix3d
+ * @see javax.vecmath.Matrix4d
  * @see javax.vecmath.GMatrix
  * @see java.awt.geom.AffineTransform
  * @see javax.media.jai.PerspectiveTransform
@@ -23,7 +27,7 @@ import javax.media.j3d.Transform3D;          // For JavaDoc
  * @see <A HREF="http://math.nist.gov/javanumerics/jama/">Jama matrix</A>
  * @see <A HREF="http://jcp.org/jsr/detail/83.jsp">JSR-83 Multiarray package</A>
  */
-public interface Matrix {
+public interface Matrix extends Cloneable {
     /**
      * Returns the number of rows in this matrix.
      *
@@ -51,9 +55,24 @@ public interface Matrix {
     // Same signature than GMatrix, for straightforward implementation.
 
     /**
+     * Modifies the value at the specified row and column of this matrix.
+     *
+     * @param row    The row number to be retrieved (zero indexed).
+     * @param column The column number to be retrieved (zero indexed).
+     * @param value  The new matrix element value.
+     */
+    public void setElement(int row, int column, double value);
+    // Same signature than GMatrix, for straightforward implementation.
+
+    /**
      * Returns <code>true</code> if this matrix is an identity matrix.
      *
      * @return <code>true</code> if this matrix is an identity matrix.
      */
     public boolean isIdentity();
+
+    /**
+     * Returns a clone of this matrix.
+     */
+    public Matrix clone();
 }
