@@ -64,7 +64,7 @@ import org.opengis.metadata.Identifier;  // For javadoc
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/03-073r1.zip">Abstract specification 2.0</A>
  *
- * @see ParameterValueGroupDescriptor
+ * @see ParameterGroupDescriptor
  * @see ParameterValue
  */
 public interface ParameterValueGroup extends GeneralParameterValue {
@@ -80,16 +80,17 @@ public interface ParameterValueGroup extends GeneralParameterValue {
      *         Java extensions (e.g.
      *         {@link javax.media.jai.ParameterList.html#getParameterListDescriptor ParameterList}).
      */
-    // ParameterValueGroupDescriptor getDescriptor();
-    GeneralParameterValueDescriptor getDescriptor(); // needed for javadocs to show up
+    // ParameterGroupDescriptor getDescriptor();
+    GeneralParameterDescriptor getDescriptor(); // needed for javadocs to show up
     
     /**
      * Returns the values in this group.
      * 
      * @return The values.
      * @UML association includesValue
+     * @throws InvalidParameterValueException if this group is invalid
      */
-    GeneralParameterValue[] getValues();
+    GeneralParameterValue[] getValues() throws InvalidParameterValueException;
 
     /* Proposed method similar to Map.values(): List to retrive values.
      * 
@@ -163,18 +164,18 @@ public interface ParameterValueGroup extends GeneralParameterValue {
     /**
      * Used to locate value(s) by descriptor.
      * 
-     * @param type ParameterValueDescriptor used for lookup
+     * @param type ParameterDescriptor used for lookup
      * @return Array of ParameterValuelength corasponding to cardinality of the descriptor
      */
-    ParameterValue[] parameter( ParameterValueDescriptor parameterType );
+    ParameterValue[] parameter( ParameterDescriptor parameterType );
 
     /**
      * Lookup ParameterValueGroup(s) by descriptor.
      * 
-     * @param groupType ParameterValueGroupDescriptor
+     * @param groupType ParameterGroupDescriptor
      * @return Array of ParameterValueGroup length corasponding to cardinality of the descriptor
      */
-    ParameterValueGroup[] group( ParameterValueGroupDescriptor groupType );
+    ParameterValueGroup[] group( ParameterGroupDescriptor groupType );
     
     /**
      * Returns a copy of this group of parameter values.
