@@ -24,13 +24,42 @@ package org.opengis.spatialschema.geometry;
  */
 public interface Envelope {
     /**
+     * The length of coordinate sequence (the number of entries) in this envelope.
+     *
+     * @return The dimensionality of this envelope.
+     */
+    int getDimension();
+    
+    /**
+     * Returns the minimal ordinate along the specified dimension.
+     */
+    double getMinimum(final int dimension);
+    
+    /**
+     * Returns the maximal ordinate along the specified dimension.
+     */
+    double getMaximum(final int dimension);
+    
+    /**
+     * Returns the center ordinate along the specified dimension.
+     */
+    double getCenter(final int dimension);
+    
+    /**
+     * Returns the envelope length along the specified dimension.
+     * This length is equals to the {@linkplain #getMaximum maximum ordinate}
+     * minus the {@linkplain #getMinimum minimal ordinate}.
+     */
+    double getLength(final int dimension);
+
+    /**
      * A coordinate position consisting of all the maximal ordinates for each
      * dimension for all points within the <code>Envelope</code>.
      *
      * @return The upper corner.
      * @UML mandatory upperCorner
      */
-    public DirectPosition getUpperCorner();
+    DirectPosition getUpperCorner();
 
     /**
      * A coordinate position consisting of all the minimal ordinates for each
@@ -39,5 +68,5 @@ public interface Envelope {
      * @return The lower corner.
      * @UML mandatory lowerCorner
      */
-    public DirectPosition getLowerCorner();
+    DirectPosition getLowerCorner();
 }

@@ -21,6 +21,7 @@ import org.opengis.referencing.cs.EllipsoidalCS;
 import org.opengis.referencing.cs.VerticalCS;
 import org.opengis.referencing.cs.TemporalCS;
 import org.opengis.referencing.cs.CoordinateSystem;
+import org.opengis.referencing.cs.ObliqueCartesianCS;
 import org.opengis.referencing.datum.EngineeringDatum;
 import org.opengis.referencing.datum.GeodeticDatum;
 import org.opengis.referencing.datum.ImageDatum;
@@ -134,9 +135,9 @@ public interface CRSFactory extends Factory {
      * @param  cs The Cartesian or Oblique Cartesian coordinate system for the created CRS.
      * @throws FactoryException if the object creation failed.
      */
-    ImageCRS createImageCRS(Map      properties,
-                            ImageDatum    datum,
-                            CoordinateSystem cs) throws FactoryException;
+    ImageCRS createImageCRS(Map        properties,
+                            ImageDatum      datum,
+                            ObliqueCartesianCS cs) throws FactoryException;
 
     /**
      * Creates a derived coordinate reference system. If the transformation is an affine
@@ -229,8 +230,8 @@ public interface CRSFactory extends Factory {
      * @UML operation createVerticalCoordinateSystem
      */
     VerticalCRS createVerticalCRS(Map     properties,
-                                 VerticalDatum datum,
-                                 VerticalCS       cs) throws FactoryException;
+                                  VerticalDatum datum,
+                                  VerticalCS       cs) throws FactoryException;
 
     /**
      * Creates a coordinate reference system object from a XML string.

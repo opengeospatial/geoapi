@@ -31,14 +31,13 @@ import org.opengis.referencing.crs.CoordinateReferenceSystem;
  */
 public interface DirectPosition extends Cloneable {
     /**
-     * The length of coordinate sequence (the number of entries).
-     * This may be less than or equal to the dimensionality of the 
-     * {@linkplain #getCoordinateReferenceSystem() coordinate reference system}.
+     * The length of coordinate sequence (the number of entries). This is determined by
+     * the {@linkplain #getCoordinateReferenceSystem() coordinate reference system}.
      *
      * @return The dimensionality of this position.
      * @UML mandatory dimension
      */
-    public int getDimension();
+    int getDimension();
 
     /**
      * Returns a sequence of numbers that hold the coordinate of this position in its
@@ -47,7 +46,7 @@ public interface DirectPosition extends Cloneable {
      * @return The coordinates
      * @UML mandatory coordinates
      */
-    public double[] getCoordinates();
+    double[] getCoordinates();
 
     /**
      * Returns the ordinate at the specified dimension.
@@ -56,7 +55,7 @@ public interface DirectPosition extends Cloneable {
      * @return The coordinate at the specified dimension.
      * @throws IndexOutOfBoundsException if the specified dimension is out of bounds.
      */
-    public double getOrdinate(int dimension) throws IndexOutOfBoundsException;
+    double getOrdinate(int dimension) throws IndexOutOfBoundsException;
 
     /**
      * Sets the ordinate value along the specified dimension.
@@ -65,7 +64,7 @@ public interface DirectPosition extends Cloneable {
      * @param value the ordinate value of interest.
      * @throws IndexOutOfBoundsException if the specified dimension is out of bounds.
      */
-    public void setOrdinate(int dimension, double value) throws IndexOutOfBoundsException;
+    void setOrdinate(int dimension, double value) throws IndexOutOfBoundsException;
 
     /**
      * The coordinate reference system in which the coordinate is given.
@@ -78,10 +77,10 @@ public interface DirectPosition extends Cloneable {
      * @return The coordinate reference system, or <code>null</code>.
      * @UML association coordinateReferenceSystem
      */
-    public CoordinateReferenceSystem getCoordinateReferenceSystem();
+    CoordinateReferenceSystem getCoordinateReferenceSystem();
 
     /**
      * Makes an exact copy of this coordinate.
      */
-/// public DirectPosition clone();
+/// DirectPosition clone();
 }
