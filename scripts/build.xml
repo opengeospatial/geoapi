@@ -134,6 +134,7 @@
     <replace dir="sources">
       <include name="**/*.java"/>
       <replacefilter token="&lt;? extends Primitive&gt;"/>
+      <replacefilter token="&lt;? extends Object&gt;"/>
       <replacefilter token="&lt;Primitive&gt;"/>
       <replacefilter token="&lt;Position&gt;"/>
       <replacefilter token="&lt;PointArray&gt;"/>
