@@ -121,5 +121,6 @@ public interface GridCoverageProcessor {
      * @UML operation doOperation
      */
     GridCoverage doOperation(String operationName, GeneralParameterValue[] parameters)
-            throws OperationNotFoundException, ParameterNotFoundException, InvalidParameterNameException, InvalidParameterNameException;
+            throws OperationNotFoundException, ParameterNotFoundException,
+                   InvalidParameterNameException, InvalidParameterValueException;
 }

@@ -45,7 +45,7 @@ public interface OperationParameterGroup extends GeneralOperationParameter {
      *
      * @param  name The case insensitive name of the parameter to search for.
      * @return The parameter for the given name.
-     * @throws InvalidParameterNameException if there is no parameter for the given name.
+     * @throws ParameterNotFoundException if there is no parameter for the given name.
      */
-    GeneralOperationParameter getParameter(String name) throws InvalidParameterNameException;
+    GeneralOperationParameter getParameter(String name) throws ParameterNotFoundException;
 }

@@ -16,6 +16,9 @@ package org.opengis.parameter;
  *
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 2.0
+ *
+ * @see OperationParameterGroup#getParameter
+ * @see ParameterValueGroup#getValue
  */
 public class ParameterNotFoundException extends IllegalArgumentException {
     /**

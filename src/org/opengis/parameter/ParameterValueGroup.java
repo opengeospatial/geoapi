@@ -54,9 +54,9 @@ public interface ParameterValueGroup extends GeneralParameterValue {
      *
      * @param  name The case insensitive name of the parameter to search for.
      * @return The parameter value for the given name.
-     * @throws InvalidParameterNameException if there is no parameter for the given name.
+     * @throws ParameterNotFoundException if there is no parameter for the given name.
      */
-    GeneralParameterValue getValue(String name) throws InvalidParameterNameException;
+    GeneralParameterValue getValue(String name) throws ParameterNotFoundException;
 
     /**
      * Returns a copy of this group of parameter values.

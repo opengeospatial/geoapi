@@ -16,9 +16,9 @@ import java.io.FileNotFoundException;  // For Javadoc
 // OpenGIS direct dependencies
 import org.opengis.coverage.MetadataNameNotFoundException;
 import org.opengis.parameter.GeneralParameterValue;
-import org.opengis.parameter.ParameterNotFoundException;
-import org.opengis.parameter.InvalidParameterNameException;
-import org.opengis.parameter.InvalidParameterValueException;
+import org.opengis.parameter.ParameterNotFoundException;     // For javadoc
+import org.opengis.parameter.InvalidParameterNameException;  // For javadoc
+import org.opengis.parameter.InvalidParameterValueException; // For javadoc
 
 
 /**
@@ -126,7 +126,7 @@ public interface GridCoverageReader {
      *         underlying image library.
      */
     GridCoverage read(GeneralParameterValue[] parameters)
-            throws InvalidParameterNameException, InvalidParameterValueException, ParameterNotFoundException, IOException;
+            throws IllegalArgumentException, IOException;
 
     /**
      * Skip the current grid coverage without reading it, and move the stream position to
