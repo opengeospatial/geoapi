@@ -33,7 +33,8 @@ import com.sun.tools.doclets.Taglet;
  *   <li><code>codelist</code> for a code list</li>
  * </ul>
  *
- * @version 1.0
+ * @version $Id$
+ * @author Martin Desruisseaux
  */
 public final class UmlTaglet implements Taglet {
     /**

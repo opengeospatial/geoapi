@@ -9,6 +9,8 @@
 
            set ANT_OPTS=-Xbootclasspath/p:<path to JSR-14 installation>\javac.jar
 
+     Author:  Martin Desruisseaux
+     Version: $Id$
      ======================================================================== -->
 
 <project name="GeoAPI" default="release" basedir="D:/Application/GeoAPI">
