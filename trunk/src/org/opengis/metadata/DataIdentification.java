@@ -16,6 +16,8 @@ import java.util.Locale;
 import org.opengis.metadata.extent.Extent;
 import org.opengis.metadata.extent.GeographicBoundingBox;
 import org.opengis.metadata.extent.GeographicDescription;
+import org.opengis.metadata.spatial.SpatialRepresentationType;
+import org.opengis.metadata.spatial.Resolution;
 
 
 /**

@@ -16,6 +16,7 @@ import java.util.Locale;
 // OpenGIS direct dependencies
 import org.opengis.metadata.citation.Contact;
 import org.opengis.metadata.quality.DataQuality;
+import org.opengis.metadata.spatial.SpatialRepresentation;
 import org.opengis.referencing.ReferenceSystem;
 
 
@@ -164,7 +165,7 @@ public interface MetaData {
       *
       * @UML optional portrayalCatalogueInfo
       */
-//     PortrayalCatalogueReference[] getPortrayalCatalogueInfo();
+     PortrayalCatalogueReference[] getPortrayalCatalogueInfo();
 
      /**
       * Provides restrictions on the access and use of data.
