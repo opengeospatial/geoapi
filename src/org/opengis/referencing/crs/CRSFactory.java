@@ -326,8 +326,8 @@ public interface CRSFactory extends ObjectFactory {
      *
      * @see #getDefaultParameters
      *
-     * @revisit Maybe we should remove this method (as well as {@link #getDefaultParameters}) for
-     *          the following reasons:
+     * @deprecated This method will be removed (as well as {@link #getDefaultParameters}) for
+     *             the following reasons:
      * <ul>
      *   <li>It introduces a dependency to {@link org.opengis.referencing.operation.MathTransformFactory}
      *       at the implementation level of this method. This is against the orthogonal aspect of
@@ -371,6 +371,10 @@ public interface CRSFactory extends ObjectFactory {
      *
      * @see MathTransformFactory#getAvailableMethods
      * @see #createProjectedCRS(Map,GeographicCRS,ParameterValueGroup,CartesianCS)
+     *
+     * @deprecated Deprecated since
+     *  {@link #createProjectedCRS(Map,GeographicCRS,ParameterValueGroup,CartesianCS)} has been
+     *  deprecated.
      */
     ParameterValueGroup getDefaultParameters(String method) throws NoSuchIdentifierException;
 
