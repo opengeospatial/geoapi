@@ -41,39 +41,76 @@ public class DatabaseGenerator {
     /**
      * The root package.
      */
-    private static final String ROOT_PACKAGE = "org.opengis.metadata";
+    private final String rootPackage = "org.opengis.metadata";
 
     /**
      * The schema where to create the tables.
      */
-    private static final String SCHEMA = "metadata";
+    private final String schema = "metadata";
 
     /**
      * The owner for the database to create, or <code>null</code> for the default one.
      */
-    private static final String OWNER = "Admin";
+    private final String owner = null;
 
     /**
      * The line separator.
      */
-    private static final String LINE_SEPARATOR = System.getProperty("line.separator", "\n");
+    private final String LINE_SEPARATOR = System.getProperty("line.separator", "\n");
 
     /**
      * The list of table created in inverse order. Used for the "DROP TABLE" statements.
      */
-    private static final LinkedList<String> drop = new LinkedList<String>();
+    private final LinkedList<String> drop = new LinkedList<String>();
 
     /**
-     * Do not allows instances of this class.
+     * The "ALTER TABLE" instructions for foreigner keys.
      */
-    private DatabaseGenerator() {
+    private final StringBuilder constraints = new StringBuilder();
+
+    /**
+     * <code>true</code> in order to allows tables, or <code>false</code> in order
+     * to collapse tables in an ordinary field (i.e. allow only singletons). If we
+     * know that we are not going to put more than one element per cell, it allow
+     * to enforce foreigner keys.
+     */
+    private final boolean allowTables;
+
+    /**
+     * If <code>true</code>, disable warnings.
+     */
+    private final boolean quiet;
+
+    /**
+     * Constructs an instance of the database generator.
+     */
+    private DatabaseGenerator(final boolean allowTables, final boolean quiet) {
+        this.allowTables = allowTables;
+        this.quiet       = quiet;
     }
 
     /**
      * Scan all classes and members and write an SQL script.
      */
-    public static void main(String[] args) throws Exception {
-        Writer sql = new FileWriter("create.sql");
+    public static void main(final String[] args) throws Exception {
+        boolean allowTables = false;
+        boolean quiet = false;
+        for (int i=0; i<args.length; i++) {
+            if (args[i].equalsIgnoreCase("-tables")) {
+                allowTables = true;
+            }
+            if (args[i].equalsIgnoreCase("-quiet")) {
+                quiet = true;
+            }
+        }
+        new DatabaseGenerator(allowTables, quiet).writeScripts();
+    }
+
+    /**
+     * Scan all classes and members and write an SQL script.
+     */
+    private void writeScripts() throws Exception {
+        Writer sql = new FileWriter(allowTables ? "create.sql" : "create-notables.sql");
 
         sql.write("CREATE TABLE public.\"Locale\"");                          sql.write(LINE_SEPARATOR);
         sql.write('(');                                                       sql.write(LINE_SEPARATOR);
@@ -95,7 +132,7 @@ public class DatabaseGenerator {
         sql.write("INSERT INTO \"Unit\" VALUES ('km');");                     sql.write(LINE_SEPARATOR);
                                                                               sql.write(LINE_SEPARATOR);
 
-        final Set<Class> classes = ClassFinder.getClasses(CodeList.class, ROOT_PACKAGE);
+        final Set<Class> classes = ClassFinder.getClasses(CodeList.class, rootPackage);
         for (final Iterator<Class> it=classes.iterator(); it.hasNext();) {
             final Class classe = it.next();
             if (Throwable.class.isAssignableFrom(classe)) {
@@ -128,11 +165,13 @@ public class DatabaseGenerator {
                 // The iteration must be restarted.
             }
         }
+        sql.write(LINE_SEPARATOR);
+        sql.write(constraints.toString());
         sql.close();
         sql = new BufferedWriter(new FileWriter("drop.sql"));
         for (final String name : drop) {
             sql.write("DROP TABLE ");
-            sql.write(SCHEMA);
+            sql.write(schema);
             sql.write(".\"");
             sql.write(name);
             sql.write("\";");
@@ -151,14 +190,14 @@ public class DatabaseGenerator {
      * @param  classe The class to process.
      * @return The SQL string to add to the 'create.sql' file.
      */
-    private static String sqlCodeList(final Class classe) throws IllegalAccessException {
+    private String sqlCodeList(final Class classe) throws IllegalAccessException {
         final String className = getIdentifier(classe);
         if (className == null) {
             return null;
         }
         final StringBuilder sql = new StringBuilder();
         sql.append("CREATE TABLE ");
-        sql.append(SCHEMA);
+        sql.append(schema);
         sql.append(".\"");
         sql.append(className);
         sql.append('"');
@@ -179,13 +218,13 @@ public class DatabaseGenerator {
         sql.append(LINE_SEPARATOR);
         sql.append(") WITHOUT OIDS;");
         sql.append(LINE_SEPARATOR);
-        if (OWNER != null) {
+        if (owner != null) {
             sql.append("ALTER TABLE ");
-            sql.append(SCHEMA);
+            sql.append(schema);
             sql.append(".\"");
             sql.append(className);
             sql.append("\" OWNER TO \"");
-            sql.append(OWNER);
+            sql.append(owner);
             sql.append("\";");
             sql.append(LINE_SEPARATOR);
         }        
@@ -200,7 +239,7 @@ public class DatabaseGenerator {
             }
             final CodeList code = (CodeList) attribute.get(null);
             sql.append("INSERT INTO ");
-            sql.append(SCHEMA);
+            sql.append(schema);
             sql.append(".\"");
             sql.append(className);
             sql.append("\" VALUES (");
@@ -226,15 +265,14 @@ public class DatabaseGenerator {
      *         before this one, in order to resolve dependencies.
      * @return The SQL string to add to the 'create.sql' file.
      */
-    private static String sqlInterface(final Class classe, final Set<Class> classes) {
+    private String sqlInterface(final Class classe, final Set<Class> classes) {
         final String className = getIdentifier(classe);
         if (className == null) {
             return null;
         }
-        final StringBuilder constraints = new StringBuilder();
         final StringBuilder sql = new StringBuilder();
         sql.append("CREATE TABLE ");
-        sql.append(SCHEMA);
+        sql.append(schema);
         sql.append(".\"");
         sql.append(className);
         sql.append('"');
@@ -258,8 +296,22 @@ scan:   for (final Method attribute : attributes) {
                     // No such method in superclass. Checks other interfaces.
                 }
             }
-            final Class attributeType = attribute.getReturnType();
-            final String sqlType = toSQLType(attributeType, attribute.getGenericReturnType());
+            Class attributeType = attribute.getReturnType();
+            Type genericType = attribute.getGenericReturnType();
+            if (!allowTables) {
+                if (attributeType.isArray()) {
+                    attributeType = attributeType.getComponentType();
+                } else if (Collection.class.isAssignableFrom(attributeType)) {
+                    if (genericType instanceof ParameterizedType) {
+                        final Type[] types = ((ParameterizedType) genericType).getActualTypeArguments();
+                        if (types.length == 1) {
+                            attributeType = (Class) types[0];
+                            genericType = null;
+                        }
+                    }
+                }
+            }
+            final String sqlType = toSQLType(attributeType, genericType);
             if (sqlType == null) {
                 continue;
             }
@@ -287,14 +339,18 @@ scan:   for (final Method attribute : attributes) {
                 inSchema     = true;
                 foreignTable = getIdentifier(attributeType);
                 foreignKey   = "code";
-            } else if (attributeType.getName().startsWith(ROOT_PACKAGE)) {
+            } else if (attributeType.getName().startsWith(rootPackage)) {
                 inSchema     = true;
                 foreignTable = getIdentifier(attributeType);
                 foreignKey   = "oid";
             } else {
                 continue;
             }
-            constraints.append("  CONSTRAINT \"");
+            constraints.append("ALTER TABLE ");
+            constraints.append(schema);
+            constraints.append(".\"");
+            constraints.append(className);
+            constraints.append("\" ADD CONSTRAINT \"");
             constraints.append(className);
             constraints.append('.');
             constraints.append(attributeName);
@@ -302,21 +358,20 @@ scan:   for (final Method attribute : attributes) {
             constraints.append(attributeName);
             constraints.append("\") REFERENCES ");
             if (inSchema) {
-                constraints.append(SCHEMA);
+                constraints.append(schema);
                 constraints.append('.');
             }
             constraints.append('"');
             constraints.append(foreignTable);
             constraints.append("\" (");
             constraints.append(foreignKey);
-            constraints.append(") ON UPDATE RESTRICT ON DELETE RESTRICT,");
+            constraints.append(") ON UPDATE RESTRICT ON DELETE RESTRICT;");
             constraints.append(LINE_SEPARATOR);
             if (classes.remove(attributeType)) {
                 // Resolve dependencies first.
                 sql.insert(0, sqlInterface(attributeType, classes));
             }
         }
-        sql.append(constraints);
         sql.append("  CONSTRAINT \"");
         sql.append(className);
         sql.append(".primaryKey\" PRIMARY KEY (oid)");
@@ -331,7 +386,7 @@ scan:   for (final Method attribute : attributes) {
                     sql.insert(0, sqlInterface(parent, classes));
                 }
                 sql.append(i==0 ? " INHERITS (" : ", ");
-                sql.append(SCHEMA);
+                sql.append(schema);
                 sql.append(".\"");
                 sql.append(getIdentifier(parent));
                 sql.append('"');
@@ -342,13 +397,13 @@ scan:   for (final Method attribute : attributes) {
         }
         sql.append(" WITH OIDS;");
         sql.append(LINE_SEPARATOR);
-        if (OWNER != null) {
+        if (owner != null) {
             sql.append("ALTER TABLE ");
-            sql.append(SCHEMA);
+            sql.append(schema);
             sql.append(".\"");
             sql.append(className);
             sql.append("\" OWNER TO \"");
-            sql.append(OWNER);
+            sql.append(owner);
             sql.append("\";");
             sql.append(LINE_SEPARATOR);
         }        
@@ -361,7 +416,7 @@ scan:   for (final Method attribute : attributes) {
     /**
      * Returns the SQL type for the specified Java classe.
      */
-    private static String toSQLType(final Class classe, final Type type) {
+    private String toSQLType(final Class classe, final Type type) {
         if (       CharSequence.class.isAssignableFrom(classe) ||
             InternationalString.class.isAssignableFrom(classe))
         {
@@ -434,8 +489,8 @@ scan:   for (final Method attribute : attributes) {
         {
             return "INT2";
         }
-        if (classe.getName().startsWith(ROOT_PACKAGE)) {
-            return "INT4";
+        if (classe.getName().startsWith(rootPackage)) {
+            return "OID";
         }
         if (classe.isArray()) {
             final String sql = toSQLType(classe.getComponentType(), null);
@@ -450,7 +505,9 @@ scan:   for (final Method attribute : attributes) {
                 }
             }
         }
-        Logger.getLogger("org.opengis.tools").warning("No mapping to SQL type: "+classe.getName());
+        if (!quiet) {
+            Logger.getLogger("org.opengis.tools").warning("No mapping to SQL type: "+classe.getName());
+        }
         return null;
     }
 
