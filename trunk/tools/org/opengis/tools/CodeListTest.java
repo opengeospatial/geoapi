@@ -20,13 +20,8 @@
 package org.opengis.tools;
 
 // J2SE dependencies
-import java.io.*;
 import java.util.*;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.lang.reflect.*;
-import java.net.URLDecoder;
-import java.util.logging.Logger;
 
 // OpenGIS dependencies
 import org.opengis.util.CodeList;
@@ -42,14 +37,9 @@ import junit.framework.*;
  * @version $Id$
  * @author Martin Desruisseaux
  */
-public class CodeListTest extends TestCase implements FileFilter {
+public class CodeListTest extends TestCase {
     /**
-     * Set to <code>true</code> for verbose mode (for debugging only).
-     */
-    private static final boolean VERBOSE = false;
-    
-    /**
-     * List of enums to ignore in the {@link #process} operation.
+     * List of enums to ignore during the test operation.
      * Must be static because JUnit seems to recreate this object
      * for each test.
      */
@@ -129,164 +119,57 @@ public class CodeListTest extends TestCase implements FileFilter {
      * Test all code list found in the system.
      */
     public void testCodeList() {
-        final File base = defaultRootDirectory();
-        scan(base, base);
-    }
-    
-    /**
-     * Filter the files to includes on the processing. Only the files with the ".class" extensions
-     * will be loaded. Directory must be included too if recursive scanning is wanted.
-     */
-    public boolean accept(final File pathname) {
-        final String name = pathname.getName();
-        if (pathname.isDirectory()) {
-            if (name.equals("org")) {
-                return true;
-            }
-            if (name.equals("go") || name.equals("tools")) {
-                return false;
-            }
-            return pathname.getPath().indexOf("opengis") >= 0;
-        } else {
-            if (name.equals("SimpleEnumerationType.class")) {
-                return false;
-            }
-        }
-        return name.endsWith(".class");
-    }
-    
-    /**
-     * Returns the default root directory, or <code>null</code> if not found.
-     * The default root directory is the one where the implementation of this
-     * class is found, up to the 'org' package.
-     */
-    private File defaultRootDirectory() {
-        final Class c = getClass();
-        final URL url = c.getClassLoader().getResource(c.getName().replace('.','/')+".class");
-        if (VERBOSE) {
-            System.out.print("Class loader path:   ");
-            System.out.println(url);
-        }
-        if (url==null || !url.getProtocol().trim().equalsIgnoreCase("file")) {
-            return null; // bad developer no test not on filesystem
-        }
-        String path;
-        try {
-            path = URLDecoder.decode(url.getPath(), "UTF-8");
-        } catch (UnsupportedEncodingException exception) {
-            return null;
-        }
-        if (path.length()>=3 && path.charAt(0)=='/' && path.charAt(2)==':' ) {
-            // Windows drive letter (e.g. /C:). Trim the leading '/'.
-            path = path.substring(1);
-        }
-        File file = new File(path);
-        do {
-            path = file.getName();
-            file = file.getParentFile();
-        } while (file!=null && !path.equals("org"));
-        if (VERBOSE) {
-            System.out.print("Path in file system: ");
-            System.out.println(file);
-        }
-        return file;
-    }
-    
-    /**
-     * Scan the directory and all subdirectory for classes implementing {@link CodeList}.
-     */
-    private void scan(final File directory, final File base) {
-        if (directory == null || !directory.exists() || !directory.isDirectory()) {
-            Logger.getLogger("org.geotools").warning("No directory to scan:"+directory);
-            return; // Just a warning; do not fails.
-        }
-        final StringBuffer buffer = new StringBuffer();
-        final File[] files = directory.listFiles(this);
-        for (int i=0; i<files.length; i++) {
-            File file = files[i];
-            if (file.isDirectory()) {
-                scan(file, base);
+        final Set<Class> classes = ClassFinder.getClasses(CodeList.class);
+        for (final Class classe : classes) {
+            if (!CodeList.class.isAssignableFrom(classe)) {
                 continue;
             }
-            buffer.setLength(0);
-            String name = file.getName();
-            final int ext = name.lastIndexOf('.');
-            if (ext >= 0) {
-                name = name.substring(0, ext);
+            if (CodeList.class.equals(classe)) {
+                continue;
             }
-            buffer.append(name);
-            while ((file=file.getParentFile()) != null) {
-                if (file.equals(base)) {
-                    break;
-                }
-                buffer.insert(0, '.');
-                buffer.insert(0, file.getName());
-            }
-            name = buffer.toString();
+            final String name = classe.getName();
+            final CodeList[] codes;
             try {
-                process(Class.forName(name));
-            } catch (ClassNotFoundException exception) {
-                fail("Class not found: "+name);
-            }
-        }
-    }
-    
-    /**
-     * Process a class. Only code list will be procceded.
-     */
-    private void process(final Class classe) {
-        if (!CodeList.class.isAssignableFrom(classe)) {
-            return;
-        }
-        if (CodeList.class.equals(classe)) {
-            return;
-        }
-        final String name = classe.getName();
-        final CodeList[] codes;
-        if (VERBOSE) {
-            System.out.print("Testing ");
-            System.out.println(name);
-        }
-        try {
-            codes = (CodeList[]) classe.getMethod("values", (Class[])null).invoke(null,(Object[])null);
-        } catch (NoSuchMethodException exception) {
-            fail("No values() method in "+name);
-            return;
-        } catch (IllegalAccessException exception) {
-            fail("values() method is not public in "+name);
-            return;
-        } catch (InvocationTargetException exception) {
-            fail("values() method failed in "+name);
-            return;
-        } catch (ClassCastException exception) {
-            fail("values() method returned wrong type in "+name);
-            return;
-        }
-        assertNotNull("values() returned null", codes);
-        for (int i=0; i<codes.length; i++) {
-            final CodeList code = codes[i];
-            assertNotNull("Null element", code);
-            assertEquals("Not equals to itself", code, code);
-            assertEquals("Wrong index", i, code.ordinal());
-            final CodeList field;
-            try {
-                field = (CodeList) classe.getField(code.name()).get(null);
-            } catch (NoSuchFieldException exception) {
-                if (toIgnore.contains(code)) {
-                    continue;
-                }
-                fail("No field "+code+" in "+name);
+                codes = (CodeList[]) classe.getMethod("values", (Class[])null).invoke(null,(Object[])null);
+            } catch (NoSuchMethodException exception) {
+                fail("No values() method in "+name);
                 return;
             } catch (IllegalAccessException exception) {
-                fail("Field "+code+" is not public in "+name);
+                fail("values() method is not public in "+name);
+                return;
+            } catch (InvocationTargetException exception) {
+                fail("values() method failed in "+name);
                 return;
             } catch (ClassCastException exception) {
-                fail("Field "+code+" has a wrong type in "+name);
+                fail("values() method returned wrong type in "+name);
                 return;
             }
-            assertSame("Wrong name", code, field);
-            if (toIgnore.contains(code)) {
-                fail("Code "+code+" was not expected in a field");
+            assertNotNull("values() returned null", codes);
+            for (int i=0; i<codes.length; i++) {
+                final CodeList code = codes[i];
+                assertNotNull("Null element", code);
+                assertEquals("Not equals to itself", code, code);
+                assertEquals("Wrong index", i, code.ordinal());
+                final CodeList field;
+                try {
+                    field = (CodeList) classe.getField(code.name()).get(null);
+                } catch (NoSuchFieldException exception) {
+                    if (toIgnore.contains(code)) {
+                        continue;
+                    }
+                    fail("No field "+code+" in "+name);
+                    return;
+                } catch (IllegalAccessException exception) {
+                    fail("Field "+code+" is not public in "+name);
+                    return;
+                } catch (ClassCastException exception) {
+                    fail("Field "+code+" has a wrong type in "+name);
+                    return;
+                }
+                assertSame("Wrong name", code, field);
+                if (toIgnore.contains(code)) {
+                    fail("Code "+code+" was not expected in a field");
+                }
             }
         }
     }
