@@ -22,7 +22,7 @@ import org.opengis.go.display.primitive.Graphic;
  * @version $Revision$, $Date$
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  */
-public interface GraphicStyle extends Editability, Highlight, Viewability, 
+public interface GraphicStyle extends Editability, Highlight, Symbology, Viewability, 
         LineSymbolizer, PointSymbolizer, PolygonSymbolizer, TextSymbolizer {
     
     //*************************************************************************
@@ -37,9 +37,10 @@ public interface GraphicStyle extends Editability, Highlight, Viewability,
     /**  <code>Highlight</code> attribute name.  */
     public static final String HIGHLIGHT = "HIGHLIGHT";
     
-    /**
-     * Viewability attribute name.
-     */
+    /** <code>Symbology</code> attribute name.  */
+    public static final String SYMBOLOGY = "SYMBOLOGY";
+    
+    /** Viewability attribute name. */
     public static final String VIEWABILITY = "VIEWABILITY";
     
     /**  <code>LineSymbolizer</code> attribute name.  */
@@ -148,6 +149,21 @@ public interface GraphicStyle extends Editability, Highlight, Viewability,
      * @param object the <code>Highlight</code> object.
      */
     public void setHighlight(Highlight object);
+    
+    /**
+     * Returns a <code>Symbology</code> object with the same values as this <code>GraphicStyle</code>'s
+     * <code>Symbology</code> properties.  Setting values on the returned <code>Symbology</code> should
+     * not affect this <code>GraphicStyle</code>'s values.
+     * @return the <code>Symbology</code> object.
+     */
+    public Symbology getSymbology();
+    
+    /**
+     * Sets the <code>Symbology</code> properties on this <code>GraphicStyle</code> from the given
+     * <code>Symbology</code> object.
+     * @param object the <code>Symbology</code> object.
+     */
+    public void setSymbology(Symbology object);
     
     /**
      * Returns a <code>Viewability</code> object with the same values as this <code>GraphicStyle</code>'s

@@ -160,7 +160,7 @@ public interface DisplayCapabilities {
      * Returns an array of <code>SymbologyInfo</code> objects
      * that this implementations supports.
      */
-    public SymbologyInfo[] getSupportedSymbology();
+    public SymbologyInfo[] getSupportedSymbologies();
      
 }
 
