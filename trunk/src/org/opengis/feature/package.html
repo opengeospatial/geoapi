@@ -44,11 +44,25 @@
   
   kaslo.setTransaction( t );
   kaslo.setLock( lockRequest );
-  kaslo.lock();
-    
-  kaslo.deleteAll( kaslo.subCollection( FilterFactory.bnf( "CITY='kaslo' AND NAME='A street'" ) );
+  kaslo.lock(); // returns LockResponse.PENDING
+  LockResponse lockResults = t.commit(); // kaslo roads are now locked
   
-  LockResults lockResults = t.commit();
+  String token = lockResults.getToken(); // token now contains a data store specific string (like WDRHENDHA123123ADEF )
+                                         // This is a pure momento with no meaning to client code and no documented
+                                         // internal strucutre. May not even be human readable.
+      
+  kaslo.deleteAll( kaslo.subCollection( FilterFactory.bnf( "CITY='kaslo' AND NAME='A street'" ) );
+  try {
+     t.commit(); // commit does not even return as we have a lock conflict ...
+  } catch (IOException locked){
+     // A stree is safe - we did not use authorization
+     System.out.println("expected locking message:"+locked); 
+  }
+  
+  t.useAuthorization( token );
+  kaslo.deleteAll( kaslo.subCollection( FilterFactory.bnf( "CITY='kaslo' AND NAME='A street'" ) );
+  lockResults = t.commit(); // lockResults now equals LockResults.NONE as this commit had no lock methods called
+  
   </code></pre>  
   At the end of the above example, kaslo A street has been deleted and the remaining streets in kaslo
   are still locked. lockResults.getToken() contains an authorization string that can
