@@ -10,8 +10,8 @@
 
 package org.opengis.go.display.canvas;
 
+import org.opengis.crs.crs.CoordinateReferenceSystem;
 import org.opengis.crs.crs.ImageCRS;
-import org.opengis.crs.crs.ProjectedCRS;
 import org.opengis.crs.operation.IncompatibleOperationException;
 import org.opengis.crs.operation.MathTransform;
 import org.opengis.go.display.DisplayFactory;
@@ -294,7 +294,7 @@ public interface Canvas {
      * 
      * @return the objective Coordinate Reference System
      */
-    ProjectedCRS getObjectiveCoordinateReferenceSystem();
+    CoordinateReferenceSystem getObjectiveCoordinateReferenceSystem();
 
     /**
      * Sets the objective Coordinate Reference System (e.g. the projection of a 
@@ -307,7 +307,20 @@ public interface Canvas {
      * @param displayToObjective the trasformation that converts between the Canvas display Coordinate Reference System and this objective Coordinate Reference System.
      * @throws IncompatibleOperationException when the specified transformation does not apply to either the objective or the display Coordinate Reference Systems.
      */
-    void setObjectiveCoordinateReferenceSystem(ProjectedCRS crs, MathTransform objectiveToDisplay, 
+    void setObjectiveCoordinateReferenceSystem(CoordinateReferenceSystem crs);
+    
+    /**
+     * Sets the objective Coordinate Reference System (e.g. the projection of a 
+     * georeferenced Coordinate Reference System) for this <code>Canvas</code>.
+     * This is the default objective Coordinate Reference System for this
+     * <code>Canvas</code>.
+     * 
+     * @param crs the objective Coordinate Reference System
+     * @param objectiveToDisplay the trasformation that converts between this objective Coordinate Reference System and the Canvas display Coordinate Reference System.
+     * @param displayToObjective the trasformation that converts between the Canvas display Coordinate Reference System and this objective Coordinate Reference System.
+     * @throws IncompatibleOperationException when the specified transformation does not apply to either the objective or the display Coordinate Reference Systems.
+     */
+    void setObjectiveCoordinateReferenceSystem(CoordinateReferenceSystem crs, MathTransform objectiveToDisplay, 
     				MathTransform displayToObjective) throws IncompatibleOperationException;
 
     /**

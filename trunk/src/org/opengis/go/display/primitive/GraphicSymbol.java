@@ -1,6 +1,6 @@
-package org.opengis.go.display.style;
+package org.opengis.go.display.primitive;
 
-import org.opengis.go.display.primitive.Graphic;
+import org.opengis.go.display.style.Symbology;
 import org.opengis.spatialschema.geometry.DirectPosition;
 import org.opengis.spatialschema.geometry.geometry.PointArray;
 

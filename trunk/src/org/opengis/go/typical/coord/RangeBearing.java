@@ -134,7 +134,7 @@ public class RangeBearing implements DirectPosition {
         try {
             crs = CommonFactoryManager.getCRSAuthorityFactory().createCoordinateReferenceSystem(crsURL);
         } catch(FactoryException fe) {
-            fe.printStackTrace();
+            System.err.println(fe.getMessage());
         }
         return crs;
     }
