@@ -213,7 +213,7 @@
              encoding         = "ISO-8859-1"
              source           = "1.5"
              use              = "true"
-             nodeprecatedlist = "true"
+             nodeprecatedlist = "false"
              author           = "true"
              version          = "true"
              noqualifier      = "all"
