@@ -52,7 +52,7 @@
 		</xsl:variable>
 		<xsl:text>&#xA;//  Class:  </xsl:text>
 		<xsl:value-of select="@name"/>
-		<xsl:text>&#xA;//  fllename:  </xsl:text>
+		<xsl:text>&#xA;//  filename:  </xsl:text>
 		<xsl:value-of select="$filename"/>
 		<!-- new file code -->
 		<xsl:call-template name="newFile">
@@ -62,6 +62,12 @@
 				<xsl:value-of select="$filename"/>
 			</xsl:with-param>
 			<xsl:with-param name="content">
+				<!--	********************************************************
+ 						modification : add Open GIS Copyright at the beginning of the java file
+						modified by Stephane, November 18 2003
+ 						********************************************************-->
+ 				<xsl:text>/**&#xA;&#x20;* Copyright (C) 2003 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/&#xA;&#x20;*/&#xA;</xsl:text>
+ 				
 				<xsl:text>&#xA;//  Class:  </xsl:text>
 				<xsl:value-of select="@name"/>
 				<xsl:apply-templates select="java:Java"/>
