@@ -1,0 +1,45 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+  <HEAD>
+    <TITLE>package org.opengis.feature</TITLE>
+  </HEAD>
+  <BODY>
+  Gives a normalized interface to a data provider that can serve up collections
+  of {@link Feature} objects.
+ 
+  <H3>Package Specification</H3>
+  <P ALIGN="justify">This package is based on the following specifications:</P>
+  <UL>
+    <LI>Ref WFS spec for locking workflow</LI>
+    <LI>Ref Catalog 2.0 spec for paging idea and QueryRequest paging idea</LI>
+  </UL>
+
+  <H3>WFS Long Transaction Support</H3>
+  <p>
+  The locking workflow described by FeatureCollection.lock() methods and LockRequest,
+  and LockResponse, and indeed the Transaction facilities employed by FeatureCollection
+  are informed by the requirements of the WFS specification.
+  </p>
+  <p>
+  The WFS specification provides an attractive middle ground between full versioned
+  Features, and light-weight inproccess or file lock based approaches. Locks
+  are maintained for a requested duration. A successfult lock opperation results
+  in a authorization token that may be used at a later time. A transaction
+  may be assigned a token allowing it to work on previously locked features.
+  WFS allows a lock to be taken out across multiple FeatureCollections in a single
+  request. We have extended this idea to support FeatureCollection from different
+  DataStores - although we confess that the authorization tokens are still on a 
+  per DataStore basis.
+  </p>
+  <p>
+  Code example: <pre><code>
+  </code></pre>
+  </p>
+  <H3>Related Documentation </H3>
+  <UL>
+   <LI>{@link org.opengis.metadata} - ISO 19115 (TC211) Metadata specification</LI>
+   <LI>{@link org.opengis.filter} - defines a query language similar in scope to QueryDefinition</LI>   
+  </UL>
+
+</BODY>
+</HTML>
