@@ -9,10 +9,11 @@
  *************************************************************************************************/
 package org.opengis.go.display.primitive;
 
-import javax.units.Unit;
-import javax.swing.Icon;
+import java.awt.geom.Point2D;
 
-import org.opengis.go.typical.coord.Pixel;
+import javax.swing.Icon;
+import javax.units.Unit;
+
 import org.opengis.spatialschema.geometry.DirectPosition;
 
 /**
@@ -81,7 +82,7 @@ public interface GraphicIcon extends Graphic {
      *          implementation. Do we really need to ask for a particuler class?
      *          Replaced by <code>DirectPosition</code> for now.
      */
-    public void setOffset(Pixel offset);
+    public void setOffset(Point2D offset);
 
     /**
      * Returns the location in the icon (as an offset from the upper left)
@@ -93,7 +94,7 @@ public interface GraphicIcon extends Graphic {
      *          implementation. Do we really need to ask for a particuler class?
      *          Replaced by <code>DirectPosition</code> for now.
      */
-    public Pixel getOffset();
+    public Point2D getOffset();
 
     /**
      * Indicates whether this primitive is displaying anchor handles that allow the
