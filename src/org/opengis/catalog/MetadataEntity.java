@@ -132,7 +132,7 @@ public interface MetadataEntity {
      * Allow for progamatic introspection of the Metadata -
      * provides the list of Elements.
      */
-    public static interface EntityType {
+    public static interface EntityType extends Element{
         /**
          * The xPath is used to identify {@linkplain Element elements} in the Metadata data
          * hierarchy. If the xPath has wild cards a list of Metadata Elements will be returned.
