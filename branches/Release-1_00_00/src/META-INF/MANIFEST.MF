@@ -1,7 +1,7 @@
 
 Name: org/opengis/metadata*
 Specification-Title: Meta data
-Specification-Version: 2.00
+Specification-Version: 5.00
 Specification-Vendor: OpenGIS Consortium, Inc.
 
 Name: org/opengis/crs*
@@ -10,13 +10,13 @@ Specification-Version: 2.00
 Specification-Vendor: OpenGIS Consortium, Inc.
 
 Name: org/opengis/coverage*
-Specification-Title: "Grid Coverage"
-Specification-Version: "1.00"
-Specification-Vendor: "OpenGIS Consortium"
+Specification-Title: Grid Coverage
+Specification-Version: 1.00
+Specification-Vendor: OpenGIS Consortium
 
 Name: org/opengis/spatialschema*
 Specification-Title: Feature Geometry
-Specification-Version: 2.00
+Specification-Version: 5.00
 Specification-Vendor: OpenGIS Consortium, Inc.
 
 Name: org/opengis/go*
