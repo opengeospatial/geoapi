@@ -15,6 +15,7 @@ import org.opengis.rs.Identifier;
  * numeric, but other types of parameter values are possible.
  *  
  * @UML abstract CC_OperationParameter
+ * @author ISO 19111
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 2.0
  */

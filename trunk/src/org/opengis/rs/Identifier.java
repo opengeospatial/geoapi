@@ -15,6 +15,7 @@ import org.opengis.ci.Citation;
  * if any, is normally the primary identification code, and any others are aliases.
  *
  * @UML datatype RS_Identifier
+ * @author ISO 19111
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 2.0
  */

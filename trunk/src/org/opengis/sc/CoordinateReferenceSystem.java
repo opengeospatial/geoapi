@@ -25,10 +25,11 @@ import org.opengis.cd.Datum;
  * covered by that type of CRS with an acceptable degree of error. The exception to the rule is
  * the subtype "Temporal" which has been added by analogy.
  *
+ * @UML abstract SC_CoordinateReferenceSystem
+ * @author ISO 19111
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 2.0
  *
- * @UML abstract SC_CoordinateReferenceSystem
  * @see org.opengis.cs.CoordinateSystem
  * @see org.opengis.cd.Datum
  */

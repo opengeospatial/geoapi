@@ -11,6 +11,7 @@ package org.opengis.cc;
  * distinquish among those groups.
  *  
  * @UML abstract CC_ParameterValueGroup
+ * @author ISO 19111
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 2.0
  */

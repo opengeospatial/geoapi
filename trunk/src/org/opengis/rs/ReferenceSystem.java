@@ -14,6 +14,7 @@ import org.opengis.ex.Extent;
  * Description of a spatial and temporal reference system used by a dataset.
  *  
  * @UML abstract RS_ReferenceSystem
+ * @author ISO 19111
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 2.0
  *

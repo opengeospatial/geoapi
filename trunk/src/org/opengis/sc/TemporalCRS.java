@@ -18,6 +18,7 @@ import org.opengis.cd.TemporalDatum;
  * </TD></TR></TABLE>
  *
  * @UML abstract SC_TemporalCRS
+ * @author ISO 19111
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 2.0
  */

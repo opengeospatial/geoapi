@@ -13,6 +13,7 @@ package org.opengis.cd;
  * it is combined to create a {@linkplain org.opengis.sc.VerticalCRS Vertical CRS}.
  *
  * @UML abstract CD_VerticalDatum
+ * @author ISO 19111
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 2.0
  */

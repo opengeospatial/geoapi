@@ -11,6 +11,7 @@ import java.util.Date;
  * A temporal datum defines the origin of a temporal coordinate reference system.
  *
  * @UML abstract CD_TemporalDatum
+ * @author ISO 19111
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 2.0
  */

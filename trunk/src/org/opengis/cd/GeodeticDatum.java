@@ -10,6 +10,7 @@ package org.opengis.cd;
  * system centered in this ellipsoid (or sphere).
  *
  * @UML abstract CD_GeodeticDatum
+ * @author ISO 19111
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 2.0
  *

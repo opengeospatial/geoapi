@@ -16,6 +16,7 @@ import org.opengis.rs.Identifier;
  * use none. Each coordinate operation using the method assigns values to these parameters.
  *  
  * @UML abstract CC_OperationMethod
+ * @author ISO 19111
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 2.0
  *

@@ -11,6 +11,7 @@ import org.opengis.rs.ReferenceSystem;
  * Abstract coordinate reference system, usually defined by a coordinate system and a datum.
  *
  * @UML abstract SC_CRS
+ * @author ISO 19111
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 2.0
  *

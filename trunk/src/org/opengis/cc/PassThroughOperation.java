@@ -9,6 +9,7 @@ package org.opengis.cc;
  * coordinate operation.
  *  
  * @UML abstract CC_PassThroughOperation
+ * @author ISO 19111
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 2.0
  */

@@ -14,6 +14,7 @@ import org.opengis.rs.Identifier;
  * The definition of a group of related parameters used by an operation method.
  *  
  * @UML abstract CC_OperationParameterGroup
+ * @author ISO 19111
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 2.0
  */

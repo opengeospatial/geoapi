@@ -8,6 +8,7 @@ package org.opengis.cc;
  * Abstract definition of a parameter or group of parameters used by an operation method.
  *  
  * @UML abstract CC_GeneralOperationParameter
+ * @author ISO 19111
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 2.0
  *

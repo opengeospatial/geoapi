@@ -19,6 +19,7 @@ import org.opengis.rs.Identifier;
  * only specific types of coordinate systems.
  *
  * @UML abstract CD_Datum
+ * @author ISO 19111
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 2.0
  *

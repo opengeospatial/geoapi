@@ -23,6 +23,7 @@ import org.opengis.cd.VerticalDatum;
  * </TD></TR></TABLE>
  *
  * @UML abstract SC_VerticalCRS
+ * @author ISO 19111
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 2.0
  */

@@ -16,6 +16,7 @@ import org.opengis.util.CodeList;
  * Specification of the way the image grid is associated with the image data attributes.
  *
  * @UML codelist CD_PixelinCell
+ * @author ISO 19111
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 2.0
  */

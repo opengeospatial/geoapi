@@ -12,6 +12,7 @@ package org.opengis.sc;
  * as an ordered set of two or more instances of {@link CoordinateReferenceSystem}.
  *
  * @UML abstract SC_CompoundCRS
+ * @author ISO 19111
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 2.0
  */

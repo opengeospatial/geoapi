@@ -8,6 +8,7 @@ package org.opengis.dq;
  * Position error estimate (or accuracy) data.
  *  
  * @UML abstract DQ_PositionalAccuracy
+ * @author ISO 19111
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 2.0
  */
