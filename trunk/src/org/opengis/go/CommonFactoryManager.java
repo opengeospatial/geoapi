@@ -198,7 +198,7 @@ public class CommonFactoryManager {
 
     /**
      * A shortcut method for creating a new spatialschema <code>Object</code>.
-     * @param coordInterface The <code>Class</code> of a spatialschema <code>Object</code>.
+     * @param coordinateInterface The <code>Class</code> of a spatialschema <code>Object</code>.
      * @return Returns the newly created spatialschema <code>Object</code>.
      */
     public static Object createObject(Class coordinateInterface) {

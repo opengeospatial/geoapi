@@ -148,7 +148,7 @@ public interface GraphicScaledImage extends Graphic {
      * center points are less than a meter apart on the earth's surface
      * to be considered the same projection.
      *
-     * @revisit Why not a {@link org.opengis.sc.CRS} argument type?
+     * @revisit Why not a {@link org.opengis.crs.crs.CoordinateReferenceSystem} argument type?
      */
     public void setSRS(String srs);
     
@@ -158,7 +158,7 @@ public interface GraphicScaledImage extends Graphic {
      *
      * @see #setSRS(String)
      *
-     * @revisit Why not a {@link org.opengis.sc.CRS} return type?
+     * @revisit Why not a {@link org.opengis.crs.crs.CoordinateReferenceSystem} argument type?
      */
     public String getSRS();
 }

@@ -37,7 +37,6 @@ public class GlobalPathType extends PathType {
         
     /**
      * Creates a new GlobalPathType with the given value and name.
-     * @param value the int value for the enum.
      * @param name the short name for the enum.
      * @param description the description for the enum.
      */

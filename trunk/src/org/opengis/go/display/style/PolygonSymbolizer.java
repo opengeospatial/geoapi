@@ -166,7 +166,7 @@ public interface PolygonSymbolizer {
 
     /**
      * Sets the fill background color value.
-     * @param fillColorBackground the fill background color value.
+     * @param fillBackgroundColor the fill background color value.
      */    
     public void setPolygonFillBackgroundColor(Color fillBackgroundColor);
 
@@ -430,7 +430,7 @@ public interface PolygonSymbolizer {
 
     /**
      * Sets the fill background color value.
-     * @param fillColorBackground the fill background color value.
+     * @param fillBackgroundColor the fill background color value.
      */    
     public void setPolygonStrokeFillBackgroundColor(Color fillBackgroundColor);
 
@@ -454,7 +454,7 @@ public interface PolygonSymbolizer {
 
     /**
      * Sets the fill gradient points value.
-     * @param fillGradientPolygons the fill gradient points value.
+     * @param fillGradientPoints the fill gradient points value.
      */    
     public void setPolygonStrokeFillGradientPoints(float[] fillGradientPoints);
 

@@ -184,7 +184,7 @@ public interface PointSymbolizer {
 
     /**
      * Sets the fill background color value.
-     * @param fillColorBackground the fill background color value.
+     * @param fillBackgroundColor the fill background color value.
      */    
     public void setPointFillBackgroundColor(Color fillBackgroundColor);
 
@@ -545,7 +545,7 @@ public interface PointSymbolizer {
 
     /**
      * Sets the fill background color value.
-     * @param fillColorBackground the fill background color value.
+     * @param fillBackgroundColor the fill background color value.
      */    
     public void setPointStrokeFillBackgroundColor(Color fillBackgroundColor);
 

@@ -66,11 +66,12 @@ public class UTM implements DirectPosition {
     // Constructors.
     /**
      * Initializes northing, easting, altitude, and Coordinate Reference System to the supplied parameters.
-     * @param northing  northing value
-     * @param easting   easting value
-     * @param altitude  altitude value
-     * @param zoneLetter the zone letter
-     * @param crsURL      the Coordinate Reference System URL
+     * @param northing     northing value
+     * @param easting      easting value
+     * @param altitude     altitude value
+     * @param unit         the unit for latitude and longitude
+     * @param altitudeUnit the unit for altitude
+     * @param crs          the Coordinate Reference System
      */
     public UTM(
         double northing,

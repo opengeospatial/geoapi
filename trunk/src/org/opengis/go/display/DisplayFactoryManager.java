@@ -93,8 +93,9 @@ public class DisplayFactoryManager {
      * Returns the <code>DisplayFactory</code> instance with the given
      * className.  If that particular type of <code>DisplayFactory</code>
      * has not been created, then a new instance will be instantiated.
-     * @param className the class name of the requested
-     *        <code>DisplayFactory</code>.
+     * @param displayFactoryProps the class name of the requested
+     *        <code>DisplayFactory</code>. Class name property name
+     *        is "<code>DISPLAY_FACTORY_NAME</code>".
      */
     public static DisplayFactory getDisplayFactory(Properties displayFactoryProps)
         throws ClassNotFoundException, IllegalAccessException, InstantiationException {

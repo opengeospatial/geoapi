@@ -11,17 +11,17 @@ package org.opengis.go.spatial;
 
 /**
  * This class serves to contain two constants: 
-   <ol>
-     <li>
-       PIXEL_STRAIGHT, that indicates that a path between two points should
-       be drawn on the screen as a straight line, regardless of the location 
-       or orientation of the vertices.
-     </li>
-     <li>
-       CONTINUOUS_SPLINE, that indicates a spline is to be used to connect 
-       points along a path.
-     </li>
-   </ol>
+ * <ol>
+ *   <li>
+ *     PIXEL_STRAIGHT, that indicates that a path between two points should
+ *     be drawn on the screen as a straight line, regardless of the location 
+ *     or orientation of the vertices.
+ *   </li>
+ *   <li>
+ *     CONTINUOUS_SPLINE, that indicates a spline is to be used to connect 
+ *     points along a path.
+ *   </li>
+ * </ol>
  * These should be used in situations where accuracy is unimportant or the
  * appearance of the path is intended to remain the same, regardless of the
  * current viewport of the map.  Note that this applies to both
@@ -35,7 +35,6 @@ public class UnprojectedPathType extends PathType {
 
     /**
      * Creates a new UnprojectedPathType with the given value and name.
-     * @param value the int value for the enum.
      * @param name the short name for the enum.
      * @param description the description for the enum.
      */

@@ -72,7 +72,6 @@ public class XYZ {
 
     /**
      * Initializes the Coordinate Reference System to the supplied parameter.
-     * @param crs       the Coordinate Reference System
      */
     public XYZ() throws UnsupportedCRSException {
         crs = findCRS(DEFAULT_COORDINATE_REFERENCE_SYSTEM_URL);
