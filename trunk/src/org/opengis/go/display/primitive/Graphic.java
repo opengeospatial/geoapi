@@ -95,6 +95,23 @@ public interface Graphic {
     public GraphicStyle getGraphicStyle();
 
     /**
+     * Sets the object that will be used to determine the appearance of this
+     * Graphic on the screen.  The Graphic will maintain a reference to the
+     * given object, so future changes to the object will affect the appearance
+     * of this Graphic when it is repainted.
+     * <p>
+     * Note that the user must explicitly invoke the refresh() method when
+     * the style or its properties have changed.
+     * <p>
+     * Note that this method applies only to version 1.1 and above of the GO-1
+     * interfaces.  In previous versions, the association between a Graphic and
+     * a style was one-to-one and could not be modified.
+     *
+     * @since Version 1.1
+     */
+    public void setGraphicStyle(GraphicStyle style);
+
+    /**
      * Returns the value of the property with the specified key. Only
      * properties added with <code>putClientProperty</code> will return a 
      * non-null value.
