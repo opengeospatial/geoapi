@@ -128,37 +128,4 @@ public interface DatumAuthorityFactory extends AuthorityFactory {
      * @see #createGeodeticDatum
      */
     PrimeMeridian createPrimeMeridian(String code) throws FactoryException;
-
-    /**
-     * Gets the Geoid code from a WKT name. 
-     * In the OGC definition of WKT horizontal datums, the geoid is
-     * referenced by a quoted string, which is used as a key value.  This
-     * method converts the key value string into a code recognized by this
-     * authority.
-     *
-     * @param wkt Name of geoid defined by OGC (e.g. "European_Datum_1950").
-     *
-     * @see #createGeodeticDatum
-     *
-     * @deprecated We should try to rely on the alias mechanism available in all
-     *             {@link org.opengis.referencing.IdentifiedObject} instead. If
-     *             this method is really needed, we can reinsert it later.
-     */
-    String geoidFromWktName(String wkt);
-
-    /**
-     * Gets the WKT name of a Geoid. 
-     * In the OGC definition of WKT horizontal datums, the geoid is
-     * referenced by a quoted string, which is used as a key value.
-     * This method gets the OGC WKT key value from a geoid code.
-     *
-     * @param geoid Code value for geoid allocated by authority.
-     *
-     * @see #createGeodeticDatum
-     *
-     * @deprecated We should try to rely on the alias mechanism available in all
-     *             {@link org.opengis.referencing.IdentifiedObject} instead. If
-     *             this method is really needed, we can reinsert it later.
-     */
-    String wktFromGeoidName(String geoid);
 }

@@ -72,8 +72,7 @@ public interface PointArray {
      *             "<cite>The operation <code>coordinateDimension</code> shall return
      *             the dimension of the coordinates that define this <code>GM_Object</code>,
      *             which must be the same as the coordinate dimension of the coordinate
-     *             reference system for this GM_Object.</cite>". This method will be
-     *             removed in a future version.
+     *             reference system for this GM_Object.</cite>".
      */
     public int getDimension();
 
@@ -84,9 +83,9 @@ public interface PointArray {
      *
      * @see DirectPosition#getCoordinateReferenceSystem
      *
-     * @deprecated This method should probably not appears. ISO 19107 do not defines such an
-     *             association. It is more than a convenience method, since it put a constraint
-     *             on the points that a <code>PointArray</code> can contains.
+     * @deprecated ISO 19107 do not defines such an association. We may keep this method as a
+     *             convenience, but it put a constraint on the points that a <code>PointArray</code>
+     *             can contains. Whatever or not this constraints is wanted is an open question.
      */
     public CoordinateReferenceSystem getCoordinateReferenceSystem();
 
@@ -102,12 +101,11 @@ public interface PointArray {
      * @see List#get
      * @see #get(int, DirectPosition)
      *
-     * @deprecated This method may be removed in a future version. First, it is in the way if an
-     *             implementor wants to implements directly the {@link java.util.List} interface.
-     *             Second, it raise some question: should the direct position be backed by this
-     *             <code>PointArray</code>, so changes to the position will be reflected in the
-     *             <code>PointArray</code> and vice-versa? Using {@link #get(int, DirectPosition)}
-     *             instead avoid those problems.
+     * @deprecated This method may conflict with an implementation of {@link java.util.List} interface.
+     *             It also raise a performance and behavior issue: should the direct position be backed
+     *             by this <code>PointArray</code>, so changes to the position will be reflected in the
+     *             <code>PointArray</code> and vice-versa? The proposed alternative, {@link #get(int, DirectPosition)},
+     *             avoid those questions.
      */
     public DirectPosition get(int column) throws IndexOutOfBoundsException;
 
@@ -164,12 +162,10 @@ public interface PointArray {
      * @deprecated This method raise a number of implementation issues: what should be the
      *             behavior if a single point in this array is modified? Should it be
      *             reflected in the <code>PointArray</code>? Furthermore, this method
-     *             will be inefficient in many non-trivial (I'm tempted to said "real
-     *             world") applications, since many implementations will be backed by
-     *             a <code>float[]</code> array rather than a highly inefficient
-     *             <code>DirectPosition</code> array, so invoking <code>toArray()</code>
-     *             may have a high cost if thousands of <code>DirectPosition</code> objects
-     *             most be created immediately. So I suggest to just remove this method.
+     *             will be inefficient in some implementations, for example an implementations
+     *             backed by a <code>float[]</code> array. Invoking <code>toArray()</code> in such
+     *             case may create thousands of <code>DirectPosition</code> objects.
+     *             {@link #positions} is safer, since it expose the positions through an iterator.
      */
     public DirectPosition[] toArray();
 
