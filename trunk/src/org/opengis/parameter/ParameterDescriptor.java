@@ -24,9 +24,9 @@ import javax.units.Unit;
  * @version <A HREF="http://www.opengis.org/docs/03-073r1.zip">Abstract specification 2.0</A>
  *
  * @see ParameterValue
- * @see OperationParameterGroup
+ * @see ParameterGroupDescriptor
  */
-public interface OperationParameter extends GeneralOperationParameter {
+public interface ParameterDescriptor extends GeneralParameterDescriptor {
     /**
      * Creates a new instance of {@linkplain ParameterValue parameter value}
      * initialized with the {@linkplain #getDefaultValue default value}.

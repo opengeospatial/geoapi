@@ -64,7 +64,7 @@ import org.opengis.metadata.Identifier;  // For javadoc
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/03-073r1.zip">Abstract specification 2.0</A>
  *
- * @see OperationParameterGroup
+ * @see ParameterGroupDescriptor
  * @see ParameterValue
  */
 public interface ParameterValueGroup extends GeneralParameterValue {
@@ -81,7 +81,7 @@ public interface ParameterValueGroup extends GeneralParameterValue {
      *         {@link javax.media.jai.ParameterList.html#getParameterListDescriptor ParameterList}).
      */
     // OperationParameterGroup getDescriptor();
-    GeneralOperationParameter getDescriptor(); // needed for javadocs to show up
+    GeneralParameterDescriptor getDescriptor(); // needed for javadocs to show up
     
     /**
      * Returns the values in this group.

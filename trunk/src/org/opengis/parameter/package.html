@@ -24,5 +24,49 @@
   of a set of {@linkplain org.opengis.parameter.OperationParameter operation parameters}, or other,
   nested parameter groups. This way of modelling is not mandatory; all coordinate operation
   parameters may be assigned directly to the coordinate operation method.</P>
-  </BODY>
+  
+  <h3>Shared Parameter API</h3>
+  <p>
+  We have extended the use of these Parameter classes to be shared across seveal
+  implementations with different needs. This is purly an acident of impelemntation
+  (we produced these parameter classes first. They do happen to be very expressive
+  and a good candiate for reuse:
+  </p>
+  We also considered:
+  <ul>
+  <li>ISO 19119 - type specification in terms of ENUM, RANGE and so on. Not enough
+      information is publically available to proceed.
+  <li>Grid Coverage Exchange -
+      parameter description is simple and has been superceeded by these definitions.
+  <li>java.beans.ParameterDescriptor -
+      The Java Beans specification is well known and many tools exist for UI creation
+      based on this specification.
+  <li>javax.jai.* -
+      Java Advanced Imaging contains a PrameterDescriptor infrastructure that has
+      served as a guideline for how we would like to extend this work.
+  </ul>
+  <p>
+  In the field we are using this set of prameter classes to describe connection information
+  for WMS, WFS and Database connections - a function that ISO 19119 - Metadata Services is
+  supposed to fufill. In this we can only point to our desire 
+  </p>
+  
+  <h3>Implementation Notes</h3>
+  
+  <h3>Intergration with Java Collections API</h3>
+  
+  The following simplification may obtainable
+  <h2>Package Specification</h2>
+
+	This package is based on the following specifications:
+    <ul>
+    <li>  <A HREF="http://www.opengis.org/docs/03-073r1.zip">
+        OpenGIS&reg; Spatial Referencing by Coordinates (Topic 2)</A> specification.
+    </ul>
+
+  <p>
+  Q: Is practice of creating objects for MetadataEntity, Element and EntityType not in the spirit of the specification, if so can they recommend an alternative? One alternative would be to port the CORBA IDL from v2. Problem is InsertMetadata/UpdateMetadata using "any payload".
+  </p>
+  
+  </BODY>  
 </HTML>
