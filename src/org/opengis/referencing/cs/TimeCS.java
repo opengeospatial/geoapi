@@ -17,7 +17,7 @@ package org.opengis.referencing.cs;
 /**
  * A one-dimensional coordinate system containing a single time axis, used to describe the
  * temporal position of a point in the specified time units from a specified time origin.
- * A <code>TemporalCS</code> shall have one {@linkplain #getAxis axis association}.
+ * A <code>TimeCS</code> shall have one {@linkplain #getAxis axis association}.
  *
  * <TABLE CELLPADDING='6' BORDER='1'>
  * <TR BGCOLOR="#EEEEFF"><TH NOWRAP>Used with CRS type(s)</TH></TR>
@@ -29,6 +29,6 @@ package org.opengis.referencing.cs;
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/03-073r1.zip">Abstract specification 2.0</A>
  */
-///@UML (identifier="CS_TemporalCS")
-public interface TemporalCS extends CoordinateSystem {
+///@UML (identifier="CS_TimeCS")
+public interface TimeCS extends CoordinateSystem {
 }
