@@ -187,8 +187,39 @@ public interface CRSFactory extends ObjectFactory {
      *         of axes must match the target dimension of the transform
      *         <code>baseToDerived</code>.
      * @throws FactoryException if the object creation failed.
+     *
+     * @deprecated Use the method with an {@link OperationMethod} argument instead.
      */
     DerivedCRS createDerivedCRS(Map                 properties,
+                                CoordinateReferenceSystem base,
+                                MathTransform    baseToDerived,
+                                CoordinateSystem     derivedCS) throws FactoryException;
+
+    /**
+     * Creates a derived coordinate reference system. If the transformation is an affine
+     * map performing a rotation, then any mixed axes must have identical units.
+     * For example, a (<var>lat_deg</var>, <var>lon_deg</var>, <var>height_feet</var>)
+     * system can be rotated in the (<var>lat</var>, <var>lon</var>) plane, since both
+     * affected axes are in degrees.  But you should not rotate this coordinate system
+     * in any other plane.
+     *
+     * @param  properties Name and other properties to give to the new object.
+     *         Available properties are {@linkplain ObjectFactory listed there}.
+     *         Properties for the {@link Conversion} object to be created can be specified
+     *         with the <code>"conversion."</code> prefix added in front of property names
+     *         (example: <code>"conversion.name"</code>).
+     * @param  method A description of the {@linkplain Conversion#getMethod method for the conversion}.
+     * @param  base Coordinate reference system to base the derived CRS on. The number of axes
+     *         must matches the {@linkplain MathTransform#getSourceDimensions source dimentions}
+     *         of the transform <code>baseToDerived</code>.
+     * @param  baseToDerived The transform from the base CRS to the newly created CRS.
+     * @param  derivedCS The coordinate system for the derived CRS. The number of axes must matches
+     *         the {@linkplain MathTransform#getTargetDimensions target dimensions} of the transform
+     *         <code>baseToDerived</code>.
+     * @throws FactoryException if the object creation failed.
+     */
+    DerivedCRS createDerivedCRS(Map                 properties,
+                                OperationMethod         method,
                                 CoordinateReferenceSystem base,
                                 MathTransform    baseToDerived,
                                 CoordinateSystem     derivedCS) throws FactoryException;
@@ -201,15 +232,41 @@ public interface CRSFactory extends ObjectFactory {
      *         Properties for the {@link Projection} object to be created can be specified
      *         with the <code>"conversion."</code> prefix added in front of property names
      *         (example: <code>"conversion.name"</code>).
-     * @param  geoCRS Geographic coordinate reference system to base projection on.
-     * @param  toProjected The transform from the geographic to the projected CRS.
-     * @param  cs The coordinate system for the projected CRS.
+     * @param  base Geographic coordinate reference system to base projection on.
+     * @param  baseToDerived The transform from the geographic to the projected CRS.
+     * @param  derivedCS The coordinate system for the projected CRS.
+     * @throws FactoryException if the object creation failed.
+     *
+     * @deprecated Use the method with an {@link OperationMethod} argument instead.
+     */
+    ProjectedCRS createProjectedCRS(Map              properties,
+                                    GeographicCRS          base,
+                                    MathTransform baseToDerived,
+                                    CartesianCS       derivedCS) throws FactoryException;
+    
+    /**
+     * Creates a projected coordinate reference system from a transform.
+     * 
+     * @param  properties Name and other properties to give to the new object.
+     *         Available properties are {@linkplain ObjectFactory listed there}.
+     *         Properties for the {@link Projection} object to be created can be specified
+     *         with the <code>"conversion."</code> prefix added in front of property names
+     *         (example: <code>"conversion.name"</code>).
+     * @param  method A description of the {@linkplain Conversion#getMethod method for the projection}.
+     * @param  base Geographic coordinate reference system to base the projection on. The number of axes
+     *         must matches the {@linkplain MathTransform#getSourceDimensions source dimentions}
+     *         of the transform <code>baseToDerived</code>.
+     * @param  baseToDerived The transform from the geographic to the projected CRS.
+     * @param  derivedCS The coordinate system for the projected CRS. The number of axes must matches
+     *         the {@linkplain MathTransform#getTargetDimensions target dimensions} of the transform
+     *         <code>baseToDerived</code>.
      * @throws FactoryException if the object creation failed.
      */
-    ProjectedCRS createProjectedCRS(Map            properties,
-                                    GeographicCRS      geoCRS,
-                                    MathTransform toProjected,
-                                    CartesianCS            cs) throws FactoryException;
+    ProjectedCRS createProjectedCRS(Map              properties,
+                                    OperationMethod      method,
+                                    GeographicCRS          base,
+                                    MathTransform baseToDerived,
+                                    CartesianCS       derivedCS) throws FactoryException;
 
     /**
      * Creates a projected coordinate reference system from a projection name.
@@ -220,7 +277,7 @@ public interface CRSFactory extends ObjectFactory {
      *         with the <code>"conversion."</code> prefix added in front of property names
      *         (example: <code>"conversion.name"</code>).
      * @param  geoCRS Geographic coordinate reference system to base projection on.
-     * @param  classification The classification name for the projection to be created
+     * @param  method The method name for the projection to be created
      *         (e.g. "Transverse_Mercator", "Mercator_1SP", "Oblique_Stereographic", etc.).
      * @param  parameters The parameter values to give to the projection. May includes
      *         "central_meridian", "latitude_of_origin", "scale_factor", "false_easting",
@@ -234,83 +291,69 @@ public interface CRSFactory extends ObjectFactory {
      */
     ProjectedCRS createProjectedCRS(Map                     properties,
                                     GeographicCRS               geoCRS,
-                                    String              classification,
+                                    String                      method,
                                     GeneralParameterValue[] parameters,
                                     CartesianCS                     cs) throws FactoryException;
 
     /**
-     * Creates a projected coordinate reference system from a set of parameters. The classification name
-     * is inferred either from the {@linkplain ParameterDescriptorGroup#getName parameter group name},
-     * or any other implementation dependent way.
-     * <br><br>
+     * Creates a projected coordinate reference system from a set of parameter values. The method name
+     * is inferred from the {@linkplain ParameterDescriptorGroup#getName parameter group name}.
      * The client must supply at least the <code>"semi_major"</code> and <code>"semi_minor"</code>
-     * parameters for cartographic projection transforms. Example:
-     *
+     * parameters for cartographic projections. Example:
+     * <br><br>
      * <blockquote><pre>
-     * ParameterValueGroup parameters = factory.{@linkplain #getDefaultProjectionParameters getDefaultProjectionParameters}("Transverse_Mercator");
+     * ParameterValueGroup parameters = factory.{@linkplain #getDefaultParameters getDefaultParameters}("Transverse_Mercator");
      * p.parameter("semi_major").setValue(6378137.000);
      * p.parameter("semi_minor").setValue(6356752.314);
      * ProjectedCRS crs = factory.createProjectedCRS(..., parameters, ...);
      * </pre></blockquote>
+     * <br><br>
+     * Implementations must check for axis order and units. For example map projections
+     * are often implemented as transforms operating on (<var>longitude</var>,<var>latitude</var>)
+     * values in degrees. If the geographic CRS uses the (<var>latitude</var>,<var>longitude</var>)
+     * axis order, then this method shall (conceptually) concatenates an affine transform that swaps
+     * ordinate values before the projection is applied.
      *
      * @param  properties Name and other properties to give to the new object.
      *         Available properties are {@linkplain ObjectFactory listed there}.
      *         Properties for the {@link Projection} object to be created can be specified
      *         with the <code>"conversion."</code> prefix added in front of property names
      *         (example: <code>"conversion.name"</code>).
-     * @param  geoCRS Geographic coordinate reference system to base projection on.
+     * @param  base Geographic coordinate reference system to base projection on.
      * @param  parameters The parameter values to give to the projection.
-     * @param  cs The coordinate system for the projected CRS.
+     * @param  derivedCS The coordinate system for the projected CRS.
      * @throws FactoryException if the object creation failed.
      *
-     * @see #getDefaultProjectionParameters
+     * @see #getDefaultParameters
      */
     ProjectedCRS createProjectedCRS(Map                 properties,
-                                    GeographicCRS           geoCRS,
+                                    GeographicCRS             base,
                                     ParameterValueGroup parameters,
-                                    CartesianCS                 cs) throws FactoryException;
+                                    CartesianCS          derivedCS) throws FactoryException;
 
     /**
-     * Returns the default parameter values for a projection of the given classification.
-     * The classification may be the name of any operation method returned by the
-     * {@link #getAvailableProjections} method. A typical example is
+     * Returns the default parameter values for a derived or projected CRS using the given method.
+     * The method argument is the name of any {@linkplain OperationMethod operation method} returned
+     * by the <code>{@linkplain MathTransformFactory#getAvailableMethods
+     * getAvailableMethods}({@linkplain Conversion}.class)</code> method.
+     * A typical example is
      * <code>"<A HREF="http://www.remotesensing.org/geotiff/proj_list/transverse_mercator.html">Transverse_Mercator</A>"</code>).
-     * <br><br>
-     * The {@link #createProjectedCRS(Map,GeographicCRS,ParameterValueGroup,CartesianCS)} method
-     * in this factory shall be able to infer the classification from the parameter group returned
-     * by this method. A possible (but not required) approach is to set the
-     * {@linkplain ParameterDescriptorGroup#getName parameter group name} to the classification
-     * name.
-     * <br><br>
-     * This method must create new parameter instances at every call.
-     * It is intented to be modified by the user before to be passed to
+     *
+     * <P>The {@linkplain ParameterDescriptorGroup#getName parameter group name} shall be the
+     * method name, or an alias to be understood by
      * <code>{@linkplain #createProjectedCRS(Map,GeographicCRS,ParameterValueGroup,CartesianCS)
-     * createProjectedCRS}(..., parameters, ...)</code>.
+     * createProjectedCRS}(..., parameters, ...)</code>. This method creates new parameter instances
+     * at every call. Parameters are intented to be modified by the user before to be given to the
+     * above-cited <code>createProjectedCRS</code> method.</P>
      *
-     * @param  classification The case insensitive classification to search for.
+     * @param  method The case insensitive name of the method to search for.
      * @return The default parameter values.
-     * @throws NoSuchIdentifierException if there is no projection registered for the specified classification.
+     * @throws NoSuchIdentifierException if there is no operation registered for the specified method.
      *
-     * @see #getAvailableProjections
+     * @see MathTransformFactory#getAvailableMethods
      * @see #createProjectedCRS(Map,GeographicCRS,ParameterValueGroup,CartesianCS)
      */
-    ParameterValueGroup getDefaultProjectionParameters(String classification) throws NoSuchIdentifierException;
-
-    /**
-     * Returns a set of all available {@linkplain Projection projection} methods. For each
-     * element in this set, the {@linkplain OperationMethod#getName operation method name} shall
-     * be the classification name to be recognized by the {@link #getDefaultProjectionParameters}
-     * method.
-     * <br><br>
-     * The set of available projections is implementation dependent, but is usually a subset of
-     * {@linkplain MathTransformFactory#getAvailableTransforms the set of available transforms}.
-     *
-     * @return All {@linkplain Projection projection} methods available in this factory.
-     *
-     * @see #getDefaultProjectionParameters
-     * @see #createProjectedCRS(Map,GeographicCRS,ParameterValueGroup,CartesianCS)
-     */
-    Set/*<OperationMethod>*/ getAvailableProjections();
+    ParameterValueGroup getDefaultParameters(String method) throws NoSuchIdentifierException;
 
     /**
      * Creates a coordinate reference system object from a XML string.
