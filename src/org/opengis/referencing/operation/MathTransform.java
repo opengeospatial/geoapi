@@ -203,10 +203,11 @@ public interface MathTransform {
     boolean isIdentity();
 
     /**
-     * Returns a <A HREF="../doc-files/WKT.html"><cite>Well Known Text</cite> (WKT)</A> for this
-     * object. This operation may fails if an object is too complex for the WKT format capability.
+     * Returns a <cite>Well Known Text</cite> (WKT) for this object. Well know text are
+     * <A HREF="../doc-files/WKT.html">defined in extended Backus Naur form</A>.
+     * This operation may fails if an object is too complex for the WKT format capability.
      *
-     * @return The Well Know Text for this object.
+     * @return The <A HREF="../doc-files/WKT.html"><cite>Well Known Text</cite> (WKT)</A> for this object.
      * @throws UnsupportedOperationException If this object can't be formatted as WKT.
      */
     String toWKT() throws UnsupportedOperationException;
