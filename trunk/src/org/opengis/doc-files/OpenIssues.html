@@ -176,42 +176,6 @@
         </ul></p>
     </LI>
 
-    <LI><P ALIGN="justify">Moved (in the hierarchy)
-        <A HREF="../crs/cs/CartesianCS.html"><CODE>CartesianCS</CODE></A> as a sub-interface of
-        <A HREF="../crs/cs/AffineCS.html"><CODE>AffineCS</CODE></A>. This is
-        because the interface <A HREF="../crs/cs/CartesianCS.html"><CODE>CartesianCS</CODE></A>
-        looks like a special case of <A HREF="../crs/cs/AffineCS.html"><CODE>AffineCS</CODE></A>.
-        This is a similar argument than the one used in ISO-19107, which said that <code>Circle</code> is a sub-class
-        of <code>Ellipse</code> since the former is a special case of the later (see 5.1.5 <cite>Strong substitutability</cite>).
-        Doing so help to clarify the semantic of <A HREF="../crs/crs/ImageCRS.html"><CODE>ImageCRS</CODE></A>:
-        We dropped "<CODE>cartesianCS</CODE>" and "<CODE>obliqueCartesianCS</CODE>" attributes and
-        replaced them by a restriction on the "<CODE>usesCS</CODE>" association, exactly like what
-        is done in <A HREF="../crs/crs/ProjectedCRS.html"><CODE>ProjectedCRS</CODE></A>.</P>
-    </LI>
-
-    <LI><P ALIGN="justify">Dropped all classname prefix in "<code>name</code>" and "<code>ID</code>"
-        attributes. Moved "<code>name</code>", "<code>ID</code>" and "<code>remarks</code>" attributes
-        in a common super-interface,
-        <A HREF="../crs/Info.html"><CODE>Info</CODE></A>, which is set as the parent of the following interfaces:
-        <A HREF="../crs/ReferenceSystem.html"><CODE>ReferenceSystem</CODE></A>,
-        <A HREF="../crs/cs/CoordinateSystem.html"><CODE>CoordinateSystem</CODE></A>,
-        <A HREF="../crs/cs/CoordinateSystemAxis.html"><CODE>CoordinateSystemAxis</CODE></A>,
-        <A HREF="../crs/datum/Datum.html"><CODE>Datum</CODE></A>,
-        <A HREF="../crs/datum/PrimeMeridian.html"><CODE>PrimeMeridian</CODE></A>,
-        <A HREF="../crs/datum/Ellipsoid.html"><CODE>Ellipsoid</CODE></A>,
-        <A HREF="../crs/operation/CoordinateOperation.html"><CODE>CoordinateOperation</CODE></A>,
-        <A HREF="../crs/operation/OperationMethod.html"><CODE>OperationMethod</CODE></A>,
-        <A HREF="../parameter/GeneralOperationParameter.html"><CODE>GeneralOperationParameter</CODE></A>.
-        This interface defines the <CODE>getName</CODE>, <CODE>getIdentifiers</CODE> and
-        <CODE>getRemarks</CODE> methods, which are common to all above-cited interfaces.
-        This <CODE>Info</CODE> root interface is similar to the legacy
-        <A HREF=../../../../legacy/org/opengis/cs/CS_Info.html><CODE>CS_Info</CODE></A>
-        interface from the implementation specification 1.0. In the 2003-073 specification, the name
-        and identifier attributes were duplicated in many interfaces, with different identifier name
-        (e.g. "<CODE>ellipsoidName</CODE>", "<CODE>datumName</CODE>", "<CODE>csName</CODE>",
-        "<CODE>crsName</CODE>", etc.).</P>
-    </LI>
-
     <LI><P ALIGN="justify">Union structures avoided. While it is possible to mimic C's <CODE>union</CODE>
         in Java, the hacks are usually unconvenient. Furthermore, <CODE>union</CODE> are not type-safe even
         in C. Consequently, the following structures were omitted:
@@ -231,14 +195,6 @@
         The legacy 2001-09 specification defined a
         <A HREF=../../../../legacy/org/opengis/pt/PT_Matrix.html><CODE>PT_Matrix</CODE></A>
         interface, which is required for derivative computation.</P>
-    </LI>
-
-    <LI><P ALIGN="justify">Added <A HREF="../crs/cs/AxisDirection.html"><CODE>AxisDirection</CODE></A>
-        code list. It is actually an anticipation on future work planed by the specification team.
-        The <A HREF="../crs/cs/CoordinateSystemAxis.html#getDirection()"><code>getDirection()</code></A>
-        return type was adjusted accordingly. Note that the legacy 2001-09 specification defined a
-        <A HREF=../../../../legacy/org/opengis/cs/CS_AxisOrientationEnum><CODE>CS_AxisOrientationEnum</CODE></A>
-        where the 2003-073 specification just used a plain character string.</P>
     </LI>
 
     <LI><P ALIGN="justify">Added the following methods into

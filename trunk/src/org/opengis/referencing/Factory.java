@@ -15,9 +15,9 @@ import org.opengis.metadata.citation.Citation;
 
 
 /**
- * Base interface for all factories of {@link Info} objects. Factories build up complex
- * objects from simpler objects or values. <code>Factory</code> allows applications to
- * make {@linkplain org.opengis.referencing.cs.CoordinateSystem coordinate systems},
+ * Base interface for all factories of {@link IdentifiedObject} objects. Factories build up
+ * complex objects from simpler objects or values. <code>Factory</code> allows applications
+ * to make {@linkplain org.opengis.referencing.cs.CoordinateSystem coordinate systems},
  * {@linkplain org.opengis.referencing.datum.Datum} or
  * {@linkplain org.opengis.referencing.crs.CoordinateReferenceSystem coordinate reference systems}
  * that cannot be created by an {@link AuthorityFactory}. This factory is very flexible,
@@ -42,12 +42,12 @@ import org.opengis.metadata.citation.Citation;
  *   <tr>
  *     <td nowrap>&nbsp;<code>"name"</code>&nbsp;</td>
  *     <td nowrap>&nbsp;{@link String}&nbsp;</td>
- *     <td nowrap>&nbsp;{@link Info#getName}</td>
+ *     <td nowrap>&nbsp;{@link IdentifiedObject#getName}</td>
  *   </tr>
  *   <tr>
  *     <td nowrap>&nbsp;<code>"remarks"</code>&nbsp;</td>
  *     <td nowrap>&nbsp;{@link String}&nbsp;</td>
- *     <td nowrap>&nbsp;{@link Info#getRemarks}</td>
+ *     <td nowrap>&nbsp;{@link IdentifiedObject#getRemarks}</td>
  *   </tr>
  *   <tr>
  *     <td nowrap>&nbsp;<code>"authority"</code>&nbsp;</td>
@@ -72,7 +72,7 @@ import org.opengis.metadata.citation.Citation;
  *   <tr>
  *     <td nowrap>&nbsp;<code>"identifiers"</code>&nbsp;</td>
  *     <td nowrap>&nbsp;<code>{@linkplain Identifier}</code>[]&nbsp;</td>
- *     <td nowrap>&nbsp;{@link Info#getIdentifiers}</td>
+ *     <td nowrap>&nbsp;{@link IdentifiedObject#getIdentifiers}</td>
  *   </tr>
  * </table>
  *

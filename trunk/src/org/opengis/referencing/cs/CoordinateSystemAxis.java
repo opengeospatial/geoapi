@@ -11,7 +11,7 @@ package org.opengis.referencing.cs;
 
 // Direct dependencies
 import javax.units.Unit;
-import org.opengis.referencing.Info;
+import org.opengis.referencing.IdentifiedObject;
 
 
 /**
@@ -26,7 +26,7 @@ import org.opengis.referencing.Info;
  * @see CoordinateSystem
  * @see Unit
  */
-public interface CoordinateSystemAxis extends Info {
+public interface CoordinateSystemAxis extends IdentifiedObject {
     /**
      * The abbreviation used for this coordinate system axes. This abbreviation is also
      * used to identify the ordinates in coordinate tuple. Examples are "<var>X</var>"

@@ -13,7 +13,7 @@ package org.opengis.referencing.operation;
 import java.util.Locale;
 
 // OpenGIS direct dependencies
-import org.opengis.referencing.Info;
+import org.opengis.referencing.IdentifiedObject;
 import org.opengis.parameter.GeneralOperationParameter;
 
 
@@ -29,7 +29,7 @@ import org.opengis.parameter.GeneralOperationParameter;
  *
  * @see Operation
  */
-public interface OperationMethod extends Info {
+public interface OperationMethod extends IdentifiedObject {
     /**
      * Formula(s) or procedure used by this operation method. This may be a reference to a
      * publication. Note that the operation method may not be analytic, in which case this

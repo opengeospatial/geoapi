@@ -14,7 +14,7 @@ import java.util.Date;
 import java.util.Locale;
 
 // OpenGIS direct dependencies
-import org.opengis.referencing.Info;
+import org.opengis.referencing.IdentifiedObject;
 import org.opengis.metadata.extent.Extent;
 
 
@@ -33,7 +33,7 @@ import org.opengis.metadata.extent.Extent;
  * @see org.opengis.referencing.cs.CoordinateSystem
  * @see org.opengis.referencing.crs.CoordinateReferenceSystem
  */
-public interface Datum extends Info {
+public interface Datum extends IdentifiedObject {
     /**
      * Description, possibly including coordinates, of the point or points used to anchor the datum
      * to the Earth. Also known as the "origin", especially for Engineering and Image Datums.

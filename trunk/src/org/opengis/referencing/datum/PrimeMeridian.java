@@ -13,7 +13,7 @@ package org.opengis.referencing.datum;
 import javax.units.Unit;
 
 // OpenGIS direct dependencies
-import org.opengis.referencing.Info;
+import org.opengis.referencing.IdentifiedObject;
 
 
 /**
@@ -27,7 +27,7 @@ import org.opengis.referencing.Info;
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/03-073r1.zip">Abstract specification 2.0</A>
  */
-public interface PrimeMeridian extends Info {
+public interface PrimeMeridian extends IdentifiedObject {
     /**
      * Longitude of the prime meridian measured from the Greenwich meridian, positive eastward.
      * The <code>greenwichLongitude</code> initial value is zero, and that value shall be used

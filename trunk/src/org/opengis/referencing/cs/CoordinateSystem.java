@@ -10,7 +10,7 @@
 package org.opengis.referencing.cs;
 
 // OpenGIS direct dependencies
-import org.opengis.referencing.Info;
+import org.opengis.referencing.IdentifiedObject;
 
 
 /**
@@ -30,7 +30,7 @@ import org.opengis.referencing.Info;
  * @see org.opengis.referencing.datum.Datum
  * @see org.opengis.referencing.crs.CoordinateReferenceSystem
  */
-public interface CoordinateSystem extends Info {
+public interface CoordinateSystem extends IdentifiedObject {
     /**
      * Returns the dimension of the coordinate system.
      *

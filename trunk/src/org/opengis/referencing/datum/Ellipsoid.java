@@ -13,7 +13,7 @@ package org.opengis.referencing.datum;
 import javax.units.Unit;
 
 // OpenGIS direct dependencies
-import org.opengis.referencing.Info;
+import org.opengis.referencing.IdentifiedObject;
 
 
 /**
@@ -32,7 +32,7 @@ import org.opengis.referencing.Info;
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/03-073r1.zip">Abstract specification 2.0</A>
  */
-public interface Ellipsoid extends Info {
+public interface Ellipsoid extends IdentifiedObject {
     /**
      * Returns the linear unit of the {@linkplain #getSemiMajorAxis semi-major}
      * and {@linkplain #getSemiMinorAxis semi-minor} axis values.
