@@ -1,19 +1,30 @@
-package org.opengis.crs.crs.projection;
+/*$************************************************************************************************
+ **
+ ** $Id$
+ **
+ ** $Source$
+ **
+ ** Copyright (C) 2003 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
+ **
+ *************************************************************************************************/
+package org.opengis.crs.projection;
 
-import java.util.ArrayList;
+// J2SE dependencies
 import java.util.List;
+import java.util.ArrayList;
+
+// OpenGIS dependencies
 import org.opengis.util.CodeList;
 import org.opengis.util.SimpleEnumerationType;
 
+
 /**
- * Enumerates well-known map projections.  The primary intended use is
- * to faciliate maintaining maps of Projection objects
- * (e.g., within a ProjectedCRS).  It is expected that implementors
- * will define a <code>getProjection(PrejectionKey key)</code>
- * within ProjectedCRS, Projection, or a factory class.
- * Implementators may facilitate such a method by following the
- * naming convention relative to the ProjectionKey indicated by the
- * interfaces for required projections.
+ * Enumerates well-known map projections. The primary intended use is to faciliate
+ * maintaining maps of Projection objects (e.g., within a factory). It is expected
+ * that implementors will define a <code>getProjection(PrejectionKey key)</code>
+ * within {@link Projection}, or a factory class. Implementators may facilitate such
+ * a method by following the naming convention relative to the <code>ProjectionKey</code>
+ * indicated by the interfaces for required projections.
  *
  * <p>
  * Implementation of all projections with defined keys is not required;
@@ -21,9 +32,14 @@ import org.opengis.util.SimpleEnumerationType;
  * is defined for it in this package.
  * An implementation may also implement
  * other projections not listed here.
+ *
+ * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
+ * @version 2.0
+ *
+ * @revisit Should we really define this enumeration? Should it be plain
+ *          {@link String} objects instead?
  */
-public class ProjectionKey extends SimpleEnumerationType
-{
+public class ProjectionKey extends SimpleEnumerationType {
     //*************************************************************************
     //  Static Fields
     //*************************************************************************
@@ -271,5 +287,4 @@ public class ProjectionKey extends SimpleEnumerationType
     public /*{ProjectionKey}*/ CodeList[] family() {
         return values();
     }
-
 }
