@@ -11,7 +11,7 @@ import org.opengis.go.display.primitive.Graphic;
  * This class represents a canvas that consumes features (i.e. objects that
  * implement the <code>Feature</code> interface) and automatically turns them
  * into Graphics.  A FeatureCanvas should be able to consume Feature objects
- * from any DataStore that the user may provide.
+ * from any FeatureStore that the user may provide.
  * <p>
  * Implementations of FeatureCanvas are free to optimize their temporary storage
  * of features in any way that they see fit.  This could simply mean holding

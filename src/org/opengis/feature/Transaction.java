@@ -28,7 +28,7 @@ import java.util.Set;
  * </p>
  *
  * <p>
- * For more information please see DataStore and FeatureStore.
+ * For more information please see FeatureStore and FeatureStore.
  * </p>
  *
  * <p>
@@ -66,14 +66,14 @@ import java.util.Set;
  * <li>Transaction is provided to two FeatureStores, this may result
  *     in several Transaction.State instances being registered</li>
  *     <ul>
- *     <li>TransactionStateDiff (stored by DataStore):
- *         Used for in memory locking is used by many DataStore's
- *         (like ShapefileDataStore).
- *         Lazy creation by AbstractDataStore.state(transaction).
+ *     <li>TransactionStateDiff (stored by FeatureStore):
+ *         Used for in memory locking is used by many FeatureStore's
+ *         (like ShapefileFeatureStore).
+ *         Lazy creation by AbstractFeatureStore.state(transaction).
  *         </li>
  *     <li>JDBCTransactionState (stored by ConnectionPool):
  *         Used to manage connection rollback/commit.
- *         Lazy creation as part of JDBCDataStore.getConnection(transaction).
+ *         Lazy creation as part of JDBCFeatureStore.getConnection(transaction).
  *         </li>
  *     <li>InProcessLockingManager.FeatureLock (stored by LockingManger):
  *         Used for per transaction FeatureLocks, used to free locked features
@@ -85,7 +85,7 @@ import java.util.Set;
  *     Transaction.State.setTransaction( transaction ).
  * <li>t.addAuthorization(lockID) is called, each Transaction.State has its
  *     addAuthroization(String) callback invoked with the value of lockID</li>
- * <li>FeatureStore.removeFeatures methods are called on the two DataStores.
+ * <li>FeatureStore.removeFeatures methods are called on the two FeatureStores.
  *     <ul>
  *     <li>PostgisFeatureStore.removeFeatures(fitler) handles opperation 
  *         without delegation.
@@ -124,7 +124,7 @@ public interface Transaction {
     /**
      * Retrieve a Transaction property held by this transaction.
      * <p>
-     * This may be used to provide hints to DataStore implementations, it
+     * This may be used to provide hints to FeatureStore implementations, it
      * operates as a blackboard for client, FeatureSource communication.
      * <p>
      * If this proves successful addAuthorization/getAuthorization will be
@@ -147,7 +147,7 @@ public interface Transaction {
      * Allows FeatureSource to squirel away information( and callbacks ) for
      * later.
      * <p>
-     * The most common example is a JDBC DataStore saving the required
+     * The most common example is a JDBC FeatureStore saving the required
      * connection for later opperations.
      * <pre><code>
      * ConnectionState implements State {
@@ -181,10 +181,10 @@ public interface Transaction {
     public void removeState(Object key);
 
     /**
-     * Allows DataStores to squirel away information( and callbacks ) for
+     * Allows FeatureStores to squirel away information( and callbacks ) for
      * later.
      * <p>
-     * The most common example is a JDBC DataStore saving the required
+     * The most common example is a JDBC FeatureStore saving the required
      * connection for later opperations.
      *
      * @return Current State externalized by key, or <code>null</code> if not
@@ -277,12 +277,12 @@ public interface Transaction {
     void close() throws IOException;
 
     /**
-     * DataStore implementations can use this interface to externalize the
+     * FeatureStore implementations can use this interface to externalize the
      * state they require to implement Transaction Support.
      * <p>
      * The commit and rollback methods will be called as required. The
-     * intension is that several DataStores can share common transaction state
-     * (example: Postgis DataStores sharing a connection to the same
+     * intension is that several FeatureStores can share common transaction state
+     * (example: Postgis FeatureStores sharing a connection to the same
      * database).
      *
      * @author jgarnett, Refractions Reasearch Inc.

@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
+
 /**
  * Represents a response for a lock request.
  * <p>
@@ -57,8 +58,8 @@ public class LockResponse {
      */  
     static final LockResponse NONE = new LockResponse();
     
-    /** Authorization tokens by DataStore */
-    Map/*<DataStore,String>*/ authorizationMap;
+    /** Authorization tokens by FeatureStore */
+    Map/*<FeatureStore,String>*/ authorizationMap;
     
     /**
      * Number of Features locked, or -1 if unknown.
@@ -68,13 +69,13 @@ public class LockResponse {
     /**
      * Constructor usable for use with lock( Filter ) under AUTO_COMMIT.
      * 
-     * @param dataStore DataStore being locked
+     * @param featureStore FeatureStore being locked
      * @param token Authorization token for later opperations on locked Features
      * @param numberLocked Number of Features successfully locked, or -1 for unknown
      */
-    public LockResponse( DataStore dataStore, String token, int numberLocked ){
+    public LockResponse( FeatureStore featureStore, String token, int numberLocked ){
         authorizationMap = new HashMap();
-        authorizationMap.put( dataStore, token );
+        authorizationMap.put( featureStore, token );
         this.numberLocked = numberLocked;
     }
     /** Constructor for use of with a commit() implementation.
@@ -82,7 +83,7 @@ public class LockResponse {
      * The results of the lock requests will need to be gathered using:
      * <ul>
      * <li>increaseNumberLocked( amount )
-     * <li>addAuthorizationToken( dataStore, token )
+     * <li>addAuthorizationToken( featureStore, token )
      * </ul>
      * </p>
      */
@@ -111,7 +112,7 @@ public class LockResponse {
      * Add an additional authorization token to collected results for commit().
      * <p>
      * Note this abstraction does not allow the collection of more then one token per
-     * DataStore. This should not be an issue give our two workflows:
+     * FeatureStore. This should not be an issue give our two workflows:
      * <ul>
      * <li>Transaction.AUTO_COMMIT: Each lock method returns a different LockResponse.
      * <li>Transaction + FeatureRequest.TRANSACTION_LOCK: Sepcial Case object TRANSACTION_LOCK_RESPONSE is always returned
@@ -122,30 +123,30 @@ public class LockResponse {
      * </ul>
      * </p>
      */  
-    public void addAuthorization( DataStore dataStore, String token ){
-        authorizationMap.put( dataStore, token );
+    public void addAuthorization( FeatureStore featureStore, String token ){
+        authorizationMap.put( featureStore, token );
     }
     
     /**
-     * Authorization token for indicated dataStore, or null if no locks known for dataStore.
+     * Authorization token for indicated featureStore, or null if no locks known for featureStore.
      * 
-     * @param dataStore DataStore to search for
-     * @return token, or null if a token for dataStore was unavailable
+     * @param featureStore FeatureStore to search for
+     * @return token, or null if a token for featureStore was unavailable
      */
-    public String getAuthorization( DataStore dataStore ){
-        return (String) authorizationMap.get( dataStore );
+    public String getAuthorization( FeatureStore featureStore ){
+        return (String) authorizationMap.get( featureStore );
     }
     
-    /** Set of locked DataStores */
-    public Set/*<DataStore>*/ getDataStores(){
+    /** Set of locked FeatureStores */
+    public Set/*<FeatureStore>*/ getFeatureStores(){
         return Collections.unmodifiableSet( authorizationMap.keySet() );
     }
     
     /**
-     * Retrives the authorization token for the special case of only one DataStore being locked.
+     * Retrives the authorization token for the special case of only one FeatureStore being locked.
      * <p>
      * This is the most common situration, often client code will only work on one FeatureCollection
-     * at a time, or several FeatureCollections belonging to the same DataStore.
+     * at a time, or several FeatureCollections belonging to the same FeatureStore.
      * </p>
      * @return token, or null if a single token was unavailable.
      */

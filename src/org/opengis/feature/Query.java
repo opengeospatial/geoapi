@@ -19,8 +19,8 @@ import org.opengis.util.GenericName;
 
 
 /**
- * The query object is used by the {@link DataStore#getFeatures(Query) getFeatures} method
- * of the {@linkplain DataStore data store} interface, to encapsulate a request.  It defines
+ * The query object is used by the {@link FeatureStore#getFeatures(Query) getFeatures} method
+ * of the {@linkplain FeatureStore data store} interface, to encapsulate a request.  It defines
  * which {@linkplain FeatureType feature type} to query, what properties to retrieve and what
  * constraints (spatial and non-spatial) to apply to those properties.  It is designed to
  * closesly match a WFS Query element of a <code>getFeatures</code> request.
@@ -95,7 +95,7 @@ public interface Query {
      *         Query (override the set coordinate system).
      */
     // JG: Please if you possably can treat the idea of "forcing" the CRS
-    // as a FeatureCollection configuration issue (or a DataStore configuration
+    // as a FeatureCollection configuration issue (or a FeatureStore configuration
     // issue). Recent experience with geotools shows the added burden on client
     // code to be a pain.
     public CoordinateReferenceSystem getCoordinateSystem();
@@ -107,7 +107,7 @@ public interface Query {
      * backend datastore to.
      * </p>
      * <p>
-     * If the DataStore can optimize the reprojection it should, if not then a
+     * If the FeatureStore can optimize the reprojection it should, if not then a
      * decorator on the reader should perform the reprojection on the fly.
      * </p>
      * <p>
