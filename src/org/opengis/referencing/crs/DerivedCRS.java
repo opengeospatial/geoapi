@@ -23,11 +23,6 @@ import org.opengis.spatialschema.geometry.DirectPosition;
  * @author ISO 19111
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/03-073r1.zip">Abstract specification 2.0</A>
- *
- * @revisit Do we really need this interface? It is not clear to me why the
- *          {@link #getDerivedCRSType()} method can't be allowed in the {@link ProjectedCRS}
- *          interface (as it would be if we move this method right into the {@link GeneralDerivedCRS}
- *          interface, adding a "projected" enumeration if needed).
  */
 public interface DerivedCRS extends GeneralDerivedCRS {
     /**

@@ -25,10 +25,6 @@ import org.opengis.referencing.operation.MathTransform1D;
  * @UML abstract CV_SampleDimension
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-004.pdf">Grid Coverage specification 1.0</A>
- *
- * @revisit {@link #getScale} and {@link #getOffset} are not sufficient; not all relation
- *          are linear (e.g. chlorophyll data from Nasa). We should consider to use the
- *          more general <code>sampleToGeophysics</code> attribute from Geotools instead.
  */
 public interface SampleDimension {
     /**

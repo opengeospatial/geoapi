@@ -12,6 +12,7 @@ package org.opengis.referencing.crs;
 // OpenGIS direct dependencies
 import org.opengis.referencing.cs.CartesianCS;
 import org.opengis.referencing.cs.SphericalCS;
+import org.opengis.referencing.cs.CoordinateSystem;
 import org.opengis.referencing.datum.GeodeticDatum;
 
 
@@ -31,28 +32,17 @@ import org.opengis.referencing.datum.GeodeticDatum;
  * @author ISO 19111
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/03-073r1.zip">Abstract specification 2.0</A>
- *
- * @revisit This interface defines three methods for querying the coordinate system:
- *          {@link #getCoordinateSystem() getCoordinateSystem()}, {@link #getCartesianCS()}
- *          and {@link #getSphericalCS()}. What is the relationship between those three
- *          methods? Which coordinate system should <code>getCoordinateSystem()</code> returns?
  */
 public interface GeocentricCRS extends CoordinateReferenceSystem {
     /**
-     * Returns the cartesian coordinate system.
+     * Returns the coordinate system, which must be {@linkplain CartesianCS cartesian}
+     * or {@linkplain SphericalCS spherical}.
      *
-     * @return The cartesian coordinate system, or <code>null</code> if none.
+     * @return The cartesian or spherical coordinate system.
      * @UML association usesCartesianCS
-     */
-    CartesianCS getCartesianCS();
-
-    /**
-     * Returns the spherical coordinate system.
-     *
-     * @return The spherical coordinate system, or <code>null</code> if none.
      * @UML association usesSphericalCS
      */
-    SphericalCS getSphericalCS();    
+    CoordinateSystem getCoordinateSystem();
   	 
     /**
      * Returns the datum, which must be geodetic.

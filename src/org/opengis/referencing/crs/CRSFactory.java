@@ -16,10 +16,11 @@ import java.util.Map;
 import org.opengis.referencing.Factory;
 import org.opengis.referencing.FactoryException;
 import org.opengis.referencing.cs.CartesianCS;
-import org.opengis.referencing.cs.CoordinateSystem;
+import org.opengis.referencing.cs.SphericalCS;
 import org.opengis.referencing.cs.EllipsoidalCS;
-import org.opengis.referencing.cs.TemporalCS;
 import org.opengis.referencing.cs.VerticalCS;
+import org.opengis.referencing.cs.TemporalCS;
+import org.opengis.referencing.cs.CoordinateSystem;
 import org.opengis.referencing.datum.EngineeringDatum;
 import org.opengis.referencing.datum.GeodeticDatum;
 import org.opengis.referencing.datum.ImageDatum;
@@ -81,17 +82,32 @@ public interface CRSFactory extends Factory {
                                         CoordinateSystem    cs) throws FactoryException;
 
     /**
-     * Creates a geocentric coordinate reference system. 
+     * Creates a geocentric coordinate reference system from a {@linkplain CartesianCS
+     * cartesian coordinate system}.
      *
      * @param  properties Name and other properties to give to the new object.
      *         Available properties are {@linkplain Factory listed there}.
      * @param  datum Geodetic datum to use in created CRS.
-     * @param  cs The Cartesian or Spherical coordinate system for the created CRS.
+     * @param  cs The cartesian coordinate system for the created CRS.
      * @throws FactoryException if the object creation failed.
      */
     GeocentricCRS createGeocentricCRS(Map      properties,
                                       GeodeticDatum datum,
-                                      CoordinateSystem cs) throws FactoryException;
+                                      CartesianCS      cs) throws FactoryException;
+
+    /**
+     * Creates a geocentric coordinate reference system from a {@linkplain SphericalCS
+     * spherical coordinate system}.
+     *
+     * @param  properties Name and other properties to give to the new object.
+     *         Available properties are {@linkplain Factory listed there}.
+     * @param  datum Geodetic datum to use in created CRS.
+     * @param  cs The spherical coordinate system for the created CRS.
+     * @throws FactoryException if the object creation failed.
+     */
+    GeocentricCRS createGeocentricCRS(Map      properties,
+                                      GeodeticDatum datum,
+                                      SphericalCS      cs) throws FactoryException;
 
     /**
      * Creates a geographic coordinate reference system.
