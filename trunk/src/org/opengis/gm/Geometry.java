@@ -8,6 +8,8 @@ import java.util.Set;
 
 // OpenGIS direct dependencies
 import org.opengis.sc.CRS;
+import org.opengis.gm.complex.Complex;
+import org.opengis.gm.geometry.DirectPosition;
 
 
 /**
@@ -16,17 +18,14 @@ import org.opengis.sc.CRS;
  * of direct positions in a particular coordinate reference system.
  *
  * @UML type GM_Object
- * @renamed Renamed as <code>Geometry</code> in order to avoid ambiguity with
- *          {@link java.lang.Object}.
+ * @rename Renamed as <code>Geometry</code> in order to avoid ambiguity with
+ *         {@link java.lang.Object}.
  *
  * @author ISO/DIS 19107
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 2.0
- *
- * @revisit This interface should extends TransfiniteSet&lt;DirectPosition&gt;,
- *          which is not yet defined (see ISO specification).
  */
-public interface Geometry /*extends TransfiniteSet<DirectPosition>*/ {
+public interface Geometry extends TransfiniteSet {
     /**
      * Returns the coordinate reference system used in {@link DirectPosition} coordinates.
      * If <code>null</code>, then this <code>Geometry</code> uses the CRS from another
@@ -34,7 +33,8 @@ public interface Geometry /*extends TransfiniteSet<DirectPosition>*/ {
      *
      * The most common example where the CRS is <code>null</code> is the elements and
      * subcomplexes of a maximal {@link Complex}. The <code>Complex</code> can carry
-     * the CRS for all {@link Primitive} elements and for all {@link Complex} subcomplexes.
+     * the CRS for all {@link org.opengis.gm.primitive.Primitive} elements and for all
+     * {@link Complex} subcomplexes.
      *
      * This association is only navigable from <code>Geometry</code> to <code>CRS</code>.
      * This means that the coordinate reference system objects in a data set do not keep
@@ -67,10 +67,8 @@ public interface Geometry /*extends TransfiniteSet<DirectPosition>*/ {
      *
      * @return The representative point.
      * @UML operation representativePoint
-     *
-     * @revisit Uncomment
      */
-//    public DirectPosition getRepresentativePoint();
+    public DirectPosition getRepresentativePoint();
 
     /**
      * Returns a finite set of <code>Geometry</code>s containing all of the direct positions on the
@@ -85,10 +83,8 @@ public interface Geometry /*extends TransfiniteSet<DirectPosition>*/ {
      * @return The sets of positions on the boundary. The elements of a boundary shall
      *         be smaller in dimension than the original element.
      * @UML operation boundary
-     *
-     * @revisit Uncomment
      */
-//    public Boundary getBoundary();
+    public Boundary getBoundary();
 
     /**
      * Returns a finite set of <code>Geometry</code>s containing all of the points on the boundary of
@@ -102,10 +98,8 @@ public interface Geometry /*extends TransfiniteSet<DirectPosition>*/ {
      *
      * @return The sets of points on the union of this object and its boundary.
      * @UML operation closure
-     *
-     * @revisit Uncomment
      */
-//    public Complex getClosure();
+    public Complex getClosure();
 
     /**
      * Returns <code>true</code> if this <code>Geometry</code> has no interior point of
@@ -130,10 +124,10 @@ public interface Geometry /*extends TransfiniteSet<DirectPosition>*/ {
     /**
      * Returns <code>true</code> if this <code>Geometry</code> has an empty boundary after topological
      * simplification (removal of overlaps between components in non-structured aggregates, such as
-     * subclasses of {@link Aggregate}). This condition is alternatively referred to as being
-     * "closed" as in a "closed curve." This creates some confusion since there are two distinct
-     * and incompatible definitions for the word "closed". The use of the word cycle is rarer
-     * (generally restricted to the field of algebraic topology), but leads to less confusion.
+     * subclasses of {@link org.opengis.gm.aggregate.Aggregate}). This condition is alternatively
+     * referred to as being "closed" as in a "closed curve." This creates some confusion since there
+     * are two distinct and incompatible definitions for the word "closed". The use of the word cycle
+     * is rarer (generally restricted to the field of algebraic topology), but leads to less confusion.
      * Essentially, an object is a cycle if it is isomorphic to a geometric object that is the
      * boundary of a region in some Euclidean space. Thus a curve is a cycle if it is isomorphic
      * to a circle (has the same start and end point). A surface is a cycle if it isomorphic to the
@@ -198,10 +192,8 @@ public interface Geometry /*extends TransfiniteSet<DirectPosition>*/ {
      * @param point The point where to evaluate the dimension, or <code>null</code>.
      * @return The inherent dimension.
      * @UML operation dimension
-     *
-     * @revisit Uncomment
      */
-//    public int getDimension(DirectPosition point);
+    public int getDimension(DirectPosition point);
 
     /**
      * Returns the dimension of the coordinates that define this <code>Geometry</code>, which must
@@ -259,10 +251,8 @@ public interface Geometry /*extends TransfiniteSet<DirectPosition>*/ {
      *
      * @return The centroid.
      * @UML operation centroid
-     *
-     * @revisit Uncomment
      */
-//    public DirectPosition getCentroid();
+    public DirectPosition getCentroid();
 
     /**
      * Returns a <code>Geometry</code> that represents the convex hull of this <code>Geometry</code>.
@@ -277,8 +267,9 @@ public interface Geometry /*extends TransfiniteSet<DirectPosition>*/ {
      * <code>Geometry</code> is less than or equal to the distance passed as a parameter.
      * The <code>Geometry</code> returned is in the same reference system as this original
      * <code>Geometry</code>. The dimension of the returned <code>Geometry</code> is normally
-     * the same as the coordinate dimension - a collection of {@link Surface}s in 2D space
-     * and a collection of {@link Solid}s in 3D space, but this may be application defined.
+     * the same as the coordinate dimension - a collection of {@link org.opengis.gm.primitive.Surface}s
+     * in 2D space and a collection of {@link org.opengis.gm.primitive.Solid}s in 3D space,
+     * but this may be application defined.
      *
      * @param distance The distance.
      * @UML operation buffer
