@@ -1,15 +1,7 @@
 package org.opengis.feature;
 
-/**
- * <p>Interface implemented by <code>FeatureCanvas</code>es as a way to allow an
- * application developer to inject feature data into a map.  Users of the 
- * feature canvas interface are expected to adapt any incoming data into
- * <code>Feature</code> objects so that they can be rendered.  The actual
- * feature implementation is hidden by the canvas so that it retains control
- * how they are instantiated and (potentially) serialized.</p>
- *
- * @author Chris Dillard, Jake Fear
- */
+import org.opengis.spatialschema.geometry.Envelope;
+
 public interface Feature {
     /**
      * Returns the description of this feature's type.
@@ -29,6 +21,8 @@ public interface Feature {
      *   not exist in this feature's type.
      */
     public Object getAttribute(String name);
+
+    public Envelope getBounds();
 
     /**
      * Returns the value of the indexed attribute of this <code>Feature</code>.
@@ -93,4 +87,9 @@ public interface Feature {
      * way makes sense.)
      */
     public String getID();
+
+    /**
+     * Returns the collection in which we are contained.
+     */
+    public FeatureCollection getParent();
 }

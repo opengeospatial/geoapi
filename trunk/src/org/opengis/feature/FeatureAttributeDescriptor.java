@@ -21,15 +21,18 @@ public interface FeatureAttributeDescriptor {
 
     /**
      * Returns a constant from DataType.  The return value of this method
-     * indicates how the return values of getSize() and getPrecision() should e
-     * interpreted.
+     * indicates how the return values of getSize(), getPrecision(), and
+     * getObjectClass() should be interpreted.  For attributes whose maximum
+     * cardinality is greater than one, this should return the data type of
+     * the individual elements of the collection.
      */
     public DataType getDataType();
 
     /**
      * Returns a number that indicates the size of a given attribute.  See the
      * documentation for the various constants of <code>DataType</code> for how
-     * to interpret this value.
+     * to interpret this value.  As an example, when the data type is STRING,
+     * this value indicates the maximum length of the string.
      */
     public int getSize();
 
@@ -42,7 +45,7 @@ public interface FeatureAttributeDescriptor {
     /**
      * For attributes of type OBJECT, this returns the Java <code>Class</code>
      * object that class or interface that all values of this attribute can be
-     * cast to.  For all other types of attributes, this returns null.
+     * cast to.
      */
     public Class getObjectClass();
 

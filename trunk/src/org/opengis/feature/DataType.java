@@ -1,6 +1,5 @@
 package org.opengis.feature;
 
-import java.io.ObjectStreamException;
 import java.io.Serializable;
 import java.util.Arrays;
 
@@ -11,9 +10,8 @@ import java.util.Arrays;
  * @author Chris Dillard
  */
 public final class DataType implements Comparable, Serializable, Cloneable {
-    
     private int code;
-    
+
     private String name;
 
     /**
@@ -76,7 +74,7 @@ public final class DataType implements Comparable, Serializable, Cloneable {
      * method is invoked by Java's serialization code.  This also eliminates the
      * need for an equals() method.
      */
-    private Object readResolve() throws ObjectStreamException {
+    private Object readResolve() {
         int index = Arrays.binarySearch(ALL, this);
         return ALL[index];
     }
