@@ -42,7 +42,7 @@ public interface ResponsibleParty {
     InternationalString getOrganisationName();
 
     /**
-     * Role or position of the responsible person
+     * Role or position of the responsible person.
      * Only one of {@link #getIndividualName individualName},
      * {@link #getOrganisationName organisationName} and <code>getPositionName</code>
      * should be provided.

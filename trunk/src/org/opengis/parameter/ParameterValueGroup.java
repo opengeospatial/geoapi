@@ -9,6 +9,9 @@
  *************************************************************************************************/
 package org.opengis.parameter;
 
+// J2SE dependencies
+import java.util.List;
+
 // OpenGIS dependencies
 import org.opengis.metadata.Identifier;  // For javadoc
 
@@ -18,11 +21,8 @@ import org.opengis.metadata.Identifier;  // For javadoc
  * {@linkplain org.opengis.referencing.operation.Operation operation} or higher level <code>ParameterValueGroup</code>,
  * if those instances contain different values of one or more {@link ParameterValue}s which suitably
  * distinquish among those groups.
- * 
- * We have made the following changes with respect to the original specification:
- * <p><b>OpperationParamter is confusing</b>
- * OpperationParameter renamed to ParameterDescriptor for clarity
- * </p>
+ *
+ * @revisit We have made the following changes with respect to the original specification:
  * <p>
  * <b>Cardinality and add:</b>
  * <b>add( ParameterValue value )</b> and 
@@ -61,13 +61,12 @@ import org.opengis.metadata.Identifier;  // For javadoc
  * we let any GeneralParameter have full cardinality control.
  * </p>
  * 
- * <p>
  * @UML abstract CC_ParameterValueGroup
  * @author ISO 19111
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/03-073r1.zip">Abstract specification 2.0</A>
  *
- * @see ParameterGroupDescriptor
+ * @see ParameterDescriptorGroup
  * @see ParameterValue
  */
 public interface ParameterValueGroup extends GeneralParameterValue {
@@ -83,25 +82,15 @@ public interface ParameterValueGroup extends GeneralParameterValue {
      *         Java extensions (e.g.
      *         {@link javax.media.jai.ParameterList.html#getParameterListDescriptor ParameterList}).
      */
-    // ParameterGroupDescriptor getDescriptor();
-    GeneralParameterDescriptor getDescriptor(); // needed for javadocs to show up
+/// ParameterDescriptorGroup getDescriptor();
     
     /**
      * Returns the values in this group.
      * 
      * @return The values.
      * @UML association includesValue
-     * @throws InvalidParameterValueException if this group is invalid
      */
-    GeneralParameterValue[] getValues() throws InvalidParameterValueException;
-
-    /* Proposed method similar to Map.values(): List to retrive values.
-     * 
-     * @param name
-     * @return
-     * @throws ParameterNotFoundException
-     */
-    //List values();
+    List/*<GeneralParameterValue>*/ values();
     
     /**
      * Returns the first value in this group for the specified {@linkplain Identifier#getCode
@@ -123,7 +112,6 @@ public interface ParameterValueGroup extends GeneralParameterValue {
      * @return The parameter value for the given identifier code.
      * @throws ParameterNotFoundException if there is no parameter value for the given identifier code.
      */
-    //ParameterValue getValue(String name) throws ParameterNotFoundException;
     ParameterValue parameter(String name) throws ParameterNotFoundException;
     
     /**
@@ -141,9 +129,12 @@ public interface ParameterValueGroup extends GeneralParameterValue {
      * @param parameter New parameter to be added to this group
      * @throws InvalidParameterTypeException if adding this parameter
      *  would result in more parameters than allowed by maxOccurs, or if this
-     *  parameter is not allowable by the groups descriptor 
+     *  parameter is not allowable by the groups descriptor.
+     *
+     * @revisit This method is not strictly necessary, since {@link #parameter}
+     *          can do the job.
      */
-    void add( ParameterValue parameter ) throws InvalidParameterTypeException;
+    void add(ParameterValue parameter) throws InvalidParameterTypeException;
     
     /**
      * Adds new parameter group to this group.
@@ -160,9 +151,11 @@ public interface ParameterValueGroup extends GeneralParameterValue {
      * @param group New ParameterValueGroup to be added to this group
      * @throws InvalidParameterTypeException if adding this parameter
      *  would result in more parameters than allowed by maxOccurs, or if this
-     *  parameter is not allowable by the groups descriptor 
+     *  parameter is not allowable by the groups descriptor.
+     *
+     * @revisit Which use case for this method?
      */
-    void add( ParameterValueGroup group ) throws InvalidParameterTypeException;
+    void add(ParameterValueGroup group) throws InvalidParameterTypeException;
     
     /**
      * Convenience method used to locate ParameterValue(s) by descriptor.
@@ -170,15 +163,15 @@ public interface ParameterValueGroup extends GeneralParameterValue {
      * @param type ParameterDescriptor used for lookup
      * @return Array of ParameterValuelength corasponding to cardinality of the descriptor
      */
-    ParameterValue[] parameter( ParameterDescriptor parameterType );
+//    ParameterValue[] parameter(ParameterDescriptor parameterType);
 
     /**
      * Convenience method used to locate ParameterValueGroup(s) by descriptor.
      * 
-     * @param groupType ParameterGroupDescriptor
+     * @param groupType ParameterDescriptorGroup
      * @return Array of ParameterValueGroup length corasponding to cardinality of the descriptor
      */
-    ParameterValueGroup[] group( ParameterGroupDescriptor groupType );
+//    ParameterValueGroup[] group(ParameterDescriptorGroup groupType);
     
     /**
      * Returns a copy of this group of parameter values.

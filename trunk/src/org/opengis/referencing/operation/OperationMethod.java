@@ -14,7 +14,7 @@ import java.util.Locale;
 
 // OpenGIS direct dependencies
 import org.opengis.referencing.IdentifiedObject;
-import org.opengis.parameter.ParameterGroupDescriptor;
+import org.opengis.parameter.ParameterDescriptorGroup;
 
 
 /**
@@ -66,5 +66,5 @@ public interface OperationMethod extends IdentifiedObject {
      * @return The parameters, or an empty array if none.
      * @UML association usesParameter
      */
-    ParameterGroupDescriptor getParameters();
+    ParameterDescriptorGroup getParameters();
 }

@@ -24,7 +24,7 @@ import javax.units.Unit;
  * @version <A HREF="http://www.opengis.org/docs/03-073r1.zip">Abstract specification 2.0</A>
  *
  * @see ParameterValue
- * @see ParameterGroupDescriptor
+ * @see ParameterDescriptorGroup
  */
 public interface ParameterDescriptor extends GeneralParameterDescriptor {
     /**

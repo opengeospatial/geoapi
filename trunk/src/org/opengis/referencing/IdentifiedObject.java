@@ -53,7 +53,7 @@ public interface IdentifiedObject {
      *          "{@link org.opengis.referencing.operation.CoordinateOperation coordinateOperation}",
      *          "{@link org.opengis.referencing.operation.OperationMethod method}",
      *          "{@link org.opengis.parameter.ParameterDescriptor parameter}" and
-     *          "{@link org.opengis.parameter.ParameterGroupDescriptor group}"
+     *          "{@link org.opengis.parameter.ParameterDescriptorGroup group}"
      *          prefix, which stands as an abbreviation for the enclosing class.
      */
     public InternationalString getName();

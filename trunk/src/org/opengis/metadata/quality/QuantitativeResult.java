@@ -58,5 +58,5 @@ public interface QuantitativeResult extends Result {
      *
      * @UML optional errorStatistic
      */
-    InternationalString getRrrorStatistic();
+    InternationalString getErrorStatistic();
 }
