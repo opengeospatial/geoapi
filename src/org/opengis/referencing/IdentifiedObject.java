@@ -39,7 +39,7 @@ public interface IdentifiedObject {
      *
      * @revisit According latest ISO 19111, the return type should be {@link Identifier}.
      */
-    public InternationalString getName();
+    InternationalString getName();
 
     /**
      * The name by which this object is identified. 
@@ -47,7 +47,7 @@ public interface IdentifiedObject {
      * @UML mandatory name
      * @deprecated Replaced by {@link #getName()}.
      */
-    public String getName(Locale locale);
+    String getName(Locale locale);
 
     /**
      * An alternative name by which this object is identified..
@@ -55,7 +55,7 @@ public interface IdentifiedObject {
      * @return The aliases, or an empty array if there is none.
      * @UML optional alias
      */
-    public GenericName[] getAliases();
+    GenericName[] getAliases();
 
     /**
      * An identifier which references elsewhere the object's defining information.

@@ -36,8 +36,6 @@ public class NoSuchEnumerationException extends Exception {
     
     /**
      * Returns the invalid value.
-     *
-     * @return the invalid value.
      */
     public int getValue() {
         return value;

@@ -9,11 +9,14 @@
  *************************************************************************************************/
 package org.opengis.parameter;
 
+// Annotations
+///import org.opengis.annotation.UML;
+///import static org.opengis.annotation.Obligation.*;
+
 
 /**
  * Thrown when an invalid value was given to a {@linkplain ParameterValue parameter}.
  *
- * @UML exception GC_InvalidParameterValue
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-004.pdf">Grid Coverage specification 1.0</A>
  *
@@ -21,6 +24,7 @@ package org.opengis.parameter;
  * @see ParameterValue#setValue(double)
  * @see ParameterValue#setValue(Object)
  */
+///@UML (identifier="GC_InvalidParameterValue")
 public class InvalidParameterValueException extends IllegalArgumentException {
     /**
      * Serial number for interoperability with different versions.

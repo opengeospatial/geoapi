@@ -27,7 +27,6 @@ public interface Cloneable extends java.lang.Cloneable {
      * Creates and returns a copy of this object.
      * The precise meaning of "copy" may depend on the class of the object.
      *
-     * @return A clone of this instance.
      * @see Object#clone
      */
     public Object clone();

@@ -13,12 +13,15 @@ package org.opengis.parameter;
 import java.util.Set;
 import javax.units.Unit;
 
+// Annotations
+///import org.opengis.annotation.UML;
+///import static org.opengis.annotation.Obligation.*;
+
 
 /**
  * The definition of a parameter used by an operation method. Most parameter values are
  * numeric, but other types of parameter values are possible.
  *  
- * @UML abstract CC_OperationParameter
  * @author ISO 19111
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/03-073r1.zip">Abstract specification 2.0</A>
@@ -26,6 +29,7 @@ import javax.units.Unit;
  * @see ParameterValue
  * @see ParameterDescriptorGroup
  */
+///@UML (identifier="CC_OperationParameter")
 public interface ParameterDescriptor extends GeneralParameterDescriptor {
     /**
      * Creates a new instance of {@linkplain ParameterValue parameter value}
@@ -37,11 +41,8 @@ public interface ParameterDescriptor extends GeneralParameterDescriptor {
 
     /**
      * Returns the class that describe the type of the parameter.
-     *
-     * @return The parameter value class.
-     *
-     * @UML mandatory type in Grid Coverage specification
      */
+/// @UML (identifier="GC_ParameterInfo.type", obligation=MANDATORY)
     Class getValueClass();
 
     /**
@@ -69,9 +70,8 @@ public interface ParameterDescriptor extends GeneralParameterDescriptor {
      * then this method returns <code>null</code>.
      *
      * @return The default value, or <code>null</code> in none.
-     *
-     * @UML optional defaultValue in Grid Coverage specification
      */
+/// @UML (identifier="GC_ParameterInfo.defaultValue", obligation=OPTIONAL)
     Object getDefaultValue();
 
     /**
@@ -85,9 +85,8 @@ public interface ParameterDescriptor extends GeneralParameterDescriptor {
      * may be used to constrain the contained elements.
      * </p>
      * @return The minimum parameter value (often an instance of {@link Double}), or <code>null</code>.
-     *
-     * @UML optional minimumValue in Grid Coverage specification
      */
+/// @UML (identifier="GC_ParameterInfo.minimumValue", obligation=OPTIONAL)
     Comparable getMinimumValue();
 
     /**
@@ -101,9 +100,8 @@ public interface ParameterDescriptor extends GeneralParameterDescriptor {
      * may be used to constratin the contained elements.
      * </p>
      * @return The minimum parameter value (often an instance of {@link Double}), or <code>null</code>.
-     *
-     * @UML optional maximumValue in Grid Coverage specification
      */
+/// @UML (identifier="GC_ParameterInfo.maximumValue", obligation=OPTIONAL)
     Comparable getMaximumValue();
 
     /**

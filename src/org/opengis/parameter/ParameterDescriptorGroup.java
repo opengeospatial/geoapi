@@ -12,11 +12,14 @@ package org.opengis.parameter;
 // OpenGIS dependencies
 import org.opengis.metadata.Identifier;  // For javadoc
 
+// Annotations
+///import org.opengis.annotation.UML;
+///import static org.opengis.annotation.Obligation.*;
+
 
 /**
  * The definition of a group of related parameters used by an operation method.
  *  
- * @UML abstract CC_OperationParameterGroup
  * @author ISO 19111
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/03-073r1.zip">Abstract specification 2.0</A>
@@ -24,6 +27,7 @@ import org.opengis.metadata.Identifier;  // For javadoc
  * @see ParameterValueGroup
  * @see ParameterDescriptor
  */
+///@UML (identifier="CC_OperationParameterGroup")
 public interface ParameterDescriptorGroup extends GeneralParameterDescriptor {
     /**
      * Creates a new instance of {@linkplain ParameterValueGroup parameter value group}
@@ -48,10 +52,8 @@ public interface ParameterDescriptorGroup extends GeneralParameterDescriptor {
  
     /**
      * Returns the parameters in this group.
-     *
-     * @return The parameters.
-     * @UML association includesParameter
      */
+/// @UML (identifier="includesParameter", obligation=MANDATORY)
     GeneralParameterDescriptor[] getParameters();
 
     /**

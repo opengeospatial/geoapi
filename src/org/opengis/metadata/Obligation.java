@@ -38,7 +38,7 @@ public final class Obligation extends CodeList {
     private static final List VALUES = new ArrayList(2);
 
     /**
-     * element is always required
+     * Element is always required.
      *
      * @UML conditional mandatory
      */
@@ -52,7 +52,7 @@ public final class Obligation extends CodeList {
     public static final Obligation OPTIONAL = new Obligation("OPTIONAL");
 
     /**
-     * Element is required when specific a specific condition is met.
+     * Element is required when a specific condition is met.
      *
      * @UML conditional conditional
      */
