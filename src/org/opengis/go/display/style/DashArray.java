@@ -21,6 +21,12 @@ package org.opengis.go.display.style;
 public class DashArray extends LinePattern {
 
     //*************************************************************************
+    //  Static Fields
+    //*************************************************************************
+   
+	public static final DashArray NONE = new DashArray("NONE", "No Dash Array", new float[0]);
+
+    //*************************************************************************
     //  Fields
     //*************************************************************************
 

@@ -99,7 +99,7 @@ public interface PointSymbolizer {
     public static final Color DEFAULT_POINT_STROKE_COLOR = Color.BLACK;
    
 	/**  Default dash array value.  */
-	public static final DashArray DEFAULT_POINT_STROKE_DASH_ARRAY = (DashArray) LinePattern.NONE;
+	public static final DashArray DEFAULT_POINT_STROKE_DASH_ARRAY = (DashArray) DashArray.NONE;
     
 	/**  Default dash offset value.  */
 	public static final float DEFAULT_POINT_STROKE_DASH_OFFSET = 0.f;
