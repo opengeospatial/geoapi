@@ -1,14 +1,12 @@
-/*
- * OpenGIS® Coordinate Transformation Services Implementation Specification
- * Copyright (2001) OpenGIS consortium
- *
- * THIS COPYRIGHT NOTICE IS A TEMPORARY PATCH.   Version 1.00 of official
- * OpenGIS's interface files doesn't contain a copyright notice yet. This
- * file is a slightly modified version of official OpenGIS's interface.
- * Changes have been done in order to fix RMI problems and are documented
- * on the SEAGIS web site (seagis.sourceforge.net). THIS FILE WILL LIKELY
- * BE REPLACED BY NEXT VERSION OF OPENGIS SPECIFICATIONS.
- */
+/*$************************************************************************************************
+ **
+ ** $Id$
+ **
+ ** $Source$
+ **
+ ** Copyright (C) 2001 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
+ **
+ *************************************************************************************************/
 package org.opengis.cs;
 
 // Various JDK's classes
@@ -26,6 +24,8 @@ import java.io.Serializable;
  * @since   1.00
  * @author Martin Daly
  * @author Martin Desruisseaux
+ *
+ * @deprecated Replaced by {@link org.opengis.crs.cs.AxisDirection}.
  */
 public class CS_AxisOrientationEnum implements Serializable {
     /**
@@ -37,42 +37,56 @@ public class CS_AxisOrientationEnum implements Serializable {
     /**
      * Unknown or unspecified axis orientation.
      * This can be used for local or fitted coordinate systems. 
+     *
+     * @deprecated Replaced by {@link org.opengis.crs.cs.AxisDirection#OTHER}.
      */
     public static final int CS_AO_Other=0;
 
     /**
      * Increasing ordinates values go North.
      * This is usually used for Grid Y coordinates and Latitude.
+     *
+     * @deprecated Replaced by {@link org.opengis.crs.cs.AxisDirection#NORTH}.
      */
     public static final int CS_AO_North=1;
 
     /**
      * Increasing ordinates values go South.
      * This is rarely used.
+     *
+     * @deprecated Replaced by {@link org.opengis.crs.cs.AxisDirection#SOUTH}.
      */
     public static final int CS_AO_South=2;
 
     /**
      * Increasing ordinates values go East.
      * This is rarely used.
+     *
+     * @deprecated Replaced by {@link org.opengis.crs.cs.AxisDirection#EAST}.
      */
     public static final int CS_AO_East=3;
 
     /**
      * Increasing ordinates values go West.
      * This is usually used for Grid X coordinates and Longitude.
+     *
+     * @deprecated Replaced by {@link org.opengis.crs.cs.AxisDirection#WEST}.
      */
     public static final int CS_AO_West=4;
 
     /**
      * Increasing ordinates values go up.
      * This is used for vertical coordinate systems.
+     *
+     * @deprecated Replaced by {@link org.opengis.crs.cs.AxisDirection#UP}.
      */
     public static final int CS_AO_Up=5;
 
     /**
      * Increasing ordinates values go down.
      * This is used for vertical coordinate systems.
+     *
+     * @deprecated Replaced by {@link org.opengis.crs.cs.AxisDirection#DOWN}.
      */
     public static final int CS_AO_Down=6;
 

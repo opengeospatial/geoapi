@@ -1,14 +1,12 @@
-/*
- * OpenGIS® Coordinate Transformation Services Implementation Specification
- * Copyright (2001) OpenGIS consortium
- *
- * THIS COPYRIGHT NOTICE IS A TEMPORARY PATCH.   Version 1.00 of official
- * OpenGIS's interface files doesn't contain a copyright notice yet. This
- * file is a slightly modified version of official OpenGIS's interface.
- * Changes have been done in order to fix RMI problems and are documented
- * on the SEAGIS web site (seagis.sourceforge.net). THIS FILE WILL LIKELY
- * BE REPLACED BY NEXT VERSION OF OPENGIS SPECIFICATIONS.
- */
+/*$************************************************************************************************
+ **
+ ** $Id$
+ **
+ ** $Source$
+ **
+ ** Copyright (C) 2001 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
+ **
+ *************************************************************************************************/
 package org.opengis.cs;
 
 // JDK's classes
@@ -24,10 +22,14 @@ import java.rmi.RemoteException;
  * @version 1.01
  * @since   1.00
  * @author Martin Daly
+ *
+ * @deprecated Replaced by {@link org.opengis.crs.crs.CRSAuthorityFactory}.
  */
 public interface CS_CoordinateSystemAuthorityFactory extends Remote {
     /**
      * Returns the authority name.
+     *
+     * @deprecated Replaced by {@link org.opengis.crs.AuthorityFactory#getAuthority}.
      */
     String getAuthority() throws RemoteException;
 
@@ -36,6 +38,8 @@ public interface CS_CoordinateSystemAuthorityFactory extends Remote {
      *
      * @param code Value allocated by authority.
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated Replaced by {@link org.opengis.crs.crs.CRSAuthorityFactory#createProjectedCRS}.
      */
     CS_ProjectedCoordinateSystem createProjectedCoordinateSystem(String code) throws RemoteException;
 
@@ -44,6 +48,8 @@ public interface CS_CoordinateSystemAuthorityFactory extends Remote {
      *
      * @param code Value allocated by authority.
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated Replaced by {@link org.opengis.crs.crs.CRSAuthorityFactory#createGeographicCRS}.
      */
     CS_GeographicCoordinateSystem createGeographicCoordinateSystem(String code) throws RemoteException;
 
@@ -52,6 +58,8 @@ public interface CS_CoordinateSystemAuthorityFactory extends Remote {
      *
      * @param code Value allocated by authority.
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated Replaced by {@link org.opengis.crs.datum.DatumAuthorityFactory#createGeodeticDatum}.
      */
     CS_HorizontalDatum createHorizontalDatum(String code) throws RemoteException;
 
@@ -60,6 +68,8 @@ public interface CS_CoordinateSystemAuthorityFactory extends Remote {
      *
      * @param code Value allocated by authority.
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated Replaced by {@link org.opengis.crs.datum.DatumAuthorityFactory#createEllipsoid}.
      */
     CS_Ellipsoid createEllipsoid(String code) throws RemoteException;
 
@@ -68,6 +78,8 @@ public interface CS_CoordinateSystemAuthorityFactory extends Remote {
      *
      * @param code Value allocated by authority.
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated Replaced by {@link org.opengis.crs.datum.DatumAuthorityFactory#createPrimeMeridian}.
      */
     CS_PrimeMeridian createPrimeMeridian(String code) throws RemoteException;
 
@@ -76,6 +88,8 @@ public interface CS_CoordinateSystemAuthorityFactory extends Remote {
      *
      * @param code Value allocated by authority.
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated Replaced by {@link org.opengis.crs.datum.DatumAuthorityFactory#createUnit}.
      */
     CS_LinearUnit createLinearUnit(String code) throws RemoteException;
 
@@ -84,6 +98,8 @@ public interface CS_CoordinateSystemAuthorityFactory extends Remote {
      *
      * @param code Value allocated by authority.
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated Replaced by {@link org.opengis.crs.datum.DatumAuthorityFactory#createUnit}.
      */
     CS_AngularUnit createAngularUnit(String code) throws RemoteException;
 
@@ -92,6 +108,8 @@ public interface CS_CoordinateSystemAuthorityFactory extends Remote {
      *
      * @param code Value allocated by authority.
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated Replaced by {@link org.opengis.crs.datum.DatumAuthorityFactory#createVerticalDatum}.
      */
     CS_VerticalDatum createVerticalDatum(String code) throws RemoteException;
 
@@ -100,6 +118,8 @@ public interface CS_CoordinateSystemAuthorityFactory extends Remote {
      *
      * @param code Value allocated by authority.
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated Replaced by {@link org.opengis.crs.crs.CRSAuthorityFactory#createVerticalCRS}.
      */
     CS_VerticalCoordinateSystem createVerticalCoordinateSystem(String code) throws RemoteException;
 
@@ -108,6 +128,8 @@ public interface CS_CoordinateSystemAuthorityFactory extends Remote {
      *
      * @param code Value allocated by authority.
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated Replaced by {@link org.opengis.crs.crs.CRSAuthorityFactory#createCompoundCRS}.
      */
     CS_CompoundCoordinateSystem createCompoundCoordinateSystem(String code) throws RemoteException;
 
@@ -117,6 +139,8 @@ public interface CS_CoordinateSystemAuthorityFactory extends Remote {
      *
      * @param code Value allocated by authority.
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated No replacement.
      */
     CS_HorizontalCoordinateSystem createHorizontalCoordinateSystem(String code) throws RemoteException;
 
@@ -125,6 +149,8 @@ public interface CS_CoordinateSystemAuthorityFactory extends Remote {
      *
      * @param code Value allocated by authority.
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated Replaced by {@link org.opengis.crs.AuthorityFactory#getDescriptionText}.
      */
     String descriptionText(String code) throws RemoteException;
 
@@ -137,6 +163,8 @@ public interface CS_CoordinateSystemAuthorityFactory extends Remote {
      *
      * @param wkt Name of geoid defined by OGC (e.g. "European_Datum_1950").
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated Replaced by {@link org.opengis.crs.datum.DatumAuthorityFactory#geoidFromWKTName}.
      */
     String geoidFromWKTName(String wkt) throws RemoteException;
 
@@ -148,6 +176,8 @@ public interface CS_CoordinateSystemAuthorityFactory extends Remote {
      *
      * @param geoid Code value for geoid allocated by authority.
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated Replaced by {@link org.opengis.crs.datum.DatumAuthorityFactory#wktGeoidName}.
      */
     String wktGeoidName(String geoid) throws RemoteException;
 }
