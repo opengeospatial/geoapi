@@ -11,7 +11,7 @@
 package org.opengis.go;
 
 import org.opengis.crs.crs.CoordinateReferenceSystem;
-import org.opengis.crs.crs.projection.ProjectionKey;
+import org.opengis.crs.projection.ProjectionKey;
 import org.opengis.go.spatial.PathType;
 
 /**

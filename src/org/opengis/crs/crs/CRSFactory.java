@@ -27,6 +27,7 @@ import org.opengis.crs.datum.TemporalDatum;
 import org.opengis.crs.datum.VerticalDatum;
 import org.opengis.crs.operation.Conversion;
 import org.opengis.crs.operation.MathTransform;
+import org.opengis.crs.projection.Projection;
 import org.opengis.spatialschema.geometry.DirectPosition;
 
 
@@ -149,7 +150,7 @@ public interface CRSFactory extends Factory {
      * @param cs The coordinate system for the projected CRS.
      * @throws FactoryException if the object creation failed.
      */
-    ProjectedCRS createProjectedCRS(Map properties, GeographicCRS geoCRS, Conversion toProjected,
+    ProjectedCRS createProjectedCRS(Map properties, GeographicCRS geoCRS, Projection toProjected,
             CartesianCS cs) throws FactoryException;
 
     /**
