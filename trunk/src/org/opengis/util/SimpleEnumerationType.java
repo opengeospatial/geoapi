@@ -61,7 +61,7 @@ public abstract class SimpleEnumerationType extends CodeList implements Comparab
      * @param description the description for the enum.
      */
     protected SimpleEnumerationType(Collection values, String name, String description) {
-        super(values, name);
+        super(name, values);
         this.description = description;
         this.icon = getNullIcon();
     }
@@ -76,7 +76,7 @@ public abstract class SimpleEnumerationType extends CodeList implements Comparab
      * @param icon the icon for the enum.
      */
     protected SimpleEnumerationType(Collection values, String name, String description, Icon icon) {
-        super(values, name);
+        super(name, values);
         this.description = description;
         this.icon = icon;
     }
@@ -100,6 +100,7 @@ public abstract class SimpleEnumerationType extends CodeList implements Comparab
 
     /**
      * Gets the description for this enumeration value.
+     *
      * @return the description.
      */
     public String getDescription() {
@@ -108,6 +109,7 @@ public abstract class SimpleEnumerationType extends CodeList implements Comparab
 
     /**
      * Gets the icon for this enumeration value.
+     *
      * @return the icon.
      */
     public Icon getIcon() {

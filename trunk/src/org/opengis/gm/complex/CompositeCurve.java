@@ -39,5 +39,5 @@ public interface CompositeCurve extends Composite, OrientableCurve {
      * @return The list of orientable curves in this composite.
      * @UML association generator
      */
-    public List/*<OrientableCurve>*/ getGenerators();
+    public List<OrientableCurve> getGenerators();
 }

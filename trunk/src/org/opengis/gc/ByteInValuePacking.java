@@ -4,9 +4,6 @@
 package org.opengis.gc;
 
 //J2SE direct dependencies
-import java.util.List;
-import java.util.Arrays;
-import java.util.Collections;
 import java.nio.ByteOrder;  // For Javadoc
 
 //OpenGIS direct dependencies
@@ -33,7 +30,7 @@ public final class ByteInValuePacking extends CodeList {
      * @UML conditional GC_wkbXDR
      * @see ByteOrder#BIG_ENDIAN
      */
-    public static final ByteInValuePacking WKB_XDR = new ByteInValuePacking(0, "WKB_XDR");
+    public static final ByteInValuePacking WKB_XDR = new ByteInValuePacking("WKB_XDR", 0);
 
     /**
      * Little Endian.
@@ -41,32 +38,32 @@ public final class ByteInValuePacking extends CodeList {
      * @UML conditional GC_wkbNDR
      * @see ByteOrder#LITTLE_ENDIAN
      */
-    public static final ByteInValuePacking WKB_NDR = new ByteInValuePacking(1, "WKB_NDR");
+    public static final ByteInValuePacking WKB_NDR = new ByteInValuePacking("WKB_NDR", 1);
 
     /**
      * List of all enumerations of this type.
      */
-    private static final List VALUES = Collections.unmodifiableList(Arrays.asList(new ByteInValuePacking[]{
-            WKB_XDR, WKB_NDR}));
+    private static final ByteInValuePacking[] VALUES = new ByteInValuePacking[] {
+            WKB_XDR, WKB_NDR };
 
     /**
      * Constructs an enum with the given name.
      */
-    private ByteInValuePacking(final int ordinal, final String name) {
-        super(ordinal, name);
+    private ByteInValuePacking(final String name, final int ordinal) {
+        super(name, ordinal);
     }
 
     /**
      * Returns the list of <code>ByteInValuePacking</code>s.
      */
-    public static List values() {
-        return VALUES;
+    public static ByteInValuePacking[] values() {
+        return (ByteInValuePacking[]) VALUES.clone();
     }
 
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
-    public List family() {
-        return VALUES;
+    public ByteInValuePacking[] family() {
+        return values();
     }
 }

@@ -13,7 +13,6 @@ package org.opengis.go.spatial;
 import java.util.List;
 import java.util.Iterator;
 import java.util.ArrayList;
-import java.util.Collections;
 
 // OpenGIS direct dependencies
 import org.opengis.util.NoSuchEnumerationException;
@@ -43,12 +42,7 @@ public class VectorPathType extends PathType {
      * The list of enumeration available in this virtual machine.
      * <strong>Must be declared first!</strong>.
      */
-    private static final List mutableValues = new ArrayList();
-
-    /**
-     * An immutable view of {@link #mutableValues} to be returned by {@link #values()}.
-     */
-    private static final List values = Collections.unmodifiableList(mutableValues);
+    private static final List VALUES = new ArrayList(1);
 
     /**
      * The path that is the Euclidean shortest distance path.
@@ -64,7 +58,7 @@ public class VectorPathType extends PathType {
      * @param description the description for the enum.
      */
     protected VectorPathType(String name, String description) {
-        super(mutableValues, name, description);
+        super(VALUES, name, description);
     }
 
     /**
@@ -74,9 +68,10 @@ public class VectorPathType extends PathType {
      * @throws NoSuchEnumerationException If there is no object for the given value.
      */
     public static VectorPathType valueOf(int value) throws NoSuchEnumerationException {
-        for (final Iterator it=values.iterator(); it.hasNext();) {
-            final VectorPathType e = (VectorPathType) it.next();
-            if (e.ordinal() == value) {
+        synchronized (VALUES) {
+            if (value>=0 && value<VALUES.size()) {
+                final VectorPathType e = (VectorPathType) VALUES.get(value);
+                assert e.ordinal() == value : value;
                 return e;
             }
         }
@@ -87,17 +82,19 @@ public class VectorPathType extends PathType {
      * Returns the list of <code>VectorPathType</code>s.
      * Useful when making comboboxes like:
      * <pre>
-     * JComboBox comboBox = new JComboBox(VectorPathType.values().toArray());
+     * JComboBox comboBox = new JComboBox(VectorPathType.values());
      * </pre>
      */
-    public static List values() {
-        return values;
+    public static VectorPathType[] values() {
+        synchronized (VALUES) {
+            return (VectorPathType[]) VALUES.toArray(new VectorPathType[VALUES.size()]);
+        }
     }
 
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
-    public List family() {
-        return values;
+    public VectorPathType[] family() {
+        return values();
     }
 }

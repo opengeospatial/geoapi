@@ -3,11 +3,6 @@
  */
 package org.opengis.cd;
 
-//J2SE direct dependencies
-import java.util.List;
-import java.util.Arrays;
-import java.util.Collections;
-
 //OpenGIS direct dependencies
 import org.opengis.util.CodeList;
 
@@ -31,7 +26,7 @@ public final class PixelinCell extends CodeList {
      *
      * @UML conditional cell&nbsp;center
      */
-    public static final PixelinCell CELL_CENTER = new PixelinCell(0, "cell center");
+    public static final PixelinCell CELL_CENTER = new PixelinCell("CELL_CENTER", 0);
 
     /**
      * The origin of the image coordinate system is the corner of a grid cell, or half-way
@@ -39,32 +34,32 @@ public final class PixelinCell extends CodeList {
      *
      * @UML conditional cell&nbsp;corner
      */
-    public static final PixelinCell CELL_CORNER = new PixelinCell(1, "cell corner");
+    public static final PixelinCell CELL_CORNER = new PixelinCell("CELL_CORNER", 1);
 
     /**
      * List of all enumerations of this type.
      */
-    private static final List VALUES = Collections.unmodifiableList(Arrays.asList(new PixelinCell[]{
-            CELL_CENTER, CELL_CORNER }));
+    private static final PixelinCell[] VALUES = new PixelinCell[] {
+            CELL_CENTER, CELL_CORNER };
 
     /**
      * Constructs an enum with the given name.
      */
-    private PixelinCell(final int ordinal, final String name) {
-        super(ordinal, name);
+    private PixelinCell(final String name, final int ordinal) {
+        super(name, ordinal);
     }
 
     /**
      * Returns the list of <code>PixelinCell</code>s.
      */
-    public static List values() {
-        return VALUES;
+    public static PixelinCell[] values() {
+        return (PixelinCell[]) VALUES.clone();
     }
 
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
-    public List family() {
-        return VALUES;
+    public PixelinCell[] family() {
+        return values();
     }
 }

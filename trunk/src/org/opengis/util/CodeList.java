@@ -4,7 +4,6 @@
 package org.opengis.util;
 
 // J2SE direct dependencies
-import java.util.List;
 import java.util.Collection;
 import java.io.Serializable;
 import java.io.ObjectStreamException;
@@ -25,32 +24,34 @@ public abstract class CodeList implements Serializable {
 
     /**
      * The code value.
+     * For J2SE 1.3 profile only.
      */
     private final int ordinal;
 
     /**
      * The code name.
+     * For J2SE 1.3 profile only.
      */
     private final String name;
 
     /**
      * Create a new code list instance.
      *
-     * @param ordinal The code value.
      * @param name The code name.
+     * @param ordinal The code value.
      */
-    protected CodeList(final int ordinal, final String name) {
-        this.ordinal = ordinal;
+    protected CodeList(final String name, final int ordinal) {
         this.name    = name;
+        this.ordinal = ordinal;
     }
 
     /**
      * Create a new code list instance and add it to the given collection.
      *
-     * @param ordinal The collection to add the enum to.
      * @param name The code name.
+     * @param ordinal The collection to add the enum to.
      */
-    CodeList(final Collection values, final String name) {
+    CodeList(final String name, final Collection values) {
         this.name = name;
         synchronized(values) {
             this.ordinal = values.size();
@@ -82,7 +83,7 @@ public abstract class CodeList implements Serializable {
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
-    public abstract List family();
+    public abstract CodeList[] family();
 
     /**
      * Returns a string representation of this code list.
@@ -104,7 +105,7 @@ public abstract class CodeList implements Serializable {
      */
     protected Object readResolve() throws ObjectStreamException {
         try {
-            return family().get(ordinal);
+            return family()[ordinal];
         } catch (IndexOutOfBoundsException cause) {
             final ObjectStreamException exception = new InvalidObjectException(toString());
             exception.initCause(cause);

@@ -3,11 +3,6 @@
  */
 package org.opengis.gc;
 
-//J2SE direct dependencies
-import java.util.List;
-import java.util.Arrays;
-import java.util.Collections;
-
 //OpenGIS direct dependencies
 import org.opengis.util.CodeList;
 import org.opengis.cv.SampleDimensionType; // For Javadoc
@@ -35,39 +30,39 @@ public final class ValueInBytePacking extends CodeList {
      *
      * @UML conditional GC_LoBitFirst
      */
-    public static final ValueInBytePacking LO_BIT_FIRST = new ValueInBytePacking(0, "LO_BIT_FIRST");
+    public static final ValueInBytePacking LO_BIT_FIRST = new ValueInBytePacking("LO_BIT_FIRST", 0);
 
     /**
      * High bit first (big endian order).
      *
      * @UML conditional GC_HiBitFirst
      */
-    public static final ValueInBytePacking HI_BIT_FIRST = new ValueInBytePacking(1, "HI_BIT_FIRST");
+    public static final ValueInBytePacking HI_BIT_FIRST = new ValueInBytePacking("HI_BIT_FIRST", 1);
 
     /**
      * List of all enumerations of this type.
      */
-    private static final List VALUES = Collections.unmodifiableList(Arrays.asList(new ValueInBytePacking[]{
-            LO_BIT_FIRST, HI_BIT_FIRST}));
+    private static final ValueInBytePacking[] VALUES = new ValueInBytePacking[] {
+            LO_BIT_FIRST, HI_BIT_FIRST };
 
     /**
      * Constructs an enum with the given name.
      */
-    private ValueInBytePacking(final int ordinal, final String name) {
-        super(ordinal, name);
+    private ValueInBytePacking(final String name, final int ordinal) {
+        super(name, ordinal);
     }
 
     /**
      * Returns the list of <code>ValueInBytePacking</code>s.
      */
-    public static List values() {
-        return VALUES;
+    public static ValueInBytePacking[] values() {
+        return (ValueInBytePacking[]) VALUES.clone();
     }
 
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
-    public List family() {
-        return VALUES;
+    public ValueInBytePacking[] family() {
+        return values();
     }
 }

@@ -3,12 +3,6 @@
  */
 package org.opengis.gc;
 
-//J2SE direct dependencies
-import java.util.List;
-import java.util.Arrays;
-import java.util.Collections;
-import java.nio.ByteOrder;         // For Javadoc
-
 //OpenGIS direct dependencies
 import org.opengis.util.CodeList;
 import org.opengis.sc.CRS;         // For Javadoc
@@ -34,97 +28,97 @@ public final class ParameterType extends CodeList {
      *
      * @UML conditional GC_IntegerType
      */
-    public static final ParameterType INTEGER_TYPE = new ParameterType(0, "INTEGER_TYPE");
+    public static final ParameterType INTEGER_TYPE = new ParameterType("INTEGER_TYPE", 0);
 
     /**
      * Floating point parameter ({@link Float} or {@link Double}).
      *
      * @UML conditional GC_FloatingPointType
      */
-    public static final ParameterType FLOATING_POINT_TYPE = new ParameterType(1, "FLOATING_POINT_TYPE");
+    public static final ParameterType FLOATING_POINT_TYPE = new ParameterType("FLOATING_POINT_TYPE", 1);
 
     /**
      * String parameter ({@link String}).
      *
      * @UML conditional GC_StringType
      */
-    public static final ParameterType STRING_TYPE = new ParameterType(2, "STRING_TYPE");
+    public static final ParameterType STRING_TYPE = new ParameterType("STRING_TYPE", 2);
 
     /**
      * Sequence of numbers.
      *
      * @UML conditional GC_VectorType
      */
-    public static final ParameterType VECTOR_TYPE = new ParameterType(3, "VECTOR_TYPE");
+    public static final ParameterType VECTOR_TYPE = new ParameterType("VECTOR_TYPE", 3);
 
     /**
      * Grid coverage instance ({@link GridCoverage}).
      *
      * @UML conditional GC_GridCoverageType
      */
-    public static final ParameterType GRID_COVERAGE_TYPE = new ParameterType(4, "GRID_COVERAGE_TYPE");
+    public static final ParameterType GRID_COVERAGE_TYPE = new ParameterType("GRID_COVERAGE_TYPE", 4);
 
     /**
      * Conversion instance ({@linkplain Conversion}).
      *
      * @UML conditional CT_MathTransformType
      */
-    public static final ParameterType CONVERSION_TYPE = new ParameterType(5, "CONVERSION_TYPE");
+    public static final ParameterType CONVERSION_TYPE = new ParameterType("CONVERSION_TYPE", 5);
 
     /**
      * Coordinate reference system instance ({@link CRS}).
      *
      * @UML conditional CS_CoordinateSystemType
      */
-    public static final ParameterType CRS_TYPE = new ParameterType(6, "CRS_TYPE");
+    public static final ParameterType CRS_TYPE = new ParameterType("CRS_TYPE", 6);
 
     /**
      * Grid geometry instance ({@link GridGeometry}).
      *
      * @UML conditional GC_GridGeometryType
      */
-    public static final ParameterType GRID_GEOMETRY_TYPE = new ParameterType(7, "GRID_GEOMETRY_TYPE");
+    public static final ParameterType GRID_GEOMETRY_TYPE = new ParameterType("GRID_GEOMETRY_TYPE", 7);
 
     /**
      * Byte in value packing enumeration ({@link ByteInValuePacking}).
      *
      * @UML conditional GC_ByteInValuePackingType
      */
-    public static final ParameterType BYTE_IN_VALUE_PACKING_TYPE = new ParameterType(8, "BYTE_IN_VALUE_PACKING_TYPE");
+    public static final ParameterType BYTE_IN_VALUE_PACKING_TYPE = new ParameterType("BYTE_IN_VALUE_PACKING_TYPE", 8);
 
     /**
      * Value in byte packing enumeration ({@link ValueInBytePacking}).
      *
      * @UML conditional GC_ValueInBytePackingType
      */
-    public static final ParameterType VALUE_IN_BYTE_PACKING_TYPE = new ParameterType(9, "VALUE_IN_BYTE_PACKING_TYPE");
+    public static final ParameterType VALUE_IN_BYTE_PACKING_TYPE = new ParameterType("VALUE_IN_BYTE_PACKING_TYPE", 9);
 
     /**
      * List of all enumerations of this type.
      */
-    private static final List VALUES = Collections.unmodifiableList(Arrays.asList(new ParameterType[]{
+    private static final ParameterType[] VALUES = new ParameterType[] {
             INTEGER_TYPE, FLOATING_POINT_TYPE, STRING_TYPE, VECTOR_TYPE, GRID_COVERAGE_TYPE,
             CONVERSION_TYPE, CRS_TYPE, GRID_GEOMETRY_TYPE, BYTE_IN_VALUE_PACKING_TYPE,
-            VALUE_IN_BYTE_PACKING_TYPE}));
+            VALUE_IN_BYTE_PACKING_TYPE };
 
     /**
      * Constructs an enum with the given name.
      */
-    private ParameterType(final int ordinal, final String name) {
-        super(ordinal, name);
+    private ParameterType(final String name, final int ordinal) {
+        super(name, ordinal);
     }
 
     /**
      * Returns the list of <code>ParameterType</code>s.
      */
-    public static List values() {
-        return VALUES;
+    public static ParameterType[] values() {
+        return (ParameterType[]) VALUES.clone();
     }
 
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
-    public List family() {
-        return VALUES;
+    public ParameterType[] family() {
+        return values();
     }
 }

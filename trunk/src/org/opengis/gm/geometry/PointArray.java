@@ -44,5 +44,5 @@ public interface PointArray {
      * @revisit Should changes in this list be forwarded to the underlying <code>PointArray</code>?
      *          In the mean time, it is probably safe for implementor to make this list immutable.
      */
-    public List/*<Position>*/ getColumns();
+    public List<Position> getColumns();
 }

@@ -12,7 +12,6 @@ package org.opengis.go.display.style;
 // J2SE direct dependencies
 import java.util.List;
 import java.util.ArrayList;
-import java.util.Collections;
 
 // OpenGIS direct dependencies
 import org.opengis.util.SimpleEnumerationType;
@@ -54,12 +53,7 @@ public class LineStyle extends SimpleEnumerationType {
      * The list of enumeration available in this virtual machine.
      * <strong>Must be declared first!</strong>.
      */
-    private static final List mutableValues = new ArrayList();
-
-    /**
-     * An immutable view of {@link #mutableValues} to be returned by {@link #values()}.
-     */
-    private static final List values = Collections.unmodifiableList(mutableValues);
+    private static final List VALUES = new ArrayList(2);
 
     /**
      * The line should be drawn as a single line.
@@ -88,7 +82,7 @@ public class LineStyle extends SimpleEnumerationType {
      * @param description a String describing the pattern.
      */
     protected LineStyle(String name, String description) {
-        super(mutableValues, name, description, loadIconResource(LineStyle.class, name + ".gif"));
+        super(VALUES, name, description, loadIconResource(LineStyle.class, name + ".gif"));
     }    
 
     //*************************************************************************
@@ -98,14 +92,16 @@ public class LineStyle extends SimpleEnumerationType {
     /**
      * Returns the list of <code>LineStyle</code>s.
      */
-    public static List values() {
-        return values;
+    public static LineStyle[] values() {
+        synchronized (VALUES) {
+            return (LineStyle[]) VALUES.toArray(new LineStyle[VALUES.size()]);
+        }
     }
 
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
-    public List family() {
-        return values;
+    public LineStyle[] family() {
+        return values();
     }
 }

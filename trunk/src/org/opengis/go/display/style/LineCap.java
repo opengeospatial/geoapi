@@ -12,7 +12,6 @@ package org.opengis.go.display.style;
 // J2SE direct dependencies
 import java.util.List;
 import java.util.ArrayList;
-import java.util.Collections;
 
 // OpenGIS direct dependencies
 import org.opengis.util.SimpleEnumerationType;
@@ -36,12 +35,7 @@ public class LineCap extends SimpleEnumerationType {
      * The list of enumeration available in this virtual machine.
      * <strong>Must be declared first!</strong>.
      */
-    private static final List mutableValues = new ArrayList();
-
-    /**
-     * An immutable view of {@link #mutableValues} to be returned by {@link #values()}.
-     */
-    private static final List values = Collections.unmodifiableList(mutableValues);
+    private static final List VALUES = new ArrayList(3);
 
     /**
      * This constant indicates that line ends should be drawn with no extra
@@ -78,7 +72,7 @@ public class LineCap extends SimpleEnumerationType {
      * @param description a String describing the pattern.
      */
     protected LineCap(String name, String description) {
-        super(mutableValues, name, description);
+        super(VALUES, name, description);
     }        
 
     //*************************************************************************
@@ -88,14 +82,16 @@ public class LineCap extends SimpleEnumerationType {
     /**
      * Returns the list of <code>LineCap</code>s.
      */
-    public static List values() {
-        return values;
+    public static LineCap[] values() {
+        synchronized (VALUES) {
+            return (LineCap[]) VALUES.toArray(new LineCap[VALUES.size()]);
+        }
     }
 
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
-    public List family() {
-        return values;
+    public LineCap[] family() {
+        return values();
     }
 }
