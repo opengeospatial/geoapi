@@ -3,6 +3,9 @@
  */
 package org.opengis.cc;
 
+// OpenGIS direct dependencies
+import org.opengis.util.Cloneable;
+
 
 /**
  * Abstract parameter value or group of parameter values.
@@ -13,12 +16,19 @@ package org.opengis.cc;
  * @version 2.0
  *
  * @see GeneralOperationParameter
- *
- * @revisit We need a <code>ParameterValue</code> subinterface with a <code>getValue()</code>
- *          method!
- *
- *          We need also some kind of method returning the {@link GeneralOperationParameter}
- *          owner, like {@link ParameterValueGroup#getGroup}.
  */
-public interface GeneralParameterValue {
+public interface GeneralParameterValue extends Cloneable {
+    /**
+     * Returns the abstract definition of this parameter or group of parameters.
+     *
+     * @return The abstract definition of this parameter or group of parameters.
+     */
+    public GeneralOperationParameter getDescriptor();
+
+    /**
+     * Returns a copy of this parameter value or group.
+     *
+     * @return A copy of this parameter value or group.
+     */
+    public GeneralParameterValue clone();
 }

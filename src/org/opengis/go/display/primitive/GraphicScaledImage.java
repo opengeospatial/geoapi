@@ -24,8 +24,35 @@ import org.opengis.gm.DirectPosition;
  * @version 0.2
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  *
- * @revisit Should be based on {@link java.awt.image.RenderedImage}, not on {@link Image}!!!!
- *          Furthermore, this API duplicates {@link org.opengis.gc.GridCoverage}.
+ * @revisit This API uses the {@link java.awt.Image} class (see the {@link #getScaledImage()}
+ *          method). Maybe it should uses the {@link java.awt.image.RenderedImage} interface
+ *          instead for the following reason:
+ *          <UL>
+ *            <LI>Image is a legacy class of JDK 1.0. Its functionality is limited.</LI>
+ *            <LI>RenderedImage interface was introduced later and has more capabilities
+ *                (reading/writing pixels, tiling, informations on color space, etc.)</LI>
+ *            <LI>Java Advanced Imaging work with RenderedImage, not Image.</LI>
+ *          </UL>
+ *          Furthermore, <CODE>>GraphicScaledImage</CODE> API duplicates {@link org.opengis.gc.GridCoverage}.
+ *          More specifically, the following methods are GridCoverage's job: {@link #getEnvelope},
+ *          {@link #getUpperLeft}, {@link #getLowerRight}, {@link #getSRS}, maybe {@link #getScaledImage}.
+ *          Note also that {@link #getSRS} should probably returns a CRS type rather than a String.
+ *          <br><br>
+ *          Does the image really need to be scaled at this interface level? Scaling can be done at
+ *          the rendering time: <code>Graphics2D.drawRenderedImage(...)</code> has an AffineTransform
+ *          argument exactly for that. Using pre-scaled image speedup the rendering, but this is an
+ *          implementation issue. Other implementation will rather cache the scaled image in an offscreen
+ *          buffer together with other graphics primitives.
+ *          <br><br>
+ *          Proposal: Remove the following methods:
+ *
+ *          <code>getEnvelope</code>, <code>setEnvelope</code>, <code>getLowerRight</code>,
+ *          <code>setLowerRight</code>, <code>getUpperLeft</code>, <code>setUpperLeft</code>,
+ *          <code>getSRS</code>, <code>setSRS</code>, <code>getScaledImage</code>,
+ *          <code>setScaledImage</code>.
+ *
+ *          Provides <code>getGridCoverage</code> and <code>setGridCoverage</code> methods instead.
+ *          Rename <code>GraphicScaledImage</code> interface as <code>GraphicGridCoverage</code>.
  */
 public interface GraphicScaledImage extends Graphic {
     /**

@@ -3,6 +3,9 @@
  */
 package org.opengis.cc;
 
+// OpenGIS direct dependencies
+import org.opengis.rs.Info;
+
 
 /**
  * Abstract definition of a parameter or group of parameters used by an operation method.
@@ -14,7 +17,7 @@ package org.opengis.cc;
  *
  * @see GeneralParameterValue
  */
-public interface GeneralOperationParameter {
+public interface GeneralOperationParameter extends Info {
     /**
      * The minimum number of times that values for this parameter group or
      * parameter are required. The default value is one.
