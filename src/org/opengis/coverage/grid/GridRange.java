@@ -20,6 +20,11 @@ package org.opengis.coverage.grid;
  */
 public interface GridRange {
     /**
+     * Returns the number of dimensions.
+     */
+    int getDimension();
+
+    /**
      * The valid minimum inclusive grid coordinate.
      * The sequence contains a minimum value for each dimension of the grid coverage.
      * The lowest valid grid coordinate is zero.
@@ -27,7 +32,7 @@ public interface GridRange {
      * @return The valid minimum inclusive grid coordinate.
      * @UML mandatory lo
      */
-    int[] getLower();
+    int[] getLowers();
 
     /**
      * The valid maximum exclusive grid coordinate.
@@ -36,5 +41,27 @@ public interface GridRange {
      * @return The valid maximum exclusive grid coordinate.
      * @UML mandatory hi
      */
-    int[] getUpper();
+    int[] getUppers();
+    
+    /**
+     * Returns the valid minimum inclusive grid
+     * coordinate along the specified dimension.
+     *
+     * @see #getLowers
+     */
+    int getLower(int dimension);
+    
+    /**
+     * Returns the valid maximum exclusive grid
+     * coordinate along the specified dimension.
+     *
+     * @see #getUppers
+     */
+    int getUpper(int dimension);
+    
+    /**
+     * Returns the number of integer grid coordinates along the specified dimension.
+     * This is equals to <code>getUpper(dimension)-getLower(dimension)</code>.
+     */
+    int getLength(int dimension);
 }

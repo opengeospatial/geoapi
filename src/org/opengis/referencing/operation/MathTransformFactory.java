@@ -9,6 +9,9 @@
  *************************************************************************************************/
 package org.opengis.referencing.operation;
 
+// J2SE direct dependencies
+import java.awt.geom.AffineTransform;
+
 // OpenGIS direct dependencies
 import org.opengis.referencing.Factory;
 import org.opengis.referencing.FactoryException;
@@ -55,6 +58,17 @@ import org.opengis.parameter.GeneralParameterValue;
  * @version <A HREF="http://www.opengis.org/docs/01-009.pdf">Implementation specification 1.0</A>
  */
 public interface MathTransformFactory extends Factory {
+    /**
+     * Wrap an affine transform into a math transform object.
+     * This method is provided for interoperability with
+     * <A HREF="http://java.sun.com/products/java-media/2D/index.jsp">Java2D</A>.
+     *
+     * @param matrix The matrix used to define the affine transform.
+     * @return The affine transform.
+     * @throws FactoryException if the object creation failed.
+     */
+    MathTransform2D createAffineTransform(AffineTransform matrix) throws FactoryException;
+
     /**
      * Creates an affine transform from a matrix.
      * If the transform's input dimension is <code>M</code>, and output dimension
