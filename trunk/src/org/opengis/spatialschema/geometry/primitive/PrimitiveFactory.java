@@ -37,8 +37,8 @@ public interface PrimitiveFactory {
      * collapse to a point or line). In 3D systems, the usual return is a {@linkplain Solid solid}.
      * <br><br>
      * <strong>EXAMPLE:</strong> In the case where the {@linkplain Envelope envelope} is totally
-     * contained in the domain of validity of its {@linkplain org.opengis.crs.crs.CRS} (coordinate
-     * reference system) object, its associated {@linkplain Primitive primitive} is the convex
+     * contained in the domain of validity of its {@linkplain org.opengis.crs.crs.CoordinateReferenceSystem
+     * coordinate reference system} object, its associated {@linkplain Primitive primitive} is the convex
      * hull of the various permutations of the coordinates in the corners. For example, suppose
      * that a particular envelope in 2D is defined as:
      *
