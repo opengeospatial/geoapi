@@ -1,14 +1,18 @@
-/*******************************************************************************
- * $ * * $Id$ * *
- * $Source$ * *
- * Copyright (C) 2003 Open GIS Consortium, Inc. All Rights Reserved.
- * http://www.opengis.org/Legal/ *
- ******************************************************************************/
+/*$************************************************************************************************
+ **
+ ** $Id$
+ **
+ ** $Source$
+ **
+ ** Copyright (C) 2003 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
+ **
+ *************************************************************************************************/
 package org.opengis.crs.crs;
 
 // J2SE direct dependencies
 import java.util.Map;
 
+// OpenGIS dependencies
 import org.opengis.crs.Factory;
 import org.opengis.crs.FactoryException;
 import org.opengis.crs.cs.CartesianCS;
@@ -24,6 +28,7 @@ import org.opengis.crs.datum.VerticalDatum;
 import org.opengis.crs.operation.Conversion;
 import org.opengis.crs.operation.MathTransform;
 import org.opengis.spatialschema.geometry.DirectPosition;
+
 
 /**
  * Builds up complex {@linkplain CoordinateReferenceSystem coordinate reference systems}
@@ -49,7 +54,6 @@ import org.opengis.spatialschema.geometry.DirectPosition;
  * @see org.opengis.crs.datum.DatumFactory
  */
 public interface CRSFactory extends Factory {
-    
     /**
      * Creates a compound coordinate reference system from an ordered
      * list of <code>CoordinateReferenceSystem</code> objects.
@@ -105,23 +109,23 @@ public interface CRSFactory extends Factory {
      * @param  datum Geodetic datum to use in created CRS.
      * @param  cs The Cartesian or Spherical coordinate system for the created CRS.
      * @throws FactoryException if the object creation failed.
-     * @UML operation createLocalCoordinateSystem
      */
     GeocentricCRS createGeocentricCRS(Map properties, GeodeticDatum datum, CoordinateSystem cs)
             throws FactoryException;
 
     /**
-     * Creates a geographic coordinate reference system. 
+     * Creates a geographic coordinate reference system.
+     * It could be <var>Latitude</var>/<var>Longitude</var> or
+     * <var>Longitude</var>/<var>Latitude</var>.
      *
      * @param  properties Name and other properties to give to the new object.
      *         Available properties are {@linkplain Factory listed there}.
      * @param  datum Geodetic datum to use in created CRS.
-     * @param  cs The Ellipsoidal coordinate system for the created CRS.
+     * @param  cs The ellipsoidal coordinate system for the created CRS.
      * @throws FactoryException if the object creation failed.
-     * @UML operation createLocalCoordinateSystem
+     * @UML operation createGeographicCoordinateSystem
      */
-    GeographicCRS createGeographicCRS(Map properties, GeodeticDatum datum, EllipsoidalCS cs)
-            throws FactoryException;
+    GeographicCRS createGeographicCRS(Map properties, GeodeticDatum datum, EllipsoidalCS cs) throws FactoryException;
     
     /**
      * Creates an image coordinate reference system. 
@@ -129,9 +133,8 @@ public interface CRSFactory extends Factory {
      * @param  properties Name and other properties to give to the new object.
      *         Available properties are {@linkplain Factory listed there}.
      * @param  datum Image datum to use in created CRS.
-     * @param  cs The Cartesian or ObliqueCartesian coordinate system for the created CRS.
+     * @param  cs The Cartesian or Oblique Cartesian coordinate system for the created CRS.
      * @throws FactoryException if the object creation failed.
-     * @UML operation createLocalCoordinateSystem
      */
     ImageCRS createImageCRS(Map properties, ImageDatum datum, CoordinateSystem cs)
             throws FactoryException;
@@ -141,10 +144,8 @@ public interface CRSFactory extends Factory {
      * 
      * @param properties Name and other properties to give to the new object.
      *        Available properties are {@linkplain Factory listed there}.
-     * @param geoCRS Geographic coordinate reference system to base projection
-     *        on.
-     * @param toProjected The conversion from the geographic to the projected
-     *        CRS.
+     * @param geoCRS Geographic coordinate reference system to base projection on.
+     * @param toProjected The conversion from the geographic to the projected CRS.
      * @param cs The coordinate system for the projected CRS.
      * @throws FactoryException if the object creation failed.
      */
@@ -159,7 +160,6 @@ public interface CRSFactory extends Factory {
      * @param  datum Temporal datum to use in created CRS.
      * @param  cs The Temporal coordinate system for the created CRS.
      * @throws FactoryException if the object creation failed.
-     * @UML operation createLocalCoordinateSystem
      */
     TemporalCRS createTemporalCRS(Map properties, TemporalDatum datum, TemporalCS cs)
             throws FactoryException;
@@ -172,7 +172,7 @@ public interface CRSFactory extends Factory {
      * @param  datum Vertical datum to use in created CRS.
      * @param  cs The Vertical coordinate system for the created CRS.
      * @throws FactoryException if the object creation failed.
-     * @UML operation createLocalCoordinateSystem
+     * @UML operation createVerticalCoordinateSystem
      */
     VerticalCRS createVerticalCRS(Map properties, VerticalDatum datum, VerticalCS cs)
             throws FactoryException;
@@ -201,8 +201,6 @@ public interface CRSFactory extends Factory {
      * @param  xml Coordinate reference system encoded in XML format.
      * @throws FactoryException if the object creation failed.
      * @UML operation createFromXML
-     *
-     * @revisit Is it the right place for this method? XML parser may need its own class.
      */
     CoordinateReferenceSystem createFromXML(String xml) throws FactoryException;
 
@@ -214,8 +212,6 @@ public interface CRSFactory extends Factory {
      * @param  wkt Coordinate system encoded in Well-Known Text format.
      * @throws FactoryException if the object creation failed.
      * @UML operation createFromWKT
-     *
-     * @revisit Is it the right place for this method? WKT parser may need its own class.
      */
     CoordinateReferenceSystem createFromWKT(String wkt) throws FactoryException;
 }
