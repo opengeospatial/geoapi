@@ -9,12 +9,11 @@
  *************************************************************************************************/
 package org.opengis.go.typical.coord;
 
-import javax.units.Unit;
 import javax.units.SI;
-import java.util.Properties;
+import javax.units.Unit;
 
+import org.opengis.crs.FactoryException;
 import org.opengis.crs.crs.CoordinateReferenceSystem;
-import org.opengis.crs.crs.CoordinateReferenceSystemFactory;
 import org.opengis.crs.crs.UnsupportedCRSException;
 import org.opengis.go.CommonFactoryManager;
 import org.opengis.spatialschema.geometry.DirectPosition;
@@ -39,6 +38,11 @@ import org.opengis.spatialschema.geometry.DirectPosition;
  * @version $Revision$, $Date$
  */
 public class UTM implements DirectPosition {
+    
+    //*************************************************************************
+    //  static fields
+    //*************************************************************************
+    
     /**
      * The Default Coordinate Reference System URL for this coordinate.
      * This constant referes to a CRS based on the "Abidjan 1987" datum at UTM Zone 30N, corresponding
@@ -46,24 +50,34 @@ public class UTM implements DirectPosition {
      */
     public static final String DEFAULT_COORDINATE_REFERENCE_SYSTEM_URL = "urn:x-ogc:srs:EPSG::2041";
     
+    //*************************************************************************
+    //  fields
+    //*************************************************************************
+    
     /**
      * The Coordinate Reference System for this coordinate.
      */
     private CoordinateReferenceSystem crs;
+    
     /**
      * The values of this coordinate.
      */
     private double[] ordinates;
+    
     /**
      * The units of this coordinate.
      */
     private final Unit[] units = { SI.METER, SI.METER, SI.METER };
+    
     /**
      * A flag for whether the altitude is known.
      */
     private boolean isAltKnown = false;
-    ////
+    
+    //*************************************************************************
     // Constructors.
+    //*************************************************************************
+    
     /**
      * Initializes northing, easting, altitude, and Coordinate Reference System to the supplied parameters.
      * @param northing     northing value
@@ -81,53 +95,49 @@ public class UTM implements DirectPosition {
         Unit altitudeUnit,
         CoordinateReferenceSystem crs)
         throws UnsupportedCRSException {
-        this.crs = crs;
-        ordinates = new double[crs.getCoordinateSystem().getDimension()];
+        setCRS(crs);
         setNorthing(northing, unit);
         setEasting(easting, unit);
         setAltitude(altitude, altitudeUnit);
     }
+    
     /**
      * Initializes the Coordinate Reference System to the supplied parameter.
      * @param crs       the Coordinate Reference System
      */
     public UTM(CoordinateReferenceSystem crs) throws UnsupportedCRSException {
-        this.crs = crs;
-        ordinates = new double[crs.getCoordinateSystem().getDimension()];
+        setCRS(crs);
     }
+    
     /**
      * Initializes using the default Coordinate Reference System.
      */
-    public UTM() throws UnsupportedCRSException {
-        this.crs = findCRS(DEFAULT_COORDINATE_REFERENCE_SYSTEM_URL);
-        ordinates = new double[crs.getCoordinateSystem().getDimension()];
+    public UTM() throws FactoryException {
+        setCRS(findCRS(DEFAULT_COORDINATE_REFERENCE_SYSTEM_URL));
     }
-    ////
+    
+    //*************************************************************************
     // Methods for UTM.
+    //*************************************************************************
+    
+    private void setCRS(CoordinateReferenceSystem crs) {
+        this.crs = crs;
+        if (crs != null) {
+            ordinates = new double[crs.getCoordinateSystem().getDimension()];
+        } else {
+            ordinates = new double[3];
+        }
+    }
+    
     /**
      * Returns the Coordinate Reference System for the given URL.
      * @param crsURL Coordinate Reference System URL.
      * @return Coordinate Reference System.
      */
-    private CoordinateReferenceSystem findCRS(String crsURL) throws UnsupportedCRSException {
-        Properties props = new Properties();
-        props.setProperty(CoordinateReferenceSystemFactory.COORDINATE_REFERECE_SYSTEM_URL, crsURL);
-        CoordinateReferenceSystem crs;
-        try {
-            crs =
-                CommonFactoryManager
-                    .getCommonFactory("CommonFactory")
-                    .getCoordinateReferenceSystemFactory()
-                    .createCoordinateReferenceSystem(props);
-        } catch (ClassNotFoundException e) {
-            throw new UnsupportedCRSException("ClassNotFoundException: " + e);
-        } catch (IllegalAccessException e) {
-			throw new UnsupportedCRSException("IllegalAccessException: " + e);
-		} catch (InstantiationException e) {
-			throw new UnsupportedCRSException("InstantiationException: " + e);
-        }
-        return crs;
+    private CoordinateReferenceSystem findCRS(String crsURL) throws FactoryException {
+        return CommonFactoryManager.getCRSAuthorityFactory().createCoordinateReferenceSystem(crsURL);
     }
+    
     /**
      * Returns true if the given object is a UTM object, and
      * has x and y values and a Coordinate Reference System equal to this one.
@@ -141,6 +151,7 @@ public class UTM implements DirectPosition {
         }
         return false;
     }
+    
     /**
      * Returns true if the given UTM
      * has x and y values and a Coordinate Reference System equal to this one.
@@ -156,36 +167,42 @@ public class UTM implements DirectPosition {
         equiv &= (utm.getAltitude(units[2]) == getAltitude(units[2]));
         return equiv;
     }
+    
     /**
      * Returns the northing value of this coordinate.
      */
     public double getNorthing(Unit unit) {
         return units[0].getConverterTo(unit).convert(ordinates[0]);
     }
+    
     /**
      * Sets the northing value of this coordinate.
      */
     public void setNorthing(double northing, Unit unit) {
         ordinates[0] = unit.getConverterTo(units[0]).convert(northing);
     }
+    
     /**
      * Retrieves the easting value of this coordinate.
      */
     public double getEasting(Unit unit) {
         return units[1].getConverterTo(unit).convert(ordinates[1]);
     }
+    
     /**
      * Sets the easting value of this coordinate.
      */
     public void setEasting(double easting, Unit unit) {
         ordinates[1] = unit.getConverterTo(units[1]).convert(easting);
     }
+    
     /**
      * Retrieves the altitude value stored in this UTM as a convenience.
      */
     public double getAltitude(Unit unit) {
         return units[2].getConverterTo(unit).convert(ordinates[2]);
     }
+    
     /**
      * Sets the altitude value stored in this UTM as a convenience.  This
      * value is stored only so that coordinate conversion (such as to LatLonAlt)
@@ -195,6 +212,7 @@ public class UTM implements DirectPosition {
         ordinates[2] = unit.getConverterTo(units[2]).convert(altitude);
         isAltKnown = true;
     }
+    
     /**
      * Returns true if the altitude value in this LatLonAlt object is
      * known to be valid.  For coordinates where the altitude is not known
@@ -203,8 +221,11 @@ public class UTM implements DirectPosition {
     public boolean isAltitudeKnown() {
         return isAltKnown;
     }
-    ////
+    
+    //*************************************************************************
     // Methods supporting DirectPosition.
+    //*************************************************************************
+    
     /**
      * Returns the dimension of this coordiante.
      * @return the dimension.
@@ -212,6 +233,7 @@ public class UTM implements DirectPosition {
     public int getDimension() {
         return crs.getCoordinateSystem().getDimension();
     }
+    
     /**
      * Generically sets the generic value if this coordinate for the given dimension.
      * @param dimension
@@ -220,18 +242,21 @@ public class UTM implements DirectPosition {
     public void setOrdinate(int dimension, double ordinate) {
         ordinates[dimension] = ordinate;
     }
+    
     /**
      * Generically returns the value of this coordinate for the given dimension.
      */
     public double getOrdinate(int dimension) {
         return ordinates[dimension];
     }
+    
     /**
      * Returns all coordinates.
      */
     public double[] getCoordinates() {
         return (double[]) ordinates.clone();
     }
+    
     /**
      * Dispose of this class.
      */
@@ -240,6 +265,7 @@ public class UTM implements DirectPosition {
         crs = null;
         ordinates = null;
     }
+    
     /**
      * Clone this UTM.
      */
@@ -251,6 +277,7 @@ public class UTM implements DirectPosition {
         result.isAltKnown = isAltKnown;
         return result;
     }
+    
     /**
      * Returns the Coordinate Reference System for this UTM.
      */

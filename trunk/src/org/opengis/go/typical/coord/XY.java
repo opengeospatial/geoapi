@@ -9,10 +9,8 @@
  *************************************************************************************************/
 package org.opengis.go.typical.coord;
 
-import java.util.Properties;
-
+import org.opengis.crs.FactoryException;
 import org.opengis.crs.crs.CoordinateReferenceSystem;
-import org.opengis.crs.crs.CoordinateReferenceSystemFactory;
 import org.opengis.crs.crs.UnsupportedCRSException;
 import org.opengis.go.CommonFactoryManager;
 import org.opengis.spatialschema.geometry.DirectPosition;
@@ -27,6 +25,10 @@ import org.opengis.spatialschema.geometry.DirectPosition;
  * @version $Revision$, $Date$
  */
 public class XY implements DirectPosition {
+    
+    //*************************************************************************
+    //  Static Fields
+    //*************************************************************************
 
     /**
      * The Default Coordinate Reference System URL for this coordinate.
@@ -34,6 +36,10 @@ public class XY implements DirectPosition {
     // TODO: Fix the default value.This should be an Derived Coordinate Reference System of type Engineering.
     public static final String DEFAULT_COORDINATE_REFERENCE_SYSTEM_URL = "urn:x-ogc:srs:OGC::XXXXXX";
 
+    //*************************************************************************
+    //  Fields
+    //*************************************************************************
+    
     /**
      * The Coordinate Reference System for this coordinate.
      */
@@ -44,8 +50,9 @@ public class XY implements DirectPosition {
      */
     private double[] ordinates;
 
-    ////
+    //*************************************************************************
     // Constructors.
+    //*************************************************************************
 
     /**
      * Initializes x, y, and Coordinate Reference System to the supplied parameters.
@@ -54,8 +61,7 @@ public class XY implements DirectPosition {
      * @param crs       the Coordinate Reference System 
      */
     public XY(double x, double y, CoordinateReferenceSystem crs) throws UnsupportedCRSException {
-        this.crs = crs;
-        ordinates = new double[crs.getCoordinateSystem().getDimension()];
+        setCRS(crs);
         ordinates[0] = x;
         ordinates[1] = y;
     }
@@ -65,44 +71,36 @@ public class XY implements DirectPosition {
      * @param crs       the Coordinate Reference System 
      */
     public XY(CoordinateReferenceSystem crs) throws UnsupportedCRSException {
-        this.crs = crs;
-        ordinates = new double[crs.getCoordinateSystem().getDimension()];
+        setCRS(crs);
     }
 
     /**
      * Initializes using the default Coordinate Reference System.
      */
-    public XY() throws UnsupportedCRSException {
-        this.crs = findCRS(DEFAULT_COORDINATE_REFERENCE_SYSTEM_URL);
-        ordinates = new double[crs.getCoordinateSystem().getDimension()];
+    public XY() throws FactoryException {
+        setCRS(findCRS(DEFAULT_COORDINATE_REFERENCE_SYSTEM_URL));        
     }
 
-    ////
+    //*************************************************************************
     // Methods for XY.
+    //*************************************************************************
+    
+    private void setCRS(CoordinateReferenceSystem crs) {
+        this.crs = crs;
+        if (crs != null) {
+            ordinates = new double[crs.getCoordinateSystem().getDimension()];
+        } else {
+            ordinates = new double[3];
+        }
+    }
 
     /**
      * Returns the Coordinate Reference System for the given URL.
      * @param crsURL Coordinate Reference System URL.
      * @return Coordinate Reference System.
      */
-    private CoordinateReferenceSystem findCRS(String crsURL) throws UnsupportedCRSException {
-        Properties props = new Properties();
-        props.setProperty(CoordinateReferenceSystemFactory.COORDINATE_REFERECE_SYSTEM_URL, crsURL);
-        CoordinateReferenceSystem crs;
-        try {
-            crs =
-                CommonFactoryManager
-                    .getCommonFactory("CommonFactory")
-                    .getCoordinateReferenceSystemFactory()
-                    .createCoordinateReferenceSystem(props);
-        } catch (ClassNotFoundException e) {
-            throw new UnsupportedCRSException("ClassNotFoundException: " + e);
-        } catch (IllegalAccessException e) {
-			throw new UnsupportedCRSException("IllegalAccessException: " + e);
-		} catch (InstantiationException e) {
-			throw new UnsupportedCRSException("InstantiationException: " + e);
-        }
-        return crs;
+    private CoordinateReferenceSystem findCRS(String crsURL) throws FactoryException {
+        return CommonFactoryManager.getCRSAuthorityFactory().createCoordinateReferenceSystem(crsURL);  
     }
 
     /**
