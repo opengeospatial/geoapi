@@ -25,7 +25,7 @@ public interface ReferenceSystem {
      * @rename  Omitted the "<code>srs</code>" prefix,
      *          which stands as an abbreviation for this enclosing class.
      *
-     * @revisit Should we ask for a (possibly null) java.util.Locale argument?
+     * @revisit Should we ask for a (possibly null) {@link java.util.Locale} argument?
      */
     public String getName();
 
@@ -58,7 +58,7 @@ public interface ReferenceSystem {
      * @return Coordinate reference system scope, or <code>null</code> if not available.
      * @optional
      *
-     * @revisit Should we ask for a (possibly null) java.util.Locale argument?
+     * @revisit Should we ask for a (possibly null) {@link java.util.Locale} argument?
      */
     public String getScope();
 
@@ -69,7 +69,7 @@ public interface ReferenceSystem {
      * @return Coordinate reference system remarks, or <code>null</code> if not available.
      * @optional
      *
-     * @revisit Should we ask for a (possibly null) java.util.Locale argument?
+     * @revisit Should we ask for a (possibly null) {@link java.util.Locale} argument?
      */
     public String getRemarks();
 }

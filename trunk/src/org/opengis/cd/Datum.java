@@ -3,12 +3,12 @@
  */
 package org.opengis.cd;
 
+// J2SE direct dependencies
+import java.util.Date;
+
 // OpenGIS direct dependencies
 import org.opengis.ex.Extent;
 import org.opengis.rs.Identifier;
-
-// J2SE direct dependencies
-import java.util.Date;
 
 
 /**
@@ -38,11 +38,10 @@ public interface Datum {
      * Set of alternative identifications of this datum. The first <code>ID</code>, if any,
      * is normally the primary identification code, and any others are aliases.
      *
-     * @return  The datum identifiers, or an empty string if there is none.
+     * @return  The datum identifiers, or an empty array if there is none.
      * @optional
      *
-     * @rename  Omitted the "<code>datum</code>" prefix,
-     *          which stands as an abbreviation for this enclosing class.
+     * @rename  Omitted the "<code>datum</code>" prefix.
      * @revisit Should we rename this method as <code>getIdentifiers()</code>?
      *          Note the proposed plural form.
      */
@@ -111,7 +110,7 @@ public interface Datum {
      * @return The datum remarks, or <code>null</code> if not available.
      * @optional
      *
-     * @revisit Should we ask for a (possibly null) java.util.Locale argument?
+     * @revisit Should we ask for a (possibly null) {@link java.util.Locale} argument?
      */
     public String getRemarks();
 }

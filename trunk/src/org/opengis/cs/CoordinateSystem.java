@@ -32,7 +32,7 @@ public interface CoordinateSystem {
      * @rename  Omitted the "<code>srs</code>" prefix,
      *          which stands as an abbreviation for this enclosing class.
      *
-     * @revisit Should we ask for a (possibly null) java.util.Locale argument?
+     * @revisit Should we ask for a (possibly null) {@link java.util.Locale} argument?
      */
     public String getName();
 
@@ -40,7 +40,7 @@ public interface CoordinateSystem {
      * Set of alternative identifications of the coordinate system. The first <code>ID</code>,
      * if any, is normally the primary identification code, and any others are aliases.
      *
-     * @return Coordinate system identifiers, or an empty string if there is none.
+     * @return Coordinate system identifiers, or an empty array if there is none.
      * @optional
      *
      * @rename  Omitted the "<code>srs</code>" prefix,
@@ -55,7 +55,7 @@ public interface CoordinateSystem {
      * must have at least one axis.
      *
      * @return The ordered set of axis.
-     * @association
+     * @association usesAxis
      */
     public CoordinateSystemAxis[] getAxis();
 
@@ -65,7 +65,7 @@ public interface CoordinateSystem {
      * @return The coordinate system remarks, or <code>null</code> if not available.
      * @optional
      *
-     * @revisit Should we ask for a (possibly null) java.util.Locale argument?
+     * @revisit Should we ask for a (possibly null) {@link java.util.Locale} argument?
      */
     public String getRemarks();
 }
