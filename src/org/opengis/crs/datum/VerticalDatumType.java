@@ -20,14 +20,6 @@ import org.opengis.util.CodeList;
  * @author ISO 19111
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/03-073r1.zip">Abstract specification 2.0</A>
- *
- * @revisit The following types (from OGC document 01-009) seems missing:
- *          <UL>
- *            <LI>ELLIPSOIDAL: A vertical datum for ellipsoidal heights that are measured
- *                along the normal to the ellipsoid used in the definition of geodetic datum.</LI>
- *            <LI>ORTHOMETRIC: A vertical datum for orthometric heights that are measured
- *                along the plumb line.</LI>
- *          </UL>
  */
 public final class VerticalDatumType extends CodeList {
     /**
@@ -42,7 +34,13 @@ public final class VerticalDatumType extends CodeList {
      *
      * @UML conditional geoidal
      */
-    public static final VerticalDatumType GEOIDAL = new VerticalDatumType("GEOIDAL", 0);
+    public static final VerticalDatumType GEOIDAL = new VerticalDatumType("GEOIDAL", 1);
+
+    /**
+     * A vertical datum for ellipsoidal heights that are measured along the
+     * normal to the ellipsoid used in the definition of horizontal datum.
+     */
+    public static final VerticalDatumType ELLIPSOIDAL = new VerticalDatumType("ELLIPSOIDAL", 2);
 
     /**
      * The zero point of the vertical axis is defined by a surface that has meaning for the
@@ -54,7 +52,7 @@ public final class VerticalDatumType extends CodeList {
      *
      * @UML conditional depth
      */
-    public static final VerticalDatumType DEPTH = new VerticalDatumType("DEPTH", 1);
+    public static final VerticalDatumType DEPTH = new VerticalDatumType("DEPTH", 3);
 
     /**
      * Atmospheric pressure is the basis for the definition of the origin of the
@@ -66,7 +64,12 @@ public final class VerticalDatumType extends CodeList {
      *
      * @UML conditional barometric
      */
-    public static final VerticalDatumType BAROMETRIC = new VerticalDatumType("BAROMETRIC", 2);
+    public static final VerticalDatumType BAROMETRIC = new VerticalDatumType("BAROMETRIC", 4);
+
+    /**
+     * A vertical datum for orthometric heights that are measured along the plumb line.
+     */
+    public static final VerticalDatumType ORTHOMETRIC = new VerticalDatumType("ORTHOMETRIC", 5);
 
     /**
      * In some cases, e.g. oil exploration and production, a geological feature, such as the top
@@ -76,13 +79,13 @@ public final class VerticalDatumType extends CodeList {
      *
      * @UML conditional other&nbsp;surface
      */
-    public static final VerticalDatumType OTHER_SURFACE = new VerticalDatumType("OTHER_SURFACE", 3);
+    public static final VerticalDatumType OTHER_SURFACE = new VerticalDatumType("OTHER_SURFACE", 0);
 
     /**
      * List of all enumeration of this type.
      */
     private static final VerticalDatumType[] VALUES = new VerticalDatumType[] {
-            GEOIDAL, DEPTH, BAROMETRIC, OTHER_SURFACE };
+            OTHER_SURFACE, GEOIDAL, ELLIPSOIDAL, DEPTH, BAROMETRIC, ORTHOMETRIC };
 
     /**
      * Constructs an enum with the given name.

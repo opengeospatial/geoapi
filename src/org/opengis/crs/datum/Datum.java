@@ -19,10 +19,11 @@ import org.opengis.metadata.extent.Extent;
 
 
 /**
- * Specifies the relationship of a coordinate system to the earth, thus creating a coordinate
- * reference system. A datum uses a parameter or set of parameters that determine the location
- * of the origin of the coordinate reference system. Each datum subtype can be associated with
- * only specific types of coordinate systems.
+ * Specifies the relationship of a coordinate system to the earth, thus creating a {@linkplain
+ * org.opengis.crs.crs.CoordinateReferenceSystem coordinate reference system}. A datum uses a
+ * parameter or set of parameters that determine the location of the origin of the coordinate
+ * reference system. Each datum subtype can be associated with only specific types of
+ * {@linkplain org.opengis.crs.cs.CoordinateSystem coordinate systems}.
  *
  * @UML abstract CD_Datum
  * @author ISO 19111
