@@ -39,8 +39,6 @@ public interface AggregationChangeEvent {
      * @return The event type. One of the {@link #ELEMENT_ADDED},
      *         {@link #ELEMENT_REMOVED} or {@link #ELEMENTS_REORDERD}
      *         constants.
-     *
-     * @revisit Are bitwise combinaisons allowed?
      */
     public int getID();
 }

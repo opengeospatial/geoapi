@@ -58,11 +58,4 @@ public interface CoordinateReferenceSystem extends ReferenceSystem {
      * @UML association usesDatum
      */
     Datum getDatum();
-
-    /**
-     * Returns the type for this CoordinateReferenceSystem.
-     *
-     * @return the type for this CoordinateReferenceSystem.
-     */
-    CoordinateReferenceSystemType getCoordinateReferenceSystemType();
 }

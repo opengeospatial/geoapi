@@ -187,9 +187,7 @@ public interface Graphic {
      * Creates a new <code>Graphic</code> of the same type as this object.  The resulting
      * object should be identical in all respects to the original.
      *
-     * @revisit Since other coordinate and feature specification are already using covariance
-     *          anyway, we could use is as well and override the <code>clone()</code> method
-     *          rather than creating a new one.
+     * @revisit Consider overriding <code>Object.clone()</code> instead.
      */
     public Graphic cloneGraphic();
 

@@ -22,18 +22,36 @@
   <P ALIGN="justify">Interfaces are created using a fixed set of
   <A HREF="org/opengis/doc-files/UML-Java.html">UML to Java mapping</A>.
   Substantial modifications are declared in the list of
-  <A HREF="org/opengis/doc-files/OpenIssues.html#Changes">changes from UML diagrams</A>.
-  <STRONG>This API is work in progress!</STRONG> See
-  <A HREF="org/opengis/doc-files/OpenIssues.html">open issues</A>.</P>
+  <A HREF="org/opengis/doc-files/OpenIssues.html#Changes">changes from UML diagrams</A>.</P>
+
+  <H2>Status</H2>
+  <UL>
+    <LI><P ALIGN="justify"><STRONG>Spatial Referencing by Coordinates</STRONG><BR>
+    Mostly completed and should be stable. Minor additions expected, especially something
+    equivalent to the legacy <CODE>WGS84ConversionInfo</CODE> structure from OGC 01-009.</P></LI>
+
+    <LI><P ALIGN="justify"><STRONG>Feature Geometry</STRONG><BR>
+    Geometries partially done. New classes and methods to be added, especially related to
+    topology. The package names may be revisited.</P></LI>
+
+    <LI><P ALIGN="justify"><STRONG>Grid coverage</STRONG><BR>
+    Mostly completed and stable until the next OGC specification, excepted <CODE>GridCoverageExchange</CODE>,
+    <CODE>Reader</CODE> and <CODE>Writer</CODE> which are under revision.</P></LI>
+
+    <LI><P ALIGN="justify"><STRONG>Metadata</STRONG><BR>
+    Placeholders for resolving dependencies in
+    <CITE>Spatial Referencing by Coordinates</CITE>. Will be completed later.</P></LI>
+
+    <LI><P ALIGN="justify"><STRONG>User interfaces</STRONG><BR>
+    First submission. Those packages are not derivated from an OGC abstract specification, but
+    are themselves a proposal for a specification. They may be revisited as more experience will
+    be gained.</P></LI>
+  </UL>
 
   <H2>Requirements</H2>
-  <P ALIGN="justify">For <STRONG>execution</STRONG>,
-  <A HREF="http://java.sun.com/j2se/">J2SE&nbsp;1.3</A> or later is sufficient. For
-  <STRONG>compilation</STRONG>, <A HREF="http://java.sun.com/j2se/1.5/">J2SE&nbsp;1.5</A>
-  or later is required. This is because the specification uses covariant return types in
-  method overriding. Such covariance is allowed at the virtual machine level, but not at
-  the compiler level prior to 1.5. See the <A HREF="org/opengis/doc-files/Requirements.html">requirements
-  page</A> for more details. Additionally, a <A HREF="http://jsr-108.sourceforge.net">JSR-108</A>
-  units implementation si required in all cases.</P>
+  <UL>
+    <LI><A HREF="http://java.sun.com/j2se/">J2SE&nbsp;1.3</A> or later.</LI>
+    <LI>A <A HREF="http://jsr-108.sourceforge.net">JSR-108</A> units implementation.</LI>
+  </UL>
   </BODY>
 </HTML>
