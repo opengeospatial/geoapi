@@ -23,7 +23,8 @@ import java.rmi.RemoteException;
  * @since   1.00
  * @author Martin Daly
  *
- * @deprecated Replaced by {@link org.opengis.crs.crs.CRSAuthorityFactory}.
+ * @deprecated Replaced by {@link org.opengis.crs.crs.CRSAuthorityFactory}
+ *             and {@link org.opengis.crs.datum.DatumAuthorityFactory}.
  */
 public interface CS_CoordinateSystemAuthorityFactory extends Remote {
     /**

@@ -32,6 +32,8 @@ import java.rmi.RemoteException;
  * @version 1.01
  * @since   1.00
  * @author Martin Daly
+ *
+ * @deprecated Replaced by {@link org.opengis.crs.crs.CRSFactory}.
  */
 public interface CS_CoordinateSystemFactory extends Remote {
     /**
@@ -39,6 +41,8 @@ public interface CS_CoordinateSystemFactory extends Remote {
      *
      * @param xml Coordinate system encoded in XML format.
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated Replaced by {@link org.opengis.crs.crs.CRSFactory#createFromXML}.
      */
     CS_CoordinateSystem createFromXML(String xml) throws RemoteException;
 
@@ -47,6 +51,8 @@ public interface CS_CoordinateSystemFactory extends Remote {
      *
      * @param wellKnownText Coordinate system encoded in Well-Known Text format.
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated Replaced by {@link org.opengis.crs.crs.CRSFactory#createFromWKT}.
      */
     CS_CoordinateSystem createFromWKT(String wellKnownText) throws RemoteException;
 
@@ -57,6 +63,8 @@ public interface CS_CoordinateSystemFactory extends Remote {
      * @param head Coordinate system to use for earlier ordinates.
      * @param tail Coordinate system to use for later ordinates.
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated Replaced by {@link org.opengis.crs.crs.CRSFactory#createCompoundCRS}.
      */
     CS_CompoundCoordinateSystem createCompoundCoordinateSystem(String name, CS_CoordinateSystem head, CS_CoordinateSystem tail) throws RemoteException;
 
@@ -74,6 +82,8 @@ public interface CS_CoordinateSystemFactory extends Remote {
      * @param toBaseWKT Well-Known Text of transform from returned CS to base CS.
      * @param arAxes Axes for fitted coordinate system.  The number of axes must match the source dimension of the transform "toBaseWKT".
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated Replaced by {@link org.opengis.crs.crs.CRSFactory#createDerivedCRS}.
      */
     CS_FittedCoordinateSystem createFittedCoordinateSystem(String name, CS_CoordinateSystem base, String toBaseWKT, CS_AxisInfo[] arAxes) throws RemoteException;
 
