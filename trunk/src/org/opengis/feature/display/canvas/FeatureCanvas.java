@@ -1,57 +1,41 @@
 package org.opengis.feature.display.canvas;
 
 import java.util.Iterator;
+import java.util.List;
 
 import org.opengis.feature.Feature;
-import org.opengis.feature.FeatureType;
-import org.opengis.feature.FeatureTypeFactory;
-import org.opengis.filter.Filter;
-import org.opengis.filter.FilterFactory;
 import org.opengis.go.display.canvas.Canvas;
 import org.opengis.go.display.primitive.Graphic;
-import org.opengis.referencing.crs.CoordinateReferenceSystem;
-import org.opengis.sld.FeatureStyle;
-import org.opengis.sld.FeatureStyleFactory;
-import org.opengis.spatialschema.geometry.geometry.GeometryFactory;
-import org.opengis.spatialschema.geometry.primitive.PrimitiveFactory;
 
 /**
- * <p>A canvas that can consume Features and automatically turn them into Graphics.
- * <code>FeatureCanvas</code> instances are "semi-persistent" stores of <code>Feature</code>
- * instances.  What this means, for example in a web application, that features are added to
- * a feature canvas for as long as that feature canvas exists/is associated with a user session.
- * </p>
- *
- * <p>Implementations of <code>FeatureCanvas</code> are free to optimize their temporary storage
- * of features in any way that they see fit.  This could simply mean holding feature instances in 
- * memory, or it could mean serializing them into secondary storage in order minimize their 
- * impact on main memory, or some more sophisticated caching scheme utilizing a hybrid of the
- * two techniques.</p>
- *
- * <p>Another place that a <code>FeatureCanvas</code> is free to optimize is in its managment 
- * of the GO-1 canvas to which it delegates and provides as an immutable property.  Users of
- * the <code>FeatureCanvas</code> interface should assume that the relationship to a GO-1 canvas
- * from a <code>FeatureCanvas</code> instance is 1-to-1, even though this may not be strictly true
- * in the implementation.  Implementations are free to use a pool of canvas objects, tie 
- * themselves to a single instance of a GO-1 canvas, or take any other approach, so long as they
- * can maintain the appearance of 1-to-1 mapping.  The consequence of this for application 
- * programmers is that they should always obtain a GO-1 canvas as it is needed, and never assign it
- * to an instance member.  Where it is convenient to pass some canvas as a parameter to another
- * method the <code>FeatureCanvas</code> should always be used in favor of passing the actual GO-1 
- * canvas.</p>
- *
- * <p>Data is added to a canvas by creating a subclass of <code>Layer</code>.  This is done with
- * either the <code>createCustomLayer</code> or <code>createFilteredLayer</code> method.
- * If a <code>CustomLayer</code> is created, then the caller is responsible for populating the
- * features in this layer.  If a <code>FilteredLayer</code> is created, then the canvas will
- * automatically retrieve all of the "known" features of the given type that satisfy the filter that
- * was used to create the layer.</p>
- *
- * <p>Some feature types provided by a canvas may be "read-only", i.e. the user of the API cannot
- * create new <code>Feature</code> instances of that type.  Such layers may represent, for example,
- * connections to read only data stores.</p>
- *
- * @author Chris Dillard, Jake Fear
+ * This class represents a canvas that consumes features (i.e. objects that
+ * implement the <code>Feature</code> interface) and automatically turns them
+ * into Graphics.  A FeatureCanvas should be able to consume Feature objects
+ * from any DataStore that the user may provide.
+ * <p>
+ * Implementations of FeatureCanvas are free to optimize their temporary storage
+ * of features in any way that they see fit.  This could simply mean holding
+ * feature instances in memory, or it could mean serializing them into secondary
+ * storage in order minimize their impact on main memory, or some more
+ * sophisticated caching scheme.
+ * <p>
+ * Conceptually, a FeatureCanvas turns every Feature it draws into one or more
+ * Graphic objects and adds them to a GO-1 Graphic Canvas.  However, an
+ * implementation is free to optimize this by not creating actual Graphic
+ * objects until they are requested.
+ * <p>
+ * Data is added to a canvas by creating Layers.  A layer consists of a
+ * FeatureCollection, a style to use for drawing those features, and perhaps
+ * some child Layers.  In order to keep its rendering up-to-date, an
+ * implementation of FeatureCanvas may add feature listeners to the feature
+ * collection in the layer.
+ * <p>
+ * In many ways, this class looks like an in-process WMS that draws Features.
+ * Similar to a WMS, it has concepts of layers with styles.  Moreover, the state
+ * information maintained by a FeatureCanvas is similar to the Map Context
+ * information as defined in the corresponding OGC spec.  After further
+ * reflection, the FeatureCanvas abstraction may need to be refactored in light
+ * of these other two specs.
  */
 public interface FeatureCanvas {
     /**
@@ -91,70 +75,23 @@ public interface FeatureCanvas {
      */
     public Iterator getFeaturesAtPoint(int x, int y);
 
-    /*
-     * Returns a Graphic corresponding to the given Feature or null if the
-     * given feature is not in this Canvas.  Note that the returned graphic
-     * may be an aggregate.
-     * PENDING(CSD): This is problematic now since a feature could be in more
-     * than one layer.  Who would call this, any way?  Can we remove it?
-     *
-     * @param feature A feature whose Graphic instances are desired.
-     *
-    public Graphic getGraphicFromFeature(Feature feature);
+    /**
+     * Adds the given layer to the map.
      */
+    public void addLayer(Layer layer);
 
     /**
-     * Creates a new instance of <code>CustomLayer</code> and immediately
-     * attaches it to this canvas.  The returned <code>CustomLayer</code> can be
-     * used to add features of the given type to the canvas.
-     *
-     * @param name A human-friendly name to give to this layer.
-     * @param featureType The type of features that can be added to this layer.
-     */
-    public CustomLayer createCustomLayer(String name, FeatureType featureType);
-
-    /**
-     * Creates a new <code>FilteredLayer</code> that retrieves features of the
-     * given type.
-     *
-     * @param name A human-friendly name to give to this layer.
-     * @param featureType The type of features that will be in this layer.
-     * @param filter A filter limiting which features will be in this layer.
-     *   This parameter may be null if all features are desired.
-     * @param style The style that will be applied (initially) to all features
-     *   displayed in this layer.
-     */
-    public FilteredLayer createFilteredLayer(String name, FeatureType featureType, Filter filter, FeatureStyle style);
-
-    /**
-     * Removes the given layer from being displayed on this map.  After calling
-     * this method, the layer object is no longer valid and any calls to its
-     * methods may produce unexpected results.
+     * Removes the given layer from being displayed on this map.
      */
     public void deleteLayer(Layer layer);
 
     /**
-     * Returns an array containing all of the <code>Layer</code>s currently
-     * known to this canvas.
+     * Returns a list containing all of the <code>Layer</code>s currently
+     * known to this canvas.  Callers should not attempt to modify this list.
+     * Instead, they should call <code>addLayer</code> or
+     * <code>deleteLayer</code>.
      */
-    public Layer [] getLayers();
-
-    /**
-     * Returns a factory with which new FeatureTypes can be registered and
-     * existing feature types can be retrieved.
-     */
-    public FeatureTypeFactory getFeatureTypeFactory();
-
-    /**
-     * Retrieves a factory from which style objects can be built.
-     */
-    public FeatureStyleFactory getStyleFactory();
-
-    /**
-     * Retrieves a factory from which Filter and Expression objects can be
-     * built.
-     */
-    public FilterFactory getFilterFactory();
+    public List/*<Layer>*/ getLayers();
 
     /**
      * Returns the Canvas onto which the Graphics will be rendered.  References to 
@@ -166,18 +103,4 @@ public interface FeatureCanvas {
      * @return A GO-1 canvas 
      */
     public Canvas getCanvas();
-
-    /**
-     * Returns a (possibly shared) instance of a GeometryFactory that gives the
-     * caller the ability to make geometry components in the given coordinate
-     * system.
-     */
-    public GeometryFactory getGeometryFactory(CoordinateReferenceSystem crs);
-
-    /**
-     * Returns a (possibly shared) instance of a PrimitiveFactory that gives the
-     * caller the ability to make geometric primitives in the given coordinate
-     * system.
-     */
-    public PrimitiveFactory getPrimitiveFactory(CoordinateReferenceSystem crs);
 }

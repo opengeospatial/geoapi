@@ -6,6 +6,7 @@ package org.opengis.feature.display.canvas;
  */
 public class StyleException extends Exception {
     public StyleException() {
+        super((String) null);
     }
 
     public StyleException(Throwable cause) {

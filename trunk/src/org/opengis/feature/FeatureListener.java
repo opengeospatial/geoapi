@@ -9,7 +9,9 @@
  *************************************************************************************************/
 package org.opengis.feature;
 
-public interface FeatureListener {
+import java.util.EventListener;
+
+public interface FeatureListener extends EventListener {
     /**
      * Invoked if features were added to or became members of a collection we
      * are listening to.
