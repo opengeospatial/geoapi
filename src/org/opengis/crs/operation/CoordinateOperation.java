@@ -48,10 +48,8 @@ public interface CoordinateOperation extends Info {
      *
      * @return The source CRS.
      * @UML association sourceCRS
-     *
-     * @revisit Should we stick to <code>getSourceCRS</code> name?
      */
-    CoordinateReferenceSystem getSourceCoordinateReferenceSystem();
+    CoordinateReferenceSystem getSourceCRS();
 
     /**
      * Returns the target CRS. The target CRS is mandatory for {@linkplain Transformation
@@ -61,10 +59,8 @@ public interface CoordinateOperation extends Info {
      *
      * @return The source CRS.
      * @UML association targetCRS
-     *
-     * @revisit Should we stick to <code>getTargetCRS</code> name?
      */
-    CoordinateReferenceSystem getTargetCoordinateReferenceSystem();
+    CoordinateReferenceSystem getTargetCRS();
 
     /**
      * Version of the coordinate transformation (i.e., instantiation due to the stochastic

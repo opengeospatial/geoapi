@@ -28,8 +28,6 @@ public interface CompoundCRS extends CoordinateReferenceSystem {
      *
      * @return The coordinate reference systems.
      * @UML association includesCRS
-     *
-     * @revisit We should use the plural name, sinec this method returns an array.
      */
-    CoordinateReferenceSystem[] getCoordinateReferenceSystem();
+    CoordinateReferenceSystem[] getCoordinateReferenceSystems();
 }

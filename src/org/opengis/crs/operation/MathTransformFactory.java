@@ -98,13 +98,17 @@ public interface MathTransformFactory extends Factory {
      *
      * @param  firstAffectedOrdinate The lowest index of the affected ordinates.
      * @param  subTransform Transform to use for affected ordinates.
-     * @return The pass through transform.
+     * @param  numTrailingOrdinates Number of trailing ordinates to pass through.
+     *         Affected ordinates will range from <code>firstAffectedOrdinate</code>
+     *         inclusive to <code>dimTarget-numTrailingOrdinates</code> exclusive.
+     * @return A pass through transform with the following dimensions:<br>
+     *         <pre>
+     * Source: firstAffectedOrdinate + subTransform.getDimSource() + numTrailingOrdinates
+     * Target: firstAffectedOrdinate + subTransform.getDimTarget() + numTrailingOrdinates</pre>
      * @throws FactoryException if the object creation failed.
      * @UML operation createPassThroughTransform
-     *
-     * @revisit Should we add a <code>numTrailing</code> argument like in Geotools?
      */
-    MathTransform createPassThroughTransform(int firstAffectedOrdinate, MathTransform subTransform) throws FactoryException;
+    MathTransform createPassThroughTransform(int firstAffectedOrdinate, MathTransform subTransform, int numTrailingOrdinates) throws FactoryException;
 
     /**
      * Creates a transform from a classification name and parameters.
@@ -152,8 +156,6 @@ public interface MathTransformFactory extends Factory {
      * @param  xml Math transform encoded in XML format.
      * @throws FactoryException if the object creation failed.
      * @UML operation createFromXML
-     *
-     * @revisit Is it the right place for this method? XML parser may need its own class.
      */
     MathTransform createFromXML(String xml) throws FactoryException;
 
@@ -165,8 +167,6 @@ public interface MathTransformFactory extends Factory {
      * @param  wkt Kath transform encoded in Well-Known Text format.
      * @throws FactoryException if the object creation failed.
      * @UML operation createFromWKT
-     *
-     * @revisit Is it the right place for this method? WKT parser may need its own class.
      */
     MathTransform createFromWKT(String wkt) throws FactoryException;
 }
