@@ -1,31 +1,26 @@
 /*
  * Copyright (C) 2003 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
  */
-package org.opengis.cv;
+package org.opengis.gc;
 
 
 /**
- * Throws when a requested metadata is not found.
+ * Throws when a range is out of bounds.
  *
- * @UML exception CV_MetadataNameNotFound
+ * @UML exception GC_InvalidRange
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 1.1
- *
- * @see SampleDimension#getMetadataValue
- * @see Coverage#getMetadataValue
- * @see org.opengis.gc.GridCoverageExchange#getMetadataValue
- * @see org.opengis.gp.GridCoverageProcessor#getMetadataValue
  */
-public class MetadataNameNotFoundException extends IllegalArgumentException {
+public class InvalidRangeException extends IllegalArgumentException {
     /**
      * Serial number for interoperability with different versions.
      */
-    private static final long serialVersionUID = 3217010469714161299L;
+    private static final long serialVersionUID = 3165512862939920847L;
 
     /**
      * Creates an exception with no message.
      */
-    public MetadataNameNotFoundException() {
+    public InvalidRangeException() {
         super();
     }
 
@@ -35,7 +30,7 @@ public class MetadataNameNotFoundException extends IllegalArgumentException {
      * @param  message The detail message. The detail message is saved for 
      *         later retrieval by the {@link #getMessage()} method.
      */
-    public MetadataNameNotFoundException(String message) {
+    public InvalidRangeException(String message) {
         super(message);
     }
 }
