@@ -38,7 +38,7 @@ public interface Point extends Primitive {
      * {@linkplain DirectPosition direct position} or a reference to a <code>Point</code>
      * (from which a {@linkplain DirectPosition direct position} may be obtained). By not
      * allowing <code>Point</code> to use this technique, infinitely recursive references
-     * are prevented. Applications may choose another mechanism to prevent this logical problem.
+     * are prevented.
      *
      * @return The direct position.
      * @UML mandatory position
