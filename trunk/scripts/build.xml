@@ -22,7 +22,7 @@
 
 <project name="GeoAPI" default="release" basedir="C:/Documents and Settings/All Users/Documents/Releases/GeoAPI/snapshot">
 
-  <property name="homepath" value="P:/sources/GeoAPI"/>
+  <property name="homepath" value="P:/projects/GeoAPI"/>
   <property name="merlin"   value="C:/Java/1.4"/>
   <property name="version"  value="1.1"/>
   <property name="proxy"    value="-J-DproxyHost=proxy -J-DproxyPort=3128"/>
@@ -215,6 +215,7 @@
       <replacefilter token="&lt;Complex&gt;"/>
       <replacefilter token="&lt;Constraints&gt;"/>
       <replacefilter token="&lt;ContentInformation&gt;"/>
+      <replacefilter token="&lt;CoordinateOperation&gt;"/>
       <replacefilter token="&lt;DataQuality&gt;"/>
       <replacefilter token="&lt;DataStore&gt;"/>
       <replacefilter token="&lt;DataStore,String&gt;"/>
