@@ -97,7 +97,7 @@ public class UTM implements DirectPosition {
         setNorthing(northing, unit);
         setEasting(easting, unit);
         setAltitude(altitude, altitudeUnit);
-    }
+    }    
     
     /**
      * Initializes the Coordinate Reference System to the supplied parameter.
@@ -137,7 +137,7 @@ public class UTM implements DirectPosition {
         try {
             crs = CommonFactoryManager.getCRSAuthorityFactory().createCoordinateReferenceSystem(crsURL);
         } catch(FactoryException fe) {
-            fe.printStackTrace();
+            System.err.println(fe.getMessage());
         }
         return crs;
     }
