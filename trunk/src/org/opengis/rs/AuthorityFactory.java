@@ -36,6 +36,8 @@ import java.util.Collections;  // For Javadoc
 public interface AuthorityFactory extends Factory {
     /**
      * Returns the authority name.
+     *
+     * @UML mandatory CS_CoordinateSystemAuthorityFactory.authority in 1.0 specification.
      */
     String getAuthority();
 
@@ -75,6 +77,8 @@ public interface AuthorityFactory extends Factory {
      *         corresponding to the specified <code>code</code> has no description.
      * @throws NoSuchAuthorityCodeException if the specified <code>code</code> was not found.
      * @throws FactoryException if the query failed for some other reason.
+     *
+     * @UML operation CS_CoordinateSystemAuthorityFactory.descriptionText in 1.0 specification.
      */
     String getDescriptionText(String code, Locale locale) throws FactoryException;
 
