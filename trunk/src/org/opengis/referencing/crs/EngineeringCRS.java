@@ -24,8 +24,8 @@ import org.opengis.referencing.datum.EngineeringDatum;
  * <TABLE CELLPADDING='6' BORDER='1'>
  * <TR BGCOLOR="#EEEEFF"><TH NOWRAP>Used with CS type(s)</TH></TR>
  * <TR><TD>
+ *   {@link org.opengis.referencing.cs.AffineCS           Affine},
  *   {@link org.opengis.referencing.cs.CartesianCS        Cartesian},
- *   {@link org.opengis.referencing.cs.ObliqueCartesianCS ObliqueCartesian},
  *   {@link org.opengis.referencing.cs.EllipsoidalCS      Ellipsoidal},
  *   {@link org.opengis.referencing.cs.SphericalCS        Spherical},
  *   {@link org.opengis.referencing.cs.CylindricalCS      Cylindrical},
@@ -39,7 +39,7 @@ import org.opengis.referencing.datum.EngineeringDatum;
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/03-073r1.zip">Abstract specification 2.0</A>
  */
-public interface EngineeringCRS extends CoordinateReferenceSystem {
+public interface EngineeringCRS extends SingleCRS {
     /**
      * Returns the datum, which must be an engineering one.
      *

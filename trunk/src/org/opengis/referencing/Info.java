@@ -85,4 +85,16 @@ public interface Info {
      * @UML optional remarks
      */
     String getRemarks(Locale locale);
+
+    /**
+     * Returns a <A HREF="doc-files/WKT.html"><cite>Well Known Text</cite> (WKT)</A> for this object.
+     * This operation may fails if an object is too complex for the WKT format capability (for
+     * example an {@linkplain org.opengis.referencing.crs.EngineeringCRS engineering CRS} with
+     * different unit for each axis).
+     *
+     * @return The Well Know Text for this object.
+     * @throws UnsupportedOperationException If this object can't be formatted as WKT.
+     * @UML operation toWKT in Implementation specification 1.0
+     */
+    String toWKT() throws UnsupportedOperationException;
 }

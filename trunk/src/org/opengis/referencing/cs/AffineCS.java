@@ -11,9 +11,8 @@ package org.opengis.referencing.cs;
 
 
 /**
- * A two- or three-dimensional coordinate system with straight axes that are not necessarily
- * orthogonal. An <code>ObliqueCartesianCS</code> shall have two or three
- * {@linkplain #getAxis axis associations}.
+ * A two- or three-dimensional coordinate system with straight axes that are not necessarily orthogonal.
+ * An <code>AffineCS</code> shall have two or three {@linkplain #getAxis axis associations}.
  *
  * <TABLE CELLPADDING='6' BORDER='1'>
  * <TR BGCOLOR="#EEEEFF"><TH NOWRAP>Used with CRS type(s)</TH></TR>
@@ -29,5 +28,5 @@ package org.opengis.referencing.cs;
  *
  * @see CartesianCS
  */
-public interface ObliqueCartesianCS extends CoordinateSystem {
+public interface AffineCS extends CoordinateSystem {
 }

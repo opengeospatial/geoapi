@@ -216,4 +216,14 @@ public interface MathTransform {
      * @UML operation isIdentity
      */
     boolean isIdentity();
+
+    /**
+     * Returns a <A HREF="../doc-files/WKT.html"><cite>Well Known Text</cite> (WKT)</A> for this
+     * object. This operation may fails if an object is too complex for the WKT format capability.
+     *
+     * @return The Well Know Text for this object.
+     * @throws UnsupportedOperationException If this object can't be formatted as WKT.
+     * @UML operation toWKT in Implementation specification 1.0
+     */
+    String toWKT() throws UnsupportedOperationException;
 }

@@ -33,7 +33,7 @@ import org.opengis.referencing.datum.GeodeticDatum;
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/03-073r1.zip">Abstract specification 2.0</A>
  */
-public interface GeocentricCRS extends CoordinateReferenceSystem {
+public interface GeocentricCRS extends SingleCRS {
     /**
      * Returns the coordinate system, which must be {@linkplain CartesianCS cartesian}
      * or {@linkplain SphericalCS spherical}.

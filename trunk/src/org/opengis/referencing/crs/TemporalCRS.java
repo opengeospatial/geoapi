@@ -28,7 +28,7 @@ import org.opengis.referencing.datum.TemporalDatum;
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/03-073r1.zip">Abstract specification 2.0</A>
  */
-public interface TemporalCRS extends CoordinateReferenceSystem {
+public interface TemporalCRS extends SingleCRS {
     /** 	 
      * Returns the coordinate system, which must be temporal. 	 
      * 	 

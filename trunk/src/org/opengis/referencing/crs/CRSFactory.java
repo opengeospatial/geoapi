@@ -15,13 +15,13 @@ import java.util.Map;
 // OpenGIS dependencies
 import org.opengis.referencing.Factory;
 import org.opengis.referencing.FactoryException;
+import org.opengis.referencing.cs.AffineCS;
 import org.opengis.referencing.cs.CartesianCS;
 import org.opengis.referencing.cs.SphericalCS;
 import org.opengis.referencing.cs.EllipsoidalCS;
 import org.opengis.referencing.cs.VerticalCS;
 import org.opengis.referencing.cs.TemporalCS;
 import org.opengis.referencing.cs.CoordinateSystem;
-import org.opengis.referencing.cs.ObliqueCartesianCS;
 import org.opengis.referencing.datum.EngineeringDatum;
 import org.opengis.referencing.datum.GeodeticDatum;
 import org.opengis.referencing.datum.ImageDatum;
@@ -135,9 +135,9 @@ public interface CRSFactory extends Factory {
      * @param  cs The Cartesian or Oblique Cartesian coordinate system for the created CRS.
      * @throws FactoryException if the object creation failed.
      */
-    ImageCRS createImageCRS(Map        properties,
-                            ImageDatum      datum,
-                            ObliqueCartesianCS cs) throws FactoryException;
+    ImageCRS createImageCRS(Map   properties,
+                            ImageDatum datum,
+                            AffineCS      cs) throws FactoryException;
 
     /**
      * Creates a derived coordinate reference system. If the transformation is an affine

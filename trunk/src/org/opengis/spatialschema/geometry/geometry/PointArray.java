@@ -88,7 +88,7 @@ public interface PointArray {
 
     /**
      * Returns the point at the given index. This is equivalent to
-     * <code>{@linkplain #positions positions}().{@linkplain List#get get}(column).{@linkplain Position#getDirect getDirect}()</code>.
+     * <code>{@linkplain #positions positions}().{@linkplain List#get get}(column).{@linkplain Position#getPosition getPosition}()</code>.
      *
      * @param  column The location in the array, from 0 inclusive
      *                to the array's {@linkplain #length} exclusive.
