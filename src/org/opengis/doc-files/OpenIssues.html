@@ -71,60 +71,60 @@
   <P>&nbsp;</P>
   <H2>Remarks relative to hierarchy and attributes</H2>
   <UL>
-    <LI><P ALIGN="justify">Interface <A HREF="../cs/CartesianCS.html"><CODE>CartesianCS</CODE></A>
-        looks like a special case of <A HREF="../cs/ObliqueCartesianCS.html"><CODE>ObliqueCartesianCS</CODE></A>.
+    <LI><P ALIGN="justify">Interface <A HREF="../crs/cs/CartesianCS.html"><CODE>CartesianCS</CODE></A>
+        looks like a special case of <A HREF="../crs/cs/ObliqueCartesianCS.html"><CODE>ObliqueCartesianCS</CODE></A>.
         Maybe it should extends <CODE>ObliqueCartesianCS</CODE>. This is a similar argument than the
         one used in ISO-19107, which said that <code>Circle</code> is a sub-class of <code>Ellipse</code>
         since the former is a special case of the later (see 5.1.5 <cite>Strong substitutability</cite>).
-        Doing so would help to clarify the semantic of <A HREF="../sc/ImageCRS.html"><CODE>ImageCRS</CODE></A>
+        Doing so would help to clarify the semantic of <A HREF="../crs/crs/ImageCRS.html"><CODE>ImageCRS</CODE></A>
         (no need for separated <CODE>getCartesianCS()</CODE> and <CODE>getObliqueCartesianCS()</CODE> methods).</P>
         <P ALIGN="justify"><STRONG>PROPOSAL:</STRONG> <FONT COLOR="red">Move (in the hierarchy)
-        <A HREF="../cs/CartesianCS.html"><CODE>CartesianCS</CODE></A> as a sub-interface of
-        <A HREF="../cs/ObliqueCartesianCS.html"><CODE>ObliqueCartesianCS</CODE></A>. Drop
+        <A HREF="../crs/cs/CartesianCS.html"><CODE>CartesianCS</CODE></A> as a sub-interface of
+        <A HREF="../crs/cs/ObliqueCartesianCS.html"><CODE>ObliqueCartesianCS</CODE></A>. Drop
         "<CODE>cartesianCS</CODE>" and "<CODE>obliqueCartesianCS</CODE>" attributes in
-        <A HREF="../sc/ImageCRS.html"><CODE>ImageCRS</CODE></A>. Replace them by a restriction on the
+        <A HREF="../crs/crs/ImageCRS.html"><CODE>ImageCRS</CODE></A>. Replace them by a restriction on the
         "<CODE>usesCS</CODE>" association, exactly like what is done in
-        <A HREF="../sc/ProjectedCRS.html"><CODE>ProjectedCRS</CODE></A>.</FONT></P>
+        <A HREF="../crs/crs/ProjectedCRS.html"><CODE>ProjectedCRS</CODE></A>.</FONT></P>
     </LI>
 
-    <LI><P ALIGN="justify">The <A HREF="../sc/ImageCRS.html"><CODE>ImageCRS</CODE></A> interface is defined as a kind
-        of engineering CRS, but doesn't extend <A HREF="../sc/EngineeringCRS.html"><CODE>EngineeringCRS</CODE></A>.
+    <LI><P ALIGN="justify">The <A HREF="../crs/crs/ImageCRS.html"><CODE>ImageCRS</CODE></A> interface is defined as a kind
+        of engineering CRS, but doesn't extend <A HREF="../crs/crs/EngineeringCRS.html"><CODE>EngineeringCRS</CODE></A>.
         Maybe it should (there is no obvious technical reason preventing that).</P>
         <P ALIGN="justify"><STRONG>PROPOSAL:</STRONG> <FONT COLOR="red">Move (in the hierarchy)
-        <A HREF="../sc/ImageCRS.html"><CODE>ImageCRS</CODE></A> as a sub-interface of
-        <A HREF="../sc/EngineeringCRS.html"><CODE>EngineeringCRS</CODE></A>.</FONT></P>
+        <A HREF="../crs/crs/ImageCRS.html"><CODE>ImageCRS</CODE></A> as a sub-interface of
+        <A HREF="../crs/crs/EngineeringCRS.html"><CODE>EngineeringCRS</CODE></A>.</FONT></P>
     </LI>
 
     <LI><P ALIGN="justify">"<CODE>operationMethod</CODE>" attribute is defined in
-        <A HREF="../cc/CoordinateOperation.html"><CODE>CoordinateOperation</CODE></A>, but applied only to
-        <A HREF="../cc/Transformation.html"><CODE>Transformation</CODE></A> (a sub-interface). Maybe
+        <A HREF="../crs/operation/CoordinateOperation.html"><CODE>CoordinateOperation</CODE></A>, but applied only to
+        <A HREF="../crs/operation/Transformation.html"><CODE>Transformation</CODE></A> (a sub-interface). Maybe
         it should be defined only in <CODE>Transformation</CODE> interface.</P>
         <P ALIGN="justify"><STRONG>PROPOSAL:</STRONG> <FONT COLOR="red">Move down (in the hierarchy)
         the "<CODE>operationMethod</CODE>" attribute into the
-        <A HREF="../cc/Transformation.html"><CODE>Transformation</CODE></A> sub-interface.</FONT></P>
+        <A HREF="../crs/operation/Transformation.html"><CODE>Transformation</CODE></A> sub-interface.</FONT></P>
     </LI>
 
     <LI><P ALIGN="justify">"<CODE>minimumOccurs</CODE>" attribute is declared in
-        <A HREF="../cc/GeneralOperationParameter.html"><CODE>GeneralOperationParameter</CODE></A>,
+        <A HREF="../crs/operation/GeneralOperationParameter.html"><CODE>GeneralOperationParameter</CODE></A>,
         but "<CODE>maximumOccurs</CODE>" is declared in
-        <A HREF="../cc/OperationParameterGroup.html"><CODE>OperationParameterGroup</CODE></A>
+        <A HREF="../crs/operation/OperationParameterGroup.html"><CODE>OperationParameterGroup</CODE></A>
         (a sub-interface). Maybe they should be declared in the same place.</P>
         <P ALIGN="justify"><STRONG>PROPOSAL:</STRONG> <FONT COLOR="red">Move up (in the hierarchy)
         the "<CODE>maximumOccurs</CODE>" attribute into the
-        <A HREF="../cc/GeneralOperationParameter.html"><CODE>GeneralOperationParameter</CODE></A>
+        <A HREF="../crs/operation/GeneralOperationParameter.html"><CODE>GeneralOperationParameter</CODE></A>
         super-interface, in order to be on per with the "<CODE>minimumOccurs</CODE>" attribute.</FONT></P>
 
     <LI><P ALIGN="justify">Some attribute names are misleading regarding the type. For example "<CODE>includesCRS</CODE>"
-        in <A HREF="../sc/CompoundCRS.html"><CODE>CompoundCRS</CODE></A> is of type
-        <A HREF="../sc/CoordinateReferenceSystem.html"><CODE>CoordinateReferenceSystem</CODE></A>, not
-        <A HREF="../sc/CRS.html"><CODE>CRS</CODE></A> (which exists as an other interface).
+        in <A HREF="../crs/crs/CompoundCRS.html"><CODE>CompoundCRS</CODE></A> is of type
+        <A HREF="../crs/crs/CoordinateReferenceSystem.html"><CODE>CoordinateReferenceSystem</CODE></A>, not
+        <A HREF="../crs/crs/CRS.html"><CODE>CRS</CODE></A> (which exists as an other interface).
         <STRONG>NOTE:</STRONG> The ambiguity would disaspear if the next point (below) is accepted.</P></LI>
 
-    <LI><P ALIGN="justify">It may be worth to drop the <A HREF="../sc/CRS.html"><CODE>CRS</CODE></A>
+    <LI><P ALIGN="justify">It may be worth to drop the <A HREF="../crs/crs/CRS.html"><CODE>CRS</CODE></A>
          interface (see its javadoc for a rational).</P></LI>
         <P ALIGN="justify"><STRONG>PROPOSAL:</STRONG> <FONT COLOR="red">Allows
-        <A HREF="../sc/CompoundCRS.html"><CODE>CompoundCRS</CODE></A> to contains other <CODE>CompoundCRS</CODE>,
-        then drop the <A HREF="../sc/CRS.html"><CODE>CRS</CODE></A> interface.</FONT></P>
+        <A HREF="../crs/crs/CompoundCRS.html"><CODE>CompoundCRS</CODE></A> to contains other <CODE>CompoundCRS</CODE>,
+        then drop the <A HREF="../crs/crs/CRS.html"><CODE>CRS</CODE></A> interface.</FONT></P>
 
     <LI><P ALIGN="justify"><A HREF="../gm/complex/CompositeCurve.html"><CODE>CompositeCurve</CODE></A>
             extends (indirectly) both <CODE>Primitive</CODE> and <CODE>Complex</CODE>. Consequently,
@@ -151,7 +151,7 @@
         <P ALIGN="justify"><STRONG>FIX:</STRONG> <FONT COLOR="green">Drop all classname prefix in
         "<code>name</code>" and "<code>ID</code>" attributes. Moves "<code>name</code>", "<code>ID</code>"
         and "<code>remarks</code>" attributes in a common super-interface:
-        <A HREF=../rs/Info.html><CODE>Info</CODE></A>.</FONT></P>
+        <A HREF=../crs/Info.html><CODE>Info</CODE></A>.</FONT></P>
     </LI>
 
     <LI><P ALIGN="justify">While is is possible to mimic C's <CODE>union</CODE> in Java, the hack
