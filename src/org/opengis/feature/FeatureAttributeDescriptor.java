@@ -20,7 +20,9 @@ public interface FeatureAttributeDescriptor {
     public String getName();
 
     /**
-     * Returns a constant from DataType.
+     * Returns a constant from DataType.  The return value of this method
+     * indicates how the return values of getSize() and getPrecision() should e
+     * interpreted.
      */
     public DataType getDataType();
 
@@ -36,6 +38,13 @@ public interface FeatureAttributeDescriptor {
      * after the decimal point.  For other types, this must always return zero.
      */
     public int getPrecision();
+
+    /**
+     * For attributes of type OBJECT, this returns the Java <code>Class</code>
+     * object that class or interface that all values of this attribute can be
+     * cast to.  For all other types of attributes, this returns null.
+     */
+    public Class getObjectClass();
 
     /**
      * Returns the minimum number of occurrences of this attribute on a given

@@ -1,6 +1,5 @@
 package org.opengis.filter;
 
-public interface Not extends LogicOperator {
+public interface Not extends Filter {
     public Filter getFilter();
-    public void setFilter(Filter filter);
 }

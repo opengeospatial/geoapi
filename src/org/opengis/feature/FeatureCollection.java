@@ -1,5 +1,7 @@
 package org.opengis.feature;
 
+import java.util.Iterator;
+
 /**
  * This interface is implemented by Features if they have child Feature
  * objects.  A client can tell at runtime whether a Feature implements this
@@ -11,20 +13,15 @@ public interface FeatureCollection extends Feature {
     
     /**
      * Return the number of child Feature objects that this collection (which is
-     * itself a Feature) contains.
+     * itself a Feature) contains.  If this is unknown, for example, if the
+     * child features have not been loaded, then this method may return -1.
      */
     public int getSize();
 
     /**
-     * Returns the child Feature object having the given index.  Indices range
-     * from zero to <code>getSize()-1</code>.
+     * Returns an iterator over all of the child Feature objects.
      */
-    public Feature getFeature(int index);
-
-    /**
-     * Returns an array containing all of the child Feature objects.
-     */
-    public Feature [] getAllFeatures();
+    public Iterator getAllFeatures();
 
     /**
      * Adds the given feature as a child feature of this one.

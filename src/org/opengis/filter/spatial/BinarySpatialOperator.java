@@ -8,9 +8,9 @@ import org.opengis.spatialschema.geometry.Geometry;
  * one which is a fixed geometry object.
  */
 public interface BinarySpatialOperator extends SpatialOperator {
-    public String getPropertyName();
-    public void setPropertyName(String propertyName);
-
+    /**
+     * Returns the constant Geometry object against which the feature's geometry
+     * will be tested.  The nature of the test is dependent on the subclass.
+     */
     public Geometry /* GM_Object */ getGeometry();
-    public void setGeometry(Geometry /* GM_Object */ geometry);
 }
