@@ -1,5 +1,7 @@
 package org.opengis.sld;
 
+import java.util.List;
+
 import org.opengis.filter.expression.Expression;
 
 /**
@@ -19,56 +21,12 @@ public interface TextSymbol extends Symbol {
     public void setLabel(Expression label);
 
     /**
-     * Indicates the name of the font or font family to use.  Any number of
-     * comma-separated values may be provided and they are assumed to be in
-     * preferred order.  The list of available font families is system
-     * dependent.  If null, a system dependent default will be used.
+     * Returns a list of Fonts to choose from when rendering this symbol.  The
+     * renderer must choose the first one in the list that it is capable of
+     * rendering.  The returned list is "live" and can be modified by the
+     * caller.  (This is why there is no "setFonts" method.)
      */
-    public Expression getFontFamily();
-
-    /**
-     * Indicates the name of the font or font family to use.  Any number of
-     * comma-separated values may be provided and they are assumed to be in
-     * preferred order.  The list of available font families is system
-     * dependent.  If null, a system dependent default will be used.
-     */
-    public void setFontFamily(Expression expression);
-
-    /**
-     * Expression that indicates the style of the font.  Allowed values are
-     * "normal", "italic", and "oblique".  If null, the default is "normal".
-     */
-    public Expression getFontStyle();
-
-    /**
-     * Expression that indicates the style of the font.  Allowed values are
-     * "normal", "italic", and "oblique".  If null, the default is "normal".
-     */
-    public void setFontStyle(Expression expression);
-
-    /**
-     * Expression that indicates the weight of the font.  Allowed values are
-     * "normal" and "bold".  If null, the default is "normal".
-     */
-    public Expression getFontWeight();
-
-    /**
-     * Expression that indicates the weight of the font.  Allowed values are
-     * "normal" and "bold".  If null, the default is "normal".
-     */
-    public void setFontWeight(Expression expression);
-
-    /**
-     * Expression that indicates the pixel size of the font.  If null, the
-     * default value is 10.
-     */
-    public Expression getFontSize();
-
-    /**
-     * Expression that indicates the pixel size of the font.  If null, the
-     * default value is 10.
-     */
-    public void setFontSize(Expression expression);
+    public List getFonts();
 
     /**
      * Returns the object that indicates that the text should be drawn relative
@@ -109,4 +67,26 @@ public interface TextSymbol extends Symbol {
      * PointPlacement property to null.
      */
     public void setLinePlacement(LinePlacement linePlacement);
+
+    /**
+     * Returns the object that indicates if a Halo will be drawn around the
+     * text.  If null, a halo will not be drawn.
+     */
+    public Halo getHalo();
+
+    /**
+     * Sets the object that indicates if a Halo will be drawn around the
+     * text.  If null, a halo will not be drawn.
+     */
+    public void setHalo(Halo halo);
+
+    /**
+     * Returns the object that indicates how the text will be filled.
+     */
+    public Fill getFill();
+
+    /**
+     * Sets the object that indicates how the text will be filled.
+     */
+    public void setFill(Fill fill);
 }
