@@ -18,11 +18,11 @@
      Version: $Id$
      ======================================================================== -->
 
-<project name="GeoAPI" default="release" basedir="D:/Application/GeoAPI">
+<project name="GeoAPI" default="release" basedir="D:/Application/GeoAPI/snapshot">
 
   <property name="homepath" value="P:/CVSROOT/GeoAPI"/>
   <property name="kestrel"  value="C:/Java/J2SDK"/>
-  <property name="version"  value="2.0"/>
+  <property name="version"  value="1.0"/>
 
   <description>
       GeoAPI interfaces.
@@ -242,9 +242,9 @@
              breakiterator    = "true"
              noqualifier      = "all"
              overview         = "tiger/sources/org/opengis/overview.html"
-             windowtitle      = "OpenGIS API 2.0"
-             doctitle         = "OpenGIS API 2.0"
-             header           = "OpenGIS API 2.0&lt;br&gt;Build ${TODAY}"
+             windowtitle      = "GeoAPI ${version}"
+             doctitle         = "GeoAPI ${version}"
+             header           = "GeoAPI ${version}&lt;br&gt;Build ${TODAY}"
              additionalparam  = "-quiet -docfilessubdirs">
 
       <bottom>
@@ -311,7 +311,7 @@
 
   <!-- ======================================================================
 
-       LEGACY: Create HTML javadoc for legacy interfaces (version 1.0)
+       LEGACY: Create HTML javadoc for legacy interfaces
 
        ====================================================================== -->
 
@@ -334,14 +334,14 @@
              breakiterator    = "true"
              noqualifier      = "all"
              overview         = "${homepath}/legacy/org/opengis/overview.html"
-             windowtitle      = "Legacy OpenGIS API 1.0"
-             doctitle         = "Legacy OpenGIS API 1.0"
-             header           = "Legacy OpenGIS API 1.0"
+             windowtitle      = "Legacy OpenGIS API"
+             doctitle         = "Legacy OpenGIS API"
+             header           = "Legacy OpenGIS API"
              additionalparam  = "-quiet -docfilessubdirs">
 
       <bottom>
         &lt;TABLE WIDTH='100%'&gt;&lt;TR&gt;&lt;TD NOWRAP&gt;
-        &lt;A HREF=&quot;{@docRoot}/../javadoc/index.html&quot;&gt;New (current) interfaces&lt;/A&gt;&lt;BR&gt;
+        &lt;A HREF=&quot;{@docRoot}/../../snapshot/javadoc/index.html&quot;&gt;New (current) interfaces&lt;/A&gt;&lt;BR&gt;
         &lt;/TD&gt;&lt;TD NOWRAP ALIGN='right'&gt;
         &lt;FONT SIZE='2'&gt;Copyright &lt;A HREF=&quot;http://www.opengis.org/&quot;&gt;OpenGIS&amp;reg; Consortium&lt;/A&gt;&lt;/FONT&gt;
         &lt;/TD&gt;&lt;/TR&gt;&lt;/TABLE&gt;
@@ -353,7 +353,7 @@
 
       <link href="http://java.sun.com/j2se/1.4/docs/api"/>
       <link href="http://jsr-108.sourceforge.net/javadoc"/>
-      <link href="../javadoc"/>
+      <link href="../../snapshot/javadoc"/>
 
       <group title="Coordinate Transformation services" packages="org.opengis.cs:org.opengis.ct:org.opengis.pt"/>
       <group title="Grid Coverages services"            packages="org.opengis.cv:org.opengis.gc:org.opengis.gp"/>
@@ -370,21 +370,25 @@
 
        ====================================================================== -->
 
-  <target name="jars" depends="compile-tiger,compile">
+  <target name="jar" depends="compile">
 
     <mkdir dir="binaries"/>
-
-    <jar destfile = "binaries/opengis-tiger.jar"
-         basedir  = "tiger/classes"
-         index    = "true"
-         manifest = "tiger/sources/META-INF/MANIFEST.MF">
-      <include name="org/**"/>
-    </jar>
 
     <jar destfile = "binaries/opengis.jar"
          basedir  = "classes"
          index    = "true"
          manifest = "sources/META-INF/MANIFEST.MF">
+      <include name="org/**"/>
+    </jar>
+
+  </target>
+
+  <target name="jars" depends="compile-tiger,jar">
+
+    <jar destfile = "binaries/opengis-tiger.jar"
+         basedir  = "tiger/classes"
+         index    = "true"
+         manifest = "tiger/sources/META-INF/MANIFEST.MF">
       <include name="org/**"/>
     </jar>
 
