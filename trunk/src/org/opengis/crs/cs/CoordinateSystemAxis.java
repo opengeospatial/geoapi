@@ -62,29 +62,6 @@ public interface CoordinateSystemAxis extends Info {
     AxisDirection getDirection();
 
     /**
-     * Direction of this coordinate system axis. In the case of Cartesian projected coordinates,
-     * this is the direction of this coordinate system axis locally. Examples: north or south, east
-     * or west, up or down. Within any set of coordinate system axes, only one of each pair of terms
-     * can be used. For earth-fixed coordinate reference systems, this direction is often
-     * approximate and intended to provide a human interpretable meaning to the axis. When a
-     * geodetic datum is used, the precise directions of the axes may therefore vary slightly
-     * from this approximate direction.
-     *
-     * Note that an {@link org.opengis.crs.crs.EngineeringCRS} often requires specific descriptions
-     * of the directions of its coordinate system axes.
-     *
-     * @param  locale The desired locale for the coordinate system axis direction to be returned,
-     *         or <code>null</code> for a direction in some default locale (may or may not be the
-     *         {@linkplain Locale#getDefault() system default}).
-     * @return The coordinate system axis direction in the given locale. If no direction
-     *         is available in the given locale, then some default locale is used.
-     * @UML mandatory axisDirection
-     *
-     * @deprecated Use {@link #getDirection()} instead. Localization will be provided in the code list.
-     */
-    String getDirection(Locale locale);
-
-    /**
      * The unit of measure used for this coordinate system axis. The value of this
      * coordinate in a coordinate tuple shall be recorded using this unit of measure,
      * whenever those coordinates use a coordinate reference system that uses a

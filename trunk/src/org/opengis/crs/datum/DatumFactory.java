@@ -65,15 +65,4 @@ public interface DatumFactory extends Factory {
                                     double semiMajorAxis,
                                     double inverseFlattening,
                                     Unit   unit) throws FactoryException;
-
-    /**
-     * Gets a Datum by name.  This name should be one of the well-known
-     * datum keys.
-     *
-     * @param datumName the name of the Datum to get.
-     * @return the Datum.
-     *
-     * @deprecated Use {@link DatumAuthorityFactory#createDatum} instead.
-     */
-    Datum getDatum(String datumName);
 }

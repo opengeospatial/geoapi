@@ -268,7 +268,7 @@ public class ProjectionKey extends SimpleEnumerationType
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
-    public CodeList[] family() {
+    public /*{ProjectionKey}*/ CodeList[] family() {
         return values();
     }
 
