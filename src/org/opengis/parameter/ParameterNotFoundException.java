@@ -12,12 +12,12 @@ package org.opengis.parameter;
 
 /**
  * Thrown when a required parameter was not found in a
- * {@linkplain ParameterGroupDescriptor parameter group}.
+ * {@linkplain ParameterDescriptorGroup parameter group}.
  *
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 2.0
  *
- * @see ParameterGroupDescriptor#getParameter
+ * @see ParameterDescriptorGroup#getParameter
  * @see ParameterValueGroup#getValue
  */
 public class ParameterNotFoundException extends IllegalArgumentException {

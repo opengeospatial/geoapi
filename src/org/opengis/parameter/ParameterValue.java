@@ -34,7 +34,7 @@ public interface ParameterValue extends GeneralParameterValue {
      *
      * @return The abstract definition of this parameter value.
      */
-/// OperationParameter getDescriptor();
+/// ParameterDescriptor getDescriptor();
 
     /**
      * Returns the unit of measure of the {@linkplain #doubleValue() parameter value}.

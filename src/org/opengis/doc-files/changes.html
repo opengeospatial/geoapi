@@ -42,19 +42,31 @@
          replaced by <code>org.opengis.metadata.quality</code>. This reflect a change in OGC Topic
          2 voted in July 16, 2004.</P></LI>
 
-    <LI><P>For convenience method <code>getParameter(String)</code> in
-        <code><A HREF="../parameter/OperationParameterGroup.html">OperationParameterGroup</A></code> interface,
-        changed the return type from
-        <code><A HREF="../parameter/GeneralOperationParameter.html">GeneralOperationParameter</A></code> to
-        <code><A HREF="../parameter/OperationParameter.html">OperationParameter</A></code>.
-        This change make the convenience method more... convenient.</P></LI>
+    <LI><P>Renamed all <CODE>OperationParameter</CODE> interfaces as <CODE>ParameterDescriptor</CODE>. This is because many users
+        expect a parameter to contains a value. The <CODE>ParameterDescriptor</CODE> name make it clearer that this interface
+        contains metadata about parameter, not the actual parameter value. It also consistent with usage in other Java libraries
+        like <cite>Java Advanced Imaging</cite>.</P></LI>
 
+    <LI><P>In <code><A HREF="../referencing/operation/OperationMethod.html">OperationMethod</A></code>, changed the <code>GeneralParameterDescriptor[]</code>
+        return type to <code>ParameterDescriptorGroup</code>. Generally speaking, this change was applied for most processing methods in GeoAPI
+        returning parameters. This is a slight departure from specifications, which usually returns a sequence of parameter rather than a group.</P>
+
+    <LI><P>For convenience method <code>getParameter(String)</code> in
+        <code><A HREF="../parameter/ParameterDescriptorGroup.html">ParameterDescriptorGroup</A></code> interface,
+        changed the return type from
+        <code><A HREF="../parameter/GeneralParameterDescriptor.html">GeneralParameterDescriptor</A></code> to
+        <code><A HREF="../parameter/ParameterDescriptor.html">ParameterDescriptor</A></code>.
+        This change make the convenience method more... convenient.</P></LI>
+    
     <LI><P>For convenience method <code>getValue(String)</code> in
         <code><A HREF="../parameter/ParameterValueGroup.html">ParameterValueGroup</A></code> interface,
         changed the return type from
         <code><A HREF="../parameter/GeneralParameterValue.html">GeneralParameterValue</A></code> to
         <code><A HREF="../parameter/ParameterValue.html">ParameterValue</A></code>.
-        This change make the convenience method more... convenient.</P></LI>
+        This change make the convenience method more... convenient. Also renamed the method as
+        <code>parameter</code>, which avoid strange expression like
+        <code>getValue("some_name").setValue(someValue)</code>. The idiom is now
+        <code>parameter("some_name").setValue(someValue)</code> instead.</P></LI>
   </UL>
   <H3>Changes in Geometry packages</H3>
   <UL>
@@ -90,6 +102,10 @@
 
     <LI><P>In <code><A HREF="../coverage/grid/GridRange.html">GridRange</A></code>, added <code>getLower(int)</code>, <code>getUpper(int)</code>,
         <code>getLength(int)</code> and <code>getDimension</code> convenience methods.</P></LI>
+
+    <LI><P>In <code><A HREF="../coverage/processing/Operation.html">Operation</A></code>, changed the <code>GeneralParameterValue[]</code>,
+        return type to <code>ParameterValueGroup</code>. Generally speaking, this change was applied for most processing methods in GeoAPI
+        returning parameters. This is a slight departure from specifications, which usually returns a sequence of parameter values.</P>
   </UL>
   </BLOCKQUOTE>
   </body>

@@ -6,7 +6,7 @@
   </HEAD>
   <BODY>
   Description and storage of {@linkplain org.opengis.parameter.ParameterValue parameter values}.
-  The following is adapted from
+  The two following paragrams are adapted from
   <A HREF="http://www.opengis.org/docs/03-073r1.zip">OpenGIS&reg;
   Spatial Referencing by Coordinates (Topic 2)</A> specification.
 
@@ -19,18 +19,18 @@
   <P ALIGN="justify">Some operation methods may require a large number of coordinate operation
   parameters. Also, some operation methods require that groups of parameters be repeatable as
   a group. In such cases, it is helpful to group related parameters in
-  {@linkplain org.opengis.parameter.OperationParameterGroup parameter groups}. Two or more parameter
+  {@linkplain org.opengis.parameter.ParameterDescriptorGroup parameter groups}. Two or more parameter
   groups are then associated with a particular operation method, and each parameter group consists
-  of a set of {@linkplain org.opengis.parameter.OperationParameter operation parameters}, or other,
+  of a set of {@linkplain org.opengis.parameter.ParameterDescriptor operation parameters}, or other,
   nested parameter groups. This way of modelling is not mandatory; all coordinate operation
   parameters may be assigned directly to the coordinate operation method.</P>
-  
-  <h3>Shared Parameter API</h3>
-  <p>
-  We have extended the use of these Parameter classes to be shared across seveal
-  implementations with different needs. This is purly an acident of impelemntation
+
+  <h3>GeoAPI note: Shared Parameter API</h3>
+  <P ALIGN="justify">
+  We have extended the use of these parameter classes to be shared across several
+  implementations with different needs. This is purly an acident of implementation
   (we produced these parameter classes first. They do happen to be very expressive
-  and a good candiate for reuse:
+  and a good candiate for reuse):
   </p>
   We also considered:
   <ul>
@@ -42,11 +42,11 @@
       The Java Beans specification is well known and many tools exist for UI creation
       based on this specification.
   <li>javax.jai.* -
-      Java Advanced Imaging contains a PrameterDescriptor infrastructure that has
+      Java Advanced Imaging contains a ParameterDescriptor infrastructure that has
       served as a guideline for how we would like to extend this work.
   </ul>
   <p>
-  In the field we are using this set of prameter classes to describe connection information
+  In the field we are using this set of parameter classes to describe connection information
   for WMS, WFS and Database connections - a function that ISO 19119 - Metadata Services is
   supposed to fufill. In this we can only point to our desire 
   </p>
@@ -65,8 +65,9 @@
     </ul>
 
   <p>
-  Q: Is practice of creating objects for MetadataEntity, Element and EntityType not in the spirit of the specification, if so can they recommend an alternative? One alternative would be to port the CORBA IDL from v2. Problem is InsertMetadata/UpdateMetadata using "any payload".
+  Q: Is practice of creating objects for MetadataEntity, Element and EntityType not in the spirit
+     of the specification, if so can they recommend an alternative? One alternative would be to
+     port the CORBA IDL from v2. Problem is InsertMetadata/UpdateMetadata using "any payload".
   </p>
-  
   </BODY>  
 </HTML>

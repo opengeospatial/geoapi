@@ -24,27 +24,27 @@ import org.opengis.metadata.Identifier;  // For javadoc
  * @see ParameterValueGroup
  * @see ParameterDescriptor
  */
-public interface ParameterGroupDescriptor extends GeneralParameterDescriptor {
+public interface ParameterDescriptorGroup extends GeneralParameterDescriptor {
     /**
      * Creates a new instance of {@linkplain ParameterValueGroup parameter value group}
      * initialized with the {@linkplain ParameterDescriptor#getDefaultValue default values}.
-     * <p>
      * The {@linkplain ParameterValueGroup#getDescriptor parameter value descriptor}
      * for the created group will be <code>this</code> object.
-     * </p>
-     * <p>
-     * Included ParameterValues:
+     * <br><br>
+     * The number of {@link ParameterValue} objects included will matchs the
+     * {@linkplain ParameterDescriptor#getMinimumOccurs minimum occurences} required.
+     * For example:
      * <ul>
-     * <li>For OppertionParameter with cardinality 1:1 a ParameterValue will be included with
-     * the defaultValue (even if this defaultValue is null).
-     * <li>For OpperationParameters that with cardinality 0:* no entry will be generated, client code
-     * will need to look up the correct descriptor and create these optional ParameterValues. 
+     * <li>For {@link ParameterDescriptor} with cardinality 1:* a {@link ParameterValue} will
+     *     be included with the {@linkplain ParameterDescriptor#getDefaultValue default value}
+     *     (even if this default value is null).</li>
+     * <li>For {@link ParameterDescriptor} with cardinality 0:* no entry will be generated,
+     *     client code will need to look up the correct descriptor and create these optional
+     *     {@link ParameterValue}.</li>
      * </ul>
-     * </p>
      */
-    // ParameterValueGroup createValue();     
-    GeneralParameterValue createValue(); // override for javadoc comment
-
+ /// ParameterValueGroup createValue();     
+ 
     /**
      * Returns the parameters in this group.
      *
@@ -54,16 +54,14 @@ public interface ParameterGroupDescriptor extends GeneralParameterDescriptor {
     GeneralParameterDescriptor[] getParameters();
 
     /**
-     * Returns the first parameter in this group for the specified {@linkplain Identifier#getCode
-     * identifier code}.
-     * <p>
+     * Returns the first parameter in this group for the specified
+     * {@linkplain Identifier#getCode identifier code}.
      * If no {@linkplain ParameterDescriptor operation parameter} is found for
      * the given code, then this method search recursively in subgroups (if any).
-     * </p>
-     * <p>This convenience method provides a way to get and set parameter information by name.
+     * This convenience method provides a way to get and set parameter information by name.
      * For example the following idiom fetches the default value for the
      * <code>"false_easting"</code> parameter:
-     * <br><br>
+     * <br>
      * <blockquote><code>
      * Object defaultValue = getParameter("false_easting").{@linkplain ParameterDescriptor#getDefaultValue() getDefaultValue()};
      * </code></blockquote>
@@ -76,5 +74,4 @@ public interface ParameterGroupDescriptor extends GeneralParameterDescriptor {
      * @throws ParameterNotFoundException if there is no parameter for the given identifier code.
      */
     ParameterDescriptor getParameter(String name) throws ParameterNotFoundException;
-        
 }
