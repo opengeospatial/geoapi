@@ -11,7 +11,7 @@ package org.opengis.spatialschema.geometry;
 
 // OpenGIS direct dependencies
 import org.opengis.util.Cloneable;
-import org.opengis.crs.crs.CoordinateReferenceSystem;
+import org.opengis.referencing.crs.CoordinateReferenceSystem;
 
 
 /**

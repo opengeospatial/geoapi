@@ -9,8 +9,8 @@
  *************************************************************************************************/
 package org.opengis.spatialschema;
 
-import org.opengis.crs.crs.CoordinateReferenceSystem;
-import org.opengis.crs.crs.UnsupportedCRSException;
+import org.opengis.referencing.crs.CoordinateReferenceSystem;
+import org.opengis.referencing.crs.UnsupportedCRSException;
 
 /**
  * <code>SpatialschemaFactory</code> defines a common abstraction for classes that

@@ -10,10 +10,10 @@
 
 package org.opengis.go;
 
-import org.opengis.crs.crs.CRSAuthorityFactory;
-import org.opengis.crs.crs.CRSFactory;
-import org.opengis.crs.datum.DatumAuthorityFactory;
-import org.opengis.crs.datum.DatumFactory;
+import org.opengis.referencing.crs.CRSAuthorityFactory;
+import org.opengis.referencing.crs.CRSFactory;
+import org.opengis.referencing.datum.DatumAuthorityFactory;
+import org.opengis.referencing.datum.DatumFactory;
 import org.opengis.go.geometry.BoundsFactory;
 import org.opengis.spatialschema.SpatialschemaFactory;
 

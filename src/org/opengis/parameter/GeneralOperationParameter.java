@@ -10,7 +10,7 @@
 package org.opengis.parameter;
 
 // OpenGIS direct dependencies
-import org.opengis.crs.Info;
+import org.opengis.referencing.Info;
 
 
 /**

@@ -13,7 +13,7 @@ package org.opengis.coverage;
 import javax.units.Unit;
 
 // OpenGIS dependencies
-import org.opengis.crs.operation.MathTransform1D;
+import org.opengis.referencing.operation.MathTransform1D;
 
 
 /**

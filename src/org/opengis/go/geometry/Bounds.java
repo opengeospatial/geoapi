@@ -9,7 +9,7 @@
  *************************************************************************************************/
 package org.opengis.go.geometry;
 
-import org.opengis.crs.crs.CoordinateReferenceSystem;
+import org.opengis.referencing.crs.CoordinateReferenceSystem;
 import org.opengis.spatialschema.geometry.DirectPosition;
 
 /**

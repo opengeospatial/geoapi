@@ -10,7 +10,7 @@
 package org.opengis.coverage.grid;
 
 // OpenGIS direct dependencies
-import org.opengis.crs.operation.MathTransform;
+import org.opengis.referencing.operation.MathTransform;
 
 
 /**

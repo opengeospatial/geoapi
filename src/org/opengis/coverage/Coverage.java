@@ -14,7 +14,7 @@ import java.awt.image.Raster;                     // For Javadoc
 import java.awt.image.renderable.RenderableImage;
 
 // OpenGIS direct dependencies
-import org.opengis.crs.crs.CoordinateReferenceSystem;
+import org.opengis.referencing.crs.CoordinateReferenceSystem;
 import org.opengis.spatialschema.geometry.DirectPosition;
 import org.opengis.spatialschema.geometry.Envelope;
 

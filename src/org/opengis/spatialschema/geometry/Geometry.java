@@ -10,10 +10,10 @@
 package org.opengis.spatialschema.geometry;
 
 import java.util.Set;
-import org.opengis.crs.crs.CoordinateReferenceSystem;
-import org.opengis.crs.operation.IncompatibleOperationException;
-import org.opengis.crs.operation.MathTransform;
-import org.opengis.crs.operation.TransformException;
+import org.opengis.referencing.crs.CoordinateReferenceSystem;
+import org.opengis.referencing.operation.IncompatibleOperationException;
+import org.opengis.referencing.operation.MathTransform;
+import org.opengis.referencing.operation.TransformException;
 import org.opengis.spatialschema.geometry.complex.Complex;
 
 
@@ -204,7 +204,7 @@ public interface Geometry extends TransfiniteSet {
      *
      * @see #getBoundary
      * @see #getBuffer
-     * @see org.opengis.crs.cs.CoordinateSystem#getAxis
+     * @see org.opengis.referencing.cs.CoordinateSystem#getAxis
      */
     public double getDistance(Geometry geometry);
 
@@ -339,7 +339,7 @@ public interface Geometry extends TransfiniteSet {
      *
      * @see #getBoundary
      * @see #getDistance
-     * @see org.opengis.crs.cs.CoordinateSystem#getAxis
+     * @see org.opengis.referencing.cs.CoordinateSystem#getAxis
      */
     public Geometry getBuffer(double distance);
 }

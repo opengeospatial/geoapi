@@ -14,9 +14,9 @@ import java.util.HashMap;
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
 
-import org.opengis.crs.FactoryException;
-import org.opengis.crs.crs.CRSAuthorityFactory;
-import org.opengis.crs.crs.CoordinateReferenceSystem;
+import org.opengis.referencing.FactoryException;
+import org.opengis.referencing.crs.CRSAuthorityFactory;
+import org.opengis.referencing.crs.CoordinateReferenceSystem;
 
 /**
  * <code>CommonFactoryManager</code> defines static variables and methods used

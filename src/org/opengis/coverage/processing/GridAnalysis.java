@@ -11,7 +11,7 @@ package org.opengis.coverage.processing;
 
 // OpenGIS direct dependencies
 import org.opengis.coverage.grid.GridCoverage;
-import org.opengis.crs.operation.Matrix;
+import org.opengis.referencing.operation.Matrix;
 
 
 /**

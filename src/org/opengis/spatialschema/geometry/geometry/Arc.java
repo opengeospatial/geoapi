@@ -58,7 +58,7 @@ import org.opengis.spatialschema.geometry.primitive.Bearing;
 public interface Arc extends ArcString {
     /**
      * Calculates the center of the circle of which this arc is a portion as a direct position.
-     * The {@linkplain org.opengis.crs.crs.CoordinateReferenceSystem coordinate reference system}
+     * The {@linkplain org.opengis.referencing.crs.CoordinateReferenceSystem coordinate reference system}
      * of the returned {@linkplain DirectPosition direct position} will be the same as that
      * for this <code>Arc</code>. In some extreme cases, the {@linkplain DirectPosition direct
      * position} as calculated may lie outside the domain of validity of the coordinate reference
