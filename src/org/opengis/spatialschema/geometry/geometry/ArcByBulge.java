@@ -19,5 +19,5 @@ public interface ArcByBulge extends ArcStringByBulge {
      *
      * @return This arc by bulge as a base {@linkplain Arc arc}.
      */
-    public Arc asArcString();
+/// public Arc asArcString();
 }

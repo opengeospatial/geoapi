@@ -58,5 +58,5 @@ public interface ImageCRS extends CoordinateReferenceSystem {
      * @return The datum.
      * @UML association usesDatum
      */
-    public ImageDatum getDatum();
+/// public ImageDatum getDatum();
 }

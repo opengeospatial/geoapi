@@ -46,7 +46,7 @@ public interface Point extends Primitive {
      * @return Always <code>null</code>.
      * @UML operation boundary
      */
-    public PrimitiveBoundary getBoundary();
+/// public PrimitiveBoundary getBoundary();
 
     /**
      * Returns the bearing, as a unit vector, of the tangent (at this <code>Point</code>) to

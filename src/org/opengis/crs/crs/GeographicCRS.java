@@ -35,7 +35,7 @@ public interface GeographicCRS extends CoordinateReferenceSystem {
      * @return The coordinate system.
      * @UML association usesCS
      */
-    public EllipsoidalCS getCoordinateSystem();
+/// public EllipsoidalCS getCoordinateSystem();
 
     /**
      * Returns the datum, which must be geodetic.
@@ -43,5 +43,5 @@ public interface GeographicCRS extends CoordinateReferenceSystem {
      * @return The datum.
      * @UML association usesDatum
      */
-    public GeodeticDatum getDatum();
+/// public GeodeticDatum getDatum();
 }

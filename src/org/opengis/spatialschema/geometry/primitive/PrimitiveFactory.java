@@ -79,7 +79,7 @@ public interface PrimitiveFactory {
      *
      * @UML constructor GM_Curve(GM_CurveSegment[1..n])
      */
-    public Curve createCurve(List<CurveSegment> segments);
+    public Curve createCurve(List/*<CurveSegment>*/ segments);
 
     /**
      * Takes a list of {@linkplain SurfacePatch surface patches} with the appropriate
@@ -87,7 +87,7 @@ public interface PrimitiveFactory {
      *
      * @UML constructor GM_Surface(GM_SurfacePatch[1..n])
      */
-    public Surface createSurface(List<SurfacePatch> surfaces);
+    public Surface createSurface(List/*<SurfacePatch>*/ surfaces);
 
     /**
      * Constructs a {@linkplain Surface surface} by indicating its boundary as a collection

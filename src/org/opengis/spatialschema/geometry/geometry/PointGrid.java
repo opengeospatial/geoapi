@@ -62,5 +62,5 @@ public interface PointGrid {
      * @revisit Should changes in this list be forwarded to the underlying <code>PointGrid</code>?
      *          In the mean time, it is probably safe for implementor to make this list immutable.
      */
-    public List<PointArray> getRows();
+    public List/*<PointArray>*/ getRows();
 }

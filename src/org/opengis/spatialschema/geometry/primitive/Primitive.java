@@ -50,7 +50,7 @@ public interface Primitive extends Geometry {
      * @return The sets of positions on the boundary.
      * @UML operation boundary
      */
-    public PrimitiveBoundary getBoundary();
+/// public PrimitiveBoundary getBoundary();
 
     /**
      * Returns the <code>Primitive</code>s which are by definition coincident with this one.
@@ -76,7 +76,7 @@ public interface Primitive extends Geometry {
      *
      * @see #getContainingPrimitives
      */
-    public Set<Primitive> getContainedPrimitives();
+    public Set/*<Primitive>*/ getContainedPrimitives();
 
     /**
      * Returns the <code>Primitive</code>s which are by definition coincident with this one.
@@ -94,7 +94,7 @@ public interface Primitive extends Geometry {
      *
      * @see #getContainedPrimitives
      */
-    public Set<Primitive> getContainingPrimitives();
+    public Set/*<Primitive>*/ getContainingPrimitives();
 
     /**
      * Returns the set of complexes which contains this primitive. A <code>Primitive</code> may
@@ -107,7 +107,7 @@ public interface Primitive extends Geometry {
      * @revisit Does it means that <code>Primitive</code> can't be immutable, since
      *          adding this primitive to a complex will change this set?
      */
-    public Set<Complex> getComplexes();
+    public Set/*<Complex>*/ getComplexes();
 
     /**
      * Returns the orientable primitives associated with this primitive. Each <code>Primitive</code>

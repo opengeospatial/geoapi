@@ -34,7 +34,7 @@ public interface VerticalCRS extends CoordinateReferenceSystem {
      * @return The coordinate system.
      * @UML association usesCS
      */
-    public VerticalCS getCoordinateSystem();
+/// public VerticalCS getCoordinateSystem();
 
     /**
      * Returns the datum, which must be vertical.
@@ -42,5 +42,5 @@ public interface VerticalCRS extends CoordinateReferenceSystem {
      * @return The datum.
      * @UML association usesDatum
      */
-    public VerticalDatum getDatum();
+/// public VerticalDatum getDatum();
 }

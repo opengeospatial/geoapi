@@ -91,7 +91,7 @@ public final class DerivedCRSType extends CodeList {
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
-    public DerivedCRSType[] family() {
+    public /*{DerivedCRSType}*/ CodeList[] family() {
         return values();
     }
 }

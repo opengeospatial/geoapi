@@ -129,7 +129,7 @@ public class CurveInterpolation extends CodeList {
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
-    public CurveInterpolation[] family() {
+    public /*{CurveInterpolation}*/ CodeList[] family() {
         return values();
     }
 }

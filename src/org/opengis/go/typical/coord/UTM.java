@@ -14,6 +14,7 @@ import javax.units.Unit;
 
 import java.util.Properties;
 
+import org.opengis.crs.crs.CRS;
 import org.opengis.crs.crs.CoordinateReferenceSystem;
 import org.opengis.crs.crs.CoordinateReferenceSystemFactory;
 import org.opengis.crs.crs.UnsupportedCRSException;
@@ -253,7 +254,7 @@ public class UTM implements DirectPosition {
     /**
      * Returns the Coordinate Reference System for this UTM.
      */
-    public CoordinateReferenceSystem getCoordinateReferenceSystem() {
+    public CRS getCoordinateReferenceSystem() {
         return crs;
     }
 }

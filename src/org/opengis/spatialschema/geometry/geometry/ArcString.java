@@ -69,5 +69,5 @@ public interface ArcString extends CurveSegment {
      * @return The sequence of arcs.
      * @UML operation asGM_Arc
      */
-    public List<Arc> asArcs();
+    public List/*<Arc>*/ asArcs();
 }

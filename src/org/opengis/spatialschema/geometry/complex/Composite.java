@@ -34,5 +34,5 @@ public interface Composite extends Complex {
      * @return The list of primitives in this composite.
      * @UML association generator
      */
-    public List<? extends Primitive> getGenerators();
+    public List/*<? extends Primitive>*/ getGenerators();
 }

@@ -132,5 +132,5 @@ public interface PointArray {
      * @return The points in this array.
      * @UML mandatory column
      */
-    public List<Position> positions();
+    public List/*<Position>*/ positions();
 }

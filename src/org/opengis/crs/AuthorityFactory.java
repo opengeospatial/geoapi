@@ -64,7 +64,7 @@ public interface AuthorityFactory extends Factory {
      *         returns an {@linkplain Collections#EMPTY_SET empty set}.
      * @throws FactoryException if access to the underlying database failed.
      */
-    Set<String> getAuthorityCodes(Class type) throws FactoryException;
+    Set/*<String>*/ getAuthorityCodes(Class type) throws FactoryException;
 
     /**
      * Gets a description of the object corresponding to a code.

@@ -41,5 +41,5 @@ public interface EngineeringCRS extends CoordinateReferenceSystem {
      * @return The datum.
      * @UML association usesDatum
      */
-    public EngineeringDatum getDatum();
+/// public EngineeringDatum getDatum();
 }

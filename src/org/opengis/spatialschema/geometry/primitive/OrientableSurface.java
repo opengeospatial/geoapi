@@ -38,7 +38,7 @@ public interface OrientableSurface extends OrientablePrimitive {
      * @return The sets of positions on the boundary.
      * @UML operation boundary
      */
-    public SurfaceBoundary getBoundary();
+/// public SurfaceBoundary getBoundary();
 
     /**
      * Returns the owner of this orientable surface, or <code>null</code> if none.

@@ -31,5 +31,5 @@ public interface ProjectedCRS extends GeneralDerivedCRS {
      * @return The coordinate system.
      * @UML association usesCS
      */
-    public CartesianCS getCoordinateSystem();
+/// public CartesianCS getCoordinateSystem();
 }

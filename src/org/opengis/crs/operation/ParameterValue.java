@@ -28,7 +28,7 @@ public interface ParameterValue extends GeneralParameterValue {
      *
      * @return The abstract definition of this parameter value.
      */
-    public OperationParameter getDescriptor();
+/// public OperationParameter getDescriptor();
 
     /**
      * Returns the unit of measure of the {@linkplain #doubleValue parameter value}.
@@ -251,5 +251,5 @@ public interface ParameterValue extends GeneralParameterValue {
      *
      * @return A copy of this parameter value.
      */
-    public ParameterValue clone();
+    public /*{ParameterValue}*/ Object clone();
 }

@@ -59,7 +59,7 @@ public final class PixelinCell extends CodeList {
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
-    public PixelinCell[] family() {
+    public /*{PixelinCell}*/ CodeList[] family() {
         return values();
     }
 }

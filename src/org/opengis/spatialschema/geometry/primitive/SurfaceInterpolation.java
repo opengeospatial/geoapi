@@ -108,7 +108,7 @@ public class SurfaceInterpolation extends CodeList {
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
-    public SurfaceInterpolation[] family() {
+    public /*{SurfaceInterpolation}*/ CodeList[] family() {
         return values();
     }
 }

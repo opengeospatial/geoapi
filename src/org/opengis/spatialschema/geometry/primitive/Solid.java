@@ -40,7 +40,7 @@ public interface Solid extends Primitive {
      * @return The sets of positions on the boundary.
      * @UML operation boundary
      */
-    public SolidBoundary getBoundary();
+/// public SolidBoundary getBoundary();
 
     /**
      * Returns the sum of the surface areas of all of the boundary components of a solid.

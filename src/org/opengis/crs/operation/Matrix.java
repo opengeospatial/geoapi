@@ -74,5 +74,5 @@ public interface Matrix extends Cloneable {
     /**
      * Returns a clone of this matrix.
      */
-    public Matrix clone();
+    public /*{Matrix}*/ Object clone();
 }

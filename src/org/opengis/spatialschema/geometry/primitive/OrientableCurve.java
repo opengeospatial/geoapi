@@ -26,7 +26,7 @@ public interface OrientableCurve extends OrientablePrimitive {
      * @return The sets of positions on the boundary.
      * @UML operation boundary
      */
-    public CurveBoundary getBoundary();
+/// public CurveBoundary getBoundary();
 
     /**
      * Returns the owner of this orientable curve, or <code>null</code> if none.

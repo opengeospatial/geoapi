@@ -190,7 +190,7 @@ public final class ColorInterpretation extends CodeList {
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
-    public ColorInterpretation[] family() {
+    public /*{ColorInterpretation}*/ CodeList[] family() {
         return values();
     }
 }
