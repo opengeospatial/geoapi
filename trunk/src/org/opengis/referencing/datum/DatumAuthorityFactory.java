@@ -139,6 +139,10 @@ public interface DatumAuthorityFactory extends AuthorityFactory {
      * @param wkt Name of geoid defined by OGC (e.g. "European_Datum_1950").
      *
      * @see #createGeodeticDatum
+     *
+     * @deprecated We should try to rely on the alias mechanism available in all
+     *             {@link org.opengis.referencing.IdentifiedObject} instead. If
+     *             this method is really needed, we can reinsert it later.
      */
     String geoidFromWktName(String wkt);
 
@@ -151,6 +155,10 @@ public interface DatumAuthorityFactory extends AuthorityFactory {
      * @param geoid Code value for geoid allocated by authority.
      *
      * @see #createGeodeticDatum
+     *
+     * @deprecated We should try to rely on the alias mechanism available in all
+     *             {@link org.opengis.referencing.IdentifiedObject} instead. If
+     *             this method is really needed, we can reinsert it later.
      */
     String wktFromGeoidName(String geoid);
 }

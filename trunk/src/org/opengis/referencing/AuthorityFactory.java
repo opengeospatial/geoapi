@@ -36,6 +36,8 @@ public interface AuthorityFactory extends Factory {
      * {@linkplain #createObject object creation}. For example an authority factory backed by an
      * EPSG database will fetch informations from the database and use this low-level factory for
      * creating objects from those informations.
+     *
+     * @deprecated Will be removed.
      */
     ObjectFactory getObjectFactory();
 
@@ -51,7 +53,7 @@ public interface AuthorityFactory extends Factory {
      * of {@link org.opengis.referencing.crs.CRSAuthorityFactory}, then:
      * <ul>
      *   <li><strong><code>{@linkplain org.opengis.referencing.crs.CoordinateReferenceSystem}.class&nbsp;</code></strong>
-     *       asks for all authority codes accepted by
+     *       asks for all authority codes accepted by one of
      *       {@link org.opengis.referencing.crs.CRSAuthorityFactory#createGeographicCRS createGeographicCRS},
      *       {@link org.opengis.referencing.crs.CRSAuthorityFactory#createProjectedCRS createProjectedCRS},
      *       {@link org.opengis.referencing.crs.CRSAuthorityFactory#createVerticalCRS createVerticalCRS},
@@ -99,5 +101,5 @@ public interface AuthorityFactory extends Factory {
      * @see org.opengis.referencing.datum.DatumAuthorityFactory#createDatum
      * @see org.opengis.referencing.crs.CRSAuthorityFactory#createCoordinateReferenceSystem
      */
-    Object createObject(String code) throws FactoryException;
+    IdentifiedObject createObject(String code) throws FactoryException;
 }
