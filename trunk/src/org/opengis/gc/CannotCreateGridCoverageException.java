@@ -9,7 +9,7 @@ import javax.imageio.IIOException; // For Javadoc
 
 
 /**
- * Throws when a {@linkplain GridCoverage grid coverage} can't be created.
+ * Thrown when a {@linkplain GridCoverage grid coverage} can't be created.
  *
  * @UML exception GC_CannotCreateGridCoverage
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>

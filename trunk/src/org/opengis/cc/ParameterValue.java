@@ -26,49 +26,67 @@ public interface ParameterValue extends GeneralParameterValue {
      * Returns the parameter value as an object.
      *
      * @return The parameter value as an object.
+     * @see #intValue
+     * @see #doubleValue
      * @see #setValue(Object)
      */
-    public Object getValueAsObject();
+    public Object getValue();
+
+    /**
+     * Returns the parameter value as an integer. This may involve rounding or truncation.
+     *
+     * @return The numeric value represented by this parameter after conversion to type <code>int</code>.
+     * @throws InvalidParameterTypeException if the value can't be converted to an <code>int</code>.
+     * @see #getValue
+     * @see #doubleValue
+     * @see #setValue(int)
+     */
+    public int intValue() throws InvalidParameterTypeException;
 
     /**
      * Returns the parameter value as a floating point.
      *
-     * @return The parameter value.
+     * @return The numeric value represented by this parameter after conversion to type <code>double</code>.
+     * @throws InvalidParameterTypeException if the value can't be converted to a <code>double</code>.
+     * @see #getValue
+     * @see #intValue
      * @see #setValue(double)
      */
-    public double getValue();
+    public double doubleValue() throws InvalidParameterTypeException;
 
     /**
      * Set the parameter value as an object.
      *
      * @param  value The parameter value.
-     * @throws ClassCastException if the <code>value</code> type is inappropriate for this object.
-     * @throws IllegalArgumentException if the value is illegal for some other reason
-     *         (for example the value is numeric and out of range).
-     * @see #getValueAsObject()
+     * @throws InvalidParameterValueException if the type of <code>value</code> is inappropriate
+     *         for this parameter, or if the value is illegal for some other reason (for example
+     *         the value is numeric and out of range).
+     *
+     * @see #doubleValue()
      */
-    public void setValue(Object value) throws ClassCastException, IllegalArgumentException;
+    public void setValue(Object value) throws InvalidParameterValueException;
 
     /**
      * Set the parameter value as an integer.
      *
      * @param  value The parameter value.
-     * @throws ClassCastException if the value can't be stored as an integer.
-     * @throws IllegalArgumentException if the value is illegal for some other reason
-     *         (for example a value out of range).
+     * @throws InvalidParameterValueException if the value can't be stored as an integer, or if
+     *         the value is illegal for some other reason (for example a value out of range).
+     *
+     * @see #intValue()
      */
-    public void setValue(int value) throws ClassCastException, IllegalArgumentException;
+    public void setValue(int value) throws InvalidParameterValueException;
 
     /**
      * Set the parameter value as a floating point.
      *
      * @param value The parameter value.
-     * @throws ClassCastException if the value can't be stored as a floating point.
-     * @throws IllegalArgumentException if the value is illegal for some other reason
-     *         (for example a value out of range).
+     * @throws InvalidParameterValueException if the value can't be stored as a floating point, or
+     *         if the value is illegal for some other reason (for example a value out of range).
+     *
      * @see #getValue()
      */
-    public void setValue(double value) throws ClassCastException, IllegalArgumentException;
+    public void setValue(double value) throws InvalidParameterValueException;
 
     /**
      * Returns a copy of this parameter value.

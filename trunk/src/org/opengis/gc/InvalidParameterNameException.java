@@ -5,11 +5,13 @@ package org.opengis.gc;
 
 
 /**
- * Throws when an invalid parameter name was given to an operation.
+ * Thrown when an invalid parameter name was given to an operation.
  *
  * @UML exception GC_InvalidParameterName
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 1.1
+ *
+ * @revisit Should we move this exception into the <code>org.opengis.cc/<code> package?
  */
 public class InvalidParameterNameException extends IllegalArgumentException {
     /**

@@ -5,7 +5,8 @@ package org.opengis.gc;
 
 
 /**
- * Throws when a range is out of bounds.
+ * Thrown when a {@linkplain GridRange grid range} is out of
+ * {@linkplain GridCoverage grid coverage} bounds.
  *
  * @UML exception GC_InvalidRange
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
