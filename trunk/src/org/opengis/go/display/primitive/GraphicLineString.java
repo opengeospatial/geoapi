@@ -22,6 +22,7 @@ import org.opengis.spatialschema.geometry.geometry.PointArray;
  *
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version $Revision$, $Date$
+ * @since GO 1.1
  */
 public interface GraphicLineString extends Graphic {
 
@@ -29,6 +30,7 @@ public interface GraphicLineString extends Graphic {
      * Sets the geometry based on ISO 19107 geometric forms.
      *
      * @param lineString a geometry LineString.
+     * @since GO 1.1
      */
     public void setLineString(LineString lineString);
 
@@ -36,6 +38,7 @@ public interface GraphicLineString extends Graphic {
      * Returns the geometry based on ISO 19107 geometric forms.
      *
      * @return the geometry CurveSegment.
+     * @since GO 1.1
      */
     public LineString getLineString();
 
