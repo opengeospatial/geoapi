@@ -15,6 +15,7 @@ import java.util.Locale;
 // OpenGIS direct dependencies
 import org.opengis.metadata.citation.Citation;
 import org.opengis.metadata.citation.ResponsibleParty;
+import org.opengis.metadata.distribution.Format;
 
 
 /**
@@ -98,7 +99,7 @@ public interface Identification {
      *
      * @UML optional resourceFormat
      */
-//    Format[] getResourceFormat();
+    Format[] getResourceFormat();
 
     /**
      * Provides category keywords, their type, and reference source.

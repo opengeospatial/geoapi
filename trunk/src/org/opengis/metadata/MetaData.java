@@ -16,6 +16,8 @@ import java.util.Locale;
 // OpenGIS direct dependencies
 import org.opengis.metadata.citation.Contact;
 import org.opengis.metadata.quality.DataQuality;
+import org.opengis.metadata.distribution.Distribution;
+import org.opengis.metadata.content.ContentInformation;
 import org.opengis.metadata.spatial.SpatialRepresentation;
 import org.opengis.referencing.ReferenceSystem;
 
@@ -144,14 +146,14 @@ public interface MetaData {
       *
       * @UML optional contentInfo
       */
-//     ContentInformation[] getContentInfo();
+     ContentInformation[] getContentInfo();
 
      /**
       * Provides information about the distributor of and options for obtaining the resource(s).
       *
       * @UML optional distributionInfo
       */
-//     Distribution getDistributionInfo();
+     Distribution getDistributionInfo();
 
      /**
       * Provides overall assessment of quality of a resource(s).
