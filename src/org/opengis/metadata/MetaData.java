@@ -10,6 +10,7 @@
 package org.opengis.metadata;
 
 // J2SE direct dependencies
+import java.nio.charset.Charset;
 import java.util.Collection;
 import java.util.Date;
 import java.util.Locale;
@@ -59,12 +60,10 @@ public interface MetaData {
 
     /**
      * Full name of the character coding standard used for the metadata set.
-     *
-     * @revisit We should use {@link java.nio.charset.Charset} if J2SE 1.4 is allowed.
      */
 /// @Profile (level=CORE)
 /// @UML (identifier="characterSet", obligation=OPTIONAL)
-    String getCharacterSet();
+    Charset getCharacterSet();
 
     /**
      * File identifier of the metadata to which this metadata is a subset (child).
@@ -74,16 +73,12 @@ public interface MetaData {
 
     /**
      * Scope to which the metadata applies.
-     *
-     * @revisit Add a link toward annex I in ISO 19115 (to be inserted in the javadoc).
      */
 /// @UML (identifier="hierarchyLevel", obligation=OPTIONAL)
     Collection/*<ScopeCode>*/ getHierarchyLevels();
 
     /**
      * Name of the hierarchy levels for which the metadata is provided.
-     *
-     * @revisit Should we merge with {@link #getHierarchyLevels} using a {@link java.util.Map}?
      */
 /// @UML (identifier="hierarchyLevelName", obligation=OPTIONAL)
     Collection/*<String>*/ getHierarchyLevelNames();

@@ -9,6 +9,9 @@
  *************************************************************************************************/
 package org.opengis.metadata.extent;
 
+// J2SE direct dependencies
+import java.util.Collection;
+
 // OpenGIS direct dependencies
 import org.opengis.util.InternationalString;
 
@@ -41,33 +44,24 @@ public interface Extent {
     /**
      * Provides geographic component of the extent of the referring object
      *
-     * @return The geographic extent, or <code>null</code> if none.
-     *
-     * @revisit The UML allows an arbitrary number of components.
-     *          Should we return an array?
+     * @return The geographic extent, or an empty set if none.
      */
 /// @UML (identifier="geographicElement", obligation=CONDITIONAL)
-    GeographicExtent getGeographicElement();
+    Collection/*<GeographicExtent>*/ getGeographicElement();
 
     /**
      * Provides temporal component of the extent of the referring object
      *
-     * @return The temporal extent, or <code>null</code> if none.
-     *
-     * @revisit The UML allows an arbitrary number of components.
-     *          Should we return an array?
+     * @return The temporal extent, or an empty set if none.
      */
 /// @UML (identifier="temporalElement", obligation=CONDITIONAL)
-    TemporalExtent getTemporalElement();
+    Collection/*<TemporalExtent>*/ getTemporalElement();
 
     /**
      * Provides vertical component of the extent of the referring object
      *
-     * @return The vertical extent, or <code>null</code> if none.
-     *
-     * @revisit The UML allows an arbitrary number of components.
-     *          Should we return an array?
+     * @return The vertical extent, or an empty set if none.
      */
 /// @UML (identifier="verticalElement", obligation=CONDITIONAL)
-    VerticalExtent getVerticalElement();
+    Collection/*<VerticalExtent>*/ getVerticalElement();
 }

@@ -11,7 +11,6 @@ package org.opengis.metadata.citation;
 
 // J2SE direct dependencies
 import java.util.Collection;
-import java.util.Map;
 import java.util.Date;
 
 // OpenGIS direct dependencies
@@ -50,14 +49,10 @@ public interface Citation {
 
     /**
      * Reference date for the cited resource.
-     *
-     * @revisit ISO 19115 use <code>CI_Date</code> here. Note that {@link #getEditionDate}
-     *          returns a J2SE {@link Date} object. Should we remove the later method and
-     *          add a <code>EDITION</code> enum in {@link DateType} instead?
      */
 /// @Profile (level=CORE)
 /// @UML (identifier="date", obligation=MANDATORY)
-    Map/*<DateType,Date>*/ getDates();
+    Collection/*<CitationDate>*/ getDates();
 
     /**
      * Version of the cited resource.
@@ -74,9 +69,6 @@ public interface Citation {
     /**
      * Unique identifier for the resource. Example: Universal Product Code (UPC),
      * National Stock Number (NSN).
-     *
-     * @revisit Should we merge this method with {@link #getIdentifierTypes} and returns a
-     *          {@link java.util.Map} instead?
      */
 /// @UML (identifier="identifier", obligation=OPTIONAL)
     Collection/*<String>*/ getIdentifiers();
@@ -84,9 +76,6 @@ public interface Citation {
     /**
      * Reference form of the unique identifier (ID). Example: Universal Product Code (UPC),
      * National Stock Number (NSN).
-     *
-     * @revisit Should we merge this method with {@link #getIdentifiers} and returns a
-     *          {@link java.util.Map} instead?
      */
 /// @UML (identifier="identifierType", obligation=OPTIONAL)
     Collection/*<String>*/ getIdentifierTypes();

@@ -7,36 +7,39 @@
  ** Copyright (C) 2003 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
  **
  *************************************************************************************************/
-package org.opengis.metadata.content;
+package org.opengis.metadata.citation;
 
-// OpenGIS direct dependencies
-import org.opengis.util.InternationalString;
-import org.opengis.util.LocalName;
+// J2SE direct dependencies
+import java.util.Date;
 
 // Annotations
 ///import org.opengis.annotation.UML;
+///import org.opengis.annotation.Profile;
 ///import static org.opengis.annotation.Obligation.*;
+///import static org.opengis.annotation.ComplianceLevel.*;
 
 
 /**
- * Information on the range of each dimension of a cell measurement value.
+ * Reference date and event used to describe it.
  *
  * @author ISO 19115
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
  */
-///@UML (identifier="MD_RangeDimension")
-public interface RangeDimension {
+///@Profile (level=CORE)
+///@UML (identifier="CI_Date")
+public interface CitationDate {
     /**
-     * Number that uniquely identifies instances of bands of wavelengths on which a sensor
-     * operates.
+     * Reference date for the cited resource.
      */
-/// @UML (identifier="sequenceIdentifier", obligation=OPTIONAL)
-    LocalName getSequenceIdentifier();
+/// @Profile (level=CORE)
+/// @UML (identifier="date", obligation=MANDATORY)
+    Date getDate();
 
     /**
-     * Description of the range of a cell measurement value.
+     * Event used for reference date.
      */
-/// @UML (identifier="descriptor", obligation=OPTIONAL)
-    InternationalString getDescriptor();
+/// @Profile (level=CORE)
+/// @UML (identifier="dateType", obligation=MANDATORY)
+    DateType getDateType();
 }

@@ -47,5 +47,5 @@ public interface Scope {
      *          on <code>FeatureType</code> and <code>AttributeType</code>.
      */
 //  @UML (identifier="levelDescription", obligation=CONDITIONAL)
-//  ScopeDescription[] getLevelDescription();
+//  Collection/*<ScopeDescription>*/ getLevelDescription();
 }
