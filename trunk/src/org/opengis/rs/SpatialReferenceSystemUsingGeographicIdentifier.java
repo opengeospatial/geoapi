@@ -9,7 +9,7 @@ package org.opengis.rs;
  * spatial location. Spatial reference systems using geographic identifiers are not based on
  * coordinates.
  *  
- * @author <A HREF="http://www.opengis.org">OpenGIS&reg;</A>
+ * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 2.0
  */
 public interface SpatialReferenceSystemUsingGeographicIdentifier extends ReferenceSystem {

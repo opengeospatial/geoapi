@@ -5,10 +5,11 @@
     <TITLE>UML to Java mapping</TITLE>
   </HEAD>
   <BODY>
+  <H1>UML to Java mapping</H1>
   <P ALIGN="justify">The following stereotypes of UML classes and data types
   are mapped to J2SE objects as below:</P>
   <BR>
-  <TABLE border='2' cellpadding='9'>
+  <TABLE BORDER='2' CELLPADDING='6'>
     <TR BGCOLOR="#EEEEFF"><TH>UML</TH><TH>OGC Purpose</TH><TH>Java mapping</TH></TR>
     <TR><TD nowrap valign='top'><CODE>&lt;&lt;DataType&gt;&gt;</CODE></TD>
         <TD>A descriptor of a set of values that lack identity (independent
@@ -51,14 +52,73 @@
         <CODE><A HREF="http://java.sun.com/j2se/1.4/docs/api/java/util/List.html">java.util.List</A></CODE></TD></TR>
   </TABLE>
 
-  <P ALIGN="right"><SUP>*</SUP> For platform earlier than J2SE 1.5, the <code>CodeList</code>
-  class will defines the same attributes than <code>Enum</code> but will not
-  extends <code>Enum</code>.</P>
+  <P ALIGN="right"><SUP>*</SUP> For platform earlier than J2SE 1.5, the <CODE>CodeList</CODE>
+  class will defines the same attributes than <CODE>Enum</CODE> but will not
+  extends <CODE>Enum</CODE>.</P>
 
   <P>&nbsp;</P>
   <H2>Custom Javadoc tags</H2>
   <P ALIGN=justify>OpenGIS's <CITE>Mandatory</CITE>, <CITE>Conditional</CITE> and
-  <CITE>Optional</CITE> attributes are marked using custom <code>@mandatory</code>,
-  <code>@conditional</code> and <code>@optional</code> javadoc tags respectively.</P>
+  <CITE>Optional</CITE> attributes are marked using custom <CODE>@mandatory</CODE>,
+  <CODE>@conditional</CODE> and <CODE>@optional</CODE> javadoc tags respectively.
+  Additional javadoc tags include <CODE>@association</CODE> and <CODE>@rename</CODE>.
+  All the above-cited tags imply some renaming rules in order to comply with Java
+  naming conventions.</P>
+
+  <TABLE BORDER='2' CELLPADDING='12'>
+    <TR BGCOLOR="#EEEEFF"><TH NOWRAP>Javadoc tag</TH>
+                          <TH NOWRAP>Usage and renaming rule</TH></TR>
+
+    <TR><TD NOWRAP><CODE>@datatype</CODE></TD>
+        <TD><P ALIGN=justify>Interfaces marked with this tag are "datatype"
+        (as opposed to "abstract") in UML schemas.</P></TD></TR>
+
+    <TR><TD NOWRAP><CODE>@mandatory</CODE></TD>
+        <TD><P ALIGN=justify>The Java method maps to a mandatory attribute in the
+            UML schema. The Java method name is prefixed by "<CODE>get</CODE>".
+            For example, the mandatory "<CODE>code</CODE>" UML attribute maps
+            to a <CODE>getCode()</CODE> Java method.</P></TD></TR>
+
+    <TR><TD NOWRAP><CODE>@conditional</CODE> <VAR>condition</VAR></TD>
+        <TD><P ALIGN=justify>The Java method maps to a conditional attribute in the
+            UML schema. The condition shall follow the <CODE>@conditional</CODE> tag.
+            The Java method name is prefixed by "<CODE>get</CODE>".</P></TD></TR>
+
+    <TR><TD NOWRAP><CODE>@optional</CODE></TD>
+        <TD><P ALIGN=justify>The Java method maps to an optional attribute in the
+            UML schema. The Java method name is prefixed by "<CODE>get</CODE>".
+            For example, the optional "<CODE>remarks</CODE>" UML attribute maps
+            to a <CODE>getRemarks()</CODE> Java method.</P></TD></TR>
+
+    <TR><TD NOWRAP><CODE>@association</CODE></TD>
+        <TD><P ALIGN=justify>The Java method maps to an association in the UML schema.
+            The UML's "<CODE>uses</CODE>" or "<CODE>includes</CODE>" prefix are omitted
+            and the Java method name is prefixed by "<CODE>get</CODE>".
+            For example, the <CODE>CoordinateSystem</CODE> class has a "<CODE>usesAxis</CODE>"
+            association. In Java, associations map to ordinary methods. Consequently, the
+            <CODE>usesAxis</CODE> association is mapped into a plain <CODE>getAxis()</CODE>
+            method.</P></TD></TR>
+
+    <TR><TD NOWRAP><CODE>@rename <VAR>reason</VAR></CODE></TD>
+        <TD><P ALIGN=justify>Some other name change has been applied in order to match
+            more closely Java usage. The UML name and the reason for name change shall
+            follow the <CODE>@rename</CODE> tag. There is two reasons for renaming:</P>
+            <UL>
+              <LI><P ALIGN="justify">In some occasions, abbreviations are expanded.
+                  For example a <CODE>getCS()</CODE> method returning a <CODE>CoordinateSystem</CODE>
+                  object is renamed <CODE>getCoordinateSystem</CODE>.</P>
+
+              <LI><P ALIGN=justify>In some occasions, supplementary prefix are
+                  omitted. For example, some UML attribute names are prefixed by
+                  some abbreviation of the enclosing class name (e.g. "<CODE>csName</CODE>"
+                  is <CODE>CoordinateSystem</CODE> and "<CODE>srsName</CODE>" in
+                  <CODE>ReferenceSystem</CODE>). For Java interfaces, the above-cited
+                  attributes map to a plain <CODE>getName()</CODE> method.
+                  The same apply to "<CODE>ID</CODE>".</P></LI>
+            </UL></TD></TR>
+
+    <TR><TD NOWRAP><CODE>@revisit</CODE> <VAR>comment</VAR></TD>
+        <TD><P ALIGN=justify>Somme open issue to revisit.</P></TD></TR>
+  </TABLE>
   </BODY>
 </HTML>
