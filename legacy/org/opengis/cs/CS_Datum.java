@@ -38,6 +38,9 @@ public interface CS_Datum extends CS_Info {
      * Gets the type of the datum as an enumerated code.
      *
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated Replaced by {@link org.opengis.crs.datum.VerticalDatum#getVerticalDatumType}
+     *             for the vertical case. No replacement for other cases.
      */
     CS_DatumType getDatumType() throws RemoteException;
 }
