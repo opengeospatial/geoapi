@@ -20,6 +20,10 @@ import java.io.Serializable;
  * @since   1.00
  * @author Martin Daly
  * @author Martin Desruisseaux
+ *
+ * @deprecated No direct replacement. Check for instance of
+ *             {@link org.opengis.crs.operation.Conversion} or
+ *             {@link org.opengis.crs.operation.Transformation} instead.
  */
 public class CT_TransformType implements Serializable {
     /**

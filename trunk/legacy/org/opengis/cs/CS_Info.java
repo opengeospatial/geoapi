@@ -37,12 +37,16 @@ import java.rmi.RemoteException;
  * @version 1.01
  * @since   1.00
  * @author Martin Daly
+ *
+ * @deprecated Replaced by {@link org.opengis.crs.Info} and {@link org.opengis.crs.Identifier}.
  */
 public interface CS_Info extends Remote {
     /**
      * Gets the name.
      *
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated Replaced by {@link org.opengis.crs.Info#getName}.
      */
     String getName() throws RemoteException;
 
@@ -55,6 +59,8 @@ public interface CS_Info extends Remote {
      * WGS84 Lat/Lon coordinate system is '4326'.
      *
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated Replaced by {@link org.opengis.crs.Identifier#getAuthority}.
      */
     String getAuthority() throws RemoteException;
 
@@ -69,6 +75,8 @@ public interface CS_Info extends Remote {
      * An empty string is used for no code.
      *
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated Replaced by {@link org.opengis.crs.Identifier#getCode}.
      */
     String getAuthorityCode() throws RemoteException;
 
@@ -76,6 +84,8 @@ public interface CS_Info extends Remote {
      * Gets the alias.
      *
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated Replaced by {@link org.opengis.crs.Info#getIdentifiers}.
      */
     String getAlias() throws RemoteException;
 
@@ -83,6 +93,8 @@ public interface CS_Info extends Remote {
      * Gets the abbreviation.
      *
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated No replacement.
      */
     String getAbbreviation() throws RemoteException;
 
@@ -90,6 +102,8 @@ public interface CS_Info extends Remote {
      * Gets the provider-supplied remarks.
      *
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated Replaced by {@link org.opengis.crs.Info#getRemarks}.
      */
     String getRemarks() throws RemoteException;
 

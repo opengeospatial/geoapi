@@ -23,6 +23,8 @@ import java.rmi.RemoteException;
  * @version 1.01
  * @since   1.00
  * @author Martin Daly
+ *
+ * @deprecated Replaced by {@link org.opengis.crs.operation.CoordinateOperationFactory}.
  */
 public interface CT_CoordinateTransformationFactory extends Remote {
     /**
@@ -35,6 +37,8 @@ public interface CT_CoordinateTransformationFactory extends Remote {
      * @param sourceCS Input coordinate system.
      * @param targetCS Output coordinate system.
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated Replaced by {@link org.opengis.crs.operation.CoordinateOperationFactory#createOperation}.
      */
     CT_CoordinateTransformation createFromCoordinateSystems(CS_CoordinateSystem sourceCS, CS_CoordinateSystem targetCS) throws RemoteException;
 }

@@ -28,6 +28,8 @@ import java.rmi.RemoteException;
  * @version 1.01
  * @since   1.00
  * @author Martin Daly
+ *
+ * @deprecated Replaced by {@link org.opengis.crs.operation.MathTransform}.
  */
 public interface CT_MathTransform extends Remote {
     /**
@@ -42,6 +44,8 @@ public interface CT_MathTransform extends Remote {
      * @param  ord Packed ordinates of points used to generate convex hull.
      * @return flags classifying domain points within the convex hull.
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated No replacement.
      */
     CT_DomainFlags getDomainFlags(double[] ord) throws RemoteException;
 
@@ -70,6 +74,8 @@ public interface CT_MathTransform extends Remote {
      * @param  ord Packed ordinates of points used to generate convex hull.
      * @return The transformed convex hull.
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated No replacement at this time.
      */
     double[] getCodomainConvexHull(double[] ord) throws RemoteException;
 
@@ -77,6 +83,8 @@ public interface CT_MathTransform extends Remote {
      * Gets a Well-Known text representation of this object.
      *
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated No replacement at this time.
      */
     String getWKT() throws RemoteException;
 
@@ -84,6 +92,8 @@ public interface CT_MathTransform extends Remote {
      * Gets an XML representation of this object.
      *
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated No replacement at this time.
      */
     String getXML() throws RemoteException;
 
@@ -94,6 +104,8 @@ public interface CT_MathTransform extends Remote {
      * @param  cp Point to transform.
      * @return The transformed point.
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated Replaced by {@link org.opengis.crs.operation.MathTransform#transform}.
      */
     PT_CoordinatePoint transform(PT_CoordinatePoint cp) throws RemoteException;
 
@@ -122,6 +134,8 @@ public interface CT_MathTransform extends Remote {
      * @param  ord Packed ordinates of points to transform.
      * @return The packed transformed points. May be <code>ord</code>.
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated Replaced by {@link org.opengis.crs.operation.MathTransform#transform(double[],int,double[],int,int)}.
      */
     double[] transformList(double[] ord) throws RemoteException;
 
@@ -141,6 +155,8 @@ public interface CT_MathTransform extends Remote {
      * @param  cp Point in domain at which to get derivative.
      * @return The derivative of this transform at the suplied point.
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated Replaced by {@link org.opengis.crs.operation.MathTransform#derivative}.
      */
     PT_Matrix derivative(PT_CoordinatePoint cp) throws RemoteException;
 
@@ -151,6 +167,8 @@ public interface CT_MathTransform extends Remote {
      *
      * @return The inverse transform.
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated Replaced by {@link org.opengis.crs.operation.MathTransform#inverse}.
      */
     CT_MathTransform inverse() throws RemoteException;
 
@@ -158,6 +176,8 @@ public interface CT_MathTransform extends Remote {
      * Gets the dimension of input points.
      *
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated Replaced by {@link org.opengis.crs.operation.MathTransform#getDimSource}.
      */
     int getDimSource() throws RemoteException;
 
@@ -165,6 +185,8 @@ public interface CT_MathTransform extends Remote {
      * Gets the dimension of output points.
      *
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated Replaced by {@link org.opengis.crs.operation.MathTransform#getDimTarget}.
      */
     int getDimTarget() throws RemoteException;
 
@@ -174,6 +196,8 @@ public interface CT_MathTransform extends Remote {
      * @return <code>true</code> if this <code>MathTransform</code> is
      *         an identity transform; <code>false</code> otherwise.
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated Replaced by {@link org.opengis.crs.operation.MathTransform#isIdentity}.
      */
     boolean isIdentity() throws RemoteException;
 }

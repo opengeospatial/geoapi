@@ -26,11 +26,15 @@ import java.rmi.RemoteException;
  * @version 1.01
  * @since   1.00
  * @author Martin Daly
+ *
+ * @deprecated Replaced by {@link org.opengis.crs.operation.CoordinateOperationAuthorityFactory}.
  */
 public interface CT_CoordinateTransformationAuthorityFactory extends Remote {
     /**
      * The name of the authority.
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated Replaced by {@link org.opengis.crs.operation.CoordinateOperationAuthorityFactory#getAuthority}.
      */
     String getAuthority() throws RemoteException;
 
@@ -42,6 +46,8 @@ public interface CT_CoordinateTransformationAuthorityFactory extends Remote {
      *
      * @param code Coded value for transformation.
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated Replaced by {@link org.opengis.crs.operation.CoordinateOperationAuthorityFactory#createCoordinateOperation}.
      */
     CT_CoordinateTransformation createFromTransformationCode(String code) throws RemoteException;
 
@@ -51,6 +57,8 @@ public interface CT_CoordinateTransformationAuthorityFactory extends Remote {
      * @param sourceCode   Coded value of source coordinate system.
      * @param targetCode   Coded value of target coordinate system.
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated Replaced by {@link org.opengis.crs.operation.CoordinateOperationAuthorityFactory#createFromCoordinateReferenceSystemCodes}.
      */
     CT_CoordinateTransformation createFromCoordinateSystemCodes(String sourceCode, String targetCode) throws RemoteException;
 }

@@ -19,12 +19,16 @@ import java.rmi.RemoteException;
  * @version 1.01
  * @since   1.00
  * @author Martin Daly
+ *
+ * @deprecated Replaced by {@link org.opengis.crs.datum.GeodeticDatum}.
  */
 public interface CS_HorizontalDatum extends CS_Datum {
     /**
      * Returns the Ellipsoid.
      *
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated Replaced by {@link org.opengis.crs.datum.GeodeticDatum#getEllipsoid}.
      */
     CS_Ellipsoid getEllipsoid() throws RemoteException;
 

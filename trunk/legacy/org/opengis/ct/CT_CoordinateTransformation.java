@@ -37,6 +37,8 @@ public interface CT_CoordinateTransformation extends Remote {
      * Name of transformation.
      *
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated Replaced by {@link org.opengis.crs.operation.CoordinateOperation#getName}.
      */
     String getName() throws RemoteException;
 
@@ -49,6 +51,8 @@ public interface CT_CoordinateTransformation extends Remote {
      * WGS84 Lat/Lon coordinate system is '4326'.
      *
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated Replaced by {@link org.opengis.crs.Identifier#getAuthority}.
      */
     String getAuthority() throws RemoteException;
 
@@ -63,6 +67,8 @@ public interface CT_CoordinateTransformation extends Remote {
      * An empty string is used for no code.
      *
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated Replaced by {@link org.opengis.crs.Identifier#getCode}.
      */
     String getAuthorityCode() throws RemoteException;
 
@@ -70,6 +76,8 @@ public interface CT_CoordinateTransformation extends Remote {
      * Gets the provider-supplied remarks.
      *
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated Replaced by {@link org.opengis.crs.operation.CoordinateOperation#getRemarks}.
      */
     String getRemarks() throws RemoteException;
 
@@ -77,6 +85,8 @@ public interface CT_CoordinateTransformation extends Remote {
      * Human readable description of domain in source coordinate system.
      *
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated Replaced by {@link org.opengis.crs.operation.CoordinateOperation#getScope}.
      */
     String getAreaOfUse() throws RemoteException;
 
@@ -85,6 +95,10 @@ public interface CT_CoordinateTransformation extends Remote {
      * For example, a datum transformation or a coordinate conversion.
      *
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated No direct replacement. Check for instance of
+     *             {@link org.opengis.crs.operation.Conversion} or
+     *             {@link org.opengis.crs.operation.Transformation} instead.
      */
     CT_TransformType getTransformType() throws RemoteException;
 
@@ -92,6 +106,8 @@ public interface CT_CoordinateTransformation extends Remote {
      * Source coordinate system.
      *
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated Replaced by {@link org.opengis.crs.operation.CoordinateOperation#getSourceCRS}.
      */
     CS_CoordinateSystem getSourceCS() throws RemoteException;
 
@@ -99,6 +115,8 @@ public interface CT_CoordinateTransformation extends Remote {
      * Target coordinate system.
      *
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated Replaced by {@link org.opengis.crs.operation.CoordinateOperation#getTargetCRS}.
      */
     CS_CoordinateSystem getTargetCS() throws RemoteException;
 
@@ -106,6 +124,8 @@ public interface CT_CoordinateTransformation extends Remote {
      * Gets math transform.
      *
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated Replaced by {@link org.opengis.crs.operation.CoordinateOperation#getMathTransform}.
      */
     CT_MathTransform getMathTransform() throws RemoteException;
 }

@@ -27,6 +27,8 @@ public interface CS_ProjectedCoordinateSystem extends CS_HorizontalCoordinateSys
      * Returns the GeographicCoordinateSystem.
      *
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated Replaced by {@link org.opengis.crs.crs.ProjectedCRS#getBaseCRS}.
      */
     CS_GeographicCoordinateSystem getGeographicCoordinateSystem() throws RemoteException;
 
@@ -35,6 +37,8 @@ public interface CS_ProjectedCoordinateSystem extends CS_HorizontalCoordinateSys
      * The linear unit must be the same as the {@link CS_CoordinateSystem} units.
      *
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated Replaced by {@link org.opengis.crs.cs.CoordinateSystemAxis#getUnit}.
      */
     CS_LinearUnit getLinearUnit() throws RemoteException;
 
@@ -42,6 +46,8 @@ public interface CS_ProjectedCoordinateSystem extends CS_HorizontalCoordinateSys
      * Gets the projection.
      *
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated Replaced by {@link org.opengis.crs.crs.ProjectedCRS#getConversionFromBase}.
      */
     CS_Projection getProjection() throws RemoteException;
 }

@@ -61,7 +61,7 @@ import java.rmi.RemoteException;
  * @since   1.00
  * @author Martin Daly
  *
- * @deprecated Replaced by {@link org.opengis.crs.operation.MathTransformFactory}
+ * @deprecated Replaced by {@link org.opengis.crs.operation.MathTransformFactory}.
  */
 public interface CT_MathTransformFactory extends Remote {
     /**

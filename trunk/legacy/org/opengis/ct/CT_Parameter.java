@@ -37,6 +37,8 @@ public class CT_Parameter implements Cloneable, Serializable {
 
     /**
      * The parameter value.
+     *
+     * @deprecated Replaced by {@link org.opengis.crs.operation.ParameterValue#doubleValue}.
      */
     public double value;
 
