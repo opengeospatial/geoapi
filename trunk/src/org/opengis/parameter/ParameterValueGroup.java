@@ -9,6 +9,9 @@
  *************************************************************************************************/
 package org.opengis.parameter;
 
+// OpenGIS dependencies
+import org.opengis.referencing.Identifier;  // For javadoc
+
 
 /**
  * A group of related parameter values. The same group can be repeated more than once in an
@@ -48,15 +51,24 @@ public interface ParameterValueGroup extends GeneralParameterValue {
     GeneralParameterValue[] getValues();
 
     /**
-     * Returns the first value in this group for the specified name. If no
-     * {@linkplain ParameterValue parameter value} or group is found for the
-     * given name, then this method search recursively in subgroups (if any).
+     * Returns the first value in this group for the specified {@linkplain Identifier#getCode
+     * identifier code}. If no {@linkplain ParameterValue parameter value} is found for the given
+     * code, then this method search recursively in subgroups (if any). This convenience method
+     * provides a way to get and set parameter values by name. For example the following idiom
+     * fetches a floating point value for the <code>"false_easting"</code> parameter:
+     * <br><br>
+     * <blockquote><code>
+     * double value = getValue("false_easting").{@linkplain ParameterValue#doubleValue() doubleValue()};
+     * </code></blockquote>
      *
-     * @param  name The case insensitive name of the parameter to search for.
-     * @return The parameter value for the given name.
-     * @throws ParameterNotFoundException if there is no parameter for the given name.
+     * @param  name The case insensitive {@linkplain Identifier#getCode identifier code} of the
+     *              parameter to search for. If this string contains the <code>':'</code> character,
+     *              then the part before <code>':'</code> is the {@linkplain Identifier#getCodeSpace
+     *              code space}.
+     * @return The parameter value for the given identifier code.
+     * @throws ParameterNotFoundException if there is no parameter value for the given identifier code.
      */
-    GeneralParameterValue getValue(String name) throws ParameterNotFoundException;
+    ParameterValue getValue(String name) throws ParameterNotFoundException;
 
     /**
      * Returns a copy of this group of parameter values.

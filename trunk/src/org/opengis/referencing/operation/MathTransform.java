@@ -45,6 +45,9 @@ public interface MathTransform {
      * Gets the dimension of input points.
      *
      * @UML mandatory dimSource
+     *
+     * @revisit Consider renaming <code>getSourceDimensions()</code> for consistency with
+     *          {@link OperationMethod}.
      */
     int getDimSource();
     
@@ -52,6 +55,9 @@ public interface MathTransform {
      * Gets the dimension of output points.
      *
      * @UML mandatory dimTarget
+     *
+     * @revisit Consider renaming <code>getTargetDimensions()</code> for consistency with
+     *          {@link OperationMethod}.
      */
     int getDimTarget();
     

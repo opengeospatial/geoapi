@@ -7,26 +7,48 @@
   <body>
   <H1>Changes from GeoAPI 1.0 to GeoAPI 1.1</H1>
   <UL>
-    <LI>In <code>CRSFactory.createImageCRS</code>, changed the <code>cs</code> argument type
-        from <code>CoordinateSystem</code> to <code>ObliqueCartesianCS</code>.</LI>
-    <LI>In <code>MathTransformFactory</code>, added <code>createAffineTransform(AffineTransform)</code>
-        method for interoperability with Java2D.</LI>
-    <LI>In <code>Envelope</code>, added convenience methods <code>getMinimum</code>,
-        <code>getMaximum</code>, <code>getCenter</code> and <code>getLength</code>.</LI>
-    <LI>In <code>SampleDimension</code>, added a <code>Locale</code> argument for methods
-        <code>getDescription</code> and <code>getCategoryNames</code>.</LI>
-    <LI>In <code>Coverage</code>, added a <code>Locale</code> argument for method
-        <code>getDimensionNames</code>.</LI>
-    <LI>In <code>Coverage</code>, changed the return type from <code>double[]</code> to
-        <code>float[]</code> for the method <code>evaluate(DirectPosition, float[])</code>.</LI>
-    <LI>In <code>Coverage</code>, merged <code>getNumSources()</code> and <code>getSource(int)</code>
-        methods into a single <code>getSources()</code> method.</LI>
-        <code>float[]</code> for the method <code>evaluate(DirectPosition, float[])</code>.</LI>
-    <LI>In <code>GridRange</code>, renamed <code>getLower()</code> and <code>getUpper()</code> as
-        <code>getLowers()</code> and <code>getUppers()</code>.</LI>
-    <LI>In <code>GridRange</code>, add <code>getLower(int)</code>, <code>getUpper(int)</code>,
-        <code>getLength(int)</code> and <code>getDimension</code> convenience methods.</LI>
-    <LI>Javadoc fixes.</LI>
+    <LI><P>In <code>CRSFactory.createImageCRS(...)</code> method, changed the <code>cs</code> argument
+        type from <code>CoordinateSystem</code> to <code>ObliqueCartesianCS</code>. This change is
+        required for type safety and was forgotten in previous release.</P></LI>
+
+    <LI><P>In <code>MathTransformFactory</code> interface, added <code>createAffineTransform(AffineTransform)</code>
+        convenience method for interoperability with Java2D.</P></LI>
+
+    <LI><P>Renamed <code>NoSuchClassificationException</code> as <code>NoSuchIdentifierException</code>.</P></LI>
+
+    <LI><P>In <code>Envelope</code> interface, added convenience methods <code>getMinimum</code>,
+        <code>getMaximum</code>, <code>getCenter</code> and <code>getLength</code>.</P></LI>
+
+    <LI><P>For convenience method <code>getParameter(String)</code> in <code>OperationParameterGroup</code> interface,
+        changed the return type from <code>GeneralOperationParameter</code> to <code>OperationParameter</code>.
+        This change make the convenience method more... convenient.</P></LI>
+
+    <LI><P>For convenience method <code>getValue(String)</code> in <code>ParameterValueGroup</code> interface,
+        changed the return type from <code>GeneralParameterValue</code> to <code>ParameterValue</code>.
+        This change make the convenience method more... convenient.</P></LI>
+
+    <LI><P>In <code>SampleDimension</code> interface, added a <code>Locale</code> argument for methods
+        <code>getDescription</code> and <code>getCategoryNames</code>. This change is required for
+        localization support and was forgotten in previous release.</P></LI>
+
+    <LI><P>In <code>Coverage</code> interface, added a <code>Locale</code> argument for method
+        <code>getDimensionNames</code>. This change is required for localization support and was
+        forgotten in previous release.</P></LI>
+
+    <LI><P>In <code>Coverage</code> interface, changed the return type from <code>double[]</code> to
+        <code>float[]</code> for the method <code>evaluate(DirectPosition, float[])</code>. Previous
+        return type was wrong.</P></LI>
+
+    <LI><P>In <code>Coverage</code>, merged <code>getNumSources()</code> and <code>getSource(int)</code>
+        methods into a single <code>getSources()</code> method.</P></LI>
+
+    <LI><P>In <code>GridRange</code>, renamed <code>getLower()</code> and <code>getUpper()</code> as
+        <code>getLowers()</code> and <code>getUppers()</code>.</P></LI>
+
+    <LI><P>In <code>GridRange</code>, added <code>getLower(int)</code>, <code>getUpper(int)</code>,
+        <code>getLength(int)</code> and <code>getDimension</code> convenience methods.</P></LI>
+
+    <LI><P>Javadoc fixes.</P></LI>
   </UL>
   </body>
 </html>
