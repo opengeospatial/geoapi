@@ -7,6 +7,7 @@ package org.opengis.ex;
 /**
  *
  * @UML datatype EX_Extent
+ * @author ISO 19111
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 2.0
  */

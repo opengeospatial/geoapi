@@ -14,6 +14,7 @@ import org.opengis.rs.Identifier;
  * A prime meridian defines the origin from which longitude values are determined.
  *
  * @UML abstract CD_PrimeMeridian
+ * @author ISO 19111
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 2.0
  */

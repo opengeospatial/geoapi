@@ -10,6 +10,7 @@ package org.opengis.cd;
  * or the corner of the image.
  *
  * @UML abstract CD_ImageDatum
+ * @author ISO 19111
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 2.0
  */

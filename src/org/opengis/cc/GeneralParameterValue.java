@@ -8,6 +8,7 @@ package org.opengis.cc;
  * Abstract parameter value or group of parameter values.
  *  
  * @UML abstract CC_GeneralParameterValue
+ * @author ISO 19111
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 2.0
  *

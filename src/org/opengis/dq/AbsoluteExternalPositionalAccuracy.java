@@ -8,6 +8,7 @@ package org.opengis.dq;
  * Closeness of reported coordinate values to values accepted as or being true.
  *  
  * @UML abstract DQ_AbsoluteExternalPositionalAccuracy
+ * @author ISO 19111
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 2.0
  */

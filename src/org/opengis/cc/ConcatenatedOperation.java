@@ -15,6 +15,7 @@ package org.opengis.cc;
  * operation is uniquely defined by the forward operation.
  *  
  * @UML abstract CC_ConcatenatedOperation
+ * @author ISO 19111
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 2.0
  */

@@ -22,6 +22,7 @@ import org.opengis.cd.ImageDatum;
  * </TD></TR></TABLE>
  *
  * @UML abstract SC_ImageCRS
+ * @author ISO 19111
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 2.0
  *

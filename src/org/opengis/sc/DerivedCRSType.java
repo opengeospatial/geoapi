@@ -16,6 +16,7 @@ import org.opengis.util.CodeList;
  * The type of the derived CRS, according to the classification of principal CRS types.
  *
  * @UML codelist SC_DerivedCRSType
+ * @author ISO 19111
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 2.0
  */

@@ -20,6 +20,7 @@ import org.opengis.cs.CartesianCS;
  * </TD></TR></TABLE>
  *
  * @UML abstract SC_ProjectedCRS
+ * @author ISO 19111
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 2.0
  */

@@ -18,6 +18,7 @@ import org.opengis.rs.Identifier;
  * coordinates use a coordinate reference system that uses this coordinate system.
  *
  * @UML abstract CS_CoordinateSystem
+ * @author ISO 19111
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 2.0
  *

@@ -13,6 +13,7 @@ import org.opengis.cc.Conversion;
  * (not by a {@linkplain org.opengis.cd.Datum datum}).
  *
  * @UML abstract SC_GeneralDerivedCRS
+ * @author ISO 19111
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 2.0
  */

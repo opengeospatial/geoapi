@@ -8,6 +8,7 @@ package org.opengis.dq;
  * An element of a covariance matrix.
  *  
  * @UML datatype DQ_CovarianceElement
+ * @author ISO 19111
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 2.0
  */

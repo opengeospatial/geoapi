@@ -14,6 +14,7 @@ package org.opengis.cs;
  * {@linkplain #getAxis axis associations}.
  *
  * @UML abstract CS_UserDefinedCS
+ * @author ISO 19111
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 2.0
  */

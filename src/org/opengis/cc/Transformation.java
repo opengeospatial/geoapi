@@ -13,6 +13,7 @@ package org.opengis.cc;
  * in multiple (different) versions of the same coordinate transformation. 
  *  
  * @UML abstract CC_Transformation
+ * @author ISO 19111
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 2.0
  *

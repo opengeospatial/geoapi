@@ -8,6 +8,7 @@ package org.opengis.cc;
  * A single (not {@linkplain ConcatenatedOperation concatenated}) coordinate operation.
  *  
  * @UML abstract CC_SingleOperation
+ * @author ISO 19111
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 2.0
  */
