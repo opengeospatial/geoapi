@@ -10,7 +10,7 @@
 package org.opengis.coverage.processing;
 
 // OpenGIS dependencies
-import org.opengis.coverage.grid.ParameterInfo;
+import org.opengis.parameter.GeneralOperationParameter;
 
 
 /**
@@ -78,20 +78,11 @@ public interface Operation {
     int getNumSources();
 
     /**
-     * Number of parameters for the operation.
+     * Retrieve the parameters information.
      *
-     * @return The number of parameters for the operation.
+     * @return The parameter informations.
      * @UML mandatory numParameters
-     */
-    int getNumParameters();
-
-    /**
-     * Retrieve the parameter information for a given index.
-     *
-     * @param  index Parameter information index to retrieve. Index starts at 0.
-     * @return The parameter information for a given index.
-     * @throws IndexOutOfBoundsException if <code>index</code> is out of bounds.
      * @UML operation getParameterInfo
      */
-    ParameterInfo getParameterInfo(int index) throws IndexOutOfBoundsException;
+    GeneralOperationParameter[] getParameters();
 }

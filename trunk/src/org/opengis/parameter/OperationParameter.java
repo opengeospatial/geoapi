@@ -9,6 +9,9 @@
  *************************************************************************************************/
 package org.opengis.parameter;
 
+// J2SE direct dependencies
+import java.util.Set;
+
 
 /**
  * The definition of a parameter used by an operation method. Most parameter values are
@@ -33,6 +36,18 @@ public interface OperationParameter extends GeneralOperationParameter {
     Class getValueClass();
 
     /**
+     * If this parameter allows only a finite set of values, returns this set.
+     * This set is usually a {linkplain org.opengis.util.CodeList code list} or
+     * enumerations. This method returns <code>null</code> if this parameter
+     * doesn't limits values to a finite set.
+     *
+     * @return A finite set of valid values (usually from a
+     *         {linkplain org.opengis.util.CodeList code list}),
+     *         or <code>null</code> if it doesn't apply.
+     */
+    Set/*<? extends Object>*/ getValidValues();
+
+    /**
      * Returns the default value for the parameter. The return type can be any type
      * including a {@link Number} or a {@link String}. If there is no default value,
      * then this method returns <code>null</code>.
@@ -44,26 +59,24 @@ public interface OperationParameter extends GeneralOperationParameter {
     Object getDefaultValue();
 
     /**
-     * Returns the minimum parameter value. If there is no minimum value, then
-     * this method returns {@link Double#NEGATIVE_INFINITY}. If minimum value
-     * is inappropriate for the {@linkplain #getValueClass parameter type},
-     * then this method returns {@link Double#NaN}.
+     * Returns the minimum parameter value. If there is no minimum value, or if minimum
+     * value is inappropriate for the {@linkplain #getValueClass parameter type}, then
+     * this method returns <code>null</code>.
      *
-     * @return The minimum parameter value.
+     * @return The minimum parameter value (often an instance of {@link Double}), or <code>null</code>.
      *
      * @UML optional minimumValue in Grid Coverage specification
      */
-    double getMinimumValue();
+    Comparable getMinimumValue();
 
     /**
-     * Returns the maximum parameter value. If there is no maximum value, then
-     * this method returns {@link Double#POSITIVE_INFINITY}. If maximum value
-     * is inappropriate for the {@linkplain #getValueClass parameter type},
-     * then this method returns {@link Double#NaN}.
+     * Returns the maximum parameter value. If there is no maximum value, or if maximum
+     * value is inappropriate for the {@linkplain #getValueClass parameter type}, then
+     * this method returns <code>null</code>.
      *
-     * @return The maximum parameter value.
+     * @return The minimum parameter value (often an instance of {@link Double}), or <code>null</code>.
      *
      * @UML optional maximumValue in Grid Coverage specification
      */
-    double getMaximumValue();
+    Comparable getMaximumValue();
 }

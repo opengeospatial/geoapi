@@ -23,20 +23,6 @@ package org.opengis.parameter;
  */
 public interface OperationParameterGroup extends GeneralOperationParameter {
     /**
-     * The maximum number of times that values for this parameter group or
-     * parameter can be included. The default value is one.
-     *
-     * @return The maximum occurrences.
-     * @UML optional maximumOccurs
-     *
-     * @see #getMinimumOccurs
-     *
-     * @revisit Why this method is not declared in the same interface than
-     *          {@link #getMinimumOccurs}?
-     */
-    int getMaximumOccurs();
-
-    /**
      * Returns the parameters in this group.
      *
      * @return The parameters.

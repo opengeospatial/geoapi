@@ -76,18 +76,6 @@
         <A HREF="../crs/operation/Transformation.html"><CODE>Transformation</CODE></A> sub-interface.</FONT></P></TD></TR></TABLE>
     </LI>
 
-    <LI><P ALIGN="justify">"<CODE>minimumOccurs</CODE>" attribute is declared in
-        <A HREF="../parameter/GeneralOperationParameter.html"><CODE>GeneralOperationParameter</CODE></A>,
-        but "<CODE>maximumOccurs</CODE>" is declared in
-        <A HREF="../parameter/OperationParameterGroup.html"><CODE>OperationParameterGroup</CODE></A>
-        (a sub-interface). Maybe they should be declared in the same place.</P>
-
-        <TABLE cellpadding='0' cellspacing='0'><TR VALIGN="top"><TD><STRONG>PROPOSAL:&nbsp;</STRONG></TD><TD>
-        <P ALIGN="justify"><FONT COLOR="red">Move up (in the hierarchy)
-        the "<CODE>maximumOccurs</CODE>" attribute into the
-        <A HREF="../parameter/GeneralOperationParameter.html"><CODE>GeneralOperationParameter</CODE></A>
-        super-interface, in order to be on per with the "<CODE>minimumOccurs</CODE>" attribute.</FONT></P></TD></TR></TABLE>
-
     <LI><P ALIGN="justify"><A HREF="../spatialschema/geometry/complex/CompositeCurve.html"><CODE>CompositeCurve</CODE></A>
             extends (indirectly) both <CODE>Primitive</CODE> and <CODE>Complex</CODE>. Consequently,
             there is a clash in the semantics of some set theoretic operation. Specifically,
@@ -278,6 +266,11 @@
         interfaces from <code>org.opengis.crs.operation</code> to <code>org.opengis.paraneter</code>
         since it is of use for grid coverages as well as operations. The goal is to avoid a
         duplicated API for parameters in coordinate operations and grid coverage operations.</P>
+
+    <LI><P ALIGN="justify">Moved up (in the hierarchy) the "<CODE>maximumOccurs</CODE>" attribute from
+        <A HREF="../parameter/OperationParameterGroup.html"><CODE>OperationParameterGroup</CODE></A> into the
+        <A HREF="../parameter/GeneralOperationParameter.html"><CODE>GeneralOperationParameter</CODE></A>
+        super-interface, in order to be on per with the "<CODE>minimumOccurs</CODE>" attribute.</P></LI>
 
   </UL>
 

@@ -14,15 +14,17 @@ import java.io.IOException;
 
 // OpenGIS direct dependencies
 import org.opengis.coverage.MetadataNameNotFoundException;
+import org.opengis.parameter.GeneralParameterValue;
 import org.opengis.parameter.ParameterNotFoundException;
 import org.opengis.parameter.InvalidParameterNameException;
 import org.opengis.parameter.InvalidParameterValueException;
 
 
 /**
- * Support for writing grid coverages into a persistent store.
- * Instance of <code>GridCoverageWriter</code> are obtained through
- * a call to {@link GridCoverageExchange#getWriter}.
+ * Support for writing grid coverages into a persistent store. Instance
+ * of <code>GridCoverageWriter</code> are obtained through a call to
+ * {@link GridCoverageExchange#getWriter}. Grid coverages are usually
+ * added to the output stream in a sequential order.
  *
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 2.0
@@ -38,7 +40,9 @@ public interface GridCoverageWriter {
 
     /**
      * Returns the output destination. This is the object passed to the
-     * {@link GridCoverageExchange#getWriter} method.
+     * {@link GridCoverageExchange#getWriter} method. It can be a
+     * {@link java.lang.String}, an {@link java.io.OutputStream},
+     * a {@link java.nio.channels.FileChannel}, etc.
      */
     Object getDestination();
 
@@ -49,6 +53,8 @@ public interface GridCoverageWriter {
      *
      * @return The list of metadata keywords for the output destination.
      * @throws IOException if an error occurs during reading or writing.
+     *
+     * @revisit This javadoc may not apply thats well in the iterator scheme.
      */
     String[] getMetadataNames();
 
@@ -60,16 +66,24 @@ public interface GridCoverageWriter {
      * @throws IOException if an error occurs during writing.
      * @throws MetadataNameNotFoundException if the specified metadata name is not handled
      *         for this format.
+     *
+     * @revisit This javadoc may not apply thats well in the iterator scheme.
      */
     void setMetadataValue(String name, String value) throws IOException, MetadataNameNotFoundException;
 
     /**
-     * Writes the specified grid on the location specified by the name. If a grid
-     * coverage is already in the destination, it will be overwritten. The name
-     * will be ignored for format that doesn't support subnames.
+     * Set the name for the next grid coverage to {@linkplain #write write} within the
+     * {@linkplain #getDestination output destination}. The subname can been fetch later
+     * at reading time.
      *
-     * @param  name Name of grid coverage contained within the {@linkplain #getDestination
-     *         output destination}.
+     * @throws IOException if an error occurs during writing.
+     * @revisit Do we need a special method for that, or should it be a metadata?
+     */
+    void setCurrentSubname(String name) throws IOException;
+
+    /**
+     * Writes the specified grid coverage.
+     *
      * @param  coverage The {@linkplain GridCoverage grid coverage} to write.
      * @param  parameters An optional set of parameters. Should be any or all of the
      *         parameters returned by {@link Format#getWriteParameters}.
@@ -85,7 +99,7 @@ public interface GridCoverageWriter {
      *         {@link javax.imageio.IIOException} if an error was thrown by the underlying
      *         image library.
      */
-    void write(String name, GridCoverage coverage, Parameter[] parameters)
+    void write(GridCoverage coverage, GeneralParameterValue[] parameters)
         throws InvalidParameterNameException, InvalidParameterValueException, ParameterNotFoundException, IOException;
 
     /**
@@ -94,8 +108,8 @@ public interface GridCoverageWriter {
      * to call this method when they know they will no longer be using this <code>GridCoverageWriter</code>.
      * Otherwise, the writer may continue to hold on to resources indefinitely.
      *
-     * @throws IOException if an error occured while disposing resources (for example while flushing
-     *         data and closing a file).
+     * @throws IOException if an error occured while disposing resources
+     *         (for example while flushing data and closing a file).
      */
     void dispose() throws IOException;
 }
