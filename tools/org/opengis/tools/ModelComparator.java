@@ -200,7 +200,7 @@ scanMembers:for (final Member attribute : attributes) {
                             continue scanMembers; // Found the method in superclass: don't document it.
                         } catch (NoSuchMethodException ignore) {
                             // No such method in superclass. Checks other interfaces.
-                        }                            
+                        }
                     }
                 }
                 if (!classHeader) {
