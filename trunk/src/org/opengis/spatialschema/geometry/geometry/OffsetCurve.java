@@ -33,6 +33,7 @@ public interface OffsetCurve extends CurveSegment {
     /**
      * Returns the base curves.
      */
+/// @UML (identifier="baseCurve", obligation=MANDATORY)
     public List/*<CurveSegment>*/ getBaseCurves();
 
     /**
