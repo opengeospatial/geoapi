@@ -158,14 +158,14 @@ public interface CSFactory extends Factory {
     VerticalCS createVerticalCS(Map properties, CoordinateSystemAxis axis) throws FactoryException;
 
     /**
-     * Creates a temporal coordinate system.
+     * Creates a time coordinate system.
      *
      * @param  properties Name and other properties to give to the new object.
      *         Available properties are {@linkplain Factory listed there}.
      * @param  axis The axis.
      * @throws FactoryException if the object creation failed.
      */
-    TemporalCS createTemporalCS(Map properties, CoordinateSystemAxis axis) throws FactoryException;
+    TimeCS createTimeCS(Map properties, CoordinateSystemAxis axis) throws FactoryException;
 
     /**
      * Creates a two-dimensional user defined coordinate system.

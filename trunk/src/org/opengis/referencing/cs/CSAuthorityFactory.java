@@ -107,7 +107,7 @@ public interface CSAuthorityFactory extends AuthorityFactory {
      * @throws NoSuchAuthorityCodeException if the specified <code>code</code> was not found.
      * @throws FactoryException if the object creation failed for some other reason.
      */
-    TemporalCS createTemporalCS(String code) throws FactoryException;
+    TimeCS createTimeCS(String code) throws FactoryException;
 
     /**
      * Returns a {@linkplain CoordinateSystemAxis coordinate system axis} from a code.
