@@ -12,8 +12,9 @@ package org.opengis.spatialschema.geometry;
 // J2SE direct dependencies
 import java.util.Set;
 
-// OpenGIS direct dependencies
 import org.opengis.crs.crs.CoordinateReferenceSystem;
+import org.opengis.crs.operation.IncompatibleOperationException;
+import org.opengis.crs.operation.MathTransform;
 import org.opengis.crs.operation.TransformException;
 import org.opengis.spatialschema.geometry.complex.Complex;
 
@@ -279,8 +280,7 @@ public interface Geometry extends TransfiniteSet {
      * @UML operation transform
      *
      */
-    public Geometry transform(org.opengis.crs.operation.CoordinateTransformation trans)
-            throws org.opengis.crs.operation.IncompatibleOperationException;
+    public Geometry transform(MathTransform trans) throws IncompatibleOperationException;
 
     /**
      * Returns the minimum bounding box for this <code>Geometry</code>. This shall be the
