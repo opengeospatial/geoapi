@@ -11,7 +11,6 @@ package org.opengis.feature;
  * @author Chris Dillard, Jake Fear
  */
 public interface Feature {
-
     /**
      * Returns the description of this feature's type.
      */
@@ -82,4 +81,16 @@ public interface Feature {
      *   of attributes of this feature minute one.
      */
     public void setAttribute(int index, Object value);
+
+    /**
+     * This method returns a String that uniquely identifies this Feature
+     * instance with this Java virtual machine (and perhaps uniquely in a
+     * broader scope as well).  This value is not necessarily one of the
+     * attributes of this feature.  Some features may implement this method by
+     * concatenating this feature's type name with the String values of all of
+     * the primary key attributes.  (This is only a suggestion, however, and
+     * a given Feature implementation may choose to compute the ID in whatever
+     * way makes sense.)
+     */
+    public String getID();
 }
