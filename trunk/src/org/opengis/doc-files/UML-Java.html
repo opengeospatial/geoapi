@@ -1,0 +1,64 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<HTML>
+  <HEAD>
+    <TITLE>UML to Java mapping</TITLE>
+  </HEAD>
+  <BODY>
+  <P ALIGN="justify">The following stereotypes of UML classes and data types
+  are mapped to J2SE objects as below:</P>
+  <BR>
+  <TABLE border='2' cellpadding='9'>
+    <TR BGCOLOR="#EEEEFF"><TH>UML</TH><TH>OGC Purpose</TH><TH>Java mapping</TH></TR>
+    <TR><TD nowrap valign='top'><CODE>&lt;&lt;DataType&gt;&gt;</CODE></TD>
+        <TD>A descriptor of a set of values that lack identity (independent
+            existence and the possibility of side effects). A DataType is a
+            class with no operations whose primary purpose is to hold the
+            information.</TD>
+        <TD nowrap>Interface</TD></TR>
+    <TR><TD nowrap valign='top'><CODE>&lt;&lt;CodeList&gt;&gt;</CODE></TD>
+        <TD>A flexible enumeration that uses string values for expressing a list of
+            potential values.</TD>
+        <TD nowrap><CODE>org.opengis.util.CodeList <strong>extends</strong>
+        <A HREF="http://java.sun.com/j2se/1.5/docs/api/java/lang/Enum.html">java.lang.Enum</A><SUP>*</SUP></CODE></TD></TR>
+    <TR><TD nowrap valign='top'><CODE>&lt;&lt;Union&gt;&gt;</CODE></TD>
+        <TD>Contains a list of attributes where only one of those attributes can be
+            present at any time.</TD>
+        <TD nowrap>none</TD></TR>
+    <TR><TD nowrap valign='top'><CODE>&lt;&lt;Abstract&gt;&gt;</CODE></TD>
+        <TD>A polymorphic object class that cannot be instantiated.</TD>
+        <TD nowrap>Interface</TD></TR>
+    <TR><TD nowrap valign='top'><CODE>CharacterString</CODE></TD>
+        <TD>A sequence of characters.</TD>
+        <TD nowrap><CODE><A HREF="http://java.sun.com/j2se/1.4/docs/api/java/lang/String.html">java.lang.String</A></CODE></TD></TR>
+    <TR><TD nowrap valign='top'><CODE>Integer</CODE></TD>
+        <TD>An integer number.</TD>
+        <TD nowrap><CODE>int</CODE></TD></TR>
+    <TR><TD nowrap valign='top'><CODE>Double</CODE></TD>
+        <TD>A double precision floating point number.</TD>
+        <TD nowrap><CODE>double</CODE></TD></TR>
+    <TR><TD nowrap valign='top'><CODE>Boolean</CODE></TD>
+        <TD>A value specifying TRUE or FALSE.</TD>
+        <TD nowrap><CODE>boolean</CODE></TD></TR>
+    <TR><TD nowrap valign='top'><CODE>DateTime</CODE></TD>
+        <TD>A character string as specified by ISO 19108, which comprises year,
+            month, day and time of the day to the appropriate level of precision.</TD>
+        <TD nowrap><CODE><A HREF="http://java.sun.com/j2se/1.4/docs/api/java/util/Date.html">java.util.Date</A></CODE></TD></TR>
+    <TR><TD nowrap valign='top'><CODE>Sequence&lt;DataType&gt;</CODE></TD>
+        <TD>A sequence type of collection, which contains an ordered list of
+            values with the specified data type.</TD>
+        <TD nowrap>Array or
+        <CODE><A HREF="http://java.sun.com/j2se/1.4/docs/api/java/util/List.html">java.util.List</A></CODE></TD></TR>
+  </TABLE>
+
+  <P ALIGN="right"><SUP>*</SUP> For platform earlier than J2SE 1.5, the <code>CodeList</code>
+  class will defines the same attributes than <code>Enum</code> but will not
+  extends <code>Enum</code>.</P>
+
+  <P>&nbsp;</P>
+  <H2>Custom Javadoc tags</H2>
+  <P ALIGN=justify>OpenGIS's <CITE>Mandatory</CITE>, <CITE>Conditional</CITE> and
+  <CITE>Optional</CITE> attributes are marked using custom <code>@mandatory</code>,
+  <code>@conditional</code> and <code>@optional</code> javadoc tags respectively.</P>
+  </BODY>
+</HTML>
