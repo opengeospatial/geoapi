@@ -13,10 +13,6 @@ package org.opengis.cc;
  * @version 2.0
  *
  * @see GeneralParameterValue
- *
- * @revisit Methods <code>getName()</code>, <code>getIdentifiers()</code> and
- *          <code>getRemarks(Locale)</code> are common to all subclasses. Why
- *          they are not defined here?
  */
 public interface GeneralOperationParameter {
     /**

@@ -16,10 +16,13 @@ import org.opengis.util.CodeList;
  *
  * @see PaletteInterpretation
  * @see SampleDimension
- *
- * @revisit Localize. Defines serialVersionUID.
  */
 public final class ColorInterpretation extends CodeList {
+    /**
+     * Serial number for compatibility with different versions.
+     */
+    private static final long serialVersionUID = 6947933527594223350L;
+
     /**
      * Band is not associated with a color model component.
      *

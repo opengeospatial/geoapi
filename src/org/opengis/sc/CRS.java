@@ -66,7 +66,10 @@ import org.opengis.rs.ReferenceSystem;
  *            <li>they may throw a {@link java.util.UnsupportedOperationException};</li>
  *            <li>they may return a special implementation of {@link org.opengis.cs.CoordinateSystem}
  *                and {@link org.opengis.cd.Datum}, which don't need to be public: the
- *                <code>CompoundCRS</code> implementation can generate them as needed.</li>
+ *                <code>CompoundCRS</code> implementation can generate them as needed.
+ *                Note that this behaviour may actually be quite useful. For example,
+ *                a {@link CompoundCRS} made of a {@link ProjectedCRS} with a {@link VerticalCRS}
+ *                have a 3-D {@link org.opengis.cs.CartesianCS}.</li>
  *          </ul>
  */
 public interface CRS extends ReferenceSystem {

@@ -26,7 +26,7 @@ public abstract class CodeList implements Serializable {
      * The code value.
      * For J2SE 1.3 profile only.
      */
-    private final int ordinal;
+    private transient final int ordinal;
 
     /**
      * The code name.
@@ -99,17 +99,19 @@ public abstract class CodeList implements Serializable {
 
     /**
      * Resolve the code list to an unique instance after deserialization.
+     * The instance is resolved using its {@linkplain #name() name} only
+     * (not its {@linkplain #ordinal() ordinal}).
      *
      * @return This code list as a unique instance.
      * @throws ObjectStreamException if the deserialization failed.
      */
     protected Object readResolve() throws ObjectStreamException {
-        try {
-            return family()[ordinal];
-        } catch (IndexOutOfBoundsException cause) {
-            final ObjectStreamException exception = new InvalidObjectException(toString());
-            exception.initCause(cause);
-            throw exception;
+        final CodeList[] codes = family();
+        for (int i=0; i<codes.length; i++) {
+            if (name.equals(codes[i].name)) {
+                return codes[i];
+            }
         }
+        throw new InvalidObjectException(toString());
     }
 }

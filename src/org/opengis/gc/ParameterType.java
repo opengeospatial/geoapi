@@ -19,10 +19,13 @@ import org.opengis.cc.Conversion;  // For Javadoc
  * @UML codelist GC_ParameterType
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 1.1
- *
- * @revisit Localize. Defines serialVersionUID.
  */
 public final class ParameterType extends CodeList {
+    /**
+     * Serial number for compatibility with different versions.
+     */
+    private static final long serialVersionUID = -5571839103492463917L;
+
     /**
      * Integer parameter ({@link Integer}).
      *

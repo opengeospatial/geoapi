@@ -40,6 +40,7 @@ public interface Ellipsoid extends Info {
      * equatorial radius in {@linkplain #getAxisUnit axis linear unit}.
      *
      * @return Length of semi-major axis.
+     * @unitof Length
      * @UML mandatory semiMajorAxis
      */
     public double getSemiMajorAxis();
@@ -49,6 +50,7 @@ public interface Ellipsoid extends Info {
      * polar radius in {@linkplain #getAxisUnit axis linear unit}.
      *
      * @return Length of semi-minor axis.
+     * @unitof Length
      * @UML conditional secondDefiningParameter.semiMinorAxis
      */
     public double getSemiMinorAxis();
@@ -63,6 +65,7 @@ public interface Ellipsoid extends Info {
      * the {@link Double#POSITIVE_INFINITY} value is used.
      *
      * @return The inverse flattening value.
+     * @unitof Scale
      * @UML conditional secondDefiningParameter.inverseFlattening
      */
     public double getInverseFlattening();

@@ -3,6 +3,9 @@
  */
 package org.opengis.dq;
 
+// J2SE direct dependencies and extensions
+import javax.units.Unit;
+
 
 /**
  * Closeness of reported coordinate values to values accepted as or being true.
@@ -18,10 +21,13 @@ public interface AbsoluteExternalPositionalAccuracy extends PositionalAccuracy {
      * identified by the {@linkplain #getMeasureDescription measure description}.
      *
      * @return The absolute accuracy estimate.
+     * @unitof Measure
      * @UML mandatory result
-     *
-     * @revisit In UML, the return type is <code>Measure</code> (which do not exists yet
-     *          in the current set of Java interfaces).
      */
     public double getResult();
+
+    /**
+     * The unit of the {@linkplain #getResult result}.
+     */
+    public Unit getUnit();
 }

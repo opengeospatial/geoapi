@@ -59,7 +59,7 @@ public interface CoordinateOperation extends Info {
      * @return The coordinate operation version, or <code>null</code> in none.
      * @UML conditional operationVersion
      *
-     * @revisit Since version is mandatory for transformation only, when not rename it
+     * @revisit Since version is mandatory for transformation only, why not rename it
      *          as <code>getTransformationVersion()</code>? Or why it is not an attribute
      *          of the {@link Transformation} interface only?
      */
@@ -80,9 +80,6 @@ public interface CoordinateOperation extends Info {
      *
      * @return Coordinate operation valid area, or <code>null</code> if not available.
      * @UML optional validArea
-     *
-     * @revisit The method name <code>getValidEnvelope()</code> would work better with time
-     *          reference systems since their validity holds across a non-spatial extent.
      */
     public Envelope getValidArea();
 

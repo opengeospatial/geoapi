@@ -40,7 +40,7 @@
             values (possibly with repeated values) of the specified data type.</TD>
         <TD>Small array, or
         <CODE><A HREF="http://java.sun.com/j2se/1.4/docs/api/java/util/List.html">java.util.List</A></CODE>
-        if the sequence is likely to be big.</TD></TR>
+            if the sequence is likely to be big.</TD></TR>
     <TR><TD nowrap valign='top'><CODE>CharacterString</CODE></TD>
         <TD>A sequence of characters.</TD>
         <TD nowrap><CODE><A HREF="http://java.sun.com/j2se/1.4/docs/api/java/lang/String.html">java.lang.String</A></CODE></TD></TR>
@@ -71,6 +71,9 @@
         <TD>A floating point number associated with an angular unit.</TD>
         <TD><CODE>double</CODE> with some <CODE>getUnit()</CODE> method
             (e.g.&nbsp;<CODE>getAngularUnit()</CODE>).</TD></TR>
+    <TR><TD nowrap valign='top'><CODE>Measure</CODE></TD>
+        <TD>A floating point number associated with an arbitrary unit.</TD>
+        <TD><CODE>double</CODE> with a <CODE>getUnit()</CODE> method.</TD></TR>
   </TABLE>
 
   <P ALIGN="right"><SUP>*</SUP> For platform earlier than J2SE 1.5, the <CODE>CodeList</CODE>
@@ -140,6 +143,11 @@
                   their plural form (e.g. <CODE>getElement()</CODE> to
                   <CODE>getElement<U>s</U>()</CODE>).</P></LI>
             </UL></TD></TR>
+
+    <TR><TD NOWRAP><CODE>@unitof</CODE> <VAR>&lt;quantity&gt;</VAR></TD>
+        <TD><P ALIGN=justify>The method returns a <CODE>double</CODE> value which should be
+            expressed in unit of <CODE>Scale</CODE>, <CODE>Length</CODE> or <CODE>Angle</CODE>.
+            Some <CODE>getUnit()</CODE> method must be provided in addition to this method.</P></TD></TR>
 
     <TR><TD NOWRAP><CODE>@revisit</CODE> <VAR>&lt;comment&gt;</VAR></TD>
         <TD><P ALIGN=justify>Somme open issue to revisit.</P></TD></TR>
