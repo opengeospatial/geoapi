@@ -20,7 +20,7 @@ import org.opengis.referencing.cs.CartesianCS;
 import org.opengis.referencing.cs.SphericalCS;
 import org.opengis.referencing.cs.EllipsoidalCS;
 import org.opengis.referencing.cs.VerticalCS;
-import org.opengis.referencing.cs.TemporalCS;
+import org.opengis.referencing.cs.TimeCS;
 import org.opengis.referencing.cs.CoordinateSystem;
 import org.opengis.referencing.datum.EngineeringDatum;
 import org.opengis.referencing.datum.GeodeticDatum;
@@ -212,7 +212,7 @@ public interface CRSFactory extends Factory {
      */
     TemporalCRS createTemporalCRS(Map      properties,
                                   TemporalDatum datum,
-                                  TemporalCS       cs) throws FactoryException;
+                                  TimeCS           cs) throws FactoryException;
 
     /**
      * Creates a vertical coordinate reference system. 

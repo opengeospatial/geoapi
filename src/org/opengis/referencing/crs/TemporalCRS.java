@@ -10,7 +10,7 @@
 package org.opengis.referencing.crs;
 
 // OpenGIS direct dependencies
-import org.opengis.referencing.cs.TemporalCS;
+import org.opengis.referencing.cs.TimeCS;
 import org.opengis.referencing.datum.TemporalDatum;
 
 // Annotations
@@ -24,7 +24,7 @@ import org.opengis.referencing.datum.TemporalDatum;
  * <TABLE CELLPADDING='6' BORDER='1'>
  * <TR BGCOLOR="#EEEEFF"><TH NOWRAP>Used with CS type(s)</TH></TR>
  * <TR><TD>
- *   {@link org.opengis.referencing.cs.TemporalCS Temporal}
+ *   {@link org.opengis.referencing.cs.TimeCS Time}
  * </TD></TR></TABLE>
  *
  * @author ISO 19111
@@ -37,7 +37,7 @@ public interface TemporalCRS extends SingleCRS {
      * Returns the coordinate system, which must be temporal. 	 
      */ 	 
 /// @UML (identifier="usesCS", obligation=MANDATORY)
-/// TemporalCS getCoordinateSystem(); 	 
+/// TimeCS getCoordinateSystem(); 	 
 
     /** 	 
      * Returns the datum, which must be temporal. 	 
