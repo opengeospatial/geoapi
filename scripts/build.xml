@@ -64,7 +64,7 @@
   <target name="sources" depends="clear">
 
     <tstamp>
-      <format property="TODAY" pattern="d MMMM yyyy" locale="fr"/>
+      <format property="TODAY" pattern="yyyy-MM-dd" locale="ca"/>
     </tstamp>
 
     <copy todir="sources" includeEmptyDirs="false" overwrite="true">
@@ -130,7 +130,7 @@
              overview         = "sources/org/opengis/overview.html"
              windowtitle      = "OpenGIS API 2.0"
              doctitle         = "OpenGIS API 2.0"
-             header           = "OpenGIS API 2.0"
+             header           = "OpenGIS API 2.0&lt;br&gt;Build ${TODAY}"
              additionalparam  = "-quiet -noqualifier all
                                  -tagletpath ${homepath}/scripts
                                  -taglet org.opengis.tools.UmlTaglet
@@ -226,70 +226,9 @@
 
     <jar destfile = "binaries/opengis.jar"
          basedir  = "classes"
-         index    = "true">
+         index    = "true"
+         manifest = "sources/META-INF/MANIFEST.MF">
       <include name="org/**"/>
-      <manifest>
-        <section name="org/opengis/rs">
-          <attribute name="Sealed"                 value="true"                              />
-          <attribute name="Specification-Title"    value="Spatial Referencing by Coordinates"/>
-          <attribute name="Specification-Version"  value="2.00"                              />
-          <attribute name="Specification-Vendor"   value="OpenGIS Consortium, Inc."          />
-        </section>
-        <section name="org/opengis/sc">
-          <attribute name="Sealed"                 value="true"                              />
-          <attribute name="Specification-Title"    value="Spatial Referencing by Coordinates"/>
-          <attribute name="Specification-Version"  value="2.00"                              />
-          <attribute name="Specification-Vendor"   value="OpenGIS Consortium, Inc."          />
-        </section>
-        <section name="org/opengis/cs">
-          <attribute name="Sealed"                 value="true"                              />
-          <attribute name="Specification-Title"    value="Spatial Referencing by Coordinates"/>
-          <attribute name="Specification-Version"  value="2.00"                              />
-          <attribute name="Specification-Vendor"   value="OpenGIS Consortium, Inc."          />
-        </section>
-        <section name="org/opengis/cd">
-          <attribute name="Sealed"                 value="true"                              />
-          <attribute name="Specification-Title"    value="Spatial Referencing by Coordinates"/>
-          <attribute name="Specification-Version"  value="2.00"                              />
-          <attribute name="Specification-Vendor"   value="OpenGIS Consortium, Inc."          />
-        </section>
-        <section name="org/opengis/cc">
-          <attribute name="Sealed"                 value="true"                              />
-          <attribute name="Specification-Title"    value="Spatial Referencing by Coordinates"/>
-          <attribute name="Specification-Version"  value="2.00"                              />
-          <attribute name="Specification-Vendor"   value="OpenGIS Consortium, Inc."          />
-        </section>
-        <section name="org/opengis/dq">
-          <attribute name="Sealed"                 value="true"                              />
-          <attribute name="Specification-Title"    value="Spatial Referencing by Coordinates"/>
-          <attribute name="Specification-Version"  value="2.00"                              />
-          <attribute name="Specification-Vendor"   value="OpenGIS Consortium, Inc."          />
-        </section>
-        <section name="org/opengis/ci">
-          <attribute name="Sealed"                 value="true"                              />
-          <attribute name="Specification-Title"    value="Spatial Referencing by Coordinates"/>
-          <attribute name="Specification-Version"  value="2.00"                              />
-          <attribute name="Specification-Vendor"   value="OpenGIS Consortium, Inc."          />
-        </section>
-        <section name="org/opengis/ex">
-          <attribute name="Sealed"                 value="true"                              />
-          <attribute name="Specification-Title"    value="Spatial Referencing by Coordinates"/>
-          <attribute name="Specification-Version"  value="2.00"                              />
-          <attribute name="Specification-Vendor"   value="OpenGIS Consortium, Inc."          />
-        </section>
-        <section name="org/opengis/gm*">
-          <attribute name="Sealed"                 value="true"                              />
-          <attribute name="Specification-Title"    value="Feature Geometry"                  />
-          <attribute name="Specification-Version"  value="2.00"                              />
-          <attribute name="Specification-Vendor"   value="OpenGIS Consortium, Inc."          />
-        </section>
-        <section name="org/opengis/util">
-          <attribute name="Sealed"                 value="true"                              />
-          <attribute name="Specification-Title"    value="GeoAPI"                            />
-          <attribute name="Specification-Version"  value="1.00"                              />
-          <attribute name="Specification-Vendor"   value="OpenGIS Consortium, Inc."          />
-        </section>
-      </manifest>
     </jar>
 
   </target>
