@@ -10,7 +10,10 @@
 package org.opengis.metadata.distribution;
 
 // J2SE direct dependencies
-import java.util.Locale;
+import java.util.Set;
+
+// OpenGIS direct dependencies
+import org.opengis.util.InternationalString;
 
 
 /**
@@ -28,28 +31,28 @@ public interface Format {
      *
      * @UML mandatory name
      */
-    String getName(Locale locale);
+    InternationalString getName();
 
     /**
      * Version of the format (date, number, etc.).
      *
      * @UML mandatory version
      */
-    String getVersion(Locale locale);
+    InternationalString getVersion();
 
     /**
      * Amendment number of the format version.
      *
      * @UML optional amendmentNumber
      */
-    String getAmendmentNumber(Locale locale);
+    InternationalString getAmendmentNumber();
 
     /**
      * Name of a subset, profile, or product specification of the format.
      *
      * @UML optional specification
      */
-    String getSpecification(Locale locale);
+    InternationalString getSpecification();
 
     /**
      * Recommendations of algorithms or processes that can be applied to read or
@@ -57,12 +60,12 @@ public interface Format {
      *
      * @UML optional fileDecompressionTechnique
      */
-    String getFileDecompressionTechnique(Locale locale);
+    InternationalString getFileDecompressionTechnique();
 
     /**
      * Provides information about the distributor’s format.
      *
      * @UML optional formatDistributor
      */
-    Distributor[] getFormatDistributors();
+    Set/*<Distributor>*/ getFormatDistributors();
 }

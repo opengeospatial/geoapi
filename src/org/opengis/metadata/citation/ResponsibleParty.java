@@ -9,8 +9,8 @@
  *************************************************************************************************/
 package org.opengis.metadata.citation;
 
-// J2SE direct dependencies
-import java.util.Locale;
+// OpenGIS direct dependencies
+import org.opengis.util.InternationalString;
 
 
 /**
@@ -37,14 +37,9 @@ public interface ResponsibleParty {
      * Only one of {@link #getIndividualName individualName}, </code>organisationName</code>
      * and {@link #getPositionName positionName} should be provided.
      *
-     * @param  locale The desired locale for the name to be returned, or <code>null</code>
-     *         for a name in some default locale (may or may not be the
-     *         {@linkplain Locale#getDefault() system default}).
-     * @return The name in the given locale.
-     *         If no name is available in the given locale, then some default locale is used.
      * @UML conditional organisationName
      */
-    String getOrganisationName(Locale locale);
+    InternationalString getOrganisationName();
 
     /**
      * Role or position of the responsible person
@@ -52,14 +47,9 @@ public interface ResponsibleParty {
      * {@link #getOrganisationName organisationName} and <code>getPositionName</code>
      * should be provided.
      *
-     * @param  locale The desired locale for the name to be returned, or <code>null</code>
-     *         for a name in some default locale (may or may not be the
-     *         {@linkplain Locale#getDefault() system default}).
-     * @return The name in the given locale.
-     *         If no name is available in the given locale, then some default locale is used.
      * @UML conditional positionName
      */
-    String getPositionName(Locale locale);
+    InternationalString getPositionName();
 
     /**
      * Address of the responsible party.

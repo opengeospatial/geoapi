@@ -10,10 +10,11 @@
 package org.opengis.metadata.identification;
 
 // J2SE direct dependencies
+import java.util.Set;
 import java.util.Date;
-import java.util.Locale;
 
 // OpenGIS direct dependencies
+import org.opengis.util.InternationalString;
 import org.opengis.metadata.citation.ResponsibleParty;
 
 
@@ -29,14 +30,9 @@ public interface Usage {
     /**
      * Brief description of the resource and/or resource series usage.
      *
-     * @param  locale The desired locale for the description to be returned, or <code>null</code>
-     *         for a description in some default locale (may or may not be the
-     *         {@linkplain Locale#getDefault() system default}).
-     * @return The description in the given locale.
-     *         If no description is available in the given locale, then some default locale is used.
      * @UML mandatory specificUsage
      */
-    String getSpecificUsage(Locale locale);
+    InternationalString getSpecificUsage();
 
     /**
      * Date and time of the first use or range of uses of the resource and/or resource series.
@@ -49,14 +45,9 @@ public interface Usage {
      * Applications, determined by the user for which the resource and/or resource series
      * is not suitable.
      *
-     * @param  locale The desired locale for the description to be returned, or <code>null</code>
-     *         for a description in some default locale (may or may not be the
-     *         {@linkplain Locale#getDefault() system default}).
-     * @return The description in the given locale.
-     *         If no description is available in the given locale, then some default locale is used.
      * @UML optional userDeterminedLimitations
      */
-    String getUserDeterminedLimitations(Locale locale);
+    InternationalString getUserDeterminedLimitations();
 
     /**
      * Identification of and means of communicating with person(s) and organization(s)
@@ -64,5 +55,5 @@ public interface Usage {
      *
      * @UML mandatory userContactInfo
      */
-    ResponsibleParty[] getUserContactInfo();
+    Set/*<ResponsibleParty>*/ getUserContactInfo();
 }

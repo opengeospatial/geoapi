@@ -11,7 +11,9 @@ package org.opengis.metadata.identification;
 
 // J2SE direct dependencies
 import java.net.URL;
-import java.util.Locale;
+
+// OpenGIS direct dependencies
+import org.opengis.util.InternationalString;
 
 
 /**
@@ -33,14 +35,9 @@ public interface BrowseGraphic {
     /**
      * Text description of the illustration.
      *
-     * @param  locale The desired locale for the description to be returned, or <code>null</code>
-     *         for a description in some default locale (may or may not be the
-     *         {@linkplain Locale#getDefault() system default}).
-     * @return The description in the given locale.
-     *         If no description is available in the given locale, then some default locale is used.
      * @UML optional fileDescription
      */
-    String getFileDescription(Locale locale);
+    InternationalString getFileDescription();
 
     /**
      * Format in which the illustration is encoded.

@@ -10,12 +10,13 @@
 package org.opengis.metadata.quality;
 
 // J2SE direct dependencies
+import java.util.List;
 import java.util.Date;
-import java.util.Locale;
 
 // OpenGIS direct dependencies
 import org.opengis.metadata.Identifier;
 import org.opengis.metadata.citation.Citation;
+import org.opengis.util.InternationalString;
 
 
 /**
@@ -30,14 +31,9 @@ public interface Element {
     /**
      * Name of the test applied to the data.
      *
-     * @param  locale The desired locale for the names to be returned, or <code>null</code>
-     *         for names in some default locale (may or may not be the
-     *         {@linkplain Locale#getDefault() system default}).
-     * @return The names in the given locale, or an empty array if none.
-     *         If no name is available in the given locale, then some default locale is used.
      * @UML optional nameOfMeasure
      */
-    String[] getNamesOfMeasure(final Locale locale);
+    List/*<InternationalString>*/ getNamesOfMeasure();
 
     /**
      * Code identifying a registered standard procedure, or <code>null</code> if none.
@@ -49,14 +45,9 @@ public interface Element {
     /**
      * Description of the measure being determined.
      *
-     * @param  locale The desired locale for the description to be returned, or <code>null</code>
-     *         for description in some default locale (may or may not be the
-     *         {@linkplain Locale#getDefault() system default}).
-     * @return The description in the given locale, or <code>null</code> if none.
-     *         If no description is available in the given locale, then some default locale is used.
      * @UML optional measureDescription
      */
-    String getMeasureDescription(Locale locale);
+    InternationalString getMeasureDescription();
 
     /**
      * Type of method used to evaluate quality of the dataset, or <code>null</code> if unspecified.
@@ -68,14 +59,9 @@ public interface Element {
     /**
      * Description of the evaluation method.
      *
-     * @param  locale The desired locale for the description to be returned, or <code>null</code>
-     *         for description in some default locale (may or may not be the
-     *         {@linkplain Locale#getDefault() system default}).
-     * @return The description in the given locale, or <code>null</code> if none.
-     *         If no description is available in the given locale, then some default locale is used.
      * @UML optional evaluationMethodDescription
      */
-    String getEvaluationMethodDescription(Locale locale);
+    InternationalString getEvaluationMethodDescription();
 
     /**
      * Reference to the procedure information, or <code>null</code> if none.

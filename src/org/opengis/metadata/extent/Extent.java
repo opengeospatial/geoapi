@@ -9,8 +9,8 @@
  *************************************************************************************************/
 package org.opengis.metadata.extent;
 
-// J2SE direct dependencies
-import java.util.Locale;
+// OpenGIS direct dependencies
+import org.opengis.util.InternationalString;
 
 
 /**
@@ -31,14 +31,9 @@ public interface Extent {
     /**
      * Returns the spatial and temporal extent for the referring object.
      * 
-     * @param  locale The desired locale for the description to be returned, or <code>null</code>
-     *         for description in some default locale (may or may not be the
-     *         {@linkplain Locale#getDefault() system default}).
-     * @return The description in the given locale, or <code>null</code> if none.
-     *         If no description is available in the given locale, then some default locale is used.
      * @UML conditional description
      */
-    public String getDescription(Locale locale);
+    InternationalString getDescription();
 
     /**
      * Provides geographic component of the extent of the referring object
@@ -49,7 +44,7 @@ public interface Extent {
      * @revisit The UML allows an arbitrary number of components.
      *          Should we return an array?
      */
-    public GeographicExtent getGeographicElement();
+    GeographicExtent getGeographicElement();
 
     /**
      * Provides temporal component of the extent of the referring object
@@ -60,7 +55,7 @@ public interface Extent {
      * @revisit The UML allows an arbitrary number of components.
      *          Should we return an array?
      */
-    public TemporalExtent getTemporalElement();
+    TemporalExtent getTemporalElement();
 
     /**
      * Provides vertical component of the extent of the referring object
@@ -71,5 +66,5 @@ public interface Extent {
      * @revisit The UML allows an arbitrary number of components.
      *          Should we return an array?
      */
-    public VerticalExtent getVerticalElement();
+    VerticalExtent getVerticalElement();
 }

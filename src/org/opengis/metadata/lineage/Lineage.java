@@ -10,7 +10,10 @@
 package org.opengis.metadata.lineage;
 
 // J2SE direct dependencies
-import java.util.Locale;
+import java.util.Set;
+
+// OpenGIS direct dependencies
+import org.opengis.util.InternationalString;
 
 
 /**
@@ -33,26 +36,21 @@ public interface Lineage {
      * {@linkplain org.opengis.metadata.maintenance.ScopeCode#DATASET dataset} or
      * {@linkplain org.opengis.metadata.maintenance.ScopeCode#SERIES series}.
      *
-     * @param  locale The desired locale for the description to be returned, or <code>null</code>
-     *         for a description in some default locale (may or may not be the
-     *         {@linkplain Locale#getDefault() system default}).
-     * @return The description in the given locale.
-     *         If no description is available in the given locale, then some default locale is used.
      * @UML conditional statement
      */
-    String getStatement(Locale locale);
+    InternationalString getStatement();
 
     /**
      * Information about an event in the creation process for the data specified by the scope.
      *
      * @UML conditional processStep
      */
-    ProcessStep[] getProcessSteps();
+    Set/*<ProcessStep>*/ getProcessSteps();
 
     /**
      * Information about the source data used in creating the data specified by the scope.
      *
      * @UML conditional source
      */
-    Source[] getSources();
+    Set/*<Source>*/ getSources();
 }

@@ -10,6 +10,7 @@
 package org.opengis.metadata.identification;
 
 // J2SE direct dependencies
+import java.util.Set;
 import java.util.Locale;
 
 // OpenGIS direct dependencies
@@ -17,6 +18,7 @@ import org.opengis.metadata.extent.Extent;
 import org.opengis.metadata.extent.GeographicBoundingBox;
 import org.opengis.metadata.extent.GeographicDescription;
 import org.opengis.metadata.spatial.SpatialRepresentationType;
+import org.opengis.util.InternationalString;
 
 
 /**
@@ -33,7 +35,7 @@ public interface DataIdentification extends Identification {
      *
      * @UML optional spatialRepresentationType
      */
-    SpatialRepresentationType[] getSpatialRepresentationTypes();
+    Set/*<SpatialRepresentationType>*/ getSpatialRepresentationTypes();
 
     /**
      * Factor which provides a general understanding of the density of spatial data
@@ -41,14 +43,14 @@ public interface DataIdentification extends Identification {
      *
      * @UML optional spatialResolution
      */
-    Resolution[] getSpatialResolutions();
+    Set/*<Resolution>*/ getSpatialResolutions();
 
     /**
      * Language(s) used within the dataset.
      *
      * @UML mandatory language
      */
-    Locale[] getLanguage();
+    Set/*<Locale>*/ getLanguage();
 
     /**
      * Full name of the character coding standard used for the dataset.
@@ -64,7 +66,7 @@ public interface DataIdentification extends Identification {
      *
      * @UML mandatory topicCategory
      */
-    TopicCategory[] getTopicCategories();
+    Set/*<TopicCategory>*/ getTopicCategories();
 
     /**
      * Minimum bounding rectangle within which data is available.
@@ -73,7 +75,7 @@ public interface DataIdentification extends Identification {
      *
      * @UML conditional geographicBox
      */
-    GeographicBoundingBox[] getGeographicBox();
+    Set/*<GeographicBoundingBox>*/ getGeographicBox();
 
     /**
      * Description of the geographic area within which data is available.
@@ -82,20 +84,15 @@ public interface DataIdentification extends Identification {
      *
      * @UML conditional geographicDescription
      */
-    GeographicDescription[] getGeographicDescription();
+    Set/*<GeographicDescription>*/ getGeographicDescription();
 
     /**
      * Description of the dataset in the producer’s processing environment, including items
      * such as the software, the computer operating system, file name, and the dataset size
      *
-     * @param  locale The desired locale for the description to be returned, or <code>null</code>
-     *         for a description in some default locale (may or may not be the
-     *         {@linkplain Locale#getDefault() system default}).
-     * @return The description in the given locale.
-     *         If no description is available in the given locale, then some default locale is used.
      * @UML optional environmentDescription
      */
-    String getEnvironmentDescription(Locale locale);
+    InternationalString getEnvironmentDescription();
 
     /**
      * Additional extent information including the bounding polygon, vertical, and temporal
@@ -103,17 +100,12 @@ public interface DataIdentification extends Identification {
      *
      * @UML optional extent
      */
-    Extent[] getExtent();
+    Set/*<Extent>*/ getExtent();
 
     /**
      * Any other descriptive information about the dataset.
      *
-     * @param  locale The desired locale for the description to be returned, or <code>null</code>
-     *         for a description in some default locale (may or may not be the
-     *         {@linkplain Locale#getDefault() system default}).
-     * @return The description in the given locale.
-     *         If no description is available in the given locale, then some default locale is used.
      * @UML optional supplementalInformation
      */
-    String getSupplementalInformation(Locale locale);
+    InternationalString getSupplementalInformation();
 }

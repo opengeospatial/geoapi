@@ -9,6 +9,9 @@
  *************************************************************************************************/
 package org.opengis.metadata;
 
+// J2SE direct dependencies
+import java.util.Set;
+
 
 /**
  * Spatial attributes in the application schema for the feature types.
@@ -24,5 +27,5 @@ public interface SpatialAttributeSupplement {
      *
      * @UML mandatory theFeatureTypeList
      */
-    FeatureTypeList[] getFeatureTypeList();
+    Set/*<FeatureTypeList>*/ getFeatureTypeList();
 }

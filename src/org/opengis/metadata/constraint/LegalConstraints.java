@@ -10,7 +10,10 @@
 package org.opengis.metadata.constraint;
 
 // J2SE direct dependencies
-import java.util.Locale;
+import java.util.Set;
+
+// OpenGIS direct dependencies
+import org.opengis.util.InternationalString;
 
 
 /**
@@ -28,7 +31,7 @@ public interface LegalConstraints extends Constraints {
      *
      * @UML optional accessConstraints
      */
-    Restriction[] getAccessConstraints();
+    Set/*<Restriction>*/ getAccessConstraints();
 
     /**
      * Constraints applied to assure the protection of privacy or intellectual property, and any
@@ -36,7 +39,7 @@ public interface LegalConstraints extends Constraints {
      *
      * @UML optional useConstraints
      */
-    Restriction[] getUseConstraints();
+    Set/*<Restriction>*/ getUseConstraints();
 
     /**
      * Other restrictions and legal prerequisites for accessing and using the resource.
@@ -44,12 +47,7 @@ public interface LegalConstraints extends Constraints {
      * access constraints} or {@linkplain #getUseConstraints use constraints} declares
      * {@linkplain Restriction#OTHER_RESTRICTIONS other restrictions}.
      *
-     * @param  locale The desired locale for the description to be returned, or <code>null</code>
-     *         for a description in some default locale (may or may not be the
-     *         {@linkplain Locale#getDefault() system default}).
-     * @return The description in the given locale.
-     *         If no description is available in the given locale, then some default locale is used.
      * @UML conditional otherConstraints
      */
-    String getOtherConstraints(Locale locale);
+    InternationalString getOtherConstraints();
 }

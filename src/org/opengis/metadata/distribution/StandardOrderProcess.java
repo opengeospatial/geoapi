@@ -11,7 +11,9 @@ package org.opengis.metadata.distribution;
 
 // J2SE direct dependencies
 import java.util.Date;
-import java.util.Locale;
+
+// OpenGIS direct dependencies
+import org.opengis.util.InternationalString;
 
 
 /**
@@ -28,14 +30,9 @@ public interface StandardOrderProcess {
      * Fees and terms for retrieving the resource.
      * Include monetary units (as specified in ISO 4217).
      *
-     * @param  locale The desired locale for the fees to be returned, or <code>null</code>
-     *         for fees in some default locale (may or may not be the
-     *         {@linkplain Locale#getDefault() system default}).
-     * @return The fees in the given locale.
-     *         If no fees is available in the given locale, then some default locale is used.
      * @UML optional fees
      */
-    String getFees(Locale locale);
+    InternationalString getFees();
 
     /**
      * Date and time when the dataset will be available.
@@ -47,24 +44,14 @@ public interface StandardOrderProcess {
     /**
      * General instructions, terms and services provided by the distributor.
      *
-     * @param  locale The desired locale for the description to be returned, or <code>null</code>
-     *         for a description in some default locale (may or may not be the
-     *         {@linkplain Locale#getDefault() system default}).
-     * @return The description in the given locale.
-     *         If no description is available in the given locale, then some default locale is used.
      * @UML optional orderingInstructions
      */
-    String getOrderingInstructions(Locale locale);
+    InternationalString getOrderingInstructions();
 
     /**
      * Typical turnaround time for the filling of an order.
      *
-     * @param  locale The desired locale for the description to be returned, or <code>null</code>
-     *         for a description in some default locale (may or may not be the
-     *         {@linkplain Locale#getDefault() system default}).
-     * @return The description in the given locale.
-     *         If no description is available in the given locale, then some default locale is used.
      * @UML optional turnaround
      */
-    String getTurnaround(Locale locale);
+    InternationalString getTurnaround();
 }

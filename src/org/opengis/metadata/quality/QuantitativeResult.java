@@ -10,8 +10,10 @@
 package org.opengis.metadata.quality;
 
 // J2SE direct dependencies and extension
-import java.util.Locale;
 import javax.units.Unit;
+
+// OpenGIS direct dependencies
+import org.opengis.util.InternationalString;
 
 
 /**
@@ -54,12 +56,7 @@ public interface QuantitativeResult extends Result {
     /**
      * Statistical method used to determine the value, or <code>null</code> if none.
      *
-     * @param  locale The desired locale for the description to be returned, or <code>null</code>
-     *         for description in some default locale (may or may not be the
-     *         {@linkplain Locale#getDefault() system default}).
-     * @return The description in the given locale, or <code>null</code> if none.
-     *         If no description is available in the given locale, then some default locale is used.
      * @UML optional errorStatistic
      */
-    String getRrrorStatistic(Locale locale);
+    InternationalString getRrrorStatistic();
 }

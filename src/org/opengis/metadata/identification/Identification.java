@@ -10,7 +10,8 @@
 package org.opengis.metadata.identification;
 
 // J2SE direct dependencies
-import java.util.Locale;
+import java.util.Set;
+import java.util.List;
 
 // OpenGIS direct dependencies
 import org.opengis.metadata.citation.Citation;
@@ -18,6 +19,7 @@ import org.opengis.metadata.citation.ResponsibleParty;
 import org.opengis.metadata.maintenance.MaintenanceInformation;
 import org.opengis.metadata.constraint.Constraints;
 import org.opengis.metadata.distribution.Format;
+import org.opengis.util.InternationalString;
 
 
 /**
@@ -39,40 +41,30 @@ public interface Identification {
     /**
      * Brief narrative summary of the content of the resource(s).
      *
-     * @param  locale The desired locale for the abstract to be returned, or <code>null</code>
-     *         for an abstract in some default locale (may or may not be the
-     *         {@linkplain Locale#getDefault() system default}).
-     * @return The abstract in the given locale.
-     *         If no abstract is available in the given locale, then some default locale is used.
      * @UML mandatory abstract
      */
-    String getAbstract(Locale locale);
+    InternationalString getAbstract();
 
     /**
      * Summary of the intentions with which the resource(s) was developed.
      *
-     * @param  locale The desired locale for the summary to be returned, or <code>null</code>
-     *         for a summary in some default locale (may or may not be the
-     *         {@linkplain Locale#getDefault() system default}).
-     * @return The summary in the given locale.
-     *         If no summary is available in the given locale, then some default locale is used.
      * @UML optional purpose
      */
-    String getPurpose(Locale locale);
+    InternationalString getPurpose();
 
     /**
      * Recognition of those who contributed to the resource(s).
      *
      * @UML optional credit
      */
-    String[] getCredits();
+    List/*<String>*/ getCredits();
 
     /**
      * Status of the resource(s).
      *
      * @UML optional status
      */
-    Progress[] getStatus();
+    Set/*<Progress>*/ getStatus();
 
     /**
      * Identification of, and means of communication with, person(s) and organizations(s)
@@ -80,35 +72,35 @@ public interface Identification {
      *
      * @UML optional pointOfContact
      */
-    ResponsibleParty[] getPointOfContacts();
+    Set/*<ResponsibleParty>*/ getPointOfContacts();
 
     /**
      * Provides information about the frequency of resource updates, and the scope of those updates.
      *
      * @UML optional resourceMaintenance
      */
-    MaintenanceInformation[] getResourceMaintenance();
+    Set/*<MaintenanceInformation>*/ getResourceMaintenance();
 
     /**
      * Provides a graphic that illustrates the resource(s) (should include a legend for the graphic).
      *
      * @UML optional graphicOverview
      */
-    BrowseGraphic[] getGraphicOverviews();
+    Set/*<BrowseGraphic>*/ getGraphicOverviews();
 
     /**
      * Provides a description of the format of the resource(s).
      *
      * @UML optional resourceFormat
      */
-    Format[] getResourceFormat();
+    Set/*<Format>*/ getResourceFormat();
 
     /**
      * Provides category keywords, their type, and reference source.
      *
      * @UML optional descriptiveKeywords
      */
-    Keywords[] getDescriptiveKeywords();
+    Set/*<Keywords>*/ getDescriptiveKeywords();
 
     /**
      * Provides basic information about specific application(s) for which the resource(s)
@@ -116,12 +108,12 @@ public interface Identification {
      *
      * @UML optional resourceSpecificUsage
      */
-    Usage[] getResourceSpecificUsages();
+    Set/*<Usage>*/ getResourceSpecificUsages();
 
     /**
      * Provides information about constraints which apply to the resource(s).
      *
      * @UML optional resourceConstraints
      */
-    Constraints[] getResourceConstraints();
+    Set/*<Constraints>*/ getResourceConstraints();
 }

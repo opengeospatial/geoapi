@@ -9,6 +9,9 @@
  *************************************************************************************************/
 package org.opengis.metadata.distribution;
 
+// J2SE direct dependencies
+import java.util.Set;
+
 // OpenGIS direct dependencies
 import org.opengis.metadata.citation.ResponsibleParty;
 
@@ -35,19 +38,19 @@ public interface Distributor {
      *
      * @UML optional distributionOrderProcess
      */
-    StandardOrderProcess[] getDistributionOrderProcesses();
+    Set/*<StandardOrderProcess>*/ getDistributionOrderProcesses();
 
     /**
      * Provides information about the format used by the distributor.
      *
      * @UML conditional distributorFormat
      */
-    Format[] getDistributorFormats();
+    Set/*<Format>*/ getDistributorFormats();
 
     /**
      * Provides information about the technical means and media used by the distributor.
      *
      * @UML optional distributorTransferOptions
      */
-    DigitalTransferOptions[] getDistributorTransferOptions();
+    Set/*<DigitalTransferOptions>*/ getDistributorTransferOptions();
 }

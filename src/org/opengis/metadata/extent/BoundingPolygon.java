@@ -34,5 +34,5 @@ public interface BoundingPolygon extends GeographicExtent {
      *          We could returns an array of some more restrictive type, or allow this method
      *          to returns some aggregate.
      */
-    public Geometry getPolygon();
+    Geometry getPolygon();
 }

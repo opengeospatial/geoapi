@@ -9,8 +9,8 @@
  *************************************************************************************************/
 package org.opengis.metadata.constraint;
 
-// J2SE direct dependencies
-import java.util.Locale;
+// OpenGIS direct dependencies
+import org.opengis.util.InternationalString;
 
 
 /**
@@ -33,36 +33,21 @@ public interface SecurityConstraints extends Constraints {
      * Explanation of the application of the legal constraints or other restrictions and legal
      * prerequisites for obtaining and using the resource.
      *
-     * @param  locale The desired locale for the description to be returned, or <code>null</code>
-     *         for a description in some default locale (may or may not be the
-     *         {@linkplain Locale#getDefault() system default}).
-     * @return The description in the given locale.
-     *         If no description is available in the given locale, then some default locale is used.
      * @UML optional userNote
      */
-    String getUserNote(Locale locale);
+    InternationalString getUserNote();
 
     /**
      * Name of the classification system.
      *
-     * @param  locale The desired locale for the name to be returned, or <code>null</code>
-     *         for a name in some default locale (may or may not be the
-     *         {@linkplain Locale#getDefault() system default}).
-     * @return The name in the given locale.
-     *         If no name is available in the given locale, then some default locale is used.
      * @UML optional classificationSystem
      */
-    String getClassificationSystem(Locale locale);
+    InternationalString getClassificationSystem();
 
     /**
      * Additional information about the restrictions on handling the resource.
      *
-     * @param  locale The desired locale for the description to be returned, or <code>null</code>
-     *         for a description in some default locale (may or may not be the
-     *         {@linkplain Locale#getDefault() system default}).
-     * @return The description in the given locale.
-     *         If no description is available in the given locale, then some default locale is used.
      * @UML optional handlingDescription
      */
-    String getHandlingDescription(Locale locale);
+    InternationalString getHandlingDescription();
 }

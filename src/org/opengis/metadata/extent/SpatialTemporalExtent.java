@@ -9,6 +9,9 @@
  *************************************************************************************************/
 package org.opengis.metadata.extent;
 
+// J2SE direct dependencies
+import java.util.Set;
+
 
 /**
  * Extent with respect to date/time and spatial boundaries.
@@ -26,5 +29,5 @@ public interface SpatialTemporalExtent extends TemporalExtent {
      * @return The list of geographic extents (never <code>null</code>).
      * @UML mandatory spatialExtent
      */
-    public GeographicExtent[] getSpatialExtent();
+    Set/*<GeographicExtent>*/ getSpatialExtent();
 }
