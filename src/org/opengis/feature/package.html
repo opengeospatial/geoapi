@@ -22,9 +22,9 @@
   </p>
   <p>
   The WFS specification provides an attractive middle ground between full versioned
-  Features, and light-weight inproccess or file lock based approaches. Locks
-  are maintained for a requested duration. A successfult lock opperation results
-  in a authorization token that may be used at a later time. A transaction
+  Features, and light-weight in-process or file lock based approaches. Locks
+  are maintained for a requested duration. A successful lock operation results
+  in an authorization token that may be used at a later time. A transaction
   may be assigned a token allowing it to work on previously locked features.
   WFS allows a lock to be taken out across multiple FeatureCollections in a single
   request. We have extended this idea to support FeatureCollection from different
@@ -50,8 +50,8 @@
   
   LockResults lockResults = t.commit();
   </code></pre>  
-  At the end of the above example, kaslo A stree has been deleted and the remaining streets in kaslo
-  are still locked. lockResults.getToken() contains a authorization string that can
+  At the end of the above example, kaslo A street has been deleted and the remaining streets in kaslo
+  are still locked. lockResults.getToken() contains an authorization string that can
   be used at a later time.
   </p>
   
