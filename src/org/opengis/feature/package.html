@@ -33,8 +33,28 @@
   </p>
   <p>
   Code example: <pre><code>
-  </code></pre>
+  // The FilterFactory.bnf( "" ) method is unfortuantly mythical
+  //
+  DataStore dataStore = DataStoreFactory.create( new URI("myfile.gml") );
+  GenericName roads = dataStore.getTypeNames().iterator().next();
+  
+  FeatureCollection kaslo = dataStore.getFeatures( roads, FilterFactory.bnf( "CITY='kaslo'" );
+  LockRequest lockRequest = new LockRequest( 45678 );
+  Transaction t = new Transaction();
+  
+  kaslo.setTransaction( t );
+  kaslo.setLock( lockRequest );
+  kaslo.lock();
+    
+  kaslo.deleteAll( kaslo.subCollection( FilterFactory.bnf( "CITY='kaslo' AND NAME='A street'" ) );
+  
+  LockResults lockResults = t.commit();
+  </code></pre>  
+  At the end of the above example, kaslo A stree has been deleted and the remaining streets in kaslo
+  are still locked. lockResults.getToken() contains a authorization string that can
+  be used at a later time.
   </p>
+  
   <H3>Related Documentation </H3>
   <UL>
    <LI>{@link org.opengis.metadata} - ISO 19115 (TC211) Metadata specification</LI>
