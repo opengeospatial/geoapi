@@ -16,6 +16,7 @@ import java.io.IOException;
 // OpenGIS direct dependencies
 import org.opengis.filter.Filter;
 import org.opengis.sld.FeatureStyle;
+import org.opengis.util.GenericName;
 
 
 /**
@@ -27,24 +28,33 @@ import org.opengis.sld.FeatureStyle;
 public interface DataStore {
     /**
      * Gets a list of all the names of the types held in this data store.
+     * Objects in the returned list will be instances of GenericName.
+     * <p>
+     * The typical usage of these GenericNames will be as follows:  In most
+     * cases, the GenericName will have a local part that is be the name of the
+     * XML element used to encode such features as GML.  The scope of the name
+     * will either be null (if the XML element is to have no namespace) or will
+     * be a LocalName whose toString() gives the URI of an XML namespace.
      */
-    List/*<QName>*/ getTypeNames();
+    List/*<GenericName>*/ getTypeNames();
 
     /**
      * Returns the schema of the named feature type.  May return null if a type
-     * of the given name does not exist.
+     * of the given name does not exist.  The GenericName passed to this method
+     * must be equal to one of the elements in the list returned by the
+     * <code>getTypeName()</code> method.
      */
-    FeatureType getFeatureType(QName typeName);
+    FeatureType getFeatureType(GenericName typeName);
 
     /**
      * Gets all features of the given type.
      */
-    FeatureCollection getFeatures(QName type) throws IOException;
+    FeatureCollection getFeatures(GenericName type) throws IOException;
 
     /**
      * Gets all features of the given type that pass some filter.
      */
-    FeatureCollection getFeatures(QName type, Filter filter) throws IOException;
+    FeatureCollection getFeatures(GenericName type, Filter filter) throws IOException;
 
     /**
      * Gets features of the given type that pass some query.  Different from
@@ -64,7 +74,7 @@ public interface DataStore {
      * If the DataStore wants to provide a default style for the given type, it
      * may return something here.  Otherwise, it should return null.
      */
-    FeatureStyle getDefaultStyle(QName type);
+    FeatureStyle getDefaultStyle(GenericName type);
 
     /**
      * Creates a new type.  If this DataStore is backed by a persistent store of
@@ -84,7 +94,7 @@ public interface DataStore {
      * This may throw UnsupportedOperationException if the removal of whole
      * feature types is not supported.
      */
-    void removeType(QName type) throws IOException, UnsupportedOperationException;
+    void removeType(GenericName type) throws IOException, UnsupportedOperationException;
 
     /**
      * Modifies the type by changing the schema to what is passed as a
