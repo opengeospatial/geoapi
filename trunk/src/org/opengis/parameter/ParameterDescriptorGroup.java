@@ -68,12 +68,4 @@ public interface ParameterDescriptorGroup extends GeneralParameterDescriptor {
      * @throws ParameterNotFoundException if there is no parameter for the given identifier code.
      */
     GeneralParameterDescriptor descriptor(String name) throws ParameterNotFoundException;
-
-    /**
-     * Returns the first parameter descriptor in this group for the specified
-     * {@linkplain Identifier#getCode identifier code}.
-     *
-     * @deprecated Use {@link #descriptor} instead.
-     */
-    ParameterDescriptor getParameter(String name) throws ParameterNotFoundException;
 }
