@@ -57,13 +57,6 @@ public interface ParameterDescriptorGroup extends GeneralParameterDescriptor {
      */
 /// @UML (identifier="includesParameter", obligation=MANDATORY)
     List/*<GeneralParameterDescriptor>*/ descriptors();
- 
-    /**
-     * Returns the parameters in this group.
-     *
-     * @deprecated use {@link #descriptors} instead.
-     */
-    GeneralParameterDescriptor[] getParameters();
 
     /**
      * Returns the parameter descriptor in this group for the specified
@@ -74,8 +67,7 @@ public interface ParameterDescriptorGroup extends GeneralParameterDescriptor {
      * @return The parameter for the given identifier code.
      * @throws ParameterNotFoundException if there is no parameter for the given identifier code.
      */
-//    GeneralParameterDescriptor descriptor(String name) throws ParameterNotFoundException;
-//    (temporarily disabled; will be uncommented soon)
+    GeneralParameterDescriptor descriptor(String name) throws ParameterNotFoundException;
 
     /**
      * Returns the first parameter descriptor in this group for the specified
