@@ -29,28 +29,19 @@ import org.opengis.referencing.crs.CoordinateReferenceSystem;
  */
 public interface CoordinateOperationFactory extends ObjectFactory {
     /**
-     * Creates a concatenated operation from a sequence of operations.
-     *
-     * @param  properties Name and other properties to give to the new object.
-     *         Available properties are {@linkplain ObjectFactory listed there}.
-     * @param  operations The sequence of operations.
-     * @throws FactoryException if the object creation failed.
-     */
-    CoordinateOperation createConcatenatedOperation(Map properties, CoordinateOperation[] operations)
-            throws FactoryException;
-
-    /**
      * Returns an operation for conversion or transformation between two coordinate reference systems.
      * If an operation exists, it is returned. If more than one operation exists, the default is returned.
      * If no operation exists, then the exception is thrown.
      *
      * @param  sourceCRS Input coordinate reference system.
      * @param  targetCRS Output coordinate reference system.
+     * @return A coordinate operation from <code>sourceCRS</code> to <code>targetCRS</code>.
      * @throws OperationNotFoundException if no operation path was found from <code>sourceCRS</code>
      *         to <code>targetCRS</code>.
      * @throws FactoryException if the operation creation failed for some other reason.
      */
-    CoordinateOperation createOperation(CoordinateReferenceSystem sourceCRS, CoordinateReferenceSystem targetCRS)
+    CoordinateOperation createOperation(CoordinateReferenceSystem sourceCRS,
+                                        CoordinateReferenceSystem targetCRS)
             throws OperationNotFoundException, FactoryException;
 
     /**
@@ -61,9 +52,10 @@ public interface CoordinateOperationFactory extends ObjectFactory {
      * of inferring the operation from the argument objects.
      * If for whatever reason the specified operation will not be returned, then the exception is thrown.
      *
-     * @param  method the algorithmic method for conversion or transformation
      * @param  sourceCRS Input coordinate reference system.
      * @param  targetCRS Output coordinate reference system.
+     * @param  method the algorithmic method for conversion or transformation
+     * @return A coordinate operation from <code>sourceCRS</code> to <code>targetCRS</code>.
      * @throws OperationNotFoundException if no operation path was found from <code>sourceCRS</code>
      *         to <code>targetCRS</code>.
      * @throws FactoryException if the operation creation failed for some other reason.
@@ -73,6 +65,20 @@ public interface CoordinateOperationFactory extends ObjectFactory {
      *          The user could have more fine grain control with {@link MathTransformFactory} (ported
      *          from OGC 2001-09).
      */
-    CoordinateOperation createOperation(CoordinateReferenceSystem sourceCRS, CoordinateReferenceSystem targetCRS, OperationMethod method)
+    CoordinateOperation createOperation(CoordinateReferenceSystem sourceCRS,
+                                        CoordinateReferenceSystem targetCRS,
+                                        OperationMethod           method)
             throws OperationNotFoundException, FactoryException;
+
+    /**
+     * Creates a concatenated operation from a sequence of operations.
+     *
+     * @param  properties Name and other properties to give to the new object.
+     *         Available properties are {@linkplain ObjectFactory listed there}.
+     * @param  operations The sequence of operations.
+     * @return The concatenated operation.
+     * @throws FactoryException if the object creation failed.
+     */
+    CoordinateOperation createConcatenatedOperation(Map properties, CoordinateOperation[] operations)
+            throws FactoryException;
 }
