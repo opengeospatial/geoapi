@@ -22,12 +22,20 @@ import java.util.List;
  * {@linkplain LocalName local name} structure for type and attribute
  * name in the context of name spaces.
  *
+ * <P>The {@linkplain Comparable natural ordering} for generic names is implementation dependent.
+ * A recommended practice is to {@linkplain String#compareTo compare lexicographically} each
+ * element in the {@linkplain #getParsedNames list of parsed names}. Specific attributes of
+ * the name, such as how it treats case, may affect the ordering. In general, two names of
+ * different classes may not be compared.</P>
+ *
  * @author ISO 19103
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 2.0
+ *
+ * @see javax.naming.Name
  */
 ///@UML (identifier="GenericName")
-public interface GenericName {
+public interface GenericName extends Comparable {
     /**
      * Returns the scope (name space) of this generic name. If this name has no scope
      * (e.g. is the root), then this method returns <code>null</code>.

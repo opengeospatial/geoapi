@@ -15,9 +15,10 @@ package org.opengis.util;
 
 
 /**
+ * Fully qualified identifier for an object.
  * A <code>ScopedName</code> contains a {@link LocalName} as {@linkplain #getLocaleName head}
- * and a {@linkplain GenericName}, which may be a {@link LocalName} or a
- * <code>GenericName</code>, as {@linkplain #getScope tail}.
+ * and a {@linkplain GenericName}, which may be a {@link LocalName} or an other
+ * <code>ScopedName</code>, as {@linkplain #getScope tail}.
  *
  * @author ISO 19103
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
@@ -42,7 +43,7 @@ public interface ScopedName extends GenericName {
      *         by the inherited <code>getScope()</code> method.
      */
 /// @UML (identifier="head", obligation=MANDATORY)
-    LocalName getLocaleName();
+    LocalName getLocalName();
 
     /**
      * Returns the scope of this name.
