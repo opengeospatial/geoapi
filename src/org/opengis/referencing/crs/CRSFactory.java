@@ -325,6 +325,25 @@ public interface CRSFactory extends ObjectFactory {
      * @throws FactoryException if the object creation failed.
      *
      * @see #getDefaultParameters
+     *
+     * @revisit Maybe we should remove this method (as well as {@link #getDefaultParameters}) for
+     *          the following reasons:
+     * <ul>
+     *   <li>It introduces a dependency to {@link org.opengis.referencing.operation.MathTransformFactory}
+     *       at the implementation level of this method. This is against the orthogonal aspect of
+     *       factories (no other methods force this kind of cross-dependency).</li>
+     *   <li>It brings duplication with {@link org.opengis.referencing.operation.MathTransformFactory}
+     *       API ({@link #getDefaultParameters}).</li>
+     *   <li>This is mostly a convenience method; user can do the same with similar
+     *       efficiency in their own code.</li>
+     *   <li>Experience gained in implementation and usage suggests that it is hard to get
+     *       a method that meets every need. Some code will ignore this method and build
+     *       <code>ProjectedCRS</code> in their own way (using
+     *       {@link #createProjectedCRS(Map,OperationMethod,GeographicCRS,MathTransform,CartesianCS)}
+     *       method) anyway. They may want to use their own
+     *       {@link org.opengis.referencing.operation.MathTransformFactory}, use a different
+     *       {@link org.opengis.referencing.operation.OperationMethod}, etc.</li>
+     * </ul>
      */
     ProjectedCRS createProjectedCRS(Map                 properties,
                                     GeographicCRS             base,
