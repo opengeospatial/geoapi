@@ -37,4 +37,28 @@ public interface Parameter {
      * @UML mandatory value
      */
     Object getValue();
+
+    /**
+     * Set the value for this parameter.
+     *
+     * @param  value The new value.
+     * @throws InvalidParameterValueException if <code>value</code> if illegal for this parameter.
+     */
+    void setValue(Object value) throws InvalidParameterValueException;
+
+    /**
+     * Set the value for this parameter as an integer.
+     *
+     * @param  value The new value.
+     * @throws InvalidParameterValueException if <code>value</code> is illegal for this parameter.
+     */
+    void setValue(int value) throws InvalidParameterValueException;
+
+    /**
+     * Set the value for this parameter as a floating point.
+     *
+     * @param  value The new value.
+     * @throws InvalidParameterValueException if <code>value</code> is illegal for this parameter.
+     */
+    void setValue(double value) throws InvalidParameterValueException;
 }
