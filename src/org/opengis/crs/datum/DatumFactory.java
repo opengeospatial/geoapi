@@ -11,6 +11,7 @@ package org.opengis.crs.datum;
 
 // J2SE and extensions direct dependencies
 import java.util.Map;
+import java.util.Date;
 import javax.units.Unit;
 
 // OpenGIS direct dependencies
@@ -34,6 +35,64 @@ import org.opengis.crs.FactoryException;
  * @see org.opengis.crs.crs.CRSFactory
  */
 public interface DatumFactory extends Factory {
+    /**
+     * Creates an engineering datum.
+     *
+     * @param  properties Name and other properties to give to the new object.
+     *         Available properties are {@linkplain Factory listed there}.
+     * @throws FactoryException if the object creation failed.
+     * @UML operation createLocalDatum
+     */
+    EngineeringDatum createEngineeringDatum(Map properties) throws FactoryException;
+
+    /**
+     * Creates geodetic datum from ellipsoid and (optionaly) Bursa-Wolf parameters. 
+     *
+     * @param  properties Name and other properties to give to the new object.
+     *         Available properties are {@linkplain Factory listed there}.
+     * @param  ellipsoid Ellipsoid to use in new geodetic datum.
+     * @param  primeMeridian Prime meridian to use in new geodetic datum.
+     * @throws FactoryException if the object creation failed.
+     *
+     * @revisit We need to define something equivalent to <code>WGS84ConversionInfo</code>.
+     * @UML operation createHorizontalDatum
+     */
+    GeodeticDatum createGeodeticDatum(Map           properties,
+                                      Ellipsoid     ellipsoid,
+                                      PrimeMeridian primeMeridian) throws FactoryException;
+
+    /**
+     * Creates an image datum.
+     *
+     * @param  properties Name and other properties to give to the new object.
+     *         Available properties are {@linkplain Factory listed there}.
+     * @param  pixelInCell Specification of the way the image grid is associated
+     *         with the image data attributes.
+     * @throws FactoryException if the object creation failed.
+     */
+    ImageDatum createImageDatum(Map properties, PixelinCell pixelInCell) throws FactoryException;
+
+    /**
+     * Creates a temporal datum from an enumerated type value.
+     *
+     * @param  properties Name and other properties to give to the new object.
+     *         Available properties are {@linkplain Factory listed there}.
+     * @paral  origin The date and time origin of this temporal datum.
+     * @throws FactoryException if the object creation failed.
+     */
+    TemporalDatum createTemporalDatum(Map properties, Date origin) throws FactoryException;
+
+    /**
+     * Creates a vertical datum from an enumerated type value.
+     *
+     * @param  properties Name and other properties to give to the new object.
+     *         Available properties are {@linkplain Factory listed there}.
+     * @paral  type The type of this vertical datum (often “geoidal”).
+     * @throws FactoryException if the object creation failed.
+     * @UML operation createVerticalDatum
+     */
+    VerticalDatum createVerticalDatum(Map properties, VerticalDatumType type) throws FactoryException;
+
     /**
      * Creates an ellipsoid from radius values.
      *
@@ -65,4 +124,18 @@ public interface DatumFactory extends Factory {
                                     double semiMajorAxis,
                                     double inverseFlattening,
                                     Unit   unit) throws FactoryException;
+
+    /**
+     * Creates a prime meridian, relative to Greenwich. 
+     *
+     * @param  properties Name and other properties to give to the new object.
+     *         Available properties are {@linkplain Factory listed there}.
+     * @param  longitude Longitude of prime meridian in supplied angular units East of Greenwich.
+     * @param  angularUnit Angular units of longitude.
+     * @throws FactoryException if the object creation failed.
+     * @UML operation createPrimeMeridian
+     */
+    PrimeMeridian createPrimeMeridian(Map    properties,
+                                      double longitude,
+                                      Unit   angularUnit) throws FactoryException;
 }
