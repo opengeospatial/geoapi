@@ -29,11 +29,20 @@ import org.opengis.rs.Info;
  */
 public interface CoordinateSystem extends Info {
     /**
-     * Returns the ordered set of axis for this coordinate system. Each coordinate system
-     * must have at least one axis.
+     * Returns the dimension of the coordinate system.
      *
-     * @return The ordered set of axis.
+     * @return The dimension of the coordinate system.
+     */
+    public int getDimension();
+
+    /**
+     * Returns the axis for this coordinate system at the specified dimension.
+     * Each coordinate system must have at least one axis.
+     *
+     * @param  dimension The zero based index of axis.
+     * @return The axis at the specified dimension.
+     * @throws IndexOutOfBoundsException if <code>dimension</code> is out of bounds.
      * @UML association usesAxis
      */
-    public CoordinateSystemAxis[] getAxis();
+    public CoordinateSystemAxis getAxis(int dimension) throws IndexOutOfBoundsException;
 }

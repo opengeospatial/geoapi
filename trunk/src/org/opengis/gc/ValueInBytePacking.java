@@ -26,6 +26,11 @@ import org.opengis.cv.SampleDimensionType; // For Javadoc
  */
 public final class ValueInBytePacking extends CodeList {
     /**
+     * Serial number for compatibility with different versions.
+     */
+    private static final long serialVersionUID = 6895036289489868770L;
+
+    /**
      * Low bit firts (little endian order).
      *
      * @UML conditional GC_LoBitFirst

@@ -19,10 +19,13 @@ import org.opengis.util.CodeList;
  *
  * @see ColorInterpretation
  * @see SampleDimension
- *
- * @revisit Localize. Defines serialVersionUID.
  */
 public final class PaletteInterpretation extends CodeList {
+    /**
+     * Serial number for compatibility with different versions.
+     */
+    private static final long serialVersionUID = -7387623392932592485L;
+
     /**
      * Gray Scale color palette.
      *

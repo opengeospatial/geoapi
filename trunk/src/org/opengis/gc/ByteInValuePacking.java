@@ -20,10 +20,13 @@ import org.opengis.util.CodeList;
  * @see GridPacking
  * @see ValueInBytePacking
  * @see ByteOrder
- *
- * @revisit Localize. Defines serialVersionUID.
  */
 public final class ByteInValuePacking extends CodeList {
+    /**
+     * Serial number for compatibility with different versions.
+     */
+    private static final long serialVersionUID = -5830149616089633137L;
+
     /**
      * Big Endian.
      *

@@ -25,17 +25,6 @@ import org.opengis.cs.CoordinateSystem;
  */
 public interface DerivedCRS extends GeneralDerivedCRS {
     /**
-     * Returns the coordinate system.
-     *
-     * @return The coordinate system.
-     * @UML association usesCS
-     *
-     * @revisit This method was already defined in {@link CoordinateReferenceSystem}.
-     *          Why is it defined again here?
-     */
-    public CoordinateSystem getCoordinateSystem();
-
-    /**
      * Type of this derived coordinate reference system.
      *
      * @return The type of this derived coordinate reference system.

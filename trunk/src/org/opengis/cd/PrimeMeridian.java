@@ -28,6 +28,7 @@ public interface PrimeMeridian extends Info {
      * when the {@linkplain #getName meridian name} value is “Greenwich”.
      *
      * @return The prime meridian Greenwich longitude, in {@linkplain #getAngularUnit angular unit}.
+     * @unitof Length
      * @UML conditional greenwichLongitude
      */
     public double getGreenwichLongitude();

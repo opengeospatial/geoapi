@@ -36,17 +36,6 @@ import org.opengis.cd.EngineeringDatum;
  */
 public interface EngineeringCRS extends CoordinateReferenceSystem {
     /**
-     * Returns the coordinate system.
-     *
-     * @return The coordinate system.
-     * @UML association usesCS
-     *
-     * @revisit This method was already defined in {@link CoordinateReferenceSystem}.
-     *          Why is it defined again here?
-     */
-    public CoordinateSystem getCoordinateSystem();
-
-    /**
      * Returns the datum, which must be an engineering one.
      *
      * @return The datum.
@@ -54,4 +43,3 @@ public interface EngineeringCRS extends CoordinateReferenceSystem {
      */
     public EngineeringDatum getDatum();
 }
-

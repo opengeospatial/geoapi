@@ -14,6 +14,14 @@ import org.opengis.util.CodeList;
  * @author ISO 19111
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 2.0
+ *
+ * @revisit The following types (from OGC document 01-009) seems missing:
+ *          <UL>
+ *            <LI>ELLIPSOIDAL: A vertical datum for ellipsoidal heights that are measured
+ *                along the normal to the ellipsoid used in the definition of geodetic datum.</LI>
+ *            <LI>ORTHOMETRIC: A vertical datum for orthometric heights that are measured
+ *                along the plumb line.</LI>
+ *          </UL>
  */
 public final class VerticalDatumType extends CodeList {
     /**
@@ -34,7 +42,9 @@ public final class VerticalDatumType extends CodeList {
      * The zero point of the vertical axis is defined by a surface that has meaning for the
      * purpose which the associated vertical measurements are used for. For hydrographic charts,
      * this is often a predicted nominal sea surface (i.e., without waves or other wind and current
-     * effects) that occurs at low tide.
+     * effects) that occurs at low tide. Depths are measured in the direction perpendicular
+     * (approximately) to the actual equipotential surfaces of the earth's gravity field,
+     * using such procedures as echo-sounding.
      *
      * @UML conditional depth
      */
@@ -42,7 +52,11 @@ public final class VerticalDatumType extends CodeList {
 
     /**
      * Atmospheric pressure is the basis for the definition of the origin of the
-     * associated vertical coordinate system axis.
+     * associated vertical coordinate system axis. These are approximations of
+     * orthometric heights obtained with the help of a barometer or a barometric
+     * altimeter. These values are usually expressed in one of the following units:
+     * meters, feet, millibars (used to measure pressure levels), or theta value
+     * (units used to measure geopotential height).
      *
      * @UML conditional barometric
      */

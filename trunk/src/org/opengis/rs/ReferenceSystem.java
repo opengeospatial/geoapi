@@ -26,9 +26,6 @@ public interface ReferenceSystem extends Info {
      *
      * @return Coordinate reference system valid area, or <code>null</code> if not available.
      * @UML optional validArea
-     *
-     * @revisit The method name <code>getValidEnvelope()</code> would work better with time
-     *          reference systems since their validity holds across a non-spatial extent.
      */
     public Envelope getValidArea();
 

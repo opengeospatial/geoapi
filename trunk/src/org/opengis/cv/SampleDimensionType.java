@@ -19,10 +19,13 @@ import org.opengis.util.CodeList;
  * @version 1.1
  *
  * @see SampleDimension
- *
- * @revisit Localize. Defines serialVersionUID.
  */
 public final class SampleDimensionType extends CodeList {
+    /**
+     * Serial number for compatibility with different versions.
+     */
+    private static final long serialVersionUID = -4153433145134818506L;
+
     /**
      * Unsigned 1 bit integers.
      *
