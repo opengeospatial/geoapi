@@ -63,7 +63,7 @@ public final class DerivedCRSType extends CodeList {
      * List of all enumeration of this type.
      */
     private static final List FAMILY = Collections.unmodifiableList(Arrays.asList(new DerivedCRSType[] {
-                ENGINEERING , IMAGE , VERTICAL , TEMPORAL }));
+                GEOGRAPHIC, VERTICAL, ENGINEERING, IMAGE, TEMPORAL }));
 
     /**
      * Constructs an enum with the given name.
