@@ -12,6 +12,7 @@ package org.opengis.referencing;
 // OpenGIS dependencies
 import org.opengis.metadata.Identifier;
 import org.opengis.metadata.citation.Citation;
+import org.opengis.util.InternationalString;
 
 
 /**
@@ -41,33 +42,18 @@ import org.opengis.metadata.citation.Citation;
  *   </tr>
  *   <tr>
  *     <td nowrap>&nbsp;<code>"name"</code>&nbsp;</td>
- *     <td nowrap>&nbsp;{@link String}&nbsp;</td>
+ *     <td nowrap>&nbsp;{@link Identifier} or {@link String}&nbsp;</td>
  *     <td nowrap>&nbsp;{@link IdentifiedObject#getName}</td>
  *   </tr>
  *   <tr>
  *     <td nowrap>&nbsp;<code>"remarks"</code>&nbsp;</td>
- *     <td nowrap>&nbsp;{@link String}&nbsp;</td>
+ *     <td nowrap>&nbsp;{@link InternationalString} or {@link String}&nbsp;</td>
  *     <td nowrap>&nbsp;{@link IdentifiedObject#getRemarks}</td>
  *   </tr>
  *   <tr>
  *     <td nowrap>&nbsp;<code>"authority"</code>&nbsp;</td>
- *     <td nowrap>&nbsp;{@link String} or {@link org.opengis.metadata.citation.Citation}&nbsp;</td>
+ *     <td nowrap>&nbsp;{@link Citation} or {@link String}&nbsp;</td>
  *     <td nowrap>&nbsp;{@link Identifier#getAuthority} on the first identifier</td>
- *   </tr>
- *   <tr>
- *     <td nowrap>&nbsp;<code>"code"</code>&nbsp;</td>
- *     <td nowrap>&nbsp;{@link String}&nbsp;</td>
- *     <td nowrap>&nbsp;{@link Identifier#getCode} on the first identifier</td>
- *   </tr>
- *   <tr>
- *     <td nowrap>&nbsp;<code>"codeSpace"</code>&nbsp;</td>
- *     <td nowrap>&nbsp;{@link String}&nbsp;</td>
- *     <td nowrap>&nbsp;{@link Identifier#getCodeSpace} on the first identifier</td>
- *   </tr>
- *   <tr>
- *     <td nowrap>&nbsp;<code>"version"</code>&nbsp;</td>
- *     <td nowrap>&nbsp;{@link String}&nbsp;</td>
- *     <td nowrap>&nbsp;{@link Identifier#getVersion} on the first identifier</td>
  *   </tr>
  *   <tr>
  *     <td nowrap>&nbsp;<code>"identifiers"</code>&nbsp;</td>
@@ -77,9 +63,9 @@ import org.opengis.metadata.citation.Citation;
  * </table>
  *
  * <P>The <code>"name"</code> property is mandatory. All others are optional. Additionally, all
- * localizable attributes like <code>"name"</code> and <code>"remarks"</code> may have a language
- * and country code suffix. For example the <code>"remarks_fr"</code> property stands for remarks
- * in {@linkplain java.util.Locale#FRENCH French} and the <code>"remarks_fr_CA"</code> property
+ * localizable attributes like <code>"remarks"</code> may have a language and country code suffix.
+ * For example the <code>"remarks_fr"</code> property stands for remarks in
+ * {@linkplain java.util.Locale#FRENCH French} and the <code>"remarks_fr_CA"</code> property
  * stands for remarks in {@linkplain java.util.Locale#CANADA_FRENCH French Canadian}.</P>
  *
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>

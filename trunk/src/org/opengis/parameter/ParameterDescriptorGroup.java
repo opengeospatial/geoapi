@@ -70,9 +70,7 @@ public interface ParameterDescriptorGroup extends GeneralParameterDescriptor {
      * </code></blockquote>
      *
      * @param  name The case insensitive {@linkplain Identifier#getCode identifier code} of the
-     *              parameter to search for. If this string contains the <code>':'</code> character,
-     *              then the part before <code>':'</code> is the {@linkplain Identifier#getCodeSpace
-     *              code space}.
+     *              parameter to search for.
      * @return The parameter for the given identifier code.
      * @throws ParameterNotFoundException if there is no parameter for the given identifier code.
      */
