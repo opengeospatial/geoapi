@@ -9,7 +9,11 @@ import org.opengis.filter.Filter;
 import org.opengis.filter.FilterFactory;
 import org.opengis.go.display.canvas.Canvas;
 import org.opengis.go.display.primitive.Graphic;
+import org.opengis.referencing.crs.CoordinateReferenceSystem;
+import org.opengis.sld.FeatureStyle;
 import org.opengis.sld.FeatureStyleFactory;
+import org.opengis.spatialschema.geometry.geometry.GeometryFactory;
+import org.opengis.spatialschema.geometry.primitive.PrimitiveFactory;
 
 /**
  * <p>A canvas that can consume Features and automatically turn them into Graphics.
@@ -117,8 +121,10 @@ public interface FeatureCanvas {
      * @param featureType The type of features that will be in this layer.
      * @param filter A filter limiting which features will be in this layer.
      *   This parameter may be null if all features are desired.
+     * @param style The style that will be applied (initially) to all features
+     *   displayed in this layer.
      */
-    public FilteredLayer createFilteredLayer(String name, FeatureType featureType, Filter filter);
+    public FilteredLayer createFilteredLayer(String name, FeatureType featureType, Filter filter, FeatureStyle style);
 
     /**
      * Removes the given layer from being displayed on this map.  After calling
@@ -160,4 +166,18 @@ public interface FeatureCanvas {
      * @return A GO-1 canvas 
      */
     public Canvas getCanvas();
+
+    /**
+     * Returns a (possibly shared) instance of a GeometryFactory that gives the
+     * caller the ability to make geometry components in the given coordinate
+     * system.
+     */
+    public GeometryFactory getGeometryFactory(CoordinateReferenceSystem crs);
+
+    /**
+     * Returns a (possibly shared) instance of a PrimitiveFactory that gives the
+     * caller the ability to make geometric primitives in the given coordinate
+     * system.
+     */
+    public PrimitiveFactory getPrimitiveFactory(CoordinateReferenceSystem crs);
 }
