@@ -177,15 +177,13 @@ and a negative value indicates the prime meridian is West of Greenwich.</P>
 <H3><A NAME="PROJCS">PROJCS</A></H3>
 <P ALIGN="justify">This indicates a projected coordinate system. The
 <A HREF="#PROJECTION"><CODE>PROJECTION</CODE></A> sub-clause contains
-the classification name used by the
-<CODE>MathTransformFactory.createParameterizedTransform</CODE> method, and the
+the classification name used by <CODE>MathTransformFactory</CODE>, and the
 <A HREF="#PARAMETER"><CODE>PARAMETER</CODE></A> clauses specify the parameters.
 However, the units used by <CODE>MathTransformFactory</CODE> are always meters
 and degrees, and the units in the <A HREF="#PARAMETER"><CODE>PARAMETER</CODE></A>
 clauses are in the linear/angular units of the
 <A HREF="#PROJCS"><CODE>PROJCS</CODE></A>/<A HREF="#GEOGCS"><CODE>GEOGCS</CODE></A>
-respectively. So if you are writing code to read or write WKT, then you must use the
-<CODE>isParameterAngular</CODE> and <CODE>isParameterLinear</CODE> methods to do the
+respectively. So if you are writing code to read or write WKT, then you must do the
 unit conversions - be careful!</P>
 <P ALIGN="justify">(Notice that this handling of units is slightly different from the way
 the EPSG 4 database works. In the EPSG 4 database, each transformation parameter value
