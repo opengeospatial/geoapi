@@ -13,6 +13,7 @@ package org.opengis.crs.operation;
 import org.opengis.crs.Factory;
 import org.opengis.crs.FactoryException;
 import org.opengis.crs.NoSuchClassificationException;
+import org.opengis.parameter.GeneralParameterValue;
 
 
 /**

@@ -20,7 +20,7 @@ import org.opengis.spatialschema.geometry.DirectPosition;  // For Javadoc
  * method, for example when a point is outside the coverage.
  *
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
- * @version 1.1
+ * @version 1.0
  *
  * @see Coverage#evaluate(DirectPosition, byte[])
  * @see Coverage#evaluate(DirectPosition, double[])

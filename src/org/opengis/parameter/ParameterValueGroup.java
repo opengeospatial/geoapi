@@ -7,13 +7,13 @@
  ** Copyright (C) 2003 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
  **
  *************************************************************************************************/
-package org.opengis.crs.operation;
+package org.opengis.parameter;
 
 
 /**
  * A group of related parameter values. The same group can be repeated more than once in an
- * {@link Operation} or higher level <code>ParameterValueGroup</code>, if those instances
- * contain different values of one or more {@link ParameterValue}s which suitably
+ * {@linkplain org.opengis.crs.operation.Operation operation} or higher level <code>ParameterValueGroup</code>,
+ * if those instances contain different values of one or more {@link ParameterValue}s which suitably
  * distinquish among those groups.
  *  
  * @UML abstract CC_ParameterValueGroup

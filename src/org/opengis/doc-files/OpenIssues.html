@@ -108,27 +108,31 @@
   <H1><A NAME="Changes">Previous issues (now fixed)</A></H1>
   <H2>Changes in Spatial Referencing by Coordinates</H2>
   <UL>
-    <LI><P ALIGN="justify">UML found in the 2003-073 specification contains only <EM>attributes</EM>
-        or <EM>associations</EM>, no <EM>operations</EM>. Many services found in the legacy 2001-009
-        specification are not available in latest UML. More specifically:</P>
-        <UL>
-          <LI>There is nothing like a transformation method taking a point or an array
+    <LI><P ALIGN="justify">Factory and operations from the legacy 2001-009 specification have been
+        ported to the 2003-073 specification. This is because UML diagrams found in the 2003-073
+        specification contains only <EM>attributes</EM> or <EM>associations</EM>, no <EM>operations</EM>.
+        Many services found in the legacy 2001-009 specification are not available in latest UML.
+        More specifically:</P>
+        <P><UL>
+          <LI>There was nothing like a transformation method taking a point or an array
           in argument and returning a transformed point or array (e.g. the legacy
           <A HREF=../../../../legacy/org/opengis/ct/CT_MathTransform.html><CODE>CT_MathTransform</CODE></A>
           interface).</LI>
 
-          <LI>There is no factory at all (e.g. the legacy
+          <LI>There was no factory at all (e.g. the legacy
           <A HREF=../../../../legacy/org/opengis/ct/CT_CoordinateTransformationFactory.html><CODE>CT_CoordinateTransformationFactory</CODE></A>
           interface).</LI>
-        </UL><BR>
-        <TABLE cellpadding='0' cellspacing='0'><TR VALIGN="top"><TD><STRONG>FIX:&nbsp;</STRONG></TD><TD>
-        <P ALIGN="justify"><FONT COLOR="green">Factory and operations from
-        the legacy 2001-009 specification should be ported to the 2003-073
-        specification.</FONT></P></TD></TR></TABLE>
+        </UL></P>
     </LI>
 
-    <LI><P ALIGN="justify">It may be worth to drop the <CODE>CRS</CODE> interface.
-        This interface stands between
+    <LI><P ALIGN="justify">Dropped the <CODE>CRS</CODE> interface. This has the side effect of
+        allowing <A HREF="../crs/crs/CompoundCRS.html"><CODE>CompoundCRS</CODE></A> to contains
+        other <CODE>CompoundCRS</CODE>. An other side effect is to resolves some misleading attribute
+        name. For example "<CODE>includesCRS</CODE>" in <A HREF="../crs/crs/CompoundCRS.html"><CODE>CompoundCRS</CODE></A>
+        is of type <A HREF="../crs/crs/CoordinateReferenceSystem.html"><CODE>CoordinateReferenceSystem</CODE></A>, not
+        <CODE>CRS</CODE>.
+
+        This fix was done because the <CODE>CRS</CODE> interface stands between
         <A HREF="../crs/ReferenceSystem.html"><CODE>ReferenceSystem</CODE></A> and
         <A HREF="../crs/crs/CoordinateReferenceSystem.html"><CODE>CoordinateReferenceSystem</CODE></A>
         and looks like an anomaly in an otherwise quite natural hierarchy
@@ -165,34 +169,23 @@
               that because its own code may have some special hooks for <code>cs3D</code>,
               since he has built this CRS himself. With the current <code>CompoundCRS</code>
               speficiation, this approach is not possible since <code>getCoordinateReferenceSystem</code>
-              allow only a flat view of component's CRS; any user custom
-              <code>CompoundCRS</code> are lost.</P></li>
+              allow only a flat view of component's CRS; any user custom <code>CompoundCRS</code>
+              (and all remarks, identifiers and other useful informations) are lost.</P></li>
         </ul>
-        <P ALIGN="justify">If this <code>CRS</code> interface were removed and
-        <A HREF="../crs/crs/CompoundCRS.html"><CODE>CompoundCRS</CODE></A>
-        put on the same level than all other CRS in the hierarchy, then the
-        most important difficulty would probably by the semantic of 
-        <code>getCoordinateSystem()</code> and <code>getDatum()</code> methods.
+        <P ALIGN="justify">A remaining issue is to define the semantic of <code>getCoordinateSystem()</code>
+        and <code>getDatum()</code> methods for <A HREF="../crs/crs/CompoundCRS.html"><CODE>CompoundCRS</CODE></A>.
         Various proposal may be considered:</P>
-        <ul>
+        <p><ul>
           <li>they may return <code>null</code>;</li>
           <li>they may throw a <code>UnsupportedOperationException</code>;</li>
           <li>they may return a special implementation of <code>CoordinateSystem</code>
               and <code>Datum</code>, which don't need to be public: the
               <code>CompoundCRS</code> implementation can generate them as needed.
               Note that this behaviour may actually be quite useful. For example,
-              a <code>CompoundCRS</code> made of a <code>ProjectedCRS</code> with
-              a <code>VerticalCRS</code> have a 3-D <code>CartesianCS</code>.</li>
-        </ul>
-        <BR>
-
-        <TABLE cellpadding='0' cellspacing='0'><TR VALIGN="top"><TD><STRONG>FIX:&nbsp;</STRONG></TD><TD>
-        <P ALIGN="justify"><FONT COLOR="green">Allows
-        <A HREF="../crs/crs/CompoundCRS.html"><CODE>CompoundCRS</CODE></A> to contains other <CODE>CompoundCRS</CODE>,
-        then drop the <CODE>CRS</CODE> interface. This fix resolves also some misleading attribute name. For example
-        "<CODE>includesCRS</CODE>" in <A HREF="../crs/crs/CompoundCRS.html"><CODE>CompoundCRS</CODE></A> is of type
-        <A HREF="../crs/crs/CoordinateReferenceSystem.html"><CODE>CoordinateReferenceSystem</CODE></A>, not
-        <CODE>CRS</CODE>.</FONT></P></TD></TR></TABLE>
+              a <code>CompoundCRS</code> made of a <code>GeographicCRS</code> with
+              a <code>VerticalCRS</code> have a 3-D <code>EllipsoidalCS</code>.</li>
+        </ul></p>
+    </LI>
 
     <LI><P ALIGN="justify">Interface <A HREF="../crs/cs/CartesianCS.html"><CODE>CartesianCS</CODE></A>
         looks like a special case of <A HREF="../crs/cs/ObliqueCartesianCS.html"><CODE>ObliqueCartesianCS</CODE></A>.
@@ -285,6 +278,21 @@
          restrictive, misleading (it returns an abstract definition of a group of parameters, not the
          actual group), and for consistency with usage in other Java extensions (e.g.
          <A HREF="http://java.sun.com/products/java-media/jai/forDevelopers/jai-apidocs/javax/media/jai/ParameterList.html#getParameterListDescriptor()"><CODE>ParameterList</CODE></A>).</P></LI>
+
+    <LI><P ALIGN="justify">Moved the
+        <code>GeneralOperationParameter</code>,
+        <code>OperationParameter</code>,
+        <code>OperationParameterGroup</code>,
+        <code>GeneralParameterValue</code>,
+        <code>ParameterValue</code>,
+        <code>ParameterValueGroup</code>,
+        <code>InvalidParameterNameException</code>,
+        <code>InvalidParameterTypeException</code> and
+        <code>InvalidParameterValueException</code>
+        interfaces from <code>org.opengis.crs.operation</code> to <code>org.opengis.paraneter</code>
+        since it is of use for grid coverages as well as operations. The goal is to avoid a
+        duplicated API for parameters in coordinate operations and grid coverage operations.</P>
+
   </UL>
 
 

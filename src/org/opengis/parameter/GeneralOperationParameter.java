@@ -7,7 +7,7 @@
  ** Copyright (C) 2003 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
  **
  *************************************************************************************************/
-package org.opengis.crs.operation;
+package org.opengis.parameter;
 
 // OpenGIS direct dependencies
 import org.opengis.crs.Info;

@@ -14,6 +14,7 @@ import java.util.Locale;
 
 // OpenGIS direct dependencies
 import org.opengis.crs.Info;
+import org.opengis.parameter.GeneralOperationParameter;
 
 
 /**

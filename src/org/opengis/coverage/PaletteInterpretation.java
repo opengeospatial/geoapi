@@ -21,7 +21,7 @@ import org.opengis.util.CodeList;
  *
  * @UML codelist CV_PaletteInterpretation
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
- * @version 1.1
+ * @version <A HREF="http://www.opengis.org/docs/01-004.pdf">Grid Coverage specification 1.0</A>
  *
  * @see ColorInterpretation
  * @see SampleDimension

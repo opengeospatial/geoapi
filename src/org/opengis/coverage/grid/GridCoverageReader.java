@@ -15,6 +15,9 @@ import java.io.FileNotFoundException;  // For Javadoc
 
 // OpenGIS direct dependencies
 import org.opengis.coverage.MetadataNameNotFoundException;
+import org.opengis.parameter.ParameterNotFoundException;
+import org.opengis.parameter.InvalidParameterNameException;
+import org.opengis.parameter.InvalidParameterValueException;
 
 
 /**
@@ -23,7 +26,7 @@ import org.opengis.coverage.MetadataNameNotFoundException;
  * a call to {@link GridCoverageExchange#getReader}.
  *
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
- * @version 1.1
+ * @version 2.0
  *
  * @see GridCoverageExchange#getReader
  * @see javax.imageio.ImageReader
@@ -90,6 +93,8 @@ public interface GridCoverageReader {
      *         doesn't have a recognized name.
      * @throws InvalidParameterValueException if a parameter in <code>parameters</code>
      *         doesn't have a valid value.
+     * @throws ParameterNotFoundException if a parameter was required for the operation but was
+     *         not provided in the <code>parameters</code> list.
      * @throws CannotCreateGridCoverageException if the coverage can't be created for a logical
      *         reason (for example an unsupported format, or an inconsistency found in the data).
      * @throws IOException if a read operation failed for some other input/output reason, including
@@ -97,7 +102,8 @@ public interface GridCoverageReader {
      *         found, or {@link javax.imageio.IIOException} if an error was thrown by the
      *         underlying image library.
      */
-    GridCoverage read(String name, Parameter[] parameters) throws InvalidParameterNameException, InvalidParameterValueException, IOException;
+    GridCoverage read(String name, Parameter[] parameters)
+            throws InvalidParameterNameException, InvalidParameterValueException, ParameterNotFoundException, IOException;
 
     /**
      * Read the grid coverage at the specified index.
@@ -111,6 +117,8 @@ public interface GridCoverageReader {
      *         doesn't have a recognized name.
      * @throws InvalidParameterValueException if a parameter in <code>parameters</code>
      *         doesn't have a valid value.
+     * @throws ParameterNotFoundException if a parameter was required for the operation but was
+     *         not provided in the <code>parameters</code> list.
      * @throws CannotCreateGridCoverageException if the coverage can't be created for a logical
      *         reason (for example an unsupported format, or an inconsistency found in the data).
      * @throws IOException if a read operation failed for some other input/output reason, including
@@ -118,5 +126,6 @@ public interface GridCoverageReader {
      *         found, or {@link javax.imageio.IIOException} if an error was thrown by the
      *         underlying image library.
      */
-    GridCoverage read(int index, Parameter[] parameters) throws InvalidParameterNameException, InvalidParameterValueException, IOException;
+    GridCoverage read(int index, Parameter[] parameters)
+            throws InvalidParameterNameException, InvalidParameterValueException, ParameterNotFoundException, IOException;
 }

@@ -15,7 +15,7 @@ package org.opengis.coverage;
  *
  * @UML exception CV_MetadataNameNotFound
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
- * @version 1.1
+ * @version <A HREF="http://www.opengis.org/docs/01-004.pdf">Grid Coverage specification 1.0</A>
  *
  * @see SampleDimension#getMetadataValue
  * @see Coverage#getMetadataValue
