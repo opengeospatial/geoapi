@@ -12,6 +12,8 @@ package org.opengis.gc;
  * @UML datatype CV_Parameter
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 1.1
+ *
+ * @revisit This interface duplicates {@link org.opengis.cc.ParameterValue}.
  */
 public interface Parameter {
     /**

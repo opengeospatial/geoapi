@@ -21,21 +21,31 @@
         <A HREF="../cd/Ellipsoid.html"><CODE>Ellipsoid</CODE></A>,
         <A HREF="../cc/CoordinateOperation.html"><CODE>CoordinateOperation</CODE></A>,
         <A HREF="../cc/OperationMethod.html"><CODE>OperationMethod</CODE></A>,
-        <A HREF="../cc/OperationParameter.html"><CODE>OperationParameter</CODE></A> and
-        <A HREF="../cc/OperationParameterGroup.html"><CODE>OperationParameterGroup</CODE></A>.
+        <A HREF="../cc/GeneralOperationParameter.html"><CODE>GeneralOperationParameter</CODE></A>.
         This interface defines the <CODE>getName</CODE>, <CODE>getIdentifiers</CODE> and
         <CODE>getRemarks</CODE> methods, which are common to all above-cited interfaces.
         This <CODE>Info</CODE> root interface is similar to the legacy
         <A HREF=../../../../legacy/org/opengis/cs/CS_Info.html><CODE>CS_Info</CODE></A>
         interface from the implementation specification 1.0.</P></LI>
 
+    <LI><P ALIGN="justify">Union structures avoided. Consequently, the following structures were
+         omitted: <CODE>CD_SecondDefiningParameter</CODE> (replaced by an API similar to the legacy
+         <A HREF=../../../../legacy/org/opengis/cs/CS_Ellipsoid.html><CODE>CS_Ellipsoid</CODE></A>).</P></LI>
+
     <LI><P ALIGN="justify">Added a
         <A HREF="../cc/Matrix.html"><CODE>Matrix</CODE></A> interface as the parent of
         <A HREF="../dq/CovarianceMatrix.html"><CODE>CovarianceMatrix</CODE></A>.</P></LI>
 
-    <LI><P ALIGN="justify">Union structures avoided. Consequently, the following structures were
-        omitted: <CODE>CD_SecondDefiningParameter</CODE> (replaced by an API similar to the legacy
-        <A HREF=../../../../legacy/org/opengis/cs/CS_Ellipsoid.html><CODE>CS_Ellipsoid</CODE></A>).</P></LI>
+    <LI><P ALIGN="justify">Added a <A HREF="../cc/ParameterValue.html"><CODE>ParameterValue</CODE></A>
+         interface, otherwise there is no way to get a parameter value only with ISO&nbsp;19111
+         interfaces. Also renamed <CODE>ParameterValueGroup.getGroup()</CODE> method as
+         <A HREF="../cc/ParameterValueGroup.html#getDescriptor()"><CODE>getDescriptor()</CODE></A>
+         and moved it in the hierarchy up into
+         <A HREF="../cc/GeneralParameterValue.html#getDescriptor()"><CODE>GeneralParameterValue</CODE></A>.
+         The <CODE>getDescriptor()</CODE> name was choosen because <CODE>getGroup()</CODE> seems too
+         restrictive, misleading (it returns an abstract definition of a group of parameters, not the
+         actual group), and for consistency with usage in other Java extensions (e.g.
+         <A HREF="http://java.sun.com/products/java-media/jai/forDevelopers/jai-apidocs/javax/media/jai/ParameterList.html#getParameterListDescriptor()"><CODE>ParameterList</CODE></A>).</P></LI>
   </UL>
 
 

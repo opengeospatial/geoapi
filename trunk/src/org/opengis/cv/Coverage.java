@@ -337,10 +337,10 @@ public interface Coverage {
      * If this coverage is a {@link org.opengis.gc.GridCoverage} backed
      * by a {@link RenderedImage}, the underlying image can be obtained
      * with:
-     * <center>
+     *
      * <code>getRenderableImage(0,1).{@linkplain RenderableImage#createDefaultRendering()
      * createDefaultRendering()}</code>
-     * </center>
+     *
      *
      * @param  xAxis Dimension to use for the <var>x</var> axis.
      * @param  yAxis Dimension to use for the <var>y</var> axis.
