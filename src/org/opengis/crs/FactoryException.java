@@ -24,7 +24,7 @@ package org.opengis.crs;
  * {@link java.sql.SQLException}), then this cause should be specified.
  *
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
- * @version 2.0
+ * @version 1.0
  *
  * @see org.opengis.crs.operation.CoordinateOperationFactory
  */

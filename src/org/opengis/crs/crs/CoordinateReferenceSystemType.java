@@ -15,12 +15,12 @@ import org.opengis.util.CodeList;
 
 /**
  * The type of the classification of principal CRS types. This specifies the 
- * allowable types of {@link CoordinateReferencSystem}s.
+ * allowable types of {@link CoordinateReferenceSystem}s.
  *
  * @UML codelist SC_CoordinateReferenceSystemType
  * @author ISO 19111
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
- * @version 2.0
+ * @version <A HREF="http://www.opengis.org/docs/03-073r1.zip">Abstract specification 2.0</A>
  */
 public final class CoordinateReferenceSystemType extends CodeList {
     /**

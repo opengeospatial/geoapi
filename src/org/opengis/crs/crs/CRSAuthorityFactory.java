@@ -25,7 +25,7 @@ import org.opengis.spatialschema.geometry.DirectPosition;
  *
  * @UML abstract CS_CoordinateSystemAuthorityFactory in 1.0 specification
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
- * @version 1.0
+ * @version <A HREF="http://www.opengis.org/docs/01-009.pdf">Implementation specification 1.0</A>
  */
 public interface CRSAuthorityFactory extends AuthorityFactory {
     /**
@@ -33,8 +33,8 @@ public interface CRSAuthorityFactory extends AuthorityFactory {
      * CoordinateReferenceSystem type is know at compile time, it is recommended to invoke the most precise method
      * instead of this one (for example
      * <code>&nbsp;{@linkplain #createGeographicCRS createGeographicCRS}(code)&nbsp;</code>
-     * instead of <code>&nbsp;createCRS(code)&nbsp;</code> if the caller know he is asking for a
-     * {@linkplain GeographicCRS geographic coordinate reference system}).
+     * instead of <code>&nbsp;createCoordinateReferenceSystem(code)&nbsp;</code> if the caller
+     * know he is asking for a {@linkplain GeographicCRS geographic coordinate reference system}).
      *
      * @param code Value allocated by authority.
      * @throws NoSuchAuthorityCodeException if the specified <code>code</code> was not found.
@@ -46,7 +46,7 @@ public interface CRSAuthorityFactory extends AuthorityFactory {
      * @see #createTemporalCRS
      * @see #createCompoundCRS
      */
-    public CoordinateReferenceSystem createCoordinateReferenceSystem(String code) throws FactoryException;
+    CoordinateReferenceSystem createCoordinateReferenceSystem(String code) throws FactoryException;
 
     /**
      * Returns a {@linkplain GeographicCRS geographic coordinate reference system} from a code.
@@ -58,7 +58,7 @@ public interface CRSAuthorityFactory extends AuthorityFactory {
      * @UML operation createGeographicCoordinateSystem in 1.0 specification
      * @see org.opengis.crs.datum.DatumAuthorityFactory#createGeodeticDatum
      */
-    public GeographicCRS createGeographicCRS(String code) throws FactoryException;
+    GeographicCRS createGeographicCRS(String code) throws FactoryException;
 
     /**
      * Returns a {@linkplain GeocentricCRS geocentric coordinate reference system} from a code.
@@ -69,7 +69,7 @@ public interface CRSAuthorityFactory extends AuthorityFactory {
      * @UML operation createGeocentricCoordinateSystem in 1.0 specification
      * @see org.opengis.crs.datum.DatumAuthorityFactory#createGeodeticDatum
      */
-    public GeocentricCRS createGeocentricCRS(String code) throws FactoryException;
+    GeocentricCRS createGeocentricCRS(String code) throws FactoryException;
 
     /**
      * Returns a {@linkplain ProjectedCRS projected coordinate reference system} from a code.
@@ -81,7 +81,7 @@ public interface CRSAuthorityFactory extends AuthorityFactory {
      * @UML operation createProjectedCoordinateSystem in 1.0 specification
      * @see org.opengis.crs.datum.DatumAuthorityFactory#createGeodeticDatum
      */
-    public ProjectedCRS createProjectedCRS(String code) throws FactoryException;
+    ProjectedCRS createProjectedCRS(String code) throws FactoryException;
 
     /**
      * Create a {@linkplain VerticalCRS vertical coordinate reference system} from a code.
@@ -93,7 +93,7 @@ public interface CRSAuthorityFactory extends AuthorityFactory {
      * @UML operation createVerticalCoordinateSystem in 1.0 specification
      * @see org.opengis.crs.datum.DatumAuthorityFactory#createVerticalDatum
      */
-    public VerticalCRS createVerticalCRS(String code) throws FactoryException;
+    VerticalCRS createVerticalCRS(String code) throws FactoryException;
 
     /**
      * Create a {@linkplain ImageCRS image coordinate reference system} from a code.
@@ -102,7 +102,7 @@ public interface CRSAuthorityFactory extends AuthorityFactory {
      * @throws NoSuchAuthorityCodeException if the specified <code>code</code> was not found.
      * @throws FactoryException if the object creation failed for some other reason.
      */
-    public ImageCRS createImageCRS(String code) throws FactoryException;
+    ImageCRS createImageCRS(String code) throws FactoryException;
 
     /**
      * Create a {@linkplain EngineeringCRS engineering coordinate reference system} from a code.
@@ -111,7 +111,7 @@ public interface CRSAuthorityFactory extends AuthorityFactory {
      * @throws NoSuchAuthorityCodeException if the specified <code>code</code> was not found.
      * @throws FactoryException if the object creation failed for some other reason.
      */
-    public EngineeringCRS createEngineeringCRS(String code) throws FactoryException;
+    EngineeringCRS createEngineeringCRS(String code) throws FactoryException;
 
     /**
      * Create a {@linkplain TemporalCRS temporal coordinate reference system} from a code.
@@ -122,7 +122,7 @@ public interface CRSAuthorityFactory extends AuthorityFactory {
      *
      * @see org.opengis.crs.datum.DatumAuthorityFactory#createTemporalDatum
      */
-    public TemporalCRS createTemporalCRS(String code) throws FactoryException;
+    TemporalCRS createTemporalCRS(String code) throws FactoryException;
 
     /**
      * Creates a 3D coordinate reference system from a code.
@@ -133,7 +133,7 @@ public interface CRSAuthorityFactory extends AuthorityFactory {
      *
      * @UML operation createCompoundCoordinateSystem in 1.0 specification
      */
-    public CompoundCRS createCompoundCRS(String code) throws FactoryException;
+    CompoundCRS createCompoundCRS(String code) throws FactoryException;
 
     /**
      * Creates a derived coordinate reference system from a code.
@@ -142,7 +142,7 @@ public interface CRSAuthorityFactory extends AuthorityFactory {
      * @throws NoSuchAuthorityCodeException if the specified <code>code</code> was not found.
      * @throws FactoryException if the object creation failed for some other reason.
      */
-    public DerivedCRS createDerivedCRS(String code) throws FactoryException;        
+    DerivedCRS createDerivedCRS(String code) throws FactoryException;        
 
     /**
      * Creates a compound coordinate reference system from an ordered list of <code>CoordinateReferenceSystem</code> objects.
@@ -152,7 +152,7 @@ public interface CRSAuthorityFactory extends AuthorityFactory {
      *
      * @deprecated This method should not live there; this is CRSFactory job.
      */
-    public CompoundCRS createCompoundCRS(CoordinateReferenceSystem[] element) throws FactoryException;
+    CompoundCRS createCompoundCRS(CoordinateReferenceSystem[] element) throws FactoryException;
 
     /**
      * Creates a <code>DerivedCRS</code> by changing the anchor point of a subject <code>CRS</code>
@@ -168,5 +168,5 @@ public interface CRSAuthorityFactory extends AuthorityFactory {
      *
      * @deprecated This method should not live there; this is CRSFactory job.
      */
-    public DerivedCRS anchor(CoordinateReferenceSystem subjectCRS, CoordinateReferenceSystem anchorCRS, DirectPosition anchorPoint) throws FactoryException;
+    DerivedCRS anchor(CoordinateReferenceSystem subjectCRS, CoordinateReferenceSystem anchorCRS, DirectPosition anchorPoint) throws FactoryException;
 }

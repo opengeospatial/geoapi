@@ -19,7 +19,7 @@ package org.opengis.crs.operation;
  * @UML abstract CC_Conversion
  * @author ISO 19111
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
- * @version 2.0
+ * @version <A HREF="http://www.opengis.org/docs/03-073r1.zip">Abstract specification 2.0</A>
  *
  * @see Transformation
  */
@@ -30,5 +30,5 @@ public interface Conversion extends Operation {
      * @return Always <code>null</code>.
      * @deprecated This attribute is not used in a Conversion.
      */
-    public String getOperationVersion();
+    String getOperationVersion();
 }

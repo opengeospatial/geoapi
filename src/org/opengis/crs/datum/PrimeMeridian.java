@@ -25,7 +25,7 @@ import org.opengis.crs.Info;
  * @UML abstract CD_PrimeMeridian
  * @author ISO 19111
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
- * @version 2.0
+ * @version <A HREF="http://www.opengis.org/docs/03-073r1.zip">Abstract specification 2.0</A>
  */
 public interface PrimeMeridian extends Info {
     /**
@@ -37,10 +37,10 @@ public interface PrimeMeridian extends Info {
      * @unitof Length
      * @UML conditional greenwichLongitude
      */
-    public double getGreenwichLongitude();
+    double getGreenwichLongitude();
 
     /**
      * Returns the angular unit of the {@linkplain #getGreenwichLongitude Greenwich longitude}.
      */
-    public Unit getAngularUnit();
+    Unit getAngularUnit();
 }

@@ -17,7 +17,7 @@ package org.opengis.crs.operation;
  * @UML abstract CC_PassThroughOperation
  * @author ISO 19111
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
- * @version 2.0
+ * @version <A HREF="http://www.opengis.org/docs/03-073r1.zip">Abstract specification 2.0</A>
  */
 public interface PassThroughOperation extends SingleOperation {
     /**
@@ -26,7 +26,7 @@ public interface PassThroughOperation extends SingleOperation {
      * @return The operation, or <code>null</code> if none.
      * @UML association usesOperation
      */
-    public Operation getOperation();
+    Operation getOperation();
 
     /**
      * Ordered sequence of positive integers defining the positions in a coordinate
@@ -35,5 +35,5 @@ public interface PassThroughOperation extends SingleOperation {
      * @return The modified coordinates.
      * @UML mandatory modifiedCoordinate
      */
-    public int[] getModifiedCoordinates();
+    int[] getModifiedCoordinates();
 }

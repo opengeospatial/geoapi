@@ -31,7 +31,7 @@ import org.opengis.crs.datum.VerticalDatum;
  * @UML abstract SC_VerticalCRS
  * @author ISO 19111
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
- * @version 2.0
+ * @version <A HREF="http://www.opengis.org/docs/03-073r1.zip">Abstract specification 2.0</A>
  */
 public interface VerticalCRS extends CoordinateReferenceSystem {
     /**
@@ -40,7 +40,7 @@ public interface VerticalCRS extends CoordinateReferenceSystem {
      * @return The coordinate system.
      * @UML association usesCS
      */
-/// public VerticalCS getCoordinateSystem();
+/// VerticalCS getCoordinateSystem();
 
     /**
      * Returns the datum, which must be vertical.
@@ -48,5 +48,5 @@ public interface VerticalCRS extends CoordinateReferenceSystem {
      * @return The datum.
      * @UML association usesDatum
      */
-/// public VerticalDatum getDatum();
+/// VerticalDatum getDatum();
 }

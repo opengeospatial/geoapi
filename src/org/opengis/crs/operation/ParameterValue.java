@@ -23,7 +23,7 @@ import javax.units.Unit;
  *
  * @UML abstract CC_ParameterValue
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
- * @version 2.0
+ * @version <A HREF="http://www.opengis.org/docs/03-073r1.zip">Abstract specification 2.0</A>
  *
  * @see OperationParameter
  * @see ParameterValueGroup
@@ -34,7 +34,7 @@ public interface ParameterValue extends GeneralParameterValue {
      *
      * @return The abstract definition of this parameter value.
      */
-/// public OperationParameter getDescriptor();
+/// OperationParameter getDescriptor();
 
     /**
      * Returns the unit of measure of the {@linkplain #doubleValue parameter value}.
@@ -50,7 +50,7 @@ public interface ParameterValue extends GeneralParameterValue {
      * @see #getValue
      * @see #setUnit
      */
-    public Unit getUnit();
+    Unit getUnit();
 
     /**
      * Returns the numeric value of the coordinate operation parameter with its
@@ -70,7 +70,7 @@ public interface ParameterValue extends GeneralParameterValue {
      * @see #setValue(double)
      * @see #doubleValueList
      */
-    public double doubleValue() throws InvalidParameterTypeException;
+    double doubleValue() throws InvalidParameterTypeException;
 
     /**
      * Returns the positive integer value of an operation parameter, usually used
@@ -86,7 +86,7 @@ public interface ParameterValue extends GeneralParameterValue {
      * @see #setValue(int)
      * @see #intValueList
      */
-    public int intValue() throws InvalidParameterTypeException;
+    int intValue() throws InvalidParameterTypeException;
 
     /**
      * Returns the boolean value of an operation parameter
@@ -98,7 +98,7 @@ public interface ParameterValue extends GeneralParameterValue {
      *
      * @see #setValue(boolean)
      */
-    public boolean booleanValue() throws InvalidParameterTypeException;
+    boolean booleanValue() throws InvalidParameterTypeException;
 
     /**
      * Returns the string value of an operation parameter.
@@ -111,7 +111,7 @@ public interface ParameterValue extends GeneralParameterValue {
      * @see #getValue
      * @see #setValue(Object)
      */
-    public String stringValue() throws InvalidParameterTypeException;
+    String stringValue() throws InvalidParameterTypeException;
 
     /**
      * Returns an ordered sequence of two or more numeric values of an operation parameter
@@ -131,7 +131,7 @@ public interface ParameterValue extends GeneralParameterValue {
      *         method returns a <code>double</code> value rather than a <code>Measure</code>
      *         object.
      */
-    public double[] doubleValueList() throws InvalidParameterTypeException;
+    double[] doubleValueList() throws InvalidParameterTypeException;
 
     /**
      * Returns an ordered sequence of two or more integer values of an operation parameter list,
@@ -149,7 +149,7 @@ public interface ParameterValue extends GeneralParameterValue {
      *         method returns a <code>double</code> value rather than a <code>Measure</code>
      *         object.
      */
-    public int[] intValueList() throws InvalidParameterTypeException;
+    int[] intValueList() throws InvalidParameterTypeException;
 
     /**
      * Returns a reference to a file or a part of a file containing one or more parameter
@@ -179,7 +179,7 @@ public interface ParameterValue extends GeneralParameterValue {
      *          operations), but unfortunatly {@link java.net.URI} is is not available for J2SE versions
      *          prior to 1.4.
      */
-    public URL valueFile() throws InvalidParameterTypeException;
+    URL valueFile() throws InvalidParameterTypeException;
 
     /**
      * Returns the parameter value as an object. The object type is typically a {@link Double},
@@ -190,7 +190,7 @@ public interface ParameterValue extends GeneralParameterValue {
      *
      * @see #setValue(Object)
      */
-    public Object getValue();
+    Object getValue();
 
     /**
      * Set the parameter value as a floating point.
@@ -203,7 +203,7 @@ public interface ParameterValue extends GeneralParameterValue {
      * @see #doubleValue
      * @see #setUnit
      */
-    public void setValue(double value) throws InvalidParameterValueException;
+    void setValue(double value) throws InvalidParameterValueException;
 
     /**
      * Set the parameter value as an integer.
@@ -214,7 +214,7 @@ public interface ParameterValue extends GeneralParameterValue {
      *
      * @see #intValue
      */
-    public void setValue(int value) throws InvalidParameterValueException;
+    void setValue(int value) throws InvalidParameterValueException;
 
     /**
      * Set the parameter value as a boolean.
@@ -224,7 +224,7 @@ public interface ParameterValue extends GeneralParameterValue {
      *
      * @see #booleanValue
      */
-    public void setValue(boolean value) throws InvalidParameterValueException;
+    void setValue(boolean value) throws InvalidParameterValueException;
 
     /**
      * Set the parameter value as an object. The object type is typically a {@link Double},
@@ -239,7 +239,7 @@ public interface ParameterValue extends GeneralParameterValue {
      * @see #getValue
      * @see #setUnit
      */
-    public void setValue(Object value) throws InvalidParameterValueException;
+    void setValue(Object value) throws InvalidParameterValueException;
 
     /**
      * Set the unit of measure of the {@linkplain #setValue(double) parameter value}.
@@ -250,12 +250,12 @@ public interface ParameterValue extends GeneralParameterValue {
      *
      * @see #getUnit
      */
-    public void setUnit(Unit unit) throws InvalidParameterTypeException;
+    void setUnit(Unit unit) throws InvalidParameterTypeException;
 
     /**
      * Returns a copy of this parameter value.
      *
      * @return A copy of this parameter value.
      */
-    public /*{ParameterValue}*/ Object clone();
+    /*{ParameterValue}*/ Object clone();
 }

@@ -24,7 +24,7 @@ import org.opengis.crs.operation.Matrix;
  * @UML abstract DQ_CovarianceMatrix
  * @author ISO 19111
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
- * @version 2.0
+ * @version <A HREF="http://www.opengis.org/docs/03-073r1.zip">Abstract specification 2.0</A>
  */
 public interface CovarianceMatrix extends Matrix, PositionalAccuracy {
     /**
@@ -33,7 +33,7 @@ public interface CovarianceMatrix extends Matrix, PositionalAccuracy {
      * @return The elements.
      * @UML association includesElement
      */
-    public CovarianceElement[] getElements();
+    CovarianceElement[] getElements();
 
     /**
      * Retrieves the value at the specified row and column of this matrix.
@@ -62,5 +62,5 @@ public interface CovarianceMatrix extends Matrix, PositionalAccuracy {
      *         getElement}(row,column)</code> returns a <code>double</code> (like
      *         {@link CovarianceElement#getCovariance getCovariance()}).
      */
-    public Unit getUnit(int row, int column);
+    Unit getUnit(int row, int column);
 }

@@ -23,7 +23,7 @@ import org.opengis.metadata.citation.Citation;
  * @UML datatype RS_Identifier
  * @author ISO 19111
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
- * @version 2.0
+ * @version <A HREF="http://www.opengis.org/docs/03-073r1.zip">Abstract specification 2.0</A>
  */
 public interface Identifier {
     /**
@@ -33,7 +33,7 @@ public interface Identifier {
      * @return The code.
      * @UML mandatory code
      */
-    public String getCode();
+    String getCode();
 
     /**
      * Identifier of a code space within which one or more codes are defined. This code space
@@ -44,7 +44,7 @@ public interface Identifier {
      * @return The code space, or <code>null</code> if not available.
      * @UML optional codeSpace
      */
-    public String getCodeSpace();
+    String getCodeSpace();
 
     /**
      * Identifier of the version of the associated code space or code, as specified
@@ -56,7 +56,7 @@ public interface Identifier {
      * @return The version, or <code>null</code> if not available.
      * @UML optional version
      */
-    public String getVersion();
+    String getVersion();
 
     /**
      * Organization or party responsible for definition and maintenance of the
@@ -65,7 +65,7 @@ public interface Identifier {
      * @return The authority, or <code>null</code> if not available.
      * @UML optional authority
      */
-    public Citation getAuthority();
+    Citation getAuthority();
 
     /**
      * Comments on or information about this object or code. In the first use of an
@@ -78,5 +78,5 @@ public interface Identifier {
      * @return The remarks, or <code>null</code> if not available.
      * @UML optional remarks
      */
-    public String getRemarks(Locale locale);
+    String getRemarks(Locale locale);
 }

@@ -28,7 +28,7 @@ import org.opengis.crs.datum.GeodeticDatum;
  * @UML abstract SC_GeographicCRS
  * @author ISO 19111
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
- * @version 2.0
+ * @version <A HREF="http://www.opengis.org/docs/03-073r1.zip">Abstract specification 2.0</A>
  *
  * @revisit OGC document 01-009 defines a <CODE>getWGS84ConversionInfo()</CODE> method.
  *          A <CODE>getWGS84Parameters()</CODE> method was also defined in the datum.
@@ -41,7 +41,7 @@ public interface GeographicCRS extends CoordinateReferenceSystem {
      * @return The coordinate system.
      * @UML association usesCS
      */
-/// public EllipsoidalCS getCoordinateSystem();
+/// EllipsoidalCS getCoordinateSystem();
 
     /**
      * Returns the datum, which must be geodetic.
@@ -49,5 +49,5 @@ public interface GeographicCRS extends CoordinateReferenceSystem {
      * @return The datum.
      * @UML association usesDatum
      */
-/// public GeodeticDatum getDatum();
+/// GeodeticDatum getDatum();
 }

@@ -22,7 +22,7 @@ import org.opengis.spatialschema.geometry.DirectPosition;
  * @UML abstract SC_DerivedCRS
  * @author ISO 19111
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
- * @version 2.0
+ * @version <A HREF="http://www.opengis.org/docs/03-073r1.zip">Abstract specification 2.0</A>
  *
  * @revisit Do we really need this interface? It is not clear to me why the
  *          {@link #getDerivedCRSType()} method can't be allowed in the {@link ProjectedCRS}
@@ -36,7 +36,7 @@ public interface DerivedCRS extends GeneralDerivedCRS {
      * @return The type of this derived coordinate reference system.
      * @UML mandatory derivedCRStype
      */
-    public DerivedCRSType getDerivedCRSType();
+    DerivedCRSType getDerivedCRSType();
 
     /**
      * Gets the offset (in terms of a "reference position") beween 
@@ -49,7 +49,7 @@ public interface DerivedCRS extends GeneralDerivedCRS {
      *
      * @revisit This method is not part of ISO specification.
      */
-    public DirectPosition getReferencePosition(CoordinateReferenceSystem referenceCRS);
+    DirectPosition getReferencePosition(CoordinateReferenceSystem referenceCRS);
     
     /**
      * Gets the orientation vectors of this <code>DerivedCRS</code>.
@@ -60,5 +60,5 @@ public interface DerivedCRS extends GeneralDerivedCRS {
      * @revisit This method is not part of ISO specification.
      *          PENDING(jdc): is this a correct javadoc?  
      */
-    public double[] getOrientation(javax.units.Unit unit);
+    double[] getOrientation(javax.units.Unit unit);
 }

@@ -21,8 +21,9 @@ import org.opengis.util.Cloneable;
  * case and optimized versions for 3&times;3 and 4&times;4 cases, which are quite common in a
  * transformation package.
  *
+ * @UML abstract PT_Matrix
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
- * @version 2.0
+ * @version <A HREF="http://www.opengis.org/docs/01-009.pdf">Implementation specification 1.0</A>
  *
  * @see javax.vecmath.Matrix3d
  * @see javax.vecmath.Matrix4d
@@ -39,7 +40,7 @@ public interface Matrix extends Cloneable {
      *
      * @return The number of rows in this matrix.
      */
-    public int getNumRow();
+    int getNumRow();
     // Same signature than GMatrix, for straightforward implementation.
 
     /**
@@ -47,7 +48,7 @@ public interface Matrix extends Cloneable {
      *
      * @return The number of columns in this matrix.
      */
-    public int getNumCol();
+    int getNumCol();
     // Same signature than GMatrix, for straightforward implementation.
 
     /**
@@ -57,7 +58,7 @@ public interface Matrix extends Cloneable {
      * @param column The column number to be retrieved (zero indexed).
      * @return The value at the indexed element.
      */
-    public double getElement(int row, int column);
+    double getElement(int row, int column);
     // Same signature than GMatrix, for straightforward implementation.
 
     /**
@@ -67,7 +68,7 @@ public interface Matrix extends Cloneable {
      * @param column The column number to be retrieved (zero indexed).
      * @param value  The new matrix element value.
      */
-    public void setElement(int row, int column, double value);
+    void setElement(int row, int column, double value);
     // Same signature than GMatrix, for straightforward implementation.
 
     /**
@@ -75,10 +76,10 @@ public interface Matrix extends Cloneable {
      *
      * @return <code>true</code> if this matrix is an identity matrix.
      */
-    public boolean isIdentity();
+    boolean isIdentity();
 
     /**
      * Returns a clone of this matrix.
      */
-    public /*{Matrix}*/ Object clone();
+    /*{Matrix}*/ Object clone();
 }

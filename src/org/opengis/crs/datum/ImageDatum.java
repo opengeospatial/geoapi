@@ -18,7 +18,7 @@ package org.opengis.crs.datum;
  * @UML abstract CD_ImageDatum
  * @author ISO 19111
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
- * @version 2.0
+ * @version <A HREF="http://www.opengis.org/docs/03-073r1.zip">Abstract specification 2.0</A>
  */
 public interface ImageDatum extends Datum {
     /**
@@ -27,5 +27,5 @@ public interface ImageDatum extends Datum {
      * @return The way image grid is associated with image data attributes.
      * @UML mandatory pixelinCell
      */
-    public PixelinCell getPixelinCell();
+    PixelinCell getPixelinCell();
 }

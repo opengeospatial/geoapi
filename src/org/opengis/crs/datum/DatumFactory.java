@@ -28,5 +28,5 @@ public interface DatumFactory {
      *
      * @deprecated Use {@link DatumAuthorityFactory} instead.
      */
-    public Datum getDatum(String datumName);
+    Datum getDatum(String datumName);
 }

@@ -18,7 +18,7 @@ package org.opengis.crs.operation;
  * @UML abstract CC_Operation
  * @author ISO 19111
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
- * @version 2.0
+ * @version <A HREF="http://www.opengis.org/docs/03-073r1.zip">Abstract specification 2.0</A>
  *
  * @see OperationMethod
  */
@@ -29,7 +29,7 @@ public interface Operation extends SingleOperation {
      * @return The operation method.
      * @UML association usesMethod
      */
-    public OperationMethod getMethod();
+    OperationMethod getMethod();
 
     /**
      * Returns the parameter values.
@@ -39,5 +39,5 @@ public interface Operation extends SingleOperation {
      *
      * @rename Added "<code>Parameter</code>" prefix for more consistency with the return type.
      */
-    public GeneralParameterValue[] getParameterValues();
+    GeneralParameterValue[] getParameterValues();
 }

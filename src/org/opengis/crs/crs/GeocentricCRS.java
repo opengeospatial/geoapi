@@ -30,7 +30,7 @@ import org.opengis.crs.datum.GeodeticDatum;
  * @UML abstract SC_GeocentricCRS
  * @author ISO 19111
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
- * @version 2.0
+ * @version <A HREF="http://www.opengis.org/docs/03-073r1.zip">Abstract specification 2.0</A>
  *
  * @revisit This interface defines three methods for querying the coordinate system:
  *          {@link #getCoordinateSystem() getCoordinateSystem()}, {@link #getCartesianCS()}
@@ -44,7 +44,7 @@ public interface GeocentricCRS extends CoordinateReferenceSystem {
      * @return The cartesian coordinate system, or <code>null</code> if none.
      * @UML association usesCartesianCS
      */
-    public CartesianCS getCartesianCS();
+    CartesianCS getCartesianCS();
 
     /**
      * Returns the spherical coordinate system.
@@ -52,7 +52,7 @@ public interface GeocentricCRS extends CoordinateReferenceSystem {
      * @return The spherical coordinate system, or <code>null</code> if none.
      * @UML association usesSphericalCS
      */
-    public SphericalCS getSphericalCS();
+    SphericalCS getSphericalCS();
 
     /**
      * Returns the datum, which must be geodetic.
@@ -60,5 +60,5 @@ public interface GeocentricCRS extends CoordinateReferenceSystem {
      * @return The datum.
      * @UML association usesDatum
      */
-/// public GeodeticDatum getDatum();
+/// GeodeticDatum getDatum();
 }
