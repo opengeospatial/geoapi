@@ -167,4 +167,32 @@ public interface CSFactory extends Factory {
      * @throws FactoryException if the object creation failed.
      */
     TemporalCS createTemporalCS(Map properties, CoordinateSystemAxis axis) throws FactoryException;
+
+    /**
+     * Creates a two-dimensional user defined coordinate system.
+     *
+     * @param  properties Name and other properties to give to the new object.
+     *         Available properties are {@linkplain Factory listed there}.
+     * @param  axis0 The first  axis.
+     * @param  axis1 The second axis.
+     * @throws FactoryException if the object creation failed.
+     */
+    UserDefinedCS createUserDefinedCS(Map             properties,
+                                      CoordinateSystemAxis axis0,
+                                      CoordinateSystemAxis axis1) throws FactoryException;
+
+    /**
+     * Creates a three-dimensional user defined coordinate system.
+     *
+     * @param  properties Name and other properties to give to the new object.
+     *         Available properties are {@linkplain Factory listed there}.
+     * @param  axis0 The first  axis.
+     * @param  axis1 The second axis.
+     * @param  axis2 The third  axis.
+     * @throws FactoryException if the object creation failed.
+     */
+    UserDefinedCS createUserDefinedCS(Map             properties,
+                                      CoordinateSystemAxis axis0,
+                                      CoordinateSystemAxis axis1,
+                                      CoordinateSystemAxis axis2) throws FactoryException;
 }
