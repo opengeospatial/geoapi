@@ -12,17 +12,21 @@ package org.opengis.util;
 // J2SE direct dependencies
 import java.util.List;
 
+// Annotations
+///import org.opengis.annotation.UML;
+///import static org.opengis.annotation.Obligation.*;
+
 
 /**
  * Identifier within a name space for a local object. This could be the target object of the
  * {@link GenericName}, or a pointer to another name space (with a new {@link GenericName})
  * one step closer to the target of the identifier.
  *
- * @UML abstract LocalName
  * @author ISO 19103
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 2.0
  */
+///@UML (identifier="LocalName")
 public interface LocalName extends GenericName {
     /**
      * Returns the scope (name space) of this generic name. This method returns the same
@@ -39,28 +43,23 @@ public interface LocalName extends GenericName {
      *   <td align="center"><font size=2>(a scoped name)</font></td>
      *   <td>&nbsp;</td>
      * </tr></table></blockquote>
-     *
-     * @UML optional scope
      */
+/// @UML (identifier="scope", obligation=OPTIONAL)
     GenericName getScope();
 
     /**
      * Returns the sequence of local name for this {@linkplain GenericName generic name}.
-     * Since this object is itself a locale name, this method simply returns a singleton
-     * which contains only <code>this</code>.
-     *
-     * @return Always a singleton containing <code>this</code>.
-     * @UML mandatory parsedName
+     * Since this object is itself a locale name, this method always returns a singleton
+     * containing only <code>this</code>.
      */
+/// @UML (identifier="parsedName", obligation=MANDATORY)
     List/*<LocalName>*/ getParsedNames();
 
     /**
-     * Returns a string representation of this local name. This string do not includes
-     * the scope, which is consistent with the {@linkplain #getParsedNames parsed names}
-     * definition.
-     *
-     * @return The locale-independent string for the this name. Never <code>null</code>.
-     * @UML mandatory aName
+     * Returns a locale-independant string representation of this local name.
+     * This string do not includes the scope, which is consistent with the
+     * {@linkplain #getParsedNames parsed names} definition.
      */
+/// @UML (identifier="aName", obligation=MANDATORY)
     String toString();
 }

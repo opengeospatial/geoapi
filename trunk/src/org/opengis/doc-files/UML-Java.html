@@ -15,14 +15,13 @@
         <TD>Data type whose instances form a list of named literal values. Both the enumeration name
             and its literal values are declared. Enumeration means a short list of well-understood
             potential values within a class.</TD>
-        <TD><CODE><A HREF="../util/CodeList.html">CodeList</A> <strong>extends</strong>
-        <A HREF="http://java.sun.com/j2se/1.5/docs/api/java/lang/Enum.html">java.lang.Enum</A><SUP>*</SUP></CODE></TD></TR>
+        <TD><CODE><strong>extends</strong> <A HREF="../util/Enum.html">Enum</A></CODE><BR>
+        (<CODE><A HREF="http://java.sun.com/j2se/1.5/docs/api/java/lang/Enum.html">java.lang.Enum</A></CODE> for J2SE 1.5)</TD></TR>
     <TR><TD nowrap><CODE>&lt;&lt;CodeList&gt;&gt;</CODE></TD>
         <TD>A flexible enumeration useful for expressing a long list of potential values. If the
             elements of the list are completely known, an enumeration should be used; if the only
             likely values of the elements are known, a code list should be used.</TD>
-        <TD><CODE><A HREF="../util/CodeList.html">CodeList</A> <strong>extends</strong>
-        <A HREF="http://java.sun.com/j2se/1.5/docs/api/java/lang/Enum.html">java.lang.Enum</A><SUP>*</SUP></CODE></TD></TR>
+        <TD><CODE><strong>extends</strong> <A HREF="../util/CodeList.html">CodeList</A></CODE></TD></TR>
     <TR><TD nowrap><CODE>&lt;&lt;Union&gt;&gt;</CODE></TD>
         <TD>Contains a list of attributes where only one of those attributes can be
             present at any time.</TD>
@@ -109,10 +108,6 @@
         <TD>Description of a <CODE>Record</CODE> structure.</TD>
         <TD><CODE><A HREF="http://java.sun.com/j2se/1.5/docs/api/java/lang/Class.html">java.lang.Class</A></CODE></TD></TR>
   </TABLE>
-
-  <P ALIGN="right"><SUP>*</SUP> For platform earlier than J2SE 1.5, the <CODE>CodeList</CODE>
-  class will defines the same attributes than <CODE>Enum</CODE> but will not
-  extends <CODE>Enum</CODE>.</P>
 
   <P>&nbsp;</P>
   <H2>Custom Javadoc tags</H2>

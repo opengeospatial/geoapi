@@ -88,8 +88,6 @@ public abstract class CodeList implements Serializable {
     /**
      * Returns the ordinal of this enumeration constant (its position in its enum declaration,
      * where the initial constant is assigned an ordinal of zero).
-     *
-     * @return  the ordinal of this enumeration constant.
      */
     public final int ordinal() {
         return ordinal;
@@ -97,8 +95,6 @@ public abstract class CodeList implements Serializable {
 
     /**
      * Returns the name of this enum constant.
-     *
-     * @return the name of this enum constant.
      */
     public final String name() {
         return name;

@@ -12,17 +12,21 @@ package org.opengis.parameter;
 // OpenGIS direct dependencies
 import org.opengis.util.Cloneable;
 
+// Annotations
+///import org.opengis.annotation.UML;
+///import static org.opengis.annotation.Obligation.*;
+
 
 /**
  * Abstract parameter value or group of parameter values.
  *  
- * @UML abstract CC_GeneralParameterValue
  * @author ISO 19111
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/03-073r1.zip">Abstract specification 2.0</A>
  *
  * @see GeneralParameterDescriptor
  */
+///@UML (identifier="CC_GeneralParameterValue")
 public interface GeneralParameterValue extends Cloneable {
     /**
      * Returns the abstract definition of this parameter or group of parameters.

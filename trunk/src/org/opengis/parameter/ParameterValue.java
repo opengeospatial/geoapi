@@ -13,6 +13,10 @@ package org.opengis.parameter;
 import java.net.URL;
 import javax.units.Unit;
 
+// Annotations
+///import org.opengis.annotation.UML;
+///import static org.opengis.annotation.Obligation.*;
+
 
 /**
  * A parameter value used by an operation method. Most parameter values are numeric, but
@@ -21,13 +25,13 @@ import javax.units.Unit;
  * The {@link #getValue()} and {@link #setValue(Object)} methods can be invoked at any time.
  * Others getters and setters are parameter-type dependents.
  *
- * @UML abstract CC_ParameterValue
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/03-073r1.zip">Abstract specification 2.0</A>
  *
  * @see ParameterDescriptor
  * @see ParameterValueGroup
  */
+///@UML (identifier="CC_ParameterValue")
 public interface ParameterValue extends GeneralParameterValue {
     /**
      * Returns the abstract definition of this parameter value.
@@ -42,13 +46,11 @@ public interface ParameterValue extends GeneralParameterValue {
      * then this method returns <code>null</code>. Note that "no unit" doesn't means
      * "dimensionless".
      *
-     * @return The unit of measure, or <code>null</code> if none.
-     * @UML conditional value
-     *
      * @see #doubleValue()
      * @see #doubleValueList
      * @see #getValue
      */
+/// @UML (identifier="value", obligation=CONDITIONAL)
     Unit getUnit();
 
     /**
@@ -73,7 +75,6 @@ public interface ParameterValue extends GeneralParameterValue {
      *
      * @return The numeric value represented by this parameter after conversion to type <code>double</code>.
      * @throws InvalidParameterTypeException if the value is not a numeric type.
-     * @UML conditional value
      * @unitof Measure
      *
      * @rename Renamed <code>value</code> to <code>doubleValue</code> for consistency with
@@ -85,6 +86,7 @@ public interface ParameterValue extends GeneralParameterValue {
      * @see #setValue(double)
      * @see #doubleValueList
      */
+/// @UML (identifier="value", obligation=CONDITIONAL)
     double doubleValue() throws InvalidParameterTypeException;
 
     /**
@@ -93,7 +95,6 @@ public interface ParameterValue extends GeneralParameterValue {
      *
      * @return The numeric value represented by this parameter after conversion to type <code>int</code>.
      * @throws InvalidParameterTypeException if the value is not an integer type.
-     * @UML conditional integerValue
      *
      * @rename Renamed <code>integerValue</code> to <code>intValue</code> for consistency with
      *         {@link Number#intValue} and the Java primitive type <code>int</code>.
@@ -101,6 +102,7 @@ public interface ParameterValue extends GeneralParameterValue {
      * @see #setValue(int)
      * @see #intValueList
      */
+/// @UML (identifier="integerValue", obligation=CONDITIONAL)
     int intValue() throws InvalidParameterTypeException;
 
     /**
@@ -109,10 +111,10 @@ public interface ParameterValue extends GeneralParameterValue {
      *
      * @return The boolean value represented by this parameter.
      * @throws InvalidParameterTypeException if the value is not a boolean type.
-     * @UML conditional booleanValue
      *
      * @see #setValue(boolean)
      */
+/// @UML (identifier="booleanValue", obligation=CONDITIONAL)
     boolean booleanValue() throws InvalidParameterTypeException;
 
     /**
@@ -121,11 +123,11 @@ public interface ParameterValue extends GeneralParameterValue {
      *
      * @return The string value represented by this parameter.
      * @throws InvalidParameterTypeException if the value is not a string.
-     * @UML conditional stringValue
      *
      * @see #getValue
      * @see #setValue(Object)
      */
+/// @UML (identifier="stringValue", obligation=CONDITIONAL)
     String stringValue() throws InvalidParameterTypeException;
 
     /**
@@ -150,7 +152,6 @@ public interface ParameterValue extends GeneralParameterValue {
      *
      * @return The sequence of values represented by this parameter.
      * @throws InvalidParameterTypeException if the value is not an array of <code>double</code>s.
-     * @UML conditional valueList
      * @unitof Measure
      *
      * @see #getUnit
@@ -162,6 +163,7 @@ public interface ParameterValue extends GeneralParameterValue {
      *         method returns a <code>double</code> value rather than a <code>Measure</code>
      *         object.
      */
+/// @UML (identifier="valueList", obligation=CONDITIONAL)
     double[] doubleValueList() throws InvalidParameterTypeException;
 
     /**
@@ -170,7 +172,6 @@ public interface ParameterValue extends GeneralParameterValue {
      *
      * @return The sequence of values represented by this parameter.
      * @throws InvalidParameterTypeException if the value is not an array of <code>int</code>s.
-     * @UML conditional integerValueList
      *
      * @see #setValue(Object)
      * @see #intValue
@@ -180,6 +181,7 @@ public interface ParameterValue extends GeneralParameterValue {
      *         method returns a <code>double</code> value rather than a <code>Measure</code>
      *         object.
      */
+/// @UML (identifier="integerValueList", obligation=CONDITIONAL)
     int[] intValueList() throws InvalidParameterTypeException;
 
     /**
@@ -190,11 +192,11 @@ public interface ParameterValue extends GeneralParameterValue {
      *
      * @return The reference to a file containing parameter values.
      * @throws InvalidParameterTypeException if the value is not a reference to a file or an URL.
-     * @UML conditional valueFile
      *
      * @see #getValue
      * @see #setValue(Object)
      */
+/// @UML (identifier="valueFile", obligation=CONDITIONAL)
     URL valueFile() throws InvalidParameterTypeException;
 
     /**

@@ -46,6 +46,9 @@ public final class AxisDirection extends CodeList {
      * Unknown or unspecified axis orientation.
      */
     public static final AxisDirection OTHER = new AxisDirection("OTHER");
+    static {
+        OTHER.opposite = OTHER;
+    }
 
     /**
      * Axis positive direction is north. In a geographic or projected CRS,
@@ -279,7 +282,7 @@ public final class AxisDirection extends CodeList {
      *
      * @UML conditional displayDown
      */
-    public static final AxisDirection DISPLAY_DOWN = new AxisDirection("DISPLAY_BOTTOM", DISPLAY_UP);
+    public static final AxisDirection DISPLAY_DOWN = new AxisDirection("DISPLAY_DOWN", DISPLAY_UP);
 
     /**
      * Increasing ordinates values go right, usually on a horizontal plane.
@@ -369,12 +372,11 @@ public final class AxisDirection extends CodeList {
     /**
      * Returns the opposite direction of this axis. The opposite direction of
      * {@linkplain #NORTH North} is {@linkplain #SOUTH South}, and the opposite
-     * direction of {@linkplain #SOUTH South} is {@linkplain #NORTH North}. The
-     * same applies to {@linkplain #EAST East}-{@linkplain #WEST West},
+     * direction of {@linkplain #SOUTH South} is {@linkplain #NORTH North}.
+     * The same applies to {@linkplain #EAST East}-{@linkplain #WEST West},
      * {@linkplain #UP Up}-{@linkplain #DOWN Down} and
      * {@linkplain #FUTURE Future}-{@linkplain #PAST Past}, <cite>etc.</cite>
-     * If this axis direction has no opposite (for example {@link #OTHER}),
-     * then this method returns <code>null</code>.
+     * If this axis direction has no opposite, then this method returns <code>null</code>.
      */
     public AxisDirection opposite() {
         return opposite;

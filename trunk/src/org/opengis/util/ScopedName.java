@@ -9,13 +9,16 @@
  *************************************************************************************************/
 package org.opengis.util;
 
+// Annotations
+///import org.opengis.annotation.UML;
+///import static org.opengis.annotation.Obligation.*;
+
 
 /**
  * A <code>ScopedName</code> contains a {@link LocalName} as {@linkplain #getLocaleName head}
  * and a {@linkplain GenericName}, which may be a {@link LocalName} or a
  * <code>GenericName</code>, as {@linkplain #getScope tail}.
  *
- * @UML abstract ScopedName
  * @author ISO 19103
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 2.0
@@ -24,6 +27,7 @@ package org.opengis.util;
  *          <code>tail</code> association become similar to the <code>scope</code>
  *          relation (if my understanding is right).
  */
+///@UML (identifier="ScopedName")
 public interface ScopedName extends GenericName {
     /**
      * Returns the local version of this name. This is the last element in the
@@ -32,27 +36,23 @@ public interface ScopedName extends GenericName {
      * scope} than this scoped name, even if the string returned by
      * {@link LocalName#toString} will not contains the scope.
      *
-     * @return The locale version of this name (never <code>null</code>).
-     * @UML mandatory head
      * @rename Renamed from <code>head</code> as <code>localName</code> in order to make
      *         it more obvious that this method returns a name without its scope. This is
      *         also consistent with the omission of <code>tail</code>, which is replaced
      *         by the inherited <code>getScope()</code> method.
      */
+/// @UML (identifier="head", obligation=MANDATORY)
     LocalName getLocaleName();
 
     /**
      * Returns the scope of this name.
-     *
-     * @UML optional tail
      */
+/// @UML (identifier="tail", obligation=OPTIONAL)
     GenericName getScope();
 
     /**
-     * Returns a string representation of this name, including its scope.
-     *
-     * @return The locale-independent string for the this name. Never <code>null</code>.
-     * @UML mandatory scopedName
+     * Returns a locale-independent string representation of this name, including its scope.
      */
+/// @UML (identifier="scopedName", obligation=MANDATORY)
     String toString();
 }

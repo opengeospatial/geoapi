@@ -15,6 +15,10 @@ import java.util.List;
 // OpenGIS dependencies
 import org.opengis.metadata.Identifier;  // For javadoc
 
+// Annotations
+///import org.opengis.annotation.UML;
+///import static org.opengis.annotation.Obligation.*;
+
 
 /**
  * A group of related parameter values. The same group can be repeated more than once in an
@@ -22,7 +26,6 @@ import org.opengis.metadata.Identifier;  // For javadoc
  * if those instances contain different values of one or more {@link ParameterValue}s which suitably
  * distinquish among those groups.
  * 
- * @UML abstract CC_ParameterValueGroup
  * @author ISO 19111
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/03-073r1.zip">Abstract specification 2.0</A>
@@ -30,12 +33,10 @@ import org.opengis.metadata.Identifier;  // For javadoc
  * @see ParameterDescriptorGroup
  * @see ParameterValue
  */
+///@UML (identifier="CC_ParameterValueGroup")
 public interface ParameterValueGroup extends GeneralParameterValue {
     /**
-     * Returns the group this value belong to.
-     *
-     * @return The abstract definition of this group of parameters.
-     * @UML association valuesOfGroup
+     * The abstract definition of this group of parameters.
      *
      * @rename Renamed <CODE>getDescriptor()</CODE> because <CODE>getGroup()</CODE> seems too
      *         restrictive, misleading (this method returns an abstract definition of a group
@@ -43,14 +44,13 @@ public interface ParameterValueGroup extends GeneralParameterValue {
      *         Java extensions (e.g.
      *         {@link javax.media.jai.ParameterList.html#getParameterListDescriptor ParameterList}).
      */
+/// @UML (identifier="valuesOfGroup", obligation=MANDATORY)
 /// ParameterDescriptorGroup getDescriptor();
     
     /**
      * Returns the values in this group.
-     * 
-     * @return The values.
-     * @UML association includesValue
      */
+/// @UML (identifier="includesValue", obligation=MANDATORY)
     List/*<GeneralParameterValue>*/ values();
     
     /**
