@@ -7,7 +7,7 @@
  ** Copyright (C) 2003 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
  **
  *************************************************************************************************/
-package org.opengis.metadata;
+package org.opengis.metadata.identification;
 
 // J2SE direct dependencies
 import java.util.Locale;
@@ -17,7 +17,6 @@ import org.opengis.metadata.extent.Extent;
 import org.opengis.metadata.extent.GeographicBoundingBox;
 import org.opengis.metadata.extent.GeographicDescription;
 import org.opengis.metadata.spatial.SpatialRepresentationType;
-import org.opengis.metadata.spatial.Resolution;
 
 
 /**
