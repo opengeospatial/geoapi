@@ -33,10 +33,12 @@ public interface FilterFactory {
 ////////////////////////////////////////////////////////////////////////////////
 
     public And  and(Filter f, Filter g);
+    public And  and(Filter [] f);
     public Or   or(Filter f, Filter g);
+    public Or   or(Filter [] f);
     public Not  not(Filter f);
 
-    public FeatureId     featureId(Object [] primaryKeyValues);
+    public FeatureId     featureId(String [] ids);
     public PropertyName  property(String name);
 
     public PropertyIsBetween               between(Expression expr, Expression lower, Expression upper);
