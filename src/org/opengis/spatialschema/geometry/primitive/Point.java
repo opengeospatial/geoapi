@@ -50,6 +50,20 @@ public interface Point extends Primitive, Position {
     public DirectPosition getPosition();
 
     /**
+     * Sets the direct position of this point. <code>Point</code> is the only subclass
+     * of {@linkplain Primitive primitive} that cannot use {@linkplain Position positions}
+     * to represent its defining geometry. A {@linkplain Position position} is either a
+     * {@linkplain DirectPosition direct position} or a reference to a <code>Point</code>
+     * (from which a {@linkplain DirectPosition direct position} may be obtained). By not
+     * allowing <code>Point</code> to use this technique, infinitely recursive references
+     * are prevented.
+     *
+     * @return The direct position.
+     */
+//  / @UML (identifier="position", obligation=MANDATORY)
+    public void setPosition(DirectPosition position);
+
+    /**
      * Returns always <code>null</code>, since point has no boundary.
      *
      * @return Always <code>null</code>.
