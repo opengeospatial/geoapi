@@ -71,7 +71,7 @@ public interface CurveSegment extends GenericCurve {
      *
      * @return The type of continuity between this curve semgent and its immediate neighbors.
      *
-     * @see #getNumDerivativeInterior
+     * @see #getNumDerivativesInterior
      * @see #getNumDerivativesAtEnd
      */
 /// @UML (identifier="numDerivativesAtStart", obligation=MANDATORY)
@@ -90,8 +90,8 @@ public interface CurveSegment extends GenericCurve {
      * @see #getNumDerivativesAtStart
      * @see #getNumDerivativesAtEnd
      */
-/// @UML (identifier="numDerivativeInterior", obligation=MANDATORY)
-    public int getNumDerivativeInterior();
+/// @UML (identifier="numDerivativesInterior", obligation=MANDATORY)
+    public int getNumDerivativesInterior();
 
     /**
      * Specifies the type of continuity between this curve segment and its immediate neighbors.
@@ -109,7 +109,7 @@ public interface CurveSegment extends GenericCurve {
      * @return The type of continuity between this curve semgent and its immediate neighbors.
      *
      * @see #getNumDerivativesAtStart
-     * @see #getNumDerivativeInterior
+     * @see #getNumDerivativesInterior
      */
 /// @UML (identifier="numDerivativesAtEnd", obligation=MANDATORY)
     public int getNumDerivativesAtEnd();
