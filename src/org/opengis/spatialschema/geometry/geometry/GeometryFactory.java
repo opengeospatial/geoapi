@@ -11,11 +11,14 @@ package org.opengis.spatialschema.geometry.geometry;
 
 // J2SE direct dependencies
 import java.util.List;
+import java.util.Set;
 
 // OpenGIS direct dependencies
 import org.opengis.spatialschema.geometry.DirectPosition;
 import org.opengis.spatialschema.geometry.MismatchedDimensionException;
 import org.opengis.spatialschema.geometry.MismatchedReferenceSystemException;
+import org.opengis.spatialschema.geometry.primitive.SurfaceBoundary;
+import org.opengis.spatialschema.geometry.primitive.Surface;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 
 // Annotations
@@ -234,5 +237,106 @@ public interface GeometryFactory {
 /// @UML (identifier="GM_ArcStringByBulge(GM_Position[2..n],Real[1..n],Vector[1..n])", obligation=MANDATORY)
     ArcStringByBulge createArcStringByBulge(List/*<Position>*/ points, double[] bulges,
                                             List/*<double[]>*/ normals)
+            throws MismatchedReferenceSystemException, MismatchedDimensionException;
+
+    /**
+     * Constructs a B-spline curve. If the {@code knotSpec} is {@code null}, then the
+     * {@link KnotType} is uniform and the knots are evenly spaced, and except for the
+     * first and last have multiplicity = 1. At the ends the knots are of multiplicity =
+     * {@code degree}+1. If the {@code knotType} is uniform they need not be specified.
+     * <br><br>
+     * <strong>NOTE:</strong> If the B-spline curve is uniform and degree = 1, the B-spline
+     * is equivalent to a polyline ({@link LineString}). If the {@code knotType} is
+     * {@linkplain KnotType#PIECEWISE_BEZIER piecewise Bezier}, then the knots are
+     * defaulted so that they are evenly spaced, and except for the first and last
+     * have multiplicity equal to degree. At the ends the knots are of multiplicity =
+     * {@code degree}+1.
+     *
+     * @param degree The algebraic degree of the basis functions.
+     * @param points An array of points that are used in the interpolation in this spline curve.
+     * @param knots  The sequence of distinct knots used to define the spline basis functions.
+     * @param knotSpec The type of knot distribution used in defining this spline.
+     *
+     * @throws MismatchedReferenceSystemException If geometric objects given in argument don't
+     *         use compatible {@linkplain CoordinateReferenceSystem coordinate reference system}.
+     * @throws MismatchedDimensionException If geometric objects given in argument don't have
+     *         the expected dimension.
+     */
+/// @UML (identifier="GM_BSplineCurve(Integer,GM_PointArray,Sequence<GM_Knot>,GM_KnotType)", obligation=MANDATORY)
+    BSplineCurve createBSplineCurve(int degree, PointArray points, List/*<Knot>*/ knots, KnotType knotSpec)
+            throws MismatchedReferenceSystemException, MismatchedDimensionException;
+
+    /**
+     * Constructs polyhedral surface from the facet polygons.
+     *
+     * @param tiles The facet polygons. Must contains at least one polygon.
+     *
+     * @throws MismatchedReferenceSystemException If geometric objects given in argument don't
+     *         use compatible {@linkplain CoordinateReferenceSystem coordinate reference system}.
+     * @throws MismatchedDimensionException If geometric objects given in argument don't have
+     *         the expected dimension.
+     */
+/// @UML (identifier="GM_PolyhedralSurace(GM_Polygon)", obligation=MANDATORY)
+    PolyhedralSurface createPolyhedralSurface(List/*<Polygon>*/ tiles)
+            throws MismatchedReferenceSystemException, MismatchedDimensionException;
+
+    /**
+     * Creates a polygon directly from a set of boundary curves (organized into a
+     * surface boundary) which shall be defined using coplanar {@linkplain Position positions}
+     * as control points.
+     * <br><br>
+     * <strong>NOTE:</strong> The meaning of exterior in the surface boundary is consistent
+     * with the plane of the constructed planar polygon.
+     *
+     * @param boundary The surface boundary.
+     *
+     * @throws MismatchedReferenceSystemException If geometric objects given in argument don't
+     *         use compatible {@linkplain CoordinateReferenceSystem coordinate reference system}.
+     * @throws MismatchedDimensionException If geometric objects given in argument don't have
+     *         the expected dimension.
+     */
+/// @UML (identifier="GM_Polygon(GM_SurfaceBondary)", obligation=MANDATORY)
+    Polygon createPolygon(SurfaceBoundary boundary)
+            throws MismatchedReferenceSystemException, MismatchedDimensionException;
+
+    /**
+     * Creates a polygon lying on a spanning surface. There is no restriction of the types of
+     * interpolation used by the composite curves used in the {@linkplain SurfaceBoundary
+     * surface boundary}, but they must all be lie on the
+     * {@linkplain Polygon#getSpanningSurface spanning surface} for the process to succeed.
+     * <br><br>
+     * <strong>NOTE:</strong> It is important that the boundary components be oriented properly
+     * for this to work. It is often the case that in bounded manifolds, such as the sphere,
+     * there is an ambiguity unless the orientation is properly used.
+     *
+     * @param boundary The surface boundary.
+     * @param spanSurface The spanning surface.
+     *
+     * @throws MismatchedReferenceSystemException If geometric objects given in argument don't
+     *         use compatible {@linkplain CoordinateReferenceSystem coordinate reference system}.
+     * @throws MismatchedDimensionException If geometric objects given in argument don't have
+     *         the expected dimension.
+     */
+/// @UML (identifier="GM_Polygon(GM_SurfaceBondary,GM_Surface)", obligation=MANDATORY)
+    Polygon createPolygon(SurfaceBoundary boundary, Surface spanSurface)
+            throws MismatchedReferenceSystemException, MismatchedDimensionException;
+
+    /**
+     * Constructs a restricted Delaunay network from triangle corners (posts),
+     * breaklines, stoplines, and maximum length of a triangle side.
+     *
+     * @param  post The corners of the triangles in the TIN.
+     * @param  stopLines lines where the local continuity or regularity of the surface is questionable.
+     * @param  breakLines lines of a critical nature to the shape of the surface.
+     * @param  maxLength Maximal length for retention.
+     *
+     * @throws MismatchedReferenceSystemException If geometric objects given in argument don't
+     *         use compatible {@linkplain CoordinateReferenceSystem coordinate reference system}.
+     * @throws MismatchedDimensionException If geometric objects given in argument don't have
+     *         the expected dimension.
+     */
+/// @UML (identifier="GM_Tin(Set<GM_Position>,Set<GM_LineString>,Set<GM_LineString>,Number)", obligation=MANDATORY)
+    Tin createTin(Set/*<Position>*/ post, Set/*<LineString>*/ stopLines,
+                  Set/*<LineString>*/ breakLines, double maxLength)
             throws MismatchedReferenceSystemException, MismatchedDimensionException;
 }
