@@ -203,15 +203,61 @@ public interface FeatureCollection extends Feature, Collection {
     public Transaction getTransaction();
 
     /**
-     * Should cause all features in this feature collection to be locked.
-     * Implementor of this method should attach some state to the given lock.
+     * Indicate the duration, and any additional information for any
+     * subsequent lock opperations.
      */
-    public void setLock(Lock lock);
+    public void setLock(LockRequest lock);
 
     /**
-     * Returns the current lock on these features or null if none.
+     * Lock indicated features.
+     * <p>
+     * Note to unlock, or opperate on these features, one needs to perform a Transaction
+     * with the authorization token provided by LockResponse.
+     * </p> 
+     * <p>
+     * Workflows:
+     * <ul>
+     * <li>LockRequest + Transaction.AUTO_COMMIT returns a LockResponse indicating the success of the opperation and
+     * and authoriazation tokens aquired.
+     * <li>LockRequest.TRANSACTION_LOCK + Transaction returns LockResponse.TRANSACTION_LOCKRESPONSE indicating
+     * a short term lock is held that will expire at the next commit or rollback. Use this workflow to reserve
+     * content before starting edits.
+     * <li>LockRequest + Transaction returns LockResponse.PENDING, check the result of Commit to discover the success of of any lock
+     * methods made during the transaction.
+     * </ul>
+     * For a discussion of these workflows please read the package javadocs.
+     * </p>
+     * @return LockResponse for Transaction.AUTO_COMMIT, LockResponse.TRANSACTION_LOCK for a short term lock, or LockResponse.PENDING when used in a Transaction.
      */
-    public Lock getLock();
+    public LockResponse lockAll(Collection/*<Feature>*/ c);
+    
+    /**
+     * Lock this collection of features.
+     * <p>
+     * Note to unlock, or opperate on these features, one needs to perform a Transaction
+     * with the authorization token provided by LockResponse.
+     * </p> 
+     * <p>
+     * Workflows:
+     * <ul>
+     * <li>LockRequest + Transaction.AUTO_COMMIT returns a LockResponse indicating the success of the opperation and
+     * and authoriazation tokens aquired.
+     * <li>LockRequest.TRANSACTION_LOCK + Transaction returns LockResponse.TRANSACTION_LOCKRESPONSE indicating
+     * a short term lock is held that will expire at the next commit or rollback. Use this workflow to reserve
+     * content before starting edits.
+     * <li>LockRequest + Transaction returns LockResponse.PENDING, check the result of Commit to discover the success of of any lock
+     * methods made during the transaction.
+     * </ul>
+     * For a discussion of these workflows please read the package javadocs.
+     * </p>
+     * @return LockResponse for Transaction.AUTO_COMMIT, LockResponse.TRANSACTION_LOCK for a short term lock, or LockResponse.PENDING when used in a Transaction.
+     */
+    public LockResponse lock();
+    
+    /**
+     * Returns the request indicating the duration for the lockAll method.
+     */
+    public LockRequest getLockRequest();
 
     /**
      * Adds a listener whose methods will be called whenever a new feature is

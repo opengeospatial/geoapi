@@ -201,10 +201,22 @@ public interface Transaction {
      * typeName and a different Transaction. FeatureSources with the same
      * Transaction will of been notified of changes as the FeaureWriter made
      * them.
-     *
-     * @throws IOException if there are any datasource errors.
+     * <p>
+     * Workflows:
+     * <ul>
+     * <li>LockRequest + Transaction.AUTO_COMMIT returns a LockResponse indicating the success of the opperation and
+     * and authoriazation tokens aquired.
+     * <li>LockRequest.TRANSACTION_LOCK + Transaction returns LockResponse.TRANSACTION_LOCKRESPONSE indicating
+     * a short term lock is held that will expire at the next commit or rollback. Use this workflow to reserve
+     * content before starting edits.
+     * <li>LockRequest + Transaction returns LockResponse.PENDING, check the result of Commit to discover the success of of any lock
+     * methods made during the transaction.
+     * </ul>
+     * For a discussion of these workflows please read the package javadocs.
+     * </p>
+     * @return LockResponse for Transaction.AUTO_COMMIT, LockResponse.TRANSACTION_LOCK for a short term lock, or LockResponse.PENDING when used in a Transaction.
      */
-    public void commit() throws IOException;
+    public LockResponse commit() throws IOException;
 
     /**
      * Undoes all transactions made since the last commit or rollback.
@@ -344,10 +356,11 @@ class AutoCommit implements Transaction {
         // TODO Auto-generated method stub
         return null;
     }
+    
     /** AutoCommit commits all the time - so this is a NOP */
-    public void commit() throws IOException {
-        // TODO Auto-generated method stub
-        
+    public LockResponse commit() throws IOException {
+        // No lock requests have been buffered (they were auto commited after all)
+        return LockResponse.PENDING;
     }
     /**
      * AutoCommit does not support rollback - it is already too late.
