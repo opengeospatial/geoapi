@@ -11,8 +11,8 @@ package org.opengis.crs;
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 2.0
  *
- * @see org.opengis.cd.DatumAuthorityFactory
- * @see org.opengis.sc.CRSAuthorityFactory
+ * @see org.opengis.crs.datum.DatumAuthorityFactory
+ * @see org.opengis.crs.crs.CRSAuthorityFactory
  */
 public class NoSuchAuthorityCodeException extends FactoryException {
     /**

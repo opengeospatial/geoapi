@@ -19,20 +19,20 @@ import org.opengis.gm.geometry.Position;
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 2.0
  *
- * @revisit Should we extend {@link org.opengis.rs.Factory}?
+ * @revisit Should we extend {@link org.opengis.crs.Factory}?
  */
 public interface PrimitiveFactory {
     /**
      * Returns an envelope as a primitive. An {@linkplain Envelope envelope} will often be
      * used in query operations, and therefore must have a cast operation that returns a
      * {@linkplain org.opengis.gm.Geometry geometry}. The actual return of the operation depends
-     * upon the dimension of the {@linkplain org.opengis.sc.CoordinateReferenceSystem coordinate
+     * upon the dimension of the {@linkplain org.opengis.crs.crs.CoordinateReferenceSystem coordinate
      * reference system} and the extent of the {@linkplain Envelope envelope}. In a 2D system,
      * the primitive returned will be a {@linkplain Surface surface} (if the envelope does not
      * collapse to a point or line). In 3D systems, the usual return is a {@linkplain Solid solid}.
      * <br><br>
      * <strong>EXAMPLE:</strong> In the case where the {@linkplain Envelope envelope} is totally
-     * contained in the domain of validity of its {@linkplain org.opengis.sc.CRS} (coordinate
+     * contained in the domain of validity of its {@linkplain org.opengis.crs.crs.CRS} (coordinate
      * reference system) object, its associated {@linkplain Primitive primitive} is the convex
      * hull of the various permutations of the coordinates in the corners. For example, suppose
      * that a particular envelope in 2D is defined as:

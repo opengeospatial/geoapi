@@ -7,7 +7,7 @@ package org.opengis.crs;
 import java.util.Locale;
 
 // OpenGIS direct dependencies
-import org.opengis.ci.Citation;
+import org.opengis.metadata.citation.Citation;
 
 
 /**

@@ -14,7 +14,7 @@ import java.util.List;
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 2.0
  *
- * @revisit Should we extend {@link org.opengis.rs.Factory}?
+ * @revisit Should we extend {@link org.opengis.crs.Factory}?
  */
 public interface GeometryFactory {
     /**
@@ -44,8 +44,8 @@ public interface GeometryFactory {
 
     /**
      * Takes two or more positions, interpolates using a geodesic defined from
-     * the geoid (or {@linkplain org.opengis.cd.Ellipsoid ellipsoid}) of the
-     * {@linkplain org.opengis.sc.CoordinateReferenceSystem coordinate reference system}
+     * the geoid (or {@linkplain org.opengis.crs.datum.Ellipsoid ellipsoid}) of the
+     * {@linkplain org.opengis.crs.crs.CoordinateReferenceSystem coordinate reference system}
      * being used, and creates the appropriate geodesic string joining them.
      *
      * @UML constructor GM_GeodesicString(GM_Position[2..n])

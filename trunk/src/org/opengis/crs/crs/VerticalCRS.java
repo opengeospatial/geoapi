@@ -4,8 +4,8 @@
 package org.opengis.crs.crs;
 
 // OpenGIS direct dependencies
-import org.opengis.cs.VerticalCS;
-import org.opengis.cd.VerticalDatum;
+import org.opengis.crs.cs.VerticalCS;
+import org.opengis.crs.datum.VerticalDatum;
 
 
 /**
@@ -19,7 +19,7 @@ import org.opengis.cd.VerticalDatum;
  * <TABLE CELLPADDING='6' BORDER='1'>
  * <TR BGCOLOR="#EEEEFF"><TH NOWRAP>Used with CS type(s)</TH></TR>
  * <TR><TD>
- *   {@link org.opengis.cs.VerticalCS Vertical}
+ *   {@link org.opengis.crs.cs.VerticalCS Vertical}
  * </TD></TR></TABLE>
  *
  * @UML abstract SC_VerticalCRS

@@ -7,9 +7,9 @@ package org.opengis.crs.datum;
 import javax.units.Unit;
 
 // OpenGIS direct dependencies
-import org.opengis.rs.AuthorityFactory;
-import org.opengis.rs.FactoryException;
-import org.opengis.rs.NoSuchAuthorityCodeException;
+import org.opengis.crs.AuthorityFactory;
+import org.opengis.crs.FactoryException;
+import org.opengis.crs.NoSuchAuthorityCodeException;
 
 
 /**
@@ -49,7 +49,7 @@ public interface DatumAuthorityFactory extends AuthorityFactory {
      * @throws FactoryException if the object creation failed for some other reason.
      *
      * @UML operation createVerticalDatum in 1.0 specification
-     * @see org.opengis.sc.CRSAuthorityFactory#createVerticalCRS
+     * @see org.opengis.crs.crs.CRSAuthorityFactory#createVerticalCRS
      */
     VerticalDatum createVerticalDatum(String code) throws FactoryException;
 
@@ -60,7 +60,7 @@ public interface DatumAuthorityFactory extends AuthorityFactory {
      * @throws NoSuchAuthorityCodeException if the specified <code>code</code> was not found.
      * @throws FactoryException if the object creation failed for some other reason.
      *
-     * @see org.opengis.sc.CRSAuthorityFactory#createTemporalCRS
+     * @see org.opengis.crs.crs.CRSAuthorityFactory#createTemporalCRS
      */
     TemporalDatum createTemporalDatum(String code) throws FactoryException;
 
@@ -74,8 +74,8 @@ public interface DatumAuthorityFactory extends AuthorityFactory {
      * @UML operation createHorizontalDatum in 1.0 specification
      * @see #createEllipsoid
      * @see #createPrimeMeridian
-     * @see org.opengis.sc.CRSAuthorityFactory#createGeographicCRS
-     * @see org.opengis.sc.CRSAuthorityFactory#createProjectedCRS
+     * @see org.opengis.crs.crs.CRSAuthorityFactory#createGeographicCRS
+     * @see org.opengis.crs.crs.CRSAuthorityFactory#createProjectedCRS
      */
     GeodeticDatum createGeodeticDatum(String code) throws FactoryException;
 

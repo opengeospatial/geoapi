@@ -4,7 +4,7 @@
 package org.opengis.gm;
 
 // OpenGIS direct dependencies
-import org.opengis.sc.CRS;
+import org.opengis.crs.crs.CRS;
 
 
 /**

@@ -4,12 +4,12 @@
 package org.opengis.coverage.processing;
 
 // OpenGIS direct dependencies
-import org.opengis.gc.Parameter;
-import org.opengis.gc.GridCoverage;
-import org.opengis.cv.SampleDimensionType;
-import org.opengis.cv.MetadataNameNotFoundException;
-import org.opengis.gc.InvalidParameterNameException;
-import org.opengis.gc.InvalidParameterValueException;
+import org.opengis.coverage.grid.Parameter;
+import org.opengis.coverage.grid.GridCoverage;
+import org.opengis.coverage.SampleDimensionType;
+import org.opengis.coverage.MetadataNameNotFoundException;
+import org.opengis.coverage.grid.InvalidParameterNameException;
+import org.opengis.coverage.grid.InvalidParameterValueException;
 
 
 /**

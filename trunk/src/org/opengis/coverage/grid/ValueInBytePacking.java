@@ -5,7 +5,7 @@ package org.opengis.coverage.grid;
 
 //OpenGIS direct dependencies
 import org.opengis.util.CodeList;
-import org.opengis.cv.SampleDimensionType; // For Javadoc
+import org.opengis.coverage.SampleDimensionType; // For Javadoc
 
 
 /**

@@ -7,7 +7,7 @@ package org.opengis.crs;
 import java.util.Locale;
 
 // OpenGIS direct dependencies
-import org.opengis.rs.Identifier;
+import org.opengis.crs.Identifier;
 
 
 /**
@@ -16,14 +16,14 @@ import org.opengis.rs.Identifier;
  * should be. However, the following guidelines are suggested:
  *
  * <UL>
- *   <LI> When {@link org.opengis.sc.CRSAuthorityFactory} is used to create an object, the
+ *   <LI> When {@link org.opengis.crs.crs.CRSAuthorityFactory} is used to create an object, the
  *        {@linkplain Identifier#getAuthority authority} and {@linkplain Identifier#getCode
  *        authority code} values should be set to the authority name of the factory object,
  *        and the authority code supplied by the client, respectively. The other values may
  *        or may not be set. If the authority is EPSG, the implementer may consider using the
  *        corresponding metadata values in the EPSG tables.</LI>
  *
- *    <LI>When {@link org.opengis.sc.CRSFactory} creates an object, the {@linkplain #getName name}
+ *    <LI>When {@link org.opengis.crs.crs.CRSFactory} creates an object, the {@linkplain #getName name}
  *        should be set to the value supplied by the client. All of the other metadata items may
  *        be left empty.</LI>
  * </UL>
@@ -43,16 +43,16 @@ public interface Info {
      * @UML mandatory <prefix>Name
      *
      * @rename  Omitted the
-     *          "{@link org.opengis.rs.ReferenceSystem srs}",
-     *          "{@link org.opengis.cs.CoordinateSystem cs}",
-     *          "{@link org.opengis.cs.CoordinateSystemAxis axis}",
-     *          "{@link org.opengis.cd.Datum datum}",
-     *          "{@link org.opengis.cd.PrimeMeridian meridian}",
-     *          "{@link org.opengis.cd.Ellipsoid ellipsoid}",
-     *          "{@link org.opengis.cc.CoordinateOperation coordinateOperation}",
-     *          "{@link org.opengis.cc.OperationMethod method}",
-     *          "{@link org.opengis.cc.OperationParameter parameter}" and
-     *          "{@link org.opengis.cc.OperationParameterGroup group}"
+     *          "{@link org.opengis.crs.ReferenceSystem srs}",
+     *          "{@link org.opengis.crs.cs.CoordinateSystem cs}",
+     *          "{@link org.opengis.crs.cs.CoordinateSystemAxis axis}",
+     *          "{@link org.opengis.crs.datum.Datum datum}",
+     *          "{@link org.opengis.crs.datum.PrimeMeridian meridian}",
+     *          "{@link org.opengis.crs.datum.Ellipsoid ellipsoid}",
+     *          "{@link org.opengis.crs.operation.CoordinateOperation coordinateOperation}",
+     *          "{@link org.opengis.crs.operation.OperationMethod method}",
+     *          "{@link org.opengis.crs.operation.OperationParameter parameter}" and
+     *          "{@link org.opengis.crs.operation.OperationParameterGroup group}"
      *          prefix, which stands as an abbreviation for the enclosing class.
      */
     public String getName(Locale locale);

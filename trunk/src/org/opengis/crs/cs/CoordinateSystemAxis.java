@@ -8,7 +8,7 @@ import java.util.Locale;
 import javax.units.Unit;
 
 // OpenGIS direct dependencies
-import org.opengis.rs.Info;
+import org.opengis.crs.Info;
 
 
 /**
@@ -43,7 +43,7 @@ public interface CoordinateSystemAxis extends Info {
      * geodetic datum is used, the precise directions of the axes may therefore vary slightly
      * from this approximate direction.
      *
-     * Note that an {@link org.opengis.sc.EngineeringCRS} often requires specific descriptions
+     * Note that an {@link org.opengis.crs.crs.EngineeringCRS} often requires specific descriptions
      * of the directions of its coordinate system axes.
      *
      * @param  locale The desired locale for the coordinate system axis direction to be returned,

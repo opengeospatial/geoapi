@@ -4,8 +4,8 @@
 package org.opengis.crs.crs;
 
 // OpenGIS direct dependencies
-import org.opengis.cs.CoordinateSystem;
-import org.opengis.cd.EngineeringDatum;
+import org.opengis.crs.cs.CoordinateSystem;
+import org.opengis.crs.datum.EngineeringDatum;
 
 
 /**
@@ -19,14 +19,14 @@ import org.opengis.cd.EngineeringDatum;
  * <TABLE CELLPADDING='6' BORDER='1'>
  * <TR BGCOLOR="#EEEEFF"><TH NOWRAP>Used with CS type(s)</TH></TR>
  * <TR><TD>
- *   {@link org.opengis.cs.CartesianCS        Cartesian},
- *   {@link org.opengis.cs.ObliqueCartesianCS ObliqueCartesian},
- *   {@link org.opengis.cs.EllipsoidalCS      Ellipsoidal},
- *   {@link org.opengis.cs.SphericalCS        Spherical},
- *   {@link org.opengis.cs.CylindricalCS      Cylindrical},
- *   {@link org.opengis.cs.PolarCS            Polar},
- *   {@link org.opengis.cs.VerticalCS         Vertical},
- *   {@link org.opengis.cs.LinearCS           Linear}
+ *   {@link org.opengis.crs.cs.CartesianCS        Cartesian},
+ *   {@link org.opengis.crs.cs.ObliqueCartesianCS ObliqueCartesian},
+ *   {@link org.opengis.crs.cs.EllipsoidalCS      Ellipsoidal},
+ *   {@link org.opengis.crs.cs.SphericalCS        Spherical},
+ *   {@link org.opengis.crs.cs.CylindricalCS      Cylindrical},
+ *   {@link org.opengis.crs.cs.PolarCS            Polar},
+ *   {@link org.opengis.crs.cs.VerticalCS         Vertical},
+ *   {@link org.opengis.crs.cs.LinearCS           Linear}
  * </TD></TR></TABLE>
  *
  * @UML abstract SC_EngineeringCRS

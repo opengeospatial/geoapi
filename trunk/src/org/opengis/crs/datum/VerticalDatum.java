@@ -9,8 +9,8 @@ package org.opengis.crs.datum;
  * surface used as a zero-height surface. The description includes its position with respect
  * to the Earth for any of the height types recognized by this standard. There are several
  * types of Vertical Datums, and each may place constraints on the
- * {@linkplain org.opengis.cs.CoordinateSystemAxis Coordinate Axis} with which
- * it is combined to create a {@linkplain org.opengis.sc.VerticalCRS Vertical CRS}.
+ * {@linkplain org.opengis.crs.cs.CoordinateSystemAxis Coordinate Axis} with which
+ * it is combined to create a {@linkplain org.opengis.crs.crs.VerticalCRS Vertical CRS}.
  *
  * @UML abstract CD_VerticalDatum
  * @author ISO 19111

@@ -11,10 +11,10 @@ import java.sql.SQLException;  // For Javadoc
 /**
  * Thrown when a {@linkplain Factory factory} can't create an instance
  * of the requested object. It may be a failure to create a
- * {@linkplain org.opengis.cd.Datum datum}, a
- * {@linkplain org.opengis.cs.CoordinateSystem coordinate system}, a
- * {@linkplain org.opengis.rs.ReferenceSystem reference system} or a
- * {@linkplain org.opengis.cc.CoordinateOperation coordinate operation}.
+ * {@linkplain org.opengis.crs.datum.Datum datum}, a
+ * {@linkplain org.opengis.crs.cs.CoordinateSystem coordinate system}, a
+ * {@linkplain org.opengis.crs.ReferenceSystem reference system} or a
+ * {@linkplain org.opengis.crs.operation.CoordinateOperation coordinate operation}.
  *
  * If the failure is caused by an illegal authority code, then the actual exception should
  * be {@link NoSuchAuthorityCodeException}. Otherwise, if the failure is caused by some
@@ -24,7 +24,7 @@ import java.sql.SQLException;  // For Javadoc
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 2.0
  *
- * @see org.opengis.cc.CoordinateOperationFactory
+ * @see org.opengis.crs.operation.CoordinateOperationFactory
  */
 public class FactoryException extends Exception {
     /**

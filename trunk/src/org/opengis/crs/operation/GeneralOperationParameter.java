@@ -4,7 +4,7 @@
 package org.opengis.crs.operation;
 
 // OpenGIS direct dependencies
-import org.opengis.rs.Info;
+import org.opengis.crs.Info;
 
 
 /**

@@ -33,7 +33,7 @@ import org.opengis.gm.DirectPosition;
  *                (reading/writing pixels, tiling, informations on color space, etc.)</LI>
  *            <LI>Java Advanced Imaging work with RenderedImage, not Image.</LI>
  *          </UL>
- *          Furthermore, <CODE>>GraphicScaledImage</CODE> API duplicates {@link org.opengis.gc.GridCoverage}.
+ *          Furthermore, <CODE>>GraphicScaledImage</CODE> API duplicates {@link org.opengis.coverage.grid.GridCoverage}.
  *          More specifically, the following methods are GridCoverage's job: {@link #getEnvelope},
  *          {@link #getUpperLeft}, {@link #getLowerRight}, {@link #getSRS}, maybe {@link #getScaledImage}.
  *          Note also that {@link #getSRS} should probably returns a CRS type rather than a String.
@@ -179,7 +179,7 @@ public interface GraphicScaledImage extends Graphic {
      * center points are less than a meter apart on the earth's surface
      * to be considered the same projection.
      *
-     * @revisit Why not a {@link org.opengis.sc.CRS} argument type?
+     * @revisit Why not a {@link org.opengis.crs.crs.CRS} argument type?
      */
     public void setSRS(String srs);
 
@@ -189,7 +189,7 @@ public interface GraphicScaledImage extends Graphic {
      *
      * @see #setSRS(String)
      *
-     * @revisit Why not a {@link org.opengis.sc.CRS} return type?
+     * @revisit Why not a {@link org.opengis.crs.crs.CRS} return type?
      */
     public String getSRS();
 }

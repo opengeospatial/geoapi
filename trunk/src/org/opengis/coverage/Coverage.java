@@ -11,7 +11,7 @@ import javax.media.jai.PropertySource;            // For Javadoc
 import javax.media.jai.ImageFunction;             // For Javadoc
 
 // OpenGIS direct dependencies
-import org.opengis.sc.CRS;
+import org.opengis.crs.crs.CRS;
 import org.opengis.gm.Envelope;
 import org.opengis.gm.DirectPosition;
 
@@ -42,7 +42,7 @@ import org.opengis.gm.DirectPosition;
  * dimension in the coverage.
  * <br><br>
  * <STRONG>Implementation note:</STRONG><BR>
- * We expect that many implementations of {@link org.opengis.gc.GridCoverage} will want to leverage the rich
+ * We expect that many implementations of {@link org.opengis.coverage.grid.GridCoverage} will want to leverage the rich
  * set of <A HREF="http://java.sun.com/products/java-media/jai/">Java Advanced Imaging (JAI)</A> features.
  * For those implementations, it is recommended (but not required) to implement the {@link PropertySource}
  * interface as well. In this case, implementation of {@link PropertySource} methods must be consistent
@@ -59,17 +59,17 @@ public interface Coverage {
     /**
      * Specifies the coordinate reference system (CRS) used when accessing a coverage or grid
      * coverage with the <code>evaluate(...)</code> methods. It is also the CRS of the coordinates
-     * used with the math transform (see {@link org.opengis.gc.GridGeometry#getGridToCoordinateSystem
+     * used with the math transform (see {@link org.opengis.coverage.grid.GridGeometry#getGridToCoordinateSystem
      * gridToCoordinateSystem}).
      *
      * This coordinate reference system is usually different than coordinate system of the grid.
      * Grid coverage can be accessed (re-projected) with new CRS with the
-     * {@link org.opengis.gp.GridCoverageProcessor} component. In this case, a new instance of a
+     * {@link org.opengis.coverage.processing.GridCoverageProcessor} component. In this case, a new instance of a
      * grid coverage is created.
      * <br><br>
      * Note: If a coverage does not have an associated coordinate reference system,
      * the returned value will be <code>null</code>.
-     * The {@link org.opengis.gc.GridGeometry#getGridToCoordinateSystem gridToCoordinateSystem})
+     * The {@link org.opengis.coverage.grid.GridGeometry#getGridToCoordinateSystem gridToCoordinateSystem})
      * attribute should also be <code>null</code> if the CRS is <code>null</code>.
      *
      * @return The coordinate reference system used when accessing a coverage or
@@ -157,7 +157,7 @@ public interface Coverage {
      * @UML operation getSource
      *
      * @see #getNumSources
-     * @see org.opengis.gc.GridCoverage#getSource
+     * @see org.opengis.coverage.grid.GridCoverage#getSource
      */
     Coverage getSource(int sourceDataIndex) throws IndexOutOfBoundsException;
 
@@ -334,7 +334,7 @@ public interface Coverage {
      * Returns 2D view of this coverage as a renderable image.
      * This optional operation allows interoperability with
      * <A HREF="http://java.sun.com/products/java-media/2D/">Java2D</A>.
-     * If this coverage is a {@link org.opengis.gc.GridCoverage} backed
+     * If this coverage is a {@link org.opengis.coverage.grid.GridCoverage} backed
      * by a {@link RenderedImage}, the underlying image can be obtained
      * with:
      *

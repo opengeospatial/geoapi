@@ -4,13 +4,13 @@
 package org.opengis.crs.crs;
 
 // OpenGIS direct dependencies
-import org.opengis.cc.Conversion;
+import org.opengis.crs.operation.Conversion;
 
 
 /**
  * A coordinate reference system that is defined by its coordinate
  * {@linkplain Conversion conversion} from another coordinate reference system
- * (not by a {@linkplain org.opengis.cd.Datum datum}).
+ * (not by a {@linkplain org.opengis.crs.datum.Datum datum}).
  *
  * @UML abstract SC_GeneralDerivedCRS
  * @author ISO 19111

@@ -4,8 +4,8 @@
 package org.opengis.crs.crs;
 
 // OpenGIS direct dependencies
-import org.opengis.cs.EllipsoidalCS;
-import org.opengis.cd.GeodeticDatum;
+import org.opengis.crs.cs.EllipsoidalCS;
+import org.opengis.crs.datum.GeodeticDatum;
 
 
 /**
@@ -16,7 +16,7 @@ import org.opengis.cd.GeodeticDatum;
  * <TABLE CELLPADDING='6' BORDER='1'>
  * <TR BGCOLOR="#EEEEFF"><TH NOWRAP>Used with CS type(s)</TH></TR>
  * <TR><TD>
- *   {@link org.opengis.cs.EllipsoidalCS Ellipsoidal}
+ *   {@link org.opengis.crs.cs.EllipsoidalCS Ellipsoidal}
  * </TD></TR></TABLE>
  *
  * @UML abstract SC_GeographicCRS

@@ -4,7 +4,7 @@
 package org.opengis.crs.crs;
 
 // OpenGIS direct dependencies
-import org.opengis.cs.CartesianCS;
+import org.opengis.crs.cs.CartesianCS;
 
 
 /**
@@ -16,7 +16,7 @@ import org.opengis.cs.CartesianCS;
  * <TABLE CELLPADDING='6' BORDER='1'>
  * <TR BGCOLOR="#EEEEFF"><TH NOWRAP>Used with CS type(s)</TH></TR>
  * <TR><TD>
- *   {@link org.opengis.cs.CartesianCS Cartesian}
+ *   {@link org.opengis.crs.cs.CartesianCS Cartesian}
  * </TD></TR></TABLE>
  *
  * @UML abstract SC_ProjectedCRS

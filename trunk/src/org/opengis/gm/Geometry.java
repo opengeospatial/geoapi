@@ -7,7 +7,7 @@ package org.opengis.gm;
 import java.util.Set;
 
 // OpenGIS direct dependencies
-import org.opengis.sc.CRS;
+import org.opengis.crs.crs.CRS;
 import org.opengis.gm.Envelope;
 import org.opengis.gm.DirectPosition;
 import org.opengis.gm.complex.Complex;
@@ -199,7 +199,7 @@ public interface Geometry extends TransfiniteSet {
      *
      * @see #getBoundary
      * @see #getBuffer
-     * @see org.opengis.cs.CoordinateSystem#getAxis
+     * @see org.opengis.crs.cs.CoordinateSystem#getAxis
      */
     public double getDistance(Geometry geometry);
 
@@ -321,7 +321,7 @@ public interface Geometry extends TransfiniteSet {
      *
      * @see #getBoundary
      * @see #getDistance
-     * @see org.opengis.cs.CoordinateSystem#getAxis
+     * @see org.opengis.crs.cs.CoordinateSystem#getAxis
      */
     public Geometry getBuffer(double distance);
 }

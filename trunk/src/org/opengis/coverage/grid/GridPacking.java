@@ -8,7 +8,7 @@ import java.awt.image.BandedSampleModel;            // For Javadoc
 import java.awt.image.PixelInterleavedSampleModel;  // For Javadoc
 
 // OpenGIS direct dependencies
-import org.opengis.cv.SampleDimensionType;  // For Javadoc
+import org.opengis.coverage.SampleDimensionType;  // For Javadoc
 
 
 /**

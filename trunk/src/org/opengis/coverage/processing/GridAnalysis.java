@@ -7,8 +7,8 @@ package org.opengis.coverage.processing;
 import javax.media.jai.Histogram; // For Javadoc
 
 // OpenGIS direct dependencies
-import org.opengis.cc.Matrix;
-import org.opengis.gc.GridCoverage;
+import org.opengis.crs.operation.Matrix;
+import org.opengis.coverage.grid.GridCoverage;
 
 
 /**
@@ -21,7 +21,7 @@ import org.opengis.gc.GridCoverage;
  * @version 1.1
  *
  * @revisit All methods except {@link #getCorrelation} work on a particuler sample dimension.
- *          Why not defines those methods right into {@link org.opengis.cv.SampleDimension}?
+ *          Why not defines those methods right into {@link org.opengis.coverage.SampleDimension}?
  */
 public interface GridAnalysis extends GridCoverage {
     /**

@@ -12,10 +12,10 @@ import javax.imageio.ImageWriter;             // For Javadoc
 import javax.imageio.stream.ImageInputStream; // For Javadoc
 
 // OpenGIS direct dependencies
-import org.opengis.sc.CRS;
-import org.opengis.cc.Conversion;
+import org.opengis.crs.crs.CRS;
+import org.opengis.crs.operation.Conversion;
 // import org.opengis.ct.MathTransform;
-import org.opengis.cv.MetadataNameNotFoundException;
+import org.opengis.coverage.MetadataNameNotFoundException;
 
 
 /**
@@ -201,7 +201,7 @@ public interface GridCoverageExchange {
      *            <LI>The <code>gridToCoordinateSystem</code> was <code>MathTransform</code>; we don't
      *                know yet what will be the equivalent in the new CRS architecture.</LI>
      *            <LI>This method sound like a convenience method for
-     * <code>{@link org.opengis.gp.GridCoverageProcessor GridCoverageProcessor}("Resample", ...)</code>
+     * <code>{@link org.opengis.coverage.processing.GridCoverageProcessor GridCoverageProcessor}("Resample", ...)</code>
      *                operation. Is <code>GridCoverageExchange</code> really the right place to define it?</LI>
      *          </UL>
      */

@@ -44,18 +44,18 @@ public interface AuthorityFactory extends Factory {
     /**
      * Returns the set of authority codes of the given type. The <code>type</code>
      * argument specify the base class. For example if this factory is an instance
-     * of {@link org.opengis.sc.CRSAuthorityFactory}, then:
+     * of {@link org.opengis.crs.crs.CRSAuthorityFactory}, then:
      * <ul>
-     *   <li><strong><code>{@linkplain org.opengis.sc.CRS}.class&nbsp;</code></strong>
+     *   <li><strong><code>{@linkplain org.opengis.crs.crs.CRS}.class&nbsp;</code></strong>
      *       asks for all authority codes accepted by
-     *       {@link org.opengis.sc.CRSAuthorityFactory#createGeographicCRS createGeographicCRS},
-     *       {@link org.opengis.sc.CRSAuthorityFactory#createProjectedCRS createProjectedCRS},
-     *       {@link org.opengis.sc.CRSAuthorityFactory#createVerticalCRS createVerticalCRS},
-     *       {@link org.opengis.sc.CRSAuthorityFactory#createTemporalCRS createTemporalCRS}
+     *       {@link org.opengis.crs.crs.CRSAuthorityFactory#createGeographicCRS createGeographicCRS},
+     *       {@link org.opengis.crs.crs.CRSAuthorityFactory#createProjectedCRS createProjectedCRS},
+     *       {@link org.opengis.crs.crs.CRSAuthorityFactory#createVerticalCRS createVerticalCRS},
+     *       {@link org.opengis.crs.crs.CRSAuthorityFactory#createTemporalCRS createTemporalCRS}
      *       and their friends.</li>
-     *   <li><strong><code>{@linkplain org.opengis.sc.ProjectedCRS}.class&nbsp;</code></strong>
+     *   <li><strong><code>{@linkplain org.opengis.crs.crs.ProjectedCRS}.class&nbsp;</code></strong>
      *       asks only for authority codes accepted by
-     *       {@link org.opengis.sc.CRSAuthorityFactory#createProjectedCRS createProjectedCRS}.</li>
+     *       {@link org.opengis.crs.crs.CRSAuthorityFactory#createProjectedCRS createProjectedCRS}.</li>
      * </ul>
      *
      * @param  type The spatial reference objects type (may be <code>Object.class</code>).
@@ -84,20 +84,20 @@ public interface AuthorityFactory extends Factory {
 
     /**
      * Returns an arbitrary object from a code. The returned object will typically be an
-     * instance of {@link org.opengis.cd.Datum}, {@link org.opengis.cs.CoordinateSystem},
-     * {@link org.opengis.rs.ReferenceSystem} or {@link org.opengis.cc.CoordinateOperation}.
+     * instance of {@link org.opengis.crs.datum.Datum}, {@link org.opengis.crs.cs.CoordinateSystem},
+     * {@link org.opengis.crs.ReferenceSystem} or {@link org.opengis.crs.operation.CoordinateOperation}.
      * If the type of the object is know at compile time, it is recommended to invoke the
      * most precise method instead of this one (for example
-     * <code>&nbsp;{@linkplain org.opengis.sc.CRSAuthorityFactory#createCRS createCRS}(code)&nbsp;</code>
+     * <code>&nbsp;{@linkplain org.opengis.crs.crs.CRSAuthorityFactory#createCRS createCRS}(code)&nbsp;</code>
      * instead of <code>&nbsp;createObject(code)&nbsp;</code> if the caller know he is asking for a
-     * {@linkplain org.opengis.sc.CRS coordinate reference system}).
+     * {@linkplain org.opengis.crs.crs.CRS coordinate reference system}).
      *
      * @param  code Value allocated by authority.
      * @throws NoSuchAuthorityCodeException if the specified <code>code</code> was not found.
      * @throws FactoryException if the object creation failed for some other reason.
      *
-     * @see org.opengis.cd.DatumAuthorityFactory#createDatum
-     * @see org.opengis.sc.CRSAuthorityFactory#createCRS
+     * @see org.opengis.crs.datum.DatumAuthorityFactory#createDatum
+     * @see org.opengis.crs.crs.CRSAuthorityFactory#createCRS
      */
     Object createObject(String code) throws FactoryException;
 }

@@ -2,10 +2,10 @@
 
 <HTML>
   <HEAD>
-    <TITLE>package org.opengis.cv</TITLE>
+    <TITLE>package org.opengis.coverage</TITLE>
   </HEAD>
   <BODY>
-  {@linkplain org.opengis.cv.Coverage Coverages} (generate a value for any point). The following is adapted from
+  {@linkplain org.opengis.coverage.Coverage Coverages} (generate a value for any point). The following is adapted from
   <A HREF="http://www.opengis.org/docs/01-004.pdf">OpenGIS&reg; Grid Coverages Implementation Specification</A>.
 
   <P ALIGN="justify">The architecture of the grid coverage specification is composed of three
@@ -25,24 +25,24 @@
   The following illustrates example values for different color components:</P>
 
   <TABLE CELLPADDING='6'>
-    <TR><TD NOWRAP BGCOLOR='lightgray'>{@linkplain org.opengis.cv.PaletteInterpretation#GRAY Gray Scale}</TD>
+    <TR><TD NOWRAP BGCOLOR='lightgray'>{@linkplain org.opengis.coverage.PaletteInterpretation#GRAY Gray Scale}</TD>
     <TD>Vector contains one entry which a shade of gray. 0 is black and 255 is white.</TD></TR>
 
-    <TR><TD NOWRAP BGCOLOR='lightgray'>{@linkplain org.opengis.cv.PaletteInterpretation#RGB RGB}</TD>
+    <TR><TD NOWRAP BGCOLOR='lightgray'>{@linkplain org.opengis.coverage.PaletteInterpretation#RGB RGB}</TD>
     <TD>Vector contains three values: Red Green Blue. Each value ranges from 0 to 255
         where 0 is no intensity and 255 is maximum intensity.</TD></TR>
 
-    <TR><TD NOWRAP BGCOLOR='lightgray'>{@linkplain org.opengis.cv.PaletteInterpretation#RGB RGBA}</TD>
+    <TR><TD NOWRAP BGCOLOR='lightgray'>{@linkplain org.opengis.coverage.PaletteInterpretation#RGB RGBA}</TD>
     <TD>Vector contains four values RGBA: Red Green Blue Alpha. The alpha value is the
         level of transparency of the color. Alpha of 0 is transparent and 255 is opaque.</TD></TR>
 
-    <TR><TD NOWRAP BGCOLOR='lightgray'>{@linkplain org.opengis.cv.PaletteInterpretation#HLS HLS}</TD>
+    <TR><TD NOWRAP BGCOLOR='lightgray'>{@linkplain org.opengis.coverage.PaletteInterpretation#HLS HLS}</TD>
     <TD>Vector contains three values: Hue Saturation Lightness. Hue is a value from 0 to
         360. Saturation is a value from 0 to 100 where 0 is no color intensity and 100 is
         full color intensity. Lightness is a value from 0 to 100 where 0 is no lightness
         and 100 is full lightness.</TD></TR>
 
-    <TR><TD NOWRAP BGCOLOR='lightgray'>{@linkplain org.opengis.cv.PaletteInterpretation#CMYK CMYK}</TD>
+    <TR><TD NOWRAP BGCOLOR='lightgray'>{@linkplain org.opengis.coverage.PaletteInterpretation#CMYK CMYK}</TD>
     <TD>Vector contains four values: Cyan Magenta Yellow Black. Each value ranges from
         0 to 255 where 0 is no intensity and 255 is maximum intensity.</TD></TR>
   </TABLE>
