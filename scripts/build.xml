@@ -117,6 +117,8 @@
       <replacefilter token="&lt;Primitive&gt;"/>
       <replacefilter token="&lt;Position&gt;"/>
       <replacefilter token="&lt;PointArray&gt;"/>
+      <replacefilter token="&lt;Arc&gt;"/>
+      <replacefilter token="&lt;Geodesic&gt;"/>
       <replacefilter token="&lt;LineSegment&gt;"/>
       <replacefilter token="&lt;CurveSegment&gt;"/>
       <replacefilter token="&lt;OrientableCurve&gt;"/>
@@ -124,6 +126,7 @@
       <replacefilter token="&lt;SurfacePatch&gt;"/>
       <replacefilter token="&lt;Complex&gt;"/>
       <replacefilter token="&lt;String&gt;"/>
+      <replacefilter token="&lt;double[]&gt;"/>
 
       <replacefilter token=" assert " value=" // assert "/>
       <replacefilter token="super(message, cause);" value="super(message);"/>
