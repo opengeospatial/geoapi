@@ -92,7 +92,7 @@ public interface Query {
      *
      * @return the attributes to be used in the returned FeatureCollection.
      *
-     * @task REVISIT: make a FidProperties object, instead of an array size 0.
+     * @revisit make a FidProperties object, instead of an array size 0.
      *       I think Query.FIDS fills this role to some degree.
      *       Query.FIDS.equals( filter ) would meet this need?
      */

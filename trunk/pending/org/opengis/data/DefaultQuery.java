@@ -36,6 +36,8 @@ import org.opengis.referencing.crs.CoordinateReferenceSystem;
  * reached.
  *
  * @author Chris Holmes
+ *
+ * @revisit Implementation should not be part of GeoAPI...
  */
 public class DefaultQuery implements Query {
     /** The properties to fetch */
@@ -304,9 +306,6 @@ public class DefaultQuery implements Query {
         return this.typeName;
     }
 
-    /* (non-Javadoc)
-     * @see org.geotools.data.Query#getNamespace()
-     */
     public URI getNamespace() {
         return namespace;
     }
@@ -455,7 +454,6 @@ public class DefaultQuery implements Query {
      * <p>
      * Description ...
      * </p>
-     * @return
      */
     public CoordinateReferenceSystem getCoordinateSystem() {
         return coordinateSystem;
@@ -466,7 +464,6 @@ public class DefaultQuery implements Query {
      * <p>
      * Description ...
      * </p>
-     * @return
      */
     public CoordinateReferenceSystem getCoordinateSystemReproject() {
         return coordinateSystemReproject;

@@ -9,7 +9,7 @@
  *************************************************************************************************/
 package org.opengis.go.display.style;
 
-import org.opengis.go.display.event.GraphicStyleListener;
+import org.opengis.go.display.style.GraphicStyleListener;
 import org.opengis.util.Cloneable;
 
 /**

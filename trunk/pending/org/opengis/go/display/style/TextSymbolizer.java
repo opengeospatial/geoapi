@@ -187,7 +187,7 @@ public interface TextSymbolizer extends GraphicStyle {
 
     /**
      * Sets the halo color.
-     * @param haloColor.
+     * @param haloColor the halo color.
      */
     public void setHaloColor(Color haloColor);
 
@@ -226,7 +226,7 @@ public interface TextSymbolizer extends GraphicStyle {
 
     /**
      * Sets the label XAnchor.
-     * @param labelXAnchor the label XAnchor.
+     * @param xAnchor the label XAnchor.
      */
     public void setXAnchor(XAnchor xAnchor);
 
@@ -238,7 +238,7 @@ public interface TextSymbolizer extends GraphicStyle {
 
     /**
      * Sets the label X displacement.
-     * @param labelXDisplacement the label X displacement.
+     * @param xDisplacement the label X displacement.
      */
     public void setXDisplacement(float xDisplacement);
 
@@ -250,7 +250,7 @@ public interface TextSymbolizer extends GraphicStyle {
 
     /**
      * Sets the label YAnchor.
-     * @param labelYAnchor the label YAnchor.
+     * @param yAnchor the label YAnchor.
      */
     public void setYAnchor(YAnchor yAnchor);
 
@@ -262,7 +262,7 @@ public interface TextSymbolizer extends GraphicStyle {
 
     /**
      * Sets the label Y displacement.
-     * @param labelYDisplacement the label Y displacement.
+     * @param yDisplacement the label Y displacement.
      */
     public void setYDisplacement(float yDisplacement);
 }

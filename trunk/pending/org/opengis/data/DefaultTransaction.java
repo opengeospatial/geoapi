@@ -33,6 +33,8 @@ import java.util.Set;
  * </p>
  *
  * @author Jody Garnett, Refractions Research
+ *
+ * @revisit Implementation should not be part of GeoAPI...
  */
 public class DefaultTransaction implements Transaction {
     /** Records State by key */
@@ -75,9 +77,6 @@ public class DefaultTransaction implements Transaction {
      * @param state Externalized State (Momeneto)
      *
      * @throws IllegalArgumentException When Transaction already using key
-     *
-     * @see org.opengis.data.Transaction#putState(java.lang.Object,
-     *      org.opengis.data.Transaction.State)
      */
     public void putState(Object key, State state) {
         if (stateLookup.containsKey(key)) {
@@ -112,8 +111,6 @@ public class DefaultTransaction implements Transaction {
      *
      * @throws IllegalArgumentException If no State was maintained for supplied
      *         <code>key</code>
-     *
-     * @see org.opengis.data.Transaction#removeState(java.lang.Object)
      */
     public void removeState(Object key) {
         if( stateLookup == null){
@@ -140,8 +137,6 @@ public class DefaultTransaction implements Transaction {
      * @param key
      *
      * @return Previously externalized State.
-     *
-     * @see org.opengis.data.Transaction#getState(java.lang.Object)
      */
     public State getState(Object key) {
         if( stateLookup == null){
@@ -161,8 +156,6 @@ public class DefaultTransaction implements Transaction {
      *
      * @throws IOException Encountered problem maintaining transaction state
      * @throws DataSourceException See IOException
-     *
-     * @see org.opengis.data.Transaction#commit()
      */
     public void commit() throws IOException {
         State state;
@@ -202,8 +195,6 @@ public class DefaultTransaction implements Transaction {
      *
      * @throws IOException Encountered problem maintaining transaction State
      * @throws DataSourceException IOException
-     *
-     * @see org.opengis.data.Transaction#rollback()
      */
     public void rollback() throws IOException {
         int problemCount = 0;
@@ -273,8 +264,6 @@ public class DefaultTransaction implements Transaction {
      *
      * @throws IOException Encountered problems maintaing Transaction State
      * @throws DataSourceException See IOException
-     *
-     * @see org.opengis.data.Transaction#setAuthorization(java.lang.String)
      */
     public void addAuthorization(String authID) throws IOException {
         if( authorizations == null){
@@ -305,19 +294,12 @@ public class DefaultTransaction implements Transaction {
         }
     }
     
-    /* (non-Javadoc)
-     * @see java.lang.Object#toString()
-     */
     public String toString() {
         return handle;
     }
+
     /**
      * Implementation of getProperty.
-     * 
-     * @see org.opengis.data.Transaction#getProperty(java.lang.Object)
-     * 
-     * @param key
-     * @return
      */
     public Object getProperty(Object key) {
         if( propertyLookup == null){
@@ -325,10 +307,9 @@ public class DefaultTransaction implements Transaction {
         }        
         return propertyLookup.get( key );
     }
+
     /**
      * Implementation of addProperty.
-     * 
-     * @see org.opengis.data.Transaction#addProperty(java.lang.Object, java.lang.Object)
      * 
      * @param key
      * @param value
