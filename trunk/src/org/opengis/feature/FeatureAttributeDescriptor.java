@@ -65,7 +65,10 @@ public interface FeatureAttributeDescriptor {
 
     /**
      * True if this attribute forms all or part of the unique identifying value
-     * for the feature it is contained by.
+     * for the feature it is contained by.  The primary key attributes uniquely
+     * identify this feature from other features of the same type.  This is
+     * different from the Feature's ID, which must uniquely identify the Feature
+     * among all feature types.
      */
     public boolean isPrimaryKey();
 }
