@@ -42,7 +42,7 @@ public interface LegalConstraints extends Constraints {
      * Other restrictions and legal prerequisites for accessing and using the resource.
      * This method should returns a non-null value only if {@linkplain #getAccessConstraints
      * access constraints} or {@linkplain #getUseConstraints use constraints} declares
-     * {@linkplain Restriction#OTHER_RESTRICTION other restriction}.
+     * {@linkplain Restriction#OTHER_RESTRICTIONS other restrictions}.
      *
      * @param  locale The desired locale for the description to be returned, or <code>null</code>
      *         for a description in some default locale (may or may not be the
