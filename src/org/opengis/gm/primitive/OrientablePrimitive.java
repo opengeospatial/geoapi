@@ -52,7 +52,7 @@ public interface OrientablePrimitive extends Primitive {
 
     /**
      * Returns the primitive associated with this <code>OrientablePrimitive</code>.
-     * Each {@link Primitive} of dimension 1 or 2 is associated to two
+     * Each {@linkplain Primitive primitive} of dimension 1 or 2 is associated to two
      * <code>OrientablePrimitive</code>s, one for each possible orientation.
      * For curves and surfaces, there are exactly two orientable primitives
      * for each geometric object.

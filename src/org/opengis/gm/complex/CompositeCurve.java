@@ -11,10 +11,11 @@ import org.opengis.gm.primitive.OrientableCurve;
 
 
 /**
- * A {@link Complex} with all the geometric properties of a curve. Thus, this composite can be
- * considered as a type of orientable curve ({@link OrientableCurve}). Essentially, a composite
- * curve is a list of orientable curves ({@link OrientableCurve}) agreeing in orientation in a
- * manner such that each curve (except the first) begins where the previous one ends.
+ * A {@linkplain Complex complex} with all the geometric properties of a curve. Thus, this
+ * composite can be considered as a type of {@linkplain OrientableCurve orientable curve}.
+ * Essentially, a composite curve is a list of {@linkplain OrientableCurve orientable curves}
+ * agreeing in orientation in a manner such that each curve (except the first) begins where
+ * the previous one ends.
  *
  * @UML type GM_CompositeCurve
  * @author ISO/DIS 19107
@@ -31,9 +32,9 @@ public interface CompositeCurve extends Composite, OrientableCurve {
     /**
      * Returns the list of orientable curves in this composite.
      *
-     * To get a full representation of the elements in the {@link Complex},
-     * the {@link org.opengis.gm.primitive.Point}s on the boundary of the
-     * generator set of {@link org.opengis.gm.primitive.Curve} would be
+     * To get a full representation of the elements in the {@linkplain Complex complex},
+     * the {@linkplain org.opengis.gm.primitive.Point points} on the boundary of the
+     * generator set of {@linkplain org.opengis.gm.primitive.Curve curve} would be
      * added to the curves in the generator list.
      *
      * @return The list of orientable curves in this composite.

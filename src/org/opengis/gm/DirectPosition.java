@@ -10,11 +10,11 @@ import org.opengis.sc.CRS;
 /**
  * Holds the coordinates for a position within some coordinate reference system. Since
  * <code>DirectPosition</code>s, as data types, will often be included in larger objects
- * (such as {@link org.opengis.gm.Geometry}s) that have references to {@link CRS}, the
- * {@link #getCoordinateReferenceSystem} method may returns <code>null</code> if this
- * particular <code>DirectPosition</code> is included in a larger object with such a
- * reference to a {@link CRS}. In this case, the cordinate reference system is implicitly
- * assumed to take on the value of the containing object's {@link CRS}.
+ * (such as {@linkplain org.opengis.gm.Geometry geometries}) that have references to
+ * {@linkplain CRS}, the {@link #getCoordinateReferenceSystem} method may returns
+ * <code>null</code> if this particular <code>DirectPosition</code> is included in a larger
+ * object with such a reference to a {@linkplain CRS}. In this case, the cordinate reference
+ * system is implicitly assumed to take on the value of the containing object's {@linkplain CRS}.
  *  
  * @UML datatype DirectPosition
  * @author ISO/DIS 19107
@@ -52,9 +52,9 @@ public interface DirectPosition {
     /**
      * The coordinate reference system in which the coordinate is given.
      * May be <code>null</code> if this particular <code>DirectPosition</code> is included
-     * in a larger object with such a reference to a {@link CRS}. In this case, the cordinate
+     * in a larger object with such a reference to a {@linkplain CRS}. In this case, the cordinate
      * reference system is implicitly assumed to take on the value of the containing object's
-     * {@link CRS}.
+     * {@linkplain CRS}.
      *
      * @return The coordinate reference system, or <code>null</code>.
      * @UML association coordinateReferenceSystem

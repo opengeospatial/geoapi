@@ -9,17 +9,16 @@ import org.opengis.gm.primitive.Point;
 
 
 /**
- * A union type consisting of either a {@link DirectPosition} or of a reference to a {@link Point}
- * from which a {@link DirectPosition} shall be obtained. The use of this data type allows the
- * identification of a position either directly as a coordinate (variant direct) or indirectly as a
- * reference to a {@link Point} (variant indirect).
+ * A union type consisting of either a {@linkplain DirectPosition direct position} or of a
+ * reference to a {@linkplain Point point} from which a {@linkplain DirectPosition direct
+ * position} shall be obtained. The use of this data type allows the identification of a
+ * position either directly as a coordinate (variant direct) or indirectly as a reference
+ * to a {@linkplain Point point} (variant indirect).
  *  
  * @UML datatype GM_Position
  * @author ISO/DIS 19107
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 2.0
- *
- * @revisit Is this interface really needed for a Java profile?
  */
 public interface Position {
     /**
@@ -39,14 +38,4 @@ public interface Position {
      * @UML conditional indirect
      */
     public Point getIndirect();
-
-    /**
-     * Creates a point at this position.
-     *
-     * @return The point at this position.
-     * @UML constructor Point(Position)
-     *
-     * @revisit We should probably move this constructor in a factory instead.
-     */
-    public Point toPoint();
 }

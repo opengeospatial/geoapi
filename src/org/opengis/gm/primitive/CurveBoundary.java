@@ -5,8 +5,8 @@ package org.opengis.gm.primitive;
 
 
 /**
- * The boundary of {@link Curve}s.
- * A <code>CurveBoundary</code> contains two {@link Point} references
+ * The boundary of {@linkplain Curve curves}.
+ * A <code>CurveBoundary</code> contains two {@linkplain Point point} references
  * ({@linkplain #getStartPoint start point} and {@linkplain #getEndPoint end point}).
  *
  * @UML type GM_CurveBoundary

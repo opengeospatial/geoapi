@@ -8,8 +8,8 @@ import org.opengis.gm.DirectPosition;
 
 
 /**
- * Common interface for {@link org.opengis.gm.primitive.Curve} and
- * {@link org.opengis.gm.primitive.CurveSegment}. <code>Curve</code>
+ * Common interface for {@linkplain org.opengis.gm.primitive.Curve curve} and
+ * {@linkplain org.opengis.gm.primitive.CurveSegment curve segment}. <code>Curve</code>
  * and <code>CurveSegment</code> both represent sections of curvilinear
  * geometry, and therefore share a number of operation signatures.
  *
@@ -57,56 +57,53 @@ public interface GenericCurve {
      *
      * @param s The parameter value along this curve.
      * @return The tangent unit vector.
+     * @unitof Distance
      * @UML operation tangent
      *
      * @see #getStartParam
      * @see #getEndParam
-     *
-     * @revisit In the UML diagram, the argument type is <code>Distance</code>.
      */
     public double[] getTangent(double s);
 
     /**
      * Indicates the parameter for the {@linkplain #getStartPoint start point}.
-     * The start parameter of a {@link org.opengis.gm.primitive.Curve} shall always be 0.
-     * For {@link org.opengis.gm.primitive.CurveSegment}s within a
-     * {@link org.opengis.gm.primitive.Curve}, the start of the
-     * {@link org.opengis.gm.primitive.CurveSegment} shall be equal to those of the
-     * {@link org.opengis.gm.primitive.Curve} where this segment begins, so that the
+     * The start parameter of a {@linkplain org.opengis.gm.primitive.Curve curve} shall always be 0.
+     * For {@linkplain org.opengis.gm.primitive.CurveSegment curve segments} within a
+     * {@linkplain org.opengis.gm.primitive.Curve curve}, the start of the
+     * {@linkplain org.opengis.gm.primitive.CurveSegment curve segment} shall be equal to those of the
+     * {@linkplain org.opengis.gm.primitive.Curve curve} where this segment begins, so that the
      * start parameter of any segment (except the first) shall be equal to the end
      * parameter of the previous segment.
      *
      * @return The parameter for the {@linkplain #getStartPoint start point}.
+     * @unitof Distance
      * @UML operation startParam
      *
      * @see #getStartPoint
      * @see #getStartConstructiveParam
      * @see #getEndParam
      * @see #getParam
-     *
-     * @revisit In the UML diagram, the return type <code>Distance</code>.
      */
     public double getStartParam();
 
     /**
      * Indicates the parameter for the {@linkplain #getEndPoint end point}.
-     * The end parameter of a {@link org.opengis.gm.primitive.Curve} shall always be the arc length
-     * of the curve. For {@link org.opengis.gm.primitive.CurveSegment}s within a
-     * {@link org.opengis.gm.primitive.Curve}, the end parameters of the
-     * {@link org.opengis.gm.primitive.CurveSegment} shall be equal to those of the
-     * {@link org.opengis.gm.primitive.Curve} where this segment ends, so that the
+     * The end parameter of a {@linkplain org.opengis.gm.primitive.Curve curve} shall always be the arc
+     * length of the curve. For {@linkplain org.opengis.gm.primitive.CurveSegment curve segments} within a
+     * {@linkplain org.opengis.gm.primitive.Curve curve}, the end parameters of the
+     * {@linkplain org.opengis.gm.primitive.CurveSegment curve segment} shall be equal to those of the
+     * {@linkplain org.opengis.gm.primitive.Curve curve} where this segment ends, so that the
      * start parameter of any segment (except the first) shall be equal to the end
      * parameter of the previous segment.
      *
      * @return The parameter for the {@linkplain #getEndPoint end point}.
+     * @unitof Distance
      * @UML operation endParam
      *
      * @see #getEndPoint
      * @see #getEndConstructiveParam
      * @see #getStartParam
      * @see #getParam
-     *
-     * @revisit In the UML diagram, the return type <code>Distance</code>.
      */
     public double getEndParam();
 
@@ -160,10 +157,10 @@ public interface GenericCurve {
      * Returns the direct position for a constructive parameter. This method shall be
      * an alternate representation of the curve as the continuous image of a real number
      * interval without the restriction that the parameter represents the arc length of the curve,
-     * nor restrictions between a {@link org.opengis.gm.primitive.Curve} and its component
-     * {@link org.opengis.gm.primitive.CurveSegment}s. The most common use of this operation is
-     * to expose the constructive equations of the underlying curve, especially useful when that
-     * curve is used to construct a parametric surface.
+     * nor restrictions between a {@linkplain org.opengis.gm.primitive.Curve curve} and its component
+     * {@linkplain org.opengis.gm.primitive.CurveSegment curve segments}. The most common use of this
+     * operation is to expose the constructive equations of the underlying curve, especially useful
+     * when that curve is used to construct a parametric surface.
      *
      * @param cp The constructive parameter.
      * @return The direct position for the given constructive parameter.
@@ -213,19 +210,18 @@ public interface GenericCurve {
      * return value shall be in a unit of measure appropriate for measuring distances. This method
      * shall return the distance between the two points along the curve. The default values of the
      * two parameters shall be the start point and the end point, respectively. If either of the
-     * points is not on the curve, then it shall be projected to the nearest {@link DirectPosition}
-     * on the curve before the distance is calculated. If the curve is not simple and passes through
-     * either of the two points more than once, the distance shall be the minimal distance between
-     * the two points on this {@link org.opengis.gm.primitive.Curve}.
+     * points is not on the curve, then it shall be projected to the nearest {@linkplain DirectPosition
+     * direct position} on the curve before the distance is calculated. If the curve is not simple and
+     * passes through either of the two points more than once, the distance shall be the minimal distance
+     * between the two points on this {@linkplain org.opengis.gm.primitive.Curve curve}.
      *
      * @param point1 The first point, or <code>null</code> for the
      *               {@linkplain #getStartPoint start point}.
      * @param point2 The second point, or <code>null</code> for the
      *               {@linkplain #getEndPoint end point}.
      * @return The length between the two specified points.
+     * @unitof Length
      * @UML operation length
-     *
-     * @revisit In UML diagram, the return type is <code>Length</code>.
      */
     public double length(Position point1, Position point2);
 
@@ -247,9 +243,8 @@ public interface GenericCurve {
      * @param cparam1 The first constructive parameter.
      * @param cparam2 The second constructive parameter.
      * @return The length between the two specified constructive parameter.
+     * @unitof Length
      * @UML operation length
-     *
-     * @revisit In UML diagram, the return type is <code>Length</code>.
      */
     public double length(double cparam1, double cparam2);
 
@@ -261,9 +256,9 @@ public interface GenericCurve {
      * between generated curve at any point and the original curve shall not be more than the
      * <code>maxOffset</code>. If both parameters are set, then both criteria shall be met.
      * If the original control points of the curve lie on the curve, then they shall be included
-     * in the returned {@link LineString}'s control points. If both parameters are set to zero,
-     * then the line string returned shall be constructed from the control points of the original
-     * curve.
+     * in the returned {@linkplain LineString line string}'s control points. If both parameters are
+     * set to zero, then the line string returned shall be constructed from the control points of the
+     * original curve.
      * <blockquote><font size=2>
      * <strong>NOTE:</strong> This function is useful in creating linear approximations of the
      * curve for simple actions such as display. It is often referred to as a "stroked curve".
@@ -281,9 +276,8 @@ public interface GenericCurve {
      * @param maxOffset  The maximal distance between generated curve at any point and the original
      *                   curve, or 0 for no constraint.
      * @return The an approximation of this curve as a line string.
+     * @unitof Distance (for arguments)
      * @UML operation asLineString
-     *
-     * @revisit In UML diagram, both argument type are <code>Distance</code>.
      */
     public LineString asLineString(double maxSpacing, double maxOffset);
 }

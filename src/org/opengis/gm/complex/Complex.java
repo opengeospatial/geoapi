@@ -12,16 +12,17 @@ import org.opengis.gm.primitive.Primitive;
 
 
 /**
- * A collection of geometrically disjoint, simple {@link Primitive}s. If a {@link Primitive} (other
- * than a {@link org.opengis.gm.primitive.Point} is in a particular <code>Complex</code>, then there
- * exists a set of primitives of lower dimension in the same complex that form the boundary of this
- * primitive.
+ * A collection of geometrically disjoint, simple {@linkplain Primitive primitives}. If a
+ * {@linkplain Primitive primitive} (other than a {@linkplain org.opengis.gm.primitive.Point point}
+ * is in a particular <code>Complex</code>, then there exists a set of primitives of lower dimension
+ * in the same complex that form the boundary of this primitive.
  * <br><br>
  * A geometric complex can be thought of as a set in two distinct ways. First, it is a finite set
  * of objects (via delegation to its elements member) and, second, it is an infinite set of point
  * values as a subtype of geometric object. The dual use of delegation and subtyping is to
- * disambiguate the two types of set interface. To determine if a {@link Primitive} <var>P</var>
- * is an element of a <code>Complex</code> <var>C</var>, call: <code>C.element().contains(P)</code>.
+ * disambiguate the two types of set interface. To determine if a {@linkplain Primitive primitive}
+ * <var>P</var> is an element of a <code>Complex</code> <var>C</var>,
+ * call: <code>C.element().contains(P)</code>.
  * <br><br>
  * The "{@linkplain #getElements elements}" attribute allows <code>Complex</code> to inherit the
  * behavior of {@link Set Set&lt;Primitive&gt;} without confusing the same sort of behavior

@@ -21,18 +21,14 @@ import org.opengis.gm.primitive.CurveSegment;
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 2.0
  *
- * @revisit The UML diagram defines the following constructor, which can't be
- *          express with the "toFoo" idiom:
- *
- *          "Takes two or more positions and creates the appropriate line string
- *           joining them."
+ * @see GeometryFactory#createLineString
  */
 public interface LineString extends CurveSegment {
     /**
      * Returns a sequence of positions between which the curve is linearly interpolated.
      * The first position in the sequence is the {@linkplain #getStartPoint start Point}
-     * of the <code>LineString</code>, and the last point in the sequence is the
-     * {@linkplain #getEndPoint end point} of the <code>LineString</code>.
+     * of this <code>LineString</code>, and the last point in the sequence is the
+     * {@linkplain #getEndPoint end point} of this <code>LineString</code>.
      *
      * @return The control points between which the curve is linearly interpolated.
      * @UML operation controlPoint
@@ -45,5 +41,5 @@ public interface LineString extends CurveSegment {
      * @return The sequence of line segments.
      * @UML operation asGM_LineSegment
      */
-    public List<LineSegment> asLineSegment();
+    public List<LineSegment> asLineSegments();
 }

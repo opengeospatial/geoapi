@@ -17,8 +17,8 @@ import java.util.List;
  */
 public interface PointGrid {
     /**
-     * Returns the width of this grid. All {@link PointArray} in this grid must
-     * have this length.
+     * Returns the width of this grid. All {@linkplain PointArray point array}
+     * in this grid must have this length.
      *
      * @return The grid width.
      * @see PointArray#length

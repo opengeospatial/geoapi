@@ -5,9 +5,9 @@ package org.opengis.gm.primitive;
 
 
 /**
- * The boundary of {@link Surface}s. A <code>SurfaceBoundary</code> consists of some number of
- * {@link Ring}s, corresponding to the various components of its boundary. In the normal 2D case,
- * one of these rings is distinguished as being the exterior boundary. In a general manifold this
+ * The boundary of {@linkplain Surface surfaces}. A <code>SurfaceBoundary</code> consists of some number
+ * of {@linkplain Ring rings}, corresponding to the various components of its boundary. In the normal 2D
+ * case, one of these rings is distinguished as being the exterior boundary. In a general manifold this
  * is not always possible, in which case all boundaries shall be listed as interior boundaries,
  * and the exterior will be empty.
  *
@@ -59,17 +59,4 @@ public interface SurfaceBoundary extends PrimitiveBoundary {
      * @UML operation interior
      */
     public Ring[] getInteriors();
-
-    /**
-     * Constructs a {@link Surface} by indicating its boundary as a collection
-     * of {@link Curve}s organized into this <code>SurfaceBoundary</code>.
-     * This method is guaranteed to work always in 2D coordinate spaces,
-     * In 3D coordinate spaces, this method shall require all of the defining boundary
-     * {@link Curve} instances to be coplanar (lie in a single plane) which will define
-     * the surface interior.
-     *
-     * @return The surface.
-     * @UML constructor Surface(SurfaceBoundary)
-     */
-    public Surface toSurface();
 }

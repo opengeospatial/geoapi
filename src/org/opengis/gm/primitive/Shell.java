@@ -8,10 +8,11 @@ import org.opengis.gm.complex.CompositeSurface;
 
 
 /**
- * Represents a single connected component of a {@link SolidBoundary}. A shell consists of a
- * number of references to {@link OrientableSurface}s connected in a topological cycle (an
- * object whose boundary is empty). Unlike a {@link Ring}, a <code>Shell</code>'s elements
- * have no natural sort order. Like {@link Ring}s, <code>Shell</code>s are simple.
+ * Represents a single connected component of a {@linkplain SolidBoundary solid boundary}.
+ * A shell consists of a number of references to {@linkplain OrientableSurface orientable
+ * surfaces} connected in a topological cycle (an object whose boundary is empty). Unlike a
+ * {@linkplain Ring ring}, a <code>Shell</code>'s elements have no natural sort order. Like
+ * {@linkplain Ring rings}, <code>Shell</code>s are simple.
  *
  * @UML type GM_Shell
  * @author ISO/DIS 19107

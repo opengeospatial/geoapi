@@ -9,10 +9,10 @@ import org.opengis.gm.complex.CompositeSurface;
 
 /**
  * A surface and an orientation inherited from {@link OrientablePrimitive}. If the orientation is
- * positive, then the <code>OrientableSurface</code> is a {@link Surface}. If the orientation is
- * negative, then the <code>OrientableSurface</code> is a reference to a {@link Surface} with an
- * upNormal that reverses the direction for this <code>OrientableSurface</code>, the sense of
- * "the top of the surface".
+ * positive, then the <code>OrientableSurface</code> is a {@linkplain Surface surface}. If the
+ * orientation is negative, then the <code>OrientableSurface</code> is a reference to a
+ * {@linkplain Surface surface} with an upNormal that reverses the direction for this
+ * <code>OrientableSurface</code>, the sense of "the top of the surface".
  *  
  * @UML type GM_OrientableSurface
  * @author ISO/DIS 19107
@@ -21,12 +21,12 @@ import org.opengis.gm.complex.CompositeSurface;
  */
 public interface OrientableSurface extends OrientablePrimitive {
     /**
-     * Returns the set of circular sequences of {@link OrientableCurve} that limit the
-     * extent of this <code>OrientableSurface</code>. These curves shall be organized
+     * Returns the set of circular sequences of {@linkplain OrientableCurve orientable curve} that
+     * limit the extent of this <code>OrientableSurface</code>. These curves shall be organized
      * into one circular sequence of curves for each boundary component of the
      * <code>OrientableSurface</code>. In cases where "exterior" boundary is not
-     * well defined, all the rings of the {@link SurfaceBoundary} shall be listed as
-     * "interior".
+     * well defined, all the rings of the {@linkplain SurfaceBoundary surface boundary}
+     * shall be listed as "interior".
      *
      * <blockquote><font size=2>
      * <strong>NOTE:</strong> The concept of exterior boundary for a surface is really only

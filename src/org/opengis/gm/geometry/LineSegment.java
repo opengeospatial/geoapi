@@ -8,8 +8,8 @@ import org.opengis.gm.DirectPosition;
 
 
 /**
- * Two distinct {@link DirectPosition}s (the {@linkplain #getStartPoint start point} and
- * {@link #getEndPoint end point}) joined by a straight line. Thus its interpolation attribute
+ * Two distinct {@linkplain DirectPosition direct positions} (the {@linkplain #getStartPoint start point}
+ * and {@linkplain #getEndPoint end point}) joined by a straight line. Thus its interpolation attribute
  * shall be {@link org.opengis.gm.primitive.CurveInterpolation#LINEAR LINEAR}. The default
  * parameterization is:
  *
@@ -34,10 +34,7 @@ import org.opengis.gm.DirectPosition;
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 2.0
  *
- * @revisit The UML diagram defines the following constructor, which can't be
- *          express with the "toFoo" idiom:
- *
- *          "takes two positions and creates the appropriate line segment joining them."
+ * @see GeometryFactory#createLineSegment
  */
 public interface LineSegment extends LineString {
 }

@@ -21,18 +21,19 @@ import org.opengis.gm.geometry.Position;
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 2.0
  *
- * @see Position#toPoint
+ * @see PrimitiveFactory#createPoint
  *
  * @revisit Some associations are commented out for now.
  */
 public interface Point extends Primitive {
     /**
-     * Returns the direct position of this point. <code>Point</code> is the only subclass of
-     * {@link Primitive} that cannot use {@link Position}s to represent its defining geometry.
-     * A {@link Position} is either a {@link DirectPosition} or a reference to a <code>Point</code>
-     * (from which a {@link DirectPosition} may be obtained). By not allowing <code>Point</code>
-     * to use this technique, infinitely recursive references are prevented. Applications may
-     * choose another mechanism to prevent this logical problem.
+     * Returns the direct position of this point. <code>Point</code> is the only subclass
+     * of {@linkplain Primitive primitive} that cannot use {@linkplain Position positions}
+     * to represent its defining geometry. A {@linkplain Position position} is either a
+     * {@linkplain DirectPosition direct position} or a reference to a <code>Point</code>
+     * (from which a {@linkplain DirectPosition direct position} may be obtained). By not
+     * allowing <code>Point</code> to use this technique, infinitely recursive references
+     * are prevented. Applications may choose another mechanism to prevent this logical problem.
      *
      * @return The direct position.
      * @UML mandatory position
@@ -48,10 +49,10 @@ public interface Point extends Primitive {
     public PrimitiveBoundary getBoundary();
 
     /**
-     * Returns the bearing, as a unit vector, of the tangent (at this <code>Point</code>)
-     * to the curve between this <code>Point</code> and a passed {@link Position}.
+     * Returns the bearing, as a unit vector, of the tangent (at this <code>Point</code>) to
+     * the curve between this <code>Point</code> and a passed {@linkplain Position position}.
      * The choice of the curve type for defining the bearing is dependent on the 
-     * {@link org.opengis.sc.CRS} in which this <code>Point</code> is defined.
+     * {@linkplain org.opengis.sc.CRS CRS} in which this <code>Point</code> is defined.
      * For example, in the Mercator projection, the curve is the rhumb line.
      * In 3D, geocentric coordinate system, the curve may be the geodesic joining the two
      * points along the surface of the geoid or ellipsoid in use. Implementations that support

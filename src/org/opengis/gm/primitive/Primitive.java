@@ -8,6 +8,7 @@ import java.util.Set;
 
 // OpenGIS direct dependencies
 import org.opengis.gm.Geometry;
+import org.opengis.gm.Envelope;
 import org.opengis.gm.DirectPosition;
 import org.opengis.gm.complex.Complex;
 
@@ -25,15 +26,16 @@ import org.opengis.gm.complex.Complex;
  * have additional properties such as closure by boundary operations and mutually exclusive component
  * parts. <code>Primitive</code> and {@link org.opengis.gm.complex.Complex} share most semantics, in
  * the meaning of operations and attributes. There is an exception in that a <code>Primitive</code>
- * shall not contain its boundary (except in the trivial case of {@link Point} where the boundary
- * is empty), while a {@link org.opengis.gm.complex.Complex} shall contain its boundary in all cases.
+ * shall not contain its boundary (except in the trivial case of {@linkplain Point point} where the
+ * boundary is empty), while a {@linkplain org.opengis.gm.complex.Complex complex} shall contain its
+ * boundary in all cases.
  *
  * @UML type GM_Primitive
  * @author ISO/DIS 19107
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 2.0
  *
- * @see org.opengis.gm.Envelope#toPrimitive
+ * @see PrimitiveFactory#createPrimitive(Envelope)
  *
  * @revisit Some associations are commented out for now.
  */
@@ -58,8 +60,8 @@ public interface Primitive extends Geometry {
      * <code>Primitive</code> to be "interior to" another.
      *
      * This set should normally be empty when the <code>Primitive</code>s are within a
-     * {@link org.opengis.gm.complex.Complex}, since in that case the boundary information
-     * is sufficient for most cases.
+     * {@linkplain org.opengis.gm.complex.Complex complex}, since in that case the boundary
+     * information is sufficient for most cases.
      *
      * This association should not be used when the two <code>Primitive</code>s are not close
      * to one another. The intent is to allow applications to compensate for inherent and
@@ -96,8 +98,8 @@ public interface Primitive extends Geometry {
 
     /**
      * Returns the set of complexes which contains this primitive. A <code>Primitive</code> may
-     * be in several {@link Complex}es. This association may not be navigable in this direction
-     * (from primitive to complex), depending on the implementation.
+     * be in several {@linkplain Complex complexes}. This association may not be navigable in this
+     * direction (from primitive to complex), depending on the implementation.
      *
      * @return The set of complexex which contains this primitive.
      * @UML association complex
@@ -108,13 +110,12 @@ public interface Primitive extends Geometry {
     public Set<Complex> getComplexes();
 
     /**
-     * Returns the orientable primitives associated with this primitive.
-     * Each <code>Primitive</code> of dimension 1 or 2 is associated to two
-     * {@link OrientablePrimitive}s, one for each possible orientation.
-     * For curves and surfaces, there are exactly two orientable primitives
-     * for each geometric object. For the positive orientation, the
-     * {@link OrientablePrimitive} shall be the corresponding {@link Curve}
-     * or {@link Surface}.
+     * Returns the orientable primitives associated with this primitive. Each <code>Primitive</code>
+     * of dimension 1 or 2 is associated to two {@linkplain OrientablePrimitive orientable primitives},
+     * one for each possible orientation. For curves and surfaces, there are exactly two orientable
+     * primitives for each geometric object. For the positive orientation, the
+     * {@linkplain OrientablePrimitive orientable primitive} shall be the corresponding
+     * {@linkplain Curve curve} or {@linkplain Surface surface}.
      *
      * @return The orientable primitives as an array of length 2, or <code>null</code> if none.
      * @UML association proxy

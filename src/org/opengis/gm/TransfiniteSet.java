@@ -24,15 +24,15 @@ public interface TransfiniteSet {
     /**
      * Returns <code>true</code> if this <code>TransfiniteSet</code> contains another
      * <code>TransfiniteSet</code>. If the passed <code>TransfiniteSet</code> is a
-     * {@link org.opengis.gm.primitive.Point}, then this operation is the equivalent
-     * of a set-element test for the {@link DirectPosition} of that point within this
-     * <code>TransfiniteSet</code>.
+     * {@linkplain org.opengis.gm.primitive.Point point}, then this operation is the
+     * equivalent of a set-element test for the {@linkplain DirectPosition direct position}
+     * of that point within this <code>TransfiniteSet</code>.
      *
      * <blockquote><font size=2>
      * <strong>NOTE:</strong> <code>contains</code> is strictly a set theoretic containment,
-     * and has no dimensionality constraint. In a {@link org.opengis.gm.complex.Complex}, no
-     * {@link org.opengis.gm.primitive.Primitive} will contain another unless a dimension is
-     * skipped.
+     * and has no dimensionality constraint. In a {@linkplain org.opengis.gm.complex.Complex
+     * complex}, no {@linkplain org.opengis.gm.primitive.Primitive primitive} will contain
+     * another unless a dimension is skipped.
      * </font></blockquote>
      *
      * @param  pointSet The set to be checked for containment in this set.
@@ -51,19 +51,20 @@ public interface TransfiniteSet {
 
     /**
      * Returns <code>true</code> if this <code>TransfiniteSet</code> intersects another
-     * <code>TransfiniteSet</code>. Withing a {@link org.opengis.gm.complex.Complex},
-     * the {@link org.opengis.gm.primitive.Primitive}s do not intersect one another.
+     * <code>TransfiniteSet</code>. Withing a {@linkplain org.opengis.gm.complex.Complex complex},
+     * the {@linkplain org.opengis.gm.primitive.Primitive primitives} do not intersect one another.
      * In general, topologically structured data uses shared geometric objects to
      * capture intersection information.
      *
      * <blockquote><font size=2>
      * <strong>NOTE:</strong> This intersect is strictly a set theoretic common containment of
-     * {@link DirectPosition}s. Two {@link org.opengis.gm.primitive.Curve}s do not intersect if
-     * they share a common end point because {@link org.opengis.gm.primitive.Primitive}s are
-     * considered to be open (do not contain their boundary). If two 
-     * {@link org.opengis.gm.complex.CompositeCurve}s share a common end point, then they
-     * intersect because {@link org.opengis.gm.complex.Complex}es are considered to be closed
-     * (contain their boundary).
+     * {@linkplain DirectPosition direct positions}.
+     * Two {@linkplain org.opengis.gm.primitive.Curve curves} do not intersect if they share a common
+     * end point because {@linkplain org.opengis.gm.primitive.Primitive primitives} are considered to be
+     * open (do not contain their boundary).
+     * If two {@linkplain org.opengis.gm.complex.CompositeCurve composite curves} share a common end point,
+     * then they intersect because {@linkplain org.opengis.gm.complex.Complex complexes} are considered to
+     * be closed (contain their boundary).
      * </font></blockquote>
      *
      * @param  pointSet The set to be checked for intersection with this set.
@@ -75,8 +76,9 @@ public interface TransfiniteSet {
      * Returns <code>true</code> if this <code>TransfiniteSet</code> is equal to another
      * <code>TransfiniteSet</code>. Two different instances of <code>TransfiniteSet</code>
      * are equal if they return the same boolean value for the operation
-     * {@link #contains(DirectPosition) contains} for every tested {@link DirectPosition}
-     * within the valid range of the coordinate reference system associated to the object.
+     * {@link #contains(DirectPosition) contains} for every tested {@linkplain DirectPosition
+     * direct position} within the valid range of the coordinate reference system associated
+     * to the object.
      *
      * <blockquote><font size=2>
      * <strong>NOTE:</strong> Since an infinite set of direct positions cannot be tested,

@@ -24,12 +24,12 @@ import org.opengis.gm.primitive.Primitive;
  */
 public interface Composite extends Complex {
     /**
-     * Returns a homogeneous collection of {@link Primitive}s whose union would be the core
-     * geometry of the composite. The complex would include all primitives in the generator
+     * Returns a homogeneous collection of {@linkplain Primitive primitives} whose union would be
+     * the core geometry of the composite. The complex would include all primitives in the generator
      * and all primitives on the boundary of these primitives, and so forth until
-     * {@link org.opengis.gm.primitive.Point}s are included. Thus the
+     * {@linkplain org.opengis.gm.primitive.Point points} are included. Thus the
      * <code>generators</code> on <code>Composite</code> is a subset of the
-     * {@link Complex#getElements elements} on {@link Complex}.
+     * {@linkplain Complex#getElements elements} on {@linkplain Complex complex}.
      *
      * @return The list of primitives in this composite.
      * @UML association generator

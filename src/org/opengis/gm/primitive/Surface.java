@@ -20,8 +20,8 @@ import org.opengis.gm.geometry.GenericSurface;
  * boundary component, and interchanges the conceptual "up" and "down" direction of the surface.
  * If the surface is the boundary of a solid, the "up" direction is usually outward. For closed
  * surfaces, which have no boundary, the up direction is that of the surface patches, which must
- * be consistent with one another. Its included {@link SurfacePatch}es describe the interior
- * structure of a <code>Surface</code>.
+ * be consistent with one another. Its included {@linkplain SurfacePatch surface patches} describe
+ * the interior structure of a <code>Surface</code>.
  *
  * <blockquote><font size=2>
  * <strong>NOTE:</strong> Other than the restriction on orientability, no other "validity" condition is required for GM_Surface.
@@ -32,20 +32,14 @@ import org.opengis.gm.geometry.GenericSurface;
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 2.0
  *
- * @see SurfaceBoundary#toSurface
- *
- * @revisit The specification ask for a constructor:
- *
- *          "Takes a list of {@link SurfacePatch}es with the appropriate side-toside
- *           relationships and creates a {@link Surface}."
- *
- *          Where to put this constructor? The "toFoo" idiom don't work here.
+ * @see PrimitiveFactory#createSurface(List)
+ * @see PrimitiveFactory#createSurface(SurfaceBoundary)
  */
 public interface Surface extends OrientableSurface, GenericSurface {
     /**
-     * Relates this <code>Surface</code> to a set of {@link SurfacePatch}es that shall be
-     * joined together to form this surface. Depending on the interpolation method, the set of
-     * patches may require significant additional structure.
+     * Relates this <code>Surface</code> to a set of {@linkplain SurfacePatch surface patches} that
+     * shall be joined together to form this surface. Depending on the interpolation method, the set
+     * of patches may require significant additional structure.
      *
      * If the surface {@linkplain #getCoordinateDimension coordinate dimension} is 2, then the
      * entire <code>Surface</code> is one logical patch defined by linear interpolation from the

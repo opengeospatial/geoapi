@@ -5,9 +5,10 @@ package org.opengis.gm.primitive;
 
 
 /**
- * The boundary of {@link Solid}s. Solid boundaries are similar to {@linkplain SurfaceBoundary
- * surface boundaries}. In normal 3-dimensional Euclidean space, one {@link Shell} is
- * distinguished as the exterior. In the more general case, this is not always possible.
+ * The boundary of {@linkplain Solid solids}. Solid boundaries are similar to
+ * {@linkplain SurfaceBoundary surface boundaries}. In normal 3-dimensional Euclidean
+ * space, one {@linkplain Shell shell} is distinguished as the exterior. In the more
+ * general case, this is not always possible.
  *
  * <blockquote><font size=2>
  * <strong>NOTE:</strong> An alternative use of solids with no external shell would be to define
@@ -40,15 +41,4 @@ public interface SolidBoundary extends PrimitiveBoundary {
      * @UML operation interior
      */
     public Shell[] getInteriors();
-
-    /**
-     * Constructs a {@link Solid} by indicating its boundary as a collection
-     * of {@link Shell}s organized into this <code>SolidBoundary</code>.
-     * Since this specification is limited to 3-dimensional coordinate reference
-     * systems, any solid is definable by its boundary.
-     *
-     * @return The solid.
-     * @UML constructor Solid(SolidBoundary)
-     */
-    public Solid toSolid();
 }
