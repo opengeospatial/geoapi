@@ -46,11 +46,11 @@ public interface ParameterValueGroup extends GeneralParameterValue {
      * {@linkplain ParameterValue parameter value} or group is found for the
      * given name, then this method search recursively in subgroups (if any).
      *
-     * @param  name The parameter to search for.
+     * @param  name The case insensitive name of the parameter to search for.
      * @return The parameter value for the given name.
-     * @throws IllegalArgumentException if there is no parameter for the given name.
+     * @throws InvalidParameterNameException if there is no parameter for the given name.
      */
-    public GeneralParameterValue getValue(String name) throws IllegalArgumentException;
+    public GeneralParameterValue getValue(String name) throws InvalidParameterNameException;
 
     /**
      * Returns a copy of this group of parameter values.

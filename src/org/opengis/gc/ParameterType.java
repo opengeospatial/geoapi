@@ -19,6 +19,8 @@ import org.opengis.cc.Conversion;  // For Javadoc
  * @UML codelist GC_ParameterType
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 1.1
+ *
+ * @revisit Do we really need this enumeration? We could uses {@link Class} instead.
  */
 public final class ParameterType extends CodeList {
     /**

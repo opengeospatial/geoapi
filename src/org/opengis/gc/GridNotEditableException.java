@@ -5,7 +5,7 @@ package org.opengis.gc;
 
 
 /**
- * Throws when an attempt is made to write in a non-editable grid.
+ * Thrown when an attempt is made to write in a non-editable grid.
  *
  * @UML exception GC_GridNotEditable
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>

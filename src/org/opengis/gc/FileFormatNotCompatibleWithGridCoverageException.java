@@ -9,7 +9,7 @@ import javax.imageio.IIOException; // For Javadoc
 
 
 /**
- * Throws when a {@linkplain GridCoverage grid coverage} can't be exported in the specified
+ * Thrown when a {@linkplain GridCoverage grid coverage} can't be exported in the specified
  * format.
  *
  * @UML exception GC_FileFormatNotCompatibleWithGridCoverage

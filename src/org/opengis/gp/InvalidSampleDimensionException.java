@@ -5,11 +5,14 @@ package org.opengis.gp;
 
 
 /**
- * Throws when the index of a sample dimension is out of bounds.
+ * Thrown when the index of a {@linkplain org.opengis.cv.SampleDimension sample dimension}
+ * is out of bounds.
  *
  * @UML exception GP_InvalidSampleDimension
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 1.1
+ *
+ * @see GridAnalysis
  */
 public class InvalidSampleDimensionException extends IllegalArgumentException {
     /**

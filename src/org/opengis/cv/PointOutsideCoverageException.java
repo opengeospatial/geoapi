@@ -8,7 +8,7 @@ import org.opengis.gm.DirectPosition;  // For Javadoc
 
 
 /**
- * Throws when a
+ * Thrown when a
  * <code>{@linkplain Coverage#evaluate(DirectPosition, double[]) evaluate}(&hellip;)</code>
  * method is invoked with a point outside coverage.
  *

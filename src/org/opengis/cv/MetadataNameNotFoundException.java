@@ -5,7 +5,7 @@ package org.opengis.cv;
 
 
 /**
- * Throws when a requested metadata is not found.
+ * Thrown when a requested metadata is not found.
  *
  * @UML exception CV_MetadataNameNotFound
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>

@@ -13,8 +13,8 @@ package org.opengis.util;
  * @version 2.0
  *
  * @see java.lang.Cloneable
- * @see <A HREF="http://developer.java.sun.com/developer/bugParade/bugs/4098033.html">Cloneable
- *      doesn't define <code>clone()</code></A> on Sun's bug parade
+ * @see <A HREF="http://developer.java.sun.com/developer/bugParade/bugs/4098033.html">&quot;<CITE>Cloneable
+ *      doesn't define <code>clone()</code></CITE>&quot; on Sun's bug parade</A>
  */
 public interface Cloneable extends java.lang.Cloneable {
     /**
