@@ -1,19 +1,21 @@
 package org.opengis.filter;
 
 /**
- * <B>PENDING</B>: How should this work given that we allow Features to have
- * composite primary keys?  Things would be a lot easier if Features were
- * required to have a String ID.  Should we pass in an array of objects instead?
+ * Instances of this interface represent a filter that passes only for features
+ * that have the feature ID given to this object.  This class deviates from the
+ * OGC Filter specification somewhat since we allow our Feature objects to have
+ * composite primary keys.  So a feature ID must be an array of objects.
  */
 public interface FeatureId extends Filter {
-    
     /**
-     *
+     * Returns the array of objects whose elements will be compared against the
+     * (possibly composite) primary key of features.  If a given feature type
+     * has only one attribute for its primary key, then the returned array may
+     * be of length one.
+     * <p>
+     * It is an error to attempt to execute a Filter where the array given to
+     * this method has a length that is different from the number of primary key
+     * columns of the features being filtered.
      */
-    public String getFID();
-    
-    /**
-     *
-     */
-    public void setFID(String fid);
+    public Object [] getFID();
 }

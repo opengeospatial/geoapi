@@ -4,14 +4,17 @@ import org.opengis.filter.expression.Expression;
 
 /**
  * Abstract base class for filters that compare exactly two values against each
- * other.  The nature of the comparison is dependent on the subclass.  This
- * interface has no methods, but is included to line up with the types in the
- * schemas for OGC Filter 1.0.0.
+ * other.  The nature of the comparison is dependent on the subclass.
  */
-public interface BinaryComparisonOperator extends ComparisonOperator {
+public interface BinaryComparisonOperator extends Filter {
+    /**
+     * Returns the first of the two expressions to be compared by this operator.
+     */
     public Expression getExpression1();
-    public void setExpression1(Expression expr);
 
+    /**
+     * Returns the second of the two expressions to be compared by this
+     * operator.
+     */
     public Expression getExpression2();
-    public void setExpression2(Expression expr);
 }

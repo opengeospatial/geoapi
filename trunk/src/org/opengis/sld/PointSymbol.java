@@ -1,12 +1,16 @@
-/*
- * Created on Aug 3, 2004
- */
 package org.opengis.sld;
 
 /**
- * Stuff for how to draw points.
- * Not finished... currently just a placeholder.
+ * Instances of this interface indicate how to draw point geometries on a map.
  */
 public interface PointSymbol extends Symbol {
+    /**
+     * Returns the graphic that will be drawn at each point of the geometry.
+     */
+    public Graphic getGraphic();
 
+    /**
+     * Sets the graphic that will be drawn at each point of the geometry.
+     */
+    public void setGraphic(Graphic graphic);
 }

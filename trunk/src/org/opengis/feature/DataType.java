@@ -138,7 +138,7 @@ public final class DataType implements Comparable, Serializable, Cloneable {
 
     /**
      * Constant to be used when the value of an attribute is an instance of
-     * <code>org.opengis.sld.FeatureTypeStyle</code>.  Such an attribute may be
+     * <code>org.opengis.sld.FeatureStyle</code>.  Such an attribute may be
      * used in the portrayal of the geometry contained by a feature.
      */
     public static final DataType STYLE    = new DataType(101, "STYLE");
@@ -148,7 +148,7 @@ public final class DataType implements Comparable, Serializable, Cloneable {
      * the static constants.
      */
     private static final DataType [] ALL = new DataType [] {
-        INTEGER, DECIMAL, DOUBLE, STRING,
+        INTEGER, DECIMAL, DOUBLE, STRING, DATETIME, OBJECT,
         GEOMETRY, STYLE
     };
 }
