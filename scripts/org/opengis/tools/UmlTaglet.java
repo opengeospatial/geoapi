@@ -129,7 +129,7 @@ public final class UmlTaglet implements Taglet {
      */
     public String toString(final Tag tag) {
         final StringTokenizer tokens = new StringTokenizer(tag.text());
-        final StringBuffer buffer = new StringBuffer("\n<DT><FONT COLOR='gray'>UML");
+        final StringBuffer buffer = new StringBuffer("\n<DT><FONT COLOR='gray'>UML identifier");
         if (tokens.hasMoreTokens()) {
             String type = tokens.nextToken();
             if (type.equalsIgnoreCase("codelist")) {
@@ -149,9 +149,9 @@ public final class UmlTaglet implements Taglet {
             } else {
                 warning(tag, "Unknow UML type: "+type);
             }
-            buffer.append(' ');
+            buffer.append(" (<I>");
             buffer.append(type);
-            buffer.append(":");
+            buffer.append("</I>):");
             if (tokens.hasMoreTokens()) {
                 buffer.append(" <CODE><B>");
                 buffer.append(tokens.nextToken());
@@ -163,7 +163,7 @@ public final class UmlTaglet implements Taglet {
                 warning(tag, "Missing UML identifier");
             }
         } else {
-            buffer.append(" (unknow type)");
+            buffer.append(": <B>(unknow)</B>");
             warning(tag, "Missing UML type");
         }
         buffer.append("</FONT>\n");
