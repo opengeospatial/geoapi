@@ -4,15 +4,16 @@
 package org.opengis.gc;
 
 // J2SE direct dependencies
-import java.awt.image.Raster;             // For Javadoc
-import java.awt.image.WritableRaster;     // For Javadoc
-import java.awt.image.RenderedImage;      // For Javadoc
-import javax.media.jai.PixelAccessor;     // For Javadoc
-import javax.media.jai.UnpackedImageData; // For Javadoc
+import java.awt.image.Raster;              // For Javadoc
+import java.awt.image.WritableRaster;      // For Javadoc
+import java.awt.image.RenderedImage;       // For Javadoc
+import javax.media.jai.PixelAccessor;      // For Javadoc
+import javax.media.jai.UnpackedImageData;  // For Javadoc
 
 // OpenGIS direct dependencies
 import org.opengis.cv.Coverage;
-import org.opengis.cv.SampleDimension;    // For Javadoc
+import org.opengis.cv.SampleDimension;     // For Javadoc
+import org.opengis.cv.SampleDimensionType; // For Javadoc
 
 
 /**
