@@ -10,7 +10,7 @@
 package org.opengis.go.display.primitive;
 
 // OpenGIS direct dependencies
-import org.opengis.gm.Geometry;
+import org.opengis.spatialschema.geometry.Geometry;
 
 
 /**

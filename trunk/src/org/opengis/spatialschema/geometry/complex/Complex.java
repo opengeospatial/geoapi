@@ -7,13 +7,13 @@ package org.opengis.spatialschema.geometry.complex;
 import java.util.Set;
 
 // OpenGIS direct dependencies
-import org.opengis.gm.Geometry;
-import org.opengis.gm.primitive.Primitive;
+import org.opengis.spatialschema.geometry.Geometry;
+import org.opengis.spatialschema.geometry.primitive.Primitive;
 
 
 /**
  * A collection of geometrically disjoint, simple {@linkplain Primitive primitives}. If a
- * {@linkplain Primitive primitive} (other than a {@linkplain org.opengis.gm.primitive.Point point}
+ * {@linkplain Primitive primitive} (other than a {@linkplain org.opengis.spatialschema.geometry.primitive.Point point}
  * is in a particular <code>Complex</code>, then there exists a set of primitives of lower dimension
  * in the same complex that form the boundary of this primitive.
  * <br><br>
@@ -26,7 +26,7 @@ import org.opengis.gm.primitive.Primitive;
  * <br><br>
  * The "{@linkplain #getElements elements}" attribute allows <code>Complex</code> to inherit the
  * behavior of {@link Set Set&lt;Primitive&gt;} without confusing the same sort of behavior
- * inherited from {@link org.opengis.gm.TransfiniteSet TransfiniteSet&lt;DirectPosition&gt;}
+ * inherited from {@link org.opengis.spatialschema.geometry.TransfiniteSet TransfiniteSet&lt;DirectPosition&gt;}
  * inherited through {@link Geometry}. Complexes shall be used in application schemas where
  * the sharing of geometry is important, such as in the use of computational topology. In a
  * complex, primitives may be aggregated many-to-many into composites for use as attributes

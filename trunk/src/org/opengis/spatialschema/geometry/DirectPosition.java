@@ -11,7 +11,7 @@ import org.opengis.util.Cloneable;
 /**
  * Holds the coordinates for a position within some coordinate reference system. Since
  * <code>DirectPosition</code>s, as data types, will often be included in larger objects
- * (such as {@linkplain org.opengis.gm.Geometry geometries}) that have references to
+ * (such as {@linkplain org.opengis.spatialschema.geometry.Geometry geometries}) that have references to
  * {@linkplain CRS}, the {@link #getCoordinateReferenceSystem} method may returns
  * <code>null</code> if this particular <code>DirectPosition</code> is included in a larger
  * object with such a reference to a {@linkplain CRS}. In this case, the cordinate reference

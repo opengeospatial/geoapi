@@ -4,8 +4,8 @@
 package org.opengis.spatialschema.geometry.primitive;
 
 // OpenGIS direct dependencies
-import org.opengis.gm.geometry.PointArray;
-import org.opengis.gm.geometry.GenericCurve;
+import org.opengis.spatialschema.geometry.geometry.PointArray;
+import org.opengis.spatialschema.geometry.geometry.GenericCurve;
 
 
 /**
@@ -132,8 +132,8 @@ public interface CurveSegment extends GenericCurve {
      * be cycles in themselves. The most likely scenario is that all of the points used will be transients
      * (constructed to support the return value), except for the start point and end point of the aggregated
      * {@linkplain Curve curve}. These two positions, in the case where the {@linkplain Curve curve} is
-     * involved in a {@linkplain org.opengis.gm.complex.Complex complex}, will be represented as
-     * {@linkplain Point points} in the same {@linkplain org.opengis.gm.complex.Complex complex}.
+     * involved in a {@linkplain org.opengis.spatialschema.geometry.complex.Complex complex}, will be represented as
+     * {@linkplain Point points} in the same {@linkplain org.opengis.spatialschema.geometry.complex.Complex complex}.
      * </font></blockquote>
      *
      * @return The sets of positions on the boundary.

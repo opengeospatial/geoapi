@@ -4,7 +4,7 @@
 package org.opengis.coverage;
 
 // OpenGIS direct dependencies
-import org.opengis.gm.DirectPosition;  // For Javadoc
+import org.opengis.spatialschema.geometry.DirectPosition;  // For Javadoc
 
 
 /**

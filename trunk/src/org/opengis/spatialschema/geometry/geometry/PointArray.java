@@ -7,7 +7,7 @@ package org.opengis.spatialschema.geometry.geometry;
 import java.util.List;
 
 // OpenGIS direct dependencies
-import org.opengis.gm.DirectPosition;
+import org.opengis.spatialschema.geometry.DirectPosition;
 import org.opengis.crs.crs.CRS;
 import org.opengis.crs.crs.CoordinateReferenceSystem; // For Javadoc
 

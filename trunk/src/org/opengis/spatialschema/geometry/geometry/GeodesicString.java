@@ -7,8 +7,8 @@ package org.opengis.spatialschema.geometry.geometry;
 import java.util.List;
 
 // OpenGIS direct dependencies
-import org.opengis.gm.primitive.CurveSegment;
-import org.opengis.gm.primitive.CurveInterpolation;
+import org.opengis.spatialschema.geometry.primitive.CurveSegment;
+import org.opengis.spatialschema.geometry.primitive.CurveInterpolation;
 
 
 /**

@@ -4,13 +4,13 @@
 package org.opengis.spatialschema.geometry.geometry;
 
 // OpenGIS direct dependencies
-import org.opengis.gm.DirectPosition;
+import org.opengis.spatialschema.geometry.DirectPosition;
 
 
 /**
  * Two distinct {@linkplain DirectPosition direct positions} (the {@linkplain #getStartPoint start point}
  * and {@linkplain #getEndPoint end point}) joined by a straight line. Thus its interpolation attribute
- * shall be {@link org.opengis.gm.primitive.CurveInterpolation#LINEAR LINEAR}. The default
+ * shall be {@link org.opengis.spatialschema.geometry.primitive.CurveInterpolation#LINEAR LINEAR}. The default
  * parameterization is:
  *
  * <blockquote><pre>

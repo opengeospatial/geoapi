@@ -7,10 +7,10 @@ package org.opengis.spatialschema.geometry.primitive;
 import java.util.Set;
 
 // OpenGIS direct dependencies
-import org.opengis.gm.Geometry;
-import org.opengis.gm.Envelope;
-import org.opengis.gm.DirectPosition;
-import org.opengis.gm.complex.Complex;
+import org.opengis.spatialschema.geometry.Geometry;
+import org.opengis.spatialschema.geometry.Envelope;
+import org.opengis.spatialschema.geometry.DirectPosition;
+import org.opengis.spatialschema.geometry.complex.Complex;
 
 
 /**
@@ -24,10 +24,10 @@ import org.opengis.gm.complex.Complex;
  * Any geometric object that is used to describe a feature is a collection of geometric primitives.
  * A collection of geometric primitives may or may not be a geometric complex. Geometric complexes
  * have additional properties such as closure by boundary operations and mutually exclusive component
- * parts. <code>Primitive</code> and {@link org.opengis.gm.complex.Complex} share most semantics, in
+ * parts. <code>Primitive</code> and {@link org.opengis.spatialschema.geometry.complex.Complex} share most semantics, in
  * the meaning of operations and attributes. There is an exception in that a <code>Primitive</code>
  * shall not contain its boundary (except in the trivial case of {@linkplain Point point} where the
- * boundary is empty), while a {@linkplain org.opengis.gm.complex.Complex complex} shall contain its
+ * boundary is empty), while a {@linkplain org.opengis.spatialschema.geometry.complex.Complex complex} shall contain its
  * boundary in all cases.
  *
  * @UML type GM_Primitive
@@ -55,12 +55,12 @@ public interface Primitive extends Geometry {
     /**
      * Returns the <code>Primitive</code>s which are by definition coincident with this one.
      * This allows applications to override the
-     * {@link org.opengis.gm.TransfiniteSet TransfiniteSet&lt;DirectPosition&gt;}
+     * {@link org.opengis.spatialschema.geometry.TransfiniteSet TransfiniteSet&lt;DirectPosition&gt;}
      * interpretation and its associated computational geometry, and declare one
      * <code>Primitive</code> to be "interior to" another.
      *
      * This set should normally be empty when the <code>Primitive</code>s are within a
-     * {@linkplain org.opengis.gm.complex.Complex complex}, since in that case the boundary
+     * {@linkplain org.opengis.spatialschema.geometry.complex.Complex complex}, since in that case the boundary
      * information is sufficient for most cases.
      *
      * This association should not be used when the two <code>Primitive</code>s are not close

@@ -8,9 +8,9 @@ import java.util.Set;
 
 // OpenGIS direct dependencies
 import org.opengis.crs.crs.CRS;
-import org.opengis.gm.Envelope;
-import org.opengis.gm.DirectPosition;
-import org.opengis.gm.complex.Complex;
+import org.opengis.spatialschema.geometry.Envelope;
+import org.opengis.spatialschema.geometry.DirectPosition;
+import org.opengis.spatialschema.geometry.complex.Complex;
 
 
 /**
@@ -36,7 +36,7 @@ public interface Geometry extends TransfiniteSet {
      *
      * The most common example where the CRS is <code>null</code> is the elements and subcomplexes
      * of a maximal {@linkplain Complex complex}. The {@linkplain Complex complex} can carry the
-     * {@linkplain CRS} for all {@linkplain org.opengis.gm.primitive.Primitive primitive} elements
+     * {@linkplain CRS} for all {@linkplain org.opengis.spatialschema.geometry.primitive.Primitive primitive} elements
      * and for all {@link Complex} subcomplexes.
      * <br><br>
      * This association is only navigable from <code>Geometry</code> to {@linkplain CRS}.
@@ -144,7 +144,7 @@ public interface Geometry extends TransfiniteSet {
     /**
      * Returns <code>true</code> if this <code>Geometry</code> has an empty boundary after topological
      * simplification (removal of overlaps between components in non-structured aggregates, such as
-     * subclasses of {@link org.opengis.gm.aggregate.Aggregate}). This condition is alternatively
+     * subclasses of {@link org.opengis.spatialschema.geometry.aggregate.Aggregate}). This condition is alternatively
      * referred to as being "closed" as in a "closed curve." This creates some confusion since there
      * are two distinct and incompatible definitions for the word "closed". The use of the word cycle
      * is rarer (generally restricted to the field of algebraic topology), but leads to less confusion.
@@ -309,8 +309,8 @@ public interface Geometry extends TransfiniteSet {
      * The <code>Geometry</code> returned is in the same reference system as this original
      * <code>Geometry</code>. The dimension of the returned <code>Geometry</code> is normally
      * the same as the coordinate dimension - a collection of
-     * {@linkplain org.opengis.gm.primitive.Surface surfaces} in 2D space and a collection of
-     * {@linkplain org.opengis.gm.primitive.Solid solids} in 3D space, but this may be application
+     * {@linkplain org.opengis.spatialschema.geometry.primitive.Surface surfaces} in 2D space and a collection of
+     * {@linkplain org.opengis.spatialschema.geometry.primitive.Solid solids} in 3D space, but this may be application
      * defined.
      *
      * @param distance The distance.

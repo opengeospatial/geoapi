@@ -4,12 +4,12 @@
 package org.opengis.spatialschema.geometry.complex;
 
 // OpenGIS direct dependencies
-import org.opengis.gm.Boundary;
+import org.opengis.spatialschema.geometry.Boundary;
 
 
 /**
  * The boundary of {@linkplain Complex complex} objects. The
- * {@link org.opengis.gm.Geometry#getBoundary getBoundary()} method for {@link Complex}
+ * {@link org.opengis.spatialschema.geometry.Geometry#getBoundary getBoundary()} method for {@link Complex}
  * objects shall return a <code>ComplexBoundary</code>, which is a collection of primitives
  * and a {@linkplain Complex complex} of dimension 1 less than the original object.
  *

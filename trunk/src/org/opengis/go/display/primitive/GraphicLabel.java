@@ -13,7 +13,7 @@ package org.opengis.go.display.primitive;
 import javax.units.Unit;
 
 // OpenGIS direct dependencies
-import org.opengis.gm.DirectPosition;
+import org.opengis.spatialschema.geometry.DirectPosition;
 import org.opengis.go.display.style.XAnchor;
 import org.opengis.go.display.style.YAnchor;
 

@@ -4,9 +4,9 @@
 package org.opengis.spatialschema.geometry.primitive;
 
 // OpenGIS direct dependencies
-import org.opengis.gm.Boundary;
-import org.opengis.gm.DirectPosition;
-import org.opengis.gm.geometry.Position;
+import org.opengis.spatialschema.geometry.Boundary;
+import org.opengis.spatialschema.geometry.DirectPosition;
+import org.opengis.spatialschema.geometry.geometry.Position;
 
 
 /**
