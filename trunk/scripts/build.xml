@@ -71,9 +71,6 @@
       <fileset dir="${homepath}/src">
         <exclude name="**/.*"/>
         <exclude name="**/*.class"/>
-        <exclude name="org/opengis/go/display/event/*.java"/>
-        <exclude name="org/opengis/go/display/style/*.java"/>
-        <exclude name="org/opengis/go/display/primitive/*.java"/>
       </fileset>
     </copy>
 
