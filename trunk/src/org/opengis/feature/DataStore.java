@@ -36,15 +36,15 @@ public interface DataStore {
      * @return URL to a icon (GIF or PNG) representing this DataStore.
      */
     URL getIcon();
-    
+
     /** Display name for this Datastore. */
     InternationalString getDisplayName();
-    
+
     /**
      * Description of this DataStore.
      */
     InternationalString getDescription();
-    
+
     /**
      * Access to metadata about this DataStore.
      * <p>
@@ -56,6 +56,7 @@ public interface DataStore {
      * events, DataStoreEvents will be used to indicate new content is available. 
      */
     // Metadata getMetadata();
+
     /**
      * Gets a list of all the names of the types held in this data store.
      * Objects in the returned list will be instances of GenericName.
