@@ -19,17 +19,24 @@ import org.opengis.metadata.Identifier;  // For javadoc
  * if those instances contain different values of one or more {@link ParameterValue}s which suitably
  * distinquish among those groups.
  * 
- * TODO: This api has the following limitations:
+ * We have made the following changes with respect to the original specification:
+ * <p><b>OpperationParamter is confusing</b>
+ * OpperationParameter renamed to ParameterDescriptor for clarity
+ * </p>
  * <p>
- * a) ParameterValue vs OpperationParamter is confusing:
- * OpperationParameter rename to ParameterDescriptor for clarity
+ * <b>Cardinality and add:</b>
+ * <b>add( ParameterValue value )</b> and 
+ * <b>add( ParameterValueGroup group )</b> added for maxOccurs >1 replace for maxOccurs = 1
  * </p>
- * <p> b) getValue( name ) is not strongly typed
- * Favour use of <b>get( OpperationParameter )</b>: Object where for OpperationParameter with cardinality 1:1  the real value is returned, for
- * for catdinality 0:* a Collection would be returned.
- * <b>put( OpperationParameter, Object value )</b>: added for maxOccurs >1 replace for maxOccurs = 1
- * </p>
- * <p> c) Poor intergration with existing java code:
+ * <p>
+ * <b>Cardinality and create:</b>
+ * The creation of ParameterValueGroup with OpperationParameterGroup.create()
+ * should <b>not</b> it include optional ParameterValues or Groups. Additional
+ * Parameters can be added
+ * <p>
+ * 
+ * We have considered the following changes:
+ * <p> Improvided intergration with java Collections API
  * favour ParameterValueGroup extends java.util.Collection<GeneralParameterValue>.
  * One cannot tell from the specification if a ParameterGroup is ment to maintain
  * order or not:
@@ -43,12 +50,6 @@ import org.opengis.metadata.Identifier;  // For javadoc
  * Plays havoc with a ParameterGroup that has cardinality maxOccurs greater than 1,
  * does it also need to maintain distinct values?
  * </p>
- * <p>
- * d) ParameterValueGroup does not correctly handle cardinality constraints:
- * Consider the creation of ParameterValueGroup with OpperationParameterGroup.create()
- * - should it include optional ParameterValues? Even if they don't have defaults?
- * And if they allow more than one?
- * <p>
  * Making ParameterValueGroup extend Collection will give us an <b>add( ParameterValue )</b>
  * and allow us to handle optional ParameterValues. Downside is that we will have
  * ParameterValueGroups that are invalid during setup.
@@ -56,9 +57,11 @@ import org.opengis.metadata.Identifier;  // For javadoc
  * that can check validity.
  * </p>
  * Some of this could be our interpretaion of the origional I noticed that only
- * ParameterValueGroup was allowed maxOccurs > 1 before in the origional - and
+ * ParameterValueGroup was allowed maxOccurs > 1 in the origional specification - and
  * we let any GeneralParameter have full cardinality control.
  * </p>
+ * 
+ * <p>
  * @UML abstract CC_ParameterValueGroup
  * @author ISO 19111
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
@@ -110,7 +113,7 @@ public interface ParameterValueGroup extends GeneralParameterValue {
      * fetches a floating point value for the <code>"false_easting"</code> parameter:
      * <br><br>
      * <blockquote><code>
-     * double value = getValue("false_easting").{@linkplain ParameterValue#doubleValue() doubleValue()};
+     * double value = parameter("false_easting").{@linkplain ParameterValue#doubleValue() doubleValue()};
      * </code></blockquote>
      * 
      * @param  name The case insensitive {@linkplain Identifier#getCode identifier code} of the
@@ -120,8 +123,8 @@ public interface ParameterValueGroup extends GeneralParameterValue {
      * @return The parameter value for the given identifier code.
      * @throws ParameterNotFoundException if there is no parameter value for the given identifier code.
      */
-    ParameterValue getValue(String name) throws ParameterNotFoundException;
-    // reccomend ParameterValue parameter(String name) throws ParameterNotFoundException;
+    //ParameterValue getValue(String name) throws ParameterNotFoundException;
+    ParameterValue parameter(String name) throws ParameterNotFoundException;
     
     /**
      * Adds a parameter to this group.
@@ -162,7 +165,7 @@ public interface ParameterValueGroup extends GeneralParameterValue {
     void add( ParameterValueGroup group ) throws InvalidParameterTypeException;
     
     /**
-     * Used to locate value(s) by descriptor.
+     * Convenience method used to locate ParameterValue(s) by descriptor.
      * 
      * @param type ParameterDescriptor used for lookup
      * @return Array of ParameterValuelength corasponding to cardinality of the descriptor
@@ -170,7 +173,7 @@ public interface ParameterValueGroup extends GeneralParameterValue {
     ParameterValue[] parameter( ParameterDescriptor parameterType );
 
     /**
-     * Lookup ParameterValueGroup(s) by descriptor.
+     * Convenience method used to locate ParameterValueGroup(s) by descriptor.
      * 
      * @param groupType ParameterGroupDescriptor
      * @return Array of ParameterValueGroup length corasponding to cardinality of the descriptor
