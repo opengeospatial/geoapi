@@ -20,8 +20,8 @@ import org.opengis.util.InternationalString;
  * should be. However, the following guidelines are suggested:
  *
  * <UL>
- *   <LI> When {@link org.opengis.referencing.crs.CRSAuthorityFactory} is used to create an object, the
- *        {@linkplain Identifier#getAuthority authority} and {@linkplain Identifier#getCode
+ *   <LI> When {@link org.opengis.referencing.crs.CRSAuthorityFactory} is used to create an object,
+ *        the {@linkplain Identifier#getAuthority authority} and {@linkplain Identifier#getCode
  *        authority code} values should be set to the authority name of the factory object,
  *        and the authority code supplied by the client, respectively. The other values may
  *        or may not be set. If the authority is EPSG, the implementer may consider using the
