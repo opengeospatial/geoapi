@@ -9,6 +9,9 @@
  *************************************************************************************************/
 package org.opengis.referencing;
 
+// OpenGIS dependencies
+import org.opengis.metadata.citation.Citation;
+
 
 /**
  * Base interface for all factories of {@link Info} objects. Factories build up complex
@@ -82,4 +85,12 @@ package org.opengis.referencing;
  * @version <A HREF="http://www.opengis.org/docs/01-009.pdf">Implementation specification 1.0</A>
  */
 public interface Factory {
+    /**
+     * Returns the vendor responsible for creating this factory implementation. Many implementations
+     * may be available for the same factory interface. Implementations are usually managed by a
+     * {@linkplain javax.imageio.spi.ServiceRegistry service registry}.
+     *
+     * @return The vendor for this factory implementation.
+     */
+    Citation getVendor();
 }
