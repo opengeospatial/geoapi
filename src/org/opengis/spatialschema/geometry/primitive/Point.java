@@ -12,6 +12,8 @@ package org.opengis.spatialschema.geometry.primitive;
 // OpenGIS direct dependencies
 import org.opengis.spatialschema.geometry.DirectPosition;
 import org.opengis.spatialschema.geometry.geometry.Position;
+import org.opengis.spatialschema.geometry.UnmodifiableGeometryException;
+
 
 // Annotations
 ///import org.opengis.annotation.UML;
@@ -58,10 +60,11 @@ public interface Point extends Primitive, Position {
      * allowing <code>Point</code> to use this technique, infinitely recursive references
      * are prevented.
      *
-     * @return The direct position.
+     * @param  position The direct position.
+     * @throws UnmodifiableGeometryException if this geometry is not modifiable.
      */
-//  / @UML (identifier="position", obligation=MANDATORY)
-    public void setPosition(DirectPosition position);
+/// @UML (identifier="position", obligation=MANDATORY)
+    public void setPosition(DirectPosition position) throws UnmodifiableGeometryException;
 
     /**
      * Returns always <code>null</code>, since point has no boundary.
