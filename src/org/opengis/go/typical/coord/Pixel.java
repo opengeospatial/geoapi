@@ -96,7 +96,7 @@ public class Pixel extends Point2D implements DirectPosition {
                 CommonFactoryManager
                     .getCommonFactory("CommonFactory")
                     .getCoordinateReferenceSystemFactory()
-                    .createCRS(props);
+                    .createCoordinateReferenceSystem(props);
         } catch (ClassNotFoundException e) {
             throw new UnsupportedCRSException("ClassNotFoundException: " + e);
         } catch (IllegalAccessException e) {
