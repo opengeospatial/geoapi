@@ -1,84 +1,70 @@
 
 Name: org/opengis/rs
-Sealed: true
 Specification-Title: Spatial Referencing by Coordinates
 Specification-Version: 2.00
 Specification-Vendor: OpenGIS Consortium, Inc.
 
 Name: org/opengis/sc
-Sealed: true
 Specification-Title: Spatial Referencing by Coordinates
 Specification-Version: 2.00
 Specification-Vendor: OpenGIS Consortium, Inc.
 
 Name: org/opengis/cs
-Sealed: true
 Specification-Title: Spatial Referencing by Coordinates
 Specification-Version: 2.00
 Specification-Vendor: OpenGIS Consortium, Inc.
 
 Name: org/opengis/cd
-Sealed: true
 Specification-Title: Spatial Referencing by Coordinates
 Specification-Version: 2.00
 Specification-Vendor: OpenGIS Consortium, Inc.
 
 Name: org/opengis/cc
-Sealed: true
 Specification-Title: Spatial Referencing by Coordinates
 Specification-Version: 2.00
 Specification-Vendor: OpenGIS Consortium, Inc.
 
 Name: org/opengis/dq
-Sealed: true
 Specification-Title: Spatial Referencing by Coordinates
 Specification-Version: 2.00
 Specification-Vendor: OpenGIS Consortium, Inc.
 
 Name: org/opengis/ci
-Sealed: true
 Specification-Title: Spatial Referencing by Coordinates
 Specification-Version: 2.00
 Specification-Vendor: OpenGIS Consortium, Inc.
 
 Name: org/opengis/ex
-Sealed: true
 Specification-Title: Spatial Referencing by Coordinates
 Specification-Version: 2.00
 Specification-Vendor: OpenGIS Consortium, Inc.
 
 Name: org/opengis/cv
-Sealed: true
 Specification-Title: "Grid Coverage"
 Specification-Version: "1.00"
 Specification-Vendor: "OpenGIS Consortium"
 
 Name: org/opengis/gc
-Sealed: true
 Specification-Title: "Grid Coverage"
 Specification-Version: "1.00"
 Specification-Vendor: "OpenGIS Consortium"
 
 Name: org/opengis/gp
-Sealed: true
 Specification-Title: "Grid Coverage"
 Specification-Version: "1.00"
 Specification-Vendor: "OpenGIS Consortium"
 
 Name: org/opengis/gm*
-Sealed: true
 Specification-Title: Feature Geometry
 Specification-Version: 2.00
 Specification-Vendor: OpenGIS Consortium, Inc.
 
 Name: org/opengis/go*
-Sealed: true
 Specification-Title: Geospatial objects
 Specification-Version: 0.2
 Specification-Vendor: OpenGIS Consortium, Inc.
 
 Name: org/opengis/util
-Sealed: true
 Specification-Title: GeoAPI
 Specification-Version: 1.00
 Specification-Vendor: OpenGIS Consortium, Inc.
