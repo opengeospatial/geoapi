@@ -259,6 +259,9 @@
 			<xsl:text>set</xsl:text>
 			<xsl:value-of select="translate((substring(name, 1,1) ), $lowerCase, $upperCase)"/>
 			<xsl:value-of select="substring(name, 2) "/>
+			<xsl:if test="substring(type,string-length(type)-1) = '[]'">
+			<xsl:text>s</xsl:text>
+			</xsl:if>
 			<xsl:text>(</xsl:text>
 			<xsl:for-each select="packageNameSpace">
 				<xsl:value-of select="."/>
@@ -281,6 +284,9 @@
 		<xsl:text>get</xsl:text>
 		<xsl:value-of select="translate((substring(name, 1,1) ), $lowerCase, $upperCase)"/>
 		<xsl:value-of select="substring(name, 2) "/>
+		<xsl:if test="substring(type,string-length(type)-1) = '[]'">
+		<xsl:text>s</xsl:text>
+		</xsl:if>
 		<xsl:text>()</xsl:text>
 		<xsl:text>;&#xA;</xsl:text>
 	</xsl:template>
@@ -402,7 +408,20 @@
 			</xsl:choose>
 			<xsl:if test="returnType"/>
 			<xsl:text>&#x20; </xsl:text>
+			<xsl:if test="substring(methodName,1,2) !='is'">
+				<xsl:text>get</xsl:text>
+				<xsl:value-of select="translate((substring(methodName, 1,1) ), $lowerCase, $upperCase)"/>
+				<xsl:value-of select="substring(methodName, 2) "/>
+					<xsl:if test="substring(returnType/type,string-length(returnType/type)-1) = '[]'">
+					<xsl:text>s</xsl:text>
+					</xsl:if>
+			</xsl:if>
+			<xsl:if test="substring(methodName,1,2)='is'">
 			<xsl:value-of select="methodName"/>
+			<xsl:if test="substring(returnType/type,string-length(returnType/type)-1) = '[]'">
+					<xsl:text>s</xsl:text>
+					</xsl:if>
+			</xsl:if>
 			<xsl:text> (</xsl:text>
 			<xsl:call-template name="Parameter"/>
 			<xsl:text> );&#xA;</xsl:text>
