@@ -201,6 +201,17 @@
         <pathelement path="${java.class.path}"/>
       </classpath>
     </java>
+
+    <java classname   = "org.opengis.tools.NameMapGenerator"
+          dir         = "snapshot/tiger/classes/org/opengis/metadata"
+          failonerror = "true"
+          fork        = "true">
+      <classpath>
+        <pathelement location="snapshot/tiger/classes"/>
+        <pathelement path="${java.class.path}"/>
+      </classpath>
+    </java>
+
   </target>
 
 
@@ -232,6 +243,7 @@
       <replacefilter token="&lt;BrowseGraphic&gt;"/>
       <replacefilter token="&lt;CatalogEntry&gt;"/>
       <replacefilter token="&lt;Citation&gt;"/>
+      <replacefilter token="&lt;Curve&gt;"/>
       <replacefilter token="&lt;CurveSegment&gt;"/>
       <replacefilter token="&lt;Complex&gt;"/>
       <replacefilter token="&lt;Constraints&gt;"/>
@@ -265,6 +277,7 @@
       <replacefilter token="&lt;GeographicDescription&gt;"/>
       <replacefilter token="&lt;GeographicExtent&gt;"/>
       <replacefilter token="&lt;GeometricObjects&gt;"/>
+      <replacefilter token="&lt;Geometry&gt;"/>
       <replacefilter token="&lt;Identification&gt;"/>
       <replacefilter token="&lt;InternationalString&gt;"/>
       <replacefilter token="&lt;Keywords&gt;"/>
@@ -299,6 +312,7 @@
       <replacefilter token="&lt;Resolution&gt;"/>
       <replacefilter token="&lt;ResponsibleParty&gt;"/>
       <replacefilter token="&lt;Restriction&gt;"/>
+      <replacefilter token="&lt;Ring&gt;"/>
       <replacefilter token="&lt;ScopeCode&gt;"/>
       <replacefilter token="&lt;Source&gt;"/>
       <replacefilter token="&lt;SpatialRepresentation&gt;"/>
@@ -351,15 +365,11 @@
            failonerror   = "true">
     </javac>
 
-    <java classname   = "org.opengis.tools.NameMapGenerator"
-          dir         = "snapshot/classes/org/opengis/metadata"
-          failonerror = "true"
-          fork        = "true">
-      <classpath>
-        <pathelement location="snapshot/tiger/classes"/>
-        <pathelement path="${java.class.path}"/>
-      </classpath>
-    </java>
+    <copy todir="snapshot/classes">
+      <fileset dir="snapshot/tiger/classes">
+        <include name="**/*.properties"/>
+      </fileset>
+    </copy>
 
   </target>
 
@@ -501,7 +511,7 @@
       <link href="http://geoapi.sourceforge.net/snapshot/javadoc"/>
 
       <packageset dir="pending/sources">
-        <include name="**" />
+        <include name="**"/>
       </packageset>
 
     </javadoc>
