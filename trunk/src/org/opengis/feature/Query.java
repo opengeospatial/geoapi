@@ -15,6 +15,7 @@ import java.util.List;
 // OpenGIS direct dependencies
 import org.opengis.filter.Filter;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
+import org.opengis.util.GenericName;
 
 
 /**
@@ -35,7 +36,7 @@ public interface Query {
     /**
      * Returns the name of the type that is to be queried.
      */
-    QName getTypeName();
+    GenericName getTypeName();
 
     /**
      * Returns the Filter that will limit which features are returned.

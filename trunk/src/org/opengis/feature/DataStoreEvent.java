@@ -11,15 +11,17 @@ package org.opengis.feature;
 
 import java.util.EventObject;
 
+import org.opengis.util.GenericName;
+
 
 /**
  * Instances of this class are passed to the methods of DataStoreListener when
  * the user of the DataStore adds, deletes, or modifies a feature type.
  */
 public class DataStoreEvent extends EventObject {
-    private QName type;
+    private GenericName type;
 
-    public DataStoreEvent(DataStore dataStore, QName type) {
+    public DataStoreEvent(DataStore dataStore, GenericName type) {
         super(dataStore);
         this.type = type;
     }
@@ -28,7 +30,7 @@ public class DataStoreEvent extends EventObject {
         return (DataStore) super.getSource();
     }
 
-    public QName getType() {
+    public GenericName getType() {
         return type;
     }
 }

@@ -11,11 +11,29 @@ package org.opengis.feature;
 
 import java.util.List;
 
+import org.opengis.util.GenericName;
+
 public interface FeatureType {
     /**
      * Returns the name of this FeatureType.
+     * <p>
+     * The typical usage of these GenericNames will be as follows:  In most
+     * cases, the GenericName will have a local part that is be the name of the
+     * XML element used to encode such features as GML.  The scope of the name
+     * will either be null (if the XML element is to have no namespace) or will
+     * be a LocalName whose toString() gives the URI of an XML namespace.
      */
-    public QName getName();
+    public GenericName getName();
+
+    /**
+     * In cases where features are to be encoded as GML, the namespace portion
+     * of the name of the type must be mapped to a prefix in an "xmlns" XML
+     * attribute.  If the data provider desires to do so, he may return a
+     * prefix from this method to indicate a preference for this mapping.  It
+     * is also valid to return null, indicating that the data provider doesn't
+     * know or doesn't care.
+     */
+    public String getPreferredPrefix();
 
     /**
      * Returns an array of FeatureAttributeDescriptor instances that lists all
