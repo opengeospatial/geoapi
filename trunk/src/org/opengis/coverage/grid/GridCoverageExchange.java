@@ -99,8 +99,8 @@ public interface GridCoverageExchange {
      *         reason (for example an unsupported format, or an inconsistency found in the data).
      * @throws IOException if a read operation failed for some other input/output reason, including
      *         {@link FileNotFoundException} if no file with the given <code>name</code> can be
-     *         found, or {@link IIOException} if an error was thrown by the underlying image
-     *         library.
+     *         found, or {@link javax.imageio.IIOException} if an error was thrown by the
+     *         underlying image library.
      *
      * @UML operation createFromName
      */
@@ -145,8 +145,8 @@ public interface GridCoverageExchange {
      *         reason (for example an unsupported format, or an inconsistency found in the data).
      * @throws IOException if a read operation failed for some other input/output reason, including
      *         {@link FileNotFoundException} if no file with the given <code>name</code> can be
-     *         found, or {@link IIOException} if an error was thrown by the underlying image
-     *         library.
+     *         found, or {@link javax.imageio.IIOException} if an error was thrown by the
+     *         underlying image library.
      *
      * @UML operation createFromSubName
      */
@@ -183,7 +183,8 @@ public interface GridCoverageExchange {
      * @throws FileFormatNotCompatibleWithGridCoverageException if the grid coverage
      *         can't be exported in the specified format.
      * @throws IOException if the export failed for some other input/output reason, including
-     *         {@link IIOException} if an error was thrown by the underlying image library.
+     *         {@link javax.imageio.IIOException} if an error was thrown by the underlying
+     *         image library.
      * @UML operation exportTo
      */
     void exportTo(GridCoverage gridCoverage, String fileFormat, String fileName, Parameter[] creationOptions)

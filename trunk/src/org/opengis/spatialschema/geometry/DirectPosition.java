@@ -18,10 +18,11 @@ import org.opengis.crs.crs.CoordinateReferenceSystem;
  * Holds the coordinates for a position within some coordinate reference system. Since
  * <code>DirectPosition</code>s, as data types, will often be included in larger objects
  * (such as {@linkplain org.opengis.spatialschema.geometry.Geometry geometries}) that have
- * references to {@linkplain CRS}, the {@link #getCoordinateReferenceSystem} method may returns
- * <code>null</code> if this particular <code>DirectPosition</code> is included in a larger
- * object with such a reference to a {@linkplain CRS}. In this case, the cordinate reference
- * system is implicitly assumed to take on the value of the containing object's {@linkplain CRS}.
+ * references to {@link CoordinateReferenceSystem}, the {@link #getCoordinateReferenceSystem}
+ * method may returns <code>null</code> if this particular <code>DirectPosition</code> is
+ * included in a larger object with such a reference to a {@linkplain CoordinateReferenceSystem
+ * coordinate reference system}. In this case, the cordinate reference system is implicitly
+ * assumed to take on the value of the containing object's {@link CoordinateReferenceSystem}.
  * 
  * @UML datatype DirectPosition
  * @author ISO/DIS 19107
@@ -76,9 +77,10 @@ public interface DirectPosition extends Cloneable {
     /**
      * The coordinate reference system in which the coordinate is given.
      * May be <code>null</code> if this particular <code>DirectPosition</code> is included
-     * in a larger object with such a reference to a {@linkplain CRS}. In this case, the cordinate
-     * reference system is implicitly assumed to take on the value of the containing object's
-     * {@linkplain CRS}.
+     * in a larger object with such a reference to a {@linkplain CoordinateReferenceSystem
+     * coordinate reference system}. In this case, the cordinate reference system is implicitly
+     * assumed to take on the value of the containing object's {@linkplain CoordinateReferenceSystem
+     * coordinate reference system}.
      *
      * @return The coordinate reference system, or <code>null</code>.
      * @UML association coordinateReferenceSystem
@@ -87,8 +89,10 @@ public interface DirectPosition extends Cloneable {
 
     /**
      * Makes an exact copy of this coordinate.
+     *
+     * @revisit Before to enable, need to update implementation in "typical" packages.
      */
-/// public DirectPosition clone();
+//  public DirectPosition clone();
 
     /**
      * Releases any resources that may have been allocated for this object.
