@@ -12,7 +12,6 @@ package org.opengis.go.display.style;
 // J2SE direct dependencies
 import java.util.List;
 import java.util.ArrayList;
-import java.util.Collections;
 
 // OpenGIS direct dependencies
 import org.opengis.util.SimpleEnumerationType;
@@ -42,13 +41,7 @@ public class LinePattern extends SimpleEnumerationType {
      * The list of enumeration available in this virtual machine.
      * <strong>Must be declared first!</strong>.
      */
-    private static final List mutableValues = new ArrayList();
-
-    /**
-     * An immutable view of {@link #mutableValues} to be returned by {@link #values()}.
-     */
-    private static final List values = Collections.unmodifiableList(mutableValues);
-
+    private static final List VALUES = new ArrayList(6);
 
     /**
      * The line should be drawn with no pattern.
@@ -91,20 +84,22 @@ public class LinePattern extends SimpleEnumerationType {
     //*************************************************************************
 
     protected LinePattern(String name, String description) {
-        super(mutableValues, name, description, loadIconResource(LinePattern.class, name + ".gif"));
+        super(VALUES, name, description, loadIconResource(LinePattern.class, name + ".gif"));
     }
 
     /**
      * Returns the list of <code>LinePattern</code>s.
      */
-    public static List values() {
-        return values;
+    public static LinePattern[] values() {
+        synchronized (VALUES) {
+            return (LinePattern[]) VALUES.toArray(new LinePattern[VALUES.size()]);
+        }
     }
 
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
-    public List family() {
-        return values;
+    public LinePattern[] family() {
+        return values();
     }
 }

@@ -13,7 +13,6 @@ package org.opengis.go.spatial;
 import java.util.List;
 import java.util.Iterator;
 import java.util.ArrayList;
-import java.util.Collections;
 
 // OpenGIS direct dependencies
 import org.opengis.util.NoSuchEnumerationException;
@@ -47,12 +46,7 @@ public class UnprojectedPathType extends PathType {
      * The list of enumeration available in this virtual machine.
      * <strong>Must be declared first!</strong>.
      */
-    private static final List mutableValues = new ArrayList();
-
-    /**
-     * An immutable view of {@link #mutableValues} to be returned by {@link #values()}.
-     */
-    private static final List values = Collections.unmodifiableList(mutableValues);
+    private static final List VALUES = new ArrayList(2);
 
     /**
      * The path that is drawn as screen-straight, regardless of any current projection.
@@ -75,7 +69,7 @@ public class UnprojectedPathType extends PathType {
      * @param description the description for the enum.
      */
     protected UnprojectedPathType(String name, String description) {
-        super(mutableValues, name, description);
+        super(VALUES, name, description);
     }
 
     /**
@@ -85,9 +79,10 @@ public class UnprojectedPathType extends PathType {
      * @throws NoSuchEnumerationException If there is no object for the given value.
      */
     public static UnprojectedPathType valueOf(int value) throws NoSuchEnumerationException {
-        for (final Iterator it=values.iterator(); it.hasNext();) {
-            final UnprojectedPathType e = (UnprojectedPathType) it.next();
-            if (e.ordinal() == value) {
+        synchronized (VALUES) {
+            if (value>=0 && value<VALUES.size()) {
+                final UnprojectedPathType e = (UnprojectedPathType) VALUES.get(value);
+                assert e.ordinal() == value : value;
                 return e;
             }
         }
@@ -98,17 +93,19 @@ public class UnprojectedPathType extends PathType {
      * Returns the list of <code>UnprojectedPathType</code>s.
      * Useful when making comboboxes like:
      * <pre>
-     * JComboBox comboBox = new JComboBox(UnprojectedPathType.values().toArray());
+     * JComboBox comboBox = new JComboBox(UnprojectedPathType.values());
      * </pre>
      */
-    public static List values() {
-        return values;
+    public static UnprojectedPathType[] values() {
+        synchronized (VALUES) {
+            return (UnprojectedPathType[]) VALUES.toArray(new UnprojectedPathType[VALUES.size()]);
+        }
     }
 
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
-    public List family() {
-        return values;
+    public UnprojectedPathType[] family() {
+        return values();
     }
 }

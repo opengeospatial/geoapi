@@ -71,7 +71,7 @@ public interface Complex extends Geometry {
      * @return The set of primitives for this complex.
      * @UML operation element
      */
-    public Set/*<Primitive>*/ getElements();
+    public Set<Primitive> getElements();
 
 //    public org.opengis.spatialschema.topology.complex.TP_Complex topology[];
 }

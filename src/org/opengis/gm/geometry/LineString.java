@@ -45,5 +45,5 @@ public interface LineString extends CurveSegment {
      * @return The sequence of line segments.
      * @UML operation asGM_LineSegment
      */
-    public List/*<LineSegment>*/ asLineSegment();
+    public List<LineSegment> asLineSegment();
 }

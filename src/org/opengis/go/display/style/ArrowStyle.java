@@ -12,7 +12,6 @@ package org.opengis.go.display.style;
 // J2SE direct dependencies
 import java.util.List;
 import java.util.ArrayList;
-import java.util.Collections;
 
 // OpenGIS direct dependencies
 import org.opengis.util.SimpleEnumerationType;
@@ -49,13 +48,7 @@ public class ArrowStyle extends SimpleEnumerationType {
      * The list of enumeration available in this virtual machine.
      * <strong>Must be declared first!</strong>.
      */
-    private static final List mutableValues = new ArrayList();
-
-    /**
-     * An immutable view of {@link #mutableValues} to be returned by {@link #values()}.
-     */
-    private static final List values = Collections.unmodifiableList(mutableValues);
-
+    private static final List VALUES = new ArrayList(4);
 
     /**
      * Solid line with an no arrowhead.
@@ -98,7 +91,7 @@ public class ArrowStyle extends SimpleEnumerationType {
      * @param description a String describing the pattern.
      */
     protected ArrowStyle(String name, String description) {
-        super(mutableValues, name, description, loadIconResource(ArrowStyle.class, name + ".gif"));
+        super(VALUES, name, description, loadIconResource(ArrowStyle.class, name + ".gif"));
     }
 
     //*************************************************************************
@@ -108,14 +101,16 @@ public class ArrowStyle extends SimpleEnumerationType {
     /**
      * Returns the list of <code>ArrowStyle</code>s.
      */
-    public static List values() {
-        return values;
+    public static ArrowStyle[] values() {
+        synchronized (VALUES) {
+            return (ArrowStyle[]) VALUES.toArray(new ArrowStyle[VALUES.size()]);
+        }
     }
 
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
-    public List family() {
-        return values;
+    public ArrowStyle[] family() {
+        return values();
     }
 }

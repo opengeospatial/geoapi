@@ -3,11 +3,6 @@
  */
 package org.opengis.cd;
 
-// J2SE direct dependencies
-import java.util.List;
-import java.util.Arrays;
-import java.util.Collections;
-
 // OpenGIS direct dependencies
 import org.opengis.util.CodeList;
 
@@ -33,7 +28,7 @@ public final class VerticalDatumType extends CodeList {
      *
      * @UML conditional geoidal
      */
-    public static final VerticalDatumType GEOIDAL = new VerticalDatumType(0, "geoidal");
+    public static final VerticalDatumType GEOIDAL = new VerticalDatumType("GEOIDAL", 0);
 
     /**
      * The zero point of the vertical axis is defined by a surface that has meaning for the
@@ -43,7 +38,7 @@ public final class VerticalDatumType extends CodeList {
      *
      * @UML conditional depth
      */
-    public static final VerticalDatumType DEPTH = new VerticalDatumType(1, "depth");
+    public static final VerticalDatumType DEPTH = new VerticalDatumType("DEPTH", 1);
 
     /**
      * Atmospheric pressure is the basis for the definition of the origin of the
@@ -51,7 +46,7 @@ public final class VerticalDatumType extends CodeList {
      *
      * @UML conditional barometric
      */
-    public static final VerticalDatumType BAROMETRIC = new VerticalDatumType(2, "barometric");
+    public static final VerticalDatumType BAROMETRIC = new VerticalDatumType("BAROMETRIC", 2);
 
     /**
      * In some cases, e.g. oil exploration and production, a geological feature, such as the top
@@ -61,32 +56,32 @@ public final class VerticalDatumType extends CodeList {
      *
      * @UML conditional other&nbsp;surface
      */
-    public static final VerticalDatumType OTHER_SURFACE = new VerticalDatumType(3, "other surface");
+    public static final VerticalDatumType OTHER_SURFACE = new VerticalDatumType("OTHER_SURFACE", 3);
 
     /**
      * List of all enumeration of this type.
      */
-    private static final List VALUES = Collections.unmodifiableList(Arrays.asList(new VerticalDatumType[] {
-            GEOIDAL, DEPTH, BAROMETRIC, OTHER_SURFACE }));
+    private static final VerticalDatumType[] VALUES = new VerticalDatumType[] {
+            GEOIDAL, DEPTH, BAROMETRIC, OTHER_SURFACE };
 
     /**
      * Constructs an enum with the given name.
      */
-    private VerticalDatumType(int ordinal, String name) {
-        super(ordinal, name);
+    private VerticalDatumType(final String name, final int ordinal) {
+        super(name, ordinal);
     }
 
     /**
      * Returns the list of <code>VerticalDatumType</code>s.
      */
-    public static List values() {
-        return VALUES;
+    public static VerticalDatumType[] values() {
+        return (VerticalDatumType[]) VALUES.clone();
     }
 
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
-    public List family() {
-        return VALUES;
+    public VerticalDatumType[] family() {
+        return values();
     }
 }

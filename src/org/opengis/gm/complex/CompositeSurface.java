@@ -39,5 +39,5 @@ public interface CompositeSurface extends Composite, OrientableSurface {
      * @return The list of orientable surfaces in this composite.
      * @UML association generator
      */
-    public List/*<OrientableSurface>*/ getGenerators();
+    public List<OrientableSurface> getGenerators();
 }

@@ -244,7 +244,7 @@ public interface Geometry extends TransfiniteSet {
      * @return The set of maximal complexes within which this <code>Geometry</code> is contained.
      * @UML operation maximalComplex
      */
-    public Set/*<Complex>*/ getMaximalComplex();
+    public Set<Complex> getMaximalComplex();
 
     /**
      * Returns a new <code>Geometry</code> that is the coordinate transformation of this
