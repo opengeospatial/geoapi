@@ -39,7 +39,7 @@ public interface TextSymbolizer extends GraphicStyle {
     public static final Color DEFAULT_FILL_BACKGROUND_COLOR = Color.WHITE;
 
     /**  Default fill gradient points value.  */
-    public static final float[] DEFAULT_FILL_GRADIENT_POINTS = new float[2];
+    //public static final float[] DEFAULT_FILL_GRADIENT_POINTS = new float[2];
 
     /**  Default fill opacity value.  */
     public static final float DEFAULT_FILL_OPACITY = 1.f;
@@ -54,7 +54,7 @@ public interface TextSymbolizer extends GraphicStyle {
     public static final Font DEFAULT_FONT = null;
 
     /**  Default halo radius value.  */
-    public static final float DEFAULT_HALO_RADIUS = 1.f;
+    public static final float DEFAULT_HALO_RADIUS = 0f;
 
     /**  Default rotation.  */
     public static final float DEFAULT_ROTATION = 0f;
@@ -78,36 +78,42 @@ public interface TextSymbolizer extends GraphicStyle {
     /**
      * Returns the color used to draw the text.  This is the color used to fill
      * the interior of the font glyphs.
+     * @return the text foreground color.
      */
     public Color getFillColor();
 
     /**
      * Sets the color used to draw the text.  This is the color used to fill
      * the interior of the font glyphs.
+     * @param fillColor the text foreground color.
      */
     public void setFillColor(Color fillColor);
 
     /**
      * Returns the color that is used as the pattern background color when a
      * stipple pattern is used for the fill color.
+     * @return the font glyph background color for stippled text rendering.
      */
     public Color getFillBackgroundColor();
 
     /**
      * Sets the color that is used as the pattern background color when a
      * stipple pattern is used for the fill color.
+     * @param fillBackgroundColor the font glyph background color for 
+     * stippled text rendering.
      */
     public void setFillBackgroundColor(Color fillBackgroundColor);
 
     /**
-     * Returns the fill gradient points value.
+     * Returns the fill gradient points value, or null if there is no fill gradient.
      * @return the fill gradient points value.
      */
     public float[] getFillGradientPoints();
 
     /**
      * Sets the fill gradient points value.
-     * @param fillGradientPoints the fill gradient points value.
+     * @param fillGradientPoints the fill gradient points value, or null to
+     * specify no fill gradient.
      */
     public void setFillGradientPoints(float[] fillGradientPoints);
 
@@ -161,16 +167,44 @@ public interface TextSymbolizer extends GraphicStyle {
     public void setFont(Font object);
 
     /**
-     * Returns the halo radius value.
+     * Returns the halo radius value, or zero if no halo is to be drawn.
      * @return the value of the halo radius.
      */
     public float getHaloRadius();
 
     /**
-     * Sets the halo radius value.
+     * Sets the halo radius value.  If zero, no halo will be drawn.
      * @param haloRadius the value of the halo radius.
      */
     public void setHaloRadius(float haloRadius);
+
+    /**
+     * Returns the color that is used to fill in the halo,
+     * or null if no halo is to be drawn.
+     * @return the halo color.
+     */
+    public Color getHaloColor();
+
+    /**
+     * Sets the halo color.
+     * @param haloColor.
+     */
+    public void setHaloColor(Color haloColor);
+
+    /**
+     * Returns the color that is used to fill in a bounding box behind the text,
+     * or null if no background is to be drawn using this symbolizer.
+     * @return the color of the background behind the label, or null if no
+     * background will be drawn.
+     */
+    public Color getBackgroundColor();
+
+    /**
+     * Sets the color that is used for rendering a background behind the text.
+     * @param backgroundColor the font glyph background color for 
+     * stippled text rendering.
+     */
+    public void setBackgroundColor(Color backgroundColor);
 
     /**
      * Returns the label rotation.
@@ -218,7 +252,7 @@ public interface TextSymbolizer extends GraphicStyle {
      * Sets the label YAnchor.
      * @param labelYAnchor the label YAnchor.
      */
-    public void seYAnchor(YAnchor yAnchor);
+    public void setYAnchor(YAnchor yAnchor);
 
     /**
      * Returns the label Y displacement.

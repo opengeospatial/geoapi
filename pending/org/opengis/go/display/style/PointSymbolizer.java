@@ -34,7 +34,7 @@ public interface PointSymbolizer extends GraphicStyle {
     public static final Color DEFAULT_FILL_BACKGROUND_COLOR = Color.BLACK;
 
     /**  Default fill gradient points value.  */
-    public static final float[] DEFAULT_FILL_GRADIENT_POINTS = new float[2];
+    //public static final float[] DEFAULT_FILL_GRADIENT_POINTS = new float[2];
 
     /**  Default fill opacity value.  */
     public static final float DEFAULT_FILL_OPACITY = 1.f;
@@ -43,7 +43,7 @@ public interface PointSymbolizer extends GraphicStyle {
     public static final FillPattern DEFAULT_FILL_PATTERN = FillPattern.NONE;
 
     /**  Default fill style value.  */
-    public static final FillStyle DEFAULT_FILL_STYLE = FillStyle.SOLID;
+    public static final FillStyle DEFAULT_FILL_STYLE = FillStyle.EMPTY;
 
     /**  Default point mark value.  */
     public static final Mark DEFAULT_MARK = Mark.CIRCLE;
@@ -53,6 +53,9 @@ public interface PointSymbolizer extends GraphicStyle {
 
     /**  Default point size value.  */
     public static final float DEFAULT_SIZE = 16.f;
+
+    /**  Default fill opacity value.  */
+    public static final float DEFAULT_OPACITY = 1.f;
 
     /**  Default begin arrow style value.  */
     public static final ArrowStyle DEFAULT_STROKE_BEGIN_ARROW_STYLE = ArrowStyle.NONE;
@@ -64,7 +67,7 @@ public interface PointSymbolizer extends GraphicStyle {
     public static final Color DEFAULT_STROKE_COLOR = Color.BLACK;
 
     /**  Default dash array value.  */
-    public static final DashArray DEFAULT_STROKE_DASH_ARRAY = DashArray.NO_DASH;
+    public static final DashArray DEFAULT_STROKE_DASH_ARRAY = DashArray.NONE;
 
     /**  Default dash offset value.  */
     public static final float DEFAULT_STROKE_DASH_OFFSET = 0.f;
@@ -76,7 +79,7 @@ public interface PointSymbolizer extends GraphicStyle {
     public static final Color DEFAULT_STROKE_FILL_BACKGROUND_COLOR = Color.BLACK;
 
     /**  Default fill gradient points value.  */
-    public static final float[] DEFAULT_STROKE_FILL_GRADIENT_POINTS = new float[2];
+    //public static final float[] DEFAULT_STROKE_FILL_GRADIENT_POINTS = new float[2];
 
     /**  Default fill opacity value.  */
     public static final float DEFAULT_STROKE_FILL_OPACITY = 1.f;
@@ -85,7 +88,7 @@ public interface PointSymbolizer extends GraphicStyle {
     public static final FillPattern DEFAULT_STROKE_FILL_PATTERN = FillPattern.NONE;
 
     /**  Default fill style value.  */
-    public static final FillStyle DEFAULT_STROKE_FILL_STYLE = FillStyle.SOLID;
+    public static final FillStyle DEFAULT_STROKE_FILL_STYLE = FillStyle.EMPTY;
 
     /**  Default line cap value.  */
     public static final LineCap DEFAULT_STROKE_LINE_CAP = LineCap.BUTT;
@@ -218,6 +221,18 @@ public interface PointSymbolizer extends GraphicStyle {
      * @param pointSize the point size value.
      */
     public void setSize(float pointSize);
+
+    /**
+     * Returns the point opacity value.
+     * @return the point opacity value.
+     */
+    public float getOpacity();
+
+    /**
+     * Sets the point opacity value.
+     * @param pointOpacity the point opacity value.
+     */
+    public void setOpacity(float pointOpacity);
 
     /**
      * Returns the stroke begin arrow style value.
