@@ -13,23 +13,59 @@ import org.opengis.rs.ReferenceSystem;
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 2.0
  *
- * @revisit Is this class really needed? It stands between {@link org.opengis.rs.ReferenceSystem}
- *          and {@link CoordinateReferenceSystem}, but doesn't bring much. Actually, it looks like
- *          an anomaly in an otherwise natural hierarchy (<code>CoordinateReferenceSystem extends
- *          ReferenceSystem</code>). The only purpose for <code>CRS</code> seems to be to give to
- *          {@link CompoundCRS} an ancestor different from all other <code>FooCRS</code> classes.
- *          Together with the {@link CompoundCRS#getCRS} return type, it enforces the compound CRS
- *          contract (contains any CRS except other compound CRS). But is this contract really a
- *          good one? Why not lets the choice to the user/implementer? It would both simplify the
- *          API and allow some useful cases. It is easy to implements <code>CompoundCRS</code>
- *          containing others <code>CompoundCRS</code> (except for
+ * @revisit <P ALIGN="justify">Is this interface really needed? This interface stands between
+ *          {@link ReferenceSystem} and {@link CoordinateReferenceSystem} and looks like an
+ *          anomaly in an otherwise quite natural hierarchy
+ *          (<code>CoordinateReferenceSystem extends ReferenceSystem</code>).
+ *          "<code>CRS</code>" is just an abbreviation for "<code>CoordinateReferenceSystem</code>";
+ *          its name doesn't give any clue about the difference between those two interfaces.</P>
+ *          
+ *          <P ALIGN="justify">Furthermore, the main "raison d'être" for <code>CRS</code> seems to
+ *          be related to the {@link CompoundCRS}'s contract ("<cite>A Compound CRS is a coordinate
+ *          reference system that combines two or more coordinate reference systems, <U>none of
+ *          which can itself be compound</U></cite>" - emphasis is mine). This contract is enforced
+ *          by the hierarchy ({@link CompoundCRS} is the only "<code>FooCRS</code>" interface that
+ *          extends directly <code>CRS</code>) and by the {@link CompoundCRS#getCRS} return type.
+ *          But I question it for the following reasons:</P>
+ *          <ul>
+ *            <li><P ALIGN="justify">In "<u>Coordinate Transformation Services</u>" (OGC document
+ *                01-009), compound CRS was specified as a pair of arbitrary CRS ("head" and "tail").
+ *                Each of them can be an other compound CRS, allowing the creation of a tree.
+ *                This design was convenient to use (see next points below) and avoid a special
+ *                hierarchy for compound CRS; it is just like any other CRS.</P></li>
+ *
+ *            <li><P ALIGN="justify">It is convenient to use <code>CompoundCRS</code> as building
+ *                block for more complex <code>CompoundCRS</code>, and get back the original one
+ *                later. For example a user could creates the following:</P>
+ *                <pre>
+ *                    CRS  vertical = new VerticalCRS(...);
+ *                    CRS  temporal = new TemporalCRS(...);
+ *                    CRS  cs2D = new GeographicCRS(...);
+ *                    CRS  cs3D = new CompoundCRS(cs2D, vertical);
+ *                    CRS  cs4D = new CompoundCRS(cs3D, temporal);
+ *                </pre>
+ *                <P ALIGN="justify">Then, at some later stage, breaks <code>cs4D</code> in its two
+ *                components (<code>headCS</code> and <code>tailCS</code> in OGC 01-009's terminology)
+ *                and compares the head CRS with <code>cs3D</code>. The user may wants to do
+ *                that because its own code may have some special hooks for <code>cs3D</code>,
+ *                since he has built this CRS himself. With the current {@link CompoundCRS}
+ *                speficiation, this approach is not possible since {@link CompoundCRS#getCRS}
+ *                allow only a flat view of component's CRS; any user custom
+ *                <code>CompoundCRS</code> are lost.</P></li>
+ *          </ul>
+ *          <P ALIGN="justify">If this <code>CRS</code> interface were removed and {@link CompoundCRS}
+ *          put on the same level than all other CRS in the hierarchy, then the most important
+ *          difficulty would probably by the semantic of 
  *          {@link CoordinateReferenceSystem#getCoordinateSystem getCoordinateSystem()} and
- *          {@link CoordinateReferenceSystem#getDatum getDatum()} methods), and I can see use
- *          cases where it may be useful. For example if a <code>CompoundCRS</code> is used as
- *          a building block for some others <code>CompoundCRS</code>, it is useful to get back
- *          the original <code>CompoundCRS</code> and compare it with some predefined CS using
- *          {@link Object#equals}. Predefined <code>CompoundCRS</code> may be common in user's
- *          code, since it is often set for a particular problem.
+ *          {@link CoordinateReferenceSystem#getDatum getDatum()} methods. Various proposal
+ *          may be considered:</P>
+ *          <ul>
+ *            <li>they may return <code>null</code>;</li>
+ *            <li>they may throw a {@link java.util.UnsupportedOperationException};</li>
+ *            <li>they may return a special implementation of {@link org.opengis.cs.CoordinateSystem}
+ *                and {@link org.opengis.cd.Datum}, which don't need to be public: the
+ *                <code>CompoundCRS</code> implementation can generate them as needed.</li>
+ *          </ul>
  */
 public interface CRS extends ReferenceSystem {
 }

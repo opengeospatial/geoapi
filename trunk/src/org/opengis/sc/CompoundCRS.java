@@ -20,6 +20,11 @@ public interface CompoundCRS extends CRS {
      *
      * @return The coordinate reference systems.
      * @association includesCRS
+     *
+     * @revisit <code>getCoordinateReferenceSystem()</code> would be a better name, since this
+     *          method returns a {@link CoordinateReferenceSystem} object - not a {@link CRS}.
+     *          The <code>getCRS()</code> name may be confusing, especially since the place of
+     *          the {@link CRS} interface in the hierarchy is not self-evident.
      */
     public CoordinateReferenceSystem[] getCRS();
 }

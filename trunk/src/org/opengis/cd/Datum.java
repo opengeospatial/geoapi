@@ -92,6 +92,9 @@ public interface Datum {
      *
      * @return The datum valid area, or <code>null</code> if not available.
      * @optional
+     *
+     * @revisit The method name <code>getValidExtent()</code> would work better with time
+     *          reference systems since their validity holds across a non-spatial extent.
      */
     public Extent getValidArea();
 

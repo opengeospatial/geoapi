@@ -48,12 +48,15 @@ public interface ReferenceSystem {
      *
      * @return Coordinate reference system valid area, or <code>null</code> if not available.
      * @optional
+     *
+     * @revisit The method name <code>getValidExtent()</code> would work better with time
+     *          reference systems since their validity holds across a non-spatial extent.
      */
     public Extent getValidArea();
 
     /**
      * Description of domain of usage, or limitations of usage, for which this
-     * CRS object is valid.
+     * (coordinate) reference system object is valid.
      *
      * @return Coordinate reference system scope, or <code>null</code> if not available.
      * @optional
