@@ -20,7 +20,7 @@ import org.opengis.crs.crs.CoordinateReferenceSystem;
 import org.opengis.crs.crs.CoordinateReferenceSystemFactory;
 import org.opengis.crs.crs.UnsupportedCRSException;
 import org.opengis.crs.datum.Datum;
-import org.opengis.crs.datum.DatumFactory;
+import org.opengis.crs.datum.DatumAuthorityFactory;
 import org.opengis.go.geometry.Bounds;
 import org.opengis.go.geometry.BoundsFactory;
 import org.opengis.spatialschema.SpatialschemaFactory;
@@ -63,7 +63,7 @@ public class CommonFactoryManager {
     private static CommonFactory commonFactory;
     private static CoordinateReferenceSystemFactory coordinateReferenceSystemFactory;
     private static SpatialschemaFactory spatialschemaFactory;
-    private static DatumFactory datumFactory;
+    private static DatumAuthorityFactory datumAuthorityFactory;
     private static BoundsFactory boundsFactory;
     
     // Initialize our static fields...
@@ -112,7 +112,7 @@ public class CommonFactoryManager {
             // Retrieve some information used in the convenience methods.
             spatialschemaFactory = commonFactory.getSpatialschemaFactory();
             coordinateReferenceSystemFactory = commonFactory.getCoordinateReferenceSystemFactory();
-            datumFactory = commonFactory.getDatumFactory();
+            datumAuthorityFactory = commonFactory.getDatumAuthorityFactory();
             boundsFactory = commonFactory.getBoundsFactory();
         }
         catch (Exception e) {
@@ -165,8 +165,8 @@ public class CommonFactoryManager {
      * Convenience method that returns the <code>DatumFactory</code> instance
      * from the default <code>CommonFactory</code>.
      */
-    public static DatumFactory getDatumFactory() {
-        return datumFactory;
+    public static DatumAuthorityFactory getDatumAuthorityFactory() {
+        return datumAuthorityFactory;
     }
 
     /**
@@ -214,7 +214,14 @@ public class CommonFactoryManager {
      *   known.
      */
     public static Datum getDatum(String datumName) {
-        return datumFactory.getDatum(datumName);
+        try {
+            return datumAuthorityFactory.createDatum(datumName);
+        } catch (org.opengis.crs.FactoryException exception) {
+            // TODO: WRONG THING TO DO! We should not eat checked exception.
+            //       This is just a temporary hack in order to get the code
+            //       to compile.
+            throw new IllegalArgumentException(datumName);
+        }
     }
 
     /**

@@ -9,8 +9,9 @@
  *************************************************************************************************/
 package org.opengis.crs.crs;
 
-import org.opengis.crs.crs.projection.Projection;
 // OpenGIS direct dependencies
+import org.opengis.crs.cs.CartesianCS;
+import org.opengis.crs.crs.projection.Projection;
 
 
 /**
@@ -31,7 +32,6 @@ import org.opengis.crs.crs.projection.Projection;
  * @version <A HREF="http://www.opengis.org/docs/03-073r1.zip">Abstract specification 2.0</A>
  */
 public interface ProjectedCRS extends GeneralDerivedCRS {
-
     /**
      * Returns the map projection.
      *
@@ -52,5 +52,5 @@ public interface ProjectedCRS extends GeneralDerivedCRS {
      * @return The coordinate system.
      * @UML association usesCS
      */
-    public CartesianCS getCoordinateSystem();
+/// CartesianCS getCoordinateSystem();
 }

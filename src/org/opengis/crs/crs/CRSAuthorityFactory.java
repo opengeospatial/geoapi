@@ -146,30 +146,4 @@ public interface CRSAuthorityFactory extends AuthorityFactory {
      * @throws FactoryException if the object creation failed for some other reason.
      */
     DerivedCRS createDerivedCRS(String code) throws FactoryException;        
-
-    /**
-     * Creates a compound coordinate reference system from an ordered list of <code>CoordinateReferenceSystem</code> objects.
-     *
-     * @param element ordered array of <code>CoordinateReferenceSystem</code> objects.
-     * @throws FactoryException if the object creation failed.
-     *
-     * @deprecated This method should not live there; this is CRSFactory job.
-     */
-    CompoundCRS createCompoundCRS(CoordinateReferenceSystem[] element) throws FactoryException;
-
-    /**
-     * Creates a <code>DerivedCRS</code> by changing the anchor point of a subject <code>CRS</code>
-     * to be a <code>DirectPosition</code> in another <code>CRS</code>.
-     * Can also be used to reanchor a <code>DerivedCRS</code> (as the subject <code>CRS</code>)
-     * to a new anchor <code>CRS</code>.
-     * The reference to the subject <code>CRS</code> is assigned to the returned <code>DerivedCRS</code>.
-     *
-     * @param subjectCRS the <code>CRS</code> that will become the resulting <code>DerivedCRS</code>.
-     * @param anchorCRS the <code>CRS</code> to which the resulting <code>DerivedCRS</code> will be referenced.
-     * @param anchorPoint the <code>DirectPosition</code> in the anchor <code>CRS</code> that corresponds to the origin in the resulting <code>DerivedCRS</code>.
-     * @return the <code>DerivedCRS</code>, now anchored to the anchor <code>CRS</code>.
-     *
-     * @deprecated This method should not live there; this is CRSFactory job.
-     */
-    DerivedCRS anchor(CoordinateReferenceSystem subjectCRS, CoordinateReferenceSystem anchorCRS, DirectPosition anchorPoint) throws FactoryException;
 }

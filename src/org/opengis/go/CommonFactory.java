@@ -12,6 +12,7 @@ package org.opengis.go;
 
 import org.opengis.crs.crs.CoordinateReferenceSystemFactory;
 import org.opengis.crs.datum.DatumFactory;
+import org.opengis.crs.datum.DatumAuthorityFactory;
 import org.opengis.go.geometry.BoundsFactory;
 import org.opengis.spatialschema.SpatialschemaFactory;
 
@@ -35,6 +36,11 @@ public interface CommonFactory {
      * Returns the DatumFactory singleton.
      */
     public DatumFactory getDatumFactory();
+       
+    /**
+     * Returns the DatumAuthorityFactory singleton.
+     */
+    public DatumAuthorityFactory getDatumAuthorityFactory();
     
     /**
      * Returns the CoordinateReferenceSystemFactory singleton.
