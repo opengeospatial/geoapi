@@ -10,10 +10,8 @@
 package org.opengis.crs.cs;
 
 // J2SE direct dependencies and extensions
-import java.util.Locale;
 import javax.units.Unit;
 
-// OpenGIS direct dependencies
 import org.opengis.crs.Info;
 
 
