@@ -11,7 +11,9 @@ package org.opengis.referencing.datum;
 
 // J2SE direct dependencies
 import java.util.Date;
-import java.util.Locale;
+
+// OpenGIS direct dependencies
+import org.opengis.util.InternationalString;
 
 
 /**
@@ -39,7 +41,7 @@ public interface TemporalDatum extends Datum {
      *
      * @return Always <code>null</code>.
      */
-    String getAnchorPoint(Locale locale);
+    InternationalString getAnchorPoint();
 
     /**
      * The time after which this datum definition is valid.

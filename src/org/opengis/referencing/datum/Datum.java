@@ -16,6 +16,7 @@ import java.util.Locale;
 // OpenGIS direct dependencies
 import org.opengis.referencing.IdentifiedObject;
 import org.opengis.metadata.extent.Extent;
+import org.opengis.util.InternationalString;
 
 
 /**
@@ -55,12 +56,22 @@ public interface Datum extends IdentifiedObject {
      *       a temporal datum carries a separate time origin of type {@link Date}.</li>
      * </ul>
      *
+     * @UML optional anchorPoint
+     */
+    InternationalString getAnchorPoint();
+
+    /**
+     * Description, possibly including coordinates, of the point or points used to anchor the datum
+     * to the Earth. Also known as the "origin", especially for Engineering and Image Datums.
+     *
      * @param  locale The desired locale for the datum anchor point to be returned,
      *         or <code>null</code> for anchor point in some default locale (may or
      *         may not be the {@linkplain Locale#getDefault() system default}).
      * @return The datum anchor point in the given locale, or <code>null</code> if none. If no
      *         anchor point is available in the given locale, then some default locale is used.
      * @UML optional anchorPoint
+     *
+     * @deprecated Replaced by {@link #getAnchorPoint()}.
      */
     String getAnchorPoint(Locale locale);
 
@@ -90,12 +101,22 @@ public interface Datum extends IdentifiedObject {
      * Description of domain of usage, or limitations of usage, for which this
      * datum object is valid.
      *
+     * @UML optional scope
+     */
+    InternationalString getScope();
+
+    /**
+     * Description of domain of usage, or limitations of usage, for which this
+     * datum object is valid.
+     *
      * @param  locale The desired locale for the datum scope to be returned, or <code>null</code>
      *         for scope in some default locale (may or may not be the
      *         {@linkplain Locale#getDefault() system default}).
      * @return The datum scope in the given locale, or <code>null</code> if none. If no
      *         scope is available in the given locale, then some default locale is used.
      * @UML optional scope
+     *
+     * @deprecated Replaced by {@link #getScope()}.
      */
     String getScope(Locale locale);
 }

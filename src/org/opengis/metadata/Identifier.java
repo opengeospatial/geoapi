@@ -39,6 +39,9 @@ public interface Identifier {
      *
      * @return The code space, or <code>null</code> if not available.
      * @UML optional codeSpace in ISO 19111
+     *
+     * @deprecated This method is not defined in ISO 19115. It was defined in ISO 19111,
+     *             but was abandonned in latest revision in favor of ISO 19115 interface.
      */
     String getCodeSpace();
 

@@ -19,6 +19,7 @@ import java.awt.image.renderable.RenderableImage;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 import org.opengis.spatialschema.geometry.DirectPosition;
 import org.opengis.spatialschema.geometry.Envelope;
+import org.opengis.util.InternationalString;
 
 
 /**
@@ -113,11 +114,20 @@ public interface Coverage {
      * The number of dimensions of the coverage is the number of entries in the
      * list of dimension names.
      *
+     * @UML mandatory dimensionNames
+     */
+    InternationalString[] getDimensionNames();
+
+    /**
+     * The names of each dimension in the coverage.
+     *
      * @param  locale The locale for the name to be returned, or <code>null</code> for a default
      *         locale.
      * @return The names of each dimension in the coverage. If no name is available in the
      *         specified locale, then a default locale is used.
      * @UML mandatory dimensionNames
+     *
+     * @deprecated Replaced by {@link #getDimensionNames()}.
      */
     String[] getDimensionNames(Locale locale);
 

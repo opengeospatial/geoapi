@@ -17,6 +17,7 @@ import org.opengis.referencing.IdentifiedObject;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 import org.opengis.metadata.quality.PositionalAccuracy;
 import org.opengis.metadata.extent.Extent;
+import org.opengis.util.InternationalString;
 
 
 /**
@@ -93,12 +94,21 @@ public interface CoordinateOperation extends IdentifiedObject {
     /**
      * Description of domain of usage, or limitations of usage, for which this operation is valid.
      *
+     * @UML optional scope
+     */
+    InternationalString getScope();
+
+    /**
+     * Description of domain of usage, or limitations of usage, for which this operation is valid.
+     *
      * @param  locale The desired locale for the coordinate operation scope to be returned,
      *         of <code>null</code> for scope in some default locale (may or may not be the
      *         {@linkplain Locale#getDefault() system default}).
      * @return The coordinate operation scope in the given locale, or <code>null</code> if none.
      *         If no scope is available in the given locale, then some default locale is used.
      * @UML optional scope
+     *
+     * @deprecated Replaced by {@link #getScope()}.
      */
     String getScope(Locale locale);
     

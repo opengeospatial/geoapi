@@ -13,8 +13,21 @@
   interpret spatial location information unambiguously. The description of
   an object's attributes can be done explicitly, by providing all defining
   parameters, or by identifier, a reference to a recognised source that contains
-  a full description of the object. The {@link org.opengis.metadata.Identifier}
-  can be used to specify alternative names or aliases of the object defined.</P>
+  a full description of the object.</P>
+
+  <P ALIGN="justify">The {@link org.opengis.referencing.IdentifiedObject} interface contains
+  attributes common to several objects used in spatial referencing by coordinates. For example,
+  a {@linkplain org.opengis.referencing.datum.Datum datum} name might be "North American Datum
+  of 1983". This may have alternative names or aliases, for example the abbreviation "NAD83".
+  Object {@linkplain org.opengis.referencing.IdentifiedObject#getName primary names} have a data type
+  {@link org.opengis.metadata.Identifier} whilst {@linkplain org.opengis.referencing.IdentifiedObject#getAliases aliases}
+  have a data type {@link org.opengis.util.GenericName}.</P>
+
+  <P ALIGN="justify">Another attribute is {@linkplain org.opengis.referencing.IdentifiedObject#getIdentifiers identifiers}.
+  This is a unique code used to reference an object in a given place. For example, an external geodetic register might
+  give the NAD83 datum a unique code of "6269". Identifiers have a data type of {@link org.opengis.metadata.Identifier}.
+  In addition to the use of an identifier as a reference to a definition in a remote register, it may also be included
+  in an object definition to allow remote users to refer to the object.</P>
 
   <H2>Well-Known Text format</H2>
   <P ALIGN="justify">Many entities in this specification can be printed in a well-known text
