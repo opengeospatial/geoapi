@@ -54,6 +54,8 @@ public interface GraphicStoreFactory {
      */
     GraphicStore createGraphicStore(URI provider, Map params) throws IOException;
 
+    GraphicStore createNewGraphicStore(URI provider, Map params) throws IOException;
+
     /**
      * Icon representing this category of datastores.
      * <p>
