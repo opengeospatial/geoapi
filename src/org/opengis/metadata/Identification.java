@@ -69,7 +69,7 @@ public interface Identification {
      *
      * @UML optional status
      */
-//    Progress[] getStatus();
+    Progress[] getStatus();
 
     /**
      * Identification of, and means of communication with, person(s) and organizations(s)
@@ -113,12 +113,12 @@ public interface Identification {
      *
      * @UML optional resourceSpecificUsage
      */
-//    Usage[] getResourceSpecificUsages();
+    Usage[] getResourceSpecificUsages();
 
     /**
      * Provides information about constraints which apply to the resource(s).
      *
      * @UML optional resourceConstraints
      */
-//    Constraints[] getResourceConstraints();
+    Constraints[] getResourceConstraints();
 }

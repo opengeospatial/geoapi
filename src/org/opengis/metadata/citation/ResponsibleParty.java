@@ -73,5 +73,5 @@ public interface ResponsibleParty {
      *
      * @UML mandatory role
      */
-    RoleCode getRole();
+    Role getRole();
 }
