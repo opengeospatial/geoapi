@@ -49,7 +49,6 @@ public class CodeListTest extends TestCase {
      * Run the suite from the command line.
      */
     public static void main(String[] args) {
-        org.geotools.util.MonolineFormatter.initGeotools();
         junit.textui.TestRunner.run(suite());
     }
     

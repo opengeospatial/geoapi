@@ -33,7 +33,7 @@ import org.opengis.spatialschema.geometry.geometry.PointArray;
 
 
 /**
- * Generate a name map from a set of GeoAPI interfaces.
+ * Generates a name map from a set of GeoAPI interfaces.
  *
  * @author Martin Desruisseaux
  */
@@ -57,8 +57,9 @@ public class NameMapGenerator {
     /**
      * Scan all classes and members and write an SQL script.
      */
-    public static void main(String[] args) throws Exception {
-        final Properties properties = new Properties();
+    public static void main(final String[] args) throws Exception {
+        final Properties nameMap = new Properties();
+        final Properties typeMap = new Properties();
         final Set<Class> classes = ClassFinder.getClasses(CodeList.class, ROOT_PACKAGE);
         for (final Iterator<Class> it=classes.iterator(); it.hasNext();) {
             final Class classe = it.next();
@@ -67,12 +68,12 @@ public class NameMapGenerator {
                 continue;
             }
             if (CodeList.class.isAssignableFrom(classe)) {
-                properties.putAll(getNameMap(classe));
+                inspectMembers(classe, nameMap, typeMap);
                 it.remove();
                 continue;
             }
             if (classe.isInterface()) {
-                properties.putAll(getNameMap(classe));
+                inspectMembers(classe, nameMap, typeMap);
                 it.remove();
                 continue;
             }
@@ -80,23 +81,35 @@ public class NameMapGenerator {
         if (!classes.isEmpty()) {
             Logger.getLogger("org.opengis.tools").warning("Unrecognized classes.");
         }
-        final OutputStream out = new FileOutputStream("GeoAPI_to_ISO.properties");
-        properties.store(out, "This is a temporary file. "+
-                         "Implementations for J2SE 5.0 will use annotations instead");
+        OutputStream out = new FileOutputStream("GeoAPI_to_ISO.properties");
+        nameMap.store(out, "This is a temporary file for J2SE 1.4 implementations. " +
+                           "Implementations for J2SE 5.0 should inspect annotations instead.");
+        out.close();
+        out = new FileOutputStream("CollectionTypes.properties");
+        typeMap.store(out, "This is a temporary file for J2SE 1.4 implementations. " +
+                           "Implementations for J2SE 5.0 should inspect generic types instead.");
         out.close();
     }
 
     /**
      * Add entries for the specified code list.
      */
-    private static Map<Object,Object> getNameMap(final Class classe) {
+    private static void inspectMembers(final Class classe,
+                                       final Map<Object, Object> names,
+                                       final Map<Object, Object> types)
+    {
+        /*
+         * Add the GeoAPI - ISO name mapping for the CodeList or interface.
+         */
         String identifier = getIdentifier(classe);
         if (identifier == null) {
-            return Collections.emptyMap();
+            return;
         }
         final String className = getClassName(classe);
-        final Map<Object,Object> names = new HashMap<Object,Object>();
         names.put(className, identifier);
+        /*
+         * Inspects all public member of this CodeList / interface.
+         */
         final Member[] attributes;
         if (classe.isInterface()) {
             attributes = classe.getDeclaredMethods();
@@ -111,9 +124,29 @@ public class NameMapGenerator {
             if (identifier == null) {
                 continue;
             }
-            names.put(className+'.'+attribute.getName(), identifier);
+            /*
+             * Add the GeoAPI - ISO name mapping for this member.
+             * If the member is a method, also check its returns
+             * type and add the Collection element type if needed.
+             */
+            final String fieldName = className+'.'+attribute.getName();
+            names.put(fieldName, identifier);
+            if (attribute instanceof Method) {
+                final Method method = (Method) attribute;
+                final Class returnType = method.getReturnType();
+                if (Collection.class.isAssignableFrom(returnType)) {
+                    final Type[] genericTypes = ((ParameterizedType) method.getGenericReturnType())
+                                                                           .getActualTypeArguments();
+                    if (genericTypes.length != 1) {
+                        // Should not occurs for collections.
+                        throw new MalformedParameterizedTypeException();
+                    }
+                    final Class genericType = (Class) genericTypes[0];
+                    identifier = genericType.getName();
+                    types.put(fieldName, identifier);
+                }
+            }
         }
-        return names;
     }
 
     /**
@@ -125,7 +158,7 @@ public class NameMapGenerator {
     }
 
     /**
-     * Returns the UML identifier for the specified element, or <code>null</code>
+     * Returns the UML identifier for the specified element, or {@code null}
      * if the specified element is not part of the UML model.
      */
     private static String getIdentifier(final AnnotatedElement element) {
