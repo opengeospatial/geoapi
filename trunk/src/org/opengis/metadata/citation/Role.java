@@ -27,7 +27,7 @@ import org.opengis.util.CodeList;
  *
  * @revisit <strong>Note 2:</strong> Should we rename as <code>Role</code>?
  */
-public final class RoleCode extends CodeList {
+public final class Role extends CodeList {
     /**
      * Serial number for compatibility with different versions.
      */
@@ -44,7 +44,7 @@ public final class RoleCode extends CodeList {
      *
      * @UML conditional resourceProvider
      */
-    public static final RoleCode RESOURCE_PROVIDER = new RoleCode("RESOURCE_PROVIDER");
+    public static final Role RESOURCE_PROVIDER = new Role("RESOURCE_PROVIDER");
 
     /**
      * Party that accepts accountability and responsibility for the data and ensures
@@ -52,63 +52,63 @@ public final class RoleCode extends CodeList {
      *
      * @UML conditional custodian
      */
-    public static final RoleCode CUSTODIAN = new RoleCode("CUSTODIAN");
+    public static final Role CUSTODIAN = new Role("CUSTODIAN");
 
     /**
      * Party that owns the resource.
      *
      * @UML conditional owner
      */
-    public static final RoleCode OWNER = new RoleCode("OWNER");
+    public static final Role OWNER = new Role("OWNER");
 
     /**
      * Party who uses the resource.
      *
      * @UML conditional user
      */
-    public static final RoleCode USER = new RoleCode("USER");
+    public static final Role USER = new Role("USER");
 
     /**
      * Party who distributes the resource.
      *
      * @UML conditional distributor
      */
-    public static final RoleCode DISTRIBUTOR = new RoleCode("DISTRIBUTOR");
+    public static final Role DISTRIBUTOR = new Role("DISTRIBUTOR");
 
     /**
      * Party who created the resource.
      *
      * @UML conditional originator
      */
-    public static final RoleCode ORIGINATOR = new RoleCode("ORIGINATOR");
+    public static final Role ORIGINATOR = new Role("ORIGINATOR");
 
     /**
      * Party who can be contacted for acquiring knowledge about or acquisition of the resource.
      *
      * @UML conditional pointOfContact
      */
-    public static final RoleCode POINT_OF_CONTACT = new RoleCode("POINT_OF_CONTACT");
+    public static final Role POINT_OF_CONTACT = new Role("POINT_OF_CONTACT");
 
     /**
      * Key party responsible for gathering information and conducting research.
      *
      * @UML conditional principalInvestigator
      */
-    public static final RoleCode PRINCIPAL_INVESTIGATOR = new RoleCode("PRINCIPAL_INVESTIGATOR");
+    public static final Role PRINCIPAL_INVESTIGATOR = new Role("PRINCIPAL_INVESTIGATOR");
 
     /**
      * Party who has processed the data in a manner such that the resource has been modified.
      *
      * @UML conditional processor
      */
-    public static final RoleCode PROCESSOR = new RoleCode("PROCESSOR");
+    public static final Role PROCESSOR = new Role("PROCESSOR");
 
     /**
      * Party who published the resource.
      *
      * @UML conditional publisher
      */
-    public static final RoleCode PUBLISHER = new RoleCode("PUBLISHER");
+    public static final Role PUBLISHER = new Role("PUBLISHER");
 
     /**
      * Constructs an enum with the given name. The new enum is
@@ -116,23 +116,23 @@ public final class RoleCode extends CodeList {
      *
      * @param name The enum name. This name must not be in use by an other enum of this type.
      */
-    public RoleCode(final String name) {
+    public Role(final String name) {
         super(name, VALUES);
     }
 
     /**
-     * Returns the list of <code>RoleCode</code>s.
+     * Returns the list of <code>Role</code>s.
      */
-    public static RoleCode[] values() {
+    public static Role[] values() {
         synchronized (VALUES) {
-            return (RoleCode[]) VALUES.toArray(new RoleCode[VALUES.size()]);
+            return (Role[]) VALUES.toArray(new Role[VALUES.size()]);
         }
     }
 
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
-    public /*{RoleCode}*/ CodeList[] family() {
+    public /*{Role}*/ CodeList[] family() {
         return values();
     }
 }

@@ -15,6 +15,7 @@ import java.util.Locale;
 
 // OpenGIS direct dependencies
 import org.opengis.metadata.citation.Contact;
+import org.opengis.metadata.quality.DataQuality;
 import org.opengis.referencing.ReferenceSystem;
 
 
@@ -156,7 +157,7 @@ public interface MetaData {
       *
       * @UML optional dataQualityInfo
       */
-//     DataQuality[] dataQualityInfo();
+     DataQuality[] dataQualityInfo();
 
      /**
       * Provides information about the catalogue of rules defined for the portrayal of a resource(s).
@@ -170,7 +171,7 @@ public interface MetaData {
       *
       * @UML optional metadataConstraints
       */
-//     Constraints[] getMetadataConstraints();
+     Constraints[] getMetadataConstraints();
 
      /**
       * Provides information about the conceptual schema of a dataset.

@@ -19,7 +19,7 @@ import org.opengis.metadata.extent.GeographicDescription;
 
 
 /**
- * Information required to identify a dataset
+ * Information required to identify a dataset.
  *
  * @UML datatype MD_DateIdentification
  * @author ISO 19115
@@ -32,7 +32,7 @@ public interface DataIdentification extends Identification {
      *
      * @UML optional spatialRepresentationType
      */
-//    SpatialRepresentation[] getSpatialRepresentations();
+    SpatialRepresentationType[] getSpatialRepresentationTypes();
 
     /**
      * Factor which provides a general understanding of the density of spatial data
@@ -40,7 +40,7 @@ public interface DataIdentification extends Identification {
      *
      * @UML optional spatialResolution
      */
-//    Resolution[] getSpatialResolutions();
+    Resolution[] getSpatialResolutions();
 
     /**
      * Language(s) used within the dataset.
@@ -63,7 +63,7 @@ public interface DataIdentification extends Identification {
      *
      * @UML mandatory topicCategory
      */
-//    TopicCategory[] getTopicCategory();
+    TopicCategory[] getTopicCategories();
 
     /**
      * Minimum bounding rectangle within which data is available.
