@@ -1,10 +1,10 @@
 /*
  * Copyright (C) 2003 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
  */
-package org.opengis.gm;
+package org.opengis.spatialschema.geometry;
 
 // OpenGIS direct dependencies
-import org.opengis.gm.primitive.Primitive;
+import org.opengis.spatialschema.geometry.primitive.Primitive;
 
 
 /**
