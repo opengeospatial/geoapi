@@ -9,13 +9,14 @@
  *************************************************************************************************/
 package org.opengis.tools;
 
-// J2SE dependencies
+// J2SE dependencies and extensions
 import java.io.*;
 import java.util.*;
 import java.net.URI;
 import java.net.URL;
 import java.lang.reflect.*;
 import java.util.logging.Logger;
+import javax.units.Unit;
 
 // OpenGIS dependencies
 import org.opengis.util.CodeList;
@@ -25,6 +26,8 @@ import org.opengis.annotation.UML;
 import org.opengis.annotation.Obligation;
 import org.opengis.parameter.ParameterValueGroup;
 import org.opengis.parameter.ParameterDescriptorGroup;
+import org.opengis.spatialschema.geometry.Geometry;
+import org.opengis.spatialschema.geometry.primitive.Point;
 import org.opengis.spatialschema.geometry.geometry.PointGrid;
 import org.opengis.spatialschema.geometry.geometry.PointArray;
 
@@ -38,17 +41,22 @@ public class DatabaseGenerator {
     /**
      * The root package.
      */
-    private static final String rootPackage = "org.opengis.metadata";
+    private static final String ROOT_PACKAGE = "org.opengis.metadata";
+
+    /**
+     * The schema where to create the tables.
+     */
+    private static final String SCHEMA = "metadata";
 
     /**
      * The owner for the database to create, or <code>null</code> for the default one.
      */
-    private static final String owner = "latical";
+    private static final String OWNER = "Martin";
 
     /**
      * The line separator.
      */
-    private static final String lineSeparator = System.getProperty("line.separator", "\n");
+    private static final String LINE_SEPARATOR = System.getProperty("line.separator", "\n");
 
     /**
      * The list of table created in inverse order. Used for the "DROP TABLE" statements.
@@ -66,7 +74,28 @@ public class DatabaseGenerator {
      */
     public static void main(String[] args) throws Exception {
         Writer sql = new FileWriter("create.sql");
-        final Set<Class> classes = ClassFinder.getClasses(CodeList.class, rootPackage);
+
+        sql.write("CREATE TABLE public.\"Locale\"");                          sql.write(LINE_SEPARATOR);
+        sql.write('(');                                                       sql.write(LINE_SEPARATOR);
+        sql.write("  code CHARACTER VARYING(5) NOT NULL,");                   sql.write(LINE_SEPARATOR);
+        sql.write("  CONSTRAINT \"Locale.primaryKey\" PRIMARY KEY (code)");   sql.write(LINE_SEPARATOR);
+        sql.write(") WITHOUT OIDS;");                                         sql.write(LINE_SEPARATOR);
+        sql.write("INSERT INTO \"Locale\" VALUES ('en');");                   sql.write(LINE_SEPARATOR);
+        sql.write("INSERT INTO \"Locale\" VALUES ('fr');");                   sql.write(LINE_SEPARATOR);
+        sql.write("INSERT INTO \"Locale\" VALUES ('fr_CA');");                sql.write(LINE_SEPARATOR);
+        sql.write("INSERT INTO \"Locale\" VALUES ('es');");                   sql.write(LINE_SEPARATOR);
+                                                                              sql.write(LINE_SEPARATOR);
+        sql.write("CREATE TABLE public.\"Unit\"");                            sql.write(LINE_SEPARATOR);
+        sql.write('(');                                                       sql.write(LINE_SEPARATOR);
+        sql.write("  symbol CHARACTER VARYING(10) NOT NULL,");                sql.write(LINE_SEPARATOR);
+        sql.write("  CONSTRAINT \"Unit.primaryKey\" PRIMARY KEY (symbol)");   sql.write(LINE_SEPARATOR);
+        sql.write(") WITHOUT OIDS;");                                         sql.write(LINE_SEPARATOR);
+        sql.write("INSERT INTO \"Unit\" VALUES ('m');");                      sql.write(LINE_SEPARATOR);
+        sql.write("INSERT INTO \"Unit\" VALUES ('cm');");                     sql.write(LINE_SEPARATOR);
+        sql.write("INSERT INTO \"Unit\" VALUES ('km');");                     sql.write(LINE_SEPARATOR);
+                                                                              sql.write(LINE_SEPARATOR);
+
+        final Set<Class> classes = ClassFinder.getClasses(CodeList.class, ROOT_PACKAGE);
         for (final Iterator<Class> it=classes.iterator(); it.hasNext();) {
             final Class classe = it.next();
             if (Throwable.class.isAssignableFrom(classe)) {
@@ -102,10 +131,12 @@ public class DatabaseGenerator {
         sql.close();
         sql = new BufferedWriter(new FileWriter("drop.sql"));
         for (final String name : drop) {
-            sql.write("DROP TABLE \"");
+            sql.write("DROP TABLE ");
+            sql.write(SCHEMA);
+            sql.write(".\"");
             sql.write(name);
             sql.write("\";");
-            sql.write(lineSeparator);
+            sql.write(LINE_SEPARATOR);
         }
         sql.close();
         if (!classes.isEmpty()) {
@@ -126,33 +157,37 @@ public class DatabaseGenerator {
             return null;
         }
         final StringBuilder sql = new StringBuilder();
-        sql.append("CREATE TABLE \"");
+        sql.append("CREATE TABLE ");
+        sql.append(SCHEMA);
+        sql.append(".\"");
         sql.append(className);
         sql.append('"');
-        sql.append(lineSeparator);
+        sql.append(LINE_SEPARATOR);
         sql.append('(');
-        sql.append(lineSeparator);
+        sql.append(LINE_SEPARATOR);
         sql.append("  \"code\" INT2 NOT NULL,");
-        sql.append(lineSeparator);
+        sql.append(LINE_SEPARATOR);
         sql.append("  \"name\" CHARACTER VARYING(32) NOT NULL,");
-        sql.append(lineSeparator);
+        sql.append(LINE_SEPARATOR);
         sql.append("  CONSTRAINT \"");
         sql.append(className);
         sql.append(".primaryKey\" PRIMARY KEY (\"code\"),");
-        sql.append(lineSeparator);
+        sql.append(LINE_SEPARATOR);
         sql.append("  CONSTRAINT \"");
         sql.append(className);
         sql.append(".uniqueName\" UNIQUE (\"name\")");
-        sql.append(lineSeparator);
+        sql.append(LINE_SEPARATOR);
         sql.append(") WITHOUT OIDS;");
-        sql.append(lineSeparator);
-        if (owner != null) {
-            sql.append("ALTER TABLE \"");
+        sql.append(LINE_SEPARATOR);
+        if (OWNER != null) {
+            sql.append("ALTER TABLE ");
+            sql.append(SCHEMA);
+            sql.append(".\"");
             sql.append(className);
-            sql.append("\" OWNER TO ");
-            sql.append(owner);
-            sql.append(';');
-            sql.append(lineSeparator);
+            sql.append("\" OWNER TO \"");
+            sql.append(OWNER);
+            sql.append("\";");
+            sql.append(LINE_SEPARATOR);
         }        
         final Field[] attributes = classe.getDeclaredFields();
         for (final Field attribute : attributes) {
@@ -164,17 +199,19 @@ public class DatabaseGenerator {
                 continue;
             }
             final CodeList code = (CodeList) attribute.get(null);
-            sql.append("INSERT INTO \"");
+            sql.append("INSERT INTO ");
+            sql.append(SCHEMA);
+            sql.append(".\"");
             sql.append(className);
             sql.append("\" VALUES (");
             sql.append(code.ordinal() + 1);
             sql.append(", '");
             sql.append(attributeName.replace("'", "''"));
             sql.append("');");
-            sql.append(lineSeparator);
+            sql.append(LINE_SEPARATOR);
         }
-        sql.append(lineSeparator);
-        sql.append(lineSeparator);
+        sql.append(LINE_SEPARATOR);
+        sql.append(LINE_SEPARATOR);
         drop.addFirst(className);
         return sql.toString();
     }
@@ -196,12 +233,14 @@ public class DatabaseGenerator {
         }
         final StringBuilder constraints = new StringBuilder();
         final StringBuilder sql = new StringBuilder();
-        sql.append("CREATE TABLE \"");
+        sql.append("CREATE TABLE ");
+        sql.append(SCHEMA);
+        sql.append(".\"");
         sql.append(className);
         sql.append('"');
-        sql.append(lineSeparator);
+        sql.append(LINE_SEPARATOR);
         sql.append('(');
-        sql.append(lineSeparator);
+        sql.append(LINE_SEPARATOR);
         final Method[] attributes = classe.getDeclaredMethods();
 scan:   for (final Method attribute : attributes) {
             if (!Modifier.isPublic(attribute.getModifiers())) {
@@ -232,12 +271,26 @@ scan:   for (final Method attribute : attributes) {
                 sql.append(" NOT NULL");
             }
             sql.append(',');
-            sql.append(lineSeparator);
+            sql.append(LINE_SEPARATOR);
             final String foreignKey;
-            if (CodeList.class.isAssignableFrom(attributeType)) {
-                foreignKey = "code";
-            } else if (attributeType.getName().startsWith(rootPackage)) {
-                foreignKey = "oid";
+            final String foreignTable;
+            final boolean inSchema;
+            if (Locale.class.isAssignableFrom(attributeType)) {
+                inSchema     = false;
+                foreignTable = "Locale";
+                foreignKey   = "code";
+            } else if (Unit.class.isAssignableFrom(attributeType)) {
+                inSchema     = false;
+                foreignTable = "Unit";
+                foreignKey   = "symbol";
+            } else if (CodeList.class.isAssignableFrom(attributeType)) {
+                inSchema     = true;
+                foreignTable = getIdentifier(attributeType);
+                foreignKey   = "code";
+            } else if (attributeType.getName().startsWith(ROOT_PACKAGE)) {
+                inSchema     = true;
+                foreignTable = getIdentifier(attributeType);
+                foreignKey   = "oid";
             } else {
                 continue;
             }
@@ -247,12 +300,17 @@ scan:   for (final Method attribute : attributes) {
             constraints.append(attributeName);
             constraints.append("\" FOREIGN KEY (\"");
             constraints.append(attributeName);
-            constraints.append("\") REFERENCES \"");
-            constraints.append(getIdentifier(attributeType));
+            constraints.append("\") REFERENCES ");
+            if (inSchema) {
+                constraints.append(SCHEMA);
+                constraints.append('.');
+            }
+            constraints.append('"');
+            constraints.append(foreignTable);
             constraints.append("\" (");
             constraints.append(foreignKey);
             constraints.append(") ON UPDATE RESTRICT ON DELETE RESTRICT,");
-            constraints.append(lineSeparator);
+            constraints.append(LINE_SEPARATOR);
             if (classes.remove(attributeType)) {
                 // Resolve dependencies first.
                 sql.insert(0, sqlInterface(attributeType, classes));
@@ -262,7 +320,7 @@ scan:   for (final Method attribute : attributes) {
         sql.append("  CONSTRAINT \"");
         sql.append(className);
         sql.append(".primaryKey\" PRIMARY KEY (oid)");
-        sql.append(lineSeparator);
+        sql.append(LINE_SEPARATOR);
         sql.append(')');
         final Class[] parents = classe.getInterfaces();
         if (parents != null) {
@@ -272,7 +330,9 @@ scan:   for (final Method attribute : attributes) {
                     // Resolve dependencies first.
                     sql.insert(0, sqlInterface(parent, classes));
                 }
-                sql.append(i==0 ? " INHERITS (\"" : ", \"");
+                sql.append(i==0 ? " INHERITS (" : ", ");
+                sql.append(SCHEMA);
+                sql.append(".\"");
                 sql.append(getIdentifier(parent));
                 sql.append('"');
             }
@@ -281,17 +341,19 @@ scan:   for (final Method attribute : attributes) {
             }
         }
         sql.append(" WITH OIDS;");
-        sql.append(lineSeparator);
-        if (owner != null) {
-            sql.append("ALTER TABLE \"");
+        sql.append(LINE_SEPARATOR);
+        if (OWNER != null) {
+            sql.append("ALTER TABLE ");
+            sql.append(SCHEMA);
+            sql.append(".\"");
             sql.append(className);
-            sql.append("\" OWNER TO ");
-            sql.append(owner);
-            sql.append(';');
-            sql.append(lineSeparator);
+            sql.append("\" OWNER TO \"");
+            sql.append(OWNER);
+            sql.append("\";");
+            sql.append(LINE_SEPARATOR);
         }        
-        sql.append(lineSeparator);
-        sql.append(lineSeparator);
+        sql.append(LINE_SEPARATOR);
+        sql.append(LINE_SEPARATOR);
         drop.addFirst(className);
         return sql.toString();
     }
@@ -352,11 +414,27 @@ scan:   for (final Method attribute : attributes) {
         {
             return "TIMESTAMP WITH TIME ZONE";
         }
+        if (Point.class.isAssignableFrom(classe))
+        {
+            return "POINT";
+        }
+        if (Geometry.class.isAssignableFrom(classe))
+        {
+            return "PATH";
+        }
+        if (Locale.class.isAssignableFrom(classe))
+        {
+            return "CHARACTER VARYING(5)";
+        }
+        if (Unit.class.isAssignableFrom(classe))
+        {
+            return "CHARACTER VARYING(10)";
+        }
         if (CodeList.class.isAssignableFrom(classe))
         {
             return "INT2";
         }
-        if (classe.getName().startsWith(rootPackage)) {
+        if (classe.getName().startsWith(ROOT_PACKAGE)) {
             return "INT4";
         }
         if (classe.isArray()) {
