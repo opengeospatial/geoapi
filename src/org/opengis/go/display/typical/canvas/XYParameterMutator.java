@@ -12,7 +12,7 @@ package org.opengis.go.display.typical.canvas;
 import org.opengis.go.geometry.BoundingRectangle;
 import org.opengis.go.display.canvas.CanvasParameterMutator;
 
-import com.dautelle.units.Unit;
+import javax.units.Unit;
 
 /**
  * Instances of this interface are used to modify the current

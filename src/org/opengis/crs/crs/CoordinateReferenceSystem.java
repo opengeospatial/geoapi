@@ -10,7 +10,7 @@
 
 package org.opengis.crs.crs;
 
-import com.dautelle.units.Unit;
+import javax.units.Unit;
 
 /**
  * <code>CoordinateReferenceSystem</code> defines a common abstraction 

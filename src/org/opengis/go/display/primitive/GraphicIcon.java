@@ -9,7 +9,7 @@
  *************************************************************************************************/
 package org.opengis.go.display.primitive;
 
-import com.dautelle.units.Unit;
+import javax.units.Unit;
 
 import javax.swing.Icon;
 

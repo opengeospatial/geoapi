@@ -10,7 +10,7 @@
 
 package org.opengis.go;
 
-import com.dautelle.JADE;
+//import com.dautelle.JADE;
 
 import java.util.HashMap;
 import java.util.MissingResourceException;
@@ -70,7 +70,7 @@ public class CommonFactoryManager {
     // Initialize our static fields...
     static {
     	// Initialize the JADE unit database.
-    	JADE.initialize();
+//    	JADE.initialize();
     	
         try {
             
