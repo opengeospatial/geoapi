@@ -13,30 +13,33 @@ import java.util.Iterator;
 
 
 /**
- * The Catalog Entry contains all the MetaDataEntity Entities used to describe one resource. More
- * specifically, an object of this class contains a collection of MetaDataEntity Entities which together
- * describe the associated resource for the purpose of discovery. This collection of MetaDataEntity Entities
- * is usually only a subset of all the MetaDataEntity that exists for the associated resource.
+ * The Catalog Entry contains all the {@linkplain MetadataEntity metadata entities} used to
+ * describe one resource. More specifically, an object of this class contains a collection of
+ * {@linkplain MetadataEntity metadata entities} which together describe the associated resource
+ * for the purpose of discovery. This collection of {@linkplain MetadataEntity metadata entities}
+ * is usually only a subset of all the <code>MetaDataEntity</code> that exists for the associated
+ * resource.
  * 
  * <p>
- * One or more of the MetaDataEntity Entities usually directly reference the associated resource, and
- * provide the basic information needed to locate and subsequently access that resource, either directly
- * or through an access service. When applicable, one or more of the included MetaDataEntity Entities may
- * specify the spatial location of the resource. The spatial location could be defined by a (minimum
- * bounding) rectangle, and/or by a polygon bounding the ground area covered. Perhaps the spatial
- * location could be defined by any OpenGIS geometry. For example, the spatial location of a feature
- * describing a single point could be defined by that point.
+ * One or more of the {@linkplain MetadataEntity metadata entities} usually directly reference the
+ * associated resource, and provide the basic information needed to locate and subsequently access
+ * that resource, either directly or through an access service. When applicable, one or more of the
+ * included {@linkplain MetadataEntity metadata entities} may specify the spatial location of the
+ * resource. The spatial location could be defined by a (minimum bounding) rectangle, and/or by a
+ * polygon bounding the ground area covered. Perhaps the spatial location could be defined by any
+ * OpenGIS geometry. For example, the spatial location of a feature describing a single point could
+ * be defined by that point.
  * </p>
  * 
  * <p>
- * If the resource is a dataset, several of the included MetaDataEntity Entities may define the types of data
- * included in the dataset, plus the quality of that data.
+ * If the resource is a dataset, several of the included {@linkplain MetadataEntity metadata entities}
+ * may define the types of data included in the dataset, plus the quality of that data.
  * </p>
-* <p>
+ * <p>
  * NOTE:  The specification <A HREF="http://www.opengis.org/docs/02-087r3.pdf">Catalog Services 1.1.1</A>
- * does not specify the methods of the CatalogEntity interface.  The methods in this interface
- * were inferred from reading the abstract catalog specification: 
- * <A HREF="http://www.opengis.org/docs/99-113.pdf">Catalog Services</A> section 3.1.2
+ *        does not specify the methods of the CatalogEntity interface.  The methods in this interface
+ *        were inferred from reading the abstract catalog specification: 
+ *        <A HREF="http://www.opengis.org/docs/99-113.pdf">Catalog Services</A> section 3.1.2
  * 
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A> 
  * @version <A HREF="http://www.opengis.org/docs/02-087r3.pdf">Catalog Services 1.1.1</A> 
@@ -51,76 +54,78 @@ public interface CatalogEntry{
      *
      * @UML inferred from Section 3.1.2.1 <i>Functions </i> in the
      *      <A HREF="http://www.opengis.org/docs/99-113.pdf">OGC Abstract
-     *      Catalog Services </A> Specification 
+     *      Catalog Services </A> Specification
      */
-    public Object getResource();
+    Object getResource();
 
     /**
      * Used to obtain the name of Associated Data.    
      * 
-     * @return The name of the associated data
+     * @return The name of the associated data.
      *
      * @UML inferred from Section 3.1.2.1 <i>Functions </i> in the
      *      <A HREF="http://www.opengis.org/docs/99-113.pdf">OGC Abstract
-     *      Catalog Services </A> Specification 
+     *      Catalog Services </A> Specification
      */
-    public String getDataName();
+    String getDataName();
 
     /**
-     * Returns the number of MetaDataEntity associated with the <code>CatalogEntry</code>.
+     * Returns the number of {@linkplain MetadataEntity metadata entities}
+     * associated with the <code>CatalogEntry</code>.
      *
-     * @return The number of MetaDataEntity
+     * @return The number of {@linkplain MetadataEntity metadata entities}.
      *
      * @UML inferred from Section 3.1.2.1 <i>Functions </i> in the
      *      <A HREF="http://www.opengis.org/docs/99-113.pdf">OGC Abstract
-     *      Catalog Services </A> Specification 
+     *      Catalog Services </A> Specification
      */
-    public int getNumMetadata();
+    int getNumMetadata();
 
     /**
-     * Returns an array of the names of the MetaDataEntity associated with the
-     * <code>CatalogEntry</code>.
+     * Returns an array of the names of the {@linkplain MetadataEntity metadata entities}
+     * associated with the <code>CatalogEntry</code>.
      *
-     * @return An array with all the MetaDataEntity names.
+     * @return An array with all the {@linkplain MetadataEntity metadata entity} names.
      *
      * @UML inferred from Section 3.1.2.1 <i>Functions </i> in the
      *      <A HREF="http://www.opengis.org/docs/99-113.pdf">OGC Abstract
-     *      Catalog Services </A> Specification 
+     *      Catalog Services </A> Specification
      */
-    public String[] getMetadataNames();
+    String[] getMetadataNames();
 
     /**
-     * Obtain the MetaDataEntity referenced by the index.
+     * Obtain the {@linkplain MetadataEntity metadata entity} referenced by the index.
      *
-     * @param index the index of the MetaDataEntity required.
-     * @return the indexed MetaDataEntity.
+     * @param index the index of the {@linkplain MetadataEntity metadata entity} required.
+     * @return the indexed {@linkplain MetadataEntity metadata entity}.
      *
      * @UML inferred from Section 3.1.2.1 <i>Functions </i> in the
      *      <A HREF="http://www.opengis.org/docs/99-113.pdf">OGC Abstract
-     *      Catalog Services </A> Specification 
+     *      Catalog Services </A> Specification
      */
-    public MetadataEntity getMetadata(int index);
+    MetadataEntity getMetadata(int index);
 
     /**
-     * Obtain the Metadata refered to by the name.
+     * Obtain the {@linkplain MetadataEntity metadata entity} refered to by the name.
      *
-     * @param name the name of the Metadata required.
-     * @return the requested Metadata.
+     * @param name the name of the {@linkplain MetadataEntity metadata entity} required.
+     * @return the requested {@linkplain MetadataEntity metadata entity}.
      *
      * @UML inferred from Section 3.1.2.1 <i>Functions </i> in the
      *      <A HREF="http://www.opengis.org/docs/99-113.pdf">OGC Abstract
-     *      Catalog Services </A> Specification 
+     *      Catalog Services </A> Specification
      */
-    public MetadataEntity getMetadata(String name);
+    MetadataEntity getMetadata(String name);
 
     /**
-     * Returns an iterator that can be used to iterate through the associated Metadata.
+     * Returns an iterator that can be used to iterate through the associated
+     * {@linkplain MetadataEntity metadata entities}.
      *
-     * @return An iterator for iterating through the Metadata.
+     * @return An iterator for iterating through the {@linkplain MetadataEntity metadata entities}.
      *
      * @UML inferred from Section 3.1.2.1 <i>Functions </i> in the
      *      <A HREF="http://www.opengis.org/docs/99-113.pdf">OGC Abstract
-     *      Catalog Services </A> Specification 
+     *      Catalog Services </A> Specification
      */
-    public Iterator iterator();
+    Iterator iterator();
 }

@@ -16,7 +16,7 @@ import java.util.Locale;
 /**
  * A {@linkplain String string} that has been internationalized into several {@linkplain Locale locales}.
  * This interface is used as a replacement for the {@link String} type whenever an attribute needs to be
- * I18N capable.
+ * internationalization capable.
  *
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 2.0
