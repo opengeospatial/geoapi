@@ -60,6 +60,8 @@ import java.rmi.RemoteException;
  * @version 1.01
  * @since   1.00
  * @author Martin Daly
+ *
+ * @deprecated Replaced by {@link org.opengis.crs.operation.MathTransformFactory}
  */
 public interface CT_MathTransformFactory extends Remote {
     /**
@@ -75,6 +77,8 @@ public interface CT_MathTransformFactory extends Remote {
      * @param matrix The matrix used to define the affine transform.
      * @return The affine transform.
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated Replaced by {@link org.opengis.crs.operation.MathTransformFactory#createAffineTransform}
      */
     CT_MathTransform createAffineTransform(PT_Matrix matrix) throws RemoteException;
 
@@ -92,6 +96,8 @@ public interface CT_MathTransformFactory extends Remote {
      * @param  transform2 The second transform to apply to points.
      * @return The concatenated transform.
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated Replaced by {@link org.opengis.crs.operation.MathTransformFactory#createConcatenatedTransform}
      */
     CT_MathTransform createConcatenatedTransform(CT_MathTransform transform1, CT_MathTransform transform2) throws RemoteException;
 
@@ -108,6 +114,8 @@ public interface CT_MathTransformFactory extends Remote {
      * @param  subTransform Transform to use for affected ordinates.
      * @return The pass through transform.
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated Replaced by {@link org.opengis.crs.operation.MathTransformFactory#createPassThroughTransform}
      */
     CT_MathTransform createPassThroughTransform(int firstAffectedOrdinate, CT_MathTransform subTransform) throws RemoteException;
 
@@ -122,6 +130,8 @@ public interface CT_MathTransformFactory extends Remote {
      * @param  parameters The parameter values in standard units.
      * @return The parameterized transform.
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated Replaced by {@link org.opengis.crs.operation.MathTransformFactory#createParameterizedTransform}
      */
     CT_MathTransform createParameterizedTransform(String classification, CT_Parameter[] parameters) throws RemoteException;
 
@@ -131,6 +141,8 @@ public interface CT_MathTransformFactory extends Remote {
      * @param  wellKnownText Math transform encoded in Well-Known Text format.
      * @return The transform.
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated Replaced by {@link org.opengis.crs.operation.MathTransformFactory#createFromWKT}
      */
     CT_MathTransform createFromWKT(String wellKnownText) throws RemoteException;
 
@@ -140,6 +152,8 @@ public interface CT_MathTransformFactory extends Remote {
      * @param xml Math transform encoded in XML format.
      * @return The transform.
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated Replaced by {@link org.opengis.crs.operation.MathTransformFactory#createFromXML}
      */
     CT_MathTransform createFromXML(String xml) throws RemoteException;
 
@@ -150,6 +164,8 @@ public interface CT_MathTransformFactory extends Remote {
      * @param  parameterName Name of parameter to test.
      * @return <code>true</code> if the parameter is angular.
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated Check parameter {@link javax.units.Unit unit} instead.
      */
     boolean isParameterAngular(String parameterName) throws RemoteException;
 
@@ -160,6 +176,8 @@ public interface CT_MathTransformFactory extends Remote {
      * @param parameterName Name of parameter to test.
      * @return <code>true</code> if the parameter is linear.
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated Check parameter {@link javax.units.Unit unit} instead.
      */
     boolean isParameterLinear(String parameterName) throws RemoteException;
 }
