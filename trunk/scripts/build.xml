@@ -107,6 +107,7 @@
       <exclude name="org/opengis/util/**"/>
       <replacefilter token=" CodeList[] family()" value="[] family()" />
       <replacefilter token="Object clone()"       value="clone()"     />
+      <replacefilter token="Object next()"        value="next()"      />
     </replace>
 
     <replace dir="tiger/sources">
@@ -211,6 +212,8 @@
       <replacefilter token="&lt;Element&gt;"/>
       <replacefilter token="&lt;ExtendedElementInformation&gt;"/>
       <replacefilter token="&lt;Extent&gt;"/>
+      <replacefilter token="&lt;Feature&gt;"/>
+      <replacefilter token="&lt;FeatureType&gt;"/>
       <replacefilter token="&lt;FeatureTypeList&gt;"/>
       <replacefilter token="&lt;Filter&gt;"/>
       <replacefilter token="&lt;Format&gt;"/>
@@ -248,6 +251,7 @@
       <replacefilter token="&lt;PresentationForm&gt;"/>
       <replacefilter token="&lt;ProcessStep&gt;"/>
       <replacefilter token="&lt;Progress&gt;"/>
+      <replacefilter token="&lt;QName&gt;"/>
       <replacefilter token="&lt;ReferenceSystem&gt;"/>
       <replacefilter token="&lt;Resolution&gt;"/>
       <replacefilter token="&lt;ResponsibleParty&gt;"/>
@@ -264,6 +268,8 @@
 
       <replacefilter token="    /* 1.5 specific */" value="// "/>
       <replacefilter token=    "/* 1.5 specific */" value="// "/>
+
+      <replacefilter token=" Feature next()" value=" Object next()"/>
     </replace>
 
     <replaceregexp byline  = "true"
