@@ -8,6 +8,7 @@ package org.opengis.sc;
  * A coordinate reference system that is defined by its coordinate conversion from another
  * coordinate reference system (not by a datum).
  *
+ * @UML abstract SC_GeneralDerivedCRS
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 2.0
  */
@@ -16,13 +17,13 @@ public interface GeneralDerivedCRS extends CoordinateReferenceSystem {
      * Returns the base coordinate reference system.
      *
      * @return The base coordinate reference system.
-     * @association baseCRS
+     * @UML association baseCRS
      */
     public CoordinateReferenceSystem getBaseCRS();
 
     /**
      *
-     * @association definedByConversion
+     * @UML association definedByConversion
      *
      * @revisit Uncomment
      */

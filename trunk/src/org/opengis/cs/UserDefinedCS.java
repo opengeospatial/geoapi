@@ -13,6 +13,7 @@ package org.opengis.cs;
  * curved. A <code>UserDefinedCS</code> shall have two or three
  * {@linkplain #getAxis axis associations}.
  *
+ * @UML abstract CS_UserDefinedCS
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 2.0
  */

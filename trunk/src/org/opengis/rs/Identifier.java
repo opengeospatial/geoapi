@@ -3,6 +3,9 @@
  */
 package org.opengis.rs;
 
+// J2SE direct dependencies
+import java.util.Locale;
+
 // OpenGIS direct dependencies
 import org.opengis.ci.Citation;
 
@@ -11,8 +14,7 @@ import org.opengis.ci.Citation;
  * An identification of a CRS object. The first use of an <code>Identifier</code> for an object,
  * if any, is normally the primary identification code, and any others are aliases.
  *
- * @datatype
- *
+ * @UML datatype RS_Identifier
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 2.0
  */
@@ -22,7 +24,7 @@ public interface Identifier {
      * defined by a code space.
      *
      * @return The code.
-     * @mandatory
+     * @UML mandatory code
      */
     public String getCode();
 
@@ -33,7 +35,7 @@ public interface Identifier {
      * of each Code Space identifier is defined by that code space authority.
      *
      * @return The code space, or <code>null</code> if not available.
-     * @optional
+     * @UML optional codeSpace
      */
     public String getCodeSpace();
 
@@ -44,7 +46,7 @@ public interface Identifier {
      * using ISO 8601 date format.
      *
      * @return The version, or <code>null</code> if not available.
-     * @optional
+     * @UML optional version
      *
      * @revisit Should we ask for a (possibly null) {@link java.util.Locale} argument?
      */
@@ -55,7 +57,7 @@ public interface Identifier {
      * code space or code.
      *
      * @return The authority, or <code>null</code> if not available.
-     * @optional
+     * @UML optional authority
      */
     public Citation getAuthority();
 
@@ -65,10 +67,10 @@ public interface Identifier {
      * object, including data source information. Additional uses of a <code>Identifier</code>
      * for an object, if any, are aliases, and the remarks are then about that alias.
      *
+     * @param  locale The desired locale for the remarks to be returned,
+     *         or <code>null</code> for a non-localized string (or a default default locale).
      * @return The remarks, or <code>null</code> if not available.
-     * @optional
-     *
-     * @revisit Should we ask for a (possibly null) {@link java.util.Locale} argument?
+     * @UML optional remarks
      */
-    public String getRemarks();
+    public String getRemarks(Locale locale);
 }

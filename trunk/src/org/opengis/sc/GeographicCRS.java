@@ -19,6 +19,7 @@ import org.opengis.cd.GeodeticDatum;
  *   {@link org.opengis.cs.EllipsoidalCS Ellipsoidal}
  * </TD></TR></TABLE>
  *
+ * @UML abstract SC_GeographicCRS
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 2.0
  */
@@ -27,23 +28,15 @@ public interface GeographicCRS extends CoordinateReferenceSystem {
      * Returns the coordinate system, which must be ellipsoidal.
      *
      * @return The coordinate system.
-     * @association usesCS
-     *
-     * @rename Expanded the "CS" abbreviation into "CoordinateSystem".
-     *
-     * @revisit Change the return type from <code>CoordinateSystem</code> to
-     *          {@link EllipsoidalCS} when the J2SE 1.5 compiler will be available.
+     * @UML association usesCS
      */
-    public /*EllipsoidalCS*/ org.opengis.cs.CoordinateSystem getCoordinateSystem();
+    public EllipsoidalCS getCoordinateSystem();
 
     /**
      * Returns the datum, which must be geodetic.
      *
      * @return The datum.
-     * @association usesDatum
-     *
-     * @revisit Change the return type from <code>Datum</code> to
-     *          {@link GeodeticDatum} when the J2SE 1.5 compiler will be available.
+     * @UML association usesDatum
      */
-    public /*GeodeticDatum*/ org.opengis.cd.Datum getDatum();
+    public GeodeticDatum getDatum();
 }

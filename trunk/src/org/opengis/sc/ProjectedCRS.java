@@ -19,6 +19,7 @@ import org.opengis.cs.CartesianCS;
  *   {@link org.opengis.cs.CartesianCS Cartesian}
  * </TD></TR></TABLE>
  *
+ * @UML abstract SC_ProjectedCRS
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 2.0
  */
@@ -27,12 +28,7 @@ public interface ProjectedCRS extends GeneralDerivedCRS {
      * Returns the coordinate system, which must be cartesian.
      *
      * @return The coordinate system.
-     * @association usesCS
-     *
-     * @rename Expanded the "CS" abbreviation into "CoordinateSystem".
-     *
-     * @revisit Change the return type from <code>CoordinateSystem</code> to
-     *          {@link CartesianCS} when the J2SE 1.5 compiler will be available.
+     * @UML association usesCS
      */
-    public /*CartesianCS*/ org.opengis.cs.CoordinateSystem getCoordinateSystem();
+    public CartesianCS getCoordinateSystem();
 }

@@ -3,6 +3,9 @@
  */
 package org.opengis.cs;
 
+// J2SE direct dependencies
+import java.util.Locale;
+
 // OpenGIS direct dependencies
 import org.opengis.rs.Identifier;
 import org.opengis.cs.UnitOfMeasure;
@@ -10,7 +13,8 @@ import org.opengis.cs.UnitOfMeasure;
 
 /**
  * Definition of a coordinate system axis.
- *  
+ *
+ * @UML abstract CS_CoordinateSystemAxis
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 2.0
  *
@@ -23,31 +27,31 @@ public interface CoordinateSystemAxis {
      * See <A HREF="package-summary.html#AxisNames">axis name constraints</A>.
      *
      * @return The coordinate system axis name.
-     * @mandatory
+     * @UML mandatory axisName
      *
      * @rename  Omitted the "<code>axis</code>" prefix.
      */
     public String getName();
 
     /**
-     * Set of alternative identifications of the coordinate system axis. The first <code>ID</code>,
+     * Set of alternative identifications of the coordinate system axis. The first identifier,
      * if any, is normally the primary identification code, and any others are aliases. 
      *
      * @return The coordinate system axis identifiers, or an empty array if there is none.
-     * @optional
+     * @UML optional axisID
      *
      * @rename  Omitted the "<code>axis</code>" prefix.
-     * @revisit Should we rename this method as <code>getIdentifiers()</code>?
-     *          Note the proposed plural form.
+     *          Replaced "<code>ID</code>" by "<code>Identifiers</code>" in order to
+     *          1) use the return type class name and 2) use the plural form.
      */
-    public Identifier[] getID();
+    public Identifier[] getIdentifiers();
 
     /**
      * The abbreviation used for this coordinate system axes. This abbreviation is also used
      * to identify the ordinates in coordinate tuple. Examples are <var>X</var> and <var>Y</var>.
      *
      * @return The coordinate system axis abbreviation.
-     * @mandatory
+     * @UML mandatory axisAbbrev
      *
      * @rename  Omitted the "<code>axis</code>" prefix.
      * @revisit Shoud we rename this method as <code>getAbbreviation()</code>?
@@ -67,7 +71,7 @@ public interface CoordinateSystemAxis {
      * of the directions of its coordinate system axes.
      *
      * @return The coordinate system axis direction
-     * @mandatory
+     * @UML mandatory axisDirection
      *
      * @rename  Omitted the "<code>axis</code>" prefix.
      */
@@ -80,7 +84,7 @@ public interface CoordinateSystemAxis {
      * uses this axis.
      *
      * @return  The coordinate system axis unit identifier.
-     * @mandatory
+     * @UML mandatory axisUnitID
      *
      * @rename  Omitted the "<code>axis</code>" prefix.
      *          Removed also the "<code>ID</code>" suffix, since this method returns a real unit
@@ -91,10 +95,10 @@ public interface CoordinateSystemAxis {
     /**
      * Comments on or information about the coordinate system, including data source information.
      *
-     * @return  The coordinate system remarks, or <code>null</code> if not available.
-     * @optional
-     *
-     * @revisit Should we ask for a (possibly null) {@link java.util.Locale} argument?
+     * @param  locale The desired locale for the remarks to be returned,
+     *         or <code>null</code> for a non-localized string (or a default default locale).
+     * @return The coordinate system remarks, or <code>null</code> if not available.
+     * @UML optional remarks
      */
-    public String getRemarks();
+    public String getRemarks(Locale locale);
 }

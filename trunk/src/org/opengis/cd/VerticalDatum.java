@@ -11,7 +11,8 @@ package org.opengis.cd;
  * types of Vertical Datums, and each may place constraints on the
  * {@linkplain org.opengis.cs.CoordinateSystemAxis Coordinate Axis} with which
  * it is combined to create a {@linkplain org.opengis.sc.VerticalCRS Vertical CRS}.
- *  
+ *
+ * @UML abstract CD_VerticalDatum
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 2.0
  */
@@ -20,7 +21,7 @@ public interface VerticalDatum extends Datum {
      * The type of this vertical datum. Default is “geoidal”.
      *
      * @return The type of this vertical datum.
-     * @mandatory
+     * @UML mandatory vertDatumType
      */
     public VerticalDatumType getVerticalDatumType();
 }

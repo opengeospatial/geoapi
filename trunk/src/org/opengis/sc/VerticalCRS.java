@@ -22,6 +22,7 @@ import org.opengis.cd.VerticalDatum;
  *   {@link org.opengis.cs.VerticalCS Vertical}
  * </TD></TR></TABLE>
  *
+ * @UML abstract SC_VerticalCRS
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 2.0
  */
@@ -30,23 +31,15 @@ public interface VerticalCRS extends CoordinateReferenceSystem {
      * Returns the coordinate system, which must be vertical.
      *
      * @return The coordinate system.
-     * @association usesCS
-     *
-     * @rename Expanded the "CS" abbreviation into "CoordinateSystem".
-     *
-     * @revisit Change the return type from <code>CoordinateSystem</code> to
-     *          {@link VerticalCS} when the J2SE 1.5 compiler will be available.
+     * @UML association usesCS
      */
-    public /*VerticalCS*/ org.opengis.cs.CoordinateSystem getCoordinateSystem();
+    public VerticalCS getCoordinateSystem();
 
     /**
      * Returns the datum, which must be vertical.
      *
      * @return The datum.
-     * @association usesDatum
-     *
-     * @revisit Change the return type from <code>Datum</code> to
-     *          {@link VerticalDatum} when the J2SE 1.5 compiler will be available.
+     * @UML association usesDatum
      */
-    public /*VerticalDatum*/ org.opengis.cd.Datum getDatum();
+    public VerticalDatum getDatum();
 }

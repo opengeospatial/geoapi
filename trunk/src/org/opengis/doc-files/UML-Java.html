@@ -59,9 +59,9 @@
   <P>&nbsp;</P>
   <H2>Custom Javadoc tags</H2>
   <P ALIGN=justify>OpenGIS's <CITE>Mandatory</CITE>, <CITE>Conditional</CITE> and
-  <CITE>Optional</CITE> attributes are marked using custom <CODE>@mandatory</CODE>,
-  <CODE>@conditional</CODE> and <CODE>@optional</CODE> javadoc tags respectively.
-  Additional javadoc tags include <CODE>@association</CODE> and <CODE>@rename</CODE>.
+  <CITE>Optional</CITE> attributes are marked using custom <CODE>@UML&nbsp;mandatory</CODE>,
+  <CODE>@UML&nbsp;conditional</CODE> and <CODE>@UML&nbsp;optional</CODE> javadoc tags respectively.
+  Additional javadoc tags include <CODE>@UML&nbsp;association</CODE> and <CODE>@UML datatype</CODE>.
   All the above-cited tags imply some renaming rules in order to comply with Java
   naming conventions.</P>
 
@@ -69,28 +69,27 @@
     <TR BGCOLOR="#EEEEFF"><TH NOWRAP>Javadoc tag</TH>
                           <TH NOWRAP>Usage and renaming rule</TH></TR>
 
-    <TR><TD NOWRAP><CODE>@datatype</CODE></TD>
+    <TR><TD NOWRAP><CODE>@UML datatype</CODE></TD>
         <TD><P ALIGN=justify>Interfaces marked with this tag are "datatype"
         (as opposed to "abstract") in UML schemas.</P></TD></TR>
 
-    <TR><TD NOWRAP><CODE>@mandatory</CODE></TD>
+    <TR><TD NOWRAP><CODE>@UML mandatory</CODE></TD>
         <TD><P ALIGN=justify>The Java method maps to a mandatory attribute in the
             UML schema. The Java method name is prefixed by "<CODE>get</CODE>".
             For example, the mandatory "<CODE>code</CODE>" UML attribute maps
             to a <CODE>getCode()</CODE> Java method.</P></TD></TR>
 
-    <TR><TD NOWRAP><CODE>@conditional</CODE> <VAR>condition</VAR></TD>
+    <TR><TD NOWRAP><CODE>@UML conditional</CODE></TD>
         <TD><P ALIGN=justify>The Java method maps to a conditional attribute in the
-            UML schema. The condition shall follow the <CODE>@conditional</CODE> tag.
-            The Java method name is prefixed by "<CODE>get</CODE>".</P></TD></TR>
+            UML schema. The Java method name is prefixed by "<CODE>get</CODE>".</P></TD></TR>
 
-    <TR><TD NOWRAP><CODE>@optional</CODE></TD>
+    <TR><TD NOWRAP><CODE>@UML optional</CODE></TD>
         <TD><P ALIGN=justify>The Java method maps to an optional attribute in the
             UML schema. The Java method name is prefixed by "<CODE>get</CODE>".
             For example, the optional "<CODE>remarks</CODE>" UML attribute maps
             to a <CODE>getRemarks()</CODE> Java method.</P></TD></TR>
 
-    <TR><TD NOWRAP><CODE>@association</CODE></TD>
+    <TR><TD NOWRAP><CODE>@UML association</CODE></TD>
         <TD><P ALIGN=justify>The Java method maps to an association in the UML schema.
             The UML's "<CODE>uses</CODE>" or "<CODE>includes</CODE>" prefix are omitted
             and the Java method name is prefixed by "<CODE>get</CODE>".
@@ -99,7 +98,7 @@
             <CODE>usesAxis</CODE> association is mapped into a plain <CODE>getAxis()</CODE>
             method.</P></TD></TR>
 
-    <TR><TD NOWRAP><CODE>@rename <VAR>reason</VAR></CODE></TD>
+    <TR><TD NOWRAP><CODE>@rename</CODE> <VAR>&lt;reason&gt;</VAR></TD>
         <TD><P ALIGN=justify>Some other name change has been applied in order to match
             more closely Java usage. A description of the change and its rational shall
             follow the <CODE>@rename</CODE> tag. There is two reasons for renaming:</P>
@@ -115,9 +114,13 @@
                   <CODE>ReferenceSystem</CODE>). For Java interfaces, the above-cited
                   attributes map to a plain <CODE>getName()</CODE> method.
                   The same apply to "<CODE>ID</CODE>".</P></LI>
+
+              <LI><P ALIGN=justify>Methods returning an array are renamed to
+                  their plural form (e.g. <CODE>getElement()</CODE> to
+                  <CODE>getElement<U>s</U>()</CODE>).</P></LI>
             </UL></TD></TR>
 
-    <TR><TD NOWRAP><CODE>@revisit</CODE> <VAR>comment</VAR></TD>
+    <TR><TD NOWRAP><CODE>@revisit</CODE> <VAR>&lt;comment&gt;</VAR></TD>
         <TD><P ALIGN=justify>Somme open issue to revisit.</P></TD></TR>
   </TABLE>
   </BODY>

@@ -20,6 +20,7 @@ package org.opengis.cs;
  *   {@link org.opengis.sc.ImageCRS       Image}
  * </TD></TR></TABLE>
  *
+ * @UML abstract CS_CartesianCS
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 2.0
  *

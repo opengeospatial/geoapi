@@ -18,6 +18,7 @@ package org.opengis.cs;
  *   {@link org.opengis.sc.EngineeringCRS Engineering}
  * </TD></TR></TABLE>
  *
+ * @UML abstract CS_VerticalCS
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 2.0
  */

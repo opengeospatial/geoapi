@@ -11,6 +11,7 @@ package org.opengis.sc;
  * {@linkplain org.opengis.cd.Datum Datums} by defining the compound CRS
  * as an ordered set of two or more instances of {@link CoordinateReferenceSystem}.
  *
+ * @UML abstract SC_CompoundCRS
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 2.0
  */
@@ -19,7 +20,7 @@ public interface CompoundCRS extends CRS {
      * The ordered list of coordinate reference systems.
      *
      * @return The coordinate reference systems.
-     * @association includesCRS
+     * @UML association includesCRS
      *
      * @revisit <code>getCoordinateReferenceSystem()</code> would be a better name, since this
      *          method returns a {@link CoordinateReferenceSystem} object - not a {@link CRS}.

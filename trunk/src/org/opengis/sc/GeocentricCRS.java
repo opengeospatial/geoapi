@@ -21,6 +21,7 @@ import org.opengis.cd.GeodeticDatum;
  *   {@link org.opengis.cs.SphericalCS Spherical}
  * </TD></TR></TABLE>
  *
+ * @UML abstract SC_GeocentricCRS
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 2.0
  *
@@ -34,7 +35,7 @@ public interface GeocentricCRS extends CoordinateReferenceSystem {
      * Returns the cartesian coordinate system.
      *
      * @return The cartesian coordinate system, or <code>null</code> if none.
-     * @association usesCartesianCS
+     * @UML association usesCartesianCS
      */
     public CartesianCS getCartesianCS();
 
@@ -42,7 +43,7 @@ public interface GeocentricCRS extends CoordinateReferenceSystem {
      * Returns the spherical coordinate system.
      *
      * @return The spherical coordinate system, or <code>null</code> if none.
-     * @association usesSphericalCS
+     * @UML association usesSphericalCS
      */
     public SphericalCS getSphericalCS();
 
@@ -50,10 +51,7 @@ public interface GeocentricCRS extends CoordinateReferenceSystem {
      * Returns the datum, which must be geodetic.
      *
      * @return The datum.
-     * @association usesDatum
-     *
-     * @revisit Change the return type from <code>Datum</code> to
-     *          {@link GeodeticDatum} when the J2SE 1.5 compiler will be available.
+     * @UML association usesDatum
      */
-    public /*GeodeticDatum*/ org.opengis.cd.Datum getDatum();
+    public GeodeticDatum getDatum();
 }

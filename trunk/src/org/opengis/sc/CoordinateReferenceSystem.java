@@ -28,6 +28,7 @@ import org.opengis.cd.Datum;
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 2.0
  *
+ * @UML abstract SC_CoordinateReferenceSystem
  * @see org.opengis.cs.CoordinateSystem
  * @see org.opengis.cd.Datum
  */
@@ -36,7 +37,7 @@ public interface CoordinateReferenceSystem extends CRS {
      * Returns the coordinate system.
      *
      * @return The coordinate system.
-     * @association usesCS
+     * @UML association usesCS
      *
      * @rename Expanded the "CS" abbreviation into "CoordinateSystem".
      */
@@ -46,7 +47,7 @@ public interface CoordinateReferenceSystem extends CRS {
      * Returns the datum.
      *
      * @return The datum.
-     * @association usesDatum
+     * @UML association usesDatum
      */
     public Datum getDatum();
 }
