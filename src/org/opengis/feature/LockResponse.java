@@ -26,9 +26,24 @@ import java.util.Set;
  */
 public class LockResponse {
     
-    /** Special case used to indicate a lock lasting until the end of the transaction */
+    /**
+     * Special case used to indicate a lock lasting until the end of the transaction.
+     * <p>
+     * TODO: Make sure this is a read only implemetnation
+     * </p>
+     */
     static final LockResponse TRANSACTION_LOCK_RESPONSE = new LockResponse();
     
+    /**
+     * Special case used to indicate result is pending, used by Transasction.AUTO_COMMIT.
+     * <p>
+     * Please check the LockResponse returned by commit.
+     * </p>
+     * <p>
+     * TODO: Make sure this is a read only implemetnation
+     * </p>
+     */  
+    static final LockResponse PENDING = new LockResponse();
     
     /** Authorization tokens by DataStore */
     Map/*<DataStore,String>*/ authorizationMap;
