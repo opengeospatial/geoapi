@@ -127,11 +127,58 @@
 
   <!-- ======================================================================
 
+       COMPILE FOR J2SE 1.5: Compile source code (create *.class files)
+
+       ====================================================================== -->
+
+  <target name="compile-tiger" depends="sources">
+
+    <mkdir dir="tiger/classes"/>
+
+    <javac srcdir      = "tiger/sources"
+           destdir     = "tiger/classes"
+           encoding    = "ISO-8859-1"
+           includes    = "org/**/*.java"
+           source      = "1.5"
+           target      = "1.5"
+           optimize    = "true"
+           debug       = "false"
+           deprecation = "true"
+           failonerror = "true">
+    </javac>
+
+    <mkdir dir="tiger/sources/org/opengis/metadata/doc-files"/>
+    <java classname   = "org.opengis.tools.DatabaseGenerator"
+          dir         = "tiger/sources/org/opengis/metadata/doc-files"
+          failonerror = "true"
+          fork        = "true">
+      <classpath>
+        <pathelement location="tiger/classes"/>
+        <pathelement path="${java.class.path}"/>
+      </classpath>
+    </java>
+
+    <java classname   = "org.opengis.tools.ModelComparator"
+          dir         = "tiger/sources/org/opengis/doc-files"
+          failonerror = "true"
+          fork        = "true">
+      <classpath>
+        <pathelement location="tiger/classes"/>
+        <pathelement path="${java.class.path}"/>
+      </classpath>
+    </java>
+  </target>
+
+
+
+
+  <!-- ======================================================================
+
        COMPILE FOR J2SE 1.3: Compile source code (create *.class files)
 
        ====================================================================== -->
 
-  <target name="compile" depends="sources">
+  <target name="compile" depends="compile-tiger">
 
     <mkdir dir="sources"/>
     <copy todir="sources">
@@ -254,43 +301,16 @@
            failonerror   = "true">
     </javac>
 
-  </target>
-
-
-
-
-  <!-- ======================================================================
-
-       COMPILE FOR J2SE 1.5: Compile source code (create *.class files)
-
-       ====================================================================== -->
-
-  <target name="compile-tiger" depends="sources">
-
-    <mkdir dir="tiger/classes"/>
-
-    <javac srcdir      = "tiger/sources"
-           destdir     = "tiger/classes"
-           encoding    = "ISO-8859-1"
-           includes    = "org/**/*.java"
-           source      = "1.5"
-           target      = "1.5"
-           optimize    = "true"
-           debug       = "false"
-           deprecation = "true"
-           failonerror = "true">
-    </javac>
-
-    <java classname   = "org.opengis.tools.ModelComparator"
-          dir         = "tiger/sources/org/opengis/doc-files"
+    <java classname   = "org.opengis.tools.NameMapGenerator"
+          dir         = "classes/org/opengis/metadata"
           failonerror = "true"
           fork        = "true">
-
       <classpath>
         <pathelement location="tiger/classes"/>
         <pathelement path="${java.class.path}"/>
       </classpath>
     </java>
+
   </target>
 
 
