@@ -12,7 +12,7 @@ package org.opengis.spatialschema.geometry.geometry;
 // J2SE direct dependencies
 import java.util.List;
 
-import org.opengis.crs.crs.CRS;
+import org.opengis.crs.crs.CoordinateReferenceSystem;
 import org.opengis.spatialschema.geometry.DirectPosition;
 
 
@@ -66,7 +66,7 @@ public interface PointArray {
      *
      * @see DirectPosition#getCoordinateReferenceSystem
      */
-    public CRS getCoordinateReferenceSystem();
+    public CoordinateReferenceSystem getCoordinateReferenceSystem();
 
     /**
      * Returns the point at the given index. This is equivalent to

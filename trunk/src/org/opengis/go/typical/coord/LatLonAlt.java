@@ -13,7 +13,6 @@ import javax.units.Unit;
 import javax.units.SI;
 import java.util.Properties;
 
-import org.opengis.crs.crs.CRS;
 import org.opengis.crs.crs.CoordinateReferenceSystem;
 import org.opengis.crs.crs.CoordinateReferenceSystemFactory;
 import org.opengis.crs.crs.UnsupportedCRSException;
@@ -352,7 +351,7 @@ public class LatLonAlt implements DirectPosition {
     /**
      * Returns the Coordinate Reference System for this LatLonAlt.
      */
-    public CRS getCoordinateReferenceSystem() {
+    public CoordinateReferenceSystem getCoordinateReferenceSystem() {
         return crs;
     }
 }

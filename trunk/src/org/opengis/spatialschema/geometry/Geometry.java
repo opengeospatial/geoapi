@@ -12,7 +12,7 @@ package org.opengis.spatialschema.geometry;
 // J2SE direct dependencies
 import java.util.Set;
 
-import org.opengis.crs.crs.CRS;
+import org.opengis.crs.crs.CoordinateReferenceSystem;
 import org.opengis.spatialschema.geometry.complex.Complex;
 
 
@@ -34,25 +34,25 @@ import org.opengis.spatialschema.geometry.complex.Complex;
 public interface Geometry extends TransfiniteSet {
     /**
      * Returns the coordinate reference system used in {@linkplain DirectPosition direct position}
-     * coordinates. If <code>null</code>, then this <code>Geometry</code> uses the CRS from another
+     * coordinates. If <code>null</code>, then this <code>Geometry</code> uses the CoordinateReferenceSystem from another
      * <code>Geometry</code> in which it is contained.
      *
-     * The most common example where the CRS is <code>null</code> is the elements and subcomplexes
+     * The most common example where the CoordinateReferenceSystem is <code>null</code> is the elements and subcomplexes
      * of a maximal {@linkplain Complex complex}. The {@linkplain Complex complex} can carry the
-     * {@linkplain CRS} for all {@linkplain org.opengis.spatialschema.geometry.primitive.Primitive primitive} elements
+     * {@linkplain CoordinateReferenceSystem} for all {@linkplain org.opengis.spatialschema.geometry.primitive.Primitive primitive} elements
      * and for all {@link Complex} subcomplexes.
      * <br><br>
-     * This association is only navigable from <code>Geometry</code> to {@linkplain CRS}.
+     * This association is only navigable from <code>Geometry</code> to {@linkplain CoordinateReferenceSystem}.
      * This means that the coordinate reference system objects in a data set do not keep
      * a list of <code>Geometry</code>s that use them.
      *
      * @return The coordinate reference system used in {@linkplain DirectPosition direct position}
      *         coordinates.
-     * @UML association CRS
+     * @UML association CoordinateReferenceSystem
      *
      * @see #getCoordinateDimension
      */
-    public CRS getCRS();
+    public CoordinateReferenceSystem getCoordinateReferenceSystem();
 
     /**
      * Returns a region in the coordinate reference system that contains this <code>Geometry</code>.
@@ -235,7 +235,7 @@ public interface Geometry extends TransfiniteSet {
      * @UML operation coordinateDimension
      *
      * @see #getDimension
-     * @see #getCRS
+     * @see #getCoordinateReferenceSystem
      */
     public int getCoordinateDimension();
 
@@ -261,7 +261,7 @@ public interface Geometry extends TransfiniteSet {
      *
      * @revisit Which exception to throws if the transformation fails?
      */
-    public Geometry transform(CRS newCRS);
+    public Geometry transform(CoordinateReferenceSystem newCRS);
 
     /**
      * Returns the minimum bounding box for this <code>Geometry</code>. This shall be the

@@ -12,7 +12,7 @@ package org.opengis.coverage;
 // J2SE direct dependencies and extensions
 import java.awt.image.renderable.RenderableImage;
 
-import org.opengis.crs.crs.CRS;
+import org.opengis.crs.crs.CoordinateReferenceSystem;
 import org.opengis.spatialschema.geometry.DirectPosition;
 import org.opengis.spatialschema.geometry.Envelope;
 
@@ -58,29 +58,29 @@ import org.opengis.spatialschema.geometry.Envelope;
  */
 public interface Coverage {
     /**
-     * Specifies the coordinate reference system (CRS) used when accessing a coverage or grid
-     * coverage with the <code>evaluate(...)</code> methods. It is also the CRS of the coordinates
+     * Specifies the coordinate reference system (CoordinateReferenceSystem) used when accessing a coverage or grid
+     * coverage with the <code>evaluate(...)</code> methods. It is also the CoordinateReferenceSystem of the coordinates
      * used with the math transform (see {@link org.opengis.coverage.grid.GridGeometry#getGridToCoordinateSystem
      * gridToCoordinateSystem}).
      *
      * This coordinate reference system is usually different than coordinate system of the grid.
-     * Grid coverage can be accessed (re-projected) with new CRS with the
+     * Grid coverage can be accessed (re-projected) with new CoordinateReferenceSystem with the
      * {@link org.opengis.coverage.processing.GridCoverageProcessor} component. In this case, a new instance of a
      * grid coverage is created.
      * <br><br>
      * Note: If a coverage does not have an associated coordinate reference system,
      * the returned value will be <code>null</code>.
      * The {@link org.opengis.coverage.grid.GridGeometry#getGridToCoordinateSystem gridToCoordinateSystem})
-     * attribute should also be <code>null</code> if the CRS is <code>null</code>.
+     * attribute should also be <code>null</code> if the CoordinateReferenceSystem is <code>null</code>.
      *
      * @return The coordinate reference system used when accessing a coverage or
      *         grid coverage with the <code>evaluate(...)</code> methods, or <code>null</code>.
      * @UML mandatory coordinateSystem
      */
-    CRS getCRS();
+	CoordinateReferenceSystem getCoordinateReferenceSystem();
 
     /**
-     * The bounding box for the coverage domain in {@linkplain #getCRS coordinate reference system}
+     * The bounding box for the coverage domain in {@linkplain #getCoordinateReferenceSystem coordinate reference system}
      * coordinates. For grid coverages, the grid cells are centered on each grid coordinate.
      * The envelope for a 2-D grid coverage includes the following corner positions.
      *
@@ -193,7 +193,7 @@ public interface Coverage {
      * The default interpolation type used when accessing grid values for points
      * which fall between grid cells is nearest neighbor.
      * The coordinate system of the point is the same as the grid coverage coordinate
-     * reference system (specified by the {@link #getCRS} method).
+     * reference system (specified by the {@link #getCoordinateReferenceSystem} method).
      *
      * @param point Point at which to find the grid values.
      * @return The value vector for a given point in the coverage.
@@ -212,7 +212,7 @@ public interface Coverage {
      * The default interpolation type used when accessing grid values for points which
      * fall between grid cells is nearest neighbor.
      * The coordinate reference system of the point is the same as the grid coverage
-     * {@linkplain #getCRS CRS}.
+     * {@linkplain #getCoordinateReferenceSystem CoordinateReferenceSystem}.
      *
      * @param  point Point at which to find the coverage values.
      * @param  destination An optionally preallocated array in which to store the values,
@@ -236,7 +236,7 @@ public interface Coverage {
      * The default interpolation type used when accessing grid values for points which
      * fall between grid cells is nearest neighbor.
      * The coordinate reference system of the point is the same as the grid coverage
-     * {@linkplain #getCRS CRS}.
+     * {@linkplain #getCoordinateReferenceSystem CoordinateReferenceSystem}.
      *
      * @param point Point at which to find the coverage values.
      * @param  destination An optionally preallocated array in which to store the values,
@@ -260,7 +260,7 @@ public interface Coverage {
      * The default interpolation type used when accessing grid values for points which
      * fall between grid cells is nearest neighbor.
      * The coordinate reference system of the point is the same as the grid coverage
-     * {@linkplain #getCRS CRS}.
+     * {@linkplain #getCoordinateReferenceSystem CoordinateReferenceSystem}.
      *
      * @param point Point at which to find the grid values.
      * @param  destination An optionally preallocated array in which to store the values,
@@ -286,7 +286,7 @@ public interface Coverage {
      * The default interpolation type used when accessing grid values for points which
      * fall between grid cells is nearest neighbor.
      * The coordinate reference system of the point is the same as the grid coverage
-     * {@linkplain #getCRS CRS}.
+     * {@linkplain #getCoordinateReferenceSystem CoordinateReferenceSystem}.
      *
      * @param point Point at which to find the grid values.
      * @param  destination An optionally preallocated array in which to store the values,
@@ -311,7 +311,7 @@ public interface Coverage {
      * The default interpolation type used when accessing grid values for points which
      * fall between grid cells is nearest neighbor.
      * The coordinate reference system of the point is the same as the grid coverage
-     * {@linkplain #getCRS CRS}.
+     * {@linkplain #getCoordinateReferenceSystem CoordinateReferenceSystem}.
      *
      * @param point Point at which to find the grid values.
      * @param  destination An optionally preallocated array in which to store the values,
