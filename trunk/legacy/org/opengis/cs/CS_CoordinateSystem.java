@@ -1,14 +1,12 @@
-/*
- * OpenGIS® Coordinate Transformation Services Implementation Specification
- * Copyright (2001) OpenGIS consortium
- *
- * THIS COPYRIGHT NOTICE IS A TEMPORARY PATCH.   Version 1.00 of official
- * OpenGIS's interface files doesn't contain a copyright notice yet. This
- * file is a slightly modified version of official OpenGIS's interface.
- * Changes have been done in order to fix RMI problems and are documented
- * on the SEAGIS web site (seagis.sourceforge.net). THIS FILE WILL LIKELY
- * BE REPLACED BY NEXT VERSION OF OPENGIS SPECIFICATIONS.
- */
+/*$************************************************************************************************
+ **
+ ** $Id$
+ **
+ ** $Source$
+ **
+ ** Copyright (C) 2001 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
+ **
+ *************************************************************************************************/
 package org.opengis.cs;
 
 // OpenGIS dependencies
@@ -48,6 +46,8 @@ public interface CS_CoordinateSystem extends CS_Info {
      * Dimension of the coordinate system.
      *
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated Replaced by {@link org.opengis.crs.cs.CoordinateSystem#getDimension}.
      */
     int getDimension() throws RemoteException;
 
@@ -57,6 +57,8 @@ public interface CS_CoordinateSystem extends CS_Info {
      *
      * @param dimension Zero based index of axis.
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated Replaced by {@link org.opengis.crs.cs.CoordinateSystem#getAxis}.
      */
     CS_AxisInfo getAxis(int dimension) throws RemoteException;
 
@@ -66,6 +68,8 @@ public interface CS_CoordinateSystem extends CS_Info {
      *
      * @param dimension Zero based index of axis.
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated Replaced by {@link org.opengis.crs.cs.CoordinateSystemAxis#getUnit}.
      */
     CS_Unit getUnits(int dimension) throws RemoteException;
 
@@ -80,6 +84,8 @@ public interface CS_CoordinateSystem extends CS_Info {
      * of the Earth.
      *
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated Replaced by {@link org.opengis.crs.datum.Datum#getValidArea}.
      */
     PT_Envelope getDefaultEnvelope() throws RemoteException;
 }

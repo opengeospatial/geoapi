@@ -1,14 +1,12 @@
-/*
- * OpenGIS® Coordinate Transformation Services Implementation Specification
- * Copyright (2001) OpenGIS consortium
- *
- * THIS COPYRIGHT NOTICE IS A TEMPORARY PATCH.   Version 1.00 of official
- * OpenGIS's interface files doesn't contain a copyright notice yet. This
- * file is a slightly modified version of official OpenGIS's interface.
- * Changes have been done in order to fix RMI problems and are documented
- * on the SEAGIS web site (seagis.sourceforge.net). THIS FILE WILL LIKELY
- * BE REPLACED BY NEXT VERSION OF OPENGIS SPECIFICATIONS.
- */
+/*$************************************************************************************************
+ **
+ ** $Id$
+ **
+ ** $Source$
+ **
+ ** Copyright (C) 2001 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
+ **
+ *************************************************************************************************/
 package org.opengis.cs;
 
 // Various JDK's classes
@@ -36,11 +34,15 @@ public class CS_AxisInfo implements Cloneable, Serializable {
     /**
      * Human readable name for axis. 
      * Possible values are X, Y, Long, Lat or any other short string.
+     *
+     * @deprecated Replaced by {@link org.opengis.crs.cs.CoordinateSystemAxis#getName}.
      */
     public String name;
 
     /**
      * Gets enumerated value for orientation.
+     *
+     * @deprecated Replaced by {@link org.opengis.crs.cs.CoordinateSystemAxis#getDirection}.
      */
     public CS_AxisOrientationEnum orientation;
 
