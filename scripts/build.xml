@@ -169,6 +169,7 @@
       <replacefilter token="&lt;MaintenanceInformation&gt;"/>
       <replacefilter token="&lt;MetadataExtensionInformation&gt;"/>
       <replacefilter token="&lt;Number&gt;"/>
+      <replacefilter token="&lt;Object&gt;"/>
       <replacefilter token="&lt;OnLineResource&gt;"/>
       <replacefilter token="&lt;OrientableCurve&gt;"/>
       <replacefilter token="&lt;OrientableSurface&gt;"/>
