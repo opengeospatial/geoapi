@@ -1,23 +1,25 @@
 package org.opengis.sld;
 
+import org.opengis.filter.expression.Expression;
+
 /**
  * Implementations of this interface indicate that one of a few predefined
  * shapes will be drawn at the points of the geometry.
  */
 public interface Mark {
     /**
-     * Returns the name of the symbol to draw.  Must be one of "square",
-     * "circle", "triangle", "star", "cross", or "x".  If null, the default
-     * is "square".
+     * Returns the expression whose value will indicate the symbol to draw.
+     * At least the following values must be accepted: "square", "circle",
+     * "triangle", "star", "cross", or "x".  If null, the default is "square".
      */
-    public String getWellKnownName();
+    public Expression getWellKnownName();
 
     /**
-     * Sets the name of the symbol to draw.  Must be one of "square",
-     * "circle", "triangle", "star", "cross", or "x".  If null, the default
-     * is "square".
+     * Sets the expression whose value will indicate the symbol to draw.
+     * At least the following values must be accepted: "square", "circle",
+     * "triangle", "star", "cross", or "x".  If null, the default is "square".
      */
-    public void setWellKnownName(String name);
+    public void setWellKnownName(Expression name);
 
     /**
      * Returns the object that indicates how the mark should be filled.
