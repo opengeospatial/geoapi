@@ -67,9 +67,7 @@ public interface MathTransformFactory extends Factory {
      * <code>{@linkplain #createParameterizedTransform createParameterizedTransform}(identifier, parameters)</code>.
      *
      * @param  identifier The case insensitive {@linkplain Identifier#getCode identifier code} of the
-     *         operation method to search for (e.g. "Transverse_Mercator"). If this string contains
-     *         the <code>':'</code> character, then the part before <code>':'</code> is the
-     *         {@linkplain Identifier#getCodeSpace code space}.
+     *         operation method to search for (e.g. "Transverse_Mercator").
      * @return The default parameter values.
      * @throws NoSuchIdentifierException if there is no transform registered for the specified
      *         operation method identifier.
@@ -82,9 +80,7 @@ public interface MathTransformFactory extends Factory {
      * parameters for cartographic projection transforms.
      *
      * @param  identifier The case insensitive {@linkplain Identifier#getCode identifier code} of the
-     *         operation method to search for (e.g. "Transverse_Mercator"). If this string contains
-     *         the <code>':'</code> character, then the part before <code>':'</code> is the
-     *         {@linkplain Identifier#getCodeSpace code space}.
+     *         operation method to search for (e.g. "Transverse_Mercator").
      * @param  parameters The parameter values. A default set can be obtained with
      *         <code>{@linkplain #getDefaultParameters getDefaultParameters}(identifier)}</code>
      *         and modified before to be given to this method.

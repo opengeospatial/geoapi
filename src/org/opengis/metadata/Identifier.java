@@ -28,29 +28,21 @@ import org.opengis.metadata.citation.Citation;
 public interface Identifier {
     /**
      * Alphanumeric value identifying an instance in the namespace.
-     * Optionally from a controlled list or pattern defined by a {@linkplain #getCodeSpace code space}.
-     *
-     * @return The code.
      */
 /// @UML (identifier="code", obligation=MANDATORY)
     String getCode();
 
     /**
-     * Identifier of the version of the associated code space or code, as specified
-     * by the code space or code authority. This version is included only when the
-     * {@linkplain #getCode code} or {@linkplain #getCodeSpace code space} uses versions.
-     * When appropriate, the edition is identified by the effective date, coded using
-     * ISO 8601 date format.
-     *
-     * @return The version, or <code>null</code> if not available.
+     * Identifier of the version of the associated code, as specified by the code authority.
+     * This version is included only when the {@linkplain #getCode code} uses versions. When
+     * appropriate, the edition is identified by the effective date, coded using ISO 8601 date
+     * format.
      */
     String getVersion();
 
     /**
      * Organization or party responsible for definition and maintenance of the
-     * {@linkplain #getCodeSpace code space} or {@linkplain #getCode code}.
-     *
-     * @return The authority, or <code>null</code> if not available.
+     * {@linkplain #getCode code}.
      */
 /// @UML (identifier="authority", obligation=OPTIONAL)
     Citation getAuthority();
