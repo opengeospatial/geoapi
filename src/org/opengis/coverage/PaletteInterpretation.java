@@ -9,7 +9,9 @@
  *************************************************************************************************/
 package org.opengis.coverage;
 
-//J2SE direct dependencies
+// J2SE directdependencies
+import java.util.List;
+import java.util.ArrayList;
 import java.awt.color.ColorSpace; // For Javadoc
 
 //OpenGIS direct dependencies
@@ -33,12 +35,18 @@ public final class PaletteInterpretation extends CodeList {
     private static final long serialVersionUID = -7387623392932592485L;
 
     /**
+     * List of all enumerations of this type.
+     * Must be declared before any enum declaration.
+     */
+    private static final List VALUES = new ArrayList(4);
+
+    /**
      * Gray Scale color palette.
      *
      * @UML conditional CV_Gray
      * @see ColorSpace#TYPE_GRAY
      */
-    public static final PaletteInterpretation GRAY = new PaletteInterpretation("GRAY", 0);
+    public static final PaletteInterpretation GRAY = new PaletteInterpretation("GRAY");
 
     /**
      * RGB (Red Green Blue) color palette.
@@ -46,7 +54,7 @@ public final class PaletteInterpretation extends CodeList {
      * @UML conditional CV_RGB
      * @see ColorSpace#TYPE_RGB
      */
-    public static final PaletteInterpretation RGB = new PaletteInterpretation("RGB", 1);
+    public static final PaletteInterpretation RGB = new PaletteInterpretation("RGB");
 
     /**
      * CYMK (Cyan Yellow Magenta blacK) color palette.
@@ -54,7 +62,7 @@ public final class PaletteInterpretation extends CodeList {
      * @UML conditional CV_CMYK
      * @see ColorSpace#TYPE_CMYK
      */
-    public static final PaletteInterpretation CMYK = new PaletteInterpretation("CMYK", 2);
+    public static final PaletteInterpretation CMYK = new PaletteInterpretation("CMYK");
 
     /**
      * HSL (Hue Saturation Lightness) color palette.
@@ -62,26 +70,25 @@ public final class PaletteInterpretation extends CodeList {
      * @UML conditional CV_HLS
      * @see ColorSpace#TYPE_HLS
      */
-    public static final PaletteInterpretation HLS = new PaletteInterpretation("HLS", 3);
+    public static final PaletteInterpretation HLS = new PaletteInterpretation("HLS");
 
     /**
-     * List of all enumerations of this type.
+     * Constructs an enum with the given name. The new enum is
+     * automatically added to the list returned by {@link #values}.
+     *
+     * @param name The enum name. This name must not be in use by an other enum of this type.
      */
-    private static final PaletteInterpretation[] VALUES = new PaletteInterpretation[] {
-            GRAY, RGB, CMYK, HLS };
-
-    /**
-     * Constructs an enum with the given name.
-     */
-    private PaletteInterpretation(final String name, final int ordinal) {
-        super(name, ordinal);
+    public PaletteInterpretation(final String name) {
+        super(name, VALUES);
     }
 
     /**
      * Returns the list of <code>PaletteInterpretation</code>s.
      */
     public static PaletteInterpretation[] values() {
-        return (PaletteInterpretation[]) VALUES.clone();
+        synchronized (VALUES) {
+            return (PaletteInterpretation[]) VALUES.toArray(new PaletteInterpretation[VALUES.size()]);
+        }
     }
 
     /**

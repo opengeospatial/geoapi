@@ -73,8 +73,8 @@ public class PathType extends SimpleEnumerationType {
     public static PathType[] values() {
         synchronized (VALUES) {
             return (PathType[]) VALUES.toArray(new PathType[VALUES.size()]);
+        }
     }
-}
 
     /**
      * Returns the list of enumerations of the same kind than this enum.

@@ -9,7 +9,9 @@
  *************************************************************************************************/
 package org.opengis.coverage;
 
-// J2SE direct dependencies
+// J2SE directdependencies
+import java.util.List;
+import java.util.ArrayList;
 import java.awt.image.DataBuffer; // For Javadoc
 
 // OpenGIS direct dependencies
@@ -33,13 +35,19 @@ public final class SampleDimensionType extends CodeList {
     private static final long serialVersionUID = -4153433145134818506L;
 
     /**
+     * List of all enumerations of this type.
+     * Must be declared before any enum declaration.
+     */
+    private static final List VALUES = new ArrayList(11);
+
+    /**
      * Unsigned 1 bit integers.
      *
      * @UML conditional CV_1BIT
      * @rename Renamed <code>CV_1BIT</code> as <code>UNSIGNED_1BIT</code> since we
      *         drop the prefix, but can't get a name starting with a digit.
      */
-    public static final SampleDimensionType UNSIGNED_1BIT = new SampleDimensionType("UNSIGNED_1BIT", 0);
+    public static final SampleDimensionType UNSIGNED_1BIT = new SampleDimensionType("UNSIGNED_1BIT");
 
     /**
      * Unsigned 2 bits integers.
@@ -48,7 +56,7 @@ public final class SampleDimensionType extends CodeList {
      * @rename Renamed <code>CV_2BIT</code> as <code>UNSIGNED_2BITS</code> since we
      *         drop the prefix, but can't get a name starting with a digit.
      */
-    public static final SampleDimensionType UNSIGNED_2BITS = new SampleDimensionType("UNSIGNED_2BITS", 1);
+    public static final SampleDimensionType UNSIGNED_2BITS = new SampleDimensionType("UNSIGNED_2BITS");
 
     /**
      * Unsigned 4 bits integers.
@@ -57,7 +65,7 @@ public final class SampleDimensionType extends CodeList {
      * @rename Renamed <code>CV_4BIT</code> as <code>UNSIGNED_4BITS</code> since we
      *         drop the prefix, but can't get a name starting with a digit.
      */
-    public static final SampleDimensionType UNSIGNED_4BITS = new SampleDimensionType("UNSIGNED_4BITS", 2);
+    public static final SampleDimensionType UNSIGNED_4BITS = new SampleDimensionType("UNSIGNED_4BITS");
 
     /**
      * Unsigned 8 bits integers.
@@ -69,7 +77,7 @@ public final class SampleDimensionType extends CodeList {
      * @see #SIGNED_8BITS
      * @see DataBuffer#TYPE_BYTE
      */
-    public static final SampleDimensionType UNSIGNED_8BITS = new SampleDimensionType("UNSIGNED_8BITS", 3);
+    public static final SampleDimensionType UNSIGNED_8BITS = new SampleDimensionType("UNSIGNED_8BITS");
 
     /**
      * Signed 8 bits integers.
@@ -80,7 +88,7 @@ public final class SampleDimensionType extends CodeList {
      *
      * @see #UNSIGNED_8BITS
      */
-    public static final SampleDimensionType SIGNED_8BITS = new SampleDimensionType("SIGNED_8BITS", 4);
+    public static final SampleDimensionType SIGNED_8BITS = new SampleDimensionType("SIGNED_8BITS");
 
     /**
      * Unsigned 16 bits integers.
@@ -92,7 +100,7 @@ public final class SampleDimensionType extends CodeList {
      * @see #SIGNED_16BITS
      * @see DataBuffer#TYPE_USHORT
      */
-    public static final SampleDimensionType UNSIGNED_16BITS = new SampleDimensionType("UNSIGNED_16BITS", 5);
+    public static final SampleDimensionType UNSIGNED_16BITS = new SampleDimensionType("UNSIGNED_16BITS");
 
     /**
      * Signed 16 bits integers.
@@ -104,7 +112,7 @@ public final class SampleDimensionType extends CodeList {
      * @see #UNSIGNED_16BITS
      * @see DataBuffer#TYPE_SHORT
      */
-    public static final SampleDimensionType SIGNED_16BITS = new SampleDimensionType("SIGNED_16BITS", 6);
+    public static final SampleDimensionType SIGNED_16BITS = new SampleDimensionType("SIGNED_16BITS");
 
     /**
      * Unsigned 32 bits integers.
@@ -115,7 +123,7 @@ public final class SampleDimensionType extends CodeList {
      *
      * @see #SIGNED_32BITS
      */
-    public static final SampleDimensionType UNSIGNED_32BITS = new SampleDimensionType("UNSIGNED_32BITS", 7);
+    public static final SampleDimensionType UNSIGNED_32BITS = new SampleDimensionType("UNSIGNED_32BITS");
 
     /**
      * Signed 32 bits integers.
@@ -127,7 +135,7 @@ public final class SampleDimensionType extends CodeList {
      * @see #UNSIGNED_32BITS
      * @see DataBuffer#TYPE_INT
      */
-    public static final SampleDimensionType SIGNED_32BITS = new SampleDimensionType("SIGNED_32BITS", 8);
+    public static final SampleDimensionType SIGNED_32BITS = new SampleDimensionType("SIGNED_32BITS");
 
     /**
      * Simple precision floating point numbers.
@@ -139,7 +147,7 @@ public final class SampleDimensionType extends CodeList {
      * @see #REAL_64BITS
      * @see DataBuffer#TYPE_FLOAT
      */
-    public static final SampleDimensionType REAL_32BITS = new SampleDimensionType("REAL_32BITS", 9);
+    public static final SampleDimensionType REAL_32BITS = new SampleDimensionType("REAL_32BITS");
 
     /**
      * Double precision floating point numbers.
@@ -151,28 +159,25 @@ public final class SampleDimensionType extends CodeList {
      * @see #REAL_32BITS
      * @see DataBuffer#TYPE_DOUBLE
      */
-    public static final SampleDimensionType REAL_64BITS = new SampleDimensionType("REAL_64BITS", 10);
+    public static final SampleDimensionType REAL_64BITS = new SampleDimensionType("REAL_64BITS");
 
     /**
-     * List of all enumerations of this type.
+     * Constructs an enum with the given name. The new enum is
+     * automatically added to the list returned by {@link #values}.
+     *
+     * @param name The enum name. This name must not be in use by an other enum of this type.
      */
-    private static final SampleDimensionType[] VALUES = new SampleDimensionType[] {
-            UNSIGNED_1BIT, UNSIGNED_2BITS, UNSIGNED_4BITS, UNSIGNED_8BITS,
-            SIGNED_8BITS, UNSIGNED_16BITS, SIGNED_16BITS, UNSIGNED_32BITS,
-            SIGNED_32BITS, REAL_32BITS, REAL_64BITS };
-
-    /**
-     * Constructs an enum with the given name.
-     */
-    private SampleDimensionType(final String name, final int ordinal) {
-        super(name, ordinal);
+    public SampleDimensionType(final String name) {
+        super(name, VALUES);
     }
 
     /**
      * Returns the list of <code>SampleDimensionType</code>s.
      */
     public static SampleDimensionType[] values() {
-        return (SampleDimensionType[]) VALUES.clone();
+        synchronized (VALUES) {
+            return (SampleDimensionType[]) VALUES.toArray(new SampleDimensionType[VALUES.size()]);
+        }
     }
 
     /**

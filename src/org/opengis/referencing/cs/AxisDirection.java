@@ -9,6 +9,10 @@
  *************************************************************************************************/
 package org.opengis.referencing.cs;
 
+// J2SE directdependencies
+import java.util.List;
+import java.util.ArrayList;
+
 // OpenGIS direct dependencies
 import org.opengis.util.CodeList;
 
@@ -29,6 +33,12 @@ public final class AxisDirection extends CodeList {
      * Serial number for compatibility with different versions.
      */
     private static final long serialVersionUID = -4405275475770755714L;
+
+    /**
+     * List of all enumerations of this type.
+     * Must be declared before any enum declaration.
+     */
+    private static final List VALUES = new ArrayList(13);
     
     // NOTE: The following enum values are from the OpenGIS specification.
     //       IF THOSE VALUES CHANGE, THEN inverse() AND absolute() MUST BE
@@ -43,7 +53,7 @@ public final class AxisDirection extends CodeList {
      *
      * @UML conditional CS_AO_OTHER
      */
-    public static final AxisDirection OTHER = new AxisDirection("OTHER", 0);
+    public static final AxisDirection OTHER = new AxisDirection("OTHER"); // 0
 
     /**
      * Increasing ordinates values go North.
@@ -51,7 +61,7 @@ public final class AxisDirection extends CodeList {
      *
      * @UML conditional CS_AO_NORTH
      */
-    public static final AxisDirection NORTH = new AxisDirection("NORTH", 1);
+    public static final AxisDirection NORTH = new AxisDirection("NORTH"); // 1
 
     /**
      * Increasing ordinates values go South.
@@ -59,7 +69,7 @@ public final class AxisDirection extends CodeList {
      *
      * @UML conditional CS_AO_SOUTH
      */
-    public static final AxisDirection SOUTH = new AxisDirection("SOUTH", 2);
+    public static final AxisDirection SOUTH = new AxisDirection("SOUTH"); // 2
 
     /**
      * Increasing ordinates values go East.
@@ -67,7 +77,7 @@ public final class AxisDirection extends CodeList {
      *
      * @UML conditional CS_AO_EAST
      */
-    public static final AxisDirection EAST = new AxisDirection("EAST", 3);
+    public static final AxisDirection EAST = new AxisDirection("EAST"); // 3
 
     /**
      * Increasing ordinates values go West.
@@ -75,64 +85,86 @@ public final class AxisDirection extends CodeList {
      *
      * @UML conditional CS_AO_WEST
      */
-    public static final AxisDirection WEST = new AxisDirection("WEST", 4);
+    public static final AxisDirection WEST = new AxisDirection("WEST"); // 4
 
     /**
-     * Increasing ordinates values go up.
+     * Increasing ordinates values go up, usually on a vertical axe.
      * This is used for {@linkplain org.opengis.referencing.crs.VerticalCRS vertical}
      * coordinate reference systems.
      *
      * @UML conditional CS_AO_UP
      */
-    public static final AxisDirection UP = new AxisDirection("UP", 5);
+    public static final AxisDirection UP = new AxisDirection("UP"); // 5
 
     /**
-     * Increasing ordinates values go down.
+     * Increasing ordinates values go down, usually on a vertical axe.
      * This is used for {@linkplain org.opengis.referencing.crs.VerticalCRS vertical}
      * coordinate reference systems.
      *
      * @UML conditional CS_AO_DOWN
      */
-    public static final AxisDirection DOWN = new AxisDirection("DOWN", 6);
+    public static final AxisDirection DOWN = new AxisDirection("DOWN"); // 6
+
+    /**
+     * Increasing ordinates values go right, usually on a horizontal plane.
+     * This is used for rendering coordinate reference systems.
+     */
+    public static final AxisDirection RIGHT = new AxisDirection("RIGHT"); // 7
+
+    /**
+     * Increasing ordinates values go left, usually on a horizontal plane.
+     * This is used for rendering coordinate reference systems.
+     */
+    public static final AxisDirection LEFT = new AxisDirection("LEFT"); // 8
+
+    /**
+     * Increasing ordinates values go top, usually on a horizontal plane.
+     * This is used for rendering coordinate reference systems.
+     */
+    public static final AxisDirection TOP = new AxisDirection("TOP"); // 9
+
+    /**
+     * Increasing ordinates values go bottom, usually on a horizontal plane.
+     * This is used for rendering coordinate reference systems.
+     */
+    public static final AxisDirection BOTTOM = new AxisDirection("BOTTOM"); // 10
 
     /**
      * Increasing ordinates values go future.
      * This is used for {@linkplain org.opengis.referencing.crs.TemporalCRS temporal}
      * coordinate reference systems.
      */
-    public static final AxisDirection FUTURE = new AxisDirection("FUTURE", 7);
+    public static final AxisDirection FUTURE = new AxisDirection("FUTURE"); // 11
 
     /**
      * Increasing ordinates values go past.
      * This is used for {@linkplain org.opengis.referencing.crs.TemporalCRS temporal}
      * coordinate reference systems.
      */
-    public static final AxisDirection PAST = new AxisDirection("PAST", 8);
+    public static final AxisDirection PAST = new AxisDirection("PAST"); // 12
 
     /**
-     * The last paired value. Paired values are NORTH-SOUTH, EAST-WEST,
-     * UP-DOWN, FUTURE-PAST.
+     * A copy of {@link #VALUES} protected from change.
      */
-    private static final int LAST_PAIRED_VALUE = 8;
+    private static final AxisDirection[] STANDARD_VALUES = values();
 
     /**
-     * List of all enumeration of this type.
+     * Constructs an enum with the given name. The new enum is
+     * automatically added to the list returned by {@link #values}.
+     *
+     * @param name The enum name. This name must not be in use by an other enum of this type.
      */
-    private static final AxisDirection[] VALUES = new AxisDirection[] {
-            OTHER, NORTH, SOUTH, EAST, WEST, UP, DOWN, FUTURE, PAST };
-
-    /**
-     * Constructs an enum with the given name.
-     */
-    private AxisDirection(final String name, final int ordinal) {
-        super(name, ordinal);
+    public AxisDirection(final String name) {
+        super(name, VALUES);
     }
 
     /**
      * Returns the list of <code>AxisDirection</code>s.
      */
     public static AxisDirection[] values() {
-        return (AxisDirection[]) VALUES.clone();
+        synchronized (VALUES) {
+            return (AxisDirection[]) VALUES.toArray(new AxisDirection[VALUES.size()]);
+        }
     }
 
     /**
@@ -153,8 +185,8 @@ public final class AxisDirection extends CodeList {
      */
     public AxisDirection inverse() {
         final int value = ordinal()-1;
-        if (value>=0 && value<LAST_PAIRED_VALUE) {
-            return VALUES[(value ^ 1)+1];
+        if (value>=0 && value<STANDARD_VALUES.length-1) {
+            return STANDARD_VALUES[(value ^ 1)+1];
         } else {
             return this;
         }
@@ -179,6 +211,10 @@ public final class AxisDirection extends CodeList {
      *   <tr align="center"><td>WEST</td>  <td>EAST</td>  </tr>
      *   <tr align="center"><td>UP</td>    <td>UP</td>    </tr>
      *   <tr align="center"><td>DOWN</td>  <td>UP</td>    </tr>
+     *   <tr align="center"><td>RIGHT</td> <td>RIGHT</td> </tr>
+     *   <tr align="center"><td>LEFT</td>  <td>RIGHT</td> </tr>
+     *   <tr align="center"><td>TOP</td>   <td>TOP</td>   </tr>
+     *   <tr align="center"><td>BOTTOM</td><td>TOP</td>   </tr>
      *   <tr align="center"><td>FUTURE</td><td>FUTURE</td></tr>
      *   <tr align="center"><td>PAST</td>  <td>FUTURE</td></tr>
      *   <tr align="center"><td>OTHER</td> <td>OTHER</td> </tr>
@@ -186,8 +222,8 @@ public final class AxisDirection extends CodeList {
      */
     public AxisDirection absolute() {
         final int value = ordinal()-1;
-        if (value>=0 && value<LAST_PAIRED_VALUE) {
-            return VALUES[(value & ~1)+1];
+        if (value>=0 && value<STANDARD_VALUES.length-1) {
+            return STANDARD_VALUES[(value & ~1)+1];
         } else {
             return this;
         }

@@ -79,8 +79,8 @@ public class XAnchor extends SimpleEnumerationType {
     public static XAnchor[] values() {
         synchronized (VALUES) {
             return (XAnchor[]) VALUES.toArray(new XAnchor[VALUES.size()]);
+        }
     }
-}
 
     /**
      * Returns the list of enumerations of the same kind than this enum.

@@ -9,6 +9,10 @@
  *************************************************************************************************/
 package org.opengis.coverage.grid;
 
+// J2SE directdependencies
+import java.util.List;
+import java.util.ArrayList;
+
 // OpenGIS direct dependencies
 import org.opengis.util.CodeList;
 
@@ -31,12 +35,18 @@ public final class ByteInValuePacking extends CodeList {
     private static final long serialVersionUID = -5830149616089633137L;
 
     /**
+     * List of all enumerations of this type.
+     * Must be declared before any enum declaration.
+     */
+    private static final List VALUES = new ArrayList(2);
+
+    /**
      * Big Endian.
      *
      * @UML conditional GC_wkbXDR
      * @see java.nio.ByteOrder#BIG_ENDIAN
      */
-    public static final ByteInValuePacking WKB_XDR = new ByteInValuePacking("WKB_XDR", 0);
+    public static final ByteInValuePacking WKB_XDR = new ByteInValuePacking("WKB_XDR");
 
     /**
      * Little Endian.
@@ -44,26 +54,25 @@ public final class ByteInValuePacking extends CodeList {
      * @UML conditional GC_wkbNDR
      * @see java.nio.ByteOrder#LITTLE_ENDIAN
      */
-    public static final ByteInValuePacking WKB_NDR = new ByteInValuePacking("WKB_NDR", 1);
+    public static final ByteInValuePacking WKB_NDR = new ByteInValuePacking("WKB_NDR");
 
     /**
-     * List of all enumerations of this type.
+     * Constructs an enum with the given name. The new enum is
+     * automatically added to the list returned by {@link #values}.
+     *
+     * @param name The enum name. This name must not be in use by an other enum of this type.
      */
-    private static final ByteInValuePacking[] VALUES = new ByteInValuePacking[] {
-            WKB_XDR, WKB_NDR };
-
-    /**
-     * Constructs an enum with the given name.
-     */
-    private ByteInValuePacking(final String name, final int ordinal) {
-        super(name, ordinal);
+    public ByteInValuePacking(final String name) {
+        super(name, VALUES);
     }
 
     /**
      * Returns the list of <code>ByteInValuePacking</code>s.
      */
     public static ByteInValuePacking[] values() {
-        return (ByteInValuePacking[]) VALUES.clone();
+        synchronized (VALUES) {
+            return (ByteInValuePacking[]) VALUES.toArray(new ByteInValuePacking[VALUES.size()]);
+        }
     }
 
     /**

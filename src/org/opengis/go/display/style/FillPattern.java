@@ -152,8 +152,8 @@ public class FillPattern extends SimpleEnumerationType {
     public static FillPattern[] values() {
         synchronized (VALUES) {
             return (FillPattern[]) VALUES.toArray(new FillPattern[VALUES.size()]);
+        }
     }
-}
 
     /**
      * Returns the list of enumerations of the same kind than this enum.
