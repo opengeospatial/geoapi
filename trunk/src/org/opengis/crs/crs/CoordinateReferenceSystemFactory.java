@@ -37,7 +37,7 @@ public interface CoordinateReferenceSystemFactory {
      * @return the <code>CRS</code>.
      * @throws UnsupportedCRSException if the criteria cannot be met
      */
-    public CoordinateReferenceSystem createCRS(Properties criteria) throws UnsupportedCRSException;                       
+    public CoordinateReferenceSystem createCoordinateReferenceSystem(Properties criteria) throws UnsupportedCRSException;                       
                                                                                                                              
 	/**
 	 * Returns a {@linkplain GeographicCRS geographic coordinate reference system} from a code.
