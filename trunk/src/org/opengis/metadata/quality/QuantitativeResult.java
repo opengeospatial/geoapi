@@ -24,22 +24,25 @@ import javax.units.Unit;
  */
 public interface QuantitativeResult extends Result {
     /**
-     * Auantitative value or values, content determined by the evaluation procedure used.
+     * Quantitative value or values, content determined by the evaluation procedure used.
      *
      * @UML mandatory value
      * @unitof Measure
+     *
+     * @revisit In the UML, the return type for <code>value</code> is an arbitrary amount of
+     *          <code>Measure</code> (could be mapped to a <code>double[]</code> array in Java)
+     *          and the return type for <code>valueType</code> is <code>RecordType</code>, which
+     *          is defined in ISO 19103. We currently map <code>RecordType</code> to a Java
+     *          {@link Class}, but it may be revisited in a future version.
      */
-    double[] getValues();
+    Object getValue();
 
     /**
      * Value type for reporting a data quality result, or <code>null</code> if none.
      *
      * @UML optional valueType
-     *
-     * @revisit Need to defines a policy for <code>RecordType</code>. Should we
-     *          returns a {@link Class}?
      */
-//    RecordType getValueType();
+    Class getValueType();
 
     /**
      * Value unit for reporting a data quality result, or <code>null</code> if none.
