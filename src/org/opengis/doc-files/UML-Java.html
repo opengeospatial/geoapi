@@ -20,8 +20,8 @@
     <TR><TD nowrap valign='top'><CODE>&lt;&lt;CodeList&gt;&gt;</CODE></TD>
         <TD>A flexible enumeration that uses string values for expressing a list of
             potential values.</TD>
-        <TD nowrap><CODE>org.opengis.util.CodeList <strong>extends</strong>
-        <A HREF="http://java.sun.com/j2se/1.5/docs/api/java/lang/Enum.html">java.lang.Enum</A><SUP>*</SUP></CODE></TD></TR>
+        <TD nowrap><CODE><A HREF="../util/CodeList.html">CodeList</A> <strong>extends</strong>
+        <A HREF="http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Enum.html">java.lang.Enum</A><SUP>*</SUP></CODE></TD></TR>
     <TR><TD nowrap valign='top'><CODE>&lt;&lt;Union&gt;&gt;</CODE></TD>
         <TD>Contains a list of attributes where only one of those attributes can be
             present at any time.</TD>
@@ -29,6 +29,18 @@
     <TR><TD nowrap valign='top'><CODE>&lt;&lt;Abstract&gt;&gt;</CODE></TD>
         <TD>A polymorphic object class that cannot be instantiated.</TD>
         <TD nowrap>Interface</TD></TR>
+    <TR><TD nowrap valign='top'>Constructor</TD>
+        <TD>Cast an object into an object of an other type.</TD>
+        <TD>A <code>toFoo()</code> method in the object to be cast.</TD></TR>
+    <TR><TD nowrap valign='top'><CODE>Set&lt;DataType&gt;</CODE></TD>
+        <TD>A finite set. Each object is considered to be in the set only once.</TD>
+        <TD nowrap><CODE><A HREF="http://java.sun.com/j2se/1.4/docs/api/java/util/Set.html">java.util.Set</A></CODE></TD></TR>
+    <TR><TD nowrap valign='top'><CODE>Sequence&lt;DataType&gt;</CODE></TD>
+        <TD>A sequence type of collection, which contains an ordered finite list of
+            values (possibly with repeated values) of the specified data type.</TD>
+        <TD>Small array, or
+        <CODE><A HREF="http://java.sun.com/j2se/1.4/docs/api/java/util/List.html">java.util.List</A></CODE>
+        if the sequence is likely to be big.</TD></TR>
     <TR><TD nowrap valign='top'><CODE>CharacterString</CODE></TD>
         <TD>A sequence of characters.</TD>
         <TD nowrap><CODE><A HREF="http://java.sun.com/j2se/1.4/docs/api/java/lang/String.html">java.lang.String</A></CODE></TD></TR>
@@ -48,14 +60,17 @@
         <TD>A character string as specified by ISO 19108, which comprises year,
             month, day and time of the day to the appropriate level of precision.</TD>
         <TD nowrap><CODE><A HREF="http://java.sun.com/j2se/1.4/docs/api/java/util/Date.html">java.util.Date</A></CODE></TD></TR>
-    <TR><TD nowrap valign='top'><CODE>Sequence&lt;DataType&gt;</CODE></TD>
-        <TD>A sequence type of collection, which contains an ordered list of
-            values with the specified data type.</TD>
-        <TD nowrap>Array or
-        <CODE><A HREF="http://java.sun.com/j2se/1.4/docs/api/java/util/List.html">java.util.List</A></CODE></TD></TR>
-    <TR><TD nowrap valign='top'>Constructor</TD>
-        <TD>Cast an object into an object of an other type.</TD>
-        <TD nowrap>A <code>toFoo()</code> method in the object to be cast.</TD></TR>
+    <TR><TD nowrap valign='top'><CODE>Scale</CODE></TD>
+        <TD>A floating point number associated with a dimensionless unit.</TD>
+        <TD nowrap><CODE>double</CODE></TD></TR>
+    <TR><TD nowrap valign='top'><CODE>Length</CODE></TD>
+        <TD>A floating point number associated with a linear unit.</TD>
+        <TD><CODE>double</CODE> with some <CODE>getUnit()</CODE> method
+            (e.g.&nbsp;<CODE>getAxisUnit()</CODE>).</TD></TR>
+    <TR><TD nowrap valign='top'><CODE>Angle</CODE></TD>
+        <TD>A floating point number associated with an angular unit.</TD>
+        <TD><CODE>double</CODE> with some <CODE>getUnit()</CODE> method
+            (e.g.&nbsp;<CODE>getAngularUnit()</CODE>).</TD></TR>
   </TABLE>
 
   <P ALIGN="right"><SUP>*</SUP> For platform earlier than J2SE 1.5, the <CODE>CodeList</CODE>
