@@ -10,7 +10,6 @@
 package org.opengis.referencing;
 
 // J2SE direct dependencies
-import java.util.Locale;
 import java.util.Set;
 
 // OpenGIS direct dependencies
@@ -27,29 +26,18 @@ import org.opengis.util.InternationalString;
  * a database of coordinate systems, and other spatial referencing objects, where each
  * object has a code number ID. For example, the EPSG code for a WGS84 Lat/Lon coordinate
  * system is '4326'.
- * <br><br>
- * This specification uses two character strings for spatial referencing objects identity.
- * The first string identifies the "authority" or "nameSpace" that specifies multiple
- * standard reference systems, e.g. "EPSG". The second string specifies the "authority code"
- * or "name" of a particular reference system specified by that authority. In the case of
- * "EPSG", the authority code will be a string representation of an integer.
- * <br><br>
- * This specification does not currently support editions or versions of reference systems.
- * That is, no explicit way is provided to represent the edition of a reference system "authority"
- * or "authority code". If multiple editions exist for a reference system, the interfaces assume
- * that the latest edition is intended.
  *
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-009.pdf">Implementation specification 1.0</A>
  */
-public interface AuthorityFactory {
+public interface AuthorityFactory extends Factory {
     /**
-     * Returns the low-level {@linkplain Factory factory} used for {@linkplain #createObject
-     * object creation}. For example an authority factory backed by an EPSG database will fetch
-     * informations from the database and use this low-level factory for creating objects from
-     * those informations.
+     * Returns the low-level {@linkplain ObjectFactory object factory} used for
+     * {@linkplain #createObject object creation}. For example an authority factory backed by an
+     * EPSG database will fetch informations from the database and use this low-level factory for
+     * creating objects from those informations.
      */
-    Factory getFactory();
+    ObjectFactory getObjectFactory();
 
     /**
      * Returns the organization or party responsible for definition and maintenance of the
@@ -92,22 +80,6 @@ public interface AuthorityFactory {
      * @throws FactoryException if the query failed for some other reason.
      */
     InternationalString getDescriptionText(String code) throws FactoryException;
-
-    /**
-     * Gets a description of the object corresponding to a code.
-     *
-     * @param  code Value allocated by authority.
-     * @param  locale The desired locale for the description to be returned, or <code>null</code>
-     *         for a description in some default locale (may or may not be the
-     *         {@linkplain Locale#getDefault() system default}).
-     * @return A description of the object, or <code>null</code> if the object
-     *         corresponding to the specified <code>code</code> has no description.
-     * @throws NoSuchAuthorityCodeException if the specified <code>code</code> was not found.
-     * @throws FactoryException if the query failed for some other reason.
-     *
-     * @deprecated Replaced by {@link #getDescriptionText(String)}.
-     */
-    String getDescriptionText(String code, Locale locale) throws FactoryException;
 
     /**
      * Returns an arbitrary object from a code. The returned object will typically be an

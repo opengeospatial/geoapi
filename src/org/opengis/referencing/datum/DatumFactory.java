@@ -15,7 +15,7 @@ import java.util.Date;
 import javax.units.Unit;
 
 // OpenGIS direct dependencies
-import org.opengis.referencing.Factory;
+import org.opengis.referencing.ObjectFactory;
 import org.opengis.referencing.FactoryException;
 
 
@@ -33,12 +33,12 @@ import org.opengis.referencing.FactoryException;
  * @see org.opengis.referencing.cs.CSFactory
  * @see org.opengis.referencing.crs.CRSFactory
  */
-public interface DatumFactory extends Factory {
+public interface DatumFactory extends ObjectFactory {
     /**
      * Creates an engineering datum.
      *
      * @param  properties Name and other properties to give to the new object.
-     *         Available properties are {@linkplain Factory listed there}.
+     *         Available properties are {@linkplain ObjectFactory listed there}.
      * @throws FactoryException if the object creation failed.
      */
     EngineeringDatum createEngineeringDatum(Map properties) throws FactoryException;
@@ -47,7 +47,7 @@ public interface DatumFactory extends Factory {
      * Creates geodetic datum from ellipsoid and (optionaly) Bursa-Wolf parameters. 
      *
      * @param  properties Name and other properties to give to the new object.
-     *         Available properties are {@linkplain Factory listed there}.
+     *         Available properties are {@linkplain ObjectFactory listed there}.
      * @param  ellipsoid Ellipsoid to use in new geodetic datum.
      * @param  primeMeridian Prime meridian to use in new geodetic datum.
      * @throws FactoryException if the object creation failed.
@@ -60,7 +60,7 @@ public interface DatumFactory extends Factory {
      * Creates an image datum.
      *
      * @param  properties Name and other properties to give to the new object.
-     *         Available properties are {@linkplain Factory listed there}.
+     *         Available properties are {@linkplain ObjectFactory listed there}.
      * @param  pixelInCell Specification of the way the image grid is associated
      *         with the image data attributes.
      * @throws FactoryException if the object creation failed.
@@ -71,7 +71,7 @@ public interface DatumFactory extends Factory {
      * Creates a temporal datum from an enumerated type value.
      *
      * @param  properties Name and other properties to give to the new object.
-     *         Available properties are {@linkplain Factory listed there}.
+     *         Available properties are {@linkplain ObjectFactory listed there}.
      * @param  origin The date and time origin of this temporal datum.
      * @throws FactoryException if the object creation failed.
      */
@@ -81,7 +81,7 @@ public interface DatumFactory extends Factory {
      * Creates a vertical datum from an enumerated type value.
      *
      * @param  properties Name and other properties to give to the new object.
-     *         Available properties are {@linkplain Factory listed there}.
+     *         Available properties are {@linkplain ObjectFactory listed there}.
      * @param  type The type of this vertical datum (often “geoidal”).
      * @throws FactoryException if the object creation failed.
      */
@@ -91,7 +91,7 @@ public interface DatumFactory extends Factory {
      * Creates an ellipsoid from radius values.
      *
      * @param  properties Name and other properties to give to the new object.
-     *         Available properties are {@linkplain Factory listed there}.
+     *         Available properties are {@linkplain ObjectFactory listed there}.
      * @param  semiMajorAxis Equatorial radius in supplied linear units.
      * @param  semiMinorAxis Polar radius in supplied linear units.
      * @param  unit Linear units of ellipsoid axes.
@@ -106,7 +106,7 @@ public interface DatumFactory extends Factory {
      * Creates an ellipsoid from an major radius, and inverse flattening.
      *
      * @param  properties Name and other properties to give to the new object.
-     *         Available properties are {@linkplain Factory listed there}.
+     *         Available properties are {@linkplain ObjectFactory listed there}.
      * @param  semiMajorAxis Equatorial radius in supplied linear units.
      * @param  inverseFlattening Eccentricity of ellipsoid.
      * @param  unit Linear units of major axis.
@@ -121,7 +121,7 @@ public interface DatumFactory extends Factory {
      * Creates a prime meridian, relative to Greenwich. 
      *
      * @param  properties Name and other properties to give to the new object.
-     *         Available properties are {@linkplain Factory listed there}.
+     *         Available properties are {@linkplain ObjectFactory listed there}.
      * @param  longitude Longitude of prime meridian in supplied angular units East of Greenwich.
      * @param  angularUnit Angular units of longitude.
      * @throws FactoryException if the object creation failed.

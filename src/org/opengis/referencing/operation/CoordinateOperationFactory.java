@@ -13,7 +13,7 @@ package org.opengis.referencing.operation;
 import java.util.Map;
 
 // OpenGIS dependencies
-import org.opengis.referencing.Factory;
+import org.opengis.referencing.ObjectFactory;
 import org.opengis.referencing.FactoryException;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 
@@ -27,12 +27,12 @@ import org.opengis.referencing.crs.CoordinateReferenceSystem;
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-009.pdf">Implementation specification 1.0</A>
  */
-public interface CoordinateOperationFactory extends Factory {
+public interface CoordinateOperationFactory extends ObjectFactory {
     /**
      * Creates a concatenated operation from a sequence of operations.
      *
      * @param  properties Name and other properties to give to the new object.
-     *         Available properties are {@linkplain Factory listed there}.
+     *         Available properties are {@linkplain ObjectFactory listed there}.
      * @param  operations The sequence of operations.
      * @throws FactoryException if the object creation failed.
      */

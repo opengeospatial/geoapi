@@ -14,7 +14,7 @@ import java.util.Map;
 import javax.units.Unit;
 
 // OpenGIS dependencies
-import org.opengis.referencing.Factory;
+import org.opengis.referencing.ObjectFactory;
 import org.opengis.referencing.FactoryException;
 
 
@@ -33,12 +33,12 @@ import org.opengis.referencing.FactoryException;
  * @see org.opengis.referencing.crs.CRSFactory
  * @see org.opengis.referencing.datum.DatumFactory
  */
-public interface CSFactory extends Factory {
+public interface CSFactory extends ObjectFactory {
     /**
      * Creates a coordinate system axis from an abbreviation and a unit.
      *
      * @param  properties Name and other properties to give to the new object.
-     *         Available properties are {@linkplain Factory listed there}.
+     *         Available properties are {@linkplain ObjectFactory listed there}.
      * @param  abbreviation The coordinate axis abbreviation.
      * @param  direction The axis direction.
      * @param  unit The coordinate axis unit.
@@ -53,7 +53,7 @@ public interface CSFactory extends Factory {
      * Creates a two dimensional cartesian coordinate system from the given pair of axis.
      *
      * @param  properties Name and other properties to give to the new object.
-     *         Available properties are {@linkplain Factory listed there}.
+     *         Available properties are {@linkplain ObjectFactory listed there}.
      * @param  axis0 The first  axis.
      * @param  axis1 The second axis.
      * @throws FactoryException if the object creation failed.
@@ -66,7 +66,7 @@ public interface CSFactory extends Factory {
      * Creates a three dimensional cartesian coordinate system from the given set of axis.
      *
      * @param  properties Name and other properties to give to the new object.
-     *         Available properties are {@linkplain Factory listed there}.
+     *         Available properties are {@linkplain ObjectFactory listed there}.
      * @param  axis0 The first  axis.
      * @param  axis1 The second axis.
      * @param  axis2 The third  axis.
@@ -81,7 +81,7 @@ public interface CSFactory extends Factory {
      * Creates a polar coordinate system from the given pair of axis.
      *
      * @param  properties Name and other properties to give to the new object.
-     *         Available properties are {@linkplain Factory listed there}.
+     *         Available properties are {@linkplain ObjectFactory listed there}.
      * @param  axis0 The first  axis.
      * @param  axis1 The second axis.
      * @throws FactoryException if the object creation failed.
@@ -95,7 +95,7 @@ public interface CSFactory extends Factory {
      * perpendicular axis.
      *
      * @param  properties Name and other properties to give to the new object.
-     *         Available properties are {@linkplain Factory listed there}.
+     *         Available properties are {@linkplain ObjectFactory listed there}.
      * @param  polarCS The polar coordinate system.
      * @param  axis The perpendicular axis.
      * @throws FactoryException if the object creation failed.
@@ -108,7 +108,7 @@ public interface CSFactory extends Factory {
      * Creates a spherical coordinate system from the given set of axis.
      *
      * @param  properties Name and other properties to give to the new object.
-     *         Available properties are {@linkplain Factory listed there}.
+     *         Available properties are {@linkplain ObjectFactory listed there}.
      * @param  axis0 The first  axis.
      * @param  axis1 The second axis.
      * @param  axis2 The third  axis.
@@ -123,7 +123,7 @@ public interface CSFactory extends Factory {
      * Creates an ellipsoidal coordinate system without ellipsoidal height.
      *
      * @param  properties Name and other properties to give to the new object.
-     *         Available properties are {@linkplain Factory listed there}.
+     *         Available properties are {@linkplain ObjectFactory listed there}.
      * @param  axis0 The first  axis.
      * @param  axis1 The second axis.
      * @throws FactoryException if the object creation failed.
@@ -136,7 +136,7 @@ public interface CSFactory extends Factory {
      * Creates an ellipsoidal coordinate system with ellipsoidal height.
      *
      * @param  properties Name and other properties to give to the new object.
-     *         Available properties are {@linkplain Factory listed there}.
+     *         Available properties are {@linkplain ObjectFactory listed there}.
      * @param  axis0 The first  axis.
      * @param  axis1 The second axis.
      * @param  axis2 The third  axis.
@@ -151,7 +151,7 @@ public interface CSFactory extends Factory {
      * Creates a vertical coordinate system.
      *
      * @param  properties Name and other properties to give to the new object.
-     *         Available properties are {@linkplain Factory listed there}.
+     *         Available properties are {@linkplain ObjectFactory listed there}.
      * @param  axis The axis.
      * @throws FactoryException if the object creation failed.
      */
@@ -161,7 +161,7 @@ public interface CSFactory extends Factory {
      * Creates a time coordinate system.
      *
      * @param  properties Name and other properties to give to the new object.
-     *         Available properties are {@linkplain Factory listed there}.
+     *         Available properties are {@linkplain ObjectFactory listed there}.
      * @param  axis The axis.
      * @throws FactoryException if the object creation failed.
      */
@@ -171,7 +171,7 @@ public interface CSFactory extends Factory {
      * Creates a two-dimensional user defined coordinate system.
      *
      * @param  properties Name and other properties to give to the new object.
-     *         Available properties are {@linkplain Factory listed there}.
+     *         Available properties are {@linkplain ObjectFactory listed there}.
      * @param  axis0 The first  axis.
      * @param  axis1 The second axis.
      * @throws FactoryException if the object creation failed.
@@ -184,7 +184,7 @@ public interface CSFactory extends Factory {
      * Creates a three-dimensional user defined coordinate system.
      *
      * @param  properties Name and other properties to give to the new object.
-     *         Available properties are {@linkplain Factory listed there}.
+     *         Available properties are {@linkplain ObjectFactory listed there}.
      * @param  axis0 The first  axis.
      * @param  axis1 The second axis.
      * @param  axis2 The third  axis.
