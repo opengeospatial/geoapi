@@ -53,9 +53,12 @@ public interface Citation {
      *
      * @UML mandatory date
      *
-     * @revisit ISO 19115 use <code>CI_Date</code> here.
+     * @revisit ISO 19115 use <code>CI_Date</code> here. Note that {@link #getEditionDate}
+     *          returns a J2SE {@link Date} object. Should we remove the later method and
+     *          add a <code>EDITION</code> enum in {@link DateType} instead? And should
+     *          this <code>getDate()</code> method returns a {@link java.util.Map}?
      */
-    Date[] getDate();
+    Date[] getDates();
 
     /**
      * Version of the cited resource.
@@ -112,7 +115,7 @@ public interface Citation {
      *
      * @UML optional presentationForm
      */
-    // PresentationFormCode[] getPresentationForm();
+    PresentationForm[] getPresentationForm();
 
     /**
      * Information about the series, or aggregate dataset, of which the dataset is a part.
