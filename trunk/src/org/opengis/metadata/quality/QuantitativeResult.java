@@ -35,7 +35,7 @@ public interface QuantitativeResult extends Result {
      * @unitof Measure
      */
 /// @UML (identifier="value", obligation=MANDATORY)
-    double[] getValue();
+    double[] getValues();
 
     /**
      * Value type for reporting a data quality result, or <code>null</code> if none.

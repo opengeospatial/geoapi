@@ -23,9 +23,9 @@ import org.opengis.util.InternationalString;
 /**
  * Information about spatial, vertical, and temporal extent.
  * This interface has three optional attributes
- * ({@linkplain #getGeographicElement geographic element},
- *  {@linkplain #getTemporalElement temporal element}, and
- *  {@linkplain #getVerticalElement vertical element}) and an element called
+ * ({@linkplain #getGeographicElements geographic elements},
+ *  {@linkplain #getTemporalElements temporal elements}, and
+ *  {@linkplain #getVerticalElements vertical elements}) and an element called
  *  {@linkplain #getDescription description}.
  *  At least one of the four shall be used.
  *
@@ -47,7 +47,7 @@ public interface Extent {
      * @return The geographic extent, or an empty set if none.
      */
 /// @UML (identifier="geographicElement", obligation=CONDITIONAL)
-    Collection/*<GeographicExtent>*/ getGeographicElement();
+    Collection/*<GeographicExtent>*/ getGeographicElements();
 
     /**
      * Provides temporal component of the extent of the referring object
@@ -55,7 +55,7 @@ public interface Extent {
      * @return The temporal extent, or an empty set if none.
      */
 /// @UML (identifier="temporalElement", obligation=CONDITIONAL)
-    Collection/*<TemporalExtent>*/ getTemporalElement();
+    Collection/*<TemporalExtent>*/ getTemporalElements();
 
     /**
      * Provides vertical component of the extent of the referring object
@@ -63,5 +63,5 @@ public interface Extent {
      * @return The vertical extent, or an empty set if none.
      */
 /// @UML (identifier="verticalElement", obligation=CONDITIONAL)
-    Collection/*<VerticalExtent>*/ getVerticalElement();
+    Collection/*<VerticalExtent>*/ getVerticalElements();
 }
