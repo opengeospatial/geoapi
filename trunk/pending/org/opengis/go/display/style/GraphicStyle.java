@@ -17,7 +17,12 @@ import org.opengis.util.Cloneable;
  * attributes for specifying SLD-based line symbolizer, polygon symbolizer, point
  * symbolizer, text symbolizer.  Attributes common to all types of geometry are
  * contained in this base class.
- * <code>Graphic</code>.
+ * <p>
+ * Note that code that sets the properties of a <code>GraphicStyle</code>
+ * cannot assume that there is only one Graphic that is referencing the style.
+ * So changing the values may affect many Graphics.  If the code wishes to
+ * guarantee that the change affects only one Graphic, it should clone the
+ * style and call setGraphicStyle on the Graphic with the clone.
  *
  * @version $Revision$, $Date$
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
