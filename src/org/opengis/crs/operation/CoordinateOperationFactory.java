@@ -13,7 +13,7 @@ import java.util.Properties;
 
 // OpenGIS dependencies
 import org.opengis.crs.FactoryException;
-import org.opengis.crs.crs.CRS;
+import org.opengis.crs.crs.CoordinateReferenceSystem;
 
 
 /**
@@ -36,7 +36,7 @@ public interface CoordinateOperationFactory {
 	 *
 	 * @revisit Should we create a more accurate subclass of <code>FactoryException</code>?
 	 */
-	CoordinateOperation getOperation(CRS sourceCRS, CRS targetCRS) throws FactoryException;
+	CoordinateOperation getOperation(CoordinateReferenceSystem sourceCRS, CoordinateReferenceSystem targetCRS) throws FactoryException;
     
 	/**
 	 * Returns an operation using a particular method for conversion or transformation
@@ -54,7 +54,7 @@ public interface CoordinateOperationFactory {
 	 *
 	 * @revisit Should we create a more accurate subclass of <code>FactoryException</code>?
 	 */
-	CoordinateOperation getOperation(OperationMethod method, CRS sourceCRS, CRS targetCRS) throws FactoryException;
+	CoordinateOperation getOperation(OperationMethod method, CoordinateReferenceSystem sourceCRS, CoordinateReferenceSystem targetCRS) throws FactoryException;
 	
 	/**
 	 * Returns an operation using a particular method for conversion or transformation

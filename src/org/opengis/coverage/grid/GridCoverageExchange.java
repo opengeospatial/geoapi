@@ -13,7 +13,7 @@ package org.opengis.coverage.grid;
 import java.io.IOException;
 
 import org.opengis.coverage.MetadataNameNotFoundException;
-import org.opengis.crs.crs.CRS;
+import org.opengis.crs.crs.CoordinateReferenceSystem;
 import org.opengis.crs.operation.Conversion;
 
 
@@ -198,11 +198,11 @@ public interface GridCoverageExchange {
      *
      * @revisit <UL>
      *            <LI>The <code>gridToCoordinateSystem</code> was <code>MathTransform</code>; we don't
-     *                know yet what will be the equivalent in the new CRS architecture.</LI>
+     *                know yet what will be the equivalent in the new CoordinateReferenceSystem architecture.</LI>
      *            <LI>This method sound like a convenience method for
      * <code>{@link org.opengis.coverage.processing.GridCoverageProcessor GridCoverageProcessor}("Resample", ...)</code>
      *                operation. Is <code>GridCoverageExchange</code> really the right place to define it?</LI>
      *          </UL>
      */
-    GridCoverage move(GridCoverage gridCoverage, CRS crs, Conversion gridToCoordinateSystem);
+    GridCoverage move(GridCoverage gridCoverage, CoordinateReferenceSystem crs, Conversion gridToCoordinateSystem);
 }

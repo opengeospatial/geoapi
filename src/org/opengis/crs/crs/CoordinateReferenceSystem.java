@@ -10,6 +10,7 @@
 package org.opengis.crs.crs;
 
 // OpenGIS direct dependencies
+import org.opengis.crs.ReferenceSystem;
 import org.opengis.crs.cs.CoordinateSystem;
 import org.opengis.crs.datum.Datum;
 
@@ -39,7 +40,7 @@ import org.opengis.crs.datum.Datum;
  * @see org.opengis.crs.cs.CoordinateSystem
  * @see org.opengis.crs.datum.Datum
  */
-public interface CoordinateReferenceSystem extends CRS {
+public interface CoordinateReferenceSystem extends ReferenceSystem {
     /**
      * Returns the coordinate system.
      *

@@ -13,16 +13,16 @@ package org.opengis.crs.operation;
 import java.util.Locale;
 
 import org.opengis.crs.Info;
-import org.opengis.crs.crs.CRS;
+import org.opengis.crs.crs.CoordinateReferenceSystem;
 import org.opengis.crs.quality.PositionalAccuracy;
 import org.opengis.metadata.extent.Extent;
 
 
 /**
  * A mathematical operation on coordinates that transforms or converts coordinates to another
- * coordinate reference system. Many but not all coordinate operations (from CRS <VAR>A</VAR>
- * to CRS <VAR>B</VAR>) also uniquely define the inverse operation (from CRS <VAR>B</VAR> to
- * CRS <VAR>A</VAR>). In some cases, the operation method algorithm for the inverse operation
+ * coordinate reference system. Many but not all coordinate operations (from CoordinateReferenceSystem <VAR>A</VAR>
+ * to CoordinateReferenceSystem <VAR>B</VAR>) also uniquely define the inverse operation (from CoordinateReferenceSystem <VAR>B</VAR> to
+ * CoordinateReferenceSystem <VAR>A</VAR>). In some cases, the operation method algorithm for the inverse operation
  * is the same as for the forward algorithm, but the signs of some operation parameter values
  * must be reversed. In other cases, different algorithms are required for the forward and inverse
  * operations, but the same operation parameter values are used. If (some) entirely different
@@ -44,7 +44,7 @@ public interface CoordinateOperation extends Info {
      * @return The source CRS.
      * @UML association sourceCRS
      */
-    public CRS getSourceCRS();
+    public CoordinateReferenceSystem getSourceCoordinateReferenceSystem();
 
     /**
      * Returns the target CRS. The target CRS is mandatory for Transformations only.
@@ -54,7 +54,7 @@ public interface CoordinateOperation extends Info {
      * @return The source CRS.
      * @UML association targetCRS
      */
-    public CRS getTargetCRS();
+    public CoordinateReferenceSystem getTargetCoordinateReferenceSystem();
 
     /**
      * Version of the coordinate transformation (i.e., instantiation due to the stochastic

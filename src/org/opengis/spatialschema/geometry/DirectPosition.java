@@ -10,7 +10,7 @@
 package org.opengis.spatialschema.geometry;
 
 // OpenGIS direct dependencies
-import org.opengis.crs.crs.CRS;
+import org.opengis.crs.crs.CoordinateReferenceSystem;
 import org.opengis.util.Cloneable;
 
 
@@ -83,7 +83,7 @@ public interface DirectPosition extends Cloneable {
      * @return The coordinate reference system, or <code>null</code>.
      * @UML association coordinateReferenceSystem
      */
-    public CRS getCoordinateReferenceSystem();
+    public CoordinateReferenceSystem getCoordinateReferenceSystem();
 
     /**
      * Makes an exact copy of this coordinate.
