@@ -161,11 +161,24 @@ public final class UmlTaglet implements Taglet {
             buffer.append(type);
             buffer.append("</I>):");
             if (tokens.hasMoreTokens()) {
-                buffer.append(" <CODE><B>");
-                buffer.append(tokens.nextToken());
-                buffer.append("</B></CODE>");
-                if (tokens.hasMoreTokens()) {
-                    warning(tag, "Extra word in @UML tag: "+tokens.nextToken());
+                String identifier = tokens.nextToken();
+                while (true) {
+                    buffer.append(" <CODE><B>");
+                    buffer.append(identifier);
+                    buffer.append("</B></CODE>");
+                    if (!tokens.hasMoreTokens()) {
+                        break;
+                    }
+                    identifier = tokens.nextToken();
+                    if (identifier.equalsIgnoreCase("in")) {
+                        buffer.append("&nbsp; <I>in</I>");
+                        while (tokens.hasMoreTokens()) {
+                            buffer.append(' ');
+                            buffer.append(tokens.nextToken());
+                        }
+                        break;
+                    }
+                    buffer.append(',');
                 }
             } else {
                 warning(tag, "Missing UML identifier");
