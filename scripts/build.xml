@@ -71,6 +71,8 @@
       <fileset dir="${homepath}/src">
         <exclude name="**/.*"/>
         <exclude name="**/*.class"/>
+        <exclude name="org/opengis/go/display/style/*.java"/>
+        <exclude name="org/opengis/go/display/primitive/*.java"/>
       </fileset>
     </copy>
 
@@ -125,9 +127,9 @@
              author           = "true"
              version          = "true"
              overview         = "sources/org/opengis/overview.html"
-             windowtitle      = "OpenGIS API"
-             doctitle         = "OpenGIS API"
-             header           = "OpenGIS API"
+             windowtitle      = "OpenGIS API 2.0"
+             doctitle         = "OpenGIS API 2.0"
+             header           = "OpenGIS API 2.0"
              additionalparam  = "-quiet -noqualifier all
                                  -tagletpath ${homepath}/scripts
                                  -taglet org.opengis.tools.UmlTaglet
@@ -149,7 +151,8 @@
       <link href="http://java.sun.com/j2se/1.4/docs/api"/>
 
       <group title="Spatial Referencing by Coordinates" packages="org.opengis.rs:org.opengis.sc:org.opengis.cs:org.opengis.cd:org.opengis.cc:org.opengis.dq"/>
-      <group title="Feature Geometry" packages="org.opengis.gm*:org.opengis.tp*"/>
+      <group title="Feature Geometry (WORK IN PROGRESS)" packages="org.opengis.gm*:org.opengis.tp*"/>
+      <group title="User interface (WORK IN PROGRESS)" packages="org.opengis.go*"/>
     </javadoc>
 
     <copy todir="javadoc/org/opengis/doc-files">
@@ -181,9 +184,9 @@
              author           = "false"
              version          = "true"
              overview         = "${homepath}/legacy/org/opengis/overview.html"
-             windowtitle      = "Legacy OpenGIS API"
-             doctitle         = "Legacy OpenGIS API"
-             header           = "Legacy OpenGIS API"
+             windowtitle      = "Legacy OpenGIS API 1.0"
+             doctitle         = "Legacy OpenGIS API 1.0"
+             header           = "Legacy OpenGIS API 1.0"
              additionalparam  = "-quiet -noqualifier all">
 
       <bottom>
@@ -270,6 +273,12 @@
         <section name="org/opengis/ex">
           <attribute name="Sealed"                 value="true"                              />
           <attribute name="Specification-Title"    value="Spatial Referencing by Coordinates"/>
+          <attribute name="Specification-Version"  value="2.00"                              />
+          <attribute name="Specification-Vendor"   value="OpenGIS Consortium, Inc."          />
+        </section>
+        <section name="org/opengis/gm*">
+          <attribute name="Sealed"                 value="true"                              />
+          <attribute name="Specification-Title"    value="Feature Geometry"                  />
           <attribute name="Specification-Version"  value="2.00"                              />
           <attribute name="Specification-Vendor"   value="OpenGIS Consortium, Inc."          />
         </section>
