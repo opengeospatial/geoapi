@@ -94,7 +94,11 @@ public interface Query {
      * @return The coordinate system to be returned for Features from this
      *         Query (override the set coordinate system).
      */
-    CoordinateReferenceSystem getCoordinateSystem();
+    // JG: Please if you possably can treat the idea of "forcing" the CRS
+    // as a FeatureCollection configuration issue (or a DataStore configuration
+    // issue). Recent experience with geotools shows the added burden on client
+    // code to be a pain.
+    public CoordinateReferenceSystem getCoordinateSystem();
 
     /**
      * Request data reprojection.
@@ -114,5 +118,5 @@ public interface Query {
      * @return The coordinate system that Features from the datasource should
      *         be reprojected to.
      */
-    CoordinateReferenceSystem getCoordinateSystemReproject();
+    public CoordinateReferenceSystem getCoordinateSystemReproject();
 }
