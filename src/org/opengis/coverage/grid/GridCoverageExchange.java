@@ -15,17 +15,20 @@ import java.io.IOException;
 
 /**
  * Support for creation of grid coverages from persistent formats as well as exporting
- * a grid coverage to a persistent formats.
- * For example, it allows for creation of grid coverages from the GeoTIFF Well-known
- * binary format and exporting to the GeoTIFF file format.
+ * a grid coverage to a persistent formats. For example, it allows for creation of grid
+ * coverages from the GeoTIFF Well-known binary format and exporting to the GeoTIFF file format.
  * Basic implementations only require creation of grid coverages from a file format or resource.
+ * More sophesticated implementations may extract the grid coverages from a database. In such
+ * case, a <code>GridCoverageExchange</code> instance will hold a connection to a specific
+ * database and the {@link #dispose} method will need to be invoked in order to close this
+ * connection.
  *
  * @UML abstract CV_GridCoverageExchange
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 2.0
  *
- * @see javax.imageio.ImageReader
- * @see javax.imageio.ImageWriter
+ * @see GridCoverageReader
+ * @see GridCoverageWriter
  */
 public interface GridCoverageExchange {
     /**
@@ -47,8 +50,6 @@ public interface GridCoverageExchange {
      *         {@link java.lang.String}, an {@link java.io.InputStream}, a
      *         {@link java.nio.channels.FileChannel}, whatever. It's up to the associated
      *         grid coverage reader to make meaningful use of it.
-     * @param  format the format of the source data. If null, this class will try to
-     *         guess an appropriate grid coverage reader by inspecting the source object.
      * @return The grid coverage reader.
      * @throws IOException if an error occurs during reading.
      *
@@ -56,7 +57,7 @@ public interface GridCoverageExchange {
      *          Something like an SPI. What if we can't find a GridCoverageReader?
      *          Do we return null or throw an Exception?
      */
-    GridCoverageReader getReader(Object source, Format format) throws IOException;
+    GridCoverageReader getReader(Object source) throws IOException;
 
     /**
      * Returns a GridCoverageWriter that can write the specified format.
@@ -80,4 +81,15 @@ public interface GridCoverageExchange {
      * @throws IOException if an error occurs during reading.
      */
     GridCoverageWriter getWriter(Object destination, Format format) throws IOException;
+
+    /**
+     * Allows any resources held by this object to be released. The result of calling any other
+     * method subsequent to a call to this method is undefined. Applications should call this
+     * method when they know they will no longer be using this <code>GridCoverageExchange</code>,
+     * especially if it was holding a connection to a database.
+     *
+     * @throws IOException if an error occured while disposing resources
+     *         (for example closing a database connection).
+     */
+    void dispose() throws IOException;
 }

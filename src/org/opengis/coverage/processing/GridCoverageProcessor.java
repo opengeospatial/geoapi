@@ -10,10 +10,10 @@
 package org.opengis.coverage.processing;
 
 // OpenGIS direct dependencies
-import org.opengis.coverage.grid.Parameter;
 import org.opengis.coverage.grid.GridCoverage;
 import org.opengis.coverage.SampleDimensionType; // For javadoc
 import org.opengis.coverage.MetadataNameNotFoundException;
+import org.opengis.parameter.GeneralParameterValue;
 import org.opengis.parameter.ParameterNotFoundException;
 import org.opengis.parameter.InvalidParameterNameException;
 import org.opengis.parameter.InvalidParameterValueException;
@@ -120,6 +120,6 @@ public interface GridCoverageProcessor {
      * @throws InvalidParameterValueException if a parameter doesn't have a valid value.
      * @UML operation doOperation
      */
-    GridCoverage doOperation(String operationName, Parameter[] parameters)
+    GridCoverage doOperation(String operationName, GeneralParameterValue[] parameters)
             throws OperationNotFoundException, ParameterNotFoundException, InvalidParameterNameException, InvalidParameterNameException;
 }

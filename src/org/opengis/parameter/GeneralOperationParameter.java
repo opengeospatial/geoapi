@@ -26,7 +26,8 @@ import org.opengis.crs.Info;
 public interface GeneralOperationParameter extends Info {
     /**
      * The minimum number of times that values for this parameter group or
-     * parameter are required. The default value is one.
+     * parameter are required. The default value is one. A value of 0 means
+     * an optional parameter.
      *
      * @return The minimum occurrences.
      * @UML optional minimumOccurs
@@ -34,4 +35,15 @@ public interface GeneralOperationParameter extends Info {
      * @see OperationParameterGroup#getMaximumOccurs
      */
     int getMinimumOccurs();
+
+    /**
+     * The maximum number of times that values for this parameter group or
+     * parameter can be included. The default value is one.
+     *
+     * @return The maximum occurrences.
+     * @UML optional OperationParameterGroup.maximumOccurs
+     *
+     * @see #getMinimumOccurs
+     */
+    int getMaximumOccurs();
 }

@@ -9,6 +9,9 @@
  *************************************************************************************************/
 package org.opengis.coverage.grid;
 
+// OpenGIS dependencies
+import org.opengis.parameter.GeneralOperationParameter;
+
 
 /**
  * A discovery mechanism to determine the formats supported by a {@link GridCoverageExchange}
@@ -67,10 +70,10 @@ public interface Format {
      * @UML operation getParameterInfo
      * @UML mandatory numParameters
      */
-    ParameterInfo[] getReadParameters();
+    GeneralOperationParameter[] getReadParameters();
 
     /**
      * Retrieve the parameter information for a {@link GridCoverageWriter#write write} operation.
      */
-    ParameterInfo[] getWriteParameters();
+    GeneralOperationParameter[] getWriteParameters();
 }

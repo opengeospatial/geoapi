@@ -15,15 +15,17 @@ import java.io.FileNotFoundException;  // For Javadoc
 
 // OpenGIS direct dependencies
 import org.opengis.coverage.MetadataNameNotFoundException;
+import org.opengis.parameter.GeneralParameterValue;
 import org.opengis.parameter.ParameterNotFoundException;
 import org.opengis.parameter.InvalidParameterNameException;
 import org.opengis.parameter.InvalidParameterValueException;
 
 
 /**
- * Support for reading grid coverages out of a persisten store.
- * Instance of <code>GridCoverageReader</code> are obtained through
- * a call to {@link GridCoverageExchange#getReader}.
+ * Support for reading grid coverages out of a persisten store. Instance of
+ * <code>GridCoverageReader</code> are obtained through a call to
+ * {@link GridCoverageExchange#getReader}. Grid coverages are usually
+ * read from the input stream in a sequential order.
  *
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 2.0
@@ -39,7 +41,9 @@ public interface GridCoverageReader {
 
     /**
      * Returns the input source. This is the object passed to the
-     * {@link GridCoverageExchange#getReader} method.
+     * {@link GridCoverageExchange#getReader} method. It can be a
+     * {@link java.lang.String}, an {@link java.io.InputStream}, a
+     * {@link java.nio.channels.FileChannel}, whatever.
      */
     Object getSource();
 
@@ -50,6 +54,8 @@ public interface GridCoverageReader {
      *
      * @return The list of metadata keywords for the input source.
      * @throws IOException if an error occurs during reading.
+     *
+     * @revisit This javadoc may not apply thats well in the iterator scheme.
      */
     String[] getMetadataNames() throws IOException;
 
@@ -61,6 +67,8 @@ public interface GridCoverageReader {
      *         the name returned by {@link #getMetadataNames}.
      * @throws IOException if an error occurs during reading.
      * @throws MetadataNameNotFoundException if there is no value for the specified metadata name.
+     *
+     * @revisit This javadoc may not apply thats well in the iterator scheme.
      */
     String getMetadataValue(String name) throws IOException, MetadataNameNotFoundException;
 
@@ -82,34 +90,18 @@ public interface GridCoverageReader {
     String[] listSubNames() throws IOException;
 
     /**
-     * Read the specified grid coverage for the specified name.
+     * Returns the name for the next grid coverage to be {@linkplain #read read} from the
+     * {@linkplain #getSource input source}.
      *
-     * @param  name Name of grid coverage contained within the {@linkplain #getSource
-     *         input source}. Should be one of the names returned by {@link #listSubNames}.
-     * @param  parameters An optional set of parameters. Should be any or all of the
-     *         parameters returned by {@link Format#getReadParameters}.
-     * @return A new {@linkplain GridCoverage grid coverage} from the input source.
-     * @throws InvalidParameterNameException if a parameter in <code>parameters</code>
-     *         doesn't have a recognized name.
-     * @throws InvalidParameterValueException if a parameter in <code>parameters</code>
-     *         doesn't have a valid value.
-     * @throws ParameterNotFoundException if a parameter was required for the operation but was
-     *         not provided in the <code>parameters</code> list.
-     * @throws CannotCreateGridCoverageException if the coverage can't be created for a logical
-     *         reason (for example an unsupported format, or an inconsistency found in the data).
-     * @throws IOException if a read operation failed for some other input/output reason, including
-     *         {@link FileNotFoundException} if no file with the given <code>name</code> can be
-     *         found, or {@link javax.imageio.IIOException} if an error was thrown by the
-     *         underlying image library.
+     * @throws IOException if an error occurs during reading.
+     * @revisit Do we need a special method for that, or should it be a metadata?
      */
-    GridCoverage read(String name, Parameter[] parameters)
-            throws InvalidParameterNameException, InvalidParameterValueException, ParameterNotFoundException, IOException;
+    String getCurrentSubname() throws IOException;
 
     /**
-     * Read the grid coverage at the specified index.
+     * Read the grid coverage from the current stream position, and move to the next grid
+     * coverage.
      *
-     * @param  index Index of grid coverage contained within the {@linkplain #getSource
-     *         input source}.
      * @param  parameters An optional set of parameters. Should be any or all of the
      *         parameters returned by {@link Format#getReadParameters}.
      * @return A new {@linkplain GridCoverage grid coverage} from the input source.
@@ -126,7 +118,7 @@ public interface GridCoverageReader {
      *         found, or {@link javax.imageio.IIOException} if an error was thrown by the
      *         underlying image library.
      */
-    GridCoverage read(int index, Parameter[] parameters)
+    GridCoverage read(GeneralParameterValue[] parameters)
             throws InvalidParameterNameException, InvalidParameterValueException, ParameterNotFoundException, IOException;
 
     /**
