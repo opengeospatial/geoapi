@@ -47,7 +47,7 @@ public interface Triangle extends Polygon {
      * Returns the triangle corner. The list must contains exactly 3 elements.
      */
 /// @UML (identifier="corners", obligation=MANDATORY)
-    List<Position> getCorners();
+    List/*<Position>*/ getCorners();
 
     /**
      * Returns the patch which own this surface patch.
