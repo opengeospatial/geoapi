@@ -36,7 +36,7 @@ public class MismatchedDimensionException extends IllegalArgumentException {
      * @param  message The detail message. The detail message is saved for 
      *         later retrieval by the {@link #getMessage()} method.
      */
-    public MismatchedDimensionException(final String msg) {
-        super(msg);
+    public MismatchedDimensionException(final String message) {
+        super(message);
     }
 }
