@@ -7,7 +7,7 @@
  ** Copyright (C) 2003 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
  **
  *************************************************************************************************/
-package org.opengis.metadata.citation;
+package org.opengis.metadata;
 
 // J2SE directdependencies
 import java.util.List;
@@ -18,18 +18,18 @@ import org.opengis.util.CodeList;
 
 
 /**
- * Class of information to which the referencing entity applies.
+ * Methods used to group similar keywords.
  *
- * @UML codelist CI_OnLineFunctionCode
+ * @UML codelist MD_KeywordTypeCode
  * @author ISO 19115
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
  */
-public final class OnLineFunction extends CodeList {
+public final class KeywordType extends CodeList {
     /**
      * Serial number for compatibility with different versions.
      */
-    private static final long serialVersionUID = 2333803519583053407L;
+    private static final long serialVersionUID = -4726629268565235927L;
 
     /**
      * List of all enumerations of this type.
@@ -38,39 +38,39 @@ public final class OnLineFunction extends CodeList {
     private static final List VALUES = new ArrayList(5);
 
     /**
-     * Online instructions for transferring data from one storage device or system to another.
+     * Keyword identifies a branch of instruction or specialized learning.
      *
-     * @UML conditional download
+     * @UML conditional discipline
      */
-    public static final OnLineFunction DOWNLOAD = new OnLineFunction("DOWNLOAD");
+    public static final KeywordType DISCIPLINE = new KeywordType("DISCIPLINE");
 
     /**
-     * Online information about the resource.
+     * Keyword identifies a location.
      *
-     * @UML conditional information
+     * @UML conditional place
      */
-    public static final OnLineFunction INFORMATION = new OnLineFunction("INFORMATION");
+    public static final KeywordType PLACE = new KeywordType("PLACE");
 
     /**
-     * Online instructions for requesting the resource from the provider.
+     * Keyword identifies the layer(s) of any deposited substance.
      *
-     * @UML conditional offlineAccess
+     * @UML conditional stratum
      */
-    public static final OnLineFunction OFFLINE_ACCESS = new OnLineFunction("OFFLINE_ACCESS");
+    public static final KeywordType STRATUM = new KeywordType("STRATUM");
 
     /**
-     * Online order process for obtaining the resource.
+     * Keyword identifies a time period related to the dataset.
      *
-     * @UML conditional order
+     * @UML conditional temporal
      */
-    public static final OnLineFunction ORDER = new OnLineFunction("ORDER");
+    public static final KeywordType TEMPORAL = new KeywordType("TEMPORAL");
 
     /**
-     * Online search interface for seeking out information about the resource.
+     * Keyword identifies a particular subject or topic.
      *
-     * @UML conditional search
+     * @UML conditional theme
      */
-    public static final OnLineFunction SEARCH = new OnLineFunction("SEARCH");
+    public static final KeywordType THEME = new KeywordType("THEME");
 
     /**
      * Constructs an enum with the given name. The new enum is
@@ -78,23 +78,23 @@ public final class OnLineFunction extends CodeList {
      *
      * @param name The enum name. This name must not be in use by an other enum of this type.
      */
-    public OnLineFunction(final String name) {
+    public KeywordType(final String name) {
         super(name, VALUES);
     }
 
     /**
-     * Returns the list of <code>OnLineFunction</code>s.
+     * Returns the list of <code>KeywordType</code>s.
      */
-    public static OnLineFunction[] values() {
+    public static KeywordType[] values() {
         synchronized (VALUES) {
-            return (OnLineFunction[]) VALUES.toArray(new OnLineFunction[VALUES.size()]);
+            return (KeywordType[]) VALUES.toArray(new KeywordType[VALUES.size()]);
         }
     }
 
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
-    public /*{OnLineFunction}*/ CodeList[] family() {
+    public /*{KeywordType}*/ CodeList[] family() {
         return values();
     }
 }

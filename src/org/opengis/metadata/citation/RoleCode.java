@@ -25,10 +25,7 @@ import org.opengis.util.CodeList;
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
  *
- * @revisit Domain code not yet implemented. In current implementation, they are equal
- *          to {@linkplain #ordinal ordinal}+1.
- *
- *          <strong>Note 2:</strong> Should we rename as <code>Role</code>?
+ * @revisit <strong>Note 2:</strong> Should we rename as <code>Role</code>?
  */
 public final class RoleCode extends CodeList {
     /**

@@ -7,7 +7,7 @@
  ** Copyright (C) 2003 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
  **
  *************************************************************************************************/
-package org.opengis.metadata.citation;
+package org.opengis.metadata;
 
 // J2SE directdependencies
 import java.util.List;
@@ -18,45 +18,45 @@ import org.opengis.util.CodeList;
 
 
 /**
- * Identification of when a given event occurred
+ * Obligation of the element or entity.
  *
- * @UML codelist CI_DateType
+ * @UML codelist MD_ObligationCode
  * @author ISO 19115
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
  */
-public final class DateType extends CodeList {
+public final class Obligation extends CodeList {
     /**
      * Serial number for compatibility with different versions.
      */
-    private static final long serialVersionUID = 9031571038833329544L;
+    private static final long serialVersionUID = -2135167450448770693L;
 
     /**
      * List of all enumerations of this type.
      * Must be declared before any enum declaration.
      */
-    private static final List VALUES = new ArrayList(3);
+    private static final List VALUES = new ArrayList(2);
 
     /**
-     * Date identifies when the resource was brought into existence.
+     * element is always required
      *
-     * @UML conditional creation
+     * @UML conditional mandatory
      */
-    public static final DateType CREATION = new DateType("CREATION");
+    public static final Obligation MANDATORY = new Obligation("MANDATORY");
 
     /**
-     * Date identifies when the resource was issued.
+     * Element is not required.
      *
-     * @UML conditional publication
+     * @UML conditional optional
      */
-    public static final DateType PUBLICATION = new DateType("PUBLICATION");
+    public static final Obligation OPTIONAL = new Obligation("OPTIONAL");
 
     /**
-     * Date identifies when the resource was examined or re-examined and improved or amended.
+     * Element is required when specific a specific condition is met.
      *
-     * @UML conditional revision
+     * @UML conditional conditional
      */
-    public static final DateType REVISION = new DateType("REVISION");
+    public static final Obligation CONDITIONAL = new Obligation("CONDITIONAL");
 
     /**
      * Constructs an enum with the given name. The new enum is
@@ -64,23 +64,23 @@ public final class DateType extends CodeList {
      *
      * @param name The enum name. This name must not be in use by an other enum of this type.
      */
-    public DateType(final String name) {
+    public Obligation(final String name) {
         super(name, VALUES);
     }
 
     /**
-     * Returns the list of <code>DateType</code>s.
+     * Returns the list of <code>Obligation</code>s.
      */
-    public static DateType[] values() {
+    public static Obligation[] values() {
         synchronized (VALUES) {
-            return (DateType[]) VALUES.toArray(new DateType[VALUES.size()]);
+            return (Obligation[]) VALUES.toArray(new Obligation[VALUES.size()]);
         }
     }
 
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
-    public /*{DateType}*/ CodeList[] family() {
+    public /*{Obligation}*/ CodeList[] family() {
         return values();
     }
 }

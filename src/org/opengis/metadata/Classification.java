@@ -7,7 +7,7 @@
  ** Copyright (C) 2003 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
  **
  *************************************************************************************************/
-package org.opengis.metadata.citation;
+package org.opengis.metadata;
 
 // J2SE directdependencies
 import java.util.List;
@@ -18,18 +18,18 @@ import org.opengis.util.CodeList;
 
 
 /**
- * Class of information to which the referencing entity applies.
+ * Name of the handling restrictions on the dataset.
  *
- * @UML codelist CI_OnLineFunctionCode
+ * @UML codelist MD_ClassificationCode
  * @author ISO 19115
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
  */
-public final class OnLineFunction extends CodeList {
+public final class Classification extends CodeList {
     /**
      * Serial number for compatibility with different versions.
      */
-    private static final long serialVersionUID = 2333803519583053407L;
+    private static final long serialVersionUID = -549174931332214797L;
 
     /**
      * List of all enumerations of this type.
@@ -38,39 +38,39 @@ public final class OnLineFunction extends CodeList {
     private static final List VALUES = new ArrayList(5);
 
     /**
-     * Online instructions for transferring data from one storage device or system to another.
+     * Available for general disclosure.
      *
-     * @UML conditional download
+     * @UML conditional unclassified
      */
-    public static final OnLineFunction DOWNLOAD = new OnLineFunction("DOWNLOAD");
+    public static final Classification UNCLASSIFIED = new Classification("UNCLASSIFIED");
 
     /**
-     * Online information about the resource.
+     * Not for general disclosure.
      *
-     * @UML conditional information
+     * @UML conditional restricted
      */
-    public static final OnLineFunction INFORMATION = new OnLineFunction("INFORMATION");
+    public static final Classification RESTRICTED = new Classification("RESTRICTED");
 
     /**
-     * Online instructions for requesting the resource from the provider.
+     * Available for someone who can be entrusted with information.
      *
-     * @UML conditional offlineAccess
+     * @UML conditional confidential
      */
-    public static final OnLineFunction OFFLINE_ACCESS = new OnLineFunction("OFFLINE_ACCESS");
+    public static final Classification CONFIDENTIAL = new Classification("CONFIDENTIAL");
 
     /**
-     * Online order process for obtaining the resource.
+     * Kept or meant to be kept private, unknown, or hidden from all but a select group of people.
      *
-     * @UML conditional order
+     * @UML conditional secret
      */
-    public static final OnLineFunction ORDER = new OnLineFunction("ORDER");
+    public static final Classification SECRET = new Classification("SECRET");
 
     /**
-     * Online search interface for seeking out information about the resource.
+     * Of the highest secrecy.
      *
-     * @UML conditional search
+     * @UML conditional topsecret
      */
-    public static final OnLineFunction SEARCH = new OnLineFunction("SEARCH");
+    public static final Classification TOP_SECRET = new Classification("TOP_SECRET");
 
     /**
      * Constructs an enum with the given name. The new enum is
@@ -78,23 +78,23 @@ public final class OnLineFunction extends CodeList {
      *
      * @param name The enum name. This name must not be in use by an other enum of this type.
      */
-    public OnLineFunction(final String name) {
+    public Classification(final String name) {
         super(name, VALUES);
     }
 
     /**
-     * Returns the list of <code>OnLineFunction</code>s.
+     * Returns the list of <code>Classification</code>s.
      */
-    public static OnLineFunction[] values() {
+    public static Classification[] values() {
         synchronized (VALUES) {
-            return (OnLineFunction[]) VALUES.toArray(new OnLineFunction[VALUES.size()]);
+            return (Classification[]) VALUES.toArray(new Classification[VALUES.size()]);
         }
     }
 
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
-    public /*{OnLineFunction}*/ CodeList[] family() {
+    public /*{Classification}*/ CodeList[] family() {
         return values();
     }
 }
