@@ -10,105 +10,115 @@
 package org.opengis.go.typical.coord;
 
 import java.awt.geom.Point2D;
-import java.util.Properties;
 
+import org.opengis.crs.FactoryException;
 import org.opengis.crs.crs.CoordinateReferenceSystem;
-import org.opengis.crs.crs.CoordinateReferenceSystemFactory;
 import org.opengis.crs.crs.ImageCRS;
 import org.opengis.crs.crs.UnsupportedCRSException;
 import org.opengis.go.CommonFactoryManager;
 import org.opengis.spatialschema.geometry.DirectPosition;
 
 /**
- * <code>Pixel</code> extends the native pixel representation of the underlying
- * language.
+ * <code>Pixel</code> extends the native pixel representation of the
+ * underlying language.
  * <p>
- * In Java, <code>Pixel</code> models the public
- * API of the abstract <code>java.awt.geom.Point2D</code> class.  Thus the
- * classes that implement <code>Pixel</code> give all the
- * functionality of the java classes that implement
- * <code>java.awt.geom.Point2D</code>, along with the additional benefit of
- * being tagged as <code>DirectPosition</code> as well.
- *
+ * In Java, <code>Pixel</code> models the public API of the abstract
+ * <code>java.awt.geom.Point2D</code> class. Thus the classes that implement
+ * <code>Pixel</code> give all the functionality of the java classes that
+ * implement <code>java.awt.geom.Point2D</code>, along with the additional
+ * benefit of being tagged as <code>DirectPosition</code> as well.
+ * 
  * @author Open GIS Consortium, Inc.
  * @version $Revision$, $Date$
  */
 public class Pixel extends Point2D implements DirectPosition {
-    
+
+    //*************************************************************************
+    //  Static Fields
+    //*************************************************************************
+
     /**
      * The Default Coordinate Reference System URL for this coordinate.
      */
-    // TODO: Fix the default value. This should be an Image Coordinate Reference System.
+    // TODO: Fix the default value. This should be an Image Coordinate Reference
+    // System.
     public static final String DEFAULT_COORDINATE_REFERENCE_SYSTEM_URL = "urn:x-ogc:srs:OGC::XXXXXX";
-    
+
+    //*************************************************************************
+    //  Fields
+    //*************************************************************************
+
     /**
      * The Coordinate Reference System for this coordinate.
      */
     private ImageCRS crs;
+
     /**
      * The values of this coordinate.
      */
     private double[] ordinates;
-    ////
+
+    //*************************************************************************
     // Constructors.
+    //*************************************************************************
+
     /**
-     * Initializes x, y, and Coordinate Reference System to the supplied parameters.
-     * @param x         x value in pixels
-     * @param y         y value in pixels
-     * @param crs       the Coordinate Reference System 
+     * Initializes x, y, and Coordinate Reference System to the supplied
+     * parameters.
+     * 
+     * @param x x value in pixels
+     * @param y y value in pixels
+     * @param crs the Coordinate Reference System
      */
-    public Pixel(double x, double y, ImageCRS crs)
-        throws UnsupportedCRSException {
+    public Pixel(double x, double y, ImageCRS crs) throws UnsupportedCRSException {
         super();
-        this.crs = crs;
-        ordinates = new double[crs.getCoordinateSystem().getDimension()];
+        setCRS(crs);
         setLocation(x, y);
     }
+
     /**
      * Initializes lat, lon, alt, and datum to the supplied parameters
-     * @param crs       the Coordinate Reference System 
+     * 
+     * @param crs the Coordinate Reference System
      */
     public Pixel(ImageCRS crs) throws UnsupportedCRSException {
         super();
-        this.crs = crs;
-        ordinates = new double[crs.getCoordinateSystem().getDimension()];
+        setCRS(crs);
     }
+
     /**
      * Initializes using the default Coordinate Reference System.
      */
-    public Pixel() throws UnsupportedCRSException {
-        this.crs = findCRS(DEFAULT_COORDINATE_REFERENCE_SYSTEM_URL);
-        ordinates = new double[crs.getCoordinateSystem().getDimension()];
+    public Pixel() throws FactoryException {
+        setCRS(findCRS(DEFAULT_COORDINATE_REFERENCE_SYSTEM_URL));
     }
-    ////
+
+    //*************************************************************************
     // Methods for Pixel.
+    //*************************************************************************
+
+    private void setCRS(ImageCRS crs) {
+        this.crs = crs;
+        if (crs != null) {
+            ordinates = new double[crs.getCoordinateSystem().getDimension()];
+        } else {
+            ordinates = new double[2];
+        }
+    }
+
     /**
      * Returns the Coordinate Reference System for the given URL.
+     * 
      * @param crsURL Coordinate Reference System URL.
      * @return Coordinate Reference System.
      */
-    private ImageCRS findCRS(String crsURL) throws UnsupportedCRSException {
-        Properties props = new Properties();
-        props.setProperty(CoordinateReferenceSystemFactory.COORDINATE_REFERECE_SYSTEM_URL, crsURL);
-        ImageCRS crs;
-        try {
-            crs = (ImageCRS)
-                CommonFactoryManager
-                    .getCommonFactory("CommonFactory")
-                    .getCoordinateReferenceSystemFactory()
-                    .createCoordinateReferenceSystem(props);
-        } catch (ClassNotFoundException e) {
-            throw new UnsupportedCRSException("ClassNotFoundException: " + e);
-        } catch (IllegalAccessException e) {
-			throw new UnsupportedCRSException("IllegalAccessException: " + e);
-		} catch (InstantiationException e) {
-			throw new UnsupportedCRSException("InstantiationException: " + e);
-        }
-        return crs;
+    private ImageCRS findCRS(String crsURL) throws FactoryException {
+        return CommonFactoryManager.getCRSAuthorityFactory().createImageCRS(crsURL);
     }
+
     /**
-     * Returns true if the given object is a Pixel object, and
-     * has x and y values and a Coordinate Reference System equal to this one.
+     * Returns true if the given object is a Pixel object, and has x and y
+     * values and a Coordinate Reference System equal to this one.
      * 
      * @param obj the object to compare with this coordinate.
      * @return true if they are equal, false otherwise.
@@ -119,10 +129,11 @@ public class Pixel extends Point2D implements DirectPosition {
         }
         return false;
     }
+
     /**
-     * Returns true if the given Pixel has x, y, and
-     * has x and y values and a Coordinate Reference System equal to this one.
-     *
+     * Returns true if the given Pixel has x, y, and has x and y values and a
+     * Coordinate Reference System equal to this one.
+     * 
      * @param pixel the Pixel to compare with this coordinate.
      * @return true if they are equal, false otherwise
      */
@@ -133,22 +144,28 @@ public class Pixel extends Point2D implements DirectPosition {
         equiv &= (pixel.getY() == getY());
         return equiv;
     }
+
     /**
      * Returns the X coordinate of the point in double precision.
+     * 
      * @return the x coordinate, as a double
      */
     public double getX() {
         return ordinates[0];
     }
+
     /**
      * Returns the Y coordinate of the point in double precision.
+     * 
      * @return the y coordinate, as a double
      */
     public double getY() {
         return ordinates[1];
     }
+
     /**
      * Sets the location of this point to the specified coordinates.
+     * 
      * @param x the x coordinate of the location
      * @param y the y coordinate of the location
      */
@@ -156,42 +173,53 @@ public class Pixel extends Point2D implements DirectPosition {
         ordinates[0] = x;
         ordinates[1] = y;
     }
-    ////
+
+    //*************************************************************************
     // Methods supporting DirectPosition.
+    //*************************************************************************
+
     /**
      * Returns the dimension of this coordiante.
+     * 
      * @return the dimension.
      */
     public int getDimension() {
         return crs.getCoordinateSystem().getDimension();
     }
+
     /**
-     * Generically sets the generic value if this coordinate for the given dimension.
+     * Generically sets the generic value if this coordinate for the given
+     * dimension.
+     * 
      * @param dimension
      * @param ordinate
      */
     public void setOrdinate(int dimension, double ordinate) {
         ordinates[dimension] = ordinate;
     }
+
     /**
      * Generically returns the value of this coordinate for the given dimension.
      */
     public double getOrdinate(int dimension) {
         return ordinates[dimension];
     }
+
     /**
      * Returns all coordinates.
      */
     public double[] getCoordinates() {
-        return (double[]) ordinates.clone();
+        return (double[])ordinates.clone();
     }
-    /** 
+
+    /**
      * Dispose of this class.
      */
     public void dispose() {
         crs = null;
         ordinates = null;
     }
+
     /**
      * Clone this Pixel.
      */
@@ -201,6 +229,7 @@ public class Pixel extends Point2D implements DirectPosition {
         result.ordinates[1] = ordinates[1];
         return result;
     }
+
     /**
      * Returns the Coordinate Reference System for this Pixel.
      */

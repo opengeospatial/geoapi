@@ -9,12 +9,11 @@
  *************************************************************************************************/
 package org.opengis.go.typical.coord;
 
-import javax.units.Unit;
 import javax.units.SI;
-import java.util.Properties;
+import javax.units.Unit;
 
+import org.opengis.crs.FactoryException;
 import org.opengis.crs.crs.CoordinateReferenceSystem;
-import org.opengis.crs.crs.CoordinateReferenceSystemFactory;
 import org.opengis.crs.crs.UnsupportedCRSException;
 import org.opengis.go.CommonFactoryManager;
 import org.opengis.spatialschema.geometry.DirectPosition;
@@ -106,7 +105,7 @@ public class LatLonAlt implements DirectPosition {
     /**
      * Initializes using the default Coordinate Reference System for this coordinate type.
      */
-    public LatLonAlt() throws UnsupportedCRSException {
+    public LatLonAlt() throws FactoryException {
         setCRS(findCRS(DEFAULT_COORDINATE_REFERENCE_SYSTEM_URL));
         
     }
@@ -134,23 +133,8 @@ public class LatLonAlt implements DirectPosition {
      * @param crsURL Coordinate Reference System URL.
      * @return Coordinate Reference System.
      */
-    private CoordinateReferenceSystem findCRS(String crsURL) throws UnsupportedCRSException {
-        Properties props = new Properties();
-        props.setProperty(CoordinateReferenceSystemFactory.COORDINATE_REFERECE_SYSTEM_URL, crsURL);
-        CoordinateReferenceSystem crs;
-        try {
-            crs =
-                CommonFactoryManager.getCommonFactory("CommonFactory")
-                    .getCoordinateReferenceSystemFactory()
-                    .createCoordinateReferenceSystem(props);
-		} catch (ClassNotFoundException e) {
-			throw new UnsupportedCRSException("ClassNotFoundException: " + e);
-		} catch (IllegalAccessException e) {
-			throw new UnsupportedCRSException("IllegalAccessException: " + e);
-		} catch (InstantiationException e) {
-			throw new UnsupportedCRSException("InstantiationException: " + e);
-		}
-        return crs;        
+    private CoordinateReferenceSystem findCRS(String crsURL) throws FactoryException {
+        return CommonFactoryManager.getCRSAuthorityFactory().createCoordinateReferenceSystem(crsURL);
     }
     
     //**  accessors/mutators
