@@ -59,7 +59,7 @@ public interface OperationMethod extends IdentifiedObject {
     /**
      * The set of parameters.
      *
-     * @return The parameters, or an empty array if none.
+     * @return The parameters, or an empty group if none.
      */
 /// @UML (identifier="usesParameter", obligation=MANDATORY)
     ParameterDescriptorGroup getParameters();

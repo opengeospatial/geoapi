@@ -67,46 +67,61 @@ import org.opengis.parameter.ParameterValueGroup;
 ///@UML (identifier="CT_MathTransformFactory")
 public interface MathTransformFactory extends Factory {
     /**
-     * Returns a set of all available {@linkplain MathTransform math transform} methods. For each
-     * element in this set, the {@linkplain OperationMethod#getName operation method name} must be
-     * a classification name known to the {@link #getDefaultParameters} method in this factory.
+     * Returns a set of all available methods for {@linkplain MathTransform math transform}. For
+     * each element in this set, the {@linkplain OperationMethod#getName operation method name}
+     * must be known to the {@link #getDefaultParameters} method in this factory.
      * The set of available methods is implementation dependent.
      *
+     * @return All {@linkplain MathTransform math transform} methods available in this factory.
+     *
+     * @deprecated Replaced by {@link #getAvailableMethods}. The old name was misleading, since
+     *             a transform is an instantiation of an operation method with a given set of
+     *             parameters. There is usually much less operation method in a system than
+     *             transforms.
+     */
+    Set/*<OperationMethod>*/ getAvailableTransforms();
+
+    /**
+     * Returns a set of available methods for {@linkplain MathTransform math transforms}. For
+     * each element in this set, the {@linkplain OperationMethod#getName operation method name}
+     * must be known to the {@link #getDefaultParameters} method in this factory.
+     * The set of available methods is implementation dependent.
+     *
+     * @param  type <code>{@linkplain Operation}.class</code> for fetching all operation methods,
+     *           or <code>{@linkplain Projection}.class</code> for fetching only map projection
+     *           methods.
      * @return All {@linkplain MathTransform math transform} methods available in this factory.
      *
      * @see #getDefaultParameters
      * @see #createParameterizedTransform
      */
-    Set/*<OperationMethod>*/ getAvailableTransforms();
+    Set/*<OperationMethod>*/ getAvailableMethods(Class type);
 
     /**
-     * Returns the default parameter values for a math transform of the given classification.
-     * The classification may be the name of any operation method returned by the
-     * {@link #getAvailableTransforms} method. A typical example is
+     * Returns the default parameter values for a math transform using the given method.
+     * The <code>method</code> argument is the name of any operation method returned by
+     * <code>{@link #getAvailableMethods getAvailableMethods}({@linkplain Operation}.class)</code>.
+     * A typical example is
      * <code>"<A HREF="http://www.remotesensing.org/geotiff/proj_list/transverse_mercator.html">Transverse_Mercator</A>"</code>).
      *
-     * <P>The {@link #createParameterizedTransform createParameterizedTransform} method in this factory
-     * shall be able to infer the classification from the parameter group returned by this method. A
-     * possible (but not required) approach is to set the {@linkplain ParameterDescriptorGroup#getName
-     * parameter group name} to the classification name.</P>
+     * <P>The {@linkplain ParameterDescriptorGroup#getName parameter group name} shall be the
+     * method name, or an alias to be understood by <code>{@linkplain #createParameterizedTransform
+     * createParameterizedTransform}(parameters)</code>. This method creates new parameter instances
+     * at every call. Parameters are intented to be modified by the user before to be given to the
+     * above-cited <code>createParameterizedTransform</code> method.</P>
      *
-     * <P>This method must create new parameter instances at every call. It is intented to be modified
-     * by the user before to be passed to <code>{@linkplain #createParameterizedTransform
-     * createParameterizedTransform}(parameters)</code>.</P>
-     *
-     * @param  classification The case insensitive classification to search for.
+     * @param  method The case insensitive name of the method to search for.
      * @return The default parameter values.
-     * @throws NoSuchIdentifierException if there is no transform registered for the specified classification.
+     * @throws NoSuchIdentifierException if there is no transform registered for the specified method.
      *
-     * @see #getAvailableTransforms
+     * @see #getAvailableMethods
      * @see #createParameterizedTransform
      */
-    ParameterValueGroup getDefaultParameters(String classification) throws NoSuchIdentifierException;
+    ParameterValueGroup getDefaultParameters(String method) throws NoSuchIdentifierException;
 
     /**
-     * Creates a transform from a group of parameters. The classification name is inferred either from
-     * the {@linkplain ParameterDescriptorGroup#getName parameter group name}, or any other implementation
-     * dependent way. Example:
+     * Creates a transform from a group of parameters. The method name is inferred from
+     * the {@linkplain ParameterDescriptorGroup#getName parameter group name}. Example:
      *
      * <blockquote><pre>
      * ParameterValueGroup p = factory.getDefaultParameters("Transverse_Mercator");
@@ -117,12 +132,12 @@ public interface MathTransformFactory extends Factory {
      *
      * @param  parameters The parameter values.
      * @return The parameterized transform.
-     * @throws NoSuchIdentifierException if there is no transform registered for the classification.
+     * @throws NoSuchIdentifierException if there is no transform registered for the method.
      * @throws FactoryException if the object creation failed. This exception is thrown
      *         if some required parameter has not been supplied, or has illegal value.
      *
      * @see #getDefaultParameters
-     * @see #getAvailableTransforms
+     * @see #getAvailableMethods
      */
 /// @UML (identifier="createParameterizedTransform", obligation=MANDATORY)
     MathTransform createParameterizedTransform(ParameterValueGroup parameters) throws FactoryException;
