@@ -41,12 +41,14 @@ public interface CSFactory extends Factory {
      * @param  properties Name and other properties to give to the new object.
      *         Available properties are {@linkplain Factory listed there}.
      * @param  abbreviation The coordinate axis abbreviation.
+     * @param  direction The axis direction.
      * @param  unit The coordinate axis unit.
      * @throws FactoryException if the object creation failed.
      */
-    CoordinateSystemAxis createCoordinateSystemAxis(Map    properties,
-                                                    String abbreviation,
-                                                    Unit   unit) throws FactoryException;
+    CoordinateSystemAxis createCoordinateSystemAxis(Map           properties,
+                                                    String        abbreviation,
+                                                    AxisDirection direction,
+                                                    Unit          unit) throws FactoryException;
 
     /**
      * Creates a two dimensional cartesian coordinate system from the given pair of axis.
