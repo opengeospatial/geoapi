@@ -83,7 +83,7 @@
       </fileset>
     </copy>
 
-    <fixcrlf srcdir="tiger/sources" tab="remove" eof="remove">
+    <fixcrlf srcdir="tiger/sources" tab="remove" eol="unix" eof="remove">
       <include name="**/*.html"/>
       <include name="**/*.java"/>
       <include name="**/*.properties"/>
@@ -213,11 +213,23 @@
       <link href="http://java.sun.com/products/java-media/3D/forDevelopers/j3dapi"/>
       <link href="http://jsr-108.sourceforge.net/javadoc"/>
 
-      <group title="Meta Data                           &lt;FONT size=3 color='Navy'&gt;(ISO-19115)&lt;/FONT&gt;"  packages="org.opengis.metadata*"      />
-      <group title="Spatial Referencing by Coordinates  &lt;FONT size=3 color='Navy'&gt;(ISO-19111)&lt;/FONT&gt;"  packages="org.opengis.crs*"           />
-      <group title="Feature Geometry (WORK IN PROGRESS) &lt;FONT size=3 color='Navy'&gt;(ISO-19107)&lt;/FONT&gt;"  packages="org.opengis.spatialschema*" />
-      <group title="Grid Coverage"                                                                                 packages="org.opengis.coverage*"      />
-      <group title="User interface (WORK IN PROGRESS)"                                                             packages="org.opengis.go*"            />
+      <group title="&lt;TABLE WIDTH='100%'&gt;&lt;TR&gt;&lt;TD&gt;Meta Data
+                    &lt;/TD&gt;&lt;TD ALIGN='right'&gt;&lt;FONT SIZE='-1' COLOR='Navy'&gt;ISO-19115
+                    &lt;/FONT&gt;&lt;/TD&gt;&lt;/TR&gt;&lt;/TABLE&gt;"
+             packages="org.opengis.metadata*"/>
+
+      <group title="&lt;TABLE WIDTH='100%'&gt;&lt;TR&gt;&lt;TD&gt;Spatial Referencing by Coordinates
+                    &lt;/TD&gt;&lt;TD ALIGN='right'&gt;&lt;FONT SIZE='-1' COLOR='Navy'&gt;ISO-19111
+                    &lt;/FONT&gt;&lt;/TD&gt;&lt;/TR&gt;&lt;/TABLE&gt;"
+             packages="org.opengis.crs*"/>
+
+      <group title="&lt;TABLE WIDTH='100%'&gt;&lt;TR&gt;&lt;TD&gt;Feature Geometry
+                    &lt;/TD&gt;&lt;TD ALIGN='right'&gt;&lt;FONT SIZE='-1' COLOR='Navy'&gt;ISO-19107
+                    &lt;/FONT&gt;&lt;/TD&gt;&lt;/TR&gt;&lt;/TABLE&gt;"
+             packages="org.opengis.spatialschema*"/>
+
+      <group title="Grid Coverage"   packages="org.opengis.coverage*"/>
+      <group title="User interface"  packages="org.opengis.go*"      />
 
       <fileset dir="tiger/sources">
         <include name="org/**/*.java"/>
