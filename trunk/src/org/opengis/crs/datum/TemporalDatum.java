@@ -30,21 +30,4 @@ public interface TemporalDatum extends Datum {
      */
     Date getOrigin();
 
-    /**
-     * Description of the point or points used to anchor the datum to the Earth.
-     *
-     * @deprecated This attribute is not used by a Temporal Datum. 
-     *
-     * @return Always <code>null</code>.
-     */
-    String getAnchorPoint();
-
-    /**
-     * The time after which this datum definition is valid. 
-     *
-     * @deprecated This attribute is not used by a Temporal Datum. 
-     *
-     * @return Always <code>null</code>.
-     */
-    Date getRealizationEpoch();
 }
