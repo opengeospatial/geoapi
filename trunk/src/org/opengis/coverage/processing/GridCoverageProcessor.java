@@ -14,7 +14,9 @@ import org.opengis.coverage.grid.Parameter;
 import org.opengis.coverage.grid.GridCoverage;
 import org.opengis.coverage.SampleDimensionType; // For javadoc
 import org.opengis.coverage.MetadataNameNotFoundException;
-import org.opengis.coverage.grid.InvalidParameterNameException;
+import org.opengis.parameter.ParameterNotFoundException;
+import org.opengis.parameter.InvalidParameterNameException;
+import org.opengis.parameter.InvalidParameterValueException;
 
 
 /**
@@ -53,7 +55,7 @@ import org.opengis.coverage.grid.InvalidParameterNameException;
  *
  * @UML abstract GP_GridCoverageProcessor
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
- * @version 1.1
+ * @version <A HREF="http://www.opengis.org/docs/01-004.pdf">Grid Coverage specification 1.0</A>
  */
 public interface GridCoverageProcessor {
     /**
@@ -112,10 +114,12 @@ public interface GridCoverageProcessor {
      * @param  parameters List of name value pairs for the parameters required for the operation.
      * @return The grid coverage which has been applied the process operation.
      * @throws OperationNotFoundException if <code>name</code> is not a know operation.
+     * @throws ParameterNotFoundException if a parameter was required for the operation but was
+     *         not provided in the <code>parameters</code> list.
      * @throws InvalidParameterNameException if a parameter doesn't have a recognized name.
      * @throws InvalidParameterValueException if a parameter doesn't have a valid value.
      * @UML operation doOperation
      */
     GridCoverage doOperation(String operationName, Parameter[] parameters)
-            throws OperationNotFoundException, InvalidParameterNameException, InvalidParameterNameException;
+            throws OperationNotFoundException, ParameterNotFoundException, InvalidParameterNameException, InvalidParameterNameException;
 }

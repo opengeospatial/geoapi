@@ -22,7 +22,7 @@ import java.io.IOException;
  *
  * @UML abstract CV_GridCoverageExchange
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
- * @version 1.1
+ * @version 2.0
  *
  * @see javax.imageio.ImageReader
  * @see javax.imageio.ImageWriter

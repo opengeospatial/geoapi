@@ -7,7 +7,7 @@
  ** Copyright (C) 2003 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
  **
  *************************************************************************************************/
-package org.opengis.crs.operation;
+package org.opengis.parameter;
 
 
 /**
@@ -27,6 +27,8 @@ public interface OperationParameter extends GeneralOperationParameter {
      * Returns the class that describe the type of the parameter.
      *
      * @return The parameter value class.
+     *
+     * @UML mandatory type in Grid Coverage specification
      */
     Class getValueClass();
 
@@ -36,6 +38,8 @@ public interface OperationParameter extends GeneralOperationParameter {
      * then this method returns <code>null</code>.
      *
      * @return The default value, or <code>null</code> in none.
+     *
+     * @UML optional defaultValue in Grid Coverage specification
      */
     Object getDefaultValue();
 
@@ -46,6 +50,8 @@ public interface OperationParameter extends GeneralOperationParameter {
      * then this method returns {@link Double#NaN}.
      *
      * @return The minimum parameter value.
+     *
+     * @UML optional minimumValue in Grid Coverage specification
      */
     double getMinimumValue();
 
@@ -56,6 +62,8 @@ public interface OperationParameter extends GeneralOperationParameter {
      * then this method returns {@link Double#NaN}.
      *
      * @return The maximum parameter value.
+     *
+     * @UML optional maximumValue in Grid Coverage specification
      */
     double getMaximumValue();
 }

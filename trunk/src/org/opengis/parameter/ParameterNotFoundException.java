@@ -7,25 +7,21 @@
  ** Copyright (C) 2003 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
  **
  *************************************************************************************************/
-package org.opengis.crs.operation;
+package org.opengis.parameter;
 
 
 /**
- * Thrown when a parameter can't be cast to the requested type. For example this exception
- * is thrown when {@link ParameterValue#doubleValue} is invoked but the value is not
- * convertible to a <code>double</code>.
+ * Thrown when a required parameter was not found in a
+ * {@linkplain OperationParameterGroup parameter group}.
  *
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 2.0
- *
- * @see ParameterValue#intValue
- * @see ParameterValue#doubleValue
  */
-public class InvalidParameterTypeException extends IllegalStateException {
+public class ParameterNotFoundException extends IllegalArgumentException {
     /**
      * Serial number for interoperability with different versions.
      */
-    private static final long serialVersionUID = 1106970028733090227L;
+    private static final long serialVersionUID = -8074834945993975175L;
 
     /**
      * The invalid parameter name.
@@ -35,17 +31,17 @@ public class InvalidParameterTypeException extends IllegalStateException {
     /**
      * Creates an exception with the specified message and parameter name.
      *
-     * @param  message The detail message. The detail message is saved for 
-     *         later retrieval by the {@link #getMessage()} method.
-     * @param parameterName The parameter name.
+     * @param message The detail message. The detail message is saved for 
+     *        later retrieval by the {@link #getMessage()} method.
+     * @param parameterName The required parameter name.
      */
-    public InvalidParameterTypeException(String message, String parameterName) {
+    public ParameterNotFoundException(String message, String parameterName) {
         super(message);
         this.parameterName = parameterName;
     }
 
     /**
-     * Returns the parameter name.
+     * Returns the required parameter name.
      */
     public String getParameterName() {
         return parameterName;

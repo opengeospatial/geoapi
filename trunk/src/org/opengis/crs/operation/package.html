@@ -119,17 +119,13 @@
   coordinate system.</P>
 
   <H3>Operation method and parameters</H3>
-  <P ALIGN="justify">The algorithm used to execute the coordinate operation is defined
-  in the operation method. Concatenated operations and pass-through operations do not
-  require a coordinate operation to be specified. Each operation method uses a number
-  of parameters (although some coordinate conversions use none), and each coordinate
-  operation assigns value to these parameters.</P>
-
-  <P ALIGN="justify">Most parameter values are numeric, but for some operation methods,
-  notably those implementing a grid interpolation algorithm, the parameter value could
-  be a file name and location (this may be a URI). An example is the coordinate transformation
-  from NAD&nbsp;27 to NAD&nbsp;83 in the USA; depending on the locations of the points to be
-  transformed, one of a series of grid files should be used.</P>
+  <P ALIGN="justify">The algorithm used to execute the coordinate operation is defined in the
+  {@linkplain org.opengis.crs.operation.OperationMethod operation method}. Concatenated operations
+  and pass-through operations do not require a coordinate operation to be specified. Each
+  {@linkplain org.opengis.crs.operation.OperationMethod operation method} uses a number of
+  {@linkplain org.opengis.parameter.ParameterValue parameters} (although some coordinate conversions
+  use none), and each {@linkplain org.opengis.crs.operation.CoordinateOperation coordinate operation}
+  assigns value to these parameters.</P>
 
   <P ALIGN="justify">As this class comes close to the heart of any coordinate transformation
   software, it is recommended to make extensive use of identifiers, referencing well-known
@@ -141,15 +137,6 @@
   operation method. To facilitate recognition and validation it is recommended that the
   operation formulae be included or referenced in the relevant object, and if possible a
   worked example.</P>
-
-  <H3>Parameter groups</H3>
-  <P ALIGN="justify">Some operation methods may require a large number of coordinate operation
-  parameters. Also, some operation methods require that groups of parameters be repeatable as
-  a group. In such cases, it is helpful to group related parameters in parameter groups. Two
-  or more parameter groups are then associated with a particular operation method, and each
-  parameter group consists of a set of operation parameters, or other, nested parameter
-  groups. This way of modelling is not mandatory; all coordinate operation parameters may
-  be assigned directly to the coordinate operation method.</P>
 
   <H3>Implementation considerations</H3>
   <P ALIGN="justify">This explanation is not complete without giving some thought to

@@ -17,9 +17,9 @@ package org.opengis.coverage.grid;
  *
  * @UML datatype CV_ParameterInfo
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
- * @version 1.1
+ * @version <A HREF="http://www.opengis.org/docs/01-004.pdf">Grid Coverage specification 1.0</A>
  *
- * @revisit This interface duplicates {@link org.opengis.crs.operation.OperationParameter}.
+ * @revisit This interface duplicates {@link org.opengis.parameter.OperationParameter}.
  *          If we keep it, it need a <code>Parameter createParameter()</code> method.
  */
 public interface ParameterInfo {

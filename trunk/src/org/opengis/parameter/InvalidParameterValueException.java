@@ -7,14 +7,15 @@
  ** Copyright (C) 2003 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
  **
  *************************************************************************************************/
-package org.opengis.crs.operation;
+package org.opengis.parameter;
 
 
 /**
  * Thrown when an invalid value was given to a {@linkplain ParameterValue parameter}.
  *
+ * @UML exception GC_InvalidParameterValue
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
- * @version 2.0
+ * @version <A HREF="http://www.opengis.org/docs/01-004.pdf">Grid Coverage specification 1.0</A>
  *
  * @see ParameterValue#setValue(int)
  * @see ParameterValue#setValue(double)
@@ -24,7 +25,7 @@ public class InvalidParameterValueException extends IllegalArgumentException {
     /**
      * Serial number for interoperability with different versions.
      */
-    private static final long serialVersionUID = -3608300092270389858L;
+    private static final long serialVersionUID = 3814037056147642789L;
 
     /**
      * The parameter name.

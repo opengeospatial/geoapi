@@ -20,7 +20,7 @@ import org.opengis.spatialschema.geometry.DirectPosition;  // For Javadoc
  *
  * @UML exception CV_PointOutsideCoverage
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
- * @version 1.1
+ * @version <A HREF="http://www.opengis.org/docs/01-004.pdf">Grid Coverage specification 1.0</A>
  *
  * @see Coverage#evaluate(DirectPosition, byte[])
  * @see Coverage#evaluate(DirectPosition, double[])

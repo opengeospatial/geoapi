@@ -55,8 +55,8 @@ public interface Info {
      *          "{@link org.opengis.crs.datum.Ellipsoid ellipsoid}",
      *          "{@link org.opengis.crs.operation.CoordinateOperation coordinateOperation}",
      *          "{@link org.opengis.crs.operation.OperationMethod method}",
-     *          "{@link org.opengis.crs.operation.OperationParameter parameter}" and
-     *          "{@link org.opengis.crs.operation.OperationParameterGroup group}"
+     *          "{@link org.opengis.parameter.OperationParameter parameter}" and
+     *          "{@link org.opengis.parameter.OperationParameterGroup group}"
      *          prefix, which stands as an abbreviation for the enclosing class.
      */
     String getName(Locale locale);

@@ -9,6 +9,9 @@
  *************************************************************************************************/
 package org.opengis.crs.operation;
 
+// OpenGIS direct dependencies
+import org.opengis.parameter.GeneralParameterValue;
+
 
 /**
  * A parameterized mathematical operation on coordinates that transforms or converts
