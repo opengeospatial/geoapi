@@ -10,8 +10,10 @@ import org.opengis.ci.Citation;
 /**
  * An identification of a CRS object. The first use of an <code>Identifier</code> for an object,
  * if any, is normally the primary identification code, and any others are aliases.
- *  
- * @author <A HREF="http://www.opengis.org">OpenGIS&reg;</A>
+ *
+ * @datatype
+ *
+ * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 2.0
  */
 public interface Identifier {
@@ -20,7 +22,6 @@ public interface Identifier {
      * defined by a code space.
      *
      * @return The code.
-     *
      * @mandatory
      */
     public String getCode();
@@ -31,12 +32,10 @@ public interface Identifier {
      * organization, where one organization may define multiple code spaces. The range and format
      * of each Code Space identifier is defined by that code space authority.
      *
-     * @return The code space,
-     *         or <code>null</code> if not available.
-     *
+     * @return The code space, or <code>null</code> if not available.
      * @optional
      */
-    public String[] getCodeSpace();
+    public String getCodeSpace();
 
     /**
      * Identifier of the version of the associated codeSpace or code, as specified by the
@@ -44,11 +43,10 @@ public interface Identifier {
      * uses versions. When appropriate, the edition is identified by the effective date, coded
      * using ISO 8601 date format.
      *
-     * @return The version,
-     *         or <code>null</code> if not available.
-     *
+     * @return The version, or <code>null</code> if not available.
      * @optional
-     * @todo Should we ask for a (possibly null) java.util.Locale argument?
+     *
+     * @revisit Should we ask for a (possibly null) java.util.Locale argument?
      */
     public String getVersion();
 
@@ -56,9 +54,7 @@ public interface Identifier {
      * Organization or party responsible for definition and maintenance of the
      * code space or code.
      *
-     * @return The authority,
-     *         or <code>null</code> if not available.
-     *
+     * @return The authority, or <code>null</code> if not available.
      * @optional
      */
     public Citation getAuthority();
@@ -69,11 +65,10 @@ public interface Identifier {
      * object, including data source information. Additional uses of a <code>Identifier</code>
      * for an object, if any, are aliases, and the remarks are then about that alias.
      *
-     * @return The remarks,
-     *         or <code>null</code> if not available.
-     *
+     * @return The remarks, or <code>null</code> if not available.
      * @optional
-     * @todo Should we ask for a (possibly null) java.util.Locale argument?
+     *
+     * @revisit Should we ask for a (possibly null) java.util.Locale argument?
      */
-    public String[] getRemarks();
+    public String getRemarks();
 }
