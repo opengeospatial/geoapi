@@ -16,7 +16,7 @@ package org.opengis.util;
 
 /**
  * Fully qualified identifier for an object.
- * A <code>ScopedName</code> contains a {@link LocalName} as {@linkplain #getLocaleName head}
+ * A <code>ScopedName</code> contains a {@link LocalName} as {@linkplain #asLocalName head}
  * and a {@linkplain GenericName}, which may be a {@link LocalName} or an other
  * <code>ScopedName</code>, as {@linkplain #getScope tail}.
  *
@@ -31,11 +31,17 @@ package org.opengis.util;
 ///@UML (identifier="ScopedName")
 public interface ScopedName extends GenericName {
     /**
-     * Returns the local version of this name. This is the last element in the
-     * sequence of {@linkplain #getParsedNames parsed names}. However, the local name
-     * returned by this method will still have {@linkplain LocalName#getScope the same
-     * scope} than this scoped name, even if the string returned by
-     * {@link LocalName#toString} will not contains the scope.
+     * Returns the scope of this name.
+     */
+/// @UML (identifier="tail", obligation=OPTIONAL)
+    GenericName getScope();
+
+    /**
+     * Returns a view of this object as a local name. This is the last element in the
+     * sequence of {@linkplain #getParsedNames parsed names}. The local name returned
+     * by this method will still have the same {@linkplain LocalName#getScope scope}
+     * than this scoped name. Note however that the string returned by
+     * {@link LocalName#toString} will differs.
      *
      * @rename Renamed from <code>head</code> as <code>localName</code> in order to make
      *         it more obvious that this method returns a name without its scope. This is
@@ -43,13 +49,7 @@ public interface ScopedName extends GenericName {
      *         by the inherited <code>getScope()</code> method.
      */
 /// @UML (identifier="head", obligation=MANDATORY)
-    LocalName getLocalName();
-
-    /**
-     * Returns the scope of this name.
-     */
-/// @UML (identifier="tail", obligation=OPTIONAL)
-    GenericName getScope();
+    LocalName asLocalName();
 
     /**
      * Returns a locale-independent string representation of this name, including its scope.

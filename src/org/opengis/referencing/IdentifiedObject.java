@@ -9,9 +9,6 @@
  *************************************************************************************************/
 package org.opengis.referencing;
 
-// J2SE direct dependencies
-import java.util.Locale;
-
 // OpenGIS direct dependencies
 import org.opengis.metadata.Identifier;
 import org.opengis.util.GenericName;
@@ -43,20 +40,12 @@ public interface IdentifiedObject {
     Identifier getName();
 
     /**
-     * The name by which this object is identified. 
-     *         
-     * @deprecated Replaced by {@link #getName()}.
-     */
-/// @UML (identifier="name", obligation=MANDATORY)
-    String getName(Locale locale);
-
-    /**
-     * An alternative name by which this object is identified..
-     *         
+     * An alternative name by which this object is identified.
+     *
      * @return The aliases, or an empty array if there is none.
      */
 /// @UML (identifier="alias", obligation=OPTIONAL)
-    GenericName[] getAliases();
+    GenericName[] getAlias();
 
     /**
      * An identifier which references elsewhere the object's defining information.
@@ -72,14 +61,6 @@ public interface IdentifiedObject {
      */
 /// @UML (identifier="remarks", obligation=OPTIONAL)
     InternationalString getRemarks();
-
-    /**
-     * Comments on or information about this object, including data source information.
-     *
-     * @deprecated Replaced by {@link #getRemarks()}.
-     */
-/// @UML (identifier="remarks", obligation=OPTIONAL)
-    String getRemarks(Locale locale);
 
     /**
      * Returns a <A HREF="doc-files/WKT.html"><cite>Well Known Text</cite> (WKT)</A> for this object.
