@@ -205,7 +205,9 @@
       <include name="**/*.java"/>
       <replacefilter token="&lt;? extends Coverage&gt;"/>
       <replacefilter token="&lt;? extends Object&gt;"/>
+      <replacefilter token="&lt;? extends Polygon&gt;"/>
       <replacefilter token="&lt;? extends Primitive&gt;"/>
+      <replacefilter token="&lt;? extends SurfacePatch&gt;"/>
       <replacefilter token="&lt;ApplicationSchemaInformation&gt;"/>
       <replacefilter token="&lt;Arc&gt;"/>
       <replacefilter token="&lt;BrowseGraphic&gt;"/>
@@ -250,6 +252,7 @@
       <replacefilter token="&lt;Knot&gt;"/>
       <replacefilter token="&lt;Layer&gt;"/>
       <replacefilter token="&lt;LineSegment&gt;"/>
+      <replacefilter token="&lt;LineString&gt;"/>
       <replacefilter token="&lt;Locale&gt;"/>
       <replacefilter token="&lt;LocalName&gt;"/>
       <replacefilter token="&lt;MaintenanceInformation&gt;"/>
@@ -265,6 +268,7 @@
       <replacefilter token="&lt;ParameterValueGroup&gt;"/>
       <replacefilter token="&lt;Point&gt;"/>
       <replacefilter token="&lt;PointArray&gt;"/>
+      <replacefilter token="&lt;Polygon&gt;"/>
       <replacefilter token="&lt;PortrayalCatalogueReference&gt;"/>
       <replacefilter token="&lt;Position&gt;"/>
       <replacefilter token="&lt;Primitive&gt;"/>
@@ -282,8 +286,10 @@
       <replacefilter token="&lt;SpatialRepresentationType&gt;"/>
       <replacefilter token="&lt;StandardOrderProcess&gt;"/>
       <replacefilter token="&lt;String&gt;"/>
+      <replacefilter token="&lt;Surface&gt;"/>
       <replacefilter token="&lt;SurfacePatch&gt;"/>
       <replacefilter token="&lt;TopicCategory&gt;"/>
+      <replacefilter token="&lt;Triangle&gt;"/>
       <replacefilter token="&lt;Usage&gt;"/>
 
       <replacefilter token="    /* 1.5 specific */" value="// "/>
