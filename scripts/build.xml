@@ -71,6 +71,7 @@
       <fileset dir="${homepath}/src">
         <exclude name="**/.*"/>
         <exclude name="**/*.class"/>
+        <exclude name="org/opengis/go/display/event/*.java"/>
         <exclude name="org/opengis/go/display/style/*.java"/>
         <exclude name="org/opengis/go/display/primitive/*.java"/>
       </fileset>
@@ -133,7 +134,7 @@
              additionalparam  = "-quiet -noqualifier all
                                  -tagletpath ${homepath}/scripts
                                  -taglet org.opengis.tools.UmlTaglet
-                                 -tag rename:m:&quot;Name change from UML &lt;FONT COLOR='#A01020'&gt;(a GeoAPI's proposal)&lt;/FONT&gt;:&quot;
+                                 -tag rename:tm:&quot;Name change from UML &lt;FONT COLOR='#A01020'&gt;(a GeoAPI's proposal)&lt;/FONT&gt;:&quot;
                                  -taglet org.opengis.tools.RevisitTaglet">
 
       <bottom>

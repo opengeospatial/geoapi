@@ -150,6 +150,8 @@ public final class UmlTaglet implements Taglet {
                 type = "association";
             } else if (type.equalsIgnoreCase("operation")) {
                 type = "operation";
+            } else if (type.equalsIgnoreCase("constructor")) {
+                type = "constructor";
             } else {
                 warning(tag, "Unknow UML type: "+type);
             }
