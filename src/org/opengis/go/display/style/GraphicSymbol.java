@@ -118,19 +118,19 @@ public interface GraphicSymbol extends Graphic {
      */
     public void setActiveSymbology(String symbologyName) throws IllegalArgumentException;
     
-	/**
-	 * Gets the active symbology name that is being used to render this
-	 * graphic symbol.  An active symbology will use the settings that were
-	 * set on the Symbology object that will define how the graphic is displayed
-	 * @return the active symbology version string
-	 */
-	public String getSymbologyVersion();
-    
-	/**
-	 * Sets the active symbology version that is being supported by this
-	 * implementation.
-	 * @param symbologyVersion the symbology verion supported
-	 * @throws IllegalArgumentException if the symbology doesn't support versions
-	 */
-	public void setSymbologyVersion(String symbologyName) throws IllegalArgumentException;    
+    /**
+     * Gets the active symbology name that is being used to render this
+     * graphic symbol.  An active symbology will use the settings that were
+     * set on the Symbology object that will define how the graphic is displayed
+     * @return the active symbology version string
+     */
+    public String getSymbologyVersion();
+
+    /**
+     * Sets the active symbology version that is being supported by this
+     * implementation.
+     * @param symbologyVersion the symbology verion supported
+     * @throws IllegalArgumentException if the symbology doesn't support versions
+     */
+    public void setSymbologyVersion(String symbologyVersion) throws IllegalArgumentException;    
 }

@@ -58,15 +58,14 @@ public class PathType extends SimpleEnumerationType {
      */
     protected static final List VALUES = new ArrayList();   
      
-	/**
-	 * Creates a new PathType with the given value and name.
-	 * @param value the int value for the enum.
-	 * @param name the short name for the enum.
-	 * @param description the description for the enum.
-	 */
-	protected PathType(String name, String description) {
-            super(VALUES, name, description);		
-	}
+    /**
+     * Creates a new PathType with the given value and name.
+     * @param name the short name for the enum.
+     * @param description the description for the enum.
+     */
+    protected PathType(String name, String description) {
+        super(VALUES, name, description);		
+    }
 	
     /**
      * Returns the list of <code>PathType</code>s.

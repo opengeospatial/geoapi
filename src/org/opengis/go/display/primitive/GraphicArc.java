@@ -170,7 +170,7 @@ public interface GraphicArc extends Graphic {
      * might be the angle between the positive X axis and the width
      * axis of the arc. For a projected arc, this might be the angle
      * between due north and the width axis.
-     * @param orientation  orientation of the arc.
+     * @param rotation  orientation of the arc.
      * @param unit the <code>Unit</code> for the angle value.
      */
     public void setRotation(double rotation, Unit unit);
@@ -280,7 +280,7 @@ public interface GraphicArc extends Graphic {
      * when there is no closure, i.e. when isClosedEllipse() is false, or
      * for <code>ArcClosure.OPEN</code>.
      *
-     * @param newPathType This must be one of the static constants in
+     * @param pathType This must be one of the static constants in
      *   the PathType class or one of its subclasses.
      */
     public void setClosurePathType(PathType pathType);

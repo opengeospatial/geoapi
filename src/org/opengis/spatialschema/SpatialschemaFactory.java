@@ -27,9 +27,9 @@ public interface SpatialschemaFactory {
      * corresponding to the Class and CoordinateReferenceSystem. 
      * An appropriate combination of Class and CoordinateReferenceSystem can be verified with
      *  <code>CommonFactory.getCommonCapabilities().getSupportedSpatialschemaObjects(CoordinateReferenceSystem)</code>.
-     * @param crs the Coordinate Reference System to be used.
      * @param coordInterface The <code>Class</code> of a spatialschema object
      *   interface.
+     * @param crs the Coordinate Reference System to be used.
      * @return Returns a newly created <code>Object</code> which should be cast to the <code>Class</code>.
      */
     public Object createObjectWithCRS(Class coordInterface, CoordinateReferenceSystem crs)
@@ -40,7 +40,6 @@ public interface SpatialschemaFactory {
      * corresponding to the Class and CoordinateReferenceSystem. 
      * An appropriate combination of Class and CoordinateReferenceSystem can be verified with
      *  <code>CommonFactory.getCommonCapabilities().getSupportedSpatialschemaObjects(CoordinateReferenceSystem)</code>.
-     * @param crs the Coordinate Reference System to be used.
      * @param coordInterface The <code>Class</code> of a spatialschema object
      *   interface.
      * @return Returns a newly created <code>PointArray</code>.

@@ -48,23 +48,23 @@ public interface TextSymbolizer {
     
     //**  Default values  **
     
-	/**  Default fill color value.  */
-	public static final Color DEFAULT_TEXT_FILL_COLOR = Color.BLACK;
+    /**  Default fill color value.  */
+    public static final Color DEFAULT_TEXT_FILL_COLOR = Color.BLACK;
 
-	/**  Default fill background color value.  */
-	public static final Color DEFAULT_TEXT_FILL_BACKGROUND_COLOR = Color.WHITE;
+    /**  Default fill background color value.  */
+    public static final Color DEFAULT_TEXT_FILL_BACKGROUND_COLOR = Color.WHITE;
 
-	/**  Default fill gradient points value.  */
-	public static final float[] DEFAULT_TEXT_FILL_GRADIENT_POINTS = new float[2];
+    /**  Default fill gradient points value.  */
+    public static final float[] DEFAULT_TEXT_FILL_GRADIENT_POINTS = new float[2];
 
-	/**  Default fill opacity value.  */
-	public static final float DEFAULT_TEXT_FILL_OPACITY = 1.f;
+    /**  Default fill opacity value.  */
+    public static final float DEFAULT_TEXT_FILL_OPACITY = 1.f;
 
-	/**  Default fill pattern value.  */
-	public static final FillPattern DEFAULT_TEXT_FILL_PATTERN = FillPattern.NONE;
+    /**  Default fill pattern value.  */
+    public static final FillPattern DEFAULT_TEXT_FILL_PATTERN = FillPattern.NONE;
 
-	/**  Default fill style value.  */
-	public static final FillStyle DEFAULT_TEXT_FILL_STYLE = FillStyle.SOLID;
+    /**  Default fill style value.  */
+    public static final FillStyle DEFAULT_TEXT_FILL_STYLE = FillStyle.SOLID;
     
     // PENDING(jdc):  need a default font!!
     public static final Font DEFAULT_TEXT_FONT = null;
@@ -135,7 +135,7 @@ public interface TextSymbolizer {
 
     /**
      * Sets the fill background color value.
-     * @param fillColorBackground the fill background color value.
+     * @param fillBackgroundColor the fill background color value.
      */    
     public void setTextFillBackgroundColor(Color fillBackgroundColor);
 

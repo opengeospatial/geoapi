@@ -74,7 +74,7 @@ public interface Canvas {
      * Sets the title of this <code>Canvas</code>.  The title of a
      * <code>Canvas</code> may or may not be displayed on the titlebar of
      * an application's window.
-     * @param name the new title for this <code>Canvas</code>.
+     * @param title the new title for this <code>Canvas</code>.
      */
     public void setTitle(String title);
 
@@ -161,8 +161,6 @@ public interface Canvas {
      * <code>Canvas</code>'s collection of <code>EventManager</code>s.
      * @param eventManager the <code>EventManager</code> type to be added to the 
      *          <code>Canvas</code>'s collection.
-     * @return true if the <code>EventManager</code> is not in the collection, 
-     *          false otherwise.
      */
     public void addEventManager(EventManager eventManager);
 

@@ -83,7 +83,7 @@ public class LatLonAlt implements DirectPosition {
      * @param alt       altitude in meters
      * @param unit      the unit for latitude and longitude
      * @param altUnit   the unit for altitude
-     * @param crsURL       the Coordinate Reference System URL
+     * @param crs       the Coordinate Reference System
      */
     public LatLonAlt(
         double lat,
