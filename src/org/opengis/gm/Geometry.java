@@ -11,8 +11,8 @@ import org.opengis.sc.CRS;
 
 
 /**
- * Root class of the geometric object taxonomy. <code>Object</code> supports interfaces common
- * to all geographically referenced geometric objects. <code>Object</code> instances are sets
+ * Root class of the geometric object taxonomy. <code>Geometry</code> supports interfaces common
+ * to all geographically referenced geometric objects. <code>Geometry</code> instances are sets
  * of direct positions in a particular coordinate reference system.
  *
  * @UML type GM_Object
@@ -20,47 +20,44 @@ import org.opengis.sc.CRS;
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 2.0
  *
- * @revisit Should we rename this interface as <code>Geometry</code> for avoiding name clash
- *          with <code>java.lang.Object</code>?
- *
- *          TODO: This interface should extends TransfiniteSet&lt;DirectPosition&gt;,
- *                which is not yet defined (see ISO specification).
+ * @revisit This interface should extends TransfiniteSet&lt;DirectPosition&gt;,
+ *          which is not yet defined (see ISO specification).
  */
-public interface Object /*extends TransfiniteSet<DirectPosition>*/ {
+public interface Geometry /*extends TransfiniteSet<DirectPosition>*/ {
     /**
      * Returns the coordinate reference system used in {@link DirectPosition} coordinates.
-     * If <code>null</code>, then this <code>Object</code> uses the CRS from another
-     * <code>Object</code> in which it is contained.
+     * If <code>null</code>, then this <code>Geometry</code> uses the CRS from another
+     * <code>Geometry</code> in which it is contained.
      *
      * The most common example where the CRS is <code>null</code> is the elements and
      * subcomplexes of a maximal {@link Complex}. The <code>Complex</code> can carry
      * the CRS for all {@link Primitive} elements and for all {@link Complex} subcomplexes.
      *
-     * This association is only navigable from <code>Object</code> to <code>CRS</code>.
+     * This association is only navigable from <code>Geometry</code> to <code>CRS</code>.
      * This means that the coordinate reference system objects in a data set do not keep
-     * a list of <code>Object</code>s that use them.
+     * a list of <code>Geometry</code>s that use them.
      *
      * @UML association CRS
      */
     public CRS getCRS();
 
     /**
-     * Returns a region in the coordinate reference system that contains this <code>Object</code>.
-     * The default shall be to return an instance of an appropriate <code>Object</code> subclass
+     * Returns a region in the coordinate reference system that contains this <code>Geometry</code>.
+     * The default shall be to return an instance of an appropriate <code>Geometry</code> subclass
      * that represents the same spatial set returned from {@link #getEnvelope}. The most common
      * use of <code>mbRegion</code> will be to support indexing methods that use extents other
      * than minimum bounding rectangles (MBR or envelopes).
      *
-     * @return The region. This does not restrict the returned <code>Object</code> from being a
+     * @return The region. This does not restrict the returned <code>Geometry</code> from being a
      *         non-vector geometric representation, although those types are not defined within
      *         this specification.
      *
      * @UML operation mbRegion
      */
-    public Object getMbRegion();
+    public Geometry getMbRegion();
 
     /**
-     * Returns a point value that is guaranteed to be on this <code>Object</code>. The default logic
+     * Returns a point value that is guaranteed to be on this <code>Geometry</code>. The default logic
      * may be to use the {@link DirectPosition} of the point returned by {@link #getCentroid} if
      * that point is on the object. Another use of representative point may be for the placement
      * of labels in systems based on graphic presentation.
@@ -73,13 +70,13 @@ public interface Object /*extends TransfiniteSet<DirectPosition>*/ {
 //    public DirectPosition getRepresentativePoint();
 
     /**
-     * Returns a finite set of <code>Object</code>s containing all of the direct positions on the
-     * boundary of this <code>Object</code>. These object collections shall have further internal
-     * structure where appropriate. The finite set of <code>Object</code>s returned shall be in
-     * the same coordinate reference system as this <code>Object</code>. If the <code>Object</code>
-     * is in a {@link Complex}, then the boundary <code>Object</code>s returned shall be in the
-     * same <code>Complex</code>. If the <code>Object</code> is not in any <code>Complex</code>,
-     * then the boundary <code>Object</code>s returned may have been constructed in response to the
+     * Returns a finite set of <code>Geometry</code>s containing all of the direct positions on the
+     * boundary of this <code>Geometry</code>. These object collections shall have further internal
+     * structure where appropriate. The finite set of <code>Geometry</code>s returned shall be in
+     * the same coordinate reference system as this <code>Geometry</code>. If the <code>Geometry</code>
+     * is in a {@link Complex}, then the boundary <code>Geometry</code>s returned shall be in the
+     * same <code>Complex</code>. If the <code>Geometry</code> is not in any <code>Complex</code>,
+     * then the boundary <code>Geometry</code>s returned may have been constructed in response to the
      * operation.
      *
      * @return The sets of positions on the boundary. The elements of a boundary shall
@@ -91,14 +88,14 @@ public interface Object /*extends TransfiniteSet<DirectPosition>*/ {
 //    public Boundary getBoundary();
 
     /**
-     * Returns a finite set of <code>Object</code>s containing all of the points on the boundary of
-     * this <code>Object</code> and this object (the union of the object and its boundary). These
+     * Returns a finite set of <code>Geometry</code>s containing all of the points on the boundary of
+     * this <code>Geometry</code> and this object (the union of the object and its boundary). These
      * object collections shall have further internal structure where appropriate. The finite set
-     * of <code>Object</code>s returned shall be in the same coordinate reference system as this
-     * <code>Object</code>. If the <code>Object</code> is in a {@link Complex}, then the boundary
-     * <code>Object</code>s returned shall be in the same <code>Complex</code>. If the
-     * <code>Object</code> is not in any <code>Complex</code>, then the boundary
-     * <code>Object</code>s returned may have been constructed in response to the operation.
+     * of <code>Geometry</code>s returned shall be in the same coordinate reference system as this
+     * <code>Geometry</code>. If the <code>Geometry</code> is in a {@link Complex}, then the boundary
+     * <code>Geometry</code>s returned shall be in the same <code>Complex</code>. If the
+     * <code>Geometry</code> is not in any <code>Complex</code>, then the boundary
+     * <code>Geometry</code>s returned may have been constructed in response to the operation.
      *
      * @return The sets of points on the union of this object and its boundary.
      * @UML operation closure
@@ -108,11 +105,11 @@ public interface Object /*extends TransfiniteSet<DirectPosition>*/ {
 //    public Complex getClosure();
 
     /**
-     * Returns <code>true</code> if this <code>Object</code> has no interior point of
+     * Returns <code>true</code> if this <code>Geometry</code> has no interior point of
      * self-intersection or selftangency. In mathematical formalisms, this means that
      * every point in the interior of the object must have a metric neighborhood whose
      * intersection with the object is isomorphic to an <var>n</var>-sphere, where <var>n</var>
-     * is the dimension of this <code>Object</code>.
+     * is the dimension of this <code>Geometry</code>.
      * <br><br>
      * Since most coordinate geometries are represented, either directly or indirectly by functions
      * from regions in Euclidean space of their topological dimension, the easiest test for
@@ -128,7 +125,7 @@ public interface Object /*extends TransfiniteSet<DirectPosition>*/ {
     public boolean isSimple();
 
     /**
-     * Returns <code>true</code> if this <code>Object</code> has an empty boundary after topological
+     * Returns <code>true</code> if this <code>Geometry</code> has an empty boundary after topological
      * simplification (removal of overlaps between components in non-structured aggregates, such as
      * subclasses of {@link Aggregate}). This condition is alternatively referred to as being
      * "closed" as in a "closed curve." This creates some confusion since there are two distinct
@@ -140,16 +137,16 @@ public interface Object /*extends TransfiniteSet<DirectPosition>*/ {
      * surface of a sphere, or some torus. A solid, with finite size, in a space of dimension 3 is
      * never a cycle.
      *
-     * @return <code>true</code> if this <code>Object</code> has an empty boundary after topological
-     *         simplification.
+     * @return <code>true</code> if this <code>Geometry</code> has an empty boundary after
+     *         topological simplification.
      * @UML operation isCycle
      */
     public boolean isCycle();
 
     /**
-     * Returns the distance between this <code>Object</code> and another <code>Object</code>.
+     * Returns the distance between this <code>Geometry</code> and another <code>Geometry</code>.
      * This distance is defined to be the greatest lower bound of the set of distances between
-     * all pairs of points that include one each from each of the two <code>Object</code>s. A
+     * all pairs of points that include one each from each of the two <code>Geometry</code>s. A
      * "distance" value shall be a positive number associated to a distance unit such as meter
      * or standard foot. If necessary, the second geometric object shall be transformed into
      * the same coordinate reference system as the first before the distance is calculated.
@@ -181,19 +178,19 @@ public interface Object /*extends TransfiniteSet<DirectPosition>*/ {
      * @UML operation distance
      * @revisit In UML schema, the returns type is <code>Distance</code>.
      */
-    public double getDistance(Object geometry);
+    public double getDistance(Geometry geometry);
 
     /**
-     * Returns the inherent dimension of this <code>Object</code>, which shall be less than or
+     * Returns the inherent dimension of this <code>Geometry</code>, which shall be less than or
      * equal to the {@linkplain #getCoordinateDimension coordinate dimension}. The dimension of
      * a collection of geometric objects shall be the largest dimension of any of its pieces.
      * Points are 0-dimensional, curves are 1-dimensional, surfaces are 2-dimensional, and solids
      * are 3-dimensional. Locally, the dimension of a geometric object at a point is the dimension
      * of a local neighborhood of the point – that is the dimension of any coordinate neighborhood
      * of the point. Dimension is unambiguously defined only for {@link DirectPosition}s interior
-     * to this <code>Object</code>. If the passed {@link DirectPosition} is <code>null</code>, then
+     * to this <code>Geometry</code>. If the passed {@link DirectPosition} is <code>null</code>, then
      * the operation shall return the largest possible dimension for any <code>DirectPosition</code>
-     * in this <code>Object</code>.
+     * in this <code>Geometry</code>.
      *
      * @param point The point where to evaluate the dimension, or <code>null</code>.
      * @return The inherent dimension.
@@ -204,21 +201,21 @@ public interface Object /*extends TransfiniteSet<DirectPosition>*/ {
 //    public int getDimension(DirectPosition point);
 
     /**
-     * Returns the dimension of the coordinates that define this <code>Object</code>, which must
+     * Returns the dimension of the coordinates that define this <code>Geometry</code>, which must
      * be the same as the coordinate dimension of the coordinate reference system for this
-     * <code>Object</code>.
+     * <code>Geometry</code>.
      *
      * @UML operation coordinateDimension
      */
     public int getCoordinateDimension();
 
     /**
-     * Returns the set of maximal complexes within which this <code>Object</code> is contained.
+     * Returns the set of maximal complexes within which this <code>Geometry</code> is contained.
      * As a set of primitives, a {@link Complex} may be contained as a set in another larger
      * <code>Complex</code>, referred to as a "super complex" of the original. A <code>Complex</code>
      * is maximal if there is no such larger super complex.
      *
-     * @return The set of maximal complexes within which this <code>Object</code> is contained.
+     * @return The set of maximal complexes within which this <code>Geometry</code> is contained.
      *         If the schema used does not include <code>Complex</code>, then this operation
      *         shall return a <code>null</code> value.
      * @UML operation maximalComplex
@@ -226,22 +223,22 @@ public interface Object /*extends TransfiniteSet<DirectPosition>*/ {
     public Set/*<Complex>*/ getMaximalComplex();
 
     /**
-     * Returns a new <code>Object</code> that is the coordinate transformation of this
-     * <code>Object</code> into the passed coordinate reference system within the accuracy
+     * Returns a new <code>Geometry</code> that is the coordinate transformation of this
+     * <code>Geometry</code> into the passed coordinate reference system within the accuracy
      * of the transformation.
      *
      * @param  newCRS The newCRS.
-     * @return The transformed <code>Object</code>.
+     * @return The transformed <code>Geometry</code>.
      * @UML operation transform
      *
      * @revisit Which exception to throws if the transformation fails?
      */
-    public Object transform(CRS newCRS);
+    public Geometry transform(CRS newCRS);
 
     /**
-     * Returns the minimum bounding box for this <code>Object</code>. This shall be the coordinate
+     * Returns the minimum bounding box for this <code>Geometry</code>. This shall be the coordinate
      * region spanning the minimum and maximum value for each ordinate taken on by
-     * {@link DirectPosition}s in this <code>Object</code>. The simplest representation for an
+     * {@link DirectPosition}s in this <code>Geometry</code>. The simplest representation for an
      * envelope consists of two {@link DirectPosition}s, the first one containing all the
      * minimums for each ordinate, and second one containing all the maximums. However, there are
      * cases for which these two positions would be outside the domain of validity of the object's
@@ -250,10 +247,10 @@ public interface Object /*extends TransfiniteSet<DirectPosition>*/ {
      * @return The envelope.
      * @UML operation envelope
      */
-    public Object getEnvelope();
+    public Geometry getEnvelope();
 
     /**
-     * Returns the mathematical centroid for this <code>Object</code>. The result is not guaranteed
+     * Returns the mathematical centroid for this <code>Geometry</code>. The result is not guaranteed
      * to be on the object. For heterogeneous collections of primitives, the centroid only takes
      * into account those of the largest dimension. For example, when calculating the centroid of
      * surfaces, an average is taken weighted by area. Since curves have no area they do not
@@ -267,18 +264,18 @@ public interface Object /*extends TransfiniteSet<DirectPosition>*/ {
 //    public DirectPosition getCentroid();
 
     /**
-     * Returns a <code>Object</code> that represents the convex hull of this <code>Object</code>.
+     * Returns a <code>Geometry</code> that represents the convex hull of this <code>Geometry</code>.
      *
      * @return The convex hull.
      * @UML operation convexHull
      */
-    public Object getConvexHull();
+    public Geometry getConvexHull();
 
     /**
-     * Returns a <code>Object</code> containing all points whose distance from this
-     * <code>Object</code> is less than or equal to the distance passed as a parameter.
-     * The <code>Object</code> returned is in the same reference system as this original
-     * <code>Object</code>. The dimension of the returned <code>Object</code> is normally
+     * Returns a <code>Geometry</code> containing all points whose distance from this
+     * <code>Geometry</code> is less than or equal to the distance passed as a parameter.
+     * The <code>Geometry</code> returned is in the same reference system as this original
+     * <code>Geometry</code>. The dimension of the returned <code>Geometry</code> is normally
      * the same as the coordinate dimension - a collection of {@link Surface}s in 2D space
      * and a collection of {@link Solid}s in 3D space, but this may be application defined.
      *
@@ -287,5 +284,5 @@ public interface Object /*extends TransfiniteSet<DirectPosition>*/ {
      *
      * @revisit In UML schema, the <code>distance</code> argument is a <code>Distance</code> type.
      */
-    public Object getBuffer(double distance);
+    public Geometry getBuffer(double distance);
 }
