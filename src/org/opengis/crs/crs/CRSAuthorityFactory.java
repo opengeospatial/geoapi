@@ -10,8 +10,10 @@
 package org.opengis.crs.crs;
 
 // J2SE direct dependencies and extensions
+
 import org.opengis.crs.AuthorityFactory;
 import org.opengis.crs.FactoryException;
+import org.opengis.spatialschema.geometry.DirectPosition;
 
 
 /**
@@ -44,8 +46,8 @@ public interface CRSAuthorityFactory extends AuthorityFactory {
      * @see #createTemporalCRS
      * @see #createCompoundCRS
      */
-    CRS createCRS(String code) throws FactoryException;
-
+    public CRS createCRS(String code) throws FactoryException;
+    
     /**
      * Returns a {@linkplain GeographicCRS geographic CRS} from a code.
      *
@@ -56,8 +58,19 @@ public interface CRSAuthorityFactory extends AuthorityFactory {
      * @UML operation createGeographicCoordinateSystem in 1.0 specification
      * @see org.opengis.crs.datum.DatumAuthorityFactory#createGeodeticDatum
      */
-    GeographicCRS createGeographicCRS(String code) throws FactoryException;
-
+	public GeographicCRS createGeographicCRS(String code) throws FactoryException;
+    
+	/**
+	 * Returns a {@linkplain GeocentricCRS geocentric CRS} from a code.
+	 *
+	 * @param code Value allocated by authority.
+	 * @throws FactoryException if the object creation failed.
+	 *
+	 * @UML operation createGeocentricCoordinateSystem in 1.0 specification
+	 * @see org.opengis.crs.datum.DatumAuthorityFactory#createGeodeticDatum
+	 */
+	public GeocentricCRS createGeocentricCRS(String code) throws FactoryException;
+	
     /**
      * Returns a {@linkplain ProjectedCRS projected CRS} from a code.
      *
@@ -68,7 +81,7 @@ public interface CRSAuthorityFactory extends AuthorityFactory {
      * @UML operation createProjectedCoordinateSystem in 1.0 specification
      * @see org.opengis.crs.datum.DatumAuthorityFactory#createGeodeticDatum
      */
-    ProjectedCRS createProjectedCRS(String code) throws FactoryException;
+	public ProjectedCRS createProjectedCRS(String code) throws FactoryException;
 
     /**
      * Create a {@linkplain VerticalCRS vertical CRS} from a code.
@@ -80,8 +93,26 @@ public interface CRSAuthorityFactory extends AuthorityFactory {
      * @UML operation createVerticalCoordinateSystem in 1.0 specification
      * @see org.opengis.crs.datum.DatumAuthorityFactory#createVerticalDatum
      */
-    VerticalCRS createVerticalCRS(String code) throws FactoryException;
-
+	public VerticalCRS createVerticalCRS(String code) throws FactoryException;
+    
+	/**
+	 * Create a {@linkplain ImageCRS image CRS} from a code.
+	 *
+	 * @param code Value allocated by authority.
+     * @throws NoSuchAuthorityCodeException if the specified <code>code</code> was not found.
+     * @throws FactoryException if the object creation failed for some other reason.
+	 */
+	public ImageCRS createImageCRS(String code) throws FactoryException;
+	
+	/**
+	 * Create a {@linkplain EngineeringCRS engineering CRS} from a code.
+	 *
+	 * @param code Value allocated by authority.
+     * @throws NoSuchAuthorityCodeException if the specified <code>code</code> was not found.
+     * @throws FactoryException if the object creation failed for some other reason.
+	 */
+	public EngineeringCRS createEngineeringCRS(String code) throws FactoryException;
+	
     /**
      * Create a {@linkplain TemporalCRS temporal CRS} from a code.
      *
@@ -91,10 +122,10 @@ public interface CRSAuthorityFactory extends AuthorityFactory {
      *
      * @see org.opengis.crs.datum.DatumAuthorityFactory#createTemporalDatum
      */
-    TemporalCRS createTemporalCRS(String code) throws FactoryException;
+	public TemporalCRS createTemporalCRS(String code) throws FactoryException;
 
     /**
-     * Creates a 3D coordinate system from a code.
+     * Creates a 3D coordinate reference system from a code.
      *
      * @param code Value allocated by authority.
      * @throws NoSuchAuthorityCodeException if the specified <code>code</code> was not found.
@@ -102,5 +133,40 @@ public interface CRSAuthorityFactory extends AuthorityFactory {
      *
      * @UML operation createCompoundCoordinateSystem in 1.0 specification
      */
-    CompoundCRS createCompoundCRS(String code) throws FactoryException;
+	public CompoundCRS createCompoundCRS(String code) throws FactoryException;
+	
+	/**
+	 * Creates a derived coordinate reference system from a code.
+	 *
+	 * @param code Value allocated by authority.
+	 * @throws NoSuchAuthorityCodeException if the specified <code>code</code> was not found.
+	 * @throws FactoryException if the object creation failed for some other reason.
+	 *
+	 * @UML operation createCompoundCoordinateSystem in 1.0 specification
+	 */
+	public DerivedCRS createDerivedCRS(String code) throws FactoryException;        
+	                                                                                                                                                                                                                                
+	/**
+	 * Creates a compound coordinate reference system from an ordered list of <code>CoordinateReferenceSystem</code> objects.
+	 *
+	 * @param element ordered array of <code>CoordinateReferenceSystem</code> objects.
+	 * @throws FactoryException if the object creation failed.
+	 *
+	 * @UML operation createCompoundCoordinateSystem in 1.0 specification
+	 */
+	public CompoundCRS createCompoundCRS(CoordinateReferenceSystem[] element) throws FactoryException;
+	
+	/**
+	 * Creates a <code>DerivedCRS</code> by changing the anchor point of a subject <code>CRS</code>
+	 * to be a <code>DirectPosition</code> in another <code>CRS</code>.
+	 * Can also be used to reanchor a <code>DerivedCRS</code> (as the subject <code>CRS</code>)
+	 * to a new anchor <code>CRS</code>.
+	 * The reference to the subject <code>CRS</code> is assigned to the returned <code>DerivedCRS</code>.
+	 * @param subjectCRS the <code>CRS</code> that will become the resulting <code>DerivedCRS</code>.
+	 * @param anchorCRS the <code>CRS</code> to which the resulting <code>DerivedCRS</code> will be referenced.
+	 * @param anchorPoint the <code>DirectPosition</code> in the anchor <code>CRS</code> that corresponds to the origin in the resulting <code>DerivedCRS</code>.
+	 * @return the <code>DerivedCRS</code>, now anchored to the anchor <code>CRS</code>.
+	 */
+	public DerivedCRS anchor(CoordinateReferenceSystem subjectCRS, CoordinateReferenceSystem anchorCRS, DirectPosition anchorPoint) throws FactoryException;
+	
 }

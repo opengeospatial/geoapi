@@ -9,12 +9,16 @@
  *************************************************************************************************/
 package org.opengis.crs.operation;
 
-import org.opengis.crs.crs.CoordinateReferenceSystem;
+import org.opengis.crs.crs.HeterogeneousCRSObjectException;
+import org.opengis.crs.crs.IncompatibleCRSException;
 import org.opengis.spatialschema.geometry.DirectPosition;
+import org.opengis.spatialschema.geometry.Geometry;
+import org.opengis.spatialschema.geometry.geometry.PointArray;
 
 /**
  * <code>CoordinateTransformation</code> defines a common abstraction for classes
- * that convert from one <code>CoordinateReferenceSystem</code> to another.
+ * that convert <code>DirectPosition</code>s from one <code>CoordinateReferenceSystem</code> to another
+ * using a particular <code>OperationMethod</code>.
  *
  * @see CoordinateReferenceSystem
  * @see DirectPosition
@@ -22,17 +26,35 @@ import org.opengis.spatialschema.geometry.DirectPosition;
  * @author  Open GIS Consortium, Inc.
  * @version $Revision$, $Date$
  */
-public interface CoordinateTransformation {
+public interface CoordinateTransformation extends Transformation {
 
-    /**
-     * Converts the <code>DirectPosition</code> passed in as <code>fromCoordinate</code>
-     * to a different type.
-     * @param fromCoordinate the <code>DirectPosition</code> to convert.
-     * @param toCoordinateInterface the type of <code>DirectPosition</code> to convert to.
-     * @return the <code>DirectPosition</code> that results from the conversion.
-     */
-    public DirectPosition convertDirectPosition(
-        DirectPosition fromCoordinate,
-        Class toCoordinateInterface,
-        CoordinateReferenceSystem toCRS);
+	/**
+	 * Transforms the referenced <code>DirectPosition</code> object to a
+	 * <code>DirectPosition</code> object in the target <code>CRS</code>
+	 * as applicable to this <code>Transformation</code> class. The
+	 * object reference that is passed in is returned.
+	 * @param fromCoordinate the <code>DirectPosition</code> to be transformed.
+	 * @return the <code>DirectPosition</code> reference after the transformation.
+	 */
+	public DirectPosition transform(DirectPosition fromCoordinate) throws IncompatibleCRSException;
+                                                                                                                             
+	/**
+	 * Transforms the referenced <code>PointArray</code> object to a
+	 * <code>PointArray</code> object in the target <code>CRS</code>
+	 * as applicable to this <code>Transformation</code> class. The
+	 * object reference that is passed in is returned.
+	 * @param fromCoordinates the <code>PointArray</code> to convert.
+	 * @return the <code>PointArray</code> that results from the conversion.
+	 */
+	public PointArray transform(PointArray fromCoordinates) throws IncompatibleCRSException;
+                                                                                                                             
+	/**
+	 * Transforms the referenced <code>Geometry</code> object to a
+	 * <code>Geometry</code> object in the target <code>CRS</code>
+	 * as applicable to this <code>Transformation</code> class. The
+	 * object reference that is passed in is returned.
+	 * @param fromGeometry the <code>Geometry</code> to convert.
+	 * @return the <code>Geometry</code> that results from the conversion.
+	 */
+	public Geometry transform(Geometry fromGeometry) throws IncompatibleCRSException, HeterogeneousCRSObjectException;
 }

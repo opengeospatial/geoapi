@@ -21,7 +21,6 @@ import org.opengis.crs.crs.CoordinateReferenceSystemFactory;
 import org.opengis.crs.crs.UnsupportedCRSException;
 import org.opengis.crs.datum.Datum;
 import org.opengis.crs.datum.DatumFactory;
-import org.opengis.crs.operation.CoordinateTransformation;
 import org.opengis.go.geometry.Bounds;
 import org.opengis.go.geometry.BoundsFactory;
 import org.opengis.spatialschema.SpatialschemaFactory;
@@ -204,15 +203,6 @@ public class CommonFactoryManager {
      */
     public static Object createObject(Class coordinateInterface) {
         return spatialschemaFactory.createObject(coordinateInterface);   
-    }
-    
-    /**
-     * A shortcut method for retrieving a <code>CoordinateTransformation</code> object 
-     * (from the default <code>CoordinateReferenceSystemFactory</code>).
-     * @return a  coordinate transformation object.
-     */
-    public static CoordinateTransformation getCoordinateTransformation() {
-        return getCoordinateReferenceSystemFactory().getCoordinateTransformation();
     }
     
     //**  DatumFactory shortcuts  **

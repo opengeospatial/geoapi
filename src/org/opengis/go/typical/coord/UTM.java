@@ -113,17 +113,17 @@ public class UTM implements DirectPosition {
         props.setProperty(CoordinateReferenceSystemFactory.COORDINATE_REFERECE_SYSTEM_URL, crsURL);
         CoordinateReferenceSystem crs;
         try {
-            crs =
+            crs = (CoordinateReferenceSystem)
                 CommonFactoryManager
                     .getCommonFactory("CommonFactory")
                     .getCoordinateReferenceSystemFactory()
-                    .getCoordinateReferenceSystem(props);
+                    .createCRS(props);
         } catch (ClassNotFoundException e) {
             throw new UnsupportedCRSException("ClassNotFoundException: " + e);
         } catch (IllegalAccessException e) {
-            throw new UnsupportedCRSException("IllegalAccessExceptione: " + e);
-        } catch (InstantiationException e) {
-            throw new UnsupportedCRSException("InstantiationExceptione: " + e);
+			throw new UnsupportedCRSException("IllegalAccessException: " + e);
+		} catch (InstantiationException e) {
+			throw new UnsupportedCRSException("InstantiationException: " + e);
         }
         return crs;
     }

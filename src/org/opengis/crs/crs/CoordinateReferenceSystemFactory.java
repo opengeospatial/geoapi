@@ -12,7 +12,8 @@ package org.opengis.crs.crs;
 
 import java.util.Properties;
 
-import org.opengis.crs.operation.CoordinateTransformation;
+import org.opengis.crs.FactoryException;
+import org.opengis.spatialschema.geometry.DirectPosition;
 
 /**
  * <code>CoordinateReferenceSystemFactory</code> defines a common 
@@ -29,25 +30,125 @@ public interface CoordinateReferenceSystemFactory {
     public static String COORDINATE_REFERECE_SYSTEM_URL = "COORDINATE_REFERECE_SYSTEM_URL";
 
     /**
-     * Gets a <code>CoordinateReferenceSystem</code> by a criteria set in the form of a <code>Properties</code> object. 
-     * The criteria are implementation-specific, and the implementation choses which <code>CoordinateReferenceSystem</code> 
+     * Gets a <code>CRS</code> by a criteria set in the form of a <code>Properties</code> object. 
+     * The criteria are implementation-specific, and the implementation choses which <code>CRS</code> 
      * to return for a given set of criteria.
-     * @param criteria the criteria corresponding to a Coordinate Reference System.
-     * @return the <code>CoordinateReferenceSystem</code>.
+     * @param criteria the criteria corresponding to a specific <code>CRS</code>.
+     * @return the <code>CRS</code>.
      * @throws UnsupportedCRSException if the criteria cannot be met
      */
-    public CoordinateReferenceSystem getCoordinateReferenceSystem(Properties criteria) throws UnsupportedCRSException;
-
-    /**
-     * Returns the <code>CoordinateTransformation</code> object for this
-     * <code>CoordinateReferenceSystem</code>. This allows the 
-     * <code>CoordinateReferenceSystem</code> to resolve 
-     * conversions of coordinates between different Coordinate Reference Systems.
-     * PENDING(jdc): this definition doesn't make sense...this is a Factory, not a CRS.  
-     * is this method misplaced?
-     * @return the coordinate transformation object
-     *
-     * @revisit This method should be defined in a coordinate transformation factory.
-     */    
-    public CoordinateTransformation getCoordinateTransformation();
+    public CRS createCRS(Properties criteria) throws UnsupportedCRSException;                       
+                                                                                                                             
+	/**
+	 * Returns a {@linkplain GeographicCRS geographic CRS} from a code.
+	 *
+     * @param criteria the criteria corresponding to a specific <code>CRS</code>.
+	 * @throws FactoryException if the object creation failed.
+	 *
+	 * @UML operation createGeographicCoordinateSystem in 1.0 specification
+	 * @see org.opengis.crs.datum.DatumAuthorityFactory#createGeodeticDatum
+	 */
+	public GeographicCRS createGeographicCRS(Properties criteria) throws FactoryException;
+	
+	/**
+	 * Returns a {@linkplain GeocentricCRS geocentric CRS} from a code.
+	 *
+     * @param criteria the criteria corresponding to a specific <code>CRS</code>.
+	 * @throws FactoryException if the object creation failed.
+	 *
+	 * @UML operation createGeocentricCoordinateSystem in 1.0 specification
+	 * @see org.opengis.crs.datum.DatumAuthorityFactory#createGeodeticDatum
+	 */
+	public GeocentricCRS createGeocentricCRS(Properties criteria) throws FactoryException;
+	
+	/**
+	 * Returns a {@linkplain ProjectedCRS projected CRS} from a code.
+	 *
+     * @param criteria the criteria corresponding to a specific <code>CRS</code>.
+	 * @throws FactoryException if the object creation failed.
+	 *
+	 * @UML operation createProjectedCoordinateSystem in 1.0 specification
+	 * @see org.opengis.crs.datum.DatumAuthorityFactory#createGeodeticDatum
+	 */
+	ProjectedCRS createProjectedCRS(Properties criteria) throws FactoryException;
+                                                                                                                             
+	/**
+	 * Create a {@linkplain VerticalCRS vertical CRS} from a code.
+	 *
+     * @param criteria the criteria corresponding to a specific <code>CRS</code>.
+	 * @throws FactoryException if the object creation failed.
+	 *
+	 * @UML operation createVerticalCoordinateSystem in 1.0 specification
+	 * @see org.opengis.crs.datum.DatumAuthorityFactory#createVerticalDatum
+	 */
+	public VerticalCRS createVerticalCRS(Properties criteria) throws FactoryException;
+                                                                                                                             
+	/**
+	 * Create a {@linkplain ImageCRS image CRS} from a code.
+	 *
+     * @param criteria the criteria corresponding to a specific <code>CRS</code>.
+	 * @throws FactoryException if the object creation failed.
+	 */
+	public ImageCRS createImageCRS(Properties criteria) throws FactoryException;
+	
+	/**
+	 * Create a {@linkplain EngineeringCRS engineering CRS} from a code.
+	 *
+     * @param criteria the criteria corresponding to a specific <code>CRS</code>.
+	 * @throws FactoryException if the object creation failed.
+	 */
+	public EngineeringCRS createEngineeringCRS(Properties criteria) throws FactoryException;
+	
+	/**
+	 * Create a {@linkplain TemporalCRS temporal CRS} from a code.
+	 *
+     * @param criteria the criteria corresponding to a specific <code>CRS</code>.
+	 * @throws FactoryException if the object creation failed.
+	 *
+	 * @see org.opengis.crs.datum.DatumAuthorityFactory#createTemporalDatum
+	 */
+	public TemporalCRS createTemporalCRS(Properties criteria) throws FactoryException;
+                                                                                                                             
+	/**
+	 * Creates a compound coordinate reference system from a code.
+	 *
+     * @param criteria the criteria corresponding to a specific <code>CRS</code>.
+	 * @throws FactoryException if the object creation failed.
+	 *
+	 * @UML operation createCompoundCoordinateSystem in 1.0 specification
+	 */
+	public CompoundCRS createCompoundCRS(Properties criteria) throws FactoryException;
+	
+	/**
+	 * Creates a compound coordinate reference system from an ordered list of <code>CoordinateReferenceSystem</code> objects.
+	 *
+	 * @param element ordered array of <code>CoordinateReferenceSystem</code> objects.
+	 * @throws FactoryException if the object creation failed.
+	 *
+	 * @UML operation createCompoundCoordinateSystem in 1.0 specification
+	 */
+	public CompoundCRS createCompoundCRS(CoordinateReferenceSystem[] element) throws FactoryException;
+	
+	/**
+	 * Creates a derived coordinate reference system from a code.
+	 *
+     * @param criteria the criteria corresponding to a specific <code>CRS</code>.
+	 * @throws FactoryException if the object creation failed.
+	 *
+	 * @UML operation createCompoundCoordinateSystem in 1.0 specification
+	 */
+	public DerivedCRS createDerivedCRS(Properties criteria) throws FactoryException;
+	
+	/**
+	 * Creates a <code>DerivedCRS</code> by changing the anchor point of a subject <code>CRS</code>
+	 * to be a <code>DirectPosition</code> in another <code>CRS</code>.
+	 * Can also be used to reanchor a <code>DerivedCRS</code> (as the subject <code>CRS</code>)
+	 * to a new anchor <code>CRS</code>.
+	 * The reference to the subject <code>CRS</code> is assigned to the returned <code>DerivedCRS</code>.
+	 * @param subjectCRS the <code>CRS</code> that will become the resulting <code>DerivedCRS</code>.
+	 * @param anchorCRS the <code>CRS</code> to which the resulting <code>DerivedCRS</code> will be referenced.
+	 * @param anchorPoint the <code>DirectPosition</code> in the anchor <code>CRS</code> that corresponds to the origin in the resulting <code>DerivedCRS</code>.
+	 * @return the <code>DerivedCRS</code>, now anchored to the anchor <code>CRS</code>.
+	 */
+	public DerivedCRS anchor(CoordinateReferenceSystem subjectCRS, CoordinateReferenceSystem anchorCRS, DirectPosition anchorPoint) throws FactoryException;
 }

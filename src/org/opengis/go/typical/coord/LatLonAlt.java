@@ -139,10 +139,18 @@ public class LatLonAlt implements DirectPosition {
         Properties props = new Properties();
         props.setProperty(CoordinateReferenceSystemFactory.COORDINATE_REFERECE_SYSTEM_URL, crsURL);
         CoordinateReferenceSystem crs;
-            crs =
-                CommonFactoryManager
+        try {
+            crs = (CoordinateReferenceSystem)
+                CommonFactoryManager.getCommonFactory("CommonFactory")
                     .getCoordinateReferenceSystemFactory()
-                    .getCoordinateReferenceSystem(props);
+                    .createCRS(props);
+		} catch (ClassNotFoundException e) {
+			throw new UnsupportedCRSException("ClassNotFoundException: " + e);
+		} catch (IllegalAccessException e) {
+			throw new UnsupportedCRSException("IllegalAccessException: " + e);
+		} catch (InstantiationException e) {
+			throw new UnsupportedCRSException("InstantiationException: " + e);
+		}
         return crs;        
     }
     
