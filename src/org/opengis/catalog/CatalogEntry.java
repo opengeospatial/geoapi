@@ -7,9 +7,14 @@
  ** Copyright (C) 2003 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
  **
  *************************************************************************************************/
-
 package org.opengis.catalog;
+
+// J2SE direct dependencies
 import java.util.Iterator;
+
+// Annotations
+///import org.opengis.annotation.UML;
+///import static org.opengis.annotation.Obligation.*;
 
 
 /**
@@ -43,9 +48,9 @@ import java.util.Iterator;
  * 
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A> 
  * @version <A HREF="http://www.opengis.org/docs/02-087r3.pdf">Catalog Services 1.1.1</A> 
- * @UML abstract CG_CatalogEntity
  */
-public interface CatalogEntry{
+///@UML (identifier="CG_CatalogEntity")
+public interface CatalogEntry {
     /**
      * Each <code>CatalogEntry</code> describes a resource, this method provides access to that
      * resource.
@@ -127,5 +132,5 @@ public interface CatalogEntry{
      *      <A HREF="http://www.opengis.org/docs/99-113.pdf">OGC Abstract
      *      Catalog Services </A> Specification
      */
-    Iterator iterator();
+    Iterator/*<MetadataEntity>*/ iterator();
 }

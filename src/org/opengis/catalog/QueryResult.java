@@ -57,5 +57,5 @@ public interface QueryResult {
      *      <A HREF="http://www.opengis.org/docs/99-113.pdf">OGC Abstract
      *      Catalog Services </A> Specification 
      */
-    Iterator iterator();
+    Iterator/*<CatalogEntry>*/ iterator();
 }

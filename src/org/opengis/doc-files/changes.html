@@ -84,6 +84,12 @@
         added convenience methods <code>getMinimum</code>, <code>getMaximum</code>, <code>getCenter</code>
         and <code>getLength</code>.</P></LI>
 
+    <LI><P>In <code><A HREF="../spatialschema/geometry/geometry/GenericCurve.html">GenericCurve</A></code>, renamed the
+        <code>getParam</code> and <code>getConstructiveParam</code> method as
+        <code>forParam</code> and <code>forConstructiveParam</code> respectively.
+        The former names was misleading since those methods do not return a constructive
+        parameter; they expect it as argument instead.</P>
+
     <LI><P>In <code><A HREF="../spatialschema/geometry/complex/Complex.html">Complex</A></code>, renamed the
         <code>getSuperComplexex</code> method as <code>getSuperComplexes</code>. The former was a typo.</P>
   </UL>
