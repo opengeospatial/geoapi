@@ -67,7 +67,7 @@ public interface DataStoreFactory {
      * <p>
      * Assumed to point to a 16x16 icon?
      * </p>
-     * @return
+     * @return the icon.
      */
     URL getIcon();
 
@@ -103,7 +103,7 @@ public interface DataStoreFactory {
      * </p>
      * @param provider
      * @param params
-     * @return
+     * @return <code>true</code> if this factory can communicate with the provider.
      */
     boolean canProcess( URI provider, Map params);
 
