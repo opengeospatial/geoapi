@@ -47,6 +47,18 @@
         already use different sets of parameter names.</FONT></P>
     </LI>
 
+    <LI><P ALIGN="justify">While is is possible to mimic C's <CODE>union</CODE> in Java, the hack
+        are usually unconvenient. Furthermore, <CODE>union</CODE> are not type-safe even in C. It
+        may be better to avoid the <CODE>CD_SecondDefiningParameter</CODE> construct, which is used
+        in only one place instead. A more convient and type-safe approach would be the legacy
+        <A HREF=../../../../legacy/org/opengis/cs/CS_Ellipsoid.html><CODE>CS_Ellipsoid</CODE></A>
+        API.</P>
+        <P ALIGN="justify"><STRONG>PROPOSAL:</STRONG> <FONT COLOR="red">Remove the
+        <CODE>SecondDefiningParameter</CODE> construct. Uses the legacy
+        <A HREF=../../../../legacy/org/opengis/cs/CS_Ellipsoid.html><CODE>CS_Ellipsoid</CODE></A>
+        API instead.</FONT></P>
+    </LI>
+
     <LI><P ALIGN="justify">No exception are defined in case of failure (for example if a map projection
         fails to converge because the coordinate point is outside the valid area).</P>
         <P ALIGN="justify"><STRONG>PROPOSAL:</STRONG> <FONT COLOR="red">The specification should
@@ -86,9 +98,9 @@
         looks like a special case of <A HREF="../cs/ObliqueCartesianCS.html"><CODE>ObliqueCartesianCS</CODE></A>.
         Maybe it should extends <CODE>ObliqueCartesianCS</CODE>. This is a similar argument than the
         one used in ISO-19107, which said that <code>Circle</code> is a sub-class of <code>Ellipse</code>
-        since the former is a special case of the later. Doing so would help to clarify the semantic of
-        <A HREF="../sc/ImageCRS.html"><CODE>ImageCRS</CODE></A> (no need for separated <CODE>getCartesianCS()</CODE>
-        and <CODE>getObliqueCartesianCS()</CODE> methods).</P>
+        since the former is a special case of the later (see 5.1.5 <cite>Strong substitutability</cite>).
+        Doing so would help to clarify the semantic of <A HREF="../sc/ImageCRS.html"><CODE>ImageCRS</CODE></A>
+        (no need for separated <CODE>getCartesianCS()</CODE> and <CODE>getObliqueCartesianCS()</CODE> methods).</P>
         <P ALIGN="justify"><STRONG>PROPOSAL:</STRONG> <FONT COLOR="red">Move (in the hierarchy)
         <A HREF="../cs/CartesianCS.html"><CODE>CartesianCS</CODE></A> as a sub-interface of
         <A HREF="../cs/ObliqueCartesianCS.html"><CODE>ObliqueCartesianCS</CODE></A>. Drop
