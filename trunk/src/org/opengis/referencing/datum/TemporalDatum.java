@@ -41,7 +41,7 @@ public interface TemporalDatum extends Datum {
      * Description of the point or points used to anchor the datum to the Earth.
      *
      * @deprecated This attribute is defined in the {@link Datum} parent interface,
-     *             but is not used by a temporal Datum.
+     *             but is not used by a temporal datum.
      *
      * @return Always <code>null</code>.
      */
@@ -51,7 +51,7 @@ public interface TemporalDatum extends Datum {
      * The time after which this datum definition is valid.
      *
      * @deprecated This attribute is defined in the {@link Datum} parent interface,
-     *             but is not used by a temporal Datum.
+     *             but is not used by a temporal datum.
      *
      * @return Always <code>null</code>.
      */
