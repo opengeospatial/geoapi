@@ -12,6 +12,24 @@
   <H2>Changes in Spatial Referencing by Coordinates</H2>
   <UL>
     <LI><P ALIGN="justify">Added a
+        <A HREF="../rs/Info.html"><CODE>Info</CODE></A> interface as the parent of the following ones:
+        <A HREF="../rs/ReferenceSystem.html"><CODE>ReferenceSystem</CODE></A>,
+        <A HREF="../cs/CoordinateSystem.html"><CODE>CoordinateSystem</CODE></A>,
+        <A HREF="../cs/CoordinateSystemAxis.html"><CODE>CoordinateSystemAxis</CODE></A>,
+        <A HREF="../cd/Datum.html"><CODE>Datum</CODE></A>,
+        <A HREF="../cd/PrimeMeridian.html"><CODE>PrimeMeridian</CODE></A>,
+        <A HREF="../cd/Ellipsoid.html"><CODE>Ellipsoid</CODE></A>,
+        <A HREF="../cc/CoordinateOperation.html"><CODE>CoordinateOperation</CODE></A>,
+        <A HREF="../cc/OperationMethod.html"><CODE>OperationMethod</CODE></A>,
+        <A HREF="../cc/OperationParameter.html"><CODE>OperationParameter</CODE></A> and
+        <A HREF="../cc/OperationParameterGroup.html"><CODE>OperationParameterGroup</CODE></A>.
+        This interface defines the <CODE>getName</CODE>, <CODE>getIdentifiers</CODE> and
+        <CODE>getRemarks</CODE> methods, which are common to all above-cited interfaces.
+        This <CODE>Info</CODE> root interface is similar to the legacy
+        <A HREF=../../../../legacy/org/opengis/cs/CS_Info.html><CODE>CS_Info</CODE></A>
+        interface from the implementation specification 1.0.</P></LI>
+
+    <LI><P ALIGN="justify">Added a
         <A HREF="../cc/Matrix.html"><CODE>Matrix</CODE></A> interface as the parent of
         <A HREF="../dq/CovarianceMatrix.html"><CODE>CovarianceMatrix</CODE></A>.</P></LI>
   </UL>

@@ -3,11 +3,8 @@
  */
 package org.opengis.cd;
 
-// J2SE direct dependencies
-import java.util.Locale;
-
 // OpenGIS direct dependencies
-import org.opengis.rs.Identifier;
+import org.opengis.rs.Info;
 
 
 /**
@@ -20,30 +17,7 @@ import org.opengis.rs.Identifier;
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 2.0
  */
-public interface Ellipsoid {
-    /**
-     * The name by which this ellipsoid is identified.
-     *
-     * @return The ellipsoid name.
-     * @UML mandatory ellipsoidName
-     *
-     * @rename  Omitted the "<code>ellipsoid</code>" prefix.
-     */
-    public String getName();
-
-    /**
-     * Set of alternative identifications of this ellipsoid. The first identifier, if
-     * any, is normally the primary identification code, and any others are aliases.
-     *
-     * @return  The ellipsoid identifiers, or an empty array if there is none.
-     * @UML optional ellipsoidID
-     *
-     * @rename  Omitted the "<code>ellipsoid</code>" prefix.
-     *          Replaced "<code>ID</code>" by "<code>Identifiers</code>" in order to
-     *          1) use the return type class name and 2) use the plural form.
-     */
-    public Identifier[] getIdentifiers();
-
+public interface Ellipsoid extends Info {
     /**
      * Length of the semi-major axis of the ellipsoid.
      *
@@ -66,14 +40,4 @@ public interface Ellipsoid {
      *          instead?
      */
     public double getSecondDefiningParameter();
-
-    /**
-     * Comments on or information about this ellipsoid, including source information.
-     *
-     * @param  locale The desired locale for the remarks to be returned,
-     *         or <code>null</code> for a non-localized string (or a default default locale).
-     * @return Ellipsoid remarks, or <code>null</code> if not available.
-     * @UML optional remarks
-     */
-    public String getRemarks(Locale locale);
 }

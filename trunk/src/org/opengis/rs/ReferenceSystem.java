@@ -20,34 +20,7 @@ import org.opengis.gm.Envelope;
  *
  * @see org.opengis.sc.CoordinateReferenceSystem
  */
-public interface ReferenceSystem {
-    /**
-     * The name by which this reference system is uniquely identified.
-     *
-     * @return The reference system name.
-     * @UML mandatory srsName
-     *
-     * @rename  Omitted the "<code>srs</code>" prefix,
-     *          which stands as an abbreviation for this enclosing class.
-     *
-     * @revisit Should we ask for a (possibly null) {@link java.util.Locale} argument?
-     */
-    public String getName();
-
-    /**
-     * Set of alternative identifications of this reference system. The first identifier,
-     * if any, is normally the primary identification code, and any others are aliases.
-     *
-     * @return Coordinate reference system identifiers, or an empty array if there is none.
-     * @UML optional srsID
-     *
-     * @rename  Omitted the "<code>srs</code>" prefix,
-     *          which stands as an abbreviation for this enclosing class.
-     *          Replaced "<code>ID</code>" by "<code>Identifiers</code>" in order to
-     *          1) use the return type class name and 2) use the plural form.
-     */
-    public Identifier[] getIdentifiers();
-
+public interface ReferenceSystem extends Info {
     /**
      * Area for which the (coordinate) reference system is valid.
      *
@@ -63,21 +36,12 @@ public interface ReferenceSystem {
      * Description of domain of usage, or limitations of usage, for which this
      * (coordinate) reference system object is valid.
      *
-     * @param  locale The desired locale for the scope to be returned,
-     *         or <code>null</code> for a non-localized string (or a default default locale).
-     * @return Coordinate reference system scope, or <code>null</code> if not available.
+     * @param  locale The desired locale for the scope to be returned, or <code>null</code>
+     *         for a scope in some default locale (may or may not be the
+     *         {@linkplain Locale#getDefault() system default}).
+     * @return The Coordinate reference system scope in the given locale, or <code>null</code> if
+     *         none. If no scope is available in the given locale, then some default locale is used.
      * @UML optional scope
      */
     public String getScope(Locale locale);
-
-    /**
-     * Comments on or information about this (coordinate) reference system,
-     * including data source information.
-     *
-     * @param  locale The desired locale for the remarks to be returned,
-     *         or <code>null</code> for a non-localized string (or a default default locale).
-     * @return Coordinate reference system remarks, or <code>null</code> if not available.
-     * @UML optional remarks
-     */
-    public String getRemarks(Locale locale);
 }

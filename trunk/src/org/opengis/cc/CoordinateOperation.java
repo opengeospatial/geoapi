@@ -8,8 +8,8 @@ import java.util.Locale;
 
 // OpenGIS direct dependencies
 import org.opengis.sc.CRS;
+import org.opengis.rs.Info;
 import org.opengis.gm.Envelope;
-import org.opengis.rs.Identifier;
 import org.opengis.dq.PositionalAccuracy;
 
 
@@ -30,31 +30,7 @@ import org.opengis.dq.PositionalAccuracy;
  *
  * @revisit We need to define transformation methods!
  */
-public interface CoordinateOperation {
-    /**
-     * The name by which this coordinate operation is identified.
-     *
-     * @return The coordinate operation name.
-     * @UML mandatory coordinateOperationName
-     *
-     * @rename Omitted the "<code>coordinateOperation</code>" prefix.
-     */
-    public String getName();
-
-    /**
-     * Set of alternative identifications of this coordinate operation. The first
-     * identifier, if any, is normally the primary identification code, and any
-     * others are aliases.
-     *
-     * @return The coordinate operation identifiers, or an empty array if there is none.
-     * @UML optional coordinateOperationID
-     *
-     * @rename  Omitted the "<code>coordinateOperation</code>" prefix.
-     *          Replaced "<code>ID</code>" by "<code>Identifiers</code>" in order to
-     *          1) use the return type class name and 2) use the plural form.
-     */
-    public Identifier[] getIdentifiers();
-
+public interface CoordinateOperation extends Info {
     /**
      * Returns the source CRS. The source CRS is mandatory for Transformations only.
      * Conversions may have a source CRS that is not specified here, but through
@@ -113,20 +89,12 @@ public interface CoordinateOperation {
     /**
      * Description of domain of usage, or limitations of usage, for which this operation is valid.
      *
-     * @param  locale The desired locale for the scope to be returned,
-     *         or <code>null</code> for a non-localized string (or a default default locale).
-     * @return The coordinate operation scope, or <code>null</code> if not available.
+     * @param  locale The desired locale for the coordinate operation scope to be returned,
+     *         of <code>null</code> for scope in some default locale (may or may not be the
+     *         {@linkplain Locale#getDefault() system default}).
+     * @return The coordinate operation scope in the given locale, or <code>null</code> if none.
+     *         If no scope is available in the given locale, then some default locale is used.
      * @UML optional scope
      */
     public String getScope(Locale locale);
-
-    /**
-     * Comments on the coordinate operation, including source information.
-     *
-     * @param  locale The desired locale for the remarks to be returned,
-     *         or <code>null</code> for a non-localized string (or a default default locale).
-     * @return The coordinate operation remarks, or <code>null</code> if not available.
-     * @UML optional remarks
-     */
-    public String getRemarks(Locale locale);
 }
