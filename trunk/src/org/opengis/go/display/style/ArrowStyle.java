@@ -15,12 +15,13 @@ import java.util.ArrayList;
 
 // OpenGIS direct dependencies
 import org.opengis.util.SimpleEnumerationType;
+import org.opengis.util.CodeList;
 
 
 /**
  * Indicates the various enumerations of drawing a line with an arrow head.
  * This class defines static constants for all of the standard choices.
- * 
+ *
  * <p>An implementation is not required to implement the entire list of available
  * arrow styles.  At runtime, the list of implemented arrow styles can be retrieved
  * from a {@link org.opengis.go.display.DisplayCapabilities} object (that was itself
@@ -35,12 +36,11 @@ import org.opengis.util.SimpleEnumerationType;
  * <code>DisplayCapabilities</code> instance associated with the
  * correct provider.</p>
  * 
- * @version 0.2
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
- *
- * @revisit Localize descriptions.
+ * @version $Revision$, $Date$
  */
 public class ArrowStyle extends SimpleEnumerationType {
+
     //*************************************************************************
     //  Static Fields
     //*************************************************************************
@@ -53,21 +53,19 @@ public class ArrowStyle extends SimpleEnumerationType {
     /**
      * Solid line with an no arrowhead.
      */
-    public static final ArrowStyle NONE 
-        = new ArrowStyle("NONE", "No arrow head will be drawn");
+    public static final ArrowStyle NONE = new ArrowStyle("NONE", "No arrow head will be drawn");
 
     /**
      * Solid line with an open arrowhead on one end in the foreground color.
      */
-    public static final ArrowStyle OPEN_ARROW
-        = new ArrowStyle("OPEN_ARROW",
-                         "Single line with an open arrowhead.");
+    public static final ArrowStyle OPEN_ARROW =
+        new ArrowStyle("OPEN_ARROW", "Single line with an open arrowhead.");
+
     /**
      * Solid line with a filled arrowhead on one end.
      */
-    public static final ArrowStyle SOLID_ARROW
-        = new ArrowStyle("SOLID_ARROW",
-                         "Single line with a filled arrowhead.");
+    public static final ArrowStyle SOLID_ARROW =
+        new ArrowStyle("SOLID_ARROW", "Single line with a filled arrowhead.");
 
     /**
      * Double line with large arrowhead.
@@ -104,13 +102,13 @@ public class ArrowStyle extends SimpleEnumerationType {
     public static ArrowStyle[] values() {
         synchronized (VALUES) {
             return (ArrowStyle[]) VALUES.toArray(new ArrowStyle[VALUES.size()]);
-        }
     }
+}
 
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
-    public ArrowStyle[] family() {
+    public CodeList[] family() {
         return values();
     }
 }

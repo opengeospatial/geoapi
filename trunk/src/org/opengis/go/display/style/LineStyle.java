@@ -15,6 +15,7 @@ import java.util.ArrayList;
 
 // OpenGIS direct dependencies
 import org.opengis.util.SimpleEnumerationType;
+import org.opengis.util.CodeList;
 
 
 /**
@@ -42,10 +43,11 @@ import org.opengis.util.SimpleEnumerationType;
  * For others, a description of the style or an indication of the
  * software where the style can be seen is given.</p>
  * 
- * @version 0.2
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
+ * @version $Revision$, $Date$
  */
 public class LineStyle extends SimpleEnumerationType {
+    
     //*************************************************************************
     //  Static Fields
     //*************************************************************************
@@ -54,19 +56,18 @@ public class LineStyle extends SimpleEnumerationType {
      * <strong>Must be declared first!</strong>.
      */
     private static final List VALUES = new ArrayList(2);
-
+    
     /**
      * The line should be drawn as a single line.
-     */ 
-    public static final LineStyle SINGLE
-    	= new LineStyle("SINGLE", "Single Line");    
-
+     */
+    public static final LineStyle SINGLE = new LineStyle("SINGLE", "Single Line");
+    
     /**
      * The line should be drawn as double parallel lines.
      */
     public static final LineStyle DOUBLE
         = new LineStyle("DOUBLE", "Double Line");
-
+    
     //*************************************************************************
     //  Constructor
     //*************************************************************************
@@ -83,7 +84,7 @@ public class LineStyle extends SimpleEnumerationType {
      */
     protected LineStyle(String name, String description) {
         super(VALUES, name, description, loadIconResource(LineStyle.class, name + ".gif"));
-    }    
+}
 
     //*************************************************************************
     //  Methods
@@ -101,7 +102,7 @@ public class LineStyle extends SimpleEnumerationType {
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
-    public LineStyle[] family() {
+    public CodeList[] family() {
         return values();
     }
 }

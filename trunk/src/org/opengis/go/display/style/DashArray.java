@@ -9,15 +9,14 @@
  *************************************************************************************************/
 package org.opengis.go.display.style;
 
-
 /**
  * Indicates the various enumerations of drawing a pattern line.
  * An implementor can create a <code>DashArray</code> by passing
  * a float array in the constructor that would indicate the dash
  * pattern to be drawn.
  *
- * @version 0.2
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
+ * @version $Revision$, $Date$
  */
 public class DashArray extends LinePattern {
 
@@ -37,7 +36,7 @@ public class DashArray extends LinePattern {
     /**
      * Construct an enumeration using the specified pattern.
      */
-    public DashArray(String name, String description, float[] pattern){
+    public DashArray(String name, String description, float[] pattern) {
         super(name, description);
         dashPattern = pattern;
     }
@@ -51,7 +50,8 @@ public class DashArray extends LinePattern {
      *
      * @revisit Should clone the array in order to protect the enum from change.
      */
-    public float[] getDashPattern(){
+    public float[] getDashPattern() {
         return dashPattern;
     }
 }
+

@@ -9,17 +9,17 @@
  *************************************************************************************************/
 package org.opengis.go.display.primitive;
 
-
 /**
  * Extends the <code>AggregateGraphic</code> interface to add the ability for the user
  * to specify a stacking order or Z-order.  When the objects contained in this aggregate
  * are drawn, they should be drawn in the order they appear in the list of children,
  * starting with index 0.
  * 
- * @version 0.2
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
+ * @version $Revision$, $Date$
  */
 public interface OrderedAggregateGraphic extends AggregateGraphic {
+
     /**
      * Adds a child into this aggregate, inserting it before the child
      * at the given index.  The existing child at the given index and
@@ -43,3 +43,4 @@ public interface OrderedAggregateGraphic extends AggregateGraphic {
      */
     public Graphic removeChild(int index);
 }
+

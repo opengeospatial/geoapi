@@ -9,12 +9,12 @@
  *************************************************************************************************/
 package org.opengis.go.display.event;
 
-
 /**
  * Marker interface for classes that handle events from input devices.
  *
- * @version 0.2
- * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
+ * @author  Open GIS Consortium, Inc.
+ * @version $Revision$, $Date$ 
  */
 public interface EventManager {
+
 }

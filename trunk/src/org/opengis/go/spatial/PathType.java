@@ -10,25 +10,28 @@
 package org.opengis.go.spatial;
 
 // J2SE direct dependencies
-import java.util.Collection;
+import java.util.List;
+import java.util.ArrayList;
 
-// OpenGIS direct dependencies
 import org.opengis.util.SimpleEnumerationType;
-
+import org.opengis.util.CodeList;
 
 /**
- * Base class for objects that represent the various methods for computing a path between
- * two locations. Singleton instances of PathType will exist to represent for example
+ * <p>
+ * This class serves as the base class for objects that represent the
+ * various methods for computing a path between two locations.
+ * Singleton instances of PathType will exist to represent for example
  * a path of constant bearing (rhumbline), or a great circle path.
+ * <p>
  * Path type is an algorithmic sequence of interpolation and projection.
  * <ul>
- *   <li>For <b>rhumbline</b>, <b>great circle</b>, and <b>vector</b>, first
- *       <i>interpolation</i> is done on the verteces, which gives in-between points.
- *       These in-between points are then <i>projected</i> into the display space, 
- *       which converts them to display points.</li>
- *   <li>For <b>pixel-straight</b> and <b>spline</b>, the verteces are first <i>projected</i>
- *       into the display space as display points. These display points are <i>interpolated</i>,
- *       which generates in-between display points.</li>
+ * <li>For <b>rhumbline</b>, <b>great circle</b>, and <b>vector</b>, first
+ * <i>interpolation</i> is done on the verteces, which gives in-between points.
+ * These in-between points are then <i>projected</i> into the display space, 
+ * which converts them to display points.</li>
+ * <li>For <b>pixel-straight</b> and <b>spline</b>, the verteces are first <i>projected</i>
+ * into the display space as display points. These display points are <i>interpolated</i>,
+ * which generates in-between display points.</li>
  * </ul>
  * For each path type, an implementations will iteratively apply the respective algorithms
  * until the appropriate display resolution is reached.
@@ -44,19 +47,40 @@ import org.opengis.util.SimpleEnumerationType;
  * </table>
  * </center>
  * <p>
- * 
- * @version 0.2
- * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
+ * @author Open GIS Consortium, Inc.
+ * @version $Revision$, $Date$
  */
-public abstract class PathType extends SimpleEnumerationType {
+public class PathType extends SimpleEnumerationType {
+
     /**
-     * Creates a new PathType with the given value and name.
-     *
-     * @param values the list of values to add to.
-     * @param name the short name for the enum.
-     * @param description the description for the enum.
+     * The list of enumeration available in this virtual machine.
+     * <strong>Must be declared first!</strong>.
      */
-    protected PathType(Collection values, String name, String description) {
-        super(values, name, description);
+    protected static final List VALUES = new ArrayList();   
+     
+	/**
+	 * Creates a new PathType with the given value and name.
+	 * @param value the int value for the enum.
+	 * @param name the short name for the enum.
+	 * @param description the description for the enum.
+	 */
+	protected PathType(String name, String description) {
+            super(VALUES, name, description);		
+	}
+	
+    /**
+     * Returns the list of <code>PathType</code>s.
+     */
+    public static PathType[] values() {
+        synchronized (VALUES) {
+            return (PathType[]) VALUES.toArray(new PathType[VALUES.size()]);
     }
+}
+
+    /**
+     * Returns the list of enumerations of the same kind than this enum.
+     */
+    public CodeList[] family() {
+        return values();
+    }  	
 }

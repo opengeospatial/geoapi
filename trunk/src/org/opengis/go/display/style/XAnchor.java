@@ -15,17 +15,19 @@ import java.util.ArrayList;
 
 // OpenGIS direct dependencies
 import org.opengis.util.SimpleEnumerationType;
+import org.opengis.util.CodeList;
 
 
 /**
  * Defines the various XAnchor types.
  * 
- * @version 0.2
+ * @version $Revision$, $Date$
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  *
  * @revisit Localize descriptions.
  */
 public class XAnchor extends SimpleEnumerationType {
+    
     //*************************************************************************
     //  Static Fields
     //*************************************************************************
@@ -34,26 +36,26 @@ public class XAnchor extends SimpleEnumerationType {
      * <strong>Must be declared first!</strong>.
      */
     private static final List VALUES = new ArrayList(3);
-
+    
     /**
-     * Align to the left of the field.
-     */
+      * Align to the left of the field.
+      */
     public static final XAnchor LEFT = new XAnchor("LEFT", "");
-
+    
     /**
-     * Align the center of the field.
-     */
+      * Align the center of the field.
+      */
     public static final XAnchor CENTER = new XAnchor("CENTER", "");
-
+    
     /**
-     * Align to the right of the field.
-     */
+      * Align to the right of the field.
+      */
     public static final XAnchor RIGHT = new XAnchor("RIGHT", "");
-
+    
     //*************************************************************************
     //  Constructor
     //*************************************************************************
-
+    
     /**
      * Construct a new XAnchor with the given name and description.
      * This constructor should only be used to make the static
@@ -78,13 +80,13 @@ public class XAnchor extends SimpleEnumerationType {
     public static XAnchor[] values() {
         synchronized (VALUES) {
             return (XAnchor[]) VALUES.toArray(new XAnchor[VALUES.size()]);
-        }
     }
+}
 
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
-    public XAnchor[] family() {
+    public CodeList[] family() {
         return values();
     }
 }

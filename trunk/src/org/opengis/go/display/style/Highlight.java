@@ -7,94 +7,86 @@
  ** Copyright (C) 2003 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
  **
  *************************************************************************************************/
-package org.opengis.go.display.style;
 
+package org.opengis.go.display.style;
 
 /**
  * Encapsulates the highlight attributes that can be applied to any
  * {@link org.opengis.go.display.primitive.Graphic}.
  *
- * @version 0.2
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
+ * @version $Revision$, $Date$
  */
 public interface Highlight {
-    /**
-     * Default blinking value.
-     */
-    public static final boolean DEFAULT_BLINKING = false;
+    
+    //*************************************************************************
+    //  Static Fields
+    //*************************************************************************
+    
+    //**  Highlight property names  **
+    
+    public static final String HIGHLIGHT_BLINK_PATTERN = "HIGHLIGHT_BLINK_PATTERN";    
+    public static final String HIGHLIGHT_BLINKING = "HIGHLIGHT_BLINKING";
+    
+    //**  Default Highlight property values  **    
+    
+    /**  Default blinking value.  */
+    public static final boolean DEFAULT_HIGHLIGHT_BLINKING = false;
 
-    /**
-     * Default blink pattern value.
-     */
-    public static final float[] DEFAULT_BLINK_PATTERN = {0.5f, 0.5f};
+    /**  Default blink pattern value.  */
+    public static final float[] DEFAULT_HIGHLIGHT_BLINK_PATTERN = {0.5f, 0.5f};
+    
+    //*************************************************************************
+    //  Methods
+    //*************************************************************************
     
     /**
-     * Blinking attribute name.
-     */
-    public static final String BLINKING = "HIGHLIGHT_BLINKING";
-
-    /**
-     * Blink pattern attribute name.
-     */
-    public static final String BLINK_PATTERN = "HIGHLIGHT_BLINK_PATTERN";
-        
-    /**
      * Returns the blinking value.
-     *
      * @return the blinking value.
      */
-    public boolean getBlinking();
+    public boolean getHighlightBlinking();
     
     /**
      * Returns whether the blinking value has been set.
-     *
-     * @return <code>true</code> if the blinking value has been set,
-     *         <code>false</code> otherwise.
+     * @return true if the blinking value has been set, false otherwise.
      */    
-    public boolean isBlinkingSet();
+    public boolean isHighlightBlinkingSet();
     
     /**
      * Sets the blinking value.
-     *
      * @param blinking the blinking value.
      */    
-    public void setBlinking(boolean blinking);
+    public void setHighlightBlinking(boolean blinking);
     
     /**
      * Sets the fact that the blinking value has been set.
-     *
-     * @param flag <code>true</code> if the blinking value has been set,
-     *             <code>false</code> otherwise.
+     * @param flag true if the blinking value has been set, false otherwise.
      */    
-    public void setBlinkingSet(boolean flag);
+    public void setHighlightBlinkingSet(boolean flag);
    
     /**
      * Returns the blink pattern value.
-     *
      * @return the blink pattern value.
      */
-    public float[] getBlinkPattern();
+    public float[] getHighlightBlinkPattern();
     
     /**
      * Returns whether the blink pattern value has been set.
-     *
-     * @return <code>true</code> if the blink pattern value has been set,
-     *         <code>false</code> otherwise.
+     * @return true if the blink pattern value has been set, false otherwise.
      */    
-    public boolean isBlinkPatternSet();
+    public boolean isHighlightBlinkPatternSet();
     
     /**
      * Sets the blink pattern value.
-     *
      * @param blinkPattern the blink pattern value.
      */    
-    public void setBlinkPattern(float[] blinkPattern);
+    public void setHighlightBlinkPattern(float[] blinkPattern);
     
     /**
      * Sets the fact that the blink pattern value has been set.
-     *
-     * @param flag <code>true</code> if the blink pattern value has been set,
-     *             <code>false</code> otherwise.
+     * @param flag true if the blink pattern value has been set, false otherwise.
      */    
-    public void setBlinkPatternSet(boolean flag);
+    public void setHighlightBlinkPatternSet(boolean flag);
+   
 }
+

@@ -9,14 +9,11 @@
  *************************************************************************************************/
 package org.opengis.go.display.primitive;
 
-// Extensions direct dependencies
-import javax.units.Unit;
+import com.dautelle.units.Unit;
 
-// OpenGIS direct dependencies
-import org.opengis.spatialschema.geometry.DirectPosition;
 import org.opengis.go.display.style.XAnchor;
 import org.opengis.go.display.style.YAnchor;
-
+import org.opengis.spatialschema.DirectPosition;
 
 /**
  * Defines a common abstraction for implementations that render text on a drawing surface.
@@ -24,10 +21,11 @@ import org.opengis.go.display.style.YAnchor;
  * measured positively as a clockwise angle, starting from a reference line within the 
  * Coordinate Reference System and ending at the x-axis of the local Cartesian plane.
  * 
- * @version 0.2
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
+ * @version $Revision$, $Date$
  */
 public interface GraphicLabel extends Graphic {
+
     /**
      * Sets the text that the label will render.
      * @param text the text to display.
@@ -89,15 +87,15 @@ public interface GraphicLabel extends Graphic {
      * @param rotation the new rotation.
      * @param unit the Unit for the angle value.
      */
-    public void setRotation(double rotation, Unit unit); 
+    public void setRotation(double rotation, Unit unit);
 
     /**
      * Returns the orientation by which to rotate the text before rendering.
      * @param unit the Unit for the angle value.
      * @return the rotation orientation.
      */
-    public double getRotation(Unit unit); 
-    
+    public double getRotation(Unit unit);
+
     /**
      * Indicates whether this primitive is displaying anchor handles that allow the
      * user to change the rotation of the text.
@@ -109,4 +107,6 @@ public interface GraphicLabel extends Graphic {
      * anchor handles that allow the user to change the rotation of the text.
      */
     public void setAllowingRotation(boolean newValue);
+
 }
+

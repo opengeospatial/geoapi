@@ -12,17 +12,16 @@ package org.opengis.go.display.event;
 // J2SE direct dependencies
 import java.util.Stack;
 
-
 /**
  * Abstraction of a helper or delegate for {@link EventHandler} management.
  *
  * @version 0.2
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  */
-public class EventManagerSupport implements EventManager {
+public abstract class EventManagerSupport implements EventManager {
 
     //*************************************************************************
-    //  Fields and constructors
+    //  Fields
     //*************************************************************************
     /**
      * Set to <code>true</code> and recompile for tracing events to {@link System#err}.
@@ -76,7 +75,6 @@ public class EventManagerSupport implements EventManager {
     protected synchronized void enableEventHandler(final EventHandler eventHandler) {
         if (currentEventHandler != null) {
             currentEventHandler.handlerDisabled();
-
             if (eventStack == null || eventStack.peek() != currentEventHandler) {
                 currentEventHandler.handlerRemoved();
             }
@@ -98,7 +96,6 @@ public class EventManagerSupport implements EventManager {
      */
     protected synchronized void pushEventHandler(final EventHandler eventHandler) {
         enableEventHandler(eventHandler);
-
         if (eventStack == null) {
             eventStack = new Stack();
         }
@@ -113,13 +110,11 @@ public class EventManagerSupport implements EventManager {
      */
     protected synchronized void removeEventHandler(final EventHandler eventHandler) {
         if (eventStack != null) {
-            eventStack.remove(eventHandler);    // if it's on the stack
+            eventStack.remove(eventHandler); // if it's on the stack
         }
-
         if (currentEventHandler == eventHandler) {
             currentEventHandler.handlerDisabled();
             currentEventHandler.handlerRemoved();
-
             if ((eventStack == null) || eventStack.isEmpty()) {
                 currentEventHandler = null;
             } else {
@@ -132,7 +127,7 @@ public class EventManagerSupport implements EventManager {
     /**
      * Replace a <code>EventHandler</code> in the stack with another <code>EventHandler</code>.
      *
-     * @param  existingHandler the <code>EventHandler</code> to be replaced.
+     * @param existingHandler the <code>EventHandler</code> to be replaced.
      * @param  replacementHandler the <code>EventHandler</code> that is replacing the old one.
      * @return <code>true</code> if <code>existingHandler</code> was found and replaced
      *         by <code>replacementHandler</code>.
@@ -149,7 +144,6 @@ public class EventManagerSupport implements EventManager {
     protected synchronized boolean replaceEventHandler(final EventHandler existingHandler,
                                                        final EventHandler replacementHandler) {
         boolean replaced = false;
-
         if (existingHandler != null && replacementHandler != null) {
             if (eventStack != null && eventStack.contains(existingHandler)) {
                 int position = eventStack.indexOf(existingHandler);
