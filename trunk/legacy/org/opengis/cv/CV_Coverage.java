@@ -9,15 +9,15 @@
  * You can redistribute it, but should not modify it unless
  * for greater OpenGIS compliance.
  */
-package org.opengis.coverage;
+package org.opengis.cv;
 
 // CSS dependencies
 import org.opengis.pt.PT_Envelope;
 import org.opengis.pt.PT_CoordinatePoint;
-import org.opengis.crs.cs.CS_CoordinateSystem;
+import org.opengis.cs.CS_CoordinateSystem;
 
 // Forward GCS dependencies
-import org.opengis.coverage.grid.GC_GridCoverage;
+import org.opengis.gc.GC_GridCoverage;
 
 // Remote Method Invocation
 import java.rmi.Remote;
@@ -105,7 +105,7 @@ public interface CV_Coverage extends Remote {
      *
      * This coordinate system is usually different than the grid coordinate system
      * of the grid. Grid coverage can be accessed (re-projected) with new coordinate
-     * system with the {@link org.opengis.coverage.processing.GP_GridCoverageProcessor} component.
+     * system with the {@link org.opengis.gp.GP_GridCoverageProcessor} component.
      * In this case, a new instance of a grid coverage is created.
      * <br><br>
      * Note: If a coverage does not have an associated coordinate system,
@@ -159,7 +159,7 @@ public interface CV_Coverage extends Remote {
      * method should not be called.
      *
      * If the <code>GC_GridCoverage}</code> was produced using
-     * {link org.opengis.coverage.processing.GP_GridCoverageProcessor} then it should return the source
+     * {link org.opengis.gp.GP_GridCoverageProcessor} then it should return the source
      * grid coverage of the one used as input to <code>GP_GridCoverageProcessor</code>.
      * In general the source() method is intended to return the original
      * <code>GC_GridCoverage</code> on which it depends.

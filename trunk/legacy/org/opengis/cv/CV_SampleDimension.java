@@ -9,10 +9,10 @@
  * You can redistribute it, but should not modify it unless
  * for greater OpenGIS compliance.
  */
-package org.opengis.coverage;
+package org.opengis.cv;
 
 // CSS dependencies
-import org.opengis.crs.cs.CS_Unit;
+import org.opengis.cs.CS_Unit;
 
 // Remote Method Invocation
 import java.rmi.Remote;
