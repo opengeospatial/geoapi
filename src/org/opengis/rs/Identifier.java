@@ -8,8 +8,8 @@ import org.opengis.ci.Citation;
 
 
 /**
- * An identification of a CRS object. The first use of an RS_Identifier for an object, if any,
- * is normally the primary identification code, and any others are aliases.
+ * An identification of a CRS object. The first use of an <code>Identifier</code> for an object,
+ * if any, is normally the primary identification code, and any others are aliases.
  *  
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg;</A>
  * @version 2.0
@@ -48,7 +48,7 @@ public interface Identifier {
      *         or <code>null</code> if not available.
      *
      * @optional
-     * @task REVISIT: Should we ask for a (possibly null) java.util.Locale argument?
+     * @todo Should we ask for a (possibly null) java.util.Locale argument?
      */
     public String getVersion();
 
@@ -60,7 +60,6 @@ public interface Identifier {
      *         or <code>null</code> if not available.
      *
      * @optional
-     * @task TODO: Uncomment
      */
     public Citation getAuthority();
 
@@ -74,7 +73,7 @@ public interface Identifier {
      *         or <code>null</code> if not available.
      *
      * @optional
-     * @task REVISIT: Should we ask for a (possibly null) java.util.Locale argument?
+     * @todo Should we ask for a (possibly null) java.util.Locale argument?
      */
     public String[] getRemarks();
 }
