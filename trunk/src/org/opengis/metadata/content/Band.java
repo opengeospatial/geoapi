@@ -60,7 +60,7 @@ public interface Band extends RangeDimension {
      * in each band of each pixel.
      * Returns <code>null</code> if unspecified.
      *
-     * @optional bitsPerValue
+     * @UML optional bitsPerValue
      */
     Integer getBitsPerValue();
 
@@ -68,7 +68,7 @@ public interface Band extends RangeDimension {
      * Number of discrete numerical values in the grid data.
      * Returns <code>null</code> if unspecified.
      *
-     * @optional toneGradation
+     * @UML optional toneGradation
      */
     Integer getToneGradation();
 

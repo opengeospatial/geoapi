@@ -17,8 +17,8 @@ import java.util.Locale;
  * Information about the events or source data used in constructing the data specified by
  * the scope or lack of knowledge about lineage.
  *
- * Only one of {@linkplain #getStatement statement}, {@linkplain #getProcessStep process step}
- * and {@link #getSource source} should be provided.
+ * Only one of {@linkplain #getStatement statement}, {@linkplain #getProcessSteps process steps}
+ * and {@link #getSources sources} should be provided.
  *
  * @UML datatype LI_Lineage
  * @author ISO 19115
@@ -28,9 +28,10 @@ import java.util.Locale;
 public interface Lineage {
     /**
      * General explanation of the data producer’s knowledge about the lineage of a dataset.
-     * Should be provided only if {@linkplain Scope#getLevel scole level} is
-     * {@link org.opengis.metadata.ScopeCode#DATASET dataset} or
-     * {@link org.opengis.metadata.ScopeCode#SERIES series}.
+     * Should be provided only if
+     * {@linkplain org.opengis.metadata.quality.Scope#getLevel scope level} is
+     * {@linkplain org.opengis.metadata.maintenance.ScopeCode#DATASET dataset} or
+     * {@linkplain org.opengis.metadata.maintenance.ScopeCode#SERIES series}.
      *
      * @param  locale The desired locale for the description to be returned, or <code>null</code>
      *         for a description in some default locale (may or may not be the

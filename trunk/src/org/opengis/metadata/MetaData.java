@@ -82,7 +82,7 @@ public interface MetaData {
      *
      * @UML optional hierarchyLevelName
      *
-     * @revisit Should we merge with {@link #getHierarchyLevel} using a {@link java.util.Map}?
+     * @revisit Should we merge with {@link #getHierarchyLevels} using a {@link java.util.Map}?
      */
     String[] getHierarchyLevelNames();
 

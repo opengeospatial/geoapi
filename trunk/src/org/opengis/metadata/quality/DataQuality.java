@@ -31,8 +31,8 @@ public interface DataQuality {
 
     /**
      * Quantitative quality information for the data specified by the scope.
-     * Should be provided only if {@linkplain Scope#getLevel scole level} is
-     * {@link org.opengis.metadata.ScopeCode#DATASET dataset}.
+     * Should be provided only if {@linkplain Scope#getLevel scope level} is
+     * {@linkplain org.opengis.metadata.maintenance.ScopeCode#DATASET dataset}.
      *
      * @UML conditional report
      */
@@ -40,10 +40,10 @@ public interface DataQuality {
 
     /**
      * Non-quantitative quality information about the lineage of the data specified by the scope.
-     * Should be provided only if {@linkplain Scope#getLevel scole level} is
-     * {@link org.opengis.metadata.ScopeCode#DATASET dataset}.
+     * Should be provided only if {@linkplain Scope#getLevel scope level} is
+     * {@linkplain org.opengis.metadata.maintenance.ScopeCode#DATASET dataset}.
      *
-     * @UMl conditional lineage
+     * @UML conditional lineage
      */
     Lineage getLineage();
 }
