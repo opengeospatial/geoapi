@@ -19,6 +19,7 @@ import org.opengis.rs.NoSuchAuthorityCodeException;
  * which is also used in the <A HREF="http://www.remotesensing.org/geotiff/geotiff.html">GeoTIFF</A>
  * standard.
  *
+ * @UML abstract CS_CoordinateSystemAuthorityFactory in 1.0 specification
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 2.0
  */
@@ -50,6 +51,7 @@ public interface CRSAuthorityFactory extends AuthorityFactory {
      * @throws NoSuchAuthorityCodeException if the specified <code>code</code> was not found.
      * @throws FactoryException if the object creation failed for some other reason.
      *
+     * @UML operation createGeographicCoordinateSystem in 1.0 specification
      * @see org.opengis.cd.DatumAuthorityFactory#createGeodeticDatum
      */
     GeographicCRS createGeographicCRS(String code) throws FactoryException;
@@ -61,6 +63,7 @@ public interface CRSAuthorityFactory extends AuthorityFactory {
      * @throws NoSuchAuthorityCodeException if the specified <code>code</code> was not found.
      * @throws FactoryException if the object creation failed for some other reason.
      *
+     * @UML operation createProjectedCoordinateSystem in 1.0 specification
      * @see org.opengis.cd.DatumAuthorityFactory#createGeodeticDatum
      */
     ProjectedCRS createProjectedCRS(String code) throws FactoryException;
@@ -72,6 +75,7 @@ public interface CRSAuthorityFactory extends AuthorityFactory {
      * @throws NoSuchAuthorityCodeException if the specified <code>code</code> was not found.
      * @throws FactoryException if the object creation failed for some other reason.
      *
+     * @UML operation createVerticalCoordinateSystem in 1.0 specification
      * @see org.opengis.cd.DatumAuthorityFactory#createVerticalDatum
      */
     VerticalCRS createVerticalCRS(String code) throws FactoryException;
@@ -93,6 +97,8 @@ public interface CRSAuthorityFactory extends AuthorityFactory {
      * @param code Value allocated by authority.
      * @throws NoSuchAuthorityCodeException if the specified <code>code</code> was not found.
      * @throws FactoryException if the object creation failed for some other reason.
+     *
+     * @UML operation createCompoundCoordinateSystem in 1.0 specification
      */
     CompoundCRS createCompoundCRS(String code) throws FactoryException;
 }
