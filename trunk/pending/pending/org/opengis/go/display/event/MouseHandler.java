@@ -11,8 +11,8 @@
 package org.opengis.go.display.event;
 
 import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
 
+import java.awt.event.MouseMotionListener;
 
 /**
  * <code>MouseHandler</code> defines a common abstraction whose implementations
@@ -22,6 +22,7 @@ import java.awt.event.MouseMotionListener;
  * @author  Open GIS Consortium, Inc.
  * @version $Revision$, $Date$
  */
+
 public interface MouseHandler extends EventHandler, MouseListener, MouseMotionListener {
 
 }

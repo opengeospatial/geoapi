@@ -7,13 +7,13 @@
  ** Copyright (C) 2003 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
  **
  *************************************************************************************************/
-
 package org.opengis.go.display.typical.canvas;
 
 import org.opengis.go.geometry.BoundingRectangle;
 import org.opengis.go.display.canvas.CanvasParameterMutator;
 
 import com.dautelle.units.Unit;
+
 /**
  * Instances of this interface are used to modify the current
  * display state of a <code>Canvas</code> that has a XY (Cartesian plane) display area.
@@ -29,6 +29,7 @@ import com.dautelle.units.Unit;
  * @version $Revision$, $Date$
  */
 public interface XYParameterMutator extends CanvasParameterMutator {
+    
     /**
      * Sets the pixel width of the <code>Canvas</code> this controller works
      * for, if it is the active controller.

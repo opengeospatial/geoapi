@@ -7,7 +7,6 @@
  ** Copyright (C) 2003 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
  **
  *************************************************************************************************/
-
 package org.opengis.crs.datum;
 
 /**
@@ -18,6 +17,7 @@ package org.opengis.crs.datum;
  * @version $Revision$, $Date$
  */
 public interface DatumFactory {
+
     /**
      * Gets a Datum by name.  This name should be one of the well-known
      * datum keys.
@@ -25,5 +25,4 @@ public interface DatumFactory {
      * @return the Datum.
      */
     public Datum getDatum(String datumName);
-
 }

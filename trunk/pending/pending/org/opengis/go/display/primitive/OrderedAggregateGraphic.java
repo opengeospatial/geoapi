@@ -7,7 +7,6 @@
  ** Copyright (C) 2003 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
  **
  *************************************************************************************************/
-
 package org.opengis.go.display.primitive;
 
 /**
@@ -21,26 +20,27 @@ package org.opengis.go.display.primitive;
  * @version $Revision$, $Date$
  */
 public interface OrderedAggregateGraphic extends AggregateGraphic {
+
     /**
-     * Adds a child into this aggregate, inserting it before the child
+     * Adds a child into this <code>OrderedAggregateGraphic</code>, inserting it before the child
      * at the given index.  The existing child at the given index and
      * all those with a larger index have their index increased by one.
      *
      * @param index Index where the new child will be added.
-     * @param child New child Graphic to add.
+     * @param child New child <code>Graphic</code> to add.
      * @return Returns the child just added.
      */
     public Graphic insertChild(int index, Graphic child);
 
     /**
-     * Retrieves the child Graphic at the given index.
+     * Retrieves the child <code>Graphic</code> at the given index.
      */
     public Graphic getChild(int index);
 
     /**
      * Removes the child at the given index.
      *
-     * @return Returns the child just removed.
+     * @return the child just removed.
      */
     public Graphic removeChild(int index);
 }

@@ -7,7 +7,6 @@
  ** Copyright (C) 2003 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
  **
  *************************************************************************************************/
-
 package org.opengis.go.display.style;
 
 import org.opengis.go.util.SimpleEnumerationType;
@@ -25,7 +24,6 @@ import org.opengis.go.util.SimpleEnumerationType;
  * DisplayCapabilities object (that was itself retrieved from a
  * Canvas). An implementation may also implement
  * other line styles not listed here.</p>
-
  * <p>The integer constant returned from nextValue() is only a
  * convenience for the implemetor, allowing the use of array indexing
  * on integers. Implementators can build an array with sparse entries
@@ -55,16 +53,14 @@ public class LineStyle extends SimpleEnumerationType {
     
     /**
      * The line should be drawn as a single line.
-     */ 
-    public static final LineStyle SINGLE
-    	= new LineStyle("SINGLE", "Single Line");    
-
+     */
+    public static final LineStyle SINGLE = new LineStyle("SINGLE", "Single Line");
+    
     /**
      * The line should be drawn as double parallel lines.
      */
-    public static final LineStyle DOUBLE
-        = new LineStyle("DOUBLE", "Double Line");
-
+    public static final LineStyle DOUBLE = new LineStyle("DOUBLE", "Double Line");
+    
     /**
      * The next value to be assigned and the count of number of styles
      * actually given out.
@@ -90,7 +86,7 @@ public class LineStyle extends SimpleEnumerationType {
     public int getNumberOfStyles() {
         return next_value;
     }
-
+    
     //*************************************************************************
     //  Constructor
     //*************************************************************************
@@ -106,5 +102,5 @@ public class LineStyle extends SimpleEnumerationType {
      */
     protected LineStyle(String name, String description) {
         super(nextValue(), name, description, loadIconResource(LineStyle.class, name + ".gif"));
-    }    
+    }
 }

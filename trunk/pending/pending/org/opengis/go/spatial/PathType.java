@@ -7,7 +7,6 @@
  ** Copyright (C) 2003 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
  **
  *************************************************************************************************/
-
 package org.opengis.go.spatial;
 
 import org.opengis.go.util.SimpleEnumerationType;
@@ -47,6 +46,7 @@ import org.opengis.go.util.SimpleEnumerationType;
  * @version $Revision$, $Date$
  */
 public class PathType extends SimpleEnumerationType {
+    
 	/**
 	 * Creates a new PathType with the given value and name.
 	 * @param value the int value for the enum.

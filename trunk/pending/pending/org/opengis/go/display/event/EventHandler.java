@@ -7,7 +7,6 @@
  ** Copyright (C) 2003 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
  **
  *************************************************************************************************/
-
 package org.opengis.go.display.event;
 
 import java.util.EventListener;
@@ -24,21 +23,21 @@ import java.util.EventListener;
 public interface EventHandler extends EventListener {
 
     /**
-     * Called when the handler is first enabled, or reenabled after
+     * Called when this <code>EventHandler</code> is first enabled, or reenabled after
      * being temporarily disabled.
      * @see #handlerDisabled
      */
     public abstract void handlerEnabled();
 
     /**
-     * Called when the handler is temporarily disabled.
+     * Called when this <code>EventHandler</code> is temporarily disabled.
      * @see #handlerEnabled
      */
     public abstract void handlerDisabled();
 
     /**
-     * Called when the handler is permanently removed.
+     * Called when this <code>EventHandler</code> is permanently removed.
      */
     public abstract void handlerRemoved();
-    
+
 }

@@ -7,7 +7,6 @@
  ** Copyright (C) 2003 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
  **
  *************************************************************************************************/
-
 package org.opengis.go.display.primitive;
 
 import org.opengis.go.display.event.AggregationChangeEvent;
@@ -37,7 +36,7 @@ import org.opengis.go.display.event.AggregationListener;
  * @version $Revision$, $Date$
  */
 public interface AggregateGraphic extends Graphic {
-    
+
     /**
      * Sets the children of this <code>AggregateGraphic</code> to the given
      * set of <code>Graphic</code>s.  If there are already children assigned,
@@ -46,25 +45,24 @@ public interface AggregateGraphic extends Graphic {
      * @param children the new children of the <code>AggregateGraphic</code>.
      */
     public void setChildren(Graphic[] children);
-    
+
     /**
      * Returns the children of this <code>AggregateGraphic</code>. If no
      * children are assigned, the method returns an empty array.
-     * @return the child <code>Graphic</code>s of the <code>AggregateGraphic</code>.
+     * @return the <code>Graphic</code> children of the <code>AggregateGraphic</code>.
      */
     public Graphic[] getChildren();
 
     /**
      * Adds the given child to this <code>AggregateGraphic</code>.
-     * @param child	<code>Graphic</code> child to add to the aggregate.
+     * @param child	<code>Graphic</code> child to add to the <code>AggregateGraphic</code>.
      * @return the added <code>Graphic</code>.
      */
     public Graphic addChild(Graphic child);
 
     /**
      * Removes the given child from this <code>AggregateGraphic</code>.
-     * @param child	the <code>Graphic</code> child to remove from the 
-     *        aggregate.
+     * @param child	the <code>Graphic</code> child to remove from the <code>AggregateGraphic</code>.
      * @return the removed <code>Graphic</code>, or null if it is not found.
      */
     public Graphic removeChild(Graphic child);
@@ -88,30 +86,30 @@ public interface AggregateGraphic extends Graphic {
      * @return the number of children currently assigned.
      */
     public int getChildCount();
-    
+
     /**
      * Adds the given <code>AggregationListener</code> to this 
-	 * <code>AggregateGraphic</code>'s list of listeners. The listeners will
-	 * be notified if this <code>AggregateGraphic</code> adds or removes any elements.
-	 * 
-	 * @param listener the <code>AggregationListener</code> to be added.
+     * <code>AggregateGraphic</code>'s list of listeners. The listeners will
+     * be notified if this <code>AggregateGraphic</code> adds or removes any elements.
+     * 
+     * @param listener the <code>AggregationListener</code> to be added.
      */
     public void addAggregationListener(AggregationListener listener);
-    
-	/**
-	 * Removes the given <code>AggregationListener</code> from this 
-	 * <code>AggregateGraphic</code>'s list of listeners.
-	 * 
-	 * @param listener the <code>AggregationListener</code> to be removed.
-	 */
-	public void removeAggregationListener(AggregationListener listener);
-	
-	/**
-	 * Calls the <code>aggregationChanged()</code> method of all <code>AggregationListener</code>s
-	 * in this <code>AggregateGraphic</code>'s list of listeners. This method is called when any 
-	 * elements are added, removed, or reorderd in this <code>AggregateGraphic</code>.
-	 * 
-	 * @param event the <code>AggregationChangedEvent</code> to give to the listeners.
-	 */
-	public void aggregationChanged(AggregationChangeEvent event);
+
+    /**
+     * Removes the given <code>AggregationListener</code> from this 
+     * <code>AggregateGraphic</code>'s list of listeners.
+     * 
+     * @param listener the <code>AggregationListener</code> to be removed.
+     */
+    public void removeAggregationListener(AggregationListener listener);
+
+    /**
+     * Calls the <code>aggregationChanged()</code> method of all <code>AggregationListener</code>s
+     * in this <code>AggregateGraphic</code>'s list of listeners. This method is called when any 
+     * elements are added, removed, or reorderd in this <code>AggregateGraphic</code>.
+     * 
+     * @param event the <code>AggregationChangedEvent</code> to give to the listeners.
+     */
+    public void aggregationChanged(AggregationChangeEvent event);
 }

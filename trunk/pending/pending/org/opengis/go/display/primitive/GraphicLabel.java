@@ -7,14 +7,13 @@
  ** Copyright (C) 2003 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
  **
  *************************************************************************************************/
-
 package org.opengis.go.display.primitive;
+
+import com.dautelle.units.Unit;
 
 import org.opengis.go.display.style.XAnchor;
 import org.opengis.go.display.style.YAnchor;
 import org.opengis.spatialschema.coordinate.DirectPosition;
-
-import com.dautelle.units.Unit;
 
 /**
  * <code>GraphicLabel</code> defines a common abstraction for implementations
@@ -28,9 +27,9 @@ import com.dautelle.units.Unit;
  * @version $Revision$, $Date$
  */
 public interface GraphicLabel extends Graphic {
-    
+
     /**
-     * Sets the text that the label will render.
+     * Sets the text that this <code>GraphicLabel</code> will render.
      * @param text the text to display.
      */
     public void setText(String text);
@@ -42,13 +41,13 @@ public interface GraphicLabel extends Graphic {
     public String getText();
 
     /**
-     * Sets the position of the upper left corner of the label. 
+     * Sets the position of the upper left corner of this <code>GraphicLabel</code>. 
      * @param coord the wrapper for the position of the label.
      */
     public void setPosition(DirectPosition coord);
 
     /**
-     * Returns the DirectPosition corresponding to the position of the label.
+     * Returns the <code>DirectPosition</code> corresponding to the position of this <code>GraphicLabel</code>.
      * @return the wrapper for the position.
      */
     public DirectPosition getPosition();
@@ -90,25 +89,25 @@ public interface GraphicLabel extends Graphic {
      * @param rotation the new rotation.
      * @param unit the Unit for the angle value.
      */
-    public void setRotation(double rotation, Unit unit); 
+    public void setRotation(double rotation, Unit unit);
 
     /**
      * Returns the orientation by which to rotate the text before rendering.
      * @param unit the Unit for the angle value.
      * @return the rotation orientation.
      */
-    public double getRotation(Unit unit); 
-    
+    public double getRotation(Unit unit);
+
     /**
-     * Indicates whether this primitive is displaying anchor handles that allow the
+     * Indicates whether this <code>GraphicLabel</code> is displaying anchor handles that allow the
      * user to change the rotation of the text.
      */
     public boolean isAllowingRotation();
 
     /**
-     * Sets the boolean that indicates whether this primitive is displaying
+     * Sets the boolean that indicates whether this <code>GraphicLabel</code> is displaying
      * anchor handles that allow the user to change the rotation of the text.
      */
     public void setAllowingRotation(boolean newValue);
-    
+
 }

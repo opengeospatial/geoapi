@@ -36,9 +36,9 @@ import org.opengis.go.display.primitive.Graphic;
  * @version $Revision$, $Date$
  */
 public interface Canvas {
-    
+
     //**  deconstructor  **
-    
+
     /**
      * Method that may be called when a <code>Canvas</code> is no longer
      * needed.  Implementations may use this method to release resources or to
@@ -46,7 +46,7 @@ public interface Canvas {
      * <code>Canvas</code> after its dispose method has been called.
      */
     public void dispose();
-    
+
     /**
      * Method that may be called when the <code>EventManager</code>s of a 
      * <code>Canvas</code> are no longer
@@ -56,9 +56,9 @@ public interface Canvas {
      * has been called.
      */
     public void disposeEventManagers();
-    
+
     //**  accessors/mutators  **
-    
+
     /**
      * Returns the unique identifier of this <code>Canvas</code>, which is
      * assigned by the implementation.  The UID is immutable and may be used
@@ -67,7 +67,7 @@ public interface Canvas {
      * @return the UID of this <code>Canvas</code>.
      */
     public String getUID();
-    
+
     /**
      * Sets the title of this <code>Canvas</code>.  The title of a
      * <code>Canvas</code> may or may not be displayed on the titlebar of
@@ -75,7 +75,7 @@ public interface Canvas {
      * @param name the new title for this <code>Canvas</code>.
      */
     public void setTitle(String title);
-    
+
     /**
      * Returns the title assigned to this <code>Canvas</code>.
      * @return the title of this <code>Canvas</code>.
@@ -101,9 +101,9 @@ public interface Canvas {
      * <code>Canvas</code>.
      */
     public boolean isVisible(DirectPosition coordinate);
-    
+
     //**  Graphic methods  **
-    
+
     /**
      * Adds the given <code>Graphic</code> to this <code>Canvas</code>.
      * Implementations should respect the zOrder retrieved by calling
@@ -113,7 +113,7 @@ public interface Canvas {
      * @param graphic the <code>Graphic</code> to add.
      */
     public void add(Graphic graphic);
-    
+
     /**
      * Adds the given <code>Graphic</code> to this <code>Canvas</code>,
      * immediately placing the <code>Graphic</code> in an editing/drawing
@@ -124,14 +124,14 @@ public interface Canvas {
      * @param graphic the <code>Graphic</code> to add as editable.
      */
     public void addAsEditable(Graphic graphic);
-    
+
     /**
      * Removes the given <code>Graphic</code> from this 
      * <code>Canvas</code>.
      * @param graphic the <code>Graphic</code> to remove.
      */
     public void remove(Graphic graphic);
-    
+
     /**
      * Returns the EventManager subinterface, based on the class type.
      * <p>
@@ -153,7 +153,7 @@ public interface Canvas {
      * null if there is no implementing class.
      */
     public EventManager findEventManager(Class eventManagerClass);
-    
+
     /**
      * Adds the <code>EventManager</code> subinterface if it not currently in the 
      * <code>Canvas</code>'s collection of <code>EventManager</code>s.
@@ -163,7 +163,7 @@ public interface Canvas {
      *          false otherwise.
      */
     public void addEventManager(EventManager eventManager);
-    
+
     /**
      * Returns the top-most <code>Graphic</code> that occupies given 
      * <code>DirectPosition</code>.  The top-most <code>Graphic</code>
@@ -174,7 +174,7 @@ public interface Canvas {
      *   <code>DirectPosition</code>.
      */
     public Graphic getTopGraphicAt(DirectPosition directPosition);
-    
+
     /**
      * Returns the <code>Graphic</code>s that occupy the given 
      * <code>DirectPosition</code>. The order is implementation-specific.
@@ -184,7 +184,7 @@ public interface Canvas {
      *   <code>DirectPosition</code>.
      */
     public Graphic[] getGraphicsAt(DirectPosition directPosition);
-    
+
     /**
      * Returns the <code>Graphic</code>s that occupy the given 
      * <code>BoundingRectangle</code>. The order is implementation-specific.
@@ -194,9 +194,9 @@ public interface Canvas {
      *   <code>BoundingRectangle</code>.
      */
     public Graphic[] getGraphicsIn(BoundingRectangle bounds);
-    
+
     //**  canvas listener methods  **
-    
+
     /**
      * Adds the given listener that will be notified when the state of this
      * <code>Canvas</code> has changed.
@@ -207,9 +207,9 @@ public interface Canvas {
      * Removes the given listener.
      */
     public void removeCanvasListener(CanvasListener listener);
-    
+
     //**  CanvasManager methods  **
-    
+
     /**
      * Enables the given <code>CanvasHandler</code>, removing the current 
      * handler (if any).  The new handler's 
@@ -232,21 +232,21 @@ public interface Canvas {
      * </code></pre>
      */
     public void enableCanvasHandler(CanvasHandler handler);
-    
+
     /**
      * Removes the given <code>CanvasHandler</code> from this 
      * <code>Canvas</code>.
      */
     public void removeCanvasHandler(CanvasHandler handler);
-    
+
     /**
      * Returns the currently active <code>CanvasHandler</code> or null if no
      * handler is active.
      */
     public CanvasHandler getActiveCanvasHandler();
-    
+
     //**  imlementation hints  **
-    
+
     /**
      * Sets a rendering hint for implementation or platform specific 
      * rendering information.
@@ -254,16 +254,16 @@ public interface Canvas {
      * @param hint the rendering hint.
      */
     public void setImplHint(String hintName, Object hint);
-    
+
     /**
      * Returns the rendering hint associated with the hint name.
      * @param hintName the name of the hint.
      * @return         the rendering hint.
      */
     public Object getImplHint(String hintName);
-    
+
     //** CoordinateReferenceSystem methods **
-    
+
     /**
      * Returns the Coordinate Reference System associated with the display of this
      * <code>Canvas</code>. The display Coordinate Reference System corresponds to 
@@ -272,15 +272,15 @@ public interface Canvas {
      * @return the display Coordinate Reference System
      */
     public CoordinateReferenceSystem getDisplayCoordinateReferenceSystem();
-   
+
     /**
      * Returns the Coordinate Reference System for the geospatial model for this
      * <code>Canvas</code>. This is the default geospatial Coordinate Reference System
      * for this <code>Canvas</code>.
      * @return the geospatial Coordinate Reference System
-     */ 
+     */
     public CoordinateReferenceSystem getGeospatialCoordinateReferenceSystem();
-    
+
     /**
      * Sets the Coordinate Reference System for the geospatial model for this
      * <code>Canvas</code>. This is the default geospatial Coordinate Reference System
@@ -288,14 +288,13 @@ public interface Canvas {
      * @param the geospatial Coordinate Reference System
      */
     public void setGeospatialCoordinateReferenceSystem(CoordinateReferenceSystem crs);
-    
+
     /**
      * Returns the coordinate transformation object for this
      * <code>Canvas</code>. This allows the <code>Canvas</code> to resolve 
      * conversions of coordinates between different Coordinate Reference Systems.
      * @return the coordinate transformation object
-     */    
+     */
     public CoordinateTransformation getCoordinateTransformation();
-    
-}
 
+}

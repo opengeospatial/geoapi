@@ -7,7 +7,6 @@
  ** Copyright (C) 2003 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
  **
  *************************************************************************************************/
-
 package org.opengis.go.display.event;
 
 import org.opengis.go.display.primitive.Graphic;
@@ -21,11 +20,11 @@ import org.opengis.go.display.primitive.Graphic;
  * @version $Revision$, $Date$
  */
 public interface GraphicEvent {
-    
+
     //*************************************************************************
     //  methods
     //*************************************************************************
-    
+
     /**
      * Returns the <code>Graphic</code> this <code>GraphicEvent</code> 
      * initially occurred on.
@@ -33,17 +32,16 @@ public interface GraphicEvent {
      * if none.
      */
     public Graphic getGraphic();
-    
+
     /**
      * Consumes this <code>GraphicEvent</code> so that it will not be 
      * processed in the default manner by the source from which it originated.
      */
     public void consume();
-    
+
     /**
-     * Returns whether or not this event has been consumed.
+     * Returns whether or not this <code>GraphicEvent</code> has been consumed.
      * @return the consumed status.
      */
     public boolean isConsumed();
-    
 }

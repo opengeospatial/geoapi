@@ -24,21 +24,21 @@ import com.dautelle.units.Unit;
 public interface CoordinateReferenceSystem {
 	
 	/**
-     * Returns the dimension of this CoordinateReferenceSystem.
+     * Returns the dimension of this <code>CoordinateReferenceSystem</code>.
 	 * @return the dimension of this Coordinate Reference System.
 	 */
 	public int getDimension();
 	
 	/**
-	 * Returns the coordinate system units of this CoordinateReferenceSystem.
+	 * Returns the coordinate system units of this <code>CoordinateReferenceSystem</code>.
 	 * @return the coordinate system units of this Coordinate Reference System.
 	 */
 	public Unit[] getUnits();
     
     /**
-     * Returns true if the CoordinateReferenceSystems are the same.
-     * @param otherCrs the CoordinateReferenceSystem to compare this object to.
-     * @return true if the two CoordinateReferenceSystems are the same.
+     * Returns true if the <code>CoordinateReferenceSystem</code> are the same.
+     * @param otherCrs the <code>CoordinateReferenceSystem</code> to compare this object to.
+     * @return true if the two <code>CoordinateReferenceSystem</code> are the same.
      */
     public boolean equals(CoordinateReferenceSystem otherCrs);
 }

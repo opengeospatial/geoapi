@@ -7,7 +7,6 @@
  ** Copyright (C) 2003 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
  **
  *************************************************************************************************/
-
 package org.opengis.go.display.style;
 
 /**
@@ -19,29 +18,28 @@ package org.opengis.go.display.style;
  * @author Open GIS Consortium, Inc.
  * @version $Revision$, $Date$
  */
-
 public class DashArray extends LinePattern {
 
-	//*************************************************************************
+    //*************************************************************************
     //  Fields
     //*************************************************************************
 
-	private float[] dashPattern;
-
-	//*************************************************************************
-	//  Constructor
-	//*************************************************************************
-
-	public DashArray(String name, String description, float[] pattern){
-		super(name, description);
-		dashPattern = pattern;
-	}
+    private float[] dashPattern;
 
     //*************************************************************************
-	//  accessor
-	//*************************************************************************
+    //  Constructor
+    //*************************************************************************
 
-    public float[] getDashPattern(){
-     	return dashPattern;
+    public DashArray(String name, String description, float[] pattern) {
+        super(name, description);
+        dashPattern = pattern;
+    }
+
+    //*************************************************************************
+    //  accessor
+    //*************************************************************************
+
+    public float[] getDashPattern() {
+        return dashPattern;
     }
 }

@@ -7,7 +7,6 @@
  ** Copyright (C) 2003 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
  **
  *************************************************************************************************/
-
 package org.opengis.go.display.event;
 
 import java.awt.event.KeyEvent;
@@ -21,9 +20,10 @@ import java.awt.event.KeyEvent;
  * @version $Revision$, $Date$
  */
 public interface GraphicKeyEvent extends GraphicEvent {
+
 	/**
-	 * Returns the KeyEvent that this event references.
-	 * @return the KeyEvent referenced by this event.
+	 * Returns the <code>KeyEvent</code> that this event references.
+	 * @return the <code>KeyEvent</code> referenced by this event.
 	 */
 	public KeyEvent getKeyEvent();
 }

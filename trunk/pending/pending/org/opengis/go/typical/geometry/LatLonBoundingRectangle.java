@@ -7,7 +7,6 @@
  ** Copyright (C) 2003 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
  **
  *************************************************************************************************/
-
 package org.opengis.go.typical.geometry;
 
 import org.opengis.go.geometry.BoundingRectangle;
@@ -27,6 +26,7 @@ import org.opengis.go.typical.coord.LatLonAlt;
  * @version $Revision$, $Date$
  */
 public interface LatLonBoundingRectangle extends BoundingRectangle {
+
     /**
      * Returns the top left corner of this bounding rectangle as
      * a LatLonAlt.

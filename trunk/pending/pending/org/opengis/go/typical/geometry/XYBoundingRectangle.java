@@ -7,7 +7,6 @@
  ** Copyright (C) 2003 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
  **
  *************************************************************************************************/
-
 package org.opengis.go.typical.geometry;
 
 import org.opengis.go.geometry.BoundingRectangle;
@@ -27,15 +26,16 @@ import org.opengis.go.typical.coord.XY;
  * @version $Revision$, $Date$
  */
 public interface XYBoundingRectangle extends BoundingRectangle {
-	/**
-	 * Returns the top left corner of this bounding rectangle as
-	 * an XY.
-	 */
-	public XY getTopLeftXY();
-
-	/**
-	 * Returns the bottom right corner of this bounding rectangle
-	 * as an XY.
-	 */
-	public XY getBottomRightXY();
+    
+    /**
+     * Returns the top left corner of this bounding rectangle as
+     * an XY.
+     */
+    public XY getTopLeftXY();
+    
+    /**
+     * Returns the bottom right corner of this bounding rectangle
+     * as an XY.
+     */
+    public XY getBottomRightXY();
 }

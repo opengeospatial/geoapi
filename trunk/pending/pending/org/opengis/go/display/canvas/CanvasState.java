@@ -7,7 +7,6 @@
  ** Copyright (C) 2003 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
  **
  *************************************************************************************************/
-
 package org.opengis.go.display.canvas;
 
 import org.opengis.spatialschema.coordinate.DirectPosition;
@@ -27,12 +26,12 @@ import org.opengis.spatialschema.coordinate.DirectPosition;
  * @version $Revision$, $Date$
  */
 public interface CanvasState {
-    
+
     /**
      * Returns the title of the <code>Canvas</code>.
      */
     public String getTitle();
-    
+
     /**
      * Returns the position of the center pixel of this Canvas.
      */
@@ -56,5 +55,5 @@ public interface CanvasState {
      * Returns a the CanvasParameterAccessor object.
      */
     public CanvasParameterAccessor getCanvasParameterAccessor();
-}
 
+}

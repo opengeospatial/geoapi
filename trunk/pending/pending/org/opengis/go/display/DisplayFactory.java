@@ -7,7 +7,6 @@
  ** Copyright (C) 2003 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
  **
  *************************************************************************************************/
-
 package org.opengis.go.display;
 
 import java.awt.Container;
@@ -15,7 +14,7 @@ import java.util.Properties;
 
 import org.opengis.go.display.canvas.Canvas;
 import org.opengis.go.display.primitive.Graphic;
-import org.opengis.go.display.style.GraphicStyle;
+
 /**
  * <code>DisplayFactory</code> defines a common abstraction for creating
  * the different kinds of display objects.
@@ -24,8 +23,9 @@ import org.opengis.go.display.style.GraphicStyle;
  * @version $Revision$, $Date$
  */
 public interface DisplayFactory {
+
     /**
-     * Creates a new Graphic.
+     * Creates a new <code>Graphic</code>.
      * @param implementsGraphic The <code>Class</code> of a Graphic
      *      primitive interface (such as <code>GraphicArc.class</code>).
      *      Throws an <code>IllegalArgumentException</code> if the
@@ -34,12 +34,6 @@ public interface DisplayFactory {
      * @return the newly created <code>Graphic</code>.
      */
     public Graphic createGraphic(Class implementsGraphic);
-    
-    /**
-	 * Creates a new <code>GraphicStyle</code> object that can be used to set
-	 * the attributes of a Graphic.
-	 */
-    public GraphicStyle createGraphicStyle();
 
     /**
      * Returns an object that represents the capabilities of this
@@ -68,7 +62,7 @@ public interface DisplayFactory {
      */
     public Canvas createCanvas(Properties canvasProperties, Container container);
     
-	/**
+    /**
      * Creates a new <code>Canvas</code> object that is returned embedded in a window, as 
      * determined by the GO-1 implementation. For example, it could create a new top level 
      * frame window. The implementor may include all of its standard user interface components.
@@ -81,11 +75,11 @@ public interface DisplayFactory {
      * @param canvasProperties <code>Properties</code> that can be used to determine
      *    which <code>Canvas</code> implementation to use.
      */
-	 public Canvas createCanvas(Properties canvasProperties);
-	
-	/**
-	 * Gets an existing <code>Canvas</code> object by UID, or null if no 
-	 * <code>Canvas</code> exists for the given UID.
-	 */
-	public Canvas getCanvas(String uid);
+    public Canvas createCanvas(Properties canvasProperties);
+    
+    /**
+     * Gets an existing <code>Canvas</code> object by UID, or null if no 
+     * <code>Canvas</code> exists for the given UID.
+     */
+    public Canvas getCanvas(String uid);
 }

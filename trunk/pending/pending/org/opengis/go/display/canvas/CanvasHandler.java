@@ -7,7 +7,6 @@
  ** Copyright (C) 2003 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
  **
  *************************************************************************************************/
-
 package org.opengis.go.display.canvas;
 
 /**
@@ -22,7 +21,7 @@ package org.opengis.go.display.canvas;
  * @version $Revision$, $Date$
  */
 public interface CanvasHandler {
-    
+
     /**
      * Enables this <code>CanvasHandler</code>, giving it the active 
      * <code>CanvasController<code> and thus the ability to modify the 
@@ -30,7 +29,7 @@ public interface CanvasHandler {
      * @param controller the active <code>CanvasController</code>.
      */
     public void handlerEnabled(CanvasController controller);
-    
+
     /**
      * Removes this <code>CanvasHandler</code>, meaning that calling methods
      * on its <code>CanvasController</code> will no longer affect the 
@@ -38,4 +37,5 @@ public interface CanvasHandler {
      * <b>never</b> attempt to re-enable itself after it has been removed.
      */
     public void handlerRemoved();
+
 }

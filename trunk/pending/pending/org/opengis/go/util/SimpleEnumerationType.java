@@ -7,7 +7,6 @@
  ** Copyright (C) 2003 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
  **
  *************************************************************************************************/
-
 package org.opengis.go.util;
 
 import java.awt.Component;
@@ -26,7 +25,39 @@ import javax.swing.ImageIcon;
  * @version $Revision$, $Date$
  */
 public abstract class SimpleEnumerationType implements Comparable {
-    
+
+    //*************************************************************************
+    //  static methods
+    //*************************************************************************
+
+    /**
+     * Load an icon for this
+     * enumeration. <code>loadIconResource</code> loads the icon found
+     * by <code>a_class.getResource(name)</code>.
+     * @param a_class class to use to find icon resource.
+     * @param name name of icon resource, for example, "SOLID.gif"
+     * @return a loaded icon for this enumeration. When no icon can be
+     * found the null icon is returned.
+     * @see #getNullIcon
+     */
+    protected static Icon loadIconResource(Class a_class, String name) {
+        URL iconURL = a_class.getResource(name);
+        if (iconURL == null) {
+            return getNullIcon();
+        }
+        return new ImageIcon(iconURL);
+    }
+
+    /**
+     * Gets the null icon.
+     * @return a singleton icon that can be used when no icon was
+     * found in <code>loadIconResource</code>. The null icon is a
+     * fixed size, 16x64, and its paint method simply returns.
+     */
+    public static Icon getNullIcon() {
+        return null_icon;
+    }
+
     //*************************************************************************
     //  Static Fields
     //*************************************************************************
@@ -37,7 +68,7 @@ public abstract class SimpleEnumerationType implements Comparable {
     //*************************************************************************
     //  Fields
     //*************************************************************************
-    
+
     /** The enum value */
     private int value;
 
@@ -46,14 +77,14 @@ public abstract class SimpleEnumerationType implements Comparable {
 
     /** The description */
     private String description;
-    
+
     /** The icon */
     private final Icon icon;
 
     //*************************************************************************
     //  Constructor
     //*************************************************************************
-    
+
     /**
      * Creates a new SimpleEnumerationType with the given
      * <code>value</code>, <code>name</code>, and
@@ -68,7 +99,7 @@ public abstract class SimpleEnumerationType implements Comparable {
         this.description = description;
         this.icon = getNullIcon();
     }
-    
+
     /**
      * Creates a new SimpleEnumerationType with the given
      * <code>value</code>, <code>name</code>,
@@ -84,11 +115,11 @@ public abstract class SimpleEnumerationType implements Comparable {
         this.description = description;
         this.icon = icon;
     }
-    
+
     //*************************************************************************
     //  override the Java toString method
     //*************************************************************************
-    
+
     /**
      * Gets the string representation of this object, this just calls getName().
      * @return the string representation.
@@ -132,7 +163,7 @@ public abstract class SimpleEnumerationType implements Comparable {
     public Icon getIcon() {
         return icon;
     }
-    
+
     //*************************************************************************
     //  comparison method
     //*************************************************************************
@@ -145,49 +176,15 @@ public abstract class SimpleEnumerationType implements Comparable {
     public int compareTo(Object obj) {
         int rv = 0;
         if (this.getClass() != obj.getClass()) {
-            throw new ClassCastException("Can't compare " +
-                                            this.getClass().getName() +
-                                            " to " +
-                                            obj.getClass().getName());
+            throw new ClassCastException(
+                "Can't compare " + this.getClass().getName() + " to " + obj.getClass().getName());
         }
         if (this != obj) {
             rv = this.value - ((SimpleEnumerationType)obj).value;
         }
         return rv;
     }
-    
-    //*************************************************************************
-    //  static methods
-    //*************************************************************************
-    
-    /**
-     * Load an icon for this
-     * enumeration. <code>loadIconResource</code> loads the icon found
-     * by <code>a_class.getResource(name)</code>.
-     * @param a_class class to use to find icon resource.
-     * @param name name of icon resource, for example, "SOLID.gif"
-     * @return a loaded icon for this enumeration. When no icon can be
-     * found the null icon is returned.
-     * @see #getNullIcon
-     */
-    protected static Icon loadIconResource(Class a_class, String name) {
-        URL iconURL = a_class.getResource(name);
-        if (iconURL == null) {
-            return getNullIcon();
-        }
-        return new ImageIcon(iconURL);
-    }
-    
-    /**
-     * Gets the null icon.
-     * @return a singleton icon that can be used when no icon was
-     * found in <code>loadIconResource</code>. The null icon is a
-     * fixed size, 16x64, and its paint method simply returns.
-     */
-    public static Icon getNullIcon() {
-        return null_icon;
-    }
-    
+
     //*************************************************************************
     //  the private, static NullIcon inner class
     //*************************************************************************
@@ -198,12 +195,15 @@ public abstract class SimpleEnumerationType implements Comparable {
      * returns.
      */
     private static class NullIcon implements Icon {
+
         public int getIconHeight() {
             return 16;
         }
+
         public int getIconWidth() {
             return 64;
         }
+
         public void paintIcon(Component c, Graphics g, int x, int y) {
         }
     }
