@@ -1,10 +1,11 @@
 /*
  * Created on Aug 3, 2004
  */
-package org.opengis.display.canvas;
+package org.opengis.feature.display.canvas;
 
 import org.opengis.feature.Feature;
 import org.opengis.feature.FeatureTypeFactory;
+import org.opengis.go.display.canvas.Canvas;
 import org.opengis.go.display.primitive.Graphic;
 import org.opengis.sld.FeatureTypeStyle;
 import org.opengis.sld.FeatureTypeStyleFactory;
