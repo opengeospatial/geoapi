@@ -7,28 +7,24 @@
  ** Copyright (C) 2003 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
  **
  *************************************************************************************************/
-package org.opengis.referencing;
-
-// J2SE direct dependencies
-import java.util.Locale;
+package org.opengis.metadata;
 
 // OpenGIS direct dependencies
 import org.opengis.metadata.citation.Citation;
 
 
 /**
- * An identification of a CRS object. The first use of an <code>Identifier</code> for an object,
- * if any, is normally the primary identification code, and any others are aliases.
+ * Value uniquely identifying an object within a namespace.
  *
- * @UML datatype RS_Identifier
- * @author ISO 19111
+ * @UML datatype MD_Identifier
+ * @author ISO 19115
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
- * @version <A HREF="http://www.opengis.org/docs/03-073r1.zip">Abstract specification 2.0</A>
+ * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
  */
 public interface Identifier {
     /**
-     * Identifier code or name, optionally from a controlled list or pattern
-     * defined by a {@linkplain #getCodeSpace code space}.
+     * Alphanumeric value identifying an instance in the namespace.
+     * Optionally from a controlled list or pattern defined by a {@linkplain #getCodeSpace code space}.
      *
      * @return The code.
      * @UML mandatory code
@@ -42,7 +38,7 @@ public interface Identifier {
      * of each Code Space identifier is defined by that code space authority.
      *
      * @return The code space, or <code>null</code> if not available.
-     * @UML optional codeSpace
+     * @UML optional codeSpace in ISO 19111
      */
     String getCodeSpace();
 
@@ -54,7 +50,7 @@ public interface Identifier {
      * ISO 8601 date format.
      *
      * @return The version, or <code>null</code> if not available.
-     * @UML optional version
+     * @UML optional version in ISO 19111
      */
     String getVersion();
 
@@ -66,17 +62,4 @@ public interface Identifier {
      * @UML optional authority
      */
     Citation getAuthority();
-
-    /**
-     * Comments on or information about this identifier. In the first use of an
-     * <code>Identifier</code> for an {@link Info} object, these remarks are information about this
-     * object, including data source information. Additional uses of a <code>Identifier</code>
-     * for an object, if any, are aliases, and the remarks are then about that alias.
-     *
-     * @param  locale The desired locale for the remarks to be returned,
-     *         or <code>null</code> for a non-localized string (or a default locale).
-     * @return The remarks, or <code>null</code> if not available.
-     * @UML optional remarks
-     */
-    String getRemarks(Locale locale);
 }

@@ -15,7 +15,7 @@ import java.util.Locale;
 // OpenGIS direct dependencies
 import org.opengis.referencing.Info;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
-import org.opengis.referencing.quality.PositionalAccuracy;
+import org.opengis.metadata.quality.PositionalAccuracy;
 import org.opengis.metadata.extent.Extent;
 
 

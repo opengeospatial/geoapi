@@ -10,7 +10,7 @@
 package org.opengis.referencing.operation;
 
 // OpenGIS direct dependencies
-import org.opengis.referencing.Identifier;  // For javadoc
+import org.opengis.metadata.Identifier;  // For javadoc
 import org.opengis.referencing.Factory;
 import org.opengis.referencing.FactoryException;
 import org.opengis.referencing.NoSuchIdentifierException;

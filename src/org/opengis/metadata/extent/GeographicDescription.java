@@ -10,7 +10,7 @@
 package org.opengis.metadata.extent;
 
 // OpenGIS direct dependencies
-import org.opengis.referencing.Identifier;
+import org.opengis.metadata.Identifier;
 
 
 /**

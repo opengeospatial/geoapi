@@ -31,7 +31,7 @@ public interface Citation {
      *         for a title in some default locale (may or may not be the
      *         {@linkplain Locale#getDefault() system default}).
      * @return The citation title in the given locale.
-     *         If no name is available in the given locale, then some default locale is used.
+     *         If no title is available in the given locale, then some default locale is used.
      * @UML mandatory title
      */
     String getTitle(Locale locale);
@@ -44,7 +44,7 @@ public interface Citation {
      *         for a title in some default locale (may or may not be the
      *         {@linkplain Locale#getDefault() system default}).
      * @return The citation title in the given locale.
-     *         If no name is available in the given locale, then some default locale is used.
+     *         If no title is available in the given locale, then some default locale is used.
      * @UML optional alternateTitle
      */
     String[] getAlternateTitles(Locale locale);

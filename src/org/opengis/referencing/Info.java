@@ -12,6 +12,9 @@ package org.opengis.referencing;
 // J2SE direct dependencies
 import java.util.Locale;
 
+// OpenGIS direct dependencies
+import org.opengis.metadata.Identifier;
+
 
 /**
  * A base interface for metadata applicable to reference system objects.
