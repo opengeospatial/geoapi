@@ -1,0 +1,33 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<HTML>
+  <HEAD>
+    <TITLE>package org.opengis.gm</TITLE>
+  </HEAD>
+  <BODY>
+  Root package for geometries. The following is adapted from
+  <A HREF="http://www.opengis.org/docs/01-101.pdf">Feature Geometry
+  (Topic 1)</A> specification.
+  <P ALIGN="justify">A geometric object shall be a combination of a coordinate geometry and a coordinate
+  reference system. In all of the operations, all geometric calculations shall be done in the coordinate
+  reference system of the first geometric object accessed, which is normally the object whose operation
+  is being invoked. Returned objects shall be in the coordinate reference system in which the calculations
+  are done unless explicitly stated otherwise. The interface defined in this package are basically those
+  of set theory. In general a geometric object is a set of geometric points, represented by
+  {@link org.opengis.gm.geometry.DirectPosition}. Object instantiations of geometric objects are
+  {@link org.opengis.gm.Geometry}. Object instantiations of geometric points, when used as values,
+  are <CODE>DirectPosition</CODE>s. General set theory operations defined at <CODE>Geometry</CODE>
+  differentiate further down the class hierarchy depending on whether or not the boundary
+  <CODE>DirectPositions</CODE> are included as set elements. Subtypes of
+  {@link org.opengis.gm.primitive.Primitive} do not contain boundary points, while subtypes of
+  {@link org.opengis.gm.complex.Complex} do.</P>
+
+  <P ALIGN="justify">{@link org.opengis.gm.Geometry} and {@link org.opengis.gm.primitive.Primitive}
+  are purely abstract in the sense that no object or data structure from an application schema can
+  instantiate them directly. Instances of these classes must be instances of one of their non-abstract
+  subtypes, such as {@link org.opengis.gm.primitive.Point}, {@link org.opengis.gm.primitive.Curve}, or
+  {@link org.opengis.gm.primitive.Surface}. This is not the case for {@link org.opengis.gm.complex.Complex},
+  which can be directly instantiated by an application schema, and need not be an instance of one of the
+  non-abstract subclasses of {@link org.opengis.gm.complex.Composite}.</P>
+  </BODY>
+</HTML>
