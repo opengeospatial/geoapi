@@ -13,7 +13,7 @@ package org.opengis.coverage.grid;
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 1.1
  *
- * @revisit This interface duplicates {@link org.opengis.cc.OperationParameter}.
+ * @revisit This interface duplicates {@link org.opengis.crs.operation.OperationParameter}.
  */
 public interface ParameterInfo {
     /**

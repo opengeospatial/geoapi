@@ -4,8 +4,8 @@
 package org.opengis.crs.crs;
 
 // OpenGIS direct dependencies
-import org.opengis.cs.TemporalCS;
-import org.opengis.cd.TemporalDatum;
+import org.opengis.crs.cs.TemporalCS;
+import org.opengis.crs.datum.TemporalDatum;
 
 
 /**
@@ -14,7 +14,7 @@ import org.opengis.cd.TemporalDatum;
  * <TABLE CELLPADDING='6' BORDER='1'>
  * <TR BGCOLOR="#EEEEFF"><TH NOWRAP>Used with CS type(s)</TH></TR>
  * <TR><TD>
- *   {@link org.opengis.cs.TemporalCS Temporal}
+ *   {@link org.opengis.crs.cs.TemporalCS Temporal}
  * </TD></TR></TABLE>
  *
  * @UML abstract SC_TemporalCRS

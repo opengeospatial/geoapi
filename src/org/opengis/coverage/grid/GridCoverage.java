@@ -11,9 +11,9 @@ import javax.media.jai.PixelAccessor;      // For Javadoc
 import javax.media.jai.UnpackedImageData;  // For Javadoc
 
 // OpenGIS direct dependencies
-import org.opengis.cv.Coverage;
-import org.opengis.cv.SampleDimension;     // For Javadoc
-import org.opengis.cv.SampleDimensionType; // For Javadoc
+import org.opengis.coverage.Coverage;
+import org.opengis.coverage.SampleDimension;     // For Javadoc
+import org.opengis.coverage.SampleDimensionType; // For Javadoc
 
 
 /**
@@ -135,7 +135,7 @@ public interface GridCoverage extends Coverage {
      * zero, and this method should not be called.
      *
      * If the <code>GridCoverage</code> was produced using
-     * {link org.opengis.gp.GridCoverageProcessor} then it should return the source
+     * {link org.opengis.coverage.processing.GridCoverageProcessor} then it should return the source
      * grid coverage of the one used as input to <code>GridCoverageProcessor</code>.
      * In general the <code>getSource(i)</code> method is intended to return the original
      * <code>GridCoverage</code> on which it depends.

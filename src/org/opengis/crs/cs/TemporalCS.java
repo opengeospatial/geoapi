@@ -12,7 +12,7 @@ package org.opengis.crs.cs;
  * <TABLE CELLPADDING='6' BORDER='1'>
  * <TR BGCOLOR="#EEEEFF"><TH NOWRAP>Used with CRS type(s)</TH></TR>
  * <TR><TD>
- *   {@link org.opengis.sc.TemporalCRS Temporal}
+ *   {@link org.opengis.crs.crs.TemporalCRS Temporal}
  * </TD></TR></TABLE>
  *
  * @UML abstract CS_TemporalCS

@@ -4,9 +4,9 @@
 package org.opengis.crs.crs;
 
 // OpenGIS direct dependencies
-import org.opengis.cs.CartesianCS;
-import org.opengis.cs.ObliqueCartesianCS;
-import org.opengis.cd.ImageDatum;
+import org.opengis.crs.cs.CartesianCS;
+import org.opengis.crs.cs.ObliqueCartesianCS;
+import org.opengis.crs.datum.ImageDatum;
 
 
 /**
@@ -17,8 +17,8 @@ import org.opengis.cd.ImageDatum;
  * <TABLE CELLPADDING='6' BORDER='1'>
  * <TR BGCOLOR="#EEEEFF"><TH NOWRAP>Used with CS type(s)</TH></TR>
  * <TR><TD>
- *   {@link org.opengis.cs.CartesianCS        Cartesian},
- *   {@link org.opengis.cs.ObliqueCartesianCS ObliqueCartesian}
+ *   {@link org.opengis.crs.cs.CartesianCS        Cartesian},
+ *   {@link org.opengis.crs.cs.ObliqueCartesianCS ObliqueCartesian}
  * </TD></TR></TABLE>
  *
  * @UML abstract SC_ImageCRS

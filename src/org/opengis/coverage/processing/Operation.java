@@ -4,7 +4,7 @@
 package org.opengis.coverage.processing;
 
 // OpenGIS dependencies
-import org.opengis.gc.ParameterInfo;
+import org.opengis.coverage.grid.ParameterInfo;
 
 
 /**

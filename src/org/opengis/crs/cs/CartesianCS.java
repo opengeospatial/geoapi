@@ -14,10 +14,10 @@ package org.opengis.crs.cs;
  * <TABLE CELLPADDING='6' BORDER='1'>
  * <TR BGCOLOR="#EEEEFF"><TH NOWRAP>Used with CRS type(s)</TH></TR>
  * <TR><TD>
- *   {@link org.opengis.sc.GeocentricCRS  Geocentric},
- *   {@link org.opengis.sc.ProjectedCRS   Projected},
- *   {@link org.opengis.sc.EngineeringCRS Engineering},
- *   {@link org.opengis.sc.ImageCRS       Image}
+ *   {@link org.opengis.crs.crs.GeocentricCRS  Geocentric},
+ *   {@link org.opengis.crs.crs.ProjectedCRS   Projected},
+ *   {@link org.opengis.crs.crs.EngineeringCRS Engineering},
+ *   {@link org.opengis.crs.crs.ImageCRS       Image}
  * </TD></TR></TABLE>
  *
  * @UML abstract CS_CartesianCS
@@ -29,7 +29,7 @@ package org.opengis.crs.cs;
  *
  * @revisit This interface sounds like a special case of {@link ObliqueCartesianCS}.
  *          Then, why it doesn't extends <code>ObliqueCartesianCS</code>? It would
- *          help to clarify the semantic of {@link org.opengis.sc.ImageCRS} (no need
+ *          help to clarify the semantic of {@link org.opengis.crs.crs.ImageCRS} (no need
  *          for separated <code>getCartesianCS()</code> and <code>getObliqueCartesianCS()</code>
  *          methods).
  */

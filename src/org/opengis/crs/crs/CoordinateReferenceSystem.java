@@ -4,8 +4,8 @@
 package org.opengis.crs.crs;
 
 // OpenGIS direct dependencies
-import org.opengis.cs.CoordinateSystem;
-import org.opengis.cd.Datum;
+import org.opengis.crs.cs.CoordinateSystem;
+import org.opengis.crs.datum.Datum;
 
 
 /**
@@ -30,8 +30,8 @@ import org.opengis.cd.Datum;
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 2.0
  *
- * @see org.opengis.cs.CoordinateSystem
- * @see org.opengis.cd.Datum
+ * @see org.opengis.crs.cs.CoordinateSystem
+ * @see org.opengis.crs.datum.Datum
  */
 public interface CoordinateReferenceSystem extends CRS {
     /**

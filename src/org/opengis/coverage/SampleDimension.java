@@ -12,7 +12,7 @@ import java.awt.image.IndexColorModel; // For Javadoc
 /**
  * Contains information for an individual sample dimension of {@linkplain Coverage coverage}.
  * This interface is applicable to any coverage type.
- * For {@linkplain org.opengis.gc.GridCoverage grid coverages},
+ * For {@linkplain org.opengis.coverage.grid.GridCoverage grid coverages},
  * the sample dimension refers to an individual band.
  *
  * @UML abstract CV_SampleDimension
@@ -115,7 +115,7 @@ public interface SampleDimension {
     /**
      * The minimum value occurring in the sample dimension.
      * If this value is not available, this value can be determined from the
-     * {@link org.opengis.gp.GridAnalysis#getMinValue} operation.
+     * {@link org.opengis.coverage.processing.GridAnalysis#getMinValue} operation.
      * This value can be empty if this value is not provided by the implementation.
      *
      * @return The minimum value occurring in the sample dimension.
@@ -129,7 +129,7 @@ public interface SampleDimension {
     /**
      * The maximum value occurring in the sample dimension.
      * If this value is not available, this value can be determined from the
-     * {@link org.opengis.gp.GridAnalysis#getMaxValue} operation.
+     * {@link org.opengis.coverage.processing.GridAnalysis#getMaxValue} operation.
      * This value can be empty if this value is not provided by the implementation.
      *
      * @return The maximum value occurring in the sample dimension.

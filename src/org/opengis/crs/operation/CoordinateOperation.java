@@ -1,16 +1,16 @@
 /*
  * Copyright (C) 2003 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
  */
-package org.opengis.cc;
+package org.opengis.crs.operation;
 
 // J2SE direct dependencies
 import java.util.Locale;
 
 // OpenGIS direct dependencies
-import org.opengis.sc.CRS;
-import org.opengis.rs.Info;
+import org.opengis.crs.crs.CRS;
+import org.opengis.crs.Info;
 import org.opengis.gm.Envelope;
-import org.opengis.dq.PositionalAccuracy;
+import org.opengis.crs.quality.PositionalAccuracy;
 
 
 /**
@@ -34,7 +34,7 @@ public interface CoordinateOperation extends Info {
     /**
      * Returns the source CRS. The source CRS is mandatory for Transformations only.
      * Conversions may have a source CRS that is not specified here, but through
-     * {@link org.opengis.sc.GeneralDerivedCRS#getBaseCRS} instead.
+     * {@link org.opengis.crs.crs.GeneralDerivedCRS#getBaseCRS} instead.
      *
      * @return The source CRS.
      * @UML association sourceCRS
@@ -44,7 +44,7 @@ public interface CoordinateOperation extends Info {
     /**
      * Returns the target CRS. The target CRS is mandatory for Transformations only.
      * Conversions may have a target CRS that is not specified here, but through
-     * {@link org.opengis.sc.GeneralDerivedCRS} instead.
+     * {@link org.opengis.crs.crs.GeneralDerivedCRS} instead.
      *
      * @return The source CRS.
      * @UML association targetCRS

@@ -7,8 +7,8 @@ package org.opengis.crs.crs;
 /**
  * A coordinate reference system describing the position of points through two or more
  * independent coordinate reference systems. Thus it is associated with two or more
- * {@linkplain org.opengis.cs.CoordinateSystem Coordinate Systems} and
- * {@linkplain org.opengis.cd.Datum Datums} by defining the compound CRS
+ * {@linkplain org.opengis.crs.cs.CoordinateSystem Coordinate Systems} and
+ * {@linkplain org.opengis.crs.datum.Datum Datums} by defining the compound CRS
  * as an ordered set of two or more instances of {@link CoordinateReferenceSystem}.
  *
  * @UML abstract SC_CompoundCRS

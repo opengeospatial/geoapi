@@ -18,7 +18,7 @@ import org.opengis.gm.Envelope;
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 2.0
  *
- * @see org.opengis.sc.CoordinateReferenceSystem
+ * @see org.opengis.crs.crs.CoordinateReferenceSystem
  */
 public interface ReferenceSystem extends Info {
     /**

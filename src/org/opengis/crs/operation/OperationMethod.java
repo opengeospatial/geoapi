@@ -7,7 +7,7 @@ package org.opengis.crs.operation;
 import java.util.Locale;
 
 // OpenGIS direct dependencies
-import org.opengis.rs.Info;
+import org.opengis.crs.Info;
 
 
 /**

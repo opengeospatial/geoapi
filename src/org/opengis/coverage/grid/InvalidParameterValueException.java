@@ -11,7 +11,7 @@ package org.opengis.coverage.grid;
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 1.1
  *
- * @revisit Should we move this exception into the <code>org.opengis.cc/<code> package?
+ * @revisit Should we move this exception into the <code>org.opengis.crs.operation/<code> package?
  */
 public class InvalidParameterValueException extends IllegalArgumentException {
     /**

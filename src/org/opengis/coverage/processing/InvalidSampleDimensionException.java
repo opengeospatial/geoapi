@@ -5,7 +5,7 @@ package org.opengis.coverage.processing;
 
 
 /**
- * Thrown when the index of a {@linkplain org.opengis.cv.SampleDimension sample dimension}
+ * Thrown when the index of a {@linkplain org.opengis.coverage.SampleDimension sample dimension}
  * is out of bounds.
  *
  * @UML exception GP_InvalidSampleDimension

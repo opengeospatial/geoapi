@@ -12,8 +12,8 @@ package org.opengis.crs.cs;
  * <TABLE CELLPADDING='6' BORDER='1'>
  * <TR BGCOLOR="#EEEEFF"><TH NOWRAP>Used with CRS type(s)</TH></TR>
  * <TR><TD>
- *   {@link org.opengis.sc.GeographicCRS  Geographic},
- *   {@link org.opengis.sc.EngineeringCRS Engineering}
+ *   {@link org.opengis.crs.crs.GeographicCRS  Geographic},
+ *   {@link org.opengis.crs.crs.EngineeringCRS Engineering}
  * </TD></TR></TABLE>
  *
  * @UML abstract CS_EllipsoidalCS

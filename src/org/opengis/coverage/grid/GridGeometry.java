@@ -4,7 +4,7 @@
 package org.opengis.coverage.grid;
 
 // OpenGIS direct dependencies
-import org.opengis.cc.Conversion;
+import org.opengis.crs.operation.Conversion;
 
 
 /**
@@ -39,11 +39,11 @@ public interface GridGeometry {
      * The conversion allows for the transformations from grid coordinates to real
      * world earth coordinates. The transform is often an affine transformation. The
      * coordinate reference system of the real world coordinates is given by the
-     * {@link org.opengis.cv.Coverage#getCRS} method.
+     * {@link org.opengis.coverage.Coverage#getCRS} method.
      * If no conversion is given, this attribute will be <code>null</code>.
      *
      * @return The conversion from grid coordinates to
-     *         {@linkplain org.opengis.cv.Coverage#getCRS real world earth coordinates}.
+     *         {@linkplain org.opengis.coverage.Coverage#getCRS real world earth coordinates}.
      * @UML mandatory gridToCoordinateSystem
      */
     Conversion getGridToCoordinateSystem();

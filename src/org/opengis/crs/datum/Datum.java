@@ -1,14 +1,14 @@
 /*
  * Copyright (C) 2003 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
  */
-package org.opengis.cd;
+package org.opengis.crs.datum;
 
 // J2SE direct dependencies
 import java.util.Date;
 import java.util.Locale;
 
 // OpenGIS direct dependencies
-import org.opengis.rs.Info;
+import org.opengis.crs.Info;
 import org.opengis.gm.Envelope;
 
 
@@ -23,8 +23,8 @@ import org.opengis.gm.Envelope;
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 2.0
  *
- * @see org.opengis.cs.CoordinateSystem
- * @see org.opengis.sc.CoordinateReferenceSystem
+ * @see org.opengis.crs.cs.CoordinateSystem
+ * @see org.opengis.crs.crs.CoordinateReferenceSystem
  */
 public interface Datum extends Info {
     /**

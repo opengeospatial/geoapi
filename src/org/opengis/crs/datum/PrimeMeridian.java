@@ -7,7 +7,7 @@ package org.opengis.crs.datum;
 import javax.units.Unit;
 
 // OpenGIS direct dependencies
-import org.opengis.rs.Info;
+import org.opengis.crs.Info;
 
 
 /**

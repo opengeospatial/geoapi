@@ -7,9 +7,9 @@ package org.opengis.crs.crs;
 import javax.units.Unit;
 
 // OpenGIS direct dependencies
-import org.opengis.rs.AuthorityFactory;
-import org.opengis.rs.FactoryException;
-import org.opengis.rs.NoSuchAuthorityCodeException;
+import org.opengis.crs.AuthorityFactory;
+import org.opengis.crs.FactoryException;
+import org.opengis.crs.NoSuchAuthorityCodeException;
 
 
 /**
@@ -52,7 +52,7 @@ public interface CRSAuthorityFactory extends AuthorityFactory {
      * @throws FactoryException if the object creation failed for some other reason.
      *
      * @UML operation createGeographicCoordinateSystem in 1.0 specification
-     * @see org.opengis.cd.DatumAuthorityFactory#createGeodeticDatum
+     * @see org.opengis.crs.datum.DatumAuthorityFactory#createGeodeticDatum
      */
     GeographicCRS createGeographicCRS(String code) throws FactoryException;
 
@@ -64,7 +64,7 @@ public interface CRSAuthorityFactory extends AuthorityFactory {
      * @throws FactoryException if the object creation failed for some other reason.
      *
      * @UML operation createProjectedCoordinateSystem in 1.0 specification
-     * @see org.opengis.cd.DatumAuthorityFactory#createGeodeticDatum
+     * @see org.opengis.crs.datum.DatumAuthorityFactory#createGeodeticDatum
      */
     ProjectedCRS createProjectedCRS(String code) throws FactoryException;
 
@@ -76,7 +76,7 @@ public interface CRSAuthorityFactory extends AuthorityFactory {
      * @throws FactoryException if the object creation failed for some other reason.
      *
      * @UML operation createVerticalCoordinateSystem in 1.0 specification
-     * @see org.opengis.cd.DatumAuthorityFactory#createVerticalDatum
+     * @see org.opengis.crs.datum.DatumAuthorityFactory#createVerticalDatum
      */
     VerticalCRS createVerticalCRS(String code) throws FactoryException;
 
@@ -87,7 +87,7 @@ public interface CRSAuthorityFactory extends AuthorityFactory {
      * @throws NoSuchAuthorityCodeException if the specified <code>code</code> was not found.
      * @throws FactoryException if the object creation failed for some other reason.
      *
-     * @see org.opengis.cd.DatumAuthorityFactory#createTemporalDatum
+     * @see org.opengis.crs.datum.DatumAuthorityFactory#createTemporalDatum
      */
     TemporalCRS createTemporalCRS(String code) throws FactoryException;
 

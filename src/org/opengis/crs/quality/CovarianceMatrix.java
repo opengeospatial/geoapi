@@ -7,7 +7,7 @@ package org.opengis.crs.quality;
 import javax.units.Unit;
 
 // OpenGIS direct dependencies
-import org.opengis.cc.Matrix;
+import org.opengis.crs.operation.Matrix;
 
 
 /**

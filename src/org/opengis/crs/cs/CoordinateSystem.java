@@ -7,7 +7,7 @@ package org.opengis.crs.cs;
 import javax.units.Unit;  // For Javadoc
 
 // OpenGIS direct dependencies
-import org.opengis.rs.Info;
+import org.opengis.crs.Info;
 
 
 /**
@@ -22,10 +22,10 @@ import org.opengis.rs.Info;
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 2.0
  *
- * @see org.opengis.cs.CoordinateSystemAxis
+ * @see org.opengis.crs.cs.CoordinateSystemAxis
  * @see javax.units.Unit
- * @see org.opengis.cd.Datum
- * @see org.opengis.sc.CoordinateReferenceSystem
+ * @see org.opengis.crs.datum.Datum
+ * @see org.opengis.crs.crs.CoordinateReferenceSystem
  */
 public interface CoordinateSystem extends Info {
     /**
