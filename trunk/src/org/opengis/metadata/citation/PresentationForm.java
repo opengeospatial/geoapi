@@ -43,7 +43,7 @@ public final class PresentationForm extends CodeList {
 
     /**
      * Digital representation of a primarily textual item (can contain illustrations also).
-     *
+     */
 /// @UML (identifier="documentDigital", obligation=CONDITIONAL)
     public static final PresentationForm DOCUMENT_DIGITAL = new PresentationForm("DOCUMENT_DIGITAL");
 
