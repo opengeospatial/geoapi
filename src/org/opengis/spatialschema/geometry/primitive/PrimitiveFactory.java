@@ -182,4 +182,19 @@ public interface PrimitiveFactory {
 /// @UML (identifier="GM_Solid(GM_SolidBoundary)", obligation=MANDATORY)
     Solid createSolid(SolidBoundary boundary)
             throws MismatchedReferenceSystemException, MismatchedDimensionException;
+
+    /**
+     * Constructs a {@linkplain Ring ring} out of its component curves.
+     *
+     * @param curves The list of curves that comprise the newly created Ring.
+     *        These curves must connect to form a continuous curve whose start
+     *        point is the same as its end point.
+     *
+     * @throws MismatchedReferenceSystemException If geometric objects given in argument don't
+     *         use compatible {@linkplain CoordinateReferenceSystem coordinate reference system}.
+     * @throws MismatchedDimensionException If geometric objects given in argument don't have
+     *         the expected dimension.
+     */
+    Ring createRing(List/*<Curve>*/ curves)
+    	throws MismatchedReferenceSystemException, MismatchedDimensionException;
 }
