@@ -14,7 +14,8 @@ import org.opengis.metadata.Identifier;  // For javadoc
 import org.opengis.referencing.Factory;
 import org.opengis.referencing.FactoryException;
 import org.opengis.referencing.NoSuchIdentifierException;
-import org.opengis.parameter.GeneralParameterValue;
+import org.opengis.parameter.ParameterDescriptorGroup; // For javadoc
+import org.opengis.parameter.ParameterValueGroup;
 
 // Annotations
 ///import org.opengis.annotation.UML;
@@ -57,22 +58,51 @@ import org.opengis.parameter.GeneralParameterValue;
  *
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-009.pdf">Implementation specification 1.0</A>
+ *
+ * @see <A HREF="http://www.remotesensing.org/geotiff/proj_list/">Projection transform list on RemoteSensing.org</A>
  */
 ///@UML (identifier="CT_MathTransformFactory")
 public interface MathTransformFactory extends Factory {
     /**
-     * Returns the default parameter values for the specified operation method.
-     * This method always returns clones. It is safe to modify the returned
-     * parameter values and give them to
-     * <code>{@linkplain #createParameterizedTransform createParameterizedTransform}(identifier, parameters)</code>.
+     * Returns the default parameter values for a math transform of the given classification.
+     * The {@linkplain ParameterDescriptorGroup#getName parameter group name} shall be the given
+     * classification, in order to allows direct use by {@link #createParameterizedTransform
+     * createParameterizedTransform}. The list of available classifications is implementation
+     * dependent.
      *
-     * @param  identifier The case insensitive {@linkplain Identifier#getCode identifier code} of the
-     *         operation method to search for (e.g. "Transverse_Mercator").
+     * <P>This method always returns clones. Concequently, it is safe to modify the returned
+     * parameter values group and give them to <code>{@linkplain #createParameterizedTransform
+     * createParameterizedTransform}(parameters)</code>.</P>
+     *
+     * @param  classification The case insensitive classification to search for (e.g.
+     * <code>"<A HREF="http://www.remotesensing.org/geotiff/proj_list/transverse_mercator.html">Transverse_Mercator</A>"</code>).
      * @return The default parameter values.
-     * @throws NoSuchIdentifierException if there is no transform registered for the specified
-     *         operation method identifier.
+     * @throws NoSuchIdentifierException if there is no transform registered for the specified classification.
      */
-    GeneralParameterValue[] getDefaultParameters(String identifier) throws NoSuchIdentifierException;
+    ParameterValueGroup getDefaultParameters(String classification) throws NoSuchIdentifierException;
+
+    /**
+     * Creates a transform from a group of parameters. The {@linkplain ParameterDescriptorGroup#getName
+     * parameter group name} is used as the classification name of the transform to construct (e.g.
+     * <code>"<A HREF="http://www.remotesensing.org/geotiff/proj_list/transverse_mercator.html">Transverse_Mercator</A>"</code>).
+     * The client must supply at least the <code>"semi_major"</code> and <code>"semi_minor"</code>
+     * parameters for cartographic projection transforms. Example:
+     *
+     * <blockquote><pre>
+     * ParameterValueGroup p = factory.getDefaultParameters("Transverse_Mercator");
+     * p.parameter("semi_major").setValue(6378137.000);
+     * p.parameter("semi_minor").setValue(6356752.314);
+     * MathTransform mt = factory.createParameterizedTransform(p);
+     * </pre></blockquote>
+     *
+     * @param  parameters The parameter values.
+     * @return The parameterized transform.
+     * @throws NoSuchIdentifierException if there is no transform registered for the classification.
+     * @throws FactoryException if the object creation failed. This exception is thrown
+     *         if some required parameter has not been supplied, or has illegal value.
+     */
+/// @UML (identifier="createParameterizedTransform", obligation=MANDATORY)
+    MathTransform createParameterizedTransform(ParameterValueGroup parameters) throws FactoryException;
 
     /**
      * Creates a transform from an {@linkplain OperationMethod operation method} identifier and
@@ -89,10 +119,11 @@ public interface MathTransformFactory extends Factory {
      *         operation method identifier.
      * @throws FactoryException if the object creation failed. This exception is thrown
      *         if some required parameter has not been supplied, or has illegal value.
+     *
+     * @deprecated Use {@link #createParameterizedTransform(ParameterValueGroup)} instead.
      */
-/// @UML (identifier="createParameterizedTransform", obligation=MANDATORY)
     MathTransform createParameterizedTransform(String identifier,
-                                               GeneralParameterValue[] parameters) throws FactoryException;
+            org.opengis.parameter.GeneralParameterValue[] parameters) throws FactoryException;
 
     /**
      * Creates an affine transform from a matrix.
