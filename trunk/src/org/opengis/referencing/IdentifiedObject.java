@@ -9,11 +9,9 @@
  *************************************************************************************************/
 package org.opengis.referencing;
 
-// J2SE direct dependencies
-import java.util.Locale;
-
 // OpenGIS direct dependencies
 import org.opengis.metadata.Identifier;
+import org.opengis.util.InternationalString;
 
 
 /**
@@ -41,12 +39,8 @@ import org.opengis.metadata.Identifier;
 public interface IdentifiedObject {
     /**
      * The name by which this object is identified. 
-     *
-     * @param  locale The desired locale for the name to be returned, or <code>null</code>
-     *         for a name in some default locale (may or may not be the
-     *         {@linkplain Locale#getDefault() system default}).
-     * @return The object name in the given locale.
-     *         If no name is available in the given locale, then some default locale is used.
+     * @return The object name in a locale independent wrapper.
+     *         
      * @UML mandatory &lt;prefix&gt;Name
      *
      * @rename  Omitted the
@@ -62,7 +56,7 @@ public interface IdentifiedObject {
      *          "{@link org.opengis.parameter.ParameterGroupDescriptor group}"
      *          prefix, which stands as an abbreviation for the enclosing class.
      */
-    String getName(Locale locale);
+    public InternationalString getName();
 
     /**
      * Set of alternative identifications of this object. The first identifier, if
@@ -80,14 +74,10 @@ public interface IdentifiedObject {
     /**
      * Comments on or information about this object, including data source information.
      *
-     * @param  locale The desired locale for the remarks to be returned, or <code>null</code>
-     *         for remarks in some default locale (may or may not be the
-     *         {@linkplain Locale#getDefault() system default}).
-     * @return The remarks in the given locale, or <code>null</code> if none.
-     *         If no remark is available in the given locale, then some default locale is used.
+     * @return The remarks in the a locale independent wrapper.
      * @UML optional remarks
      */
-    String getRemarks(Locale locale);
+    InternationalString getRemarks();
 
     /**
      * Returns a <A HREF="doc-files/WKT.html"><cite>Well Known Text</cite> (WKT)</A> for this object.
