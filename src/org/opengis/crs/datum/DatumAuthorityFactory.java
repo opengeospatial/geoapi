@@ -50,6 +50,28 @@ public interface DatumAuthorityFactory extends AuthorityFactory {
     Datum createDatum(String code) throws FactoryException;
 
     /**
+     * Creates a {@linkplain EngineeringDatum engineering datum} from a code.
+     *
+     * @param  code Value allocated by authority.
+     * @throws NoSuchAuthorityCodeException if the specified <code>code</code> was not found.
+     * @throws FactoryException if the object creation failed for some other reason.
+     *
+     * @see org.opengis.crs.crs.CRSAuthorityFactory#createEngineeringCRS
+     */
+    EngineeringDatum createEngineeringDatum(String code) throws FactoryException;
+
+    /**
+     * Creates a {@linkplain ImageDatum image datum} from a code.
+     *
+     * @param  code Value allocated by authority.
+     * @throws NoSuchAuthorityCodeException if the specified <code>code</code> was not found.
+     * @throws FactoryException if the object creation failed for some other reason.
+     *
+     * @see org.opengis.crs.crs.CRSAuthorityFactory#createImageCRS
+     */
+    ImageDatum createImageDatum(String code) throws FactoryException;
+
+    /**
      * Creates a {@linkplain VerticalDatum vertical datum} from a code.
      *
      * @param  code Value allocated by authority.
@@ -138,7 +160,7 @@ public interface DatumAuthorityFactory extends AuthorityFactory {
      * @revisit WKT are not yet specified in this 2.0 version of interfaces.
      *          Does the OGC names still the same?
      */
-    String geoidFromWKTName(String wkt);
+    String geoidFromWktName(String wkt);
 
     /**
      * Gets the WKT name of a Geoid. 
@@ -154,5 +176,5 @@ public interface DatumAuthorityFactory extends AuthorityFactory {
      * @revisit WKT are not yet specified in this 2.0 version of interfaces.
      *          Does the OGC names still the same?
      */
-    String wktGeoidName(String geoid);
+    String wktFromGeoidName(String geoid);
 }

@@ -44,7 +44,7 @@ public interface Info {
      *         {@linkplain Locale#getDefault() system default}).
      * @return The object name in the given locale.
      *         If no name is available in the given locale, then some default locale is used.
-     * @UML mandatory <prefix>Name
+     * @UML mandatory &lt;prefix&gt;Name
      *
      * @rename  Omitted the
      *          "{@link org.opengis.crs.ReferenceSystem srs}",
@@ -66,7 +66,7 @@ public interface Info {
      * any, is normally the primary identification code, and any others are aliases.
      *
      * @return This object identifiers, or an empty array if there is none.
-     * @UML optional <prefix>ID
+     * @UML optional &lt;prefix&gt;ID
      *
      * @rename  Omitted the same prefix than {@link #getName}. Also replaced
      *          "<code>ID</code>" by "<code>Identifiers</code>" in order to
