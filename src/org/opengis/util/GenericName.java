@@ -52,7 +52,8 @@ public interface GenericName extends Comparable {
     List/*<LocalName>*/ getParsedNames();
 
     /**
-     * Returns a view of this object as a scoped name.
+     * Returns a view of this object as a scoped name,
+     * or <code>null</code> if this name has no scope.
      */
     ScopedName asScopedName();
 

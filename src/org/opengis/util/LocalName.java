@@ -56,8 +56,8 @@ public interface LocalName extends GenericName {
     List/*<LocalName>*/ getParsedNames();
 
     /**
-     * Returns a view of this object as a local name. Since this object is already
-     * a local name, this method always returns <code>this</code>.
+     * Returns a view of this object as a local name. Some implementations may
+     * returns <code>this</code> since this object is already a local name.
      */
     LocalName asLocalName();
 
