@@ -47,10 +47,34 @@ Specification-Title: Spatial Referencing by Coordinates
 Specification-Version: 2.00
 Specification-Vendor: OpenGIS Consortium, Inc.
 
+Name: org/opengis/cv
+Sealed: true
+Specification-Title: "Grid Coverage"
+Specification-Version: "1.00"
+Specification-Vendor: "OpenGIS Consortium"
+
+Name: org/opengis/gc
+Sealed: true
+Specification-Title: "Grid Coverage"
+Specification-Version: "1.00"
+Specification-Vendor: "OpenGIS Consortium"
+
+Name: org/opengis/gp
+Sealed: true
+Specification-Title: "Grid Coverage"
+Specification-Version: "1.00"
+Specification-Vendor: "OpenGIS Consortium"
+
 Name: org/opengis/gm*
 Sealed: true
 Specification-Title: Feature Geometry
 Specification-Version: 2.00
+Specification-Vendor: OpenGIS Consortium, Inc.
+
+Name: org/opengis/go*
+Sealed: true
+Specification-Title: Geospatial objects
+Specification-Version: 0.2
 Specification-Vendor: OpenGIS Consortium, Inc.
 
 Name: org/opengis/util

@@ -1,0 +1,50 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<HTML>
+  <HEAD>
+    <TITLE>package org.opengis.cv</TITLE>
+  </HEAD>
+  <BODY>
+  Coverages. The following is adapted from
+  <A HREF="http://www.opengis.org/docs/01-004.pdf">OpenGIS&reg;
+  Grid Coverages Implementation Specification</A>.
+
+  <P ALIGN="justify">The architecture of the grid coverage specification is composed of three
+  packages. The specification includes a package for the general coverage specification (CV),
+  a package specifically for grid coverages (GC) and a package for grid coverage processing (GP).
+  The GP package is optional and not required for an OGC compliant implementation.</P>
+
+  <H2>Color Palettes</H2>
+  <P ALIGN="justify">A coverage can have a color palette. A color palette is valid for only
+  coverages which are integer values (usually bytes). Color palettes supported include gray
+  scale, RGB, HSL and CMYK. The coverage dimension information maps the grid sample dimensions
+  to a color palette or to color model components. For example 8-bit pseudo color TIFF image
+  would be represented as a grid with one sample dimension and a color palette with 256 RGB
+  entries. A 24-bit RGB TIFF file would be represented as a grid with three bands and no color
+  palette. The dimension information would indicate which bands to use for the RGB color components.
+  The following illustrates example values for different color components:</P>
+
+  <TABLE CELLPADDING='6'>
+    <TR><TD>Gray Scale</TD>
+    <TD>Vector contains one entry which a shade of gray. 0 is black and 255 is white.</TD></TR>
+
+    <TR><TD>RGB</TD>
+    <TD>Vector contains three values: Red Green Blue. Each value ranges from 0 to 255
+        where 0 is no intensity and 255 is maximum intensity.</TD></TR>
+
+    <TR><TD>RGBA</TD>
+    <TD>Vector contains four values RGBA: Red Green Blue Alpha. The alpha value is the
+        level of transparency of the color. Alpha of 0 is transparent and 255 is opaque.</TD></TR>
+
+    <TR><TD>HSL</TD>
+    <TD>Vector contains three values: Hue Saturation Lightness. Hue is a value from 0 to
+        360. Saturation is a value from 0 to 100 where 0 is no color intensity and 100 is
+        full color intensity. Lightness is a value from 0 to 100 where 0 is no lightness
+        and 100 is full lightness.</TD></TR>
+
+    <TR><TD>CMYK</TD>
+    <TD>Vector contains four values: Cyan Magenta Yellow Black. Each value ranges from
+        0 to 255 where 0 is no intensity and 255 is maximum intensity.</TD></TR>
+  </TABLE>
+  </BODY>
+</HTML>
