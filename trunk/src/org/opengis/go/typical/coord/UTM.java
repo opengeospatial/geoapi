@@ -12,7 +12,7 @@ package org.opengis.go.typical.coord;
 import javax.units.SI;
 import javax.units.Unit;
 
-import org.opengis.crs.crs.CoordinateReferenceSystem;
+import org.opengis.referencing.crs.CoordinateReferenceSystem;
 import org.opengis.go.CommonFactoryManager;
 import org.opengis.spatialschema.geometry.DirectPosition;
 

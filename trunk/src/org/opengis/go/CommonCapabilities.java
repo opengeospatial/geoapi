@@ -10,7 +10,7 @@
 
 package org.opengis.go;
 
-import org.opengis.crs.crs.CoordinateReferenceSystem;
+import org.opengis.referencing.crs.CoordinateReferenceSystem;
 import org.opengis.go.spatial.PathType;
 
 /**

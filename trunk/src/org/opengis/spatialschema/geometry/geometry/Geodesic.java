@@ -13,8 +13,8 @@ package org.opengis.spatialschema.geometry.geometry;
 /**
  * Two distinct positions joined by a geodesic curve. The control points of a <code>Geodesic</code>
  * shall all lie on the geodesic between its start point and end point. Between these two points,
- * a geodesic curve defined from the {@linkplain org.opengis.crs.datum.Ellipsoid ellipsoid} or geoid model
- * used by the {@linkplain org.opengis.crs.crs.CoordinateReferenceSystem coordinate reference system} may
+ * a geodesic curve defined from the {@linkplain org.opengis.referencing.datum.Ellipsoid ellipsoid} or geoid model
+ * used by the {@linkplain org.opengis.referencing.crs.CoordinateReferenceSystem coordinate reference system} may
  * be used to interpolate other positions. Any other point in the {@link #getControlPoints controlPoint}
  * array must fall on this geodesic.
  *  

@@ -12,7 +12,7 @@ package org.opengis.parameter;
 
 /**
  * A group of related parameter values. The same group can be repeated more than once in an
- * {@linkplain org.opengis.crs.operation.Operation operation} or higher level <code>ParameterValueGroup</code>,
+ * {@linkplain org.opengis.referencing.operation.Operation operation} or higher level <code>ParameterValueGroup</code>,
  * if those instances contain different values of one or more {@link ParameterValue}s which suitably
  * distinquish among those groups.
  *  

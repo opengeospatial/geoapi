@@ -11,8 +11,8 @@ package org.opengis.go.typical.coord;
 
 import java.awt.geom.Point2D;
 
-import org.opengis.crs.crs.CoordinateReferenceSystem;
-import org.opengis.crs.crs.ImageCRS;
+import org.opengis.referencing.crs.CoordinateReferenceSystem;
+import org.opengis.referencing.crs.ImageCRS;
 import org.opengis.go.CommonFactoryManager;
 import org.opengis.spatialschema.geometry.DirectPosition;
 

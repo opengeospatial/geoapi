@@ -32,8 +32,8 @@ import org.opengis.spatialschema.geometry.primitive.CurveSegment;
 public interface GeodesicString extends CurveSegment {
     /**
      * Returns a sequence of positions between which this <code>GeodesicString</code> is interpolated
-     * using geodesics from the geoid or {@linkplain org.opengis.crs.datum.Ellipsoid ellipsoid} of the
-     * {@linkplain org.opengis.crs.crs.CoordinateReferenceSystem coordinate reference system} being used.
+     * using geodesics from the geoid or {@linkplain org.opengis.referencing.datum.Ellipsoid ellipsoid} of the
+     * {@linkplain org.opengis.referencing.crs.CoordinateReferenceSystem coordinate reference system} being used.
      * The organization of these points is identical to that in {@link LineString}.
      *
      * @return The control points.

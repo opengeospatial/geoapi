@@ -13,7 +13,7 @@ package org.opengis.metadata.extent;
 import javax.units.Unit;
 
 // OpenGIS direct dependencies
-import org.opengis.crs.datum.VerticalDatum;
+import org.opengis.referencing.datum.VerticalDatum;
 
 
 /**

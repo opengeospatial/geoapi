@@ -13,7 +13,7 @@ package org.opengis.spatialschema.geometry.geometry;
 import java.util.List;
 
 // OpenGIS direct dependencies
-import org.opengis.crs.crs.CoordinateReferenceSystem;
+import org.opengis.referencing.crs.CoordinateReferenceSystem;
 
 
 /**
@@ -27,7 +27,7 @@ import org.opengis.crs.crs.CoordinateReferenceSystem;
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 2.0
  *
- * @revisit Should we extend {@link org.opengis.crs.Factory}?
+ * @revisit Should we extend {@link org.opengis.referencing.Factory}?
  */
 public interface GeometryFactory {
     /**
@@ -64,8 +64,8 @@ public interface GeometryFactory {
 
     /**
      * Takes two or more positions, interpolates using a geodesic defined from
-     * the geoid (or {@linkplain org.opengis.crs.datum.Ellipsoid ellipsoid}) of the
-     * {@linkplain org.opengis.crs.crs.CoordinateReferenceSystem coordinate reference system}
+     * the geoid (or {@linkplain org.opengis.referencing.datum.Ellipsoid ellipsoid}) of the
+     * {@linkplain org.opengis.referencing.crs.CoordinateReferenceSystem coordinate reference system}
      * being used, and creates the appropriate geodesic string joining them.
      *
      * @UML constructor GM_GeodesicString(GM_Position[2..n])
