@@ -39,6 +39,16 @@ public interface DataStore {
     List/*<GenericName>*/ getTypeNames();
 
     /**
+     * This method is similar to the <code>getTypeNames()</code> method, except
+     * that it acknowledges that some features only make sense as children of
+     * another feature collection type.   So this method returns the types that
+     * are the root level "parent" types that can be retrieved from this store.
+     * Implementors are free to return the same values from this method as from
+     * <code>getTypeNames()</code>.
+     */
+    List/*<GenericName>*/ getRootTypeNames();
+
+    /**
      * Returns the schema of the named feature type.  May return null if a type
      * of the given name does not exist.  The GenericName passed to this method
      * must be equal to one of the elements in the list returned by the
