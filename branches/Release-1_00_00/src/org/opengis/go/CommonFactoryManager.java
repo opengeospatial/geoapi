@@ -60,8 +60,6 @@ public class CommonFactoryManager {
     
     private static ArrayList datumAuthorityFactoryList;
     
-    private static ArrayList spatialschemaFactoryList;
-    
     
     // Initialize our static fields...
     static {
@@ -111,8 +109,6 @@ public class CommonFactoryManager {
             datumAuthorityFactoryList.add(commonFactory.getDatumAuthorityFactory());
             datumFactoryList = new ArrayList(1);
             datumFactoryList.add(commonFactory.getDatumFactory());
-            spatialschemaFactoryList = new ArrayList(1);
-            spatialschemaFactoryList.add(commonFactory.getSpatialschemaFactory());
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -142,7 +138,6 @@ public class CommonFactoryManager {
         crsAuthorityFactoryList.add(commonFactory.getCRSAuthorityFactory());
         datumAuthorityFactoryList.add(commonFactory.getDatumAuthorityFactory());
         datumFactoryList.add(commonFactory.getDatumFactory());
-        spatialschemaFactoryList.add(commonFactory.getSpatialschemaFactory());
         
         return commonFactory;
     }

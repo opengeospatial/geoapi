@@ -93,21 +93,4 @@ public interface DirectPosition extends Cloneable {
      * @revisit Before to enable, need to update implementation in "typical" packages.
      */
 //  public DirectPosition clone();
-
-    /**
-     * Releases any resources that may have been allocated for this object.
-     * It is an error to reference a DirectPosition after its <code>dispose</code>
-     * method has been called.
-     * <p>
-     * For example, implementations might use this method to return this
-     * <code>DirectPosition</code> back to a pool of <code>DirectPosition</code>s, if
-     * the <code>SpatialschemaFactory</code> is implemented to
-     * manage a pool of <code>DirectPosition</code>s.
-     *
-     * @revisit Shoud we really provides this method? Using a pool of objects
-     *          is strongly discouraged by HotSpot performance team. See
-     *          "<A HREF="http://java.sun.com/docs/hotspot/PerformanceFAQ.html#15">Should
-     *          I pool objects to help GC?</A>" The answer is <U>no</U>!
-     */
-    public void dispose();
 }

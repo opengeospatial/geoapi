@@ -1,30 +1,30 @@
 
 Name: org/opengis/metadata*
 Specification-Title: Meta data
-Specification-Version: 5.00
+Specification-Version: 5.0
 Specification-Vendor: OpenGIS Consortium, Inc.
 
 Name: org/opengis/crs*
 Specification-Title: Spatial Referencing by Coordinates
-Specification-Version: 2.00
+Specification-Version: 2.0
 Specification-Vendor: OpenGIS Consortium, Inc.
 
 Name: org/opengis/coverage*
 Specification-Title: Grid Coverage
-Specification-Version: 1.00
+Specification-Version: 1.0
 Specification-Vendor: OpenGIS Consortium
 
 Name: org/opengis/spatialschema*
 Specification-Title: Feature Geometry
-Specification-Version: 5.00
+Specification-Version: 5.0
 Specification-Vendor: OpenGIS Consortium, Inc.
 
 Name: org/opengis/go*
 Specification-Title: Geospatial objects
-Specification-Version: 0.2
+Specification-Version: 1.0
 Specification-Vendor: OpenGIS Consortium, Inc.
 
 Name: org/opengis/util*
 Specification-Title: GeoAPI
-Specification-Version: 1.00
+Specification-Version: 1.0
 Specification-Vendor: OpenGIS Consortium, Inc.

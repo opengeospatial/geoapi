@@ -15,7 +15,6 @@ import org.opengis.referencing.crs.CRSFactory;
 import org.opengis.referencing.datum.DatumAuthorityFactory;
 import org.opengis.referencing.datum.DatumFactory;
 import org.opengis.go.geometry.BoundsFactory;
-import org.opengis.spatialschema.SpatialschemaFactory;
 
 /**
  * <code>CommonFactory</code> defines a common abstraction for 
@@ -57,11 +56,4 @@ public interface CommonFactory {
      * Returns the DatumFactory singleton.
      */
     public DatumFactory getDatumFactory();
-    
-    /**
-     * Returns the SpatialschemaFactory singleton.
-     */
-    public SpatialschemaFactory getSpatialschemaFactory();
-
-
 }
