@@ -112,7 +112,21 @@ is within nested double and single quotes. -->
 					<xsl:value-of select="$JavaPrefix"/>
 					<xsl:text>;&#xA;&#xA;</xsl:text>
 			</xsl:if>
-
+		
+			
+		<!--	********************************************************
+ 				modification : add import for codeList type
+				modified by Stephane, October 22 2003
+ 				********************************************************-->
+			<xsl:choose>
+				<xsl:when test="name()='codeList'">
+					<xsl:text>//opengis dependencies&#xA;</xsl:text>
+					<xsl:text>import org.opengis.lang.CodeList;&#xA;</xsl:text>
+				</xsl:when>
+			</xsl:choose>
+		<!-- end of codeList import section -->
+		
+		
 			<xsl:call-template name="comment">
 				<xsl:with-param name="indent" select="''"/>
 			</xsl:call-template>
@@ -152,6 +166,20 @@ is within nested double and single quotes. -->
 					<xsl:if test="position()!=last()">, </xsl:if>
 
 				</xsl:for-each>
+			
+				
+		<!--	********************************************************
+				modification : add extends for codeList type
+				modified by Stephane, October 22 2003
+				********************************************************-->
+				<xsl:choose>
+				<xsl:when test="name()='codeList'">
+					<xsl:text>&#x20;extends CodeList</xsl:text>
+				</xsl:when>
+			</xsl:choose>
+		<!-- end of extends CodeList section -->
+			
+			
 			
 				<xsl:for-each select="superclass[key('interfaces', string(name)) and key('classes', string(../name)) and $Interface!='true']											 | specification[key('interfaces', string(name)) and key('classes', string(../name)) and $Interface!='true']">
 					<xsl:if test="position()=1">
@@ -198,8 +226,8 @@ is within nested double and single quotes. -->
 </xsl:template>
 
 <!-- codeList Template -->
-<xsl:template name="codeList">
-<!-- old xsl code : codeList Template
+<!-- <xsl:template name="codeList">
+old xsl code : codeList Template
        <xsl:text>    private static String[] values = {</xsl:text>
         <xsl:call-template name="AttributesForEnumType"/>
         <xsl:text>};&#xA;</xsl:text>
@@ -207,28 +235,30 @@ is within nested double and single quotes. -->
         <xsl:text>    public String value() { return values[code];}&#xA;</xsl:text>
 </xsl:template>
 -->
-<!-- new code modified by Stephane September, 2003, 16th-->
+
+<!--	********************************************************
+ 		modification of codeList Template
+		modified by Stephane, October 22 2003
+ 		********************************************************-->
+<xsl:template name="codeList">
 	<xsl:param name="JavaPrefix"/>
 	<xsl:param name="name"/>
-       <xsl:text>    private final static String[] values = {</xsl:text>
-        <xsl:call-template name="AttributesForEnumType"/>
-        <xsl:text>};&#xA;</xsl:text>
-        <xsl:text>    public final int ordinal;&#xA;</xsl:text>
-        <xsl:text>    public final String name;&#xA;</xsl:text>
-        
-        <xsl:text>    private </xsl:text>
-        <xsl:value-of select="name"/>
-        <xsl:text>(int ordinal, String name) {&#xA;</xsl:text>}
-        <xsl:text>this.name = name;&#xA;</xsl:text>
-        <xsl:text>this.ordinal = ordinal;&#xA;</xsl:text>
-        <xsl:text> }&#xA;</xsl:text>
-                
-        <xsl:text>    public String value() { return values[ordinal];}&#xA;</xsl:text>
-        <xsl:call-template name="Method">
+    <xsl:apply-templates select="attribute">
+    	<xsl:with-param name="className" select="name" />
+    </xsl:apply-templates>
+    <xsl:text>&#xA;</xsl:text>
+    <xsl:text>    private </xsl:text>
+    <xsl:value-of select="name"/>
+    <xsl:text>(int ordinal, String name)&#xA;</xsl:text>
+    <xsl:text>    {&#xA;</xsl:text>
+    <xsl:text>        super(ordinal, name);&#xA;</xsl:text>
+    <xsl:text>    }&#xA;</xsl:text>
+    <xsl:call-template name="Method">
 		<xsl:with-param name="JavaPrefix" select="$JavaPrefix"/>
 	</xsl:call-template>
 </xsl:template>
-<!-- codeList Template -->
+<!-- end of codeList Template section -->
+
 
 <!-- class -->
 <xsl:template name="class">
@@ -362,12 +392,51 @@ is within nested double and single quotes. -->
 </xsl:text>
 </xsl:template>
 
+
 <!-- AttributesForEnumType -->
   <xsl:template name="AttributesForEnumType">
     <xsl:for-each select="attribute">
       <xsl:call-template name="EnumAttributeDefinition"/>
     </xsl:for-each>
   </xsl:template>
+
+  
+<!--	********************************************************
+ 		modification of AttributesForEnumType for type codeList
+		modified by Stephane, October 23 2003
+ 		********************************************************-->
+  <xsl:template match="attribute">
+  	<xsl:param name="className"/>
+  	<xsl:variable name="indice">
+    	<xsl:number level="any" from="codeList"/>
+    </xsl:variable>
+    <xsl:text>    public static final </xsl:text>
+    <xsl:call-template name="UppercaseName">
+    	<xsl:with-param name="attributeName" select="name"/>
+    </xsl:call-template>
+    <xsl:text> = new </xsl:text>
+    <xsl:value-of select="$className"/>
+    <xsl:text>(</xsl:text>
+    <xsl:value-of select="$indice - 1"/>
+    <xsl:text> , "</xsl:text>
+    <xsl:value-of select="name"/>
+    <xsl:text>" );&#xA;</xsl:text>
+  </xsl:template>
+
+<!--	*****************************************************************
+		added for use with previous modification on AttributesForEnumType
+		added by Stephane, October 23 2003
+		***************************************************************** -->
+<xsl:template name="UppercaseName">
+	<xsl:param name="attributeName"/>
+	<xsl:variable name="upperCase" select="'_ABCDEFGHIJKLMNOPQRSTUVWXYZ'"/>
+	<xsl:variable name="lowerCase" select="' abcdefghijklmnopqrstuvwxyz'"/>
+	<xsl:value-of select="translate($attributeName, $lowerCase, $upperCase)"/>
+</xsl:template>
+
+<!-- end of section attribute for codeList type  -->
+
+
   
 <!-- EnumAttributeDefinition -->
   <xsl:template name="EnumAttributeDefinition">
