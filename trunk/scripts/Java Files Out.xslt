@@ -3,7 +3,7 @@
 	<xsl:output method="text" encoding="UTF-8"/>
 	<!-- <xsl:preserve-space elements="java:Java java:classDefinition"/> -->
 	<!-- <xsl:strip-space elements="java:comments"/> -->
-	<xsl:param name="dir">f:\projects\geometry\direct\packaged</xsl:param>
+	<xsl:param name="dir">f:\projects\geometry\geoapi\java\src</xsl:param>
 	<xsl:variable name="filesep" select="system-property('file.separator')"/>
 	<xsl:variable name="period">.</xsl:variable>
 	<xsl:template match="java:Declarations">
