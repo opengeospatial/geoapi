@@ -9,7 +9,7 @@ import java.util.Locale;
 
 // OpenGIS direct dependencies
 import org.opengis.crs.Info;
-import org.opengis.spatialschema.geometry.Envelope;
+import org.opengis.metadata.extent.Extent;
 
 
 /**
@@ -77,7 +77,7 @@ public interface Datum extends Info {
      * @return The datum valid area, or <code>null</code> if not available.
      * @UML optional validArea
      */
-    public Envelope getValidArea();
+    public Extent getValidArea();
 
     /**
      * Description of domain of usage, or limitations of usage, for which this

@@ -14,7 +14,7 @@ import org.opengis.spatialschema.geometry.primitive.CurveInterpolation;
 /**
  * A variant of the arc that stores the parameters of the second constructor of
  * the component {@linkplain Arc arcs} and recalculates the other attributes of
- * the standard arc. The {@linkplain #getControlPoints control point} sequence
+ * the standard arc. The {@linkplain ArcString#getControlPoints control point} sequence
  * is similar to that in {@linkplain ArcString arc string}, but the midPoint
  * {@linkplain Position position} is not needed since it is to be calculated.
  * The control point sequence shall consist of the start and end points of each arc.
@@ -56,10 +56,10 @@ public interface ArcStringByBulge extends CurveSegment {
     /**
      * Returns the number of circular arcs in the string. Since the interpolation method
      * requires overlapping sets of 2 positions, the number of arcs determines the number
-     * of {@linkplain #getControlPoints control points}.
+     * of {@linkplain ArcString#getControlPoints control points}.
      *
      * <blockquote>
-     * <pre>numArc = {@link #getControlPoints controlPoints}.length - 1</pre>
+     * <pre>numArc = {@link ArcString#getControlPoints controlPoints}.length - 1</pre>
      * </blockquote>
      *
      * @return The number of circular arcs.

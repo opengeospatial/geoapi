@@ -9,7 +9,7 @@ import java.util.Locale;
 // OpenGIS direct dependencies
 import org.opengis.crs.crs.CRS;
 import org.opengis.crs.Info;
-import org.opengis.spatialschema.geometry.Envelope;
+import org.opengis.metadata.extent.Extent;
 import org.opengis.crs.quality.PositionalAccuracy;
 
 
@@ -81,7 +81,7 @@ public interface CoordinateOperation extends Info {
      * @return Coordinate operation valid area, or <code>null</code> if not available.
      * @UML optional validArea
      */
-    public Envelope getValidArea();
+    public Extent getValidArea();
 
     /**
      * Description of domain of usage, or limitations of usage, for which this operation is valid.
