@@ -12,11 +12,14 @@ package org.opengis.tools;
 // J2SE dependencies
 import java.io.*;
 import java.util.*;
+import java.net.URI;
+import java.net.URL;
 import java.lang.reflect.*;
 import java.util.logging.Logger;
 
 // OpenGIS dependencies
 import org.opengis.util.CodeList;
+import org.opengis.util.GenericName;
 import org.opengis.util.InternationalString;
 import org.opengis.annotation.UML;
 import org.opengis.annotation.Obligation;
@@ -33,14 +36,19 @@ import org.opengis.spatialschema.geometry.geometry.PointArray;
  */
 public class DatabaseGenerator {
     /**
-     * The line separator.
+     * The root package.
      */
-    private static final String lineSeparator = System.getProperty("line.separator", "\n");
+    private static final String rootPackage = "org.opengis.metadata";
 
     /**
      * The owner for the database to create, or <code>null</code> for the default one.
      */
     private static final String owner = "latical";
+
+    /**
+     * The line separator.
+     */
+    private static final String lineSeparator = System.getProperty("line.separator", "\n");
 
     /**
      * The list of table created in inverse order. Used for the "DROP TABLE" statements.
@@ -58,7 +66,7 @@ public class DatabaseGenerator {
      */
     public static void main(String[] args) throws Exception {
         Writer sql = new FileWriter("create.sql");
-        final Set<Class> classes = ClassFinder.getClasses(CodeList.class, "org.opengis.metadata");
+        final Set<Class> classes = ClassFinder.getClasses(CodeList.class, rootPackage);
         for (final Iterator<Class> it=classes.iterator(); it.hasNext();) {
             final Class classe = it.next();
             if (Throwable.class.isAssignableFrom(classe)) {
@@ -66,22 +74,30 @@ public class DatabaseGenerator {
                 continue;
             }
             if (CodeList.class.isAssignableFrom(classe)) {
+                it.remove();
                 final String statement = sqlCodeList(classe);
                 if (statement != null) {
                     sql.write(statement);
                 }
-                it.remove();
             }
         }
-        for (final Iterator<Class> it=classes.iterator(); it.hasNext();) {
-            final Class classe = it.next();
-            if (classe.isInterface()) {
-                final String statement = sqlInterface(classe);
-                if (statement != null) {
-                    sql.write(statement);
+        while (!classes.isEmpty()) {
+            try {
+                for (final Iterator<Class> it=classes.iterator(); it.hasNext();) {
+                    final Class classe = it.next();
+                    if (classe.isInterface()) {
+                        it.remove(); // Most be invoked before 'sqlInterface'.
+                        final String statement = sqlInterface(classe, classes);
+                        if (statement != null) {
+                            sql.write(statement);
+                        }
+                    }
                 }
+                break; // All interfaces were processed.
+            } catch (ConcurrentModificationException ignore) {
+                // The Set has been modified (in order to solve dependencies).
+                // The iteration must be restarted.
             }
-            it.remove();
         }
         sql.close();
         sql = new BufferedWriter(new FileWriter("drop.sql"));
@@ -100,6 +116,9 @@ public class DatabaseGenerator {
     /**
      * Create an SQL "CREATE TABLE" statement for the specified code list.
      * Returns <code>null</code> if the specified interface doesn't have @UML tags.
+     *
+     * @param  classe The class to process.
+     * @return The SQL string to add to the 'create.sql' file.
      */
     private static String sqlCodeList(final Class classe) throws IllegalAccessException {
         final String className = getIdentifier(classe);
@@ -163,12 +182,19 @@ public class DatabaseGenerator {
     /**
      * Create an SQL "CREATE TABLE" statement for the specified interface.
      * Returns <code>null</code> if the specified interface doesn't have @UML tags.
+     *
+     * @param  classe The class to process.
+     * @param  classes The remaining classes to process. Element in this set will be
+     *         removed if this method determine that it need to create some other classes
+     *         before this one, in order to resolve dependencies.
+     * @return The SQL string to add to the 'create.sql' file.
      */
-    private static String sqlInterface(final Class classe) {
+    private static String sqlInterface(final Class classe, final Set<Class> classes) {
         final String className = getIdentifier(classe);
         if (className == null) {
             return null;
         }
+        final StringBuilder constraints = new StringBuilder();
         final StringBuilder sql = new StringBuilder();
         sql.append("CREATE TABLE \"");
         sql.append(className);
@@ -176,7 +202,6 @@ public class DatabaseGenerator {
         sql.append(lineSeparator);
         sql.append('(');
         sql.append(lineSeparator);
-        boolean hasColumns = false;
         final Method[] attributes = classe.getDeclaredMethods();
 scan:   for (final Method attribute : attributes) {
             if (!Modifier.isPublic(attribute.getModifiers())) {
@@ -194,13 +219,10 @@ scan:   for (final Method attribute : attributes) {
                     // No such method in superclass. Checks other interfaces.
                 }
             }
-            final String sqlType = toSQLType(attribute.getReturnType(), attribute.getGenericReturnType());
+            final Class attributeType = attribute.getReturnType();
+            final String sqlType = toSQLType(attributeType, attribute.getGenericReturnType());
             if (sqlType == null) {
                 continue;
-            }
-            if (hasColumns) {
-                sql.append(',');
-                sql.append(lineSeparator);
             }
             sql.append("  \"");
             sql.append(attributeName);
@@ -209,23 +231,56 @@ scan:   for (final Method attribute : attributes) {
             if (Obligation.MANDATORY.equals(attribute.getAnnotation(UML.class).obligation())) {
                 sql.append(" NOT NULL");
             }
-            hasColumns = true;
+            sql.append(',');
+            sql.append(lineSeparator);
+            final String foreignKey;
+            if (CodeList.class.isAssignableFrom(attributeType)) {
+                foreignKey = "code";
+            } else if (attributeType.getName().startsWith(rootPackage)) {
+                foreignKey = "oid";
+            } else {
+                continue;
+            }
+            constraints.append("  CONSTRAINT \"");
+            constraints.append(className);
+            constraints.append('.');
+            constraints.append(attributeName);
+            constraints.append("\" FOREIGN KEY (\"");
+            constraints.append(attributeName);
+            constraints.append("\") REFERENCES \"");
+            constraints.append(getIdentifier(attributeType));
+            constraints.append("\" (");
+            constraints.append(foreignKey);
+            constraints.append(") ON UPDATE RESTRICT ON DELETE RESTRICT,");
+            constraints.append(lineSeparator);
+            if (classes.remove(attributeType)) {
+                // Resolve dependencies first.
+                sql.insert(0, sqlInterface(attributeType, classes));
+            }
         }
+        sql.append(constraints);
+        sql.append("  CONSTRAINT \"");
+        sql.append(className);
+        sql.append(".primaryKey\" PRIMARY KEY (oid)");
         sql.append(lineSeparator);
         sql.append(')');
         final Class[] parents = classe.getInterfaces();
         if (parents != null) {
             for (int i=0; i<parents.length; i++) {
+                final Class parent = parents[i];
+                if (classes.remove(parent)) {
+                    // Resolve dependencies first.
+                    sql.insert(0, sqlInterface(parent, classes));
+                }
                 sql.append(i==0 ? " INHERITS (\"" : ", \"");
-                sql.append(getIdentifier(parents[i]));
+                sql.append(getIdentifier(parent));
                 sql.append('"');
-return null; // TODO: Temporary patch for debugging purpose
             }
             if (parents.length != 0) {
                 sql.append(')');
             }
         }
-        sql.append(" WITHOUT OIDS;");
+        sql.append(" WITH OIDS;");
         sql.append(lineSeparator);
         if (owner != null) {
             sql.append("ALTER TABLE \"");
@@ -237,9 +292,6 @@ return null; // TODO: Temporary patch for debugging purpose
         }        
         sql.append(lineSeparator);
         sql.append(lineSeparator);
-        if (!hasColumns) {
-            return null;
-        }
         drop.addFirst(className);
         return sql.toString();
     }
@@ -250,6 +302,15 @@ return null; // TODO: Temporary patch for debugging purpose
     private static String toSQLType(final Class classe, final Type type) {
         if (       CharSequence.class.isAssignableFrom(classe) ||
             InternationalString.class.isAssignableFrom(classe))
+        {
+            return "TEXT";
+        }
+        if (URL.class.isAssignableFrom(classe) ||
+            URI.class.isAssignableFrom(classe))
+        {
+            return "TEXT";
+        }
+        if (GenericName.class.isAssignableFrom(classe))
         {
             return "TEXT";
         }
@@ -283,9 +344,20 @@ return null; // TODO: Temporary patch for debugging purpose
         {
             return "DOUBLE PRECISION";
         }
+        if (Number.class.isAssignableFrom(classe))
+        {
+            return "DOUBLE PRECISION";
+        }
         if (Date.class.isAssignableFrom(classe))
         {
             return "TIMESTAMP WITH TIME ZONE";
+        }
+        if (CodeList.class.isAssignableFrom(classe))
+        {
+            return "INT2";
+        }
+        if (classe.getName().startsWith(rootPackage)) {
+            return "INT4";
         }
         if (classe.isArray()) {
             final String sql = toSQLType(classe.getComponentType(), null);
