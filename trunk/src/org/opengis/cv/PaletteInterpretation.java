@@ -7,6 +7,7 @@ package org.opengis.cv;
 import java.util.List;
 import java.util.Arrays;
 import java.util.Collections;
+import java.awt.color.ColorSpace; // For Javadoc
 
 //OpenGIS direct dependencies
 import org.opengis.util.CodeList;
@@ -19,6 +20,9 @@ import org.opengis.util.CodeList;
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 1.1
  *
+ * @see ColorInterpretation
+ * @see SampleDimension
+ *
  * @revisit Localize. Defines serialVersionUID.
  */
 public final class PaletteInterpretation extends CodeList {
@@ -26,6 +30,7 @@ public final class PaletteInterpretation extends CodeList {
      * Gray Scale color palette.
      *
      * @UML conditional CV_Gray
+     * @see ColorSpace#TYPE_GRAY
      */
     public static final PaletteInterpretation GRAY = new PaletteInterpretation(0, "GRAY");
 
@@ -33,6 +38,7 @@ public final class PaletteInterpretation extends CodeList {
      * RGB (Red Green Blue) color palette.
      *
      * @UML conditional CV_RGB
+     * @see ColorSpace#TYPE_RGB
      */
     public static final PaletteInterpretation RGB = new PaletteInterpretation(1, "RGB");
 
@@ -40,6 +46,7 @@ public final class PaletteInterpretation extends CodeList {
      * CYMK (Cyan Yellow Magenta blacK) color palette.
      *
      * @UML conditional CV_CMYK
+     * @see ColorSpace#TYPE_CMYK
      */
     public static final PaletteInterpretation CMYK = new PaletteInterpretation(2, "CMYK");
 
@@ -47,6 +54,7 @@ public final class PaletteInterpretation extends CodeList {
      * HSL (Hue Saturation Lightness) color palette.
      *
      * @UML conditional CV_HLS
+     * @see ColorSpace#TYPE_HLS
      */
     public static final PaletteInterpretation HLS = new PaletteInterpretation(3, "HLS");
 

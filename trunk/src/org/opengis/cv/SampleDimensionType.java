@@ -21,6 +21,8 @@ import org.opengis.util.CodeList;
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 1.1
  *
+ * @see SampleDimension
+ *
  * @revisit Localize. Defines serialVersionUID.
  */
 public final class SampleDimensionType extends CodeList {
