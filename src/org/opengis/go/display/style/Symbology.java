@@ -68,7 +68,7 @@ public interface Symbology {
     /**
      * Sets the active symbology name that is being used to render this
      * graphic symbol.  
-     * @param symbologyName the new active symbology
+     * @param info the new active symbology
      * @throws IllegalArgumentException if the symbology isn't supported
      */
     public void setActiveSymbology(SymbologyInfo info) throws IllegalArgumentException;
