@@ -117,7 +117,7 @@ public final class UmlTaglet implements Taglet {
     private static void warning(final Tag tag, final String message) {
         if (false) {
             // TODO: root is null; can't use it.
-            com.sun.tools.doclets.standard.Standard.configuration().root.printWarning(tag.position(), message);
+//            com.sun.tools.doclets.standard.Standard.configuration().root.printWarning(tag.position(), message);
         } else {
             System.err.print("UML error: ");
             System.err.println(message);

@@ -105,7 +105,7 @@
            encoding    = "ISO-8859-1"
            includes    = "org/**/*.java"
            source      = "1.5"
-           target      = "1.4"
+           target      = "1.5"
            optimize    = "true"
            debug       = "false"
            failonerror = "true">
@@ -150,7 +150,7 @@
 
       <taglet name="org.opengis.tools.UmlTaglet" path="${homepath}/scripts"/>
       <tag name="rename" scope="types,fields,methods"
-           description="Name change from UML &lt;FONT COLOR='#A01020'&gt;(a GeoAPI's proposal)&lt;/FONT&gt;:"/>
+           description="Name change from UML &lt;FONT COLOR='#A01020'&gt;(a GeoAPI proposal)&lt;/FONT&gt;:"/>
       <taglet name="org.opengis.tools.RevisitTaglet" path="${homepath}/scripts"/>
 
       <link href="http://java.sun.com/j2se/1.4/docs/api"/>
