@@ -66,7 +66,7 @@ public final class VerticalDatumType extends CodeList {
     /**
      * List of all enumeration of this type.
      */
-    private static final List FAMILY = Collections.unmodifiableList(Arrays.asList(new VerticalDatumType[] {
+    private static final List VALUES = Collections.unmodifiableList(Arrays.asList(new VerticalDatumType[] {
             GEOIDAL, DEPTH, BAROMETRIC, OTHER_SURFACE }));
 
     /**
@@ -77,9 +77,16 @@ public final class VerticalDatumType extends CodeList {
     }
 
     /**
-     * Returns the list of <code>VerticalDatumType</code> codes.
+     * Returns the list of <code>VerticalDatumType</code>s.
+     */
+    public static List values() {
+        return VALUES;
+    }
+
+    /**
+     * Returns the list of enumerations of the same kind than this enum.
      */
     public List family() {
-        return FAMILY;
+        return VALUES;
     }
 }

@@ -1,6 +1,12 @@
-/*
- * Copyright (C) 2003 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
- */
+/**************************************************************************************************
+ **
+ ** $Id$
+ **
+ ** $Source$
+ **
+ ** Copyright (C) 2003 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
+ **
+ *************************************************************************************************/
 package org.opengis.go.display.event;
 
 // J2SE direct dependencies
@@ -18,6 +24,10 @@ public class EventManagerSupport implements EventManager {
     //*************************************************************************
     //  Fields and constructors
     //*************************************************************************
+    /**
+     * Set to <code>true</code> and recompile for tracing events to {@link System#err}.
+     */
+    static final boolean TRACE = false;
 
     /**
      * An immutable, empty array of event handler for {@link #getFallbackEventHandlers}.

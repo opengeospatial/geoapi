@@ -92,7 +92,7 @@ public class SurfaceInterpolation extends CodeList {
     /**
      * List of all enumeration of this type.
      */
-    private static final List/*<SurfaceInterpolation>*/ FAMILY = Collections.unmodifiableList(
+    private static final List/*<SurfaceInterpolation>*/ VALUES = Collections.unmodifiableList(
         Arrays.asList(new SurfaceInterpolation[] {
                       NONE, PLANAR, SPHERICAL, ELLIPTICAL, CONIC, TIN, PARAMETRIC_CURVE,
                       POLYNOMIAL_SPLINE, RATIONAL_SPLINE, TRIANGULATED_SPLINE } ));
@@ -107,7 +107,14 @@ public class SurfaceInterpolation extends CodeList {
     /**
      * Returns the list of <code>SurfaceInterpolation</code>s.
      */
+    public static List values() {
+        return VALUES;
+    }
+
+    /**
+     * Returns the list of enumerations of the same kind than this enum.
+     */
     public List/*<SurfaceInterpolation>*/ family() {
-        return FAMILY;
+        return VALUES;
     }
 }

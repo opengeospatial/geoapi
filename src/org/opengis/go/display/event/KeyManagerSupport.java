@@ -1,6 +1,12 @@
-/*
- * Copyright (C) 2003 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
- */
+/**************************************************************************************************
+ **
+ ** $Id$
+ **
+ ** $Source$
+ **
+ ** Copyright (C) 2003 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
+ **
+ *************************************************************************************************/
 package org.opengis.go.display.event;
 
 // J2SE direct dependencies
@@ -15,7 +21,6 @@ import java.awt.event.KeyListener;
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  */
 public class KeyManagerSupport extends EventManagerSupport implements KeyManager, KeyListener {
-
     /**
      * Construct a default key manager.
      */
@@ -68,7 +73,8 @@ public class KeyManagerSupport extends EventManagerSupport implements KeyManager
      *         replaced by <code>replacementHandler</code>.
      */
     public synchronized boolean replaceKeyHandler(KeyHandler existingHandler,
-                                                  KeyHandler replacementHandler) {
+                                                  KeyHandler replacementHandler)
+    {
         return super.replaceEventHandler(existingHandler, replacementHandler);
     }
 
@@ -96,7 +102,6 @@ public class KeyManagerSupport extends EventManagerSupport implements KeyManager
      */
     public synchronized KeyHandler[] getFallbackKeyHandlers() {
         KeyHandler[] fallbackHandlers = new KeyHandler[0];
-
         if (eventStack != null || !eventStack.isEmpty()) {
             int size = eventStack.size();
             if (eventStack.get(0) == currentEventHandler) {
@@ -123,23 +128,20 @@ public class KeyManagerSupport extends EventManagerSupport implements KeyManager
      * @param e the <code>KeyEvent</code> to process.
      */
     public void keyTyped(final KeyEvent e) {
-
-        // System.err.println("manager got keyPressed! during...");
-        // new Exception().printStackTrace();
+        if (TRACE) {
+            System.err.println("manager got keyPressed! during...");
+            new Exception().printStackTrace();
+        }
         final KeyHandler keyHandler;
 
         synchronized (this) {
             keyHandler = (KeyHandler)currentEventHandler;
         }
-
         if (keyHandler != null) {
             keyHandler.keyTyped(e);
-
             if (!e.isConsumed()) {
                 KeyHandler[] fallback = getFallbackKeyHandlers();
-
                 for (int i = 0; (i < fallback.length) && !e.isConsumed(); i++) {
-
                     // EXPLAIN(CCP): Even though the array returned by the
                     // method getFallbackKeyHandlers() does NOT include the
                     // current key hander, we still have to check here,
@@ -164,23 +166,20 @@ public class KeyManagerSupport extends EventManagerSupport implements KeyManager
      * @param e the <code>KeyEvent</code> to process.
      */
     public void keyPressed(final KeyEvent e) {
-
-        // System.err.println("manager got keyPressed! during...");
-        // new Exception().printStackTrace();
+        if (TRACE) {
+            System.err.println("manager got keyPressed! during...");
+            new Exception().printStackTrace();
+        }
         final KeyHandler keyHandler;
 
         synchronized (this) {
             keyHandler = (KeyHandler)currentEventHandler;
         }
-
         if (keyHandler != null) {
             keyHandler.keyPressed(e);
-
             if (!e.isConsumed()) {
                 KeyHandler[] fallback = getFallbackKeyHandlers();
-
                 for (int i = 0; (i < fallback.length) && !e.isConsumed(); i++) {
-
                     // EXPLAIN(CCP): Even though the array returned by the
                     // method getFallbackKeyHandlers() does NOT include the
                     // current key hander, we still have to check here,
@@ -208,20 +207,18 @@ public class KeyManagerSupport extends EventManagerSupport implements KeyManager
      *          other implementations? (<code>if (keyHandler != fallback[i])</code>)
      */
     public void keyReleased(final KeyEvent e) {
-
-        // System.err.println("manager got keyReleased!");
+        if (TRACE) {
+            System.err.println("manager got keyReleased!");
+        }
         final KeyHandler keyHandler;
 
         synchronized (this) {
             keyHandler = (KeyHandler)currentEventHandler;
         }
-
         if (keyHandler != null) {
             keyHandler.keyReleased(e);
-
             if (!e.isConsumed()) {
                 KeyHandler[] fallback = getFallbackKeyHandlers();
-
                 for (int i = 0; (i < fallback.length) && !e.isConsumed(); i++) {
                     fallback[i].keyReleased(e);
                 }

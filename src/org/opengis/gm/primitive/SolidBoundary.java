@@ -38,10 +38,8 @@ public interface SolidBoundary extends PrimitiveBoundary {
      *
      * @return The interior shells. Never <code>null</code>, but may be an empty array.
      * @UML operation interior
-     *
-     * @revisit Should we use the plural form for this method name?
      */
-    public Shell[] getInterior();
+    public Shell[] getInteriors();
 
     /**
      * Constructs a {@link Solid} by indicating its boundary as a collection

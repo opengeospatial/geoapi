@@ -1,10 +1,16 @@
-/*
- * Copyright (C) 2003 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
- */
+/**************************************************************************************************
+ **
+ ** $Id$
+ **
+ ** $Source$
+ **
+ ** Copyright (C) 2003 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
+ **
+ *************************************************************************************************/
 package org.opengis.go.display.event;
 
 // OpenGIS direct dependencies
-// import org.opengis.go.display.primitive.Graphic;
+import org.opengis.go.display.primitive.Graphic;
 
 
 /**
@@ -20,12 +26,8 @@ public interface GraphicEvent {
      * Returns the <code>Graphic</code> this <code>GraphicEvent</code> initially occurred on.
      *
      * @return the <code>Graphic</code> source of this event or <code>null</code> if none.
-     *
-     * @revisit Replace the returns type from <code>Object</code> to <code>Graphics</code>
-     *          when the later will have been commited to the CVS tree. Then, add the
-     *          <code>GraphicsListenerSupport</code> class.
      */
-    public Object/*Graphic*/ getGraphic();
+    public Graphic getGraphic();
     
     /**
      * Consumes this <code>GraphicEvent</code> so that it will not be 

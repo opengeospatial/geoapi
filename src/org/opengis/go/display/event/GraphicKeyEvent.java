@@ -1,18 +1,21 @@
-/*
- * Copyright (C) 2003 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
- */
+/**************************************************************************************************
+ **
+ ** $Id$
+ **
+ ** $Source$
+ **
+ ** Copyright (C) 2003 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
+ **
+ *************************************************************************************************/
 package org.opengis.go.display.event;
 
 // J2SE direct dependencies
 import java.awt.event.KeyEvent;
 
-// OpenGIS direct dependencies
-// import org.opengis.go.display.primitive.Graphic;
-
 
 /**
  * Provides a common abstraction for the various event objects pertaining to key
- * events on a {@link Graphic}.
+ * events on a {@link org.opengis.go.display.primitive.Graphic}.
  * 
  * @version 0.2
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
