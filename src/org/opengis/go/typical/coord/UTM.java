@@ -9,9 +9,8 @@
  *************************************************************************************************/
 package org.opengis.go.typical.coord;
 
-import javax.units.SI;
 import javax.units.Unit;
-
+import javax.units.SI;
 import java.util.Properties;
 
 import org.opengis.crs.crs.CRS;
