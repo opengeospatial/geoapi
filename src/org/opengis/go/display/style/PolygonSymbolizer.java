@@ -25,33 +25,6 @@ public interface PolygonSymbolizer {
     //*************************************************************************
     //  Static Fields
     //*************************************************************************
-	
-    //**  PolygonSymbolizer properties  **
-    public static final String POLYGON_FILL_BACKGROUND_COLOR = "POLYGON_FILL_BACKGROUND_COLOR";
-    public static final String POLYGON_FILL_COLOR = "POLYGON_FILL_COLOR";
-    public static final String POLYGON_FILL_GRADIENT_POINTS = "POLYGON_FILL_GRADIENT_POINTS"; 
-    public static final String POLYGON_FILL_OPACITY = "POLYGON_FILL_OPACITY";
-    public static final String POLYGON_FILL_PATTERN = "POLYGON_FILL_PATTERN";
-    public static final String POLYGON_FILL_STYLE = "POLYGON_FILL_STYLE";
-    public static final String POLYGON_STROKE_BEGIN_ARROW_STYLE = "POLYGON_STROKE_BEGIN_ARROW_STYLE";
-    public static final String POLYGON_STROKE_END_ARROW_STYLE = "POLYGON_STROKE_END_ARROW_STYLE";
-    public static final String POLYGON_STROKE_COLOR = "POLYGON_STROKE_COLOR"; 
-    public static final String POLYGON_STROKE_DASH_ARRAY = "POLYGON_STROKE_DASH_ARRAY";
-    public static final String POLYGON_STROKE_DASH_OFFSET = "POLYGON_STROKE_DASH_OFFSET";
-    public static final String POLYGON_STROKE_FILL_BACKGROUND_COLOR = "POLYGON_STROKE_FILL_BACKGROUND_COLOR";
-    public static final String POLYGON_STROKE_FILL_COLOR = "POLYGON_STROKE_FILL_COLOR";
-    public static final String POLYGON_STROKE_FILL_GRADIENT_POINTS = "POLYGON_STROKE_FILL_GRADIENT_POINTS"; 
-    public static final String POLYGON_STROKE_FILL_OPACITY = "POLYGON_STROKE_FILL_OPACITY";
-    public static final String POLYGON_STROKE_FILL_PATTERN = "POLYGON_STROKE_FILL_PATTERN";
-    public static final String POLYGON_STROKE_FILL_STYLE = "POLYGON_STROKE_FILL_STYLE";
-    public static final String POLYGON_STROKE_LINE_CAP = "POLYGON_STROKE_LINE_CAP";
-    public static final String POLYGON_STROKE_LINE_GAP = "POLYGON_STROKE_LINE_GAP";
-    public static final String POLYGON_STROKE_LINE_JOIN = "POLYGON_STROKE_LINE_JOIN";
-    public static final String POLYGON_STROKE_LINE_PATTERN = "POLYGON_STROKE_LINE_PATTERN";
-    public static final String POLYGON_STROKE_LINE_STYLE = "POLYGON_STROKE_LINE_STYLE";
-    public static final String POLYGON_STROKE_OPACITY = "POLYGON_STROKE_OPACITY";
-    public static final String POLYGON_STROKE_WIDTH = "POLYGON_STROKE_WIDTH";
-    public static final String POLYGON_STROKE_PATTERN = "POLYGON_STROKE_PATTERN";
 
     //**  Default PolygonSymbolizer property values  **
     
