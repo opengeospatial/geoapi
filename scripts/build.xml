@@ -156,6 +156,7 @@
       <replacefilter token="&lt;Extent&gt;"/>
       <replacefilter token="&lt;FeatureTypeList&gt;"/>
       <replacefilter token="&lt;Format&gt;"/>
+      <replacefilter token="&lt;GeneralParameterValue&gt;"/>
       <replacefilter token="&lt;Geodesic&gt;"/>
       <replacefilter token="&lt;GeographicBoundingBox&gt;"/>
       <replacefilter token="&lt;GeographicDescription&gt;"/>
