@@ -45,12 +45,79 @@ public class ModelComparator {
      * Scan all classes and members and write the differences to the stream.
      */
     public static void main(String[] args) throws IOException {
-        final Writer classes = open(new File( "class-changes.html"), "Significant name changes in GeoAPI classes");
-        final Writer members = open(new File("member-changes.html"), "Significant name changes in GeoAPI attributes");
+        /*
+         * Open the stream where to write class differences.
+         */
+        final Writer classes = new BufferedWriter(new FileWriter("departures-list.html"));
+        classes.write("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">");
+        classes.write(lineSeparator);
+        classes.write("<HTML>");
+        classes.write(lineSeparator);
+        classes.write("  <HEAD>");
+        classes.write(lineSeparator);
+        classes.write("    <TITLE>Significant name changes between GeoAPI and OGC models</TITLE>");
+        classes.write(lineSeparator);
+        classes.write("  </HEAD>");
+        classes.write(lineSeparator);
+        classes.write("  <BODY>");
+        classes.write(lineSeparator);
+        classes.write("  <H1>Significant name changes for classes</H1>");
+        classes.write(lineSeparator);
+        classes.write("  <P>This list do not includes the following changes:</P>");
+        classes.write(lineSeparator);
+        classes.write("  <UL>");
+        classes.write(lineSeparator);
+        classes.write("    <LI>Omission of 2 letters prefix (<CODE>MD_</CODE>, <CODE>RS_</CODE>, etc...)</LI>");
+        classes.write(lineSeparator);
+        classes.write("    <LI>Omission of <CODE>Code</CODE> suffix for code list</LI>");
+        classes.write(lineSeparator);
+        classes.write("    <LI>Addition of <CODE>Exception</CODE> suffix for exceptions</LI>");
+        classes.write(lineSeparator);
+        classes.write("  </UL>");
+        classes.write(lineSeparator);
+        classes.write("  <TABLE cellpadding='0' cellspacing='0'>");
+        classes.write(lineSeparator);
+        classes.write("  <TR><TH bgcolor='#CCCCFF'>GeoAPI name</TH><TH bgcolor='#CCCCFF'>ISO name</TH></TR>");
+        classes.write(lineSeparator);
+        /*
+         * Open the stream where to write attributes differences differences.
+         */
+        final Writer members = new StringWriter();
+        members.write("<P>&nbsp;</P>");
+        members.write(lineSeparator);
+        members.write("<HR>");
+        members.write(lineSeparator);
+        members.write("<P>&nbsp;</P>");
+        members.write(lineSeparator);
+        members.write("  <H1>Significant name changes for operations, attributes or codes</H1>");
+        members.write(lineSeparator);
+        members.write("  <P>This list do not includes the following changes:</P>");
+        members.write(lineSeparator);
+        members.write("  <UL>");
+        members.write(lineSeparator);
+        members.write("    <LI>Omission of 2 letters prefix (<CODE>MD_</CODE>, <CODE>RS_</CODE>, etc...)</LI>");
+        members.write(lineSeparator);
+        members.write("    <LI>Omission of <CODE>uses</CODE> or <CODE>includes</CODE> prefixes for associations</LI>");
+        members.write(lineSeparator);
+        members.write("    <LI>Addition of <CODE>get</CODE> or <CODE>is</CODE> prefix</LI>");
+        members.write(lineSeparator);
+        members.write("    <LI>Plural form for methods returning an array or a collection</LI>");
+        members.write(lineSeparator);
+        members.write("    <LI>Code list elements in upper case</LI>");
+        members.write(lineSeparator);
+        members.write("  </UL>");
+        members.write(lineSeparator);
+        members.write("  <TABLE cellpadding='0' cellspacing='0'>");
+        members.write(lineSeparator);
+        members.write("  <TR><TH bgcolor='#CCCCFF'>GeoAPI name</TH bgcolor='#CCCCFF'><TH>ISO name</TH></TR>");
+        members.write(lineSeparator);
+        /*
+         * Process to the analysis.
+         */
         String lastPackage = "";
         for (final Class classe : ClassFinder.getClasses(CodeList.class)) {
             /*
-             * Check for class changes or addition.
+             * Check for class changes or additions.
              */
             String identifier = getIdentifier(classe);
             final String classname = ClassFinder.getShortName(classe);
@@ -67,7 +134,7 @@ public class ModelComparator {
                 if (!packageName.equals(lastPackage)) {
                     classes.write("  <TR><TD>&nbsp;</TD></TR>");
                     classes.write(lineSeparator);
-                    classes.write("  <TR><TD bgcolor='#CCCCFF'><STRONG>Package&nbsp; <CODE>");
+                    classes.write("  <TR><TD bgcolor='#DDDDFF'><STRONG>Package&nbsp; <CODE>");
                     classes.write(packageName);
                     classes.write("</CODE></STRONG></TD></TR>");
                     classes.write(lineSeparator);
@@ -139,7 +206,7 @@ scanMembers:for (final Member attribute : attributes) {
                 if (!classHeader) {
                     members.write("  <TR><TD>&nbsp;</TD></TR>");
                     members.write(lineSeparator);
-                    members.write("  <TR><TD bgcolor='#CCCCFF'><STRONG>");
+                    members.write("  <TR><TD bgcolor='#DDDDFF'><STRONG>");
                     if (CodeList.class.isAssignableFrom(classe)) {
                         members.write("Code list");
                     } else {
@@ -167,47 +234,20 @@ scanMembers:for (final Member attribute : attributes) {
                 members.write(lineSeparator);
             }
         }
-        close(classes);
-        close(members);
-    }
-
-    /**
-     * Open a new stream for the specified file.
-     */
-    private static Writer open(final File file, final String title) throws IOException {
-        final Writer out = new BufferedWriter(new FileWriter(file));
-        out.write("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">");
-        out.write(lineSeparator);
-        out.write("<HTML>");
-        out.write(lineSeparator);
-        out.write("  <HEAD>");
-        out.write(lineSeparator);
-        out.write("    <TITLE>"); out.write(title); out.write("</TITLE>");
-        out.write(lineSeparator);
-        out.write("  </HEAD>");
-        out.write(lineSeparator);
-        out.write("  <BODY>");
-        out.write(lineSeparator);
-        out.write("  <H1>"); out.write(title); out.write("</H1>");
-        out.write(lineSeparator);
-        out.write("  <TABLE cellpadding='0' cellspacing='0'>");
-        out.write(lineSeparator);
-        out.write("  <TR><TH>GeoAPI name</TH><TH>ISO name</TH></TR>");
-        out.write(lineSeparator);
-        return out;
-    }
-
-    /**
-     * Close the specified stream.
-     */
-    private static void close(final Writer out) throws IOException {
-        out.write("  </TABLE>");
-        out.write(lineSeparator);
-        out.write("  </BODY>");
-        out.write(lineSeparator);
-        out.write("</HTML>");
-        out.write(lineSeparator);
-        out.close();
+        /*
+         * Close the streams.
+         */
+        members.write("  </TABLE>");
+        members.write(lineSeparator);
+        members.close();
+        classes.write("  </TABLE>");
+        classes.write(lineSeparator);
+        classes.write(members.toString());
+        classes.write("  </BODY>");
+        classes.write(lineSeparator);
+        classes.write("</HTML>");
+        classes.write(lineSeparator);
+        classes.close();
     }
 
     /**
