@@ -34,24 +34,17 @@ public interface Catalog {
 	/**
 	 * Searches through the catalog and finds the CatalogEntries that match the
 	 * query
-	 * <p>
-	 * See Section 3.1.1.1.1 <i>Query Functions </i> in the <A
-	 * HREF="http://www.opengis.org/docs/99-113.pdf">OGC Abstract Catalog
-	 * Services </A> Specification
-	 * </p>
 	 * 
 	 * @param query
 	 *            A QueryDefinition used to select CatalogEntries
 	 * @return QueryResult containing all matching CatalogEntries
-	 */
+	 * @UML inferred from section 3.1.1.1.1 <i>Query Functions </i> in the
+	 *      <A HREF="http://www.opengis.org/docs/99-113.pdf">OGC Abstract
+     *      Catalog Services </A> Specification 
+     */
 	public QueryResult query(QueryDefinition query);
 	/**
 	 * Adds a CatalogEntry to the Catalog
-	 * <p>
-	 * See Section 3.1.1.1.2 <i>Other Functions on Catalog </i> in the <A
-	 * HREF="http://www.opengis.org/docs/99-113.pdf">OGC Abstract Catalog
-	 * Services </A> Specification
-	 * </p>
 	 * <p>
 	 * Not all catalogs can provide this functionality so a
 	 * NotImplementedException is provided
@@ -68,16 +61,13 @@ public interface Catalog {
 	 * @throws NotImplementedException
 	 *             if Catalog does not provide this functionality then
 	 *             NotImplementedException will be thrown
-	 */
-	public void add(CatalogEntry entry) throws NotImplementedException;
+     * @UML inferred from section 3.1.1.1.2 <i>Other Functions on Catalog </i> in the
+     *      <A HREF="http://www.opengis.org/docs/99-113.pdf">OGC Abstract
+     *      Catalog Services </A> Specification 
+     */
+	public void add(CatalogEntry entry) throws IllegalStateException;
 	/**
 	 * Removes a CatalogEntry from the Catalog
-	 * 
-	 * <p>
-	 * See Section 3.1.1.1.2 <i>Other Functions on Catalog </i> in the <A
-	 * HREF="http://www.opengis.org/docs/99-113.pdf">OGC Abstract Catalog
-	 * Services </A> Specification
-	 * </p>
 	 * <p>
 	 * Not all catalogs can provide this functionality so a
 	 * NotImplementedException is provided.
@@ -94,17 +84,17 @@ public interface Catalog {
 	 * @throws NotImplementedException
 	 *             if Catalog does not provide this functionality then
 	 *             NotImplementedException will be thrown
-	 */
-	public void remove(CatalogEntry entry) throws NotImplementedException;
+     * @UML inferred from section 3.1.1.1.2 <i>Other Functions on Catalog </i> in the
+     *      <A HREF="http://www.opengis.org/docs/99-113.pdf">OGC Abstract
+     *      Catalog Services </A> Specification 
+     */
+	public void remove(CatalogEntry entry) throws IllegalStateException;
 	/**
 	 * creates an iterator that traverses through catalog
-	 * <p>
-	 * See Section 3.1.1.1.2 <i>Other Functions on Catalog </i> in the <A
-	 * HREF="http://www.opengis.org/docs/99-113.pdf">OGC Abstract Catalog
-	 * Services </A> Specification
-	 * </p>
-	 * 
 	 * @return An iterator which can be used to traverse the catalog
-	 */
+     * @UML inferred from section 3.1.1.1.2 <i>Other Functions on Catalog </i> in the
+     *      <A HREF="http://www.opengis.org/docs/99-113.pdf">OGC Abstract
+     *      Catalog Services </A> Specification 
+     */
 	public Iterator iterator();
 }
