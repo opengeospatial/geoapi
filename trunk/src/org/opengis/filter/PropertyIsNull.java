@@ -1,11 +1,13 @@
 package org.opengis.filter;
 
+import org.opengis.filter.expression.Expression;
+
 /**
- * Filter operator that checks if the named property of a feature is null.
+ * Filter operator that checks if an expression's value is null.
  */
 public interface PropertyIsNull extends Filter {
     /**
-     * Returns the name of the property whose value will be checked for null.
+     * Returns the expression whose value will be checked for null.
      */
-    public String getPropertyName();
+    public Expression getExpression();
 }

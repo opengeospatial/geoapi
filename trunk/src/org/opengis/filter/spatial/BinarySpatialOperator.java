@@ -1,16 +1,37 @@
 package org.opengis.filter.spatial;
 
-import org.opengis.spatialschema.geometry.Geometry;
+import org.opengis.filter.expression.Expression;
 
 /**
  * Abstract superclass for filter operators that perform some sort of spatial
- * comparison on two geometric objects: one which is a property of a feature and
- * one which is a fixed geometry object.
+ * comparison on two geometric objects.
  */
 public interface BinarySpatialOperator extends SpatialOperator {
     /**
-     * Returns the constant Geometry object against which the feature's geometry
-     * will be tested.  The nature of the test is dependent on the subclass.
+     * Returns an expression that will be evaluated to determine the first
+     * operand to the spatial predicate represented by this operator.  The
+     * result of evaluating this expression must be a geometry object.
      */
-    public Geometry /* GM_Object */ getGeometry();
+    public Expression getExpression1();
+
+    /**
+     * Sets the expression that will be evaluated to determine the first
+     * operand to the spatial predicate represented by this operator.  The
+     * result of evaluating this expression must be a geometry object.
+     */
+    public void setExpression1(Expression expr);
+
+    /**
+     * Returns an expression that will be evaluated to determine the second
+     * operand to the spatial predicate represented by this operator.  The
+     * result of evaluating this expression must be a geometry object.
+     */
+    public Expression getExpression2();
+
+    /**
+     * Sets the expression that will be evaluated to determine the second
+     * operand to the spatial predicate represented by this operator.  The
+     * result of evaluating this expression must be a geometry object.
+     */
+    public void setExpression2(Expression expr);
 }

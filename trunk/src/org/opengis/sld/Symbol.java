@@ -64,5 +64,5 @@ public interface Symbol {
     /**
      * Helps implement the visitor design pattern.
      */
-    public Object accept(SymbolVisitor visitor, Object extraData);
+    public Object accept(StyleVisitor visitor, Object extraData);
 }

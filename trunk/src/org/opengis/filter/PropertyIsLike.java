@@ -1,15 +1,17 @@
 package org.opengis.filter;
 
+import org.opengis.filter.expression.Expression;
+
 /**
  * Filter operator that performs the equivalent of the SQL "like" operator
  * on properties of a feature.
  */
 public interface PropertyIsLike extends Filter {
     /**
-     * Returns the property name that will be compared against the wildcard-
+     * Returns the expression whose value will be compared against the wildcard-
      * containing string provided by the getLiteral() method.
      */
-    public String getPropertyName();
+    public Expression getExpression();
 
     /**
      * Returns the wildcard-containing string that will be used to check the

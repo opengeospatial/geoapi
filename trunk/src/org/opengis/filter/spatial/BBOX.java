@@ -8,6 +8,13 @@ package org.opengis.filter.spatial;
  */
 public interface BBOX extends SpatialOperator {
     /**
+     * Returns the name of the geometric property that will be used in this
+     * spatial operator.  This may be null if the default spatial property is
+     * to be used.
+     */
+    public String getPropertyName();
+
+    /**
      * Returns the spatial reference system in which the bounding box
      * coordinates contained by this object should be interpreted.  This string
      * must take one of two forms: either "EPSG:xxxxx" where "xxxxx" is a valid

@@ -7,10 +7,4 @@ import org.opengis.filter.Filter;
  * geometric attributes of a feature.
  */
 public interface SpatialOperator extends Filter {
-    /**
-     * Returns the name of the geometric property that will be used in this
-     * spatial operator.  This may be null if the default spatial property is
-     * to be used.
-     */
-    public String getPropertyName();
 }
