@@ -7,7 +7,7 @@ package org.opengis.cc;
 import java.util.Locale;
 
 // OpenGIS direct dependencies
-import org.opengis.rs.Identifier;
+import org.opengis.rs.Info;
 
 
 /**
@@ -22,40 +22,20 @@ import org.opengis.rs.Identifier;
  *
  * @see Operation
  */
-public interface OperationMethod {
-    /**
-     * The name by which this operation method is identified.
-     *
-     * @return The operation method name.
-     * @UML mandatory methodName
-     *
-     * @rename Omitted the "<code>method</code>" prefix.
-     */
-    public String getName();
-
-    /**
-     * Set of alternative identifications of this coordinate operation method. The
-     * first identifier, if any, is normally the primary identification code, and any
-     * others are aliases.
-     *
-     * @return The coordinate operation method identifiers, or an empty array if there is none.
-     * @UML optional methodID
-     *
-     * @rename  Omitted the "<code>method</code>" prefix.
-     *          Replaced "<code>ID</code>" by "<code>Identifiers</code>" in order to
-     *          1) use the return type class name and 2) use the plural form.
-     */
-    public Identifier[] getIdentifiers();
-
+public interface OperationMethod extends Info {
     /**
      * Formula(s) or procedure used by this operation method. This may be a reference to a
      * publication. Note that the operation method may not be analytic, in which case this
      * attribute references or contains the procedure, not an analytic formula.
      *
-     * @return The coordinate operation method formula.
+     * @param  locale The desired locale for the formula to be returned, or <code>null</code>
+     *         for a formula in some default locale (may or may not be the
+     *         {@linkplain Locale#getDefault() system default}).
+     * @return The coordinate operation method formula in the given locale. If no formula
+     *         is available in the given locale, then some default locale is used.
      * @UML mandatory formula
      */
-    public String getFormula();
+    public String getFormula(Locale locale);
 
     /**
      * Number of dimensions in the source CRS of this operation method.
@@ -80,14 +60,4 @@ public interface OperationMethod {
      * @UML association usesParameter
      */
     public GeneralOperationParameter[] getParameters();
-
-    /**
-     * Comments on the coordinate operation method, including source information.
-     *
-     * @param  locale The desired locale for the remarks to be returned,
-     *         or <code>null</code> for a non-localized string (or a default default locale).
-     * @return The coordinate operation method remarks, or <code>null</code> if not available.
-     * @UML optional remarks
-     */
-    public String getRemarks(Locale locale);
 }

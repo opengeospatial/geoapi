@@ -4,11 +4,10 @@
 package org.opengis.cs;
 
 // J2SE direct dependencies and extensions
-import java.util.Locale;
 import javax.units.Unit;  // For Javadoc
 
 // OpenGIS direct dependencies
-import org.opengis.rs.Identifier;
+import org.opengis.rs.Info;
 
 
 /**
@@ -28,34 +27,7 @@ import org.opengis.rs.Identifier;
  * @see org.opengis.cd.Datum
  * @see org.opengis.sc.CoordinateReferenceSystem
  */
-public interface CoordinateSystem {
-    /**
-     * The name by which this coordinate system is identified. 
-     *
-     * @return The coordinate system name.
-     * @UML mandatory csName
-     *
-     * @rename  Omitted the "<code>srs</code>" prefix,
-     *          which stands as an abbreviation for this enclosing class.
-     *
-     * @revisit Should we ask for a (possibly null) {@link java.util.Locale} argument?
-     */
-    public String getName();
-
-    /**
-     * Set of alternative identifications of the coordinate system. The first identifier,
-     * if any, is normally the primary identification code, and any others are aliases.
-     *
-     * @return Coordinate system identifiers, or an empty array if there is none.
-     * @UML optional csID
-     *
-     * @rename  Omitted the "<code>srs</code>" prefix,
-     *          which stands as an abbreviation for this enclosing class.
-     *          Replaced "<code>ID</code>" by "<code>Identifiers</code>" in order to
-     *          1) use the return type class name and 2) use the plural form.
-     */
-    public Identifier[] getIdentifiers();
-
+public interface CoordinateSystem extends Info {
     /**
      * Returns the ordered set of axis for this coordinate system. Each coordinate system
      * must have at least one axis.
@@ -64,14 +36,4 @@ public interface CoordinateSystem {
      * @UML association usesAxis
      */
     public CoordinateSystemAxis[] getAxis();
-
-    /**
-     * Comments on or information about the coordinate system, including data source information.
-     *
-     * @param  locale The desired locale for the remarks to be returned,
-     *         or <code>null</code> for a non-localized string (or a default default locale).
-     * @return The coordinate system remarks, or <code>null</code> if not available.
-     * @UML optional remarks
-     */
-    public String getRemarks(Locale locale);
 }

@@ -2,10 +2,10 @@
 
 <HTML>
   <HEAD>
-    <TITLE>Open issues about UML</TITLE>
+    <TITLE>Open issues about UML diagrams</TITLE>
   </HEAD>
   <BODY>
-  <H1>Open issues about UML</H1>
+  <H1>Open issues about UML diagrams</H1>
   <P ALIGN="justify">The following are <A HREF="http://geoapi.sourceforge.net">GeoAPI</A> comments
   (not <A HREF="http://www.opengis.org">OGC</A> comments). Those observations were collected during
   the process of hand-editing the Java interfaces that were created automatically from the UML by a
@@ -83,17 +83,6 @@
   <P>&nbsp;</P>
   <H2>Remarks relative to hierarchy and attributes</H2>
   <UL>
-    <LI><P ALIGN="justify">The 2003-073 specification duplicates the name and identifier attributes in many
-        interfaces, with different identifier name (e.g. "<CODE>ellipsoidName</CODE>", "<CODE>datumName</CODE>",
-        "<CODE>csName</CODE>", "<CODE>crsName</CODE>", etc.). A common super-interface like the legacy
-        <A HREF=../../../../legacy/org/opengis/cs/CS_Info.html><CODE>CS_Info</CODE></A> would be more
-        convenient.</P>
-        <P ALIGN="justify"><STRONG>PROPOSAL:</STRONG> <FONT COLOR="red">Drop all classname prefix in
-        "<code>name</code>" and "<code>ID</code>" attributes. Moves "<code>name</code>", "<code>ID</code>"
-        and "<code>remarks</code>" attributes in a common super-interface like the legacy
-        <A HREF=../../../../legacy/org/opengis/cs/CS_Info.html><CODE>CS_Info</CODE></A>.</FONT></P>
-    </LI>
-
     <LI><P ALIGN="justify">Interface <A HREF="../cs/CartesianCS.html"><CODE>CartesianCS</CODE></A>
         looks like a special case of <A HREF="../cs/ObliqueCartesianCS.html"><CODE>ObliqueCartesianCS</CODE></A>.
         Maybe it should extends <CODE>ObliqueCartesianCS</CODE>. This is a similar argument than the
@@ -155,6 +144,27 @@
             <code>Primitive.contains(...)</code> (returns FALSE for end points) is different
             from <code>Complex.contains(...)</code> (returns TRUE for end points).</P></LI>
         <P ALIGN="justify"><STRONG>PROPOSAL:</STRONG> <FONT COLOR="red">(none at this stage)</FONT></P>
+  </UL>
+
+
+
+
+  <P>&nbsp;</P>
+  <P>&nbsp;</P>
+  <HR>
+  <P>&nbsp;</P>
+  <H1>Previous issues (now fixed)</H1>
+  <UL>
+    <LI><P ALIGN="justify">The 2003-073 specification duplicates the name and identifier attributes in many
+        interfaces, with different identifier name (e.g. "<CODE>ellipsoidName</CODE>", "<CODE>datumName</CODE>",
+        "<CODE>csName</CODE>", "<CODE>crsName</CODE>", etc.). A common super-interface like the legacy
+        <A HREF=../../../../legacy/org/opengis/cs/CS_Info.html><CODE>CS_Info</CODE></A> would be more
+        convenient.</P>
+        <P ALIGN="justify"><STRONG>FIX:</STRONG> <FONT COLOR="green">Drop all classname prefix in
+        "<code>name</code>" and "<code>ID</code>" attributes. Moves "<code>name</code>", "<code>ID</code>"
+        and "<code>remarks</code>" attributes in a common super-interface:
+        <A HREF=../rs/Info.html><CODE>Info</CODE></A>.</FONT></P>
+    </LI>
   </UL>
   </BODY>
 </HTML>

@@ -41,15 +41,14 @@ public interface Identifier {
     public String getCodeSpace();
 
     /**
-     * Identifier of the version of the associated codeSpace or code, as specified by the
-     * codeSpace or code authority. This version is included only when the "code" or "codeSpace"
-     * uses versions. When appropriate, the edition is identified by the effective date, coded
-     * using ISO 8601 date format.
+     * Identifier of the version of the associated code space or code, as specified
+     * by the code space or code authority. This version is included only when the
+     * {@linkplain #getCode code} or {@linkplain #getCodeSpace codeSpace} uses versions.
+     * When appropriate, the edition is identified by the effective date, coded using
+     * ISO 8601 date format.
      *
      * @return The version, or <code>null</code> if not available.
      * @UML optional version
-     *
-     * @revisit Should we ask for a (possibly null) {@link java.util.Locale} argument?
      */
     public String getVersion();
 

@@ -8,8 +8,8 @@ import java.util.Date;
 import java.util.Locale;
 
 // OpenGIS direct dependencies
+import org.opengis.rs.Info;
 import org.opengis.gm.Envelope;
-import org.opengis.rs.Identifier;
 
 
 /**
@@ -26,30 +26,7 @@ import org.opengis.rs.Identifier;
  * @see org.opengis.cs.CoordinateSystem
  * @see org.opengis.sc.CoordinateReferenceSystem
  */
-public interface Datum {
-    /**
-     * The name by which this datum is identified.
-     *
-     * @return The datum name.
-     * @UML mandatory datumName
-     *
-     * @rename  Omitted the "<code>datum</code>" prefix.
-     */
-    public String getName();
-
-    /**
-     * Set of alternative identifications of this datum. The first identifier, if any,
-     * is normally the primary identification code, and any others are aliases.
-     *
-     * @return The datum identifiers, or an empty array if there is none.
-     * @UML optional datumID
-     *
-     * @rename  Omitted the "<code>datum</code>" prefix.
-     *          Replaced "<code>ID</code>" by "<code>Identifiers</code>" in order to
-     *          1) use the return type class name and 2) use the plural form.
-     */
-    public Identifier[] getIdentifiers();
-
+public interface Datum extends Info {
     /**
      * Description, possibly including coordinates, of the point or points used to anchor the datum
      * to the Earth. Also known as the "origin", especially for Engineering and Image Datums.
@@ -71,10 +48,14 @@ public interface Datum {
      *       a temporal datum carries a separate time origin of type {@link Date}.</li>
      * </ul>
      *
-     * @return The datum anchor point, or <code>null</code> if not available.
+     * @param  locale The desired locale for the datum anchor point to be returned,
+     *         or <code>null</code> for anchor point in some default locale (may or
+     *         may not be the {@linkplain Locale#getDefault() system default}).
+     * @return The datum anchor point in the given locale, or <code>null</code> if none. If no
+     *         anchor point is available in the given locale, then some default locale is used.
      * @UML optional anchorPoint
      */
-    public String getAnchorPoint();
+    public String getAnchorPoint(Locale locale);
 
     /**
      * The time after which this datum definition is valid. This time may be precise (e.g. 1997
@@ -105,20 +86,12 @@ public interface Datum {
      * Description of domain of usage, or limitations of usage, for which this
      * datum object is valid.
      *
-     * @param  locale The desired locale for the scope to be returned,
-     *         or <code>null</code> for a non-localized string (or a default default locale).
-     * @return The datum scope, or <code>null</code> if not available.
+     * @param  locale The desired locale for the datum scope to be returned, or <code>null</code>
+     *         for scope in some default locale (may or may not be the
+     *         {@linkplain Locale#getDefault() system default}).
+     * @return The datum scope in the given locale, or <code>null</code> if none. If no
+     *         scope is available in the given locale, then some default locale is used.
      * @UML optional scope
      */
     public String getScope(Locale locale);
-
-    /**
-     * Comments on or information about this datum, including source information.
-     *
-     * @param  locale The desired locale for the remarks to be returned,
-     *         or <code>null</code> for a non-localized string (or a default default locale).
-     * @return The datum remarks, or <code>null</code> if not available.
-     * @UML optional remarks
-     */
-    public String getRemarks(Locale locale);
 }
