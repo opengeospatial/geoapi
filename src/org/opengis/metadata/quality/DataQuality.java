@@ -17,7 +17,9 @@ import org.opengis.metadata.lineage.Lineage;
 
 // Annotations
 ///import org.opengis.annotation.UML;
+///import org.opengis.annotation.Profile;
 ///import static org.opengis.annotation.Obligation.*;
+///import static org.opengis.annotation.ComplianceLevel.*;
 
 
 /**
@@ -27,6 +29,7 @@ import org.opengis.metadata.lineage.Lineage;
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
  */
+///@Profile (level=CORE)
 ///@UML (identifier="DQ_DataQuality")
 public interface DataQuality {
     /**
@@ -48,6 +51,7 @@ public interface DataQuality {
      * Should be provided only if {@linkplain Scope#getLevel scope level} is
      * {@linkplain org.opengis.metadata.maintenance.ScopeCode#DATASET dataset}.
      */
+/// @Profile (level=CORE)
 /// @UML (identifier="lineage", obligation=CONDITIONAL)
     Lineage getLineage();
 }

@@ -20,7 +20,9 @@ import org.opengis.util.InternationalString;
 
 // Annotations
 ///import org.opengis.annotation.UML;
+///import org.opengis.annotation.Profile;
 ///import static org.opengis.annotation.Obligation.*;
+///import static org.opengis.annotation.ComplianceLevel.*;
 
 
 /**
@@ -30,11 +32,13 @@ import org.opengis.util.InternationalString;
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
  */
+///@Profile (level=CORE)
 ///@UML (identifier="CI_Citation")
 public interface Citation {
     /**
      * Name by which the cited resource is known.
      */
+/// @Profile (level=CORE)
 /// @UML (identifier="title", obligation=MANDATORY)
     InternationalString getTitle();
 
@@ -52,6 +56,7 @@ public interface Citation {
      *          returns a J2SE {@link Date} object. Should we remove the later method and
      *          add a <code>EDITION</code> enum in {@link DateType} instead?
      */
+/// @Profile (level=CORE)
 /// @UML (identifier="date", obligation=MANDATORY)
     Map/*<DateType,Date>*/ getDates();
 
