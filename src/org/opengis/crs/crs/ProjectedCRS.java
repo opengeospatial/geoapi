@@ -10,8 +10,8 @@
 package org.opengis.crs.crs;
 
 // OpenGIS direct dependencies
+import org.opengis.crs.cs.CartesianCS;
 import org.opengis.crs.crs.projection.Projection;
-
 
 /**
  * A 2D coordinate reference system used to approximate the shape of the earth on a planar surface.
@@ -36,13 +36,13 @@ public interface ProjectedCRS extends GeneralDerivedCRS {
      *
      * @return The member Projection.
      */
-    Projection getProjection( );
+    Projection getProjection();
 
     /**
-     * Sets the map projection.
+     * Returns the coordinate system, which must be cartesian.
      *
-     * @param projection The new Projection.
+     * @return The coordinate system.
+     * @UML association usesCS
      */
-    void setProjection(Projection projection);
-
+/// CartesianCS getCoordinateSystem();
 }

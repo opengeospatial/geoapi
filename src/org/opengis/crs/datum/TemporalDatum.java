@@ -11,6 +11,7 @@ package org.opengis.crs.datum;
 
 // J2SE direct dependencies
 import java.util.Date;
+import java.util.Locale;
 
 
 /**
@@ -30,4 +31,23 @@ public interface TemporalDatum extends Datum {
      */
     Date getOrigin();
 
+    /**
+     * Description of the point or points used to anchor the datum to the Earth.
+     *
+     * @deprecated This attribute is defined in the {@link Datum} parent interface,
+     *             but is not used by a temporal Datum.
+     *
+     * @return Always <code>null</code>.
+     */
+    String getAnchorPoint(Locale locale);
+
+    /**
+     * The time after which this datum definition is valid.
+     *
+     * @deprecated This attribute is defined in the {@link Datum} parent interface,
+     *             but is not used by a temporal Datum.
+     *
+     * @return Always <code>null</code>.
+     */
+    Date getRealizationEpoch();
 }

@@ -12,6 +12,7 @@ package org.opengis.crs.crs;
 // OpenGIS direct dependencies
 import org.opengis.crs.cs.CartesianCS;
 import org.opengis.crs.cs.SphericalCS;
+import org.opengis.crs.datum.GeodeticDatum;
 
 
 /**
@@ -52,4 +53,12 @@ public interface GeocentricCRS extends CoordinateReferenceSystem {
      * @UML association usesSphericalCS
      */
     SphericalCS getSphericalCS();    
+  	 
+    /**
+     * Returns the datum, which must be geodetic.
+     *
+     * @return The datum.
+     * @UML association usesDatum
+     */
+/// GeodeticDatum getDatum();
 }

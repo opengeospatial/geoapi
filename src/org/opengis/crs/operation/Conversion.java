@@ -24,5 +24,12 @@ package org.opengis.crs.operation;
  * @see Transformation
  */
 public interface Conversion extends Operation {
-
+    /**
+     * Version of the coordinate transformation.
+     *
+     * @return Always <code>null</code>.
+     * @deprecated This attribute is declared in {@link CoordinateOperation}
+     *             but is not used in a conversion.
+     */
+    String getOperationVersion();
 }

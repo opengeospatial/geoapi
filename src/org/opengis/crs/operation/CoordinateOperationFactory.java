@@ -56,32 +56,11 @@ public interface CoordinateOperationFactory {
      * @throws FactoryException if no transformation path was found from <code>sourceCRS</code>
      *         to <code>targetCRS</code>.
      *
-     * @revisit This method should be deprecated once we will provides the OGC 2001-09
-     *          MathTransform interface.
+     * @revisit More than one operation step may be involved in the path from <code>sourceCRS</code>
+     *          to <code>targetCRS</code>, but this method has only one <code>method</code> argument.
+     *          The user could have more fine grain control with {@link MathTransformFactory} (ported
+     *          from OGC 2001-09). Maybe we should deprecate this methid if favor of 
+     *          {@link MathTransformFactory}.
      */
     CoordinateOperation getOperation(OperationMethod method, CoordinateReferenceSystem sourceCRS, CoordinateReferenceSystem targetCRS) throws FactoryException;
-
-    /**
-     * Returns an operation using a particular method for conversion or transformation
-     * between two coordinate reference systems. The Properties object is an implementation-specific 
-     * description of the operation.
-     * It is recommended that implementations support at least the following property attributes: 
-     * OperationMethod RS_Identifier and CRS RS_Identifiers for source and target CRS.
-     * If one or more operations exist on the implementation that are described by the Properties, 
-     * then the operation of best fit is returned.
-     * If the described operation does not exist on the implementation, then the implementation has the option
-     * of inferring the operation from the argument objects.
-     * If for whatever reason the no operation will not be returned, then the exception is thrown.
-     *
-     * @param  properties A Properties object describing an operation.
-     * @throws FactoryException if no transformation path was found from <code>sourceCRS</code>
-     *         to <code>targetCRS</code>.
-     *
-     * @revisit This method should be deprecated once we will provides the OGC 2001-09
-     *          MathTransform interface. Furthermore, it may be better to encourage users
-     *          to performs two steps instead of using this method: First, gets the source
-     *          and target CRS using the appropriate AuthorityFactory. Then, invokes one of
-     *          the other available methods.
-     */
-    CoordinateOperation getOperation(Properties properties) throws FactoryException;
 }

@@ -41,7 +41,6 @@ import org.opengis.crs.datum.Datum;
  * @see org.opengis.crs.datum.Datum
  */
 public interface CoordinateReferenceSystem extends ReferenceSystem {
-
     /**
      * Returns the coordinate system.
      *
@@ -50,7 +49,7 @@ public interface CoordinateReferenceSystem extends ReferenceSystem {
      *
      * @rename Expanded the "CS" abbreviation into "CoordinateSystem".
      */
-    public CoordinateSystem getCoordinateSystem();
+    CoordinateSystem getCoordinateSystem();
 
     /**
      * Returns the datum.

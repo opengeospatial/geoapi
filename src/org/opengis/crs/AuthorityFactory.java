@@ -13,6 +13,9 @@ package org.opengis.crs;
 import java.util.Locale;
 import java.util.Set;
 
+// OpenGIS direct dependencies
+import org.opengis.metadata.citation.Citation;
+
 
 /**
  * Base interface for all authority factories. An <cite>authority</cite> is an
@@ -40,11 +43,12 @@ import java.util.Set;
  */
 public interface AuthorityFactory {
     /**
-     * Returns the authority name.
+     * Returns the organization or party responsible for definition and maintenance of the
+     * database.
      *
      * @UML mandatory CS_CoordinateSystemAuthorityFactory.authority in 1.0 specification.
      */
-    String getAuthority();
+    Citation getAuthority();
 
     /**
      * Returns the set of authority codes of the given type. The <code>type</code>

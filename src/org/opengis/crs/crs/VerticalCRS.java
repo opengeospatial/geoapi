@@ -10,6 +10,8 @@
 package org.opengis.crs.crs;
 
 // OpenGIS direct dependencies
+import org.opengis.crs.cs.VerticalCS; 	 
+import org.opengis.crs.datum.VerticalDatum;
 
 
 /**
@@ -32,5 +34,19 @@ package org.opengis.crs.crs;
  * @version <A HREF="http://www.opengis.org/docs/03-073r1.zip">Abstract specification 2.0</A>
  */
 public interface VerticalCRS extends CoordinateReferenceSystem {
+    /**
+     * Returns the coordinate system, which must be vertical.
+     *
+     * @return The coordinate system.
+     * @UML association usesCS
+     */
+/// VerticalCS getCoordinateSystem();
 
+    /**
+     * Returns the datum, which must be vertical.
+     *
+     * @return The datum.
+     * @UML association usesDatum
+     */
+/// VerticalDatum getDatum();
 }
