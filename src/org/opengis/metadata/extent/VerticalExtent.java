@@ -1,6 +1,12 @@
-/*
- * Copyright (C) 2003 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
- */
+/*$************************************************************************************************
+ **
+ ** $Id$
+ **
+ ** $Source$
+ **
+ ** Copyright (C) 2003 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
+ **
+ *************************************************************************************************/
 package org.opengis.metadata.extent;
 
 // J2SE direct dependencies and extensions
