@@ -11,7 +11,6 @@
 package org.opengis.go;
 
 import org.opengis.crs.crs.CoordinateReferenceSystem;
-import org.opengis.crs.projection.ProjectionKey;
 import org.opengis.go.spatial.PathType;
 
 /**
@@ -19,7 +18,7 @@ import org.opengis.go.spatial.PathType;
  * about the capabilities of a given GO-1 implementation. Objects implementing
  * this interface are obtained through the
  * <code>CommonFactory.getCapabilities()</code> method.
- * 
+ *
  * @author Open GIS Consortium, Inc.
  * @version $Revision$, $Date$
  */
@@ -43,7 +42,7 @@ public interface CommonCapabilities {
      * Returns an array of <code>Class</code> objects for the directposition
      * interfaces that are supported by a given implementation for the specified
      * Coordinate Reference System.
-     * 
+     *
      * @param crs the Coordinate Reference System.
      */
     Class[] getSupportedDirectPositions(CoordinateReferenceSystem crs);
@@ -52,7 +51,7 @@ public interface CommonCapabilities {
      * Returns an array of <code>Class</code> objects from the
      * spatialschema-package that are supported by a given implementation for
      * the specified Coordinate Reference System.
-     * 
+     *
      * @param crs the Coordinate Reference System.
      */
     Class[] getSupportedSpatialSchemaObjects(CoordinateReferenceSystem crs);
@@ -67,7 +66,7 @@ public interface CommonCapabilities {
      * Returns an array of <code>Class</code> objects for the orientation
      * interfaces that are supported by a given implementation for the specified
      * Coordinate Reference System.
-     * 
+     *
      * @param crs the Coordinate Reference System.
      */
     Class[] getSupportedOrientations(CoordinateReferenceSystem crs);
@@ -102,8 +101,8 @@ public interface CommonCapabilities {
     PathType[] getSupportedPathTypes();
 
     /**
-     * Returns an array of <code>ProjectionKey</code> objects that indicates
+     * Returns an array of Strings representing
      * the projections that are supported.
      */
-    ProjectionKey[] getSupportedProjections();
+    String[] getSupportedProjections();
 }
