@@ -288,10 +288,12 @@ public interface Canvas {
      * georeferenced Coordinate Reference System) for this <code>Canvas</code>. This is the 
      * default objective Coordinate Reference System for this <code>Canvas</code>.
      * @param crs the objective Coordinate Reference System
-     * @param trans the trasformation that converts between this objective Coordinate Reference System and the Canvas display Coordinate Reference System.
+     * @param objectiveToDisplay the trasformation that converts between this objective Coordinate Reference System and the Canvas display Coordinate Reference System.
+     * @param displayToObjective the trasformation that converts between the Canvas display Coordinate Reference System and this objective Coordinate Reference System.
      * @throws IncompatibleOperationException when the specified transformation does not apply to either the objective or the display Coordinate Reference Systems.
      */
-    public void setObjectiveCoordinateReferenceSystem(ProjectedCRS crs, CoordinateTransformation trans) throws IncompatibleOperationException;
+    public void setObjectiveCoordinateReferenceSystem(ProjectedCRS crs, CoordinateTransformation objectiveToDisplay, 
+    				CoordinateTransformation displayToObjective) throws IncompatibleOperationException;
 
     /**
      * Returns the coordinate transformation object for this
