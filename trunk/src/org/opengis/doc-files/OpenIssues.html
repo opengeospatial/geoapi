@@ -47,18 +47,6 @@
         already use different sets of parameter names.</FONT></P>
     </LI>
 
-    <LI><P ALIGN="justify">While is is possible to mimic C's <CODE>union</CODE> in Java, the hack
-        are usually unconvenient. Furthermore, <CODE>union</CODE> are not type-safe even in C. It
-        may be better to avoid the <CODE>CD_SecondDefiningParameter</CODE> construct, which is used
-        in only one place instead. A more convient and type-safe approach would be the legacy
-        <A HREF=../../../../legacy/org/opengis/cs/CS_Ellipsoid.html><CODE>CS_Ellipsoid</CODE></A>
-        API.</P>
-        <P ALIGN="justify"><STRONG>PROPOSAL:</STRONG> <FONT COLOR="red">Remove the
-        <CODE>SecondDefiningParameter</CODE> construct. Uses the legacy
-        <A HREF=../../../../legacy/org/opengis/cs/CS_Ellipsoid.html><CODE>CS_Ellipsoid</CODE></A>
-        API instead.</FONT></P>
-    </LI>
-
     <LI><P ALIGN="justify">No exception are defined in case of failure (for example if a map projection
         fails to converge because the coordinate point is outside the valid area).</P>
         <P ALIGN="justify"><STRONG>PROPOSAL:</STRONG> <FONT COLOR="red">The specification should
@@ -164,6 +152,18 @@
         "<code>name</code>" and "<code>ID</code>" attributes. Moves "<code>name</code>", "<code>ID</code>"
         and "<code>remarks</code>" attributes in a common super-interface:
         <A HREF=../rs/Info.html><CODE>Info</CODE></A>.</FONT></P>
+    </LI>
+
+    <LI><P ALIGN="justify">While is is possible to mimic C's <CODE>union</CODE> in Java, the hack
+        are usually unconvenient. Furthermore, <CODE>union</CODE> are not type-safe even in C. It
+        may be better to avoid the <CODE>CD_SecondDefiningParameter</CODE> construct, which is used
+        in only one place instead. A more convient and type-safe approach would be the legacy
+        <A HREF=../../../../legacy/org/opengis/cs/CS_Ellipsoid.html><CODE>CS_Ellipsoid</CODE></A>
+        API.</P>
+        <P ALIGN="justify"><STRONG>FIX:</STRONG> <FONT COLOR="green">Remove the
+        <CODE>SecondDefiningParameter</CODE> construct. Uses the legacy
+        <A HREF=../../../../legacy/org/opengis/cs/CS_Ellipsoid.html><CODE>CS_Ellipsoid</CODE></A>
+        API instead.</FONT></P>
     </LI>
   </UL>
   </BODY>

@@ -3,6 +3,9 @@
  */
 package org.opengis.cd;
 
+// J2SE direct dependencies and extensions
+import javax.units.Unit;
+
 // OpenGIS direct dependencies
 import org.opengis.rs.Info;
 
@@ -24,10 +27,13 @@ public interface PrimeMeridian extends Info {
      * The <code>greenwichLongitude</code> initial value is zero, and that value shall be used
      * when the {@linkplain #getName meridian name} value is “Greenwich”.
      *
-     * @return The prime meridian Greenwich longitude.
+     * @return The prime meridian Greenwich longitude, in {@linkplain #getAngularUnit angular unit}.
      * @UML conditional greenwichLongitude
-     *
-     * @revisit In UML, the return type for this method is <code>Angle</code>.
      */
     public double getGreenwichLongitude();
+
+    /**
+     * Returns the angular unit of the {@linkplain #getGreenwichLongitude Greenwich longitude}.
+     */
+    public Unit getAngularUnit();
 }
