@@ -45,6 +45,18 @@ public class LockResponse {
      */  
     static final LockResponse PENDING = new LockResponse();
     
+    /**
+     * Special case used to indicate no features were locked.
+     * <p>
+     * This is the lock response returned by commit when no lock requets
+     * were made.
+     * </p>
+     * <p>
+     * TODO: Make sure this is a read only implemetnation
+     * </p>
+     */  
+    static final LockResponse NONE = new LockResponse();
+    
     /** Authorization tokens by DataStore */
     Map/*<DataStore,String>*/ authorizationMap;
     

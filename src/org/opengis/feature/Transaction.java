@@ -204,17 +204,13 @@ public interface Transaction {
      * <p>
      * Workflows:
      * <ul>
-     * <li>LockRequest + Transaction.AUTO_COMMIT returns a LockResponse indicating the success of the opperation and
-     * and authoriazation tokens aquired.
-     * <li>LockRequest.TRANSACTION_LOCK + Transaction returns LockResponse.TRANSACTION_LOCKRESPONSE indicating
-     * a short term lock is held that will expire at the next commit or rollback. Use this workflow to reserve
-     * content before starting edits.
-     * <li>LockRequest + Transaction returns LockResponse.PENDING, check the result of Commit to discover the success of of any lock
-     * methods made during the transaction.
+     * <li>LockRequest + Transaction returns a LockResponse as the result of any and all lock requests made during
+     * the transaction.
+     * <li>Transaction returns LockResponse.NONE when no lock requests are made
      * </ul>
      * For a discussion of these workflows please read the package javadocs.
      * </p>
-     * @return LockResponse for Transaction.AUTO_COMMIT, LockResponse.TRANSACTION_LOCK for a short term lock, or LockResponse.PENDING when used in a Transaction.
+     * @return LockResponse, or LockResponse.NONE if no lock requests were made
      */
     public LockResponse commit() throws IOException;
 
@@ -232,30 +228,29 @@ public interface Transaction {
     public void rollback() throws IOException;
 
     /**
-     * Provides an Authorization ID for this Transaction.
+     * Uses an Authorization token with this Transaction, any locks held against
+     * this token will be released on Transaction.commit().
      * <p>
-     * All proceeding modifyFeatures,removeFeature, unLockFeatures, refreshLock
-     * and ReleaseLock operations will make use of the provided authorization.
+     * All FeatureCollections operations can make use of the provided authorization for
+     * the duration of this transaction. Authorization is only maintained until the this
+     * Transaction is commited or rolledback.
      * <p>
-     * Authorization is only maintained until the this Transaction is commited
-     * or rolledback.
-     * <p>
-     * That is operations will only succeed if affected features either:
+     * That is operations that modify or delete a feature will only succeed if affected features either:
      * <ul>
      * <li>
      * not locked
      * </li>
      * <li>
-     * locked with the provided authID
+     * locked with a provided authID
      * </li>
      * </ul>
      * <p>
-     * Authorization ID is provided as a String, rather than a FeatureLock, to
-     * account for across process lock use.
+     * You may call this method several times to provide authorizationToken to multiple
+     * Datastores.
      *
-     * @param authID
+     * @param authToken Authorization token, should of been obtained from a LockResponse
      */
-    public void addAuthorization(String authID) throws IOException;
+    public void useAuthorization(String authToken) throws IOException;
 
     /**
      * Provides a Transaction property for this Transasction.
@@ -374,7 +369,7 @@ class AutoCommit implements Transaction {
         throw new IOException("AUTO_COMMIT does not support rollback");
     }
     /** AutoCommit cannot retain authorizations */ 
-    public void addAuthorization(String authID) throws IOException {
+    public void useAuthorization(String authID) throws IOException {
         throw new IOException("Authorization IDs are not valid for AutoCommit Transaction");
     }
 
