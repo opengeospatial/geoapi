@@ -16,6 +16,7 @@ import java.net.URI;
 import java.net.URL;
 import java.lang.reflect.*;
 import java.util.logging.Logger;
+import java.nio.charset.Charset;
 import javax.units.Unit;
 
 // OpenGIS dependencies
@@ -422,7 +423,8 @@ scan:   for (final Method attribute : attributes) {
      */
     private String toSQLType(final Class classe, final Type type) {
         if (       CharSequence.class.isAssignableFrom(classe) ||
-            InternationalString.class.isAssignableFrom(classe))
+            InternationalString.class.isAssignableFrom(classe) ||
+                        Charset.class.isAssignableFrom(classe))
         {
             return "TEXT";
         }

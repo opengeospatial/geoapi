@@ -135,15 +135,17 @@ public class NameMapGenerator {
                 final Method method = (Method) attribute;
                 final Class returnType = method.getReturnType();
                 if (Collection.class.isAssignableFrom(returnType)) {
-                    final Type[] genericTypes = ((ParameterizedType) method.getGenericReturnType())
-                                                                           .getActualTypeArguments();
-                    if (genericTypes.length != 1) {
-                        // Should not occurs for collections.
-                        throw new MalformedParameterizedTypeException();
+                    final Type rt = method.getGenericReturnType();
+                    if (rt instanceof ParameterizedType) {
+                        final Type[] genericTypes = ((ParameterizedType) rt).getActualTypeArguments();
+                        if (genericTypes.length != 1) {
+                            // Should not occurs for collections.
+                            throw new MalformedParameterizedTypeException();
+                        }
+                        final Class genericType = (Class) genericTypes[0];
+                        identifier = genericType.getName();
+                        types.put(fieldName, identifier);
                     }
-                    final Class genericType = (Class) genericTypes[0];
-                    identifier = genericType.getName();
-                    types.put(fieldName, identifier);
                 }
             }
         }
