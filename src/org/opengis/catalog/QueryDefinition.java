@@ -1,3 +1,4 @@
+package org.opengis.catalog;
 /*$************************************************************************************************
  **
  ** $Id$
@@ -7,9 +8,6 @@
  ** Copyright (C) 2003 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
  **
  *************************************************************************************************/
-package org.opengis.catalog;
-
-
 /**
  * In general, a query definition specifies a Boolean function of multiple binary-valued conditions.
  * This Boolean function of multiple conditions combines these conditions using AND, OR, and NOT
@@ -38,5 +36,5 @@ public interface QueryDefinition {
      *      <A HREF="http://www.opengis.org/docs/99-113.pdf">OGC Abstract
      *      Catalog Services </A> Specification 
      */
-    public boolean evaluate(CatalogEntry entry);
+    public boolean accept(CatalogEntry entry);
 }

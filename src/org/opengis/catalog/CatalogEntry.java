@@ -9,8 +9,6 @@
  *************************************************************************************************/
 
 package org.opengis.catalog;
-
-// J2SE direct dependencies
 import java.util.Iterator;
 
 
@@ -77,7 +75,7 @@ public interface CatalogEntry{
      *      <A HREF="http://www.opengis.org/docs/99-113.pdf">OGC Abstract
      *      Catalog Services </A> Specification 
      */
-    public int getNumMetaDataEntity();
+    public int getNumMetadata();
 
     /**
      * Returns an array of the names of the MetaDataEntity associated with the
@@ -89,7 +87,7 @@ public interface CatalogEntry{
      *      <A HREF="http://www.opengis.org/docs/99-113.pdf">OGC Abstract
      *      Catalog Services </A> Specification 
      */
-    public String[] getMetaDataEntityNames();
+    public String[] getMetadataNames();
 
     /**
      * Obtain the MetaDataEntity referenced by the index.
@@ -101,28 +99,28 @@ public interface CatalogEntry{
      *      <A HREF="http://www.opengis.org/docs/99-113.pdf">OGC Abstract
      *      Catalog Services </A> Specification 
      */
-    public MetaDataEntity getMetaDataEntity(int index);
+    public MetadataEntity getMetadata(int index);
 
     /**
-     * Obtain the MetaDataEntity refered to by the name.
+     * Obtain the Metadata refered to by the name.
      *
-     * @param name the name of the MetaDataEntity required.
-     * @return the requested MetaDataEntity.
+     * @param name the name of the Metadata required.
+     * @return the requested Metadata.
      *
      * @UML inferred from Section 3.1.2.1 <i>Functions </i> in the
      *      <A HREF="http://www.opengis.org/docs/99-113.pdf">OGC Abstract
      *      Catalog Services </A> Specification 
      */
-    public MetaDataEntity getMetaDataEntity(String name);
+    public MetadataEntity getMetadata(String name);
 
     /**
-     * Returns an iterator that can be used to iterate through the associated MetaDataEntity.
+     * Returns an iterator that can be used to iterate through the associated Metadata.
      *
-     * @return An iterator for iterating through the MetaDataEntity.
+     * @return An iterator for iterating through the Metadata.
      *
      * @UML inferred from Section 3.1.2.1 <i>Functions </i> in the
      *      <A HREF="http://www.opengis.org/docs/99-113.pdf">OGC Abstract
      *      Catalog Services </A> Specification 
      */
-    public Iterator MetaDataEntityIterator();
+    public Iterator iterator();
 }
