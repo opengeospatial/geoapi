@@ -17,7 +17,7 @@ package org.opengis.metadata.extent;
  * @UML abstract EX_GeographicBoundingBox
  * @author ISO 19115
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
- * @version 5.0
+ * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
  */
 public interface GeographicBoundingBox extends GeographicExtent {
     /**

@@ -27,12 +27,14 @@ import org.opengis.util.CodeList;
  *
  * @revisit Domain code not yet implemented. In current implementation, they are equal
  *          to {@linkplain #ordinal ordinal}+1.
+ *
+ *          <strong>Note 2:</strong> Should we rename as <code>Role</code>?
  */
 public final class RoleCode extends CodeList {
     /**
      * Serial number for compatibility with different versions.
      */
-//    private static final long serialVersionUID = -4542429199783894255L;
+    private static final long serialVersionUID = -7763516018565534103L;
 
     /**
      * List of all enumerations of this type.

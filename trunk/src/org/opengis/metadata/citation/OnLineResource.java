@@ -66,5 +66,5 @@ public interface OnLineResource {
      *
      * @UML optional function
      */
-//    OnLineFunctionCode getFunction();
+    OnLineFunction getFunction();
 }

@@ -27,6 +27,8 @@ import org.opengis.util.CodeList;
  *
  * @revisit Domain code not yet implemented. In current implementation, they are equal
  *          to {@linkplain #ordinal ordinal}+1.
+ *
+ *          <strong>Note 2:</strong> Should we rename as <code>Scope</code>?
  */
 public final class ScopeCode extends CodeList {
     /**
