@@ -60,5 +60,5 @@ public interface Surface extends OrientableSurface, GenericSurface {
      * @see SurfacePatch#getSurface
      */
 /// @UML (identifier="patch", obligation=MANDATORY)
-    public List/*<SurfacePatch>*/ getPatches();
+    List/*<? extends SurfacePatch>*/ getPatches();
 }
