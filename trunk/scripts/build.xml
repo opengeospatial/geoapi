@@ -187,6 +187,7 @@
       <replacefilter token="&lt;Number&gt;"/>
       <replacefilter token="&lt;Object&gt;"/>
       <replacefilter token="&lt;OnLineResource&gt;"/>
+      <replacefilter token="&lt;OperationMethod&gt;"/>
       <replacefilter token="&lt;OrientableCurve&gt;"/>
       <replacefilter token="&lt;OrientableSurface&gt;"/>
       <replacefilter token="&lt;ParameterDescriptorGroup&gt;"/>
