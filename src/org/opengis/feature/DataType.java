@@ -11,10 +11,11 @@ import java.util.Arrays;
  * @author Chris Dillard
  */
 public final class DataType implements Comparable, Serializable, Cloneable {
+    private static final long serialVersionUID = 1L;
+
+    final private int code;
     
-    private int code;
-    
-    private String name;
+    final private String name;
 
     /**
      * Used internally to instantiate new types.
