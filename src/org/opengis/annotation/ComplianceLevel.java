@@ -31,5 +31,30 @@ public enum ComplianceLevel {
      * allowing users to understand without ambiguity the geographic data and the related metadata
      * provided by either the producer or the distributor.
      */
-    CORE
+    CORE,
+
+    /**
+     * Indicates a required element of the spatial profile.
+     */
+    SPATIAL,
+
+    /**
+     * Indicates a required element of the feature profile.
+     */
+    FEATURE,
+
+    /**
+     * Indicates a required element of the data provider profile.
+     */
+    DATA_PROVIDER,
+
+    /**
+     * Indicates a required element of the display object profile.
+     */
+    DISPLAY_OBJECT,
+
+    /**
+     * Indicates a required element of the editable display object profile.
+     */
+    EDITABLE_DISPLAY_OBJECT
 }
