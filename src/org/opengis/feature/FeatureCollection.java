@@ -191,8 +191,11 @@ public interface FeatureCollection extends Feature, Collection {
      * the given transaction.
      * <p>
      * Implementors of this method should attach some state to the given
-     * transaction.  When the transaction is complete, either commit() or
-     * rollback() will be called on the state object that was attached.
+     * transaction by calling putState, passing in a key that identifies this
+     * type of collection and a value that is a data store-specific
+     * implementation of the <code>Transaction.State</code> interface.  When the
+     * transaction is complete, either commit() or rollback() will be called on
+     * the state object that was attached.
      */
     public void setTransaction(Transaction t);
 
@@ -204,9 +207,10 @@ public interface FeatureCollection extends Feature, Collection {
 
     /**
      * Indicate the duration, and any additional information for any
-     * subsequent lock opperations.
+     * subsequent lock operations.
      * <p>
-     * You can use LockRequest.TRANSACTION_LOCK to request 
+     * You can use LockRequest.TRANSACTION_LOCK to request that the lock only
+     * endure for the duration of the current transaction.
      */
     public void setLockRequest(LockRequest lock);
 

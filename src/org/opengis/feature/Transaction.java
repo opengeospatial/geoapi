@@ -311,7 +311,7 @@ public interface Transaction {
         /**
          * Call back used for Transaction.commit()
          */
-        void commit() throws IOException;
+        LockResponse commit() throws IOException;
 
         /**
          * Call back used for Transaction.rollback()
