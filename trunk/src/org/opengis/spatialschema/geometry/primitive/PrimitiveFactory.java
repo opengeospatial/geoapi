@@ -16,6 +16,8 @@ import java.util.List;
 import org.opengis.spatialschema.geometry.Envelope;
 import org.opengis.spatialschema.geometry.DirectPosition;
 import org.opengis.spatialschema.geometry.geometry.Position;
+import org.opengis.spatialschema.geometry.MismatchedDimensionException;
+import org.opengis.spatialschema.geometry.MismatchedReferenceSystemException;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 
 // Annotations
@@ -33,8 +35,6 @@ import org.opengis.referencing.crs.CoordinateReferenceSystem;
  * @author ISO/DIS 19107
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 2.0
- *
- * @revisit Should we extend {@link org.opengis.referencing.Factory}?
  */
 public interface PrimitiveFactory {
     /**
@@ -82,42 +82,74 @@ public interface PrimitiveFactory {
      *
      * So that the {@linkplain SurfaceBoundary surface boundary} record contains the above-cited
      * exterior ring, and an empty set of interior rings (convex sets have no "interior" holes).
+     *
+     * @throws MismatchedReferenceSystemException If geometric objects given in argument don't
+     *         use compatible {@linkplain CoordinateReferenceSystem coordinate reference system}.
+     * @throws MismatchedDimensionException If geometric objects given in argument don't have
+     *         the expected dimension.
      */
 /// @UML (identifier="GM_Primitive(GM_Envelope)", obligation=MANDATORY)
-    Primitive createPrimitive(Envelope envelope);
+    Primitive createPrimitive(Envelope envelope)
+            throws MismatchedReferenceSystemException, MismatchedDimensionException;
 
     /**
      * Create a direct position at the specified location specified by coordinates.
      *
      * @deprecated This method moved to the
      *  {@link org.opengis.spatialschema.geometry.geometry.GeometryFactory} interface.
+     *
+     * @throws MismatchedDimensionException If geometric objects given in argument don't have
+     *         the expected dimension.
      */
-    DirectPosition createDirectPosition(double[] coordinates);
+    DirectPosition createDirectPosition(double[] coordinates)
+            throws MismatchedDimensionException;
 
     /**
      * Creates a point at the specified location specified by coordinates.
+     *
+     * @throws MismatchedDimensionException If geometric objects given in argument don't have
+     *         the expected dimension.
      */
-    Point createPoint(double[] coordinates);
+    Point createPoint(double[] coordinates)
+            throws MismatchedDimensionException;
 
     /**
      * Creates a point at the specified position.
+     *
+     * @throws MismatchedReferenceSystemException If geometric objects given in argument don't
+     *         use compatible {@linkplain CoordinateReferenceSystem coordinate reference system}.
+     * @throws MismatchedDimensionException If geometric objects given in argument don't have
+     *         the expected dimension.
      */
 /// @UML (identifier="GM_Point(GM_Position)", obligation=MANDATORY)
-    Point createPoint(Position position);
+    Point createPoint(Position position)
+            throws MismatchedReferenceSystemException, MismatchedDimensionException;
 
     /**
      * Takes a list of {@linkplain CurveSegment curve segments} with the appropriate
      * end-to-start relationships and creates a {@linkplain Curve curve}.
+     *
+     * @throws MismatchedReferenceSystemException If geometric objects given in argument don't
+     *         use compatible {@linkplain CoordinateReferenceSystem coordinate reference system}.
+     * @throws MismatchedDimensionException If geometric objects given in argument don't have
+     *         the expected dimension.
      */
 /// @UML (identifier="GM_Curve(GM_CurveSegment[1..n])", obligation=MANDATORY)
-    Curve createCurve(List/*<CurveSegment>*/ segments);
+    Curve createCurve(List/*<CurveSegment>*/ segments)
+            throws MismatchedReferenceSystemException, MismatchedDimensionException;
 
     /**
      * Takes a list of {@linkplain SurfacePatch surface patches} with the appropriate
      * side-toside relationships and creates a {@linkplain Surface surface}.
+     *
+     * @throws MismatchedReferenceSystemException If geometric objects given in argument don't
+     *         use compatible {@linkplain CoordinateReferenceSystem coordinate reference system}.
+     * @throws MismatchedDimensionException If geometric objects given in argument don't have
+     *         the expected dimension.
      */
 /// @UML (identifier="GM_Surface(GM_SurfacePatch[1..n])", obligation=MANDATORY)
-    Surface createSurface(List/*<SurfacePatch>*/ surfaces);
+    Surface createSurface(List/*<SurfacePatch>*/ surfaces)
+            throws MismatchedReferenceSystemException, MismatchedDimensionException;
 
     /**
      * Constructs a {@linkplain Surface surface} by indicating its boundary as a collection
@@ -126,16 +158,28 @@ public interface PrimitiveFactory {
      * In 3D coordinate spaces, this method shall require all of the defining boundary
      * {@linkplain Curve curve} instances to be coplanar (lie in a single plane) which will
      * define the surface interior.
+     *
+     * @throws MismatchedReferenceSystemException If geometric objects given in argument don't
+     *         use compatible {@linkplain CoordinateReferenceSystem coordinate reference system}.
+     * @throws MismatchedDimensionException If geometric objects given in argument don't have
+     *         the expected dimension.
      */
 /// @UML (identifier="GM_Surface(GM_SurfaceBoundary)", obligation=MANDATORY)
-    Surface createSurface(SurfaceBoundary boundary);
+    Surface createSurface(SurfaceBoundary boundary)
+            throws MismatchedReferenceSystemException, MismatchedDimensionException;
 
     /**
      * Constructs a {@linkplain Solid solid} by indicating its boundary as a collection of
      * {@linkplain Shell shells} organized into a {@linkplain SolidBoundary solid boundary}.
      * Since this specification is limited to 3-dimensional coordinate reference systems,
      * any solid is definable by its boundary.
+     *
+     * @throws MismatchedReferenceSystemException If geometric objects given in argument don't
+     *         use compatible {@linkplain CoordinateReferenceSystem coordinate reference system}.
+     * @throws MismatchedDimensionException If geometric objects given in argument don't have
+     *         the expected dimension.
      */
 /// @UML (identifier="GM_Solid(GM_SolidBoundary)", obligation=MANDATORY)
-    Solid createSolid(SolidBoundary boundary);
+    Solid createSolid(SolidBoundary boundary)
+            throws MismatchedReferenceSystemException, MismatchedDimensionException;
 }

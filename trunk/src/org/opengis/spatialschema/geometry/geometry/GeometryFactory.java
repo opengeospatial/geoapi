@@ -14,6 +14,8 @@ import java.util.List;
 
 // OpenGIS direct dependencies
 import org.opengis.spatialschema.geometry.DirectPosition;
+import org.opengis.spatialschema.geometry.MismatchedDimensionException;
+import org.opengis.spatialschema.geometry.MismatchedReferenceSystemException;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 
 // Annotations
@@ -31,8 +33,6 @@ import org.opengis.referencing.crs.CoordinateReferenceSystem;
  * @author ISO/DIS 19107
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 2.0
- *
- * @revisit Should we extend {@link org.opengis.referencing.Factory}?
  */
 public interface GeometryFactory {
     /**
@@ -52,32 +52,56 @@ public interface GeometryFactory {
      *
      * @param startPoint The {@linkplain LineSegment#getStartPoint start point}.
      * @param   endPoint The {@linkplain LineSegment#getEndPoint end point}.
+     *
+     * @throws MismatchedReferenceSystemException If geometric objects given in argument don't
+     *         use compatible {@linkplain CoordinateReferenceSystem coordinate reference system}.
+     * @throws MismatchedDimensionException If geometric objects given in argument don't have
+     *         the expected dimension.
      */
 /// @UML (identifier="GM_LineSegment(GM_Position[2])", obligation=MANDATORY)
-    LineSegment createLineSegment(Position startPoint, Position endPoint);
+    LineSegment createLineSegment(Position startPoint, Position endPoint)
+            throws MismatchedReferenceSystemException, MismatchedDimensionException;
 
     /**
      * Takes two or more positions and creates the appropriate line string joining them.
+     *
+     * @throws MismatchedReferenceSystemException If geometric objects given in argument don't
+     *         use compatible {@linkplain CoordinateReferenceSystem coordinate reference system}.
+     * @throws MismatchedDimensionException If geometric objects given in argument don't have
+     *         the expected dimension.
      */
 /// @UML (identifier="GM_LineString(GM_Position[2..n])", obligation=MANDATORY)
-    LineString createLineString(List/*<Position>*/ points);
+    LineString createLineString(List/*<Position>*/ points)
+            throws MismatchedReferenceSystemException, MismatchedDimensionException;
 
     /**
      * Takes two positions and creates the appropriate geodesic joining them.
      *
      * @param startPoint The {@linkplain Geodesic#getStartPoint start point}.
      * @param   endPoint The {@linkplain Geodesic#getEndPoint end point}.
+     *
+     * @throws MismatchedReferenceSystemException If geometric objects given in argument don't
+     *         use compatible {@linkplain CoordinateReferenceSystem coordinate reference system}.
+     * @throws MismatchedDimensionException If geometric objects given in argument don't have
+     *         the expected dimension.
      */
-    Geodesic createGeodesic(Position startPoint, Position endPoint);
+    Geodesic createGeodesic(Position startPoint, Position endPoint)
+            throws MismatchedReferenceSystemException, MismatchedDimensionException;
 
     /**
      * Takes two or more positions, interpolates using a geodesic defined from
      * the geoid (or {@linkplain org.opengis.referencing.datum.Ellipsoid ellipsoid}) of the
      * {@linkplain org.opengis.referencing.crs.CoordinateReferenceSystem coordinate reference system}
      * being used, and creates the appropriate geodesic string joining them.
+     *
+     * @throws MismatchedReferenceSystemException If geometric objects given in argument don't
+     *         use compatible {@linkplain CoordinateReferenceSystem coordinate reference system}.
+     * @throws MismatchedDimensionException If geometric objects given in argument don't have
+     *         the expected dimension.
      */
 /// @UML (identifier="GM_GeodesicString(GM_Position[2..n])", obligation=MANDATORY)
-    GeodesicString createGeodesicString(List/*<Position>*/ points);
+    GeodesicString createGeodesicString(List/*<Position>*/ points)
+            throws MismatchedReferenceSystemException, MismatchedDimensionException;
 
     /**
      * Takes three positions and constructs the corresponding arc.
@@ -85,9 +109,15 @@ public interface GeometryFactory {
      * @param startPoint The {@linkplain Arc#getStartPoint start point}.
      * @param   midPoint Some point on the arc neither at the start or end.
      * @param   endPoint The {@linkplain Arc#getEndPoint end point}.
+     *
+     * @throws MismatchedReferenceSystemException If geometric objects given in argument don't
+     *         use compatible {@linkplain CoordinateReferenceSystem coordinate reference system}.
+     * @throws MismatchedDimensionException If geometric objects given in argument don't have
+     *         the expected dimension.
      */
 /// @UML (identifier="GM_Arc(GM_Position[3])", obligation=MANDATORY)
-    Arc createArc(Position startPoint, Position midPoint, Position endPoint);
+    Arc createArc(Position startPoint, Position midPoint, Position endPoint)
+            throws MismatchedReferenceSystemException, MismatchedDimensionException;
 
     /**
      * Takes two positions and the offset of the midpoint of the arc from the midpoint of
@@ -135,17 +165,29 @@ public interface GeometryFactory {
      * @param   endPoint The {@linkplain Arc#getEndPoint end point}.
      * @param      bulge The distance of the midpoint of the arc from the midpoint of the chord.
      * @param     normal A direction normal to the chord.
+     *
+     * @throws MismatchedReferenceSystemException If geometric objects given in argument don't
+     *         use compatible {@linkplain CoordinateReferenceSystem coordinate reference system}.
+     * @throws MismatchedDimensionException If geometric objects given in argument don't have
+     *         the expected dimension.
      */
 /// @UML (identifier="GM_Arc(GM_Position[2],Real,Vector)", obligation=MANDATORY)
-    Arc createArc(Position startPoint, Position endPoint, double bulge, double[] normal);
+    Arc createArc(Position startPoint, Position endPoint, double bulge, double[] normal)
+            throws MismatchedReferenceSystemException, MismatchedDimensionException;
 
     /**
      * Takes a sequence of {@linkplain Position positions} and constructs a sequence of
      * 3-point arcs jointing them. By the nature of an arc string, the sequence must have
      * an odd number of positions.
+     *
+     * @throws MismatchedReferenceSystemException If geometric objects given in argument don't
+     *         use compatible {@linkplain CoordinateReferenceSystem coordinate reference system}.
+     * @throws MismatchedDimensionException If geometric objects given in argument don't have
+     *         the expected dimension.
      */
 /// @UML (identifier="GM_ArcString(GM_Position[3, 5, 7...])", obligation=MANDATORY)
-    ArcString createArcString(List/*<Position>*/ points);
+    ArcString createArcString(List/*<Position>*/ points)
+            throws MismatchedReferenceSystemException, MismatchedDimensionException;
 
     /**
      * Equivalents to the {@linkplain #createArc(Position,Position,double,double[]) second
@@ -158,9 +200,15 @@ public interface GeometryFactory {
      * @param   endPoint The {@linkplain ArcByBulge#getEndPoint end point}.
      * @param      bulge The distance of the midpoint of the arc from the midpoint of the chord.
      * @param     normal A direction normal to the chord.
+     *
+     * @throws MismatchedReferenceSystemException If geometric objects given in argument don't
+     *         use compatible {@linkplain CoordinateReferenceSystem coordinate reference system}.
+     * @throws MismatchedDimensionException If geometric objects given in argument don't have
+     *         the expected dimension.
      */
 /// @UML (identifier="GM_ArcByBulge(GM_Position[2],Real,Vector)", obligation=MANDATORY)
-    ArcByBulge createArcByBulge(Position startPoint, Position endPoint, double bulge, double[] normal);
+    ArcByBulge createArcByBulge(Position startPoint, Position endPoint, double bulge, double[] normal)
+            throws MismatchedReferenceSystemException, MismatchedDimensionException;
 
     /**
      * Equivalent to the {@linkplain #createArc(Position,Position,double,double[]) second
@@ -177,8 +225,14 @@ public interface GeometryFactory {
      * @param  bulges The distances of the midpoint of the arc from the midpoint of the chord.
      * @param normals The directions normal to the chord. This list size must be the same than
      *                the <code>bulge</code> array length.
+     *
+     * @throws MismatchedReferenceSystemException If geometric objects given in argument don't
+     *         use compatible {@linkplain CoordinateReferenceSystem coordinate reference system}.
+     * @throws MismatchedDimensionException If geometric objects given in argument don't have
+     *         the expected dimension.
      */
 /// @UML (identifier="GM_ArcStringByBulge(GM_Position[2..n],Real[1..n],Vector[1..n])", obligation=MANDATORY)
     ArcStringByBulge createArcStringByBulge(List/*<Position>*/ points, double[] bulges,
-                                            List/*<double[]>*/ normals);
+                                            List/*<double[]>*/ normals)
+            throws MismatchedReferenceSystemException, MismatchedDimensionException;
 }
