@@ -188,6 +188,8 @@
       <replacefilter token="&lt;OnLineResource&gt;"/>
       <replacefilter token="&lt;OrientableCurve&gt;"/>
       <replacefilter token="&lt;OrientableSurface&gt;"/>
+      <replacefilter token="&lt;ParameterDescriptorGroup&gt;"/>
+      <replacefilter token="&lt;ParameterValueGroup&gt;"/>
       <replacefilter token="&lt;Point&gt;"/>
       <replacefilter token="&lt;PointArray&gt;"/>
       <replacefilter token="&lt;PortrayalCatalogueReference&gt;"/>
@@ -320,7 +322,6 @@
 
       <arg line="-quiet"/>
       <arg line="-docfilessubdirs"/>
-      <arg line="-subpackages org"/>
       <arg line="${proxy}"/>
 
       <bottom>
@@ -376,9 +377,10 @@
                     &lt;/FONT&gt;&lt;/TD&gt;&lt;/TR&gt;&lt;/TABLE&gt;"
              packages="org.opengis.go*"/>
 
-      <fileset dir="tiger/sources">
-        <include name="org/opengis/util/*.java"/>
-      </fileset>
+      <packageset dir="tiger/sources">
+        <include name="org/opengis/**" />
+      </packageset>
+
     </javadoc>
 
     <copy todir="javadoc/org/opengis/doc-files">
@@ -434,6 +436,7 @@
              header           = "Legacy OpenGIS API">
 
       <arg line="-quiet"/>
+      <arg line="-keywords"/>
       <arg line="-docfilessubdirs"/>
       <arg line="${proxy}"/>
 
