@@ -1,15 +1,20 @@
 <?xml version="1.0" encoding="windows-1252"?>
 <!-- ========================================================================
 
-     Build GeoAPI interfaces, javadoc, jars and zip file.
-     Before running on a new system, make sure to adapt
-     'basedir' and 'sourcepath' properties.
+     Ant script for building GeoAPI interfaces, javadoc, jars and zip file.
+     Before running, make sure to set 'basedir', 'sourcepath' and 'tagletpath' properties.
+
+     NOTE: The following environment variable should be set
+           for using the generic compiler with Ant:
+
+           set ANT_OPTS=-Xbootclasspath/p:<path to JSR-14 installation>\javac.jar
 
      ======================================================================== -->
 
 <project name="GeoAPI" default="release" basedir="D:/Application/GeoAPI">
 
   <property name="sourcepath"  value="P:/CVSROOT/GeoAPI/src"/>
+  <property name="tagletpath"  value="P:/CVSROOT/GeoAPI/scripts"/>
   <property name="version"     value="2.0"/>
 
 
@@ -90,9 +95,10 @@
     <javac srcdir      = "sources"
            destdir     = "classes"
            includes    = "org/**/*.java"
+           source      = "1.5"
+           target      = "1.4"
            optimize    = "true"
            debug       = "false"
-           debuglevel  = "source,lines,vars"
            failonerror = "true">
     </javac>
 
@@ -121,13 +127,10 @@
              doctitle         = "OpenGIS API"
              header           = "OpenGIS API"
              additionalparam  = "-quiet -noqualifier all
-                                 -tag datatype:t:&quot;Data type&quot;
-                                 -tag mandatory:m:&quot;Attribute type: mandatory&quot;
-                                 -tag conditional:m:&quot;Attribute type: conditional&quot;
-                                 -tag optional:m:&quot;Attribute type: optional&quot;
-                                 -tag association:Xm:&quot;Association&quot;
+                                 -tagletpath ${tagletpath}
+                                 -taglet org.opengis.tools.UmlTaglet
                                  -tag rename:m:&quot;Name change from UML &lt;FONT COLOR='#A01020'&gt;(a GeoAPI's proposal)&lt;/FONT&gt;:&quot;
-                                 -tag revisit:a:&quot;REVISIT OPEN ISSUE &lt;FONT COLOR='#A01020'&gt;(a GeoAPI's comment, &lt;U&gt;not&lt;/U&gt; an OpenGIS's one)&lt;/FONT&gt;:&quot;">
+                                 -taglet org.opengis.tools.RevisitTaglet">
 
       <bottom>
         &lt;TABLE WIDTH='100%'&gt;&lt;TR&gt;&lt;TD NOWRAP&gt;
@@ -143,7 +146,7 @@
 
       <link href="http://java.sun.com/j2se/1.4/docs/api"/>
 
-      <group title="Spatial Referencing by Coordinates" packages="org.opengis.cd:org.opengis.cs:org.opengis.rs:org.opengis.sc"/>
+      <group title="Spatial Referencing by Coordinates" packages="org.opengis.rs:org.opengis.sc:org.opengis.cs:org.opengis.cd:org.opengis.cc:org.opengis.dq"/>
     </javadoc>
 
     <copy todir="javadoc/org/opengis/doc-files">
@@ -170,19 +173,13 @@
          index    = "true">
       <include name="org/**"/>
       <manifest>
-        <section name="org/opengis/ci">
+        <section name="org/opengis/rs">
           <attribute name="Sealed"                 value="true"                              />
           <attribute name="Specification-Title"    value="Spatial Referencing by Coordinates"/>
           <attribute name="Specification-Version"  value="2.00"                              />
           <attribute name="Specification-Vendor"   value="OpenGIS Consortium, Inc."          />
         </section>
-        <section name="org/opengis/ex">
-          <attribute name="Sealed"                 value="true"                              />
-          <attribute name="Specification-Title"    value="Spatial Referencing by Coordinates"/>
-          <attribute name="Specification-Version"  value="2.00"                              />
-          <attribute name="Specification-Vendor"   value="OpenGIS Consortium, Inc."          />
-        </section>
-        <section name="org/opengis/cd">
+        <section name="org/opengis/sc">
           <attribute name="Sealed"                 value="true"                              />
           <attribute name="Specification-Title"    value="Spatial Referencing by Coordinates"/>
           <attribute name="Specification-Version"  value="2.00"                              />
@@ -194,13 +191,31 @@
           <attribute name="Specification-Version"  value="2.00"                              />
           <attribute name="Specification-Vendor"   value="OpenGIS Consortium, Inc."          />
         </section>
-        <section name="org/opengis/rs">
+        <section name="org/opengis/cd">
           <attribute name="Sealed"                 value="true"                              />
           <attribute name="Specification-Title"    value="Spatial Referencing by Coordinates"/>
           <attribute name="Specification-Version"  value="2.00"                              />
           <attribute name="Specification-Vendor"   value="OpenGIS Consortium, Inc."          />
         </section>
-        <section name="org/opengis/sc">
+        <section name="org/opengis/cc">
+          <attribute name="Sealed"                 value="true"                              />
+          <attribute name="Specification-Title"    value="Spatial Referencing by Coordinates"/>
+          <attribute name="Specification-Version"  value="2.00"                              />
+          <attribute name="Specification-Vendor"   value="OpenGIS Consortium, Inc."          />
+        </section>
+        <section name="org/opengis/dq">
+          <attribute name="Sealed"                 value="true"                              />
+          <attribute name="Specification-Title"    value="Spatial Referencing by Coordinates"/>
+          <attribute name="Specification-Version"  value="2.00"                              />
+          <attribute name="Specification-Vendor"   value="OpenGIS Consortium, Inc."          />
+        </section>
+        <section name="org/opengis/ci">
+          <attribute name="Sealed"                 value="true"                              />
+          <attribute name="Specification-Title"    value="Spatial Referencing by Coordinates"/>
+          <attribute name="Specification-Version"  value="2.00"                              />
+          <attribute name="Specification-Vendor"   value="OpenGIS Consortium, Inc."          />
+        </section>
+        <section name="org/opengis/ex">
           <attribute name="Sealed"                 value="true"                              />
           <attribute name="Specification-Title"    value="Spatial Referencing by Coordinates"/>
           <attribute name="Specification-Version"  value="2.00"                              />
