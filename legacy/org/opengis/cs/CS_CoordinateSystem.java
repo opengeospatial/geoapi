@@ -40,6 +40,8 @@ import java.rmi.RemoteException;
  * @version 1.01
  * @since   1.00
  * @author Martin Daly
+ *
+ * @deprecated Replaced by {@link org.opengis.sc.CoordinateReferenceSystem}.
  */
 public interface CS_CoordinateSystem extends CS_Info {
     /**

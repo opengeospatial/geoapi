@@ -32,6 +32,8 @@ import java.rmi.RemoteException;
  * @since   1.00
  * @author Martin Daly
  * @author Martin Desruisseaux
+ *
+ * @deprecated Replaced by {@link org.opengis.cd.Datum}.
  */
 public interface CS_Datum extends CS_Info {
     /**

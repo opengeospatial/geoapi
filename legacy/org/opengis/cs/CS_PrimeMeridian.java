@@ -21,6 +21,8 @@ import java.rmi.RemoteException;
  * @version 1.01
  * @since   1.00
  * @author Martin Daly
+ *
+ * @deprecated Replaced by {@link org.opengis.cd.PrimeMeridian}.
  */
 public interface CS_PrimeMeridian extends CS_Info {
     /**
