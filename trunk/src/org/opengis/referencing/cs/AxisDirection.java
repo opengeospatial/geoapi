@@ -231,7 +231,7 @@ public final class AxisDirection extends CodeList {
      * Axis positive direction is towards lower pixel row.
      */
 /// @UML (identifier="rowNegative", obligation=CONDITIONAL)
-    public static final AxisDirection ROW_NEGATIVE = new AxisDirection("ROW_NEGATIVE");
+    public static final AxisDirection ROW_NEGATIVE = new AxisDirection("ROW_NEGATIVE", ROW_POSITIVE);
 
     /**
      * Axis positive direction is right in display.
