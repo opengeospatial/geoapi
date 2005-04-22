@@ -44,14 +44,27 @@ public interface GeometryFactory {
      * Returns the coordinate reference system in use for all
      * {@linkplain org.opengis.spatialschema.geometry.Geometry geometries}
      * to be created through this interface.
+     * @return
      */
     CoordinateReferenceSystem getCoordinateReferenceSystem();
 
+    /**
+     * Create a direct position with empty coordinates.
+     * @return
+     */
+    DirectPosition createDirectPosition();
+    
     /**
      * Create a direct position at the specified location specified by coordinates.
      */
     DirectPosition createDirectPosition(double[] coordinates);
 
+    /**
+     * Creates a new Envelope with the given corners.
+     * @param lowerCorner
+     * @param upperCorner
+     * @return
+     */
     Envelope createEnvelope(DirectPosition lowerCorner, DirectPosition upperCorner);
     
     /**
