@@ -149,7 +149,7 @@ public interface GraphicPolygon extends Graphic {
      *   index is less than zero or greater than or equal to the number of
      *   interior rings.
      */
-    public void insertExteriorPoint(int index, int interiorRingIndex,
+    public void insertInteriorPoint(int index, int interiorRingIndex,
             DirectPosition position);
 
     /**
