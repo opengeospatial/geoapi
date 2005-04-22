@@ -158,46 +158,6 @@ public interface GraphicArc extends Graphic {
     public double getHeight(Unit unit);
 
     /**
-     * Sets the geometry based on ISO 19107 <code>Conic</code> geometry for this <code>Graphic</code>. 
-     * The <code>Conic</code> must be an ellipse (or a circle), otherwise 
-     * <code>GeometryNotSupportedException</code> is thrown.
-     * @param conic the elliptic conic for this <code>Graphic</code>.
-     * @throws GeometryNotSupportedException if <code>Conic</code> is not an ellipse.
-     */
-    public void setConic(Conic conic) throws GeometryNotSupportedException;
-    
-    /**
-     * Returns the ISO 19107 <code>Conic</code> geometry for this <code>Graphic</code>
-     * @return the Conic representing this GraphicArc
-     */
-    public Conic getConic();
-
-    /**
-     * Sets the geometry based on ISO 19107 <code>CurveSegment</code> 
-     * geometry for this <code>GraphicArc</code>. 
-     * This must be an <code>Arc</code> or a Conic that specifies
-     * an ellipse (or a circle), otherwise 
-     * <code>GeometryNotSupportedException</code> is thrown.
-     * @param curveSegment the <code>Arc</code> or elliptic Conic for this 
-     * <code>GraphicArc</code>.
-     * @throws GeometryNotSupportedException if curveSegment is not an
-     * <code>Arc</code> or an elliptic <code>Conic</code>.
-     */
-    public void setCurveSegment(CurveSegment curveSegment) throws GeometryNotSupportedException;
-    
-    /**
-     * Returns an ISO 19107 <code>CurveSegment</code> geometry for this 
-     * <code>GraphicArc</code>.  It is recommended that this return an 
-     * <code>Arc</code> if this Graphic renders a circular arc,
-     * and a <code>Conic</code> otherwise.
-     * While implementations may in principle return a LineString,
-     * this is strongly discouraged; LineStrings may be obtained from
-     * the asLineString method of either Arc or Conic.
-     * @return the Conic representing this GraphicArc
-     */
-    public CurveSegment getCurveSegment();
-
-    /**
      * Sets the orientation for the width axis.  On a <code>Canvas</code>, this
      * might be the angle between the positive X axis and the width
      * axis of the arc. For a projected arc, this might be the angle
