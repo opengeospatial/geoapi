@@ -76,7 +76,8 @@
     <!-- copy the right stuff from src.dir and the regular pending.dir to pending.src.dir -->
     <copy todir="${pending.src.dir}" includeEmptyDirs="false">
       <fileset dir="${src.dir}">
-        <exclude name="**/OrderedAggregateGraphic.java"/>
+        <!--exclude name="**/OrderedAggregateGraphic.java"/-->
+        <exclude name="org/opengis/go/display/primitive/*.*"/>
         <exclude name="org/opengis/go/display/style/*.*"/>
         <exclude name="org/opengis/go/geometry/*.*"/>
       </fileset>
