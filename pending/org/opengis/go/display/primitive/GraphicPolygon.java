@@ -53,26 +53,26 @@ public interface GraphicPolygon extends Graphic {
     /**
      * Inserts a new point into the list of vertices for the exterior ring.
      *
-     * @param position The new position to add to the list.
      * @param index The index that the new position will occupy after the
      *   insert.  All other points have their index increased by one.
+     * @param position The new position to add to the list.
      * @throws IndexOutOfBoundsException Throws this if the given index is less
      *   than zero or greater than or equal to the number points in the exterior
      *   ring.
      */
-    public void insertExteriorPoint(DirectPosition position, int index);
+    public void insertExteriorPoint(int index, DirectPosition position);
 
     /**
      * Replaces a position in the list of vertices for the exterior ring.
      *
-     * @param position The point that will take the place of the existing one.
      * @param index The index of the point to replace.
+     * @param position The point that will take the place of the existing one.
      * @return Returns the position that was previously in the given position.
      * @throws IndexOutOfBoundsException Throws this if the given index is less
      *   than zero or greater than or equal to the number points in the exterior
      *   ring.
      */
-    public DirectPosition setExteriorPoint(DirectPosition position, int index);
+    public DirectPosition setExteriorPoint(int index, DirectPosition position);
 
     /**
      * Removes a position from the list of vertices for the exterior ring.
@@ -133,32 +133,32 @@ public interface GraphicPolygon extends Graphic {
      *   is less than zero or greater than or equal to the number of interior
      *   rings.
      */
-    public void addInteriorPoint(DirectPosition position, int interiorRingIndex);
+    public void addInteriorPoint(int interiorRingIndex, DirectPosition position);
 
     /**
      * Inserts a new point into the list of vertices for an interior ring.
      *
-     * @param position The new position to add to the list.
      * @param index The index that the new position will occupy after the
      *   insert.  All other points have their index increased by one.
      * @param interiorRingIndex Index of the interior ring whose vertex list is
      *   to be modified.
+     * @param position The new position to add to the list.
      * @throws IndexOutOfBoundsException Throws this if the vertex index is
      *   less than zero or greater than or equal to the number of vertices in
      *   the given interior ring.  May also throw this if the interior ring
      *   index is less than zero or greater than or equal to the number of
      *   interior rings.
      */
-    public void insertExteriorPoint(DirectPosition position, int index,
-            int interiorRingIndex);
+    public void insertExteriorPoint(int index, int interiorRingIndex,
+            DirectPosition position);
 
     /**
      * Replaces a position in the list of vertices for an interior ring.
      *
-     * @param position The point that will take the place of the existing one.
      * @param index The index of the point to replace.
      * @param interiorRingIndex Index of the interior ring whose vertex list is
      *   to be modified.
+     * @param position The point that will take the place of the existing one.
      * @return Returns the position that was previously in the given position.
      * @throws IndexOutOfBoundsException Throws this if the vertex index is
      *   less than zero or greater than or equal to the number of vertices in
@@ -166,8 +166,8 @@ public interface GraphicPolygon extends Graphic {
      *   index is less than zero or greater than or equal to the number of
      *   interior rings.
      */
-    public DirectPosition setInteriorPoint(DirectPosition position, int index,
-            int interiorRingIndex);
+    public DirectPosition setInteriorPoint(int index, int interiorRingIndex,
+            DirectPosition position);
 
     /**
      * Removes a position from the list of vertices for an interior ring.
@@ -205,16 +205,16 @@ public interface GraphicPolygon extends Graphic {
      * {@linkplain DirectPosition}s in the array, but not the array object
      * itself.
      *
-     * @param newVertices The list of vertices to replace the existing ring
-     *   with.
      * @param interiorRingIndex Index of the interior ring whose vertex list is
      *   to be modified.
+     * @param newVertices The list of vertices to replace the existing ring
+     *   with.
      * @throws IndexOutOfBoundsException Throws this if the interior ring index
      *   is less than zero or greater than or equal to the number of interior
      *   rings.
      */
-    public void setInteriorRing(DirectPosition [] newVertices,
-            int interiorRingIndex);
+    public void setInteriorRing(int interiorRingIndex,
+            DirectPosition [] newVertices);
 
     /**
      * Returns the number of vertices in an interior ring.
@@ -276,3 +276,4 @@ public interface GraphicPolygon extends Graphic {
      */
     public PathType getPathType();
 }
+
