@@ -15,6 +15,7 @@ import java.util.List;
 
 import javax.units.Unit;
 
+import org.opengis.go.display.style.PolygonSymbolizer;
 import org.opengis.go.spatial.PathType;
 import org.opengis.spatialschema.geometry.DirectPosition;
 import org.opengis.util.CodeList;
@@ -262,6 +263,13 @@ public interface GraphicArc extends Graphic {
     public void setAllowingExtentsChange(boolean newValue);
 
     //**  PROJECTED  **
+    
+    /**
+     * Returns the <code>GraphicStyle</code> for this <code>GraphicPolygon</code>,
+     * which is required to be a <code>PolygonSymbolizer</code>.
+     * @return the GraphicPolygon's <code>GraphicStyle</code>.
+     */
+    public PolygonSymbolizer getPolygonSymbolizer();
 
     /**
      * Sets the algorithm that is used in computing the "in-between" pixels
@@ -281,7 +289,7 @@ public interface GraphicArc extends Graphic {
      * for <code>ArcClosure.OPEN</code>.
      */
     public PathType getClosurePathType();
-
+    
     /**
      * Instances of the <code>ArcClosure</code> class represent the various
      * methods of connecting the endpoints of an arc.  There are three static

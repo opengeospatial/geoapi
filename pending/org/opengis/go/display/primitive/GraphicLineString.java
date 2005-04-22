@@ -10,10 +10,9 @@
 package org.opengis.go.display.primitive;
 
 // OpenGIS direct dependencies
+import org.opengis.go.display.style.LineSymbolizer;
 import org.opengis.go.spatial.PathType;
 import org.opengis.spatialschema.geometry.DirectPosition;
-import org.opengis.spatialschema.geometry.geometry.LineString;
-import org.opengis.spatialschema.geometry.geometry.PointArray;
 
 
 /**
@@ -25,6 +24,7 @@ import org.opengis.spatialschema.geometry.geometry.PointArray;
  * @since GO 1.1
  */
 public interface GraphicLineString extends Graphic {
+    
     /**
      * Returns the positions that make up the line segments.
      * Value is acquired from the underlying LineString geometry for this Graphic.
@@ -96,6 +96,13 @@ public interface GraphicLineString extends Graphic {
      * @return whether or not the graphic linestring is closed.
      */
     public boolean isClosed();
+    
+    /**
+     * Returns the <code>GraphicStyle</code> for this <code>GraphicLineString</code>,
+     * which is required to be a <code>LineSymbolizer</code>.
+     * @return the GraphicLineString's <code>GraphicStyle</code>.
+     */
+    public LineSymbolizer getLineSymbolizer();
 
     //**  EDITABLE/ANIMATION  **
 

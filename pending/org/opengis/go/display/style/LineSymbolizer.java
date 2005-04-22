@@ -29,10 +29,10 @@ public interface LineSymbolizer extends GraphicStyle {
     //**  Default LineSymbolizer property values  **
 
     /**  Default begin arrow style value.  */
-    public static final ArrowStyle DEFAULT_BEGIN_ARROW_STYLE = ArrowStyle.NONE;
+    public static final ArrowStyle DEFAULT_STROKE_BEGIN_ARROW_STYLE = ArrowStyle.NONE;
 
     /**  Default end arrow style value.  */
-    public static final ArrowStyle DEFAULT_END_ARROW_STYLE = ArrowStyle.NONE;
+    public static final ArrowStyle DEFAULT_STROKE_END_ARROW_STYLE = ArrowStyle.NONE;
 
     /**  Default stroke color value.  */
     public static final Color DEFAULT_STROKE_FILL_COLOR = Color.BLACK;
