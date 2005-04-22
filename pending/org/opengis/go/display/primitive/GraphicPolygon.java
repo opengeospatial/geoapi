@@ -228,10 +228,19 @@ public interface GraphicPolygon extends Graphic {
     public int getNumInteriorPoints(int interiorRingIndex);
 
     /**
-     * Creates a new interior ring (hole) for this polygon.  Returns the index
-     * of the newly created ring.
+     * Creates a new interior ring (hole) for this polygon.
+     * 
+     * @return Returns the index of the newly created ring.
      */
     public int addInteriorRing();
+
+    /**
+     * Creates a new interior ring for this polygon and immediately sets its
+     * points to those in the given array.
+     *
+     * @return Returns the index of the newly created ring.
+     */
+    public int addInteriorRing(DirectPosition [] vertices);
 
     /**
      * Removes an interior ring.
@@ -275,5 +284,16 @@ public interface GraphicPolygon extends Graphic {
      * vertices are to be drawn.
      */
     public PathType getPathType();
-}
 
+    /**
+     * Indicates whether clicking on an edge of this graphic linestring should
+     * insert a new vertex at that location when the object is in edit mode.
+     */
+    public boolean isAllowingNewVertices();
+
+    /**
+     * Sets the boolean that indicates whether clicking on an edge of this
+     * graphic linestring should insert a new vertex at that location.
+     */
+    public void setAllowingNewVertices(boolean newValue);
+}
