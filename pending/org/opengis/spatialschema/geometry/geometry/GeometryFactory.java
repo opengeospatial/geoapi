@@ -18,6 +18,7 @@ import org.opengis.spatialschema.geometry.DirectPosition;
 import org.opengis.spatialschema.geometry.Envelope;
 import org.opengis.spatialschema.geometry.MismatchedDimensionException;
 import org.opengis.spatialschema.geometry.MismatchedReferenceSystemException;
+import org.opengis.spatialschema.geometry.aggregate.MultiPrimitive;
 import org.opengis.spatialschema.geometry.primitive.Ring;
 import org.opengis.spatialschema.geometry.primitive.Surface;
 import org.opengis.spatialschema.geometry.primitive.SurfaceBoundary;
@@ -330,8 +331,8 @@ public interface GeometryFactory {
             throws MismatchedReferenceSystemException, MismatchedDimensionException;
 
     /**
-     * Constructs a new {@linkplain SurfaceBoundary} object representing the
-     * boundary of a two-dimensional surface.
+     * Constructs a new {@linkplain SurfaceBoundary surface boundary} object
+     * representing the boundary of a two-dimensional surface.
      *
      * @param exterior In the normal 2D case, this identifies the curve that is
      *        the exterior curve of the surface.  In cases where an exterior
@@ -343,8 +344,17 @@ public interface GeometryFactory {
      *         argument don't use a {@linkplain CoordinateReferenceSystem
      *         coordinate reference system} compatible with the one held by this
      *         factory.
+     *
+     * @deprecated Moved to {@link org.opengis.spatialschema.geometry.primitive.PrimitiveFactory} since
+     *             {@link Ring}, {@link Surface} and {@link SurfaceBoundary} are all primitive objects.
      */
-    SurfaceBoundary createSurfaceBoundary(Ring exterior,
-            List/*<Ring>*/ interiors)
+    SurfaceBoundary createSurfaceBoundary(Ring exterior, List/*<Ring>*/ interiors)
     	throws MismatchedReferenceSystemException;
+    
+    /**
+     * Placeholder to create a MultiPrimitive (or derivatives).  There <b>should</b>
+     * be a better way to do this.
+     * @return
+     */
+    MultiPrimitive createMultiPrimitive();
 }
