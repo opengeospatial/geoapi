@@ -1,4 +1,4 @@
-package org.opengis.go.display.event;
+package org.opengis.go.display.style.event;
 
 import org.opengis.go.display.style.GraphicStyle;
 
