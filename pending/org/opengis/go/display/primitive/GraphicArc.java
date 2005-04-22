@@ -10,16 +10,13 @@
 
 package org.opengis.go.display.primitive;
 
-import javax.units.Unit;
-
-// J2SE direct dependencies
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.units.Unit;
+
 import org.opengis.go.spatial.PathType;
 import org.opengis.spatialschema.geometry.DirectPosition;
-import org.opengis.spatialschema.geometry.geometry.Conic;
-import org.opengis.spatialschema.geometry.primitive.CurveSegment;
 import org.opengis.util.CodeList;
 import org.opengis.util.SimpleEnumerationType;
 

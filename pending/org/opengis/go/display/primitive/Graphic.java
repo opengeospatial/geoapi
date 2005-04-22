@@ -32,38 +32,38 @@ public interface Graphic {
     //**  Default Editability property values  **
 
     /**  Default auto edit value.  */
-    public static final boolean DEFAULT_AUTO_EDIT = true;
+    static final boolean DEFAULT_AUTO_EDIT = true;
 
     /**  Default drag selectable value.  */
-    public static final boolean DEFAULT_DRAG_SELECTABLE = true;
+    static final boolean DEFAULT_DRAG_SELECTABLE = true;
 
     /** Default pickable value.  */
-    public static final boolean DEFAULT_PICKABLE = true;
+    static final boolean DEFAULT_PICKABLE = true;
 
     /**  Default selected value.  */
-    public static final boolean DEFAULT_SELECTED = false;
+    static final boolean DEFAULT_SELECTED = false;
 
     //**  Default Highlight property values  **
 
     /**  Default blinking value.  */
-    public static final boolean DEFAULT_BLINKING = false;
+    static final boolean DEFAULT_BLINKING = false;
 
     /**  Default blink pattern value.  */
-    public static final float[] DEFAULT_BLINK_PATTERN = {0.5f, 0.5f};
+    static final float[] DEFAULT_BLINK_PATTERN = {0.5f, 0.5f};
 
     //**  Default Viewability property values  **
 
     /**  Default max scale value.  */
-    public static final int DEFAULT_MAX_SCALE = Integer.MAX_VALUE;
+    static final int DEFAULT_MAX_SCALE = Integer.MAX_VALUE;
 
     /**  Default min scale value.  */
-    public static final int DEFAULT_MIN_SCALE = 1;
+    static final int DEFAULT_MIN_SCALE = 1;
 
     /**  Default visible value.  */
-    public static final boolean DEFAULT_VISIBLE = true;
+    static final boolean DEFAULT_VISIBLE = true;
 
     /**  Default z order value.  */
-    public static final double DEFAULT_Z_ORDER = 0.0;
+    static final double DEFAULT_Z_ORDER = 0.0;
 
     //**  deconstructor  **
 
@@ -80,7 +80,7 @@ public interface Graphic {
      * to an object pool.  It is an error to reference a <code>Graphic</code> in any
      * way after its dispose method has been called.
      */
-    public void dispose();
+    void dispose();
 
     /**
      * Flags this <code>Graphic</code> object as needing to be redrawn, 
@@ -96,7 +96,7 @@ public interface Graphic {
      * for example, when the underlying <code>Geometry</code> instance
      * is changed or data in that instance has changed.
      */
-    public void refresh();
+    void refresh();
 
     //**  accessors/mutators  **
 
@@ -104,19 +104,19 @@ public interface Graphic {
      * Sets the name of this <code>Graphic</code> to the given value.
      * @param name the new name to assign to this <code>Graphic</code>.
      */
-    public void setName(String name);
+    void setName(String name);
 
     /**
      * Returns the name assigned to this <code>Graphic</code>.
      * @return	the name assigned to this <code>Graphic</code>.
      */
-    public String getName();
+    String getName();
 
     /**
      * Sets the parent of this <code>Graphic</code>.
      * @param parent the parent of this <code>Graphic</code>.
      */
-    public void setParent(Graphic parent);
+    void setParent(Graphic parent);
 
     /**
      * Returns the parent of this <code>Graphic</code>.  Currently, only 
@@ -124,14 +124,14 @@ public interface Graphic {
      * have <code>Graphic</code> children.
      * @return	the parent of this <code>Graphic</code>.
      */
-    public Graphic getParent();
+    Graphic getParent();
 
     /**
      * Sets the <code>GraphicStyle</code> for this <code>Graphic</code>.
      * <code>Graphic</code>s may share style property objects with other
      * <code>Graphic</code>s.
      */
-    public void setGraphicStyle(GraphicStyle style);
+    void setGraphicStyle(GraphicStyle style);
 
     /**
      * Returns the <code>GraphicStyle</code> for this <code>Graphic</code>.
@@ -141,7 +141,7 @@ public interface Graphic {
      * style object.
      * @return @return	the <code>GraphicStyle</code>.
      */
-    public GraphicStyle getGraphicStyle();
+    GraphicStyle getGraphicStyle();
 
     /**
      * Returns the value of the property with the specified key. Only
@@ -150,7 +150,7 @@ public interface Graphic {
      * @return the value of this property or null
      * @see #putClientProperty
      */
-    public Object getClientProperty(Object key);
+    Object getClientProperty(Object key);
 
     /**
      * Adds an arbitrary key/value "client property" to this <code>Graphic</code>.
@@ -168,7 +168,7 @@ public interface Graphic {
      * @param value the Object that is the client data.
      * @see #getClientProperty
      */
-    public void putClientProperty(Object key, Object value);
+    void putClientProperty(Object key, Object value);
 
     /**
      * Sets a boolean indicating whether mouse events on this <code>Graphic</code> should
@@ -180,7 +180,7 @@ public interface Graphic {
      * @param passToParent true, if events should be passed to the
      *     parent graphic.  false if they should not.
      */
-    public void setPassingEventsToParent(boolean passToParent);
+    void setPassingEventsToParent(boolean passToParent);
 
     /**
      * Returns a boolean indicating whether mouse events on this <code>Graphic</code> will
@@ -190,7 +190,7 @@ public interface Graphic {
      * event will be passed to the parent after having been passed to the
      * listeners on this object.
      */
-    public boolean isPassingEventsToParent();
+    boolean isPassingEventsToParent();
 
     /**
      * Sets a boolean flag specifying whether this object is to show
@@ -200,28 +200,28 @@ public interface Graphic {
      * @param showingHandles boolean flag: true tells this object to show
      * its edit handles.
      */
-    public void setShowingEditHandles(boolean showingHandles);
+    void setShowingEditHandles(boolean showingHandles);
 
     /**
      * Returns the boolean flag that specifies whether this object is showing
      * its edit handles.
      * @return boolean flag: true means it is showing its handles.
      */
-    public boolean isShowingEditHandles();
+    boolean isShowingEditHandles();
 
     /**
      * Sets a boolean flag indicating whether this object is
      * to show anchor handles. Anchor handles allow the object to be moved
      * in the display.
      */
-    public void setShowingAnchorHandles(boolean showingHandles);
+    void setShowingAnchorHandles(boolean showingHandles);
 
     /**
      * Returns the boolean flag that indicates whether this object
      * is showing anchor handles. Anchor handles allow the object to be moved
      * in the display.
      */
-    public boolean isShowingAnchorHandles();
+    boolean isShowingAnchorHandles();
 
     //**  methods to work with/create other Graphics and Styles
 
@@ -229,7 +229,7 @@ public interface Graphic {
      * Creates a new <code>Graphic</code> of the same type as this object.  The resulting
      * object should be identical in all respects to the original.
      */
-    public Graphic cloneGraphic();
+    Graphic cloneGraphic();
 
     //**  listener methods  **
 
@@ -239,14 +239,14 @@ public interface Graphic {
      * affect this <code>Graphic</code>.
      * @param listener the <code>GraphicListener</code> to add.
      */
-    public void addGraphicListener(GraphicListener listener);
+    void addGraphicListener(GraphicListener listener);
 
     /**
      * Removes the given <code>GraphicListener</code> from this <code>Graphic</code>'s list of
      * listeners.  
      * @param listener the <code>GraphicListener</code> to remove.
      */
-    public void removeGraphicListener(GraphicListener listener);
+    void removeGraphicListener(GraphicListener listener);
 
     /**
      * Calls the graphic event method of all <code>GraphicListener</code>s in this
@@ -259,7 +259,7 @@ public interface Graphic {
      * @see org.opengis.go.display.event.GraphicChangeEvent
      * @see org.opengis.go.display.event.GraphicMouseEvent
      */
-    public void fireGraphicEvent(GraphicEvent ge);
+    void fireGraphicEvent(GraphicEvent ge);
 
     //*************************************************************************
     //**
@@ -271,133 +271,133 @@ public interface Graphic {
      * Returns the auto edit value.
      * @return the auto edit value.
      */
-    public boolean getAutoEdit();
+    boolean getAutoEdit();
 
     /**
      * Sets the auto edit value.
      * @param autoEdit the auto edit value.
      */
-    public void setAutoEdit(boolean autoEdit);
+    void setAutoEdit(boolean autoEdit);
 
     /**
      * Returns the drag selectable value.
      * @return the drag selectable value.
      */
-    public boolean getDragSelectable();
+    boolean getDragSelectable();
 
     /**
      * Sets the drag selectable value.
      * @param dragSelectable the drag selectable value.
      */
-    public void setDragSelectable(boolean dragSelectable);
+    void setDragSelectable(boolean dragSelectable);
 
     /**
      * Returns the pickable value.
      * @return the pickable value.
      */
-    public boolean getPickable();
+    boolean getPickable();
 
     /**
      * Sets the pickable value.
      * @param pickable the pickable value.
      */
-    public void setPickable(boolean pickable);
+    void setPickable(boolean pickable);
 
     /**
      * Returns the selected value.
      * @return the selected value.
      */
-    public boolean getSelected();
+    boolean getSelected();
 
     /**
      * Sets the selected value.
      * @param selected the selected value.
      */
-    public void setSelected(boolean selected);
+    void setSelected(boolean selected);
 
     /**
      * Returns the blinking value.
      * @return the blinking value.
      */
-    public boolean getBlinking();
+    boolean getBlinking();
 
     /**
      * Sets the blinking value.
      * @param blinking the blinking value.
      */
-    public void setBlinking(boolean blinking);
+    void setBlinking(boolean blinking);
 
     /**
      * Returns the blink pattern value.
      * @return the blink pattern value.
      */
-    public float[] getBlinkPattern();
+    float[] getBlinkPattern();
 
     /**
      * Sets the blink pattern value.
      * @param blinkPattern the blink pattern value.
      */
-    public void setBlinkPattern(float[] blinkPattern);
+    void setBlinkPattern(float[] blinkPattern);
 
     /**
      * Returns a symbology object that will be used to override some, if not
      * all, of the graphical properties of Graphics using this style.  This will
      * be null by default.
      */
-    public Symbology getSymbology();
+    Symbology getSymbology();
 
     /**
      * Sets the symbology object that will be used to override some, if not
      * all, of the graphical properties of Graphics using this style.
      */
-    public void setSymbology(Symbology symbology);
+    void setSymbology(Symbology symbology);
 
     /**
      * Returns the max scale value.
      * @return the max scale value.
      */
-    public double getMaxScale();
+    double getMaxScale();
 
     /**
      * Sets the max scale value.
      * @param maxScale the max scale value.
      */
-    public void setMaxScale(double maxScale);
+    void setMaxScale(double maxScale);
 
     /**
      * Returns the min scale value.
      * @return the min scale value.
      */
-    public double getMinScale();
+    double getMinScale();
 
     /**
      * Sets the min scale value.
      * @param minScale the min scale value.
      */
-    public void setMinScale(double minScale);
+    void setMinScale(double minScale);
 
     /**
      * Returns the z order hint value.
      * @return the z order hint value.
      */
-    public double getZOrderHint();
+    double getZOrderHint();
 
     /**
      * Sets the z order hint value.
      * @param zOrderHint the z order hint value.
      */
-    public void setZOrderHint(double zOrderHint);
+    void setZOrderHint(double zOrderHint);
 
     /**
      * Returns the visible value.
      * @return the visible value.
      */
-    public boolean getVisible();
+    boolean getVisible();
 
     /**
      * Sets the visible value.
      * @param visible the visible value.
      */
-    public void setVisible(boolean visible);
+    void setVisible(boolean visible);
 
 }
