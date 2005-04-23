@@ -200,6 +200,21 @@ public interface GraphicPolygon extends Graphic {
     public DirectPosition [] getInteriorRing(int interiorRingIndex);
 
     /**
+     * Creates a new interior ring (hole) for this polygon.
+     * 
+     * @return Returns the index of the newly created ring.
+     */
+    public int addInteriorRing();
+
+    /**
+     * Creates a new interior ring for this polygon and immediately sets its
+     * points to those in the given array.
+     *
+     * @return Returns the index of the newly created ring.
+     */
+    public int addInteriorRing(DirectPosition [] vertices);
+
+    /**
      * Clears the list of vertices in an exterior ring and adds all of the
      * vertices in the given array.  This polygon will keep references to the
      * {@linkplain DirectPosition}s in the array, but not the array object
@@ -228,21 +243,6 @@ public interface GraphicPolygon extends Graphic {
     public int getNumInteriorPoints(int interiorRingIndex);
 
     /**
-     * Creates a new interior ring (hole) for this polygon.
-     * 
-     * @return Returns the index of the newly created ring.
-     */
-    public int addInteriorRing();
-
-    /**
-     * Creates a new interior ring for this polygon and immediately sets its
-     * points to those in the given array.
-     *
-     * @return Returns the index of the newly created ring.
-     */
-    public int addInteriorRing(DirectPosition [] vertices);
-
-    /**
      * Removes an interior ring.
      *
      * @param interiorRingIndex Index of the ring to remove.
@@ -261,8 +261,17 @@ public interface GraphicPolygon extends Graphic {
      * the list are references to the same objects held by this polygon, but the
      * array object is newly allocated.
      */
-    public DirectPosition [][] getAllInteriorPoints();
+    public DirectPosition [][] getInteriorRings();
 
+    /**
+     * Clears the lists of vertices of all the interior rings and adds all of the
+     * vertices in the given arrays.  This polygon will keep references to the
+     * {@linkplain DirectPosition}s in the arrays, but not the array objecst
+     * themselves.
+     * 
+     */
+    void setInteriorRings(DirectPosition[][] interiorRingPoints);
+    
     /**
      * Returns the <code>GraphicStyle</code> for this <code>GraphicPolygon</code>,
      * which is required to be a <code>PolygonSymbolizer</code>.
