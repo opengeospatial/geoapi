@@ -56,5 +56,10 @@ public enum ComplianceLevel {
     /**
      * Indicates a required element of the editable display object profile.
      */
-    EDITABLE_DISPLAY_OBJECT
+    EDITABLE_DISPLAY_OBJECT,
+
+    /**
+     * Indicates a required element of the feature display object profile.
+     */
+    FEATURE_DISPLAY_OBJECT
 }
