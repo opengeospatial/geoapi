@@ -14,6 +14,7 @@ import org.opengis.metadata.citation.Citation;
 
 // Annotations
 ///import org.opengis.annotation.UML;
+///import org.opengis.annotation.Extension;
 ///import static org.opengis.annotation.Obligation.*;
 
 
@@ -38,6 +39,7 @@ public interface Identifier {
      * appropriate, the edition is identified by the effective date, coded using ISO 8601 date
      * format.
      */
+/// @Extension
     String getVersion();
 
     /**

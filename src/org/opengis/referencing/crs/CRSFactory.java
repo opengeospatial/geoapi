@@ -38,6 +38,11 @@ import org.opengis.parameter.GeneralParameterValue;
 import org.opengis.parameter.ParameterValueGroup;
 import org.opengis.parameter.ParameterDescriptorGroup; // For javadoc
 
+// Annotations
+///import org.opengis.annotation.UML;
+///import org.opengis.annotation.Extension;
+///import static org.opengis.annotation.Obligation.*;
+
 
 /**
  * Builds up complex {@linkplain CoordinateReferenceSystem coordinate reference systems}
@@ -60,6 +65,7 @@ import org.opengis.parameter.ParameterDescriptorGroup; // For javadoc
  * @see org.opengis.referencing.cs.CSFactory
  * @see org.opengis.referencing.datum.DatumFactory
  */
+///@UML (identifier="CS_CoordinateSystemFactory")
 public interface CRSFactory extends ObjectFactory {
     /**
      * Creates a compound coordinate reference system from an ordered
@@ -70,6 +76,7 @@ public interface CRSFactory extends ObjectFactory {
      * @param  elements ordered array of <code>CoordinateReferenceSystem</code> objects.
      * @throws FactoryException if the object creation failed.
      */
+/// @UML (identifier="createCompoundCoordinateSystem")
     CompoundCRS createCompoundCRS(Map                       properties,
                                   CoordinateReferenceSystem[] elements) throws FactoryException;
 
@@ -82,6 +89,7 @@ public interface CRSFactory extends ObjectFactory {
      * @param  cs The coordinate system for the created CRS.
      * @throws FactoryException if the object creation failed.
      */
+/// @UML (identifier="createLocalCoordinateSystem")
     EngineeringCRS createEngineeringCRS(Map         properties,
                                         EngineeringDatum datum,
                                         CoordinateSystem    cs) throws FactoryException;
@@ -121,6 +129,7 @@ public interface CRSFactory extends ObjectFactory {
      * @param  cs The Vertical coordinate system for the created CRS.
      * @throws FactoryException if the object creation failed.
      */
+/// @UML (identifier="createVerticalCoordinateSystem")
     VerticalCRS createVerticalCRS(Map     properties,
                                   VerticalDatum datum,
                                   VerticalCS       cs) throws FactoryException;
@@ -164,6 +173,7 @@ public interface CRSFactory extends ObjectFactory {
      * @param  cs The ellipsoidal coordinate system for the created CRS.
      * @throws FactoryException if the object creation failed.
      */
+/// @UML (identifier="createGeographicCoordinateSystem")
     GeographicCRS createGeographicCRS(Map      properties,
                                       GeodeticDatum datum,
                                       EllipsoidalCS    cs) throws FactoryException;
@@ -218,6 +228,7 @@ public interface CRSFactory extends ObjectFactory {
      *         <code>baseToDerived</code>.
      * @throws FactoryException if the object creation failed.
      */
+/// @UML (identifier="createFittedCoordinateSystem")
     DerivedCRS createDerivedCRS(Map                 properties,
                                 OperationMethod         method,
                                 CoordinateReferenceSystem base,
@@ -262,6 +273,7 @@ public interface CRSFactory extends ObjectFactory {
      *         <code>baseToDerived</code>.
      * @throws FactoryException if the object creation failed.
      */
+/// @UML (identifier="createProjectedCoordinateSystem")
     ProjectedCRS createProjectedCRS(Map              properties,
                                     OperationMethod      method,
                                     GeographicCRS          base,
@@ -315,6 +327,7 @@ public interface CRSFactory extends ObjectFactory {
      * @param  xml Coordinate reference system encoded in XML format.
      * @throws FactoryException if the object creation failed.
      */
+/// @UML (identifier="createFromXML")
     CoordinateReferenceSystem createFromXML(String xml) throws FactoryException;
 
     /**
@@ -325,5 +338,6 @@ public interface CRSFactory extends ObjectFactory {
      * @param  wkt Coordinate system encoded in Well-Known Text format.
      * @throws FactoryException if the object creation failed.
      */
+/// @UML (identifier="createFromWKT")
     CoordinateReferenceSystem createFromWKT(String wkt) throws FactoryException;
 }

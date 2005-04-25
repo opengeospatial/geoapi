@@ -12,6 +12,9 @@ package org.opengis.referencing;
 // OpenGIS dependencies
 import org.opengis.metadata.citation.Citation;
 
+// Annotations
+///import org.opengis.annotation.Extension;
+
 
 /**
  * Base interface for all factories. Factories can be grouped in two categories:
@@ -28,6 +31,7 @@ import org.opengis.metadata.citation.Citation;
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 2.0
  */
+/// @Extension
 public interface Factory {
     /**
      * Returns the vendor responsible for creating this factory implementation. Many implementations
@@ -36,5 +40,6 @@ public interface Factory {
      *
      * @return The vendor for this factory implementation.
      */
+/// @Extension
     Citation getVendor();
 }

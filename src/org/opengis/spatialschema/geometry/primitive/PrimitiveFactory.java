@@ -24,6 +24,7 @@ import org.opengis.referencing.crs.CoordinateReferenceSystem;
 
 // Annotations
 ///import org.opengis.annotation.UML;
+///import org.opengis.annotation.Extension;
 ///import static org.opengis.annotation.Obligation.*;
 
 
@@ -103,6 +104,7 @@ public interface PrimitiveFactory {
      * @throws MismatchedDimensionException If geometric objects given in argument don't have
      *         the expected dimension.
      */
+/// @Extension
     DirectPosition createDirectPosition(double[] coordinates)
             throws MismatchedDimensionException;
 
@@ -112,6 +114,7 @@ public interface PrimitiveFactory {
      * @throws MismatchedDimensionException If geometric objects given in argument don't have
      *         the expected dimension.
      */
+/// @Extension
     Point createPoint(double[] coordinates)
             throws MismatchedDimensionException;
 
@@ -187,6 +190,7 @@ public interface PrimitiveFactory {
      * @throws MismatchedDimensionException If geometric objects given in argument don't have
      *         the expected dimension.
      */
+/// @Extension
     SurfaceBoundary createSurfaceBoundary(Ring exterior, List/*<Ring>*/ interiors)
             throws MismatchedReferenceSystemException, MismatchedDimensionException;
 
@@ -217,6 +221,7 @@ public interface PrimitiveFactory {
      * @throws MismatchedDimensionException If geometric objects given in argument don't have
      *         the expected dimension.
      */
+/// @Extension
     Ring createRing(List/*<Curve>*/ curves)
     	throws MismatchedReferenceSystemException, MismatchedDimensionException;
 
@@ -229,6 +234,11 @@ public interface PrimitiveFactory {
      *         use compatible {@linkplain CoordinateReferenceSystem coordinate reference system}.
      * @throws MismatchedDimensionException If geometric objects given in argument don't have
      *         the expected dimension.
+     *
+     * @deprecated Moved to {@link org.opengis.spatialschema.geometry.geometry.GeometryFactory} since
+     *             {@link PolyhedralSurface} and {@link Polygon} are all defined in the geometry package
+     *             according ISO 19107. Furthermore, {@link PolyhedralSurface} extends
+     *             {@link org.opengis.spatialschema.geometry.Geometry}.
      */
 /// @UML (identifier="GM_PolyhedralSurace(GM_Polygon)", obligation=MANDATORY)
     PolyhedralSurface createPolyhedralSurface(List/*<Polygon>*/ tiles)

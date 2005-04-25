@@ -15,6 +15,7 @@ import javax.units.Unit;
 
 // Annotations
 ///import org.opengis.annotation.UML;
+///import org.opengis.annotation.Extension;
 ///import static org.opengis.annotation.Obligation.*;
 
 
@@ -37,6 +38,7 @@ public interface ParameterDescriptor extends GeneralParameterDescriptor {
      * The {@linkplain ParameterValue#getDescriptor parameter value descriptor}
      * for the created parameter value will be <code>this</code> object.
      */
+/// @Extension
 /// ParameterValue createValue();
 
     /**
@@ -62,6 +64,7 @@ public interface ParameterDescriptor extends GeneralParameterDescriptor {
      *         {linkplain org.opengis.util.CodeList code list}),
      *         or <code>null</code> if it doesn't apply.
      */
+/// @Extension
     Set/*<? extends Object>*/ getValidValues();
 
     /**
@@ -112,8 +115,8 @@ public interface ParameterDescriptor extends GeneralParameterDescriptor {
      * This attribute apply only if the values is of numeric type (usually an instance
      * of {@link Double}).
      *
-     * @return The unit for numeric value, or <code>null</code> if it
-     *         doesn't apply to the value type.
+     * @return The unit for numeric value, or <code>null</code> if it doesn't apply to the value type.
      */
+/// @Extension
     Unit getUnit();
 }

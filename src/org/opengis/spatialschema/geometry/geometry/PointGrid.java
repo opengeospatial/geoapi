@@ -17,6 +17,7 @@ import org.opengis.spatialschema.geometry.DirectPosition;
 
 // Annotations
 ///import org.opengis.annotation.UML;
+///import org.opengis.annotation.Extension;
 ///import static org.opengis.annotation.Obligation.*;
 
 
@@ -42,6 +43,7 @@ public interface PointGrid {
      * @return The grid width.
      * @see PointArray#length
      */
+/// @Extension
     public int width();
 
     /**
@@ -50,6 +52,7 @@ public interface PointGrid {
      *
      * @return The grid height.
      */
+/// @Extension
     public int height();
 
     /**
@@ -61,6 +64,7 @@ public interface PointGrid {
      * @return The point at the given index.
      * @throws IndexOutOfBoundsException if an index is out of bounds.
      */
+/// @Extension
     public DirectPosition get(int row, int column) throws IndexOutOfBoundsException;
 
     /**
@@ -86,6 +90,7 @@ public interface PointGrid {
      * @return The <code>dest</code> argument, or a new object if <code>dest</code> was null.
      * @throws IndexOutOfBoundsException if an index is out of bounds.
      */
+/// @Extension
     public DirectPosition get(int row, int column, DirectPosition dest) throws IndexOutOfBoundsException;
 
     /**
@@ -100,6 +105,7 @@ public interface PointGrid {
      * @throws IndexOutOfBoundsException if an index is out of bounds.
      * @throws UnsupportedOperationException if this grid is immutable.
      */
+/// @Extension
     public void set(int row, int column, DirectPosition position) throws IndexOutOfBoundsException,
                                                                          UnsupportedOperationException;
 
@@ -112,6 +118,7 @@ public interface PointGrid {
      * @return The row at the given index.
      * @throws IndexOutOfBoundsException if the index is out of bounds.
      */
+/// @Extension
     public PointArray getRow(int row) throws IndexOutOfBoundsException;
 
     /**

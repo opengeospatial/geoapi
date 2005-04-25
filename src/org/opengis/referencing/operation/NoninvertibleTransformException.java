@@ -15,7 +15,7 @@ package org.opengis.referencing.operation;
  * invoked but the transform can't be inverted.
  *
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
- * @version 1.0
+ * @version 2.0
  *
  * @see org.opengis.referencing.operation.CoordinateOperationFactory
  */

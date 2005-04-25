@@ -13,6 +13,10 @@ package org.opengis.referencing.operation;
 import org.opengis.spatialschema.geometry.DirectPosition;
 import org.opengis.spatialschema.geometry.MismatchedDimensionException;
 
+// Annotations
+///import org.opengis.annotation.UML;
+///import static org.opengis.annotation.Obligation.*;
+
 
 /**
  * Transforms multi-dimensional coordinate points. This interface transforms coordinate
@@ -39,17 +43,20 @@ import org.opengis.spatialschema.geometry.MismatchedDimensionException;
  * @see MathTransformFactory
  * @see CoordinateOperation#getMathTransform
  */
+///@UML (identifier="CT_MathTransform")
 public interface MathTransform {
     /**
      * Gets the dimension of input points.
      *
      * @deprecated Renamed {@link #getSourceDimensions} for consistency with {@link OperationMethod}.
      */
+/// @UML (identifier="getDimSource")
     int getDimSource();
 
     /**
      * Gets the dimension of input points.
      */
+/// @UML (identifier="getDimSource")
     int getSourceDimensions();
     
     /**
@@ -57,11 +64,13 @@ public interface MathTransform {
      *
      * @deprecated Renamed {@link #getTargetDimensions} for consistency with {@link OperationMethod}.
      */
+/// @UML (identifier="getDimTarget")
     int getDimTarget();
     
     /**
      * Gets the dimension of output points.
      */
+/// @UML (identifier="getDimTarget")
     int getTargetDimensions();
     
     /**
@@ -84,6 +93,7 @@ public interface MathTransform {
      *         <code>ptDst</code> doesn't have the expected dimension.
      * @throws TransformException if the point can't be transformed.
      */
+/// @UML (identifier="transform")
     DirectPosition transform(DirectPosition ptSrc, DirectPosition ptDst)
             throws MismatchedDimensionException, TransformException;
     
@@ -109,6 +119,7 @@ public interface MathTransform {
      * @param numPts the number of point objects to be transformed.
      * @throws TransformException if a point can't be transformed.
      */
+/// @UML (identifier="transformList")
     void transform(double[] srcPts, int srcOff,
                    double[] dstPts, int dstOff,
                    int numPts) throws TransformException;
@@ -186,6 +197,7 @@ public interface MathTransform {
      * @throws TransformException if the derivative can't be evaluated at the
      *         specified point.
      */
+/// @UML (identifier="derivative")
     Matrix derivative(final DirectPosition point)
             throws MismatchedDimensionException, TransformException;
     
@@ -200,6 +212,7 @@ public interface MathTransform {
      * @return The inverse transform.
      * @throws NoninvertibleTransformException if the transform can't be inversed.
      */
+/// @UML (identifier="inverse")
     MathTransform inverse() throws NoninvertibleTransformException;
     
     /**
@@ -208,6 +221,7 @@ public interface MathTransform {
      * @return <code>true</code> if this <code>MathTransform</code> is
      *         an identity transform; <code>false</code> otherwise.
      */
+/// @UML (identifier="isIdentity")
     boolean isIdentity();
 
     /**
@@ -218,5 +232,6 @@ public interface MathTransform {
      * @return The <A HREF="../doc-files/WKT.html"><cite>Well Known Text</cite> (WKT)</A> for this object.
      * @throws UnsupportedOperationException If this object can't be formatted as WKT.
      */
+/// @UML (identifier="getWKT")
     String toWKT() throws UnsupportedOperationException;
 }

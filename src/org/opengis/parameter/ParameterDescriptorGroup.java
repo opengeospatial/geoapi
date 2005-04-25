@@ -17,6 +17,7 @@ import org.opengis.metadata.Identifier;  // For javadoc
 
 // Annotations
 ///import org.opengis.annotation.UML;
+///import org.opengis.annotation.Extension;
 ///import static org.opengis.annotation.Obligation.*;
 
 
@@ -50,7 +51,8 @@ public interface ParameterDescriptorGroup extends GeneralParameterDescriptor {
      *     {@link ParameterValue} entries may be created only as needed.</li>
      * </ul>
      */
- /// ParameterValueGroup createValue();
+/// @Extension
+/// ParameterValueGroup createValue();
  
     /**
      * Returns the parameters in this group.
@@ -67,5 +69,6 @@ public interface ParameterDescriptorGroup extends GeneralParameterDescriptor {
      * @return The parameter for the given identifier code.
      * @throws ParameterNotFoundException if there is no parameter for the given identifier code.
      */
+/// @Extension
     GeneralParameterDescriptor descriptor(String name) throws ParameterNotFoundException;
 }

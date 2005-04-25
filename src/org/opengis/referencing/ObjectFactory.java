@@ -14,6 +14,9 @@ import org.opengis.metadata.Identifier;
 import org.opengis.metadata.citation.Citation;
 import org.opengis.util.InternationalString;
 
+// Annotations
+///import org.opengis.annotation.Extension;
+
 
 /**
  * Base interface for all factories of {@linkplain IdentifiedObject identified objects}. Factories
@@ -71,5 +74,6 @@ import org.opengis.util.InternationalString;
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-009.pdf">Implementation specification 1.0</A>
  */
+///@Extension
 public interface ObjectFactory extends Factory {
 }

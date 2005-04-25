@@ -9,6 +9,9 @@
  *************************************************************************************************/
 package org.opengis.referencing.operation;
 
+// Annotations
+///import org.opengis.annotation.Extension;
+
 
 /**
  * Base interface for for azimuthal (or planar) map projections.
@@ -22,5 +25,6 @@ package org.opengis.referencing.operation;
  * @see org.opengis.referencing.crs.ProjectedCRS
  * @see <A HREF="http://mathworld.wolfram.com/AzimuthalProjection.html">Azimuthal projection on MathWorld</A>
  */
+///@Extension
 public interface PlanarProjection extends Projection {
 }

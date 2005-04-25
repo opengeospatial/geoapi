@@ -17,6 +17,9 @@ import javax.units.Unit;
 import org.opengis.referencing.ObjectFactory;
 import org.opengis.referencing.FactoryException;
 
+// Annotations
+///import org.opengis.annotation.Extension;
+
 
 /**
  * Builds up complex {@linkplain CoordinateSystem coordinate systems} from simpler
@@ -33,6 +36,7 @@ import org.opengis.referencing.FactoryException;
  * @see org.opengis.referencing.crs.CRSFactory
  * @see org.opengis.referencing.datum.DatumFactory
  */
+///@Extension
 public interface CSFactory extends ObjectFactory {
     /**
      * Creates a coordinate system axis from an abbreviation and a unit.

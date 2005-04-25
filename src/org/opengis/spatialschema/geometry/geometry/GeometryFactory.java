@@ -328,23 +328,16 @@ public interface GeometryFactory {
             throws MismatchedReferenceSystemException, MismatchedDimensionException;
 
     /**
-     * Constructs a new {@linkplain SurfaceBoundary surface boundary} object
-     * representing the boundary of a two-dimensional surface.
+     * Constructs polyhedral surface from the facet polygons.
      *
-     * @param exterior In the normal 2D case, this identifies the curve that is
-     *        the exterior curve of the surface.  In cases where an exterior
-     *        cannot be unambiguously chosen (a bounded cylinder, for example),
-     *        this parameter may be null.
-     * @param interiors All of the curve components of the boundary that are not
-     *        the exterior.
-     * @throws MismatchedReferenceSystemException If geometric objects given in
-     *         argument don't use a {@linkplain CoordinateReferenceSystem
-     *         coordinate reference system} compatible with the one held by this
-     *         factory.
+     * @param tiles The facet polygons. Must contains at least one polygon.
      *
-     * @deprecated Moved to {@link org.opengis.spatialschema.geometry.primitive.PrimitiveFactory} since
-     *             {@link Ring}, {@link Surface} and {@link SurfaceBoundary} are all primitive objects.
+     * @throws MismatchedReferenceSystemException If geometric objects given in argument don't
+     *         use compatible {@linkplain CoordinateReferenceSystem coordinate reference system}.
+     * @throws MismatchedDimensionException If geometric objects given in argument don't have
+     *         the expected dimension.
      */
-    SurfaceBoundary createSurfaceBoundary(Ring exterior, List/*<Ring>*/ interiors)
-            throws MismatchedReferenceSystemException;
+/// @UML (identifier="GM_PolyhedralSurace(GM_Polygon)", obligation=MANDATORY)
+    PolyhedralSurface createPolyhedralSurface(List/*<Polygon>*/ tiles)
+            throws MismatchedReferenceSystemException, MismatchedDimensionException;
 }
