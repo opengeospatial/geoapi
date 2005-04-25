@@ -29,10 +29,38 @@ import static org.opengis.annotation.Specification.*;
 @UML (identifier="MD_Identifier", specification=ISO_19115)
 public interface Identifier {
     /**
+     * Key for the <code>{@value #CODE_PROPERTY}</code> property to be given to the
+     * {@linkplain org.opengis.referencing.ObjectFactory CRS factory} <code>createFoo(&hellip;)</code>
+     * methods. This is used for setting the value to be returned by {@link #getCode}.
+     */
+    String CODE_PROPERTY = "code";
+
+    /**
+     * Key for the <code>{@value #AUTHORITY_PROPERTY}</code> property to be given to the
+     * {@linkplain org.opengis.referencing.ObjectFactory CRS factory} <code>createFoo(&hellip;)</code>
+     * methods. This is used for setting the value to be returned by {@link #getAuthority}.
+     */
+    String AUTHORITY_PROPERTY = "authority";
+
+    /**
+     * Key for the <code>{@value #VERSION_PROPERTY}</code> property to be given to the
+     * {@linkplain org.opengis.referencing.ObjectFactory CRS factory} <code>createFoo(&hellip;)</code>
+     * methods. This is used for setting the value to be returned by {@link #getVersion}.
+     */
+    String VERSION_PROPERTY = "version";
+
+    /**
      * Alphanumeric value identifying an instance in the namespace.
      */
     @UML (identifier="code", obligation=MANDATORY, specification=ISO_19115)
     String getCode();
+
+    /**
+     * Organization or party responsible for definition and maintenance of the
+     * {@linkplain #getCode code}.
+     */
+    @UML (identifier="authority", obligation=OPTIONAL, specification=ISO_19115)
+    Citation getAuthority();
 
     /**
      * Identifier of the version of the associated code, as specified by the code authority.
@@ -42,11 +70,4 @@ public interface Identifier {
      */
     @Extension
     String getVersion();
-
-    /**
-     * Organization or party responsible for definition and maintenance of the
-     * {@linkplain #getCode code}.
-     */
-    @UML (identifier="authority", obligation=OPTIONAL, specification=ISO_19115)
-    Citation getAuthority();
 }

@@ -13,6 +13,7 @@ package org.opengis.referencing;
 import org.opengis.metadata.Identifier;
 import org.opengis.metadata.citation.Citation;
 import org.opengis.util.InternationalString;
+import org.opengis.util.GenericName;
 
 // Annotations
 import org.opengis.annotation.Extension;
@@ -44,24 +45,35 @@ import org.opengis.annotation.Extension;
  *     <th nowrap>Value given to</th>
  *   </tr>
  *   <tr>
- *     <td nowrap>&nbsp;<code>"name"</code>&nbsp;</td>
+ *     <td nowrap>&nbsp;{@value org.opengis.referencing.IdentifiedObject#NAME_PROPERTY}&nbsp;</td>
  *     <td nowrap>&nbsp;{@link Identifier} or {@link String}&nbsp;</td>
  *     <td nowrap>&nbsp;{@link IdentifiedObject#getName}</td>
  *   </tr>
  *   <tr>
- *     <td nowrap>&nbsp;<code>"remarks"</code>&nbsp;</td>
- *     <td nowrap>&nbsp;{@link InternationalString} or {@link String}&nbsp;</td>
- *     <td nowrap>&nbsp;{@link IdentifiedObject#getRemarks}</td>
+ *     <td nowrap>&nbsp;{@value org.opengis.referencing.IdentifiedObject#ALIAS_PROPERTY}&nbsp;</td>
+ *     <td nowrap>&nbsp;{@link String}, <code>{@linkplain String}[]</code>,
+ *     {@link GenericName} or <code>{@linkplain GenericName}[]</code>&nbsp;</td>
+ *     <td nowrap>&nbsp;{@link IdentifiedObject#getAlias}</td>
  *   </tr>
  *   <tr>
- *     <td nowrap>&nbsp;<code>"authority"</code>&nbsp;</td>
- *     <td nowrap>&nbsp;{@link Citation} or {@link String}&nbsp;</td>
- *     <td nowrap>&nbsp;{@link Identifier#getAuthority} on the first identifier</td>
+ *     <td nowrap>&nbsp;{@value org.opengis.metadata.Identifier#AUTHORITY_PROPERTY}&nbsp;</td>
+ *     <td nowrap>&nbsp;{@link String} or {@link Citation}&nbsp;</td>
+ *     <td nowrap>&nbsp;{@link Identifier#getAuthority} on the {@linkplain IdentifiedObject#getName name}</td>
  *   </tr>
  *   <tr>
- *     <td nowrap>&nbsp;<code>"identifiers"</code>&nbsp;</td>
- *     <td nowrap>&nbsp;<code>{@linkplain Identifier}</code>[]&nbsp;</td>
+ *     <td nowrap>&nbsp;{@value org.opengis.metadata.Identifier#VERSION_PROPERTY}&nbsp;</td>
+ *     <td nowrap>&nbsp;{@link String}&nbsp;</td>
+ *     <td nowrap>&nbsp;{@link Identifier#getVersion} on the {@linkplain IdentifiedObject#getName name}</td>
+ *   </tr>
+ *   <tr>
+ *     <td nowrap>&nbsp;{@value org.opengis.referencing.IdentifiedObject#IDENTIFIERS_PROPERTY}&nbsp;</td>
+ *     <td nowrap>&nbsp;{@link Identifier} or <code>{@linkplain Identifier}[]</code>&nbsp;</td>
  *     <td nowrap>&nbsp;{@link IdentifiedObject#getIdentifiers}</td>
+ *   </tr>
+ *   <tr>
+ *     <td nowrap>&nbsp;{@value org.opengis.referencing.IdentifiedObject#REMARKS_PROPERTY}&nbsp;</td>
+ *     <td nowrap>&nbsp;{@link String} or {@link InternationalString}&nbsp;</td>
+ *     <td nowrap>&nbsp;{@link IdentifiedObject#getRemarks}</td>
  *   </tr>
  * </table>
  *

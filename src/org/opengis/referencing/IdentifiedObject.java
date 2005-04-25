@@ -36,6 +36,34 @@ import static org.opengis.annotation.Specification.*;
 @UML (identifier="IdentifiedObject", specification=ISO_19111)
 public interface IdentifiedObject {
     /**
+     * Key for the <code>{@value #NAME_PROPERTY}</code> property to be given to the
+     * {@linkplain ObjectFactory object factory} <code>createFoo(&hellip;)</code> methods.
+     * This is used for setting the value to be returned by {@link #getName}.
+     */
+    String NAME_PROPERTY = "name";
+
+    /**
+     * Key for the <code>{@value #ALIAS_PROPERTY}</code> property to be given to the
+     * {@linkplain ObjectFactory object factory} <code>createFoo(&hellip;)</code> methods.
+     * This is used for setting the value to be returned by {@link #getAlias}.
+     */
+    String ALIAS_PROPERTY = "alias";
+
+    /**
+     * Key for the <code>{@value #IDENTIFIERS_PROPERTY}</code> property to be given to the
+     * {@linkplain ObjectFactory object factory} <code>createFoo(&hellip;)</code> methods.
+     * This is used for setting the value to be returned by {@link #getIdentifiers}.
+     */
+    String IDENTIFIERS_PROPERTY = "identifiers";
+
+    /**
+     * Key for the <code>{@value #REMARKS_PROPERTY}</code> property to be given to the
+     * {@linkplain ObjectFactory object factory} <code>createFoo(&hellip;)</code> methods.
+     * This is used for setting the value to be returned by {@link #getRemarks}.
+     */
+    String REMARKS_PROPERTY = "remarks";
+
+    /**
      * The primary name by which this object is identified.
      */
     @UML (identifier="name", obligation=MANDATORY, specification=ISO_19111)

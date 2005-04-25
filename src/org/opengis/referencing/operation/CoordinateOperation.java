@@ -45,6 +45,30 @@ import static org.opengis.annotation.Specification.*;
 @UML (identifier="CC_CoordinateOperation", specification=ISO_19111)
 public interface CoordinateOperation extends IdentifiedObject {
     /**
+     * Key for the <code>{@value #OPERATION_VERSION_PROPERTY}</code> property.
+     * This is used for setting the value to be returned by {@link #getOperationVersion}.
+     */
+    String OPERATION_VERSION_PROPERTY = "operationVersion";
+
+    /**
+     * Key for the <code>{@value #POSITIONAL_ACCURACY_PROPERTY}</code> property.
+     * This is used for setting the value to be returned by {@link #getPositionalAccuracy}.
+     */
+    String POSITIONAL_ACCURACY_PROPERTY = "positionalAccuracy";
+
+    /**
+     * Key for the <code>{@value #VALID_AREA_PROPERTY}</code> property.
+     * This is used for setting the value to be returned by {@link #getValidArea}.
+     */
+    String VALID_AREA_PROPERTY = "validArea";
+
+    /**
+     * Key for the <code>{@value #SCOPE_PROPERTY}</code> property.
+     * This is used for setting the value to be returned by {@link #getScope}.
+     */
+    String SCOPE_PROPERTY = "scope";
+
+    /**
      * Returns the source CRS. The source CRS is mandatory for {@linkplain Transformation
      * transformations} only. {@linkplain Conversion Conversions} may have a source CRS that
      * is not specified here, but through
