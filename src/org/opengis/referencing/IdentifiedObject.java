@@ -36,32 +36,40 @@ import static org.opengis.annotation.Specification.*;
 @UML (identifier="IdentifiedObject", specification=ISO_19111)
 public interface IdentifiedObject {
     /**
-     * Key for the <code>{@value #NAME_PROPERTY}</code> property to be given to the
+     * Key for the <code>{@value}</code> property to be given to the
      * {@linkplain ObjectFactory object factory} <code>createFoo(&hellip;)</code> methods.
      * This is used for setting the value to be returned by {@link #getName}.
+     *
+     * @see #getName
      */
-    String NAME_PROPERTY = "name";
+    String NAME_KEY = "name";
 
     /**
-     * Key for the <code>{@value #ALIAS_PROPERTY}</code> property to be given to the
+     * Key for the <code>{@value}</code> property to be given to the
      * {@linkplain ObjectFactory object factory} <code>createFoo(&hellip;)</code> methods.
      * This is used for setting the value to be returned by {@link #getAlias}.
+     *
+     * @see #getAlias
      */
-    String ALIAS_PROPERTY = "alias";
+    String ALIAS_KEY = "alias";
 
     /**
-     * Key for the <code>{@value #IDENTIFIERS_PROPERTY}</code> property to be given to the
+     * Key for the <code>{@value}</code> property to be given to the
      * {@linkplain ObjectFactory object factory} <code>createFoo(&hellip;)</code> methods.
      * This is used for setting the value to be returned by {@link #getIdentifiers}.
+     *
+     * @see #getIdentifiers
      */
-    String IDENTIFIERS_PROPERTY = "identifiers";
+    String IDENTIFIERS_KEY = "identifiers";
 
     /**
-     * Key for the <code>{@value #REMARKS_PROPERTY}</code> property to be given to the
+     * Key for the <code>{@value}</code> property to be given to the
      * {@linkplain ObjectFactory object factory} <code>createFoo(&hellip;)</code> methods.
      * This is used for setting the value to be returned by {@link #getRemarks}.
+     *
+     * @see #getRemarks
      */
-    String REMARKS_PROPERTY = "remarks";
+    String REMARKS_KEY = "remarks";
 
     /**
      * The primary name by which this object is identified.

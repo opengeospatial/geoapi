@@ -29,25 +29,31 @@ import static org.opengis.annotation.Specification.*;
 @UML (identifier="MD_Identifier", specification=ISO_19115)
 public interface Identifier {
     /**
-     * Key for the <code>{@value #CODE_PROPERTY}</code> property to be given to the
+     * Key for the <code>{@value}</code> property to be given to the
      * {@linkplain org.opengis.referencing.ObjectFactory CRS factory} <code>createFoo(&hellip;)</code>
      * methods. This is used for setting the value to be returned by {@link #getCode}.
+     *
+     * @see #getCode
      */
-    String CODE_PROPERTY = "code";
+    String CODE_KEY = "code";
 
     /**
-     * Key for the <code>{@value #AUTHORITY_PROPERTY}</code> property to be given to the
+     * Key for the <code>{@value}</code> property to be given to the
      * {@linkplain org.opengis.referencing.ObjectFactory CRS factory} <code>createFoo(&hellip;)</code>
      * methods. This is used for setting the value to be returned by {@link #getAuthority}.
+     *
+     * @see #getAuthority
      */
-    String AUTHORITY_PROPERTY = "authority";
+    String AUTHORITY_KEY = "authority";
 
     /**
-     * Key for the <code>{@value #VERSION_PROPERTY}</code> property to be given to the
+     * Key for the <code>{@value}</code> property to be given to the
      * {@linkplain org.opengis.referencing.ObjectFactory CRS factory} <code>createFoo(&hellip;)</code>
      * methods. This is used for setting the value to be returned by {@link #getVersion}.
+     *
+     * @see #getVersion
      */
-    String VERSION_PROPERTY = "version";
+    String VERSION_KEY = "version";
 
     /**
      * Alphanumeric value identifying an instance in the namespace.

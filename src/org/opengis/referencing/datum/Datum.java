@@ -41,32 +41,40 @@ import static org.opengis.annotation.Specification.*;
 @UML (identifier="CD_Datum", specification=ISO_19111)
 public interface Datum extends IdentifiedObject {
     /**
-     * Key for the <code>"anchorPoint"</code> property to be given to the
+     * Key for the <code>{@value}</code> property to be given to the
      * {@linkplain DatumFactory datum factory} <code>createFoo(&hellip;)</code> methods.
      * This is used for setting the value to be returned by {@link #getAnchorPoint}.
+     *
+     * @see #getAnchorPoint
      */
-    String ANCHOR_POINT_PROPERTY = "anchorPoint";
+    String ANCHOR_POINT_KEY = "anchorPoint";
 
     /**
-     * Key for the <code>"realizationEpoch"</code> property to be given to the
+     * Key for the <code>{@value}</code> property to be given to the
      * {@linkplain DatumFactory datum factory} <code>createFoo(&hellip;)</code> methods.
      * This is used for setting the value to be returned by {@link #getRealizationEpoch}.
+     *
+     * @see #getRealizationEpoch
      */
-    String REALIZATION_EPOCH_PROPERTY = "realizationEpoch";
+    String REALIZATION_EPOCH_KEY = "realizationEpoch";
 
     /**
-     * Key for the <code>"validArea"</code> property to be given to the
+     * Key for the <code>{@value}</code> property to be given to the
      * {@linkplain DatumFactory datum factory} <code>createFoo(&hellip;)</code> methods.
      * This is used for setting the value to be returned by {@link #getValidArea}.
+     *
+     * @see #getValidArea
      */
-    String VALID_AREA_PROPERTY = "validArea";
+    String VALID_AREA_KEY = "validArea";
 
     /**
-     * Key for the <code>"scope"</code> property to be given to the
+     * Key for the <code>{@value}</code> property to be given to the
      * {@linkplain DatumFactory datum factory} <code>createFoo(&hellip;)</code> methods.
      * This is used for setting the value to be returned by {@link #getScope}.
+     *
+     * @see #getScope
      */
-    String SCOPE_PROPERTY = "scope";
+    String SCOPE_KEY = "scope";
 
     /**
      * Description, possibly including coordinates, of the point or points used to anchor the datum

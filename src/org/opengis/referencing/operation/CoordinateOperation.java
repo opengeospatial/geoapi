@@ -45,28 +45,36 @@ import static org.opengis.annotation.Specification.*;
 @UML (identifier="CC_CoordinateOperation", specification=ISO_19111)
 public interface CoordinateOperation extends IdentifiedObject {
     /**
-     * Key for the <code>{@value #OPERATION_VERSION_PROPERTY}</code> property.
+     * Key for the <code>{@value}</code> property.
      * This is used for setting the value to be returned by {@link #getOperationVersion}.
+     *
+     * @see #getOperationVersion
      */
-    String OPERATION_VERSION_PROPERTY = "operationVersion";
+    String OPERATION_VERSION_KEY = "operationVersion";
 
     /**
-     * Key for the <code>{@value #POSITIONAL_ACCURACY_PROPERTY}</code> property.
+     * Key for the <code>{@value}</code> property.
      * This is used for setting the value to be returned by {@link #getPositionalAccuracy}.
+     *
+     * @see #getPositionalAccuracy
      */
-    String POSITIONAL_ACCURACY_PROPERTY = "positionalAccuracy";
+    String POSITIONAL_ACCURACY_KEY = "positionalAccuracy";
 
     /**
-     * Key for the <code>{@value #VALID_AREA_PROPERTY}</code> property.
+     * Key for the <code>{@value}</code> property.
      * This is used for setting the value to be returned by {@link #getValidArea}.
+     *
+     * @see #getValidArea
      */
-    String VALID_AREA_PROPERTY = "validArea";
+    String VALID_AREA_KEY = "validArea";
 
     /**
-     * Key for the <code>{@value #SCOPE_PROPERTY}</code> property.
+     * Key for the <code>{@value}</code> property.
      * This is used for setting the value to be returned by {@link #getScope}.
+     *
+     * @see #getScope
      */
-    String SCOPE_PROPERTY = "scope";
+    String SCOPE_KEY = "scope";
 
     /**
      * Returns the source CRS. The source CRS is mandatory for {@linkplain Transformation
