@@ -18,6 +18,7 @@ import org.opengis.referencing.crs.CoordinateReferenceSystem;
 
 // Annotations
 ///import org.opengis.annotation.UML;
+///import org.opengis.annotation.Extension;
 ///import static org.opengis.annotation.Obligation.*;
 
 
@@ -56,6 +57,7 @@ public interface PointArray {
      * @see List#size
      * @see PointGrid#width
      */
+/// @Extension
     public int length();
 
     /**
@@ -74,6 +76,7 @@ public interface PointArray {
      *             which must be the same as the coordinate dimension of the coordinate
      *             reference system for this GM_Object.</cite>".
      */
+/// @Extension
     public int getDimension();
 
     /**
@@ -83,10 +86,11 @@ public interface PointArray {
      *
      * @see DirectPosition#getCoordinateReferenceSystem
      *
-     * @deprecated ISO 19107 do not defines such an association. We may keep this method as a
-     *             convenience, but it put a constraint on the points that a <code>PointArray</code>
-     *             can contains. Whatever or not this constraints is wanted is an open question.
+     * @revisit ISO 19107 do not defines such an association. We may keep this method as a
+     *          convenience, but it put a constraint on the points that a <code>PointArray</code>
+     *          can contains. Whatever or not this constraints is wanted is an open question.
      */
+/// @Extension
     public CoordinateReferenceSystem getCoordinateReferenceSystem();
 
     /**
@@ -107,6 +111,7 @@ public interface PointArray {
      *             <code>PointArray</code> and vice-versa? The proposed alternative, {@link #get(int, DirectPosition)},
      *             avoid those questions.
      */
+/// @Extension
     public DirectPosition get(int column) throws IndexOutOfBoundsException;
 
     /**
@@ -132,6 +137,7 @@ public interface PointArray {
      *
      * @see #get(int)
      */
+/// @Extension
     public DirectPosition get(int column, DirectPosition dest) throws IndexOutOfBoundsException;
 
     /**
@@ -148,6 +154,7 @@ public interface PointArray {
      *
      * @see List#set
      */
+/// @Extension
     public void set(int column, DirectPosition position) throws IndexOutOfBoundsException,
                                                                 UnsupportedOperationException;
     
@@ -167,6 +174,7 @@ public interface PointArray {
      *             case may create thousands of <code>DirectPosition</code> objects.
      *             {@link #positions} is safer, since it expose the positions through an iterator.
      */
+/// @Extension
     public DirectPosition[] toArray();
 
     /**

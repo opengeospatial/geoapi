@@ -17,6 +17,7 @@ import org.opengis.referencing.IdentifiedObject;
 
 // Annotations
 ///import org.opengis.annotation.UML;
+///import org.opengis.annotation.Extension;
 ///import static org.opengis.annotation.Obligation.*;
 
 
@@ -90,6 +91,7 @@ public interface Ellipsoid extends IdentifiedObject {
      *         definitive, or <code>false</code> if the {@linkplain #getSemiMinorAxis polar radius}
      *         is definitive.
      */
+/// @Extension
     boolean isIvfDefinitive();
 
     /**

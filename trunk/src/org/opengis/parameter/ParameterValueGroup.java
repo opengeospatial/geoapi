@@ -17,6 +17,7 @@ import org.opengis.metadata.Identifier;  // For javadoc
 
 // Annotations
 ///import org.opengis.annotation.UML;
+///import org.opengis.annotation.Extension;
 ///import static org.opengis.annotation.Obligation.*;
 
 
@@ -93,6 +94,7 @@ public interface ParameterValueGroup extends GeneralParameterValue {
      * @return The parameter value for the given identifier code.
      * @throws ParameterNotFoundException if there is no parameter value for the given identifier code.
      */
+/// @Extension
     ParameterValue parameter(String name) throws ParameterNotFoundException;
 
     /**
@@ -107,6 +109,7 @@ public interface ParameterValueGroup extends GeneralParameterValue {
      * @throws ParameterNotFoundException if no {@linkplain ParameterDescriptorGroup descriptor}
      *         was found for the given name.
      */
+/// @Extension
     List/*<ParameterValueGroup>*/ groups(String name) throws ParameterNotFoundException;
 
     /**
@@ -123,6 +126,7 @@ public interface ParameterValueGroup extends GeneralParameterValue {
      *         {@linkplain ParameterDescriptorGroup#getMaximumOccurs maximum number of occurences}
      *         of subgroups of the given name.
      */
+/// @Extension
     ParameterValueGroup addGroup(String name) throws ParameterNotFoundException, IllegalStateException;
 
     /**

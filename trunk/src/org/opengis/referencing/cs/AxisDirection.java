@@ -18,6 +18,7 @@ import org.opengis.util.CodeList;
 
 // Annotations
 ///import org.opengis.annotation.UML;
+///import org.opengis.annotation.Extension;
 ///import static org.opengis.annotation.Obligation.*;
 
 
@@ -338,6 +339,7 @@ public final class AxisDirection extends CodeList {
      *
      * @deprecated Use {@link #opposite} instead.
      */
+/// @Extension
     public AxisDirection inverse() {
         return (opposite!=null) ? opposite : this;
     }
@@ -351,6 +353,7 @@ public final class AxisDirection extends CodeList {
      * {@linkplain #FUTURE Future}-{@linkplain #PAST Past}, <cite>etc.</cite>
      * If this axis direction has no opposite, then this method returns <code>null</code>.
      */
+/// @Extension
     public AxisDirection opposite() {
         return opposite;
     }
@@ -391,6 +394,7 @@ public final class AxisDirection extends CodeList {
      *   <tr align="center"><td width='50%'>{@link #OTHER}</td><td width='50%'>{@link #OTHER}</td></tr>
      * </table>
      */
+/// @Extension
     public AxisDirection absolute() {
         final AxisDirection opposite = this.opposite;
         if (opposite != null) {

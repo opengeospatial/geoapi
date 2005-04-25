@@ -22,6 +22,7 @@ import org.opengis.util.Cloneable; // For javadoc
 
 // Annotations
 ///import org.opengis.annotation.UML;
+///import org.opengis.annotation.Extension;
 ///import static org.opengis.annotation.Obligation.*;
 
 
@@ -284,6 +285,7 @@ public interface Geometry extends TransfiniteSet {
      * @throws TransformException if the transformation failed.
      * @return The transformed <code>Geometry</code>.
      */
+/// @Extension
     Geometry transform(CoordinateReferenceSystem newCRS, MathTransform transform) throws TransformException;
 
     /**
@@ -379,6 +381,7 @@ public interface Geometry extends TransfiniteSet {
      *   </LI>
      * </UL>
      */
+/// @Extension
     boolean isMutable();
 
     /**
@@ -391,6 +394,7 @@ public interface Geometry extends TransfiniteSet {
      * Implementors are free to return <code>this</code> if this object is
      * already immutable.
      */
+/// @Extension
     Geometry toImmutable();
 
     /**

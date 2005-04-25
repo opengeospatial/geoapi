@@ -18,6 +18,10 @@ import org.opengis.referencing.FactoryException;
 import org.opengis.referencing.NoSuchAuthorityCodeException;  // For javadoc
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 
+// Annotations
+///import org.opengis.annotation.UML;
+///import static org.opengis.annotation.Obligation.*;
+
 
 /**
  * Creates coordinate transformation objects from codes.
@@ -28,6 +32,7 @@ import org.opengis.referencing.crs.CoordinateReferenceSystem;
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-009.pdf">Implementation specification 1.0</A>
  */
+///@UML (identifier="CT_CoordinateTransformationAuthorityFactory")
 public interface CoordinateOperationAuthorityFactory extends AuthorityFactory {
     /**
      * Creates an operation from a single operation code. 
@@ -40,6 +45,7 @@ public interface CoordinateOperationAuthorityFactory extends AuthorityFactory {
      * @throws NoSuchAuthorityCodeException if the specified <code>code</code> was not found.
      * @throws FactoryException if the object creation failed for some other reason.
      */
+/// @UML (identifier="createFromTransformationCode")
     CoordinateOperation createCoordinateOperation(String code) throws FactoryException;
 
     /**
@@ -51,5 +57,6 @@ public interface CoordinateOperationAuthorityFactory extends AuthorityFactory {
      * @throws NoSuchAuthorityCodeException if a specified code was not found.
      * @throws FactoryException if the object creation failed for some other reason.
      */
+/// @UML (identifier="createFromCoordinateSystemCodes")
     Set/*<CoordinateOperation>*/ createFromCoordinateReferenceSystemCodes(String sourceCode, String targetCode) throws FactoryException;
 }

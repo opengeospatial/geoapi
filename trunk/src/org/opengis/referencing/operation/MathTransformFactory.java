@@ -22,6 +22,7 @@ import org.opengis.parameter.ParameterValueGroup;
 
 // Annotations
 ///import org.opengis.annotation.UML;
+///import org.opengis.annotation.Extension;
 ///import static org.opengis.annotation.Obligation.*;
 
 
@@ -80,6 +81,7 @@ public interface MathTransformFactory extends Factory {
      * @see #getDefaultParameters
      * @see #createParameterizedTransform
      */
+/// @Extension
     Set/*<OperationMethod>*/ getAvailableMethods(Class type);
 
     /**
@@ -102,6 +104,7 @@ public interface MathTransformFactory extends Factory {
      * @see #getAvailableMethods
      * @see #createParameterizedTransform
      */
+/// @Extension
     ParameterValueGroup getDefaultParameters(String method) throws NoSuchIdentifierException;
 
     /**

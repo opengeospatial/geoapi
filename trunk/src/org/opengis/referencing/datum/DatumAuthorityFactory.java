@@ -17,6 +17,11 @@ import org.opengis.referencing.AuthorityFactory;
 import org.opengis.referencing.FactoryException;
 import org.opengis.referencing.NoSuchAuthorityCodeException;
 
+// Annotations
+///import org.opengis.annotation.UML;
+///import org.opengis.annotation.Extension;
+///import static org.opengis.annotation.Obligation.*;
+
 
 /**
  * Creates {@linkplain Datum datum} objects using authority codes. External authorities are used to
@@ -31,6 +36,7 @@ import org.opengis.referencing.NoSuchAuthorityCodeException;
  * @see org.opengis.referencing.cs.CSAuthorityFactory
  * @see org.opengis.referencing.crs.CRSAuthorityFactory
  */
+///@UML (identifier="CS_CoordinateSystemAuthorityFactory")
 public interface DatumAuthorityFactory extends AuthorityFactory {
     /**
      * Returns an arbitrary {@linkplain Datum datum} from a code. If the datum type is know at
@@ -80,6 +86,7 @@ public interface DatumAuthorityFactory extends AuthorityFactory {
      *
      * @see org.opengis.referencing.crs.CRSAuthorityFactory#createVerticalCRS
      */
+/// @UML (identifier="createVerticalDatum")
     VerticalDatum createVerticalDatum(String code) throws FactoryException;
 
     /**
@@ -105,6 +112,7 @@ public interface DatumAuthorityFactory extends AuthorityFactory {
      * @see org.opengis.referencing.crs.CRSAuthorityFactory#createGeographicCRS
      * @see org.opengis.referencing.crs.CRSAuthorityFactory#createProjectedCRS
      */
+/// @UML (identifier="createHorizontalDatum")
     GeodeticDatum createGeodeticDatum(String code) throws FactoryException;
 
     /**
@@ -116,6 +124,7 @@ public interface DatumAuthorityFactory extends AuthorityFactory {
      *
      * @see #createGeodeticDatum
      */
+/// @UML (identifier="createEllipsoid")
     Ellipsoid createEllipsoid(String code) throws FactoryException;
 
     /**
@@ -127,5 +136,6 @@ public interface DatumAuthorityFactory extends AuthorityFactory {
      *
      * @see #createGeodeticDatum
      */
+/// @UML (identifier="createPrimeMeridian")
     PrimeMeridian createPrimeMeridian(String code) throws FactoryException;
 }

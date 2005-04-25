@@ -19,23 +19,23 @@ package org.opengis.annotation;
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
  */
-@UML(identifier="MD_ObligationCode")
+@UML (identifier="MD_ObligationCode")
 public enum Obligation {
     /**
      * Element is required when a specific condition is met.
      */
-    @UML(identifier="conditional", obligation=CONDITIONAL)
+    @UML (identifier="conditional", obligation=CONDITIONAL)
     CONDITIONAL,
 
     /**
      * Element is not required.
      */
-    @UML(identifier="optional", obligation=CONDITIONAL)
+    @UML (identifier="optional", obligation=CONDITIONAL)
     OPTIONAL,
 
     /**
      * Element is always required.
      */
-    @UML(identifier="mandatory", obligation=CONDITIONAL)
+    @UML (identifier="mandatory", obligation=CONDITIONAL)
     MANDATORY
 }

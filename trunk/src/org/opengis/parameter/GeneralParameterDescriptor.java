@@ -14,6 +14,7 @@ import org.opengis.referencing.IdentifiedObject;
 
 // Annotations
 ///import org.opengis.annotation.UML;
+///import org.opengis.annotation.Extension;
 ///import static org.opengis.annotation.Obligation.*;
 
 
@@ -34,6 +35,7 @@ public interface GeneralParameterDescriptor extends IdentifiedObject {
      * The {@linkplain GeneralParameterValue#getDescriptor parameter value descriptor} for
      * the created parameter value(s) will be <code>this</code> object.
      */
+/// @Extension
     GeneralParameterValue createValue();
 
     /**

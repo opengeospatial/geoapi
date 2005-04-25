@@ -17,6 +17,9 @@ import org.opengis.referencing.AuthorityFactory;
 import org.opengis.referencing.FactoryException;
 import org.opengis.referencing.NoSuchAuthorityCodeException;  // For javadoc
 
+// Annotations
+///import org.opengis.annotation.Extension;
+
 
 /**
  * Creates {@linkplain CoordinateSystem coordinate systems} using authority codes. External authorities
@@ -31,6 +34,7 @@ import org.opengis.referencing.NoSuchAuthorityCodeException;  // For javadoc
  * @see org.opengis.referencing.crs.CRSAuthorityFactory
  * @see org.opengis.referencing.datum.DatumAuthorityFactory
  */
+///@Extension
 public interface CSAuthorityFactory extends AuthorityFactory {
     /**
      * Returns an arbitrary {@linkplain CoordinateSystem coordinate system} from a code.

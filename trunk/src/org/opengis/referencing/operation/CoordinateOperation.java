@@ -18,6 +18,7 @@ import org.opengis.util.InternationalString;
 
 // Annotations
 ///import org.opengis.annotation.UML;
+///import org.opengis.annotation.Extension;
 ///import static org.opengis.annotation.Obligation.*;
 
 
@@ -104,5 +105,6 @@ public interface CoordinateOperation extends IdentifiedObject {
      * into positions in the
      * {@linkplain #getTargetCRS target coordinate reference system}.
      */
+/// @Extension
     MathTransform getMathTransform();
 }

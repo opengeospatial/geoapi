@@ -9,8 +9,8 @@
  *************************************************************************************************/
 package org.opengis.referencing.operation;
 
-// OpenGIS dependencies
-import org.opengis.referencing.operation.Conversion;
+// Annotations
+///import org.opengis.annotation.Extension;
 
 
 /**
@@ -35,5 +35,6 @@ import org.opengis.referencing.operation.Conversion;
  * @see org.opengis.referencing.crs.ProjectedCRS
  * @see <A HREF="http://mathworld.wolfram.com/MapProjection.html">Map projections on MathWorld</A>
  */
+///@Extension
 public interface Projection extends Conversion {
 }

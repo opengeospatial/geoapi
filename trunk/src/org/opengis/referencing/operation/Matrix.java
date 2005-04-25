@@ -12,6 +12,11 @@ package org.opengis.referencing.operation;
 // OpenGIS direct dependencies
 import org.opengis.util.Cloneable;
 
+// Annotations
+///import org.opengis.annotation.UML;
+///import org.opengis.annotation.Extension;
+///import static org.opengis.annotation.Obligation.*;
+
 
 /**
  * A two dimensional array of numbers. Row and column numbering begins with zero. The API for
@@ -33,12 +38,14 @@ import org.opengis.util.Cloneable;
  * @see <A HREF="http://math.nist.gov/javanumerics/jama/">Jama matrix</A>
  * @see <A HREF="http://jcp.org/jsr/detail/83.jsp">JSR-83 Multiarray package</A>
  */
+///@UML (identifier="PT_Matrix")
 public interface Matrix extends Cloneable {
     /**
      * Returns the number of rows in this matrix.
      *
      * @return The number of rows in this matrix.
      */
+/// @Extension
     int getNumRow();
     // Same signature than GMatrix, for straightforward implementation.
 
@@ -47,6 +54,7 @@ public interface Matrix extends Cloneable {
      *
      * @return The number of columns in this matrix.
      */
+/// @Extension
     int getNumCol();
     // Same signature than GMatrix, for straightforward implementation.
 
@@ -57,6 +65,7 @@ public interface Matrix extends Cloneable {
      * @param column The column number to be retrieved (zero indexed).
      * @return The value at the indexed element.
      */
+/// @Extension
     double getElement(int row, int column);
     // Same signature than GMatrix, for straightforward implementation.
 
@@ -67,6 +76,7 @@ public interface Matrix extends Cloneable {
      * @param column The column number to be retrieved (zero indexed).
      * @param value  The new matrix element value.
      */
+/// @Extension
     void setElement(int row, int column, double value);
     // Same signature than GMatrix, for straightforward implementation.
 
@@ -75,6 +85,7 @@ public interface Matrix extends Cloneable {
      *
      * @return <code>true</code> if this matrix is an identity matrix.
      */
+/// @Extension
     boolean isIdentity();
 
     /**
