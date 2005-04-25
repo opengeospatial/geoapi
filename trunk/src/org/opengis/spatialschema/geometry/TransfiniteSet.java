@@ -10,8 +10,9 @@
 package org.opengis.spatialschema.geometry;
 
 // Annotations
-///import org.opengis.annotation.UML;
-///import static org.opengis.annotation.Obligation.*;
+import org.opengis.annotation.UML;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
 
 
 /**
@@ -21,12 +22,12 @@ package org.opengis.spatialschema.geometry;
  *
  * @author ISO TS 19103
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
- * @version 2.0
+ * @version <A HREF="http://www.opengis.org/docs/01-101.pdf">Abstract specification 5</A>
  *
  * @revisit This interface should uses generic type. It focus on {@link DirectPosition}
  *          for now because it is the only type used at this time.
  */
-///@UML (identifier="TransfiniteSet")
+@UML (identifier="TransfiniteSet", specification=ISO_19107)
 public interface TransfiniteSet {
     /**
      * Returns <code>true</code> if this <code>TransfiniteSet</code> contains another

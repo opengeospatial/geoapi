@@ -15,9 +15,10 @@ import org.opengis.referencing.FactoryException;
 import org.opengis.referencing.NoSuchAuthorityCodeException;  // For javadoc
 
 // Annotations
-///import org.opengis.annotation.UML;
-///import org.opengis.annotation.Extension;
-///import static org.opengis.annotation.Obligation.*;
+import org.opengis.annotation.UML;
+import org.opengis.annotation.Extension;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
 
 
 /**
@@ -33,7 +34,7 @@ import org.opengis.referencing.NoSuchAuthorityCodeException;  // For javadoc
  * @see org.opengis.referencing.cs.CSAuthorityFactory
  * @see org.opengis.referencing.datum.DatumAuthorityFactory
  */
-///@UML (identifier="CS_CoordinateSystemAuthorityFactory")
+@UML (identifier="CS_CoordinateSystemAuthorityFactory", specification=OGC_01_009)
 public interface CRSAuthorityFactory extends AuthorityFactory {
     /**
      * Returns an arbitrary {@linkplain CoordinateReferenceSystem coordinate reference system} from a code. If the
@@ -53,7 +54,7 @@ public interface CRSAuthorityFactory extends AuthorityFactory {
      * @see #createTemporalCRS
      * @see #createCompoundCRS
      */
-/// @UML (identifier="createHorizontalCoordinateSystem")
+    @UML (identifier="createHorizontalCoordinateSystem", specification=OGC_01_009)
     CoordinateReferenceSystem createCoordinateReferenceSystem(String code) throws FactoryException;
 
     /**
@@ -63,7 +64,7 @@ public interface CRSAuthorityFactory extends AuthorityFactory {
      * @throws NoSuchAuthorityCodeException if the specified <code>code</code> was not found.
      * @throws FactoryException if the object creation failed for some other reason.
      */
-/// @UML (identifier="createCompoundCoordinateSystem")
+    @UML (identifier="createCompoundCoordinateSystem", specification=OGC_01_009)
     CompoundCRS createCompoundCRS(String code) throws FactoryException;
 
     /**
@@ -93,7 +94,7 @@ public interface CRSAuthorityFactory extends AuthorityFactory {
      *
      * @see org.opengis.referencing.datum.DatumAuthorityFactory#createGeodeticDatum
      */
-/// @UML (identifier="createGeographicCoordinateSystem")
+    @UML (identifier="createGeographicCoordinateSystem", specification=OGC_01_009)
     GeographicCRS createGeographicCRS(String code) throws FactoryException;
 
     /**
@@ -124,7 +125,7 @@ public interface CRSAuthorityFactory extends AuthorityFactory {
      *
      * @see org.opengis.referencing.datum.DatumAuthorityFactory#createGeodeticDatum
      */
-/// @UML (identifier="createProjectedCoordinateSystem")
+    @UML (identifier="createProjectedCoordinateSystem", specification=OGC_01_009)
     ProjectedCRS createProjectedCRS(String code) throws FactoryException;
 
     /**
@@ -147,6 +148,6 @@ public interface CRSAuthorityFactory extends AuthorityFactory {
      *
      * @see org.opengis.referencing.datum.DatumAuthorityFactory#createVerticalDatum
      */
-/// @UML (identifier="createVerticalCoordinateSystem")
+    @UML (identifier="createVerticalCoordinateSystem", specification=OGC_01_009)
     VerticalCRS createVerticalCRS(String code) throws FactoryException;
 }

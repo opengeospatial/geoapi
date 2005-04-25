@@ -13,8 +13,9 @@ package org.opengis.coverage.grid;
 import java.io.IOException;
 
 // Annotations
-///import org.opengis.annotation.UML;
-///import static org.opengis.annotation.Obligation.*;
+import org.opengis.annotation.UML;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
 
 
 /**
@@ -27,13 +28,25 @@ import java.io.IOException;
  * database and the {@link #dispose} method will need to be invoked in order to close this
  * connection.
  *
+ * <P>&nbsp;</P>
+ * <TABLE WIDTH="80%" ALIGN="center" CELLPADDING="18" BORDER="4" BGCOLOR="#FFE0B0">
+ *   <TR><TD>
+ *     <P align="justify"><STRONG>WARNING: THIS CLASS WILL CHANGE.</STRONG> Current API is derived from OGC
+ *     <A HREF="http://www.opengis.org/docs/01-004.pdf">Grid Coverages Implementation specification 1.0</A>.
+ *     We plan to replace it by new interfaces derived from ISO 19123 (<CITE>Schema for coverage geometry
+ *     and functions</CITE>). Current interfaces should be considered as legacy and are included in this
+ *     distribution only because they were part of GeoAPI 1.0 release. We will try to preserve as much 
+ *     compatibility as possible, but no migration plan has been determined yet.</P>
+ *   </TD></TR>
+ * </TABLE>
+ *
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 2.0
  *
  * @see GridCoverageReader
  * @see GridCoverageWriter
  */
-///@UML (identifier="CV_GridCoverageExchange")
+@UML (identifier="CV_GridCoverageExchange", specification=OGC_01_004)
 public interface GridCoverageExchange {
     /**
      * Retrieve information on file formats or resources available with the
@@ -42,7 +55,7 @@ public interface GridCoverageExchange {
      * @return Information on file formats or resources available with
      *         the <code>GridCoverageExchange</code> implementation.
      */
-/// @UML (identifier="getFormat", obligation=MANDATORY)
+    @UML (identifier="getFormat", obligation=MANDATORY, specification=OGC_01_004)
     Format[] getFormats();
 
     /**

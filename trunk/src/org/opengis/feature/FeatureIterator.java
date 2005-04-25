@@ -16,7 +16,7 @@ import java.util.Iterator;
  * Extends the java Iterator interface to include a <code>close</code> method
  * for cleaning up connections to a persistent store.
  */
-public interface FeatureIterator extends Iterator/*<Feature>*/ {
+public interface FeatureIterator extends Iterator<Feature> {
     /**
      * Method inherited from Iterator that indicates whether there's another
      * feature available.
@@ -35,7 +35,7 @@ public interface FeatureIterator extends Iterator/*<Feature>*/ {
      * exceptions that occur while executing this method must be wrapped in
      * a RuntimeException before being thrown.
      */
-    public /*{Feature}*/ Object next();
+/// public /*{Feature}*/ Object next();
 
     /**
      * If supported by the underlying FeatureCollection, invoking this method

@@ -10,8 +10,9 @@
 package org.opengis.metadata.extent;
 
 // Annotations
-///import org.opengis.annotation.UML;
-///import static org.opengis.annotation.Obligation.*;
+import org.opengis.annotation.UML;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
 
 
 /**
@@ -21,7 +22,7 @@ package org.opengis.metadata.extent;
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
  */
-///@UML (identifier="EX_GeographicExtent")
+@UML (identifier="EX_GeographicExtent", specification=ISO_19115)
 public interface GeographicExtent {
     /**
      * Indication of whether the bounding polygon encompasses an area covered by the data
@@ -29,6 +30,6 @@ public interface GeographicExtent {
      *
      * @return <code>true</code> for inclusion, or <code>false</code> for exclusion.
      */
-/// @UML (identifier="extentTypeCode", obligation=OPTIONAL)
+    @UML (identifier="extentTypeCode", obligation=OPTIONAL, specification=ISO_19115)
     boolean getInclusion();
 }

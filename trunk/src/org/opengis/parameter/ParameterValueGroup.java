@@ -16,9 +16,10 @@ import java.util.List;
 import org.opengis.metadata.Identifier;  // For javadoc
 
 // Annotations
-///import org.opengis.annotation.UML;
-///import org.opengis.annotation.Extension;
-///import static org.opengis.annotation.Obligation.*;
+import org.opengis.annotation.UML;
+import org.opengis.annotation.Extension;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
 
 
 /**
@@ -34,7 +35,7 @@ import org.opengis.metadata.Identifier;  // For javadoc
  * @see ParameterDescriptorGroup
  * @see ParameterValue
  */
-///@UML (identifier="CC_ParameterValueGroup")
+@UML (identifier="CC_ParameterValueGroup", specification=ISO_19111)
 public interface ParameterValueGroup extends GeneralParameterValue {
     /**
      * The abstract definition of this group of parameters.
@@ -45,7 +46,7 @@ public interface ParameterValueGroup extends GeneralParameterValue {
      *         Java extensions (e.g.
      *         {@link javax.media.jai.ParameterList.html#getParameterListDescriptor ParameterList}).
      */
-/// @UML (identifier="valuesOfGroup", obligation=MANDATORY)
+/// @UML (identifier="valuesOfGroup", obligation=MANDATORY, specification=ISO_19111)
 /// ParameterDescriptorGroup getDescriptor();
 
     /**
@@ -64,8 +65,8 @@ public interface ParameterValueGroup extends GeneralParameterValue {
      *       way to remove parameter created by the {@link #parameter} method.</P></LI>
      * </UL>
      */
-/// @UML (identifier="includesValue", obligation=MANDATORY)
-    List/*<GeneralParameterValue>*/ values();
+    @UML (identifier="includesValue", obligation=MANDATORY, specification=ISO_19111)
+    List<GeneralParameterValue> values();
 
     /**
      * Returns the value in this group for the specified {@linkplain Identifier#getCode
@@ -94,7 +95,7 @@ public interface ParameterValueGroup extends GeneralParameterValue {
      * @return The parameter value for the given identifier code.
      * @throws ParameterNotFoundException if there is no parameter value for the given identifier code.
      */
-/// @Extension
+    @Extension
     ParameterValue parameter(String name) throws ParameterNotFoundException;
 
     /**
@@ -109,8 +110,8 @@ public interface ParameterValueGroup extends GeneralParameterValue {
      * @throws ParameterNotFoundException if no {@linkplain ParameterDescriptorGroup descriptor}
      *         was found for the given name.
      */
-/// @Extension
-    List/*<ParameterValueGroup>*/ groups(String name) throws ParameterNotFoundException;
+    @Extension
+    List<ParameterValueGroup> groups(String name) throws ParameterNotFoundException;
 
     /**
      * Create a new group of the specified name. The specified name must be the
@@ -126,7 +127,7 @@ public interface ParameterValueGroup extends GeneralParameterValue {
      *         {@linkplain ParameterDescriptorGroup#getMaximumOccurs maximum number of occurences}
      *         of subgroups of the given name.
      */
-/// @Extension
+    @Extension
     ParameterValueGroup addGroup(String name) throws ParameterNotFoundException, IllegalStateException;
 
     /**

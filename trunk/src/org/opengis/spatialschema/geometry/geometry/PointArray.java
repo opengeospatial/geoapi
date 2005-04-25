@@ -17,9 +17,10 @@ import org.opengis.spatialschema.geometry.DirectPosition;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 
 // Annotations
-///import org.opengis.annotation.UML;
-///import org.opengis.annotation.Extension;
-///import static org.opengis.annotation.Obligation.*;
+import org.opengis.annotation.UML;
+import org.opengis.annotation.Extension;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
 
 
 /**
@@ -41,12 +42,12 @@ import org.opengis.referencing.crs.CoordinateReferenceSystem;
  *  
  * @author ISO/DIS 19107
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
- * @version 2.0
+ * @version <A HREF="http://www.opengis.org/docs/01-101.pdf">Abstract specification 5</A>
  *
  * @see Position
  * @see PointGrid
  */
-///@UML (identifier="GM_PointArray")
+@UML (identifier="GM_PointArray", specification=ISO_19107)
 public interface PointArray {
     /**
      * Returns the length (the number of elements) of this array. This is equivalent to
@@ -57,7 +58,7 @@ public interface PointArray {
      * @see List#size
      * @see PointGrid#width
      */
-/// @Extension
+    @Extension
     public int length();
 
     /**
@@ -76,7 +77,7 @@ public interface PointArray {
      *             which must be the same as the coordinate dimension of the coordinate
      *             reference system for this GM_Object.</cite>".
      */
-/// @Extension
+    @Extension
     public int getDimension();
 
     /**
@@ -90,7 +91,7 @@ public interface PointArray {
      *          convenience, but it put a constraint on the points that a <code>PointArray</code>
      *          can contains. Whatever or not this constraints is wanted is an open question.
      */
-/// @Extension
+    @Extension
     public CoordinateReferenceSystem getCoordinateReferenceSystem();
 
     /**
@@ -111,7 +112,7 @@ public interface PointArray {
      *             <code>PointArray</code> and vice-versa? The proposed alternative, {@link #get(int, DirectPosition)},
      *             avoid those questions.
      */
-/// @Extension
+    @Extension
     public DirectPosition get(int column) throws IndexOutOfBoundsException;
 
     /**
@@ -137,7 +138,7 @@ public interface PointArray {
      *
      * @see #get(int)
      */
-/// @Extension
+    @Extension
     public DirectPosition get(int column, DirectPosition dest) throws IndexOutOfBoundsException;
 
     /**
@@ -154,7 +155,7 @@ public interface PointArray {
      *
      * @see List#set
      */
-/// @Extension
+    @Extension
     public void set(int column, DirectPosition position) throws IndexOutOfBoundsException,
                                                                 UnsupportedOperationException;
     
@@ -174,7 +175,7 @@ public interface PointArray {
      *             case may create thousands of <code>DirectPosition</code> objects.
      *             {@link #positions} is safer, since it expose the positions through an iterator.
      */
-/// @Extension
+    @Extension
     public DirectPosition[] toArray();
 
     /**
@@ -184,6 +185,6 @@ public interface PointArray {
      *
      * @return The list of positions in this array.
      */
-/// @UML (identifier="column", obligation=MANDATORY)
-    public List/*<Position>*/ positions();
+    @UML (identifier="column", obligation=MANDATORY, specification=ISO_19107)
+    public List<Position> positions();
 }

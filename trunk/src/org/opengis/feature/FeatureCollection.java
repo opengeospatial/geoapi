@@ -23,7 +23,7 @@ public interface FeatureCollection extends Feature, Collection {
      * This method is inherited from <code>Collection</code>, but included here
      * for completeness.
      */
-    public Iterator/*<Feature>*/ iterator();
+    public Iterator<Feature> iterator();
 
     /**
      * Creates a Feature array and populates it.  Note that this method may
@@ -74,7 +74,7 @@ public interface FeatureCollection extends Feature, Collection {
      * This method is inherited from <code>Collection</code>, but included here
      * for completeness.
      */
-    public boolean containsAll(Collection/*<Feature>*/ c);
+    public boolean containsAll(Collection<Feature> c);
 
     /**
      * Adds the given Feature to this collection.  If this collection is backed
@@ -106,7 +106,7 @@ public interface FeatureCollection extends Feature, Collection {
      * This method is inherited from <code>Collection</code>, but included here
      * for completeness.
      */
-    public boolean addAll(Collection/*<Feature>*/ c);
+    public boolean addAll(Collection<Feature> c);
 
     /**
      * Removes all of the Features contained in this collection.  If this
@@ -145,7 +145,7 @@ public interface FeatureCollection extends Feature, Collection {
      * This method is inherited from <code>Collection</code>, but included here
      * for completeness.
      */
-    public boolean removeAll(Collection/*<Feature>*/ c);
+    public boolean removeAll(Collection<Feature> c);
 
     /**
      * Removes any features from this collection that are not present in the
@@ -158,7 +158,7 @@ public interface FeatureCollection extends Feature, Collection {
      * This method is inherited from <code>Collection</code>, but included here
      * for completeness.
      */
-    public boolean retainAll(Collection/*<Feature>*/ c);
+    public boolean retainAll(Collection<Feature> c);
 
     /**
      * Returns a collection whose contents are the subset of features in this
@@ -235,7 +235,7 @@ public interface FeatureCollection extends Feature, Collection {
      * </p>
      * @return LockResponse for Transaction.AUTO_COMMIT, LockResponse.TRANSACTION_LOCK for a short term lock, or LockResponse.PENDING when used in a Transaction.
      */
-    public LockResponse lockAll(Collection/*<Feature>*/ c);
+    public LockResponse lockAll(Collection<Feature> c);
     
     /**
      * Lock this collection of features.

@@ -10,8 +10,9 @@
 package org.opengis.metadata.content;
 
 // Annotations
-///import org.opengis.annotation.UML;
-///import static org.opengis.annotation.Obligation.*;
+import org.opengis.annotation.UML;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
 
 
 /**
@@ -21,6 +22,6 @@ package org.opengis.metadata.content;
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
  */
-///@UML (identifier="MD_ContentInformation")
+@UML (identifier="MD_ContentInformation", specification=ISO_19115)
 public interface ContentInformation {
 }

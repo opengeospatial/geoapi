@@ -10,8 +10,9 @@
 package org.opengis.spatialschema.geometry.primitive;
 
 // Annotations
-///import org.opengis.annotation.UML;
-///import static org.opengis.annotation.Obligation.*;
+import org.opengis.annotation.UML;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
 
 
 /**
@@ -30,18 +31,18 @@ package org.opengis.spatialschema.geometry.primitive;
  *
  * @author ISO/DIS 19107
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
- * @version 2.0
+ * @version <A HREF="http://www.opengis.org/docs/01-101.pdf">Abstract specification 5</A>
  *
  * @see SurfaceBoundary
  */
-///@UML (identifier="GM_SolidBoundary")
+@UML (identifier="GM_SolidBoundary", specification=ISO_19107)
 public interface SolidBoundary extends PrimitiveBoundary {
     /**
      * Returns the exterior shell, or <code>null</code> if none.
      *
      * @return The exterior shell, or <code>null</code>.
      */
-/// @UML (identifier="exterior", obligation=MANDATORY)
+    @UML (identifier="exterior", obligation=MANDATORY, specification=ISO_19107)
     public Shell getExterior();
 
     /**
@@ -49,6 +50,6 @@ public interface SolidBoundary extends PrimitiveBoundary {
      *
      * @return The interior shells. Never <code>null</code>, but may be an empty array.
      */
-/// @UML (identifier="interior", obligation=MANDATORY)
+    @UML (identifier="interior", obligation=MANDATORY, specification=ISO_19107)
     public Shell[] getInteriors();
 }

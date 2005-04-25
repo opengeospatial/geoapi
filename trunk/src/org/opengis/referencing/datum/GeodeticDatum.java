@@ -10,8 +10,9 @@
 package org.opengis.referencing.datum;
 
 // Annotations
-///import org.opengis.annotation.UML;
-///import static org.opengis.annotation.Obligation.*;
+import org.opengis.annotation.UML;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
 
 
 /**
@@ -26,17 +27,17 @@ package org.opengis.referencing.datum;
  * @see Ellipsoid
  * @see PrimeMeridian
  */
-///@UML (identifier="CD_GeodeticDatum")
+@UML (identifier="CD_GeodeticDatum", specification=ISO_19111)
 public interface GeodeticDatum extends Datum {
     /**
      * Returns the ellipsoid.
      */
-/// @UML (identifier="usesEllipsoid", obligation=MANDATORY)
+    @UML (identifier="usesEllipsoid", obligation=MANDATORY, specification=ISO_19111)
     Ellipsoid getEllipsoid();
 
     /**
      * Returns the prime meridian.
      */
-/// @UML (identifier="usesPrimeMeridian", obligation=MANDATORY)
+    @UML (identifier="usesPrimeMeridian", obligation=MANDATORY, specification=ISO_19111)
     PrimeMeridian getPrimeMeridian();
 }

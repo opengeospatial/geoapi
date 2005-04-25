@@ -14,7 +14,7 @@ import java.awt.Shape;
 import java.awt.geom.Point2D;
 
 // Annotations
-///import org.opengis.annotation.Extension;
+import org.opengis.annotation.Extension;
 
 
 /**
@@ -32,7 +32,7 @@ import java.awt.geom.Point2D;
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 1.0
  */
-///@Extension
+@Extension
 public interface MathTransform2D extends MathTransform {
     /**
      * Transforms the specified <code>ptSrc</code> and stores the result in <code>ptDst</code>.
@@ -63,7 +63,7 @@ public interface MathTransform2D extends MathTransform {
      *         this transform is the identity transform.
      * @throws TransformException if a transform failed.
      */
-/// @Extension
+    @Extension
     Shape createTransformedShape(final Shape shape) throws TransformException;
 
     /**

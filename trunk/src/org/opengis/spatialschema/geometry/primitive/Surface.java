@@ -16,8 +16,9 @@ import java.util.List;
 import org.opengis.spatialschema.geometry.geometry.GenericSurface;
 
 // Annotations
-///import org.opengis.annotation.UML;
-///import static org.opengis.annotation.Obligation.*;
+import org.opengis.annotation.UML;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
 
 
 /**
@@ -39,12 +40,12 @@ import org.opengis.spatialschema.geometry.geometry.GenericSurface;
  *
  * @author ISO/DIS 19107
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
- * @version 2.0
+ * @version <A HREF="http://www.opengis.org/docs/01-101.pdf">Abstract specification 5</A>
  *
  * @see PrimitiveFactory#createSurface(List)
  * @see PrimitiveFactory#createSurface(SurfaceBoundary)
  */
-///@UML (identifier="GM_Surface")
+@UML (identifier="GM_Surface", specification=ISO_19107)
 public interface Surface extends OrientableSurface, GenericSurface {
     /**
      * Relates this <code>Surface</code> to a set of {@linkplain SurfacePatch surface patches} that
@@ -59,6 +60,6 @@ public interface Surface extends OrientableSurface, GenericSurface {
      *
      * @see SurfacePatch#getSurface
      */
-/// @UML (identifier="patch", obligation=MANDATORY)
-    List/*<? extends SurfacePatch>*/ getPatches();
+    @UML (identifier="patch", obligation=MANDATORY, specification=ISO_19107)
+    List<? extends SurfacePatch> getPatches();
 }

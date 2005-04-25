@@ -13,8 +13,9 @@ package org.opengis.referencing.operation;
 import org.opengis.parameter.ParameterValueGroup;
 
 // Annotations
-///import org.opengis.annotation.UML;
-///import static org.opengis.annotation.Obligation.*;
+import org.opengis.annotation.UML;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
 
 
 /**
@@ -34,14 +35,14 @@ import org.opengis.parameter.ParameterValueGroup;
  *          flexibility: {@link ConcatenatedOperation} would be a legal component in both
  *          other {@link ConcatenatedOperation} and in {@link PassThroughOperation}.
  */
-///@UML (identifier="CC_Operation")
+@UML (identifier="CC_Operation", specification=ISO_19111)
 public interface Operation extends SingleOperation {
     /**
      * Returns the operation method.
      *
      * @return The operation method.
      */
-/// @UML (identifier="usesMethod", obligation=MANDATORY)
+    @UML (identifier="usesMethod", obligation=MANDATORY, specification=ISO_19111)
     OperationMethod getMethod();
 
     /**
@@ -51,6 +52,6 @@ public interface Operation extends SingleOperation {
      *
      * @rename Added "<code>Parameter</code>" prefix for more consistency with the return type.
      */
-/// @UML (identifier="usesValue", obligation=MANDATORY)
+    @UML (identifier="usesValue", obligation=MANDATORY, specification=ISO_19111)
     ParameterValueGroup getParameterValues();
 }

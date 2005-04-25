@@ -13,8 +13,9 @@ package org.opengis.coverage.processing;
 import org.opengis.parameter.ParameterValueGroup;
 
 // Annotations
-///import org.opengis.annotation.UML;
-///import static org.opengis.annotation.Obligation.*;
+import org.opengis.annotation.UML;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
 
 
 /**
@@ -23,10 +24,22 @@ import org.opengis.parameter.ParameterValueGroup;
  * the operation, operation description, number of source grid coverages required
  * for the operation etc.
  *
+ * <P>&nbsp;</P>
+ * <TABLE WIDTH="80%" ALIGN="center" CELLPADDING="18" BORDER="4" BGCOLOR="#FFE0B0">
+ *   <TR><TD>
+ *     <P align="justify"><STRONG>WARNING: THIS CLASS WILL CHANGE.</STRONG> Current API is derived from OGC
+ *     <A HREF="http://www.opengis.org/docs/01-004.pdf">Grid Coverages Implementation specification 1.0</A>.
+ *     We plan to replace it by new interfaces derived from ISO 19123 (<CITE>Schema for coverage geometry
+ *     and functions</CITE>). Current interfaces should be considered as legacy and are included in this
+ *     distribution only because they were part of GeoAPI 1.0 release. We will try to preserve as much 
+ *     compatibility as possible, but no migration plan has been determined yet.</P>
+ *   </TD></TR>
+ * </TABLE>
+ *
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-004.pdf">Grid Coverage specification 1.0</A>
  */
-///@UML (identifier="CV_Operation")
+@UML (identifier="CV_Operation", specification=OGC_01_004)
 public interface Operation {
     /**
      * Name of the processing operation. This name is passed as a parameter to the
@@ -35,7 +48,7 @@ public interface Operation {
      *
      * @return The name of the processing operation.
      */
-/// @UML (identifier="name", obligation=MANDATORY)
+    @UML (identifier="name", obligation=MANDATORY, specification=OGC_01_004)
     String getName();
 
     /**
@@ -44,7 +57,7 @@ public interface Operation {
      *
      * @return The description of the processing operation, or <code>null</code>.
      */
-/// @UML (identifier="description", obligation=OPTIONAL)
+    @UML (identifier="description", obligation=OPTIONAL, specification=OGC_01_004)
     String getDescription();
 
     /**
@@ -53,7 +66,7 @@ public interface Operation {
      *
      * @return The implementation vendor name, or <code>null</code>.
      */
-/// @UML (identifier="vendor", obligation=OPTIONAL)
+    @UML (identifier="vendor", obligation=OPTIONAL, specification=OGC_01_004)
     String getVendor();
 
     /**
@@ -62,7 +75,7 @@ public interface Operation {
      *
      * @return The URL for documentation on the processing operation, or <code>null</code>.
      */
-/// @UML (identifier="docURL", obligation=OPTIONAL)
+    @UML (identifier="docURL", obligation=OPTIONAL, specification=OGC_01_004)
     String getDocURL();
 
     /**
@@ -70,7 +83,7 @@ public interface Operation {
      *
      * @return The version number for the implementation, or <code>null</code>.
      */
-/// @UML (identifier="version", obligation=OPTIONAL)
+    @UML (identifier="version", obligation=OPTIONAL, specification=OGC_01_004)
     String getVersion();
 
     /**
@@ -78,7 +91,7 @@ public interface Operation {
      *
      * @return The number of source grid coverages required for the operation.
      */
-/// @UML (identifier="numSources", obligation=OPTIONAL)
+    @UML (identifier="numSources", obligation=OPTIONAL, specification=OGC_01_004)
     int getNumSources();
 
     /**
@@ -86,6 +99,6 @@ public interface Operation {
      *
      * @return The parameter informations.
      */
-/// @UML (identifier="getParameterInfo, numParameters", obligation=MANDATORY)
+    @UML (identifier="getParameterInfo, numParameters", obligation=MANDATORY, specification=OGC_01_004)
     ParameterValueGroup getParameters();
 }

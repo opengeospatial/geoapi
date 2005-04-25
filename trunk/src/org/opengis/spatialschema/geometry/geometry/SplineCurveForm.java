@@ -17,8 +17,9 @@ import java.util.ArrayList;
 import org.opengis.util.CodeList;
 
 // Annotations
-///import org.opengis.annotation.UML;
-///import static org.opengis.annotation.Obligation.*;
+import org.opengis.annotation.UML;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
 
 
 /**
@@ -26,9 +27,9 @@ import org.opengis.util.CodeList;
  *
  * @author ISO/DIS 19107
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
- * @version 2.0
+ * @version <A HREF="http://www.opengis.org/docs/01-101.pdf">Abstract specification 5</A>
  */
-///@UML (identifier="GM_SplineCurveForm")
+@UML (identifier="GM_SplineCurveForm", specification=ISO_19107)
 public final class SplineCurveForm extends CodeList {
     /**
      * Serial number for compatibility with different versions.
@@ -44,35 +45,35 @@ public final class SplineCurveForm extends CodeList {
     /**
      * A connected sequence of line segments represented by a 1 degree B-spline (a line string).
      */
-/// @UML (identifier="polylineForm", obligation=CONDITIONAL)
+    @UML (identifier="polylineForm", obligation=CONDITIONAL, specification=ISO_19107)
     public static final SplineCurveForm POLYLINE_FORM = new SplineCurveForm(
                                        "POLYLINE_FORM");
 
     /**
      * An arc of a circle or a complete circle.
      */
-/// @UML (identifier="circularArc", obligation=CONDITIONAL)
+    @UML (identifier="circularArc", obligation=CONDITIONAL, specification=ISO_19107)
     public static final SplineCurveForm CIRCULAR_ARC = new SplineCurveForm(
                                        "CIRCULAR_ARC");
 
     /**
      * An arc of an ellipse or a complete ellipse.
      */
-/// @UML (identifier="ellipticalArc", obligation=CONDITIONAL)
+    @UML (identifier="ellipticalArc", obligation=CONDITIONAL, specification=ISO_19107)
     public static final SplineCurveForm ELLIPTICAL_ARC = new SplineCurveForm(
                                        "ELLIPTICAL_ARC");
 
     /**
      * An arc of a finite length of a parabola.
      */
-/// @UML (identifier="parabolicArc", obligation=CONDITIONAL)
+    @UML (identifier="parabolicArc", obligation=CONDITIONAL, specification=ISO_19107)
     public static final SplineCurveForm PARABOLIC_ARC = new SplineCurveForm(
                                        "PARABOLIC_ARC");
 
     /**
      * An arc of a finite length of one branch of a hyperbola.
      */
-/// @UML (identifier="hyperbolicArc", obligation=CONDITIONAL)
+    @UML (identifier="hyperbolicArc", obligation=CONDITIONAL, specification=ISO_19107)
     public static final SplineCurveForm HYPERBOLIC_ARC = new SplineCurveForm(
                                        "HYPERBOLIC_ARC");
 

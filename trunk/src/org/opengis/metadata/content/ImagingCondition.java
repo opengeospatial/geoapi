@@ -17,8 +17,9 @@ import java.util.ArrayList;
 import org.opengis.util.CodeList;
 
 // Annotations
-///import org.opengis.annotation.UML;
-///import static org.opengis.annotation.Obligation.*;
+import org.opengis.annotation.UML;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
 
 
 /**
@@ -28,7 +29,7 @@ import org.opengis.util.CodeList;
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
  */
-///@UML (identifier="MD_ImagingConditionCode")
+@UML (identifier="MD_ImagingConditionCode", specification=ISO_19115)
 public final class ImagingCondition extends CodeList {
     /**
      * Serial number for compatibility with different versions.
@@ -44,62 +45,62 @@ public final class ImagingCondition extends CodeList {
     /**
      * Portion of the image is blurred.
      */
-/// @UML (identifier="blurredImage", obligation=CONDITIONAL)
+    @UML (identifier="blurredImage", obligation=CONDITIONAL, specification=ISO_19115)
     public static final ImagingCondition BLURRED_IMAGE = new ImagingCondition("BLURRED_IMAGE");
 
     /**
      * Portion of the image is partially obscured by cloud cover
      */
-/// @UML (identifier="cloud", obligation=CONDITIONAL)
+    @UML (identifier="cloud", obligation=CONDITIONAL, specification=ISO_19115)
     public static final ImagingCondition CLOUD = new ImagingCondition("CLOUD");
 
     /**
      * Acute angle between the plane of the ecliptic (the plane of the Earth’s orbit) and
      * the plane of the celestial equator.
      */
-/// @UML (identifier="degradingObliquity", obligation=CONDITIONAL)
+    @UML (identifier="degradingObliquity", obligation=CONDITIONAL, specification=ISO_19115)
     public static final ImagingCondition DEGRADING_OBLIQUITY = new ImagingCondition("DEGRADING_OBLIQUITY");
 
     /**
      * Portion of the image is partially obscured by fog.
      */
-/// @UML (identifier="fog", obligation=CONDITIONAL)
+    @UML (identifier="fog", obligation=CONDITIONAL, specification=ISO_19115)
     public static final ImagingCondition FOG = new ImagingCondition("FOG");
 
     /**
      * Portion of the image is partially obscured by heavy smoke or dust.
      */
-/// @UML (identifier="heavySmokeOrDust", obligation=CONDITIONAL)
+    @UML (identifier="heavySmokeOrDust", obligation=CONDITIONAL, specification=ISO_19115)
     public static final ImagingCondition HEAVY_SMOKE_OR_DUST = new ImagingCondition("HEAVY_SMOKE_OR_DUST");
 
     /**
      * Image was taken at night.
      */
-/// @UML (identifier="night", obligation=CONDITIONAL)
+    @UML (identifier="night", obligation=CONDITIONAL, specification=ISO_19115)
     public static final ImagingCondition NIGHT = new ImagingCondition("NIGHT");
 
     /**
      * Image was taken during rainfall.
      */
-/// @UML (identifier="rain", obligation=CONDITIONAL)
+    @UML (identifier="rain", obligation=CONDITIONAL, specification=ISO_19115)
     public static final ImagingCondition RAIN = new ImagingCondition("RAIN");
 
     /**
      * Image was taken during semi-dark conditions—twilight conditions.
      */
-/// @UML (identifier="semiDarkness", obligation=CONDITIONAL)
+    @UML (identifier="semiDarkness", obligation=CONDITIONAL, specification=ISO_19115)
     public static final ImagingCondition SEMI_DARKNESS = new ImagingCondition("SEMI_DARKNESS");
 
     /**
      * Portion of the image is obscured by shadow.
      */
-/// @UML (identifier="shadow", obligation=CONDITIONAL)
+    @UML (identifier="shadow", obligation=CONDITIONAL, specification=ISO_19115)
     public static final ImagingCondition SHADOW = new ImagingCondition("SHADOW");
 
     /**
      * Portion of the image is obscured by snow.
      */
-/// @UML (identifier="snow", obligation=CONDITIONAL)
+    @UML (identifier="snow", obligation=CONDITIONAL, specification=ISO_19115)
     public static final ImagingCondition SNOW = new ImagingCondition("SNOW");
 
     /**
@@ -107,7 +108,7 @@ public final class ImagingCondition extends CodeList {
      * location of topographic features which obstruct the collection path between the
      * collector(s) and the subject(s) of interest.
      */
-/// @UML (identifier="terrainMasking", obligation=CONDITIONAL)
+    @UML (identifier="terrainMasking", obligation=CONDITIONAL, specification=ISO_19115)
     public static final ImagingCondition TERRAIN_MASKING = new ImagingCondition("TERRAIN_MASKING");
 
     /**

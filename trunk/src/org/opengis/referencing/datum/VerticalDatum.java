@@ -10,8 +10,9 @@
 package org.opengis.referencing.datum;
 
 // Annotations
-///import org.opengis.annotation.UML;
-///import static org.opengis.annotation.Obligation.*;
+import org.opengis.annotation.UML;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
 
 
 /**
@@ -26,11 +27,11 @@ package org.opengis.referencing.datum;
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/03-073r1.zip">Abstract specification 2.0</A>
  */
-///@UML (identifier="CD_VerticalDatum")
+@UML (identifier="CD_VerticalDatum", specification=ISO_19111)
 public interface VerticalDatum extends Datum {
     /**
      * The type of this vertical datum. Default is “geoidal”.
      */
-/// @UML (identifier="vertDatumType", obligation=MANDATORY)
+    @UML (identifier="vertDatumType", obligation=MANDATORY, specification=ISO_19111)
     VerticalDatumType getVerticalDatumType();
 }

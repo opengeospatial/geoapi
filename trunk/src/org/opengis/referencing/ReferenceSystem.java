@@ -17,8 +17,9 @@ import org.opengis.metadata.extent.Extent;
 import org.opengis.util.InternationalString;
 
 // Annotations
-///import org.opengis.annotation.UML;
-///import static org.opengis.annotation.Obligation.*;
+import org.opengis.annotation.UML;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
 
 
 /**
@@ -30,20 +31,20 @@ import org.opengis.util.InternationalString;
  *
  * @see org.opengis.referencing.crs.CoordinateReferenceSystem
  */
-///@UML (identifier="RS_ReferenceSystem")
+@UML (identifier="RS_ReferenceSystem", specification=ISO_19111)
 public interface ReferenceSystem extends IdentifiedObject {
     /**
      * Area for which the (coordinate) reference system is valid.
      *
      * @return Coordinate reference system valid area, or <code>null</code> if not available.
      */
-/// @UML (identifier="validArea", obligation=OPTIONAL)
+    @UML (identifier="validArea", obligation=OPTIONAL, specification=ISO_19111)
     Extent getValidArea();
 
     /**
      * Description of domain of usage, or limitations of usage, for which this
      * (coordinate) reference system object is valid.
      */
-/// @UML (identifier="scope", obligation=OPTIONAL)
+    @UML (identifier="scope", obligation=OPTIONAL, specification=ISO_19111)
     InternationalString getScope();
 }

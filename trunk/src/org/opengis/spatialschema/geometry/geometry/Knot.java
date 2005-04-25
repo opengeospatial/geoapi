@@ -10,8 +10,9 @@
 package org.opengis.spatialschema.geometry.geometry;
 
 // Annotations
-///import org.opengis.annotation.UML;
-///import static org.opengis.annotation.Obligation.*;
+import org.opengis.annotation.UML;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
 
 
 /**
@@ -25,9 +26,9 @@ package org.opengis.spatialschema.geometry.geometry;
  *
  * @author ISO/DIS 19107
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
- * @version 2.0
+ * @version <A HREF="http://www.opengis.org/docs/01-101.pdf">Abstract specification 5</A>
  */
-/// @UML (identifier="GM_Knot")
+@UML (identifier="GM_Knot", specification=ISO_19107)
 public interface Knot {
     /**
      * The value of the parameter at the knot of the spline. The sequence of knots shall be a
@@ -35,18 +36,18 @@ public interface Knot {
      * greater than the previous knot's value. The use of equal consecutive knots is normally
      * handled using the multiplicity.
      */
-/// @UML (identifier="value", obligation=MANDATORY)
+    @UML (identifier="value", obligation=MANDATORY, specification=ISO_19107)
     double getValue();
 
     /**
      * The multiplicity of this knot used in the definition of the spline (with the same weight).
      */
-/// @UML (identifier="multiplicity", obligation=MANDATORY)
+    @UML (identifier="multiplicity", obligation=MANDATORY, specification=ISO_19107)
     int getMultiplicity();
 
     /**
      * The value of the averaging weight used for this knot of the spline.
      */
-/// @UML (identifier="weight", obligation=MANDATORY)
+    @UML (identifier="weight", obligation=MANDATORY, specification=ISO_19107)
     double getWeight();
 }

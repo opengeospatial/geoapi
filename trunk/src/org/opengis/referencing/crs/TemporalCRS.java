@@ -14,8 +14,9 @@ import org.opengis.referencing.cs.TimeCS;
 import org.opengis.referencing.datum.TemporalDatum;
 
 // Annotations
-///import org.opengis.annotation.UML;
-///import static org.opengis.annotation.Obligation.*;
+import org.opengis.annotation.UML;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
 
 
 /**
@@ -31,17 +32,17 @@ import org.opengis.referencing.datum.TemporalDatum;
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/03-073r1.zip">Abstract specification 2.0</A>
  */
-///@UML (identifier="SC_TemporalCRS")
+@UML (identifier="SC_TemporalCRS", specification=ISO_19111)
 public interface TemporalCRS extends SingleCRS {
     /** 	 
      * Returns the coordinate system, which must be temporal. 	 
      */ 	 
-/// @UML (identifier="usesCS", obligation=MANDATORY)
+/// @UML (identifier="usesCS", obligation=MANDATORY, specification=ISO_19111)
 /// TimeCS getCoordinateSystem(); 	 
 
     /** 	 
      * Returns the datum, which must be temporal. 	 
      */ 	 
-/// @UML (identifier="usesDatum", obligation=MANDATORY)
+/// @UML (identifier="usesDatum", obligation=MANDATORY, specification=ISO_19111)
 /// TemporalDatum getDatum();
 }

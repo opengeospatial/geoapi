@@ -13,8 +13,9 @@ package org.opengis.metadata.extent;
 import java.util.Collection;
 
 // Annotations
-///import org.opengis.annotation.UML;
-///import static org.opengis.annotation.Obligation.*;
+import org.opengis.annotation.UML;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
 
 
 /**
@@ -24,7 +25,7 @@ import java.util.Collection;
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
  */
-///@UML (identifier="EX_SpatialTemporalExtent")
+@UML (identifier="EX_SpatialTemporalExtent", specification=ISO_19115)
 public interface SpatialTemporalExtent extends TemporalExtent {
     /**
      * Returns the spatial extent component of composite
@@ -32,6 +33,6 @@ public interface SpatialTemporalExtent extends TemporalExtent {
      *
      * @return The list of geographic extents (never <code>null</code>).
      */
-/// @UML (identifier="spatialExtent", obligation=MANDATORY)
-    Collection/*<GeographicExtent>*/ getSpatialExtent();
+    @UML (identifier="spatialExtent", obligation=MANDATORY, specification=ISO_19115)
+    Collection<GeographicExtent> getSpatialExtent();
 }

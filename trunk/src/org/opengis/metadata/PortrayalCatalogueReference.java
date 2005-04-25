@@ -16,8 +16,9 @@ import java.util.Collection;
 import org.opengis.metadata.citation.Citation;
 
 // Annotations
-///import org.opengis.annotation.UML;
-///import static org.opengis.annotation.Obligation.*;
+import org.opengis.annotation.UML;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
 
 
 /**
@@ -27,11 +28,11 @@ import org.opengis.metadata.citation.Citation;
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
  */
-///@UML (identifier="MD_PortrayalCatalogueReference")
+@UML (identifier="MD_PortrayalCatalogueReference", specification=ISO_19115)
 public interface PortrayalCatalogueReference {
     /**
      * Bibliographic reference to the portrayal catalogue cited.
      */
-/// @UML (identifier="portrayalCatalogueCitation", obligation=MANDATORY)
-    Collection/*<Citation>*/ getPortrayalCatalogueCitations();
+    @UML (identifier="portrayalCatalogueCitation", obligation=MANDATORY, specification=ISO_19115)
+    Collection<Citation> getPortrayalCatalogueCitations();
 }

@@ -10,8 +10,9 @@
 package org.opengis.referencing.crs;
 
 // Annotations
-///import org.opengis.annotation.UML;
-///import static org.opengis.annotation.Obligation.*;
+import org.opengis.annotation.UML;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
 
 
 /**
@@ -25,11 +26,11 @@ package org.opengis.referencing.crs;
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/03-073r1.zip">Abstract specification 2.0</A>
  */
-///@UML (identifier="SC_CompoundCRS")
+@UML (identifier="SC_CompoundCRS", specification=ISO_19111)
 public interface CompoundCRS extends CoordinateReferenceSystem {
     /**
      * The ordered list of coordinate reference systems.
      */
-/// @UML (identifier="includesCRS", obligation=MANDATORY)
+    @UML (identifier="includesCRS", obligation=MANDATORY, specification=ISO_19111)
     CoordinateReferenceSystem[] getCoordinateReferenceSystems();
 }

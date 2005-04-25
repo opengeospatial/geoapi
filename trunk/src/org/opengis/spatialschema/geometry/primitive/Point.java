@@ -16,8 +16,9 @@ import org.opengis.spatialschema.geometry.UnmodifiableGeometryException;
 
 
 // Annotations
-///import org.opengis.annotation.UML;
-///import static org.opengis.annotation.Obligation.*;
+import org.opengis.annotation.UML;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
 
 
 /**
@@ -29,13 +30,13 @@ import org.opengis.spatialschema.geometry.UnmodifiableGeometryException;
  *
  * @author ISO/DIS 19107
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
- * @version 2.0
+ * @version <A HREF="http://www.opengis.org/docs/01-101.pdf">Abstract specification 5</A>
  *
  * @see PrimitiveFactory#createPoint
  *
  * @revisit Some associations are commented out for now.
  */
-///@UML (identifier="GM_Point")
+@UML (identifier="GM_Point", specification=ISO_19107)
 public interface Point extends Primitive, Position {
     /**
      * Returns the direct position of this point. <code>Point</code> is the only subclass
@@ -48,7 +49,7 @@ public interface Point extends Primitive, Position {
      *
      * @return The direct position.
      */
-/// @UML (identifier="position", obligation=MANDATORY)
+    @UML (identifier="position", obligation=MANDATORY, specification=ISO_19107)
     public DirectPosition getPosition();
 
     /**
@@ -63,7 +64,7 @@ public interface Point extends Primitive, Position {
      * @param  position The direct position.
      * @throws UnmodifiableGeometryException if this geometry is not modifiable.
      */
-/// @UML (identifier="position", obligation=MANDATORY)
+    @UML (identifier="position", obligation=MANDATORY, specification=ISO_19107)
     public void setPosition(DirectPosition position) throws UnmodifiableGeometryException;
 
     /**
@@ -71,7 +72,7 @@ public interface Point extends Primitive, Position {
      *
      * @return Always <code>null</code>.
      */
-/// @UML (identifier="boundary", obligation=MANDATORY)
+/// @UML (identifier="boundary", obligation=MANDATORY, specification=ISO_19107)
 /// public PrimitiveBoundary getBoundary();
 
     /**
@@ -88,7 +89,7 @@ public interface Point extends Primitive, Position {
      * @param toPoint the destination point.
      * @return The tangent to the curve between this point and the passed position.
      */
-/// @UML (identifier="bearing", obligation=MANDATORY)
+    @UML (identifier="bearing", obligation=MANDATORY, specification=ISO_19107)
     public Bearing getBearing(Position toPoint);
 
 //    public org.opengis.spatialschema.geometry.complex.GM_CompositePoint composite[];

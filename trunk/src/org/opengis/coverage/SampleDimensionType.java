@@ -18,20 +18,33 @@ import java.awt.image.DataBuffer; // For Javadoc
 import org.opengis.util.CodeList;
 
 // Annotations
-///import org.opengis.annotation.UML;
-///import static org.opengis.annotation.Obligation.*;
+import org.opengis.annotation.UML;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
 
 
 /**
  * Specifies the various dimension types for coverage values.
  * For grid coverages, these correspond to band types.
  *
+ * <P>&nbsp;</P>
+ * <TABLE WIDTH="80%" ALIGN="center" CELLPADDING="18" BORDER="4" BGCOLOR="#FFE0B0">
+ *   <TR><TD>
+ *     <P align="justify"><STRONG>WARNING: THIS CLASS WILL CHANGE.</STRONG> Current API is derived from OGC
+ *     <A HREF="http://www.opengis.org/docs/01-004.pdf">Grid Coverages Implementation specification 1.0</A>.
+ *     We plan to replace it by new interfaces derived from ISO 19123 (<CITE>Schema for coverage geometry
+ *     and functions</CITE>). Current interfaces should be considered as legacy and are included in this
+ *     distribution only because they were part of GeoAPI 1.0 release. We will try to preserve as much 
+ *     compatibility as possible, but no migration plan has been determined yet.</P>
+ *   </TD></TR>
+ * </TABLE>
+ *
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-004.pdf">Grid Coverage specification 1.0</A>
  *
  * @see SampleDimension
  */
-///@UML (identifier="CV_SampleDimensionType")
+@UML (identifier="CV_SampleDimensionType", specification=OGC_01_004)
 public final class SampleDimensionType extends CodeList {
     /**
      * Serial number for compatibility with different versions.
@@ -50,7 +63,7 @@ public final class SampleDimensionType extends CodeList {
      * @rename Renamed <code>CV_1BIT</code> as <code>UNSIGNED_1BIT</code> since we
      *         drop the prefix, but can't get a name starting with a digit.
      */
-/// @UML (identifier="CV_1BIT", obligation=CONDITIONAL)
+    @UML (identifier="CV_1BIT", obligation=CONDITIONAL, specification=OGC_01_004)
     public static final SampleDimensionType UNSIGNED_1BIT = new SampleDimensionType("UNSIGNED_1BIT");
 
     /**
@@ -59,7 +72,7 @@ public final class SampleDimensionType extends CodeList {
      * @rename Renamed <code>CV_2BIT</code> as <code>UNSIGNED_2BITS</code> since we
      *         drop the prefix, but can't get a name starting with a digit.
      */
-/// @UML (identifier="CV_2BIT", obligation=CONDITIONAL)
+    @UML (identifier="CV_2BIT", obligation=CONDITIONAL, specification=OGC_01_004)
     public static final SampleDimensionType UNSIGNED_2BITS = new SampleDimensionType("UNSIGNED_2BITS");
 
     /**
@@ -68,7 +81,7 @@ public final class SampleDimensionType extends CodeList {
      * @rename Renamed <code>CV_4BIT</code> as <code>UNSIGNED_4BITS</code> since we
      *         drop the prefix, but can't get a name starting with a digit.
      */
-/// @UML (identifier="CV_4BIT", obligation=CONDITIONAL)
+    @UML (identifier="CV_4BIT", obligation=CONDITIONAL, specification=OGC_01_004)
     public static final SampleDimensionType UNSIGNED_4BITS = new SampleDimensionType("UNSIGNED_4BITS");
 
     /**
@@ -80,7 +93,7 @@ public final class SampleDimensionType extends CodeList {
      * @see #SIGNED_8BITS
      * @see DataBuffer#TYPE_BYTE
      */
-/// @UML (identifier="CV_8BIT_U", obligation=CONDITIONAL)
+    @UML (identifier="CV_8BIT_U", obligation=CONDITIONAL, specification=OGC_01_004)
     public static final SampleDimensionType UNSIGNED_8BITS = new SampleDimensionType("UNSIGNED_8BITS");
 
     /**
@@ -91,7 +104,7 @@ public final class SampleDimensionType extends CodeList {
      *
      * @see #UNSIGNED_8BITS
      */
-/// @UML (identifier="CV_8BIT_S", obligation=CONDITIONAL)
+    @UML (identifier="CV_8BIT_S", obligation=CONDITIONAL, specification=OGC_01_004)
     public static final SampleDimensionType SIGNED_8BITS = new SampleDimensionType("SIGNED_8BITS");
 
     /**
@@ -103,7 +116,7 @@ public final class SampleDimensionType extends CodeList {
      * @see #SIGNED_16BITS
      * @see DataBuffer#TYPE_USHORT
      */
-/// @UML (identifier="CV_16BIT_U", obligation=CONDITIONAL)
+    @UML (identifier="CV_16BIT_U", obligation=CONDITIONAL, specification=OGC_01_004)
     public static final SampleDimensionType UNSIGNED_16BITS = new SampleDimensionType("UNSIGNED_16BITS");
 
     /**
@@ -115,7 +128,7 @@ public final class SampleDimensionType extends CodeList {
      * @see #UNSIGNED_16BITS
      * @see DataBuffer#TYPE_SHORT
      */
-/// @UML (identifier="CV_16BIT_S", obligation=CONDITIONAL)
+    @UML (identifier="CV_16BIT_S", obligation=CONDITIONAL, specification=OGC_01_004)
     public static final SampleDimensionType SIGNED_16BITS = new SampleDimensionType("SIGNED_16BITS");
 
     /**
@@ -126,7 +139,7 @@ public final class SampleDimensionType extends CodeList {
      *
      * @see #SIGNED_32BITS
      */
-/// @UML (identifier="CV_32BIT_U", obligation=CONDITIONAL)
+    @UML (identifier="CV_32BIT_U", obligation=CONDITIONAL, specification=OGC_01_004)
     public static final SampleDimensionType UNSIGNED_32BITS = new SampleDimensionType("UNSIGNED_32BITS");
 
     /**
@@ -138,7 +151,7 @@ public final class SampleDimensionType extends CodeList {
      * @see #UNSIGNED_32BITS
      * @see DataBuffer#TYPE_INT
      */
-/// @UML (identifier="CV_32BIT_S", obligation=CONDITIONAL)
+    @UML (identifier="CV_32BIT_S", obligation=CONDITIONAL, specification=OGC_01_004)
     public static final SampleDimensionType SIGNED_32BITS = new SampleDimensionType("SIGNED_32BITS");
 
     /**
@@ -150,7 +163,7 @@ public final class SampleDimensionType extends CodeList {
      * @see #REAL_64BITS
      * @see DataBuffer#TYPE_FLOAT
      */
-/// @UML (identifier="CV_32BIT_REAL", obligation=CONDITIONAL)
+    @UML (identifier="CV_32BIT_REAL", obligation=CONDITIONAL, specification=OGC_01_004)
     public static final SampleDimensionType REAL_32BITS = new SampleDimensionType("REAL_32BITS");
 
     /**
@@ -162,7 +175,7 @@ public final class SampleDimensionType extends CodeList {
      * @see #REAL_32BITS
      * @see DataBuffer#TYPE_DOUBLE
      */
-/// @UML (identifier="CV_64BIT_REAL", obligation=CONDITIONAL)
+    @UML (identifier="CV_64BIT_REAL", obligation=CONDITIONAL, specification=OGC_01_004)
     public static final SampleDimensionType REAL_64BITS = new SampleDimensionType("REAL_64BITS");
 
     /**

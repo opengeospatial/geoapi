@@ -16,8 +16,9 @@ import java.util.List;
 import org.opengis.spatialschema.geometry.primitive.CurveSegment;
 
 // Annotations
-///import org.opengis.annotation.UML;
-///import static org.opengis.annotation.Obligation.*;
+import org.opengis.annotation.UML;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
 
 
 /**
@@ -26,15 +27,15 @@ import org.opengis.spatialschema.geometry.primitive.CurveSegment;
  *
  * @author ISO/DIS 19107
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
- * @version 2.0
+ * @version <A HREF="http://www.opengis.org/docs/01-101.pdf">Abstract specification 5</A>
  */
-///@UML (identifier="GM_OffsetCurve")
+@UML (identifier="GM_OffsetCurve", specification=ISO_19107)
 public interface OffsetCurve extends CurveSegment {
     /**
      * Returns the base curves.
      */
-/// @UML (identifier="baseCurve", obligation=MANDATORY)
-    public List/*<CurveSegment>*/ getBaseCurves();
+    @UML (identifier="baseCurve", obligation=MANDATORY, specification=ISO_19107)
+    public List<CurveSegment> getBaseCurves();
 
     /**
      * Returns the distance at which the offset curve is generated from the basis curve.
@@ -43,7 +44,7 @@ public interface OffsetCurve extends CurveSegment {
      *
      * @unitof Length
      */
-/// @UML (identifier="distance", obligation=MANDATORY)
+    @UML (identifier="distance", obligation=MANDATORY, specification=ISO_19107)
     public double getDistance();
 
     /**
@@ -65,6 +66,6 @@ public interface OffsetCurve extends CurveSegment {
      * ("points upward"), then the offset vector points to the left of the curve when
      * viewed from above.
      */
-/// @UML (identifier="refDirection", obligation=OPTIONAL)
+    @UML (identifier="refDirection", obligation=OPTIONAL, specification=ISO_19107)
     public double[] getReferenceDirection();
 }

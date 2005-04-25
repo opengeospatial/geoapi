@@ -15,8 +15,9 @@ import org.opengis.referencing.cs.CartesianCS;
 import org.opengis.referencing.datum.ImageDatum;
 
 // Annotations
-///import org.opengis.annotation.UML;
-///import static org.opengis.annotation.Obligation.*;
+import org.opengis.annotation.UML;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
 
 
 /**
@@ -35,17 +36,17 @@ import org.opengis.referencing.datum.ImageDatum;
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/03-073r1.zip">Abstract specification 2.0</A>
  */
-///@UML (identifier="SC_ImageCRS")
+@UML (identifier="SC_ImageCRS", specification=ISO_19111)
 public interface ImageCRS extends SingleCRS {
     /**
      * Returns the cartesian coordinate system.
      */
-/// @UML (identifier="usesObliqueCartesianCS, usesCartesianCS", obligation=MANDATORY)
+/// @UML (identifier="usesObliqueCartesianCS, usesCartesianCS", obligation=MANDATORY, specification=ISO_19111)
 /// AffineCS getCoordinateSystem();
 	 
     /**
      * Returns the datum, which must be an image one.
      */
-/// @UML (identifier="usesDatum", obligation=MANDATORY)
+/// @UML (identifier="usesDatum", obligation=MANDATORY, specification=ISO_19111)
 /// ImageDatum getDatum();
 }

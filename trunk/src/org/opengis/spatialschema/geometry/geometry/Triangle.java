@@ -13,8 +13,9 @@ package org.opengis.spatialschema.geometry.geometry;
 import java.util.List;
 
 // Annotations
-///import org.opengis.annotation.UML;
-///import static org.opengis.annotation.Obligation.*;
+import org.opengis.annotation.UML;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
 
 
 /**
@@ -40,18 +41,18 @@ import java.util.List;
  *
  * @author ISO/DIS 19107
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
- * @version 2.0
+ * @version <A HREF="http://www.opengis.org/docs/01-101.pdf">Abstract specification 5</A>
  */
 public interface Triangle extends Polygon {
     /**
      * Returns the triangle corner. The list must contains exactly 3 elements.
      */
-/// @UML (identifier="corners", obligation=MANDATORY)
-    List/*<Position>*/ getCorners();
+    @UML (identifier="corners", obligation=MANDATORY, specification=ISO_19107)
+    List<Position> getCorners();
 
     /**
      * Returns the patch which own this surface patch.
      */
-/// @UML (identifier="surface", obligation=MANDATORY)
+/// @UML (identifier="surface", obligation=MANDATORY, specification=ISO_19107)
 /// TriangulatedSurface getSurface();
 }

@@ -91,7 +91,7 @@ public interface FeatureCanvas {
      * Instead, they should call <code>addLayer</code> or
      * <code>deleteLayer</code>.
      */
-    public List/*<FeatureLayer>*/ getLayers();
+    public List<FeatureLayer> getLayers();
 
     /**
      * Returns the Canvas onto which the Graphics will be rendered.  References to 

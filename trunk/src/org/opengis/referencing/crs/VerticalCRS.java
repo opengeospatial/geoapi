@@ -14,8 +14,9 @@ import org.opengis.referencing.cs.VerticalCS;
 import org.opengis.referencing.datum.VerticalDatum;
 
 // Annotations
-///import org.opengis.annotation.UML;
-///import static org.opengis.annotation.Obligation.*;
+import org.opengis.annotation.UML;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
 
 
 /**
@@ -36,17 +37,17 @@ import org.opengis.referencing.datum.VerticalDatum;
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/03-073r1.zip">Abstract specification 2.0</A>
  */
-///@UML (identifier="SC_VerticalCRS")
+@UML (identifier="SC_VerticalCRS", specification=ISO_19111)
 public interface VerticalCRS extends SingleCRS {
     /**
      * Returns the coordinate system, which must be vertical.
      */
-/// @UML (identifier="usesCS", obligation=MANDATORY)
+/// @UML (identifier="usesCS", obligation=MANDATORY, specification=ISO_19111)
 /// VerticalCS getCoordinateSystem();
 
     /**
      * Returns the datum, which must be vertical.
      */
-/// @UML (identifier="usesDatum", obligation=MANDATORY)
+/// @UML (identifier="usesDatum", obligation=MANDATORY, specification=ISO_19111)
 /// VerticalDatum getDatum();
 }

@@ -16,9 +16,10 @@ import java.util.List;
 import org.opengis.metadata.Identifier;  // For javadoc
 
 // Annotations
-///import org.opengis.annotation.UML;
-///import org.opengis.annotation.Extension;
-///import static org.opengis.annotation.Obligation.*;
+import org.opengis.annotation.UML;
+import org.opengis.annotation.Extension;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
 
 
 /**
@@ -31,7 +32,7 @@ import org.opengis.metadata.Identifier;  // For javadoc
  * @see ParameterValueGroup
  * @see ParameterDescriptor
  */
-///@UML (identifier="CC_OperationParameterGroup")
+@UML (identifier="CC_OperationParameterGroup", specification=ISO_19111)
 public interface ParameterDescriptorGroup extends GeneralParameterDescriptor {
     /**
      * Creates a new instance of {@linkplain ParameterValueGroup parameter value group}
@@ -57,8 +58,8 @@ public interface ParameterDescriptorGroup extends GeneralParameterDescriptor {
     /**
      * Returns the parameters in this group.
      */
-/// @UML (identifier="includesParameter", obligation=MANDATORY)
-    List/*<GeneralParameterDescriptor>*/ descriptors();
+    @UML (identifier="includesParameter", obligation=MANDATORY, specification=ISO_19111)
+    List<GeneralParameterDescriptor> descriptors();
 
     /**
      * Returns the parameter descriptor in this group for the specified
@@ -69,6 +70,6 @@ public interface ParameterDescriptorGroup extends GeneralParameterDescriptor {
      * @return The parameter for the given identifier code.
      * @throws ParameterNotFoundException if there is no parameter for the given identifier code.
      */
-/// @Extension
+    @Extension
     GeneralParameterDescriptor descriptor(String name) throws ParameterNotFoundException;
 }

@@ -16,8 +16,9 @@ import java.util.Date;
 import org.opengis.util.InternationalString;
 
 // Annotations
-///import org.opengis.annotation.UML;
-///import static org.opengis.annotation.Obligation.*;
+import org.opengis.annotation.UML;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
 
 
 /**
@@ -27,14 +28,14 @@ import org.opengis.util.InternationalString;
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/03-073r1.zip">Abstract specification 2.0</A>
  */
-///@UML (identifier="CD_TemporalDatum")
+@UML (identifier="CD_TemporalDatum", specification=ISO_19111)
 public interface TemporalDatum extends Datum {
     /**
      * The date and time origin of this temporal datum.
      *
      * @return The date and time origin of this temporal datum.
      */
-/// @UML (identifier="origin", obligation=MANDATORY)
+    @UML (identifier="origin", obligation=MANDATORY, specification=ISO_19111)
     Date getOrigin();
 
     /**

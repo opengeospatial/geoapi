@@ -10,8 +10,9 @@
 package org.opengis.spatialschema.geometry.primitive;
 
 // Annotations
-///import org.opengis.annotation.UML;
-///import static org.opengis.annotation.Obligation.*;
+import org.opengis.annotation.UML;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
 
 
 /**
@@ -23,11 +24,11 @@ package org.opengis.spatialschema.geometry.primitive;
  *
  * @author ISO/DIS 19107
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
- * @version 2.0
+ * @version <A HREF="http://www.opengis.org/docs/01-101.pdf">Abstract specification 5</A>
  *
  * @revisit Should we move this interface elsewhere (e.g. in some kind of units package)?
  */
-///@UML (identifier="Bearing")
+@UML (identifier="Bearing", specification=ISO_19107)
 public interface Bearing {
     /**
      * Returns the azimuth and (optionnaly) the altitude.
@@ -43,7 +44,7 @@ public interface Bearing {
      *          <code>getAltitude()</code> methods instead? Should we provides
      *          a <code>getDimension()</code> method too?
      */
-/// @UML (identifier="angle", obligation=MANDATORY)
+    @UML (identifier="angle", obligation=MANDATORY, specification=ISO_19107)
     public double[] getAngles();
 
     /**
@@ -53,6 +54,6 @@ public interface Bearing {
      *
      * @return The direction.
      */
-/// @UML (identifier="direction", obligation=MANDATORY)
+    @UML (identifier="direction", obligation=MANDATORY, specification=ISO_19107)
     public double[] getDirection();
 }

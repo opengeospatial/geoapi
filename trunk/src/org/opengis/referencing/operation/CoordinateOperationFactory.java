@@ -18,9 +18,10 @@ import org.opengis.referencing.FactoryException;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 
 // Annotations
-///import org.opengis.annotation.UML;
-///import org.opengis.annotation.Extension;
-///import static org.opengis.annotation.Obligation.*;
+import org.opengis.annotation.UML;
+import org.opengis.annotation.Extension;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
 
 
 /**
@@ -32,7 +33,7 @@ import org.opengis.referencing.crs.CoordinateReferenceSystem;
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-009.pdf">Implementation specification 1.0</A>
  */
-///@UML (identifier="CT_CoordinateTransformationFactory")
+@UML (identifier="CT_CoordinateTransformationFactory", specification=OGC_01_009)
 public interface CoordinateOperationFactory extends ObjectFactory {
     /**
      * Returns an operation for conversion or transformation between two coordinate reference systems.
@@ -46,7 +47,7 @@ public interface CoordinateOperationFactory extends ObjectFactory {
      *         to <code>targetCRS</code>.
      * @throws FactoryException if the operation creation failed for some other reason.
      */
-/// @UML (identifier="createFromCoordinateSystems")
+    @UML (identifier="createFromCoordinateSystems", specification=OGC_01_009)
     CoordinateOperation createOperation(CoordinateReferenceSystem sourceCRS,
                                         CoordinateReferenceSystem targetCRS)
             throws OperationNotFoundException, FactoryException;
@@ -72,7 +73,7 @@ public interface CoordinateOperationFactory extends ObjectFactory {
      *          The user could have more fine grain control with {@link MathTransformFactory} (ported
      *          from OGC 2001-09).
      */
-/// @Extension
+    @Extension
     CoordinateOperation createOperation(CoordinateReferenceSystem sourceCRS,
                                         CoordinateReferenceSystem targetCRS,
                                         OperationMethod           method)
@@ -87,7 +88,7 @@ public interface CoordinateOperationFactory extends ObjectFactory {
      * @return The concatenated operation.
      * @throws FactoryException if the object creation failed.
      */
-/// @Extension
+    @Extension
     CoordinateOperation createConcatenatedOperation(Map properties, CoordinateOperation[] operations)
             throws FactoryException;
 }

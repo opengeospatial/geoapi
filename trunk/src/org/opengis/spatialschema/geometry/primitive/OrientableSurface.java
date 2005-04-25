@@ -13,8 +13,9 @@ package org.opengis.spatialschema.geometry.primitive;
 import org.opengis.spatialschema.geometry.complex.CompositeSurface;
 
 // Annotations
-///import org.opengis.annotation.UML;
-///import static org.opengis.annotation.Obligation.*;
+import org.opengis.annotation.UML;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
 
 
 /**
@@ -26,9 +27,9 @@ import org.opengis.spatialschema.geometry.complex.CompositeSurface;
  *  
  * @author ISO/DIS 19107
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
- * @version 2.0
+ * @version <A HREF="http://www.opengis.org/docs/01-101.pdf">Abstract specification 5</A>
  */
-///@UML (identifier="GM_OrientableSurface")
+@UML (identifier="GM_OrientableSurface", specification=ISO_19107)
 public interface OrientableSurface extends OrientablePrimitive {
     /**
      * Returns the set of circular sequences of {@linkplain OrientableCurve orientable curve} that
@@ -47,7 +48,7 @@ public interface OrientableSurface extends OrientablePrimitive {
      *
      * @return The sets of positions on the boundary.
      */
-/// @UML (identifier="boundary", obligation=MANDATORY)
+/// @UML (identifier="boundary", obligation=MANDATORY, specification=ISO_19107)
 /// public SurfaceBoundary getBoundary();
 
     /**
@@ -58,6 +59,6 @@ public interface OrientableSurface extends OrientablePrimitive {
      * @revisit I'm not sure to interpret correctly the ISO specification.
      *          Sound like ISO returns an array (or a sequence) here.
      */
-/// @UML (identifier="composite", obligation=MANDATORY)
+    @UML (identifier="composite", obligation=MANDATORY, specification=ISO_19107)
     public CompositeSurface getComposite();
 }

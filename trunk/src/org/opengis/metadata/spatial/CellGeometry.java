@@ -17,8 +17,9 @@ import java.util.ArrayList;
 import org.opengis.util.CodeList;
 
 // Annotations
-///import org.opengis.annotation.UML;
-///import static org.opengis.annotation.Obligation.*;
+import org.opengis.annotation.UML;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
 
 
 /**
@@ -28,7 +29,7 @@ import org.opengis.util.CodeList;
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
  */
-///@UML (identifier="MD_CellGeometryCode")
+@UML (identifier="MD_CellGeometryCode", specification=ISO_19115)
 public final class CellGeometry extends CodeList {
     /**
      * Serial number for compatibility with different versions.
@@ -44,13 +45,13 @@ public final class CellGeometry extends CodeList {
     /**
      * Each cell represents a point.
      */
-/// @UML (identifier="point", obligation=CONDITIONAL)
+    @UML (identifier="point", obligation=CONDITIONAL, specification=ISO_19115)
     public static final CellGeometry POINT = new CellGeometry("POINT");
 
     /**
      * Each cell represents an area.
      */
-/// @UML (identifier="area", obligation=CONDITIONAL)
+    @UML (identifier="area", obligation=CONDITIONAL, specification=ISO_19115)
     public static final CellGeometry AREA = new CellGeometry("AREA");
 
     /**

@@ -14,8 +14,9 @@ import org.opengis.spatialschema.geometry.DirectPosition;
 import org.opengis.spatialschema.geometry.primitive.Bearing;
 
 // Annotations
-///import org.opengis.annotation.UML;
-///import static org.opengis.annotation.Obligation.*;
+import org.opengis.annotation.UML;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
 
 
 /**
@@ -53,12 +54,12 @@ import org.opengis.spatialschema.geometry.primitive.Bearing;
  *
  * @author ISO/DIS 19107
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
- * @version 2.0
+ * @version <A HREF="http://www.opengis.org/docs/01-101.pdf">Abstract specification 5</A>
  *
  * @see GeometryFactory#createArc(Position,Position,Position)
  * @see GeometryFactory#createArc(Position,Position,double,double[])
  */
-///@UML (identifier="GM_Arc")
+@UML (identifier="GM_Arc", specification=ISO_19107)
 public interface Arc extends ArcString {
     /**
      * Calculates the center of the circle of which this arc is a portion as a direct position.
@@ -71,7 +72,7 @@ public interface Arc extends ArcString {
      *
      * @return The center of the circle of which this arc is a portion.
      */
-/// @UML (identifier="center", obligation=MANDATORY)
+    @UML (identifier="center", obligation=MANDATORY, specification=ISO_19107)
     public DirectPosition getCenter();
 
     /**
@@ -80,7 +81,7 @@ public interface Arc extends ArcString {
      * @return The radius of the circle of which this arc is a portion.
      * @unitof Distance
      */
-/// @UML (identifier="radius", obligation=MANDATORY)
+    @UML (identifier="radius", obligation=MANDATORY, specification=ISO_19107)
     public double getRadius();
 
     /**
@@ -95,7 +96,7 @@ public interface Arc extends ArcString {
      * @revisit Inconsistent UML: "startAngle" and "startOfArc" are both used.
      *          Which one is the right one?
      */
-/// @UML (identifier="startAngle", obligation=MANDATORY)
+    @UML (identifier="startAngle", obligation=MANDATORY, specification=ISO_19107)
     public Bearing getStartAngle();
 
     /**
@@ -110,6 +111,6 @@ public interface Arc extends ArcString {
      * @revisit Inconsistent UML: "endAngle" and "endOfArc" are both used.
      *          Which one is the right one?
      */
-/// @UML (identifier="endAngle", obligation=MANDATORY)
+    @UML (identifier="endAngle", obligation=MANDATORY, specification=ISO_19107)
     public Bearing getEndAngle();
 }

@@ -17,8 +17,9 @@ import java.util.ArrayList;
 import org.opengis.util.CodeList;
 
 // Annotations
-///import org.opengis.annotation.UML;
-///import static org.opengis.annotation.Obligation.*;
+import org.opengis.annotation.UML;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
 
 
 /**
@@ -28,7 +29,7 @@ import org.opengis.util.CodeList;
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
  */
-///@UML (identifier="MD_ProgressCode")
+@UML (identifier="MD_ProgressCode", specification=ISO_19115)
 public final class Progress extends CodeList {
     /**
      * Serial number for compatibility with different versions.
@@ -44,43 +45,43 @@ public final class Progress extends CodeList {
     /**
      * Production of the data has been completed.
      */
-/// @UML (identifier="completed", obligation=CONDITIONAL)
+    @UML (identifier="completed", obligation=CONDITIONAL, specification=ISO_19115)
     public static final Progress COMPLETED = new Progress("COMPLETED");
 
     /**
      * Data has been stored in an offline storage facility
      */
-/// @UML (identifier="historicalArchive", obligation=CONDITIONAL)
+    @UML (identifier="historicalArchive", obligation=CONDITIONAL, specification=ISO_19115)
     public static final Progress HISTORICAL_ARCHIVE = new Progress("HISTORICAL_ARCHIVE");
 
     /**
      * Data is no longer relevant.
      */
-/// @UML (identifier="obsolete", obligation=CONDITIONAL)
+    @UML (identifier="obsolete", obligation=CONDITIONAL, specification=ISO_19115)
     public static final Progress OBSOLETE = new Progress("OBSOLETE");
 
     /**
      * Data is continually being updated.
      */
-/// @UML (identifier="onGoing", obligation=CONDITIONAL)
+    @UML (identifier="onGoing", obligation=CONDITIONAL, specification=ISO_19115)
     public static final Progress ON_GOING = new Progress("ON_GOING");
 
     /**
      * Fixed date has been established upon or by which the data will be created or updated.
      */
-/// @UML (identifier="planned", obligation=CONDITIONAL)
+    @UML (identifier="planned", obligation=CONDITIONAL, specification=ISO_19115)
     public static final Progress PLANNED = new Progress("PLANNED");
 
     /**
      * Data needs to be generated or updated.
      */
-/// @UML (identifier="required", obligation=CONDITIONAL)
+    @UML (identifier="required", obligation=CONDITIONAL, specification=ISO_19115)
     public static final Progress REQUIRED = new Progress("REQUIRED");
 
     /**
      * Data is currently in the process of being created.
      */
-/// @UML (identifier="underdevelopment", obligation=CONDITIONAL)
+    @UML (identifier="underdevelopment", obligation=CONDITIONAL, specification=ISO_19115)
     public static final Progress UNDER_DEVELOPMENT = new Progress("UNDER_DEVELOPMENT");
 
     /**

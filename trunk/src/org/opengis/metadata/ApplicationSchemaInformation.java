@@ -16,8 +16,9 @@ import java.net.URI;
 import org.opengis.metadata.citation.Citation;
 
 // Annotations
-///import org.opengis.annotation.UML;
-///import static org.opengis.annotation.Obligation.*;
+import org.opengis.annotation.UML;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
 
 
 /**
@@ -27,24 +28,24 @@ import org.opengis.metadata.citation.Citation;
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
  */
-///@UML (identifier="MD_ApplicationSchemaInformation")
+@UML (identifier="MD_ApplicationSchemaInformation", specification=ISO_19115)
 public interface ApplicationSchemaInformation {
     /**
      * Name of the application schema used.
      */
-/// @UML (identifier="name", obligation=MANDATORY)
+    @UML (identifier="name", obligation=MANDATORY, specification=ISO_19115)
     Citation getName();
 
     /**
      * Identification of the schema language used.
      */
-/// @UML (identifier="schemaLanguage", obligation=MANDATORY)
+    @UML (identifier="schemaLanguage", obligation=MANDATORY, specification=ISO_19115)
     String getSchemaLanguage();
 
     /**
      * Formal language used in Application Schema.
      */
-/// @UML (identifier="constraintLanguage", obligation=MANDATORY)
+    @UML (identifier="constraintLanguage", obligation=MANDATORY, specification=ISO_19115)
     String getConstraintLanguage();
 
     /**
@@ -53,13 +54,13 @@ public interface ApplicationSchemaInformation {
      * @revisit In UML, the type was <code>CharacterString</code>. It is not clear if
      *          it should be the file name or the file content.
      */
-/// @UML (identifier="schemaAscii", obligation=OPTIONAL)
+    @UML (identifier="schemaAscii", obligation=OPTIONAL, specification=ISO_19115)
     URI getSchemaAscii();
 
     /**
      * Full application schema given as a graphics file.
      */
-/// @UML (identifier="graphicsFile", obligation=OPTIONAL)
+    @UML (identifier="graphicsFile", obligation=OPTIONAL, specification=ISO_19115)
     URI getGraphicsFile();
 
     /**
@@ -68,18 +69,18 @@ public interface ApplicationSchemaInformation {
      * @revisit In UML, the type was <code>binary</code>. It is not clear if
      *          it was intented to be the file content.
      */
-/// @UML (identifier="softwareDevelopmentFile", obligation=OPTIONAL)
+    @UML (identifier="softwareDevelopmentFile", obligation=OPTIONAL, specification=ISO_19115)
     URI getSoftwareDevelopmentFile();
 
     /**
      * Software dependent format used for the application schema software dependent file.
      */
-/// @UML (identifier="softwareDevelopmentFileFormat", obligation=OPTIONAL)
+    @UML (identifier="softwareDevelopmentFileFormat", obligation=OPTIONAL, specification=ISO_19115)
     String getSoftwareDevelopmentFileFormat();
 
     /**
      * Information about the spatial attributes in the application schema for the feature types.
      */
-/// @UML (identifier="featureCatalogueSupplement", obligation=OPTIONAL)
+    @UML (identifier="featureCatalogueSupplement", obligation=OPTIONAL, specification=ISO_19115)
     SpatialAttributeSupplement getFeatureCatalogueSupplement();
 }

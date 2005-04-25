@@ -10,8 +10,9 @@
 package org.opengis.referencing.cs;
 
 // Annotations
-///import org.opengis.annotation.UML;
-///import static org.opengis.annotation.Obligation.*;
+import org.opengis.annotation.UML;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
 
 
 /**
@@ -29,6 +30,6 @@ package org.opengis.referencing.cs;
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/03-073r1.zip">Abstract specification 2.0</A>
  */
-///@UML (identifier="CS_TimeCS")
+@UML (identifier="CS_TimeCS", specification=ISO_19111)
 public interface TimeCS extends CoordinateSystem {
 }

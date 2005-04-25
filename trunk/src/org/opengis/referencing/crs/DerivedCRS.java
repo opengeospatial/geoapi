@@ -10,8 +10,9 @@
 package org.opengis.referencing.crs;
 
 // Annotations
-///import org.opengis.annotation.UML;
-///import static org.opengis.annotation.Obligation.*;
+import org.opengis.annotation.UML;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
 
 
 /**
@@ -24,6 +25,6 @@ package org.opengis.referencing.crs;
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/03-073r1.zip">Abstract specification 2.0</A>
  */
-///@UML (identifier="SC_DerivedCRS")
+@UML (identifier="SC_DerivedCRS", specification=ISO_19111)
 public interface DerivedCRS extends GeneralDerivedCRS {
 }

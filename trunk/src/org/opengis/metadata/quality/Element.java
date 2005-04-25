@@ -19,8 +19,9 @@ import org.opengis.metadata.citation.Citation;
 import org.opengis.util.InternationalString;
 
 // Annotations
-///import org.opengis.annotation.UML;
-///import static org.opengis.annotation.Obligation.*;
+import org.opengis.annotation.UML;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
 
 
 /**
@@ -30,42 +31,42 @@ import org.opengis.util.InternationalString;
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
  */
-///@UML (identifier="DQ_Element")
+@UML (identifier="DQ_Element", specification=ISO_19115)
 public interface Element {
     /**
      * Name of the test applied to the data.
      */
-/// @UML (identifier="nameOfMeasure", obligation=OPTIONAL)
-    Collection/*<InternationalString>*/ getNamesOfMeasure();
+    @UML (identifier="nameOfMeasure", obligation=OPTIONAL, specification=ISO_19115)
+    Collection<InternationalString> getNamesOfMeasure();
 
     /**
      * Code identifying a registered standard procedure, or <code>null</code> if none.
      */
-/// @UML (identifier="measureIdentification", obligation=OPTIONAL)
+    @UML (identifier="measureIdentification", obligation=OPTIONAL, specification=ISO_19115)
     Identifier getMeasureIdentification();
 
     /**
      * Description of the measure being determined.
      */
-/// @UML (identifier="measureDescription", obligation=OPTIONAL)
+    @UML (identifier="measureDescription", obligation=OPTIONAL, specification=ISO_19115)
     InternationalString getMeasureDescription();
 
     /**
      * Type of method used to evaluate quality of the dataset, or <code>null</code> if unspecified.
      */
-/// @UML (identifier="evaluationMethodType", obligation=OPTIONAL)
+    @UML (identifier="evaluationMethodType", obligation=OPTIONAL, specification=ISO_19115)
     EvaluationMethodType getEvaluationMethodType();
 
     /**
      * Description of the evaluation method.
      */
-/// @UML (identifier="evaluationMethodDescription", obligation=OPTIONAL)
+    @UML (identifier="evaluationMethodDescription", obligation=OPTIONAL, specification=ISO_19115)
     InternationalString getEvaluationMethodDescription();
 
     /**
      * Reference to the procedure information, or <code>null</code> if none.
      */
-/// @UML (identifier="evaluationProcedure", obligation=OPTIONAL)
+    @UML (identifier="evaluationProcedure", obligation=OPTIONAL, specification=ISO_19115)
     Citation getEvaluationProcedure();
 
     /**
@@ -73,7 +74,7 @@ public interface Element {
      * The array length is 1 for a single date, or 2 for a range. Returns
      * <code>null</code> if this information is not available.
      */
-/// @UML (identifier="dateTime", obligation=OPTIONAL)
+    @UML (identifier="dateTime", obligation=OPTIONAL, specification=ISO_19115)
     Date[] getDate();
 
     /**
@@ -81,6 +82,6 @@ public interface Element {
      * come of evaluating the obtained value (or set of values) against a specified
      * acceptable conformance quality level.
      */
-/// @UML (identifier="result", obligation=MANDATORY)
+    @UML (identifier="result", obligation=MANDATORY, specification=ISO_19115)
     Result getResult();
 }

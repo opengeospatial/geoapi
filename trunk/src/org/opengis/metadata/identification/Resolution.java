@@ -10,10 +10,12 @@
 package org.opengis.metadata.identification;
 
 // Annotations
-///import org.opengis.annotation.UML;
-///import org.opengis.annotation.Profile;
-///import static org.opengis.annotation.Obligation.*;
-///import static org.opengis.annotation.ComplianceLevel.*;
+import org.opengis.annotation.UML;
+import org.opengis.annotation.Profile;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
+import static org.opengis.annotation.ComplianceLevel.*;
+import static org.opengis.annotation.Specification.*;
 
 
 /**
@@ -23,8 +25,8 @@ package org.opengis.metadata.identification;
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
  */
-///@Profile (level=CORE)
-///@UML (identifier="MD_Resolution")
+@Profile (level=CORE)
+@UML (identifier="MD_Resolution", specification=ISO_19115)
 public interface Resolution {
     /**
      * Level of detail expressed as the scale of a comparable hardcopy map or chart.
@@ -34,8 +36,8 @@ public interface Resolution {
      *
      * @unitof RepresentativeFraction
      */
-/// @Profile (level=CORE)
-/// @UML (identifier="equivalentScale", obligation=CONDITIONAL)
+    @Profile (level=CORE)
+    @UML (identifier="equivalentScale", obligation=CONDITIONAL, specification=ISO_19115)
     double getEquivalentScale();
 
     /**
@@ -45,7 +47,7 @@ public interface Resolution {
      *
      * @unitof Distance
      */
-/// @Profile (level=CORE)
-/// @UML (identifier="distance", obligation=CONDITIONAL)
+    @Profile (level=CORE)
+    @UML (identifier="distance", obligation=CONDITIONAL, specification=ISO_19115)
     double getDistance();
 }

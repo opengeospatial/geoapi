@@ -14,9 +14,10 @@ import java.util.Set;
 import javax.units.Unit;
 
 // Annotations
-///import org.opengis.annotation.UML;
-///import org.opengis.annotation.Extension;
-///import static org.opengis.annotation.Obligation.*;
+import org.opengis.annotation.UML;
+import org.opengis.annotation.Extension;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
 
 
 /**
@@ -30,7 +31,7 @@ import javax.units.Unit;
  * @see ParameterValue
  * @see ParameterDescriptorGroup
  */
-///@UML (identifier="CC_OperationParameter")
+@UML (identifier="CC_OperationParameter", specification=ISO_19111)
 public interface ParameterDescriptor extends GeneralParameterDescriptor {
     /**
      * Creates a new instance of {@linkplain ParameterValue parameter value}
@@ -44,7 +45,7 @@ public interface ParameterDescriptor extends GeneralParameterDescriptor {
     /**
      * Returns the class that describe the type of the parameter.
      */
-/// @UML (identifier="GC_ParameterInfo.type", obligation=MANDATORY)
+    @UML (identifier="GC_ParameterInfo.type", obligation=MANDATORY, specification=ISO_19111)
     Class getValueClass();
 
     /**
@@ -64,8 +65,8 @@ public interface ParameterDescriptor extends GeneralParameterDescriptor {
      *         {linkplain org.opengis.util.CodeList code list}),
      *         or <code>null</code> if it doesn't apply.
      */
-/// @Extension
-    Set/*<? extends Object>*/ getValidValues();
+    @Extension
+    Set<? extends Object> getValidValues();
 
     /**
      * Returns the default value for the parameter. The return type can be any type
@@ -74,7 +75,7 @@ public interface ParameterDescriptor extends GeneralParameterDescriptor {
      *
      * @return The default value, or <code>null</code> in none.
      */
-/// @UML (identifier="GC_ParameterInfo.defaultValue", obligation=OPTIONAL)
+    @UML (identifier="GC_ParameterInfo.defaultValue", obligation=OPTIONAL, specification=ISO_19111)
     Object getDefaultValue();
 
     /**
@@ -89,7 +90,7 @@ public interface ParameterDescriptor extends GeneralParameterDescriptor {
      * </p>
      * @return The minimum parameter value (often an instance of {@link Double}), or <code>null</code>.
      */
-/// @UML (identifier="GC_ParameterInfo.minimumValue", obligation=OPTIONAL)
+    @UML (identifier="GC_ParameterInfo.minimumValue", obligation=OPTIONAL, specification=ISO_19111)
     Comparable getMinimumValue();
 
     /**
@@ -104,7 +105,7 @@ public interface ParameterDescriptor extends GeneralParameterDescriptor {
      * </p>
      * @return The minimum parameter value (often an instance of {@link Double}), or <code>null</code>.
      */
-/// @UML (identifier="GC_ParameterInfo.maximumValue", obligation=OPTIONAL)
+    @UML (identifier="GC_ParameterInfo.maximumValue", obligation=OPTIONAL, specification=ISO_19111)
     Comparable getMaximumValue();
 
     /**
@@ -117,6 +118,6 @@ public interface ParameterDescriptor extends GeneralParameterDescriptor {
      *
      * @return The unit for numeric value, or <code>null</code> if it doesn't apply to the value type.
      */
-/// @Extension
+    @Extension
     Unit getUnit();
 }

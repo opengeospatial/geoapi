@@ -16,9 +16,10 @@ import java.util.List;
 import org.opengis.spatialschema.geometry.DirectPosition;
 
 // Annotations
-///import org.opengis.annotation.UML;
-///import org.opengis.annotation.Extension;
-///import static org.opengis.annotation.Obligation.*;
+import org.opengis.annotation.UML;
+import org.opengis.annotation.Extension;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
 
 
 /**
@@ -29,12 +30,12 @@ import org.opengis.spatialschema.geometry.DirectPosition;
  *  
  * @author ISO/DIS 19107
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
- * @version 2.0
+ * @version <A HREF="http://www.opengis.org/docs/01-101.pdf">Abstract specification 5</A>
  *
  * @see Position
  * @see PointArray
  */
-///@UML (identifier="GM_PointGrid")
+@UML (identifier="GM_PointGrid", specification=ISO_19107)
 public interface PointGrid {
     /**
      * Returns the width of this grid. All {@linkplain PointArray point array}
@@ -43,7 +44,7 @@ public interface PointGrid {
      * @return The grid width.
      * @see PointArray#length
      */
-/// @Extension
+    @Extension
     public int width();
 
     /**
@@ -52,7 +53,7 @@ public interface PointGrid {
      *
      * @return The grid height.
      */
-/// @Extension
+    @Extension
     public int height();
 
     /**
@@ -64,7 +65,7 @@ public interface PointGrid {
      * @return The point at the given index.
      * @throws IndexOutOfBoundsException if an index is out of bounds.
      */
-/// @Extension
+    @Extension
     public DirectPosition get(int row, int column) throws IndexOutOfBoundsException;
 
     /**
@@ -90,7 +91,7 @@ public interface PointGrid {
      * @return The <code>dest</code> argument, or a new object if <code>dest</code> was null.
      * @throws IndexOutOfBoundsException if an index is out of bounds.
      */
-/// @Extension
+    @Extension
     public DirectPosition get(int row, int column, DirectPosition dest) throws IndexOutOfBoundsException;
 
     /**
@@ -105,7 +106,7 @@ public interface PointGrid {
      * @throws IndexOutOfBoundsException if an index is out of bounds.
      * @throws UnsupportedOperationException if this grid is immutable.
      */
-/// @Extension
+    @Extension
     public void set(int row, int column, DirectPosition position) throws IndexOutOfBoundsException,
                                                                          UnsupportedOperationException;
 
@@ -118,7 +119,7 @@ public interface PointGrid {
      * @return The row at the given index.
      * @throws IndexOutOfBoundsException if the index is out of bounds.
      */
-/// @Extension
+    @Extension
     public PointArray getRow(int row) throws IndexOutOfBoundsException;
 
     /**
@@ -128,6 +129,6 @@ public interface PointGrid {
      *
      * @return The rows in this grid.
      */
-/// @UML (identifier="row", obligation=MANDATORY)
-    public List/*<PointArray>*/ rows();
+    @UML (identifier="row", obligation=MANDATORY, specification=ISO_19107)
+    public List<PointArray> rows();
 }

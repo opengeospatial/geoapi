@@ -17,8 +17,9 @@ import java.util.ArrayList;
 import org.opengis.util.CodeList;
 
 // Annotations
-///import org.opengis.annotation.UML;
-///import static org.opengis.annotation.Obligation.*;
+import org.opengis.annotation.UML;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
 
 
 /**
@@ -28,7 +29,7 @@ import org.opengis.util.CodeList;
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/03-073r1.zip">Abstract specification 2.0</A>
  */
-///@UML (identifier="CD_PixelInCell")
+@UML (identifier="CD_PixelInCell", specification=ISO_19111)
 public final class PixelInCell extends CodeList {
     /**
      * Serial number for compatibility with different versions.
@@ -44,14 +45,14 @@ public final class PixelInCell extends CodeList {
     /**
      * The origin of the image coordinate system is the centre of a grid cell or image pixel.
      */
-/// @UML (identifier="cell center", obligation=CONDITIONAL)
+    @UML (identifier="cell center", obligation=CONDITIONAL, specification=ISO_19111)
     public static final PixelInCell CELL_CENTER = new PixelInCell("CELL_CENTER");
 
     /**
      * The origin of the image coordinate system is the corner of a grid cell, or half-way
      * between the centres of adjacent image pixels.
      */
-/// @UML (identifier="cell corner", obligation=CONDITIONAL)
+    @UML (identifier="cell corner", obligation=CONDITIONAL, specification=ISO_19111)
     public static final PixelInCell CELL_CORNER = new PixelInCell("CELL_CORNER");
 
     /**

@@ -17,8 +17,9 @@ import javax.units.Unit;
 import org.opengis.util.InternationalString;
 
 // Annotations
-///import org.opengis.annotation.UML;
-///import static org.opengis.annotation.Obligation.*;
+import org.opengis.annotation.UML;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
 
 
 /**
@@ -28,43 +29,43 @@ import org.opengis.util.InternationalString;
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
  */
-///@UML (identifier="MD_Medium")
+@UML (identifier="MD_Medium", specification=ISO_19115)
 public interface Medium {
     /**
      * Name of the medium on which the resource can be received.
      */
-/// @UML (identifier="name", obligation=OPTIONAL)
+    @UML (identifier="name", obligation=OPTIONAL, specification=ISO_19115)
     MediumName getName();
 
     /**
      * Density at which the data is recorded.
      * The numbers should be greater than zero.
      */
-/// @UML (identifier="density", obligation=OPTIONAL)
-    Collection/*<Number>*/ getDensities();
+    @UML (identifier="density", obligation=OPTIONAL, specification=ISO_19115)
+    Collection<Number> getDensities();
 
     /**
      * Units of measure for the recording density.
      */
-/// @UML (identifier="densityUnits", obligation=CONDITIONAL)
+    @UML (identifier="densityUnits", obligation=CONDITIONAL, specification=ISO_19115)
     Unit getDensityUnits();
 
     /**
      * Number of items in the media identified.
      * Returns <code>null</code> if unknown.
      */
-/// @UML (identifier="volumes", obligation=OPTIONAL)
+    @UML (identifier="volumes", obligation=OPTIONAL, specification=ISO_19115)
     Integer getVolumes();
 
     /**
      * Method used to write to the medium.
      */
-/// @UML (identifier="mediumFormat", obligation=OPTIONAL)
-    Collection/*<MediumFormat>*/ getMediumFormats();
+    @UML (identifier="mediumFormat", obligation=OPTIONAL, specification=ISO_19115)
+    Collection<MediumFormat> getMediumFormats();
 
     /**
      * Description of other limitations or requirements for using the medium.
      */
-/// @UML (identifier="mediumNote", obligation=OPTIONAL)
+    @UML (identifier="mediumNote", obligation=OPTIONAL, specification=ISO_19115)
     InternationalString getMediumNote();
 }

@@ -17,8 +17,9 @@ import java.util.ArrayList;
 import org.opengis.util.CodeList;
 
 // Annotations
-///import org.opengis.annotation.UML;
-///import static org.opengis.annotation.Obligation.*;
+import org.opengis.annotation.UML;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
 
 
 /**
@@ -26,9 +27,9 @@ import org.opengis.util.CodeList;
  *
  * @author ISO/DIS 19107
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
- * @version 2.0
+ * @version <A HREF="http://www.opengis.org/docs/01-101.pdf">Abstract specification 5</A>
  */
-///@UML (identifier="GM_SurfaceInterpolation")
+@UML (identifier="GM_SurfaceInterpolation", specification=ISO_19107)
 public final class SurfaceInterpolation extends CodeList {
     /**
      * Serial number for compatibility with different versions.
@@ -45,7 +46,7 @@ public final class SurfaceInterpolation extends CodeList {
      * The interior of the surface is not specified. The assumption is that the surface
      * follows the reference surface defined by the coordinate reference system.
      */
-/// @UML (identifier="none", obligation=CONDITIONAL)
+    @UML (identifier="none", obligation=CONDITIONAL, specification=ISO_19107)
     public static final SurfaceInterpolation NONE = new SurfaceInterpolation(
                                             "NONE");
 
@@ -53,35 +54,35 @@ public final class SurfaceInterpolation extends CodeList {
      * The interpolation method shall return points on a single plane. The boundary in this
      * case shall be contained within that plane.
      */
-/// @UML (identifier="planar", obligation=CONDITIONAL)
+    @UML (identifier="planar", obligation=CONDITIONAL, specification=ISO_19107)
     public static final SurfaceInterpolation PLANAR = new SurfaceInterpolation(
                                             "PLANAR");
 
     /**
      * The surface is a section of a spherical surface.
      */
-/// @UML (identifier="spherical", obligation=CONDITIONAL)
+    @UML (identifier="spherical", obligation=CONDITIONAL, specification=ISO_19107)
     public static final SurfaceInterpolation SPHERICAL = new SurfaceInterpolation(
                                             "SPHERICAL");
 
     /**
      * The surface is a section of a elliptical surface.
      */
-/// @UML (identifier="elliptical", obligation=CONDITIONAL)
+    @UML (identifier="elliptical", obligation=CONDITIONAL, specification=ISO_19107)
     public static final SurfaceInterpolation ELLIPTICAL = new SurfaceInterpolation(
                                             "ELLIPTICAL");
 
     /**
      * The surface is a section of a conic surface.
      */
-/// @UML (identifier="conic", obligation=CONDITIONAL)
+    @UML (identifier="conic", obligation=CONDITIONAL, specification=ISO_19107)
     public static final SurfaceInterpolation CONIC = new SurfaceInterpolation(
                                             "CONIC");
 
     /**
      * The control points are organized into adjoining triangles, which form small planar segments.
      */
-/// @UML (identifier="tin", obligation=CONDITIONAL)
+    @UML (identifier="tin", obligation=CONDITIONAL, specification=ISO_19107)
     public static final SurfaceInterpolation TIN = new SurfaceInterpolation(
                                             "TIN");
 
@@ -89,7 +90,7 @@ public final class SurfaceInterpolation extends CodeList {
      * The control points are organized into a 2-dimensional grid and each cell
      * within the grid is spanned by a surface which shall be defined by a family of curves.
      */
-/// @UML (identifier="parametricCurve", obligation=CONDITIONAL)
+    @UML (identifier="parametricCurve", obligation=CONDITIONAL, specification=ISO_19107)
     public static final SurfaceInterpolation PARAMETRIC_CURVE = new SurfaceInterpolation(
                                             "PARAMETRIC_CURVE");
 
@@ -97,7 +98,7 @@ public final class SurfaceInterpolation extends CodeList {
      * The control points are organized into an irregular 2-dimensional grid and
      * each cell within this grid is spanned by a polynomial spline function.
      */
-/// @UML (identifier="polynomialSpline", obligation=CONDITIONAL)
+    @UML (identifier="polynomialSpline", obligation=CONDITIONAL, specification=ISO_19107)
     public static final SurfaceInterpolation POLYNOMIAL_SPLINE = new SurfaceInterpolation(
                                             "POLYNOMIAL_SPLINE");
 
@@ -105,7 +106,7 @@ public final class SurfaceInterpolation extends CodeList {
      * The control points are organized into an irregular 2-dimensional grid and each cell
      * within this grid is spanned by a rational (quotient of polynomials) spline function.
      */
-/// @UML (identifier="rationalSpline", obligation=CONDITIONAL)
+    @UML (identifier="rationalSpline", obligation=CONDITIONAL, specification=ISO_19107)
     public static final SurfaceInterpolation RATIONAL_SPLINE = new SurfaceInterpolation(
                                             "RATIONAL_SPLINE");
 
@@ -113,7 +114,7 @@ public final class SurfaceInterpolation extends CodeList {
      * The control points are organized into adjoining triangles, each of
      * which is spanned by a polynomial spline function.
      */
-/// @UML (identifier="triangulatedSpline", obligation=CONDITIONAL)
+    @UML (identifier="triangulatedSpline", obligation=CONDITIONAL, specification=ISO_19107)
     public static final SurfaceInterpolation TRIANGULATED_SPLINE = new SurfaceInterpolation(
                                             "TRIANGULATED_SPLINE");
 

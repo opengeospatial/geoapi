@@ -13,8 +13,9 @@ package org.opengis.referencing.crs;
 import org.opengis.referencing.datum.EngineeringDatum;
 
 // Annotations
-///import org.opengis.annotation.UML;
-///import static org.opengis.annotation.Obligation.*;
+import org.opengis.annotation.UML;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
 
 
 /**
@@ -42,11 +43,11 @@ import org.opengis.referencing.datum.EngineeringDatum;
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/03-073r1.zip">Abstract specification 2.0</A>
  */
-///@UML (identifier="SC_EngineeringCRS")
+@UML (identifier="SC_EngineeringCRS", specification=ISO_19111)
 public interface EngineeringCRS extends SingleCRS {
     /**
      * Returns the datum, which must be an engineering one.
      */
-/// @UML (identifier="usesDatum", obligation=MANDATORY)
+/// @UML (identifier="usesDatum", obligation=MANDATORY, specification=ISO_19111)
 /// EngineeringDatum getDatum();
 }

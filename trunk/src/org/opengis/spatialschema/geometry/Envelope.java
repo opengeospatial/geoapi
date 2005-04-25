@@ -13,9 +13,10 @@ package org.opengis.spatialschema.geometry;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 
 // Annotations
-///import org.opengis.annotation.UML;
-///import org.opengis.annotation.Extension;
-///import static org.opengis.annotation.Obligation.*;
+import org.opengis.annotation.UML;
+import org.opengis.annotation.Extension;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
 
 
 /**
@@ -27,16 +28,16 @@ import org.opengis.referencing.crs.CoordinateReferenceSystem;
  *
  * @author ISO/DIS 19107
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
- * @version 2.0
+ * @version <A HREF="http://www.opengis.org/docs/01-101.pdf">Abstract specification 5</A>
  */
-///@UML (identifier="GM_Envelope")
+@UML (identifier="GM_Envelope", specification=ISO_19107)
 public interface Envelope {
     /**
      * The length of coordinate sequence (the number of entries) in this envelope.
      *
      * @return The dimensionality of this envelope.
      */
-/// @Extension
+    @Extension
     int getDimension();
 
     /**
@@ -49,25 +50,25 @@ public interface Envelope {
      *
      * @return The coordinate reference system, or <code>null</code>.
      */
-/// @Extension
+    @Extension
     CoordinateReferenceSystem getCoordinateReferenceSystem();
     
     /**
      * Returns the minimal ordinate along the specified dimension.
      */
-/// @Extension
+    @Extension
     double getMinimum(final int dimension);
     
     /**
      * Returns the maximal ordinate along the specified dimension.
      */
-/// @Extension
+    @Extension
     double getMaximum(final int dimension);
     
     /**
      * Returns the center ordinate along the specified dimension.
      */
-/// @Extension
+    @Extension
     double getCenter(final int dimension);
     
     /**
@@ -75,7 +76,7 @@ public interface Envelope {
      * This length is equals to the {@linkplain #getMaximum maximum ordinate}
      * minus the {@linkplain #getMinimum minimal ordinate}.
      */
-/// @Extension
+    @Extension
     double getLength(final int dimension);
 
     /**
@@ -84,7 +85,7 @@ public interface Envelope {
      *
      * @return The upper corner.
      */
-/// @UML (identifier="upperCorner", obligation=MANDATORY)
+    @UML (identifier="upperCorner", obligation=MANDATORY, specification=ISO_19107)
     DirectPosition getUpperCorner();
 
     /**
@@ -93,6 +94,6 @@ public interface Envelope {
      *
      * @return The lower corner.
      */
-/// @UML (identifier="lowerCorner", obligation=MANDATORY)
+    @UML (identifier="lowerCorner", obligation=MANDATORY, specification=ISO_19107)
     DirectPosition getLowerCorner();
 }

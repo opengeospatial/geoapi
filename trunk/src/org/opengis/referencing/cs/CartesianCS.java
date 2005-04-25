@@ -10,8 +10,9 @@
 package org.opengis.referencing.cs;
 
 // Annotations
-///import org.opengis.annotation.UML;
-///import static org.opengis.annotation.Obligation.*;
+import org.opengis.annotation.UML;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
 
 
 /**
@@ -36,6 +37,6 @@ package org.opengis.referencing.cs;
  *
  * @see AffineCS
  */
-///@UML (identifier="CS_CartesianCS")
+@UML (identifier="CS_CartesianCS", specification=ISO_19111)
 public interface CartesianCS extends AffineCS {
 }

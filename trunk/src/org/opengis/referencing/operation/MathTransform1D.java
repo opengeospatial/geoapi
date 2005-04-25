@@ -10,7 +10,7 @@
 package org.opengis.referencing.operation;
 
 // Annotations
-///import org.opengis.annotation.Extension;
+import org.opengis.annotation.Extension;
 
 
 /**
@@ -23,7 +23,7 @@ package org.opengis.referencing.operation;
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 1.0
  */
-///@Extension
+@Extension
 public interface MathTransform1D extends MathTransform {
     /**
      * Transforms the specified value.

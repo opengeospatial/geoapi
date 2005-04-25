@@ -19,8 +19,9 @@ import java.awt.image.RenderedImage;   // For Javadoc
 import org.opengis.coverage.Coverage;
 
 // Annotations
-///import org.opengis.annotation.UML;
-///import static org.opengis.annotation.Obligation.*;
+import org.opengis.annotation.UML;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
 
 
 /**
@@ -28,20 +29,32 @@ import org.opengis.coverage.Coverage;
  * A <code>GridCoverage</code> implementation may provide the ability to update
  * grid values.
  *
+ * <P>&nbsp;</P>
+ * <TABLE WIDTH="80%" ALIGN="center" CELLPADDING="18" BORDER="4" BGCOLOR="#FFE0B0">
+ *   <TR><TD>
+ *     <P align="justify"><STRONG>WARNING: THIS CLASS WILL CHANGE.</STRONG> Current API is derived from OGC
+ *     <A HREF="http://www.opengis.org/docs/01-004.pdf">Grid Coverages Implementation specification 1.0</A>.
+ *     We plan to replace it by new interfaces derived from ISO 19123 (<CITE>Schema for coverage geometry
+ *     and functions</CITE>). Current interfaces should be considered as legacy and are included in this
+ *     distribution only because they were part of GeoAPI 1.0 release. We will try to preserve as much 
+ *     compatibility as possible, but no migration plan has been determined yet.</P>
+ *   </TD></TR>
+ * </TABLE>
+ *
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-004.pdf">Grid Coverage specification 1.0</A>
  *
  * @see RenderedImage
  * @see javax.media.jai.PixelAccessor
  */
-///@UML (identifier="CV_GridCoverage")
+@UML (identifier="CV_GridCoverage", specification=OGC_01_004)
 public interface GridCoverage extends Coverage {
     /**
      * Returns <code>true</code> if grid data can be edited.
      *
      * @return <code>true</code> if grid data can be edited.
      */
-/// @UML (identifier="dataEditable", obligation=MANDATORY)
+    @UML (identifier="dataEditable", obligation=MANDATORY, specification=OGC_01_004)
     boolean isDataEditable();
 
     /**
@@ -49,7 +62,7 @@ public interface GridCoverage extends Coverage {
      *
      * @return The information for the packing of grid coverage values.
      */
-/// @UML (identifier="gridPacking", obligation=MANDATORY)
+    @UML (identifier="gridPacking", obligation=MANDATORY, specification=OGC_01_004)
     GridPacking getGridPacking();
 
     /**
@@ -58,7 +71,7 @@ public interface GridCoverage extends Coverage {
      *
      * @return The information for the grid coverage geometry.
      */
-/// @UML (identifier="gridGeometry", obligation=MANDATORY)
+    @UML (identifier="gridGeometry", obligation=MANDATORY, specification=OGC_01_004)
     GridGeometry getGridGeometry();
 
     /**
@@ -74,7 +87,7 @@ public interface GridCoverage extends Coverage {
      * @return The optimal size to use for each dimension when accessing grid values,
      *         or <code>null</code> if none.
      */
-/// @UML (identifier="optimalDataBlockSizes", obligation=OPTIONAL)
+    @UML (identifier="optimalDataBlockSizes", obligation=OPTIONAL, specification=OGC_01_004)
     int[] getOptimalDataBlockSizes();
 
     /**
@@ -82,7 +95,7 @@ public interface GridCoverage extends Coverage {
      *
      * @return The number of predetermined overviews for the grid.
      */
-/// @UML (identifier="numOverviews", obligation=MANDATORY)
+    @UML (identifier="numOverviews", obligation=MANDATORY, specification=OGC_01_004)
     int getNumOverviews();
 
     /**
@@ -92,7 +105,7 @@ public interface GridCoverage extends Coverage {
      * @return The grid geometry for an overview.
      * @throws IndexOutOfBoundsException if <code>overviewIndex</code> is out of bounds.
      */
-/// @UML (identifier="getOverviewGridGeometry", obligation=MANDATORY)
+    @UML (identifier="getOverviewGridGeometry", obligation=MANDATORY, specification=OGC_01_004)
     GridGeometry getOverviewGridGeometry(int overviewIndex) throws IndexOutOfBoundsException;
 
     /**
@@ -130,7 +143,7 @@ public interface GridCoverage extends Coverage {
      * @return a pre-calculated overview for a grid coverage.
      * @throws IndexOutOfBoundsException if <code>overviewIndex</code> is out of bounds.
      */
-/// @UML (identifier="getOverview", obligation=MANDATORY)
+    @UML (identifier="getOverview", obligation=MANDATORY, specification=OGC_01_004)
     GridCoverage getOverview(int overviewIndex) throws IndexOutOfBoundsException;
 
     /**
@@ -169,7 +182,7 @@ public interface GridCoverage extends Coverage {
      *
      * @see #setDataBlock(GridRange, boolean[])
      */
-/// @UML (identifier="getDataBlockAsBoolean", obligation=MANDATORY)
+    @UML (identifier="getDataBlockAsBoolean", obligation=MANDATORY, specification=OGC_01_004)
     boolean[] getDataBlock(GridRange gridRange, boolean[] destination)
             throws InvalidRangeException, ArrayIndexOutOfBoundsException;
 
@@ -192,7 +205,7 @@ public interface GridCoverage extends Coverage {
      * @see #setDataBlock(GridRange, byte[])
      * @see javax.media.jai.UnpackedImageData#getByteData()
      */
-/// @UML (identifier="getDataBlockAsByte", obligation=MANDATORY)
+    @UML (identifier="getDataBlockAsByte", obligation=MANDATORY, specification=OGC_01_004)
     byte[] getDataBlock(GridRange gridRange, byte[] destination)
             throws InvalidRangeException, ArrayIndexOutOfBoundsException;
 
@@ -215,7 +228,7 @@ public interface GridCoverage extends Coverage {
      * @see #setDataBlock(GridRange, int[])
      * @see javax.media.jai.UnpackedImageData#getShortData()
      */
-/// @UML (identifier="getDataBlockAsInteger", obligation=MANDATORY)
+    @UML (identifier="getDataBlockAsInteger", obligation=MANDATORY, specification=OGC_01_004)
     short[] getDataBlock(GridRange gridRange, short[] destination)
             throws InvalidRangeException, ArrayIndexOutOfBoundsException;
 
@@ -239,7 +252,7 @@ public interface GridCoverage extends Coverage {
      * @see Raster#getPixels(int,int,int,int,int[])
      * @see javax.media.jai.UnpackedImageData#getIntData()
      */
-/// @UML (identifier="getDataBlockAsInteger", obligation=MANDATORY)
+    @UML (identifier="getDataBlockAsInteger", obligation=MANDATORY, specification=OGC_01_004)
     int[] getDataBlock(GridRange gridRange, int[] destination)
             throws InvalidRangeException, ArrayIndexOutOfBoundsException;
 
@@ -319,7 +332,7 @@ public interface GridCoverage extends Coverage {
      * @see Raster#getPixels(int,int,int,int,double[])
      * @see javax.media.jai.UnpackedImageData#getDoubleData()
      */
-/// @UML (identifier="getValueBlockAsDouble", obligation=MANDATORY)
+    @UML (identifier="getValueBlockAsDouble", obligation=MANDATORY, specification=OGC_01_004)
     double[] getDataBlock(GridRange gridRange, double[] destination)
             throws InvalidRangeException, ArrayIndexOutOfBoundsException;
 
@@ -375,7 +388,7 @@ public interface GridCoverage extends Coverage {
      *          of type <code>byte[]</code>. Even the <code>java.nio.Buffer</code> doesnt allow
      *          that (it allows the opposite way however).
      */
-/// @UML (identifier="getPackedDataBlock", obligation=MANDATORY)
+    @UML (identifier="getPackedDataBlock", obligation=MANDATORY, specification=OGC_01_004)
     byte[] getPackedDataBlock(GridRange gridRange) throws InvalidRangeException;
 
     /**
@@ -391,7 +404,7 @@ public interface GridCoverage extends Coverage {
      * @see #isDataEditable
      * @see #getDataBlock(GridRange, boolean[])
      */
-/// @UML (identifier="setDataBlockAsBoolean", obligation=MANDATORY)
+    @UML (identifier="setDataBlockAsBoolean", obligation=MANDATORY, specification=OGC_01_004)
     void setDataBlock(GridRange gridRange, boolean[] values)
             throws InvalidRangeException, GridNotEditableException, ArrayIndexOutOfBoundsException;
 
@@ -408,7 +421,7 @@ public interface GridCoverage extends Coverage {
      * @see #isDataEditable
      * @see #getDataBlock(GridRange, byte[])
      */
-/// @UML (identifier="setDataBlockAsByte", obligation=MANDATORY)
+    @UML (identifier="setDataBlockAsByte", obligation=MANDATORY, specification=OGC_01_004)
     void setDataBlock(GridRange gridRange, byte[] values)
             throws InvalidRangeException, GridNotEditableException, ArrayIndexOutOfBoundsException;
 
@@ -425,7 +438,7 @@ public interface GridCoverage extends Coverage {
      * @see #isDataEditable
      * @see #getDataBlock(GridRange, short[])
      */
-/// @UML (identifier="setDataBlockAsByte", obligation=MANDATORY)
+    @UML (identifier="setDataBlockAsByte", obligation=MANDATORY, specification=OGC_01_004)
     void setDataBlock(GridRange gridRange, short[] values)
             throws InvalidRangeException, GridNotEditableException, ArrayIndexOutOfBoundsException;
 
@@ -443,7 +456,7 @@ public interface GridCoverage extends Coverage {
      * @see #getDataBlock(GridRange, int[])
      * @see WritableRaster#setPixels(int,int,int,int,int[])
      */
-/// @UML (identifier="setDataBlockAsInteger", obligation=MANDATORY)
+    @UML (identifier="setDataBlockAsInteger", obligation=MANDATORY, specification=OGC_01_004)
     void setDataBlock(GridRange gridRange, int[] values)
             throws InvalidRangeException, GridNotEditableException, ArrayIndexOutOfBoundsException;
 
@@ -461,7 +474,7 @@ public interface GridCoverage extends Coverage {
      * @see #getDataBlock(GridRange, float[])
      * @see WritableRaster#setPixels(int,int,int,int,float[])
      */
-/// @UML (identifier="setDataBlockAsInteger", obligation=MANDATORY)
+    @UML (identifier="setDataBlockAsInteger", obligation=MANDATORY, specification=OGC_01_004)
     void setDataBlock(GridRange gridRange, float[] values)
             throws InvalidRangeException, GridNotEditableException, ArrayIndexOutOfBoundsException;
 
@@ -498,7 +511,7 @@ public interface GridCoverage extends Coverage {
      * @see #getDataBlock(GridRange, double[])
      * @see WritableRaster#setPixels(int,int,int,int,double[])
      */
-/// @UML (identifier="setDataBlockAsDouble", obligation=MANDATORY)
+    @UML (identifier="setDataBlockAsDouble", obligation=MANDATORY, specification=OGC_01_004)
     void setDataBlock(GridRange gridRange, double[] values)
             throws InvalidRangeException, GridNotEditableException, ArrayIndexOutOfBoundsException;
 
@@ -516,7 +529,7 @@ public interface GridCoverage extends Coverage {
      *          <code>byte[]</code> argument type, since we can't easily cast an array
      *          of <code>byte[]</code> to an array of arbitrary type.
      */
-/// @UML (identifier="setPackedDataBlock", obligation=MANDATORY)
+    @UML (identifier="setPackedDataBlock", obligation=MANDATORY, specification=OGC_01_004)
     void setPackedDataBlock(GridRange gridRange, byte[] values)
             throws InvalidRangeException, GridNotEditableException, ArrayIndexOutOfBoundsException;
 }

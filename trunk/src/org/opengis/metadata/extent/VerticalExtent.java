@@ -16,8 +16,9 @@ import javax.units.Unit;
 import org.opengis.referencing.datum.VerticalDatum;
 
 // Annotations
-///import org.opengis.annotation.UML;
-///import static org.opengis.annotation.Obligation.*;
+import org.opengis.annotation.UML;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
 
 
 /**
@@ -27,31 +28,31 @@ import org.opengis.referencing.datum.VerticalDatum;
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
  */
-///@UML (identifier="EX_VerticalExtent")
+@UML (identifier="EX_VerticalExtent", specification=ISO_19115)
 public interface VerticalExtent {
     /**
      * Returns the lowest vertical extent contained in the dataset.
      */
-/// @UML (identifier="minimumValue", obligation=MANDATORY)
+    @UML (identifier="minimumValue", obligation=MANDATORY, specification=ISO_19115)
     double getMinimumValue();
 
     /**
      * Returns the highest vertical extent contained in the dataset.
      */
-/// @UML (identifier="maximumValue", obligation=MANDATORY)
+    @UML (identifier="maximumValue", obligation=MANDATORY, specification=ISO_19115)
     double getMaximumValue();
 
     /**
      * Returns the vertical units used for vertical extent information.
      * Examples: metres, feet, millimetres, hectopascals.
      */
-/// @UML (identifier="unitOfMeasure", obligation=MANDATORY)
+    @UML (identifier="unitOfMeasure", obligation=MANDATORY, specification=ISO_19115)
     Unit getUnit();
 
     /**
      * Provides information about the origin from which the
      * maximum and minimum elevation values are measured.
      */
-/// @UML (identifier="verticalDatum", obligation=MANDATORY)
+    @UML (identifier="verticalDatum", obligation=MANDATORY, specification=ISO_19115)
     VerticalDatum getVerticalDatum();
 }

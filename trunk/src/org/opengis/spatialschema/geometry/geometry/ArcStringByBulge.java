@@ -17,8 +17,9 @@ import org.opengis.spatialschema.geometry.primitive.CurveInterpolation;
 import org.opengis.spatialschema.geometry.primitive.CurveSegment;
 
 // Annotations
-///import org.opengis.annotation.UML;
-///import static org.opengis.annotation.Obligation.*;
+import org.opengis.annotation.UML;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
 
 
 /**
@@ -31,11 +32,11 @@ import org.opengis.spatialschema.geometry.primitive.CurveSegment;
  *  
  * @author ISO/DIS 19107
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
- * @version 2.0
+ * @version <A HREF="http://www.opengis.org/docs/01-101.pdf">Abstract specification 5</A>
  *
  * @see GeometryFactory#createArcStringByBulge
  */
-///@UML (identifier="GM_ArcStringByBulge")
+@UML (identifier="GM_ArcStringByBulge", specification=ISO_19107)
 public interface ArcStringByBulge extends CurveSegment {
     /**
      * Returns the offset of each arc's midpoint. The attribute "bulge" is the real number
@@ -60,7 +61,7 @@ public interface ArcStringByBulge extends CurveSegment {
      *
      * @return The offset of each arc's midpoint.
      */
-/// @UML (identifier="bulge", obligation=MANDATORY)
+    @UML (identifier="bulge", obligation=MANDATORY, specification=ISO_19107)
     public double[] getBulges();
 
     /**
@@ -74,7 +75,7 @@ public interface ArcStringByBulge extends CurveSegment {
      *
      * @return The number of circular arcs.
      */
-/// @UML (identifier="numArc", obligation=MANDATORY)
+    @UML (identifier="numArc", obligation=MANDATORY, specification=ISO_19107)
     public int getNumArc();
 
     /**
@@ -93,8 +94,8 @@ public interface ArcStringByBulge extends CurveSegment {
      *
      * @return The sequence of normal vectors.
      */
-/// @UML (identifier="normal", obligation=MANDATORY)
-    public List/*<double[]>*/ getNormals();
+    @UML (identifier="normal", obligation=MANDATORY, specification=ISO_19107)
+    public List<double[]> getNormals();
 
     /**
      * The interpolation for a <code>ArcStringByBulge</code> is
@@ -103,7 +104,7 @@ public interface ArcStringByBulge extends CurveSegment {
      *
      * @return Always {@link CurveInterpolation#CIRCULAR_ARC_2_POINTS_WITH_BULGE}.
      */
-/// @UML (identifier="interpolation", obligation=MANDATORY)
+    @UML (identifier="interpolation", obligation=MANDATORY, specification=ISO_19107)
     public CurveInterpolation getInterpolation();
 
     /**
@@ -111,6 +112,6 @@ public interface ArcStringByBulge extends CurveSegment {
      *
      * @return This arc string by bulge as a base {@linkplain ArcString arc string}.
      */
-/// @UML (identifier="asGM_ArcString", obligation=MANDATORY)
+    @UML (identifier="asGM_ArcString", obligation=MANDATORY, specification=ISO_19107)
     public ArcString asArcString();
 }

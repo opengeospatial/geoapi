@@ -13,8 +13,9 @@ package org.opengis.util;
 import java.util.List;
 
 // Annotations
-///import org.opengis.annotation.UML;
-///import static org.opengis.annotation.Obligation.*;
+import org.opengis.annotation.UML;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
 
 
 /**
@@ -34,13 +35,13 @@ import java.util.List;
  *
  * @see javax.naming.Name
  */
-///@UML (identifier="GenericName")
+@UML (identifier="GenericName", specification=ISO_19103)
 public interface GenericName extends Comparable {
     /**
      * Returns the scope (name space) of this generic name. If this name has no scope
      * (e.g. is the root), then this method returns <code>null</code>.
      */
-/// @UML (identifier="scope", obligation=OPTIONAL)
+    @UML (identifier="scope", obligation=OPTIONAL, specification=ISO_19103)
     GenericName getScope();
 
     /**
@@ -48,8 +49,8 @@ public interface GenericName extends Comparable {
      * Each element in this list is like a directory name in a file path name.
      * The length of this sequence is the generic name depth.
      */
-/// @UML (identifier="parsedName", obligation=MANDATORY)
-    List/*<LocalName>*/ getParsedNames();
+    @UML (identifier="parsedName", obligation=MANDATORY, specification=ISO_19103)
+    List<LocalName> getParsedNames();
 
     /**
      * Returns a view of this object as a scoped name,

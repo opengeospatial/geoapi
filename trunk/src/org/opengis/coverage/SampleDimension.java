@@ -18,8 +18,9 @@ import org.opengis.util.InternationalString;
 import org.opengis.referencing.operation.MathTransform1D;
 
 // Annotations
-///import org.opengis.annotation.UML;
-///import static org.opengis.annotation.Obligation.*;
+import org.opengis.annotation.UML;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
 
 
 /**
@@ -28,16 +29,28 @@ import org.opengis.referencing.operation.MathTransform1D;
  * For {@linkplain org.opengis.coverage.grid.GridCoverage grid coverages},
  * the sample dimension refers to an individual band.
  *
+ * <P>&nbsp;</P>
+ * <TABLE WIDTH="80%" ALIGN="center" CELLPADDING="18" BORDER="4" BGCOLOR="#FFE0B0">
+ *   <TR><TD>
+ *     <P align="justify"><STRONG>WARNING: THIS CLASS WILL CHANGE.</STRONG> Current API is derived from OGC
+ *     <A HREF="http://www.opengis.org/docs/01-004.pdf">Grid Coverages Implementation specification 1.0</A>.
+ *     We plan to replace it by new interfaces derived from ISO 19123 (<CITE>Schema for coverage geometry
+ *     and functions</CITE>). Current interfaces should be considered as legacy and are included in this
+ *     distribution only because they were part of GeoAPI 1.0 release. We will try to preserve as much 
+ *     compatibility as possible, but no migration plan has been determined yet.</P>
+ *   </TD></TR>
+ * </TABLE>
+ *
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-004.pdf">Grid Coverage specification 1.0</A>
  */
-///@UML (identifier="CV_SampleDimension")
+@UML (identifier="CV_SampleDimension", specification=OGC_01_004)
 public interface SampleDimension {
     /**
      * Sample dimension title or description.
      * This string may be null or empty if no description is present.
      */
-/// @UML (identifier="description", obligation=MANDATORY)
+    @UML (identifier="description", obligation=MANDATORY, specification=OGC_01_004)
     InternationalString getDescription();
 
     /**
@@ -49,7 +62,7 @@ public interface SampleDimension {
      *
      * @deprecated Replaced by {@link #getDescription()}.
      */
-/// @UML (identifier="description", obligation=MANDATORY)
+    @UML (identifier="description", obligation=MANDATORY, specification=OGC_01_004)
     String getDescription(Locale locale);
 
     /**
@@ -58,7 +71,7 @@ public interface SampleDimension {
      *
      * @return A code value indicating grid value data type.
      */
-/// @UML (identifier="sampleDimensionType", obligation=MANDATORY)
+    @UML (identifier="sampleDimensionType", obligation=MANDATORY, specification=OGC_01_004)
     SampleDimensionType getSampleDimensionType();
 
     /**
@@ -76,7 +89,7 @@ public interface SampleDimension {
      *  </UL>
      * Note: If no category names exist, an empty sequence is returned.
      */
-/// @UML (identifier="categoryNames", obligation=MANDATORY)
+    @UML (identifier="categoryNames", obligation=MANDATORY, specification=OGC_01_004)
     InternationalString[] getCategoryNames();
 
     /**
@@ -90,7 +103,7 @@ public interface SampleDimension {
      *
      * @deprecated Replaced by {@link #getCategoryNames()}.
      */
-/// @UML (identifier="categoryNames", obligation=MANDATORY)
+    @UML (identifier="categoryNames", obligation=MANDATORY, specification=OGC_01_004)
     String[] getCategoryNames(Locale locale);
 
     /**
@@ -101,7 +114,7 @@ public interface SampleDimension {
      *
      * @return The color interpretation of the sample dimension.
      */
-/// @UML (identifier="colorInterpretation", obligation=MANDATORY)
+    @UML (identifier="colorInterpretation", obligation=MANDATORY, specification=OGC_01_004)
     ColorInterpretation getColorInterpretation();
 
     /**
@@ -113,7 +126,7 @@ public interface SampleDimension {
      *
      * @return The type of color palette entry for sample dimensions which have a palette.
      */
-/// @UML (identifier="paletteInterpretation", obligation=MANDATORY)
+    @UML (identifier="paletteInterpretation", obligation=MANDATORY, specification=OGC_01_004)
     PaletteInterpretation getPaletteInterpretation();
 
     /**
@@ -128,7 +141,7 @@ public interface SampleDimension {
      * @see #getColorInterpretation
      * @see java.awt.image.IndexColorModel
      */
-/// @UML (identifier="palette", obligation=MANDATORY)
+    @UML (identifier="palette", obligation=MANDATORY, specification=OGC_01_004)
     int[][] getPalette();
 
     /**
@@ -140,7 +153,7 @@ public interface SampleDimension {
      * @see #getMinimumValue
      * @see #getMaximumValue
      */
-/// @UML (identifier="noDataValue", obligation=MANDATORY)
+    @UML (identifier="noDataValue", obligation=MANDATORY, specification=OGC_01_004)
     double[] getNoDataValues();
 
     /**
@@ -154,7 +167,7 @@ public interface SampleDimension {
      * @see #getMaximumValue
      * @see #getNoDataValues
      */
-/// @UML (identifier="minimumValue", obligation=MANDATORY)
+    @UML (identifier="minimumValue", obligation=MANDATORY, specification=OGC_01_004)
     double getMinimumValue();
 
     /**
@@ -168,7 +181,7 @@ public interface SampleDimension {
      * @see #getMinimumValue
      * @see #getNoDataValues
      */
-/// @UML (identifier="maximumValue", obligation=MANDATORY)
+    @UML (identifier="maximumValue", obligation=MANDATORY, specification=OGC_01_004)
     double getMaximumValue();
 
     /**
@@ -179,7 +192,7 @@ public interface SampleDimension {
      *
      * @return The unit information for this sample dimension.
      */
-/// @UML (identifier="units", obligation=MANDATORY)
+    @UML (identifier="units", obligation=MANDATORY, specification=OGC_01_004)
     Unit getUnits();
 
     /**
@@ -189,7 +202,7 @@ public interface SampleDimension {
      *
      * @see #getScale
      */
-/// @UML (identifier="offset", obligation=MANDATORY)
+    @UML (identifier="offset", obligation=MANDATORY, specification=OGC_01_004)
     double getOffset();
 
     /**
@@ -199,7 +212,7 @@ public interface SampleDimension {
      *
      * @see #getOffset
      */
-/// @UML (identifier="scale", obligation=MANDATORY)
+    @UML (identifier="scale", obligation=MANDATORY, specification=OGC_01_004)
     double getScale();
 
     /**
@@ -227,7 +240,7 @@ public interface SampleDimension {
      * @see #getMetadataValue
      * @see javax.media.jai.PropertySource#getPropertyNames
      */
-/// @UML (identifier="metadataNames", obligation=MANDATORY)
+    @UML (identifier="metadataNames", obligation=MANDATORY, specification=OGC_01_004)
     String[] getMetaDataNames();
 
     /**
@@ -240,6 +253,6 @@ public interface SampleDimension {
      * @see #getMetaDataNames
      * @see javax.media.jai.PropertySource#getProperty
      */
-/// @UML (identifier="getMetadataValue", obligation=MANDATORY)
+    @UML (identifier="getMetadataValue", obligation=MANDATORY, specification=OGC_01_004)
     String getMetadataValue(String name) throws MetadataNameNotFoundException;
 }

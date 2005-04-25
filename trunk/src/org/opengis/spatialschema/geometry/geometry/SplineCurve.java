@@ -16,8 +16,9 @@ import java.util.List;
 import org.opengis.spatialschema.geometry.primitive.CurveSegment;
 
 // Annotations
-///import org.opengis.annotation.UML;
-///import static org.opengis.annotation.Obligation.*;
+import org.opengis.annotation.UML;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
 
 
 /**
@@ -26,27 +27,27 @@ import org.opengis.spatialschema.geometry.primitive.CurveSegment;
  *
  * @author ISO/DIS 19107
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
- * @version 2.0
+ * @version <A HREF="http://www.opengis.org/docs/01-101.pdf">Abstract specification 5</A>
  */
-/// @UML (identifier="GM_SplineCurve")
+@UML (identifier="GM_SplineCurve", specification=ISO_19107)
 public interface SplineCurve extends CurveSegment {
     /**
      * The sequence of distinct knots used to define the spline basis functions.
      * Recall that the knot data type holds information on knot multiplicity.
      */
-/// @UML (identifier="knot", obligation=MANDATORY)
-    List/*<Knot>*/ getKnots();
+    @UML (identifier="knot", obligation=MANDATORY, specification=ISO_19107)
+    List<Knot> getKnots();
 
     /**
      * The degree of the polynomial used for interpolation in a
      * {@linkplain PolynomialSpline polynomial spline}.
      */
-/// @UML (identifier="degree", obligation=MANDATORY)
+    @UML (identifier="degree", obligation=MANDATORY, specification=ISO_19107)
     int getDegree();
 
     /**
      * An array of points that are used in the interpolation in this spline curve.
      */
-/// @UML (identifier="controlPoints", obligation=MANDATORY)
+    @UML (identifier="controlPoints", obligation=MANDATORY, specification=ISO_19107)
     PointArray getControlPoints();
 }

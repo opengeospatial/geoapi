@@ -14,8 +14,9 @@ import org.opengis.referencing.ReferenceSystem;
 import org.opengis.referencing.cs.CoordinateSystem;
 
 // Annotations
-///import org.opengis.annotation.UML;
-///import static org.opengis.annotation.Obligation.*;
+import org.opengis.annotation.UML;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
 
 
 /**
@@ -23,9 +24,9 @@ import org.opengis.referencing.cs.CoordinateSystem;
  *
  * @author ISO 19111
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
- * @version 2.0
+ * @version <A HREF="http://www.opengis.org/docs/03-073r1.zip">Abstract specification 2.0</A>
  */
-///@UML (identifier="SC_CRS")
+@UML (identifier="SC_CRS", specification=ISO_19111)
 public interface CoordinateReferenceSystem extends ReferenceSystem {
     /**
      * Returns the coordinate system. One of {@link CoordinateSystem coordinate system}

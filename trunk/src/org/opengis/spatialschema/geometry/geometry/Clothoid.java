@@ -13,8 +13,9 @@ package org.opengis.spatialschema.geometry.geometry;
 import org.opengis.spatialschema.geometry.primitive.CurveSegment;
 
 // Annotations
-///import org.opengis.annotation.UML;
-///import static org.opengis.annotation.Obligation.*;
+import org.opengis.annotation.UML;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
 
 
 /**
@@ -32,21 +33,21 @@ import org.opengis.spatialschema.geometry.primitive.CurveSegment;
  *
  * @author ISO/DIS 19107
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
- * @version 2.0
+ * @version <A HREF="http://www.opengis.org/docs/01-101.pdf">Abstract specification 5</A>
  */
-///@UML (identifier="GM_Clothoid")
+@UML (identifier="GM_Clothoid", specification=ISO_19107)
 public interface Clothoid extends CurveSegment {
     /**
      * Returns an affine mapping that places the curve defined by the Fresnel Integrals
      * into the coordinate reference system of this object.
      */
-/// @UML (identifier="refLocation", obligation=MANDATORY)
+    @UML (identifier="refLocation", obligation=MANDATORY, specification=ISO_19107)
     public AffinePlacement getReferenceLocation();
 
     /**
      * Gives the value for <var>A</var> in the equations above.
      */
-/// @UML (identifier="scaleFactor", obligation=MANDATORY)
+    @UML (identifier="scaleFactor", obligation=MANDATORY, specification=ISO_19107)
     public double getScaleFactor();
 
     /**
@@ -66,7 +67,7 @@ public interface Clothoid extends CurveSegment {
      * the placement, and with respect to the coordinate reference system of the curve is not
      * deterministic.</P>
      */
-/// @UML (identifier="startParameter", obligation=MANDATORY)
+    @UML (identifier="startParameter", obligation=MANDATORY, specification=ISO_19107)
     public double getStartConstructiveParam();
 
     /**
@@ -76,6 +77,6 @@ public interface Clothoid extends CurveSegment {
      * parameter of this curve segment at its end point. The end constructive param
      * can be either positive or negative.
      */
-/// @UML (identifier="endParameter", obligation=MANDATORY)
+    @UML (identifier="endParameter", obligation=MANDATORY, specification=ISO_19107)
     public double getEndConstructiveParam();
 }

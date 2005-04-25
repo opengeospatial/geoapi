@@ -10,8 +10,9 @@
 package org.opengis.parameter;
 
 // Annotations
-///import org.opengis.annotation.UML;
-///import static org.opengis.annotation.Obligation.*;
+import org.opengis.annotation.UML;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
 
 
 /**
@@ -21,7 +22,7 @@ package org.opengis.parameter;
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-004.pdf">Grid Coverage specification 1.0</A>
  */
-///@UML (identifier="GC_InvalidParameterName")
+@UML (identifier="GC_InvalidParameterName", specification=ISO_19111)
 public class InvalidParameterNameException extends IllegalArgumentException {
     /**
      * Serial number for interoperability with different versions.
