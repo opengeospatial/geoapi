@@ -18,7 +18,9 @@ import org.opengis.referencing.FactoryException;
 import org.opengis.referencing.NoSuchAuthorityCodeException;  // For javadoc
 
 // Annotations
-///import org.opengis.annotation.Extension;
+import org.opengis.annotation.UML;
+import org.opengis.annotation.Extension;
+import static org.opengis.annotation.Specification.*;
 
 
 /**
@@ -34,7 +36,7 @@ import org.opengis.referencing.NoSuchAuthorityCodeException;  // For javadoc
  * @see org.opengis.referencing.crs.CRSAuthorityFactory
  * @see org.opengis.referencing.datum.DatumAuthorityFactory
  */
-///@Extension
+@Extension
 public interface CSAuthorityFactory extends AuthorityFactory {
     /**
      * Returns an arbitrary {@linkplain CoordinateSystem coordinate system} from a code.
@@ -129,5 +131,6 @@ public interface CSAuthorityFactory extends AuthorityFactory {
      * @throws NoSuchAuthorityCodeException if the specified <code>code</code> was not found.
      * @throws FactoryException if the object creation failed for some other reason.
      */
+    @UML (identifier="CS_CoordinateSystemAuthorityFactory.createLinearUnit, createAngularUnit", specification=OGC_01_009)
     Unit createUnit(String code) throws FactoryException;
 }

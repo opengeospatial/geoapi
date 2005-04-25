@@ -14,8 +14,9 @@ import org.opengis.spatialschema.geometry.DirectPosition;
 import org.opengis.spatialschema.geometry.MismatchedDimensionException;
 
 // Annotations
-///import org.opengis.annotation.UML;
-///import static org.opengis.annotation.Obligation.*;
+import org.opengis.annotation.UML;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
 
 
 /**
@@ -43,20 +44,20 @@ import org.opengis.spatialschema.geometry.MismatchedDimensionException;
  * @see MathTransformFactory
  * @see CoordinateOperation#getMathTransform
  */
-///@UML (identifier="CT_MathTransform")
+@UML (identifier="CT_MathTransform", specification=OGC_01_009)
 public interface MathTransform {
     /**
      * Gets the dimension of input points.
      *
      * @deprecated Renamed {@link #getSourceDimensions} for consistency with {@link OperationMethod}.
      */
-/// @UML (identifier="getDimSource")
+    @UML (identifier="getDimSource", specification=OGC_01_009)
     int getDimSource();
 
     /**
      * Gets the dimension of input points.
      */
-/// @UML (identifier="getDimSource")
+    @UML (identifier="getDimSource", specification=OGC_01_009)
     int getSourceDimensions();
     
     /**
@@ -64,13 +65,13 @@ public interface MathTransform {
      *
      * @deprecated Renamed {@link #getTargetDimensions} for consistency with {@link OperationMethod}.
      */
-/// @UML (identifier="getDimTarget")
+    @UML (identifier="getDimTarget", specification=OGC_01_009)
     int getDimTarget();
     
     /**
      * Gets the dimension of output points.
      */
-/// @UML (identifier="getDimTarget")
+    @UML (identifier="getDimTarget", specification=OGC_01_009)
     int getTargetDimensions();
     
     /**
@@ -93,7 +94,7 @@ public interface MathTransform {
      *         <code>ptDst</code> doesn't have the expected dimension.
      * @throws TransformException if the point can't be transformed.
      */
-/// @UML (identifier="transform")
+    @UML (identifier="transform", specification=OGC_01_009)
     DirectPosition transform(DirectPosition ptSrc, DirectPosition ptDst)
             throws MismatchedDimensionException, TransformException;
     
@@ -119,7 +120,7 @@ public interface MathTransform {
      * @param numPts the number of point objects to be transformed.
      * @throws TransformException if a point can't be transformed.
      */
-/// @UML (identifier="transformList")
+    @UML (identifier="transformList", specification=OGC_01_009)
     void transform(double[] srcPts, int srcOff,
                    double[] dstPts, int dstOff,
                    int numPts) throws TransformException;
@@ -197,7 +198,7 @@ public interface MathTransform {
      * @throws TransformException if the derivative can't be evaluated at the
      *         specified point.
      */
-/// @UML (identifier="derivative")
+    @UML (identifier="derivative", specification=OGC_01_009)
     Matrix derivative(final DirectPosition point)
             throws MismatchedDimensionException, TransformException;
     
@@ -212,7 +213,7 @@ public interface MathTransform {
      * @return The inverse transform.
      * @throws NoninvertibleTransformException if the transform can't be inversed.
      */
-/// @UML (identifier="inverse")
+    @UML (identifier="inverse", specification=OGC_01_009)
     MathTransform inverse() throws NoninvertibleTransformException;
     
     /**
@@ -221,7 +222,7 @@ public interface MathTransform {
      * @return <code>true</code> if this <code>MathTransform</code> is
      *         an identity transform; <code>false</code> otherwise.
      */
-/// @UML (identifier="isIdentity")
+    @UML (identifier="isIdentity", specification=OGC_01_009)
     boolean isIdentity();
 
     /**
@@ -232,6 +233,6 @@ public interface MathTransform {
      * @return The <A HREF="../doc-files/WKT.html"><cite>Well Known Text</cite> (WKT)</A> for this object.
      * @throws UnsupportedOperationException If this object can't be formatted as WKT.
      */
-/// @UML (identifier="getWKT")
+    @UML (identifier="getWKT", specification=OGC_01_009)
     String toWKT() throws UnsupportedOperationException;
 }

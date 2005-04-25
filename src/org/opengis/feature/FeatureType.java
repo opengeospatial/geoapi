@@ -58,7 +58,7 @@ public interface FeatureType {
      * this feature type.  Each returned element may in turn have child 
      * <code>FeatureType</code> instances of its own.
      */
-    public List/*<FeatureType>*/ getChildTypes();
+    public List<FeatureType> getChildTypes();
 
     /**
      * Returns a new, unpopulated instance of this type of Feature.  When the

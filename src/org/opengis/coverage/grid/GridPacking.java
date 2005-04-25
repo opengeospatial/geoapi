@@ -13,8 +13,9 @@ package org.opengis.coverage.grid;
 import org.opengis.coverage.SampleDimensionType;  // For Javadoc
 
 // Annotations
-///import org.opengis.annotation.UML;
-///import static org.opengis.annotation.Obligation.*;
+import org.opengis.annotation.UML;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
 
 
 /**
@@ -23,15 +24,27 @@ import org.opengis.coverage.SampleDimensionType;  // For Javadoc
  * within a byte, byte packing (Little Endian / Big Endian) for values with more
  * than 8 bits and the packing of the values within the dimensions.
  *
+ * <P>&nbsp;</P>
+ * <TABLE WIDTH="80%" ALIGN="center" CELLPADDING="18" BORDER="4" BGCOLOR="#FFE0B0">
+ *   <TR><TD>
+ *     <P align="justify"><STRONG>WARNING: THIS CLASS WILL CHANGE.</STRONG> Current API is derived from OGC
+ *     <A HREF="http://www.opengis.org/docs/01-004.pdf">Grid Coverages Implementation specification 1.0</A>.
+ *     We plan to replace it by new interfaces derived from ISO 19123 (<CITE>Schema for coverage geometry
+ *     and functions</CITE>). Current interfaces should be considered as legacy and are included in this
+ *     distribution only because they were part of GeoAPI 1.0 release. We will try to preserve as much 
+ *     compatibility as possible, but no migration plan has been determined yet.</P>
+ *   </TD></TR>
+ * </TABLE>
+ *
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-004.pdf">Grid Coverage specification 1.0</A>
  */
-///@UML (identifier="GC_GridPacking")
+@UML (identifier="GC_GridPacking", specification=OGC_01_004)
 public interface GridPacking {
     /**
      * Order of bytes packed in values for sample dimensions with greater than 8 bits.
      */
-/// @UML (identifier="byteInValuePacking", obligation=MANDATORY)
+    @UML (identifier="byteInValuePacking", obligation=MANDATORY, specification=OGC_01_004)
     ByteInValuePacking getByteInValuePacking();
 
     /**
@@ -41,7 +54,7 @@ public interface GridPacking {
      * {@link SampleDimensionType#UNSIGNED_2BITS UNSIGNED_2BITS} and
      * {@link SampleDimensionType#UNSIGNED_4BITS UNSIGNED_4BITS} data types.
      */
-/// @UML (identifier="valueInBytePacking", obligation=MANDATORY)
+    @UML (identifier="valueInBytePacking", obligation=MANDATORY, specification=OGC_01_004)
     ValueInBytePacking getValueInBytePacking();
 
     /**
@@ -71,6 +84,6 @@ public interface GridPacking {
      * @see java.awt.image.BandedSampleModel
      * @see java.awt.image.PixelInterleavedSampleModel
      */
-/// @UML (identifier="bandPacking", obligation=MANDATORY)
+    @UML (identifier="bandPacking", obligation=MANDATORY, specification=OGC_01_004)
     int getBandPacking();
 }

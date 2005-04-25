@@ -14,8 +14,9 @@ import org.opengis.spatialschema.geometry.geometry.GenericCurve;
 import org.opengis.spatialschema.geometry.geometry.PointArray;
 
 // Annotations
-///import org.opengis.annotation.UML;
-///import static org.opengis.annotation.Obligation.*;
+import org.opengis.annotation.UML;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
 
 
 /**
@@ -24,9 +25,9 @@ import org.opengis.spatialschema.geometry.geometry.PointArray;
  *
  * @author ISO/DIS 19107
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
- * @version 2.0
+ * @version <A HREF="http://www.opengis.org/docs/01-101.pdf">Abstract specification 5</A>
  */
-///@UML (identifier="GM_CurveSegment")
+@UML (identifier="GM_CurveSegment", specification=ISO_19107)
 public interface CurveSegment extends GenericCurve {
     /**
      * Returns the curve which own this curve segment.
@@ -43,7 +44,7 @@ public interface CurveSegment extends GenericCurve {
      *
      * @see Curve#getSegments
      */
-/// @UML (identifier="curve", obligation=MANDATORY)
+    @UML (identifier="curve", obligation=MANDATORY, specification=ISO_19107)
     public Curve getCurve();
 
     /**
@@ -53,7 +54,7 @@ public interface CurveSegment extends GenericCurve {
      *
      * @return The interpolation mechanism used for this segment.
      */
-/// @UML (identifier="interpolation", obligation=MANDATORY)
+    @UML (identifier="interpolation", obligation=MANDATORY, specification=ISO_19107)
     public CurveInterpolation getInterpolation();
 
     /**
@@ -74,7 +75,7 @@ public interface CurveSegment extends GenericCurve {
      * @see #getNumDerivativesInterior
      * @see #getNumDerivativesAtEnd
      */
-/// @UML (identifier="numDerivativesAtStart", obligation=MANDATORY)
+    @UML (identifier="numDerivativesAtStart", obligation=MANDATORY, specification=ISO_19107)
     public int getNumDerivativesAtStart();
 
     /**
@@ -90,7 +91,7 @@ public interface CurveSegment extends GenericCurve {
      * @see #getNumDerivativesAtStart
      * @see #getNumDerivativesAtEnd
      */
-/// @UML (identifier="numDerivativesInterior", obligation=MANDATORY)
+    @UML (identifier="numDerivativesInterior", obligation=MANDATORY, specification=ISO_19107)
     public int getNumDerivativesInterior();
 
     /**
@@ -111,7 +112,7 @@ public interface CurveSegment extends GenericCurve {
      * @see #getNumDerivativesAtStart
      * @see #getNumDerivativesInterior
      */
-/// @UML (identifier="numDerivativesAtEnd", obligation=MANDATORY)
+    @UML (identifier="numDerivativesAtEnd", obligation=MANDATORY, specification=ISO_19107)
     public int getNumDerivativesAtEnd();
 
     /**
@@ -127,7 +128,7 @@ public interface CurveSegment extends GenericCurve {
      *
      * @return The control points.
      */
-/// @UML (identifier="samplePoint", obligation=MANDATORY)
+    @UML (identifier="samplePoint", obligation=MANDATORY, specification=ISO_19107)
     public PointArray getSamplePoints();
 
     /**
@@ -148,7 +149,7 @@ public interface CurveSegment extends GenericCurve {
      *
      * @return The sets of positions on the boundary.
      */
-/// @UML (identifier="boundary", obligation=MANDATORY)
+    @UML (identifier="boundary", obligation=MANDATORY, specification=ISO_19107)
     public CurveBoundary getBoundary();
 
     /**
@@ -156,6 +157,6 @@ public interface CurveSegment extends GenericCurve {
      *
      * @return The reverse of this curve segment.
      */
-/// @UML (identifier="reverse", obligation=MANDATORY)
+    @UML (identifier="reverse", obligation=MANDATORY, specification=ISO_19107)
     public CurveSegment reverse();
 }

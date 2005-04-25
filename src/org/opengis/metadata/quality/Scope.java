@@ -14,8 +14,9 @@ import org.opengis.metadata.extent.Extent;
 import org.opengis.metadata.maintenance.ScopeCode;
 
 // Annotations
-///import org.opengis.annotation.UML;
-///import static org.opengis.annotation.Obligation.*;
+import org.opengis.annotation.UML;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
 
 
 /**
@@ -25,19 +26,19 @@ import org.opengis.metadata.maintenance.ScopeCode;
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
  */
-///@UML (identifier="DQ_Scope")
+@UML (identifier="DQ_Scope", specification=ISO_19115)
 public interface Scope {
     /**
      * Hierarchical level of the data specified by the scope.
      */
-/// @UML (identifier="level", obligation=MANDATORY)
+    @UML (identifier="level", obligation=MANDATORY, specification=ISO_19115)
     ScopeCode getLevel();
 
     /**
      * Information about the spatial, vertical and temporal extent of the data specified by the
      * scope.
      */
-/// @UML (identifier="extent", obligation=OPTIONAL)
+    @UML (identifier="extent", obligation=OPTIONAL, specification=ISO_19115)
     Extent getExtent();
 
     /**
@@ -47,5 +48,5 @@ public interface Scope {
      *          on <code>FeatureType</code> and <code>AttributeType</code>.
      */
 //  @UML (identifier="levelDescription", obligation=CONDITIONAL)
-//  Collection/*<ScopeDescription>*/ getLevelDescription();
+//  Collection<ScopeDescription> getLevelDescription();
 }

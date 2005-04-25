@@ -13,8 +13,9 @@ package org.opengis.spatialschema.geometry.primitive;
 import org.opengis.spatialschema.geometry.complex.CompositeCurve;
 
 // Annotations
-///import org.opengis.annotation.UML;
-///import static org.opengis.annotation.Obligation.*;
+import org.opengis.annotation.UML;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
 
 
 /**
@@ -33,12 +34,12 @@ import org.opengis.spatialschema.geometry.complex.CompositeCurve;
  *
  * @author ISO/DIS 19107
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
- * @version 2.0
+ * @version <A HREF="http://www.opengis.org/docs/01-101.pdf">Abstract specification 5</A>
  *
  * @see SurfaceBoundary
  * @see Shell
  */
-///@UML (identifier="GM_Ring")
+@UML (identifier="GM_Ring", specification=ISO_19107)
 public interface Ring extends CompositeCurve {
     /**
      * Always returns <code>true</code> since ring objects are simples.

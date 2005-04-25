@@ -13,8 +13,9 @@ package org.opengis.parameter;
 import org.opengis.util.Cloneable;
 
 // Annotations
-///import org.opengis.annotation.UML;
-///import static org.opengis.annotation.Obligation.*;
+import org.opengis.annotation.UML;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
 
 
 /**
@@ -26,7 +27,7 @@ import org.opengis.util.Cloneable;
  *
  * @see GeneralParameterDescriptor
  */
-///@UML (identifier="CC_GeneralParameterValue")
+@UML (identifier="CC_GeneralParameterValue", specification=ISO_19111)
 public interface GeneralParameterValue extends Cloneable {
     /**
      * Returns the abstract definition of this parameter or group of parameters.

@@ -10,8 +10,9 @@
 package org.opengis.referencing.operation;
 
 // Annotations
-///import org.opengis.annotation.UML;
-///import static org.opengis.annotation.Obligation.*;
+import org.opengis.annotation.UML;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
 
 
 /**
@@ -28,7 +29,7 @@ package org.opengis.referencing.operation;
  *
  * @see Conversion
  */
-///@UML (identifier="CC_Transformation")
+@UML (identifier="CC_Transformation", specification=ISO_19111)
 public interface Transformation extends Operation {
     /**
      * Version of the coordinate transformation (i.e., instantiation due to the stochastic
@@ -36,6 +37,6 @@ public interface Transformation extends Operation {
      *
      * @return The coordinate operation version.
      */
-/// @UML (identifier="operationVersion", obligation=MANDATORY)
+    @UML (identifier="operationVersion", obligation=MANDATORY, specification=ISO_19111)
     String getOperationVersion();
 }

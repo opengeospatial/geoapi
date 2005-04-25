@@ -10,8 +10,9 @@
 package org.opengis.referencing.operation;
 
 // Annotations
-///import org.opengis.annotation.UML;
-///import static org.opengis.annotation.Obligation.*;
+import org.opengis.annotation.UML;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
 
 
 /**
@@ -26,7 +27,7 @@ package org.opengis.referencing.operation;
  *
  * @see Transformation
  */
-///@UML (identifier="CC_Conversion")
+@UML (identifier="CC_Conversion", specification=ISO_19111)
 public interface Conversion extends Operation {
     /**
      * Version of the coordinate transformation.

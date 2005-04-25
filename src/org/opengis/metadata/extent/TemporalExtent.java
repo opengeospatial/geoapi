@@ -13,8 +13,9 @@ package org.opengis.metadata.extent;
 import java.util.Date;
 
 // Annotations
-///import org.opengis.annotation.UML;
-///import static org.opengis.annotation.Obligation.*;
+import org.opengis.annotation.UML;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
 
 
 /**
@@ -27,7 +28,7 @@ import java.util.Date;
  * @revisit UML specifies only one attribute, <code>extent</code>, of <code>TM_Primitive</code>
  *          type.
  */
-///@UML (identifier="EX_TemporalExtent")
+@UML (identifier="EX_TemporalExtent", specification=ISO_19115)
 public interface TemporalExtent {
     /**
      * Returns the date and time for the content of the dataset.

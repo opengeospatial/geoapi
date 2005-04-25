@@ -10,8 +10,9 @@
 package org.opengis.referencing.cs;
 
 // Annotations
-///import org.opengis.annotation.UML;
-///import static org.opengis.annotation.Obligation.*;
+import org.opengis.annotation.UML;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
 
 
 /**
@@ -32,6 +33,6 @@ package org.opengis.referencing.cs;
  *
  * @see PolarCS
  */
-///@UML (identifier="CS_CylindricalCS")
+@UML (identifier="CS_CylindricalCS", specification=ISO_19111)
 public interface CylindricalCS extends CoordinateSystem {
 }

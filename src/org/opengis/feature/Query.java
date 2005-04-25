@@ -47,7 +47,7 @@ public interface Query {
      * Returns the list of property names of the features to be retrieved.
      * This may be null if all properties are to be retrieved.
      */
-    List/*<String>*/ getPropertyNames();
+    List<String> getPropertyNames();
 
     /**
      * Gives a mnemonic name for use by the client to identify this query.

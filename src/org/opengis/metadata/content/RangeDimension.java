@@ -14,8 +14,9 @@ import org.opengis.util.InternationalString;
 import org.opengis.util.LocalName;
 
 // Annotations
-///import org.opengis.annotation.UML;
-///import static org.opengis.annotation.Obligation.*;
+import org.opengis.annotation.UML;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
 
 
 /**
@@ -25,18 +26,18 @@ import org.opengis.util.LocalName;
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
  */
-///@UML (identifier="MD_RangeDimension")
+@UML (identifier="MD_RangeDimension", specification=ISO_19115)
 public interface RangeDimension {
     /**
      * Number that uniquely identifies instances of bands of wavelengths on which a sensor
      * operates.
      */
-/// @UML (identifier="sequenceIdentifier", obligation=OPTIONAL)
+    @UML (identifier="sequenceIdentifier", obligation=OPTIONAL, specification=ISO_19115)
     LocalName getSequenceIdentifier();
 
     /**
      * Description of the range of a cell measurement value.
      */
-/// @UML (identifier="descriptor", obligation=OPTIONAL)
+    @UML (identifier="descriptor", obligation=OPTIONAL, specification=ISO_19115)
     InternationalString getDescriptor();
 }

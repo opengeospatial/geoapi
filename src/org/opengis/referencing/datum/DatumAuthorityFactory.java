@@ -18,9 +18,10 @@ import org.opengis.referencing.FactoryException;
 import org.opengis.referencing.NoSuchAuthorityCodeException;
 
 // Annotations
-///import org.opengis.annotation.UML;
-///import org.opengis.annotation.Extension;
-///import static org.opengis.annotation.Obligation.*;
+import org.opengis.annotation.UML;
+import org.opengis.annotation.Extension;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
 
 
 /**
@@ -36,7 +37,7 @@ import org.opengis.referencing.NoSuchAuthorityCodeException;
  * @see org.opengis.referencing.cs.CSAuthorityFactory
  * @see org.opengis.referencing.crs.CRSAuthorityFactory
  */
-///@UML (identifier="CS_CoordinateSystemAuthorityFactory")
+@UML (identifier="CS_CoordinateSystemAuthorityFactory", specification=OGC_01_009)
 public interface DatumAuthorityFactory extends AuthorityFactory {
     /**
      * Returns an arbitrary {@linkplain Datum datum} from a code. If the datum type is know at
@@ -86,7 +87,7 @@ public interface DatumAuthorityFactory extends AuthorityFactory {
      *
      * @see org.opengis.referencing.crs.CRSAuthorityFactory#createVerticalCRS
      */
-/// @UML (identifier="createVerticalDatum")
+    @UML (identifier="createVerticalDatum", specification=OGC_01_009)
     VerticalDatum createVerticalDatum(String code) throws FactoryException;
 
     /**
@@ -112,7 +113,7 @@ public interface DatumAuthorityFactory extends AuthorityFactory {
      * @see org.opengis.referencing.crs.CRSAuthorityFactory#createGeographicCRS
      * @see org.opengis.referencing.crs.CRSAuthorityFactory#createProjectedCRS
      */
-/// @UML (identifier="createHorizontalDatum")
+    @UML (identifier="createHorizontalDatum", specification=OGC_01_009)
     GeodeticDatum createGeodeticDatum(String code) throws FactoryException;
 
     /**
@@ -124,7 +125,7 @@ public interface DatumAuthorityFactory extends AuthorityFactory {
      *
      * @see #createGeodeticDatum
      */
-/// @UML (identifier="createEllipsoid")
+    @UML (identifier="createEllipsoid", specification=OGC_01_009)
     Ellipsoid createEllipsoid(String code) throws FactoryException;
 
     /**
@@ -136,6 +137,6 @@ public interface DatumAuthorityFactory extends AuthorityFactory {
      *
      * @see #createGeodeticDatum
      */
-/// @UML (identifier="createPrimeMeridian")
+    @UML (identifier="createPrimeMeridian", specification=OGC_01_009)
     PrimeMeridian createPrimeMeridian(String code) throws FactoryException;
 }

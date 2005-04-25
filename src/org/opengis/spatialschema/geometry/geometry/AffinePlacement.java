@@ -13,8 +13,9 @@ package org.opengis.spatialschema.geometry.geometry;
 import org.opengis.spatialschema.geometry.geometry.Position;
 
 // Annotations
-///import org.opengis.annotation.UML;
-///import static org.opengis.annotation.Obligation.*;
+import org.opengis.annotation.UML;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
 
 /**
  * A placement defined by linear transformation from the parameter space to the target
@@ -35,16 +36,16 @@ import org.opengis.spatialschema.geometry.geometry.Position;
  *
  * @author ISO/DIS 19107
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
- * @version 2.0
+ * @version <A HREF="http://www.opengis.org/docs/01-101.pdf">Abstract specification 5</A>
  */
-///@UML (identifier="GM_AffinePlacement")
+@UML (identifier="GM_AffinePlacement", specification=ISO_19107)
 public interface AffinePlacement extends Placement {
     /**
      * Gives the target of the parameter space origin. This is the vector
      * (<var>x</var><sub>0</sub>, <var>y</var><sub>0</sub>, <var>z</var><sub>0</sub>)
      * in the formulae in the class description.
      */
-/// @UML (identifier="location", obligation=MANDATORY)
+    @UML (identifier="location", obligation=MANDATORY, specification=ISO_19107)
     public Position getLocation();
 
     /**
@@ -57,6 +58,6 @@ public interface AffinePlacement extends Placement {
      *         {@link #getInDimension inDimension} exclusive.
      * @return The direction as an array of length {@link #getOutDimension outDimension}.
      */
-/// @UML (identifier="refDirection", obligation=MANDATORY)
+    @UML (identifier="refDirection", obligation=MANDATORY, specification=ISO_19107)
     public double[] getReferenceDirection(int dimension);
 }

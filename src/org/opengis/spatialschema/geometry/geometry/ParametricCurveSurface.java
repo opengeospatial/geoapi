@@ -18,8 +18,9 @@ import org.opengis.spatialschema.geometry.primitive.CurveInterpolation;
 import org.opengis.spatialschema.geometry.complex.Complex;
 
 // Annotations
-///import org.opengis.annotation.UML;
-///import static org.opengis.annotation.Obligation.*;
+import org.opengis.annotation.UML;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
 
 
 /**
@@ -110,22 +111,22 @@ import org.opengis.spatialschema.geometry.complex.Complex;
  *
  * @author ISO/DIS 19107
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
- * @version 2.0
+ * @version <A HREF="http://www.opengis.org/docs/01-101.pdf">Abstract specification 5</A>
  */
-///@UML (identifier="GM_ParametricCurveSurface")
+@UML (identifier="GM_ParametricCurveSurface", specification=ISO_19107)
 public interface ParametricCurveSurface extends SurfacePatch {
     /**
      * Indicates the type of surface curves used to traverse the surface horizontally
      * with respect to the parameter <var>s</var>.
      */
-/// @UML (identifier="horizontalCurveType", obligation=MANDATORY)
+    @UML (identifier="horizontalCurveType", obligation=MANDATORY, specification=ISO_19107)
     CurveInterpolation getHorizontalCurveType();
 
     /**
      * Indicates the type of surface curves used to traverse the surface vertically with
      * respect to the parameter <var>t</var>.
      */
-/// @UML (identifier="verticalCurveType", obligation=MANDATORY)
+    @UML (identifier="verticalCurveType", obligation=MANDATORY, specification=ISO_19107)
     CurveInterpolation getVerticalCurveType();
 
     /**
@@ -144,7 +145,7 @@ public interface ParametricCurveSurface extends SurfacePatch {
      * @param  t The <var>t</var> value to hold constant.
      * @return The curve that traverses the surface.
      */
-/// @UML (identifier="horizontalCurve", obligation=MANDATORY)
+    @UML (identifier="horizontalCurve", obligation=MANDATORY, specification=ISO_19107)
     Curve horizontalCurve(double t);
 
     /**
@@ -154,12 +155,12 @@ public interface ParametricCurveSurface extends SurfacePatch {
      * @param  s The <var>s</var> value to hold constant.
      * @return The curve that traverses the surface.
      */
-/// @UML (identifier="verticalCurve", obligation=MANDATORY)
+    @UML (identifier="verticalCurve", obligation=MANDATORY, specification=ISO_19107)
     Curve verticalCurve(double s);
 
     /**
      * Traverses the surface both vertically and horizontally.
      */
-/// @UML (identifier="surface", obligation=MANDATORY)
+    @UML (identifier="surface", obligation=MANDATORY, specification=ISO_19107)
     DirectPosition surface(double s, double t);
 }

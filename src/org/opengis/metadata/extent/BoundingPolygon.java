@@ -16,8 +16,9 @@ import java.util.Collection;
 import org.opengis.spatialschema.geometry.Geometry;
 
 // Annotations
-///import org.opengis.annotation.UML;
-///import static org.opengis.annotation.Obligation.*;
+import org.opengis.annotation.UML;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
 
 
 /**
@@ -29,11 +30,11 @@ import org.opengis.spatialschema.geometry.Geometry;
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
  */
-///@UML (identifier="EX_BoundingPolygon")
+@UML (identifier="EX_BoundingPolygon", specification=ISO_19115)
 public interface BoundingPolygon extends GeographicExtent {
     /**
      * Returns the sets of points defining the bounding polygon.
      */
-/// @UML (identifier="polygon", obligation=MANDATORY)
-    Collection/*<Geometry>*/ getPolygons();
+    @UML (identifier="polygon", obligation=MANDATORY, specification=ISO_19115)
+    Collection<Geometry> getPolygons();
 }

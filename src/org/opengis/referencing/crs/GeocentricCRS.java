@@ -16,8 +16,9 @@ import org.opengis.referencing.cs.CoordinateSystem;
 import org.opengis.referencing.datum.GeodeticDatum;
 
 // Annotations
-///import org.opengis.annotation.UML;
-///import static org.opengis.annotation.Obligation.*;
+import org.opengis.annotation.UML;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
 
 
 /**
@@ -36,18 +37,18 @@ import org.opengis.referencing.datum.GeodeticDatum;
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/03-073r1.zip">Abstract specification 2.0</A>
  */
-///@UML (identifier="SC_GeocentricCRS")
+@UML (identifier="SC_GeocentricCRS", specification=ISO_19111)
 public interface GeocentricCRS extends SingleCRS {
     /**
      * Returns the coordinate system, which must be {@linkplain CartesianCS cartesian}
      * or {@linkplain SphericalCS spherical}.
      */
-/// @UML (identifier="usesCartesianCS, usesSphericalCS", obligation=MANDATORY)
+    @UML (identifier="usesCartesianCS, usesSphericalCS", obligation=MANDATORY, specification=ISO_19111)
     CoordinateSystem getCoordinateSystem();
   	 
     /**
      * Returns the datum, which must be geodetic.
      */
-/// @UML (identifier="usesDatum", obligation=MANDATORY)
+/// @UML (identifier="usesDatum", obligation=MANDATORY, specification=ISO_19111)
 /// GeodeticDatum getDatum();
 }

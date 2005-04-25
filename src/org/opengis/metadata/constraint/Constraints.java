@@ -16,8 +16,9 @@ import java.util.Collection;
 import org.opengis.util.InternationalString;
 
 // Annotations
-///import org.opengis.annotation.UML;
-///import static org.opengis.annotation.Obligation.*;
+import org.opengis.annotation.UML;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
 
 
 /**
@@ -27,12 +28,12 @@ import org.opengis.util.InternationalString;
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
  */
-///@UML (identifier="MD_Constraints")
+@UML (identifier="MD_Constraints", specification=ISO_19115)
 public interface Constraints {
     /**
      * Limitation affecting the fitness for use of the resource.
      * Example, "not to be used for navigation".
      */
-/// @UML (identifier="useLimitation", obligation=OPTIONAL)
-    Collection/*<InternationalString>*/ getUseLimitation();
+    @UML (identifier="useLimitation", obligation=OPTIONAL, specification=ISO_19115)
+    Collection<InternationalString> getUseLimitation();
 }

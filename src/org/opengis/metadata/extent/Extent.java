@@ -16,8 +16,9 @@ import java.util.Collection;
 import org.opengis.util.InternationalString;
 
 // Annotations
-///import org.opengis.annotation.UML;
-///import static org.opengis.annotation.Obligation.*;
+import org.opengis.annotation.UML;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
 
 
 /**
@@ -33,12 +34,12 @@ import org.opengis.util.InternationalString;
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
  */
-///@UML (identifier="EX_Extent")
+@UML (identifier="EX_Extent", specification=ISO_19115)
 public interface Extent {
     /**
      * Returns the spatial and temporal extent for the referring object.
      */
-/// @UML (identifier="description", obligation=CONDITIONAL)
+    @UML (identifier="description", obligation=CONDITIONAL, specification=ISO_19115)
     InternationalString getDescription();
 
     /**
@@ -46,22 +47,22 @@ public interface Extent {
      *
      * @return The geographic extent, or an empty set if none.
      */
-/// @UML (identifier="geographicElement", obligation=CONDITIONAL)
-    Collection/*<GeographicExtent>*/ getGeographicElements();
+    @UML (identifier="geographicElement", obligation=CONDITIONAL, specification=ISO_19115)
+    Collection<GeographicExtent> getGeographicElements();
 
     /**
      * Provides temporal component of the extent of the referring object
      *
      * @return The temporal extent, or an empty set if none.
      */
-/// @UML (identifier="temporalElement", obligation=CONDITIONAL)
-    Collection/*<TemporalExtent>*/ getTemporalElements();
+    @UML (identifier="temporalElement", obligation=CONDITIONAL, specification=ISO_19115)
+    Collection<TemporalExtent> getTemporalElements();
 
     /**
      * Provides vertical component of the extent of the referring object
      *
      * @return The vertical extent, or an empty set if none.
      */
-/// @UML (identifier="verticalElement", obligation=CONDITIONAL)
-    Collection/*<VerticalExtent>*/ getVerticalElements();
+    @UML (identifier="verticalElement", obligation=CONDITIONAL, specification=ISO_19115)
+    Collection<VerticalExtent> getVerticalElements();
 }

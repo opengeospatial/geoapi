@@ -13,10 +13,12 @@ package org.opengis.metadata.distribution;
 import java.util.Collection;
 
 // Annotations
-///import org.opengis.annotation.UML;
-///import org.opengis.annotation.Profile;
-///import static org.opengis.annotation.Obligation.*;
-///import static org.opengis.annotation.ComplianceLevel.*;
+import org.opengis.annotation.UML;
+import org.opengis.annotation.Profile;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
+import static org.opengis.annotation.ComplianceLevel.*;
+import static org.opengis.annotation.Specification.*;
 
 
 /**
@@ -26,27 +28,27 @@ import java.util.Collection;
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
  */
-///@Profile (level=CORE)
-///@UML (identifier="MD_Distribution")
+@Profile (level=CORE)
+@UML (identifier="MD_Distribution", specification=ISO_19115)
 public interface Distribution {
     /**
      * Provides a description of the format of the data to be distributed.
      */
-/// @Profile (level=CORE)
-/// @UML (identifier="distributionFormat", obligation=CONDITIONAL)
-    Collection/*<Format>*/ getDistributionFormats();
+    @Profile (level=CORE)
+    @UML (identifier="distributionFormat", obligation=CONDITIONAL, specification=ISO_19115)
+    Collection<Format> getDistributionFormats();
 
     /**
      * Provides information about the distributor.
      */
-/// @UML (identifier="distributor", obligation=OPTIONAL)
-    Collection/*<Distributor>*/ getDistributors();
+    @UML (identifier="distributor", obligation=OPTIONAL, specification=ISO_19115)
+    Collection<Distributor> getDistributors();
 
     /**
      * Provides information about technical means and media by which a resource is obtained
      * from the distributor.
      */
-/// @Profile (level=CORE)
-/// @UML (identifier="transferOptions", obligation=OPTIONAL)
-    Collection/*<DigitalTransferOptions>*/ getTransferOptions();
+    @Profile (level=CORE)
+    @UML (identifier="transferOptions", obligation=OPTIONAL, specification=ISO_19115)
+    Collection<DigitalTransferOptions> getTransferOptions();
 }

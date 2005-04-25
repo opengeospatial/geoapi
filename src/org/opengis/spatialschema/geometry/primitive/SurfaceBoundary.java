@@ -10,8 +10,9 @@
 package org.opengis.spatialschema.geometry.primitive;
 
 // Annotations
-///import org.opengis.annotation.UML;
-///import static org.opengis.annotation.Obligation.*;
+import org.opengis.annotation.UML;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
 
 
 /**
@@ -48,18 +49,18 @@ package org.opengis.spatialschema.geometry.primitive;
  *
  * @author ISO/DIS 19107
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
- * @version 2.0
+ * @version <A HREF="http://www.opengis.org/docs/01-101.pdf">Abstract specification 5</A>
  *
  * @see SolidBoundary
  */
-///@UML (identifier="GM_SurfaceBoundary")
+@UML (identifier="GM_SurfaceBoundary", specification=ISO_19107)
 public interface SurfaceBoundary extends PrimitiveBoundary {
     /**
      * Returns the exterior ring, or <code>null</code> if none.
      *
      * @return The exterior ring, or <code>null</code>.
      */
-/// @UML (identifier="exterior", obligation=MANDATORY)
+    @UML (identifier="exterior", obligation=MANDATORY, specification=ISO_19107)
     public Ring getExterior();
 
     /**
@@ -67,6 +68,6 @@ public interface SurfaceBoundary extends PrimitiveBoundary {
      *
      * @return The interior rings. Never <code>null</code>, but may be an empty array.
      */
-/// @UML (identifier="interior", obligation=MANDATORY)
+    @UML (identifier="interior", obligation=MANDATORY, specification=ISO_19107)
     public Ring[] getInteriors();
 }

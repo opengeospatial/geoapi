@@ -16,8 +16,9 @@ import java.util.Date;
 import org.opengis.util.InternationalString;
 
 // Annotations
-///import org.opengis.annotation.UML;
-///import static org.opengis.annotation.Obligation.*;
+import org.opengis.annotation.UML;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
 
 
 /**
@@ -27,19 +28,19 @@ import org.opengis.util.InternationalString;
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
  */
-///@UML (identifier="MD_MaintenanceInformation")
+@UML (identifier="MD_MaintenanceInformation", specification=ISO_19115)
 public interface MaintenanceInformation {
     /**
      * Frequency with which changes and additions are made to the resource after the
      * initial resource is completed.
      */
-/// @UML (identifier="maintenanceAndUpdateFrequency", obligation=MANDATORY)
+    @UML (identifier="maintenanceAndUpdateFrequency", obligation=MANDATORY, specification=ISO_19115)
     MaintenanceFrequency getMaintenanceAndUpdateFrequency();
 
     /**
      * Scheduled revision date for resource.
      */
-/// @UML (identifier="dateOfNextUpdate", obligation=OPTIONAL)
+    @UML (identifier="dateOfNextUpdate", obligation=OPTIONAL, specification=ISO_19115)
     Date getDateOfNextUpdate();
 
     /**
@@ -48,24 +49,24 @@ public interface MaintenanceInformation {
      * @return The period, in milliseconds.
      * @unitof PeriodDuration
      */
-/// @UML (identifier="userDefinedMaintenanceFrequency", obligation=OPTIONAL)
+    @UML (identifier="userDefinedMaintenanceFrequency", obligation=OPTIONAL, specification=ISO_19115)
     long getUserDefinedMaintenanceFrequency();
 
     /**
      * Scope of data to which maintenance is applied.
      */
-/// @UML (identifier="updateScope", obligation=OPTIONAL)
+    @UML (identifier="updateScope", obligation=OPTIONAL, specification=ISO_19115)
     ScopeCode getUpdateScope();
 
     /**
      * Additional information about the range or extent of the resource.
      */
-/// @UML (identifier="updateScopeDescription", obligation=OPTIONAL)
+    @UML (identifier="updateScopeDescription", obligation=OPTIONAL, specification=ISO_19115)
     ScopeDescription getUpdateScopeDescription();
 
     /**
      * Information regarding specific requirements for maintaining the resource.
      */
-/// @UML (identifier="maintenanceNote", obligation=CONDITIONAL)
+    @UML (identifier="maintenanceNote", obligation=CONDITIONAL, specification=ISO_19115)
     InternationalString getMaintenanceNote();
 }

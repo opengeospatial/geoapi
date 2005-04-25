@@ -15,8 +15,9 @@ import org.opengis.parameter.ParameterDescriptorGroup;
 import org.opengis.util.InternationalString;
 
 // Annotations
-///import org.opengis.annotation.UML;
-///import static org.opengis.annotation.Obligation.*;
+import org.opengis.annotation.UML;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
 
 
 /**
@@ -30,14 +31,14 @@ import org.opengis.util.InternationalString;
  *
  * @see Operation
  */
-///@UML (identifier="CC_OperationMethod")
+@UML (identifier="CC_OperationMethod", specification=ISO_19111)
 public interface OperationMethod extends IdentifiedObject {
     /**
      * Formula(s) or procedure used by this operation method. This may be a reference to a
      * publication. Note that the operation method may not be analytic, in which case this
      * attribute references or contains the procedure, not an analytic formula.
      */
-/// @UML (identifier="formula", obligation=MANDATORY)
+    @UML (identifier="formula", obligation=MANDATORY, specification=ISO_19111)
     InternationalString getFormula();
 
     /**
@@ -45,7 +46,7 @@ public interface OperationMethod extends IdentifiedObject {
      *
      * @return The dimension of source CRS.
      */
-/// @UML (identifier="sourceDimensions", obligation=MANDATORY)
+    @UML (identifier="sourceDimensions", obligation=MANDATORY, specification=ISO_19111)
     int getSourceDimensions();
 
     /**
@@ -53,7 +54,7 @@ public interface OperationMethod extends IdentifiedObject {
      *
      * @return The dimension of target CRS.
      */
-/// @UML (identifier="targetDimensions", obligation=MANDATORY)
+    @UML (identifier="targetDimensions", obligation=MANDATORY, specification=ISO_19111)
     int getTargetDimensions();
 
     /**
@@ -61,6 +62,6 @@ public interface OperationMethod extends IdentifiedObject {
      *
      * @return The parameters, or an empty group if none.
      */
-/// @UML (identifier="usesParameter", obligation=MANDATORY)
+    @UML (identifier="usesParameter", obligation=MANDATORY, specification=ISO_19111)
     ParameterDescriptorGroup getParameters();
 }

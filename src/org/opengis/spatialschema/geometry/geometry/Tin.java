@@ -14,8 +14,9 @@ import java.util.List;
 import java.util.Set;
 
 // Annotations
-///import org.opengis.annotation.UML;
-///import static org.opengis.annotation.Obligation.*;
+import org.opengis.annotation.UML;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
 
 
 /**
@@ -27,7 +28,7 @@ import java.util.Set;
  *
  * @author ISO/DIS 19107
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
- * @version 2.0
+ * @version <A HREF="http://www.opengis.org/docs/01-101.pdf">Abstract specification 5</A>
  *
  * @see GeometryFactory#createTin
  */
@@ -39,8 +40,8 @@ public interface Tin extends TriangulatedSurface {
      * triangles, the result shall be a change of the surface boundary. The attribute
      * {@code stopLines} contains all these pathological segments as a set of line strings.
      */
-/// @UML (identifier="stopLines", obligation=MANDATORY)
-    Set/*<LineString>*/ getStopLines();
+    @UML (identifier="stopLines", obligation=MANDATORY, specification=ISO_19107)
+    Set<LineString> getStopLines();
 
     /**
      * Breaklines are lines of a critical nature to the shape of the surface, representing local
@@ -48,8 +49,8 @@ public interface Tin extends TriangulatedSurface {
      * segments must be included in the TIN even if doing so violates the Delaunay criterion. The
      * attribute {@code breakLines} contains these critical segments as a set of line strings.
      */
-/// @UML (identifier="breakLines", obligation=MANDATORY)
-    Set/*<LineString>*/ getBreakLines();
+    @UML (identifier="breakLines", obligation=MANDATORY, specification=ISO_19107)
+    Set<LineString> getBreakLines();
 
     /**
      * Maximal length for retention.
@@ -58,7 +59,7 @@ public interface Tin extends TriangulatedSurface {
      * on the length of their sides. For any triangle sides exceeding maximum length, the
      * adjacent triangles to that triangle side shall be removed from the surface.
      */
-/// @UML (identifier="maxLength", obligation=MANDATORY)
+    @UML (identifier="maxLength", obligation=MANDATORY, specification=ISO_19107)
     double getMaxLength();
 
     /**
@@ -69,6 +70,6 @@ public interface Tin extends TriangulatedSurface {
      * Application schemas may add information based on the ordering of the control points to
      * facilitate the reconstruction of the TIN from the control points.
      */
-/// @UML (identifier="controlPoint", obligation=MANDATORY)
-    List/*<Position>*/ getControlPoints();
+    @UML (identifier="controlPoint", obligation=MANDATORY, specification=ISO_19107)
+    List<Position> getControlPoints();
 }

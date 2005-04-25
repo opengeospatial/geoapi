@@ -38,4 +38,9 @@ public @interface UML {
      * obligation is {@link Obligation#MANDATORY}, then null value are not allowed.
      */
     Obligation obligation() default Obligation.MANDATORY;
+
+    /**
+     * The specification where this UML come from.
+     */
+    Specification specification();
 }

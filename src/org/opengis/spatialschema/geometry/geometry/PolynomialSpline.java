@@ -16,8 +16,9 @@ import java.util.List;
 import org.opengis.spatialschema.geometry.primitive.CurveInterpolation;
 
 // Annotations
-///import org.opengis.annotation.UML;
-///import static org.opengis.annotation.Obligation.*;
+import org.opengis.annotation.UML;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
 
 
 /**
@@ -38,14 +39,14 @@ import org.opengis.spatialschema.geometry.primitive.CurveInterpolation;
  *
  * @author ISO/DIS 19107
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
- * @version 2.0
+ * @version <A HREF="http://www.opengis.org/docs/01-101.pdf">Abstract specification 5</A>
  */
 public interface PolynomialSpline extends SplineCurve {
     /**
      * The interpolation mechanism for a <code>PolynomialSpline</code>
      * is {@link CurveInterpolation#POLYNOMIAL_SPLINE POLYNOMIAL_SPLINE}.
      */
-/// @UML (identifier="interpolation", obligation=MANDATORY)
+    @UML (identifier="interpolation", obligation=MANDATORY, specification=ISO_19107)
     CurveInterpolation getInterpolation();
 
     /**
@@ -56,7 +57,7 @@ public interface PolynomialSpline extends SplineCurve {
      * The {@linkplain List#size size} of the returned list is
      * <code>({@linkplain #getDegree degree} - 2)</code>.
      */
-/// @UML (identifier="vectorAtStart", obligation=MANDATORY)
+    @UML (identifier="vectorAtStart", obligation=MANDATORY, specification=ISO_19107)
     List/*double[]*/ getVectorAtStart();
 
     /**
@@ -67,6 +68,6 @@ public interface PolynomialSpline extends SplineCurve {
      * The {@linkplain List#size size} of the returned list is
      * <code>({@linkplain #getDegree degree} - 2)</code>.
      */
-/// @UML (identifier="vectorAtEnd", obligation=MANDATORY)
+    @UML (identifier="vectorAtEnd", obligation=MANDATORY, specification=ISO_19107)
     List/*double[]*/ getVectorAtEnd();
 }

@@ -16,8 +16,9 @@ import javax.units.Unit;
 import org.opengis.util.InternationalString;
 
 // Annotations
-///import org.opengis.annotation.UML;
-///import static org.opengis.annotation.Obligation.*;
+import org.opengis.annotation.UML;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
 
 
 /**
@@ -27,31 +28,31 @@ import org.opengis.util.InternationalString;
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
  */
-///@UML (identifier="DQ_QuantitativeResult")
+@UML (identifier="DQ_QuantitativeResult", specification=ISO_19115)
 public interface QuantitativeResult extends Result {
     /**
      * Quantitative value or values, content determined by the evaluation procedure used.
      *
      * @unitof Measure
      */
-/// @UML (identifier="value", obligation=MANDATORY)
+    @UML (identifier="value", obligation=MANDATORY, specification=ISO_19115)
     double[] getValues();
 
     /**
      * Value type for reporting a data quality result, or <code>null</code> if none.
      */
-/// @UML (identifier="valueType", obligation=OPTIONAL)
+    @UML (identifier="valueType", obligation=OPTIONAL, specification=ISO_19115)
     Class getValueType();
 
     /**
      * Value unit for reporting a data quality result, or <code>null</code> if none.
      */
-/// @UML (identifier="valueUnit", obligation=OPTIONAL)
+    @UML (identifier="valueUnit", obligation=OPTIONAL, specification=ISO_19115)
     Unit getValueUnit();
 
     /**
      * Statistical method used to determine the value, or <code>null</code> if none.
      */
-/// @UML (identifier="errorStatistic", obligation=OPTIONAL)
+    @UML (identifier="errorStatistic", obligation=OPTIONAL, specification=ISO_19115)
     InternationalString getErrorStatistic();
 }

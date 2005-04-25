@@ -13,8 +13,9 @@ package org.opengis.metadata.quality;
 import javax.units.Unit;
 
 // Annotations
-///import org.opengis.annotation.UML;
-///import static org.opengis.annotation.Obligation.*;
+import org.opengis.annotation.UML;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
 
 
 /**
@@ -24,6 +25,6 @@ import javax.units.Unit;
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
  */
-///@UML (identifier="DQ_AbsoluteExternalPositionalAccuracy")
+@UML (identifier="DQ_AbsoluteExternalPositionalAccuracy", specification=ISO_19115)
 public interface AbsoluteExternalPositionalAccuracy extends PositionalAccuracy {
 }

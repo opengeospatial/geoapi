@@ -21,9 +21,10 @@ import org.opengis.parameter.ParameterDescriptorGroup; // For javadoc
 import org.opengis.parameter.ParameterValueGroup;
 
 // Annotations
-///import org.opengis.annotation.UML;
-///import org.opengis.annotation.Extension;
-///import static org.opengis.annotation.Obligation.*;
+import org.opengis.annotation.UML;
+import org.opengis.annotation.Extension;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
 
 
 /**
@@ -65,7 +66,7 @@ import org.opengis.parameter.ParameterValueGroup;
  *
  * @see <A HREF="http://www.remotesensing.org/geotiff/proj_list/">Projection transform list on RemoteSensing.org</A>
  */
-///@UML (identifier="CT_MathTransformFactory")
+@UML (identifier="CT_MathTransformFactory", specification=OGC_01_009)
 public interface MathTransformFactory extends Factory {
     /**
      * Returns a set of available methods for {@linkplain MathTransform math transforms}. For
@@ -81,8 +82,8 @@ public interface MathTransformFactory extends Factory {
      * @see #getDefaultParameters
      * @see #createParameterizedTransform
      */
-/// @Extension
-    Set/*<OperationMethod>*/ getAvailableMethods(Class type);
+    @Extension
+    Set<OperationMethod> getAvailableMethods(Class type);
 
     /**
      * Returns the default parameter values for a math transform using the given method.
@@ -104,7 +105,7 @@ public interface MathTransformFactory extends Factory {
      * @see #getAvailableMethods
      * @see #createParameterizedTransform
      */
-/// @Extension
+    @Extension
     ParameterValueGroup getDefaultParameters(String method) throws NoSuchIdentifierException;
 
     /**
@@ -127,7 +128,7 @@ public interface MathTransformFactory extends Factory {
      * @see #getDefaultParameters
      * @see #getAvailableMethods
      */
-/// @UML (identifier="createParameterizedTransform", obligation=MANDATORY)
+    @UML (identifier="createParameterizedTransform", obligation=MANDATORY, specification=OGC_01_009)
     MathTransform createParameterizedTransform(ParameterValueGroup parameters) throws FactoryException;
 
     /**
@@ -144,7 +145,7 @@ public interface MathTransformFactory extends Factory {
      * @return The affine transform.
      * @throws FactoryException if the object creation failed.
      */
-/// @UML (identifier="createAffineTransform", obligation=MANDATORY)
+    @UML (identifier="createAffineTransform", obligation=MANDATORY, specification=OGC_01_009)
     MathTransform createAffineTransform(Matrix matrix) throws FactoryException;
 
     /**
@@ -162,7 +163,7 @@ public interface MathTransformFactory extends Factory {
      * @return The concatenated transform.
      * @throws FactoryException if the object creation failed.
      */
-/// @UML (identifier="createConcatenatedTransform", obligation=MANDATORY)
+    @UML (identifier="createConcatenatedTransform", obligation=MANDATORY, specification=OGC_01_009)
     MathTransform createConcatenatedTransform(MathTransform transform1,
                                               MathTransform transform2) throws FactoryException;
 
@@ -184,7 +185,7 @@ public interface MathTransformFactory extends Factory {
      * Target: firstAffectedOrdinate + subTransform.getDimTarget() + numTrailingOrdinates</pre>
      * @throws FactoryException if the object creation failed.
      */
-/// @UML (identifier="createPassThroughTransform", obligation=MANDATORY)
+    @UML (identifier="createPassThroughTransform", obligation=MANDATORY, specification=OGC_01_009)
     MathTransform createPassThroughTransform(int firstAffectedOrdinate,
                                              MathTransform subTransform,
                                              int numTrailingOrdinates) throws FactoryException;
@@ -195,7 +196,7 @@ public interface MathTransformFactory extends Factory {
      * @param  xml Math transform encoded in XML format.
      * @throws FactoryException if the object creation failed.
      */
-/// @UML (identifier="createFromXML", obligation=MANDATORY)
+    @UML (identifier="createFromXML", obligation=MANDATORY, specification=OGC_01_009)
     MathTransform createFromXML(String xml) throws FactoryException;
 
     /**
@@ -208,6 +209,6 @@ public interface MathTransformFactory extends Factory {
      * @throws FactoryException if the Well-Known Text can't be parsed,
      *         or if the math transform creation failed from some other reason.
      */
-/// @UML (identifier="createFromWKT", obligation=MANDATORY)
+    @UML (identifier="createFromWKT", obligation=MANDATORY, specification=OGC_01_009)
     MathTransform createFromWKT(String wkt) throws FactoryException;
 }

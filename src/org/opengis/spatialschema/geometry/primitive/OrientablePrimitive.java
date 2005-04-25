@@ -10,8 +10,9 @@
 package org.opengis.spatialschema.geometry.primitive;
 
 // Annotations
-///import org.opengis.annotation.UML;
-///import static org.opengis.annotation.Obligation.*;
+import org.opengis.annotation.UML;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
 
 
 /**
@@ -45,16 +46,16 @@ package org.opengis.spatialschema.geometry.primitive;
  *  
  * @author ISO/DIS 19107
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
- * @version 2.0
+ * @version <A HREF="http://www.opengis.org/docs/01-101.pdf">Abstract specification 5</A>
  */
-///@UML (identifier="GM_OrientablePrimitive")
+@UML (identifier="GM_OrientablePrimitive", specification=ISO_19107)
 public interface OrientablePrimitive extends Primitive {
     /**
      * Determines which of the two possible orientations this object represents.
      *
      * @return +1 for a positive orientation, or -1 for a negative orientation.
      */
-/// @UML (identifier="orientation", obligation=MANDATORY)
+    @UML (identifier="orientation", obligation=MANDATORY, specification=ISO_19107)
     public int getOrientation();
 
     /**
@@ -68,6 +69,6 @@ public interface OrientablePrimitive extends Primitive {
      *
      * @see Primitive#getProxy
      */
-/// @UML (identifier="primitive", obligation=MANDATORY)
+    @UML (identifier="primitive", obligation=MANDATORY, specification=ISO_19107)
     public Primitive getPrimitive();
 }

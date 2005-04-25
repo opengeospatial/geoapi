@@ -14,8 +14,9 @@ import org.opengis.referencing.datum.Datum;
 import org.opengis.referencing.cs.CoordinateSystem;
 
 // Annotations
-///import org.opengis.annotation.UML;
-///import static org.opengis.annotation.Obligation.*;
+import org.opengis.annotation.UML;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
 
 
 /**
@@ -42,19 +43,19 @@ import org.opengis.referencing.cs.CoordinateSystem;
  * @see org.opengis.referencing.cs.CoordinateSystem
  * @see org.opengis.referencing.datum.Datum
  */
-///@UML (identifier="SC_SingleCRS")
+@UML (identifier="SC_SingleCRS", specification=ISO_19111)
 public interface SingleCRS extends CoordinateReferenceSystem {
     /**
      * Returns the coordinate system.
      *
      * @rename Expanded the "CS" abbreviation into "CoordinateSystem".
      */
-/// @UML (identifier="usesCS", obligation=MANDATORY)
+    @UML (identifier="usesCS", obligation=MANDATORY, specification=ISO_19111)
     CoordinateSystem getCoordinateSystem();
 
     /**
      * Returns the datum.
      */
-/// @UML (identifier="usesDatum", obligation=MANDATORY)
+    @UML (identifier="usesDatum", obligation=MANDATORY, specification=ISO_19111)
     Datum getDatum();
 }

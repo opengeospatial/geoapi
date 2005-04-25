@@ -15,8 +15,9 @@ import org.opengis.spatialschema.geometry.DirectPosition;
 import org.opengis.spatialschema.geometry.primitive.CurveSegment;
 
 // Annotations
-///import org.opengis.annotation.UML;
-///import static org.opengis.annotation.Obligation.*;
+import org.opengis.annotation.UML;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
 
 
 /**
@@ -62,9 +63,9 @@ import org.opengis.spatialschema.geometry.primitive.CurveSegment;
  *
  * @author ISO/DIS 19107
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
- * @version 2.0
+ * @version <A HREF="http://www.opengis.org/docs/01-101.pdf">Abstract specification 5</A>
  */
-///@UML (identifier="GM_Conic")
+@UML (identifier="GM_Conic", specification=ISO_19107)
 public interface Conic extends CurveSegment {
     /**
      * Returns an affine transformation object that maps the conic from parameter space into the
@@ -72,7 +73,7 @@ public interface Conic extends CurveSegment {
      * the coordinate reference system of the {@linkplain Geometry}. This affine transformation
      * is given by the formulae in the class description.
      */
-/// @UML (identifier="position", obligation=MANDATORY)
+    @UML (identifier="position", obligation=MANDATORY, specification=ISO_19107)
     public AffinePlacement getPosition();
 
     /**
@@ -81,7 +82,7 @@ public interface Conic extends CurveSegment {
      * is applied to the shifted parameters (<var>u'</var>, <var>v'</var>). This controls
      * whether the focus or the vertex of the conic is at the origin in parameter space.
      */
-/// @UML (identifier="shifted", obligation=MANDATORY)
+    @UML (identifier="shifted", obligation=MANDATORY, specification=ISO_19107)
     public boolean isShifted();
 
     /**
@@ -89,14 +90,14 @@ public interface Conic extends CurveSegment {
      * equation above. It controls the general shape of the curve, determining whether the
      * curve is a circle, ellipse, parabola, or hyperbola.
      */
-/// @UML (identifier="eccentricity", obligation=MANDATORY)
+    @UML (identifier="eccentricity", obligation=MANDATORY, specification=ISO_19107)
     public double getEccentricity();
 
     /**
      * Returns the value of the parameter "<var>P</var>" used in the defining equation
      * above. It controls how broad the conic is at each of its foci.
      */
-/// @UML (identifier="semiLatusRectum", obligation=MANDATORY)
+    @UML (identifier="semiLatusRectum", obligation=MANDATORY, specification=ISO_19107)
     public double getSemiLatusRectum();
 
     /**
@@ -111,7 +112,7 @@ public interface Conic extends CurveSegment {
      * {@linkplain #getEndConstructiveParam end constructive parameter}, but the parameterization
      * must be strictly monotonic (strictly increasing, or strictly decreasing).
      */
-/// @UML (identifier="startConstrParam", obligation=MANDATORY)
+    @UML (identifier="startConstrParam", obligation=MANDATORY, specification=ISO_19107)
     public double getStartConstructiveParam();
 
     /**
@@ -126,6 +127,6 @@ public interface Conic extends CurveSegment {
      * {@linkplain #getEndConstructiveParam end constructive parameter}, but the parameterization
      * must be strictly monotonic (strictly increasing, or strictly decreasing).
      */
-/// @UML (identifier="endConstrParam", obligation=MANDATORY)
+    @UML (identifier="endConstrParam", obligation=MANDATORY, specification=ISO_19107)
     public double getEndConstructiveParam();
 }

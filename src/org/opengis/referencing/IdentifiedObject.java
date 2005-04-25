@@ -15,9 +15,10 @@ import org.opengis.util.GenericName;
 import org.opengis.util.InternationalString;
 
 // Annotations
-///import org.opengis.annotation.UML;
-///import org.opengis.annotation.Extension;
-///import static org.opengis.annotation.Obligation.*;
+import org.opengis.annotation.UML;
+import org.opengis.annotation.Extension;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
 
 
 /**
@@ -32,12 +33,12 @@ import org.opengis.util.InternationalString;
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version Abstract specification 2.0 (revised)
  */
-///@UML (identifier="IdentifiedObject")
+@UML (identifier="IdentifiedObject", specification=ISO_19111)
 public interface IdentifiedObject {
     /**
      * The primary name by which this object is identified.
      */
-/// @UML (identifier="name", obligation=MANDATORY)
+    @UML (identifier="name", obligation=MANDATORY, specification=ISO_19111)
     Identifier getName();
 
     /**
@@ -45,7 +46,7 @@ public interface IdentifiedObject {
      *
      * @return The aliases, or an empty array if there is none.
      */
-/// @UML (identifier="alias", obligation=OPTIONAL)
+    @UML (identifier="alias", obligation=OPTIONAL, specification=ISO_19111)
     GenericName[] getAlias();
 
     /**
@@ -54,13 +55,13 @@ public interface IdentifiedObject {
      *
      * @return This object identifiers, or an empty array if there is none.
      */
-/// @UML (identifier="identifier", obligation=OPTIONAL)
+    @UML (identifier="identifier", obligation=OPTIONAL, specification=ISO_19111)
     Identifier[] getIdentifiers();
 
     /**
      * Comments on or information about this object, including data source information.
      */
-/// @UML (identifier="remarks", obligation=OPTIONAL)
+    @UML (identifier="remarks", obligation=OPTIONAL, specification=ISO_19111)
     InternationalString getRemarks();
 
     /**
@@ -72,6 +73,6 @@ public interface IdentifiedObject {
      * @return The Well Know Text for this object.
      * @throws UnsupportedOperationException If this object can't be formatted as WKT.
      */
-/// @Extension
+    @Extension
     String toWKT() throws UnsupportedOperationException;
 }

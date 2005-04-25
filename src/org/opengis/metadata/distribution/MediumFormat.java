@@ -17,8 +17,9 @@ import java.util.ArrayList;
 import org.opengis.util.CodeList;
 
 // Annotations
-///import org.opengis.annotation.UML;
-///import static org.opengis.annotation.Obligation.*;
+import org.opengis.annotation.UML;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
 
 
 /**
@@ -28,7 +29,7 @@ import org.opengis.util.CodeList;
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
  */
-///@UML (identifier="MD_MediumFormatCode")
+@UML (identifier="MD_MediumFormatCode", specification=ISO_19115)
 public final class MediumFormat extends CodeList {
     /**
      * Serial number for compatibility with different versions.
@@ -44,37 +45,37 @@ public final class MediumFormat extends CodeList {
     /**
      * CoPy In / Out (UNIX file format and command).
      */
-/// @UML (identifier="cpio", obligation=CONDITIONAL)
+    @UML (identifier="cpio", obligation=CONDITIONAL, specification=ISO_19115)
     public static final MediumFormat CPIO = new MediumFormat("CPIO");
 
     /**
      * Tap ARchive.
      */
-/// @UML (identifier="tar", obligation=CONDITIONAL)
+    @UML (identifier="tar", obligation=CONDITIONAL, specification=ISO_19115)
     public static final MediumFormat TAR = new MediumFormat("TAR");
 
     /**
      * High sierra file system.
      */
-/// @UML (identifier="highSierra", obligation=CONDITIONAL)
+    @UML (identifier="highSierra", obligation=CONDITIONAL, specification=ISO_19115)
     public static final MediumFormat HIGH_SIERRA = new MediumFormat("HIGH_SIERRA");
 
     /**
      * Information processing – volume and file structure of CD-ROM.
      */
-/// @UML (identifier="iso9660", obligation=CONDITIONAL)
+    @UML (identifier="iso9660", obligation=CONDITIONAL, specification=ISO_19115)
     public static final MediumFormat ISO_9660 = new MediumFormat("ISO_9660");
 
     /**
      * Rock ridge interchange protocol (UNIX).
      */
-/// @UML (identifier="iso9660RockRidge", obligation=CONDITIONAL)
+    @UML (identifier="iso9660RockRidge", obligation=CONDITIONAL, specification=ISO_19115)
     public static final MediumFormat ISO_9660_ROCK_RIDGE = new MediumFormat("ISO_9660_ROCK_RIDGE");
 
     /**
      * Hierarchical file system (Macintosh).
      */
-/// @UML (identifier="iso9660AppleHFS", obligation=CONDITIONAL)
+    @UML (identifier="iso9660AppleHFS", obligation=CONDITIONAL, specification=ISO_19115)
     public static final MediumFormat ISO_9660_APPLE_HFS = new MediumFormat("ISO_9660_APPLE_HFS");
 
     /**

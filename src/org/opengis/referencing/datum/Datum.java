@@ -19,8 +19,9 @@ import org.opengis.metadata.extent.Extent;
 import org.opengis.util.InternationalString;
 
 // Annotations
-///import org.opengis.annotation.UML;
-///import static org.opengis.annotation.Obligation.*;
+import org.opengis.annotation.UML;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
 
 
 /**
@@ -37,7 +38,7 @@ import org.opengis.util.InternationalString;
  * @see org.opengis.referencing.cs.CoordinateSystem
  * @see org.opengis.referencing.crs.CoordinateReferenceSystem
  */
-///@UML (identifier="CD_Datum")
+@UML (identifier="CD_Datum", specification=ISO_19111)
 public interface Datum extends IdentifiedObject {
     /**
      * Description, possibly including coordinates, of the point or points used to anchor the datum
@@ -60,7 +61,7 @@ public interface Datum extends IdentifiedObject {
      *       a temporal datum carries a separate time origin of type {@link Date}.</li>
      * </ul>
      */
-/// @UML (identifier="anchorPoint", obligation=OPTIONAL)
+    @UML (identifier="anchorPoint", obligation=OPTIONAL, specification=ISO_19111)
     InternationalString getAnchorPoint();
 
     /**
@@ -74,7 +75,7 @@ public interface Datum extends IdentifiedObject {
      *
      * @return The datum realization epoch, or <code>null</code> if not available.
      */
-/// @UML (identifier="realizationEpoch", obligation=OPTIONAL)
+    @UML (identifier="realizationEpoch", obligation=OPTIONAL, specification=ISO_19111)
     Date getRealizationEpoch();
 
     /**
@@ -82,13 +83,13 @@ public interface Datum extends IdentifiedObject {
      *
      * @return The datum valid area, or <code>null</code> if not available.
      */
-/// @UML (identifier="validArea", obligation=OPTIONAL)
+    @UML (identifier="validArea", obligation=OPTIONAL, specification=ISO_19111)
     Extent getValidArea();
 
     /**
      * Description of domain of usage, or limitations of usage, for which this
      * datum object is valid.
      */
-/// @UML (identifier="scope", obligation=OPTIONAL)
+    @UML (identifier="scope", obligation=OPTIONAL, specification=ISO_19111)
     InternationalString getScope();
 }

@@ -19,8 +19,9 @@ import org.opengis.parameter.InvalidParameterNameException;
 import org.opengis.parameter.InvalidParameterValueException;
 
 // Annotations
-///import org.opengis.annotation.UML;
-///import static org.opengis.annotation.Obligation.*;
+import org.opengis.annotation.UML;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
 
 
 /**
@@ -57,10 +58,22 @@ import org.opengis.parameter.InvalidParameterValueException;
  *   <li><i>etc.</i></li>
  * </ul>
  *
+ * <P>&nbsp;</P>
+ * <TABLE WIDTH="80%" ALIGN="center" CELLPADDING="18" BORDER="4" BGCOLOR="#FFE0B0">
+ *   <TR><TD>
+ *     <P align="justify"><STRONG>WARNING: THIS CLASS WILL CHANGE.</STRONG> Current API is derived from OGC
+ *     <A HREF="http://www.opengis.org/docs/01-004.pdf">Grid Coverages Implementation specification 1.0</A>.
+ *     We plan to replace it by new interfaces derived from ISO 19123 (<CITE>Schema for coverage geometry
+ *     and functions</CITE>). Current interfaces should be considered as legacy and are included in this
+ *     distribution only because they were part of GeoAPI 1.0 release. We will try to preserve as much 
+ *     compatibility as possible, but no migration plan has been determined yet.</P>
+ *   </TD></TR>
+ * </TABLE>
+ *
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-004.pdf">Grid Coverage specification 1.0</A>
  */
-///@UML (identifier="GP_GridCoverageProcessor")
+@UML (identifier="GP_GridCoverageProcessor", specification=OGC_01_004)
 public interface GridCoverageProcessor {
     /**
      * Retrieve the list of metadata keywords for the interface.
@@ -68,7 +81,7 @@ public interface GridCoverageProcessor {
      *
      * @return The list of metadata keywords for the interface.
      */
-/// @UML (identifier="metadataNames", obligation=MANDATORY)
+    @UML (identifier="metadataNames", obligation=MANDATORY, specification=OGC_01_004)
     String[] getMetadataNames();
 
     /**
@@ -78,7 +91,7 @@ public interface GridCoverageProcessor {
      * @return The metadata value for a given metadata name.
      * @throws MetadataNameNotFoundException if there is no value for the specified metadata name.
      */
-/// @UML (identifier="getMetadataValue", obligation=MANDATORY)
+    @UML (identifier="getMetadataValue", obligation=MANDATORY, specification=OGC_01_004)
     String getMetadataValue(String name) throws MetadataNameNotFoundException;
 
     /**
@@ -86,7 +99,7 @@ public interface GridCoverageProcessor {
      *
      * @return The number of operations supported by the <code>GridCoverageProcessor</code>.
      */
-/// @UML (identifier="numOperations", obligation=MANDATORY)
+    @UML (identifier="numOperations", obligation=MANDATORY, specification=OGC_01_004)
     int getNumOperations();
 
     /**
@@ -98,7 +111,7 @@ public interface GridCoverageProcessor {
      * @return A grid processing operation information.
      * @throws IndexOutOfBoundsException if <code>index</code> is out of bounds.
      */
-/// @UML (identifier="getOperation", obligation=MANDATORY)
+    @UML (identifier="getOperation", obligation=MANDATORY, specification=OGC_01_004)
     Operation getOperation(int index) throws IndexOutOfBoundsException;
 
     /**
@@ -108,7 +121,7 @@ public interface GridCoverageProcessor {
      * @param  gridCoverage Grid coverage on which the analysis will be performed.
      * @return A new {@link GridAnalysis} interface.
      */
-/// @UML (identifier="analyze", obligation=MANDATORY)
+    @UML (identifier="analyze", obligation=MANDATORY, specification=OGC_01_004)
     GridAnalysis analyze(GridCoverage gridCoverage);
 
     /**
@@ -123,7 +136,7 @@ public interface GridCoverageProcessor {
      * @throws InvalidParameterNameException if a parameter doesn't have a recognized name.
      * @throws InvalidParameterValueException if a parameter doesn't have a valid value.
      */
-/// @UML (identifier="doOperation", obligation=MANDATORY)
+    @UML (identifier="doOperation", obligation=MANDATORY, specification=OGC_01_004)
     GridCoverage doOperation(String operationName, GeneralParameterValue[] parameters)
             throws OperationNotFoundException, ParameterNotFoundException,
                    InvalidParameterNameException, InvalidParameterValueException;

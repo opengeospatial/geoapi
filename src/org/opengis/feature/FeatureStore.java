@@ -67,7 +67,7 @@ public interface FeatureStore {
      * will either be null (if the XML element is to have no namespace) or will
      * be a LocalName whose toString() gives the URI of an XML namespace.
      */
-    List/*<GenericName>*/ getTypeNames();
+    List<GenericName> getTypeNames();
 
     /**
      * This method is similar to the <code>getTypeNames()</code> method, except
@@ -77,7 +77,7 @@ public interface FeatureStore {
      * Implementors are free to return the same values from this method as from
      * <code>getTypeNames()</code>.
      */
-    List/*<GenericName>*/ getRootTypeNames();
+    List<GenericName> getRootTypeNames();
 
     /**
      * Returns the schema of the named feature type.  May return null if a type

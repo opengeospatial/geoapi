@@ -17,9 +17,10 @@ import org.opengis.metadata.citation.Citation;
 import org.opengis.util.InternationalString;
 
 // Annotations
-///import org.opengis.annotation.UML;
-///import org.opengis.annotation.Extension;
-///import static org.opengis.annotation.Obligation.*;
+import org.opengis.annotation.UML;
+import org.opengis.annotation.Extension;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
 
 
 /**
@@ -35,13 +36,13 @@ import org.opengis.util.InternationalString;
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-009.pdf">Implementation specification 1.0</A>
  */
-///@UML (identifier="CS_CoordinateSystemAuthorityFactory")
+@UML (identifier="CS_CoordinateSystemAuthorityFactory", specification=OGC_01_009)
 public interface AuthorityFactory extends Factory {
     /**
      * Returns the organization or party responsible for definition and maintenance of the
      * database.
      */
-/// @UML (identifier="getAuthority")
+    @UML (identifier="getAuthority", specification=OGC_01_009)
     Citation getAuthority();
 
     /**
@@ -67,8 +68,8 @@ public interface AuthorityFactory extends Factory {
      *         returns an {@linkplain java.util.Collections#EMPTY_SET empty set}.
      * @throws FactoryException if access to the underlying database failed.
      */
-/// @Extension
-    Set/*<String>*/ getAuthorityCodes(Class type) throws FactoryException;
+    @Extension
+    Set<String> getAuthorityCodes(Class type) throws FactoryException;
 
     /**
      * Gets a description of the object corresponding to a code.
@@ -79,7 +80,7 @@ public interface AuthorityFactory extends Factory {
      * @throws NoSuchAuthorityCodeException if the specified <code>code</code> was not found.
      * @throws FactoryException if the query failed for some other reason.
      */
-/// @UML (identifier="descriptionText")
+    @UML (identifier="descriptionText", specification=OGC_01_009)
     InternationalString getDescriptionText(String code) throws FactoryException;
 
     /**
@@ -100,6 +101,6 @@ public interface AuthorityFactory extends Factory {
      * @see org.opengis.referencing.datum.DatumAuthorityFactory#createDatum
      * @see org.opengis.referencing.crs.CRSAuthorityFactory#createCoordinateReferenceSystem
      */
-/// @Extension
+    @Extension
     IdentifiedObject createObject(String code) throws FactoryException;
 }

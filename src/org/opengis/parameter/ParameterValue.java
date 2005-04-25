@@ -14,8 +14,9 @@ import java.net.URI;
 import javax.units.Unit;
 
 // Annotations
-///import org.opengis.annotation.UML;
-///import static org.opengis.annotation.Obligation.*;
+import org.opengis.annotation.UML;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
 
 
 /**
@@ -31,7 +32,7 @@ import javax.units.Unit;
  * @see ParameterDescriptor
  * @see ParameterValueGroup
  */
-///@UML (identifier="CC_ParameterValue")
+@UML (identifier="CC_ParameterValue", specification=ISO_19111)
 public interface ParameterValue extends GeneralParameterValue {
     /**
      * Returns the abstract definition of this parameter value.
@@ -85,7 +86,7 @@ public interface ParameterValue extends GeneralParameterValue {
      * @see #setValue(double)
      * @see #doubleValueList
      */
-/// @UML (identifier="value", obligation=CONDITIONAL)
+    @UML (identifier="value", obligation=CONDITIONAL, specification=ISO_19111)
     double doubleValue() throws InvalidParameterTypeException;
 
     /**
@@ -101,7 +102,7 @@ public interface ParameterValue extends GeneralParameterValue {
      * @see #setValue(int)
      * @see #intValueList
      */
-/// @UML (identifier="integerValue", obligation=CONDITIONAL)
+    @UML (identifier="integerValue", obligation=CONDITIONAL, specification=ISO_19111)
     int intValue() throws InvalidParameterTypeException;
 
     /**
@@ -113,7 +114,7 @@ public interface ParameterValue extends GeneralParameterValue {
      *
      * @see #setValue(boolean)
      */
-/// @UML (identifier="booleanValue", obligation=CONDITIONAL)
+    @UML (identifier="booleanValue", obligation=CONDITIONAL, specification=ISO_19111)
     boolean booleanValue() throws InvalidParameterTypeException;
 
     /**
@@ -126,7 +127,7 @@ public interface ParameterValue extends GeneralParameterValue {
      * @see #getValue
      * @see #setValue(Object)
      */
-/// @UML (identifier="stringValue", obligation=CONDITIONAL)
+    @UML (identifier="stringValue", obligation=CONDITIONAL, specification=ISO_19111)
     String stringValue() throws InvalidParameterTypeException;
 
     /**
@@ -162,7 +163,7 @@ public interface ParameterValue extends GeneralParameterValue {
      *         method returns a <code>double</code> value rather than a <code>Measure</code>
      *         object.
      */
-/// @UML (identifier="valueList", obligation=CONDITIONAL)
+    @UML (identifier="valueList", obligation=CONDITIONAL, specification=ISO_19111)
     double[] doubleValueList() throws InvalidParameterTypeException;
 
     /**
@@ -180,7 +181,7 @@ public interface ParameterValue extends GeneralParameterValue {
      *         method returns a <code>double</code> value rather than a <code>Measure</code>
      *         object.
      */
-/// @UML (identifier="integerValueList", obligation=CONDITIONAL)
+    @UML (identifier="integerValueList", obligation=CONDITIONAL, specification=ISO_19111)
     int[] intValueList() throws InvalidParameterTypeException;
 
     /**
@@ -195,7 +196,7 @@ public interface ParameterValue extends GeneralParameterValue {
      * @see #getValue
      * @see #setValue(Object)
      */
-/// @UML (identifier="valueFile", obligation=CONDITIONAL)
+    @UML (identifier="valueFile", obligation=CONDITIONAL, specification=ISO_19111)
     URI valueFile() throws InvalidParameterTypeException;
 
     /**
@@ -207,7 +208,7 @@ public interface ParameterValue extends GeneralParameterValue {
      *
      * @see #setValue(Object)
      */
-/// @UML (identifier="value", obligation=CONDITIONAL)
+    @UML (identifier="value", obligation=CONDITIONAL, specification=ISO_19111)
     Object getValue();
 
     /**

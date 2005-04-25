@@ -10,8 +10,9 @@
 package org.opengis.spatialschema.geometry.geometry;
 
 // Annotations
-///import org.opengis.annotation.UML;
-///import static org.opengis.annotation.Obligation.*;
+import org.opengis.annotation.UML;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
 
 
 /**
@@ -25,14 +26,14 @@ package org.opengis.spatialschema.geometry.geometry;
  *
  * @author ISO/DIS 19107
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
- * @version 2.0
+ * @version <A HREF="http://www.opengis.org/docs/01-101.pdf">Abstract specification 5</A>
  */
-///@UML (identifier="GM_Placement")
+@UML (identifier="GM_Placement", specification=ISO_19107)
 public interface Placement {
     /**
      * Return the dimension of the input parameter space.
      */
-/// @UML (identifier="inDimension", obligation=MANDATORY)
+    @UML (identifier="inDimension", obligation=MANDATORY, specification=ISO_19107)
     public int getInDimension();
 
     /**
@@ -42,7 +43,7 @@ public interface Placement {
      * probably singular, and may be replaceable by a simpler one from a smaller dimension
      * parameter space.
      */
-/// @UML (identifier="outDimension", obligation=MANDATORY)
+    @UML (identifier="outDimension", obligation=MANDATORY, specification=ISO_19107)
     public int getOutDimension();
 
     /**
@@ -51,6 +52,6 @@ public interface Placement {
      * @param in Input coordinate points. The length of this vector must be equals to {@link #getInDimension inDimension}.
      * @return The output coordinate points. The length of this vector is equals to {@link #getOutDimension outDimension}.
      */
-/// @UML (identifier="transform", obligation=MANDATORY)
+    @UML (identifier="transform", obligation=MANDATORY, specification=ISO_19107)
     public double[] transform (double[] in);
 }

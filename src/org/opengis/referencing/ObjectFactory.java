@@ -15,7 +15,7 @@ import org.opengis.metadata.citation.Citation;
 import org.opengis.util.InternationalString;
 
 // Annotations
-///import org.opengis.annotation.Extension;
+import org.opengis.annotation.Extension;
 
 
 /**
@@ -74,6 +74,6 @@ import org.opengis.util.InternationalString;
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-009.pdf">Implementation specification 1.0</A>
  */
-///@Extension
+@Extension
 public interface ObjectFactory extends Factory {
 }

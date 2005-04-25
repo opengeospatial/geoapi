@@ -19,14 +19,14 @@ import java.util.List;
  */
 public class FeatureEvent extends EventObject {
     // IDs of the features that were affected
-    private List/*<String>*/ fids;
+    private List<String> fids;
 
-    public FeatureEvent(FeatureCollection source, List/*<String>*/ fids) {
+    public FeatureEvent(FeatureCollection source, List<String> fids) {
         super(source);
         this.fids = fids;
     }
 
-    public List/*<String>*/ getFeatureIDs() {
+    public List<String> getFeatureIDs() {
         return fids;
     }
 

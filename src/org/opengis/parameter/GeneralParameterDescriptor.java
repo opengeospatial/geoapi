@@ -13,9 +13,10 @@ package org.opengis.parameter;
 import org.opengis.referencing.IdentifiedObject;
 
 // Annotations
-///import org.opengis.annotation.UML;
-///import org.opengis.annotation.Extension;
-///import static org.opengis.annotation.Obligation.*;
+import org.opengis.annotation.UML;
+import org.opengis.annotation.Extension;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
 
 
 /**
@@ -27,7 +28,7 @@ import org.opengis.referencing.IdentifiedObject;
  *
  * @see GeneralParameterValue
  */
-///@UML (identifier="CC_GeneralOperationParameter")
+@UML (identifier="CC_GeneralOperationParameter", specification=ISO_19111)
 public interface GeneralParameterDescriptor extends IdentifiedObject {
     /**
      * Creates a new instance of {@linkplain GeneralParameterValue parameter value or group}
@@ -35,7 +36,7 @@ public interface GeneralParameterDescriptor extends IdentifiedObject {
      * The {@linkplain GeneralParameterValue#getDescriptor parameter value descriptor} for
      * the created parameter value(s) will be <code>this</code> object.
      */
-/// @Extension
+    @Extension
     GeneralParameterValue createValue();
 
     /**
@@ -45,7 +46,7 @@ public interface GeneralParameterDescriptor extends IdentifiedObject {
      *
      * @see #getMaximumOccurs
      */
-/// @UML (identifier="minimumOccurs", obligation=OPTIONAL)
+    @UML (identifier="minimumOccurs", obligation=OPTIONAL, specification=ISO_19111)
     int getMinimumOccurs();
 
     /**
@@ -56,6 +57,6 @@ public interface GeneralParameterDescriptor extends IdentifiedObject {
      *
      * @see #getMinimumOccurs
      */
-/// @UML (identifier="CC_OperationParameterGroup.maximumOccurs", obligation=OPTIONAL)
+    @UML (identifier="CC_OperationParameterGroup.maximumOccurs", obligation=OPTIONAL, specification=ISO_19111)
     int getMaximumOccurs();
 }

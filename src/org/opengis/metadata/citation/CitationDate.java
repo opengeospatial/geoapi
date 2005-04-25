@@ -13,10 +13,12 @@ package org.opengis.metadata.citation;
 import java.util.Date;
 
 // Annotations
-///import org.opengis.annotation.UML;
-///import org.opengis.annotation.Profile;
-///import static org.opengis.annotation.Obligation.*;
-///import static org.opengis.annotation.ComplianceLevel.*;
+import org.opengis.annotation.UML;
+import org.opengis.annotation.Profile;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
+import static org.opengis.annotation.ComplianceLevel.*;
+import static org.opengis.annotation.Specification.*;
 
 
 /**
@@ -26,20 +28,20 @@ import java.util.Date;
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
  */
-///@Profile (level=CORE)
-///@UML (identifier="CI_Date")
+@Profile (level=CORE)
+@UML (identifier="CI_Date", specification=ISO_19115)
 public interface CitationDate {
     /**
      * Reference date for the cited resource.
      */
-/// @Profile (level=CORE)
-/// @UML (identifier="date", obligation=MANDATORY)
+    @Profile (level=CORE)
+    @UML (identifier="date", obligation=MANDATORY, specification=ISO_19115)
     Date getDate();
 
     /**
      * Event used for reference date.
      */
-/// @Profile (level=CORE)
-/// @UML (identifier="dateType", obligation=MANDATORY)
+    @Profile (level=CORE)
+    @UML (identifier="dateType", obligation=MANDATORY, specification=ISO_19115)
     DateType getDateType();
 }

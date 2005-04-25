@@ -13,8 +13,8 @@ package org.opengis.catalog;
 import java.util.Iterator;
 
 // Annotations
-///import org.opengis.annotation.UML;
-///import static org.opengis.annotation.Obligation.*;
+import org.opengis.annotation.UML;
+import static org.opengis.annotation.Obligation.*;
 
 
 /**
@@ -49,7 +49,7 @@ import java.util.Iterator;
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A> 
  * @version <A HREF="http://www.opengis.org/docs/02-087r3.pdf">Catalog Services 1.1.1</A> 
  */
-///@UML (identifier="CG_CatalogEntity")
+//@UML (identifier="CG_CatalogEntity")
 public interface CatalogEntry {
     /**
      * Each <code>CatalogEntry</code> describes a resource, this method provides access to that

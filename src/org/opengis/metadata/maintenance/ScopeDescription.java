@@ -13,8 +13,9 @@ package org.opengis.metadata.maintenance;
 import java.util.Set;
 
 // Annotations
-///import org.opengis.annotation.UML;
-///import static org.opengis.annotation.Obligation.*;
+import org.opengis.annotation.UML;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
 
 
 /**
@@ -27,23 +28,23 @@ import java.util.Set;
  * @revisit Collection types in this interface are not yet defined, because they require
  *          <code>Feature</code> and <code>FeatureType</code>.
  */
-///@UML (identifier="MD_ScopeDescription")
+@UML (identifier="MD_ScopeDescription", specification=ISO_19115)
 public interface ScopeDescription {
     /**
      * Attributes to which the information applies.
      */
-/// @UML (identifier="attributes", obligation=CONDITIONAL)
+    @UML (identifier="attributes", obligation=CONDITIONAL, specification=ISO_19115)
     public Set getAttributes();
 
     /**
      * Features to which the information applies.
      */
-/// @UML (identifier="features", obligation=CONDITIONAL)
+    @UML (identifier="features", obligation=CONDITIONAL, specification=ISO_19115)
     public Set getFeatures();
 
     /**
      * Reature instances to which the information applies.
      */
-/// @UML (identifier="featureInstances", obligation=CONDITIONAL)
+    @UML (identifier="featureInstances", obligation=CONDITIONAL, specification=ISO_19115)
     public Set getFeatureInstances();
 }

@@ -59,7 +59,7 @@ public class LockResponse {
     static final LockResponse NONE = new LockResponse();
     
     /** Authorization tokens by FeatureStore */
-    Map/*<FeatureStore,String>*/ authorizationMap;
+    Map<FeatureStore,String> authorizationMap;
     
     /**
      * Number of Features locked, or -1 if unknown.
@@ -138,7 +138,7 @@ public class LockResponse {
     }
     
     /** Set of locked FeatureStores */
-    public Set/*<FeatureStore>*/ getFeatureStores(){
+    public Set<FeatureStore> getFeatureStores(){
         return Collections.unmodifiableSet( authorizationMap.keySet() );
     }
     

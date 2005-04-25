@@ -35,9 +35,9 @@ public interface FilterFactory {
 ////////////////////////////////////////////////////////////////////////////////
 
     public And  and(Filter f, Filter g);
-    public And  and(List/*<Filter>*/ f);
+    public And  and(List<Filter> f);
     public Or   or(Filter f, Filter g);
-    public Or   or(List/*<Filter>*/ f);
+    public Or   or(List<Filter> f);
     public Not  not(Filter f);
 
     public FeatureId     featureId(String [] ids);

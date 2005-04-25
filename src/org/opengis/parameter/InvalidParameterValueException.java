@@ -10,8 +10,9 @@
 package org.opengis.parameter;
 
 // Annotations
-///import org.opengis.annotation.UML;
-///import static org.opengis.annotation.Obligation.*;
+import org.opengis.annotation.UML;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
 
 
 /**
@@ -24,7 +25,7 @@ package org.opengis.parameter;
  * @see ParameterValue#setValue(double)
  * @see ParameterValue#setValue(Object)
  */
-///@UML (identifier="GC_InvalidParameterValue")
+@UML (identifier="GC_InvalidParameterValue", specification=ISO_19111)
 public class InvalidParameterValueException extends IllegalArgumentException {
     /**
      * Serial number for interoperability with different versions.

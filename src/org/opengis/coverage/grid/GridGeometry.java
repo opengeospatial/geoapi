@@ -13,8 +13,9 @@ package org.opengis.coverage.grid;
 import org.opengis.referencing.operation.MathTransform;
 
 // Annotations
-///import org.opengis.annotation.UML;
-///import static org.opengis.annotation.Obligation.*;
+import org.opengis.annotation.UML;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
 
 
 /**
@@ -22,10 +23,22 @@ import org.opengis.referencing.operation.MathTransform;
  * The grid range attribute determines the valid grid coordinates and allows
  * for calculation of grid size. A grid coverage may or may not have georeferencing.
  *
+ * <P>&nbsp;</P>
+ * <TABLE WIDTH="80%" ALIGN="center" CELLPADDING="18" BORDER="4" BGCOLOR="#FFE0B0">
+ *   <TR><TD>
+ *     <P align="justify"><STRONG>WARNING: THIS CLASS WILL CHANGE.</STRONG> Current API is derived from OGC
+ *     <A HREF="http://www.opengis.org/docs/01-004.pdf">Grid Coverages Implementation specification 1.0</A>.
+ *     We plan to replace it by new interfaces derived from ISO 19123 (<CITE>Schema for coverage geometry
+ *     and functions</CITE>). Current interfaces should be considered as legacy and are included in this
+ *     distribution only because they were part of GeoAPI 1.0 release. We will try to preserve as much 
+ *     compatibility as possible, but no migration plan has been determined yet.</P>
+ *   </TD></TR>
+ * </TABLE>
+ *
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-004.pdf">Grid Coverage specification 1.0</A>
  */
-///@UML (identifier="CV_GridGeometry")
+@UML (identifier="CV_GridGeometry", specification=OGC_01_004)
 public interface GridGeometry {
     /**
      * The valid coordinate range of a grid coverage.
@@ -35,7 +48,7 @@ public interface GridGeometry {
      *
      * @return The valid coordinate range of a grid coverage.
      */
-/// @UML (identifier="gridRange", obligation=MANDATORY)
+    @UML (identifier="gridRange", obligation=MANDATORY, specification=OGC_01_004)
     GridRange getGridRange();
 
     /**
@@ -49,6 +62,6 @@ public interface GridGeometry {
      *         {@linkplain org.opengis.coverage.Coverage#getCoordinateReferenceSystem
      *         real world earth coordinates}.
      */
-/// @UML (identifier="gridToCoordinateSystem", obligation=MANDATORY)
+    @UML (identifier="gridToCoordinateSystem", obligation=MANDATORY, specification=OGC_01_004)
     MathTransform getGridToCoordinateSystem();
 }

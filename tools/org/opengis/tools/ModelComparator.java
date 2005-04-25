@@ -17,6 +17,7 @@ import java.lang.reflect.*;
 // OpenGIS dependencies
 import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
+import org.opengis.annotation.Specification;
 import org.opengis.parameter.ParameterValueGroup;
 import org.opengis.parameter.ParameterDescriptorGroup;
 import org.opengis.spatialschema.geometry.geometry.PointGrid;
@@ -257,6 +258,9 @@ scanMembers:for (final Member attribute : attributes) {
     private static String getIdentifier(final AnnotatedElement element) {
         final UML uml = element.getAnnotation(UML.class);
         if (uml != null) {
+            switch (uml.specification()) {
+                case OGC_01_009: return null;
+            }
             String identifier = uml.identifier();
             /*
              * If there is two or more UML identifier collapsed in only one

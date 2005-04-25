@@ -10,8 +10,9 @@
 package org.opengis.spatialschema.geometry.geometry;
 
 // Annotations
-///import org.opengis.annotation.UML;
-///import static org.opengis.annotation.Obligation.*;
+import org.opengis.annotation.UML;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
 
 
 /**
@@ -39,10 +40,10 @@ package org.opengis.spatialschema.geometry.geometry;
  *  
  * @author ISO/DIS 19107
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
- * @version 2.0
+ * @version <A HREF="http://www.opengis.org/docs/01-101.pdf">Abstract specification 5</A>
  *
  * @see GeometryFactory#createLineSegment
  */
-///@UML (identifier="GM_LineSegment")
+@UML (identifier="GM_LineSegment", specification=ISO_19107)
 public interface LineSegment extends LineString {
 }

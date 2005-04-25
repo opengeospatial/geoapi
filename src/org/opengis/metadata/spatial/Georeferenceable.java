@@ -17,8 +17,9 @@ import org.opengis.util.InternationalString;
 import org.opengis.metadata.citation.Citation;
 
 // Annotations
-///import org.opengis.annotation.UML;
-///import static org.opengis.annotation.Obligation.*;
+import org.opengis.annotation.UML;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
 
 
 /**
@@ -30,24 +31,24 @@ import org.opengis.metadata.citation.Citation;
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
  */
-///@UML (identifier="MD_Georeferenceable")
+@UML (identifier="MD_Georeferenceable", specification=ISO_19115)
 public interface Georeferenceable extends GridSpatialRepresentation {
     /**
      * Indication of whether or not control point(s) exists.
      */
-/// @UML (identifier="controlPointAvailability", obligation=MANDATORY)
+    @UML (identifier="controlPointAvailability", obligation=MANDATORY, specification=ISO_19115)
     boolean isControlPointAvailable();
 
     /**
      * Indication of whether or not orientation parameters are available.
      */
-/// @UML (identifier="orientationParameterAvailability", obligation=MANDATORY)
+    @UML (identifier="orientationParameterAvailability", obligation=MANDATORY, specification=ISO_19115)
     boolean isOrientationParameterAvailable();
 
     /**
      * Description of parameters used to describe sensor orientation.
      */
-/// @UML (identifier="orientationParameterDescription", obligation=OPTIONAL)
+    @UML (identifier="orientationParameterDescription", obligation=OPTIONAL, specification=ISO_19115)
     InternationalString getOrientationParameterDescription();
 
     /**
@@ -55,12 +56,12 @@ public interface Georeferenceable extends GridSpatialRepresentation {
      *
      * @revisit Return type in UML is <code>Record</code>.
      */
-/// @UML (identifier="parameters", obligation=OPTIONAL)
+    @UML (identifier="parameters", obligation=OPTIONAL, specification=ISO_19115)
     Object getParameters();
 
     /**
      * Reference providing description of the parameters.
      */
-/// @UML (identifier="parameterCitation", obligation=OPTIONAL)
-    Collection/*<Citation>*/ getParameterCitation();
+    @UML (identifier="parameterCitation", obligation=OPTIONAL, specification=ISO_19115)
+    Collection<Citation> getParameterCitation();
 }

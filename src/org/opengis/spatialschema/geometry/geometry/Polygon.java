@@ -20,8 +20,9 @@ import org.opengis.spatialschema.geometry.primitive.SurfaceBoundary;
 import org.opengis.spatialschema.geometry.complex.Complex;
 
 // Annotations
-///import org.opengis.annotation.UML;
-///import static org.opengis.annotation.Obligation.*;
+import org.opengis.annotation.UML;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
 
 
 /**
@@ -31,11 +32,12 @@ import org.opengis.spatialschema.geometry.complex.Complex;
  *
  * @author ISO/DIS 19107
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
- * @version 2.0
+ * @version <A HREF="http://www.opengis.org/docs/01-101.pdf">Abstract specification 5</A>
  *
  * @see GeometryFactory#createPolygon(SurfaceBoundary)
  * @see GeometryFactory#createPolygon(SurfaceBoundary,Surface)
  */
+@UML (identifier="GM_Polygon", specification=ISO_19107)
 public interface Polygon extends SurfacePatch {
     /**
      * The surface boundary that is the boundary of this polygon.
@@ -47,7 +49,7 @@ public interface Polygon extends SurfacePatch {
      * between {@linkplain Surface surface} and {@linkplain Curve curve} that defines the connectivity
      * of the {@linkplain Complex complex}.
      */
-/// @UML (identifier="boundary", obligation=MANDATORY)
+    @UML (identifier="boundary", obligation=MANDATORY, specification=ISO_19107)
     SurfaceBoundary getBoundary();
 
     /**
@@ -58,12 +60,12 @@ public interface Polygon extends SurfacePatch {
      * which is not directly described in this standard, although {@linkplain Tin tins} and
      * {@linkplain GriddedSurface gridded surfaces} are often used in this role.
      */
-/// @UML (identifier="spanningSurface", obligation=OPTIONAL)
-    List/*<Surface>*/ getSpanningSurface();
+    @UML (identifier="spanningSurface", obligation=OPTIONAL, specification=ISO_19107)
+    List<Surface> getSpanningSurface();
 
     /**
      * Returns the patch which own this surface patch.
      */
-/// @UML (identifier="surface", obligation=MANDATORY)
+/// @UML (identifier="surface", obligation=MANDATORY, specification=ISO_19107)
 /// PolyhedralSurface getSurface();
 }

@@ -13,8 +13,9 @@ package org.opengis.spatialschema.geometry.geometry;
 import java.util.List;
 
 // Annotations
-///import org.opengis.annotation.UML;
-///import static org.opengis.annotation.Obligation.*;
+import org.opengis.annotation.UML;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
 
 
 /**
@@ -27,31 +28,31 @@ import java.util.List;
  *
  * @author ISO/DIS 19107
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
- * @version 2.0
+ * @version <A HREF="http://www.opengis.org/docs/01-101.pdf">Abstract specification 5</A>
  */
-///@UML (identifier="GM_BicubicGrid")
+@UML (identifier="GM_BicubicGrid", specification=ISO_19107)
 public interface BicubicGrid extends GriddedSurface {
     /**
      * Returns the initial tangent vectors.
      */
-/// @UML (identifier="horiVectorAtStart", obligation=MANDATORY)
-    List/*<double[]>*/ getHorizontalVectorAtStart();
+    @UML (identifier="horiVectorAtStart", obligation=MANDATORY, specification=ISO_19107)
+    List<double[]> getHorizontalVectorAtStart();
 
     /**
      * Returns the initial tangent vectors.
      */
-/// @UML (identifier="horiVectorAtEnd", obligation=MANDATORY)
-    List/*<double[]>*/ getHorizontalVectorAtEnd();
+    @UML (identifier="horiVectorAtEnd", obligation=MANDATORY, specification=ISO_19107)
+    List<double[]> getHorizontalVectorAtEnd();
 
     /**
      * Returns the initial tangent vectors.
      */
-/// @UML (identifier="vertVectorAtStart", obligation=MANDATORY)
-    List/*<double[]>*/ getVerticalVectorAtStart();
+    @UML (identifier="vertVectorAtStart", obligation=MANDATORY, specification=ISO_19107)
+    List<double[]> getVerticalVectorAtStart();
 
     /**
      * Returns the initial tangent vectors.
      */
-/// @UML (identifier="vertVectorAtEnd", obligation=MANDATORY)
-    List/*<double[]>*/ getVerticalVectorAtEnd();
+    @UML (identifier="vertVectorAtEnd", obligation=MANDATORY, specification=ISO_19107)
+    List<double[]> getVerticalVectorAtEnd();
 }

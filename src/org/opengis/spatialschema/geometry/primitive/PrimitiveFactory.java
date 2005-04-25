@@ -23,9 +23,10 @@ import org.opengis.spatialschema.geometry.MismatchedReferenceSystemException;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 
 // Annotations
-///import org.opengis.annotation.UML;
-///import org.opengis.annotation.Extension;
-///import static org.opengis.annotation.Obligation.*;
+import org.opengis.annotation.UML;
+import org.opengis.annotation.Extension;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
 
 
 /**
@@ -37,7 +38,7 @@ import org.opengis.referencing.crs.CoordinateReferenceSystem;
  *
  * @author ISO/DIS 19107
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
- * @version 2.0
+ * @version <A HREF="http://www.opengis.org/docs/01-101.pdf">Abstract specification 5</A>
  */
 public interface PrimitiveFactory {
     /**
@@ -91,7 +92,7 @@ public interface PrimitiveFactory {
      * @throws MismatchedDimensionException If geometric objects given in argument don't have
      *         the expected dimension.
      */
-/// @UML (identifier="GM_Primitive(GM_Envelope)", obligation=MANDATORY)
+    @UML (identifier="GM_Primitive(GM_Envelope)", obligation=MANDATORY, specification=ISO_19107)
     Primitive createPrimitive(Envelope envelope)
             throws MismatchedReferenceSystemException, MismatchedDimensionException;
 
@@ -104,7 +105,7 @@ public interface PrimitiveFactory {
      * @throws MismatchedDimensionException If geometric objects given in argument don't have
      *         the expected dimension.
      */
-/// @Extension
+    @Extension
     DirectPosition createDirectPosition(double[] coordinates)
             throws MismatchedDimensionException;
 
@@ -114,7 +115,7 @@ public interface PrimitiveFactory {
      * @throws MismatchedDimensionException If geometric objects given in argument don't have
      *         the expected dimension.
      */
-/// @Extension
+    @Extension
     Point createPoint(double[] coordinates)
             throws MismatchedDimensionException;
 
@@ -126,7 +127,7 @@ public interface PrimitiveFactory {
      * @throws MismatchedDimensionException If geometric objects given in argument don't have
      *         the expected dimension.
      */
-/// @UML (identifier="GM_Point(GM_Position)", obligation=MANDATORY)
+    @UML (identifier="GM_Point(GM_Position)", obligation=MANDATORY, specification=ISO_19107)
     Point createPoint(Position position)
             throws MismatchedReferenceSystemException, MismatchedDimensionException;
 
@@ -139,8 +140,8 @@ public interface PrimitiveFactory {
      * @throws MismatchedDimensionException If geometric objects given in argument don't have
      *         the expected dimension.
      */
-/// @UML (identifier="GM_Curve(GM_CurveSegment[1..n])", obligation=MANDATORY)
-    Curve createCurve(List/*<CurveSegment>*/ segments)
+    @UML (identifier="GM_Curve(GM_CurveSegment[1..n])", obligation=MANDATORY, specification=ISO_19107)
+    Curve createCurve(List<CurveSegment> segments)
             throws MismatchedReferenceSystemException, MismatchedDimensionException;
 
     /**
@@ -152,8 +153,8 @@ public interface PrimitiveFactory {
      * @throws MismatchedDimensionException If geometric objects given in argument don't have
      *         the expected dimension.
      */
-/// @UML (identifier="GM_Surface(GM_SurfacePatch[1..n])", obligation=MANDATORY)
-    Surface createSurface(List/*<SurfacePatch>*/ surfaces)
+    @UML (identifier="GM_Surface(GM_SurfacePatch[1..n])", obligation=MANDATORY, specification=ISO_19107)
+    Surface createSurface(List<SurfacePatch> surfaces)
             throws MismatchedReferenceSystemException, MismatchedDimensionException;
 
     /**
@@ -169,7 +170,7 @@ public interface PrimitiveFactory {
      * @throws MismatchedDimensionException If geometric objects given in argument don't have
      *         the expected dimension.
      */
-/// @UML (identifier="GM_Surface(GM_SurfaceBoundary)", obligation=MANDATORY)
+    @UML (identifier="GM_Surface(GM_SurfaceBoundary)", obligation=MANDATORY, specification=ISO_19107)
     Surface createSurface(SurfaceBoundary boundary)
             throws MismatchedReferenceSystemException, MismatchedDimensionException;
 
@@ -190,8 +191,8 @@ public interface PrimitiveFactory {
      * @throws MismatchedDimensionException If geometric objects given in argument don't have
      *         the expected dimension.
      */
-/// @Extension
-    SurfaceBoundary createSurfaceBoundary(Ring exterior, List/*<Ring>*/ interiors)
+    @Extension
+    SurfaceBoundary createSurfaceBoundary(Ring exterior, List<Ring> interiors)
             throws MismatchedReferenceSystemException, MismatchedDimensionException;
 
     /**
@@ -205,7 +206,7 @@ public interface PrimitiveFactory {
      * @throws MismatchedDimensionException If geometric objects given in argument don't have
      *         the expected dimension.
      */
-/// @UML (identifier="GM_Solid(GM_SolidBoundary)", obligation=MANDATORY)
+    @UML (identifier="GM_Solid(GM_SolidBoundary)", obligation=MANDATORY, specification=ISO_19107)
     Solid createSolid(SolidBoundary boundary)
             throws MismatchedReferenceSystemException, MismatchedDimensionException;
 
@@ -221,8 +222,8 @@ public interface PrimitiveFactory {
      * @throws MismatchedDimensionException If geometric objects given in argument don't have
      *         the expected dimension.
      */
-/// @Extension
-    Ring createRing(List/*<Curve>*/ curves)
+    @Extension
+    Ring createRing(List<Curve> curves)
     	throws MismatchedReferenceSystemException, MismatchedDimensionException;
 
     /**
@@ -240,7 +241,7 @@ public interface PrimitiveFactory {
      *             according ISO 19107. Furthermore, {@link PolyhedralSurface} extends
      *             {@link org.opengis.spatialschema.geometry.Geometry}.
      */
-/// @UML (identifier="GM_PolyhedralSurace(GM_Polygon)", obligation=MANDATORY)
-    PolyhedralSurface createPolyhedralSurface(List/*<Polygon>*/ tiles)
+    @UML (identifier="GM_PolyhedralSurace(GM_Polygon)", obligation=MANDATORY, specification=ISO_19107)
+    PolyhedralSurface createPolyhedralSurface(List<Polygon> tiles)
             throws MismatchedReferenceSystemException, MismatchedDimensionException;
 }

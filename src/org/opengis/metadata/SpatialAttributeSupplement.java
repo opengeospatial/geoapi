@@ -13,8 +13,9 @@ package org.opengis.metadata;
 import java.util.Collection;
 
 // Annotations
-///import org.opengis.annotation.UML;
-///import static org.opengis.annotation.Obligation.*;
+import org.opengis.annotation.UML;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
 
 
 /**
@@ -24,11 +25,11 @@ import java.util.Collection;
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
  */
-///@UML (identifier="MD_SpatialAttributeSupplement")
+@UML (identifier="MD_SpatialAttributeSupplement", specification=ISO_19115)
 public interface SpatialAttributeSupplement {
     /**
      * Provides information about the list of feature types with the same spatial representation.
      */
-/// @UML (identifier="theFeatureTypeList", obligation=MANDATORY)
-    Collection/*<FeatureTypeList>*/ getFeatureTypeList();
+    @UML (identifier="theFeatureTypeList", obligation=MANDATORY, specification=ISO_19115)
+    Collection<FeatureTypeList> getFeatureTypeList();
 }

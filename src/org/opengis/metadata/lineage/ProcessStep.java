@@ -18,8 +18,9 @@ import org.opengis.util.InternationalString;
 import org.opengis.metadata.citation.ResponsibleParty;
 
 // Annotations
-///import org.opengis.annotation.UML;
-///import static org.opengis.annotation.Obligation.*;
+import org.opengis.annotation.UML;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
 
 
 /**
@@ -29,36 +30,36 @@ import org.opengis.metadata.citation.ResponsibleParty;
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
  */
-///@UML (identifier="LI_ProcessStep")
+@UML (identifier="LI_ProcessStep", specification=ISO_19115)
 public interface ProcessStep {
     /**
      * Description of the event, including related parameters or tolerances.
      */
-/// @UML (identifier="description", obligation=MANDATORY)
+    @UML (identifier="description", obligation=MANDATORY, specification=ISO_19115)
     InternationalString getDescription();
 
     /**
      * Requirement or purpose for the process step.
      */
-/// @UML (identifier="rationale", obligation=OPTIONAL)
+    @UML (identifier="rationale", obligation=OPTIONAL, specification=ISO_19115)
     InternationalString getRationale();
 
     /**
      * Date and time or range of date and time on or over which the process step occurred.
      */
-/// @UML (identifier="dateTime", obligation=OPTIONAL)
+    @UML (identifier="dateTime", obligation=OPTIONAL, specification=ISO_19115)
     Date getDate();
 
     /**
      * Identification of, and means of communication with, person(s) and
      * organization(s) associated with the process step.
      */
-/// @UML (identifier="processor", obligation=OPTIONAL)
-    Collection/*<ResponsibleParty>*/ getProcessors();
+    @UML (identifier="processor", obligation=OPTIONAL, specification=ISO_19115)
+    Collection<ResponsibleParty> getProcessors();
 
     /**
      * Information about the source data used in creating the data specified by the scope.
      */
-/// @UML (identifier="source", obligation=OPTIONAL)
-    Collection/*<Source>*/ getSources();
+    @UML (identifier="source", obligation=OPTIONAL, specification=ISO_19115)
+    Collection<Source> getSources();
 }

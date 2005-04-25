@@ -15,8 +15,9 @@ import org.opengis.spatialschema.geometry.geometry.Position;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 
 // Annotations
-///import org.opengis.annotation.UML;
-///import static org.opengis.annotation.Obligation.*;
+import org.opengis.annotation.UML;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
 
 
 /**
@@ -31,9 +32,9 @@ import org.opengis.referencing.crs.CoordinateReferenceSystem;
  * 
  * @author ISO/DIS 19107
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
- * @version 2.0
+ * @version <A HREF="http://www.opengis.org/docs/01-101.pdf">Abstract specification 5</A>
  */
-///@UML (identifier="DirectPosition")
+@UML (identifier="DirectPosition", specification=ISO_19107)
 public interface DirectPosition extends Position, Cloneable {
     /**
      * The length of coordinate sequence (the number of entries). This is determined by
@@ -41,7 +42,7 @@ public interface DirectPosition extends Position, Cloneable {
      *
      * @return The dimensionality of this position.
      */
-/// @UML (identifier="dimension", obligation=MANDATORY)
+    @UML (identifier="dimension", obligation=MANDATORY, specification=ISO_19107)
     int getDimension();
 
     /**
@@ -51,7 +52,7 @@ public interface DirectPosition extends Position, Cloneable {
      * @return A copy of the coordinates. Changes in the returned array will not be reflected
      *         back in this <code>DirectPosition</code> object.
      */
-/// @UML (identifier="coordinates", obligation=MANDATORY)
+    @UML (identifier="coordinates", obligation=MANDATORY, specification=ISO_19107)
     double[] getCoordinates();
 
     /**
@@ -82,7 +83,7 @@ public interface DirectPosition extends Position, Cloneable {
      *
      * @return The coordinate reference system, or <code>null</code>.
      */
-/// @UML (identifier="coordinateReferenceSystem", obligation=MANDATORY)
+    @UML (identifier="coordinateReferenceSystem", obligation=MANDATORY, specification=ISO_19107)
     CoordinateReferenceSystem getCoordinateReferenceSystem();
 
     /**

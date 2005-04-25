@@ -13,8 +13,9 @@ package org.opengis.coverage.grid;
 import org.opengis.parameter.ParameterValueGroup;
 
 // Annotations
-///import org.opengis.annotation.UML;
-///import static org.opengis.annotation.Obligation.*;
+import org.opengis.annotation.UML;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
 
 
 /**
@@ -22,51 +23,63 @@ import org.opengis.parameter.ParameterValueGroup;
  * implementation. A <code>GridCoverageExchange</code> implementation can support a number of
  * file format or resources.
  *
+ * <P>&nbsp;</P>
+ * <TABLE WIDTH="80%" ALIGN="center" CELLPADDING="18" BORDER="4" BGCOLOR="#FFE0B0">
+ *   <TR><TD>
+ *     <P align="justify"><STRONG>WARNING: THIS CLASS WILL CHANGE.</STRONG> Current API is derived from OGC
+ *     <A HREF="http://www.opengis.org/docs/01-004.pdf">Grid Coverages Implementation specification 1.0</A>.
+ *     We plan to replace it by new interfaces derived from ISO 19123 (<CITE>Schema for coverage geometry
+ *     and functions</CITE>). Current interfaces should be considered as legacy and are included in this
+ *     distribution only because they were part of GeoAPI 1.0 release. We will try to preserve as much 
+ *     compatibility as possible, but no migration plan has been determined yet.</P>
+ *   </TD></TR>
+ * </TABLE>
+ *
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-004.pdf">Grid Coverage specification 1.0</A>
  */
-///@UML (identifier="CV_Format")
+@UML (identifier="CV_Format", specification=OGC_01_004)
 public interface Format {
     /**
      * Name of the file format.
      */
-/// @UML (identifier="name", obligation=MANDATORY)
+    @UML (identifier="name", obligation=MANDATORY, specification=OGC_01_004)
     String getName();
 
     /**
      * Description of the file format.
      * If no description, the value will be <code>null</code>.
      */
-/// @UML (identifier="description", obligation=OPTIONAL)
+    @UML (identifier="description", obligation=OPTIONAL, specification=OGC_01_004)
     String getDescription();
 
     /**
      * Vendor or agency for the format.
      */
-/// @UML (identifier="vendor", obligation=OPTIONAL)
+    @UML (identifier="vendor", obligation=OPTIONAL, specification=OGC_01_004)
     String getVendor();
 
     /**
      * Documentation URL for the format.
      */
-/// @UML (identifier="docURL", obligation=OPTIONAL)
+    @UML (identifier="docURL", obligation=OPTIONAL, specification=OGC_01_004)
     String getDocURL();
 
     /**
      * Version number of the format.
      */
-/// @UML (identifier="version", obligation=OPTIONAL)
+    @UML (identifier="version", obligation=OPTIONAL, specification=OGC_01_004)
     String getVersion();
 
     /**
      * Retrieve the parameter information for a {@link GridCoverageReader#read read} operation.
      */
-/// @UML (identifier="getParameterInfo, numParameters", obligation=MANDATORY)
+    @UML (identifier="getParameterInfo, numParameters", obligation=MANDATORY, specification=OGC_01_004)
     ParameterValueGroup getReadParameters();
 
     /**
      * Retrieve the parameter information for a {@link GridCoverageWriter#write write} operation.
      */
-/// @UML (identifier="getParameterInfo, numParameters", obligation=MANDATORY)
+    @UML (identifier="getParameterInfo, numParameters", obligation=MANDATORY, specification=OGC_01_004)
     ParameterValueGroup getWriteParameters();
 }

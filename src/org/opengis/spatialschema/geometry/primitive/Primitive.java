@@ -18,8 +18,9 @@ import org.opengis.spatialschema.geometry.Envelope;
 import org.opengis.spatialschema.geometry.complex.Complex;
 
 // Annotations
-///import org.opengis.annotation.UML;
-///import static org.opengis.annotation.Obligation.*;
+import org.opengis.annotation.UML;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
 
 
 /**
@@ -40,13 +41,13 @@ import org.opengis.spatialschema.geometry.complex.Complex;
  *
  * @author ISO/DIS 19107
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
- * @version 2.0
+ * @version <A HREF="http://www.opengis.org/docs/01-101.pdf">Abstract specification 5</A>
  *
  * @see PrimitiveFactory#createPrimitive(Envelope)
  *
  * @revisit Some associations are commented out for now.
  */
-///@UML (identifier="GM_Primitive")
+@UML (identifier="GM_Primitive", specification=ISO_19107)
 public interface Primitive extends Geometry {
     /**
      * Returns the boundary of a <code>Primitive</code> as a set of 
@@ -57,7 +58,7 @@ public interface Primitive extends Geometry {
      *
      * @return The sets of positions on the boundary.
      */
-/// @UML (identifier="boundary", obligation=MANDATORY)
+/// @UML (identifier="boundary", obligation=MANDATORY, specification=ISO_19107)
 /// public PrimitiveBoundary getBoundary();
 
     /**
@@ -83,8 +84,8 @@ public interface Primitive extends Geometry {
      *
      * @see #getContainingPrimitives
      */
-/// @UML (identifier="containedPrimitive", obligation=MANDATORY)
-    public Set/*<Primitive>*/ getContainedPrimitives();
+    @UML (identifier="containedPrimitive", obligation=MANDATORY, specification=ISO_19107)
+    public Set<Primitive> getContainedPrimitives();
 
     /**
      * Returns the <code>Primitive</code>s which are by definition coincident with this one.
@@ -101,8 +102,8 @@ public interface Primitive extends Geometry {
      *
      * @see #getContainedPrimitives
      */
-/// @UML (identifier="containingPrimitive", obligation=MANDATORY)
-    public Set/*<Primitive>*/ getContainingPrimitives();
+    @UML (identifier="containingPrimitive", obligation=MANDATORY, specification=ISO_19107)
+    public Set<Primitive> getContainingPrimitives();
 
     /**
      * Returns the set of complexes which contains this primitive. A <code>Primitive</code> may
@@ -114,8 +115,8 @@ public interface Primitive extends Geometry {
      * @revisit Does it means that <code>Primitive</code> can't be immutable, since
      *          adding this primitive to a complex will change this set?
      */
-/// @UML (identifier="complex", obligation=MANDATORY)
-    public Set/*<Complex>*/ getComplexes();
+    @UML (identifier="complex", obligation=MANDATORY, specification=ISO_19107)
+    public Set<Complex> getComplexes();
 
     /**
      * Returns the orientable primitives associated with this primitive. Each <code>Primitive</code>
@@ -131,7 +132,7 @@ public interface Primitive extends Geometry {
      *
      * @revisit Should we use the plural form for the method names?
      */
-/// @UML (identifier="proxy", obligation=MANDATORY)
+    @UML (identifier="proxy", obligation=MANDATORY, specification=ISO_19107)
     public OrientablePrimitive[] getProxy();
 
 //    public org.opengis.spatialschema.topology.primitive.TP_Primitive topology[];

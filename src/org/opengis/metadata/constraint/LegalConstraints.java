@@ -16,8 +16,9 @@ import java.util.Collection;
 import org.opengis.util.InternationalString;
 
 // Annotations
-///import org.opengis.annotation.UML;
-///import static org.opengis.annotation.Obligation.*;
+import org.opengis.annotation.UML;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
 
 
 /**
@@ -27,21 +28,21 @@ import org.opengis.util.InternationalString;
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
  */
-///@UML (identifier="MD_LegalConstraints")
+@UML (identifier="MD_LegalConstraints", specification=ISO_19115)
 public interface LegalConstraints extends Constraints {
     /**
      * Access constraints applied to assure the protection of privacy or intellectual property,
      * and any special restrictions or limitations on obtaining the resource.
      */
-/// @UML (identifier="accessConstraints", obligation=OPTIONAL)
-    Collection/*<Restriction>*/ getAccessConstraints();
+    @UML (identifier="accessConstraints", obligation=OPTIONAL, specification=ISO_19115)
+    Collection<Restriction> getAccessConstraints();
 
     /**
      * Constraints applied to assure the protection of privacy or intellectual property, and any
      * special restrictions or limitations or warnings on using the resource.
      */
-/// @UML (identifier="useConstraints", obligation=OPTIONAL)
-    Collection/*<Restriction>*/ getUseConstraints();
+    @UML (identifier="useConstraints", obligation=OPTIONAL, specification=ISO_19115)
+    Collection<Restriction> getUseConstraints();
 
     /**
      * Other restrictions and legal prerequisites for accessing and using the resource.
@@ -49,6 +50,6 @@ public interface LegalConstraints extends Constraints {
      * access constraints} or {@linkplain #getUseConstraints use constraints} declares
      * {@linkplain Restriction#OTHER_RESTRICTIONS other restrictions}.
      */
-/// @UML (identifier="otherConstraints", obligation=CONDITIONAL)
+    @UML (identifier="otherConstraints", obligation=CONDITIONAL, specification=ISO_19115)
     InternationalString getOtherConstraints();
 }

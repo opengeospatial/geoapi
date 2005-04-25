@@ -14,8 +14,9 @@ import org.opengis.spatialschema.geometry.DirectPosition;
 import org.opengis.spatialschema.geometry.primitive.Point;
 
 // Annotations
-///import org.opengis.annotation.UML;
-///import static org.opengis.annotation.Obligation.*;
+import org.opengis.annotation.UML;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
 
 
 /**
@@ -31,15 +32,15 @@ import org.opengis.spatialschema.geometry.primitive.Point;
  *  
  * @author ISO/DIS 19107
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
- * @version 2.0
+ * @version <A HREF="http://www.opengis.org/docs/01-101.pdf">Abstract specification 5</A>
  */
-///@UML (identifier="GM_Position")
+@UML (identifier="GM_Position", specification=ISO_19107)
 public interface Position {
     /**
      * Returns the direct position.
      *
      * @return The direct position.
      */
-/// @UML (identifier="direct", obligation=CONDITIONAL)
+    @UML (identifier="direct", obligation=CONDITIONAL, specification=ISO_19107)
     public DirectPosition getPosition();
 }

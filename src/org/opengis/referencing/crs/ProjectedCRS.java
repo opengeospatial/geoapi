@@ -14,8 +14,9 @@ import org.opengis.referencing.cs.CartesianCS;
 import org.opengis.referencing.operation.Projection;
 
 // Annotations
-///import org.opengis.annotation.UML;
-///import static org.opengis.annotation.Obligation.*;
+import org.opengis.annotation.UML;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
 
 
 /**
@@ -34,7 +35,7 @@ import org.opengis.referencing.operation.Projection;
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/03-073r1.zip">Abstract specification 2.0</A>
  */
-///@UML (identifier="SC_ProjectedCRS")
+@UML (identifier="SC_ProjectedCRS", specification=ISO_19111)
 public interface ProjectedCRS extends GeneralDerivedCRS {
     /**
      * Returns the base coordinate reference system, which must be geographic.
@@ -49,6 +50,6 @@ public interface ProjectedCRS extends GeneralDerivedCRS {
     /**
      * Returns the coordinate system, which must be cartesian.
      */
-/// @UML (identifier="usesCS", obligation=MANDATORY)
+/// @UML (identifier="usesCS", obligation=MANDATORY, specification=ISO_19111)
 /// CartesianCS getCoordinateSystem();
 }

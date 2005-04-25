@@ -10,8 +10,9 @@
 package org.opengis.spatialschema.geometry.geometry;
 
 // Annotations
-///import org.opengis.annotation.UML;
-///import static org.opengis.annotation.Obligation.*;
+import org.opengis.annotation.UML;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
 
 
 /**
@@ -41,9 +42,9 @@ package org.opengis.spatialschema.geometry.geometry;
  *
  * @author ISO/DIS 19107
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
- * @version 2.0
+ * @version <A HREF="http://www.opengis.org/docs/01-101.pdf">Abstract specification 5</A>
  */
-///@UML (identifier="GM_GriddedSurface")
+@UML (identifier="GM_GriddedSurface", specification=ISO_19107)
 public interface GriddedSurface extends ParametricCurveSurface {
     /**
      * Returns the doubly indexed sequence of control points, given in row major form.
@@ -51,18 +52,18 @@ public interface GriddedSurface extends ParametricCurveSurface {
      * need not effect a "2&frac12;D" surface, consecutive points may be equal in any or
      * all of their ordinates. Further, the curves in either or both directions may close.
      */
-/// @UML (identifier="controlPoint", obligation=MANDATORY)
+    @UML (identifier="controlPoint", obligation=MANDATORY, specification=ISO_19107)
     PointGrid getControlPoints();
 
     /**
      * Returns the number of rows in the parameter grid.
      */
-/// @UML (identifier="rows", obligation=MANDATORY)
+    @UML (identifier="rows", obligation=MANDATORY, specification=ISO_19107)
     int getRows();
 
     /**
      * Returns the number of columns in the parameter grid.
      */
-/// @UML (identifier="columns", obligation=MANDATORY)
+    @UML (identifier="columns", obligation=MANDATORY, specification=ISO_19107)
     int getColumns();
 }

@@ -17,8 +17,9 @@ import org.opengis.spatialschema.geometry.Geometry;
 import org.opengis.spatialschema.geometry.primitive.Primitive; // For javadoc
 
 // Annotations
-///import org.opengis.annotation.UML;
-///import static org.opengis.annotation.Obligation.*;
+import org.opengis.annotation.UML;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
 
 
 /**
@@ -44,11 +45,11 @@ import org.opengis.spatialschema.geometry.primitive.Primitive; // For javadoc
  *
  * @author ISO/DIS 19107
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
- * @version 2.0
+ * @version <A HREF="http://www.opengis.org/docs/01-101.pdf">Abstract specification 5</A>
  *
  * @revisit Some associations are commented out for now.
  */
-///@UML (identifier="GM_Complex")
+@UML (identifier="GM_Complex", specification=ISO_19107)
 public interface Complex extends Geometry {
     /**
      * Returns <code>true</code> if and only if this <code>Complex</code> is maximal.
@@ -56,7 +57,7 @@ public interface Complex extends Geometry {
      *
      * @return <code>true</code> if this GM_Complex is maximal.
      */
-/// @UML (identifier="isMaximal", obligation=MANDATORY)
+    @UML (identifier="isMaximal", obligation=MANDATORY, specification=ISO_19107)
     public boolean isMaximal();
 
     /**
@@ -64,7 +65,7 @@ public interface Complex extends Geometry {
      *
      * @return The supercomplexes, or an empty array if none.
      */
-/// @UML (identifier="superComplex", obligation=MANDATORY)
+    @UML (identifier="superComplex", obligation=MANDATORY, specification=ISO_19107)
     public Complex[] getSuperComplexes();
 
     /**
@@ -73,7 +74,7 @@ public interface Complex extends Geometry {
      *
      * @return The subcomplexes, or an empty array if none.
      */
-/// @UML (identifier="subComplex", obligation=MANDATORY)
+    @UML (identifier="subComplex", obligation=MANDATORY, specification=ISO_19107)
     public Complex[] getSubComplexes();
 
     /**
@@ -81,8 +82,8 @@ public interface Complex extends Geometry {
      *
      * @return The set of primitives for this complex.
      */
-/// @UML (identifier="element", obligation=MANDATORY)
-    public Set/*<Primitive>*/ getElements();
+    @UML (identifier="element", obligation=MANDATORY, specification=ISO_19107)
+    public Set<Primitive> getElements();
 
 //    public org.opengis.spatialschema.topology.complex.TP_Complex topology[];
 }

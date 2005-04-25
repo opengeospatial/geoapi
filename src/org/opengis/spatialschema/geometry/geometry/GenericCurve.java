@@ -13,8 +13,9 @@ package org.opengis.spatialschema.geometry.geometry;
 import org.opengis.spatialschema.geometry.DirectPosition;
 
 // Annotations
-///import org.opengis.annotation.UML;
-///import static org.opengis.annotation.Obligation.*;
+import org.opengis.annotation.UML;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
 
 
 /**
@@ -25,9 +26,9 @@ import org.opengis.spatialschema.geometry.DirectPosition;
  *
  * @author ISO/DIS 19107
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
- * @version 2.0
+ * @version <A HREF="http://www.opengis.org/docs/01-101.pdf">Abstract specification 5</A>
  */
-///@UML (identifier="GM_GenericCurve")
+@UML (identifier="GM_GenericCurve", specification=ISO_19107)
 public interface GenericCurve {
     /**
      * Returns the direct position of the first point on the <code>GenericCurve</code>.
@@ -39,7 +40,7 @@ public interface GenericCurve {
      * @see #getStartParam
      * @see #getEndPoint
      */
-/// @UML (identifier="startPoint", obligation=MANDATORY)
+    @UML (identifier="startPoint", obligation=MANDATORY, specification=ISO_19107)
     public DirectPosition getStartPoint();
 
     /**
@@ -52,7 +53,7 @@ public interface GenericCurve {
      * @see #getEndParam
      * @see #getStartPoint
      */
-/// @UML (identifier="endPoint", obligation=MANDATORY)
+    @UML (identifier="endPoint", obligation=MANDATORY, specification=ISO_19107)
     public DirectPosition getEndPoint();
 
     /**
@@ -68,7 +69,7 @@ public interface GenericCurve {
      * @see #getStartParam
      * @see #getEndParam
      */
-/// @UML (identifier="tangent", obligation=MANDATORY)
+    @UML (identifier="tangent", obligation=MANDATORY, specification=ISO_19107)
     public double[] getTangent(double s);
 
     /**
@@ -89,7 +90,7 @@ public interface GenericCurve {
      * @see #getEndParam
      * @see #forParam
      */
-/// @UML (identifier="startParam", obligation=MANDATORY)
+    @UML (identifier="startParam", obligation=MANDATORY, specification=ISO_19107)
     public double getStartParam();
 
     /**
@@ -110,7 +111,7 @@ public interface GenericCurve {
      * @see #getStartParam
      * @see #forParam
      */
-/// @UML (identifier="endParam", obligation=MANDATORY)
+    @UML (identifier="endParam", obligation=MANDATORY, specification=ISO_19107)
     public double getEndParam();
 
     /**
@@ -133,7 +134,7 @@ public interface GenericCurve {
      * @see #getEndConstructiveParam
      * @see #forConstructiveParam
      */
-/// @UML (identifier="startConstrParam", obligation=MANDATORY)
+    @UML (identifier="startConstrParam", obligation=MANDATORY, specification=ISO_19107)
     public double getStartConstructiveParam();
 
     /**
@@ -156,7 +157,7 @@ public interface GenericCurve {
      * @see #getStartConstructiveParam
      * @see #forConstructiveParam
      */
-/// @UML (identifier="endConstrParam", obligation=MANDATORY)
+    @UML (identifier="endConstrParam", obligation=MANDATORY, specification=ISO_19107)
     public double getEndConstructiveParam();
 
     /**
@@ -175,7 +176,7 @@ public interface GenericCurve {
      * @see #getEndConstructiveParam
      * @see #forParam
      */
-/// @UML (identifier="constrParam", obligation=MANDATORY)
+    @UML (identifier="constrParam", obligation=MANDATORY, specification=ISO_19107)
     public DirectPosition forConstructiveParam(double cp);
 
     /**
@@ -192,7 +193,7 @@ public interface GenericCurve {
      * @see #getEndParam
      * @see #forConstructiveParam
      */
-/// @UML (identifier="param", obligation=MANDATORY)
+    @UML (identifier="param", obligation=MANDATORY, specification=ISO_19107)
     public DirectPosition forParam(double s);
 
     /**
@@ -206,7 +207,7 @@ public interface GenericCurve {
      * @see #getEndPoint
      * @see #forParam
      */
-/// @UML (identifier="paramForPoint", obligation=MANDATORY)
+    @UML (identifier="paramForPoint", obligation=MANDATORY, specification=ISO_19107)
     public ParamForPoint getParamForPoint(DirectPosition p);
 
     /**
@@ -228,7 +229,7 @@ public interface GenericCurve {
      * @return The length between the two specified points.
      * @unitof Length
      */
-/// @UML (identifier="length", obligation=MANDATORY)
+    @UML (identifier="length", obligation=MANDATORY, specification=ISO_19107)
     public double length(Position point1, Position point2);
 
     /**
@@ -251,7 +252,7 @@ public interface GenericCurve {
      * @return The length between the two specified constructive parameter.
      * @unitof Length
      */
-/// @UML (identifier="length", obligation=MANDATORY)
+    @UML (identifier="length", obligation=MANDATORY, specification=ISO_19107)
     public double length(double cparam1, double cparam2);
 
     /**
@@ -284,6 +285,6 @@ public interface GenericCurve {
      * @return The an approximation of this curve as a line string.
      * @unitof Distance (for arguments)
      */
-/// @UML (identifier="asLineString", obligation=MANDATORY)
+    @UML (identifier="asLineString", obligation=MANDATORY, specification=ISO_19107)
     public LineString asLineString(double maxSpacing, double maxOffset);
 }

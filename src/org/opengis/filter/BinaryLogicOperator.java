@@ -16,5 +16,5 @@ public interface BinaryLogicOperator extends Filter {
      * immutable wrapper around their internal list.  This is because this
      * spec requires <code>Filter</code> objects to be immutable.
      */
-    public List/*<Filter>*/ getChildren();
+    public List<Filter> getChildren();
 }
