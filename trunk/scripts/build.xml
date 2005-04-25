@@ -66,7 +66,6 @@
 
 
 
-
   <!-- ======================================================================
 
        SOURCES: Copy source code and fix carriage returns
@@ -114,14 +113,9 @@
 
     <replace dir=".">
       <include name="**/*.java"/>
-      <replacefilter token="/*&lt;" value="&lt;"/>
-      <replacefilter token="&gt;*/" value="&gt;"/>
-      <replacefilter token="////"   value="//--"/>
-      <replacefilter token="/// "   value="    /* 1.5 specific */ "/>
-      <replacefilter token="///i"   value=    "/* 1.5 specific */ i"/>
-      <replacefilter token="///@"   value=    "/* 1.5 specific */ @"/>
-      <replacefilter token="/*{"                />
-      <replacefilter token="}*/"                />
+      <replacefilter token="/// " value="    /* 1.5 specific */ "/>
+      <replacefilter token="/*{"/>
+      <replacefilter token="}*/"/>
     </replace>
 
   </target>
@@ -243,6 +237,7 @@
       <replacefilter token="&lt;BrowseGraphic&gt;"/>
       <replacefilter token="&lt;CatalogEntry&gt;"/>
       <replacefilter token="&lt;Citation&gt;"/>
+      <replacefilter token="&lt;CitationDate&gt;"/>
       <replacefilter token="&lt;Curve&gt;"/>
       <replacefilter token="&lt;CurveSegment&gt;"/>
       <replacefilter token="&lt;Complex&gt;"/>
@@ -288,6 +283,7 @@
       <replacefilter token="&lt;Locale&gt;"/>
       <replacefilter token="&lt;LocalName&gt;"/>
       <replacefilter token="&lt;MaintenanceInformation&gt;"/>
+      <replacefilter token="&lt;MediumFormat&gt;"/>
       <replacefilter token="&lt;MetadataEntity&gt;"/>
       <replacefilter token="&lt;MetadataExtensionInformation&gt;"/>
       <replacefilter token="&lt;Number&gt;"/>
@@ -321,12 +317,20 @@
       <replacefilter token="&lt;String&gt;"/>
       <replacefilter token="&lt;Surface&gt;"/>
       <replacefilter token="&lt;SurfacePatch&gt;"/>
+      <replacefilter token="&lt;TemporalExtent&gt;"/>
       <replacefilter token="&lt;TopicCategory&gt;"/>
       <replacefilter token="&lt;Triangle&gt;"/>
       <replacefilter token="&lt;Usage&gt;"/>
+      <replacefilter token="&lt;VerticalExtent&gt;"/>
 
-      <replacefilter token="    /* 1.5 specific */" value="// "/>
-      <replacefilter token=    "/* 1.5 specific */" value="// "/>
+      <replacefilter token="    /* 1.5 specific */"        value="// "                             />
+      <replacefilter token=    "/* 1.5 specific */"        value="// "                             />
+      <replacefilter token="@UML"                          value="//@UML"                          />
+      <replacefilter token="@Profile"                      value="//@Profile"                      />
+      <replacefilter token="@Extension"                    value="//@Extension"                    />
+      <replacefilter token="@XmlSchema"                    value="//@XmlSchema"                    />
+      <replacefilter token="import static"                 value="//import static"                 />
+      <replacefilter token="import org.opengis.annotation" value="//import org.opengis.annotation" />
 
       <replacefilter token=" Feature next()" value=" Object next()"/>
     </replace>
@@ -424,6 +428,21 @@
       <link href="http://java.sun.com/products/java-media/3D/forDevelopers/j3dapi"/>
       <link href="http://jsr-108.sourceforge.net/javadoc"/>
 
+      <group title="&lt;TABLE WIDTH='100%'&gt;&lt;TR&gt;&lt;TD&gt;Feature, filter and styling
+                    &lt;/TD&gt;&lt;TD ALIGN='right'&gt;&lt;FONT SIZE='-1' COLOR='Navy'&gt;(TODO)
+                    &lt;/FONT&gt;&lt;/TD&gt;&lt;/TR&gt;&lt;/TABLE&gt;"
+             packages="org.opengis.feature*:org.opengis.filter*:org.opengis.sld*"/>
+
+      <group title="&lt;TABLE WIDTH='100%'&gt;&lt;TR&gt;&lt;TD&gt;Geometry and topology
+                    &lt;/TD&gt;&lt;TD ALIGN='right'&gt;&lt;FONT SIZE='-1' COLOR='Navy'&gt;ISO-19107
+                    &lt;/FONT&gt;&lt;/TD&gt;&lt;/TR&gt;&lt;/TABLE&gt;"
+             packages="org.opengis.spatialschema*"/>
+
+      <group title="&lt;TABLE WIDTH='100%'&gt;&lt;TR&gt;&lt;TD&gt;Spatial Referencing by Coordinates
+                    &lt;/TD&gt;&lt;TD ALIGN='right'&gt;&lt;FONT SIZE='-1' COLOR='Navy'&gt;ISO-19111
+                    &lt;/FONT&gt;&lt;/TD&gt;&lt;/TR&gt;&lt;/TABLE&gt;"
+             packages="org.opengis.referencing*:org.opengis.parameter*"/>
+
       <group title="&lt;TABLE WIDTH='100%'&gt;&lt;TR&gt;&lt;TD&gt;Catalog Services
                     &lt;/TD&gt;&lt;TD ALIGN='right'&gt;&lt;FONT SIZE='-1' COLOR='Navy'&gt;OGC 02-087
                     &lt;/FONT&gt;&lt;/TD&gt;&lt;/TR&gt;&lt;/TABLE&gt;"
@@ -434,30 +453,15 @@
                     &lt;/FONT&gt;&lt;/TD&gt;&lt;/TR&gt;&lt;/TABLE&gt;"
              packages="org.opengis.metadata*"/>
 
-      <group title="&lt;TABLE WIDTH='100%'&gt;&lt;TR&gt;&lt;TD&gt;Spatial Referencing by Coordinates
-                    &lt;/TD&gt;&lt;TD ALIGN='right'&gt;&lt;FONT SIZE='-1' COLOR='Navy'&gt;ISO-19111
+      <group title="&lt;TABLE WIDTH='100%'&gt;&lt;TR&gt;&lt;TD&gt;Display objects
+                    &lt;/TD&gt;&lt;TD ALIGN='right'&gt;&lt;FONT SIZE='-1' COLOR='Navy'&gt;GO-1
                     &lt;/FONT&gt;&lt;/TD&gt;&lt;/TR&gt;&lt;/TABLE&gt;"
-             packages="org.opengis.referencing*:org.opengis.parameter*"/>
-
-      <group title="&lt;TABLE WIDTH='100%'&gt;&lt;TR&gt;&lt;TD&gt;Geometry and topology
-                    &lt;/TD&gt;&lt;TD ALIGN='right'&gt;&lt;FONT SIZE='-1' COLOR='Navy'&gt;ISO-19107
-                    &lt;/FONT&gt;&lt;/TD&gt;&lt;/TR&gt;&lt;/TABLE&gt;"
-             packages="org.opengis.spatialschema*"/>
+             packages="org.opengis.go*"/>
 
       <group title="&lt;TABLE WIDTH='100%'&gt;&lt;TR&gt;&lt;TD&gt;Grid Coverage
                     &lt;/TD&gt;&lt;TD ALIGN='right'&gt;&lt;FONT SIZE='-1' COLOR='Navy'&gt;OGC 01-004
                     &lt;/FONT&gt;&lt;/TD&gt;&lt;/TR&gt;&lt;/TABLE&gt;"
              packages="org.opengis.coverage*"/>
-
-      <group title="&lt;TABLE WIDTH='100%'&gt;&lt;TR&gt;&lt;TD&gt;Feature, filter and styling
-                    &lt;/TD&gt;&lt;TD ALIGN='right'&gt;&lt;FONT SIZE='-1' COLOR='Navy'&gt;(TODO)
-                    &lt;/FONT&gt;&lt;/TD&gt;&lt;/TR&gt;&lt;/TABLE&gt;"
-             packages="org.opengis.feature*:org.opengis.filter*:org.opengis.sld*"/>
-
-      <group title="&lt;TABLE WIDTH='100%'&gt;&lt;TR&gt;&lt;TD&gt;Display objects
-                    &lt;/TD&gt;&lt;TD ALIGN='right'&gt;&lt;FONT SIZE='-1' COLOR='Navy'&gt;GO-1
-                    &lt;/FONT&gt;&lt;/TD&gt;&lt;/TR&gt;&lt;/TABLE&gt;"
-             packages="org.opengis.go*"/>
 
       <packageset dir="snapshot/tiger/sources">
         <include name="org/opengis/**" />
