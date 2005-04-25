@@ -32,6 +32,7 @@ import static org.opengis.annotation.Specification.*;
  *
  * @see GeometryFactory#createTin
  */
+@UML (identifier="GM_Tin", specification=ISO_19107)
 public interface Tin extends TriangulatedSurface {
     /**
      * Stoplines are lines where the local continuity or regularity of the surface is questionable.

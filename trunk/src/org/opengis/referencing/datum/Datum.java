@@ -41,6 +41,34 @@ import static org.opengis.annotation.Specification.*;
 @UML (identifier="CD_Datum", specification=ISO_19111)
 public interface Datum extends IdentifiedObject {
     /**
+     * Key for the <code>"anchorPoint"</code> property to be given to the
+     * {@linkplain DatumFactory datum factory} <code>createFoo(&hellip;)</code> methods.
+     * This is used for setting the value to be returned by {@link #getAnchorPoint}.
+     */
+    String ANCHOR_POINT_PROPERTY = "anchorPoint";
+
+    /**
+     * Key for the <code>"realizationEpoch"</code> property to be given to the
+     * {@linkplain DatumFactory datum factory} <code>createFoo(&hellip;)</code> methods.
+     * This is used for setting the value to be returned by {@link #getRealizationEpoch}.
+     */
+    String REALIZATION_EPOCH_PROPERTY = "realizationEpoch";
+
+    /**
+     * Key for the <code>"validArea"</code> property to be given to the
+     * {@linkplain DatumFactory datum factory} <code>createFoo(&hellip;)</code> methods.
+     * This is used for setting the value to be returned by {@link #getValidArea}.
+     */
+    String VALID_AREA_PROPERTY = "validArea";
+
+    /**
+     * Key for the <code>"scope"</code> property to be given to the
+     * {@linkplain DatumFactory datum factory} <code>createFoo(&hellip;)</code> methods.
+     * This is used for setting the value to be returned by {@link #getScope}.
+     */
+    String SCOPE_PROPERTY = "scope";
+
+    /**
      * Description, possibly including coordinates, of the point or points used to anchor the datum
      * to the Earth. Also known as the "origin", especially for Engineering and Image Datums.
      *

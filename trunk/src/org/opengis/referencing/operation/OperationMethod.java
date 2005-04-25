@@ -34,6 +34,12 @@ import static org.opengis.annotation.Specification.*;
 @UML (identifier="CC_OperationMethod", specification=ISO_19111)
 public interface OperationMethod extends IdentifiedObject {
     /**
+     * Key for the <code>{@value #FORMULA_PROPERTY}</code> property.
+     * This is used for setting the value to be returned by {@link #getFormula}.
+     */
+    String FORMULA_PROPERTY = "formula";
+
+    /**
      * Formula(s) or procedure used by this operation method. This may be a reference to a
      * publication. Note that the operation method may not be analytic, in which case this
      * attribute references or contains the procedure, not an analytic formula.
