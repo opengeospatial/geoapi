@@ -34,18 +34,22 @@ import static org.opengis.annotation.Specification.*;
 @UML (identifier="RS_ReferenceSystem", specification=ISO_19111)
 public interface ReferenceSystem extends IdentifiedObject {
     /**
-     * Key for the <code>{@value #VALID_AREA_PROPERTY}</code> property to be given to the
+     * Key for the <code>{@value}</code> property to be given to the
      * {@linkplain ObjectFactory object factory} <code>createFoo(&hellip;)</code> methods.
      * This is used for setting the value to be returned by {@link #getValidArea}.
+     *
+     * @see #getValidArea
      */
-    String VALID_AREA_PROPERTY = "validArea";
+    String VALID_AREA_KEY = "validArea";
 
     /**
-     * Key for the <code>{@value #SCOPE_PROPERTY}</code> property to be given to the
+     * Key for the <code>{@value}</code> property to be given to the
      * {@linkplain ObjectFactory object factory} <code>createFoo(&hellip;)</code> methods.
      * This is used for setting the value to be returned by {@link #getScope}.
+     *
+     * @see #getScope
      */
-    String SCOPE_PROPERTY = "scope";
+    String SCOPE_KEY = "scope";
 
     /**
      * Area for which the (coordinate) reference system is valid.
