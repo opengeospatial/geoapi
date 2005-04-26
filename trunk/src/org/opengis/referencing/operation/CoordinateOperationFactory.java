@@ -89,6 +89,7 @@ public interface CoordinateOperationFactory extends ObjectFactory {
      * @throws FactoryException if the object creation failed.
      */
     @Extension
-    CoordinateOperation createConcatenatedOperation(Map properties, CoordinateOperation[] operations)
+    CoordinateOperation createConcatenatedOperation(Map<String,Object>    properties,
+                                                    CoordinateOperation[] operations)
             throws FactoryException;
 }

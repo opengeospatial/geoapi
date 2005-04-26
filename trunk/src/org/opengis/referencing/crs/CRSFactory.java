@@ -78,7 +78,7 @@ public interface CRSFactory extends ObjectFactory {
      * @throws FactoryException if the object creation failed.
      */
     @UML (identifier="createCompoundCoordinateSystem", specification=OGC_01_009)
-    CompoundCRS createCompoundCRS(Map                       properties,
+    CompoundCRS createCompoundCRS(Map<String,Object>        properties,
                                   CoordinateReferenceSystem[] elements) throws FactoryException;
 
     /**
@@ -91,9 +91,9 @@ public interface CRSFactory extends ObjectFactory {
      * @throws FactoryException if the object creation failed.
      */
     @UML (identifier="createLocalCoordinateSystem", specification=OGC_01_009)
-    EngineeringCRS createEngineeringCRS(Map         properties,
-                                        EngineeringDatum datum,
-                                        CoordinateSystem    cs) throws FactoryException;
+    EngineeringCRS createEngineeringCRS(Map<String,Object> properties,
+                                        EngineeringDatum        datum,
+                                        CoordinateSystem           cs) throws FactoryException;
     
     /**
      * Creates an image coordinate reference system. 
@@ -104,9 +104,9 @@ public interface CRSFactory extends ObjectFactory {
      * @param  cs The Cartesian or Oblique Cartesian coordinate system for the created CRS.
      * @throws FactoryException if the object creation failed.
      */
-    ImageCRS createImageCRS(Map   properties,
-                            ImageDatum datum,
-                            AffineCS      cs) throws FactoryException;
+    ImageCRS createImageCRS(Map<String,Object> properties,
+                            ImageDatum              datum,
+                            AffineCS                   cs) throws FactoryException;
 
     /**
      * Creates a temporal coordinate reference system. 
@@ -117,9 +117,9 @@ public interface CRSFactory extends ObjectFactory {
      * @param  cs The Temporal coordinate system for the created CRS.
      * @throws FactoryException if the object creation failed.
      */
-    TemporalCRS createTemporalCRS(Map      properties,
-                                  TemporalDatum datum,
-                                  TimeCS           cs) throws FactoryException;
+    TemporalCRS createTemporalCRS(Map<String,Object> properties,
+                                  TemporalDatum           datum,
+                                  TimeCS                     cs) throws FactoryException;
 
     /**
      * Creates a vertical coordinate reference system. 
@@ -131,9 +131,9 @@ public interface CRSFactory extends ObjectFactory {
      * @throws FactoryException if the object creation failed.
      */
     @UML (identifier="createVerticalCoordinateSystem", specification=OGC_01_009)
-    VerticalCRS createVerticalCRS(Map     properties,
-                                  VerticalDatum datum,
-                                  VerticalCS       cs) throws FactoryException;
+    VerticalCRS createVerticalCRS(Map<String,Object> properties,
+                                  VerticalDatum           datum,
+                                  VerticalCS                 cs) throws FactoryException;
 
     /**
      * Creates a geocentric coordinate reference system from a {@linkplain CartesianCS
@@ -145,9 +145,9 @@ public interface CRSFactory extends ObjectFactory {
      * @param  cs The cartesian coordinate system for the created CRS.
      * @throws FactoryException if the object creation failed.
      */
-    GeocentricCRS createGeocentricCRS(Map      properties,
-                                      GeodeticDatum datum,
-                                      CartesianCS      cs) throws FactoryException;
+    GeocentricCRS createGeocentricCRS(Map<String,Object> properties,
+                                      GeodeticDatum           datum,
+                                      CartesianCS                cs) throws FactoryException;
 
     /**
      * Creates a geocentric coordinate reference system from a {@linkplain SphericalCS
@@ -159,9 +159,9 @@ public interface CRSFactory extends ObjectFactory {
      * @param  cs The spherical coordinate system for the created CRS.
      * @throws FactoryException if the object creation failed.
      */
-    GeocentricCRS createGeocentricCRS(Map      properties,
-                                      GeodeticDatum datum,
-                                      SphericalCS      cs) throws FactoryException;
+    GeocentricCRS createGeocentricCRS(Map<String,Object> properties,
+                                      GeodeticDatum           datum,
+                                      SphericalCS                cs) throws FactoryException;
 
     /**
      * Creates a geographic coordinate reference system.
@@ -175,9 +175,9 @@ public interface CRSFactory extends ObjectFactory {
      * @throws FactoryException if the object creation failed.
      */
     @UML (identifier="createGeographicCoordinateSystem", specification=OGC_01_009)
-    GeographicCRS createGeographicCRS(Map      properties,
-                                      GeodeticDatum datum,
-                                      EllipsoidalCS    cs) throws FactoryException;
+    GeographicCRS createGeographicCRS(Map<String,Object> properties,
+                                      GeodeticDatum           datum,
+                                      EllipsoidalCS              cs) throws FactoryException;
 
     /**
      * Creates a derived coordinate reference system. If the transformation is an affine
@@ -201,7 +201,7 @@ public interface CRSFactory extends ObjectFactory {
      *
      * @deprecated Use the method with an {@link OperationMethod} argument instead.
      */
-    DerivedCRS createDerivedCRS(Map                 properties,
+    DerivedCRS createDerivedCRS(Map<String,Object>  properties,
                                 CoordinateReferenceSystem base,
                                 MathTransform    baseToDerived,
                                 CoordinateSystem     derivedCS) throws FactoryException;
@@ -230,7 +230,7 @@ public interface CRSFactory extends ObjectFactory {
      * @throws FactoryException if the object creation failed.
      */
     @UML (identifier="createFittedCoordinateSystem", specification=OGC_01_009)
-    DerivedCRS createDerivedCRS(Map                 properties,
+    DerivedCRS createDerivedCRS(Map<String,Object>  properties,
                                 OperationMethod         method,
                                 CoordinateReferenceSystem base,
                                 MathTransform    baseToDerived,
@@ -251,10 +251,10 @@ public interface CRSFactory extends ObjectFactory {
      *
      * @deprecated Use the method with an {@link OperationMethod} argument instead.
      */
-    ProjectedCRS createProjectedCRS(Map              properties,
-                                    GeographicCRS          base,
-                                    MathTransform baseToDerived,
-                                    CartesianCS       derivedCS) throws FactoryException;
+    ProjectedCRS createProjectedCRS(Map<String,Object> properties,
+                                    GeographicCRS            base,
+                                    MathTransform   baseToDerived,
+                                    CartesianCS         derivedCS) throws FactoryException;
     
     /**
      * Creates a projected coordinate reference system from a transform.
@@ -275,11 +275,11 @@ public interface CRSFactory extends ObjectFactory {
      * @throws FactoryException if the object creation failed.
      */
     @UML (identifier="createProjectedCoordinateSystem", specification=OGC_01_009)
-    ProjectedCRS createProjectedCRS(Map              properties,
-                                    OperationMethod      method,
-                                    GeographicCRS          base,
-                                    MathTransform baseToDerived,
-                                    CartesianCS       derivedCS) throws FactoryException;
+    ProjectedCRS createProjectedCRS(Map<String,Object> properties,
+                                    OperationMethod        method,
+                                    GeographicCRS            base,
+                                    MathTransform   baseToDerived,
+                                    CartesianCS         derivedCS) throws FactoryException;
 
     /**
      * Creates a projected coordinate reference system from a projection name.
@@ -316,7 +316,7 @@ public interface CRSFactory extends ObjectFactory {
      *       {@link org.opengis.referencing.operation.OperationMethod}, etc.</li>
      * </ul>
      */
-    ProjectedCRS createProjectedCRS(Map                     properties,
+    ProjectedCRS createProjectedCRS(Map<String,Object>      properties,
                                     GeographicCRS               geoCRS,
                                     String                      method,
                                     GeneralParameterValue[] parameters,
