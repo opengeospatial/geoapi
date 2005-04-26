@@ -39,19 +39,6 @@ public interface Envelope {
      */
     @Extension
     int getDimension();
-
-    /**
-     * The coordinate reference system in which the coordinate is given.
-     * May be <code>null</code> if this particular <code>Envelope</code> is included
-     * in a larger object with such a reference to a {@linkplain CoordinateReferenceSystem
-     * coordinate reference system}. In this case, the cordinate reference system is implicitly
-     * assumed to take on the value of the containing object's {@linkplain CoordinateReferenceSystem
-     * coordinate reference system}.
-     *
-     * @return The coordinate reference system, or <code>null</code>.
-     */
-    @Extension
-    CoordinateReferenceSystem getCoordinateReferenceSystem();
     
     /**
      * Returns the minimal ordinate along the specified dimension.
