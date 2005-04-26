@@ -49,7 +49,7 @@ public interface DatumFactory extends ObjectFactory {
      * @throws FactoryException if the object creation failed.
      */
     @UML (identifier="createLocalDatum", specification=OGC_01_009)
-    EngineeringDatum createEngineeringDatum(Map properties) throws FactoryException;
+    EngineeringDatum createEngineeringDatum(Map<String,Object> properties) throws FactoryException;
 
     /**
      * Creates geodetic datum from ellipsoid and (optionaly) Bursa-Wolf parameters. 
@@ -61,9 +61,9 @@ public interface DatumFactory extends ObjectFactory {
      * @throws FactoryException if the object creation failed.
      */
     @UML (identifier="createHorizontalDatum", specification=OGC_01_009)
-    GeodeticDatum createGeodeticDatum(Map           properties,
-                                      Ellipsoid     ellipsoid,
-                                      PrimeMeridian primeMeridian) throws FactoryException;
+    GeodeticDatum createGeodeticDatum(Map<String,Object> properties,
+                                      Ellipsoid           ellipsoid,
+                                      PrimeMeridian   primeMeridian) throws FactoryException;
 
     /**
      * Creates an image datum.
@@ -74,7 +74,8 @@ public interface DatumFactory extends ObjectFactory {
      *         with the image data attributes.
      * @throws FactoryException if the object creation failed.
      */
-    ImageDatum createImageDatum(Map properties, PixelInCell pixelInCell) throws FactoryException;
+    ImageDatum createImageDatum(Map<String,Object> properties,
+                                PixelInCell       pixelInCell) throws FactoryException;
 
     /**
      * Creates a temporal datum from an enumerated type value.
@@ -84,7 +85,8 @@ public interface DatumFactory extends ObjectFactory {
      * @param  origin The date and time origin of this temporal datum.
      * @throws FactoryException if the object creation failed.
      */
-    TemporalDatum createTemporalDatum(Map properties, Date origin) throws FactoryException;
+    TemporalDatum createTemporalDatum(Map<String,Object> properties,
+                                      Date                   origin) throws FactoryException;
 
     /**
      * Creates a vertical datum from an enumerated type value.
@@ -95,7 +97,8 @@ public interface DatumFactory extends ObjectFactory {
      * @throws FactoryException if the object creation failed.
      */
     @UML (identifier="createVerticalDatum", specification=OGC_01_009)
-    VerticalDatum createVerticalDatum(Map properties, VerticalDatumType type) throws FactoryException;
+    VerticalDatum createVerticalDatum(Map<String,Object> properties,
+                                      VerticalDatumType        type) throws FactoryException;
 
     /**
      * Creates an ellipsoid from radius values.
@@ -108,10 +111,10 @@ public interface DatumFactory extends ObjectFactory {
      * @throws FactoryException if the object creation failed.
      */
     @UML (identifier="createEllipsoid", specification=OGC_01_009)
-    Ellipsoid createEllipsoid(Map    properties,
-                              double semiMajorAxis,
-                              double semiMinorAxis,
-                              Unit   unit) throws FactoryException;
+    Ellipsoid createEllipsoid(Map<String,Object> properties,
+                              double          semiMajorAxis,
+                              double          semiMinorAxis,
+                              Unit                     unit) throws FactoryException;
 
     /**
      * Creates an ellipsoid from an major radius, and inverse flattening.
@@ -124,10 +127,10 @@ public interface DatumFactory extends ObjectFactory {
      * @throws FactoryException if the object creation failed.
      */
     @UML (identifier="createFlattenedSphere", specification=OGC_01_009)
-    Ellipsoid createFlattenedSphere(Map    properties,
-                                    double semiMajorAxis,
-                                    double inverseFlattening,
-                                    Unit   unit) throws FactoryException;
+    Ellipsoid createFlattenedSphere(Map<String,Object> properties,
+                                    double          semiMajorAxis,
+                                    double      inverseFlattening,
+                                    Unit                     unit) throws FactoryException;
 
     /**
      * Creates a prime meridian, relative to Greenwich. 
@@ -139,7 +142,7 @@ public interface DatumFactory extends ObjectFactory {
      * @throws FactoryException if the object creation failed.
      */
     @UML (identifier="createPrimeMeridian", specification=OGC_01_009)
-    PrimeMeridian createPrimeMeridian(Map    properties,
-                                      double longitude,
-                                      Unit   angularUnit) throws FactoryException;
+    PrimeMeridian createPrimeMeridian(Map<String,Object> properties,
+                                      double              longitude,
+                                      Unit              angularUnit) throws FactoryException;
 }
