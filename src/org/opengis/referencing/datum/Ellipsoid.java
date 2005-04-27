@@ -45,6 +45,7 @@ public interface Ellipsoid extends IdentifiedObject {
      *
      * @return The axis linear unit.
      */
+    @UML (identifier="getAxisUnit", specification=OGC_01_009)
     Unit getAxisUnit();
 
     /**

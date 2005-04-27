@@ -40,5 +40,12 @@ public enum Obligation {
      * Element is always required.
      */
     @UML (identifier="mandatory", obligation=CONDITIONAL, specification=ISO_19115)
-    MANDATORY
+    MANDATORY,
+
+    /**
+     * The element should always be {@code null}. This obligation code is used only when
+     * a subinterface overrides an association and force it to a {@code null} value.
+     * An example is {@link org.opengis.referencing.datum.TemporalDatum#getAnchorPoint}.
+     */
+    FORBIDDEN
 }

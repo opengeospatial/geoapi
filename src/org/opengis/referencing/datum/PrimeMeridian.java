@@ -47,5 +47,6 @@ public interface PrimeMeridian extends IdentifiedObject {
     /**
      * Returns the angular unit of the {@linkplain #getGreenwichLongitude Greenwich longitude}.
      */
+    @UML (identifier="getAngularUnit", specification=OGC_01_009)
     Unit getAngularUnit();
 }
