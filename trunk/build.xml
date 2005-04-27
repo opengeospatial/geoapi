@@ -4,9 +4,16 @@
   <property name="src.dir" value="src"/>
   <property name="javadoc.dir" value="${basedir}/doc/javadoc"/>
   <property name="build.dir" value="${basedir}/build"/>
+  <property name="build.src.dir" value="${build.dir}/src"/>
   <property name="build.classes" value="${build.dir}/classes"/>
 
-  <property name="pending.src" value="pending"/>
+  <property name="dist.dir" value="${basedir}/dist"/>
+  <property name="dist.src.dir" value="${dist.dir}/src"/>
+  <property name="dist.javadoc.dir" value="${dist.dir}/doc/javadoc"/>
+  <property name="dist.build.dir" value="${dist.dir}/build"/>
+  <property name="dist.build.classes" value="${dist.build.dir}/classes"/>
+
+  <!--property name="pending.src" value="pending"/-->
   <property name="pending.dir" value="${basedir}/build-pending"/>
   <property name="pending.src.dir" value="${pending.dir}/src"/>
   <property name="pending.javadoc.dir" value="${pending.dir}/doc/javadoc"/>
@@ -16,6 +23,11 @@
   <path id="project.lib.path">
     <pathelement path="lib/units.jar"/>
   </path>
+  
+  <!--  ******************************************************************  -->
+  <!--  The regular targets  -->
+  <!--  ******************************************************************  -->
+  
   <target name="main">
     <echo>Use ant -projecthelp for a list of ant targets. To build a target listed with ant -projecthelp use ant &lt;target&gt;          To compile within a subdirectory use ant -find build.xml &lt;target&gt;</echo>
   </target>
@@ -66,6 +78,229 @@
   </target>
 
   <!--  ******************************************************************  -->
+  <!--  The -release targets  (target is 1.4) -->
+  <!--  ******************************************************************  -->
+  <target name="prepare-release">
+    <tstamp>
+      <format property="version.stamp" pattern="MMddyy:1"/>
+    </tstamp>
+    <mkdir dir="${dist.src.dir}"/>
+    <!-- copy the right stuff from src.dir and the regular pending.dir to pending.src.dir -->
+    <copy todir="${dist.src.dir}" includeEmptyDirs="false">
+      <fileset dir="${src.dir}">
+        <!-- remove for 1.4? -->
+        <exclude name="**/org/opengis/annotation/*.*"/>
+        <!-- remove for release -->
+        <exclude name="**/org/opengis/coverage/**/*.*"/>
+      </fileset>
+    </copy>
+    <mkdir dir="${dist.javadoc.dir}"/>
+    <mkdir dir="${dist.build.dir}"/>
+    <mkdir dir="${dist.build.classes}"/>
+  </target>
+  
+  <target name="compile-release" depends="prepare-release" description="Compile release quality java code.">
+  <replace dir="${dist.src.dir}">
+      <include name="**/*.java"/>
+      <replacefilter token="&lt;String, ? extends Object&gt;"/>
+      <replacefilter token="&lt;? extends Coverage&gt;"/>
+      <replacefilter token="&lt;? extends Object&gt;"/>
+      <replacefilter token="&lt;? extends Polygon&gt;"/>
+      <replacefilter token="&lt;? extends Primitive&gt;"/>
+      <replacefilter token="&lt;? extends SurfacePatch&gt;"/>
+      <replacefilter token="&lt;ApplicationSchemaInformation&gt;"/>
+      <replacefilter token="&lt;Arc&gt;"/>
+      <replacefilter token="&lt;BrowseGraphic&gt;"/>
+      <replacefilter token="&lt;CatalogEntry&gt;"/>
+      <replacefilter token="&lt;Citation&gt;"/>
+      <replacefilter token="&lt;CitationDate&gt;"/>
+      <replacefilter token="&lt;Curve&gt;"/>
+      <replacefilter token="&lt;CurveSegment&gt;"/>
+      <replacefilter token="&lt;Complex&gt;"/>
+      <replacefilter token="&lt;Constraints&gt;"/>
+      <replacefilter token="&lt;ContentInformation&gt;"/>
+      <replacefilter token="&lt;CoordinateOperation&gt;"/>
+      <replacefilter token="&lt;DataQuality&gt;"/>
+      <replacefilter token="&lt;DataStore&gt;"/>
+      <replacefilter token="&lt;DataStore,String&gt;"/>
+      <replacefilter token="&lt;Date&gt;"/>
+      <replacefilter token="&lt;DateType,Date&gt;"/>
+      <replacefilter token="&lt;DigitalTransferOptions&gt;"/>
+      <replacefilter token="&lt;Dimension&gt;"/>
+      <replacefilter token="&lt;Distributor&gt;"/>
+      <replacefilter token="&lt;double[]&gt;"/>
+      <replacefilter token="&lt;Element&gt;"/>
+      <replacefilter token="&lt;ExtendedElementInformation&gt;"/>
+      <replacefilter token="&lt;Extent&gt;"/>
+      <replacefilter token="&lt;Feature&gt;"/>
+      <replacefilter token="&lt;FeatureType&gt;"/>
+      <replacefilter token="&lt;FeatureTypeList&gt;"/>
+      <replacefilter token="&lt;FeatureLayer&gt;"/>
+      <replacefilter token="&lt;FeatureStore&gt;"/>
+      <replacefilter token="&lt;FeatureStore,String&gt;"/>
+      <replacefilter token="&lt;Filter&gt;"/>
+      <replacefilter token="&lt;Format&gt;"/>
+      <replacefilter token="&lt;GeneralParameterDescriptor&gt;"/>
+      <replacefilter token="&lt;GeneralParameterValue&gt;"/>
+      <replacefilter token="&lt;GenericName&gt;"/>
+      <replacefilter token="&lt;Geodesic&gt;"/>
+      <replacefilter token="&lt;GeographicBoundingBox&gt;"/>
+      <replacefilter token="&lt;GeographicDescription&gt;"/>
+      <replacefilter token="&lt;GeographicExtent&gt;"/>
+      <replacefilter token="&lt;GeometricObjects&gt;"/>
+      <replacefilter token="&lt;Geometry&gt;"/>
+      <replacefilter token="&lt;Identification&gt;"/>
+      <replacefilter token="&lt;InternationalString&gt;"/>
+      <replacefilter token="&lt;Keywords&gt;"/>
+      <replacefilter token="&lt;Knot&gt;"/>
+      <replacefilter token="&lt;Layer&gt;"/>
+      <replacefilter token="&lt;LineSegment&gt;"/>
+      <replacefilter token="&lt;LineString&gt;"/>
+      <replacefilter token="&lt;Locale&gt;"/>
+      <replacefilter token="&lt;LocalName&gt;"/>
+      <replacefilter token="&lt;MaintenanceInformation&gt;"/>
+      <replacefilter token="&lt;MediumFormat&gt;"/>
+      <replacefilter token="&lt;MetadataEntity&gt;"/>
+      <replacefilter token="&lt;MetadataExtensionInformation&gt;"/>
+      <replacefilter token="&lt;Number&gt;"/>
+      <replacefilter token="&lt;Object&gt;"/>
+      <replacefilter token="&lt;OnLineResource&gt;"/>
+      <replacefilter token="&lt;OperationMethod&gt;"/>
+      <replacefilter token="&lt;OrientableCurve&gt;"/>
+      <replacefilter token="&lt;OrientableSurface&gt;"/>
+      <replacefilter token="&lt;ParameterDescriptorGroup&gt;"/>
+      <replacefilter token="&lt;ParameterValueGroup&gt;"/>
+      <replacefilter token="&lt;Point&gt;"/>
+      <replacefilter token="&lt;PointArray&gt;"/>
+      <replacefilter token="&lt;Polygon&gt;"/>
+      <replacefilter token="&lt;PortrayalCatalogueReference&gt;"/>
+      <replacefilter token="&lt;Position&gt;"/>
+      <replacefilter token="&lt;Primitive&gt;"/>
+      <replacefilter token="&lt;PresentationForm&gt;"/>
+      <replacefilter token="&lt;ProcessStep&gt;"/>
+      <replacefilter token="&lt;Progress&gt;"/>
+      <replacefilter token="&lt;QName&gt;"/>
+      <replacefilter token="&lt;ReferenceSystem&gt;"/>
+      <replacefilter token="&lt;Resolution&gt;"/>
+      <replacefilter token="&lt;ResponsibleParty&gt;"/>
+      <replacefilter token="&lt;Restriction&gt;"/>
+      <replacefilter token="&lt;Ring&gt;"/>
+      <replacefilter token="&lt;ScopeCode&gt;"/>
+      <replacefilter token="&lt;Source&gt;"/>
+      <replacefilter token="&lt;SpatialRepresentation&gt;"/>
+      <replacefilter token="&lt;SpatialRepresentationType&gt;"/>
+      <replacefilter token="&lt;StandardOrderProcess&gt;"/>
+      <replacefilter token="&lt;String&gt;"/>
+      <replacefilter token="&lt;Surface&gt;"/>
+      <replacefilter token="&lt;SurfacePatch&gt;"/>
+      <replacefilter token="&lt;TemporalExtent&gt;"/>
+      <replacefilter token="&lt;TopicCategory&gt;"/>
+      <replacefilter token="&lt;Triangle&gt;"/>
+      <replacefilter token="&lt;Usage&gt;"/>
+      <replacefilter token="&lt;VerticalExtent&gt;"/>
+      <replacefilter token="    /* 1.5 specific */" value="// "/>
+      <replacefilter token="/* 1.5 specific */" value="// "/>
+      <replacefilter token="@UML" value="//@UML"/>
+      <replacefilter token="@Profile" value="//@Profile"/>
+      <replacefilter token="@Extension" value="//@Extension"/>
+      <replacefilter token="@XmlSchema" value="//@XmlSchema"/>
+      <replacefilter token="import static" value="//import static"/>
+      <replacefilter token="import org.opengis.annotation" value="//import org.opengis.annotation"/>
+      <replacefilter token=" Feature next()" value=" Object next()"/>
+    </replace>
+    <replaceregexp byline="true" match="\s\w+\s+clone" replace=" Object clone">
+      <fileset dir="${dist.src.dir}">
+        <include name="**/*.java"/>
+        <exclude name="**/org/opengis/go/**"/>
+        <exclude name="**/org/opengis/util/**"/>
+      </fileset>
+    </replaceregexp>
+    <replaceregexp byline="true" match="\s\w+\[\]\s+family" replace=" CodeList[] family">
+      <fileset dir="${dist.src.dir}">
+        <include name="**/*.java"/>
+        <exclude name="**/org/opengis/go/**"/>
+        <exclude name="**/org/opengis/util/**"/>
+      </fileset>
+    </replaceregexp>
+
+    <javac destdir="${dist.build.classes}" srcdir="${dist.src.dir}" debug="${debug.flag}" source="1.4" target="1.4">
+      <classpath refid="project.lib.path"/>
+      <include name="**/*.java"/>
+    </javac>
+  </target>
+  <target name="jar-release" depends="compile-release" description="Create jar file.">
+    <jar jarfile="${dist.build.dir}/go1.jar">
+      <fileset dir="${dist.build.classes}" excludes="org/ogc/go1/tests/**"/>
+      <fileset dir="${dist.src.dir}" includes="org/**" excludes="**/*.java,**/CVS,**/*.swp,**/*.ppt,**/*.gif,**/*.jpg,**/*.db"/>
+    </jar>
+  </target>
+  <target name="javadoc-release" depends="prepare-release" description="Build javadoc files">
+    <javadoc packagenames="org.*" sourcepath="${dist.src.dir}" destdir="${dist.javadoc.dir}" author="true" version="true" doctitle="${version.name}" windowtitle="${version.name}">
+      <classpath refid="project.lib.path"/>
+      <link href="http://java.sun.com/j2se/1.4.1/docs/api/"/>
+    </javadoc>
+  </target>
+  <target name="javadoc-images-release">
+    <copy todir="${dist.javadoc.dir}">
+      <fileset dir="${dist.src.dir}" includes="**/*.gif"/>
+      <fileset dir="${dist.src.dir}" includes="**/*.jpg"/>
+    </copy>
+  </target>
+  <target name="clean-release" description="Deletes jar and .class files.">
+    <delete dir="${dist.build.dir}" failonerror="false"/>
+    <delete failonerror="false">
+      <fileset dir="${dist.src.dir}">
+        <include name="**/*.class"/>
+      </fileset>
+    </delete>
+  </target>
+  <target name="cleanall-release" depends="clean-release" description="Reset to repository proper.">
+    <delete dir="${dist.src.dir}" failonerror="false"/>
+    <delete dir="${dist.javadoc.dir}" failonerror="false"/>
+  </target>
+
+  <target name="rebuild-release" depends="cleanall-release,compile-release,jar-release,javadoc-release"></target>
+
+<!-- ******************************************************************** -->
+  <!--  The -release-tiger targets  -->
+  <!--  ******************************************************************  -->
+  <target name="prepare-release-tiger">
+    <tstamp>
+      <format property="version.stamp" pattern="MMddyy:1"/>
+    </tstamp>
+    <mkdir dir="${dist.src.dir}"/>
+    <!-- copy the right stuff from src.dir and the regular pending.dir to pending.src.dir -->
+    <copy todir="${dist.src.dir}" includeEmptyDirs="false">
+      <fileset dir="${src.dir}">
+        <exclude name="org/opengis/coverage/**/*.*"/>
+      </fileset>
+    </copy>
+    <mkdir dir="${dist.javadoc.dir}"/>
+    <mkdir dir="${dist.build.dir}"/>
+    <mkdir dir="${dist.build.classes}"/>
+  </target>
+  
+  <target name="compile-release-tiger" depends="prepare-release-tiger" description="Compile release java code.">
+    <javac destdir="${dist.build.classes}" srcdir="${dist.src.dir}" debug="${debug.flag}">
+      <classpath refid="project.lib.path"/>
+      <include name="**/*.java"/>
+    </javac>
+  </target>
+  <target name="jar-release-tiger" depends="compile-release-tiger" description="Create jar file.">
+    <jar jarfile="${dist.build.dir}/go1.jar">
+      <fileset dir="${dist.build.classes}" excludes="org/ogc/go1/tests/**"/>
+      <fileset dir="${dist.src.dir}" includes="org/**" excludes="**/*.java,**/CVS,**/*.swp,**/*.ppt,**/*.gif,**/*.jpg,**/*.db"/>
+    </jar>
+  </target>
+  <target name="javadoc-release-tiger" depends="prepare-release-tiger" description="Build javadoc files">
+    <javadoc packagenames="org.*" sourcepath="${dist.src.dir}" destdir="${dist.javadoc.dir}" author="true" version="true" doctitle="${version.name}" windowtitle="${version.name}">
+      <classpath refid="project.lib.path"/>
+      <link href="http://java.sun.com/j2se/1.5.0/docs/api/"/>
+    </javadoc>
+  </target>
+  <target name="rebuild-release-tiger" depends="cleanall-release,compile-release-tiger,jar-release-tiger,javadoc-release-tiger"></target>
+
+  <!--  ******************************************************************  -->
   <!--  The -pending targets  -->
   <!--  ******************************************************************  -->
   <target name="prepare-pending">
@@ -86,7 +321,7 @@
     </copy>
     <!-- do the pending separate so we can force it to overwrite -->
     <copy todir="${pending.src.dir}" includeEmptyDirs="false" overwrite="true">
-      <fileset dir="${pending.src}">
+      <fileset dir="pending">
         <exclude name="**/com/**/*.*"/>
       </fileset>
     </copy>
@@ -276,7 +511,7 @@
     </copy>
     <!-- do the pending separate so we can force it to overwrite -->
     <copy todir="${pending.src.dir}" includeEmptyDirs="false" overwrite="true">
-      <fileset dir="${pending.src}">
+      <fileset dir="pending">
         <exclude name="**/com/**/*.*"/>
       </fileset>
     </copy>
