@@ -18,7 +18,7 @@ import org.opengis.spatialschema.geometry.DirectPosition;
 
 /**
  * Defines a common abstraction for implementations projected images defined
- * by an upper-left point and a lower-right point.
+ * by a  lower-left (lowerCorner) point and an upper-right (upperCorner) point.
  * 
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version $Revision$, $Date$
