@@ -37,32 +37,28 @@ public interface GraphicScaledImage extends Graphic {
     public RenderedImage getScaledImage();
     
     /**
-     * Convenience menthod to set the DirectPosition for the upper-left position of the image.
-     * Value is set on the underlying Envelope geometry for this Graphic.
-     * @param coord the upper-left positon.
+     * Convenience menthod to set the DirectPosition for the upper-right position of the image.
+     * @param coord the upper-right positon.
      */
-    public void setUpperLeft(DirectPosition coord);
+    public void setUpperCorner(DirectPosition coord);
     
     /**
-     * Returns the DirectPosition for the upper-left position of the image.
-     * Value is acquired from the underlying Envelope geometry for this Graphic.
-     * @return the upper-left position.
+     * Convenience menthod to return the DirectPosition for the upper-right position of the image.
+     * @return the upper-right position.
      */
-    public DirectPosition getUpperLeft();
+    public DirectPosition getUpperCorner();
     
     /**
-     * Convenience menthod to set the DirectPosition for the lower-right position of the image.
-     * Value is set on the underlying Envelope geometry for this Graphic.
-     * @param coord the lower-right positon.
+     * Convenience menthod to set the DirectPosition for the lower-left position of the image.
+     * @param coord the lower-left positon.
      */
-    public void setLowerRight(DirectPosition coord);
+    public void setLowerCorner(DirectPosition coord);
     
     /**
-     * Convenience menthod to return the DirectPosition for the lower-right position of the image.
-     * Value is acquired from the underlying Envelope geometry for this Graphic.
-     * @return the lower-right position.
+     * Returns the DirectPosition for the lower-left position of the image.
+     * @return the lower-left position.
      */
-    public DirectPosition getLowerRight();
+    public DirectPosition getLowerCorner();
     
     /**
      * Sets the intensity of the image, as an integer from 0 to 100.

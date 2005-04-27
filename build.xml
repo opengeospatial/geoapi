@@ -98,6 +98,7 @@
   <target name="compile-pending" depends="prepare-pending" description="Compile pending java code.">
   <replace dir="${pending.src.dir}">
       <include name="**/*.java"/>
+      <replacefilter token="&lt;String, ? extends Object&gt;"/>
       <replacefilter token="&lt;? extends Coverage&gt;"/>
       <replacefilter token="&lt;? extends Object&gt;"/>
       <replacefilter token="&lt;? extends Polygon&gt;"/>
