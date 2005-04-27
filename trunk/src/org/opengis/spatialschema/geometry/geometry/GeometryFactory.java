@@ -13,14 +13,15 @@ package org.opengis.spatialschema.geometry.geometry;
 import java.util.List;
 import java.util.Set;
 
-// OpenGIS direct dependencies
+import org.opengis.referencing.crs.CoordinateReferenceSystem;
 import org.opengis.spatialschema.geometry.DirectPosition;
+import org.opengis.spatialschema.geometry.Envelope;
 import org.opengis.spatialschema.geometry.MismatchedDimensionException;
 import org.opengis.spatialschema.geometry.MismatchedReferenceSystemException;
+import org.opengis.spatialschema.geometry.aggregate.MultiPrimitive;
 import org.opengis.spatialschema.geometry.primitive.Ring;
-import org.opengis.spatialschema.geometry.primitive.SurfaceBoundary;
 import org.opengis.spatialschema.geometry.primitive.Surface;
-import org.opengis.referencing.crs.CoordinateReferenceSystem;
+import org.opengis.spatialschema.geometry.primitive.SurfaceBoundary;
 
 // Annotations
 import org.opengis.annotation.UML;
@@ -37,21 +38,36 @@ import static org.opengis.annotation.Specification.*;
  *
  * @author ISO/DIS 19107
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
- * @version <A HREF="http://www.opengis.org/docs/01-101.pdf">Abstract specification 5</A>
+ * @version 2.0
  */
 public interface GeometryFactory {
     /**
      * Returns the coordinate reference system in use for all
      * {@linkplain org.opengis.spatialschema.geometry.Geometry geometries}
      * to be created through this interface.
+     * @return
      */
     CoordinateReferenceSystem getCoordinateReferenceSystem();
 
+    /**
+     * Create a direct position with empty coordinates.
+     * @return
+     */
+    DirectPosition createDirectPosition();
+    
     /**
      * Create a direct position at the specified location specified by coordinates.
      */
     DirectPosition createDirectPosition(double[] coordinates);
 
+    /**
+     * Creates a new Envelope with the given corners.
+     * @param lowerCorner
+     * @param upperCorner
+     * @return
+     */
+    Envelope createEnvelope(DirectPosition lowerCorner, DirectPosition upperCorner);
+    
     /**
      * Takes two positions and creates the appropriate line segment joining them.
      *
@@ -328,6 +344,34 @@ public interface GeometryFactory {
                   Set<LineString> breakLines, double maxLength)
             throws MismatchedReferenceSystemException, MismatchedDimensionException;
 
+    /**
+     * Constructs a new {@linkplain SurfaceBoundary surface boundary} object
+     * representing the boundary of a two-dimensional surface.
+     *
+     * @param exterior In the normal 2D case, this identifies the curve that is
+     *        the exterior curve of the surface.  In cases where an exterior
+     *        cannot be unambiguously chosen (a bounded cylinder, for example),
+     *        this parameter may be null.
+     * @param interiors All of the curve components of the boundary that are not
+     *        the exterior.
+     * @throws MismatchedReferenceSystemException If geometric objects given in
+     *         argument don't use a {@linkplain CoordinateReferenceSystem
+     *         coordinate reference system} compatible with the one held by this
+     *         factory.
+     *
+     * @deprecated Moved to {@link org.opengis.spatialschema.geometry.primitive.PrimitiveFactory} since
+     *             {@link Ring}, {@link Surface} and {@link SurfaceBoundary} are all primitive objects.
+     */
+    SurfaceBoundary createSurfaceBoundary(Ring exterior, List/*<Ring>*/ interiors)
+    	throws MismatchedReferenceSystemException;
+    
+    /**
+     * Placeholder to create a MultiPrimitive (or derivatives).  There <b>should</b>
+     * be a better way to do this.
+     * @return
+     */
+    MultiPrimitive createMultiPrimitive();
+    
     /**
      * Constructs polyhedral surface from the facet polygons.
      *

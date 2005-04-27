@@ -37,11 +37,17 @@ public interface FeatureStore {
      */
     URL getIcon();
 
-    /** Display name for this Datastore. */
+    /**
+     * Display name for this Datastore.
+     * 
+     * @return
+     */
     InternationalString getDisplayName();
 
     /**
      * Description of this FeatureStore.
+     * 
+     * @return
      */
     InternationalString getDescription();
 
@@ -66,16 +72,20 @@ public interface FeatureStore {
      * XML element used to encode such features as GML.  The scope of the name
      * will either be null (if the XML element is to have no namespace) or will
      * be a LocalName whose toString() gives the URI of an XML namespace.
+     * 
+     * @return
      */
     List<GenericName> getTypeNames();
 
     /**
-     * This method is similar to the <code>getTypeNames()</code> method, except
-     * that it acknowledges that some features only make sense as children of
-     * another feature collection type.   So this method returns the types that
-     * are the root level "parent" types that can be retrieved from this store.
-     * Implementors are free to return the same values from this method as from
-     * <code>getTypeNames()</code>.
+     * This method is similar to the <code>getTypeNames()</code> method,
+     * except that it acknowledges that some features only make sense as
+     * children of another feature collection type. So this method returns the
+     * types that are the root level "parent" types that can be retrieved from
+     * this store. Implementors are free to return the same values from this
+     * method as from <code>getTypeNames()</code>.
+     * 
+     * @return
      */
     List<GenericName> getRootTypeNames();
 
@@ -84,16 +94,28 @@ public interface FeatureStore {
      * of the given name does not exist.  The GenericName passed to this method
      * must be equal to one of the elements in the list returned by the
      * <code>getTypeName()</code> method.
+     * 
+     * @param typeName
+     * @return
      */
     FeatureType getFeatureType(GenericName typeName);
 
     /**
      * Gets all features of the given type.
+     * 
+     * @param type
+     * @return
+     * @throws IOException
      */
     FeatureCollection getFeatures(GenericName type) throws IOException;
 
     /**
      * Gets all features of the given type that pass some filter.
+     * 
+     * @param type
+     * @param filter
+     * @return
+     * @throws IOException
      */
     FeatureCollection getFeatures(GenericName type, Filter filter) throws IOException;
 
@@ -102,18 +124,74 @@ public interface FeatureStore {
      * the method that accepts a type and a filter, this method allows for
      * retrieving only a subset of the attributes since a query can include a
      * property list.  Note that the type is indicated in the query.
+     * 
+     * @param query
+     * @return
+     * @throws IOException
      */
     FeatureCollection getFeatures(Query query) throws IOException;
 
     /**
-     * Shortcut for calling getFeatures(q) then calling setTransaction(t) on
-     * the result.
+     * Shortcut for calling getFeatures(q) then calling setTransaction(t) on the
+     * result.
+     * 
+     * @param q
+     * @param t
+     * @return
+     * @throws IOException
      */
     FeatureCollection getFeatures(Query q, Transaction t) throws IOException;
 
     /**
-     * If the FeatureStore wants to provide a default style for the given type, it
-     * may return something here.  Otherwise, it should return null.
+     * Registers the given <code>featureCollection</code> so that it may hear
+     * any adds, removes, or updates of <code>Feature</code> s of the given
+     * <code>type</code>.
+     * 
+     * @param featureCollection the <code>FeatureCollection</code> to register
+     * @param type the <code>FeatureType</code> to listen for
+     */
+    void registerFeatureCollection(FeatureCollection featureCollection, GenericName type);
+
+    /**
+     * Registers the given <code>featureCollection</code> so that it may hear
+     * any adds, removes, or updates of <code>Feature</code> s of the given
+     * <code>type</code> that meet the given <code>filter</code>.
+     * 
+     * @param featureCollection the <code>FeatureCollection</code> to register
+     * @param type the <code>FeatureType</code> to register with
+     * @param filter the <code>Filter</code> to register with
+     */
+    void registerFeatureCollection(
+            FeatureCollection featureCollection,
+            GenericName type,
+            Filter filter);
+
+    /**
+     * Registers the given <code>featureCollection</code> so that it may hear
+     * any adds, removes, or updates of <code>Feature</code> s of the given
+     * <code>type</code> that meet the given <code>filter</code>.
+     * 
+     * @param featureCollection the <code>FeatureCollection</code> to register
+     * @param query the <code>Query</code> to register with
+     */
+    void registerFeatureCollection(FeatureCollection featureCollection, Query query);
+
+    /**
+     * Unregisters the given <code>featureCollection</code> so that it will no
+     * longer hear any adds, removes, or updates of <code>Feature</code> s for
+     * which it had previously registered.
+     * 
+     * @param featureCollection the <code>FeatureCollection</code> to
+     *            unregister
+     */
+    void unregisterFeatureCollection(FeatureCollection featureCollection);
+
+    /**
+     * If the FeatureStore wants to provide a default style for the given type,
+     * it may return something here. Otherwise, it should return null.
+     * 
+     * @param type
+     * @return
      */
     FeatureStyle getDefaultStyle(GenericName type);
 
@@ -121,6 +199,8 @@ public interface FeatureStore {
      * Creates a new type.  If this FeatureStore is backed by a persistent store of
      * some kind, then structures corresponding to the given type should be
      * created in this persistent store.
+     * 
+     * @param type
      * @throws IllegalArgumentException If a type of the given name already
      *   exists.
      * @throws IllegalArgumentException If the given feature schema is somehow
@@ -134,14 +214,21 @@ public interface FeatureStore {
      * kind, then the corresponding structures in that store should be removed.
      * This may throw UnsupportedOperationException if the removal of whole
      * feature types is not supported.
+     * 
+     * @param type
+     * @throws IOException
+     * @throws UnsupportedOperationException
      */
     void removeType(GenericName type) throws IOException, UnsupportedOperationException;
 
     /**
      * Modifies the type by changing the schema to what is passed as a
-     * parameter.
-     * This may throw UnsupportedOperationException if the modification of types
-     * is not supported.
+     * parameter. This may throw UnsupportedOperationException if the
+     * modification of types is not supported.
+     * 
+     * @param type
+     * @throws IOException
+     * @throws UnsupportedOperationException
      */
     void modifyType(FeatureType type) throws IOException, UnsupportedOperationException;
 
@@ -149,12 +236,16 @@ public interface FeatureStore {
      * Adds a listener object whose methods will be invoked whenever a new
      * feature type is added, a feature type is deleted, or a feature type's
      * schema has been modified.
+     * 
+     * @param listener
      */
-    void addFeatureStoreListener(FeatureStoreListener dsl);
+    void addFeatureStoreListener(FeatureStoreListener listener);
 
     /**
      * Removes a listener that was previously added using the
      * addFeatureStoreListener method.
+     * 
+     * @param listener
      */
-    void removeFeatureStoreListener(FeatureStoreListener dsl);
+    void removeFeatureStoreListener(FeatureStoreListener listener);
 }

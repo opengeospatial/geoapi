@@ -14,6 +14,7 @@ import java.util.Properties;
 
 import org.opengis.go.display.canvas.Canvas;
 import org.opengis.go.display.primitive.Graphic;
+import org.opengis.go.display.style.GraphicStyle;
 
 /**
  * <code>DisplayFactory</code> defines a common abstraction for creating
@@ -34,6 +35,18 @@ public interface DisplayFactory {
      * @return the newly created <code>Graphic</code>.
      */
     public Graphic createGraphic(Class implementsGraphic);
+
+    /**
+     * Creates a new <code>GraphicStyle</code>.  Implementations of
+     * DisplayFactory are expected to support all four subclasses of GraphicStyle.
+     * @param implementsGraphicStyle The <code>Class</code> of a GraphicStyle
+     *      interface (such as <code>TextSymbolizer.class</code>).
+     *      Throws an <code>IllegalArgumentException</code> if the
+     *      <code>implementsGraphicStyle</code> does not match any GraphicStyle
+     *      interface.
+     * @return the newly created <code>GraphicStyle</code>.
+     */
+    public GraphicStyle createGraphicStyle(Class implementsGraphicStyle);
 
     /**
      * Returns an object that represents the capabilities of this

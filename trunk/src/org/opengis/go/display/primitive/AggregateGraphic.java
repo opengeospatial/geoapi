@@ -62,12 +62,28 @@ public interface AggregateGraphic extends Graphic {
     public Graphic addChild(Graphic child);
 
     /**
+     * Adds the given children to this <code>AggregateGraphic</code>.
+     *
+     * @param children <code>Graphic</code> children to add to the aggregate.
+     * @return the added <code>Graphic</code>s.
+     */
+    public Graphic[] addChildren(Graphic[] children);
+
+    /**
      * Removes the given child from this <code>AggregateGraphic</code>.
      *
      * @param child the <code>Graphic</code> child to remove from the aggregate.
      * @return the removed <code>Graphic</code>, or <code>null</code> if it is not found.
      */
     public Graphic removeChild(Graphic child);
+
+    /**
+     * Removes the given children from this <code>AggregateGraphic</code>.
+     *
+     * @param children the <code>Graphic</code> children to remove from the aggregate.
+     * @return the removed <code>Graphic</code>s, or <code>null</code> if none are found.
+     */
+    public Graphic[] removeChildren(Graphic[] children);
 
     /**
      * Removes all of the children from this <code>AggregateGraphic</code>.

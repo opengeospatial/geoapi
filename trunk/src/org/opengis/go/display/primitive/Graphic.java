@@ -13,17 +13,66 @@ package org.opengis.go.display.primitive;
 import org.opengis.go.display.event.GraphicEvent;
 import org.opengis.go.display.event.GraphicListener;
 import org.opengis.go.display.style.GraphicStyle;
+import org.opengis.go.display.style.Symbology;
 
 /**
- * The root abstraction of a graphic object taxonomy, specifying the methods
- * common to a lightweight set of graphic objects.
+ * <code>Graphic</code> defines the root abstraction of a graphic object
+ * taxonomy, specifying the methods common to a lightweight set of graphic objects.
  *
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version $Revision$, $Date$
  */
 public interface Graphic {
 
+    //*************************************************************************
+    //**
+    //**  Static Fields
+    //**
+    //*************************************************************************
+
+    //**  Default Editability property values  **
+
+    /**  Default auto edit value.  */
+    static final boolean DEFAULT_AUTO_EDIT = true;
+
+    /**  Default drag selectable value.  */
+    static final boolean DEFAULT_DRAG_SELECTABLE = true;
+
+    /** Default pickable value.  */
+    static final boolean DEFAULT_PICKABLE = true;
+
+    /**  Default selected value.  */
+    static final boolean DEFAULT_SELECTED = false;
+
+    //**  Default Highlight property values  **
+
+    /**  Default blinking value.  */
+    static final boolean DEFAULT_BLINKING = false;
+
+    /**  Default blink pattern value.  */
+    static final float[] DEFAULT_BLINK_PATTERN = {0.5f, 0.5f};
+
+    //**  Default Viewability property values  **
+
+    /**  Default max scale value.  */
+    static final int DEFAULT_MAX_SCALE = Integer.MAX_VALUE;
+
+    /**  Default min scale value.  */
+    static final int DEFAULT_MIN_SCALE = 1;
+
+    /**  Default visible value.  */
+    static final boolean DEFAULT_VISIBLE = true;
+
+    /**  Default z order value.  */
+    static final double DEFAULT_Z_ORDER = 0.0;
+
     //**  deconstructor  **
+
+    //*************************************************************************
+    //**
+    //**  Methods
+    //**
+    //*************************************************************************
 
     /**
      * Method that can be called when an object is no longer needed.
@@ -32,56 +81,57 @@ public interface Graphic {
      * to an object pool.  It is an error to reference a <code>Graphic</code> in any
      * way after its dispose method has been called.
      */
-    public void dispose();
+    void dispose();
 
     /**
      * Flags this <code>Graphic</code> object as needing to be redrawn, 
      * due to changes to the internal data of the object which affect the
      * rendering of the object.
-     * <br><br>
+     * <p>
      * The actual flag set/unset mechanism is implementation-specific. 
      * The implementation also choses the manner and timing in which both 
      * the flag is checked and the <code>Graphic</code> object is redrawn.
-     * <br><br>
+     * <p>
      * An application would call this method when any geometric 
      * information for this <code>Graphic</code> object has changed; 
      * for example, when the underlying <code>Geometry</code> instance
      * is changed or data in that instance has changed.
      */
-    public void refresh();
+    void refresh();
 
     //**  accessors/mutators  **
 
     /**
      * Sets the name of this <code>Graphic</code> to the given value.
-     *
      * @param name the new name to assign to this <code>Graphic</code>.
      */
-    public void setName(String name);
+    void setName(String name);
 
     /**
      * Returns the name assigned to this <code>Graphic</code>.
-     *
      * @return	the name assigned to this <code>Graphic</code>.
      */
-    public String getName();
+    String getName();
 
     /**
      * Sets the parent of this <code>Graphic</code>.
-     *
      * @param parent the parent of this <code>Graphic</code>.
-     *
-     * @revisit The argument type is inconsistent with the {@link #getParent} return type.
      */
-    public void setParent(Graphic parent);
+    void setParent(Graphic parent);
 
     /**
-     * Returns the parent of this <code>Graphic</code>. This is most likely of type
-     * <code>AggregateGraphic</code> or <code>GraphicCompositeCurve</code>.
-     *
+     * Returns the parent of this <code>Graphic</code>.  Currently, only 
+     * <code>AggregateGraphic</code>s have <code>Graphic</code> children.
      * @return	the parent of this <code>Graphic</code>.
      */
-    public Graphic getParent();
+    Graphic getParent();
+
+    /**
+     * Sets the <code>GraphicStyle</code> for this <code>Graphic</code>.
+     * <code>Graphic</code>s may share style property objects with other
+     * <code>Graphic</code>s.
+     */
+    void setGraphicStyle(GraphicStyle style);
 
     /**
      * Returns the <code>GraphicStyle</code> for this <code>Graphic</code>.
@@ -89,70 +139,49 @@ public interface Graphic {
      * <code>GraphicStyle</code> object, so that users may modify this
      * <code>Graphic</code>'s style properties directly through the
      * style object.
-     *
      * @return @return	the <code>GraphicStyle</code>.
      */
-    public GraphicStyle getGraphicStyle();
-
-    /**
-     * Sets the object that will be used to determine the appearance of this
-     * Graphic on the screen.  The Graphic will maintain a reference to the
-     * given object, so future changes to the object will affect the appearance
-     * of this Graphic when it is repainted.
-     * <p>
-     * Note that the user must explicitly invoke the refresh() method when
-     * the style or its properties have changed.
-     * <p>
-     * Note that this method applies only to version 1.1 and above of the GO-1
-     * interfaces.  In previous versions, the association between a Graphic and
-     * a style was one-to-one and could not be modified.
-     *
-     * @since Version 1.1
-     */
-    public void setGraphicStyle(GraphicStyle style);
+    GraphicStyle getGraphicStyle();
 
     /**
      * Returns the value of the property with the specified key. Only
      * properties added with <code>putClientProperty</code> will return a 
      * non-null value.
-     *
-     * @return the value of this property or <code>null</code>.
+     * @return the value of this property or null
      * @see #putClientProperty
      */
-    public Object getClientProperty(Object key);
+    Object getClientProperty(Object key);
 
     /**
      * Adds an arbitrary key/value "client property" to this <code>Graphic</code>.
-     * The <code>get/putClientProperty</code> methods provide access to a small
-     * per-instance hashtable. Callers can use <code>get/putClientProperty</code>
-     * to annotate Graphics that were created by another module.
+     * The get/putClientProperty methods provide access to a small
+     * per-instance hashtable. Callers can use get/putClientProperty to
+     * annotate Graphics that were created by another module.
      *
-     * If value is <code>null</code> this method will remove the property. Changes
-     * to client properties are reported with <code>PropertyChange</code> events.
-     * The name of the property (for the sake of <code>PropertyChange</code> events)
-     * is key.toString(). 
-     * The <code>clientProperty</code> dictionary is not intended to support large scale
+     * If value is null this method will remove the property. Changes to client
+     * properties are reported with PropertyChange events. The name of the
+     * property (for the sake of PropertyChange events) is key.toString(). 
+     * The clientProperty dictionary is not intended to support large scale
      * extensions to <code>Graphic</code> nor should be it considered an alternative to
      * subclassing when designing a new component.
-     *
      * @param key the Object containing the key string.
      * @param value the Object that is the client data.
      * @see #getClientProperty
      */
-    public void putClientProperty(Object key, Object value);
+    void putClientProperty(Object key, Object value);
 
     /**
      * Sets a boolean indicating whether mouse events on this <code>Graphic</code> should
      * be passed to the parent <code>Graphic</code> in addition to being passed to any
-     * listeners on this object.  The default is <code>false</code>, indicating that events
-     * will not be passed to the parent.  If the boolean is <code>true</code>, then the
+     * listeners on this object.  The default is false, indicating that events
+     * will not be passed to the parent.  If the boolean is true, then the
      * event will be passed to the parent after having been passed to the
      * listeners on this object.
      *
      * @param passToParent <code>true</code> if events should be passed to the
      *        parent graphic, <code>false</code> if they should not.
      */
-    public void setPassingEventsToParent(boolean passToParent);
+    void setPassingEventsToParent(boolean passToParent);
 
     /**
      * Returns a boolean indicating whether mouse events on this <code>Graphic</code> will
@@ -164,7 +193,7 @@ public interface Graphic {
      *
      * @return <code>true</code> if this graphic pass the events to the parent graphic.
      */
-    public boolean isPassingEventsToParent();
+    boolean isPassingEventsToParent();
 
     /**
      * Sets a boolean <code>flag</code> specifying whether this object is to show
@@ -174,7 +203,7 @@ public interface Graphic {
      *
      * @param showingHandles <code>true</code> if this object show its edit handles.
      */
-    public void setShowingEditHandles(boolean showingHandles);
+    void setShowingEditHandles(boolean showingHandles);
 
     /**
      * Returns the boolean flag that specifies whether this object is showing
@@ -182,21 +211,21 @@ public interface Graphic {
      *
      * @return <code>true</code> means it is showing its handles.
      */
-    public boolean isShowingEditHandles();
+    boolean isShowingEditHandles();
 
     /**
      * Sets a boolean flag indicating whether this object is
      * to show anchor handles. Anchor handles allow the object to be moved
      * in the display.
      */
-    public void setShowingAnchorHandles(boolean showingHandles);
+    void setShowingAnchorHandles(boolean showingHandles);
 
     /**
      * Returns the boolean flag that indicates whether this object
      * is showing anchor handles. Anchor handles allow the object to be moved
      * in the display.
      */
-    public boolean isShowingAnchorHandles();
+    boolean isShowingAnchorHandles();
 
     //**  methods to work with/create other Graphics and Styles
 
@@ -206,29 +235,29 @@ public interface Graphic {
      *
      * @revisit Consider overriding <code>Object.clone()</code> instead.
      */
-    public Graphic cloneGraphic();
+    Graphic cloneGraphic();
 
     //**  listener methods  **
 
     /**
-     * Adds the given listener to this <code>Graphic</code>'s list of
-     * listeners.  Listeners are notified of key, mouse, and change events that
+     * Adds the given <code>GraphicListener</code> to this <code>Graphic</code>'s list of
+     * listeners.  <code>GraphicListener</code>s are notified of key, mouse, and change events that
      * affect this <code>Graphic</code>.
      *
      * @param listener the <code>GraphicListener</code> to add.
      */
-    public void addGraphicListener(GraphicListener listener);
+    void addGraphicListener(GraphicListener listener);
 
     /**
-     * Removes the given listener from this <code>Graphic</code>'s list of
+     * Removes the given <code>GraphicListener</code> from this <code>Graphic</code>'s list of
      * listeners.  
      *
      * @param listener the <code>GraphicListener</code> to remove.
      */
-    public void removeGraphicListener(GraphicListener listener);
+    void removeGraphicListener(GraphicListener listener);
 
     /**
-     * Calls the graphic event method of all listeners in this
+     * Calls the graphic event method of all <code>GraphicListener</code>s in this
      * <code>Graphic</code>'s list of listeners. The listeners need to 
      * determine which subclassed event is called and what event-specific 
      * action was taken.
@@ -243,6 +272,146 @@ public interface Graphic {
      * @revisit Usually, this kind of method is a protected one in the implementation class,
      *          not a public method in the interface...
      */
-    public void fireGraphicEvent(GraphicEvent ge);
+    void fireGraphicEvent(GraphicEvent ge);
+
+    //*************************************************************************
+    //**
+    //**  Style Property Accessors
+    //**
+    //*************************************************************************
+
+    /**
+     * Returns the auto edit value.
+     * @return the auto edit value.
+     */
+    boolean getAutoEdit();
+
+    /**
+     * Sets the auto edit value.
+     * @param autoEdit the auto edit value.
+     */
+    void setAutoEdit(boolean autoEdit);
+
+    /**
+     * Returns the drag selectable value.
+     * @return the drag selectable value.
+     */
+    boolean getDragSelectable();
+
+    /**
+     * Sets the drag selectable value.
+     * @param dragSelectable the drag selectable value.
+     */
+    void setDragSelectable(boolean dragSelectable);
+
+    /**
+     * Returns the pickable value.
+     * @return the pickable value.
+     */
+    boolean getPickable();
+
+    /**
+     * Sets the pickable value.
+     * @param pickable the pickable value.
+     */
+    void setPickable(boolean pickable);
+
+    /**
+     * Returns the selected value.
+     * @return the selected value.
+     */
+    boolean getSelected();
+
+    /**
+     * Sets the selected value.
+     * @param selected the selected value.
+     */
+    void setSelected(boolean selected);
+
+    /**
+     * Returns the blinking value.
+     * @return the blinking value.
+     */
+    boolean getBlinking();
+
+    /**
+     * Sets the blinking value.
+     * @param blinking the blinking value.
+     */
+    void setBlinking(boolean blinking);
+
+    /**
+     * Returns the blink pattern value.
+     * @return the blink pattern value.
+     */
+    float[] getBlinkPattern();
+
+    /**
+     * Sets the blink pattern value.
+     * @param blinkPattern the blink pattern value.
+     */
+    void setBlinkPattern(float[] blinkPattern);
+
+    /**
+     * Returns a symbology object that will be used to override some, if not
+     * all, of the graphical properties of Graphics using this style.  This will
+     * be null by default.
+     */
+    Symbology getSymbology();
+
+    /**
+     * Sets the symbology object that will be used to override some, if not
+     * all, of the graphical properties of Graphics using this style.
+     */
+    void setSymbology(Symbology symbology);
+
+    /**
+     * Returns the max scale value.
+     * @return the max scale value.
+     */
+    double getMaxScale();
+
+    /**
+     * Sets the max scale value.
+     * @param maxScale the max scale value.
+     */
+    void setMaxScale(double maxScale);
+
+    /**
+     * Returns the min scale value.
+     * @return the min scale value.
+     */
+    double getMinScale();
+
+    /**
+     * Sets the min scale value.
+     * @param minScale the min scale value.
+     */
+    void setMinScale(double minScale);
+
+    /**
+     * Returns the z order hint value.
+     * @return the z order hint value.
+     */
+    double getZOrderHint();
+
+    /**
+     * Sets the z order hint value.
+     * @param zOrderHint the z order hint value.
+     */
+    void setZOrderHint(double zOrderHint);
+
+    /**
+     * Returns the visible value.
+     * @return the visible value.
+     */
+    boolean getVisible();
+
+    /**
+     * Sets the visible value.
+     * @param visible the visible value.
+     */
+    void setVisible(boolean visible);
+
 }
 
