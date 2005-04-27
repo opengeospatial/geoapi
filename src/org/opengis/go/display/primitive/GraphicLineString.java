@@ -10,10 +10,9 @@
 package org.opengis.go.display.primitive;
 
 // OpenGIS direct dependencies
+import org.opengis.go.display.style.LineSymbolizer;
 import org.opengis.go.spatial.PathType;
 import org.opengis.spatialschema.geometry.DirectPosition;
-import org.opengis.spatialschema.geometry.geometry.LineString;
-import org.opengis.spatialschema.geometry.geometry.PointArray;
 
 
 /**
@@ -25,47 +24,7 @@ import org.opengis.spatialschema.geometry.geometry.PointArray;
  * @since GO 1.1
  */
 public interface GraphicLineString extends Graphic {
-
-    /**
-     * Sets the geometry based on ISO 19107 geometric forms.
-     *
-     * @param lineString a geometry LineString.
-     * @since GO 1.1
-     */
-    public void setLineString(LineString lineString);
-
-    /**
-     * Returns the geometry based on ISO 19107 geometric forms.
-     *
-     * @return the geometry CurveSegment.
-     * @since GO 1.1
-     */
-    public LineString getLineString();
-
-    /**
-     * Returns this <code>GraphicLineString</code>'s set of positions as a 
-     * <code>PointArray</code>.  The returned <code>PointArray</code>
-     * may or may not be identical to a <code>PointArray</code> passed in
-     * to the <code>setPointArray</code> method.  It will definitely not
-     * be the same <code>PointArray</code> if any positions have been
-     * added, inserted, or deleted.
-     * Value is acquired from the underlying LineString geometry for this Graphic.
-     *
-     * @return the set of positions as a <code>PointArray</code>.
-     */
-    public PointArray getPointArray();
-
-    /**
-     * Sets this <code>GraphicLineString</code>'s set of positions to the 
-     * given <code>PointArray</code>.  Any changes made to the given
-     * <code>PointArray</code> after calling this method may adversly affect
-     * this <code>GraphicLineString</code>.
-     * Value is set on the underlying LineString geometry for this Graphic.
-     *
-     * @param pointArray The new set of positions.
-     */
-    public void setPointArray(PointArray pointArray);
-
+    
     /**
      * Returns the positions that make up the line segments.
      * Value is acquired from the underlying LineString geometry for this Graphic.
@@ -137,6 +96,13 @@ public interface GraphicLineString extends Graphic {
      * @return whether or not the graphic linestring is closed.
      */
     public boolean isClosed();
+    
+    /**
+     * Returns the <code>GraphicStyle</code> for this <code>GraphicLineString</code>,
+     * which is required to be a <code>LineSymbolizer</code>.
+     * @return the GraphicLineString's <code>GraphicStyle</code>.
+     */
+    public LineSymbolizer getLineSymbolizer();
 
     //**  EDITABLE/ANIMATION  **
 

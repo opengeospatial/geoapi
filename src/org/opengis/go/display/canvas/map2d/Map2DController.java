@@ -3,7 +3,7 @@ package org.opengis.go.display.canvas.map2d;
 import javax.units.Unit;
 
 import org.opengis.go.display.canvas.CanvasController;
-import org.opengis.go.geometry.BoundingRectangle;
+import org.opengis.spatialschema.geometry.Envelope;
 
 
 /**
@@ -46,10 +46,10 @@ public interface Map2DController extends CanvasController {
     void setScale(double newScale);
     
     /**
-     * Sets the bounding rectangle of the <code>Canvas</code>, provided this
+     * Sets the envelope of the <code>Canvas</code>, provided this
      * <code>Map2DController</code> is the active controller.
      * @param newBounds
      */
-    void setBoundingRectangle(BoundingRectangle newBounds);
+    void setEnvelope(Envelope newEnvelope);
 
 }

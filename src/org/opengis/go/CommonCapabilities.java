@@ -25,14 +25,6 @@ import org.opengis.go.spatial.PathType;
 public interface CommonCapabilities {
 
     /**
-     * Returns an array of <code>Class</code> objects for the
-     * <code>Bounds</code> interfaces that are supported by a given
-     * implementation. These Class objects can be used in a call to
-     * <code>BoundsFactory.getBounds(Class)</code>.
-     */
-    Class[] getSupportedBounds();
-
-    /**
      * Returns an array of <code>Class</code> objects for the directposition
      * interfaces that are supported by a given implementation.
      */

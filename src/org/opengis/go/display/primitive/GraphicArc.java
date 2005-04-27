@@ -10,15 +10,14 @@
 
 package org.opengis.go.display.primitive;
 
-import javax.units.Unit;
-
-// J2SE direct dependencies
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.units.Unit;
+
+import org.opengis.go.display.style.PolygonSymbolizer;
 import org.opengis.go.spatial.PathType;
 import org.opengis.spatialschema.geometry.DirectPosition;
-import org.opengis.spatialschema.geometry.geometry.Conic;
 import org.opengis.util.CodeList;
 import org.opengis.util.SimpleEnumerationType;
 
@@ -157,21 +156,6 @@ public interface GraphicArc extends Graphic {
     public double getHeight(Unit unit);
 
     /**
-     * Sets the geometry based on ISO 19107 <code>Conic</code> geometry for this <code>Graphic</code>. 
-     * The <code>Conic</code> must be an ellipse (or a circle), otherwise 
-     * <code>GeometryNotSupportedException</code> is thrown.
-     * @param conic the elliptic conic for this <code>Graphic</code>.
-     * @throws GeometryNotSupportedException if <code>Conic</code> is not an ellipse.
-     */
-    public void setConic(Conic conic) throws GeometryNotSupportedException;
-    
-    /**
-     * Returns the ISO 19107 <code>Conic</code> geometry for this <code>Graphic</code>
-     * @return the Conic representing this GraphicArc
-     */
-    public Conic getConic();
-
-    /**
      * Sets the orientation for the width axis.  On a <code>Canvas</code>, this
      * might be the angle between the positive X axis and the width
      * axis of the arc. For a projected arc, this might be the angle
@@ -279,6 +263,13 @@ public interface GraphicArc extends Graphic {
     public void setAllowingExtentsChange(boolean newValue);
 
     //**  PROJECTED  **
+
+    /**
+     * Returns the <code>GraphicStyle</code> for this <code>GraphicPolygon</code>,
+     * which is required to be a <code>PolygonSymbolizer</code>.
+     * @return the GraphicPolygon's <code>GraphicStyle</code>.
+     */
+    public PolygonSymbolizer getPolygonSymbolizer();
 
     /**
      * Sets the algorithm that is used in computing the "in-between" pixels

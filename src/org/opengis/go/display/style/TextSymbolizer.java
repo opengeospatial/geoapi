@@ -17,434 +17,253 @@ import java.awt.Font;
  * Encapsulates the style data applicable to
  * {@link org.opengis.go.display.primitive.Graphic}s
  * that are of type Text in the sense of SLD (OGC 02-070).
+ * <p>
+ * Note that the "fill color" of a <code>TextSymbolizer</code> could also be
+ * called the "text color" as it is the primary color used to draw the text.
  *
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version $Revision$, $Date$
  */
-public interface TextSymbolizer {
-    
+public interface TextSymbolizer extends GraphicStyle {
+
     //*************************************************************************
     //  Static Fields
     //*************************************************************************
 
     //**  Default values  **
-    
+
     /**  Default fill color value.  */
-    public static final Color DEFAULT_TEXT_FILL_COLOR = Color.BLACK;
+    public static final Color DEFAULT_FILL_COLOR = Color.BLACK;
 
     /**  Default fill background color value.  */
-    public static final Color DEFAULT_TEXT_FILL_BACKGROUND_COLOR = Color.WHITE;
+    public static final Color DEFAULT_FILL_BACKGROUND_COLOR = Color.WHITE;
 
     /**  Default fill gradient points value.  */
-    public static final float[] DEFAULT_TEXT_FILL_GRADIENT_POINTS = new float[2];
+    //public static final float[] DEFAULT_FILL_GRADIENT_POINTS = new float[2];
 
     /**  Default fill opacity value.  */
-    public static final float DEFAULT_TEXT_FILL_OPACITY = 1.f;
+    public static final float DEFAULT_FILL_OPACITY = 1.f;
 
     /**  Default fill pattern value.  */
-    public static final FillPattern DEFAULT_TEXT_FILL_PATTERN = FillPattern.NONE;
+    public static final FillPattern DEFAULT_FILL_PATTERN = FillPattern.NONE;
 
     /**  Default fill style value.  */
-    public static final FillStyle DEFAULT_TEXT_FILL_STYLE = FillStyle.SOLID;
-    
+    public static final FillStyle DEFAULT_FILL_STYLE = FillStyle.SOLID;
+
     // PENDING(jdc):  need a default font!!
-    public static final Font DEFAULT_TEXT_FONT = null;
-    
+    public static final Font DEFAULT_FONT = null;
+
     /**  Default halo radius value.  */
-    public static final float DEFAULT_TEXT_HALO_RADIUS = 1.f;
-    
-    /**  Default label.  */
-    public static final String DEFAULT_TEXT_LABEL = "Label";
-    
+    public static final float DEFAULT_HALO_RADIUS = 0f;
+
     /**  Default rotation.  */
-    public static final float DEFAULT_TEXT_LABEL_ROTATION = 0f;
-        
-    /**  Default show label.  */
-    public static final boolean DEFAULT_TEXT_LABEL_SHOW_LABEL = false;
-    
+    public static final float DEFAULT_ROTATION = 0f;
+
     /**  Default xAnchor.  */
-    public static final XAnchor DEFAULT_TEXT_LABEL_X_ANCHOR = XAnchor.CENTER;
-    
+    public static final XAnchor DEFAULT_X_ANCHOR = XAnchor.CENTER;
+
     /**  Default xDisplacement.  */
-    public static final float DEFAULT_TEXT_LABEL_X_DISPLACEMENT = 0f;
-    
+    public static final float DEFAULT_X_DISPLACEMENT = 0f;
+
     /**  Default yAnchor.  */
-    public static final YAnchor DEFAULT_TEXT_LABEL_Y_ANCHOR = YAnchor.MIDDLE;
-    
+    public static final YAnchor DEFAULT_Y_ANCHOR = YAnchor.MIDDLE;
+
     /**  Default yDisplacement.  */
-    public static final float DEFAULT_TEXT_LABEL_Y_DISPLACEMENT = 0f;
-    
+    public static final float DEFAULT_Y_DISPLACEMENT = 0f;
+
     //*************************************************************************
     //  Methods
     //*************************************************************************
-    
+
     /**
-     * Returns the fill color value.
-     * @return the fill color value.
+     * Returns the color used to draw the text.  This is the color used to fill
+     * the interior of the font glyphs.
+     * @return the text foreground color.
      */
-    public Color getTextFillColor();
+    public Color getFillColor();
 
     /**
-     * Returns whether the fill color value has been set.
-     * @return true if the fill color value has been set, false otherwise.
-     */    
-    public boolean isTextFillColorSet();
-
-    /**
-     * Sets the fill color value.
-     * @param fillColor the fill color value.
-     */    
-    public void setTextFillColor(Color fillColor);
-
-    /**
-     * Sets the fact that the fill color value has been set.
-     * @param flag true if the fill color value has been set, false otherwise.
-     */    
-    public void setTextFillColorSet(boolean flag);
-   
-    /**
-     * Returns the fill background color value.
-     * @return the fill background color value.
+     * Sets the color used to draw the text.  This is the color used to fill
+     * the interior of the font glyphs.
+     * @param fillColor the text foreground color.
      */
-    public Color getTextFillBackgroundColor();
+    public void setFillColor(Color fillColor);
 
     /**
-     * Returns whether the fill background color value has been set.
-     * @return true if the fill background color value has been set, false otherwise.
-     */    
-    public boolean isTextFillBackgroundColorSet();
+     * Returns the color that is used as the pattern background color when a
+     * stipple pattern is used for the fill color.
+     * @return the font glyph background color for stippled text rendering.
+     */
+    public Color getFillBackgroundColor();
 
     /**
-     * Sets the fill background color value.
-     * @param fillBackgroundColor the fill background color value.
-     */    
-    public void setTextFillBackgroundColor(Color fillBackgroundColor);
+     * Sets the color that is used as the pattern background color when a
+     * stipple pattern is used for the fill color.
+     * @param fillBackgroundColor the font glyph background color for 
+     * stippled text rendering.
+     */
+    public void setFillBackgroundColor(Color fillBackgroundColor);
 
     /**
-     * Sets the fact that the fill background color value has been set.
-     * @param flag true if the fill background color value has been set, false otherwise.
-     */    
-    public void setTextFillBackgroundColorSet(boolean flag);
-
-    /**
-     * Returns the fill gradient points value.
+     * Returns the fill gradient points value, or null if there is no fill gradient.
      * @return the fill gradient points value.
      */
-    public float[] getTextFillGradientPoints();
-
-    /**
-     * Returns whether the fill gradient points value has been set.
-     * @return true if the fill gradient points value has been set, false otherwise.
-     */    
-    public boolean isTextFillGradientPointsSet();
+    public float[] getFillGradientPoints();
 
     /**
      * Sets the fill gradient points value.
-     * @param fillGradientPoints the fill gradient points value.
-     */    
-    public void setTextFillGradientPoints(float[] fillGradientPoints);
+     * @param fillGradientPoints the fill gradient points value, or null to
+     * specify no fill gradient.
+     */
+    public void setFillGradientPoints(float[] fillGradientPoints);
 
-    /**
-     * Sets the fact that the fill gradient points value has been set.
-     * @param flag true if the fill gradient points value has been set, false otherwise.
-     */    
-    public void setTextFillGradientPointsSet(boolean flag);
-   
     /**
      * Returns the fill opacity value.
      * @return the fill opacity value.
      */
-    public float getTextFillOpacity();
-
-    /**
-     * Returns whether the fill opacity value has been set.
-     * @return true if the fill opacity value has been set, false otherwise.
-     */    
-    public boolean isTextFillOpacitySet();
+    public float getFillOpacity();
 
     /**
      * Sets the fill opacity value.
      * @param fillOpacity the fill opacity value.
-     */    
-    public void setTextFillOpacity(float fillOpacity);
+     */
+    public void setFillOpacity(float fillOpacity);
 
-    /**
-     * Sets the fact that the fill opacity value has been set.
-     * @param flag true if the fill opacity value has been set, false otherwise.
-     */    
-    public void setTextFillOpacitySet(boolean flag);
-   
     /**
      * Returns the fill pattern value.
      * @return the fill pattern value.
      */
-    public FillPattern getTextFillPattern();
-
-    /**
-     * Returns whether the fill pattern value has been set.
-     * @return true if the fill pattern value has been set, false otherwise.
-     */    
-    public boolean isTextFillPatternSet();
+    public FillPattern getFillPattern();
 
     /**
      * Sets the fill pattern value.
      * @param fillPattern the fill pattern value.
-     */    
-    public void setTextFillPattern(FillPattern fillPattern);
+     */
+    public void setFillPattern(FillPattern fillPattern);
 
-    /**
-     * Sets the fact that the fill pattern value has been set.
-     * @param flag true if the fill pattern value has been set, false otherwise.
-     */    
-    public void setTextFillPatternSet(boolean flag);
-   
     /**
      * Returns the fill style value.
      * @return the fill style value.
      */
-    public FillStyle getTextFillStyle();
-
-    /**
-     * Returns whether the fill style value has been set.
-     * @return true if the fill style value has been set, false otherwise.
-     */    
-    public boolean isTextFillStyleSet();
+    public FillStyle getFillStyle();
 
     /**
      * Sets the fill style value.
      * @param fillStyle the fill style value.
-     */    
-    public void setTextFillStyle(FillStyle fillStyle);
+     */
+    public void setFillStyle(FillStyle fillStyle);
 
     /**
-     * Sets the fact that the fill style value has been set.
-     * @param flag true if the fill style value has been set, false otherwise.
-     */    
-    public void setTextFillStyleSet(boolean flag);
-        
-    //**  FONT  **
-    
-	/**
-	 * Returns the Font object.
-	 * @return the Font object.
-	 */
-	public Font getTextFont();
-
-	/**
-	 * Returns whether the Font object has been set.
-	 * @return true if the Font object has been set, false otherwise.
-	 */
-	public boolean isTextFontSet();
-
-	/**
-	 * Sets the Font object.
-	 * @param object the Font object.
-	 * 
-	 */
-	public void setTextFont(Font object);
-
-	/**
-	 * Sets the fact that the Font object has been set.
-	 * @param flag true if the Font object has been set, false otherwise.
-	 * 
-	 */
-	public void setTextFontSet(boolean flag);
-	
-    //**  HALO  **
+     * Returns the Font object.
+     * @return the Font object.
+     */
+    public Font getFont();
 
     /**
-     * Returns the halo radius value.
+     * Sets the Font object.
+     * @param object the Font object.
+     *
+     */
+    public void setFont(Font object);
+
+    /**
+     * Returns the halo radius value, or zero if no halo is to be drawn.
      * @return the value of the halo radius.
      */
-    public float getTextHaloRadius();
-    
+    public float getHaloRadius();
+
     /**
-     * Returns whether the halo radius value has been set.
-     * @return true if the halo radius value has been set, false otherwise.
-     */    
-    public boolean isTextHaloRadiusSet();
-    
-    /**
-     * Sets the halo radius value.
+     * Sets the halo radius value.  If zero, no halo will be drawn.
      * @param haloRadius the value of the halo radius.
-     */    
-    public void setTextHaloRadius(float haloRadius);
-    
-    /**
-     * Sets the fact that the halo radius value has been set.
-     * @param flag true if the halo radius value has been set, false otherwise.
-     */    
-    public void setTextHaloRadiusSet(boolean flag);
-    
-    /**
-     * Returns the label.
-     * @return the label.
      */
-    public String getTextLabel();
-    
+    public void setHaloRadius(float haloRadius);
+
     /**
-     * Returns whether the label has been set.
-     * @return true if the label has been set, false otherwise.
-     */    
-    public boolean isTextLabelSet();
-    
+     * Returns the color that is used to fill in the halo,
+     * or null if no halo is to be drawn.
+     * @return the halo color.
+     */
+    public Color getHaloColor();
+
     /**
-     * Sets the label.
-     * @param label the label.
-     */    
-    public void setTextLabel(String label);
-    
+     * Sets the halo color.
+     * @param haloColor the halo color.
+     */
+    public void setHaloColor(Color haloColor);
+
     /**
-     * Sets the fact that the label has been set.
-     * @param flag true if the label has been set, false otherwise.
-     */    
-    public void setTextLabelSet(boolean flag);
-    
+     * Returns the color that is used to fill in a bounding box behind the text,
+     * or null if no background is to be drawn using this symbolizer.
+     * @return the color of the background behind the label, or null if no
+     * background will be drawn.
+     */
+    public Color getBackgroundColor();
+
+    /**
+     * Sets the color that is used for rendering a background behind the text.
+     * @param backgroundColor the font glyph background color for 
+     * stippled text rendering.
+     */
+    public void setBackgroundColor(Color backgroundColor);
+
     /**
      * Returns the label rotation.
      * @return the label rotation.
      */
-    public float getTextLabelRotation();
-    
-    /**
-     * Returns whether the label rotation has been set.
-     * @return true if the label rotation has been set, false otherwise.
-     */    
-    public boolean isTextLabelRotationSet();
-    
+    public float getRotation();
+
     /**
      * Sets the label rotation.
      * @param labelRotation the label rotation.
-     */    
-    public void setTextLabelRotation(float labelRotation);
-    
-    /**
-     * Sets the fact that the label rotation has been set.
-     * @param flag true if the label rotation has been set, false otherwise.
-     */    
-    public void setTextLabelRotationSet(boolean flag);
-   
-    /**
-     * Returns the show label.
-     * @return the show label.
      */
-    public boolean getTextLabelShowLabel();
-    
-    /**
-     * Returns whether the show label has been set.
-     * @return true if the show label has been set, false otherwise.
-     */    
-    public boolean isTextLabelShowLabelSet();
-    
-    /**
-     * Sets the show label.
-     * @param showLabel the show label.
-     */    
-    public void setTextLabelShowLabel(boolean showLabel);
-    
-    /**
-     * Sets the fact that the show label has been set.
-     * @param flag true if the show label has been set, false otherwise.
-     */    
-    public void setTextLabelShowLabelSet(boolean flag);
+    public void setRotation(float labelRotation);
 
     /**
      * Returns the label XAnchor.
      * @return the label XAnchor.
      */
-    public XAnchor getTextLabelXAnchor();
-    
-    /**
-     * Returns whether the label XAnchor has been set.
-     * @return true if the label XAnchor has been set, false otherwise.
-     */    
-    public boolean isTextLabelXAnchorSet();
-    
+    public XAnchor getXAnchor();
+
     /**
      * Sets the label XAnchor.
-     * @param labelXAnchor the label XAnchor.
-     */    
-    public void setTextLabelXAnchor(XAnchor labelXAnchor);
-    
-    /**
-     * Sets the fact that the label XAnchor has been set.
-     * @param flag true if the label XAnchor has been set, false otherwise.
-     */    
-    public void setTextLabelXAnchorSet(boolean flag);
-   
+     * @param xAnchor the label XAnchor.
+     */
+    public void setXAnchor(XAnchor xAnchor);
+
     /**
      * Returns the label X displacement.
      * @return the label X displacement.
      */
-    public float getTextLabelXDisplacement();
-    
-    /**
-     * Returns whether the label X displacement has been set.
-     * @return true if the label X displacement has been set, false otherwise.
-     */    
-    public boolean isTextLabelXDisplacementSet();
-    
+    public float getXDisplacement();
+
     /**
      * Sets the label X displacement.
-     * @param labelXDisplacement the label X displacement.
-     */    
-    public void setTextLabelXDisplacement(float labelXDisplacement);
-    
-    /**
-     * Sets the fact that the label X displacement has been set.
-     * @param flag true if the label X displacement has been set, false otherwise.
-     */    
-    public void setTextLabelXDisplacementSet(boolean flag);
-   
+     * @param xDisplacement the label X displacement.
+     */
+    public void setXDisplacement(float xDisplacement);
+
     /**
      * Returns the label YAnchor.
      * @return the label YAnchor.
      */
-    public YAnchor getTextLabelYAnchor();
-    
-    /**
-     * Returns whether the label YAnchor has been set.
-     * @return true if the label YAnchor has been set, false otherwise.
-     */    
-    public boolean isTextLabelYAnchorSet();
-    
+    public YAnchor getYAnchor();
+
     /**
      * Sets the label YAnchor.
-     * @param labelYAnchor the label YAnchor.
-     */    
-    public void setTextLabelYAnchor(YAnchor labelYAnchor);
-    
-    /**
-     * Sets the fact that the label YAnchor has been set.
-     * @param flag true if the label YAnchor has been set, false otherwise.
-     */    
-    public void setTextLabelYAnchorSet(boolean flag);
-   
+     * @param yAnchor the label YAnchor.
+     */
+    public void setYAnchor(YAnchor yAnchor);
+
     /**
      * Returns the label Y displacement.
      * @return the label Y displacement.
      */
-    public float getTextLabelYDisplacement();
-    
-    /**
-     * Returns whether the label Y displacement has been set.
-     * @return true if the label Y displacement has been set, false otherwise.
-     */    
-    public boolean isTextLabelYDisplacementSet();
-    
+    public float getYDisplacement();
+
     /**
      * Sets the label Y displacement.
-     * @param labelYDisplacement the label Y displacement.
-     */    
-    public void setTextLabelYDisplacement(float labelYDisplacement);
-    
-    /**
-     * Sets the fact that the label Y displacement has been set.
-     * @param flag true if the label Y displacement has been set, false otherwise.
-     */    
-    public void setTextLabelYDisplacementSet(boolean flag);
-   
-    
-	
+     * @param yDisplacement the label Y displacement.
+     */
+    public void setYDisplacement(float yDisplacement);
 }
 

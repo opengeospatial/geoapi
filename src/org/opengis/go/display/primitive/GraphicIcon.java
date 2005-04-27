@@ -14,6 +14,7 @@ import java.awt.geom.Point2D;
 import javax.swing.Icon;
 import javax.units.Unit;
 
+import org.opengis.go.display.style.PointSymbolizer;
 import org.opengis.spatialschema.geometry.DirectPosition;
 
 /**
@@ -96,6 +97,14 @@ public interface GraphicIcon extends Graphic {
      */
     public Point2D getOffset();
 
+    /**
+     * Returns the <code>GraphicStyle</code> for this <code>GraphicIcon</code>,
+     * which is required to be a <code>PointSymbolizer</code>.
+     * @return the GraphicIcon's <code>GraphicStyle</code>.
+     */
+    public PointSymbolizer getPointSymbolizer();
+
+    
     /**
      * Indicates whether this primitive is displaying anchor handles that allow the
      * user to change the rotation of this icon.

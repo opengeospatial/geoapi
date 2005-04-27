@@ -10,156 +10,299 @@
 package org.opengis.go.display.primitive;
 
 // OpenGIS direct dependencies
+import org.opengis.go.display.style.PolygonSymbolizer;
 import org.opengis.go.spatial.PathType;
 import org.opengis.spatialschema.geometry.DirectPosition;
-import org.opengis.spatialschema.geometry.geometry.PointArray;
 
 /**
- * Defines a common abstraction for implementations polygons.  A polygon is
- * necessarily a closed curve, so even if the first and last vertices in the
- * list are not the same, the implementation should connect the two as if there
- * were an additional copy of the first vertex at the end of the list.
+ * Defines a common abstraction for graphic representation of polygons.  
+ * A <code>GraphicPolygon</code> consists of a an exterior ring of vertices
+ * and a set of non-mutually-overlapping interior rings of vertices.
+ * The exterior and interior rings of a polygon are defined by a list of
+ * {@linkplain DirectPosition} objects.  Technically speaking, these rings are
+ * required to be closed (i.e. the first and last points must coincide).
+ * However, this interface allows the user to create lists where the first and
+ * last points are not coincident.  In such a case, the implementation of this
+ * interface will assume that there is an additional segment between the first
+ * and last points, completing the ring.  (This will take place without
+ * modifying the list of points.)
  *
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version $Revision$, $Date$
- * @since GO 1.1
+ * @since GO 1.0
  */
 public interface GraphicPolygon extends Graphic {
     /**
-     * Sets the geometry based on ISO 19107 geometric forms.
+     * Returns a live reference to the vertex at the given index.
      *
-     * @param polygon a geometry Polygon.
+     * @param index Index of the point to retrieve a reference to.
+     * @return Returns a reference to the index-th vertex.
+     * @throws IndexOutOfBoundsException Throws this if the given index is less
+     *   than zero or greater than or equal to the number points in the exterior
+     *   ring.
      */
-    /* The Polygon interface has not yet been added to GeoAPI
-    public void setPolygon(Polygon polygon);
-     */
+    public DirectPosition getExteriorPoint(int index);
 
     /**
-     * Returns the geometry based on ISO 19107 geometric forms.
+     * Adds a new point to the list of vertices in the exterior ring.
      *
-     * @return the geometry Polygon.
+     * @param position The new position to add to the list.
      */
-    /* The Polygon interface has not yet been added to GeoAPI
-    public Polygon getPolygon();
-     */
+    public void addExteriorPoint(DirectPosition position);
 
     /**
-     * Returns this <code>GraphicPolygon</code>'s set of positions as a 
-     * <code>PointArray</code>.  The returned <code>PointArray</code>
-     * may or may not be identical to a <code>PointArray</code> passed in
-     * to the <code>setPointArray</code> method.  It will definitely not
-     * be the same <code>PointArray</code> if any positions have been
-     * added, inserted, or deleted.
-     * Value is acquired from the underlying Polygon geometry for this Graphic.
+     * Inserts a new point into the list of vertices for the exterior ring.
      *
-     * @return the set of positions as a <code>PointArray</code>.
+     * @param index The index that the new position will occupy after the
+     *   insert.  All other points have their index increased by one.
+     * @param position The new position to add to the list.
+     * @throws IndexOutOfBoundsException Throws this if the given index is less
+     *   than zero or greater than or equal to the number points in the exterior
+     *   ring.
      */
-    public PointArray getPointArray();
+    public void insertExteriorPoint(int index, DirectPosition position);
 
     /**
-     * Sets this <code>GraphicPolygon</code>'s set of positions to the 
-     * given <code>PointArray</code>.  Any changes made to the given
-     * <code>PointArray</code> after calling this method may adversly affect
-     * this <code>GraphicPolygon</code>.
-     * Value is set on the underlying Polygon geometry for this Graphic.
+     * Replaces a position in the list of vertices for the exterior ring.
      *
-     * @param pointArray The new set of positions.
+     * @param index The index of the point to replace.
+     * @param position The point that will take the place of the existing one.
+     * @return Returns the position that was previously in the given position.
+     * @throws IndexOutOfBoundsException Throws this if the given index is less
+     *   than zero or greater than or equal to the number points in the exterior
+     *   ring.
      */
-    public void setPointArray(PointArray pointArray);
+    public DirectPosition setExteriorPoint(int index, DirectPosition position);
 
     /**
-     * Returns the positions that make up the line segments.
-     * Value is acquired from the underlying Polygon geometry for this Graphic.
+     * Removes a position from the list of vertices for the exterior ring.
      *
-     * @return the array positions.
+     * @param index Index of the position to remove.  All positions after this
+     *   index are moved forward in the list.
+     * @return Returns the {@linkplain DirectPosition} previously at the given
+     *   index. 
+     * @throws IndexOutOfBoundsException Throws this if the given index is less
+     *   than zero or greater than or equal to the number points in the exterior
+     *   ring.
      */
-    public DirectPosition[] getPoints();
+    public DirectPosition removeExteriorPoint(int index);
 
     /**
-     * Sets the positions that make up the line segments.
-     * Value is set on the underlying Polygon geometry for this Graphic.
+     * Returns a new array containing references to all of the vertices in the
+     * exterior ring.
      *
-     * @param coords the array positions.
+     * @return A newly allocated array containing references to the vertices.
      */
-    public void setPoints(DirectPosition[] coords);
+    public DirectPosition [] getExteriorRing();
 
     /**
-     * Appends the given position to the graphic polygon's array of
-     * positions.
-     * Value is set on the underlying Polygon geometry for this Graphic.
-     *
-     * @param coord the postion to add.
+     * Clears the list of vertices in the exterior ring and adds all of the
+     * vertices in the given array.  This polygon will keep references to the
+     * {@linkplain DirectPosition}s in the array, but not the array object
+     * itself.
      */
-    public void addPoint(DirectPosition coord);
+    public void setExteriorRing(DirectPosition [] newVertices);
 
     /**
-     * Removes the postion at the specified index from the array of 
-     * positions.
-     * Value is deleted on the underlying Polygon geometry for this Graphic.
-     *
-     * @param index the index of the position to remove.
+     * Returns the number of vertices in the exterior ring.
      */
-    public void deletePoint(int index);
+    public int getNumExteriorPoints();
 
     /**
-     * Returns the position at the specified index in the array of
-     * positions.
-     * Value is acquired from the underlying Polygon geometry for this Graphic.
+     * Returns a live reference to the vertex at the given index.
      *
-     * @param index the index of the position to return.
-     * @return the position at the given index.
+     * @param index Index of the point to retrieve a reference to.
+     * @param interiorRingIndex Index of the interior ring whose vertex is
+     *   desired.
+     * @return Returns a reference to the index-th vertex.
+     * @throws IndexOutOfBoundsException Throws this if the vertex index is
+     *   less than zero or greater than or equal to the number of vertices in
+     *   the given interior ring.  May also throw this if the interior ring
+     *   index is less than zero or greater than or equal to the number of
+     *   interior rings.
      */
-    public DirectPosition getPoint(int index);
+    public DirectPosition getInteriorPoint(int index, int interiorRingIndex);
 
     /**
-     * Inserts the given position at the specified index in the array
-     * of positions.
-     * Value is inserted on the underlying Polygon geometry for this Graphic.
+     * Adds a new point to the list of vertices of an interior ring.
      *
-     * @param index the index to insert the new position at.
-     * @param coord the position to insert.
+     * @param position The new position to add to the list.
+     * @param interiorRingIndex Index of the interior ring whose vertex list is
+     *   to be modified.
+     * @throws IndexOutOfBoundsException Throws this if the interior ring index
+     *   is less than zero or greater than or equal to the number of interior
+     *   rings.
      */
-    public void insertPoint(int index, DirectPosition coord);
+    public void addInteriorPoint(int interiorRingIndex, DirectPosition position);
 
     /**
-     * Replaces the position at the specified index in the array of positions
-     * with the new, specified position.
-     * Value is set on the underlying Polygon geometry for this Graphic.
+     * Inserts a new point into the list of vertices for an interior ring.
      *
-     * @param index the index of the position to replace.
-     * @param coord the position to store at the specified index.
+     * @param index The index that the new position will occupy after the
+     *   insert.  All other points have their index increased by one.
+     * @param interiorRingIndex Index of the interior ring whose vertex list is
+     *   to be modified.
+     * @param position The new position to add to the list.
+     * @throws IndexOutOfBoundsException Throws this if the vertex index is
+     *   less than zero or greater than or equal to the number of vertices in
+     *   the given interior ring.  May also throw this if the interior ring
+     *   index is less than zero or greater than or equal to the number of
+     *   interior rings.
      */
-    public void setPoint(int index, DirectPosition coord);
-
-    //**  EDITABLE/ANIMATION  **
+    public void insertInteriorPoint(int index, int interiorRingIndex,
+            DirectPosition position);
 
     /**
-     * Indicates whether clicking on an edge of this graphic polygon should
+     * Replaces a position in the list of vertices for an interior ring.
+     *
+     * @param index The index of the point to replace.
+     * @param interiorRingIndex Index of the interior ring whose vertex list is
+     *   to be modified.
+     * @param position The point that will take the place of the existing one.
+     * @return Returns the position that was previously in the given position.
+     * @throws IndexOutOfBoundsException Throws this if the vertex index is
+     *   less than zero or greater than or equal to the number of vertices in
+     *   the given interior ring.  May also throw this if the interior ring
+     *   index is less than zero or greater than or equal to the number of
+     *   interior rings.
+     */
+    public DirectPosition setInteriorPoint(int index, int interiorRingIndex,
+            DirectPosition position);
+
+    /**
+     * Removes a position from the list of vertices for an interior ring.
+     *
+     * @param index Index of the position to remove.  All positions after this
+     *   index are moved forward in the list.
+     * @param interiorRingIndex Index of the interior ring whose vertex list is
+     *   to be modified.
+     * @return Returns the {@linkplain DirectPosition} previously at the given
+     *   index. 
+     * @throws IndexOutOfBoundsException Throws this if the vertex index is
+     *   less than zero or greater than or equal to the number of vertices in
+     *   the given interior ring.  May also throw this if the interior ring
+     *   index is less than zero or greater than or equal to the number of
+     *   interior rings.
+     */
+    public DirectPosition removeInteriorPoint(int index, int interiorRingIndex);
+
+    /**
+     * Returns a new array containing references to all of the vertices in the
+     * exterior ring.
+     *
+     * @param interiorRingIndex Index of the interior ring whose vertex list is
+     *   being requested.
+     * @return A newly allocated array containing references to the vertices.
+     * @throws IndexOutOfBoundsException Throws this if the interior ring index
+     *   is less than zero or greater than or equal to the number of interior
+     *   rings.
+     */
+    public DirectPosition [] getInteriorRing(int interiorRingIndex);
+
+    /**
+     * Creates a new interior ring (hole) for this polygon.
+     * 
+     * @return Returns the index of the newly created ring.
+     */
+    public int addInteriorRing();
+
+    /**
+     * Creates a new interior ring for this polygon and immediately sets its
+     * points to those in the given array.
+     *
+     * @return Returns the index of the newly created ring.
+     */
+    public int addInteriorRing(DirectPosition [] vertices);
+
+    /**
+     * Clears the list of vertices in an exterior ring and adds all of the
+     * vertices in the given array.  This polygon will keep references to the
+     * {@linkplain DirectPosition}s in the array, but not the array object
+     * itself.
+     *
+     * @param interiorRingIndex Index of the interior ring whose vertex list is
+     *   to be modified.
+     * @param newVertices The list of vertices to replace the existing ring
+     *   with.
+     * @throws IndexOutOfBoundsException Throws this if the interior ring index
+     *   is less than zero or greater than or equal to the number of interior
+     *   rings.
+     */
+    public void setInteriorRing(int interiorRingIndex,
+            DirectPosition [] newVertices);
+
+    /**
+     * Returns the number of vertices in an interior ring.
+     *
+     * @param interiorRingIndex Index of the interior ring to get a vertex count
+     *   from.
+     * @throws IndexOutOfBoundsException Throws this if the interior ring index
+     *   is less than zero or greater than or equal to the number of interior
+     *   rings.
+     */
+    public int getNumInteriorPoints(int interiorRingIndex);
+
+    /**
+     * Removes an interior ring.
+     *
+     * @param interiorRingIndex Index of the ring to remove.
+     */
+    public void removeInteriorRing(int interiorRingIndex);
+
+    /**
+     * Returns the number of interior rings currently in this polygon.
+     */
+    public int getNumInteriorRings();
+
+    /**
+     * Returns a newly allocated two-dimensional array of points.  The first
+     * index of the returned array chooses an interior ring.  The second index
+     * runs over the vertices of that ring.  The {@linkplain DirectPosition}s in
+     * the list are references to the same objects held by this polygon, but the
+     * array object is newly allocated.
+     */
+    public DirectPosition [][] getInteriorRings();
+
+    /**
+     * Clears the lists of vertices of all the interior rings and adds all of the
+     * vertices in the given arrays.  This polygon will keep references to the
+     * {@linkplain DirectPosition}s in the arrays, but not the array objecst
+     * themselves.
+     * 
+     */
+    void setInteriorRings(DirectPosition[][] interiorRingPoints);
+    
+    /**
+     * Returns the <code>GraphicStyle</code> for this <code>GraphicPolygon</code>,
+     * which is required to be a <code>PolygonSymbolizer</code>.
+     * @return the GraphicPolygon's <code>GraphicStyle</code>.
+     */
+    public PolygonSymbolizer getPolygonSymbolizer();
+
+    /**
+     * Sets the parameter that indicates how the "in-between" points between
+     * vertices should be drawn.
+     *
+     * @param pathType One of the static constants indicating the method to
+     *   use.
+     */
+    public void setPathType(PathType pathType);
+
+    /**
+     * Returns the parameter that indicates how the "in-between" points between
+     * vertices are to be drawn.
+     */
+    public PathType getPathType();
+
+    /**
+     * Indicates whether clicking on an edge of this graphic linestring should
      * insert a new vertex at that location when the object is in edit mode.
      */
     public boolean isAllowingNewVertices();
 
     /**
      * Sets the boolean that indicates whether clicking on an edge of this
-     * graphic polygon should insert a new vertex at that location.
+     * graphic linestring should insert a new vertex at that location.
      */
     public void setAllowingNewVertices(boolean newValue);
-
-    //**  PROJECTED  **
-
-    /**
-     * Sets the method that is used in computing the "in-between" pixels
-     * between vertices when this object is rendered on the screen.
-     *
-     * @param pathType The new path type. This must be one of the static constants in
-     *   the PathType class or one of its subclasses.
-     */
-    public void setPathType(PathType pathType);
-
-    /**
-     * Retrieves the methods that is used in computing the "in-between"
-     * pixels between vertices when this object is rendered on the screen.
-     */
-    public PathType getPathType();
-
 }

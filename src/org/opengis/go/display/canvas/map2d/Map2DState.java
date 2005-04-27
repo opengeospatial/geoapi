@@ -3,7 +3,7 @@ package org.opengis.go.display.canvas.map2d;
 import javax.units.Unit;
 
 import org.opengis.go.display.canvas.CanvasState;
-import org.opengis.go.geometry.BoundingRectangle;
+import org.opengis.spatialschema.geometry.Envelope;
 
 
 /**
@@ -46,10 +46,10 @@ public interface Map2DState extends CanvasState {
     double getScale();
     
     /**
-     * Gets the <code>BoundingRectangle</code> of the <code>Canvas</code>
+     * Gets the <code>Envelope</code> of the <code>Canvas</code>
      * represented by this <code>Map2DState</code>.
-     * @return the bounding rectangle
+     * @return the envelope
      */
-    BoundingRectangle getBoundingRectangle();
+    Envelope getEnvelope();
     
 }

@@ -1,9 +1,9 @@
 /*
  * $ Id $
  * $ Source $
- * Created on Nov 23, 2004
+ * Created on Jan 10, 2005
  */
-package org.opengis.feature;
+package org.opengis.go.display.primitive.store;
 
 import java.io.IOException;
 import java.net.URI;
@@ -13,27 +13,17 @@ import java.util.Map;
 import org.opengis.util.InternationalString;
 
 /**
- * A provider of spatial information.
- * <p>
- * A provider, or service, implementing this API may range from a single
- * shapefile, to a complete Web Feature Server or OracleSpatial instance.
- * </p>
- * <p>
- * This API does need to consider the:
- * <ul>
- * <li>Identity: currently captured as a URI, completly defines a server
- * or provider. Usually via a URL or JDBC URL as required.
- * <li>Configuration: currently captured as a Map
- * </ul>
- * </p>
- * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
+ * The <code>GraphicStoreFactory</code> class/interface...
+ * 
+ * @author SYS Technologies
+ * @author crossley
+ * @version $Revision $
  */
-public interface FeatureStoreFactory {
+public interface GraphicStoreFactory {
 
-    
     /**
-     * Ask for a FeatureStore connecting to the indicated provider or service.
-     * The returned FeatureStore may have been previously cached.
+     * Ask for a GraphicStore connecting to the indicated provider or service.
+     * The returned GraphicStore may have been previously cached.
      * <p>
      * Additional hints or configuration information may be provided according
      * to the metadata indicated by getParametersInfo. This information often includes
@@ -42,13 +32,13 @@ public interface FeatureStoreFactory {
      * 
      * @param provider Often a URL or JDBC URL locating the serivce to connect to
      * @param params Map of hints or configuration information.
-     * @return FeatureStore connected to the indicated provider or service
-     * @throws IOException if the FeatureStore cannot connect to its source
+     * @return GraphicStore connected to the indicated provider or service
+     * @throws IOException if the GraphicStore cannot connect to its source
      */
-    FeatureStore createFeatureStore( URI provider, Map params) throws IOException;
+    GraphicStore createGraphicStore(URI provider, Map params) throws IOException;
 
     /**
-     * Ask for a new FeatureStore connecting to the indicated provider or service.
+     * Ask for a new GraphicStore connecting to the indicated provider or service.
      * <p>
      * Additional hints or configuration information may be provided according
      * to the metadata indicated by getParametersInfo. This information often includes
@@ -57,13 +47,12 @@ public interface FeatureStoreFactory {
      * 
      * @param provider Often a URL or JDBC URL locating the serivce to connect to
      * @param params Map of hints or configuration information.
-     * @return FeatureStore Datastore connected to the newly created provider or serivce.
+     * @return GraphicStore Datastore connected to the newly created provider or serivce.
      * @throws IOException
-     */
-    FeatureStore createNewFeatureStore(URI provider, Map params) throws IOException;
-    
+     */GraphicStore createNewGraphicStore(URI provider, Map params) throws IOException;
+
     /**
-     * Icon representing this category of <code>FeatureStore</code>s.
+     * Icon representing this category of <code>GraphicStore</code>s.
      * <p>
      * Assumed to point to a 16x16 icon?
      * </p>
@@ -73,13 +62,13 @@ public interface FeatureStoreFactory {
     URL getIcon();
 
     /**
-     *  Display name used to communicate this type of FeatureStore to end users.
+     *  Display name used to communicate this type of GraphicStore to end users.
      * @return
      */
     InternationalString getDisplayName();
-    
+
     /** 
-     * Descrption of this type of FeatureStore.
+     * Descrption of this type of GraphicStore.
      * @return
      */
     InternationalString getDescription();
@@ -93,7 +82,7 @@ public interface FeatureStoreFactory {
     Object[] getParametersInfo();
 
     /**
-     * Indicates this FeatureStoreFactory communicate with the indicated provider or service.
+     * Indicates this GraphicStoreFactory communicate with the indicated provider or service.
      * <p>
      * This method should not fail, if a connection needs to be made
      * to parse a GetCapabilities file or negotiate WMS versions any
@@ -106,10 +95,10 @@ public interface FeatureStoreFactory {
      * </p>
      * @param provider Provider or Server of spatial information. 
      */
-    boolean canProcess( URI provider );
+    boolean canProcess(URI provider);
     
     /**
-     * Indicates this FeatureStoreFactory communicate with the indicated provider or service.
+     * Indicates this GraphicStoreFactory communicate with the indicated provider or service.
      * <p>
      * This method differs from canProcess in that additional configuration
      * information may be supplied. 
@@ -118,10 +107,10 @@ public interface FeatureStoreFactory {
      * @param params
      * @return <code>true</code> if this factory can communicate with the provider.
      */
-    boolean canProcess( URI provider, Map params);
+    boolean canProcess(URI provider, Map params);
 
     /**
-     * Allows a FeatureStoreFactory to ensure all its preconditions are met,
+     * Allows a GraphicStoreFactory to ensure all its preconditions are met,
      * such as the presense of required libraries.
      * @return true if available
      */
