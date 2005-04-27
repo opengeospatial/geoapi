@@ -315,6 +315,7 @@
       <replacefilter token="&lt;SpatialRepresentationType&gt;"/>
       <replacefilter token="&lt;StandardOrderProcess&gt;"/>
       <replacefilter token="&lt;String&gt;"/>
+      <replacefilter token="&lt;String, ? extends Object&gt;"/>
       <replacefilter token="&lt;Surface&gt;"/>
       <replacefilter token="&lt;SurfacePatch&gt;"/>
       <replacefilter token="&lt;TemporalExtent&gt;"/>
