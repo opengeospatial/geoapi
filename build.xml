@@ -102,6 +102,7 @@
   <target name="compile-release" depends="prepare-release" description="Compile release quality java code.">
   <replace dir="${dist.src.dir}">
       <include name="**/*.java"/>
+      <replacefilter token="&lt;Locale, String&gt;"/>
       <replacefilter token="&lt;String, ? extends Object&gt;"/>
       <replacefilter token="&lt;? extends Coverage&gt;"/>
       <replacefilter token="&lt;? extends Object&gt;"/>
