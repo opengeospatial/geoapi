@@ -3,29 +3,22 @@
  * $ Source $
  * Created on Apr 5, 2005
  */
-package org.opengis.metadata;
+package org.opengis.metadata.citation;
 
 import java.net.URI;
 import java.util.Collection;
 
-import org.opengis.metadata.citation.Address;
-import org.opengis.metadata.citation.Contact;
-import org.opengis.metadata.citation.OnLineFunction;
-import org.opengis.metadata.citation.OnLineResource;
-import org.opengis.metadata.citation.ResponsibleParty;
-import org.opengis.metadata.citation.Role;
-import org.opengis.metadata.citation.Telephone;
 import org.opengis.util.InternationalString;
 
 
 /**
- * The <code>MetadataFactory</code> class/interface...
+ * The <code>CitationFactory</code> class/interface...
  * 
- * @author SYS Technologies
- * @author crossley
+ * @author Open GIS Consortium, Inc.
+ * @version $Revision$, $Date$
  * @version $Revision $
  */
-public interface MetadataFactory {
+public interface CitationFactory {
 
     //**  Citation  **
     
