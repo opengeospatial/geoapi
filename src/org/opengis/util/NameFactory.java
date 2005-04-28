@@ -6,16 +6,16 @@
 package org.opengis.util;
 
 import java.util.Locale;
+import java.util.Map;
 
 
 /**
- * The <code>UtilFactory</code> class/interface...
+ * The <code>NameFactory</code> class/interface...
  * 
- * @author SYS Technologies
- * @author crossley
- * @version $Revision $
+ * @author Open GIS Consortium, Inc.
+ * @version $Revision$, $Date$
  */
-public interface UtilFactory {
+public interface NameFactory {
     
     /**
      * DOCUMENT ME.
@@ -23,7 +23,7 @@ public interface UtilFactory {
      * @param locales
      * @return
      */
-    InternationalString createInternationalString(String[] localizedStrings, Locale[] locales);
+    InternationalString createInternationalString(Map<Locale, String> params);
     
     /**
      * DOCUMENT ME.

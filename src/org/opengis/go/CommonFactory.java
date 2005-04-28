@@ -14,7 +14,7 @@ import org.opengis.feature.FeatureTypeFactory;
 import org.opengis.feature.display.FeatureDisplayFactory;
 import org.opengis.filter.FilterFactory;
 import org.opengis.go.display.DisplayFactory;
-import org.opengis.metadata.MetadataFactory;
+import org.opengis.metadata.citation.CitationFactory;
 import org.opengis.referencing.crs.CRSAuthorityFactory;
 import org.opengis.referencing.crs.CRSFactory;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
@@ -27,7 +27,7 @@ import org.opengis.referencing.operation.CoordinateOperationFactory;
 import org.opengis.sld.FeatureStyleFactory;
 import org.opengis.spatialschema.geometry.geometry.GeometryFactory;
 import org.opengis.spatialschema.geometry.primitive.PrimitiveFactory;
-import org.opengis.util.UtilFactory;
+import org.opengis.util.NameFactory;
 
 /**
  * <code>CommonFactory</code> defines a common abstraction for 
@@ -71,10 +71,10 @@ public interface CommonFactory {
     DisplayFactory getDisplayFactory();
     
     /**
-     * Returns the <code>MetadataFactory</code> singleton.
-     * @return the <code>MetadataFactory</code>
+     * Returns the <code>CitationFactory</code> singleton.
+     * @return the <code>CitationFactory</code>
      */
-    MetadataFactory getMetadataFactory();
+    CitationFactory getCitationFactory();
 
     /**
      * Returns the <code>CRSAuthorityFactory</code> singleton.
@@ -151,8 +151,8 @@ public interface CommonFactory {
     PrimitiveFactory getPrimitiveFactory(CoordinateReferenceSystem crs);
     
     /**
-     * Returns the <code>UtilFactory</code> singleton.
-     * @return the <code>UtilFactory</code>
+     * Returns the <code>NameFactory</code> singleton.
+     * @return the <code>NameFactory</code>
      */
-    UtilFactory getUtilFactory();
+    NameFactory getNameFactory();
 }
