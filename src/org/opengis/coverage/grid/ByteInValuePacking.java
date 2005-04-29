@@ -45,7 +45,7 @@ import static org.opengis.annotation.Specification.*;
  * @see java.nio.ByteOrder
  */
 @UML (identifier="GC_ByteInValuePacking", specification=OGC_01_004)
-public final class ByteInValuePacking extends CodeList {
+public final class ByteInValuePacking extends CodeList<ByteInValuePacking> {
     /**
      * Serial number for compatibility with different versions.
      */
@@ -55,7 +55,7 @@ public final class ByteInValuePacking extends CodeList {
      * List of all enumerations of this type.
      * Must be declared before any enum declaration.
      */
-    private static final List VALUES = new ArrayList(2);
+    private static final List<ByteInValuePacking> VALUES = new ArrayList<ByteInValuePacking>(2);
 
     /**
      * Big Endian.

@@ -30,7 +30,7 @@ import static org.opengis.annotation.Specification.*;
  * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
  */
 @UML (identifier="CI_DateType", specification=ISO_19115)
-public final class DateType extends CodeList {
+public final class DateType extends CodeList<DateType> {
     /**
      * Serial number for compatibility with different versions.
      */
@@ -40,7 +40,7 @@ public final class DateType extends CodeList {
      * List of all enumerations of this type.
      * Must be declared before any enum declaration.
      */
-    private static final List VALUES = new ArrayList(3);
+    private static final List<DateType> VALUES = new ArrayList<DateType>(3);
 
     /**
      * Date identifies when the resource was brought into existence.

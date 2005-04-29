@@ -106,6 +106,7 @@ public interface PrimitiveFactory {
      *         the expected dimension.
      */
     @Extension
+    @Deprecated
     DirectPosition createDirectPosition(double[] coordinates)
             throws MismatchedDimensionException;
 
@@ -241,6 +242,7 @@ public interface PrimitiveFactory {
      *             according ISO 19107. Furthermore, {@link PolyhedralSurface} extends
      *             {@link org.opengis.spatialschema.geometry.Geometry}.
      */
+    @Deprecated
     @UML (identifier="GM_PolyhedralSurace(GM_Polygon)", obligation=MANDATORY, specification=ISO_19107)
     PolyhedralSurface createPolyhedralSurface(List<Polygon> tiles)
             throws MismatchedReferenceSystemException, MismatchedDimensionException;

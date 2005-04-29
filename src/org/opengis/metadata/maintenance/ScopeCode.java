@@ -32,7 +32,7 @@ import static org.opengis.annotation.Specification.*;
  * @see org.opengis.metadata.quality.Scope
  */
 @UML (identifier="MD_ScopeCode", specification=ISO_19115)
-public final class ScopeCode extends CodeList {
+public final class ScopeCode extends CodeList<ScopeCode> {
     /**
      * Serial number for compatibility with different versions.
      */
@@ -42,7 +42,7 @@ public final class ScopeCode extends CodeList {
      * List of all enumerations of this type.
      * Must be declared before any enum declaration.
      */
-    private static final List VALUES = new ArrayList(15);
+    private static final List<ScopeCode> VALUES = new ArrayList<ScopeCode>(15);
 
     /**
      * Information applies to the attribute class.

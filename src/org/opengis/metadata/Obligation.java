@@ -29,7 +29,7 @@ import static org.opengis.annotation.Specification.*;
  * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
  */
 @UML (identifier="MD_ObligationCode", specification=ISO_19115)
-public final class Obligation extends CodeList {
+public final class Obligation extends CodeList<Obligation> {
     /**
      * Serial number for compatibility with different versions.
      */
@@ -39,7 +39,7 @@ public final class Obligation extends CodeList {
      * List of all enumerations of this type.
      * Must be declared before any enum declaration.
      */
-    private static final List VALUES = new ArrayList(2);
+    private static final List<Obligation> VALUES = new ArrayList<Obligation>(2);
 
     /**
      * Element is always required.

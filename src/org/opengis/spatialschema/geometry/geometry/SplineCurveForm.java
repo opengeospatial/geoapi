@@ -30,7 +30,7 @@ import static org.opengis.annotation.Specification.*;
  * @version <A HREF="http://www.opengis.org/docs/01-101.pdf">Abstract specification 5</A>
  */
 @UML (identifier="GM_SplineCurveForm", specification=ISO_19107)
-public final class SplineCurveForm extends CodeList {
+public final class SplineCurveForm extends CodeList<SplineCurveForm> {
     /**
      * Serial number for compatibility with different versions.
      */
@@ -40,7 +40,7 @@ public final class SplineCurveForm extends CodeList {
      * List of all enumerations of this type.
      * Must be declared before any enum declaration.
      */
-    private static final List VALUES = new ArrayList(5);
+    private static final List<SplineCurveForm> VALUES = new ArrayList<SplineCurveForm>(5);
 
     /**
      * A connected sequence of line segments represented by a 1 degree B-spline (a line string).

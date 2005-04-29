@@ -30,11 +30,9 @@ import static org.opengis.annotation.Specification.*;
 @UML (identifier="CC_Conversion", specification=ISO_19111)
 public interface Conversion extends Operation {
     /**
-     * Version of the coordinate transformation.
+     * This attribute is declared in {@link CoordinateOperation} but is not used in a conversion.
      *
      * @return Always {@code null}.
-     * @deprecated This attribute is declared in {@link CoordinateOperation}
-     *             but is not used in a conversion.
      */
     String getOperationVersion();
 }

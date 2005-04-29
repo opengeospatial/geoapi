@@ -78,6 +78,7 @@ public interface PointArray {
      *             reference system for this GM_Object.</cite>".
      */
     @Extension
+    @Deprecated
     public int getDimension();
 
     /**
@@ -113,6 +114,7 @@ public interface PointArray {
      *             avoid those questions.
      */
     @Extension
+    @Deprecated
     public DirectPosition get(int column) throws IndexOutOfBoundsException;
 
     /**
@@ -176,6 +178,7 @@ public interface PointArray {
      *             {@link #positions} is safer, since it expose the positions through an iterator.
      */
     @Extension
+    @Deprecated
     public DirectPosition[] toArray();
 
     /**

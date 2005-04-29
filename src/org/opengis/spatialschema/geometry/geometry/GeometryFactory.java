@@ -368,6 +368,7 @@ public interface GeometryFactory {
      * @deprecated Moved to {@link org.opengis.spatialschema.geometry.primitive.PrimitiveFactory} since
      *             {@link Ring}, {@link Surface} and {@link SurfaceBoundary} are all primitive objects.
      */
+    @Deprecated
     SurfaceBoundary createSurfaceBoundary(Ring exterior, List/*<Ring>*/ interiors)
     	throws MismatchedReferenceSystemException;
     

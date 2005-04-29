@@ -375,6 +375,7 @@ public interface GraphicArc extends Graphic {
          *
          * @deprecated Use {@link #values} instead.
          */
+        @Deprecated
         public static ArcClosure[] getArray() {
             return values();
         }

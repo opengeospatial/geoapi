@@ -35,7 +35,7 @@ import static org.opengis.annotation.Specification.*;
  * @version <A HREF="http://www.opengis.org/docs/01-101.pdf">Abstract specification 5</A>
  */
 @UML (identifier="GM_CurveInterpolation", specification=ISO_19107)
-public final class CurveInterpolation extends CodeList {
+public final class CurveInterpolation extends CodeList<CurveInterpolation> {
     /**
      * Serial number for compatibility with different versions.
      */
@@ -45,7 +45,7 @@ public final class CurveInterpolation extends CodeList {
      * List of all enumerations of this type.
      * Must be declared before any enum declaration.
      */
-    private static final List VALUES = new ArrayList(10);
+    private static final List<CurveInterpolation> VALUES = new ArrayList<CurveInterpolation>(10);
 
     /**
      * The interpolation mechanism shall return {@linkplain DirectPosition direct positions}

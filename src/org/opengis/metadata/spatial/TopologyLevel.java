@@ -30,7 +30,7 @@ import static org.opengis.annotation.Specification.*;
  * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
  */
 @UML (identifier="MD_TopologyLevelCode", specification=ISO_19115)
-public final class TopologyLevel extends CodeList {
+public final class TopologyLevel extends CodeList<TopologyLevel> {
     /**
      * Serial number for compatibility with different versions.
      */
@@ -40,7 +40,7 @@ public final class TopologyLevel extends CodeList {
      * List of all enumerations of this type.
      * Must be declared before any enum declaration.
      */
-    private static final List VALUES = new ArrayList(9);
+    private static final List<TopologyLevel> VALUES = new ArrayList<TopologyLevel>(9);
 
     /**
      * Geometry objects without any additional structure which describes topology.

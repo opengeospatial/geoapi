@@ -30,7 +30,7 @@ import static org.opengis.annotation.Specification.*;
  * @version <A HREF="http://www.opengis.org/docs/03-073r1.zip">Abstract specification 2.0</A>
  */
 @UML (identifier="CD_PixelInCell", specification=ISO_19111)
-public final class PixelInCell extends CodeList {
+public final class PixelInCell extends CodeList<PixelInCell> {
     /**
      * Serial number for compatibility with different versions.
      */
@@ -40,7 +40,7 @@ public final class PixelInCell extends CodeList {
      * List of all enumerations of this type.
      * Must be declared before any enum declaration.
      */
-    private static final List VALUES = new ArrayList(2);
+    private static final List<PixelInCell> VALUES = new ArrayList<PixelInCell>(2);
 
     /**
      * The origin of the image coordinate system is the centre of a grid cell or image pixel.

@@ -30,7 +30,7 @@ import static org.opengis.annotation.Specification.*;
  * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
  */
 @UML (identifier="MD_MediumNameCode", specification=ISO_19115)
-public final class MediumName extends CodeList {
+public final class MediumName extends CodeList<MediumName> {
     /**
      * Serial number for compatibility with different versions.
      */
@@ -40,7 +40,7 @@ public final class MediumName extends CodeList {
      * List of all enumerations of this type.
      * Must be declared before any enum declaration.
      */
-    private static final List VALUES = new ArrayList(18);
+    private static final List<MediumName> VALUES = new ArrayList<MediumName>(18);
 
     /**
      * Read-only optical disk.

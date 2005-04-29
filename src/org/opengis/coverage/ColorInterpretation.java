@@ -44,7 +44,7 @@ import static org.opengis.annotation.Specification.*;
  * @see SampleDimension
  */
 @UML (identifier="CV_ColorInterpretation", specification=OGC_01_004)
-public final class ColorInterpretation extends CodeList {
+public final class ColorInterpretation extends CodeList<ColorInterpretation> {
     /**
      * Serial number for compatibility with different versions.
      */
@@ -54,7 +54,7 @@ public final class ColorInterpretation extends CodeList {
      * List of all enumerations of this type.
      * Must be declared before any enum declaration.
      */
-    private static final List VALUES = new ArrayList(14);
+    private static final List<ColorInterpretation> VALUES = new ArrayList<ColorInterpretation>(14);
 
     /**
      * Band is not associated with a color model component.

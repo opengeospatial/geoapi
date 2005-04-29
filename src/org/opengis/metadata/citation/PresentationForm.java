@@ -30,7 +30,7 @@ import static org.opengis.annotation.Specification.*;
  * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
  */
 @UML (identifier="CI_PresentationFormCode", specification=ISO_19115)
-public final class PresentationForm extends CodeList {
+public final class PresentationForm extends CodeList<PresentationForm> {
     /**
      * Serial number for compatibility with different versions.
      */
@@ -40,7 +40,7 @@ public final class PresentationForm extends CodeList {
      * List of all enumerations of this type.
      * Must be declared before any enum declaration.
      */
-    private static final List VALUES = new ArrayList(14);
+    private static final List<PresentationForm> VALUES = new ArrayList<PresentationForm>(14);
 
     /**
      * Digital representation of a primarily textual item (can contain illustrations also).

@@ -36,7 +36,7 @@ import static org.opengis.annotation.Specification.*;
  * @version <A HREF="http://www.opengis.org/docs/01-101.pdf">Abstract specification 5</A>
  */
 @UML (identifier="GM_KnotType", specification=ISO_19107)
-public class KnotType extends CodeList {
+public class KnotType extends CodeList<KnotType> {
     /**
      * Serial number for compatibility with different versions.
      */
@@ -46,7 +46,7 @@ public class KnotType extends CodeList {
      * List of all enumerations of this type.
      * Must be declared before any enum declaration.
      */
-    private static final List VALUES = new ArrayList(3);
+    private static final List<KnotType> VALUES = new ArrayList<KnotType>(3);
 
     /**
      * The form of knots is appropriate for a uniform B-spline.

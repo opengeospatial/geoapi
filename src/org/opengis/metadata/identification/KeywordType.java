@@ -30,7 +30,7 @@ import static org.opengis.annotation.Specification.*;
  * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
  */
 @UML (identifier="MD_KeywordTypeCode", specification=ISO_19115)
-public final class KeywordType extends CodeList {
+public final class KeywordType extends CodeList<KeywordType> {
     /**
      * Serial number for compatibility with different versions.
      */
@@ -40,7 +40,7 @@ public final class KeywordType extends CodeList {
      * List of all enumerations of this type.
      * Must be declared before any enum declaration.
      */
-    private static final List VALUES = new ArrayList(5);
+    private static final List<KeywordType> VALUES = new ArrayList<KeywordType>(5);
 
     /**
      * Keyword identifies a branch of instruction or specialized learning.

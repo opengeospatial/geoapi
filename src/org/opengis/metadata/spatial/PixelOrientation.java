@@ -30,7 +30,7 @@ import static org.opengis.annotation.Specification.*;
  * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
  */
 @UML (identifier="MD_PixelOrientationCode", specification=ISO_19115)
-public final class PixelOrientation extends CodeList {
+public final class PixelOrientation extends CodeList<PixelOrientation> {
     /**
      * Serial number for compatibility with different versions.
      */
@@ -40,7 +40,7 @@ public final class PixelOrientation extends CodeList {
      * List of all enumerations of this type.
      * Must be declared before any enum declaration.
      */
-    private static final List VALUES = new ArrayList(5);
+    private static final List<PixelOrientation> VALUES = new ArrayList<PixelOrientation>(5);
 
     /**
      * Point in a pixel corresponding to the Earth location of the pixel.
