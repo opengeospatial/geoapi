@@ -1,67 +1,79 @@
-/*
- * $ Id $
- * $ Source $
- * Created on Jan 12, 2005
- */
+/*$************************************************************************************************
+ **
+ ** $Id$
+ **
+ ** $Source$
+ **
+ ** Copyright (C) 2003 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
+ **
+ *************************************************************************************************/
 package org.opengis.layer;
 
+// OpenGIS direct dependencies
+import org.opengis.feature.display.canvas.FeatureCanvas;
 import org.opengis.feature.display.canvas.FeatureLayer;
+import org.opengis.go.display.canvas.Canvas;
 import org.opengis.go.display.primitive.Graphic;
 import org.opengis.metadata.Identifier;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 import org.opengis.spatialschema.geometry.Envelope;
 import org.opengis.util.InternationalString;
 
+// Annotations
+import org.opengis.annotation.UML;
+import static org.opengis.annotation.Specification.*;
+
 
 /**
- * The <code>Layer</code> interface organizes the basic GO-1 constructs that
- * may be added to <code>FeatureCanvas</code> or <code>Canvas</code>.  A GO-1
- * application may be directed to "add" a <code>Layer</code>; it should then
- * add the <code>Layer</code>'s <code>FeatureLayer</code> and 
- * <code>Graphic</code>s to the respective canvases.  
- * 
- * It is currently assumed that the <code>Layer</code> interface will prove
+ * The {@code Layer} interface organizes the basic GO-1 constructs that
+ * may be added to {@link FeatureCanvas} or {@link Canvas}.  A GO-1
+ * application may be directed to "add" a {@code Layer}; it should then
+ * add the {@code Layer}'s {@link FeatureLayer} and 
+ * {@link Graphic}s to the respective canvases.
+ * <p>
+ * It is currently assumed that the {@code Layer} interface will prove
  * analogous to the WMS concept of Layer, and will soon be an implementation
- * of said 
- * 
- * See ISO/DIS 7.2.4.5 Layers and styles
- * 
- * @author SYS Technologies
- * @author crossley
- * @version $Revision $
+ * of said.
+ * </p>
+ *
+ * @author ISO/DIS 7.2.4.5 Layers and styles
+ * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
+ * @author Jesse Crossley (SYS Technologies)
  */
-public interface Layer {
-    
+@UML (identifier="Layer", specification=ISO_19128)
+public interface Layer {    
     /**
-     * Provides a unique name for identifying this <code>Layer</code>.
-     * See ISO/DIS 19128 7.2.4.6.3 Name.  
-     * @return the unique String identifier for this <code>Layer</code>
+     * Provides a unique name for identifying this {@code Layer}.
+     *
+     * @return the unique String identifier for this {@code Layer}
      */
+    @UML (identifier="Name", specification=ISO_19128) // 7.2.4.6.3
     String getName();
     
     /**
-     * Provides the human-readable String for presenting this <code>Layer</code>.
-     * See ISO/DIS 19128 7.2.4.6.2 Title
-     * @return the human-readable Title for this <code>Layer</code> 
+     * Provides the human-readable String for presenting this {@code Layer}.
+     *
+     * @return the human-readable Title for this {@code Layer} 
      */
+    @UML (identifier="Title", specification=ISO_19128) // 7.2.4.6.2
     InternationalString getTitle();
     
     /** 
-     * Provides the narrative description of this <code>Layer</code>.
-     * See ISO/DIS 19128 7.2.4.6.4 Abstract and KeywordList
-     * @return the narrative description of this <code>Layer</code>
+     * Provides the narrative description of this {@code Layer}.
+     *
+     * @return the narrative description of this {@code Layer}
      */
+    @UML (identifier="Abstract", specification=ISO_19128) // 7.2.4.6.4
     InternationalString getAbstract();
     
     /**
-     * DOCUMENT ME.
-     * @return
+     * @revisit DOCUMENT ME.
      */
+    @UML (identifier="KeywordList", specification=ISO_19128) // 7.2.4.6.4
     InternationalString[] getKeywordList();
     
     /**
-     * DOCUMENT ME.
-     * @return
+     * @revisit DOCUMENT ME.
      */
     CoordinateReferenceSystem[] getCRSs();
     
@@ -86,9 +98,9 @@ public interface Layer {
     double getMaxScaleDenominator();
 
     /**
-     * Gets the child <code>Layer</code>s of this <code>Layer</code>.  Typically,
-     * a <code>Layer</code> will have either child <code>Layer</code>s or 
-     * @return the child <code>Layer</code>s or an empty array
+     * Gets the child {@code Layer}s of this {@code Layer}.  Typically,
+     * a {@code Layer} will have either child {@code Layer}s or 
+     * @return the child {@code Layer}s or an empty array
      */
     Layer[] getLayers();
     
@@ -111,27 +123,27 @@ public interface Layer {
     // parent access
     
     /**
-     * Gets the parent <code>LayerSource</code> that produced this <code>Layer</code>.
+     * Gets the parent <code>LayerSource</code> that produced this {@code Layer}.
      * This should assist in serialization.
-     * @return the parent <code>LayerSource</code> that produced this <code>Layer</code>
+     * @return the parent <code>LayerSource</code> that produced this {@code Layer}
      */
     //LayerSource getLayerSource();
 
     // 'renderable' access
     
     /**
-     * Gets the <code>FeatureLayer</code> from this <code>Layer</code> that is suitable
+     * Gets the <code>FeatureLayer</code> from this {@code Layer} that is suitable
      * for adding to a <code>FeatureCanvas</code> in order to visually represent this
-     * <code>Layer</code>.
+     * {@code Layer}.
      * @return the <code>FeatureLayer</code> to add to a <code>FeatureCanvas</code> or
      *         null
      */
     FeatureLayer[] getFeatureLayers();
     
     /**
-     * Gets the <code>Graphic</code>s from this <code>Layer</code> that are suitable
+     * Gets the <code>Graphic</code>s from this {@code Layer} that are suitable
      * for adding to a <code>Canvas</code> in order to visually represent this 
-     * <code>Layer</code>.
+     * {@code Layer}.
      * @return the <code>Graphic</code>s to add to a <code>Canvas</code> or an empty array.
      */
     Graphic[] getGraphics();
@@ -139,14 +151,12 @@ public interface Layer {
     
     
     /**
-     * Whether this <code>Layer</code>'s renderable components should be initially rendered.
-     * @return true if the <code>Layer</code> should be shown initially
+     * Whether this {@code Layer}'s renderable components should be initially rendered.
+     * @return true if the {@code Layer} should be shown initially
      */
     //boolean isInitiallyVisible();
     
     // use sparingly to indicate a Layer is always on?
     // ie, for a background vectormap?
     // boolean isAlwaysVisible();
-    
-    
 }

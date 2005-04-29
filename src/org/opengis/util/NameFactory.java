@@ -1,46 +1,57 @@
-/*
- * $ Id $
- * $ Source $
- * Created on Jan 27, 2005
- */
+/*$************************************************************************************************
+ **
+ ** $Id$
+ **
+ ** $Source$
+ **
+ ** Copyright (C) 2003 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
+ **
+ *************************************************************************************************/
 package org.opengis.util;
 
+// J2SE direct dependencies
 import java.util.Locale;
 import java.util.Map;
 
 
 /**
- * The <code>NameFactory</code> class/interface...
+ * Factory for {@linkplain GenericName generic names} and
+ * {@linkplain InternationalString international strings}.
  * 
- * @author Open GIS Consortium, Inc.
- * @version $Revision$, $Date$
+ * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
+ * @version 2.0
  */
-public interface NameFactory {
-    
+public interface NameFactory {    
     /**
-     * DOCUMENT ME.
-     * @param localizedStrings
-     * @param locales
-     * @return
+     * Creates an international string from a set of strings in different locales.
+     *
+     * @param strings String value for each locale key.
      */
-    InternationalString createInternationalString(Map<Locale, String> params);
+    InternationalString createInternationalString(Map<Locale,String> strings);
     
     /**
-     * DOCUMENT ME.
-     * @param scope
-     * @param name
-     * @param localizedName
-     * @return
+     * Creates a local name from a scope and a name. This method creates a name similar to the one
+     * created by <code>{@linkplain #createScopedName createScopedName}(</code><cite>&hellip;same
+     * parameters&hellip;</cite><code>)</code>, except that methods like
+     * {@link LocalName#getParsedNames() getParsedNames()} and {@link LocalName#toString() toString()}
+     * do not include the scope.
+     *
+     * @param scope The scope to be returned by {@link LocalName#getScope}, or {@code null} if none.
+     * @param name  The unlocalized name.
+     * @param localizedName A localized version of the name.
      */
     LocalName createLocalName(GenericName scope, String name, InternationalString localizedName);
     
     /**
-     * DOCUMENT ME.
-     * @param scope
-     * @param name
-     * @param localizedName
-     * @return
+     * Creates a scoped name from a scope and a name. This method creates a name similar to the one
+     * created by <code>{@linkplain #createLocalName createLocalName}(</code><cite>&hellip;same
+     * parameters&hellip;</cite><code>)</code>, except that methods like
+     * {@link ScopedName#getParsedNames() getParsedNames()} and {@link ScopedName#toString() toString()}
+     * include the scope.
+     *
+     * @param scope The scope to be returned by {@link ScopedName#getScope}.
+     * @param name  The unlocalized name.
+     * @param localizedName A localized version of the name.
      */
     ScopedName createScopedName(GenericName scope, String name, InternationalString localizedName);
-    
 }

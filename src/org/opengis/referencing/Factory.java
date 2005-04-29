@@ -18,7 +18,7 @@ import org.opengis.annotation.Extension;
 
 /**
  * Base interface for all factories. Factories can be grouped in two categories:
- * <BR>
+ * <p>
  * <UL>
  *   <LI>{@linkplain AuthorityFactory Authority factories} creates objects from
  *       a compact string defined by an authority.</LI>

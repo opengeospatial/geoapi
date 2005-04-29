@@ -30,7 +30,7 @@ import static org.opengis.annotation.Specification.*;
  * includes curves and surfaces, even though they are composed of curve segments and surface patches,
  * respectively. Those curve segments and surface patches cannot exist outside the context of a
  * primitive.
- * <br><br>
+ * <p>
  * Any geometric object that is used to describe a feature is a collection of geometric primitives.
  * A collection of geometric primitives may or may not be a geometric complex. Geometric complexes
  * have additional properties such as closure by boundary operations and mutually exclusive component
@@ -126,7 +126,7 @@ public interface Primitive extends Geometry {
      * {@linkplain OrientablePrimitive orientable primitive} shall be the corresponding
      * {@linkplain Curve curve} or {@linkplain Surface surface}.
      *
-     * @return The orientable primitives as an array of length 2, or <code>null</code> if none.
+     * @return The orientable primitives as an array of length 2, or {@code null} if none.
      *
      * @see OrientablePrimitive#getPrimitive
      *

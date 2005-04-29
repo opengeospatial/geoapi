@@ -51,7 +51,7 @@ public interface ParameterDescriptor extends GeneralParameterDescriptor {
     /**
      * If this parameter allows only a finite set of values, returns this set.
      * This set is usually a {linkplain org.opengis.util.CodeList code list} or
-     * enumerations. This method returns <code>null</code> if this parameter
+     * enumerations. This method returns {@code null} if this parameter
      * doesn't limits values to a finite set.
      * <p>
      * Note even when CodeList is used one can use this set to allow only a
@@ -63,7 +63,7 @@ public interface ParameterDescriptor extends GeneralParameterDescriptor {
      * </p>
      * @return A finite set of valid values (usually from a
      *         {linkplain org.opengis.util.CodeList code list}),
-     *         or <code>null</code> if it doesn't apply.
+     *         or {@code null} if it doesn't apply.
      */
     @Extension
     Set<? extends Object> getValidValues();
@@ -71,9 +71,9 @@ public interface ParameterDescriptor extends GeneralParameterDescriptor {
     /**
      * Returns the default value for the parameter. The return type can be any type
      * including a {@link Number} or a {@link String}. If there is no default value,
-     * then this method returns <code>null</code>.
+     * then this method returns {@code null}.
      *
-     * @return The default value, or <code>null</code> in none.
+     * @return The default value, or {@code null} in none.
      */
     @UML (identifier="GC_ParameterInfo.defaultValue", obligation=OPTIONAL, specification=ISO_19111)
     Object getDefaultValue();
@@ -83,12 +83,12 @@ public interface ParameterDescriptor extends GeneralParameterDescriptor {
      * 
      * If there is no minimum value, or if minimum
      * value is inappropriate for the {@linkplain #getValueClass parameter type}, then
-     * this method returns <code>null</code>.
+     * this method returns {@code null}.
      * <p>
      * When the getValueClass() is an array or Collection getMinimumValue
      * may be used to constrain the contained elements.
      * </p>
-     * @return The minimum parameter value (often an instance of {@link Double}), or <code>null</code>.
+     * @return The minimum parameter value (often an instance of {@link Double}), or {@code null}.
      */
     @UML (identifier="GC_ParameterInfo.minimumValue", obligation=OPTIONAL, specification=ISO_19111)
     Comparable getMinimumValue();
@@ -98,12 +98,12 @@ public interface ParameterDescriptor extends GeneralParameterDescriptor {
      * 
      * If there is no maximum value, or if maximum
      * value is inappropriate for the {@linkplain #getValueClass parameter type}, then
-     * this method returns <code>null</code>.
+     * this method returns {@code null}.
      * <p>
      * When the getValueClass() is an array or Collection getMaximumValue
      * may be used to constratin the contained elements.
      * </p>
-     * @return The minimum parameter value (often an instance of {@link Double}), or <code>null</code>.
+     * @return The minimum parameter value (often an instance of {@link Double}), or {@code null}.
      */
     @UML (identifier="GC_ParameterInfo.maximumValue", obligation=OPTIONAL, specification=ISO_19111)
     Comparable getMaximumValue();
@@ -116,7 +116,7 @@ public interface ParameterDescriptor extends GeneralParameterDescriptor {
      * This attribute apply only if the values is of numeric type (usually an instance
      * of {@link Double}).
      *
-     * @return The unit for numeric value, or <code>null</code> if it doesn't apply to the value type.
+     * @return The unit for numeric value, or {@code null} if it doesn't apply to the value type.
      */
     @Extension
     Unit getUnit();

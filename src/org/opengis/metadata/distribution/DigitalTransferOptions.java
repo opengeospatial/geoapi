@@ -44,7 +44,7 @@ public interface DigitalTransferOptions {
     /**
      * Estimated size of a unit in the specified transfer format, expressed in megabytes.
      * The transfer size is &gt; 0.0.
-     * Returns <code>null</code> if the transfer size is unknown.
+     * Returns {@code null} if the transfer size is unknown.
      */
     @UML (identifier="transferSize", obligation=OPTIONAL, specification=ISO_19115)
     Number getTransferSize();

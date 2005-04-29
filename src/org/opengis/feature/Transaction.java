@@ -187,7 +187,7 @@ public interface Transaction {
      * The most common example is a JDBC FeatureStore saving the required
      * connection for later opperations.
      *
-     * @return Current State externalized by key, or <code>null</code> if not
+     * @return Current State externalized by key, or {@code null} if not
      *         found
      */
     public State getState(Object key);
@@ -296,7 +296,7 @@ public interface Transaction {
          * Transaction.State is <code>putState</code> into a Transaction. This
          * tranasction will be used to determine correct event notification.
          * <p>
-         * setTransaction is called with <code>null</code> when removeState is
+         * setTransaction is called with {@code null} when removeState is
          * called (usually during Transaction.close() ).
          *
          * @param transaction

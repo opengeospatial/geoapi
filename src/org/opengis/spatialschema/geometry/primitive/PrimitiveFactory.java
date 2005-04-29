@@ -55,7 +55,7 @@ public interface PrimitiveFactory {
      * reference system} and the extent of the {@linkplain Envelope envelope}. In a 2D system,
      * the primitive returned will be a {@linkplain Surface surface} (if the envelope does not
      * collapse to a point or line). In 3D systems, the usual return is a {@linkplain Solid solid}.
-     * <br><br>
+     * <p>
      * <strong>EXAMPLE:</strong> In the case where the {@linkplain Envelope envelope} is totally
      * contained in the domain of validity of its {@linkplain org.opengis.referencing.crs.CoordinateReferenceSystem
      * coordinate reference system} object, its associated {@linkplain Primitive primitive} is the convex

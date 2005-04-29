@@ -38,9 +38,9 @@ import static org.opengis.annotation.Specification.*;
 @UML (identifier="GM_SolidBoundary", specification=ISO_19107)
 public interface SolidBoundary extends PrimitiveBoundary {
     /**
-     * Returns the exterior shell, or <code>null</code> if none.
+     * Returns the exterior shell, or {@code null} if none.
      *
-     * @return The exterior shell, or <code>null</code>.
+     * @return The exterior shell, or {@code null}.
      */
     @UML (identifier="exterior", obligation=MANDATORY, specification=ISO_19107)
     public Shell getExterior();
@@ -48,7 +48,7 @@ public interface SolidBoundary extends PrimitiveBoundary {
     /**
      * Returns the interior shells.
      *
-     * @return The interior shells. Never <code>null</code>, but may be an empty array.
+     * @return The interior shells. Never {@code null}, but may be an empty array.
      */
     @UML (identifier="interior", obligation=MANDATORY, specification=ISO_19107)
     public Shell[] getInteriors();

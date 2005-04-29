@@ -31,7 +31,7 @@ public interface SpatialTemporalExtent extends TemporalExtent {
      * Returns the spatial extent component of composite
      * spatial and temporal extent.
      *
-     * @return The list of geographic extents (never <code>null</code>).
+     * @return The list of geographic extents (never {@code null}).
      */
     @UML (identifier="spatialExtent", obligation=MANDATORY, specification=ISO_19115)
     Collection<GeographicExtent> getSpatialExtent();

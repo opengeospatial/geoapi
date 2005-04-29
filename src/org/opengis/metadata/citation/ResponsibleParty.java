@@ -34,7 +34,7 @@ import static org.opengis.annotation.Specification.*;
 public interface ResponsibleParty {
     /**
      * Name of the responsible person- surname, given name, title separated by a delimiter.
-     * Only one of <code>individualName</code>, {@link #getOrganisationName organisationName}
+     * Only one of {@code individualName}, {@link #getOrganisationName organisationName}
      * and {@link #getPositionName positionName} should be provided.
      */
     @UML (identifier="individualName", obligation=CONDITIONAL, specification=ISO_19115)
@@ -42,7 +42,7 @@ public interface ResponsibleParty {
 
     /**
      * Name of the responsible organization.
-     * Only one of {@link #getIndividualName individualName}, </code>organisationName</code>
+     * Only one of {@link #getIndividualName individualName}, {@code organisationName}
      * and {@link #getPositionName positionName} should be provided.
      */
     @UML (identifier="organisationName", obligation=CONDITIONAL, specification=ISO_19115)
@@ -50,9 +50,8 @@ public interface ResponsibleParty {
 
     /**
      * Role or position of the responsible person.
-     * Only one of {@link #getIndividualName individualName},
-     * {@link #getOrganisationName organisationName} and <code>positionName</code>
-     * should be provided.
+     * Only one of {@link #getIndividualName individualName}, {@link #getOrganisationName organisationName}
+     * and {@code positionName} should be provided.
      */
     @UML (identifier="positionName", obligation=CONDITIONAL, specification=ISO_19115)
     InternationalString getPositionName();

@@ -33,13 +33,13 @@ public interface SurfacePatch extends GenericSurface {
      *
      * <blockquote><font size=2>
      * <strong>NOTE:</strong> In this specification, surface patches do not appear except in the
-     * context of a surface, and therefore this method should never returns <code>null</code>
+     * context of a surface, and therefore this method should never returns {@code null}
      * which would preclude the use of surface patches except in this manner. While this would
-     * not affect this specification, allowing <code>null</code> owner allows other standards
+     * not affect this specification, allowing {@code null} owner allows other standards
      * based on this one to use surface patches in a more open-ended manner.
      * </font></blockquote>
      *
-     * @return The owner of this surface patch, or <code>null</code> if none.
+     * @return The owner of this surface patch, or {@code null} if none.
      *
      * @see Surface#getPatches
      */

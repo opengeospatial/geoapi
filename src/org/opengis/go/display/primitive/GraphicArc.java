@@ -298,13 +298,13 @@ public interface GraphicArc extends Graphic {
      *
      * @author Open GIS Consortium, Inc.
      */
-    public static class ArcClosure extends SimpleEnumerationType {
-    
-    /**
-     * The list of enumeration available in this virtual machine.
-     * <strong>Must be declared first!</strong>.
-     */
-    private static final List VALUES = new ArrayList(3);
+    public static class ArcClosure extends SimpleEnumerationType {    
+        /**
+         * The list of enumeration available in this virtual machine.
+         * <strong>Must be declared first!</strong>.
+         */
+        private static final List VALUES = new ArrayList(3);
+
         /**
          * Closure type that indicates that the endpoints of the arc
          * should not be connected.
@@ -372,25 +372,27 @@ public interface GraphicArc extends Graphic {
          * </pre></code><p>
          * <b>IMPORTANT SAFETY TIP:</b><br>
          * Modifying the array returned is a Bad Thing. Don't do it.
+         *
+         * @deprecated Use {@link #values} instead.
          */
         public static ArcClosure[] getArray() {
             return values();
         }
         
-    /**
-     * Returns the list of <code>ArcClosure</code>s.
-     */
-    public static ArcClosure[] values() {
-        synchronized (VALUES) {
-            return (ArcClosure[]) VALUES.toArray(new ArcClosure[VALUES.size()]);
-    }
-}
+        /**
+         * Returns the list of <code>ArcClosure</code>s.
+         */
+        public static ArcClosure[] values() {
+            synchronized (VALUES) {
+                return (ArcClosure[]) VALUES.toArray(new ArcClosure[VALUES.size()]);
+            }
+        }
 
-    /**
-     * Returns the list of enumerations of the same kind than this enum.
-     */
-    public CodeList[] family() {
-        return values();
-    }        
+        /**
+         * Returns the list of enumerations of the same kind than this enum.
+         */
+        public CodeList[] family() {
+            return values();
+        }        
     }  // end class ArcClosure
 }

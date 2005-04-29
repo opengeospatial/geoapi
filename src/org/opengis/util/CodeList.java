@@ -23,10 +23,6 @@ import java.util.Iterator;
  * Code list are extensible, i.e. invoking the public constructor in any subclass will
  * automatically add the newly created <code>CodeList</code> element in the array to be
  * returned by <code>values()</code>.
- * <br><br>
- * Note: This class has an API similar to {@link java.lang.Enum}. In a
- *       future version, it may extends directly {@link java.lang.Enum}
- *       for a J2SE 1.5 profile.
  *
  * @author ISO 19103
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>

@@ -44,7 +44,7 @@ public interface ParameterValue extends GeneralParameterValue {
     /**
      * Returns the unit of measure of the {@linkplain #doubleValue() parameter value}.
      * If the parameter value has no unit (for example because it is a {@link String} type),
-     * then this method returns <code>null</code>. Note that "no unit" doesn't means
+     * then this method returns {@code null}. Note that "no unit" doesn't means
      * "dimensionless".
      *
      * @see #doubleValue()

@@ -44,13 +44,13 @@ public interface ArcStringByBulge extends CurveSegment {
      * arc. The length of the bulge sequence is exactly 1 less than the length of the control
      * point array, since a bulge is needed for each pair of adjacent points in the control point
      * array.
-     * <br><br>
+     * <p>
      * The bulge is not given by a distance, since it is simply a multiplier for the normal,
      * the unit of the offset distance is determined by the length function for vectors in
      * the coordinate reference system. In the examples in this specification, the normal is
      * often given as a Euclidean unit vector, which may or may not fix its length to one
      * depending of the distance formulae used for the coordinate reference system.
-     * <br><br>
+     * <p>
      * The midpoint of the resulting arc is given by:
      *
      * <blockquote><code>
@@ -86,7 +86,7 @@ public interface ArcStringByBulge extends CurveSegment {
      * indicating a right turn from the chord. In 3D, the normal determines the plane of the arc,
      * along with the {@linkplain #getStartPoint start} and {@linkplain #getEndPoint end point}
      * of the arc.
-     * <br><br>
+     * <p>
      * The normal is usually a unit vector, but this is not absolutely necessary. If the normal
      * is a zero vector, the geometric object becomes equivalent to the straight line between
      * the two end points. The length of the normal sequence is exactly the same as for the

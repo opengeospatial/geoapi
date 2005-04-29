@@ -55,10 +55,10 @@ public interface KeyManager extends EventManager {
                                      KeyHandler replacementHandler);
 
     /**
-     * Returns the current <code>KeyHandler</code> or <code>null</code> if no
+     * Returns the current <code>KeyHandler</code> or {@code null} if no
      *         handler is set.
      *
-     * @return the current <code>KeyHandler</code> or <code>null</code>.
+     * @return the current <code>KeyHandler</code> or {@code null}.
      */
     public KeyHandler getCurrentKeyHandler();
 

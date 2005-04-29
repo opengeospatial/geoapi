@@ -42,7 +42,7 @@ public interface TemporalDatum extends Datum {
      * This attribute is defined in the {@link Datum} parent interface,
      * but is not used by a temporal datum.
      *
-     * @return Always <code>null</code>.
+     * @return Always {@code null}.
      */
     @UML (identifier="anchorPoint", obligation=FORBIDDEN, specification=ISO_19111)
     InternationalString getAnchorPoint();
@@ -51,7 +51,7 @@ public interface TemporalDatum extends Datum {
      * This attribute is defined in the {@link Datum} parent interface,
      * but is not used by a temporal datum.
      *
-     * @return Always <code>null</code>.
+     * @return Always {@code null}.
      */
     @UML (identifier="realizationEpoch", obligation=FORBIDDEN, specification=ISO_19111)
     Date getRealizationEpoch();

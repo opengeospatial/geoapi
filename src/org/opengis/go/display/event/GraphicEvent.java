@@ -29,7 +29,7 @@ public interface GraphicEvent {
     /**
      * Returns the <code>Graphic</code> this <code>GraphicEvent</code> initially occurred on.
      *
-     * @return the <code>Graphic</code> source of this event or <code>null</code> if none.
+     * @return the <code>Graphic</code> source of this event or {@code null} if none.
      */
     public Graphic getGraphic();
 

@@ -36,7 +36,7 @@ import org.opengis.annotation.Extension;
 public interface MathTransform2D extends MathTransform {
     /**
      * Transforms the specified <code>ptSrc</code> and stores the result in <code>ptDst</code>.
-     * If <code>ptDst</code> is <code>null</code>, a new {@link Point2D} object is allocated
+     * If <code>ptDst</code> is {@code null}, a new {@link Point2D} object is allocated
      * and then the result of the transformation is stored in this object. In either case,
      * <code>ptDst</code>, which contains the transformed point, is returned for convenience.
      * If <code>ptSrc</code> and <code>ptDst</code> are the same object, the input point is
@@ -45,7 +45,7 @@ public interface MathTransform2D extends MathTransform {
      * @param ptSrc the specified coordinate point to be transformed.
      * @param ptDst the specified coordinate point that stores the
      *              result of transforming <code>ptSrc</code>, or
-     *              <code>null</code>.
+     *              {@code null}.
      * @return the coordinate point after transforming <code>ptSrc</code>
      *         and stroring the result in <code>ptDst</code>.
      * @throws TransformException if the point can't be transformed.
@@ -80,7 +80,7 @@ public interface MathTransform2D extends MathTransform {
      *         never returns an internal object: changing the matrix will not change the
      *         state of this math transform.
      * @throws NullPointerException if the derivative dependents on coordinate
-     *         and <code>point</code> is <code>null</code>.
+     *         and <code>point</code> is {@code null}.
      * @throws TransformException if the derivative can't be evaluated at the
      *         specified point.
      */

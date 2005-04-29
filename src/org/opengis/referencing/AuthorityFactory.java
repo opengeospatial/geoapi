@@ -75,7 +75,7 @@ public interface AuthorityFactory extends Factory {
      * Gets a description of the object corresponding to a code.
      *
      * @param  code Value allocated by authority.
-     * @return A description of the object, or <code>null</code> if the object
+     * @return A description of the object, or {@code null} if the object
      *         corresponding to the specified <code>code</code> has no description.
      * @throws NoSuchAuthorityCodeException if the specified <code>code</code> was not found.
      * @throws FactoryException if the query failed for some other reason.

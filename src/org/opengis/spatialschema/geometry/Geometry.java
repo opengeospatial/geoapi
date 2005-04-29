@@ -45,15 +45,15 @@ import static org.opengis.annotation.Specification.*;
 public interface Geometry extends TransfiniteSet {
     /**
      * Returns the coordinate reference system used in {@linkplain DirectPosition direct position}
-     * coordinates. If <code>null</code>, then this <code>Geometry</code> uses the coordinate reference
+     * coordinates. If {@code null}, then this <code>Geometry</code> uses the coordinate reference
      * system from another <code>Geometry</code> in which it is contained.
      *
-     * The most common example where the coordinate reference system is <code>null</code> is the elements
+     * The most common example where the coordinate reference system is {@code null} is the elements
      * and subcomplexes of a maximal {@linkplain Complex complex}. The {@linkplain Complex complex} can
      * carry the {@linkplain CoordinateReferenceSystem coordinate reference system} for all
      * {@linkplain org.opengis.spatialschema.geometry.primitive.Primitive primitive} elements
      * and for all {@link Complex} subcomplexes.
-     * <br><br>
+     * <p>
      * This association is only navigable from <code>Geometry</code> to {@linkplain CoordinateReferenceSystem
      * coordinate reference system}. This means that the coordinate reference system objects in a data set do
      * not keep a list of <code>Geometry</code>s that use them.
@@ -140,7 +140,7 @@ public interface Geometry extends TransfiniteSet {
      * every point in the interior of the object must have a metric neighborhood whose
      * intersection with the object is isomorphic to an <var>n</var>-sphere, where <var>n</var>
      * is the dimension of this <code>Geometry</code>.
-     * <br><br>
+     * <p>
      * Since most coordinate geometries are represented, either directly or indirectly by functions
      * from regions in Euclidean space of their topological dimension, the easiest test for
      * simplicity to require that a function exist that is one-to-one and bicontinuous
@@ -184,11 +184,11 @@ public interface Geometry extends TransfiniteSet {
      * "distance" value shall be a positive number associated to a distance unit such as meter
      * or standard foot. If necessary, the second geometric object shall be transformed into
      * the same coordinate reference system as the first before the distance is calculated.
-     * <br><br>
+     * <p>
      * If the geometric objects overlap, or touch, then their distance apart shall be zero.
      * Some current implementations use a "negative" distance for such cases, but the approach
      * is neither consistent between implementations, nor theoretically viable.
-     * <br><br>
+     * <p>
      * <strong>NOTE:</strong> The role of the reference system in distance calculations is
      * important. Generally, there are at least three types of distances that may be defined
      * between points (and therefore between geometric objects): map distance, geodesic distance,
@@ -227,10 +227,10 @@ public interface Geometry extends TransfiniteSet {
      * of a local neighborhood of the point - that is the dimension of any coordinate neighborhood
      * of the point. Dimension is unambiguously defined only for {@linkplain DirectPosition direct
      * positions} interior to this <code>Geometry</code>. If the passed {@linkplain DirectPosition
-     * direct position} is <code>null</code>, then the operation shall return the largest possible
+     * direct position} is {@code null}, then the operation shall return the largest possible
      * dimension for any {@linkplain DirectPosition direct position} in this <code>Geometry</code>.
      *
-     * @param point The point where to evaluate the dimension, or <code>null</code>.
+     * @param point The point where to evaluate the dimension, or {@code null}.
      * @return The inherent dimension.
      *
      * @see #getCoordinateDimension

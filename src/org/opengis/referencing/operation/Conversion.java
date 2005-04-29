@@ -32,7 +32,7 @@ public interface Conversion extends Operation {
     /**
      * Version of the coordinate transformation.
      *
-     * @return Always <code>null</code>.
+     * @return Always {@code null}.
      * @deprecated This attribute is declared in {@link CoordinateOperation}
      *             but is not used in a conversion.
      */

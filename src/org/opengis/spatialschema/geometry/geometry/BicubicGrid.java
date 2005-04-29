@@ -22,7 +22,7 @@ import static org.opengis.annotation.Specification.*;
  * A {@linkplain GriddedSurface gridded surface} that uses cubic polynomial splines as the
  * horizontal and vertical curves. The initial tangents for the splines are often replaced
  * by an extra pair of rows (and columns) of control points.
- * <br><br>
+ * <p>
  * The horizontal and vertical curves require initial and final tangent vectors for a complete
  * definition. These values are supplied by the four methods defined in this interface.
  *

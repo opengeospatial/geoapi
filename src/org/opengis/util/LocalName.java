@@ -26,6 +26,8 @@ import static org.opengis.annotation.Specification.*;
  * @author ISO 19103
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 2.0
+ *
+ * @see NameFactory#createLocalName
  */
 @UML (identifier="LocalName", specification=ISO_19103)
 public interface LocalName extends GenericName {

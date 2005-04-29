@@ -29,12 +29,12 @@ import static org.opengis.annotation.Specification.*;
  * the same {@linkplain CoordinateReferenceSystem coordinate reference system}. While a point array
  * conceptually contains {@linkplain Position positions}, it provides convenience methods for
  * fetching directly the {@linkplain DirectPosition direct positions} instead.
- * <br><br>
+ * <p>
  * A simple implementation of <code>PointArray</code> will generally be no more efficient than
  * a simple array of {@link Position}s. More efficient implementations will generally stores
  * coordinates in a more compact form (e.g. in a single <code>float[]</code> array) and creates
  * {@link Position} objects on the fly when needed.
- * <br><br>
+ * <p>
  * If a particular <code>PointArray</code> implementation supports efficiently random access
  * through any <code>get</code> or <code>set</code> method, it shall announce this capability
  * by implementing the {@link java.util.RandomAccess} interface. Otherwise, users should read

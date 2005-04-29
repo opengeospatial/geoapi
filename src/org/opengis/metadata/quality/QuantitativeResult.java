@@ -39,19 +39,19 @@ public interface QuantitativeResult extends Result {
     double[] getValues();
 
     /**
-     * Value type for reporting a data quality result, or <code>null</code> if none.
+     * Value type for reporting a data quality result, or {@code null} if none.
      */
     @UML (identifier="valueType", obligation=OPTIONAL, specification=ISO_19115)
     Class getValueType();
 
     /**
-     * Value unit for reporting a data quality result, or <code>null</code> if none.
+     * Value unit for reporting a data quality result, or {@code null} if none.
      */
     @UML (identifier="valueUnit", obligation=OPTIONAL, specification=ISO_19115)
     Unit getValueUnit();
 
     /**
-     * Statistical method used to determine the value, or <code>null</code> if none.
+     * Statistical method used to determine the value, or {@code null} if none.
      */
     @UML (identifier="errorStatistic", obligation=OPTIONAL, specification=ISO_19115)
     InternationalString getErrorStatistic();

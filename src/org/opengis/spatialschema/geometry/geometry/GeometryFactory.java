@@ -13,6 +13,7 @@ package org.opengis.spatialschema.geometry.geometry;
 import java.util.List;
 import java.util.Set;
 
+// OpenGIS direct dependencies
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 import org.opengis.spatialschema.geometry.DirectPosition;
 import org.opengis.spatialschema.geometry.Envelope;
@@ -38,20 +39,18 @@ import static org.opengis.annotation.Specification.*;
  *
  * @author ISO/DIS 19107
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
- * @version 2.0
+ * @version <A HREF="http://www.opengis.org/docs/01-101.pdf">Abstract specification 5</A>
  */
 public interface GeometryFactory {
     /**
      * Returns the coordinate reference system in use for all
      * {@linkplain org.opengis.spatialschema.geometry.Geometry geometries}
      * to be created through this interface.
-     * @return
      */
     CoordinateReferenceSystem getCoordinateReferenceSystem();
 
     /**
      * Create a direct position with empty coordinates.
-     * @return
      */
     DirectPosition createDirectPosition();
     
@@ -62,11 +61,18 @@ public interface GeometryFactory {
 
     /**
      * Creates a new Envelope with the given corners.
-     * @param lowerCorner
-     * @param upperCorner
-     * @return
+     *
+     * @param lowerCorner A coordinate position consisting of all the maximal ordinates for each
+     *                    dimension for all points within the envelope.
+     * @param upperCorner A coordinate position consisting of all the minimal ordinates for each
+     *                    dimension for all points within the envelope.
+     *
+     * @throws MismatchedReferenceSystemException If the coordinate positions don't use
+     *         compatible {@linkplain CoordinateReferenceSystem coordinate reference system}.
+     * @throws MismatchedDimensionException If the coordinate position don't have compatible dimension.
      */
-    Envelope createEnvelope(DirectPosition lowerCorner, DirectPosition upperCorner);
+    Envelope createEnvelope(DirectPosition lowerCorner, DirectPosition upperCorner)
+            throws MismatchedReferenceSystemException, MismatchedDimensionException;
     
     /**
      * Takes two positions and creates the appropriate line segment joining them.
@@ -262,7 +268,7 @@ public interface GeometryFactory {
      * {@link KnotType} is uniform and the knots are evenly spaced, and except for the
      * first and last have multiplicity = 1. At the ends the knots are of multiplicity =
      * {@code degree}+1. If the {@code knotType} is uniform they need not be specified.
-     * <br><br>
+     * <p>
      * <strong>NOTE:</strong> If the B-spline curve is uniform and degree = 1, the B-spline
      * is equivalent to a polyline ({@link LineString}). If the {@code knotType} is
      * {@linkplain KnotType#PIECEWISE_BEZIER piecewise Bezier}, then the knots are
@@ -288,7 +294,7 @@ public interface GeometryFactory {
      * Creates a polygon directly from a set of boundary curves (organized into a
      * surface boundary) which shall be defined using coplanar {@linkplain Position positions}
      * as control points.
-     * <br><br>
+     * <p>
      * <strong>NOTE:</strong> The meaning of exterior in the surface boundary is consistent
      * with the plane of the constructed planar polygon.
      *
@@ -308,7 +314,7 @@ public interface GeometryFactory {
      * interpolation used by the composite curves used in the {@linkplain SurfaceBoundary
      * surface boundary}, but they must all be lie on the
      * {@linkplain Polygon#getSpanningSurface spanning surface} for the process to succeed.
-     * <br><br>
+     * <p>
      * <strong>NOTE:</strong> It is important that the boundary components be oriented properly
      * for this to work. It is often the case that in bounded manifolds, such as the sphere,
      * there is an ambiguity unless the orientation is properly used.
@@ -366,13 +372,6 @@ public interface GeometryFactory {
     	throws MismatchedReferenceSystemException;
     
     /**
-     * Placeholder to create a MultiPrimitive (or derivatives).  There <b>should</b>
-     * be a better way to do this.
-     * @return
-     */
-    MultiPrimitive createMultiPrimitive();
-    
-    /**
      * Constructs polyhedral surface from the facet polygons.
      *
      * @param tiles The facet polygons. Must contains at least one polygon.
@@ -385,4 +384,12 @@ public interface GeometryFactory {
     @UML (identifier="GM_PolyhedralSurace(GM_Polygon)", obligation=MANDATORY, specification=ISO_19107)
     PolyhedralSurface createPolyhedralSurface(List<Polygon> tiles)
             throws MismatchedReferenceSystemException, MismatchedDimensionException;
+    
+    /**
+     * Placeholder to create a MultiPrimitive (or derivatives).
+     * <strong>This method is temporary. It will move to some {@code MultiPrimitive}
+     * factory when the creation of Geometry interfaces will be completed.</strong>
+     * See <A HREF="http://jira.codehaus.org/browse/GEO-1">GEO-1 on JIRA</A>.
+     */
+    MultiPrimitive createMultiPrimitive();
 }

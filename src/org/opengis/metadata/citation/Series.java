@@ -29,7 +29,7 @@ import static org.opengis.annotation.Specification.*;
 public interface Series {
     /**
      * Name of the series, or aggregate dataset, of which the dataset is a part.
-     * Returns <code>null</code> if none.
+     * Returns {@code null} if none.
      */
     @UML (identifier="name", obligation=OPTIONAL, specification=ISO_19115)
     InternationalString getName();

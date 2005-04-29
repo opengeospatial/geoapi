@@ -40,7 +40,7 @@ public interface Element {
     Collection<InternationalString> getNamesOfMeasure();
 
     /**
-     * Code identifying a registered standard procedure, or <code>null</code> if none.
+     * Code identifying a registered standard procedure, or {@code null} if none.
      */
     @UML (identifier="measureIdentification", obligation=OPTIONAL, specification=ISO_19115)
     Identifier getMeasureIdentification();
@@ -52,7 +52,7 @@ public interface Element {
     InternationalString getMeasureDescription();
 
     /**
-     * Type of method used to evaluate quality of the dataset, or <code>null</code> if unspecified.
+     * Type of method used to evaluate quality of the dataset, or {@code null} if unspecified.
      */
     @UML (identifier="evaluationMethodType", obligation=OPTIONAL, specification=ISO_19115)
     EvaluationMethodType getEvaluationMethodType();
@@ -64,7 +64,7 @@ public interface Element {
     InternationalString getEvaluationMethodDescription();
 
     /**
-     * Reference to the procedure information, or <code>null</code> if none.
+     * Reference to the procedure information, or {@code null} if none.
      */
     @UML (identifier="evaluationProcedure", obligation=OPTIONAL, specification=ISO_19115)
     Citation getEvaluationProcedure();
@@ -72,7 +72,7 @@ public interface Element {
     /**
      * Date or range of dates on which a data quality measure was applied.
      * The array length is 1 for a single date, or 2 for a range. Returns
-     * <code>null</code> if this information is not available.
+     * {@code null} if this information is not available.
      */
     @UML (identifier="dateTime", obligation=OPTIONAL, specification=ISO_19115)
     Date[] getDate();

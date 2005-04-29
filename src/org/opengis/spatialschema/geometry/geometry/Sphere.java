@@ -22,7 +22,7 @@ import static org.opengis.annotation.Specification.*;
  * arcs resemble lines of constant longitude. If the {@linkplain #getControlPoints control points}
  * are sorted in terms of increasing longitude, and increasing latitude, the
  * {@linkplain #getUpNormal upNormal} of a sphere is the outward normal.
- * <br><br>
+ * <p>
  * <strong>Example:</strong> If we take a gridded set of latitudes and longitudes in degrees,
  * (<var>u</var>, <var>v</var>), such as
  *

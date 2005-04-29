@@ -82,7 +82,7 @@ public interface CoordinateOperation extends IdentifiedObject {
      * is not specified here, but through
      * {@link org.opengis.referencing.crs.GeneralDerivedCRS#getBaseCRS} instead.
      *
-     * @return The source CRS, or <code>null</code> if not available.
+     * @return The source CRS, or {@code null} if not available.
      */
     @UML (identifier="sourceCRS", obligation=MANDATORY, specification=ISO_19111)
     CoordinateReferenceSystem getSourceCRS();
@@ -93,7 +93,7 @@ public interface CoordinateOperation extends IdentifiedObject {
      * that is not specified here, but through
      * {@link org.opengis.referencing.crs.GeneralDerivedCRS} instead.
      *
-     * @return The target CRS, or <code>null</code> if not available.
+     * @return The target CRS, or {@code null} if not available.
      */
     @UML (identifier="targetCRS", obligation=MANDATORY, specification=ISO_19111)
     CoordinateReferenceSystem getTargetCRS();
@@ -103,7 +103,7 @@ public interface CoordinateOperation extends IdentifiedObject {
      * nature of the parameters). Mandatory when describing a transformation, and should not
      * be supplied for a conversion.
      *
-     * @return The coordinate operation version, or <code>null</code> in none.
+     * @return The coordinate operation version, or {@code null} in none.
      */
     @UML (identifier="operationVersion", obligation=CONDITIONAL, specification=ISO_19111)
     String getOperationVersion();
@@ -121,7 +121,7 @@ public interface CoordinateOperation extends IdentifiedObject {
     /**
      * Area in which this operation is valid.
      *
-     * @return Coordinate operation valid area, or <code>null</code> if not available.
+     * @return Coordinate operation valid area, or {@code null} if not available.
      */
     @UML (identifier="validArea", obligation=OPTIONAL, specification=ISO_19111)
     Extent getValidArea();

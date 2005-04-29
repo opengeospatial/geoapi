@@ -1,119 +1,128 @@
-/*
- * $ Id $
- * $ Source $
- * Created on Jan 10, 2005
- */
+/*$************************************************************************************************
+ **
+ ** $Id$
+ **
+ ** $Source$
+ **
+ ** Copyright (C) 2003 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
+ **
+ *************************************************************************************************/
 package org.opengis.go.display.primitive.store;
 
+// J2SE direct dependencies
 import java.io.IOException;
 import java.net.URI;
 import java.net.URL;
 import java.util.Map;
 
+// OpenGIS direct dependencies
+import org.opengis.feature.FeatureStore;
 import org.opengis.util.InternationalString;
+
 
 /**
  * The <code>GraphicStoreFactory</code> class/interface...
  * 
- * @author SYS Technologies
- * @author crossley
- * @version $Revision $
+ * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
+ * @author Jesse Crossley (SYS Technologies)
  */
 public interface GraphicStoreFactory {
-
     /**
-     * Ask for a GraphicStore connecting to the indicated provider or service.
-     * The returned GraphicStore may have been previously cached.
+     * Ask for a {@code GraphicStore} connecting to the indicated provider or service.
+     * The returned {@code GraphicStore} may have been previously cached.
      * <p>
      * Additional hints or configuration information may be provided according
-     * to the metadata indicated by getParametersInfo. This information often includes
-     * security information such as username and password.
-     * </p>
+     * to the metadata indicated by {@link #getParametersInfo}. This information
+     * often includes security information such as username and password.
      * 
-     * @param provider Often a URL or JDBC URL locating the serivce to connect to
+     * @param provider Often a URL or JDBC URL locating the service to connect to.
      * @param params Map of hints or configuration information.
-     * @return GraphicStore connected to the indicated provider or service
-     * @throws IOException if the GraphicStore cannot connect to its source
+     * @return {@code GraphicStore} connected to the indicated provider or service.
+     * @throws IOException if the {@code GraphicStore} cannot connect to its source.
+     *
+     * @revisit Need generic types for the map argument.
      */
     GraphicStore createGraphicStore(URI provider, Map params) throws IOException;
 
     /**
-     * Ask for a new GraphicStore connecting to the indicated provider or service.
+     * Ask for a new {@code GraphicStore} connecting to the indicated provider or service.
      * <p>
      * Additional hints or configuration information may be provided according
-     * to the metadata indicated by getParametersInfo. This information often includes
-     * security information such as username and password.
-     * </p>
+     * to the metadata indicated by {@link #getParametersInfo}. This information
+     * often includes security information such as username and password.
      * 
-     * @param provider Often a URL or JDBC URL locating the serivce to connect to
+     * @param provider Often a URL or JDBC URL locating the service to connect to.
      * @param params Map of hints or configuration information.
-     * @return GraphicStore Datastore connected to the newly created provider or serivce.
-     * @throws IOException
-     */GraphicStore createNewGraphicStore(URI provider, Map params) throws IOException;
+     * @return {@code GraphicStore} connected to the newly created provider or service.
+     * @throws IOException if the {@code GraphicStore} cannot connect to its source.
+     *
+     * @revisit Need generic types for the map argument.
+     */
+    GraphicStore createNewGraphicStore(URI provider, Map params) throws IOException;
 
     /**
      * Icon representing this category of <code>GraphicStore</code>s.
-     * <p>
-     * Assumed to point to a 16x16 icon?
-     * </p>
      * 
      * @return the icon.
+     * @revisit Assumed to point to a 16x16 icon?
+     * @revisit Should it be an URI instead of an URL?
      */
     URL getIcon();
 
     /**
-     *  Display name used to communicate this type of GraphicStore to end users.
-     * @return
+     * Display name used to communicate this type of {@code GraphicStore} to end users.
      */
     InternationalString getDisplayName();
 
     /** 
-     * Descrption of this type of GraphicStore.
-     * @return
+     * Description of this type of {@code GraphicStore}.
      */
     InternationalString getDescription();
 
     /**
-     * Gets an <code>Object</code> array relating to the parameters needed (beyond
-     * the URI) to instantiate a <code>FeatureStore</code>.  Should be replaced
-     * with a <code>Param</code>[] based on ISO standards.
-     * @return
+     * Gets an {@code Object} array relating to the parameters needed (beyond
+     * the URI) to instantiate a {@code GraphicStore}.
+     * 
+     * @revisit Should be replaced with a <code>Param</code>[] based on ISO standards.
      */
     Object[] getParametersInfo();
 
     /**
-     * Indicates this GraphicStoreFactory communicate with the indicated provider or service.
+     * Indicates this {@code GraphicStoreFactory} communicate with the indicated provider or service.
      * <p>
      * This method should not fail, if a connection needs to be made
-     * to parse a GetCapabilities file or negotiate WMS versions any
-     * IO problems simply indicate the inabiity to process.
+     * to parse a {@code GetCapabilities} file or negotiate WMS versions any
+     * IO problems simply indicate the inability to process.
      * </p>
      * <p>
-     * This method may be considered the same as: canProcess( provider, hints )
+     * This method may be considered the same as:
+     * <code>{@linkplain #canProcess(URI,Map) canProcess}(provider, hints)</code>
      * where hints was generated by using all the default values specified by the
-     * getParameterInfo method.
+     * {@link #getParametersInfo} method.
      * </p>
      * @param provider Provider or Server of spatial information. 
      */
     boolean canProcess(URI provider);
     
     /**
-     * Indicates this GraphicStoreFactory communicate with the indicated provider or service.
+     * Indicates this {@code GraphicStoreFactory} communicate with the indicated provider or service.
      * <p>
-     * This method differs from canProcess in that additional configuration
+     * This method differs from {@link #canProcess(URI)} in that additional configuration
      * information may be supplied. 
      * </p>
-     * @param provider
-     * @param params
-     * @return <code>true</code> if this factory can communicate with the provider.
+     * @param provider Provider or Server of spatial information. 
+     * @param params additional configuration information.
+     * @return {@code true} if this factory can communicate with the provider.
+     *
+     * @revisit Need generic types for the map argument.
      */
     boolean canProcess(URI provider, Map params);
 
     /**
-     * Allows a GraphicStoreFactory to ensure all its preconditions are met,
+     * Allows a {@code GraphicStoreFactory} to ensure all its preconditions are met,
      * such as the presense of required libraries.
-     * @return true if available
+     *
+     * @return {@code true} if available
      */
     boolean isAvailable();
-
 }

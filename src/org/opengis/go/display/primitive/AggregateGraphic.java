@@ -23,7 +23,7 @@ import org.opengis.go.display.event.AggregationListener;
  * <code>Graphic</code>s may be stored in a Skiplist sorted by a unique
  * <code>Graphic</code> identifier to make adding and removing
  * <code>Graphic</code>s very efficient.
- * <br><br>
+ * <p>
  * Additionally, the abstraction makes no
  * assumptions as to thread safety. If the implementations of
  * <code>Graphic</code> are to be used in a multi-threaded environment,
@@ -39,7 +39,7 @@ public interface AggregateGraphic extends Graphic {
      * Sets the children of this <code>AggregateGraphic</code> to the given
      * set of <code>Graphic</code>s.  If there are already children assigned,
      * then those children will be removed and their parent will be set to 
-     * <code>null</code>.
+     * {@code null}.
      *
      * @param children the new children of the <code>AggregateGraphic</code>.
      */
@@ -73,7 +73,7 @@ public interface AggregateGraphic extends Graphic {
      * Removes the given child from this <code>AggregateGraphic</code>.
      *
      * @param child the <code>Graphic</code> child to remove from the aggregate.
-     * @return the removed <code>Graphic</code>, or <code>null</code> if it is not found.
+     * @return the removed <code>Graphic</code>, or {@code null} if it is not found.
      */
     public Graphic removeChild(Graphic child);
 
@@ -81,7 +81,7 @@ public interface AggregateGraphic extends Graphic {
      * Removes the given children from this <code>AggregateGraphic</code>.
      *
      * @param children the <code>Graphic</code> children to remove from the aggregate.
-     * @return the removed <code>Graphic</code>s, or <code>null</code> if none are found.
+     * @return the removed <code>Graphic</code>s, or {@code null} if none are found.
      */
     public Graphic[] removeChildren(Graphic[] children);
 

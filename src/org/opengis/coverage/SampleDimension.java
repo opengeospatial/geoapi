@@ -57,7 +57,7 @@ public interface SampleDimension {
      * Sample dimension title or description.
      * This string may be null or empty if no description is present.
      *
-     * @param  locale The locale, or <code>null</code> for a default locale.
+     * @param  locale The locale, or {@code null} for a default locale.
      * @return The sample dimension title or description.
      *
      * @deprecated Replaced by {@link #getDescription()}.
@@ -98,7 +98,7 @@ public interface SampleDimension {
      * The first entry in the sequence relates to a cell value of zero.
      * For grid coverages, category names are only valid for a classified grid data.
      *
-     * @param  locale The locale, or <code>null</code> for a default locale.
+     * @param  locale The locale, or {@code null} for a default locale.
      * @return The sequence of category names for the values contained in a sample dimension.
      *
      * @deprecated Replaced by {@link #getCategoryNames()}.
@@ -133,7 +133,7 @@ public interface SampleDimension {
      * Color palette associated with the sample dimension.
      * A color palette can have any number of colors.
      * See palette interpretation for meaning of the palette entries.
-     * If the grid coverage has no color palette, <code>null</code> will be returned.
+     * If the grid coverage has no color palette, {@code null} will be returned.
      *
      * @return The color palette associated with the sample dimension.
      *
@@ -188,7 +188,7 @@ public interface SampleDimension {
      * The unit information for this sample dimension.
      * This interface typically is provided with grid coverages which represent
      * digital elevation data.
-     * This value will be <code>null</code> if no unit information is available.
+     * This value will be {@code null} if no unit information is available.
      *
      * @return The unit information for this sample dimension.
      */
@@ -224,7 +224,7 @@ public interface SampleDimension {
      * example a logarithmic one. In order words, this transform is a generalization of
      * {@link #getScale}, {@link #getOffset} and {@link #getNoDataValues} methods.
      *
-     * @return The transform from sample to geophysics values, or <code>null</code> if
+     * @return The transform from sample to geophysics values, or {@code null} if
      *         it doesn't apply.
      *
      * @see #getScale

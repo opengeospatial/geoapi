@@ -47,7 +47,7 @@ import static org.opengis.annotation.Specification.*;
 @UML (identifier="MD_MetaData", specification=ISO_19115)
 public interface MetaData {
     /**
-     * Unique identifier for this metadata file, or <code>null</code> if none.
+     * Unique identifier for this metadata file, or {@code null} if none.
      */
     @Profile (level=CORE)
     @UML (identifier="fileIdentifier", obligation=OPTIONAL, specification=ISO_19115)

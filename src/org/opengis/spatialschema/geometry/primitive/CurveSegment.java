@@ -34,13 +34,13 @@ public interface CurveSegment extends GenericCurve {
      *
      * <blockquote><font size=2>
      * <strong>NOTE:</strong> In this specification, curve segments do not appear except in the
-     * context of a curve, and therefore this method should never returns <code>null</code>
+     * context of a curve, and therefore this method should never returns {@code null}
      * which would preclude the use of curve segments except in this manner. While this would
-     * not affect this specification, allowing <code>null</code> owner allows other standards
+     * not affect this specification, allowing {@code null} owner allows other standards
      * based on this one to use curve segments in a more open-ended manner.
      * </font></blockquote>
      *
-     * @return The owner of this curve segment, or <code>null</code> if none.
+     * @return The owner of this curve segment, or {@code null} if none.
      *
      * @see Curve#getSegments
      */

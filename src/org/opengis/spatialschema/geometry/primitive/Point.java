@@ -68,9 +68,9 @@ public interface Point extends Primitive, Position {
     public void setPosition(DirectPosition position) throws UnmodifiableGeometryException;
 
     /**
-     * Returns always <code>null</code>, since point has no boundary.
+     * Returns always {@code null}, since point has no boundary.
      *
-     * @return Always <code>null</code>.
+     * @return Always {@code null}.
      */
 /// @UML (identifier="boundary", obligation=MANDATORY, specification=ISO_19107)
 /// public PrimitiveBoundary getBoundary();

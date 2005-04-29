@@ -52,9 +52,9 @@ public interface OrientableSurface extends OrientablePrimitive {
 /// public SurfaceBoundary getBoundary();
 
     /**
-     * Returns the owner of this orientable surface, or <code>null</code> if none.
+     * Returns the owner of this orientable surface, or {@code null} if none.
      *
-     * @return The owner of this orientable surface, or <code>null</code> if none.
+     * @return The owner of this orientable surface, or {@code null} if none.
      *
      * @revisit I'm not sure to interpret correctly the ISO specification.
      *          Sound like ISO returns an array (or a sequence) here.
