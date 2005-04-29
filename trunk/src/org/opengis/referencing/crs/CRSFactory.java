@@ -201,6 +201,7 @@ public interface CRSFactory extends ObjectFactory {
      *
      * @deprecated Use the method with an {@link OperationMethod} argument instead.
      */
+    @Deprecated
     DerivedCRS createDerivedCRS(Map<String, ? extends Object>  properties,
                                 CoordinateReferenceSystem base,
                                 MathTransform    baseToDerived,
@@ -251,6 +252,7 @@ public interface CRSFactory extends ObjectFactory {
      *
      * @deprecated Use the method with an {@link OperationMethod} argument instead.
      */
+    @Deprecated
     ProjectedCRS createProjectedCRS(Map<String, ? extends Object> properties,
                                     GeographicCRS base,
                                     MathTransform baseToDerived,
@@ -316,6 +318,7 @@ public interface CRSFactory extends ObjectFactory {
      *       {@link org.opengis.referencing.operation.OperationMethod}, etc.</li>
      * </ul>
      */
+    @Deprecated
     ProjectedCRS createProjectedCRS(Map<String, ? extends Object> properties,
                                     GeographicCRS           geoCRS,
                                     String                  method,

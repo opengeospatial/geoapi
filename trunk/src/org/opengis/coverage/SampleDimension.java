@@ -62,6 +62,7 @@ public interface SampleDimension {
      *
      * @deprecated Replaced by {@link #getDescription()}.
      */
+    @Deprecated
     @UML (identifier="description", obligation=MANDATORY, specification=OGC_01_004)
     String getDescription(Locale locale);
 
@@ -103,6 +104,7 @@ public interface SampleDimension {
      *
      * @deprecated Replaced by {@link #getCategoryNames()}.
      */
+    @Deprecated
     @UML (identifier="categoryNames", obligation=MANDATORY, specification=OGC_01_004)
     String[] getCategoryNames(Locale locale);
 

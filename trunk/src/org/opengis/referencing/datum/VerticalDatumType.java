@@ -30,7 +30,7 @@ import static org.opengis.annotation.Specification.*;
  * @version <A HREF="http://www.opengis.org/docs/03-073r1.zip">Abstract specification 2.0</A>
  */
 @UML (identifier="CD_VerticalDatumType", specification=ISO_19111)
-public final class VerticalDatumType extends CodeList {
+public final class VerticalDatumType extends CodeList<VerticalDatumType> {
     /**
      * Serial number for compatibility with different versions.
      */
@@ -40,7 +40,7 @@ public final class VerticalDatumType extends CodeList {
      * List of all enumerations of this type.
      * Must be declared before any enum declaration.
      */
-    private static final List VALUES = new ArrayList(6);
+    private static final List<VerticalDatumType> VALUES = new ArrayList<VerticalDatumType>(6);
 
     /**
      * In some cases, e.g. oil exploration and production, a geological feature, such as the top

@@ -51,6 +51,7 @@ public interface MathTransform {
      *
      * @deprecated Renamed {@link #getSourceDimensions} for consistency with {@link OperationMethod}.
      */
+    @Deprecated
     @UML (identifier="getDimSource", specification=OGC_01_009)
     int getDimSource();
 
@@ -65,6 +66,7 @@ public interface MathTransform {
      *
      * @deprecated Renamed {@link #getTargetDimensions} for consistency with {@link OperationMethod}.
      */
+    @Deprecated
     @UML (identifier="getDimTarget", specification=OGC_01_009)
     int getDimTarget();
     

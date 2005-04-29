@@ -34,7 +34,7 @@ import static org.opengis.annotation.Specification.*;
  */
 @Profile (level=CORE)
 @UML (identifier="MD_SpatialRepresentationTypeCode", specification=ISO_19115)
-public final class SpatialRepresentationType extends CodeList {
+public final class SpatialRepresentationType extends CodeList<SpatialRepresentationType> {
     /**
      * Serial number for compatibility with different versions.
      */
@@ -44,7 +44,7 @@ public final class SpatialRepresentationType extends CodeList {
      * List of all enumerations of this type.
      * Must be declared before any enum declaration.
      */
-    private static final List VALUES = new ArrayList(6);
+    private static final List<SpatialRepresentationType> VALUES = new ArrayList<SpatialRepresentationType>(6);
 
     /**
      * Vector data is used to represent geographic data.

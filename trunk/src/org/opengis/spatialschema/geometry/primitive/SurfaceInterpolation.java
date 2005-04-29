@@ -30,7 +30,7 @@ import static org.opengis.annotation.Specification.*;
  * @version <A HREF="http://www.opengis.org/docs/01-101.pdf">Abstract specification 5</A>
  */
 @UML (identifier="GM_SurfaceInterpolation", specification=ISO_19107)
-public final class SurfaceInterpolation extends CodeList {
+public final class SurfaceInterpolation extends CodeList<SurfaceInterpolation> {
     /**
      * Serial number for compatibility with different versions.
      */
@@ -40,7 +40,7 @@ public final class SurfaceInterpolation extends CodeList {
      * List of all enumerations of this type.
      * Must be declared before any enum declaration.
      */
-    private static final List VALUES = new ArrayList(10);
+    private static final List<SurfaceInterpolation> VALUES = new ArrayList<SurfaceInterpolation>(10);
 
     /**
      * The interior of the surface is not specified. The assumption is that the surface

@@ -36,7 +36,7 @@ import static org.opengis.annotation.Specification.*;
  * @version <A HREF="http://www.opengis.org/docs/03-073r1.zip">Abstract specification 2.0</A>
  */
 @UML (identifier="CS_AxisDirection", specification=ISO_19111)
-public final class AxisDirection extends CodeList {
+public final class AxisDirection extends CodeList<AxisDirection> {
     /**
      * Serial number for compatibility with different versions.
      */
@@ -46,7 +46,7 @@ public final class AxisDirection extends CodeList {
      * List of all enumerations of this type.
      * Must be declared before any enum declaration.
      */
-    private static final List VALUES = new ArrayList(32);
+    private static final List<AxisDirection> VALUES = new ArrayList<AxisDirection>(32);
 
     /**
      * Unknown or unspecified axis orientation.
@@ -266,6 +266,7 @@ public final class AxisDirection extends CodeList {
      *
      * @deprecated Use {@link #DISPLAY_RIGHT} instead.
      */
+    @Deprecated
     public static final AxisDirection RIGHT = DISPLAY_RIGHT;
 
     /**
@@ -274,6 +275,7 @@ public final class AxisDirection extends CodeList {
      *
      * @deprecated Use {@link #DISPLAY_LEFT} instead.
      */
+    @Deprecated
     public static final AxisDirection LEFT = DISPLAY_LEFT;
 
     /**
@@ -282,6 +284,7 @@ public final class AxisDirection extends CodeList {
      *
      * @deprecated Use {@link #DISPLAY_UP} instead.
      */
+    @Deprecated
     public static final AxisDirection TOP = DISPLAY_UP;
 
     /**
@@ -290,6 +293,7 @@ public final class AxisDirection extends CodeList {
      *
      * @deprecated Use {@link #DISPLAY_DOWN} instead.
      */
+    @Deprecated
     public static final AxisDirection BOTTOM = DISPLAY_DOWN;
 
     /**
@@ -342,6 +346,7 @@ public final class AxisDirection extends CodeList {
      * @deprecated Use {@link #opposite} instead.
      */
     @Extension
+    @Deprecated
     public AxisDirection inverse() {
         return (opposite!=null) ? opposite : this;
     }

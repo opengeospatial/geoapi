@@ -45,7 +45,7 @@ import static org.opengis.annotation.Specification.*;
  * @see SampleDimension
  */
 @UML (identifier="CV_SampleDimensionType", specification=OGC_01_004)
-public final class SampleDimensionType extends CodeList {
+public final class SampleDimensionType extends CodeList<SampleDimensionType> {
     /**
      * Serial number for compatibility with different versions.
      */
@@ -55,7 +55,7 @@ public final class SampleDimensionType extends CodeList {
      * List of all enumerations of this type.
      * Must be declared before any enum declaration.
      */
-    private static final List VALUES = new ArrayList(11);
+    private static final List<SampleDimensionType> VALUES = new ArrayList<SampleDimensionType>(11);
 
     /**
      * Unsigned 1 bit integers.

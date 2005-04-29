@@ -30,7 +30,7 @@ import static org.opengis.annotation.Specification.*;
  * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
  */
 @UML (identifier="MD_ImagingConditionCode", specification=ISO_19115)
-public final class ImagingCondition extends CodeList {
+public final class ImagingCondition extends CodeList<ImagingCondition> {
     /**
      * Serial number for compatibility with different versions.
      */
@@ -40,7 +40,7 @@ public final class ImagingCondition extends CodeList {
      * List of all enumerations of this type.
      * Must be declared before any enum declaration.
      */
-    private static final List VALUES = new ArrayList(11);
+    private static final List<ImagingCondition> VALUES = new ArrayList<ImagingCondition>(11);
 
     /**
      * Portion of the image is blurred.

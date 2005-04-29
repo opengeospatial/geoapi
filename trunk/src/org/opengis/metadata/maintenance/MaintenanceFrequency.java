@@ -31,7 +31,7 @@ import static org.opengis.annotation.Specification.*;
  * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
  */
 @UML (identifier="MD_MaintenanceFrequencyCode", specification=ISO_19115)
-public final class MaintenanceFrequency extends CodeList {
+public final class MaintenanceFrequency extends CodeList<MaintenanceFrequency> {
     /**
      * Serial number for compatibility with different versions.
      */
@@ -41,7 +41,7 @@ public final class MaintenanceFrequency extends CodeList {
      * List of all enumerations of this type.
      * Must be declared before any enum declaration.
      */
-    private static final List VALUES = new ArrayList(10);
+    private static final List<MaintenanceFrequency> VALUES = new ArrayList<MaintenanceFrequency>(10);
 
     /**
      * Data is repeatedly and frequently updated.

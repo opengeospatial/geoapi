@@ -30,7 +30,7 @@ import static org.opengis.annotation.Specification.*;
  * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
  */
 @UML (identifier="MD_DatatypeCode", specification=ISO_19115)
-public final class Datatype extends CodeList {
+public final class Datatype extends CodeList<Datatype> {
     /**
      * Serial number for compatibility with different versions.
      */
@@ -40,7 +40,7 @@ public final class Datatype extends CodeList {
      * List of all enumerations of this type.
      * Must be declared before any enum declaration.
      */
-    private static final List VALUES = new ArrayList(15);
+    private static final List<Datatype> VALUES = new ArrayList<Datatype>(15);
 
     /**
      * Descriptor of a set of objects that share the same attributes, operations, methods,

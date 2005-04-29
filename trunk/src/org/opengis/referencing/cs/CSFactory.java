@@ -134,6 +134,7 @@ public interface CSFactory extends ObjectFactory {
      *
      * @deprecated Uses the method expecting 3 axis instead.
      */
+    @Deprecated
     CylindricalCS createCylindricalCS(Map<String, ? extends Object> properties,
                                       PolarCS              polarCS,
                                       CoordinateSystemAxis axis) throws FactoryException;

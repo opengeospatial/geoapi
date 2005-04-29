@@ -45,7 +45,7 @@ import static org.opengis.annotation.Specification.*;
  * @see SampleDimension
  */
 @UML (identifier="CV_PaletteInterpretation", specification=OGC_01_004)
-public final class PaletteInterpretation extends CodeList {
+public final class PaletteInterpretation extends CodeList<PaletteInterpretation> {
     /**
      * Serial number for compatibility with different versions.
      */
@@ -55,7 +55,7 @@ public final class PaletteInterpretation extends CodeList {
      * List of all enumerations of this type.
      * Must be declared before any enum declaration.
      */
-    private static final List VALUES = new ArrayList(4);
+    private static final List<PaletteInterpretation> VALUES = new ArrayList<PaletteInterpretation>(4);
 
     /**
      * Gray Scale color palette.

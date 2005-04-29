@@ -49,7 +49,7 @@ import static org.opengis.annotation.Specification.*;
  * @see ByteInValuePacking
  */
 @UML (identifier="GC_ValueInBytePacking", specification=OGC_01_004)
-public final class ValueInBytePacking extends CodeList {
+public final class ValueInBytePacking extends CodeList<ValueInBytePacking> {
     /**
      * Serial number for compatibility with different versions.
      */
@@ -59,7 +59,7 @@ public final class ValueInBytePacking extends CodeList {
      * List of all enumerations of this type.
      * Must be declared before any enum declaration.
      */
-    private static final List VALUES = new ArrayList(2);
+    private static final List<ValueInBytePacking> VALUES = new ArrayList<ValueInBytePacking>(2);
 
     /**
      * Low bit firts (little endian order).

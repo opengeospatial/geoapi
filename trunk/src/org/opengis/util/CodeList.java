@@ -28,7 +28,7 @@ import java.util.Iterator;
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version 2.0
  */
-public abstract class CodeList implements Serializable {
+public abstract class CodeList<CodeType extends CodeList<CodeType>> implements Comparable<CodeType>, Serializable {
     /**
      * Serial number for compatibility with different versions.
      */
@@ -36,13 +36,11 @@ public abstract class CodeList implements Serializable {
 
     /**
      * The code value.
-     * This field may be removed in a J2SE 1.5 profile.
      */
     private transient final int ordinal;
 
     /**
      * The code name.
-     * This field may be removed in a J2SE 1.5 profile.
      */
     private final String name;
 
@@ -55,12 +53,12 @@ public abstract class CodeList implements Serializable {
      * @param name   The code name.
      * @param values The collection to add the element to.
      */
-    protected CodeList(String name, final Collection values) {
+    protected CodeList(String name, final Collection<CodeType> values) {
         this.name = (name=name.trim());
         synchronized (values) {
             this.ordinal = values.size();
             assert !contains(values, name) : name;
-            if (!values.add(this)) {
+            if (!values.add((CodeType)this)) {
                 throw new IllegalArgumentException(String.valueOf(values));
             }
         }
@@ -100,6 +98,19 @@ public abstract class CodeList implements Serializable {
      * Returns the list of enumerations of the same kind than this enum.
      */
     public abstract CodeList[] family();
+
+    /**
+     * Compares this code with the specified object for order. Returns a
+     * negative integer, zero, or a positive integer as this object is less
+     * than, equal to, or greater than the specified object.
+     * 
+     * Code list constants are only comparable to other code list constants of the
+     * same type.  The natural order implemented by this method is the order in which
+     * the constants are declared.
+     */
+    public final int compareTo(final CodeType other) {
+	return ordinal - other.ordinal;
+    }
 
     /**
      * Returns a string representation of this code list.

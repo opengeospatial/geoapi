@@ -144,6 +144,7 @@ public interface Coverage {
      *
      * @deprecated Replaced by {@link #getDimensionNames()}.
      */
+    @Deprecated
     @UML (identifier="dimensionNames", obligation=MANDATORY, specification=OGC_01_004)
     String[] getDimensionNames(Locale locale);
 
