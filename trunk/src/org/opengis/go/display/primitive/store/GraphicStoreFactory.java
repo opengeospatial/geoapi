@@ -12,7 +12,6 @@ package org.opengis.go.display.primitive.store;
 // J2SE direct dependencies
 import java.io.IOException;
 import java.net.URI;
-import java.net.URL;
 import java.util.Map;
 
 // OpenGIS direct dependencies
@@ -35,14 +34,12 @@ public interface GraphicStoreFactory {
      * to the metadata indicated by {@link #getParametersInfo}. This information
      * often includes security information such as username and password.
      * 
-     * @param provider Often a URL or JDBC URL locating the service to connect to.
+     * @param provider Often a URI or JDBC URI locating the service to connect to.
      * @param params Map of hints or configuration information.
      * @return {@code GraphicStore} connected to the indicated provider or service.
      * @throws IOException if the {@code GraphicStore} cannot connect to its source.
-     *
-     * @revisit Need generic types for the map argument.
      */
-    GraphicStore createGraphicStore(URI provider, Map params) throws IOException;
+    GraphicStore createGraphicStore(URI provider, Map<String, Object> params) throws IOException;
 
     /**
      * Ask for a new {@code GraphicStore} connecting to the indicated provider or service.
@@ -51,23 +48,20 @@ public interface GraphicStoreFactory {
      * to the metadata indicated by {@link #getParametersInfo}. This information
      * often includes security information such as username and password.
      * 
-     * @param provider Often a URL or JDBC URL locating the service to connect to.
+     * @param provider Often a URI or JDBC URI locating the service to connect to.
      * @param params Map of hints or configuration information.
      * @return {@code GraphicStore} connected to the newly created provider or service.
      * @throws IOException if the {@code GraphicStore} cannot connect to its source.
-     *
-     * @revisit Need generic types for the map argument.
      */
-    GraphicStore createNewGraphicStore(URI provider, Map params) throws IOException;
+    GraphicStore createNewGraphicStore(URI provider, Map<String, Object> params) throws IOException;
 
     /**
      * Icon representing this category of <code>GraphicStore</code>s.
      * 
      * @return the icon.
      * @revisit Assumed to point to a 16x16 icon?
-     * @revisit Should it be an URI instead of an URL?
      */
-    URL getIcon();
+    URI getIcon();
 
     /**
      * Display name used to communicate this type of {@code GraphicStore} to end users.
@@ -83,9 +77,9 @@ public interface GraphicStoreFactory {
      * Gets an {@code Object} array relating to the parameters needed (beyond
      * the URI) to instantiate a {@code GraphicStore}.
      * 
-     * @revisit Should be replaced with a <code>Param</code>[] based on ISO standards.
+     * @revisit Should be replaced with a <code>Param</code>[] based on ISO standards (ISO 19119).
      */
-    Object[] getParametersInfo();
+    Map<String, Class> getParametersInfo();
 
     /**
      * Indicates this {@code GraphicStoreFactory} communicate with the indicated provider or service.
@@ -113,10 +107,8 @@ public interface GraphicStoreFactory {
      * @param provider Provider or Server of spatial information. 
      * @param params additional configuration information.
      * @return {@code true} if this factory can communicate with the provider.
-     *
-     * @revisit Need generic types for the map argument.
      */
-    boolean canProcess(URI provider, Map params);
+    boolean canProcess(URI provider, Map<String, Object> params);
 
     /**
      * Allows a {@code GraphicStoreFactory} to ensure all its preconditions are met,

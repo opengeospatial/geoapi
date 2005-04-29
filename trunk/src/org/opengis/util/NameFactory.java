@@ -27,7 +27,7 @@ public interface NameFactory {
      *
      * @param strings String value for each locale key.
      */
-    InternationalString createInternationalString(Map<Locale,String> strings);
+    InternationalString createInternationalString(Map<Locale, String> strings);
     
     /**
      * Creates a local name from a scope and a name. This method creates a name similar to the one

@@ -12,7 +12,7 @@ package org.opengis.feature;
 // J2SE direct dependencies
 import java.util.List;
 import java.io.IOException;
-import java.net.URL;
+import java.net.URI;
 
 // OpenGIS direct dependencies
 import org.opengis.filter.Filter;
@@ -31,11 +31,11 @@ public interface FeatureStore {
     /**
      * Icon representing this FeatureStore.
      *
-     * @return URL to a icon (GIF or PNG) representing this FeatureStore.
+     * @return URI to a icon (GIF or PNG) representing this FeatureStore.
      * @revisit Assumed to point to a 16x16 icon?
      * @revisit Should the return type be URI?
      */
-    URL getIcon();
+    URI getIcon();
 
     /**
      * Display name for this {@code FeatureStore}.

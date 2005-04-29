@@ -12,7 +12,6 @@ package org.opengis.layer.source;
 // J2SE direct dependencies
 import java.io.IOException;
 import java.net.URI;
-import java.net.URL;
 import java.util.Map;
 
 // OpenGIS direct dependencies
@@ -26,6 +25,7 @@ import org.opengis.util.InternationalString;
  * @author Jesse Crossley (SYS Technologies)
  */
 public interface LayerSourceFactory {
+    
     /**
      * Ask for a {@code LayerSource} connecting to the indicated provider or service.
      * The returned {@code LayerSource} may have been previously cached.
@@ -34,14 +34,12 @@ public interface LayerSourceFactory {
      * to the metadata indicated by {@link #getParametersInfo}. This information
      * often includes security information such as username and password.
      * 
-     * @param provider Often a URL or JDBC URL locating the service to connect to.
+     * @param provider Often a URI or JDBC URI locating the service to connect to.
      * @param params Map of hints or configuration information.
      * @return {@code GraphicStore} connected to the indicated provider or service.
      * @throws IOException if the {@code LayerSource} cannot connect to its source.
-     *
-     * @revisit Need generic types for the map argument.
      */
-    LayerSource createLayerSource(URI provider, Map params) throws IOException;
+    LayerSource createLayerSource(URI provider, Map<String, Object> params) throws IOException;
 
     /**
      * Ask for a new {@code LayerSource} connecting to the indicated provider or service.
@@ -50,14 +48,12 @@ public interface LayerSourceFactory {
      * to the metadata indicated by {@link #getParametersInfo}. This information
      * often includes security information such as username and password.
      * 
-     * @param provider Often a URL or JDBC URL locating the service to connect to.
+     * @param provider Often a URI or JDBC URI locating the service to connect to.
      * @param params Map of hints or configuration information.
      * @return {@code LayerSource} connected to the newly created provider or service.
      * @throws IOException if the {@code LayerSource} cannot connect to its source.
-     *
-     * @revisit Need generic types for the map argument.
      */
-    LayerSource createNewLayerSource(URI provider, Map params) throws IOException;
+    LayerSource createNewLayerSource(URI provider, Map<String, Object> params) throws IOException;
     
     /**
      * Icon representing this category of datastores.
@@ -65,9 +61,8 @@ public interface LayerSourceFactory {
      * @return the icon.
      *
      * @revisit Assumed to point to a 16x16 icon?
-     * @revisit Should the return type be an URI instead of URL?
      */
-    URL getIcon();
+    URI getIcon();
 
     /**
      * Display name used to communicate this type of FeatureStore to end users.
@@ -83,9 +78,9 @@ public interface LayerSourceFactory {
      * Gets an {@code Object} array relating to the parameters needed (beyond
      * the URI) to instantiate a {@code FeatureStore}.
      * 
-     * @revisit Should be replaced with a <code>Param</code>[] based on ISO standards.
+     * @revisit Should be replaced with a <code>Param</code>[] based on ISO standards (ISO 19119?).
      */
-    Object[] getParametersInfo();
+    Map<String, Class> getParametersInfo();
 
     /**
      * Indicates this {@code FeatureStoreFactory} communicate with the indicated provider or service.
@@ -116,7 +111,7 @@ public interface LayerSourceFactory {
      *
      * @revisit Need generic types for the map argument.
      */
-    boolean canProcess(URI provider, Map params);
+    boolean canProcess(URI provider, Map<String, Object> params);
 
     /**
      * Allows a {@code FeatureStoreFactory} to ensure all its preconditions are met,
