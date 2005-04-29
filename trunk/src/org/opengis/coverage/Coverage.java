@@ -51,7 +51,7 @@ import static org.opengis.annotation.Specification.*;
  *
  * A coverage has a corresponding {@link SampleDimension} for each sample
  * dimension in the coverage.
- * <br><br>
+ * <p>
  * <STRONG>Implementation note:</STRONG><BR>
  * We expect that many implementations of {@link org.opengis.coverage.grid.GridCoverage} will want
  * to leverage the rich set of <A HREF="http://java.sun.com/products/java-media/jai/">Java Advanced
@@ -91,14 +91,14 @@ public interface Coverage {
      * Grid coverage can be accessed (re-projected) with new coordinate reference system with the
      * {@link org.opengis.coverage.processing.GridCoverageProcessor} component. In this case, a new instance of a
      * grid coverage is created.
-     * <br><br>
+     * <p>
      * Note: If a coverage does not have an associated coordinate reference system,
-     * the returned value will be <code>null</code>.
+     * the returned value will be {@code null}.
      * The {@link org.opengis.coverage.grid.GridGeometry#getGridToCoordinateSystem gridToCoordinateSystem})
-     * attribute should also be <code>null</code> if the coordinate reference system is <code>null</code>.
+     * attribute should also be {@code null} if the coordinate reference system is {@code null}.
      *
      * @return The coordinate reference system used when accessing a coverage or
-     *         grid coverage with the <code>evaluate(...)</code> methods, or <code>null</code>.
+     *         grid coverage with the <code>evaluate(...)</code> methods, or {@code null}.
      */
     @UML (identifier="coordinateSystem", obligation=MANDATORY, specification=OGC_01_004)
     CoordinateReferenceSystem getCoordinateReferenceSystem();
@@ -137,7 +137,7 @@ public interface Coverage {
     /**
      * The names of each dimension in the coverage.
      *
-     * @param  locale The locale for the name to be returned, or <code>null</code> for a default
+     * @param  locale The locale for the name to be returned, or {@code null} for a default
      *         locale.
      * @return The names of each dimension in the coverage. If no name is available in the
      *         specified locale, then a default locale is used.
@@ -239,7 +239,7 @@ public interface Coverage {
      *
      * @param  point Point at which to find the coverage values.
      * @param  destination An optionally preallocated array in which to store the values,
-     *         or <code>null</code> if none.
+     *         or {@code null} if none.
      * @return A sequence of boolean values for a given point in the coverage.
      *         If <code>destination</code> was non-null, then it is returned.
      *         Otherwise, a new array is allocated and returned.
@@ -263,7 +263,7 @@ public interface Coverage {
      *
      * @param point Point at which to find the coverage values.
      * @param  destination An optionally preallocated array in which to store the values,
-     *         or <code>null</code> if none.
+     *         or {@code null} if none.
      * @return A sequence of unsigned byte values for a given point in the coverage.
      *         If <code>destination</code> was non-null, then it is returned.
      *         Otherwise, a new array is allocated and returned.
@@ -287,7 +287,7 @@ public interface Coverage {
      *
      * @param point Point at which to find the grid values.
      * @param  destination An optionally preallocated array in which to store the values,
-     *         or <code>null</code> if none.
+     *         or {@code null} if none.
      * @return A sequence of integer values for a given point in the coverage.
      *         If <code>destination</code> was non-null, then it is returned.
      *         Otherwise, a new array is allocated and returned.
@@ -313,7 +313,7 @@ public interface Coverage {
      *
      * @param point Point at which to find the grid values.
      * @param  destination An optionally preallocated array in which to store the values,
-     *         or <code>null</code> if none.
+     *         or {@code null} if none.
      * @return A sequence of float values for a given point in the coverage.
      *         If <code>destination</code> was non-null, then it is returned.
      *         Otherwise, a new array is allocated and returned.
@@ -338,7 +338,7 @@ public interface Coverage {
      *
      * @param point Point at which to find the grid values.
      * @param  destination An optionally preallocated array in which to store the values,
-     *         or <code>null</code> if none.
+     *         or {@code null} if none.
      * @return A sequence of double values for a given point in the coverage.
      *         If <code>destination</code> was non-null, then it is returned.
      *         Otherwise, a new array is allocated and returned.

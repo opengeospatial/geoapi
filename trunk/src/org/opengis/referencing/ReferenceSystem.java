@@ -54,7 +54,7 @@ public interface ReferenceSystem extends IdentifiedObject {
     /**
      * Area for which the (coordinate) reference system is valid.
      *
-     * @return Coordinate reference system valid area, or <code>null</code> if not available.
+     * @return Coordinate reference system valid area, or {@code null} if not available.
      */
     @UML (identifier="validArea", obligation=OPTIONAL, specification=ISO_19111)
     Extent getValidArea();

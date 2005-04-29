@@ -56,7 +56,7 @@ public interface Surface extends OrientableSurface, GenericSurface {
      * entire <code>Surface</code> is one logical patch defined by linear interpolation from the
      * boundary.
      *
-     * @return The list of surface patches. Should never be <code>null</code> neither empty.
+     * @return The list of surface patches. Should never be {@code null} neither empty.
      *
      * @see SurfacePatch#getSurface
      */

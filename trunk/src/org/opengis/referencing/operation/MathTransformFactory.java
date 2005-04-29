@@ -34,7 +34,7 @@ import static org.opengis.annotation.Specification.*;
  * instead. However, the <code>MathTransformFactory</code> interface can be used directly
  * by applications that wish to transform other types of coordinates (e.g. color coordinates,
  * or image pixel coordinates).
- * <br><br>
+ * <p>
  * A {@linkplain MathTransform math transform} is an object that actually does
  * the work of applying formulae to coordinate values. The math transform does
  * not know or care how the coordinates relate to positions in the real world.
@@ -46,7 +46,7 @@ import static org.opengis.annotation.Specification.*;
  * the matrix scales <var>Z</var> values by a factor of 1000, then it could
  * be converting meters into millimeters, or it could be converting kilometers
  * into meters.
- * <br><br>
+ * <p>
  * Because {@linkplain MathTransform math transforms} have low semantic value
  * (but high mathematical value), programmers who do not have much knowledge
  * of how GIS applications use coordinate systems, or how those coordinate
@@ -56,7 +56,7 @@ import static org.opengis.annotation.Specification.*;
  * GIS coordinates. For example, a math transform could be used to map color
  * coordinates between different color spaces, such as converting (red, green, blue)
  * colors into (hue, light, saturation) colors.
- * <br><br>
+ * <p>
  * Since a {@linkplain MathTransform math transform} does not know what its source
  * and target coordinate systems mean, it is not necessary or desirable for a math
  * transform object to keep information on its source and target coordinate systems.
@@ -205,7 +205,7 @@ public interface MathTransformFactory extends Factory {
      * shown using Extended Backus Naur Form (EBNF).
      *
      * @param  wkt Math transform encoded in Well-Known Text format.
-     * @return The math transform (never <code>null</code>).
+     * @return The math transform (never {@code null}).
      * @throws FactoryException if the Well-Known Text can't be parsed,
      *         or if the math transform creation failed from some other reason.
      */

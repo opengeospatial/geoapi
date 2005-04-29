@@ -76,7 +76,7 @@ public interface MathTransform {
     
     /**
      * Transforms the specified <code>ptSrc</code> and stores the result in
-     * <code>ptDst</code>. If <code>ptDst</code> is <code>null</code>, a new
+     * <code>ptDst</code>. If <code>ptDst</code> is {@code null}, a new
      * {@link DirectPosition} object is allocated and then the result of the
      * transformation is stored in this object. In either case, <code>ptDst</code>,
      * which contains the transformed point, is returned for convenience.
@@ -86,7 +86,7 @@ public interface MathTransform {
      * @param ptSrc the specified coordinate point to be transformed.
      * @param ptDst the specified coordinate point that stores the
      *              result of transforming <code>ptSrc</code>, or
-     *              <code>null</code>.
+     *              {@code null}.
      * @return the coordinate point after transforming <code>ptSrc</code>
      *         and storing the result in <code>ptDst</code>, or a newly
      *         created point if <code>ptDst</code> was null.
@@ -163,7 +163,7 @@ public interface MathTransform {
      *
      * form a vector in the output space which is parallel to the displacement
      * caused by a small change in the <var>m</var>'th ordinate in the input space.
-     * <br><br>
+     * <p>
      * For example, if the input dimension is 4 and the
      * output dimension is 3, then a small displacement
      *
@@ -188,11 +188,11 @@ public interface MathTransform {
      *         For example affine transform accept null value since they produces
      *         identical derivative no matter the coordinate value. But most map
      *         projection will requires a non-null value.
-     * @return The derivative at the specified point (never <code>null</code>).
+     * @return The derivative at the specified point (never {@code null}).
      *         This method never returns an internal object: changing the matrix
      *         will not change the state of this math transform.
      * @throws NullPointerException if the derivative dependents on coordinate
-     *         and <code>point</code> is <code>null</code>.
+     *         and <code>point</code> is {@code null}.
      * @throws MismatchedDimensionException if <code>point</code> doesn't have
      *         the expected dimension.
      * @throws TransformException if the derivative can't be evaluated at the

@@ -32,7 +32,7 @@ public interface ImageDescription extends CoverageDescription {
      * intersection of the optical line of sight with the Earth’s surface. For images from a
      * scanning device, refer to the centre pixel of the image.
      *
-     * @return A value between -90° and +90°, or <code>null</code> if unspecified.
+     * @return A value between -90° and +90°, or {@code null} if unspecified.
      */
     @UML (identifier="illuminationElevationAngle", obligation=OPTIONAL, specification=ISO_19115)
     Number getIlluminationElevationAngle();
@@ -41,7 +41,7 @@ public interface ImageDescription extends CoverageDescription {
      * Illumination azimuth measured in degrees clockwise from true north at the time the
      * image is taken. For images from a scanning device, refer to the centre pixel of the image.
      *
-     * @return A value between 0° and 360°, or <code>null</code> if unspecified.
+     * @return A value between 0° and 360°, or {@code null} if unspecified.
      */
     @UML (identifier="illuminationAzimuthAngle", obligation=OPTIONAL, specification=ISO_19115)
     Number getIlluminationAzimuthAngle();
@@ -61,7 +61,7 @@ public interface ImageDescription extends CoverageDescription {
     /**
      * Area of the dataset obscured by clouds, expressed as a percentage of the spatial extent.
      *
-     * @return A value between 0 and 100, or <code>null</code> if unknow.
+     * @return A value between 0 and 100, or {@code null} if unknow.
      */
     @UML (identifier="cloudCoverPercentage", obligation=OPTIONAL, specification=ISO_19115)
     Number getCloudCoverPercentage();
@@ -75,14 +75,14 @@ public interface ImageDescription extends CoverageDescription {
 
     /**
      * Count of the number the number of lossy compression cycles performed on the image.
-     * Returns <code>null</code> if the information is not provided.
+     * Returns {@code null} if the information is not provided.
      */
     @UML (identifier="compressionGenerationQuantity", obligation=OPTIONAL, specification=ISO_19115)
     Integer getCompressionGenerationQuantity();
 
     /**
      * Indication of whether or not triangulation has been performed upon the image.
-     * Returns <code>null</code> if the information is not provided.
+     * Returns {@code null} if the information is not provided.
      */
     @UML (identifier="triangulationIndicator", obligation=OPTIONAL, specification=ISO_19115)
     Boolean getTriangulationIndicator();

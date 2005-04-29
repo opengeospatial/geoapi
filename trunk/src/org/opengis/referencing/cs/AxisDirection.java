@@ -293,7 +293,7 @@ public final class AxisDirection extends CodeList {
     public static final AxisDirection BOTTOM = DISPLAY_DOWN;
 
     /**
-     * The opposite direction for this axis, or <code>null</code> if the opposite
+     * The opposite direction for this axis, or {@code null} if the opposite
      * direction has not yet been specified.
      */
     private transient AxisDirection opposite;
@@ -353,7 +353,7 @@ public final class AxisDirection extends CodeList {
      * The same applies to {@linkplain #EAST East}-{@linkplain #WEST West},
      * {@linkplain #UP Up}-{@linkplain #DOWN Down} and
      * {@linkplain #FUTURE Future}-{@linkplain #PAST Past}, <cite>etc.</cite>
-     * If this axis direction has no opposite, then this method returns <code>null</code>.
+     * If this axis direction has no opposite, then this method returns {@code null}.
      */
     @Extension
     public AxisDirection opposite() {

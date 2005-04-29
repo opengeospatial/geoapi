@@ -222,9 +222,9 @@ public interface GenericCurve {
      * passes through either of the two points more than once, the distance shall be the minimal distance
      * between the two points on this {@linkplain org.opengis.spatialschema.geometry.primitive.Curve curve}.
      *
-     * @param point1 The first point, or <code>null</code> for the
+     * @param point1 The first point, or {@code null} for the
      *               {@linkplain #getStartPoint start point}.
-     * @param point2 The second point, or <code>null</code> for the
+     * @param point2 The second point, or {@code null} for the
      *               {@linkplain #getEndPoint end point}.
      * @return The length between the two specified points.
      * @unitof Length
@@ -241,7 +241,7 @@ public interface GenericCurve {
      * Distances between direct positions determined by the default parameterization are simply
      * the difference of the parameter. The length function also allows for the conversion of the
      * constructive parameter to the arc length parameter using the following idiom:
-     * <br><br>
+     * <p>
      * <center><code>
      * param = length({@linkplain #getStartConstructiveParam startConstructiveParam}, constructiveParam)
      *       + {@linkplain #getStartParam startParam}

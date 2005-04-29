@@ -56,7 +56,7 @@ public interface GridGeometry {
      * world earth coordinates. The transform is often an affine transformation. The
      * coordinate reference system of the real world coordinates is given by the
      * {@link org.opengis.coverage.Coverage#getCoordinateReferenceSystem} method.
-     * If no conversion is given, this attribute will be <code>null</code>.
+     * If no conversion is given, this attribute will be {@code null}.
      *
      * @return The conversion from grid coordinates to
      *         {@linkplain org.opengis.coverage.Coverage#getCoordinateReferenceSystem

@@ -32,7 +32,7 @@ import static org.opengis.annotation.Specification.*;
  * 1<sup>st</sup> degree polynomial spline. It has simple continuity at the
  * {@linkplain #getControlPoints control points} (C</sup>0</sup>), but does
  * not require derivative information (degree - 2 = -1).
- * <br><br>
+ * <p>
  * NOTE: The major difference between the polynomial splines and the b-splines (basis splines)
  * is that polynomial splines pass through their control points, making the control point and
  * sample point array identical.

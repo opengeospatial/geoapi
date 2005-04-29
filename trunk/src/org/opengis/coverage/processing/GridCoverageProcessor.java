@@ -35,14 +35,14 @@ import static org.opengis.annotation.Specification.*;
  * also change its type (e.g. from {@link SampleDimensionType#UNSIGNED_4BITS UNSIGNED_4BITS} to
  * {@link SampleDimensionType#UNSIGNED_1BIT UNSIGNED_1BIT}). The actual underlying grid data
  * remains unchanged.
- * <br><br>
+ * <p>
  * The interface has been designed to allow the adaptations to be done in a "pipe-lined" manner.
  * The interface operates on {@link GridCoverage} to create new a {@link GridCoverage}. The
  * interface does not need to make a copy of the source grid data. Instead, it can return a
  * grid coverage object which applies the adaptations on the original grid coverage whenever
  * a block of data is requested. In this way, a pipeline of several grid coverages can be
  * constructed cheaply.
- * <br><br>
+ * <p>
  * This interface can perform any of the following:
  * <ul>
  *   <li>Change the number of bands being accessed.</li>

@@ -68,7 +68,7 @@ public interface Envelope {
 
     /**
      * A coordinate position consisting of all the maximal ordinates for each
-     * dimension for all points within the <code>Envelope</code>.
+     * dimension for all points within the {@code Envelope}.
      *
      * @return The upper corner.
      */
@@ -77,7 +77,7 @@ public interface Envelope {
 
     /**
      * A coordinate position consisting of all the minimal ordinates for each
-     * dimension for all points within the <code>Envelope</code>.
+     * dimension for all points within the {@code Envelope}.
      *
      * @return The lower corner.
      */

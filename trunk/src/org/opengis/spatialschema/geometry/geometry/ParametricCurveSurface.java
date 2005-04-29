@@ -46,7 +46,7 @@ import static org.opengis.annotation.Specification.*;
  * refer to the parameter space and need not be either horizontal or vertical curves in the coordinate
  * reference system. The table below lists some possible pairs of types for these surface curves
  * (other representations of these same surfaces are possible).
- * <br><br>
+ * <p>
  * <table border='1'>
  *   <tr bgcolor="#CCCCFF" class="TableHeadingColor">
  *     <th nowrap>&nbsp;Surface type&nbsp;</th>
@@ -74,7 +74,7 @@ import static org.opengis.annotation.Specification.*;
  *     <td nowrap>&nbsp;Cubic spline&nbsp;</td>
  *   </tr>
  * </table>
- * <br><br>
+ * <p>
  * The two partial derivatives of the surface parameterization, <b>i</b> and <b>j</b> are given by:
  *
  * <blockquote>TODO: copy equations there</blockquote>

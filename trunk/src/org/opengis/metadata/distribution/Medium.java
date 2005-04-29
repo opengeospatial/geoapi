@@ -52,7 +52,7 @@ public interface Medium {
 
     /**
      * Number of items in the media identified.
-     * Returns <code>null</code> if unknown.
+     * Returns {@code null} if unknown.
      */
     @UML (identifier="volumes", obligation=OPTIONAL, specification=ISO_19115)
     Integer getVolumes();

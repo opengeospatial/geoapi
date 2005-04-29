@@ -29,14 +29,14 @@ import static org.opengis.annotation.Specification.*;
 public interface Band extends RangeDimension {
     /**
      * Longest wavelength that the sensor is capable of collecting within a designated band.
-     * Returns <code>null</code> if unspecified.
+     * Returns {@code null} if unspecified.
      */
     @UML (identifier="maxValue", obligation=OPTIONAL, specification=ISO_19115)
     Number getMaxValue();
 
     /**
      * Shortest wavelength that the sensor is capable of collecting within a designated band.
-     * Returns <code>null</code> if unspecified.
+     * Returns {@code null} if unspecified.
      */
     @UML (identifier="minValue", obligation=OPTIONAL, specification=ISO_19115)
     Number getMinValue();
@@ -51,7 +51,7 @@ public interface Band extends RangeDimension {
 
     /**
      * Wavelength at which the response is the highest.
-     * Returns <code>null</code> if unspecified.
+     * Returns {@code null} if unspecified.
      */
     @UML (identifier="peakResponse", obligation=OPTIONAL, specification=ISO_19115)
     Number getPeakResponse();
@@ -59,28 +59,28 @@ public interface Band extends RangeDimension {
     /**
      * Maximum number of significant bits in the uncompressed representation for the value
      * in each band of each pixel.
-     * Returns <code>null</code> if unspecified.
+     * Returns {@code null} if unspecified.
      */
     @UML (identifier="bitsPerValue", obligation=OPTIONAL, specification=ISO_19115)
     Integer getBitsPerValue();
 
     /**
      * Number of discrete numerical values in the grid data.
-     * Returns <code>null</code> if unspecified.
+     * Returns {@code null} if unspecified.
      */
     @UML (identifier="toneGradation", obligation=OPTIONAL, specification=ISO_19115)
     Integer getToneGradation();
 
     /**
      * Scale factor which has been applied to the cell value.
-     * Returns <code>null</code> if unspecified.
+     * Returns {@code null} if unspecified.
      */
     @UML (identifier="scaleFactor", obligation=OPTIONAL, specification=ISO_19115)
     Number getScaleFactor();
 
     /**
      * The physical value corresponding to a cell value of zero.
-     * Returns <code>null</code> if unspecified.
+     * Returns {@code null} if unspecified.
      */
     @UML (identifier="offset", obligation=OPTIONAL, specification=ISO_19115)
     Number getOffset();

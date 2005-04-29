@@ -30,7 +30,7 @@ import static org.opengis.annotation.Specification.*;
  * From this sequence, a vertical curve is calculated for <var>s</var>, and evaluated at <var>t</var>.
  * In most cases, the order of calculation (horizontal-vertical versus vertical-horizontal) does not
  * make a difference. Where it does, the horizontal-vertical order shall be the one used.
- * <br><br>
+ * <p>
  * The most common case of a gridded surface is a 2D spline. In this case the weight functions for
  * each parameter make order of calculation unimportant:
  *

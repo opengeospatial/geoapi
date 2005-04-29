@@ -27,7 +27,7 @@ import static org.opengis.annotation.Specification.*;
  * {@linkplain OrientableCurve orientable curve} in the sequence. Since the sequence is circular,
  * there is no exception to this rule. Each ring, like all boundaries is a cycle and each ring is
  * simple.
- * <br><br>
+ * <p>
  * Even though each <code>Ring</code> is simple, the boundary need not be simple. The easiest
  * case of this is where one of the interior rings of a surface is tangent to its exterior ring.
  * Implementations may enforce stronger restrictions on the interaction of boundary elements.

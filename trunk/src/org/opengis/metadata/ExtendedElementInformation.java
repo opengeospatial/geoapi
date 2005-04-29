@@ -40,7 +40,7 @@ public interface ExtendedElementInformation {
     /**
      * Short form suitable for use in an implementation method such as XML or SGML.
      * NOTE: other methods may be used.
-     * Returns <code>null</code> if the {@linkplain #getDataType data type}
+     * Returns {@code null} if the {@linkplain #getDataType data type}
      * is {@linkplain Datatype#CODE_LIST_ELEMENT code list element}.
      */
     @UML (identifier="shortName", obligation=CONDITIONAL, specification=ISO_19115)
@@ -82,7 +82,7 @@ public interface ExtendedElementInformation {
 
     /**
      * Maximum occurrence of the extended element.
-     * Returns <code>null</code> if it doesn't apply, for example if the
+     * Returns {@code null} if it doesn't apply, for example if the
      * {@linkplain #getDataType data type} is {@linkplain Datatype#ENUMERATION enumeration},
      * {@linkplain Datatype#CODE_LIST code list} or {@linkplain Datatype#CODE_LIST_ELEMENT
      * code list element}.
@@ -92,7 +92,7 @@ public interface ExtendedElementInformation {
 
     /**
      * Valid values that can be assigned to the extended element.
-     * Returns <code>null</code> if it doesn't apply, for example if the
+     * Returns {@code null} if it doesn't apply, for example if the
      * {@linkplain #getDataType data type} is {@linkplain Datatype#ENUMERATION enumeration},
      * {@linkplain Datatype#CODE_LIST code list} or {@linkplain Datatype#CODE_LIST_ELEMENT
      * code list element}.

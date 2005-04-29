@@ -39,7 +39,7 @@ import static org.opengis.annotation.Specification.*;
  * is an equivalent representation of the same curve. For the sake of simplicity, <code>Curve</code>s
  * should be parameterized by arc length, so that the parameterization operation inherited from
  * {@link GenericCurve} will be valid for parameters between 0 and the length of the curve.
- * <br><br>
+ * <p>
  * Curves are continuous, connected, and have a measurable length in terms of the coordinate system.
  * The orientation of the curve is determined by this parameterization, and is consistent with the
  * tangent function, which approximates the derivative function of the parameterization and shall
@@ -52,7 +52,7 @@ import static org.opengis.annotation.Specification.*;
  *
  * <code>s(t) = c(a&nbsp;+&nbsp;b&nbsp;-&nbsp;t):(a,&nbsp;b) &rarr; E<sup>n</sup></code>.
  *
- * <br><br>
+ * <p>
  * A curve is composed of one or more curve segments. Each curve segment within a curve may be
  * defined using a different interpolation method. The curve segments are connected to one another,
  * with the end point of each segment except the last being the start point of the next segment in
@@ -73,7 +73,7 @@ public interface Curve extends OrientableCurve, GenericCurve {
      * this <code>Curve</code>. For a particular parameter interval, the <code>Curve</code> and
      * {@link CurveSegment} agree.
      *
-     * @return The list of curve segments. Should never be <code>null</code> neither empty.
+     * @return The list of curve segments. Should never be {@code null} neither empty.
      *
      * @see CurveSegment#getCurve
      */

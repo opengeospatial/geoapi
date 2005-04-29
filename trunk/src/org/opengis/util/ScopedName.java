@@ -28,6 +28,8 @@ import static org.opengis.annotation.Specification.*;
  * @revisit We omitted the <code>NameSpace</code> datatype. Concequently, the
  *          <code>tail</code> association become similar to the <code>scope</code>
  *          relation (if my understanding is right).
+ *
+ * @see NameFactory#createScopedName
  */
 @UML (identifier="ScopedName", specification=ISO_19103)
 public interface ScopedName extends GenericName {

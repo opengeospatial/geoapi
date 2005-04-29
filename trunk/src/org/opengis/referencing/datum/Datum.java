@@ -109,7 +109,7 @@ public interface Datum extends IdentifiedObject {
      * realization epoch for the new datum defines the upper limit for the validity of the
      * superseded datum.
      *
-     * @return The datum realization epoch, or <code>null</code> if not available.
+     * @return The datum realization epoch, or {@code null} if not available.
      */
     @UML (identifier="realizationEpoch", obligation=OPTIONAL, specification=ISO_19111)
     Date getRealizationEpoch();
@@ -117,7 +117,7 @@ public interface Datum extends IdentifiedObject {
     /**
      * Area or region in which this datum object is valid.
      *
-     * @return The datum valid area, or <code>null</code> if not available.
+     * @return The datum valid area, or {@code null} if not available.
      */
     @UML (identifier="validArea", obligation=OPTIONAL, specification=ISO_19111)
     Extent getValidArea();

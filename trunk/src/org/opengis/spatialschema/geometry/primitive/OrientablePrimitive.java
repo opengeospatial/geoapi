@@ -25,7 +25,7 @@ import static org.opengis.annotation.Specification.*;
  * would form a right-handed system. When used as a boundary surface, the bounded solid is "below"
  * the surface. The orientation of points and solids has no immediate geometric interpretation in
  * 3-dimensional space.
- * <br><br>
+ * <p>
  * <code>OrientablePrimitive</code> objects are essentially references to geometric primitives
  * that carry an "orientation" reversal flag (either "+" or "-") that determines whether this
  * primitive agrees or disagrees with the orientation of the referenced object.
@@ -65,7 +65,7 @@ public interface OrientablePrimitive extends Primitive {
      * For curves and surfaces, there are exactly two orientable primitives
      * for each geometric object.
      *
-     * @return The primitive, never <code>null</code>.
+     * @return The primitive, never {@code null}.
      *
      * @see Primitive#getProxy
      */

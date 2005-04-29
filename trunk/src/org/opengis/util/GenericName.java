@@ -39,7 +39,7 @@ import static org.opengis.annotation.Specification.*;
 public interface GenericName extends Comparable {
     /**
      * Returns the scope (name space) of this generic name. If this name has no scope
-     * (e.g. is the root), then this method returns <code>null</code>.
+     * (e.g. is the root), then this method returns {@code null}.
      */
     @UML (identifier="scope", obligation=OPTIONAL, specification=ISO_19103)
     GenericName getScope();
@@ -54,7 +54,7 @@ public interface GenericName extends Comparable {
 
     /**
      * Returns a view of this object as a scoped name,
-     * or <code>null</code> if this name has no scope.
+     * or {@code null} if this name has no scope.
      */
     ScopedName asScopedName();
 

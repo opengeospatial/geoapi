@@ -25,7 +25,7 @@ import static org.opengis.annotation.Specification.*;
  * <code>DirectPosition</code>s, as data types, will often be included in larger objects
  * (such as {@linkplain org.opengis.spatialschema.geometry.Geometry geometries}) that have
  * references to {@link CoordinateReferenceSystem}, the {@link #getCoordinateReferenceSystem}
- * method may returns <code>null</code> if this particular <code>DirectPosition</code> is
+ * method may returns {@code null} if this particular <code>DirectPosition</code> is
  * included in a larger object with such a reference to a {@linkplain CoordinateReferenceSystem
  * coordinate reference system}. In this case, the cordinate reference system is implicitly
  * assumed to take on the value of the containing object's {@link CoordinateReferenceSystem}.
@@ -75,13 +75,13 @@ public interface DirectPosition extends Position, Cloneable {
 
     /**
      * The coordinate reference system in which the coordinate is given.
-     * May be <code>null</code> if this particular <code>DirectPosition</code> is included
+     * May be {@code null} if this particular <code>DirectPosition</code> is included
      * in a larger object with such a reference to a {@linkplain CoordinateReferenceSystem
      * coordinate reference system}. In this case, the cordinate reference system is implicitly
      * assumed to take on the value of the containing object's {@linkplain CoordinateReferenceSystem
      * coordinate reference system}.
      *
-     * @return The coordinate reference system, or <code>null</code>.
+     * @return The coordinate reference system, or {@code null}.
      */
     @UML (identifier="coordinateReferenceSystem", obligation=MANDATORY, specification=ISO_19107)
     CoordinateReferenceSystem getCoordinateReferenceSystem();

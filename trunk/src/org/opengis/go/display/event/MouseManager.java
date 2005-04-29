@@ -58,9 +58,9 @@ public interface MouseManager extends EventManager {
         MouseHandler replacementHandler);
 
     /**
-     * Returns the current <code>MouseHandler</code> or <code>null</code> if none.
+     * Returns the current <code>MouseHandler</code> or {@code null} if none.
      *
-     * @return the current <code>MouseHandler</code> or <code>null</code> if none.
+     * @return the current <code>MouseHandler</code> or {@code null} if none.
      */
     public MouseHandler getCurrentMouseHandler();
 

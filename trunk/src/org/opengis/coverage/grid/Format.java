@@ -48,7 +48,7 @@ public interface Format {
 
     /**
      * Description of the file format.
-     * If no description, the value will be <code>null</code>.
+     * If no description, the value will be {@code null}.
      */
     @UML (identifier="description", obligation=OPTIONAL, specification=OGC_01_004)
     String getDescription();

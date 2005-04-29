@@ -24,7 +24,7 @@ import static org.opengis.annotation.Specification.*;
  * <var>P</var><sub>2</sub>, and <var>P</var><sub>3</sub> are three {@linkplain Position positions}.
  * Triangles have no holes. Triangle shall be used to construct
  * {@linkplain TriangulatedSurface triangulated surfaces}.
- * <br><br>
+ * <p>
  * <strong>Note:</strong> The points in a triangle can be located in terms of their corner points
  * by defining a set of barycentric coordinates, three nonnegative numbers <var>c</var><sub>1</sub>,
  * <var>c</var><sub>2</sub>, and <var>c</var><sub>3</sub> such that
@@ -32,7 +32,7 @@ import static org.opengis.annotation.Specification.*;
  * <var>c</var><sub>1</sub> + <var>c</var><sub>2</sub> + <var>c</var><sub>3</sub> = 1.0.
  *
  * Then, each point <var>P</var> in the triangle can be expressed for some set of barycentric coordinates as: 
- * <br><br>
+ * <p>
  * <blockquote>
  * P = <var>c</var><sub>1</sub><var>P</var><sub>1</sub> +
  *     <var>c</var><sub>2</sub><var>P</var><sub>2</sub> +

@@ -1,49 +1,52 @@
-/*
- * $ Id $
- * $ Source $
- * Created on Nov 23, 2004
- */
+/*$************************************************************************************************
+ **
+ ** $Id$
+ **
+ ** $Source$
+ **
+ ** Copyright (C) 2003 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
+ **
+ *************************************************************************************************/
 package org.opengis.feature;
 
+// J2SE direct dependencies
 import java.io.IOException;
 import java.net.URI;
 import java.net.URL;
 import java.util.Map;
 
+// OpenGIS direct dependencies
 import org.opengis.util.InternationalString;
+
 
 /**
  * A provider of spatial information.
  * <p>
  * A provider, or service, implementing this API may range from a single
  * shapefile, to a complete Web Feature Server or OracleSpatial instance.
- * </p>
  * <p>
  * This API does need to consider the:
  * <ul>
- * <li>Identity: currently captured as a URI, completly defines a server
- * or provider. Usually via a URL or JDBC URL as required.
- * <li>Configuration: currently captured as a Map
+ *   <li>Identity: currently captured as a URI, completly defines a server
+ *       or provider. Usually via a URL or JDBC URL as required.</li>
+ *   <li>Configuration: currently captured as a Map.</li>
  * </ul>
- * </p>
+ *
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  */
 public interface FeatureStoreFactory {
-
-    
     /**
-     * Ask for a FeatureStore connecting to the indicated provider or service.
-     * The returned FeatureStore may have been previously cached.
+     * Ask for a {@code FeatureStore} connecting to the indicated provider or service.
+     * The returned {@code FeatureStore} may have been previously cached.
      * <p>
      * Additional hints or configuration information may be provided according
-     * to the metadata indicated by getParametersInfo. This information often includes
-     * security information such as username and password.
-     * </p>
+     * to the metadata indicated by {@link #getParametersInfo}. This information
+     * often includes security information such as username and password.
      * 
      * @param provider Often a URL or JDBC URL locating the serivce to connect to
      * @param params Map of hints or configuration information.
-     * @return FeatureStore connected to the indicated provider or service
-     * @throws IOException if the FeatureStore cannot connect to its source
+     * @return Feature store connected to the indicated provider or service.
+     * @throws IOException if the {@code FeatureStore} cannot connect to its source.
      */
     FeatureStore createFeatureStore( URI provider, Map params) throws IOException;
 
@@ -51,80 +54,79 @@ public interface FeatureStoreFactory {
      * Ask for a new FeatureStore connecting to the indicated provider or service.
      * <p>
      * Additional hints or configuration information may be provided according
-     * to the metadata indicated by getParametersInfo. This information often includes
-     * security information such as username and password.
-     * </p>
+     * to the metadata indicated by {@link #getParametersInfo}. This information
+     * often includes security information such as username and password.
      * 
      * @param provider Often a URL or JDBC URL locating the serivce to connect to
      * @param params Map of hints or configuration information.
-     * @return FeatureStore Datastore connected to the newly created provider or serivce.
-     * @throws IOException
+     * @return Feature store connected to the newly created provider or serivce.
+     * @throws IOException if the {@code FeatureStore} cannot connect to its source.
      */
     FeatureStore createNewFeatureStore(URI provider, Map params) throws IOException;
     
     /**
      * Icon representing this category of <code>FeatureStore</code>s.
-     * <p>
-     * Assumed to point to a 16x16 icon?
-     * </p>
      * 
      * @return the icon.
+     * @revisit Assumed to point to a 16x16 icon?
+     * @revisit Should the return type be URI?
      */
     URL getIcon();
 
     /**
-     *  Display name used to communicate this type of FeatureStore to end users.
-     * @return
+     * Display name used to communicate this type of {@code FeatureStore} to end users.
      */
     InternationalString getDisplayName();
     
     /** 
-     * Descrption of this type of FeatureStore.
-     * @return
+     * Description of this type of {@code FeatureStore}.
      */
     InternationalString getDescription();
 
     /**
      * Gets an <code>Object</code> array relating to the parameters needed (beyond
-     * the URI) to instantiate a <code>FeatureStore</code>.  Should be replaced
-     * with a <code>Param</code>[] based on ISO standards.
-     * @return
+     * the URI) to instantiate a <code>FeatureStore</code>.
+     * 
+     * @revisit Should be replaced with a <code>Param</code>[] based on ISO standards.
      */
     Object[] getParametersInfo();
 
     /**
-     * Indicates this FeatureStoreFactory communicate with the indicated provider or service.
+     * Indicates this {@code FeatureStoreFactory} communicate with the indicated provider or service.
      * <p>
      * This method should not fail, if a connection needs to be made
-     * to parse a GetCapabilities file or negotiate WMS versions any
+     * to parse a {@code GetCapabilities} file or negotiate WMS versions any
      * IO problems simply indicate the inabiity to process.
-     * </p>
      * <p>
-     * This method may be considered the same as: canProcess( provider, hints )
+     * This method may be considered the same as:
+     * <code>{@linkplain #canProcess(URI,Map) canProcess}(provider, hints)</code>
      * where hints was generated by using all the default values specified by the
-     * getParameterInfo method.
-     * </p>
+     * {@link #getParametersInfo} method.
+     *
      * @param provider Provider or Server of spatial information. 
+     * @return {@code true} if this factory can communicate with the provider.
      */
-    boolean canProcess( URI provider );
-    
+    boolean canProcess(URI provider);
+
     /**
      * Indicates this FeatureStoreFactory communicate with the indicated provider or service.
      * <p>
-     * This method differs from canProcess in that additional configuration
+     * This method differs from {@link #canProcess(URI)} in that additional configuration
      * information may be supplied. 
-     * </p>
-     * @param provider
-     * @param params
-     * @return <code>true</code> if this factory can communicate with the provider.
+     *
+     * @param provider Provider or Server of spatial information. 
+     * @param params additional configuration information.
+     * @return {@code true} if this factory can communicate with the provider.
+     *
+     * @revisit Need generic types for the map argument.
      */
-    boolean canProcess( URI provider, Map params);
+    boolean canProcess(URI provider, Map params);
 
     /**
-     * Allows a FeatureStoreFactory to ensure all its preconditions are met,
+     * Allows a {@code FeatureStoreFactory} to ensure all its preconditions are met,
      * such as the presense of required libraries.
-     * @return true if available
+     *
+     * @return {@code true} if available
      */
     boolean isAvailable();
-
 }

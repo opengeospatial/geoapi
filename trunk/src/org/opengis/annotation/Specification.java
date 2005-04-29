@@ -51,6 +51,11 @@ public enum Specification {
     ISO_19123,
 
     /**
+     * ISO 19128, or <CITE>Layers and styles</CITE>.
+     */
+    ISO_19128,
+
+    /**
      * <A HREF="http://www.opengis.org/docs/03-064r1.pdf">GO-1 Application Objects</A>.
      * This is the specification for package {@link org.opengis.go} and sub-packages.
      */

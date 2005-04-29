@@ -27,7 +27,7 @@ import org.opengis.annotation.Extension;
  * {@linkplain org.opengis.referencing.crs.CoordinateReferenceSystem coordinate reference systems}
  * that cannot be created by an {@linkplain AuthorityFactory authority factory}. This factory is
  * very flexible, whereas the authority factory is easier to use.
- * <br><br>
+ * <p>
  * <H3>Object properties</H3>
  * <P>Most factory methods expect a {@link java.util.Map} argument. The map is often (but is not required
  * to be) a {@link java.util.Properties} instance. The map shall contains at least a <code>"name"</code>

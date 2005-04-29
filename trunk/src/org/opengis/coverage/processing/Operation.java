@@ -53,27 +53,27 @@ public interface Operation {
 
     /**
      * Description of the processing operation.
-     * If no description is available, the value will be <code>null</code>.
+     * If no description is available, the value will be {@code null}.
      *
-     * @return The description of the processing operation, or <code>null</code>.
+     * @return The description of the processing operation, or {@code null}.
      */
     @UML (identifier="description", obligation=OPTIONAL, specification=OGC_01_004)
     String getDescription();
 
     /**
      * Vendor of the processing operation implementation.
-     * If no vendor name is available, the value will be <code>null</code>.
+     * If no vendor name is available, the value will be {@code null}.
      *
-     * @return The implementation vendor name, or <code>null</code>.
+     * @return The implementation vendor name, or {@code null}.
      */
     @UML (identifier="vendor", obligation=OPTIONAL, specification=OGC_01_004)
     String getVendor();
 
     /**
      * URL for documentation on the processing operation.
-     * If no online documentation is available the string will be <code>null</code>.
+     * If no online documentation is available the string will be {@code null}.
      *
-     * @return The URL for documentation on the processing operation, or <code>null</code>.
+     * @return The URL for documentation on the processing operation, or {@code null}.
      */
     @UML (identifier="docURL", obligation=OPTIONAL, specification=OGC_01_004)
     String getDocURL();
@@ -81,7 +81,7 @@ public interface Operation {
     /**
      * Version number for the implementation.
      *
-     * @return The version number for the implementation, or <code>null</code>.
+     * @return The version number for the implementation, or {@code null}.
      */
     @UML (identifier="version", obligation=OPTIONAL, specification=OGC_01_004)
     String getVersion();

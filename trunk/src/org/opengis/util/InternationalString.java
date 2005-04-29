@@ -26,6 +26,7 @@ import java.util.Locale;
  * @version 2.0
  *
  * @see javax.xml.registry.infomodel.InternationalString
+ * @see NameFactory#createInternationalString
  */
 public interface InternationalString extends CharSequence, Comparable {
     /**
@@ -33,7 +34,7 @@ public interface InternationalString extends CharSequence, Comparable {
      * then some default locale is used. The default locale is implementation-dependent. It
      * may or may not be the {@linkplain Locale#getDefault() system default}.
      *
-     * @param  locale The desired locale for the string to be returned, or <code>null</code>
+     * @param  locale The desired locale for the string to be returned, or {@code null}
      *         for a string in the implementation default locale.
      * @return The string in the given locale if available, or in the default locale otherwise.
      */

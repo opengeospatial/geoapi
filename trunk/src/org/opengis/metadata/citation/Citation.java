@@ -63,7 +63,7 @@ public interface Citation {
     InternationalString getEdition();
 
     /**
-     * Date of the edition, or <code>null</code> if none.
+     * Date of the edition, or {@code null} if none.
      */
     @UML (identifier="editionDate", obligation=OPTIONAL, specification=ISO_19115)
     Date getEditionDate();
@@ -97,14 +97,14 @@ public interface Citation {
 
     /**
      * Information about the series, or aggregate dataset, of which the dataset is a part.
-     * Returns <code>null</code> if none.
+     * Returns {@code null} if none.
      */
     @UML (identifier="series", obligation=OPTIONAL, specification=ISO_19115)
     Series getSeries();
 
     /**
      * Other information required to complete the citation that is not recorded elsewhere.
-     * Returns <code>null</code> if none.
+     * Returns {@code null} if none.
      */
     @UML (identifier="otherCitationDetails", obligation=OPTIONAL, specification=ISO_19115)
     InternationalString getOtherCitationDetails();
@@ -112,19 +112,19 @@ public interface Citation {
     /**
      * Common title with holdings note. Note: title identifies elements of a series
      * collectively, combined with information about what volumes are available at the
-     * source cited. Returns <code>null</code> if there is no title.
+     * source cited. Returns {@code null} if there is no title.
      */
     @UML (identifier="collectiveTitle", obligation=OPTIONAL, specification=ISO_19115)
     InternationalString getCollectiveTitle();
 
     /**
-     * International Standard Book Number, or <code>null</code> if none.
+     * International Standard Book Number, or {@code null} if none.
      */
     @UML (identifier="ISBN", obligation=OPTIONAL, specification=ISO_19115)
     String getISBN();
 
     /**
-     * International Standard Serial Number, or <code>null</code> if none.
+     * International Standard Serial Number, or {@code null} if none.
      */
     @UML (identifier="ISSN", obligation=OPTIONAL, specification=ISO_19115)
     String getISSN();

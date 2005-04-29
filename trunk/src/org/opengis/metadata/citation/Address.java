@@ -38,29 +38,29 @@ public interface Address {
     Collection<String> getDeliveryPoints();
 
     /**
-     * Returns the city of the location
-     * Returns <code>null</code> if unspecified.
+     * The city of the location.
+     * Returns {@code null} if unspecified.
      */
     @UML (identifier="city", obligation=OPTIONAL, specification=ISO_19115)
     InternationalString getCity();
 
     /**
      * State, province of the location.
-     * Returns <code>null</code> if unspecified.
+     * Returns {@code null} if unspecified.
      */
     @UML (identifier="administrativeArea", obligation=OPTIONAL, specification=ISO_19115)
     InternationalString getAdministrativeArea();
 
     /**
      * ZIP or other postal code.
-     * Returns <code>null</code> if unspecified.
+     * Returns {@code null} if unspecified.
      */
     @UML (identifier="postalCode", obligation=OPTIONAL, specification=ISO_19115)
     String getPostalCode();
 
     /**
      * Country of the physical address.
-     * Returns <code>null</code> if unspecified.
+     * Returns {@code null} if unspecified.
      */
     @UML (identifier="country", obligation=OPTIONAL, specification=ISO_19115)
     InternationalString getCountry();

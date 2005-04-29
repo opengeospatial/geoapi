@@ -82,10 +82,10 @@ public interface GridCoverage extends Coverage {
      * coverage by reading blocks of 128 by 128 if the grid is tiled into blocks of
      * this size.
      * The sequence is ordered by dimension.
-     * If the implementation does not have optimal sizes, the sequence will be <code>null</code>.
+     * If the implementation does not have optimal sizes, the sequence will be {@code null}.
      *
      * @return The optimal size to use for each dimension when accessing grid values,
-     *         or <code>null</code> if none.
+     *         or {@code null} if none.
      */
     @UML (identifier="optimalDataBlockSizes", obligation=OPTIONAL, specification=OGC_01_004)
     int[] getOptimalDataBlockSizes();
@@ -172,7 +172,7 @@ public interface GridCoverage extends Coverage {
      *
      * @param  gridRange Grid range for block of data to be accessed.
      * @param  destination An optionally preallocated array in which to store the values,
-     *         or <code>null</code> if none.
+     *         or {@code null} if none.
      * @return A sequence of boolean values for a given block in the coverage.
      *         If <code>destination</code> was non-null, then it is returned.
      *         Otherwise, a new array is allocated and returned.
@@ -194,7 +194,7 @@ public interface GridCoverage extends Coverage {
      *
      * @param  gridRange Grid range for block of data to be accessed.
      * @param  destination An optionally preallocated array in which to store the values,
-     *         or <code>null</code> if none.
+     *         or {@code null} if none.
      * @return A sequence of 8 bits values for a given block in the coverage.
      *         If <code>destination</code> was non-null, then it is returned.
      *         Otherwise, a new array is allocated and returned.
@@ -217,7 +217,7 @@ public interface GridCoverage extends Coverage {
      *
      * @param  gridRange Grid range for block of data to be accessed.
      * @param  destination An optionally preallocated array in which to store the values,
-     *         or <code>null</code> if none.
+     *         or {@code null} if none.
      * @return A sequence of 16 bits values for a given block in the coverage.
      *         If <code>destination</code> was non-null, then it is returned.
      *         Otherwise, a new array is allocated and returned.
@@ -240,7 +240,7 @@ public interface GridCoverage extends Coverage {
      *
      * @param  gridRange Grid range for block of data to be accessed.
      * @param  destination An optionally preallocated array in which to store the values,
-     *         or <code>null</code> if none.
+     *         or {@code null} if none.
      * @return A sequence of 32 bits values for a given block in the coverage.
      *         If <code>destination</code> was non-null, then it is returned.
      *         Otherwise, a new array is allocated and returned.
@@ -264,7 +264,7 @@ public interface GridCoverage extends Coverage {
      *
      * @param  gridRange Grid range for block of data to be accessed.
      * @param  destination An optionally preallocated array in which to store the values,
-     *         or <code>null</code> if none.
+     *         or {@code null} if none.
      * @return A sequence of float values for a given block in the coverage.
      *         If <code>destination</code> was non-null, then it is returned.
      *         Otherwise, a new array is allocated and returned.
@@ -292,7 +292,7 @@ public interface GridCoverage extends Coverage {
      * The index values will be based from 0. The indices in the returned <VAR>N</VAR> dimensional
      * safe array will need to be offset by <code>gridRange</code> {@linkplain GridRange#getLowers()
      * minimum coordinates} to get equivalent grid coordinates.
-     * <br><br>
+     * <p>
      * The requested grid range must satisfy the following rules for each dimension of the grid
      * coverage:
      * <center>
@@ -314,7 +314,7 @@ public interface GridCoverage extends Coverage {
      *
      * @param  gridRange Grid range for block of data to be accessed.
      * @param  destination An optionally preallocated array in which to store the values,
-     *         or <code>null</code> if none.
+     *         or {@code null} if none.
      * @return A sequence of double values for a given block in the coverage.
      *         If <code>destination</code> was non-null, then it is returned.
      *         Otherwise, a new array is allocated and returned.
@@ -356,7 +356,7 @@ public interface GridCoverage extends Coverage {
      * the dimension. For example, a grid with one 16 bit unsigned
      * ({@link org.opengis.coverage.SampleDimensionType#UNSIGNED_16BITS UNSIGNED_16BITS})
      * sample dimension will return 2 bytes for every cell in the block.
-     * <br><br>
+     * <p>
      * <strong>Byte padding rules for grid values of less than 8 bits</strong><br>
      * For 2D grid coverages, padding is to the nearest byte for the following cases:
      *
