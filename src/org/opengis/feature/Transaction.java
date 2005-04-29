@@ -355,9 +355,10 @@ class AutoCommit implements Transaction {
     /** AutoCommit commits all the time - so this is a NOP */
     public LockResponse commit() throws IOException {
         // No lock requests have been buffered (they were auto commited after all)
-        return LockResponse.PENDING;
+        return /* LockResponse.PENDING */ null;
     }
-    /**
+
+	/**
      * AutoCommit does not support rollback - it is already too late.
      * 
      * @throws IOException Indicating to client code that rollback cannot be supported
