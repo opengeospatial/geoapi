@@ -1,10 +1,6 @@
 package org.opengis.feature;
 
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Set;
-
 
 /**
  * Represents a response for a lock request.
@@ -25,72 +21,7 @@ import java.util.Set;
  * </p>
  * @author Jody Garnett
  */
-public class LockResponse {
-    
-    /**
-     * Special case used to indicate a lock lasting until the end of the transaction.
-     * <p>
-     * TODO: Make sure this is a read only implemetnation
-     * </p>
-     */
-    static final LockResponse TRANSACTION_LOCK_RESPONSE = new LockResponse();
-    
-    /**
-     * Special case used to indicate result is pending, used by Transasction.AUTO_COMMIT.
-     * <p>
-     * Please check the LockResponse returned by commit.
-     * </p>
-     * <p>
-     * TODO: Make sure this is a read only implemetnation
-     * </p>
-     */  
-    static final LockResponse PENDING = new LockResponse();
-    
-    /**
-     * Special case used to indicate no features were locked.
-     * <p>
-     * This is the lock response returned by commit when no lock requets
-     * were made.
-     * </p>
-     * <p>
-     * TODO: Make sure this is a read only implemetnation
-     * </p>
-     */  
-    static final LockResponse NONE = new LockResponse();
-    
-    /** Authorization tokens by FeatureStore */
-    Map<FeatureStore,String> authorizationMap;
-    
-    /**
-     * Number of Features locked, or -1 if unknown.
-     */
-    int numberLocked;
-    
-    /**
-     * Constructor usable for use with lock( Filter ) under AUTO_COMMIT.
-     * 
-     * @param featureStore FeatureStore being locked
-     * @param token Authorization token for later opperations on locked Features
-     * @param numberLocked Number of Features successfully locked, or -1 for unknown
-     */
-    public LockResponse( FeatureStore featureStore, String token, int numberLocked ){
-        authorizationMap = new HashMap();
-        authorizationMap.put( featureStore, token );
-        this.numberLocked = numberLocked;
-    }
-    /** Constructor for use of with a commit() implementation.
-     * <p>
-     * The results of the lock requests will need to be gathered using:
-     * <ul>
-     * <li>increaseNumberLocked( amount )
-     * <li>addAuthorizationToken( featureStore, token )
-     * </ul>
-     * </p>
-     */
-    public LockResponse(){
-        authorizationMap = new HashMap();
-        numberLocked = 0;
-    }
+public interface LockResponse {
     /**
      * Number of features successfully locked, or -1 if unknown
      * <p>
@@ -100,15 +31,12 @@ public class LockResponse {
      * </p>
      * @return number of locked features or -1 if unknown.
      */
-    public int getNumberLocked() {
-        return numberLocked;
-    }    
-    
+    public int getNumberLocked();
+
     /** Used to collect the results of a number of lock requests for commit() */
-    public void increaseNumberLocked( int amount ){
-        numberLocked += amount;
-    }
-    /**
+    public void increaseNumberLocked( int amount );
+
+	/**
      * Add an additional authorization token to collected results for commit().
      * <p>
      * Note this abstraction does not allow the collection of more then one token per
@@ -123,25 +51,19 @@ public class LockResponse {
      * </ul>
      * </p>
      */  
-    public void addAuthorization( FeatureStore featureStore, String token ){
-        authorizationMap.put( featureStore, token );
-    }
-    
+    public void addAuthorization( FeatureStore featureStore, String token );
+
     /**
      * Authorization token for indicated featureStore, or null if no locks known for featureStore.
      * 
      * @param featureStore FeatureStore to search for
      * @return token, or null if a token for featureStore was unavailable
      */
-    public String getAuthorization( FeatureStore featureStore ){
-        return (String) authorizationMap.get( featureStore );
-    }
-    
+    public String getAuthorization( FeatureStore featureStore );
+
     /** Set of locked FeatureStores */
-    public Set<FeatureStore> getFeatureStores(){
-        return Collections.unmodifiableSet( authorizationMap.keySet() );
-    }
-    
+    public Set/*<FeatureStore>*/ getFeatureStores();
+
     /**
      * Retrives the authorization token for the special case of only one FeatureStore being locked.
      * <p>
@@ -150,10 +72,5 @@ public class LockResponse {
      * </p>
      * @return token, or null if a single token was unavailable.
      */
-    public String getToken(){
-        if( authorizationMap.size() == 1 ){
-            return (String) authorizationMap.values().iterator().next();
-        }
-        return null;
-    }
+    public String getToken();
 }

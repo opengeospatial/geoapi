@@ -19,18 +19,11 @@ package org.opengis.feature;
  * </p>
  * @author Jody Garnett
  */
-public class LockRequest {
-    /** Special value used to ask for a Lock until the next commit or rollback */
-    public static final LockRequest TRANSACTION_LOCK = new LockRequest(-1);
-
-    /** Duration in miliseconds the lock is requested for */
-    private long duration;
-
-    public LockRequest( long duration ){
-        this.duration = duration;
-    }    
-
-    public long getDuration() {
-        return duration;
-    }
+public interface LockRequest {
+	/**
+	 * Returns a duration for which the request is valid.  The special value
+	 * of -1 indicates that a lock should be valid only for the duration of a
+	 * transaction.
+	 */
+    public long getDuration();
 }
