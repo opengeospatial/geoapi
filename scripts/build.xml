@@ -234,26 +234,40 @@
       <replacefilter token="&lt;? extends SurfacePatch&gt;"/>
       <replacefilter token="&lt;ApplicationSchemaInformation&gt;"/>
       <replacefilter token="&lt;Arc&gt;"/>
+      <replacefilter token="&lt;AxisDirection&gt;"/>
       <replacefilter token="&lt;BrowseGraphic&gt;"/>
+      <replacefilter token="&lt;ByteInValuePacking&gt;"/>
       <replacefilter token="&lt;CatalogEntry&gt;"/>
+      <replacefilter token="&lt;CellGeometry&gt;"/>
       <replacefilter token="&lt;Citation&gt;"/>
       <replacefilter token="&lt;CitationDate&gt;"/>
+      <replacefilter token="&lt;Classification&gt;"/>
       <replacefilter token="&lt;Curve&gt;"/>
+      <replacefilter token="&lt;CurveInterpolation&gt;"/>
       <replacefilter token="&lt;CurveSegment&gt;"/>
+      <replacefilter token=   "(CodeType)"/>
+      <replacefilter token="&lt;CodeType&gt;"/>
+      <replacefilter token="&lt;CodeType extends CodeList&gt;"/>
+      <replacefilter token="&lt;ColorInterpretation&gt;"/>
       <replacefilter token="&lt;Complex&gt;"/>
       <replacefilter token="&lt;Constraints&gt;"/>
       <replacefilter token="&lt;ContentInformation&gt;"/>
       <replacefilter token="&lt;CoordinateOperation&gt;"/>
+      <replacefilter token="&lt;CoverageContentType&gt;"/>
       <replacefilter token="&lt;DataQuality&gt;"/>
       <replacefilter token="&lt;DataStore&gt;"/>
       <replacefilter token="&lt;DataStore,String&gt;"/>
+      <replacefilter token="&lt;Datatype&gt;"/>
       <replacefilter token="&lt;Date&gt;"/>
+      <replacefilter token="&lt;DateType&gt;"/>
       <replacefilter token="&lt;DateType,Date&gt;"/>
       <replacefilter token="&lt;DigitalTransferOptions&gt;"/>
       <replacefilter token="&lt;Dimension&gt;"/>
+      <replacefilter token="&lt;DimensionNameType&gt;"/>
       <replacefilter token="&lt;Distributor&gt;"/>
       <replacefilter token="&lt;double[]&gt;"/>
       <replacefilter token="&lt;Element&gt;"/>
+      <replacefilter token="&lt;EvaluationMethodType&gt;"/>
       <replacefilter token="&lt;ExtendedElementInformation&gt;"/>
       <replacefilter token="&lt;Extent&gt;"/>
       <replacefilter token="&lt;Feature&gt;"/>
@@ -272,28 +286,40 @@
       <replacefilter token="&lt;GeographicDescription&gt;"/>
       <replacefilter token="&lt;GeographicExtent&gt;"/>
       <replacefilter token="&lt;GeometricObjects&gt;"/>
+      <replacefilter token="&lt;GeometricObjectType&gt;"/>
       <replacefilter token="&lt;Geometry&gt;"/>
       <replacefilter token="&lt;Identification&gt;"/>
+      <replacefilter token="&lt;ImagingCondition&gt;"/>
       <replacefilter token="&lt;InternationalString&gt;"/>
       <replacefilter token="&lt;Keywords&gt;"/>
+      <replacefilter token="&lt;KeywordType&gt;"/>
       <replacefilter token="&lt;Knot&gt;"/>
+      <replacefilter token="&lt;KnotType&gt;"/>
       <replacefilter token="&lt;Layer&gt;"/>
       <replacefilter token="&lt;LineSegment&gt;"/>
       <replacefilter token="&lt;LineString&gt;"/>
       <replacefilter token="&lt;Locale&gt;"/>
+      <replacefilter token="&lt;Locale,String&gt;"/>
       <replacefilter token="&lt;LocalName&gt;"/>
+      <replacefilter token="&lt;MaintenanceFrequency&gt;"/>
       <replacefilter token="&lt;MaintenanceInformation&gt;"/>
       <replacefilter token="&lt;MediumFormat&gt;"/>
+      <replacefilter token="&lt;MediumName&gt;"/>
       <replacefilter token="&lt;MetadataEntity&gt;"/>
       <replacefilter token="&lt;MetadataExtensionInformation&gt;"/>
       <replacefilter token="&lt;Number&gt;"/>
       <replacefilter token="&lt;Object&gt;"/>
+      <replacefilter token="&lt;Obligation&gt;"/>
+      <replacefilter token="&lt;OnLineFunction&gt;"/>
       <replacefilter token="&lt;OnLineResource&gt;"/>
       <replacefilter token="&lt;OperationMethod&gt;"/>
       <replacefilter token="&lt;OrientableCurve&gt;"/>
       <replacefilter token="&lt;OrientableSurface&gt;"/>
+      <replacefilter token="&lt;PaletteInterpretation&gt;"/>
       <replacefilter token="&lt;ParameterDescriptorGroup&gt;"/>
       <replacefilter token="&lt;ParameterValueGroup&gt;"/>
+      <replacefilter token="&lt;PixelInCell&gt;"/>
+      <replacefilter token="&lt;PixelOrientation&gt;"/>
       <replacefilter token="&lt;Point&gt;"/>
       <replacefilter token="&lt;PointArray&gt;"/>
       <replacefilter token="&lt;Polygon&gt;"/>
@@ -309,19 +335,26 @@
       <replacefilter token="&lt;ResponsibleParty&gt;"/>
       <replacefilter token="&lt;Restriction&gt;"/>
       <replacefilter token="&lt;Ring&gt;"/>
+      <replacefilter token="&lt;Role&gt;"/>
+      <replacefilter token="&lt;SampleDimensionType&gt;"/>
       <replacefilter token="&lt;ScopeCode&gt;"/>
       <replacefilter token="&lt;Source&gt;"/>
       <replacefilter token="&lt;SpatialRepresentation&gt;"/>
       <replacefilter token="&lt;SpatialRepresentationType&gt;"/>
+      <replacefilter token="&lt;SplineCurveForm&gt;"/>
       <replacefilter token="&lt;StandardOrderProcess&gt;"/>
       <replacefilter token="&lt;String&gt;"/>
       <replacefilter token="&lt;String, ? extends Object&gt;"/>
       <replacefilter token="&lt;Surface&gt;"/>
+      <replacefilter token="&lt;SurfaceInterpolation&gt;"/>
       <replacefilter token="&lt;SurfacePatch&gt;"/>
       <replacefilter token="&lt;TemporalExtent&gt;"/>
       <replacefilter token="&lt;TopicCategory&gt;"/>
+      <replacefilter token="&lt;TopologyLevel&gt;"/>
       <replacefilter token="&lt;Triangle&gt;"/>
       <replacefilter token="&lt;Usage&gt;"/>
+      <replacefilter token="&lt;ValueInBytePacking&gt;"/>
+      <replacefilter token="&lt;VerticalDatumType&gt;"/>
       <replacefilter token="&lt;VerticalExtent&gt;"/>
 
       <replacefilter token="    /* 1.5 specific */"        value="// "                             />
@@ -329,11 +362,13 @@
       <replacefilter token="@UML"                          value="//@UML"                          />
       <replacefilter token="@Profile"                      value="//@Profile"                      />
       <replacefilter token="@Extension"                    value="//@Extension"                    />
+      <replacefilter token="@Deprecated"                   value="//@Deprecated"                   />
       <replacefilter token="@XmlSchema"                    value="//@XmlSchema"                    />
       <replacefilter token="import static"                 value="//import static"                 />
       <replacefilter token="import org.opengis.annotation" value="//import org.opengis.annotation" />
 
       <replacefilter token=" Feature next()" value=" Object next()"/>
+      <replacefilter token= "CodeType"       value= "Object"       />
     </replace>
 
     <replaceregexp byline  = "true"
@@ -429,10 +464,15 @@
       <link href="http://java.sun.com/products/java-media/3D/forDevelopers/j3dapi"/>
       <link href="http://jsr-108.sourceforge.net/javadoc"/>
 
+      <group title="&lt;TABLE WIDTH='100%'&gt;&lt;TR&gt;&lt;TD&gt;Display objects
+                    &lt;/TD&gt;&lt;TD ALIGN='right'&gt;&lt;FONT SIZE='-1' COLOR='Navy'&gt;GO-1
+                    &lt;/FONT&gt;&lt;/TD&gt;&lt;/TR&gt;&lt;/TABLE&gt;"
+             packages="org.opengis.go*"/>
+
       <group title="&lt;TABLE WIDTH='100%'&gt;&lt;TR&gt;&lt;TD&gt;Feature, filter and styling
                     &lt;/TD&gt;&lt;TD ALIGN='right'&gt;&lt;FONT SIZE='-1' COLOR='Navy'&gt;(TODO)
                     &lt;/FONT&gt;&lt;/TD&gt;&lt;/TR&gt;&lt;/TABLE&gt;"
-             packages="org.opengis.feature*:org.opengis.filter*:org.opengis.sld*"/>
+             packages="org.opengis.feature*:org.opengis.filter*:org.opengis.layer*:org.opengis.sld*"/>
 
       <group title="&lt;TABLE WIDTH='100%'&gt;&lt;TR&gt;&lt;TD&gt;Geometry and topology
                     &lt;/TD&gt;&lt;TD ALIGN='right'&gt;&lt;FONT SIZE='-1' COLOR='Navy'&gt;ISO-19107
@@ -453,11 +493,6 @@
                     &lt;/TD&gt;&lt;TD ALIGN='right'&gt;&lt;FONT SIZE='-1' COLOR='Navy'&gt;ISO-19115
                     &lt;/FONT&gt;&lt;/TD&gt;&lt;/TR&gt;&lt;/TABLE&gt;"
              packages="org.opengis.metadata*"/>
-
-      <group title="&lt;TABLE WIDTH='100%'&gt;&lt;TR&gt;&lt;TD&gt;Display objects
-                    &lt;/TD&gt;&lt;TD ALIGN='right'&gt;&lt;FONT SIZE='-1' COLOR='Navy'&gt;GO-1
-                    &lt;/FONT&gt;&lt;/TD&gt;&lt;/TR&gt;&lt;/TABLE&gt;"
-             packages="org.opengis.go*"/>
 
       <group title="&lt;TABLE WIDTH='100%'&gt;&lt;TR&gt;&lt;TD&gt;Grid Coverage
                     &lt;/TD&gt;&lt;TD ALIGN='right'&gt;&lt;FONT SIZE='-1' COLOR='Navy'&gt;OGC 01-004
@@ -532,7 +567,7 @@
 
        ====================================================================== -->
 
-  <target name="legacy" depends="javadoc">
+  <target name="legacy">
 
     <delete includeEmptyDirs="true" failonerror="false">
       <fileset dir="legacy"/>
@@ -582,9 +617,9 @@
         &lt;/TD&gt;&lt;/TR&gt;&lt;/TABLE&gt;
       </bottom>
 
-      <fileset dir="${homepath}/legacy">
-        <include name="org/**"/>
-      </fileset>
+      <packageset dir="${homepath}/legacy">
+        <include name="**"/>
+      </packageset>
 
       <link href="http://java.sun.com/j2se/1.4/docs/api"/>
       <link href="http://jsr-108.sourceforge.net/javadoc"/>
