@@ -109,7 +109,12 @@ public abstract class CodeList<CodeType extends CodeList<CodeType>> implements C
      * the constants are declared.
      */
     public final int compareTo(final CodeType other) {
-	return ordinal - other.ordinal;
+        final Class ct =  this.getClass();
+        final Class co = other.getClass();
+        if (!ct.equals(co)) {
+            throw new ClassCastException("Can't compare " + ct.getName() + " to " + co.getName());
+        }
+	return ordinal - ((CodeList) other).ordinal;
     }
 
     /**

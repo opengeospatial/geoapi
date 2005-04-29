@@ -31,7 +31,7 @@ import javax.swing.ImageIcon;
  *          Furthermore, according ISO 19103, enumeration and code list are not the same thing.
  *          This base class is closer to a code list than an enumeration.
  */
-public abstract class SimpleEnumerationType extends CodeList implements Comparable {
+public abstract class SimpleEnumerationType extends CodeList {
 
     //*************************************************************************
     //  static methods
@@ -149,30 +149,6 @@ public abstract class SimpleEnumerationType extends CodeList implements Comparab
      */
     public Icon getIcon() {
         return icon;
-    }
-
-    //*************************************************************************
-    //  comparison method
-    //*************************************************************************
-
-    /**
-     * Compares this object to another of the same type.
-     *
-     * @param obj the object to compare to.
-     * @return a value that corresponds to the comparison.
-     */
-    public int compareTo(Object obj) {
-        int rv = 0;
-        if (this.getClass() != obj.getClass()) {
-            throw new ClassCastException("Can't compare " +
-                                            this.getClass().getName() +
-                                            " to " +
-                                            obj.getClass().getName());
-        }
-        if (this != obj) {
-            rv = this.ordinal() - ((SimpleEnumerationType)obj).ordinal();
-        }
-        return rv;
     }
 
     
