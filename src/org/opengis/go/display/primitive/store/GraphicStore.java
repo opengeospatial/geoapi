@@ -10,7 +10,8 @@
 package org.opengis.go.display.primitive.store;
 
 // J2SE direct dependencies
-import java.net.URL;
+import java.net.URI;
+import java.util.List;
 
 // OpenGIS direct dependencies
 import org.opengis.go.display.DisplayFactory;
@@ -28,11 +29,11 @@ public interface GraphicStore {
     /**
      * Icon representing this {@code GraphicStore}.
      *
-     * @return URL to a icon (GIF or PNG) representing this {@code GraphicStore}.
+     * @return URI to a icon (GIF or PNG) representing this {@code GraphicStore}.
      *
      * @revisit Assumed 16x16 in size.
      */
-    URL getIcon();
+    URI getIcon();
 
     /**
      * Display name for this {@code GraphicStore}.
@@ -56,7 +57,11 @@ public interface GraphicStore {
     // Metadata getMetadata();
 
     /**
-     * @revisit DOCUMENT ME
+     * Gets a List of {@code Graphic}s produced by this {@code GraphicStore}.  This
+     * List should not be live:  modifying the List should not modify the 
+     * {@code GraphicStore}'s internal {@code Graphic}s.
+     * @param factory the {@code DisplayFactory} to use to create the {@code Graphic}s
+     * @return a List of {@code Graphic}s
      */
-    Graphic[] getGraphics(DisplayFactory factory);
+    List<Graphic> getGraphics(DisplayFactory factory);
 }

@@ -10,7 +10,8 @@
 package org.opengis.layer.source;
 
 // J2SE direct dependencies
-import java.net.URL;
+import java.net.URI;
+import java.util.List;
 
 // OpenGIS direct dependencies
 import org.opengis.feature.Feature;
@@ -18,6 +19,7 @@ import org.opengis.feature.FeatureStore;
 import org.opengis.feature.display.canvas.FeatureLayer;
 import org.opengis.filter.Filter;
 import org.opengis.layer.Layer;
+import org.opengis.layer.LayerException;
 import org.opengis.util.InternationalString;
 
 
@@ -41,7 +43,7 @@ public interface LayerSource {
      * @revisit Assumed to point to a 16x16 icon?
      * @revisit Should the return type be a {@link java.net.URI}?
      */
-    URL getIcon();
+    URI getIcon();
 
     /**
      * Display name used to communicate this {@code LayerSource} to end users.
@@ -57,15 +59,17 @@ public interface LayerSource {
      * Gets the named {@code Layer}.
      *
      * @param name the id of the {@code Layer}.
+     * @throws LayerException if there is a problem getting the named {@code Layer}
      */
-    Layer getLayer(String name);
+    Layer getLayer(String name) throws LayerException;
     
     /**
-     * Returns the array of {@code Layer}s provided by this {@code LayerSource}.
+     * Returns a List of {@code Layer}s provided by this {@code LayerSource}.
+     * This List should <b>not</b> be a live List: modifying the returned List
+     * should not modify this {@code LayerSource}'s {@code Layer}s.
      *
-     * @return an array of <code>Layer</code>s
-     *
-     * @revisit Should the returns type be a {@link java.util.List} instead?
+     * @return a List of <code>Layer</code>s
+     * @throws LayerException if there are problems getting the {@code Layer}s
      */
-    Layer[] getLayers();
+    List<Layer> getLayers() throws LayerException;
 }

@@ -12,7 +12,6 @@ package org.opengis.feature;
 // J2SE direct dependencies
 import java.io.IOException;
 import java.net.URI;
-import java.net.URL;
 import java.util.Map;
 
 // OpenGIS direct dependencies
@@ -28,7 +27,7 @@ import org.opengis.util.InternationalString;
  * This API does need to consider the:
  * <ul>
  *   <li>Identity: currently captured as a URI, completly defines a server
- *       or provider. Usually via a URL or JDBC URL as required.</li>
+ *       or provider. Usually via a URI or JDBC URI as required.</li>
  *   <li>Configuration: currently captured as a Map.</li>
  * </ul>
  *
@@ -43,12 +42,12 @@ public interface FeatureStoreFactory {
      * to the metadata indicated by {@link #getParametersInfo}. This information
      * often includes security information such as username and password.
      * 
-     * @param provider Often a URL or JDBC URL locating the serivce to connect to
+     * @param provider Often a URI or JDBC URI locating the serivce to connect to
      * @param params Map of hints or configuration information.
      * @return Feature store connected to the indicated provider or service.
      * @throws IOException if the {@code FeatureStore} cannot connect to its source.
      */
-    FeatureStore createFeatureStore( URI provider, Map params) throws IOException;
+    FeatureStore createFeatureStore(URI provider, Map<String, Object> params) throws IOException;
 
     /**
      * Ask for a new FeatureStore connecting to the indicated provider or service.
@@ -57,21 +56,20 @@ public interface FeatureStoreFactory {
      * to the metadata indicated by {@link #getParametersInfo}. This information
      * often includes security information such as username and password.
      * 
-     * @param provider Often a URL or JDBC URL locating the serivce to connect to
+     * @param provider Often a URI or JDBC URI locating the serivce to connect to
      * @param params Map of hints or configuration information.
      * @return Feature store connected to the newly created provider or serivce.
      * @throws IOException if the {@code FeatureStore} cannot connect to its source.
      */
-    FeatureStore createNewFeatureStore(URI provider, Map params) throws IOException;
+    FeatureStore createNewFeatureStore(URI provider, Map<String, Object> params) throws IOException;
     
     /**
      * Icon representing this category of <code>FeatureStore</code>s.
      * 
      * @return the icon.
      * @revisit Assumed to point to a 16x16 icon?
-     * @revisit Should the return type be URI?
      */
-    URL getIcon();
+    URI getIcon();
 
     /**
      * Display name used to communicate this type of {@code FeatureStore} to end users.
@@ -87,9 +85,9 @@ public interface FeatureStoreFactory {
      * Gets an <code>Object</code> array relating to the parameters needed (beyond
      * the URI) to instantiate a <code>FeatureStore</code>.
      * 
-     * @revisit Should be replaced with a <code>Param</code>[] based on ISO standards.
+     * @revisit Should be replaced with a <code>Param</code>[] based on ISO standards (ISO 19119).
      */
-    Object[] getParametersInfo();
+    Map<String, Class> getParametersInfo();
 
     /**
      * Indicates this {@code FeatureStoreFactory} communicate with the indicated provider or service.
@@ -120,7 +118,7 @@ public interface FeatureStoreFactory {
      *
      * @revisit Need generic types for the map argument.
      */
-    boolean canProcess(URI provider, Map params);
+    boolean canProcess(URI provider, Map<String, Object> params);
 
     /**
      * Allows a {@code FeatureStoreFactory} to ensure all its preconditions are met,
