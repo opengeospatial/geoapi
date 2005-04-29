@@ -23,6 +23,8 @@ import java.io.Serializable;
  * @since   1.00
  * @author Martin Daly
  * @author Martin Desruisseaux
+ *
+ * @deprecated No direct replacement.
  */
 public class CS_WGS84ConversionInfo implements Cloneable, Serializable {
     /**

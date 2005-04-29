@@ -46,7 +46,7 @@ public interface CS_Info extends Remote {
      *
      * @throws RemoteException if a remote method call failed.
      *
-     * @deprecated Replaced by {@link org.opengis.referencing.Info#getName}.
+     * @deprecated Replaced by {@link org.opengis.referencing.IdentifiedObject#getName}.
      */
     String getName() throws RemoteException;
 
@@ -85,7 +85,7 @@ public interface CS_Info extends Remote {
      *
      * @throws RemoteException if a remote method call failed.
      *
-     * @deprecated Replaced by {@link org.opengis.referencing.Info#getIdentifiers}.
+     * @deprecated Replaced by {@link org.opengis.referencing.IdentifiedObject#getIdentifiers}.
      */
     String getAlias() throws RemoteException;
 
@@ -103,7 +103,7 @@ public interface CS_Info extends Remote {
      *
      * @throws RemoteException if a remote method call failed.
      *
-     * @deprecated Replaced by {@link org.opengis.referencing.Info#getRemarks}.
+     * @deprecated Replaced by {@link org.opengis.referencing.IdentifiedObject#getRemarks}.
      */
     String getRemarks() throws RemoteException;
 

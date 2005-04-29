@@ -1,3 +1,7 @@
+Specification-Title: "OpenGIS specifications"
+Specification-Version: "1.01"
+Specification-Vendor: "OpenGIS Consortium"
+
 Name: org/opengis/cs
 Sealed: true
 Specification-Title: "OpenGIS Coordinate Systems specification"
