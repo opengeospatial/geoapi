@@ -24,8 +24,7 @@ import org.opengis.util.InternationalString;
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @author Jesse Crossley (SYS Technologies)
  */
-public interface LayerSourceFactory {
-    
+public interface LayerSourceFactory {    
     /**
      * Ask for a {@code LayerSource} connecting to the indicated provider or service.
      * The returned {@code LayerSource} may have been previously cached.
@@ -108,8 +107,6 @@ public interface LayerSourceFactory {
      * @param provider Provider or Server of spatial information. 
      * @param params additional configuration information.
      * @return {@code true} if this factory can communicate with the provider.
-     *
-     * @revisit Need generic types for the map argument.
      */
     boolean canProcess(URI provider, Map<String, Object> params);
 

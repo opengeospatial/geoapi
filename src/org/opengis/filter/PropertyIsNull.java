@@ -1,13 +1,34 @@
+/*$************************************************************************************************
+ **
+ ** $Id$
+ **
+ ** $Source$
+ **
+ ** Copyright (C) 2003 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
+ **
+ *************************************************************************************************/
 package org.opengis.filter;
 
+// OpenGIS direct dependencies
 import org.opengis.filter.expression.Expression;
 
+// Annotations
+import org.opengis.annotation.XmlSchema;
+
+
 /**
- * Filter operator that checks if an expression's value is null.
+ * Filter operator that checks if an expression's value is {@code null}.  A {@code null}
+ * is equivalent to no value present. The value 0 is a valid value and is not considered
+ * {@code null}.
+ *
+ * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
+ * @version <A HREF="http://www.opengis.org/docs/02-059.pdf">Filter encoding implementation specification 1.0</A>
+ * @since 1.1
  */
+@XmlSchema(URL="filter.xsd", element="PropertyIsNull")
 public interface PropertyIsNull extends Filter {
     /**
-     * Returns the expression whose value will be checked for null.
+     * Returns the expression whose value will be checked for {@code null}.
      */
-    public Expression getExpression();
+    Expression getExpression();
 }

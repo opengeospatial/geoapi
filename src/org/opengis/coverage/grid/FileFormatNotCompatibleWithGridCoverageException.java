@@ -10,7 +10,7 @@
 package org.opengis.coverage.grid;
 
 // J2SE direct dependencies
-import java.io.IOException;
+import javax.imageio.IIOException;
 
 // Annotations
 import org.opengis.annotation.UML;
@@ -36,15 +36,12 @@ import static org.opengis.annotation.Specification.*;
  *
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-004.pdf">Grid Coverage specification 1.0</A>
+ * @since 1.1
  *
  * @see GridCoverageWriter#write
- *
- * @revisit In a J2SE 1.4 profile, this exception should extends
- *          {@link javax.imageio.IIOException}.
- *          This is also quite a long name. Can we make it shorter?
  */
 @UML (identifier="GC_FileFormatNotCompatibleWithGridCoverage", specification=OGC_01_004)
-public class FileFormatNotCompatibleWithGridCoverageException extends IOException {
+public class FileFormatNotCompatibleWithGridCoverageException extends IIOException {
     /**
      * Serial number for interoperability with different versions.
      */
@@ -54,7 +51,7 @@ public class FileFormatNotCompatibleWithGridCoverageException extends IOExceptio
      * Creates an exception with no message.
      */
     public FileFormatNotCompatibleWithGridCoverageException() {
-        super();
+        super(null);
     }
 
     /**

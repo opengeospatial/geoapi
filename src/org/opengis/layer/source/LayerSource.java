@@ -41,7 +41,6 @@ public interface LayerSource {
      * @return the icon.
      *
      * @revisit Assumed to point to a 16x16 icon?
-     * @revisit Should the return type be a {@link java.net.URI}?
      */
     URI getIcon();
 
