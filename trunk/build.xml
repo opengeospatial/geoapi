@@ -94,8 +94,11 @@
 	<target name="compile-release" depends="prepare-release" description="Compile release quality java code.">
 		<replace dir="${dist.src.dir}">
 			<include name="**/*.java"/>
+			<replacefilter token="&lt;Locale,String&gt;"/>
 			<replacefilter token="&lt;Locale, String&gt;"/>
+			<replacefilter token="&lt;String,Class&gt;"/>
 			<replacefilter token="&lt;String, Class&gt;"/>
+			<replacefilter token="&lt;String,Object&gt;"/>
 			<replacefilter token="&lt;String, Object&gt;"/>
 			<replacefilter token="&lt;String, ? extends Object&gt;"/>
 			<replacefilter token="&lt;? extends Coverage&gt;"/>
@@ -105,6 +108,7 @@
 			<replacefilter token="&lt;? extends SurfacePatch&gt;"/>
 			<replacefilter token="&lt;CodeType extends CodeList&lt;CodeType&gt;&gt;"/>
 			<replacefilter token="&lt;ApplicationSchemaInformation&gt;"/>
+			<replacefilter token="&lt;AuthorityURL&gt;"/>
 			<replacefilter token="&lt;Arc&gt;"/>
 			<replacefilter token="&lt;AxisDirection&gt;"/>
 			<replacefilter token="&lt;BrowseGraphic&gt;"/>
@@ -119,6 +123,7 @@
 			<replacefilter token="&lt;Complex&gt;"/>
 			<replacefilter token="&lt;Constraints&gt;"/>
 			<replacefilter token="&lt;ContentInformation&gt;"/>
+			<replacefilter token="&lt;CoordinateReferenceSystem&gt;"/>
 			<replacefilter token="(CodeType)"/>
 			<replacefilter token="&lt;CodeType&gt;"/>
 			<replacefilter token="&lt;CoordinateOperation&gt;"/>
@@ -128,6 +133,7 @@
 			<replacefilter token="&lt;DataStore,String&gt;"/>
 			<replacefilter token="&lt;Datatype&gt;"/>
 			<replacefilter token="&lt;DataType&gt;"/>
+			<replacefilter token="&lt;DataURL&gt;"/>
 			<replacefilter token="&lt;Date&gt;"/>
 			<replacefilter token="&lt;DateType&gt;"/>
 			<replacefilter token="&lt;DateType,Date&gt;"/>
@@ -137,15 +143,19 @@
 			<replacefilter token="&lt;Distributor&gt;"/>
 			<replacefilter token="&lt;double[]&gt;"/>
 			<replacefilter token="&lt;Element&gt;"/>
+			<replacefilter token="&lt;Envelope&gt;"/>
 			<replacefilter token="&lt;EvaluationMethodType&gt;"/>
 			<replacefilter token="&lt;ExtendedElementInformation&gt;"/>
 			<replacefilter token="&lt;Extent&gt;"/>
 			<replacefilter token="&lt;Feature&gt;"/>
+			<replacefilter token="&lt;FeatureLayer&gt;"/>
 			<replacefilter token="&lt;FeatureType&gt;"/>
 			<replacefilter token="&lt;FeatureTypeList&gt;"/>
 			<replacefilter token="&lt;FeatureLayer&gt;"/>
+			<replacefilter token="&lt;FeatureListURL&gt;"/>
 			<replacefilter token="&lt;FeatureStore&gt;"/>
 			<replacefilter token="&lt;FeatureStore,String&gt;"/>
+			<replacefilter token="&lt;FeatureStyle&gt;"/>
 			<replacefilter token="&lt;Filter&gt;"/>
 			<replacefilter token="&lt;Format&gt;"/>
 			<replacefilter token="&lt;GeneralParameterDescriptor&gt;"/>
@@ -159,7 +169,9 @@
 			<replacefilter token="&lt;GeometricObjectType&gt;"/>
 			<replacefilter token="&lt;Geometry&gt;"/>
 			<replacefilter token="&lt;Graphic&gt;"/>
+			<replacefilter token="&lt;GraphicStyle&gt;"/>
 			<replacefilter token="&lt;Identification&gt;"/>
+			<replacefilter token="&lt;Identifier&gt;"/>
 			<replacefilter token="&lt;ImagingCondition&gt;"/>
 			<replacefilter token="&lt;InternationalString&gt;"/>
 			<replacefilter token="&lt;Keywords&gt;"/>
@@ -167,6 +179,7 @@
 			<replacefilter token="&lt;Knot&gt;"/>
 			<replacefilter token="&lt;KnotType&gt;"/>
 			<replacefilter token="&lt;Layer&gt;"/>
+			<replacefilter token="&lt;LegendURL&gt;"/>
 			<replacefilter token="&lt;LineSegment&gt;"/>
 			<replacefilter token="&lt;LineString&gt;"/>
 			<replacefilter token="&lt;Locale&gt;"/>
@@ -177,6 +190,7 @@
 			<replacefilter token="&lt;MediumFormat&gt;"/>
 			<replacefilter token="&lt;MetadataEntity&gt;"/>
 			<replacefilter token="&lt;MetadataExtensionInformation&gt;"/>
+			<replacefilter token="&lt;MetadataURL&gt;"/>
 			<replacefilter token="&lt;Number&gt;"/>
 			<replacefilter token="&lt;Object&gt;"/>
 			<replacefilter token="&lt;Obligation&gt;"/>
@@ -212,6 +226,7 @@
 			<replacefilter token="&lt;SplineCurveForm&gt;"/>
 			<replacefilter token="&lt;StandardOrderProcess&gt;"/>
 			<replacefilter token="&lt;String&gt;"/>
+			<replacefilter token="&lt;Style&gt;"/>
 			<replacefilter token="&lt;Surface&gt;"/>
 			<replacefilter token="&lt;SurfaceInterpolation&gt;"/>
 			<replacefilter token="&lt;SurfacePatch&gt;"/>

@@ -11,7 +11,8 @@ package org.opengis.layer;
 
 
 /**
- * The <code>StyleSheetURL</code> class/interface...
+ * The <code>StyleSheetURL</code> interface provides symbology information for
+ * the enclosing {@code Style} element.
  * 
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @author Jesse Crossley (SYS Technologies)

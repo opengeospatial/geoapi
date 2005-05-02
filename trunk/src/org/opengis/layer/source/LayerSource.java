@@ -10,6 +10,7 @@
 package org.opengis.layer.source;
 
 // J2SE direct dependencies
+import java.io.IOException;
 import java.net.URI;
 import java.util.List;
 
@@ -19,7 +20,6 @@ import org.opengis.feature.FeatureStore;
 import org.opengis.feature.display.canvas.FeatureLayer;
 import org.opengis.filter.Filter;
 import org.opengis.layer.Layer;
-import org.opengis.layer.LayerException;
 import org.opengis.util.InternationalString;
 
 
@@ -27,9 +27,11 @@ import org.opengis.util.InternationalString;
  * Provides {@link Layer}s to a manager.
  * {@code Layer}s are the base unit in a Table of Contents, which could be used to provide
  * a human-readable visualization of the data available to add to a rendered visualization.
- * A {@code LayerSource} should be capable of retrieving {@linkplain Feature features} from
+ * A {@code LayerSource} could be capable of retrieving {@linkplain Feature features} from
  * given {@linkplain FeatureStore feature stores} using a given {@linkplain Filter filter}
- * and creating the necessary {@linkplain FeatureLayer feature layer}.
+ * and creating the necessary {@linkplain FeatureLayer feature layer}.  Other 
+ * {@code LayerSource} implementations may connect to some other data source and produce
+ * {@linkplain Graphic graphics} to be owned by the produced {@linkplain Layer layers}.
  * 
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @author Jesse Crossley (SYS Technologies)
@@ -58,9 +60,9 @@ public interface LayerSource {
      * Gets the named {@code Layer}.
      *
      * @param name the id of the {@code Layer}.
-     * @throws LayerException if there is a problem getting the named {@code Layer}
+     * @throws IOException if there is a problem getting the named {@code Layer}
      */
-    Layer getLayer(String name) throws LayerException;
+    Layer getLayer(String name) throws IOException;
     
     /**
      * Returns a List of {@code Layer}s provided by this {@code LayerSource}.
@@ -68,7 +70,7 @@ public interface LayerSource {
      * should not modify this {@code LayerSource}'s {@code Layer}s.
      *
      * @return a List of <code>Layer</code>s
-     * @throws LayerException if there are problems getting the {@code Layer}s
+     * @throws IOException if there are problems getting the {@code Layer}s
      */
-    List<Layer> getLayers() throws LayerException;
+    List<Layer> getLayers() throws IOException;
 }
