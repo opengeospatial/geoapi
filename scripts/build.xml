@@ -258,6 +258,7 @@
       <replacefilter token="&lt;DataStore&gt;"/>
       <replacefilter token="&lt;DataStore,String&gt;"/>
       <replacefilter token="&lt;Datatype&gt;"/>
+      <replacefilter token="&lt;DataType&gt;"/>
       <replacefilter token="&lt;Date&gt;"/>
       <replacefilter token="&lt;DateType&gt;"/>
       <replacefilter token="&lt;DateType,Date&gt;"/>
@@ -288,6 +289,7 @@
       <replacefilter token="&lt;GeometricObjects&gt;"/>
       <replacefilter token="&lt;GeometricObjectType&gt;"/>
       <replacefilter token="&lt;Geometry&gt;"/>
+      <replacefilter token="&lt;Graphic&gt;"/>
       <replacefilter token="&lt;Identification&gt;"/>
       <replacefilter token="&lt;ImagingCondition&gt;"/>
       <replacefilter token="&lt;InternationalString&gt;"/>
@@ -344,6 +346,8 @@
       <replacefilter token="&lt;SplineCurveForm&gt;"/>
       <replacefilter token="&lt;StandardOrderProcess&gt;"/>
       <replacefilter token="&lt;String&gt;"/>
+      <replacefilter token="&lt;String,Class&gt;"/>
+      <replacefilter token="&lt;String,Object&gt;"/>
       <replacefilter token="&lt;String, ? extends Object&gt;"/>
       <replacefilter token="&lt;Surface&gt;"/>
       <replacefilter token="&lt;SurfaceInterpolation&gt;"/>
