@@ -37,8 +37,9 @@ public interface LayerSourceFactory {
      * @param params Map of hints or configuration information.
      * @return {@code GraphicStore} connected to the indicated provider or service.
      * @throws IOException if the {@code LayerSource} cannot connect to its source.
+     * @throws LayerException if the {@code LayerSource} cannot be created for some other reason.
      */
-    LayerSource createLayerSource(URI provider, Map<String,Object> params) throws IOException;
+    LayerSource createLayerSource(URI provider, Map<String,Object> params) throws IOException, LayerSourceException;
 
     /**
      * Ask for a new {@code LayerSource} connecting to the indicated provider or service.
@@ -51,8 +52,9 @@ public interface LayerSourceFactory {
      * @param params Map of hints or configuration information.
      * @return {@code LayerSource} connected to the newly created provider or service.
      * @throws IOException if the {@code LayerSource} cannot connect to its source.
+     * @throws LayerException if the {@code LayerSource} cannot be created for some other reason.
      */
-    LayerSource createNewLayerSource(URI provider, Map<String,Object> params) throws IOException;
+    LayerSource createNewLayerSource(URI provider, Map<String,Object> params) throws IOException, LayerSourceException;
     
     /**
      * Icon representing this category of datastores.
