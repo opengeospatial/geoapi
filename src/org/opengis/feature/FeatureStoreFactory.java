@@ -46,8 +46,9 @@ public interface FeatureStoreFactory {
      * @param params Map of hints or configuration information.
      * @return Feature store connected to the indicated provider or service.
      * @throws IOException if the {@code FeatureStore} cannot connect to its source.
+     * @throws FeatureStoreException if there are any other problems creating the {@code FeatureStore}.
      */
-    FeatureStore createFeatureStore(URI provider, Map<String,Object> params) throws IOException;
+    FeatureStore createFeatureStore(URI provider, Map<String,Object> params) throws IOException, FeatureStoreException;
 
     /**
      * Ask for a new FeatureStore connecting to the indicated provider or service.
@@ -60,8 +61,9 @@ public interface FeatureStoreFactory {
      * @param params Map of hints or configuration information.
      * @return Feature store connected to the newly created provider or serivce.
      * @throws IOException if the {@code FeatureStore} cannot connect to its source.
+     * @throws FeatureStoreException if there are any other problems creating the {@code FeatureStore}.
      */
-    FeatureStore createNewFeatureStore(URI provider, Map<String,Object> params) throws IOException;
+    FeatureStore createNewFeatureStore(URI provider, Map<String,Object> params) throws IOException, FeatureStoreException;
     
     /**
      * Icon representing this category of <code>FeatureStore</code>s.

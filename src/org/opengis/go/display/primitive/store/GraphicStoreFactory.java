@@ -38,8 +38,9 @@ public interface GraphicStoreFactory {
      * @param params Map of hints or configuration information.
      * @return {@code GraphicStore} connected to the indicated provider or service.
      * @throws IOException if the {@code GraphicStore} cannot connect to its source.
+     * @throws GraphicStoreException if anything else goes wrong while creating the {@code GraphicStore}.
      */
-    GraphicStore createGraphicStore(URI provider, Map<String,Object> params) throws IOException;
+    GraphicStore createGraphicStore(URI provider, Map<String,Object> params) throws IOException, GraphicStoreException;
 
     /**
      * Ask for a new {@code GraphicStore} connecting to the indicated provider or service.
@@ -52,8 +53,9 @@ public interface GraphicStoreFactory {
      * @param params Map of hints or configuration information.
      * @return {@code GraphicStore} connected to the newly created provider or service.
      * @throws IOException if the {@code GraphicStore} cannot connect to its source.
+     * @throws GraphicStoreException if anything else goes wrong while creating the {@code GraphicStore}.
      */
-    GraphicStore createNewGraphicStore(URI provider, Map<String,Object> params) throws IOException;
+    GraphicStore createNewGraphicStore(URI provider, Map<String,Object> params) throws IOException, GraphicStoreException;
 
     /**
      * Icon representing this category of <code>GraphicStore</code>s.

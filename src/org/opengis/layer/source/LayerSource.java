@@ -20,6 +20,7 @@ import org.opengis.feature.FeatureStore;
 import org.opengis.feature.display.canvas.FeatureLayer;
 import org.opengis.filter.Filter;
 import org.opengis.layer.Layer;
+import org.opengis.layer.LayerException;
 import org.opengis.util.InternationalString;
 
 
@@ -60,9 +61,10 @@ public interface LayerSource {
      * Gets the named {@code Layer}.
      *
      * @param name the id of the {@code Layer}.
-     * @throws IOException if there is a problem getting the named {@code Layer}
+     * @throws IOException if there is an IO problem getting the named {@code Layer}
+     * @throws LayerException if there is any other problem getting the named {@code Layer}
      */
-    Layer getLayer(String name) throws IOException;
+    Layer getLayer(String name) throws IOException, LayerException;
     
     /**
      * Returns a List of {@code Layer}s provided by this {@code LayerSource}.
@@ -70,7 +72,8 @@ public interface LayerSource {
      * should not modify this {@code LayerSource}'s {@code Layer}s.
      *
      * @return a List of <code>Layer</code>s
-     * @throws IOException if there are problems getting the {@code Layer}s
+     * @throws IOException if there is an IO problem getting the {@code Layer}s 
+     * @throws LayerException if there is any other problem getting the named {@code Layer}
      */
-    List<Layer> getLayers() throws IOException;
+    List<Layer> getLayers() throws IOException, LayerException;
 }
