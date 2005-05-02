@@ -38,7 +38,7 @@ public interface LayerSourceFactory {
      * @return {@code GraphicStore} connected to the indicated provider or service.
      * @throws IOException if the {@code LayerSource} cannot connect to its source.
      */
-    LayerSource createLayerSource(URI provider, Map<String, Object> params) throws IOException;
+    LayerSource createLayerSource(URI provider, Map<String,Object> params) throws IOException;
 
     /**
      * Ask for a new {@code LayerSource} connecting to the indicated provider or service.
@@ -52,7 +52,7 @@ public interface LayerSourceFactory {
      * @return {@code LayerSource} connected to the newly created provider or service.
      * @throws IOException if the {@code LayerSource} cannot connect to its source.
      */
-    LayerSource createNewLayerSource(URI provider, Map<String, Object> params) throws IOException;
+    LayerSource createNewLayerSource(URI provider, Map<String,Object> params) throws IOException;
     
     /**
      * Icon representing this category of datastores.
@@ -79,7 +79,7 @@ public interface LayerSourceFactory {
      * 
      * @revisit Should be replaced with a <code>Param</code>[] based on ISO standards (ISO 19119?).
      */
-    Map<String, Class> getParametersInfo();
+    Map<String,Class> getParametersInfo();
 
     /**
      * Indicates this {@code FeatureStoreFactory} communicate with the indicated provider or service.
@@ -108,7 +108,7 @@ public interface LayerSourceFactory {
      * @param params additional configuration information.
      * @return {@code true} if this factory can communicate with the provider.
      */
-    boolean canProcess(URI provider, Map<String, Object> params);
+    boolean canProcess(URI provider, Map<String,Object> params);
 
     /**
      * Allows a {@code FeatureStoreFactory} to ensure all its preconditions are met,

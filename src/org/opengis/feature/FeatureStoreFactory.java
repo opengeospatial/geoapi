@@ -47,7 +47,7 @@ public interface FeatureStoreFactory {
      * @return Feature store connected to the indicated provider or service.
      * @throws IOException if the {@code FeatureStore} cannot connect to its source.
      */
-    FeatureStore createFeatureStore(URI provider, Map<String, Object> params) throws IOException;
+    FeatureStore createFeatureStore(URI provider, Map<String,Object> params) throws IOException;
 
     /**
      * Ask for a new FeatureStore connecting to the indicated provider or service.
@@ -61,7 +61,7 @@ public interface FeatureStoreFactory {
      * @return Feature store connected to the newly created provider or serivce.
      * @throws IOException if the {@code FeatureStore} cannot connect to its source.
      */
-    FeatureStore createNewFeatureStore(URI provider, Map<String, Object> params) throws IOException;
+    FeatureStore createNewFeatureStore(URI provider, Map<String,Object> params) throws IOException;
     
     /**
      * Icon representing this category of <code>FeatureStore</code>s.
@@ -87,7 +87,7 @@ public interface FeatureStoreFactory {
      * 
      * @revisit Should be replaced with a <code>Param</code>[] based on ISO standards (ISO 19119).
      */
-    Map<String, Class> getParametersInfo();
+    Map<String,Class> getParametersInfo();
 
     /**
      * Indicates this {@code FeatureStoreFactory} communicate with the indicated provider or service.
@@ -118,7 +118,7 @@ public interface FeatureStoreFactory {
      *
      * @revisit Need generic types for the map argument.
      */
-    boolean canProcess(URI provider, Map<String, Object> params);
+    boolean canProcess(URI provider, Map<String,Object> params);
 
     /**
      * Allows a {@code FeatureStoreFactory} to ensure all its preconditions are met,

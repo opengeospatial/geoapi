@@ -32,6 +32,7 @@ import org.opengis.filter.spatial.Intersects;
 import org.opengis.filter.spatial.Overlaps;
 import org.opengis.filter.spatial.Touches;
 import org.opengis.filter.spatial.Within;
+import org.opengis.feature.Feature;
 import org.opengis.spatialschema.geometry.Geometry;
 
 
@@ -50,24 +51,53 @@ public interface FilterFactory {
 //
 ////////////////////////////////////////////////////////////////////////////////
 
+    /** {@code AND} filter between two filters. */
     And and(Filter f, Filter g);
+
+    /** {@code AND} filter between a list of filters. */
     And and(List<Filter> f);
-    Or  or (Filter f, Filter g);
-    Or  or (List<Filter> f);
+
+    /** {@code OR} filter between two filters. */
+    Or or(Filter f, Filter g);
+
+    /** {@code OR} filter between a list of filters. */
+    Or or (List<Filter> f);
+
+    /** Reverses the logical value of a filter. */
     Not not(Filter f);
 
-    FeatureId     featureId(String [] ids);
-    PropertyName  property(String name);
+    /** Passes only for features that have one of the IDs given to this object. */
+    FeatureId featureId(String[] ids);
 
-    PropertyIsBetween               between(Expression expr, Expression lower, Expression upper);
-    PropertyIsEqualTo               equals(Expression expr1, Expression expr2);
-    PropertyIsGreaterThan           greater(Expression expr1, Expression expr2);
-    PropertyIsGreaterThanOrEqualTo  greaterOrEqual(Expression expr1, Expression expr2);
-    PropertyIsLessThan              less(Expression expr1, Expression expr2);
-    PropertyIsLessThanOrEqualTo     lessOrEqual(Expression expr1, Expression expr2);
-    PropertyIsLike                  like(Expression expr, String pattern);
-    PropertyIsLike                  like(Expression expr, String pattern, String wildcard, String singleChar, String escape);
-    PropertyIsNull                  propIsNull(Expression expr);
+    /** Retrieves the value of a {@linkplain Feature feature}'s property. */
+    PropertyName property(String name);
+
+    /** A compact way of encoding a range check. */
+    PropertyIsBetween between(Expression expr, Expression lower, Expression upper);
+
+    /** Compares that two sub-expressions are equal to each other. */
+    PropertyIsEqualTo equals(Expression expr1, Expression expr2);
+
+    /** Checks that the first sub-expression is greater than the second subexpression. */
+    PropertyIsGreaterThan greater(Expression expr1, Expression expr2);
+
+    /** Checks that the first sub-expression is greater or equal to the second subexpression. */
+    PropertyIsGreaterThanOrEqualTo greaterOrEqual(Expression expr1, Expression expr2);
+
+    /** Checks that its first sub-expression is less than its second subexpression. */
+    PropertyIsLessThan less(Expression expr1, Expression expr2);
+
+    /** Checks that its first sub-expression is less than or equal to its second subexpression. */
+    PropertyIsLessThanOrEqualTo lessOrEqual(Expression expr1, Expression expr2);
+
+    /** Character string comparison operator with pattern matching and default wildcards. */
+    PropertyIsLike like(Expression expr, String pattern);
+
+    /** Character string comparison operator with pattern matching and specified wildcards. */
+    PropertyIsLike like(Expression expr, String pattern, String wildcard, String singleChar, String escape);
+
+    /** Checks if an expression's value is {@code null}. */
+    PropertyIsNull propIsNull(Expression expr);
 
 ////////////////////////////////////////////////////////////////////////////////
 //
@@ -75,16 +105,37 @@ public interface FilterFactory {
 //
 ////////////////////////////////////////////////////////////////////////////////
 
+    /** Checks if the bounding box of the feature's geometry overlaps the specified bounding box. */
     BBOX        bbox(String propertyName, double minx, double miny, double maxx, double maxy, String srs);
+
+    /** Check if all of a feature's geometry is more distant than the given distance from this object's geometry. */
     Beyond      beyond(String propertyName, Geometry geometry, double distance, String units);
+
+    /** Checks if the the first geometric operand contains the second. */
     Contains    contains(String propertyName, Geometry geometry);
+
+    /** Checks if the first geometric operand crosses the second. */
     Crosses     crosses(String propertyName, Geometry geometry);
+
+    /** Checks if the first operand is disjoint from the second. */
     Disjoint    disjoint(String propertyName, Geometry geometry);
+
+    /** Checks if any part of the first geometry lies within the given distance of the second geometry. */
     DWithin     dwithin(String propertyName, Geometry geometry, double distance, String units);
+
+    /** Checks if the geometry of the two operands are equal. */
     Equals      equals(String propertyName, Geometry geometry);
+
+    /** Checks if the two geometric operands intersect. */
     Intersects  intersects(String propertyName, Geometry geometry);
+
+    /** Checks if the interior of the first geometry somewhere overlaps the interior of the second geometry. */
     Overlaps    overlaps(String propertyName, Geometry geometry);
+
+    /** Checks if the feature's geometry touches, but does not overlap with the geometry held by this object. */
     Touches     touches(String propertyName, Geometry geometry);
+
+    /** Checks if the feature's geometry is completely contained by the specified constant geometry. */
     Within      within(String propertyName, Geometry geometry);
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -93,23 +144,54 @@ public interface FilterFactory {
 //
 ////////////////////////////////////////////////////////////////////////////////
 
+    /** Computes the numeric addition of the first and second operand. */
     Add       add(Expression expr1, Expression expr2);
+
+    /** Computes the numeric quotient resulting from dividing the first operand by the second. */
     Divide    divide(Expression expr1, Expression expr2);
+
+    /** Computes the numeric product of their first and second operand. */
     Multiply  multiply(Expression expr1, Expression expr2);
+
+    /** Computes the numeric difference between the first and second operand. */
     Subtract  subtract(Expression expr1, Expression expr2);
 
+    /** Call into some implementation-specific function. */
     Function  function(String name, Expression[] args);
+
+    /** Call into some implementation-specific function with one argument. */
     Function  function(String name, Expression arg1);
+
+    /** Call into some implementation-specific function with two arguments. */
     Function  function(String name, Expression arg1, Expression arg2);
+
+    /** Call into some implementation-specific function with three arguments. */
     Function  function(String name, Expression arg1, Expression arg2, Expression arg3);
 
+    /** A constant, literal value that can be used in expressions. */
     Literal  literal(Object obj);
+
+    /** A constant, literal {@link Byte} value that can be used in expressions. */
     Literal  literal(byte b);
+
+    /** A constant, literal {@link Short} value that can be used in expressions. */
     Literal  literal(short s);
+
+    /** A constant, literal {@link Integer} value that can be used in expressions. */
     Literal  literal(int i);
+
+    /** A constant, literal {@link Long} value that can be used in expressions. */
     Literal  literal(long l);
+
+    /** A constant, literal {@link Float} value that can be used in expressions. */
     Literal  literal(float f);
+
+    /** A constant, literal {@link Double} value that can be used in expressions. */
     Literal  literal(double d);
+
+    /** A constant, literal {@link Character} value that can be used in expressions. */
     Literal  literal(char c);
+
+    /** A constant, literal {@link Boolean} value that can be used in expressions. */
     Literal  literal(boolean b);
 }

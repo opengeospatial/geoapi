@@ -39,7 +39,7 @@ public interface GraphicStoreFactory {
      * @return {@code GraphicStore} connected to the indicated provider or service.
      * @throws IOException if the {@code GraphicStore} cannot connect to its source.
      */
-    GraphicStore createGraphicStore(URI provider, Map<String, Object> params) throws IOException;
+    GraphicStore createGraphicStore(URI provider, Map<String,Object> params) throws IOException;
 
     /**
      * Ask for a new {@code GraphicStore} connecting to the indicated provider or service.
@@ -53,7 +53,7 @@ public interface GraphicStoreFactory {
      * @return {@code GraphicStore} connected to the newly created provider or service.
      * @throws IOException if the {@code GraphicStore} cannot connect to its source.
      */
-    GraphicStore createNewGraphicStore(URI provider, Map<String, Object> params) throws IOException;
+    GraphicStore createNewGraphicStore(URI provider, Map<String,Object> params) throws IOException;
 
     /**
      * Icon representing this category of <code>GraphicStore</code>s.
@@ -79,7 +79,7 @@ public interface GraphicStoreFactory {
      * 
      * @revisit Should be replaced with a <code>Param</code>[] based on ISO standards (ISO 19119).
      */
-    Map<String, Class> getParametersInfo();
+    Map<String,Class> getParametersInfo();
 
     /**
      * Indicates this {@code GraphicStoreFactory} communicate with the indicated provider or service.
@@ -108,7 +108,7 @@ public interface GraphicStoreFactory {
      * @param params additional configuration information.
      * @return {@code true} if this factory can communicate with the provider.
      */
-    boolean canProcess(URI provider, Map<String, Object> params);
+    boolean canProcess(URI provider, Map<String,Object> params);
 
     /**
      * Allows a {@code GraphicStoreFactory} to ensure all its preconditions are met,

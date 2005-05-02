@@ -37,7 +37,7 @@ public interface Filter {
     /**
      * Accepts a visitor.  Implementations of all subinterfaces must have with a
      * method whose content is the following:
-     * <pre>return visitor.{@linkplain FilterVisitor#visit} visit(this, extraData);</pre>
+     * <pre>return visitor.{@linkplain FilterVisitor#visit visit}(this, extraData);</pre>
      */
     Object accept(FilterVisitor visitor, Object extraData);
 }

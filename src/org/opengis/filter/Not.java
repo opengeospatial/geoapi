@@ -22,5 +22,8 @@ import org.opengis.annotation.XmlSchema;
  */
 @XmlSchema(URL="filter.xsd", element="Not")
 public interface Not extends Filter {
-    public Filter getFilter();
+    /**
+     * The expression to reverse.
+     */
+    Filter getFilter();
 }
