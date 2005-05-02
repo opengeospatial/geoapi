@@ -14,12 +14,11 @@ import java.io.IOException;
 
 
 /**
- * The <code>LayerException</code> class...
+ * Throws when a {@linkplain org.opengis.layer.source.LayerSource layer source}
+ * failed to create a {@linkplain Layer layer}.
  * 
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @author Jesse Crossley (SYS Technologies)
- *
- * @revisit What is this exception for? No method in org.opengis.layer throws this exception or IOException.
  */
 public class LayerException extends IOException {
     /**

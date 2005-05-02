@@ -10,7 +10,7 @@
 package org.opengis.coverage.grid;
 
 // J2SE direct depencies
-import java.io.IOException;
+import javax.imageio.IIOException;
 
 // Annotations
 import org.opengis.annotation.UML;
@@ -35,14 +35,12 @@ import static org.opengis.annotation.Specification.*;
  *
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-004.pdf">Grid Coverage specification 1.0</A>
+ * @since 1.1
  *
  * @see GridCoverageReader#read
- *
- * @revisit In a J2SE 1.4 profile, this exception should extends
- *          {@link javax.imageio.IIOException}.
  */
 @UML (identifier="GC_CannotCreateGridCoverage", specification=OGC_01_004)
-public class CannotCreateGridCoverageException extends IOException {
+public class CannotCreateGridCoverageException extends IIOException {
     /**
      * Serial number for interoperability with different versions.
      */
@@ -52,7 +50,7 @@ public class CannotCreateGridCoverageException extends IOException {
      * Creates an exception with no message.
      */
     public CannotCreateGridCoverageException() {
-        super();
+        super(null);
     }
 
     /**

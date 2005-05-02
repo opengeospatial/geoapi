@@ -17,7 +17,7 @@ import java.lang.annotation.Documented;
  * An annotation mapping an interface, methods or fields to a profile.
  *
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
- * @version 2.0
+ * @since 1.1
  */
 @Documented
 public @interface Profile {

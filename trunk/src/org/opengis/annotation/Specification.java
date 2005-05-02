@@ -14,7 +14,7 @@ package org.opengis.annotation;
  * The specifications from which an interface, method or code list was derived.
  *
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
- * @version 2.0
+ * @since 1.1
  */
 public enum Specification {
     /**
@@ -77,5 +77,11 @@ public enum Specification {
      *
      * @see #ISO_19123
      */
-    OGC_01_004
+    OGC_01_004,
+
+    /**
+     * OGC <A HREF="http://www.opengis.org/docs/02-059.pdf">Filter encoding implementation specification</A>.
+     * This is the specification for package {@link org.opengis.filter} and sub-packages.
+     */
+    OGC_02_059
 }

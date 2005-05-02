@@ -20,7 +20,7 @@ import java.lang.annotation.RetentionPolicy;
  * the UML identifier where they come from.
  *
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
- * @version 2.0
+ * @since 1.1
  */
 @Documented
 @Retention(value = RetentionPolicy.RUNTIME)
