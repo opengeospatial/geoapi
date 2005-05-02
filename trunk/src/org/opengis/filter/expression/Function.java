@@ -14,8 +14,8 @@ import org.opengis.annotation.XmlSchema;
 
 
 /**
- * Instances of this class represent a function call into some implementation-
- * specific function.  This is included for completeness with respect to the
+ * Instances of this class represent a function call into some implementation-specific
+ * function.  This is included for completeness with respect to the
  * OGC Filter specification.  However, no functions are required to be supported
  * by that specification.
  *
