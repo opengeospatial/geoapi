@@ -9,9 +9,11 @@
  *************************************************************************************************/
 package org.opengis.filter;
 
-// Annotations
-import org.opengis.annotation.XmlSchema;
+// J2SE dependencies
+import java.util.Set;
 
+//Annotations
+import org.opengis.annotation.XmlSchema;
 
 /**
  * Instances of this interface represent a filter that passes only for features
@@ -24,8 +26,8 @@ import org.opengis.annotation.XmlSchema;
 @XmlSchema(URL="filter.xsd", element="FeatureId")
 public interface FeatureId extends Filter {
     /**
-     * Returns an array containing the IDs of {@linkplain org.opengis.feature.Feature features}
+     * Returns a {@linkplain Set} containing the IDs of {@linkplain org.opengis.feature.Feature features}
      * that will pass this filter.
      */
-    String[] getIDs();
+    Set<String> getIDs();
 }
