@@ -11,6 +11,7 @@ package org.opengis.filter;
 
 // J2SE direct dependencies
 import java.util.List;
+import java.util.Set;
 
 // OpenGIS direct dependencies
 import org.opengis.filter.expression.Add;
@@ -32,7 +33,6 @@ import org.opengis.filter.spatial.Intersects;
 import org.opengis.filter.spatial.Overlaps;
 import org.opengis.filter.spatial.Touches;
 import org.opengis.filter.spatial.Within;
-import org.opengis.feature.Feature;
 import org.opengis.spatialschema.geometry.Geometry;
 
 
@@ -67,7 +67,7 @@ public interface FilterFactory {
     Not not(Filter f);
 
     /** Passes only for features that have one of the IDs given to this object. */
-    FeatureId featureId(String[] ids);
+    FeatureId featureId(Set<String> ids);
 
     /** Retrieves the value of a {@linkplain Feature feature}'s property. */
     PropertyName property(String name);
@@ -97,7 +97,7 @@ public interface FilterFactory {
     PropertyIsLike like(Expression expr, String pattern, String wildcard, String singleChar, String escape);
 
     /** Checks if an expression's value is {@code null}. */
-    PropertyIsNull propIsNull(Expression expr);
+    PropertyIsNull isNull(Expression expr);
 
 ////////////////////////////////////////////////////////////////////////////////
 //
