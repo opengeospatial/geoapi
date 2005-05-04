@@ -69,7 +69,7 @@ public interface FilterFactory {
     /** Passes only for features that have one of the IDs given to this object. */
     FeatureId featureId(Set<String> ids);
 
-    /** Retrieves the value of a {@linkplain Feature feature}'s property. */
+    /** Retrieves the value of a {@linkplain org.opengis.feature.Feature feature}'s property. */
     PropertyName property(String name);
 
     /** A compact way of encoding a range check. */
