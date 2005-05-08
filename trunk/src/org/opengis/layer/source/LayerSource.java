@@ -32,7 +32,8 @@ import org.opengis.util.InternationalString;
  * given {@linkplain FeatureStore feature stores} using a given {@linkplain Filter filter}
  * and creating the necessary {@linkplain FeatureLayer feature layer}.  Other 
  * {@code LayerSource} implementations may connect to some other data source and produce
- * {@linkplain Graphic graphics} to be owned by the produced {@linkplain Layer layers}.
+ * {@linkplain org.opengis.go.display.primitive.Graphic graphics} to be owned by the produced
+ * {@linkplain Layer layers}.
  * 
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @author Jesse Crossley (SYS Technologies)
