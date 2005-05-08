@@ -19,17 +19,14 @@ package org.opengis.layer;
  * @author Jesse Crossley (SYS Technologies)
  */
 public interface MetadataURL extends AbstractURL {
-
     /**
-     * Provides the standard to which the metadata compiles.  The two currently defined
-     * values are:
+     * Provides the standard to which the metadata compiles.
+     * The two currently defined values are:
      * <ul>
      * <li>'ISO19115:2003' - refers to ISO 19115:2003</li>
      * <li>'FGDC:1998' - refers to FGDC-STD-001-1998</li>
      * <ul>
      * An information community may define meanings for other values.
-     * @return
      */
     String getType();
-    
 }
