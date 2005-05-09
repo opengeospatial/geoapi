@@ -1,5 +1,3 @@
-// $Header: /cvsroot/deegree/src/org/deegree/ogcwebservices/OGCWebService.java,v
-// 1.7 2004/06/23 13:37:40 mschneider Exp $
 /*----------------    FILE HEADER  ------------------------------------------
 
  This file is part of deegree.
@@ -42,43 +40,21 @@
 
  
  ---------------------------------------------------------------------------*/
-package org.opengis.webservice;
-
-// OpenGIS direct dependencies
-import org.opengis.webservice.WebServiceEvent;
-import org.opengis.webservice.capability.Capabilities;
+package org.opengis.webservice.capability;
 
 
 /**
- * @author <a href="mailto:poth@lat-lon.de">Andreas Poth </a>
- * @author last edited by: $Author$
+ * Available Distributed Computing Platforms (DCPs) are listed here. At present,
+ * only HTTP is defined.
+ * 
+ * @author <a href="mailto:k.lupp@web.de">Katharina Lupp </a>
+ * @author <a href="mailto:mschneider@lat-lon.de">Markus Schneider </a>
+ * @version $Revision$ $Date$
  */
-public interface WebService {
+public interface DCPType {
     /**
-     * Returns the capabilities of a web service
+     * returns the protocol of the available Distributed Computing Platforms
+     * (DCPs)
      */
-    Capabilities getCapabilities();
-
-    /**
-     * Performs the handling of the passed WebServiceEvent directly and returns
-     * the result to the calling class/method
-     *
-     * @param request request (WMS, WCS, WFS, CSW, WFS-G) to perform
-     *
-     * @throws WebServiceException 
-     */
-    Object doService(WebServiceRequest request) throws WebServiceException;
-    
-    /**
-     * Performs the handling of the passed WebServiceEvent in an new own Thread.
-     * The receiver of the response to the request must implement the
-     * WebServiceClient interface.
-     *
-     * @param event event containing request (WMS, WCS, WFS, CSW, WFS-G) to perform
-     *
-     * @throws WebServiceException
-     *
-     * @deprecated The WebServiceEvent class is marked as deprecated.
-     */
-    void doService(WebServiceEvent event) throws WebServiceException;
+    Protocol getProtocol();
 }

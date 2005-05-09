@@ -2,10 +2,10 @@
 /*----------------    FILE HEADER  ------------------------------------------
 
  This file is part of deegree.
- Copyright (C) 2001 by:
+ Copyright (C) 2001-2004 by:
  EXSE, Department of Geography, University of Bonn
  http://www.giub.uni-bonn.de/exse/
- lat/lon Fitzke/Fretter/Poth GbR
+ lat/lon GmbH
  http://www.lat-lon.de
 
  This library is free software; you can redistribute it and/or
@@ -25,7 +25,7 @@
  Contact:
 
  Andreas Poth
- lat/lon Fitzke/Fretter/Poth GbR
+ lat/lon GmbH
  Meckenheimer Allee 176
  53115 Bonn
  Germany
@@ -41,35 +41,28 @@
 
  
  ---------------------------------------------------------------------------*/
-package org.opengis.webservice.capability;
+package org.opengis.catalog.capability;
+
+// OpenGIS direct dependencies
+import org.opengis.filter.capability.FilterCapabilities;
+import org.opengis.webservice.capability.CommonCapabilities;
 
 
 /**
- * base interface for capabilities of any OGC service instance.
+ * Represents the capabilities for an OGC-CSW 2.0.0 compliant service instance.
  * 
  * @author <a href="mailto:mschneider@lat-lon.de">Markus Schneider </a>
- * @author <a href="mailto:poth@lat-lon.de">Andreas Poth </a>
+ * @author last edited by: $Author$
+ * 
+ * @version 2.0, $Revision$, $Date$
+ * 
+ * @since 2.0
  */
-public interface Capabilities {
+public interface CatalogCapabilities extends CommonCapabilities {
     /**
-     * Returns the version.
+     * Returns the FilterCapabilites section of the capabilities.
      * 
-     * @uml.property name="version"
+     * @uml.property name="filterCapabilities"
      */
-    String getVersion();
-
-    /**
-     * Returns the updateSequence.
-     * The UPDATESEQUENCE parameter is for maintaining cache consistency. Its
-     * value can be an integer, a timestamp in [ISO 8601:1988(E)] format, or
-     * any other number or string. The server may include an UpdateSequence
-     * value in its Capabilities XML. If present, this value should be increased
-     * when changes are made to the Capabilities (e.g., when new maps are added
-     * to the service). The server is the sole judge of lexical ordering
-     * sequence. The client may include this parameter in its GetCapabilities
-     * request.
-     * 
-     * @uml.property name="updateSequence"
-     */
-    String getUpdateSequence();
+    FilterCapabilities getFilterCapabilities();
 }

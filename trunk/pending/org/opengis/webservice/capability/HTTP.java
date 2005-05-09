@@ -1,11 +1,10 @@
-//$Header$
 /*----------------    FILE HEADER  ------------------------------------------
 
  This file is part of deegree.
  Copyright (C) 2001 by:
  EXSE, Department of Geography, University of Bonn
  http://www.giub.uni-bonn.de/exse/
- lat/lon Fitzke/Fretter/Poth GbR
+ lat/lon GmbH
  http://www.lat-lon.de
 
  This library is free software; you can redistribute it and/or
@@ -25,7 +24,7 @@
  Contact:
 
  Andreas Poth
- lat/lon Fitzke/Fretter/Poth GbR
+ lat/lon GmbH
  Meckenheimer Allee 176
  53115 Bonn
  Germany
@@ -43,33 +42,34 @@
  ---------------------------------------------------------------------------*/
 package org.opengis.webservice.capability;
 
+// J2SE direct dependencies
+import java.net.URL;
+
 
 /**
- * base interface for capabilities of any OGC service instance.
+ * The HTTP-Protocol.
  * 
+ * @author <a href="mailto:k.lupp@web.de">Katharina Lupp </a>
  * @author <a href="mailto:mschneider@lat-lon.de">Markus Schneider </a>
- * @author <a href="mailto:poth@lat-lon.de">Andreas Poth </a>
  */
-public interface Capabilities {
+public interface HTTP extends Protocol {
     /**
-     * Returns the version.
-     * 
-     * @uml.property name="version"
+     * Return the list of online resources for the HTTP GET request. An Online
+     * Resource URL intended for HTTP GET requests, is a URL prefix to which
+     * additional parameters must be appended in order to construct a valid
+     * Operation request. A URL prefix is defined as an opaque string including
+     * the protocol, hostname, optional port number, path, a question mark '?',
+     * and, optionally, one or more server-specific parameters ending in an
+     * ampersand '&'.
+     *  
      */
-    String getVersion();
+    URL[] getGetOnlineResources();
 
     /**
-     * Returns the updateSequence.
-     * The UPDATESEQUENCE parameter is for maintaining cache consistency. Its
-     * value can be an integer, a timestamp in [ISO 8601:1988(E)] format, or
-     * any other number or string. The server may include an UpdateSequence
-     * value in its Capabilities XML. If present, this value should be increased
-     * when changes are made to the Capabilities (e.g., when new maps are added
-     * to the service). The server is the sole judge of lexical ordering
-     * sequence. The client may include this parameter in its GetCapabilities
-     * request.
-     * 
-     * @uml.property name="updateSequence"
+     * Return the list of online resources for the HTTP GET request. An Online
+     * Resource URL intended for HTTP POST requests is a complete and valid URL
+     * to which Clients transmit encoded requests in the body of the POST
+     * document.
      */
-    String getUpdateSequence();
+    URL[] getPostOnlineResources();
 }

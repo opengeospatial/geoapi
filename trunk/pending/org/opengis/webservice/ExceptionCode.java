@@ -59,7 +59,7 @@ import static org.opengis.annotation.Specification.*;
 /**
  * @author <a href="mailto:poth@lat-lon.de">Andreas Poth</a>
  */
-public class ExceptionCode extends CodeList<ExceptionCode> {
+public final class ExceptionCode extends CodeList<ExceptionCode> {
     /**
      * Serial number for compatibility with different versions.
      */

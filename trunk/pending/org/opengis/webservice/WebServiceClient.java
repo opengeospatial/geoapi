@@ -1,5 +1,3 @@
-// $Header: /cvsroot/deegree/src/org/deegree/ogcwebservices/OGCWebService.java,v
-// 1.7 2004/06/23 13:37:40 mschneider Exp $
 /*----------------    FILE HEADER  ------------------------------------------
 
  This file is part of deegree.
@@ -44,41 +42,20 @@
  ---------------------------------------------------------------------------*/
 package org.opengis.webservice;
 
-// OpenGIS direct dependencies
-import org.opengis.webservice.WebServiceEvent;
-import org.opengis.webservice.capability.Capabilities;
-
 
 /**
- * @author <a href="mailto:poth@lat-lon.de">Andreas Poth </a>
- * @author last edited by: $Author$
+ * This is the base interface clients to OGC Web Services within the deegree
+ * framework. It may be specialized defining additional write-methods.
+ * 
+ * @author <a href="mailto:poth@lat-lon.de">Andreas Poth</a>
+ * @version 2002-04-16
+ * @deprecated Legacy code of deegree 1.x.
  */
-public interface WebService {
+public interface WebServiceClient {
     /**
-     * Returns the capabilities of a web service
+     * Returns the result of a request by calling the write-method.
+     * It is suggested that the submitted object shall be an instance of
+     * {@link WebServiceEvent}. But it don't have to be.
      */
-    Capabilities getCapabilities();
-
-    /**
-     * Performs the handling of the passed WebServiceEvent directly and returns
-     * the result to the calling class/method
-     *
-     * @param request request (WMS, WCS, WFS, CSW, WFS-G) to perform
-     *
-     * @throws WebServiceException 
-     */
-    Object doService(WebServiceRequest request) throws WebServiceException;
-    
-    /**
-     * Performs the handling of the passed WebServiceEvent in an new own Thread.
-     * The receiver of the response to the request must implement the
-     * WebServiceClient interface.
-     *
-     * @param event event containing request (WMS, WCS, WFS, CSW, WFS-G) to perform
-     *
-     * @throws WebServiceException
-     *
-     * @deprecated The WebServiceEvent class is marked as deprecated.
-     */
-    void doService(WebServiceEvent event) throws WebServiceException;
+    void write(Object result);
 }

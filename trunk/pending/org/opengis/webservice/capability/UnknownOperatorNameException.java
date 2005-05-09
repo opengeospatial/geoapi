@@ -2,10 +2,10 @@
 /*----------------    FILE HEADER  ------------------------------------------
 
  This file is part of deegree.
- Copyright (C) 2001 by:
+ Copyright (C) 2001-2004 by:
  EXSE, Department of Geography, University of Bonn
  http://www.giub.uni-bonn.de/exse/
- lat/lon Fitzke/Fretter/Poth GbR
+ lat/lon GmbH
  http://www.lat-lon.de
 
  This library is free software; you can redistribute it and/or
@@ -38,38 +38,27 @@
  53115 Bonn
  Germany
  E-Mail: jens.fitzke@uni-bonn.de
-
  
  ---------------------------------------------------------------------------*/
 package org.opengis.webservice.capability;
 
+// OpenGIS direct dependencies
+import org.opengis.webservice.WebServiceException;
+
 
 /**
- * base interface for capabilities of any OGC service instance.
+ * Thrown if a given name is not a known <code>Operator</code>.
  * 
- * @author <a href="mailto:mschneider@lat-lon.de">Markus Schneider </a>
- * @author <a href="mailto:poth@lat-lon.de">Andreas Poth </a>
+ * @author <a href="mailto:mschneider@lat-lon.de">Markus Schneider</a>
  */
-public interface Capabilities {
+public class UnknownOperatorNameException extends WebServiceException {
     /**
-     * Returns the version.
-     * 
-     * @uml.property name="version"
+     * Serial number for compatibility with different versions.
      */
-    String getVersion();
+//    private static final long serialVersionUID = **TODO**;
 
-    /**
-     * Returns the updateSequence.
-     * The UPDATESEQUENCE parameter is for maintaining cache consistency. Its
-     * value can be an integer, a timestamp in [ISO 8601:1988(E)] format, or
-     * any other number or string. The server may include an UpdateSequence
-     * value in its Capabilities XML. If present, this value should be increased
-     * when changes are made to the Capabilities (e.g., when new maps are added
-     * to the service). The server is the sole judge of lexical ordering
-     * sequence. The client may include this parameter in its GetCapabilities
-     * request.
-     * 
-     * @uml.property name="updateSequence"
-     */
-    String getUpdateSequence();
+    public UnknownOperatorNameException(String message) {
+        super(message);
+    }
 }
+

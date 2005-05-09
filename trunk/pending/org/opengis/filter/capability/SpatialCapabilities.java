@@ -1,5 +1,6 @@
-// $Header: /cvsroot/deegree/src/org/deegree/ogcwebservices/OGCWebService.java,v
-// 1.7 2004/06/23 13:37:40 mschneider Exp $
+// $Header:
+// /cvsroot/deegree/src/org/deegree/ogcwebservices/getcapabilities/Contents.java,v
+// 1.1 2004/06/23 11:55:40 mschneider Exp $
 /*----------------    FILE HEADER  ------------------------------------------
 
  This file is part of deegree.
@@ -42,43 +43,22 @@
 
  
  ---------------------------------------------------------------------------*/
-package org.opengis.webservice;
+package org.opengis.filter.capability;
 
 // OpenGIS direct dependencies
-import org.opengis.webservice.WebServiceEvent;
-import org.opengis.webservice.capability.Capabilities;
+import org.opengis.util.GenericName;
 
 
 /**
- * @author <a href="mailto:poth@lat-lon.de">Andreas Poth </a>
- * @author last edited by: $Author$
+ * SpatialCapabilitiesBean
+ * 
+ * @author <a href="mailto:tfr@users.sourceforge.net">Torsten Friebe </A>
  */
-public interface WebService {
-    /**
-     * Returns the capabilities of a web service
-     */
-    Capabilities getCapabilities();
+public interface SpatialCapabilities {
+    SpatialOperator[] getSpatialOperators();
 
     /**
-     * Performs the handling of the passed WebServiceEvent directly and returns
-     * the result to the calling class/method
-     *
-     * @param request request (WMS, WCS, WFS, CSW, WFS-G) to perform
-     *
-     * @throws WebServiceException 
+     * Returns the geometryOperands.
      */
-    Object doService(WebServiceRequest request) throws WebServiceException;
-    
-    /**
-     * Performs the handling of the passed WebServiceEvent in an new own Thread.
-     * The receiver of the response to the request must implement the
-     * WebServiceClient interface.
-     *
-     * @param event event containing request (WMS, WCS, WFS, CSW, WFS-G) to perform
-     *
-     * @throws WebServiceException
-     *
-     * @deprecated The WebServiceEvent class is marked as deprecated.
-     */
-    void doService(WebServiceEvent event) throws WebServiceException;
+    GenericName[] getGeometryOperands();
 }
