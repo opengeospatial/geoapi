@@ -18,15 +18,15 @@ import java.util.Iterator;
 
 
 /**
- * Base class for all code lists. Subclasses shall provides a <code>values()</code> method
- * which returns all <code>CodeList</code> element in an array of the appropriate class.
+ * Base class for all code lists. Subclasses shall provides a {@code values()} method
+ * which returns all {@code CodeList} element in an array of the appropriate class.
  * Code list are extensible, i.e. invoking the public constructor in any subclass will
- * automatically add the newly created <code>CodeList</code> element in the array to be
- * returned by <code>values()</code>.
+ * automatically add the newly created {@code CodeList} element in the array to be
+ * returned by {@code values()}.
  *
  * @author ISO 19103
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
- * @version 2.0
+ * @since 1.0
  */
 public abstract class CodeList<CodeType extends CodeList<CodeType>> implements Comparable<CodeType>, Serializable {
     /**

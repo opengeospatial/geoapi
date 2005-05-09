@@ -31,7 +31,8 @@ import static org.opengis.annotation.Specification.*;
  * corresponding metadata values in the EPSG tables.
  *
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
- * @version Abstract specification 2.0 (revised)
+ * @version <A HREF="http://www.opengis.org/docs/03-073r1.zip">Abstract specification 2.0</A>
+ * @since 1.1
  */
 @UML (identifier="IdentifiedObject", specification=ISO_19111)
 public interface IdentifiedObject {

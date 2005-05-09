@@ -9,6 +9,11 @@
  *************************************************************************************************/
 package org.opengis.layer;
 
+// Annotations
+import org.opengis.annotation.UML;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
+
 
 /**
  * The <code>MetadataURL</code> interface offers detailed, standardized metadata
@@ -17,7 +22,10 @@ package org.opengis.layer;
  * @author ISO_19128 7.2.4.6.11 MetadataURL
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @author Jesse Crossley (SYS Technologies)
+ * @version <A HREF="http://portal.opengeospatial.org/files/?artifact_id=5316">Implementation specification 1.3</A>
+ * @since 1.1
  */
+@UML (identifier="MetadataURL", specification=ISO_19128)
 public interface MetadataURL extends AbstractURL {
     /**
      * Provides the standard to which the metadata compiles.
@@ -28,5 +36,6 @@ public interface MetadataURL extends AbstractURL {
      * <ul>
      * An information community may define meanings for other values.
      */
+    @UML (identifier="type", obligation=MANDATORY, specification=ISO_19128)
     String getType();
 }

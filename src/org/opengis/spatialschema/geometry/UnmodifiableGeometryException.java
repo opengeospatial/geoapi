@@ -17,8 +17,8 @@ package org.opengis.spatialschema.geometry;
  * raised this exception. Whatever an unmodifiable geometry is immutable or not is
  * implementation dependent.
  *
- * @version 1.0
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
+ * @since 1.1
  */
 public class UnmodifiableGeometryException extends UnsupportedOperationException {
     /**

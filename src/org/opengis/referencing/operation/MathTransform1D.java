@@ -21,7 +21,7 @@ import org.opengis.annotation.Extension;
  * transforming a value without the overhead of creating data array.
  *
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
- * @version 1.0
+ * @since 1.0
  */
 @Extension
 public interface MathTransform1D extends MathTransform {

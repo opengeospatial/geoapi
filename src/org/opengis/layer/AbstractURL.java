@@ -12,14 +12,20 @@ package org.opengis.layer;
 // OpenGIS direct dependencies
 import org.opengis.metadata.citation.OnLineResource;
 
+// Annotations
+import org.opengis.annotation.UML;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
+
 
 /**
  * The <code>AbstractURL</code> interface is a simple starting point for most of 
  * the various URL elements used by {@code Layer}s and {@code Style}s.
  * 
- * 
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @author Jesse Crossley (SYS Technologies)
+ * @version <A HREF="http://portal.opengeospatial.org/files/?artifact_id=5316">Implementation specification 1.3</A>
+ * @since 1.1
  */
 public interface AbstractURL {
 

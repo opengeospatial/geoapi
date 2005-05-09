@@ -30,7 +30,7 @@ import org.opengis.annotation.Extension;
  * immutable instance of {@link java.awt.geom.AffineTransform}.
  *
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
- * @version 1.0
+ * @since 1.0
  */
 @Extension
 public interface MathTransform2D extends MathTransform {

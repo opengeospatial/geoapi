@@ -9,6 +9,7 @@
  *************************************************************************************************/
 package org.opengis.layer;
 
+// J2SE direct dependencies
 import java.util.List;
 
 // OpenGIS direct dependencies
@@ -23,6 +24,7 @@ import org.opengis.util.InternationalString;
 
 // Annotations
 import org.opengis.annotation.UML;
+import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
 
 
@@ -36,38 +38,39 @@ import static org.opengis.annotation.Specification.*;
  * It is currently assumed that the {@code Layer} interface will prove
  * analogous to the WMS concept of Layer, and will soon be an implementation
  * of said.
- * </p>
  *
- * @author ISO_19128 7.2.4.5 Layers and styles
+ * @author ISO 19128
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @author Jesse Crossley (SYS Technologies)
+ * @version <A HREF="http://portal.opengeospatial.org/files/?artifact_id=5316">Implementation specification 1.3</A>
+ * @since 1.1
  */
-@UML (identifier="Layer", specification=ISO_19128)
+@UML (identifier="Layer", specification=ISO_19128) // 7.2.4.5 Layers and styles
 public interface Layer {    
     /**
      * Provides a unique name for identifying this {@code Layer}.
      *
      * @return the unique String identifier for this {@code Layer}
      */
-    @UML (identifier="Name", specification=ISO_19128) // 7.2.4.6.3
+    @UML (identifier="Name", obligation=OPTIONAL, specification=ISO_19128) // 7.2.4.6.3
     String getName();
-    
+
     /**
      * Provides the human-readable String for presenting this {@code Layer}.
      *
      * @return the human-readable Title for this {@code Layer} 
      */
-    @UML (identifier="Title", specification=ISO_19128) // 7.2.4.6.2
+    @UML (identifier="Title", obligation=MANDATORY, specification=ISO_19128) // 7.2.4.6.2
     InternationalString getTitle();
-    
+
     /** 
      * Provides the narrative description of this {@code Layer}.
      *
      * @return the narrative description of this {@code Layer}
      */
-    @UML (identifier="Abstract", specification=ISO_19128) // 7.2.4.6.4
+    @UML (identifier="Abstract", obligation=OPTIONAL, specification=ISO_19128) // 7.2.4.6.4
     InternationalString getAbstract();
-    
+
     /**
      * Provides keywords to aid in catalogue searches.  The returned
      * {@code List} should NOT be live, and modifying it should
@@ -75,9 +78,9 @@ public interface Layer {
      * 
      * @return this {@code Layer}'s KeywordList
      */
-    @UML (identifier="KeywordList", specification=ISO_19128) // 7.2.4.6.4
+    @UML (identifier="KeywordList", obligation=OPTIONAL, specification=ISO_19128) // 7.2.4.6.4
     List<InternationalString> getKeywordList();
-    
+
     /**
      * Provides the {@code CoordinateReferenceSystem}s available to
      * this {@code Layer}, which includes CRSs inherited from parent
@@ -86,9 +89,9 @@ public interface Layer {
      * 
      * @return this {@code Layer}'s {@code CoordinateReferenceSystem}s
      */
-    @UML (identifier="CRS", specification=ISO_19128) // 7.2.4.6.7
+    @UML (identifier="CRS", obligation=OPTIONAL, specification=ISO_19128) // 7.2.4.6.7
     List<CoordinateReferenceSystem> getCRSs();
-    
+
     /**
      * Provides the BoundingBoxes that specify the coordinate ranges for
      * this {@code Layer}, as {@code Envelope}s, including BoundingBoxes
@@ -98,9 +101,9 @@ public interface Layer {
      * 
      * @return this {@code Layer}'s BoundingBox {@code Envelope}s
      */
-    @UML (identifier="BoundingBox", specification=ISO_19128)  // 7.2.4.6.8
+    @UML (identifier="BoundingBox", obligation=OPTIONAL, specification=ISO_19128)  // 7.2.4.6.8
     List<Envelope> getBoundingBoxes();
-    
+
     /**
      * Provides the {@code Attribution} for this {@code Layer}, which 
      * identifies the source of the geographic information used in this
@@ -108,9 +111,9 @@ public interface Layer {
      * 
      * @return this {@code Layer}'s {@code Attribution}
      */
-    @UML (identifier="Attribution", specification=ISO_19128) // 7.2.4.6.12
+    @UML (identifier="Attribution", obligation=OPTIONAL, specification=ISO_19128) // 7.2.4.6.12
     Attribution getAttribution();
-    
+
     /**
      * Provides the {@code AuthorityURL}s named in this {@code Layer}'s
      * {@code Identifier}s.  The returned {@code List} should NOT be live, and 
@@ -119,9 +122,9 @@ public interface Layer {
      * 
      * @return this {@code Layer}'s {@code AuthorityURL}s
      */
-    @UML (identifier="AuthorityURL", specification=ISO_19128) // 7.2.4.6.13
+    @UML (identifier="AuthorityURL", obligation=OPTIONAL, specification=ISO_19128) // 7.2.4.6.13
     List<AuthorityURL> getAuthorityURLs();
-        
+
     /**
      * Provides the {@code Identifier}s containing ID numbers or labels
      * defined by a particular {@code Authority}. The returned {@code List} should
@@ -130,9 +133,9 @@ public interface Layer {
      *    
      * @return this {@code Layer}'s {@code Identifier}s
      */
-    @UML (identifier="Identifier", specification=ISO_19128) // 7.2.4.6.13
+    @UML (identifier="Identifier", obligation=OPTIONAL, specification=ISO_19128) // 7.2.4.6.13
     List<Identifier> getIdentifiers();
-    
+
     /**
      * Provides the {@code MetadataURL}s that offer detailed, standardized
      * metadata about the data for this {@code Layer}.  The returned {@code List}
@@ -141,9 +144,9 @@ public interface Layer {
      * 
      * @return this {@code Layer}'s {@code MetadataURL}s
      */
-    @UML (identifier="MetadataURL", specification=ISO_19128) // 7.2.4.6.11
+    @UML (identifier="MetadataURL", obligation=OPTIONAL, specification=ISO_19128) // 7.2.4.6.11
     List<MetadataURL> getMetadataURLs();
-    
+
     /**
      * Provides the {@code DataURL}s that offer links to the underlying data
      * represented by this {@code Layer}.  The returned {@code List} should NOT
@@ -151,9 +154,9 @@ public interface Layer {
      * set of DataURLs.  
      * @return this {@code Layer}'s {@code DataURL}s
      */
-    @UML (identifier="DataURL", specification=ISO_19128) // 7.2.4.6.15
+    @UML (identifier="DataURL", obligation=OPTIONAL, specification=ISO_19128) // 7.2.4.6.15
     List<DataURL> getDataURLs();
-    
+
     /**
      * Provides the {@code FeatureURL}s that point to a list of features 
      * represented in this {@code Layer}.  The returned {@code List} should 
@@ -162,9 +165,9 @@ public interface Layer {
      * 
      * @return this {@code Layer}'s {@code FeatureListURL}s
      */
-    @UML (identifier="FeatureListURL", specification=ISO_19128) // 7.2.4.6.14
+    @UML (identifier="FeatureListURL", obligation=OPTIONAL, specification=ISO_19128) // 7.2.4.6.14
     List<FeatureListURL> getFeatureListURLs();
-    
+
     /**
      * Provides the {@code Style}s that may be requested for this {@code Layer}.
      * The returned {@code List} should NOT be live, and modifying it should have
@@ -172,25 +175,25 @@ public interface Layer {
      * 
      * @return this {@code Layer}'s {@code Style}s
      */
-    @UML (identifier="Style", specification=ISO_19128) // 7.2.4.6.5
+    @UML (identifier="Style", obligation=OPTIONAL, specification=ISO_19128) // 7.2.4.6.5
     List<Style> getStyles();
-        
+
     /**
      * Provides the lower bound for the range of scales for which it is appropriate
      * to generate a map for this {@code Layer}.  A value of -1 indicates this 
      * {@code Layer} has no MinScaleDenominator.
      * @return the minimum scale denominator
      */
-    @UML (identifier="MinScaleDenominator", specification=ISO_19128) // 7.2.4.6.9 
+    @UML (identifier="MinScaleDenominator", obligation=OPTIONAL, specification=ISO_19128) // 7.2.4.6.9 
     double getMinScaleDenominator();
-    
+
     /**
      * Provides the upper bound for the range of scales for which it is appropriate
      * to generate a map for this {@code Layer}.  A value of -1 indicates this
      * {@code Layer} has no MaxScaleDenominator.
      * @return the maximum scale denominator
      */
-    @UML (identifier="MaxScaleDenominator", specification=ISO_19128) // 7.2.4.6.9
+    @UML (identifier="MaxScaleDenominator", obligation=OPTIONAL, specification=ISO_19128) // 7.2.4.6.9
     double getMaxScaleDenominator();
 
     /**
@@ -203,22 +206,22 @@ public interface Layer {
      * @return the child {@code Layer}s 
      */
     List<Layer> getLayers();
-    
+
     /**
      * Indicates whether the GetFeatureInfo operation is supported on this
      * {@code Layer}.
      * @return {@code true} if this {@code Layer} supports GetFeatureInfo
      */
-    @UML (identifier="queryable", specification=ISO_19128) // 7.2.4.7.2
+    @UML (identifier="queryable", obligation=OPTIONAL, specification=ISO_19128) // 7.2.4.7.2
     boolean isQueryable();
-    
+
     /**
      * Indicates how many times this {@code Layer} has been cascaded.
      * @return how many times this {@code Layer} has been cascaded
      */
     @UML (identifier="cascaded", specification=ISO_19128) // 7.2.4.7.3
     int getCascaded();
-    
+
     /**
      * Indicates whether this {@code Layer}'s renderable data should be
      * considered opaque, and therefore requested at the bottom of a stack
@@ -227,7 +230,7 @@ public interface Layer {
      */
     @UML (identifier="opaque", specification=ISO_19128) // 7.2.4.7.4
     boolean isOpaque();
-    
+
     /**
      * Indicates that this {@code Layer} is not able to produce a map
      * of a geographic area other than this {@code Layer}'s declared
@@ -236,7 +239,7 @@ public interface Layer {
      */
     @UML (identifier="noSubsets", specification=ISO_19128) // 7.2.4.7.5
     boolean isNoSubsets();
-    
+
     /**
      * Indicates that this {@code Layer} is not able to produce a map
      * with a width different from the fixed width indicated.  A value of 
@@ -245,7 +248,7 @@ public interface Layer {
      */
     @UML (identifier="fixedWidth", specification=ISO_19128) // 7.2.4.7.5
     int getFixedWidth();
-    
+
     /**
      * Indicates that this {@code Layer} is not able to produce a map 
      * with a height different from the fixed height indicated.  A value of
@@ -254,13 +257,13 @@ public interface Layer {
      */
     @UML (identifier="fixedHeight", specification=ISO_19128) // 7.2.4.7.5
     int getFixedHeight();
-    
+
     //*************************************************************************
     //  'work' methods?
     //*************************************************************************
-    
+
     // parent access
-    
+
     /**
      * Gets the parent <code>LayerSource</code> that produced this {@code Layer}.
      * This should assist in serialization.
@@ -269,7 +272,7 @@ public interface Layer {
     //LayerSource getLayerSource();
 
     // 'renderable' access
-    
+
     /**
      * Gets the <code>FeatureLayer</code>s from this {@code Layer} that are suitable
      * for adding to a <code>FeatureCanvas</code> in order to visually represent this
@@ -280,7 +283,7 @@ public interface Layer {
      * @return the <code>FeatureLayer</code>s to add to a <code>FeatureCanvas</code>
      */
     List<FeatureLayer> getFeatureLayers();
-    
+
     /**
      * Gets the <code>Graphic</code>s from this {@code Layer} that are suitable
      * for adding to a <code>Canvas</code> in order to visually represent this 
@@ -291,15 +294,15 @@ public interface Layer {
      * @return the <code>Graphic</code>s to add to a <code>Canvas</code> 
      */
     List<Graphic> getGraphics();
-    
-    
-    
+
+
+
     /**
      * Whether this {@code Layer}'s renderable components should be initially rendered.
      * @return true if the {@code Layer} should be shown initially
      */
     //boolean isInitiallyVisible();
-    
+
     // use sparingly to indicate a Layer is always on?
     // ie, for a background vectormap?
     // boolean isAlwaysVisible();

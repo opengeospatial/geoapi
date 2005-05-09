@@ -23,9 +23,7 @@ import static org.opengis.annotation.Specification.*;
  * @author ISO TS 19103
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-101.pdf">Abstract specification 5</A>
- *
- * @revisit This interface should uses generic type. It focus on {@link DirectPosition}
- *          for now because it is the only type used at this time.
+ * @since 1.0
  */
 @UML (identifier="TransfiniteSet", specification=ISO_19107)
 public interface TransfiniteSet {

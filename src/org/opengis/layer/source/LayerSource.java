@@ -37,6 +37,7 @@ import org.opengis.util.InternationalString;
  * 
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @author Jesse Crossley (SYS Technologies)
+ * @since 1.1
  */
 public interface LayerSource {
     /**
@@ -70,9 +71,9 @@ public interface LayerSource {
     /**
      * Returns a List of {@code Layer}s provided by this {@code LayerSource}.
      * This List should <b>not</b> be a live List: modifying the returned List
-     * should not modify this {@code LayerSource}'s {@code Layer}s.
+     * (if modifiable) should not modify this {@code LayerSource}'s {@code Layer}s.
      *
-     * @return a List of <code>Layer</code>s
+     * @return a List of {@code Layer}s
      * @throws IOException if there is an IO problem getting the {@code Layer}s 
      * @throws LayerException if there is any other problem getting the named {@code Layer}
      */

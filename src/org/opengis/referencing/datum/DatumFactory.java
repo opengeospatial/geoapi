@@ -35,6 +35,7 @@ import static org.opengis.annotation.Specification.*;
  *
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-009.pdf">Implementation specification 1.0</A>
+ * @since 1.0
  *
  * @see org.opengis.referencing.cs.CSFactory
  * @see org.opengis.referencing.crs.CRSFactory
