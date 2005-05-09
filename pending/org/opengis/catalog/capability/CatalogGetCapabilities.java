@@ -2,7 +2,7 @@
 /*----------------    FILE HEADER  ------------------------------------------
 
  This file is part of deegree.
- Copyright (C) 2001 by:
+ Copyright (C) 2001-2004 by:
  EXSE, Department of Geography, University of Bonn
  http://www.giub.uni-bonn.de/exse/
  lat/lon Fitzke/Fretter/Poth GbR
@@ -25,7 +25,7 @@
  Contact:
 
  Andreas Poth
- lat/lon Fitzke/Fretter/Poth GbR
+ lat/lon GmbH
  Meckenheimer Allee 176
  53115 Bonn
  Germany
@@ -41,35 +41,40 @@
 
  
  ---------------------------------------------------------------------------*/
-package org.opengis.webservice.capability;
+package org.opengis.catalog.capability;
+
+// J2SE direct dependencies
+import java.util.Map;
+
+// OpenGIS direct dependencies
+import org.opengis.webservice.capability.GetCapabilities;
 
 
 /**
- * base interface for capabilities of any OGC service instance.
+ * Class representation of an <code>OGC-GetCapabilities</code> request in
+ * <code>CSW</code> flavour.
+ * <p>
+ * Special to the <code>CSW</code> version of the <code>GetCapabilities</code>
+ * request are these two additional parameters:
+ * <table border="1">
+ * <tr>
+ * <th>Name</th>
+ * <th>Occurences</th>
+ * <th>Function</th>
+ * </tr>
+ * <tr>
+ * <td>AcceptVersions</td>
+ * <td align="center">0|1</td>
+ * <td>Protocol versions supported by this service.</td>
+ * </tr>
+ * <tr>
+ * <td>AcceptFormats</td>
+ * <td align="center">0|1</td>
+ * <td>Formats accepted by this service.</td>
+ * </tr>
+ * </table>
  * 
- * @author <a href="mailto:mschneider@lat-lon.de">Markus Schneider </a>
- * @author <a href="mailto:poth@lat-lon.de">Andreas Poth </a>
+ * @author <a href="mailto:mschneider@lat-lon.de">Markus Schneider</a>
  */
-public interface Capabilities {
-    /**
-     * Returns the version.
-     * 
-     * @uml.property name="version"
-     */
-    String getVersion();
-
-    /**
-     * Returns the updateSequence.
-     * The UPDATESEQUENCE parameter is for maintaining cache consistency. Its
-     * value can be an integer, a timestamp in [ISO 8601:1988(E)] format, or
-     * any other number or string. The server may include an UpdateSequence
-     * value in its Capabilities XML. If present, this value should be increased
-     * when changes are made to the Capabilities (e.g., when new maps are added
-     * to the service). The server is the sole judge of lexical ordering
-     * sequence. The client may include this parameter in its GetCapabilities
-     * request.
-     * 
-     * @uml.property name="updateSequence"
-     */
-    String getUpdateSequence();
+public interface CatalogGetCapabilities extends GetCapabilities {
 }

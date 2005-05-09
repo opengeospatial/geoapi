@@ -39,37 +39,45 @@
  Germany
  E-Mail: jens.fitzke@uni-bonn.de
 
- 
+
  ---------------------------------------------------------------------------*/
 package org.opengis.webservice.capability;
 
 
 /**
- * base interface for capabilities of any OGC service instance.
+ * Represents a configuration for an OGC-Webservice according to the OWS Common
+ * Implementation Specification 0.2, i.e. it consists of the following parts:
+ * <ul>
+ * <li>ServiceIdentification (corresponds to and expands the
+ * SV_ServiceIdentification class in ISO 19119)
+ * <li>ServiceProvider (corresponds to and expands the SV_ServiceProvider class
+ * in ISO 19119)
+ * <li>OperationsMetadata (contains set of Operation elements that each
+ * corresponds to and expand the SV_OperationsMetadata class in ISO 19119)
+ * <li>Contents (whenever relevant, contains set of elements that each
+ * corresponds to the MD_DataIdentification class in ISO 19119 and 19115)
+ * </ul>
  * 
  * @author <a href="mailto:mschneider@lat-lon.de">Markus Schneider </a>
- * @author <a href="mailto:poth@lat-lon.de">Andreas Poth </a>
  */
-public interface Capabilities {
+public interface CommonCapabilities extends Capabilities {
     /**
-     * Returns the version.
-     * 
-     * @uml.property name="version"
+     * Returns the contents.
      */
-    String getVersion();
+    Contents getContents();
 
     /**
-     * Returns the updateSequence.
-     * The UPDATESEQUENCE parameter is for maintaining cache consistency. Its
-     * value can be an integer, a timestamp in [ISO 8601:1988(E)] format, or
-     * any other number or string. The server may include an UpdateSequence
-     * value in its Capabilities XML. If present, this value should be increased
-     * when changes are made to the Capabilities (e.g., when new maps are added
-     * to the service). The server is the sole judge of lexical ordering
-     * sequence. The client may include this parameter in its GetCapabilities
-     * request.
-     * 
-     * @uml.property name="updateSequence"
+     * Returns the operationsMetadata.
      */
-    String getUpdateSequence();
+    OperationsMetadata getOperationsMetadata();
+
+    /**
+     * Returns the serviceIdentification.
+     */
+    ServiceIdentification getServiceIdentification();
+
+    /**
+     * Returns the serviceProvider.
+     */
+    ServiceProvider getServiceProvider();
 }

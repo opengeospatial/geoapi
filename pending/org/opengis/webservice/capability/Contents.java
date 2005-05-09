@@ -1,5 +1,4 @@
-// $Header: /cvsroot/deegree/src/org/deegree/ogcwebservices/OGCWebService.java,v
-// 1.7 2004/06/23 13:37:40 mschneider Exp $
+//$Header$
 /*----------------    FILE HEADER  ------------------------------------------
 
  This file is part of deegree.
@@ -42,43 +41,14 @@
 
  
  ---------------------------------------------------------------------------*/
-package org.opengis.webservice;
-
-// OpenGIS direct dependencies
-import org.opengis.webservice.WebServiceEvent;
-import org.opengis.webservice.capability.Capabilities;
+package org.opengis.webservice.capability;
 
 
 /**
- * @author <a href="mailto:poth@lat-lon.de">Andreas Poth </a>
- * @author last edited by: $Author$
+ * Represents the Contents part in the capabilities of an OGC-web
+ * service according to the OWS Common Implementation Specification 0.2.
+ * 
+ * @author <a href="mailto:mschneider@lat-lon.de">Markus Schneider </a>
  */
-public interface WebService {
-    /**
-     * Returns the capabilities of a web service
-     */
-    Capabilities getCapabilities();
-
-    /**
-     * Performs the handling of the passed WebServiceEvent directly and returns
-     * the result to the calling class/method
-     *
-     * @param request request (WMS, WCS, WFS, CSW, WFS-G) to perform
-     *
-     * @throws WebServiceException 
-     */
-    Object doService(WebServiceRequest request) throws WebServiceException;
-    
-    /**
-     * Performs the handling of the passed WebServiceEvent in an new own Thread.
-     * The receiver of the response to the request must implement the
-     * WebServiceClient interface.
-     *
-     * @param event event containing request (WMS, WCS, WFS, CSW, WFS-G) to perform
-     *
-     * @throws WebServiceException
-     *
-     * @deprecated The WebServiceEvent class is marked as deprecated.
-     */
-    void doService(WebServiceEvent event) throws WebServiceException;
+public interface Contents {
 }

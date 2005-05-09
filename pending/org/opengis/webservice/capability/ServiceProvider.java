@@ -1,5 +1,4 @@
-// $Header: /cvsroot/deegree/src/org/deegree/ogcwebservices/OGCWebService.java,v
-// 1.7 2004/06/23 13:37:40 mschneider Exp $
+// $Header$
 /*----------------    FILE HEADER  ------------------------------------------
 
  This file is part of deegree.
@@ -42,43 +41,62 @@
 
  
  ---------------------------------------------------------------------------*/
-package org.opengis.webservice;
+package org.opengis.webservice.capability;
 
 // OpenGIS direct dependencies
-import org.opengis.webservice.WebServiceEvent;
-import org.opengis.webservice.capability.Capabilities;
+import org.opengis.webservice.SimpleLink;
+import org.opengis.metadata.citation.Contact;
+import org.opengis.metadata.identification.KeywordType;
 
 
 /**
- * @author <a href="mailto:poth@lat-lon.de">Andreas Poth </a>
- * @author last edited by: $Author$
+ * Represents the ServiceProvider section of the capabilities of an OGC
+ * compliant web service according to the OGC Common Implementation
+ * Specification 0.3.
+ * 
+ * This section corresponds to and expands the SV_ServiceProvider class in ISO
+ * 19119.
+ * 
+ * @author <a href="mailto:mschneider@lat-lon.de">Markus Schneider </a>
  */
-public interface WebService {
+public interface ServiceProvider {
     /**
-     * Returns the capabilities of a web service
+     * Returns the contactInfo.
+     * 
+     * @uml.property name="contactInfo"
      */
-    Capabilities getCapabilities();
+    Contact getContactInfo();
 
     /**
-     * Performs the handling of the passed WebServiceEvent directly and returns
-     * the result to the calling class/method
-     *
-     * @param request request (WMS, WCS, WFS, CSW, WFS-G) to perform
-     *
-     * @throws WebServiceException 
+     * Returns the individualName.
+     * 
+     * @uml.property name="individualName"
      */
-    Object doService(WebServiceRequest request) throws WebServiceException;
-    
+    String getIndividualName();
+
     /**
-     * Performs the handling of the passed WebServiceEvent in an new own Thread.
-     * The receiver of the response to the request must implement the
-     * WebServiceClient interface.
-     *
-     * @param event event containing request (WMS, WCS, WFS, CSW, WFS-G) to perform
-     *
-     * @throws WebServiceException
-     *
-     * @deprecated The WebServiceEvent class is marked as deprecated.
+     * @return Returns the positionName.
+     * 
+     * @uml.property name="positionName"
      */
-    void doService(WebServiceEvent event) throws WebServiceException;
+    String getPositionName();
+
+    /**
+     * @return Returns the providerName.
+     * 
+     * @uml.property name="providerName"
+     */
+    String getProviderName();
+
+    /**
+     * @return Returns the providerSite.
+     * 
+     * @uml.property name="providerSite"
+     */
+    SimpleLink getProviderSite();
+
+    /**
+     * Returns the role.
+     */
+    KeywordType getRole();
 }

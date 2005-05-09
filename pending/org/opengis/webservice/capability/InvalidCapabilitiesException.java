@@ -1,5 +1,4 @@
-// $Header: /cvsroot/deegree/src/org/deegree/ogcwebservices/OGCWebService.java,v
-// 1.7 2004/06/23 13:37:40 mschneider Exp $
+// $Header$
 /*----------------    FILE HEADER  ------------------------------------------
 
  This file is part of deegree.
@@ -42,43 +41,39 @@
 
  
  ---------------------------------------------------------------------------*/
-package org.opengis.webservice;
+package org.opengis.webservice.capability;
 
 // OpenGIS direct dependencies
-import org.opengis.webservice.WebServiceEvent;
-import org.opengis.webservice.capability.Capabilities;
+import org.opengis.webservice.ExceptionCode;
+import org.opengis.webservice.WebServiceException;
 
 
 /**
- * @author <a href="mailto:poth@lat-lon.de">Andreas Poth </a>
+ * 
+ *
+ * @version $Revision$
+ * @author <a href="mailto:poth@lat-lon.de">Andreas Poth</a>
  * @author last edited by: $Author$
+ *
+ * @version 1.0. $Revision$, $Date$
+ *
+ * @since 1.1
  */
-public interface WebService {
+public class InvalidCapabilitiesException extends WebServiceException {
     /**
-     * Returns the capabilities of a web service
+     * Serial number for compatibility with different versions.
      */
-    Capabilities getCapabilities();
+//    private static final long serialVersionUID = **TODO**;
 
-    /**
-     * Performs the handling of the passed WebServiceEvent directly and returns
-     * the result to the calling class/method
-     *
-     * @param request request (WMS, WCS, WFS, CSW, WFS-G) to perform
-     *
-     * @throws WebServiceException 
-     */
-    Object doService(WebServiceRequest request) throws WebServiceException;
+    public InvalidCapabilitiesException(String message) {
+        super(message);
+    }
     
-    /**
-     * Performs the handling of the passed WebServiceEvent in an new own Thread.
-     * The receiver of the response to the request must implement the
-     * WebServiceClient interface.
-     *
-     * @param event event containing request (WMS, WCS, WFS, CSW, WFS-G) to perform
-     *
-     * @throws WebServiceException
-     *
-     * @deprecated The WebServiceEvent class is marked as deprecated.
-     */
-    void doService(WebServiceEvent event) throws WebServiceException;
+    public InvalidCapabilitiesException(String locator, String message) {
+        super(locator, message);
+    }
+
+    public InvalidCapabilitiesException(String locator, String message, ExceptionCode code) {
+        super(locator, message, code);
+    }
 }

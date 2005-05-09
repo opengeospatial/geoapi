@@ -2,10 +2,10 @@
 /*----------------    FILE HEADER  ------------------------------------------
 
  This file is part of deegree.
- Copyright (C) 2001 by:
+ Copyright (C) 2001-2004 by:
  EXSE, Department of Geography, University of Bonn
  http://www.giub.uni-bonn.de/exse/
- lat/lon Fitzke/Fretter/Poth GbR
+ lat/lon GmbH
  http://www.lat-lon.de
 
  This library is free software; you can redistribute it and/or
@@ -38,38 +38,32 @@
  53115 Bonn
  Germany
  E-Mail: jens.fitzke@uni-bonn.de
-
  
  ---------------------------------------------------------------------------*/
 package org.opengis.webservice.capability;
 
 
 /**
- * base interface for capabilities of any OGC service instance.
+ * Class representation of the type <code>ows:DomainType</code> defined in
+ * <code>owsOperationsMetadata.xsd</code> from the
+ * <code>OWS Common Implementation
+ * Specification 0.3</code>.
  * 
- * @author <a href="mailto:mschneider@lat-lon.de">Markus Schneider </a>
- * @author <a href="mailto:poth@lat-lon.de">Andreas Poth </a>
+ * @author <a href="mailto:schneider@lat-lon.de">Markus Schneider </a>
  */
-public interface Capabilities {
+public interface DomainType {
     /**
-     * Returns the version.
-     * 
-     * @uml.property name="version"
+     * Returns the metadata.
      */
-    String getVersion();
+    ServiceMetadata[] getMetadata();
 
     /**
-     * Returns the updateSequence.
-     * The UPDATESEQUENCE parameter is for maintaining cache consistency. Its
-     * value can be an integer, a timestamp in [ISO 8601:1988(E)] format, or
-     * any other number or string. The server may include an UpdateSequence
-     * value in its Capabilities XML. If present, this value should be increased
-     * when changes are made to the Capabilities (e.g., when new maps are added
-     * to the service). The server is the sole judge of lexical ordering
-     * sequence. The client may include this parameter in its GetCapabilities
-     * request.
-     * 
-     * @uml.property name="updateSequence"
+     * Returns the name.
      */
-    String getUpdateSequence();
+    String getName();
+
+    /**
+     * Returns the values.
+     */
+    String[] getValues();
 }

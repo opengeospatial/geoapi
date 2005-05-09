@@ -1,5 +1,4 @@
-// $Header: /cvsroot/deegree/src/org/deegree/ogcwebservices/OGCWebService.java,v
-// 1.7 2004/06/23 13:37:40 mschneider Exp $
+// $Header$
 /*----------------    FILE HEADER  ------------------------------------------
 
  This file is part of deegree.
@@ -44,41 +43,44 @@
  ---------------------------------------------------------------------------*/
 package org.opengis.webservice;
 
+// J2SE direct dependencies
+import java.net.URI;
+
 // OpenGIS direct dependencies
-import org.opengis.webservice.WebServiceEvent;
-import org.opengis.webservice.capability.Capabilities;
+import org.opengis.util.InternationalString;
 
 
 /**
- * @author <a href="mailto:poth@lat-lon.de">Andreas Poth </a>
- * @author last edited by: $Author$
+ * @author <a href="mailto:poth@lat-lon.de">Andreas Poth</a>
+ *
+ * @revisit Which relationship with {@link SimpleLink}?
  */
-public interface WebService {
+public interface MetadataLink {
     /**
-     * Returns the capabilities of a web service
+     * Returns the title.
+     * 
+     * @uml.property name="title"
      */
-    Capabilities getCapabilities();
+    InternationalString getTitle();
 
     /**
-     * Performs the handling of the passed WebServiceEvent directly and returns
-     * the result to the calling class/method
-     *
-     * @param request request (WMS, WCS, WFS, CSW, WFS-G) to perform
-     *
-     * @throws WebServiceException 
+     * Returns the about.
+     * 
+     * @uml.property name="about"
      */
-    Object doService(WebServiceRequest request) throws WebServiceException;
-    
+    URI getAbout();
+
     /**
-     * Performs the handling of the passed WebServiceEvent in an new own Thread.
-     * The receiver of the response to the request must implement the
-     * WebServiceClient interface.
-     *
-     * @param event event containing request (WMS, WCS, WFS, CSW, WFS-G) to perform
-     *
-     * @throws WebServiceException
-     *
-     * @deprecated The WebServiceEvent class is marked as deprecated.
+     * Returns the reference.
+     * 
+     * @uml.property name="reference"
      */
-    void doService(WebServiceEvent event) throws WebServiceException;
+    URI getReference();
+
+    /**
+     * Returns the metadataType.
+     * 
+     * @uml.property name="metadataType"
+     */
+    MetadataType getMetadataType();
 }

@@ -1,11 +1,13 @@
-//$Header$
+// $Header:
+// /cvsroot/deegree/src/org/deegree/ogcwebservices/getcapabilities/Contents.java,v
+// 1.1 2004/06/23 11:55:40 mschneider Exp $
 /*----------------    FILE HEADER  ------------------------------------------
 
  This file is part of deegree.
- Copyright (C) 2001 by:
+ Copyright (C) 2001-2004 by:
  EXSE, Department of Geography, University of Bonn
  http://www.giub.uni-bonn.de/exse/
- lat/lon Fitzke/Fretter/Poth GbR
+ lat/lon GmbH
  http://www.lat-lon.de
 
  This library is free software; you can redistribute it and/or
@@ -41,35 +43,19 @@
 
  
  ---------------------------------------------------------------------------*/
-package org.opengis.webservice.capability;
+package org.opengis.filter.capability;
 
 
 /**
- * base interface for capabilities of any OGC service instance.
  * 
- * @author <a href="mailto:mschneider@lat-lon.de">Markus Schneider </a>
- * @author <a href="mailto:poth@lat-lon.de">Andreas Poth </a>
+ * @author <a href="mailto:tfr@users.sourceforge.net">Torsten Friebe</A>
+ *
+ * @revisit Which relationship with Filter and expressions?
  */
-public interface Capabilities {
+public interface Operator {
     /**
-     * Returns the version.
      * 
-     * @uml.property name="version"
+     * @uml.property name="name"
      */
-    String getVersion();
-
-    /**
-     * Returns the updateSequence.
-     * The UPDATESEQUENCE parameter is for maintaining cache consistency. Its
-     * value can be an integer, a timestamp in [ISO 8601:1988(E)] format, or
-     * any other number or string. The server may include an UpdateSequence
-     * value in its Capabilities XML. If present, this value should be increased
-     * when changes are made to the Capabilities (e.g., when new maps are added
-     * to the service). The server is the sole judge of lexical ordering
-     * sequence. The client may include this parameter in its GetCapabilities
-     * request.
-     * 
-     * @uml.property name="updateSequence"
-     */
-    String getUpdateSequence();
+    String getName();
 }
