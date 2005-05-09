@@ -18,7 +18,7 @@ import org.opengis.filter.expression.Expression;
  * comparison on two geometric objects.
  *
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
- * @version <A HREF="http://www.opengis.org/docs/02-059.pdf">Filter encoding implementation specification 1.0</A>
+ * @version <A HREF="http://www.opengis.org/docs/02-059.pdf">Implementation specification 1.0</A>
  * @since 1.1
  */
 public interface BinarySpatialOperator extends SpatialOperator {

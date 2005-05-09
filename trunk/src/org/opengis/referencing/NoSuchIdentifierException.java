@@ -18,7 +18,7 @@ import org.opengis.metadata.Identifier;   // For javadoc
  * operation method} identifier.
  *
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
- * @version 1.0
+ * @since 1.0
  *
  * @see org.opengis.referencing.operation.MathTransformFactory#createParameterizedTransform
  */

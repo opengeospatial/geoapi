@@ -29,7 +29,7 @@ import org.opengis.annotation.Extension;
  * </UL>
  *
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
- * @version 2.0
+ * @since 1.0
  */
 @Extension
 public interface Factory {

@@ -23,11 +23,7 @@ import static org.opengis.annotation.Specification.*;
  *
  * @author ISO 19103
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
- * @version 2.0
- *
- * @revisit We omitted the <code>NameSpace</code> datatype. Concequently, the
- *          <code>tail</code> association become similar to the <code>scope</code>
- *          relation (if my understanding is right).
+ * @since 1.1
  *
  * @see NameFactory#createScopedName
  */

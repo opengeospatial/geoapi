@@ -12,6 +12,11 @@ package org.opengis.layer;
 // J2SE direct dependencies
 import java.io.IOException;
 
+// Annotations
+import org.opengis.annotation.UML;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
+
 
 /**
  * Throws when a {@linkplain org.opengis.layer.source.LayerSource layer source}
@@ -19,6 +24,8 @@ import java.io.IOException;
  * 
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @author Jesse Crossley (SYS Technologies)
+ * @version <A HREF="http://portal.opengeospatial.org/files/?artifact_id=5316">Implementation specification 1.3</A>
+ * @since 1.1
  */
 public class LayerException extends IOException {
     /**

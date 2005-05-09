@@ -30,6 +30,7 @@ import static org.opengis.annotation.Specification.*;
  * @version <A HREF="http://www.opengis.org/docs/03-073r1.zip">Abstract specification 2.0</A>
  *
  * @see org.opengis.referencing.crs.CoordinateReferenceSystem
+ * @since 1.0
  */
 @UML (identifier="RS_ReferenceSystem", specification=ISO_19111)
 public interface ReferenceSystem extends IdentifiedObject {

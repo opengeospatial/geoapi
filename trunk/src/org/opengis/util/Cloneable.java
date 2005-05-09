@@ -16,7 +16,7 @@ package org.opengis.util;
  * additionnaly overrides the {@link Object#clone()} method with public access.
  *
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
- * @version 2.0
+ * @since 1.0
  *
  * @see java.lang.Cloneable
  * @see <A HREF="http://developer.java.sun.com/developer/bugParade/bugs/4098033.html">&quot;<CITE>Cloneable

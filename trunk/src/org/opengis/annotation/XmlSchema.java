@@ -23,7 +23,6 @@ import java.lang.annotation.RetentionPolicy;
  * @since 1.1
  */
 @Documented
-@Retention(value = RetentionPolicy.RUNTIME)
 public @interface XmlSchema {
     /**
      * The URL to the schema.

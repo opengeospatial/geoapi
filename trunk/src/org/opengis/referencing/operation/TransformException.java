@@ -24,7 +24,7 @@ import org.opengis.spatialschema.geometry.DirectPosition;  // For javadoc
  * {@linkplain org.opengis.referencing.crs.CoordinateReferenceSystem coordinate reference systems}.
  *
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
- * @version 2.0
+ * @since 1.0
  */
 public class TransformException extends Exception {
     /**

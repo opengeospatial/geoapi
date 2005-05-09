@@ -42,6 +42,7 @@ import static org.opengis.annotation.Specification.*;
  *
  * @see org.opengis.referencing.cs.CoordinateSystem
  * @see org.opengis.referencing.datum.Datum
+ * @since 1.1
  */
 @UML (identifier="SC_SingleCRS", specification=ISO_19111)
 public interface SingleCRS extends CoordinateReferenceSystem {

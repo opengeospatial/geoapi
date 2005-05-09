@@ -25,8 +25,7 @@ import static org.opengis.annotation.Specification.*;
  * @author ISO/DIS 19107
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-101.pdf">Abstract specification 5</A>
- *
- * @revisit Should we move this interface elsewhere (e.g. in some kind of units package)?
+ * @since 1.0
  */
 @UML (identifier="Bearing", specification=ISO_19107)
 public interface Bearing {

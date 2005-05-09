@@ -27,6 +27,7 @@ import static org.opengis.annotation.Specification.*;
  * @author ISO 19115
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
+ * @since 1.1
  */
 @UML (identifier="MD_PortrayalCatalogueReference", specification=ISO_19115)
 public interface PortrayalCatalogueReference {

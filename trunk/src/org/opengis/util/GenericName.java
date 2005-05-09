@@ -22,16 +22,16 @@ import static org.opengis.annotation.Specification.*;
  * Base interface for {@linkplain ScopedName generic scoped} and
  * {@linkplain LocalName local name} structure for type and attribute
  * name in the context of name spaces.
- *
- * <P>The {@linkplain Comparable natural ordering} for generic names is implementation dependent.
+ * <p>
+ * The {@linkplain Comparable natural ordering} for generic names is implementation dependent.
  * A recommended practice is to {@linkplain String#compareTo compare lexicographically} each
  * element in the {@linkplain #getParsedNames list of parsed names}. Specific attributes of
  * the name, such as how it treats case, may affect the ordering. In general, two names of
- * different classes may not be compared.</P>
+ * different classes may not be compared.
  *
  * @author ISO 19103
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
- * @version 2.0
+ * @since 1.0
  *
  * @see javax.naming.Name
  */

@@ -24,6 +24,7 @@ import static org.opengis.annotation.Specification.*;
  * @author ISO 19111
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/03-073r1.zip">Abstract specification 2.0</A>
+ * @since 1.0
  */
 @UML (identifier="CD_EngineeringDatum", specification=ISO_19111)
 public interface EngineeringDatum extends Datum {

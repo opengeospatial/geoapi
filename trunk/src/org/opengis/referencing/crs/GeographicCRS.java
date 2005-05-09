@@ -33,10 +33,7 @@ import static org.opengis.annotation.Specification.*;
  * @author ISO 19111
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/03-073r1.zip">Abstract specification 2.0</A>
- *
- * @revisit OGC document 01-009 defines a <CODE>getWGS84ConversionInfo()</CODE> method.
- *          A <CODE>getWGS84Parameters()</CODE> method was also defined in the datum.
- *          I see no equivalent in this ISO 19111 specification.
+ * @since 1.0
  */
 @UML (identifier="SC_GeographicCRS", specification=ISO_19111)
 public interface GeographicCRS extends SingleCRS {
