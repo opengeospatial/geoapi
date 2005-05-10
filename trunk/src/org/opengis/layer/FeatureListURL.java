@@ -16,15 +16,14 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * The <code>FeatureListURL</code> interface points to a list of the features
- * represented in a given {@code Layer}.  The enclosed Format element indicates
- * the file format MIME type of the feature list.
+ * Points to a list of the features represented in a given {@link Layer}.
+ * The enclosed Format element indicates the file format MIME type of the feature list.
  * 
- * @author ISO_19128 7.2.4.6.14 FeatureListURL
+ * @author ISO 19128
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
- * @author Jesse Crossley (SYS Technologies)
  * @version <A HREF="http://portal.opengeospatial.org/files/?artifact_id=5316">Implementation specification 1.3</A>
  * @since 1.1
  */
+@UML (identifier="FeatureListURL", specification=ISO_19128) // 7.2.4.6.14 FeatureListURL
 public interface FeatureListURL extends AbstractURL {
 }

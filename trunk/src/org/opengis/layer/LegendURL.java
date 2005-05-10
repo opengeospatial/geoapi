@@ -16,14 +16,13 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * The <code>LegendURL</code> interface contains the linkage to an image of a
- * map legend appropriate to the enclosing {@code Style}.
+ * Contains the linkage to an image of a map legend appropriate to the enclosing {@link Style}.
  * 
- * @author ISO_19128 7.2.4.6.5 Style
+ * @author ISO 19128
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
- * @author Jesse Crossley (SYS Technologies)
  * @version <A HREF="http://portal.opengeospatial.org/files/?artifact_id=5316">Implementation specification 1.3</A>
  * @since 1.1
  */
+@UML (identifier="LegendURL", specification=ISO_19128) // 7.2.4.6.5 Style
 public interface LegendURL extends AbstractSizedURL {
 }

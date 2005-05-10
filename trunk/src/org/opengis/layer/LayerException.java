@@ -21,9 +21,9 @@ import static org.opengis.annotation.Specification.*;
 /**
  * Throws when a {@linkplain org.opengis.layer.source.LayerSource layer source}
  * failed to create a {@linkplain Layer layer}.
- * 
+ *
+ * @author ISO 19128
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
- * @author Jesse Crossley (SYS Technologies)
  * @version <A HREF="http://portal.opengeospatial.org/files/?artifact_id=5316">Implementation specification 1.3</A>
  * @since 1.1
  */

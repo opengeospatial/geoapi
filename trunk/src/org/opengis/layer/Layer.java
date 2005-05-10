@@ -18,6 +18,7 @@ import org.opengis.feature.display.canvas.FeatureLayer;
 import org.opengis.go.display.canvas.Canvas;
 import org.opengis.go.display.primitive.Graphic;
 import org.opengis.metadata.Identifier;
+import org.opengis.metadata.extent.GeographicBoundingBox;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 import org.opengis.spatialschema.geometry.Envelope;
 import org.opengis.util.InternationalString;
@@ -29,231 +30,366 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * The {@code Layer} interface organizes the basic GO-1 constructs that
- * may be added to {@link FeatureCanvas} or {@link Canvas}.  A GO-1
- * application may be directed to "add" a {@code Layer}; it should then
- * add the {@code Layer}'s {@link FeatureLayer} and 
- * {@link Graphic}s to the respective canvases.
+ * Organizes the basic GO-1 constructs that may be added to {@link FeatureCanvas} or {@link Canvas}.
+ * A GO-1 application may be directed to "add" a {@code Layer}; it should then add the {@code Layer}'s
+ * {@link FeatureLayer} and {@link Graphic}s to the respective canvases.
  * <p>
- * It is currently assumed that the {@code Layer} interface will prove
- * analogous to the WMS concept of Layer, and will soon be an implementation
- * of said.
+ * It is currently assumed that the {@code Layer} interface will prove analogous to the WMS concept
+ * of Layer, and will soon be an implementation of said.
+ * <p>
+ * <h3>Mutability</h3>
+ * In current version, layers are <cite>unmodifiable</cite>, i.e. they can't be modified through
+ * the API provided in this interface, but they are not immutable because they may (or may not, at
+ * implementor choice) reflect a change in the underlying database. This means that all methods
+ * returning a {@linkplain java.util.Collection collection} must returns either an
+ * {@linkplain java.util.Collections#unmodifiableList unmodifiable} one, or a copy.
+ * Modifying returned collections should have no affect on this {@code Layer}.
+ * <p>
+ * Note that the mutability aspect of {@code Layer} may be revisited in future versions,
+ * so users are encouraged to not rely strongly on current behavior.
  *
  * @author ISO 19128
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
- * @author Jesse Crossley (SYS Technologies)
  * @version <A HREF="http://portal.opengeospatial.org/files/?artifact_id=5316">Implementation specification 1.3</A>
  * @since 1.1
  */
 @UML (identifier="Layer", specification=ISO_19128) // 7.2.4.5 Layers and styles
 public interface Layer {    
     /**
-     * Provides a unique name for identifying this {@code Layer}.
+     * Provides a unique name for identifying this {@code Layer}. If, and only if, a layer has a
+     * name, then it is a map layer that can be requested by using that name in the {@code LAYERS}
+     * parameter of a {@code GetMap} request. A layer that contains a {@code Name} element is
+     * referred to as a <cite>named layer</cite>. If the layer has a {@linkplain #getTitle title}
+     * but no name, then that layer is only a category title for all the layers nested within. A
+     * Map Server that advertises a layer containing a name element shall be able to accept that
+     * name as the value of {@code LAYERS} argument in a {@code GetMap} request and return the
+     * corresponding map. A client shall not attempt to request a layer that has a title but no
+     * name.
+     * <p>
+     * The name is not inherited by {@linkplain #getLayers child layers}.
      *
-     * @return the unique String identifier for this {@code Layer}
+     * @return the unique string identifier for this {@code Layer}.
      */
     @UML (identifier="Name", obligation=OPTIONAL, specification=ISO_19128) // 7.2.4.6.3
     String getName();
 
     /**
-     * Provides the human-readable String for presenting this {@code Layer}.
+     * Provides the human-readable string for presenting this {@code Layer}.
+     * Equivalent to {@link org.opengis.metadata.citation.Citation#getTitle}
+     * in {@linkplain org.opengis.annotation.Specification#ISO_19115 ISO 19115}.
      *
-     * @return the human-readable Title for this {@code Layer} 
+     * @return the human-readable title for this {@code Layer}.
      */
     @UML (identifier="Title", obligation=MANDATORY, specification=ISO_19128) // 7.2.4.6.2
     InternationalString getTitle();
 
     /** 
      * Provides the narrative description of this {@code Layer}.
+     * Equivalent to {@link org.opengis.metadata.identification.DataIdentification#getAbstract}
+     * in {@linkplain org.opengis.annotation.Specification#ISO_19115 ISO 19115}.
+     * The abstract is not inherited by {@linkplain #getLayers child layers}.
      *
-     * @return the narrative description of this {@code Layer}
+     * @return the narrative description of this {@code Layer}.
      */
     @UML (identifier="Abstract", obligation=OPTIONAL, specification=ISO_19128) // 7.2.4.6.4
     InternationalString getAbstract();
 
     /**
-     * Provides keywords to aid in catalogue searches.  The returned
-     * {@code List} should NOT be live, and modifying it should
-     * not affect this {@code Layer}'s set of keywords.
+     * Provides keywords to aid in catalogue searches.
+     * Equivalent to {@link org.opengis.metadata.identification.TopicCategory}
+     * in {@linkplain org.opengis.annotation.Specification#ISO_19115 ISO 19115} if the {@code vocabulary}
+     * attribute of {@code Keyword} element is "ISO19115:2003". Other vocabularies are permitted.
+     * The keywords are not inherited by {@linkplain #getLayers child layers}.
+     * <p>
+     * The returned {@code List} (if modifiable) should not be live, and
+     * modifying it should not affect this {@code Layer}'s set of keywords.
      * 
-     * @return this {@code Layer}'s KeywordList
+     * @return this {@code Layer}'s keyword list.
      */
     @UML (identifier="KeywordList", obligation=OPTIONAL, specification=ISO_19128) // 7.2.4.6.4
     List<InternationalString> getKeywordList();
 
     /**
-     * Provides the {@code CoordinateReferenceSystem}s available to
-     * this {@code Layer}, which includes CRSs inherited from parent
-     * {@code Layer}s.  This {@code List} should NOT be live, and 
+     * Provides the coordinate reference systems available to this {@code Layer},
+     * which includes CRSs inherited from parent {@code Layer}s. In order to indicate
+     * what layer CRSs are available, every named layer shall have at least one CRS.
+     * The root layer shall include a sequence of zero or more CRS elements listing all
+     * CRSs that are common to all subsidiary layers. A child layer may optionally add
+     * to the list inherited from a parent layer. Any duplication shall be ignored by clients.
+     * <p>
+     * This {@code List} (if modifiable) should not be live, and
      * modifying it should not affect this {@code Layer}'s set of CRSs.
      * 
-     * @return this {@code Layer}'s {@code CoordinateReferenceSystem}s
+     * @return this {@code Layer}'s coordinate reference systems.
      */
     @UML (identifier="CRS", obligation=OPTIONAL, specification=ISO_19128) // 7.2.4.6.7
     List<CoordinateReferenceSystem> getCRSs();
 
     /**
-     * Provides the BoundingBoxes that specify the coordinate ranges for
-     * this {@code Layer}, as {@code Envelope}s, including BoundingBoxes
-     * inherited from parent {@code Layer}s.  This {@code List} should NOT
-     * be live, and modifying it should have no affect on this {@code Layer}'s
-     * set of BoundingBoxes.
+     * Provides the bounding boxes that specify the coordinate ranges for
+     * this {@code Layer}, as {@code Envelope}s, including bounding boxes
+     * inherited from parent {@code Layer}s.
+     * Equivalent to {@link org.opengis.metadata.extent.BoundingPolygon}
+     * in {@linkplain org.opengis.annotation.Specification#ISO_19115 ISO 19115},
+     * except that it is strictly a box here.
+     * <p>
+     * A layer may have multiple bounding box elements, but each one shall state a different CRS.
+     * A bounding box inherited from the parent layer for a particular CRS is replaced by any
+     * declaration for the same CRS in the child layer. A bounding box in the child for a new
+     * CRS not already declared by the parent is added to the list of bounding boxes for the child
+     * layer. A single layer element shall not contain more than one bounding box for the same CRS.
+     * <p>
+     * <strong>NOTE:</strong> There is no provision for describing disjoint bounding boxes.
+     * For example, consider a dataset which covers two areas separated by some distance.
+     * The server cannot provide two separate bounding boxes in the same layer using the same
+     * CRS to separately describe those areas. To handle this type of situation, the server may
+     * either define a single larger bounding box which encloses both areas, or may define two
+     * separate layers that each have distinct name and bounding box values.
+     * <p>
+     * A layer shall not provide a bounding box for a CRS it does not support. Conversely, a
+     * layer may support CRSs for which it does not provide a bounding box: a server that has
+     * the ability to transform data to different CRSs may choose not to provide an explicit
+     * bounding box for every possible CRS available for each layer. The server should provide
+     * bounding box information for at least the native CRS of the layer (that is, the CRS
+     * in which the layer is stored in the server's database).
+     * <p>
+     * This {@code List} (if modifiable) should not be live, and modifying
+     * it should have no affect on this {@code Layer}'s set of bounding boxes.
      * 
-     * @return this {@code Layer}'s BoundingBox {@code Envelope}s
+     * @return this {@code Layer}'s bounding box envelopes.
      */
     @UML (identifier="BoundingBox", obligation=OPTIONAL, specification=ISO_19128)  // 7.2.4.6.8
     List<Envelope> getBoundingBoxes();
 
     /**
-     * Provides the {@code Attribution} for this {@code Layer}, which 
-     * identifies the source of the geographic information used in this
-     * {@code Layer}.
+     * Every named layer shall have exactly one geographic bounding box that is either stated
+     * explicitly or inherited from a parent layer. Geographic bounding box states, via the
+     * {@linkplain GeographicBoundingBox#westBoundLongitude west bound longitude},
+     * {@linkplain GeographicBoundingBox#eastBoundLongitude east bound longitude},
+     * {@linkplain GeographicBoundingBox#southBoundLatitude south bound latitude}, and
+     * {@linkplain GeographicBoundingBox#northBoundLatitude north bound latitude},
+     * the minimum bounding rectangle in decimal degrees of the area covered by the layer.
+     * Geographic bounding box shall be supplied regardless of what CRS the map server may support,
+     * but it may be approximate if the data are not natively in geographic coordinates. The purpose
+     * of beographic bounding box is to facilitate geographic searches without requiring coordinate
+     * transformations by the search engine.
+     * <p>
+     * This method is conceptually similar to a {@linkplain #getBoundingBoxes bounding box} in
+     * which the CRS is implicitly CRS:84. However, Geographic bounding box shall not be used
+     * as a substitute for {@code <BoundingBox CRS="CRS:84">}. If the server wishes to provide
+     * bounding box information in the CRS:84 CRS, then a separate bounding box element explicitly
+     * naming CRS:84 shall be included in the service metadata.
+     */
+//  @UML (identifier="GeographicBoundingBox", obligation=OPTIONAL, specification=ISO_19128)  // 7.2.4.6.6
+//  GeographicBoundingBox getGeographicBoundingBox();
+
+    /**
+     * Provides the attribution for this {@code Layer}, which identifies the source of
+     * the geographic information used in this layer. This is partially equivalent to
+     * {@link org.opengis.metadata.citation.ResponsibleParty} in
+     * {@linkplain org.opengis.annotation.Specification#ISO_19115 ISO 19115}.
+     * The attribution is inherited by child layers. Any redefinition by
+     * a child replaces the inherited value.
      * 
-     * @return this {@code Layer}'s {@code Attribution}
+     * @return this {@code Layer}'s attribution.
      */
     @UML (identifier="Attribution", obligation=OPTIONAL, specification=ISO_19128) // 7.2.4.6.12
     Attribution getAttribution();
 
     /**
-     * Provides the {@code AuthorityURL}s named in this {@code Layer}'s
-     * {@code Identifier}s.  The returned {@code List} should NOT be live, and 
-     * modifying it should have no affect on this {@code Layer}'s set
-     * of AuthorityURLs.
+     * Provides the authority URLs named in this {@code Layer}'s {@linkplain Identifier identifiers}.
+     * Equivalent to {@link org.opengis.metadata.citation.Contact#getOnLineResource}
+     * in {@linkplain org.opengis.annotation.Specification#ISO_19115 ISO 19115}.
+     * <p>
+     * The returned {@code List} (if modifiable) should not be live, and
+     * modifying it should have no affect on this {@code Layer}'s set of authority URLs.
      * 
-     * @return this {@code Layer}'s {@code AuthorityURL}s
+     * @return this {@code Layer}'s authority URLs.
      */
     @UML (identifier="AuthorityURL", obligation=OPTIONAL, specification=ISO_19128) // 7.2.4.6.13
     List<AuthorityURL> getAuthorityURLs();
 
     /**
-     * Provides the {@code Identifier}s containing ID numbers or labels
-     * defined by a particular {@code Authority}. The returned {@code List} should
-     * NOT be live, and modifying it should have no affect on this 
-     * {@code Layer}'s set of Identifiers.
+     * Provides the identifiers containing ID numbers or labels defined by a particular authority.
+     * Equivalent to {@link org.opengis.metadata.Identifier#getCode}
+     * in {@linkplain org.opengis.annotation.Specification#ISO_19115 ISO 19115}.
+     * <p>
+     * The returned {@code List} (if modifiable) should not be live, and
+     * modifying it should have no affect on this {@code Layer}'s set of identifiers.
      *    
-     * @return this {@code Layer}'s {@code Identifier}s
+     * @return this {@code Layer}'s identifiers.
      */
     @UML (identifier="Identifier", obligation=OPTIONAL, specification=ISO_19128) // 7.2.4.6.13
     List<Identifier> getIdentifiers();
 
     /**
-     * Provides the {@code MetadataURL}s that offer detailed, standardized
-     * metadata about the data for this {@code Layer}.  The returned {@code List}
-     * should NOT be live, and modifying it should have no affect on this 
-     * {@code Layer}'s set of MetadataURLs.
+     * Provides the Metadata URLs that offer detailed, standardized metadata about
+     * the data for this {@code Layer}.
+     * <p>
+     * The returned {@code List} (if modifiable) should not be live, and modifying
+     * it should have no affect on this {@code Layer}'s set of metadata URLs.
      * 
-     * @return this {@code Layer}'s {@code MetadataURL}s
+     * @return this {@code Layer}'s metadata URLs.
      */
     @UML (identifier="MetadataURL", obligation=OPTIONAL, specification=ISO_19128) // 7.2.4.6.11
     List<MetadataURL> getMetadataURLs();
 
     /**
-     * Provides the {@code DataURL}s that offer links to the underlying data
-     * represented by this {@code Layer}.  The returned {@code List} should NOT
-     * be live, and modifying it should have no affect on this {@code Layer}'s
-     * set of DataURLs.  
-     * @return this {@code Layer}'s {@code DataURL}s
+     * Provides the data URLs that offer links to the underlying data represented by this {@code Layer}.
+     * Data URLs are not inherited by child layers.
+     * <p>
+     * The returned {@code List} (if modifiable) should not be live, and modifying
+     * it should have no affect on this {@code Layer}'s set of data URLs.
+     *
+     * @return this {@code Layer}'s data URLs.
      */
     @UML (identifier="DataURL", obligation=OPTIONAL, specification=ISO_19128) // 7.2.4.6.15
     List<DataURL> getDataURLs();
 
     /**
-     * Provides the {@code FeatureURL}s that point to a list of features 
-     * represented in this {@code Layer}.  The returned {@code List} should 
-     * NOT be live, and modifying it should have no affect on this {@code Layer}'s
-     * FeatureListURLs.
+     * Provides the feature URLs that point to a list of features represented in this {@code Layer}.
+     * Feature URLs are not inherited by child layers.
+     * <p>
+     * The returned {@code List} (if modifiable) should not be live, and modifying
+     * it should have no affect on this {@code Layer}'s feature list URLs.
      * 
-     * @return this {@code Layer}'s {@code FeatureListURL}s
+     * @return this {@code Layer}'s feature list URLs.
      */
     @UML (identifier="FeatureListURL", obligation=OPTIONAL, specification=ISO_19128) // 7.2.4.6.14
     List<FeatureListURL> getFeatureListURLs();
 
     /**
-     * Provides the {@code Style}s that may be requested for this {@code Layer}.
-     * The returned {@code List} should NOT be live, and modifying it should have
-     * no affect on this {@code Layer}'s Styles.
+     * Provides the styles that may be requested for this {@code Layer}.
+     * Zero or more styles may be advertised for a layer or collection of layers, each of
+     * which shall have {@linkplain Style#getName name} and {@linkplain Style#getTitle title}.
+     * The style's name is used in the Map request {@code STYLES} parameter. The title is a
+     * human-readable string. If only a single style is available, that style is known as the
+     * "default" style and need not be advertised by the server.
+     * <p>
+     * Style declarations are inherited by {@linkplain #getLayers child layers}.
+     * A child shall not redefine a style with the same {@linkplain Style#getName name}
+     * as one inherited from a parent. A child may define a new style with a new name
+     * that is not available for the parent layer.
+     * <p>
+     * The returned {@code List} (if modifiable) should not be live, and
+     * modifying it should have no affect on this {@code Layer}'s styles.
      * 
-     * @return this {@code Layer}'s {@code Style}s
+     * @return this {@code Layer}'s styles.
      */
     @UML (identifier="Style", obligation=OPTIONAL, specification=ISO_19128) // 7.2.4.6.5
     List<Style> getStyles();
 
     /**
      * Provides the lower bound for the range of scales for which it is appropriate
-     * to generate a map for this {@code Layer}.  A value of -1 indicates this 
-     * {@code Layer} has no MinScaleDenominator.
-     * @return the minimum scale denominator
+     * to generate a map for this {@code Layer}. See "Scale denominators" section in
+     * {@linkplain org.opengis.layer package description}. A value of 0 indicates this
+     * {@code Layer} has no minimum scale denominator. Negative values are not allowed.
+     *
+     * @return the minimum scale denominator, inclusive.
      */
     @UML (identifier="MinScaleDenominator", obligation=OPTIONAL, specification=ISO_19128) // 7.2.4.6.9 
     double getMinScaleDenominator();
 
     /**
      * Provides the upper bound for the range of scales for which it is appropriate
-     * to generate a map for this {@code Layer}.  A value of -1 indicates this
-     * {@code Layer} has no MaxScaleDenominator.
-     * @return the maximum scale denominator
+     * to generate a map for this {@code Layer}.  See "Scale denominators" section in
+     * {@linkplain org.opengis.layer package description}. A value of {@link Double#POSITIVE_INFINITY}
+     * indicates this {@code Layer} has no maximum scale denominator.
+     *
+     * @return the maximum scale denominator, exclusive.
      */
     @UML (identifier="MaxScaleDenominator", obligation=OPTIONAL, specification=ISO_19128) // 7.2.4.6.9
     double getMaxScaleDenominator();
 
     /**
-     * Gets the child {@code Layer}s of this {@code Layer}.  Typically,
-     * a {@code Layer} will have either child {@code Layer}s or some 
-     * combination of {@code FeatureLayer}s and/or {@code Graphic}s.  The
-     * returned {@code List} should NOT be a live list.  Modifying the 
-     * list should have no affect on this {@code Layer}'s child 
-     * {@linkplain Layer layers}. 
-     * @return the child {@code Layer}s 
+     * Gets the child layers of this {@code Layer}.  Typically, a {@code Layer} will have either
+     * child {@code Layer}s or some combination of {@link FeatureLayer}s and/or {@link Graphic}s.
+     * <p>
+     * The returned {@code List} (if modifiable) should not be a live list.
+     * Modifying the list should have no affect on this {@code Layer}'s child layers.
+     *
+     * @return the child layers.
      */
     List<Layer> getLayers();
 
     /**
-     * Indicates whether the GetFeatureInfo operation is supported on this
-     * {@code Layer}.
-     * @return {@code true} if this {@code Layer} supports GetFeatureInfo
+     * Indicates whether the {@code GetFeatureInfo} operation is supported on this {@code Layer}.
+     * A server may support {@code GetFeatureInfo} on some of its layers but not on all. A server
+     * shall issue a service exception ("LayerNotQueryable") if {@code GetFeatureInfo} is requested
+     * on a layer that is not queryable.
+     *
+     * @return {@code true} if this {@code Layer} supports {@code GetFeatureInfo}.
      */
     @UML (identifier="queryable", obligation=OPTIONAL, specification=ISO_19128) // 7.2.4.7.2
     boolean isQueryable();
 
     /**
      * Indicates how many times this {@code Layer} has been cascaded.
-     * @return how many times this {@code Layer} has been cascaded
+     * A layer is said to have been "cascaded" if it was obtained from an originating server and then
+     * included in the service metadata of a different server. The second server may simply offer an
+     * additional access point for the layer, or may add value by offering additional output formats
+     * or reprojection to other coordinate reference systems.
+     * <p>
+     * If a WMS cascades the content of another WMS then it shall increment by 1 the value of the cascaded
+     * attribute for the affected layers. If that attribute is missing from the originating server's service
+     * metadata, then the cascading WMS shall insert the attribute and set it to 1.
+     *
+     * @return how many times this {@code Layer} has been cascaded.
      */
     @UML (identifier="cascaded", specification=ISO_19128) // 7.2.4.7.3
     int getCascaded();
 
     /**
-     * Indicates whether this {@code Layer}'s renderable data should be
-     * considered opaque, and therefore requested at the bottom of a stack
-     * of maps.
-     * @return {@code true} if this {@code Layer}'s data is mostly opaque
+     * Indicates whether this {@code Layer}'s renderable data should be considered opaque, and
+     * therefore requested at the bottom of a stack of maps. If {@code false}, then maps made
+     * from that layer will generally have significant no-data areas that a client may display
+     * as transparent. Vector features such as points and lines are considered not to be opaque
+     * in this context (even though at some scales and symbol sizes a collection of features might
+     * fill the map area). A {@code true} value for opaque indicates that the layer represents an
+     * area-filling coverage. For example, a map that represents topography and bathymetry as regions
+     * of differing colours will have no transparent areas. The opaque declaration should be taken as
+     * a hint to the client to place such a layer at the bottom of a stack of maps.
+     * <p>
+     * This attribute describes only the layer’s data content, not the picture format of the map response.
+     * Whether or not a layer is listed as opaque, a server shall still comply the {@code GetMap}
+     * {@code TRANSPARENT} parameter: that is, the server shall send an image with a transparent
+     * background if and only if the client requests {@code TRANSPARENT=TRUE} and a picture
+     * {@code FORMAT} that supports transparency.
+     *
+     * @return {@code true} if this {@code Layer}'s data is mostly opaque.
      */
     @UML (identifier="opaque", specification=ISO_19128) // 7.2.4.7.4
     boolean isOpaque();
 
     /**
-     * Indicates that this {@code Layer} is not able to produce a map
-     * of a geographic area other than this {@code Layer}'s declared
-     * BoundingBox
-     * @return {@code true} if this {@code Layer} is not able to display subsets
+     * Indicates that this {@code Layer} is not able to produce a map of a geographic
+     * area other than this {@linkplain #getBoundingBoxes layer's declared bounding box}.
+     * For example, a WMS that houses a collection of digitized images of historical maps,
+     * or pre-computed browse images of satellite data, may not be able to subset or
+     * resize those images. However, it can still respond to {@code GetMap} requests
+     * for complete maps in the original size.
+     *
+     * @return {@code true} if this {@code Layer} is not able to display subsets.
      */
     @UML (identifier="noSubsets", specification=ISO_19128) // 7.2.4.7.5
     boolean isNoSubsets();
 
     /**
      * Indicates that this {@code Layer} is not able to produce a map
-     * with a width different from the fixed width indicated.  A value of 
-     * -1 indicates this {@code Layer} has no fixedWidth.
-     * @return the fixedWidth of this {@code Layer}, or -1 if the width is not fixed
+     * with a width different from the fixed width indicated. A value
+     * of -1 indicates this {@code Layer} has no fixed width.
+     *
+     * @return the fixed width of this {@code Layer}, or -1 if the width is not fixed.
      */
     @UML (identifier="fixedWidth", specification=ISO_19128) // 7.2.4.7.5
     int getFixedWidth();
 
     /**
      * Indicates that this {@code Layer} is not able to produce a map 
-     * with a height different from the fixed height indicated.  A value of
-     * -1 indicates this {@code Layer} has no fixedHeight.
-     * @return the fixedHeight of this {@code Layer}, or -1 if the height is not fixed
+     * with a height different from the fixed height indicated. A value
+     * of -1 indicates this {@code Layer} has no fixed height.
+     *
+     * @return the fixed height of this {@code Layer}, or -1 if the height is not fixed.
      */
     @UML (identifier="fixedHeight", specification=ISO_19128) // 7.2.4.7.5
     int getFixedHeight();
@@ -265,37 +401,37 @@ public interface Layer {
     // parent access
 
     /**
-     * Gets the parent <code>LayerSource</code> that produced this {@code Layer}.
+     * Gets the parent {@code LayerSource} that produced this {@code Layer}.
      * This should assist in serialization.
-     * @return the parent <code>LayerSource</code> that produced this {@code Layer}
+     *
+     * @return the parent {@code LayerSource} that produced this {@code Layer}
      */
     //LayerSource getLayerSource();
 
     // 'renderable' access
 
     /**
-     * Gets the <code>FeatureLayer</code>s from this {@code Layer} that are suitable
-     * for adding to a <code>FeatureCanvas</code> in order to visually represent this
-     * {@code Layer}. The returned {@code List} should NOT be a live list of this
-     * {@code Layer}'s {@code FeatureLayer}s, and modifying the list should not
-     * affect this {@code Layer}'s set of {@code FeatureLayer}s.
+     * Gets the feature layers from this {@code Layer} that are suitable for adding
+     * to a {@link FeatureCanvas} in order to visually represent this {@code Layer}.
+     * <p>
+     * The returned {@code List} (if modifiable) should not be a live list of this {@code Layer}'s
+     * {@code FeatureLayer}s, and modifying the list should not affect this {@code Layer}'s set of
+     * {@code FeatureLayer}s.
      * 
-     * @return the <code>FeatureLayer</code>s to add to a <code>FeatureCanvas</code>
+     * @return the feature layers to add to a {@code FeatureCanvas}.
      */
     List<FeatureLayer> getFeatureLayers();
 
     /**
-     * Gets the <code>Graphic</code>s from this {@code Layer} that are suitable
-     * for adding to a <code>Canvas</code> in order to visually represent this 
-     * {@code Layer}.  The returned {@code List} should NOT be a live list of 
-     * this {@code Layer}'s {@code Graphic}s, and modifying the list should not
-     * affect this {@code Layer}'s set of {@code Graphic}s.
+     * Gets the graphics from this {@code Layer} that are suitable for adding
+     * to a {@link Canvas} in order to visually represent this {@code Layer}.
+     * <p>
+     * The returned {@code List} should not be a live list of this {@code Layer}'s {@code Graphic}s,
+     * and modifying the list should not affect this {@code Layer}'s set of {@code Graphic}s.
      * 
-     * @return the <code>Graphic</code>s to add to a <code>Canvas</code> 
+     * @return the {@code Graphic}s to add to a {@code Canvas}.
      */
     List<Graphic> getGraphics();
-
-
 
     /**
      * Whether this {@code Layer}'s renderable components should be initially rendered.
