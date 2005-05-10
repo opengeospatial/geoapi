@@ -18,7 +18,6 @@ import java.io.IOException;
  * {@linkplain LayerSource layer source}.
  * 
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
- * @author Jesse Crossley (SYS Technologies)
  * @since 1.1
  */
 public class LayerSourceException extends IOException {

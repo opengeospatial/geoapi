@@ -16,11 +16,10 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * The <code>StyleSheetURL</code> interface provides symbology information for
- * the enclosing {@code Style} element.
+ * Provides symbology information for the enclosing {@link Style} element.
  * 
+ * @author ISO 19128
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
- * @author Jesse Crossley (SYS Technologies)
  * @version <A HREF="http://portal.opengeospatial.org/files/?artifact_id=5316">Implementation specification 1.3</A>
  * @since 1.1
  */
