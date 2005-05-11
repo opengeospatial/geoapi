@@ -22,6 +22,9 @@ import org.opengis.filter.spatial.Overlaps;
 import org.opengis.filter.spatial.Touches;
 import org.opengis.filter.spatial.Within;
 
+// Annotation
+import org.opengis.annotation.Extension;
+
 
 /**
  * Visitor with {@code visit} methods to be called by {@link Filter#accept Filter.accept(...)}.
@@ -30,6 +33,7 @@ import org.opengis.filter.spatial.Within;
  * @version <A HREF="http://www.opengis.org/docs/02-059.pdf">Implementation specification 1.0</A>
  * @since 1.1
  */
+@Extension
 public interface FilterVisitor {
     Object visit(And filter,                            Object extraData);
     Object visit(FeatureId filter,                      Object extraData);

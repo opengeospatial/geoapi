@@ -1,8 +1,21 @@
+/*$************************************************************************************************
+ **
+ ** $Id$
+ **
+ ** $Source$
+ **
+ ** Copyright (C) 2003 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
+ **
+ *************************************************************************************************/
 package org.opengis.sld;
 
+
 /**
- * Instances of this interface point to an external file that contains an image
- * of some kind, such as a CGM, JPG, or SVG.
+ * Points to an external file that contains an image of some kind, such as a CGM, JPG, or SVG.
+ *
+ * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
+ * @version <A HREF="http://www.opengis.org/docs/02-070.pdf">Implementation specification 1.0</A>
+ * @since 1.1
  */
 public interface ExternalGraphic extends ExternalGraphicOrMark {
     /**
@@ -23,13 +36,13 @@ public interface ExternalGraphic extends ExternalGraphicOrMark {
      * Returns the array of bytes that comprise the image.  This overrides the
      * OnlineResource property, if it is set.
      */
-    public byte [] getInlineContent();
+    public byte[] getInlineContent();
 
     /**
      * Sets the array of bytes that comprise the image.  This overrides the
      * OnlineResource property, if it is set.
      */
-    public void setInlineContent(byte [] content);
+    public void setInlineContent(byte[] content);
 
     /**
      * Returns the format that the image should be parsed as.  This can be null

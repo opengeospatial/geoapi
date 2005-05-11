@@ -13,7 +13,10 @@ package org.opengis.filter;
 import org.opengis.feature.Feature;
 
 // Annotations
+import org.opengis.annotation.UML;
 import org.opengis.annotation.XmlSchema;
+import org.opengis.annotation.Extension;
+import static org.opengis.annotation.Specification.*;
 
 
 /**
@@ -26,12 +29,14 @@ import org.opengis.annotation.XmlSchema;
  * @version <A HREF="http://www.opengis.org/docs/02-059.pdf">Implementation specification 1.0</A>
  * @since 1.1
  */
-@XmlSchema(URL="filter.xsd", element="Filter")
+@XmlSchema("http://schemas.opengis.net/filter/1.0.0/filter.xsd")
+@UML(identifier="Filter", specification=OGC_02_059)
 public interface Filter {
     /**
      * Given a feature, this method determines whether the feature passes the
      * test(s) represented by this filter object.
      */
+    @Extension
     boolean evaluate(Feature feature);
 
     /**
@@ -39,5 +44,6 @@ public interface Filter {
      * method whose content is the following:
      * <pre>return visitor.{@linkplain FilterVisitor#visit visit}(this, extraData);</pre>
      */
+    @Extension
     Object accept(FilterVisitor visitor, Object extraData);
 }

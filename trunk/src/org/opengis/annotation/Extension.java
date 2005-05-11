@@ -10,7 +10,11 @@
 package org.opengis.annotation;
 
 // J2SE dependencies
+import java.lang.annotation.Target;
+import java.lang.annotation.Retention;
 import java.lang.annotation.Documented;
+import static java.lang.annotation.ElementType.*;
+import static java.lang.annotation.RetentionPolicy.*;
 
 
 /**
@@ -21,5 +25,7 @@ import java.lang.annotation.Documented;
  * @since 1.1
  */
 @Documented
+@Target({TYPE, FIELD, METHOD})
+@Retention(SOURCE)
 public @interface Extension {
 }

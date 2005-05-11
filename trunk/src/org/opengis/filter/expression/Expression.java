@@ -13,7 +13,10 @@ package org.opengis.filter.expression;
 import org.opengis.feature.Feature;
 
 // Annotations
+import org.opengis.annotation.UML;
 import org.opengis.annotation.XmlSchema;
+import org.opengis.annotation.Extension;
+import static org.opengis.annotation.Specification.*;
 
 
 /**
@@ -24,16 +27,19 @@ import org.opengis.annotation.XmlSchema;
  * @version <A HREF="http://www.opengis.org/docs/02-059.pdf">Implementation specification 1.0</A>
  * @since 1.1
  */
-@XmlSchema(URL="filter.xsd", element="expression")
+@XmlSchema("http://schemas.opengis.net/filter/1.0.0/filter.xsd")
+@UML(identifier="expression", specification=OGC_02_059)
 public interface Expression {
     /**
      * Evaluates the given expression based on the content of the given feature.
      */
+    @Extension
     Object evaluate(Feature feature);
 
     /**
      * Accepts a visitor. Subclasses must implement with a method whose content* is the following:
      * <pre>return visitor.{@linkplain ExpressionVisitor#visit visit}(this, extraData);</pre>
      */
+    @Extension
     Object accept(ExpressionVisitor visitor, Object extraData);
 }

@@ -10,6 +10,9 @@
 package org.opengis.layer;
 
 // J2SE direct dependencies
+import java.util.Collection;
+import java.util.Map;  // For javadoc
+import java.util.Set;
 import java.util.List;
 
 // OpenGIS direct dependencies
@@ -25,6 +28,7 @@ import org.opengis.util.InternationalString;
 
 // Annotations
 import org.opengis.annotation.UML;
+import org.opengis.annotation.XmlSchema;
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
 
@@ -33,9 +37,6 @@ import static org.opengis.annotation.Specification.*;
  * Organizes the basic GO-1 constructs that may be added to {@link FeatureCanvas} or {@link Canvas}.
  * A GO-1 application may be directed to "add" a {@code Layer}; it should then add the {@code Layer}'s
  * {@link FeatureLayer} and {@link Graphic}s to the respective canvases.
- * <p>
- * It is currently assumed that the {@code Layer} interface will prove analogous to the WMS concept
- * of Layer, and will soon be an implementation of said.
  * <p>
  * <h3>Mutability</h3>
  * In current version, layers are <cite>unmodifiable</cite>, i.e. they can't be modified through
@@ -53,6 +54,7 @@ import static org.opengis.annotation.Specification.*;
  * @version <A HREF="http://portal.opengeospatial.org/files/?artifact_id=5316">Implementation specification 1.3</A>
  * @since 1.1
  */
+@XmlSchema ("http://schemas.opengis.net/wms/1.3.0/capabilities_1_3_0.xsd")
 @UML (identifier="Layer", specification=ISO_19128) // 7.2.4.5 Layers and styles
 public interface Layer {    
     /**
@@ -115,15 +117,20 @@ public interface Layer {
      * what layer CRSs are available, every named layer shall have at least one CRS.
      * The root layer shall include a sequence of zero or more CRS elements listing all
      * CRSs that are common to all subsidiary layers. A child layer may optionally add
-     * to the list inherited from a parent layer. Any duplication shall be ignored by clients.
+     * to the list inherited from a parent layer.
      * <p>
-     * This {@code List} (if modifiable) should not be live, and
+     * If CRS and {@linkplain #getBoundingBoxes bounding boxes} are backed by a
+     * <code>{@linkplain Map}&lt;{@linkplain CoordinateReferenceSystem},{@linkplain Envelope}&gt</code>
+     * (from the J2SE collection framework), then the CRSs are the {@linkplain Map#keySet ket set}
+     * of the above-cited map.
+     * <p>
+     * This {@code Set} (if modifiable) should not be live, and
      * modifying it should not affect this {@code Layer}'s set of CRSs.
-     * 
+     *
      * @return this {@code Layer}'s coordinate reference systems.
      */
     @UML (identifier="CRS", obligation=OPTIONAL, specification=ISO_19128) // 7.2.4.6.7
-    List<CoordinateReferenceSystem> getCRSs();
+    Set<CoordinateReferenceSystem> getCRSs();
 
     /**
      * Provides the bounding boxes that specify the coordinate ranges for
@@ -153,13 +160,18 @@ public interface Layer {
      * bounding box information for at least the native CRS of the layer (that is, the CRS
      * in which the layer is stored in the server's database).
      * <p>
-     * This {@code List} (if modifiable) should not be live, and modifying
+     * If {@linkplain #getCRSs CRS} and bounding boxes are backed by a
+     * <code>{@linkplain Map}&lt;{@linkplain CoordinateReferenceSystem},{@linkplain Envelope}&gt</code>
+     * (from the J2SE collection framework), then the bounding boxes are the
+     * {@linkplain Map#values values} of the above-cited map.
+     * <p>
+     * This {@code Collection} (if modifiable) should not be live, and modifying
      * it should have no affect on this {@code Layer}'s set of bounding boxes.
-     * 
+     *
      * @return this {@code Layer}'s bounding box envelopes.
      */
     @UML (identifier="BoundingBox", obligation=OPTIONAL, specification=ISO_19128)  // 7.2.4.6.8
-    List<Envelope> getBoundingBoxes();
+    Collection<Envelope> getBoundingBoxes();
 
     /**
      * Every named layer shall have exactly one geographic bounding box that is either stated
@@ -377,9 +389,9 @@ public interface Layer {
     /**
      * Indicates that this {@code Layer} is not able to produce a map
      * with a width different from the fixed width indicated. A value
-     * of -1 indicates this {@code Layer} has no fixed width.
+     * of 0 indicates this {@code Layer} has no fixed width.
      *
-     * @return the fixed width of this {@code Layer}, or -1 if the width is not fixed.
+     * @return the fixed width of this {@code Layer}, or 0 if the width is not fixed.
      */
     @UML (identifier="fixedWidth", specification=ISO_19128) // 7.2.4.7.5
     int getFixedWidth();
@@ -387,9 +399,9 @@ public interface Layer {
     /**
      * Indicates that this {@code Layer} is not able to produce a map 
      * with a height different from the fixed height indicated. A value
-     * of -1 indicates this {@code Layer} has no fixed height.
+     * of 0 indicates this {@code Layer} has no fixed height.
      *
-     * @return the fixed height of this {@code Layer}, or -1 if the height is not fixed.
+     * @return the fixed height of this {@code Layer}, or 0 if the height is not fixed.
      */
     @UML (identifier="fixedHeight", specification=ISO_19128) // 7.2.4.7.5
     int getFixedHeight();
@@ -426,8 +438,9 @@ public interface Layer {
      * Gets the graphics from this {@code Layer} that are suitable for adding
      * to a {@link Canvas} in order to visually represent this {@code Layer}.
      * <p>
-     * The returned {@code List} should not be a live list of this {@code Layer}'s {@code Graphic}s,
-     * and modifying the list should not affect this {@code Layer}'s set of {@code Graphic}s.
+     * The returned {@code List} (if modifiable) should not be a live list of this {@code Layer}'s
+     * {@code Graphic}s, and modifying the list should not affect this {@code Layer}'s set of
+     * {@code Graphic}s.
      * 
      * @return the {@code Graphic}s to add to a {@code Canvas}.
      */

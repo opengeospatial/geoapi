@@ -13,7 +13,10 @@ package org.opengis.filter;
 import org.opengis.filter.expression.Expression;
 
 // Annotations
+import org.opengis.annotation.UML;
 import org.opengis.annotation.XmlSchema;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
 
 
 /**
@@ -31,18 +34,21 @@ import org.opengis.annotation.XmlSchema;
  * @version <A HREF="http://www.opengis.org/docs/02-059.pdf">Implementation specification 1.0</A>
  * @since 1.1
  */
-@XmlSchema(URL="filter.xsd", element="PropertyIsLike")
+@XmlSchema("http://schemas.opengis.net/filter/1.0.0/filter.xsd")
+@UML(identifier="PropertyIsLike", specification=OGC_02_059)
 public interface PropertyIsLike extends Filter {
     /**
      * Returns the expression whose value will be compared against the wildcard-
      * containing string provided by the getLiteral() method.
      */
+    @UML(identifier="PropertyName", obligation=MANDATORY, specification=OGC_02_059)
     Expression getExpression();
 
     /**
      * Returns the wildcard-containing string that will be used to check the
      * feature's properties.
      */
+    @UML(identifier="Literal", obligation=MANDATORY, specification=OGC_02_059)
     String getLiteral();
 
     /**
@@ -50,6 +56,7 @@ public interface PropertyIsLike extends Filter {
      * object to match any sequence of characters.  The default value for this
      * property is the one character string "%".
      */
+    @UML(identifier="wildCard", obligation=MANDATORY, specification=OGC_02_059)
     String getWildCard();
 
     /**
@@ -57,6 +64,7 @@ public interface PropertyIsLike extends Filter {
      * object to match exactly one character.  The default value for this
      * property is the one character string "_".
      */
+    @UML(identifier="singleChar", obligation=MANDATORY, specification=OGC_02_059)
     String getSingleChar();
 
     /**
@@ -65,5 +73,6 @@ public interface PropertyIsLike extends Filter {
      * should be matched literally in the content of the feature's property.
      * The default value for this property is the single character "'".
      */
+    @UML(identifier="escape", obligation=MANDATORY, specification=OGC_02_059)
     String getEscape();
 }

@@ -9,6 +9,9 @@
  *************************************************************************************************/
 package org.opengis.filter.expression;
 
+// Annotation
+import org.opengis.annotation.Extension;
+
 
 /**
  * Visitor with {@code visit} methods to be called by {@link Expression#accept Expression.accept(...)}.
@@ -17,6 +20,7 @@ package org.opengis.filter.expression;
  * @version <A HREF="http://www.opengis.org/docs/02-059.pdf">Implementation specification 1.0</A>
  * @since 1.1
  */
+@Extension
 public interface ExpressionVisitor {
     Object visit(Add          expression, Object extraData);
     Object visit(Divide       expression, Object extraData);
