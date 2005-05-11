@@ -11,7 +11,7 @@ package org.opengis.layer;
 
 // Annotations
 import org.opengis.annotation.UML;
-import static org.opengis.annotation.Obligation.*;
+import org.opengis.annotation.XmlSchema;
 import static org.opengis.annotation.Specification.*;
 
 
@@ -24,6 +24,7 @@ import static org.opengis.annotation.Specification.*;
  * @version <A HREF="http://portal.opengeospatial.org/files/?artifact_id=5316">Implementation specification 1.3</A>
  * @since 1.1
  */
+@XmlSchema ("http://schemas.opengis.net/wms/1.3.0/capabilities_1_3_0.xsd")
 @UML (identifier="FeatureListURL", specification=ISO_19128) // 7.2.4.6.14 FeatureListURL
 public interface FeatureListURL extends AbstractURL {
 }

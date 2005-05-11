@@ -1,4 +1,14 @@
+/*$************************************************************************************************
+ **
+ ** $Id$
+ **
+ ** $Source$
+ **
+ ** Copyright (C) 2003 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
+ **
+ *************************************************************************************************/
 package org.opengis.sld;
+
 
 /**
  * Interface that can be implemented by objects that want to perform some action
@@ -32,6 +42,10 @@ package org.opengis.sld;
  * MyVisitor visitor = new MyVisitor(...);
  * Object o = s.accept(visitor, myData);
  * </pre>
+ *
+ * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
+ * @version <A HREF="http://www.opengis.org/docs/02-070.pdf">Implementation specification 1.0</A>
+ * @since 1.1
  */
 public interface StyleVisitor {
     public Object visit(LineSymbol    symbol, Object userData);

@@ -12,8 +12,12 @@ package org.opengis.filter;
 // J2SE dependencies
 import java.util.Set;
 
-//Annotations
+// Annotations
+import org.opengis.annotation.UML;
 import org.opengis.annotation.XmlSchema;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
+
 
 /**
  * Instances of this interface represent a filter that passes only for features
@@ -23,11 +27,13 @@ import org.opengis.annotation.XmlSchema;
  * @version <A HREF="http://www.opengis.org/docs/02-059.pdf">Implementation specification 1.0</A>
  * @since 1.1
  */
-@XmlSchema(URL="filter.xsd", element="FeatureId")
+@XmlSchema("http://schemas.opengis.net/filter/1.0.0/filter.xsd")
+@UML(identifier="FeatureId", specification=OGC_02_059)
 public interface FeatureId extends Filter {
     /**
      * Returns a {@linkplain Set} containing the IDs of {@linkplain org.opengis.feature.Feature features}
      * that will pass this filter.
      */
+    @UML(identifier="fid", obligation=MANDATORY, specification=OGC_02_059)
     Set<String> getIDs();
 }

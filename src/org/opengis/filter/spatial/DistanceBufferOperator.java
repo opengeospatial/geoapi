@@ -9,6 +9,12 @@
  *************************************************************************************************/
 package org.opengis.filter.spatial;
 
+// Annotations
+import org.opengis.annotation.UML;
+import org.opengis.annotation.XmlSchema;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
+
 
 /**
  * Abstract superclass for spatial operators that check that one shape satisfies
@@ -19,11 +25,14 @@ package org.opengis.filter.spatial;
  * @version <A HREF="http://www.opengis.org/docs/02-059.pdf">Implementation specification 1.0</A>
  * @since 1.1
  */
+@XmlSchema("http://schemas.opengis.net/filter/1.0.0/filter.xsd")
+@UML(identifier="DistanceBufferType", specification=OGC_02_059)
 public interface DistanceBufferOperator extends BinarySpatialOperator {
     /**
      * Returns the buffer distance around the geometry that will be used when
      * comparing features' geometries.
      */
+    @UML(identifier="Distance", obligation=MANDATORY, specification=OGC_02_059)
     double getDistance();
 
     /**

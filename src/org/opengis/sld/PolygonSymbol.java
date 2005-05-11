@@ -1,8 +1,21 @@
+/*$************************************************************************************************
+ **
+ ** $Id$
+ **
+ ** $Source$
+ **
+ ** Copyright (C) 2003 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
+ **
+ *************************************************************************************************/
 package org.opengis.sld;
 
+
 /**
- * Implementations of this interface hold the information that indicates how to
- * draw the lines and the interior of polygons.
+ * Holds the information that indicates how to draw the lines and the interior of polygons.
+ *
+ * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
+ * @version <A HREF="http://www.opengis.org/docs/02-070.pdf">Implementation specification 1.0</A>
+ * @since 1.1
  */
 public interface PolygonSymbol extends Symbol {
     /**

@@ -12,11 +12,6 @@ package org.opengis.layer;
 // OpenGIS direct dependencies
 import org.opengis.metadata.citation.OnLineResource;
 
-// Annotations
-import org.opengis.annotation.UML;
-import static org.opengis.annotation.Obligation.*;
-import static org.opengis.annotation.Specification.*;
-
 
 /**
  * A simple starting point for most of the various URL elements used by {@link Layer}s

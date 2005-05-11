@@ -1,7 +1,21 @@
+/*$************************************************************************************************
+ **
+ ** $Id$
+ **
+ ** $Source$
+ **
+ ** Copyright (C) 2003 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
+ **
+ *************************************************************************************************/
 package org.opengis.sld;
 
+
 /**
- * Instances of this interface indicate how to draw point geometries on a map.
+ * Indicates how to draw point geometries on a map.
+ *
+ * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
+ * @version <A HREF="http://www.opengis.org/docs/02-070.pdf">Implementation specification 1.0</A>
+ * @since 1.1
  */
 public interface PointSymbol extends Symbol {
     /**

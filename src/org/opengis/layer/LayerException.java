@@ -12,11 +12,6 @@ package org.opengis.layer;
 // J2SE direct dependencies
 import java.io.IOException;
 
-// Annotations
-import org.opengis.annotation.UML;
-import static org.opengis.annotation.Obligation.*;
-import static org.opengis.annotation.Specification.*;
-
 
 /**
  * Throws when a {@linkplain org.opengis.layer.source.LayerSource layer source}

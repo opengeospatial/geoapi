@@ -9,11 +9,6 @@
  *************************************************************************************************/
 package org.opengis.layer;
 
-// Annotations
-import org.opengis.annotation.UML;
-import static org.opengis.annotation.Obligation.*;
-import static org.opengis.annotation.Specification.*;
-
 
 /**
  * Extends the {@code AbstractURL} by adding a width and height for the data retrievable

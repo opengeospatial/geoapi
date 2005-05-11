@@ -12,6 +12,12 @@ package org.opengis.filter;
 // J2SE direct dependencies
 import java.util.List;
 
+// Annotations
+import org.opengis.annotation.UML;
+import org.opengis.annotation.XmlSchema;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
+
 
 /**
  * Abstract super-interface for logical operators that accept two or more
@@ -22,6 +28,8 @@ import java.util.List;
  * @version <A HREF="http://www.opengis.org/docs/02-059.pdf">Implementation specification 1.0</A>
  * @since 1.1
  */
+@XmlSchema("http://schemas.opengis.net/filter/1.0.0/filter.xsd")
+@UML(identifier="BinaryLogicOpType", specification=OGC_02_059)
 public interface BinaryLogicOperator extends Filter {
     /**
      * Returns a list containing all of the child filters of this object.  This

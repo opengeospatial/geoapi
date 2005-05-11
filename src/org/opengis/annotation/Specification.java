@@ -83,5 +83,11 @@ public enum Specification {
      * OGC <A HREF="http://www.opengis.org/docs/02-059.pdf">Filter encoding implementation specification</A>.
      * This is the specification for package {@link org.opengis.filter} and sub-packages.
      */
-    OGC_02_059
+    OGC_02_059,
+
+    /**
+     * OGC <A HREF="http://www.opengis.org/docs/02-070.pdf">Styled Layer Descriptor (SLD) implementation specification</A>.
+     * This is the specification for package {@link org.opengis.sld} and sub-packages.
+     */
+    OGC_02_070
 }

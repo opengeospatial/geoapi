@@ -10,7 +10,9 @@
 package org.opengis.filter.expression;
 
 // Annotations
+import org.opengis.annotation.UML;
 import org.opengis.annotation.XmlSchema;
+import static org.opengis.annotation.Specification.*;
 
 
 /**
@@ -23,7 +25,7 @@ import org.opengis.annotation.XmlSchema;
  * @version <A HREF="http://www.opengis.org/docs/02-059.pdf">Implementation specification 1.0</A>
  * @since 1.1
  */
-@XmlSchema(URL="filter.xsd", element="Function")
+@UML(identifier="Function", specification=OGC_02_059)
 public interface Function extends Expression {
     /**
      * Returns the name of the function to be called.  For example, this might

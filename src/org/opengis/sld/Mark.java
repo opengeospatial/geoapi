@@ -1,10 +1,24 @@
+/*$************************************************************************************************
+ **
+ ** $Id$
+ **
+ ** $Source$
+ **
+ ** Copyright (C) 2003 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
+ **
+ *************************************************************************************************/
 package org.opengis.sld;
 
+// OpenGIS direct dependencies
 import org.opengis.filter.expression.Expression;
 
+
 /**
- * Implementations of this interface indicate that one of a few predefined
- * shapes will be drawn at the points of the geometry.
+ * Indicate that one of a few predefined shapes will be drawn at the points of the geometry.
+ *
+ * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
+ * @version <A HREF="http://www.opengis.org/docs/02-070.pdf">Implementation specification 1.0</A>
+ * @since 1.1
  */
 public interface Mark extends ExternalGraphicOrMark {
     /**

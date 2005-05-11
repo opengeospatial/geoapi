@@ -10,9 +10,12 @@
 package org.opengis.annotation;
 
 // J2SE dependencies
+import java.lang.annotation.Target;
 import java.lang.annotation.Documented;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
+import static java.lang.annotation.ElementType.*;
+import static java.lang.annotation.RetentionPolicy.*;
 
 
 /**
@@ -23,7 +26,8 @@ import java.lang.annotation.RetentionPolicy;
  * @since 1.1
  */
 @Documented
-@Retention(value = RetentionPolicy.RUNTIME)
+@Target({TYPE, FIELD, METHOD})
+@Retention(RUNTIME)
 public @interface UML {
     /**
      * The UML identifier for the annotated interface, method or code list element.

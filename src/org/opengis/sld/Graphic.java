@@ -1,13 +1,29 @@
+/*$************************************************************************************************
+ **
+ ** $Id$
+ **
+ ** $Source$
+ **
+ ** Copyright (C) 2003 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
+ **
+ *************************************************************************************************/
 package org.opengis.sld;
 
+// J2SE direct dependencies
 import java.util.List;
 
+// OpenGIS direct dependencies
 import org.opengis.filter.expression.Expression;
+
 
 /**
  * Not to be confused with GO-1's Graphic, this represents a little picture,
  * such as a GIF or JPG, that can be used in rendering.  Multiple little
  * pictures can be overlayed at the same spot.
+ *
+ * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
+ * @version <A HREF="http://www.opengis.org/docs/02-070.pdf">Implementation specification 1.0</A>
+ * @since 1.1
  */
 public interface Graphic {
     /**

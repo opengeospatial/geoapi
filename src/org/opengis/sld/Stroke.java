@@ -1,11 +1,26 @@
+/*$************************************************************************************************
+ **
+ ** $Id$
+ **
+ ** $Source$
+ **
+ ** Copyright (C) 2003 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
+ **
+ *************************************************************************************************/
 package org.opengis.sld;
 
+// OpenGIS direct dependencies
 import org.opengis.filter.expression.Expression;
 
+
 /**
- * Instances of this interface contain all the information needed to draw styled
- * lines.  Stroke objects are contained by LineSymbols and PolygonSymbols.  A
- * Stroke can optionally have any number of parameters that dictate the 
+ * Contains all the information needed to draw styled lines.  Stroke objects are contained
+ * by {@link LineSymbol}s and {@link PolygonSymbol}s.  A {@code Stroke} can optionally have
+ * any number of parameters that dictate the 
+ *
+ * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
+ * @version <A HREF="http://www.opengis.org/docs/02-070.pdf">Implementation specification 1.0</A>
+ * @since 1.1
  */
 public interface Stroke {
     /**

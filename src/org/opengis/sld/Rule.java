@@ -1,15 +1,31 @@
+/*$************************************************************************************************
+ **
+ ** $Id$
+ **
+ ** $Source$
+ **
+ ** Copyright (C) 2003 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
+ **
+ *************************************************************************************************/
 package org.opengis.sld;
 
+// J2SE direct dependencies
 import java.util.List;
 
+// OpenGIS direct dependencies
 import org.opengis.filter.Filter;
 
+
 /**
- * A Rule consists of two important parts: a Filter and a list of Symbols.  When
- * it is time to draw a given feature, the rendering engine examines each Rule
- * in the FeatureStyle, first checking its Filter (or ElseFilter).  If the
+ * A rule consists of two important parts: a {@linkplain Filter filter} and a list of
+ * {@linkplain Symbol symbols}.  When it is time to draw a given feature, the rendering
+ * engine examines each rule in the FeatureStyle, first checking its Filter (or ElseFilter).  If the
  * Filter passes, then every Symbol for that rule is applied to the given
  * feature.
+ *
+ * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
+ * @version <A HREF="http://www.opengis.org/docs/02-070.pdf">Implementation specification 1.0</A>
+ * @since 1.1
  */
 public interface Rule {
     /**
