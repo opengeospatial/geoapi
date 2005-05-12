@@ -24,26 +24,26 @@ import static org.opengis.annotation.Specification.*;
  * @author ISO 19115
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
- * @since 1.0
+ * @since GeoAPI 1.0
  */
-@UML (identifier="CI_Series", specification=ISO_19115)
+@UML(identifier="CI_Series", specification=ISO_19115)
 public interface Series {
     /**
      * Name of the series, or aggregate dataset, of which the dataset is a part.
      * Returns {@code null} if none.
      */
-    @UML (identifier="name", obligation=OPTIONAL, specification=ISO_19115)
+    @UML(identifier="name", obligation=OPTIONAL, specification=ISO_19115)
     InternationalString getName();
 
     /**
      * Information identifying the issue of the series.
      */
-    @UML (identifier="issueIdentification", obligation=OPTIONAL, specification=ISO_19115)
+    @UML(identifier="issueIdentification", obligation=OPTIONAL, specification=ISO_19115)
     String getIssueIdentification();
 
     /**
      * Details on which pages of the publication the article was published.
      */
-    @UML (identifier="page", obligation=OPTIONAL, specification=ISO_19115)
+    @UML(identifier="page", obligation=OPTIONAL, specification=ISO_19115)
     String getPage();
 }

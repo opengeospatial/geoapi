@@ -28,9 +28,9 @@ import static org.opengis.annotation.Specification.*;
  * @author ISO 19115
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
- * @since 1.1
+ * @since GeoAPI 1.1
  */
-@UML (identifier="MD_ClassificationCode", specification=ISO_19115)
+@UML(identifier="MD_ClassificationCode", specification=ISO_19115)
 public final class Classification extends CodeList<Classification> {
     /**
      * Serial number for compatibility with different versions.
@@ -46,31 +46,31 @@ public final class Classification extends CodeList<Classification> {
     /**
      * Available for general disclosure.
      */
-    @UML (identifier="unclassified", obligation=CONDITIONAL, specification=ISO_19115)
+    @UML(identifier="unclassified", obligation=CONDITIONAL, specification=ISO_19115)
     public static final Classification UNCLASSIFIED = new Classification("UNCLASSIFIED");
 
     /**
      * Not for general disclosure.
      */
-    @UML (identifier="restricted", obligation=CONDITIONAL, specification=ISO_19115)
+    @UML(identifier="restricted", obligation=CONDITIONAL, specification=ISO_19115)
     public static final Classification RESTRICTED = new Classification("RESTRICTED");
 
     /**
      * Available for someone who can be entrusted with information.
      */
-    @UML (identifier="confidential", obligation=CONDITIONAL, specification=ISO_19115)
+    @UML(identifier="confidential", obligation=CONDITIONAL, specification=ISO_19115)
     public static final Classification CONFIDENTIAL = new Classification("CONFIDENTIAL");
 
     /**
      * Kept or meant to be kept private, unknown, or hidden from all but a select group of people.
      */
-    @UML (identifier="secret", obligation=CONDITIONAL, specification=ISO_19115)
+    @UML(identifier="secret", obligation=CONDITIONAL, specification=ISO_19115)
     public static final Classification SECRET = new Classification("SECRET");
 
     /**
      * Of the highest secrecy.
      */
-    @UML (identifier="topsecret", obligation=CONDITIONAL, specification=ISO_19115)
+    @UML(identifier="topsecret", obligation=CONDITIONAL, specification=ISO_19115)
     public static final Classification TOP_SECRET = new Classification("TOP_SECRET");
 
     /**

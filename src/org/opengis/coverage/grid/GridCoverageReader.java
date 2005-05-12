@@ -40,7 +40,7 @@ import org.opengis.parameter.InvalidParameterValueException; // For javadoc
  * </TABLE>
  *
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
- * @since 1.1
+ * @since GeoAPI 1.1
  *
  * @see GridCoverageExchange#getReader
  * @see javax.imageio.ImageReader

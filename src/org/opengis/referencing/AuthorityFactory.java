@@ -35,15 +35,15 @@ import static org.opengis.annotation.Specification.*;
  *
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-009.pdf">Implementation specification 1.0</A>
- * @since 1.0
+ * @since GeoAPI 1.0
  */
-@UML (identifier="CS_CoordinateSystemAuthorityFactory", specification=OGC_01_009)
+@UML(identifier="CS_CoordinateSystemAuthorityFactory", specification=OGC_01009)
 public interface AuthorityFactory extends Factory {
     /**
      * Returns the organization or party responsible for definition and maintenance of the
      * database.
      */
-    @UML (identifier="getAuthority", specification=OGC_01_009)
+    @UML(identifier="getAuthority", specification=OGC_01009)
     Citation getAuthority();
 
     /**
@@ -81,7 +81,7 @@ public interface AuthorityFactory extends Factory {
      * @throws NoSuchAuthorityCodeException if the specified <code>code</code> was not found.
      * @throws FactoryException if the query failed for some other reason.
      */
-    @UML (identifier="descriptionText", specification=OGC_01_009)
+    @UML(identifier="descriptionText", specification=OGC_01009)
     InternationalString getDescriptionText(String code) throws FactoryException;
 
     /**

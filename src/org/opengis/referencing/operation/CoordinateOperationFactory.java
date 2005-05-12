@@ -32,9 +32,9 @@ import static org.opengis.annotation.Specification.*;
  *
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-009.pdf">Implementation specification 1.0</A>
- * @since 1.0
+ * @since GeoAPI 1.0
  */
-@UML (identifier="CT_CoordinateTransformationFactory", specification=OGC_01_009)
+@UML(identifier="CT_CoordinateTransformationFactory", specification=OGC_01009)
 public interface CoordinateOperationFactory extends ObjectFactory {
     /**
      * Returns an operation for conversion or transformation between two coordinate reference systems.
@@ -48,7 +48,7 @@ public interface CoordinateOperationFactory extends ObjectFactory {
      *         to <code>targetCRS</code>.
      * @throws FactoryException if the operation creation failed for some other reason.
      */
-    @UML (identifier="createFromCoordinateSystems", specification=OGC_01_009)
+    @UML(identifier="createFromCoordinateSystems", specification=OGC_01009)
     CoordinateOperation createOperation(CoordinateReferenceSystem sourceCRS,
                                         CoordinateReferenceSystem targetCRS)
             throws OperationNotFoundException, FactoryException;

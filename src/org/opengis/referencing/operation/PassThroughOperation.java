@@ -22,14 +22,14 @@ import static org.opengis.annotation.Specification.*;
  * @author ISO 19111
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/03-073r1.zip">Abstract specification 2.0</A>
- * @since 1.0
+ * @since GeoAPI 1.0
  */
-@UML (identifier="CC_PassThroughOperation", specification=ISO_19111)
+@UML(identifier="CC_PassThroughOperation", specification=ISO_19111)
 public interface PassThroughOperation extends SingleOperation {
     /**
      * Returns the operation to apply on the subset of a coordinate tuple.
      */
-    @UML (identifier="usesOperation", obligation=MANDATORY, specification=ISO_19111)
+    @UML(identifier="usesOperation", obligation=MANDATORY, specification=ISO_19111)
     Operation getOperation();
 
     /**
@@ -38,6 +38,6 @@ public interface PassThroughOperation extends SingleOperation {
      *
      * @return The modified coordinates.
      */
-    @UML (identifier="modifiedCoordinate", obligation=MANDATORY, specification=ISO_19111)
+    @UML(identifier="modifiedCoordinate", obligation=MANDATORY, specification=ISO_19111)
     int[] getModifiedCoordinates();
 }

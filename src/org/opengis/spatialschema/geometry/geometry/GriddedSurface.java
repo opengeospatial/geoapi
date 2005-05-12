@@ -43,9 +43,9 @@ import static org.opengis.annotation.Specification.*;
  * @author ISO/DIS 19107
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-101.pdf">Abstract specification 5</A>
- * @since 1.1
+ * @since GeoAPI 1.1
  */
-@UML (identifier="GM_GriddedSurface", specification=ISO_19107)
+@UML(identifier="GM_GriddedSurface", specification=ISO_19107)
 public interface GriddedSurface extends ParametricCurveSurface {
     /**
      * Returns the doubly indexed sequence of control points, given in row major form.
@@ -53,18 +53,18 @@ public interface GriddedSurface extends ParametricCurveSurface {
      * need not effect a "2&frac12;D" surface, consecutive points may be equal in any or
      * all of their ordinates. Further, the curves in either or both directions may close.
      */
-    @UML (identifier="controlPoint", obligation=MANDATORY, specification=ISO_19107)
+    @UML(identifier="controlPoint", obligation=MANDATORY, specification=ISO_19107)
     PointGrid getControlPoints();
 
     /**
      * Returns the number of rows in the parameter grid.
      */
-    @UML (identifier="rows", obligation=MANDATORY, specification=ISO_19107)
+    @UML(identifier="rows", obligation=MANDATORY, specification=ISO_19107)
     int getRows();
 
     /**
      * Returns the number of columns in the parameter grid.
      */
-    @UML (identifier="columns", obligation=MANDATORY, specification=ISO_19107)
+    @UML(identifier="columns", obligation=MANDATORY, specification=ISO_19107)
     int getColumns();
 }

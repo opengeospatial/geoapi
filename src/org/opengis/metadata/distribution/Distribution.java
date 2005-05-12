@@ -27,22 +27,22 @@ import static org.opengis.annotation.Specification.*;
  * @author ISO 19115
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
- * @since 1.1
+ * @since GeoAPI 1.1
  */
 @Profile (level=CORE)
-@UML (identifier="MD_Distribution", specification=ISO_19115)
+@UML(identifier="MD_Distribution", specification=ISO_19115)
 public interface Distribution {
     /**
      * Provides a description of the format of the data to be distributed.
      */
     @Profile (level=CORE)
-    @UML (identifier="distributionFormat", obligation=CONDITIONAL, specification=ISO_19115)
+    @UML(identifier="distributionFormat", obligation=CONDITIONAL, specification=ISO_19115)
     Collection<Format> getDistributionFormats();
 
     /**
      * Provides information about the distributor.
      */
-    @UML (identifier="distributor", obligation=OPTIONAL, specification=ISO_19115)
+    @UML(identifier="distributor", obligation=OPTIONAL, specification=ISO_19115)
     Collection<Distributor> getDistributors();
 
     /**
@@ -50,6 +50,6 @@ public interface Distribution {
      * from the distributor.
      */
     @Profile (level=CORE)
-    @UML (identifier="transferOptions", obligation=OPTIONAL, specification=ISO_19115)
+    @UML(identifier="transferOptions", obligation=OPTIONAL, specification=ISO_19115)
     Collection<DigitalTransferOptions> getTransferOptions();
 }

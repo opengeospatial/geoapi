@@ -38,12 +38,12 @@ import static org.opengis.annotation.Specification.*;
  *
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-004.pdf">Grid Coverage specification 1.0</A>
- * @since 1.0
+ * @since GeoAPI 1.0
  *
  * @revisit All methods except {@link #getCorrelation} work on a particuler sample dimension.
  *          Why not defines those methods right into {@link org.opengis.coverage.SampleDimension}?
  */
-@UML (identifier="GP_GridAnalysis", specification=OGC_01_004)
+@UML(identifier="GP_GridAnalysis", specification=OGC_01004)
 public interface GridAnalysis extends GridCoverage {
     /**
      * Determine the histogram of the grid values for a sample dimension.
@@ -57,7 +57,7 @@ public interface GridAnalysis extends GridCoverage {
      *
      * @see javax.media.jai.Histogram
      */
-    @UML (identifier="histogram", obligation=MANDATORY, specification=OGC_01_004)
+    @UML(identifier="histogram", obligation=MANDATORY, specification=OGC_01004)
     int[] getHistogram(int sampleDimension, double minimumEntryValue, double maximumEntryValue, int numberEntries)
             throws InvalidSampleDimensionException;
 
@@ -68,7 +68,7 @@ public interface GridAnalysis extends GridCoverage {
      * @return the minimum grid value for a sample dimension.
      * @throws InvalidSampleDimensionException if the sample dimension index is out of bounds.
      */
-    @UML (identifier="minValue", obligation=MANDATORY, specification=OGC_01_004)
+    @UML(identifier="minValue", obligation=MANDATORY, specification=OGC_01004)
     double getMinValue(int sampleDimension) throws InvalidSampleDimensionException;
 
     /**
@@ -78,7 +78,7 @@ public interface GridAnalysis extends GridCoverage {
      * @return the maximum grid value for a sample dimension.
      * @throws InvalidSampleDimensionException if the sample dimension index is out of bounds.
      */
-    @UML (identifier="maxValue", obligation=MANDATORY, specification=OGC_01_004)
+    @UML(identifier="maxValue", obligation=MANDATORY, specification=OGC_01004)
     double getMaxValue(int sampleDimension) throws InvalidSampleDimensionException;
 
     /**
@@ -88,7 +88,7 @@ public interface GridAnalysis extends GridCoverage {
      * @return the mean grid value for a sample dimension.
      * @throws InvalidSampleDimensionException if the sample dimension index is out of bounds.
      */
-    @UML (identifier="meanValue", obligation=MANDATORY, specification=OGC_01_004)
+    @UML(identifier="meanValue", obligation=MANDATORY, specification=OGC_01004)
     double getMeanValue(int sampleDimension) throws InvalidSampleDimensionException;
 
     /**
@@ -98,7 +98,7 @@ public interface GridAnalysis extends GridCoverage {
      * @return the median grid value for a sample dimension.
      * @throws InvalidSampleDimensionException if the sample dimension index is out of bounds.
      */
-    @UML (identifier="medianValue", obligation=MANDATORY, specification=OGC_01_004)
+    @UML(identifier="medianValue", obligation=MANDATORY, specification=OGC_01004)
     double getMedianValue(int sampleDimension) throws InvalidSampleDimensionException;
 
     /**
@@ -108,7 +108,7 @@ public interface GridAnalysis extends GridCoverage {
      * @return the mode grid value for a sample dimension.
      * @throws InvalidSampleDimensionException if the sample dimension index is out of bounds.
      */
-    @UML (identifier="modeValue", obligation=MANDATORY, specification=OGC_01_004)
+    @UML(identifier="modeValue", obligation=MANDATORY, specification=OGC_01004)
     double getModeValue(int sampleDimension) throws InvalidSampleDimensionException;
 
     /**
@@ -118,7 +118,7 @@ public interface GridAnalysis extends GridCoverage {
      * @return he standard deviation from the mean of the grid values for a sample dimension.
      * @throws InvalidSampleDimensionException if the sample dimension index is out of bounds.
      */
-    @UML (identifier="stdDev", obligation=MANDATORY, specification=OGC_01_004)
+    @UML(identifier="stdDev", obligation=MANDATORY, specification=OGC_01004)
     double getStandardDeviation(int sampleDimension) throws InvalidSampleDimensionException;
 
     /**
@@ -126,6 +126,6 @@ public interface GridAnalysis extends GridCoverage {
      *
      * @return the correlation between sample dimensions in the grid.
      */
-    @UML (identifier="correlation", obligation=MANDATORY, specification=OGC_01_004)
+    @UML(identifier="correlation", obligation=MANDATORY, specification=OGC_01004)
     Matrix getCorrelation();
 }

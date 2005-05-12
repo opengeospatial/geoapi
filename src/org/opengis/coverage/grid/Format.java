@@ -37,50 +37,50 @@ import static org.opengis.annotation.Specification.*;
  *
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-004.pdf">Grid Coverage specification 1.0</A>
- * @since 1.1
+ * @since GeoAPI 1.1
  */
-@UML (identifier="CV_Format", specification=OGC_01_004)
+@UML(identifier="CV_Format", specification=OGC_01004)
 public interface Format {
     /**
      * Name of the file format.
      */
-    @UML (identifier="name", obligation=MANDATORY, specification=OGC_01_004)
+    @UML(identifier="name", obligation=MANDATORY, specification=OGC_01004)
     String getName();
 
     /**
      * Description of the file format.
      * If no description, the value will be {@code null}.
      */
-    @UML (identifier="description", obligation=OPTIONAL, specification=OGC_01_004)
+    @UML(identifier="description", obligation=OPTIONAL, specification=OGC_01004)
     String getDescription();
 
     /**
      * Vendor or agency for the format.
      */
-    @UML (identifier="vendor", obligation=OPTIONAL, specification=OGC_01_004)
+    @UML(identifier="vendor", obligation=OPTIONAL, specification=OGC_01004)
     String getVendor();
 
     /**
      * Documentation URL for the format.
      */
-    @UML (identifier="docURL", obligation=OPTIONAL, specification=OGC_01_004)
+    @UML(identifier="docURL", obligation=OPTIONAL, specification=OGC_01004)
     String getDocURL();
 
     /**
      * Version number of the format.
      */
-    @UML (identifier="version", obligation=OPTIONAL, specification=OGC_01_004)
+    @UML(identifier="version", obligation=OPTIONAL, specification=OGC_01004)
     String getVersion();
 
     /**
      * Retrieve the parameter information for a {@link GridCoverageReader#read read} operation.
      */
-    @UML (identifier="getParameterInfo, numParameters", obligation=MANDATORY, specification=OGC_01_004)
+    @UML(identifier="getParameterInfo, numParameters", obligation=MANDATORY, specification=OGC_01004)
     ParameterValueGroup getReadParameters();
 
     /**
      * Retrieve the parameter information for a {@link GridCoverageWriter#write write} operation.
      */
-    @UML (identifier="getParameterInfo, numParameters", obligation=MANDATORY, specification=OGC_01_004)
+    @UML(identifier="getParameterInfo, numParameters", obligation=MANDATORY, specification=OGC_01004)
     ParameterValueGroup getWriteParameters();
 }

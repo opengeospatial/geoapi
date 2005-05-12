@@ -25,11 +25,11 @@ import static org.opengis.annotation.Specification.*;
  *
  * @author ISO 19103
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
- * @since 1.1
+ * @since GeoAPI 1.1
  *
  * @see NameFactory#createLocalName
  */
-@UML (identifier="LocalName", specification=ISO_19103)
+@UML(identifier="LocalName", specification=ISO_19103)
 public interface LocalName extends GenericName {
     /**
      * Returns the scope (name space) of this generic name. This method returns the same
@@ -47,7 +47,7 @@ public interface LocalName extends GenericName {
      *   <td>&nbsp;</td>
      * </tr></table></blockquote>
      */
-    @UML (identifier="scope", obligation=OPTIONAL, specification=ISO_19103)
+    @UML(identifier="scope", obligation=OPTIONAL, specification=ISO_19103)
     GenericName getScope();
 
     /**
@@ -55,7 +55,7 @@ public interface LocalName extends GenericName {
      * Since this object is itself a locale name, this method always returns a singleton
      * containing only <code>this</code>.
      */
-    @UML (identifier="parsedName", obligation=MANDATORY, specification=ISO_19103)
+    @UML(identifier="parsedName", obligation=MANDATORY, specification=ISO_19103)
     List<LocalName> getParsedNames();
 
     /**
@@ -69,6 +69,6 @@ public interface LocalName extends GenericName {
      * This string do not includes the scope, which is consistent with the
      * {@linkplain #getParsedNames parsed names} definition.
      */
-    @UML (identifier="aName", obligation=MANDATORY, specification=ISO_19103)
+    @UML(identifier="aName", obligation=MANDATORY, specification=ISO_19103)
     String toString();
 }

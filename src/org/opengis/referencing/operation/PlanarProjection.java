@@ -24,7 +24,7 @@ import org.opengis.annotation.Extension;
  *
  * @see org.opengis.referencing.crs.ProjectedCRS
  * @see <A HREF="http://mathworld.wolfram.com/AzimuthalProjection.html">Azimuthal projection on MathWorld</A>
- * @since 1.0
+ * @since GeoAPI 1.0
  */
 @Extension
 public interface PlanarProjection extends Projection {

@@ -22,7 +22,7 @@ import org.opengis.util.CodeList;
  * Feature attributes.
  *
  * @author Chris Dillard
- * @since 1.1
+ * @since GeoAPI 1.1
  */
 public final class DataType extends CodeList<DataType> {
     /**

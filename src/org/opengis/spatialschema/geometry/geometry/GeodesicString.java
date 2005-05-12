@@ -30,11 +30,11 @@ import static org.opengis.annotation.Specification.*;
  * @author ISO/DIS 19107
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-101.pdf">Abstract specification 5</A>
- * @since 1.0
+ * @since GeoAPI 1.0
  *
  * @see GeometryFactory#createGeodesicString
  */
-@UML (identifier="GM_GeodesicString", specification=ISO_19107)
+@UML(identifier="GM_GeodesicString", specification=ISO_19107)
 public interface GeodesicString extends CurveSegment {
     /**
      * Returns a sequence of positions between which this <code>GeodesicString</code> is interpolated
@@ -44,7 +44,7 @@ public interface GeodesicString extends CurveSegment {
      *
      * @return The control points.
      */
-    @UML (identifier="controlPoint", obligation=MANDATORY, specification=ISO_19107)
+    @UML(identifier="controlPoint", obligation=MANDATORY, specification=ISO_19107)
     public PointArray getControlPoints();
 
     /**
@@ -53,7 +53,7 @@ public interface GeodesicString extends CurveSegment {
      *
      * @return Always {@link CurveInterpolation#GEODESIC}.
      */
-    @UML (identifier="interpolation", obligation=MANDATORY, specification=ISO_19107)
+    @UML(identifier="interpolation", obligation=MANDATORY, specification=ISO_19107)
     public CurveInterpolation getInterpolation();
 
     /**
@@ -61,6 +61,6 @@ public interface GeodesicString extends CurveSegment {
      *
      * @return The equivalent sequence of geodesic segments.
      */
-    @UML (identifier="asGM_Geodesic", obligation=MANDATORY, specification=ISO_19107)
+    @UML(identifier="asGM_Geodesic", obligation=MANDATORY, specification=ISO_19107)
     public List<Geodesic> asGeodesics();
 }

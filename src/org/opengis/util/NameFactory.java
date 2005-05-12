@@ -19,7 +19,7 @@ import java.util.Map;
  * {@linkplain InternationalString international strings}.
  * 
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
- * @since 1.1
+ * @since GeoAPI 1.1
  */
 public interface NameFactory {    
     /**

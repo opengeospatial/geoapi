@@ -29,11 +29,11 @@ import static org.opengis.annotation.Specification.*;
  * @author ISO/DIS 19107
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-101.pdf">Abstract specification 5</A>
- * @since 1.1
+ * @since GeoAPI 1.1
  *
  * @see GeometryFactory#createTin
  */
-@UML (identifier="GM_Tin", specification=ISO_19107)
+@UML(identifier="GM_Tin", specification=ISO_19107)
 public interface Tin extends TriangulatedSurface {
     /**
      * Stoplines are lines where the local continuity or regularity of the surface is questionable.
@@ -42,7 +42,7 @@ public interface Tin extends TriangulatedSurface {
      * triangles, the result shall be a change of the surface boundary. The attribute
      * {@code stopLines} contains all these pathological segments as a set of line strings.
      */
-    @UML (identifier="stopLines", obligation=MANDATORY, specification=ISO_19107)
+    @UML(identifier="stopLines", obligation=MANDATORY, specification=ISO_19107)
     Set<LineString> getStopLines();
 
     /**
@@ -51,7 +51,7 @@ public interface Tin extends TriangulatedSurface {
      * segments must be included in the TIN even if doing so violates the Delaunay criterion. The
      * attribute {@code breakLines} contains these critical segments as a set of line strings.
      */
-    @UML (identifier="breakLines", obligation=MANDATORY, specification=ISO_19107)
+    @UML(identifier="breakLines", obligation=MANDATORY, specification=ISO_19107)
     Set<LineString> getBreakLines();
 
     /**
@@ -61,7 +61,7 @@ public interface Tin extends TriangulatedSurface {
      * on the length of their sides. For any triangle sides exceeding maximum length, the
      * adjacent triangles to that triangle side shall be removed from the surface.
      */
-    @UML (identifier="maxLength", obligation=MANDATORY, specification=ISO_19107)
+    @UML(identifier="maxLength", obligation=MANDATORY, specification=ISO_19107)
     double getMaxLength();
 
     /**
@@ -72,6 +72,6 @@ public interface Tin extends TriangulatedSurface {
      * Application schemas may add information based on the ordering of the control points to
      * facilitate the reconstruction of the TIN from the control points.
      */
-    @UML (identifier="controlPoint", obligation=MANDATORY, specification=ISO_19107)
+    @UML(identifier="controlPoint", obligation=MANDATORY, specification=ISO_19107)
     List<Position> getControlPoints();
 }

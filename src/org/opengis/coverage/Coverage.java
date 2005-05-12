@@ -74,12 +74,12 @@ import static org.opengis.annotation.Specification.*;
  *
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-004.pdf">Grid Coverage specification 1.0</A>
- * @since 1.0
+ * @since GeoAPI 1.0
  *
  * @see RenderableImage
  * @see javax.media.jai.ImageFunction
  */
-@UML (identifier="CV_Coverage", specification=OGC_01_004)
+@UML(identifier="CV_Coverage", specification=OGC_01004)
 public interface Coverage {
     /**
      * Specifies the coordinate reference system used when accessing a coverage or grid
@@ -101,7 +101,7 @@ public interface Coverage {
      * @return The coordinate reference system used when accessing a coverage or
      *         grid coverage with the <code>evaluate(...)</code> methods, or {@code null}.
      */
-    @UML (identifier="coordinateSystem", obligation=MANDATORY, specification=OGC_01_004)
+    @UML(identifier="coordinateSystem", obligation=MANDATORY, specification=OGC_01004)
     CoordinateReferenceSystem getCoordinateReferenceSystem();
 
     /**
@@ -119,7 +119,7 @@ public interface Coverage {
      *
      * @return The bounding box for the coverage domain in coordinate system coordinates.
      */
-    @UML (identifier="envelope", obligation=MANDATORY, specification=OGC_01_004)
+    @UML(identifier="envelope", obligation=MANDATORY, specification=OGC_01004)
     Envelope getEnvelope();
 
     /**
@@ -132,7 +132,7 @@ public interface Coverage {
      * The number of dimensions of the coverage is the number of entries in the
      * list of dimension names.
      */
-    @UML (identifier="dimensionNames", obligation=MANDATORY, specification=OGC_01_004)
+    @UML(identifier="dimensionNames", obligation=MANDATORY, specification=OGC_01004)
     InternationalString[] getDimensionNames();
 
     /**
@@ -146,7 +146,7 @@ public interface Coverage {
      * @deprecated Replaced by {@link #getDimensionNames()}.
      */
     @Deprecated
-    @UML (identifier="dimensionNames", obligation=MANDATORY, specification=OGC_01_004)
+    @UML(identifier="dimensionNames", obligation=MANDATORY, specification=OGC_01004)
     String[] getDimensionNames(Locale locale);
 
     /**
@@ -155,7 +155,7 @@ public interface Coverage {
      *
      * @return The number of sample dimensions in the coverage.
      */
-    @UML (identifier="numSampleDimensions", obligation=MANDATORY, specification=OGC_01_004)
+    @UML(identifier="numSampleDimensions", obligation=MANDATORY, specification=OGC_01004)
     int getNumSampleDimensions();
 
     /**
@@ -170,7 +170,7 @@ public interface Coverage {
      * @return Sample dimension information for the coverage.
      * @throws IndexOutOfBoundsException if <code>index</code> is out of bounds.
      */
-    @UML (identifier="getSampleDimension", obligation=MANDATORY, specification=OGC_01_004)
+    @UML(identifier="getSampleDimension", obligation=MANDATORY, specification=OGC_01004)
     SampleDimension getSampleDimension(int index) throws IndexOutOfBoundsException;
 
     /**
@@ -184,7 +184,7 @@ public interface Coverage {
      *
      * @return The list of sources data for a coverage.
      */
-    @UML (identifier="getSource, numSource", obligation=MANDATORY, specification=OGC_01_004)
+    @UML(identifier="getSource, numSource", obligation=MANDATORY, specification=OGC_01004)
     List<? extends Coverage> getSources();
 
     /**
@@ -196,7 +196,7 @@ public interface Coverage {
      * @see #getMetadataValue
      * @see javax.media.jai.PropertySource#getPropertyNames
      */
-    @UML (identifier="metadataNames", obligation=MANDATORY, specification=OGC_01_004)
+    @UML(identifier="metadataNames", obligation=MANDATORY, specification=OGC_01004)
     String[] getMetadataNames();
 
     /**
@@ -209,7 +209,7 @@ public interface Coverage {
      * @see #getMetadataNames
      * @see javax.media.jai.PropertySource#getProperty
      */
-    @UML (identifier="getMetadataValue", obligation=MANDATORY, specification=OGC_01_004)
+    @UML(identifier="getMetadataValue", obligation=MANDATORY, specification=OGC_01004)
     String getMetadataValue(String name) throws MetadataNameNotFoundException;
 
     /**
@@ -228,7 +228,7 @@ public interface Coverage {
      *
      * @see Raster#getDataElements(int, int, Object)
      */
-    @UML (identifier="evaluate", obligation=MANDATORY, specification=OGC_01_004)
+    @UML(identifier="evaluate", obligation=MANDATORY, specification=OGC_01004)
     Object evaluate(DirectPosition point) throws CannotEvaluateException;
 
     /**
@@ -251,7 +251,7 @@ public interface Coverage {
      * @throws ArrayIndexOutOfBoundsException if the <code>destination</code> array is not null
      *         and too small to hold the output.
      */
-    @UML (identifier="evaluateAsBoolean", obligation=MANDATORY, specification=OGC_01_004)
+    @UML(identifier="evaluateAsBoolean", obligation=MANDATORY, specification=OGC_01004)
     boolean[] evaluate(DirectPosition point, boolean[] destination)
             throws CannotEvaluateException, ArrayIndexOutOfBoundsException;
 
@@ -275,7 +275,7 @@ public interface Coverage {
      * @throws ArrayIndexOutOfBoundsException if the <code>destination</code> array is not null
      *         and too small to hold the output.
      */
-    @UML (identifier="evaluateAsByte", obligation=MANDATORY, specification=OGC_01_004)
+    @UML(identifier="evaluateAsByte", obligation=MANDATORY, specification=OGC_01004)
     byte[] evaluate(DirectPosition point, byte[] destination)
             throws CannotEvaluateException, ArrayIndexOutOfBoundsException;
 
@@ -301,7 +301,7 @@ public interface Coverage {
      *
      * @see Raster#getPixel(int, int, int[])
      */
-    @UML (identifier="evaluateAsInteger", obligation=MANDATORY, specification=OGC_01_004)
+    @UML(identifier="evaluateAsInteger", obligation=MANDATORY, specification=OGC_01004)
     int[] evaluate(DirectPosition point, int[] destination)
             throws CannotEvaluateException, ArrayIndexOutOfBoundsException;
 
@@ -352,7 +352,7 @@ public interface Coverage {
      *
      * @see Raster#getPixel(int, int, double[])
      */
-    @UML (identifier="evaluateAsDouble", obligation=MANDATORY, specification=OGC_01_004)
+    @UML(identifier="evaluateAsDouble", obligation=MANDATORY, specification=OGC_01004)
     double[] evaluate(DirectPosition point, double[] destination)
             throws CannotEvaluateException, ArrayIndexOutOfBoundsException;
     

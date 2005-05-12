@@ -29,16 +29,16 @@ import static org.opengis.annotation.Specification.*;
  * @author ISO/DIS 19107
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-101.pdf">Abstract specification 5</A>
- * @since 1.0
+ * @since GeoAPI 1.0
  */
-@UML (identifier="GM_Envelope", specification=ISO_19107)
+@UML(identifier="GM_Envelope", specification=ISO_19107)
 public interface Envelope {
     /**
      * The length of coordinate sequence (the number of entries) in this envelope.
      *
      * @return The dimensionality of this envelope.
      *
-     * @since 1.1
+     * @since GeoAPI 1.1
      */
     @Extension
     int getDimension();
@@ -46,7 +46,7 @@ public interface Envelope {
     /**
      * Returns the minimal ordinate along the specified dimension.
      *
-     * @since 1.1
+     * @since GeoAPI 1.1
      */
     @Extension
     double getMinimum(final int dimension);
@@ -54,7 +54,7 @@ public interface Envelope {
     /**
      * Returns the maximal ordinate along the specified dimension.
      *
-     * @since 1.1
+     * @since GeoAPI 1.1
      */
     @Extension
     double getMaximum(final int dimension);
@@ -62,7 +62,7 @@ public interface Envelope {
     /**
      * Returns the center ordinate along the specified dimension.
      *
-     * @since 1.1
+     * @since GeoAPI 1.1
      */
     @Extension
     double getCenter(final int dimension);
@@ -72,7 +72,7 @@ public interface Envelope {
      * This length is equals to the {@linkplain #getMaximum maximum ordinate}
      * minus the {@linkplain #getMinimum minimal ordinate}.
      *
-     * @since 1.1
+     * @since GeoAPI 1.1
      */
     @Extension
     double getLength(final int dimension);
@@ -83,7 +83,7 @@ public interface Envelope {
      *
      * @return The upper corner.
      */
-    @UML (identifier="upperCorner", obligation=MANDATORY, specification=ISO_19107)
+    @UML(identifier="upperCorner", obligation=MANDATORY, specification=ISO_19107)
     DirectPosition getUpperCorner();
 
     /**
@@ -92,6 +92,6 @@ public interface Envelope {
      *
      * @return The lower corner.
      */
-    @UML (identifier="lowerCorner", obligation=MANDATORY, specification=ISO_19107)
+    @UML(identifier="lowerCorner", obligation=MANDATORY, specification=ISO_19107)
     DirectPosition getLowerCorner();
 }

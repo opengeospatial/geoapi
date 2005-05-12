@@ -31,10 +31,10 @@ import static org.opengis.annotation.Specification.*;
  * @author ISO 19115
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
- * @since 1.1
+ * @since GeoAPI 1.1
  */
 @Profile (level=CORE)
-@UML (identifier="MD_SpatialRepresentationTypeCode", specification=ISO_19115)
+@UML(identifier="MD_SpatialRepresentationTypeCode", specification=ISO_19115)
 public final class SpatialRepresentationType extends CodeList<SpatialRepresentationType> {
     /**
      * Serial number for compatibility with different versions.
@@ -50,38 +50,38 @@ public final class SpatialRepresentationType extends CodeList<SpatialRepresentat
     /**
      * Vector data is used to represent geographic data.
      */
-    @UML (identifier="vector", obligation=CONDITIONAL, specification=ISO_19115)
+    @UML(identifier="vector", obligation=CONDITIONAL, specification=ISO_19115)
     public static final SpatialRepresentationType VECTOR = new SpatialRepresentationType("VECTOR");
 
     /**
      * Grid data is used to represent geographic data.
      */
-    @UML (identifier="grid", obligation=CONDITIONAL, specification=ISO_19115)
+    @UML(identifier="grid", obligation=CONDITIONAL, specification=ISO_19115)
     public static final SpatialRepresentationType GRID = new SpatialRepresentationType("GRID");
 
     /**
      * Textual or tabular data is used to represent geographic data.
      */
-    @UML (identifier="textTable", obligation=CONDITIONAL, specification=ISO_19115)
+    @UML(identifier="textTable", obligation=CONDITIONAL, specification=ISO_19115)
     public static final SpatialRepresentationType TEXT_TABLE = new SpatialRepresentationType("TEXT_TABLE");
 
     /**
      * Triangulated irregular network.
      */
-    @UML (identifier="tin", obligation=CONDITIONAL, specification=ISO_19115)
+    @UML(identifier="tin", obligation=CONDITIONAL, specification=ISO_19115)
     public static final SpatialRepresentationType TIN = new SpatialRepresentationType("TIN");
 
     /**
      * Three-dimensional view formed by the intersecting homologous rays of an
      * overlapping pair of images.
      */
-    @UML (identifier="stereoModel", obligation=CONDITIONAL, specification=ISO_19115)
+    @UML(identifier="stereoModel", obligation=CONDITIONAL, specification=ISO_19115)
     public static final SpatialRepresentationType STEREO_MODEL = new SpatialRepresentationType("STEREO_MODEL");
 
     /**
      * Scene from a video recording.
      */
-    @UML (identifier="video", obligation=CONDITIONAL, specification=ISO_19115)
+    @UML(identifier="video", obligation=CONDITIONAL, specification=ISO_19115)
     public static final SpatialRepresentationType VIDEO = new SpatialRepresentationType("VIDEO");
 
     /**

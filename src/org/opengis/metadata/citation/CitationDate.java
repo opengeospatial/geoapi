@@ -27,22 +27,22 @@ import static org.opengis.annotation.Specification.*;
  * @author ISO 19115
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
- * @since 1.1
+ * @since GeoAPI 1.1
  */
 @Profile (level=CORE)
-@UML (identifier="CI_Date", specification=ISO_19115)
+@UML(identifier="CI_Date", specification=ISO_19115)
 public interface CitationDate {
     /**
      * Reference date for the cited resource.
      */
     @Profile (level=CORE)
-    @UML (identifier="date", obligation=MANDATORY, specification=ISO_19115)
+    @UML(identifier="date", obligation=MANDATORY, specification=ISO_19115)
     Date getDate();
 
     /**
      * Event used for reference date.
      */
     @Profile (level=CORE)
-    @UML (identifier="dateType", obligation=MANDATORY, specification=ISO_19115)
+    @UML(identifier="dateType", obligation=MANDATORY, specification=ISO_19115)
     DateType getDateType();
 }

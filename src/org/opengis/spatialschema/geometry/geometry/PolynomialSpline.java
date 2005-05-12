@@ -40,15 +40,15 @@ import static org.opengis.annotation.Specification.*;
  * @author ISO/DIS 19107
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-101.pdf">Abstract specification 5</A>
- * @since 1.1
+ * @since GeoAPI 1.1
  */
-@UML (identifier="GM_PolynomialSpline", specification=ISO_19107)
+@UML(identifier="GM_PolynomialSpline", specification=ISO_19107)
 public interface PolynomialSpline extends SplineCurve {
     /**
      * The interpolation mechanism for a <code>PolynomialSpline</code>
      * is {@link CurveInterpolation#POLYNOMIAL_SPLINE POLYNOMIAL_SPLINE}.
      */
-    @UML (identifier="interpolation", obligation=MANDATORY, specification=ISO_19107)
+    @UML(identifier="interpolation", obligation=MANDATORY, specification=ISO_19107)
     CurveInterpolation getInterpolation();
 
     /**
@@ -59,7 +59,7 @@ public interface PolynomialSpline extends SplineCurve {
      * The {@linkplain List#size size} of the returned list is
      * <code>({@linkplain #getDegree degree} - 2)</code>.
      */
-    @UML (identifier="vectorAtStart", obligation=MANDATORY, specification=ISO_19107)
+    @UML(identifier="vectorAtStart", obligation=MANDATORY, specification=ISO_19107)
     List/*double[]*/ getVectorAtStart();
 
     /**
@@ -70,6 +70,6 @@ public interface PolynomialSpline extends SplineCurve {
      * The {@linkplain List#size size} of the returned list is
      * <code>({@linkplain #getDegree degree} - 2)</code>.
      */
-    @UML (identifier="vectorAtEnd", obligation=MANDATORY, specification=ISO_19107)
+    @UML(identifier="vectorAtEnd", obligation=MANDATORY, specification=ISO_19107)
     List/*double[]*/ getVectorAtEnd();
 }

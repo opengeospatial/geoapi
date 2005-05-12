@@ -30,11 +30,11 @@ import static org.opengis.annotation.Specification.*;
  * @author ISO/DIS 19107
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-101.pdf">Abstract specification 5</A>
- * @since 1.0
+ * @since GeoAPI 1.0
  *
  * @see GeometryFactory#createLineString
  */
-@UML (identifier="GM_LineString", specification=ISO_19107)
+@UML(identifier="GM_LineString", specification=ISO_19107)
 public interface LineString extends CurveSegment {
     /**
      * Returns a sequence of positions between which the curve is linearly interpolated.
@@ -44,7 +44,7 @@ public interface LineString extends CurveSegment {
      *
      * @return The control points between which the curve is linearly interpolated.
      */
-    @UML (identifier="controlPoint", obligation=MANDATORY, specification=ISO_19107)
+    @UML(identifier="controlPoint", obligation=MANDATORY, specification=ISO_19107)
     public PointArray getControlPoints();
 
     /**
@@ -52,6 +52,6 @@ public interface LineString extends CurveSegment {
      *
      * @return The sequence of line segments.
      */
-    @UML (identifier="asGM_LineSegment", obligation=MANDATORY, specification=ISO_19107)
+    @UML(identifier="asGM_LineSegment", obligation=MANDATORY, specification=ISO_19107)
     public List<LineSegment> asLineSegments();
 }

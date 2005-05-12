@@ -29,7 +29,7 @@ import static org.opengis.annotation.Specification.*;
  *
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-009.pdf">Implementation specification 1.0</A>
- * @since 1.0
+ * @since GeoAPI 1.0
  *
  * @see javax.vecmath.Matrix3d
  * @see javax.vecmath.Matrix4d
@@ -40,7 +40,7 @@ import static org.opengis.annotation.Specification.*;
  * @see <A HREF="http://math.nist.gov/javanumerics/jama/">Jama matrix</A>
  * @see <A HREF="http://jcp.org/jsr/detail/83.jsp">JSR-83 Multiarray package</A>
  */
-@UML (identifier="PT_Matrix", specification=OGC_01_009)
+@UML(identifier="PT_Matrix", specification=OGC_01009)
 public interface Matrix extends Cloneable {
     /**
      * Returns the number of rows in this matrix.

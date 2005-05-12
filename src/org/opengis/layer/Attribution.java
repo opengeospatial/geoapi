@@ -14,10 +14,8 @@ import org.opengis.metadata.citation.OnLineResource;
 import org.opengis.util.InternationalString;
 
 // Annotations
-import org.opengis.annotation.UML;
-import org.opengis.annotation.XmlSchema;
+import org.opengis.annotation.XmlElement;
 import static org.opengis.annotation.Obligation.*;
-import static org.opengis.annotation.Specification.*;
 
 
 /**
@@ -27,17 +25,16 @@ import static org.opengis.annotation.Specification.*;
  * @author ISO 19128
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://portal.opengeospatial.org/files/?artifact_id=5316">Implementation specification 1.3</A>
- * @since 1.1
+ * @since GeoAPI 1.1
  */
-@XmlSchema ("http://schemas.opengis.net/wms/1.3.0/capabilities_1_3_0.xsd")
-@UML (identifier="Attribution", specification=ISO_19128) // 7.2.4.6.12 Attribution
+@XmlElement(name="Attribution") // 7.2.4.6.12 Attribution
 public interface Attribution {
     /**
      * Provides the human-readable string naming the data provider.
      *
      * @return the human-readable name of the data provider.
      */
-    @UML (identifier="Title", obligation=OPTIONAL, specification=ISO_19128)
+    @XmlElement(name="Title", obligation=OPTIONAL)
     InternationalString getTitle();
     
     /**
@@ -45,7 +42,7 @@ public interface Attribution {
      *
      * @return the linkage to the data provider.
      */
-    @UML (identifier="OnlineResource", obligation=OPTIONAL, specification=ISO_19128)
+    @XmlElement(name="OnlineResource", obligation=OPTIONAL)
     OnLineResource getOnlineResource();
     
     /**
@@ -53,6 +50,6 @@ public interface Attribution {
      *
      * @return linkage to the logo image.
      */
-    @UML (identifier="LogoURL", obligation=OPTIONAL, specification=ISO_19128)
+    @XmlElement(name="LogoURL", obligation=OPTIONAL)
     LogoURL getLogoURL();
 }

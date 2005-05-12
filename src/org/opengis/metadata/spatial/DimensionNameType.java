@@ -28,9 +28,9 @@ import static org.opengis.annotation.Specification.*;
  * @author ISO 19115
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
- * @since 1.1
+ * @since GeoAPI 1.1
  */
-@UML (identifier="MD_DimensionNameTypeCode", specification=ISO_19115)
+@UML(identifier="MD_DimensionNameTypeCode", specification=ISO_19115)
 public final class DimensionNameType extends CodeList<DimensionNameType> {
     /**
      * Serial number for compatibility with different versions.
@@ -46,49 +46,49 @@ public final class DimensionNameType extends CodeList<DimensionNameType> {
     /**
      * Ordinate (y) axis.
      */
-    @UML (identifier="row", obligation=CONDITIONAL, specification=ISO_19115)
+    @UML(identifier="row", obligation=CONDITIONAL, specification=ISO_19115)
     public static final DimensionNameType ROW = new DimensionNameType("ROW");
 
     /**
      * Abscissa (x) axis.
      */
-    @UML (identifier="column", obligation=CONDITIONAL, specification=ISO_19115)
+    @UML(identifier="column", obligation=CONDITIONAL, specification=ISO_19115)
     public static final DimensionNameType COLUMN = new DimensionNameType("COLUMN");
 
     /**
      * Vertical (z) axis.
      */
-    @UML (identifier="vertical", obligation=CONDITIONAL, specification=ISO_19115)
+    @UML(identifier="vertical", obligation=CONDITIONAL, specification=ISO_19115)
     public static final DimensionNameType VERTICAL = new DimensionNameType("VERTICAL");
 
     /**
      * Along the direction of motion of the scan point
      */
-    @UML (identifier="track", obligation=CONDITIONAL, specification=ISO_19115)
+    @UML(identifier="track", obligation=CONDITIONAL, specification=ISO_19115)
     public static final DimensionNameType TRACK = new DimensionNameType("TRACK");
 
     /**
      * Perpendicular to the direction of motion of the scan point.
      */
-    @UML (identifier="crossTrack", obligation=CONDITIONAL, specification=ISO_19115)
+    @UML(identifier="crossTrack", obligation=CONDITIONAL, specification=ISO_19115)
     public static final DimensionNameType CROSS_TRACK = new DimensionNameType("CROSS_TRACK");
 
     /**
      * Scan line of a sensor.
      */
-    @UML (identifier="line", obligation=CONDITIONAL, specification=ISO_19115)
+    @UML(identifier="line", obligation=CONDITIONAL, specification=ISO_19115)
     public static final DimensionNameType LINE = new DimensionNameType("LINE");
 
     /**
      * Element along a scan line.
      */
-    @UML (identifier="sample", obligation=CONDITIONAL, specification=ISO_19115)
+    @UML(identifier="sample", obligation=CONDITIONAL, specification=ISO_19115)
     public static final DimensionNameType SAMPLE = new DimensionNameType("SAMPLE");
 
     /**
      * Duration.
      */
-    @UML (identifier="time", obligation=CONDITIONAL, specification=ISO_19115)
+    @UML(identifier="time", obligation=CONDITIONAL, specification=ISO_19115)
     public static final DimensionNameType TIME = new DimensionNameType("TIME");
 
     /**

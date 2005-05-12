@@ -28,9 +28,9 @@ import static org.opengis.annotation.Specification.*;
  * @author ISO 19115
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
- * @since 1.1
+ * @since GeoAPI 1.1
  */
-@UML (identifier="CI_PresentationFormCode", specification=ISO_19115)
+@UML(identifier="CI_PresentationFormCode", specification=ISO_19115)
 public final class PresentationForm extends CodeList<PresentationForm> {
     /**
      * Serial number for compatibility with different versions.
@@ -46,14 +46,14 @@ public final class PresentationForm extends CodeList<PresentationForm> {
     /**
      * Digital representation of a primarily textual item (can contain illustrations also).
      */
-    @UML (identifier="documentDigital", obligation=CONDITIONAL, specification=ISO_19115)
+    @UML(identifier="documentDigital", obligation=CONDITIONAL, specification=ISO_19115)
     public static final PresentationForm DOCUMENT_DIGITAL = new PresentationForm("DOCUMENT_DIGITAL");
 
     /**
      * Representation of a primarily textual item (can contain illustrations also) on paper,
      * photographic material, or other media.
      */
-    @UML (identifier="documentHardcopy", obligation=CONDITIONAL, specification=ISO_19115)
+    @UML(identifier="documentHardcopy", obligation=CONDITIONAL, specification=ISO_19115)
     public static final PresentationForm DOCUMENT_HARDCOPY = new PresentationForm("DOCUMENT_HARDCOPY");
 
     /**
@@ -61,7 +61,7 @@ public final class PresentationForm extends CodeList<PresentationForm> {
      * the sensing of visual or any other segment of the electromagnetic spectrum by sensors,
      * such as thermal infrared, and high resolution radar and stored in digital format.
      */
-    @UML (identifier="imageDigital", obligation=CONDITIONAL, specification=ISO_19115)
+    @UML(identifier="imageDigital", obligation=CONDITIONAL, specification=ISO_19115)
     public static final PresentationForm IMAGE_DIGITAL = new PresentationForm("IMAGE_DIGITAL");
 
     /**
@@ -70,69 +70,69 @@ public final class PresentationForm extends CodeList<PresentationForm> {
      * such as thermal infrared, and high resolution radar and reproduced on paper, photographic
      * material, or other media for use directly by the human user.
      */
-    @UML (identifier="imageHardcopy", obligation=CONDITIONAL, specification=ISO_19115)
+    @UML(identifier="imageHardcopy", obligation=CONDITIONAL, specification=ISO_19115)
     public static final PresentationForm IMAGE_HARDCOPY = new PresentationForm("IMAGE_HARDCOPY");
 
     /**
      * Map represented in raster or vector form.
      */
-    @UML (identifier="mapDigital", obligation=CONDITIONAL, specification=ISO_19115)
+    @UML(identifier="mapDigital", obligation=CONDITIONAL, specification=ISO_19115)
     public static final PresentationForm MAP_DIGITAL = new PresentationForm("MAP_DIGITAL");
 
     /**
      * Map printed on paper, photographic material, or other media for use directly by the
      * human user.
      */
-    @UML (identifier="mapHardcopy", obligation=CONDITIONAL, specification=ISO_19115)
+    @UML(identifier="mapHardcopy", obligation=CONDITIONAL, specification=ISO_19115)
     public static final PresentationForm MAP_HARDCOPY = new PresentationForm("MAP_HARDCOPY");
 
     /**
      * Multi-dimensional digital representation of a feature, process, etc.
      */
-    @UML (identifier="modelDigital", obligation=CONDITIONAL, specification=ISO_19115)
+    @UML(identifier="modelDigital", obligation=CONDITIONAL, specification=ISO_19115)
     public static final PresentationForm MODEL_DIGITAL = new PresentationForm("MODEL_DIGITAL");
 
     /**
      * 3-dimensional, physical model.
      */
-    @UML (identifier="modelHardcopy", obligation=CONDITIONAL, specification=ISO_19115)
+    @UML(identifier="modelHardcopy", obligation=CONDITIONAL, specification=ISO_19115)
     public static final PresentationForm MODEL_HARDCOPY = new PresentationForm("MODEL_HARDCOPY");
 
     /**
      * Vertical cross-section in digital form.
      */
-    @UML (identifier="profileDigital", obligation=CONDITIONAL, specification=ISO_19115)
+    @UML(identifier="profileDigital", obligation=CONDITIONAL, specification=ISO_19115)
     public static final PresentationForm PROFILE_DIGITAL = new PresentationForm("PROFILE_DIGITAL");
 
     /**
      * Vertical cross-section printed on paper, etc.
      */
-    @UML (identifier="profileHardcopy", obligation=CONDITIONAL, specification=ISO_19115)
+    @UML(identifier="profileHardcopy", obligation=CONDITIONAL, specification=ISO_19115)
     public static final PresentationForm PROFILE_HARDCOPY = new PresentationForm("PROFILE_HARDCOPY");
 
     /**
      * Digital representation of facts or figures systematically displayed, especially in columns.
      */
-    @UML (identifier="tableDigital", obligation=CONDITIONAL, specification=ISO_19115)
+    @UML(identifier="tableDigital", obligation=CONDITIONAL, specification=ISO_19115)
     public static final PresentationForm TABLE_DIGITAL = new PresentationForm("TABLE_DIGITAL");
 
     /**
      * Representation of facts or figures systematically displayed, especially in columns,
      * printed on paper, photographic material, or other media.
      */
-    @UML (identifier="tableHardcopy", obligation=CONDITIONAL, specification=ISO_19115)
+    @UML(identifier="tableHardcopy", obligation=CONDITIONAL, specification=ISO_19115)
     public static final PresentationForm TABLE_HARDCOPY = new PresentationForm("TABLE_HARDCOPY");
 
     /**
      * Digital video recording.
      */
-    @UML (identifier="videoDigital", obligation=CONDITIONAL, specification=ISO_19115)
+    @UML(identifier="videoDigital", obligation=CONDITIONAL, specification=ISO_19115)
     public static final PresentationForm VIDEO_DIGITAL = new PresentationForm("VIDEO_DIGITAL");
 
     /**
      * Video recording on film.
      */
-    @UML (identifier="videoHardcopy", obligation=CONDITIONAL, specification=ISO_19115)
+    @UML(identifier="videoHardcopy", obligation=CONDITIONAL, specification=ISO_19115)
     public static final PresentationForm VIDEO_HARDCOPY = new PresentationForm("VIDEO_HARDCOPY");
 
     /**

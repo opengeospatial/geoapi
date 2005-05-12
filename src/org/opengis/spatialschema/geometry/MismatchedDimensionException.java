@@ -15,7 +15,7 @@ package org.opengis.spatialschema.geometry;
  * of a mismatch in the dimensions of object attributes.
  *
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
- * @since 1.0
+ * @since GeoAPI 1.0
  */
 public class MismatchedDimensionException extends IllegalArgumentException {
     /**

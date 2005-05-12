@@ -39,12 +39,12 @@ import static org.opengis.annotation.Specification.*;
  *
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-004.pdf">Grid Coverage specification 1.0</A>
- * @since 1.0
+ * @since GeoAPI 1.0
  *
  * @see PaletteInterpretation
  * @see SampleDimension
  */
-@UML (identifier="CV_ColorInterpretation", specification=OGC_01_004)
+@UML(identifier="CV_ColorInterpretation", specification=OGC_01004)
 public final class ColorInterpretation extends CodeList<ColorInterpretation> {
     /**
      * Serial number for compatibility with different versions.
@@ -60,7 +60,7 @@ public final class ColorInterpretation extends CodeList<ColorInterpretation> {
     /**
      * Band is not associated with a color model component.
      */
-    @UML (identifier="CV_Undefined", obligation=CONDITIONAL, specification=OGC_01_004)
+    @UML(identifier="CV_Undefined", obligation=CONDITIONAL, specification=OGC_01004)
     public static final ColorInterpretation UNDEFINED = new ColorInterpretation("UNDEFINED");
 
     /**
@@ -69,7 +69,7 @@ public final class ColorInterpretation extends CodeList<ColorInterpretation> {
      * @see #PALETTE_INDEX
      * @see PaletteInterpretation#GRAY
      */
-    @UML (identifier="CV_GrayIndex", obligation=CONDITIONAL, specification=OGC_01_004)
+    @UML(identifier="CV_GrayIndex", obligation=CONDITIONAL, specification=OGC_01004)
     public static final ColorInterpretation GRAY_INDEX = new ColorInterpretation("GRAY_INDEX");
 
     /**
@@ -77,7 +77,7 @@ public final class ColorInterpretation extends CodeList<ColorInterpretation> {
      *
      * @see #GRAY_INDEX
      */
-    @UML (identifier="CV_PaletteIndex", obligation=CONDITIONAL, specification=OGC_01_004)
+    @UML(identifier="CV_PaletteIndex", obligation=CONDITIONAL, specification=OGC_01004)
     public static final ColorInterpretation PALETTE_INDEX = new ColorInterpretation("PALETTE_INDEX");
 
     /**
@@ -88,7 +88,7 @@ public final class ColorInterpretation extends CodeList<ColorInterpretation> {
      * @see #ALPHA_BAND
      * @see PaletteInterpretation#RGB
      */
-    @UML (identifier="CV_RedBand", obligation=CONDITIONAL, specification=OGC_01_004)
+    @UML(identifier="CV_RedBand", obligation=CONDITIONAL, specification=OGC_01004)
     public static final ColorInterpretation RED_BAND = new ColorInterpretation("RED_BAND");
 
     /**
@@ -99,7 +99,7 @@ public final class ColorInterpretation extends CodeList<ColorInterpretation> {
      * @see #ALPHA_BAND
      * @see PaletteInterpretation#RGB
      */
-    @UML (identifier="CV_GreenBand", obligation=CONDITIONAL, specification=OGC_01_004)
+    @UML(identifier="CV_GreenBand", obligation=CONDITIONAL, specification=OGC_01004)
     public static final ColorInterpretation GREEN_BAND = new ColorInterpretation("GREEN_BAND");
 
     /**
@@ -110,7 +110,7 @@ public final class ColorInterpretation extends CodeList<ColorInterpretation> {
      * @see #ALPHA_BAND
      * @see PaletteInterpretation#RGB
      */
-    @UML (identifier="CV_BlueBand", obligation=CONDITIONAL, specification=OGC_01_004)
+    @UML(identifier="CV_BlueBand", obligation=CONDITIONAL, specification=OGC_01004)
     public static final ColorInterpretation BLUE_BAND = new ColorInterpretation("BLUE_BAND");
 
     /**
@@ -122,7 +122,7 @@ public final class ColorInterpretation extends CodeList<ColorInterpretation> {
      * @see #BLUE_BAND
      * @see PaletteInterpretation#RGB
      */
-    @UML (identifier="CV_AlphaBand", obligation=CONDITIONAL, specification=OGC_01_004)
+    @UML(identifier="CV_AlphaBand", obligation=CONDITIONAL, specification=OGC_01004)
     public static final ColorInterpretation ALPHA_BAND = new ColorInterpretation("ALPHA_BAND");
 
     /**
@@ -132,7 +132,7 @@ public final class ColorInterpretation extends CodeList<ColorInterpretation> {
      * @see #LIGHTNESS_BAND
      * @see PaletteInterpretation#HLS
      */
-    @UML (identifier="CV_HueBand", obligation=CONDITIONAL, specification=OGC_01_004)
+    @UML(identifier="CV_HueBand", obligation=CONDITIONAL, specification=OGC_01004)
     public static final ColorInterpretation HUE_BAND = new ColorInterpretation("HUE_BAND");
 
     /**
@@ -142,7 +142,7 @@ public final class ColorInterpretation extends CodeList<ColorInterpretation> {
      * @see #LIGHTNESS_BAND
      * @see PaletteInterpretation#HLS
      */
-    @UML (identifier="CV_SaturationBand", obligation=CONDITIONAL, specification=OGC_01_004)
+    @UML(identifier="CV_SaturationBand", obligation=CONDITIONAL, specification=OGC_01004)
     public static final ColorInterpretation SATURATION_BAND = new ColorInterpretation("SATURATION_BAND");
 
     /**
@@ -152,7 +152,7 @@ public final class ColorInterpretation extends CodeList<ColorInterpretation> {
      * @see #SATURATION_BAND
      * @see PaletteInterpretation#HLS
      */
-    @UML (identifier="CV_LightnessBand", obligation=CONDITIONAL, specification=OGC_01_004)
+    @UML(identifier="CV_LightnessBand", obligation=CONDITIONAL, specification=OGC_01004)
     public static final ColorInterpretation LIGHTNESS_BAND = new ColorInterpretation("LIGHTNESS_BAND");
 
     /**
@@ -163,7 +163,7 @@ public final class ColorInterpretation extends CodeList<ColorInterpretation> {
      * @see #BLACK_BAND
      * @see PaletteInterpretation#CMYK
      */
-    @UML (identifier="CV_CyanBand", obligation=CONDITIONAL, specification=OGC_01_004)
+    @UML(identifier="CV_CyanBand", obligation=CONDITIONAL, specification=OGC_01004)
     public static final ColorInterpretation CYAN_BAND = new ColorInterpretation("CYAN_BAND");
 
     /**
@@ -174,7 +174,7 @@ public final class ColorInterpretation extends CodeList<ColorInterpretation> {
      * @see #BLACK_BAND
      * @see PaletteInterpretation#CMYK
      */
-    @UML (identifier="CV_MagentaBand", obligation=CONDITIONAL, specification=OGC_01_004)
+    @UML(identifier="CV_MagentaBand", obligation=CONDITIONAL, specification=OGC_01004)
     public static final ColorInterpretation MAGENTA_BAND = new ColorInterpretation("MAGENTA_BAND");
 
     /**
@@ -185,7 +185,7 @@ public final class ColorInterpretation extends CodeList<ColorInterpretation> {
      * @see #BLACK_BAND
      * @see PaletteInterpretation#CMYK
      */
-    @UML (identifier="CV_YellowBand", obligation=CONDITIONAL, specification=OGC_01_004)
+    @UML(identifier="CV_YellowBand", obligation=CONDITIONAL, specification=OGC_01004)
     public static final ColorInterpretation YELLOW_BAND = new ColorInterpretation("YELLOW_BAND");
 
     /**
@@ -196,7 +196,7 @@ public final class ColorInterpretation extends CodeList<ColorInterpretation> {
      * @see #YELLOW_BAND
      * @see PaletteInterpretation#CMYK
      */
-    @UML (identifier="CV_BlackBand", obligation=CONDITIONAL, specification=OGC_01_004)
+    @UML(identifier="CV_BlackBand", obligation=CONDITIONAL, specification=OGC_01004)
     public static final ColorInterpretation BLACK_BAND = new ColorInterpretation("BLACK_BAND");
 
     /**

@@ -43,12 +43,12 @@ import static org.opengis.annotation.Specification.*;
  * @author ISO/DIS 19107
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-101.pdf">Abstract specification 5</A>
- * @since 1.0
+ * @since GeoAPI 1.0
  *
  * @see Position
  * @see PointGrid
  */
-@UML (identifier="GM_PointArray", specification=ISO_19107)
+@UML(identifier="GM_PointArray", specification=ISO_19107)
 public interface PointArray {
     /**
      * Returns the length (the number of elements) of this array. This is equivalent to
@@ -189,6 +189,6 @@ public interface PointArray {
      *
      * @return The list of positions in this array.
      */
-    @UML (identifier="column", obligation=MANDATORY, specification=ISO_19107)
+    @UML(identifier="column", obligation=MANDATORY, specification=ISO_19107)
     public List<Position> positions();
 }

@@ -29,16 +29,16 @@ import static org.opengis.annotation.Specification.*;
  * @author ISO/DIS 19107
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-101.pdf">Abstract specification 5</A>
- * @since 1.1
+ * @since GeoAPI 1.1
  *
  * @see GeometryFactory#createBSplineCurve
  */
-@UML (identifier="GM_BSplineCurve", specification=ISO_19107)
+@UML(identifier="GM_BSplineCurve", specification=ISO_19107)
 public interface BSplineCurve extends SplineCurve {
     /**
      * The algebraic degree of the basis functions.
      */
-    @UML (identifier="degree", obligation=MANDATORY, specification=ISO_19107)
+    @UML(identifier="degree", obligation=MANDATORY, specification=ISO_19107)
     int getDegree();
 
     /**
@@ -46,19 +46,19 @@ public interface BSplineCurve extends SplineCurve {
      * approximate. It is for information only, used to capture the original intention.
      * If no such approximation is intended, then the value of this attribute is {@code null}.
      */
-    @UML (identifier="curveForm", obligation=OPTIONAL, specification=ISO_19107)
+    @UML(identifier="curveForm", obligation=OPTIONAL, specification=ISO_19107)
     SplineCurveForm getCurveForm();
 
     /**
      * Gives the type of knot distribution used in defining this spline.
      * This is for information only and is set according to the different construction-functions.
      */
-    @UML (identifier="knotSpec", obligation=OPTIONAL, specification=ISO_19107)
+    @UML(identifier="knotSpec", obligation=OPTIONAL, specification=ISO_19107)
     KnotType getKnotSpec();
 
     /**
      * {@code true} if this is a polynomial spline.
      */
-    @UML (identifier="isPolynomial", obligation=MANDATORY, specification=ISO_19107)
+    @UML(identifier="isPolynomial", obligation=MANDATORY, specification=ISO_19107)
     boolean isPolynomial();
 }

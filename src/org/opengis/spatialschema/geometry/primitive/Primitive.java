@@ -42,13 +42,13 @@ import static org.opengis.annotation.Specification.*;
  * @author ISO/DIS 19107
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-101.pdf">Abstract specification 5</A>
- * @since 1.0
+ * @since GeoAPI 1.0
  *
  * @see PrimitiveFactory#createPrimitive(Envelope)
  *
  * @revisit Some associations are commented out for now.
  */
-@UML (identifier="GM_Primitive", specification=ISO_19107)
+@UML(identifier="GM_Primitive", specification=ISO_19107)
 public interface Primitive extends Geometry {
     /**
      * Returns the boundary of a <code>Primitive</code> as a set of 
@@ -59,7 +59,7 @@ public interface Primitive extends Geometry {
      *
      * @return The sets of positions on the boundary.
      */
-/// @UML (identifier="boundary", obligation=MANDATORY, specification=ISO_19107)
+/// @UML(identifier="boundary", obligation=MANDATORY, specification=ISO_19107)
 /// public PrimitiveBoundary getBoundary();
 
     /**
@@ -85,7 +85,7 @@ public interface Primitive extends Geometry {
      *
      * @see #getContainingPrimitives
      */
-    @UML (identifier="containedPrimitive", obligation=MANDATORY, specification=ISO_19107)
+    @UML(identifier="containedPrimitive", obligation=MANDATORY, specification=ISO_19107)
     public Set<Primitive> getContainedPrimitives();
 
     /**
@@ -103,7 +103,7 @@ public interface Primitive extends Geometry {
      *
      * @see #getContainedPrimitives
      */
-    @UML (identifier="containingPrimitive", obligation=MANDATORY, specification=ISO_19107)
+    @UML(identifier="containingPrimitive", obligation=MANDATORY, specification=ISO_19107)
     public Set<Primitive> getContainingPrimitives();
 
     /**
@@ -116,7 +116,7 @@ public interface Primitive extends Geometry {
      * @revisit Does it means that <code>Primitive</code> can't be immutable, since
      *          adding this primitive to a complex will change this set?
      */
-    @UML (identifier="complex", obligation=MANDATORY, specification=ISO_19107)
+    @UML(identifier="complex", obligation=MANDATORY, specification=ISO_19107)
     public Set<Complex> getComplexes();
 
     /**
@@ -133,7 +133,7 @@ public interface Primitive extends Geometry {
      *
      * @revisit Should we use the plural form for the method names?
      */
-    @UML (identifier="proxy", obligation=MANDATORY, specification=ISO_19107)
+    @UML(identifier="proxy", obligation=MANDATORY, specification=ISO_19107)
     public OrientablePrimitive[] getProxy();
 
 //    public org.opengis.spatialschema.topology.primitive.TP_Primitive topology[];

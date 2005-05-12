@@ -11,7 +11,7 @@ package org.opengis.spatialschema.geometry.aggregate;
 
 
 /**
- * @since 1.0
+ * @since GeoAPI 1.0
  */
 public interface MultiPoint extends MultiPrimitive {
 //    public java.util.Vector /*DirectPosition*/ position;

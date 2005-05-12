@@ -25,9 +25,9 @@ import static org.opengis.annotation.Specification.*;
  * @author ISO/DIS 19107
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-101.pdf">Abstract specification 5</A>
- * @since 1.0
+ * @since GeoAPI 1.0
  */
-@UML (identifier="GM_SurfacePatch", specification=ISO_19107)
+@UML(identifier="GM_SurfacePatch", specification=ISO_19107)
 public interface SurfacePatch extends GenericSurface {
     /**
      * Returns the patch which own this surface patch.
@@ -44,7 +44,7 @@ public interface SurfacePatch extends GenericSurface {
      *
      * @see Surface#getPatches
      */
-    @UML (identifier="surface", obligation=MANDATORY, specification=ISO_19107)
+    @UML(identifier="surface", obligation=MANDATORY, specification=ISO_19107)
     public Surface getSurface();
 
     /**
@@ -54,7 +54,7 @@ public interface SurfacePatch extends GenericSurface {
      *
      * @return The interpolation mechanism.
      */
-    @UML (identifier="interpolation", obligation=MANDATORY, specification=ISO_19107)
+    @UML(identifier="interpolation", obligation=MANDATORY, specification=ISO_19107)
     public SurfaceInterpolation getInterpolation();
 
     /**
@@ -69,7 +69,7 @@ public interface SurfacePatch extends GenericSurface {
      *
      * @return The type of continuity between this surface patch and its immediate neighbors.
      */
-    @UML (identifier="numDerivativesOnBoundary", obligation=MANDATORY, specification=ISO_19107)
+    @UML(identifier="numDerivativesOnBoundary", obligation=MANDATORY, specification=ISO_19107)
     public int getNumDerivativesOnBoundary();
 
     /**
@@ -85,6 +85,6 @@ public interface SurfacePatch extends GenericSurface {
      *
      * @return The boundary of this <code>SurfacePatch</code>
      */
-    @UML (identifier="boundary", obligation=MANDATORY, specification=ISO_19107)
+    @UML(identifier="boundary", obligation=MANDATORY, specification=ISO_19107)
     public SurfaceBoundary getBoundary();
 }

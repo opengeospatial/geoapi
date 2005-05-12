@@ -38,9 +38,9 @@ import static org.opengis.annotation.Specification.*;
  *
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-004.pdf">Grid Coverage specification 1.0</A>
- * @since 1.0
+ * @since GeoAPI 1.0
  */
-@UML (identifier="CV_Operation", specification=OGC_01_004)
+@UML(identifier="CV_Operation", specification=OGC_01004)
 public interface Operation {
     /**
      * Name of the processing operation. This name is passed as a parameter to the
@@ -49,7 +49,7 @@ public interface Operation {
      *
      * @return The name of the processing operation.
      */
-    @UML (identifier="name", obligation=MANDATORY, specification=OGC_01_004)
+    @UML(identifier="name", obligation=MANDATORY, specification=OGC_01004)
     String getName();
 
     /**
@@ -58,7 +58,7 @@ public interface Operation {
      *
      * @return The description of the processing operation, or {@code null}.
      */
-    @UML (identifier="description", obligation=OPTIONAL, specification=OGC_01_004)
+    @UML(identifier="description", obligation=OPTIONAL, specification=OGC_01004)
     String getDescription();
 
     /**
@@ -67,7 +67,7 @@ public interface Operation {
      *
      * @return The implementation vendor name, or {@code null}.
      */
-    @UML (identifier="vendor", obligation=OPTIONAL, specification=OGC_01_004)
+    @UML(identifier="vendor", obligation=OPTIONAL, specification=OGC_01004)
     String getVendor();
 
     /**
@@ -76,7 +76,7 @@ public interface Operation {
      *
      * @return The URL for documentation on the processing operation, or {@code null}.
      */
-    @UML (identifier="docURL", obligation=OPTIONAL, specification=OGC_01_004)
+    @UML(identifier="docURL", obligation=OPTIONAL, specification=OGC_01004)
     String getDocURL();
 
     /**
@@ -84,7 +84,7 @@ public interface Operation {
      *
      * @return The version number for the implementation, or {@code null}.
      */
-    @UML (identifier="version", obligation=OPTIONAL, specification=OGC_01_004)
+    @UML(identifier="version", obligation=OPTIONAL, specification=OGC_01004)
     String getVersion();
 
     /**
@@ -92,7 +92,7 @@ public interface Operation {
      *
      * @return The number of source grid coverages required for the operation.
      */
-    @UML (identifier="numSources", obligation=OPTIONAL, specification=OGC_01_004)
+    @UML(identifier="numSources", obligation=OPTIONAL, specification=OGC_01004)
     int getNumSources();
 
     /**
@@ -100,6 +100,6 @@ public interface Operation {
      *
      * @return The parameter informations.
      */
-    @UML (identifier="getParameterInfo, numParameters", obligation=MANDATORY, specification=OGC_01_004)
+    @UML(identifier="getParameterInfo, numParameters", obligation=MANDATORY, specification=OGC_01004)
     ParameterValueGroup getParameters();
 }

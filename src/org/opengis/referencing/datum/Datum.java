@@ -34,12 +34,12 @@ import static org.opengis.annotation.Specification.*;
  * @author ISO 19111
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/03-073r1.zip">Abstract specification 2.0</A>
- * @since 1.0
+ * @since GeoAPI 1.0
  *
  * @see org.opengis.referencing.cs.CoordinateSystem
  * @see org.opengis.referencing.crs.CoordinateReferenceSystem
  */
-@UML (identifier="CD_Datum", specification=ISO_19111)
+@UML(identifier="CD_Datum", specification=ISO_19111)
 public interface Datum extends IdentifiedObject {
     /**
      * Key for the <code>{@value}</code> property to be given to the
@@ -98,7 +98,7 @@ public interface Datum extends IdentifiedObject {
      *       a temporal datum carries a separate time origin of type {@link Date}.</li>
      * </ul>
      */
-    @UML (identifier="anchorPoint", obligation=OPTIONAL, specification=ISO_19111)
+    @UML(identifier="anchorPoint", obligation=OPTIONAL, specification=ISO_19111)
     InternationalString getAnchorPoint();
 
     /**
@@ -112,7 +112,7 @@ public interface Datum extends IdentifiedObject {
      *
      * @return The datum realization epoch, or {@code null} if not available.
      */
-    @UML (identifier="realizationEpoch", obligation=OPTIONAL, specification=ISO_19111)
+    @UML(identifier="realizationEpoch", obligation=OPTIONAL, specification=ISO_19111)
     Date getRealizationEpoch();
 
     /**
@@ -120,13 +120,13 @@ public interface Datum extends IdentifiedObject {
      *
      * @return The datum valid area, or {@code null} if not available.
      */
-    @UML (identifier="validArea", obligation=OPTIONAL, specification=ISO_19111)
+    @UML(identifier="validArea", obligation=OPTIONAL, specification=ISO_19111)
     Extent getValidArea();
 
     /**
      * Description of domain of usage, or limitations of usage, for which this
      * datum object is valid.
      */
-    @UML (identifier="scope", obligation=OPTIONAL, specification=ISO_19111)
+    @UML(identifier="scope", obligation=OPTIONAL, specification=ISO_19111)
     InternationalString getScope();
 }

@@ -27,26 +27,26 @@ import static org.opengis.annotation.Specification.*;
  * @author ISO 19115
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
- * @since 1.1
+ * @since GeoAPI 1.1
  */
-@UML (identifier="MD_BrowseGraphic", specification=ISO_19115)
+@UML(identifier="MD_BrowseGraphic", specification=ISO_19115)
 public interface BrowseGraphic {
     /**
      * Name of the file that contains a graphic that provides an illustration of the dataset.
      */
-    @UML (identifier="fileName", obligation=MANDATORY, specification=ISO_19115)
+    @UML(identifier="fileName", obligation=MANDATORY, specification=ISO_19115)
     URI getFileName();
 
     /**
      * Text description of the illustration.
      */
-    @UML (identifier="fileDescription", obligation=OPTIONAL, specification=ISO_19115)
+    @UML(identifier="fileDescription", obligation=OPTIONAL, specification=ISO_19115)
     InternationalString getFileDescription();
 
     /**
      * Format in which the illustration is encoded.
      * Examples: CGM, EPS, GIF, JPEG, PBM, PS, TIFF, XWD.
      */
-    @UML (identifier="fileType", obligation=OPTIONAL, specification=ISO_19115)
+    @UML(identifier="fileType", obligation=OPTIONAL, specification=ISO_19115)
     String getFileType();
 }

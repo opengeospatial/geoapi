@@ -72,9 +72,9 @@ import static org.opengis.annotation.Specification.*;
  *
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-004.pdf">Grid Coverage specification 1.0</A>
- * @since 1.0
+ * @since GeoAPI 1.0
  */
-@UML (identifier="GP_GridCoverageProcessor", specification=OGC_01_004)
+@UML(identifier="GP_GridCoverageProcessor", specification=OGC_01004)
 public interface GridCoverageProcessor {
     /**
      * Retrieve the list of metadata keywords for the interface.
@@ -82,7 +82,7 @@ public interface GridCoverageProcessor {
      *
      * @return The list of metadata keywords for the interface.
      */
-    @UML (identifier="metadataNames", obligation=MANDATORY, specification=OGC_01_004)
+    @UML(identifier="metadataNames", obligation=MANDATORY, specification=OGC_01004)
     String[] getMetadataNames();
 
     /**
@@ -92,7 +92,7 @@ public interface GridCoverageProcessor {
      * @return The metadata value for a given metadata name.
      * @throws MetadataNameNotFoundException if there is no value for the specified metadata name.
      */
-    @UML (identifier="getMetadataValue", obligation=MANDATORY, specification=OGC_01_004)
+    @UML(identifier="getMetadataValue", obligation=MANDATORY, specification=OGC_01004)
     String getMetadataValue(String name) throws MetadataNameNotFoundException;
 
     /**
@@ -100,7 +100,7 @@ public interface GridCoverageProcessor {
      *
      * @return The number of operations supported by the <code>GridCoverageProcessor</code>.
      */
-    @UML (identifier="numOperations", obligation=MANDATORY, specification=OGC_01_004)
+    @UML(identifier="numOperations", obligation=MANDATORY, specification=OGC_01004)
     int getNumOperations();
 
     /**
@@ -112,7 +112,7 @@ public interface GridCoverageProcessor {
      * @return A grid processing operation information.
      * @throws IndexOutOfBoundsException if <code>index</code> is out of bounds.
      */
-    @UML (identifier="getOperation", obligation=MANDATORY, specification=OGC_01_004)
+    @UML(identifier="getOperation", obligation=MANDATORY, specification=OGC_01004)
     Operation getOperation(int index) throws IndexOutOfBoundsException;
 
     /**
@@ -122,7 +122,7 @@ public interface GridCoverageProcessor {
      * @param  gridCoverage Grid coverage on which the analysis will be performed.
      * @return A new {@link GridAnalysis} interface.
      */
-    @UML (identifier="analyze", obligation=MANDATORY, specification=OGC_01_004)
+    @UML(identifier="analyze", obligation=MANDATORY, specification=OGC_01004)
     GridAnalysis analyze(GridCoverage gridCoverage);
 
     /**
@@ -137,7 +137,7 @@ public interface GridCoverageProcessor {
      * @throws InvalidParameterNameException if a parameter doesn't have a recognized name.
      * @throws InvalidParameterValueException if a parameter doesn't have a valid value.
      */
-    @UML (identifier="doOperation", obligation=MANDATORY, specification=OGC_01_004)
+    @UML(identifier="doOperation", obligation=MANDATORY, specification=OGC_01004)
     GridCoverage doOperation(String operationName, GeneralParameterValue[] parameters)
             throws OperationNotFoundException, ParameterNotFoundException,
                    InvalidParameterNameException, InvalidParameterValueException;

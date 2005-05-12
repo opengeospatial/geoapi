@@ -50,18 +50,18 @@ import static org.opengis.annotation.Specification.*;
  * @author ISO/DIS 19107
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-101.pdf">Abstract specification 5</A>
- * @since 1.0
+ * @since GeoAPI 1.0
  *
  * @see SolidBoundary
  */
-@UML (identifier="GM_SurfaceBoundary", specification=ISO_19107)
+@UML(identifier="GM_SurfaceBoundary", specification=ISO_19107)
 public interface SurfaceBoundary extends PrimitiveBoundary {
     /**
      * Returns the exterior ring, or {@code null} if none.
      *
      * @return The exterior ring, or {@code null}.
      */
-    @UML (identifier="exterior", obligation=MANDATORY, specification=ISO_19107)
+    @UML(identifier="exterior", obligation=MANDATORY, specification=ISO_19107)
     public Ring getExterior();
 
     /**
@@ -69,6 +69,6 @@ public interface SurfaceBoundary extends PrimitiveBoundary {
      *
      * @return The interior rings. Never {@code null}, but may be an empty array.
      */
-    @UML (identifier="interior", obligation=MANDATORY, specification=ISO_19107)
+    @UML(identifier="interior", obligation=MANDATORY, specification=ISO_19107)
     public Ring[] getInteriors();
 }

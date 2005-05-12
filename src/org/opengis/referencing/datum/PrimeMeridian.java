@@ -30,9 +30,9 @@ import static org.opengis.annotation.Specification.*;
  * @author ISO 19111
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/03-073r1.zip">Abstract specification 2.0</A>
- * @since 1.0
+ * @since GeoAPI 1.0
  */
-@UML (identifier="CD_PrimeMeridian", specification=ISO_19111)
+@UML(identifier="CD_PrimeMeridian", specification=ISO_19111)
 public interface PrimeMeridian extends IdentifiedObject {
     /**
      * Longitude of the prime meridian measured from the Greenwich meridian, positive eastward.
@@ -42,12 +42,12 @@ public interface PrimeMeridian extends IdentifiedObject {
      * @return The prime meridian Greenwich longitude, in {@linkplain #getAngularUnit angular unit}.
      * @unitof Length
      */
-    @UML (identifier="greenwichLongitude", obligation=CONDITIONAL, specification=ISO_19111)
+    @UML(identifier="greenwichLongitude", obligation=CONDITIONAL, specification=ISO_19111)
     double getGreenwichLongitude();
 
     /**
      * Returns the angular unit of the {@linkplain #getGreenwichLongitude Greenwich longitude}.
      */
-    @UML (identifier="getAngularUnit", specification=OGC_01_009)
+    @UML(identifier="getAngularUnit", specification=OGC_01009)
     Unit getAngularUnit();
 }

@@ -26,14 +26,14 @@ import static org.opengis.annotation.Specification.*;
  * @author ISO 19111
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/03-073r1.zip">Abstract specification 2.0</A>
- * @since 1.0
+ * @since GeoAPI 1.0
  */
-@UML (identifier="SC_GeneralDerivedCRS", specification=ISO_19111)
+@UML(identifier="SC_GeneralDerivedCRS", specification=ISO_19111)
 public interface GeneralDerivedCRS extends SingleCRS {
     /**
      * Returns the base coordinate reference system.
      */
-    @UML (identifier="baseCRS", obligation=MANDATORY, specification=ISO_19111)
+    @UML(identifier="baseCRS", obligation=MANDATORY, specification=ISO_19111)
     CoordinateReferenceSystem getBaseCRS();
 
     /**
@@ -44,6 +44,6 @@ public interface GeneralDerivedCRS extends SingleCRS {
      *         method name.   By analogy with 01-009, this new interface specifies a method name
      *         which contains the <code>FromBase</code> words.
      */
-    @UML (identifier="definedByConversion", obligation=MANDATORY, specification=ISO_19111)
+    @UML(identifier="definedByConversion", obligation=MANDATORY, specification=ISO_19111)
     Conversion getConversionFromBase();
 }

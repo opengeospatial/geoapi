@@ -42,7 +42,7 @@ import org.opengis.spatialschema.geometry.Geometry;
  *
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/02-059.pdf">Implementation specification 1.0</A>
- * @since 1.1
+ * @since GeoAPI 1.1
  */
 public interface FilterFactory {
 ////////////////////////////////////////////////////////////////////////////////

@@ -14,7 +14,7 @@ package org.opengis.annotation;
  * The specifications from which an interface, method or code list was derived.
  *
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
- * @since 1.1
+ * @since GeoAPI 1.1
  */
 public enum Specification {
     /**
@@ -33,7 +33,7 @@ public enum Specification {
      * ISO 19111, or OGC <A HREF="http://www.opengis.org/docs/03-073r1.zip">Spatial Referencing by Coordinates (Topic 2)</A>.
      * This is the specification for package {@link org.opengis.referencing} and sub-packages.
      *
-     * @see #OGC_01_009
+     * @see #OGC_01009
      */
     ISO_19111,
 
@@ -46,7 +46,7 @@ public enum Specification {
     /**
      * ISO 19123, or <CITE>Schema for coverage geometry and functions</CITE>.
      *
-     * @see #OGC_01_004
+     * @see #OGC_01004
      */
     ISO_19123,
 
@@ -68,7 +68,7 @@ public enum Specification {
      *
      * @see #ISO_19111
      */
-    OGC_01_009,
+    OGC_01009,
 
     /**
      * OGC <A HREF="http://www.opengis.org/docs/01-004.pdf">Grid Coverages</A> implementation specification.
@@ -77,17 +77,17 @@ public enum Specification {
      *
      * @see #ISO_19123
      */
-    OGC_01_004,
+    OGC_01004,
 
     /**
      * OGC <A HREF="http://www.opengis.org/docs/02-059.pdf">Filter encoding implementation specification</A>.
      * This is the specification for package {@link org.opengis.filter} and sub-packages.
      */
-    OGC_02_059,
+    OGC_02059,
 
     /**
      * OGC <A HREF="http://www.opengis.org/docs/02-070.pdf">Styled Layer Descriptor (SLD) implementation specification</A>.
      * This is the specification for package {@link org.opengis.sld} and sub-packages.
      */
-    OGC_02_070
+    OGC_02070
 }

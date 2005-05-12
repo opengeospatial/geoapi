@@ -28,9 +28,9 @@ import static org.opengis.annotation.Specification.*;
  * @author ISO 19115
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
- * @since 1.1
+ * @since GeoAPI 1.1
  */
-@UML (identifier="MD_KeywordTypeCode", specification=ISO_19115)
+@UML(identifier="MD_KeywordTypeCode", specification=ISO_19115)
 public final class KeywordType extends CodeList<KeywordType> {
     /**
      * Serial number for compatibility with different versions.
@@ -46,31 +46,31 @@ public final class KeywordType extends CodeList<KeywordType> {
     /**
      * Keyword identifies a branch of instruction or specialized learning.
      */
-    @UML (identifier="discipline", obligation=CONDITIONAL, specification=ISO_19115)
+    @UML(identifier="discipline", obligation=CONDITIONAL, specification=ISO_19115)
     public static final KeywordType DISCIPLINE = new KeywordType("DISCIPLINE");
 
     /**
      * Keyword identifies a location.
      */
-    @UML (identifier="place", obligation=CONDITIONAL, specification=ISO_19115)
+    @UML(identifier="place", obligation=CONDITIONAL, specification=ISO_19115)
     public static final KeywordType PLACE = new KeywordType("PLACE");
 
     /**
      * Keyword identifies the layer(s) of any deposited substance.
      */
-    @UML (identifier="stratum", obligation=CONDITIONAL, specification=ISO_19115)
+    @UML(identifier="stratum", obligation=CONDITIONAL, specification=ISO_19115)
     public static final KeywordType STRATUM = new KeywordType("STRATUM");
 
     /**
      * Keyword identifies a time period related to the dataset.
      */
-    @UML (identifier="temporal", obligation=CONDITIONAL, specification=ISO_19115)
+    @UML(identifier="temporal", obligation=CONDITIONAL, specification=ISO_19115)
     public static final KeywordType TEMPORAL = new KeywordType("TEMPORAL");
 
     /**
      * Keyword identifies a particular subject or topic.
      */
-    @UML (identifier="theme", obligation=CONDITIONAL, specification=ISO_19115)
+    @UML(identifier="theme", obligation=CONDITIONAL, specification=ISO_19115)
     public static final KeywordType THEME = new KeywordType("THEME");
 
     /**

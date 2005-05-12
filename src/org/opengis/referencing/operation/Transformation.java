@@ -26,11 +26,11 @@ import static org.opengis.annotation.Specification.*;
  * @author ISO 19111
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/03-073r1.zip">Abstract specification 2.0</A>
- * @since 1.0
+ * @since GeoAPI 1.0
  *
  * @see Conversion
  */
-@UML (identifier="CC_Transformation", specification=ISO_19111)
+@UML(identifier="CC_Transformation", specification=ISO_19111)
 public interface Transformation extends Operation {
     /**
      * Version of the coordinate transformation (i.e., instantiation due to the stochastic
@@ -38,6 +38,6 @@ public interface Transformation extends Operation {
      *
      * @return The coordinate operation version.
      */
-    @UML (identifier="operationVersion", obligation=MANDATORY, specification=ISO_19111)
+    @UML(identifier="operationVersion", obligation=MANDATORY, specification=ISO_19111)
     String getOperationVersion();
 }

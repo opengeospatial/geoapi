@@ -26,25 +26,25 @@ import static org.opengis.annotation.Specification.*;
  * @author ISO 19115
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
- * @since 1.1
+ * @since GeoAPI 1.1
  */
-@UML (identifier="DQ_ConformanceResult", specification=ISO_19115)
+@UML(identifier="DQ_ConformanceResult", specification=ISO_19115)
 public interface ConformanceResult extends Result {
     /**
      * Citation of product specification or user requirement against which data is being evaluated.
      */
-    @UML (identifier="specification", obligation=MANDATORY, specification=ISO_19115)
+    @UML(identifier="specification", obligation=MANDATORY, specification=ISO_19115)
     Citation getSpecification();
 
     /**
      * Explanation of the meaning of conformance for this result.
      */
-    @UML (identifier="explanation", obligation=MANDATORY, specification=ISO_19115)
+    @UML(identifier="explanation", obligation=MANDATORY, specification=ISO_19115)
     InternationalString getExplanation();
 
     /**
      * Indication of the conformance result.
      */
-    @UML (identifier="pass", obligation=MANDATORY, specification=ISO_19115)
+    @UML(identifier="pass", obligation=MANDATORY, specification=ISO_19115)
     boolean pass();
 }

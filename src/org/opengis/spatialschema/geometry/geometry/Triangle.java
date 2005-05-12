@@ -42,19 +42,19 @@ import static org.opengis.annotation.Specification.*;
  * @author ISO/DIS 19107
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-101.pdf">Abstract specification 5</A>
- * @since 1.1
+ * @since GeoAPI 1.1
  */
-@UML (identifier="GM_Triangle", specification=ISO_19107)
+@UML(identifier="GM_Triangle", specification=ISO_19107)
 public interface Triangle extends Polygon {
     /**
      * Returns the triangle corner. The list must contains exactly 3 elements.
      */
-    @UML (identifier="corners", obligation=MANDATORY, specification=ISO_19107)
+    @UML(identifier="corners", obligation=MANDATORY, specification=ISO_19107)
     List<Position> getCorners();
 
     /**
      * Returns the patch which own this surface patch.
      */
-/// @UML (identifier="surface", obligation=MANDATORY, specification=ISO_19107)
+/// @UML(identifier="surface", obligation=MANDATORY, specification=ISO_19107)
 /// TriangulatedSurface getSurface();
 }

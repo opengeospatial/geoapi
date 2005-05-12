@@ -44,12 +44,12 @@ import static org.opengis.annotation.Specification.*;
  *
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-004.pdf">Grid Coverage specification 1.0</A>
- * @since 1.0
+ * @since GeoAPI 1.0
  *
  * @see GridPacking
  * @see ByteInValuePacking
  */
-@UML (identifier="GC_ValueInBytePacking", specification=OGC_01_004)
+@UML(identifier="GC_ValueInBytePacking", specification=OGC_01004)
 public final class ValueInBytePacking extends CodeList<ValueInBytePacking> {
     /**
      * Serial number for compatibility with different versions.
@@ -65,13 +65,13 @@ public final class ValueInBytePacking extends CodeList<ValueInBytePacking> {
     /**
      * Low bit firts (little endian order).
      */
-    @UML (identifier="GC_LoBitFirst", obligation=CONDITIONAL, specification=OGC_01_004)
+    @UML(identifier="GC_LoBitFirst", obligation=CONDITIONAL, specification=OGC_01004)
     public static final ValueInBytePacking LO_BIT_FIRST = new ValueInBytePacking("LO_BIT_FIRST");
 
     /**
      * High bit first (big endian order).
      */
-    @UML (identifier="GC_HiBitFirst", obligation=CONDITIONAL, specification=OGC_01_004)
+    @UML(identifier="GC_HiBitFirst", obligation=CONDITIONAL, specification=OGC_01004)
     public static final ValueInBytePacking HI_BIT_FIRST = new ValueInBytePacking("HI_BIT_FIRST");
 
     /**

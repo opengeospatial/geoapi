@@ -38,14 +38,14 @@ import static org.opengis.annotation.Specification.*;
  *
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-004.pdf">Grid Coverage specification 1.0</A>
- * @since 1.0
+ * @since GeoAPI 1.0
  */
-@UML (identifier="GC_GridPacking", specification=OGC_01_004)
+@UML(identifier="GC_GridPacking", specification=OGC_01004)
 public interface GridPacking {
     /**
      * Order of bytes packed in values for sample dimensions with greater than 8 bits.
      */
-    @UML (identifier="byteInValuePacking", obligation=MANDATORY, specification=OGC_01_004)
+    @UML(identifier="byteInValuePacking", obligation=MANDATORY, specification=OGC_01004)
     ByteInValuePacking getByteInValuePacking();
 
     /**
@@ -55,7 +55,7 @@ public interface GridPacking {
      * {@link SampleDimensionType#UNSIGNED_2BITS UNSIGNED_2BITS} and
      * {@link SampleDimensionType#UNSIGNED_4BITS UNSIGNED_4BITS} data types.
      */
-    @UML (identifier="valueInBytePacking", obligation=MANDATORY, specification=OGC_01_004)
+    @UML(identifier="valueInBytePacking", obligation=MANDATORY, specification=OGC_01004)
     ValueInBytePacking getValueInBytePacking();
 
     /**
@@ -85,6 +85,6 @@ public interface GridPacking {
      * @see java.awt.image.BandedSampleModel
      * @see java.awt.image.PixelInterleavedSampleModel
      */
-    @UML (identifier="bandPacking", obligation=MANDATORY, specification=OGC_01_004)
+    @UML(identifier="bandPacking", obligation=MANDATORY, specification=OGC_01004)
     int getBandPacking();
 }

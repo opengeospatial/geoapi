@@ -35,12 +35,12 @@ import static org.opengis.annotation.Specification.*;
  *
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-009.pdf">Implementation specification 1.0</A>
- * @since 1.0
+ * @since GeoAPI 1.0
  *
  * @see org.opengis.referencing.cs.CSFactory
  * @see org.opengis.referencing.crs.CRSFactory
  */
-@UML (identifier="CS_CoordinateSystemFactory", specification=OGC_01_009)
+@UML(identifier="CS_CoordinateSystemFactory", specification=OGC_01009)
 public interface DatumFactory extends ObjectFactory {
     /**
      * Creates an engineering datum.
@@ -49,7 +49,7 @@ public interface DatumFactory extends ObjectFactory {
      *         Available properties are {@linkplain ObjectFactory listed there}.
      * @throws FactoryException if the object creation failed.
      */
-    @UML (identifier="createLocalDatum", specification=OGC_01_009)
+    @UML(identifier="createLocalDatum", specification=OGC_01009)
     EngineeringDatum createEngineeringDatum(Map<String, ? extends Object> properties)
             throws FactoryException;
 
@@ -62,7 +62,7 @@ public interface DatumFactory extends ObjectFactory {
      * @param  primeMeridian Prime meridian to use in new geodetic datum.
      * @throws FactoryException if the object creation failed.
      */
-    @UML (identifier="createHorizontalDatum", specification=OGC_01_009)
+    @UML(identifier="createHorizontalDatum", specification=OGC_01009)
     GeodeticDatum createGeodeticDatum(Map<String, ? extends Object> properties,
                                       Ellipsoid       ellipsoid,
                                       PrimeMeridian   primeMeridian) throws FactoryException;
@@ -98,7 +98,7 @@ public interface DatumFactory extends ObjectFactory {
      * @param  type The type of this vertical datum (often “geoidal”).
      * @throws FactoryException if the object creation failed.
      */
-    @UML (identifier="createVerticalDatum", specification=OGC_01_009)
+    @UML(identifier="createVerticalDatum", specification=OGC_01009)
     VerticalDatum createVerticalDatum(Map<String, ? extends Object> properties,
                                       VerticalDatumType type) throws FactoryException;
 
@@ -112,7 +112,7 @@ public interface DatumFactory extends ObjectFactory {
      * @param  unit Linear units of ellipsoid axes.
      * @throws FactoryException if the object creation failed.
      */
-    @UML (identifier="createEllipsoid", specification=OGC_01_009)
+    @UML(identifier="createEllipsoid", specification=OGC_01009)
     Ellipsoid createEllipsoid(Map<String, ? extends Object> properties,
                               double semiMajorAxis,
                               double semiMinorAxis,
@@ -128,7 +128,7 @@ public interface DatumFactory extends ObjectFactory {
      * @param  unit Linear units of major axis.
      * @throws FactoryException if the object creation failed.
      */
-    @UML (identifier="createFlattenedSphere", specification=OGC_01_009)
+    @UML(identifier="createFlattenedSphere", specification=OGC_01009)
     Ellipsoid createFlattenedSphere(Map<String, ? extends Object> properties,
                                     double semiMajorAxis,
                                     double inverseFlattening,
@@ -143,7 +143,7 @@ public interface DatumFactory extends ObjectFactory {
      * @param  angularUnit Angular units of longitude.
      * @throws FactoryException if the object creation failed.
      */
-    @UML (identifier="createPrimeMeridian", specification=OGC_01_009)
+    @UML(identifier="createPrimeMeridian", specification=OGC_01009)
     PrimeMeridian createPrimeMeridian(Map<String, ? extends Object> properties,
                                       double longitude,
                                       Unit   angularUnit) throws FactoryException;

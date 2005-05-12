@@ -31,13 +31,13 @@ import static org.opengis.annotation.Specification.*;
  * @author ISO/DIS 19107
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-101.pdf">Abstract specification 5</A>
- * @since 1.0
+ * @since GeoAPI 1.0
  *
  * @see PrimitiveFactory#createPoint
  *
  * @revisit Some associations are commented out for now.
  */
-@UML (identifier="GM_Point", specification=ISO_19107)
+@UML(identifier="GM_Point", specification=ISO_19107)
 public interface Point extends Primitive, Position {
     /**
      * Returns the direct position of this point. <code>Point</code> is the only subclass
@@ -50,7 +50,7 @@ public interface Point extends Primitive, Position {
      *
      * @return The direct position.
      */
-    @UML (identifier="position", obligation=MANDATORY, specification=ISO_19107)
+    @UML(identifier="position", obligation=MANDATORY, specification=ISO_19107)
     public DirectPosition getPosition();
 
     /**
@@ -65,7 +65,7 @@ public interface Point extends Primitive, Position {
      * @param  position The direct position.
      * @throws UnmodifiableGeometryException if this geometry is not modifiable.
      */
-    @UML (identifier="position", obligation=MANDATORY, specification=ISO_19107)
+    @UML(identifier="position", obligation=MANDATORY, specification=ISO_19107)
     public void setPosition(DirectPosition position) throws UnmodifiableGeometryException;
 
     /**
@@ -73,7 +73,7 @@ public interface Point extends Primitive, Position {
      *
      * @return Always {@code null}.
      */
-/// @UML (identifier="boundary", obligation=MANDATORY, specification=ISO_19107)
+/// @UML(identifier="boundary", obligation=MANDATORY, specification=ISO_19107)
 /// public PrimitiveBoundary getBoundary();
 
     /**
@@ -90,7 +90,7 @@ public interface Point extends Primitive, Position {
      * @param toPoint the destination point.
      * @return The tangent to the curve between this point and the passed position.
      */
-    @UML (identifier="bearing", obligation=MANDATORY, specification=ISO_19107)
+    @UML(identifier="bearing", obligation=MANDATORY, specification=ISO_19107)
     public Bearing getBearing(Position toPoint);
 
 //    public org.opengis.spatialschema.geometry.complex.GM_CompositePoint composite[];

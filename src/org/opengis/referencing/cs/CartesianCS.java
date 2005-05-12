@@ -34,10 +34,10 @@ import static org.opengis.annotation.Specification.*;
  * @author ISO 19111
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/03-073r1.zip">Abstract specification 2.0</A>
- * @since 1.0
+ * @since GeoAPI 1.0
  *
  * @see AffineCS
  */
-@UML (identifier="CS_CartesianCS", specification=ISO_19111)
+@UML(identifier="CS_CartesianCS", specification=ISO_19111)
 public interface CartesianCS extends AffineCS {
 }

@@ -13,10 +13,8 @@ package org.opengis.filter.spatial;
 import org.opengis.filter.expression.Expression;
 
 // Annotations
-import org.opengis.annotation.UML;
-import org.opengis.annotation.XmlSchema;
+import org.opengis.annotation.XmlElement;
 import static org.opengis.annotation.Obligation.*;
-import static org.opengis.annotation.Specification.*;
 
 
 /**
@@ -25,17 +23,16 @@ import static org.opengis.annotation.Specification.*;
  *
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/02-059.pdf">Implementation specification 1.0</A>
- * @since 1.1
+ * @since GeoAPI 1.1
  */
-@XmlSchema("http://schemas.opengis.net/filter/1.0.0/filter.xsd")
-@UML(identifier="BinarySpatialOpType", specification=OGC_02_059)
+@XmlElement(name="BinarySpatialOpType")
 public interface BinarySpatialOperator extends SpatialOperator {
     /**
      * Returns an expression that will be evaluated to determine the first
      * operand to the spatial predicate represented by this operator.  The
      * result of evaluating this expression must be a geometry object.
      */
-    @UML(identifier="expression", obligation=MANDATORY, specification=OGC_02_059)
+    @XmlElement(name="expression", obligation=MANDATORY)
     Expression getExpression1();
 
     /**
@@ -43,6 +40,6 @@ public interface BinarySpatialOperator extends SpatialOperator {
      * operand to the spatial predicate represented by this operator.  The
      * result of evaluating this expression must be a geometry object.
      */
-    @UML(identifier="expression", obligation=MANDATORY, specification=OGC_02_059)
+    @XmlElement(name="expression", obligation=MANDATORY)
     Expression getExpression2();
 }

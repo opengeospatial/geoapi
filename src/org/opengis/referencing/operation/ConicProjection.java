@@ -20,7 +20,7 @@ import org.opengis.annotation.Extension;
  * <p align="center"><img src="../doc-files/ConicProjection.png"></p>
  *
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
- * @since 1.0
+ * @since GeoAPI 1.0
  *
  * @see org.opengis.referencing.crs.ProjectedCRS
  * @see <A HREF="http://mathworld.wolfram.com/ConicProjection.html">Conic projection on MathWorld</A>

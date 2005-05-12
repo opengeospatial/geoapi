@@ -29,33 +29,33 @@ import static org.opengis.annotation.Specification.*;
  * @author ISO 19115
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
- * @since 1.1
+ * @since GeoAPI 1.1
  */
-@UML (identifier="MD_Usage", specification=ISO_19115)
+@UML(identifier="MD_Usage", specification=ISO_19115)
 public interface Usage {
     /**
      * Brief description of the resource and/or resource series usage.
      */
-    @UML (identifier="specificUsage", obligation=MANDATORY, specification=ISO_19115)
+    @UML(identifier="specificUsage", obligation=MANDATORY, specification=ISO_19115)
     InternationalString getSpecificUsage();
 
     /**
      * Date and time of the first use or range of uses of the resource and/or resource series.
      */
-    @UML (identifier="usageDateTime", obligation=OPTIONAL, specification=ISO_19115)
+    @UML(identifier="usageDateTime", obligation=OPTIONAL, specification=ISO_19115)
     Date getUsageDate();
 
     /**
      * Applications, determined by the user for which the resource and/or resource series
      * is not suitable.
      */
-    @UML (identifier="userDeterminedLimitations", obligation=OPTIONAL, specification=ISO_19115)
+    @UML(identifier="userDeterminedLimitations", obligation=OPTIONAL, specification=ISO_19115)
     InternationalString getUserDeterminedLimitations();
 
     /**
      * Identification of and means of communicating with person(s) and organization(s)
      * using the resource(s).
      */
-    @UML (identifier="userContactInfo", obligation=MANDATORY, specification=ISO_19115)
+    @UML(identifier="userContactInfo", obligation=MANDATORY, specification=ISO_19115)
     Collection<ResponsibleParty> getUserContactInfo();
 }

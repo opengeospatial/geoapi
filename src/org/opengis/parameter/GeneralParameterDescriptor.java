@@ -28,7 +28,7 @@ import static org.opengis.annotation.Specification.*;
  *
  * @see GeneralParameterValue
  */
-@UML (identifier="CC_GeneralOperationParameter", specification=ISO_19111)
+@UML(identifier="CC_GeneralOperationParameter", specification=ISO_19111)
 public interface GeneralParameterDescriptor extends IdentifiedObject {
     /**
      * Creates a new instance of {@linkplain GeneralParameterValue parameter value or group}
@@ -46,7 +46,7 @@ public interface GeneralParameterDescriptor extends IdentifiedObject {
      *
      * @see #getMaximumOccurs
      */
-    @UML (identifier="minimumOccurs", obligation=OPTIONAL, specification=ISO_19111)
+    @UML(identifier="minimumOccurs", obligation=OPTIONAL, specification=ISO_19111)
     int getMinimumOccurs();
 
     /**
@@ -57,6 +57,6 @@ public interface GeneralParameterDescriptor extends IdentifiedObject {
      *
      * @see #getMinimumOccurs
      */
-    @UML (identifier="CC_OperationParameterGroup.maximumOccurs", obligation=OPTIONAL, specification=ISO_19111)
+    @UML(identifier="CC_OperationParameterGroup.maximumOccurs", obligation=OPTIONAL, specification=ISO_19111)
     int getMaximumOccurs();
 }

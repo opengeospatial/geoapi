@@ -61,11 +61,11 @@ import static org.opengis.annotation.Specification.*;
  * @author ISO/DIS 19107
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-101.pdf">Abstract specification 5</A>
- * @since 1.0
+ * @since GeoAPI 1.0
  *
  * @see PrimitiveFactory#createCurve
  */
-@UML (identifier="GM_Curve", specification=ISO_19107)
+@UML(identifier="GM_Curve", specification=ISO_19107)
 public interface Curve extends OrientableCurve, GenericCurve {
     /**
      * Lists the components {@linkplain CurveSegment curve segments} of <code>Curve</code>, each
@@ -78,6 +78,6 @@ public interface Curve extends OrientableCurve, GenericCurve {
      *
      * @see CurveSegment#getCurve
      */
-    @UML (identifier="segment", obligation=MANDATORY, specification=ISO_19107)
+    @UML(identifier="segment", obligation=MANDATORY, specification=ISO_19107)
     public List<CurveSegment> getSegments();
 }

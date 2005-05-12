@@ -31,42 +31,42 @@ import static org.opengis.annotation.Specification.*;
  * @author ISO 19115
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
- * @since 1.0
+ * @since GeoAPI 1.0
  */
 @Profile (level=CORE)
-@UML (identifier="CI_OnlineResource", specification=ISO_19115)
+@UML(identifier="CI_OnlineResource", specification=ISO_19115)
 public interface OnLineResource {
     /**
      * Location (address) for on-line access using a Uniform Resource Locator address or
      * similar addressing scheme such as http://www.statkart.no/isotc211.
      */
-    @UML (identifier="linkage", obligation=MANDATORY, specification=ISO_19115)
+    @UML(identifier="linkage", obligation=MANDATORY, specification=ISO_19115)
     URI getLinkage();
 
     /**
      * Connection protocol to be used. Returns {@code null} if none.
      */
-    @UML (identifier="protocol", obligation=OPTIONAL, specification=ISO_19115)
+    @UML(identifier="protocol", obligation=OPTIONAL, specification=ISO_19115)
     String getProtocol();
 
     /**
      * Name of an application profile that can be used with the online resource.
      * Returns {@code null} if none.
      */
-    @UML (identifier="applicationProfile", obligation=OPTIONAL, specification=ISO_19115)
+    @UML(identifier="applicationProfile", obligation=OPTIONAL, specification=ISO_19115)
     String getApplicationProfile();
 
     /**
      * Detailed text description of what the online resource is/does.
      * Returns {@code null} if none.
      */
-    @UML (identifier="description", obligation=OPTIONAL, specification=ISO_19115)
+    @UML(identifier="description", obligation=OPTIONAL, specification=ISO_19115)
     InternationalString getDescription();
 
     /**
      * Code for function performed by the online resource.
      * Returns {@code null} if unspecified.
      */
-    @UML (identifier="function", obligation=OPTIONAL, specification=ISO_19115)
+    @UML(identifier="function", obligation=OPTIONAL, specification=ISO_19115)
     OnLineFunction getFunction();
 }

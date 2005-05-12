@@ -25,21 +25,21 @@ import static org.opengis.annotation.Specification.*;
  * @author ISO 19115
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
- * @since 1.1
+ * @since GeoAPI 1.1
  */
-@UML (identifier="DQ_Scope", specification=ISO_19115)
+@UML(identifier="DQ_Scope", specification=ISO_19115)
 public interface Scope {
     /**
      * Hierarchical level of the data specified by the scope.
      */
-    @UML (identifier="level", obligation=MANDATORY, specification=ISO_19115)
+    @UML(identifier="level", obligation=MANDATORY, specification=ISO_19115)
     ScopeCode getLevel();
 
     /**
      * Information about the spatial, vertical and temporal extent of the data specified by the
      * scope.
      */
-    @UML (identifier="extent", obligation=OPTIONAL, specification=ISO_19115)
+    @UML(identifier="extent", obligation=OPTIONAL, specification=ISO_19115)
     Extent getExtent();
 
     /**
@@ -48,6 +48,6 @@ public interface Scope {
      * @revisit Need to define the <code>ScopeDescription</code> union. This union depends
      *          on <code>FeatureType</code> and <code>AttributeType</code>.
      */
-//  @UML (identifier="levelDescription", obligation=CONDITIONAL)
+//  @UML(identifier="levelDescription", obligation=CONDITIONAL)
 //  Collection<ScopeDescription> getLevelDescription();
 }

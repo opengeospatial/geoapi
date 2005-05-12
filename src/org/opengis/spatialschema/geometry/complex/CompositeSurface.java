@@ -30,7 +30,7 @@ import static org.opengis.annotation.Specification.*;
  * @author ISO/DIS 19107
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-101.pdf">Abstract specification 5</A>
- * @since 1.0
+ * @since GeoAPI 1.0
  *
  * @revisit This interface extends (indirectly) both {@link org.opengis.spatialschema.geometry.primitive.Primitive} and
  *          {@link org.opengis.spatialschema.geometry.complex.Complex}. Concequently, there is a clash in the semantics
@@ -38,7 +38,7 @@ import static org.opengis.annotation.Specification.*;
  *          (returns FALSE for end points) is different from <code>Complex.contains(...)</code>
  *          (returns TRUE for end points).
  */
-@UML (identifier="GM_CompositeSurface", specification=ISO_19107)
+@UML(identifier="GM_CompositeSurface", specification=ISO_19107)
 public interface CompositeSurface extends Composite, OrientableSurface {
     /**
      * Returns the list of orientable surfaces in this composite.
@@ -50,6 +50,6 @@ public interface CompositeSurface extends Composite, OrientableSurface {
      *
      * @return The list of orientable surfaces in this composite.
      */
-    @UML (identifier="generator", obligation=MANDATORY, specification=ISO_19107)
+    @UML(identifier="generator", obligation=MANDATORY, specification=ISO_19107)
     public List<OrientableSurface> getGenerators();
 }

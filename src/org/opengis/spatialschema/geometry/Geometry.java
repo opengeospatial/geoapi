@@ -37,9 +37,9 @@ import static org.opengis.annotation.Specification.*;
  * @author ISO/DIS 19107
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-101.pdf">Abstract specification 5</A>
- * @since 1.0
+ * @since GeoAPI 1.0
  */
-@UML (identifier="GM_Object", specification=ISO_19107)
+@UML(identifier="GM_Object", specification=ISO_19107)
 public interface Geometry extends TransfiniteSet {
     /**
      * Returns the coordinate reference system used in {@linkplain DirectPosition direct position}
@@ -61,7 +61,7 @@ public interface Geometry extends TransfiniteSet {
      *
      * @see #getCoordinateDimension
      */
-    @UML (identifier="CRS", obligation=MANDATORY, specification=ISO_19107)
+    @UML(identifier="CRS", obligation=MANDATORY, specification=ISO_19107)
     CoordinateReferenceSystem getCoordinateReferenceSystem();
 
     /**
@@ -78,7 +78,7 @@ public interface Geometry extends TransfiniteSet {
      * @see #getEnvelope
      * @see #getBoundary
      */
-    @UML (identifier="mbRegion", obligation=MANDATORY, specification=ISO_19107)
+    @UML(identifier="mbRegion", obligation=MANDATORY, specification=ISO_19107)
     Geometry getMbRegion();
 
     /**
@@ -91,7 +91,7 @@ public interface Geometry extends TransfiniteSet {
      *
      * @see #getCentroid
      */
-    @UML (identifier="representativePoint", obligation=MANDATORY, specification=ISO_19107)
+    @UML(identifier="representativePoint", obligation=MANDATORY, specification=ISO_19107)
     DirectPosition getRepresentativePoint();
 
     /**
@@ -112,7 +112,7 @@ public interface Geometry extends TransfiniteSet {
      * @see #getBuffer
      * @see #getDistance
      */
-    @UML (identifier="boundary", obligation=MANDATORY, specification=ISO_19107)
+    @UML(identifier="boundary", obligation=MANDATORY, specification=ISO_19107)
     Boundary getBoundary();
 
     /**
@@ -129,7 +129,7 @@ public interface Geometry extends TransfiniteSet {
      *
      * @see #getBoundary
      */
-    @UML (identifier="closure", obligation=MANDATORY, specification=ISO_19107)
+    @UML(identifier="closure", obligation=MANDATORY, specification=ISO_19107)
     Complex getClosure();
 
     /**
@@ -151,7 +151,7 @@ public interface Geometry extends TransfiniteSet {
      *
      * @see #isCycle
      */
-    @UML (identifier="isSimple", obligation=MANDATORY, specification=ISO_19107)
+    @UML(identifier="isSimple", obligation=MANDATORY, specification=ISO_19107)
     boolean isSimple();
 
     /**
@@ -172,7 +172,7 @@ public interface Geometry extends TransfiniteSet {
      *
      * @see #isSimple
      */
-    @UML (identifier="isCycle", obligation=MANDATORY, specification=ISO_19107)
+    @UML(identifier="isCycle", obligation=MANDATORY, specification=ISO_19107)
     boolean isCycle();
 
     /**
@@ -213,7 +213,7 @@ public interface Geometry extends TransfiniteSet {
      * @see #getBuffer
      * @see org.opengis.referencing.cs.CoordinateSystem#getAxis
      */
-    @UML (identifier="distance", obligation=MANDATORY, specification=ISO_19107)
+    @UML(identifier="distance", obligation=MANDATORY, specification=ISO_19107)
     double getDistance(Geometry geometry);
 
     /**
@@ -233,7 +233,7 @@ public interface Geometry extends TransfiniteSet {
      *
      * @see #getCoordinateDimension
      */
-    @UML (identifier="dimension", obligation=MANDATORY, specification=ISO_19107)
+    @UML(identifier="dimension", obligation=MANDATORY, specification=ISO_19107)
     int getDimension(DirectPosition point);
 
     /**
@@ -246,7 +246,7 @@ public interface Geometry extends TransfiniteSet {
      * @see #getDimension
      * @see #getCoordinateReferenceSystem
      */
-    @UML (identifier="coordinateDimension", obligation=MANDATORY, specification=ISO_19107)
+    @UML(identifier="coordinateDimension", obligation=MANDATORY, specification=ISO_19107)
     int getCoordinateDimension();
 
     /**
@@ -257,7 +257,7 @@ public interface Geometry extends TransfiniteSet {
      *
      * @return The set of maximal complexes within which this <code>Geometry</code> is contained.
      */
-    @UML (identifier="maximalComplex", obligation=MANDATORY, specification=ISO_19107)
+    @UML(identifier="maximalComplex", obligation=MANDATORY, specification=ISO_19107)
     Set getMaximalComplex();
 
     /**
@@ -269,7 +269,7 @@ public interface Geometry extends TransfiniteSet {
      * @return The transformed <code>Geometry</code>.
      * @throws TransformException if the transformation failed.
      */
-    @UML (identifier="transform", obligation=MANDATORY, specification=ISO_19107)
+    @UML(identifier="transform", obligation=MANDATORY, specification=ISO_19107)
     Geometry transform(CoordinateReferenceSystem newCRS) throws TransformException;
 
     /**
@@ -300,7 +300,7 @@ public interface Geometry extends TransfiniteSet {
      *
      * @see #getMbRegion
      */
-    @UML (identifier="envelope", obligation=MANDATORY, specification=ISO_19107)
+    @UML(identifier="envelope", obligation=MANDATORY, specification=ISO_19107)
     Envelope getEnvelope();
 
     /**
@@ -314,7 +314,7 @@ public interface Geometry extends TransfiniteSet {
      *
      * @see #getRepresentativePoint
      */
-    @UML (identifier="centroid", obligation=MANDATORY, specification=ISO_19107)
+    @UML(identifier="centroid", obligation=MANDATORY, specification=ISO_19107)
     DirectPosition getCentroid();
 
     /**
@@ -327,7 +327,7 @@ public interface Geometry extends TransfiniteSet {
      *
      * @return The convex hull.
      */
-    @UML (identifier="convexHull", obligation=MANDATORY, specification=ISO_19107)
+    @UML(identifier="convexHull", obligation=MANDATORY, specification=ISO_19107)
     Geometry getConvexHull();
 
     /**
@@ -349,7 +349,7 @@ public interface Geometry extends TransfiniteSet {
      * @see #getDistance
      * @see org.opengis.referencing.cs.CoordinateSystem#getAxis
      */
-    @UML (identifier="buffer", obligation=MANDATORY, specification=ISO_19107)
+    @UML(identifier="buffer", obligation=MANDATORY, specification=ISO_19107)
     Geometry getBuffer(double distance);
 
     /**

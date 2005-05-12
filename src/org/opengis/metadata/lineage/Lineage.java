@@ -34,10 +34,10 @@ import static org.opengis.annotation.Specification.*;
  * @author ISO 19115
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
- * @since 1.1
+ * @since GeoAPI 1.1
  */
 @Profile (level=CORE)
-@UML (identifier="LI_Lineage", specification=ISO_19115)
+@UML(identifier="LI_Lineage", specification=ISO_19115)
 public interface Lineage {
     /**
      * General explanation of the data producer’s knowledge about the lineage of a dataset.
@@ -47,18 +47,18 @@ public interface Lineage {
      * {@linkplain org.opengis.metadata.maintenance.ScopeCode#SERIES series}.
      */
     @Profile (level=CORE)
-    @UML (identifier="statement", obligation=CONDITIONAL, specification=ISO_19115)
+    @UML(identifier="statement", obligation=CONDITIONAL, specification=ISO_19115)
     InternationalString getStatement();
 
     /**
      * Information about an event in the creation process for the data specified by the scope.
      */
-    @UML (identifier="processStep", obligation=CONDITIONAL, specification=ISO_19115)
+    @UML(identifier="processStep", obligation=CONDITIONAL, specification=ISO_19115)
     Collection<ProcessStep> getProcessSteps();
 
     /**
      * Information about the source data used in creating the data specified by the scope.
      */
-    @UML (identifier="source", obligation=CONDITIONAL, specification=ISO_19115)
+    @UML(identifier="source", obligation=CONDITIONAL, specification=ISO_19115)
     Collection<Source> getSources();
 }

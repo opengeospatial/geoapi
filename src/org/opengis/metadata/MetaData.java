@@ -42,82 +42,82 @@ import static org.opengis.annotation.Specification.*;
  * @author ISO 19115
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
- * @since 1.1
+ * @since GeoAPI 1.1
  */
 @Profile (level=CORE)
-@UML (identifier="MD_MetaData", specification=ISO_19115)
+@UML(identifier="MD_MetaData", specification=ISO_19115)
 public interface MetaData {
     /**
      * Unique identifier for this metadata file, or {@code null} if none.
      */
     @Profile (level=CORE)
-    @UML (identifier="fileIdentifier", obligation=OPTIONAL, specification=ISO_19115)
+    @UML(identifier="fileIdentifier", obligation=OPTIONAL, specification=ISO_19115)
     String getFileIdentifier();
 
     /**
      * Language used for documenting metadata.
      */
     @Profile (level=CORE)
-    @UML (identifier="language", obligation=CONDITIONAL, specification=ISO_19115)
+    @UML(identifier="language", obligation=CONDITIONAL, specification=ISO_19115)
     Locale getLanguage();
 
     /**
      * Full name of the character coding standard used for the metadata set.
      */
     @Profile (level=CORE)
-    @UML (identifier="characterSet", obligation=OPTIONAL, specification=ISO_19115)
+    @UML(identifier="characterSet", obligation=OPTIONAL, specification=ISO_19115)
     Charset getCharacterSet();
 
     /**
      * File identifier of the metadata to which this metadata is a subset (child).
      */
-    @UML (identifier="parentIdentifier", obligation=OPTIONAL, specification=ISO_19115)
+    @UML(identifier="parentIdentifier", obligation=OPTIONAL, specification=ISO_19115)
     String getParentIdentifier();
 
     /**
      * Scope to which the metadata applies.
      */
-    @UML (identifier="hierarchyLevel", obligation=OPTIONAL, specification=ISO_19115)
+    @UML(identifier="hierarchyLevel", obligation=OPTIONAL, specification=ISO_19115)
     Collection<ScopeCode> getHierarchyLevels();
 
     /**
      * Name of the hierarchy levels for which the metadata is provided.
      */
-    @UML (identifier="hierarchyLevelName", obligation=OPTIONAL, specification=ISO_19115)
+    @UML(identifier="hierarchyLevelName", obligation=OPTIONAL, specification=ISO_19115)
     Collection<String> getHierarchyLevelNames();
 
     /**
      * Party responsible for the metadata information.
      */
     @Profile (level=CORE)
-    @UML (identifier="contact", obligation=MANDATORY, specification=ISO_19115)
+    @UML(identifier="contact", obligation=MANDATORY, specification=ISO_19115)
     ResponsibleParty getContact();
 
     /**
      * Date that the metadata was created.
      */
     @Profile (level=CORE)
-    @UML (identifier="dateStamp", obligation=MANDATORY, specification=ISO_19115)
+    @UML(identifier="dateStamp", obligation=MANDATORY, specification=ISO_19115)
     Date getDateStamp();
 
     /**
      * Name of the metadata standard (including profile name) used.
      */
     @Profile (level=CORE)
-    @UML (identifier="metadataStandardName", obligation=OPTIONAL, specification=ISO_19115)
+    @UML(identifier="metadataStandardName", obligation=OPTIONAL, specification=ISO_19115)
     String getMetadataStandardName();
 
     /**
      * Version (profile) of the metadata standard used.
      */
     @Profile (level=CORE)
-    @UML (identifier="metadataStandardVersion", obligation=OPTIONAL, specification=ISO_19115)
+    @UML(identifier="metadataStandardVersion", obligation=OPTIONAL, specification=ISO_19115)
     String getMetadataStandardVersion();
 
     /**
      * Digital representation of spatial information in the dataset.
      */
-    @UML (identifier="spatialRepresentationInfo", obligation=OPTIONAL, specification=ISO_19115)
+    @UML(identifier="spatialRepresentationInfo", obligation=OPTIONAL, specification=ISO_19115)
     Collection<SpatialRepresentation> getSpatialRepresentationInfo();
 
     /**
@@ -126,64 +126,64 @@ public interface MetaData {
      * @revisit ISO 19115 use a <code>MD_ReferenceSystem</code> object instead of the ISO 19111 object.
      */
     @Profile (level=CORE)
-    @UML (identifier="referenceSystemInfo", obligation=OPTIONAL, specification=ISO_19115)
+    @UML(identifier="referenceSystemInfo", obligation=OPTIONAL, specification=ISO_19115)
     Collection<ReferenceSystem> getReferenceSystemInfo();
 
     /**
      * Information describing metadata extensions.
      */
-    @UML (identifier="metadataExtensionInfo", obligation=OPTIONAL, specification=ISO_19115)
+    @UML(identifier="metadataExtensionInfo", obligation=OPTIONAL, specification=ISO_19115)
     Collection<MetadataExtensionInformation> getMetadataExtensionInfo();
 
     /**
      * Basic information about the resource(s) to which the metadata applies.
      */
     @Profile (level=CORE)
-    @UML (identifier="identificationInfo", obligation=MANDATORY, specification=ISO_19115)
+    @UML(identifier="identificationInfo", obligation=MANDATORY, specification=ISO_19115)
     Collection<Identification> getIdentificationInfo();
 
     /**
      * Provides information about the feature catalogue and describes the coverage and
      * image data characteristics.
      */
-    @UML (identifier="contentInfo", obligation=OPTIONAL, specification=ISO_19115)
+    @UML(identifier="contentInfo", obligation=OPTIONAL, specification=ISO_19115)
     Collection<ContentInformation> getContentInfo();
 
     /**
      * Provides information about the distributor of and options for obtaining the resource(s).
      */
     @Profile (level=CORE)
-    @UML (identifier="distributionInfo", obligation=OPTIONAL, specification=ISO_19115)
+    @UML(identifier="distributionInfo", obligation=OPTIONAL, specification=ISO_19115)
     Distribution getDistributionInfo();
 
     /**
      * Provides overall assessment of quality of a resource(s).
      */
     @Profile (level=CORE)
-    @UML (identifier="dataQualityInfo", obligation=OPTIONAL, specification=ISO_19115)
+    @UML(identifier="dataQualityInfo", obligation=OPTIONAL, specification=ISO_19115)
     Collection<DataQuality> getDataQualityInfo();
 
     /**
      * Provides information about the catalogue of rules defined for the portrayal of a resource(s).
      */
-    @UML (identifier="portrayalCatalogueInfo", obligation=OPTIONAL, specification=ISO_19115)
+    @UML(identifier="portrayalCatalogueInfo", obligation=OPTIONAL, specification=ISO_19115)
     Collection<PortrayalCatalogueReference> getPortrayalCatalogueInfo();
 
     /**
      * Provides restrictions on the access and use of data.
      */
-    @UML (identifier="metadataConstraints", obligation=OPTIONAL, specification=ISO_19115)
+    @UML(identifier="metadataConstraints", obligation=OPTIONAL, specification=ISO_19115)
     Collection<Constraints> getMetadataConstraints();
 
     /**
      * Provides information about the conceptual schema of a dataset.
      */
-    @UML (identifier="applicationSchemaInfo", obligation=OPTIONAL, specification=ISO_19115)
+    @UML(identifier="applicationSchemaInfo", obligation=OPTIONAL, specification=ISO_19115)
     Collection<ApplicationSchemaInformation> getApplicationSchemaInfo();
      
     /**
      * Provides information about the frequency of metadata updates, and the scope of those updates.
      */
-    @UML (identifier="metadataMaintenance", obligation=OPTIONAL, specification=ISO_19115)
+    @UML(identifier="metadataMaintenance", obligation=OPTIONAL, specification=ISO_19115)
     MaintenanceInformation getMetadataMaintenance();
 }

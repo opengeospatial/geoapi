@@ -17,7 +17,7 @@ package org.opengis.layer;
  * @author ISO 19128
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://portal.opengeospatial.org/files/?artifact_id=5316">Implementation specification 1.3</A>
- * @since 1.1
+ * @since GeoAPI 1.1
  */
 public interface AbstractSizedURL extends AbstractURL {
     /**

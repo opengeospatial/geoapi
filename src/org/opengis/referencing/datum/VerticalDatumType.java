@@ -28,9 +28,9 @@ import static org.opengis.annotation.Specification.*;
  * @author ISO 19111
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/03-073r1.zip">Abstract specification 2.0</A>
- * @since 1.0
+ * @since GeoAPI 1.0
  */
-@UML (identifier="CD_VerticalDatumType", specification=ISO_19111)
+@UML(identifier="CD_VerticalDatumType", specification=ISO_19111)
 public final class VerticalDatumType extends CodeList<VerticalDatumType> {
     /**
      * Serial number for compatibility with different versions.
@@ -49,7 +49,7 @@ public final class VerticalDatumType extends CodeList<VerticalDatumType> {
      * vertical datum. Other variations to the above three vertical datum types may exist
      * and are all included in this type.
      */
-    @UML (identifier="other surface", obligation=CONDITIONAL, specification=ISO_19111)
+    @UML(identifier="other surface", obligation=CONDITIONAL, specification=ISO_19111)
     public static final VerticalDatumType OTHER_SURFACE = new VerticalDatumType("OTHER_SURFACE");
 
     /**
@@ -57,14 +57,14 @@ public final class VerticalDatumType extends CodeList<VerticalDatumType> {
      * a constant potential surface, usually the geoid. Such a reference surface is usually
      * determined by a national or scientific authority, and is then a well-known, named datum.
      */
-    @UML (identifier="geoidal", obligation=CONDITIONAL, specification=ISO_19111)
+    @UML(identifier="geoidal", obligation=CONDITIONAL, specification=ISO_19111)
     public static final VerticalDatumType GEOIDAL = new VerticalDatumType("GEOIDAL");
 
     /**
      * A vertical datum for ellipsoidal heights that are measured along the
      * normal to the ellipsoid used in the definition of horizontal datum.
      */
-    @UML (identifier="CS_DatumType.CS_VD_Ellipsoidal", obligation=CONDITIONAL, specification=OGC_01_009)
+    @UML(identifier="CS_DatumType.CS_VD_Ellipsoidal", obligation=CONDITIONAL, specification=OGC_01009)
     public static final VerticalDatumType ELLIPSOIDAL = new VerticalDatumType("ELLIPSOIDAL");
 
     /**
@@ -75,7 +75,7 @@ public final class VerticalDatumType extends CodeList<VerticalDatumType> {
      * (approximately) to the actual equipotential surfaces of the earth's gravity field,
      * using such procedures as echo-sounding.
      */
-    @UML (identifier="depth", obligation=CONDITIONAL, specification=ISO_19111)
+    @UML(identifier="depth", obligation=CONDITIONAL, specification=ISO_19111)
     public static final VerticalDatumType DEPTH = new VerticalDatumType("DEPTH");
 
     /**
@@ -86,13 +86,13 @@ public final class VerticalDatumType extends CodeList<VerticalDatumType> {
      * meters, feet, millibars (used to measure pressure levels), or theta value
      * (units used to measure geopotential height).
      */
-    @UML (identifier="barometric", obligation=CONDITIONAL, specification=ISO_19111)
+    @UML(identifier="barometric", obligation=CONDITIONAL, specification=ISO_19111)
     public static final VerticalDatumType BAROMETRIC = new VerticalDatumType("BAROMETRIC");
 
     /**
      * A vertical datum for orthometric heights that are measured along the plumb line.
      */
-    @UML (identifier="CS_DatumType.CS_VD_Orthometric", obligation=CONDITIONAL, specification=OGC_01_009)
+    @UML(identifier="CS_DatumType.CS_VD_Orthometric", obligation=CONDITIONAL, specification=OGC_01009)
     public static final VerticalDatumType ORTHOMETRIC = new VerticalDatumType("ORTHOMETRIC");
 
     /**

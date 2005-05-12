@@ -31,7 +31,7 @@ import static org.opengis.annotation.Specification.*;
  * @see ParameterValue
  * @see ParameterDescriptorGroup
  */
-@UML (identifier="CC_OperationParameter", specification=ISO_19111)
+@UML(identifier="CC_OperationParameter", specification=ISO_19111)
 public interface ParameterDescriptor extends GeneralParameterDescriptor {
     /**
      * Creates a new instance of {@linkplain ParameterValue parameter value}
@@ -45,7 +45,7 @@ public interface ParameterDescriptor extends GeneralParameterDescriptor {
     /**
      * Returns the class that describe the type of the parameter.
      */
-    @UML (identifier="GC_ParameterInfo.type", obligation=MANDATORY, specification=ISO_19111)
+    @UML(identifier="GC_ParameterInfo.type", obligation=MANDATORY, specification=ISO_19111)
     Class getValueClass();
 
     /**
@@ -75,7 +75,7 @@ public interface ParameterDescriptor extends GeneralParameterDescriptor {
      *
      * @return The default value, or {@code null} in none.
      */
-    @UML (identifier="GC_ParameterInfo.defaultValue", obligation=OPTIONAL, specification=ISO_19111)
+    @UML(identifier="GC_ParameterInfo.defaultValue", obligation=OPTIONAL, specification=ISO_19111)
     Object getDefaultValue();
 
     /**
@@ -90,7 +90,7 @@ public interface ParameterDescriptor extends GeneralParameterDescriptor {
      * </p>
      * @return The minimum parameter value (often an instance of {@link Double}), or {@code null}.
      */
-    @UML (identifier="GC_ParameterInfo.minimumValue", obligation=OPTIONAL, specification=ISO_19111)
+    @UML(identifier="GC_ParameterInfo.minimumValue", obligation=OPTIONAL, specification=ISO_19111)
     Comparable getMinimumValue();
 
     /**
@@ -105,7 +105,7 @@ public interface ParameterDescriptor extends GeneralParameterDescriptor {
      * </p>
      * @return The minimum parameter value (often an instance of {@link Double}), or {@code null}.
      */
-    @UML (identifier="GC_ParameterInfo.maximumValue", obligation=OPTIONAL, specification=ISO_19111)
+    @UML(identifier="GC_ParameterInfo.maximumValue", obligation=OPTIONAL, specification=ISO_19111)
     Comparable getMaximumValue();
 
     /**

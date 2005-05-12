@@ -29,9 +29,9 @@ import static org.opengis.annotation.Specification.*;
  * @author ISO 19115
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
- * @since 1.1
+ * @since GeoAPI 1.1
  */
-@UML (identifier="MD_MaintenanceFrequencyCode", specification=ISO_19115)
+@UML(identifier="MD_MaintenanceFrequencyCode", specification=ISO_19115)
 public final class MaintenanceFrequency extends CodeList<MaintenanceFrequency> {
     /**
      * Serial number for compatibility with different versions.
@@ -47,73 +47,73 @@ public final class MaintenanceFrequency extends CodeList<MaintenanceFrequency> {
     /**
      * Data is repeatedly and frequently updated.
      */
-    @UML (identifier="continual", obligation=CONDITIONAL, specification=ISO_19115)
+    @UML(identifier="continual", obligation=CONDITIONAL, specification=ISO_19115)
     public static final MaintenanceFrequency CONTINUAL = new MaintenanceFrequency("CONTINUAL");
 
     /**
      * Data is updated each day.
      */
-    @UML (identifier="daily", obligation=CONDITIONAL, specification=ISO_19115)
+    @UML(identifier="daily", obligation=CONDITIONAL, specification=ISO_19115)
     public static final MaintenanceFrequency DAILY = new MaintenanceFrequency("DAILY");
 
     /**
      * Data is updated on a weekly basis.
      */
-    @UML (identifier="weekly", obligation=CONDITIONAL, specification=ISO_19115)
+    @UML(identifier="weekly", obligation=CONDITIONAL, specification=ISO_19115)
     public static final MaintenanceFrequency WEEKLY = new MaintenanceFrequency("WEEKLY");
 
     /**
      * Data is updated every two weeks.
      */
-    @UML (identifier="fortnightly", obligation=CONDITIONAL, specification=ISO_19115)
+    @UML(identifier="fortnightly", obligation=CONDITIONAL, specification=ISO_19115)
     public static final MaintenanceFrequency FORTNIGHTLY = new MaintenanceFrequency("FORTNIGHTLY");
 
     /**
      * Data is updated each month.
      */
-    @UML (identifier="monthly", obligation=CONDITIONAL, specification=ISO_19115)
+    @UML(identifier="monthly", obligation=CONDITIONAL, specification=ISO_19115)
     public static final MaintenanceFrequency MONTHLY = new MaintenanceFrequency("MONTHLY");
 
     /**
      * Data is updated every three months.
      */
-    @UML (identifier="quarterly", obligation=CONDITIONAL, specification=ISO_19115)
+    @UML(identifier="quarterly", obligation=CONDITIONAL, specification=ISO_19115)
     public static final MaintenanceFrequency QUARTERLY = new MaintenanceFrequency("QUARTERLY");
 
     /**
      * Data is updated twice each year.
      */
-    @UML (identifier="biannually", obligation=CONDITIONAL, specification=ISO_19115)
+    @UML(identifier="biannually", obligation=CONDITIONAL, specification=ISO_19115)
     public static final MaintenanceFrequency BIANNUALLY = new MaintenanceFrequency("BIANNUALLY");
 
     /**
      * Data is updated every year.
      */
-    @UML (identifier="annually", obligation=CONDITIONAL, specification=ISO_19115)
+    @UML(identifier="annually", obligation=CONDITIONAL, specification=ISO_19115)
     public static final MaintenanceFrequency ANNUALLY = new MaintenanceFrequency("ANNUALLY");
 
     /**
      * Data is updated as deemed necessary.
      */
-    @UML (identifier="asNeeded", obligation=CONDITIONAL, specification=ISO_19115)
+    @UML(identifier="asNeeded", obligation=CONDITIONAL, specification=ISO_19115)
     public static final MaintenanceFrequency AS_NEEDED = new MaintenanceFrequency("AS_NEEDED");
 
     /**
      * Data is updated in intervals that are uneven in duration.
      */
-    @UML (identifier="irregular", obligation=CONDITIONAL, specification=ISO_19115)
+    @UML(identifier="irregular", obligation=CONDITIONAL, specification=ISO_19115)
     public static final MaintenanceFrequency IRREGULAR = new MaintenanceFrequency("IRREGULAR");
 
     /**
      * There are no plans to update the data.
      */
-    @UML (identifier="notPlanned", obligation=CONDITIONAL, specification=ISO_19115)
+    @UML(identifier="notPlanned", obligation=CONDITIONAL, specification=ISO_19115)
     public static final MaintenanceFrequency NOT_PLANNED = new MaintenanceFrequency("NOT_PLANNED");
 
     /**
      * Frequency of maintenance for the data is not known
      */
-    @UML (identifier="unknow", obligation=CONDITIONAL, specification=ISO_19115)
+    @UML(identifier="unknow", obligation=CONDITIONAL, specification=ISO_19115)
     public static final MaintenanceFrequency UNKNOW = new MaintenanceFrequency("UNKNOW");
 
     /**

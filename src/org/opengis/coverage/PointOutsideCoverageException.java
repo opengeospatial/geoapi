@@ -37,12 +37,12 @@ import static org.opengis.annotation.Specification.*;
  *
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-004.pdf">Grid Coverage specification 1.0</A>
- * @since 1.0
+ * @since GeoAPI 1.0
  *
  * @see Coverage#evaluate(DirectPosition, byte[])
  * @see Coverage#evaluate(DirectPosition, double[])
  */
-@UML (identifier="CV_PointOutsideCoverage", specification=OGC_01_004)
+@UML(identifier="CV_PointOutsideCoverage", specification=OGC_01004)
 public class PointOutsideCoverageException extends CannotEvaluateException {
     /**
      * Serial number for interoperability with different versions.

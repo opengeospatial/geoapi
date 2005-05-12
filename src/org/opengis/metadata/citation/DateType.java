@@ -28,9 +28,9 @@ import static org.opengis.annotation.Specification.*;
  * @author ISO 19115
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
- * @since 1.1
+ * @since GeoAPI 1.1
  */
-@UML (identifier="CI_DateType", specification=ISO_19115)
+@UML(identifier="CI_DateType", specification=ISO_19115)
 public final class DateType extends CodeList<DateType> {
     /**
      * Serial number for compatibility with different versions.
@@ -46,19 +46,19 @@ public final class DateType extends CodeList<DateType> {
     /**
      * Date identifies when the resource was brought into existence.
      */
-    @UML (identifier="creation", obligation=CONDITIONAL, specification=ISO_19115)
+    @UML(identifier="creation", obligation=CONDITIONAL, specification=ISO_19115)
     public static final DateType CREATION = new DateType("CREATION");
 
     /**
      * Date identifies when the resource was issued.
      */
-    @UML (identifier="publication", obligation=CONDITIONAL, specification=ISO_19115)
+    @UML(identifier="publication", obligation=CONDITIONAL, specification=ISO_19115)
     public static final DateType PUBLICATION = new DateType("PUBLICATION");
 
     /**
      * Date identifies when the resource was examined or re-examined and improved or amended.
      */
-    @UML (identifier="revision", obligation=CONDITIONAL, specification=ISO_19115)
+    @UML(identifier="revision", obligation=CONDITIONAL, specification=ISO_19115)
     public static final DateType REVISION = new DateType("REVISION");
 
     /**

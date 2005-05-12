@@ -42,21 +42,21 @@ import static org.opengis.annotation.Specification.*;
  *
  * @see org.opengis.referencing.cs.CoordinateSystem
  * @see org.opengis.referencing.datum.Datum
- * @since 1.1
+ * @since GeoAPI 1.1
  */
-@UML (identifier="SC_SingleCRS", specification=ISO_19111)
+@UML(identifier="SC_SingleCRS", specification=ISO_19111)
 public interface SingleCRS extends CoordinateReferenceSystem {
     /**
      * Returns the coordinate system.
      *
      * @rename Expanded the "CS" abbreviation into "CoordinateSystem".
      */
-    @UML (identifier="usesCS", obligation=MANDATORY, specification=ISO_19111)
+    @UML(identifier="usesCS", obligation=MANDATORY, specification=ISO_19111)
     CoordinateSystem getCoordinateSystem();
 
     /**
      * Returns the datum.
      */
-    @UML (identifier="usesDatum", obligation=MANDATORY, specification=ISO_19111)
+    @UML(identifier="usesDatum", obligation=MANDATORY, specification=ISO_19111)
     Datum getDatum();
 }

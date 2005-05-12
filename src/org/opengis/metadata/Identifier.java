@@ -25,9 +25,9 @@ import static org.opengis.annotation.Specification.*;
  * @author ISO 19115
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
- * @since 1.1
+ * @since GeoAPI 1.1
  */
-@UML (identifier="MD_Identifier", specification=ISO_19115)
+@UML(identifier="MD_Identifier", specification=ISO_19115)
 public interface Identifier {
     /**
      * Key for the <code>{@value}</code> property to be given to the
@@ -59,14 +59,14 @@ public interface Identifier {
     /**
      * Alphanumeric value identifying an instance in the namespace.
      */
-    @UML (identifier="code", obligation=MANDATORY, specification=ISO_19115)
+    @UML(identifier="code", obligation=MANDATORY, specification=ISO_19115)
     String getCode();
 
     /**
      * Organization or party responsible for definition and maintenance of the
      * {@linkplain #getCode code}.
      */
-    @UML (identifier="authority", obligation=OPTIONAL, specification=ISO_19115)
+    @UML(identifier="authority", obligation=OPTIONAL, specification=ISO_19115)
     Citation getAuthority();
 
     /**
