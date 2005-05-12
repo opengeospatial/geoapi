@@ -223,6 +223,7 @@
     <copy todir="snapshot/sources">
       <fileset dir="snapshot/tiger/sources">
         <exclude name="**org/opengis/annotation/**"/>
+        <exclude name="**/package-info.java"/>
       </fileset>
     </copy>
     <replace dir=".">
@@ -234,6 +235,7 @@
       <replacefilter token="&lt;? extends SurfacePatch&gt;"/>
       <replacefilter token="&lt;ApplicationSchemaInformation&gt;"/>
       <replacefilter token="&lt;Arc&gt;"/>
+      <replacefilter token="&lt;AuthorityURL&gt;"/>
       <replacefilter token="&lt;AxisDirection&gt;"/>
       <replacefilter token="&lt;BrowseGraphic&gt;"/>
       <replacefilter token="&lt;ByteInValuePacking&gt;"/>
@@ -253,12 +255,14 @@
       <replacefilter token="&lt;Constraints&gt;"/>
       <replacefilter token="&lt;ContentInformation&gt;"/>
       <replacefilter token="&lt;CoordinateOperation&gt;"/>
+      <replacefilter token="&lt;CoordinateReferenceSystem&gt;"/>
       <replacefilter token="&lt;CoverageContentType&gt;"/>
       <replacefilter token="&lt;DataQuality&gt;"/>
       <replacefilter token="&lt;DataStore&gt;"/>
       <replacefilter token="&lt;DataStore,String&gt;"/>
       <replacefilter token="&lt;Datatype&gt;"/>
       <replacefilter token="&lt;DataType&gt;"/>
+      <replacefilter token="&lt;DataURL&gt;"/>
       <replacefilter token="&lt;Date&gt;"/>
       <replacefilter token="&lt;DateType&gt;"/>
       <replacefilter token="&lt;DateType,Date&gt;"/>
@@ -268,6 +272,7 @@
       <replacefilter token="&lt;Distributor&gt;"/>
       <replacefilter token="&lt;double[]&gt;"/>
       <replacefilter token="&lt;Element&gt;"/>
+      <replacefilter token="&lt;Envelope&gt;"/>
       <replacefilter token="&lt;EvaluationMethodType&gt;"/>
       <replacefilter token="&lt;ExtendedElementInformation&gt;"/>
       <replacefilter token="&lt;Extent&gt;"/>
@@ -277,6 +282,8 @@
       <replacefilter token="&lt;FeatureLayer&gt;"/>
       <replacefilter token="&lt;FeatureStore&gt;"/>
       <replacefilter token="&lt;FeatureStore,String&gt;"/>
+      <replacefilter token="&lt;FeatureStyle&gt;"/>
+      <replacefilter token="&lt;FeatureListURL&gt;"/>
       <replacefilter token="&lt;Filter&gt;"/>
       <replacefilter token="&lt;Format&gt;"/>
       <replacefilter token="&lt;GeneralParameterDescriptor&gt;"/>
@@ -290,7 +297,9 @@
       <replacefilter token="&lt;GeometricObjectType&gt;"/>
       <replacefilter token="&lt;Geometry&gt;"/>
       <replacefilter token="&lt;Graphic&gt;"/>
+      <replacefilter token="&lt;GraphicStyle&gt;"/>
       <replacefilter token="&lt;Identification&gt;"/>
+      <replacefilter token="&lt;Identifier&gt;"/>
       <replacefilter token="&lt;ImagingCondition&gt;"/>
       <replacefilter token="&lt;InternationalString&gt;"/>
       <replacefilter token="&lt;Keywords&gt;"/>
@@ -298,6 +307,7 @@
       <replacefilter token="&lt;Knot&gt;"/>
       <replacefilter token="&lt;KnotType&gt;"/>
       <replacefilter token="&lt;Layer&gt;"/>
+      <replacefilter token="&lt;LegendURL&gt;"/>
       <replacefilter token="&lt;LineSegment&gt;"/>
       <replacefilter token="&lt;LineString&gt;"/>
       <replacefilter token="&lt;Locale&gt;"/>
@@ -309,6 +319,7 @@
       <replacefilter token="&lt;MediumName&gt;"/>
       <replacefilter token="&lt;MetadataEntity&gt;"/>
       <replacefilter token="&lt;MetadataExtensionInformation&gt;"/>
+      <replacefilter token="&lt;MetadataURL&gt;"/>
       <replacefilter token="&lt;Number&gt;"/>
       <replacefilter token="&lt;Object&gt;"/>
       <replacefilter token="&lt;Obligation&gt;"/>
@@ -334,10 +345,12 @@
       <replacefilter token="&lt;QName&gt;"/>
       <replacefilter token="&lt;ReferenceSystem&gt;"/>
       <replacefilter token="&lt;Resolution&gt;"/>
+      <replacefilter token="&lt;Result&gt;"/>
       <replacefilter token="&lt;ResponsibleParty&gt;"/>
       <replacefilter token="&lt;Restriction&gt;"/>
       <replacefilter token="&lt;Ring&gt;"/>
       <replacefilter token="&lt;Role&gt;"/>
+      <replacefilter token="&lt;Rule&gt;"/>
       <replacefilter token="&lt;SampleDimensionType&gt;"/>
       <replacefilter token="&lt;ScopeCode&gt;"/>
       <replacefilter token="&lt;Source&gt;"/>
@@ -349,6 +362,7 @@
       <replacefilter token="&lt;String,Class&gt;"/>
       <replacefilter token="&lt;String,Object&gt;"/>
       <replacefilter token="&lt;String, ? extends Object&gt;"/>
+      <replacefilter token="&lt;Style&gt;"/>
       <replacefilter token="&lt;Surface&gt;"/>
       <replacefilter token="&lt;SurfaceInterpolation&gt;"/>
       <replacefilter token="&lt;SurfacePatch&gt;"/>
@@ -368,6 +382,7 @@
       <replacefilter token="@Extension"                    value="//@Extension"                    />
       <replacefilter token="@Deprecated"                   value="//@Deprecated"                   />
       <replacefilter token="@XmlSchema"                    value="//@XmlSchema"                    />
+      <replacefilter token="@XmlElement"                   value="//@XmlElement"                   />
       <replacefilter token="import static"                 value="//import static"                 />
       <replacefilter token="import org.opengis.annotation" value="//import org.opengis.annotation" />
 
@@ -437,7 +452,7 @@
              source           = "1.5"
              use              = "true"
              nodeprecatedlist = "false"
-             author           = "true"
+             author           = "false"
              version          = "true"
              breakiterator    = "true"
              noqualifier      = "all"
@@ -473,10 +488,15 @@
                     &lt;/FONT&gt;&lt;/TD&gt;&lt;/TR&gt;&lt;/TABLE&gt;"
              packages="org.opengis.go*"/>
 
-      <group title="&lt;TABLE WIDTH='100%'&gt;&lt;TR&gt;&lt;TD&gt;Feature, filter and styling
+      <group title="&lt;TABLE WIDTH='100%'&gt;&lt;TR&gt;&lt;TD&gt;Map server (layers &amp; styling)
+                    &lt;/TD&gt;&lt;TD ALIGN='right'&gt;&lt;FONT SIZE='-1' COLOR='Navy'&gt;ISO-19128
+                    &lt;/FONT&gt;&lt;/TD&gt;&lt;/TR&gt;&lt;/TABLE&gt;"
+             packages="org.opengis.layer*:org.opengis.sld*"/>
+
+      <group title="&lt;TABLE WIDTH='100%'&gt;&lt;TR&gt;&lt;TD&gt;Feature, filter
                     &lt;/TD&gt;&lt;TD ALIGN='right'&gt;&lt;FONT SIZE='-1' COLOR='Navy'&gt;(TODO)
                     &lt;/FONT&gt;&lt;/TD&gt;&lt;/TR&gt;&lt;/TABLE&gt;"
-             packages="org.opengis.feature*:org.opengis.filter*:org.opengis.layer*:org.opengis.sld*"/>
+             packages="org.opengis.feature*:org.opengis.filter*"/>
 
       <group title="&lt;TABLE WIDTH='100%'&gt;&lt;TR&gt;&lt;TD&gt;Geometry and topology
                     &lt;/TD&gt;&lt;TD ALIGN='right'&gt;&lt;FONT SIZE='-1' COLOR='Navy'&gt;ISO-19107

@@ -122,11 +122,11 @@ public final class ClassFinder implements FileFilter, Comparator<File> {
             if (name.equals("org") || name.equals("opengis")) {
                 return true;
             }
-            // Exclude the GO-1 interfaces for now, and internal packages.
+            // Excludes the GO-1 interfaces for now, and internal packages.
             if (name.equals("go") || name.equals("tools") || name.equals("annotation")) {
                 return false;
             }
-            // Exclude legacy interfaces.
+            // Excludes legacy interfaces.
             if (name.equals("pt") || name.equals("cs") || name.equals("ct") ||
                 name.equals("cv") || name.equals("gc") || name.equals("gp"))
             {
@@ -137,6 +137,9 @@ public final class ClassFinder implements FileFilter, Comparator<File> {
             if (name.startsWith("SimpleEnumerationType")) {
                 return false;
             }
+        }
+        if (name.equals("package-info.class")) {
+            return false;
         }
         return name.endsWith(".class");
     }

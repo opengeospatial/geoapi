@@ -124,6 +124,7 @@ public final class RevisitTaglet extends SimpleTaglet {
      *
      * @deprecated This is a legacy code for J2SE 1.4.2 standard doclet.
      */
+    @Deprecated
     public String toString(final Tag tag) {
         return toString(tag, null);
     }
@@ -137,6 +138,7 @@ public final class RevisitTaglet extends SimpleTaglet {
      *
      * @deprecated This is a legacy code for J2SE 1.4.2 standard doclet.
      */
+    @Deprecated
     public String toString(final Tag tag, final HtmlDocletWriter html) {
         return toString(new Tag[] {tag}, html);
     }
@@ -147,6 +149,7 @@ public final class RevisitTaglet extends SimpleTaglet {
      *
      * @deprecated This is a legacy code for J2SE 1.4.2 standard doclet.
      */
+    @Deprecated
     public String toString(final Tag[] tags) {
         return toString(tags, null);
     }
@@ -160,6 +163,7 @@ public final class RevisitTaglet extends SimpleTaglet {
      *
      * @deprecated This is a legacy code for J2SE 1.4.2 standard doclet.
      */
+    @Deprecated
     public String toString(final Tag[] tags, final HtmlDocletWriter html) {
         if (tags.length == 0) {
             return null;
