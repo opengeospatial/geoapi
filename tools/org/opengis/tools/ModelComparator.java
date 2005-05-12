@@ -17,6 +17,7 @@ import java.lang.reflect.*;
 // OpenGIS dependencies
 import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
+import org.opengis.annotation.XmlElement;
 import org.opengis.annotation.Specification;
 import org.opengis.parameter.ParameterValueGroup;
 import org.opengis.parameter.ParameterDescriptorGroup;
@@ -35,6 +36,16 @@ public class ModelComparator {
      * The line separator.
      */
     private static final String lineSeparator = System.getProperty("line.separator", "\n");
+
+    /**
+     * The string to use for classes/methods adapted from legacy specifications.
+     */
+    private static final String LEGACY = "(none - adapted from legacy OGC specification)";
+
+    /**
+     * The string to use for classes/methods that are GeoAPI extension.
+     */
+    private static final String EXTENSION = "(none - this is a GeoAPI extension)";
 
     /**
      * Do not allows instances of this class.
@@ -147,11 +158,13 @@ public class ModelComparator {
                 classes.write(classname);
                 classes.write("</A></CODE></TD>");
                 classes.write("<TD><CODE>&nbsp;&nbsp;");
-                if (identifier != null) {
+                if (identifier!=LEGACY && identifier!=EXTENSION) {
                     classes.write(identifier);
                     classes.write("</CODE></TD>");
                 } else {
-                    classes.write("</CODE><FONT SIZE='-1' COLOR='#808080'>(none)</FONT></TD>");
+                    classes.write("</CODE><FONT SIZE='-1' COLOR='#808080'>");
+                    classes.write(identifier);
+                    classes.write("</FONT></TD>");
                 }
                 classes.write("</TR>");
                 classes.write(lineSeparator);
@@ -194,6 +207,9 @@ scanMembers:for (final Member attribute : attributes) {
                     /*
                      * No UML identifier. Doesn't mind if this method overrides
                      * a method defined in super interface.
+                     *
+                     * TODO: We shouldn't not! Annotation should contains @Inherit
+                     *       if we want to do so.
                      */
                     for (final Class parent : classe.getInterfaces()) {
                         try {
@@ -225,11 +241,13 @@ scanMembers:for (final Member attribute : attributes) {
                 members.write(name);
                 members.write("</CODE></TD>");
                 members.write("<TD><CODE>&nbsp;&nbsp;");
-                if (identifier != null) {
+                if (identifier!=LEGACY && identifier!=EXTENSION) {
                     members.write(identifier);
                     members.write("</CODE>");
                 } else {
-                    members.write("</CODE><FONT SIZE='-1' COLOR='#808080'>(none)</FONT>");
+                    members.write("</CODE><FONT SIZE='-1' COLOR='#808080'>");
+                    members.write(identifier);
+                    members.write("</FONT>");
                 }
                 members.write("</TD></TR>");
                 members.write(lineSeparator);
@@ -256,24 +274,31 @@ scanMembers:for (final Member attribute : attributes) {
      * if the specified element is not part of the UML model.
      */
     private static String getIdentifier(final AnnotatedElement element) {
+        String identifier;
         final UML uml = element.getAnnotation(UML.class);
         if (uml != null) {
             switch (uml.specification()) {
-                case OGC_01_009: return null;
+                case OGC_01009: return LEGACY;
             }
-            String identifier = uml.identifier();
-            /*
-             * If there is two or more UML identifier collapsed in only one
-             * Java method, keep only the first identifier (which is usually
-             * the main attribute).
-             */
-            final int split = identifier.indexOf(',');
-            if (split >= 0) {
-                identifier = identifier.substring(0, split);
+            identifier = uml.identifier();
+        } else {
+            final XmlElement xml = element.getAnnotation(XmlElement.class);
+            if (xml != null) {
+                identifier = xml.name();
+            } else {
+                return EXTENSION;
             }
-            return identifier;
         }
-        return null;
+        /*
+         * If there is two or more UML identifiers collapsed in only one
+         * Java method, keep only the first identifier (which is usually
+         * the main attribute).
+         */
+        final int split = identifier.indexOf(',');
+        if (split >= 0) {
+            identifier = identifier.substring(0, split);
+        }
+        return identifier;
     }
 
     /**
@@ -297,18 +322,18 @@ scanMembers:for (final Member attribute : attributes) {
      * except if the second character is upper case as well. In this later case,
      * we assume that the name contains an upper-case acronym.
      */
-    private static String firstCharAsLowerCase(final String name, final int start) {
+    private static String firstCharAsLowerCase(final String name) {
         final int length = name.length();
-        if (length >= start+2) {
-            final char c = name.charAt(start);
-            if (Character.isUpperCase(c) && Character.isLowerCase(name.charAt(start+1))) {
+        if (length >= 2) {
+            final char c = name.charAt(0);
+            if (Character.isUpperCase(c) && Character.isLowerCase(name.charAt(1))) {
                 final StringBuilder buffer = new StringBuilder(length);
                 buffer.append(Character.toLowerCase(c));
-                buffer.append(name.substring(start+1));
+                buffer.append(name.substring(1));
                 return buffer.toString();
             }
         }
-        return name.substring(start);
+        return name;
     }
 
     /**
@@ -351,25 +376,32 @@ scanMembers:for (final Member attribute : attributes) {
          * Omit the "uses" or "includes" prefix used for associations in the UML.
          */
         if (ogc.startsWith("uses")) {
-            ogc = firstCharAsLowerCase(ogc.substring(4), 0);
+            ogc = firstCharAsLowerCase(ogc.substring(4));
         } else if (ogc.startsWith("includes")) {
-            ogc = firstCharAsLowerCase(ogc.substring(8), 0);
+            ogc = firstCharAsLowerCase(ogc.substring(8));
         }
         /*
          * GeoAPI usually (but not always) contains a 'get' prefix.
          * This prefix is optional. The case for the first remaining
          * character is adjusted (usually to a lower case).
          */
+        final boolean startWithLowerCase = Character.isLowerCase(ogc.charAt(0));
         final Class returnType = method.getReturnType();
         if (returnType.equals(Boolean.TYPE) || returnType.equals(Boolean.class)) {
             if (geoapi.startsWith("is") && !ogc.startsWith("is")) {
-                geoapi = firstCharAsLowerCase(geoapi, 2);
+                geoapi = geoapi.substring(2);
+                if (startWithLowerCase) {
+                    geoapi = firstCharAsLowerCase(geoapi);
+                }
             }            
         } else {
             if ((geoapi.startsWith("get") && !ogc.startsWith("get")) ||
                 (geoapi.startsWith("set") && !ogc.startsWith("set")))
             {
-                geoapi = firstCharAsLowerCase(geoapi, 3);
+                geoapi = geoapi.substring(3);
+                if (startWithLowerCase) {
+                    geoapi = firstCharAsLowerCase(geoapi);
+                }
             }
         }
         /*
@@ -413,7 +445,7 @@ scanMembers:for (final Member attribute : attributes) {
      * name change is not significant. Returns <code>false</code> otherwise.
      */
     private static boolean compareCodeName(final Field method, String geoapi, String ogc) {
-        ogc = firstCharAsLowerCase(dropPrefix(ogc), 0);
+        ogc = firstCharAsLowerCase(dropPrefix(ogc));
         /*
          * GeoAPI constants are always in upper-case.
          */
