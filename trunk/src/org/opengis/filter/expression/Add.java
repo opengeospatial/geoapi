@@ -23,6 +23,6 @@ import org.opengis.annotation.XmlElement;
  * @version <A HREF="http://www.opengis.org/docs/02-059.pdf">Implementation specification 1.0</A>
  * @since GeoAPI 1.1
  */
-@XmlElement(name="Add")
+@XmlElement("Add")
 public interface Add extends BinaryExpression {
 }

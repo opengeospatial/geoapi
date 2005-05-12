@@ -21,7 +21,7 @@ import org.opengis.annotation.XmlElement;
  * @version <A HREF="http://www.opengis.org/docs/02-059.pdf">Implementation specification 1.0</A>
  * @since GeoAPI 1.1
  */
-@XmlElement(name="PropertyName")
+@XmlElement("PropertyName")
 public interface PropertyName extends Expression {
     /**
      * Returns the name of the property whose value will be returned by the

@@ -25,12 +25,12 @@ import static org.opengis.annotation.Obligation.*;
  * @version <A HREF="http://www.opengis.org/docs/02-059.pdf">Implementation specification 1.0</A>
  * @since GeoAPI 1.1
  */
-@XmlElement(name="FeatureId")
+@XmlElement("FeatureId")
 public interface FeatureId extends Filter {
     /**
      * Returns a {@linkplain Set} containing the IDs of {@linkplain org.opengis.feature.Feature features}
      * that will pass this filter.
      */
-    @XmlElement(name="fid", obligation=MANDATORY)
+    @XmlElement("fid")
     Set<String> getIDs();
 }

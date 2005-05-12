@@ -32,20 +32,20 @@ import static org.opengis.annotation.Obligation.*;
  * @version <A HREF="http://www.opengis.org/docs/02-059.pdf">Implementation specification 1.0</A>
  * @since GeoAPI 1.1
  */
-@XmlElement(name="PropertyIsLike")
+@XmlElement("PropertyIsLike")
 public interface PropertyIsLike extends Filter {
     /**
      * Returns the expression whose value will be compared against the wildcard-
      * containing string provided by the getLiteral() method.
      */
-    @XmlElement(name="PropertyName", obligation=MANDATORY)
+    @XmlElement("PropertyName")
     Expression getExpression();
 
     /**
      * Returns the wildcard-containing string that will be used to check the
      * feature's properties.
      */
-    @XmlElement(name="Literal", obligation=MANDATORY)
+    @XmlElement("Literal")
     String getLiteral();
 
     /**
@@ -53,7 +53,7 @@ public interface PropertyIsLike extends Filter {
      * object to match any sequence of characters.  The default value for this
      * property is the one character string "%".
      */
-    @XmlElement(name="wildCard", obligation=MANDATORY)
+    @XmlElement("wildCard")
     String getWildCard();
 
     /**
@@ -61,7 +61,7 @@ public interface PropertyIsLike extends Filter {
      * object to match exactly one character.  The default value for this
      * property is the one character string "_".
      */
-    @XmlElement(name="singleChar", obligation=MANDATORY)
+    @XmlElement("singleChar")
     String getSingleChar();
 
     /**
@@ -70,6 +70,6 @@ public interface PropertyIsLike extends Filter {
      * should be matched literally in the content of the feature's property.
      * The default value for this property is the single character "'".
      */
-    @XmlElement(name="escape", obligation=MANDATORY)
+    @XmlElement("escape")
     String getEscape();
 }

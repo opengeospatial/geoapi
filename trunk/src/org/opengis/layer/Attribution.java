@@ -27,14 +27,14 @@ import static org.opengis.annotation.Obligation.*;
  * @version <A HREF="http://portal.opengeospatial.org/files/?artifact_id=5316">Implementation specification 1.3</A>
  * @since GeoAPI 1.1
  */
-@XmlElement(name="Attribution") // 7.2.4.6.12 Attribution
+@XmlElement("Attribution") // 7.2.4.6.12 Attribution
 public interface Attribution {
     /**
      * Provides the human-readable string naming the data provider.
      *
      * @return the human-readable name of the data provider.
      */
-    @XmlElement(name="Title", obligation=OPTIONAL)
+    @XmlElement("Title")
     InternationalString getTitle();
     
     /**
@@ -42,7 +42,7 @@ public interface Attribution {
      *
      * @return the linkage to the data provider.
      */
-    @XmlElement(name="OnlineResource", obligation=OPTIONAL)
+    @XmlElement("OnlineResource")
     OnLineResource getOnlineResource();
     
     /**
@@ -50,6 +50,6 @@ public interface Attribution {
      *
      * @return linkage to the logo image.
      */
-    @XmlElement(name="LogoURL", obligation=OPTIONAL)
+    @XmlElement("LogoURL")
     LogoURL getLogoURL();
 }

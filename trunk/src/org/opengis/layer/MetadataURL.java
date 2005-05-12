@@ -22,7 +22,7 @@ import static org.opengis.annotation.Obligation.*;
  * @version <A HREF="http://portal.opengeospatial.org/files/?artifact_id=5316">Implementation specification 1.3</A>
  * @since GeoAPI 1.1
  */
-@XmlElement(name="MetadataURL") // 7.2.4.6.11 MetadataURL
+@XmlElement("MetadataURL") // 7.2.4.6.11 MetadataURL
 public interface MetadataURL extends AbstractURL {
     /**
      * Provides the standard to which the metadata compiles.
@@ -33,6 +33,6 @@ public interface MetadataURL extends AbstractURL {
      * <ul>
      * An information community may define meanings for other values.
      */
-    @XmlElement(name="type", obligation=MANDATORY)
+    @XmlElement("type")
     String getType();
 }

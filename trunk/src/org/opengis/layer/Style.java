@@ -33,14 +33,14 @@ import static org.opengis.annotation.Obligation.*;
  * @version <A HREF="http://portal.opengeospatial.org/files/?artifact_id=5316">Implementation specification 1.3</A>
  * @since GeoAPI 1.1
  */
-@XmlElement(name="Style")
+@XmlElement("Style")
 public interface Style {
     /**
      * Provides a unique name for identifying this {@code Style}.
      *
      * @return this {@code Style}'s name.
      */
-    @XmlElement(name="Name", obligation=MANDATORY)
+    @XmlElement("Name")
     String getName();
     
     /**
@@ -48,7 +48,7 @@ public interface Style {
      *
      * @return this {@code Style}'s title.
      */
-    @XmlElement(name="Title", obligation=MANDATORY)
+    @XmlElement("Title")
     InternationalString getTitle();
     
     /**
@@ -56,7 +56,7 @@ public interface Style {
      *
      * @return this {@code Style}'s narrative description.
      */
-    @XmlElement(name="Abstract", obligation=OPTIONAL)
+    @XmlElement("Abstract")
     InternationalString getAbstract();
     
     /**
@@ -64,7 +64,7 @@ public interface Style {
      *
      * @return the linkage to this {@code Style}'s map legend image.
      */
-    @XmlElement(name="LegendURL", obligation=OPTIONAL)
+    @XmlElement("LegendURL")
     List<LegendURL> getLegendURLs();
     
     /**
@@ -72,7 +72,7 @@ public interface Style {
      *
      * @return the linkage to this {@code Style}'s symbology information.
      */
-    @XmlElement(name="StyleSheetURL", obligation=OPTIONAL)
+    @XmlElement("StyleSheetURL")
     StyleSheetURL getStyleSheetURL();
     
     /**
@@ -81,7 +81,7 @@ public interface Style {
      *
      * @return the linkage to more info about this {@code Style}'s data or symbology.
      */
-    @XmlElement(name="StyleURL", obligation=OPTIONAL)
+    @XmlElement("StyleURL")
     StyleURL getStyleURL();
     
     /**

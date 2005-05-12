@@ -23,13 +23,13 @@ import static org.opengis.annotation.Obligation.*;
  * @version <A HREF="http://www.opengis.org/docs/02-059.pdf">Implementation specification 1.0</A>
  * @since GeoAPI 1.1
  */
-@XmlElement(name="DistanceBufferType")
+@XmlElement("DistanceBufferType")
 public interface DistanceBufferOperator extends BinarySpatialOperator {
     /**
      * Returns the buffer distance around the geometry that will be used when
      * comparing features' geometries.
      */
-    @XmlElement(name="Distance", obligation=MANDATORY)
+    @XmlElement("Distance")
     double getDistance();
 
     /**

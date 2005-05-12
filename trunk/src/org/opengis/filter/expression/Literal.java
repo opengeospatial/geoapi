@@ -22,7 +22,7 @@ import org.opengis.annotation.XmlElement;
  * @version <A HREF="http://www.opengis.org/docs/02-059.pdf">Implementation specification 1.0</A>
  * @since GeoAPI 1.1
  */
-@XmlElement(name="Literal")
+@XmlElement("Literal")
 public interface Literal extends Expression {
     /**
      * Returns the constant value held by this object.

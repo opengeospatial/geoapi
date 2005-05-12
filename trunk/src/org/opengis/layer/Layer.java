@@ -52,7 +52,7 @@ import static org.opengis.annotation.Obligation.*;
  * @version <A HREF="http://portal.opengeospatial.org/files/?artifact_id=5316">Implementation specification 1.3</A>
  * @since GeoAPI 1.1
  */
-@XmlElement(name="Layer") // 7.2.4.5 Layers and styles
+@XmlElement("Layer") // 7.2.4.5 Layers and styles
 public interface Layer {    
     /**
      * Provides a unique name for identifying this {@code Layer}. If, and only if, a layer has a
@@ -69,7 +69,7 @@ public interface Layer {
      *
      * @return the unique string identifier for this {@code Layer}.
      */
-    @XmlElement(name="Name", obligation=OPTIONAL) // 7.2.4.6.3
+    @XmlElement("Name") // 7.2.4.6.3
     String getName();
 
     /**
@@ -79,7 +79,7 @@ public interface Layer {
      *
      * @return the human-readable title for this {@code Layer}.
      */
-    @XmlElement(name="Title", obligation=MANDATORY) // 7.2.4.6.2
+    @XmlElement("Title") // 7.2.4.6.2
     InternationalString getTitle();
 
     /** 
@@ -90,7 +90,7 @@ public interface Layer {
      *
      * @return the narrative description of this {@code Layer}.
      */
-    @XmlElement(name="Abstract", obligation=OPTIONAL) // 7.2.4.6.4
+    @XmlElement("Abstract") // 7.2.4.6.4
     InternationalString getAbstract();
 
     /**
@@ -105,7 +105,7 @@ public interface Layer {
      * 
      * @return this {@code Layer}'s keyword list.
      */
-    @XmlElement(name="KeywordList", obligation=OPTIONAL) // 7.2.4.6.4
+    @XmlElement("KeywordList") // 7.2.4.6.4
     List<InternationalString> getKeywordList();
 
     /**
@@ -126,7 +126,7 @@ public interface Layer {
      *
      * @return this {@code Layer}'s coordinate reference systems.
      */
-    @XmlElement(name="CRS", obligation=OPTIONAL) // 7.2.4.6.7
+    @XmlElement("CRS") // 7.2.4.6.7
     Set<CoordinateReferenceSystem> getCRSs();
 
     /**
@@ -167,7 +167,7 @@ public interface Layer {
      *
      * @return this {@code Layer}'s bounding box envelopes.
      */
-    @XmlElement(name="BoundingBox", obligation=OPTIONAL)  // 7.2.4.6.8
+    @XmlElement("BoundingBox")  // 7.2.4.6.8
     Collection<Envelope> getBoundingBoxes();
 
     /**
@@ -189,7 +189,7 @@ public interface Layer {
      * bounding box information in the CRS:84 CRS, then a separate bounding box element explicitly
      * naming CRS:84 shall be included in the service metadata.
      */
-//  @XmlElement(name="GeographicBoundingBox", obligation=OPTIONAL)  // 7.2.4.6.6
+//  @XmlElement("GeographicBoundingBox")  // 7.2.4.6.6
 //  GeographicBoundingBox getGeographicBoundingBox();
 
     /**
@@ -202,7 +202,7 @@ public interface Layer {
      * 
      * @return this {@code Layer}'s attribution.
      */
-    @XmlElement(name="Attribution", obligation=OPTIONAL) // 7.2.4.6.12
+    @XmlElement("Attribution") // 7.2.4.6.12
     Attribution getAttribution();
 
     /**
@@ -215,7 +215,7 @@ public interface Layer {
      * 
      * @return this {@code Layer}'s authority URLs.
      */
-    @XmlElement(name="AuthorityURL", obligation=OPTIONAL) // 7.2.4.6.13
+    @XmlElement("AuthorityURL") // 7.2.4.6.13
     List<AuthorityURL> getAuthorityURLs();
 
     /**
@@ -228,7 +228,7 @@ public interface Layer {
      *    
      * @return this {@code Layer}'s identifiers.
      */
-    @XmlElement(name="Identifier", obligation=OPTIONAL) // 7.2.4.6.13
+    @XmlElement("Identifier") // 7.2.4.6.13
     List<Identifier> getIdentifiers();
 
     /**
@@ -240,7 +240,7 @@ public interface Layer {
      * 
      * @return this {@code Layer}'s metadata URLs.
      */
-    @XmlElement(name="MetadataURL", obligation=OPTIONAL) // 7.2.4.6.11
+    @XmlElement("MetadataURL") // 7.2.4.6.11
     List<MetadataURL> getMetadataURLs();
 
     /**
@@ -252,7 +252,7 @@ public interface Layer {
      *
      * @return this {@code Layer}'s data URLs.
      */
-    @XmlElement(name="DataURL", obligation=OPTIONAL) // 7.2.4.6.15
+    @XmlElement("DataURL") // 7.2.4.6.15
     List<DataURL> getDataURLs();
 
     /**
@@ -264,7 +264,7 @@ public interface Layer {
      * 
      * @return this {@code Layer}'s feature list URLs.
      */
-    @XmlElement(name="FeatureListURL", obligation=OPTIONAL) // 7.2.4.6.14
+    @XmlElement("FeatureListURL") // 7.2.4.6.14
     List<FeatureListURL> getFeatureListURLs();
 
     /**
@@ -285,7 +285,7 @@ public interface Layer {
      * 
      * @return this {@code Layer}'s styles.
      */
-    @XmlElement(name="Style", obligation=OPTIONAL) // 7.2.4.6.5
+    @XmlElement("Style") // 7.2.4.6.5
     List<Style> getStyles();
 
     /**
@@ -296,7 +296,7 @@ public interface Layer {
      *
      * @return the minimum scale denominator, inclusive.
      */
-    @XmlElement(name="MinScaleDenominator", obligation=OPTIONAL) // 7.2.4.6.9 
+    @XmlElement("MinScaleDenominator") // 7.2.4.6.9 
     double getMinScaleDenominator();
 
     /**
@@ -307,7 +307,7 @@ public interface Layer {
      *
      * @return the maximum scale denominator, exclusive.
      */
-    @XmlElement(name="MaxScaleDenominator", obligation=OPTIONAL) // 7.2.4.6.9
+    @XmlElement("MaxScaleDenominator") // 7.2.4.6.9
     double getMaxScaleDenominator();
 
     /**
@@ -329,7 +329,7 @@ public interface Layer {
      *
      * @return {@code true} if this {@code Layer} supports {@code GetFeatureInfo}.
      */
-    @XmlElement(name="queryable", obligation=OPTIONAL) // 7.2.4.7.2
+    @XmlElement("queryable") // 7.2.4.7.2
     boolean isQueryable();
 
     /**
@@ -345,7 +345,7 @@ public interface Layer {
      *
      * @return how many times this {@code Layer} has been cascaded.
      */
-    @XmlElement(name="cascaded") // 7.2.4.7.3
+    @XmlElement("cascaded") // 7.2.4.7.3
     int getCascaded();
 
     /**
@@ -367,7 +367,7 @@ public interface Layer {
      *
      * @return {@code true} if this {@code Layer}'s data is mostly opaque.
      */
-    @XmlElement(name="opaque") // 7.2.4.7.4
+    @XmlElement("opaque") // 7.2.4.7.4
     boolean isOpaque();
 
     /**
@@ -380,7 +380,7 @@ public interface Layer {
      *
      * @return {@code true} if this {@code Layer} is not able to display subsets.
      */
-    @XmlElement(name="noSubsets") // 7.2.4.7.5
+    @XmlElement("noSubsets") // 7.2.4.7.5
     boolean isNoSubsets();
 
     /**
@@ -390,7 +390,7 @@ public interface Layer {
      *
      * @return the fixed width of this {@code Layer}, or 0 if the width is not fixed.
      */
-    @XmlElement(name="fixedWidth") // 7.2.4.7.5
+    @XmlElement("fixedWidth") // 7.2.4.7.5
     int getFixedWidth();
 
     /**
@@ -400,7 +400,7 @@ public interface Layer {
      *
      * @return the fixed height of this {@code Layer}, or 0 if the height is not fixed.
      */
-    @XmlElement(name="fixedHeight") // 7.2.4.7.5
+    @XmlElement("fixedHeight") // 7.2.4.7.5
     int getFixedHeight();
 
     //*************************************************************************

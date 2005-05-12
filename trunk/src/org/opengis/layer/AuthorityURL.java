@@ -27,7 +27,7 @@ import static org.opengis.annotation.Obligation.*;
  * @version <A HREF="http://portal.opengeospatial.org/files/?artifact_id=5316">Implementation specification 1.3</A>
  * @since GeoAPI 1.1
  */
-@XmlElement(name="AuthorityURL") // 7.2.4.6.13 Identifier and AuthorityURL
+@XmlElement("AuthorityURL") // 7.2.4.6.13 Identifier and AuthorityURL
 public interface AuthorityURL {
     /**
      * Provides the name of this {@code AuthorityURL} which may be referenced
@@ -35,7 +35,7 @@ public interface AuthorityURL {
      *
      * @return this {@code AuthorityURL}'s name.
      */
-    @XmlElement(name="Name", obligation=MANDATORY)
+    @XmlElement("Name")
     String getName();
     
     /**
@@ -44,6 +44,6 @@ public interface AuthorityURL {
      *
      * @return the linkage to the {@code Identifier} value defining document.
      */
-    @XmlElement(name="OnlineResource", obligation=MANDATORY)
+    @XmlElement("OnlineResource")
     OnLineResource getOnlineResource();
 }

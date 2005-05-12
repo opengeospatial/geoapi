@@ -37,13 +37,5 @@ public @interface XmlElement {
     /**
      * The name of the element in the XML schema.
      */
-    String name();
-
-    /**
-     * The obligation declared in the XML schema. This metadata can be queried in order to
-     * determine if at least one element is required for the annotated method or not. If the
-     * obligation is {@link Obligation#MANDATORY}, then null value or empty collection are not
-     * allowed.
-     */
-    Obligation obligation() default Obligation.MANDATORY;    
+    String value();
 }

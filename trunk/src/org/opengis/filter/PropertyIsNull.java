@@ -26,11 +26,11 @@ import static org.opengis.annotation.Obligation.*;
  * @version <A HREF="http://www.opengis.org/docs/02-059.pdf">Implementation specification 1.0</A>
  * @since GeoAPI 1.1
  */
-@XmlElement(name="PropertyIsNull")
+@XmlElement("PropertyIsNull")
 public interface PropertyIsNull extends Filter {
     /**
      * Returns the expression whose value will be checked for {@code null}.
      */
-    @XmlElement(name="PropertyName", obligation=MANDATORY)
+    @XmlElement("PropertyName")
     Expression getExpression();
 }
