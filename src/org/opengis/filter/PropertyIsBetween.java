@@ -24,23 +24,23 @@ import static org.opengis.annotation.Obligation.*;
  * @version <A HREF="http://www.opengis.org/docs/02-059.pdf">Implementation specification 1.0</A>
  * @since GeoAPI 1.1
  */
-@XmlElement(name="PropertyIsBetween")
+@XmlElement("PropertyIsBetween")
 public interface PropertyIsBetween extends Filter {
     /**
      * Returns the expression to be compared by this operator.
      */
-    @XmlElement(name="expression", obligation=MANDATORY)
+    @XmlElement("expression")
     Expression getExpression();
 
     /**
      * Returns the lower bounds (inclusive) an an expression.
      */
-    @XmlElement(name="LowerBoundary", obligation=MANDATORY)
+    @XmlElement("LowerBoundary")
     Expression getLowerBoundary();
 
     /**
      * Returns the upper bounds (inclusive) as an expression.
      */
-    @XmlElement(name="UpperBoundary", obligation=MANDATORY)
+    @XmlElement("UpperBoundary")
     Expression getUpperBoundary();
 }

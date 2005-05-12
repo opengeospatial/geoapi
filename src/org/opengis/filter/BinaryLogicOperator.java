@@ -25,7 +25,7 @@ import org.opengis.annotation.XmlElement;
  * @version <A HREF="http://www.opengis.org/docs/02-059.pdf">Implementation specification 1.0</A>
  * @since GeoAPI 1.1
  */
-@XmlElement(name="BinaryLogicOpType")
+@XmlElement("BinaryLogicOpType")
 public interface BinaryLogicOperator extends Filter {
     /**
      * Returns a list containing all of the child filters of this object.  This

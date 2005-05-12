@@ -27,7 +27,7 @@ import static org.opengis.annotation.Obligation.*;
  * @version <A HREF="http://www.opengis.org/docs/02-070.pdf">Implementation specification 1.0</A>
  * @since GeoAPI 1.1
  */
-@XmlElement(name="FeatureTypeStyle")
+@XmlElement("FeatureTypeStyle")
 public interface FeatureStyle {
     /**
      * Returns a name for this style.
@@ -35,7 +35,7 @@ public interface FeatureStyle {
      * canvas.  It is not meant to be human-friendly.  (The "title" property is
      * meant to be human friendly.)
      */
-    @XmlElement(name="Name", obligation=OPTIONAL)
+    @XmlElement("Name")
     public String getName();
 
     /**
@@ -43,7 +43,7 @@ public interface FeatureStyle {
      *
      * @see #getName
      */
-    @XmlElement(name="Name", obligation=OPTIONAL)
+    @XmlElement("Name")
     public void setName(String name);
 
     /**
@@ -51,7 +51,7 @@ public interface FeatureStyle {
      * This can be any string, but should be fairly short as it is intended to
      * be used in list boxes or drop down menus or other selection interfaces.
      */
-    @XmlElement(name="Title", obligation=OPTIONAL)
+    @XmlElement("Title")
     public InternationalString getTitle();
     
     /**
@@ -59,14 +59,14 @@ public interface FeatureStyle {
      *
      * @see #getTitle
      */
-    @XmlElement(name="Title", obligation=OPTIONAL)
+    @XmlElement("Title")
     public void setTitle(InternationalString title);
 
     /**
      * Returns a human readable, prose description of this style.
      * This can be any string and can consist of any amount of text.
      */
-    @XmlElement(name="Abstract", obligation=OPTIONAL)
+    @XmlElement("Abstract")
     public InternationalString getAbstract();
     
     /**
@@ -74,7 +74,7 @@ public interface FeatureStyle {
      *
      * @see #getAbstract
      */
-    @XmlElement(name="Abstract", obligation=OPTIONAL)
+    @XmlElement("Abstract")
     public void setAbstract(InternationalString abs);
 
     /**
@@ -82,7 +82,7 @@ public interface FeatureStyle {
      * upon.  This may return null if a style can operate on many different
      * feature types.
      */
-    @XmlElement(name="FeatureTypeName", obligation=OPTIONAL)
+    @XmlElement("FeatureTypeName")
     public String getFeatureTypeName();
 
     /**
@@ -90,7 +90,7 @@ public interface FeatureStyle {
      *
      * @see #getFeatureTypeName
      */
-    @XmlElement(name="FeatureTypeName", obligation=OPTIONAL)
+    @XmlElement("FeatureTypeName")
     public void setFeatureTypeName(String featureTypeName);
 
     /**
@@ -111,7 +111,7 @@ public interface FeatureStyle {
      * The returned list is the "live" list and can be modified, both by adding and
      * removing rules. This is why there is no {@code setSemanticTypeIdentifiers} method.
      */
-    @XmlElement(name="SemanticTypeIdentifier", obligation=OPTIONAL)
+    @XmlElement("SemanticTypeIdentifier")
     public List<String> getSemanticTypeIdentifiers();
 
     /**

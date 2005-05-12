@@ -23,7 +23,7 @@ import org.opengis.annotation.XmlElement;
  * @version <A HREF="http://www.opengis.org/docs/02-059.pdf">Implementation specification 1.0</A>
  * @since GeoAPI 1.1
  */
-@XmlElement(name="Function")
+@XmlElement("Function")
 public interface Function extends Expression {
     /**
      * Returns the name of the function to be called.  For example, this might

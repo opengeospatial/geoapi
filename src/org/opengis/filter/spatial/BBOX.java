@@ -24,14 +24,14 @@ import static org.opengis.annotation.Obligation.*;
  * @version <A HREF="http://www.opengis.org/docs/02-059.pdf">Implementation specification 1.0</A>
  * @since GeoAPI 1.1
  */
-@XmlElement(name="BBOX")
+@XmlElement("BBOX")
 public interface BBOX extends SpatialOperator {
     /**
      * Returns the name of the geometric property that will be used in this
      * spatial operator.  This may be null if the default spatial property is
      * to be used.
      */
-    @XmlElement(name="PropertyName", obligation=MANDATORY)
+    @XmlElement("PropertyName")
     String getPropertyName();
 
     /**
