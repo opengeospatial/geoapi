@@ -20,7 +20,7 @@ import org.opengis.annotation.Extension;
  * <p align="center"><img src="../doc-files/CylindricalProjection.png"></p>
  *
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
- * @since 1.0
+ * @since GeoAPI 1.0
  *
  * @see org.opengis.referencing.crs.ProjectedCRS
  * @see <A HREF="http://mathworld.wolfram.com/CylindricalProjection.html">Cylindrical projection on MathWorld</A>

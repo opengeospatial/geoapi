@@ -27,14 +27,14 @@ import static org.opengis.annotation.Specification.*;
  * @author ISO/DIS 19107
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-101.pdf">Abstract specification 5</A>
- * @since 1.1
+ * @since GeoAPI 1.1
  */
-@UML (identifier="GM_Placement", specification=ISO_19107)
+@UML(identifier="GM_Placement", specification=ISO_19107)
 public interface Placement {
     /**
      * Return the dimension of the input parameter space.
      */
-    @UML (identifier="inDimension", obligation=MANDATORY, specification=ISO_19107)
+    @UML(identifier="inDimension", obligation=MANDATORY, specification=ISO_19107)
     public int getInDimension();
 
     /**
@@ -44,7 +44,7 @@ public interface Placement {
      * probably singular, and may be replaceable by a simpler one from a smaller dimension
      * parameter space.
      */
-    @UML (identifier="outDimension", obligation=MANDATORY, specification=ISO_19107)
+    @UML(identifier="outDimension", obligation=MANDATORY, specification=ISO_19107)
     public int getOutDimension();
 
     /**
@@ -53,6 +53,6 @@ public interface Placement {
      * @param in Input coordinate points. The length of this vector must be equals to {@link #getInDimension inDimension}.
      * @return The output coordinate points. The length of this vector is equals to {@link #getOutDimension outDimension}.
      */
-    @UML (identifier="transform", obligation=MANDATORY, specification=ISO_19107)
+    @UML(identifier="transform", obligation=MANDATORY, specification=ISO_19107)
     public double[] transform (double[] in);
 }

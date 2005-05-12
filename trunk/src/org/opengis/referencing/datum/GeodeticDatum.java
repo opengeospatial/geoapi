@@ -23,22 +23,22 @@ import static org.opengis.annotation.Specification.*;
  * @author ISO 19111
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/03-073r1.zip">Abstract specification 2.0</A>
- * @since 1.0
+ * @since GeoAPI 1.0
  *
  * @see Ellipsoid
  * @see PrimeMeridian
  */
-@UML (identifier="CD_GeodeticDatum", specification=ISO_19111)
+@UML(identifier="CD_GeodeticDatum", specification=ISO_19111)
 public interface GeodeticDatum extends Datum {
     /**
      * Returns the ellipsoid.
      */
-    @UML (identifier="usesEllipsoid", obligation=MANDATORY, specification=ISO_19111)
+    @UML(identifier="usesEllipsoid", obligation=MANDATORY, specification=ISO_19111)
     Ellipsoid getEllipsoid();
 
     /**
      * Returns the prime meridian.
      */
-    @UML (identifier="usesPrimeMeridian", obligation=MANDATORY, specification=ISO_19111)
+    @UML(identifier="usesPrimeMeridian", obligation=MANDATORY, specification=ISO_19111)
     PrimeMeridian getPrimeMeridian();
 }

@@ -33,14 +33,14 @@ import static org.opengis.annotation.Specification.*;
  * @author ISO 19115
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
- * @since 1.0
+ * @since GeoAPI 1.0
  */
-@UML (identifier="EX_Extent", specification=ISO_19115)
+@UML(identifier="EX_Extent", specification=ISO_19115)
 public interface Extent {
     /**
      * Returns the spatial and temporal extent for the referring object.
      */
-    @UML (identifier="description", obligation=CONDITIONAL, specification=ISO_19115)
+    @UML(identifier="description", obligation=CONDITIONAL, specification=ISO_19115)
     InternationalString getDescription();
 
     /**
@@ -48,7 +48,7 @@ public interface Extent {
      *
      * @return The geographic extent, or an empty set if none.
      */
-    @UML (identifier="geographicElement", obligation=CONDITIONAL, specification=ISO_19115)
+    @UML(identifier="geographicElement", obligation=CONDITIONAL, specification=ISO_19115)
     Collection<GeographicExtent> getGeographicElements();
 
     /**
@@ -56,7 +56,7 @@ public interface Extent {
      *
      * @return The temporal extent, or an empty set if none.
      */
-    @UML (identifier="temporalElement", obligation=CONDITIONAL, specification=ISO_19115)
+    @UML(identifier="temporalElement", obligation=CONDITIONAL, specification=ISO_19115)
     Collection<TemporalExtent> getTemporalElements();
 
     /**
@@ -64,6 +64,6 @@ public interface Extent {
      *
      * @return The vertical extent, or an empty set if none.
      */
-    @UML (identifier="verticalElement", obligation=CONDITIONAL, specification=ISO_19115)
+    @UML(identifier="verticalElement", obligation=CONDITIONAL, specification=ISO_19115)
     Collection<VerticalExtent> getVerticalElements();
 }

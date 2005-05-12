@@ -39,7 +39,7 @@ import static org.opengis.annotation.Specification.*;
  * @author ISO/DIS 19107
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-101.pdf">Abstract specification 5</A>
- * @since 1.0
+ * @since GeoAPI 1.0
  */
 public interface PrimitiveFactory {
     /**
@@ -93,7 +93,7 @@ public interface PrimitiveFactory {
      * @throws MismatchedDimensionException If geometric objects given in argument don't have
      *         the expected dimension.
      */
-    @UML (identifier="GM_Primitive(GM_Envelope)", obligation=MANDATORY, specification=ISO_19107)
+    @UML(identifier="GM_Primitive(GM_Envelope)", obligation=MANDATORY, specification=ISO_19107)
     Primitive createPrimitive(Envelope envelope)
             throws MismatchedReferenceSystemException, MismatchedDimensionException;
 
@@ -129,7 +129,7 @@ public interface PrimitiveFactory {
      * @throws MismatchedDimensionException If geometric objects given in argument don't have
      *         the expected dimension.
      */
-    @UML (identifier="GM_Point(GM_Position)", obligation=MANDATORY, specification=ISO_19107)
+    @UML(identifier="GM_Point(GM_Position)", obligation=MANDATORY, specification=ISO_19107)
     Point createPoint(Position position)
             throws MismatchedReferenceSystemException, MismatchedDimensionException;
 
@@ -142,7 +142,7 @@ public interface PrimitiveFactory {
      * @throws MismatchedDimensionException If geometric objects given in argument don't have
      *         the expected dimension.
      */
-    @UML (identifier="GM_Curve(GM_CurveSegment[1..n])", obligation=MANDATORY, specification=ISO_19107)
+    @UML(identifier="GM_Curve(GM_CurveSegment[1..n])", obligation=MANDATORY, specification=ISO_19107)
     Curve createCurve(List<CurveSegment> segments)
             throws MismatchedReferenceSystemException, MismatchedDimensionException;
 
@@ -155,7 +155,7 @@ public interface PrimitiveFactory {
      * @throws MismatchedDimensionException If geometric objects given in argument don't have
      *         the expected dimension.
      */
-    @UML (identifier="GM_Surface(GM_SurfacePatch[1..n])", obligation=MANDATORY, specification=ISO_19107)
+    @UML(identifier="GM_Surface(GM_SurfacePatch[1..n])", obligation=MANDATORY, specification=ISO_19107)
     Surface createSurface(List<SurfacePatch> surfaces)
             throws MismatchedReferenceSystemException, MismatchedDimensionException;
 
@@ -172,7 +172,7 @@ public interface PrimitiveFactory {
      * @throws MismatchedDimensionException If geometric objects given in argument don't have
      *         the expected dimension.
      */
-    @UML (identifier="GM_Surface(GM_SurfaceBoundary)", obligation=MANDATORY, specification=ISO_19107)
+    @UML(identifier="GM_Surface(GM_SurfaceBoundary)", obligation=MANDATORY, specification=ISO_19107)
     Surface createSurface(SurfaceBoundary boundary)
             throws MismatchedReferenceSystemException, MismatchedDimensionException;
 
@@ -208,7 +208,7 @@ public interface PrimitiveFactory {
      * @throws MismatchedDimensionException If geometric objects given in argument don't have
      *         the expected dimension.
      */
-    @UML (identifier="GM_Solid(GM_SolidBoundary)", obligation=MANDATORY, specification=ISO_19107)
+    @UML(identifier="GM_Solid(GM_SolidBoundary)", obligation=MANDATORY, specification=ISO_19107)
     Solid createSolid(SolidBoundary boundary)
             throws MismatchedReferenceSystemException, MismatchedDimensionException;
 
@@ -244,7 +244,7 @@ public interface PrimitiveFactory {
      *             {@link org.opengis.spatialschema.geometry.Geometry}.
      */
     @Deprecated
-    @UML (identifier="GM_PolyhedralSurace(GM_Polygon)", obligation=MANDATORY, specification=ISO_19107)
+    @UML(identifier="GM_PolyhedralSurace(GM_Polygon)", obligation=MANDATORY, specification=ISO_19107)
     PolyhedralSurface createPolyhedralSurface(List<Polygon> tiles)
             throws MismatchedReferenceSystemException, MismatchedDimensionException;
 }

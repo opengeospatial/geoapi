@@ -23,16 +23,16 @@ import static org.opengis.annotation.Specification.*;
  *
  * @author ISO 19103
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
- * @since 1.1
+ * @since GeoAPI 1.1
  *
  * @see NameFactory#createScopedName
  */
-@UML (identifier="ScopedName", specification=ISO_19103)
+@UML(identifier="ScopedName", specification=ISO_19103)
 public interface ScopedName extends GenericName {
     /**
      * Returns the scope of this name.
      */
-    @UML (identifier="tail", obligation=OPTIONAL, specification=ISO_19103)
+    @UML(identifier="tail", obligation=OPTIONAL, specification=ISO_19103)
     GenericName getScope();
 
     /**
@@ -47,12 +47,12 @@ public interface ScopedName extends GenericName {
      *         also consistent with the omission of <code>tail</code>, which is replaced
      *         by the inherited <code>getScope()</code> method.
      */
-    @UML (identifier="head", obligation=MANDATORY, specification=ISO_19103)
+    @UML(identifier="head", obligation=MANDATORY, specification=ISO_19103)
     LocalName asLocalName();
 
     /**
      * Returns a locale-independent string representation of this name, including its scope.
      */
-    @UML (identifier="scopedName", obligation=MANDATORY, specification=ISO_19103)
+    @UML(identifier="scopedName", obligation=MANDATORY, specification=ISO_19103)
     String toString();
 }

@@ -28,45 +28,45 @@ import static org.opengis.annotation.Specification.*;
  * @author ISO 19115
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
- * @since 1.1
+ * @since GeoAPI 1.1
  */
-@UML (identifier="MD_Medium", specification=ISO_19115)
+@UML(identifier="MD_Medium", specification=ISO_19115)
 public interface Medium {
     /**
      * Name of the medium on which the resource can be received.
      */
-    @UML (identifier="name", obligation=OPTIONAL, specification=ISO_19115)
+    @UML(identifier="name", obligation=OPTIONAL, specification=ISO_19115)
     MediumName getName();
 
     /**
      * Density at which the data is recorded.
      * The numbers should be greater than zero.
      */
-    @UML (identifier="density", obligation=OPTIONAL, specification=ISO_19115)
+    @UML(identifier="density", obligation=OPTIONAL, specification=ISO_19115)
     Collection<Number> getDensities();
 
     /**
      * Units of measure for the recording density.
      */
-    @UML (identifier="densityUnits", obligation=CONDITIONAL, specification=ISO_19115)
+    @UML(identifier="densityUnits", obligation=CONDITIONAL, specification=ISO_19115)
     Unit getDensityUnits();
 
     /**
      * Number of items in the media identified.
      * Returns {@code null} if unknown.
      */
-    @UML (identifier="volumes", obligation=OPTIONAL, specification=ISO_19115)
+    @UML(identifier="volumes", obligation=OPTIONAL, specification=ISO_19115)
     Integer getVolumes();
 
     /**
      * Method used to write to the medium.
      */
-    @UML (identifier="mediumFormat", obligation=OPTIONAL, specification=ISO_19115)
+    @UML(identifier="mediumFormat", obligation=OPTIONAL, specification=ISO_19115)
     Collection<MediumFormat> getMediumFormats();
 
     /**
      * Description of other limitations or requirements for using the medium.
      */
-    @UML (identifier="mediumNote", obligation=OPTIONAL, specification=ISO_19115)
+    @UML(identifier="mediumNote", obligation=OPTIONAL, specification=ISO_19115)
     InternationalString getMediumNote();
 }

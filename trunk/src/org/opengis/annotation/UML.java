@@ -23,7 +23,7 @@ import static java.lang.annotation.RetentionPolicy.*;
  * the UML identifier where they come from.
  *
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
- * @since 1.1
+ * @since GeoAPI 1.1
  */
 @Documented
 @Target({TYPE, FIELD, METHOD})

@@ -32,18 +32,18 @@ import static org.opengis.annotation.Specification.*;
  * @author ISO/DIS 19107
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-101.pdf">Abstract specification 5</A>
- * @since 1.0
+ * @since GeoAPI 1.0
  *
  * @see SurfaceBoundary
  */
-@UML (identifier="GM_SolidBoundary", specification=ISO_19107)
+@UML(identifier="GM_SolidBoundary", specification=ISO_19107)
 public interface SolidBoundary extends PrimitiveBoundary {
     /**
      * Returns the exterior shell, or {@code null} if none.
      *
      * @return The exterior shell, or {@code null}.
      */
-    @UML (identifier="exterior", obligation=MANDATORY, specification=ISO_19107)
+    @UML(identifier="exterior", obligation=MANDATORY, specification=ISO_19107)
     public Shell getExterior();
 
     /**
@@ -51,6 +51,6 @@ public interface SolidBoundary extends PrimitiveBoundary {
      *
      * @return The interior shells. Never {@code null}, but may be an empty array.
      */
-    @UML (identifier="interior", obligation=MANDATORY, specification=ISO_19107)
+    @UML(identifier="interior", obligation=MANDATORY, specification=ISO_19107)
     public Shell[] getInteriors();
 }

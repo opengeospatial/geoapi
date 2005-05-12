@@ -25,13 +25,13 @@ import static org.opengis.annotation.Specification.*;
  * @author ISO 19111
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/03-073r1.zip">Abstract specification 2.0</A>
- * @since 1.0
+ * @since GeoAPI 1.0
  */
-@UML (identifier="SC_CompoundCRS", specification=ISO_19111)
+@UML(identifier="SC_CompoundCRS", specification=ISO_19111)
 public interface CompoundCRS extends CoordinateReferenceSystem {
     /**
      * The ordered list of coordinate reference systems.
      */
-    @UML (identifier="includesCRS", obligation=MANDATORY, specification=ISO_19111)
+    @UML(identifier="includesCRS", obligation=MANDATORY, specification=ISO_19111)
     CoordinateReferenceSystem[] getCoordinateReferenceSystems();
 }

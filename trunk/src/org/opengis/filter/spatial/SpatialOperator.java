@@ -13,9 +13,7 @@ package org.opengis.filter.spatial;
 import org.opengis.filter.Filter;
 
 // Annotations
-import org.opengis.annotation.UML;
-import org.opengis.annotation.XmlSchema;
-import static org.opengis.annotation.Specification.*;
+import org.opengis.annotation.XmlElement;
 
 
 /**
@@ -24,9 +22,8 @@ import static org.opengis.annotation.Specification.*;
  *
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/02-059.pdf">Implementation specification 1.0</A>
- * @since 1.1
+ * @since GeoAPI 1.1
  */
-@XmlSchema("http://schemas.opengis.net/filter/1.0.0/filter.xsd")
-@UML(identifier="SpatialOpsType", specification=OGC_02_059)
+@XmlElement(name="SpatialOpsType")
 public interface SpatialOperator extends Filter {
 }

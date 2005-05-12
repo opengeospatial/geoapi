@@ -33,12 +33,12 @@ import static org.opengis.annotation.Specification.*;
  *
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-009.pdf">Implementation specification 1.0</A>
- * @since 1.0
+ * @since GeoAPI 1.0
  *
  * @see org.opengis.referencing.cs.CSAuthorityFactory
  * @see org.opengis.referencing.crs.CRSAuthorityFactory
  */
-@UML (identifier="CS_CoordinateSystemAuthorityFactory", specification=OGC_01_009)
+@UML(identifier="CS_CoordinateSystemAuthorityFactory", specification=OGC_01009)
 public interface DatumAuthorityFactory extends AuthorityFactory {
     /**
      * Returns an arbitrary {@linkplain Datum datum} from a code. If the datum type is know at
@@ -88,7 +88,7 @@ public interface DatumAuthorityFactory extends AuthorityFactory {
      *
      * @see org.opengis.referencing.crs.CRSAuthorityFactory#createVerticalCRS
      */
-    @UML (identifier="createVerticalDatum", specification=OGC_01_009)
+    @UML(identifier="createVerticalDatum", specification=OGC_01009)
     VerticalDatum createVerticalDatum(String code) throws FactoryException;
 
     /**
@@ -114,7 +114,7 @@ public interface DatumAuthorityFactory extends AuthorityFactory {
      * @see org.opengis.referencing.crs.CRSAuthorityFactory#createGeographicCRS
      * @see org.opengis.referencing.crs.CRSAuthorityFactory#createProjectedCRS
      */
-    @UML (identifier="createHorizontalDatum", specification=OGC_01_009)
+    @UML(identifier="createHorizontalDatum", specification=OGC_01009)
     GeodeticDatum createGeodeticDatum(String code) throws FactoryException;
 
     /**
@@ -126,7 +126,7 @@ public interface DatumAuthorityFactory extends AuthorityFactory {
      *
      * @see #createGeodeticDatum
      */
-    @UML (identifier="createEllipsoid", specification=OGC_01_009)
+    @UML(identifier="createEllipsoid", specification=OGC_01009)
     Ellipsoid createEllipsoid(String code) throws FactoryException;
 
     /**
@@ -138,6 +138,6 @@ public interface DatumAuthorityFactory extends AuthorityFactory {
      *
      * @see #createGeodeticDatum
      */
-    @UML (identifier="createPrimeMeridian", specification=OGC_01_009)
+    @UML(identifier="createPrimeMeridian", specification=OGC_01009)
     PrimeMeridian createPrimeMeridian(String code) throws FactoryException;
 }

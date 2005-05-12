@@ -27,16 +27,16 @@ import static org.opengis.annotation.Specification.*;
  * @author ISO 19111
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/03-073r1.zip">Abstract specification 2.0</A>
- * @since 1.0
+ * @since GeoAPI 1.0
  */
-@UML (identifier="CD_TemporalDatum", specification=ISO_19111)
+@UML(identifier="CD_TemporalDatum", specification=ISO_19111)
 public interface TemporalDatum extends Datum {
     /**
      * The date and time origin of this temporal datum.
      *
      * @return The date and time origin of this temporal datum.
      */
-    @UML (identifier="origin", obligation=MANDATORY, specification=ISO_19111)
+    @UML(identifier="origin", obligation=MANDATORY, specification=ISO_19111)
     Date getOrigin();
 
     /**
@@ -45,7 +45,7 @@ public interface TemporalDatum extends Datum {
      *
      * @return Always {@code null}.
      */
-    @UML (identifier="anchorPoint", obligation=FORBIDDEN, specification=ISO_19111)
+    @UML(identifier="anchorPoint", obligation=FORBIDDEN, specification=ISO_19111)
     InternationalString getAnchorPoint();
 
     /**
@@ -54,6 +54,6 @@ public interface TemporalDatum extends Datum {
      *
      * @return Always {@code null}.
      */
-    @UML (identifier="realizationEpoch", obligation=FORBIDDEN, specification=ISO_19111)
+    @UML(identifier="realizationEpoch", obligation=FORBIDDEN, specification=ISO_19111)
     Date getRealizationEpoch();
 }

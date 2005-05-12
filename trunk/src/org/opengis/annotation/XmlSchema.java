@@ -11,6 +11,7 @@ package org.opengis.annotation;
 
 // J2SE dependencies
 import java.lang.annotation.Target;
+import java.lang.annotation.Documented;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import static java.lang.annotation.ElementType.*;
@@ -18,16 +19,22 @@ import static java.lang.annotation.RetentionPolicy.*;
 
 
 /**
- * An annotation mapping each interface to the XML schema where they come from.
+ * An annotation mapping a package to the XML schema from which it was derived.
  *
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
- * @since 1.1
+ * @since GeoAPI 1.1
  */
-@Target(TYPE)
-@Retention(SOURCE)
+@Documented
+@Target(PACKAGE)
+@Retention(RUNTIME)
 public @interface XmlSchema {
     /**
      * The URL to the schema.
      */
-    String value();
+    String URL();
+
+    /**
+     * The specification where this XML schema come from.
+     */
+    Specification specification();
 }

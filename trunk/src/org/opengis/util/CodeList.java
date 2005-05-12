@@ -26,7 +26,7 @@ import java.util.Iterator;
  *
  * @author ISO 19103
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
- * @since 1.0
+ * @since GeoAPI 1.0
  */
 public abstract class CodeList<CodeType extends CodeList<CodeType>> implements Comparable<CodeType>, Serializable {
     /**

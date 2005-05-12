@@ -36,16 +36,16 @@ import static org.opengis.annotation.Specification.*;
  * @author ISO 19115
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
- * @since 1.1
+ * @since GeoAPI 1.1
  */
 @Profile (level=CORE)
-@UML (identifier="MD_DataIdentification", specification=ISO_19115)
+@UML(identifier="MD_DataIdentification", specification=ISO_19115)
 public interface DataIdentification extends Identification {
     /**
      * Method used to spatially represent geographic information.
      */
     @Profile (level=CORE)
-    @UML (identifier="spatialRepresentationType", obligation=OPTIONAL, specification=ISO_19115)
+    @UML(identifier="spatialRepresentationType", obligation=OPTIONAL, specification=ISO_19115)
     Collection<SpatialRepresentationType> getSpatialRepresentationTypes();
 
     /**
@@ -53,28 +53,28 @@ public interface DataIdentification extends Identification {
      * in the dataset.
      */
     @Profile (level=CORE)
-    @UML (identifier="spatialResolution", obligation=OPTIONAL, specification=ISO_19115)
+    @UML(identifier="spatialResolution", obligation=OPTIONAL, specification=ISO_19115)
     Collection<Resolution> getSpatialResolutions();
 
     /**
      * Language(s) used within the dataset.
      */
     @Profile (level=CORE)
-    @UML (identifier="language", obligation=MANDATORY, specification=ISO_19115)
+    @UML(identifier="language", obligation=MANDATORY, specification=ISO_19115)
     Collection<Locale> getLanguage();
 
     /**
      * Full name of the character coding standard used for the dataset.
      */
     @Profile (level=CORE)
-    @UML (identifier="characterSet", obligation=CONDITIONAL, specification=ISO_19115)
+    @UML(identifier="characterSet", obligation=CONDITIONAL, specification=ISO_19115)
     Charset getCharacterSet();
 
     /**
      * Main theme(s) of the datset.
      */
     @Profile (level=CORE)
-    @UML (identifier="topicCategory", obligation=MANDATORY, specification=ISO_19115)
+    @UML(identifier="topicCategory", obligation=MANDATORY, specification=ISO_19115)
     Collection<TopicCategory> getTopicCategories();
 
     /**
@@ -83,7 +83,7 @@ public interface DataIdentification extends Identification {
      * should be provided.
      */
     @Profile (level=CORE)
-    @UML (identifier="geographicBox", obligation=CONDITIONAL, specification=ISO_19115)
+    @UML(identifier="geographicBox", obligation=CONDITIONAL, specification=ISO_19115)
     Collection<GeographicBoundingBox> getGeographicBox();
 
     /**
@@ -92,14 +92,14 @@ public interface DataIdentification extends Identification {
      * should be provided.
      */
     @Profile (level=CORE)
-    @UML (identifier="geographicDescription", obligation=CONDITIONAL, specification=ISO_19115)
+    @UML(identifier="geographicDescription", obligation=CONDITIONAL, specification=ISO_19115)
     Collection<GeographicDescription> getGeographicDescription();
 
     /**
      * Description of the dataset in the producer’s processing environment, including items
      * such as the software, the computer operating system, file name, and the dataset size.
      */
-    @UML (identifier="environmentDescription", obligation=OPTIONAL, specification=ISO_19115)
+    @UML(identifier="environmentDescription", obligation=OPTIONAL, specification=ISO_19115)
     InternationalString getEnvironmentDescription();
 
     /**
@@ -107,12 +107,12 @@ public interface DataIdentification extends Identification {
      * extent of the dataset.
      */
     @Profile (level=CORE)
-    @UML (identifier="extent", obligation=OPTIONAL, specification=ISO_19115)
+    @UML(identifier="extent", obligation=OPTIONAL, specification=ISO_19115)
     Collection<Extent> getExtent();
 
     /**
      * Any other descriptive information about the dataset.
      */
-    @UML (identifier="supplementalInformation", obligation=OPTIONAL, specification=ISO_19115)
+    @UML(identifier="supplementalInformation", obligation=OPTIONAL, specification=ISO_19115)
     InternationalString getSupplementalInformation();
 }

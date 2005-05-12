@@ -21,26 +21,26 @@ import static org.opengis.annotation.Specification.*;
  * @author ISO 19115
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
- * @since 1.1
+ * @since GeoAPI 1.1
  */
-@UML (identifier="MD_ObligationCode", specification=ISO_19115)
+@UML(identifier="MD_ObligationCode", specification=ISO_19115)
 public enum Obligation {
     /**
      * Element is required when a specific condition is met.
      */
-    @UML (identifier="conditional", obligation=CONDITIONAL, specification=ISO_19115)
+    @UML(identifier="conditional", obligation=CONDITIONAL, specification=ISO_19115)
     CONDITIONAL,
 
     /**
      * Element is not required.
      */
-    @UML (identifier="optional", obligation=CONDITIONAL, specification=ISO_19115)
+    @UML(identifier="optional", obligation=CONDITIONAL, specification=ISO_19115)
     OPTIONAL,
 
     /**
      * Element is always required.
      */
-    @UML (identifier="mandatory", obligation=CONDITIONAL, specification=ISO_19115)
+    @UML(identifier="mandatory", obligation=CONDITIONAL, specification=ISO_19115)
     MANDATORY,
 
     /**

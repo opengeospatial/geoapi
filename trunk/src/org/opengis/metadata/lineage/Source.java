@@ -30,14 +30,14 @@ import static org.opengis.annotation.Specification.*;
  * @author ISO 19115
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
- * @since 1.1
+ * @since GeoAPI 1.1
  */
-@UML (identifier="LI_Source", specification=ISO_19115)
+@UML(identifier="LI_Source", specification=ISO_19115)
 public interface Source {
     /**
      * Detailed description of the level of the source data.
      */
-    @UML (identifier="description", obligation=MANDATORY, specification=ISO_19115)
+    @UML(identifier="description", obligation=MANDATORY, specification=ISO_19115)
     InternationalString getDescription();
 
     /**
@@ -45,30 +45,30 @@ public interface Source {
      *
      * @unitof RepresentativeFraction
      */
-    @UML (identifier="scaleDenominator", obligation=OPTIONAL, specification=ISO_19115)
+    @UML(identifier="scaleDenominator", obligation=OPTIONAL, specification=ISO_19115)
     long getScaleDenominator();
 
     /**
      * Spatial reference system used by the source data.
      */
-    @UML (identifier="sourceReferenceSystem", obligation=OPTIONAL, specification=ISO_19115)
+    @UML(identifier="sourceReferenceSystem", obligation=OPTIONAL, specification=ISO_19115)
     ReferenceSystem getSourceReferenceSystem();
 
     /**
      * Recommended reference to be used for the source data.
      */
-    @UML (identifier="sourceCitation", obligation=OPTIONAL, specification=ISO_19115)
+    @UML(identifier="sourceCitation", obligation=OPTIONAL, specification=ISO_19115)
     Citation getSourceCitation();
 
     /**
      * Information about the spatial, vertical and temporal extent of the source data.
      */
-    @UML (identifier="sourceExtent", obligation=OPTIONAL, specification=ISO_19115)
+    @UML(identifier="sourceExtent", obligation=OPTIONAL, specification=ISO_19115)
     Collection<Extent> getSourceExtents();
 
     /**
      * Information about an event in the creation process for the source data.
      */
-    @UML (identifier="sourceStep", obligation=OPTIONAL, specification=ISO_19115)
+    @UML(identifier="sourceStep", obligation=OPTIONAL, specification=ISO_19115)
     Collection<ProcessStep> getSourceSteps();
 }

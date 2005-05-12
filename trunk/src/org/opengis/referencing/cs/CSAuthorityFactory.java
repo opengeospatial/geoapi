@@ -32,7 +32,7 @@ import static org.opengis.annotation.Specification.*;
  *
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-009.pdf">Implementation specification 1.0</A>
- * @since 1.0
+ * @since GeoAPI 1.0
  *
  * @see org.opengis.referencing.crs.CRSAuthorityFactory
  * @see org.opengis.referencing.datum.DatumAuthorityFactory
@@ -132,6 +132,6 @@ public interface CSAuthorityFactory extends AuthorityFactory {
      * @throws NoSuchAuthorityCodeException if the specified <code>code</code> was not found.
      * @throws FactoryException if the object creation failed for some other reason.
      */
-    @UML (identifier="CS_CoordinateSystemAuthorityFactory.createLinearUnit, createAngularUnit", specification=OGC_01_009)
+    @UML(identifier="CS_CoordinateSystemAuthorityFactory.createLinearUnit, createAngularUnit", specification=OGC_01009)
     Unit createUnit(String code) throws FactoryException;
 }

@@ -26,7 +26,7 @@ import static org.opengis.annotation.Specification.*;
  * @author ISO 19111
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/03-073r1.zip">Abstract specification 2.0</A>
- * @since 1.0
+ * @since GeoAPI 1.0
  *
  * @see OperationMethod
  *
@@ -36,14 +36,14 @@ import static org.opengis.annotation.Specification.*;
  *          flexibility: {@link ConcatenatedOperation} would be a legal component in both
  *          other {@link ConcatenatedOperation} and in {@link PassThroughOperation}.
  */
-@UML (identifier="CC_Operation", specification=ISO_19111)
+@UML(identifier="CC_Operation", specification=ISO_19111)
 public interface Operation extends SingleOperation {
     /**
      * Returns the operation method.
      *
      * @return The operation method.
      */
-    @UML (identifier="usesMethod", obligation=MANDATORY, specification=ISO_19111)
+    @UML(identifier="usesMethod", obligation=MANDATORY, specification=ISO_19111)
     OperationMethod getMethod();
 
     /**
@@ -53,6 +53,6 @@ public interface Operation extends SingleOperation {
      *
      * @rename Added "<code>Parameter</code>" prefix for more consistency with the return type.
      */
-    @UML (identifier="usesValue", obligation=MANDATORY, specification=ISO_19111)
+    @UML(identifier="usesValue", obligation=MANDATORY, specification=ISO_19111)
     ParameterValueGroup getParameterValues();
 }

@@ -27,9 +27,9 @@ import static org.opengis.annotation.Specification.*;
  * @author ISO 19115
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
- * @since 1.1
+ * @since GeoAPI 1.1
  */
-@UML (identifier="MD_ObligationCode", specification=ISO_19115)
+@UML(identifier="MD_ObligationCode", specification=ISO_19115)
 public final class Obligation extends CodeList<Obligation> {
     /**
      * Serial number for compatibility with different versions.
@@ -45,19 +45,19 @@ public final class Obligation extends CodeList<Obligation> {
     /**
      * Element is always required.
      */
-    @UML (identifier="mandatory", obligation=org.opengis.annotation.Obligation.CONDITIONAL, specification=ISO_19115)
+    @UML(identifier="mandatory", obligation=org.opengis.annotation.Obligation.CONDITIONAL, specification=ISO_19115)
     public static final Obligation MANDATORY = new Obligation("MANDATORY");
 
     /**
      * Element is not required.
      */
-    @UML (identifier="optional", obligation=org.opengis.annotation.Obligation.CONDITIONAL, specification=ISO_19115)
+    @UML(identifier="optional", obligation=org.opengis.annotation.Obligation.CONDITIONAL, specification=ISO_19115)
     public static final Obligation OPTIONAL = new Obligation("OPTIONAL");
 
     /**
      * Element is required when a specific condition is met.
      */
-    @UML (identifier="conditional", obligation=org.opengis.annotation.Obligation.CONDITIONAL, specification=ISO_19115)
+    @UML(identifier="conditional", obligation=org.opengis.annotation.Obligation.CONDITIONAL, specification=ISO_19115)
     public static final Obligation CONDITIONAL = new Obligation("CONDITIONAL");
 
     /**

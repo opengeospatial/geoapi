@@ -30,9 +30,9 @@ import static org.opengis.annotation.Specification.*;
  * @version <A HREF="http://www.opengis.org/docs/03-073r1.zip">Abstract specification 2.0</A>
  *
  * @see org.opengis.referencing.crs.CoordinateReferenceSystem
- * @since 1.0
+ * @since GeoAPI 1.0
  */
-@UML (identifier="RS_ReferenceSystem", specification=ISO_19111)
+@UML(identifier="RS_ReferenceSystem", specification=ISO_19111)
 public interface ReferenceSystem extends IdentifiedObject {
     /**
      * Key for the <code>{@value}</code> property to be given to the
@@ -57,13 +57,13 @@ public interface ReferenceSystem extends IdentifiedObject {
      *
      * @return Coordinate reference system valid area, or {@code null} if not available.
      */
-    @UML (identifier="validArea", obligation=OPTIONAL, specification=ISO_19111)
+    @UML(identifier="validArea", obligation=OPTIONAL, specification=ISO_19111)
     Extent getValidArea();
 
     /**
      * Description of domain of usage, or limitations of usage, for which this
      * (coordinate) reference system object is valid.
      */
-    @UML (identifier="scope", obligation=OPTIONAL, specification=ISO_19111)
+    @UML(identifier="scope", obligation=OPTIONAL, specification=ISO_19111)
     InternationalString getScope();
 }

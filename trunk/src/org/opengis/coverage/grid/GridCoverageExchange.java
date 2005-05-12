@@ -41,12 +41,12 @@ import static org.opengis.annotation.Specification.*;
  * </TABLE>
  *
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
- * @since 1.1
+ * @since GeoAPI 1.1
  *
  * @see GridCoverageReader
  * @see GridCoverageWriter
  */
-@UML (identifier="CV_GridCoverageExchange", specification=OGC_01_004)
+@UML(identifier="CV_GridCoverageExchange", specification=OGC_01004)
 public interface GridCoverageExchange {
     /**
      * Retrieve information on file formats or resources available with the
@@ -55,7 +55,7 @@ public interface GridCoverageExchange {
      * @return Information on file formats or resources available with
      *         the <code>GridCoverageExchange</code> implementation.
      */
-    @UML (identifier="getFormat", obligation=MANDATORY, specification=OGC_01_004)
+    @UML(identifier="getFormat", obligation=MANDATORY, specification=OGC_01004)
     Format[] getFormats();
 
     /**

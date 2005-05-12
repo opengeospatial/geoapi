@@ -24,12 +24,12 @@ import static org.opengis.annotation.Specification.*;
  * @author ISO 19115
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
- * @since 1.0
+ * @since GeoAPI 1.0
  *
  * @revisit UML specifies only one attribute, <code>extent</code>, of <code>TM_Primitive</code>
  *          type.
  */
-@UML (identifier="EX_TemporalExtent", specification=ISO_19115)
+@UML(identifier="EX_TemporalExtent", specification=ISO_19115)
 public interface TemporalExtent {
     /**
      * Returns the date and time for the content of the dataset.
@@ -37,6 +37,6 @@ public interface TemporalExtent {
      * @revisit ISO 19115 use a TM_Primitive return type from ISO 19108.
      *          We need to give a closer look at this specification.
      */
-//  @UML (identifier="extent", obligation=MANDATORY)
+//  @UML(identifier="extent", obligation=MANDATORY)
 //  Date getExtent();
 }

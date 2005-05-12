@@ -28,11 +28,11 @@ import static org.opengis.annotation.Specification.*;
  * @author ISO 19115
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
- * @since 1.1
+ * @since GeoAPI 1.1
  *
  * @see org.opengis.metadata.quality.Scope
  */
-@UML (identifier="MD_ScopeCode", specification=ISO_19115)
+@UML(identifier="MD_ScopeCode", specification=ISO_19115)
 public final class ScopeCode extends CodeList<ScopeCode> {
     /**
      * Serial number for compatibility with different versions.
@@ -50,79 +50,79 @@ public final class ScopeCode extends CodeList<ScopeCode> {
      *
      * @revisit Should we said "... to the attribute object"?
      */
-    @UML (identifier="attribute", obligation=CONDITIONAL, specification=ISO_19115)
+    @UML(identifier="attribute", obligation=CONDITIONAL, specification=ISO_19115)
     public static final ScopeCode ATTRIBUTE = new ScopeCode("ATTRIBUTE");
 
     /**
      * Information applies to the characteristic of a feature.
      */
-    @UML (identifier="attributeType", obligation=CONDITIONAL, specification=ISO_19115)
+    @UML(identifier="attributeType", obligation=CONDITIONAL, specification=ISO_19115)
     public static final ScopeCode ATTRIBUTE_TYPE = new ScopeCode("ATTRIBUTE_TYPE");
 
     /**
      * Information applies to the collection hardware class.
      */
-    @UML (identifier="collectionHardware", obligation=CONDITIONAL, specification=ISO_19115)
+    @UML(identifier="collectionHardware", obligation=CONDITIONAL, specification=ISO_19115)
     public static final ScopeCode COLLECTION_HARDWARE = new ScopeCode("COLLECTION_HARDWARE");
 
     /**
      * Information applies to the collection session.
      */
-    @UML (identifier="collectionSession", obligation=CONDITIONAL, specification=ISO_19115)
+    @UML(identifier="collectionSession", obligation=CONDITIONAL, specification=ISO_19115)
     public static final ScopeCode COLLECTION_SESSION = new ScopeCode("COLLECTION_SESSION");
 
     /**
      * Information applies to the dataset.
      */
-    @UML (identifier="dataset", obligation=CONDITIONAL, specification=ISO_19115)
+    @UML(identifier="dataset", obligation=CONDITIONAL, specification=ISO_19115)
     public static final ScopeCode DATASET = new ScopeCode("DATASET");
 
     /**
      * Information applies to the series.
      */
-    @UML (identifier="series", obligation=CONDITIONAL, specification=ISO_19115)
+    @UML(identifier="series", obligation=CONDITIONAL, specification=ISO_19115)
     public static final ScopeCode SERIES = new ScopeCode("SERIES");
 
     /**
      * information applies to non-geographic data;
      */
-    @UML (identifier="nonGeographicDataset", obligation=CONDITIONAL, specification=ISO_19115)
+    @UML(identifier="nonGeographicDataset", obligation=CONDITIONAL, specification=ISO_19115)
     public static final ScopeCode NON_GEOGRAPHIC_DATASET = new ScopeCode("NON_GEOGRAPHIC_DATASET");
 
     /**
      * Information applies to a dimension group.
      */
-    @UML (identifier="dimensionGroup", obligation=CONDITIONAL, specification=ISO_19115)
+    @UML(identifier="dimensionGroup", obligation=CONDITIONAL, specification=ISO_19115)
     public static final ScopeCode DIMENSION_GROUP = new ScopeCode("DIMENSION_GROUP");
 
     /**
      * Information applies to a feature.
      */
-    @UML (identifier="feature", obligation=CONDITIONAL, specification=ISO_19115)
+    @UML(identifier="feature", obligation=CONDITIONAL, specification=ISO_19115)
     public static final ScopeCode FEATURE = new ScopeCode("FEATURE");
 
     /**
      * Information applies to a feature type.
      */
-    @UML (identifier="featureType", obligation=CONDITIONAL, specification=ISO_19115)
+    @UML(identifier="featureType", obligation=CONDITIONAL, specification=ISO_19115)
     public static final ScopeCode FEATURE_TYPE = new ScopeCode("FEATURE_TYPE");
 
     /**
      * Information applies to a property type.
      */
-    @UML (identifier="propertyType", obligation=CONDITIONAL, specification=ISO_19115)
+    @UML(identifier="propertyType", obligation=CONDITIONAL, specification=ISO_19115)
     public static final ScopeCode PROPERTY_TYPE = new ScopeCode("PROPERTY_TYPE");
 
     /**
      * Information applies to a field session.
      */
-    @UML (identifier="fieldSession", obligation=CONDITIONAL, specification=ISO_19115)
+    @UML(identifier="fieldSession", obligation=CONDITIONAL, specification=ISO_19115)
     public static final ScopeCode FIELD_SESSION = new ScopeCode("FIELD_SESSION");
 
     /**
      * Information applies to a computer program or routine.
      */
-    @UML (identifier="software", obligation=CONDITIONAL, specification=ISO_19115)
+    @UML(identifier="software", obligation=CONDITIONAL, specification=ISO_19115)
     public static final ScopeCode SOFTWARE = new ScopeCode("SOFTWARE");
 
     /**
@@ -130,13 +130,13 @@ public final class ScopeCode extends CodeList<ScopeCode> {
      * to a service user entity through a set of interfaces that define a behaviour, such as
      * a use case.
      */
-    @UML (identifier="service", obligation=CONDITIONAL, specification=ISO_19115)
+    @UML(identifier="service", obligation=CONDITIONAL, specification=ISO_19115)
     public static final ScopeCode SERVICE = new ScopeCode("SERVICE");
 
     /**
      * Information applies to a copy or imitation of an existing or hypothetical object.
      */
-    @UML (identifier="model", obligation=CONDITIONAL, specification=ISO_19115)
+    @UML(identifier="model", obligation=CONDITIONAL, specification=ISO_19115)
     public static final ScopeCode MODEL = new ScopeCode("MODEL");
 
     /**

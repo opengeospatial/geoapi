@@ -26,12 +26,12 @@ import static org.opengis.annotation.Specification.*;
  * @author ISO 19111
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/03-073r1.zip">Abstract specification 2.0</A>
- * @since 1.0
+ * @since GeoAPI 1.0
  *
  * @see CoordinateSystem
  * @see Unit
  */
-@UML (identifier="CS_CoordinateSystemAxis", specification=ISO_19111)
+@UML(identifier="CS_CoordinateSystemAxis", specification=ISO_19111)
 public interface CoordinateSystemAxis extends IdentifiedObject {
     /**
      * The abbreviation used for this coordinate system axes. This abbreviation is also
@@ -40,7 +40,7 @@ public interface CoordinateSystemAxis extends IdentifiedObject {
      *
      * @return The coordinate system axis abbreviation.
      */
-    @UML (identifier="axisAbbrev", obligation=MANDATORY, specification=ISO_19111)
+    @UML(identifier="axisAbbrev", obligation=MANDATORY, specification=ISO_19111)
     String getAbbreviation();
 
     /**
@@ -61,7 +61,7 @@ public interface CoordinateSystemAxis extends IdentifiedObject {
      *
      * @return The coordinate system axis direction.
      */
-    @UML (identifier="axisDirection", obligation=MANDATORY, specification=ISO_19111)
+    @UML(identifier="axisDirection", obligation=MANDATORY, specification=ISO_19111)
     AxisDirection getDirection();
 
     /**
@@ -72,6 +72,6 @@ public interface CoordinateSystemAxis extends IdentifiedObject {
      *
      * @return  The coordinate system axis unit.
      */
-    @UML (identifier="axisUnitID", obligation=MANDATORY, specification=ISO_19111)
+    @UML(identifier="axisUnitID", obligation=MANDATORY, specification=ISO_19111)
     Unit getUnit();
 }

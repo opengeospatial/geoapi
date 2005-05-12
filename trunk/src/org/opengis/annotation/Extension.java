@@ -22,7 +22,7 @@ import static java.lang.annotation.RetentionPolicy.*;
  * extension. This annotation is mutually exclusive with {@link UML}.
  *
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
- * @since 1.1
+ * @since GeoAPI 1.1
  */
 @Documented
 @Target({TYPE, FIELD, METHOD})

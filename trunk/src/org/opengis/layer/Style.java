@@ -20,11 +20,9 @@ import org.opengis.go.display.style.GraphicStyle;
 import org.opengis.feature.display.canvas.FeatureLayer;
 
 // Annotations
-import org.opengis.annotation.UML;
-import org.opengis.annotation.XmlSchema;
 import org.opengis.annotation.Extension;
+import org.opengis.annotation.XmlElement;
 import static org.opengis.annotation.Obligation.*;
-import static org.opengis.annotation.Specification.*;
 
 
 /**
@@ -33,17 +31,16 @@ import static org.opengis.annotation.Specification.*;
  * @author ISO 19128
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://portal.opengeospatial.org/files/?artifact_id=5316">Implementation specification 1.3</A>
- * @since 1.1
+ * @since GeoAPI 1.1
  */
-@XmlSchema ("http://schemas.opengis.net/wms/1.3.0/capabilities_1_3_0.xsd")
-@UML (identifier="Style", specification=ISO_19128)
+@XmlElement(name="Style")
 public interface Style {
     /**
      * Provides a unique name for identifying this {@code Style}.
      *
      * @return this {@code Style}'s name.
      */
-    @UML (identifier="Name", obligation=MANDATORY, specification=ISO_19128)
+    @XmlElement(name="Name", obligation=MANDATORY)
     String getName();
     
     /**
@@ -51,7 +48,7 @@ public interface Style {
      *
      * @return this {@code Style}'s title.
      */
-    @UML (identifier="Title", obligation=MANDATORY, specification=ISO_19128)
+    @XmlElement(name="Title", obligation=MANDATORY)
     InternationalString getTitle();
     
     /**
@@ -59,7 +56,7 @@ public interface Style {
      *
      * @return this {@code Style}'s narrative description.
      */
-    @UML (identifier="Abstract", obligation=OPTIONAL, specification=ISO_19128)
+    @XmlElement(name="Abstract", obligation=OPTIONAL)
     InternationalString getAbstract();
     
     /**
@@ -67,7 +64,7 @@ public interface Style {
      *
      * @return the linkage to this {@code Style}'s map legend image.
      */
-    @UML (identifier="LegendURL", obligation=OPTIONAL, specification=ISO_19128)
+    @XmlElement(name="LegendURL", obligation=OPTIONAL)
     List<LegendURL> getLegendURLs();
     
     /**
@@ -75,7 +72,7 @@ public interface Style {
      *
      * @return the linkage to this {@code Style}'s symbology information.
      */
-    @UML (identifier="StyleSheetURL", obligation=OPTIONAL, specification=ISO_19128)
+    @XmlElement(name="StyleSheetURL", obligation=OPTIONAL)
     StyleSheetURL getStyleSheetURL();
     
     /**
@@ -84,7 +81,7 @@ public interface Style {
      *
      * @return the linkage to more info about this {@code Style}'s data or symbology.
      */
-    @UML (identifier="StyleURL", obligation=OPTIONAL, specification=ISO_19128)
+    @XmlElement(name="StyleURL", obligation=OPTIONAL)
     StyleURL getStyleURL();
     
     /**

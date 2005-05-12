@@ -21,7 +21,7 @@ import org.opengis.referencing.crs.CoordinateReferenceSystem;  // For javadoc
  * or because the requested operation is not available in the environment.
  *
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
- * @since 1.0
+ * @since GeoAPI 1.0
  */
 public class OperationNotFoundException extends FactoryException {
     /**

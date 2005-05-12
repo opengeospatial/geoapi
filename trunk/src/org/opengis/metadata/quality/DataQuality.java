@@ -30,15 +30,15 @@ import static org.opengis.annotation.Specification.*;
  * @author ISO 19115
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
- * @since 1.1
+ * @since GeoAPI 1.1
  */
 @Profile (level=CORE)
-@UML (identifier="DQ_DataQuality", specification=ISO_19115)
+@UML(identifier="DQ_DataQuality", specification=ISO_19115)
 public interface DataQuality {
     /**
      * The specific data to which the data quality information applies.
      */
-    @UML (identifier="scope", obligation=MANDATORY, specification=ISO_19115)
+    @UML(identifier="scope", obligation=MANDATORY, specification=ISO_19115)
     Scope getScope();
 
     /**
@@ -46,7 +46,7 @@ public interface DataQuality {
      * Should be provided only if {@linkplain Scope#getLevel scope level} is
      * {@linkplain org.opengis.metadata.maintenance.ScopeCode#DATASET dataset}.
      */
-    @UML (identifier="report", obligation=CONDITIONAL, specification=ISO_19115)
+    @UML(identifier="report", obligation=CONDITIONAL, specification=ISO_19115)
     Collection<Element> getReports();
 
     /**
@@ -55,6 +55,6 @@ public interface DataQuality {
      * {@linkplain org.opengis.metadata.maintenance.ScopeCode#DATASET dataset}.
      */
     @Profile (level=CORE)
-    @UML (identifier="lineage", obligation=CONDITIONAL, specification=ISO_19115)
+    @UML(identifier="lineage", obligation=CONDITIONAL, specification=ISO_19115)
     Lineage getLineage();
 }

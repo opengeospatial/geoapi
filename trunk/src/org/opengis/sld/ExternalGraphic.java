@@ -15,7 +15,7 @@ package org.opengis.sld;
  *
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/02-070.pdf">Implementation specification 1.0</A>
- * @since 1.1
+ * @since GeoAPI 1.1
  */
 public interface ExternalGraphic extends ExternalGraphicOrMark {
     /**

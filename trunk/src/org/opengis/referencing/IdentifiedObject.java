@@ -32,9 +32,9 @@ import static org.opengis.annotation.Specification.*;
  *
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/03-073r1.zip">Abstract specification 2.0</A>
- * @since 1.1
+ * @since GeoAPI 1.1
  */
-@UML (identifier="IdentifiedObject", specification=ISO_19111)
+@UML(identifier="IdentifiedObject", specification=ISO_19111)
 public interface IdentifiedObject {
     /**
      * Key for the <code>{@value}</code> property to be given to the
@@ -75,7 +75,7 @@ public interface IdentifiedObject {
     /**
      * The primary name by which this object is identified.
      */
-    @UML (identifier="name", obligation=MANDATORY, specification=ISO_19111)
+    @UML(identifier="name", obligation=MANDATORY, specification=ISO_19111)
     Identifier getName();
 
     /**
@@ -83,7 +83,7 @@ public interface IdentifiedObject {
      *
      * @return The aliases, or an empty array if there is none.
      */
-    @UML (identifier="alias", obligation=OPTIONAL, specification=ISO_19111)
+    @UML(identifier="alias", obligation=OPTIONAL, specification=ISO_19111)
     GenericName[] getAlias();
 
     /**
@@ -92,13 +92,13 @@ public interface IdentifiedObject {
      *
      * @return This object identifiers, or an empty array if there is none.
      */
-    @UML (identifier="identifier", obligation=OPTIONAL, specification=ISO_19111)
+    @UML(identifier="identifier", obligation=OPTIONAL, specification=ISO_19111)
     Identifier[] getIdentifiers();
 
     /**
      * Comments on or information about this object, including data source information.
      */
-    @UML (identifier="remarks", obligation=OPTIONAL, specification=ISO_19111)
+    @UML(identifier="remarks", obligation=OPTIONAL, specification=ISO_19111)
     InternationalString getRemarks();
 
     /**

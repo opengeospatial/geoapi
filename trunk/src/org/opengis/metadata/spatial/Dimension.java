@@ -21,20 +21,20 @@ import static org.opengis.annotation.Specification.*;
  * @author ISO 19115
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
- * @since 1.1
+ * @since GeoAPI 1.1
  */
-@UML (identifier="MD_Dimension", specification=ISO_19115)
+@UML(identifier="MD_Dimension", specification=ISO_19115)
 public interface Dimension {
     /**
      * Name of the axis.
      */
-    @UML (identifier="dimensionName", obligation=MANDATORY, specification=ISO_19115)
+    @UML(identifier="dimensionName", obligation=MANDATORY, specification=ISO_19115)
     DimensionNameType getDimensionName();
 
     /**
      * Number of elements along the axis.
      */
-    @UML (identifier="dimensionSize", obligation=MANDATORY, specification=ISO_19115)
+    @UML(identifier="dimensionSize", obligation=MANDATORY, specification=ISO_19115)
     int getDimensionSize();
 
     /**
@@ -42,6 +42,6 @@ public interface Dimension {
      *
      * @unitof Measure
      */
-    @UML (identifier="resolution", obligation=OPTIONAL, specification=ISO_19115)
+    @UML(identifier="resolution", obligation=OPTIONAL, specification=ISO_19115)
     double getResolution();
 }

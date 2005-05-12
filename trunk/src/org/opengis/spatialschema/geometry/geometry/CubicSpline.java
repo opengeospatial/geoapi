@@ -44,15 +44,15 @@ import static org.opengis.annotation.Specification.*;
  * @author ISO/DIS 19107
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-101.pdf">Abstract specification 5</A>
- * @since 1.1
+ * @since GeoAPI 1.1
  */
-@UML (identifier="GM_CubicSpline", specification=ISO_19107)
+@UML(identifier="GM_CubicSpline", specification=ISO_19107)
 public interface CubicSpline extends PolynomialSpline {
     /**
      * The interpolation mechanism for a <code>CubicSpline</code>
      * is {@link CurveInterpolation#CUBIC_SPLINE CUBIC_SPLINE}.
      */
-    @UML (identifier="interpolation", obligation=MANDATORY, specification=ISO_19107)
+    @UML(identifier="interpolation", obligation=MANDATORY, specification=ISO_19107)
     CurveInterpolation getInterpolation();
 
     /**
@@ -61,7 +61,7 @@ public interface CubicSpline extends PolynomialSpline {
      * sequences to a single tangent vector each. Consequently, the {@linkplain List#size size}
      * of the returned list is 1.
      */
-    @UML (identifier="vectorAtStart", obligation=MANDATORY, specification=ISO_19107)
+    @UML(identifier="vectorAtStart", obligation=MANDATORY, specification=ISO_19107)
     List/*double[]*/ getVectorAtStart();
 
     /**
@@ -70,6 +70,6 @@ public interface CubicSpline extends PolynomialSpline {
      * sequences to a single tangent vector each. Consequently, the {@linkplain List#size size}
      * of the returned list is 1.
      */
-    @UML (identifier="vectorAtEnd", obligation=MANDATORY, specification=ISO_19107)
+    @UML(identifier="vectorAtEnd", obligation=MANDATORY, specification=ISO_19107)
     List/*double[]*/ getVectorAtEnd();
 }

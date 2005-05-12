@@ -31,17 +31,17 @@ import static org.opengis.annotation.Specification.*;
  *
  * @author ISO 19103
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
- * @since 1.0
+ * @since GeoAPI 1.0
  *
  * @see javax.naming.Name
  */
-@UML (identifier="GenericName", specification=ISO_19103)
+@UML(identifier="GenericName", specification=ISO_19103)
 public interface GenericName extends Comparable {
     /**
      * Returns the scope (name space) of this generic name. If this name has no scope
      * (e.g. is the root), then this method returns {@code null}.
      */
-    @UML (identifier="scope", obligation=OPTIONAL, specification=ISO_19103)
+    @UML(identifier="scope", obligation=OPTIONAL, specification=ISO_19103)
     GenericName getScope();
 
     /**
@@ -49,7 +49,7 @@ public interface GenericName extends Comparable {
      * Each element in this list is like a directory name in a file path name.
      * The length of this sequence is the generic name depth.
      */
-    @UML (identifier="parsedName", obligation=MANDATORY, specification=ISO_19103)
+    @UML(identifier="parsedName", obligation=MANDATORY, specification=ISO_19103)
     List<LocalName> getParsedNames();
 
     /**

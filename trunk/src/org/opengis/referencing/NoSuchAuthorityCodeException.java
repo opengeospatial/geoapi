@@ -15,7 +15,7 @@ package org.opengis.referencing;
  * the requested authority code.
  *
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
- * @since 1.0
+ * @since GeoAPI 1.0
  *
  * @see org.opengis.referencing.datum.DatumAuthorityFactory
  * @see org.opengis.referencing.crs.CRSAuthorityFactory

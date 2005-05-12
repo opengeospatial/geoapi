@@ -19,7 +19,7 @@ import static java.lang.annotation.ElementType.*;
  * An annotation mapping an interface, methods or fields to a profile.
  *
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
- * @since 1.1
+ * @since GeoAPI 1.1
  */
 @Documented
 @Target({TYPE, FIELD, METHOD})

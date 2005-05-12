@@ -27,9 +27,9 @@ import static org.opengis.annotation.Specification.*;
  * @author ISO/DIS 19107
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-101.pdf">Abstract specification 5</A>
- * @since 1.0
+ * @since GeoAPI 1.0
  */
-@UML (identifier="GM_GenericSurface", specification=ISO_19107)
+@UML(identifier="GM_GenericSurface", specification=ISO_19107)
 public interface GenericSurface {
     /**
      * Returns a vector perpendicular to the <code>GenericSurface</code> at the
@@ -60,7 +60,7 @@ public interface GenericSurface {
      * @param point The point on this <code>GenericSurface</code> where to compute the upNormal.
      * @return The upNormal unit vector.
      */
-    @UML (identifier="upNormal", obligation=MANDATORY, specification=ISO_19107)
+    @UML(identifier="upNormal", obligation=MANDATORY, specification=ISO_19107)
     public double[] getUpNormal(DirectPosition point);
 
     /**
@@ -79,7 +79,7 @@ public interface GenericSurface {
      * @return The perimeter.
      * @unitof Length
      */
-    @UML (identifier="perimeter", obligation=MANDATORY, specification=ISO_19107)
+    @UML(identifier="perimeter", obligation=MANDATORY, specification=ISO_19107)
     public double getPerimeter();
 
     /**
@@ -100,6 +100,6 @@ public interface GenericSurface {
      * @return The area.
      * @unitof Area
      */
-    @UML (identifier="area", obligation=MANDATORY, specification=ISO_19107)
+    @UML(identifier="area", obligation=MANDATORY, specification=ISO_19107)
     public double getArea();
 }

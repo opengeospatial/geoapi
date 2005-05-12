@@ -27,7 +27,7 @@ import static org.opengis.annotation.Specification.*;
  *
  * @see GeneralParameterDescriptor
  */
-@UML (identifier="CC_GeneralParameterValue", specification=ISO_19111)
+@UML(identifier="CC_GeneralParameterValue", specification=ISO_19111)
 public interface GeneralParameterValue extends Cloneable {
     /**
      * Returns the abstract definition of this parameter or group of parameters.

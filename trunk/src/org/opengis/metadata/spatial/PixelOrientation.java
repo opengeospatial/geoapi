@@ -28,9 +28,9 @@ import static org.opengis.annotation.Specification.*;
  * @author ISO 19115
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
- * @since 1.1
+ * @since GeoAPI 1.1
  */
-@UML (identifier="MD_PixelOrientationCode", specification=ISO_19115)
+@UML(identifier="MD_PixelOrientationCode", specification=ISO_19115)
 public final class PixelOrientation extends CodeList<PixelOrientation> {
     /**
      * Serial number for compatibility with different versions.
@@ -46,32 +46,32 @@ public final class PixelOrientation extends CodeList<PixelOrientation> {
     /**
      * Point in a pixel corresponding to the Earth location of the pixel.
      */
-    @UML (identifier="center", obligation=CONDITIONAL, specification=ISO_19115)
+    @UML(identifier="center", obligation=CONDITIONAL, specification=ISO_19115)
     public static final PixelOrientation CENTER = new PixelOrientation("CENTER");
 
     /**
      * The corner in the pixel closest to the origin of the SRS; if two are at the same
      * distance from the origin, the one with the smallest x-value.
      */
-    @UML (identifier="lowerLeft", obligation=CONDITIONAL, specification=ISO_19115)
+    @UML(identifier="lowerLeft", obligation=CONDITIONAL, specification=ISO_19115)
     public static final PixelOrientation LOWER_LEFT = new PixelOrientation("LOWER_LEFT");
 
     /**
      * Next corner counterclockwise from the lower left.
      */
-    @UML (identifier="lowerRight", obligation=CONDITIONAL, specification=ISO_19115)
+    @UML(identifier="lowerRight", obligation=CONDITIONAL, specification=ISO_19115)
     public static final PixelOrientation LOWER_RIGHT = new PixelOrientation("LOWER_RIGHT");
 
     /**
      * Next corner counterclockwise from the lower right.
      */
-    @UML (identifier="upperRight", obligation=CONDITIONAL, specification=ISO_19115)
+    @UML(identifier="upperRight", obligation=CONDITIONAL, specification=ISO_19115)
     public static final PixelOrientation UPPER_RIGHT = new PixelOrientation("UPPER_RIGHT");
 
     /**
      * Next corner counterclockwise from the upper right.
      */
-    @UML (identifier="upperLeft", obligation=CONDITIONAL, specification=ISO_19115)
+    @UML(identifier="upperLeft", obligation=CONDITIONAL, specification=ISO_19115)
     public static final PixelOrientation UPPER_LEFT = new PixelOrientation("UPPER_LEFT");
 
     /**

@@ -28,14 +28,14 @@ import static org.opengis.annotation.Specification.*;
  * @author ISO 19111
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/03-073r1.zip">Abstract specification 2.0</A>
- * @since 1.0
+ * @since GeoAPI 1.0
  *
  * @see org.opengis.referencing.cs.CoordinateSystemAxis
  * @see javax.units.Unit
  * @see org.opengis.referencing.datum.Datum
  * @see org.opengis.referencing.crs.CoordinateReferenceSystem
  */
-@UML (identifier="CS_CoordinateSystem", specification=ISO_19111)
+@UML(identifier="CS_CoordinateSystem", specification=ISO_19111)
 public interface CoordinateSystem extends IdentifiedObject {
     /**
      * Returns the dimension of the coordinate system.
@@ -52,6 +52,6 @@ public interface CoordinateSystem extends IdentifiedObject {
      * @return The axis at the specified dimension.
      * @throws IndexOutOfBoundsException if <code>dimension</code> is out of bounds.
      */
-    @UML (identifier="usesAxis", obligation=MANDATORY, specification=ISO_19111)
+    @UML(identifier="usesAxis", obligation=MANDATORY, specification=ISO_19111)
     CoordinateSystemAxis getAxis(int dimension) throws IndexOutOfBoundsException;
 }

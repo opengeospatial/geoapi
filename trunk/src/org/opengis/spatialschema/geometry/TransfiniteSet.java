@@ -23,9 +23,9 @@ import static org.opengis.annotation.Specification.*;
  * @author ISO TS 19103
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-101.pdf">Abstract specification 5</A>
- * @since 1.0
+ * @since GeoAPI 1.0
  */
-@UML (identifier="TransfiniteSet", specification=ISO_19107)
+@UML(identifier="TransfiniteSet", specification=ISO_19107)
 public interface TransfiniteSet {
     /**
      * Returns <code>true</code> if this <code>TransfiniteSet</code> contains another

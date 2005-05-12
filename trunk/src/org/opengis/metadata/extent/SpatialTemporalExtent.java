@@ -24,9 +24,9 @@ import static org.opengis.annotation.Specification.*;
  * @author ISO 19115
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
- * @since 1.0
+ * @since GeoAPI 1.0
  */
-@UML (identifier="EX_SpatialTemporalExtent", specification=ISO_19115)
+@UML(identifier="EX_SpatialTemporalExtent", specification=ISO_19115)
 public interface SpatialTemporalExtent extends TemporalExtent {
     /**
      * Returns the spatial extent component of composite
@@ -34,6 +34,6 @@ public interface SpatialTemporalExtent extends TemporalExtent {
      *
      * @return The list of geographic extents (never {@code null}).
      */
-    @UML (identifier="spatialExtent", obligation=MANDATORY, specification=ISO_19115)
+    @UML(identifier="spatialExtent", obligation=MANDATORY, specification=ISO_19115)
     Collection<GeographicExtent> getSpatialExtent();
 }

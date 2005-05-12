@@ -28,17 +28,17 @@ import static org.opengis.annotation.Specification.*;
  * @author ISO 19115
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
- * @since 1.0
+ * @since GeoAPI 1.0
  */
 @Profile (level=CORE)
-@UML (identifier="CI_ResponsibleParty", specification=ISO_19115)
+@UML(identifier="CI_ResponsibleParty", specification=ISO_19115)
 public interface ResponsibleParty {
     /**
      * Name of the responsible person- surname, given name, title separated by a delimiter.
      * Only one of {@code individualName}, {@link #getOrganisationName organisationName}
      * and {@link #getPositionName positionName} should be provided.
      */
-    @UML (identifier="individualName", obligation=CONDITIONAL, specification=ISO_19115)
+    @UML(identifier="individualName", obligation=CONDITIONAL, specification=ISO_19115)
     String getIndividualName();
 
     /**
@@ -46,7 +46,7 @@ public interface ResponsibleParty {
      * Only one of {@link #getIndividualName individualName}, {@code organisationName}
      * and {@link #getPositionName positionName} should be provided.
      */
-    @UML (identifier="organisationName", obligation=CONDITIONAL, specification=ISO_19115)
+    @UML(identifier="organisationName", obligation=CONDITIONAL, specification=ISO_19115)
     InternationalString getOrganisationName();
 
     /**
@@ -54,18 +54,18 @@ public interface ResponsibleParty {
      * Only one of {@link #getIndividualName individualName}, {@link #getOrganisationName organisationName}
      * and {@code positionName} should be provided.
      */
-    @UML (identifier="positionName", obligation=CONDITIONAL, specification=ISO_19115)
+    @UML(identifier="positionName", obligation=CONDITIONAL, specification=ISO_19115)
     InternationalString getPositionName();
 
     /**
      * Address of the responsible party.
      */
-    @UML (identifier="contactInfo", obligation=OPTIONAL, specification=ISO_19115)
+    @UML(identifier="contactInfo", obligation=OPTIONAL, specification=ISO_19115)
     Contact getContactInfo();
 
     /**
      * Function performed by the responsible party.
      */
-    @UML (identifier="role", obligation=MANDATORY, specification=ISO_19115)
+    @UML(identifier="role", obligation=MANDATORY, specification=ISO_19115)
     Role getRole();
 }

@@ -112,22 +112,22 @@ import static org.opengis.annotation.Specification.*;
  * @author ISO/DIS 19107
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-101.pdf">Abstract specification 5</A>
- * @since 1.1
+ * @since GeoAPI 1.1
  */
-@UML (identifier="GM_ParametricCurveSurface", specification=ISO_19107)
+@UML(identifier="GM_ParametricCurveSurface", specification=ISO_19107)
 public interface ParametricCurveSurface extends SurfacePatch {
     /**
      * Indicates the type of surface curves used to traverse the surface horizontally
      * with respect to the parameter <var>s</var>.
      */
-    @UML (identifier="horizontalCurveType", obligation=MANDATORY, specification=ISO_19107)
+    @UML(identifier="horizontalCurveType", obligation=MANDATORY, specification=ISO_19107)
     CurveInterpolation getHorizontalCurveType();
 
     /**
      * Indicates the type of surface curves used to traverse the surface vertically with
      * respect to the parameter <var>t</var>.
      */
-    @UML (identifier="verticalCurveType", obligation=MANDATORY, specification=ISO_19107)
+    @UML(identifier="verticalCurveType", obligation=MANDATORY, specification=ISO_19107)
     CurveInterpolation getVerticalCurveType();
 
     /**
@@ -146,7 +146,7 @@ public interface ParametricCurveSurface extends SurfacePatch {
      * @param  t The <var>t</var> value to hold constant.
      * @return The curve that traverses the surface.
      */
-    @UML (identifier="horizontalCurve", obligation=MANDATORY, specification=ISO_19107)
+    @UML(identifier="horizontalCurve", obligation=MANDATORY, specification=ISO_19107)
     Curve horizontalCurve(double t);
 
     /**
@@ -156,12 +156,12 @@ public interface ParametricCurveSurface extends SurfacePatch {
      * @param  s The <var>s</var> value to hold constant.
      * @return The curve that traverses the surface.
      */
-    @UML (identifier="verticalCurve", obligation=MANDATORY, specification=ISO_19107)
+    @UML(identifier="verticalCurve", obligation=MANDATORY, specification=ISO_19107)
     Curve verticalCurve(double s);
 
     /**
      * Traverses the surface both vertically and horizontally.
      */
-    @UML (identifier="surface", obligation=MANDATORY, specification=ISO_19107)
+    @UML(identifier="surface", obligation=MANDATORY, specification=ISO_19107)
     DirectPosition surface(double s, double t);
 }

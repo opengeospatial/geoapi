@@ -35,7 +35,7 @@ import static org.opengis.annotation.Specification.*;
  * @see ParameterDescriptorGroup
  * @see ParameterValue
  */
-@UML (identifier="CC_ParameterValueGroup", specification=ISO_19111)
+@UML(identifier="CC_ParameterValueGroup", specification=ISO_19111)
 public interface ParameterValueGroup extends GeneralParameterValue {
     /**
      * The abstract definition of this group of parameters.
@@ -46,7 +46,7 @@ public interface ParameterValueGroup extends GeneralParameterValue {
      *         Java extensions (e.g.
      *         {@link javax.media.jai.ParameterList.html#getParameterListDescriptor ParameterList}).
      */
-/// @UML (identifier="valuesOfGroup", obligation=MANDATORY, specification=ISO_19111)
+/// @UML(identifier="valuesOfGroup", obligation=MANDATORY, specification=ISO_19111)
 /// ParameterDescriptorGroup getDescriptor();
 
     /**
@@ -65,7 +65,7 @@ public interface ParameterValueGroup extends GeneralParameterValue {
      *       way to remove parameter created by the {@link #parameter} method.</P></LI>
      * </UL>
      */
-    @UML (identifier="includesValue", obligation=MANDATORY, specification=ISO_19111)
+    @UML(identifier="includesValue", obligation=MANDATORY, specification=ISO_19111)
     List<GeneralParameterValue> values();
 
     /**

@@ -34,12 +34,12 @@ import static org.opengis.annotation.Specification.*;
  * @author ISO/DIS 19107
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-101.pdf">Abstract specification 5</A>
- * @since 1.0
+ * @since GeoAPI 1.0
  *
  * @see GeometryFactory#createArcString
  * @see ArcStringByBulge#asArcString
  */
-@UML (identifier="GM_ArcString", specification=ISO_19107)
+@UML(identifier="GM_ArcString", specification=ISO_19107)
 public interface ArcString extends CurveSegment {
     /**
      * Returns the number of circular arcs in the string. Since the interpolation method
@@ -52,7 +52,7 @@ public interface ArcString extends CurveSegment {
      *
      * @return The number of circular arcs.
      */
-    @UML (identifier="numArc", obligation=MANDATORY, specification=ISO_19107)
+    @UML(identifier="numArc", obligation=MANDATORY, specification=ISO_19107)
     public int getNumArc();
 
     /**
@@ -63,7 +63,7 @@ public interface ArcString extends CurveSegment {
      *
      * @return The control points. The array size is <code>2*{@link #getNumArc numArc}&nbsp;+1</code>.
      */
-    @UML (identifier="controlPoints", obligation=MANDATORY, specification=ISO_19107)
+    @UML(identifier="controlPoints", obligation=MANDATORY, specification=ISO_19107)
     public PointArray getControlPoints();
 
     /**
@@ -72,7 +72,7 @@ public interface ArcString extends CurveSegment {
      *
      * @return Always {@link CurveInterpolation#CIRCULAR_ARC_3_POINTS}.
      */
-    @UML (identifier="interpolation", obligation=MANDATORY, specification=ISO_19107)
+    @UML(identifier="interpolation", obligation=MANDATORY, specification=ISO_19107)
     public CurveInterpolation getInterpolation();
 
     /**
@@ -80,6 +80,6 @@ public interface ArcString extends CurveSegment {
      *
      * @return The sequence of arcs.
      */
-    @UML (identifier="asGM_Arc", obligation=MANDATORY, specification=ISO_19107)
+    @UML(identifier="asGM_Arc", obligation=MANDATORY, specification=ISO_19107)
     public List<Arc> asArcs();
 }

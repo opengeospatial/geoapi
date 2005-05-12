@@ -28,9 +28,9 @@ import static org.opengis.annotation.Specification.*;
  * @author ISO 19115
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
- * @since 1.1
+ * @since GeoAPI 1.1
  */
-@UML (identifier="MD_CellGeometryCode", specification=ISO_19115)
+@UML(identifier="MD_CellGeometryCode", specification=ISO_19115)
 public final class CellGeometry extends CodeList<CellGeometry> {
     /**
      * Serial number for compatibility with different versions.
@@ -46,13 +46,13 @@ public final class CellGeometry extends CodeList<CellGeometry> {
     /**
      * Each cell represents a point.
      */
-    @UML (identifier="point", obligation=CONDITIONAL, specification=ISO_19115)
+    @UML(identifier="point", obligation=CONDITIONAL, specification=ISO_19115)
     public static final CellGeometry POINT = new CellGeometry("POINT");
 
     /**
      * Each cell represents an area.
      */
-    @UML (identifier="area", obligation=CONDITIONAL, specification=ISO_19115)
+    @UML(identifier="area", obligation=CONDITIONAL, specification=ISO_19115)
     public static final CellGeometry AREA = new CellGeometry("AREA");
 
     /**

@@ -33,9 +33,9 @@ import static org.opengis.annotation.Specification.*;
  *
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-004.pdf">Grid Coverage specification 1.0</A>
- * @since 1.0
+ * @since GeoAPI 1.0
  */
-@UML (identifier="CV_GridRange", specification=OGC_01_004)
+@UML(identifier="CV_GridRange", specification=OGC_01004)
 public interface GridRange {
     /**
      * Returns the number of dimensions.
@@ -49,7 +49,7 @@ public interface GridRange {
      *
      * @return The valid minimum inclusive grid coordinate.
      */
-    @UML (identifier="lo", obligation=MANDATORY, specification=OGC_01_004)
+    @UML(identifier="lo", obligation=MANDATORY, specification=OGC_01004)
     int[] getLowers();
 
     /**
@@ -58,7 +58,7 @@ public interface GridRange {
      *
      * @return The valid maximum exclusive grid coordinate.
      */
-    @UML (identifier="hi", obligation=MANDATORY, specification=OGC_01_004)
+    @UML(identifier="hi", obligation=MANDATORY, specification=OGC_01004)
     int[] getUppers();
     
     /**

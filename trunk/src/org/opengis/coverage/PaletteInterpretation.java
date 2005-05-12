@@ -40,12 +40,12 @@ import static org.opengis.annotation.Specification.*;
  *
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-004.pdf">Grid Coverage specification 1.0</A>
- * @since 1.0
+ * @since GeoAPI 1.0
  *
  * @see ColorInterpretation
  * @see SampleDimension
  */
-@UML (identifier="CV_PaletteInterpretation", specification=OGC_01_004)
+@UML(identifier="CV_PaletteInterpretation", specification=OGC_01004)
 public final class PaletteInterpretation extends CodeList<PaletteInterpretation> {
     /**
      * Serial number for compatibility with different versions.
@@ -63,7 +63,7 @@ public final class PaletteInterpretation extends CodeList<PaletteInterpretation>
      *
      * @see ColorSpace#TYPE_GRAY
      */
-    @UML (identifier="CV_Gray", obligation=CONDITIONAL, specification=OGC_01_004)
+    @UML(identifier="CV_Gray", obligation=CONDITIONAL, specification=OGC_01004)
     public static final PaletteInterpretation GRAY = new PaletteInterpretation("GRAY");
 
     /**
@@ -71,7 +71,7 @@ public final class PaletteInterpretation extends CodeList<PaletteInterpretation>
      *
      * @see ColorSpace#TYPE_RGB
      */
-    @UML (identifier="CV_RGB", obligation=CONDITIONAL, specification=OGC_01_004)
+    @UML(identifier="CV_RGB", obligation=CONDITIONAL, specification=OGC_01004)
     public static final PaletteInterpretation RGB = new PaletteInterpretation("RGB");
 
     /**
@@ -79,7 +79,7 @@ public final class PaletteInterpretation extends CodeList<PaletteInterpretation>
      *
      * @see ColorSpace#TYPE_CMYK
      */
-    @UML (identifier="CV_CMYK", obligation=CONDITIONAL, specification=OGC_01_004)
+    @UML(identifier="CV_CMYK", obligation=CONDITIONAL, specification=OGC_01004)
     public static final PaletteInterpretation CMYK = new PaletteInterpretation("CMYK");
 
     /**
@@ -87,7 +87,7 @@ public final class PaletteInterpretation extends CodeList<PaletteInterpretation>
      *
      * @see ColorSpace#TYPE_HLS
      */
-    @UML (identifier="CV_HLS", obligation=CONDITIONAL, specification=OGC_01_004)
+    @UML(identifier="CV_HLS", obligation=CONDITIONAL, specification=OGC_01004)
     public static final PaletteInterpretation HLS = new PaletteInterpretation("HLS");
 
     /**

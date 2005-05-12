@@ -33,19 +33,19 @@ import static org.opengis.annotation.Specification.*;
  * @author ISO 19111
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/03-073r1.zip">Abstract specification 2.0</A>
- * @since 1.0
+ * @since GeoAPI 1.0
  */
-@UML (identifier="SC_GeographicCRS", specification=ISO_19111)
+@UML(identifier="SC_GeographicCRS", specification=ISO_19111)
 public interface GeographicCRS extends SingleCRS {
     /**
      * Returns the coordinate system, which must be ellipsoidal.
      */
-/// @UML (identifier="usesCS", obligation=MANDATORY, specification=ISO_19111)
+/// @UML(identifier="usesCS", obligation=MANDATORY, specification=ISO_19111)
 /// EllipsoidalCS getCoordinateSystem();
 
     /**
      * Returns the datum, which must be geodetic.
      */
-/// @UML (identifier="usesDatum", obligation=MANDATORY, specification=ISO_19111)
+/// @UML(identifier="usesDatum", obligation=MANDATORY, specification=ISO_19111)
 /// GeodeticDatum getDatum();
 }

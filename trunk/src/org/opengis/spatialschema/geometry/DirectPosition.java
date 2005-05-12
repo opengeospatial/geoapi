@@ -33,9 +33,9 @@ import static org.opengis.annotation.Specification.*;
  * @author ISO/DIS 19107
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-101.pdf">Abstract specification 5</A>
- * @since 1.0
+ * @since GeoAPI 1.0
  */
-@UML (identifier="DirectPosition", specification=ISO_19107)
+@UML(identifier="DirectPosition", specification=ISO_19107)
 public interface DirectPosition extends Position, Cloneable {
     /**
      * The length of coordinate sequence (the number of entries). This is determined by
@@ -43,7 +43,7 @@ public interface DirectPosition extends Position, Cloneable {
      *
      * @return The dimensionality of this position.
      */
-    @UML (identifier="dimension", obligation=MANDATORY, specification=ISO_19107)
+    @UML(identifier="dimension", obligation=MANDATORY, specification=ISO_19107)
     int getDimension();
 
     /**
@@ -53,7 +53,7 @@ public interface DirectPosition extends Position, Cloneable {
      * @return A copy of the coordinates. Changes in the returned array will not be reflected
      *         back in this <code>DirectPosition</code> object.
      */
-    @UML (identifier="coordinates", obligation=MANDATORY, specification=ISO_19107)
+    @UML(identifier="coordinates", obligation=MANDATORY, specification=ISO_19107)
     double[] getCoordinates();
 
     /**
@@ -84,7 +84,7 @@ public interface DirectPosition extends Position, Cloneable {
      *
      * @return The coordinate reference system, or {@code null}.
      */
-    @UML (identifier="coordinateReferenceSystem", obligation=MANDATORY, specification=ISO_19107)
+    @UML(identifier="coordinateReferenceSystem", obligation=MANDATORY, specification=ISO_19107)
     CoordinateReferenceSystem getCoordinateReferenceSystem();
 
     /**

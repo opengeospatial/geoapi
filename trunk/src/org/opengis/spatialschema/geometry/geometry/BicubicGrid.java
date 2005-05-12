@@ -29,31 +29,31 @@ import static org.opengis.annotation.Specification.*;
  * @author ISO/DIS 19107
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-101.pdf">Abstract specification 5</A>
- * @since 1.1
+ * @since GeoAPI 1.1
  */
-@UML (identifier="GM_BicubicGrid", specification=ISO_19107)
+@UML(identifier="GM_BicubicGrid", specification=ISO_19107)
 public interface BicubicGrid extends GriddedSurface {
     /**
      * Returns the initial tangent vectors.
      */
-    @UML (identifier="horiVectorAtStart", obligation=MANDATORY, specification=ISO_19107)
+    @UML(identifier="horiVectorAtStart", obligation=MANDATORY, specification=ISO_19107)
     List<double[]> getHorizontalVectorAtStart();
 
     /**
      * Returns the initial tangent vectors.
      */
-    @UML (identifier="horiVectorAtEnd", obligation=MANDATORY, specification=ISO_19107)
+    @UML(identifier="horiVectorAtEnd", obligation=MANDATORY, specification=ISO_19107)
     List<double[]> getHorizontalVectorAtEnd();
 
     /**
      * Returns the initial tangent vectors.
      */
-    @UML (identifier="vertVectorAtStart", obligation=MANDATORY, specification=ISO_19107)
+    @UML(identifier="vertVectorAtStart", obligation=MANDATORY, specification=ISO_19107)
     List<double[]> getVerticalVectorAtStart();
 
     /**
      * Returns the initial tangent vectors.
      */
-    @UML (identifier="vertVectorAtEnd", obligation=MANDATORY, specification=ISO_19107)
+    @UML(identifier="vertVectorAtEnd", obligation=MANDATORY, specification=ISO_19107)
     List<double[]> getVerticalVectorAtEnd();
 }

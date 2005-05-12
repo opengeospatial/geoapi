@@ -10,10 +10,8 @@
 package org.opengis.filter.spatial;
 
 // Annotations
-import org.opengis.annotation.UML;
-import org.opengis.annotation.XmlSchema;
+import org.opengis.annotation.XmlElement;
 import static org.opengis.annotation.Obligation.*;
-import static org.opengis.annotation.Specification.*;
 
 
 /**
@@ -23,16 +21,15 @@ import static org.opengis.annotation.Specification.*;
  *
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/02-059.pdf">Implementation specification 1.0</A>
- * @since 1.1
+ * @since GeoAPI 1.1
  */
-@XmlSchema("http://schemas.opengis.net/filter/1.0.0/filter.xsd")
-@UML(identifier="DistanceBufferType", specification=OGC_02_059)
+@XmlElement(name="DistanceBufferType")
 public interface DistanceBufferOperator extends BinarySpatialOperator {
     /**
      * Returns the buffer distance around the geometry that will be used when
      * comparing features' geometries.
      */
-    @UML(identifier="Distance", obligation=MANDATORY, specification=OGC_02_059)
+    @XmlElement(name="Distance", obligation=MANDATORY)
     double getDistance();
 
     /**

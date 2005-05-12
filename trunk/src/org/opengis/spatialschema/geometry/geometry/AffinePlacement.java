@@ -37,16 +37,16 @@ import static org.opengis.annotation.Specification.*;
  * @author ISO/DIS 19107
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-101.pdf">Abstract specification 5</A>
- * @since 1.1
+ * @since GeoAPI 1.1
  */
-@UML (identifier="GM_AffinePlacement", specification=ISO_19107)
+@UML(identifier="GM_AffinePlacement", specification=ISO_19107)
 public interface AffinePlacement extends Placement {
     /**
      * Gives the target of the parameter space origin. This is the vector
      * (<var>x</var><sub>0</sub>, <var>y</var><sub>0</sub>, <var>z</var><sub>0</sub>)
      * in the formulae in the class description.
      */
-    @UML (identifier="location", obligation=MANDATORY, specification=ISO_19107)
+    @UML(identifier="location", obligation=MANDATORY, specification=ISO_19107)
     public Position getLocation();
 
     /**
@@ -59,6 +59,6 @@ public interface AffinePlacement extends Placement {
      *         {@link #getInDimension inDimension} exclusive.
      * @return The direction as an array of length {@link #getOutDimension outDimension}.
      */
-    @UML (identifier="refDirection", obligation=MANDATORY, specification=ISO_19107)
+    @UML(identifier="refDirection", obligation=MANDATORY, specification=ISO_19107)
     public double[] getReferenceDirection(int dimension);
 }

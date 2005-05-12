@@ -13,10 +13,8 @@ package org.opengis.filter;
 import org.opengis.feature.Feature;
 
 // Annotations
-import org.opengis.annotation.UML;
-import org.opengis.annotation.XmlSchema;
 import org.opengis.annotation.Extension;
-import static org.opengis.annotation.Specification.*;
+import org.opengis.annotation.XmlElement;
 
 
 /**
@@ -27,10 +25,9 @@ import static org.opengis.annotation.Specification.*;
  *
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/02-059.pdf">Implementation specification 1.0</A>
- * @since 1.1
+ * @since GeoAPI 1.1
  */
-@XmlSchema("http://schemas.opengis.net/filter/1.0.0/filter.xsd")
-@UML(identifier="Filter", specification=OGC_02_059)
+@XmlElement(name="Filter")
 public interface Filter {
     /**
      * Given a feature, this method determines whether the feature passes the

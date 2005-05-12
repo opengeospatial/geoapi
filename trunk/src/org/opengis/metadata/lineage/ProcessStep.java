@@ -29,38 +29,38 @@ import static org.opengis.annotation.Specification.*;
  * @author ISO 19115
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
- * @since 1.1
+ * @since GeoAPI 1.1
  */
-@UML (identifier="LI_ProcessStep", specification=ISO_19115)
+@UML(identifier="LI_ProcessStep", specification=ISO_19115)
 public interface ProcessStep {
     /**
      * Description of the event, including related parameters or tolerances.
      */
-    @UML (identifier="description", obligation=MANDATORY, specification=ISO_19115)
+    @UML(identifier="description", obligation=MANDATORY, specification=ISO_19115)
     InternationalString getDescription();
 
     /**
      * Requirement or purpose for the process step.
      */
-    @UML (identifier="rationale", obligation=OPTIONAL, specification=ISO_19115)
+    @UML(identifier="rationale", obligation=OPTIONAL, specification=ISO_19115)
     InternationalString getRationale();
 
     /**
      * Date and time or range of date and time on or over which the process step occurred.
      */
-    @UML (identifier="dateTime", obligation=OPTIONAL, specification=ISO_19115)
+    @UML(identifier="dateTime", obligation=OPTIONAL, specification=ISO_19115)
     Date getDate();
 
     /**
      * Identification of, and means of communication with, person(s) and
      * organization(s) associated with the process step.
      */
-    @UML (identifier="processor", obligation=OPTIONAL, specification=ISO_19115)
+    @UML(identifier="processor", obligation=OPTIONAL, specification=ISO_19115)
     Collection<ResponsibleParty> getProcessors();
 
     /**
      * Information about the source data used in creating the data specified by the scope.
      */
-    @UML (identifier="source", obligation=OPTIONAL, specification=ISO_19115)
+    @UML(identifier="source", obligation=OPTIONAL, specification=ISO_19115)
     Collection<Source> getSources();
 }

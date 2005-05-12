@@ -36,11 +36,11 @@ import static org.opengis.annotation.Specification.*;
  *
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-004.pdf">Grid Coverage specification 1.0</A>
- * @since 1.1
+ * @since GeoAPI 1.1
  *
  * @see GridCoverageWriter#write
  */
-@UML (identifier="GC_FileFormatNotCompatibleWithGridCoverage", specification=OGC_01_004)
+@UML(identifier="GC_FileFormatNotCompatibleWithGridCoverage", specification=OGC_01004)
 public class FileFormatNotCompatibleWithGridCoverageException extends IIOException {
     /**
      * Serial number for interoperability with different versions.
