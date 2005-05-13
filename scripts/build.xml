@@ -86,7 +86,7 @@
     </copy>
 
     <copy todir="pending/sources" includeEmptyDirs="false">
-      <fileset dir="${homepath}/pending">
+      <fileset dir="${homepath}/pending-old">
         <include name="**/*.MF"/>
         <include name="**/*.png"/>
         <include name="**/*.xml"/>
@@ -276,6 +276,7 @@
       <replacefilter token="&lt;EvaluationMethodType&gt;"/>
       <replacefilter token="&lt;ExtendedElementInformation&gt;"/>
       <replacefilter token="&lt;Extent&gt;"/>
+      <replacefilter token="&lt;ExternalGraphicOrMark&gt;"/>
       <replacefilter token="&lt;Feature&gt;"/>
       <replacefilter token="&lt;FeatureType&gt;"/>
       <replacefilter token="&lt;FeatureTypeList&gt;"/>
@@ -366,6 +367,7 @@
       <replacefilter token="&lt;Surface&gt;"/>
       <replacefilter token="&lt;SurfaceInterpolation&gt;"/>
       <replacefilter token="&lt;SurfacePatch&gt;"/>
+      <replacefilter token="&lt;Symbol&gt;"/>
       <replacefilter token="&lt;TemporalExtent&gt;"/>
       <replacefilter token="&lt;TopicCategory&gt;"/>
       <replacefilter token="&lt;TopologyLevel&gt;"/>
