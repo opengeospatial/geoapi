@@ -16,7 +16,7 @@ import java.rmi.Remote;
 import java.rmi.RemoteException;
 
 // GCS dependencies
-import org.opengis.cv.CV_Coverage;
+import org.opengis.cv.*;
 
 
 /**
@@ -26,14 +26,20 @@ import org.opengis.cv.CV_Coverage;
  *
  * @version 1.00
  * @since   1.00
+ *
+ * @deprecated
  */
+@Deprecated
 public interface GC_GridCoverage extends CV_Coverage {
     /**
      * Returns <code>true</code> if grid data can be edited.
      *
      * @return <code>true</code> if grid data can be edited.
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated
      */
+    @Deprecated
     boolean isDataEditable() throws RemoteException;
 
     /**
@@ -41,7 +47,10 @@ public interface GC_GridCoverage extends CV_Coverage {
      *
      * @return the information for the packing of grid coverage values.
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated
      */
+    @Deprecated
     GC_GridPacking getGridPacking() throws RemoteException;
 
     /**
@@ -50,7 +59,10 @@ public interface GC_GridCoverage extends CV_Coverage {
      *
      * @return the information for the grid coverage geometry.
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated
      */
+    @Deprecated
     GC_GridGeometry getGridGeometry() throws RemoteException;
 
     /**
@@ -58,7 +70,10 @@ public interface GC_GridCoverage extends CV_Coverage {
      *
      * @return the number of predetermined overviews for the grid.
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated
      */
+    @Deprecated
     int getNumOverviews() throws RemoteException;
 
     /**
@@ -73,7 +88,10 @@ public interface GC_GridCoverage extends CV_Coverage {
      *
      * @return the optimal size to use for each dimension when accessing grid values.
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated
      */
+    @Deprecated
     int[] getOptimalDataBlockSizes() throws RemoteException;
 
     /**
@@ -82,7 +100,10 @@ public interface GC_GridCoverage extends CV_Coverage {
      * @param overviewIndex Overview index for which to retrieve grid geometry. Indices start at 0.
      * @return the grid geometry for an overview.
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated
      */
+    @Deprecated
     GC_GridGeometry getOverviewGridGeometry(int overviewIndex) throws RemoteException;
 
     /**
@@ -112,7 +133,10 @@ public interface GC_GridCoverage extends CV_Coverage {
      * @param overviewIndex Index of grid coverage overview to retrieve. Indexes start at 0.
      * @return a pre-calculated overview for a grid coverage.
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated
      */
+    @Deprecated
     GC_GridCoverage getOverview(int overviewIndex) throws RemoteException;
 
 
@@ -122,7 +146,10 @@ public interface GC_GridCoverage extends CV_Coverage {
      *
      * @param  gridRange Grid range for block of data to be accessed.
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated
      */
+    @Deprecated
     boolean[] getDataBlockAsBoolean(GC_GridRange gridRange) throws RemoteException;
 
     /**
@@ -131,7 +158,10 @@ public interface GC_GridCoverage extends CV_Coverage {
      *
      * @param gridRange Grid range for block of data to be accessed.
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated
      */
+    @Deprecated
     byte[] getDataBlockAsByte(GC_GridRange gridRange) throws RemoteException;
 
     /**
@@ -140,7 +170,10 @@ public interface GC_GridCoverage extends CV_Coverage {
      *
      * @param gridRange Grid range for block of data to be accessed.
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated
      */
+    @Deprecated
     int[] getDataBlockAsInteger(GC_GridRange gridRange) throws RemoteException;
 
     /**
@@ -149,7 +182,10 @@ public interface GC_GridCoverage extends CV_Coverage {
      *
      * @param gridRange Grid range for block of data to be accessed.
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated
      */
+    @Deprecated
     double [] getValueBlockAsDouble(GC_GridRange gridRange) throws RemoteException;
 
     /**
@@ -195,7 +231,10 @@ public interface GC_GridCoverage extends CV_Coverage {
      * @param gridRange Grid range for block of data to be accessed.
      * @return a block of grid coverage data for all sample dimensions.
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated
      */
+    @Deprecated
     byte[] getPackedDataBlock(GC_GridRange gridRange) throws RemoteException;
 
     /**
@@ -224,7 +263,10 @@ public interface GC_GridCoverage extends CV_Coverage {
      * @param gridRange Grid range for block of data to be accessed.
      * @param values Sequence of grid values for the given region.
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated
      */
+    @Deprecated
     void setDataBlockAsBoolean(GC_GridRange gridRange, boolean [] values) throws RemoteException;
 
     /**
@@ -233,7 +275,10 @@ public interface GC_GridCoverage extends CV_Coverage {
      * @param gridRange Grid range for block of data to be accessed.
      * @param values Sequence of grid values for the given region.
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated
      */
+    @Deprecated
     void setDataBlockAsByte(GC_GridRange gridRange, byte [] values) throws RemoteException;
 
     /**
@@ -242,7 +287,10 @@ public interface GC_GridCoverage extends CV_Coverage {
      * @param gridRange Grid range for block of data to be accessed.
      * @param values Sequence of grid values for the given region.
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated
      */
+    @Deprecated
     void setDataBlockAsInteger(GC_GridRange gridRange, int [] values) throws RemoteException;
 
     /**
@@ -251,7 +299,10 @@ public interface GC_GridCoverage extends CV_Coverage {
      * @param gridRange Grid range for block of data to be accessed.
      * @param values Sequence of grid values for the given region.
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated
      */
+    @Deprecated
     void setDataBlockAsDouble(GC_GridRange gridRange, double [] values) throws RemoteException;
 
     /**
@@ -270,6 +321,9 @@ public interface GC_GridCoverage extends CV_Coverage {
      * @param gridRange Grid range for block of data to be accessed.
      * @param values Sequence of grid values for the given region.
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated
      */
+    @Deprecated
     void setPackedDataBlock(GC_GridRange gridRange, byte [] values) throws RemoteException;
 }

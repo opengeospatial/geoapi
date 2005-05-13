@@ -16,8 +16,8 @@ import java.rmi.Remote;
 import java.rmi.RemoteException;
 
 // CSS dependencies
-import org.opengis.cs.CS_CoordinateSystem;
-import org.opengis.ct.CT_MathTransform;
+import org.opengis.cs.*;
+import org.opengis.ct.*;
 
 
 /**
@@ -29,14 +29,20 @@ import org.opengis.ct.CT_MathTransform;
  *
  * @version 1.00
  * @since   1.00
+ *
+ * @deprecated
  */
+@Deprecated
 public interface GC_GridCoverageExchange extends Remote {
     /**
      * The number of formats supported by the <code>GC_GridCoverageExchange</code>.
      *
      * @return the number of formats supported by the <code>GC_GridCoverageExchange</code>.
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated
      */
+    @Deprecated
     int getNumFormats() throws RemoteException;
 
     /**
@@ -45,7 +51,10 @@ public interface GC_GridCoverageExchange extends Remote {
      *
      * @return the list of metadata keywords for the interface.
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated
      */
+    @Deprecated
     String[] getMetadataNames() throws RemoteException;
 
     /**
@@ -57,7 +66,10 @@ public interface GC_GridCoverageExchange extends Remote {
      * @return information on file formats or resources available with
      *         the <code>GC_GridCoverageExchange</code> implementation.
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated
      */
+    @Deprecated
     GC_Format getFormat(int index) throws RemoteException;
 
     /**
@@ -66,7 +78,10 @@ public interface GC_GridCoverageExchange extends Remote {
      * @param name Metadata keyword for which to retrieve metadata.
      * @return the metadata value for the given metadata name.
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated
      */
+    @Deprecated
     String getMetadataValue(String name) throws RemoteException;
 
     /**
@@ -83,7 +98,10 @@ public interface GC_GridCoverageExchange extends Remote {
      *
      * @return a new {@link GC_GridCoverage}.
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated
      */
+    @Deprecated
     GC_GridCoverage createFromName(String name) throws RemoteException;
 
     /**
@@ -101,7 +119,10 @@ public interface GC_GridCoverageExchange extends Remote {
      *             for it s own use. Implementations can support many different of file formats.
      * @return The list of grid coverages contained within the given file or resource.
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated
      */
+    @Deprecated
     String[] listSubNames(String name) throws RemoteException;
 
     /**
@@ -118,7 +139,10 @@ public interface GC_GridCoverageExchange extends Remote {
      * @param subName Name of grid coverage contained in file name or resource.
      * @return a new {@link GC_GridCoverage} from a file where the file contains many grid coverages.
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated
      */
+    @Deprecated
     GC_GridCoverage createFromSubName(String name, String subName) throws RemoteException;
 
     /**
@@ -146,7 +170,10 @@ public interface GC_GridCoverageExchange extends Remote {
      *                 These options are implementation specific are the valid
      *                 options is determined from the {@link GC_Format} interface.
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated
      */
+    @Deprecated
     void exportTo(GC_GridCoverage gridCoverage, String fileFormat, String fileName, GC_Parameter[] creationOptions) throws RemoteException;
 
     /**
@@ -157,6 +184,9 @@ public interface GC_GridCoverageExchange extends Remote {
      * @param gridToCoordinateSystem Math transform to assign to grid coverage.
      * @return a new coverage with a different coordinate reference system.
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated
      */
+    @Deprecated
     GC_GridCoverage move(GC_GridCoverage gridCoverage, CS_CoordinateSystem coordsys, CT_MathTransform gridToCoordinateSystem) throws RemoteException;
 }

@@ -10,7 +10,7 @@
 package org.opengis.ct;
 
 // OpenGIS dependencies
-import org.opengis.pt.PT_Matrix;
+import org.opengis.pt.*;
 
 // Various JDK's classes
 import java.rmi.Remote;
@@ -63,6 +63,7 @@ import java.rmi.RemoteException;
  *
  * @deprecated Replaced by {@link org.opengis.referencing.operation.MathTransformFactory}.
  */
+@Deprecated
 public interface CT_MathTransformFactory extends Remote {
     /**
      * Creates an affine transform from a matrix.
@@ -80,6 +81,7 @@ public interface CT_MathTransformFactory extends Remote {
      *
      * @deprecated Replaced by {@link org.opengis.referencing.operation.MathTransformFactory#createAffineTransform}
      */
+    @Deprecated
     CT_MathTransform createAffineTransform(PT_Matrix matrix) throws RemoteException;
 
     /**
@@ -99,6 +101,7 @@ public interface CT_MathTransformFactory extends Remote {
      *
      * @deprecated Replaced by {@link org.opengis.referencing.operation.MathTransformFactory#createConcatenatedTransform}
      */
+    @Deprecated
     CT_MathTransform createConcatenatedTransform(CT_MathTransform transform1, CT_MathTransform transform2) throws RemoteException;
 
     /**
@@ -117,6 +120,7 @@ public interface CT_MathTransformFactory extends Remote {
      *
      * @deprecated Replaced by {@link org.opengis.referencing.operation.MathTransformFactory#createPassThroughTransform}
      */
+    @Deprecated
     CT_MathTransform createPassThroughTransform(int firstAffectedOrdinate, CT_MathTransform subTransform) throws RemoteException;
 
     /**
@@ -133,6 +137,7 @@ public interface CT_MathTransformFactory extends Remote {
      *
      * @deprecated Replaced by {@link org.opengis.referencing.operation.MathTransformFactory#createParameterizedTransform}
      */
+    @Deprecated
     CT_MathTransform createParameterizedTransform(String classification, CT_Parameter[] parameters) throws RemoteException;
 
     /**
@@ -144,6 +149,7 @@ public interface CT_MathTransformFactory extends Remote {
      *
      * @deprecated Replaced by {@link org.opengis.referencing.operation.MathTransformFactory#createFromWKT}
      */
+    @Deprecated
     CT_MathTransform createFromWKT(String wellKnownText) throws RemoteException;
 
     /**
@@ -155,6 +161,7 @@ public interface CT_MathTransformFactory extends Remote {
      *
      * @deprecated Replaced by {@link org.opengis.referencing.operation.MathTransformFactory#createFromXML}
      */
+    @Deprecated
     CT_MathTransform createFromXML(String xml) throws RemoteException;
 
     /**
@@ -167,6 +174,7 @@ public interface CT_MathTransformFactory extends Remote {
      *
      * @deprecated Check parameter {@link javax.units.Unit unit} instead.
      */
+    @Deprecated
     boolean isParameterAngular(String parameterName) throws RemoteException;
 
     /**
@@ -179,5 +187,6 @@ public interface CT_MathTransformFactory extends Remote {
      *
      * @deprecated Check parameter {@link javax.units.Unit unit} instead.
      */
+    @Deprecated
     boolean isParameterLinear(String parameterName) throws RemoteException;
 }

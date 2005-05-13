@@ -26,12 +26,14 @@ import java.rmi.RemoteException;
  * @deprecated Replaced by {@link org.opengis.referencing.crs.CRSAuthorityFactory}
  *             and {@link org.opengis.referencing.datum.DatumAuthorityFactory}.
  */
+@Deprecated
 public interface CS_CoordinateSystemAuthorityFactory extends Remote {
     /**
      * Returns the authority name.
      *
      * @deprecated Replaced by {@link org.opengis.referencing.AuthorityFactory#getAuthority}.
      */
+    @Deprecated
     String getAuthority() throws RemoteException;
 
     /**
@@ -42,6 +44,7 @@ public interface CS_CoordinateSystemAuthorityFactory extends Remote {
      *
      * @deprecated Replaced by {@link org.opengis.referencing.crs.CRSAuthorityFactory#createProjectedCRS}.
      */
+    @Deprecated
     CS_ProjectedCoordinateSystem createProjectedCoordinateSystem(String code) throws RemoteException;
 
     /**
@@ -52,6 +55,7 @@ public interface CS_CoordinateSystemAuthorityFactory extends Remote {
      *
      * @deprecated Replaced by {@link org.opengis.referencing.crs.CRSAuthorityFactory#createGeographicCRS}.
      */
+    @Deprecated
     CS_GeographicCoordinateSystem createGeographicCoordinateSystem(String code) throws RemoteException;
 
     /**
@@ -62,6 +66,7 @@ public interface CS_CoordinateSystemAuthorityFactory extends Remote {
      *
      * @deprecated Replaced by {@link org.opengis.referencing.datum.DatumAuthorityFactory#createGeodeticDatum}.
      */
+    @Deprecated
     CS_HorizontalDatum createHorizontalDatum(String code) throws RemoteException;
 
     /**
@@ -72,6 +77,7 @@ public interface CS_CoordinateSystemAuthorityFactory extends Remote {
      *
      * @deprecated Replaced by {@link org.opengis.referencing.datum.DatumAuthorityFactory#createEllipsoid}.
      */
+    @Deprecated
     CS_Ellipsoid createEllipsoid(String code) throws RemoteException;
 
     /**
@@ -82,6 +88,7 @@ public interface CS_CoordinateSystemAuthorityFactory extends Remote {
      *
      * @deprecated Replaced by {@link org.opengis.referencing.datum.DatumAuthorityFactory#createPrimeMeridian}.
      */
+    @Deprecated
     CS_PrimeMeridian createPrimeMeridian(String code) throws RemoteException;
 
     /**
@@ -92,6 +99,7 @@ public interface CS_CoordinateSystemAuthorityFactory extends Remote {
      *
      * @deprecated Replaced by {@link org.opengis.referencing.datum.DatumAuthorityFactory#createUnit}.
      */
+    @Deprecated
     CS_LinearUnit createLinearUnit(String code) throws RemoteException;
 
     /**
@@ -102,6 +110,7 @@ public interface CS_CoordinateSystemAuthorityFactory extends Remote {
      *
      * @deprecated Replaced by {@link org.opengis.referencing.datum.DatumAuthorityFactory#createUnit}.
      */
+    @Deprecated
     CS_AngularUnit createAngularUnit(String code) throws RemoteException;
 
     /**
@@ -112,6 +121,7 @@ public interface CS_CoordinateSystemAuthorityFactory extends Remote {
      *
      * @deprecated Replaced by {@link org.opengis.referencing.datum.DatumAuthorityFactory#createVerticalDatum}.
      */
+    @Deprecated
     CS_VerticalDatum createVerticalDatum(String code) throws RemoteException;
 
     /**
@@ -122,6 +132,7 @@ public interface CS_CoordinateSystemAuthorityFactory extends Remote {
      *
      * @deprecated Replaced by {@link org.opengis.referencing.crs.CRSAuthorityFactory#createVerticalCRS}.
      */
+    @Deprecated
     CS_VerticalCoordinateSystem createVerticalCoordinateSystem(String code) throws RemoteException;
 
     /**
@@ -132,6 +143,7 @@ public interface CS_CoordinateSystemAuthorityFactory extends Remote {
      *
      * @deprecated Replaced by {@link org.opengis.referencing.crs.CRSAuthorityFactory#createCompoundCRS}.
      */
+    @Deprecated
     CS_CompoundCoordinateSystem createCompoundCoordinateSystem(String code) throws RemoteException;
 
     /**
@@ -143,6 +155,7 @@ public interface CS_CoordinateSystemAuthorityFactory extends Remote {
      *
      * @deprecated No replacement.
      */
+    @Deprecated
     CS_HorizontalCoordinateSystem createHorizontalCoordinateSystem(String code) throws RemoteException;
 
     /**
@@ -153,6 +166,7 @@ public interface CS_CoordinateSystemAuthorityFactory extends Remote {
      *
      * @deprecated Replaced by {@link org.opengis.referencing.AuthorityFactory#getDescriptionText}.
      */
+    @Deprecated
     String descriptionText(String code) throws RemoteException;
 
     /**
@@ -167,6 +181,7 @@ public interface CS_CoordinateSystemAuthorityFactory extends Remote {
      *
      * @deprecated Replaced by {@link org.opengis.referencing.datum.DatumAuthorityFactory#geoidFromWKTName}.
      */
+    @Deprecated
     String geoidFromWKTName(String wkt) throws RemoteException;
 
     /**
@@ -180,5 +195,6 @@ public interface CS_CoordinateSystemAuthorityFactory extends Remote {
      *
      * @deprecated Replaced by {@link org.opengis.referencing.datum.DatumAuthorityFactory#wktGeoidName}.
      */
+    @Deprecated
     String wktGeoidName(String geoid) throws RemoteException;
 }

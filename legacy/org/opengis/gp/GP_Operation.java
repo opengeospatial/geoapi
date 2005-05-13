@@ -16,7 +16,7 @@ import java.rmi.Remote;
 import java.rmi.RemoteException;
 
 // GCS dependencies
-import org.opengis.gc.GC_ParameterInfo;
+import org.opengis.gc.*;
 
 
 /**
@@ -27,14 +27,20 @@ import org.opengis.gc.GC_ParameterInfo;
  *
  * @version 1.00
  * @since   1.00
+ *
+ * @deprecated
  */
+@Deprecated
 public interface GP_Operation extends Remote {
     /**
      * Name of the processing operation.
      *
      * @return the name of the processing operation.
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated
      */
+    @Deprecated
     String getName() throws RemoteException;
 
     /**
@@ -43,7 +49,10 @@ public interface GP_Operation extends Remote {
      *
      * @return the description of the processing operation.
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated
      */
+    @Deprecated
     String getDescription() throws RemoteException;
 
     /**
@@ -51,7 +60,10 @@ public interface GP_Operation extends Remote {
      *
      * @return the implementation vendor name.
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated
      */
+    @Deprecated
     String getVendor() throws RemoteException;
 
     /**
@@ -60,7 +72,10 @@ public interface GP_Operation extends Remote {
      *
      * @return the URL for documentation on the processing operation.
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated
      */
+    @Deprecated
     String getDocURL() throws RemoteException;
 
     /**
@@ -68,7 +83,10 @@ public interface GP_Operation extends Remote {
      *
      * @return the version number for the implementation.
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated
      */
+    @Deprecated
     String getVersion() throws RemoteException;
 
     /**
@@ -76,7 +94,10 @@ public interface GP_Operation extends Remote {
      *
      * @return the number of source grid coverages required for the operation.
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated
      */
+    @Deprecated
     int getNumSources() throws RemoteException;
 
     /**
@@ -84,7 +105,10 @@ public interface GP_Operation extends Remote {
      *
      * @return the number of parameters for the operation.
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated
      */
+    @Deprecated
     int getNumParameters() throws RemoteException;
 
     /**
@@ -93,6 +117,9 @@ public interface GP_Operation extends Remote {
      * @param index Parameter information index to retrieve. Index starts at 0.
      * @return the parameter information for a given index.
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated
      */
+    @Deprecated
     GC_ParameterInfo getParameterInfo(int index) throws RemoteException;
 }

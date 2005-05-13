@@ -29,6 +29,7 @@ import java.io.Serializable;
  *
  * @deprecated Replaced by {@link org.opengis.spatialschema.geometry.Envelope}.
  */
+@Deprecated
 public class PT_Envelope implements Cloneable, Serializable {
     /**
      * Use <code>serialVersionUID</code> from first
@@ -41,6 +42,7 @@ public class PT_Envelope implements Cloneable, Serializable {
      *
      * @deprecated Replaced by {@link org.opengis.spatialschema.geometry.DirectPosition#getLowerCorner}.
      */
+    @Deprecated
     public PT_CoordinatePoint minCP;
 
     /**
@@ -48,6 +50,7 @@ public class PT_Envelope implements Cloneable, Serializable {
      *
      * @deprecated Replaced by {@link org.opengis.spatialschema.geometry.DirectPosition#getUpperCorner}.
      */
+    @Deprecated
     public PT_CoordinatePoint maxCP;
 
     /**
@@ -84,7 +87,10 @@ public class PT_Envelope implements Cloneable, Serializable {
 
     /**
      * Returns a deep copy of this envelope.
+     *
+     * @deprecated Replaced by an interface.
      */
+    @Deprecated
     public Object clone() {
         try {
             final PT_Envelope copy = (PT_Envelope) super.clone();

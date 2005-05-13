@@ -27,6 +27,7 @@ import java.io.Serializable;
  *
  * @deprecated Replaced by {@link org.opengis.referencing.cs.AxisDirection}.
  */
+@Deprecated
 public class CS_AxisOrientationEnum implements Serializable {
     /**
      * Use <code>serialVersionUID</code> from first
@@ -40,6 +41,7 @@ public class CS_AxisOrientationEnum implements Serializable {
      *
      * @deprecated Replaced by {@link org.opengis.referencing.cs.AxisDirection#OTHER}.
      */
+    @Deprecated
     public static final int CS_AO_Other=0;
 
     /**
@@ -48,6 +50,7 @@ public class CS_AxisOrientationEnum implements Serializable {
      *
      * @deprecated Replaced by {@link org.opengis.referencing.cs.AxisDirection#NORTH}.
      */
+    @Deprecated
     public static final int CS_AO_North=1;
 
     /**
@@ -56,6 +59,7 @@ public class CS_AxisOrientationEnum implements Serializable {
      *
      * @deprecated Replaced by {@link org.opengis.referencing.cs.AxisDirection#SOUTH}.
      */
+    @Deprecated
     public static final int CS_AO_South=2;
 
     /**
@@ -64,6 +68,7 @@ public class CS_AxisOrientationEnum implements Serializable {
      *
      * @deprecated Replaced by {@link org.opengis.referencing.cs.AxisDirection#EAST}.
      */
+    @Deprecated
     public static final int CS_AO_East=3;
 
     /**
@@ -72,6 +77,7 @@ public class CS_AxisOrientationEnum implements Serializable {
      *
      * @deprecated Replaced by {@link org.opengis.referencing.cs.AxisDirection#WEST}.
      */
+    @Deprecated
     public static final int CS_AO_West=4;
 
     /**
@@ -80,6 +86,7 @@ public class CS_AxisOrientationEnum implements Serializable {
      *
      * @deprecated Replaced by {@link org.opengis.referencing.cs.AxisDirection#UP}.
      */
+    @Deprecated
     public static final int CS_AO_Up=5;
 
     /**
@@ -88,6 +95,7 @@ public class CS_AxisOrientationEnum implements Serializable {
      *
      * @deprecated Replaced by {@link org.opengis.referencing.cs.AxisDirection#DOWN}.
      */
+    @Deprecated
     public static final int CS_AO_Down=6;
 
     /**

@@ -10,7 +10,7 @@
 package org.opengis.ct;
 
 // OpenGIS dependencies
-import org.opengis.cs.CS_CoordinateSystem;
+import org.opengis.cs.*;
 
 // JDK's classes
 import java.rmi.Remote;
@@ -32,6 +32,7 @@ import java.rmi.RemoteException;
  *
  * @deprecated Replaced by {@link org.opengis.referencing.operation.CoordinateOperation}.
  */
+@Deprecated
 public interface CT_CoordinateTransformation extends Remote {
     /**
      * Name of transformation.
@@ -40,6 +41,7 @@ public interface CT_CoordinateTransformation extends Remote {
      *
      * @deprecated Replaced by {@link org.opengis.referencing.operation.CoordinateOperation#getName}.
      */
+    @Deprecated
     String getName() throws RemoteException;
 
     /**
@@ -54,6 +56,7 @@ public interface CT_CoordinateTransformation extends Remote {
      *
      * @deprecated Replaced by {@link org.opengis.referencing.Identifier#getAuthority}.
      */
+    @Deprecated
     String getAuthority() throws RemoteException;
 
     /**
@@ -70,6 +73,7 @@ public interface CT_CoordinateTransformation extends Remote {
      *
      * @deprecated Replaced by {@link org.opengis.referencing.Identifier#getCode}.
      */
+    @Deprecated
     String getAuthorityCode() throws RemoteException;
 
     /**
@@ -79,6 +83,7 @@ public interface CT_CoordinateTransformation extends Remote {
      *
      * @deprecated Replaced by {@link org.opengis.referencing.operation.CoordinateOperation#getRemarks}.
      */
+    @Deprecated
     String getRemarks() throws RemoteException;
 
     /**
@@ -88,6 +93,7 @@ public interface CT_CoordinateTransformation extends Remote {
      *
      * @deprecated Replaced by {@link org.opengis.referencing.operation.CoordinateOperation#getScope}.
      */
+    @Deprecated
     String getAreaOfUse() throws RemoteException;
 
     /**
@@ -100,6 +106,7 @@ public interface CT_CoordinateTransformation extends Remote {
      *             {@link org.opengis.referencing.operation.Conversion} or
      *             {@link org.opengis.referencing.operation.Transformation} instead.
      */
+    @Deprecated
     CT_TransformType getTransformType() throws RemoteException;
 
     /**
@@ -109,6 +116,7 @@ public interface CT_CoordinateTransformation extends Remote {
      *
      * @deprecated Replaced by {@link org.opengis.referencing.operation.CoordinateOperation#getSourceCRS}.
      */
+    @Deprecated
     CS_CoordinateSystem getSourceCS() throws RemoteException;
 
     /**
@@ -118,6 +126,7 @@ public interface CT_CoordinateTransformation extends Remote {
      *
      * @deprecated Replaced by {@link org.opengis.referencing.operation.CoordinateOperation#getTargetCRS}.
      */
+    @Deprecated
     CS_CoordinateSystem getTargetCS() throws RemoteException;
 
     /**
@@ -127,5 +136,6 @@ public interface CT_CoordinateTransformation extends Remote {
      *
      * @deprecated Replaced by {@link org.opengis.referencing.operation.CoordinateOperation#getMathTransform}.
      */
+    @Deprecated
     CT_MathTransform getMathTransform() throws RemoteException;
 }

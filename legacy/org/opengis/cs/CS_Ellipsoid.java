@@ -22,6 +22,7 @@ import java.rmi.RemoteException;
  *
  * @deprecated Replaced by {@link org.opengis.referencing.datum.Ellipsoid}.
  */
+@Deprecated
 public interface CS_Ellipsoid extends CS_Info {
     /**
      * Gets the equatorial radius.
@@ -31,6 +32,7 @@ public interface CS_Ellipsoid extends CS_Info {
      *
      * @deprecated Replaced by {@link org.opengis.referencing.datum.Ellipsoid#getSemiMajorAxis}.
      */
+    @Deprecated
     double getSemiMajorAxis() throws RemoteException;
 
     /**
@@ -41,6 +43,7 @@ public interface CS_Ellipsoid extends CS_Info {
      *
      * @deprecated Replaced by {@link org.opengis.referencing.datum.Ellipsoid#getSemiMinorAxis}.
      */
+    @Deprecated
     double getSemiMinorAxis() throws RemoteException;
 
     /**
@@ -53,6 +56,7 @@ public interface CS_Ellipsoid extends CS_Info {
      *
      * @deprecated Replaced by {@link org.opengis.referencing.datum.Ellipsoid#getInverseFlattening}.
      */
+    @Deprecated
     double getInverseFlattening() throws RemoteException;
 
     /**
@@ -66,6 +70,7 @@ public interface CS_Ellipsoid extends CS_Info {
      *
      * @deprecated Replaced by {@link org.opengis.referencing.datum.Ellipsoid#isIvfDefinitive}.
      */
+    @Deprecated
     boolean isIvfDefinitive() throws RemoteException;
 
     /**
@@ -76,5 +81,6 @@ public interface CS_Ellipsoid extends CS_Info {
      *
      * @deprecated Replaced by {@link org.opengis.referencing.datum.Ellipsoid#getAxisUnit}.
      */
+    @Deprecated
     CS_LinearUnit getAxisUnit() throws RemoteException;
 }

@@ -12,12 +12,11 @@
 package org.opengis.cv;
 
 // CSS dependencies
-import org.opengis.pt.PT_Envelope;
-import org.opengis.pt.PT_CoordinatePoint;
-import org.opengis.cs.CS_CoordinateSystem;
+import org.opengis.pt.*;
+import org.opengis.cs.*;
 
 // Forward GCS dependencies
-import org.opengis.gc.GC_GridCoverage;
+import org.opengis.gc.*;
 
 // Remote Method Invocation
 import java.rmi.Remote;
@@ -51,7 +50,10 @@ import java.rmi.RemoteException;
  *
  * @version 1.00
  * @since   1.00
+ *
+ * @deprecated
  */
+@Deprecated
 public interface CV_Coverage extends Remote {
     /**
      * The number of sample dimensions in the coverage.
@@ -59,7 +61,10 @@ public interface CV_Coverage extends Remote {
      *
      * @return the number of sample dimensions in the coverage.
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated
      */
+    @Deprecated
     int getNumSampleDimensions() throws RemoteException;
 
     /**
@@ -74,7 +79,10 @@ public interface CV_Coverage extends Remote {
      *
      * @return the names of each dimension in the coverage.
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated
      */
+    @Deprecated
     String[] getDimensionNames() throws RemoteException;
 
     /**
@@ -85,7 +93,10 @@ public interface CV_Coverage extends Remote {
      *
      * @return the number of grid coverages which the grid coverage was derived from.
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated
      */
+    @Deprecated
     int getNumSources() throws RemoteException;
 
     /**
@@ -94,7 +105,10 @@ public interface CV_Coverage extends Remote {
      *
      * @return the list of metadata keywords for a coverage.
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated
      */
+    @Deprecated
     String[] getMetadataNames() throws RemoteException;
 
     /**
@@ -117,7 +131,10 @@ public interface CV_Coverage extends Remote {
      * @return the coordinate system used when accessing a coverage or
      *         grid coverage with the <code>evaluate</code> methods.
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated
      */
+    @Deprecated
     CS_CoordinateSystem getCoordinateSystem() throws RemoteException;
 
     /**
@@ -135,7 +152,10 @@ public interface CV_Coverage extends Remote {
      *
      * @return the bounding box for the coverage domain in coordinate system coordinates.
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated
      */
+    @Deprecated
     PT_Envelope getEnvelope() throws RemoteException;
 
     /**
@@ -148,7 +168,10 @@ public interface CV_Coverage extends Remote {
      * @param  index Index for sample dimension to retrieve. Indices are numbered 0 to (n-1).
      * @return Sample dimension information for the coverage.
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated
      */
+    @Deprecated
     CV_SampleDimension getSampleDimension(int index) throws RemoteException;
 
     /**
@@ -170,7 +193,10 @@ public interface CV_Coverage extends Remote {
      * @param sourceDataIndex Source grid coverage index. Indexes start at 0.
      * @return the source data for a grid coverage.
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated
      */
+    @Deprecated
     GC_GridCoverage getSource(int sourceDataIndex) throws RemoteException;
 
     /**
@@ -179,7 +205,10 @@ public interface CV_Coverage extends Remote {
      * @param name Metadata keyword for which to retrieve data.
      * @return the metadata value for a given metadata name.
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated
      */
+    @Deprecated
     String getMetadataValue(String name) throws RemoteException;
 
     /**
@@ -193,7 +222,10 @@ public interface CV_Coverage extends Remote {
      * @param point Point at which to find the grid values.
      * @return the value vector for a given point in the coverage.
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated
      */
+    @Deprecated
     Object evaluate(PT_CoordinatePoint point) throws RemoteException;
 
     /**
@@ -206,7 +238,10 @@ public interface CV_Coverage extends Remote {
      * @param point Point at which to find the coverage values.
      * @return a sequence of boolean values for a given point in the coverage.
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated
      */
+    @Deprecated
     boolean[] evaluateAsBoolean(PT_CoordinatePoint point) throws RemoteException;
 
     /**
@@ -219,7 +254,10 @@ public interface CV_Coverage extends Remote {
      * @param point Point at which to find the coverage values.
      * @return a sequence of unsigned byte values for a given point in the coverage.
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated
      */
+    @Deprecated
     byte[] evaluateAsByte(PT_CoordinatePoint point) throws RemoteException;
 
     /**
@@ -232,7 +270,10 @@ public interface CV_Coverage extends Remote {
      * @param point Point at which to find the grid values.
      * @return a sequence of integer values for a given point in the coverage.
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated
      */
+    @Deprecated
     int[] evaluateAsInteger(PT_CoordinatePoint point) throws RemoteException;
 
     /**
@@ -245,6 +286,9 @@ public interface CV_Coverage extends Remote {
      * @param point Point at which to find the grid values.
      * @return a sequence of double values for a given point in the coverage.
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated
      */
+    @Deprecated
     double[] evaluateAsDouble(PT_CoordinatePoint point) throws RemoteException;
 }

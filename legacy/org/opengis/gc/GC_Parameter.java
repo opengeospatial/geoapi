@@ -19,11 +19,17 @@ package org.opengis.gc;
  *
  * @version 1.00
  * @since   1.00
+ *
+ * @deprecated
  */
+@Deprecated
 public interface GC_Parameter {
     /**
      * Parameter name.
+     *
+     * @deprecated
      */
+    @Deprecated
     String getName();
 
     /**
@@ -33,6 +39,9 @@ public interface GC_Parameter {
      * processor operation will typically require a parameter for the input
      * grid coverage. This parameter may have <code>"Source"</code> as the
      * parameter name and the instance of the grid coverage as the value.
+     *
+     * @deprecated
      */
+    @Deprecated
     Object getValue();
 }

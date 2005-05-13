@@ -22,6 +22,7 @@ import java.rmi.RemoteException;
  *
  * @deprecated Replaced by {@link org.opengis.referencing.operation.Projection}.
  */
+@Deprecated
 public interface CS_Projection extends CS_Info {
     /**
      * Gets number of parameters of the projection.
@@ -30,6 +31,7 @@ public interface CS_Projection extends CS_Info {
      *
      * @deprecated Replaced by {@link org.opengis.referencing.operation.Projection#getParameterValues}.
      */
+    @Deprecated
     int getNumParameters() throws RemoteException;
 
     /**
@@ -40,6 +42,7 @@ public interface CS_Projection extends CS_Info {
      *
      * @deprecated Replaced by {@link org.opengis.referencing.operation.Projection#getParameterValues}.
      */
+    @Deprecated
     CS_ProjectionParameter getParameter(int index) throws RemoteException;
 
     /**

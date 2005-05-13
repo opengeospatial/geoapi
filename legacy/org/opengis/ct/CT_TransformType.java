@@ -25,6 +25,7 @@ import java.io.Serializable;
  *             {@link org.opengis.referencing.operation.Conversion} or
  *             {@link org.opengis.referencing.operation.Transformation} instead.
  */
+@Deprecated
 public class CT_TransformType implements Serializable {
     /**
      * Use <code>serialVersionUID</code> from first

@@ -24,7 +24,10 @@ import java.rmi.RemoteException;
  *
  * @version 1.00
  * @since   1.00
+ *
+ * @deprecated
  */
+@Deprecated
 public interface GC_Format extends Remote {
     /**
      * Name of the file format.
@@ -33,7 +36,10 @@ public interface GC_Format extends Remote {
      *
      * @return the name of the file format.
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated
      */
+    @Deprecated
     String getName() throws RemoteException;
 
     /**
@@ -42,7 +48,10 @@ public interface GC_Format extends Remote {
      *
      * @return the description of the file format.
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated
      */
+    @Deprecated
     String getDescription() throws RemoteException;
 
     /**
@@ -50,7 +59,10 @@ public interface GC_Format extends Remote {
      *
      * @return the vendor or agency for the format.
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated
      */
+    @Deprecated
     String getVendor() throws RemoteException;
 
     /**
@@ -58,7 +70,10 @@ public interface GC_Format extends Remote {
      *
      * @return the documentation URL for the format.
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated
      */
+    @Deprecated
     String getDocURL() throws RemoteException;
 
     /**
@@ -66,7 +81,10 @@ public interface GC_Format extends Remote {
      *
      * @return the version number of the format.
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated
      */
+    @Deprecated
     String getVersion() throws RemoteException;
 
     /**
@@ -75,7 +93,10 @@ public interface GC_Format extends Remote {
      *
      * @return the number of optional parameters for the exportTo operation.
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated
      */
+    @Deprecated
     int getNumParameters() throws RemoteException;
 
     /**
@@ -84,6 +105,9 @@ public interface GC_Format extends Remote {
      * @param index Index to the parameter.
      * @return the parameter information for the given index.
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated
      */
+    @Deprecated
     GC_ParameterInfo getParameterInfo(int index) throws RemoteException;
 }

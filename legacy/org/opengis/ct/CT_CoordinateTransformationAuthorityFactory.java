@@ -9,9 +9,6 @@
  *************************************************************************************************/
 package org.opengis.ct;
 
-// OpenGIS dependencies
-import org.opengis.cs.CS_CoordinateSystem;
-
 // JDK's classes
 import java.rmi.Remote;
 import java.rmi.RemoteException;
@@ -29,6 +26,7 @@ import java.rmi.RemoteException;
  *
  * @deprecated Replaced by {@link org.opengis.referencing.operation.CoordinateOperationAuthorityFactory}.
  */
+@Deprecated
 public interface CT_CoordinateTransformationAuthorityFactory extends Remote {
     /**
      * The name of the authority.
@@ -36,6 +34,7 @@ public interface CT_CoordinateTransformationAuthorityFactory extends Remote {
      *
      * @deprecated Replaced by {@link org.opengis.referencing.operation.CoordinateOperationAuthorityFactory#getAuthority}.
      */
+    @Deprecated
     String getAuthority() throws RemoteException;
 
     /**
@@ -49,6 +48,7 @@ public interface CT_CoordinateTransformationAuthorityFactory extends Remote {
      *
      * @deprecated Replaced by {@link org.opengis.referencing.operation.CoordinateOperationAuthorityFactory#createCoordinateOperation}.
      */
+    @Deprecated
     CT_CoordinateTransformation createFromTransformationCode(String code) throws RemoteException;
 
     /**
@@ -60,5 +60,6 @@ public interface CT_CoordinateTransformationAuthorityFactory extends Remote {
      *
      * @deprecated Replaced by {@link org.opengis.referencing.operation.CoordinateOperationAuthorityFactory#createFromCoordinateReferenceSystemCodes}.
      */
+    @Deprecated
     CT_CoordinateTransformation createFromCoordinateSystemCodes(String sourceCode, String targetCode) throws RemoteException;
 }

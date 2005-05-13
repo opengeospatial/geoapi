@@ -27,6 +27,7 @@ import java.io.Serializable;
  *
  * @deprecated Replaced by {@link org.opengis.spatialschema.geometry.DirectPosition}.
  */
+@Deprecated
 public class PT_CoordinatePoint implements Cloneable, Serializable {
     /**
      * Use <code>serialVersionUID</code> from first

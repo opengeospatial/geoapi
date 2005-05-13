@@ -36,6 +36,7 @@ import java.rmi.RemoteException;
  * @deprecated Replaced by {@link org.opengis.referencing.crs.CRSFactory}
  *             and {@link org.opengis.referencing.datum.DatumFactory}.
  */
+@Deprecated
 public interface CS_CoordinateSystemFactory extends Remote {
     /**
      * Creates a coordinate system object from an XML string.
@@ -45,6 +46,7 @@ public interface CS_CoordinateSystemFactory extends Remote {
      *
      * @deprecated Replaced by {@link org.opengis.referencing.crs.CRSFactory#createFromXML}.
      */
+    @Deprecated
     CS_CoordinateSystem createFromXML(String xml) throws RemoteException;
 
     /**
@@ -55,6 +57,7 @@ public interface CS_CoordinateSystemFactory extends Remote {
      *
      * @deprecated Replaced by {@link org.opengis.referencing.crs.CRSFactory#createFromWKT}.
      */
+    @Deprecated
     CS_CoordinateSystem createFromWKT(String wellKnownText) throws RemoteException;
 
     /**
@@ -67,6 +70,7 @@ public interface CS_CoordinateSystemFactory extends Remote {
      *
      * @deprecated Replaced by {@link org.opengis.referencing.crs.CRSFactory#createCompoundCRS}.
      */
+    @Deprecated
     CS_CompoundCoordinateSystem createCompoundCoordinateSystem(String name, CS_CoordinateSystem head, CS_CoordinateSystem tail) throws RemoteException;
 
     /**
@@ -86,6 +90,7 @@ public interface CS_CoordinateSystemFactory extends Remote {
      *
      * @deprecated Replaced by {@link org.opengis.referencing.crs.CRSFactory#createDerivedCRS}.
      */
+    @Deprecated
     CS_FittedCoordinateSystem createFittedCoordinateSystem(String name, CS_CoordinateSystem base, String toBaseWKT, CS_AxisInfo[] arAxes) throws RemoteException;
 
     /**
@@ -103,6 +108,7 @@ public interface CS_CoordinateSystemFactory extends Remote {
      *
      * @deprecated Replaced by {@link org.opengis.referencing.crs.CRSFactory#createEngineeringCRS}.
      */
+    @Deprecated
     CS_LocalCoordinateSystem createLocalCoordinateSystem(String name, CS_LocalDatum datum, CS_Unit unit, CS_AxisInfo[] arAxes) throws RemoteException;
 
     /**
@@ -116,6 +122,7 @@ public interface CS_CoordinateSystemFactory extends Remote {
      *
      * @deprecated Replaced by {@link org.opengis.referencing.datum.DatumFactory#createEllipsoid}.
      */
+    @Deprecated
     CS_Ellipsoid createEllipsoid(String name, double semiMajorAxis, double semiMinorAxis, CS_LinearUnit linearUnit) throws RemoteException;
 
     /**
@@ -129,6 +136,7 @@ public interface CS_CoordinateSystemFactory extends Remote {
      *
      * @deprecated Replaced by {@link org.opengis.referencing.datum.DatumFactory#createFlattenedSphere}.
      */
+    @Deprecated
     CS_Ellipsoid createFlattenedSphere(String name, double semiMajorAxis, double inverseFlattening, CS_LinearUnit linearUnit) throws RemoteException;
 
     /**
@@ -144,6 +152,7 @@ public interface CS_CoordinateSystemFactory extends Remote {
      *
      * @deprecated Replaced by {@link org.opengis.referencing.crs.CRSFactory#createProjectedCRS}.
      */
+    @Deprecated
     CS_ProjectedCoordinateSystem createProjectedCoordinateSystem(String name, CS_GeographicCoordinateSystem gcs, CS_Projection projection, CS_LinearUnit linearUnit, CS_AxisInfo axis0, CS_AxisInfo axis1) throws RemoteException;
 
     /**
@@ -153,7 +162,10 @@ public interface CS_CoordinateSystemFactory extends Remote {
      * @param wktProjectionClass Classification string for projection (e.g. "Transverse_Mercator").
      * @param parameters Parameters to use for projection, in units of intended PCS.
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated Replaced by {@link org.opengis.referencing.operation.OperationMethod} creation.
      */
+    @Deprecated
     CS_Projection createProjection(String name, String wktProjectionClass, CS_ProjectionParameter[] parameters) throws RemoteException;
 
     /**
@@ -171,6 +183,7 @@ public interface CS_CoordinateSystemFactory extends Remote {
      *
      * @deprecated Replaced by {@link org.opengis.referencing.datum.DatumFactory#createGeodeticDatum}.
      */
+    @Deprecated
     CS_HorizontalDatum createHorizontalDatum(String name, CS_DatumType horizontalDatumType, CS_Ellipsoid ellipsoid, CS_WGS84ConversionInfo toWGS84) throws RemoteException;
 
     /**
@@ -183,6 +196,7 @@ public interface CS_CoordinateSystemFactory extends Remote {
      *
      * @deprecated Replaced by {@link org.opengis.referencing.datum.DatumFactory#createPrimeMeridian}.
      */
+    @Deprecated
     CS_PrimeMeridian createPrimeMeridian(String name, CS_AngularUnit angularUnit, double longitude) throws RemoteException;
 
     /**
@@ -198,6 +212,7 @@ public interface CS_CoordinateSystemFactory extends Remote {
      *
      * @deprecated Replaced by {@link org.opengis.referencing.crs.CRSFactory#createGeographicCRS}.
      */
+    @Deprecated
     CS_GeographicCoordinateSystem createGeographicCoordinateSystem(String name, CS_AngularUnit angularUnit, CS_HorizontalDatum horizontalDatum, CS_PrimeMeridian primeMeridian, CS_AxisInfo axis0, CS_AxisInfo axis1) throws RemoteException;
 
     /**
@@ -209,6 +224,7 @@ public interface CS_CoordinateSystemFactory extends Remote {
      *
      * @deprecated Replaced by {@link org.opengis.referencing.datum.DatumFactory#createEngineeringDatumDatum}.
      */
+    @Deprecated
     CS_LocalDatum createLocalDatum(String name, CS_DatumType localDatumType) throws RemoteException;
 
     /**
@@ -220,6 +236,7 @@ public interface CS_CoordinateSystemFactory extends Remote {
      *
      * @deprecated Replaced by {@link org.opengis.referencing.datum.DatumFactory#createVerticalDatum}.
      */
+    @Deprecated
     CS_VerticalDatum createVerticalDatum(String name,CS_DatumType verticalDatumType) throws RemoteException;
 
     /**
@@ -233,5 +250,6 @@ public interface CS_CoordinateSystemFactory extends Remote {
      *
      * @deprecated Replaced by {@link org.opengis.referencing.crs.CRSFactory#createVerticalCRS}.
      */
+    @Deprecated
     CS_VerticalCoordinateSystem createVerticalCoordinateSystem(String name, CS_VerticalDatum verticalDatum, CS_LinearUnit verticalUnit, CS_AxisInfo axis) throws RemoteException;
 }

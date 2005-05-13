@@ -23,6 +23,7 @@ import java.io.Serializable;
  *
  * @deprecated Replaced by {@link org.opengis.parameter.GeneralParameterValue}.
  */
+@Deprecated
 public class CT_Parameter implements Cloneable, Serializable {
     /**
      * Use <code>serialVersionUID</code> from first
@@ -33,6 +34,7 @@ public class CT_Parameter implements Cloneable, Serializable {
     /**
      * The parameter name.
      */
+    @Deprecated
     public String name;
 
     /**
@@ -40,6 +42,7 @@ public class CT_Parameter implements Cloneable, Serializable {
      *
      * @deprecated Replaced by {@link org.opengis.referencing.operation.ParameterValue#doubleValue}.
      */
+    @Deprecated
     public double value;
 
     /**

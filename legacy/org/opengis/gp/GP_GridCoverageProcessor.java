@@ -12,8 +12,8 @@
 package org.opengis.gp;
 
 // GCS dependencies
-import org.opengis.gc.GC_Parameter;
-import org.opengis.gc.GC_GridCoverage;
+import org.opengis.gc.*;
+import org.opengis.gc.*;
 
 // Remote Method Invocation
 import java.rmi.Remote;
@@ -25,7 +25,10 @@ import java.rmi.RemoteException;
  *
  * @version 1.00
  * @since   1.00
+ *
+ * @deprecated
  */
+@Deprecated
 public interface GP_GridCoverageProcessor extends Remote {
     /**
      * Retrieve the list of metadata keywords for the interface.<br>
@@ -33,7 +36,10 @@ public interface GP_GridCoverageProcessor extends Remote {
      *
      * @return the list of metadata keywords for the interface.
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated
      */
+    @Deprecated
     String[] getMetadataNames() throws RemoteException;
 
     /**
@@ -41,7 +47,10 @@ public interface GP_GridCoverageProcessor extends Remote {
      *
      * @return the number of operations supported by the GP_GridCoverageProcessor.
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated
      */
+    @Deprecated
     int getNumOperations() throws RemoteException;
 
     /**
@@ -50,7 +59,10 @@ public interface GP_GridCoverageProcessor extends Remote {
      * @param name Metadata keyword for which to retrieve metadata.
      * @return the metadata value for a given metadata name.
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated
      */
+    @Deprecated
     String getMetadataValue(String name) throws RemoteException;
 
     /**
@@ -61,7 +73,10 @@ public interface GP_GridCoverageProcessor extends Remote {
      * @param  index Index for which to retrieve the operation information.
      * @return a grid processing operation information.
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated
      */
+    @Deprecated
     GP_Operation getOperation(int index) throws RemoteException;
 
     /**
@@ -71,7 +86,10 @@ public interface GP_GridCoverageProcessor extends Remote {
      * @param gridCoverage Grid coverage on which the analysis will be performed.
      * @return a new {@link GP_GridAnalysis} interface.
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated
      */
+    @Deprecated
     GP_GridAnalysis analyse(GC_GridCoverage gridCoverage) throws RemoteException;
 
     /**
@@ -81,6 +99,9 @@ public interface GP_GridCoverageProcessor extends Remote {
      * @param parameters List of name value pairs for the parameters required for the operation.
      * @return the grid coverage which has been applied the process operation.
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated
      */
+    @Deprecated
     GC_GridCoverage doOperation(String operationName, GC_Parameter [] parameters) throws RemoteException;
 }

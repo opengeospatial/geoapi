@@ -22,6 +22,7 @@ import java.rmi.RemoteException;
  *
  * @deprecated Replaced by {@link org.opengis.referencing.crs.ProjectedCRS}.
  */
+@Deprecated
 public interface CS_ProjectedCoordinateSystem extends CS_HorizontalCoordinateSystem {
     /**
      * Returns the GeographicCoordinateSystem.
@@ -30,6 +31,7 @@ public interface CS_ProjectedCoordinateSystem extends CS_HorizontalCoordinateSys
      *
      * @deprecated Replaced by {@link org.opengis.referencing.crs.ProjectedCRS#getBaseCRS}.
      */
+    @Deprecated
     CS_GeographicCoordinateSystem getGeographicCoordinateSystem() throws RemoteException;
 
     /**
@@ -40,6 +42,7 @@ public interface CS_ProjectedCoordinateSystem extends CS_HorizontalCoordinateSys
      *
      * @deprecated Replaced by {@link org.opengis.referencing.cs.CoordinateSystemAxis#getUnit}.
      */
+    @Deprecated
     CS_LinearUnit getLinearUnit() throws RemoteException;
 
     /**
@@ -49,5 +52,6 @@ public interface CS_ProjectedCoordinateSystem extends CS_HorizontalCoordinateSys
      *
      * @deprecated Replaced by {@link org.opengis.referencing.crs.ProjectedCRS#getConversionFromBase}.
      */
+    @Deprecated
     CS_Projection getProjection() throws RemoteException;
 }

@@ -24,6 +24,7 @@ import java.io.Serializable;
  *
  * @deprecated Replaced by {@link org.opengis.referencing.operation.Matrix}.
  */
+@Deprecated
 public class PT_Matrix implements Cloneable, Serializable {
     /**
      * Use <code>serialVersionUID</code> from first

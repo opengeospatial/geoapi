@@ -19,24 +19,36 @@ package org.opengis.gc;
  *
  * @version 1.00
  * @since   1.00
+ *
+ * @deprecated
  */
+@Deprecated
 public interface GC_ParameterInfo {
     /**
      * Parameter name.
+     *
+     * @deprecated
      */
+    @Deprecated
     String getName();
 
     /**
      * Parameter description.
      * If no description, the value will be null.
+     *
+     * @deprecated
      */
+    @Deprecated
     String getDescription();
 
     /**
      * Parameter type.
      * The enumeration contains standard parameter types for integer, string,
      * floating-point numbers, objects, etc.
+     *
+     * @deprecated
      */
+    @Deprecated
     GC_ParameterType getType();
 
     /**
@@ -44,18 +56,27 @@ public interface GC_ParameterInfo {
      * The type {@link Object} can be any type including a {@link Number} or a
      * {@link String}. For example, a filtering operation could have a default
      * kernel size of 3. If there is no default value, defaultValue will be null.
+     *
+     * @deprecated
      */
+    @Deprecated
     Object getDefaultValue();
 
     /**
      * Minimum parameter value.
      * For example, a filtering operation could have a minimum kernel size of 3.
+     *
+     * @deprecated
      */
+    @Deprecated
     double getMinimumValue();
 
     /**
      * Maximum parameter value.
      * For example, a filtering operation could have a maximum kernel size of 9.
+     *
+     * @deprecated
      */
+    @Deprecated
     double getMaximumValue();
 }

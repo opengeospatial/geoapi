@@ -22,6 +22,7 @@ import java.rmi.RemoteException;
  *
  * @deprecated Replaced by {@link javax.units.Unit}.
  */
+@Deprecated
 public interface CS_AngularUnit extends CS_Unit {
     /**
      * Returns the number of radians per AngularUnit.

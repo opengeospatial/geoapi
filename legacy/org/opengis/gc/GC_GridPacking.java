@@ -20,11 +20,17 @@ package org.opengis.gc;
  *
  * @version 1.00
  * @since   1.00
+ *
+ * @deprecated
  */
+@Deprecated
 public interface GC_GridPacking {
     /**
      * Order of bytes packed in values for sample dimensions with greater than 8 bits.
+     *
+     * @deprecated
      */
+    @Deprecated
     GC_ByteInValuePacking getByteInValuePacking();
 
     /**
@@ -32,7 +38,10 @@ public interface GC_GridPacking {
      * {@link org.opengis.cv.CV_SampleDimensionType#CV_1BIT CV_1BIT},
      * {@link org.opengis.cv.CV_SampleDimensionType#CV_2BIT CV_2BIT} and
      * {@link org.opengis.cv.CV_SampleDimensionType#CV_4BIT CV_4BIT} data types.
+     *
+     * @deprecated
      */
+    @Deprecated
     GC_ValueInBytePacking getValueInBytePacking();
 
     /**
@@ -57,6 +66,9 @@ public interface GC_GridPacking {
      *  </UL>
      *  For 2 dimensional grids, band packing of 0 is referred to as band sequential,
      *  1 line interleaved and 2 pixel interleaved.
+     *
+     * @deprecated
      */
+    @Deprecated
     int getBandPacking();
 }

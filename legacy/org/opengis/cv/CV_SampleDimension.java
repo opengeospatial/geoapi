@@ -12,7 +12,7 @@
 package org.opengis.cv;
 
 // CSS dependencies
-import org.opengis.cs.CS_Unit;
+import org.opengis.cs.*;
 
 // Remote Method Invocation
 import java.rmi.Remote;
@@ -26,7 +26,10 @@ import java.rmi.RemoteException;
  *
  * @version 1.00
  * @since   1.00
+ *
+ * @deprecated
  */
+@Deprecated
 public interface CV_SampleDimension extends Remote {
     /**
      * Sample dimension title or description.
@@ -34,7 +37,10 @@ public interface CV_SampleDimension extends Remote {
      *
      * @return the sample dimension title or description.
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated
      */
+    @Deprecated
     String getDescription() throws RemoteException;
 
     /**
@@ -43,7 +49,10 @@ public interface CV_SampleDimension extends Remote {
      *
      * @return a code value indicating grid value data type.
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated
      */
+    @Deprecated
     CV_SampleDimensionType getSampleDimensionType() throws RemoteException;
 
     /**
@@ -63,7 +72,10 @@ public interface CV_SampleDimension extends Remote {
      *
      * @return the sequence of category names for the values contained in a sample dimension.
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated
      */
+    @Deprecated
     String[] getCategoryNames() throws RemoteException;
 
     /**
@@ -74,7 +86,10 @@ public interface CV_SampleDimension extends Remote {
      *
      * @return the color interpretation of the sample dimension.
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated
      */
+    @Deprecated
     CV_ColorInterpretation getColorInterpretation() throws RemoteException;
 
     /**
@@ -86,7 +101,10 @@ public interface CV_SampleDimension extends Remote {
      *
      * @return the type of color palette entry for sample dimensions which have a palette.
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated
      */
+    @Deprecated
     CV_PaletteInterpretation getPaletteInterpretation() throws RemoteException;
 
     /**
@@ -97,7 +115,10 @@ public interface CV_SampleDimension extends Remote {
      *
      * @return the color palette associated with the sample dimension.
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated
      */
+    @Deprecated
     int[][] getPalette() throws RemoteException;
 
     /**
@@ -106,7 +127,10 @@ public interface CV_SampleDimension extends Remote {
      *
      * @return the values to indicate no data values for the sample dimension.
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated
      */
+    @Deprecated
     double[] getNoDataValue() throws RemoteException;
 
     /**
@@ -117,7 +141,10 @@ public interface CV_SampleDimension extends Remote {
      *
      * @return the minimum value occurring in the sample dimension.
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated
      */
+    @Deprecated
     double getMinimumValue() throws RemoteException;
 
     /**
@@ -128,7 +155,10 @@ public interface CV_SampleDimension extends Remote {
      *
      * @return the maximum value occurring in the sample dimension.
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated
      */
+    @Deprecated
     double getMaximumValue() throws RemoteException;
 
     /**
@@ -139,7 +169,10 @@ public interface CV_SampleDimension extends Remote {
      *
      * @return the unit information for this sample dimension.
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated
      */
+    @Deprecated
     CS_Unit getUnits() throws RemoteException;
 
     /**
@@ -149,7 +182,10 @@ public interface CV_SampleDimension extends Remote {
      *
      * @return the offset is the value to add to grid values for this sample dimension.
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated
      */
+    @Deprecated
     double getOffset() throws RemoteException;
 
     /**
@@ -159,7 +195,10 @@ public interface CV_SampleDimension extends Remote {
      *
      * @return the scale.
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated
      */
+    @Deprecated
     double getScale() throws RemoteException;
 
     /**
@@ -168,7 +207,10 @@ public interface CV_SampleDimension extends Remote {
      *
      * @return the list of metadata keywords for a sample dimension.
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated
      */
+    @Deprecated
     String[] getMetaDataNames() throws RemoteException;
 
     /**
@@ -177,6 +219,9 @@ public interface CV_SampleDimension extends Remote {
      * @param  name Metadata keyword for which to retrieve metadata.
      * @return the metadata value for a given metadata name.
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated
      */
+    @Deprecated
     String getMetadataValue(String name) throws RemoteException;
 }

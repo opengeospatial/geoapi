@@ -40,6 +40,7 @@ import java.rmi.RemoteException;
  *
  * @deprecated Replaced by {@link org.opengis.referencing.IdentifiedObject} and {@link org.opengis.metadata.Identifier}.
  */
+@Deprecated
 public interface CS_Info extends Remote {
     /**
      * Gets the name.
@@ -48,6 +49,7 @@ public interface CS_Info extends Remote {
      *
      * @deprecated Replaced by {@link org.opengis.referencing.IdentifiedObject#getName}.
      */
+    @Deprecated
     String getName() throws RemoteException;
 
     /**
@@ -62,6 +64,7 @@ public interface CS_Info extends Remote {
      *
      * @deprecated Replaced by {@link org.opengis.referencing.Identifier#getAuthority}.
      */
+    @Deprecated
     String getAuthority() throws RemoteException;
 
     /**
@@ -78,6 +81,7 @@ public interface CS_Info extends Remote {
      *
      * @deprecated Replaced by {@link org.opengis.referencing.Identifier#getCode}.
      */
+    @Deprecated
     String getAuthorityCode() throws RemoteException;
 
     /**
@@ -87,6 +91,7 @@ public interface CS_Info extends Remote {
      *
      * @deprecated Replaced by {@link org.opengis.referencing.IdentifiedObject#getIdentifiers}.
      */
+    @Deprecated
     String getAlias() throws RemoteException;
 
     /**
@@ -96,6 +101,7 @@ public interface CS_Info extends Remote {
      *
      * @deprecated No replacement.
      */
+    @Deprecated
     String getAbbreviation() throws RemoteException;
 
     /**
@@ -105,6 +111,7 @@ public interface CS_Info extends Remote {
      *
      * @deprecated Replaced by {@link org.opengis.referencing.IdentifiedObject#getRemarks}.
      */
+    @Deprecated
     String getRemarks() throws RemoteException;
 
     /**

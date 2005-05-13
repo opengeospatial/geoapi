@@ -10,8 +10,7 @@
 package org.opengis.ct;
 
 // OpenGIS dependencies
-import org.opengis.pt.PT_Matrix;
-import org.opengis.pt.PT_CoordinatePoint;
+import org.opengis.pt.*;
 
 // Various JDK's classes
 import java.rmi.Remote;
@@ -31,6 +30,7 @@ import java.rmi.RemoteException;
  *
  * @deprecated Replaced by {@link org.opengis.referencing.operation.MathTransform}.
  */
+@Deprecated
 public interface CT_MathTransform extends Remote {
     /**
      * Gets flags classifying domain points within a convex hull.
@@ -47,6 +47,7 @@ public interface CT_MathTransform extends Remote {
      *
      * @deprecated No replacement.
      */
+    @Deprecated
     CT_DomainFlags getDomainFlags(double[] ord) throws RemoteException;
 
     /**
@@ -77,6 +78,7 @@ public interface CT_MathTransform extends Remote {
      *
      * @deprecated No replacement at this time.
      */
+    @Deprecated
     double[] getCodomainConvexHull(double[] ord) throws RemoteException;
 
     /**
@@ -86,6 +88,7 @@ public interface CT_MathTransform extends Remote {
      *
      * @deprecated No replacement at this time.
      */
+    @Deprecated
     String getWKT() throws RemoteException;
 
     /**
@@ -95,6 +98,7 @@ public interface CT_MathTransform extends Remote {
      *
      * @deprecated No replacement at this time.
      */
+    @Deprecated
     String getXML() throws RemoteException;
 
     /**
@@ -107,6 +111,7 @@ public interface CT_MathTransform extends Remote {
      *
      * @deprecated Replaced by {@link org.opengis.referencing.operation.MathTransform#transform}.
      */
+    @Deprecated
     PT_CoordinatePoint transform(PT_CoordinatePoint cp) throws RemoteException;
 
     /**
@@ -137,6 +142,7 @@ public interface CT_MathTransform extends Remote {
      *
      * @deprecated Replaced by {@link org.opengis.referencing.operation.MathTransform#transform(double[],int,double[],int,int)}.
      */
+    @Deprecated
     double[] transformList(double[] ord) throws RemoteException;
 
     /**
@@ -158,6 +164,7 @@ public interface CT_MathTransform extends Remote {
      *
      * @deprecated Replaced by {@link org.opengis.referencing.operation.MathTransform#derivative}.
      */
+    @Deprecated
     PT_Matrix derivative(PT_CoordinatePoint cp) throws RemoteException;
 
     /**
@@ -170,6 +177,7 @@ public interface CT_MathTransform extends Remote {
      *
      * @deprecated Replaced by {@link org.opengis.referencing.operation.MathTransform#inverse}.
      */
+    @Deprecated
     CT_MathTransform inverse() throws RemoteException;
 
     /**
@@ -179,6 +187,7 @@ public interface CT_MathTransform extends Remote {
      *
      * @deprecated Replaced by {@link org.opengis.referencing.operation.MathTransform#getDimSource}.
      */
+    @Deprecated
     int getDimSource() throws RemoteException;
 
     /**
@@ -188,6 +197,7 @@ public interface CT_MathTransform extends Remote {
      *
      * @deprecated Replaced by {@link org.opengis.referencing.operation.MathTransform#getDimTarget}.
      */
+    @Deprecated
     int getDimTarget() throws RemoteException;
 
     /**
@@ -199,5 +209,6 @@ public interface CT_MathTransform extends Remote {
      *
      * @deprecated Replaced by {@link org.opengis.referencing.operation.MathTransform#isIdentity}.
      */
+    @Deprecated
     boolean isIdentity() throws RemoteException;
 }
