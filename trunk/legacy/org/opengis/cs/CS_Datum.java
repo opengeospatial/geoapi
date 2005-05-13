@@ -33,6 +33,7 @@ import java.rmi.RemoteException;
  *
  * @deprecated Replaced by {@link org.opengis.referencing.datum.Datum}.
  */
+@Deprecated
 public interface CS_Datum extends CS_Info {
     /**
      * Gets the type of the datum as an enumerated code.
@@ -42,5 +43,6 @@ public interface CS_Datum extends CS_Info {
      * @deprecated Replaced by {@link org.opengis.referencing.datum.VerticalDatum#getVerticalDatumType}
      *             for the vertical case. No replacement for other cases.
      */
+    @Deprecated
     CS_DatumType getDatumType() throws RemoteException;
 }

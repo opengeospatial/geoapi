@@ -10,7 +10,7 @@
 package org.opengis.cs;
 
 // OpenGIS dependencies
-import org.opengis.pt.PT_Envelope;
+import org.opengis.pt.*;
 
 // JDK's classes
 import java.rmi.RemoteException;
@@ -41,6 +41,7 @@ import java.rmi.RemoteException;
  *
  * @deprecated Replaced by {@link org.opengis.referencing.crs.CoordinateReferenceSystem}.
  */
+@Deprecated
 public interface CS_CoordinateSystem extends CS_Info {
     /**
      * Dimension of the coordinate system.
@@ -49,6 +50,7 @@ public interface CS_CoordinateSystem extends CS_Info {
      *
      * @deprecated Replaced by {@link org.opengis.referencing.cs.CoordinateSystem#getDimension}.
      */
+    @Deprecated
     int getDimension() throws RemoteException;
 
     /**
@@ -60,6 +62,7 @@ public interface CS_CoordinateSystem extends CS_Info {
      *
      * @deprecated Replaced by {@link org.opengis.referencing.cs.CoordinateSystem#getAxis}.
      */
+    @Deprecated
     CS_AxisInfo getAxis(int dimension) throws RemoteException;
 
     /**
@@ -71,6 +74,7 @@ public interface CS_CoordinateSystem extends CS_Info {
      *
      * @deprecated Replaced by {@link org.opengis.referencing.cs.CoordinateSystemAxis#getUnit}.
      */
+    @Deprecated
     CS_Unit getUnits(int dimension) throws RemoteException;
 
     /**
@@ -87,5 +91,6 @@ public interface CS_CoordinateSystem extends CS_Info {
      *
      * @deprecated Replaced by {@link org.opengis.referencing.datum.Datum#getValidArea}.
      */
+    @Deprecated
     PT_Envelope getDefaultEnvelope() throws RemoteException;
 }

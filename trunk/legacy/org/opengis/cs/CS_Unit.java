@@ -19,5 +19,6 @@ package org.opengis.cs;
  *
  * @deprecated Replaced by {@link javax.units.Unit}.
  */
+@Deprecated
 public interface CS_Unit extends CS_Info {
 }

@@ -21,7 +21,10 @@ import java.io.Serializable;
  *
  * @version 1.00
  * @since   1.00
+ *
+ * @deprecated
  */
+@Deprecated
 public final class CV_SampleDimensionType implements Serializable {
     /**
      * Use <code>serialVersionUID</code> from first

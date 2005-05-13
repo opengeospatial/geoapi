@@ -22,6 +22,7 @@ import java.rmi.RemoteException;
  *
  * @deprecated Replaced by {@link org.opengis.referencing.datum.GeodeticDatum}.
  */
+@Deprecated
 public interface CS_HorizontalDatum extends CS_Datum {
     /**
      * Returns the Ellipsoid.
@@ -30,6 +31,7 @@ public interface CS_HorizontalDatum extends CS_Datum {
      *
      * @deprecated Replaced by {@link org.opengis.referencing.datum.GeodeticDatum#getEllipsoid}.
      */
+    @Deprecated
     CS_Ellipsoid getEllipsoid() throws RemoteException;
 
     /**
@@ -42,6 +44,9 @@ public interface CS_HorizontalDatum extends CS_Datum {
      * (e.g. throwing an exception).
      *
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated No replacement.
      */
+    @Deprecated
     CS_WGS84ConversionInfo getWGS84Parameters() throws RemoteException;
 }

@@ -22,6 +22,7 @@ import java.rmi.RemoteException;
  *
  * @deprecated Replaced by {@link org.opengis.referencing.datum.PrimeMeridian}.
  */
+@Deprecated
 public interface CS_PrimeMeridian extends CS_Info {
     /**
      * Returns the longitude value relative to the Greenwich Meridian.
@@ -31,6 +32,7 @@ public interface CS_PrimeMeridian extends CS_Info {
      *
      * @deprecated Replaced by {@link org.opengis.referencing.datum.PrimeMeridian#getGreenwichLongitude}.
      */
+    @Deprecated
     double getLongitude() throws RemoteException;
 
     /**
@@ -40,5 +42,6 @@ public interface CS_PrimeMeridian extends CS_Info {
      *
      * @deprecated Replaced by {@link org.opengis.referencing.datum.PrimeMeridian#getAngularUnit}.
      */
+    @Deprecated
     CS_AngularUnit getAngularUnit() throws RemoteException;
 }

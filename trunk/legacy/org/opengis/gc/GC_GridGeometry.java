@@ -12,7 +12,7 @@
 package org.opengis.gc;
 
 // CSS dependencies
-import org.opengis.ct.CT_MathTransform;
+import org.opengis.ct.*;
 
 
 /**
@@ -22,14 +22,20 @@ import org.opengis.ct.CT_MathTransform;
  *
  * @version 1.00
  * @since   1.00
+ *
+ * @deprecated
  */
+@Deprecated
 public interface GC_GridGeometry {
     /**
      * The valid coordinate range of a grid coverage.
      * The lowest valid grid coordinate is zero.
      * A grid with 512 cells can have a minimum coordinate of 0 and maximum of 512,
      * with 511 as the highest valid index.
+     *
+     * @deprecated
      */
+    @Deprecated
     GC_GridRange getGridRange();
 
     /**
@@ -38,6 +44,9 @@ public interface GC_GridGeometry {
      * coordinate system of the real world coordinates is given by the
      * {@link org.opengis.cv.CV_Coverage#getCoordinateSystem} method.
      * If no math transform is given, this attribute will be <code>null</code>.
+     *
+     * @deprecated
      */
+    @Deprecated
     CT_MathTransform getGridToCoordinateSystem();
 }

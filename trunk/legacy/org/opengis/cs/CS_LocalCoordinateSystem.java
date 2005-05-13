@@ -32,6 +32,7 @@ import java.rmi.RemoteException;
  *
  * @deprecated Replaced by {@link org.opengis.referencing.crs.EngineeringCRS}.
  */
+@Deprecated
 public interface CS_LocalCoordinateSystem extends CS_CoordinateSystem {
     /**
      * Gets the local datum.
@@ -40,5 +41,6 @@ public interface CS_LocalCoordinateSystem extends CS_CoordinateSystem {
      *
      * @deprecated Replaced by {@link org.opengis.referencing.crs.EngineeringCRS#getDatum}.
      */
+    @Deprecated
     CS_LocalDatum getLocalDatum() throws RemoteException;
 }

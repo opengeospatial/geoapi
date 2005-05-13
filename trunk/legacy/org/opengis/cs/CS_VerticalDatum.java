@@ -19,5 +19,6 @@ package org.opengis.cs;
  *
  * @deprecated Replaced by {@link org.opengis.referencing.datum.VerticalDatum}.
  */
+@Deprecated
 public interface CS_VerticalDatum extends CS_Datum {
 }

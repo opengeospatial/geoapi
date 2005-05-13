@@ -28,6 +28,7 @@ import java.io.Serializable;
  * @deprecated Replaced by {@link org.opengis.referencing.datum.VerticalDatumType}.
  *             for the vertical case. No replacement for other cases.
  */
+@Deprecated
 public class CS_DatumType implements Serializable {
     /**
      * Use <code>serialVersionUID</code> from first
@@ -40,6 +41,7 @@ public class CS_DatumType implements Serializable {
      *
      * @deprecated No replacement.
      */
+    @Deprecated
     public static final int CS_HD_Min=1000;
 
     /**
@@ -49,6 +51,7 @@ public class CS_DatumType implements Serializable {
      *
      * @deprecated No replacement, since this is a horizontal datum type.
      */
+    @Deprecated
     public static final int CS_HD_Other=1000;
 
     /**
@@ -60,6 +63,7 @@ public class CS_DatumType implements Serializable {
      *
      * @deprecated No replacement, since this is a horizontal datum type.
      */
+    @Deprecated
     public static final int CS_HD_Classic=1001;
 
     /**
@@ -72,6 +76,7 @@ public class CS_DatumType implements Serializable {
      *
      * @deprecated No replacement, since this is a horizontal datum type.
      */
+    @Deprecated
     public static final int CS_HD_Geocentric=1002;
 
     /**
@@ -79,6 +84,7 @@ public class CS_DatumType implements Serializable {
      *
      * @deprecated No replacement.
      */
+    @Deprecated
     public static final int CS_HD_Max=1999;
 
     /**
@@ -86,6 +92,7 @@ public class CS_DatumType implements Serializable {
      *
      * @deprecated No replacement.
      */
+    @Deprecated
     public static final int CS_VD_Min=2000;
 
     /**
@@ -93,6 +100,7 @@ public class CS_DatumType implements Serializable {
      *
      * @deprecated Replaced by {@link org.opengis.referencing.datum.VerticalDatumType#OTHER_SURFACE}.
      */
+    @Deprecated
     public static final int CS_VD_Other=2000;
 
     /**
@@ -101,6 +109,7 @@ public class CS_DatumType implements Serializable {
      *
      * @deprecated Replaced by {@link org.opengis.referencing.datum.VerticalDatumType#ORTHOMETRIC}.
      */
+    @Deprecated
     public static final int CS_VD_Orthometric=2001;
 
     /**
@@ -109,6 +118,7 @@ public class CS_DatumType implements Serializable {
      *
      * @deprecated Replaced by {@link org.opengis.referencing.datum.VerticalDatumType#ELLIPSOIDAL}.
      */
+    @Deprecated
     public static final int CS_VD_Ellipsoidal=2002;
 
     /**
@@ -121,6 +131,7 @@ public class CS_DatumType implements Serializable {
      *
      * @deprecated Replaced by {@link org.opengis.referencing.datum.VerticalDatumType#BAROMETRIC}.
      */
+    @Deprecated
     public static final int CS_VD_AltitudeBarometric=2003;
 
     /**
@@ -128,6 +139,7 @@ public class CS_DatumType implements Serializable {
      *
      * @deprecated No replacement.
      */
+    @Deprecated
     public static final int CS_VD_Normal=2004;
 
     /**
@@ -140,6 +152,7 @@ public class CS_DatumType implements Serializable {
      *
      * @deprecated Replaced by {@link org.opengis.referencing.datum.VerticalDatumType#GEOIDAL}.
      */
+    @Deprecated
     public static final int CS_VD_GeoidModelDerived=2005;
 
     /**
@@ -152,6 +165,7 @@ public class CS_DatumType implements Serializable {
      *
      * @deprecated Replaced by {@link org.opengis.referencing.datum.VerticalDatumType#DEPTH}.
      */
+    @Deprecated
     public static final int CS_VD_Depth=2006;
 
     /**
@@ -159,6 +173,7 @@ public class CS_DatumType implements Serializable {
      *
      * @deprecated No replacement.
      */
+    @Deprecated
     public static final int CS_VD_Max=2999;
 
     /**
@@ -166,6 +181,7 @@ public class CS_DatumType implements Serializable {
      *
      * @deprecated No replacement.
      */
+    @Deprecated
     public static final int CS_LD_Min=10000;
 
     /**
@@ -173,6 +189,7 @@ public class CS_DatumType implements Serializable {
      *
      * @deprecated No replacement.
      */
+    @Deprecated
     public static final int CS_LD_Max=32767;
 
     /**

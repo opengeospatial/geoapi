@@ -29,6 +29,7 @@ import java.io.Serializable;
  *
  * @deprecated Replaced by {@link org.opengis.parameter.GeneralParameterValue}.
  */
+@Deprecated
 public class CS_ProjectionParameter implements Cloneable, Serializable {
     /**
      * Use <code>serialVersionUID</code> from first
@@ -39,6 +40,7 @@ public class CS_ProjectionParameter implements Cloneable, Serializable {
     /**
      * The parameter name.
      */
+    @Deprecated
     public String name;
 
     /**
@@ -46,6 +48,7 @@ public class CS_ProjectionParameter implements Cloneable, Serializable {
      *
      * @deprecated Replaced by {@link org.opengis.referencing.operation.ParameterValue#doubleValue}.
      */
+    @Deprecated
     public double value;
 
     /**

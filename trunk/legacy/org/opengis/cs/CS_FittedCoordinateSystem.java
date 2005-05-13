@@ -25,6 +25,7 @@ import java.rmi.RemoteException;
  *
  * @deprecated Replaced by {@link org.opengis.referencing.crs.DerivedCRS}.
  */
+@Deprecated
 public interface CS_FittedCoordinateSystem extends CS_CoordinateSystem {
     /**
      * Gets underlying coordinate system.
@@ -33,6 +34,7 @@ public interface CS_FittedCoordinateSystem extends CS_CoordinateSystem {
      *
      * @deprecated Replaced by {@link org.opengis.referencing.crs.DerivedCRS#getBaseCRS}.
      */
+    @Deprecated
     CS_CoordinateSystem getBaseCoordinateSystem() throws RemoteException;
 
     /**
@@ -48,5 +50,6 @@ public interface CS_FittedCoordinateSystem extends CS_CoordinateSystem {
      * @deprecated Replaced by {@link org.opengis.referencing.crs.DerivedCRS#getConversionFromBase},
      *             except that the transform needs to be inverted.
      */
+    @Deprecated
     String getToBase() throws RemoteException;
 }

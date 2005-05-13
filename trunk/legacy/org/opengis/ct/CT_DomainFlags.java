@@ -27,6 +27,7 @@ import java.io.Serializable;
  *
  * @deprecated No direct replacement.
  */
+@Deprecated
 public class CT_DomainFlags implements Serializable {
     /**
      * Use <code>serialVersionUID</code> from first

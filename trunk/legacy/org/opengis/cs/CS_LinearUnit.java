@@ -22,6 +22,7 @@ import java.rmi.RemoteException;
  *
  * @deprecated Replaced by {@link javax.units.Unit}.
  */
+@Deprecated
 public interface CS_LinearUnit extends CS_Unit {
     /**
      * Returns the number of meters per LinearUnit.

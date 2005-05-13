@@ -10,7 +10,7 @@
 package org.opengis.ct;
 
 // OpenGIS dependencies
-import org.opengis.cs.CS_CoordinateSystem;
+import org.opengis.cs.*;
 
 // JDK's classes
 import java.rmi.Remote;
@@ -26,6 +26,7 @@ import java.rmi.RemoteException;
  *
  * @deprecated Replaced by {@link org.opengis.referencing.operation.CoordinateOperationFactory}.
  */
+@Deprecated
 public interface CT_CoordinateTransformationFactory extends Remote {
     /**
      * Creates a transformation between two coordinate systems.
@@ -40,5 +41,6 @@ public interface CT_CoordinateTransformationFactory extends Remote {
      *
      * @deprecated Replaced by {@link org.opengis.referencing.operation.CoordinateOperationFactory#createOperation}.
      */
+    @Deprecated
     CT_CoordinateTransformation createFromCoordinateSystems(CS_CoordinateSystem sourceCS, CS_CoordinateSystem targetCS) throws RemoteException;
 }

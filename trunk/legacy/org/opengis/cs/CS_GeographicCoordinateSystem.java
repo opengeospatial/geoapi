@@ -26,6 +26,7 @@ import java.rmi.RemoteException;
  *
  * @deprecated Replaced by {@link org.opengis.referencing.crs.GeographicCRS}.
  */
+@Deprecated
 public interface CS_GeographicCoordinateSystem extends CS_HorizontalCoordinateSystem { 
     /**
      * Returns the AngularUnit.
@@ -35,6 +36,7 @@ public interface CS_GeographicCoordinateSystem extends CS_HorizontalCoordinateSy
      *
      * @deprecated Replaced by {@link org.opengis.referencing.cs.CoordinateSystemAxis#getUnit}.
      */
+    @Deprecated
     CS_AngularUnit getAngularUnit() throws RemoteException;
 
     /**
@@ -44,6 +46,7 @@ public interface CS_GeographicCoordinateSystem extends CS_HorizontalCoordinateSy
      *
      * @deprecated Replaced by {@link org.opengis.referencing.datum.GeodeticDatum#getPrimeMeridian}.
      */
+    @Deprecated
     CS_PrimeMeridian getPrimeMeridian() throws RemoteException;
 
     /**
@@ -51,6 +54,7 @@ public interface CS_GeographicCoordinateSystem extends CS_HorizontalCoordinateSy
      *
      * @throws RemoteException if a remote method call failed.
      */
+    @Deprecated
     int getNumConversionToWGS84() throws RemoteException;
 
     /**
@@ -63,6 +67,9 @@ public interface CS_GeographicCoordinateSystem extends CS_HorizontalCoordinateSy
      *
      * @param index Zero based index of conversion to fetch.
      * @throws RemoteException if a remote method call failed.
+     *
+     * @deprecated No replacement.
      */
+    @Deprecated
     CS_WGS84ConversionInfo getWGS84ConversionInfo(int index) throws RemoteException;
 }

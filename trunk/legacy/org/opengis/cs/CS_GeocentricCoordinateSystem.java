@@ -28,6 +28,7 @@ import java.rmi.RemoteException;
  *
  * @deprecated Replaced by {@link org.opengis.referencing.crs.GeocentricCRS}.
  */
+@Deprecated
 public interface CS_GeocentricCoordinateSystem extends CS_CoordinateSystem {
     /**
      * Returns the HorizontalDatum.
@@ -39,6 +40,7 @@ public interface CS_GeocentricCoordinateSystem extends CS_CoordinateSystem {
      *
      * @deprecated Replaced by {@link org.opengis.referencing.crs.GeocentricCRS#getDatum}.
      */
+    @Deprecated
     CS_HorizontalDatum getHorizontalDatum() throws RemoteException;
 
     /**
@@ -48,6 +50,7 @@ public interface CS_GeocentricCoordinateSystem extends CS_CoordinateSystem {
      *
      * @deprecated Replaced by {@link org.opengis.referencing.cs.CoordinateSystemAxis#getUnit}.
      */
+    @Deprecated
     CS_LinearUnit getLinearUnit() throws RemoteException;
 
     /**
@@ -57,5 +60,6 @@ public interface CS_GeocentricCoordinateSystem extends CS_CoordinateSystem {
      *
      * @deprecated Replaced by {@link org.opengis.referencing.datum.GeodeticDatum#getPrimeMeridian}.
      */
+    @Deprecated
     CS_PrimeMeridian getPrimeMeridian() throws RemoteException;
 }

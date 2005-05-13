@@ -23,5 +23,6 @@ package org.opengis.cs;
  *
  * @deprecated Replaced by {@link org.opengis.referencing.datum.EngineeringDatum}.
  */
+@Deprecated
 public interface CS_LocalDatum extends CS_Datum {
 }

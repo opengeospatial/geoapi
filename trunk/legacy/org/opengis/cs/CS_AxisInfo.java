@@ -24,6 +24,7 @@ import java.io.Serializable;
  *
  * @deprecated Replaced by {@link org.opengis.referencing.cs.CoordinateSystemAxis}.
  */
+@Deprecated
 public class CS_AxisInfo implements Cloneable, Serializable {
     /**
      * Use <code>serialVersionUID</code> from first
@@ -37,6 +38,7 @@ public class CS_AxisInfo implements Cloneable, Serializable {
      *
      * @deprecated Replaced by {@link org.opengis.referencing.cs.CoordinateSystemAxis#getName}.
      */
+    @Deprecated
     public String name;
 
     /**
@@ -44,6 +46,7 @@ public class CS_AxisInfo implements Cloneable, Serializable {
      *
      * @deprecated Replaced by {@link org.opengis.referencing.cs.CoordinateSystemAxis#getDirection}.
      */
+    @Deprecated
     public CS_AxisOrientationEnum orientation;
 
     /**
@@ -58,7 +61,10 @@ public class CS_AxisInfo implements Cloneable, Serializable {
      *
      * @param name The axis name.
      * @param orientation The axis orientation.
+     *
+     * @deprecated Replaced by an interface.
      */
+    @Deprecated
     public CS_AxisInfo(final String name, final CS_AxisOrientationEnum orientation) {
         this.name        = name;
         this.orientation = orientation;
@@ -78,7 +84,10 @@ public class CS_AxisInfo implements Cloneable, Serializable {
 
     /**
      * Returns a copy of this AxisInfo.
+     *
+     * @deprecated Replaced by an interface.
      */
+    @Deprecated
     public Object clone() {
         try {
             CS_AxisInfo copy = (CS_AxisInfo) super.clone();

@@ -22,6 +22,7 @@ import java.rmi.RemoteException;
  *
  * @deprecated Replaced by {@link org.opengis.referencing.crs.VerticalCRS}.
  */
+@Deprecated
 public interface CS_VerticalCoordinateSystem extends CS_CoordinateSystem {
     /**
      * Gets the vertical datum, which indicates the measurement method.
@@ -30,6 +31,7 @@ public interface CS_VerticalCoordinateSystem extends CS_CoordinateSystem {
      *
      * @deprecated Replaced by {@link org.opengis.referencing.crs.VerticalCRS#getDatum}.
      */
+    @Deprecated
     CS_VerticalDatum getVerticalDatum() throws RemoteException;
 
     /**
@@ -40,5 +42,6 @@ public interface CS_VerticalCoordinateSystem extends CS_CoordinateSystem {
      *
      * @deprecated Replaced by {@link org.opengis.referencing.cs.CoordinateSystemAxis#getUnit}.
      */
+    @Deprecated
     CS_LinearUnit getVerticalUnit() throws RemoteException;
 }

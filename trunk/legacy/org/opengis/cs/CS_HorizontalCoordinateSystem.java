@@ -23,6 +23,7 @@ import java.rmi.RemoteException;
  * @deprecated No direct replacement. The nearest parent is
  *             {@link org.opengis.referencing.crs.CoordinateReferenceSystem}.
  */
+@Deprecated
 public interface CS_HorizontalCoordinateSystem extends CS_CoordinateSystem {
     /**
      * Returns the HorizontalDatum.
@@ -31,5 +32,6 @@ public interface CS_HorizontalCoordinateSystem extends CS_CoordinateSystem {
      *
      * @deprecated Replaced by {@link org.opengis.referencing.crs.CoordinateReferenceSystem#getDatum}.
      */
+    @Deprecated
     CS_HorizontalDatum getHorizontalDatum() throws RemoteException;
 }

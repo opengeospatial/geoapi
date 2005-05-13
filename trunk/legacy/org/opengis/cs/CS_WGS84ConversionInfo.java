@@ -26,6 +26,7 @@ import java.io.Serializable;
  *
  * @deprecated No direct replacement.
  */
+@Deprecated
 public class CS_WGS84ConversionInfo implements Cloneable, Serializable {
     /**
      * Use <code>serialVersionUID</code> from first
