@@ -284,7 +284,7 @@ scanMembers:for (final Member attribute : attributes) {
         } else {
             final XmlElement xml = element.getAnnotation(XmlElement.class);
             if (xml != null) {
-                identifier = xml.name();
+                identifier = xml.value();
             } else {
                 return EXTENSION;
             }
