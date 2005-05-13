@@ -29,10 +29,10 @@ public interface Graphic {
     /**
      * Returns the list of external image files or marks that comprise this
      * graphic.  The returned list is "live" and can be modified by the user.
-     * All elements of the list must be instances of either <code>Mark</code>
-     * or <code>ExternalGraphic</code>.
+     * All elements of the list must be instances of either {@link Mark}
+     * or {@link ExternalGraphic}.
      */
-    public List getExternalGraphicOrMark();
+    List<ExternalGraphicOrMark> getExternalGraphicOrMark();
 
     /**
      * Returns the expression that will be evaluated to determine the opacity
@@ -41,7 +41,7 @@ public interface Graphic {
      * 0.0 to 1.0, with 0.0 being completely transparent and 1.0 being
      * completely opaque.
      */
-    public Expression getOpacity();
+    Expression getOpacity();
 
     /**
      * Sets the expression that will be evaluated to determine the opacity of
@@ -50,7 +50,7 @@ public interface Graphic {
      * 0.0 to 1.0, with 0.0 being completely transparent and 1.0 being
      * completely opaque.
      */
-    public void setOpacity(Expression opacityExpression);
+    void setOpacity(Expression opacityExpression);
 
     /**
      * Returns the expression that will be evaluated to determine the pixel
@@ -61,7 +61,7 @@ public interface Graphic {
      * Some image types, such as SVG or CGM, may not have an inherent pixel
      * size.  For such images, the default size is 16 pixels.
      */
-    public Expression getSize();
+    Expression getSize();
 
     /**
      * Sets the expression that will be evaluated to determine the pixel height
@@ -72,19 +72,19 @@ public interface Graphic {
      * types, such as SVG or CGM, may not have an inherent pixel size.  For such
      * images, the default size is 16 pixels.
      */
-    public void setSize(Expression sizeExpression);
+    void setSize(Expression sizeExpression);
 
     /**
      * Returns the expression that will be used to calculate the rotation of the
      * graphic when it is drawn.  The value is interpreted as a rotation in
      * decimal degrees clockwise about the center point of the image.
      */
-    public Expression getRotation();
+    Expression getRotation();
 
     /**
      * Sets the expression that will be used to calculate the rotation of the
      * graphic when it is drawn.  The value is interpreted as a rotation in
      * decimal degrees clockwise about the center point of the image.
      */
-    public void setRotation(Expression rotationExpression);
+    void setRotation(Expression rotationExpression);
 }

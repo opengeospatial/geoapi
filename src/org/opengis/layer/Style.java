@@ -22,7 +22,6 @@ import org.opengis.feature.display.canvas.FeatureLayer;
 // Annotations
 import org.opengis.annotation.Extension;
 import org.opengis.annotation.XmlElement;
-import static org.opengis.annotation.Obligation.*;
 
 
 /**

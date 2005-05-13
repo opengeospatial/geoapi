@@ -14,7 +14,6 @@ import java.util.Set;
 
 // Annotations
 import org.opengis.annotation.XmlElement;
-import static org.opengis.annotation.Obligation.*;
 
 
 /**

@@ -14,7 +14,6 @@ import org.opengis.filter.expression.Expression;
 
 // Annotations
 import org.opengis.annotation.XmlElement;
-import static org.opengis.annotation.Obligation.*;
 
 
 /**

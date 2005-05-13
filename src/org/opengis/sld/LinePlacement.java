@@ -27,12 +27,12 @@ public interface LinePlacement extends TextPlacement {
      * the text will be drawn.  The distance must evaluate to a non-negative
      * number.
      */
-    public Expression getPerpindicularOffset();
+    Expression getPerpindicularOffset();
 
     /**
      * Sets the expression that is used to compute how far from the lines
      * the text will be drawn.  The distance must evaluate to a non-negative
      * number.
      */
-    public void setPerpindicularOffset(Expression e);
+    void setPerpindicularOffset(Expression e);
 }

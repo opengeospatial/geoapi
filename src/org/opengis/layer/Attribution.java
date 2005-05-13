@@ -15,7 +15,6 @@ import org.opengis.util.InternationalString;
 
 // Annotations
 import org.opengis.annotation.XmlElement;
-import static org.opengis.annotation.Obligation.*;
 
 
 /**

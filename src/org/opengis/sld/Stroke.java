@@ -12,168 +12,176 @@ package org.opengis.sld;
 // OpenGIS direct dependencies
 import org.opengis.filter.expression.Expression;
 
+// Annotations
+import org.opengis.annotation.XmlElement;
+
 
 /**
  * Contains all the information needed to draw styled lines.  Stroke objects are contained
- * by {@link LineSymbol}s and {@link PolygonSymbol}s.  A {@code Stroke} can optionally have
- * any number of parameters that dictate the 
+ * by {@link LineSymbol}s and {@link PolygonSymbol}s. There are three basic types of strokes:
+ * solid-color, {@code GraphicFill} (stipple), and repeated linear {@code GraphicStroke}. A
+ * repeated linear graphic is plotted linearly and has its graphic symbol bent around the curves
+ * of the line string, and a graphic fill has the pixels of the line rendered with a repeating
+ * area-fill pattern. If neither a {@link #getGraphicFill GraphicFill} nor {@link #getGraphicStroke
+ * GraphicStroke} element is given, then the line symbolizer will render a solid color.
  *
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/02-070.pdf">Implementation specification 1.0</A>
  * @since GeoAPI 1.1
  */
+@XmlElement("Stroke")
 public interface Stroke {
     /**
-     * If this value is non-null, it indicates that line should be drawn by
-     * tiling the (thin) area of the line with the given graphic.
-     * Between getGraphicFill and getGraphicStroke, only one may return a
-     * non-null value since a Stroke can have a GraphicFill or a GraphicStroke,
+     * If non-null, indicates that line should be drawn by tiling the (thin) area of the line with
+     * the given graphic. Between {@code getGraphicFill()} and {@link #getGraphicStroke()}, only one
+     * may return a non-null value since a {@code Stroke} can have a {@code GraphicFill} or a
+     * {@code GraphicStroke}, but not both.
+     */
+    @XmlElement("GraphicFill")
+    Graphic getGraphicFill();
+
+    /**
+     * Sets the line that should be drawn by tiling the (thin) area of the line with the given graphic.
+     *
+     * @see #getGraphicFill
+     */
+    @XmlElement("GraphicFill")
+    void setGraphicFill(Graphic graphicFill);
+
+    /**
+     * If non-null, indicates that lines should be drawn by repeatedly plotting the given graphic
+     * along the path of the lines, rotating it according to the orientation of the line.
+     * Between {@link #getGraphicFill()} and {@code getGraphicStroke}, only one may return a
+     * non-null value since a {@code Stroke} can have a {@code GraphicFill} or a {@code GraphicStroke},
      * but not both.
      */
-    public Graphic getGraphicFill();
+    @XmlElement("GraphicStroke")
+    Graphic getGraphicStroke();
 
     /**
-     * If the parameter is non-null, then it indicates that the line should be
-     * drawn by tiling the (thin) area of the line with the given graphic.
-     * Between getGraphicFill and getGraphicStroke, only one may return a
-     * non-null value since a Stroke can have a GraphicFill or a GraphicStroke,
-     * but not both.  So if this method is called with a non-null value, the
-     * value of the GraphicStroke property will be set to null.
+     * Sets the lines that should be drawn by repeatedly plotting the given graphic along the path
+     * of the lines, rotating it according to the orientation of the line.
+     *
+     * @see #getGraphicStroke
      */
-    public void setGraphicFill(Graphic graphicFill);
+    @XmlElement("GraphicStroke")
+    void setGraphicStroke(Graphic graphicStroke);
 
     /**
-     * If this value is non-null, it indicates that lines should be drawn by
-     * repeatedly plotting the given graphic along the path of the lines,
-     * rotating it according to the orientation of the line.
-     * Between getGraphicFill and getGraphicStroke, only one may return a
-     * non-null value since a Stroke can have a GraphicFill or a GraphicStroke,
-     * but not both.
+     * Indicates the color of the line if it is to be solid-color filled.  The format of color
+     * values is {@code "#rrggbb"} where {@code rr}, {@code gg}, and {@code bb}, are red, green,
+     * and blue intensity values, respectively, represented as two digit hexadecimal integers.
+     * The hexadecimal digits between {@code A} and {@code F} may be in either uppercase or lowercase.
+     * If null, the default color is {@code "#000000"}, black.
      */
-    public Graphic getGraphicStroke();
+    @XmlElement("stroke")  // TODO: Actually a CssParameter
+    Expression getColor();
 
     /**
-     * If the parameter is non-null, it indicates that lines should be drawn by
-     * repeatedly plotting the given graphic along the path of the lines,
-     * rotating it according to the orientation of the line.
-     * Between getGraphicFill and getGraphicStroke, only one may return a
-     * non-null value since a Stroke can have a GraphicFill or a GraphicStroke,
-     * but not both.  So if this method is called with a non-null value, the
-     * value of the GraphicFill property will be set to null.
+     * Sets the color of the line if it is to be solid-color filled.
+     *
+     * @see #getColor
      */
-    public void setGraphicStroke(Graphic graphicStroke);
+    @XmlElement("stroke")  // TODO: Actually a CssParameter
+    void setColor(Expression expression);
 
     /**
-     * The value of this parameter indicates the color of the line if it is to
-     * be solid-color filled.  The format of color values is "#rrggbb" where rr,
-     * gg, and bb, are red, green, and blue intensity values, respectively,
-     * represented as two digit hexadecimal integers.  If null, the default
-     * color is "#000000", black.
+     * Indicates the level of translucency as a floating point number whose value is between 0.0
+     * and 1.0 (inclusive).  A value of zero means completely transparent.  A value of 1.0 means
+     * completely opaque.  If null, the default value is 1.0, totally opaque.
      */
-    public Expression getColor();
+    @XmlElement("stroke-opacity")  // TODO: Actually a CssParameter
+    Expression getOpacity();
 
     /**
-     * The value of this parameter indicates the color of the line if it is to
-     * be solid-color filled.  The format of color values is "#rrggbb" where rr,
-     * gg, and bb, are red, green, and blue intensity values, respectively,
-     * represented as two digit hexadecimal integers.  If null, the default
-     * color is "#000000", black.
+     * Sets the level of translucency as a floating point number whose value is between 0.0 and 1.0 (inclusive).
+     *
+     * @see #getOpacity
      */
-    public void setColor(Expression expression);
+    @XmlElement("stroke-opacity")  // TODO: Actually a CssParameter
+    void setOpacity(Expression expression);
 
     /**
-     * The value of this parameter must be a floating point number whose value
-     * is between 0.0 and 1.0 (inclusive).  A value of zero means completely
-     * transparent.  A value of 1.0 means completely opaque.  If null, the
-     * default value is 1.0, totally opaque.
+     * Gives the absolute width in pixels of the line stroke as a floating point number.
+     * Fractional numbers are allowed (with system-dependent interpretation), but negative
+     * numbers are not.  If null, the default value is 1.0.
      */
-    public Expression getOpacity();
+    @XmlElement("stroke-width")  // TODO: Actually a CssParameter
+    Expression getWidth();
 
     /**
-     * The value of this parameter must be a floating point number whose value
-     * is between 0.0 and 1.0 (inclusive).  A value of zero means completely
-     * transparent.  A value of 1.0 means completely opaque.  If null, the
-     * default value is 1.0, totally opaque.
+     * Sets the absolute width in pixels of the line stroke as a floating point number.
+     *
+     * @see #getWidth
      */
-    public void setOpacity(Expression expression);
+    @XmlElement("stroke-width")  // TODO: Actually a CssParameter
+    void setWidth(Expression expression);
 
     /**
-     * The value of this parameter gives the absolute width in pixels of the
-     * line stroke as a floating point number.  Fractional numbers are allowed
-     * (with system-dependent interpretation), but negative numbers are not.  If
-     * null, the default value is 1.0.
+     * Indicates how the various segments of a (thick) line string should be joined.
+     * Valid values are "miter", "round", and "bevel".  If null, the default value is
+     * system dependent (probably whichever one is fastest to render).
      */
-    public Expression getWidth();
+    @XmlElement("stroke-linejoin")  // TODO: Actually a CssParameter
+    Expression getLineJoin();
 
     /**
-     * The value of this parameter gives the absolute width in pixels of the
-     * line stroke as a floating point number.  Fractional numbers are allowed
-     * (with system-dependent interpretation), but negative numbers are not.  If
-     * null, the default value is 1.0.
+     * Sets how the various segments of a (thick) line string should be joined.
+     * Valid values are "miter", "round", and "bevel".
+     *
+     * @see #getLineJoin
      */
-    public void setWidth(Expression expression);
+    @XmlElement("stroke-linejoin")  // TODO: Actually a CssParameter
+    void setLineJoin(Expression expression);
 
     /**
-     * The value of this parameter indicates how the various segments of a
-     * (thick) line string should be joined.  Valid values are "miter", "round",
-     * and "bevel".  If null, the default value is system dependent (probably
-     * whichever one is fastest to render).
+     * Indicates how the beginning and ending segments of a line string will be terminated.
+     * Valid values are "butt", "round", and "square".  If null, the default value is system
+     * dependent.
      */
-    public Expression getLineJoin();
+    @XmlElement("stroke-linecap")  // TODO: Actually a CssParameter
+    Expression getLineCap();
 
     /**
-     * The value of this parameter indicates how the various segments of a
-     * (thick) line string should be joined.  Valid values are "miter", "round",
-     * and "bevel".  If null, the default value is system dependent (probably
-     * whichever one is fastest to render).
+     * Sets how the beginning and ending segments of a line string will be terminated.
+     * Valid values are "butt", "round", and "square".
+     *
+     * @see #getLineCap
      */
-    public void setLineJoin(Expression expression);
+    @XmlElement("stroke-linecap")  // TODO: Actually a CssParameter
+    void setLineCap(Expression expression);
 
     /**
-     * The value of this parameter indicates how the beginning and ending
-     * segments of a line string will be terminated.  Value values are "butt",
-     * "round", and "square".  If null, the default value is system dependent.
-     */
-    public Expression getLineCap();
-
-    /**
-     * The value of this parameter indicates how the beginning and ending
-     * segments of a line string will be terminated.  Value values are "butt",
-     * "round", and "square".  If null, the default value is system dependent.
-     */
-    public void setLineCap(Expression expression);
-
-    /**
-     * If present, the value of this parameter must be a space-separated
-     * sequence of floating point numbers.  The first number represents the
-     * length of the first dash to draw.  The second number represents the
-     * length of space to leave.  This continues to the end of the list then
+     * If present, indicates the dash pattern as a space-separated sequence of floating point numbers.
+     * The first number represents the length of the first dash to draw.  The second number
+     * represents the length of space to leave.  This continues to the end of the list then
      * repeats.  If the list contains an odd number of values, then before
      * rendering the list is enlarged by repeating the last value.  If this
      * parameter is omitted, lines will be drawn as solid and unbroken.
      */
-    public Expression getDashArray();
+    @XmlElement("stroke-dasharray")  // TODO: Actually a CssParameter
+    Expression getDashArray();
 
     /**
-     * If present, the value of this parameter must be a space-separated
-     * sequence of floating point numbers.  The first number represents the
-     * length of the first dash to draw.  The second number represents the
-     * length of space to leave.  This continues to the end of the list then
-     * repeats.  If the list contains an odd number of values, then before
-     * rendering the list is enlarged by repeating the last value.  If this
-     * parameter is omitted, lines will be drawn as solid and unbroken.
+     * Set the dash pattern as a space-separated sequence of floating point numbers.
+     *
+     * @see #getDashArray
      */
-    public void setDashArray(Expression expression);
+    @XmlElement("stroke-dasharray")  // TODO: Actually a CssParameter
+    void setDashArray(Expression expression);
 
     /**
-     * The value of this parameter indicates the distance offset into the dash
-     * array to begin drawing.  If null, the default value is zero.
+     * Indicates the distance offset into the dash array to begin drawing.
+     * If null, the default value is zero.
      */
-    public Expression getDashOffset();
+    @XmlElement("stroke-dashoffset")  // TODO: Actually a CssParameter
+    Expression getDashOffset();
 
     /**
-     * The value of this parameter indicates the distance offset into the dash
-     * array to begin drawing.  If null, the default value is zero.
+     * Sets the distance offset into the dash array to begin drawing.
+     *
+     * @see #getDashOffset
      */
-    public void setDashOffset(Expression expression);
+    @XmlElement("stroke-dashoffset")  // TODO: Actually a CssParameter
+    void setDashOffset(Expression expression);
 }

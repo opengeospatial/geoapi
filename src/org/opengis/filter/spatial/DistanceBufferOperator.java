@@ -11,7 +11,6 @@ package org.opengis.filter.spatial;
 
 // Annotations
 import org.opengis.annotation.XmlElement;
-import static org.opengis.annotation.Obligation.*;
 
 
 /**

@@ -26,36 +26,36 @@ public interface Mark extends ExternalGraphicOrMark {
      * At least the following values must be accepted: "square", "circle",
      * "triangle", "star", "cross", or "x".  If null, the default is "square".
      */
-    public Expression getWellKnownName();
+    Expression getWellKnownName();
 
     /**
      * Sets the expression whose value will indicate the symbol to draw.
      * At least the following values must be accepted: "square", "circle",
      * "triangle", "star", "cross", or "x".  If null, the default is "square".
      */
-    public void setWellKnownName(Expression name);
+    void setWellKnownName(Expression name);
 
     /**
      * Returns the object that indicates how the mark should be filled.
      * Null means no fill.
      */
-    public Fill getFill();
+    Fill getFill();
 
     /**
      * Sets the object that indicates how the mark should be filled.
      * Null means no fill.
      */
-    public void setFill(Fill f);
+    void setFill(Fill f);
 
     /**
      * Returns the object that indicates how the edges of the mark will be
      * drawn.  Null means that the edges will not be drawn at all.
      */
-    public Stroke getStroke();
+    Stroke getStroke();
 
     /**
      * Sets the object that indicates how the edges of the mark will be
      * drawn.  Null means that the edges will not be drawn at all.
      */
-    public void setStroke(Stroke s);
+    void setStroke(Stroke s);
 }
