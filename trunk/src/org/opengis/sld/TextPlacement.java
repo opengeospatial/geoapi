@@ -9,6 +9,9 @@
  *************************************************************************************************/
 package org.opengis.sld;
 
+// Annotations
+import org.opengis.annotation.Extension;
+
 
 /**
  * Abstract base class for the two different classes that specify the placement of text
@@ -19,5 +22,11 @@ package org.opengis.sld;
  * @since GeoAPI 1.1
  */
 public interface TextPlacement {
-    public Object accept(StyleVisitor visitor, Object extraData);
+    /**
+     * Accepts a visitor.  Implementations of all subinterfaces must have with a
+     * method whose content is the following:
+     * <pre>return visitor.{@linkplain StyleVisitor#visit visit}(this, extraData);</pre>
+     */
+    @Extension
+    Object accept(StyleVisitor visitor, Object extraData);
 }

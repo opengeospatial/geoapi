@@ -15,6 +15,9 @@ import java.util.List;
 // OpenGIS direct dependencies
 import org.opengis.filter.Filter;
 
+// Annotations
+import org.opengis.annotation.XmlElement;
+
 
 /**
  * A rule consists of two important parts: a {@linkplain Filter filter} and a list of
@@ -27,6 +30,7 @@ import org.opengis.filter.Filter;
  * @version <A HREF="http://www.opengis.org/docs/02-070.pdf">Implementation specification 1.0</A>
  * @since GeoAPI 1.1
  */
+@XmlElement("Rule")
 public interface Rule {
     /**
      * Returns a name for this rule.
@@ -34,41 +38,47 @@ public interface Rule {
      * canvas.  It is not meant to be human-friendly.  (The "title" property is
      * meant to be human friendly.)
      */
-    public String getName();
+    @XmlElement("Name")
+    String getName();
 
     /**
      * Sets the name for this rule.
-     * This can be any string that uniquely identifies this rule within a given
-     * canvas.  It is not meant to be human-friendly.  (The "title" property is
-     * meant to be human friendly.)
+     *
+     * @see #getName
      */
-    public void setName(String name);
+    @XmlElement("Name")
+    void setName(String name);
 
     /**
      * Returns the human readable title of this rule.
      * This can be any string, but should be fairly short as it is intended to
      * be used in list boxes or drop down menus or other selection interfaces.
      */
-    public String getTitle();
+    @XmlElement("Title")
+    String getTitle();
 
     /**
      * Sets the human readable title of this rule.
-     * This can be any string, but should be fairly short as it is intended to
-     * be used in list boxes or drop down menus or other selection interfaces.
+     *
+     * @see #getTitle
      */
-    public void setTitle(String name);
+    @XmlElement("Title")
+    void setTitle(String name);
 
     /**
      * Returns a human readable, prose description of this rule.
      * This can be any string and can consist of any amount of text.
      */
-    public String getAbstract();
+    @XmlElement("Abstract")
+    String getAbstract();
 
     /**
      * Sets the human readable, prose description of this rule.
-     * This can be any string and can consist of any amount of text.
+     *
+     * @see #getAbstract
      */
-    public void setAbstract(String abs);
+    @XmlElement("Abstract")
+    void setAbstract(String abs);
 
     /**
      * Returns a small Graphic that could be used by the rendering engine to
@@ -76,94 +86,98 @@ public interface Rule {
      * <p>
      * A nice user interface may want to present the user with a legend that
      * indicates how features of a given type are being portrayed.  Through its
-     * LegendGraphic property, a Rule may provide a custom picture to be used
-     * in such a legend window.
+     * {@code LegendGraphic} property, a {@code Rule} may provide a custom picture
+     * to be used in such a legend window.
      */
-    public Graphic getLegendGraphic();
+    @XmlElement("LegendGraphic")
+    Graphic getLegendGraphic();
     
     /**
      * Sets the small Graphic that may be used by the rendering engine to draw
      * a legend window.
-     * <p>
-     * A nice user interface may want to present the user with a legend that
-     * indicates how features of a given type are being portrayed.  Through its
-     * LegendGraphic property, a Rule may provide a custom picture to be used
-     * in such a legend window.
+     *
+     * @see #getLegendGraphic
      */
-    public void setLegendGraphic(Graphic g);
+    @XmlElement("LegendGraphic")
+    void setLegendGraphic(Graphic g);
 
     /**
-     * Returns the Filter that will limit the features for which this Rule will
-     * fire.  This can only be non-null if <code>isElseFilter</code> returns
-     * false.  If this value is null and <code>isElseFilter</code> is false,
-     * this means that this Rule should fire for all features.
+     * Returns the filter that will limit the features for which this {@code Rule} will
+     * fire.  This can only be non-null if {@link isElseFilter} returns false.  If this
+     * value is null and {@code isElseFilter} is false, this means that this {@code Rule}
+     * should fire for all features.
      */
-    public Filter getFilter();
+    @XmlElement("Filter")  // TODO: actually a <xs:choice> between Filter and ElseFilter
+    Filter getFilter();
 
     /**
-     * Sets the Filter that will limit the features for which this Rule will
-     * fire.  This can only be non-null if <code>isElseFilter</code> returns
-     * false.  If this value is null and <code>isElseFilter</code> is false,
-     * this means that this Rule should fire for all features.
+     * Sets the filter that will limit the features for which this {@code Rule} will fire.
+     *
+     * @see #getFilter
      */
-    public void setFilter(Filter filter);
+    @XmlElement("Filter")  // TODO: actually a <xs:choice> between Filter and ElseFilter
+    void setFilter(Filter filter);
 
     /**
-     * Returns true if this Rule is to fire only if no other Rules in the
-     * containing style have fired yet.  If this is true, then the filter must
-     * be null.
+     * Returns true if this {@code Rule} is to fire only if no other rules in the containing
+     * style have fired yet.  If this is true, then the {@linkplain #getFilter filter} must be null.
      */
-    public boolean isElseFilter();
+    @XmlElement("ElseFilter")
+    boolean isElseFilter();
 
     /**
-     * Sets the flag that indicates whether this Rule is an "else filter".  A
-     * value of true indicates that this rule is to fire only if no other Rules
+     * Sets the flag that indicates whether this {@code Rule} is an "else filter".
+     * A value of true indicates that this rule is to fire only if no other rules
      * in the containing style have fired.
+     *
+     * @see #isElseFilter
      */
-    public void setElseFilter(boolean newValue);
+    @XmlElement("ElseFilter")
+    void setElseFilter(boolean newValue);
 
     /**
-     * Returns the minimum value in the denominator of the current map scale
-     * at which this Rule will fire.
-     * If, for example, the MinScaleDenominator were 10000, then this rule
+     * Returns the minimum value (inclusive) in the denominator of the current map scale
+     * at which this {@code Rule} will fire.
+     * If, for example, the {@code MinScaleDenominator} were 10000, then this rule
      * would only fire at scales of 1:X where X is greater than 10000.
      * A value of zero indicates that there is no minimum.
      */
-    public double getMinScaleDenominator();
+    @XmlElement("MinScaleDenominator")
+    double getMinScaleDenominator();
 
     /**
-     * Sets the minimum value in the denominator of the current map scale at
-     * which this Rule will fire.
-     * If, for example, the MinScaleDenominator were 10000, then this rule
-     * would only fire at scales of 1:X where X is greater than 10000.
-     * A value of zero indicates that there is no minimum.
+     * Sets the minimum value (inclusive) in the denominator of the current map scale at
+     * which this {@code Rule} will fire.
+     *
+     * @see #getMinScaleDenominator
      */
-    public void setMinScaleDenominator(double d);
+    @XmlElement("MinScaleDenominator")
+    void setMinScaleDenominator(double d);
 
     /**
-     * Returns the maximum value in the denominator of the current map scale
-     * at which this Rule will fire.
-     * If, for example, the MaxScaleDenominator were 98765, then this rule
+     * Returns the maximum value (exclusive) in the denominator of the current map scale
+     * at which this {@code Rule} will fire.
+     * If, for example, the {@code MaxScaleDenominator} were 98765, then this rule
      * would only fire at scales of 1:X where X is less than 98765.
-     * A value of zero indicates that there is no minimum.
+     * A value of zero indicates that there is no maximum.
      */
-    public double getMaxScaleDenominator();
+    @XmlElement("MaxScaleDenominator")
+    double getMaxScaleDenominator();
 
     /**
-     * Sets the maximum value in the denominator of the current map scale
-     * at which this Rule will fire.
-     * If, for example, the MaxScaleDenominator were 98765, then this rule
-     * would only fire at scales of 1:X where X is less than 98765.
-     * A value of zero indicates that there is no minimum.
+     * Sets the maximum value (exclusive) in the denominator of the current map scale
+     * at which this {@code Rule} will fire.
+     *
+     * @see #getMaxScaleDenominator
      */
-    public void setMaxScaleDenominator(double d);
+    @XmlElement("MaxScaleDenominator")
+    void setMaxScaleDenominator(double d);
 
     /**
      * This method returns a pointer to the "live" list of Symbol objects
-     * contained by this Rule.  This list can be modified by the caller, so
-     * there is no need for a setSymbols method.  Only objects of type Symbol
-     * are allowed in this list.  Attempts to add other objects may throw
-     * IllegalArgumentException or ClassCastException.
+     * contained by this {@code Rule}.  This list can be modified by the caller, so
+     * there is no need for a {@code setSymbols} method.
      */
-    public List getSymbols();
+    // TODO: @XmlElement actually a <xs:choice> between various Symbol subclasses.
+    List<Symbol> getSymbols();
 }

@@ -26,7 +26,7 @@ public interface Font {
      * preferred order.  The list of available font families is system
      * dependent.  If null, a system dependent default will be used.
      */
-    public Expression getFamily();
+    Expression getFamily();
 
     /**
      * Indicates the name of the font or font family to use.  Any number of
@@ -34,41 +34,41 @@ public interface Font {
      * preferred order.  The list of available font families is system
      * dependent.  If null, a system dependent default will be used.
      */
-    public void setFamily(Expression expression);
+    void setFamily(Expression expression);
 
     /**
      * Expression that indicates the style of the font.  Allowed values are
      * "normal", "italic", and "oblique".  If null, the default is "normal".
      */
-    public Expression getStyle();
+    Expression getStyle();
 
     /**
      * Expression that indicates the style of the font.  Allowed values are
      * "normal", "italic", and "oblique".  If null, the default is "normal".
      */
-    public void setStyle(Expression expression);
+    void setStyle(Expression expression);
 
     /**
      * Expression that indicates the weight of the font.  Allowed values are
      * "normal" and "bold".  If null, the default is "normal".
      */
-    public Expression getWeight();
+    Expression getWeight();
 
     /**
      * Expression that indicates the weight of the font.  Allowed values are
      * "normal" and "bold".  If null, the default is "normal".
      */
-    public void setWeight(Expression expression);
+    void setWeight(Expression expression);
 
     /**
      * Expression that indicates the pixel size of the font.  If null, the
      * default value is 10.
      */
-    public Expression getSize();
+    Expression getSize();
 
     /**
      * Expression that indicates the pixel size of the font.  If null, the
      * default value is 10.
      */
-    public void setSize(Expression expression);
+    void setSize(Expression expression);
 }

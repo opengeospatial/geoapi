@@ -9,6 +9,9 @@
  *************************************************************************************************/
 package org.opengis.sld;
 
+// Annotations
+import org.opengis.annotation.XmlElement;
+
 
 /**
  * Gives directions for how to draw lines on a map.
@@ -17,16 +20,19 @@ package org.opengis.sld;
  * @version <A HREF="http://www.opengis.org/docs/02-070.pdf">Implementation specification 1.0</A>
  * @since GeoAPI 1.1
  */
+@XmlElement("LineSymbolizer")
 public interface LineSymbol extends Symbol {
     /**
      * Returns the object containing all the information necessary to draw
      * styled lines.
      */
-    public Stroke getStroke();
+    @XmlElement("Stroke")
+    Stroke getStroke();
 
     /**
      * Sets the object containing all the information necessary to draw styled
      * lines.
      */
-    public void setStroke(Stroke s);
+    @XmlElement("Stroke")
+    void setStroke(Stroke s);
 }

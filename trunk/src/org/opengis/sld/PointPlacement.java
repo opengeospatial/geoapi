@@ -30,7 +30,7 @@ public interface PointPlacement extends TextPlacement {
      * indicating the far right of the bounding box.  If the expression is
      * null, the default value is zero.
      */
-    public Expression getAnchorX();
+    Expression getAnchorX();
 
     /**
      * Sets the expression that indicates the position within the bounding
@@ -40,7 +40,7 @@ public interface PointPlacement extends TextPlacement {
      * indicating the far right of the bounding box.  If the expression is
      * null, the default value is zero.
      */
-    public void setAnchorX(Expression e);
+    void setAnchorX(Expression e);
 
     /**
      * Returns an expression that indicates the position within the bounding
@@ -50,7 +50,7 @@ public interface PointPlacement extends TextPlacement {
      * indicating the top of the bounding box.  If the expression is null, the
      * default value is zero.
      */
-    public Expression getAnchorY();
+    Expression getAnchorY();
 
     /**
      * Returns an expression that indicates the position within the bounding
@@ -60,35 +60,35 @@ public interface PointPlacement extends TextPlacement {
      * indicating the top of the bounding box.  If the expression is null, the
      * default value is zero.
      */
-    public void setAnchorY(Expression e);
+    void setAnchorY(Expression e);
 
     /**
      * Returns an expression that computes a pixel offset from the geometry
      * point.  This offset point is where the text's anchor point gets located.
      * If this expression is null, the default offset of zero is used.
      */
-    public Expression getDisplacementX();
+    Expression getDisplacementX();
 
     /**
      * Sets the expression that computes a pixel offset from the geometry
      * point.  This offset point is where the text's anchor point gets located.
      * If this expression is null, the default offset of zero is used.
      */
-    public void setDisplacementX(Expression e);
+    void setDisplacementX(Expression e);
 
     /**
      * Returns an expression that computes a pixel offset from the geometry
      * point.  This offset point is where the text's anchor point gets located.
      * If this expression is null, the default offset of zero is used.
      */
-    public Expression getDisplacementY();
+    Expression getDisplacementY();
 
     /**
      * Sets the expression that computes a pixel offset from the geometry
      * point.  This offset point is where the text's anchor point gets located.
      * If this expression is null, the default offset of zero is used.
      */
-    public void setDisplacementY(Expression e);
+    void setDisplacementY(Expression e);
 
     /**
      * Returns the expression that will be evaluated to determine the rotation
@@ -97,7 +97,7 @@ public interface PointPlacement extends TextPlacement {
      * the normal orientation of the text.  If the expression is null, then the
      * default value of zero is used.
      */
-    public Expression getRotation();
+    Expression getRotation();
 
     /**
      * Sets the expression that will be evaluated to determine the rotation
@@ -106,5 +106,5 @@ public interface PointPlacement extends TextPlacement {
      * the normal orientation of the text.  If the expression is null, then the
      * default value of zero is used.
      */
-    public void setRotation(Expression e);
+    void setRotation(Expression e);
 }

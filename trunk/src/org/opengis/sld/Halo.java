@@ -25,23 +25,23 @@ public interface Halo {
      * Returns the object that indicates how the halo area around the text
      * should be filled.
      */
-    public Fill getFill();
+    Fill getFill();
 
     /**
      * Sets the object that indicates how the halo area around the text should
      * be filled.
      */
-    public void setFill(Fill f);
+    void setFill(Fill f);
 
     /**
      * Returns the expression that will be evaluated to get the pixel radius of
      * the halo around the text.
      */
-    public Expression getRadius();
+    Expression getRadius();
 
     /**
      * Sets the expression that will be evaluates to get the pixel radius of the
      * halo around the text.
      */
-    public void setRadius(Expression expression);
+    void setRadius(Expression expression);
 }

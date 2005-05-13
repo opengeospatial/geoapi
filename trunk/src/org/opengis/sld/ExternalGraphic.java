@@ -23,26 +23,26 @@ public interface ExternalGraphic extends ExternalGraphicOrMark {
      * This can be null if the image is already loaded locally and the
      * InlineContent property is set.
      */
-    public String getOnlineResource();
+    String getOnlineResource();
 
     /**
      * Sets the URL to a file (perhaps a local file) that contains an image.
      * This can be null if the image is already loaded locally and the
      * InlineContent property is set.
      */
-    public void setOnlineResource(String url);
+    void setOnlineResource(String url);
 
     /**
      * Returns the array of bytes that comprise the image.  This overrides the
      * OnlineResource property, if it is set.
      */
-    public byte[] getInlineContent();
+    byte[] getInlineContent();
 
     /**
      * Sets the array of bytes that comprise the image.  This overrides the
      * OnlineResource property, if it is set.
      */
-    public void setInlineContent(byte[] content);
+    void setInlineContent(byte[] content);
 
     /**
      * Returns the format that the image should be parsed as.  This can be null
@@ -50,7 +50,7 @@ public interface ExternalGraphic extends ExternalGraphicOrMark {
      * perhaps based on its name.  The format string is a mime type, such as
      * "image/jpeg".
      */
-    public String getFormat();
+    String getFormat();
 
     /**
      * Sets the format that the image should be parsed as.  This can be null
@@ -58,5 +58,5 @@ public interface ExternalGraphic extends ExternalGraphicOrMark {
      * perhaps based on its name.  The format string is a mime type, such as
      * "image/jpeg".
      */
-    public void setFormat(String format);
+    void setFormat(String format);
 }

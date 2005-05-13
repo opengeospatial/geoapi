@@ -9,6 +9,9 @@
  *************************************************************************************************/
 package org.opengis.sld;
 
+// Annotations
+import org.opengis.annotation.Extension;
+
 
 /**
  * Interface that can be implemented by objects that want to perform some action
@@ -47,15 +50,16 @@ package org.opengis.sld;
  * @version <A HREF="http://www.opengis.org/docs/02-070.pdf">Implementation specification 1.0</A>
  * @since GeoAPI 1.1
  */
+@Extension
 public interface StyleVisitor {
-    public Object visit(LineSymbol    symbol, Object userData);
-    public Object visit(PointSymbol   symbol, Object userData);
-    public Object visit(PolygonSymbol symbol, Object userData);
-    public Object visit(TextSymbol    symbol, Object userData);
+    Object visit(LineSymbol    symbol, Object userData);
+    Object visit(PointSymbol   symbol, Object userData);
+    Object visit(PolygonSymbol symbol, Object userData);
+    Object visit(TextSymbol    symbol, Object userData);
 
-    public Object visit(ExternalGraphic externalGraphic, Object userData);
-    public Object visit(Mark mark, Object userData);
+    Object visit(ExternalGraphic externalGraphic, Object userData);
+    Object visit(Mark mark, Object userData);
 
-    public Object visit(LinePlacement  placement, Object userData);
-    public Object visit(PointPlacement placement, Object userData);
+    Object visit(LinePlacement  placement, Object userData);
+    Object visit(PointPlacement placement, Object userData);
 }

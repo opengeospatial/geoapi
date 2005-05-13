@@ -15,7 +15,7 @@ import org.xml.sax.InputSource;
 
 
 /**
- * Class that knows how to parse FeatureStyle elements from various places.
+ * Class that knows how to parse {@link FeatureStyle} elements from various places.
  *
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/02-070.pdf">Implementation specification 1.0</A>
@@ -25,22 +25,22 @@ public interface FeatureStyleFactory {
     /**
      *
      */
-    public FeatureStyle parse(InputStream is);
+    FeatureStyle parse(InputStream is);
     
     /**
      *
      */
-    public FeatureStyle parse(InputSource is);
+    FeatureStyle parse(InputSource is);
     
     /**
      *
      */
-    public FeatureStyle parse(String url);
+    FeatureStyle parse(String url);
 
     /**
      * Must pass in the Class of one of the interfaces in the package
      * <code>org.opengis.sld</code>.  Returns an instance of that interface
      * with no properties set.
      */
-    public Object createStyleObject(Class interfaceToMakeAnInstanceOf);
+    Object createStyleObject(Class interfaceToMakeAnInstanceOf);
 }

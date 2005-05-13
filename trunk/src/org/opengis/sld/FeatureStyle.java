@@ -17,7 +17,6 @@ import org.opengis.util.InternationalString;
 
 // Annotations
 import org.opengis.annotation.XmlElement;
-import static org.opengis.annotation.Obligation.*;
 
 
 /**
@@ -36,7 +35,7 @@ public interface FeatureStyle {
      * meant to be human friendly.)
      */
     @XmlElement("Name")
-    public String getName();
+    String getName();
 
     /**
      * Sets the name for this style.
@@ -44,7 +43,7 @@ public interface FeatureStyle {
      * @see #getName
      */
     @XmlElement("Name")
-    public void setName(String name);
+    void setName(String name);
 
     /**
      * Returns the human readable title of this style.
@@ -52,7 +51,7 @@ public interface FeatureStyle {
      * be used in list boxes or drop down menus or other selection interfaces.
      */
     @XmlElement("Title")
-    public InternationalString getTitle();
+    InternationalString getTitle();
     
     /**
      * Sets the human readable title of this style.
@@ -60,14 +59,14 @@ public interface FeatureStyle {
      * @see #getTitle
      */
     @XmlElement("Title")
-    public void setTitle(InternationalString title);
+    void setTitle(InternationalString title);
 
     /**
      * Returns a human readable, prose description of this style.
      * This can be any string and can consist of any amount of text.
      */
     @XmlElement("Abstract")
-    public InternationalString getAbstract();
+    InternationalString getAbstract();
     
     /**
      * Sets the human readable, prose description of this style.
@@ -75,7 +74,7 @@ public interface FeatureStyle {
      * @see #getAbstract
      */
     @XmlElement("Abstract")
-    public void setAbstract(InternationalString abs);
+    void setAbstract(InternationalString abs);
 
     /**
      * Returns the name of the feature type that this style is meant to act
@@ -83,7 +82,7 @@ public interface FeatureStyle {
      * feature types.
      */
     @XmlElement("FeatureTypeName")
-    public String getFeatureTypeName();
+    String getFeatureTypeName();
 
     /**
      * Sets the name of the feature type that this style is meant to act upon.
@@ -91,7 +90,7 @@ public interface FeatureStyle {
      * @see #getFeatureTypeName
      */
     @XmlElement("FeatureTypeName")
-    public void setFeatureTypeName(String featureTypeName);
+    void setFeatureTypeName(String featureTypeName);
 
     /**
      * Returns a string that identifies the more general "type" of geometry
@@ -112,12 +111,13 @@ public interface FeatureStyle {
      * removing rules. This is why there is no {@code setSemanticTypeIdentifiers} method.
      */
     @XmlElement("SemanticTypeIdentifier")
-    public List<String> getSemanticTypeIdentifiers();
+    List<String> getSemanticTypeIdentifiers();
 
     /**
      * Returns the list of rules contained by this style. The returned list is
      * the "live" list and can be modified, both by adding and removing rules.
      * This is why there is no {@code setRules} method.
      */
-    public List<Rule> getRules();
+    @XmlElement("Rule")
+    List<Rule> getRules();
 }

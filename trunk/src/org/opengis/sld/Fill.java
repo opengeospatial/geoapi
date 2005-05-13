@@ -12,6 +12,9 @@ package org.opengis.sld;
 // OpenGIS direct dependencies
 import org.opengis.filter.expression.Expression;
 
+// Annotations
+import org.opengis.annotation.XmlElement;
+
 
 /**
  * Indicates how the interior of polygons will be filled.
@@ -20,45 +23,39 @@ import org.opengis.filter.expression.Expression;
  * @version <A HREF="http://www.opengis.org/docs/02-070.pdf">Implementation specification 1.0</A>
  * @since GeoAPI 1.1
  */
+@XmlElement("Fill")
 public interface Fill {
     /**
-     * If this object is to be filled with tiled copies of an image, then this
-     * method will return a non-null Graphic that indicates what image should be
-     * drawn.
+     * If this object is to be filled with tiled copies of an image, then returns
+     * a non-null Graphic that indicates what image should be drawn.
      */
-    public Graphic getGraphicFill();
+    @XmlElement("GraphicFill")
+    Graphic getGraphicFill();
 
     /**
      * Sets the graphic that will be used to tile the interior of polygons.
      * This can be set to null if solid color fill is desired.
+     *
+     * @see #getGraphicFill
      */
-    public void setGraphicFill(Graphic graphicFill);
+    @XmlElement("GraphicFill")
+    void setGraphicFill(Graphic graphicFill);
 
     /**
-     * This indicates the color to be used for solid-filling the interior of
-     * polygons.  The format of the color is "#rrggbb" where rr, gg, and bb are
-     * two digit hexadecimal integers specify the red, green, and blue color
-     * intensities, repsectively.  If null, the default color is 50% gray,
-     * "#808080".
+     * Indicates the color to be used for solid-filling the interior of polygons.
+     * The format of the color is {@code "#rrggbb"} where {@code rr}, {@code gg},
+     * and {@code bb} are two digit hexadecimal integers specify the red, green,
+     * and blue color intensities, repsectively.  If null, the default color is
+     * 50% gray, {@code "#808080"}.
      */
-    public Expression getColor();
+    Expression getColor();
 
     /**
-     * This indicates the color to be used for solid-filling the interior of
-     * polygons.  The format of the color is "#rrggbb" where rr, gg, and bb are
-     * two digit hexadecimal integers specify the red, green, and blue color
-     * intensities, repsectively.  If null, the default color is 50% gray,
-     * "#808080".
+     * Sets the color to be used for solid-filling the interior of polygons.
+     *
+     * @see #getColor
      */
-    public void setColor(Expression expression);
-
-    /**
-     * Indicates the opacity of the fill.  This value must be a floating point
-     * number ranging from 0.0 to 1.0, where 0.0 means completely transparent
-     * and 1.0 means completely opaque.  If null, the default value is 1.0,
-     * completely opaque.
-     */
-    public Expression getOpacity();
+    void setColor(Expression expression);
 
     /**
      * Indicates the opacity of the fill.  This value must be a floating point
@@ -66,5 +63,15 @@ public interface Fill {
      * and 1.0 means completely opaque.  If null, the default value is 1.0,
      * completely opaque.
      */
-    public void setOpacity(Expression expression);
+    Expression getOpacity();
+
+    /**
+     * Sets the opacity of the fill.  This value must be a floating point
+     * number ranging from 0.0 to 1.0, where 0.0 means completely transparent
+     * and 1.0 means completely opaque.  If null, the default value is 1.0,
+     * completely opaque.
+     *
+     * @see #getOpacity
+     */
+    void setOpacity(Expression expression);
 }

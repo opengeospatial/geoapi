@@ -9,6 +9,9 @@
  *************************************************************************************************/
 package org.opengis.sld;
 
+// Annotations
+import org.opengis.annotation.Extension;
+
 
 /**
  * Abstract superclass of the various symbol classes.
@@ -19,19 +22,17 @@ package org.opengis.sld;
  */
 public interface Symbol {
     /**
-     * Returns the name of the geometry FeatureAttribute to use for drawing.
+     * Returns the name of the geometry feature attribute to use for drawing.
      * May return null if this symbol is to use the default geometry attribute,
      * whatever it may be.
      */
-    public String getGeometryAttribute();
+    String getGeometryAttribute();
 
     /**
-     * Sets the name of the geometry FeatureAttribute that will be used for
+     * Sets the name of the geometry feature attribute that will be used for
      * drawing this symbol.
-     * May return null if this symbol is to use the default geometry attribute,
-     * whatever it may be.
      */
-    public void setGeometryAttribute(String name);
+    void setGeometryAttribute(String name);
 
     /**
      * Returns a name for this symbol.
@@ -39,7 +40,7 @@ public interface Symbol {
      * canvas.  It is not meant to be human-friendly.  (The "title" property is
      * meant to be human friendly.)
      */
-    public String getName();
+    String getName();
 
     /**
      * Sets the name for this symbol.
@@ -47,36 +48,39 @@ public interface Symbol {
      * canvas.  It is not meant to be human-friendly.  (The "title" property is
      * meant to be human friendly.)
      */
-    public void setName(String name);
+    void setName(String name);
 
     /**
      * Returns the human readable title of this symbol.
      * This can be any string, but should be fairly short as it is intended to
      * be used in list boxes or drop down menus or other selection interfaces.
      */
-    public String getTitle();
+    String getTitle();
 
     /**
      * Sets the human readable title of this symbol.
      * This can be any string, but should be fairly short as it is intended to
      * be used in list boxes or drop down menus or other selection interfaces.
      */
-    public void setTitle(String name);
+    void setTitle(String name);
 
     /**
      * Returns a human readable, prose description of this symbol.
      * This can be any string and can consist of any amount of text.
      */
-    public String getAbstract();
+    String getAbstract();
 
     /**
      * Sets the human readable, prose description of this symbol.
      * This can be any string and can consist of any amount of text.
      */
-    public void setAbstract(String abs);
+    void setAbstract(String abs);
 
     /**
-     * Helps implement the visitor design pattern.
+     * Accepts a visitor.  Implementations of all subinterfaces must have with a
+     * method whose content is the following:
+     * <pre>return visitor.{@linkplain SymbolVisitor#visit visit}(this, extraData);</pre>
      */
-    public Object accept(StyleVisitor visitor, Object extraData);
+    @Extension
+    Object accept(StyleVisitor visitor, Object extraData);
 }

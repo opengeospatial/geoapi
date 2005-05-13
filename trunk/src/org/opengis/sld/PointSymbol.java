@@ -21,10 +21,10 @@ public interface PointSymbol extends Symbol {
     /**
      * Returns the graphic that will be drawn at each point of the geometry.
      */
-    public Graphic getGraphic();
+    Graphic getGraphic();
 
     /**
      * Sets the graphic that will be drawn at each point of the geometry.
      */
-    public void setGraphic(Graphic graphic);
+    void setGraphic(Graphic graphic);
 }
