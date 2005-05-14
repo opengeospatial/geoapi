@@ -16,6 +16,11 @@ import org.opengis.annotation.Extension;
 /**
  * Abstract base class for the two different classes that specify the placement of text
  * in a style, namely {@link PointPlacement} and {@link LinePlacement}.
+ * For a {@code PointPlacement}, the anchor point of the label and a linear displacement
+ * from the point can be specified, to allow a graphic symbol to be plotted directly at
+ * the point. This might be useful to label a city, for example. For a {@code LinePlacement},
+ * a perpendicular offset can be specified, to allow the line itself to be plotted also. This
+ * might be useful for labelling a road or a river, for example.
  *
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/02-070.pdf">Implementation specification 1.0</A>

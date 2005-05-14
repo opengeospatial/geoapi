@@ -15,6 +15,9 @@ import java.util.List;
 // OpenGIS direct dependencies
 import org.opengis.filter.expression.Expression;
 
+// Annotations
+import org.opengis.annotation.XmlElement;
+
 
 /**
  * Not to be confused with GO-1's Graphic, this represents a little picture,
@@ -25,6 +28,7 @@ import org.opengis.filter.expression.Expression;
  * @version <A HREF="http://www.opengis.org/docs/02-070.pdf">Implementation specification 1.0</A>
  * @since GeoAPI 1.1
  */
+@XmlElement("Graphic")
 public interface Graphic {
     /**
      * Returns the list of external image files or marks that comprise this
@@ -32,6 +36,7 @@ public interface Graphic {
      * All elements of the list must be instances of either {@link Mark}
      * or {@link ExternalGraphic}.
      */
+    @XmlElement("ExternalGraphic,Mark")
     List<ExternalGraphicOrMark> getExternalGraphicOrMark();
 
     /**
@@ -41,15 +46,16 @@ public interface Graphic {
      * 0.0 to 1.0, with 0.0 being completely transparent and 1.0 being
      * completely opaque.
      */
+    @XmlElement("Opacity")
     Expression getOpacity();
 
     /**
      * Sets the expression that will be evaluated to determine the opacity of
-     * the graphic when it is rendered.  This may be set to null if the graphic
-     * is to be rendered completely opaque.  The opacity value must range from
-     * 0.0 to 1.0, with 0.0 being completely transparent and 1.0 being
-     * completely opaque.
+     * the graphic when it is rendered.
+     *
+     * @see #getOpacity
      */
+    @XmlElement("Opacity")
     void setOpacity(Expression opacityExpression);
 
     /**
@@ -61,17 +67,16 @@ public interface Graphic {
      * Some image types, such as SVG or CGM, may not have an inherent pixel
      * size.  For such images, the default size is 16 pixels.
      */
+    @XmlElement("Size")
     Expression getSize();
 
     /**
      * Sets the expression that will be evaluated to determine the pixel height
-     * of the image when it is drawn on the screen.  This can be set to null if
-     * the inherent size of the image is to be used.  If a size expression is
-     * specified, then the height is scaled to the result and the width is
-     * scaled according to the aspect ratio of the original image.  Some image
-     * types, such as SVG or CGM, may not have an inherent pixel size.  For such
-     * images, the default size is 16 pixels.
+     * of the image when it is drawn on the screen.
+     *
+     * @see #getSize
      */
+    @XmlElement("Size")
     void setSize(Expression sizeExpression);
 
     /**
@@ -79,12 +84,15 @@ public interface Graphic {
      * graphic when it is drawn.  The value is interpreted as a rotation in
      * decimal degrees clockwise about the center point of the image.
      */
+    @XmlElement("Rotation")
     Expression getRotation();
 
     /**
      * Sets the expression that will be used to calculate the rotation of the
-     * graphic when it is drawn.  The value is interpreted as a rotation in
-     * decimal degrees clockwise about the center point of the image.
+     * graphic when it is drawn.
+     *
+     * @see #getRotation
      */
+    @XmlElement("Rotation")
     void setRotation(Expression rotationExpression);
 }

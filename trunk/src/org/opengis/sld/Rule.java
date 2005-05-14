@@ -14,6 +14,7 @@ import java.util.List;
 
 // OpenGIS direct dependencies
 import org.opengis.filter.Filter;
+import org.opengis.util.InternationalString;
 
 // Annotations
 import org.opengis.annotation.XmlElement;
@@ -55,7 +56,7 @@ public interface Rule {
      * be used in list boxes or drop down menus or other selection interfaces.
      */
     @XmlElement("Title")
-    String getTitle();
+    InternationalString getTitle();
 
     /**
      * Sets the human readable title of this rule.
@@ -63,14 +64,14 @@ public interface Rule {
      * @see #getTitle
      */
     @XmlElement("Title")
-    void setTitle(String name);
+    void setTitle(InternationalString name);
 
     /**
      * Returns a human readable, prose description of this rule.
      * This can be any string and can consist of any amount of text.
      */
     @XmlElement("Abstract")
-    String getAbstract();
+    InternationalString getAbstract();
 
     /**
      * Sets the human readable, prose description of this rule.
@@ -78,7 +79,7 @@ public interface Rule {
      * @see #getAbstract
      */
     @XmlElement("Abstract")
-    void setAbstract(String abs);
+    void setAbstract(InternationalString abs);
 
     /**
      * Returns a small Graphic that could be used by the rendering engine to
@@ -103,7 +104,7 @@ public interface Rule {
 
     /**
      * Returns the filter that will limit the features for which this {@code Rule} will
-     * fire.  This can only be non-null if {@link isElseFilter} returns false.  If this
+     * fire.  This can only be non-null if {@link #isElseFilter} returns false.  If this
      * value is null and {@code isElseFilter} is false, this means that this {@code Rule}
      * should fire for all features.
      */
@@ -159,7 +160,7 @@ public interface Rule {
      * at which this {@code Rule} will fire.
      * If, for example, the {@code MaxScaleDenominator} were 98765, then this rule
      * would only fire at scales of 1:X where X is less than 98765.
-     * A value of zero indicates that there is no maximum.
+     * A value of {@link Double#POSITIVE_INFINITY} indicates that there is no maximum.
      */
     @XmlElement("MaxScaleDenominator")
     double getMaxScaleDenominator();

@@ -12,6 +12,9 @@ package org.opengis.sld;
 // OpenGIS direct dependencies
 import org.opengis.filter.expression.Expression;
 
+// Annotations
+import org.opengis.annotation.XmlElement;
+
 
 /**
  * Helds by a {@link TextSymbol} to indicate that text should be drawn at some distance
@@ -21,18 +24,22 @@ import org.opengis.filter.expression.Expression;
  * @version <A HREF="http://www.opengis.org/docs/02-070.pdf">Implementation specification 1.0</A>
  * @since GeoAPI 1.1
  */
+@XmlElement("PointPlacement")
 public interface LinePlacement extends TextPlacement {
     /**
      * Returns the expression that is used to compute how far from the lines
      * the text will be drawn.  The distance must evaluate to a non-negative
      * number.
      */
-    Expression getPerpindicularOffset();
+    @XmlElement("PerpendicularOffset")
+    Expression getPerpendicularOffset();
 
     /**
      * Sets the expression that is used to compute how far from the lines
-     * the text will be drawn.  The distance must evaluate to a non-negative
-     * number.
+     * the text will be drawn.
+     *
+     * @see #getPerpendicularOffset
      */
-    void setPerpindicularOffset(Expression e);
+    @XmlElement("PerpendicularOffset")
+    void setPerpendicularOffset(Expression e);
 }
