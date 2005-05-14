@@ -286,6 +286,7 @@
       <replacefilter token="&lt;FeatureStyle&gt;"/>
       <replacefilter token="&lt;FeatureListURL&gt;"/>
       <replacefilter token="&lt;Filter&gt;"/>
+      <replacefilter token="&lt;Font&gt;"/>
       <replacefilter token="&lt;Format&gt;"/>
       <replacefilter token="&lt;GeneralParameterDescriptor&gt;"/>
       <replacefilter token="&lt;GeneralParameterValue&gt;"/>
