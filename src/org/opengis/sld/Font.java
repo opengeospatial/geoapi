@@ -12,13 +12,18 @@ package org.opengis.sld;
 // OpenGIS direct dependencies
 import org.opengis.filter.expression.Expression;
 
+// Annotations
+import org.opengis.annotation.XmlElement;
+
 
 /**
+ * Identifies a font of a certain family, style, and size.
  *
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/02-070.pdf">Implementation specification 1.0</A>
  * @since GeoAPI 1.1
  */
+@XmlElement("Font")
 public interface Font {
     /**
      * Indicates the name of the font or font family to use.  Any number of
@@ -26,49 +31,60 @@ public interface Font {
      * preferred order.  The list of available font families is system
      * dependent.  If null, a system dependent default will be used.
      */
+    @XmlElement("font-familly") // TODO: Actually a CssParameter
     Expression getFamily();
 
     /**
-     * Indicates the name of the font or font family to use.  Any number of
-     * comma-separated values may be provided and they are assumed to be in
-     * preferred order.  The list of available font families is system
-     * dependent.  If null, a system dependent default will be used.
+     * Sets the name of the font or font family to use.
+     *
+     * @see #getFamily
      */
+    @XmlElement("font-familly") // TODO: Actually a CssParameter
     void setFamily(Expression expression);
 
     /**
-     * Expression that indicates the style of the font.  Allowed values are
+     * Indicates the style of the font.  Allowed values are
      * "normal", "italic", and "oblique".  If null, the default is "normal".
      */
+    @XmlElement("font-style") // TODO: Actually a CssParameter
     Expression getStyle();
 
     /**
-     * Expression that indicates the style of the font.  Allowed values are
+     * Sets the style of the font.  Allowed values are
      * "normal", "italic", and "oblique".  If null, the default is "normal".
+     *
+     * @see #getStyle
      */
+    @XmlElement("font-style") // TODO: Actually a CssParameter
     void setStyle(Expression expression);
 
     /**
      * Expression that indicates the weight of the font.  Allowed values are
      * "normal" and "bold".  If null, the default is "normal".
      */
+    @XmlElement("font-weight") // TODO: Actually a CssParameter
     Expression getWeight();
 
     /**
-     * Expression that indicates the weight of the font.  Allowed values are
-     * "normal" and "bold".  If null, the default is "normal".
+     * Expression that indicates the weight of the font.
+     *
+     * @see #getWeight
      */
+    @XmlElement("font-weight") // TODO: Actually a CssParameter
     void setWeight(Expression expression);
 
     /**
      * Expression that indicates the pixel size of the font.  If null, the
      * default value is 10.
      */
+    @XmlElement("font-size") // TODO: Actually a CssParameter
     Expression getSize();
 
     /**
-     * Expression that indicates the pixel size of the font.  If null, the
-     * default value is 10.
+     * Expression that indicates the pixel size of the font.
+     *
+     * @see #getSize
      */
+    @XmlElement("font-size") // TODO: Actually a CssParameter
     void setSize(Expression expression);
 }

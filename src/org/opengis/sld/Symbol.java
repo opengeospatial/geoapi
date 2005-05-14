@@ -9,6 +9,9 @@
  *************************************************************************************************/
 package org.opengis.sld;
 
+// OpenGIS direct dependencies
+import org.opengis.util.InternationalString;
+
 // Annotations
 import org.opengis.annotation.Extension;
 
@@ -55,26 +58,26 @@ public interface Symbol {
      * This can be any string, but should be fairly short as it is intended to
      * be used in list boxes or drop down menus or other selection interfaces.
      */
-    String getTitle();
+    InternationalString getTitle();
 
     /**
      * Sets the human readable title of this symbol.
      * This can be any string, but should be fairly short as it is intended to
      * be used in list boxes or drop down menus or other selection interfaces.
      */
-    void setTitle(String name);
+    void setTitle(InternationalString name);
 
     /**
      * Returns a human readable, prose description of this symbol.
      * This can be any string and can consist of any amount of text.
      */
-    String getAbstract();
+    InternationalString getAbstract();
 
     /**
      * Sets the human readable, prose description of this symbol.
      * This can be any string and can consist of any amount of text.
      */
-    void setAbstract(String abs);
+    void setAbstract(InternationalString abs);
 
     /**
      * Accepts a visitor.  Implementations of all subinterfaces must have with a
