@@ -40,8 +40,7 @@ public interface PointPlacement extends TextPlacement {
     /**
      * Sets the expression that indicates the position within the bounding
      * box of the text that is anchored to the geometry point.
-     *
-     * @see #getAnchorX
+     * See {@link #getAnchorX} for details.
      */
     @XmlElement("AnchorPointX")
     void setAnchorX(Expression e);
@@ -60,8 +59,7 @@ public interface PointPlacement extends TextPlacement {
     /**
      * Returns an expression that indicates the position within the bounding
      * box of the text that is anchored to the geometry point.
-     *
-     * @see #getAnchorY
+     * See {@link #getAnchorY} for details.
      */
     @XmlElement("AnchorPointY")
     void setAnchorY(Expression e);
@@ -75,10 +73,8 @@ public interface PointPlacement extends TextPlacement {
     Expression getDisplacementX();
 
     /**
-     * Sets the expression that computes a pixel offset from the geometry
-     * point.
-     *
-     * @see #getDisplacementX
+     * Sets the expression that computes a pixel offset from the geometry point.
+     * See {@link #getDisplacementX} for details.
      */
     @XmlElement("DisplacementX")
     void setDisplacementX(Expression e);
@@ -92,10 +88,8 @@ public interface PointPlacement extends TextPlacement {
     Expression getDisplacementY();
 
     /**
-     * Sets the expression that computes a pixel offset from the geometry
-     * point.
-     *
-     * @see #getDisplacementY
+     * Sets the expression that computes a pixel offset from the geometry point.
+     * See {@link #getDisplacementY} for details.
      */
     @XmlElement("DisplacementY")
     void setDisplacementY(Expression e);
@@ -113,8 +107,7 @@ public interface PointPlacement extends TextPlacement {
     /**
      * Sets the expression that will be evaluated to determine the rotation
      * of the text about its anchor point.
-     *
-     * @see #getRotation
+     * See {@link #getRotation} for details.
      */
     @XmlElement("Rotation")
     void setRotation(Expression e);

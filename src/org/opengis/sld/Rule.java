@@ -44,8 +44,7 @@ public interface Rule {
 
     /**
      * Sets the name for this rule.
-     *
-     * @see #getName
+     * See {@link #getName} for details.
      */
     @XmlElement("Name")
     void setName(String name);
@@ -60,8 +59,7 @@ public interface Rule {
 
     /**
      * Sets the human readable title of this rule.
-     *
-     * @see #getTitle
+     * See {@link #getTitle} for details.
      */
     @XmlElement("Title")
     void setTitle(InternationalString name);
@@ -75,8 +73,7 @@ public interface Rule {
 
     /**
      * Sets the human readable, prose description of this rule.
-     *
-     * @see #getAbstract
+     * See {@link #getAbstract} for details.
      */
     @XmlElement("Abstract")
     void setAbstract(InternationalString abs);
@@ -96,8 +93,7 @@ public interface Rule {
     /**
      * Sets the small Graphic that may be used by the rendering engine to draw
      * a legend window.
-     *
-     * @see #getLegendGraphic
+     * See {@link #getLegendGraphic} for details.
      */
     @XmlElement("LegendGraphic")
     void setLegendGraphic(Graphic g);
@@ -113,8 +109,7 @@ public interface Rule {
 
     /**
      * Sets the filter that will limit the features for which this {@code Rule} will fire.
-     *
-     * @see #getFilter
+     * See {@link #getFilter} for details.
      */
     @XmlElement("Filter")  // TODO: actually a <xs:choice> between Filter and ElseFilter
     void setFilter(Filter filter);
@@ -130,8 +125,7 @@ public interface Rule {
      * Sets the flag that indicates whether this {@code Rule} is an "else filter".
      * A value of true indicates that this rule is to fire only if no other rules
      * in the containing style have fired.
-     *
-     * @see #isElseFilter
+     * See {@link #isElseFilter} for details.
      */
     @XmlElement("ElseFilter")
     void setElseFilter(boolean newValue);
@@ -149,8 +143,7 @@ public interface Rule {
     /**
      * Sets the minimum value (inclusive) in the denominator of the current map scale at
      * which this {@code Rule} will fire.
-     *
-     * @see #getMinScaleDenominator
+     * See {@link #getMinScaleDenominator} for details.
      */
     @XmlElement("MinScaleDenominator")
     void setMinScaleDenominator(double d);
@@ -168,8 +161,7 @@ public interface Rule {
     /**
      * Sets the maximum value (exclusive) in the denominator of the current map scale
      * at which this {@code Rule} will fire.
-     *
-     * @see #getMaxScaleDenominator
+     * See {@link #getMaxScaleDenominator} for details.
      */
     @XmlElement("MaxScaleDenominator")
     void setMaxScaleDenominator(double d);

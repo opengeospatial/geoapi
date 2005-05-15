@@ -39,8 +39,7 @@ public interface FeatureStyle {
 
     /**
      * Sets the name for this style.
-     *
-     * @see #getName
+     * See {@link #getName} for details.
      */
     @XmlElement("Name")
     void setName(String name);
@@ -55,8 +54,7 @@ public interface FeatureStyle {
     
     /**
      * Sets the human readable title of this style.
-     *
-     * @see #getTitle
+     * See {@link #getTitle} for details.
      */
     @XmlElement("Title")
     void setTitle(InternationalString title);
@@ -70,8 +68,7 @@ public interface FeatureStyle {
     
     /**
      * Sets the human readable, prose description of this style.
-     *
-     * @see #getAbstract
+     * See {@link #getAbstract} for details.
      */
     @XmlElement("Abstract")
     void setAbstract(InternationalString abs);
@@ -86,8 +83,7 @@ public interface FeatureStyle {
 
     /**
      * Sets the name of the feature type that this style is meant to act upon.
-     *
-     * @see #getFeatureTypeName
+     * See {@link #getFeatureTypeName} for details.
      */
     @XmlElement("FeatureTypeName")
     void setFeatureTypeName(String featureTypeName);

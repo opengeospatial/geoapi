@@ -37,8 +37,7 @@ public interface LinePlacement extends TextPlacement {
     /**
      * Sets the expression that is used to compute how far from the lines
      * the text will be drawn.
-     *
-     * @see #getPerpendicularOffset
+     * See {@link #getPerpendicularOffset} for details.
      */
     @XmlElement("PerpendicularOffset")
     void setPerpendicularOffset(Expression e);

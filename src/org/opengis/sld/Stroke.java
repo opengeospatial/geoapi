@@ -42,8 +42,7 @@ public interface Stroke {
 
     /**
      * Sets the line that should be drawn by tiling the (thin) area of the line with the given graphic.
-     *
-     * @see #getGraphicFill
+     * See {@link #getGraphicFill} for details.
      */
     @XmlElement("GraphicFill")
     void setGraphicFill(Graphic graphicFill);
@@ -61,8 +60,7 @@ public interface Stroke {
     /**
      * Sets the lines that should be drawn by repeatedly plotting the given graphic along the path
      * of the lines, rotating it according to the orientation of the line.
-     *
-     * @see #getGraphicStroke
+     * See {@link #getGraphicStroke} for details.
      */
     @XmlElement("GraphicStroke")
     void setGraphicStroke(Graphic graphicStroke);
@@ -79,8 +77,7 @@ public interface Stroke {
 
     /**
      * Sets the color of the line if it is to be solid-color filled.
-     *
-     * @see #getColor
+     * See {@link #getColor} for details.
      */
     @XmlElement("stroke")  // TODO: Actually a CssParameter
     void setColor(Expression expression);
@@ -95,8 +92,7 @@ public interface Stroke {
 
     /**
      * Sets the level of translucency as a floating point number whose value is between 0.0 and 1.0 (inclusive).
-     *
-     * @see #getOpacity
+     * See {@link #getOpacity} for details.
      */
     @XmlElement("stroke-opacity")  // TODO: Actually a CssParameter
     void setOpacity(Expression expression);
@@ -111,8 +107,7 @@ public interface Stroke {
 
     /**
      * Sets the absolute width in pixels of the line stroke as a floating point number.
-     *
-     * @see #getWidth
+     * See {@link #getWidth} for details.
      */
     @XmlElement("stroke-width")  // TODO: Actually a CssParameter
     void setWidth(Expression expression);
@@ -128,8 +123,7 @@ public interface Stroke {
     /**
      * Sets how the various segments of a (thick) line string should be joined.
      * Valid values are "miter", "round", and "bevel".
-     *
-     * @see #getLineJoin
+     * See {@link #getLineJoin} for details.
      */
     @XmlElement("stroke-linejoin")  // TODO: Actually a CssParameter
     void setLineJoin(Expression expression);
@@ -145,8 +139,7 @@ public interface Stroke {
     /**
      * Sets how the beginning and ending segments of a line string will be terminated.
      * Valid values are "butt", "round", and "square".
-     *
-     * @see #getLineCap
+     * See {@link #getLineCap} for details.
      */
     @XmlElement("stroke-linecap")  // TODO: Actually a CssParameter
     void setLineCap(Expression expression);
@@ -164,8 +157,7 @@ public interface Stroke {
 
     /**
      * Set the dash pattern as a space-separated sequence of floating point numbers.
-     *
-     * @see #getDashArray
+     * See {@link #getDashArray} for details.
      */
     @XmlElement("stroke-dasharray")  // TODO: Actually a CssParameter
     void setDashArray(Expression expression);
@@ -179,8 +171,7 @@ public interface Stroke {
 
     /**
      * Sets the distance offset into the dash array to begin drawing.
-     *
-     * @see #getDashOffset
+     * See {@link #getDashOffset} for details.
      */
     @XmlElement("stroke-dashoffset")  // TODO: Actually a CssParameter
     void setDashOffset(Expression expression);

@@ -32,8 +32,7 @@ public interface PolygonSymbol extends Symbol {
     /**
      * Sets the object containing all the information necessary to draw styled lines.
      * This is used for the edges of polygons.
-     *
-     * @see #getStroke
+     * See {@link #getStroke} for details.
      */
     @XmlElement("Stroke")
     void setStroke(Stroke s);
@@ -50,8 +49,7 @@ public interface PolygonSymbol extends Symbol {
      * Sets the object the holds the information about how the interior of
      * polygons should be filled.  This may be null if the polygons are not
      * to be filled at all.
-     *
-     * @see #getFill
+     * See {@link #getFill} for details.
      */
     @XmlElement("Fill")
     void setFill(Fill f);

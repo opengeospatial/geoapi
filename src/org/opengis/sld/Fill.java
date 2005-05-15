@@ -35,8 +35,7 @@ public interface Fill {
     /**
      * Sets the graphic that will be used to tile the interior of polygons.
      * This can be set to null if solid color fill is desired.
-     *
-     * @see #getGraphicFill
+     * See {@link #getGraphicFill} for details.
      */
     @XmlElement("GraphicFill")
     void setGraphicFill(Graphic graphicFill);
@@ -52,8 +51,7 @@ public interface Fill {
 
     /**
      * Sets the color to be used for solid-filling the interior of polygons.
-     *
-     * @see #getColor
+     * See {@link #getColor} for details.
      */
     void setColor(Expression expression);
 
@@ -70,8 +68,7 @@ public interface Fill {
      * number ranging from 0.0 to 1.0, where 0.0 means completely transparent
      * and 1.0 means completely opaque.  If null, the default value is 1.0,
      * completely opaque.
-     *
-     * @see #getOpacity
+     * See {@link #getOpacity} for details.
      */
     void setOpacity(Expression expression);
 }

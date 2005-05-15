@@ -35,8 +35,7 @@ public interface Mark extends ExternalGraphicOrMark {
 
     /**
      * Sets the expression whose value will indicate the symbol to draw.
-     *
-     * @see #getWellKnownName
+     * See {@link #getWellKnownName} for details.
      */
     @XmlElement("WellKnownName")
     void setWellKnownName(Expression name);
@@ -50,8 +49,7 @@ public interface Mark extends ExternalGraphicOrMark {
 
     /**
      * Sets the object that indicates how the mark should be filled.
-     *
-     * @see #getFill
+     * See {@link #getFill} for details.
      */
     @XmlElement("Fill")
     void setFill(Fill f);
@@ -65,8 +63,7 @@ public interface Mark extends ExternalGraphicOrMark {
 
     /**
      * Sets the object that indicates how the edges of the mark will be drawn.
-     *
-     * @see #getStroke
+     * See {@link #getStroke} for details.
      */
     @XmlElement("Stroke")
     void setStroke(Stroke s);
