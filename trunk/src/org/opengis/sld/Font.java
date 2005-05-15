@@ -36,8 +36,7 @@ public interface Font {
 
     /**
      * Sets the name of the font or font family to use.
-     *
-     * @see #getFamily
+     * See {@link #getFamily} for details.
      */
     @XmlElement("font-familly") // TODO: Actually a CssParameter
     void setFamily(Expression expression);
@@ -52,8 +51,7 @@ public interface Font {
     /**
      * Sets the style of the font.  Allowed values are
      * "normal", "italic", and "oblique".  If null, the default is "normal".
-     *
-     * @see #getStyle
+     * See {@link #getStyle} for details.
      */
     @XmlElement("font-style") // TODO: Actually a CssParameter
     void setStyle(Expression expression);
@@ -67,8 +65,7 @@ public interface Font {
 
     /**
      * Expression that indicates the weight of the font.
-     *
-     * @see #getWeight
+     * See {@link #getWeight} for details.
      */
     @XmlElement("font-weight") // TODO: Actually a CssParameter
     void setWeight(Expression expression);
@@ -82,8 +79,7 @@ public interface Font {
 
     /**
      * Expression that indicates the pixel size of the font.
-     *
-     * @see #getSize
+     * See {@link #getSize} for details.
      */
     @XmlElement("font-size") // TODO: Actually a CssParameter
     void setSize(Expression expression);

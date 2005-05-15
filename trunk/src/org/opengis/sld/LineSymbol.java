@@ -30,8 +30,8 @@ public interface LineSymbol extends Symbol {
     Stroke getStroke();
 
     /**
-     * Sets the object containing all the information necessary to draw styled
-     * lines.
+     * Sets the object containing all the information necessary to draw styled lines.
+     * See {@link #getStroke} for details.
      */
     @XmlElement("Stroke")
     void setStroke(Stroke s);

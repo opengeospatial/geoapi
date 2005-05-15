@@ -33,8 +33,8 @@ public interface Halo {
     Fill getFill();
 
     /**
-     * Sets the object that indicates how the halo area around the text should
-     * be filled.
+     * Sets the object that indicates how the halo area around the text should be filled.
+     * See {@link #getFill} for details.
      */
     @XmlElement("Fill")
     void setFill(Fill f);
@@ -49,6 +49,7 @@ public interface Halo {
     /**
      * Sets the expression that will be evaluates to get the pixel radius of the
      * halo around the text.
+     * See {@link #getRadius} for details.
      */
     @XmlElement("Radius")
     void setRadius(Expression expression);

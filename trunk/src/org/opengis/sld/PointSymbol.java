@@ -30,6 +30,7 @@ public interface PointSymbol extends Symbol {
 
     /**
      * Sets the graphic that will be drawn at each point of the geometry.
+     * See {@link #getGraphic} for details.
      */
     @XmlElement("Graphic")
     void setGraphic(Graphic graphic);

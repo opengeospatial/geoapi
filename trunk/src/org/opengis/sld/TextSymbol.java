@@ -36,10 +36,8 @@ public interface TextSymbol extends Symbol {
     Expression getLabel();
 
     /**
-     * Sets the expression that will be evaluated to determine what text is
-     * displayed.
-     *
-     * @see #getLabel
+     * Sets the expression that will be evaluated to determine what text is displayed.
+     * See {@link #getLabel} for details.
      */
     @XmlElement("Label")
     void setLabel(Expression label);
@@ -64,8 +62,7 @@ public interface TextSymbol extends Symbol {
     /**
      * Sets the object that indicates how the text should be placed with
      * respect to the feature geometry.
-     *
-     * @see #getPlacement
+     * See {@link #getPlacement} for details.
      */
     @XmlElement("LabelPlacement")
     void setPlacement(TextPlacement placement);
@@ -80,8 +77,7 @@ public interface TextSymbol extends Symbol {
     /**
      * Sets the object that indicates if a Halo will be drawn around the
      * text.  If null, a halo will not be drawn.
-     *
-     * @see #getHalo
+     * See {@link #getHalo} for details.
      */
     @XmlElement("Halo")
     void setHalo(Halo halo);
@@ -94,8 +90,7 @@ public interface TextSymbol extends Symbol {
 
     /**
      * Sets the object that indicates how the text will be filled.
-     *
-     * @see #getFill
+     * See {@link #getFill} for details.
      */
     @XmlElement("Fill")
     void setFill(Fill fill);

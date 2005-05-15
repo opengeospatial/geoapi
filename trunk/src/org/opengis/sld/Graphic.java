@@ -52,8 +52,7 @@ public interface Graphic {
     /**
      * Sets the expression that will be evaluated to determine the opacity of
      * the graphic when it is rendered.
-     *
-     * @see #getOpacity
+     * See {@link #getOpacity} for details.
      */
     @XmlElement("Opacity")
     void setOpacity(Expression opacityExpression);
@@ -73,8 +72,7 @@ public interface Graphic {
     /**
      * Sets the expression that will be evaluated to determine the pixel height
      * of the image when it is drawn on the screen.
-     *
-     * @see #getSize
+     * See {@link #getSize} for details.
      */
     @XmlElement("Size")
     void setSize(Expression sizeExpression);
@@ -90,8 +88,7 @@ public interface Graphic {
     /**
      * Sets the expression that will be used to calculate the rotation of the
      * graphic when it is drawn.
-     *
-     * @see #getRotation
+     * See {@link #getRotation} for details.
      */
     @XmlElement("Rotation")
     void setRotation(Expression rotationExpression);

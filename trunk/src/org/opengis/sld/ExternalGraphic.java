@@ -32,8 +32,7 @@ public interface ExternalGraphic extends ExternalGraphicOrMark {
 
     /**
      * Sets the URL to a file (perhaps a local file) that contains an image.
-     *
-     * @see #getOnlineResource
+     * See {@link #getOnlineResource} for details.
      */
     @XmlElement("OnlineResource")
     void setOnlineResource(String url);
@@ -46,8 +45,7 @@ public interface ExternalGraphic extends ExternalGraphicOrMark {
 
     /**
      * Sets the array of bytes that comprise the image.
-     *
-     * @see #getInlineContent
+     * See {@link #getInlineContent} for details.
      */
     void setInlineContent(byte[] content);
 
@@ -61,8 +59,7 @@ public interface ExternalGraphic extends ExternalGraphicOrMark {
 
     /**
      * Sets the format that the image should be parsed as.
-     *
-     * @see #getFormat
+     * See {@link #getFormat} for details.
      */
     void setFormat(String format);
 }
