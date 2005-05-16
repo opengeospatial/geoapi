@@ -4,7 +4,8 @@
  **
  ** $Source$
  **
- ** Copyright (C) 2003 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
+ ** Copyright (C) 2004-2005 Open GIS Consortium, Inc.
+ ** All Rights Reserved. http://www.opengis.org/legal/
  **
  *************************************************************************************************/
 package org.opengis.metadata;
