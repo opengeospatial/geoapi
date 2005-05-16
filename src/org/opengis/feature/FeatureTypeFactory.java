@@ -1,34 +1,49 @@
+/*$************************************************************************************************
+ **
+ ** $Id$
+ **
+ ** $Source$
+ **
+ ** Copyright (C) 2003 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
+ **
+ *************************************************************************************************/
 package org.opengis.feature;
 
+// OpenGIS direct dependencies
 import org.opengis.util.GenericName;
+import org.opengis.feature.display.canvas.FeatureCanvas;  // For javadoc
+import org.opengis.spatialschema.geometry.Geometry;       // For javadoc
+
 
 /**
- * Interface through which new <code>FeatureType</code>s are made known to a
- * <code>FeatureCanvas</code>.
+ * Interface through which new {@link FeatureType}s are made known to a
+ * {@link FeatureCanvas}.
+ *
+ * @since GeoAPI 1.1
  */
 public interface FeatureTypeFactory {
     /**
-     * This method creates a new FeatureType given its list of attributes.  Note
-     * that multiple instances of FeatureCanvas may share the same pool of
-     * FeatureTypes, so it is always better to try retrieving a FeatureType with
-     * <code>getFeatureTypeByName</code> before creating it.
+     * Creates a new {@code FeatureType} given its list of attributes.  Note
+     * that multiple instances of {@link FeatureCanvas} may share the same pool of
+     * {@code FeatureType}s, so it is always better to try retrieving a
+     * {@code FeatureType} with {@link #getFeatureTypeByName} before creating it.
      *
-     * @param name Name of the new FeatureType to be created.  This value can be
-     *   used to retrieve the created FeatureType later by calling
-     *   <code>getFeatureTypeByName</code>.
+     * @param name Name of the new {@code FeatureType} to be created.  This value can be
+     *   used to retrieve the created {@code FeatureType} later by calling
+     *   {@code getFeatureTypeByName(name)}.
      * @param attributes Array of attributes (created using the
-     *   <code>createAttributeDescriptor</code> method) that Features of this
+     *   {@link #createAttributeDescriptor} method) that {@link Feature}s of this
      *   new type will have.
      * @param defaultGeometry The descriptor of the geometric attribute that
      *   will be used when styles do not explicitly specify the property name
-     *   from which to retrieve Geometry.  This parameter can be null only when
-     *   the feature type does not contain any geometric properties.
-     * @param childFeatureTypes The types of Features that could potentially be
-     *   child Features of instances of this type.  If null or of zero length,
+     *   from which to retrieve {@link Geometry}.  This parameter can be null
+     *   only when the feature type does not contain any geometric properties.
+     * @param childFeatureTypes The types of {@code Feature}s that could potentially be
+     *   child features of instances of this type.  If null or of zero length,
      *   then instances of this feature type cannot have child features and will
-     *   never implement the <code>FeatureCollection</code> interface.
-     * @throws IllegalArgumentException If <code>name</code> is already in use
-     *   or if <code>defaultGeometry</code> refers to a column that is not
+     *   never implement the {@link FeatureCollection} interface.
+     * @throws IllegalArgumentException If {@code name} is already in use
+     *   or if {@code defaultGeometry} refers to a column that is not
      *   geometric.
      */
     FeatureType createFeatureType(
@@ -38,15 +53,15 @@ public interface FeatureTypeFactory {
             FeatureType[] childFeatureTypes);
 
     /**
-     * This method creates a new attribute descriptor for use in creating new
+     * Creates a new attribute descriptor for use in creating new
      * feature types.
      *
      * @param name The name of the attribute.  This name can later be used to
-     *   retrieve the value of the attribute from Features.
+     *   retrieve the value of the attribute from {@link Feature}s.
      * @param dataType The underlying data type of the attribute.  This must
-     *   be one of the static constants from the DataType class.
+     *   be one of the static constants from the {@link DataType} class.
      * @param size The size of the attribute.  The interpretation of "size"
-     *   depends on the data type.  See the documentation of the DataType class.
+     *   depends on the data type.  See the documentation of the {@link DataType} class.
      * @param precision For decimal attributes, specified the number of digits
      *   after the decimal point.  For other types of attributes, this will be
      *   ignored.
@@ -54,7 +69,7 @@ public interface FeatureTypeFactory {
      *   primary key for the feature type of which it will be a part.
      *   Composite primary keys are not prohibited by these interfaces.
      * @param objectClass If the type of the attribute is OBJECT, then this
-     *   parameter indicates the Java Class of the class or interface that
+     *   parameter indicates the Java {@link Class} of the class or interface that
      *   values of this attribute can be safely cast to.  For other types of
      *   attributes, this parameter is ignored.
      * @param minCard A non-negative integer that indicates the minimum number
@@ -63,8 +78,8 @@ public interface FeatureTypeFactory {
      *   occurrences of the attribute on this feature.  Most FeatureCanvases
      *   will only support a value of 1 for this field.  A value of -1 indicates
      *   that the maximum number of occurrences is unbounded.  When this value
-     *   is greater than one, <code>Feature.getAttribute()</code> will always
-     *   return an instance of <code>java.util.Collection</code>.
+     *   is greater than one, {@link Feature#getAttribute()} will always
+     *   return an instance of {@link java.util.Collection}.
      */
     FeatureAttributeDescriptor createAttributeDescriptor(
             String name, 
@@ -77,18 +92,20 @@ public interface FeatureTypeFactory {
             int maxCard);
 
     /**
-     * Retrieves a previously created FeatureType given its name.  Note that
-     * multiple instances of FeatureCanvas may share the same pool of
-     * FeatureTypes, so this may return a FeatureType that was created for
-     * another FeatureCanvas.
-     * @param name the name to search for
-     * @return the named <code>FeatureType</code> or null if not found
+     * Retrieves a previously created {@code FeatureType} given its name.  Note that
+     * multiple instances of {@link FeatureCanvas} may share the same pool of
+     * {@code FeatureType}s, so this may return a feature type that was created for
+     * another feature canvas.
+     *
+     * @param name the name to search for.
+     * @return the named feature type or null if not found.
      */
     FeatureType getFeatureTypeByName(GenericName name);
 
     /**
-     * Retrieves all previously created <code>FeatureType</code>s known to this factory.
-     * @return the array of known <code>FeatureType</code>s.
+     * Retrieves all previously created {@code FeatureType}s known to this factory.
+     *
+     * @return The known {@code FeatureType}s.
      */
-    FeatureType [] getAllFeatureTypes();
+    FeatureType[] getAllFeatureTypes();
 }

@@ -9,21 +9,30 @@
  *************************************************************************************************/
 package org.opengis.feature;
 
+// J2SE direct dependencies
 import java.util.List;
 
+// OpenGIS direct dependencies
 import org.opengis.util.GenericName;
+import org.opengis.util.LocalName;   // For javadoc
 
+
+/**
+ *
+ * @since GeoAPI 1.1
+ */
 public interface FeatureType {
     /**
-     * Returns the name of this FeatureType.
+     * Returns the name of this {@code FeatureType}.
      * <p>
-     * The typical usage of these GenericNames will be as follows:  In most
-     * cases, the GenericName will have a local part that is be the name of the
+     * The typical usage of these {@code GenericName}s will be as follows:  In most
+     * cases, the {@code GenericName} will have a local part that is be the name of the
      * XML element used to encode such features as GML.  The scope of the name
      * will either be null (if the XML element is to have no namespace) or will
-     * be a LocalName whose toString() gives the URI of an XML namespace.
+     * be a {@link LocalName} whose {@link LocalName#toString() toString()} gives
+     * the URI of an XML namespace.
      */
-    public GenericName getName();
+    GenericName getName();
 
     /**
      * In cases where features are to be encoded as GML, the namespace portion
@@ -33,47 +42,46 @@ public interface FeatureType {
      * is also valid to return null, indicating that the data provider doesn't
      * know or doesn't care.
      */
-    public String getPreferredPrefix();
+    String getPreferredPrefix();
 
     /**
-     * Returns an array of FeatureAttributeDescriptor instances that lists all
-     * of the attributes that a Feature of this type will have.
+     * Returns an array of descriptors that lists all of the attributes that
+     * a {@link Feature} of this type will have.
      */
-    public FeatureAttributeDescriptor [] getAttributeDescriptors();
+    FeatureAttributeDescriptor[] getAttributeDescriptors();
 
     /**
      * Returns the descriptor of the shape that should be used for "default"
      * drawing of features of this type.  This may only be null when features of
      * this type do not have geometric attributes.
      */
-    public FeatureAttributeDescriptor getDefaultShapeAttribute();
+    FeatureAttributeDescriptor getDefaultShapeAttribute();
 
     /**
-     * Returns true if features of this type can be cast to FeatureCollection.
+     * Returns true if features of this type can be cast to {@link FeatureCollection}.
      */
-    public boolean isCollectionType();
+    boolean isCollectionType();
 
     /**
-     * Returns the FeatureTypes that could potentially be child Features of
+     * Returns the {@link FeatureType}s that could potentially be child {@link Feature}s of
      * this feature type.  Each returned element may in turn have child 
-     * <code>FeatureType</code> instances of its own.
+     * {@code FeatureType} instances of its own.
      */
-    public List<FeatureType> getChildTypes();
+    List<FeatureType> getChildTypes();
 
     /**
-     * Returns a new, unpopulated instance of this type of Feature.  When the
-     * object is returned, all of its attributes are null.
+     * Returns a new, unpopulated instance of this type of {@link Feature}.
+     * When the object is returned, all of its attributes are null.
      * <p>
-     * The returned object will be an instance of <code>FeatureCollection</code>
-     * if and only if the <code>getChildren()</code> method returns an array of
-     * length greater than zero.
+     * The returned object will be an instance of {@link FeatureCollection}
+     * if and only if the {@link #isCollectionType} method returns {@code true}.
      * <p>
-     * The <code>Feature</code> that is returned is not persisted or displayed
+     * The {@code Feature} that is returned is not persisted or displayed
      * until the caller takes further action, such as adding the feature to a
      * collection that is backed by a data store.
      *
-     * @throws UnsupportedOperationException Throws this exception if this
-     *   feature type does not support the creation of new instances.
+     * @throws UnsupportedOperationException If this feature type does not
+     *   support the creation of new instances.
      */
-    public Feature createFeature() throws UnsupportedOperationException;
+    Feature createFeature() throws UnsupportedOperationException;
 }
