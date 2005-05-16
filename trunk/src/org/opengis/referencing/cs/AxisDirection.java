@@ -4,7 +4,8 @@
  **
  ** $Source$
  **
- ** Copyright (C) 2001 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
+ ** Copyright (C) 2001 Open GIS Consortium, Inc.
+ ** All Rights Reserved. http://www.opengis.org/legal/
  **
  *************************************************************************************************/
 package org.opengis.referencing.cs;
