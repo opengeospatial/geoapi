@@ -15,24 +15,24 @@
   </UL>
 
   <H3>WFS Long Transaction Support</H3>
-  <p>
-  The locking workflow described by FeatureCollection.lock() methods and LockRequest,
-  and LockResponse, and indeed the Transaction facilities employed by FeatureCollection
-  are informed by the requirements of the WFS specification.
-  </p>
-  <p>
-  The WFS specification provides an attractive middle ground between full versioned
-  Features, and light-weight in-process or file lock based approaches. Locks
+  <P ALIGN="justify">The locking workflow described by {@link org.opengis.feature.FeatureCollection#lock()}
+  methods and {@link org.opengis.feature.LockRequest}, and {@link org.opengis.feature.LockResponse},
+  and indeed the {@link org.opengis.feature.Transaction} facilities employed by
+  {@link org.opengis.feature.FeatureCollection} are informed by the requirements
+  of the WFS specification.</P>
+  
+  <P ALIGN="justify">The WFS specification provides an attractive middle ground between full
+  versioned Features, and light-weight in-process or file lock based approaches. Locks
   are maintained for a requested duration. A successful lock operation results
   in an authorization token that may be used at a later time. A transaction
   may be assigned a token allowing it to work on previously locked features.
-  WFS allows a lock to be taken out across multiple FeatureCollections in a single
-  request. We have extended this idea to support FeatureCollection from different
-  FeatureStores - although we confess that the authorization tokens are still on a 
-  per FeatureStore basis.
-  </p>
-  <p>
-  Code example: <pre><code>
+  WFS allows a lock to be taken out across multiple {@code FeatureCollection}s in a single
+  request. We have extended this idea to support {@link org.opengis.feature.FeatureCollection}
+  from different {@link org.opengis.feature.FeatureStore}s - although we confess that the
+  authorization tokens are still on a per {@code FeatureStore} basis.</p>
+
+  <P ALIGN="justify">Code example:
+  <BLOCKQUOTE><PRE>
   // The FilterFactory.bnf( "" ) method is unfortuantly mythical
   //
   FeatureStore featureStore = FeatureStoreFactory.create( new URI("myfile.gml") );
@@ -62,11 +62,10 @@
   t.useAuthorization( token );
   kaslo.deleteAll( kaslo.subCollection( FilterFactory.bnf( "CITY='kaslo' AND NAME='A street'" ) );
   lockResults = t.commit(); // lockResults now equals LockResults.NONE as this commit had no lock methods called
-  
-  </code></pre>  
-  At the end of the above example, kaslo A street has been deleted and the remaining streets in kaslo
-  are unlocked since the token has been used.
-  </p>
+  </PRE></BLOCKQUOTE>
+
+  <P ALIGN="justify">At the end of the above example, kaslo A street has been deleted and the remaining streets
+  in kaslo are unlocked since the token has been used.</p>
   
   <H3>Related Documentation </H3>
   <UL>

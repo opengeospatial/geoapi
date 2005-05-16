@@ -9,117 +9,102 @@
  *************************************************************************************************/
 package org.opengis.feature;
 
+// J2SE direct dependencies
 import java.io.IOException;
 import java.util.Collection;
 import java.util.Iterator;
 
+// OpenGIS direct dependencies
 import org.opengis.filter.Filter;
 
-public interface FeatureCollection extends Feature, Collection {
+
+/**
+ * 
+ *
+ * @since GeoAPI 1.1
+ */
+public interface FeatureCollection extends Feature, Collection<Feature> {
     /**
      * Returns an iterator that enumerates all of the features in this
      * collection.  The object returned from this method is always of type
-     * FeatureIterator.
-     * This method is inherited from <code>Collection</code>, but included here
-     * for completeness.
+     * {@link FeatureIterator}.
      */
-    public Iterator<Feature> iterator();
+    /*{FeatureIterator}*/ Iterator<Feature> iterator();
 
     /**
-     * Creates a Feature array and populates it.  Note that this method may
-     * throw an OutOfMemoryException if the feature collection is too large to
-     * fit into memory.
-     * This method is inherited from <code>Collection</code>, but included here
-     * for completeness.
+     * Creates a {@link Feature} array and populates it.
+     * 
+     * @throws OutOfMemoryError if the feature collection is too large to fit into memory.
      */
-    public Object [] toArray();
+    Object[] toArray() throws OutOfMemoryError;
 
     /**
      * Populates the given array with the features in this collection.  If the
      * passed array is null or is not sufficiently large to contain all of the
      * features in this collection, a new Feature array will be created and
-     * returned.  Note that this method may throw an OutOfMemoryException if the
-     * feature collection is too large to fit into memory.
-     * This method is inherited from <code>Collection</code>, but included here
-     * for completeness.
+     * returned.
+     * 
+     * @throws OutOfMemoryError if the feature collection is too large to fit into memory.
      */
-    public Object [] toArray(Object [] buffer);
+    /*{Feature}*/ Object[] toArray(/*{Feature}*/ Object[] buffer);
 
     /**
-     * Returns true if this collection contains no Features.
-     * This method is inherited from <code>Collection</code>, but included here
-     * for completeness.
+     * Returns {@code true} if this collection contains no {@link Feature}s.
      */
-    public boolean isEmpty();
+    boolean isEmpty();
 
     /**
      * Returns the size of the collection, if known.  It may return -1 if the
      * size is not known or would be too costly to compute (such as when the
      * features are streaming from a remote source).
-     * This method is inherited from <code>Collection</code>, but included here
-     * for completeness.
      */
-    public int size();
+    int size();
 
     /**
      * Checks if the given feature is a member of this collection.
-     * This method is inherited from <code>Collection</code>, but included here
-     * for completeness.
      */
-    public boolean contains(Object /*Feature*/ o);
+    boolean contains(/*{Feature}*/ Object o);
 
     /**
-     * Checks if every feature in the given Collection is also a member of this
-     * Collection.
-     * This method is inherited from <code>Collection</code>, but included here
-     * for completeness.
+     * Checks if every feature in the given collection is also a member of this
+     * feature collection.
      */
-    public boolean containsAll(Collection<Feature> c);
+    boolean containsAll(Collection<Feature> c);
 
     /**
-     * Adds the given Feature to this collection.  If this collection is backed
+     * Adds the given feature to this collection.  If this collection is backed
      * by a persistent store of some kind, then the given feature should
      * immediately be written to that persistent store.  If you want to add
      * multiple features to this collection, note that it may be considerably
-     * more efficient to call the addAll(Collection) method.  The addition of
+     * more efficient to call the {@link #addAll} method.  The addition of
      * features takes place within the context of the current transaction on
-     * this FeatureCollection.
-     * <p>
-     * This method may throw an UnsupportedOperationException if the addition
-     * of new features is not supported.
-     * This method is inherited from <code>Collection</code>, but included here
-     * for completeness.
+     * this feature collection.
+     *
+     * @throws UnsupportedOperationException if the addition of new features is not supported.
      */
-    public boolean add(Object /*Feature*/ o);
+    boolean add(/*{Feature}*/ Object o) throws UnsupportedOperationException;
 
     /**
-     * Adds all of the Features contained in the given collection to this
+     * Adds all of the features contained in the given collection to this
      * collection.  If this collection is backed by a persistent store of some
      * kind, then the added features should immediately be written to that
-     * persistent store.  If you want to add multiple features to this
-     * collection, note that it may be considerably more efficient to call the
-     * addAll(Collection) method.  The addition of features takes place within
-     * the context of the current transaction on this FeatureCollection.
-     * <p>
-     * This method may throw an UnsupportedOperationException if the addition
-     * of new features is not supported.
-     * This method is inherited from <code>Collection</code>, but included here
-     * for completeness.
+     * persistent store.  The addition of features takes place within
+     * the context of the current transaction on this feature collection.
+     *
+     * @throws UnsupportedOperationException if the addition of new features is not supported.
      */
-    public boolean addAll(Collection<Feature> c);
+    boolean addAll(Collection<Feature> c) throws UnsupportedOperationException;
 
     /**
-     * Removes all of the Features contained in this collection.  If this
+     * Removes all of the features contained in this collection.  If this
      * collection is backed by a persistent store of some kind, then this method
      * should cause all of the features from this collection to be removed
      * from that persistent store.  This operation takes place within the
-     * context of the current transaction on this FeatureCollection.
-     * This method may throw an UnsupportedOperationException if the removal of
-     * features is not supported.
-     * This method is inherited from <code>Collection</code>, but included here
-     * for completeness.
+     * context of the current transaction on this feature collection.
+     *
+     * @throws UnsupportedOperationException if the removal of features is not supported.
      */
-    public void clear();
+    void clear() throws UnsupportedOperationException;
 
     /**
      * Removes the given feature from this collection.  If this collection is
@@ -127,12 +112,10 @@ public interface FeatureCollection extends Feature, Collection {
      * the given feature to be removed from the persistent store.  This
      * operation takes place within the context of the current transaction on
      * this feature collection.
-     * This method may throw an UnsupportedOperationException if the removal of
-     * features is not supported.
-     * This method is inherited from <code>Collection</code>, but included here
-     * for completeness.
+     *
+     * @throws UnsupportedOperationException if the removal of features is not supported.
      */
-    public boolean remove(Object /*Feature*/ o);
+    boolean remove(/*{Feature}*/ Object o) throws UnsupportedOperationException;
 
     /**
      * Removes the given features from this collection.  If this collection is
@@ -140,12 +123,10 @@ public interface FeatureCollection extends Feature, Collection {
      * all of the given features to be removed from the persistent store.  This
      * operation takes place within the context of the current transaction on
      * this feature collection.
-     * This method may throw an UnsupportedOperationException if the removal of
-     * features is not supported.
-     * This method is inherited from <code>Collection</code>, but included here
-     * for completeness.
+     *
+     * @throws UnsupportedOperationException if the removal of features is not supported.
      */
-    public boolean removeAll(Collection<Feature> c);
+    boolean removeAll(Collection<Feature> c) throws UnsupportedOperationException;
 
     /**
      * Removes any features from this collection that are not present in the
@@ -153,37 +134,35 @@ public interface FeatureCollection extends Feature, Collection {
      * some kind, then this method should cause the removed features to be
      * removed from the persistent store as well.  This operation takes place
      * within the context of the current transaction on this feature collection.
-     * This method may throw an UnsupportedOperationException if the removal
-     * of features is not supported.
-     * This method is inherited from <code>Collection</code>, but included here
-     * for completeness.
+     *
+     * @throws UnsupportedOperationException if the removal of features is not supported.
      */
-    public boolean retainAll(Collection<Feature> c);
+    boolean retainAll(Collection<Feature> c) throws UnsupportedOperationException;
 
     /**
      * Returns a collection whose contents are the subset of features in this
      * collection that pass the given filter.  This is semantically equivalent
-     * to going back to the FeatureStore that created this collection and AND-ing
-     * the filter that produced this collection with the given filter.
+     * to going back to the {@link FeatureStore} that created this collection
+     * and AND-ing the filter that produced this collection with the given filter.
      * <p>
-     * Compare this method to <code>List.subList(int,int)</code> from the Java
-     * Collections framework.
+     * Compare this method to {@link java.util.List#subList(int,int)}
+     * from the Java Collections framework.
      */
-    public FeatureCollection subCollection(Filter filter);
+    FeatureCollection subCollection(Filter filter);
 
     /**
      * If some sort of connection was opened to a backing store to support this
-     * collection, then this method closes this connection.  Users of this API
-     * should always call this method before releasing the references to this
-     * object so that resources get cleaned up in a timely fashion.  Those who
-     * implement this interface are also encouraged to implement the finalize
+     * collection, then closes this connection.  Users of this API should always
+     * call this method before releasing the references to this object so that
+     * resources get cleaned up in a timely fashion.  Those who implement this
+     * interface are also encouraged to implement the {@link Object#finalize finalize()}
      * method just in case the user forgets to call close so that perhaps things
      * might get cleaned up.
      * <p>
      * After invoking this method, all references to the feature listener
      * objects will be cleared and no further events will be fired.
      */
-    public void close() throws IOException;
+    void close() throws IOException;
 
     /**
      * Begins a new transaction on this collection.  Any calls that may modify
@@ -191,91 +170,100 @@ public interface FeatureCollection extends Feature, Collection {
      * the given transaction.
      * <p>
      * Implementors of this method should attach some state to the given
-     * transaction by calling putState, passing in a key that identifies this
-     * type of collection and a value that is a data store-specific
-     * implementation of the <code>Transaction.State</code> interface.  When the
-     * transaction is complete, either commit() or rollback() will be called on
-     * the state object that was attached.
+     * transaction by calling {@link Transaction#putState}, passing in a
+     * key that identifies this type of collection and a value that is a
+     * data store-specific implementation of the {@link Transaction.State}
+     * interface.  When the transaction is complete, either
+     * {@link Transaction.State#commit() commit()} or
+     * {@link Transaction.State#rollback() rollback()}
+     * will be called on the state object that was attached.
      */
-    public void setTransaction(Transaction t);
+    void setTransaction(Transaction t);
 
     /**
-     * Retrieves the current transaction on this FeatureCollection or null if
+     * Retrieves the current transaction on this feature collection or null if
      * there is no current transaction.
      */
-    public Transaction getTransaction();
+    Transaction getTransaction();
 
     /**
      * Indicate the duration, and any additional information for any
      * subsequent lock operations.
      * <p>
-     * You can use LockRequest.TRANSACTION_LOCK to request that the lock only
-     * endure for the duration of the current transaction.
+     * You can use {@link LockRequest#TRANSACTION_LOCK} to request that
+     * the lock only endure for the duration of the current transaction.
      */
-    public void setLockRequest(LockRequest lock);
+    void setLockRequest(LockRequest lock);
 
     /**
      * Lock indicated features.
      * <p>
-     * Note to unlock, or opperate on these features, one needs to perform a Transaction
-     * with the authorization token provided by LockResponse.
-     * </p> 
+     * Note to unlock, or opperate on these features, one needs to perform a {@link Transaction}
+     * with the authorization token provided by {@link LockResponse}.
      * <p>
      * Workflows:
      * <ul>
-     * <li>LockRequest + Transaction.AUTO_COMMIT returns a LockResponse indicating the success of the opperation and
-     * and authoriazation tokens aquired.
-     * <li>LockRequest.TRANSACTION_LOCK + Transaction returns LockResponse.TRANSACTION_LOCKRESPONSE indicating
-     * a short term lock is held that will expire at the next commit or rollback. Use this workflow to reserve
-     * content before starting edits.
-     * <li>LockRequest + Transaction returns LockResponse.PENDING, check the result of Commit to discover the success of of any lock
-     * methods made during the transaction.
+     * <li>{@link LockRequest} + {@link Transaction#AUTO_COMMIT} returns a
+     *     {@link LockResponse} indicating the success of the opperation and
+     *     and authoriazation tokens aquired.</li>
+     * <li>{@link LockRequest#TRANSACTION_LOCK} + {@link Transaction} returns
+     *     {@link LockResponse#TRANSACTION_LOCKRESPONSE} indicating
+     *     a short term lock is held that will expire at the next commit or rollback.
+     *     Use this workflow to reserve content before starting edits.</li>
+     * <li>{@link LockRequest} + {@link Transaction} returns
+     *     {@link LockResponse#PENDING}, check the result of commit to discover
+     *     the success of of any lock methods made during the transaction.</li>
      * </ul>
      * For a discussion of these workflows please read the package javadocs.
-     * </p>
-     * @return LockResponse for Transaction.AUTO_COMMIT, LockResponse.TRANSACTION_LOCK for a short term lock, or LockResponse.PENDING when used in a Transaction.
+     *
+     * @return Lock response for {@link Transaction#AUTO_COMMIT},
+     *         {@link LockResponse#TRANSACTION_LOCK} for a short term lock, or
+     *         {@link LockResponse#PENDING} when used in a {@link Transaction}.
      */
-    public LockResponse lockAll(Collection<Feature> c);
+    LockResponse lockAll(Collection<Feature> c);
     
     /**
      * Lock this collection of features.
      * <p>
-     * Note to unlock, or opperate on these features, one needs to perform a Transaction
-     * with the authorization token provided by LockResponse.
+     * Note to unlock, or opperate on these features, one needs to perform a {@link Transaction}
+     * with the authorization token provided by {@link LockResponse}.
      * </p> 
      * <p>
      * Workflows:
      * <ul>
-     * <li>LockRequest + Transaction.AUTO_COMMIT returns a LockResponse indicating the success of the opperation and
-     * and authoriazation tokens aquired.
-     * <li>LockRequest.TRANSACTION_LOCK + Transaction returns LockResponse.TRANSACTION_LOCKRESPONSE indicating
-     * a short term lock is held that will expire at the next commit or rollback. Use this workflow to reserve
-     * content before starting edits.
-     * <li>LockRequest + Transaction returns LockResponse.PENDING, check the result of Commit to discover the success of of any lock
-     * methods made during the transaction.
+     * <li>{@link LockRequest} + {@link Transaction#AUTO_COMMIT} returns a
+     *     {@link LockResponse} indicating the success of the opperation and
+     *     and authoriazation tokens aquired.</li>
+     * <li>{@link LockRequest#TRANSACTION_LOCK} + {@link Transaction} returns
+     *     {@link LockResponse#TRANSACTION_LOCKRESPONSE} indicating
+     *     a short term lock is held that will expire at the next commit or rollback.
+     *     Use this workflow to reserve content before starting edits.</li>
+     * <li>{@link LockRequest} + {@link Transaction} returns
+     *     {@link LockResponse#PENDING}, check the result of commit to discover the
+     *     success of of any lock methods made during the transaction.</li>
      * </ul>
      * For a discussion of these workflows please read the package javadocs.
-     * </p>
+     *
      * @return LockResponse for Transaction.AUTO_COMMIT, LockResponse.TRANSACTION_LOCK for a short term lock, or LockResponse.PENDING when used in a Transaction.
      */
-    public LockResponse lock();
+    LockResponse lock();
     
     /**
-     * Returns the request indicating the duration for the lockAll method.
+     * Returns the request indicating the duration for the {@link #lockAll} method.
      */
-    public LockRequest getLockRequest();
+    LockRequest getLockRequest();
 
     /**
      * Adds a listener whose methods will be called whenever a new feature is
-     * added or removed from this collection.  Since FeatureCollection objects
-     * may be the result of a query, the methods of the FeatureListener may
-     * be invoked when a Feature's attributes have been updated in such a way
+     * added or removed from this collection.  Since {@code FeatureCollection} objects
+     * may be the result of a query, the methods of the {@code FeatureListener} may
+     * be invoked when a feature's attributes have been updated in such a way
      * that its values now pass the filter (or no longer pass the filter).
      */
-    public void addFeatureListener(FeatureListener fl);
+    void addFeatureListener(FeatureListener fl);
 
     /**
-     * Removes a listener that was previously added with addFeatureListener.
+     * Removes a listener that was previously added with {@link #addFeatureListener}.
      */
-    public void removeFeatureListener(FeatureListener fl);
+    void removeFeatureListener(FeatureListener fl);
 }

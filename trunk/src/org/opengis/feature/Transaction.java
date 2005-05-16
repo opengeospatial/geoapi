@@ -9,11 +9,13 @@
  *************************************************************************************************/
 package org.opengis.feature;
 
+// J2SE depencencies
 import java.io.IOException;
 import java.util.Set;
 
+
 /**
- * The controller for Transaction with FeatureStore.
+ * The controller for {@code Transaction} with {@link FeatureStore}.
  *
  * <p>
  * Shapefiles, databases, etc. are safely modified with the assistance of this
@@ -23,12 +25,12 @@ import java.util.Set;
  *
  * <p>
  * All operations are considered to be working against a Transaction.
- * Transaction.AUTO_COMMIT is used to represent an immediate mode where
+ * {@link #AUTO_COMMIT} is used to represent an immediate mode where
  * requests are immidately commited.
  * </p>
  *
  * <p>
- * For more information please see FeatureStore and FeatureStore.
+ * For more information please see {@link FeatureStore}.
  * </p>
  *
  * <p>
@@ -58,12 +60,12 @@ import java.util.Set;
  * }
  * </code></pre>
  * <p>
- * Example code walkthrough from the (perspective of Tranasction):
+ * Example code walkthrough from the (perspective of Transaction):
  * </p>
  * <ol>
- * <li>A new transaction is created (an instanceof DefaultTransaction with a handle)</li>
- * <li>A hint is provided using Transaction.putProperty( key, value )</li>
- * <li>Transaction is provided to two FeatureStores, this may result
+ * <li>A new transaction is created</li>
+ * <li>A hint is provided using <code>{@linkplain #putProperty putProperty}( key, value )</code></li>
+ * <li>Transaction is provided to two {@link FeatureStore}s, this may result
  *     in several Transaction.State instances being registered</li>
  *     <ul>
  *     <li>TransactionStateDiff (stored by FeatureStore):
@@ -287,7 +289,6 @@ public interface Transaction {
      *
      * @author jgarnett, Refractions Reasearch Inc.
      */
-
     public static interface State {
         /**
          * Provides configuration information for Transaction.State
@@ -325,7 +326,9 @@ public interface Transaction {
  * <p>
  * It follows the pattern of "Null Object" or more accuratly "Special Case".
  * </p>
- * @author jgarnett
+ *
+ * @author Jody Garnett
+ * @since GeoAPI 1.1
  */
 class AutoCommit implements Transaction {
     /** AutoCommit cannot retain properties */
