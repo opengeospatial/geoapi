@@ -171,6 +171,8 @@ public interface Layer {
     Collection<Envelope> getBoundingBoxes();
 
     /**
+     * Provides the geographic bounding box that specify the longitude and
+     * latitude ranges for this {@code Layer}.
      * Every named layer shall have exactly one geographic bounding box that is either stated
      * explicitly or inherited from a parent layer. Geographic bounding box states, via the
      * {@linkplain GeographicBoundingBox#westBoundLongitude west bound longitude},
@@ -189,8 +191,8 @@ public interface Layer {
      * bounding box information in the CRS:84 CRS, then a separate bounding box element explicitly
      * naming CRS:84 shall be included in the service metadata.
      */
-//  @XmlElement("GeographicBoundingBox")  // 7.2.4.6.6
-//  GeographicBoundingBox getGeographicBoundingBox();
+    @XmlElement("GeographicBoundingBox")  // 7.2.4.6.6
+    GeographicBoundingBox getGeographicBoundingBox();
 
     /**
      * Provides the attribution for this {@code Layer}, which identifies the source of

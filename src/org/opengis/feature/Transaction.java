@@ -111,6 +111,7 @@ import java.util.Set;
  * @author Jody Garnett
  * @author Chris Holmes, TOPP
  * @version $Id$
+ * @since GeoAPI 1.1
  */
 public interface Transaction {
     

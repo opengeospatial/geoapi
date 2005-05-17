@@ -1,3 +1,13 @@
+/*$************************************************************************************************
+ **
+ ** $Id$
+ **
+ ** $Source$
+ **
+ ** Copyright (C) 2005 Open GIS Consortium, Inc.
+ ** All Rights Reserved. http://www.opengis.org/legal/
+ **
+ *************************************************************************************************/
 package org.opengis.feature;
 
 import java.util.Set;
@@ -20,6 +30,7 @@ import java.util.Set;
  * in the style of JUnitTestResults.
  * </p>
  * @author Jody Garnett
+ * @since GeoAPI 1.1
  */
 public interface LockResponse {
     /**

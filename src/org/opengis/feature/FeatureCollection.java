@@ -29,15 +29,18 @@ public interface FeatureCollection extends Feature, Collection<Feature> {
      * Returns an iterator that enumerates all of the features in this
      * collection.  The object returned from this method is always of type
      * {@link FeatureIterator}.
+     *
+     * @throws BackingStoreException If an error occurs while fetching the features.
      */
-    /*{FeatureIterator}*/ Iterator<Feature> iterator();
+    /*{FeatureIterator}*/ Iterator<Feature> iterator() throws BackingStoreException;
 
     /**
      * Creates a {@link Feature} array and populates it.
      * 
+     * @throws BackingStoreException If an error occurs while fetching the features.
      * @throws OutOfMemoryError if the feature collection is too large to fit into memory.
      */
-    Object[] toArray() throws OutOfMemoryError;
+    Object[] toArray() throws BackingStoreException, OutOfMemoryError;
 
     /**
      * Populates the given array with the features in this collection.  If the
@@ -45,32 +48,42 @@ public interface FeatureCollection extends Feature, Collection<Feature> {
      * features in this collection, a new Feature array will be created and
      * returned.
      * 
+     * @throws BackingStoreException If an error occurs while fetching the features.
      * @throws OutOfMemoryError if the feature collection is too large to fit into memory.
      */
-    /*{Feature}*/ Object[] toArray(/*{Feature}*/ Object[] buffer);
+    /*{Feature}*/ Object[] toArray(/*{Feature}*/ Object[] buffer)
+            throws BackingStoreException, OutOfMemoryError;
 
     /**
      * Returns {@code true} if this collection contains no {@link Feature}s.
+     *
+     * @throws BackingStoreException If an error occurs while checking for features.
      */
-    boolean isEmpty();
+    boolean isEmpty() throws BackingStoreException;
 
     /**
      * Returns the size of the collection, if known.  It may return -1 if the
      * size is not known or would be too costly to compute (such as when the
      * features are streaming from a remote source).
+     *
+     * @throws BackingStoreException If an error occurs while checking for features.
      */
-    int size();
+    int size() throws BackingStoreException;
 
     /**
      * Checks if the given feature is a member of this collection.
+     *
+     * @throws BackingStoreException If an error occurs while searching the feature.
      */
-    boolean contains(/*{Feature}*/ Object o);
+    boolean contains(/*{Feature}*/ Object o) throws BackingStoreException;
 
     /**
      * Checks if every feature in the given collection is also a member of this
      * feature collection.
+     *
+     * @throws BackingStoreException If an error occurs while searching the features.
      */
-    boolean containsAll(Collection<Feature> c);
+    boolean containsAll(Collection<Feature> c) throws BackingStoreException;
 
     /**
      * Adds the given feature to this collection.  If this collection is backed
@@ -82,8 +95,9 @@ public interface FeatureCollection extends Feature, Collection<Feature> {
      * this feature collection.
      *
      * @throws UnsupportedOperationException if the addition of new features is not supported.
+     * @throws BackingStoreException If an error occurs while adding the feature.
      */
-    boolean add(/*{Feature}*/ Object o) throws UnsupportedOperationException;
+    boolean add(/*{Feature}*/ Object o) throws UnsupportedOperationException, BackingStoreException;
 
     /**
      * Adds all of the features contained in the given collection to this
@@ -93,8 +107,9 @@ public interface FeatureCollection extends Feature, Collection<Feature> {
      * the context of the current transaction on this feature collection.
      *
      * @throws UnsupportedOperationException if the addition of new features is not supported.
+     * @throws BackingStoreException If an error occurs while adding the features.
      */
-    boolean addAll(Collection<Feature> c) throws UnsupportedOperationException;
+    boolean addAll(Collection<Feature> c) throws UnsupportedOperationException, BackingStoreException;
 
     /**
      * Removes all of the features contained in this collection.  If this
@@ -104,8 +119,9 @@ public interface FeatureCollection extends Feature, Collection<Feature> {
      * context of the current transaction on this feature collection.
      *
      * @throws UnsupportedOperationException if the removal of features is not supported.
+     * @throws BackingStoreException If an error occurs while removing the features.
      */
-    void clear() throws UnsupportedOperationException;
+    void clear() throws UnsupportedOperationException, BackingStoreException;
 
     /**
      * Removes the given feature from this collection.  If this collection is
@@ -115,8 +131,9 @@ public interface FeatureCollection extends Feature, Collection<Feature> {
      * this feature collection.
      *
      * @throws UnsupportedOperationException if the removal of features is not supported.
+     * @throws BackingStoreException If an error occurs while removing the feature.
      */
-    boolean remove(/*{Feature}*/ Object o) throws UnsupportedOperationException;
+    boolean remove(/*{Feature}*/ Object o) throws UnsupportedOperationException, BackingStoreException;
 
     /**
      * Removes the given features from this collection.  If this collection is
@@ -126,8 +143,9 @@ public interface FeatureCollection extends Feature, Collection<Feature> {
      * this feature collection.
      *
      * @throws UnsupportedOperationException if the removal of features is not supported.
+     * @throws BackingStoreException If an error occurs while removing the features.
      */
-    boolean removeAll(Collection<Feature> c) throws UnsupportedOperationException;
+    boolean removeAll(Collection<Feature> c) throws UnsupportedOperationException, BackingStoreException;
 
     /**
      * Removes any features from this collection that are not present in the
@@ -137,8 +155,9 @@ public interface FeatureCollection extends Feature, Collection<Feature> {
      * within the context of the current transaction on this feature collection.
      *
      * @throws UnsupportedOperationException if the removal of features is not supported.
+     * @throws BackingStoreException If an error occurs while removing the features.
      */
-    boolean retainAll(Collection<Feature> c) throws UnsupportedOperationException;
+    boolean retainAll(Collection<Feature> c) throws UnsupportedOperationException, BackingStoreException;
 
     /**
      * Returns a collection whose contents are the subset of features in this
@@ -148,8 +167,10 @@ public interface FeatureCollection extends Feature, Collection<Feature> {
      * <p>
      * Compare this method to {@link java.util.List#subList(int,int)}
      * from the Java Collections framework.
+     *
+     * @throws BackingStoreException If an error occurs while fetching the features.
      */
-    FeatureCollection subCollection(Filter filter);
+    FeatureCollection subCollection(Filter filter) throws BackingStoreException;
 
     /**
      * If some sort of connection was opened to a backing store to support this

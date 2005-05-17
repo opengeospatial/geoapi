@@ -46,10 +46,10 @@ public interface FeatureType {
     String getPreferredPrefix();
 
     /**
-     * Returns an array of descriptors that lists all of the attributes that
+     * Returns a list of descriptors that lists all of the attributes that
      * a {@link Feature} of this type will have.
      */
-    FeatureAttributeDescriptor[] getAttributeDescriptors();
+    List<FeatureAttributeDescriptor> getAttributeDescriptors();
 
     /**
      * Returns the descriptor of the shape that should be used for "default"
