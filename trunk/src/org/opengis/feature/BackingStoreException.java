@@ -16,26 +16,24 @@ import java.sql.SQLException;  // For javadoc
 
 
 /**
- * Thrown to indicate that a {@link FeatureStore} operation could not complete because of a
- * failure in the backing store, or a failure to contact the backing store.
+ * Thrown to indicate that a {@link FeatureCollection} operation could not complete because of a
+ * failure in the backing store, or a failure to contact the backing store. At the difference of
+ * {@link FeatureStoreException}, this exception is unchecked in order to allows its usage with
+ * the Java collection framework. This exception usually have an {@link IOException} or a
+ * {@link SQLException} as its {@linkplain #getCause cause}.
  *
- * @revisit Since this is a {@link FeatureStore} exception should we have a backpointer
- *          to the {@code FeatureStore}? Or at least an indication of which data store
- *          caused the problem?
- * 
  * @since GeoAPI 1.1
  */
-public class FeatureStoreException extends IOException {
+public class BackingStoreException extends RuntimeException {
     /**
-     * Serial version UID allowing cross compiler use of {@code FeatureStoreException}.
+     * Serial version UID allowing cross compiler use of {@code BackingStoreException}.
      */
-    private static final long serialVersionUID = -7266283714520657425L;
+    private static final long serialVersionUID = 6069054157609700353L;
 
     /**
      * Constructs a new exception with no detail message.
      */
-    public FeatureStoreException() {
-        super();
+    public BackingStoreException() {
     }
 
     /**
@@ -43,7 +41,7 @@ public class FeatureStoreException extends IOException {
      *
      * @param message the detail message, saved for later retrieval by the {@link #getMessage} method.
      */
-    public FeatureStoreException(final String message) {
+    public BackingStoreException(final String message) {
         super(message);
     }
 
@@ -52,9 +50,8 @@ public class FeatureStoreException extends IOException {
      *
      * @param cause the cause, saved for later retrieval by the {@link Throwable#getCause} method.
      */
-    public FeatureStoreException(final Throwable cause) {
-        super(cause==null ? null : cause.toString());
-        initCause(cause);
+    public BackingStoreException(final Throwable cause) {
+        super(cause);
     }
 
     /**
@@ -63,8 +60,7 @@ public class FeatureStoreException extends IOException {
      * @param message the detail message, saved for later retrieval by the {@link #getMessage} method.
      * @param cause the cause, saved for later retrieval by the {@link Throwable#getCause} method.
      */
-    public FeatureStoreException(final String message, final Throwable cause) {
-        super(message);
-        initCause(cause);
+    public BackingStoreException(final String message, final Throwable cause) {
+        super(message, cause);
     }
 }

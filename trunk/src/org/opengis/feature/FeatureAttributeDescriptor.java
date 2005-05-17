@@ -10,6 +10,7 @@
  *************************************************************************************************/
 package org.opengis.feature;
 
+
 /**
  * Descriptor that gives the name, data type, and cardinality of an attribute
  * from a <code>FeatureType</code>.
@@ -20,6 +21,8 @@ package org.opengis.feature;
  * types of Features, can share a type.  However, this seems a little confusing.
  * Here, the name of the Feature attribute and its datatype are rolled into one
  * object.
+ *
+ * @since GeoAPI 1.1
  */
 public interface FeatureAttributeDescriptor {
     /**

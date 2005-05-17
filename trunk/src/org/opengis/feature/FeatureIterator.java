@@ -28,9 +28,11 @@ public interface FeatureIterator extends Iterator<Feature> {
      * <p>
      * Because no exceptions are thrown in the Iterator interface, any I/O
      * exceptions that occur while executing this method must be wrapped in
-     * a {@link RuntimeException} before being thrown.
+     * a {@link BackingStoreException} before being thrown.
+     *
+     * @throws BackingStoreException If an error occurs while fetching the feature.
      */
-    boolean hasNext();
+    boolean hasNext() throws BackingStoreException;
 
     /**
      * Method inherited from Iterator that returns the next {@link Feature} object from
@@ -38,9 +40,11 @@ public interface FeatureIterator extends Iterator<Feature> {
      * <p>
      * Because no exceptions are thrown in the Iterator interface, any I/O
      * exceptions that occur while executing this method must be wrapped in
-     * a {@link RuntimeException} before being thrown.
+     * a {@link BackingStoreException} before being thrown.
+     *
+     * @throws BackingStoreException If an error occurs while fetching the feature.
      */
-/// /*{Feature}*/ Object next();
+/// /*{Feature}*/ Object next() throws BackingStoreException;
 
     /**
      * If supported by the underlying {@link FeatureCollection}, invoking this method
@@ -48,8 +52,9 @@ public interface FeatureIterator extends Iterator<Feature> {
      *
      * @throws UnsupportedOperationException If removing items is not supported
      *   by the underlying collection.
+     * @throws BackingStoreException If an error occurs while removing the feature.
      */
-    void remove() throws UnsupportedOperationException;
+    void remove() throws UnsupportedOperationException, BackingStoreException;
 
     /**
      * If applicable, closes any connection to a persistent store that backs

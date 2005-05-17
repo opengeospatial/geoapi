@@ -10,6 +10,9 @@
  *************************************************************************************************/
 package org.opengis.feature;
 
+// J2SE direct dependencies
+import java.util.Collection;
+
 // OpenGIS direct dependencies
 import org.opengis.util.GenericName;
 import org.opengis.feature.display.canvas.FeatureCanvas;  // For javadoc
@@ -108,5 +111,5 @@ public interface FeatureTypeFactory {
      *
      * @return The known {@code FeatureType}s.
      */
-    FeatureType[] getAllFeatureTypes();
+    Collection<FeatureType> getAllFeatureTypes();
 }

@@ -33,6 +33,7 @@ import org.opengis.util.InternationalString;
  * </ul>
  *
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
+ * @since GeoAPI 1.1
  */
 public interface FeatureStoreFactory {
     /**

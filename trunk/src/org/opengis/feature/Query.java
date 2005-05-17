@@ -32,6 +32,7 @@ import org.opengis.util.GenericName;
  * reached.
  *
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
+ * @since GeoAPI 1.1
  */
 public interface Query {
     /**

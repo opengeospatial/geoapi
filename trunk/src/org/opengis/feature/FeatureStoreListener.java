@@ -16,6 +16,8 @@ import java.util.EventListener;
  * Interface whose methods are invoked when types are modified in a FeatureStore.
  * To use this interface, implement its methods and invoke the
  * addFeatureStoreListener() method on FeatureStore.
+ *
+ * @since GeoAPI 1.1
  */
 public interface FeatureStoreListener extends EventListener {
     /**

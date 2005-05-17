@@ -28,6 +28,7 @@ package org.opengis.feature;
  * in the style of JUnitTestResults.
  * </p>
  * @author Jody Garnett
+ * @since GeoAPI 1.1
  */
 public interface LockRequest {
 	/**
