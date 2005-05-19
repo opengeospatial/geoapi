@@ -43,9 +43,7 @@ public interface LayerSource {
     /**
      * Icon representing this type of LayerSource.
      *
-     * @return the icon.
-     *
-     * @revisit Assumed to point to a 16x16 icon?
+     * @return URI to a icon (GIF or PNG) representing this layer source.
      */
     URI getIcon();
 

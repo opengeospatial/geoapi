@@ -13,7 +13,7 @@ package org.opengis.feature;
 
 /**
  * Descriptor that gives the name, data type, and cardinality of an attribute
- * from a <code>FeatureType</code>.
+ * from a {@link FeatureType}.
  * <p>
  * <b>Author's note:</b> In the OGC Feature abstract model, attributes have both
  * a name and a type.  Then the type itself has a name and a datatype.  This is
@@ -30,37 +30,36 @@ public interface FeatureAttributeDescriptor {
      * retrieve the value of an attribute and usually maps to either an XML
      * element name or a column name in a relational database.
      */
-    public String getName();
+    String getName();
 
     /**
-     * Returns a constant from DataType.  The return value of this method
-     * indicates how the return values of getSize(), getPrecision(), and
-     * getObjectClass() should be interpreted.  For attributes whose maximum
+     * Returns a constant from {@link DataType}.  The return value of this method
+     * indicates how the return values of {@link #getSize}, {@link #getPrecision}, and
+     * {@link #getObjectClass} should be interpreted.  For attributes whose maximum
      * cardinality is greater than one, this should return the data type of
      * the individual elements of the collection.
      */
-    public DataType getDataType();
+    DataType getDataType();
 
     /**
-     * Returns a number that indicates the size of a given attribute.  See the
-     * documentation for the various constants of <code>DataType</code> for how
-     * to interpret this value.  As an example, when the data type is STRING,
-     * this value indicates the maximum length of the string.
+     * Returns a number that indicates the size of a given attribute.  See the documentation
+     * for the various constants of {@link DataType} for how to interpret this value.  As an
+     * example, when the data type is {@link DataType#STRING STRING}, this value indicates
+     * the maximum length of the string.
      */
-    public int getSize();
+    int getSize();
 
     /**
-     * For attributes of type DECIMAL, this returns the maximum number of places
-     * after the decimal point.  For other types, this must always return zero.
+     * For attributes of type {@link DataType#DECIMAL DECIMAL}, this returns the maximum number
+     * of places after the decimal point.  For other types, this must always return zero.
      */
-    public int getPrecision();
+    int getPrecision();
 
     /**
-     * For attributes of type OBJECT, this returns the Java <code>Class</code>
-     * object that class or interface that all values of this attribute can be
-     * cast to.
+     * For attributes of type {@link DataType#OBJECT OBJECT}, this returns the Java {@link Class}
+     * object that class or interface that all values of this attribute can be cast to.
      */
-    public Class getObjectClass();
+    Class getObjectClass();
 
     /**
      * Returns the minimum number of occurrences of this attribute on a given
@@ -69,7 +68,7 @@ public interface FeatureAttributeDescriptor {
      * occurrences is zero, this is equivalent, in SQL terms, to the attribute
      * being nillable.
      */
-    public int getMinimumOccurrences();
+    int getMinimumOccurrences();
 
     /**
      * Returns the maximum number of occurrences of this attribute on a given
@@ -77,14 +76,14 @@ public interface FeatureAttributeDescriptor {
      * function with this value being one.  A value of -1 indicates that the
      * maximum number of occurrences is unbounded.
      */
-    public int getMaximumOccurrences();
+    int getMaximumOccurrences();
 
     /**
-     * True if this attribute forms all or part of the unique identifying value
-     * for the feature it is contained by.  The primary key attributes uniquely
-     * identify this feature from other features of the same type.  This is
-     * different from the Feature's ID, which must uniquely identify the Feature
-     * among all feature types.
+     * Returns {@code true} if this attribute forms all or part of the unique identifying
+     * value for the feature it is contained by.  The primary key attributes uniquely
+     * identify this feature from other features of the same type.  This is different
+     * from the {@linkplain Feature#getID feature's ID}, which must uniquely identify
+     * the {@link Feature} among all feature types.
      */
-    public boolean isPrimaryKey();
+    boolean isPrimaryKey();
 }

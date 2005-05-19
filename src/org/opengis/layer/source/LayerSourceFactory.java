@@ -58,11 +58,9 @@ public interface LayerSourceFactory {
     LayerSource createNewLayerSource(URI provider, Map<String,Object> params) throws IOException, LayerSourceException;
     
     /**
-     * Icon representing this category of datastores.
+     * Icon representing this category of layer source.
      *
-     * @return the icon.
-     *
-     * @revisit Assumed to point to a 16x16 icon?
+     * @return URI to a icon (GIF or PNG) representing this factory.
      */
     URI getIcon();
 
