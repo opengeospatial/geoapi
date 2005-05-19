@@ -12,312 +12,256 @@ package org.opengis.feature;
 
 // J2SE depencencies
 import java.io.IOException;
+import java.util.Collections;
 import java.util.Set;
 
 
 /**
- * The controller for {@code Transaction} with {@link FeatureStore}.
- *
- * <p>
- * Shapefiles, databases, etc. are safely modified with the assistance of this
- * interface. Transactions are also to provide authorization when working with
+ * The controller for transaction with {@link FeatureStore}.
+ * Shapefiles, databases, <cite>etc.</cite> are safely modified with the assistance
+ * of this interface. Transactions are also to provide authorization when working with
  * locked features.
- * </p>
- *
  * <p>
- * All operations are considered to be working against a Transaction.
- * {@link #AUTO_COMMIT} is used to represent an immediate mode where
- * requests are immidately commited.
- * </p>
- *
- * <p>
- * For more information please see {@link FeatureStore}.
- * </p>
- *
- * <p>
- * Example Use:
- * </p>
- * <pre><code>
- * Transaction t = new DefaultTransaction("handle");
- * t.putProperty( "hint", new Integer(7) );
+ * All operations are considered to be working against a transaction. The {@link #AUTO_COMMIT}
+ * constant is used to represent an immediate mode where requests are immediately commited.
+ * Example use:
+ * <blockquote><table width="100%" border="1" cellpadding="12"><tr><td><pre> Transaction t = ...
+ * t.{@linkplain #putProperty putProperty}("someHint", someValue);
  * try {
- *     FeatureStore road = (FeatureStore) store.getFeatureSource("road");
- *     FeatureStore river = (FeatureStore) store.getFeatureSource("river");
+ *     {@linkplain FeatureCollection} road  = store.getFeatures("road");
+ *     {@linkplain FeatureCollection} river = store.getFeatures("river");
  *
- *     road.setTransaction( t );
- *     river.setTransaction( t );
+ *     road .{@linkplain FeatureCollection#setTransaction setTransaction}(t);
+ *     river.{@linkplain FeatureCollection#setTransaction setTransaction}(t);
  *
- *     t.addAuthorization( lockID );  // provide authoriztion
- *     road.removeFeatures( filter ); // opperate against transaction
- *     river.removeFeature( filter ); // opperate against transaction
+ *     // Provides authorization and operates against transaction
+ *     t.{@linkplain #useAuthorization useAuthorization}(authorizationID);
+ *     road .{@linkplain FeatureCollection#removeAll removeAll}(road .{@linkplain FeatureCollection#subCollection subCollection}(filter));
+ *     river.{@linkplain FeatureCollection#removeAll removeAll}(river.{@linkplain FeatureCollection#subCollection subCollection}(filter));
  *
- *     t.commit(); // commit opperations
+ *     t.{@linkplain #commit commit}(); // Commit operations
  * }
- * catch (IOException io){
- *     t.rollback(); // cancel opperations
+ * catch ({@linkplain IOException} exception){
+ *     t.{@linkplain #rollback rollback}();    // Cancel operations
+ *     throw exception; // Propagate the exception
  * }
  * finally {
- *     t.close(); // free resources
- * }
- * </code></pre>
+ *     t.{@linkplain #close close}(); // free resources
+ * }</pre></td></tr></table></blockquote>
  * <p>
- * Example code walkthrough from the (perspective of Transaction):
- * </p>
- * <ol>
- * <li>A new transaction is created</li>
- * <li>A hint is provided using <code>{@linkplain #putProperty putProperty}( key, value )</code></li>
- * <li>Transaction is provided to two {@link FeatureStore}s, this may result
- *     in several Transaction.State instances being registered</li>
- *     <ul>
- *     <li>TransactionStateDiff (stored by FeatureStore):
- *         Used for in memory locking is used by many FeatureStore's
- *         (like ShapefileFeatureStore).
- *         Lazy creation by AbstractFeatureStore.state(transaction).
- *         </li>
- *     <li>JDBCTransactionState (stored by ConnectionPool):
- *         Used to manage connection rollback/commit.
- *         Lazy creation as part of JDBCFeatureStore.getConnection(transaction).
- *         </li>
- *     <li>InProcessLockingManager.FeatureLock (stored by LockingManger):
- *         Used for per transaction FeatureLocks, used to free locked features
- *         on Transaction commit/rollback.
- *         </li>  
- *     </ul>
- *     These instances of Transaction state may make use of any hint provided
- *     to Transaction.putProperty( key, value ) when they are connected with
- *     Transaction.State.setTransaction( transaction ).
- * <li>t.addAuthorization(lockID) is called, each Transaction.State has its
- *     addAuthroization(String) callback invoked with the value of lockID</li>
- * <li>FeatureStore.removeFeatures methods are called on the two FeatureStores.
- *     <ul>
- *     <li>PostgisFeatureStore.removeFeatures(fitler) handles opperation 
- *         without delegation.
- *         </li>
- *     <li>Most removeFeature(filter) implementations use the implementation
- *         provided by AbstractFeatureStore which delegates to FeatureWriter. 
- *         </li>
- *     </ul>
- *     Any of these opperations may make use of the
- *     Transaction.putProperty( key, value ).
- * <li>The transaction is commited, all of the Transaction.State methods have
- *     there Transaction.State.commit() methods called gicing them a chance
- *     to applyDiff maps, or commit various connections.
- *     </li>
- * <li>The transaction is closed, all of the Transaction.State methods have
- *     there Transaction.State.setTransaction( null ) called, giving them a 
- *     chance to clean up diffMaps, or return connections to the pool.
- *     </li>
- * </ol>
+ * Example code walkthrough from the perspective of transaction:
+ * <ul>
+ *   <li>A new transaction is created</li>
+ *   <li>A hint is provided using <code>{@linkplain #putProperty putProperty}(key, value)</code></li>
+ *   <li>Transaction is provided to two {@link FeatureStore}s. This may result in several
+ *       {@link org.opengis.feature.Transaction.State} instances being registered. These instances of
+ *       transaction state may make use of any hint provided as {@linkplain #putProperty properties}
+ *       (in previous step) when they are connected with
+ *       <code>{@linkplain org.opengis.feature.Transaction.State#setTransaction State.setTransaction}(t)</code>.</li>
+ *   <li><code>t.{@linkplain #useAuthorization useAuthorization}(authorizationID)</code> is called.
+ *       Each {@link org.opengis.feature.Transaction.State} has its
+ *       {@link org.opengis.feature.Transaction.State#addAuthorization addAuthorization}
+ *       callback invoked with the value of {@code authorizationID}.</li>
+ *   <li>{@link FeatureCollection#removeAll removeAll} methods are called on the two
+ *       {@link FeatureCollection}s. Any of these opperations may make use of the
+ *       hints provided as {@linkplain #putProperty properties}.</li>
+ *   <li>The transaction is commited. All of the {@linkplain org.opengis.feature.Transaction.State transaction state}
+ *       instances have there {@linkplain org.opengis.feature.Transaction.State#commit() commit commit} methods called.</li>
+ *   <li>The transaction is closed. All of the {@linkplain org.opengis.feature.Transaction.State transaction state}
+ *       instances have there {@linkplain org.opengis.feature.Transaction.State#close() close close} methods called.</li>
+ * </ul>
+ *
  * @author Jody Garnett
  * @author Chris Holmes, TOPP
  * @version $Id$
  * @since GeoAPI 1.1
  */
 public interface Transaction {
-    
     /**
      * Marker constant used to indicate immidiate response.
-     * <p>
      * The constant is a pure Marker (similar in spirit to a Null Object pattern).
      * All methods do nothing, this constant can be detected by interested parties
      * as a request to perform actions immidiately.
-     * </p>
      */
-    public static final Transaction AUTO_COMMIT = new AutoCommit();
+    Transaction AUTO_COMMIT = new AutoCommit();
+
+    /**
+     * Provides a property for this transasction.
+     * All proceeding {@link FeatureStore} operations may make use of the provided property.
+     *
+     * @throws IOException if there are problems with the {@linkplain FeatureStore feature store}.
+     *
+     * @see #getProperty
+     */
+    void putProperty(Object key, Object value) throws IOException;
     
     /**
-     * Retrieve a Transaction property held by this transaction.
-     * <p>
-     * This may be used to provide hints to FeatureStore implementations, it
-     * operates as a blackboard for client, FeatureSource communication.
-     * <p>
-     * If this proves successful addAuthorization/getAuthorization will be
-     * replaced with this mechanism.
-     */
-    public Object getProperty( Object key );
-
-    /**
-     * List of Authorizations IDs held by this transaction.
-     * <p>
-     * This list is reset by the next call to commit() or rollback().
-     * <p>
-     * Authorization IDs are used to provide FeatureLock support.
+     * Retrieve a transaction property held by this transaction.
+     * This may be used to provide hints to {@link FeatureStore} implementations.
+     * It operates as a blackboard for client, {@code FeatureStore} communication.
      *
-     * @return List of Authorization IDs
+     * @see #putProperty
      */
-    public Set getAuthorizations();
+    Object getProperty(Object key);
 
     /**
-     * Allows FeatureSource to squirel away information( and callbacks ) for
-     * later.
+     * Uses an Authorization token with this transaction. Any locks held against
+     * this token will be released on {@linkplain #commit commit}.
      * <p>
-     * The most common example is a JDBC FeatureStore saving the required
+     * All {@link FeatureCollection}s operations can make use of the provided authorization
+     * for the duration of this transaction. Authorization is only maintained until this
+     * transaction is {@linkplain #commit commited} or {@linkplain #rollback rolled back}.
+     * That is operations that modify or delete a feature will only succeed if affected features
+     * either:
+     * <ul>
+     *   <li>not locked</li>
+     *   <li>locked with a provided {@code authorizationID}</li>
+     * </ul>
+     * <p>
+     * You may call this method several times to provide authorization token to multiple
+     * {@linkplain FeatureCollection feature collections}.
+     *
+     * @param authorizationID Authorization ID. Should of been obtained from a {@link LockResponse}.
+     * @throws IOException if there are problems with the {@linkplain FeatureStore feature store}.
+     *
+     * @see #getAuthorizations
+     */
+    void useAuthorization(String authorizationID) throws IOException;
+
+    /**
+     * Returns the set of authorizations IDs held by this transaction.
+     * This collection is reset by the next call to {@link #commit} or {@link #rollback}.
+     *
+     * @see #useAuthorization
+     */
+    Set<String> getAuthorizations();
+
+    /**
+     * Allows {@link FeatureStore} to squirel away information (and callbacks) for later.
+     * The most common example is a JDBC {@code FeatureStore} saving the required
      * connection for later opperations.
-     * <pre><code>
-     * ConnectionState implements State {
-     *     public Connection conn;
-     *     public addAuthorization() {}
-     *     public commit(){ conn.commit(); }
-     *     public rollback(){ conn.rollback(); }
-     * }
-     * </code></pre>
      * <p>
-     * putState will call State.setTransaction( transaction ) to allow State a
-     * chance to configure itself.
+     * This method will call
+     * <code>{@linkplain org.opengis.feature.Transaction.State#setTransaction State.setTransaction}(this)</code>
+     * to allow {@code State} a chance to configure itself.
      *
      * @param key Key used to externalize State
      * @param state Externalized State
+     *
+     * @see #removeState
+     * @see #getState
      */
-    public void putState(Object key, State state);
+    void putState(Object key, State state);
 
     /**
-     * Allows FeatureSources to clean up information ( and callbacks ) they
-     * earlier provided.
+     * Allows {@code FeatureStore}s to clean up information (and callbacks) they earlier provided.
+     * Care should be taken when using shared State to not remove State required by another 
+     * feature sources.
      * <p>
-     * Care should be taken when using shared State to not remove State
-     * required by another FeatureSources.
-     * <p>
-     * removeState will call State.setTransaction( null ) to allow State a
-     * chance cleanup after itself.
+     * <code>{@linkplain org.opengis.feature.Transaction.State#setTransaction State.setTransaction}(null)</code>
+     * to allow {@code State} a chance cleanup after itself.
      *
      * @param key Key that was used to externalize State
      */
-    public void removeState(Object key);
+    void removeState(Object key);
 
     /**
-     * Allows FeatureStores to squirel away information( and callbacks ) for
-     * later.
-     * <p>
+     * Retrieve a state used to squirel away information (and callbacks) for later.
      * The most common example is a JDBC FeatureStore saving the required
      * connection for later opperations.
      *
-     * @return Current State externalized by key, or {@code null} if not
-     *         found
+     * @param key Key that was used to externalize State
+     * @return Current State externalized by key, or {@code null} if not found
      */
-    public State getState(Object key);
+    State getState(Object key);
 
     /**
-     * Makes all transactions made since the previous commit/rollback
-     * permanent.
-     * <p>
-     * FeatureSources will need to issue any changes notifications using a
-     * FeatureEvent.FEATURES_CHANGED to all FeatureSources with the same
-     * typeName and a different Transaction. FeatureSources with the same
-     * Transaction will of been notified of changes as the FeaureWriter made
+     * Makes all transactions made since the previous commit/rollback permanent.
+     * {@link FeatureStore}s will need to issue any changes notifications using a
+     * {@link FeatureEvent} to all {@code FeatureStore}s with the
+     * same type name and a different transaction. {@code FeatureStore}s with the
+     * same transaction will been notified of changes as the feature writer made
      * them.
      * <p>
      * Workflows:
      * <ul>
-     * <li>LockRequest + Transaction returns a LockResponse as the result of any and all lock requests made during
-     * the transaction.
-     * <li>Transaction returns LockResponse.NONE when no lock requests are made
+     *   <li>{@link LockRequest} + {@code Transaction} returns a {@link LockResponse}
+     *       as the result of any and all lock requests made during the transaction.</li>
+     *   <li>{@code Transaction} returns {@code LockResponse.NONE} when no lock requests
+     *       are made.</li>
      * </ul>
-     * For a discussion of these workflows please read the package javadocs.
-     * </p>
-     * @return LockResponse, or LockResponse.NONE if no lock requests were made
+     * For a discussion of these workflows please read the
+     * {@linkplain org.opengis.feature package javadocs}.
+     *
+     * @return The lock response, or {@code LockResponse.NONE} if no lock requests were made.
+     * @throws IOException if there are problems with the {@linkplain FeatureStore feature store}.
      */
-    public LockResponse commit() throws IOException;
+    LockResponse commit() throws IOException;
 
     /**
      * Undoes all transactions made since the last commit or rollback.
-     * <p>
-     * FeatureSources will need to issue any changes notifications using a
-     * FeatureEvent.FEATURES_CHANGED. This will need to be issued to all
-     * FeatureSources with the same typeName and Transaction.
+     * {@link FeatureStore}s will need to issue any changes notifications using a
+     * {@link FeatureEvent}. This will need to be issued to all
+     * {@code FeatureStore}s with the same type name and transaction.
      *
-     * @throws IOException if there are problems with the datasource.
      * @throws UnsupportedOperationException if the rollback method is not
      *         supported by this datasource.
+     * @throws IOException if there are problems with the {@linkplain FeatureStore feature store}.
      */
-    public void rollback() throws IOException;
-
-    /**
-     * Uses an Authorization token with this Transaction, any locks held against
-     * this token will be released on Transaction.commit().
-     * <p>
-     * All FeatureCollections operations can make use of the provided authorization for
-     * the duration of this transaction. Authorization is only maintained until the this
-     * Transaction is commited or rolledback.
-     * <p>
-     * That is operations that modify or delete a feature will only succeed if affected features either:
-     * <ul>
-     * <li>
-     * not locked
-     * </li>
-     * <li>
-     * locked with a provided authID
-     * </li>
-     * </ul>
-     * <p>
-     * You may call this method several times to provide authorizationToken to multiple
-     * Datastores.
-     *
-     * @param authToken Authorization token, should of been obtained from a LockResponse
-     */
-    public void useAuthorization(String authToken) throws IOException;
-
-    /**
-     * Provides a Transaction property for this Transasction.
-     * 
-     * <p>
-     * All proceeding FeatureSource (for FeatureReader/Writer) opperations may
-     * make use of the provided property.
-     * </p>
-     */
-    public void putProperty( Object key, Object value ) throws IOException;
+    void rollback() throws UnsupportedOperationException, IOException;
  
     /**
-     * Provides an opportunity for a Transaction to free any State it maintains.
-     * <p>
-     * This method should call State.setTransaction( null ) on all State it
-     * maintains.
+     * Provides an opportunity for a transaction to free any
+     * {@link org.opengis.feature.Transaction.State State} it maintains.
+     * This method should call
+     * <code>{@linkplain org.opengis.feature.Transaction.State#setTransaction State.setTransaction}(null)</code>
+     * on all state it maintains.
      * <p>
      * It is hoped that FeatureStore implementations that have externalized
-     * their State with the transaction take the opportunity to revert to
-     * Transction.AUTO_COMMIT.
+     * their state with the transaction take the opportunity to revert to
+     * {@link #AUTO_COMMIT}.
      *
-     * @throws IOException
+     * @throws IOException if there are problems with the {@linkplain FeatureStore feature store}.
      */
     void close() throws IOException;
 
     /**
-     * FeatureStore implementations can use this interface to externalize the
-     * state they require to implement Transaction Support.
-     * <p>
-     * The commit and rollback methods will be called as required. The
-     * intension is that several FeatureStores can share common transaction state
-     * (example: Postgis FeatureStores sharing a connection to the same
-     * database).
+     * {@link FeatureStore} implementations can use this interface to externalize the
+     * state they require to implement {@link Transaction} support.
+     * The {@linkplain #commit commit} and {@linkplain #rollback rollback} methods will
+     * be called as required. The intention is that several {@code FeatureStore}s can
+     * share common transaction state (example: Postgis feature stores sharing a connection
+     * to the same database).
      *
-     * @author jgarnett, Refractions Reasearch Inc.
+     * @author Jody Garnett, Refractions Reasearch Inc.
+     * @since GeoAPI 1.1
      */
     public static interface State {
         /**
-         * Provides configuration information for Transaction.State
+         * Provides configuration information for this {@code Transaction.State}.
+         * This method is called with non null {@code transaction} when this state is
+         * {@linkplain Transaction#putState put} into a {@linkplain Transaction transaction}.
+         * This transaction will be used to determine correct event notification.
          * <p>
-         * setTransaction is called with non null <code>transaction</code> when
-         * Transaction.State is <code>putState</code> into a Transaction. This
-         * tranasction will be used to determine correct event notification.
-         * <p>
-         * setTransaction is called with {@code null} when removeState is
-         * called (usually during Transaction.close() ).
-         *
-         * @param transaction
+         * This method is called again with {@code null} when state is
+         * {@linkplain Transaction#removeState removed} (usually during
+         * {@link Transaction#close}).
          */
         void setTransaction(Transaction transaction);
 
         /**
-         * Call back used for Transaction.setAuthorization()
+         * Call back used for
+         * <code>{@linkplain Transaction#useAuthorization Transaction.useAuthorization}(authorizationID)</code>.
          */
-        void addAuthorization(String AuthID) throws IOException;
+        void addAuthorization(String authorizationID) throws IOException;
 
         /**
-         * Call back used for Transaction.commit()
+         * Call back used for {@link Transaction#commit}.
          */
         LockResponse commit() throws IOException;
 
         /**
-         * Call back used for Transaction.rollback()
+         * Call back used for {@link Transaction#rollback}
          */
         void rollback() throws IOException;
     }
@@ -325,47 +269,56 @@ public interface Transaction {
 
 /**
  * NullObject indicating AUTO_COMMIT mode.
- * <p>
  * It follows the pattern of "Null Object" or more accuratly "Special Case".
- * </p>
  *
  * @author Jody Garnett
  * @since GeoAPI 1.1
  */
-class AutoCommit implements Transaction {
+final class AutoCommit implements Transaction {
+    /**
+     * AutoCommit does not support properties.
+     * @throws IOException Indicating to client code that properties are not supported
+     */
+    public void putProperty(Object key, Object value) throws IOException {
+        throw new UnsupportedOperationException("AUTO_COMMIT does not support properties");        
+    }
+
     /** AutoCommit cannot retain properties */
     public Object getProperty(Object key) {
         return null;
     }
+
     /** AutoCommit cannot retain authorizations */ 
-    public Set getAuthorizations() {
-        // TODO Auto-generated method stub
-        return null;
+    public void useAuthorization(String authorizationID) throws IOException {
+        throw new IOException("Authorization IDs are not valid for AutoCommit Transaction");
     }
+
+    /** AutoCommit cannot retain authorizations */ 
+    public Set<String> getAuthorizations() {
+        return Collections.EMPTY_SET;
+    }
+
     /** AutoCommit cannot retain state - it is infact stateless */
     public void putState(Object key, State state) {
-        // TODO Auto-generated method stub        
     }
+
     /** AutoCommit cannot retain state - it is infact stateless */
     public void removeState(Object key) {
-        // TODO Auto-generated method stub
-        
     }
+
     /** AutoCommit cannot retain state - it is infact stateless */
     public State getState(Object key) {
-        // TODO Auto-generated method stub
         return null;
     }
-    
+
     /** AutoCommit commits all the time - so this is a NOP */
-    public LockResponse commit() throws IOException {
+    public LockResponse commit() {
         // No lock requests have been buffered (they were auto commited after all)
         return /* LockResponse.PENDING */ null;
     }
 
 	/**
      * AutoCommit does not support rollback - it is already too late.
-     * 
      * @throws IOException Indicating to client code that rollback cannot be supported
      */
     public void rollback() throws IOException {
@@ -374,23 +327,9 @@ class AutoCommit implements Transaction {
         // would acomplish nothing. And nothing is just what we can do.
         throw new IOException("AUTO_COMMIT does not support rollback");
     }
-    /** AutoCommit cannot retain authorizations */ 
-    public void useAuthorization(String authID) throws IOException {
-        throw new IOException("Authorization IDs are not valid for AutoCommit Transaction");
-    }
-
-    /**
-     * AutoCommit does not support properties.
-     * 
-     * @throws IOException Indicating to client code that properties are not supported
-     */
-    public void putProperty(Object key, Object value) throws IOException {
-        throw new UnsupportedOperationException("AUTO_COMMIT does not support properties");        
-    }
 
     /** AutoCommit does not maintain State - so this is a NOP */
-    public void close() throws IOException {
+    public void close() {
         // We have no state to clean up after
     }
-    
 }

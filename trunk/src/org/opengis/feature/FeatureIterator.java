@@ -16,7 +16,7 @@ import java.util.Iterator;
 
 
 /**
- * Extends the java {@link Iterator} interface to include a {@link #close} method
+ * Extends the {@link Iterator} interface to include a {@link #close close} method
  * for cleaning up connections to a persistent store.
  *
  * @since GeoAPI 1.1

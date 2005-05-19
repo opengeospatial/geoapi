@@ -175,10 +175,10 @@ public interface Layer {
      * latitude ranges for this {@code Layer}.
      * Every named layer shall have exactly one geographic bounding box that is either stated
      * explicitly or inherited from a parent layer. Geographic bounding box states, via the
-     * {@linkplain GeographicBoundingBox#westBoundLongitude west bound longitude},
-     * {@linkplain GeographicBoundingBox#eastBoundLongitude east bound longitude},
-     * {@linkplain GeographicBoundingBox#southBoundLatitude south bound latitude}, and
-     * {@linkplain GeographicBoundingBox#northBoundLatitude north bound latitude},
+     * {@linkplain GeographicBoundingBox#getWestBoundLongitude west bound longitude},
+     * {@linkplain GeographicBoundingBox#getEastBoundLongitude east bound longitude},
+     * {@linkplain GeographicBoundingBox#getSouthBoundLatitude south bound latitude}, and
+     * {@linkplain GeographicBoundingBox#getNorthBoundLatitude north bound latitude},
      * the minimum bounding rectangle in decimal degrees of the area covered by the layer.
      * Geographic bounding box shall be supplied regardless of what CRS the map server may support,
      * but it may be approximate if the data are not natively in geographic coordinates. The purpose

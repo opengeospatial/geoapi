@@ -82,7 +82,7 @@ public interface FeatureTypeFactory {
      *   occurrences of the attribute on this feature.  Most FeatureCanvases
      *   will only support a value of 1 for this field.  A value of -1 indicates
      *   that the maximum number of occurrences is unbounded.  When this value
-     *   is greater than one, {@link Feature#getAttribute()} will always
+     *   is greater than one, {@link Feature#getAttribute(String)} will always
      *   return an instance of {@link java.util.Collection}.
      */
     FeatureAttributeDescriptor createAttributeDescriptor(
