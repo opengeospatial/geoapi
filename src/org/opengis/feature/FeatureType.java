@@ -51,7 +51,7 @@ import org.opengis.annotation.XmlElement;
  * must be aware in order to successfully manage a {@code FeatureType}:
  * <ul>
  *   <li><p><b>Immutability</b><br>
- *       <em>Feature types must be implemented as immutable objects!</p></li>
+ *       <em>Feature types must be implemented as immutable objects!</em></p></li>
  *
  *   <li><p><b>XPath</b><br>
  *       XPath is the standard used to access all attributes (flat, nested, and multiple),

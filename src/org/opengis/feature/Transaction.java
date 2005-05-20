@@ -194,6 +194,7 @@ public interface Transaction {
      *   <li>{@code Transaction} returns {@code LockResponse.NONE} when no lock requests
      *       are made.</li>
      * </ul>
+     * <p>
      * For a discussion of these workflows please read the
      * {@linkplain org.opengis.feature package javadocs}.
      *
