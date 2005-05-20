@@ -20,8 +20,9 @@ import static org.opengis.annotation.Specification.*;
  * Thrown when an unexpected parameter was found in a
  * {@linkplain ParameterDescriptorGroup parameter group}.
  *
- * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-004.pdf">Grid Coverage specification 1.0</A>
+ * @author Martin Desruisseaux (IRD)
+ * @since GeoAPI 1.0
  */
 @UML(identifier="GC_InvalidParameterName", specification=ISO_19111)
 public class InvalidParameterNameException extends IllegalArgumentException {

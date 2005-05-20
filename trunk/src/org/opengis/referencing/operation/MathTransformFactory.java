@@ -62,8 +62,8 @@ import static org.opengis.annotation.Specification.*;
  * and target coordinate systems mean, it is not necessary or desirable for a math
  * transform object to keep information on its source and target coordinate systems.
  *
- * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-009.pdf">Implementation specification 1.0</A>
+ * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 1.0
  *
  * @see <A HREF="http://www.remotesensing.org/geotiff/proj_list/">Projection transform list on RemoteSensing.org</A>

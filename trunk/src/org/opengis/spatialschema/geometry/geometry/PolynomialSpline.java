@@ -38,9 +38,8 @@ import static org.opengis.annotation.Specification.*;
  * is that polynomial splines pass through their control points, making the control point and
  * sample point array identical.
  *
- * @author ISO/DIS 19107
- * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-101.pdf">Abstract specification 5</A>
+ * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 1.1
  */
 @UML(identifier="GM_PolynomialSpline", specification=ISO_19107)

@@ -37,13 +37,12 @@ import static org.opengis.annotation.Specification.*;
  * covered by that type of CRS with an acceptable degree of error. The exception to the rule is
  * the subtype "Temporal" which has been added by analogy.
  *
- * @author ISO 19111
- * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/03-073r1.zip">Abstract specification 2.0</A>
+ * @author Martin Desruisseaux (IRD)
+ * @since GeoAPI 1.1
  *
  * @see org.opengis.referencing.cs.CoordinateSystem
  * @see org.opengis.referencing.datum.Datum
- * @since GeoAPI 1.1
  */
 @UML(identifier="SC_SingleCRS", specification=ISO_19111)
 public interface SingleCRS extends CoordinateReferenceSystem {

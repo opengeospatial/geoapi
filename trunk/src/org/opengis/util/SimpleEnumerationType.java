@@ -25,7 +25,7 @@ import javax.swing.ImageIcon;
  * Two enumeration values are equal if <code>e1 == e2</code> or if
  * <code>e1.getValue() == e2.getValue()</code>.
  *
- * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
+ * @author Jesse Crossley (SYS Technologies)
  * @since GeoAPI 1.0
  *
  * @revisit The name doesn't said what is the difference between this class and {@link CodeList}.

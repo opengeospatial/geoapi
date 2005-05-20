@@ -30,8 +30,7 @@ import static org.opengis.annotation.Specification.*;
  * the name, such as how it treats case, may affect the ordering. In general, two names of
  * different classes may not be compared.
  *
- * @author ISO 19103
- * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
+ * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 1.0
  *
  * @see javax.naming.Name

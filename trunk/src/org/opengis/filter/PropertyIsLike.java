@@ -28,8 +28,8 @@ import org.opengis.annotation.XmlElement;
  * character is used to escape the meaning of the {@code wildCard}, {@code singleChar}
  * and {@code escape} itself.
  *
- * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/02-059.pdf">Implementation specification 1.0</A>
+ * @author Chris Dillard (SYS Technologies)
  * @since GeoAPI 1.1
  */
 @XmlElement("PropertyIsLike")

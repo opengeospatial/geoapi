@@ -14,7 +14,7 @@ package org.opengis.annotation;
 /**
  * The specifications from which an interface, method or code list was derived.
  *
- * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
+ * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 1.1
  */
 public enum Specification {
@@ -53,6 +53,9 @@ public enum Specification {
 
     /**
      * ISO 19128, or <CITE>Layers and styles</CITE>.
+     * This is the specification for package {@link org.opengis.layer} and sub-packages.
+     *
+     * @see #OGC_04024
      */
     ISO_19128,
 
@@ -87,8 +90,22 @@ public enum Specification {
     OGC_02059,
 
     /**
-     * OGC <A HREF="http://www.opengis.org/docs/02-070.pdf">Styled Layer Descriptor (SLD) implementation specification</A>.
+     * OGC <A HREF="http://portal.opengeospatial.org/files/?artifact_id=1188">Styled Layer Descriptor (SLD) implementation specification</A>.
      * This is the specification for package {@link org.opengis.sld} and sub-packages.
      */
-    OGC_02070
+    OGC_02070,
+
+    /**
+     * OGC <A HREF="http://portal.opengeospatial.org/files/?artifact_id=5316">Web Map Service implementation specification</A>.
+     * This is the specification for package {@link org.opengis.layer} and sub-packages.
+     *
+     * @see #ISO_19128
+     */
+    OGC_04024,
+
+    /**
+     * OGC <A HREF="http://portal.opengeospatial.org/files/?artifact_id=8339">Web Feature Service implementation specification</A>.
+     * This is the specification for package {@link org.opengis.feature} and sub-packages.
+     */
+    OGC_04094
 }

@@ -21,8 +21,8 @@ import org.opengis.feature.display.canvas.FeatureCanvas;
 /**
  * The <code>FeatureDisplayFactory</code> class/interface...
  * 
- * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @author Jesse Crossley (SYS Technologies)
+ * @since GeoAPI 1.1
  */
 public interface FeatureDisplayFactory {
     /**

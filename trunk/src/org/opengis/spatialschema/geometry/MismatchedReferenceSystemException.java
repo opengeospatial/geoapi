@@ -16,7 +16,7 @@ package org.opengis.spatialschema.geometry;
  * {@linkplain org.opengis.referencing.ReferenceSystem reference systems} of
  * geometric components.
  *
- * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
+ * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 1.1
  */
 public class MismatchedReferenceSystemException extends IllegalArgumentException {

@@ -31,8 +31,8 @@ import org.opengis.annotation.Extension;
  * So {@link CSAuthorityFactory} can be used to make "standard" coordinate systems, and
  * <code>CSFactory</code> can be used to make "special" coordinate systems.
  *
- * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-009.pdf">Implementation specification 1.0</A>
+ * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 1.0
  *
  * @see org.opengis.referencing.crs.CRSFactory

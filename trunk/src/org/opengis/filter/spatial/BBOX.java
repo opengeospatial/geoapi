@@ -20,8 +20,8 @@ import org.opengis.annotation.XmlElement;
  * An implementation may choose to throw an exception if one attempts to test
  * features that are in a different SRS than the SRS contained here.
  *
- * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/02-059.pdf">Implementation specification 1.0</A>
+ * @author Chris Dillard (SYS Technologies)
  * @since GeoAPI 1.1
  */
 @XmlElement("BBOX")

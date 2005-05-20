@@ -30,8 +30,7 @@ import org.opengis.annotation.Extension;
  *  <code>"false_easting"</code> (default to 0) and
  *  <code>"false_northing"</code> (default to 0).
  *
- * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
- * @version 2.0
+ * @author Martin Desruisseaux (IRD)
  *
  * @see org.opengis.referencing.crs.ProjectedCRS
  * @see <A HREF="http://mathworld.wolfram.com/MapProjection.html">Map projections on MathWorld</A>

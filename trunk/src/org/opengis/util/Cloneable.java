@@ -16,7 +16,7 @@ package org.opengis.util;
  * A cloneable class implements the J2SE's {@link java.lang.Cloneable} standard interface and
  * additionnaly overrides the {@link Object#clone()} method with public access.
  *
- * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
+ * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 1.0
  *
  * @see java.lang.Cloneable

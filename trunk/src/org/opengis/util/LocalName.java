@@ -24,8 +24,7 @@ import static org.opengis.annotation.Specification.*;
  * {@link GenericName}, or a pointer to another name space (with a new {@link GenericName})
  * one step closer to the target of the identifier.
  *
- * @author ISO 19103
- * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
+ * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 1.1
  *
  * @see NameFactory#createLocalName

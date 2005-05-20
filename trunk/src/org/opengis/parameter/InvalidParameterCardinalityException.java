@@ -27,8 +27,8 @@ import java.util.List;  // For javadoc
  * not caused by a bad argument; it is rather a consequence of an {@linkplain ParameterValueGroup
  * parameter value group} being "full".</P>
  *
- * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
- * @version 2.0
+ * @author Martin Desruisseaux (IRD)
+ * @since GeoAPI 1.1
  *
  * @see ParameterValueGroup#values
  * @see ParameterDescriptor#getMinimumOccurs

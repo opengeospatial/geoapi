@@ -19,9 +19,8 @@ import static org.opengis.annotation.Specification.*;
 /**
  * Presence and absence of features, their attributes and their relationships.
  *
- * @author ISO 19115
- * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
+ * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 1.1
  */
 @UML(identifier="DQ_Completeness", specification=ISO_19115)

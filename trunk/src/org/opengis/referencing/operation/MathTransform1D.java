@@ -21,7 +21,7 @@ import org.opengis.annotation.Extension;
  * <code>MathTransform1D</code> extends {@link MathTransform} by adding a simple method
  * transforming a value without the overhead of creating data array.
  *
- * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
+ * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 1.0
  */
 @Extension

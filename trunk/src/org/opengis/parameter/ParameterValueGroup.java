@@ -29,9 +29,10 @@ import static org.opengis.annotation.Specification.*;
  * if those instances contain different values of one or more {@link ParameterValue}s which suitably
  * distinquish among those groups.
  * 
- * @author ISO 19111
- * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/03-073r1.zip">Abstract specification 2.0</A>
+ * @author Martin Desruisseaux (IRD)
+ * @author Jody Garnett (Refractions Research)
+ * @since GeoAPI 1.0
  *
  * @see ParameterDescriptorGroup
  * @see ParameterValue

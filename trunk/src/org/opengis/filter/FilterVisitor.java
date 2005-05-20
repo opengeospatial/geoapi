@@ -30,8 +30,8 @@ import org.opengis.annotation.Extension;
 /**
  * Visitor with {@code visit} methods to be called by {@link Filter#accept Filter.accept(...)}.
  *
- * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/02-059.pdf">Implementation specification 1.0</A>
+ * @author Chris Dillard (SYS Technologies)
  * @since GeoAPI 1.1
  */
 @Extension

@@ -28,9 +28,8 @@ import org.opengis.annotation.XmlElement;
 /**
  * Encapsulates the information necessary to style the renderable data for a given {@link Layer}.
  * 
- * @author ISO 19128
- * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://portal.opengeospatial.org/files/?artifact_id=5316">Implementation specification 1.3</A>
+ * @author Jesse Crossley (SYS Technologies)
  * @since GeoAPI 1.1
  */
 @XmlElement("Style")

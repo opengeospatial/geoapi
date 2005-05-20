@@ -26,9 +26,8 @@ import org.opengis.annotation.Obligation;
  * All factory methods accept null value for {@linkplain Obligation#OPTIONAL optional} arguments.
  * The value must be non-null for {@linkplain Obligation#MANDATORY mandatory} arguments.
  * 
- * @author ISO 19115
- * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
+ * @author Jesse Crossley (SYS Technologies)
  * @since GeoAPI 1.1
  */
 public interface CitationFactory {

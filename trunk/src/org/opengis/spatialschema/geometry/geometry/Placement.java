@@ -25,9 +25,8 @@ import static org.opengis.annotation.Specification.*;
  * positions are given in formulae by either (<var>x</var>, <var>y</var>) in 2D,
  * or (<var>x</var>, <var>y</var>, <var>z</var>) in 3D. 
  *
- * @author ISO/DIS 19107
- * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-101.pdf">Abstract specification 5</A>
+ * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 1.1
  */
 @UML(identifier="GM_Placement", specification=ISO_19107)

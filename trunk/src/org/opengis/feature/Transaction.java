@@ -15,6 +15,10 @@ import java.io.IOException;
 import java.util.Collections;
 import java.util.Set;
 
+// Annotations
+import org.opengis.annotation.Extension;
+import org.opengis.annotation.XmlElement;
+
 
 /**
  * The controller for transaction with {@link FeatureStore}.
@@ -71,11 +75,11 @@ import java.util.Set;
  *       instances have there {@linkplain org.opengis.feature.Transaction.State#close() close close} methods called.</li>
  * </ul>
  *
- * @author Jody Garnett
- * @author Chris Holmes, TOPP
- * @version $Id$
+ * @author Jody Garnett (Refractions Research)
+ * @author Chris Holmes (TOPP)
  * @since GeoAPI 1.1
  */
+@XmlElement("Transaction")
 public interface Transaction {
     /**
      * Marker constant used to indicate immidiate response.
@@ -96,7 +100,7 @@ public interface Transaction {
     void putProperty(Object key, Object value) throws IOException;
     
     /**
-     * Retrieve a transaction property held by this transaction.
+     * Retrieves a transaction property held by this transaction.
      * This may be used to provide hints to {@link FeatureStore} implementations.
      * It operates as a blackboard for client, {@code FeatureStore} communication.
      *

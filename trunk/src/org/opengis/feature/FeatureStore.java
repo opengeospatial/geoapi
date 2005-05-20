@@ -26,7 +26,6 @@ import org.opengis.util.InternationalString;
  * Gives a normalized interface to a data provider that can serve up collections
  * of {@link Feature} objects.
  *
- * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @since GeoAPI 1.1
  */
 public interface FeatureStore {

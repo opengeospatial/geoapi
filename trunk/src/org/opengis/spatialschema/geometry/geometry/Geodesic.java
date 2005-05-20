@@ -24,9 +24,8 @@ import static org.opengis.annotation.Specification.*;
  * be used to interpolate other positions. Any other point in the {@link #getControlPoints controlPoint}
  * array must fall on this geodesic.
  *  
- * @author ISO/DIS 19107
- * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-101.pdf">Abstract specification 5</A>
+ * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 1.0
  *
  * @see GeometryFactory#createGeodesic

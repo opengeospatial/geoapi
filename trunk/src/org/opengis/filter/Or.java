@@ -19,8 +19,8 @@ import org.opengis.annotation.XmlElement;
  * This interface exposes no additional methods beyond those of {@link BinaryLogicOperator}.
  * It only serves as a marker of what type of operator this is.
  *
- * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/02-059.pdf">Implementation specification 1.0</A>
+ * @author Chris Dillard (SYS Technologies)
  * @since GeoAPI 1.1
  */
 @XmlElement("Or")

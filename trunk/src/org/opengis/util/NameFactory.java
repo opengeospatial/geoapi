@@ -19,7 +19,7 @@ import java.util.Map;
  * Factory for {@linkplain GenericName generic names} and
  * {@linkplain InternationalString international strings}.
  * 
- * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
+ * @author Jesse Crossley (SYS Technologies)
  * @since GeoAPI 1.1
  */
 public interface NameFactory {    

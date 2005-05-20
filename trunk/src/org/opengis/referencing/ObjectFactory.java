@@ -84,8 +84,8 @@ import org.opengis.annotation.Extension;
  * {@linkplain java.util.Locale#FRENCH French} and the <code>"remarks_fr_CA"</code> property
  * stands for remarks in {@linkplain java.util.Locale#CANADA_FRENCH French Canadian}.</P>
  *
- * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-009.pdf">Implementation specification 1.0</A>
+ * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 1.1
  */
 @Extension

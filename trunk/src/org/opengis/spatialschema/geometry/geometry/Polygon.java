@@ -31,9 +31,8 @@ import static org.opengis.annotation.Specification.*;
  * which these curves adhere. The default is that the curves are coplanar and the polygon
  * uses planar interpolation in its interior.
  *
- * @author ISO/DIS 19107
- * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-101.pdf">Abstract specification 5</A>
+ * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 1.1
  *
  * @see GeometryFactory#createPolygon(SurfaceBoundary)

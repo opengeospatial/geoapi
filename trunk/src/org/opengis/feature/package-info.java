@@ -8,17 +8,10 @@
  ** All Rights Reserved. http://www.opengis.org/legal/
  **
  *************************************************************************************************/
-package org.opengis.feature.display;
 
+@XmlSchema(URL="http://schemas.opengis.net/wfs/1.1.0/wfs.xsd", specification=OGC_04094)
+package org.opengis.feature;
 
-/**
- * The <code>FeatureDisplayCapabilities</code> class/interface...
- * 
- * @author Jesse Crossley (SYS Technologies)
- * @since GeoAPI 1.1
- */
-public interface FeatureDisplayCapabilities {
-
-    Class[] getSupportedFeatureCanvases();
-    
-}
+// Annotations
+import org.opengis.annotation.XmlSchema;
+import static org.opengis.annotation.Specification.*;

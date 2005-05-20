@@ -21,8 +21,8 @@ package org.opengis.parameter;
  * not caused by a bad argument. It is rather a consequence of invoking the wrong zero-argument
  * method.</P>
  *
- * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
- * @version 2.0
+ * @author Martin Desruisseaux (IRD)
+ * @since GeoAPI 1.0
  *
  * @see ParameterValue#intValue
  * @see ParameterValue#doubleValue

@@ -15,7 +15,6 @@ import java.util.Set;
 
 // OpenGIS direct dependencies
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
-import org.opengis.referencing.operation.IncompatibleOperationException;
 import org.opengis.referencing.operation.MathTransform;
 import org.opengis.referencing.operation.TransformException;
 import org.opengis.spatialschema.geometry.complex.Complex;
@@ -35,9 +34,8 @@ import static org.opengis.annotation.Specification.*;
  * be regarded as an infinite set of points that satisfies the set operation interfaces for a set
  * of direct positions, {@link TransfiniteSet TransfiniteSet&lt;DirectPosition&gt;}.
  *
- * @author ISO/DIS 19107
- * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-101.pdf">Abstract specification 5</A>
+ * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 1.0
  */
 @UML(identifier="GM_Object", specification=ISO_19107)

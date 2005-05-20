@@ -22,9 +22,8 @@ import org.opengis.annotation.XmlElement;
  * Encloses an {@link OnLineResource} which states the linkage of a document defining
  * the meaning of the {@link Identifier} values which reference this {@code AuthorityURL}.
  * 
- * @author ISO 19128
- * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://portal.opengeospatial.org/files/?artifact_id=5316">Implementation specification 1.3</A>
+ * @author Jesse Crossley (SYS Technologies)
  * @since GeoAPI 1.1
  */
 @XmlElement("AuthorityURL") // 7.2.4.6.13 Identifier and AuthorityURL

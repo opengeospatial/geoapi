@@ -15,10 +15,15 @@ package org.opengis.referencing.operation;
  * Thrown when an operation is applied in a manner inconsistent with one or both of
  * two particular CRS objects. 
  *
- * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
+ * @author Jesse Crossley (SYS Technologies)
  * @since GeoAPI 1.0
  */
 public class IncompatibleOperationException extends Exception {
+    /**
+     * Serial number for interoperability with different versions.
+     */
+    private static final long serialVersionUID = 3197174832430350656L;
+
     /**
      * The invalid Operation name.
      */

@@ -26,9 +26,8 @@ import static org.opengis.annotation.Specification.*;
  * {@linkplain Surface surface} with an upNormal that reverses the direction for this
  * <code>OrientableSurface</code>, the sense of "the top of the surface".
  *  
- * @author ISO/DIS 19107
- * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-101.pdf">Abstract specification 5</A>
+ * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 1.0
  */
 @UML(identifier="GM_OrientableSurface", specification=ISO_19107)

@@ -25,8 +25,7 @@ import java.util.Iterator;
  * automatically add the newly created {@code CodeList} element in the array to be
  * returned by {@code values()}.
  *
- * @author ISO 19103
- * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
+ * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 1.0
  */
 public abstract class CodeList<CodeType extends CodeList<CodeType>> implements Comparable<CodeType>, Serializable {

@@ -19,8 +19,8 @@ import org.opengis.annotation.XmlElement;
  * some relation to a buffer around another shape.  This could be used to find,
  * for example, all the geometries that come within 10 meters of a river.
  *
- * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/02-059.pdf">Implementation specification 1.0</A>
+ * @author Chris Dillard (SYS Technologies)
  * @since GeoAPI 1.1
  */
 @XmlElement("DistanceBufferType")

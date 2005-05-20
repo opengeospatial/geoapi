@@ -26,9 +26,9 @@ import static java.lang.annotation.RetentionPolicy.*;
  * types from attributes, since this distinction can already be inferred from
  * Java reflection. This annotation, completed with reflection if needed, should
  * only provides enough information for finding the corresponding XML element in
- * the schema.
+ * the {@linkplain XmlSchema schema}.
  *
- * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
+ * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 1.1
  */
 @Documented

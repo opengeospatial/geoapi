@@ -34,8 +34,8 @@ import static org.opengis.annotation.Specification.*;
  * object has a code number ID. For example, the EPSG code for a WGS84 Lat/Lon coordinate
  * system is '4326'.
  *
- * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-009.pdf">Implementation specification 1.0</A>
+ * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 1.0
  */
 @UML(identifier="CS_CoordinateSystemAuthorityFactory", specification=OGC_01009)

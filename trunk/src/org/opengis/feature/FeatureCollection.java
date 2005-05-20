@@ -18,13 +18,25 @@ import java.util.Iterator;
 // OpenGIS direct dependencies
 import org.opengis.filter.Filter;
 
+// Annotations
+import org.opengis.annotation.Extension;
+import org.opengis.annotation.XmlElement;
+
 
 /**
- * 
+ * Represents a collection of {@linkplain Feature features}. Implementations and client code
+ * should adhere to the rules set forth by {@link java.util.Collection}. That is, some methods
+ * are optional to implement, and may throw an {@link UnsupportedOperationException}.
  *
+ * @author Ian Turton (CCG)
+ * @author Rob Hranac (VFNY)
+ * @author Ian Schneider (USDA-ARS)
  * @since GeoAPI 1.1
+ *
+ * @see java.util.Collection
  */
-public interface FeatureCollection extends Feature, Collection<Feature> {
+@XmlElement("FeatureCollection")
+public interface FeatureCollection extends Collection<Feature>, Feature {
     /**
      * Returns an iterator that enumerates all of the features in this
      * collection.  The object returned from this method is always of type
@@ -68,6 +80,7 @@ public interface FeatureCollection extends Feature, Collection<Feature> {
      *
      * @throws BackingStoreException If an error occurs while checking for features.
      */
+    @XmlElement("numberOfFeatures")
     int size() throws BackingStoreException;
 
     /**
@@ -91,8 +104,8 @@ public interface FeatureCollection extends Feature, Collection<Feature> {
      * immediately be written to that persistent store.  If you want to add
      * multiple features to this collection, note that it may be considerably
      * more efficient to call the {@link #addAll} method.  The addition of
-     * features takes place within the context of the current transaction on
-     * this feature collection.
+     * features takes place within the context of the current
+     * {@linkplain Transaction transaction} on this feature collection.
      *
      * @throws UnsupportedOperationException if the addition of new features is not supported.
      * @throws BackingStoreException If an error occurs while adding the feature.
@@ -104,7 +117,8 @@ public interface FeatureCollection extends Feature, Collection<Feature> {
      * collection.  If this collection is backed by a persistent store of some
      * kind, then the added features should immediately be written to that
      * persistent store.  The addition of features takes place within
-     * the context of the current transaction on this feature collection.
+     * the context of the current {@linkplain Transaction transaction}
+     * on this feature collection.
      *
      * @throws UnsupportedOperationException if the addition of new features is not supported.
      * @throws BackingStoreException If an error occurs while adding the features.
@@ -116,7 +130,8 @@ public interface FeatureCollection extends Feature, Collection<Feature> {
      * collection is backed by a persistent store of some kind, then this method
      * should cause all of the features from this collection to be removed
      * from that persistent store.  This operation takes place within the
-     * context of the current transaction on this feature collection.
+     * context of the current {@linkplain Transaction transaction} on this
+     * feature collection.
      *
      * @throws UnsupportedOperationException if the removal of features is not supported.
      * @throws BackingStoreException If an error occurs while removing the features.
@@ -127,8 +142,8 @@ public interface FeatureCollection extends Feature, Collection<Feature> {
      * Removes the given feature from this collection.  If this collection is
      * backed by a persistent store of some kind, then this method should cause
      * the given feature to be removed from the persistent store.  This
-     * operation takes place within the context of the current transaction on
-     * this feature collection.
+     * operation takes place within the context of the current
+     * {@linkplain Transaction transaction} on this feature collection.
      *
      * @throws UnsupportedOperationException if the removal of features is not supported.
      * @throws BackingStoreException If an error occurs while removing the feature.
@@ -139,8 +154,8 @@ public interface FeatureCollection extends Feature, Collection<Feature> {
      * Removes the given features from this collection.  If this collection is
      * backed by a persistent store of some kind, then this method should cause
      * all of the given features to be removed from the persistent store.  This
-     * operation takes place within the context of the current transaction on
-     * this feature collection.
+     * operation takes place within the context of the current
+     * {@linkplain Transaction transaction} on this feature collection.
      *
      * @throws UnsupportedOperationException if the removal of features is not supported.
      * @throws BackingStoreException If an error occurs while removing the features.
@@ -152,7 +167,8 @@ public interface FeatureCollection extends Feature, Collection<Feature> {
      * given collection.  If this collection is backed by a persistent store of
      * some kind, then this method should cause the removed features to be
      * removed from the persistent store as well.  This operation takes place
-     * within the context of the current transaction on this feature collection.
+     * within the context of the current {@linkplain Transaction transaction}
+     * on this feature collection.
      *
      * @throws UnsupportedOperationException if the removal of features is not supported.
      * @throws BackingStoreException If an error occurs while removing the features.
@@ -209,64 +225,62 @@ public interface FeatureCollection extends Feature, Collection<Feature> {
     Transaction getTransaction();
 
     /**
-     * Indicate the duration, and any additional information for any
+     * Indicates the duration, and any additional information for any
      * subsequent lock operations.
      * <p>
-     * You can use {@link LockRequest#TRANSACTION_LOCK} to request that
-     * the lock only endure for the duration of the current transaction.
+     * Implementations may provide some {@code TRANSACTION_LOCK} constant to request that the
+     * lock only endure for the duration of the current {@linkplain Transaction transaction}.
      */
     void setLockRequest(LockRequest lock);
 
     /**
      * Lock indicated features.
-     * <p>
-     * Note to unlock, or opperate on these features, one needs to perform a {@link Transaction}
-     * with the authorization token provided by {@link LockResponse}.
+     * To unlock, or operate on these features, one needs to perform a
+     * {@linkplain Transaction transaction} with the authorization token provided
+     * by {@link LockResponse}.
      * <p>
      * Workflows:
      * <ul>
-     * <li>{@link LockRequest} + {@link Transaction#AUTO_COMMIT} returns a
-     *     {@link LockResponse} indicating the success of the opperation and
-     *     and authoriazation tokens aquired.</li>
-     * <li>{@link LockRequest#TRANSACTION_LOCK} + {@link Transaction} returns
-     *     {@link LockResponse#TRANSACTION_LOCKRESPONSE} indicating
-     *     a short term lock is held that will expire at the next commit or rollback.
-     *     Use this workflow to reserve content before starting edits.</li>
-     * <li>{@link LockRequest} + {@link Transaction} returns
-     *     {@link LockResponse#PENDING}, check the result of commit to discover
-     *     the success of of any lock methods made during the transaction.</li>
+     *   <li>{@link LockRequest} + {@link Transaction#AUTO_COMMIT AUTO_COMMIT} returns a
+     *       {@link LockResponse} indicating the success of the operation and authorization
+     *       tokens aquired.</li>
+     *   <li>{@code TRANSACTION_LOCK} + {@link Transaction} returns {@code TRANSACTION_LOCKRESPONSE}
+     *       indicating a short term lock is held that will expire at the next commit or rollback.
+     *       Use this workflow to reserve content before starting edits.</li>
+     *   <li>{@link LockRequest} + {@link Transaction} returns {@code PENDING}. Check the result
+     *       of commit to discover the success of any lock methods made during the transaction.</li>
      * </ul>
-     * For a discussion of these workflows please read the package javadocs.
+     * For a discussion of these workflows please read the
+     * {@linkplain org.opengis.feature package javadocs}.
      *
-     * @return Lock response for {@link Transaction#AUTO_COMMIT},
-     *         {@link LockResponse#TRANSACTION_LOCK} for a short term lock, or
-     *         {@link LockResponse#PENDING} when used in a {@link Transaction}.
+     * @return Lock response for {@link Transaction#AUTO_COMMIT AUTO_COMMIT},
+     *         {@code TRANSACTION_LOCK} for a short term lock, or {@code PENDING}
+     *         when used in a {@linkplain Transaction transaction}.
      */
     LockResponse lockAll(Collection<Feature> c);
-    
+
     /**
-     * Lock this collection of features.
-     * <p>
-     * Note to unlock, or opperate on these features, one needs to perform a {@link Transaction}
-     * with the authorization token provided by {@link LockResponse}.
-     * </p> 
+     * Lock this collection of features. To unlock, or operate on these features, one needs
+     * to perform a {@linkplain Transaction transaction} with the authorization token provided
+     * by {@link LockResponse}.
      * <p>
      * Workflows:
      * <ul>
-     * <li>{@link LockRequest} + {@link Transaction#AUTO_COMMIT} returns a
-     *     {@link LockResponse} indicating the success of the opperation and
-     *     and authoriazation tokens aquired.</li>
-     * <li>{@link LockRequest#TRANSACTION_LOCK} + {@link Transaction} returns
-     *     {@link LockResponse#TRANSACTION_LOCKRESPONSE} indicating
-     *     a short term lock is held that will expire at the next commit or rollback.
-     *     Use this workflow to reserve content before starting edits.</li>
-     * <li>{@link LockRequest} + {@link Transaction} returns
-     *     {@link LockResponse#PENDING}, check the result of commit to discover the
-     *     success of of any lock methods made during the transaction.</li>
+     *   <li>{@link LockRequest} + {@link Transaction#AUTO_COMMIT AUTO_COMMIT} returns a
+     *       {@link LockResponse} indicating the success of the operation and authorization
+     *       tokens aquired.</li>
+     *   <li>{@code TRANSACTION_LOCK} + {@link Transaction} returns {@code TRANSACTION_LOCKRESPONSE}
+     *       indicating a short term lock is held that will expire at the next commit or rollback.
+     *       Use this workflow to reserve content before starting edits.</li>
+     *   <li>{@link LockRequest} + {@link Transaction} returns {@code PENDING}. Check the result
+     *       of commit to discover the success of any lock methods made during the transaction.</li>
      * </ul>
-     * For a discussion of these workflows please read the package javadocs.
+     * For a discussion of these workflows please read the
+     * {@linkplain org.opengis.feature package javadocs}.
      *
-     * @return LockResponse for Transaction.AUTO_COMMIT, LockResponse.TRANSACTION_LOCK for a short term lock, or LockResponse.PENDING when used in a Transaction.
+     * @return Lock response for {@link Transaction#AUTO_COMMIT AUTO_COMMIT},
+     *         {@code TRANSACTION_LOCK} for a short term lock, or {@code PENDING}
+     *         when used in a {@linkplain Transaction transaction}.
      */
     LockResponse lock();
     

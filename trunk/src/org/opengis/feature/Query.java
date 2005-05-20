@@ -18,48 +18,101 @@ import org.opengis.filter.Filter;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 import org.opengis.util.GenericName;
 
+// Annotations
+import org.opengis.annotation.Extension;
+import org.opengis.annotation.XmlElement;
+
 
 /**
- * The query object is used by the {@link FeatureStore#getFeatures(Query) getFeatures} method
- * of the {@linkplain FeatureStore data store} interface, to encapsulate a request.  It defines
- * which {@linkplain FeatureType feature type} to query, what properties to retrieve and what
- * constraints (spatial and non-spatial) to apply to those properties.  It is designed to
- * closesly match a WFS Query element of a {@code getFeatures<} request.  The only difference
- * is the addition of the {@code maxFeatures} element, which allows more control over the
- * {@linkplain Feature features} selected.  It allows a full {@code getFeatures} request to
- * properly control how many features it gets from each query, instead of requesting and
- * discarding when the max is reached.
+ * Used by the {@link FeatureStore#getFeatures(Query) getFeatures} method
+ * of the {@linkplain FeatureStore data store} interface, to encapsulate a request.
+ * A query defines which {@linkplain FeatureType feature type} to query, what properties
+ * to retrieve and what constraints (spatial and non-spatial) to apply to those properties.
+ * It is designed to closesly match a WFS Query element of a {@code getFeatures} request.
+ * A difference is the addition of the {@link #getMaxFeatures maxFeatures} element, which
+ * allows more control over the {@linkplain Feature features} selected.  It allows a full
+ * {@code getFeatures} request to properly control how many features it gets from each query,
+ * instead of requesting and discarding when the max is reached.
  *
- * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
+ * @version <A HREF="http://portal.opengeospatial.org/files/?artifact_id=8339">Implementation specification 1.1</A>
  * @since GeoAPI 1.1
+ *
+ * @revisit The following XML elements are not yet defined in this interface:
+ *          {@code Function}, {@code SortBy}.
  */
+@XmlElement("Query")
 public interface Query {
     /**
      * Returns the name of the type that is to be queried.
+     *
+     * @revisit OGC specification said that a list should be returned.
+     *          We may add a {@code getTypeNames()} (plural form) in a
+     *          future version.
      */
+    @XmlElement("typeName")
     GenericName getTypeName();
 
     /**
-     * Returns the filter that will limit which {@linkplain Feature features} are returned.
+     * Returns the name of the type that is to be queried.
+     * The type name is a list of one or more feature type names that indicate
+     * which types of feature instances should be included in the reponse set.
+     * Specifying more than one type name indicates that a join operation is
+     * being performed. All the names in the type name list must be valid types
+     * that belong to this query's feature content.
      */
+//    @XmlElement("typeName")
+//    Collection<GenericName> getTypeNames();
+
+    /**
+     * Returns the filter that will limit which {@linkplain Feature features} are returned.
+     * The filter element is used to define spatial and/or non-spatial constraints on query.
+     * It may be {@code null} if there is none.
+     */
+    @XmlElement("Filter")
     Filter getFilter();
 
     /**
      * Returns the list of property names of the {@linkplain Feature features}
      * to be retrieved. This may be null if all properties are to be retrieved.
+     * <p>
+     * This is used to specify one or more properties of a {@linkplain Feature feature}
+     * whose values are to be retrieved by a Web Feature Service.  While a Web Feature
+     * Service should endeavour to satisfy the exact request specified, in some instance
+     * this may not be possible.  Specifically, a Web Feature Service must generate a
+     * valid GML response to a Query operation. The schema used to generate the output
+     * may include properties that are mandatory.  In order that the output validates,
+     * these mandatory properties must be specified in the request.  If they are not, a
+     * Web Feature Service may add them automatically to the Query before processing it.
+     * Thus a client application should, in general, be prepared to receive more properties
+     * than it requested. Of course, using {@link FeatureAttributeDescriptor}, a client
+     * application can determine which properties are mandatory and request them in the
+     * first place.
      */
+    @XmlElement("Property")
     List<String> getPropertyNames();
 
     /**
      * Gives a mnemonic name for use by the client to identify this query.
+     * The handle allows a client application to assign a client-generated
+     * identifier for the query. The handle is included to facilitate error
+     * reporting. If one query in a {@code GetFeature} request causes an exception,
+     * a WFS may report the handle to indicate which query element failed.  If the
+     * handle is not present, the WFS may use other means to localize the error
+     * (e.g. line numbers).
      */
+    @XmlElement("handle")
     String getHandle();
 
     /**
      * Returns the maximum number of features to be retrieved by the query.
      * Can return zero.  Can also return {@link Integer#MAX_VALUE} to indicate
      * that the maximum number of features is unlimited.
+     *
+     * @revisit {@code maxFeatures} is an attribute of {@code getFeature} request.
+     *          We may wish to avoid duplication once WMS interfaces are provided in
+     *          GeoAPI.
      */
+    @Extension
     int getMaxFeatures();
 
     /**
@@ -74,6 +127,7 @@ public interface Query {
      * 
      * @return the version of the feature to return, or null for latest.
      */
+    @XmlElement("featureVersion")
     String getVersion();
 
     /**
@@ -94,7 +148,12 @@ public interface Query {
      *          {@link FeatureCollection} configuration issue (or a {@link FeatureStore}
      *          configuration issue). Recent experience with Geotools shows the added burden
      *          on client code to be a pain.
+     *
+     * @revisit MD: This method is misnamed. {@link org.opengis.referencing.cs.CoordinateSystem}
+     *          and {@link org.opengis.referencing.crs.CoordinateReferenceSystem} are not the
+     *          same thing.
      */
+    @Extension
     CoordinateReferenceSystem getCoordinateSystem();
 
     /**
@@ -105,6 +164,23 @@ public interface Query {
      *
      * @return The coordinate reference system that {@linkplain Feature features} from the
      *         {@linkplain FeatureStore feature store} should be reprojected to.
+     *
+     * @revisit MD: This method is misnamed. {@link org.opengis.referencing.cs.CoordinateSystem}
+     *          and {@link org.opengis.referencing.crs.CoordinateReferenceSystem} are not the
+     *          same thing.
      */
+    @Extension
     CoordinateReferenceSystem getCoordinateSystemReproject();
+
+    /**
+     * Specifies a specific WFS-supported CRS that should be used for returned feature
+     * geometries.  The value may be the WFS {@code "StorageSRS"} value,
+     * {@code "DefaultRetrievalSRS"} value, or one of {@code "AdditionalSRS"} values.
+     * If no CRS name value is supplied, then the features will be returned using either
+     * the {@code "DefaultRetrievalSRS"}, if specified, and {@code "StorageSRS"} otherwise.
+     * For feature types with no spatial properties, this attribute must not be specified
+     * or ignored if it is specified.
+     */
+//    @XmlElement("srsName")
+//    String getCrsName();
 }

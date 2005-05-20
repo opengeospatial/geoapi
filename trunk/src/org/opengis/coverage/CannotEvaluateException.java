@@ -32,7 +32,7 @@ import org.opengis.spatialschema.geometry.DirectPosition;  // For Javadoc
  *   </TD></TR>
  * </TABLE>
  *
- * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
+ * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 1.0
  *
  * @see Coverage#evaluate(DirectPosition, byte[])

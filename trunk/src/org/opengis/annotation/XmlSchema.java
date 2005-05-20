@@ -22,7 +22,7 @@ import static java.lang.annotation.RetentionPolicy.*;
 /**
  * An annotation mapping a package to the XML schema from which it was derived.
  *
- * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
+ * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 1.1
  */
 @Documented
