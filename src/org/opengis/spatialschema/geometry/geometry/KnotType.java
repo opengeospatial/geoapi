@@ -32,9 +32,8 @@ import static org.opengis.annotation.Specification.*;
  * This code list is used to describe the distribution of knots in the parameter space of
  * various splines.
  *
- * @author ISO/DIS 19107
- * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-101.pdf">Abstract specification 5</A>
+ * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 1.1
  */
 @UML(identifier="GM_KnotType", specification=ISO_19107)

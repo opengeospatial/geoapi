@@ -15,10 +15,15 @@ package org.opengis.util;
  * Exception that is thrown when an invalid enumeration lookup is performed
  * in the {@link SimpleEnumerationType} class.
  *
- * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
+ * @author Jesse Crossley (SYS Technologies)
  * @since GeoAPI 1.0
  */
 public class NoSuchEnumerationException extends Exception {
+    /**
+     * Serial number for interoperability with different versions.
+     */
+    private static final long serialVersionUID = 5827953825646995065L;
+
     /**
      * The invalid value.
      */

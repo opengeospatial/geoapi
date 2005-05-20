@@ -37,9 +37,8 @@ import static org.opengis.annotation.Specification.*;
  * Creating primitives in a different CRS may requires a different instance of
  * <code>PrimitiveFactory</code>.
  *
- * @author ISO/DIS 19107
- * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-101.pdf">Abstract specification 5</A>
+ * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 1.0
  */
 public interface PrimitiveFactory {

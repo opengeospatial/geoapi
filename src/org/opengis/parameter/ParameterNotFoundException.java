@@ -15,8 +15,8 @@ package org.opengis.parameter;
  * Thrown when a required parameter was not found in a
  * {@linkplain ParameterDescriptorGroup parameter group}.
  *
- * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
- * @version 2.0
+ * @author Martin Desruisseaux (IRD)
+ * @since GeoAPI 1.0
  *
  * @see ParameterDescriptorGroup#descriptor
  * @see ParameterValueGroup#parameter

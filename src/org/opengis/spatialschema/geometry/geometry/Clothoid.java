@@ -32,9 +32,8 @@ import static org.opengis.annotation.Specification.*;
  * where <var>A</var> is a constant, <var>R</var> is the varying radius of curvature along
  * the curve and <var>t</var> is the length along the curve and given in the Fresnel integrals.
  *
- * @author ISO/DIS 19107
- * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-101.pdf">Abstract specification 5</A>
+ * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 1.1
  */
 @UML(identifier="GM_Clothoid", specification=ISO_19107)

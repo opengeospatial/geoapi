@@ -41,8 +41,8 @@ import org.opengis.spatialschema.geometry.Geometry;
  * Interface whose methods allow the caller to create instances of the various
  * {@link Filter} and {@link Expression} subclasses.
  *
- * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/02-059.pdf">Implementation specification 1.0</A>
+ * @author Chris Dillard (SYS Technologies)
  * @since GeoAPI 1.1
  */
 public interface FilterFactory {

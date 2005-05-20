@@ -20,8 +20,8 @@ import org.opengis.annotation.Extension;
 /**
  * Abstract superclass of the various symbol classes.
  *
- * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
- * @version <A HREF="http://www.opengis.org/docs/02-070.pdf">Implementation specification 1.0</A>
+ * @version <A HREF="http://portal.opengeospatial.org/files/?artifact_id=1188">Implementation specification 1.0</A>
+ * @author Chris Dillard (SYS Technologies)
  * @since GeoAPI 1.1
  */
 public interface Symbol {

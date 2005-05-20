@@ -15,7 +15,7 @@ package org.opengis.referencing.operation;
  * Thrown when {@link MathTransform#inverse} is
  * invoked but the transform can't be inverted.
  *
- * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
+ * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 1.0
  *
  * @see org.opengis.referencing.operation.CoordinateOperationFactory

@@ -27,8 +27,10 @@ import static org.opengis.annotation.Specification.*;
  * The {@link #getValue()} and {@link #setValue(Object)} methods can be invoked at any time.
  * Others getters and setters are parameter-type dependents.
  *
- * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/03-073r1.zip">Abstract specification 2.0</A>
+ * @author Martin Desruisseaux (IRD)
+ * @author Jody Garnett (Refractions Research)
+ * @since GeoAPI 1.0
  *
  * @see ParameterDescriptor
  * @see ParameterValueGroup

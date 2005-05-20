@@ -45,9 +45,8 @@ import static org.opengis.annotation.Specification.*;
  * corresponding primitive subtype) while negatively oriented primitives are not.
  * </font></blockquote>
  *  
- * @author ISO/DIS 19107
- * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-101.pdf">Abstract specification 5</A>
+ * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 1.0
  */
 @UML(identifier="GM_OrientablePrimitive", specification=ISO_19107)

@@ -23,9 +23,8 @@ import static org.opengis.annotation.Specification.*;
  * A polyhedral surface that is composed only of {@linkplain Triangle triangles}.
  * There is no restriction on how the triangulation is derived.
  *
- * @author ISO/DIS 19107
- * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-101.pdf">Abstract specification 5</A>
+ * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 1.1
  */
 @UML(identifier="GM_TriangulatedSurface", specification=ISO_19107)

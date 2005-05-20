@@ -73,8 +73,8 @@ public interface FeatureAttributeDescriptor {
     /**
      * Returns the maximum number of occurrences of this attribute on a given
      * feature.  The vast majority of data sources and data consumers will only
-     * function with this value being one.  A value of -1 indicates that the
-     * maximum number of occurrences is unbounded.
+     * function with this value being one.  A value of {@link Integer#MAX_VALUE}
+     * indicates that the maximum number of occurrences is unbounded.
      */
     int getMaximumOccurrences();
 

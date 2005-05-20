@@ -32,7 +32,6 @@ import org.opengis.util.InternationalString;
  *   <li>Configuration: currently captured as a {@link Map}.</li>
  * </ul>
  *
- * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @since GeoAPI 1.1
  */
 public interface FeatureStoreFactory {

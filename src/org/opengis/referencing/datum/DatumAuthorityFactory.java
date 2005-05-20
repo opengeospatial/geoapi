@@ -32,8 +32,8 @@ import static org.opengis.annotation.Specification.*;
  * which is also used in the <A HREF="http://www.remotesensing.org/geotiff/geotiff.html">GeoTIFF</A>
  * standard.
  *
- * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-009.pdf">Implementation specification 1.0</A>
+ * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 1.0
  *
  * @see org.opengis.referencing.cs.CSAuthorityFactory

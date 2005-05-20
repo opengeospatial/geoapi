@@ -24,7 +24,7 @@ import org.opengis.spatialschema.geometry.DirectPosition;  // For javadoc
  * It is also thrown when {@link CoordinateOperationFactory} fails to find a path between two
  * {@linkplain org.opengis.referencing.crs.CoordinateReferenceSystem coordinate reference systems}.
  *
- * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
+ * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 1.0
  */
 public class TransformException extends Exception {

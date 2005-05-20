@@ -21,9 +21,8 @@ import static org.opengis.annotation.Specification.*;
  * vertical curves. This is not a polygonal surface, since each of the grid squares is a ruled
  * surface, and not necessarily planar.
  *
- * @author ISO/DIS 19107
- * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-101.pdf">Abstract specification 5</A>
+ * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 1.1
  */
 @UML(identifier="GM_BilinearGrid", specification=ISO_19107)

@@ -24,9 +24,8 @@ import static org.opengis.annotation.Specification.*;
  * Defines a homogeneous segment of a {@linkplain Curve curve}.
  * Each <code>CurveSegment</code> shall be in, at most, one {@linkplain Curve curve}.
  *
- * @author ISO/DIS 19107
- * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-101.pdf">Abstract specification 5</A>
+ * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 1.0
  */
 @UML(identifier="GM_CurveSegment", specification=ISO_19107)

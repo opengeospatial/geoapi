@@ -20,9 +20,8 @@ import static org.opengis.annotation.Specification.*;
  * Geographic position of the dataset. This is only an approximate
  * so specifying the co-ordinate reference system is unnecessary.
  *
- * @author ISO 19115
- * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
+ * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 1.0
  */
 @UML(identifier="EX_GeographicBoundingBox", specification=ISO_19115)

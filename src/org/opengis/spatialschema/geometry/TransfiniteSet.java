@@ -21,9 +21,8 @@ import static org.opengis.annotation.Specification.*;
  * numbers are transfinite sets. This is actually the usual definition of set in mathematics,
  * but programming languages restrict the term set to mean finite set.
  *
- * @author ISO TS 19103
- * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-101.pdf">Abstract specification 5</A>
+ * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 1.0
  */
 @UML(identifier="TransfiniteSet", specification=ISO_19107)

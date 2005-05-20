@@ -19,7 +19,66 @@ import org.opengis.spatialschema.geometry.Envelope;
 
 
 /**
- *
+ * Represents a feature of arbitrary complexity.  The {@link FeatureType} and {@code Feature}
+ * interfaces also work together to give implementers a framework for constraining and enforcing
+ * constraints (respectively) on allowed feature types.
+ * <p>
+ * <b>Notes for Feature Clients:</b><br>
+ * Clients should always use feature accessor methods ({@link #getAttribute} and
+ * {@link #setAttribute}) to modify the state of internal attribute objects.  It
+ * is possible that some feature implementations will allow object state changes
+ * by clients outside of the class, but this is strongly discouraged. In general,
+ * feature implementations will make defensive copies of objects passed to clients
+ * and it is therefore not guaranteed that client state changes that take place outside
+ * of the feature will be reflected in the internal state of the feature object. For
+ * this reason, clients should always use the {@code set} methods to change feature
+ * attribute object states.
+ * <p>
+ * <b>Notes for Feature Implementers:</b><br>
+ * It is the responsibility of the implementing class to ensure that the
+ * {@code Feature} attributes stay synchronized with its {@link FeatureType}
+ * definition. <em>Features should never get out of synch with their declared
+ * schemas and should never alter their schemas.</em>  There are four conventions
+ * of which implementers of this interface must be aware in order to successfully
+ * manage a {@code Feature}:
+ * <p>
+ * <ul>
+ *   <li><p><b>FeatureType Reference</b><br>
+ *       Features must always hold a single (immutable: see {@link FeatureType}) schema
+ *       reference and this reference should not be altered after a feature has been created.
+ *       To ensure this, is is recommended that features take a valid reference to an existing
+ *       immutable schema in its constructor and declare that reference final.</p></li>
+ *   <li><p><b>Default Geometry</b><br>
+ *       Each feature must have a default geometry, but this primary geometry may be null.
+ *       This means that a feature may contain no geometries, but it must always have a method
+ *       for accessing a geometry object (even if it is null). It also means that a feature with
+ *       multiple geometries must pick one as its default geometry.  Note that the designation
+ *       of the default geometry is stored as part of the {@link FeatureType} and is therefore
+ *       immmutable.</p></li>
+ *   <li><p><b>Attributes</b><br>
+ *       All features contain zero or more attributes, which can have one or more occurrences
+ *       inside the feature.  Attributes may be any valid Java object. If attributes are instances
+ *       of {@code Feature}, they are handled specially by the {@code Feature} methods, in that
+ *       their attributes may be accessed directly by their containing feature.  All other object
+ *       variables and methods must be accessed through the objects themselves. It is up to
+ *       implementers of {@code Feature} to make sure that each attribute value conforms to
+ *       its internal schema.  A feature should never reach a state where its attributes
+ *       (or sub-attributes) do not conform to their {@link FeatureType} definitions.</p></li>
+ *   <li><p><b>Constructors</b><br>
+ *       Constructors should take arguments with enough information to create a valid representation
+ *       of the feature.  They should also always include a valid schema that can be used to check the
+ *       proposed attributes.  This is necessary to ensure that the feature is always in a valid state,
+ *       relative to its schema.</p></li>
+ *   <li><p><b>{@code hashCode()} and {@code equals(Object)}</b><br>
+ *       Determining equality and equivalence for Feature instances is of utmost importance. This must
+ *       be done in a consistent manner, as many implementations will rely on these relations. See
+ *       {@link java.lang.Object} for details.</p></li>
+ * </ul>
+ * 
+ * @author James Macgill (CCG)
+ * @author Rob Hranac (TOPP)
+ * @author Ian Schneider (USDA-ARS)
+ * @author David Zwiers (Refractions Research)
  * @since GeoAPI 1.1
  */
 public interface Feature {

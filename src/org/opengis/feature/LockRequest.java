@@ -10,6 +10,10 @@
  *************************************************************************************************/
 package org.opengis.feature;
 
+// Annotations
+import org.opengis.annotation.Extension;
+import org.opengis.annotation.XmlElement;
+
 
 /**
  * Represents the request for a lock.
@@ -21,14 +25,16 @@ package org.opengis.feature;
  * This is a simple token you can keep until you need to work with the content again.
  * Without this token you are prevented from work (at least until the duration is up).
  *
- * @author Jody Garnett
+ * @author Jody Garnett (Refractions Research)
  * @since GeoAPI 1.1
  */
+@XmlElement("LockFeature")
 public interface LockRequest {
 	/**
 	 * Returns a duration for which the request is valid.  The special value
 	 * of -1 indicates that a lock should be valid only for the duration of a
 	 * transaction.
 	 */
+    @XmlElement("expiry")
     long getDuration();
 }

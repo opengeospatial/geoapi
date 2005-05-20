@@ -13,6 +13,10 @@ package org.opengis.feature;
 // J2SE direct dependencies
 import java.util.Set;
 
+// Annotations
+import org.opengis.annotation.Extension;
+import org.opengis.annotation.XmlElement;
+
 
 /**
  * Represents a response for a lock request.
@@ -24,9 +28,10 @@ import java.util.Set;
  * This is a simple token you can keep until you need to work with the content again.
  * Without this token you are prevented from work (at least until the duration is up).
  *
- * @author Jody Garnett
+ * @author Jody Garnett (Refractions Research)
  * @since GeoAPI 1.1
  */
+@XmlElement("LockFeatureResponse")
 public interface LockResponse {
     /**
      * Number of features successfully locked, or -1 if unknown
@@ -45,17 +50,19 @@ public interface LockResponse {
 
 	/**
      * Add an additional authorization token to collected results for {@link Transaction#commit()}.
-     * Note this abstraction does not allow the collection of more then one token per
+     * Note this abstraction does not allow the collection of more than one token per
      * {@link FeatureStore}. This should not be an issue give our two workflows:
      * <ul>
-     * <li>Transaction.AUTO_COMMIT: Each lock method returns a different LockResponse.
-     * <li>Transaction + FeatureRequest.TRANSACTION_LOCK: Sepcial Case object TRANSACTION_LOCK_RESPONSE is always returned
-     * <li>Transaction: Each lock method returns null, commit returns a single LockResponse.
-     * Given that a Transaction is supposed to gather everything up into a single commit a datastore
-     * should be capable of issuing a single authorization token (even if more then one of
-     * its FeatureCollections was involved in the transaction.
+     *   <li>{@link Transaction#AUTO_COMMIT AUTO_COMMIT}: Each lock method returns a different
+     *        {@code LockResponse}.</li>
+     *   <li>{@link Transaction} + {@code TRANSACTION_LOCK}: Sepcial case object
+     *        {@code TRANSACTION_LOCK_RESPONSE} is always returned.</li>
+     *   <li>{@link Transaction}: Each lock method returns null, commit returns a single
+     *       {@link LockResponse}. Given that a {@code Transaction} is supposed to gather
+     *       everything up into a single commit, a datastore should be capable of issuing
+     *       a single authorization token (even if more then one of its {@link FeatureCollection}s
+     *       was involved in the transaction.</li>
      * </ul>
-     * </p>
      */  
     void addAuthorization(FeatureStore store, String token);
 
@@ -65,7 +72,11 @@ public interface LockResponse {
      * at a time, or several {@code FeatureCollection}s belonging to the same {@code FeatureStore}.
      *
      * @return token, or null if a single token was unavailable.
+     *
+     * @revisit Consider renaming this method as {@code getAuthorization()} for consistency
+     *          with {@link #getAuthorization} and the rest of feature API.
      */
+    @XmlElement("LockID")
     String getToken();
 
     /**
@@ -80,5 +91,6 @@ public interface LockResponse {
     /**
      * Returns the set of locked feature stores.
      */
+    @XmlElement("FeaturesLocked")
     Set<FeatureStore> getFeatureStores();
 }

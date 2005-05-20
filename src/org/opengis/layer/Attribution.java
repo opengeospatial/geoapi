@@ -22,9 +22,8 @@ import org.opengis.annotation.XmlElement;
  * Provides a way to identify the source of geographic information used in a {@link Layer}
  * or collection of {@code Layer}s.
  * 
- * @author ISO 19128
- * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://portal.opengeospatial.org/files/?artifact_id=5316">Implementation specification 1.3</A>
+ * @author Jesse Crossley (SYS Technologies)
  * @since GeoAPI 1.1
  */
 @XmlElement("Attribution") // 7.2.4.6.12 Attribution

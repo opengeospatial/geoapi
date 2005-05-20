@@ -108,10 +108,18 @@
   </TABLE>
 
   <P>&nbsp;</P>
-  <H2>Custom Javadoc tags</H2>
+  <H2>Javadoc tags</H2>
   <TABLE BORDER='2' CELLPADDING='12'>
     <TR BGCOLOR="#EEEEFF"><TH NOWRAP>Javadoc tag</TH>
-                          <TH NOWRAP>Usage and renaming rule</TH></TR>
+                          <TH NOWRAP>Usage</TH></TR>
+
+    <TR><TD NOWRAP><CODE>@author</CODE> <VAR>&lt;editor&gt;</VAR></TD>
+        <TD><P ALIGN=justify>The person who wrote the interface. This is <U>not</U> the person who
+            wrote the specification. The term <CITE>editor</CITE> may be more appropriate for the
+            describing his task, but <CODE>@author</CODE> is the standard javadoc tag. Furthermore,
+            the editor sometime needs to extend the specification, in which case editor do some
+            author work. The <CODE>@author</CODE> tag may be considered as a contact person for
+            questions related to the Java expression of OGC/ISO specifications.</P></TD></TR>
 
     <TR><TD NOWRAP><CODE>@rename</CODE> <VAR>&lt;reason&gt;</VAR></TD>
         <TD><P ALIGN=justify>Some non-trivial name change has been applied in order to match

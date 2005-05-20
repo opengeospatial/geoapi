@@ -30,7 +30,7 @@ import org.opengis.annotation.Extension;
  * If the transformation is affine, then <code>MathTransform</code> shall be an
  * immutable instance of {@link java.awt.geom.AffineTransform}.
  *
- * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
+ * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 1.0
  */
 @Extension

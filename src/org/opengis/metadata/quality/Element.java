@@ -28,9 +28,8 @@ import static org.opengis.annotation.Specification.*;
 /**
  * Type of test applied to the data specified by a data quality scope.
  *
- * @author ISO 19115
- * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
+ * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 1.1
  */
 @UML(identifier="DQ_Element", specification=ISO_19115)

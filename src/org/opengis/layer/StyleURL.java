@@ -20,9 +20,8 @@ import org.opengis.annotation.XmlElement;
  * against the {@code StyleURL} are properly MIME-typed, Viewer Clients and Cascading Map Servers
  * can make use of this. A possible use could be to allow a Map Server to provide legend information.
  * 
- * @author ISO 19128
- * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://portal.opengeospatial.org/files/?artifact_id=5316">Implementation specification 1.3</A>
+ * @author Jesse Crossley (SYS Technologies)
  * @since GeoAPI 1.1
  */
 @XmlElement("StyleURL")

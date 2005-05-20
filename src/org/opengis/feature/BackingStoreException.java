@@ -20,8 +20,11 @@ import java.sql.SQLException;  // For javadoc
  * failure in the backing store, or a failure to contact the backing store. At the difference of
  * {@link FeatureStoreException}, this exception is unchecked in order to allows its usage with
  * the Java collection framework. This exception usually have an {@link IOException} or a
- * {@link SQLException} as its {@linkplain #getCause cause}.
+ * {@link SQLException} as its {@linkplain #getCause cause}. The cause may also be a
+ * {@link org.opengis.referencing.operation.TransformException} if the feature collection
+ * performs reprojection on the fly.
  *
+ * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 1.1
  */
 public class BackingStoreException extends RuntimeException {

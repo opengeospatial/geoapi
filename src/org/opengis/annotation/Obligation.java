@@ -19,9 +19,8 @@ import static org.opengis.annotation.Specification.*;
  * the code list elements declared in the {@link org.opengis.metadata.Obligation} code list
  * from the metadata package.
  * 
- * @author ISO 19115
- * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
+ * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 1.1
  */
 @UML(identifier="MD_ObligationCode", specification=ISO_19115)

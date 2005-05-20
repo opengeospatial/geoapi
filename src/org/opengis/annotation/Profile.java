@@ -19,7 +19,7 @@ import static java.lang.annotation.ElementType.*;
 /**
  * An annotation mapping an interface, methods or fields to a profile.
  *
- * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
+ * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 1.1
  */
 @Documented

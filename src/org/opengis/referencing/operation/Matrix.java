@@ -28,8 +28,8 @@ import static org.opengis.annotation.Specification.*;
  * case and optimized versions for 3&times;3 and 4&times;4 cases, which are quite common in a
  * transformation package.
  *
- * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-009.pdf">Implementation specification 1.0</A>
+ * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 1.0
  *
  * @see javax.vecmath.Matrix3d

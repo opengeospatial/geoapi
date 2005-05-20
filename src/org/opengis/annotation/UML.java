@@ -23,7 +23,7 @@ import static java.lang.annotation.RetentionPolicy.*;
  * An annotation mapping each interface, methods or fields to
  * the UML identifier where they come from.
  *
- * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
+ * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 1.1
  */
 @Documented

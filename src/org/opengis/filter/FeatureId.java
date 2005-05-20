@@ -21,8 +21,8 @@ import org.opengis.annotation.XmlElement;
  * Instances of this interface represent a filter that passes only for features
  * that have one of the IDs given to this object.
  *
- * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/02-059.pdf">Implementation specification 1.0</A>
+ * @author Chris Dillard (SYS Technologies)
  * @since GeoAPI 1.1
  */
 @XmlElement("FeatureId")

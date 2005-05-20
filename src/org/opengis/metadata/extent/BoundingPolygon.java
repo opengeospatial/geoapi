@@ -27,9 +27,8 @@ import static org.opengis.annotation.Specification.*;
  * (<var>x</var>,<var>y</var>) coordinates of the polygon. The last
  * point replicates first point.
  *
- * @author ISO 19115
- * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
+ * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 1.0
  */
 @UML(identifier="EX_BoundingPolygon", specification=ISO_19115)

@@ -42,9 +42,8 @@ import static org.opengis.annotation.Specification.*;
  * which are the unit tangent vectors at <code>controlPoint[0]</code> and <code>controlPoint[n]</coded>
  * where <var>n</var> = <code>controlPoint.length-1</code>.
  *
- * @author ISO/DIS 19107
- * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-101.pdf">Abstract specification 5</A>
+ * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 1.1
  */
 @UML(identifier="GM_CubicSpline", specification=ISO_19107)

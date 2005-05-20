@@ -36,7 +36,7 @@ import org.opengis.util.InternationalString;
  * {@linkplain org.opengis.go.display.primitive.Graphic graphics} to be owned by the produced
  * {@linkplain Layer layers}.
  * 
- * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
+ * @author Jesse Crossley (SYS Technologies)
  * @since GeoAPI 1.1
  */
 public interface LayerSource {

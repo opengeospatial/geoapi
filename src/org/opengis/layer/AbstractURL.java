@@ -18,9 +18,8 @@ import org.opengis.metadata.citation.OnLineResource;
  * A simple starting point for most of the various URL elements used by {@link Layer}s
  * and {@link Style}s.
  * 
- * @author ISO 19128
- * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://portal.opengeospatial.org/files/?artifact_id=5316">Implementation specification 1.3</A>
+ * @author Jesse Crossley (SYS Technologies)
  * @since GeoAPI 1.1
  */
 public interface AbstractURL {

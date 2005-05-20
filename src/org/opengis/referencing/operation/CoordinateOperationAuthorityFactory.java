@@ -31,8 +31,8 @@ import static org.opengis.annotation.Specification.*;
  * A commonly used authority is EPSG, which is also used
  * in the GeoTIFF standard.
  *
- * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-009.pdf">Implementation specification 1.0</A>
+ * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 1.0
  */
 @UML(identifier="CT_CoordinateTransformationAuthorityFactory", specification=OGC_01009)

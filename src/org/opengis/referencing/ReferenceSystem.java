@@ -26,12 +26,11 @@ import static org.opengis.annotation.Specification.*;
 /**
  * Description of a spatial and temporal reference system used by a dataset.
  *  
- * @author ISO 19111
- * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/03-073r1.zip">Abstract specification 2.0</A>
+ * @author Martin Desruisseaux (IRD)
+ * @since GeoAPI 1.0
  *
  * @see org.opengis.referencing.crs.CoordinateReferenceSystem
- * @since GeoAPI 1.0
  */
 @UML(identifier="RS_ReferenceSystem", specification=ISO_19111)
 public interface ReferenceSystem extends IdentifiedObject {

@@ -40,7 +40,7 @@ import org.opengis.parameter.InvalidParameterValueException; // For javadoc
  *   </TD></TR>
  * </TABLE>
  *
- * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
+ * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 1.1
  *
  * @see GridCoverageExchange#getReader

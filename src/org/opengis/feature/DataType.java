@@ -22,7 +22,7 @@ import org.opengis.util.CodeList;
  * Enumeration class whose static constants give the possible data types for
  * Feature attributes.
  *
- * @author Chris Dillard
+ * @author Chris Dillard (SYS Technologies)
  * @since GeoAPI 1.1
  */
 public final class DataType extends CodeList<DataType> {

@@ -26,9 +26,8 @@ import static org.opengis.annotation.Specification.*;
  * A curve at a constant distance from the basis curve. They can be useful as a cheap and
  * simple alternative to constructing curves that are offsets by definition.
  *
- * @author ISO/DIS 19107
- * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-101.pdf">Abstract specification 5</A>
+ * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 1.1
  */
 @UML(identifier="GM_OffsetCurve", specification=ISO_19107)

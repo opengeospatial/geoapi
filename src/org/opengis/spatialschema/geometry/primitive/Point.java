@@ -29,9 +29,8 @@ import static org.opengis.annotation.Specification.*;
  * has been subclassed to provide additional non-geometric information such as
  * symbology.
  *
- * @author ISO/DIS 19107
- * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-101.pdf">Abstract specification 5</A>
+ * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 1.0
  *
  * @see PrimitiveFactory#createPoint

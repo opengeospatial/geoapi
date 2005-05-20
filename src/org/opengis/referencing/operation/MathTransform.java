@@ -36,8 +36,8 @@ import static org.opengis.annotation.Specification.*;
  * of an operation, then it should keep hold of the {@link CoordinateOperation} interface,
  * and use the contained math transform object whenever it wishes to perform a transform.
  *
- * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-009.pdf">Implementation specification 1.0</A>
+ * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 1.0
  *
  * @see java.awt.geom.AffineTransform

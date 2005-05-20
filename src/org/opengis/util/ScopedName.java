@@ -22,8 +22,7 @@ import static org.opengis.annotation.Specification.*;
  * and a {@linkplain GenericName}, which may be a {@link LocalName} or an other
  * <code>ScopedName</code>, as {@linkplain #getScope tail}.
  *
- * @author ISO 19103
- * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
+ * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 1.1
  *
  * @see NameFactory#createScopedName
