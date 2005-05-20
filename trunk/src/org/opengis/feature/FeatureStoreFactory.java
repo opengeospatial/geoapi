@@ -116,8 +116,6 @@ public interface FeatureStoreFactory {
      * @param provider Provider or Server of spatial information. 
      * @param params additional configuration information.
      * @return {@code true} if this factory can communicate with the provider.
-     *
-     * @revisit Need generic types for the map argument.
      */
     boolean canProcess(URI provider, Map<String,Object> params);
 
