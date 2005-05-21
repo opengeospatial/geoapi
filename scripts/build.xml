@@ -82,6 +82,7 @@
         <include name="**/*.html"/>
         <include name="**/*.java"/>
         <include name="**/*.properties"/>
+        <exclude name="*.*"/>
       </fileset>
     </copy>
 
@@ -96,24 +97,32 @@
       </fileset>
     </copy>
 
-    <fixcrlf srcdir="." tab="remove" eol="unix" eof="remove">
+    <fixcrlf srcdir="snapshot/tiger/sources" tab="remove" eol="unix" eof="remove">
       <include name="**/*.html"/>
       <include name="**/*.java"/>
       <include name="**/*.properties"/>
     </fixcrlf>
 
-    <replace dir=".">
-      <include name="**/*.java"/>
-      <exclude name="**/org/opengis/go/**"/>
-      <exclude name="**/org/opengis/util/**"/>
-      <replacefilter token=" CodeList[] family()" value="[] family()" />
-      <replacefilter token="Object clone()"       value="clone()"     />
-      <replacefilter token="Object next()"        value="next()"      />
-    </replace>
+    <!-- Copy to 1.4 directory before we change the source -->
+    <mkdir dir="snapshot/sources"/>
+    <copy todir="snapshot/sources">
+      <fileset dir="snapshot/tiger/sources">
+        <exclude name="**org/opengis/annotation/**"/>
+        <exclude name="**/package-info.java"/>
+      </fileset>
+    </copy>
 
-    <replace dir=".">
+    <!-- Erase the word after /*{...}*/ constructs -->
+    <replaceregexp flags="g">
+      <fileset dir="snapshot/tiger/sources" includes="**/*.java"/>
+      <regexp pattern="\Q}*/\E\s*[\w\&lt;\&gt;]+"/>
+      <substitution expression="}*/"/>
+    </replaceregexp>
+
+    <!-- Uncomment /*{...}*/ constructs -->
+    <replace dir="snapshot/tiger/sources">
       <include name="**/*.java"/>
-      <replacefilter token="/// " value="    /* 1.5 specific */ "/>
+      <replacefilter token="/// " value="    "/>
       <replacefilter token="/*{"/>
       <replacefilter token="}*/"/>
     </replace>
@@ -219,13 +228,6 @@
 
   <target name="compile" depends="compile-tiger">
 
-    <mkdir dir="snapshot/sources"/>
-    <copy todir="snapshot/sources">
-      <fileset dir="snapshot/tiger/sources">
-        <exclude name="**org/opengis/annotation/**"/>
-        <exclude name="**/package-info.java"/>
-      </fileset>
-    </copy>
     <replace dir=".">
       <include name="snapshot/sources/**/*.java"/>
       <replacefilter token="&lt;? extends Coverage&gt;"/>
@@ -278,6 +280,7 @@
       <replacefilter token="&lt;Extent&gt;"/>
       <replacefilter token="&lt;ExternalGraphicOrMark&gt;"/>
       <replacefilter token="&lt;Feature&gt;"/>
+      <replacefilter token="&lt;FeatureAttributeDescriptor&gt;"/>
       <replacefilter token="&lt;FeatureType&gt;"/>
       <replacefilter token="&lt;FeatureTypeList&gt;"/>
       <replacefilter token="&lt;FeatureLayer&gt;"/>
@@ -378,8 +381,6 @@
       <replacefilter token="&lt;VerticalDatumType&gt;"/>
       <replacefilter token="&lt;VerticalExtent&gt;"/>
 
-      <replacefilter token="    /* 1.5 specific */"        value="// "                             />
-      <replacefilter token=    "/* 1.5 specific */"        value="// "                             />
       <replacefilter token="@UML"                          value="//@UML"                          />
       <replacefilter token="@Profile"                      value="//@Profile"                      />
       <replacefilter token="@Extension"                    value="//@Extension"                    />
@@ -388,30 +389,8 @@
       <replacefilter token="@XmlElement"                   value="//@XmlElement"                   />
       <replacefilter token="import static"                 value="//import static"                 />
       <replacefilter token="import org.opengis.annotation" value="//import org.opengis.annotation" />
-
-      <replacefilter token=" Feature next()" value=" Object next()"/>
-      <replacefilter token= "CodeType"       value= "Object"       />
+      <replacefilter token="CodeType"                      value="Object"                          />
     </replace>
-
-    <replaceregexp byline  = "true"
-                   match   = "\s\w+\s+clone"
-                   replace = " Object clone">
-      <fileset dir=".">
-        <include name="snapshot/sources/**/*.java"/>
-        <exclude name="**/org/opengis/go/**"/>
-        <exclude name="**/org/opengis/util/**"/>
-      </fileset>
-    </replaceregexp>
-
-    <replaceregexp byline  = "true"
-                   match   = "\s\w+\[\]\s+family"
-                   replace = " CodeList[] family">
-      <fileset dir=".">
-        <include name="snapshot/sources/**/*.java"/>
-        <exclude name="**/org/opengis/go/**"/>
-        <exclude name="**/org/opengis/util/**"/>
-      </fileset>
-    </replaceregexp>
 
     <mkdir dir="snapshot/classes"/>
     <javac srcdir        = "snapshot/sources"
