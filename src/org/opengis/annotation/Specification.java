@@ -31,7 +31,7 @@ public enum Specification {
     ISO_19107,
 
     /**
-     * ISO 19111, or OGC <A HREF="http://www.opengis.org/docs/03-073r1.zip">Spatial Referencing by Coordinates (Topic 2)</A>.
+     * ISO 19111, or OGC <A HREF="http://portal.opengeospatial.org/files/?artifact_id=6716">Spatial Referencing by Coordinates (Topic 2)</A>.
      * This is the specification for package {@link org.opengis.referencing} and sub-packages.
      *
      * @see #OGC_01009

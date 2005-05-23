@@ -22,7 +22,7 @@ import static org.opengis.annotation.Specification.*;
  * category includes coordinate reference systems derived from a projected coordinate
  * reference system.
  *
- * @version <A HREF="http://www.opengis.org/docs/03-073r1.zip">Abstract specification 2.0</A>
+ * @version <A HREF="http://portal.opengeospatial.org/files/?artifact_id=6716">Abstract specification 2.0</A>
  * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 1.0
  */

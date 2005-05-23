@@ -25,7 +25,7 @@ import static org.opengis.annotation.Specification.*;
  * The definition of a parameter used by an operation method. Most parameter values are
  * numeric, but other types of parameter values are possible.
  *  
- * @version <A HREF="http://www.opengis.org/docs/03-073r1.zip">Abstract specification 2.0</A>
+ * @version <A HREF="http://portal.opengeospatial.org/files/?artifact_id=6716">Abstract specification 2.0</A>
  * @author Martin Desruisseaux (IRD)
  * @author Jody Garnett (Refractions Research)
  * @since GeoAPI 1.1
