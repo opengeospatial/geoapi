@@ -26,7 +26,7 @@ import static org.opengis.annotation.Specification.*;
 /**
  * The definition of a group of related parameters used by an operation method.
  *  
- * @version <A HREF="http://www.opengis.org/docs/03-073r1.zip">Abstract specification 2.0</A>
+ * @version <A HREF="http://portal.opengeospatial.org/files/?artifact_id=6716">Abstract specification 2.0</A>
  * @author Martin Desruisseaux (IRD)
  * @author Jody Garnett (Refractions Research)
  * @since GeoAPI 1.1
