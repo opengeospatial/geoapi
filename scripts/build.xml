@@ -457,7 +457,7 @@
 
       <tag name="unitof" scope="fields,methods" description="Unit of" enabled="false"/>
       <taglet name="org.opengis.tools.UmlTaglet"/>
-      <tag name="rename" scope="types,fields,methods" description="Name change from the UML:"/>
+      <tag name="rename" scope="types,fields,methods" description="Name change from the UML:" enabled="false"/>
       <taglet name="org.opengis.tools.RevisitTaglet"/>
 
       <link href="http://java.sun.com/j2se/1.5/docs/api"/>
