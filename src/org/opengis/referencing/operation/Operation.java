@@ -29,12 +29,6 @@ import static org.opengis.annotation.Specification.*;
  * @since GeoAPI 1.0
  *
  * @see OperationMethod
- *
- * @revisit OpenGIS is considering to remove this class from UML diagrams. In this case, all
- *          methods in this interface will move to the {@link SingleOperation} interface. The
- *          removal of {@code Operation} interface would simplify the API and brings more
- *          flexibility: {@link ConcatenatedOperation} would be a legal component in both
- *          other {@link ConcatenatedOperation} and in {@link PassThroughOperation}.
  */
 @UML(identifier="CC_Operation", specification=ISO_19111)
 public interface Operation extends SingleOperation {
