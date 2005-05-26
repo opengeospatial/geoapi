@@ -34,16 +34,12 @@ import static org.opengis.annotation.Specification.*;
 public interface Operation extends SingleOperation {
     /**
      * Returns the operation method.
-     *
-     * @return The operation method.
      */
     @UML(identifier="usesMethod", obligation=MANDATORY, specification=ISO_19111)
     OperationMethod getMethod();
 
     /**
      * Returns the parameter values.
-     *
-     * @return The parameter values, or an empty array if none.
      *
      * @rename Added "<code>Parameter</code>" prefix for more consistency with the return type.
      */

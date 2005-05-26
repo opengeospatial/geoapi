@@ -25,6 +25,7 @@ import org.opengis.referencing.cs.EllipsoidalCS;
 import org.opengis.referencing.cs.VerticalCS;
 import org.opengis.referencing.cs.TimeCS;
 import org.opengis.referencing.cs.CoordinateSystem;
+import org.opengis.referencing.cs.CoordinateSystemAxis;
 import org.opengis.referencing.datum.EngineeringDatum;
 import org.opengis.referencing.datum.GeodeticDatum;
 import org.opengis.referencing.datum.ImageDatum;
@@ -188,6 +189,10 @@ public interface CRSFactory extends ObjectFactory {
      * system can be rotated in the (<var>lat</var>, <var>lon</var>) plane, since both
      * affected axes are in degrees.  But you should not rotate this coordinate system
      * in any other plane.
+     * <p>
+     * It is the user's responsability to ensure that the {@code baseToDerived} transform performs
+     * all required steps, including {@linkplain CoordinateSystemAxis#getUnit unit} conversions and
+     * change of {@linkplain CoordinateSystem#getAxis axis} order, if needed.
      *
      * @param  properties Name and other properties to give to the new object.
      *         Available properties are {@linkplain ObjectFactory listed there}.
@@ -216,6 +221,10 @@ public interface CRSFactory extends ObjectFactory {
      * system can be rotated in the (<var>lat</var>, <var>lon</var>) plane, since both
      * affected axes are in degrees.  But you should not rotate this coordinate system
      * in any other plane.
+     * <p>
+     * It is the user's responsability to ensure that the {@code baseToDerived} transform performs
+     * all required steps, including {@linkplain CoordinateSystemAxis#getUnit unit} conversions and
+     * change of {@linkplain CoordinateSystem#getAxis axis} order, if needed.
      *
      * @param  properties Name and other properties to give to the new object.
      *         Available properties are {@linkplain ObjectFactory listed there}.
@@ -241,6 +250,10 @@ public interface CRSFactory extends ObjectFactory {
     
     /**
      * Creates a projected coordinate reference system from a transform.
+     * <p>
+     * It is the user's responsability to ensure that the {@code baseToDerived} transform performs
+     * all required steps, including {@linkplain CoordinateSystemAxis#getUnit unit} conversions and
+     * change of {@linkplain CoordinateSystem#getAxis axis} order, if needed.
      * 
      * @param  properties Name and other properties to give to the new object.
      *         Available properties are {@linkplain ObjectFactory listed there}.
@@ -262,7 +275,11 @@ public interface CRSFactory extends ObjectFactory {
     
     /**
      * Creates a projected coordinate reference system from a transform.
-     * 
+     * <p>
+     * It is the user's responsability to ensure that the {@code baseToDerived} transform performs
+     * all required steps, including {@linkplain CoordinateSystemAxis#getUnit unit} conversions and
+     * change of {@linkplain CoordinateSystem#getAxis axis} order, if needed.
+     *
      * @param  properties Name and other properties to give to the new object.
      *         Available properties are {@linkplain ObjectFactory listed there}.
      *         Properties for the {@link Projection} object to be created can be specified
@@ -287,7 +304,11 @@ public interface CRSFactory extends ObjectFactory {
 
     /**
      * Creates a projected coordinate reference system from a projection name.
-     * 
+     * <p>
+     * It is the user's responsability to ensure that the {@code baseToDerived} transform performs
+     * all required steps, including {@linkplain CoordinateSystemAxis#getUnit unit} conversions and
+     * change of {@linkplain CoordinateSystem#getAxis axis} order, if needed.
+     *
      * @param  properties Name and other properties to give to the new object.
      *         Available properties are {@linkplain ObjectFactory listed there}.
      *         Properties for the {@link Projection} object to be created can be specified
