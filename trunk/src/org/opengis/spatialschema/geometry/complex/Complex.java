@@ -26,17 +26,17 @@ import static org.opengis.annotation.Specification.*;
 /**
  * A collection of geometrically disjoint, simple {@linkplain Primitive primitives}. If a
  * {@linkplain Primitive primitive} (other than a {@linkplain org.opengis.spatialschema.geometry.primitive.Point point}
- * is in a particular <code>Complex</code>, then there exists a set of primitives of lower dimension
+ * is in a particular {@code Complex}, then there exists a set of primitives of lower dimension
  * in the same complex that form the boundary of this primitive.
  * <p>
  * A geometric complex can be thought of as a set in two distinct ways. First, it is a finite set
  * of objects (via delegation to its elements member) and, second, it is an infinite set of point
  * values as a subtype of geometric object. The dual use of delegation and subtyping is to
  * disambiguate the two types of set interface. To determine if a {@linkplain Primitive primitive}
- * <var>P</var> is an element of a <code>Complex</code> <var>C</var>,
- * call: <code>C.element().contains(P)</code>.
+ * <var>P</var> is an element of a {@code Complex} <var>C</var>,
+ * call: {@code C.element().contains(P)}.
  * <p>
- * The "{@linkplain #getElements elements}" attribute allows <code>Complex</code> to inherit the
+ * The "{@linkplain #getElements elements}" attribute allows {@code Complex} to inherit the
  * behavior of {@link Set Set&lt;Primitive&gt;} without confusing the same sort of behavior
  * inherited from {@link org.opengis.spatialschema.geometry.TransfiniteSet TransfiniteSet&lt;DirectPosition&gt;}
  * inherited through {@link Geometry}. Complexes shall be used in application schemas where
@@ -53,10 +53,10 @@ import static org.opengis.annotation.Specification.*;
 @UML(identifier="GM_Complex", specification=ISO_19107)
 public interface Complex extends Geometry {
     /**
-     * Returns <code>true</code> if and only if this <code>Complex</code> is maximal.
+     * Returns {@code true} if and only if this {@code Complex} is maximal.
      * A complex is maximal if it is a subcomplex of no larger complex.
      *
-     * @return <code>true</code> if this GM_Complex is maximal.
+     * @return {@code true} if this GM_Complex is maximal.
      */
     @UML(identifier="isMaximal", obligation=MANDATORY, specification=ISO_19107)
     public boolean isMaximal();

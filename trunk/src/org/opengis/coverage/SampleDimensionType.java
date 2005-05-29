@@ -62,7 +62,7 @@ public final class SampleDimensionType extends CodeList<SampleDimensionType> {
     /**
      * Unsigned 1 bit integers.
      *
-     * @rename Renamed <code>CV_1BIT</code> as <code>UNSIGNED_1BIT</code> since we
+     * @rename Renamed {@code CV_1BIT} as {@code UNSIGNED_1BIT} since we
      *         drop the prefix, but can't get a name starting with a digit.
      */
     @UML(identifier="CV_1BIT", obligation=CONDITIONAL, specification=OGC_01004)
@@ -71,7 +71,7 @@ public final class SampleDimensionType extends CodeList<SampleDimensionType> {
     /**
      * Unsigned 2 bits integers.
      *
-     * @rename Renamed <code>CV_2BIT</code> as <code>UNSIGNED_2BITS</code> since we
+     * @rename Renamed {@code CV_2BIT} as {@code UNSIGNED_2BITS} since we
      *         drop the prefix, but can't get a name starting with a digit.
      */
     @UML(identifier="CV_2BIT", obligation=CONDITIONAL, specification=OGC_01004)
@@ -80,7 +80,7 @@ public final class SampleDimensionType extends CodeList<SampleDimensionType> {
     /**
      * Unsigned 4 bits integers.
      *
-     * @rename Renamed <code>CV_4BIT</code> as <code>UNSIGNED_4BITS</code> since we
+     * @rename Renamed {@code CV_4BIT} as {@code UNSIGNED_4BITS} since we
      *         drop the prefix, but can't get a name starting with a digit.
      */
     @UML(identifier="CV_4BIT", obligation=CONDITIONAL, specification=OGC_01004)
@@ -89,7 +89,7 @@ public final class SampleDimensionType extends CodeList<SampleDimensionType> {
     /**
      * Unsigned 8 bits integers.
      *
-     * @rename Renamed <code>CV_8BIT_U</code> as <code>UNSIGNED_8BITS</code> since we
+     * @rename Renamed {@code CV_8BIT_U} as {@code UNSIGNED_8BITS} since we
      *         drop the prefix, but can't get a name starting with a digit.
      *
      * @see #SIGNED_8BITS
@@ -101,7 +101,7 @@ public final class SampleDimensionType extends CodeList<SampleDimensionType> {
     /**
      * Signed 8 bits integers.
      *
-     * @rename Renamed <code>CV_8BIT_S</code> as <code>SIGNED_8BITS</code> since we
+     * @rename Renamed {@code CV_8BIT_S} as {@code SIGNED_8BITS} since we
      *         drop the prefix, but can't get a name starting with a digit.
      *
      * @see #UNSIGNED_8BITS
@@ -112,7 +112,7 @@ public final class SampleDimensionType extends CodeList<SampleDimensionType> {
     /**
      * Unsigned 16 bits integers.
      *
-     * @rename Renamed <code>CV_16BIT_U</code> as <code>UNSIGNED_16BITS</code> since we
+     * @rename Renamed {@code CV_16BIT_U} as {@code UNSIGNED_16BITS} since we
      *         drop the prefix, but can't get a name starting with a digit.
      *
      * @see #SIGNED_16BITS
@@ -124,7 +124,7 @@ public final class SampleDimensionType extends CodeList<SampleDimensionType> {
     /**
      * Signed 16 bits integers.
      *
-     * @rename Renamed <code>CV_16BIT_S</code> as <code>SIGNED_16BITS</code> since we
+     * @rename Renamed {@code CV_16BIT_S} as {@code SIGNED_16BITS} since we
      *         drop the prefix, but can't get a name starting with a digit.
      *
      * @see #UNSIGNED_16BITS
@@ -136,7 +136,7 @@ public final class SampleDimensionType extends CodeList<SampleDimensionType> {
     /**
      * Unsigned 32 bits integers.
      *
-     * @rename Renamed <code>CV_32BIT_U</code> as <code>UNSIGNED_32BITS</code> since we
+     * @rename Renamed {@code CV_32BIT_U} as {@code UNSIGNED_32BITS} since we
      *         drop the prefix, but can't get a name starting with a digit.
      *
      * @see #SIGNED_32BITS
@@ -147,7 +147,7 @@ public final class SampleDimensionType extends CodeList<SampleDimensionType> {
     /**
      * Signed 32 bits integers.
      *
-     * @rename Renamed <code>CV_32BIT_S</code> as <code>SIGNED_32BITS</code> since we
+     * @rename Renamed {@code CV_32BIT_S} as {@code SIGNED_32BITS} since we
      *         drop the prefix, but can't get a name starting with a digit.
      *
      * @see #UNSIGNED_32BITS
@@ -159,7 +159,7 @@ public final class SampleDimensionType extends CodeList<SampleDimensionType> {
     /**
      * Simple precision floating point numbers.
      *
-     * @rename Renamed <code>CV_32BIT_REAL</code> as <code>REAL_32BITS</code> since we
+     * @rename Renamed {@code CV_32BIT_REAL} as {@code REAL_32BITS} since we
      *         drop the prefix, but can't get a name starting with a digit.
      *
      * @see #REAL_64BITS
@@ -171,7 +171,7 @@ public final class SampleDimensionType extends CodeList<SampleDimensionType> {
     /**
      * Double precision floating point numbers.
      *
-     * @rename Renamed <code>CV_64BIT_REAL</code> as <code>REAL_64BITS</code> since we
+     * @rename Renamed {@code CV_64BIT_REAL} as {@code REAL_64BITS} since we
      *         drop the prefix, but can't get a name starting with a digit.
      *
      * @see #REAL_32BITS
@@ -191,7 +191,7 @@ public final class SampleDimensionType extends CodeList<SampleDimensionType> {
     }
 
     /**
-     * Returns the list of <code>SampleDimensionType</code>s.
+     * Returns the list of {@code SampleDimensionType}s.
      */
     public static SampleDimensionType[] values() {
         synchronized (VALUES) {

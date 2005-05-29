@@ -18,9 +18,9 @@ import static org.opengis.annotation.Specification.*;
 
 /**
  * Fully qualified identifier for an object.
- * A <code>ScopedName</code> contains a {@link LocalName} as {@linkplain #asLocalName head}
+ * A {@code ScopedName} contains a {@link LocalName} as {@linkplain #asLocalName head}
  * and a {@linkplain GenericName}, which may be a {@link LocalName} or an other
- * <code>ScopedName</code>, as {@linkplain #getScope tail}.
+ * {@code ScopedName}, as {@linkplain #getScope tail}.
  *
  * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 1.1
@@ -42,10 +42,10 @@ public interface ScopedName extends GenericName {
      * than this scoped name. Note however that the string returned by
      * {@link LocalName#toString} will differs.
      *
-     * @rename Renamed from <code>head</code> as <code>localName</code> in order to make
+     * @rename Renamed from {@code head} as {@code localName} in order to make
      *         it more obvious that this method returns a name without its scope. This is
-     *         also consistent with the omission of <code>tail</code>, which is replaced
-     *         by the inherited <code>getScope()</code> method.
+     *         also consistent with the omission of {@code tail}, which is replaced
+     *         by the inherited {@code getScope()} method.
      */
     @UML(identifier="head", obligation=MANDATORY, specification=ISO_19103)
     LocalName asLocalName();

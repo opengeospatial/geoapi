@@ -40,7 +40,7 @@ public interface ParameterDescriptorGroup extends GeneralParameterDescriptor {
      * Creates a new instance of {@linkplain ParameterValueGroup parameter value group}
      * initialized with the {@linkplain ParameterDescriptor#getDefaultValue default values}.
      * The {@linkplain ParameterValueGroup#getDescriptor parameter value descriptor}
-     * for the created group will be <code>this</code> object.
+     * for the created group will be {@code this} object.
      *
      * The number of {@link ParameterValue} objects included must be between the
      * {@linkplain ParameterDescriptor#getMinimumOccurs minimum} and 

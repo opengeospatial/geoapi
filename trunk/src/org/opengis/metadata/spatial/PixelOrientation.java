@@ -85,7 +85,7 @@ public final class PixelOrientation extends CodeList<PixelOrientation> {
     }
 
     /**
-     * Returns the list of <code>PixelOrientation</code>s.
+     * Returns the list of {@code PixelOrientation}s.
      */
     public static PixelOrientation[] values() {
         synchronized (VALUES) {

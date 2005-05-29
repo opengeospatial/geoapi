@@ -75,7 +75,7 @@ public interface Ellipsoid extends IdentifiedObject {
      *
      * <var>ivf</var>&nbsp;=&nbsp;<var>r</var><sub>e</sub>/(<var>r</var><sub>e</sub>-<var>r</var><sub>p</sub>).
      *
-     * For perfect spheres (i.e. if {@link #isSphere} returns <code>true</code>),
+     * For perfect spheres (i.e. if {@link #isSphere} returns {@code true}),
      * the {@link Double#POSITIVE_INFINITY} value is used.
      *
      * @return The inverse flattening value.
@@ -90,19 +90,19 @@ public interface Ellipsoid extends IdentifiedObject {
      * radius whenever asked. Other ellipsoids use the polar radius to calculate the IVF whenever
      * asked. This distinction can be important to avoid floating-point rounding errors.
      *
-     * @return <code>true</code> if the {@linkplain #getInverseFlattening inverse flattening} is
-     *         definitive, or <code>false</code> if the {@linkplain #getSemiMinorAxis polar radius}
+     * @return {@code true} if the {@linkplain #getInverseFlattening inverse flattening} is
+     *         definitive, or {@code false} if the {@linkplain #getSemiMinorAxis polar radius}
      *         is definitive.
      */
     @UML(identifier="CS_Ellipsoid.isIvfDefinitive", obligation=CONDITIONAL, specification=OGC_01009)
     boolean isIvfDefinitive();
 
     /**
-     * <code>true</code> if the ellipsoid is degenerate and is actually a sphere. The sphere is
+     * {@code true} if the ellipsoid is degenerate and is actually a sphere. The sphere is
      * completely defined by the {@linkplain #getSemiMajorAxis semi-major axis}, which is the
      * radius of the sphere.
      *
-     * @return <code>true</code> if the ellipsoid is degenerate and is actually a sphere.
+     * @return {@code true} if the ellipsoid is degenerate and is actually a sphere.
      */
     @UML(identifier="secondDefiningParameter.isSphere", obligation=CONDITIONAL, specification=ISO_19111)
     boolean isSphere();

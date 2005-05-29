@@ -29,7 +29,7 @@ public interface GeographicExtent {
      * Indication of whether the bounding polygon encompasses an area covered by the data
      * (<cite>inclusion</cite>) or an area where data is not present (<cite>exclusion</cite>).
      *
-     * @return <code>true</code> for inclusion, or <code>false</code> for exclusion.
+     * @return {@code true} for inclusion, or {@code false} for exclusion.
      */
     @UML(identifier="extentTypeCode", obligation=OPTIONAL, specification=ISO_19115)
     boolean getInclusion();

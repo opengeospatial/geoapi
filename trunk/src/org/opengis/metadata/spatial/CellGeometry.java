@@ -66,7 +66,7 @@ public final class CellGeometry extends CodeList<CellGeometry> {
     }
 
     /**
-     * Returns the list of <code>CellGeometry</code>s.
+     * Returns the list of {@code CellGeometry}s.
      */
     public static CellGeometry[] values() {
         synchronized (VALUES) {

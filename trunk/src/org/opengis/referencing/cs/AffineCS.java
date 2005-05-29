@@ -18,7 +18,7 @@ import static org.opengis.annotation.Specification.*;
 
 /**
  * A two- or three-dimensional coordinate system with straight axes that are not necessarily orthogonal.
- * An <code>AffineCS</code> shall have two or three {@linkplain #getAxis axis associations}.
+ * An {@code AffineCS} shall have two or three {@linkplain #getAxis axis associations}.
  *
  * <TABLE CELLPADDING='6' BORDER='1'>
  * <TR BGCOLOR="#EEEEFF"><TH NOWRAP>Used with CRS type(s)</TH></TR>

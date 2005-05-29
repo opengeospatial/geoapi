@@ -123,7 +123,7 @@ public final class ImagingCondition extends CodeList<ImagingCondition> {
     }
 
     /**
-     * Returns the list of <code>ImagingCondition</code>s.
+     * Returns the list of {@code ImagingCondition}s.
      */
     public static ImagingCondition[] values() {
         synchronized (VALUES) {

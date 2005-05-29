@@ -21,7 +21,7 @@ import static org.opengis.annotation.Specification.*;
 
 /**
  * A discovery mechanism to determine the formats supported by a {@link GridCoverageExchange}
- * implementation. A <code>GridCoverageExchange</code> implementation can support a number of
+ * implementation. A {@code GridCoverageExchange} implementation can support a number of
  * file format or resources.
  *
  * <P>&nbsp;</P>

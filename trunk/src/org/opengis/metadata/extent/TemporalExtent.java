@@ -26,7 +26,7 @@ import static org.opengis.annotation.Specification.*;
  * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 1.0
  *
- * @revisit UML specifies only one attribute, <code>extent</code>, of <code>TM_Primitive</code>
+ * @revisit UML specifies only one attribute, {@code extent}, of {@code TM_Primitive}
  *          type.
  */
 @UML(identifier="EX_TemporalExtent", specification=ISO_19115)

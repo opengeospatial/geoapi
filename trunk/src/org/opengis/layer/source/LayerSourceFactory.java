@@ -78,7 +78,7 @@ public interface LayerSourceFactory {
      * Gets an {@code Object} array relating to the parameters needed (beyond
      * the URI) to instantiate a {@code FeatureStore}.
      * 
-     * @revisit Should be replaced with a <code>Param</code>[] based on ISO standards (ISO 19119?).
+     * @revisit Should be replaced with a {@code Param}[] based on ISO standards (ISO 19119?).
      */
     Map<String,Class> getParametersInfo();
 

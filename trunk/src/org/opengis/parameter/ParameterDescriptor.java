@@ -39,7 +39,7 @@ public interface ParameterDescriptor extends GeneralParameterDescriptor {
      * Creates a new instance of {@linkplain ParameterValue parameter value}
      * initialized with the {@linkplain #getDefaultValue default value}.
      * The {@linkplain ParameterValue#getDescriptor parameter value descriptor}
-     * for the created parameter value will be <code>this</code> object.
+     * for the created parameter value will be {@code this} object.
      */
 /// @Extension
 /// ParameterValue createValue();

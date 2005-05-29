@@ -39,8 +39,8 @@ public interface Placement {
 
     /**
      * Return the dimension of the output coordinate reference system.
-     * Normally, <code>outDimension</code> (the dimension of the coordinate reference system)
-     * is larger than <code>inDimension</code>. If this is not the case, the transformation is
+     * Normally, {@code outDimension} (the dimension of the coordinate reference system)
+     * is larger than {@code inDimension}. If this is not the case, the transformation is
      * probably singular, and may be replaceable by a simpler one from a smaller dimension
      * parameter space.
      */

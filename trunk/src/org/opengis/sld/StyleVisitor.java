@@ -29,7 +29,7 @@ import org.opengis.annotation.Extension;
  * }
  * ...
  * </pre>
- * you can implement the <code>SymbolVisitor</code> interface and the object
+ * you can implement the {@code SymbolVisitor} interface and the object
  * itself will invoke the appropriate method:
  * <pre>
  * class MyVisitor implements SymbolVisitor {

@@ -24,12 +24,12 @@ import org.opengis.annotation.Extension;
 
 /**
  * Builds up complex {@linkplain CoordinateSystem coordinate systems} from simpler
- * objects or values. <code>CSFactory</code> allows applications to make {@linkplain
+ * objects or values. {@code CSFactory} allows applications to make {@linkplain
  * CoordinateSystem coordinate systems} that cannot be created by a {@link CSAuthorityFactory}.
  * This factory is very flexible, whereas the authority factory is easier to use.
  *
  * So {@link CSAuthorityFactory} can be used to make "standard" coordinate systems, and
- * <code>CSFactory</code> can be used to make "special" coordinate systems.
+ * {@code CSFactory} can be used to make "special" coordinate systems.
  *
  * @version <A HREF="http://www.opengis.org/docs/01-009.pdf">Implementation specification 1.0</A>
  * @author Martin Desruisseaux (IRD)

@@ -97,9 +97,9 @@ public interface GridCoverageProcessor {
     String getMetadataValue(String name) throws MetadataNameNotFoundException;
 
     /**
-     * The number of operations supported by the <code>GridCoverageProcessor</code>.
+     * The number of operations supported by the {@code GridCoverageProcessor}.
      *
-     * @return The number of operations supported by the <code>GridCoverageProcessor</code>.
+     * @return The number of operations supported by the {@code GridCoverageProcessor}.
      */
     @UML(identifier="numOperations", obligation=MANDATORY, specification=OGC_01004)
     int getNumOperations();
@@ -111,7 +111,7 @@ public interface GridCoverageProcessor {
      *
      * @param  index Index for which to retrieve the operation information.
      * @return A grid processing operation information.
-     * @throws IndexOutOfBoundsException if <code>index</code> is out of bounds.
+     * @throws IndexOutOfBoundsException if {@code index} is out of bounds.
      */
     @UML(identifier="getOperation", obligation=MANDATORY, specification=OGC_01004)
     Operation getOperation(int index) throws IndexOutOfBoundsException;
@@ -132,9 +132,9 @@ public interface GridCoverageProcessor {
      * @param  operationName Name of the operation to be applied to the grid coverage.
      * @param  parameters List of name value pairs for the parameters required for the operation.
      * @return The grid coverage which has been applied the process operation.
-     * @throws OperationNotFoundException if <code>name</code> is not a know operation.
+     * @throws OperationNotFoundException if {@code name} is not a know operation.
      * @throws ParameterNotFoundException if a parameter was required for the operation but was
-     *         not provided in the <code>parameters</code> list.
+     *         not provided in the {@code parameters} list.
      * @throws InvalidParameterNameException if a parameter doesn't have a recognized name.
      * @throws InvalidParameterValueException if a parameter doesn't have a valid value.
      */

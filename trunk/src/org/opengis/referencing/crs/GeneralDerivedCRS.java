@@ -39,10 +39,10 @@ public interface GeneralDerivedCRS extends SingleCRS {
     /**
      * Returns the conversion from the {@linkplain #getBaseCRS base CRS} to this CRS.
      *
-     * @rename <code>definedByConversion</code> may be a precise description of the association,
-     *         but is confusing as a method name. OGC document 01-009 used <code>toBase()</code>
+     * @rename {@code definedByConversion} may be a precise description of the association,
+     *         but is confusing as a method name. OGC document 01-009 used {@code toBase()}
      *         method name.   By analogy with 01-009, this new interface specifies a method name
-     *         which contains the <code>FromBase</code> words.
+     *         which contains the {@code FromBase} words.
      */
     @UML(identifier="definedByConversion", obligation=MANDATORY, specification=ISO_19111)
     Conversion getConversionFromBase();

@@ -67,7 +67,7 @@ public interface ArcString extends CurveSegment {
     public PointArray getControlPoints();
 
     /**
-     * The interpolation for a <code>ArcString</code> is
+     * The interpolation for a {@code ArcString} is
      * "{@linkplain CurveInterpolation#CIRCULAR_ARC_3_POINTS circular arc by 3 points}".
      *
      * @return Always {@link CurveInterpolation#CIRCULAR_ARC_3_POINTS}.

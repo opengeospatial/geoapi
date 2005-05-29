@@ -146,7 +146,7 @@ public final class PresentationForm extends CodeList<PresentationForm> {
     }
 
     /**
-     * Returns the list of <code>PresentationForm</code>s.
+     * Returns the list of {@code PresentationForm}s.
      */
     public static PresentationForm[] values() {
         synchronized (VALUES) {

@@ -45,7 +45,7 @@ import static org.opengis.annotation.Specification.*;
 @UML(identifier="GM_PolynomialSpline", specification=ISO_19107)
 public interface PolynomialSpline extends SplineCurve {
     /**
-     * The interpolation mechanism for a <code>PolynomialSpline</code>
+     * The interpolation mechanism for a {@code PolynomialSpline}
      * is {@link CurveInterpolation#POLYNOMIAL_SPLINE POLYNOMIAL_SPLINE}.
      */
     @UML(identifier="interpolation", obligation=MANDATORY, specification=ISO_19107)
@@ -53,7 +53,7 @@ public interface PolynomialSpline extends SplineCurve {
 
     /**
      * The values used for the initial derivative (up to {@linkplain #getDegree degree} - 2)
-     * used for interpolation in this <code>PolynomialSpline</code> at the start point
+     * used for interpolation in this {@code PolynomialSpline} at the start point
      * of the spline.
      *
      * The {@linkplain List#size size} of the returned list is
@@ -64,7 +64,7 @@ public interface PolynomialSpline extends SplineCurve {
 
     /**
      * The values used for the final derivative (up to {@linkplain #getDegree degree} - 2)
-     * used for interpolation in this <code>PolynomialSpline</code> at the end point of
+     * used for interpolation in this {@code PolynomialSpline} at the end point of
      * the spline.
      *
      * The {@linkplain List#size size} of the returned list is

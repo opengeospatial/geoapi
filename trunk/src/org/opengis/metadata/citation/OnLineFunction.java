@@ -84,7 +84,7 @@ public final class OnLineFunction extends CodeList<OnLineFunction> {
     }
 
     /**
-     * Returns the list of <code>OnLineFunction</code>s.
+     * Returns the list of {@code OnLineFunction}s.
      */
     public static OnLineFunction[] values() {
         synchronized (VALUES) {

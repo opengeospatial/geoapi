@@ -27,7 +27,7 @@ import static org.opengis.annotation.Specification.*;
  * @since GeoAPI 1.1
  *
  * @revisit Collection types in this interface are not yet defined, because they require
- *          <code>Feature</code> and <code>FeatureType</code>.
+ *          {@code Feature} and {@code FeatureType}.
  */
 @UML(identifier="MD_ScopeDescription", specification=ISO_19115)
 public interface ScopeDescription {

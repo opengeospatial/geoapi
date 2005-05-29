@@ -211,7 +211,7 @@ public final class ColorInterpretation extends CodeList<ColorInterpretation> {
     }
 
     /**
-     * Returns the list of <code>ColorInterpretation</code>s.
+     * Returns the list of {@code ColorInterpretation}s.
      */
     public static ColorInterpretation[] values() {
         synchronized (VALUES) {

@@ -37,7 +37,7 @@ import static org.opengis.annotation.Specification.*;
 @UML(identifier="GM_GeodesicString", specification=ISO_19107)
 public interface GeodesicString extends CurveSegment {
     /**
-     * Returns a sequence of positions between which this <code>GeodesicString</code> is interpolated
+     * Returns a sequence of positions between which this {@code GeodesicString} is interpolated
      * using geodesics from the geoid or {@linkplain org.opengis.referencing.datum.Ellipsoid ellipsoid} of the
      * {@linkplain org.opengis.referencing.crs.CoordinateReferenceSystem coordinate reference system} being used.
      * The organization of these points is identical to that in {@link LineString}.
@@ -48,7 +48,7 @@ public interface GeodesicString extends CurveSegment {
     public PointArray getControlPoints();
 
     /**
-     * The interpolation for a <code>GeodesicString</code> is
+     * The interpolation for a {@code GeodesicString} is
      * "{@linkplain CurveInterpolation#GEODESIC geodesic}".
      *
      * @return Always {@link CurveInterpolation#GEODESIC}.

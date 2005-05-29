@@ -94,7 +94,7 @@ public final class GeometricObjectType extends CodeList<GeometricObjectType> {
     }
 
     /**
-     * Returns the list of <code>GeometricObjectType</code>s.
+     * Returns the list of {@code GeometricObjectType}s.
      */
     public static GeometricObjectType[] values() {
         synchronized (VALUES) {

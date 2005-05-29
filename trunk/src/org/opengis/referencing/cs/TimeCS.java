@@ -19,7 +19,7 @@ import static org.opengis.annotation.Specification.*;
 /**
  * A one-dimensional coordinate system containing a single time axis, used to describe the
  * temporal position of a point in the specified time units from a specified time origin.
- * A <code>TimeCS</code> shall have one {@linkplain #getAxis axis association}.
+ * A {@code TimeCS} shall have one {@linkplain #getAxis axis association}.
  *
  * <TABLE CELLPADDING='6' BORDER='1'>
  * <TR BGCOLOR="#EEEEFF"><TH NOWRAP>Used with CRS type(s)</TH></TR>

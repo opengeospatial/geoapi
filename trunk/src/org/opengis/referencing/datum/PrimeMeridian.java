@@ -36,7 +36,7 @@ import static org.opengis.annotation.Specification.*;
 public interface PrimeMeridian extends IdentifiedObject {
     /**
      * Longitude of the prime meridian measured from the Greenwich meridian, positive eastward.
-     * The <code>greenwichLongitude</code> initial value is zero, and that value shall be used
+     * The {@code greenwichLongitude} initial value is zero, and that value shall be used
      * when the {@linkplain #getName meridian name} value is "Greenwich".
      *
      * @return The prime meridian Greenwich longitude, in {@linkplain #getAngularUnit angular unit}.

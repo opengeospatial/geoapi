@@ -49,13 +49,13 @@ import static org.opengis.annotation.Specification.*;
 
 /**
  * Builds up complex {@linkplain CoordinateReferenceSystem coordinate reference systems}
- * from simpler objects or values. <code>CRSFactory</code> allows applications to make
+ * from simpler objects or values. {@code CRSFactory} allows applications to make
  * {@linkplain CoordinateReferenceSystem coordinate reference systems} that cannot be
  * created by a {@link CRSAuthorityFactory}. This factory is very flexible, whereas the
  * authority factory is easier to use.
  *
  * So {@link CRSAuthorityFactory} can be used to make "standard" coordinate reference systems,
- * and <code>CRSFactory</code> can be used to make "special" coordinate reference systems.
+ * and {@code CRSFactory} can be used to make "special" coordinate reference systems.
  *
  * For example, the EPSG authority has codes for USA state plane coordinate systems
  * using the NAD83 datum, but these coordinate systems always use meters.  EPSG does
@@ -73,11 +73,11 @@ import static org.opengis.annotation.Specification.*;
 public interface CRSFactory extends ObjectFactory {
     /**
      * Creates a compound coordinate reference system from an ordered
-     * list of <code>CoordinateReferenceSystem</code> objects.
+     * list of {@code CoordinateReferenceSystem} objects.
      *
      * @param  properties Name and other properties to give to the new object.
      *         Available properties are {@linkplain ObjectFactory listed there}.
-     * @param  elements ordered array of <code>CoordinateReferenceSystem</code> objects.
+     * @param  elements ordered array of {@code CoordinateReferenceSystem} objects.
      * @throws FactoryException if the object creation failed.
      */
     @UML(identifier="createCompoundCoordinateSystem", specification=OGC_01009)
@@ -203,7 +203,7 @@ public interface CRSFactory extends ObjectFactory {
      * @param  baseToDerived The transform from the base CRS to returned CRS.
      * @param  derivedCS The coordinate system for the derived CRS. The number
      *         of axes must match the target dimension of the transform
-     *         <code>baseToDerived</code>.
+     *         {@code baseToDerived}.
      * @throws FactoryException if the object creation failed.
      *
      * @deprecated Use the method with an {@link OperationMethod} argument instead.
@@ -234,11 +234,11 @@ public interface CRSFactory extends ObjectFactory {
      * @param  method A description of the {@linkplain Conversion#getMethod method for the conversion}.
      * @param  base Coordinate reference system to base the derived CRS on. The number of axes
      *         must matches the {@linkplain MathTransform#getSourceDimensions source dimentions}
-     *         of the transform <code>baseToDerived</code>.
+     *         of the transform {@code baseToDerived}.
      * @param  baseToDerived The transform from the base CRS to the newly created CRS.
      * @param  derivedCS The coordinate system for the derived CRS. The number of axes must matches
      *         the {@linkplain MathTransform#getTargetDimensions target dimensions} of the transform
-     *         <code>baseToDerived</code>.
+     *         {@code baseToDerived}.
      * @throws FactoryException if the object creation failed.
      */
     @UML(identifier="createFittedCoordinateSystem", specification=OGC_01009)
@@ -288,11 +288,11 @@ public interface CRSFactory extends ObjectFactory {
      * @param  method A description of the {@linkplain Conversion#getMethod method for the projection}.
      * @param  base Geographic coordinate reference system to base the projection on. The number of axes
      *         must matches the {@linkplain MathTransform#getSourceDimensions source dimentions}
-     *         of the transform <code>baseToDerived</code>.
+     *         of the transform {@code baseToDerived}.
      * @param  baseToDerived The transform from the geographic to the projected CRS.
      * @param  derivedCS The coordinate system for the projected CRS. The number of axes must matches
      *         the {@linkplain MathTransform#getTargetDimensions target dimensions} of the transform
-     *         <code>baseToDerived</code>.
+     *         {@code baseToDerived}.
      * @throws FactoryException if the object creation failed.
      */
     @UML(identifier="createProjectedCoordinateSystem", specification=OGC_01009)
@@ -334,7 +334,7 @@ public interface CRSFactory extends ObjectFactory {
      *       efficiency in their own code.</li>
      *   <li>Experience gained in implementation and usage suggests that it is hard to get
      *       a method that meets every need. Some code will ignore this method and build
-     *       <code>ProjectedCRS</code> in their own way (using
+     *       {@code ProjectedCRS} in their own way (using
      *       {@link #createProjectedCRS(Map,OperationMethod,GeographicCRS,MathTransform,CartesianCS)}
      *       method) anyway. They may want to use their own
      *       {@link org.opengis.referencing.operation.MathTransformFactory}, use a different

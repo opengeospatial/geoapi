@@ -14,7 +14,7 @@ package org.opengis.parameter;
 /**
  * Thrown when a parameter can't be cast to the requested type. For example this exception
  * is thrown when {@link ParameterValue#doubleValue} is invoked but the value is not
- * convertible to a <code>double</code>.
+ * convertible to a {@code double}.
  *
  * <P><strong>Note:</strong> This exception is of kind "{@linkplain IllegalStateException illegal
  * state}" rather than "{@linkplain IllegalArgumentException illegal argument}" because it is

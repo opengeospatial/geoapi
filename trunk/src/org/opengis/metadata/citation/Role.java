@@ -115,7 +115,7 @@ public final class Role extends CodeList<Role> {
     }
 
     /**
-     * Returns the list of <code>Role</code>s.
+     * Returns the list of {@code Role}s.
      */
     public static Role[] values() {
         synchronized (VALUES) {

@@ -96,12 +96,12 @@ public interface FeatureStyle {
      * can take only one of the following values:
      * <p>
      * <ul>
-     *   <li><code>generic:point</code></li>
-     *   <li><code>generic:line</code></li>
-     *   <li><code>generic:polygon</code></li>
-     *   <li><code>generic:text</code></li>
-     *   <li><code>generic:raster</code></li>
-     *   <li><code>generic:any</code></li>
+     *   <li>{@code generic:point}</li>
+     *   <li>{@code generic:line}</li>
+     *   <li>{@code generic:polygon}</li>
+     *   <li>{@code generic:text}</li>
+     *   <li>{@code generic:raster}</li>
+     *   <li>{@code generic:any}</li>
      * </ul>
      * <p>
      * The returned list is the "live" list and can be modified, both by adding and

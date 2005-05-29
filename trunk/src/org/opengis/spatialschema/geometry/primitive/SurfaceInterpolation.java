@@ -130,7 +130,7 @@ public final class SurfaceInterpolation extends CodeList<SurfaceInterpolation> {
     }
 
     /**
-     * Returns the list of <code>SurfaceInterpolation</code>s.
+     * Returns the list of {@code SurfaceInterpolation}s.
      */
     public static SurfaceInterpolation[] values() {
         synchronized (VALUES) {

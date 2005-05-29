@@ -24,7 +24,7 @@ import org.opengis.parameter.InvalidParameterValueException; // For javadoc
 
 /**
  * Support for reading grid coverages out of a persisten store. Instance of
- * <code>GridCoverageReader</code> are obtained through a call to
+ * {@code GridCoverageReader} are obtained through a call to
  * {@link GridCoverageExchange#getReader}. Grid coverages are usually
  * read from the input stream in a sequential order.
  *
@@ -48,7 +48,7 @@ import org.opengis.parameter.InvalidParameterValueException; // For javadoc
  */
 public interface GridCoverageReader {
     /**
-     * Returns the format handled by this <code>GridCoverageReader</code>.
+     * Returns the format handled by this {@code GridCoverageReader}.
      */
     Format getFormat();
 
@@ -112,7 +112,7 @@ public interface GridCoverageReader {
     String getCurrentSubname() throws IOException;
 
     /**
-     * Returns <code>true</code> if there is at least one more grid coverage
+     * Returns {@code true} if there is at least one more grid coverage
      * available on the stream.
      */
     boolean hasMoreGridCoverages() throws IOException;
@@ -125,16 +125,16 @@ public interface GridCoverageReader {
      * @param  parameters An optional set of parameters. Should be any or all of the
      *         parameters returned by {@link Format#getReadParameters}.
      * @return A new {@linkplain GridCoverage grid coverage} from the input source.
-     * @throws InvalidParameterNameException if a parameter in <code>parameters</code>
+     * @throws InvalidParameterNameException if a parameter in {@code parameters}
      *         doesn't have a recognized name.
-     * @throws InvalidParameterValueException if a parameter in <code>parameters</code>
+     * @throws InvalidParameterValueException if a parameter in {@code parameters}
      *         doesn't have a valid value.
      * @throws ParameterNotFoundException if a parameter was required for the operation but was
-     *         not provided in the <code>parameters</code> list.
+     *         not provided in the {@code parameters} list.
      * @throws CannotCreateGridCoverageException if the coverage can't be created for a logical
      *         reason (for example an unsupported format, or an inconsistency found in the data).
      * @throws IOException if a read operation failed for some other input/output reason, including
-     *         {@link FileNotFoundException} if no file with the given <code>name</code> can be
+     *         {@link FileNotFoundException} if no file with the given {@code name} can be
      *         found, or {@link javax.imageio.IIOException} if an error was thrown by the
      *         underlying image library.
      */
@@ -152,7 +152,7 @@ public interface GridCoverageReader {
     /**
      * Allows any resources held by this object to be released. The result of calling any other
      * method subsequent to a call to this method is undefined. It is important for applications
-     * to call this method when they know they will no longer be using this <code>GridCoverageReader</code>.
+     * to call this method when they know they will no longer be using this {@code GridCoverageReader}.
      * Otherwise, the reader may continue to hold on to resources indefinitely.
      *
      * @throws IOException if an error occured while disposing resources (for example while closing

@@ -21,8 +21,8 @@ import static org.opengis.annotation.Specification.*;
 
 /**
  * Common interface for {@linkplain org.opengis.spatialschema.geometry.primitive.Surface surface} and
- * {@linkplain org.opengis.spatialschema.geometry.primitive.SurfacePatch surface patch}. <code>Surface</code>
- * and <code>SurfacePatch</code> represent sections of surface geometry,
+ * {@linkplain org.opengis.spatialschema.geometry.primitive.SurfacePatch surface patch}. {@code Surface}
+ * and {@code SurfacePatch} represent sections of surface geometry,
  * and therefore share a number of operation signatures.
  *
  * @version <A HREF="http://www.opengis.org/docs/01-101.pdf">Abstract specification 5</A>
@@ -32,13 +32,13 @@ import static org.opengis.annotation.Specification.*;
 @UML(identifier="GM_GenericSurface", specification=ISO_19107)
 public interface GenericSurface {
     /**
-     * Returns a vector perpendicular to the <code>GenericSurface</code> at the
+     * Returns a vector perpendicular to the {@code GenericSurface} at the
      * {@linkplain DirectPosition direct position} passed, which must be on this
-     * <code>GenericSurface</code>. The upward normal always points upward in a
+     * {@code GenericSurface}. The upward normal always points upward in a
      * manner consistent with the boundary. This means that the exterior boundary
      * of the surface is counterclockwise when viewed from the side of the surface
-     * indicated by the <code>upNormal</code>. Interior boundaries are clockwise.
-     * The side of the surface indicated by the <code>upNormal</code> is referred
+     * indicated by the {@code upNormal}. Interior boundaries are clockwise.
+     * The side of the surface indicated by the {@code upNormal} is referred
      * to as the "top." The function "upNormal" shall be continuous and the length
      * of the normal shall always be equal to 1.0.
      *
@@ -57,7 +57,7 @@ public interface GenericSurface {
      * derived from mathematics (topology).
      * </font></blockquote>
      *
-     * @param point The point on this <code>GenericSurface</code> where to compute the upNormal.
+     * @param point The point on this {@code GenericSurface} where to compute the upNormal.
      * @return The upNormal unit vector.
      */
     @UML(identifier="upNormal", obligation=MANDATORY, specification=ISO_19107)
@@ -65,7 +65,7 @@ public interface GenericSurface {
 
     /**
      * Returns the sum of the lengths of all the boundary components of this
-     * <code>GenericSurface</code>. Since perimeter, like length, is an accumulation
+     * {@code GenericSurface}. Since perimeter, like length, is an accumulation
      * (integral) of distance, its return value shall be in a reference system appropriate
      * for measuring distances.
      *
@@ -83,7 +83,7 @@ public interface GenericSurface {
     public double getPerimeter();
 
     /**
-     * Returns the area of this <code>GenericSurface</code>. The area of a 2-dimensional geometric
+     * Returns the area of this {@code GenericSurface}. The area of a 2-dimensional geometric
      * object shall be a numeric measure of its surface area (in a square unit of distance). Since
      * area is an accumulation (integral) of the product of two distances, its return value shall
      * be in a unit of measure appropriate for measuring distances squared, such as meters squared

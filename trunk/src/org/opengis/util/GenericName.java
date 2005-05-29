@@ -67,10 +67,10 @@ public interface GenericName extends Comparable {
     /**
      * Returns a string representation of this generic name. This string representation
      * is local-independant. It contains all elements listed by {@link #getParsedNames}
-     * separated by an arbitrary character (usually <code>:</code> or <code>/</code>).
-     * This rule implies that the <code>toString()</code> method for a
+     * separated by an arbitrary character (usually {@code :} or {@code /}).
+     * This rule implies that the {@code toString()} method for a
      * {@linkplain ScopedName scoped name} will contains the scope, while the
-     * <code>toString()</code> method for the {@linkplain LocalName local version} of
+     * {@code toString()} method for the {@linkplain LocalName local version} of
      * the same name will not contains the scope.
      */
     String toString();

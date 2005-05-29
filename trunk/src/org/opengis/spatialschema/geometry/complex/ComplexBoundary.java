@@ -22,7 +22,7 @@ import static org.opengis.annotation.Specification.*;
 /**
  * The boundary of {@linkplain Complex complex} objects. The
  * {@link org.opengis.spatialschema.geometry.Geometry#getBoundary getBoundary()} method for {@link Complex}
- * objects shall return a <code>ComplexBoundary</code>, which is a collection of primitives
+ * objects shall return a {@code ComplexBoundary}, which is a collection of primitives
  * and a {@linkplain Complex complex} of dimension 1 less than the original object.
  *
  * @version <A HREF="http://www.opengis.org/docs/01-101.pdf">Abstract specification 5</A>

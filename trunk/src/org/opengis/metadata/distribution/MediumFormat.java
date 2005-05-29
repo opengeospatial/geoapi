@@ -90,7 +90,7 @@ public final class MediumFormat extends CodeList<MediumFormat> {
     }
 
     /**
-     * Returns the list of <code>MediumFormat</code>s.
+     * Returns the list of {@code MediumFormat}s.
      */
     public static MediumFormat[] values() {
         synchronized (VALUES) {

@@ -96,7 +96,7 @@ public final class Progress extends CodeList<Progress> {
     }
 
     /**
-     * Returns the list of <code>Progress</code>s.
+     * Returns the list of {@code Progress}s.
      */
     public static Progress[] values() {
         synchronized (VALUES) {

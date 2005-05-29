@@ -47,7 +47,7 @@ public interface CRSAuthorityFactory extends AuthorityFactory {
      * know he is asking for a {@linkplain GeographicCRS geographic coordinate reference system}).
      *
      * @param code Value allocated by authority.
-     * @throws NoSuchAuthorityCodeException if the specified <code>code</code> was not found.
+     * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
      * @throws FactoryException if the object creation failed for some other reason.
      *
      * @see #createGeographicCRS
@@ -63,7 +63,7 @@ public interface CRSAuthorityFactory extends AuthorityFactory {
      * Creates a 3D coordinate reference system from a code.
      *
      * @param code Value allocated by authority.
-     * @throws NoSuchAuthorityCodeException if the specified <code>code</code> was not found.
+     * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
      * @throws FactoryException if the object creation failed for some other reason.
      */
     @UML(identifier="createCompoundCoordinateSystem", specification=OGC_01009)
@@ -73,7 +73,7 @@ public interface CRSAuthorityFactory extends AuthorityFactory {
      * Creates a derived coordinate reference system from a code.
      *
      * @param code Value allocated by authority.
-     * @throws NoSuchAuthorityCodeException if the specified <code>code</code> was not found.
+     * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
      * @throws FactoryException if the object creation failed for some other reason.
      */
     DerivedCRS createDerivedCRS(String code) throws FactoryException;        
@@ -82,7 +82,7 @@ public interface CRSAuthorityFactory extends AuthorityFactory {
      * Create a {@linkplain EngineeringCRS engineering coordinate reference system} from a code.
      *
      * @param code Value allocated by authority.
-     * @throws NoSuchAuthorityCodeException if the specified <code>code</code> was not found.
+     * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
      * @throws FactoryException if the object creation failed for some other reason.
      */
     EngineeringCRS createEngineeringCRS(String code) throws FactoryException;
@@ -91,7 +91,7 @@ public interface CRSAuthorityFactory extends AuthorityFactory {
      * Returns a {@linkplain GeographicCRS geographic coordinate reference system} from a code.
      *
      * @param code Value allocated by authority.
-     * @throws NoSuchAuthorityCodeException if the specified <code>code</code> was not found.
+     * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
      * @throws FactoryException if the object creation failed for some other reason.
      *
      * @see org.opengis.referencing.datum.DatumAuthorityFactory#createGeodeticDatum
@@ -113,7 +113,7 @@ public interface CRSAuthorityFactory extends AuthorityFactory {
      * Create a {@linkplain ImageCRS image coordinate reference system} from a code.
      *
      * @param code Value allocated by authority.
-     * @throws NoSuchAuthorityCodeException if the specified <code>code</code> was not found.
+     * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
      * @throws FactoryException if the object creation failed for some other reason.
      */
     ImageCRS createImageCRS(String code) throws FactoryException;
@@ -122,7 +122,7 @@ public interface CRSAuthorityFactory extends AuthorityFactory {
      * Returns a {@linkplain ProjectedCRS projected coordinate reference system} from a code.
      *
      * @param code Value allocated by authority.
-     * @throws NoSuchAuthorityCodeException if the specified <code>code</code> was not found.
+     * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
      * @throws FactoryException if the object creation failed for some other reason.
      *
      * @see org.opengis.referencing.datum.DatumAuthorityFactory#createGeodeticDatum
@@ -134,7 +134,7 @@ public interface CRSAuthorityFactory extends AuthorityFactory {
      * Create a {@linkplain TemporalCRS temporal coordinate reference system} from a code.
      *
      * @param code Value allocated by authority.
-     * @throws NoSuchAuthorityCodeException if the specified <code>code</code> was not found.
+     * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
      * @throws FactoryException if the object creation failed for some other reason.
      *
      * @see org.opengis.referencing.datum.DatumAuthorityFactory#createTemporalDatum
@@ -145,7 +145,7 @@ public interface CRSAuthorityFactory extends AuthorityFactory {
      * Create a {@linkplain VerticalCRS vertical coordinate reference system} from a code.
      *
      * @param code Value allocated by authority.
-     * @throws NoSuchAuthorityCodeException if the specified <code>code</code> was not found.
+     * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
      * @throws FactoryException if the object creation failed for some other reason.
      *
      * @see org.opengis.referencing.datum.DatumAuthorityFactory#createVerticalDatum

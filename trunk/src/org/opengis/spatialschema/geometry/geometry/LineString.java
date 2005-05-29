@@ -39,8 +39,8 @@ public interface LineString extends CurveSegment {
     /**
      * Returns a sequence of positions between which the curve is linearly interpolated.
      * The first position in the sequence is the {@linkplain #getStartPoint start Point}
-     * of this <code>LineString</code>, and the last point in the sequence is the
-     * {@linkplain #getEndPoint end point} of this <code>LineString</code>.
+     * of this {@code LineString}, and the last point in the sequence is the
+     * {@linkplain #getEndPoint end point} of this {@code LineString}.
      *
      * @return The control points between which the curve is linearly interpolated.
      */

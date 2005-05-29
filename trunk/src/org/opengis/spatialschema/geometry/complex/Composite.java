@@ -40,7 +40,7 @@ public interface Composite extends Complex {
      * the core geometry of the composite. The complex would include all primitives in the generator
      * and all primitives on the boundary of these primitives, and so forth until
      * {@linkplain org.opengis.spatialschema.geometry.primitive.Point points} are included. Thus the
-     * <code>generators</code> on <code>Composite</code> is a subset of the
+     * {@code generators} on {@code Composite} is a subset of the
      * {@linkplain Complex#getElements elements} on {@linkplain Complex complex}.
      *
      * @return The list of primitives in this composite.

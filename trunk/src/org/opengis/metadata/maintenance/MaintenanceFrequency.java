@@ -127,7 +127,7 @@ public final class MaintenanceFrequency extends CodeList<MaintenanceFrequency> {
     }
 
     /**
-     * Returns the list of <code>MaintenanceFrequency</code>s.
+     * Returns the list of {@code MaintenanceFrequency}s.
      */
     public static MaintenanceFrequency[] values() {
         synchronized (VALUES) {

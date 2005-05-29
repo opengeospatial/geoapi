@@ -26,7 +26,7 @@ import static org.opengis.annotation.Specification.*;
 
 /**
  * List of codes that may be used to identify the interpolation mechanisms. As a code list,
- * there is no intention of limiting the potential values of <code>CurveInterpolation</code>.
+ * there is no intention of limiting the potential values of {@code CurveInterpolation}.
  * Subtypes of {@link CurveSegment} can be spawned directly through subclassing, or indirectly
  * by specifying an interpolation method and an associated control parameters record to support
  * it.
@@ -150,7 +150,7 @@ public final class CurveInterpolation extends CodeList<CurveInterpolation> {
     }
 
     /**
-     * Returns the list of <code>CurveInterpolation</code>s.
+     * Returns the list of {@code CurveInterpolation}s.
      */
     public static CurveInterpolation[] values() {
         synchronized (VALUES) {

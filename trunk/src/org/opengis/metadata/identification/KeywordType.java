@@ -84,7 +84,7 @@ public final class KeywordType extends CodeList<KeywordType> {
     }
 
     /**
-     * Returns the list of <code>KeywordType</code>s.
+     * Returns the list of {@code KeywordType}s.
      */
     public static KeywordType[] values() {
         synchronized (VALUES) {

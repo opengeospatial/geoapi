@@ -74,7 +74,7 @@ public final class EvaluationMethodType extends CodeList<EvaluationMethodType> {
     }
 
     /**
-     * Returns the list of <code>EvaluationMethodType</code>s.
+     * Returns the list of {@code EvaluationMethodType}s.
      */
     public static EvaluationMethodType[] values() {
         synchronized (VALUES) {

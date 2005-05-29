@@ -27,7 +27,7 @@ import static org.opengis.annotation.Specification.*;
 
 /**
  * Represent the basic implementation which provides access to grid coverage data.
- * A <code>GridCoverage</code> implementation may provide the ability to update
+ * A {@code GridCoverage} implementation may provide the ability to update
  * grid values.
  *
  * <P>&nbsp;</P>
@@ -52,9 +52,9 @@ import static org.opengis.annotation.Specification.*;
 @UML(identifier="CV_GridCoverage", specification=OGC_01004)
 public interface GridCoverage extends Coverage {
     /**
-     * Returns <code>true</code> if grid data can be edited.
+     * Returns {@code true} if grid data can be edited.
      *
-     * @return <code>true</code> if grid data can be edited.
+     * @return {@code true} if grid data can be edited.
      */
     @UML(identifier="dataEditable", obligation=MANDATORY, specification=OGC_01004)
     boolean isDataEditable();
@@ -105,7 +105,7 @@ public interface GridCoverage extends Coverage {
      *
      * @param overviewIndex Overview index for which to retrieve grid geometry. Indices start at 0.
      * @return The grid geometry for an overview.
-     * @throws IndexOutOfBoundsException if <code>overviewIndex</code> is out of bounds.
+     * @throws IndexOutOfBoundsException if {@code overviewIndex} is out of bounds.
      */
     @UML(identifier="getOverviewGridGeometry", obligation=MANDATORY, specification=OGC_01004)
     GridGeometry getOverviewGridGeometry(int overviewIndex) throws IndexOutOfBoundsException;
@@ -143,23 +143,23 @@ public interface GridCoverage extends Coverage {
      *
      * @param overviewIndex Index of grid coverage overview to retrieve. Indexes start at 0.
      * @return a pre-calculated overview for a grid coverage.
-     * @throws IndexOutOfBoundsException if <code>overviewIndex</code> is out of bounds.
+     * @throws IndexOutOfBoundsException if {@code overviewIndex} is out of bounds.
      */
     @UML(identifier="getOverview", obligation=MANDATORY, specification=OGC_01004)
     GridCoverage getOverview(int overviewIndex) throws IndexOutOfBoundsException;
 
     /**
-     * Returns the sources data for a grid coverage. If the <code>GridCoverage</code> was
+     * Returns the sources data for a grid coverage. If the {@code GridCoverage} was
      * produced from an underlying dataset (by {@link GridCoverageReader#read read(...)}
      * for instance), this method should returns an empty list.
      *
-     * If the <code>GridCoverage</code> was produced using
+     * If the {@code GridCoverage} was produced using
      * {link org.opengis.coverage.processing.GridCoverageProcessor} then it should return the
-     * source grid coverages of the one used as input to <code>GridCoverageProcessor</code>.
-     * In general this method is intended to return the original <code>GridCoverage</code>
+     * source grid coverages of the one used as input to {@code GridCoverageProcessor}.
+     * In general this method is intended to return the original {@code GridCoverage}
      * on which it depends.
      *
-     * This is intended to allow applications to establish what <code>GridCoverage</code>s
+     * This is intended to allow applications to establish what {@code GridCoverage}s
      * will be affected when others are updated, as well as to trace back to the "raw data".
      *
      * @return The sources data for a grid coverage.
@@ -176,10 +176,10 @@ public interface GridCoverage extends Coverage {
      * @param  destination An optionally preallocated array in which to store the values,
      *         or {@code null} if none.
      * @return A sequence of boolean values for a given block in the coverage.
-     *         If <code>destination</code> was non-null, then it is returned.
+     *         If {@code destination} was non-null, then it is returned.
      *         Otherwise, a new array is allocated and returned.
-     * @throws InvalidRangeException if <code>gridRange</code> is out of this grid range bounds.
-     * @throws ArrayIndexOutOfBoundsException if the <code>destination</code> array is not null
+     * @throws InvalidRangeException if {@code gridRange} is out of this grid range bounds.
+     * @throws ArrayIndexOutOfBoundsException if the {@code destination} array is not null
      *         and too small to hold the output.
      *
      * @see #setDataBlock(GridRange, boolean[])
@@ -198,10 +198,10 @@ public interface GridCoverage extends Coverage {
      * @param  destination An optionally preallocated array in which to store the values,
      *         or {@code null} if none.
      * @return A sequence of 8 bits values for a given block in the coverage.
-     *         If <code>destination</code> was non-null, then it is returned.
+     *         If {@code destination} was non-null, then it is returned.
      *         Otherwise, a new array is allocated and returned.
-     * @throws InvalidRangeException if <code>gridRange</code> is out of this grid range bounds.
-     * @throws ArrayIndexOutOfBoundsException if the <code>destination</code> array is not null
+     * @throws InvalidRangeException if {@code gridRange} is out of this grid range bounds.
+     * @throws ArrayIndexOutOfBoundsException if the {@code destination} array is not null
      *         and too small to hold the output.
      *
      * @see #setDataBlock(GridRange, byte[])
@@ -221,10 +221,10 @@ public interface GridCoverage extends Coverage {
      * @param  destination An optionally preallocated array in which to store the values,
      *         or {@code null} if none.
      * @return A sequence of 16 bits values for a given block in the coverage.
-     *         If <code>destination</code> was non-null, then it is returned.
+     *         If {@code destination} was non-null, then it is returned.
      *         Otherwise, a new array is allocated and returned.
-     * @throws InvalidRangeException if <code>gridRange</code> is out of this grid range bounds.
-     * @throws ArrayIndexOutOfBoundsException if the <code>destination</code> array is not null
+     * @throws InvalidRangeException if {@code gridRange} is out of this grid range bounds.
+     * @throws ArrayIndexOutOfBoundsException if the {@code destination} array is not null
      *         and too small to hold the output.
      *
      * @see #setDataBlock(GridRange, int[])
@@ -244,10 +244,10 @@ public interface GridCoverage extends Coverage {
      * @param  destination An optionally preallocated array in which to store the values,
      *         or {@code null} if none.
      * @return A sequence of 32 bits values for a given block in the coverage.
-     *         If <code>destination</code> was non-null, then it is returned.
+     *         If {@code destination} was non-null, then it is returned.
      *         Otherwise, a new array is allocated and returned.
-     * @throws InvalidRangeException if <code>gridRange</code> is out of this grid range bounds.
-     * @throws ArrayIndexOutOfBoundsException if the <code>destination</code> array is not null
+     * @throws InvalidRangeException if {@code gridRange} is out of this grid range bounds.
+     * @throws ArrayIndexOutOfBoundsException if the {@code destination} array is not null
      *         and too small to hold the output.
      *
      * @see #setDataBlock(GridRange, int[])
@@ -268,10 +268,10 @@ public interface GridCoverage extends Coverage {
      * @param  destination An optionally preallocated array in which to store the values,
      *         or {@code null} if none.
      * @return A sequence of float values for a given block in the coverage.
-     *         If <code>destination</code> was non-null, then it is returned.
+     *         If {@code destination} was non-null, then it is returned.
      *         Otherwise, a new array is allocated and returned.
-     * @throws InvalidRangeException if <code>gridRange</code> is out of this grid range bounds.
-     * @throws ArrayIndexOutOfBoundsException if the <code>destination</code> array is not null
+     * @throws InvalidRangeException if {@code gridRange} is out of this grid range bounds.
+     * @throws ArrayIndexOutOfBoundsException if the {@code destination} array is not null
      *         and too small to hold the output.
      *
      * @see #setDataBlock(GridRange, float[])
@@ -292,7 +292,7 @@ public interface GridCoverage extends Coverage {
      * (sample dimension, column, row).
      *
      * The index values will be based from 0. The indices in the returned <VAR>N</VAR> dimensional
-     * safe array will need to be offset by <code>gridRange</code> {@linkplain GridRange#getLowers()
+     * safe array will need to be offset by {@code gridRange} {@linkplain GridRange#getLowers()
      * minimum coordinates} to get equivalent grid coordinates.
      * <p>
      * The requested grid range must satisfy the following rules for each dimension of the grid
@@ -318,15 +318,15 @@ public interface GridCoverage extends Coverage {
      * @param  destination An optionally preallocated array in which to store the values,
      *         or {@code null} if none.
      * @return A sequence of double values for a given block in the coverage.
-     *         If <code>destination</code> was non-null, then it is returned.
+     *         If {@code destination} was non-null, then it is returned.
      *         Otherwise, a new array is allocated and returned.
-     * @throws InvalidRangeException if <code>gridRange</code> is out of this grid range bounds.
-     * @throws ArrayIndexOutOfBoundsException if the <code>destination</code> array is not null
+     * @throws InvalidRangeException if {@code gridRange} is out of this grid range bounds.
+     * @throws ArrayIndexOutOfBoundsException if the {@code destination} array is not null
      *         and too small to hold the output.
      *
-     * @rename Renamed <code>getValueBlockAsDouble</code> as <code>getDataBlockAsDouble</code>
-     *         for consistency with all others <code>getDataBlock...</code> methods and
-     *         <code>setDataBlockAsDouble</code>.
+     * @rename Renamed {@code getValueBlockAsDouble} as {@code getDataBlockAsDouble}
+     *         for consistency with all others {@code getDataBlock...} methods and
+     *         {@code setDataBlockAsDouble}.
      *
      * @revisit Which indices vary fastest?
      *
@@ -343,7 +343,7 @@ public interface GridCoverage extends Coverage {
      * A value for each sample dimension will be returned.
      * This operation provides efficient access of the grid values.
      * The sequencing order of the values in the sequence will follow the rules
-     * given by <code>valueInBytePacking</code> and <code>bandPacking</code>
+     * given by {@code valueInBytePacking} and {@code bandPacking}
      * defined in {@link GridPacking}.
      *
      * The requested grid range must satisfy the following rules for each dimension
@@ -383,11 +383,11 @@ public interface GridCoverage extends Coverage {
      *
      * @param gridRange Grid range for block of data to be accessed.
      * @return a block of grid coverage data for all sample dimensions.
-     * @throws InvalidRangeException if <code>gridRange</code> is out of this grid range bounds.
+     * @throws InvalidRangeException if {@code gridRange} is out of this grid range bounds.
      *
-     * @revisit This operation can't be implemented efficiently in Java with a <code>byte[]</code>
+     * @revisit This operation can't be implemented efficiently in Java with a {@code byte[]}
      *          return type, since there is no way to cast an array of arbitrary type to an array
-     *          of type <code>byte[]</code>. Even the <code>java.nio.Buffer</code> doesnt allow
+     *          of type {@code byte[]}. Even the {@code java.nio.Buffer} doesnt allow
      *          that (it allows the opposite way however).
      */
     @UML(identifier="getPackedDataBlock", obligation=MANDATORY, specification=OGC_01004)
@@ -399,9 +399,9 @@ public interface GridCoverage extends Coverage {
      *
      * @param gridRange Grid range for block of data to be accessed.
      * @param values Sequence of grid values for the given region.
-     * @throws InvalidRangeException if <code>gridRange</code> is out of this grid range bounds.
+     * @throws InvalidRangeException if {@code gridRange} is out of this grid range bounds.
      * @throws GridNotEditableException if the grid coverage is not {@linkplain #isDataEditable editable}.
-     * @throws ArrayIndexOutOfBoundsException if the <code>values</code> array is too small.
+     * @throws ArrayIndexOutOfBoundsException if the {@code values} array is too small.
      *
      * @see #isDataEditable
      * @see #getDataBlock(GridRange, boolean[])
@@ -416,9 +416,9 @@ public interface GridCoverage extends Coverage {
      *
      * @param gridRange Grid range for block of data to be accessed.
      * @param values Sequence of grid values for the given region.
-     * @throws InvalidRangeException if <code>gridRange</code> is out of this grid range bounds.
+     * @throws InvalidRangeException if {@code gridRange} is out of this grid range bounds.
      * @throws GridNotEditableException if the grid coverage is not {@linkplain #isDataEditable editable}.
-     * @throws ArrayIndexOutOfBoundsException if the <code>values</code> array is too small.
+     * @throws ArrayIndexOutOfBoundsException if the {@code values} array is too small.
      *
      * @see #isDataEditable
      * @see #getDataBlock(GridRange, byte[])
@@ -433,9 +433,9 @@ public interface GridCoverage extends Coverage {
      *
      * @param gridRange Grid range for block of data to be accessed.
      * @param values Sequence of grid values for the given region.
-     * @throws InvalidRangeException if <code>gridRange</code> is out of this grid range bounds.
+     * @throws InvalidRangeException if {@code gridRange} is out of this grid range bounds.
      * @throws GridNotEditableException if the grid coverage is not {@linkplain #isDataEditable editable}.
-     * @throws ArrayIndexOutOfBoundsException if the <code>values</code> array is too small.
+     * @throws ArrayIndexOutOfBoundsException if the {@code values} array is too small.
      *
      * @see #isDataEditable
      * @see #getDataBlock(GridRange, short[])
@@ -450,9 +450,9 @@ public interface GridCoverage extends Coverage {
      *
      * @param gridRange Grid range for block of data to be accessed.
      * @param values Sequence of grid values for the given region.
-     * @throws InvalidRangeException if <code>gridRange</code> is out of this grid range bounds.
+     * @throws InvalidRangeException if {@code gridRange} is out of this grid range bounds.
      * @throws GridNotEditableException if the grid coverage is not {@linkplain #isDataEditable editable}.
-     * @throws ArrayIndexOutOfBoundsException if the <code>values</code> array is too small.
+     * @throws ArrayIndexOutOfBoundsException if the {@code values} array is too small.
      *
      * @see #isDataEditable
      * @see #getDataBlock(GridRange, int[])
@@ -468,9 +468,9 @@ public interface GridCoverage extends Coverage {
      *
      * @param gridRange Grid range for block of data to be accessed.
      * @param values Sequence of grid values for the given region.
-     * @throws InvalidRangeException if <code>gridRange</code> is out of this grid range bounds.
+     * @throws InvalidRangeException if {@code gridRange} is out of this grid range bounds.
      * @throws GridNotEditableException if the grid coverage is not {@linkplain #isDataEditable editable}.
-     * @throws ArrayIndexOutOfBoundsException if the <code>values</code> array is too small.
+     * @throws ArrayIndexOutOfBoundsException if the {@code values} array is too small.
      *
      * @see #isDataEditable
      * @see #getDataBlock(GridRange, float[])
@@ -505,9 +505,9 @@ public interface GridCoverage extends Coverage {
      *
      * @param gridRange Grid range for block of data to be accessed.
      * @param values Sequence of grid values for the given region.
-     * @throws InvalidRangeException if <code>gridRange</code> is out of this grid range bounds.
+     * @throws InvalidRangeException if {@code gridRange} is out of this grid range bounds.
      * @throws GridNotEditableException if the grid coverage is not {@linkplain #isDataEditable editable}.
-     * @throws ArrayIndexOutOfBoundsException if the <code>values</code> array is too small.
+     * @throws ArrayIndexOutOfBoundsException if the {@code values} array is too small.
      *
      * @see #isDataEditable
      * @see #getDataBlock(GridRange, double[])
@@ -523,13 +523,13 @@ public interface GridCoverage extends Coverage {
      *
      * @param gridRange Grid range for block of data to be accessed.
      * @param values Sequence of grid values for the given region.
-     * @throws InvalidRangeException if <code>gridRange</code> is out of this grid range bounds.
+     * @throws InvalidRangeException if {@code gridRange} is out of this grid range bounds.
      * @throws GridNotEditableException if the grid coverage is not {@linkplain #isDataEditable editable}.
-     * @throws ArrayIndexOutOfBoundsException if the <code>values</code> array is too small.
+     * @throws ArrayIndexOutOfBoundsException if the {@code values} array is too small.
      *
      * @revisit This operation can hardly be implemented efficiently in Java with a
-     *          <code>byte[]</code> argument type, since we can't easily cast an array
-     *          of <code>byte[]</code> to an array of arbitrary type.
+     *          {@code byte[]} argument type, since we can't easily cast an array
+     *          of {@code byte[]} to an array of arbitrary type.
      */
     @UML(identifier="setPackedDataBlock", obligation=MANDATORY, specification=OGC_01004)
     void setPackedDataBlock(GridRange gridRange, byte[] values)

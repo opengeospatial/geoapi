@@ -79,23 +79,23 @@ public interface MathTransform {
     int getTargetDimensions();
     
     /**
-     * Transforms the specified <code>ptSrc</code> and stores the result in
-     * <code>ptDst</code>. If <code>ptDst</code> is {@code null}, a new
+     * Transforms the specified {@code ptSrc} and stores the result in
+     * {@code ptDst}. If {@code ptDst} is {@code null}, a new
      * {@link DirectPosition} object is allocated and then the result of the
-     * transformation is stored in this object. In either case, <code>ptDst</code>,
+     * transformation is stored in this object. In either case, {@code ptDst},
      * which contains the transformed point, is returned for convenience.
-     * If <code>ptSrc</code> and <code>ptDst</code> are the same object,
+     * If {@code ptSrc} and {@code ptDst} are the same object,
      * the input point is correctly overwritten with the transformed point.
      *
      * @param ptSrc the specified coordinate point to be transformed.
      * @param ptDst the specified coordinate point that stores the
-     *              result of transforming <code>ptSrc</code>, or
+     *              result of transforming {@code ptSrc}, or
      *              {@code null}.
-     * @return the coordinate point after transforming <code>ptSrc</code>
-     *         and storing the result in <code>ptDst</code>, or a newly
-     *         created point if <code>ptDst</code> was null.
-     * @throws MismatchedDimensionException if <code>ptSrc</code> or
-     *         <code>ptDst</code> doesn't have the expected dimension.
+     * @return the coordinate point after transforming {@code ptSrc}
+     *         and storing the result in {@code ptDst}, or a newly
+     *         created point if {@code ptDst} was null.
+     * @throws MismatchedDimensionException if {@code ptSrc} or
+     *         {@code ptDst} doesn't have the expected dimension.
      * @throws TransformException if the point can't be transformed.
      */
     @UML(identifier="transform", specification=OGC_01009)
@@ -117,7 +117,7 @@ public interface MathTransform {
      *               in the source array.
      * @param dstPts the array into which the transformed point
      *               coordinates are returned. May be the same
-     *               than <code>srcPts</code>.
+     *               than {@code srcPts}.
      * @param dstOff the offset to the location of the first
      *               transformed point that is stored in the
      *               destination array.
@@ -144,7 +144,7 @@ public interface MathTransform {
      *               in the source array.
      * @param dstPts the array into which the transformed point
      *               coordinates are returned. May be the same
-     *               than <code>srcPts</code>.
+     *               than {@code srcPts}.
      * @param dstOff the offset to the location of the first
      *               transformed point that is stored in the
      *               destination array.
@@ -196,8 +196,8 @@ public interface MathTransform {
      *         This method never returns an internal object: changing the matrix
      *         will not change the state of this math transform.
      * @throws NullPointerException if the derivative dependents on coordinate
-     *         and <code>point</code> is {@code null}.
-     * @throws MismatchedDimensionException if <code>point</code> doesn't have
+     *         and {@code point} is {@code null}.
+     * @throws MismatchedDimensionException if {@code point} doesn't have
      *         the expected dimension.
      * @throws TransformException if the derivative can't be evaluated at the
      *         specified point.
@@ -223,8 +223,8 @@ public interface MathTransform {
     /**
      * Tests whether this transform does not move any points.
      *
-     * @return <code>true</code> if this <code>MathTransform</code> is
-     *         an identity transform; <code>false</code> otherwise.
+     * @return {@code true} if this {@code MathTransform} is
+     *         an identity transform; {@code false} otherwise.
      */
     @UML(identifier="isIdentity", specification=OGC_01009)
     boolean isIdentity();

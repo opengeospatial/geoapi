@@ -150,7 +150,7 @@ public final class ScopeCode extends CodeList<ScopeCode> {
     }
 
     /**
-     * Returns the list of <code>ScopeCode</code>s.
+     * Returns the list of {@code ScopeCode}s.
      */
     public static ScopeCode[] values() {
         synchronized (VALUES) {

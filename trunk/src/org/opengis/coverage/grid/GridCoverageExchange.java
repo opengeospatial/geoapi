@@ -25,7 +25,7 @@ import static org.opengis.annotation.Specification.*;
  * coverages from the GeoTIFF Well-known binary format and exporting to the GeoTIFF file format.
  * Basic implementations only require creation of grid coverages from a file format or resource.
  * More sophesticated implementations may extract the grid coverages from a database. In such
- * case, a <code>GridCoverageExchange</code> instance will hold a connection to a specific
+ * case, a {@code GridCoverageExchange} instance will hold a connection to a specific
  * database and the {@link #dispose} method will need to be invoked in order to close this
  * connection.
  *
@@ -51,10 +51,10 @@ import static org.opengis.annotation.Specification.*;
 public interface GridCoverageExchange {
     /**
      * Retrieve information on file formats or resources available with the
-     * <code>GridCoverageExchange</code> implementation.
+     * {@code GridCoverageExchange} implementation.
      *
      * @return Information on file formats or resources available with
-     *         the <code>GridCoverageExchange</code> implementation.
+     *         the {@code GridCoverageExchange} implementation.
      */
     @UML(identifier="getFormat", obligation=MANDATORY, specification=OGC_01004)
     Format[] getFormats();
@@ -97,7 +97,7 @@ public interface GridCoverageExchange {
     /**
      * Allows any resources held by this object to be released. The result of calling any other
      * method subsequent to a call to this method is undefined. Applications should call this
-     * method when they know they will no longer be using this <code>GridCoverageExchange</code>,
+     * method when they know they will no longer be using this {@code GridCoverageExchange},
      * especially if it was holding a connection to a database.
      *
      * @throws IOException if an error occured while disposing resources

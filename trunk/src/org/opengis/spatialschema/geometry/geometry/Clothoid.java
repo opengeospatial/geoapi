@@ -63,7 +63,7 @@ public interface Clothoid extends CurveSegment {
      * parameter} and {@linkplain #getEndConstructiveParam end constructive parameter} of the
      * clothoid, then the curve goes through the clothoid's inflection point, and the direction
      * of its radius of curvature, given by the second derivative vector, changes sides
-     * with respect to the tangent vector. The term "length" for the parameter <code>t</code>
+     * with respect to the tangent vector. The term "length" for the parameter {@code t}
      * is applicable only in the parameter space, and its relation to arc length after use of
      * the placement, and with respect to the coordinate reference system of the curve is not
      * deterministic.</P>

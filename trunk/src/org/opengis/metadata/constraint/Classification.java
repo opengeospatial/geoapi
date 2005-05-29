@@ -84,7 +84,7 @@ public final class Classification extends CodeList<Classification> {
     }
 
     /**
-     * Returns the list of <code>Classification</code>s.
+     * Returns the list of {@code Classification}s.
      */
     public static Classification[] values() {
         synchronized (VALUES) {

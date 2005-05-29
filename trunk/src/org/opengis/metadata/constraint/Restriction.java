@@ -107,7 +107,7 @@ public final class Restriction extends CodeList<Restriction> {
     }
 
     /**
-     * Returns the list of <code>Restriction</code>s.
+     * Returns the list of {@code Restriction}s.
      */
     public static Restriction[] values() {
         synchronized (VALUES) {

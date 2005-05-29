@@ -78,8 +78,8 @@ public interface Conic extends CurveSegment {
     public AffinePlacement getPosition();
 
     /**
-     * Returns <code>false</code> if the affine transformation is used on the unshifted
-     * (<var>u</var>, <var>v</var>) and <code>true</code> if the affine transformation
+     * Returns {@code false} if the affine transformation is used on the unshifted
+     * (<var>u</var>, <var>v</var>) and {@code true} if the affine transformation
      * is applied to the shifted parameters (<var>u'</var>, <var>v'</var>). This controls
      * whether the focus or the vertex of the conic is at the origin in parameter space.
      */

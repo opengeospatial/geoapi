@@ -230,7 +230,7 @@ public final class TopicCategory extends CodeList<TopicCategory> {
     }
 
     /**
-     * Returns the list of <code>TopicCategory</code>s.
+     * Returns the list of {@code TopicCategory}s.
      */
     public static TopicCategory[] values() {
         synchronized (VALUES) {

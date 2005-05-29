@@ -21,8 +21,8 @@ import static org.opengis.annotation.Specification.*;
 
 /**
  * Common interface for {@linkplain org.opengis.spatialschema.geometry.primitive.Curve curve} and
- * {@linkplain org.opengis.spatialschema.geometry.primitive.CurveSegment curve segment}. <code>Curve</code>
- * and <code>CurveSegment</code> both represent sections of curvilinear
+ * {@linkplain org.opengis.spatialschema.geometry.primitive.CurveSegment curve segment}. {@code Curve}
+ * and {@code CurveSegment} both represent sections of curvilinear
  * geometry, and therefore share a number of operation signatures.
  *
  * @version <A HREF="http://www.opengis.org/docs/01-101.pdf">Abstract specification 5</A>
@@ -32,11 +32,11 @@ import static org.opengis.annotation.Specification.*;
 @UML(identifier="GM_GenericCurve", specification=ISO_19107)
 public interface GenericCurve {
     /**
-     * Returns the direct position of the first point on the <code>GenericCurve</code>.
+     * Returns the direct position of the first point on the {@code GenericCurve}.
      * This differs from the boundary operator in {@link org.opengis.spatialschema.geometry.primitive.Primitive},
      * since it returns only the values of this point, not representative objects.
      *
-     * @return The first point on the <code>GenericCurve</code>.
+     * @return The first point on the {@code GenericCurve}.
      *
      * @see #getStartParam
      * @see #getEndPoint
@@ -45,11 +45,11 @@ public interface GenericCurve {
     public DirectPosition getStartPoint();
 
     /**
-     * Returns the direct position of the last point on the <code>GenericCurve</code>.
+     * Returns the direct position of the last point on the {@code GenericCurve}.
      * This differs from the boundary operator in {@link org.opengis.spatialschema.geometry.primitive.Primitive},
      * since it returns only the values of this point, not representative objects.
      *
-     * @return The last point on the <code>GenericCurve</code>.
+     * @return The last point on the {@code GenericCurve}.
      *
      * @see #getEndParam
      * @see #getStartPoint
@@ -58,7 +58,7 @@ public interface GenericCurve {
     public DirectPosition getEndPoint();
 
     /**
-     * Returns the tangent vector along this <code>GenericCurve</code> at the passed parameter
+     * Returns the tangent vector along this {@code GenericCurve} at the passed parameter
      * value. This vector approximates the derivative of the parameterization of the curve. The
      * tangent shall be a unit vector (have length 1.0), which is consistent with the
      * parameterization by arc length.
@@ -117,8 +117,8 @@ public interface GenericCurve {
 
     /**
      * Indicates the parameter used in the constructive paramerization for the start point.
-     * There is no assumption that the <code>startConstructiveParam</code> is less than the
-     * <code>endConstructiveParam</code>, but the parameterization must be strictly monotonic
+     * There is no assumption that the {@code startConstructiveParam} is less than the
+     * {@code endConstructiveParam}, but the parameterization must be strictly monotonic
      * (strictly increasing, or strictly decreasing).
      *
      * <blockquote><font size=2>
@@ -140,8 +140,8 @@ public interface GenericCurve {
 
     /**
      * Indicates the parameter used in the constructive paramerization for the end point.
-     * There is no assumption that the <code>startConstructiveParam</code> is less than the
-     * <code>endConstructiveParam</code>, but the parameterization must be strictly monotonic
+     * There is no assumption that the {@code startConstructiveParam} is less than the
+     * {@code endConstructiveParam}, but the parameterization must be strictly monotonic
      * (strictly increasing, or strictly decreasing).
      *
      * <blockquote><font size=2>
@@ -183,9 +183,9 @@ public interface GenericCurve {
     /**
      * Returns the direct position for a parameter. This method shall be the parameterized
      * representation of the curve as the continuous image of a real number interval. The
-     * method returns the direct position on the <code>GenericCurve</code> at the distance
+     * method returns the direct position on the {@code GenericCurve} at the distance
      * passed. The parameterization shall be by arc length, i.e. distance along the
-     * <code>GenericCurve</code> measured from the start point and added to the start parameter.
+     * {@code GenericCurve} measured from the start point and added to the start parameter.
      *
      * @param s The distance from the start point and added to the start parameter.
      * @return The direct position for the given parameter.
@@ -198,7 +198,7 @@ public interface GenericCurve {
     public DirectPosition forParam(double s);
 
     /**
-     * Returns the parameter for this <code>GenericCurve</code> at the passed direct position.
+     * Returns the parameter for this {@code GenericCurve} at the passed direct position.
      * If the direct position is not on the curve, the nearest point on the curve shall be used.
      *
      * @param p The direct position on the curve.
@@ -235,7 +235,7 @@ public interface GenericCurve {
 
     /**
      * Returns the length between two constructive parameters.
-     * This second form of the method <code>length</code> shall work directly from the constructive
+     * This second form of the method {@code length} shall work directly from the constructive
      * parameters, allowing the direct conversion between the variables used in parameterization and
      * constructive parameters.
      *
@@ -258,11 +258,11 @@ public interface GenericCurve {
 
     /**
      * Constructs a line string (sequence of line segments) where the control points (ends of
-     * the segments) lie on this curve. If <code>maxSpacing</code> is given (not zero), then
+     * the segments) lie on this curve. If {@code maxSpacing} is given (not zero), then
      * the distance between control points along the generated curve shall be not more than
-     * <code>maxSpacing</code>. If <code>maxOffset</code> is given (not zero), the distance
+     * {@code maxSpacing}. If {@code maxOffset} is given (not zero), the distance
      * between generated curve at any point and the original curve shall not be more than the
-     * <code>maxOffset</code>. If both parameters are set, then both criteria shall be met.
+     * {@code maxOffset}. If both parameters are set, then both criteria shall be met.
      * If the original control points of the curve lie on the curve, then they shall be included
      * in the returned {@linkplain LineString line string}'s control points. If both parameters are
      * set to zero, then the line string returned shall be constructed from the control points of the
@@ -270,11 +270,11 @@ public interface GenericCurve {
      * <blockquote><font size=2>
      * <strong>NOTE:</strong> This function is useful in creating linear approximations of the
      * curve for simple actions such as display. It is often referred to as a "stroked curve".
-     * For this purpose, the <code>maxOffset</code> version is useful in maintaining a minimal
+     * For this purpose, the {@code maxOffset} version is useful in maintaining a minimal
      * representation of the curve appropriate for the display device being targeted. This
      * function is also useful in preparing to transform a curve from one coordinate reference
      * system to another by transforming its control points. In this case, the
-     * <code>maxSpacing</code> version is more appropriate. Allowing both parameters to default
+     * {@code maxSpacing} version is more appropriate. Allowing both parameters to default
      * to zero does not seem to have any useful geographic nor geometric interpretation unless
      * further information is known about how the curves were constructed.
      * </font></blockquote>

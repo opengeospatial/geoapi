@@ -32,8 +32,8 @@ import static org.opengis.annotation.Specification.*;
 public interface Solid extends Primitive {
     /**
      * Returns a sequence of sets of {@linkplain Surface surfaces} that limit the extent of this
-     * <code>Solid</code>. These surfaces shall be organized into one set of surfaces for each
-     * boundary component of this <code>Solid</code>. Each of these shells shall be a cycle
+     * {@code Solid}. These surfaces shall be organized into one set of surfaces for each
+     * boundary component of this {@code Solid}. Each of these shells shall be a cycle
      * (closed composite surface without boundary).
      *
      * <blockquote><font size=2>
@@ -59,7 +59,7 @@ public interface Solid extends Primitive {
      *
      * @return The area of this solid.
      *
-     * @revisit In UML diagram, this operation has an <code>Area</code> return type.
+     * @revisit In UML diagram, this operation has an {@code Area} return type.
      */
     @UML(identifier="area", obligation=MANDATORY, specification=ISO_19107)
     public double getArea();
@@ -71,7 +71,7 @@ public interface Solid extends Primitive {
      *
      * @return The volume of this solid.
      *
-     * @revisit In UML diagram, this operation has a <code>Volume</code> return type.
+     * @revisit In UML diagram, this operation has a {@code Volume} return type.
      */
     @UML(identifier="volume", obligation=MANDATORY, specification=ISO_19107)
     public double getVolume();

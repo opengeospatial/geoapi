@@ -86,7 +86,7 @@ public interface FeatureStoreFactory {
     /**
      * Gets parameters needed (beyond the URI) to instantiate a {@link FeatureStore}.
      * 
-     * @revisit Should be replaced with a <code>Param</code>[] based on ISO standards (ISO 19119).
+     * @revisit Should be replaced with a {@code Param}[] based on ISO standards (ISO 19119).
      */
     Map<String,Class> getParametersInfo();
 
