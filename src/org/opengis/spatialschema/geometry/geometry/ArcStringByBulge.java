@@ -99,7 +99,7 @@ public interface ArcStringByBulge extends CurveSegment {
     public List<double[]> getNormals();
 
     /**
-     * The interpolation for a <code>ArcStringByBulge</code> is
+     * The interpolation for a {@code ArcStringByBulge} is
      * "{@linkplain CurveInterpolation#CIRCULAR_ARC_2_POINTS_WITH_BULGE
      * Circular arc by 2 points and bulge factor}".
      *

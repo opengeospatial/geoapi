@@ -49,7 +49,7 @@ public interface DatumAuthorityFactory extends AuthorityFactory {
      * {@linkplain GeodeticDatum geodetic datum}).
      *
      * @param  code Value allocated by authority.
-     * @throws NoSuchAuthorityCodeException if the specified <code>code</code> was not found.
+     * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
      * @throws FactoryException if the object creation failed for some other reason.
      *
      * @see #createGeodeticDatum
@@ -62,7 +62,7 @@ public interface DatumAuthorityFactory extends AuthorityFactory {
      * Creates a {@linkplain EngineeringDatum engineering datum} from a code.
      *
      * @param  code Value allocated by authority.
-     * @throws NoSuchAuthorityCodeException if the specified <code>code</code> was not found.
+     * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
      * @throws FactoryException if the object creation failed for some other reason.
      *
      * @see org.opengis.referencing.crs.CRSAuthorityFactory#createEngineeringCRS
@@ -73,7 +73,7 @@ public interface DatumAuthorityFactory extends AuthorityFactory {
      * Creates a {@linkplain ImageDatum image datum} from a code.
      *
      * @param  code Value allocated by authority.
-     * @throws NoSuchAuthorityCodeException if the specified <code>code</code> was not found.
+     * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
      * @throws FactoryException if the object creation failed for some other reason.
      *
      * @see org.opengis.referencing.crs.CRSAuthorityFactory#createImageCRS
@@ -84,7 +84,7 @@ public interface DatumAuthorityFactory extends AuthorityFactory {
      * Creates a {@linkplain VerticalDatum vertical datum} from a code.
      *
      * @param  code Value allocated by authority.
-     * @throws NoSuchAuthorityCodeException if the specified <code>code</code> was not found.
+     * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
      * @throws FactoryException if the object creation failed for some other reason.
      *
      * @see org.opengis.referencing.crs.CRSAuthorityFactory#createVerticalCRS
@@ -96,7 +96,7 @@ public interface DatumAuthorityFactory extends AuthorityFactory {
      * Creates a {@linkplain TemporalDatum temporal datum} from a code.
      *
      * @param  code Value allocated by authority.
-     * @throws NoSuchAuthorityCodeException if the specified <code>code</code> was not found.
+     * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
      * @throws FactoryException if the object creation failed for some other reason.
      *
      * @see org.opengis.referencing.crs.CRSAuthorityFactory#createTemporalCRS
@@ -107,7 +107,7 @@ public interface DatumAuthorityFactory extends AuthorityFactory {
      * Returns a {@linkplain GeodeticDatum geodetic datum} from a code.
      *
      * @param  code Value allocated by authority.
-     * @throws NoSuchAuthorityCodeException if the specified <code>code</code> was not found.
+     * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
      * @throws FactoryException if the object creation failed for some other reason.
      *
      * @see #createEllipsoid
@@ -122,7 +122,7 @@ public interface DatumAuthorityFactory extends AuthorityFactory {
      * Returns an {@linkplain Ellipsoid ellipsoid} from a code.
      *
      * @param  code Value allocated by authority.
-     * @throws NoSuchAuthorityCodeException if the specified <code>code</code> was not found.
+     * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
      * @throws FactoryException if the object creation failed for some other reason.
      *
      * @see #createGeodeticDatum
@@ -134,7 +134,7 @@ public interface DatumAuthorityFactory extends AuthorityFactory {
      * Returns a {@linkplain PrimeMeridian prime meridian} from a code.
      *
      * @param  code Value allocated by authority.
-     * @throws NoSuchAuthorityCodeException if the specified <code>code</code> was not found.
+     * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
      * @throws FactoryException if the object creation failed for some other reason.
      *
      * @see #createGeodeticDatum

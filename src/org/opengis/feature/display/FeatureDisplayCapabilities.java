@@ -12,7 +12,7 @@ package org.opengis.feature.display;
 
 
 /**
- * The <code>FeatureDisplayCapabilities</code> class/interface...
+ * The {@code FeatureDisplayCapabilities} class/interface...
  * 
  * @author Jesse Crossley (SYS Technologies)
  * @since GeoAPI 1.1

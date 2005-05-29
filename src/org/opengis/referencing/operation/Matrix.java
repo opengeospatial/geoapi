@@ -84,9 +84,9 @@ public interface Matrix extends Cloneable {
     // Same signature than GMatrix, for straightforward implementation.
 
     /**
-     * Returns <code>true</code> if this matrix is an identity matrix.
+     * Returns {@code true} if this matrix is an identity matrix.
      *
-     * @return <code>true</code> if this matrix is an identity matrix.
+     * @return {@code true} if this matrix is an identity matrix.
      */
     @Extension
     boolean isIdentity();

@@ -27,7 +27,7 @@ import static org.opengis.annotation.Specification.*;
  * the surface. The orientation of points and solids has no immediate geometric interpretation in
  * 3-dimensional space.
  * <p>
- * <code>OrientablePrimitive</code> objects are essentially references to geometric primitives
+ * {@code OrientablePrimitive} objects are essentially references to geometric primitives
  * that carry an "orientation" reversal flag (either "+" or "-") that determines whether this
  * primitive agrees or disagrees with the orientation of the referenced object.
  *
@@ -60,9 +60,9 @@ public interface OrientablePrimitive extends Primitive {
     public int getOrientation();
 
     /**
-     * Returns the primitive associated with this <code>OrientablePrimitive</code>.
+     * Returns the primitive associated with this {@code OrientablePrimitive}.
      * Each {@linkplain Primitive primitive} of dimension 1 or 2 is associated to two
-     * <code>OrientablePrimitive</code>s, one for each possible orientation.
+     * {@code OrientablePrimitive}s, one for each possible orientation.
      * For curves and surfaces, there are exactly two orientable primitives
      * for each geometric object.
      *

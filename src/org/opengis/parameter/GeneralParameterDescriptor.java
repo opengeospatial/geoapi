@@ -36,7 +36,7 @@ public interface GeneralParameterDescriptor extends IdentifiedObject {
      * Creates a new instance of {@linkplain GeneralParameterValue parameter value or group}
      * initialized with the {@linkplain ParameterDescriptor#getDefaultValue default value(s)}.
      * The {@linkplain GeneralParameterValue#getDescriptor parameter value descriptor} for
-     * the created parameter value(s) will be <code>this</code> object.
+     * the created parameter value(s) will be {@code this} object.
      */
     @Extension
     GeneralParameterValue createValue();

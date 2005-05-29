@@ -28,11 +28,11 @@ import static org.opengis.annotation.Specification.*;
 
 /**
  * Builds up complex {@linkplain Datum datums} from simpler objects or values.
- * <code>DatumFactory</code> allows applications to make {@linkplain Datum datums}
+ * {@code DatumFactory} allows applications to make {@linkplain Datum datums}
  * that cannot be created by a {@link DatumAuthorityFactory}. This factory is very
  * flexible, whereas the authority factory is easier to use.
  * So {@link DatumAuthorityFactory} can be used to make "standard" datums, and
- * <code>DatumFactory</code> can be used to make "special" datums.
+ * {@code DatumFactory} can be used to make "special" datums.
  *
  * @version <A HREF="http://www.opengis.org/docs/01-009.pdf">Implementation specification 1.0</A>
  * @author Martin Desruisseaux (IRD)

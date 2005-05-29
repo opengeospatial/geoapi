@@ -111,7 +111,7 @@ public final class DataType extends CodeList<DataType> {
     }
 
     /**
-     * Returns the list of <code>DataType</code>s.
+     * Returns the list of {@code DataType}s.
      */
     public static DataType[] values() {
         synchronized (VALUES) {

@@ -23,7 +23,7 @@ import static org.opengis.annotation.Specification.*;
  * The <var>i</var><sup>th</sup>, <var>j</var><sup>th</sup> would be (<var>u<sub>i</sub></var>,
  * <var>v<sub>j</sub></var>), where the original knot sequences were (<var>u<sub>i</sub></var>)
  * and (<var>v<sub>j</sub></var>). Each knot of a spline curve or surface is described using a
- * <code>Knot</code>.
+ * {@code Knot}.
  *
  * @version <A HREF="http://www.opengis.org/docs/01-101.pdf">Abstract specification 5</A>
  * @author Martin Desruisseaux (IRD)

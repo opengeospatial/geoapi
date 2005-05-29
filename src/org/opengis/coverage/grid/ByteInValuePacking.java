@@ -86,7 +86,7 @@ public final class ByteInValuePacking extends CodeList<ByteInValuePacking> {
     }
 
     /**
-     * Returns the list of <code>ByteInValuePacking</code>s.
+     * Returns the list of {@code ByteInValuePacking}s.
      */
     public static ByteInValuePacking[] values() {
         synchronized (VALUES) {

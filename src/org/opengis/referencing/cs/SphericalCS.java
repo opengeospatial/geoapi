@@ -20,7 +20,7 @@ import static org.opengis.annotation.Specification.*;
  * A three-dimensional coordinate system with one distance measured from the origin and two
  * angular coordinates. Not to be confused with an {@linkplain EllipsoidalCS ellipsoidal
  * coordinate system} based on an ellipsoid "degenerated" into a sphere.
- * A <code>SphericalCS</code> shall have three {@linkplain #getAxis axis associations}.
+ * A {@code SphericalCS} shall have three {@linkplain #getAxis axis associations}.
  *
  * <TABLE CELLPADDING='6' BORDER='1'>
  * <TR BGCOLOR="#EEEEFF"><TH NOWRAP>Used with CRS type(s)</TH></TR>

@@ -67,7 +67,7 @@ public final class PixelInCell extends CodeList<PixelInCell> {
     }
 
     /**
-     * Returns the list of <code>PixelInCell</code>s.
+     * Returns the list of {@code PixelInCell}s.
      */
     public static PixelInCell[] values() {
         synchronized (VALUES) {

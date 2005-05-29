@@ -71,7 +71,7 @@ public final class Obligation extends CodeList<Obligation> {
     }
 
     /**
-     * Returns the list of <code>Obligation</code>s.
+     * Returns the list of {@code Obligation}s.
      */
     public static Obligation[] values() {
         synchronized (VALUES) {

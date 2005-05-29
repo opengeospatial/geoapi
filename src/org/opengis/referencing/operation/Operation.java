@@ -41,7 +41,7 @@ public interface Operation extends SingleOperation {
     /**
      * Returns the parameter values.
      *
-     * @rename Added "<code>Parameter</code>" prefix for more consistency with the return type.
+     * @rename Added "{@code Parameter}" prefix for more consistency with the return type.
      */
     @UML(identifier="usesValue", obligation=MANDATORY, specification=ISO_19111)
     ParameterValueGroup getParameterValues();

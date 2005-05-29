@@ -70,11 +70,11 @@ public interface PointGrid {
     public DirectPosition get(int row, int column) throws IndexOutOfBoundsException;
 
     /**
-     * Gets a copy of the <code>DirectPosition</code> at the particular location in this 
-     * <code>PointGrid</code>. If the <code>dest</code> argument is non-null, that object
+     * Gets a copy of the {@code DirectPosition} at the particular location in this 
+     * {@code PointGrid}. If the {@code dest} argument is non-null, that object
      * will be populated with the value from the array. In all cases, the position in insulated
-     * from changes in the <code>PointArray</code>, and vice-versa. Consequently, the same
-     * <code>DirectPosition</code> object can be reused for fetching many points from this grid.
+     * from changes in the {@code PointArray}, and vice-versa. Consequently, the same
+     * {@code DirectPosition} object can be reused for fetching many points from this grid.
      * Example:
      * <blockquote><pre>
      * &nbsp;DirectPosition position = null;
@@ -89,7 +89,7 @@ public interface PointGrid {
      * @param  row The row index from 0 inclusive to {@link #height} exclusive.
      * @param  column The column index from 0 inclusive to {@link #width} exclusive.
      * @param  dest An optionnaly pre-allocated direct position.
-     * @return The <code>dest</code> argument, or a new object if <code>dest</code> was null.
+     * @return The {@code dest} argument, or a new object if {@code dest} was null.
      * @throws IndexOutOfBoundsException if an index is out of bounds.
      */
     @Extension
@@ -97,8 +97,8 @@ public interface PointGrid {
 
     /**
      * Set the point at the given index. The point coordinates will be copied, i.e. changes
-     * to the given <code>position</code> after this method call will not be reflected into
-     * this point array. Consequently, the same <code>DirectPosition</code> object can be
+     * to the given {@code position} after this method call will not be reflected into
+     * this point array. Consequently, the same {@code DirectPosition} object can be
      * reused for setting many points in this array.
      *
      * @param  row The row index from 0 inclusive to {@link #height} exclusive.
@@ -113,7 +113,7 @@ public interface PointGrid {
 
     /**
      * Returns the row at the given index.
-     * The row is backed by this <code>PointGrid</code>, so changes to the row
+     * The row is backed by this {@code PointGrid}, so changes to the row
      * are reflected in the grid, and vice-versa.
      *
      * @param  row The index from 0 inclusive to {@link #height} exclusive.
@@ -125,7 +125,7 @@ public interface PointGrid {
 
     /**
      * Returns a view of all rows in this array.
-     * The list is backed by this <code>PointGrid</code>, so changes to any
+     * The list is backed by this {@code PointGrid}, so changes to any
      * {@linkplain PointArray point array} are reflected in the grid, and vice-versa.
      *
      * @return The rows in this grid.

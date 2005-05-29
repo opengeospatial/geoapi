@@ -64,8 +64,8 @@ public interface GridPacking {
      * This index indicates how to form a band-specific coordinate from a grid coordinate
      * and a sample dimension number. This indicates the order in which the grid values
      * are stored in streamed data. This packing order is used when grid values are
-     * retrieved using the <code>getPackedDataBlock</code> or set using
-     * <code>setPackedDataBlock</code> operations on {@link GridCoverage}.
+     * retrieved using the {@code getPackedDataBlock} or set using
+     * {@code setPackedDataBlock} operations on {@link GridCoverage}.
      *
      *  bandPacking of
      *  <UL>

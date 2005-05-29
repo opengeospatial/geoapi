@@ -22,7 +22,7 @@ import static org.opengis.annotation.Specification.*;
  * system which contains one coordinate axis that may have any 1-D shape which has no intersections
  * with itself. This non-straight axis is supplemented by one or two straight axes to complete a 2
  * or 3 dimensional coordinate system. The non-straight axis is typically incrementally straight or
- * curved. A <code>UserDefinedCS</code> shall have two or three
+ * curved. A {@code UserDefinedCS} shall have two or three
  * {@linkplain #getAxis axis associations}.
  *
  * @version <A HREF="http://portal.opengeospatial.org/files/?artifact_id=6716">Abstract specification 2.0</A>

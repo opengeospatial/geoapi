@@ -32,14 +32,14 @@ import static org.opengis.annotation.Specification.*;
  * Low level factory for creating {@linkplain MathTransform math transforms}.
  * Many high level GIS applications will never need to use this factory directly;
  * they can use a {@linkplain CoordinateOperationFactory coordinate operation factory}
- * instead. However, the <code>MathTransformFactory</code> interface can be used directly
+ * instead. However, the {@code MathTransformFactory} interface can be used directly
  * by applications that wish to transform other types of coordinates (e.g. color coordinates,
  * or image pixel coordinates).
  * <p>
  * A {@linkplain MathTransform math transform} is an object that actually does
  * the work of applying formulae to coordinate values. The math transform does
  * not know or care how the coordinates relate to positions in the real world.
- * This lack of semantics makes implementing <code>MathTransformFactory</code>
+ * This lack of semantics makes implementing {@code MathTransformFactory}
  * significantly easier than it would be otherwise.
  *
  * For example the affine transform applies a matrix to the coordinates
@@ -51,7 +51,7 @@ import static org.opengis.annotation.Specification.*;
  * Because {@linkplain MathTransform math transforms} have low semantic value
  * (but high mathematical value), programmers who do not have much knowledge
  * of how GIS applications use coordinate systems, or how those coordinate
- * systems relate to the real world can implement <code>MathTransformFactory</code>.
+ * systems relate to the real world can implement {@code MathTransformFactory}.
  * The low semantic content of {@linkplain MathTransform math transforms} also
  * means that they will be useful in applications that have nothing to do with
  * GIS coordinates. For example, a math transform could be used to map color
@@ -89,7 +89,7 @@ public interface MathTransformFactory extends Factory {
 
     /**
      * Returns the default parameter values for a math transform using the given method.
-     * The <code>method</code> argument is the name of any operation method returned by
+     * The {@code method} argument is the name of any operation method returned by
      * <code>{@link #getAvailableMethods getAvailableMethods}({@linkplain Operation}.class)</code>.
      * A typical example is
      * <code>"<A HREF="http://www.remotesensing.org/geotiff/proj_list/transverse_mercator.html">Transverse_Mercator</A>"</code>).
@@ -98,7 +98,7 @@ public interface MathTransformFactory extends Factory {
      * method name, or an alias to be understood by <code>{@linkplain #createParameterizedTransform
      * createParameterizedTransform}(parameters)</code>. This method creates new parameter instances
      * at every call. Parameters are intented to be modified by the user before to be given to the
-     * above-cited <code>createParameterizedTransform</code> method.</P>
+     * above-cited {@code createParameterizedTransform} method.</P>
      *
      * @param  method The case insensitive name of the method to search for.
      * @return The default parameter values.
@@ -135,13 +135,13 @@ public interface MathTransformFactory extends Factory {
 
     /**
      * Creates an affine transform from a matrix.
-     * If the transform's input dimension is <code>M</code>, and output dimension
-     * is <code>N</code>, then the matrix will have size <code>[N+1][M+1]</code>.
+     * If the transform's input dimension is {@code M}, and output dimension
+     * is {@code N}, then the matrix will have size {@code [N+1][M+1]}.
      * The +1 in the matrix dimensions allows the matrix to do a shift, as well as
-     * a rotation. The <code>[M][j]</code> element of the matrix will be the j'th
-     * ordinate of the moved origin. The <code>[i][N]</code> element of the matrix
-     * will be 0 for <var>i</var> less than <code>M</code>, and 1 for <var>i</var>
-     * equals <code>M</code>.
+     * a rotation. The {@code [M][j]} element of the matrix will be the j'th
+     * ordinate of the moved origin. The {@code [i][N]} element of the matrix
+     * will be 0 for <var>i</var> less than {@code M}, and 1 for <var>i</var>
+     * equals {@code M}.
      *
      * @param matrix The matrix used to define the affine transform.
      * @return The affine transform.
@@ -179,8 +179,8 @@ public interface MathTransformFactory extends Factory {
      * @param  firstAffectedOrdinate The lowest index of the affected ordinates.
      * @param  subTransform Transform to use for affected ordinates.
      * @param  numTrailingOrdinates Number of trailing ordinates to pass through.
-     *         Affected ordinates will range from <code>firstAffectedOrdinate</code>
-     *         inclusive to <code>dimTarget-numTrailingOrdinates</code> exclusive.
+     *         Affected ordinates will range from {@code firstAffectedOrdinate}
+     *         inclusive to {@code dimTarget-numTrailingOrdinates} exclusive.
      * @return A pass through transform with the following dimensions:<br>
      *         <pre>
      * Source: firstAffectedOrdinate + subTransform.getDimSource() + numTrailingOrdinates

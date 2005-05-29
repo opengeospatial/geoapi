@@ -89,7 +89,7 @@ public final class SplineCurveForm extends CodeList<SplineCurveForm> {
     }
 
     /**
-     * Returns the list of <code>SplineCurveForm</code>s.
+     * Returns the list of {@code SplineCurveForm}s.
      */
     public static SplineCurveForm[] values() {
         synchronized (VALUES) {

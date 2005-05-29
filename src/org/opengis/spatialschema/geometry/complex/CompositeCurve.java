@@ -35,8 +35,8 @@ import static org.opengis.annotation.Specification.*;
  *
  * @revisit This interface extends (indirectly) both {@link org.opengis.spatialschema.geometry.primitive.Primitive} and
  *          {@link org.opengis.spatialschema.geometry.complex.Complex}. Concequently, there is a clash in the semantics
- *          of some set theoretic operation. Specifically, <code>Primitive.contains(...)</code>
- *          (returns FALSE for end points) is different from <code>Complex.contains(...)</code>
+ *          of some set theoretic operation. Specifically, {@code Primitive.contains(...)}
+ *          (returns FALSE for end points) is different from {@code Complex.contains(...)}
  *          (returns TRUE for end points).
  */
 @UML(identifier="GM_CompositeCurve", specification=ISO_19107)

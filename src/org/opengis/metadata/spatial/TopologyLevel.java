@@ -108,7 +108,7 @@ public final class TopologyLevel extends CodeList<TopologyLevel> {
     }
 
     /**
-     * Returns the list of <code>TopologyLevel</code>s.
+     * Returns the list of {@code TopologyLevel}s.
      */
     public static TopologyLevel[] values() {
         synchronized (VALUES) {

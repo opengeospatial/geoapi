@@ -84,7 +84,7 @@ import static org.opengis.annotation.Specification.*;
 public interface Coverage {
     /**
      * Specifies the coordinate reference system used when accessing a coverage or grid
-     * coverage with the <code>evaluate(...)</code> methods. It is also the coordinate
+     * coverage with the {@code evaluate(...)} methods. It is also the coordinate
      * reference system of the coordinates used with the math transform (see
      * {@link org.opengis.coverage.grid.GridGeometry#getGridToCoordinateSystem
      * gridToCoordinateSystem}).
@@ -100,7 +100,7 @@ public interface Coverage {
      * attribute should also be {@code null} if the coordinate reference system is {@code null}.
      *
      * @return The coordinate reference system used when accessing a coverage or
-     *         grid coverage with the <code>evaluate(...)</code> methods, or {@code null}.
+     *         grid coverage with the {@code evaluate(...)} methods, or {@code null}.
      */
     @UML(identifier="coordinateSystem", obligation=MANDATORY, specification=OGC_01004)
     CoordinateReferenceSystem getCoordinateReferenceSystem();
@@ -169,14 +169,14 @@ public interface Coverage {
      * @param  index Index for sample dimension to retrieve. Indices are numbered 0 to
      *         (<var>{@linkplain #getNumSampleDimensions n}</var>-1).
      * @return Sample dimension information for the coverage.
-     * @throws IndexOutOfBoundsException if <code>index</code> is out of bounds.
+     * @throws IndexOutOfBoundsException if {@code index} is out of bounds.
      */
     @UML(identifier="getSampleDimension", obligation=MANDATORY, specification=OGC_01004)
     SampleDimension getSampleDimension(int index) throws IndexOutOfBoundsException;
 
     /**
      * Returns the sources data for a coverage.
-     * This is intended to allow applications to establish what <code>Coverage</code>s
+     * This is intended to allow applications to establish what {@code Coverage}s
      * will be affected when others are updated, as well as to trace back to the "raw data".
      *
      * This implementation specification does not include interfaces for creating
@@ -244,12 +244,12 @@ public interface Coverage {
      * @param  destination An optionally preallocated array in which to store the values,
      *         or {@code null} if none.
      * @return A sequence of boolean values for a given point in the coverage.
-     *         If <code>destination</code> was non-null, then it is returned.
+     *         If {@code destination} was non-null, then it is returned.
      *         Otherwise, a new array is allocated and returned.
      * @throws PointOutsideCoverageException if the point is outside the coverage
      *         {@linkplain #getEnvelope envelope}.
      * @throws CannotEvaluateException if the point can't be evaluate for some othe reason.
-     * @throws ArrayIndexOutOfBoundsException if the <code>destination</code> array is not null
+     * @throws ArrayIndexOutOfBoundsException if the {@code destination} array is not null
      *         and too small to hold the output.
      */
     @UML(identifier="evaluateAsBoolean", obligation=MANDATORY, specification=OGC_01004)
@@ -268,12 +268,12 @@ public interface Coverage {
      * @param  destination An optionally preallocated array in which to store the values,
      *         or {@code null} if none.
      * @return A sequence of unsigned byte values for a given point in the coverage.
-     *         If <code>destination</code> was non-null, then it is returned.
+     *         If {@code destination} was non-null, then it is returned.
      *         Otherwise, a new array is allocated and returned.
      * @throws PointOutsideCoverageException if the point is outside the coverage
      *         {@linkplain #getEnvelope envelope}.
      * @throws CannotEvaluateException if the point can't be evaluate for some othe reason.
-     * @throws ArrayIndexOutOfBoundsException if the <code>destination</code> array is not null
+     * @throws ArrayIndexOutOfBoundsException if the {@code destination} array is not null
      *         and too small to hold the output.
      */
     @UML(identifier="evaluateAsByte", obligation=MANDATORY, specification=OGC_01004)
@@ -292,12 +292,12 @@ public interface Coverage {
      * @param  destination An optionally preallocated array in which to store the values,
      *         or {@code null} if none.
      * @return A sequence of integer values for a given point in the coverage.
-     *         If <code>destination</code> was non-null, then it is returned.
+     *         If {@code destination} was non-null, then it is returned.
      *         Otherwise, a new array is allocated and returned.
      * @throws PointOutsideCoverageException if the point is outside the coverage
      *         {@linkplain #getEnvelope envelope}.
      * @throws CannotEvaluateException if the point can't be evaluate for some othe reason.
-     * @throws ArrayIndexOutOfBoundsException if the <code>destination</code> array is not null
+     * @throws ArrayIndexOutOfBoundsException if the {@code destination} array is not null
      *         and too small to hold the output.
      *
      * @see Raster#getPixel(int, int, int[])
@@ -318,12 +318,12 @@ public interface Coverage {
      * @param  destination An optionally preallocated array in which to store the values,
      *         or {@code null} if none.
      * @return A sequence of float values for a given point in the coverage.
-     *         If <code>destination</code> was non-null, then it is returned.
+     *         If {@code destination} was non-null, then it is returned.
      *         Otherwise, a new array is allocated and returned.
      * @throws PointOutsideCoverageException if the point is outside the coverage
      *         {@linkplain #getEnvelope envelope}.
      * @throws CannotEvaluateException if the point can't be evaluate for some othe reason.
-     * @throws ArrayIndexOutOfBoundsException if the <code>destination</code> array is not null
+     * @throws ArrayIndexOutOfBoundsException if the {@code destination} array is not null
      *         and too small to hold the output.
      *
      * @see Raster#getPixel(int, int, float[])
@@ -343,12 +343,12 @@ public interface Coverage {
      * @param  destination An optionally preallocated array in which to store the values,
      *         or {@code null} if none.
      * @return A sequence of double values for a given point in the coverage.
-     *         If <code>destination</code> was non-null, then it is returned.
+     *         If {@code destination} was non-null, then it is returned.
      *         Otherwise, a new array is allocated and returned.
      * @throws PointOutsideCoverageException if the point is outside the coverage
      *         {@linkplain #getEnvelope envelope}.
      * @throws CannotEvaluateException If the point can't be evaluate for some othe reason.
-     * @throws ArrayIndexOutOfBoundsException if the <code>destination</code> array is not null
+     * @throws ArrayIndexOutOfBoundsException if the {@code destination} array is not null
      *         and too small to hold the output.
      *
      * @see Raster#getPixel(int, int, double[])
@@ -372,7 +372,7 @@ public interface Coverage {
      * @param  yAxis Dimension to use for the <var>y</var> axis.
      * @return A 2D view of this coverage as a renderable image.
      * @throws UnsupportedOperationException if this optional operation is not supported.
-     * @throws IndexOutOfBoundsException if <code>xAxis</code> or <code>yAxis</code> is out of bounds.
+     * @throws IndexOutOfBoundsException if {@code xAxis} or {@code yAxis} is out of bounds.
      */
     RenderableImage getRenderableImage(int xAxis, int yAxis)
             throws UnsupportedOperationException, IndexOutOfBoundsException;

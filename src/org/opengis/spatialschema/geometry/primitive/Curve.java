@@ -23,7 +23,7 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * Curve with a positive orientation. <code>Curve</code> is
+ * Curve with a positive orientation. {@code Curve} is
  * a descendent subtype of {@link Primitive} through {@link OrientablePrimitive}. It is the basis
  * for 1-dimensional geometry. A curve is a continuous image of an open interval and so could be
  * written as a parameterized function such as
@@ -37,7 +37,7 @@ import static org.opengis.annotation.Specification.*;
  *
  * <code>e(t) = c(a&nbsp;+&nbsp;t(b-a)):(0,1) &rarr; E<sup>n</sup></code>,
  *
- * is an equivalent representation of the same curve. For the sake of simplicity, <code>Curve</code>s
+ * is an equivalent representation of the same curve. For the sake of simplicity, {@code Curve}s
  * should be parameterized by arc length, so that the parameterization operation inherited from
  * {@link GenericCurve} will be valid for parameters between 0 and the length of the curve.
  * <p>
@@ -68,10 +68,10 @@ import static org.opengis.annotation.Specification.*;
 @UML(identifier="GM_Curve", specification=ISO_19107)
 public interface Curve extends OrientableCurve, GenericCurve {
     /**
-     * Lists the components {@linkplain CurveSegment curve segments} of <code>Curve</code>, each
+     * Lists the components {@linkplain CurveSegment curve segments} of {@code Curve}, each
      * of which defines the direct position of points along a portion of the curve. The order of
      * the {@linkplain CurveSegment curve segments} is the order in which they are used to trace
-     * this <code>Curve</code>. For a particular parameter interval, the <code>Curve</code> and
+     * this {@code Curve}. For a particular parameter interval, the {@code Curve} and
      * {@link CurveSegment} agree.
      *
      * @return The list of curve segments. Should never be {@code null} neither empty.

@@ -21,9 +21,9 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * A minimum bounding box or rectangle. Regardless of dimension, an <code>Envelope</code> can
+ * A minimum bounding box or rectangle. Regardless of dimension, an {@code Envelope} can
  * be represented without ambiguity as two direct positions (coordinate points). To encode an
- * <code>Envelope</code>, it is sufficient to encode these two points. This is consistent with
+ * {@code Envelope}, it is sufficient to encode these two points. This is consistent with
  * all of the data types in this specification, their state is represented by their publicly
  * accessible attributes.
  *

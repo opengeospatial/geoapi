@@ -23,10 +23,10 @@ import static org.opengis.annotation.Specification.*;
 
 /**
  * Holds the coordinates for a position within some coordinate reference system. Since
- * <code>DirectPosition</code>s, as data types, will often be included in larger objects
+ * {@code DirectPosition}s, as data types, will often be included in larger objects
  * (such as {@linkplain org.opengis.spatialschema.geometry.Geometry geometries}) that have
  * references to {@link CoordinateReferenceSystem}, the {@link #getCoordinateReferenceSystem}
- * method may returns {@code null} if this particular <code>DirectPosition</code> is
+ * method may returns {@code null} if this particular {@code DirectPosition} is
  * included in a larger object with such a reference to a {@linkplain CoordinateReferenceSystem
  * coordinate reference system}. In this case, the cordinate reference system is implicitly
  * assumed to take on the value of the containing object's {@link CoordinateReferenceSystem}.
@@ -51,7 +51,7 @@ public interface DirectPosition extends Position, Cloneable {
      * position in its reference system.
      *
      * @return A copy of the coordinates. Changes in the returned array will not be reflected
-     *         back in this <code>DirectPosition</code> object.
+     *         back in this {@code DirectPosition} object.
      */
     @UML(identifier="coordinates", obligation=MANDATORY, specification=ISO_19107)
     double[] getCoordinates();
@@ -76,7 +76,7 @@ public interface DirectPosition extends Position, Cloneable {
 
     /**
      * The coordinate reference system in which the coordinate is given.
-     * May be {@code null} if this particular <code>DirectPosition</code> is included
+     * May be {@code null} if this particular {@code DirectPosition} is included
      * in a larger object with such a reference to a {@linkplain CoordinateReferenceSystem
      * coordinate reference system}. In this case, the cordinate reference system is implicitly
      * assumed to take on the value of the containing object's {@linkplain CoordinateReferenceSystem

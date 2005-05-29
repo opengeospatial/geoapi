@@ -44,9 +44,9 @@ public interface CoordinateOperationFactory extends ObjectFactory {
      *
      * @param  sourceCRS Input coordinate reference system.
      * @param  targetCRS Output coordinate reference system.
-     * @return A coordinate operation from <code>sourceCRS</code> to <code>targetCRS</code>.
-     * @throws OperationNotFoundException if no operation path was found from <code>sourceCRS</code>
-     *         to <code>targetCRS</code>.
+     * @return A coordinate operation from {@code sourceCRS} to {@code targetCRS}.
+     * @throws OperationNotFoundException if no operation path was found from {@code sourceCRS}
+     *         to {@code targetCRS}.
      * @throws FactoryException if the operation creation failed for some other reason.
      */
     @UML(identifier="createFromCoordinateSystems", specification=OGC_01009)
@@ -65,13 +65,13 @@ public interface CoordinateOperationFactory extends ObjectFactory {
      * @param  sourceCRS Input coordinate reference system.
      * @param  targetCRS Output coordinate reference system.
      * @param  method the algorithmic method for conversion or transformation
-     * @return A coordinate operation from <code>sourceCRS</code> to <code>targetCRS</code>.
-     * @throws OperationNotFoundException if no operation path was found from <code>sourceCRS</code>
-     *         to <code>targetCRS</code>.
+     * @return A coordinate operation from {@code sourceCRS} to {@code targetCRS}.
+     * @throws OperationNotFoundException if no operation path was found from {@code sourceCRS}
+     *         to {@code targetCRS}.
      * @throws FactoryException if the operation creation failed for some other reason.
      *
-     * @revisit More than one operation step may be involved in the path from <code>sourceCRS</code>
-     *          to <code>targetCRS</code>, but this method has only one <code>method</code> argument.
+     * @revisit More than one operation step may be involved in the path from {@code sourceCRS}
+     *          to {@code targetCRS}, but this method has only one {@code method} argument.
      *          The user could have more fine grain control with {@link MathTransformFactory} (ported
      *          from OGC 2001-09).
      */

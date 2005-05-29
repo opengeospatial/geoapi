@@ -17,7 +17,7 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * The boundary of {@linkplain Surface surfaces}. A <code>SurfaceBoundary</code> consists of some number
+ * The boundary of {@linkplain Surface surfaces}. A {@code SurfaceBoundary} consists of some number
  * of {@linkplain Ring rings}, corresponding to the various components of its boundary. In the normal 2D
  * case, one of these rings is distinguished as being the exterior boundary. In a general manifold this
  * is not always possible, in which case all boundaries shall be listed as interior boundaries,

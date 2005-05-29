@@ -48,7 +48,7 @@ public interface AuthorityFactory extends Factory {
     Citation getAuthority();
 
     /**
-     * Returns the set of authority codes of the given type. The <code>type</code>
+     * Returns the set of authority codes of the given type. The {@code type}
      * argument specify the base class. For example if this factory is an instance
      * of {@link org.opengis.referencing.crs.CRSAuthorityFactory}, then:
      * <ul>
@@ -64,7 +64,7 @@ public interface AuthorityFactory extends Factory {
      *       {@link org.opengis.referencing.crs.CRSAuthorityFactory#createProjectedCRS createProjectedCRS}.</li>
      * </ul>
      *
-     * @param  type The spatial reference objects type (may be <code>Object.class</code>).
+     * @param  type The spatial reference objects type (may be {@code Object.class}).
      * @return The set of authority codes for spatial reference objects of the given type.
      *         If this factory doesn't contains any object of the given type, then this method
      *         returns an {@linkplain java.util.Collections#EMPTY_SET empty set}.
@@ -78,8 +78,8 @@ public interface AuthorityFactory extends Factory {
      *
      * @param  code Value allocated by authority.
      * @return A description of the object, or {@code null} if the object
-     *         corresponding to the specified <code>code</code> has no description.
-     * @throws NoSuchAuthorityCodeException if the specified <code>code</code> was not found.
+     *         corresponding to the specified {@code code} has no description.
+     * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
      * @throws FactoryException if the query failed for some other reason.
      */
     @UML(identifier="descriptionText", specification=OGC_01009)
@@ -97,7 +97,7 @@ public interface AuthorityFactory extends Factory {
      * reference system}).
      *
      * @param  code Value allocated by authority.
-     * @throws NoSuchAuthorityCodeException if the specified <code>code</code> was not found.
+     * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
      * @throws FactoryException if the object creation failed for some other reason.
      *
      * @see org.opengis.referencing.datum.DatumAuthorityFactory#createDatum

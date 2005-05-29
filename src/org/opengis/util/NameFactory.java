@@ -33,7 +33,7 @@ public interface NameFactory {
     /**
      * Creates a local name from a scope and a name. This method creates a name similar to the one
      * created by <code>{@linkplain #createScopedName createScopedName}(</code><cite>&hellip;same
-     * parameters&hellip;</cite><code>)</code>, except that methods like
+     * parameters&hellip;</cite>{@code )}, except that methods like
      * {@link LocalName#getParsedNames() getParsedNames()} and {@link LocalName#toString() toString()}
      * do not include the scope.
      *
@@ -46,7 +46,7 @@ public interface NameFactory {
     /**
      * Creates a scoped name from a scope and a name. This method creates a name similar to the one
      * created by <code>{@linkplain #createLocalName createLocalName}(</code><cite>&hellip;same
-     * parameters&hellip;</cite><code>)</code>, except that methods like
+     * parameters&hellip;</cite>{@code )}, except that methods like
      * {@link ScopedName#getParsedNames() getParsedNames()} and {@link ScopedName#toString() toString()}
      * include the scope.
      *

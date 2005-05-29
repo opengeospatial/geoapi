@@ -21,7 +21,7 @@ import static org.opengis.annotation.Specification.*;
 
 /**
  * The abstract root data type for all the data types used to represent the boundary of geometric
- * objects. Any subclass of {@link Geometry} will use a subclass of <code>Boundary</code> to
+ * objects. Any subclass of {@link Geometry} will use a subclass of {@code Boundary} to
  * represent its boundary through the operation {@link Geometry#getBoundary}. By the nature of
  * geometry, boundary objects are cycles.
  *
@@ -32,9 +32,9 @@ import static org.opengis.annotation.Specification.*;
 @UML(identifier="GM_Boundary", specification=ISO_19107)
 public interface Boundary extends Complex {
     /**
-     * Always returns <code>true</code> since boundary objects are cycles.
+     * Always returns {@code true} since boundary objects are cycles.
      *
-     * @return Always <code>true</code>.
+     * @return Always {@code true}.
      */
     boolean isCycle();
 }

@@ -19,7 +19,7 @@ import static org.opengis.annotation.Specification.*;
 /**
  * A two-dimensional coordinate system in which position is specified by the distance from the
  * origin and the angle between the line from the origin to a point and a reference direction.
- * A <code>PolarCS</code> shall have two {@linkplain #getAxis axis associations}.
+ * A {@code PolarCS} shall have two {@linkplain #getAxis axis associations}.
  *
  * <TABLE CELLPADDING='6' BORDER='1'>
  * <TR BGCOLOR="#EEEEFF"><TH NOWRAP>Used with CRS type(s)</TH></TR>

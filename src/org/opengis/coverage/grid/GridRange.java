@@ -80,7 +80,7 @@ public interface GridRange {
     
     /**
      * Returns the number of integer grid coordinates along the specified dimension.
-     * This is equals to <code>getUpper(dimension)-getLower(dimension)</code>.
+     * This is equals to {@code getUpper(dimension)-getLower(dimension)}.
      */
     int getLength(int dimension);
 }

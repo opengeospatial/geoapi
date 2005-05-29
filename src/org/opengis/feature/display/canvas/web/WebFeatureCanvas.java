@@ -15,7 +15,7 @@ import org.opengis.feature.display.canvas.FeatureCanvas;
 
 
 /**
- * The <code>WebFeatureCanvas</code> class/interface...
+ * The {@code WebFeatureCanvas} class/interface...
  * 
  * @author Jesse Crossley (SYS Technologies)
  * @since GeoAPI 1.1

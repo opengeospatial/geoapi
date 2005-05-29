@@ -25,19 +25,19 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * A sequence of points. The <code>PointArray</code> interface outlines a means of efficiently
+ * A sequence of points. The {@code PointArray} interface outlines a means of efficiently
  * storing large numbers of usually homogeneous {@linkplain Position positions}; i.e. all having
  * the same {@linkplain CoordinateReferenceSystem coordinate reference system}. While a point array
  * conceptually contains {@linkplain Position positions}, it provides convenience methods for
  * fetching directly the {@linkplain DirectPosition direct positions} instead.
  * <p>
- * A simple implementation of <code>PointArray</code> will generally be no more efficient than
+ * A simple implementation of {@code PointArray} will generally be no more efficient than
  * a simple array of {@link Position}s. More efficient implementations will generally stores
- * coordinates in a more compact form (e.g. in a single <code>float[]</code> array) and creates
+ * coordinates in a more compact form (e.g. in a single {@code float[]} array) and creates
  * {@link Position} objects on the fly when needed.
  * <p>
- * If a particular <code>PointArray</code> implementation supports efficiently random access
- * through any <code>get</code> or <code>set</code> method, it shall announce this capability
+ * If a particular {@code PointArray} implementation supports efficiently random access
+ * through any {@code get} or {@code set} method, it shall announce this capability
  * by implementing the {@link java.util.RandomAccess} interface. Otherwise, users should read
  * the positions through the <code>{@linkplain #positions()}.iterator()</code> instead.
  *  
@@ -73,8 +73,8 @@ public interface PointArray {
      * @see DirectPosition#getDimension
      *
      * @deprecated This method definition conflict with section 6.2.2.10 in ISO 19107:
-     *             "<cite>The operation <code>coordinateDimension</code> shall return
-     *             the dimension of the coordinates that define this <code>GM_Object</code>,
+     *             "<cite>The operation {@code coordinateDimension} shall return
+     *             the dimension of the coordinates that define this {@code GM_Object},
      *             which must be the same as the coordinate dimension of the coordinate
      *             reference system for this GM_Object.</cite>".
      */
@@ -90,7 +90,7 @@ public interface PointArray {
      * @see DirectPosition#getCoordinateReferenceSystem
      *
      * @revisit ISO 19107 do not defines such an association. We may keep this method as a
-     *          convenience, but it put a constraint on the points that a <code>PointArray</code>
+     *          convenience, but it put a constraint on the points that a {@code PointArray}
      *          can contains. Whatever or not this constraints is wanted is an open question.
      */
     @Extension
@@ -110,8 +110,8 @@ public interface PointArray {
      *
      * @deprecated This method may conflict with an implementation of {@link java.util.List} interface.
      *             It also raise a performance and behavior issue: should the direct position be backed
-     *             by this <code>PointArray</code>, so changes to the position will be reflected in the
-     *             <code>PointArray</code> and vice-versa? The proposed alternative, {@link #get(int, DirectPosition)},
+     *             by this {@code PointArray}, so changes to the position will be reflected in the
+     *             {@code PointArray} and vice-versa? The proposed alternative, {@link #get(int, DirectPosition)},
      *             avoid those questions.
      */
     @Extension
@@ -119,11 +119,11 @@ public interface PointArray {
     public DirectPosition get(int column) throws IndexOutOfBoundsException;
 
     /**
-     * Gets a copy of the <code>DirectPosition</code> at the particular location in this 
-     * <code>PointArray</code>. If the <code>dest</code> argument is non-null, that object
+     * Gets a copy of the {@code DirectPosition} at the particular location in this 
+     * {@code PointArray}. If the {@code dest} argument is non-null, that object
      * will be populated with the value from the array. In all cases, the position in insulated
-     * from changes in the <code>PointArray</code>, and vice-versa. Consequently, the same
-     * <code>DirectPosition</code> object can be reused for fetching many points from this array.
+     * from changes in the {@code PointArray}, and vice-versa. Consequently, the same
+     * {@code DirectPosition} object can be reused for fetching many points from this array.
      * Example:
      * <blockquote><pre>
      * &nbsp;DirectPosition position = null;
@@ -136,7 +136,7 @@ public interface PointArray {
      * @param  column The location in the array, from 0 inclusive
      *                to the array's {@linkplain #length} exclusive.
      * @param  dest An optionnaly pre-allocated direct position.
-     * @return The <code>dest</code> argument, or a new object if <code>dest</code> was null.
+     * @return The {@code dest} argument, or a new object if {@code dest} was null.
      * @throws IndexOutOfBoundsException if the index is out of bounds.
      *
      * @see #get(int)
@@ -146,8 +146,8 @@ public interface PointArray {
 
     /**
      * Set the point at the given index. The point coordinates will be copied, i.e. changes
-     * to the given <code>position</code> after this method call will not be reflected into
-     * this point array. Consequently, the same <code>DirectPosition</code> object can be
+     * to the given {@code position} after this method call will not be reflected into
+     * this point array. Consequently, the same {@code DirectPosition} object can be
      * reused for setting many points in this array.
      *
      * @param  column The location in the array, from 0 inclusive
@@ -163,8 +163,8 @@ public interface PointArray {
                                                                 UnsupportedOperationException;
     
     /**
-     * Returns the elements of this <code>PointArray</code> as an array of
-     * <code>DirectPosition</code>s.
+     * Returns the elements of this {@code PointArray} as an array of
+     * {@code DirectPosition}s.
      *
      * @return The elements as an array of direct positions.
      *
@@ -172,10 +172,10 @@ public interface PointArray {
      *
      * @deprecated This method raise a number of implementation issues: what should be the
      *             behavior if a single point in this array is modified? Should it be
-     *             reflected in the <code>PointArray</code>? Furthermore, this method
+     *             reflected in the {@code PointArray}? Furthermore, this method
      *             will be inefficient in some implementations, for example an implementations
-     *             backed by a <code>float[]</code> array. Invoking <code>toArray()</code> in such
-     *             case may create thousands of <code>DirectPosition</code> objects.
+     *             backed by a {@code float[]} array. Invoking {@code toArray()} in such
+     *             case may create thousands of {@code DirectPosition} objects.
      *             {@link #positions} is safer, since it expose the positions through an iterator.
      */
     @Extension
@@ -184,7 +184,7 @@ public interface PointArray {
 
     /**
      * Returns a view of the points in this array as a list of {@linkplain Position positions}.
-     * The list is backed by this <code>PointArray</code>, so changes to the point array are
+     * The list is backed by this {@code PointArray}, so changes to the point array are
      * reflected in the list, and vice-versa.
      *
      * @return The list of positions in this array.

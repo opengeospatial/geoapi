@@ -35,7 +35,7 @@ import static org.opengis.annotation.Specification.*;
  * All primitives created through this interface will use the
  * {@linkplain #getCoordinateReferenceSystem factory's coordinate reference system}.
  * Creating primitives in a different CRS may requires a different instance of
- * <code>PrimitiveFactory</code>.
+ * {@code PrimitiveFactory}.
  *
  * @version <A HREF="http://www.opengis.org/docs/01-101.pdf">Abstract specification 5</A>
  * @author Martin Desruisseaux (IRD)

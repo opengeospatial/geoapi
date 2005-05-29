@@ -102,7 +102,7 @@ public final class PaletteInterpretation extends CodeList<PaletteInterpretation>
     }
 
     /**
-     * Returns the list of <code>PaletteInterpretation</code>s.
+     * Returns the list of {@code PaletteInterpretation}s.
      */
     public static PaletteInterpretation[] values() {
         synchronized (VALUES) {

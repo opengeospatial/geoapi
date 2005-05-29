@@ -39,8 +39,8 @@ import static org.opengis.annotation.Specification.*;
  * changes in such a manner that the 1<sup>st</sup> and 2<sup>nd</sup> derivative vectors are
  * the same from either side. The control parameters record must contain
  * {@link #getVectorAtStart vectorAtStart}, and {@link #getVectorAtEnd vectorAtEnd}
- * which are the unit tangent vectors at <code>controlPoint[0]</code> and <code>controlPoint[n]</coded>
- * where <var>n</var> = <code>controlPoint.length-1</code>.
+ * which are the unit tangent vectors at {@code controlPoint[0]} and <code>controlPoint[n]</coded>
+ * where <var>n</var> = {@code controlPoint.length-1}.
  *
  * @version <A HREF="http://www.opengis.org/docs/01-101.pdf">Abstract specification 5</A>
  * @author Martin Desruisseaux (IRD)
@@ -49,7 +49,7 @@ import static org.opengis.annotation.Specification.*;
 @UML(identifier="GM_CubicSpline", specification=ISO_19107)
 public interface CubicSpline extends PolynomialSpline {
     /**
-     * The interpolation mechanism for a <code>CubicSpline</code>
+     * The interpolation mechanism for a {@code CubicSpline}
      * is {@link CurveInterpolation#CUBIC_SPLINE CUBIC_SPLINE}.
      */
     @UML(identifier="interpolation", obligation=MANDATORY, specification=ISO_19107)
@@ -57,7 +57,7 @@ public interface CubicSpline extends PolynomialSpline {
 
     /**
      * The values used for the initial derivative.
-     * The restriction on <code>vectorAtStart</code> and <code>vectorAtEnd</code> reduce these
+     * The restriction on {@code vectorAtStart} and {@code vectorAtEnd} reduce these
      * sequences to a single tangent vector each. Consequently, the {@linkplain List#size size}
      * of the returned list is 1.
      */
@@ -66,7 +66,7 @@ public interface CubicSpline extends PolynomialSpline {
 
     /**
      * The values used for the final derivative.
-     * The restriction on <code>vectorAtStart</code> and <code>vectorAtEnd</code> reduce these
+     * The restriction on {@code vectorAtStart} and {@code vectorAtEnd} reduce these
      * sequences to a single tangent vector each. Consequently, the {@linkplain List#size size}
      * of the returned list is 1.
      */

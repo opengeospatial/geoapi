@@ -75,7 +75,7 @@ public class KnotType extends CodeList<KnotType> {
     }
 
     /**
-     * Returns the list of <code>KnotType</code>s.
+     * Returns the list of {@code KnotType}s.
      */
     public static KnotType[] values() {
         synchronized (VALUES) {

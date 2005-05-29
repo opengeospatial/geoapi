@@ -24,8 +24,8 @@ import static org.opengis.annotation.Specification.*;
 
 /**
  * Basic data type for a geometric object consisting of one and only one point.
- * In most cases, the state of a <code>Point</code> is fully determined by its
- * position attribute. The only exception to this is if the <code>Point</code>
+ * In most cases, the state of a {@code Point} is fully determined by its
+ * position attribute. The only exception to this is if the {@code Point}
  * has been subclassed to provide additional non-geometric information such as
  * symbology.
  *
@@ -40,12 +40,12 @@ import static org.opengis.annotation.Specification.*;
 @UML(identifier="GM_Point", specification=ISO_19107)
 public interface Point extends Primitive, Position {
     /**
-     * Returns the direct position of this point. <code>Point</code> is the only subclass
+     * Returns the direct position of this point. {@code Point} is the only subclass
      * of {@linkplain Primitive primitive} that cannot use {@linkplain Position positions}
      * to represent its defining geometry. A {@linkplain Position position} is either a
-     * {@linkplain DirectPosition direct position} or a reference to a <code>Point</code>
+     * {@linkplain DirectPosition direct position} or a reference to a {@code Point}
      * (from which a {@linkplain DirectPosition direct position} may be obtained). By not
-     * allowing <code>Point</code> to use this technique, infinitely recursive references
+     * allowing {@code Point} to use this technique, infinitely recursive references
      * are prevented.
      *
      * @return The direct position.
@@ -54,12 +54,12 @@ public interface Point extends Primitive, Position {
     public DirectPosition getPosition();
 
     /**
-     * Sets the direct position of this point. <code>Point</code> is the only subclass
+     * Sets the direct position of this point. {@code Point} is the only subclass
      * of {@linkplain Primitive primitive} that cannot use {@linkplain Position positions}
      * to represent its defining geometry. A {@linkplain Position position} is either a
-     * {@linkplain DirectPosition direct position} or a reference to a <code>Point</code>
+     * {@linkplain DirectPosition direct position} or a reference to a {@code Point}
      * (from which a {@linkplain DirectPosition direct position} may be obtained). By not
-     * allowing <code>Point</code> to use this technique, infinitely recursive references
+     * allowing {@code Point} to use this technique, infinitely recursive references
      * are prevented.
      *
      * @param  position The direct position.
@@ -77,11 +77,11 @@ public interface Point extends Primitive, Position {
 /// public PrimitiveBoundary getBoundary();
 
     /**
-     * Returns the bearing, as a unit vector, of the tangent (at this <code>Point</code>) to
-     * the curve between this <code>Point</code> and a passed {@linkplain Position position}.
+     * Returns the bearing, as a unit vector, of the tangent (at this {@code Point}) to
+     * the curve between this {@code Point} and a passed {@linkplain Position position}.
      * The choice of the curve type for defining the bearing is dependent on the 
      * {@linkplain org.opengis.referencing.crs.CoordinateReferenceSystem coordinate reference system}
-     * in which this <code>Point</code> is defined.
+     * in which this {@code Point} is defined.
      * For example, in the Mercator projection, the curve is the rhumb line.
      * In 3D, geocentric coordinate system, the curve may be the geodesic joining the two
      * points along the surface of the geoid or ellipsoid in use. Implementations that support

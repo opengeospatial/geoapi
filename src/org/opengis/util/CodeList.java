@@ -47,7 +47,7 @@ public abstract class CodeList<CodeType extends CodeList<CodeType>> implements C
     /**
      * Creates a new code list element and add it to the given collection. Subclasses
      * will typically give a static reference to an {@link java.util.ArrayList} for
-     * the <code>values</code> argument. This list is used for <code>values()</code>
+     * the {@code values} argument. This list is used for {@code values()}
      * method implementations.
      *
      * @param name   The code name.
@@ -65,8 +65,8 @@ public abstract class CodeList<CodeType extends CodeList<CodeType>> implements C
     }
 
     /**
-     * Verify if the given collection contains a <code>CodeList</code> instance
-     * with the same name than the given <code>name</code> argument.
+     * Verify if the given collection contains a {@code CodeList} instance
+     * with the same name than the given {@code name} argument.
      * The comparaison is case-insensitive.
      */
     private static boolean contains(final Collection values, final String name) {

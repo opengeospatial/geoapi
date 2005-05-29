@@ -35,8 +35,8 @@ import static org.opengis.annotation.Specification.*;
  * Any geometric object that is used to describe a feature is a collection of geometric primitives.
  * A collection of geometric primitives may or may not be a geometric complex. Geometric complexes
  * have additional properties such as closure by boundary operations and mutually exclusive component
- * parts. <code>Primitive</code> and {@link Complex} share most semantics, in the meaning of operations
- * and attributes. There is an exception in that a <code>Primitive</code> shall not contain its boundary
+ * parts. {@code Primitive} and {@link Complex} share most semantics, in the meaning of operations
+ * and attributes. There is an exception in that a {@code Primitive} shall not contain its boundary
  * (except in the trivial case of {@linkplain Point point} where the boundary is empty), while a
  * {@linkplain Complex complex} shall contain its boundary in all cases.
  *
@@ -51,10 +51,10 @@ import static org.opengis.annotation.Specification.*;
 @UML(identifier="GM_Primitive", specification=ISO_19107)
 public interface Primitive extends Geometry {
     /**
-     * Returns the boundary of a <code>Primitive</code> as a set of 
-     * <code>Primitive</code>s. This is a specialization of the operation at
+     * Returns the boundary of a {@code Primitive} as a set of 
+     * {@code Primitive}s. This is a specialization of the operation at
      * {@link Geometry}, which does not restrict the class of the returned collection.
-     * The organization of the boundary set of a <code>Primitive</code> depends on the
+     * The organization of the boundary set of a {@code Primitive} depends on the
      * type of the primitive.
      *
      * @return The sets of positions on the boundary.
@@ -63,17 +63,17 @@ public interface Primitive extends Geometry {
 /// public PrimitiveBoundary getBoundary();
 
     /**
-     * Returns the <code>Primitive</code>s which are by definition coincident with this one.
+     * Returns the {@code Primitive}s which are by definition coincident with this one.
      * This allows applications to override the
      * {@link org.opengis.spatialschema.geometry.TransfiniteSet TransfiniteSet&lt;DirectPosition&gt;}
      * interpretation and its associated computational geometry, and declare one
-     * <code>Primitive</code> to be "interior to" another.
+     * {@code Primitive} to be "interior to" another.
      *
-     * This set should normally be empty when the <code>Primitive</code>s are within a
+     * This set should normally be empty when the {@code Primitive}s are within a
      * {@linkplain Complex complex}, since in that case the boundary
      * information is sufficient for most cases.
      *
-     * This association should not be used when the two <code>Primitive</code>s are not close
+     * This association should not be used when the two {@code Primitive}s are not close
      * to one another. The intent is to allow applications to compensate for inherent and
      * unavoidable round off, truncation, and other mathematical problems indigenous to
      * computer calculations.
@@ -89,7 +89,7 @@ public interface Primitive extends Geometry {
     public Set<Primitive> getContainedPrimitives();
 
     /**
-     * Returns the <code>Primitive</code>s which are by definition coincident with this one.
+     * Returns the {@code Primitive}s which are by definition coincident with this one.
      *
      * @return The set of primitives which contains this primitive.
      *
@@ -98,8 +98,8 @@ public interface Primitive extends Geometry {
      *
      *          Should we stretch out some relation with contained primitive? For example
      *          should we update the specification with something like the following?
-     *          "Invoking <code>B.getContainingPrimitive().add(A)</code> is equivalent to
-     *           invoking <code>A.getContainedPrimitive().add(B)</code>".
+     *          "Invoking {@code B.getContainingPrimitive().add(A)} is equivalent to
+     *           invoking {@code A.getContainedPrimitive().add(B)}".
      *
      * @see #getContainedPrimitives
      */
@@ -107,20 +107,20 @@ public interface Primitive extends Geometry {
     public Set<Primitive> getContainingPrimitives();
 
     /**
-     * Returns the set of complexes which contains this primitive. A <code>Primitive</code> may
+     * Returns the set of complexes which contains this primitive. A {@code Primitive} may
      * be in several {@linkplain Complex complexes}. This association may not be navigable in this
      * direction (from primitive to complex), depending on the implementation.
      *
      * @return The set of complexex which contains this primitive.
      *
-     * @revisit Does it means that <code>Primitive</code> can't be immutable, since
+     * @revisit Does it means that {@code Primitive} can't be immutable, since
      *          adding this primitive to a complex will change this set?
      */
     @UML(identifier="complex", obligation=MANDATORY, specification=ISO_19107)
     public Set<Complex> getComplexes();
 
     /**
-     * Returns the orientable primitives associated with this primitive. Each <code>Primitive</code>
+     * Returns the orientable primitives associated with this primitive. Each {@code Primitive}
      * of dimension 1 or 2 is associated to two {@linkplain OrientablePrimitive orientable primitives},
      * one for each possible orientation. For curves and surfaces, there are exactly two orientable
      * primitives for each geometric object. For the positive orientation, the

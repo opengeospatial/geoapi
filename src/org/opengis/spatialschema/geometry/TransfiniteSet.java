@@ -28,36 +28,36 @@ import static org.opengis.annotation.Specification.*;
 @UML(identifier="TransfiniteSet", specification=ISO_19107)
 public interface TransfiniteSet {
     /**
-     * Returns <code>true</code> if this <code>TransfiniteSet</code> contains another
-     * <code>TransfiniteSet</code>. If the passed <code>TransfiniteSet</code> is a
+     * Returns {@code true} if this {@code TransfiniteSet} contains another
+     * {@code TransfiniteSet}. If the passed {@code TransfiniteSet} is a
      * {@linkplain org.opengis.spatialschema.geometry.primitive.Point point}, then this operation is the
      * equivalent of a set-element test for the {@linkplain DirectPosition direct position}
-     * of that point within this <code>TransfiniteSet</code>.
+     * of that point within this {@code TransfiniteSet}.
      *
      * <blockquote><font size=2>
-     * <strong>NOTE:</strong> <code>contains</code> is strictly a set theoretic containment,
+     * <strong>NOTE:</strong> {@code contains} is strictly a set theoretic containment,
      * and has no dimensionality constraint. In a {@linkplain org.opengis.spatialschema.geometry.complex.Complex
      * complex}, no {@linkplain org.opengis.spatialschema.geometry.primitive.Primitive primitive} will contain
      * another unless a dimension is skipped.
      * </font></blockquote>
      *
      * @param  pointSet The set to be checked for containment in this set.
-     * @return <code>true</code> if this set contains all of the elements of the specified set.
+     * @return {@code true} if this set contains all of the elements of the specified set.
      */
     boolean contains(TransfiniteSet pointSet);
 
     /**
-     * Returns <code>true</code> if this <code>TransfiniteSet</code> contains a
+     * Returns {@code true} if this {@code TransfiniteSet} contains a
      * single point given by a coordinate.
      *
      * @param  point The point to be checked for containment in this set.
-     * @return <code>true</code> if this set contains the specified point.
+     * @return {@code true} if this set contains the specified point.
      */
     boolean contains(DirectPosition point);
 
     /**
-     * Returns <code>true</code> if this <code>TransfiniteSet</code> intersects another
-     * <code>TransfiniteSet</code>. Withing a {@linkplain org.opengis.spatialschema.geometry.complex.Complex complex},
+     * Returns {@code true} if this {@code TransfiniteSet} intersects another
+     * {@code TransfiniteSet}. Withing a {@linkplain org.opengis.spatialschema.geometry.complex.Complex complex},
      * the {@linkplain org.opengis.spatialschema.geometry.primitive.Primitive primitives} do not intersect one another.
      * In general, topologically structured data uses shared geometric objects to
      * capture intersection information.
@@ -74,13 +74,13 @@ public interface TransfiniteSet {
      * </font></blockquote>
      *
      * @param  pointSet The set to be checked for intersection with this set.
-     * @return <code>true</code> if this set intersects some of the elements of the specified set.
+     * @return {@code true} if this set intersects some of the elements of the specified set.
      */
     boolean intersects(TransfiniteSet pointSet);
 
     /**
-     * Returns <code>true</code> if this <code>TransfiniteSet</code> is equal to another
-     * <code>TransfiniteSet</code>. Two different instances of <code>TransfiniteSet</code>
+     * Returns {@code true} if this {@code TransfiniteSet} is equal to another
+     * {@code TransfiniteSet}. Two different instances of {@code TransfiniteSet}
      * are equal if they return the same boolean value for the operation
      * {@link #contains(DirectPosition) contains} for every tested {@linkplain DirectPosition
      * direct position} within the valid range of the coordinate reference system associated
@@ -91,20 +91,20 @@ public interface TransfiniteSet {
      * the internal implementation of equal must test for equivalence between two, possibly
      * quite different, representations. This test may be limited to the resolution of the
      * coordinate system or the accuracy of the data. Implementations may define a tolerance
-     * that returns <code>true</code> if the two <code>TransfiniteSet</code> have the same
-     * dimension and each direct position in this <code>TransfiniteSet</code> is within a
-     * tolerance distance of a direct position in the passed <code>TransfiniteSet</code> and
+     * that returns {@code true} if the two {@code TransfiniteSet} have the same
+     * dimension and each direct position in this {@code TransfiniteSet} is within a
+     * tolerance distance of a direct position in the passed {@code TransfiniteSet} and
      * vice versa.
      * </font></blockquote>
      *
      * @param pointSet The set to test for equality.
-     * @return <code>true</code> if the two set are equals.
+     * @return {@code true} if the two set are equals.
      */
     boolean equals(TransfiniteSet pointSet);
 
     /**
-     * Returns the set theoretic union of this <code>TransfiniteSet</code> and the passed
-     * <code>TransfiniteSet</code>.
+     * Returns the set theoretic union of this {@code TransfiniteSet} and the passed
+     * {@code TransfiniteSet}.
      *
      * @param pointSet The second set.
      * @return The union of both sets.
@@ -112,8 +112,8 @@ public interface TransfiniteSet {
     TransfiniteSet union(TransfiniteSet pointSet);
 
     /**
-     * Returns the set theoretic intersection of this <code>TransfiniteSet</code> and the passed
-     * <code>TransfiniteSet</code>.
+     * Returns the set theoretic intersection of this {@code TransfiniteSet} and the passed
+     * {@code TransfiniteSet}.
      *
      * @param pointSet The second set.
      * @return The intersection of both sets.
@@ -121,8 +121,8 @@ public interface TransfiniteSet {
     TransfiniteSet intersection(TransfiniteSet pointSet);
 
     /**
-     * Returns the set theoretic difference of this <code>TransfiniteSet</code> and the passed
-     * <code>TransfiniteSet</code>.
+     * Returns the set theoretic difference of this {@code TransfiniteSet} and the passed
+     * {@code TransfiniteSet}.
      *
      * @param pointSet The second set.
      * @return The difference between both sets.
@@ -130,8 +130,8 @@ public interface TransfiniteSet {
     TransfiniteSet difference(TransfiniteSet pointSet);
 
     /**
-     * Returns the set theoretic symmetric difference of this <code>TransfiniteSet</code> and the
-     * passed <code>TransfiniteSet</code>.
+     * Returns the set theoretic symmetric difference of this {@code TransfiniteSet} and the
+     * passed {@code TransfiniteSet}.
      *
      * @param pointSet The second set.
      * @return The symmetric difference between both sets.

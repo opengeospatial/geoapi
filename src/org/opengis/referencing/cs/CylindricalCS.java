@@ -19,7 +19,7 @@ import static org.opengis.annotation.Specification.*;
 /**
  * A three-dimensional coordinate system consisting of a {@linkplain PolarCS polar coordinate
  * system} extended by a straight coordinate axis perpendicular to the plane spanned by the
- * polar coordinate system. A <code>CylindricalCS</code> shall have three
+ * polar coordinate system. A {@code CylindricalCS} shall have three
  * {@linkplain #getAxis axis associations}.
  *
  * <TABLE CELLPADDING='6' BORDER='1'>

@@ -20,7 +20,7 @@ import static org.opengis.annotation.Specification.*;
  * A one-dimensional coordinate system that consists of the points that lie on the single axis
  * described. The associated ordinate is the distance from the specified origin to the point
  * along the axis. Example: usage of the line feature representing a road to describe points
- * on or along that road. A <code>LinearCS</code> shall have one
+ * on or along that road. A {@code LinearCS} shall have one
  * {@linkplain #getAxis axis association}.
  *
  * <TABLE CELLPADDING='6' BORDER='1'>

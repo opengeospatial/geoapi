@@ -62,7 +62,7 @@ public interface ParameterValue extends GeneralParameterValue {
      *
      * @param  unit The unit of measure for the value to be returned.
      * @return The numeric value represented by this parameter after conversion to type
-     *         <code>double</code> and conversion to <code>unit</code>.
+     *         {@code double} and conversion to {@code unit}.
      * @throws InvalidParameterTypeException if the value is not a numeric type.
      * @throws IllegalArgumentException if the specified unit is invalid for this parameter.
      *
@@ -76,12 +76,12 @@ public interface ParameterValue extends GeneralParameterValue {
      * Returns the numeric value of the coordinate operation parameter with its
      * associated {@linkplain #getUnit unit of measure}.
      *
-     * @return The numeric value represented by this parameter after conversion to type <code>double</code>.
+     * @return The numeric value represented by this parameter after conversion to type {@code double}.
      * @throws InvalidParameterTypeException if the value is not a numeric type.
      * @unitof Measure
      *
-     * @rename Renamed <code>value</code> to <code>doubleValue</code> for consistency with
-     *         {@link Number#doubleValue} and the other <code>fooValue</code> in this interface.
+     * @rename Renamed {@code value} to {@code doubleValue} for consistency with
+     *         {@link Number#doubleValue} and the other {@code fooValue} in this interface.
      *         Also because {@link #getValue} is already used for an {@link Object} type, for
      *         consistency with {@link #setValue(Object)}.
      *
@@ -96,11 +96,11 @@ public interface ParameterValue extends GeneralParameterValue {
      * Returns the positive integer value of an operation parameter, usually used
      * for a count. An integer value does not have an associated unit of measure.
      *
-     * @return The numeric value represented by this parameter after conversion to type <code>int</code>.
+     * @return The numeric value represented by this parameter after conversion to type {@code int}.
      * @throws InvalidParameterTypeException if the value is not an integer type.
      *
-     * @rename Renamed <code>integerValue</code> to <code>intValue</code> for consistency with
-     *         {@link Number#intValue} and the Java primitive type <code>int</code>.
+     * @rename Renamed {@code integerValue} to {@code intValue} for consistency with
+     *         {@link Number#intValue} and the Java primitive type {@code int}.
      *
      * @see #setValue(int)
      * @see #intValueList
@@ -139,8 +139,8 @@ public interface ParameterValue extends GeneralParameterValue {
      *
      * @param  unit The unit of measure for the value to be returned.
      * @return The sequence of values represented by this parameter after conversion to type
-     *         <code>double</code> and conversion to <code>unit</code>.
-     * @throws InvalidParameterTypeException if the value is not an array of <code>double</code>s.
+     *         {@code double} and conversion to {@code unit}.
+     * @throws InvalidParameterTypeException if the value is not an array of {@code double}s.
      * @throws IllegalArgumentException if the specified unit is invalid for this parameter.
      *
      * @see #getUnit
@@ -154,16 +154,16 @@ public interface ParameterValue extends GeneralParameterValue {
      * list, where each value has the same associated {@linkplain Unit unit of measure}.
      *
      * @return The sequence of values represented by this parameter.
-     * @throws InvalidParameterTypeException if the value is not an array of <code>double</code>s.
+     * @throws InvalidParameterTypeException if the value is not an array of {@code double}s.
      * @unitof Measure
      *
      * @see #getUnit
      * @see #setValue(Object)
      * @see #doubleValue()
      *
-     * @rename Renamed <code>valueList</code> as <code>doubleValueList</code> for consistency
-     *         with {@link #doubleValue()}. Also because, like <code>doubleValue()</code>, this
-     *         method returns a <code>double</code> value rather than a <code>Measure</code>
+     * @rename Renamed {@code valueList} as {@code doubleValueList} for consistency
+     *         with {@link #doubleValue()}. Also because, like {@code doubleValue()}, this
+     *         method returns a {@code double} value rather than a {@code Measure}
      *         object.
      */
     @UML(identifier="valueList", obligation=CONDITIONAL, specification=ISO_19111)
@@ -174,14 +174,14 @@ public interface ParameterValue extends GeneralParameterValue {
      * usually used for counts. These integer values do not have an associated unit of measure.
      *
      * @return The sequence of values represented by this parameter.
-     * @throws InvalidParameterTypeException if the value is not an array of <code>int</code>s.
+     * @throws InvalidParameterTypeException if the value is not an array of {@code int}s.
      *
      * @see #setValue(Object)
      * @see #intValue
      *
-     * @rename Renamed <code>valueList</code> as <code>doubleValueList</code> for consistency
-     *         with {@link #doubleValue()}. Also because, like <code>doubleValue()</code>, this
-     *         method returns a <code>double</code> value rather than a <code>Measure</code>
+     * @rename Renamed {@code valueList} as {@code doubleValueList} for consistency
+     *         with {@link #doubleValue()}. Also because, like {@code doubleValue()}, this
+     *         method returns a {@code double} value rather than a {@code Measure}
      *         object.
      */
     @UML(identifier="integerValueList", obligation=CONDITIONAL, specification=ISO_19111)
@@ -204,8 +204,8 @@ public interface ParameterValue extends GeneralParameterValue {
 
     /**
      * Returns the parameter value as an object. The object type is typically a {@link Double},
-     * {@link Integer}, {@link Boolean}, {@link String}, {@link URI}, <code>double[]</code> or
-     * <code>int[]</code>.
+     * {@link Integer}, {@link Boolean}, {@link String}, {@link URI}, {@code double[]} or
+     * {@code int[]}.
      *
      * @return The parameter value as an object.
      *
@@ -275,11 +275,11 @@ public interface ParameterValue extends GeneralParameterValue {
 
     /**
      * Set the parameter value as an object. The object type is typically a {@link Double},
-     * {@link Integer}, {@link Boolean}, {@link String}, {@link URI}, <code>double[]</code>
-     * or <code>int[]</code>.
+     * {@link Integer}, {@link Boolean}, {@link String}, {@link URI}, {@code double[]}
+     * or {@code int[]}.
      *
      * @param  value The parameter value.
-     * @throws InvalidParameterValueException if the type of <code>value</code> is inappropriate
+     * @throws InvalidParameterValueException if the type of {@code value} is inappropriate
      *         for this parameter, or if the value is illegal for some other reason (for example
      *         the value is numeric and out of range).
      *

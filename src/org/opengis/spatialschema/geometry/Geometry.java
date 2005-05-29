@@ -28,9 +28,9 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * Root class of the geometric object taxonomy. <code>Geometry</code> supports interfaces common
- * to all geographically referenced geometric objects. <code>Geometry</code> instances are sets
- * of direct positions in a particular coordinate reference system. A <code>Geometry</code> can
+ * Root class of the geometric object taxonomy. {@code Geometry} supports interfaces common
+ * to all geographically referenced geometric objects. {@code Geometry} instances are sets
+ * of direct positions in a particular coordinate reference system. A {@code Geometry} can
  * be regarded as an infinite set of points that satisfies the set operation interfaces for a set
  * of direct positions, {@link TransfiniteSet TransfiniteSet&lt;DirectPosition&gt;}.
  *
@@ -42,8 +42,8 @@ import static org.opengis.annotation.Specification.*;
 public interface Geometry extends TransfiniteSet {
     /**
      * Returns the coordinate reference system used in {@linkplain DirectPosition direct position}
-     * coordinates. If {@code null}, then this <code>Geometry</code> uses the coordinate reference
-     * system from another <code>Geometry</code> in which it is contained.
+     * coordinates. If {@code null}, then this {@code Geometry} uses the coordinate reference
+     * system from another {@code Geometry} in which it is contained.
      *
      * The most common example where the coordinate reference system is {@code null} is the elements
      * and subcomplexes of a maximal {@linkplain Complex complex}. The {@linkplain Complex complex} can
@@ -51,9 +51,9 @@ public interface Geometry extends TransfiniteSet {
      * {@linkplain org.opengis.spatialschema.geometry.primitive.Primitive primitive} elements
      * and for all {@link Complex} subcomplexes.
      * <p>
-     * This association is only navigable from <code>Geometry</code> to {@linkplain CoordinateReferenceSystem
+     * This association is only navigable from {@code Geometry} to {@linkplain CoordinateReferenceSystem
      * coordinate reference system}. This means that the coordinate reference system objects in a data set do
-     * not keep a list of <code>Geometry</code>s that use them.
+     * not keep a list of {@code Geometry}s that use them.
      *
      * @return The coordinate reference system used in {@linkplain DirectPosition direct position}
      *         coordinates.
@@ -64,12 +64,12 @@ public interface Geometry extends TransfiniteSet {
     CoordinateReferenceSystem getCoordinateReferenceSystem();
 
     /**
-     * Returns a region in the coordinate reference system that contains this <code>Geometry</code>.
-     * The default shall be to return an instance of an appropriate <code>Geometry</code> subclass
+     * Returns a region in the coordinate reference system that contains this {@code Geometry}.
+     * The default shall be to return an instance of an appropriate {@code Geometry} subclass
      * that represents the same spatial set returned from {@link #getEnvelope}. The most common
-     * use of <code>mbRegion</code> will be to support indexing methods that use extents other
+     * use of {@code mbRegion} will be to support indexing methods that use extents other
      * than minimum bounding rectangles (MBR or envelopes). This does not restrict the returned
-     * <code>Geometry</code> from being a non-vector geometric representation, although those
+     * {@code Geometry} from being a non-vector geometric representation, although those
      * types are not defined within this specification.
      *
      * @return The minimum bounding region.
@@ -81,7 +81,7 @@ public interface Geometry extends TransfiniteSet {
     Geometry getMbRegion();
 
     /**
-     * Returns a point value that is guaranteed to be on this <code>Geometry</code>. The default
+     * Returns a point value that is guaranteed to be on this {@code Geometry}. The default
      * logic may be to use the {@linkplain DirectPosition direct position} of the point returned by
      * {@link #getCentroid} if that point is on the object. Another use of representative point may
      * be for the placement of labels in systems based on graphic presentation.
@@ -94,13 +94,13 @@ public interface Geometry extends TransfiniteSet {
     DirectPosition getRepresentativePoint();
 
     /**
-     * Returns a finite set of <code>Geometry</code>s containing all of the direct positions on the
-     * boundary of this <code>Geometry</code>. These object collections shall have further internal
-     * structure where appropriate. The finite set of <code>Geometry</code>s returned shall be in
-     * the same coordinate reference system as this <code>Geometry</code>. If the <code>Geometry</code>
-     * is in a {@linkplain Complex complex}, then the boundary <code>Geometry</code>s returned shall be
-     * in the same {@linkplain Complex complex}. If the <code>Geometry</code> is not in any
-     * {@linkplain Complex complex}, then the boundary <code>Geometry</code>s returned may have been
+     * Returns a finite set of {@code Geometry}s containing all of the direct positions on the
+     * boundary of this {@code Geometry}. These object collections shall have further internal
+     * structure where appropriate. The finite set of {@code Geometry}s returned shall be in
+     * the same coordinate reference system as this {@code Geometry}. If the {@code Geometry}
+     * is in a {@linkplain Complex complex}, then the boundary {@code Geometry}s returned shall be
+     * in the same {@linkplain Complex complex}. If the {@code Geometry} is not in any
+     * {@linkplain Complex complex}, then the boundary {@code Geometry}s returned may have been
      * constructed in response to the operation. The elements of a boundary shall be smaller in
      * dimension than the original element.
      *
@@ -115,14 +115,14 @@ public interface Geometry extends TransfiniteSet {
     Boundary getBoundary();
 
     /**
-     * Returns a finite set of <code>Geometry</code>s containing all of the points on the boundary of
-     * this <code>Geometry</code> and this object (the union of the object and its boundary). These
+     * Returns a finite set of {@code Geometry}s containing all of the points on the boundary of
+     * this {@code Geometry} and this object (the union of the object and its boundary). These
      * object collections shall have further internal structure where appropriate. The finite set
-     * of <code>Geometry</code>s returned shall be in the same coordinate reference system as this
-     * <code>Geometry</code>. If the <code>Geometry</code> is in a {@linkplain Complex complex}, then the boundary
-     * <code>Geometry</code>s returned shall be in the same {@linkplain Complex complex}. If the
-     * <code>Geometry</code> is not in any {@linkplain Complex complex}, then the boundary
-     * <code>Geometry</code>s returned may have been constructed in response to the operation.
+     * of {@code Geometry}s returned shall be in the same coordinate reference system as this
+     * {@code Geometry}. If the {@code Geometry} is in a {@linkplain Complex complex}, then the boundary
+     * {@code Geometry}s returned shall be in the same {@linkplain Complex complex}. If the
+     * {@code Geometry} is not in any {@linkplain Complex complex}, then the boundary
+     * {@code Geometry}s returned may have been constructed in response to the operation.
      *
      * @return The sets of points on the union of this object and its boundary.
      *
@@ -132,20 +132,20 @@ public interface Geometry extends TransfiniteSet {
     Complex getClosure();
 
     /**
-     * Returns <code>true</code> if this <code>Geometry</code> has no interior point of
+     * Returns {@code true} if this {@code Geometry} has no interior point of
      * self-intersection or selftangency. In mathematical formalisms, this means that
      * every point in the interior of the object must have a metric neighborhood whose
      * intersection with the object is isomorphic to an <var>n</var>-sphere, where <var>n</var>
-     * is the dimension of this <code>Geometry</code>.
+     * is the dimension of this {@code Geometry}.
      * <p>
      * Since most coordinate geometries are represented, either directly or indirectly by functions
      * from regions in Euclidean space of their topological dimension, the easiest test for
      * simplicity to require that a function exist that is one-to-one and bicontinuous
      * (continuous in both directions). Such a function is a topological isomorphism. This test
      * does not work for "closed" objects (that is, objects for which {@link #isCycle} returns
-     * <code>true</code>).
+     * {@code true}).
      *
-     * @return <code>true</code> if this object has no interior point of self-intersection or
+     * @return {@code true} if this object has no interior point of self-intersection or
      *         selftangency.
      *
      * @see #isCycle
@@ -154,7 +154,7 @@ public interface Geometry extends TransfiniteSet {
     boolean isSimple();
 
     /**
-     * Returns <code>true</code> if this <code>Geometry</code> has an empty boundary after topological
+     * Returns {@code true} if this {@code Geometry} has an empty boundary after topological
      * simplification (removal of overlaps between components in non-structured aggregates, such as
      * subclasses of {@link org.opengis.spatialschema.geometry.aggregate.Aggregate}). This condition is alternatively
      * referred to as being "closed" as in a "closed curve." This creates some confusion since there
@@ -166,7 +166,7 @@ public interface Geometry extends TransfiniteSet {
      * surface of a sphere, or some torus. A solid, with finite size, in a space of dimension 3 is
      * never a cycle.
      *
-     * @return <code>true</code> if this <code>Geometry</code> has an empty boundary after
+     * @return {@code true} if this {@code Geometry} has an empty boundary after
      *         topological simplification.
      *
      * @see #isSimple
@@ -175,9 +175,9 @@ public interface Geometry extends TransfiniteSet {
     boolean isCycle();
 
     /**
-     * Returns the distance between this <code>Geometry</code> and another <code>Geometry</code>.
+     * Returns the distance between this {@code Geometry} and another {@code Geometry}.
      * This distance is defined to be the greatest lower bound of the set of distances between
-     * all pairs of points that include one each from each of the two <code>Geometry</code>s. A
+     * all pairs of points that include one each from each of the two {@code Geometry}s. A
      * "distance" value shall be a positive number associated to a distance unit such as meter
      * or standard foot. If necessary, the second geometric object shall be transformed into
      * the same coordinate reference system as the first before the distance is calculated.
@@ -216,16 +216,16 @@ public interface Geometry extends TransfiniteSet {
     double getDistance(Geometry geometry);
 
     /**
-     * Returns the inherent dimension of this <code>Geometry</code>, which shall be less than or
+     * Returns the inherent dimension of this {@code Geometry}, which shall be less than or
      * equal to the {@linkplain #getCoordinateDimension coordinate dimension}. The dimension of
      * a collection of geometric objects shall be the largest dimension of any of its pieces.
      * Points are 0-dimensional, curves are 1-dimensional, surfaces are 2-dimensional, and solids
      * are 3-dimensional. Locally, the dimension of a geometric object at a point is the dimension
      * of a local neighborhood of the point - that is the dimension of any coordinate neighborhood
      * of the point. Dimension is unambiguously defined only for {@linkplain DirectPosition direct
-     * positions} interior to this <code>Geometry</code>. If the passed {@linkplain DirectPosition
+     * positions} interior to this {@code Geometry}. If the passed {@linkplain DirectPosition
      * direct position} is {@code null}, then the operation shall return the largest possible
-     * dimension for any {@linkplain DirectPosition direct position} in this <code>Geometry</code>.
+     * dimension for any {@linkplain DirectPosition direct position} in this {@code Geometry}.
      *
      * @param point The point where to evaluate the dimension, or {@code null}.
      * @return The inherent dimension.
@@ -236,9 +236,9 @@ public interface Geometry extends TransfiniteSet {
     int getDimension(DirectPosition point);
 
     /**
-     * Returns the dimension of the coordinates that define this <code>Geometry</code>, which must
+     * Returns the dimension of the coordinates that define this {@code Geometry}, which must
      * be the same as the coordinate dimension of the coordinate reference system for this
-     * <code>Geometry</code>.
+     * {@code Geometry}.
      *
      * @return The coordinate dimension.
      *
@@ -249,31 +249,31 @@ public interface Geometry extends TransfiniteSet {
     int getCoordinateDimension();
 
     /**
-     * Returns the set of maximal complexes within which this <code>Geometry</code> is contained.
+     * Returns the set of maximal complexes within which this {@code Geometry} is contained.
      * As a set of primitives, a {@linkplain Complex complex} may be contained as a set in another
      * larger {@linkplain Complex complex}, referred to as a "super complex" of the original.
      * A {@linkplain Complex complex} is maximal if there is no such larger super complex.
      *
-     * @return The set of maximal complexes within which this <code>Geometry</code> is contained.
+     * @return The set of maximal complexes within which this {@code Geometry} is contained.
      */
     @UML(identifier="maximalComplex", obligation=MANDATORY, specification=ISO_19107)
     Set getMaximalComplex();
 
     /**
-     * Returns a new <code>Geometry</code> that is the coordinate transformation of this
-     * <code>Geometry</code> into the passed coordinate reference system within the accuracy
+     * Returns a new {@code Geometry} that is the coordinate transformation of this
+     * {@code Geometry} into the passed coordinate reference system within the accuracy
      * of the transformation.
      *
      * @param  newCRS The new coordinate reference system.
-     * @return The transformed <code>Geometry</code>.
+     * @return The transformed {@code Geometry}.
      * @throws TransformException if the transformation failed.
      */
     @UML(identifier="transform", obligation=MANDATORY, specification=ISO_19107)
     Geometry transform(CoordinateReferenceSystem newCRS) throws TransformException;
 
     /**
-     * Returns a new <code>Geometry</code> that is the coordinate transformation of this
-     * <code>Geometry</code> into the passed coordinate reference system, using the
+     * Returns a new {@code Geometry} that is the coordinate transformation of this
+     * {@code Geometry} into the passed coordinate reference system, using the
      * specified transform. It is the user responsability to ensure that the supplied
      * transform is appropriate for this geometry.
      *
@@ -281,15 +281,15 @@ public interface Geometry extends TransfiniteSet {
      * @param  transform The transform from the existing coordinate reference system
      *         to the new coordinate reference system.
      * @throws TransformException if the transformation failed.
-     * @return The transformed <code>Geometry</code>.
+     * @return The transformed {@code Geometry}.
      */
     @Extension
     Geometry transform(CoordinateReferenceSystem newCRS, MathTransform transform) throws TransformException;
 
     /**
-     * Returns the minimum bounding box for this <code>Geometry</code>. This shall be the
+     * Returns the minimum bounding box for this {@code Geometry}. This shall be the
      * coordinate region spanning the minimum and maximum value for each ordinate taken on by
-     * {@linkplain DirectPosition direct positions} in this <code>Geometry</code>. The simplest
+     * {@linkplain DirectPosition direct positions} in this {@code Geometry}. The simplest
      * representation for an envelope consists of two {@linkplain DirectPosition direct positions},
      * the first one containing all the minimums for each ordinate, and second one containing all
      * the maximums. However, there are cases for which these two positions would be outside the
@@ -303,7 +303,7 @@ public interface Geometry extends TransfiniteSet {
     Envelope getEnvelope();
 
     /**
-     * Returns the mathematical centroid for this <code>Geometry</code>. The result is not guaranteed
+     * Returns the mathematical centroid for this {@code Geometry}. The result is not guaranteed
      * to be on the object. For heterogeneous collections of primitives, the centroid only takes
      * into account those of the largest dimension. For example, when calculating the centroid of
      * surfaces, an average is taken weighted by area. Since curves have no area they do not
@@ -317,7 +317,7 @@ public interface Geometry extends TransfiniteSet {
     DirectPosition getCentroid();
 
     /**
-     * Returns a <code>Geometry</code> that represents the convex hull of this <code>Geometry</code>.
+     * Returns a {@code Geometry} that represents the convex hull of this {@code Geometry}.
      * Convexity requires the use of "lines" or "curves of shortest length" and the use of different
      * coordinate systems may result in different versions of the convex hull of an object. Each
      * implementation shall decide on an appropriate solution to this ambiguity. For two reasonable
@@ -330,17 +330,17 @@ public interface Geometry extends TransfiniteSet {
     Geometry getConvexHull();
 
     /**
-     * Returns a <code>Geometry</code> containing all points whose distance from this
-     * <code>Geometry</code> is less than or equal to the distance passed as a parameter.
-     * The <code>Geometry</code> returned is in the same reference system as this original
-     * <code>Geometry</code>. The dimension of the returned <code>Geometry</code> is normally
+     * Returns a {@code Geometry} containing all points whose distance from this
+     * {@code Geometry} is less than or equal to the distance passed as a parameter.
+     * The {@code Geometry} returned is in the same reference system as this original
+     * {@code Geometry}. The dimension of the returned {@code Geometry} is normally
      * the same as the coordinate dimension - a collection of
      * {@linkplain org.opengis.spatialschema.geometry.primitive.Surface surfaces} in 2D space and a collection of
      * {@linkplain org.opengis.spatialschema.geometry.primitive.Solid solids} in 3D space, but this may be application
      * defined.
      *
      * @param distance The distance.
-     * @return A geometry containing all points whose distance from this <code>Geometry</code>
+     * @return A geometry containing all points whose distance from this {@code Geometry}
      *         is less than or equal to the specified distance.
      * @unitof Distance (for the argument)
      *
@@ -352,27 +352,27 @@ public interface Geometry extends TransfiniteSet {
     Geometry getBuffer(double distance);
 
     /**
-     * Returns <code>false</code> if this geometry is immutable. Immutable geometries are
+     * Returns {@code false} if this geometry is immutable. Immutable geometries are
      * guarantee to never change their state, neither directly (through a change in this object)
      * or indirectly (through a change in an other object this geometry depends upon). Immutable
      * geometries avoid the need for {@linkplain #clone cloning them}. More specifically:
      *
      * <UL>
-     *   <LI><P>If <code>false</code>, then this geometry is <cite>immutable</cite>. It is
-     *       guarantee that a call to any <code>setFoo(...)</code> method will throws an
+     *   <LI><P>If {@code false}, then this geometry is <cite>immutable</cite>. It is
+     *       guarantee that a call to any {@code setFoo(...)} method will throws an
      *       {@link UnmodifiableGeometryException} (that said, <cite>immutable</cite> geometries
      *       are necessarily <cite>unmodifiable</cite>. The converse is not true, see next point
      *       below). This geometry will never change its state, and there is no need for
      *       {@linkplain #clone cloning it}.</P></LI>
-     *   <LI><P>If <code>true</code>, then this geometry is <cite>mutable</cite>. Note that
+     *   <LI><P>If {@code true}, then this geometry is <cite>mutable</cite>. Note that
      *       <cite>mutable</cite> geometry is not synonymous of <cite>modifiable</cite>
      *       geometry. The nuance lays in whatever the geometry may changes its state
      *       directly (as of user request) or indirectly:<P></LI>
      *       <UL>
      *         <LI><P>This geometry may be <cite>modifiable</cite>, in which case invoking
-     *             <code>setFoo(...)</code> methods is legal and will not throws exception.</P></LI>
+     *             {@code setFoo(...)} methods is legal and will not throws exception.</P></LI>
      *         <LI><P>This geometry may still <cite>unmodifiable</cite>. User is not allowed to
-     *             modify it himself and invoking any <code>setFoo(...)</code> method will throws
+     *             modify it himself and invoking any {@code setFoo(...)} method will throws
      *             an {@link UnmodifiableGeometryException}. However, the implementation may change
      *             the geometry itself (for example a time-varying geometry).</P></LI>
      *       </UL>
@@ -384,12 +384,12 @@ public interface Geometry extends TransfiniteSet {
 
     /**
      * Returns an immutable copy of this geometry.  The returned Geometry is
-     * guaranteed to have an <code>isMutable()</code> value of false.  Moreover,
-     * as per the contract of <code>isMutable()</code>, its values will never
+     * guaranteed to have an {@code isMutable()} value of false.  Moreover,
+     * as per the contract of {@code isMutable()}, its values will never
      * change.  Any attempts to change the values of the returned object will
-     * result in a <code>UnmodifiableGeometryException</code>.
+     * result in a {@code UnmodifiableGeometryException}.
      * <p>
-     * Implementors are free to return <code>this</code> if this object is
+     * Implementors are free to return {@code this} if this object is
      * already immutable.
      */
     @Extension
@@ -405,7 +405,7 @@ public interface Geometry extends TransfiniteSet {
      *
      * <UL>
      *   <LI><P>If this geometry is immutable (<code>{@linkplain #isMutable} == false</code>), then
-     *       there is no need for cloning this object. This method may return <code>this</code>
+     *       there is no need for cloning this object. This method may return {@code this}
      *       or returns a modifiable copy of this object, at implementation choice.</P></LI>
      *   <LI><P>If a deep copy semantic is not possible at a reasonable cost (for example for some
      *       database backend), then this method throws a {@link CloneNotSupportedException}.</P></LI>

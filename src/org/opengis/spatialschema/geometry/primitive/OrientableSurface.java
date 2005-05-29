@@ -21,10 +21,10 @@ import static org.opengis.annotation.Specification.*;
 
 /**
  * A surface and an orientation inherited from {@link OrientablePrimitive}. If the orientation is
- * positive, then the <code>OrientableSurface</code> is a {@linkplain Surface surface}. If the
- * orientation is negative, then the <code>OrientableSurface</code> is a reference to a
+ * positive, then the {@code OrientableSurface} is a {@linkplain Surface surface}. If the
+ * orientation is negative, then the {@code OrientableSurface} is a reference to a
  * {@linkplain Surface surface} with an upNormal that reverses the direction for this
- * <code>OrientableSurface</code>, the sense of "the top of the surface".
+ * {@code OrientableSurface}, the sense of "the top of the surface".
  *  
  * @version <A HREF="http://www.opengis.org/docs/01-101.pdf">Abstract specification 5</A>
  * @author Martin Desruisseaux (IRD)
@@ -34,9 +34,9 @@ import static org.opengis.annotation.Specification.*;
 public interface OrientableSurface extends OrientablePrimitive {
     /**
      * Returns the set of circular sequences of {@linkplain OrientableCurve orientable curve} that
-     * limit the extent of this <code>OrientableSurface</code>. These curves shall be organized
+     * limit the extent of this {@code OrientableSurface}. These curves shall be organized
      * into one circular sequence of curves for each boundary component of the
-     * <code>OrientableSurface</code>. In cases where "exterior" boundary is not
+     * {@code OrientableSurface}. In cases where "exterior" boundary is not
      * well defined, all the rings of the {@linkplain SurfaceBoundary surface boundary}
      * shall be listed as "interior".
      *

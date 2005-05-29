@@ -45,7 +45,7 @@ public interface CoordinateOperationAuthorityFactory extends AuthorityFactory {
      *
      * @param code Coded value for transformation.
      *
-     * @throws NoSuchAuthorityCodeException if the specified <code>code</code> was not found.
+     * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
      * @throws FactoryException if the object creation failed for some other reason.
      */
     @UML(identifier="createFromTransformationCode", specification=OGC_01009)

@@ -106,7 +106,7 @@ public final class VerticalDatumType extends CodeList<VerticalDatumType> {
     }
 
     /**
-     * Returns the list of <code>VerticalDatumType</code>s.
+     * Returns the list of {@code VerticalDatumType}s.
      */
     public static VerticalDatumType[] values() {
         synchronized (VALUES) {

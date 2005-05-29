@@ -17,7 +17,7 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * Two distinct positions joined by a geodesic curve. The control points of a <code>Geodesic</code>
+ * Two distinct positions joined by a geodesic curve. The control points of a {@code Geodesic}
  * shall all lie on the geodesic between its start point and end point. Between these two points,
  * a geodesic curve defined from the {@linkplain org.opengis.referencing.datum.Ellipsoid ellipsoid} or geoid model
  * used by the {@linkplain org.opengis.referencing.crs.CoordinateReferenceSystem coordinate reference system} may

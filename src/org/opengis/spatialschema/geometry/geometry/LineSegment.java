@@ -29,7 +29,7 @@ import static org.opengis.annotation.Specification.*;
  * </pre></blockquote>
  *
  * Any other point in the control point array must fall on this line. The control points of a
- * <code>LineSegment</code> shall all lie on the straight line between its start point and end
+ * {@code LineSegment} shall all lie on the straight line between its start point and end
  * point. Between these two points, other positions may be interpolated linearly. The linear
  * interpolation, given using a constructive parameter <var>t</var>, 0 ? <var>t</var> ? 1.0,
  * where c(o) = c.{@linkplain #getStartPoint startPoint} and c(1)=c.{@link #getEndPoint endPoint},

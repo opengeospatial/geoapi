@@ -95,7 +95,7 @@ public final class SpatialRepresentationType extends CodeList<SpatialRepresentat
     }
 
     /**
-     * Returns the list of <code>SpatialRepresentationType</code>s.
+     * Returns the list of {@code SpatialRepresentationType}s.
      */
     public static SpatialRepresentationType[] values() {
         synchronized (VALUES) {

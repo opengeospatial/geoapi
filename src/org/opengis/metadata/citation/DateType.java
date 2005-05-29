@@ -72,7 +72,7 @@ public final class DateType extends CodeList<DateType> {
     }
 
     /**
-     * Returns the list of <code>DateType</code>s.
+     * Returns the list of {@code DateType}s.
      */
     public static DateType[] values() {
         synchronized (VALUES) {

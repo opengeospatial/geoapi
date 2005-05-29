@@ -22,7 +22,7 @@ import static org.opengis.annotation.Specification.*;
 
 /**
  * Defines a homogeneous segment of a {@linkplain Curve curve}.
- * Each <code>CurveSegment</code> shall be in, at most, one {@linkplain Curve curve}.
+ * Each {@code CurveSegment} shall be in, at most, one {@linkplain Curve curve}.
  *
  * @version <A HREF="http://www.opengis.org/docs/01-101.pdf">Abstract specification 5</A>
  * @author Martin Desruisseaux (IRD)
@@ -51,7 +51,7 @@ public interface CurveSegment extends GenericCurve {
     /**
      * Specifies the curve interpolation mechanism used for this segment. This mechanism
      * uses the control points and control parameters to determine the position of this
-     * <code>CurveSegment</code>.
+     * {@code CurveSegment}.
      *
      * @return The interpolation mechanism used for this segment.
      */
@@ -135,12 +135,12 @@ public interface CurveSegment extends GenericCurve {
     /**
      * Returns an ordered pair of points, which are the start point and end point of the curve.
      * This method operates with the same semantics as that on {@linkplain Curve#getBoundary curve}
-     * except that the end points of a <code>CurveSegment</code> are not necessarily existing
+     * except that the end points of a {@code CurveSegment} are not necessarily existing
      * {@linkplain Point points} and thus the boundary may contain transient {@linkplain Point points}.
      *
      * <blockquote><font size=2>
      * <strong>NOTE:</strong> The above {@linkplain CurveBoundary curve boundary} will almost always
-     * be two distinct positions, but, like {@linkplain Curve curves}, <code>CurveSegment</code>s can
+     * be two distinct positions, but, like {@linkplain Curve curves}, {@code CurveSegment}s can
      * be cycles in themselves. The most likely scenario is that all of the points used will be transients
      * (constructed to support the return value), except for the start point and end point of the aggregated
      * {@linkplain Curve curve}. These two positions, in the case where the {@linkplain Curve curve} is

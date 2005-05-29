@@ -30,7 +30,7 @@ import static org.opengis.annotation.Specification.*;
  * given by a constructive function of the form:
  *
  * <blockquote>
- * <code>surface</code>(<var>s</var>,<var>t</var>):
+ * {@code surface}(<var>s</var>,<var>t</var>):
  * [<var>a</var>,<var>b</var>]&times;[<var>c</var>,<var>d</var>] &rarr; {@link DirectPosition}
  * </blockquote>
  *
@@ -38,7 +38,7 @@ import static org.opengis.annotation.Specification.*;
  *
  * <blockquote>
  * c<sub>t</sub>(<var>s</var>) = c<sub>s</sub>(<var>t</var>) =
- * <code>surface</code>(<var>s</var>,<var>t</var>);
+ * {@code surface}(<var>s</var>,<var>t</var>);
  * </blockquote>
  *
  * The functions on {@code ParametricCurveSurface} shall expose these two families of curves. The

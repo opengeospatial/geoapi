@@ -73,7 +73,7 @@ public final class CoverageContentType extends CodeList<CoverageContentType> {
     }
 
     /**
-     * Returns the list of <code>CoverageContentType</code>s.
+     * Returns the list of {@code CoverageContentType}s.
      */
     public static CoverageContentType[] values() {
         synchronized (VALUES) {

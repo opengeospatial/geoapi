@@ -18,7 +18,7 @@ import static org.opengis.annotation.Specification.*;
 
 /**
  * The boundary of {@linkplain Curve curves}.
- * A <code>CurveBoundary</code> contains two {@linkplain Point point} references
+ * A {@code CurveBoundary} contains two {@linkplain Point point} references
  * ({@linkplain #getStartPoint start point} and {@linkplain #getEndPoint end point}).
  *
  * @version <A HREF="http://www.opengis.org/docs/01-101.pdf">Abstract specification 5</A>

@@ -373,7 +373,7 @@ public final class AxisDirection extends CodeList<AxisDirection> {
     }
 
     /**
-     * Returns the list of <code>AxisDirection</code>s.
+     * Returns the list of {@code AxisDirection}s.
      */
     public static AxisDirection[] values() {
         synchronized (VALUES) {
@@ -415,7 +415,7 @@ public final class AxisDirection extends CodeList<AxisDirection> {
 
     /**
      * Returns the "absolute" direction of this axis.
-     * This "absolute" operation is similar to the <code>Math.abs(int)</code>
+     * This "absolute" operation is similar to the {@code Math.abs(int)}
      * method in that "negative" directions like ({@link #SOUTH}, {@link #WEST},
      * {@link #DOWN}, {@link #PAST}) are changed for their "positive" counterparts
      * ({@link #NORTH}, {@link #EAST}, {@link #UP}, {@link #FUTURE}).

@@ -102,7 +102,7 @@ public final class DimensionNameType extends CodeList<DimensionNameType> {
     }
 
     /**
-     * Returns the list of <code>DimensionNameType</code>s.
+     * Returns the list of {@code DimensionNameType}s.
      */
     public static DimensionNameType[] values() {
         synchronized (VALUES) {

@@ -21,8 +21,8 @@ import static org.opengis.annotation.Specification.*;
 
 /**
  * A curve and an orientation inherited from {@link OrientablePrimitive}. If the orientation is
- * positive, then the <code>OrientableCurve</code> is a {@linkplain Curve curve}. If the orientation
- * is negative, then the <code>OrientableCurve</code> is related to another {@linkplain Curve curve}
+ * positive, then the {@code OrientableCurve} is a {@linkplain Curve curve}. If the orientation
+ * is negative, then the {@code OrientableCurve} is related to another {@linkplain Curve curve}
  * with a parameterization that reverses the sense of the curve traversal.
  *
  * @version <A HREF="http://www.opengis.org/docs/01-101.pdf">Abstract specification 5</A>

@@ -25,7 +25,7 @@ import static org.opengis.annotation.Specification.*;
 
 /**
  * A group of related parameter values. The same group can be repeated more than once in an
- * {@linkplain org.opengis.referencing.operation.Operation operation} or higher level <code>ParameterValueGroup</code>,
+ * {@linkplain org.opengis.referencing.operation.Operation operation} or higher level {@code ParameterValueGroup},
  * if those instances contain different values of one or more {@link ParameterValue}s which suitably
  * distinquish among those groups.
  * 
@@ -54,7 +54,7 @@ public interface ParameterValueGroup extends GeneralParameterValue {
     /**
      * Returns the values in this group. The returned list may or may not be unmodifiable;
      * this is implementation-dependent. However, if some aspects of this list are modifiable,
-     * then any modification shall be reflected back into this <code>ParameterValueGroup</code>.
+     * then any modification shall be reflected back into this {@code ParameterValueGroup}.
      * More specifically:
      *
      * <UL>

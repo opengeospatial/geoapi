@@ -162,7 +162,7 @@ public final class MediumName extends CodeList<MediumName> {
     }
 
     /**
-     * Returns the list of <code>MediumName</code>s.
+     * Returns the list of {@code MediumName}s.
      */
     public static MediumName[] values() {
         synchronized (VALUES) {

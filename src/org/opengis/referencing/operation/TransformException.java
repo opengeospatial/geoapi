@@ -16,7 +16,7 @@ import org.opengis.spatialschema.geometry.DirectPosition;  // For javadoc
 
 /**
  * Common superclass for a number of transformation-related exceptions.
- * <code>TransformException</code> are thrown by {@link MathTransform}
+ * {@code TransformException} are thrown by {@link MathTransform}
  * when a coordinate transformation can't be {@linkplain MathTransform#inverse inverted}
  * ({@link NoninvertibleTransformException}), when the
  * {@linkplain MathTransform#derivative derivative} can't be computed or when a coordinate
