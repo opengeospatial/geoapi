@@ -24,7 +24,7 @@ import java.util.Locale;
  * This string also defines the {@linkplain CharSequence character sequence} for this object.</P>
  *
  * @author Martin Desruisseaux (IRD)
- * @since GeoAPI 1.1
+ * @since GeoAPI 2.0
  *
  * @see javax.xml.registry.infomodel.InternationalString
  * @see NameFactory#createInternationalString

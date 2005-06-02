@@ -23,7 +23,7 @@ import org.opengis.spatialschema.geometry.Geometry;       // For javadoc
  * Interface through which new {@link FeatureType}s are made known to a
  * {@link FeatureCanvas}.
  *
- * @since GeoAPI 1.1
+ * @since GeoAPI 2.0
  */
 public interface FeatureTypeFactory {
     /**

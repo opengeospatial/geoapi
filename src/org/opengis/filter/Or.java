@@ -21,7 +21,7 @@ import org.opengis.annotation.XmlElement;
  *
  * @version <A HREF="http://www.opengis.org/docs/02-059.pdf">Implementation specification 1.0</A>
  * @author Chris Dillard (SYS Technologies)
- * @since GeoAPI 1.1
+ * @since GeoAPI 2.0
  */
 @XmlElement("Or")
 public interface Or extends BinaryLogicOperator {

@@ -22,7 +22,7 @@ import org.opengis.feature.display.canvas.FeatureCanvas;
  * The {@code FeatureDisplayFactory} class/interface...
  * 
  * @author Jesse Crossley (SYS Technologies)
- * @since GeoAPI 1.1
+ * @since GeoAPI 2.0
  */
 public interface FeatureDisplayFactory {
     /**

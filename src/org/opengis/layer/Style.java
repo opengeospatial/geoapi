@@ -30,7 +30,7 @@ import org.opengis.annotation.XmlElement;
  * 
  * @version <A HREF="http://portal.opengeospatial.org/files/?artifact_id=5316">Implementation specification 1.3</A>
  * @author Jesse Crossley (SYS Technologies)
- * @since GeoAPI 1.1
+ * @since GeoAPI 2.0
  */
 @XmlElement("Style")
 public interface Style {

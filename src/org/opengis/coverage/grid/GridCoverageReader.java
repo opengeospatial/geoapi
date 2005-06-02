@@ -41,7 +41,7 @@ import org.opengis.parameter.InvalidParameterValueException; // For javadoc
  * </TABLE>
  *
  * @author Martin Desruisseaux (IRD)
- * @since GeoAPI 1.1
+ * @since GeoAPI 2.0
  *
  * @see GridCoverageExchange#getReader
  * @see javax.imageio.ImageReader

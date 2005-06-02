@@ -19,7 +19,7 @@ import java.util.EventListener;
  * has been modified.
  * 
  * @author Chris Dillard (SYS Technologies)
- * @since GeoAPI 1.1
+ * @since GeoAPI 2.0
  */
 public interface FeatureLayerListener extends EventListener {
     /**

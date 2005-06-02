@@ -23,7 +23,7 @@ import static org.opengis.annotation.Specification.*;
  * {@code ScopedName}, as {@linkplain #getScope tail}.
  *
  * @author Martin Desruisseaux (IRD)
- * @since GeoAPI 1.1
+ * @since GeoAPI 2.0
  *
  * @see NameFactory#createScopedName
  */

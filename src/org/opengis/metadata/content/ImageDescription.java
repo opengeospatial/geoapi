@@ -24,7 +24,7 @@ import static org.opengis.annotation.Specification.*;
  *
  * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
  * @author Martin Desruisseaux (IRD)
- * @since GeoAPI 1.1
+ * @since GeoAPI 2.0
  */
 @UML(identifier="MD_ImageDescription", specification=ISO_19115)
 public interface ImageDescription extends CoverageDescription {

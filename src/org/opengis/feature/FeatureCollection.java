@@ -31,7 +31,7 @@ import org.opengis.annotation.XmlElement;
  * @author Ian Turton (CCG)
  * @author Rob Hranac (VFNY)
  * @author Ian Schneider (USDA-ARS)
- * @since GeoAPI 1.1
+ * @since GeoAPI 2.0
  *
  * @see java.util.Collection
  */

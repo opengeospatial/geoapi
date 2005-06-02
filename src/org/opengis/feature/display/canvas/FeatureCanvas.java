@@ -54,7 +54,7 @@ import org.opengis.go.display.primitive.Graphic;
  * of these other two specs.
  * 
  * @author Chris Dillard (SYS Technologies)
- * @since GeoAPI 1.1
+ * @since GeoAPI 2.0
  */
 public interface FeatureCanvas {
     /**

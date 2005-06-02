@@ -22,7 +22,7 @@ package org.opengis.feature;
  * Here, the name of the Feature attribute and its datatype are rolled into one
  * object.
  *
- * @since GeoAPI 1.1
+ * @since GeoAPI 2.0
  */
 public interface FeatureAttributeDescriptor {
     /**

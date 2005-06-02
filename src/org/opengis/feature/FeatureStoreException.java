@@ -23,7 +23,7 @@ import java.sql.SQLException;  // For javadoc
  *          to the {@code FeatureStore}? Or at least an indication of which data store
  *          caused the problem?
  * 
- * @since GeoAPI 1.1
+ * @since GeoAPI 2.0
  */
 public class FeatureStoreException extends IOException {
     /**

@@ -28,7 +28,7 @@ import java.util.List;  // For javadoc
  * parameter value group} being "full".</P>
  *
  * @author Martin Desruisseaux (IRD)
- * @since GeoAPI 1.1
+ * @since GeoAPI 2.0
  *
  * @see ParameterValueGroup#values
  * @see ParameterDescriptor#getMinimumOccurs

@@ -15,7 +15,7 @@ package org.opengis.feature.display;
  * The {@code FeatureDisplayCapabilities} class/interface...
  * 
  * @author Jesse Crossley (SYS Technologies)
- * @since GeoAPI 1.1
+ * @since GeoAPI 2.0
  */
 public interface FeatureDisplayCapabilities {
 

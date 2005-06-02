@@ -77,7 +77,7 @@ import org.opengis.annotation.XmlElement;
  *
  * @author Jody Garnett (Refractions Research)
  * @author Chris Holmes (TOPP)
- * @since GeoAPI 1.1
+ * @since GeoAPI 2.0
  */
 @XmlElement("Transaction")
 public interface Transaction {
@@ -239,7 +239,7 @@ public interface Transaction {
      * to the same database).
      *
      * @author Jody Garnett, Refractions Reasearch Inc.
-     * @since GeoAPI 1.1
+     * @since GeoAPI 2.0
      */
     public static interface State {
         /**
@@ -277,7 +277,7 @@ public interface Transaction {
  * It follows the pattern of "Null Object" or more accuratly "Special Case".
  *
  * @author Jody Garnett
- * @since GeoAPI 1.1
+ * @since GeoAPI 2.0
  */
 final class AutoCommit implements Transaction {
     /**

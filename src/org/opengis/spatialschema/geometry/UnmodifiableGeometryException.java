@@ -19,7 +19,7 @@ package org.opengis.spatialschema.geometry;
  * implementation dependent.
  *
  * @author Martin Desruisseaux (IRD)
- * @since GeoAPI 1.1
+ * @since GeoAPI 2.0
  */
 public class UnmodifiableGeometryException extends UnsupportedOperationException {
     /**

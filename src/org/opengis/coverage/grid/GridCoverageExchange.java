@@ -42,7 +42,7 @@ import static org.opengis.annotation.Specification.*;
  * </TABLE>
  *
  * @author Martin Desruisseaux (IRD)
- * @since GeoAPI 1.1
+ * @since GeoAPI 2.0
  *
  * @see GridCoverageReader
  * @see GridCoverageWriter

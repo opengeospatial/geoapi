@@ -86,7 +86,7 @@ import org.opengis.annotation.Extension;
  *
  * @version <A HREF="http://www.opengis.org/docs/01-009.pdf">Implementation specification 1.0</A>
  * @author Martin Desruisseaux (IRD)
- * @since GeoAPI 1.1
+ * @since GeoAPI 2.0
  */
 @Extension
 public interface ObjectFactory extends Factory {

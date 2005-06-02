@@ -32,7 +32,7 @@ import org.opengis.util.InternationalString;
  *   <li>Configuration: currently captured as a {@link Map}.</li>
  * </ul>
  *
- * @since GeoAPI 1.1
+ * @since GeoAPI 2.0
  */
 public interface FeatureStoreFactory {
     /**

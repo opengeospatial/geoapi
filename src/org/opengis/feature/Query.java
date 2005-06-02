@@ -35,7 +35,7 @@ import org.opengis.annotation.XmlElement;
  * instead of requesting and discarding when the max is reached.
  *
  * @version <A HREF="http://portal.opengeospatial.org/files/?artifact_id=8339">Implementation specification 1.1</A>
- * @since GeoAPI 1.1
+ * @since GeoAPI 2.0
  *
  * @revisit The following XML elements are not yet defined in this interface:
  *          {@code Function}, {@code SortBy}.

@@ -28,7 +28,7 @@ import org.opengis.annotation.Obligation;
  * 
  * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
  * @author Jesse Crossley (SYS Technologies)
- * @since GeoAPI 1.1
+ * @since GeoAPI 2.0
  */
 public interface CitationFactory {
     /**

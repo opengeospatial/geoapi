@@ -26,7 +26,7 @@ import org.opengis.annotation.XmlElement;
  * Without this token you are prevented from work (at least until the duration is up).
  *
  * @author Jody Garnett (Refractions Research)
- * @since GeoAPI 1.1
+ * @since GeoAPI 2.0
  */
 @XmlElement("LockFeature")
 public interface LockRequest {
