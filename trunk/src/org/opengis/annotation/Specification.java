@@ -15,7 +15,7 @@ package org.opengis.annotation;
  * The specifications from which an interface, method or code list was derived.
  *
  * @author Martin Desruisseaux (IRD)
- * @since GeoAPI 1.1
+ * @since GeoAPI 2.0
  */
 public enum Specification {
     /**

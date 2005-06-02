@@ -25,7 +25,7 @@ import static org.opengis.annotation.Specification.*;
  * one step closer to the target of the identifier.
  *
  * @author Martin Desruisseaux (IRD)
- * @since GeoAPI 1.1
+ * @since GeoAPI 2.0
  *
  * @see NameFactory#createLocalName
  */

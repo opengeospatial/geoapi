@@ -40,7 +40,7 @@ import static org.opengis.annotation.Specification.*;
  *
  * @version <A HREF="http://www.opengis.org/docs/01-101.pdf">Abstract specification 5</A>
  * @author Martin Desruisseaux (IRD)
- * @since GeoAPI 1.1
+ * @since GeoAPI 2.0
  */
 @UML(identifier="GM_PolynomialSpline", specification=ISO_19107)
 public interface PolynomialSpline extends SplineCurve {

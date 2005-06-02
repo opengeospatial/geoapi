@@ -23,7 +23,7 @@ import org.opengis.util.InternationalString;
  * the user of the {@link FeatureStore} adds, deletes, or modifies a feature type.  Events
  * regarding changes to an individual feature are given with an instance of {@code FeatureEvent}.
  *
- * @since GeoAPI 1.1
+ * @since GeoAPI 2.0
  */
 public class FeatureStoreEvent extends EventObject {
     /**

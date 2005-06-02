@@ -25,7 +25,7 @@ import java.sql.SQLException;  // For javadoc
  * performs reprojection on the fly.
  *
  * @author Martin Desruisseaux (IRD)
- * @since GeoAPI 1.1
+ * @since GeoAPI 2.0
  */
 public class BackingStoreException extends RuntimeException {
     /**

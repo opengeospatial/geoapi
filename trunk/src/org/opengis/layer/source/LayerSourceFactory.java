@@ -23,7 +23,7 @@ import org.opengis.util.InternationalString;
  * A factory for {@link LayerSource} objects.
  * 
  * @author Jesse Crossley (SYS Technologies)
- * @since GeoAPI 1.1
+ * @since GeoAPI 2.0
  */
 public interface LayerSourceFactory {    
     /**

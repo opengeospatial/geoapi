@@ -38,7 +38,7 @@ public interface Envelope {
      *
      * @return The dimensionality of this envelope.
      *
-     * @since GeoAPI 1.1
+     * @since GeoAPI 2.0
      */
     @Extension
     int getDimension();
@@ -46,7 +46,7 @@ public interface Envelope {
     /**
      * Returns the minimal ordinate along the specified dimension.
      *
-     * @since GeoAPI 1.1
+     * @since GeoAPI 2.0
      */
     @Extension
     double getMinimum(final int dimension);
@@ -54,7 +54,7 @@ public interface Envelope {
     /**
      * Returns the maximal ordinate along the specified dimension.
      *
-     * @since GeoAPI 1.1
+     * @since GeoAPI 2.0
      */
     @Extension
     double getMaximum(final int dimension);
@@ -62,7 +62,7 @@ public interface Envelope {
     /**
      * Returns the center ordinate along the specified dimension.
      *
-     * @since GeoAPI 1.1
+     * @since GeoAPI 2.0
      */
     @Extension
     double getCenter(final int dimension);
@@ -72,7 +72,7 @@ public interface Envelope {
      * This length is equals to the {@linkplain #getMaximum maximum ordinate}
      * minus the {@linkplain #getMinimum minimal ordinate}.
      *
-     * @since GeoAPI 1.1
+     * @since GeoAPI 2.0
      */
     @Extension
     double getLength(final int dimension);

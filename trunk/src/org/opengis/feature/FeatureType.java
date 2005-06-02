@@ -74,7 +74,7 @@ import org.opengis.annotation.XmlElement;
  * @author Chris Holmes (TOPP)
  * @author David Zwiers (Refractions Research)
  * @author Jody Garnett (Refractions Research)
- * @since GeoAPI 1.1
+ * @since GeoAPI 2.0
  *
  * @revisit The following XML elements are not yet defined in this interface:
  *          {@code Title}, {@code Abstract}, {@code Keywords}, {@code DefaultSRS},

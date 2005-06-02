@@ -19,7 +19,7 @@ import java.util.EventListener;
  * To use this interface, implement its methods and invoke the
  * {@link FeatureStore#addFeatureStoreListener addFeatureStoreListener} method on feature store.
  *
- * @since GeoAPI 1.1
+ * @since GeoAPI 2.0
  */
 public interface FeatureStoreListener extends EventListener {
     /**

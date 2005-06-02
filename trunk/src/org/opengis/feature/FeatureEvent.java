@@ -19,7 +19,7 @@ import java.util.List;
  * Instances of this class are passed to the methods of {@link FeatureListener} when a
  * new feature is added to, removed from, or changed within a given feature collection.
  *
- * @since GeoAPI 1.1
+ * @since GeoAPI 2.0
  */
 public class FeatureEvent extends EventObject {
     /**

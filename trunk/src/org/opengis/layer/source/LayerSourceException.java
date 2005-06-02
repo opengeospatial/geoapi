@@ -19,7 +19,7 @@ import java.io.IOException;
  * {@linkplain LayerSource layer source}.
  * 
  * @author Jesse Crossley (SYS Technologies)
- * @since GeoAPI 1.1
+ * @since GeoAPI 2.0
  */
 public class LayerSourceException extends IOException {
     /**

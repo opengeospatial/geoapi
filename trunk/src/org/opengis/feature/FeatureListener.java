@@ -17,7 +17,7 @@ import java.util.EventListener;
 /**
  * The listener interface for receiving feature events.
  *
- * @since GeoAPI 1.1
+ * @since GeoAPI 2.0
  */
 public interface FeatureListener extends EventListener {
     /**

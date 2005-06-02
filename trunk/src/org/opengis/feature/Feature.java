@@ -79,7 +79,7 @@ import org.opengis.spatialschema.geometry.Envelope;
  * @author Rob Hranac (TOPP)
  * @author Ian Schneider (USDA-ARS)
  * @author David Zwiers (Refractions Research)
- * @since GeoAPI 1.1
+ * @since GeoAPI 2.0
  */
 public interface Feature {
     /**

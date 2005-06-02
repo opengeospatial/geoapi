@@ -19,7 +19,7 @@ package org.opengis.annotation;
  * 
  * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
  * @author Martin Desruisseaux (IRD)
- * @since GeoAPI 1.1
+ * @since GeoAPI 2.0
  */
 public enum ComplianceLevel {
     /**

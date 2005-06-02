@@ -19,7 +19,7 @@ import java.util.EventObject;
  * when a property of the canvas has changed.
  * 
  * @author Chris Dillard (SYS Technologies)
- * @since GeoAPI 1.1
+ * @since GeoAPI 2.0
  */
 public class FeatureLayerEvent extends EventObject {
     /**

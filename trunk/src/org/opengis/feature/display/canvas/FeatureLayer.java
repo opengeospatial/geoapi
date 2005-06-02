@@ -28,7 +28,7 @@ import org.opengis.sld.FeatureStyle;
  * been changed.
  * 
  * @author Chris Dillard (SYS Technologies)
- * @since GeoAPI 1.1
+ * @since GeoAPI 2.0
  */
 public interface FeatureLayer {
     /**

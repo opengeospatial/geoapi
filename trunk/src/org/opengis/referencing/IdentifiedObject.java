@@ -33,7 +33,7 @@ import static org.opengis.annotation.Specification.*;
  *
  * @version <A HREF="http://portal.opengeospatial.org/files/?artifact_id=6716">Abstract specification 2.0</A>
  * @author Martin Desruisseaux (IRD)
- * @since GeoAPI 1.1
+ * @since GeoAPI 2.0
  */
 @UML(identifier="IdentifiedObject", specification=ISO_19111)
 public interface IdentifiedObject {

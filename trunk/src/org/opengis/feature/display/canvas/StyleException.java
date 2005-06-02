@@ -16,7 +16,7 @@ package org.opengis.feature.display.canvas;
  * to a feature that has been added to one of its layers.
  * 
  * @author Chris Dillard (SYS Technologies)
- * @since GeoAPI 1.1
+ * @since GeoAPI 2.0
  */
 public class StyleException extends Exception {
     /**
