@@ -19,40 +19,45 @@ package org.opengis.annotation;
  */
 public enum Specification {
     /**
-     * ISO 19103, <cite>Geographic information - Conceptual schema language</cite>.
+     * ISO 19103, Geographic information - Conceptual schema language.
      * This is the specification for some interfaces in package {@link org.opengis.util}.
      */
     ISO_19103,
 
     /**
-     * ISO 19107, or OGC <A HREF="http://www.opengis.org/docs/01-101.pdf">Feature Geometry (Topic 1)</A>.
+     * ISO 19107, Feature Geometry (Topic 1).
      * This is the specification for package {@link org.opengis.spatialschema.geometry} and sub-packages.
+     *
+     * @see <A HREF="http://www.opengis.org/docs/01-101.pdf">Download from OGC</A>
      */
     ISO_19107,
 
     /**
-     * ISO 19111, or OGC <A HREF="http://portal.opengeospatial.org/files/?artifact_id=6716">Spatial Referencing by Coordinates (Topic 2)</A>.
+     * ISO 19111, Spatial Referencing by Coordinates (Topic 2).
      * This is the specification for package {@link org.opengis.referencing} and sub-packages.
      *
      * @see #OGC_01009
+     * @see <A HREF="http://portal.opengeospatial.org/files/?artifact_id=6716">Download from OGC</A>
      */
     ISO_19111,
 
     /**
-     * ISO 19115, or OGC <A HREF="http://www.opengis.org/docs/01-111.pdf">Metadata (Topic 11)</A>.
+     * ISO 19115, Metadata (Topic 11).
      * This is the specification for package {@link org.opengis.metadata} and sub-packages.
+     *
+     * @see <A HREF="http://www.opengis.org/docs/01-111.pdf">Download from OGC</A>
      */
     ISO_19115,
 
     /**
-     * ISO 19123, or <CITE>Schema for coverage geometry and functions</CITE>.
+     * ISO 19123, Schema for coverage geometry and functions.
      *
      * @see #OGC_01004
      */
     ISO_19123,
 
     /**
-     * ISO 19128, or <CITE>Layers and styles</CITE>.
+     * ISO 19128, Layers and styles.
      * This is the specification for package {@link org.opengis.layer} and sub-packages.
      *
      * @see #OGC_04024
@@ -60,52 +65,63 @@ public enum Specification {
     ISO_19128,
 
     /**
-     * <A HREF="http://www.opengis.org/docs/03-064r1.pdf">GO-1 Application Objects</A>.
+     * GO-1 Application Objects.
      * This is the specification for package {@link org.opengis.go} and sub-packages.
+     *
+     * @see <A HREF="http://www.opengis.org/docs/03-064r1.pdf">Download from OGC</A>
      */
     OGC_GO1,
 
     /**
-     * OGC <A HREF="http://www.opengis.org/docs/01-009.pdf">Coordinate Transformation Services</A>
-     * implementation specification. This is the specification used as a complement of
-     * {@linkplain #ISO_19111 ISO 19111} when an aspect was not defined in the ISO specification.
+     * Coordinate Transformation Services implementation specification.
+     * This is the specification used as a complement of {@linkplain #ISO_19111 ISO 19111}
+     * when an aspect was not defined in the ISO specification.
      *
      * @see #ISO_19111
+     * @see <A HREF="http://www.opengis.org/docs/01-009.pdf">Download from OGC</A>
      */
     OGC_01009,
 
     /**
-     * OGC <A HREF="http://www.opengis.org/docs/01-004.pdf">Grid Coverages</A> implementation specification.
+     * Grid Coverages implementation specification.
      * This is the specification for package {@link org.opengis.coverage} and sub-packages.
      * This specification is going to be replaced by {@linkplain #ISO_19123 ISO 19123}.
      *
      * @see #ISO_19123
+     * @see <A HREF="http://www.opengis.org/docs/01-004.pdf">Download from OGC</A>
      */
     OGC_01004,
 
     /**
-     * OGC <A HREF="http://www.opengis.org/docs/02-059.pdf">Filter encoding implementation specification</A>.
+     * Filter encoding implementation specification.
      * This is the specification for package {@link org.opengis.filter} and sub-packages.
+     *
+     * @see <A HREF="http://www.opengis.org/docs/02-059.pdf">Download from OGC</A>
      */
     OGC_02059,
 
     /**
-     * OGC <A HREF="http://portal.opengeospatial.org/files/?artifact_id=1188">Styled Layer Descriptor (SLD) implementation specification</A>.
+     * Styled Layer Descriptor (SLD) implementation specification.
      * This is the specification for package {@link org.opengis.sld} and sub-packages.
+     *
+     * @see <A HREF="http://portal.opengeospatial.org/files/?artifact_id=1188">Download from OGC</A>
      */
     OGC_02070,
 
     /**
-     * OGC <A HREF="http://portal.opengeospatial.org/files/?artifact_id=5316">Web Map Service implementation specification</A>.
+     * Web Map Service implementation specification.
      * This is the specification for package {@link org.opengis.layer} and sub-packages.
      *
      * @see #ISO_19128
+     * @see <A HREF="http://portal.opengeospatial.org/files/?artifact_id=5316">Download from OGC</A>
      */
     OGC_04024,
 
     /**
-     * OGC <A HREF="http://portal.opengeospatial.org/files/?artifact_id=8339">Web Feature Service implementation specification</A>.
+     * Web Feature Service implementation specification.
      * This is the specification for package {@link org.opengis.feature} and sub-packages.
+     *
+     * @see <A HREF="http://portal.opengeospatial.org/files/?artifact_id=8339">Download from OGC</A>
      */
     OGC_04094
 }
