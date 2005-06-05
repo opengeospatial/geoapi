@@ -10,6 +10,10 @@
  *************************************************************************************************/
 package org.opengis.referencing;
 
+// J2SE direct dependencies
+import java.util.Set;
+import java.util.Collection;
+
 // OpenGIS direct dependencies
 import org.opengis.metadata.Identifier;
 import org.opengis.util.GenericName;
@@ -82,19 +86,19 @@ public interface IdentifiedObject {
     /**
      * An alternative name by which this object is identified.
      *
-     * @return The aliases, or an empty array if there is none.
+     * @return The aliases, or an empty collection if there is none.
      */
     @UML(identifier="alias", obligation=OPTIONAL, specification=ISO_19111)
-    GenericName[] getAlias();
+    Collection<GenericName> getAlias();
 
     /**
      * An identifier which references elsewhere the object's defining information.
      * Alternatively an identifier by which this object can be referenced.
      *
-     * @return This object identifiers, or an empty array if there is none.
+     * @return This object identifiers, or an empty set if there is none.
      */
     @UML(identifier="identifier", obligation=OPTIONAL, specification=ISO_19111)
-    Identifier[] getIdentifiers();
+    Set<Identifier> getIdentifiers();
 
     /**
      * Comments on or information about this object, including data source information.

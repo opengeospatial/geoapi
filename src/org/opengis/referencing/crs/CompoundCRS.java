@@ -10,6 +10,9 @@
  *************************************************************************************************/
 package org.opengis.referencing.crs;
 
+// J2SE direct dependencies
+import java.util.List;
+
 // Annotations
 import org.opengis.annotation.UML;
 import static org.opengis.annotation.Obligation.*;
@@ -33,5 +36,5 @@ public interface CompoundCRS extends CoordinateReferenceSystem {
      * The ordered list of coordinate reference systems.
      */
     @UML(identifier="includesCRS", obligation=MANDATORY, specification=ISO_19111)
-    CoordinateReferenceSystem[] getCoordinateReferenceSystems();
+    List<CoordinateReferenceSystem> getCoordinateReferenceSystems();
 }

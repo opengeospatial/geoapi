@@ -343,6 +343,7 @@
       <replacefilter token="&lt;Polygon&gt;"/>
       <replacefilter token="&lt;PortrayalCatalogueReference&gt;"/>
       <replacefilter token="&lt;Position&gt;"/>
+      <replacefilter token="&lt;PositionalAccuracy&gt;"/>
       <replacefilter token="&lt;Primitive&gt;"/>
       <replacefilter token="&lt;PresentationForm&gt;"/>
       <replacefilter token="&lt;ProcessStep&gt;"/>
@@ -358,6 +359,7 @@
       <replacefilter token="&lt;Rule&gt;"/>
       <replacefilter token="&lt;SampleDimensionType&gt;"/>
       <replacefilter token="&lt;ScopeCode&gt;"/>
+      <replacefilter token="&lt;SingleOperation&gt;"/>
       <replacefilter token="&lt;Source&gt;"/>
       <replacefilter token="&lt;SpatialRepresentation&gt;"/>
       <replacefilter token="&lt;SpatialRepresentationType&gt;"/>

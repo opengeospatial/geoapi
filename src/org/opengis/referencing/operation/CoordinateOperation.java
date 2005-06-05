@@ -10,6 +10,9 @@
  *************************************************************************************************/
 package org.opengis.referencing.operation;
 
+// J2SE direct dependencies
+import java.util.Collection;
+
 // OpenGIS direct dependencies
 import org.opengis.referencing.IdentifiedObject;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
@@ -114,10 +117,10 @@ public interface CoordinateOperation extends IdentifiedObject {
      * position error estimates for target coordinates of this coordinate
      * operation, assuming no errors in source coordinates.
      *
-     * @return The position error estimates, or an empty array if not available.
+     * @return The position error estimates, or an empty collection if not available.
      */
     @UML(identifier="positionalAccuracy", obligation=OPTIONAL, specification=ISO_19111)
-    PositionalAccuracy[] getPositionalAccuracy();
+    Collection<PositionalAccuracy> getPositionalAccuracy();
 
     /**
      * Area in which this operation is valid.
