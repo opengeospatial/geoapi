@@ -10,6 +10,9 @@
  *************************************************************************************************/
 package org.opengis.referencing.operation;
 
+// J2SE direct dependencies
+import java.util.List;
+
 // Annotations
 import org.opengis.annotation.UML;
 import static org.opengis.annotation.Obligation.*;
@@ -38,5 +41,5 @@ public interface ConcatenatedOperation extends CoordinateOperation {
      * @return The sequence of operations.
      */
     @UML(identifier="usesOperation", obligation=MANDATORY, specification=ISO_19111)
-    SingleOperation[] getOperations();
+    List<SingleOperation> getOperations();
 }
