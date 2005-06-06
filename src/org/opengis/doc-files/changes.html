@@ -6,7 +6,7 @@
   </head>
   <body>
   <H1>List of changes</H1>
-  <H2>Changes from GeoAPI 1.0 to 1.1</H2>
+  <H2>Changes from GeoAPI 1.0 to 2.0</H2>
   <BLOCKQUOTE>
   <H3>Changes in Metadata packages</H3>
   <UL>
@@ -26,6 +26,9 @@
     <LI><P>Renamed <code>TemporalCS</code> as <code><A HREF="../referencing/cs/TimeCS.html">TimeCS</A></code>.
         This reflect a change in OGC Topic 2 voted in July 16, 2004.</P></LI>
 
+    <LI><P>Renamed <code>Info</code> as <code><A HREF="../referencing/IdentifiedObject.html">IdentifiedObject</A></code>.
+        This reflect a change in OGC Topic 2 voted in July 16, 2004.</P></LI>
+
     <LI><P>In <code><A HREF="../referencing/crs/CRSFactory.html">CRSFactory</A>.createImageCRS(...)</code>
         method, changed the <code>cs</code> argument type from
         <code><A HREF="../referencing/cs/CoordinateSystem.html">CoordinateSystem</A></code> to
@@ -36,13 +39,15 @@
         for <code><A HREF="../referencing/cs/UserDefinedCS.html">UserDefinedCS</A></code> creation.
         This part was forgotten in previous release.</P></LI>
 
-    <LI><P>Renamed <code>Info</code> as <code><A HREF="../referencing/IdentifiedObject.html">IdentifiedObject</A></code>.
-        This reflect a change in OGC Topic 2 voted in July 16, 2004.</P></LI>
-
     <LI><P>Added <code>toWKT()</code> method in <code><A HREF="../referencing/IdentifiedObject.html">IdentifiedObject</A></code>.</P></LI>
 
     <LI><P>Renamed <code>NoSuchClassificationException</code> as
         <code><A HREF="../referencing/NoSuchIdentifierException.html">NoSuchIdentifierException</A></code>.</P></LI>
+
+    <LI><P>Replaced all arrays by collections as the return type of the following methods:
+           <code>IdentifiedObject.getIdentifiers()</code>, <code>IdentifiedObject.getAlias()</code>
+           <code>CompoundCRS.getCoordinateReferenceSystems()</code>, <code>ConcatenatedOperation.getOperations()</code>,
+           <code>CoordinateOperation.getPositionalAccuracy()</code>.</P></LI>
 
     <LI><P>Removed the <code>org.opengis.referencing.quality</code> package. This package is now
          replaced by <code>org.opengis.metadata.quality</code>. This reflect a change in OGC Topic
@@ -100,6 +105,8 @@
 
     <LI><P>In <code><A HREF="../spatialschema/geometry/complex/Complex.html">Complex</A></code>, renamed the
         <code>getSuperComplexex</code> method as <code>getSuperComplexes</code>. The former was a typo.</P>
+
+    <LI><P>Addition of more geometry interfaces from ISO 19107. The work is not finished however.</P></LI>
   </UL>
   <H3>Changes in Grid Coverage packages</H3>
   <UL>
