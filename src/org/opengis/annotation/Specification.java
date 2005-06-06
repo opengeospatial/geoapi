@@ -70,7 +70,7 @@ public enum Specification {
      *
      * @see <A HREF="http://www.opengis.org/docs/03-064r1.pdf">Download from OGC</A>
      */
-    OGC_GO1,
+    OGC_03064,
 
     /**
      * Coordinate Transformation Services implementation specification.
