@@ -24,7 +24,7 @@
 
   <property name="homepath" value="P:/projects/GeoAPI"/>
   <property name="merlin"   value="C:/Java/1.4"/>
-  <property name="version"  value="2.0"/>
+  <property name="version"  value="2.1 alpha"/>
   <property name="proxy"    value="-J-DproxyHost=proxy -J-DproxyPort=3128"/>
   <setproxy                           proxyhost="proxy"   proxyport="3128"/>
 
@@ -87,13 +87,14 @@
     </copy>
 
     <copy todir="pending/sources" includeEmptyDirs="false">
-      <fileset dir="${homepath}/pending-old">
+      <fileset dir="${homepath}/pending">
         <include name="**/*.MF"/>
         <include name="**/*.png"/>
         <include name="**/*.xml"/>
         <include name="**/*.html"/>
-        <include name="**/*.java"/>
         <include name="**/*.properties"/>
+        <include name="com/**/*.java"/>
+        <exclude name="*.*"/>
       </fileset>
     </copy>
 
