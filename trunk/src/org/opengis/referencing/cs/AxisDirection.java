@@ -309,42 +309,6 @@ public final class AxisDirection extends CodeList<AxisDirection> {
     public static final AxisDirection DISPLAY_DOWN = new AxisDirection("DISPLAY_DOWN", DISPLAY_UP);
 
     /**
-     * Increasing ordinates values go right, usually on a horizontal plane.
-     * This is used for rendering coordinate reference systems.
-     *
-     * @deprecated Use {@link #DISPLAY_RIGHT} instead.
-     */
-    @Deprecated
-    public static final AxisDirection RIGHT = DISPLAY_RIGHT;
-
-    /**
-     * Increasing ordinates values go left, usually on a horizontal plane.
-     * This is used for rendering coordinate reference systems.
-     *
-     * @deprecated Use {@link #DISPLAY_LEFT} instead.
-     */
-    @Deprecated
-    public static final AxisDirection LEFT = DISPLAY_LEFT;
-
-    /**
-     * Increasing ordinates values go top, usually on a horizontal plane.
-     * This is used for rendering coordinate reference systems.
-     *
-     * @deprecated Use {@link #DISPLAY_UP} instead.
-     */
-    @Deprecated
-    public static final AxisDirection TOP = DISPLAY_UP;
-
-    /**
-     * Increasing ordinates values go bottom, usually on a horizontal plane.
-     * This is used for rendering coordinate reference systems.
-     *
-     * @deprecated Use {@link #DISPLAY_DOWN} instead.
-     */
-    @Deprecated
-    public static final AxisDirection BOTTOM = DISPLAY_DOWN;
-
-    /**
      * The opposite direction for this axis, or {@code null} if the opposite
      * direction has not yet been specified.
      */
@@ -386,17 +350,6 @@ public final class AxisDirection extends CodeList<AxisDirection> {
      */
     public /*{AxisDirection}*/ CodeList[] family() {
         return values();
-    }
-
-    /**
-     * Returns the opposite direction of this axis.
-     *
-     * @deprecated Use {@link #opposite} instead.
-     */
-    @Extension
-    @Deprecated
-    public AxisDirection inverse() {
-        return (opposite!=null) ? opposite : this;
     }
 
     /**

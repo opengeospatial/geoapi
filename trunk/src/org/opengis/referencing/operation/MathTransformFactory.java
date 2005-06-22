@@ -93,12 +93,12 @@ public interface MathTransformFactory extends Factory {
      * <code>{@link #getAvailableMethods getAvailableMethods}({@linkplain Operation}.class)</code>.
      * A typical example is
      * <code>"<A HREF="http://www.remotesensing.org/geotiff/proj_list/transverse_mercator.html">Transverse_Mercator</A>"</code>).
-     *
-     * <P>The {@linkplain ParameterDescriptorGroup#getName parameter group name} shall be the
+     * <P>
+     * The {@linkplain ParameterDescriptorGroup#getName parameter group name} shall be the
      * method name, or an alias to be understood by <code>{@linkplain #createParameterizedTransform
      * createParameterizedTransform}(parameters)</code>. This method creates new parameter instances
      * at every call. Parameters are intented to be modified by the user before to be given to the
-     * above-cited {@code createParameterizedTransform} method.</P>
+     * above-cited {@code createParameterizedTransform} method.
      *
      * @param  method The case insensitive name of the method to search for.
      * @return The default parameter values.
@@ -120,6 +120,25 @@ public interface MathTransformFactory extends Factory {
      * p.parameter("semi_minor").setValue(6356752.314);
      * MathTransform mt = factory.createParameterizedTransform(p);
      * </pre></blockquote>
+     *
+     * <strong>Note on cartographic projections:</strong>
+     * <P>Cartographic projection transforms are used by {@linkplain org.opengis.referencing.crs.ProjectedCRS
+     * projected coordinate reference systems} to map geographic coordinates (e.g. <var>Longitude</var> and
+     * <var>Latitude</var>) into (<var>X</var>,<var>Y</var>) coordinates. These (<var>X</var>,<var>Y</var>)
+     * coordinates can be imagined to lie on a plane, such as a paper map or a screen. All cartographic projection
+     * transforms created through this method will have the following properties:</P>
+     * <UL>
+     * <LI>Converts from (<var>Longitude</var>, <var>Latitude</var>) coordinates to (<var>X</var>,<var>Y</var>).</LI>
+     * <LI>All angles are assumed to be degrees, and all distances are assumed to be meters.</LI>
+     * <LI>The domain should be a subset of {[-180,180)&times;(-90,90)}.</LI>
+     * </UL>
+     * <P>Although all cartographic projection transforms must have the properties listed above, many
+     * projected coordinate reference systems have different properties. For example, in Europe some
+     * projected CRSs use grads instead of degrees, and often the
+     * {@linkplain org.opengis.referencing.crs.ProjectedCRS#getBaseCRS base geographic CRS} is
+     * (<var>Latitude</var>, <var>Longitude</var>) instead of (<var>Longitude</var>, <var>Latitude</var>).
+     * This means that the cartographic projected transform is often used as a single step in a series of
+     * transforms, where the other steps change units and swap ordinates.</P>
      *
      * @param  parameters The parameter values.
      * @return The parameterized transform.

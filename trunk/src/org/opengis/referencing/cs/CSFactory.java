@@ -125,23 +125,6 @@ public interface CSFactory extends ObjectFactory {
                           CoordinateSystemAxis axis1) throws FactoryException;
 
     /**
-     * Creates a cylindrical coordinate system from the given polar CS and
-     * perpendicular axis.
-     *
-     * @param  properties Name and other properties to give to the new object.
-     *         Available properties are {@linkplain ObjectFactory listed there}.
-     * @param  polarCS The polar coordinate system.
-     * @param  axis The perpendicular axis.
-     * @throws FactoryException if the object creation failed.
-     *
-     * @deprecated Uses the method expecting 3 axis instead.
-     */
-    @Deprecated
-    CylindricalCS createCylindricalCS(Map<String, ? extends Object> properties,
-                                      PolarCS              polarCS,
-                                      CoordinateSystemAxis axis) throws FactoryException;
-
-    /**
      * Creates a cylindrical coordinate system from the given set of axis.
      *
      * @param  properties Name and other properties to give to the new object.
