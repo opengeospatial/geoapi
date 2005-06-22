@@ -50,27 +50,9 @@ import static org.opengis.annotation.Specification.*;
 public interface MathTransform {
     /**
      * Gets the dimension of input points.
-     *
-     * @deprecated Renamed {@link #getSourceDimensions} for consistency with {@link OperationMethod}.
-     */
-    @Deprecated
-    @UML(identifier="getDimSource", specification=OGC_01009)
-    int getDimSource();
-
-    /**
-     * Gets the dimension of input points.
      */
     @UML(identifier="getDimSource", specification=OGC_01009)
     int getSourceDimensions();
-    
-    /**
-     * Gets the dimension of output points.
-     *
-     * @deprecated Renamed {@link #getTargetDimensions} for consistency with {@link OperationMethod}.
-     */
-    @Deprecated
-    @UML(identifier="getDimTarget", specification=OGC_01009)
-    int getDimTarget();
     
     /**
      * Gets the dimension of output points.

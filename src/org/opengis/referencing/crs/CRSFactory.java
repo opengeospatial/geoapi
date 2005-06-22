@@ -199,38 +199,6 @@ public interface CRSFactory extends ObjectFactory {
      *         Properties for the {@link Conversion} object to be created can be specified
      *         with the <code>"conversion."</code> prefix added in front of property names
      *         (example: <code>"conversion.name"</code>).
-     * @param  base Coordinate reference system to base the derived CRS on.
-     * @param  baseToDerived The transform from the base CRS to returned CRS.
-     * @param  derivedCS The coordinate system for the derived CRS. The number
-     *         of axes must match the target dimension of the transform
-     *         {@code baseToDerived}.
-     * @throws FactoryException if the object creation failed.
-     *
-     * @deprecated Use the method with an {@link OperationMethod} argument instead.
-     */
-    @Deprecated
-    DerivedCRS createDerivedCRS(Map<String, ? extends Object>  properties,
-                                CoordinateReferenceSystem base,
-                                MathTransform    baseToDerived,
-                                CoordinateSystem     derivedCS) throws FactoryException;
-
-    /**
-     * Creates a derived coordinate reference system. If the transformation is an affine
-     * map performing a rotation, then any mixed axes must have identical units.
-     * For example, a (<var>lat_deg</var>, <var>lon_deg</var>, <var>height_feet</var>)
-     * system can be rotated in the (<var>lat</var>, <var>lon</var>) plane, since both
-     * affected axes are in degrees.  But you should not rotate this coordinate system
-     * in any other plane.
-     * <p>
-     * It is the user's responsability to ensure that the {@code baseToDerived} transform performs
-     * all required steps, including {@linkplain CoordinateSystemAxis#getUnit unit} conversions and
-     * change of {@linkplain CoordinateSystem#getAxis axis} order, if needed.
-     *
-     * @param  properties Name and other properties to give to the new object.
-     *         Available properties are {@linkplain ObjectFactory listed there}.
-     *         Properties for the {@link Conversion} object to be created can be specified
-     *         with the <code>"conversion."</code> prefix added in front of property names
-     *         (example: <code>"conversion.name"</code>).
      * @param  method A description of the {@linkplain Conversion#getMethod method for the conversion}.
      * @param  base Coordinate reference system to base the derived CRS on. The number of axes
      *         must matches the {@linkplain MathTransform#getSourceDimensions source dimentions}
@@ -247,31 +215,6 @@ public interface CRSFactory extends ObjectFactory {
                                 CoordinateReferenceSystem base,
                                 MathTransform    baseToDerived,
                                 CoordinateSystem     derivedCS) throws FactoryException;
-    
-    /**
-     * Creates a projected coordinate reference system from a transform.
-     * <p>
-     * It is the user's responsability to ensure that the {@code baseToDerived} transform performs
-     * all required steps, including {@linkplain CoordinateSystemAxis#getUnit unit} conversions and
-     * change of {@linkplain CoordinateSystem#getAxis axis} order, if needed.
-     * 
-     * @param  properties Name and other properties to give to the new object.
-     *         Available properties are {@linkplain ObjectFactory listed there}.
-     *         Properties for the {@link Projection} object to be created can be specified
-     *         with the <code>"conversion."</code> prefix added in front of property names
-     *         (example: <code>"conversion.name"</code>).
-     * @param  base Geographic coordinate reference system to base projection on.
-     * @param  baseToDerived The transform from the geographic to the projected CRS.
-     * @param  derivedCS The coordinate system for the projected CRS.
-     * @throws FactoryException if the object creation failed.
-     *
-     * @deprecated Use the method with an {@link OperationMethod} argument instead.
-     */
-    @Deprecated
-    ProjectedCRS createProjectedCRS(Map<String, ? extends Object> properties,
-                                    GeographicCRS base,
-                                    MathTransform baseToDerived,
-                                    CartesianCS         derivedCS) throws FactoryException;
     
     /**
      * Creates a projected coordinate reference system from a transform.
@@ -301,52 +244,6 @@ public interface CRSFactory extends ObjectFactory {
                                     GeographicCRS   base,
                                     MathTransform   baseToDerived,
                                     CartesianCS     derivedCS) throws FactoryException;
-
-    /**
-     * Creates a projected coordinate reference system from a projection name.
-     * <p>
-     * It is the user's responsability to ensure that the {@code baseToDerived} transform performs
-     * all required steps, including {@linkplain CoordinateSystemAxis#getUnit unit} conversions and
-     * change of {@linkplain CoordinateSystem#getAxis axis} order, if needed.
-     *
-     * @param  properties Name and other properties to give to the new object.
-     *         Available properties are {@linkplain ObjectFactory listed there}.
-     *         Properties for the {@link Projection} object to be created can be specified
-     *         with the <code>"conversion."</code> prefix added in front of property names
-     *         (example: <code>"conversion.name"</code>).
-     * @param  geoCRS Geographic coordinate reference system to base projection on.
-     * @param  method The method name for the projection to be created
-     *         (e.g. "Transverse_Mercator", "Mercator_1SP", "Oblique_Stereographic", etc.).
-     * @param  parameters The parameter values to give to the projection. May includes
-     *         "central_meridian", "latitude_of_origin", "scale_factor", "false_easting",
-     *         "false_northing" and any other parameters specific to the projection.
-     * @param  cs The coordinate system for the projected CRS.
-     * @throws FactoryException if the object creation failed.
-     *
-     * @deprecated This method will be removed for the following reasons:
-     * <ul>
-     *   <li>It introduces a dependency to {@link org.opengis.referencing.operation.MathTransformFactory}
-     *       at the implementation level of this method. This is against the orthogonal aspect of
-     *       factories (no other methods force this kind of cross-dependency).</li>
-     *   <li>It brings duplication with {@link org.opengis.referencing.operation.MathTransformFactory}
-     *       API.</li>
-     *   <li>This is mostly a convenience method; user can do the same with similar
-     *       efficiency in their own code.</li>
-     *   <li>Experience gained in implementation and usage suggests that it is hard to get
-     *       a method that meets every need. Some code will ignore this method and build
-     *       {@code ProjectedCRS} in their own way (using
-     *       {@link #createProjectedCRS(Map,OperationMethod,GeographicCRS,MathTransform,CartesianCS)}
-     *       method) anyway. They may want to use their own
-     *       {@link org.opengis.referencing.operation.MathTransformFactory}, use a different
-     *       {@link org.opengis.referencing.operation.OperationMethod}, etc.</li>
-     * </ul>
-     */
-    @Deprecated
-    ProjectedCRS createProjectedCRS(Map<String, ? extends Object> properties,
-                                    GeographicCRS           geoCRS,
-                                    String                  method,
-                                    GeneralParameterValue[] parameters,
-                                    CartesianCS             cs) throws FactoryException;
 
     /**
      * Creates a coordinate reference system object from a XML string.
