@@ -13,6 +13,7 @@ package org.opengis.referencing;
 // OpenGIS dependencies
 import org.opengis.metadata.Identifier;   // For javadoc
 
+
 /**
  * Thrown when a {@linkplain org.opengis.referencing.operation.MathTransform math transform}
  * as been requested with an unknow {@linkplain org.opengis.referencing.operation.OperationMethod
@@ -35,7 +36,7 @@ public class NoSuchIdentifierException extends FactoryException {
     private final String identifier;
 
     /**
-     * Construct an exception with the specified detail message and classification name.
+     * Constructs an exception with the specified detail message and classification name.
      *
      * @param  message The detail message. The detail message is saved
      *         for later retrieval by the {@link #getMessage()} method.

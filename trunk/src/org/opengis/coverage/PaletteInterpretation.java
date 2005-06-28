@@ -10,12 +10,12 @@
  *************************************************************************************************/
 package org.opengis.coverage;
 
-// J2SE directdependencies
+// J2SE direct dependencies
 import java.util.List;
 import java.util.ArrayList;
 import java.awt.color.ColorSpace; // For Javadoc
 
-//OpenGIS direct dependencies
+// OpenGIS direct dependencies
 import org.opengis.util.CodeList;
 
 // Annotations

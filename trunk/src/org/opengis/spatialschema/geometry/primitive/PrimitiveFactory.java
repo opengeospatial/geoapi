@@ -98,20 +98,6 @@ public interface PrimitiveFactory {
             throws MismatchedReferenceSystemException, MismatchedDimensionException;
 
     /**
-     * Create a direct position at the specified location specified by coordinates.
-     *
-     * @deprecated This method moved to the
-     *  {@link org.opengis.spatialschema.geometry.geometry.GeometryFactory} interface.
-     *
-     * @throws MismatchedDimensionException If geometric objects given in argument don't have
-     *         the expected dimension.
-     */
-    @Extension
-    @Deprecated
-    DirectPosition createDirectPosition(double[] coordinates)
-            throws MismatchedDimensionException;
-
-    /**
      * Creates a point at the specified location specified by coordinates.
      *
      * @throws MismatchedDimensionException If geometric objects given in argument don't have
@@ -226,25 +212,5 @@ public interface PrimitiveFactory {
      */
     @Extension
     Ring createRing(List<Curve> curves)
-    	throws MismatchedReferenceSystemException, MismatchedDimensionException;
-
-    /**
-     * Constructs polyhedral surface from the facet polygons.
-     *
-     * @param tiles The facet polygons. Must contains at least one polygon.
-     *
-     * @throws MismatchedReferenceSystemException If geometric objects given in argument don't
-     *         use compatible {@linkplain CoordinateReferenceSystem coordinate reference system}.
-     * @throws MismatchedDimensionException If geometric objects given in argument don't have
-     *         the expected dimension.
-     *
-     * @deprecated Moved to {@link org.opengis.spatialschema.geometry.geometry.GeometryFactory} since
-     *             {@link PolyhedralSurface} and {@link Polygon} are all defined in the geometry package
-     *             according ISO 19107. Furthermore, {@link PolyhedralSurface} extends
-     *             {@link org.opengis.spatialschema.geometry.Geometry}.
-     */
-    @Deprecated
-    @UML(identifier="GM_PolyhedralSurace(GM_Polygon)", obligation=MANDATORY, specification=ISO_19107)
-    PolyhedralSurface createPolyhedralSurface(List<Polygon> tiles)
             throws MismatchedReferenceSystemException, MismatchedDimensionException;
 }

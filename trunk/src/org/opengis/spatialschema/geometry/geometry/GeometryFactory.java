@@ -350,28 +350,6 @@ public interface GeometryFactory {
     Tin createTin(Set<Position> post, Set<LineString> stopLines,
                   Set<LineString> breakLines, double maxLength)
             throws MismatchedReferenceSystemException, MismatchedDimensionException;
-
-    /**
-     * Constructs a new {@linkplain SurfaceBoundary surface boundary} object
-     * representing the boundary of a two-dimensional surface.
-     *
-     * @param exterior In the normal 2D case, this identifies the curve that is
-     *        the exterior curve of the surface.  In cases where an exterior
-     *        cannot be unambiguously chosen (a bounded cylinder, for example),
-     *        this parameter may be null.
-     * @param interiors All of the curve components of the boundary that are not
-     *        the exterior.
-     * @throws MismatchedReferenceSystemException If geometric objects given in
-     *         argument don't use a {@linkplain CoordinateReferenceSystem
-     *         coordinate reference system} compatible with the one held by this
-     *         factory.
-     *
-     * @deprecated Moved to {@link org.opengis.spatialschema.geometry.primitive.PrimitiveFactory} since
-     *             {@link Ring}, {@link Surface} and {@link SurfaceBoundary} are all primitive objects.
-     */
-    @Deprecated
-    SurfaceBoundary createSurfaceBoundary(Ring exterior, List/*<Ring>*/ interiors)
-    	throws MismatchedReferenceSystemException;
     
     /**
      * Constructs polyhedral surface from the facet polygons.

@@ -97,28 +97,6 @@ public interface PointArray {
     public CoordinateReferenceSystem getCoordinateReferenceSystem();
 
     /**
-     * Returns the point at the given index. This is equivalent to
-     * <code>{@linkplain #positions positions}().{@linkplain List#get get}(column).{@linkplain Position#getPosition getPosition}()</code>.
-     *
-     * @param  column The location in the array, from 0 inclusive
-     *                to the array's {@linkplain #length} exclusive.
-     * @return The point at the given location in this array.
-     * @throws IndexOutOfBoundsException if the index is out of bounds.
-     *
-     * @see List#get
-     * @see #get(int, DirectPosition)
-     *
-     * @deprecated This method may conflict with an implementation of {@link java.util.List} interface.
-     *             It also raise a performance and behavior issue: should the direct position be backed
-     *             by this {@code PointArray}, so changes to the position will be reflected in the
-     *             {@code PointArray} and vice-versa? The proposed alternative, {@link #get(int, DirectPosition)},
-     *             avoid those questions.
-     */
-    @Extension
-    @Deprecated
-    public DirectPosition get(int column) throws IndexOutOfBoundsException;
-
-    /**
      * Gets a copy of the {@code DirectPosition} at the particular location in this 
      * {@code PointArray}. If the {@code dest} argument is non-null, that object
      * will be populated with the value from the array. In all cases, the position in insulated
@@ -161,26 +139,6 @@ public interface PointArray {
     @Extension
     public void set(int column, DirectPosition position) throws IndexOutOfBoundsException,
                                                                 UnsupportedOperationException;
-    
-    /**
-     * Returns the elements of this {@code PointArray} as an array of
-     * {@code DirectPosition}s.
-     *
-     * @return The elements as an array of direct positions.
-     *
-     * @see List#toArray
-     *
-     * @deprecated This method raise a number of implementation issues: what should be the
-     *             behavior if a single point in this array is modified? Should it be
-     *             reflected in the {@code PointArray}? Furthermore, this method
-     *             will be inefficient in some implementations, for example an implementations
-     *             backed by a {@code float[]} array. Invoking {@code toArray()} in such
-     *             case may create thousands of {@code DirectPosition} objects.
-     *             {@link #positions} is safer, since it expose the positions through an iterator.
-     */
-    @Extension
-    @Deprecated
-    public DirectPosition[] toArray();
 
     /**
      * Returns a view of the points in this array as a list of {@linkplain Position positions}.
