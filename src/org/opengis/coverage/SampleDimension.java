@@ -56,19 +56,6 @@ public interface SampleDimension {
     InternationalString getDescription();
 
     /**
-     * Sample dimension title or description.
-     * This string may be null or empty if no description is present.
-     *
-     * @param  locale The locale, or {@code null} for a default locale.
-     * @return The sample dimension title or description.
-     *
-     * @deprecated Replaced by {@link #getDescription()}.
-     */
-    @Deprecated
-    @UML(identifier="description", obligation=MANDATORY, specification=OGC_01004)
-    String getDescription(Locale locale);
-
-    /**
      * A code value indicating grid value data type.
      * This will also indicate the number of bits for the data type.
      *
@@ -94,21 +81,6 @@ public interface SampleDimension {
      */
     @UML(identifier="categoryNames", obligation=MANDATORY, specification=OGC_01004)
     InternationalString[] getCategoryNames();
-
-    /**
-     * Sequence of category names for the values contained in a sample dimension.
-     * This allows for names to be assigned to numerical values.
-     * The first entry in the sequence relates to a cell value of zero.
-     * For grid coverages, category names are only valid for a classified grid data.
-     *
-     * @param  locale The locale, or {@code null} for a default locale.
-     * @return The sequence of category names for the values contained in a sample dimension.
-     *
-     * @deprecated Replaced by {@link #getCategoryNames()}.
-     */
-    @Deprecated
-    @UML(identifier="categoryNames", obligation=MANDATORY, specification=OGC_01004)
-    String[] getCategoryNames(Locale locale);
 
     /**
      * Color interpretation of the sample dimension.

@@ -137,20 +137,6 @@ public interface Coverage {
     InternationalString[] getDimensionNames();
 
     /**
-     * The names of each dimension in the coverage.
-     *
-     * @param  locale The locale for the name to be returned, or {@code null} for a default
-     *         locale.
-     * @return The names of each dimension in the coverage. If no name is available in the
-     *         specified locale, then a default locale is used.
-     *
-     * @deprecated Replaced by {@link #getDimensionNames()}.
-     */
-    @Deprecated
-    @UML(identifier="dimensionNames", obligation=MANDATORY, specification=OGC_01004)
-    String[] getDimensionNames(Locale locale);
-
-    /**
      * The number of sample dimensions in the coverage.
      * For grid coverages, a sample dimension is a band.
      *
