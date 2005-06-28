@@ -35,7 +35,7 @@ public final class RevisitTaglet extends SimpleTaglet {
     }
 
     /**
-     * Construct a default <code>@revisit</code> taglet.
+     * Constructs a default <code>@revisit</code> taglet.
      */
     private RevisitTaglet() {
         super("revisit", "<U>REVISIT OPEN ISSUE "+
@@ -116,74 +116,5 @@ public final class RevisitTaglet extends SimpleTaglet {
                            "<TR><TD bgcolor=\"yellow\">" + output +
                            "</TD></TR></TABLE></DD>\n");
         return output;
-    }
-
-    /**
-     * Given the <code>Tag</code> representation of this custom tag, return its string
-     * representation.
-     *
-     * @deprecated This is a legacy code for J2SE 1.4.2 standard doclet.
-     */
-    @Deprecated
-    public String toString(final Tag tag) {
-        return toString(tag, null);
-    }
-
-    /**
-     * Given the <code>Tag</code> representation of this custom tag, return its string
-     * representation.
-     *
-     * @param tag   The <code>Tag</code> representation of this custom tag.
-     * @param html  The HtmlDocletWriter that will output this tag, or <code>null</code>.
-     *
-     * @deprecated This is a legacy code for J2SE 1.4.2 standard doclet.
-     */
-    @Deprecated
-    public String toString(final Tag tag, final HtmlDocletWriter html) {
-        return toString(new Tag[] {tag}, html);
-    }
-
-    /**
-     * Given an array of <code>Tag</code>s representing this custom tag, return its string
-     * representation.
-     *
-     * @deprecated This is a legacy code for J2SE 1.4.2 standard doclet.
-     */
-    @Deprecated
-    public String toString(final Tag[] tags) {
-        return toString(tags, null);
-    }
-
-    /**
-     * Given an array of <code>Tag</code>s representing this custom tag, return its string
-     * representation.
-     *
-     * @param tags  The array of <code>Tag</code>s representing of this custom tag.
-     * @param html  The HtmlDocletWriter that will output this tag, or <code>null</code>.
-     *
-     * @deprecated This is a legacy code for J2SE 1.4.2 standard doclet.
-     */
-    @Deprecated
-    public String toString(final Tag[] tags, final HtmlDocletWriter html) {
-        if (tags.length == 0) {
-            return null;
-        }
-        final StringBuffer buffer = new StringBuffer("\n<DT><BR><B>REVISIT OPEN ISSUE "
-              + "<FONT COLOR='#A01020'>(a GeoAPI's comment, <U>not</U> an OpenGIS's one)</FONT></B>\n"
-              + "<DD><TABLE cellpadding=2 cellspacing=0>");
-        for (int i=0; i<tags.length; i++) {
-            final Tag tag = tags[i];
-            buffer.append("<TR><TD bgcolor=\"yellow\">");
-            final String text;
-            if (html != null) {
-                text = html.commentTagsToString(null, null, tag.inlineTags(), false);
-            } else {
-                text = tag.text();
-            }
-            buffer.append(text);
-            buffer.append("</TD></TR>\n");
-        }
-        buffer.append("</TABLE></DD>\n");
-        return buffer.toString();
     }
 }
