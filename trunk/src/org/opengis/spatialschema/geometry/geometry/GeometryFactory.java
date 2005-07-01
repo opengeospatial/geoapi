@@ -292,6 +292,29 @@ public interface GeometryFactory {
             throws MismatchedReferenceSystemException, MismatchedDimensionException;
 
     /**
+     * Constructs a B-spline surface. If the {@code knotSpec} is not present, then the
+     * {@code knotType} is uniform and the knots are evenly spaced, and, except for the
+     * first and last, have multiplicity = 1. At the ends the knots are of multiplicity
+     * = degree+1. If the {@code knotType} is uniform they need not be specified.
+     *
+     * @param points Arrays of points that are used in the interpolation in this spline surface.
+     * @param degree The algebraic degree of the basis functions for the first and second parameter,
+     *               as an array of length 1 or 2. If only one value is given, then the two degrees
+     *               are equal.
+     * @param knots    The sequence of knots as an array of length 2, or {@code null} if unspecified.
+     * @param knotSpec The type of knot distribution used in defining this spline, or
+     *                 {@code null} if unspecified.
+     *
+     * @throws MismatchedReferenceSystemException If geometric objects given in argument don't
+     *         use compatible {@linkplain CoordinateReferenceSystem coordinate reference system}.
+     * @throws MismatchedDimensionException If geometric objects given in argument don't have
+     *         the expected dimension.
+     */
+    @UML(identifier="GM_BSplineSurface(Sequence<GM_PointArray>,Integer,Sequence<GM_Knot>,GM_KnotType)", obligation=MANDATORY, specification=ISO_19107)
+    BSplineSurface createBSplineSurface(List<PointArray> points, int[] degree, List<Knot>[] knots, KnotType knotSpec)
+            throws MismatchedReferenceSystemException, MismatchedDimensionException;
+
+    /**
      * Creates a polygon directly from a set of boundary curves (organized into a
      * surface boundary) which shall be defined using coplanar {@linkplain Position positions}
      * as control points.
@@ -367,9 +390,10 @@ public interface GeometryFactory {
     
     /**
      * Placeholder to create a MultiPrimitive (or derivatives).
-     * <strong>This method is temporary. It will move to some {@code MultiPrimitive}
-     * factory when the creation of Geometry interfaces will be completed.</strong>
-     * See <A HREF="http://jira.codehaus.org/browse/GEO-1">GEO-1 on JIRA</A>.
+     *
+     * @deprecated <strong>This method is temporary. It will move to some {@code MultiPrimitive}
+     *             factory when the creation of Geometry interfaces will be completed.</strong>
+     *             See <A HREF="http://jira.codehaus.org/browse/GEO-1">GEO-1 on JIRA</A>.
      */
     MultiPrimitive createMultiPrimitive();
 }

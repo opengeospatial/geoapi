@@ -116,8 +116,6 @@ public interface PointArray {
      * @param  dest An optionnaly pre-allocated direct position.
      * @return The {@code dest} argument, or a new object if {@code dest} was null.
      * @throws IndexOutOfBoundsException if the index is out of bounds.
-     *
-     * @see #get(int)
      */
     @Extension
     public DirectPosition get(int column, DirectPosition dest) throws IndexOutOfBoundsException;
