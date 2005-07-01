@@ -59,7 +59,7 @@ public interface PointGrid {
 
     /**
      * Returns the point at the given row and column index. This is equivalent to
-     * <code>{@linkplain #getRow getRow}(row).{@linkplain PointArray#get(int) get}(column)</code>.
+     * <code>{@linkplain #getRow getRow}(row).{@linkplain PointArray#get get}(column)</code>.
      *
      * @param  row The row index from 0 inclusive to {@link #height} exclusive.
      * @param  column The column index from 0 inclusive to {@link #width} exclusive.

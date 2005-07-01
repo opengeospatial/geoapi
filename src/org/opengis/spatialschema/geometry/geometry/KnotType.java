@@ -52,16 +52,19 @@ public class KnotType extends CodeList<KnotType> {
     /**
      * The form of knots is appropriate for a uniform B-spline.
      */
+    @UML(identifier="uniform", obligation=CONDITIONAL, specification=ISO_19107)
     public static final KnotType UNIFORM = new KnotType("UNIFORM");
 
     /**
      * The form of knots is appropriate for a quasi-uniform B-spline.
      */
+    @UML(identifier="quasiUniform", obligation=CONDITIONAL, specification=ISO_19107)
     public static final KnotType QUASI_UNIFORM = new KnotType("QUASI_UNIFORM");
 
     /**
      * The form of knots is appropriate for a piecewise Bezier curve.
      */
+    @UML(identifier="piecewiseBezier", obligation=CONDITIONAL, specification=ISO_19107)
     public static final KnotType PIECEWISE_BEZIER = new KnotType("PIECEWISE_BEZIER");
 
     /**
