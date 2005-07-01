@@ -395,5 +395,6 @@ public interface GeometryFactory {
      *             factory when the creation of Geometry interfaces will be completed.</strong>
      *             See <A HREF="http://jira.codehaus.org/browse/GEO-1">GEO-1 on JIRA</A>.
      */
+    @Deprecated
     MultiPrimitive createMultiPrimitive();
 }
