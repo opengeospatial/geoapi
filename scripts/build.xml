@@ -75,6 +75,7 @@
 
   <target name="sources" depends="clear">
 
+    <mkdir  dir="snapshot/tiger/sources"/>
     <copy todir="snapshot/tiger/sources" includeEmptyDirs="false">
       <fileset dir="${homepath}/src">
         <include name="**/*.MF"/>
@@ -87,6 +88,7 @@
       </fileset>
     </copy>
 
+    <mkdir  dir="pending/sources"/>
     <copy todir="pending/sources" includeEmptyDirs="false">
       <fileset dir="${homepath-pending}/src">
         <include name="**/*.MF"/>
@@ -106,7 +108,7 @@
     </fixcrlf>
 
     <!-- Copy to 1.4 directory before we change the source -->
-    <mkdir dir="snapshot/sources"/>
+    <mkdir  dir="snapshot/sources"/>
     <copy todir="snapshot/sources">
       <fileset dir="snapshot/tiger/sources">
         <exclude name="**org/opengis/annotation/**"/>
@@ -333,6 +335,7 @@
       <replacefilter token="&lt;Obligation&gt;"/>
       <replacefilter token="&lt;OnLineFunction&gt;"/>
       <replacefilter token="&lt;OnLineResource&gt;"/>
+      <replacefilter token="&lt;Operation&gt;"/>
       <replacefilter token="&lt;OperationMethod&gt;"/>
       <replacefilter token="&lt;OrientableCurve&gt;"/>
       <replacefilter token="&lt;OrientableSurface&gt;"/>
