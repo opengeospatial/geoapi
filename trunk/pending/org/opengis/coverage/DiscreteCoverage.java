@@ -40,7 +40,7 @@ public interface DiscreteCoverage extends Coverage {
      * @revisit Is it duplicating {@link #list}?
      */
     @UML(identifier="CoverageFunction", obligation=OPTIONAL, specification=ISO_19123)
-    Set<GeometryValuePair> geCoverageFunction();
+    Set<GeometryValuePair> getCoverageFunction();
 
     /**
      * Returns the set of <var>geometry</var>-<var>value</var> pairs that include

@@ -37,7 +37,7 @@ public interface ContinuousCoverage extends Coverage {
      * – an analytical coverage needs no value objects.
      */
     @UML(identifier="CoverageFunction", obligation=OPTIONAL, specification=ISO_19123)
-    Set<ValueObject> geCoverageFunction();
+    Set<ValueObject> getCoverageFunction();
 
     /**
      * Returns a code that identifies the interpolation method that shall be used to derive a
@@ -71,7 +71,7 @@ public interface ContinuousCoverage extends Coverage {
      * of the continuous coverage.
      */
     @UML(identifier="locate", obligation=OPTIONAL, specification=ISO_19123)
-    Set<ValueObject> locate(DirectPosition p);
+    Set<? extends ValueObject> locate(DirectPosition p);
 
     /**
      * Returns the set of <var>geometry</var>-<var>value</var> pairs associated with the
