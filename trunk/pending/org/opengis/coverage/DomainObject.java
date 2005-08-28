@@ -11,7 +11,7 @@
 package org.opengis.coverage;
 
 // J2SE direct dependencies
-import java.util.Collection;
+import java.util.Set;
 
 // OpenGIS direct dependencies
 import org.opengis.spatialschema.geometry.Geometry;
@@ -39,7 +39,7 @@ public interface DomainObject {
      * The set may be empty.
      */
     @UML(identifier="SpatialComposition", obligation=OPTIONAL, specification=ISO_19123)
-    Collection<Geometry> getSpatialComposition();
+    Set<Geometry> getSpatialComposition();
 
     /**
      * Returns the set of geometric primitives of which this domain is composed.
@@ -48,5 +48,5 @@ public interface DomainObject {
      * @revisit Interface {@code TM_GeometricPrimitive} not yet defined in GeoAPI.
      */
     @UML(identifier="TemporalComposition", obligation=OPTIONAL, specification=ISO_19123)
-    Collection/*<GeometricPrimitive>*/ getTemporalComposition();
+    Set/*<GeometricPrimitive>*/ getTemporalComposition();
 }

@@ -30,6 +30,9 @@ import static org.opengis.annotation.Specification.*;
  * @author Martin Desruisseaux
  *
  * @revisit Consider replacing {@code Set<GeometryValuePair>} by {@code Map<DomainObject,Object>}.
+ *          Wim: remember the derived interfaces like {@link GridPointValuePair} etc.
+ *          Martin: At least some of them are just overriding methods with covariant return type,
+ *                  which can be handled with generic types as well.
  */
 @UML(identifier="CV_GeometryValuePair", specification=ISO_19123)
 public interface GeometryValuePair {
@@ -37,7 +40,7 @@ public interface GeometryValuePair {
      * The domain object that is a member of this <var>geometry</var>-<var>value</var> pair.
      */
     @UML(identifier="geometry", obligation=MANDATORY, specification=ISO_19123)
-    DomainObject getDomainObject();  
+    DomainObject getGeometry();  
 
     /**
      * Holds the record of feature attribute values associated with the domain object.

@@ -48,7 +48,7 @@ public interface Coverage {
      * The collection must contains at least one element.
      */
     @UML(identifier="Domain", obligation=MANDATORY, specification=ISO_19123)
-    Collection<DomainObject> getDomains();
+    Collection<? extends DomainObject> getDomains();
 
     /**
      * Returns the extent of the domain of the coverage. Extents may be specified in space,
@@ -74,13 +74,13 @@ public interface Coverage {
      * input for the {@link #evaluate(DirectPosition,Collection) evaluate} operation, but most are
      * generated as needed by that operation.
      * <p>
-     * <B>NOTE:</B> This interface does not specify how the {@linkplain #getDomain domain} and
-     * {@linkplain #getRange range} associations are to be implemented. The relevant data may be
+     * <B>NOTE:</B> This interface does not specify how the {@linkplain #getDomains domain} and
+     * {@linkplain #getRanges range} associations are to be implemented. The relevant data may be
      * generated in real time, it may be held in persistent local storage, or it may be
      * electronically accessible from remote locations.
      */
     @UML(identifier="Range", obligation=OPTIONAL, specification=ISO_19123)
-    Collection<AttributeValues> getRanges(); // TODO    
+    Collection<AttributeValues> getRanges();
 
     /**
      * Describes the range of the coverage. It consists of a list of attribute name/data type pairs.
@@ -111,7 +111,7 @@ public interface Coverage {
      * @revisit Consider using a Map. May force a renaming of this method.
      */
     @UML(identifier="list", obligation=MANDATORY, specification=ISO_19123)
-    Set<GeometryValuePair> list();
+    Set<? extends GeometryValuePair> list();
 
     /**
      * Returns the set of <var>geometry</var>-<var>value</var> pairs that contain
@@ -125,7 +125,7 @@ public interface Coverage {
      * @revisit Consider using a Map.
      */
     @UML(identifier="select", obligation=MANDATORY, specification=ISO_19123)
-    Set<GeometryValuePair> select(Geometry s/*, TM_Period t*/); // TODO
+    Set<? extends GeometryValuePair> select(Geometry s/*, TM_Period t*/); // TODO
 
     /**
      * Returns the sequence of <var>geometry</var>-<var>value</var> pairs that include the
@@ -145,7 +145,7 @@ public interface Coverage {
      * position.
      */
     @UML(identifier="find", obligation=MANDATORY, specification=ISO_19123)
-    List<GeometryValuePair> find(DirectPosition p, int limit);
+    List<? extends GeometryValuePair> find(DirectPosition p, int limit);
 
     /**
      * Returns the nearest <var>geometry</var>-<var>value</var> pair from the specified direct
@@ -181,5 +181,5 @@ public interface Coverage {
      * {@link GridCoverage}.
      */
     @UML(identifier="evaluateInverse", obligation=MANDATORY, specification=ISO_19123)
-    Set<DomainObject> evaluateInverse(Object /*<Record>*/ v); // TODO
+    Set<? extends DomainObject> evaluateInverse(Object /*<Record>*/ v); // TODO
 }

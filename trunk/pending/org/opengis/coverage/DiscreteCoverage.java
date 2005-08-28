@@ -31,6 +31,7 @@ import static org.opengis.annotation.Specification.*;
  * with a specific subclass of {@link GeometryValuePair}.
  *
  * @author Martin Desruisseaux
+ * @author Wim Koolhoven
  */
 @UML(identifier="CV_DiscreteCoverage", specification=ISO_19123)
 public interface DiscreteCoverage extends Coverage {
@@ -40,7 +41,7 @@ public interface DiscreteCoverage extends Coverage {
      * @revisit Is it duplicating {@link #list}?
      */
     @UML(identifier="CoverageFunction", obligation=OPTIONAL, specification=ISO_19123)
-    Set<GeometryValuePair> getCoverageFunction();
+    Set<? extends GeometryValuePair> getCoverageFunction();
 
     /**
      * Returns the set of <var>geometry</var>-<var>value</var> pairs that include
@@ -49,7 +50,7 @@ public interface DiscreteCoverage extends Coverage {
      * of the discrete coverage.
      */
     @UML(identifier="locate", obligation=OPTIONAL, specification=ISO_19123)
-    Set<GeometryValuePair> locate(DirectPosition p);
+    Set<? extends GeometryValuePair> locate(DirectPosition p);
 
     /**
      * Returns a set of records of feature attribute values for the specified direct position.
@@ -72,5 +73,5 @@ public interface DiscreteCoverage extends Coverage {
      * associated with this discrete coverage has a value equal to the input record.
      */
     @UML(identifier="evaluateInverse", obligation=MANDATORY, specification=ISO_19123)
-    Set<DomainObject> evaluateInverse(Object /*<Record>*/ v); // TODO    
+    Set<? extends DomainObject> evaluateInverse(Object /*<Record>*/ v); // TODO    
 }
