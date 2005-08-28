@@ -13,6 +13,7 @@ package org.opengis.coverage;
 // J2SE direct dependencies
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Collection; // For javadoc
 
 // OpenGIS direct dependencies
 import org.opengis.util.CodeList;

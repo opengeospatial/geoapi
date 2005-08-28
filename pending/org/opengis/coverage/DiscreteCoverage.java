@@ -25,10 +25,10 @@ import static org.opengis.annotation.Specification.*;
 
 /**
  * A coverage that returns the same record of feature attribute values for any direct position
- * within a single {@link DomainObject} in its domain. The domain of a discrete coverage consists
- * of a collection of geometric objects. Discrete coverages are subclassed on the basis of the type
- * of geometric object in the spatial domain. Each subclass of {@code DiscreteCoverage} is associated
- * with a specific subclass of {@link GeometryValuePair}.
+ * within a single {@linkplain DomainObject object} in its domain. The domain of a discrete coverage
+ * consists of a collection of geometric objects. Discrete coverages are subclassed on the basis of
+ * the type of geometric object in the spatial domain. Each subclass of {@code DiscreteCoverage} is
+ * associated with a specific subclass of {@link GeometryValuePair}.
  *
  * @author Martin Desruisseaux
  * @author Wim Koolhoven
@@ -38,16 +38,16 @@ public interface DiscreteCoverage extends Coverage {
     /**
      * Returns the set of <var>geometry</var>-<var>value</var> pairs included in this coverage.
      *
-     * @revisit Is it duplicating {@link #list}?
+     * @todo Is it duplicating {@link #list}?
      */
-    @UML(identifier="CoverageFunction", obligation=OPTIONAL, specification=ISO_19123)
-    Set<? extends GeometryValuePair> getCoverageFunction();
+    @UML(identifier="element", obligation=OPTIONAL, specification=ISO_19123)
+    Set<? extends GeometryValuePair> getElements();
 
     /**
-     * Returns the set of <var>geometry</var>-<var>value</var> pairs that include
-     * {@link DomainObject}s containing the specified direct position. It shall return an empty
-     * set if the direct position is not on any of the {@link DomainObject}s within the domain
-     * of the discrete coverage.
+     * Returns the set of <var>geometry</var>-<var>value</var> pairs that include the
+     * {@linkplain DomainObject domain objects} containing the specified direct position.
+     * It shall return {@code null} if the direct position is not on any of the
+     * {@linkplain DomainObject objects} within the domain of the discrete coverage.
      */
     @UML(identifier="locate", obligation=OPTIONAL, specification=ISO_19123)
     Set<? extends GeometryValuePair> locate(DirectPosition p);
@@ -60,18 +60,22 @@ public interface DiscreteCoverage extends Coverage {
      * two <var>geometry</var>-<var>value</var> pairs, or within two or more overlapping
      * <var>geometry</var>-<var>value</var> pairs, the operation shall return a record of feature
      * attribute values derived according to the {@linkplain #getCommonPointRule common point rule}.
-     * It shall return an empty set value if the direct position is not on any of the
-     * {@link DomainObject}s within the domain of the discrete coverage.
+     * It shall return {@code null} if the direct position is not on any of the
+     * {@linkplain DomainObject objects} within the domain of the discrete coverage.
+     *
+     * @todo Superclass throws an exception if the position is not in the domain (instead of
+     *       returning null)...
      */
     @UML(identifier="evaluate", obligation=MANDATORY, specification=ISO_19123)
     Set/*<Record>*/ evaluate(DirectPosition p, Collection<String> list); // TODO
 
     /**
-     * Locates the <var>geometry</var>-<var>value</var> pairs for which value equals the input record,
-     * and return the set of {@link DomainObject}s belonging to those <var>geometry</var>-<var>value</var>
-     * pairs. It shall return an empty set if none of the <var>geometry</var>-<var>value</var> pairs
-     * associated with this discrete coverage has a value equal to the input record.
+     * Locates the <var>geometry</var>-<var>value</var> pairs for which value equals the input
+     * record, and return the set of {@linkplain DomainObject domain objects} belonging to those
+     * <var>geometry</var>-<var>value</var> pairs. It shall return {@code null} set if none of the
+     * <var>geometry</var>-<var>value</var> pairs associated with this discrete coverage has a
+     * value equal to the input record.
      */
-    @UML(identifier="evaluateInverse", obligation=MANDATORY, specification=ISO_19123)
+    @UML(identifier="evaluateInverse", obligation=OPTIONAL, specification=ISO_19123)
     Set<? extends DomainObject> evaluateInverse(Object /*<Record>*/ v); // TODO    
 }

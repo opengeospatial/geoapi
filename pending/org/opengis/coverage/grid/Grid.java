@@ -14,6 +14,9 @@ package org.opengis.coverage.grid;
 import java.util.List;
 import java.util.Set;
 
+// OpenGIS dependencies
+import org.opengis.referencing.crs.CoordinateReferenceSystem;
+
 // Annotations
 import org.opengis.annotation.UML;
 import static org.opengis.annotation.Obligation.*;
@@ -29,9 +32,9 @@ import static org.opengis.annotation.Specification.*;
  * <p>
  * {@code Grid} has three subclasses, which lie in two partitions. The Positioning partition includes
  * {@link RectifiedGrid} and {@link ReferenceableGrid}, which contain information that relates the grid
- * coordinates to an external {@linkplain org.opengis.referencing.crs.CoordinateReferenceSystem coordinate
- * reference system}. The Valuation partition includes {@link GridValuesMatrix}, which contains information
- * for assigning values from the range to each of the grid points.
+ * coordinates to an external {@linkplain CoordinateReferenceSystem coordinate reference system}. The
+ * Valuation partition includes {@link GridValuesMatrix}, which contains information for assigning
+ * values from the range to each of the grid points.
  * <p>
  * {@code Grid} is not an abstract class: an instance of {@code Grid} need not be an instance of any
  * of its subclasses. The partitions indicate that an instance of the subclass {@link GridValuesMatrix}
@@ -68,14 +71,18 @@ public interface Grid {
 	/**
 	 * Returns the set of {@linkplain GridPoint grid points} that are located at the
 	 * intersections of the grid lines. The collection contains one or more grid points.
+     *
+     * @see GridPoint#getFramework
 	 */
-    @UML(identifier="Organization", obligation=MANDATORY, specification=ISO_19123)
-	Set<GridPoint> getOrganization();
+    @UML(identifier="intersection", obligation=MANDATORY, specification=ISO_19123)
+	Set<GridPoint> getIntersections();
 
 	/**
 	 * Returns the set of {@linkplain GridCell grid cells} delineated by the grid lines.
      * The collection contains one or more grid cells.
+     *
+     * @see GridCell#getFramework
 	 */
-    @UML(identifier="EvaluationStructure", obligation=MANDATORY, specification=ISO_19123)
-	Set<GridCell> getEvaluationStructure();
+    @UML(identifier="cell", obligation=MANDATORY, specification=ISO_19123)
+	Set<GridCell> getCells();
 }

@@ -25,12 +25,12 @@ import static org.opengis.annotation.Specification.*;
 /**
  * Represents an element of the domain of the {@linkplain Coverage coverage}. It is an aggregation
  * of objects that may include any combination of {@linkplain Geometry geometry}, or spatial or
- * temporal objects such as {@link GridPoint}.
- *
- * @revisit Should we rename as {@code Domain}?
+ * temporal objects such as {@linkplain GridPoint grid point}.
  * 
  * @author Stephane Fellah
  * @author Martin Desruisseaux
+ *
+ * @see Coverage#getDomainElements
  */
 @UML(identifier="CV_DomainObject", specification=ISO_19123)
 public interface DomainObject {
@@ -38,15 +38,15 @@ public interface DomainObject {
      * Returns the set of geometries of which this domain is composed.
      * The set may be empty.
      */
-    @UML(identifier="SpatialComposition", obligation=OPTIONAL, specification=ISO_19123)
-    Set<Geometry> getSpatialComposition();
+    @UML(identifier="spatialElement", obligation=OPTIONAL, specification=ISO_19123)
+    Set<Geometry> getSpatialElements();
 
     /**
      * Returns the set of geometric primitives of which this domain is composed.
      * The set may be empty.
      *
-     * @revisit Interface {@code TM_GeometricPrimitive} not yet defined in GeoAPI.
+     * @todo Interface {@code TM_GeometricPrimitive} not yet defined in GeoAPI.
      */
-    @UML(identifier="TemporalComposition", obligation=OPTIONAL, specification=ISO_19123)
-    Set/*<GeometricPrimitive>*/ getTemporalComposition();
+    @UML(identifier="temporalElement", obligation=OPTIONAL, specification=ISO_19123)
+    Set/*<GeometricPrimitive>*/ getTemporalElements();
 }

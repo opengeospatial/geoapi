@@ -24,16 +24,17 @@ import static org.opengis.annotation.Specification.*;
  * as the value of its geometry attribute.
  * 
  * @author Wim Koolhoven
+ * @author Martin Desruisseaux
  */
 @UML(identifier="CV_GridPointValuePair", specification=ISO_19123)
 public interface GridPointValuePair extends GeometryValuePair {
     /**
      * The grid point that is a member of this <var>grid point</var>-<var>value</var> pair.
-     * It is one of the {@link GridPoint}s linked to the {@link GridValuesMatrix} through
-     * {@link Grid#getOrganization()}.
+     * It is one of the {@linkplain GridPoint grid points} linked to the
+     * {@linkplain GridValuesMatrix grid value matrix} through {@link Grid#getIntersections}.
      */
-/// @UML(identifier="geometry", obligation=MANDATORY, specification=ISO_19123)
-/// GridPoint getGeometry();
+    @UML(identifier="geometry", obligation=MANDATORY, specification=ISO_19123)
+    GridPoint getGeometry();
     
     /**
      * Holds the record of feature attribute values associated with the grid point.
