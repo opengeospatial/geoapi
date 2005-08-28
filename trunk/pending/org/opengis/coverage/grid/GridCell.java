@@ -35,13 +35,17 @@ public interface GridCell {
      * The size of this collection has no upper bound, to allow for grids of any dimension.
      * In a quadrilateral grid, the multiplicity of corner equals 2&times;<var>d</var>, where
      * <var>d</var> is the value of {@link Grid#getDimension}.
+     *
+     * @see GridPoint#getCells
 	 */
-    @UML(identifier="Location", obligation=MANDATORY, specification=ISO_19123)
-	Set<GridPoint> getLocation();
+    @UML(identifier="corner", obligation=MANDATORY, specification=ISO_19123)
+	Set<GridPoint> getCorners();
 
     /**
      * Returns the {@linkplain Grid grid} of which this cell is a component.
+     *
+     * @see Grid#getCell
      */
-    @UML(identifier="EvaluationStructure", obligation=MANDATORY, specification=ISO_19123)
-    Grid getEvaluationStructure();
+    @UML(identifier="framework", obligation=MANDATORY, specification=ISO_19123)
+    Grid getFramework();
 }

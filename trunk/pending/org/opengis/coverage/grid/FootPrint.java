@@ -10,8 +10,9 @@
  *************************************************************************************************/
 package org.opengis.coverage.grid;
 
-// OpenGIS direct dependencies
+// OpenGIS dependencies
 import org.opengis.spatialschema.geometry.Geometry;
+import org.opengis.referencing.crs.CoordinateReferenceSystem;
 
 // Annotations
 import org.opengis.annotation.UML;
@@ -20,8 +21,8 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * The presentation of a observed or measured space surrounding a sample point in the context of some external
- * {@linkplain org.opengis.referencing.crs.CoordinateReferenceSystem coordinate reference system}.
+ * The presentation of an observed or measured space surrounding a sample point in the context
+ * of some external {@linkplain CoordinateReferenceSystem coordinate reference system}.
  * 
  * @author Martin Schouwenburg
  * @author Wim Koolhoven
@@ -34,10 +35,12 @@ public interface FootPrint {
 	 */
     @UML(identifier="geometry", obligation=MANDATORY, specification=ISO_19123)
 	Geometry getGeometry();
-    
+
     /**
      * Returns the {@linkplain GridPoint grid point} to which this foor print corresponds.
+     *
+     * @see GridPoint#getFootPrint
      */
-    @UML(identifier="SampleSpace", obligation=MANDATORY, specification=ISO_19123)
-    GridPoint getSampleSpace();
+    @UML(identifier="center", obligation=MANDATORY, specification=ISO_19123)
+    GridPoint getCenter();
 }

@@ -29,7 +29,9 @@ import static org.opengis.annotation.Specification.*;
 public interface PointValuePair extends GeometryValuePair {
     /**
      * The point that is a member of this <var>point</var>-<var>value</var> pair.
+     *
+     * @todo Clash in return type!
      */
-/// @UML(identifier="value", obligation=MANDATORY, specification=ISO_19123)
-/// Point getValue();
+//  @UML(identifier="geometry", obligation=MANDATORY, specification=ISO_19123)
+//  Point getGeometry();
 }

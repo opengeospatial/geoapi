@@ -34,14 +34,14 @@ public interface GridValuesMatrix extends Grid {
      * number of {@linkplain GridPoint grid points} within the section of the grid specified by
      * the {@linkplain #getExtent extent}.
      *
-     * @revisit Comment (Wim): Both extracting an image for display and operation chaining require
-     *          memory effiecient and fast access to the data. How should the data be structured per
-     *          record? Some use cases:
-     *          <table border=1>
-     *          <tr><td>DTM<td>double<td>List&lt;double&gt;
-     *          <tr><td>TM image<td>7 bytes<td>
-     *          <tr><td>Landuse map<td>string<td><code>List<double></code> with look up table for the strings
-     *          </table>   
+     * @todo Comment (Wim): Both extracting an image for display and operation chaining require
+     *       memory effiecient and fast access to the data. How should the data be structured per
+     *       record? Some use cases:
+     *       <table border=1>
+     *         <tr><td>DTM<td>double<td>List&lt;double&gt;
+     *         <tr><td>TM image<td>7 bytes<td>
+     *         <tr><td>Landuse map<td>string<td><code>List<double></code> with look up table for the strings
+     *       </table>   
      */
 	@UML(identifier="values", obligation=MANDATORY, specification=ISO_19123)
 	List/*<Record>*/ getValues();
@@ -59,4 +59,10 @@ public interface GridValuesMatrix extends Grid {
 	 */
 	@UML(identifier="startSequence", obligation=MANDATORY, specification=ISO_19123)
 	GridCoordinates getStartSequence();
+
+	/**
+	 * Returns the limits of a section of the grid. This envelope can not be empty.
+	 */
+    @UML(identifier="extent", obligation=OPTIONAL, specification=ISO_19123)
+	GridEnvelope getExtent();
 }

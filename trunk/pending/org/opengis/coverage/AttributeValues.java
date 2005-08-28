@@ -21,7 +21,9 @@ import static org.opengis.annotation.Specification.*;
  *
  * @author Martin Desruisseaux
  *
- * @revisit Do we really need this interface, since it contains only one attribute?
+ * @see Coverage#getRangeElements
+ *
+ * @todo Do we really need this interface, since it contains only one attribute?
  */
 @UML(identifier="CV_AttributeValues", specification=ISO_19123)
 public interface AttributeValues {
@@ -36,7 +38,7 @@ public interface AttributeValues {
      *       (such as brightness values in different parts of the electromagnetic spectrum).</li>
      * </ul>
      *
-     * @revisit The ISO type is {@code Record}, which is not defined in GeoAPI.
+     * @todo The ISO type is {@code Record}, which is not defined in GeoAPI.
      */
     @UML(identifier="values", obligation=MANDATORY, specification=ISO_19123)
     Object getValues();

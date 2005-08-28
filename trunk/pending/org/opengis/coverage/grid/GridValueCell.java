@@ -11,7 +11,7 @@
 package org.opengis.coverage.grid;
 
 // J2SE direct dependencies
-import java.util.Collection;
+import java.util.Set;
 
 // OpenGIS direct dependencies
 import org.opengis.coverage.ValueObject;
@@ -38,7 +38,7 @@ public interface GridValueCell extends ValueObject {
      * of a feature attribute value at a {@linkplain DirectPosition direct position} within the
      * {@linkplain GridCell grid cell}.
      *
-     * @revisit Clash in the return type!!!!
+     * @todo Clash in the return type!!!!
      */
 //    @UML(identifier="geometry", obligation=MANDATORY, specification=ISO_19123)
 //    GridCell getGeometry();
@@ -47,6 +47,6 @@ public interface GridValueCell extends ValueObject {
      * Returns the set of <var>grid point</var>-<var>value</var> pairs at the corners of this
      * {@code GridValueCell} 
      */
-    @UML(identifier="Control", obligation=MANDATORY, specification=ISO_19123)
-    Collection<GridPointValuePair> getControl();
+    @UML(identifier="controlValue", obligation=MANDATORY, specification=ISO_19123)
+    Set<GridPointValuePair> getControlValues();
 }

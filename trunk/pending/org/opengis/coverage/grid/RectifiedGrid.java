@@ -13,8 +13,10 @@ package org.opengis.coverage.grid;
 // J2SE direct dependencies
 import java.util.List;
 
-// OpenGIS direct dependencies
+// OpenGIS dependencies
 import org.opengis.spatialschema.geometry.DirectPosition;
+import org.opengis.referencing.crs.CoordinateReferenceSystem;
+import org.opengis.referencing.datum.Datum;  // For javadoc
 
 // Annotations
 import org.opengis.annotation.UML;
@@ -23,10 +25,14 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * A grid defined by an origin in an external
- * {@linkplain org.opengis.referencing.crs.CoordinateReferenceSystem coordinate reference system},
+ * Grid for which there is an affine transformation between the grid coordinates and the coordinates of
+ * an external {@linkplain CoordinateReferenceSystem coordinate reference system}. A rectified grid is
+ * defined by an origin in an external {@linkplain CoordinateReferenceSystem coordinate reference system},
  * and a set of offset vectors that specify the direction and distance between grid lines within
  * that external CRS.
+ * <p>
+ * <b>NOTE:</b> If the coordinate reference system is related to the earth by a
+ * {@linkplain Datum datum}, the grid is a georectified grid.
  * <p>
  * <b>Constraints:</b>
  * <ul>
@@ -68,10 +74,10 @@ public interface RectifiedGrid extends Grid {
 	 * Converts through an affine transform a direct position to the grid coordinates of
      * the nearest grid point.
 	 * 
-	 * @revisit Question (Wim): GridCoordinates are always integers, how to get
-	 *          the not rounded results?<br>
-     *          Martin: The legacy OGC specification defined a "gridToCRS" math transform for
-     *          that. We may consider to import this element in the proposed set of interfaces.
+	 * @todo Question (Wim): GridCoordinates are always integers, how to get
+	 *       the not rounded results?<br>
+     *       Martin: The legacy OGC specification defined a "gridToCRS" math transform for
+     *       that. We may consider to import this element in the proposed set of interfaces.
 	 */
 	@UML(identifier="invCoordConv", obligation=MANDATORY, specification=ISO_19123)
 	GridCoordinates inverseConvertCoordinates(DirectPosition p);

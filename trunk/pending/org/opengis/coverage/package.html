@@ -8,10 +8,11 @@
   {@linkplain org.opengis.coverage.Coverage Coverages} (generate a value for any point).
   The following is adapted from ISO 19123 specification.
 
-  <P ALIGN="justify">A coverage is a feature that associates positions within a bounded space
-  (its domain) to feature attribute values (its range). In other words, it is both a feature
-  and a function. Examples include a raster image, a polygon overlay, or a digital elevation
-  matrix.</P>
+  <P ALIGN="justify">A {@linkplain org.opengis.coverage.Coverage coverage} is a feature that associates
+  positions within a bounded space (its {@linkplain org.opengis.coverage.Coverage#getDomainElements domain})
+  to feature attribute values (its {@linkplain org.opengis.coverage.Coverage#getRangeElements range}).
+  In other words, it is both a feature and a function. Examples include a raster image, a polygon
+  overlay, or a digital elevation matrix.</P>
 
   <P ALIGN="justify">A coverage may represent a single feature or a set of features.</P>
 
@@ -45,13 +46,15 @@
   temperature, pressure, humidity, and wind velocity at noon, today, at that point. The coverage maps every direct
   position in the county to a record of 4 fields.</P></BLOCKQUOTE>
 
-  <P ALIGN="justify">A feature attribute value may be of any data type. However, evaluation of a continuous coverage
-  is usually implemented by interpolation methods that can be applied only to numbers or vectors. Other data types are
-  almost always associated with discrete coverages.</P>
+  <P ALIGN="justify">A feature attribute value may be of any data type. However, evaluation of a
+  {@linkplain org.opengis.coverage.ContinuousCoverage continuous coverage} is usually implemented
+  by interpolation methods that can be applied only to numbers or vectors. Other data types are
+  almost always associated with {@linkplain org.opengis.coverage.DiscreteCoverage discrete coverages}.</P>
 
-  <P ALIGN="justify">Given a record from the range of a coverage, inverse evaluation is the calculation and exposure
-  of a set of geometric objects associated with specific values of the attributes. Inverse evaluation may return many
-  geometric objects associated with a single feature attribute value.</P>
+  <P ALIGN="justify">Given a record from the range of a coverage,
+  {@linkplain org.opengis.coverage.Coverage#evaluateInverse inverse evaluation} is the calculation and exposure
+  of a set of geometric objects associated with specific values of the attributes. Inverse evaluation may return
+  many geometric objects associated with a single feature attribute value.</P>
 
   <BLOCKQUOTE><P ALIGN="justify"><B>Example:</B> Inverse evaluation is used for the extraction of contours from an
   elevation coverage and the extraction of classified regions in an image.</P>

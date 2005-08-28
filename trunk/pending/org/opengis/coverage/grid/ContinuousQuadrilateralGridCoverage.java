@@ -41,6 +41,13 @@ import static org.opengis.annotation.Specification.*;
 @UML(identifier="CV_ContinousQuadrilateralGridCoverage", specification=ISO_19123)
 public interface ContinuousQuadrilateralGridCoverage extends ContinuousCoverage {
     /**
+     * Returns the set of {@linkplain GridValueCell grid value cells} that provide the structure
+     * to support the {@linkplain #evaluate evaluate} operation.
+     */
+    @UML(identifier="element", obligation=MANDATORY, specification=ISO_19123)
+    Set<GridValueCell> getElements();
+
+    /**
      * Returns a code that identifies the interpolation method that shall be used to derive a
      * feature attribute value at any direct position within the {@linkplain GridValueCell grid
      * value cell}. This value is often {@linkplain InterpolationMethod#BILINEAR bilinear}.
@@ -59,8 +66,8 @@ public interface ContinuousQuadrilateralGridCoverage extends ContinuousCoverage 
      * Returns the grid value cell that contains the specified direct position. This is a
      * convenience method for <code>{@linkplain #locate locate}(p).iterator().next()</code>.
      *
-     * @revisit Consider moving this method in some parent class. It may force a renaming as
-     *          <code>locateFirst</code>.
+     * @todo Consider moving this method in some parent class. It may force a renaming as
+     *       <code>locateFirst</code>.
      */
     @Extension
     GridValueCell locateCell(DirectPosition p);
@@ -91,13 +98,6 @@ public interface ContinuousQuadrilateralGridCoverage extends ContinuousCoverage 
     /**
      * Provides the data for the {@linkplain #evaluate evaluate} operation.
      */
-    @UML(identifier="controlPoints", obligation=MANDATORY, specification=ISO_19123)
-    GridValuesMatrix getControlPoints();
-
-    /**
-     * Returns the set of {@linkplain GridValueCell grid value cells} that provide the structure
-     * to support the {@linkplain #evaluate evaluate} operation.
-     */
-    @UML(identifier="CoverageFunction", obligation=MANDATORY, specification=ISO_19123)
-    Set<GridValueCell> getCoverageFunction();
+    @UML(identifier="source", obligation=MANDATORY, specification=ISO_19123)
+    GridValuesMatrix getSource();
 }
