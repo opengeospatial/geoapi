@@ -35,21 +35,20 @@ import static org.opengis.annotation.Specification.*;
 @UML(identifier="CV_ValueObject", specification=ISO_19123)
 public interface ValueObject {
     /**
-     * Returns the set of <var>geometry</var>-<var>value</var> pairs that provide the basis
-     * for constructing this {@code ValueObject} and for evaluating the
-     * {@linkplain ContinuousCoverage continuous coverage} at direct positions within this
-     * value object.
+     * Returns the set of <var>geometry</var>-<var>value</var> pairs that provide the basis for
+     * constructing this {@code ValueObject} and for evaluating the {@linkplain Continuousoverage
+     * continuous coverage} at {@linkplain DirectPosition direct positions} within this value object.
      */
     @UML(identifier="Control", obligation=MANDATORY, specification=ISO_19123)
-    Collection<GeometryValuePair> getControl();
+    Collection<? extends GeometryValuePair> getControl();
 
     /**
-     * The domain object constructed from the {@linkplain GeometryValuePair#getDomainObject
+     * The domain object constructed from the {@linkplain GeometryValuePair#getGeometry
      * domain objects} of the <var>geometry</var>-<var>value</var> pairs that are linked to
      * this value object by the association {@link #getControl Control}.
      */
     @UML(identifier="geometry", obligation=MANDATORY, specification=ISO_19123)
-    DomainObject getDomainObject();  
+    DomainObject getGeometry();  
 
     /**
      * Holds the values of the parameters required to execute the interpolate operation, as

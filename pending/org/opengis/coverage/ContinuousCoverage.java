@@ -29,6 +29,7 @@ import static org.opengis.annotation.Specification.*;
  * for any direct position within its domain.
  *
  * @author Martin Desruisseaux
+ * @author Wim Koolhoven
  */
 @UML(identifier="CV_ContinuousCoverage", specification=ISO_19123)
 public interface ContinuousCoverage extends Coverage {
@@ -37,17 +38,17 @@ public interface ContinuousCoverage extends Coverage {
      * – an analytical coverage needs no value objects.
      */
     @UML(identifier="CoverageFunction", obligation=OPTIONAL, specification=ISO_19123)
-    Set<ValueObject> getCoverageFunction();
+    Set<? extends ValueObject> getCoverageFunction();
 
     /**
      * Returns a code that identifies the interpolation method that shall be used to derive a
-     * feature attribute value at any direct position within the {@link ValueObject}. This
-     * attribute is optional – no value is needed for an analytical coverage (one that maps
-     * direct position to attribute value by using a mathematical function rather than by
-     * interpolation).
+     * feature attribute value at any direct position within the {@linkplain ValueObject value
+     * object}. This attribute is optional – no value is needed for an analytical coverage (one
+     * that maps direct position to attribute value by using a mathematical function rather than
+     * by interpolation).
      */
     @UML(identifier="interpolationType", obligation=OPTIONAL, specification=ISO_19123)
-    InterpolationMethod getTnterpolationMethod();
+    InterpolationMethod getInterpolationMethod();
 
     /**
      * Returns the optional parameter types for interpolation.
@@ -78,7 +79,7 @@ public interface ContinuousCoverage extends Coverage {
      * {@link ValueObject}s of which this continuous coverage is composed.
      */
     @UML(identifier="select", obligation=MANDATORY, specification=ISO_19123)
-    Set<GeometryValuePair> select(Geometry s/*, TM_Period t*/); // TODO
+    Set<? extends GeometryValuePair> select(Geometry s/*, TM_Period t*/); // TODO
 
     /**
      * Returns a set of records of feature attribute values for the specified direct position. Most
@@ -107,5 +108,5 @@ public interface ContinuousCoverage extends Coverage {
      * attribute values associated with the {@link GridPoint}s of a {@link GridCoverage}.
      */
     @UML(identifier="evaluateInverse", obligation=MANDATORY, specification=ISO_19123)
-    Set<DomainObject> evaluateInverse(Object /*<Record>*/ v); // TODO
+    Set<? extends DomainObject> evaluateInverse(Object /*<Record>*/ v); // TODO
 }
