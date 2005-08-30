@@ -45,8 +45,8 @@ public interface Scope {
     /**
      * Detailed description about the level of the data specified by the scope.
      *
-     * @revisit Need to define the {@code ScopeDescription} union. This union depends
-     *          on {@code FeatureType} and {@code AttributeType}.
+     * @todo Need to define the {@code ScopeDescription} union. This union depends
+     *       on {@code FeatureType} and {@code AttributeType}.
      */
 //  @UML(identifier="levelDescription", obligation=CONDITIONAL)
 //  Collection<ScopeDescription> getLevelDescription();

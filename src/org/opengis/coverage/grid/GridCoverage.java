@@ -328,7 +328,7 @@ public interface GridCoverage extends Coverage {
      *         for consistency with all others {@code getDataBlock...} methods and
      *         {@code setDataBlockAsDouble}.
      *
-     * @revisit Which indices vary fastest?
+     * @todo Which indices vary fastest?
      *
      * @see #setDataBlock(GridRange, double[])
      * @see Raster#getPixels(int,int,int,int,double[])
@@ -385,10 +385,10 @@ public interface GridCoverage extends Coverage {
      * @return a block of grid coverage data for all sample dimensions.
      * @throws InvalidRangeException if {@code gridRange} is out of this grid range bounds.
      *
-     * @revisit This operation can't be implemented efficiently in Java with a {@code byte[]}
-     *          return type, since there is no way to cast an array of arbitrary type to an array
-     *          of type {@code byte[]}. Even the {@code java.nio.Buffer} doesnt allow
-     *          that (it allows the opposite way however).
+     * @todo This operation can't be implemented efficiently in Java with a {@code byte[]}
+     *       return type, since there is no way to cast an array of arbitrary type to an array
+     *       of type {@code byte[]}. Even the {@code java.nio.Buffer} doesnt allow
+     *       that (it allows the opposite way however).
      */
     @UML(identifier="getPackedDataBlock", obligation=MANDATORY, specification=OGC_01004)
     byte[] getPackedDataBlock(GridRange gridRange) throws InvalidRangeException;
@@ -527,9 +527,9 @@ public interface GridCoverage extends Coverage {
      * @throws GridNotEditableException if the grid coverage is not {@linkplain #isDataEditable editable}.
      * @throws ArrayIndexOutOfBoundsException if the {@code values} array is too small.
      *
-     * @revisit This operation can hardly be implemented efficiently in Java with a
-     *          {@code byte[]} argument type, since we can't easily cast an array
-     *          of {@code byte[]} to an array of arbitrary type.
+     * @todo This operation can hardly be implemented efficiently in Java with a
+     *       {@code byte[]} argument type, since we can't easily cast an array
+     *       of {@code byte[]} to an array of arbitrary type.
      */
     @UML(identifier="setPackedDataBlock", obligation=MANDATORY, specification=OGC_01004)
     void setPackedDataBlock(GridRange gridRange, byte[] values)

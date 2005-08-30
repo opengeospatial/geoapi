@@ -26,7 +26,7 @@ import static org.opengis.annotation.Specification.*;
  *
  * @see PrimitiveFactory#createSolid
  *
- * @revisit Some associations are commented out for now.
+ * @todo Some associations are commented out for now.
  */
 @UML(identifier="GM_Solid", specification=ISO_19107)
 public interface Solid extends Primitive {
@@ -59,7 +59,7 @@ public interface Solid extends Primitive {
      *
      * @return The area of this solid.
      *
-     * @revisit In UML diagram, this operation has an {@code Area} return type.
+     * @todo In UML diagram, this operation has an {@code Area} return type.
      */
     @UML(identifier="area", obligation=MANDATORY, specification=ISO_19107)
     public double getArea();
@@ -71,7 +71,7 @@ public interface Solid extends Primitive {
      *
      * @return The volume of this solid.
      *
-     * @revisit In UML diagram, this operation has a {@code Volume} return type.
+     * @todo In UML diagram, this operation has a {@code Volume} return type.
      */
     @UML(identifier="volume", obligation=MANDATORY, specification=ISO_19107)
     public double getVolume();

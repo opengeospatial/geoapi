@@ -60,7 +60,7 @@ public class FeatureEvent extends EventObject {
     /**
      * Synonym for {@link #getSource}, but does the cast for you.
      *
-     * @revisit To be replaced by {@link #getSource} in a J2SE 1.5 profile.
+     * @todo To be replaced by {@link #getSource} in a J2SE 1.5 profile.
      */
     public FeatureCollection getFeatureCollection() {
         return (FeatureCollection) super.getSource();

@@ -20,8 +20,7 @@ import java.awt.event.MouseEvent;
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version $Revision$, $Date$
  *
- * @revisit This interface wrap a {@link MouseEvent}, which is not used
- *          by some toolkit like SWT.
+ * @todo This interface wrap a {@link MouseEvent}, which is not used by some toolkit like SWT.
  */
 public interface GraphicMouseEvent extends GraphicEvent {
     
@@ -50,9 +49,9 @@ public interface GraphicMouseEvent extends GraphicEvent {
      * unless the semantic is not supported by <code>MouseEvent</code>,
      * e.g. {@link #MOUSE_DWELLED}.
      *
-     * @revisit This specification is incompatible with {@link MouseEvent} constants!
-     *          This is because {@link #MOUSE_CLICKED} value is different from
-     *          {@link MouseEvent#MOUSE_CLICKED} value, etc.
+     * @todo This specification is incompatible with {@link MouseEvent} constants!
+     *       This is because {@link #MOUSE_CLICKED} value is different from
+     *       {@link MouseEvent#MOUSE_CLICKED} value, etc.
      */
     public int getID();
     

@@ -25,7 +25,7 @@ import org.opengis.util.SimpleEnumerationType;
  * @version $Revision$, $Date$
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  *
- * @revisit Localize descriptions.
+ * @todo Localize descriptions.
  */
 public class LineJoin extends SimpleEnumerationType {
     

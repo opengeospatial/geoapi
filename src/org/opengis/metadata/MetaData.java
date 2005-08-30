@@ -123,7 +123,7 @@ public interface MetaData {
     /**
      * Description of the spatial and temporal reference systems used in the dataset.
      *
-     * @revisit ISO 19115 use a {@code MD_ReferenceSystem} object instead of the ISO 19111 object.
+     * @todo ISO 19115 use a {@code MD_ReferenceSystem} object instead of the ISO 19111 object.
      */
     @Profile (level=CORE)
     @UML(identifier="referenceSystemInfo", obligation=OPTIONAL, specification=ISO_19115)

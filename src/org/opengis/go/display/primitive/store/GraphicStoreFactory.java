@@ -62,7 +62,7 @@ public interface GraphicStoreFactory {
      * Icon representing this category of <code>GraphicStore</code>s.
      * 
      * @return the icon.
-     * @revisit Assumed to point to a 16x16 icon?
+     * @todo Assumed to point to a 16x16 icon?
      */
     URI getIcon();
 
@@ -80,7 +80,7 @@ public interface GraphicStoreFactory {
      * Gets an {@code Object} array relating to the parameters needed (beyond
      * the URI) to instantiate a {@code GraphicStore}.
      * 
-     * @revisit Should be replaced with a <code>Param</code>[] based on ISO standards (ISO 19119).
+     * @todo Should be replaced with a <code>Param</code>[] based on ISO standards (ISO 19119).
      */
     Map<String,Class> getParametersInfo();
 

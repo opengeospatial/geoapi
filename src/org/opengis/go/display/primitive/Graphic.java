@@ -234,7 +234,7 @@ public interface Graphic {
      * Creates a new <code>Graphic</code> of the same type as this object.  The resulting
      * object should be identical in all respects to the original.
      *
-     * @revisit Consider overriding <code>Object.clone()</code> instead.
+     * @todo Consider overriding <code>Object.clone()</code> instead.
      */
     Graphic cloneGraphic();
 
@@ -270,8 +270,8 @@ public interface Graphic {
      * @see org.opengis.go.display.event.GraphicChangeEvent
      * @see org.opengis.go.display.event.GraphicMouseEvent
      *
-     * @revisit Usually, this kind of method is a protected one in the implementation class,
-     *          not a public method in the interface...
+     * @todo Usually, this kind of method is a protected one in the implementation class,
+     *       not a public method in the interface...
      */
     void fireGraphicEvent(GraphicEvent ge);
 

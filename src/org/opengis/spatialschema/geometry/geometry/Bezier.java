@@ -27,7 +27,7 @@ import static org.opengis.annotation.Specification.*;
  * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 2.0
  *
- * @revisit Add equations from ISO 19107 to the javadoc.
+ * @todo Add equations from ISO 19107 to the javadoc.
  */
 @UML(identifier="GM_Bezier", specification=ISO_19107)
 public interface Bezier extends BSplineCurve {

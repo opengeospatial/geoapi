@@ -26,16 +26,15 @@ import static org.opengis.annotation.Specification.*;
  * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 1.0
  *
- * @revisit UML specifies only one attribute, {@code extent}, of {@code TM_Primitive}
- *          type.
+ * @todo UML specifies only one attribute, {@code extent}, of {@code TM_Primitive} type.
  */
 @UML(identifier="EX_TemporalExtent", specification=ISO_19115)
 public interface TemporalExtent {
     /**
      * Returns the date and time for the content of the dataset.
      *
-     * @revisit ISO 19115 use a TM_Primitive return type from ISO 19108.
-     *          We need to give a closer look at this specification.
+     * @todo ISO 19115 use a TM_Primitive return type from ISO 19108.
+     *       We need to give a closer look at this specification.
      */
 //  @UML(identifier="extent", obligation=MANDATORY)
 //  Date getExtent();

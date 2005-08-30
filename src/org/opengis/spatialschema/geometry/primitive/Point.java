@@ -35,7 +35,7 @@ import static org.opengis.annotation.Specification.*;
  *
  * @see PrimitiveFactory#createPoint
  *
- * @revisit Some associations are commented out for now.
+ * @todo Some associations are commented out for now.
  */
 @UML(identifier="GM_Point", specification=ISO_19107)
 public interface Point extends Primitive, Position {

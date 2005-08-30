@@ -79,10 +79,6 @@ public interface GraphicIcon extends Graphic {
      * will be drawn over the icon's position.  This will also be the point
      * about which rotation will occur.  If the offset coordinate is null, then
      * the icon will be centered over its position.
-     *
-     * @revisit In the original interface, the argument was a <code>Pixel</code>
-     *          implementation. Do we really need to ask for a particuler class?
-     *          Replaced by <code>DirectPosition</code> for now.
      */
     public void setOffset(Point2D offset);
 
@@ -91,10 +87,6 @@ public interface GraphicIcon extends Graphic {
      * that will be drawn over the icon's position.  This is the center
      * of rotation as well.  If the offset coordinate is null, then the icon
      * will be centered over its position.
-     *
-     * @revisit In the original interface, the return value was a <code>Pixel</code>
-     *          implementation. Do we really need to ask for a particuler class?
-     *          Replaced by <code>DirectPosition</code> for now.
      */
     public Point2D getOffset();
 

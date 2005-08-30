@@ -97,6 +97,7 @@
         <include name="**/*.html"/>
         <include name="**/*.properties"/>
         <include name="com/**/*.java"/>
+        <include name="org/opengis/coverage/**/*.java"/>
         <exclude name="*.*"/>
       </fileset>
     </copy>
@@ -533,7 +534,7 @@
              source           = "1.5"
              use              = "true"
              nodeprecatedlist = "false"
-             author           = "true"
+             author           = "false"
              version          = "true"
              breakiterator    = "true"
              noqualifier      = "all"

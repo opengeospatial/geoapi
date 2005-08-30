@@ -46,7 +46,7 @@ import static org.opengis.annotation.Specification.*;
  *
  * @see PrimitiveFactory#createPrimitive(Envelope)
  *
- * @revisit Some associations are commented out for now.
+ * @todo Some associations are commented out for now.
  */
 @UML(identifier="GM_Primitive", specification=ISO_19107)
 public interface Primitive extends Geometry {
@@ -80,8 +80,8 @@ public interface Primitive extends Geometry {
      *
      * @return The set of primitives contained into this primitive.
      *
-     * @revisit Using a {@link Set} returns type allows the user to add or remove element in
-     *          this set at his convenience. Is it the right interpretation of this specification?
+     * @todo Using a {@link Set} returns type allows the user to add or remove element in
+     *       this set at his convenience. Is it the right interpretation of this specification?
      *
      * @see #getContainingPrimitives
      */
@@ -93,13 +93,13 @@ public interface Primitive extends Geometry {
      *
      * @return The set of primitives which contains this primitive.
      *
-     * @revisit Using a {@link Set} returns type allows the user to add or remove element in
-     *          this set at his convenience. Is it the right interpretation of this specification?
+     * @todo Using a {@link Set} returns type allows the user to add or remove element in
+     *       this set at his convenience. Is it the right interpretation of this specification?
      *
-     *          Should we stretch out some relation with contained primitive? For example
-     *          should we update the specification with something like the following?
-     *          "Invoking {@code B.getContainingPrimitive().add(A)} is equivalent to
-     *           invoking {@code A.getContainedPrimitive().add(B)}".
+     * @todo Should we stretch out some relation with contained primitive? For example
+     *       should we update the specification with something like the following?
+     *       "Invoking {@code B.getContainingPrimitive().add(A)} is equivalent to
+     *        invoking {@code A.getContainedPrimitive().add(B)}".
      *
      * @see #getContainedPrimitives
      */
@@ -113,8 +113,8 @@ public interface Primitive extends Geometry {
      *
      * @return The set of complexex which contains this primitive.
      *
-     * @revisit Does it means that {@code Primitive} can't be immutable, since
-     *          adding this primitive to a complex will change this set?
+     * @todo Does it means that {@code Primitive} can't be immutable, since
+     *       adding this primitive to a complex will change this set?
      */
     @UML(identifier="complex", obligation=MANDATORY, specification=ISO_19107)
     public Set<Complex> getComplexes();
@@ -131,7 +131,7 @@ public interface Primitive extends Geometry {
      *
      * @see OrientablePrimitive#getPrimitive
      *
-     * @revisit Should we use the plural form for the method names?
+     * @todo Should we use the plural form for the method names?
      */
     @UML(identifier="proxy", obligation=MANDATORY, specification=ISO_19107)
     public OrientablePrimitive[] getProxy();
