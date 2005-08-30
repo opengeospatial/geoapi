@@ -6,6 +6,9 @@
  * ====================================================================
  * 
  * $Log$
+ * Revision 1.2  2005/08/30 03:17:23  desruisseaux
+ * Javadoc fixes.
+ *
  * Revision 1.1  2005/03/03 11:54:42  desruisseaux
  * Added Stephane's interfaces proposal for GridCoverage
  *
@@ -20,8 +23,8 @@ import com.owsx.datatype.Datatype;
 /**
  * An Axis represents a parameter on which a measure depends on.
  * 
- * @TODO: We need to add reference system such as category list or 
- * the dimension of the quantity by giving a unit of measure. 
+ * @todo We need to add reference system such as category list or 
+ *       the dimension of the quantity by giving a unit of measure. 
  *
  * @author Stephane Fellah
  * @version $Revision$
@@ -55,8 +58,7 @@ public interface Axis {
      * ("m" for length) or a qualitative reference system
      * 
      * @return String
-     * @TODO: Review if there is a better way to convey Dimension 
-     * and Reference System.
+     * @todo Review if there is a better way to convey Dimension and Reference System.
      */
     public String getReferenceSystem();
 

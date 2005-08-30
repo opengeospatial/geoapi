@@ -33,8 +33,8 @@ import static org.opengis.annotation.Specification.*;
  * {@linkplain GridPoint grid points} that are associated with records of feature attribute
  * values through a {@linkplain GridValuesMatrix grid values matrix}.
  * <p>
- * {@code DiscreteGridPointCoverage} inherits the {@link #getElements elements}
- * and the operations {@link #locate locate}, {@link #find find}, and {@link #list list}, from
+ * {@code DiscreteGridPointCoverage} inherits the {@link #getElements elements} and the operations
+ * {@link #locate locate}, {@link #find(DirectPosition,int) find}, and {@link #list list}, from
  * {@link DiscreteCoverage}, with the restriction that the associated {@linkplain GeometryValuePair
  * geometry-value pairs} and those returned by the operations shall be limited to
  * {@link GridPointValuePair (grid point)-value pairs}. The {@linkplain #getElements elements}
@@ -87,9 +87,11 @@ public interface DiscreteGridPointCoverage extends DiscreteCoverage {
      * pairs that contain {@linkplain DomainObject domain objects} within {@code t}. If the value
      * of {@code t} is null, the operation shall return all <var>point</var>-<var>value</var>
      * pair that contain {@linkplain DomainObject domain objects} within {@code s}.
+     *
+     * @todo Missing the TM_Period argument
      */
     @UML(identifier="select", obligation=MANDATORY, specification=ISO_19123)
-    Set<GridPointValuePair> select(Geometry s/*, TM_Period t*/); // TODO
+    Set<GridPointValuePair> select(Geometry s/*, TM_Period t*/);
 
     /**
      * Returns the sequence of <var>point</var>-<var>value</var> pairs that include the
@@ -100,15 +102,15 @@ public interface DiscreteGridPointCoverage extends DiscreteCoverage {
      * pairs returned) shall be no greater than the number specified by the parameter {@code limit}.
      * The default shall be to return a single <var>point</var>-<var>value</var> pair. The operation
      * shall return a warning if the last {@linkplain DomainObject domain object} in the sequence is at
-     * a distance from the direct position equal to the distance of other {@link DomainObject domain objects}
-     * that are not included in the sequence.
+     * a distance from the direct position equal to the distance of other
+     * {@linkplain DomainObject domain objects} that are not included in the sequence.
      */
     @UML(identifier="find", obligation=MANDATORY, specification=ISO_19123)
     List<GridPointValuePair> find(DirectPosition p, int limit);
 
     /**
      * Returns the nearest <var>point</var>-<var>value</var> pair from the specified direct
-     * position. This is a shortcut for <code>{@linkplain #find(DirectPosition,int find}(p,1)</code>.
+     * position. This is a shortcut for <code>{@linkplain #find(DirectPosition,int) find}(p,1)</code>.
      */
     @UML(identifier="find", obligation=MANDATORY, specification=ISO_19123)
     GridPointValuePair find(DirectPosition p); 
@@ -124,9 +126,11 @@ public interface DiscreteGridPointCoverage extends DiscreteCoverage {
      * Returns a set of {@linkplain GridPoint grid points} for the specified record of feature
      * attribute values. Normally, this method returns the set of {@linkplain GridPoint points}
      * in the domain that are associated with values equal to those in the input record. However,
-     * the operation may return other {@linkplain GridPoints points} derived from those in the
+     * the operation may return other {@linkplain GridPoint points} derived from those in the
      * domain, as specified by the application schema.
+     *
+     * @todo Missing the Record argument.
      */
     @UML(identifier="evaluateInverse", obligation=MANDATORY, specification=ISO_19123)
-    Set<GridPoint> evaluateInverse(Object /*<Record>*/ v); // TODO    
+    Set<GridPoint> evaluateInverse(Object /*<Record>*/ v);
 }

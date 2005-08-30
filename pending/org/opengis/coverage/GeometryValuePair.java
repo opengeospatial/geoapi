@@ -38,7 +38,7 @@ import static org.opengis.annotation.Specification.*;
  * @see Coverage#list
  *
  * @todo Consider replacing {@code Set<GeometryValuePair>} by {@code Map<DomainObject,Object>}.
- *       Wim: remember the derived interfaces like {@link GridPointValuePair} etc.
+ *       Wim: remember the derived interfaces like {@code GridPointValuePair} etc.
  *       Martin: At least some of them are just overriding methods with covariant return type,
  *               which can be handled with generic types as well.
  */

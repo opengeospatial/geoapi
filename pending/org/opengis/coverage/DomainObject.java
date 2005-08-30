@@ -25,7 +25,7 @@ import static org.opengis.annotation.Specification.*;
 /**
  * Represents an element of the domain of the {@linkplain Coverage coverage}. It is an aggregation
  * of objects that may include any combination of {@linkplain Geometry geometry}, or spatial or
- * temporal objects such as {@linkplain GridPoint grid point}.
+ * temporal objects such as {@linkplain org.opengis.coverage.grid.GridPoint grid point}.
  * 
  * @author Stephane Fellah
  * @author Martin Desruisseaux
