@@ -34,6 +34,7 @@ import static org.opengis.annotation.Specification.*;
  * 
  * @author Stephane Fellah
  * @author Martin Desruisseaux
+ * @author Wim Koolhoven
  *
  * @todo Work not finished. We need to port methods from legacy OGC 01-004 if and when useful,
  *       as well as method from the Coverage interfaces in the com.owsx.coverage package.
