@@ -44,7 +44,7 @@ public interface GridCell {
     /**
      * Returns the {@linkplain Grid grid} of which this cell is a component.
      *
-     * @see Grid#getCell
+     * @see Grid#getCells
      */
     @UML(identifier="framework", obligation=MANDATORY, specification=ISO_19123)
     Grid getFramework();

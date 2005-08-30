@@ -59,7 +59,7 @@ public interface ValueObject {
      * @todo Consider leveraging the parameter package.
      */
     @UML(identifier="interpolationParameters", obligation=OPTIONAL, specification=ISO_19123)
-    Object getInterpolationParameters(); // TODO
+    Object getInterpolationParameters();
 
     /**
      * Returns the record of feature attribute values computed for the specified direct position.

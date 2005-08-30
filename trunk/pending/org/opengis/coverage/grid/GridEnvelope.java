@@ -17,7 +17,7 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * Provides the {@linkplain GridCoordinate grid coordinate} values for the diametrically opposed
+ * Provides the {@linkplain GridCoordinates grid coordinate} values for the diametrically opposed
  * corners of the (@linkplain Grid grid).
  *  
  * @author Wim Koolhoven

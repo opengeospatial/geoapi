@@ -6,6 +6,9 @@
  * ====================================================================
  * 
  * $Log$
+ * Revision 1.2  2005/08/30 03:17:23  desruisseaux
+ * Javadoc fixes.
+ *
  * Revision 1.1  2005/03/03 11:54:42  desruisseaux
  * Added Stephane's interfaces proposal for GridCoverage
  *
@@ -92,7 +95,7 @@ public interface Measure {
      * Get the unit of measure (if the measurement scale  is ratio or interval).
      * 
      * @return String
-     * @TODO review if there is a better way to model Unit (JSR 108 is dead).
+     * @todo review if there is a better way to model Unit (JSR 108 is dead).
      */
     public String getUnit();
 }

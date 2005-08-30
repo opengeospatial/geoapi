@@ -25,7 +25,8 @@ import static org.opengis.annotation.Specification.*;
 /**
  * Basis for interpolating within a {@linkplain ContinuousQuadrilateralGridCoverage
  * continuous quadrilateral grid coverage}. A {@code GridValueCell} is a collection
- * of {@link GridPointValuePair}s with a geometric structure defined by a {@link GridCell}.
+ * of {@linkplain GridPointValuePair grid point value pairs} with a geometric structure
+ * defined by a {@linkplain GridCell grid cell}.
  * 
  * @author Wim Koolhoven
  * @author Martin Schouwenburg
@@ -45,7 +46,7 @@ public interface GridValueCell extends ValueObject {
 
     /**
      * Returns the set of <var>grid point</var>-<var>value</var> pairs at the corners of this
-     * {@code GridValueCell} 
+     * {@code GridValueCell}.
      */
     @UML(identifier="controlValue", obligation=MANDATORY, specification=ISO_19123)
     Set<GridPointValuePair> getControlValues();

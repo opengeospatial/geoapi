@@ -37,7 +37,7 @@ public interface GridCoordinates {
 
     /**
      * Returns the coordinate value at the specified dimension. This method is equivalent to
-     * <code>{@linkplain #getCoordinateValues()}.[<var>i</var>]</code>. It is provided for
+     * <code>{@linkplain #getCoordinateValues()}[<var>i</var>]</code>. It is provided for
      * efficienty.
      */
     @Extension

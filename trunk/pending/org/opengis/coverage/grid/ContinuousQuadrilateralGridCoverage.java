@@ -75,7 +75,7 @@ public interface ContinuousQuadrilateralGridCoverage extends ContinuousCoverage 
     /**
      * Returns a set of records of feature attribute values for the specified direct position.
      * Evaluation of a continuous quadrilateral grid coverage involves two steps. The first is
-     * to use the information from the {@linkplain GridValuesMatrix values matrix} at {@link
+     * to use the information from the {@linkplain GridValuesMatrix values matrix} at {@linkplain
      * QuadrilateralGridCoverage#getSource quadrilateral grid coverage source} to generate the
      * {@linkplain GridValueCell grid value cell} that contains the input {@linkplain DirectPosition
      * direct position}; the second is to interpolate the feature attribute values at the direct
@@ -91,9 +91,11 @@ public interface ContinuousQuadrilateralGridCoverage extends ContinuousCoverage 
      * with the {@linkplain GridPointValuePair grid point value pair} at the nearest corner of the
      * {@linkplain GridValueCell grid value cell}. In other words, a continuous grid coverage
      * that uses nearest neighbour interpolation acts as a discrete surface coverage.
+     *
+     * @todo The return type should be Set<Record>.
      */
     @UML(identifier="evaluate", obligation=MANDATORY, specification=ISO_19123)
-    Set/*<Record>*/ evaluate(DirectPosition p, Collection<String> list); // TODO
+    Set/*<Record>*/ evaluate(DirectPosition p, Collection<String> list);
 
     /**
      * Provides the data for the {@linkplain #evaluate evaluate} operation.

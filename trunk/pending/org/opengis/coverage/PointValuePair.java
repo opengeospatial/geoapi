@@ -20,8 +20,8 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * A {@link GeometryValuePair} that has a {@linkplain Point point} as the value of its geometry
- * attribute.
+ * A {@linkplain GeometryValuePair geometry-value pair} that has a {@linkplain Point point}
+ * as the value of its geometry attribute.
  *
  * @author Wim Koolhoven
  */

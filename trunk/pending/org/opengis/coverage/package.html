@@ -42,9 +42,10 @@
   a transfinite set. Coverages often model many associated functions sharing the same domain. Therefore, the value
   set is represented as a collection of records with a common schema.</P>
 
-  <BLOCKQUOTE><P ALIGN="justify"><B>Example:</B> A coverage might assign to each direct position in a county the
-  temperature, pressure, humidity, and wind velocity at noon, today, at that point. The coverage maps every direct
-  position in the county to a record of 4 fields.</P></BLOCKQUOTE>
+  <BLOCKQUOTE><P ALIGN="justify"><B>Example:</B>
+  A coverage might assign to each direct position in a county the temperature, pressure, humidity, and wind
+  velocity at noon, today, at that point. The coverage maps every direct position in the county to a record
+  of 4 fields.</P></BLOCKQUOTE>
 
   <P ALIGN="justify">A feature attribute value may be of any data type. However, evaluation of a
   {@linkplain org.opengis.coverage.ContinuousCoverage continuous coverage} is usually implemented
@@ -56,8 +57,9 @@
   of a set of geometric objects associated with specific values of the attributes. Inverse evaluation may return
   many geometric objects associated with a single feature attribute value.</P>
 
-  <BLOCKQUOTE><P ALIGN="justify"><B>Example:</B> Inverse evaluation is used for the extraction of contours from an
-  elevation coverage and the extraction of classified regions in an image.</P>
+  <BLOCKQUOTE><P ALIGN="justify"><B>Example:</B>
+  Inverse evaluation is used for the extraction of contours from an elevation coverage and the extraction of
+  classified regions in an image.</P></BLOCKQUOTE>
 
   <H3>Discrete and continuous coverages</H3>
   <P ALIGN="justify">Coverages are of two types. A {@linkplain org.opengis.coverage.DiscreteCoverage discrete coverage}
@@ -69,23 +71,25 @@
   of independent and dependent variables. Each independent variable is a geometric object and each dependent variable
   is a record of feature attribute values.</P>
 
-  <BLOCKQUOTE><P ALIGN="justify"><B>Example:</B> A coverage that maps a set of polygons to the soil type found within
-  each polygon is an example of a discrete coverage.</P>
+  <BLOCKQUOTE><P ALIGN="justify"><B>Example:</B>
+  A coverage that maps a set of polygons to the soil type found within each polygon is an example of a
+  discrete coverage.</P></BLOCKQUOTE>
 
   <P ALIGN="justify">A continuous coverage has a domain that consists of a set of direct positions in a coordinate space.
   A continuous coverage maps direct positions to value records.</P>
 
-  <BLOCKQUOTE><P ALIGN="justify"><B>Example:</B> Consider a coverage that maps direct positions in San Diego County
-  to their temperature at noon today. Both the domain and the range may take infinitely many different values. This
-  continuous coverage would be associated with a discrete coverage that holds the temperature values observed at a
-  set of weather stations.</P>
+  <BLOCKQUOTE><P ALIGN="justify"><B>Example:</B>
+  Consider a coverage that maps direct positions in San Diego County to their temperature at noon today. Both the
+  domain and the range may take infinitely many different values. This continuous coverage would be associated with
+  a discrete coverage that holds the temperature values observed at a set of weather stations.</P></BLOCKQUOTE>
 
   <P ALIGN="justify">A continuous coverage may consist of no more than a spatially bounded, but transfinite set of
   direct positions, and a mathematical function that relates direct position to feature attribute value. This is
   called an analytical coverage.</P>
 
-  <BLOCKQUOTE><P ALIGN="justify"><B>Example:</B> A statistical trend surface that relates land value to position
-  relative to a city centre is an example of a continuous coverage.</P>
+  <BLOCKQUOTE><P ALIGN="justify"><B>Example:</B>
+  A statistical trend surface that relates land value to position relative to a city centre is an example
+  of a continuous coverage.</P></BLOCKQUOTE>
 
   <P ALIGN="justify">More often, the domain of a continuous coverage consists of the direct positions
   in the union or in the convex hull of a finite collection of geometric objects; it is specified by
@@ -98,7 +102,8 @@
   value object is a geometric object associated with a set of geometry value pairs that provide the control for
   constructing the geometric object and for evaluating the coverage at direct positions within the geometric object.</P>
 
-  <BLOCKQUOTE><P ALIGN="justify"><B>Example:</B> Evaluation of a triangulated irregular network involves
-  interpolation of values within a triangle composed of three neighbouring point value pairs.</P>
+  <BLOCKQUOTE><P ALIGN="justify"><B>Example:</B>
+  Evaluation of a triangulated irregular network involves interpolation of values within a triangle composed
+  of three neighbouring point value pairs.</P></BLOCKQUOTE>
   </BODY>
 </HTML>

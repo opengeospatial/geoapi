@@ -70,7 +70,7 @@ public interface Discovery extends WebServiceClient {
     /**
      * Performs the submitted <code>DescribeRecord</code> -request.
      * 
-     * TODO: Check output schema & Co.
+     * @todo Check output schema & Co.
      */
 //    DescribeRecordResult describeRecordType(DescribeRecord request);
 

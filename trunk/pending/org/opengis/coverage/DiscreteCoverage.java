@@ -65,9 +65,11 @@ public interface DiscreteCoverage extends Coverage {
      *
      * @todo Superclass throws an exception if the position is not in the domain (instead of
      *       returning null)...
+     *
+     * @todo Returns type should be Set<Record>.
      */
     @UML(identifier="evaluate", obligation=MANDATORY, specification=ISO_19123)
-    Set/*<Record>*/ evaluate(DirectPosition p, Collection<String> list); // TODO
+    Set/*<Record>*/ evaluate(DirectPosition p, Collection<String> list);
 
     /**
      * Locates the <var>geometry</var>-<var>value</var> pairs for which value equals the input
@@ -75,7 +77,9 @@ public interface DiscreteCoverage extends Coverage {
      * <var>geometry</var>-<var>value</var> pairs. It shall return {@code null} set if none of the
      * <var>geometry</var>-<var>value</var> pairs associated with this discrete coverage has a
      * value equal to the input record.
+     *
+     * @todo Missing the Record argument.
      */
     @UML(identifier="evaluateInverse", obligation=OPTIONAL, specification=ISO_19123)
-    Set<? extends DomainObject> evaluateInverse(Object /*<Record>*/ v); // TODO    
+    Set<? extends DomainObject> evaluateInverse(Object /*<Record>*/ v);
 }

@@ -65,23 +65,24 @@ public interface ContinuousCoverage extends Coverage {
      *       package.
      */
     @UML(identifier="interpolationParameterTypes", obligation=OPTIONAL, specification=ISO_19123)
-    Object getInterpolationParameterTypes(); // TODO
+    Object getInterpolationParameterTypes();
 
     /**
      * Returns the set of value objects that contains the specified direct position.
-     * {@link DomainObject}s containing the specified direct position. It shall return an empty
-     * set if the direct position is not on any of the {@link DomainObject}s within the domain
-     * of the continuous coverage.
+     * It shall return an empty set if the direct position is not on any of the
+     * {@linkplain DomainObject objects} within the domain of the continuous coverage.
      */
     @UML(identifier="locate", obligation=OPTIONAL, specification=ISO_19123)
     Set<? extends ValueObject> locate(DirectPosition p);
 
     /**
      * Returns the set of <var>geometry</var>-<var>value</var> pairs associated with the
-     * {@link ValueObject value objects} of which this continuous coverage is composed.
+     * {@linkplain ValueObject value objects} of which this continuous coverage is composed.
+     *
+     * @todo Missing the TM_Period argument.
      */
     @UML(identifier="select", obligation=MANDATORY, specification=ISO_19123)
-    Set<? extends GeometryValuePair> select(Geometry s/*, TM_Period t*/); // TODO
+    Set<? extends GeometryValuePair> select(Geometry s/*, TM_Period t*/);
 
     /**
      * Returns a set of records of feature attribute values for the specified direct position. Most
@@ -92,9 +93,11 @@ public interface ContinuousCoverage extends Coverage {
      * objects, the operation shall return a record of feature attribute values derived according to the
      * {@linkplain #getCommonPointRule common point rule}. It shall return an empty set if the direct
      * position is not on any {@linkplain ValueObject value object}.
+     *
+     * @todo The return type should be Set<Record>.
      */
     @UML(identifier="evaluate", obligation=MANDATORY, specification=ISO_19123)
-    Set/*<Record>*/ evaluate(DirectPosition p, Collection<String> list); // TODO
+    Set/*<Record>*/ evaluate(DirectPosition p, Collection<String> list);
 
     /**
      * Locates the <var>geometry</var>-<var>value</var> pairs for which value equals the specified
@@ -107,8 +110,11 @@ public interface ContinuousCoverage extends Coverage {
      * associated with the continuous coverage has a value equal to the specified record.
      * <p>
      * <b>Example:</b>This operation could return a set of contours derived from the feature
-     * attribute values associated with the {@linkplain GridPoint grid points} of a grid coverage.
+     * attribute values associated with the {@linkplain org.opengis.coverage.grid.GridPoint
+     * grid points} of a grid coverage.
+     *
+     * @todo Missing the Record argument.
      */
     @UML(identifier="evaluateInverse", obligation=MANDATORY, specification=ISO_19123)
-    Set<? extends DomainObject> evaluateInverse(Object /*<Record>*/ v); // TODO
+    Set<? extends DomainObject> evaluateInverse(Object /*<Record>*/ v);
 }

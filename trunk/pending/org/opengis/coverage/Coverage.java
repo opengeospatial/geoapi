@@ -68,7 +68,7 @@ public interface Coverage {
      * <p>
      * In the case of a {@linkplain DiscreteCoverage discrete coverage}, the size of the range
      * collection equals that of the {@linkplain #getDomainElements domains} collection. In other
-     * words, there is one instance of {@link AttributeValue} for each instance of {@link DomainObject}.
+     * words, there is one instance of {@link AttributeValues} for each instance of {@link DomainObject}.
      * Usually, these are stored values that are accessed by the
      * {@link #evaluate(DirectPosition,Collection) evaluate} operation.
      * <p>
@@ -125,10 +125,11 @@ public interface Coverage {
      * pair that contain {@linkplain DomainObject domain objects} within {@code s}. In the case
      * of an analytical coverage, the operation shall return the empty set.
      *
-     * @todo Consider using a Map.
+     * @todo Consider using a Map as return type.
+     * @todo Missing the TM_Period argument.
      */
     @UML(identifier="select", obligation=MANDATORY, specification=ISO_19123)
-    Set<? extends GeometryValuePair> select(Geometry s/*, TM_Period t*/); // TODO
+    Set<? extends GeometryValuePair> select(Geometry s/*, TM_Period t*/);
 
     /**
      * Returns the sequence of <var>geometry</var>-<var>value</var> pairs that include the
@@ -139,9 +140,9 @@ public interface Coverage {
      * pairs returned) shall be no greater than the number specified by the parameter {@code limit}.
      * The default shall be to return a single <var>geometry</var>-<var>value</var> pair. The operation
      * shall return a warning if the last {@linkplain DomainObject domain object} in the sequence is at
-     * a distance from the direct position equal to the distance of other {@link DomainObject domain objects}
-     * that are not included in the sequence. In the case of an analytical coverage, the operation shall
-     * return the empty set.
+     * a distance from the direct position equal to the distance of other {@linkplain DomainObject domain
+     * objects} that are not included in the sequence. In the case of an analytical coverage, the operation
+     * shall return the empty set.
      * <p>
      * <B>NOTE:</B> This operation is useful when the domain of a coverage does not exhaustively
      * partition the extent of the coverage. Even in that case, the first element of the sequence
@@ -153,7 +154,7 @@ public interface Coverage {
 
     /**
      * Returns the nearest <var>geometry</var>-<var>value</var> pair from the specified direct
-     * position. This is a shortcut for <code>{@linkplain #find(DirectPosition,int find}(p,1)</code>.
+     * position. This is a shortcut for <code>{@linkplain #find(DirectPosition,int) find}(p,1)</code>.
      */
     @UML(identifier="find", obligation=MANDATORY, specification=ISO_19123)
     GeometryValuePair find(DirectPosition p);
@@ -169,9 +170,11 @@ public interface Coverage {
      * according to the {@linkplain #getCommonPointRule common point rule}.
      * <P>
      * <B>NOTE:</B> Normally, the operation will return a single record of feature attribute values.
+     *
+     * @todo The return type should be Set<Record>.
      */
     @UML(identifier="evaluate", obligation=MANDATORY, specification=ISO_19123)
-    Set/*<Record>*/ evaluate(DirectPosition p, Collection<String> list); // TODO
+    Set/*<Record>*/ evaluate(DirectPosition p, Collection<String> list);
 
     /**
      * Returns a set of {@linkplain DomainObject domain objects} for the specified record of feature
@@ -182,8 +185,10 @@ public interface Coverage {
      * <p>
      * <B>Example:</B> The {@code evaluateInverse} operation could return a set
      * of contours derived from the feature attribute values associated with the
-     * {@linkplain org.opengis.coverage.grid.GridPoints grid points} of a grid coverage.
+     * {@linkplain org.opengis.coverage.grid.GridPoint grid points} of a grid coverage.
+     *
+     * @todo Missing the Record argument.
      */
     @UML(identifier="evaluateInverse", obligation=MANDATORY, specification=ISO_19123)
-    Set<? extends DomainObject> evaluateInverse(Object /*<Record>*/ v); // TODO
+    Set<? extends DomainObject> evaluateInverse(Object /*<Record>*/ v);
 }

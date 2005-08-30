@@ -40,7 +40,7 @@ public interface GridValuesMatrix extends Grid {
      *       <table border=1>
      *         <tr><td>DTM<td>double<td>List&lt;double&gt;
      *         <tr><td>TM image<td>7 bytes<td>
-     *         <tr><td>Landuse map<td>string<td><code>List<double></code> with look up table for the strings
+     *         <tr><td>Landuse map<td>string<td>{@code List<double>} with look up table for the strings
      *       </table>   
      */
 	@UML(identifier="values", obligation=MANDATORY, specification=ISO_19123)

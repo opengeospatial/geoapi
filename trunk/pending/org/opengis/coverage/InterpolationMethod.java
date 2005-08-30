@@ -34,8 +34,8 @@ import static org.opengis.annotation.Specification.*;
  * schema that specifies additional interpolation methods.
  * <p>
  * <table border="1">
- *   <tr><th>Method</th>    <th>Coverage Type</th>    <th>Value object dimension</th></tr>
- *   <tr><td>Nearest Neighbour</td><td>Any</td>    <td> Any C.2
+ *   <tr><th>Method</th>           <th>Coverage Type</th> <th>Value object dimension</th></tr>
+ *   <tr><td>Nearest Neighbour</td><td>Any</td>                             <td>Any</td></tr>
  *   <tr><td>Linear</td>           <td>Segmented Curve</td>                 <td>1</td></tr>
  *   <tr><td>Quadratic</td>        <td>Segmented Curve</td>                 <td>1</td></tr>
  *   <tr><td>Cubic</td>            <td>Segmented Curve</td>                 <td>1</td></tr>
