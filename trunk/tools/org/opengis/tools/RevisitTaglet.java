@@ -18,7 +18,7 @@ import com.sun.tools.doclets.internal.toolkit.taglets.TagletWriter;
 
 
 /**
- * The <code>@revisit</code> tag.
+ * The <code>@todo</code> tag.
  *
  * @version $Id$
  * @author Martin Desruisseaux
@@ -35,10 +35,10 @@ public final class RevisitTaglet extends SimpleTaglet {
     }
 
     /**
-     * Constructs a default <code>@revisit</code> taglet.
+     * Constructs a default <code>@todo</code> taglet.
      */
     private RevisitTaglet() {
-        super("revisit", "<U>REVISIT OPEN ISSUE "+
+        super("todo", "<U>REVISIT OPEN ISSUE "+
               "<FONT COLOR='#A01020'>(a GeoAPI comment)</FONT></U>",
               "tmf");
     }
@@ -47,25 +47,25 @@ public final class RevisitTaglet extends SimpleTaglet {
      * Return the name of this custom tag.
      */
     public String getName() {
-        return "revisit";
+        return "todo";
     }
 
     /**
-     * Returns <code>true</code> since <code>@revisit</code> can be used in overview.
+     * Returns <code>true</code> since <code>@todo</code> can be used in overview.
      */
     public boolean inOverview() {
         return true;
     }
 
     /**
-     * Returns <code>true</code> since <code>@revisit</code> can be used in package documentation.
+     * Returns <code>true</code> since <code>@todo</code> can be used in package documentation.
      */
     public boolean inPackage() {
         return true;
     }
 
     /**
-     * Returns <code>true</code> since <code>@revisit</code> can be used in type documentation
+     * Returns <code>true</code> since <code>@todo</code> can be used in type documentation
      * (classes or interfaces).
      */
     public boolean inType() {
@@ -73,14 +73,14 @@ public final class RevisitTaglet extends SimpleTaglet {
     }
 
     /**
-     * Returns <code>true</code> since <code>@revisit</code> can be used in constructor
+     * Returns <code>true</code> since <code>@todo</code> can be used in constructor
      */
     public boolean inConstructor() {
         return true;
     }
 
     /**
-     * Returns <code>true</code> since <code>@revisit</code> can be used in method documentation.
+     * Returns <code>true</code> since <code>@todo</code> can be used in method documentation.
      */
     public boolean inMethod() {
         return true;
@@ -104,7 +104,7 @@ public final class RevisitTaglet extends SimpleTaglet {
      * Format the doc.
      */
     public TagletOutput getTagletOutput(final Doc doc, final TagletWriter writer) {
-        final Tag[] tags = doc.tags("revisit");
+        final Tag[] tags = doc.tags("todo");
         if (tags.length == 0) {
             return null;
         }

@@ -70,10 +70,10 @@ public interface CoordinateOperationFactory extends ObjectFactory {
      *         to {@code targetCRS}.
      * @throws FactoryException if the operation creation failed for some other reason.
      *
-     * @revisit More than one operation step may be involved in the path from {@code sourceCRS}
-     *          to {@code targetCRS}, but this method has only one {@code method} argument.
-     *          The user could have more fine grain control with {@link MathTransformFactory} (ported
-     *          from OGC 2001-09).
+     * @todo More than one operation step may be involved in the path from {@code sourceCRS}
+     *       to {@code targetCRS}, but this method has only one {@code method} argument.
+     *       The user could have more fine grain control with {@link MathTransformFactory} (ported
+     *       from OGC 2001-09).
      */
     @Extension
     CoordinateOperation createOperation(CoordinateReferenceSystem sourceCRS,

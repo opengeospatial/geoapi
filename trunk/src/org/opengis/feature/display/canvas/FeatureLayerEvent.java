@@ -84,7 +84,7 @@ public class FeatureLayerEvent extends EventObject {
     /**
      * Synonym for {@link #getSource}.
      *
-     * @revisit To be replaced by {@link #getSource} in a J2SE 1.5 profile.
+     * @todo To be replaced by {@link #getSource} in a J2SE 1.5 profile.
      */
     public FeatureLayer getLayer() {
         return (FeatureLayer) super.getSource();

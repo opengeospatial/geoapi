@@ -67,7 +67,7 @@ public interface GridCoverageWriter {
      * @return The list of metadata keywords for the output destination.
      * @throws IOException if an error occurs during reading or writing.
      *
-     * @revisit This javadoc may not apply thats well in the iterator scheme.
+     * @todo This javadoc may not apply thats well in the iterator scheme.
      */
     String[] getMetadataNames();
 
@@ -80,7 +80,7 @@ public interface GridCoverageWriter {
      * @throws MetadataNameNotFoundException if the specified metadata name is not handled
      *         for this format.
      *
-     * @revisit This javadoc may not apply thats well in the iterator scheme.
+     * @todo This javadoc may not apply thats well in the iterator scheme.
      */
     void setMetadataValue(String name, String value) throws IOException, MetadataNameNotFoundException;
 
@@ -90,7 +90,7 @@ public interface GridCoverageWriter {
      * at reading time.
      *
      * @throws IOException if an error occurs during writing.
-     * @revisit Do we need a special method for that, or should it be a metadata?
+     * @todo Do we need a special method for that, or should it be a metadata?
      */
     void setCurrentSubname(String name) throws IOException;
 

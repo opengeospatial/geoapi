@@ -55,7 +55,7 @@ public interface Georeferenceable extends GridSpatialRepresentation {
     /**
      * Terms which support grid data georeferencing.
      *
-     * @revisit Return type in UML is {@code Record}.
+     * @todo Return type in UML is {@code Record}.
      */
     @UML(identifier="parameters", obligation=OPTIONAL, specification=ISO_19115)
     Object getParameters();

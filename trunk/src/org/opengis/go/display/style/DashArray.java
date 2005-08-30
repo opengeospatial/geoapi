@@ -55,7 +55,7 @@ public class DashArray extends LinePattern {
     /**
      * Returns the dash pattern.
      *
-     * @revisit Should clone the array in order to protect the enum from change.
+     * @todo Should clone the array in order to protect the enum from change.
      */
     public float[] getDashPattern() {
         return dashPattern;

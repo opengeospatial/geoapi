@@ -39,9 +39,9 @@ public interface Bearing {
      *
      * @return An array of length 0, 1 or 2 containing the azimuth and altitude angles.
      *
-     * @revisit Should we split this method in {@code getAzimuth()} and
-     *          {@code getAltitude()} methods instead? Should we provides
-     *          a {@code getDimension()} method too?
+     * @todo Should we split this method in {@code getAzimuth()} and
+     *       {@code getAltitude()} methods instead? Should we provides
+     *       a {@code getDimension()} method too?
      */
     @UML(identifier="angle", obligation=MANDATORY, specification=ISO_19107)
     public double[] getAngles();

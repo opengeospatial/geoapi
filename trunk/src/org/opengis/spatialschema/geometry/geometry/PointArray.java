@@ -89,9 +89,9 @@ public interface PointArray {
      *
      * @see DirectPosition#getCoordinateReferenceSystem
      *
-     * @revisit ISO 19107 do not defines such an association. We may keep this method as a
-     *          convenience, but it put a constraint on the points that a {@code PointArray}
-     *          can contains. Whatever or not this constraints is wanted is an open question.
+     * @todo ISO 19107 do not defines such an association. We may keep this method as a
+     *       convenience, but it put a constraint on the points that a {@code PointArray}
+     *       can contains. Whatever or not this constraints is wanted is an open question.
      */
     @Extension
     public CoordinateReferenceSystem getCoordinateReferenceSystem();

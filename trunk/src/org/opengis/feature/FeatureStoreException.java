@@ -19,9 +19,9 @@ import java.sql.SQLException;  // For javadoc
  * Thrown to indicate that a {@link FeatureStore} operation could not complete because of a
  * failure in the backing store, or a failure to contact the backing store.
  *
- * @revisit Since this is a {@link FeatureStore} exception should we have a backpointer
- *          to the {@code FeatureStore}? Or at least an indication of which data store
- *          caused the problem?
+ * @todo Since this is a {@link FeatureStore} exception should we have a backpointer
+ *       to the {@code FeatureStore}? Or at least an indication of which data store
+ *       caused the problem?
  * 
  * @since GeoAPI 2.0
  */

@@ -45,8 +45,8 @@ public interface OrientableCurve extends OrientablePrimitive {
      *
      * @return The owner of this orientable curve, or {@code null} if none.
      *
-     * @revisit I'm not sure to interpret correctly the ISO specification.
-     *          Sound like ISO returns an array (or a sequence) here.
+     * @todo I'm not sure to interpret correctly the ISO specification.
+     *       Sound like ISO returns an array (or a sequence) here.
      */
     @UML(identifier="composite", obligation=MANDATORY, specification=ISO_19107)
     public CompositeCurve getComposite();

@@ -26,8 +26,8 @@ import static org.opengis.annotation.Specification.*;
  * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 2.0
  *
- * @revisit Collection types in this interface are not yet defined, because they require
- *          {@code Feature} and {@code FeatureType}.
+ * @todo Collection types in this interface are not yet defined, because they require
+ *       {@code Feature} and {@code FeatureType}.
  */
 @UML(identifier="MD_ScopeDescription", specification=ISO_19115)
 public interface ScopeDescription {

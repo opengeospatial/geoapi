@@ -40,8 +40,8 @@ public interface EventHandler extends EventListener {
     /**
      * Invoked when the handler is permanently removed.
      *
-     * @revisit According <code>EventManagerSupport</code> implementation, a handler
-     *          is disabled before to be removed. The specification should said that.
+     * @todo According <code>EventManagerSupport</code> implementation, a handler
+     *       is disabled before to be removed. The specification should said that.
      */
     public abstract void handlerRemoved();
 

@@ -45,10 +45,6 @@ public interface GraphicStyle extends Cloneable {
      *
      * @param hintName The hint key.
      * @return the hint object associated with the hint name.
-     *
-     * @revisit Why not <code>getRenderingHint</code> for consistency
-     *          with current J2SE usage? Then, the key type should
-     *          be a {@link java.awt.RenderingHint.Key} type.
      */
     public Object getImplHint(String hintName);
 
@@ -57,10 +53,6 @@ public interface GraphicStyle extends Cloneable {
      *
      * @param hintname The hint key.
      * @param hint The hint.
-     *
-     * @revisit Why not <code>setRenderingHint</code> for consistency
-     *          with current J2SE usage? Then, the key type should
-     *          be a {@link java.awt.RenderingHint.Key} type.
      */
     public void setImplHint(String hintname, Object hint);
 

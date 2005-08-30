@@ -32,7 +32,7 @@ public interface GraphicStore {
      *
      * @return URI to a icon (GIF or PNG) representing this {@code GraphicStore}.
      *
-     * @revisit Assumed 16x16 in size.
+     * @todo Assumed 16x16 in size.
      */
     URI getIcon();
 
