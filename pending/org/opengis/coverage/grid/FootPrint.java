@@ -31,7 +31,7 @@ import static org.opengis.annotation.Specification.*;
 public interface FootPrint {
 	/**
 	 * Returns the geometry that shapes the foot print. In the simplest case this
-	 * can be a point, but i can also be a disc, spehere or hypersphere
+	 * can be a point, but it can also be a disc, sphere or hypersphere
 	 */
     @UML(identifier="geometry", obligation=MANDATORY, specification=ISO_19123)
 	Geometry getGeometry();
