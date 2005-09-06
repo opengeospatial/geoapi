@@ -99,7 +99,7 @@ public class ArrowStyle extends SimpleEnumerationType {
     /**
      * Returns the list of <code>ArrowStyle</code>s.
      */
-    public static ArrowStyle[] values() {
+    public ArrowStyle[] values() {
         synchronized (VALUES) {
             return (ArrowStyle[]) VALUES.toArray(new ArrowStyle[VALUES.size()]);
         }
@@ -111,4 +111,15 @@ public class ArrowStyle extends SimpleEnumerationType {
     public CodeList[] family() {
         return values();
     }
+    
+    // Get our compare on
+	public int compareTo(Object obj) {
+		int index = VALUES.indexOf( this );
+		int indexOther = VALUES.indexOf( obj );
+		
+		if (index == indexOther) return 0;
+		if (index < indexOther ) return -1;
+		return 1;
+	}
+
 }
