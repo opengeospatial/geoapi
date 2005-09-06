@@ -97,4 +97,13 @@ public class LineJoin extends SimpleEnumerationType {
     public CodeList[] family() {
         return values();
     }
+    // Get our compare on
+	public int compareTo(Object obj) {
+		int index = VALUES.indexOf( this );
+		int indexOther = VALUES.indexOf( obj );
+		
+		if (index == indexOther) return 0;
+		if (index < indexOther ) return -1;
+		return 1;
+	}    
 }
