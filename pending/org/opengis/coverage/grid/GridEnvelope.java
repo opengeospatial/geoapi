@@ -12,6 +12,9 @@ package org.opengis.coverage.grid;
 
 // Annotations
 import org.opengis.annotation.UML;
+import org.opengis.spatialschema.geometry.geometry.Position;
+import org.opengis.util.Cloneable;
+
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
 
@@ -28,7 +31,7 @@ import static org.opengis.annotation.Specification.*;
  * @author Martin Schouwenburg
  */
 @UML(identifier="CV_GridEnvelope", specification=ISO_19123)
-public interface GridEnvelope {
+public interface GridEnvelope extends Cloneable {
     /**
      * Returns the minimal coordinate values for all grid points within the {@linkplain Grid grid).
      */
