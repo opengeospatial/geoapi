@@ -49,6 +49,9 @@ import static org.opengis.annotation.Specification.*;
  *
  * @todo Should we restrict {@link DomainObject} to {@link GridPoint} as well? It sound like
  *       a logical consequence of {@link GridPointValuePair} restriction.
+ * @todo Should we move this interface to org.opengis.coverage.grid as all the other grid interfaces,
+ * or should it remain in org.opengis.coverage to follow the ordering in ISO19123.
+ *       
  */
 @UML(identifier="CV_DiscreteGridPointCoverage", specification=ISO_19123)
 public interface DiscreteGridPointCoverage extends DiscreteCoverage {
