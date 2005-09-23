@@ -36,11 +36,11 @@ import static org.opengis.annotation.Specification.*;
  * <p>
  * <b>Constraints:</b>
  * <ul>
- *   <li>The {@linkplain #getDimension dimension of the grid} shall be less than or equal to the
+ *   <li>The {@linkplain Grid#getDimension dimension of the grid} shall be less than or equal to the
  *       dimension of the {@linkplain DirectPosition#getCoordinateReferenceSystem coordinate
  *       reference system of the point} that is the {@linkplain #getOrigin origin}.</li>
  *   <li>The number of {@linkplain #getOffsetVectors offset vectors} shall equal the
- *       {@linkplain #getDimension dimension of the grid}.</li>
+ *       {@linkplain Grid#getDimension dimension of the grid}.</li>
  *   <li>The dimension of all offset vectors shall equal the dimension of the coordinate reference
  *       system, even if an offset vector is aligned with an axis of the external coordinate system.</li>
  * </ul>
