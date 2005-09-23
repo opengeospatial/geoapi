@@ -40,7 +40,7 @@ import static org.opengis.annotation.Specification.*;
  * {@link GridPointValuePair (grid point)-value pairs}. The {@linkplain #getElements elements}
  * may be generated from the {@linkplain GridValuesMatrix grid values matrix} through
  * the {@link #getValueAssignment value assignment}. The inherited operations
- * {@link #evaluate evaluate} and {@link #evaluateInverse evaluateInverse} use
+ * {@link DiscreteCoverage#evaluate evaluate} and {@link #evaluateInverse evaluateInverse} use
  * {@linkplain GridValuesMatrix grid values matrix} to assign values to the
  * {@linkplain GeometryValuePair geometry value pairs}.
  * 
