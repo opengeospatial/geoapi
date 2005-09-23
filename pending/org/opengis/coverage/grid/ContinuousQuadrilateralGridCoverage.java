@@ -76,7 +76,7 @@ public interface ContinuousQuadrilateralGridCoverage extends ContinuousCoverage 
      * Returns a set of records of feature attribute values for the specified direct position.
      * Evaluation of a continuous quadrilateral grid coverage involves two steps. The first is
      * to use the information from the {@linkplain GridValuesMatrix values matrix} at {@linkplain
-     * QuadrilateralGridCoverage#getSource quadrilateral grid coverage source} to generate the
+     * #getSource quadrilateral grid coverage source} to generate the
      * {@linkplain GridValueCell grid value cell} that contains the input {@linkplain DirectPosition
      * direct position}; the second is to interpolate the feature attribute values at the direct
      * position from the {@linkplain GridPointValuePair grid point value pairs} at the corners of
