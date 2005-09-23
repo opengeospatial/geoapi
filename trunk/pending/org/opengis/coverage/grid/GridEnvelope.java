@@ -21,7 +21,7 @@ import static org.opengis.annotation.Specification.*;
 
 /**
  * Provides the {@linkplain GridCoordinates grid coordinate} values for the diametrically opposed
- * corners of the {@linkplain Grid grid).
+ * corners of the {@linkplain Grid grid}.
  * 
  * Remark that both corners are inclusive. 
  * Thus the number of elements in the direction of the first axis is
@@ -33,13 +33,13 @@ import static org.opengis.annotation.Specification.*;
 @UML(identifier="CV_GridEnvelope", specification=ISO_19123)
 public interface GridEnvelope extends Cloneable {
     /**
-     * Returns the minimal coordinate values for all grid points within the {@linkplain Grid grid).
+     * Returns the minimal coordinate values for all grid points within the {@linkplain Grid grid}.
      */
     @UML(identifier="low", obligation=MANDATORY, specification=ISO_19123)
 	GridCoordinates getLow();
 
     /**
-     * Returns the maximal coordinate values for all grid points within the {@linkplain Grid grid).
+     * Returns the maximal coordinate values for all grid points within the {@linkplain Grid grid}.
      */
     @UML(identifier="high", obligation=MANDATORY, specification=ISO_19123)
 	GridCoordinates getHigh();
