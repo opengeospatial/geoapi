@@ -38,7 +38,7 @@ public interface DiscreteCoverage extends Coverage {
     /**
      * Returns the set of <var>geometry</var>-<var>value</var> pairs included in this coverage.
      *
-     * @todo Is it duplicating {@link #list}?
+     * @todo Is it duplicating {@link Coverage#list}?
      */
     @UML(identifier="element", obligation=OPTIONAL, specification=ISO_19123)
     Set<? extends GeometryValuePair> getElements();
@@ -59,7 +59,7 @@ public interface DiscreteCoverage extends Coverage {
      * <var>geometry</var>-<var>value</var> pair. If the direct position falls on the boundary between
      * two <var>geometry</var>-<var>value</var> pairs, or within two or more overlapping
      * <var>geometry</var>-<var>value</var> pairs, the operation shall return a record of feature
-     * attribute values derived according to the {@linkplain #getCommonPointRule common point rule}.
+     * attribute values derived according to the {@linkplain Coverage#getCommonPointRule common point rule}.
      * It shall return {@code null} if the direct position is not on any of the
      * {@linkplain DomainObject objects} within the domain of the discrete coverage.
      *
