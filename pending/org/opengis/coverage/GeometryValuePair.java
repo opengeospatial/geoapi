@@ -15,6 +15,7 @@ import java.util.Collection; // For javadoc
 
 // Annotations
 import org.opengis.annotation.UML;
+import org.opengis.spatialschema.geometry.DirectPosition;
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
 
