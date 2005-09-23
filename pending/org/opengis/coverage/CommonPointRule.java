@@ -91,7 +91,7 @@ public class CommonPointRule extends CodeList<CommonPointRule> {
      * {@linkplain ValueSegment value segment}.
      * Applies only to segmented curve coverages.
      */
-    @UML(identifier="start", obligation=CONDITIONAL, specification=ISO_19123)
+    @UML(identifier="end", obligation=CONDITIONAL, specification=ISO_19123)
     public static final CommonPointRule END = new CommonPointRule("END");
 
     /**
