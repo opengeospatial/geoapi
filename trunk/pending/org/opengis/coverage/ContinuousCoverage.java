@@ -91,7 +91,7 @@ public interface ContinuousCoverage extends Coverage {
      * return a record of feature attribute values interpolated within that value object. If the direct
      * position falls on the boundary between two value objects, or within two or more overlapping value
      * objects, the operation shall return a record of feature attribute values derived according to the
-     * {@linkplain #getCommonPointRule common point rule}. It shall return an empty set if the direct
+     * {@linkplain Coverage#getCommonPointRule common point rule}. It shall return an empty set if the direct
      * position is not on any {@linkplain ValueObject value object}.
      *
      * @todo The return type should be Set<Record>.
