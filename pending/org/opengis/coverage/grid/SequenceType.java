@@ -53,6 +53,7 @@ import static org.opengis.annotation.Specification.*;
  * @author Martin Schouwenburg
  * @author Martin Desruisseaux
  */
+@UML(identifier="CV_SequenceType", specification=ISO_19123)
 public class SequenceType extends CodeList<SequenceType> {
     /**
 	 * Serial number for compatibility with different versions.
@@ -77,6 +78,7 @@ public class SequenceType extends CodeList<SequenceType> {
      *
      * <center><img src="doc-files/LinearScanning.png"></center>
      */
+    @UML(identifier="Linear scanning", obligation=CONDITIONAL, specification=ISO_19123)
     public static final SequenceType LINEAR = new SequenceType("LINEAR");
 
     /**
@@ -88,6 +90,7 @@ public class SequenceType extends CodeList<SequenceType> {
      *
      * <center><img src="doc-files/BoustrophedonicScanning.png"></center>
      */
+    @UML(identifier="Boustrophedonic scanning", obligation=CONDITIONAL, specification=ISO_19123)
     public static final SequenceType BOUSTROPHEDONIC = new SequenceType("BOUSTROPHEDONIC");
 
     /**
@@ -99,6 +102,7 @@ public class SequenceType extends CodeList<SequenceType> {
      *
      * <center><img src="doc-files/CantorDiagonalScanning.png"></center>
      */
+    @UML(identifier="Cantor-diagonal scanning", obligation=CONDITIONAL, specification=ISO_19123)
     public static final SequenceType CANTOR_DIAGONAL = new SequenceType("CANTOR_DIAGONAL");
 
     /**
@@ -111,6 +115,7 @@ public class SequenceType extends CodeList<SequenceType> {
      *
      * <center><img src="doc-files/SpiralScanning.png"></center>
      */
+    @UML(identifier="Spiral scanning", obligation=CONDITIONAL, specification=ISO_19123)
     public static final SequenceType SPIRAL = new SequenceType("SPIRAL");
 
     /**
@@ -132,6 +137,7 @@ public class SequenceType extends CodeList<SequenceType> {
      * can be used to order the grid points in any grid, including grids that are irregular in shape or have
      * grid cells of different sizes.
      */
+    @UML(identifier="Morton order", obligation=CONDITIONAL, specification=ISO_19123)
     public static final SequenceType MORTON = new SequenceType("MORTON");
 
     /**
@@ -149,6 +155,7 @@ public class SequenceType extends CodeList<SequenceType> {
      *
      * <center><img src="doc-files/Hilbert.png"></center>
      */
+    @UML(identifier="Hilbert order", obligation=CONDITIONAL, specification=ISO_19123)
     public static final SequenceType HILBERT = new SequenceType("HILBERT");
     
     /**
