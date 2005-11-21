@@ -22,8 +22,8 @@
 
 <project name="GeoAPI" default="release" basedir="C:/Documents and Settings/All Users/Documents/Releases/GeoAPI">
 
-  <property name="homepath"         value="P:/projects/GeoAPI"/>
-  <property name="homepath-pending" value="P:/projects/GeoAPI-pending"/>
+  <property name="homepath"         value="P:/projects/GeoAPI/trunk"/>
+  <property name="homepath-pending" value="P:/projects/GeoAPI/pending"/>
   <property name="merlin"           value="C:/Java/1.4"/>
   <property name="version"          value="2.1 alpha"/>
   <property name="proxy"            value="-J-DproxyHost=proxy -J-DproxyPort=3128"/>
