@@ -114,7 +114,7 @@ public abstract class CodeList<CodeType extends CodeList<CodeType>> implements C
         if (!ct.equals(co)) {
             throw new ClassCastException("Can't compare " + ct.getName() + " to " + co.getName());
         }
-	return ordinal - ((CodeList) other).ordinal;
+        return ordinal - ((CodeList) other).ordinal;
     }
 
     /**

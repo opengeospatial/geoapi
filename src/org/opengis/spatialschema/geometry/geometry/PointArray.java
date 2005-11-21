@@ -142,6 +142,11 @@ public interface PointArray {
      * Returns a view of the points in this array as a list of {@linkplain Position positions}.
      * The list is backed by this {@code PointArray}, so changes to the point array are
      * reflected in the list, and vice-versa.
+     * <p>
+     * Note that random access may be costly in some implementations. If the returned list
+     * doesn't implement the {@link java.util.RandomAccess} interface, then consider avoiding
+     * the {@link List#get(int)} method. Favor the {@linkplain List#iterator list iterator}
+     * instead.
      *
      * @return The list of positions in this array.
      */
