@@ -27,8 +27,12 @@ import org.opengis.util.SimpleEnumerationType;
  *
  * @todo Localize descriptions.
  */
-public class LineJoin extends SimpleEnumerationType {
-    
+public class LineJoin extends SimpleEnumerationType<LineJoin> {
+    /**
+     * Serial number for compatibility with different versions.
+     */
+    private static final long serialVersionUID = 8892322589423901014L;
+
     //*************************************************************************
     //  Static Fields
     //*************************************************************************
@@ -36,22 +40,22 @@ public class LineJoin extends SimpleEnumerationType {
      * The list of enumeration available in this virtual machine.
      * <strong>Must be declared first!</strong>.
      */
-    private static final List VALUES = new ArrayList(3);
-    
+    private static final List<LineJoin> VALUES = new ArrayList<LineJoin>(3);
+
     /**
      * This constant indicates that lines should be joined at
      * intersections by extending their outside edges until they meet.
      */
     public static final LineJoin MITER =
         new LineJoin("MITER", "Join lines by extending outside edges until they meet.");
-        
+
     /**
      * This constant indicates that lines should be joined by a circular
      * arc of radius equal to half the line width.
      */
     public static final LineJoin ROUND =
         new LineJoin("ROUND", "Join lines with a circular arc equal to hald the line width.");
-        
+
     /**
      * This constant indicates that lines should be joined by connecting
      * the outer corners of the lines with a straight line segment.
@@ -59,11 +63,11 @@ public class LineJoin extends SimpleEnumerationType {
     public static final LineJoin BEVEL =
             new LineJoin("BEVEL",
                     "Joine lines by connecting outer corners with a segment.");
-    
+
     //*************************************************************************
     //  Constructor
     //*************************************************************************
-    
+
     /**
      * Construct a new LineJoin with the given name and description.
      * This constructor should only be used to make the static
@@ -94,16 +98,7 @@ public class LineJoin extends SimpleEnumerationType {
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
-    public CodeList[] family() {
+    public /*{LineJoin}*/ CodeList[] family() {
         return values();
     }
-    // Get our compare on
-	public int compareTo(Object obj) {
-		int index = VALUES.indexOf( this );
-		int indexOther = VALUES.indexOf( obj );
-		
-		if (index == indexOther) return 0;
-		if (index < indexOther ) return -1;
-		return 1;
-	}    
 }

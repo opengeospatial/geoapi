@@ -45,7 +45,11 @@ import org.opengis.util.SimpleEnumerationType;
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version $Revision$, $Date$
  */
-public class FillPattern extends SimpleEnumerationType {
+public class FillPattern extends SimpleEnumerationType<FillPattern> {
+    /**
+     * Serial number for compatibility with different versions.
+     */
+    private static final long serialVersionUID = -6942734861758918827L;
 
     //*************************************************************************
     //  Static Fields
@@ -54,7 +58,7 @@ public class FillPattern extends SimpleEnumerationType {
      * The list of enumeration available in this virtual machine.
      * <strong>Must be declared first!</strong>.
      */
-    private static final List VALUES = new ArrayList(11);
+    private static final List<FillPattern> VALUES = new ArrayList<FillPattern>(11);
 
     /**
      * No fill pattern.
@@ -159,16 +163,7 @@ public class FillPattern extends SimpleEnumerationType {
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
-    public CodeList[] family() {
+    public /*{FillPattern}*/ CodeList[] family() {
         return values();
     }
-    // Get our compare on
-	public int compareTo(Object obj) {
-		int index = VALUES.indexOf( this );
-		int indexOther = VALUES.indexOf( obj );
-		
-		if (index == indexOther) return 0;
-		if (index < indexOther ) return -1;
-		return 1;
-	}    
 }

@@ -39,7 +39,11 @@ import org.opengis.util.SimpleEnumerationType;
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version $Revision$, $Date$
  */
-public class ArrowStyle extends SimpleEnumerationType {
+public class ArrowStyle extends SimpleEnumerationType<ArrowStyle> {
+    /**
+     * Serial number for compatibility with different versions.
+     */
+    private static final long serialVersionUID = -1295348723850401634L;
 
     //*************************************************************************
     //  Static Fields
@@ -48,7 +52,7 @@ public class ArrowStyle extends SimpleEnumerationType {
      * The list of enumeration available in this virtual machine.
      * <strong>Must be declared first!</strong>.
      */
-    private static final List VALUES = new ArrayList(4);
+    private static final List<ArrowStyle> VALUES = new ArrayList<ArrowStyle>(4);
 
     /**
      * Solid line with an no arrowhead.
@@ -108,18 +112,7 @@ public class ArrowStyle extends SimpleEnumerationType {
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
-    public CodeList[] family() {
+    public /*{ArrowStyle}*/ CodeList[] family() {
         return values();
     }
-    
-    // Get our compare on
-	public int compareTo(Object obj) {
-		int index = VALUES.indexOf( this );
-		int indexOther = VALUES.indexOf( obj );
-		
-		if (index == indexOther) return 0;
-		if (index < indexOther ) return -1;
-		return 1;
-	}
-
 }

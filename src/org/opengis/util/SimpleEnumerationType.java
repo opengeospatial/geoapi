@@ -33,7 +33,7 @@ import javax.swing.ImageIcon;
  *       Furthermore, according ISO 19103, enumeration and code list are not the same thing.
  *       This base class is closer to a code list than an enumeration.
  */
-public abstract class SimpleEnumerationType extends CodeList {
+public abstract class SimpleEnumerationType<E extends SimpleEnumerationType<E>> extends CodeList<E> {
 
     //*************************************************************************
     //  static methods
@@ -97,7 +97,7 @@ public abstract class SimpleEnumerationType extends CodeList {
      * @param name the short name for the enum.
      * @param description the description for the enum.
      */
-    protected SimpleEnumerationType(Collection values, String name, String description) {
+    protected SimpleEnumerationType(Collection<E> values, String name, String description) {
         super(name, values);
         this.description = description;
         this.icon = getNullIcon();
@@ -112,7 +112,7 @@ public abstract class SimpleEnumerationType extends CodeList {
      * @param description the description for the enum.
      * @param icon the icon for the enum.
      */
-    protected SimpleEnumerationType(Collection values, String name, String description, Icon icon) {
+    protected SimpleEnumerationType(Collection<E> values, String name, String description, Icon icon) {
         super(name, values);
         this.description = description;
         this.icon = icon;
@@ -174,5 +174,3 @@ public abstract class SimpleEnumerationType extends CodeList {
         }
     }
 }
-
-
