@@ -32,8 +32,13 @@ import org.opengis.util.SimpleEnumerationType;
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version $Revision$, $Date$
  */
-public class LinePattern extends SimpleEnumerationType {
-    
+public class LinePattern extends SimpleEnumerationType<LinePattern> {
+    /**
+     * Serial number for compatibility with different versions.
+     */
+    private static final long serialVersionUID = -1733919417977352763L;
+
+
     //*************************************************************************
     //  Static Fields
     //*************************************************************************
@@ -41,44 +46,44 @@ public class LinePattern extends SimpleEnumerationType {
      * The list of enumeration available in this virtual machine.
      * <strong>Must be declared first!</strong>.
      */
-    private static final List VALUES = new ArrayList(6);
-    
+    private static final List<LinePattern> VALUES = new ArrayList<LinePattern>(6);
+
     /**
      * The line should be drawn with no pattern.
      */
     public static final LinePattern NONE = new LinePattern("NONE", "A line with no pattern.");
-    
+
     /**
      * The line should be drawn dashed.
      */
     public static final LinePattern DASHED = new LinePattern("DASHED", "A dashed line");
-    
+
     /**
      * The line should be drawn dotted.
      */
     public static final LinePattern DOTTED = new LinePattern("DOTTED", "A dotted line");
-    
+
     /**
      * The line should be drawn dot dashed.
      */
     public static final LinePattern DOT_DASHED = new LinePattern("DOT_DASHED", "Dot dashed line");
-    
+
     /**
      * The line should be drawn long dashed.
      */
     public static final LinePattern LONG_DASHED =
         new LinePattern("LONG_DASHED", "Long dashed line");
-        
+
     /**
      * The line should be drawn long dot dashed.
      */
     public static final LinePattern LONG_DOT_DASHED
             = new LinePattern("LONG_DOT_DASHED", "Long dot dashed line");
-    
+
     //*************************************************************************
     //  Constructor
     //*************************************************************************
-    
+
     protected LinePattern(String name, String description) {
         super(VALUES, name, description, loadIconResource(LinePattern.class, name + ".gif"));
     }
@@ -95,19 +100,7 @@ public class LinePattern extends SimpleEnumerationType {
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
-    public CodeList[] family() {
+    public /*{LinePattern}*/ CodeList[] family() {
         return values();
     }
-    // Get our compare on
-	public int compareTo(Object obj) {
-		int index = VALUES.indexOf( this );
-		int indexOther = VALUES.indexOf( obj );
-		
-		if (index == indexOther) return 0;
-		if (index < indexOther ) return -1;
-		return 1;
-	}    
 }
-
-
-

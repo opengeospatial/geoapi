@@ -46,8 +46,13 @@ import org.opengis.util.SimpleEnumerationType;
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version $Revision$, $Date$
  */
-public class LineStyle extends SimpleEnumerationType {
-    
+public class LineStyle extends SimpleEnumerationType<LineStyle> {
+    /**
+     * Serial number for compatibility with different versions.
+     */
+    private static final long serialVersionUID = -3641627651863436629L;
+
+
     //*************************************************************************
     //  Static Fields
     //*************************************************************************
@@ -55,23 +60,23 @@ public class LineStyle extends SimpleEnumerationType {
      * The list of enumeration available in this virtual machine.
      * <strong>Must be declared first!</strong>.
      */
-    private static final List VALUES = new ArrayList(2);
-    
+    private static final List<LineStyle> VALUES = new ArrayList<LineStyle>(2);
+
     /**
      * The line should be drawn as a single line.
      */
     public static final LineStyle SINGLE = new LineStyle("SINGLE", "Single Line");
-    
+
     /**
      * The line should be drawn as double parallel lines.
      */
     public static final LineStyle DOUBLE
         = new LineStyle("DOUBLE", "Double Line");
-    
+
     //*************************************************************************
     //  Constructor
     //*************************************************************************
-    
+
     /**
      * Construct a new LineStyle with the give name and description.
      * This constructor should only be used to make the static
@@ -84,7 +89,7 @@ public class LineStyle extends SimpleEnumerationType {
      */
     protected LineStyle(String name, String description) {
         super(VALUES, name, description, loadIconResource(LineStyle.class, name + ".gif"));
-}
+    }
 
     //*************************************************************************
     //  Methods
@@ -102,16 +107,7 @@ public class LineStyle extends SimpleEnumerationType {
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
-    public CodeList[] family() {
+    public /*{LineStyle}*/ CodeList[] family() {
         return values();
     }
-    // Get our compare on
-	public int compareTo(Object obj) {
-		int index = VALUES.indexOf( this );
-		int indexOther = VALUES.indexOf( obj );
-		
-		if (index == indexOther) return 0;
-		if (index < indexOther ) return -1;
-		return 1;
-	}    
 }

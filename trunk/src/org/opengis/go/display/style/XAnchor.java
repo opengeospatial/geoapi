@@ -26,8 +26,12 @@ import org.opengis.util.SimpleEnumerationType;
  *
  * @todo Localize descriptions.
  */
-public class XAnchor extends SimpleEnumerationType {
-    
+public class XAnchor extends SimpleEnumerationType<XAnchor> {
+    /**
+     * Serial number for compatibility with different versions.
+     */
+    private static final long serialVersionUID = -1237812954240452080L;
+
     //*************************************************************************
     //  Static Fields
     //*************************************************************************
@@ -35,27 +39,27 @@ public class XAnchor extends SimpleEnumerationType {
      * The list of enumeration available in this virtual machine.
      * <strong>Must be declared first!</strong>.
      */
-    private static final List VALUES = new ArrayList(3);
-    
+    private static final List<XAnchor> VALUES = new ArrayList<XAnchor>(3);
+
     /**
-      * Align to the left of the field.
-      */
+     * Align to the left of the field.
+     */
     public static final XAnchor LEFT = new XAnchor("LEFT", "");
-    
+
     /**
-      * Align the center of the field.
-      */
+     * Align the center of the field.
+     */
     public static final XAnchor CENTER = new XAnchor("CENTER", "");
-    
+
     /**
-      * Align to the right of the field.
-      */
+     * Align to the right of the field.
+     */
     public static final XAnchor RIGHT = new XAnchor("RIGHT", "");
-    
+
     //*************************************************************************
     //  Constructor
     //*************************************************************************
-    
+
     /**
      * Construct a new XAnchor with the given name and description.
      * This constructor should only be used to make the static
@@ -86,16 +90,7 @@ public class XAnchor extends SimpleEnumerationType {
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
-    public CodeList[] family() {
+    public /*{XAnchor}*/ CodeList[] family() {
         return values();
     }
-    // Get our compare on
-	public int compareTo(Object obj) {
-		int index = VALUES.indexOf( this );
-		int indexOther = VALUES.indexOf( obj );
-		
-		if (index == indexOther) return 0;
-		if (index < indexOther ) return -1;
-		return 1;
-	}    
 }

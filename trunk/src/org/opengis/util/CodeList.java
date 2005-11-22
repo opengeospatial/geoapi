@@ -28,7 +28,7 @@ import java.util.Iterator;
  * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 1.0
  */
-public abstract class CodeList<CodeType extends CodeList<CodeType>> implements Comparable<CodeType>, Serializable {
+public abstract class CodeList<E extends CodeList<E>> implements Comparable<E>, Serializable {
     /**
      * Serial number for compatibility with different versions.
      */
@@ -53,12 +53,12 @@ public abstract class CodeList<CodeType extends CodeList<CodeType>> implements C
      * @param name   The code name.
      * @param values The collection to add the element to.
      */
-    protected CodeList(String name, final Collection<CodeType> values) {
+    protected CodeList(String name, final Collection<E> values) {
         this.name = (name=name.trim());
         synchronized (values) {
             this.ordinal = values.size();
             assert !contains(values, name) : name;
-            if (!values.add((CodeType)this)) {
+            if (!values.add((E) this)) {
                 throw new IllegalArgumentException(String.valueOf(values));
             }
         }
@@ -103,12 +103,12 @@ public abstract class CodeList<CodeType extends CodeList<CodeType>> implements C
      * Compares this code with the specified object for order. Returns a
      * negative integer, zero, or a positive integer as this object is less
      * than, equal to, or greater than the specified object.
-     * 
+     * <p>
      * Code list constants are only comparable to other code list constants of the
      * same type.  The natural order implemented by this method is the order in which
      * the constants are declared.
      */
-    public final int compareTo(final CodeType other) {
+    public final int compareTo(final E other) {
         final Class ct =  this.getClass();
         final Class co = other.getClass();
         if (!ct.equals(co)) {

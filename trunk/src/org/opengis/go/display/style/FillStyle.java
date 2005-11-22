@@ -28,7 +28,11 @@ import org.opengis.util.SimpleEnumerationType;
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version $Revision$, $Date$
  */
-public class FillStyle extends SimpleEnumerationType {
+public class FillStyle extends SimpleEnumerationType<FillStyle> {
+    /**
+     * Serial number for compatibility with different versions.
+     */
+    private static final long serialVersionUID = -6523391302208138885L;
 
     //*************************************************************************
     //  Static Fields
@@ -37,7 +41,7 @@ public class FillStyle extends SimpleEnumerationType {
      * The list of enumeration available in this virtual machine.
      * <strong>Must be declared first!</strong>.
      */
-    private static final List VALUES = new ArrayList(5);
+    private static final List<FillStyle> VALUES = new ArrayList<FillStyle>(5);
 
     /**
      * This constant indicates that an object should be completely filled
@@ -115,16 +119,7 @@ public class FillStyle extends SimpleEnumerationType {
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
-    public CodeList[] family() {
+    public /*{FillStyle}*/ CodeList[] family() {
         return values();
     }
-    // Get our compare on
-	public int compareTo(Object obj) {
-		int index = VALUES.indexOf( this );
-		int indexOther = VALUES.indexOf( obj );
-		
-		if (index == indexOther) return 0;
-		if (index < indexOther ) return -1;
-		return 1;
-	}    
 }

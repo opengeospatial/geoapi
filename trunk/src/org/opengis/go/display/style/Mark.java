@@ -26,8 +26,11 @@ import org.opengis.util.SimpleEnumerationType;
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version $Revision$, $Date$
  */
-
-public class Mark extends SimpleEnumerationType {
+public class Mark extends SimpleEnumerationType<Mark> {
+    /**
+     * Serial number for compatibility with different versions.
+     */
+    private static final long serialVersionUID = -6060751504331269705L;
 
     //*************************************************************************
     //  Static Fields
@@ -36,7 +39,7 @@ public class Mark extends SimpleEnumerationType {
      * The list of enumeration available in this virtual machine.
      * <strong>Must be declared first!</strong>.
      */
-    private static final List VALUES = new ArrayList(7);
+    private static final List<Mark> VALUES = new ArrayList<Mark>(7);
 
     /**
      * This constant indicates that a point should be symbolized with a custom mark.
@@ -108,22 +111,13 @@ public class Mark extends SimpleEnumerationType {
     public static Mark[] values() {
         synchronized (VALUES) {
             return (Mark[]) VALUES.toArray(new Mark[VALUES.size()]);
+        }
     }
-}
 
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
-    public CodeList[] family() {
+    public /*{Mark}*/ CodeList[] family() {
         return  values();
     }
-    // Get our compare on
-	public int compareTo(Object obj) {
-		int index = VALUES.indexOf( this );
-		int indexOther = VALUES.indexOf( obj );
-		
-		if (index == indexOther) return 0;
-		if (index < indexOther ) return -1;
-		return 1;
-	}    
 }

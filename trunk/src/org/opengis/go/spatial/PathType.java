@@ -18,7 +18,6 @@ import org.opengis.util.CodeList;
 import org.opengis.util.SimpleEnumerationType;
 
 /**
- * <p>
  * This class serves as the base class for objects that represent the
  * various methods for computing a path between two locations.
  * Singleton instances of PathType will exist to represent for example
@@ -47,18 +46,24 @@ import org.opengis.util.SimpleEnumerationType;
  * <tr><td>spline</td> <td>cubic in display space (interpolation after projection)</td></tr>
  * </table>
  * </center>
- * <p>
+ *
  * @author Open GIS Consortium, Inc.
  * @version $Revision$, $Date$
  */
-public class PathType extends SimpleEnumerationType {
+public class PathType extends SimpleEnumerationType<PathType> {
+    /**
+     * Serial number for compatibility with different versions.
+     */
+    private static final long serialVersionUID = -5930548969548155096L;
 
     /**
      * The list of enumeration available in this virtual machine.
      * <strong>Must be declared first!</strong>.
+     *
+     * @todo This field should be private.
      */
-    protected static final List VALUES = new ArrayList();   
-     
+    protected static final List<PathType> VALUES = new ArrayList<PathType>();
+
     /**
      * Creates a new PathType with the given value and name.
      * @param name the short name for the enum.
@@ -67,7 +72,7 @@ public class PathType extends SimpleEnumerationType {
     protected PathType(String name, String description) {
         super(VALUES, name, description);		
     }
-	
+
     /**
      * Returns the list of <code>PathType</code>s.
      */
@@ -80,16 +85,7 @@ public class PathType extends SimpleEnumerationType {
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
-    public CodeList[] family() {
+    public /*{PathType}*/ CodeList[] family() {
         return values();
-    }  	
-    // Get our compare on
-	public int compareTo(Object obj) {
-		int index = VALUES.indexOf( this );
-		int indexOther = VALUES.indexOf( obj );
-		
-		if (index == indexOther) return 0;
-		if (index < indexOther ) return -1;
-		return 1;
-	}    
+    }
 }
