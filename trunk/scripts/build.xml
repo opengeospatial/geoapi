@@ -242,6 +242,8 @@
       <replacefilter token="&lt;? extends SurfacePatch&gt;"/>
       <replacefilter token="&lt;ApplicationSchemaInformation&gt;"/>
       <replacefilter token="&lt;Arc&gt;"/>
+      <replacefilter token="&lt;ArcClosure&gt;"/>
+      <replacefilter token="&lt;ArrowStyle&gt;"/>
       <replacefilter token="&lt;AuthorityURL&gt;"/>
       <replacefilter token="&lt;AxisDirection&gt;"/>
       <replacefilter token="&lt;BrowseGraphic&gt;"/>
@@ -255,9 +257,6 @@
       <replacefilter token="&lt;Curve&gt;"/>
       <replacefilter token="&lt;CurveInterpolation&gt;"/>
       <replacefilter token="&lt;CurveSegment&gt;"/>
-      <replacefilter token=   "(CodeType)"/>
-      <replacefilter token="&lt;CodeType&gt;"/>
-      <replacefilter token="&lt;CodeType extends CodeList&gt;"/>
       <replacefilter token="&lt;ColorInterpretation&gt;"/>
       <replacefilter token="&lt;Complex&gt;"/>
       <replacefilter token="&lt;Constraints&gt;"/>
@@ -295,6 +294,8 @@
       <replacefilter token="&lt;FeatureStyle&gt;"/>
       <replacefilter token="&lt;FeatureListURL&gt;"/>
       <replacefilter token="&lt;Filter&gt;"/>
+      <replacefilter token="&lt;FillPattern&gt;"/>
+      <replacefilter token="&lt;FillStyle&gt;"/>
       <replacefilter token="&lt;Font&gt;"/>
       <replacefilter token="&lt;Format&gt;"/>
       <replacefilter token="&lt;GeneralParameterDescriptor&gt;"/>
@@ -319,13 +320,18 @@
       <replacefilter token="&lt;KnotType&gt;"/>
       <replacefilter token="&lt;Layer&gt;"/>
       <replacefilter token="&lt;LegendURL&gt;"/>
+      <replacefilter token="&lt;LineCap&gt;"/>
+      <replacefilter token="&lt;LineJoin&gt;"/>
+      <replacefilter token="&lt;LinePattern&gt;"/>
       <replacefilter token="&lt;LineSegment&gt;"/>
       <replacefilter token="&lt;LineString&gt;"/>
+      <replacefilter token="&lt;LineStyle&gt;"/>
       <replacefilter token="&lt;Locale&gt;"/>
       <replacefilter token="&lt;Locale,String&gt;"/>
       <replacefilter token="&lt;LocalName&gt;"/>
       <replacefilter token="&lt;MaintenanceFrequency&gt;"/>
       <replacefilter token="&lt;MaintenanceInformation&gt;"/>
+      <replacefilter token="&lt;Mark&gt;"/>
       <replacefilter token="&lt;MediumFormat&gt;"/>
       <replacefilter token="&lt;MediumName&gt;"/>
       <replacefilter token="&lt;MetadataEntity&gt;"/>
@@ -343,6 +349,7 @@
       <replacefilter token="&lt;PaletteInterpretation&gt;"/>
       <replacefilter token="&lt;ParameterDescriptorGroup&gt;"/>
       <replacefilter token="&lt;ParameterValueGroup&gt;"/>
+      <replacefilter token="&lt;PathType&gt;"/>
       <replacefilter token="&lt;PixelInCell&gt;"/>
       <replacefilter token="&lt;PixelOrientation&gt;"/>
       <replacefilter token="&lt;Point&gt;"/>
@@ -389,6 +396,14 @@
       <replacefilter token="&lt;ValueInBytePacking&gt;"/>
       <replacefilter token="&lt;VerticalDatumType&gt;"/>
       <replacefilter token="&lt;VerticalExtent&gt;"/>
+      <replacefilter token="&lt;XAnchor&gt;"/>
+      <replacefilter token="&lt;YAnchor&gt;"/>
+
+      <replacefilter token=     "(E)"/>
+      <replacefilter token=  "&lt;E&gt;"/>
+      <replacefilter token=  "&lt;E extends CodeList&gt;"/>
+      <replacefilter token=  "&lt;E extends SimpleEnumerationType&gt;"/>
+      <replacefilter token="final E " value="final Object "/>
 
       <replacefilter token="@UML"                          value="//@UML"                          />
       <replacefilter token="@Profile"                      value="//@Profile"                      />
@@ -398,7 +413,6 @@
       <replacefilter token="@XmlElement"                   value="//@XmlElement"                   />
       <replacefilter token="import static"                 value="//import static"                 />
       <replacefilter token="import org.opengis.annotation" value="//import org.opengis.annotation" />
-      <replacefilter token="CodeType"                      value="Object"                          />
     </replace>
 
     <mkdir dir="snapshot/classes"/>
