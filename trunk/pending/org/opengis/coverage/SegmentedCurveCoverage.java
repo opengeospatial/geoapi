@@ -95,7 +95,7 @@ public interface SegmentedCurveCoverage extends ContinuousCoverage {
      *
      *   <li>If {@code segment} returns a pair of conterminous {@code ValueSegments}, compute the
      *       feature attribute values according to the rule specified by the {@linkplain
-     *       getCommonPointRule common point rule}.</li>
+     *       #getCommonPointRule common point rule}.</li>
      * </ul>
      *
      * @todo The return type should be Set<Record>.

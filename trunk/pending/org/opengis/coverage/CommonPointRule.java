@@ -79,7 +79,7 @@ public class CommonPointRule extends CodeList<CommonPointRule> {
     public static final CommonPointRule ALL = new CommonPointRule("ALL");
 
     /**
-     * The {@linkplain ValueSegment#getStartValue start value} of the second
+     * The {@linkplain ValueSegment#getStartParameter start value} of the second
      * {@linkplain ValueSegment value segment}.
      * Applies only to segmented curve coverages.
      */
@@ -87,7 +87,7 @@ public class CommonPointRule extends CodeList<CommonPointRule> {
     public static final CommonPointRule START = new CommonPointRule("START");
 
     /**
-     * The {@linkplain ValueSegment#getEndValue end value} of the first
+     * The {@linkplain ValueSegment#getEndParameter end value} of the first
      * {@linkplain ValueSegment value segment}.
      * Applies only to segmented curve coverages.
      */

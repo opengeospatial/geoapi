@@ -149,8 +149,8 @@ public interface CoverageProcessor {
     * Creates a {@link GridAnalysis} interface from a grid coverage.
     * This allows grid analysis functions to be performed on a grid coverage.
     *
-    * @param  gridCoverage Grid coverage on which the analysis will be performed.
-    * @return A new {@link GridAnalysis} interface.
+    * @param  coverage Grid coverage on which the analysis will be performed.
+    * @return A new {@link GridAnalysis} instance.
     * @todo return type has to change when not only grid coverages but all coverages are allowed.
     * Analysis will in some way depend on the type of coverage, 
     * do we want to specify all variants or should we delay this till a later moment?

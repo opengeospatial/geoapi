@@ -15,6 +15,7 @@ import java.util.Set;
 import java.util.Collection;
 
 // OpenGIS direct dependencies
+import org.opengis.coverage.DomainObject;  // For javadoc
 import org.opengis.coverage.ContinuousCoverage;
 import org.opengis.coverage.InterpolationMethod;
 import org.opengis.coverage.DiscreteSurfaceCoverage;
@@ -86,7 +87,7 @@ public interface HexagonalGridCoverage extends ContinuousCoverage {
      * Evaluation of a hexagonal grid coverage involves two steps. The first is to locate the
      * {@linkplain ValueHexagon value hexagon} that contains the input direct position; the
      * second is to interpolate the feature attribute values at the direct position from the 
-     * {@linkplain GridPointValuePairs grid point-value pairs} at the centres of the surrounding
+     * {@linkplain GridPointValuePair grid point-value pairs} at the centres of the surrounding
      * value hexagons.
      *
      * @todo The return type should be Set<Record>.
