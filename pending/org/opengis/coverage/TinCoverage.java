@@ -80,7 +80,7 @@ public interface TinCoverage extends ContinuousCoverage {
      * Evaluation of a TIN coverage involves two steps. The first is to find the {@linkplain
      * ValueTriangle value triangle} that contains the input direct position; the second is to
      * interpolate the feature attribute values at the direct position from the {@linkplain
-     * PointValuePairs point-value pairs} at the vertices of the value triangle.
+     * PointValuePair point-value pairs} at the vertices of the value triangle.
      *
      * @todo The return type should be Set<Record>.
      */

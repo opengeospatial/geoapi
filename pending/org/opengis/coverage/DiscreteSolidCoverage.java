@@ -30,7 +30,7 @@ import static org.opengis.annotation.Specification.*;
  * required.
  * <p>
  * <b>Example:</b> Buildings in an urban area could be represented as a set of unconnected
- *                 {@linkplain Solids solids} each with attributes such as building name,
+ *                 {@linkplain Solid solids} each with attributes such as building name,
  *                 address, floor space, and number of occupants.
  * <p>
  * As in the case of surfaces, the spatial domain of a discrete solid coverage may be a regular or
