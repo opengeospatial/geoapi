@@ -27,7 +27,6 @@ import org.opengis.spatialschema.geometry.DirectPosition;
  * @version $Revision$, $Date$
  */
 public interface CanvasState {
-
     /**
      * Returns the title of the <code>Canvas</code>.
      */
@@ -51,7 +50,4 @@ public interface CanvasState {
      * <code>getCanvasParameterAccessor()</code>.
      */
     public boolean equals(Object object);
-
-    
-
 }

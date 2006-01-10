@@ -134,7 +134,7 @@ public abstract class CodeList<E extends CodeList<E>> implements Comparable<E>, 
      * The instance is resolved using its {@linkplain #name() name} only
      * (not its {@linkplain #ordinal() ordinal}).
      *
-     * @return This code list as a unique instance.
+     * @return This code list as an unique instance.
      * @throws ObjectStreamException if the deserialization failed.
      */
     protected Object readResolve() throws ObjectStreamException {
