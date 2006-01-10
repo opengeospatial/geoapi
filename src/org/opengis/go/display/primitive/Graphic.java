@@ -10,6 +10,9 @@
  *************************************************************************************************/
 package org.opengis.go.display.primitive;
 
+// J2SE dependencies (for javadoc)
+import java.beans.PropertyChangeEvent;
+
 // OpenGIS direct dependencies
 import org.opengis.go.display.event.GraphicEvent;
 import org.opengis.go.display.event.GraphicListener;
@@ -140,7 +143,7 @@ public interface Graphic {
      * <code>GraphicStyle</code> object, so that users may modify this
      * <code>Graphic</code>'s style properties directly through the
      * style object.
-     * @return @return	the <code>GraphicStyle</code>.
+     * @return the <code>GraphicStyle</code>.
      */
     GraphicStyle getGraphicStyle();
 
@@ -155,16 +158,17 @@ public interface Graphic {
 
     /**
      * Adds an arbitrary key/value "client property" to this <code>Graphic</code>.
-     * The get/putClientProperty methods provide access to a small
-     * per-instance hashtable. Callers can use get/putClientProperty to
-     * annotate Graphics that were created by another module.
-     *
+     * The {@code get}/{@code putClientProperty} methods provide access to a small
+     * per-instance hashtable. Callers can use {@code get}/{@code putClientProperty}
+     * to annotate {@code Graphic}s that were created by another module.
+     * <p>
      * If value is null this method will remove the property. Changes to client
-     * properties are reported with PropertyChange events. The name of the
-     * property (for the sake of PropertyChange events) is key.toString(). 
-     * The clientProperty dictionary is not intended to support large scale
+     * properties are reported with {@link PropertyChange} events. The name of the
+     * property (for the sake of {@link PropertyChange} events) is {@code key.toString()}. 
+     * The {@code clientProperty} dictionary is not intended to support large scale
      * extensions to <code>Graphic</code> nor should be it considered an alternative to
      * subclassing when designing a new component.
+     *
      * @param key the Object containing the key string.
      * @param value the Object that is the client data.
      * @see #getClientProperty
@@ -197,7 +201,7 @@ public interface Graphic {
     boolean isPassingEventsToParent();
 
     /**
-     * Sets a boolean <code>flag</code> specifying whether this object is to show
+     * Sets a boolean flag specifying whether this object is to show
      * its edit handles. Edit handles are the small boxes that appear on the
      * end of a line segment or on the four corners of a box that a users
      * selects to edit this object.
