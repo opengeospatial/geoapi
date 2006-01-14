@@ -9,10 +9,13 @@
  *************************************************************************************************/
 package org.opengis.feature;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Iterator;
 
-public class DefaultLock implements Lock {
+import org.opengis.feature.Transaction.State;
+
+public class DefaultLock {
     private long duration;
     private String authId;
     private HashMap stateMap;
@@ -23,7 +26,7 @@ public class DefaultLock implements Lock {
         this.stateMap = new HashMap();
     }
 
-    public long release() throws DataStoreException {
+    public long release() throws IOException {
         long minResult = Long.MAX_VALUE;
         Throwable err = null;
         Iterator states = stateMap.values().iterator();
@@ -40,16 +43,16 @@ public class DefaultLock implements Lock {
             }
         }
         if (err != null)
-            throw new DataStoreException("Errors occured releasing the lock.  Last one is cause of this exception.", err);
+            throw new IOException("Errors occured releasing the lock.  Last one is cause of this exception.", err);
 
         return minResult;
     }
 
-    public long refresh() throws DataStoreException {
+    public long refresh() throws IOException {
         return refresh(duration);
     }
 
-    public long refresh(long requestedDuration) throws DataStoreException {
+    public long refresh(long requestedDuration) throws IOException {
         long minResult = Long.MAX_VALUE;
         Throwable err = null;
         Iterator states = stateMap.values().iterator();
@@ -66,7 +69,7 @@ public class DefaultLock implements Lock {
             }
         }
         if (err != null)
-            throw new DataStoreException("Errors occured releasing the lock.  Last one is cause of this exception.", err);
+            throw new IOException("Errors occured releasing the lock.  Last one is cause of this exception.").initCause(err);
 
         return minResult;
     }
@@ -79,7 +82,7 @@ public class DefaultLock implements Lock {
         return duration;
     }
 
-    public void putState(Object key, State state) throws DataStoreException {
+    public void putState(Object key, State state) throws IOException {
         stateMap.put(key, state);
         state.setLock(this);
     }

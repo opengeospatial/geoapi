@@ -156,7 +156,7 @@ public class DefaultTransaction implements Transaction {
      *
      * @see org.opengis.data.Transaction#commit()
      */
-    public void commit() throws IOException {
+    public LockResponse commit() throws IOException {
         State state;
         int problemCount = 0;
         IOException io = null;
@@ -177,10 +177,11 @@ public class DefaultTransaction implements Transaction {
                 throw io;
             }
 
-            throw new DataStoreException("Commit encountered " + problemCount
-                + " problems - the last was", io);
+            throw (IOException) new IOException("Commit encountered " + problemCount
+                + " problems - the last was").initCause( io);
         }
-        authorizations.clear();        
+        authorizations.clear();
+        return null;
     }
 
     /**
@@ -218,8 +219,8 @@ public class DefaultTransaction implements Transaction {
                 throw io;
             }
 
-            throw new DataStoreException("Rollback encountered "
-                + problemCount + " problems - the last was", io);
+            throw (IOException) new IOException("Rollback encountered "
+                + problemCount + " problems - the last was").initCause( io);
         }
         authorizations.clear();
     }
@@ -294,8 +295,8 @@ public class DefaultTransaction implements Transaction {
             if (problemCount == 1) {
                 throw io;
             }
-            throw new DataStoreException("setAuthorization encountered "
-                + problemCount + " problems - the first was", io);
+            throw (IOException) new IOException("setAuthorization encountered "
+                + problemCount + " problems - the first was").initCause( io);
         }
     }
     
@@ -336,4 +337,8 @@ public class DefaultTransaction implements Transaction {
         }
         propertyLookup.put( key, value );
     }
+
+	public void useAuthorization(String authorizationID) throws IOException {
+		addAuthorization( authorizationID );
+	}
 }

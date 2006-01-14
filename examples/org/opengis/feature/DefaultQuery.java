@@ -12,8 +12,11 @@ package org.opengis.feature;
 import java.util.Arrays;
 import java.util.List;
 
+import javax.xml.namespace.QName;
+
 import org.opengis.filter.Filter;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
+import org.opengis.util.GenericName;
 
 /**
  * The query object is used by the {@link DataStore#getFeatures(Query)} method
@@ -341,4 +344,5 @@ public class DefaultQuery implements Query {
     public void setCoordinateSystemReproject(CoordinateReferenceSystem system) {
         coordinateSystemReproject = system;
     }
+
 }
