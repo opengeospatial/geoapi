@@ -17,6 +17,7 @@ import java.util.Iterator;
 
 // OpenGIS direct dependencies
 import org.opengis.filter.Filter;
+import org.opengis.filter.sort.SortBy;
 
 // Annotations
 import org.opengis.annotation.Extension;
@@ -188,6 +189,16 @@ public interface FeatureCollection extends Collection<Feature>, Feature {
      */
     FeatureCollection subCollection(Filter filter) throws BackingStoreException;
 
+    /** Returns an ordered feature collection whoes concepts are sorted
+     * according to the provided order.
+     * <p>
+     * You may cascade several sort calls together to acomplish grouping.
+     * @param order
+     * @return FeatureList in the indicated order
+     * @throws BackingStoreException
+     */
+    FeatureList sort( SortBy order ) throws BackingStoreException;
+    
     /**
      * If some sort of connection was opened to a backing store to support this
      * collection, then closes this connection.  Users of this API should always
