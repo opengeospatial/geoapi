@@ -17,7 +17,7 @@ import java.util.Iterator;
 
 // OpenGIS direct dependencies
 import org.opengis.filter.Filter;
-//import org.opengis.filter.sort.SortBy;
+import org.opengis.filter.sort.SortBy;
 
 // Annotations
 import org.opengis.annotation.Extension;
@@ -197,7 +197,7 @@ public interface FeatureCollection extends Collection<Feature>, Feature {
      * @return FeatureList in the indicated order
      * @throws BackingStoreException
      */
-     //FeatureList sort( SortBy order ) throws BackingStoreException;
+    FeatureList sort( SortBy order ) throws BackingStoreException;
     
     /**
      * If some sort of connection was opened to a backing store to support this
