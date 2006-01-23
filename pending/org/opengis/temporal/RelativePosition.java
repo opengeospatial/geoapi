@@ -82,7 +82,7 @@ public final class RelativePosition extends CodeList<RelativePosition> {
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
-    public RelativePosition[] family() {
+    public /*RelativePosition[]*/ CodeList[] family() {
         return values();
     }
 }

@@ -15,7 +15,6 @@ import java.util.Collection;
 
 // OpenGIS direct dependencies
 import org.opengis.util.InternationalString;
-import com.owsx.temporal.*;
 
 // Annotations
 import org.opengis.annotation.UML;
