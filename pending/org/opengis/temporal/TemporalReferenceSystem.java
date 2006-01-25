@@ -10,6 +10,9 @@
  *************************************************************************************************/
 package org.opengis.temporal;
 
+// J2SE direct dependencies
+import java.util.Collection;
+ 
 // OpenGIS direct dependencies
 import org.opengis.metadata.Identifier;
 import org.opengis.metadata.extent.Extent;
@@ -46,6 +49,6 @@ public interface TemporalReferenceSystem {
      * {@link TemporalPosition}s referenced to a reference system which has a valid extent
      * that is less than the extent of a data set containing such values.
      */
-    @UML(identifier="DomainOfValidity", obligation=MANDATORY, specification=ISO_19108)
-    Extent getDomainOfValidity();
+    @UML(identifier="DomainOfValidity", obligation=OPTIONAL, specification=ISO_19108)
+    Collection<Extent> getDomainOfValidity();
 }
