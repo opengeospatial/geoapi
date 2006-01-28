@@ -273,9 +273,6 @@ public interface Graphic {
      * @see org.opengis.go.display.event.GraphicEvent
      * @see org.opengis.go.display.event.GraphicChangeEvent
      * @see org.opengis.go.display.event.GraphicMouseEvent
-     *
-     * @todo Usually, this kind of method is a protected one in the implementation class,
-     *       not a public method in the interface...
      */
     void fireGraphicEvent(GraphicEvent ge);
 
