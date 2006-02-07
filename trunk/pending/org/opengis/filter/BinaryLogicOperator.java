@@ -29,12 +29,18 @@ import org.opengis.annotation.XmlElement;
 @XmlElement("BinaryLogicOpType")
 public interface BinaryLogicOperator extends Filter {
     /**
-     * Returns a list containing all of the child filters of this object.  This
-     * list will contain at least two elements, and each element will be an
-     * instance of {@code Filter}.  Implementations of this interface are
-     * encouraged to return either a copy of their internal list or an
-     * immutable wrapper around their internal list.  This is because this
-     * specification requires {@code Filter} objects to be immutable.
+     * Returns a list containing all of the child filters of this object.
+     * <p>
+     * This list will contain at least two elements, and each element will be an
+     * instance of {@code Filter}.
+     * </p>
      */
     List<Filter> getChildren();
+    
+    /**
+     * List containing all of the child filters of this object
+     * 
+     * @param children contains child filters of this object
+     */
+    void setChildren( List<Filter> children );
 }

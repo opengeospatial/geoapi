@@ -24,7 +24,14 @@ import org.opengis.annotation.XmlElement;
 @XmlElement("Not")
 public interface Not extends Filter {
     /**
-     * The expression to reverse.
+     * The filter to reverse.
      */
     Filter getFilter();
+    
+    /**
+     * Filter to reverse.
+     * 
+     * @param filter Logical value to reverse
+     */
+    void setFilter( Filter filter );
 }
