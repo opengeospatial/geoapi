@@ -40,4 +40,11 @@ public interface Literal extends Expression {
      * Returns the constant value held by this object.
      */
     Object getValue();
+    
+    /**
+     * Constant value held by this expression.
+     * 
+     * @param constant Object to be held by this expression
+     */
+    void setValue( Object constant );    
 }

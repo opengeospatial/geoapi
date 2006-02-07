@@ -11,6 +11,8 @@
 package org.opengis.filter.expression;
 
 // Annotations
+import java.util.List;
+
 import org.opengis.annotation.XmlElement;
 
 
@@ -31,10 +33,26 @@ public interface Function extends Expression {
      * be "{@code cos}" or "{@code atan2}".
      */
     String getName();
+    
+    /**
+     * The name of the function to be called.
+     * <p>
+     * For example, this might be "{@code cos}" or "{@code atan2}".
+     * 
+     * @param name The name of the function to be called
+     */
+    void setName( String name );
 
+    /**
+     * Returns the list subexpressions that will be evaluated to provide the
+     * parameters to the function.
+     */
+    List<Expression> getParameters();
+    
     /**
      * Returns the subexpressions that will be evaluated to provide the
      * parameters to the function.
+     * @param parameters List of subexpression to evaulate as parameters to this function.
      */
-    Expression[] getParameters();
+    void setParameters(List<Expression> parameters);
 }

@@ -19,7 +19,8 @@ import org.opengis.annotation.XmlElement;
  * by the provided name.
  * <p>
  * The most common applicatoin of this is to retrive
- * a {@linkplain org.opengis.feature.Feature feature}'s property.
+ * a {@linkplain org.opengis.feature.Feature feature}'s property using
+ * an xpath expression.
  * </p>
  * @version <A HREF="http://www.opengis.org/docs/02-059.pdf">Implementation specification 1.0</A>
  * @author Chris Dillard (SYS Technologies)
@@ -32,4 +33,11 @@ public interface PropertyName extends Expression {
      * {@link #evaluate evaluate} method.
      */
     String getPropertyName();
+ 
+    /**
+     * Name of the propertyValue that will be returned by {@link evaulate}.
+     * 
+     * @param name propertyValue that will be returned
+     */
+    void setPropertyName( String name );
 }
