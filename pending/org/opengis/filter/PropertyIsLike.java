@@ -42,28 +42,57 @@ public interface PropertyIsLike extends Filter {
     Expression getExpression();
 
     /**
+     * Expression whose value will be compared against getLiteral() using wildcards.
+     * 
+     * @param expression first of two expressions compared 
+     */
+    void setExpression( Expression expression);
+
+    /**
      * Returns the wildcard-containing string that will be used to check the
      * feature's properties.
      */
     @XmlElement("Literal")
     String getLiteral();
+    
+    /**
+     * The wildcard-containing string that will be used to check the expression.
+     * 
+     * @param literal wildcard-containing string used to check expression
+     */
+    void setString( String literal );
 
     /**
      * Returns the string that can be used in the "literal" property of this
-     * object to match any sequence of characters.  The default value for this
-     * property is the one character string "%".
+     * object to match any sequence of characters.
+     * <p>
+     * The default value for this property is the one character string "%".
      */
     @XmlElement("wildCard")
     String getWildCard();
+    
+    /**
+     * String that can be used in the "literal" property to match any sequence of characters.
+     * @param wildCard Used to match any sequence of characters
+     */
+    void setWildCard( String wildCard );
 
     /**
      * Returns the string that can be used in the "literal" property of this
-     * object to match exactly one character.  The default value for this
-     * property is the one character string "_".
+     * object to match exactly one character.
+     * <p>
+     * The default value for this property is the one character string "_".
      */
     @XmlElement("singleChar")
     String getSingleChar();
 
+    /**
+     * Can be used to match exactly one character.
+     * 
+     * @param singleChar Used to match exactly one character
+     */
+    void setSingleChar( String singleChar );
+    
     /**
      * Returns the string that can be used in the "literal" property of this
      * object to prefix one of the wild card characters to indicate that it
@@ -72,4 +101,11 @@ public interface PropertyIsLike extends Filter {
      */
     @XmlElement("escape")
     String getEscape();
+    
+    /**
+     * Used to prefix a wild card character to indicate it should be used literally.
+     * 
+     * @param escape used to allow wildcard character to be matched literally
+     */
+    void setEscape( String escape );
 }

@@ -31,9 +31,15 @@ import org.opengis.annotation.XmlElement;
 @XmlElement("FeatureId")
 public interface FeatureId extends Filter {
     /**
-     * Returns a {@linkplain Set} containing the IDs of {@linkplain org.opengis.feature.Feature features}
-     * that will pass this filter.
+     * Returns a {@linkplain Set} containing the IDs of that will pass this filter.
      */
     @XmlElement("fid")
     Set<String> getIDs();
+    
+    /**
+     * {@linkplain Set} containing the IDs of that will pass this filter
+     * 
+     *  @param ids Set of IDs that will passs
+     */
+    void setIDs( Set<String> ids );
 }
