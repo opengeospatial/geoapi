@@ -39,13 +39,13 @@ public interface OrdinalEra {
      * The beginning at which the ordinal era began if it's known.
      */
     @UML(identifier="begin", obligation=OPTIONAL, specification=ISO_19108)
-    DateAndTime begin();
+    Date getBeginning();
 
     /**
      * The end at which the ordinal era began if it's known.
      */
     @UML(identifier="end", obligation=OPTIONAL, specification=ISO_19108)
-    DateAndTime end();
+    Date getEnd();
 
     /**
      * Ordinal eras that subdivide this ordinal era.
