@@ -43,5 +43,5 @@ public interface ClockTime extends TemporalPosition {
      * @revisit Method name doesn't match the UML attribute name.
      */
     @UML(identifier="clkTime", obligation=MANDATORY, specification=ISO_19108)
-    Collection<Number> getCalendarDate();
+    Number[] getClockTime();
 }
