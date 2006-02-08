@@ -10,9 +10,6 @@
  *************************************************************************************************/
 package org.opengis.temporal;
 
-// J2SE direct dependencies
-import java.util.Collection;
- 
 // OpenGIS direct dependencies
 import org.opengis.metadata.Identifier;
 import org.opengis.metadata.extent.Extent;
@@ -36,8 +33,10 @@ public interface TemporalReferenceSystem {
     /**
      * Provides a name that uniquely identifies the temporal referece system.
      *
-     * RS_Identifier is actually defined in ISO 19115, while ISO 19108 claims that
-     * it is defined in ISO 19111.
+     * Currently returns MD_Identifier, which is defined in ISO 19115, while ISO 19108 
+     * requires that RS_Identifier (defined in ISO 19111 and http://www.opengis.org/docs/03-073r1.zip) 
+     * is returned. From the looks of it, org.opengis.referencing.ReferenceSystem could also fit the bill.
+     * @return {@link Identifier}
      */
     @UML(identifier="name", obligation=MANDATORY, specification=ISO_19108)
     Identifier getName();
@@ -49,6 +48,6 @@ public interface TemporalReferenceSystem {
      * {@link TemporalPosition}s referenced to a reference system which has a valid extent
      * that is less than the extent of a data set containing such values.
      */
-    @UML(identifier="DomainOfValidity", obligation=OPTIONAL, specification=ISO_19108)
-    Collection<Extent> getDomainOfValidity();
+    @UML(identifier="DomainOfValidity", obligation=MANDATORY, specification=ISO_19108)
+    Extent getDomainOfValidity();
 }

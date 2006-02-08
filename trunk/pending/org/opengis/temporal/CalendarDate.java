@@ -47,5 +47,5 @@ public interface CalendarDate extends TemporalPosition {
      * @revisit Should we returns an array of some primitive type instead?
      */
     @UML(identifier="calDate", obligation=MANDATORY, specification=ISO_19108)
-    Collection<Number> getCalendarDate();
+    int[]  getCalendarDate();
 }
