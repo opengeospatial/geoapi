@@ -15,6 +15,7 @@ import org.opengis.util.InternationalString;
 
 // J2SE direct dependencies
 import java.util.Collection;
+import java.util.Date;
 
 // Annotations
 import org.opengis.annotation.UML;
@@ -38,7 +39,7 @@ public interface TemporalCoordinateSystem extends TemporalReferenceSystem {
      * expressed as a date in the Gregorian calendar and time of day in UTC.
      */
     @UML(identifier="origin", obligation=MANDATORY, specification=ISO_19108)
-    DateAndTime getOrigin();
+    Date getOrigin();
 
     /**
      * Identifies the base interval for this temporal coordinate system
@@ -54,7 +55,7 @@ public interface TemporalCoordinateSystem extends TemporalReferenceSystem {
      * and time} in the Gregorian Calendar and UTC 
      */
     @UML(identifier="transformCoord", obligation=MANDATORY, specification=ISO_19108)
-    DateAndTime transformCoord(TemporalCoordinate coordinates);
+    Date transformCoord(TemporalCoordinate coordinates);
 
     /**
      * Transforms a {@linkplain DateAndTime date and time} in the Gregorian Calendar and UTC
@@ -62,5 +63,5 @@ public interface TemporalCoordinateSystem extends TemporalReferenceSystem {
      * coordinate system.
      */
     @UML(identifier="transformDateTime", obligation=MANDATORY, specification=ISO_19108)
-    TemporalCoordinate transformDateTime(DateAndTime datetime);
+    TemporalCoordinate transformDateTime(Date datetime);
 }
