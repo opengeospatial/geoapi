@@ -60,7 +60,7 @@ public interface PropertyIsLike extends Filter {
      * 
      * @param literal wildcard-containing string used to check expression
      */
-    void setString( String literal );
+    void setLiteral( String literal );
 
     /**
      * Returns the string that can be used in the "literal" property of this
