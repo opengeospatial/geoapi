@@ -52,7 +52,7 @@ public interface Filter {
      * @param object
      * @return <code>true</true> if the test(s) are passed for the provided object
      */
-    boolean evaulate(Object object);
+    boolean evaluate(Object object);
 
     /**
      * Accepts a visitor.
