@@ -2,21 +2,20 @@ package org.opengis.feature;
 
 import java.util.List;
 
-import javax.xml.namespace.QName;
-
 import org.opengis.feature.type.AttributeType;
 import org.opengis.feature.type.ComplexType;
+import org.opengis.util.GenericName;
 
 /**
  * 
  * @author Jody Garnett
  * @author Gabriel Roldan
  */
-public interface ComplexAttribute extends Attribute {
+public interface ComplexAttribute extends Attribute<List<Attribute>> {
 	/**
 	 * Access the type of this construct.
 	 */
-	ComplexType<?> getType();
+	ComplexType<List<Attribute>> getType();
 
 	/**
 	 * Access to contents of this Feature.
@@ -60,7 +59,7 @@ public interface ComplexAttribute extends Attribute {
 	 */
 	public List<Attribute> getAttributes(String name);
 
-	public List<Attribute> getAttributes(QName name);
+	public List<Attribute> getAttributes(GenericName name);
 
 	/**
 	 * Sets the complete contents of this Attribute, that must be valid against
@@ -69,7 +68,7 @@ public interface ComplexAttribute extends Attribute {
 	 * @param attribute
 	 * @throws IllegalArgumentException
 	 */
-	void set(List<Attribute> newValue) throws IllegalArgumentException;
+	void set(T newValue) throws IllegalArgumentException;
 
 	/**
 	 * List view of attribtue types, in a manner similar Map.keys().
@@ -151,5 +150,5 @@ public interface ComplexAttribute extends Attribute {
 	 * @return Attribute, or List&lt;Attribute&gt; based on schema referencing
 	 *         AttributeType
 	 */
-	Object get(AttributeType type);
+	T get(AttributeType type);
 }

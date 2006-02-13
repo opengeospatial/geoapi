@@ -3,6 +3,7 @@ package org.opengis.feature;
 import org.opengis.feature.type.FeatureType;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 import org.opengis.spatialschema.geometry.Envelope;
+import org.opengis.spatialschema.geometry.Geometry;
 
 public interface Feature extends ComplexAttribute {
 	/**

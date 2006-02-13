@@ -1,14 +1,13 @@
 package org.opengis.feature.type;
 
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
-import com.vividsolutions.jts.geom.Geometry;
 
 /**
  * Represents (explicitly) the binding of an AttributeType to Geometry information.
  * 
  * @author Jody Garnett
  */
-public interface GeometryType<T extends Geometry> extends AttributeType<T> {
+public interface GeometryType<T> extends AttributeType<T> {
 	
 	/** Explicitly bound to Geometry */
 	public Class<T> getBinding();

@@ -13,7 +13,6 @@ package org.opengis.filter;
 // J2SE dependencies
 import java.util.Set;
 
-// Annotations
 import org.opengis.annotation.XmlElement;
 
 

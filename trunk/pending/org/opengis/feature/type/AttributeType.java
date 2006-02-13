@@ -2,8 +2,6 @@ package org.opengis.feature.type;
 
 import java.util.Set;
 
-import javax.xml.namespace.QName;
-
 import org.opengis.filter.Filter;
 import org.opengis.util.GenericName;
 

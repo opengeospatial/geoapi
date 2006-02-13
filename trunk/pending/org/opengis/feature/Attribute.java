@@ -8,14 +8,14 @@ import org.opengis.feature.type.AttributeType;
  * 
  * @author Jody Garnett, Refractions Research
  */
-public interface Attribute {
+public interface Attribute<T> {
 
 	/**
 	 * Indicate the AttributeType of this content.
 	 * 
 	 * @return AttributeType information descirbing allowable content
 	 */
-	AttributeType<?> getType();
+	AttributeType<T> getType();
 	
     /**
      * Unique, inmutable identification for domain object being modeled.
@@ -29,12 +29,12 @@ public interface Attribute {
 	 * 
 	 * @return Value of the type indicated by type()
 	 */
-	Object get();
+	T get();
 
 	/**
 	 * Set content to newZValue
 	 * @param newValue
 	 *            Must be of type indicated by type()
 	 */
-	void set(Object newValue)throws IllegalArgumentException;
+	void set(T newValue)throws IllegalArgumentException;
 }

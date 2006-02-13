@@ -14,7 +14,6 @@ package org.opengis.filter;
 import java.util.List;
 import java.util.Set;
 
-// OpenGIS direct dependencies
 import org.opengis.filter.expression.Add;
 import org.opengis.filter.expression.Divide;
 import org.opengis.filter.expression.Expression;

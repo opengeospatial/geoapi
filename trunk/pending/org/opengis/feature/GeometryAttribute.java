@@ -2,9 +2,7 @@ package org.opengis.feature;
 
 import org.opengis.feature.type.GeometryType;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
-
-import com.vividsolutions.jts.geom.Envelope;
-import com.vividsolutions.jts.geom.Geometry;
+import org.opengis.spatialschema.geometry.Envelope;
 
 /**
  * Represent a Geometry as complex content.
@@ -17,9 +15,11 @@ import com.vividsolutions.jts.geom.Geometry;
  * </p>
  * <p>
  * This class is cotten candy and does not add any new ability to our modeling.
+ * We are using generics to avoid making the exact instance of the Geometry known
+ * at this time, allowing the use of JTS for SFSQL use.
  * </p>
  */
-public interface GeometryAttribute extends Attribute {
+public interface GeometryAttribute<T> extends Attribute {
 	/**
 	 * The Coordinate Reference System of this geometry.
 	 * <p>
@@ -53,7 +53,7 @@ public interface GeometryAttribute extends Attribute {
 	 * needed to report CRS and Bounds constraints on data? A: It was needed
 	 * when we switched over to Attribute
 	 */
-	GeometryType<? super Geometry> getType();
+	GeometryType<T> getType();
 
 	/**
 	 * Retrieve Geometry.
@@ -61,7 +61,7 @@ public interface GeometryAttribute extends Attribute {
 	 * We may want to relax this to Object to allow for JTS or GeoAPI based
 	 * objects for the first release.
 	 */
-	Geometry get();
+	T get();
 
 	/**
 	 * Set provided Geometry
@@ -69,5 +69,5 @@ public interface GeometryAttribute extends Attribute {
 	 * We may want to relax this to Object to allow for JTS or GeoAPI based
 	 * objects for the first release.
 	 */
-	void set(Geometry geom);
+	void set(T geom);
 }

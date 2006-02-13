@@ -11,20 +11,10 @@
 package org.opengis.filter;
 
 // J2SE direct dependencies
-import java.util.List;
-import java.util.Set;
-
 import javax.xml.namespace.QName;
 
-// OpenGIS direct dependencies
-import org.opengis.filter.expression.Add;
-import org.opengis.filter.expression.Divide;
 import org.opengis.filter.expression.Expression;
-import org.opengis.filter.expression.Function;
-import org.opengis.filter.expression.Literal;
-import org.opengis.filter.expression.Multiply;
 import org.opengis.filter.expression.PropertyName;
-import org.opengis.filter.expression.Subtract;
 import org.opengis.filter.spatial.BBOX;
 import org.opengis.filter.spatial.Beyond;
 import org.opengis.filter.spatial.Contains;
