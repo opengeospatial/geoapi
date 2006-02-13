@@ -5,6 +5,7 @@ import java.util.Set;
 import javax.xml.namespace.QName;
 
 import org.geotools.filter.Filter;
+import org.opengis.util.GenericName;
 
 /**
  * AttributeType information, immutable.
@@ -20,7 +21,7 @@ public interface AttributeType<T> {
 	 * </p>
 	 * @return Name containing both the namespace and name for this type
 	 */
-	public QName getName();
+	public GenericName getName();
 	
 	/**
 	 * True if this type is usable as a target of a reference.
