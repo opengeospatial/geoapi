@@ -12,7 +12,7 @@ import org.opengis.util.CodeList;
  * @author Jody Garnett, Refractions Research.
  * @since GeoTools 2.2, Filter 1.1
  */
-public final class SortOrder extends CodeList<SortOrder> {
+public class SortOrder extends CodeList<SortOrder> {
 	private static final long serialVersionUID = 7840334200112859571L;
 	private static final List<SortOrder> all = new ArrayList<SortOrder>(2);
 

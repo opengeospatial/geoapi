@@ -5,7 +5,7 @@ import java.util.List;
 import org.opengis.filter.Filter;
 
 /**
- * An ordered List of Features. 
+ * An ordered List of Features.
  * <p>
  * A FeatureList is usually retrived from a FeatureCollection with the
  * subCollection( Filter ) operation. How you ask - make use of Filter
