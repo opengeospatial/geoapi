@@ -1,6 +1,7 @@
 package org.opengis.feature.schema;
 
 import org.opengis.feature.type.AttributeType;
+import org.opengis.util.GenericName;
 
 
 /**
@@ -14,6 +15,10 @@ import org.opengis.feature.type.AttributeType;
 public interface AttributeDescriptor extends Descriptor {
 
 	AttributeType<?> getType();
+
+	GenericName getName();
+	
+	String name();
 	
 	/**
 	 * Used to mark default Geometry.

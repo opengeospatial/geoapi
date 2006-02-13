@@ -3,6 +3,11 @@ package org.opengis.feature;
 import org.opengis.feature.type.AttributeType;
 
 
+/**
+ * Contains information of an indicated type.
+ * 
+ * @author Jody Garnett, Refractions Research
+ */
 public interface Attribute {
 
 	/**
