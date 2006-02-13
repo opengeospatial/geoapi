@@ -163,7 +163,6 @@ public interface TextSymbolizer extends GraphicStyle {
     /**
      * Sets the Font object.
      * @param object the Font object.
-     *
      */
     public void setFont(Font object);
 

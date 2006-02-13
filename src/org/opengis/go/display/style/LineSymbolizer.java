@@ -38,6 +38,7 @@ public interface LineSymbolizer extends GraphicStyle {
     /**  Default stroke color value.  */
     public static final Color DEFAULT_STROKE_FILL_COLOR = Color.BLACK;
 
+    /**  Default stroke background color value.  */
     public static final Color DEFAULT_STROKE_FILL_BACKGROUND_COLOR = Color.WHITE;
 
     /**  Default dash array value.  */
@@ -46,12 +47,16 @@ public interface LineSymbolizer extends GraphicStyle {
     /**  Default dash offset value.  */
     public static final float DEFAULT_STROKE_DASH_OFFSET = 0.f;
 
+    /**  Default gradient point values.  */
     public static final float[] DEFAULT_STROKE_FILL_GRADIENT_POINTS = new float[2];
 
+    /**  Default opacity value.  */
     public static final float DEFAULT_STROKE_FILL_OPACITY = 1.f;
 
+    /**  Default fill pattern value.  */
     public static final FillPattern DEFAULT_STROKE_FILL_PATTERN = FillPattern.NONE;
 
+    /**  Default fill style value.  */
     public static final FillStyle DEFAULT_STROKE_FILL_STYLE = FillStyle.EMPTY;
 
     /**  Default line cap value.  */
@@ -63,11 +68,13 @@ public interface LineSymbolizer extends GraphicStyle {
     /**  Default line join value.  */
     public static final LineJoin DEFAULT_STROKE_LINE_JOIN = LineJoin.BEVEL;
 
+    /**  Default stroke line pattern value.  */
     public static final LinePattern DEFAULT_STROKE_LINE_PATTERN = LinePattern.NONE;
 
     /**  Default line style value.  */
     public static final LineStyle DEFAULT_STROKE_LINE_STYLE = LineStyle.SINGLE;
 
+    /**  Default stroke opacity value.  */
     public static final float DEFAULT_STROKE_OPACITY = 1.f;
 
     /**  Default stroke width value.  */
