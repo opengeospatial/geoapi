@@ -2,9 +2,7 @@ package org.opengis.feature;
 
 import org.opengis.feature.type.FeatureType;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
-
-import com.vividsolutions.jts.geom.Envelope;
-import com.vividsolutions.jts.geom.Geometry;
+import org.opengis.spatialschema.geometry.Envelope;
 
 public interface Feature extends ComplexAttribute {
 	/**
@@ -68,7 +66,7 @@ public interface Feature extends ComplexAttribute {
 	/**
 	 * @return Default geomtry Attribute or null if unknown or not applicable.
 	 */
-	Geometry getDefaultGeometry();
+	Object getDefaultGeometry();
 
 	/**
 	 * Sets the content of default geometry attribute
