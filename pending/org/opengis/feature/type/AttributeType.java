@@ -4,7 +4,7 @@ import java.util.Set;
 
 import javax.xml.namespace.QName;
 
-import org.geotools.filter.Filter;
+import org.opengis.filter.Filter;
 import org.opengis.util.GenericName;
 
 /**
