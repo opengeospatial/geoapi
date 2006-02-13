@@ -1,8 +1,5 @@
 package org.opengis.feature.schema;
 
-import java.util.List;
-
-import org.opengis.feature.Attribute;
 
 
 /**

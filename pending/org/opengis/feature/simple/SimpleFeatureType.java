@@ -2,10 +2,9 @@ package org.opengis.feature.simple;
 
 import java.util.List;
 
-import javax.xml.namespace.QName;
-
 import org.opengis.feature.type.AttributeType;
 import org.opengis.feature.type.FeatureType;
+import org.opengis.util.GenericName;
 
 /**
  * Defines a imple feature model of attribute in a perscribed order.
@@ -38,7 +37,7 @@ public interface SimpleFeatureType extends FeatureType {
 	/**
 	 * Retrive attributeType by qualified name
 	 */
-	AttributeType get( QName qname );
+	AttributeType get( GenericName qname );
 	
 	/**
 	 * Retrive attributeType by name.

@@ -1,9 +1,5 @@
 package org.opengis.feature.type;
 
-import java.util.Collection;
-import java.util.List;
-
-import org.opengis.feature.Attribute;
 import org.opengis.feature.schema.Descriptor;
 
 /**
@@ -12,7 +8,7 @@ import org.opengis.feature.schema.Descriptor;
  *
  * @param <T>
  */
-public interface ComplexType<T/* extends List<Attribute>*/> extends AttributeType<T> {
+public interface ComplexType extends AttributeType {
 	/**
 	 * Java class bound to this complex type.
 	 * <p>
@@ -21,7 +17,7 @@ public interface ComplexType<T/* extends List<Attribute>*/> extends AttributeTyp
 	 * </p>
 	 * @return Java binding, or null if not applicable
 	 */
-	Class<T> getBinding();
+	Class getBinding();
 
 	/**
 	 * Super is restricted to other ComplexType.
@@ -55,7 +51,7 @@ public interface ComplexType<T/* extends List<Attribute>*/> extends AttributeTyp
 	 * to put into use the better.
 	 * </p>
 	 */
-	ComplexType<? super T> getSuper();
+	ComplexType getSuper();
 	
 	/**
 	 * Access to multiplicity and order of allowed content.
@@ -88,8 +84,9 @@ public interface ComplexType<T/* extends List<Attribute>*/> extends AttributeTyp
 	 * quality and not part of our data model.
 	 * </p>
 	 * @see getDescriptor
-	 */
+	 *
 	Collection<AttributeType> types();
+	 */
 	
 	/**
 	 * Works as a search through available types().
@@ -99,7 +96,7 @@ public interface ComplexType<T/* extends List<Attribute>*/> extends AttributeTyp
 	 * </p>
 	 * @param name
 	 * @return The "first" type that with AttributeType.getName
-	 */
+	 *
 	AttributeType type( String name );
-	
+	 */
 }

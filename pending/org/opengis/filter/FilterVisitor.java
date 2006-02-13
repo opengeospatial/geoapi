@@ -11,6 +11,7 @@
 package org.opengis.filter;
 
 // OpenGIS direct dependencies
+import org.opengis.annotation.Extension;
 import org.opengis.filter.spatial.BBOX;
 import org.opengis.filter.spatial.Beyond;
 import org.opengis.filter.spatial.Contains;
@@ -22,9 +23,6 @@ import org.opengis.filter.spatial.Intersects;
 import org.opengis.filter.spatial.Overlaps;
 import org.opengis.filter.spatial.Touches;
 import org.opengis.filter.spatial.Within;
-
-// Annotation
-import org.opengis.annotation.Extension;
 
 
 /**
