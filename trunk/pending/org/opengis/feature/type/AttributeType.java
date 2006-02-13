@@ -34,7 +34,7 @@ public interface AttributeType<T> {
 	 * </p>
 	 * @return getName().toString();
 	 */
-	public String name();
+	//public String name();
 
 	/**
 	 * Access to super type information.
@@ -81,7 +81,7 @@ public interface AttributeType<T> {
 	public Boolean isNillable();
 	
 	/**
-	 * AttributeType identity should be based on QName.
+	 * AttributeType identity should be based on GenericName.
 	 * <p>
 	 * </p>
 	 * @param obj
@@ -90,7 +90,7 @@ public interface AttributeType<T> {
 	public boolean equals(Object other);
 
 	/**
-	 * Hashcode should be based on QName.
+	 * Hashcode should be based on GenericnName.
 	 * 
 	 * @return getName().hashCode()
 	 */

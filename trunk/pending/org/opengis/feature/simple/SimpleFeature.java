@@ -19,7 +19,7 @@ import org.opengis.feature.Feature;
  * convience methods based in name and index.
  * </p>
  * <p>
- * We considered providing a helper method based on QName to
+ * We considered providing a helper method based on GenericName to
  * this class or directly to Feature. There is no significant
  * advantage over direct use of AttribtueType.
  * </p>
@@ -45,18 +45,6 @@ public interface SimpleFeature extends Feature {
 	Object get(String name);
 	
 	/**
-	 * Retrive value by attribute name.
-	 * <P>
-	 * Method considered and withdrawn, as it is not of
-	 * interest to the casual shapefile user.
-	 * </p>
-	 * @param name
-	 * @return Attribute Value associated with name
-	 *
-	Object get(QName qname);
-	 */
-	
-	/**
 	 * Access attribute by "index" indicated by SimpleFeatureType.
 	 * 
 	 * @param index
@@ -72,17 +60,6 @@ public interface SimpleFeature extends Feature {
 	 */
 	void set( String name, Object value );
 
-	/**
-	 * Modify attribute with "qname" indicated by SimpleFeatureType.
-	 * <p>
-	 * Method considered and withdrawn, as it is not of
-	 * interest to the casual shapefile user.
-	 * </p>
-	 * @param qname
-	 * @param value
-	 *
-	void set( QName qname, Object value );
-     */
 	/**
 	 * Modify attribute at the "index" indicated by SimpleFeatureType.
 	 * 

@@ -16,9 +16,14 @@ public interface AttributeDescriptor extends Descriptor {
 
 	AttributeType<?> getType();
 
+	/**
+	 * Name of this attribute.
+	 * 
+	 * @return
+	 */
 	GenericName getName();
 	
-	String name();
+	//String name();
 	
 	/**
 	 * Used to mark default Geometry.

@@ -32,5 +32,5 @@ public interface FeatureList extends FeatureCollection, List<Feature> {
 	 * @param filter
 	 * @return FeatureList based on features selected by filter
 	 */
-    FeatureList subList( Filter filter );    
+    FeatureList subList( Filter filter );
 }
