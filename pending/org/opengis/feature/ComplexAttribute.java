@@ -15,7 +15,7 @@ public interface ComplexAttribute extends Attribute<List<Attribute>> {
 	/**
 	 * Access the type of this construct.
 	 */
-	ComplexType<List<Attribute>> getType();
+	public ComplexType getType();
 
 	/**
 	 * Access to contents of this Feature.
@@ -36,7 +36,7 @@ public interface ComplexAttribute extends Attribute<List<Attribute>> {
 	 * @see types()
 	 * @see values()
 	 */
-	List<Attribute> getAttributes();
+	public List<Attribute> getAttributes();
 
 	/**
 	 * Access to attributes associated with name, in a similar fashion to DOM's
@@ -57,9 +57,8 @@ public interface ComplexAttribute extends Attribute<List<Attribute>> {
 	 * @param name
 	 * @return Attribute, or List<Attribute> based on type
 	 */
-	public List<Attribute> getAttributes(String name);
-
-	public List<Attribute> getAttributes(GenericName name);
+	// public List<Attribute> getAttributes(String name);
+	// public List<Attribute> getAttributes(GenericName name);
 
 	/**
 	 * Sets the complete contents of this Attribute, that must be valid against
@@ -68,7 +67,9 @@ public interface ComplexAttribute extends Attribute<List<Attribute>> {
 	 * @param attribute
 	 * @throws IllegalArgumentException
 	 */
-	void set(T newValue) throws IllegalArgumentException;
+	void set(List<Attribute> newValue) throws IllegalArgumentException;
+
+	public List<Attribute> get();
 
 	/**
 	 * List view of attribtue types, in a manner similar Map.keys().
@@ -81,8 +82,8 @@ public interface ComplexAttribute extends Attribute<List<Attribute>> {
 	 * Collections naming conventions are used to indicate this is a view into
 	 * our data model.
 	 */
-	List<AttributeType> types();
-
+	// List<AttributeType> types();
+	
 	/**
 	 * Value view of attribtue types, in a manner similar Map.values().
 	 * <p>
@@ -94,10 +95,9 @@ public interface ComplexAttribute extends Attribute<List<Attribute>> {
 	 * Collections naming conventions are used to indicate this is a view into
 	 * our data model.
 	 */
-	List<Object> values();
-
+	// List<Object> values();
+	
 	// void set(int index, Attribute value)throws IllegalArgumentException;
-
 	/**
 	 * Inserts the specified Attribute at the specified position in this
 	 * atttribute's contents list. Shifts the element currently at that position
@@ -118,7 +118,7 @@ public interface ComplexAttribute extends Attribute<List<Attribute>> {
 	 *             if the index is out of range (index &lt; 0 || index &gt;
 	 *             size()).
 	 */
-	public void add(int index, Attribute value);
+	// public void add(int index, Attribute value);
 
 	/**
 	 * Removes the element at the specified position in this attribute's
@@ -141,7 +141,7 @@ public interface ComplexAttribute extends Attribute<List<Attribute>> {
 	 *             if the index is out of range (index &lt; 0 || index &gt;=
 	 *             size()).
 	 */
-	public Attribute remove(int index);
+	// public Attribute remove(int index);
 
 	/**
 	 * Access to value associated with type.
@@ -150,5 +150,5 @@ public interface ComplexAttribute extends Attribute<List<Attribute>> {
 	 * @return Attribute, or List&lt;Attribute&gt; based on schema referencing
 	 *         AttributeType
 	 */
-	T get(AttributeType type);
+	//List get(AttributeType type);
 }

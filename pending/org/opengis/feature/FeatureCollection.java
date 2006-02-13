@@ -20,7 +20,7 @@ public interface FeatureCollection extends Feature, Collection<Feature> {
 	/**
 	 * Restricted to return a FeatureCollectionType.
 	 */
-    public FeatureCollectionType<?> getType();
+    public FeatureCollectionType getType();
 
     /**
 	 * Access contents of this collection.
@@ -37,8 +37,15 @@ public interface FeatureCollection extends Feature, Collection<Feature> {
 	 * </ul>
 	 * @return Iterator over the contents of this feature collection
 	 */
-    public Iterator<Feature> features();
+    //public FeatureIterator features();
     
+    /**
+     * Should be a FeatureIterator.
+     * 
+     * @see features()
+     * @return Iterator over the contents of this feature collection.
+     */
+    public Iterator<Feature> iterator();
     /**
      * You are required to close iterators after use.
      * <p>
