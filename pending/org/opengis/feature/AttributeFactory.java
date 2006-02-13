@@ -11,8 +11,6 @@ import org.opengis.feature.type.FeatureType;
 import org.opengis.feature.type.GeometryType;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 
-import com.vividsolutions.jts.geom.Geometry;
-
 /**
  * Plays the role of making actual instances of types in this puzzle.
  * <p>
@@ -60,7 +58,7 @@ public interface AttributeFactory {
 	 * @param value
 	 * @return
 	 */
-	public GeometryAttribute create(GeometryType type, String id, Geometry value);
+	public GeometryAttribute create(GeometryType type, String id, Object value);
 	
 	/**
 	 * 
