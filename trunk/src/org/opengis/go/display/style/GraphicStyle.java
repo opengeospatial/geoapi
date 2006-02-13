@@ -58,7 +58,7 @@ public interface GraphicStyle extends Cloneable {
 
     /**
      * Sets the properties of this <code>GraphicStyle</code> from the
-     * properties of the specified <code>GraphicStyle</code>.  May throw an execption
+     * properties of the specified <code>GraphicStyle</code>.  May throw an exception
      * if the given object is not the same type as this one.
      *
      * @param style the <code>GraphicStyle</code> used to set this
