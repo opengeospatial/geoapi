@@ -10,9 +10,6 @@
  *************************************************************************************************/
 package org.opengis.go.display.primitive;
 
-// J2SE dependencies (for javadoc)
-import java.beans.PropertyChangeEvent;
-
 // OpenGIS direct dependencies
 import org.opengis.go.display.event.GraphicEvent;
 import org.opengis.go.display.event.GraphicListener;
@@ -163,8 +160,8 @@ public interface Graphic {
      * to annotate {@code Graphic}s that were created by another module.
      * <p>
      * If value is null this method will remove the property. Changes to client
-     * properties are reported with {@link PropertyChange} events. The name of the
-     * property (for the sake of {@link PropertyChange} events) is {@code key.toString()}. 
+     * properties are reported with property change events. The name of the
+     * property (for the sake of property change events) is {@code key.toString()}. 
      * The {@code clientProperty} dictionary is not intended to support large scale
      * extensions to <code>Graphic</code> nor should be it considered an alternative to
      * subclassing when designing a new component.
