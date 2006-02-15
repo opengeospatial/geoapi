@@ -77,7 +77,7 @@ public interface FilterFactory {
     PropertyIsBetween between(Expression expr, Expression lower, Expression upper);
 
     /** Compares that two sub-expressions are equal to each other.
-     * @TODO should be equalTo (so equals can refer to geometry)
+     * @todo should be equalTo (so equals can refer to geometry)
      */
     PropertyIsEqualTo equals(Expression expr1, Expression expr2);
 
@@ -109,7 +109,7 @@ public interface FilterFactory {
 ////////////////////////////////////////////////////////////////////////////////
 
     /** Checks if the bounding box of the feature's geometry overlaps the specified bounding box.
-     * @TODO Redefine to agree with specification "geometry overlaps the specified bounding box"
+     * @todo Redefine to agree with specification "geometry overlaps the specified bounding box"
      */
     BBOX        bbox(String propertyName, double minx, double miny, double maxx, double maxy, String srs);
 
