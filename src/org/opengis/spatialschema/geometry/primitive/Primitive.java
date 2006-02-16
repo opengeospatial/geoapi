@@ -130,10 +130,8 @@ public interface Primitive extends Geometry {
      * @return The orientable primitives as an array of length 2, or {@code null} if none.
      *
      * @see OrientablePrimitive#getPrimitive
-     *
-     * @todo Should we use the plural form for the method names?
      */
-    @UML(identifier="proxy", obligation=MANDATORY, specification=ISO_19107)
+    @UML(identifier="proxy", obligation=OPTIONAL, specification=ISO_19107)
     public OrientablePrimitive[] getProxy();
 
 //    public org.opengis.spatialschema.topology.primitive.TP_Primitive topology[];
