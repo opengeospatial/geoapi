@@ -30,7 +30,7 @@ import static org.opengis.annotation.Specification.*;
 @UML(identifier="SC_CRS", specification=ISO_19111)
 public interface CoordinateReferenceSystem extends ReferenceSystem {
     /**
-     * Returns the coordinate system. One of {@link CoordinateSystem coordinate system}
+     * Returns the coordinate system. One of {@linkplain CoordinateSystem coordinate system}
      * sub-interfaces is associated with {@linkplain SingleCRS single CRS}. Other CRS
      * like {@linkplain CompoundCRS compound CRS} may also provides a synthetic coordinate
      * system in order to allow users to access to two commonly requested information:
