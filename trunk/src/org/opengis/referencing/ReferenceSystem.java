@@ -25,14 +25,20 @@ import static org.opengis.annotation.Specification.*;
 
 /**
  * Description of a spatial and temporal reference system used by a dataset.
- *  
+ * <p>
+ * <b>Historical note:</b> This interface was initially derived from an ISO 19111 specification
+ * published in 2003. Later revisions (in 2005) rely on an interface defined in ISO 19115 instead.
+ * The annotations were updated accordingly, but this interface is still defined in the referencing
+ * package (instead of metadata), the {@link #getValidArea()} method still named that way and the
+ * {@link #getScope()} method still defined here for this historical reason.
+ *
  * @version <A HREF="http://portal.opengeospatial.org/files/?artifact_id=6716">Abstract specification 2.0</A>
  * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 1.0
  *
  * @see org.opengis.referencing.crs.CoordinateReferenceSystem
  */
-@UML(identifier="RS_ReferenceSystem", specification=ISO_19111)
+@UML(identifier="RS_ReferenceSystem", specification=ISO_19115)
 public interface ReferenceSystem extends IdentifiedObject {
     /**
      * Key for the <code>{@value}</code> property to be given to the
@@ -57,13 +63,13 @@ public interface ReferenceSystem extends IdentifiedObject {
      *
      * @return Coordinate reference system valid area, or {@code null} if not available.
      */
-    @UML(identifier="validArea", obligation=OPTIONAL, specification=ISO_19111)
+    @UML(identifier="domainOfValidity", obligation=OPTIONAL, specification=ISO_19115)
     Extent getValidArea();
 
     /**
      * Description of domain of usage, or limitations of usage, for which this
      * (coordinate) reference system object is valid.
      */
-    @UML(identifier="scope", obligation=OPTIONAL, specification=ISO_19111)
+    @UML(identifier="CS_CRS.scope", obligation=OPTIONAL, specification=ISO_19111)
     InternationalString getScope();
 }
