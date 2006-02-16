@@ -45,7 +45,7 @@ public interface CurveSegment extends GenericCurve {
      *
      * @see Curve#getSegments
      */
-    @UML(identifier="curve", obligation=MANDATORY, specification=ISO_19107)
+    @UML(identifier="curve", obligation=OPTIONAL, specification=ISO_19107)
     public Curve getCurve();
 
     /**
