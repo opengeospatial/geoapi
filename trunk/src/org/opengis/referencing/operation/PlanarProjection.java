@@ -21,10 +21,10 @@ import org.opengis.annotation.Extension;
  * <p align="center"><img src="../doc-files/PlanarProjection.png"></p>
  *
  * @author Martin Desruisseaux (IRD)
+ * @since GeoAPI 1.0
  *
  * @see org.opengis.referencing.crs.ProjectedCRS
  * @see <A HREF="http://mathworld.wolfram.com/AzimuthalProjection.html">Azimuthal projection on MathWorld</A>
- * @since GeoAPI 1.0
  */
 @Extension
 public interface PlanarProjection extends Projection {

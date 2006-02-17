@@ -27,14 +27,27 @@ import static org.opengis.annotation.Specification.*;
  * Geometric figure that can be used to describe the approximate shape of the earth.
  * In mathematical terms, it is a surface formed by the rotation of an ellipse about
  * its minor axis. An ellipsoid requires two defining parameters:
+ * <p>
  * <ul>
  *   <li>{@linkplain #getSemiMajorAxis semi-major axis} and
  *       {@linkplain #getInverseFlattening inverse flattening}, or</li>
  *   <li>{@linkplain #getSemiMajorAxis semi-major axis} and
  *       {@linkplain #getSemiMinorAxis semi-minor axis}.</li>
  * </ul>
+ * <p>
+ * There is not just one ellipsoid. An ellipsoid is a matter of choice, and therefore many
+ * choices are possible. The size and shape of an ellipsoid was traditionally chosen such
+ * that the surface of the geoid is matched as closely as possible locally, e.g. in a country.
+ * A number of global best-fit ellipsoids are now available. An association of an ellipsoid with
+ * the earth is made through the definition of the size and shape of the ellipsoid and the position
+ * and orientation of this ellipsoid with respect to the earth. Collectively this choice is captured
+ * by the concept of “{@linkplain GeodeticDatum geodetic datum}”. A change of size, shape, position
+ * or orientation of an ellipsoid will result in a change of geographic coordinates of a point and
+ * be described as a different geodetic datum. Conversely geographic coordinates are unambiguous
+ * only when associated with a geodetic datum.
  *
  * @version <A HREF="http://portal.opengeospatial.org/files/?artifact_id=6716">Abstract specification 2.0</A>
+ * @author ISO/DIS 19111
  * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 1.0
  */

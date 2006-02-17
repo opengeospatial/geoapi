@@ -26,6 +26,7 @@ import static org.opengis.annotation.Specification.*;
  * numeric, but other types of parameter values are possible.
  *  
  * @version <A HREF="http://portal.opengeospatial.org/files/?artifact_id=6716">Abstract specification 2.0</A>
+ * @author ISO/DIS 19111
  * @author Martin Desruisseaux (IRD)
  * @author Jody Garnett (Refractions Research)
  * @since GeoAPI 2.0
