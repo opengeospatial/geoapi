@@ -19,10 +19,11 @@ import static org.opengis.annotation.Specification.*;
 /**
  * A coordinate reference system that is defined by its coordinate conversion from another
  * coordinate reference system but is not a projected coordinate reference system. This
- * category includes coordinate reference systems derived from a projected coordinate
- * reference system.
+ * category includes coordinate reference systems derived from a {@linkplain ProjectedCRS
+ * projected coordinate reference system}.
  *
  * @version <A HREF="http://portal.opengeospatial.org/files/?artifact_id=6716">Abstract specification 2.0</A>
+ * @author ISO/DIS 19111
  * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 1.0
  */

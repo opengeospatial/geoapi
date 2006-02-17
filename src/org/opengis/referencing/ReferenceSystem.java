@@ -33,6 +33,7 @@ import static org.opengis.annotation.Specification.*;
  * {@link #getScope()} method still defined here for this historical reason.
  *
  * @version <A HREF="http://portal.opengeospatial.org/files/?artifact_id=6716">Abstract specification 2.0</A>
+ * @author ISO/DIS 19111
  * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 1.0
  *
@@ -70,6 +71,6 @@ public interface ReferenceSystem extends IdentifiedObject {
      * Description of domain of usage, or limitations of usage, for which this
      * (coordinate) reference system object is valid.
      */
-    @UML(identifier="CS_CRS.scope", obligation=OPTIONAL, specification=ISO_19111)
+    @UML(identifier="SC_CRS.scope", obligation=OPTIONAL, specification=ISO_19111)
     InternationalString getScope();
 }
