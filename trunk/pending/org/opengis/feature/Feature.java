@@ -5,7 +5,36 @@ import org.opengis.referencing.crs.CoordinateReferenceSystem;
 import org.opengis.spatialschema.geometry.Envelope;
 import org.opengis.spatialschema.geometry.Geometry;
 
+/**
+ * A Feature of abitrary complexity.
+ * <p>
+ * Proposal:
+ * It is tempting to allow additional "tempoary" metadata to be associated
+ * with Attributes in order to facilitiate procesing services. These services traditionally
+ * end up hold "shadow" structures such as a HashMap referenced by FeatureID.
+ * <ul>
+ * <li>putClientProperty(String key, Object value );
+ * <li>getClientProperty(String key);
+ * </ul>
+ * </p>
+ * @author Jody Garnett, Refractions Research
+ */
 public interface Feature extends ComplexAttribute {
+	/**
+	 * Allows the association of process specific information.
+	 * 
+	 * @param key Object used to allow String and Enum keys
+	 * @param value Associated with key
+	 */
+	public void putClientProperty( Object key, Object value );
+	
+	/**
+	 * Retrive associated process specific information.
+	 * 
+	 * @param key Object used to allow String and Enum keys
+	 */	
+	public void getClientProperty( Object key );
+	
 	/**
 	 * Feature ID, should be unique, inmutable identification for physical
 	 * Feature being modeled.
