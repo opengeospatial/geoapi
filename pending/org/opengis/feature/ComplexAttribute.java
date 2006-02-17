@@ -2,9 +2,7 @@ package org.opengis.feature;
 
 import java.util.List;
 
-import org.opengis.feature.type.AttributeType;
 import org.opengis.feature.type.ComplexType;
-import org.opengis.util.GenericName;
 
 /**
  * 

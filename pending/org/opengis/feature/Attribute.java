@@ -1,5 +1,6 @@
 package org.opengis.feature;
 
+import org.opengis.feature.type.AttributeDescriptor;
 import org.opengis.feature.type.AttributeType;
 
 
@@ -11,12 +12,29 @@ import org.opengis.feature.type.AttributeType;
 public interface Attribute<T> {
 
 	/**
-	 * Indicate the AttributeType of this content.
+	 * Indicates the AttirbuteDescriptor for this content.
+	 * <p>
+	 * The attribute descriptor formally captures the name and multiplicity
+	 * and type associated with this attirbute.
+	 * </p>
+	 * @return Descriptor for this attribute.
+	 */
+	AttributeDescriptor getDescriptor();
+
+	/**
+	 * AttributeName (from the descriptor) for this attribute.
+	 * 
+	 * @return name of this attrubute.
+	 */
+	AttributeName name();
+	
+	/**
+	 * Indicate the AttributeType (from the descriptor) of this content.
 	 * 
 	 * @return AttributeType information descirbing allowable content
 	 */
-	AttributeType<T> getType();
-	
+	AttributeType<T> type();
+
     /**
      * Unique, inmutable identification for domain object being modeled.
      *  
