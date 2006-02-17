@@ -1,5 +1,7 @@
 package org.opengis.feature.type;
 
+import java.util.Collection;
+
 import org.opengis.feature.schema.Descriptor;
 
 
@@ -7,11 +9,9 @@ public interface FeatureCollectionType extends FeatureType {
 	/**
 	 * FeatureTypes allowable as members of this collection.
 	 * <p>
-	 * Usually:
-	 * <ul>
-	 * <li>AttributeDescriptor: 0..*, of FeatureType
-	 * <li>ChoiceDescriptor: 0..*, of the above
-	 * </ul>
+	 * Please note that all the normal AttributeTypes defined by this FeatureCollection
+	 * (such as bounds) are considered to be derivative from the member features
+	 * </p>
 	 */
-	Descriptor getMemberDescriptor();
+	Collection<FeatureType> getMemberDescriptor();
 }

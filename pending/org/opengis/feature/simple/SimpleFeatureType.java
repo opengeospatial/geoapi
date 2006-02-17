@@ -2,42 +2,41 @@ package org.opengis.feature.simple;
 
 import java.util.List;
 
+import org.opengis.feature.AttributeName;
+import org.opengis.feature.type.AttributeDescriptor;
 import org.opengis.feature.type.AttributeType;
 import org.opengis.feature.type.FeatureType;
-import org.opengis.util.GenericName;
 
 /**
- * Defines a imple feature model of attribute in a perscribed order.
+ * Defines a simple feature model of attribute in a perscribed order.
  * <p>
  * This interface also defines several helper methods that only
  * make sense given the above constratins.
  * </p>
  *  
- * @author jgarnett
+ * @author Jody Garnett, Refractions Research
  */
 public interface SimpleFeatureType extends FeatureType {
 	
 	/**
-	 * Must be null for truely simple content.
-	 * @return null, as no super types are allowed
+	 * Must be <code>null</code> for truely simple content.
+	 * @return <code>null</code>, as no super types are allowed
 	 */
 	public SimpleFeatureType getSuper();
 	
-	/**
-	 * Indicates a director ordering of AttributeDescriptors.
-	 */
-	public SimpleDescriptor getDescriptor();
-
 	/**
 	 * Types are returned in the perscribed index order.
 	 * @return Types in prescribed order
 	 */
 	public List<AttributeType> types();
 	
+	/** List of named attributes in perscribed order */
+	public List<AttributeDescriptor> getAttributes();
+	
 	/**
 	 * Retrive attributeType by qualified name
 	 */
-	AttributeType get( GenericName qname );
+	AttributeType get( AttributeName name );
 	
 	/**
 	 * Retrive attributeType by name.
@@ -53,6 +52,5 @@ public interface SimpleFeatureType extends FeatureType {
 	
 	/** Number of available attributes */
 	int getNumberOfAttribtues();
-	
 	
 }

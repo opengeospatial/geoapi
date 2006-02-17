@@ -3,9 +3,6 @@ package org.opengis.feature.type;
 import java.util.List;
 import java.util.Set;
 
-import javax.xml.namespace.QName;
-
-import org.opengis.feature.schema.Descriptor;
 import org.opengis.feature.simple.SimpleFeatureType;
 import org.opengis.filter.Filter;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;

@@ -1,6 +1,10 @@
 package org.opengis.feature.simple;
 
+import java.util.List;
+
+import org.opengis.feature.Attribute;
 import org.opengis.feature.Feature;
+import org.opengis.feature.type.AttributeType;
 
 /**
  * Feature interface customized for Simple content.
@@ -23,10 +27,26 @@ import org.opengis.feature.Feature;
  * this class or directly to Feature. There is no significant
  * advantage over direct use of AttribtueType.
  * </p>
- * @author jgarnett
+ * @author Jody Garnett, Refractions Research
  */
 public interface SimpleFeature extends Feature {
-
+	
+	/**
+	 * List of attributes is in the same order as that defined
+	 * by SimpleFeatureType.
+	 */
+    public List<Attribute> getAttributes();
+    
+    /**
+     * AttributeTypes in the order defined by SimpleFeatureType.
+     * <p>
+     * This method is not part of the data model and does not follow
+     * Java Bean naming conventions.
+     * </p>
+     * @return List of AttribtueTypes in order defined by SimpleFeatureType
+     */
+    public List<AttributeType> types();
+    
 	/**
 	 * Restrictued to SimpleFeatureType
 	 * <p>
@@ -71,11 +91,9 @@ public interface SimpleFeature extends Feature {
 	/**
 	 * Number of attributes in SimpleFeatureType.
 	 * <p>
-	 * Repressed, for simple content SimpleFeatureType.getNumberOfAttributes() will
-	 * be sufficient.
+	 * This is identical to <code>types().size()</code>
 	 * </p>
 	 * @return number of available attribtues
-	 *
-	int getNumberOfAttributes();
 	 */
+	int getNumberOfAttributes();
 }

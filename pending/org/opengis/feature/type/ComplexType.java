@@ -1,5 +1,7 @@
 package org.opengis.feature.type;
 
+import java.util.Collection;
+
 import org.opengis.feature.schema.Descriptor;
 
 /**
@@ -9,6 +11,58 @@ import org.opengis.feature.schema.Descriptor;
  * @param <T>
  */
 public interface ComplexType extends AttributeType {
+	
+	/**
+	 * Indicates ability of XPath to notice this attribute.
+	 * <p>
+	 * This facility is used to "hide" an attribute from XPath searches, while the compelx contents will still
+	 * be navigated no additional nesting will be considered. It will be as if the content were "folded" inline
+	 * resulting in a flatter nesting structure.
+	 * </p>
+	 * <p>
+	 * Construct described using Java Interfaces:<pre><code>
+	 * interface TestSample {
+	 *     String name;
+	 *     List<Measurement> measurement;
+	 * }
+	 * interface Measurement {
+	 *     long timestamp;
+	 *     Point point;
+	 *     long reading;
+	 * }
+	 * </code></pre>
+	 * The above is can hold the following information:<pre><code>
+	 * [ name="survey1",
+	 *   measurements=(
+	 *       [timestamp=3,point=(2,3), reading=4200],
+	 *       [timestamp=9,point=(2,4), reading=445600],
+	 *   )
+	 * ]
+	 * </code></pre>
+	 * Out of the box this is represented to XPath as the following tree:<pre><code>
+	 * root/name: survey1
+	 * root/measurement[0]/timestamp:3
+	 * root/measurement[0]/point: (2,3)
+	 * root/measurement[0]/reading: 4200     
+	 * root/measurement[1]/timestamp:9
+	 * root/measurement[2]/point: (2,4)
+	 * root/measurement[3]/reading: 445600     
+	 * </code></pre>
+	 * 
+	 * By inlining Measurement we can achive the following:<pre><code>
+	 * root/name: survey1
+	 * root/timestamp[0]:3
+	 * root/point[0]: (2,3)
+	 * root/reading[0]: 4200     
+	 * root/timestamp[1]:9
+	 * root/point[1]: (2,4)
+	 * root/reading[1] 445600     
+	 * </code></pre>
+	 * 
+	 * @return true if  attribute is to be considered transparent by XPath queries
+	 */
+	public boolean isInline();
+	
 	/**
 	 * Java class bound to this complex type.
 	 * <p>
@@ -54,49 +108,22 @@ public interface ComplexType extends AttributeType {
 	ComplexType getSuper();
 	
 	/**
-	 * Access to multiplicity and order of allowed content.
+	 * Describes allowable content, indicating containment.
 	 * <p>
-	 * Follows JavaBeans naming convention indicating this is part of
+	 * A collection of AttributeDescriptors (name and AttributeType) is used.
+	 * We make no restrictions as to attribute order. All attributes are considered
+	 * accessable by name (and order is thus insignificant).
+	 * </p>
+	 * <p>
+	 * If you are modling a typing system where attribute order is relevant
+	 * you may make use of a List. Similarly if duplicate attributes are
+	 * disallowed you may make use of a Set.
+	 * </p>
+	 * <p>
+	 * This method follows JavaBeans naming convention indicating this is part of
 	 * our data model.
 	 * </p>
-	 * @see types
 	 */
-	Descriptor getDescriptor();
-
-	/**
-	 * Describes allowable content, indicates containment not validation .
-	 * <p>
-	 * This method could be removed - the information is completly
-	 * available through schema();
-	 * </p>
-	 * This information is gathered from a breadth first search
-	 * of schema(). Collection is returned so that FlatFeatureType
-	 * can return an List, where as usually a Set is returned.
-	 * </p>
-	 * <p>
-	 * Note: a AttributeType may be returned by more then one AttributeDescriptor in a Descriptor,
-	 * if it is allowed in more then one ChoiceDescriptor or Sequence. While this
-	 * represents a form of multiplicity it does not indicate any difference
-	 * in containment.
-	 * </p>
-	 * <p>
-	 * Follows Collections naming conventions indicating this is a derrived
-	 * quality and not part of our data model.
-	 * </p>
-	 * @see getDescriptor
-	 *
-	Collection<AttributeType> types();
-	 */
+	Collection<AttributeDescriptor> getAttributes();
 	
-	/**
-	 * Works as a search through available types().
-	 * <p>
-	 * This method is useful when there is no namespace collision on names,
-	 * as with simple content.
-	 * </p>
-	 * @param name
-	 * @return The "first" type that with AttributeType.getName
-	 *
-	AttributeType type( String name );
-	 */
 }

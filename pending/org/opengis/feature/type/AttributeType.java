@@ -2,8 +2,8 @@ package org.opengis.feature.type;
 
 import java.util.Set;
 
+import org.opengis.feature.AttributeName;
 import org.opengis.filter.Filter;
-import org.opengis.util.GenericName;
 
 /**
  * AttributeType information, immutable.
@@ -12,14 +12,14 @@ public interface AttributeType<T> {
 	/**
 	 * Indicates the actual name of this AttributeType.
 	 * <p>
-	 * GenericName is used, and becomes important when working with supertypes and complex content.
+	 * AttributeType is used, and becomes important when working with supertypes and complex content.
 	 * </p>
 	 * <p>
 	 * Follows Java beans naming conventions indicating this is part of our data model.
 	 * </p>
 	 * @return Name containing both the namespace and name for this type
 	 */
-	public GenericName getName();
+	public AttributeName getName();
 	
 	/**
 	 * True if this type is usable as a target of a reference.
