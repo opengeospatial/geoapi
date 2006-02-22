@@ -235,15 +235,20 @@
 
     <replace dir=".">
       <include name="snapshot/sources/**/*.java"/>
+      <replacefilter token="&lt;?&gt;"/>
       <replacefilter token="&lt;? extends Coverage&gt;"/>
       <replacefilter token="&lt;? extends Object&gt;"/>
       <replacefilter token="&lt;? extends Polygon&gt;"/>
       <replacefilter token="&lt;? extends Primitive&gt;"/>
       <replacefilter token="&lt;? extends SurfacePatch&gt;"/>
+      <replacefilter token="&lt;? super T&gt;"/>
       <replacefilter token="&lt;ApplicationSchemaInformation&gt;"/>
       <replacefilter token="&lt;Arc&gt;"/>
       <replacefilter token="&lt;ArcClosure&gt;"/>
       <replacefilter token="&lt;ArrowStyle&gt;"/>
+      <replacefilter token="&lt;Attribute&gt;"/>
+      <replacefilter token="&lt;AttributeDescriptor&gt;"/>
+      <replacefilter token="&lt;AttributeType&gt;"/>
       <replacefilter token="&lt;AuthorityURL&gt;"/>
       <replacefilter token="&lt;AxisDirection&gt;"/>
       <replacefilter token="&lt;BrowseGraphic&gt;"/>
@@ -281,6 +286,7 @@
       <replacefilter token="&lt;Element&gt;"/>
       <replacefilter token="&lt;Envelope&gt;"/>
       <replacefilter token="&lt;EvaluationMethodType&gt;"/>
+      <replacefilter token="&lt;Expression&gt;"/>
       <replacefilter token="&lt;ExtendedElementInformation&gt;"/>
       <replacefilter token="&lt;Extent&gt;"/>
       <replacefilter token="&lt;ExternalGraphicOrMark&gt;"/>
@@ -326,6 +332,7 @@
       <replacefilter token="&lt;LineSegment&gt;"/>
       <replacefilter token="&lt;LineString&gt;"/>
       <replacefilter token="&lt;LineStyle&gt;"/>
+      <replacefilter token="&lt;List&gt;"/>
       <replacefilter token="&lt;Locale&gt;"/>
       <replacefilter token="&lt;Locale,String&gt;"/>
       <replacefilter token="&lt;LocalName&gt;"/>
@@ -363,6 +370,7 @@
       <replacefilter token="&lt;ProcessStep&gt;"/>
       <replacefilter token="&lt;Progress&gt;"/>
       <replacefilter token="&lt;QName&gt;"/>
+      <replacefilter token="&lt;RangeMeaning&gt;"/>
       <replacefilter token="&lt;ReferenceSystem&gt;"/>
       <replacefilter token="&lt;Resolution&gt;"/>
       <replacefilter token="&lt;Result&gt;"/>
@@ -374,6 +382,7 @@
       <replacefilter token="&lt;SampleDimensionType&gt;"/>
       <replacefilter token="&lt;ScopeCode&gt;"/>
       <replacefilter token="&lt;SingleOperation&gt;"/>
+      <replacefilter token="&lt;SortOrder&gt;"/>
       <replacefilter token="&lt;Source&gt;"/>
       <replacefilter token="&lt;SpatialRepresentation&gt;"/>
       <replacefilter token="&lt;SpatialRepresentationType&gt;"/>
@@ -388,6 +397,7 @@
       <replacefilter token="&lt;SurfaceInterpolation&gt;"/>
       <replacefilter token="&lt;SurfacePatch&gt;"/>
       <replacefilter token="&lt;Symbol&gt;"/>
+      <replacefilter token="&lt;T&gt;"/>
       <replacefilter token="&lt;TemporalExtent&gt;"/>
       <replacefilter token="&lt;TopicCategory&gt;"/>
       <replacefilter token="&lt;TopologyLevel&gt;"/>
