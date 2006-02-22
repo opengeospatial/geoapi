@@ -20,7 +20,7 @@
      Version: $Id$
      ======================================================================== -->
 
-<project name="GeoAPI" default="release" basedir="C:/Documents and Settings/All Users/Documents/Releases/GeoAPI">
+<project name="GeoAPI" default="release" basedir="..\target-ant">
 
   <property name="homepath"         value="P:/projects/GeoAPI/trunk"/>
   <property name="homepath-pending" value="P:/projects/GeoAPI/pending"/>
@@ -408,6 +408,7 @@
       <replacefilter token="@UML"                          value="//@UML"                          />
       <replacefilter token="@Profile"                      value="//@Profile"                      />
       <replacefilter token="@Extension"                    value="//@Extension"                    />
+      <replacefilter token="@Override"                     value="//@Override"                     />
       <replacefilter token="@Deprecated"                   value="//@Deprecated"                   />
       <replacefilter token="@XmlSchema"                    value="//@XmlSchema"                    />
       <replacefilter token="@XmlElement"                   value="//@XmlElement"                   />

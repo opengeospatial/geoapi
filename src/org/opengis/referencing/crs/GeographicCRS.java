@@ -28,7 +28,7 @@ import static org.opengis.annotation.Specification.*;
  * A Geographic CRS is not suitable for mapmaking on a planar surface, because it describes geometry
  * on a curved surface. It is impossible to represent such geometry in a Euclidean plane without
  * introducing distortions. The need to control these distortions has given rise to the development
- * of the science of {@linkplain org.opengis.operation.MapProjection map projections}.
+ * of the science of {@linkplain org.opengis.referencing.operation.Projection map projections}.
  *
  * <TABLE CELLPADDING='6' BORDER='1'>
  * <TR BGCOLOR="#EEEEFF"><TH NOWRAP>Used with CS type(s)</TH></TR>
