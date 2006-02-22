@@ -83,7 +83,7 @@ public interface AttributeFactory {
 	 * @param values
 	 * @return
 	 */
-	public SimpleFeature create(SimpleFeatureType type, String id, List<? extends Object>values);
+	public SimpleFeature create(SimpleFeatureType type, String id, List<? extends Object> values);
 
 	/**
 	 * 
@@ -91,7 +91,7 @@ public interface AttributeFactory {
 	 * @param values
 	 * @return
 	 */
-	public SimpleFeature create(SimpleFeatureType type, String id, Object []values);
+	public SimpleFeature create(SimpleFeatureType type, String id, Object[] values);
 
 	/**
 	 * 
