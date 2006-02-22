@@ -31,7 +31,7 @@ import static org.opengis.annotation.Specification.*;
  * understood fact that the latitude and longitude of a point are not unique. Without the full
  * specification of the coordinate reference system, coordinates are ambiguous at best and
  * meaningless at worst. However for some interchange purposes it is sufficient to confirm the
- * {@linkplain #getIdentifier identity of the system} without necessarily having the full system
+ * {@linkplain #getName identity of the system} without necessarily having the full system
  * definition.
  * <p>
  * The concept of coordinates may be expanded from a strictly spatial context to include time.

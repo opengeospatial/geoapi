@@ -14,6 +14,7 @@ package org.opengis.go.display.style;
 import java.util.ArrayList;
 import java.util.List;
 
+// OpenGIS dependencies
 import org.opengis.util.CodeList;
 import org.opengis.util.SimpleEnumerationType;
 
@@ -84,12 +85,23 @@ public class LinePattern extends SimpleEnumerationType<LinePattern> {
     //  Constructor
     //*************************************************************************
 
-    protected LinePattern(String name, String description) {
-        super(VALUES, name, description, loadIconResource(LinePattern.class, name + ".gif"));
+    /**
+     * Creates a code list with the specified name.
+     */
+    protected LinePattern(final String name, final String description) {
+        this(VALUES, name, description);
     }
 
     /**
-     * Returns the list of <code>LinePattern</code>s.
+     * Creates a code list to be added to the specified collection.
+     * This constructor is reserved for {@link DashArray} only.
+     */
+    LinePattern(List<LinePattern> values, String name, String description) {
+        super(values, name, description, loadIconResource(LinePattern.class, name + ".gif"));
+    }
+
+    /**
+     * Returns the list of {@code LinePattern}s.
      */
     public static LinePattern[] values() {
         synchronized (VALUES) {
