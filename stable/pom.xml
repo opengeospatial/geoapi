@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- ==================================================== -->
+<!--     Maven 2 project configuration file               -->
+<!--     http://maven.apache.org/maven2/                  -->
+<!-- ==================================================== -->
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>org.opengis</groupId>
+    <artifactId>geoapi-parent</artifactId>
+    <version>pending-SNAPSHOT</version>
+  </parent>
+
+
+
+  <!-- ==================================================== -->
+  <!--     Project description                              -->
+  <!-- ==================================================== -->
+  <groupId>org.opengis</groupId>
+  <artifactId>geoapi</artifactId>
+  <packaging>jar</packaging>
+  <version>2.0</version>
+  <name>GeoAPI</name>
+  <url>http://geoapi.sourceforge.net/snapshot/</url>
+  <description>
+    The development community in building GIS solutions is sustaining an enormous
+    level of effort. The GeoAPI project aims to reduce duplication and increase
+    interoperability by providing neutral, interface-only APIs derived from OGC/ISO
+    Standards.
+  </description>
+
+
+
+  <!-- ==================================================== -->
+  <!--     Developers and contributors                      -->
+  <!-- ==================================================== -->
+  <developers>
+    <developer>
+      <id>jesse</id>
+      <name>Jesse Crossley</name>
+      <email>jcrossley@systechnologies.com</email>
+      <organization>SYS Technologies</organization>
+      <roles>
+        <role>Java Developer</role>
+      </roles>
+    </developer>
+    <developer>
+      <id>desruisseaux</id>
+      <name>Martin Desruisseaux</name>
+      <email>desruisseaux@users.sourceforge.net</email>
+      <organization>Institut de Recherche pour le Développement</organization>
+      <roles>
+        <role>Java Developer</role>
+        <role>Release manager</role>
+      </roles>
+    </developer>
+    <developer>
+      <id>dillard</id>
+      <name>Chris Dillard</name>
+      <email>cdillard@systechnologies.com</email>
+      <organization>SYS Technologies</organization>
+      <roles>
+        <role>Java Developer</role>
+      </roles>
+    </developer>
+    <developer>
+      <id>jmacgill</id>
+      <name>James Macgill</name>
+      <email>jmacgill@users.sourceforge.net</email>
+      <organization>PennState</organization>
+      <roles>
+        <role>Java Developer</role>
+        <role>Project founder</role>
+      </roles>
+    </developer>
+    <developer>
+      <name>Greg Reynold</name>
+      <email>greynolds@systechnologies.com</email>
+      <organization>SYS Technologies</organization>
+      <roles>
+        <role>Chairman</role>
+        <role>Project manager</role>
+      </roles>
+    </developer>
+  </developers>
+
+
+
+  <!-- ==================================================== -->
+  <!--     Deployment to public servers                     -->
+  <!-- ==================================================== -->
+  <distributionManagement>
+    <site>
+      <id>SourceForge</id>
+      <name>GeoAPI web site</name>
+      <url>scp://geoapi.sourceforge.net:/home/groups/g/ge/geoapi/htdocs/snapshot/site</url>
+    </site>
+  </distributionManagement>
+
+</project>
