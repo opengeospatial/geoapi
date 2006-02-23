@@ -33,11 +33,11 @@ import static org.opengis.annotation.Specification.*;
  * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 1.0
  *
- * @todo This interface extends (indirectly) both {@link org.opengis.spatialschema.geometry.primitive.Primitive} and
- *       {@link org.opengis.spatialschema.geometry.complex.Complex}. Concequently, there is a clash in the semantics
- *       of some set theoretic operation. Specifically, {@code Primitive.contains(...)}
- *       (returns FALSE for end points) is different from {@code Complex.contains(...)}
- *       (returns TRUE for end points).
+ * @revisit This interface extends (indirectly) both {@link org.opengis.spatialschema.geometry.primitive.Primitive} and
+ *          {@link org.opengis.spatialschema.geometry.complex.Complex}. Concequently, there is a clash in the semantics
+ *          of some set theoretic operation. Specifically, {@code Primitive.contains(...)}
+ *          (returns FALSE for end points) is different from {@code Complex.contains(...)}
+ *          (returns TRUE for end points).
  */
 @UML(identifier="GM_CompositeCurve", specification=ISO_19107)
 public interface CompositeCurve extends Composite, OrientableCurve {

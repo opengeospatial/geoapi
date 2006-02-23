@@ -39,11 +39,7 @@ import org.opengis.util.SimpleEnumerationType;
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version $Revision$, $Date$
  */
-public class ArrowStyle extends SimpleEnumerationType<ArrowStyle> {
-    /**
-     * Serial number for compatibility with different versions.
-     */
-    private static final long serialVersionUID = -1295348723850401634L;
+public class ArrowStyle extends SimpleEnumerationType {
 
     //*************************************************************************
     //  Static Fields
@@ -52,7 +48,7 @@ public class ArrowStyle extends SimpleEnumerationType<ArrowStyle> {
      * The list of enumeration available in this virtual machine.
      * <strong>Must be declared first!</strong>.
      */
-    private static final List<ArrowStyle> VALUES = new ArrayList<ArrowStyle>(4);
+    private static final List VALUES = new ArrayList(4);
 
     /**
      * Solid line with an no arrowhead.
@@ -103,7 +99,7 @@ public class ArrowStyle extends SimpleEnumerationType<ArrowStyle> {
     /**
      * Returns the list of <code>ArrowStyle</code>s.
      */
-    public ArrowStyle[] values() {
+    public static ArrowStyle[] values() {
         synchronized (VALUES) {
             return (ArrowStyle[]) VALUES.toArray(new ArrowStyle[VALUES.size()]);
         }
@@ -112,7 +108,7 @@ public class ArrowStyle extends SimpleEnumerationType<ArrowStyle> {
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
-    public /*{ArrowStyle}*/ CodeList[] family() {
+    public CodeList[] family() {
         return values();
     }
 }

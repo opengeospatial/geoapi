@@ -140,7 +140,7 @@ public interface Graphic {
      * <code>GraphicStyle</code> object, so that users may modify this
      * <code>Graphic</code>'s style properties directly through the
      * style object.
-     * @return the <code>GraphicStyle</code>.
+     * @return @return	the <code>GraphicStyle</code>.
      */
     GraphicStyle getGraphicStyle();
 
@@ -155,17 +155,16 @@ public interface Graphic {
 
     /**
      * Adds an arbitrary key/value "client property" to this <code>Graphic</code>.
-     * The {@code get}/{@code putClientProperty} methods provide access to a small
-     * per-instance hashtable. Callers can use {@code get}/{@code putClientProperty}
-     * to annotate {@code Graphic}s that were created by another module.
-     * <p>
+     * The get/putClientProperty methods provide access to a small
+     * per-instance hashtable. Callers can use get/putClientProperty to
+     * annotate Graphics that were created by another module.
+     *
      * If value is null this method will remove the property. Changes to client
-     * properties are reported with property change events. The name of the
-     * property (for the sake of property change events) is {@code key.toString()}. 
-     * The {@code clientProperty} dictionary is not intended to support large scale
+     * properties are reported with PropertyChange events. The name of the
+     * property (for the sake of PropertyChange events) is key.toString(). 
+     * The clientProperty dictionary is not intended to support large scale
      * extensions to <code>Graphic</code> nor should be it considered an alternative to
      * subclassing when designing a new component.
-     *
      * @param key the Object containing the key string.
      * @param value the Object that is the client data.
      * @see #getClientProperty
@@ -198,7 +197,7 @@ public interface Graphic {
     boolean isPassingEventsToParent();
 
     /**
-     * Sets a boolean flag specifying whether this object is to show
+     * Sets a boolean <code>flag</code> specifying whether this object is to show
      * its edit handles. Edit handles are the small boxes that appear on the
      * end of a line segment or on the four corners of a box that a users
      * selects to edit this object.
@@ -235,7 +234,7 @@ public interface Graphic {
      * Creates a new <code>Graphic</code> of the same type as this object.  The resulting
      * object should be identical in all respects to the original.
      *
-     * @todo Consider overriding <code>Object.clone()</code> instead.
+     * @revisit Consider overriding <code>Object.clone()</code> instead.
      */
     Graphic cloneGraphic();
 
@@ -270,6 +269,9 @@ public interface Graphic {
      * @see org.opengis.go.display.event.GraphicEvent
      * @see org.opengis.go.display.event.GraphicChangeEvent
      * @see org.opengis.go.display.event.GraphicMouseEvent
+     *
+     * @revisit Usually, this kind of method is a protected one in the implementation class,
+     *          not a public method in the interface...
      */
     void fireGraphicEvent(GraphicEvent ge);
 

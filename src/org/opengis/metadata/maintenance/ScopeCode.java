@@ -48,7 +48,7 @@ public final class ScopeCode extends CodeList<ScopeCode> {
     /**
      * Information applies to the attribute class.
      *
-     * @todo Should we said "... to the attribute object"?
+     * @revisit Should we said "... to the attribute object"?
      */
     @UML(identifier="attribute", obligation=CONDITIONAL, specification=ISO_19115)
     public static final ScopeCode ATTRIBUTE = new ScopeCode("ATTRIBUTE");

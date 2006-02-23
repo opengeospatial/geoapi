@@ -48,7 +48,7 @@ import static org.opengis.annotation.Specification.*;
  * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 1.0
  *
- * @todo Some associations are commented out for now.
+ * @revisit Some associations are commented out for now.
  */
 @UML(identifier="GM_Complex", specification=ISO_19107)
 public interface Complex extends Geometry {

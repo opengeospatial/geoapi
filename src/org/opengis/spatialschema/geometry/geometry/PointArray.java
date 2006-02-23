@@ -32,14 +32,14 @@ import static org.opengis.annotation.Specification.*;
  * fetching directly the {@linkplain DirectPosition direct positions} instead.
  * <p>
  * A simple implementation of {@code PointArray} will generally be no more efficient than
- * a simple array of {@link Position}s. More efficient implementations may store coordinates
- * in a more compact form (e.g. in a single {@code float[]} array) and creates {@link Position}
- * objects on the fly when needed.
+ * a simple array of {@link Position}s. More efficient implementations will generally stores
+ * coordinates in a more compact form (e.g. in a single {@code float[]} array) and creates
+ * {@link Position} objects on the fly when needed.
  * <p>
- * If a particular {@code PointArray} implementation supports efficiently random access through
- * any {@code get} or {@code set} method, it shall announce this capability by implementing the
- * {@link java.util.RandomAccess} interface. Otherwise, users should read the positions through
- * the <code>{@linkplain #positions()}.iterator()</code> instead.
+ * If a particular {@code PointArray} implementation supports efficiently random access
+ * through any {@code get} or {@code set} method, it shall announce this capability
+ * by implementing the {@link java.util.RandomAccess} interface. Otherwise, users should read
+ * the positions through the <code>{@linkplain #positions()}.iterator()</code> instead.
  *  
  * @version <A HREF="http://www.opengis.org/docs/01-101.pdf">Abstract specification 5</A>
  * @author Martin Desruisseaux (IRD)
@@ -60,39 +60,47 @@ public interface PointArray {
      * @see PointGrid#width
      */
     @Extension
-    int length();
+    public int length();
 
     /**
-     * Returns the dimensionality of the coordinates in this array. It should be equals to the
-     * dimensionality of the {@linkplain #getCoordinateReferenceSystem() coordinate reference system}
+     * Returns the dimensionality of the coordinates in this array.
+     * This may be less than or equal to the dimensionality of the 
+     * {@linkplain #getCoordinateReferenceSystem() coordinate reference system}
      * for these coordinates.
      *
      * @return the dimensionality of this array.
      *
      * @see DirectPosition#getDimension
+     *
+     * @deprecated This method definition conflict with section 6.2.2.10 in ISO 19107:
+     *             "<cite>The operation {@code coordinateDimension} shall return
+     *             the dimension of the coordinates that define this {@code GM_Object},
+     *             which must be the same as the coordinate dimension of the coordinate
+     *             reference system for this GM_Object.</cite>".
      */
     @Extension
-    int getDimension();
+    @Deprecated
+    public int getDimension();
 
     /**
-     * Returns the Coordinate Reference System in which the coordinates are given.
-     * May be {@code null} if this particular {@code PointArray} is included in a
-     * larger object with such a reference to a coordinate reference system}. In
-     * this case, the cordinate reference system is implicitly assumed to take on
-     * the value of the containing object's coordinate reference system.
+     * Returns the Coordinate Reference System of this array.
      *
-     * @return The coordinate reference system, or {@code null}.
+     * @return the Coordinate Reference System for this array.
      *
      * @see DirectPosition#getCoordinateReferenceSystem
+     *
+     * @revisit ISO 19107 do not defines such an association. We may keep this method as a
+     *          convenience, but it put a constraint on the points that a {@code PointArray}
+     *          can contains. Whatever or not this constraints is wanted is an open question.
      */
     @Extension
-    CoordinateReferenceSystem getCoordinateReferenceSystem();
+    public CoordinateReferenceSystem getCoordinateReferenceSystem();
 
     /**
-     * Gets a copy of the {@linkplain DirectPosition direct position} at the particular location
-     * in this {@code PointArray}. If the {@code dest} argument is non-null, that object will be
-     * populated with the value from the array. In all cases, the position in insulated from
-     * changes in the {@code PointArray}, and vice-versa. Consequently, the same
+     * Gets a copy of the {@code DirectPosition} at the particular location in this 
+     * {@code PointArray}. If the {@code dest} argument is non-null, that object
+     * will be populated with the value from the array. In all cases, the position in insulated
+     * from changes in the {@code PointArray}, and vice-versa. Consequently, the same
      * {@code DirectPosition} object can be reused for fetching many points from this array.
      * Example:
      * <blockquote><pre>
@@ -103,23 +111,23 @@ public interface PointArray {
      * &nbsp;}
      * </pre></blockquote>
      *
-     * @param  index The location in the array, from 0 inclusive to the array
-     *               {@linkplain #length length} exclusive.
+     * @param  column The location in the array, from 0 inclusive
+     *                to the array's {@linkplain #length} exclusive.
      * @param  dest An optionnaly pre-allocated direct position.
      * @return The {@code dest} argument, or a new object if {@code dest} was null.
      * @throws IndexOutOfBoundsException if the index is out of bounds.
      */
     @Extension
-    DirectPosition get(int index, DirectPosition dest) throws IndexOutOfBoundsException;
+    public DirectPosition get(int column, DirectPosition dest) throws IndexOutOfBoundsException;
 
     /**
-     * Sets the point at the given index. The point coordinates will be copied, i.e. changes
+     * Set the point at the given index. The point coordinates will be copied, i.e. changes
      * to the given {@code position} after this method call will not be reflected into
      * this point array. Consequently, the same {@code DirectPosition} object can be
      * reused for setting many points in this array.
      *
-     * @param  index The location in the array, from 0 inclusive to the array
-     *         {@linkplain #length length} exclusive.
+     * @param  column The location in the array, from 0 inclusive
+     *         to the array's {@linkplain #length} exclusive.
      * @param  position The point to set at the given location in this array.
      * @throws IndexOutOfBoundsException if the index is out of bounds.
      * @throws UnsupportedOperationException if this array is immutable.
@@ -127,21 +135,16 @@ public interface PointArray {
      * @see List#set
      */
     @Extension
-    void set(int index, DirectPosition position) throws IndexOutOfBoundsException,
-                                                        UnsupportedOperationException;
+    public void set(int column, DirectPosition position) throws IndexOutOfBoundsException,
+                                                                UnsupportedOperationException;
 
     /**
      * Returns a view of the points in this array as a list of {@linkplain Position positions}.
      * The list is backed by this {@code PointArray}, so changes to the point array are
      * reflected in the list, and vice-versa.
-     * <p>
-     * Note that random access may be costly in some implementations. If the returned list
-     * doesn't implement the {@link java.util.RandomAccess} interface, then consider avoiding
-     * the {@link List#get(int)} method. Favor the {@linkplain List#iterator list iterator}
-     * instead.
      *
      * @return The list of positions in this array.
      */
     @UML(identifier="column", obligation=MANDATORY, specification=ISO_19107)
-    List<Position> positions();
+    public List<Position> positions();
 }

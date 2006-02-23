@@ -27,8 +27,8 @@ public interface GraphicKeyEvent extends GraphicEvent {
      *
      * @return the <code>KeyEvent</code> referenced by this event.
      *
-     * @todo This {@link KeyEvent} implementation is specific to AWT and Swing
-     *       (i.e. is not used by SWT as far as I know).
+     * @revisit This {@link KeyEvent} implementation is specific to AWT and Swing
+     *          (i.e. is not used by SWT as far as I know).
      */
     public KeyEvent getKeyEvent();
 }

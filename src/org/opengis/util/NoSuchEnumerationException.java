@@ -33,7 +33,7 @@ public class NoSuchEnumerationException extends Exception {
      * Constructs an exception with the given invalid value.
      *
      * @param value The invalid value.
-     * @todo Localize the error message.
+     * @revisit Localize the error message.
      */
     public NoSuchEnumerationException(final int value) {
         super("No enumeration exists for the value " + value);

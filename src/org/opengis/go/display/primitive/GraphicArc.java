@@ -299,17 +299,12 @@ public interface GraphicArc extends Graphic {
      *
      * @author Open GIS Consortium, Inc.
      */
-    public static class ArcClosure extends SimpleEnumerationType<ArcClosure> {    
-        /**
-         * Serial number for compatibility with different versions.
-         */
-        private static final long serialVersionUID = 7401948294780735937L;
-
+    public static class ArcClosure extends SimpleEnumerationType {    
         /**
          * The list of enumeration available in this virtual machine.
          * <strong>Must be declared first!</strong>.
          */
-        private static final List<ArcClosure> VALUES = new ArrayList<ArcClosure>(3);
+        private static final List VALUES = new ArrayList(3);
 
         /**
          * Closure type that indicates that the endpoints of the arc
@@ -330,6 +325,21 @@ public interface GraphicArc extends Graphic {
          */
         public static final ArcClosure PIE = new ArcClosure("Pie", "");
 
+        /** Enumeration value of the <code>OPEN</code> constant. */
+       // public static final int OPEN_VALUE = OPEN.getValue();
+
+        /** Enumeration value of the <code>CHORD</code> constant. */
+       // public static final int CHORD_VALUE = CHORD.getValue();
+
+        /** Enumeration value of the <code>PIE</code> constant. */
+       // public static final int PIE_VALUE = PIE.getValue();
+
+        /**
+         * A list containing all the enumerators so that the list can be
+         * "walked" and also to do reverse lookups (id to object).
+         */
+       // private static final ArcClosure[] enumList = { OPEN, CHORD, PIE };
+
         /**
          * Constructor that should only be called to create the static
          * constants in this class.
@@ -337,6 +347,22 @@ public interface GraphicArc extends Graphic {
         private ArcClosure(String name, String description) {
             super(VALUES, name, description);
         }
+
+        /**
+         * Method to lookup an <code>ArcClosure</code> object from its
+         * integer value.
+         * @param value The value to match the object with.
+         * @throws NoSuchEnumerationException If there is no object for the
+         *         given value.
+        public static ArcClosure getByValue(int value) throws NoSuchEnumerationException {
+            for (int i = 0; i < enumList.length; i++) {
+                if (enumList[i].getValue() == value) {
+                    return enumList[i];
+                }
+            }
+            throw new NoSuchEnumerationException(value);
+        }
+                 */
 
         /**
          * Utility method that retrieves the list of all
@@ -367,8 +393,8 @@ public interface GraphicArc extends Graphic {
         /**
          * Returns the list of enumerations of the same kind than this enum.
          */
-        public /*{ArcClosure}*/ CodeList[] family() {
+        public CodeList[] family() {
             return values();
-        }
+        }        
     }  // end class ArcClosure
 }

@@ -132,8 +132,8 @@ public interface AggregateGraphic extends Graphic {
      * 
      * @param event the <code>AggregationChangedEvent</code> to give to the listeners.
      *
-     * @todo Usually, this kind of method is a protected one in the implementation class,
-     *       not a public method in the interface...
+     * @revisit Usually, this kind of method is a protected one in the implementation class,
+     *          not a public method in the interface...
      */
     public void aggregationChanged(AggregationChangeEvent event);
 }

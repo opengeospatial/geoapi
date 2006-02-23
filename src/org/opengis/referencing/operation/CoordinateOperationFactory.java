@@ -32,7 +32,6 @@ import static org.opengis.annotation.Specification.*;
  * {@linkplain CoordinateReferenceSystem coordinate reference systems}.
  *
  * @version <A HREF="http://www.opengis.org/docs/01-009.pdf">Implementation specification 1.0</A>
- * @author Open Geospatial Consortium
  * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 1.0
  */
@@ -71,10 +70,10 @@ public interface CoordinateOperationFactory extends ObjectFactory {
      *         to {@code targetCRS}.
      * @throws FactoryException if the operation creation failed for some other reason.
      *
-     * @todo More than one operation step may be involved in the path from {@code sourceCRS}
-     *       to {@code targetCRS}, but this method has only one {@code method} argument.
-     *       The user could have more fine grain control with {@link MathTransformFactory} (ported
-     *       from OGC 2001-09).
+     * @revisit More than one operation step may be involved in the path from {@code sourceCRS}
+     *          to {@code targetCRS}, but this method has only one {@code method} argument.
+     *          The user could have more fine grain control with {@link MathTransformFactory} (ported
+     *          from OGC 2001-09).
      */
     @Extension
     CoordinateOperation createOperation(CoordinateReferenceSystem sourceCRS,

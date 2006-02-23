@@ -45,11 +45,7 @@ import org.opengis.util.SimpleEnumerationType;
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version $Revision$, $Date$
  */
-public class FillPattern extends SimpleEnumerationType<FillPattern> {
-    /**
-     * Serial number for compatibility with different versions.
-     */
-    private static final long serialVersionUID = -6942734861758918827L;
+public class FillPattern extends SimpleEnumerationType {
 
     //*************************************************************************
     //  Static Fields
@@ -58,7 +54,7 @@ public class FillPattern extends SimpleEnumerationType<FillPattern> {
      * The list of enumeration available in this virtual machine.
      * <strong>Must be declared first!</strong>.
      */
-    private static final List<FillPattern> VALUES = new ArrayList<FillPattern>(11);
+    private static final List VALUES = new ArrayList(11);
 
     /**
      * No fill pattern.
@@ -163,7 +159,7 @@ public class FillPattern extends SimpleEnumerationType<FillPattern> {
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
-    public /*{FillPattern}*/ CodeList[] family() {
+    public CodeList[] family() {
         return values();
     }
 }

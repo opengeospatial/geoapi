@@ -20,7 +20,6 @@ import static org.opengis.annotation.Specification.*;
  * Thrown when an invalid value was given to a {@linkplain ParameterValue parameter}.
  *
  * @version <A HREF="http://www.opengis.org/docs/01-004.pdf">Grid Coverage specification 1.0</A>
- * @author Open Geospatial Consortium
  * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 1.0
  *

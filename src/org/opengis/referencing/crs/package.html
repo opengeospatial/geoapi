@@ -15,11 +15,10 @@
   system that is related to the earth through one datum. The coordinate system
   is composed of a set of coordinate axes with specified units of measure. This
   concept implies the mathematical rules that define how coordinate values are
-  calculated from distances, angles and other geometric elements and vice versa.</P>
-
-  <P ALIGN="justify">A datum specifies the relationship of a coordinate system to the
-  earth, thus ensuring that the abstract mathematical concept "coordinate system" can
-  be applied to the practical problem of describing positions of features on or
+  calculated from distances, angles and other geometric elements and vice versa.
+  A datum specifies the relationship of a coordinate system to the earth, thus
+  ensuring that the abstract mathematical concept "coordinate system" can be
+  applied to the practical problem of describing positions of features on or
   near the earth's surface by means of coordinates. The resulting combination
   of coordinate system and datum is a coordinate reference system. Each datum
   subtype can be associated with only specific types of coordinate systems. The
@@ -27,7 +26,7 @@
   set parameters that represent the degrees of freedom of the coordinate system.
   A datum therefore implies a choice regarding the approximate origin and
   orientation of the coordinate system.</P>
-
+  
   <P ALIGN="justify">For the purposes of this specification, a coordinate
   reference system shall not change with time, with the exception of engineering
   coordinate reference systems defined on moving platforms such as cars, ships,
@@ -85,6 +84,23 @@
     <LI>coordinates on moving platforms such as road vehicles, vessels, aircraft
         or spacecraft.</LI>
   </UL>
+  <P ALIGN="justify">Earth-fixed Engineering CRSs are commonly based on a simple
+  flat-earth approximation of the earth's surface, and the effect of earth curvature
+  on feature geometry is ignored: calculations on coordinates use simple plane arithmetic
+  without any corrections for earth curvature. The application of such Engineering CRSs to
+  relatively small areas and "contextually local" is in this case equivalent to
+  "spatially local". Engineering CRSs used on moving platforms are usually intermediate
+  coordinate reference systems that are computationally required to calculate geodetic
+  coordinates. These coordinate reference systems are subject to all the motions of the
+  platform with which they are associated. In this case "contextually local" means that
+  the associated coordinates are meaningful only relative to the moving platform. Earth
+  curvature is usually irrelevant and is therefore ignored. In the spatial sense their
+  applicability may extend from the immediate vicinity of the platform (e.g. a moving
+  seismic ship) to the entire earth (e.g. in space applications). The determining factor
+  is the mathematical model deployed in the positioning calculations. Transformation of
+  coordinates from these moving Engineering CRSs to earth-referenced coordinate reference
+  systems involves time-dependent coordinate operation parameters, which can be modelled by
+  the structures provided in this UML model.</P>
 
   <P ALIGN="justify"><STRONG>Image</STRONG>:
   An Image CRS is an Engineering CRS applied to images. Image CRSs are treated as
@@ -126,6 +142,35 @@
   coordinates. Such a coordinate system is called a compound coordinate reference
   system (Compound CRS). It consists of an ordered sequence of the two or more single
   coordinate reference systems.</P>
+ 
+  <P ALIGN="justify">A Compound CRS is thus a coordinate reference system that
+  combines two or more coordinate reference systems, none of which can itself be
+  compound. In general, a Compound CRS may contain any number of axes. The Compound CRS
+  contains an ordered set of coordinate reference systems and the tuple order of a compound
+  coordinate set shall follow that order, while the subsets of the tuple, described by each
+  of the composing coordinate reference systems, follow the tuple order valid for their
+  respective coordinate reference systems.</P>
+
+  <P ALIGN="justify">For spatial coordinates, a number of constraints exist for
+  the construction of Compound CRSs. For example, the coordinate reference systems
+  that are combined should not contain any duplicate or redundant axes. Valid
+  combinations include:</P>
+
+  <UL>
+    <LI>Geographic 2D + Vertical</LI>
+    <LI>Geographic 2D + Engineering 1D (near vertical)</LI>
+    <LI>Projected + Vertical</LI>
+    <LI>Projected + Engineering 1D (near vertical)</LI>
+    <LI>Engineering (horizontal 2D or 1D linear) + Vertical</LI>
+  </UL>
+
+  <P ALIGN="justify">Any coordinate reference system, or any of the above listed
+  combinations of coordinate reference systems, can have a Temporal CRS added.
+  More than one Temporal CRS may be added if these axes represent different time
+  quantities. For example, the oil industry sometimes uses "4D seismic", by which
+  is meant seismic data with the vertical axis expressed in milliseconds (signal
+  travel time). A second time axis indicates how it changes with time (years),
+  e.g. as a reservoir is gradually exhausted of its recoverable oil or gas).</P>
 
   <P ALIGN="justify"><STRONG><A NAME="DerivedCRS">Derived coordinate reference system</A></STRONG><BR>
   Some coordinate reference systems are defined by applying a coordinate conversion to

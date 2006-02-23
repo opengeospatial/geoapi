@@ -25,7 +25,6 @@ import static org.opengis.annotation.Specification.*;
  * in multiple (different) versions of the same coordinate transformation. 
  *  
  * @version <A HREF="http://portal.opengeospatial.org/files/?artifact_id=6716">Abstract specification 2.0</A>
- * @author ISO/DIS 19111
  * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 1.0
  *

@@ -59,8 +59,8 @@ public interface PolygonSymbolizer extends LineSymbolizer {
 
     /**
      * Sets the fill color rgb value.  
-     * Do not use the {@link Color} alpha channel to set fill opacity; 
-     * use {@link #setFillOpacity} instead.
+     * Do not use the java.awt.Color alpha channel to set fill opacity; 
+     * use setOpacity instead.
      * @param fillColor the fill color value.
      */
     public void setFillColor(Color fillColor);

@@ -76,10 +76,10 @@ import org.opengis.annotation.XmlElement;
  * @author Jody Garnett (Refractions Research)
  * @since GeoAPI 2.0
  *
- * @todo The following XML elements are not yet defined in this interface:
- *       {@code Title}, {@code Abstract}, {@code Keywords}, {@code DefaultSRS},
- *       {@code OtherSRS}, {@code NoSRS}, {@code Operations}, {@code OutputFormats},
- *       {@code WGS84BoundingBox}, {@code MetadataURL}.
+ * @revisit The following XML elements are not yet defined in this interface:
+ *          {@code Title}, {@code Abstract}, {@code Keywords}, {@code DefaultSRS},
+ *          {@code OtherSRS}, {@code NoSRS}, {@code Operations}, {@code OutputFormats},
+ *          {@code WGS84BoundingBox}, {@code MetadataURL}.
  */
 @XmlElement("FeatureType")
 public interface FeatureType {

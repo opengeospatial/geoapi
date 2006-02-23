@@ -73,8 +73,8 @@ public interface LockResponse {
      *
      * @return token, or null if a single token was unavailable.
      *
-     * @todo Consider renaming this method as {@code getAuthorization()} for consistency
-     *       with {@link #getAuthorization} and the rest of feature API.
+     * @revisit Consider renaming this method as {@code getAuthorization()} for consistency
+     *          with {@link #getAuthorization} and the rest of feature API.
      */
     @XmlElement("LockID")
     String getToken();

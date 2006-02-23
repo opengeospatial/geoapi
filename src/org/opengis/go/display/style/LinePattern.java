@@ -14,7 +14,6 @@ package org.opengis.go.display.style;
 import java.util.ArrayList;
 import java.util.List;
 
-// OpenGIS dependencies
 import org.opengis.util.CodeList;
 import org.opengis.util.SimpleEnumerationType;
 
@@ -33,13 +32,8 @@ import org.opengis.util.SimpleEnumerationType;
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version $Revision$, $Date$
  */
-public class LinePattern extends SimpleEnumerationType<LinePattern> {
-    /**
-     * Serial number for compatibility with different versions.
-     */
-    private static final long serialVersionUID = -1733919417977352763L;
-
-
+public class LinePattern extends SimpleEnumerationType {
+    
     //*************************************************************************
     //  Static Fields
     //*************************************************************************
@@ -47,61 +41,50 @@ public class LinePattern extends SimpleEnumerationType<LinePattern> {
      * The list of enumeration available in this virtual machine.
      * <strong>Must be declared first!</strong>.
      */
-    private static final List<LinePattern> VALUES = new ArrayList<LinePattern>(6);
-
+    private static final List VALUES = new ArrayList(6);
+    
     /**
      * The line should be drawn with no pattern.
      */
     public static final LinePattern NONE = new LinePattern("NONE", "A line with no pattern.");
-
+    
     /**
      * The line should be drawn dashed.
      */
     public static final LinePattern DASHED = new LinePattern("DASHED", "A dashed line");
-
+    
     /**
      * The line should be drawn dotted.
      */
     public static final LinePattern DOTTED = new LinePattern("DOTTED", "A dotted line");
-
+    
     /**
      * The line should be drawn dot dashed.
      */
     public static final LinePattern DOT_DASHED = new LinePattern("DOT_DASHED", "Dot dashed line");
-
+    
     /**
      * The line should be drawn long dashed.
      */
     public static final LinePattern LONG_DASHED =
         new LinePattern("LONG_DASHED", "Long dashed line");
-
+        
     /**
      * The line should be drawn long dot dashed.
      */
     public static final LinePattern LONG_DOT_DASHED
             = new LinePattern("LONG_DOT_DASHED", "Long dot dashed line");
-
+    
     //*************************************************************************
     //  Constructor
     //*************************************************************************
-
-    /**
-     * Creates a code list with the specified name.
-     */
-    protected LinePattern(final String name, final String description) {
-        this(VALUES, name, description);
+    
+    protected LinePattern(String name, String description) {
+        super(VALUES, name, description, loadIconResource(LinePattern.class, name + ".gif"));
     }
 
     /**
-     * Creates a code list to be added to the specified collection.
-     * This constructor is reserved for {@link DashArray} only.
-     */
-    LinePattern(List<LinePattern> values, String name, String description) {
-        super(values, name, description, loadIconResource(LinePattern.class, name + ".gif"));
-    }
-
-    /**
-     * Returns the list of {@code LinePattern}s.
+     * Returns the list of <code>LinePattern</code>s.
      */
     public static LinePattern[] values() {
         synchronized (VALUES) {
@@ -112,7 +95,10 @@ public class LinePattern extends SimpleEnumerationType<LinePattern> {
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
-    public /*{LinePattern}*/ CodeList[] family() {
+    public CodeList[] family() {
         return values();
     }
 }
+
+
+

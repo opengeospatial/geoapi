@@ -37,17 +37,17 @@ import org.opengis.annotation.XmlElement;
  * @version <A HREF="http://portal.opengeospatial.org/files/?artifact_id=8339">Implementation specification 1.1</A>
  * @since GeoAPI 2.0
  *
- * @todo The following XML elements are not yet defined in this interface:
- *       {@code Function}, {@code SortBy}.
+ * @revisit The following XML elements are not yet defined in this interface:
+ *          {@code Function}, {@code SortBy}.
  */
 @XmlElement("Query")
 public interface Query {
     /**
      * Returns the name of the type that is to be queried.
      *
-     * @todo OGC specification said that a list should be returned.
-     *       We may add a {@code getTypeNames()} (plural form) in a
-     *       future version.
+     * @revisit OGC specification said that a list should be returned.
+     *          We may add a {@code getTypeNames()} (plural form) in a
+     *          future version.
      */
     @XmlElement("typeName")
     GenericName getTypeName();
@@ -108,9 +108,9 @@ public interface Query {
      * Can return zero.  Can also return {@link Integer#MAX_VALUE} to indicate
      * that the maximum number of features is unlimited.
      *
-     * @todo {@code maxFeatures} is an attribute of {@code getFeature} request.
-     *       We may wish to avoid duplication once WMS interfaces are provided in
-     *       GeoAPI.
+     * @revisit {@code maxFeatures} is an attribute of {@code getFeature} request.
+     *          We may wish to avoid duplication once WMS interfaces are provided in
+     *          GeoAPI.
      */
     @Extension
     int getMaxFeatures();
@@ -144,14 +144,14 @@ public interface Query {
      * @return The coordinate reference system to be returned for {@link Feature}s from this
      *         {@code Query}.
      *
-     * @todo JG: Please if you possibly can treat the idea of "forcing" the CRS as a
-     *       {@link FeatureCollection} configuration issue (or a {@link FeatureStore}
-     *       configuration issue). Recent experience with Geotools shows the added burden
-     *       on client code to be a pain.
+     * @revisit JG: Please if you possibly can treat the idea of "forcing" the CRS as a
+     *          {@link FeatureCollection} configuration issue (or a {@link FeatureStore}
+     *          configuration issue). Recent experience with Geotools shows the added burden
+     *          on client code to be a pain.
      *
-     * @todo MD: This method is misnamed. {@link org.opengis.referencing.cs.CoordinateSystem}
-     *       and {@link org.opengis.referencing.crs.CoordinateReferenceSystem} are not the
-     *       same thing.
+     * @revisit MD: This method is misnamed. {@link org.opengis.referencing.cs.CoordinateSystem}
+     *          and {@link org.opengis.referencing.crs.CoordinateReferenceSystem} are not the
+     *          same thing.
      */
     @Extension
     CoordinateReferenceSystem getCoordinateSystem();
@@ -165,9 +165,9 @@ public interface Query {
      * @return The coordinate reference system that {@linkplain Feature features} from the
      *         {@linkplain FeatureStore feature store} should be reprojected to.
      *
-     * @todo MD: This method is misnamed. {@link org.opengis.referencing.cs.CoordinateSystem}
-     *       and {@link org.opengis.referencing.crs.CoordinateReferenceSystem} are not the
-     *       same thing.
+     * @revisit MD: This method is misnamed. {@link org.opengis.referencing.cs.CoordinateSystem}
+     *          and {@link org.opengis.referencing.crs.CoordinateReferenceSystem} are not the
+     *          same thing.
      */
     @Extension
     CoordinateReferenceSystem getCoordinateSystemReproject();

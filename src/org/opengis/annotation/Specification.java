@@ -33,11 +33,6 @@ public enum Specification {
     ISO_19107,
 
     /**
-     * ISO 19108, Temporal Schema.
-     */
-    ISO_19108,
-
-    /**
      * ISO 19111, Spatial Referencing by Coordinates (Topic 2).
      * This is the specification for package {@link org.opengis.referencing} and sub-packages.
      *

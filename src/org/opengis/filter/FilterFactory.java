@@ -76,9 +76,7 @@ public interface FilterFactory {
     /** A compact way of encoding a range check. */
     PropertyIsBetween between(Expression expr, Expression lower, Expression upper);
 
-    /** Compares that two sub-expressions are equal to each other.
-     * @todo should be equalTo (so equals can refer to geometry)
-     */
+    /** Compares that two sub-expressions are equal to each other. */
     PropertyIsEqualTo equals(Expression expr1, Expression expr2);
 
     /** Checks that the first sub-expression is greater than the second subexpression. */
@@ -108,9 +106,7 @@ public interface FilterFactory {
 //
 ////////////////////////////////////////////////////////////////////////////////
 
-    /** Checks if the bounding box of the feature's geometry overlaps the specified bounding box.
-     * @todo Redefine to agree with specification "geometry overlaps the specified bounding box"
-     */
+    /** Checks if the bounding box of the feature's geometry overlaps the specified bounding box. */
     BBOX        bbox(String propertyName, double minx, double miny, double maxx, double maxy, String srs);
 
     /** Check if all of a feature's geometry is more distant than the given distance from this object's geometry. */

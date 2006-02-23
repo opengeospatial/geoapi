@@ -41,8 +41,8 @@ import static org.opengis.annotation.Specification.*;
  * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 1.0
  *
- * @todo All methods except {@link #getCorrelation} work on a particuler sample dimension.
- *       Why not defines those methods right into {@link org.opengis.coverage.SampleDimension}?
+ * @revisit All methods except {@link #getCorrelation} work on a particuler sample dimension.
+ *          Why not defines those methods right into {@link org.opengis.coverage.SampleDimension}?
  */
 @UML(identifier="GP_GridAnalysis", specification=OGC_01004)
 public interface GridAnalysis extends GridCoverage {

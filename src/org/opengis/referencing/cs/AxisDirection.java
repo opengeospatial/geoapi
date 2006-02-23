@@ -26,15 +26,14 @@ import static org.opengis.annotation.Specification.*;
 
 /**
  * The direction of positive increments in the coordinate value for a coordinate system
- * axis. This direction is exact in some cases, and is approximate in other cases.
- * <p>
+ * axis. This direction is exact In some cases, and is approximate in other cases.
+ *
  * Some coordinate systems use non-standard orientations.  For example,
  * the first axis in South African grids usually points West, instead of
  * East. This information is obviously relevant for algorithms converting
  * South African grid coordinates into Lat/Long.
  *
  * @version <A HREF="http://portal.opengeospatial.org/files/?artifact_id=6716">Abstract specification 2.0</A>
- * @author ISO/DIS 19111
  * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 1.0
  */

@@ -68,7 +68,7 @@ public interface GridCoverageReader {
      * @return The list of metadata keywords for the input source.
      * @throws IOException if an error occurs during reading.
      *
-     * @todo This javadoc may not apply thats well in the iterator scheme.
+     * @revisit This javadoc may not apply thats well in the iterator scheme.
      */
     String[] getMetadataNames() throws IOException;
 
@@ -81,7 +81,7 @@ public interface GridCoverageReader {
      * @throws IOException if an error occurs during reading.
      * @throws MetadataNameNotFoundException if there is no value for the specified metadata name.
      *
-     * @todo This javadoc may not apply thats well in the iterator scheme.
+     * @revisit This javadoc may not apply thats well in the iterator scheme.
      */
     String getMetadataValue(String name) throws IOException, MetadataNameNotFoundException;
 
@@ -95,10 +95,10 @@ public interface GridCoverageReader {
      * @return The list of grid coverages contained within the input source.
      * @throws IOException if an error occurs during reading.
      *
-     * @todo The javadoc should also be more explicit about hierarchical format.
-     *       Should the names be returned as paths?
-     *       Explain what to return if the GridCoverage are accessible by index
-     *       only. A proposal is to name them "grid1", "grid2", etc.
+     * @revisit The javadoc should also be more explicit about hierarchical format.
+     *          Should the names be returned as paths?
+     *          Explain what to return if the GridCoverage are accessible by index
+     *          only. A proposal is to name them "grid1", "grid2", etc.
      */
     String[] listSubNames() throws IOException;
 
@@ -107,7 +107,7 @@ public interface GridCoverageReader {
      * {@linkplain #getSource input source}.
      *
      * @throws IOException if an error occurs during reading.
-     * @todo Do we need a special method for that, or should it be a metadata?
+     * @revisit Do we need a special method for that, or should it be a metadata?
      */
     String getCurrentSubname() throws IOException;
 

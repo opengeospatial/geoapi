@@ -15,7 +15,6 @@ import java.awt.Component;
 import java.awt.Graphics;
 import java.net.URL;
 import java.util.Collection;
-import java.util.List;
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -29,11 +28,11 @@ import javax.swing.ImageIcon;
  * @author Jesse Crossley (SYS Technologies)
  * @since GeoAPI 1.0
  *
- * @todo The name doesn't said what is the difference between this class and {@link CodeList}.
- *       Furthermore, according ISO 19103, enumeration and code list are not the same thing.
- *       This base class is closer to a code list than an enumeration.
+ * @revisit The name doesn't said what is the difference between this class and {@link CodeList}.
+ *          Furthermore, according ISO 19103, enumeration and code list are not the same thing.
+ *          This base class is closer to a code list than an enumeration.
  */
-public abstract class SimpleEnumerationType<E extends SimpleEnumerationType<E>> extends CodeList<E> {
+public abstract class SimpleEnumerationType extends CodeList {
 
     //*************************************************************************
     //  static methods
@@ -97,7 +96,7 @@ public abstract class SimpleEnumerationType<E extends SimpleEnumerationType<E>> 
      * @param name the short name for the enum.
      * @param description the description for the enum.
      */
-    protected SimpleEnumerationType(Collection<E> values, String name, String description) {
+    protected SimpleEnumerationType(Collection values, String name, String description) {
         super(name, values);
         this.description = description;
         this.icon = getNullIcon();
@@ -112,7 +111,7 @@ public abstract class SimpleEnumerationType<E extends SimpleEnumerationType<E>> 
      * @param description the description for the enum.
      * @param icon the icon for the enum.
      */
-    protected SimpleEnumerationType(Collection<E> values, String name, String description, Icon icon) {
+    protected SimpleEnumerationType(Collection values, String name, String description, Icon icon) {
         super(name, values);
         this.description = description;
         this.icon = icon;
@@ -174,3 +173,5 @@ public abstract class SimpleEnumerationType<E extends SimpleEnumerationType<E>> 
         }
     }
 }
+
+

@@ -33,13 +33,7 @@ public interface Expression {
      */
     @Extension
     Object evaluate(Feature feature);
-    
-    /**
-     * Evaluates the given expression based on the content of the given object.
-     */
-    @Extension
-    Object evaluate(Object object);
-    
+
     /**
      * Accepts a visitor. Subclasses must implement with a method whose content* is the following:
      * <pre>return visitor.{@linkplain ExpressionVisitor#visit visit}(this, extraData);</pre>

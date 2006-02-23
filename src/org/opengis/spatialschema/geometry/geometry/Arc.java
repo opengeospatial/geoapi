@@ -94,8 +94,8 @@ public interface Arc extends ArcString {
      * @return The bearing from the {@linkplain #getCenter center} of the circle to the
      *         {@link #getStartPoint start point} of this arc.
      *
-     * @todo Inconsistent UML: "startAngle" and "startOfArc" are both used.
-     *       Which one is the right one?
+     * @revisit Inconsistent UML: "startAngle" and "startOfArc" are both used.
+     *          Which one is the right one?
      */
     @UML(identifier="startAngle", obligation=MANDATORY, specification=ISO_19107)
     public Bearing getStartAngle();
@@ -109,8 +109,8 @@ public interface Arc extends ArcString {
      * @return The bearing from the {@linkplain #getCenter center} of the circle to the
      *         {@link #getEndPoint end point} of this arc.
      *
-     * @todo Inconsistent UML: "endAngle" and "endOfArc" are both used.
-     *       Which one is the right one?
+     * @revisit Inconsistent UML: "endAngle" and "endOfArc" are both used.
+     *          Which one is the right one?
      */
     @UML(identifier="endAngle", obligation=MANDATORY, specification=ISO_19107)
     public Bearing getEndAngle();

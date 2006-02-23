@@ -26,17 +26,17 @@ import org.opengis.feature.display.canvas.FeatureCanvas;
  */
 public interface FeatureDisplayFactory {
     /**
-     * @todo DOCUMENT ME.
+     * @revisit DOCUMENT ME.
      */
     FeatureDisplayCapabilities getCapabilities();
     
     /**
-     * @todo DOCUMENT ME.
+     * @revisit DOCUMENT ME.
      */
     FeatureCanvas createFeatureCanvas(Properties properties, Container container);
     
     /**
-     * @todo DOCUMENT ME.
+     * @revisit DOCUMENT ME.
      */
     FeatureCanvas createFeatureCanvas(Properties properties);
 }

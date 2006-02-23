@@ -28,12 +28,11 @@ import static org.opengis.annotation.Specification.*;
  * </TD></TR></TABLE>
  *
  * @version <A HREF="http://portal.opengeospatial.org/files/?artifact_id=6716">Abstract specification 2.0</A>
- * @author ISO/DIS 19111
  * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 2.0
  *
  * @see CartesianCS
  */
-@UML(identifier="CS_AffineCS", specification=ISO_19111)
+@UML(identifier="CS_ObliqueCartesianCS", specification=ISO_19111)
 public interface AffineCS extends CoordinateSystem {
 }

@@ -52,8 +52,8 @@ public interface ApplicationSchemaInformation {
     /**
      * Full application schema given as an ASCII file.
      *
-     * @todo In UML, the type was {@code CharacterString}. It is not clear if
-     *       it should be the file name or the file content.
+     * @revisit In UML, the type was {@code CharacterString}. It is not clear if
+     *          it should be the file name or the file content.
      */
     @UML(identifier="schemaAscii", obligation=OPTIONAL, specification=ISO_19115)
     URI getSchemaAscii();
@@ -67,8 +67,8 @@ public interface ApplicationSchemaInformation {
     /**
      * Full application schema given as a software development file.
      *
-     * @todo In UML, the type was {@code binary}. It is not clear if
-     *       it was intented to be the file content.
+     * @revisit In UML, the type was {@code binary}. It is not clear if
+     *          it was intented to be the file content.
      */
     @UML(identifier="softwareDevelopmentFile", obligation=OPTIONAL, specification=ISO_19115)
     URI getSoftwareDevelopmentFile();
