@@ -66,6 +66,32 @@ public interface CoordinateSystemAxis extends IdentifiedObject {
     AxisDirection getDirection();
 
     /**
+     * Returns the minimum value normally allowed for this axis, in the
+     * {@linkplain #getUnit unit of measure for the axis}. If there is no minimum value, then
+     * this method returns {@linkplain Double#NEGATIVE_INFINITY negative infinity}.
+     */
+    @UML(identifier="minimumValue", obligation=OPTIONAL, specification=ISO_19111)
+    double getMinimumValue();
+
+    /**
+     * Returns the maximum value normally allowed for this axis, in the
+     * {@linkplain #getUnit unit of measure for the axis}. If there is no maximum value, then
+     * this method returns {@linkplain Double#POSITIVE_INFINITY negative infinity}.
+     */
+    @UML(identifier="maximumValue", obligation=OPTIONAL, specification=ISO_19111)
+    double getMaximumValue();
+
+    /**
+     * Returns the meaning of axis value range specified by the {@linkplain #getMinimumValue
+     * minimum} and {@linkplain #getMaximumValue maximum} values. This element shall be omitted
+     * when both minimum and maximum values are omitted. It may be included when minimum and/or
+     * maximum values are included. If this element is omitted when minimum or maximum values are
+     * included, the meaning is unspecified.
+     */
+    @UML(identifier="rangeMeaning", obligation=CONDITIONAL, specification=ISO_19111)
+    RangeMeaning getRangeMeaning();
+
+    /**
      * The unit of measure used for this coordinate system axis. The value of this
      * coordinate in a coordinate tuple shall be recorded using this unit of measure,
      * whenever those coordinates use a coordinate reference system that uses a

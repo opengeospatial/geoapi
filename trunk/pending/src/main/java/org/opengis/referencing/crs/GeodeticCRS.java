@@ -34,7 +34,7 @@ import static org.opengis.annotation.Specification.*;
  * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 2.1
  */
-@UML(identifier="SC_GeographicCRS", specification=ISO_19111)
+@UML(identifier="SC_GeodeticCRS", specification=ISO_19111)
 public interface GeodeticCRS extends SingleCRS {
     /**
      * Returns the datum, which must be geodetic.
