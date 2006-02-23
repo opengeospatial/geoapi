@@ -1,0 +1,54 @@
+Class-Path: units.jar
+Specification-Title: GeoAPI
+Specification-Version: 1.1
+Specification-Vendor: OpenGIS Consortium
+
+Name: org/opengis/metadata*
+Specification-Title: Meta data
+Specification-Version: 5.0
+Specification-Vendor: Open Geospatial Consortium, Inc.
+
+Name: org/opengis/crs*
+Specification-Title: Spatial Referencing by Coordinates
+Specification-Version: 2.0
+Specification-Vendor: Open Geospatial Consortium, Inc.
+
+Name: org/opengis/coverage*
+Specification-Title: Grid Coverage
+Specification-Version: 1.0
+Specification-Vendor: Open Geospatial Consortium
+
+Name: org/opengis/spatialschema*
+Specification-Title: Feature Geometry
+Specification-Version: 5.0
+Specification-Vendor: Open Geospatial Consortium, Inc.
+
+Name: org/opengis/feature*
+Specification-Title: Feature
+Specification-Version: 1.0
+Specification-Vendor: Open Geospatial Consortium, Inc.
+
+Name: org/opengis/filter*
+Specification-Title: Filter encoding
+Specification-Version: 1.0
+Specification-Vendor: Open Geospatial Consortium, Inc.
+
+Name: org/opengis/sld*
+Specification-Title: Styled Layer Descriptor
+Specification-Version: 1.0
+Specification-Vendor: Open Geospatial Consortium, Inc.
+
+Name: org/opengis/layer*
+Specification-Title: Web Map Service
+Specification-Version: 1.3
+Specification-Vendor: Open Geospatial Consortium, Inc.
+
+Name: org/opengis/go*
+Specification-Title: Geospatial objects
+Specification-Version: 1.0
+Specification-Vendor: Open Geospatial Consortium, Inc.
+
+Name: org/opengis/util*
+Specification-Title: GeoAPI
+Specification-Version: 1.0
+Specification-Vendor: Open Geospatial Consortium, Inc.
