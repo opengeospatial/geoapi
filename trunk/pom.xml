@@ -68,13 +68,15 @@
   <!-- ==================================================== -->
   <developers>
     <developer>
-      <id>jesse</id>
+      <id>crossley</id>
       <name>Jesse Crossley</name>
       <email>jcrossley@systechnologies.com</email>
       <organization>SYS Technologies</organization>
+      <organizationUrl>http://www.systechnologies.com</organizationUrl>
       <roles>
         <role>Java Developer</role>
       </roles>
+      <timezone>-8</timezone>
     </developer>
     <developer>
       <id>desruisseaux</id>
@@ -139,9 +141,8 @@
       </roles>
     </developer>
     <developer>
-      <name>Greg Reynold</name>
-      <email>greynolds@systechnologies.com</email>
-      <organization>SYS Technologies</organization>
+      <name>Greg Reynolds</name>
+      <email>gregreynolds@cox.net</email>
       <roles>
         <role>Chairman</role>
         <role>Project manager</role>
