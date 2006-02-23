@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<project name="GeoAPI">
+  <!-- ========================================================= -->
+  <!--     Logo to appears in the banner on top of each pages    -->
+  <!-- ========================================================= -->
+  <bannerLeft>
+    <name>GeoAPI</name>
+    <src>http://geoapi.sourceforge.net/resources/logo.png</src>
+    <href>http://geoapi.sourceforge.net/</href>
+  </bannerLeft>
+
+  <bannerRight>
+    <name>Hosted by SourceForge</name>
+    <src>http://sourceforge.net/sflogo.php?group_id=70002&amp;type=1</src>
+    <href>http://sourceforge.net/projects/geoapi/</href>
+  </bannerRight>
+
+  <body>
+    <!-- ==================================================== -->
+    <!--     Links to appears just below the right banner     -->
+    <!-- ==================================================== -->
+    <links>
+      <item name="GeoAPI home" href="http://geoapi.sourceforge.net/" />
+    </links>
+
+    <!-- ==================================================== -->
+    <!--     Menus to appears on the left side of each page   -->
+    <!-- ==================================================== -->
+    <menu name="GeoAPI">
+      <item name="Pending API (javadoc)" href="http://geoapi.sourceforge.net/snapshot/javadoc/index.html"/>
+      <item name="Latest Release"        href="../../snapshot/site/"/>
+    </menu>
+
+    ${reports}  <!-- Replaced by menus for any configured reports (mailing lists, etc.) -->
+
+  </body>
+</project>
