@@ -24,87 +24,13 @@
   <version>pending-SNAPSHOT</version>
   <name>GeoAPI (pending proposals)</name>
   <url>http://geoapi.sourceforge.net/pending/</url>
+  <scm>
+    <connection>scm:svn:https://svn.sourceforge.net/svnroot/geoapi/trunk/pending/</connection>
+    <url>https://svn.sourceforge.net/viewcvs.cgi/geoapi/trunk/pending/</url>
+  </scm>
   <description>
     Interfaces under development for inclusion in some future GeoAPI release.
   </description>
-
-
-
-  <!-- ==================================================== -->
-  <!--     Developers and contributors                      -->
-  <!-- ==================================================== -->
-  <developers>
-    <developer>
-      <id>jesse</id>
-      <name>Jesse Crossley</name>
-      <email>jcrossley@systechnologies.com</email>
-      <organization>SYS Technologies</organization>
-      <roles>
-        <role>Java Developer</role>
-      </roles>
-    </developer>
-    <developer>
-      <id>desruisseaux</id>
-      <name>Martin Desruisseaux</name>
-      <email>desruisseaux@users.sourceforge.net</email>
-      <organization>Institut de Recherche pour le Développement</organization>
-      <roles>
-        <role>Java Developer</role>
-      </roles>
-    </developer>
-    <developer>
-      <id>dillard</id>
-      <name>Chris Dillard</name>
-      <email>cdillard@systechnologies.com</email>
-      <organization>SYS Technologies</organization>
-      <roles>
-        <role>Java Developer</role>
-      </roles>
-    </developer>
-    <developer>
-      <id>fabiani</id>
-      <name>Alessio Fabiani</name>
-      <email>alessio.fabiani@gmail.com</email>
-      <roles>
-        <role>Java Developer</role>
-      </roles>
-    </developer>
-    <developer>
-      <id>fellah</id>
-      <name>Stephane Fellah</name>
-      <email>stephanef@imagemattersllc.com</email>
-      <organization>Image Matters</organization>
-      <roles>
-        <role>Java Developer</role>
-      </roles>
-    </developer>
-    <developer>
-      <id>jive</id>
-      <name>Jody Garnett</name>
-      <email>jive@users.sourceforge.net</email>
-      <organization>Refractions Research</organization>
-      <roles>
-        <role>Java Developer</role>
-      </roles>
-    </developer>
-    <developer>
-      <id>koolhoven</id>
-      <name>Wim Koolhoven</name>
-      <email>koolhoven@users.sourceforge.net</email>
-      <roles>
-        <role>Java Developer</role>
-      </roles>
-    </developer>
-    <developer>
-      <name>Greg Reynold</name>
-      <email>greynolds@systechnologies.com</email>
-      <organization>SYS Technologies</organization>
-      <roles>
-        <role>Chairman</role>
-        <role>Project manager</role>
-      </roles>
-    </developer>
-  </developers>
 
 
 

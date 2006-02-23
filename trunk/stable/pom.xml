@@ -24,67 +24,16 @@
   <version>2.0</version>
   <name>GeoAPI</name>
   <url>http://geoapi.sourceforge.net/snapshot/</url>
+  <scm>
+    <connection>scm:svn:https://svn.sourceforge.net/svnroot/geoapi/trunk/stable/</connection>
+    <url>https://svn.sourceforge.net/viewcvs.cgi/geoapi/trunk/stable/</url>
+  </scm>
   <description>
     The development community in building GIS solutions is sustaining an enormous
     level of effort. The GeoAPI project aims to reduce duplication and increase
     interoperability by providing neutral, interface-only APIs derived from OGC/ISO
     Standards.
   </description>
-
-
-
-  <!-- ==================================================== -->
-  <!--     Developers and contributors                      -->
-  <!-- ==================================================== -->
-  <developers>
-    <developer>
-      <id>jesse</id>
-      <name>Jesse Crossley</name>
-      <email>jcrossley@systechnologies.com</email>
-      <organization>SYS Technologies</organization>
-      <roles>
-        <role>Java Developer</role>
-      </roles>
-    </developer>
-    <developer>
-      <id>desruisseaux</id>
-      <name>Martin Desruisseaux</name>
-      <email>desruisseaux@users.sourceforge.net</email>
-      <organization>Institut de Recherche pour le Développement</organization>
-      <roles>
-        <role>Java Developer</role>
-        <role>Release manager</role>
-      </roles>
-    </developer>
-    <developer>
-      <id>dillard</id>
-      <name>Chris Dillard</name>
-      <email>cdillard@systechnologies.com</email>
-      <organization>SYS Technologies</organization>
-      <roles>
-        <role>Java Developer</role>
-      </roles>
-    </developer>
-    <developer>
-      <id>jmacgill</id>
-      <name>James Macgill</name>
-      <email>jmacgill@users.sourceforge.net</email>
-      <organization>PennState</organization>
-      <roles>
-        <role>Java Developer</role>
-        <role>Project founder</role>
-      </roles>
-    </developer>
-    <developer>
-      <name>Greg Reynold</name>
-      <email>greynolds@systechnologies.com</email>
-      <organization>SYS Technologies</organization>
-      <roles>
-        <role>Chairman</role>
-        <role>Project manager</role>
-      </roles>
-    </developer>
-  </developers>
 
 
 
