@@ -42,6 +42,11 @@
   <!-- ==================================================== -->
   <!--     Issue managements and mailing lists              -->
   <!-- ==================================================== -->
+  <scm>
+    <connection>scm:svn:https://svn.sourceforge.net/svnroot/geoapi/trunk/</connection>
+    <url>https://svn.sourceforge.net/viewcvs.cgi/geoapi/trunk/</url>
+  </scm>
+
   <issueManagement>
     <system>JIRA</system>
     <url>http://jira.codehaus.org/browse/GEO</url>
@@ -55,6 +60,94 @@
       <archive>http://sourceforge.net/mailarchive/forum.php?forum=geoapi-devel</archive>
     </mailingList>
   </mailingLists>
+
+
+
+  <!-- ==================================================== -->
+  <!--     Developers and contributors                      -->
+  <!-- ==================================================== -->
+  <developers>
+    <developer>
+      <id>jesse</id>
+      <name>Jesse Crossley</name>
+      <email>jcrossley@systechnologies.com</email>
+      <organization>SYS Technologies</organization>
+      <roles>
+        <role>Java Developer</role>
+      </roles>
+    </developer>
+    <developer>
+      <id>desruisseaux</id>
+      <name>Martin Desruisseaux</name>
+      <email>desruisseaux@users.sourceforge.net</email>
+      <organization>Institut de Recherche pour le Développement</organization>
+      <roles>
+        <role>Java Developer</role>
+      </roles>
+    </developer>
+    <developer>
+      <id>dillard</id>
+      <name>Chris Dillard</name>
+      <email>cdillard@systechnologies.com</email>
+      <organization>SYS Technologies</organization>
+      <roles>
+        <role>Java Developer</role>
+      </roles>
+    </developer>
+    <developer>
+      <id>fabiani</id>
+      <name>Alessio Fabiani</name>
+      <email>alessio.fabiani@gmail.com</email>
+      <roles>
+        <role>Java Developer</role>
+      </roles>
+    </developer>
+    <developer>
+      <id>fellah</id>
+      <name>Stephane Fellah</name>
+      <email>stephanef@imagemattersllc.com</email>
+      <organization>Image Matters</organization>
+      <roles>
+        <role>Java Developer</role>
+      </roles>
+    </developer>
+    <developer>
+      <id>jive</id>
+      <name>Jody Garnett</name>
+      <email>jive@users.sourceforge.net</email>
+      <organization>Refractions Research</organization>
+      <roles>
+        <role>Java Developer</role>
+      </roles>
+    </developer>
+    <developer>
+      <id>jmacgill</id>
+      <name>James Macgill</name>
+      <email>jmacgill@users.sourceforge.net</email>
+      <organization>PennState</organization>
+      <roles>
+        <role>Java Developer</role>
+        <role>Project founder</role>
+      </roles>
+    </developer>
+    <developer>
+      <id>koolhoven</id>
+      <name>Wim Koolhoven</name>
+      <email>koolhoven@users.sourceforge.net</email>
+      <roles>
+        <role>Java Developer</role>
+      </roles>
+    </developer>
+    <developer>
+      <name>Greg Reynold</name>
+      <email>greynolds@systechnologies.com</email>
+      <organization>SYS Technologies</organization>
+      <roles>
+        <role>Chairman</role>
+        <role>Project manager</role>
+      </roles>
+    </developer>
+  </developers>
 
 
 

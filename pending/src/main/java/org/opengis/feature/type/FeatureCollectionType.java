@@ -2,8 +2,6 @@ package org.opengis.feature.type;
 
 import java.util.Collection;
 
-import org.opengis.feature.schema.Descriptor;
-
 
 public interface FeatureCollectionType extends FeatureType {	
 	/**

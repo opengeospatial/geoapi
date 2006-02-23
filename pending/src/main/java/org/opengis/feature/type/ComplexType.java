@@ -2,8 +2,6 @@ package org.opengis.feature.type;
 
 import java.util.Collection;
 
-import org.opengis.feature.schema.Descriptor;
-
 /**
  * The type
  * @author Jody Garnett
