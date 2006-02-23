@@ -42,16 +42,10 @@ import static org.opengis.annotation.Specification.*;
  * @since GeoAPI 1.0
  */
 @UML(identifier="SC_GeographicCRS", specification=ISO_19111)
-public interface GeographicCRS extends SingleCRS {
+public interface GeographicCRS extends GeodeticCRS {
     /**
      * Returns the coordinate system, which must be ellipsoidal.
      */
 /// @UML(identifier="usesCS", obligation=MANDATORY, specification=ISO_19111)
 /// EllipsoidalCS getCoordinateSystem();
-
-    /**
-     * Returns the datum, which must be geodetic.
-     */
-/// @UML(identifier="usesDatum", obligation=MANDATORY, specification=ISO_19111)
-/// GeodeticDatum getDatum();
 }

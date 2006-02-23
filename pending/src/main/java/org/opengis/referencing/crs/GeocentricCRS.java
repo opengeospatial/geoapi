@@ -40,17 +40,11 @@ import static org.opengis.annotation.Specification.*;
  * @since GeoAPI 1.0
  */
 @UML(identifier="SC_GeocentricCRS", specification=ISO_19111)
-public interface GeocentricCRS extends SingleCRS {
+public interface GeocentricCRS extends GeodeticCRS {
     /**
      * Returns the coordinate system, which must be {@linkplain CartesianCS cartesian}
      * or {@linkplain SphericalCS spherical}.
      */
     @UML(identifier="usesCartesianCS, usesSphericalCS", obligation=MANDATORY, specification=ISO_19111)
     CoordinateSystem getCoordinateSystem();
-  	 
-    /**
-     * Returns the datum, which must be geodetic.
-     */
-/// @UML(identifier="usesDatum", obligation=MANDATORY, specification=ISO_19111)
-/// GeodeticDatum getDatum();
 }
