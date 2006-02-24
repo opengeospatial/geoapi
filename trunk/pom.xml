@@ -32,7 +32,7 @@
   <licenses>
     <license>
       <name>OGC copyright</name>
-      <url>http://geoapi.sourceforge.net/resources/license.txt</url>
+      <url>https://svn.sourceforge.net/svnroot/geoapi/trunk/LICENSE.txt</url>
       <distribution>manual</distribution>
     </license>
   </licenses>
@@ -86,6 +86,7 @@
       <roles>
         <role>Java Developer</role>
       </roles>
+      <timezone>+11</timezone>
     </developer>
     <developer>
       <id>dillard</id>
@@ -153,7 +154,7 @@
 
 
   <!-- ==================================================== -->
-  <!--     Repositories (ibiblio, etc...)                   -->
+  <!--     Repositories (used for javax.units dependency)   -->
   <!-- ==================================================== -->
   <repositories>
     <repository>
