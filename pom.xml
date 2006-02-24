@@ -83,6 +83,7 @@
       <name>Martin Desruisseaux</name>
       <email>desruisseaux@users.sourceforge.net</email>
       <organization>Institut de Recherche pour le Développement</organization>
+      <organizationUrl>http://www.ird.fr/</organizationUrl>
       <roles>
         <role>Java Developer</role>
       </roles>
@@ -93,9 +94,11 @@
       <name>Chris Dillard</name>
       <email>cdillard@systechnologies.com</email>
       <organization>SYS Technologies</organization>
+      <organizationUrl>http://www.systechnologies.com</organizationUrl>
       <roles>
         <role>Java Developer</role>
       </roles>
+      <timezone>-8</timezone>
     </developer>
     <developer>
       <id>fabiani</id>
@@ -231,16 +234,17 @@
           </archive>
         </configuration>
       </plugin>
-    </plugins>
-  </build>
 
 
 
-  <!-- ==================================================== -->
-  <!--     Javadoc generation                               -->
-  <!-- ==================================================== -->
-  <reporting>
-    <plugins>
+      <!-- ==================================================== -->
+      <!--     Javadoc generation                               -->
+      <!-- ==================================================== -->
+      <!-- NOTE: This plugin configuration is usually performed in the <reporting> section instead of <build>.  -->
+      <!-- For now we let it in <build> in order to exclude this javadoc from the web site generation. We will  -->
+      <!-- continue to use the Ant script, at least until Apache fixes some remaining bugs like <group> not     -->
+      <!-- working. Users can still generate the javadoc with Maven by running "mvn javadoc:javadoc" explicitly -->
+      <!-- on the command line.                                                                                 -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-javadoc-plugin</artifactId>
@@ -274,12 +278,16 @@
           </group>
         </configuration>
       </plugin>
+    </plugins>
+  </build>
 
 
 
-      <!-- ==================================================== -->
-      <!--     Web site generation                              -->
-      <!-- ==================================================== -->
+  <!-- ==================================================== -->
+  <!--     Web site generation                              -->
+  <!-- ==================================================== -->
+  <reporting>
+    <plugins>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-site-plugin</artifactId>
