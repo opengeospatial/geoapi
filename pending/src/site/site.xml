@@ -20,18 +20,19 @@
     <!--     Links to appears just below the right banner     -->
     <!-- ==================================================== -->
     <links>
-      <item name="GeoAPI home" href="http://geoapi.sourceforge.net/" />
+      <item name="OGC"    href="http://www.opengeospatial.org/" />
+      <item name="GeoAPI" href="http://geoapi.sourceforge.net/" />
     </links>
 
     <!-- ==================================================== -->
     <!--     Menus to appears on the left side of each page   -->
     <!-- ==================================================== -->
-    <menu name="GeoAPI">
-      <item name="Pending API (javadoc)" href="http://geoapi.sourceforge.net/snapshot/javadoc/index.html"/>
-      <item name="Latest Release"        href="../../snapshot/site/"/>
-    </menu>
 
     ${reports}  <!-- Replaced by menus for any configured reports (mailing lists, etc.) -->
+    <menu name="GeoAPI">
+      <item name="Pending API (javadoc)" href="http://geoapi.sourceforge.net/pending/javadoc/index.html"/>
+      <item name="Latest Release"        href="../../stable/site/index.html"/>
+    </menu>
 
   </body>
 </project>

@@ -23,7 +23,7 @@
   <packaging>jar</packaging>
   <version>2.0</version>
   <name>GeoAPI</name>
-  <url>http://geoapi.sourceforge.net/snapshot/</url>
+  <url>http://geoapi.sourceforge.net/stable/</url>
   <scm>
     <connection>scm:svn:https://svn.sourceforge.net/svnroot/geoapi/trunk/stable/</connection>
     <url>https://svn.sourceforge.net/viewcvs.cgi/geoapi/trunk/stable/</url>
@@ -44,7 +44,7 @@
     <site>
       <id>SourceForge</id>
       <name>GeoAPI web site</name>
-      <url>scp://geoapi.sourceforge.net:/home/groups/g/ge/geoapi/htdocs/snapshot/site</url>
+      <url>scp://geoapi.sourceforge.net:/home/groups/g/ge/geoapi/htdocs/stable/site</url>
     </site>
   </distributionManagement>
 
