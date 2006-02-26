@@ -28,11 +28,10 @@
     <!--     Menus to appears on the left side of each page   -->
     <!-- ==================================================== -->
 
-    ${reports}  <!-- Replaced by menus for any configured reports (mailing lists, etc.) -->
-
     <menu name="Stable Release">
       <item name="Javadoc"  href="http://geoapi.sourceforge.net/2.0/javadoc/index.html"/>
       <item name="Download" href="http://sourceforge.net/project/showfiles.php?group_id=70002&amp;package_id=69096&amp;release_id=333419"/>
+      <item name="Charter"  href="charter.html"/>
       <item name="FAQ"      href="faq.html"/>
     </menu>
 
@@ -40,6 +39,8 @@
       <item name="News (Wiki pages)"    href="http://docs.codehaus.org/display/GEO/Home"/>
       <item name="Pending Project Info" href="../../pending/site/index.html"/>
     </menu>
+
+    ${reports}  <!-- Replaced by menus for any configured reports (mailing lists, etc.) -->
 
   </body>
 </project>

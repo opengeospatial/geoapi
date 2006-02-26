@@ -12,22 +12,3 @@ The GeoAPI project
     * {{{http://sourceforge.net/project/showfiles.php?group_id=70002&package_id=69096&release_id=333419}Download sources and binaries}}
 
     * {{{http://docs.codehaus.org/display/GEO/Home}News and discussions (wiki pages)}}
-
-
-* Main modules
-
-  The GeoAPI source repository contains a few modules, but the two most importants are listed below.
-
-** stable
-
-   Contains the latest GeoAPI release, with minor bug fixes. Changes that do not impact
-   the API (javadoc clarifications, bug fixes in our very few implementations like code
-   lists, etc.) are applied directly in this directory. Those changes may lead to a dot-dot
-   release (e.g. 2.0.1 after 2.0.0).
-
-** pending
-
-   Contains interfaces under development for possible inclusion in a future GeoAPI release.
-   This directory content is much more volatile than the stable directory. Changes in this
-   directory need to be submitted to OGC before to be included in a dot release (e.g. 2.1.0
-   after 2.0.0).
