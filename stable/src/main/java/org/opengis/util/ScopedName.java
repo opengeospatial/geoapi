@@ -12,15 +12,16 @@ package org.opengis.util;
 
 // Annotations
 import org.opengis.annotation.UML;
+import org.opengis.annotation.Extension;
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
 
 
 /**
  * Fully qualified identifier for an object.
- * A {@code ScopedName} contains a {@link LocalName} as {@linkplain #asLocalName head}
+ * A {@code ScopedName} contains a {@link LocalName} as head
  * and a {@linkplain GenericName}, which may be a {@link LocalName} or an other
- * {@code ScopedName}, as {@linkplain #getScope tail}.
+ * {@code ScopedName}, as tail.
  *
  * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 2.0
@@ -32,7 +33,7 @@ public interface ScopedName extends GenericName {
     /**
      * Returns the scope of this name.
      */
-    @UML(identifier="tail", obligation=OPTIONAL, specification=ISO_19103)
+    @UML(identifier="scope", obligation=OPTIONAL, specification=ISO_19103)
     GenericName getScope();
 
     /**
@@ -41,13 +42,8 @@ public interface ScopedName extends GenericName {
      * by this method will still have the same {@linkplain LocalName#getScope scope}
      * than this scoped name. Note however that the string returned by
      * {@link LocalName#toString} will differs.
-     *
-     * @rename Renamed from {@code head} as {@code localName} in order to make
-     *         it more obvious that this method returns a name without its scope. This is
-     *         also consistent with the omission of {@code tail}, which is replaced
-     *         by the inherited {@code getScope()} method.
      */
-    @UML(identifier="head", obligation=MANDATORY, specification=ISO_19103)
+    @Extension
     LocalName asLocalName();
 
     /**

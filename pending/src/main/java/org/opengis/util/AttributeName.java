@@ -17,7 +17,10 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * The name to identify a member of a record.
+ * The name to identify a member of a {@linkplain Record record}. This name bears an association
+ * with a {@linkplain TypeName type name}. There may be alternate implementations of this: for
+ * instance, one implementation may apply to the in-memory model.  Another may apply to a shapefile
+ * data store, etc.
  *
  * @author Bryce Nordgren (USDA)
  * @author Martin Desruisseaux (IRD)

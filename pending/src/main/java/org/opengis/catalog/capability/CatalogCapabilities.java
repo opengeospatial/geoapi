@@ -47,6 +47,11 @@ package org.opengis.catalog.capability;
 import org.opengis.filter.capability.FilterCapabilities;
 import org.opengis.webservice.capability.CommonCapabilities;
 
+// Annotations
+import org.opengis.annotation.UML;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
+
 
 /**
  * Represents the capabilities for an OGC-CSW 2.0.0 compliant service instance.
@@ -61,8 +66,7 @@ import org.opengis.webservice.capability.CommonCapabilities;
 public interface CatalogCapabilities extends CommonCapabilities {
     /**
      * Returns the FilterCapabilites section of the capabilities.
-     * 
-     * @uml.property name="filterCapabilities"
      */
+    @UML(identifier="filterCapabilities", specification=UNSPECIFIED)
     FilterCapabilities getFilterCapabilities();
 }

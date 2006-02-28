@@ -27,8 +27,8 @@ import static org.opengis.annotation.Specification.*;
  * 
  * @author Alexander Petkov
  *
- * @revisit The javadoc doesn't seem accurate.
- * @revisit Missing UML annotations.
+ * @todo The javadoc doesn't seem accurate.
+ * @todo Missing UML annotations.
  */
 public interface OrdinalReferenceSystem extends TemporalReferenceSystem {
 	/**
@@ -36,7 +36,7 @@ public interface OrdinalReferenceSystem extends TemporalReferenceSystem {
      *
      * @return A hierarchically-structured collection of ordinal eras.
      *
-     * @revisit What the structure is exactly?
+     * @todo What the structure is exactly?
      */
     @UML(identifier="structure", obligation=MANDATORY,specification=ISO_19108)
     Collection<OrdinalEra> getOrdinalEraSequence();

@@ -46,6 +46,11 @@ package org.opengis.catalog.discovery;
 import org.opengis.filter.Filter;
 import org.opengis.webservice.SortProperty;
 
+// Annotations
+import org.opengis.annotation.UML;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
+
 
 /**
  * Main component of a <code>GetRecords</code> request. A
@@ -69,9 +74,8 @@ public interface Query {
      * If neither parameter is specified, then a CSW shall present all metadata
      * record elements
      * <p>
-     * 
-     * @uml.property name="elementSetName"
      */
+    @UML(identifier="elementSetName", specification=UNSPECIFIED)
     String getElementSetName();
 
     /**
@@ -95,9 +99,8 @@ public interface Query {
      * <p>
      * 
      * @todo verify return type URI[] or String
-     * 
-     * @uml.property name="sortProperties"
      */
+    @UML(identifier="sortProperties", specification=UNSPECIFIED)
     SortProperty[] getSortProperties();
 
     /**
@@ -106,8 +109,7 @@ public interface Query {
      * predicate of the query. In addition, all or some of the these names may
      * be specified in the query to define which metadata record elements the
      * query should present in the response to the GetRecords operation.
-     * 
-     * @uml.property name="typeName"
      */
+    @UML(identifier="typeName", specification=UNSPECIFIED)
     String getTypeName();
 }

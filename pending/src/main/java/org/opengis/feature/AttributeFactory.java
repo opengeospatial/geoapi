@@ -26,7 +26,6 @@ public interface AttributeFactory {
 	/**
 	 * Creates an attribute to hold values of the prescribed <code>type</code>
 	 * @param type
-	 * @return
 	 */
 	public Attribute create(AttributeType type, String id);
 
@@ -34,14 +33,12 @@ public interface AttributeFactory {
 	 * 
 	 * @param type
 	 * @param value
-	 * @return
 	 */
 	public Attribute create(AttributeType type, String id, Object value);
 	
 	/**
 	 * 
 	 * @param type
-	 * @return
 	 */
 	public GeometryAttribute create(GeometryType type, String id);
 	
@@ -49,7 +46,6 @@ public interface AttributeFactory {
 	 * 
 	 * @param type
 	 * @param crs
-	 * @return
 	 */
 	public GeometryAttribute create(GeometryType type, String id, CoordinateReferenceSystem crs);
 	
@@ -57,7 +53,6 @@ public interface AttributeFactory {
 	 * 
 	 * @param type
 	 * @param value
-	 * @return
 	 */
 	public GeometryAttribute create(GeometryType type, String id, Object value);
 	
@@ -66,14 +61,12 @@ public interface AttributeFactory {
 	 * @param type
 	 * @param crs
 	 * @param value
-	 * @return
 	 */
 	public GeometryAttribute create(GeometryType type, String id, CoordinateReferenceSystem crs, Geometry value);
 	
 	/**
 	 * 
 	 * @param type
-	 * @return
 	 */
 	public SimpleFeature create(SimpleFeatureType type, String id);
 	
@@ -81,7 +74,6 @@ public interface AttributeFactory {
 	 * 
 	 * @param type
 	 * @param values
-	 * @return
 	 */
 	public SimpleFeature create(SimpleFeatureType type, String id, List<? extends Object> values);
 
@@ -89,28 +81,24 @@ public interface AttributeFactory {
 	 * 
 	 * @param type
 	 * @param values
-	 * @return
 	 */
 	public SimpleFeature create(SimpleFeatureType type, String id, Object[] values);
 
 	/**
 	 * 
 	 * @param type
-	 * @return
 	 */
 	public ComplexAttribute create(ComplexType type, String id);
 
 	/**
 	 * 
 	 * @param type
-	 * @return
 	 */
 	public Feature create(FeatureType type, String id);
 	
 	/**
 	 * 
 	 * @param type
-	 * @return
 	 */
 	public FeatureCollection create(FeatureCollectionType type, String id);
 }

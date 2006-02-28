@@ -26,7 +26,7 @@ import static org.opengis.annotation.Specification.*;
  * @author Stephane Fellah (Image Matters)
  * @author Alexander Petkov
  *
- * @revisit Maybe it should extends {@link org.opengis.referencing.ReferenceSystem}.
+ * @todo Maybe it should extends {@link org.opengis.referencing.ReferenceSystem}.
  */
 @UML(identifier="TM_ReferenceSystem", specification=ISO_19108)
 public interface TemporalReferenceSystem {

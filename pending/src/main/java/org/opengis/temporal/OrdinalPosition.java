@@ -28,7 +28,7 @@ public interface OrdinalPosition extends TemporalPosition {
     /**
      * Provides a reference to the ordinal era in which the instant occurs.
      *
-     * @revisit The method name doesn't match the return type.
+     * @todo The method name doesn't match the return type.
      */
     @UML(identifier="ordinalPosition", specification=ISO_19108)
     OrdinalEra getOrdinalPosition();

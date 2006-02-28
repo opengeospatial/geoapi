@@ -44,7 +44,7 @@ public interface CalendarDate extends TemporalPosition {
      * and so on. The format defined in ISO 8601 for dates in the Gregorian calendar may be
      * used for any date that is composed of values for year, month and day.
      *
-     * @revisit Should we returns an array of some primitive type instead?
+     * @todo Should we returns an array of some primitive type instead?
      */
     @UML(identifier="calDate", obligation=MANDATORY, specification=ISO_19108)
     int[]  getCalendarDate();

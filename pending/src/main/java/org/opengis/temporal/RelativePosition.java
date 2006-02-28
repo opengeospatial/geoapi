@@ -31,7 +31,7 @@ import static org.opengis.annotation.Specification.*;
  * @author Alexander Petkov
  * @author Martin Desruisseaux (IRD)
  *
- * @revisit Need javadoc for each enumeration.
+ * @todo Need javadoc for each enumeration.
  */
 @UML(identifier="TM_RelativePosition", specification=ISO_19108)
 public final class RelativePosition extends CodeList<RelativePosition> {

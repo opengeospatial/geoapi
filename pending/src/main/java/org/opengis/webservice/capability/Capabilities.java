@@ -43,6 +43,11 @@
  ---------------------------------------------------------------------------*/
 package org.opengis.webservice.capability;
 
+// Annotations
+import org.opengis.annotation.UML;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
+
 
 /**
  * base interface for capabilities of any OGC service instance.
@@ -53,9 +58,8 @@ package org.opengis.webservice.capability;
 public interface Capabilities {
     /**
      * Returns the version.
-     * 
-     * @uml.property name="version"
      */
+    @UML(identifier="version", specification=UNSPECIFIED)
     String getVersion();
 
     /**
@@ -68,8 +72,7 @@ public interface Capabilities {
      * to the service). The server is the sole judge of lexical ordering
      * sequence. The client may include this parameter in its GetCapabilities
      * request.
-     * 
-     * @uml.property name="updateSequence"
      */
+    @UML(identifier="updateSequence", specification=UNSPECIFIED)
     String getUpdateSequence();
 }

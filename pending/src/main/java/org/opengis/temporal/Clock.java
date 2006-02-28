@@ -27,7 +27,7 @@ import static org.opengis.annotation.Specification.*;
  *
  * @author Alexander Petkov
  *
- * @revisit Retrofit in the referencing framework.
+ * @todo Retrofit in the referencing framework.
  */
 @UML(identifier="TM_Clock", specification=ISO_19108)
 public interface Clock extends TemporalReferenceSystem {

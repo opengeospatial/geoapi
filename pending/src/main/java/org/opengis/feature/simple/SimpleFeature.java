@@ -68,7 +68,6 @@ public interface SimpleFeature extends Feature {
 	 * Access attribute by "index" indicated by SimpleFeatureType.
 	 * 
 	 * @param index
-	 * @return
 	 */
 	Object get( int index );
 

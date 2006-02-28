@@ -9,6 +9,11 @@ import org.opengis.metadata.identification.Keywords;
 import org.opengis.metadata.citation.ResponsibleParty;
 import org.opengis.util.InternationalString;
 
+// Annotations
+import org.opengis.annotation.UML;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
+
 
 /**
  * @version $Revision$
@@ -17,46 +22,40 @@ import org.opengis.util.InternationalString;
 public interface Service extends Description {
     /**
      * Returns the accessConstraints.
-     * 
-     * @uml.property name="accessConstraints"
      */
+    @UML(identifier="accessConstraints", specification=UNSPECIFIED)
     Constraints getAccessConstraints();
 
     /**
      * Returns the citedResponsibleParty.
-     * 
-     * @uml.property name="citedResponsibleParty"
      */
+    @UML(identifier="citedResponsibleParty", specification=UNSPECIFIED)
     ResponsibleParty getCitedResponsibleParty();
 
     /**
      * Returns the fees.
-     * 
-     * @uml.property name="fees"
      *
-     * @revisit Original type was CodeList (which CodeList?), but all others occurences
-     *          of this method in the API used a character string.
+     * @todo Original type was CodeList (which CodeList?), but all others occurences
+     *       of this method in the API used a character string.
      */
+    @UML(identifier="fees", specification=UNSPECIFIED)
     InternationalString getFees();
 
     /**
      * Returns the keywords.
-     * 
-     * @uml.property name="keywords"
      */
+    @UML(identifier="keywords", specification=UNSPECIFIED)
     Keywords getKeywords();
 
     /**
      * Returns the updateSequence.
-     * 
-     * @uml.property name="updateSequence"
      */
+    @UML(identifier="updateSequence", specification=UNSPECIFIED)
     String getUpdateSequence();
 
     /**
      * Returns the version.
-     * 
-     * @uml.property name="version"
      */
+    @UML(identifier="version", specification=UNSPECIFIED)
     String getVersion();
 }

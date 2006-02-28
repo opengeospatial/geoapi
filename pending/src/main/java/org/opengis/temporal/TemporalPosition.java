@@ -30,7 +30,7 @@ public interface TemporalPosition {
      * a subtype of {@code TemporalPosition}, it provides a qualifier to the specific value
      * for temporal position provided by the subtype.
      *
-     * @revisit Method name doesn't match the return type.
+     * @todo Method name doesn't match the return type.
      */
 	@UML(identifier="indeterminatePosition", obligation=OPTIONAL, specification=ISO_19108)
     IndeterminateValue getIndeterminatePosition();

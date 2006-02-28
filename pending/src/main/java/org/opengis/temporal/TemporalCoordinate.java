@@ -29,7 +29,7 @@ public interface TemporalCoordinate extends TemporalPosition {
      * Returns the distance from the scale origin expressed as a multiple of the standard
      * interval associated with the temporal coordinate system.
      *
-     * @revisit Should we return a primitive type?
+     * @todo Should we return a primitive type?
      */
 	@UML(identifier="CoordinateValue", obligation=MANDATORY, specification=ISO_19108)
 	Number getCoordinateValue();

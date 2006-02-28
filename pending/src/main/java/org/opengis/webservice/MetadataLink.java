@@ -49,38 +49,39 @@ import java.net.URI;
 // OpenGIS direct dependencies
 import org.opengis.util.InternationalString;
 
+// Annotations
+import org.opengis.annotation.UML;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
+
 
 /**
  * @author <a href="mailto:poth@lat-lon.de">Andreas Poth</a>
  *
- * @revisit Which relationship with {@link SimpleLink}?
+ * @todo Which relationship with {@link SimpleLink}?
  */
 public interface MetadataLink {
     /**
      * Returns the title.
-     * 
-     * @uml.property name="title"
      */
+    @UML(identifier="title", specification=UNSPECIFIED)
     InternationalString getTitle();
 
     /**
      * Returns the about.
-     * 
-     * @uml.property name="about"
      */
+    @UML(identifier="about", specification=UNSPECIFIED)
     URI getAbout();
 
     /**
      * Returns the reference.
-     * 
-     * @uml.property name="reference"
      */
+    @UML(identifier="reference", specification=UNSPECIFIED)
     URI getReference();
 
     /**
      * Returns the metadataType.
-     * 
-     * @uml.property name="metadataType"
      */
+    @UML(identifier="metadataType", specification=UNSPECIFIED)
     MetadataType getMetadataType();
 }

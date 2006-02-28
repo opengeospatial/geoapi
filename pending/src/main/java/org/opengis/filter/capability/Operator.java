@@ -45,17 +45,22 @@
  ---------------------------------------------------------------------------*/
 package org.opengis.filter.capability;
 
+// Annotations
+import org.opengis.annotation.UML;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
+
 
 /**
  * 
  * @author <a href="mailto:tfr@users.sourceforge.net">Torsten Friebe</A>
  *
- * @revisit Which relationship with Filter and expressions?
+ * @todo Which relationship with Filter and expressions?
  */
 public interface Operator {
     /**
      * 
-     * @uml.property name="name"
      */
+    @UML(identifier="name", specification=UNSPECIFIED)
     String getName();
 }

@@ -68,9 +68,9 @@ public class NonexistentCollectionException extends WebServiceException {
      * @param locator
      * @param message
      *
-     * @revisit The argument order (locator before message) may surprises users who don't read
-     *          carefully the javadoc. We could expect optional argument to appears next to
-     *          mandatory ones.
+     * @todo The argument order (locator before message) may surprises users who don't read
+     *       carefully the javadoc. We could expect optional argument to appears next to
+     *       mandatory ones.
      */
     public NonexistentCollectionException(String locator, String message) {
         super(locator, message);
@@ -81,9 +81,9 @@ public class NonexistentCollectionException extends WebServiceException {
      * @param message
      * @param code
      *
-     * @revisit The argument order (locator before message) may surprises users who don't read
-     *          carefully the javadoc. We could expect optional argument to appears next to
-     *          mandatory ones.
+     * @todo The argument order (locator before message) may surprises users who don't read
+     *       carefully the javadoc. We could expect optional argument to appears next to
+     *       mandatory ones.
      */
     public NonexistentCollectionException(String locator, String message, ExceptionCode code) {
         super(locator, message, code);

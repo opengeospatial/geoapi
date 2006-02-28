@@ -8,7 +8,7 @@ import org.opengis.util.CodeList;
 /**
  * Captures the SortBy order, ASC or DESC.
  * 
- * @see http://schemas.opengis.net/filter/1.1.0/sort.xsd
+ * @see <a href="http://schemas.opengis.net/filter/1.1.0/sort.xsd">
  * @author Jody Garnett, Refractions Research.
  * @since GeoTools 2.2, Filter 1.1
  */

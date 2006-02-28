@@ -27,8 +27,8 @@ import org.opengis.filter.expression.PropertyName;
  * AttributeExpression as an optional parameter. Note function is defined
  * to return a single value (so we don't need to worry there).
  * </p> 
- * @see http://schemas.opengis.net/filter/1.1.0/sort.xsd
- * @see http://schemas.opengis.net/wfs/1.1.0/wfs.xsd
+ * @see <a href="http://schemas.opengis.net/filter/1.1.0/sort.xsd">
+ * @see <a href="http://schemas.opengis.net/wfs/1.1.0/wfs.xsd">
  * 
  * @since GeoTools 2.2, Filter 1.1
  * @author Jody Garnett, Refractions Research, Inc.
@@ -120,7 +120,7 @@ public interface SortBy {
 	 *     used by WFS1.1 (ie. "year A, month A, day A" )
 	 * </ul>
 	 * </p>
-	 * @TODO Use QName
+	 * @todo Use QName
 	 * @return Name of property to sort by.
 	 */
 	public PropertyName getPropertyName();	

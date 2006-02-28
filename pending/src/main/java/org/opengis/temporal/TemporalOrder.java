@@ -23,7 +23,7 @@ import static org.opengis.annotation.Specification.*;
  * @author Stephane Fellah (Image Matters)
  * @author Alexander Petkov
  *
- * @revisit The javadoc suggests that this interface should extends some kind of {@link Primitive}.
+ * @todo The javadoc suggests that this interface should extends some kind of {@link Primitive}.
  */
 @UML(identifier="TM_Order", specification=ISO_19108)
 public interface TemporalOrder {

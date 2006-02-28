@@ -30,7 +30,7 @@ import static org.opengis.annotation.Specification.*;
  * @author Stephane Fellah (Image Matters)
  * @author Alexander Petkov
  *
- * @revisit Retrofit in {@link org.opengis.referencing.cs.TimeCS}.
+ * @todo Retrofit in {@link org.opengis.referencing.cs.TimeCS}.
  */
 @UML(identifier="TM_CoordinateSystem", specification=ISO_19108)
 public interface TemporalCoordinateSystem extends TemporalReferenceSystem {

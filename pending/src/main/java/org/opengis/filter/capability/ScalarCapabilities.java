@@ -45,6 +45,11 @@
  ---------------------------------------------------------------------------*/
 package org.opengis.filter.capability;
 
+// Annotations
+import org.opengis.annotation.UML;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
+
 
 /**
  * 
@@ -56,29 +61,27 @@ public interface ScalarCapabilities {
 
     /**
      * 
-     * @uml.property name="comparisonOperators"
      */
+    @UML(identifier="comparisonOperators", specification=UNSPECIFIED)
     Operator[] getComparisonOperators();
 
     /**
      * 
-     * @uml.property name="arithmeticOperators"
      */
+    @UML(identifier="arithmeticOperators", specification=UNSPECIFIED)
     Operator[] getArithmeticOperators();
 
     /**
      * Returns if the given operator is supported.
      *
-     * @revisit Not needed if {@link #getComparisonOperators}
-     *          returns a {@link java.util.Map}.
+     * @todo Not needed if {@link #getComparisonOperators} returns a {@link java.util.Map}.
      */
     boolean hasComparisonOperator(String operatorName);
 
     /**
      * Returns if the given operator is supported.
      *
-     * @revisit Not needed if {@link #getArithmeticOperators}
-     *          returns a {@link java.util.Map}.
+     * @todo Not needed if {@link #getArithmeticOperators} returns a {@link java.util.Map}.
      */
     boolean hasArithmeticOperator(String operatorName);
 }

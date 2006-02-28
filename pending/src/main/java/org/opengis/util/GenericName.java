@@ -21,18 +21,21 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * Base interface for {@linkplain ScopedName generic scoped} and
- * {@linkplain LocalName local name} structure for type and attribute
- * name in the context of name spaces. All generic names:
+ * Base interface for {@linkplain ScopedName scoped} and {@linkplain LocalName local name}
+ * structure for type and attribute name in the context of name spaces. All generic names:
  * <p>
  * <ul>
  *   <li>have the ability to provide a "{@linkplain #getParsedNames parsed}" version of
  *       themselves;</li>
  *   <li>carry an indication of their "{@linkplain #depth depth}" (e.g., the number of
  *       hierarchical levels specified by the name);</li>
- *   <li>carry an association with a specific {@linkplain NameSpace namespace}, or {@linkplain
- *       #scope scope}, in which they are considered "{@linkplain LocalName local}".</li>
+ *   <li>carry an association with a specific {@linkplain NameSpace name space}, or {@linkplain
+ *       #scope scope}, in which they are considered "local".</li>
  * </ul>
+ * <p>
+ * The same name object may not be registered in different {@linkplain NameSpace name space}.
+ * If the same character string is registered in two name spaces, two different name objects
+ * will result.
  * <p>
  * The {@linkplain Comparable natural ordering} for generic names is implementation dependent.
  * A recommended practice is to {@linkplain String#compareTo compare lexicographically} each
@@ -49,15 +52,15 @@ import static org.opengis.annotation.Specification.*;
 @UML(identifier="GenericName", specification=ISO_19103)
 public interface GenericName extends Comparable {
     /**
-     * Returns the scope (name space) of this generic name. The scope is set on creation and is
-     * not modifiable.
-     * 
-     * @return The scope of this generic name. If this name has no scope
-     *         (e.g. is the root), then this method returns {@code null}.
+     * Returns the scope (name space) in which this name is local. The scope is set on creation
+     * and is not modifiable. The scope of a name determines where a name "starts". For instance,
+     * if a name has a {@linkplain #depth depth} of two ({@code "util.GenericName"}) and is
+     * associated with a {@linkplain NameSpace name space} having the name {@code "org.opengis"},
+     * then the fully qualified name would be {@code "org.opengis.util.GenericName"}.
      *
      * @since GeoAPI 2.1
      */
-    @UML(identifier="scope", obligation=OPTIONAL, specification=ISO_19103)
+    @UML(identifier="scope", obligation=MANDATORY, specification=ISO_19103)
     NameSpace scope();
 
     /**
@@ -83,42 +86,60 @@ public interface GenericName extends Comparable {
     int depth();
 
     /**
-     * Returns the sequence of {@linkplain LocalName local names} making this generic name.
-     * Each element in this list is like a directory name in a file path name.
-     * The length of this sequence is the generic name {@linkplain #depth depth}.
+     * Returns the sequence of {@linkplain LocalName local names} making this generic name. All
+     * elements of the list except for the last one refer to {@linkplain NameSpace name spaces}.
+     * The length of this sequence is the {@linkplain #depth depth}.
      */
     @UML(identifier="parsedName", obligation=MANDATORY, specification=ISO_19103)
     List<LocalName> getParsedNames();
 
     /**
-     * Returns a view of this object as a scoped name,
-     * or {@code null} if this name has no scope.
-     */
-    @Extension
-    ScopedName asScopedName();
-
-    /**
-     * Returns a view of this object as a local name. Special cases:
-     * <p>
-     * <ul>
-     *   <li>For a {@linkplain LocalName local name}, returns {@code this}.</li>
-     *   <li>For a {@linkplain ScopedName scoped name}, return the {@linkplain ScopedName#head head}.</li>
-     * </ul>
-     * <p>
-     * In all cases, the local name returned by this method will have the same
-     * {@linkplain LocalName#scope scope} than this generic name.
+     * Returns a view of this object as a local name. This is always the last element in the
+     * sequence of {@linkplain #getParsedNames parsed names}. 
      */
     @Extension
     LocalName asLocalName();
 
     /**
+     * Returns a view of this name as a fully-qualified name, or {@code null} if none.
+     * The {@linkplain #scope scope} of a fully qualified name must be
+     * {@linkplain NameSpace#isGlobal global}.
+     * <p>
+     * If this name is a {@linkplain LocalName local name} and the {@linkplain #scope scope}
+     * is already {@linkplain NameSpace#isGlobal global}, returns {@code null} since it is not
+     * possible to derive a scoped name.
+     *
+     * @todo Consider to replace this method by {@code asFullyQualifiedName()}, which would
+     *       returns a {@code GenericName} (so this method would never returns {@code null}).
+     *       We can also just deprecate this method with no replacement.
+     */
+    @Extension
+    ScopedName asScopedName();
+
+    /**
+     * Returns this name expanded with the specified scope. One may represent this operation
+     * as a concatenation of the specified {@code name} with {@code this}. In pseudo-code,
+     * the following relationships must hold (the last one is specific to {@link ScopedName}):
+     * <p>
+     * <ul>
+     *   <li><code>push(<var>name</var>).getParsedList() ==
+     *       <var>name</var>.getParsedList().addAll({@linkplain #getParsedNames()})</code></li>
+     *   <li><code>push(<var>name</var>).scope() == <var>name</var>.{@linkplain #scope()}</code></li>
+     *   <li><code>push({@linkplain ScopedName#head head()}).{@linkplain ScopedName#tail tail()} == this</code></li>
+     * </ul>
+     * <p>
+     * <strong>Note:</strong> Those conditions can be understood in terms of the Java
+     * {@link Object#equals equals} method instead of the Java identity comparator {@code ==}.
+     *
+     * @since GeoAPI 2.1
+     */
+    @UML(identifier="push", obligation=MANDATORY, specification=ISO_19103)
+    ScopedName push(GenericName scope);
+
+    /**
      * Returns a string representation of this generic name. This string representation
      * is local-independant. It contains all elements listed by {@link #getParsedNames}
      * separated by an arbitrary character (usually {@code :} or {@code /}).
-     * This rule implies that the {@code toString()} method for a
-     * {@linkplain ScopedName scoped name} will contains the scope, while the
-     * {@code toString()} method for the {@linkplain LocalName local version} of
-     * the same name will not contains the scope.
      */
     @Extension
     String toString();
