@@ -48,9 +48,9 @@ public interface Calendar extends TemporalReferenceSystem {
      * links this calendar to the {@linkplain CalendarEra calendar eras}
      * that it uses as a reference for dating.
      *
-     * @revisit The original version of this class returned {@code TemporalCalendarEra}, which
-     *          doesn't exists in the provided sources. I assumed that it was a typo and that
-     *          the actual class was {@link CalendarEra}.
+     * @todo The original version of this class returned {@code TemporalCalendarEra}, which
+     *       doesn't exists in the provided sources. I assumed that it was a typo and that
+     *       the actual class was {@link CalendarEra}.
      */
     @UML(identifier="Basis", specification=ISO_19108)
     Collection<CalendarEra> getBasis();
@@ -59,7 +59,7 @@ public interface Calendar extends TemporalReferenceSystem {
      * Links this calendar to the {@linkplain Clock clock} that is used for specifying
      * temporal positions within the smallest calendar interval.
      *
-     * @revisit Method name doesn't match the UML identifier.
+     * @todo Method name doesn't match the UML identifier.
      */
     @UML(identifier="Resolution", specification=ISO_19108)
     Clock getClock();

@@ -52,7 +52,7 @@ import org.opengis.util.GenericName;
 /**
  * @author <a href="mailto:schneider@lat-lon.de">Markus Schneider </a>
  *
- * @revisit Which relationship with {@link org.opengis.spatial.SpatialOperation}?
+ * @todo Which relationship with {@link org.opengis.spatial.SpatialOperation}?
  */
 public interface SpatialOperator extends Operator {
     /**

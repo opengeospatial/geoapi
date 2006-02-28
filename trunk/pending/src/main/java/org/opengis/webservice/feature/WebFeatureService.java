@@ -48,6 +48,11 @@ import org.opengis.webservice.WebServiceRequest;
 import org.opengis.webservice.WebServiceResponse;
 import org.opengis.webservice.capability.WebServiceCapabilities;
 
+// Annotations
+import org.opengis.annotation.UML;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
+
 
 /**
  * Web feature service. A WFS is callable through the {@link #doService doService} method
@@ -61,8 +66,8 @@ import org.opengis.webservice.capability.WebServiceCapabilities;
 public interface WebFeatureService extends WebService {
     /**
      * 
-     * @uml.property name="capabilities"
      */
+    @UML(identifier="capabilities", specification=UNSPECIFIED)
     WebServiceCapabilities getCapabilities();
 
     String getVersion();

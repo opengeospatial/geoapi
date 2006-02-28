@@ -22,8 +22,8 @@ import static org.opengis.annotation.Specification.*;
  * @author Stephane Fellah (Image Matters)
  * @author Alexander Petkov
  *
- * @revisit The Javadoc suggest that this interface should extends some kind of
- *          {@linkplain TemporalGeometricPrimitive temporal geometric primitive}.
+ * @todo The Javadoc suggest that this interface should extends some kind of
+ *       {@linkplain TemporalGeometricPrimitive temporal geometric primitive}.
  */
 @UML(identifier="TM_Separation", specification=ISO_19108)
 public interface Separation {

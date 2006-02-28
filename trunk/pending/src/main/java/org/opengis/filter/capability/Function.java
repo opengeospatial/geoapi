@@ -45,6 +45,11 @@
  ---------------------------------------------------------------------------*/
 package org.opengis.filter.capability;
 
+// Annotations
+import org.opengis.annotation.UML;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
+
 
 /**
  * @author <a href="mailto:tfr@users.sourceforge.net">Torsten Friebe </A>
@@ -52,7 +57,7 @@ package org.opengis.filter.capability;
 public interface Function extends Operator {
     /**
      * 
-     * @uml.property name="argumentCount"
      */
+    @UML(identifier="argumentCount", specification=UNSPECIFIED)
     int getArgumentCount();
 }

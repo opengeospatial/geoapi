@@ -22,7 +22,7 @@ import static org.opengis.annotation.Specification.*;
  *
  * @author Stephane Fellah (Image Matters)
  * @author Alexander Petkov
- * @revisit There is a bit of a conflict in the spec document as to what should be returned
+ * @todo There is a bit of a conflict in the spec document as to what should be returned
  * for "position." The diagram shows that Position should be returned, while the text in the document 
  * demands that TemporalPosition should represent position in time.  
  */

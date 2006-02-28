@@ -13,6 +13,9 @@ package org.opengis.util;
 // Direct J2SE dependencies
 import java.util.Locale;
 
+// Annotations
+import org.opengis.annotation.Extension;
+
 
 /**
  * A {@linkplain String string} that has been internationalized into several {@linkplain Locale locales}.
@@ -29,6 +32,7 @@ import java.util.Locale;
  * @see javax.xml.registry.infomodel.InternationalString
  * @see NameFactory#createInternationalString
  */
+@Extension
 public interface InternationalString extends CharSequence, Comparable {
     /**
      * Returns this string in the given locale. If no string is available in the given locale,

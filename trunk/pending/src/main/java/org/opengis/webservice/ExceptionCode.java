@@ -73,66 +73,50 @@ public final class ExceptionCode extends CodeList<ExceptionCode> {
 
     /**
      * 
-     * @uml.property name="iNVALID_FORMAT"
-     * @uml.associationEnd multiplicity="(0 1)"
-     * @uml.identifier="InvalidFormat"?
      */
+    @UML(identifier="InvalidFormat", obligation=CONDITIONAL, specification=UNSPECIFIED)
     public static final ExceptionCode INVALID_FORMAT = new ExceptionCode("INVALID_FORMAT");
 
     /**
      * 
-     * @uml.property name="cURRENTUPDATESEQUENCE"
-     * @uml.associationEnd multiplicity="(0 1)"
-     * @uml.identifier="CurrentUpdateSequence"?
      */
+    @UML(identifier="CurrentUpdateSequence", obligation=CONDITIONAL, specification=UNSPECIFIED)
     public static final ExceptionCode CURRENT_UPDATE_SEQUENCE = new ExceptionCode("CURRENT_UPDATE_SEQUENCE");
 
     /**
      * 
-     * @uml.property name="iNVALIDUPDATESEQUENCE"
-     * @uml.associationEnd multiplicity="(0 1)"
-     * @uml.identifier="InvalidUpdateSequence"?
      */
+    @UML(identifier="InvalidUpdateSequence", obligation=CONDITIONAL, specification=UNSPECIFIED)
     public static final ExceptionCode INVALID_UPDATE_SEQUENCE = new ExceptionCode("INVALID_UPDATE_SEQUENCE");
 
     /**
      * 
-     * @uml.property name="mISSINGPARAMETERVALUE"
-     * @uml.associationEnd multiplicity="(0 1)"
-     * @uml.identifier="MissingParameterValue"?
      */
+    @UML(identifier="MissingParameterValue", obligation=CONDITIONAL, specification=UNSPECIFIED)
     public static final ExceptionCode MISSING_PARAMETER_VALUE = new ExceptionCode("MISSING_PARAMETER_VALUE");
 
     /**
      * 
-     * @uml.property name="iNVALIDPARAMETERVALUE"
-     * @uml.associationEnd multiplicity="(0 1)"
-     * @uml.identifier="InvalidParameterValue"
      */
+    @UML(identifier="InvalidParameterValue", obligation=CONDITIONAL, specification=UNSPECIFIED)
     public static final ExceptionCode INVALID_PARAMETER_VALUE = new ExceptionCode("INVALID_PARAMETER_VALUE");
 
     /**
      * 
-     * @uml.property name="oPERATIONNOTSUPPORTED"
-     * @uml.associationEnd multiplicity="(0 1)"
-     * @uml.identifier="OperationNotSupported"?
      */
+    @UML(identifier="OperationNotSupported", obligation=CONDITIONAL, specification=UNSPECIFIED)
     public static final ExceptionCode OPERATION_NOT_SUPPORTED = new ExceptionCode("OPERATION_NOT_SUPPORTED");
 
     /**
      * 
-     * @uml.property name="vERSIONNEGOTIATIONFAILED"
-     * @uml.associationEnd multiplicity="(0 1)"
-     * @uml.identifier="VersionNegotiationFailed"?
      */
+    @UML(identifier="VersionNegotiationFailed", obligation=CONDITIONAL, specification=UNSPECIFIED)
     public static final ExceptionCode VERSION_NEGOTIATION_FAILED = new ExceptionCode("VERSION_NEGOTIATION_FAILED");
 
     /**
      * 
-     * @uml.property name="nOAPPLICABLECODE"
-     * @uml.associationEnd multiplicity="(0 1)"
-     * @uml.identifier="NoApplicableCode"?
      */
+    @UML(identifier="NoApplicableCode", obligation=CONDITIONAL, specification=UNSPECIFIED)
     public static final ExceptionCode NO_APPLICABLE_CODE = new ExceptionCode("NO_APPLICABLE_CODE");
 
     /**

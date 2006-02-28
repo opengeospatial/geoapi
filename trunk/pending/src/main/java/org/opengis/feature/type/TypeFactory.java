@@ -20,7 +20,6 @@ public interface TypeFactory {
 	 * 
 	 * @param name
 	 * @param binding
-	 * @return
 	 */
 	AttributeType createType(String name, Class binding);
 
@@ -28,7 +27,6 @@ public interface TypeFactory {
 	 * 
 	 * @param name
 	 * @param binding
-	 * @return
 	 */
 	AttributeType createType(QName name, Class binding);
 
@@ -39,7 +37,6 @@ public interface TypeFactory {
 	 * @param identified
 	 * @param nillable
 	 * @param restrictions
-	 * @return
 	 */
 	AttributeType createType(QName name, Class binding, boolean identified,
 			boolean nillable, Set<Filter> restrictions);
@@ -52,7 +49,6 @@ public interface TypeFactory {
 	 * @param nillable
 	 * @param restrictions
 	 * @param superType
-	 * @return
 	 */
 	AttributeType createType(QName name, Class binding, boolean identified,
 			boolean nillable, Set<Filter> restrictions, AttributeType superType);
@@ -69,7 +65,6 @@ public interface TypeFactory {
 	 * 
 	 * @param name
 	 * @param schema
-	 * @return
 	 */
 	ComplexType createType(String name, AttributeDescriptor schema);
 
@@ -77,7 +72,6 @@ public interface TypeFactory {
 	 * 
 	 * @param name
 	 * @param schema
-	 * @return
 	 */
 	ComplexType createType(QName name, AttributeDescriptor schema);
 
@@ -88,7 +82,6 @@ public interface TypeFactory {
 	 * @param identified
 	 * @param nillable
 	 * @param restrictions
-	 * @return
 	 */
 	ComplexType createType(QName name, AttributeDescriptor schema, boolean identified,
 			boolean nillable, Set<Filter> restrictions);
@@ -102,7 +95,6 @@ public interface TypeFactory {
 	 * @param restrictions
 	 * @param superType
 	 * @param isAbstract
-	 * @return
 	 */
 	ComplexType createType(QName name, AttributeDescriptor schema, boolean identified,
 			boolean nillable, Set<Filter> restrictions, ComplexType superType,
@@ -113,7 +105,6 @@ public interface TypeFactory {
 	 * @param name
 	 * @param schema
 	 * @param defaultGeometry
-	 * @return
 	 */
 	FeatureType createFeatureType(String name, AttributeDescriptor schema,
 			GeometryType defaultGeometry);
@@ -123,7 +114,6 @@ public interface TypeFactory {
 	 * @param name
 	 * @param schema
 	 * @param defaultGeometry
-	 * @return
 	 */
 	FeatureType createFeatureType(QName name, AttributeDescriptor schema,
 			GeometryType defaultGeometry);
@@ -136,7 +126,6 @@ public interface TypeFactory {
 	 * @param restrictions
 	 * @param superType
 	 * @param isAbstract
-	 * @return
 	 */
 	FeatureType createFeatureType(QName name, AttributeDescriptor schema,
 			GeometryType defaultGeometry, Set<Filter> restrictions,
@@ -150,7 +139,6 @@ public interface TypeFactory {
 	 * @param name
 	 * @param types
 	 * @param defaultGeometry
-	 * @return
 	 */
 	SimpleFeatureType createFeatureType(QName name, List<AttributeType> types,
 			GeometryType defaultGeometry);
@@ -169,7 +157,6 @@ public interface TypeFactory {
 	 * Features can be of any FeatureType.
 	 * 
 	 * @param name
-	 * @return
 	 */
 	public FeatureCollectionType createFeatureCollectionType(QName name);
 
@@ -179,7 +166,6 @@ public interface TypeFactory {
 	 * 
 	 * @param name
 	 * @param membersType
-	 * @return
 	 */
 	public FeatureCollectionType createFeatureCollectionType(QName name,
 			FeatureType membersType);
@@ -215,7 +201,6 @@ public interface TypeFactory {
 	 *            the FeatureCollectionType the created one inherits from.
 	 * @param isAbstract
 	 *            wether the created FeatureCollectionType is abstract.
-	 * @return
 	 */
 	public FeatureCollectionType createFeatureCollectionType(QName name,
 			Set<FeatureType> membersTypes, AttributeDescriptor schema,

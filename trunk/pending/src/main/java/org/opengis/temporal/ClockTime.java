@@ -34,13 +34,13 @@ import static org.opengis.annotation.Specification.*;
 public interface ClockTime extends TemporalPosition {
     /**
      * A sequence of numbers with a structure similar to that of {@link CalendarDate#getCalendarDate
-     * CalendarDate). The first number integer identifies a specific instance of the unit used at the
+     * CalendarDate}. The first number integer identifies a specific instance of the unit used at the
      * highest level of the clock hierarchy, the second number identifies a specific instance of the
      * unit used at the next lower level, and so on. All but the last number in the sequence shall be
      * integers; the last number may be integer or real.
      *
-     * @revisit Should we returns an array of some primitive type instead?
-     * @revisit Method name doesn't match the UML attribute name.
+     * @todo Should we returns an array of some primitive type instead?
+     * @todo Method name doesn't match the UML attribute name.
      */
     @UML(identifier="clkTime", obligation=MANDATORY, specification=ISO_19108)
     Number[] getClockTime();

@@ -25,7 +25,7 @@ import org.opengis.util.InternationalString;
  * @author Stephane Fellah (Image Matters)
  * @author Alexander Petkov
  *
- * @revisit Uses Java 1.5 {@link javax.xml.datatype.Duration}.
+ * @todo Uses Java 1.5 {@link javax.xml.datatype.Duration}.
  */
 @UML(identifier="TM_PeriodDuration", specification=ISO_19108)
 public interface PeriodDuration extends Duration {

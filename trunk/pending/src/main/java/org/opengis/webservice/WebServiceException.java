@@ -43,6 +43,11 @@
  ---------------------------------------------------------------------------*/
 package org.opengis.webservice;
 
+// Annotations
+import org.opengis.annotation.UML;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
+
 
 /**
  * 
@@ -76,9 +81,9 @@ public class WebServiceException extends Exception  {
      * @param locator
      * @param message
      *
-     * @revisit The argument order (locator before message) may surprises users who don't read
-     *          carefully the javadoc. We could expect optional argument to appears next to
-     *          mandatory ones.
+     * @todo The argument order (locator before message) may surprises users who don't read
+     *       carefully the javadoc. We could expect optional argument to appears next to
+     *       mandatory ones.
      */
     public WebServiceException(String locator, String message) {
         this(message, locator, null);
@@ -89,9 +94,9 @@ public class WebServiceException extends Exception  {
      * @param message
      * @param code 
      *
-     * @revisit The argument order (locator before message) may surprises users who don't read
-     *          carefully the javadoc. We could expect optional argument to appears next to
-     *          mandatory ones.
+     * @todo The argument order (locator before message) may surprises users who don't read
+     *       carefully the javadoc. We could expect optional argument to appears next to
+     *       mandatory ones.
      */
     public WebServiceException(String locator, String message, ExceptionCode code) {
         super(message);
@@ -101,18 +106,16 @@ public class WebServiceException extends Exception  {
 
     /**
      * Returns the class/service that has caused the exception
-     * 
-     * @uml.property name="locator"
      */
+    @UML(identifier="locator", specification=UNSPECIFIED)
     public String getLocator() {
         return locator;
     }
 
     /**
      * Sets the class/service that has caused the exception
-     * 
-     * @uml.property name="locator"
      */
+    @UML(identifier="locator", specification=UNSPECIFIED)
     public void setLocator(String locator) {
         this.locator = locator;
     }

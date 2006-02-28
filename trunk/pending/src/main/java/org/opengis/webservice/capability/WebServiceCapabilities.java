@@ -42,6 +42,11 @@
  ---------------------------------------------------------------------------*/
 package org.opengis.webservice.capability;
 
+// Annotations
+import org.opengis.annotation.UML;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
+
 
 /**
  * The purpose of the GetCapabilities operation is described in the Basic
@@ -57,8 +62,7 @@ public interface WebServiceCapabilities extends Capabilities {
     /**
      * Returns a general describtion of the service described by the
      * Capabilities XML document.
-     * 
-     * @uml.property name="service"
      */
+    @UML(identifier="service", specification=UNSPECIFIED)
     CapabilitiesService getService();
 }

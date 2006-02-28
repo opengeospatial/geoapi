@@ -49,6 +49,11 @@ import org.opengis.metadata.citation.OnLineResource;
 import org.opengis.metadata.identification.Keywords;
 import org.opengis.metadata.constraint.Constraints;
 
+// Annotations
+import org.opengis.annotation.UML;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
+
 
 /**
  * Provides acces to the &lt;CapabilitiesService&gt; element of the  Capabilities XML
@@ -65,9 +70,8 @@ public interface CapabilitiesService {
     /**
      * Returns the name of the service. Typically, the Name is a single word used
      * for machine-to-machine communication.
-     * 
-     * @uml.property name="name"
      */
+    @UML(identifier="name", specification=UNSPECIFIED)
     String getName();
 
     /**
@@ -77,9 +81,8 @@ public interface CapabilitiesService {
      * servers.
      *
      * @see #getName()
-     * 
-     * @uml.property name="title"
      */
+    @UML(identifier="title", specification=UNSPECIFIED)
     InternationalString getTitle();
 
     /**
@@ -91,41 +94,36 @@ public interface CapabilitiesService {
     /**
      * A list of keywords or keyword phrases should be included to help catalog
      * searching.
-     * 
-     * @uml.property name="keywordList"
      */
+    @UML(identifier="keywordList", specification=UNSPECIFIED)
     Keywords getKeywords();
 
     /**
      * The OnlineResource element within the CapabilitiesService element can be used, for
      * example, to point to the web site of the service provider. There are other
      * OnlineResource elements used for the URL prefix of each supported operation.
-     * 
-     * @uml.property name="onlineResource"
      */
+    @UML(identifier="onlineResource", specification=UNSPECIFIED)
     OnLineResource getOnlineResource();
 
     /**
      * Returns informations who to contact for questions about the service. This
      * method returns <tt>null</tt> if no contact informations are available.
-     * 
-     * @uml.property name="contactInformation"
      */
+    @UML(identifier="contactInformation", specification=UNSPECIFIED)
     Contact getContactInformation();
 
     /**
      * Returns fees assigned to the service. If no fees defined "none" will be
      * returned.
-     * 
-     * @uml.property name="fees"
      */
+    @UML(identifier="fees", specification=UNSPECIFIED)
     InternationalString getFees();
 
     /**
      * Returns access constraints assigned to the service. If no access
      * constraints are defined {@code null} will be returned.
-     * 
-     * @uml.property name="accessConstraints"
      */
+    @UML(identifier="accessConstraints", specification=UNSPECIFIED)
     Constraints getAccessConstraints();
 }

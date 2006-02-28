@@ -48,6 +48,11 @@ import org.opengis.webservice.SimpleLink;
 import org.opengis.metadata.citation.Contact;
 import org.opengis.metadata.identification.KeywordType;
 
+// Annotations
+import org.opengis.annotation.UML;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
+
 
 /**
  * Represents the ServiceProvider section of the capabilities of an OGC
@@ -62,37 +67,32 @@ import org.opengis.metadata.identification.KeywordType;
 public interface ServiceProvider {
     /**
      * Returns the contactInfo.
-     * 
-     * @uml.property name="contactInfo"
      */
+    @UML(identifier="contactInfo", specification=UNSPECIFIED)
     Contact getContactInfo();
 
     /**
      * Returns the individualName.
-     * 
-     * @uml.property name="individualName"
      */
+    @UML(identifier="individualName", specification=UNSPECIFIED)
     String getIndividualName();
 
     /**
-     * @return Returns the positionName.
-     * 
-     * @uml.property name="positionName"
+     * Returns the positionName.
      */
+    @UML(identifier="positionName", specification=UNSPECIFIED)
     String getPositionName();
 
     /**
-     * @return Returns the providerName.
-     * 
-     * @uml.property name="providerName"
+     * Returns the providerName.
      */
+    @UML(identifier="providerName", specification=UNSPECIFIED)
     String getProviderName();
 
     /**
-     * @return Returns the providerSite.
-     * 
-     * @uml.property name="providerSite"
+     * Returns the providerSite.
      */
+    @UML(identifier="providerSite", specification=UNSPECIFIED)
     SimpleLink getProviderSite();
 
     /**

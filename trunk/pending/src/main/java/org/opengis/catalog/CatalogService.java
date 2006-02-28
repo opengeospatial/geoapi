@@ -50,6 +50,11 @@ import org.opengis.catalog.capability.CatalogGetCapabilities;
 import org.opengis.catalog.discovery.Discovery;
 import org.opengis.catalog.manager.Manager;
 
+// Annotations
+import org.opengis.annotation.UML;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
+
 
 /**
  * The Catalogue Service class provides the foundation for an OGC catalogue
@@ -67,14 +72,14 @@ public interface CatalogService extends WebService {
     /**
      * Returns the capabilities of the service.
      *
-     * @revisit Should the return type be CatalogCapabilities?
+     * @todo Should the return type be CatalogCapabilities?
      */
     Capabilities getCapabilities();
 
     /**
      * Returns the capabilities of the service.
      *
-     * @revisit Should the return type be CatalogCapabilities?
+     * @todo Should the return type be CatalogCapabilities?
      */
     Capabilities getCapabilities(CatalogGetCapabilities request);
 
@@ -87,15 +92,13 @@ public interface CatalogService extends WebService {
 
     /**
      * Returns the discovery.
-     * 
-     * @uml.property name="discovery"
      */
+    @UML(identifier="discovery", specification=UNSPECIFIED)
     Discovery getDiscovery();
 
     /**
      * Returns the manager.
-     * 
-     * @uml.property name="manager"
      */
+    @UML(identifier="manager", specification=UNSPECIFIED)
     Manager getManager();
 }

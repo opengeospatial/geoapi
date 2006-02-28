@@ -1,5 +1,10 @@
 package org.opengis.webservice;
 
+// Annotations
+import org.opengis.annotation.UML;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
+
 
 /**
  * @author <a href="mailto:poth@lat-lon.de">Andreas Poth</a>
@@ -7,8 +12,7 @@ package org.opengis.webservice;
 public interface Description extends DescriptionBase {
     /**
      * Returns the label.
-     * 
-     * @uml.property name="label"
      */
+    @UML(identifier="label", specification=UNSPECIFIED)
     String getLabel();
 }

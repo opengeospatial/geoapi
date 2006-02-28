@@ -31,7 +31,7 @@ public interface TemporalTopologicalComplex extends TemporalComplex {
      * The aggregation of connected {@linkplain TemporalTopologicalPrimitive temporal topological
      * primitives}.
      *
-     * @revisit Missing UML annotation.
+     * @todo Missing UML annotation.
      */
     Collection<TemporalTopologicalPrimitive> getTemporalTopologicalPrimitives();
 }

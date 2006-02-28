@@ -16,7 +16,7 @@ package org.opengis.temporal;
  *
  * @author Alexander Petkov
  *
- * @revisit Missing UML tag.
+ * @todo Missing UML tag.
  */
 public interface TemporalComplex extends TemporalObject {
 }

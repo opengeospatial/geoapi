@@ -45,6 +45,11 @@
  ---------------------------------------------------------------------------*/
 package org.opengis.filter.capability;
 
+// Annotations
+import org.opengis.annotation.UML;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
+
 
 /**
  * FilterCapabilitiesBean used to represent
@@ -61,15 +66,14 @@ public interface FilterCapabilities {
 
     /**
      * 
-     * @uml.property name="scalarCapabilities"
      */
+    @UML(identifier="scalarCapabilities", specification=UNSPECIFIED)
     ScalarCapabilities getScalarCapabilities();
 
     /**
-     * @return
      * 
-     * @uml.property name="spatialCapabilities"
      */
+    @UML(identifier="spatialCapabilities", specification=UNSPECIFIED)
     SpatialCapabilities getSpatialCapabilities();
     
     /**

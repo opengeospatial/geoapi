@@ -15,6 +15,7 @@ import java.util.List;
 
 // Annotations
 import org.opengis.annotation.UML;
+import org.opengis.annotation.Extension;
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
 
@@ -56,12 +57,14 @@ public interface GenericName extends Comparable {
      * Returns a view of this object as a scoped name,
      * or {@code null} if this name has no scope.
      */
+    @Extension
     ScopedName asScopedName();
 
     /**
      * Returns a view of this object as a local name. The local name returned by this method
      * will have the same {@linkplain LocalName#getScope scope} than this generic name.
      */
+    @Extension
     LocalName asLocalName();
 
     /**
@@ -73,6 +76,7 @@ public interface GenericName extends Comparable {
      * {@code toString()} method for the {@linkplain LocalName local version} of
      * the same name will not contains the scope.
      */
+    @Extension
     String toString();
 
     /**
@@ -82,5 +86,6 @@ public interface GenericName extends Comparable {
      * specified locale}. If no international string is available, then this method should
      * returns an implementation mapping to {@link #toString} for all locales.
      */
+    @Extension
     InternationalString toInternationalString();
 }

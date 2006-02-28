@@ -128,5 +128,11 @@ public enum Specification {
      *
      * @see <A HREF="http://portal.opengeospatial.org/files/?artifact_id=8339">Download from OGC</A>
      */
-    OGC_04094
+    OGC_04094,
+
+    /**
+     * Specification not yet determined. This is a temporary enumeration
+     * for the processing of API submitted by some contributors.
+     */
+    UNSPECIFIED
 }

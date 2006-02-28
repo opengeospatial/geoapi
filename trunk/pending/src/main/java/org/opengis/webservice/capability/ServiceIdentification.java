@@ -52,6 +52,11 @@ import org.opengis.metadata.identification.Keywords;
 import org.opengis.metadata.citation.ResponsibleParty;
 import org.opengis.util.InternationalString;
 
+// Annotations
+import org.opengis.annotation.UML;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
+
 
 /**
  * Represents the <code>ServiceIdentification</code> section of the
@@ -111,27 +116,24 @@ public interface ServiceIdentification {
     /**
      * Returns the java representation of the ServiceType-element. In the XML
      * document, this element has the type ows:CodeType.
-     * 
-     * @uml.property name="serviceType"
      *
      * @todo Which kind of code exactly (or CodeList?)
      */
+    @UML(identifier="serviceType", specification=UNSPECIFIED)
     org.opengis.util.CodeList getServiceType();
 
     /**
      * Returns the java representation of the ServiceTypeVersion-elements. In
      * the XML document, these elements have the type ows:VersionType.
-     * 
-     * @uml.property name="serviceTypeVersions"
      */
+    @UML(identifier="serviceTypeVersions", specification=UNSPECIFIED)
     String[] getServiceTypeVersions();
 
     /**
      * Returns the java representation of the Title-element. In the XML
      * document, this element has the type string.
-     * 
-     * @uml.property name="title"
      */
+    @UML(identifier="title", specification=UNSPECIFIED)
     InternationalString getTitle();
 
     /**
@@ -143,24 +145,21 @@ public interface ServiceIdentification {
     /**
      * Returns the java representation of the Keywords-elements. In the XML
      * document, these elements have the type ows:Keyword.
-     * 
-     * @uml.property name="keywords"
      */
+    @UML(identifier="keywords", specification=UNSPECIFIED)
     Keywords getKeywords();
 
     /**
      * Returns the java representation of the AccessConstraints-elements. In the
      * XML document, these elements have the type string.
-     * 
-     * @uml.property name="fees"
      */
+    @UML(identifier="fees", specification=UNSPECIFIED)
     InternationalString getFees();
 
     /**
      * Returns the java representation of the AccessConstraints-elements. In the
      * XML document, these elements have the type string.
-     * 
-     * @uml.property name="accessConstraints"
      */
+    @UML(identifier="accessConstraints", specification=UNSPECIFIED)
     Constraints getAccessConstraints();
 }

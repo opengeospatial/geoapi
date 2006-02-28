@@ -8,7 +8,7 @@ package org.opengis.webservice.capability;
 
 
 /**
- * @revisit Which relationship with {@link Operation}?
+ * @todo Which relationship with {@link Operation}?
  */
 public interface ServiceOperation {
     DCPType[] getDCPTypes();

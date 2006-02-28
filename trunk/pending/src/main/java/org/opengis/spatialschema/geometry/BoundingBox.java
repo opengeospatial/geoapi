@@ -10,55 +10,59 @@
  *************************************************************************************************/
 package org.opengis.spatialschema.geometry;
 
+// OpenGIS direct dependencies
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
-import org.opengis.spatialschema.geometry.DirectPosition;
-import org.opengis.spatialschema.geometry.Envelope;
+import org.opengis.metadata.extent.GeographicBoundingBox;  // For javadoc
+
+// Annotations
+import org.opengis.annotation.Extension;
+
 
 /**
- * Represents an evenlope with a common coordinate refernce system.
+ * Represents an evenlope with a common coordinate reference system.
  * <p>
- * This interface combines the ideas of GeogrpahicBoundingBox with
- * those of Envelope. We have provided convience methods using non
+ * This interface combines the ideas of {@link GeographicBoundingBox} with
+ * those of {@link Envelope}. We have provided convience methods using non
  * Java Beans naming conventions to assist in accessing the formal
  * properties of this object.
- * </p>
  * <p>
  * This object contains no additional information beyond that provided
  * by Envelope.
- * </p>
  * 
  * @author Jody Garnett, Refractions Research
+ * @since GeoAPI 2.1
  */
+@Extension
 public interface BoundingBox extends Envelope {
 	/**
 	 * Provides the minimium easting ordinate.
 	 * <p>
-	 * This is a helper method for getMin( i )
-	 * where i is the ordindate used to represent easting.
+	 * This is a helper method for <code>{@linkplain #getMinimum getMinimum}(i)</code>
+	 * where <var>i</var> is the ordindate used to represent easting.
 	 */
     double minX();
     
     /**
 	 * Provides the maximum easting ordinate.
 	 * <p>
-	 * This is a helper method for getMax( i )
-	 * where i is the ordindate used to represent easting.
+	 * This is a helper method for <code>{@linkplain #getMaximum getMaximum}(i)</code>
+	 * where <var>i</var> is the ordindate used to represent easting.
 	 */
     double maxX();
     
 	/**
 	 * Provides the minimium northing ordinate.
 	 * <p>
-	 * This is a helper method for getMin( i )
-	 * where i is the ordindate used to represent northing.
+	 * This is a helper method for <code>{@linkplain #getMinimum getMinimum}(i)</code>
+	 * where <var>i</var> is the ordindate used to represent northing.
 	 */
     double minY();
     
     /**
 	 * Provides the northing easting ordinate.
 	 * <p>
-	 * This is a helper method for getMax( i )
-	 * where i is the ordindate used to represent northing.
+	 * This is a helper method for <code>{@linkplain #getMaximum getMaximum}(i)</code>
+	 * where <var>i</var> is the ordindate used to represent northing.
 	 */
     double maxY();
     
@@ -67,54 +71,48 @@ public interface BoundingBox extends Envelope {
      * this bounding box.
      * 
      * @return CoordinateRefernceSystem of provided ordinates.
+     *
+     * @todo Should be provided by {@code Envelope.getCoordinateReferenceSystem()}.
      */
     CoordinateReferenceSystem crs();
     
     /**
      * Include the provided bounding box, expanding as necesary.
-     * @param bounds
      */
-    public void include( BoundingBox bounds );
+    void include( BoundingBox bounds );
     
     /**
      * True if lengths of all ordinates is zero.
      * 
      * @return true if bounding box is empty
      */
-    public boolean isEmpty();
+    boolean isEmpty();
     
     /**
      * Check if we intersect the provided bounds.
      * 
-     * @param bounds 
      * @return true of the two bounds intersect
      */
-    public boolean intersects( BoundingBox bounds );
+    boolean intersects( BoundingBox bounds );
     
     /** 
      * Quick range check of provided position.
      * 
-     * @param x
-     * @param y
      * @return true if provided location is contained by this bounding box.
      */
-    public boolean contains( double x, double y);
+    boolean contains( double x, double y);
     
     /** 
      * Quick range check of provided location.
      * 
-     * @param x
-     * @param y
      * @return true if provided location is contained by this bounding box.
      */
-    public boolean contains( DirectPosition location );
+    boolean contains( DirectPosition location );
     
     /** 
      * Quick range check of provided bounds.
      * 
-     * @param x
-     * @param y
      * @return true if provided bounds are contained by this bounding box.
      */
-    public boolean contains( BoundingBox bounds );
+    boolean contains( BoundingBox bounds );
 }
