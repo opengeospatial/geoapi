@@ -22,16 +22,16 @@ public interface SimpleFeatureType extends FeatureType {
 	 * Must be <code>null</code> for truely simple content.
 	 * @return <code>null</code>, as no super types are allowed
 	 */
-	public SimpleFeatureType getSuper();
+	SimpleFeatureType getSuper();
 	
 	/**
 	 * Types are returned in the perscribed index order.
 	 * @return Types in prescribed order
 	 */
-	public List<AttributeType> types();
+	List<AttributeType> types();
 	
 	/** List of named attributes in perscribed order */
-	public List<AttributeDescriptor> getAttributes();
+	List<AttributeDescriptor> getAttributes();
 	
 	/**
 	 * Retrive attributeType by qualified name

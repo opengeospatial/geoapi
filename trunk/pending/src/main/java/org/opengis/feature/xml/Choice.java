@@ -21,8 +21,8 @@ import org.opengis.feature.type.ComplexType;
  */
 public interface Choice extends ComplexAttribute {
 
-	public ChoiceType getType();
+	ChoiceType getType();
 	
     /** Limited to a List of size one */
-    public List<Attribute> getAttributes();
+    List<Attribute> getAttributes();
 }

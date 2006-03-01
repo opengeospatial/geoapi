@@ -6,7 +6,6 @@ import java.util.Collection;
  * The type
  * @author Jody Garnett
  *
- * @param <T>
  */
 public interface ComplexType extends AttributeType {
 	
