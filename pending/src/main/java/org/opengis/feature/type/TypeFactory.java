@@ -2,8 +2,8 @@ package org.opengis.feature.type;
 
 import java.util.List;
 import java.util.Set;
-import javax.xml.namespace.QName;
 
+import org.opengis.feature.AttributeName;
 import org.opengis.feature.simple.SimpleFeatureType;
 import org.opengis.filter.Filter;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
@@ -28,7 +28,7 @@ public interface TypeFactory {
 	 * @param name
 	 * @param binding
 	 */
-	AttributeType createType(QName name, Class binding);
+	AttributeType createType(AttributeName name, Class binding);
 
 	/**
 	 * 
@@ -38,7 +38,7 @@ public interface TypeFactory {
 	 * @param nillable
 	 * @param restrictions
 	 */
-	AttributeType createType(QName name, Class binding, boolean identified,
+	AttributeType createType(AttributeName name, Class binding, boolean identified,
 			boolean nillable, Set<Filter> restrictions);
 
 	/**
@@ -50,13 +50,13 @@ public interface TypeFactory {
 	 * @param restrictions
 	 * @param superType
 	 */
-	AttributeType createType(QName name, Class binding, boolean identified,
+	AttributeType createType(AttributeName name, Class binding, boolean identified,
 			boolean nillable, Set<Filter> restrictions, AttributeType superType);
 
-	GeometryType createGeometryType(QName name, Class binding,
+	GeometryType createGeometryType(AttributeName name, Class binding,
 			boolean nillable, CoordinateReferenceSystem crs);
 
-	GeometryType createGeometryType(QName name, Class binding,
+	GeometryType createGeometryType(AttributeName name, Class binding,
 			boolean identified, boolean nillable,
 			CoordinateReferenceSystem crs, Set<Filter> restrictions,
 			GeometryType superType);
@@ -73,7 +73,7 @@ public interface TypeFactory {
 	 * @param name
 	 * @param schema
 	 */
-	ComplexType createType(QName name, AttributeDescriptor schema);
+	ComplexType createType(AttributeName name, AttributeDescriptor schema);
 
 	/**
 	 * 
@@ -83,7 +83,7 @@ public interface TypeFactory {
 	 * @param nillable
 	 * @param restrictions
 	 */
-	ComplexType createType(QName name, AttributeDescriptor schema, boolean identified,
+	ComplexType createType(AttributeName name, AttributeDescriptor schema, boolean identified,
 			boolean nillable, Set<Filter> restrictions);
 
 	/**
@@ -96,7 +96,7 @@ public interface TypeFactory {
 	 * @param superType
 	 * @param isAbstract
 	 */
-	ComplexType createType(QName name, AttributeDescriptor schema, boolean identified,
+	ComplexType createType(AttributeName name, AttributeDescriptor schema, boolean identified,
 			boolean nillable, Set<Filter> restrictions, ComplexType superType,
 			boolean isAbstract);
 
@@ -115,7 +115,7 @@ public interface TypeFactory {
 	 * @param schema
 	 * @param defaultGeometry
 	 */
-	FeatureType createFeatureType(QName name, AttributeDescriptor schema,
+	FeatureType createFeatureType(AttributeName name, AttributeDescriptor schema,
 			GeometryType defaultGeometry);
 
 	/**
@@ -127,7 +127,7 @@ public interface TypeFactory {
 	 * @param superType
 	 * @param isAbstract
 	 */
-	FeatureType createFeatureType(QName name, AttributeDescriptor schema,
+	FeatureType createFeatureType(AttributeName name, AttributeDescriptor schema,
 			GeometryType defaultGeometry, Set<Filter> restrictions,
 			FeatureType superType, boolean isAbstract);
 
@@ -140,10 +140,10 @@ public interface TypeFactory {
 	 * @param types
 	 * @param defaultGeometry
 	 */
-	SimpleFeatureType createFeatureType(QName name, List<AttributeType> types,
+	SimpleFeatureType createFeatureType(AttributeName name, List<AttributeType> types,
 			GeometryType defaultGeometry);
 
-	SimpleFeatureType createFeatureType(QName name, List<AttributeType> types,
+	SimpleFeatureType createFeatureType(AttributeName name, List<AttributeType> types,
 			GeometryType defaultGeometry, Set<Filter> restrictions,
 			SimpleFeatureType superType, boolean isAbstract);
 
@@ -158,7 +158,7 @@ public interface TypeFactory {
 	 * 
 	 * @param name
 	 */
-	public FeatureCollectionType createFeatureCollectionType(QName name);
+	public FeatureCollectionType createFeatureCollectionType(AttributeName name);
 
 	/**
 	 * Creates a FeatureCollectionType named <code>name</code> whose member
@@ -167,7 +167,7 @@ public interface TypeFactory {
 	 * @param name
 	 * @param membersType
 	 */
-	public FeatureCollectionType createFeatureCollectionType(QName name,
+	public FeatureCollectionType createFeatureCollectionType(AttributeName name,
 			FeatureType membersType);
 
 	/**
@@ -202,7 +202,7 @@ public interface TypeFactory {
 	 * @param isAbstract
 	 *            wether the created FeatureCollectionType is abstract.
 	 */
-	public FeatureCollectionType createFeatureCollectionType(QName name,
+	public FeatureCollectionType createFeatureCollectionType(AttributeName name,
 			Set<FeatureType> membersTypes, AttributeDescriptor schema,
 			GeometryType defaultGeom, Set<Filter> restrictions,
 			FeatureCollectionType superType, boolean isAbstract);

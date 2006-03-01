@@ -13,20 +13,20 @@ package org.opengis.feature.type;
 public interface FeatureType extends ComplexType {
 	
 	/** I am under the impression this should return Boolean.FALSE? */
-	public Boolean isNillable();
+	Boolean isNillable();
 	
 	/** Must always return true */
-	public boolean isIdentified();
+	boolean isIdentified();
 	
 	/**
 	 * Indicates which AttributeType is to be considered the default
 	 * geometry.
 	 * @return AttributeType used to locate the default Geometry
 	 */
-	public GeometryType getDefaultGeometry();
+	GeometryType getDefaultGeometry();
 	
 	/**
 	 * Super may be a normal ComplexType.
 	 */
-	public ComplexType getSuper();
+	ComplexType getSuper();
 }

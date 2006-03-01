@@ -10,9 +10,7 @@
  *************************************************************************************************/
 package org.opengis.filter;
 
-// J2SE direct dependencies
-import javax.xml.namespace.QName;
-
+import org.opengis.feature.AttributeName;
 import org.opengis.filter.expression.Expression;
 import org.opengis.filter.expression.PropertyName;
 import org.opengis.filter.spatial.BBOX;
@@ -49,7 +47,7 @@ public interface FilterFactory2 extends FilterFactory {
 ////////////////////////////////////////////////////////////////////////////////
 
     /** Retrieves the value of a {@linkplain org.opengis.feature.Feature feature}'s property. */
-    PropertyName property(QName name);
+    PropertyName property(AttributeName name);
     
 ////////////////////////////////////////////////////////////////////////////////
 //

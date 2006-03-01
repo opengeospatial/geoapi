@@ -13,7 +13,7 @@ public interface ComplexAttribute extends Attribute<List<Attribute>> {
 	/**
 	 * Access the type of this construct.
 	 */
-	public ComplexType getType();
+	ComplexType getType();
 
 	/**
 	 * Access to contents of this Feature.
@@ -34,7 +34,7 @@ public interface ComplexAttribute extends Attribute<List<Attribute>> {
 	 * @see types()
 	 * @see values()
 	 */
-	public List<Attribute> getAttributes();
+	//List<Attribute> getAttributes();
 
 	/**
 	 * Access to attributes associated with name, in a similar fashion to DOM's
@@ -53,7 +53,7 @@ public interface ComplexAttribute extends Attribute<List<Attribute>> {
 	 * multiplicity
 	 * 
 	 * @param name
-	 * @return Attribute, or List<Attribute> based on type
+	 * @return Attribute, or List of Attribute based on type
 	 */
 	// public List<Attribute> getAttributes(String name);
 	// public List<Attribute> getAttributes(GenericName name);
@@ -64,10 +64,12 @@ public interface ComplexAttribute extends Attribute<List<Attribute>> {
 	 * 
 	 * @param attribute
 	 * @throws IllegalArgumentException
+	 * 
+	 * 
 	 */
 	void set(List<Attribute> newValue) throws IllegalArgumentException;
 
-	public List<Attribute> get();
+	List<Attribute> get();
 
 	/**
 	 * List view of attribtue types, in a manner similar Map.keys().

@@ -26,5 +26,5 @@ public interface ChoiceType extends ComplexType {
 	 * </p>
 	 * 
 	 */
-	public Set<Filter> getRestrictions();
+	Set<Filter> getRestrictions();
 }

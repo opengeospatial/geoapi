@@ -20,7 +20,7 @@ public interface FeatureCollection extends Feature, Collection<Feature> {
 	/**
 	 * Restricted to return a FeatureCollectionType.
 	 */
-    public FeatureCollectionType getType();
+    FeatureCollectionType getType();
 
     /**
 	 * Access contents of this collection.
@@ -45,7 +45,7 @@ public interface FeatureCollection extends Feature, Collection<Feature> {
      * @see features()
      * @return Iterator over the contents of this feature collection.
      */
-    public Iterator<Feature> iterator();
+    Iterator<Feature> iterator();
     /**
      * You are required to close iterators after use.
      * <p>
@@ -53,7 +53,7 @@ public interface FeatureCollection extends Feature, Collection<Feature> {
      * to be returned to the opperating system after use.
      * </p>
      */
-    public void close( Iterator<Feature> iterator );
+    void close( Iterator<Feature> iterator );
     
     /**
      * FeatureCollection "view" indicated by provided filter.
@@ -84,7 +84,7 @@ public interface FeatureCollection extends Feature, Collection<Feature> {
      * @param filter
      * @return FeatureCollection identified as subset.
      */
-    public FeatureCollection subCollection( Filter filter );
+    FeatureCollection subCollection( Filter filter );
     
     /**
      * A sorted "view" of this collection in the order indicated.
@@ -92,6 +92,6 @@ public interface FeatureCollection extends Feature, Collection<Feature> {
      * @param order
      * @return FeatureList in requested order
      */
-    public FeatureList sort( SortBy order  );
+    FeatureList sort( SortBy order  );
        
 }
