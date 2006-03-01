@@ -22,7 +22,7 @@
   <artifactId>geoapi</artifactId>
   <packaging>jar</packaging>
   <version>pending-SNAPSHOT</version>
-  <name>GeoAPI (pending proposals)</name>
+  <name>Pending proposals</name>
   <url>http://geoapi.sourceforge.net/pending/</url>
   <scm>
     <connection>scm:svn:https://svn.sourceforge.net/svnroot/geoapi/trunk/pending/</connection>
