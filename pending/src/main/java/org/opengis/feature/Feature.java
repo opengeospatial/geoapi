@@ -101,10 +101,11 @@ public interface Feature extends ComplexAttribute {
 	/**
 	 * Sets the content of default geometry attribute
 	 * 
+	 * @param geom Geometry object
 	 * @throws IllegalArgumentException
 	 *             if FeatureType has no default geometry type, or
 	 *             <code>geom</code> does not validates against the default
 	 *             GeometryType
 	 */
-	void setDefaultGeometry(Geometry geom);
+	void setDefaultGeometry(Object geom);
 }
