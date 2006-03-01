@@ -2,7 +2,7 @@ package org.opengis.feature;
 
 import org.opengis.feature.type.FeatureType;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
-import org.opengis.spatialschema.geometry.Envelope;
+import org.opengis.spatialschema.geometry.BoundingBox;
 import org.opengis.spatialschema.geometry.Geometry;
 
 /**
@@ -86,7 +86,7 @@ public interface Feature extends ComplexAttribute {
 	 * 
 	 * @return Bounds if available or null
 	 */
-	Envelope getBounds();
+	BoundingBox getBounds();
 
 	/**
 	 * Access the type of this Feature.
