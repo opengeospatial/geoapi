@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.opengis.feature.Attribute;
 import org.opengis.feature.ComplexAttribute;
-import org.opengis.feature.type.ComplexType;
 
 /**
  * Represents a ComplexAttribute in which only one attribute is alloewd a value at a time.
@@ -24,5 +23,5 @@ public interface Choice extends ComplexAttribute {
 	ChoiceType getType();
 	
     /** Limited to a List of size one */
-    List<Attribute> getAttributes();
+    public List<Attribute> get();
 }
