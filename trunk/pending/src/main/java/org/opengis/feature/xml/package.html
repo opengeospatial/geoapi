@@ -1,0 +1,29 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<HTML>
+  <HEAD>
+    <TITLE>package org.opengis.feature.xml</TITLE>
+  </HEAD>
+  <BODY>
+  Helper classes to model XML content as a
+  {@linkplain org.opengis.feature.Feature}, these add no additional modeling power - they
+  simply document the best practice.
+  
+  <p>
+  The XML model is similar, but more permissive, then that employed by the feature model.
+  In particular two ideas give rise to trouble: ordering constraints (all,sequence,choice)
+  and grouping (repeat series of attributes).
+  </p>
+  </p>
+  <ul>
+  <li>All - modeled as a {@linkplain org.opengis.feature.ComplexAttribute}, contains a colleciton of attributes
+  <li>Sequence - modeled as a {@linkplain org.opengis.feature.xml.Sequence}, specifies that
+      attributes are returned in a List of attribtues
+  <li>Choice - models as a {@linkplain org.opengis.feature.xml.Choice}, specifies attributes are returned in a list of length 1    
+  </ul>
+  <p>
+  To model the concept of anonymous groups of attribtues you will need to explicity model
+  this behavior with the above constructs (aka strongly type them), to preserve
+  the inline behavior for XPath you can make use of {@linkplain org.opengis.feature.type.ComplexType.isInline}
+
+</HTML>
