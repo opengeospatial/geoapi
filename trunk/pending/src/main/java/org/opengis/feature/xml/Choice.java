@@ -23,5 +23,5 @@ public interface Choice extends ComplexAttribute {
 	ChoiceType getType();
 	
     /** Limited to a List of size one */
-    public List<Attribute> get();
+    List<Attribute> get();
 }
