@@ -26,8 +26,8 @@ import static org.opengis.annotation.Specification.*;
  * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 2.1
  */
-@UML(identifier="AttributeName", specification=ISO_19103)
-public interface AttributeName extends LocalName {
+@UML(identifier="MemberName", specification=ISO_19103)
+public interface MemberName extends LocalName {
     /**
      * Returns the type of the data associated with the record member.
      */

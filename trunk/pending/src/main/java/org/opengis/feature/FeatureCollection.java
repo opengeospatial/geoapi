@@ -42,7 +42,7 @@ public interface FeatureCollection extends Feature, Collection<Feature> {
     /**
      * Should be a FeatureIterator.
      * 
-     * @see features()
+     * @see #features()
      * @return Iterator over the contents of this feature collection.
      */
     Iterator<Feature> iterator();

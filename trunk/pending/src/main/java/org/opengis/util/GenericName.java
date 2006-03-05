@@ -95,10 +95,24 @@ public interface GenericName extends Comparable {
 
     /**
      * Returns a view of this object as a local name. This is always the last element in the
-     * sequence of {@linkplain #getParsedNames parsed names}. 
+     * sequence of {@linkplain #getParsedNames parsed names}.
+     *
+     * @deprecated Renammed as {@link #name()}.
      */
     @Extension
     LocalName asLocalName();
+
+    /**
+     * Returns the last element in the sequence of {@linkplain #getParsedNames parsed names}.
+     * For any {@link LocalName}, this is always {@code this}.
+     *
+     * @see LocalName#name
+     * @see ScopedName#name
+     *
+     * @since GeoAPI 2.1
+     */
+    @Extension
+    LocalName name();
 
     /**
      * Returns a view of this name as a fully-qualified name, or {@code null} if none.
@@ -109,13 +123,21 @@ public interface GenericName extends Comparable {
      * is already {@linkplain NameSpace#isGlobal global}, returns {@code null} since it is not
      * possible to derive a scoped name.
      *
-     * @todo Consider to replace this method by {@code asFullyQualifiedName()}, which would
-     *       returns a {@code GenericName} (so this method would never returns {@code null}).
-     *       We can also just deprecate this method with no replacement.
+     * @deprecated Replaced by {@link #asFullyQualifiedName}.
      */
     @Extension
     ScopedName asScopedName();
 
+    /**
+     * Returns a view of this name as a fully-qualified name. The {@linkplain #scope scope}
+     * of a fully qualified name must be {@linkplain NameSpace#isGlobal global}. This method
+     * never returns {@code null}.
+     *
+     * @since GeoAPI 2.1
+     */
+    @Extension
+    GenericName asFullyQualifiedName();
+    
     /**
      * Returns this name expanded with the specified scope. One may represent this operation
      * as a concatenation of the specified {@code name} with {@code this}. In pseudo-code,

@@ -25,7 +25,6 @@ public interface GeometryType<T> extends AttributeType<T> {
 	 * this restriction as a Facet (indeed we can allow for a discrete set of allowable
 	 * CRS).
 	 * </p>
-	 * @return
 	 */
 	public CoordinateReferenceSystem getCRS();
 	

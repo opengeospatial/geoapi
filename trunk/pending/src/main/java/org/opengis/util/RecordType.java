@@ -22,11 +22,9 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * The type definition of a {@linkplain Record record}.  A {@code RecordType} defines a flat,
- * dynamically constructed data type.  This object, once defined, may be used as a factory to
- * create {@linkplain Record records} which are associated with this definition. This interface
- * has methods for data access, but no methods to dynamically add members.  This approach ensures
- * that once a {@code RecordType} is constructed, it is immutable.
+ * The type definition of a {@linkplain Record record}.  A {@code RecordType} defines dynamically
+ * constructed data type.  This interface has methods for data access, but no methods to dynamically
+ * add members.  This approach ensures that once a {@code RecordType} is constructed, it is immutable.
  * <p>
  * A {@code RecordType} is {@linkplain #getTypeName identified} by a {@link TypeName}. It contains
  * an arbitrary amount of {@linkplain #getAttributeTypes attribute types} which are also identified
@@ -38,12 +36,9 @@ import static org.opengis.annotation.Specification.*;
  * @author Bryce Nordgren (USDA)
  * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 2.1
- *
- * @todo Do we have a contradiction with those two paragraphs? ("defines a flat data type",
- *       "may contains another RecordType as a member")
  */
 @UML(identifier="RecordType", specification=ISO_19103)
-public interface RecordType<T> {
+public interface RecordType {
     /**
      * Returns the name that identifies this record type.
      * If this {@code RecordType} is contained in a {@linkplain RecordSchema record schema}, then the
@@ -58,7 +53,7 @@ public interface RecordType<T> {
      * Returns the schema that contains this record type.
      */
     @UML(identifier="container", obligation=OPTIONAL, specification=ISO_19103)
-    RecordSchema<T> getContainer();
+    RecordSchema getContainer();
 
     /**
      * Returns the set of attribute names defined in this {@code RecordType}'s dictionary.
@@ -71,7 +66,7 @@ public interface RecordType<T> {
      * @todo Is this method defined in ISO or is it an extension?
      */
     @Extension
-    Set<AttributeName> getMembers();
+    Set<MemberName> getMembers();
 
     /**
      * Returns the dictionary of all (<var>name</var>, <var>type</var>) pairs in this record type.
@@ -80,7 +75,7 @@ public interface RecordType<T> {
      * @see Record#getAttributes
      */
     @UML(identifier="attributeTypes", obligation=MANDATORY, specification=ISO_19103)
-    Map<AttributeName, TypeName> getAttributeTypes();
+    Map<MemberName, TypeName> getAttributeTypes();
 
     /**
      * Looks up the provided attribute name and returns the associated type name. If the attribute name is
@@ -90,13 +85,5 @@ public interface RecordType<T> {
      * @see Record#locate
      */
     @UML(identifier="locate", obligation=MANDATORY, specification=ISO_19103)
-    TypeName locate(AttributeName name);
-
-    /**
-     * Creates a new record of this type.
-     *
-     * @todo Is this method defined in ISO or is it an extension?
-     */
-    @Extension
-    Record<T> newRecord();
+    TypeName locate(MemberName name);
 }

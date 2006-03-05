@@ -84,7 +84,6 @@ public interface AttributeType<T> {
 	 * AttributeType identity should be based on GenericName.
 	 * <p>
 	 * </p>
-	 * @param obj
 	 * @return true iff this equals other
 	 */
 	public boolean equals(Object other);
