@@ -84,6 +84,14 @@ public interface ScopedName extends GenericName {
     GenericName path();
 
     /**
+     * Returns the last element in the sequence of {@linkplain #getParsedNames parsed names}.
+     *
+     * @since GeoAPI 2.1
+     */
+    @Extension
+    LocalName name();
+
+    /**
      * Returns a locale-independent string representation of this scoped name.
      * This method encapsulates the domain logic which formats the {@linkplain #getParsedNames
      * parsed names} into a legal string representation of the name. There will be variants on

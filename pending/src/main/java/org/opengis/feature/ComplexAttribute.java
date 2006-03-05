@@ -62,10 +62,7 @@ public interface ComplexAttribute extends Attribute<List<Attribute>> {
 	 * Sets the complete contents of this Attribute, that must be valid against
 	 * the type's schema descriptor.
 	 * 
-	 * @param attribute
 	 * @throws IllegalArgumentException
-	 * 
-	 * 
 	 */
 	void set(List<Attribute> newValue) throws IllegalArgumentException;
 

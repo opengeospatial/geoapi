@@ -26,8 +26,7 @@ public interface AttributeName {
     /**
      * Local name of attribute();
      * <p>
-     * With generic name this is represented with asLocalName().toString()
-     * @return
+     * With generic name this is represented with name().toString()
      */
     public String getLocalPart();
 

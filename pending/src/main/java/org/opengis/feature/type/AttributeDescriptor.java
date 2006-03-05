@@ -53,8 +53,6 @@ public interface AttributeDescriptor {
 
 	/**
 	 * Indicates Name of defined attribute in a ComplexType.
-	 * 
-	 * @return
 	 */
 	AttributeName getName();
 	

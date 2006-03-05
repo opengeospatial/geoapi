@@ -27,11 +27,9 @@ import static org.opengis.annotation.Specification.*;
  * @author Bryce Nordgren (USDA)
  * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 2.1
- *
- * @see RecordType#newRecord
  */
 @UML(identifier="Record", specification=ISO_19103)
-public interface Record<T> {
+public interface Record {
     /**
      * Returns the type definition of record. All attributes named in this record must be defined
      * in the returned record type. In other words, the following relationship must holds:
@@ -43,8 +41,8 @@ public interface Record<T> {
      *        Map#keySet keySet()})</code></li>
      * </ul>
      */
-    @UML(identifier="recordType", obligation=MANDATORY, specification=ISO_19103)
-    RecordType<T> getRecordType();
+    @UML(identifier="recordType", obligation=OPTIONAL, specification=ISO_19103)
+    RecordType getRecordType();
 
     /**
      * Returns the dictionary of all (<var>name</var>, <var>value</var>) pairs in this record.
@@ -54,7 +52,7 @@ public interface Record<T> {
      * @see RecordType#getAttributeTypes
      */
     @UML(identifier="attributes", obligation=MANDATORY, specification=ISO_19103)
-    Map<AttributeName, T> getAttributes();
+    Map<MemberName, Object> getAttributes();
 
     /**
      * Returns the value for an attribute of the specified name. This is functionnaly equivalent
@@ -65,7 +63,7 @@ public interface Record<T> {
      * @see RecordType#locate
      */
     @UML(identifier="locate", obligation=MANDATORY, specification=ISO_19103)
-    T locate(AttributeName name);
+    Object locate(MemberName name);
 
     /**
      * Set the value for the attribute of the specified name. This is functionnaly equivalent
@@ -74,5 +72,5 @@ public interface Record<T> {
      * record type members} only.
      */
     @Extension
-    void set(AttributeName name, T value);
+    void set(MemberName name, Object value);
 }

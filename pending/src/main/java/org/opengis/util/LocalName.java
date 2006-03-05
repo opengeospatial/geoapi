@@ -50,9 +50,11 @@ public interface LocalName extends GenericName {
 
     /**
      * Returns {@code this} since this object is already a local name.
+     *
+     * @since GeoAPI 2.1
      */
     @Extension
-    LocalName asLocalName();
+    LocalName name();
 
     /**
      * Returns a locale-independant string representation of this local name.

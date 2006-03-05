@@ -39,7 +39,7 @@ import static org.opengis.annotation.Specification.*;
  * @since GeoAPI 2.1
  */
 @UML(identifier="RecordSchema", specification=ISO_19103)
-public interface RecordSchema<T> {
+public interface RecordSchema {
     /**
      * Returns the schema name. The {@linkplain LocalName#scope scope} of the schema name is
      * associated with a {@linkplain NameSpace name space} which fixes this schema to a specific
@@ -52,21 +52,21 @@ public interface RecordSchema<T> {
      * Returns the dictionary of all (<var>name</var>, <var>record type</var>) pairs
      * in this schema.
      */
-    @UML(identifier="featureClassDescription", obligation=MANDATORY, specification=ISO_19103)
-    Map<TypeName, RecordType<T>> getFeatureClassDescription();
+    @UML(identifier="description", obligation=MANDATORY, specification=ISO_19103)
+    Map<TypeName, RecordType> getDescription();
 
     /**
      * Returns all record types declared in this schema. This is functionnaly equivalent to
-     * <code>{@linkplain #getFeatureClassDescription()}.{@linkplain Map#values values()}</code>.
+     * <code>{@linkplain #getDescription()}.{@linkplain Map#values values()}</code>.
      */
     @UML(identifier="element", obligation=OPTIONAL, specification=ISO_19103)
-    Collection<RecordType<T>> getElements();
+    Collection<RecordType> getElements();
 
     /**
      * Looks up the provided type name and returns the associated record type. If the type name is not
      * defined within this schema, then this method returns {@code null}. This is functionnaly equivalent
-     * to <code>{@linkplain #getFeatureClassDescription()}.{@linkplain Map#get get}(name)</code>.
+     * to <code>{@linkplain #getDescription()}.{@linkplain Map#get get}(name)</code>.
      */
     @UML(identifier="locate", obligation=MANDATORY, specification=ISO_19103)
-    RecordType<T> locate(TypeName name);
+    RecordType locate(TypeName name);
 }

@@ -17,7 +17,7 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * The name of an {@linkplain AttributeName attribute} type.
+ * The name of an {@linkplain MemberName attribute} type.
  *
  * @author Bryce Nordgren (USDA)
  * @author Martin Desruisseaux (IRD)

@@ -17,22 +17,20 @@ import org.opengis.webservice.WebServiceRequest;
  */
 public interface GetCapabilities extends WebServiceRequest {
     /**
-     * @return Returns the capabilitiesSection.
+     * Returns the capabilities section.
      */
     String[] getSections();
     
     /**
-     * @return
      */
     String[] getAcceptVersions();
 
     /**
-     * @return
      */
     String[] getAcceptFormats();
 
     /**
-     * @return Returns the updateSequence.
+     * Returns the update sequence.
      */
     String getUpdateSequence();
 }
