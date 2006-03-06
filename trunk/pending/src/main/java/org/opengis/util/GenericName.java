@@ -123,7 +123,7 @@ public interface GenericName extends Comparable {
      * is already {@linkplain NameSpace#isGlobal global}, returns {@code null} since it is not
      * possible to derive a scoped name.
      *
-     * @deprecated Replaced by {@link #asFullyQualifiedName}.
+     * @deprecated Replaced by {@link #toFullyQualifiedName}.
      */
     @Extension
     ScopedName asScopedName();
@@ -136,7 +136,7 @@ public interface GenericName extends Comparable {
      * @since GeoAPI 2.1
      */
     @Extension
-    GenericName asFullyQualifiedName();
+    GenericName toFullyQualifiedName();
     
     /**
      * Returns this name expanded with the specified scope. One may represent this operation
