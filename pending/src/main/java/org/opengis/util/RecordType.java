@@ -36,6 +36,10 @@ import static org.opengis.annotation.Specification.*;
  * @author Bryce Nordgren (USDA)
  * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 2.1
+ *
+ * @see Record
+ * @see RecordSchema
+ * @see Class
  */
 @UML(identifier="RecordType", specification=ISO_19103)
 public interface RecordType {
@@ -45,6 +49,8 @@ public interface RecordType {
      * record type name should be a valid in the {@linkplain NameSpace name space} of the record schema
      * (<code>getTypeName().{@linkplain RecordSchema#getSchemaName getSchemaName()}.{@linkplain
      * LocalName#scope scope()}</code>).
+     *
+     * @see Class#getName()
      */
     @UML(identifier="typeName", obligation=MANDATORY, specification=ISO_19103)
     TypeName getTypeName();
@@ -64,6 +70,8 @@ public interface RecordType {
      * members of this {@code RecordType}. There is no potential for conflict with subpackages.
      *
      * @todo Is this method defined in ISO or is it an extension?
+     *
+     * @see Class#getFields()
      */
     @Extension
     Set<MemberName> getMembers();
@@ -83,7 +91,24 @@ public interface RecordType {
      * equivalent to <code>{@linkplain #getAttributeTypes()}.{@linkplain Map#get get}(name)</code>.
      *
      * @see Record#locate
+     * @see Class#getField(String)
      */
     @UML(identifier="locate", obligation=MANDATORY, specification=ISO_19103)
     TypeName locate(MemberName name);
+
+    /**
+     * Determines if the specified record is compatible with this record type. This method returns
+     * {@code true} if the specified {@code record} argument is non-null and the following condition
+     * holds:
+     * <p>
+     * <ul>
+     *    <li><code>{@linkplain #getMembers()}.{@linkplain Set#equals equals}(record.{@linkplain
+     *        Record#getAttributes() getAttributes()}.{@linkplain Map#keySet keySet()})</code></li>
+     *    <li>Any other implementation-specific conditions.
+     * </ul>
+     *
+     * @see Class#isInstance(Object)
+     */
+    @Extension
+    boolean isInstance(Record record);
 }

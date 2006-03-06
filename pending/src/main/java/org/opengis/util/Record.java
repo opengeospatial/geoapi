@@ -10,8 +10,9 @@
  *************************************************************************************************/
 package org.opengis.util;
 
-// J2SE direct dependencies
+// J2SE dependencies
 import java.util.Map;
+import java.util.Set;  // For Javadoc
 
 // Annotations
 import org.opengis.annotation.UML;
@@ -27,6 +28,9 @@ import static org.opengis.annotation.Specification.*;
  * @author Bryce Nordgren (USDA)
  * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 2.1
+ *
+ * @see RecordType
+ * @see Object
  */
 @UML(identifier="Record", specification=ISO_19103)
 public interface Record {
@@ -37,9 +41,11 @@ public interface Record {
      * <ul>
      *    <li><code>getRecordType().{@linkplain RecordType#getAttributeTypes
      *        getAttributeTypes()}.{@linkplain Map#keySet keySet()}.{@linkplain
-     *        java.util.Set.containsAll containsAll}({@linkplain #getAttributes()}.{@linkplain
+     *        Set#containsAll containsAll}({@linkplain #getAttributes()}.{@linkplain
      *        Map#keySet keySet()})</code></li>
      * </ul>
+     *
+     * @see Object#getClass()
      */
     @UML(identifier="recordType", obligation=OPTIONAL, specification=ISO_19103)
     RecordType getRecordType();
