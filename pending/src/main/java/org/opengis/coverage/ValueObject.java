@@ -1,6 +1,6 @@
 /*$************************************************************************************************
  **
- ** $Id$
+ ** $Id: ValueObject.java 658 2006-02-22 18:09:34 -0700 (Wed, 22 Feb 2006) Desruisseaux $
  **
  ** $Source$
  **
@@ -16,6 +16,7 @@ import java.util.Set;
 
 // OpenGIS direct dependencies
 import org.opengis.spatialschema.geometry.DirectPosition;
+import org.opengis.util.Record;
 
 // Annotations
 import org.opengis.annotation.UML;
@@ -59,13 +60,14 @@ public interface ValueObject {
      * @todo Consider leveraging the parameter package.
      */
     @UML(identifier="interpolationParameters", obligation=OPTIONAL, specification=ISO_19123)
-    Object getInterpolationParameters();
+    Record getInterpolationParameters();
 
     /**
      * Returns the record of feature attribute values computed for the specified direct position.
      *
      * @todo ISO uses {@code Record} return type, which is not yet defined in GeoAPI.
+     * 		 UPDATE: {@code Record} is currently in pending.
      */
     @UML(identifier="interpolate", obligation=MANDATORY, specification=ISO_19123)
-    Object interpolate(DirectPosition p);
+    Record interpolate(DirectPosition p);
 }

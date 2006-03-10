@@ -1,6 +1,6 @@
 /*$************************************************************************************************
  **
- ** $Id$
+ ** $Id: DomainObject.java 658 2006-02-22 18:09:34 -0700 (Wed, 22 Feb 2006) Desruisseaux $
  **
  ** $Source$
  **
@@ -15,6 +15,7 @@ import java.util.Set;
 
 // OpenGIS direct dependencies
 import org.opengis.spatialschema.geometry.Geometry;
+import org.opengis.temporal.TemporalGeometricPrimitive;
 
 // Annotations
 import org.opengis.annotation.UML;
@@ -44,9 +45,7 @@ public interface DomainObject {
     /**
      * Returns the set of geometric primitives of which this domain is composed.
      * The set may be empty.
-     *
-     * @todo Interface {@code TM_GeometricPrimitive} not yet defined in GeoAPI.
      */
     @UML(identifier="temporalElement", obligation=OPTIONAL, specification=ISO_19123)
-    Set/*<GeometricPrimitive>*/ getTemporalElements();
+    Set<TemporalGeometricPrimitive> getTemporalElements();
 }

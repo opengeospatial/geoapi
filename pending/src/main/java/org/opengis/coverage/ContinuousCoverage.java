@@ -1,6 +1,6 @@
 /*$************************************************************************************************
  **
- ** $Id$
+ ** $Id: ContinuousCoverage.java 658 2006-02-22 18:09:34 -0700 (Wed, 22 Feb 2006) Desruisseaux $
  **
  ** $Source$
  **
@@ -17,6 +17,9 @@ import java.util.Collection;
 // OpenGIS direct dependencies
 import org.opengis.spatialschema.geometry.Geometry;
 import org.opengis.spatialschema.geometry.DirectPosition;
+import org.opengis.temporal.Period;
+import org.opengis.util.Record;
+import org.opengis.util.RecordType;
 
 // Annotations
 import org.opengis.annotation.UML;
@@ -37,7 +40,7 @@ import static org.opengis.annotation.Specification.*;
 public interface ContinuousCoverage extends Coverage {
     /**
      * Returns the set of value objects used to evaluate the coverage. This
-     * association is optional – an analytical coverage needs no value objects.
+     * association is optional ï¿½ an analytical coverage needs no value objects.
      */
     @UML(identifier="element", obligation=OPTIONAL, specification=ISO_19123)
     Set<? extends ValueObject> getElements();
@@ -45,7 +48,7 @@ public interface ContinuousCoverage extends Coverage {
     /**
      * Returns a code that identifies the interpolation method that shall be used to derive a
      * feature attribute value at any direct position within the {@linkplain ValueObject value
-     * object}. This attribute is optional – no value is needed for an analytical coverage (one
+     * object}. This attribute is optional ï¿½ no value is needed for an analytical coverage (one
      * that maps direct position to attribute value by using a mathematical function rather than
      * by interpolation).
      */
@@ -63,9 +66,10 @@ public interface ContinuousCoverage extends Coverage {
      * @todo ISO uses {@code Record} return type, which is not yet defined in GeoAPI.
      *       Consider using {@code Map<String,Class>} instead, or leverage the parameter
      *       package.
+     *       UPDATE: {@code Record} is now defined in pending.
      */
     @UML(identifier="interpolationParameterTypes", obligation=OPTIONAL, specification=ISO_19123)
-    Object getInterpolationParameterTypes();
+    RecordType getInterpolationParameterTypes();
 
     /**
      * Returns the set of value objects that contains the specified direct position.
@@ -79,10 +83,9 @@ public interface ContinuousCoverage extends Coverage {
      * Returns the set of <var>geometry</var>-<var>value</var> pairs associated with the
      * {@linkplain ValueObject value objects} of which this continuous coverage is composed.
      *
-     * @todo Missing the TM_Period argument.
      */
     @UML(identifier="select", obligation=MANDATORY, specification=ISO_19123)
-    Set<? extends GeometryValuePair> select(Geometry s/*, TM_Period t*/);
+    Set<? extends GeometryValuePair> select(Geometry s, Period t);
 
     /**
      * Returns a set of records of feature attribute values for the specified direct position. Most
@@ -94,10 +97,11 @@ public interface ContinuousCoverage extends Coverage {
      * {@linkplain Coverage#getCommonPointRule common point rule}. It shall return an empty set if the direct
      * position is not on any {@linkplain ValueObject value object}.
      *
-     * @todo The return type should be Set<Record>.
+     * @todo The return type should be Set<Record>. 
+     * 		 UPDATE: {@code Record} is now defined in pending.
      */
     @UML(identifier="evaluate", obligation=MANDATORY, specification=ISO_19123)
-    Set/*<Record>*/ evaluate(DirectPosition p, Collection<String> list);
+    Set<Record> evaluate(DirectPosition p, Set<String> list);
 
     /**
      * Locates the <var>geometry</var>-<var>value</var> pairs for which value equals the specified
@@ -114,7 +118,8 @@ public interface ContinuousCoverage extends Coverage {
      * grid points} of a grid coverage.
      *
      * @todo Missing the Record argument.
+     * 		 UPDATE: {@code Record} is now defined in pending.
      */
     @UML(identifier="evaluateInverse", obligation=MANDATORY, specification=ISO_19123)
-    Set<? extends DomainObject> evaluateInverse(Object /*<Record>*/ v);
+    Set<? extends DomainObject> evaluateInverse(Record v);
 }

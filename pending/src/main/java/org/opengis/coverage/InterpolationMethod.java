@@ -1,6 +1,6 @@
 /*$************************************************************************************************
  **
- ** $Id$
+ ** $Id: InterpolationMethod.java 658 2006-02-22 18:09:34 -0700 (Wed, 22 Feb 2006) Desruisseaux $
  **
  ** $Source$
  **
@@ -97,7 +97,7 @@ public class InterpolationMethod extends CodeList<InterpolationMethod> {
      * <p>
      * <blockquote>
      * <var>v</var><sub>i</sub> = <var>v</var><sub>s</sub> + (<var>v</var><sub>t</sub> - <var>v</var><sub>s</sub>)
-     * ((<var>p</var><sub>i</sub> – <var>p</var><sub>s</sub>)/(<var>p</var><sub>t</sub> – <var>p<var><sub>s</sub>))
+     * ((<var>p</var><sub>i</sub> ï¿½ <var>p</var><sub>s</sub>)/(<var>p</var><sub>t</sub> ï¿½ <var>p<var><sub>s</sub>))
      * </blockquote>
      */
     @UML(identifier="Linear interpolation", obligation=CONDITIONAL, specification=ISO_19123)
@@ -146,6 +146,13 @@ public class InterpolationMethod extends CodeList<InterpolationMethod> {
      */
     @UML(identifier="Bilinear interpolation", obligation=CONDITIONAL, specification=ISO_19123)
     public static final InterpolationMethod BILINEAR = new InterpolationMethod("BILINEAR");
+
+    /**
+     * Interpolation based on the assumption that feature attribute values vary as a biquadratic function
+     * of position within the grid cell.
+     */
+    @UML(identifier="Biquadratic interpolation", obligation=CONDITIONAL, specification=ISO_19123)
+    public static final InterpolationMethod BIQUADRATIC = new InterpolationMethod("BIQUADRATIC");
 
     /**
      * Interpolation based on the assumption that feature attribute values vary as a bicubic function
