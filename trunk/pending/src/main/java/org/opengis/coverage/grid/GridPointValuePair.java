@@ -12,7 +12,7 @@ package org.opengis.coverage.grid;
 
 // OpenGIS direct dependencies
 import org.opengis.coverage.GeometryValuePair;
-
+import org.opengis.util.Record;
 // Annotations
 import org.opengis.annotation.UML;
 import static org.opengis.annotation.Obligation.*;
@@ -40,5 +40,5 @@ public interface GridPointValuePair extends GeometryValuePair {
      * Holds the record of feature attribute values associated with the grid point.
      */
     @UML(identifier="value", obligation=MANDATORY, specification=ISO_19123)
-    Object getValue(); 
+    Record getValue(); 
 }
