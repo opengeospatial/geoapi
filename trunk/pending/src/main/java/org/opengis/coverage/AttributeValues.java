@@ -1,6 +1,6 @@
 /*$************************************************************************************************
  **
- ** $Id: AttributeValues.java 658 2006-02-22 18:09:34 -0700 (Wed, 22 Feb 2006) Desruisseaux $
+ ** $Id$
  **
  ** $Source$
  **
@@ -9,12 +9,6 @@
  **
  *************************************************************************************************/
 package org.opengis.coverage;
-
-//J2SE dependencies
-import java.util.Set;
-
-//OpenGIS direct dependencies
-import org.opengis.util.Record;
 
 // Annotations
 import org.opengis.annotation.UML;
@@ -44,9 +38,8 @@ public interface AttributeValues {
      *       (such as brightness values in different parts of the electromagnetic spectrum).</li>
      * </ul>
      *
-     * @todo The ISO type is {@code Record}, which is not defined in GeoAPI. 
-     * 		 UPDATE: {@code Record} is now defined in pending.
+     * @todo The ISO type is {@code Record}, which is not defined in GeoAPI.
      */
     @UML(identifier="values", obligation=MANDATORY, specification=ISO_19123)
-    Set<Record> getValues();
+    Object getValues();
 }
