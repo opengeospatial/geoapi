@@ -30,5 +30,5 @@ public interface Sequence extends ComplexAttribute {
      * Attributes are to be maintained in a sequence, the order of this
      * sequence to to be in agreement with that described by the SequenceType.
      */
-    List<Attribute> getAttributes();
+	List<Attribute> get();
 }
