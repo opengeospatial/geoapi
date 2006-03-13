@@ -40,7 +40,7 @@ public interface AttributeDescriptor {
 	 * 
 	 * @param key Object used to allow String and Enum keys
 	 */	
-	public void getClientProperty( Object key );
+	public Object getClientProperty( Object key );
 	
 	/** Captures cadinality */
 	public int getMinOccurs();
