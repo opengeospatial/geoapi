@@ -34,6 +34,7 @@ import org.opengis.spatialschema.geometry.DirectPosition;  // For Javadoc
  *
  * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 1.0
+ * @deprecated In favor of {@linkplain Coverage} from ISO 19123.
  *
  * @see Coverage#evaluate(DirectPosition, byte[])
  * @see Coverage#evaluate(DirectPosition, double[])
