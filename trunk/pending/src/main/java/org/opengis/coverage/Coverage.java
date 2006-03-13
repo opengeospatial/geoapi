@@ -347,8 +347,7 @@ public interface Coverage {
      * @return The value vector for a given point in the coverage.
      * @throws PointOutsideCoverageException if the point is outside the coverage
      *         {@linkplain #getEnvelope envelope}.
-     * @throws CannotEvaluateException If the point can't be evaluate for some othe reason.
-     * @deprecated In favor of migrating to ISO 19123 spec.
+     * @throws CannotEvaluateException If the point can't be evaluate for some other reason.
      * @see Raster#getDataElements(int, int, Object)
      */
     @UML(identifier="evaluate", obligation=MANDATORY, specification=OGC_01004)
