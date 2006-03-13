@@ -6,6 +6,7 @@ import org.opengis.feature.AttributeName;
 import org.opengis.feature.type.AttributeDescriptor;
 import org.opengis.feature.type.AttributeType;
 import org.opengis.feature.type.FeatureType;
+import org.opengis.feature.xml.SequenceType;
 
 /**
  * Defines a simple feature model of attribute in a perscribed order.
@@ -16,7 +17,7 @@ import org.opengis.feature.type.FeatureType;
  *  
  * @author Jody Garnett, Refractions Research
  */
-public interface SimpleFeatureType extends FeatureType {
+public interface SimpleFeatureType extends FeatureType, SequenceType {
 	
 	/**
 	 * Must be <code>null</code> for truely simple content.
