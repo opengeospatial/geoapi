@@ -39,7 +39,10 @@ import static org.opengis.annotation.Specification.*;
  * @version <A HREF="http://www.opengis.org/docs/01-004.pdf">Grid Coverage specification 1.0</A>
  * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 1.0
- *
+ * @deprecated In favor of {@linkplain CoverageDomainException}.
+ * @todo  {@linkplain CoverageDomainException} seems to duplicate the role
+ * 		  of this class. Evaluate which one is to be used, especially since
+ * 		  {@linkplain CoverageDomainException} is not explicitly defined in ISO 19123.
  * @see Coverage#evaluate(DirectPosition, byte[])
  * @see Coverage#evaluate(DirectPosition, double[])
  */
