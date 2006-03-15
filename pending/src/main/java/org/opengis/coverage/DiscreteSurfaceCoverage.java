@@ -97,5 +97,5 @@ public interface DiscreteSurfaceCoverage extends DiscreteCoverage {
      * position. This is a shortcut for <code>{@linkplain #find(DirectPosition,int) find}(p,1)</code>.
      */
     @UML(identifier="find", obligation=MANDATORY, specification=ISO_19123)
-    SurfaceValuePair find(DirectPosition p); 
+/// SurfaceValuePair find(DirectPosition p); 
 }

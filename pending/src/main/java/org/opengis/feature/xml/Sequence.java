@@ -24,7 +24,7 @@ public interface Sequence extends ComplexAttribute {
 	 * Indicates that this ComplexType is to maintain its attributes
 	 * in the perscribed order.
 	 */
-	SequenceType getType();
+///	SequenceType getType();
 	
     /**
      * Attributes are to be maintained in a sequence, the order of this

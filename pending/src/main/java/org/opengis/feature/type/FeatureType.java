@@ -28,5 +28,5 @@ public interface FeatureType extends ComplexType {
 	/**
 	 * Super may be a normal ComplexType.
 	 */
-	ComplexType getSuper();
+///	ComplexType getSuper();
 }

@@ -20,5 +20,5 @@ import org.opengis.filter.Filter;
 public interface SequenceType extends ComplexType {
 	
 	/** Indicates required ordering for Attributes */
-	List<AttributeDescriptor> getAttributes();
+///	List<AttributeDescriptor> getAttributes();
 }
