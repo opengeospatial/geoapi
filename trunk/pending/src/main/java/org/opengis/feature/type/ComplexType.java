@@ -102,7 +102,7 @@ public interface ComplexType extends AttributeType {
 	 * to put into use the better.
 	 * </p>
 	 */
-	ComplexType getSuper();
+///	ComplexType getSuper();
 	
 	/**
 	 * Describes allowable content, indicating containment.

@@ -35,7 +35,7 @@ public interface SimpleFeature extends Feature {
 	 * List of attributes is in the same order as that defined
 	 * by SimpleFeatureType.
 	 */
-    public List<Attribute> getAttributes();
+///  public List<Attribute> getAttributes();
     
     /**
      * AttributeTypes in the order defined by SimpleFeatureType.
@@ -55,7 +55,7 @@ public interface SimpleFeature extends Feature {
 	 * and that no super types are used.
 	 * </p>
 	 */
-	SimpleFeatureType getType();
+///	SimpleFeatureType getType();
 
 	/**
 	 * Retrive value by attribute name.

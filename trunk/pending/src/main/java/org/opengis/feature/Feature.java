@@ -91,7 +91,7 @@ public interface Feature extends ComplexAttribute {
 	/**
 	 * Access the type of this Feature.
 	 */
-	FeatureType getType();
+///	FeatureType getType();
 
 	/**
 	 * @return Default geomtry Attribute or null if unknown or not applicable.

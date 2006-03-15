@@ -33,7 +33,7 @@ import static org.opengis.annotation.Specification.*;
  * points. This requires either that the points in the spatial domain of the discrete point coverage
  * be arranged in a regular way, or that the spatial domain of the continuous coverage be partitioned
  * in a regular way in relation to the points of the discrete point coverage. Grid coverages employ
- * the first method; Thiessen polygon coverages and TIN’s employ the second.
+ * the first method; Thiessen polygon coverages and TINï¿½s employ the second.
  * <p>
  * <strong>EXAMPLE:</strong> A set of hydrographic soundings is a discrete point coverage.
  * <p>
@@ -101,5 +101,5 @@ public interface DiscretePointCoverage extends DiscreteCoverage {
      * position. This is a shortcut for <code>{@linkplain #find(DirectPosition,int) find}(p,1)</code>.
      */
     @UML(identifier="find", obligation=MANDATORY, specification=ISO_19123)
-    PointValuePair find(DirectPosition p);
+/// PointValuePair find(DirectPosition p);
 }

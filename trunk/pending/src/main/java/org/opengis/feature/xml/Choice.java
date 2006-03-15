@@ -20,7 +20,7 @@ import org.opengis.feature.ComplexAttribute;
  */
 public interface Choice extends ComplexAttribute {
 
-	ChoiceType getType();
+///	ChoiceType getType();
 	
     /** Limited to a List of size one */
     List<Attribute> get();

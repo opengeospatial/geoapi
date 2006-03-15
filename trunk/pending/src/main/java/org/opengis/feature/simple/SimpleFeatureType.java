@@ -23,7 +23,7 @@ public interface SimpleFeatureType extends FeatureType, SequenceType {
 	 * Must be <code>null</code> for truely simple content.
 	 * @return <code>null</code>, as no super types are allowed
 	 */
-	SimpleFeatureType getSuper();
+///	SimpleFeatureType getSuper();
 	
 	/**
 	 * Types are returned in the perscribed index order.
@@ -32,7 +32,7 @@ public interface SimpleFeatureType extends FeatureType, SequenceType {
 	List<AttributeType> types();
 	
 	/** List of named attributes in perscribed order */
-	List<AttributeDescriptor> getAttributes();
+///	List<AttributeDescriptor> getAttributes();
 	
 	/**
 	 * Retrive attributeType by qualified name

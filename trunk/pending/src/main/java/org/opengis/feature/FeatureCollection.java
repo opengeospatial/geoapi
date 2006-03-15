@@ -20,7 +20,7 @@ public interface FeatureCollection extends Feature, Collection<Feature> {
 	/**
 	 * Restricted to return a FeatureCollectionType.
 	 */
-    FeatureCollectionType getType();
+/// FeatureCollectionType getType();
 
     /**
 	 * Access contents of this collection.

@@ -63,5 +63,5 @@ public interface DiscreteCurveCoverage extends DiscreteCoverage {
      * position. This is a shortcut for <code>{@linkplain #find(DirectPosition,int) find}(p,1)</code>.
      */
     @UML(identifier="find", obligation=MANDATORY, specification=ISO_19123)
-    CurveValuePair find(DirectPosition p);
+/// CurveValuePair find(DirectPosition p);
 }
