@@ -13,11 +13,12 @@ package org.opengis.coverage;
 // J2SE dependencies
 import java.util.Collection; // For javadoc
 
-//OpenGIS direct dependencies
+// OpenGIS direct dependencies
 import org.opengis.util.Record;
+import org.opengis.spatialschema.geometry.DirectPosition;  // For javadoc
+
 // Annotations
 import org.opengis.annotation.UML;
-import org.opengis.spatialschema.geometry.DirectPosition;
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
 
@@ -55,9 +56,6 @@ public interface GeometryValuePair {
 
     /**
      * Holds the record of feature attribute values associated with the domain object.
-     *
-     * @todo ISO 19123 uses the {@code Record} type here.
-     * 		 UPDATE: {@code Record} is now defined in pending.
      */
     @UML(identifier="value", obligation=MANDATORY, specification=ISO_19123)
     Record getValue();

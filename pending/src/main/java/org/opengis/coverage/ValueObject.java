@@ -64,9 +64,6 @@ public interface ValueObject {
 
     /**
      * Returns the record of feature attribute values computed for the specified direct position.
-     *
-     * @todo ISO uses {@code Record} return type, which is not yet defined in GeoAPI.
-     * 		 UPDATE: {@code Record} is currently in pending.
      */
     @UML(identifier="interpolate", obligation=MANDATORY, specification=ISO_19123)
     Record interpolate(DirectPosition p);

@@ -1,70 +1,90 @@
+/*$************************************************************************************************
+ **
+ ** $Id: PointOutsideCoverageException.java 707 2006-03-13 22:57:11Z sa5h $
+ **
+ ** $Source$
+ **
+ ** Copyright (C) 2003-2005 Open GIS Consortium, Inc.
+ ** All Rights Reserved. http://www.opengis.org/legal/
+ **
+ *************************************************************************************************/
 package org.opengis.coverage;
 
-import static org.opengis.annotation.Obligation.*;
-import static org.opengis.annotation.Specification.*;
-
-// Annotations
-import org.opengis.annotation.UML;
-
+// OpenGIS direct dependencies
 import org.opengis.coverage.Coverage;
-
-//OpenGIS direct dependencies
 import org.opengis.spatialschema.geometry.DirectPosition;
 
+
 /**
- * <p></p>
- * This exception is thrown when Coverage.evaluate()
- * needs to indicate that the location (or the DirectPosition datatype) specified is
- * outside the domain of the coverage.
+ * Thrown when a {@link Coverage#evaluate(DirectPosition, java.util.Set) evaluate} method
+ * is invoked for a location outside the domain of the coverage.
+ *
  * @author Alexander Petkov
  */
 public class CoverageDomainException extends Exception {
     /**
-     * <p>Represents a direct position which is outside 
-     * the domain of the coverage.</p>
+     * Serial number for interoperability with different versions.
+     */
+    private static final long serialVersionUID = -4989587403487024559L;
+
+    /**
+     * Represents a direct position which is outside 
+     * the domain of the coverage.
      */
     private DirectPosition offendingLocation;
 
     /**
-     * <p>Represents the coverage for 
-     * which an exception might be thrown. Useful when Coverage is used on a multilevel, 
-     * so CoverageDomainException can provide informative details.</p>
+     * Represents the coverage for which an exception might be thrown. Useful when
+     * {@link Coverage} is used on a multilevel, so {@code CoverageDomainException}
+     * can provide informative details.
      */
     private Coverage coverage;
 
     /**
-     * Returns the {@link DirectPosition} which is outside 
-     * the domain of the coverage. 
-     * @return offendingLocation
+     * Creates an exception with no message.
+     */
+    public CoverageDomainException() {
+        super();
+    }
+
+    /**
+     * Creates an exception with the specified message.
+     *
+     * @param  message The detail message. The detail message is saved for 
+     *         later retrieval by the {@link #getMessage()} method.
+     */
+    public CoverageDomainException(String message) {
+        super(message);
+    }
+
+    /**
+     * Returns the {@linkplain DirectPosition direct position}
+     * which is outside the domain of the coverage. 
      */
     public DirectPosition getOffendingLocation() {
         return offendingLocation;
     }
 
     /**
-     * A mutator for setting the {@link DirectPosition offendingLocation} 
-     * @param _offendingLocation the {@link DirectPosition} 
+     * Sets the {@linkplain DirectPosition direct position}
      * which is outside the domain of the coverage. 
      */
-    public void setOffendingLocation(DirectPosition _offendingLocation) {
-        offendingLocation = _offendingLocation;
+    public void setOffendingLocation(final DirectPosition offendingLocation) {
+        this.offendingLocation = offendingLocation;
     }
 
     /**
-     * An accessor for {@link #coverage}.
-     * @return coverage
+     * Returns the coverage.
      */
     public Coverage getCoverage() {
         return coverage;
     }
 
     /**
-     * A mutator for setting the {@link Coverage coverage}. 
-     * {@link #offendingLocation} should be within the
-     * domain of {@link #coverage}, otherwise this exception is thrown.  
-     * @param _coverage
+     * Sets the coverage. The {@linkplain #getOffendingLocation offending location}
+     * should be within the domain of this coverage, otherwise this exception is thrown.
      */
-    public void setCoverage(Coverage _coverage) {
-        coverage = _coverage;
+    public void setCoverage(final Coverage coverage) {
+        this.coverage = coverage;
     }
 }

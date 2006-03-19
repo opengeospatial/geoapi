@@ -97,7 +97,7 @@ public class InterpolationMethod extends CodeList<InterpolationMethod> {
      * <p>
      * <blockquote>
      * <var>v</var><sub>i</sub> = <var>v</var><sub>s</sub> + (<var>v</var><sub>t</sub> - <var>v</var><sub>s</sub>)
-     * ((<var>p</var><sub>i</sub> � <var>p</var><sub>s</sub>)/(<var>p</var><sub>t</sub> � <var>p<var><sub>s</sub>))
+     * ((<var>p</var><sub>i</sub> - <var>p</var><sub>s</sub>)/(<var>p</var><sub>t</sub> - <var>p<var><sub>s</sub>))
      * </blockquote>
      */
     @UML(identifier="Linear interpolation", obligation=CONDITIONAL, specification=ISO_19123)

@@ -50,8 +50,8 @@ import static org.opengis.annotation.Specification.*;
  * @todo Should we restrict {@link DomainObject} to {@link GridPoint} as well? It sound like
  *       a logical consequence of {@link GridPointValuePair} restriction.
  * @todo Should we move this interface to org.opengis.coverage.grid as all the other grid interfaces,
- * or should it remain in org.opengis.coverage to follow the ordering in ISO19123.
- *       
+ *       or should it remain in org.opengis.coverage to follow the ordering in ISO19123.
+ *
  */
 @UML(identifier="CV_DiscreteGridPointCoverage", specification=ISO_19123)
 public interface DiscreteGridPointCoverage extends DiscreteCoverage {
@@ -115,7 +115,7 @@ public interface DiscreteGridPointCoverage extends DiscreteCoverage {
      * Returns the nearest <var>point</var>-<var>value</var> pair from the specified direct
      * position. This is a shortcut for <code>{@linkplain #find(DirectPosition,int) find}(p,1)</code>.
      */
-    @UML(identifier="find", obligation=MANDATORY, specification=ISO_19123)
+/// @UML(identifier="find", obligation=MANDATORY, specification=ISO_19123)
 /// GridPointValuePair find(DirectPosition p); 
 
     /**

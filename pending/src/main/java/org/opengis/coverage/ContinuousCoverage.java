@@ -40,7 +40,7 @@ import static org.opengis.annotation.Specification.*;
 public interface ContinuousCoverage extends Coverage {
     /**
      * Returns the set of value objects used to evaluate the coverage. This
-     * association is optional � an analytical coverage needs no value objects.
+     * association is optional - an analytical coverage needs no value objects.
      */
     @UML(identifier="element", obligation=OPTIONAL, specification=ISO_19123)
     Set<? extends ValueObject> getElements();
@@ -48,7 +48,7 @@ public interface ContinuousCoverage extends Coverage {
     /**
      * Returns a code that identifies the interpolation method that shall be used to derive a
      * feature attribute value at any direct position within the {@linkplain ValueObject value
-     * object}. This attribute is optional � no value is needed for an analytical coverage (one
+     * object}. This attribute is optional - no value is needed for an analytical coverage (one
      * that maps direct position to attribute value by using a mathematical function rather than
      * by interpolation).
      */
@@ -62,11 +62,6 @@ public interface ContinuousCoverage extends Coverage {
      * of parameters that are needed to support the interpolation method identified by the
      * {@linkplain #getInterpolationMethod interpolation method}. It is a dictionary of names
      * and data types.
-     *
-     * @todo ISO uses {@code Record} return type, which is not yet defined in GeoAPI.
-     *       Consider using {@code Map<String,Class>} instead, or leverage the parameter
-     *       package.
-     *       UPDATE: {@code Record} is now defined in pending.
      */
     @UML(identifier="interpolationParameterTypes", obligation=OPTIONAL, specification=ISO_19123)
     RecordType getInterpolationParameterTypes();
@@ -82,7 +77,6 @@ public interface ContinuousCoverage extends Coverage {
     /**
      * Returns the set of <var>geometry</var>-<var>value</var> pairs associated with the
      * {@linkplain ValueObject value objects} of which this continuous coverage is composed.
-     *
      */
     @UML(identifier="select", obligation=MANDATORY, specification=ISO_19123)
     Set<? extends GeometryValuePair> select(Geometry s, Period t);
@@ -96,9 +90,6 @@ public interface ContinuousCoverage extends Coverage {
      * objects, the operation shall return a record of feature attribute values derived according to the
      * {@linkplain Coverage#getCommonPointRule common point rule}. It shall return an empty set if the direct
      * position is not on any {@linkplain ValueObject value object}.
-     *
-     * @todo The return type should be Set<Record>. 
-     * 		 UPDATE: {@code Record} is now defined in pending.
      */
     @UML(identifier="evaluate", obligation=MANDATORY, specification=ISO_19123)
     Set<Record> evaluate(DirectPosition p, Set<String> list);
@@ -116,9 +107,6 @@ public interface ContinuousCoverage extends Coverage {
      * <b>Example:</b>This operation could return a set of contours derived from the feature
      * attribute values associated with the {@linkplain org.opengis.coverage.grid.GridPoint
      * grid points} of a grid coverage.
-     *
-     * @todo Missing the Record argument.
-     * 		 UPDATE: {@code Record} is now defined in pending.
      */
     @UML(identifier="evaluateInverse", obligation=MANDATORY, specification=ISO_19123)
     Set<? extends DomainObject> evaluateInverse(Record v);
