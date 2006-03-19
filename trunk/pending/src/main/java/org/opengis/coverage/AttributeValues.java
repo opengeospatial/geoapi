@@ -10,10 +10,10 @@
  *************************************************************************************************/
 package org.opengis.coverage;
 
-//J2SE dependencies
+// J2SE dependencies
 import java.util.Set;
 
-//OpenGIS direct dependencies
+// OpenGIS direct dependencies
 import org.opengis.util.Record;
 
 // Annotations
@@ -43,9 +43,6 @@ public interface AttributeValues {
      *   <li>A coverage with a series (array / tensor) of values all defined in the same way
      *       (such as brightness values in different parts of the electromagnetic spectrum).</li>
      * </ul>
-     *
-     * @todo The ISO type is {@code Record}, which is not defined in GeoAPI. 
-     * 		 UPDATE: {@code Record} is now defined in pending.
      */
     @UML(identifier="values", obligation=MANDATORY, specification=ISO_19123)
     Set<Record> getValues();

@@ -62,6 +62,6 @@ public interface DiscreteCurveCoverage extends DiscreteCoverage {
      * Returns the nearest <var>curve</var>-<var>value</var> pair from the specified direct
      * position. This is a shortcut for <code>{@linkplain #find(DirectPosition,int) find}(p,1)</code>.
      */
-    @UML(identifier="find", obligation=MANDATORY, specification=ISO_19123)
+/// @UML(identifier="find", obligation=MANDATORY, specification=ISO_19123)
 /// CurveValuePair find(DirectPosition p);
 }
