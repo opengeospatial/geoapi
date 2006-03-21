@@ -77,6 +77,11 @@ public interface BoundingBox extends Envelope {
     CoordinateReferenceSystem crs();
     
     /**
+     * Initialize the bounding box with another bounding box.
+     */
+    void init( BoundingBox bounds);
+    
+    /**
      * Include the provided bounding box, expanding as necesary.
      */
     void include( BoundingBox bounds );
