@@ -2,7 +2,6 @@ package org.opengis.feature.type;
 
 import java.util.Set;
 
-import org.opengis.feature.AttributeName;
 import org.opengis.filter.Filter;
 
 /**
@@ -19,7 +18,7 @@ public interface AttributeType<T> {
 	 * </p>
 	 * @return Name containing both the namespace and name for this type
 	 */
-	public AttributeName getName();
+	public TypeName getName();
 	
 	/**
 	 * True if this type is usable as a target of a reference.
