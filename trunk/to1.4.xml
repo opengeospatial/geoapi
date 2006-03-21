@@ -116,7 +116,9 @@
 			<replacefilter token="&lt;CalendarEra&gt;"/>
 			<replacefilter token="&lt;String,String&gt;"/>
 			<replacefilter token="&lt;RangeMeaning&gt;"/>
-
+			<replacefilter token="&lt;Boolean&gt;"/>
+				<replacefilter token="&lt;Calendar&gt;"/>
+			
 			 <replacefilter token="@Override" value="//@Override" />
 			
 				<!-- jd -->
@@ -294,8 +296,8 @@
 			  <replacefilter token="RecordSchema&lt;T&gt;" value="RecordSchema"/>			
 			  <replacefilter token="&lt;RecordType&gt;" value="/*&lt;RecordType&gt;*/"/>
 			  <replacefilter token="&lt;TypeName, RecordType&gt;" value="/*&lt;TypeName, RecordType&gt;*/"/>
-			 <replacefilter token="&lt;AttributeName, T&lt;" value="/*&lt;AttributeName, T&lt;*/"/>
-				
+			  <replacefilter token="&lt;AttributeName, T&lt;" value="/*&lt;AttributeName, T&lt;*/"/>
+			  <replacefilter token="&lt;TypeFlag&gt;" value="/*&lt;TypeFlag&gt;*/"/>
 			
 		      <replacefilter token="@UML"                          value="//@UML"                          />
 		      <replacefilter token="@Profile"                      value="//@Profile"                      />
