@@ -35,8 +35,8 @@ public interface SimpleFeature extends Feature {
 	 * List of attributes is in the same order as that defined
 	 * by SimpleFeatureType.
 	 */
-///  public List<Attribute> getAttributes();
-    
+	//List<Attribute> getAttributes();
+
     /**
      * AttributeTypes in the order defined by SimpleFeatureType.
      * <p>
@@ -45,7 +45,20 @@ public interface SimpleFeature extends Feature {
      * </p>
      * @return List of AttribtueTypes in order defined by SimpleFeatureType
      */
-    public List<AttributeType> types();
+    List<AttributeType> types();
+    
+    /**
+	 * Value view of attribtue types, in a manner similar Map.values().
+	 * <p>
+	 * The content avalable through types() an values() are considered a view of
+	 * attribtues(). Order is maintained, and removing content will result in a
+	 * modification to all three lists. in a manner simialr to Map.keysSet() and
+	 * Map.values().
+	 * <p>
+	 * Collections naming conventions are used to indicate this is a view into
+	 * our data model.
+	 */
+	 List<Object> values();
     
 	/**
 	 * Restrictued to SimpleFeatureType
@@ -55,7 +68,7 @@ public interface SimpleFeature extends Feature {
 	 * and that no super types are used.
 	 * </p>
 	 */
-///	SimpleFeatureType getType();
+	SimpleFeatureType getType();
 
 	/**
 	 * Retrive value by attribute name.
