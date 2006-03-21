@@ -11,5 +11,5 @@ public interface FeatureCollectionType extends FeatureType {
 	 * (such as bounds) are considered to be derivative from the member features
 	 * </p>
 	 */
-	Collection<FeatureType> getMemberDescriptor();
+	Collection<FeatureType> getMemberTypes();
 }
