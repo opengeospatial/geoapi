@@ -4,7 +4,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 
-import org.opengis.feature.AttributeName;
+import org.opengis.feature.simple.SimpleFeatureCollectionType;
 import org.opengis.feature.simple.SimpleFeatureType;
 import org.opengis.feature.type.AttributeDescriptor;
 import org.opengis.feature.type.AttributeType;
@@ -33,7 +33,7 @@ public interface TypeFactory {
 	 * @param superType The super type of this type.
 	 */
 	AttributeType createAttributeType(
-		AttributeName name, Class binding, boolean isIdentifiable, 
+		TypeName name, Class binding, boolean isIdentifiable, 
 		boolean isNillable, boolean isAbstract, Set restrictions, 
 		AttributeType superType
 	);
@@ -51,7 +51,7 @@ public interface TypeFactory {
 	 * @param superType The super type of this type,may be null.
 	 */
 	ComplexType createComplexType(
-		AttributeName name, Collection<AttributeDescriptor> schema, 
+		TypeName name, Collection<AttributeDescriptor> schema, 
 		boolean isIdentifiable, boolean isNillable, boolean isAbstract, 
 		Set restrictions, ComplexType superType
 	);
@@ -71,7 +71,7 @@ public interface TypeFactory {
 	 
 	 */
 	GeometryType createGeometryType(
-		AttributeName name, Class binding, boolean isIdentifiable, 
+		TypeName name, Class binding, boolean isIdentifiable, 
 		boolean isNillable, boolean isAbstract, CoordinateReferenceSystem crs, 
 		Set restrictions, AttributeType superType
 	);
@@ -88,7 +88,7 @@ public interface TypeFactory {
 	 * @param superType The parent type, may be null.
 	 */
 	FeatureType createFeatureType(
-		AttributeName name, Collection<AttributeDescriptor> schema,
+		TypeName name, Collection<AttributeDescriptor> schema,
 		GeometryType defaultGeometry, boolean isAbstract, Set restrictions, 
 		FeatureType superType
 	);
@@ -105,7 +105,7 @@ public interface TypeFactory {
 	 * @param superType The parent type, may be null.
 	 */
 	SimpleFeatureType createSimpleFeatureType(
-		AttributeName name,List<AttributeDescriptor> schema,
+		TypeName name,List<AttributeDescriptor> schema,
 		GeometryType defaultGeometry, boolean isAbstract, Set restrictions, 
 		SimpleFeatureType superType
 	);
@@ -124,10 +124,22 @@ public interface TypeFactory {
 	 * @param isAbstract Flag indicating wether type is abstract.
 	 */
 	FeatureCollectionType createFeatureCollectionType(
-		AttributeName name, Set<AttributeDescriptor> membersTypes, 
+		TypeName name, Set<AttributeDescriptor> membersTypes, 
 		Collection<AttributeDescriptor> schema, GeometryType defaultGeom, 
 		Set<Filter> restrictions, FeatureType superType, 
 		boolean isAbstract
+	);
+	
+	/**
+	 * Creates a new simple feature collection type.
+	 * 
+	 * @param name The name of the type.
+	 * @param memberType The type of members of a collection of this type.
+	 * @param restrictions Additional restrictions to be placed on attributes 
+	 * of the type. Specified as instances of {@link Filter}.
+	 */
+	SimpleFeatureCollectionType createSimpleFeatureCollectionType(
+		TypeName name, FeatureType memberType, Set<Filter> restrictions	
 	);
 
 }
