@@ -66,8 +66,22 @@ public interface ComplexAttribute extends Attribute<List<Attribute>> {
 	 */
 	void set(List<Attribute> newValue) throws IllegalArgumentException;
 
+	/**
+	 * Returns the value of the attribute, which is a list of other attributes.
+	 * 
+	 */
 	List<Attribute> get();
 
+	/**
+	 * Returns the subset of the attributes returned by {@link #get()} which 
+	 * match the specified name.
+	 * 
+	 * @param name Name of attributes to return.
+	 * 
+	 * @return List of attributes matching name, empty list if no match.
+	 */
+	List<Attribute> get(AttributeName name);
+	
 	/**
 	 * List view of attribtue types, in a manner similar Map.keys().
 	 * <p>
@@ -80,19 +94,6 @@ public interface ComplexAttribute extends Attribute<List<Attribute>> {
 	 * our data model.
 	 */
 	// List<AttributeType> types();
-	
-	/**
-	 * Value view of attribtue types, in a manner similar Map.values().
-	 * <p>
-	 * The content avalable through types() an values() are considered a view of
-	 * attribtues(). Order is maintained, and removing content will result in a
-	 * modification to all three lists. in a manner simialr to Map.keysSet() and
-	 * Map.values().
-	 * <p>
-	 * Collections naming conventions are used to indicate this is a view into
-	 * our data model.
-	 */
-	// List<Object> values();
 	
 	// void set(int index, Attribute value)throws IllegalArgumentException;
 	/**
