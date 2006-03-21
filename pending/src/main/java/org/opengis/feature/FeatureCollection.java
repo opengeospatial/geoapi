@@ -37,7 +37,7 @@ public interface FeatureCollection extends Feature, Collection<Feature> {
 	 * </ul>
 	 * @return Iterator over the contents of this feature collection
 	 */
-    //public FeatureIterator features();
+    //FeatureIterator features();
     
     /**
      * Should be a FeatureIterator.
@@ -46,6 +46,7 @@ public interface FeatureCollection extends Feature, Collection<Feature> {
      * @return Iterator over the contents of this feature collection.
      */
     Iterator<Feature> iterator();
+    
     /**
      * You are required to close iterators after use.
      * <p>
