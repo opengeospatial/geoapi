@@ -4,7 +4,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 
-import org.opengis.feature.AttributeName;
+import org.opengis.feature.simple.SimpleFeatureCollectionType;
 import org.opengis.feature.simple.SimpleFeatureType;
 import org.opengis.filter.Filter;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
@@ -12,50 +12,25 @@ import org.opengis.referencing.crs.CoordinateReferenceSystem;
 /**
  * Interface providing high level convenience methods used to build type 
  * objects.
+ * <br>
  * <p>
  * This when possible this interface should be usd to construct types as 
  * opposed to {@link org.opengis.feature.type.TypeFactory}
  * </p>
- * 
+ * <p>
+ * Type buliders used flags defined in {@link org.opengis.feature.type.TypeFlag}.
+ * Using {@link org.opengis.feature.type.TypeFlag#DEFAULT} results in the 
+ * following:
+ * <ul>
+ * 	<li>{@link org.opengis.feature.type.TypeFlag#DEFAULT}
+ * </ul>
+ *	</p>
+ *
  * @author Justin Deoliveira, The Open Planning Project, jdeolive@openplans.org
  *
  */
 public interface TypeBuilder {
 
-	// Flags
-
-	/** 
-	 * Flag indicating wether a type is identifiable.
-	 */
-	int IDENTIFIABLE = 0x01;
-	
-	/** 
-	 * Flag indicating wether a type is nillable. 
-	 */
-	int NILLABLE = 0x02;
-	
-	/** 
-	 * Flag indicating wether a type is abstract .
-	 */
-	int ABSTRACT = 0x04;
-	
-	/**
-	 * Flag indicating no flags should be set.
-	 */
-	int NONE = 0x00;
-	
-	/**
-	 * Flag indicating "default" flags should be set.
-	 * <p>
-	 *  Default flags set include:
-	 *  <ul>
-	 *  	<li>NILLABLE</li>
-	 *  </ul>
-	 * 
-	 * </p>
-	 */
-	int DEFAULT = NILLABLE;
-	
 	/**
 	 * Returns the underlying type factory.
 	 */
@@ -68,21 +43,21 @@ public interface TypeBuilder {
 	
 	// naming 
 	/**
-	 * Creates a non qualified attribute name.
-	 * (ie. {@link AttributeName#getNamespaceURI() = null}).
+	 * Creates a non qualified type name.
+	 * (ie. {@link TypeName#getNamespaceURI() = null}).
 	 * 
 	 * @param local The local name.
 	 */
-	AttributeName name(String local);
+	TypeName name(String local);
 	
 	/**
-	 * Creates a qualified attribute name.
+	 * Creates a qualified type name.
 	 * 
 	 * @param namespace The namespace.
 	 * @param local The local name.
 	 * 
 	 */
-	AttributeName name(String namespace, String local);
+	TypeName name(String namespace, String local);
 	
 	// descriptors
 	/**
@@ -97,7 +72,7 @@ public interface TypeBuilder {
 	 * @param name The name of the attribute.
 	 * 
 	 */
-	AttributeDescriptor descriptor(AttributeType type, AttributeName name);
+	AttributeDescriptor descriptor(AttributeType type, TypeName name);
 	
 	/**
 	 * 
@@ -107,23 +82,24 @@ public interface TypeBuilder {
 	 * @param max The maximum number of occurencces of the attribute.
 	 * @return
 	 */
-	AttributeDescriptor descriptor(AttributeType type, AttributeName name, int min, int max);
+	AttributeDescriptor descriptor(AttributeType type, TypeName name, int min, int max);
 	
-	// types
+	// type creation
+	
 	/**
 	 * Creates a new attribute type.
 	 * <br>
 	 * <p>
 	 * Equivalent to calling:
 	 * 	<pre>
-	 * 	<code>attributeType(name,binding,TypeBuilder.DEFAULT,null)</code>
+	 * 	<code>attributeType(name,binding,Collections.emptySet())</code>
 	 * 	</pre>
 	 * </p>
 	 * @param name The name of the type.
 	 * @param binding The class with which the type is bound to.
 	 * 
 	 */
-	AttributeType attributeType(AttributeName name, Class binding);
+	AttributeType attributeType(TypeName name, Class binding);
 	
 	/**
 	 * Creates a new attribute type.
@@ -131,129 +107,124 @@ public interface TypeBuilder {
 	 * <p>
 	 * Equivalent to calling:
 	 * 	<pre>
-	 * 	<code>attributeType(name,binding,flags,Collections.emptySet(),data)</code>
+	 * 	<code>attributeType(name,binding,restrictions,null)</code>
 	 * 	</pre>
 	 * </p>
 	 * @param name The name of the type.
 	 * @param binding The class with which the type is bound to.
-	 * @param flags Flags to be set on the type.
-	 * @param data Additional data used in construction of the type. This value
-	 * may be set to null.
-	 * 
-	 */
-	AttributeType attributeType(
-		AttributeName name, Class binding, int flags, Object data
-	);
-	
-	/**
-	 * Creates a new attribute type.
-	 * <br>
-	 * <p>
-	 * Equivalent to calling:
-	 * 	<pre>
-	 * 	<code>attributeType(name,binding,flags,restrictions,null,data)</code>
-	 * 	</pre>
-	 * </p>
-	 * 
-	 * @param name The name of the type.
-	 * @param binding The class with which the type is bound to.
-	 * @param flags Flags to be set on the type.
 	 * @param restrictions Additional restrictions to be placed on attributes 
 	 * of the type. Specifies as instances of {@link Filter}.
-	 * @param data Additional data used in construction of the type,may be null.
+	 * 
 	 */
 	AttributeType attributeType(
-		AttributeName name, Class binding, int flags, Set<Filter> restrictions,
-		Object data
+		TypeName name, Class binding, Set<Filter> restrictions
 	);
 	
 	/**
 	 * Creates a new attribute type.
+	 * <br>
+	 * <p>
+	 * Equivalent to calling:
+	 * 	<pre>
+	 * 	<code>attributeType(name,binding,flags,restrictions,TypeFlag.DEFAULT)</code>
+	 * 	</pre>
+	 * </p>
 	 * 
 	 * @param name The name of the type.
 	 * @param binding The class with which the type is bound to.
-	 * @param flags Flags to be set on the type.
 	 * @param restrictions Additional restrictions to be placed on attributes 
 	 * of the type. Specified as instances of {@link Filter}.
 	 * @param superType The super type of this type.
-	 * @param data Additional data used in construction of the type,may be null.
 	 */
 	AttributeType attributeType(
-		AttributeName name, Class binding, int flags, Set<Filter> restrictions, 
-		AttributeType superType, Object data
+		TypeName name, Class binding, Set<Filter> restrictions, 
+		AttributeType superType
 	);
 	
 	/**
-	 * Creates a new complex type.
-	 * <br>
-	 *	<p>
-	 *	Equivalent to calling:
-	 *	<pre>
-	 *	  <code>complexType(name,schema,TypeBuilder.DEFAULT,null)</code>
-	 *  </pre>
-	 *	</p>
+	 * Creates a new attribute type.
+	 * 
 	 * @param name The name of the type.
-	 * @param schema The collection of attributes that make up the complex type.
-	 */
-	ComplexType complexType(
-		AttributeName name, Collection<AttributeDescriptor> schema
-	);
-	
-	/**
-	 * Creates a new complex type.
-	 * <br>
-	 *	<p>
-	 *	Equivalent to calling:
-	 *	<pre>
-	 *	  <code>complexType(name,schema,flags,Collections.emptySet(),data)</code>
-	 *  </pre>
-	 *	</p>
-	 * @param name The name of the type.
-	 * @param schema The collection of attributes that make up the complex type.
-	 * @param flags Flags to be set on the type.
-	 * @param data Additional data used in construction of the type,may be null.
-	 */
-	ComplexType complexType(
-		AttributeName name, Collection<AttributeDescriptor> schema, int flags,
-		Object data
-	);
-	
-	/**
-	 * Creates a new complex type.
-	 * <br>
-	 *	<p>
-	 *	Equivalent to calling:
-	 *	<pre>
-	 *	  <code>complexType(name,schema,flags,restrictions,null,data)</code>
-	 *  </pre>
-	 *	</p>
-	 * @param name The name of the type.
-	 * @param schema The collection of attributes that make up the complex type.
-	 * @param flags Flags to be set on the type.
+	 * @param binding The class with which the type is bound to.
 	 * @param restrictions Additional restrictions to be placed on attributes 
 	 * of the type. Specified as instances of {@link Filter}.
-	 * @param data Additional data used in construction of the type,may be null.
+	 * @param superType The super type of this type.
+	 * @param flags Flags to be set on the type.
+	 */
+	AttributeType attributeType(
+		TypeName name, Class binding, Set<Filter> restrictions, 
+		AttributeType superType, TypeFlag[] flags
+	);
+	
+	/**
+	 * Creates a new complex type.
+	 * <br>
+	 *	<p>
+	 *	Equivalent to calling:
+	 *	<pre>
+	 *	  <code>complexType(name,schema,Collections.emptySet())</code>
+	 *  </pre>
+	 *	</p>
+	 * @param name The name of the type.
+	 * @param schema The collection of attributes that make up the complex type.
 	 */
 	ComplexType complexType(
-		AttributeName name, Collection<AttributeDescriptor> schema,
-		int flags, Set<Filter> restrictions, Object data
+		TypeName name, Collection<AttributeDescriptor> schema
 	);
+	
+	/**
+	 * Creates a new complex type.
+	 * <br>
+	 *	<p>
+	 *	Equivalent to calling:
+	 *	<pre>
+	 *	  <code>complexType(name,schema,restrictions,null)</code>
+	 *  </pre>
+	 *	</p>
+	 * @param name The name of the type.
+	 * @param schema The collection of attributes that make up the complex type.
+	 * @param restrictions Additional restrictions to be placed on attributes
+	 */
+	ComplexType complexType(
+		TypeName name, Collection<AttributeDescriptor> schema, 
+		Set<Filter> restrictions
+	);
+	
+	/**
+	 * Creates a new complex type.
+	 * <br>
+	 *	<p>
+	 *	Equivalent to calling:
+	 *	<pre>
+	 *	  <code>complexType(name,schema,restrictions,null,TypeFlag.DEFAULT)</code>
+	 *  </pre>
+	 *	</p>
+	 * @param name The name of the type.
+	 * @param schema The collection of attributes that make up the complex type.
+	 * @param restrictions Additional restrictions to be placed on attributes 
+	 * of the type. Specified as instances of {@link Filter}.
+	 * 
+	 */
+	ComplexType complexType(
+		TypeName name, Collection<AttributeDescriptor> schema,
+		Set<Filter> restrictions, ComplexType superType 
+	);
+	
 	
 	/**
 	 * Creates a new complex type.
 	 * 
 	 * @param name The name of the type.
 	 * @param schema The collection of attributes that make up the complex type.
-	 * @param flags Flags to be set on the type.
+	 * 
 	 * @param restrictions Additional restrictions to be placed on attributes 
 	 * of the type. Specified as instances of {@link Filter}.
 	 * @param superType The super type of this type,may be null.
-	 * @param data Additional data used in construction of the type,may be null.
+	 * @param flags Flags to be set on the type.
 	 */
 	ComplexType complexType(
-		AttributeName name, Collection<AttributeDescriptor> schema, 
-		int flags, Set<Filter> restrictions, ComplexType superType,
-		Object data
+		TypeName name, Collection<AttributeDescriptor> schema, 
+		Set<Filter> restrictions, ComplexType superType, TypeFlag[] flags
 	);
 	
 	/**
@@ -262,7 +233,7 @@ public interface TypeBuilder {
 	 *	<p>
 	 *	Equivalent to calling:
 	 *	<pre>
-	 *	  <code>geometryType(name,binding,crs,TypeBuilder.DEFAULT,)</code>
+	 *	  <code>geometryType(name,binding,crs,TypeFlag.DEFAULT)</code>
 	 *  </pre>
 	 *	</p>
 	 * @param name The name of the type.
@@ -270,7 +241,7 @@ public interface TypeBuilder {
 	 * @param crs The coordinate reference system of the type.
 	 */
 	GeometryType geometryType(
-		AttributeName name, Class binding, CoordinateReferenceSystem crs
+		TypeName name, Class binding, CoordinateReferenceSystem crs
 	);
 	
 	/**
@@ -279,18 +250,18 @@ public interface TypeBuilder {
 	 *	<p>
 	 *	Equivalent to calling:
 	 *	<pre>
-	 *	  <code>geometryType(name,binding,flags,crs,Collections.emptySet(),data)</code>
+	 *	  <code>geometryType(name,binding,crs,restrictions,null)</code>
 	 *  </pre>
 	 *	</p>
 	 * @param name The name of the type.
 	 * @param binding The class with which the type is bound to.
 	 * @param crs The coordinate reference system of the type.
-	 * @param flags Flags to be set on the type.
-	 * @param data Additional data used in construction of the type,may be null.
+	 * @param restrictions Additional restrictions to be placed on attributes 
+	 * of the type. Specified as instances of {@link Filter}.
 	 */
 	GeometryType geometryType(
-		AttributeName name, Class binding, CoordinateReferenceSystem crs,
-		int flags, Object data
+		TypeName name, Class binding, CoordinateReferenceSystem crs,
+		Set<Filter> restrictions
 	);
 
 	/**
@@ -300,21 +271,20 @@ public interface TypeBuilder {
 	 * Equivalent to calling:
 	 * <pre>
 	 * 	<code>
-	 * 	geometryType(name,binding,flags,crs,restrictions,null,data)
+	 * 	geometryType(name,binding,flags,crs,restrictions,superType,TypeFlag.DEFAULT)
 	 * 	</code>
 	 * </pre>
 	 * </p>
 	 * @param name The name of the type.
 	 * @param binding The class with which the type is bound to.
-	 * @param flags Flags to be set on the type.
 	 * @param crs The coordinate reference system of the type.
 	 * @param restrictions Additional restrictions to be placed on attributes 
 	 * of the type. Specified as instances of {@link Filter}.
-	 * @param data Additional data used in construction of the type,may be null.
+	 * @param superType The parent type, may be null.
 	 */
 	GeometryType geometryType(
-		AttributeName name, Class binding, CoordinateReferenceSystem crs,
-		int flags, Set<Filter> restrictions, Object data
+		TypeName name, Class binding, CoordinateReferenceSystem crs,
+		Set<Filter> restrictions, GeometryType superType
 	);
 	
 	/**
@@ -323,16 +293,14 @@ public interface TypeBuilder {
 	 * @param name The name of the type.
 	 * @param binding The class with which the type is bound to.
 	 * @param crs The coordinate reference system of the type.
-	 * @param flags Flags to be set on the type.
 	 * @param restrictions Additional restrictions to be placed on attributes 
 	 * of the type. Specified as instances of {@link Filter}.
 	 * @param superType The parent type, may be null.
-	 * @param data Additional data used in construction of the type,may be null.
+	 * @param flags Flags to be set on the type.
 	 */
 	GeometryType geometryType(
-		AttributeName name, Class binding, CoordinateReferenceSystem crs, 
-		int flags, Set<Filter> restrictions, AttributeType superType, 
-		Object data
+		TypeName name, Class binding, CoordinateReferenceSystem crs, 
+		Set<Filter> restrictions, GeometryType superType, TypeFlag[] flags
 	);
 	
 	/**
@@ -340,17 +308,14 @@ public interface TypeBuilder {
 	 * <p>
 	 * Equivalent to calling:
 	 * <pre>
-	 * 	<code>feaureType(name,schema,flags,Collections.emptySet(),data)</code>
+	 * 	<code>feaureType(name,schema,null)</code>
 	 * </pre>
 	 * </p>
 	 * @param name The name of the type.
 	 * @param schema The collection of attributes that make up the type. 
-	 * @param flags Flags to be set on the type.
-	 * @param data Additional data used in construction of the type,may be null.
 	 */
 	FeatureType featureType(
-		AttributeName name, Collection<AttributeDescriptor> schema, int flags, 
-		Object data
+		TypeName name, Collection<AttributeDescriptor> schema
 	);
 
 	/**
@@ -358,18 +323,16 @@ public interface TypeBuilder {
 	 * <p>
 	 * Equivalent to calling:
 	 * <pre>
-	 * 	<code>feaureType(name,schema,flags,Collections.emptySet(),data)</code>
+	 * 	<code>feaureType(name,schema,defaultGeometry,Collections.emptySet())</code>
 	 * </pre>
 	 * </p>
 	 * @param name The name of the type.
 	 * @param schema The collection of attributes that make up the type. 
-	 * @param flags Flags to be set on the type.
 	 * @param defaultGeometry The default geometry type of the feautre type.
-	 * @param data Additional data used in construction of the type,may be null.
 	 */
 	FeatureType featureType(
-		AttributeName name, Collection<AttributeDescriptor> schema, int flags, 
-		GeometryType defaultGeometry, Object data
+		TypeName name, Collection<AttributeDescriptor> schema, 
+		GeometryType defaultGeometry
 	);
 	
 	/**
@@ -377,20 +340,39 @@ public interface TypeBuilder {
 	 * <p>
 	 * Equivalent to calling:
 	 * <pre>
-	 * 	<code>feaureType(name,schema,flags,restrictions,null,data)</code>
+	 * 	<code>feaureType(name,schema,defaultGeometry,restrictions,null)</code>
 	 * </pre>
 	 * </p>
 	 * @param name The name of the type.
 	 * @param schema The collection of attributes that make up the type. 
-	 * @param flags Flags to be set on the type.
 	 * @param defaultGeometry The default geometry type of the feautre type.
 	 * @param restrictions Additional restrictions to be placed on attributes 
 	 * of the type. Specified as instances of {@link Filter}.
-	 * @param data Additional data used in construction of the type,may be null.
 	 */
 	FeatureType featureType(
-		AttributeName name, Collection<AttributeDescriptor> schema, int flags,
-		GeometryType defaultGeometry, Set<Filter> restrictions, Object data
+		TypeName name, Collection<AttributeDescriptor> schema,
+		GeometryType defaultGeometry, Set<Filter> restrictions
+	);
+	
+	/**
+	 * Creates a new feature type.
+	 * <p>
+	 * Equivalent to calling:
+	 * <pre>
+	 * 	<code>feaureType(name,schema,defaultGeometry,restrictions,null,null)</code>
+	 * </pre>
+	 * </p>
+	 * @param name The name of the type.
+	 * @param schema The collection of attributes that make up the type. 
+	 * @param defaultGeometry The default geometry type of the feautre type.
+	 * @param restrictions Additional restrictions to be placed on attributes 
+	 * of the type. Specified as instances of {@link Filter}.
+	 * @param superType The parent type, may be null.
+	 */
+	FeatureType featureType(
+		TypeName name, Collection<AttributeDescriptor> schema,
+		GeometryType defaultGeometry, Set<Filter> restrictions, 
+		FeatureType superType
 	);
 	
 	/**
@@ -398,17 +380,16 @@ public interface TypeBuilder {
 	 *
 	 * @param name The name of the type.
 	 * @param schema The collection of attributes that make up the type. 
-	 * @param flags Flags to be set on the type.
 	 * @param defaultGeometry The default geometry type of the feautre type.
 	 * @param restrictions Additional restrictions to be placed on attributes 
 	 * of the type. Specified as instances of {@link Filter}.
 	 * @param superType The parent type, may be null.
-	 * @param data Additional data used in construction of the type,may be null.
+	 * @param flags Flags to be set on the type.
 	 */
 	FeatureType featureType(
-		AttributeName name, Collection<AttributeDescriptor> schema, int flags,
+		TypeName name, Collection<AttributeDescriptor> schema,
 		GeometryType defaultGeometry, Set<Filter> restrictions, 
-		FeatureType superType, Object data
+		FeatureType superType, TypeFlag[] flags
 	);
 	
 	/**
@@ -416,16 +397,31 @@ public interface TypeBuilder {
 	 * <p>
 	 * Equivalent to calling:
 	 * <pre>
-	 * 	<code>simpleFeatureType(name,schema,flags,null,data)</code>
+	 * 	<code>simpleFeatureType(name,schema,null)</code>
 	 * </pre>
 	 * </p>
 	 * @param name The name of the type.
 	 * @param schema The ordered list of attribute types making up this type.
 	 * @param flags Flags to be set on the type.
-	 * @param data Additional data used in construction of the type,may be null.
 	 */
 	SimpleFeatureType simpleFeatureType(
-		AttributeName name, List<AttributeType> schema, int flags, Object data
+		TypeName name, List<AttributeType> schema
+	);
+	
+	/**
+	 * Creates a new simple feature type.
+	 * <p>
+	 * Equivalent to calling:
+	 * <pre>
+	 * 	<code>simpleFeatureType(name,schema,defaultGeometry,Collections.emptySet())</code>
+	 * </pre>
+	 * </p>
+	 * @param name The name of the type.
+	 * @param schema The ordered list of attribute types making up this type.
+	 * @param defaultGeometry The default geometry type.
+	 */
+	SimpleFeatureType simpleFeatureType(
+		TypeName name, List<AttributeType> schema, GeometryType defaultGeometry
 	);
 
 	/**
@@ -433,18 +429,18 @@ public interface TypeBuilder {
 	 * <p>
 	 * Equivalent to calling:
 	 * <pre>
-	 * 	<code>simpleFeatureType(name,schema,flags,defaultGeometry,Collections.emptySet(),data)</code>
+	 * 	<code>simpleFeatureType(name,schema,defaultGeometry,restrictions,null)</code>
 	 * </pre>
 	 * </p>
 	 * @param name The name of the type.
 	 * @param schema The ordered list of attribute types making up this type.
-	 * @param flags Flags to be set on the type.
 	 * @param defaultGeometry The default geometry type.
-	 * @param data Additional data used in construction of the type,may be null.
+	 * @param restrictions Additional restrictions to be placed on attributes 
+	 * of the type. Specified as instances of {@link Filter}.
 	 */
 	SimpleFeatureType simpleFeatureType(
-		AttributeName name, List<AttributeDescriptor> schema, int flags,
-		GeometryType defaultGeometry, Object data
+		TypeName name, List<AttributeType> schema, 
+		GeometryType defaultGeometry,  Set<Filter> restrictions
 	);
 
 	/**
@@ -452,19 +448,19 @@ public interface TypeBuilder {
 	 * <br>
 	 * Equivalent to calling:
 	 *	<pre>
-	 *	<code>simpleFeatureType(name,schema,flags,defaultGeometry,resitrctions,null,data)</code>
+	 *	<code>simpleFeatureType(name,schema,defaultGeometry,resitrctions,superType,null)</code>
 	 *	</pre>
 	 * @param name The name of the type.
 	 * @param schema The ordered list of attribute types making up this type.
-	 * @param flags Flags to be set on the type.
 	 * @param defaultGeometry The default geometry type.
 	 * @param restrictions Additional restrictions to be placed on attributes 
 	 * of the type. Specified as instances of {@link Filter}.
-	 * @param data Additional data used in construction of the type,may be null.
+	 * @param superType The parent type, may be null.
 	 */
 	SimpleFeatureType simpleFeatureType(
-		AttributeName name, List<AttributeDescriptor> schema, int flags,
-		GeometryType defaultGeometry, Set<Filter> restrictions, Object data
+		TypeName name, List<AttributeType> schema,
+		GeometryType defaultGeometry, Set<Filter> restrictions, 
+		SimpleFeatureType superType
 	);
 	
 	/**
@@ -472,17 +468,39 @@ public interface TypeBuilder {
 	 *
 	 * @param name The name of the type.
 	 * @param schema The ordered list of attribute types making up this type.
-	 * @param flags Flags to be set on the type.
 	 * @param defaultGeometry The default geometry type.
 	 * @param restrictions Additional restrictions to be placed on attributes 
 	 * of the type. Specified as instances of {@link Filter}.
 	 * @param superType The parent type, may be null.
-	 * @param data Additional data used in construction of the type,may be null.
+	 * @param flags Flags to be set on the type.
 	 */
 	SimpleFeatureType simpleFeatureType(
-		AttributeName name, List<AttributeDescriptor> schema, int flags,
+		TypeName name, List<AttributeType> schema, 
 		GeometryType defaultGeometry, Set<Filter> restrictions, 
-		SimpleFeatureType superType, Object data
+		SimpleFeatureType superType, TypeFlag[] flags
+	);
+	
+	/**
+	 * Creates a new feature collcetion type.
+	 * <br>
+	 * <p>
+	 * Same as calling:
+	 * <pre>
+	 * 	<code>
+	 * 		featureCollectionType(
+	 * 			name,memeberTypes,Collections.EMPTY_LIST, null, 
+	 *          Collections.EMPTY_SET,null,null
+	 *      );
+	 *  </code>
+	 * </pre>
+	 * </p>
+	 * @param name The name of the type.
+	 * @param memberTypes The set of feature types in which members of the 
+	 * collection may implement.
+	 * 
+	 */
+	FeatureCollectionType featureCollectionType(
+		TypeName name, Set<FeatureType> memberTypes
 	);
 	
 	/**
@@ -491,18 +509,48 @@ public interface TypeBuilder {
 	 * @param name The name of the type.
 	 * @param membersTypes The set of feature types in which members of the
 	 * collection may implement.
-	 * @param flags Flags to be set on the type.
 	 * @param schema The collection of attribute types making up this type.
 	 * @param defaultGeom The default geometry attribute of the type.
 	 * @param restrictions Additional restrictions to be placed on attributes 
 	 * of the type. Specified as instances of {@link Filter}.
 	 * @param superType The parent type, may be null.
-	 * @param data Additional data used in construction of the type,may be null.
+	 * @param flags Flags to be set on the type.
 	 */
 	FeatureCollectionType featureCollectionType(
-		AttributeName name, Set<AttributeDescriptor> membersTypes, int flags,
+		TypeName name, Set<FeatureType> membersTypes, 
 		Collection<AttributeDescriptor> schema, GeometryType defaultGeom, 
-		Set<Filter> restrictions, FeatureType superType, Object data
+		Set<Filter> restrictions, FeatureType superType, TypeFlag[] flags
+	);
+	
+	/**
+	 * Creates a new simple feature collection type.
+	 * <br>
+	 * <p>
+	 * Equivalent to calling:
+	 * <pre>
+	 * 	<code>simpleFeatureCollectionType(name,memberType,Collections.EMPTY_SET)</code>
+	 * </pre>
+	 * 	
+	 * </p>
+	 * 
+	 * @param name The name of the type.
+	 * @param memberType The type of members of a collection of this type.
+	 */
+	SimpleFeatureCollectionType simpleFeatureCollectionType(
+		TypeName name, FeatureType memberType
+	);
+	
+	/**
+	 * Creates a new simple feature collection type.
+	 * 
+	 * @param name The name of the type.
+	 * @param memberType The type of members of a collection of this type.
+	 * @param restrictions Additional restrictions to be placed on attributes 
+	 * of the type. Specified as instances of {@link Filter}.
+	 * 
+	 */
+	SimpleFeatureCollectionType simpleFeatureCollectionType(
+		TypeName name, FeatureType memberType, Set<Filter> restrictions
 	);
 	
 	// Subtypeing convenience methods
@@ -531,5 +579,13 @@ public interface TypeBuilder {
 	 * </p>
 	 */
 	void inheirit(AttributeType type, AttributeType parent);
+	
+	// other
+	
+	/**
+	 * Returns an array of the flags which have been set for a pre-existing type.
+	 */
+	TypeFlag[] flags(AttributeType type);
+	
 	
 }
