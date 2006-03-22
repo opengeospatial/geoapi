@@ -1,5 +1,6 @@
 package org.opengis.feature;
 
+import org.opengis.feature.type.AttributeType;
 import org.opengis.feature.type.GeometryType;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 import org.opengis.spatialschema.geometry.Envelope;
@@ -19,7 +20,7 @@ import org.opengis.spatialschema.geometry.Envelope;
  * at this time, allowing the use of JTS for SFSQL use.
  * </p>
  */
-public interface GeometryAttribute<T> extends Attribute {
+public interface GeometryAttribute<G, T extends GeometryType<G>> extends Attribute<G,T> {
 	/**
 	 * The Coordinate Reference System of this geometry.
 	 * <p>
@@ -53,7 +54,7 @@ public interface GeometryAttribute<T> extends Attribute {
 	 * needed to report CRS and Bounds constraints on data? A: It was needed
 	 * when we switched over to Attribute
 	 */
-	GeometryType<T> getType();
+	GeometryType<G> getType();
 
 	/**
 	 * Retrieve Geometry.
@@ -61,7 +62,7 @@ public interface GeometryAttribute<T> extends Attribute {
 	 * We may want to relax this to Object to allow for JTS or GeoAPI based
 	 * objects for the first release.
 	 */
-	T get();
+	G get();
 
 	/**
 	 * Set provided Geometry
@@ -69,5 +70,5 @@ public interface GeometryAttribute<T> extends Attribute {
 	 * We may want to relax this to Object to allow for JTS or GeoAPI based
 	 * objects for the first release.
 	 */
-	void set(T geom);
+	void set(G geom);
 }

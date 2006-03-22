@@ -1,6 +1,7 @@
 package org.opengis.feature.xml;
 
 import java.util.List;
+import java.util.Set;
 
 import org.opengis.feature.Attribute;
 import org.opengis.feature.ComplexAttribute;
@@ -18,10 +19,10 @@ import org.opengis.feature.ComplexAttribute;
  * user interfaces designed against the pure TypeSystem.
  * </p>
  */
-public interface Choice extends ComplexAttribute {
+public interface Choice<S extends Set<Attribute>, T extends ChoiceType<S>> extends ComplexAttribute<S,T> {
 
-///	ChoiceType getType();
+    T getType();
 	
     /** Limited to a List of size one */
-    List<Attribute> get();
+    S get();
 }

@@ -5,11 +5,15 @@ import org.opengis.feature.type.AttributeType;
 
 
 /**
- * Contains information of an indicated type.
- * 
+ * Contains information as defined by an AttributeDescriptor.
+ * <p>
+ * The AttributeDescriptor defines both the name and the type (T) of
+ * this attribute. The type define the java class (B) to which
+ * this attribute is bound.
+ * </p>
  * @author Jody Garnett, Refractions Research
  */
-public interface Attribute<T> {
+public interface Attribute<B, T extends AttributeType<B>> {
 
 	/**
 	 * Indicates the AttirbuteDescriptor for this content.
@@ -19,7 +23,7 @@ public interface Attribute<T> {
 	 * </p>
 	 * @return Descriptor for this attribute.
 	 */
-	AttributeDescriptor getDescriptor();
+	AttributeDescriptor<T> getDescriptor();
 
 	/**
 	 * AttributeName (from the descriptor) for this attribute.
@@ -33,7 +37,7 @@ public interface Attribute<T> {
 	 * 
 	 * @return AttributeType information descirbing allowable content
 	 */
-	AttributeType<T> type();
+	T type();
 
     /**
      * Unique, inmutable identification for domain object being modeled.
@@ -47,12 +51,12 @@ public interface Attribute<T> {
 	 * 
 	 * @return Value of the type indicated by type()
 	 */
-	T get();
+	B get();
 
 	/**
 	 * Set content to newZValue
 	 * @param newValue
 	 *            Must be of type indicated by type()
 	 */
-	void set(T newValue)throws IllegalArgumentException;
+	void set(B newValue)throws IllegalArgumentException;
 }

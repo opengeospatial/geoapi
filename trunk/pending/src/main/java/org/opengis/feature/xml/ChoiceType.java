@@ -2,6 +2,7 @@ package org.opengis.feature.xml;
 
 import java.util.Set;
 
+import org.opengis.feature.Attribute;
 import org.opengis.feature.type.ComplexType;
 import org.opengis.filter.Filter;
 
@@ -10,7 +11,7 @@ import org.opengis.filter.Filter;
  * 
  * @author Jody Garnett, Refractions Research
  */
-public interface ChoiceType extends ComplexType {
+public interface ChoiceType<S extends Set<Attribute>> extends ComplexType<S> {
 	/**
 	 * Inorder to smoothly intergrate with the feature model this list include a filter limiting the number
 	 * of attribute to one.

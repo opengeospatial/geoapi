@@ -1,5 +1,6 @@
 package org.opengis.feature.xml;
 
+import java.util.Collection;
 import java.util.List;
 
 import org.opengis.feature.Attribute;
@@ -18,17 +19,17 @@ import org.opengis.feature.type.ComplexType;
  * </p>
  * @author Jody Garnett, Refractions Research
  */
-public interface Sequence extends ComplexAttribute {
+public interface Sequence<L extends List<Attribute>, T extends SequenceType<L>> extends ComplexAttribute<L,T> {
     
 	/**
 	 * Indicates that this ComplexType is to maintain its attributes
 	 * in the perscribed order.
 	 */
-///	SequenceType getType();
+    T getType();
 	
     /**
      * Attributes are to be maintained in a sequence, the order of this
      * sequence to to be in agreement with that described by the SequenceType.
      */
-	List<Attribute> get();
+	L get();
 }

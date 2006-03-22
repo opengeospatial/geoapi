@@ -2,12 +2,14 @@ package org.opengis.feature.type;
 
 import java.util.Collection;
 
+import org.opengis.feature.Attribute;
+
 /**
  * The type
  * @author Jody Garnett
  *
  */
-public interface ComplexType extends AttributeType {
+public interface ComplexType<C extends Collection<Attribute>> extends AttributeType<C> {
 	
 	/**
 	 * Indicates ability of XPath to notice this attribute.
@@ -68,7 +70,7 @@ public interface ComplexType extends AttributeType {
 	 * </p>
 	 * @return Java binding, or null if not applicable
 	 */
-	Class getBinding();
+	Class<C> getBinding();
 
 	/**
 	 * Super is restricted to other ComplexType.
