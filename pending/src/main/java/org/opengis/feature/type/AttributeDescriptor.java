@@ -23,7 +23,7 @@ import org.opengis.feature.AttributeName;
  * </p>
  * @author Jody Garnett, Refractions Research
  */
-public interface AttributeDescriptor {
+public interface AttributeDescriptor<T extends AttributeType> {
 
 	/**
 	 * Allows the association of process specific information
@@ -49,7 +49,7 @@ public interface AttributeDescriptor {
 	public int getMaxOccurs();
 	
 	/** Indicates the type of this attribute */
-	AttributeType<?> getType();
+	T getType();
 
 	/**
 	 * Indicates Name of defined attribute in a ComplexType.

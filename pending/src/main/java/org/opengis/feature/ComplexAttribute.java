@@ -1,7 +1,10 @@
 package org.opengis.feature;
 
+import java.util.Collection;
 import java.util.List;
 
+import org.opengis.feature.type.AttributeDescriptor;
+import org.opengis.feature.type.AttributeType;
 import org.opengis.feature.type.ComplexType;
 
 /**
@@ -9,11 +12,31 @@ import org.opengis.feature.type.ComplexType;
  * @author Jody Garnett
  * @author Gabriel Roldan
  */
-public interface ComplexAttribute extends Attribute<List<Attribute>> {
+public interface ComplexAttribute<C extends Collection<Attribute>, T extends ComplexType<C>> extends Attribute<C,T> {
+
+	/**
+	 * Indicates the AttirbuteDescriptor for this content.
+	 * <p>
+	 * The attribute descriptor formally captures the name and multiplicity
+	 * and type associated with this attirbute.
+	 * </p>
+	 * @return Descriptor for this attribute.
+	 */
+	public AttributeDescriptor<T> getDescriptor();
+	
+	/**
+	 * Access the type of this construct.
+	 * <p>
+	 * This value is from the AttributeDescriptor, and is in agreement with the
+	 * result of getType().
+	 * </p>
+	 */
+	public T type();
+	
 	/**
 	 * Access the type of this construct.
 	 */
-	ComplexType getType();
+	T getType();
 
 	/**
 	 * Access to contents of this Feature.
@@ -64,13 +87,13 @@ public interface ComplexAttribute extends Attribute<List<Attribute>> {
 	 * 
 	 * @throws IllegalArgumentException
 	 */
-	void set(List<Attribute> newValue) throws IllegalArgumentException;
+	void set(C newValue) throws IllegalArgumentException;
 
 	/**
 	 * Returns the value of the attribute, which is a list of other attributes.
 	 * 
 	 */
-	List<Attribute> get();
+	C get();
 
 	/**
 	 * Returns the subset of the attributes returned by {@link #get()} which 
