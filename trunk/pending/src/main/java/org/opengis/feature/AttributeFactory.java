@@ -1,6 +1,7 @@
 package org.opengis.feature;
 
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 
 import org.opengis.feature.simple.BooleanAttribute;
@@ -31,101 +32,114 @@ public interface AttributeFactory {
 	/**
 	 * Creates a new attribute.
 	 * 
+	 * @param value The value of the attribute, may be null depending on type.
 	 * @param descriptor The attribute descriptor.
 	 * @param id The id of the attribute, may be null depending on type.
-	 * @param value The value of the attribute, may be null depending on type.
+	 * 
 	 */
-	Attribute createAttribute(AttributeDescriptor descriptor, String id , Object value);
+	Attribute createAttribute(Object value, AttributeDescriptor descriptor, String id);
 	
 	/**
 	 * Creates a new boolean attribute.
 	 * 
-	 * @param descriptor The attribute descriptor.
 	 * @param value The boolean value of the attribute.
+	 * @param descriptor The attribute descriptor.
+	 * 
 	 */
-	BooleanAttribute createBooleanAttribute(AttributeDescriptor descriptor, Boolean value);
+	BooleanAttribute createBooleanAttribute(Boolean value, AttributeDescriptor descriptor);
 	
 	/**
 	 * Creates a new numberic attribute.
 	 * 
-	 * @param descriptor The attribute descriptor.
 	 * @param value The numeric value of the attribute.
+	 * @param descriptor The attribute descriptor.
+	 * 
 	 */
-	NumericAttribute createNumericAttribute(AttributeDescriptor descriptor, Number value);
+	NumericAttribute createNumericAttribute(Number value, AttributeDescriptor descriptor);
 	
 	/**
 	 * Creates a new text attribute.
 	 * 
-	 * @param descriptor The attribute descriptor.
 	 * @param value The text value of the attribute.
+	 * @param descriptor The attribute descriptor.
+	 * 
 	 */
-	TextAttribute createTextAttribute(AttributeDescriptor descriptor, CharSequence value);
+	TextAttribute createTextAttribute(CharSequence value, AttributeDescriptor descriptor);
 	
 	/**
 	 * Creates a new temporal attribute.
 	 * 
+	 * @param value The date value of the attribute.
 	 * @param descriptor Teh attribute descriptor.
-	 * @param value The calendar value of the attribute.
+	 * 
 	 */
-	TemporalAttribute createTemporalAttribute(AttributeDescriptor descriptor, String value);
+	TemporalAttribute createTemporalAttribute(Date value, AttributeDescriptor descriptor);
 	
 	/**
 	 * Creates a new geometry attribute.
 	 * 
+	 * @param value The initial value of the attribute, may be null depending on 
+	 * the type of the type of the attribute.
 	 * @param desc The attribute descriptor.
 	 * @param id The id of the attribute, may be null depending on the type.
 	 * @param crs The coordinate reference system of the attribute, may be null.
-	 * @param value The initial value of the attribute, may be null depending on 
-	 * the type of the type of the attribute.
-	 * 
+	 *
 	 * @throws IllegalArgumentException If desc.getType() does not return an 
 	 * instanceof {@link GeometryType}.
 	 */
 	GeometryAttribute createGeometryAttribute(
-		AttributeDescriptor desc, String id, CoordinateReferenceSystem crs, Object value
+		Object value, AttributeDescriptor desc, String id, CoordinateReferenceSystem crs
 	);
 	
 	/**
 	 * Creates a new complex attribute.
 	 * 
-	 * @param desc The attribute descriptor.
-	 * @param id The id of the attribute, may be null depending on the type.
 	 * @param value The initial value of the attribute, may be null depending on 
 	 * the type of the attribute.
+	 * @param id The id of the attribute, may be null depending on the type.
+	 * @param desc The attribute descriptor.
 	 * 
 	 * @throws IllegalArgumentException If desc.getType() does not return an 
 	 * instanceof {@link ComplexType}.
 	 */
 	ComplexAttribute createComplexAttribute(
-		AttributeDescriptor desc, String id, Collection value
+		Collection value, AttributeDescriptor desc, String id 
 	);
-
+	
+	ComplexAttribute createComplexAttribute(
+		Collection value, AttributeType type, String id	
+	);
+	
 	/**
 	 * Creates a new feature.
 	 * 
-	 * @param desc The attribute descriptor. 
 	 * @param id The id of the feature, (fid), may be null depending on the type.
+	 * @param desc The attribute descriptor. 
 	 * @param value The initial value of the attribute, may be null depending on 
 	 * the type of the feature.
 	 * 
 	 * @throws IllegalArgumentException If desc.getType() does not return an 
 	 * instanceof {@link FeatureType}.
 	 */
-	Feature createFeature(AttributeDescriptor desc, String id, Collection value);
+	Feature createFeature(Collection value, AttributeDescriptor desc, String id);
+	
+	Feature createFeature(Collection value, AttributeType type, String id);
 	
 	/**
 	 * Creates a new simple feature.
 	 * 
-	 * @param desc The attribute descriptor. 
-	 * @param id The id of the feature, (fid), may be null depending on the type.
 	 * @param value The initial value of the attribute, may be null depending on 
 	 * the type of the feature.
+	 * @param desc The attribute descriptor. 
+	 * @param id The id of the feature, (fid), may be null depending on the type.
 	 * 
 	 * @throws IllegalArgumentException If desc.getType() does not return an 
 	 * instanceof {@link SimpleFeatureType}.
 	 */
-	SimpleFeature createSimpleFeature(AttributeDescriptor desc, String id, List value);
+	SimpleFeature createSimpleFeature(List value, AttributeDescriptor desc, String id);
 
+	SimpleFeature createSimpleFeature(List value, SimpleFeatureType type, String id);
+	
 	/**
 	 * Createsa a new feature collection.
 	 * 
@@ -138,6 +152,8 @@ public interface AttributeFactory {
 	 */
 	FeatureCollection createFeatureCollection(AttributeDescriptor desc, String id);
 
+	FeatureCollection createFeatureCollection(List value, FeatureCollectionType type, String id);
+	
 	/**
 	 * Createsa a new simple feature collection.
 	 * 
@@ -150,6 +166,7 @@ public interface AttributeFactory {
 	 */
 	SimpleFeatureCollection createSimpleFeatureCollection(AttributeDescriptor desc, String id);
 	
+	SimpleFeatureCollection createSimpleFeatureCollection(SimpleFeatureType type, String id);
 	
 }
 
