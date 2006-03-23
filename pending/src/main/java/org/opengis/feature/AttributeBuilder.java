@@ -12,21 +12,34 @@ import org.opengis.feature.type.AttributeType;
 import org.opengis.feature.type.ComplexType;
 import org.opengis.feature.type.FeatureCollectionType;
 import org.opengis.feature.type.FeatureType;
+import org.opengis.feature.type.TypeName;
 
 /**
- * Interface providing high level convenience methods used to build attribute 
- * objects.
+ * Provides high level convenience methods used to build attribute objects.
  * <br>
  * <p>
  * This when possible this interface should be usd to construct types as 
  * opposed to {@link org.opengis.feature.AttributeFactory}
+ * </p>
+ * <p>
+ * This interface defines based injection for the following:
+ * <ul>
+ * <li>
+ * </ul>
+ * It is understood that constructor based injection should be supported
+ * by implementations.
+ * 
  * </p>
  *
  * @author Justin Deoliveira, The Open Planning Project, jdeolive@openplans.org
  *
  */
 public interface AttributeBuilder {
-
+	//
+	// Injection
+	//
+	// Used to inject dependencies we need during construction time.
+	//
 	/**
 	 * Returns the underlying attribute factory.
 	 */
@@ -37,21 +50,96 @@ public interface AttributeBuilder {
 	 */
 	void setAttributeFactory(AttributeFactory attributeFactory);
 	
+	//
+	// State
+	//
+	// These methods capture state used in helping produce
+	// objects.
+	/**
+	 * This namespace will be used when constructing AttributeName
+	 */
+	void setNamespaceURI(String uri );
+	
+	/**
+	 * This namespace will be used when constructing AttributeName
+	 * 
+	 * @return namespace will be used when constructing AttributeName
+	 */
+	String getNamespaceURI();
+	
+	/**
+	 * The follwing bindings are supported "out of the box":
+	 * <ul>
+	 * <li>Boolean to BooleanAttribute
+	 * <li>Number to NumericAttribute
+	 * <li>
+	 * <li>
+	 * These interfaces may be found in org.opengis.feature.simple.
+	 * </ul>
+	 * @param binding
+	 * @return
+	 */
+	<B> AttributeType<B> getType( Class<B> binding );
+	
+	/**
+	 * Used to define additional class to AttributeType bindings.
+	 * <p>
+	 * When proper Namespaces constructs are defined we can do a
+	 * bulk load here. 
+	 * </p>
+	 * @param <B>
+	 * @param binding
+	 * @param type
+	 * @return
+	 */
+	<B> AttributeType<B> setType( Class<B> binding, AttributeType<B> type );
+	
 	// attribute methods
-
+	
+	/**
+	 * Produce an attribute name using namespaceURI + name.
+	 * 
+	 * @param name
+	 * @return AttributeName based on current builder state.
+	 */
+	AttributeName name( String name );
+	
+	/**
+	 * Produce a type name using namespaceURI + name.
+	 * 
+	 * @param name
+	 * @return AttributeName based on current builder state.
+	 */
+	
+	TypeName type( String name );
+	
 	/**
 	 * Creates an attribute from an object value and a name.
+     * <p>
+	 * The following are actually created:
+	 * <ul>
+	 * <li>Attribute bound to object.getClass()
+	 * <li>AttributeDescriptor baesd on name and type methods
+	 * <li>AttributeType bound against object.getClass
+	 * </ul>
 	 * 
-	 * @param name The name of the attribute.
+	 * @param name Used with name method to produce AttributeName
 	 * @param object The value of the attribute.
 	 */
 	Attribute attribute(String name, Object object);
 	
 	/**
 	 * Creates an attribute from an object value , name, and id.
+     * <p>
+	 * The following are actually created:
+	 * <ul>
+	 * <li>Attribute bound to object.getClass()
+	 * <li>AttributeDescriptor baesd on name and type methods
+	 * <li>AttributeType bound against object.getClass
+	 * </ul>
 	 * 
 	 * @param name The name of the attribute.
-	 * @param object The value of the attribute.
+	 * @param object the id of this object, must set during construction!
 	 * @param id The id of the attribute.
 	 */
 	Attribute attribute(String name, Object object, String id);
