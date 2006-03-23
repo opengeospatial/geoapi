@@ -20,24 +20,10 @@ public interface ComplexAttribute<C extends Collection<Attribute>, T extends Com
 	 * The attribute descriptor formally captures the name and multiplicity
 	 * and type associated with this attirbute.
 	 * </p>
-	 * @return Descriptor for this attribute.
+	 * @return Descriptor for this attribute, if it is contained by another ComplexAttribute
 	 */
 	public AttributeDescriptor<T> getDescriptor();
 	
-	/**
-	 * Access the type of this construct.
-	 * <p>
-	 * This value is from the AttributeDescriptor, and is in agreement with the
-	 * result of getType().
-	 * </p>
-	 */
-	public T type();
-	
-	/**
-	 * Access the type of this construct.
-	 */
-	T getType();
-
 	/**
 	 * Access to contents of this Feature.
 	 * <p>
