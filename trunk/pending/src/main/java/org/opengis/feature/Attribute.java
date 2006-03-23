@@ -19,9 +19,10 @@ public interface Attribute<B, T extends AttributeType<B>> {
 	 * Indicates the AttirbuteDescriptor for this content.
 	 * <p>
 	 * The attribute descriptor formally captures the name and multiplicity
-	 * and type associated with this attirbute.
+	 * information for this attribute. If this attribute is not contained
+	 * in a container, then the descriptor will be null.
 	 * </p>
-	 * @return Descriptor for this attribute.
+	 * @return Descriptor for this attribute, may be null.
 	 */
 	AttributeDescriptor<T> getDescriptor();
 
@@ -33,11 +34,11 @@ public interface Attribute<B, T extends AttributeType<B>> {
 	AttributeName name();
 	
 	/**
-	 * Indicate the AttributeType (from the descriptor) of this content.
+	 * Indicate the AttributeType, if we have a descriptor it will be in agreement.
 	 * 
 	 * @return AttributeType information descirbing allowable content
 	 */
-	T type();
+	T getType();
 
     /**
      * Unique, inmutable identification for domain object being modeled.
