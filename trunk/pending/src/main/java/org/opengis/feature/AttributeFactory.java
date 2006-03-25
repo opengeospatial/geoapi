@@ -18,7 +18,6 @@ import org.opengis.feature.type.FeatureCollectionType;
 import org.opengis.feature.type.FeatureType;
 import org.opengis.feature.type.GeometryType;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
-import org.opengis.spatialschema.geometry.Geometry;
 
 /**
  * Plays the role of making actual instances of types in this puzzle.
@@ -152,8 +151,9 @@ public interface AttributeFactory {
 	 */
 	FeatureCollection createFeatureCollection(AttributeDescriptor desc, String id);
 
-	FeatureCollection createFeatureCollection(List value, FeatureCollectionType type, String id);
+	FeatureCollection createFeatureCollection( FeatureCollectionType collectionType );
 	
+	FeatureCollection createFeatureCollection(List value, FeatureCollectionType type, String id);
 	/**
 	 * Createsa a new simple feature collection.
 	 * 

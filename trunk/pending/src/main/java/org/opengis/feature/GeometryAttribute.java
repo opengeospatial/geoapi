@@ -1,6 +1,5 @@
 package org.opengis.feature;
 
-import org.opengis.feature.type.AttributeType;
 import org.opengis.feature.type.GeometryType;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 import org.opengis.spatialschema.geometry.Envelope;
@@ -54,7 +53,7 @@ public interface GeometryAttribute<G, T extends GeometryType<G>> extends Attribu
 	 * needed to report CRS and Bounds constraints on data? A: It was needed
 	 * when we switched over to Attribute
 	 */
-	GeometryType<G> getType();
+	T getType();
 
 	/**
 	 * Retrieve Geometry.

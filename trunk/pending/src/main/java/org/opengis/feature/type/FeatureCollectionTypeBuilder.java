@@ -1,16 +1,16 @@
 package org.opengis.feature.type;
 
 import java.util.Collection;
+import java.util.List;
+
+import org.opengis.feature.Attribute;
 
 
-public interface FeatureCollectionTypeBuilder 
-	extends FeatureTypeBuilder<FeatureCollectionType,Collection> {
+public interface FeatureCollectionTypeBuilder<C extends Collection<Attribute>, M extends FeatureType,T extends FeatureCollectionType<C,M>>
+	extends FeatureTypeBuilder<C,T> {
 	
 	/**
-	 * Adds a feature type to the type member set of the created feature
-	 * collection type.
-	 * 
-	 * @param type
+	 * List of memeber types to be used as children for the created FeatureCollection.
 	 */
-	void addMemberType(FeatureType type);
+	List<M> getMemberTypes();	
 }

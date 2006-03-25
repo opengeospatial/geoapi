@@ -3,7 +3,6 @@ package org.opengis.feature;
 import java.util.Collection;
 import java.util.Iterator;
 
-import org.opengis.feature.type.FeatureCollectionType;
 import org.opengis.filter.Filter;
 import org.opengis.filter.sort.SortBy;
 

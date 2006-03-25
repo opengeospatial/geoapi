@@ -1,11 +1,9 @@
 package org.opengis.feature.xml;
 
-import java.util.Collection;
 import java.util.List;
 
 import org.opengis.feature.Attribute;
 import org.opengis.feature.ComplexAttribute;
-import org.opengis.feature.type.ComplexType;
 
 /**
  * Represents a ComplexAttribute in which attribtues are perscribed an order.

@@ -61,9 +61,10 @@
 		</replace>
 			
 		<replace dir="dist/src/org/opengis/feature/simple" includes="*.java">
-			<replacefilter token="SimpleFeatureType getType()" value="//SimpleFeatureType getType()"/>
-			<replacefilter token="SimpleFeatureType getSuper()" value="//SimpleFeatureType getSuper()"/>
+			<replacefilter token="SimpleFeatureType getType()" value="/*SimpleFeatureType*/ ComplexType getType()"/>
+			<replacefilter token="SimpleFeatureType getSuper()" value="/*SimpleFeatureType*/ ComplexType getSuper()"/>
 			<replacefilter token="SimpleDescriptor getDescriptor()" value="//SimpleDescriptor getDescriptor()"/>
+			<replacefilter token="SimpleFeatureCollectionType getType()" value="/*SimpleFeatureCollectionType*/ ComplexType getDescriptor()"/>
 			<replacefilter token="List&lt;AttributeType&gt; types()" value="//List&lt;AttributeType&gt; types()"/>
 						
 		</replace>

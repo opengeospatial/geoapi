@@ -1,6 +1,5 @@
 package org.opengis.feature.xml;
 
-import java.util.List;
 import java.util.Set;
 
 import org.opengis.feature.Attribute;

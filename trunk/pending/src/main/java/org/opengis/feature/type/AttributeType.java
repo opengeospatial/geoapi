@@ -7,7 +7,7 @@ import org.opengis.filter.Filter;
 /**
  * AttributeType information, immutable.
  */
-public interface AttributeType<T> {
+public interface AttributeType<B> {
 	/**
 	 * Indicates the actual name of this AttributeType.
 	 * <p>
@@ -28,14 +28,6 @@ public interface AttributeType<T> {
 	boolean isIdentified();
 	
 	/**
-	 * Access to the name of this type.
-	 * <p>
-	 * </p>
-	 * @return getName().toString();
-	 */
-	//public String name();
-
-	/**
 	 * Access to super type information.
 	 * <p>
 	 * The super type may contain additional restrictions to be considered, or a
@@ -44,7 +36,7 @@ public interface AttributeType<T> {
 	 * 
 	 * @return AttributeType of supertype
 	 */
-	public AttributeType<? super T> getSuper();
+	public AttributeType<? super B> getSuper();
 
 	/** Indicate that this AttributeType may not be used directly */
 	public boolean isAbstract();
@@ -52,7 +44,7 @@ public interface AttributeType<T> {
 	/**
 	 * Java class bound to this content type.
 	 */
-	public Class<T> getBinding();
+	public Class<B> getBinding();
 
 	/**
 	 * List of restrictions used to limit the allowable values for objects of
@@ -65,22 +57,9 @@ public interface AttributeType<T> {
 	 * @return List<Restriction> used to validate allowable values.
 	 */
 	public Set<Filter> getRestrictions();
-
-	/**
-	 * Boolean.True if value is allowed to be null.
-	 * <p>
-	 * Although this is a validation concern we are representing it here to
-	 * allow for the simplified view of the world as described by FlatFeature.
-	 * If this method gets in our way we can move it over to Descriptor.
-	 * </p>
-	 * 
-	 * @return true if value may be null, false if value my be present, or null
-	 *         indicating super should be used.
-	 */
-	public Boolean isNillable();
 	
 	/**
-	 * AttributeType identity should be based on GenericName.
+	 * AttributeType identity should be based on TypeName.
 	 * <p>
 	 * </p>
 	 * @return true iff this equals other
@@ -88,7 +67,7 @@ public interface AttributeType<T> {
 	public boolean equals(Object other);
 
 	/**
-	 * Hashcode should be based on GenericnName.
+	 * Hashcode should be based on TypeName.
 	 * 
 	 * @return getName().hashCode()
 	 */
