@@ -109,8 +109,7 @@ public interface AttributeBuilder {
 	 * 
 	 * @param name
 	 * @return AttributeName based on current builder state.
-	 */
-	
+	 */	
 	TypeName type( String name );
 	
 	/**

@@ -2,8 +2,8 @@ package org.opengis.feature.simple;
 
 import java.util.List;
 
+import org.opengis.feature.Attribute;
 import org.opengis.feature.AttributeName;
-import org.opengis.feature.type.AttributeDescriptor;
 import org.opengis.feature.type.AttributeType;
 import org.opengis.feature.type.FeatureType;
 import org.opengis.feature.xml.SequenceType;
@@ -17,7 +17,7 @@ import org.opengis.feature.xml.SequenceType;
  *  
  * @author Jody Garnett, Refractions Research
  */
-public interface SimpleFeatureType extends FeatureType, SequenceType {
+public interface SimpleFeatureType<L extends List<Attribute>> extends SequenceType<L>, FeatureType<L> {
 	
 	/**
 	 * Must be <code>null</code> for truely simple content.

@@ -1,7 +1,9 @@
 package org.opengis.feature.simple;
 
-import org.opengis.feature.type.AttributeType;
-import org.opengis.feature.type.TypeBuilder;
+import java.util.List;
+
+import org.opengis.feature.Attribute;
+import org.opengis.feature.type.FeatureTypeBuilder;
 
 /**
  * A builder for "simple" attribute types.
@@ -10,34 +12,7 @@ import org.opengis.feature.type.TypeBuilder;
  *
  * @param <B> The binding for the returned type. 
  */
-public interface SimpleTypeBuilder extends TypeBuilder {
-
-	/**
-	 * The follwing bindings are supported "out of the box":
-	 * <ul>
-	 * <li>Boolean to BooleanAttribute
-	 * <li>Number to NumericAttribute
-	 * <li>CharSequence to TextAttribute
-	 * <li>Date to TemporalAttribute
-	 * <li>
-	 * These interfaces may be found in org.opengis.feature.simple.
-	 * </ul>
-	 * @param binding
-	 * @return
-	 */
-	<B> AttributeType<B> getType( Class<B> binding );
-	
-	/**
-	 * Used to define additional class to AttributeType bindings.
-	 * <p>
-	 * When proper Namespaces constructs are defined we can do a
-	 * bulk load here. 
-	 * </p>
-	 * @param <B>
-	 * @param binding
-	 * @param type
-	 * @return
-	 */
-	<B> AttributeType<B> setType( Class<B> binding, AttributeType<B> type );
+public interface SimpleTypeBuilder<L extends List<Attribute>, T extends SimpleFeatureType<L>>
+	extends FeatureTypeBuilder<L,T> {
 	
 }

@@ -1,6 +1,5 @@
 package org.opengis.feature.simple;
 
-import java.util.Calendar;
 import java.util.Date;
 
 import org.opengis.feature.Attribute;

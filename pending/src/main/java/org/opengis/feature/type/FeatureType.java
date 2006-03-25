@@ -1,5 +1,9 @@
 package org.opengis.feature.type;
 
+import java.util.Collection;
+
+import org.opengis.feature.Attribute;
+
 
 /**
  * Describes a Feature, this is a step in the chain towards FeatureCollectionType.
@@ -10,7 +14,7 @@ package org.opengis.feature.type;
  * @author Jody Garnett
  *
  */
-public interface FeatureType extends ComplexType {
+public interface FeatureType<C extends Collection<Attribute>> extends ComplexType<C> {
 	
 	/** I am under the impression this should return Boolean.FALSE? */
 	Boolean isNillable();

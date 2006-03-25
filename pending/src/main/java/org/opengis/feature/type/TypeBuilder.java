@@ -1,13 +1,8 @@
 package org.opengis.feature.type;
 
-import java.util.Collection;
-import java.util.List;
 import java.util.Set;
 
-import org.opengis.feature.simple.SimpleFeatureCollectionType;
-import org.opengis.feature.simple.SimpleFeatureType;
 import org.opengis.filter.Filter;
-import org.opengis.referencing.crs.CoordinateReferenceSystem;
 
 /**
  * Interface providing high level convenience methods used to build type 
@@ -31,7 +26,7 @@ import org.opengis.referencing.crs.CoordinateReferenceSystem;
  * @param <B> The class the created attribute type is bound to.
  * @param <T> The class of attribute type created by the builder.
  */
-public interface TypeBuilder<T extends AttributeType,B> {
+public interface TypeBuilder<B,T extends AttributeType<B>> {
 
 	/**
 	 * Returns the underlying type factory.
@@ -43,11 +38,12 @@ public interface TypeBuilder<T extends AttributeType,B> {
 	 */
 	void setTypeFactory(TypeFactory factory);
 	
+	//
 	// State
 	//
 	// These methods capture state used in helping produce
 	// objects.
-	
+	//
 	/**
 	 * Sets the namespace to be used when constructing type and attribute names.
 	 */
@@ -67,7 +63,7 @@ public interface TypeBuilder<T extends AttributeType,B> {
 	/**
 	 * Returns the name of the type.
 	 */
-	String getName();
+	TypeName getName();
 	
 	/**
 	 * Sets the class the type is bound to.

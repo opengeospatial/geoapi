@@ -4,7 +4,6 @@ import java.util.Collection;
 import java.util.List;
 
 import org.opengis.feature.type.AttributeDescriptor;
-import org.opengis.feature.type.AttributeType;
 import org.opengis.feature.type.ComplexType;
 
 /**
