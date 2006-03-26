@@ -5,6 +5,9 @@ import java.util.Set;
 import org.opengis.feature.Attribute;
 import org.opengis.feature.ComplexAttribute;
 
+// Java 1.4 imports
+//import org.opengis.feature.type.AttributeType;
+
 /**
  * Represents a ComplexAttribute in which only one attribute is alloewd a value at a time.
  * <p>
