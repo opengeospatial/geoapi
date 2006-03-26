@@ -3,6 +3,7 @@ package org.opengis.feature;
 import java.util.Collection;
 import java.util.Iterator;
 
+import org.opengis.feature.type.FeatureType;
 import org.opengis.filter.Filter;
 import org.opengis.filter.sort.SortBy;
 
@@ -93,5 +94,21 @@ public interface FeatureCollection extends Feature, Collection<Feature> {
      * @return FeatureList in requested order
      */
     FeatureList sort( SortBy order  );
+    
+    /**
+     * Convenience method for obtaining the collection of memeber types in 
+     * which members of this collection may implement.
+     * <br>
+     * <p>
+     * Equivalent to calling the following:
+     * <pre>
+     * 	<code>
+     * 		getType().getMemberTypes()
+     * 	</code>
+     * </pre>
+     *  </p>
+     * 
+     */
+    Collection<FeatureType> memberTypes();
        
 }
