@@ -59,7 +59,8 @@ public interface AttributeDescriptor<T extends AttributeType> {
 	T getType();
 
 	/**
-	 * Indicates Name of defined attribute in a ComplexType.
+	 * Indicates Name of defined attribute in a ComplexType, this method may 
+	 * never return a null value.
 	 */
 	AttributeName getName();
 	
