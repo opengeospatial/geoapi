@@ -31,7 +31,7 @@ public interface Feature extends ComplexAttribute {
 	 * 
 	 * @param key Object used to allow String and Enum keys
 	 */	
-	public void getClientProperty( Object key );
+	public Object getClientProperty( Object key );
 	
 	/**
 	 * Feature ID, should be unique, inmutable identification for physical
