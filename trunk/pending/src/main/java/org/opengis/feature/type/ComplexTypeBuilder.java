@@ -7,6 +7,7 @@ import java.util.Set;
 import org.opengis.feature.Attribute;
 import org.opengis.filter.Filter;
 
+
 /**
  * A Type builder for creating complex types.
  * <p>
@@ -65,7 +66,9 @@ import org.opengis.filter.Filter;
  *            The class the type is bound, for ComplexType this is a collection
  *            class of Attribute.
  */
+
 public interface ComplexTypeBuilder<C extends Collection<Attribute>, T extends ComplexType<C>> {
+
 
 	//
 	// Dependences Injection

@@ -6,6 +6,7 @@
 	</target>
 		
 	<target name="transform" depends="clean">
+		<!-- copy over the files -->
 		<copy todir="dist/src">
 			<fileset dir="stable/src/main/java" includes="org/**/*.java">
 				<exclude name="**/annotation/**/*.java"/>
@@ -17,13 +18,16 @@
 				<exclude name="**/annotation/**/*.java"/>
 			</fileset>
 		</copy>
-		<replace dir="dist/src">
+		
+
+		
+		<!--replace dir="dist/src">
 			<include name="**/WebFeatureService.java"/>
 			<replacefilter token="WebServiceCapabilities" value="Capabilities"/>
-		</replace>
+		</replace-->
 		
-		
-		<replace dir="dist/src/org/opengis/feature" includes="ComplexAttribute.java">
+		<!-- type narrowing, must be handled file by file -->
+		<!--replace dir="dist/src/org/opengis/feature" includes="ComplexAttribute.java">
 			<replacefilter token="List&lt;Attribute&gt; get();" value="//List&lt;Attribute&gt; get();"/>
 				
 			<replacefilter token="&lt;Attribute&gt;" value="/*&lt;Attribute&gt;*/"/>
@@ -67,9 +71,9 @@
 			<replacefilter token="SimpleFeatureCollectionType getType()" value="/*SimpleFeatureCollectionType*/ ComplexType getDescriptor()"/>
 			<replacefilter token="List&lt;AttributeType&gt; types()" value="//List&lt;AttributeType&gt; types()"/>
 						
-		</replace>
+		</replace-->
 		
-		<replace dir="dist/src/org/opengis/feature" >
+		<!--replace dir="dist/src/org/opengis/feature" >
 			<exclude name="ComplexAttribute.java"/>
 			
 			<replacefilter token="List&lt;AttributeType&gt; get()" value="//List&lt;AttributeType&gt; get()"/>
@@ -93,223 +97,109 @@
 			
 			<replacefilter token="set(T" value="set(Object"/>
 			<replacefilter token="T get(" value="Object get("/>
-		</replace>
+		</replace-->
 
-		
+		<!-- == ANNOTATIONS == -->
 		<replace dir="dist/src">
-		      <include name="**/*.java"/>
+			<replacefilter token="@Override" value="//@Override"/>
+			<replacefilter token="@UML" value="//@UML"/>
+			<replacefilter token="@Profile" value="//@Profile"/>
+			<replacefilter token="@Extension" value="//@Extension"/>
+			<replacefilter token="@Deprecated" value="//@Deprecated"/>
+			<replacefilter token="@XmlSchema" value="//@XmlSchema"/>
+			<replacefilter token="@XmlElement" value="//@XmlElement"/>
+			<replacefilter token="import static" value="//import static"/>
+			<replacefilter token="import org.opengis.annotation" value="//import org.opengis.annotation"/>
+		</replace>
+		
+		<!-- == GENERICS ==-->
+		
+		<!-- 0. some special cases, dont file by file the good old fashioned way -->
+		<!-- org.opengis.util -->
+		<replace dir="dist/src/org/opengis/util" includes="CodeList.java">
+			<replacefilter token="CodeList&lt;E extends CodeList&lt;E&gt;&gt; implements Comparable&lt;E&gt;"
+				value="CodeList/*&lt;E extends CodeList{E}&gt;*/ implements Comparable/*&lt;E&gt;*/"/>
+			<replacefilter token="(E)" value="/*(E)*/"/>
+			<replacefilter token="final E" value="final /*E*/ Object"/>
+		</replace>
+		<replace dir="dist/src/org/opengis/util" includes="SimpleEnumerationType.java">
+		<replacefilter token="SimpleEnumerationType&lt;E extends SimpleEnumerationType&lt;E&gt;&gt; extends CodeList&lt;E&gt;"
+			value="SimpleEnumerationType/*&lt;E extends SimpleEnumerationType{E}&gt;*/ extends CodeList/*&lt;E&gt;*/"/>
+		</replace>
+		
+		<!-- org.opengis.feature* -->
+		<replace dir="dist/src/org/opengis/feature" includes="ComplexAttribute.java">
+			<replacefilter token="&lt;C extends Collection&lt;Attribute&gt;, T extends ComplexType&lt;C&gt;&gt; extends Attribute&lt;C,T&gt;"
+				value="/*&lt;C extends Collection{Attribute};, T extends ComplexType{C}&gt;*/ extends Attribute/*&lt;C,T&gt;*/"/>
+		</replace>
+		<replace dir="dist/src/org/opengis/feature" includes="GeometryAttribute.java">
+			<replacefilter token="&lt;G, T extends GeometryType&lt;G&gt;&gt; extends Attribute&lt;G,T&gt;"
+				value="/*&lt;G, T extends GeometryType{G}&gt; extends Attribute/*&lt;G,T&gt;*/"/>
+		</replace>
+		
+		<replace dir="dist/src/org/opengis/feature" includes="**/*.java">
+			<replacefilter token="T getType();" value="AttributeType getType();"/>
+			<replacefilter token="B get();" value="Object get();"/>
+			<replacefilter token="void set(B" value="void set(Object"/>
+			<replacefilter token="C get();" value="Object/*Collection{Attribute}*/ get();"/>
+			<replacefilter token="void set(C" value="void set(Object/*Collection{Attribute}*/"/>
+			<replacefilter token="G get();" value="Object/*Geometry*/ get();"/>
+			<replacefilter token="void set(G" value="void set(Object/*Geometry*/"/>	
+			<replacefilter token="void init(T" value="void init(ComplexType"/>
+			<replacefilter token="T build()" value="ComplexType build()"/>
 			
-			<!-- jd -->
-			<replacefilter token="&lt;AttributeName&gt;"/>
-			<replacefilter token="&lt;AttributeName, TypeName&gt;"/>
-			<replacefilter token="&lt;AttributeName, T&gt;"/>
-			<replacefilter token="&lt;SortOrder&gt;"/>
-			<replacefilter token="&lt;CommonPointRule&gt;"/>
-			<replacefilter token="&lt;InterpolationMethod&gt;"/>
-			<replacefilter token="&lt;SequenceType&gt;"/>
-			<replacefilter token="&lt;IndeterminateValue&gt;"/>
-			<replacefilter token="&lt;RelativePosition&gt;"/>
-			<replacefilter token="&lt;ExceptionCode&gt;"/>
-			<replacefilter token="&lt;MetadataType&gt;"/>
-			<replacefilter token="&lt;Expression&gt;"/>
-			<replacefilter token="&lt;TemporalTopologicalPrimitive&gt;"/>
-			<replacefilter token="&lt;OrdinalEra&gt;"/>
-			<replacefilter token="&lt;CalendarEra&gt;"/>
-			<replacefilter token="&lt;String,String&gt;"/>
-			<replacefilter token="&lt;RangeMeaning&gt;"/>
-			<replacefilter token="&lt;Boolean&gt;"/>
-				<replacefilter token="&lt;Calendar&gt;"/>
+			<replacefilter token="&lt;B&gt; AttributeType&lt;B&gt; getType( Class&lt;B&gt; binding"
+				value="/*&lt;B&gt;*/ AttributeType/*&lt;B&gt;*/ getType( Class/*&lt;B&gt;*/ binding"/>
 			
-			 <replacefilter token="@Override" value="//@Override" />
+			<replacefilter token="&lt;B&gt; AttributeType&lt;B&gt; setType( Class&lt;B&gt; binding"
+				value="/*&lt;B&gt;*/ AttributeType/*&lt;B&gt;*/ setType( Class/*&lt;B&gt;*/ binding"/>
+		
+			<replacefilter token="&lt;B&gt;AttributeType&lt;B&gt; getBinding( Class&lt;B&gt; binding"
+				value="/*&lt;B&gt;*/AttributeType/*&lt;B&gt;*/ getBinding( Class/*&lt;B&gt;*/ binding"/>
 			
-				<!-- jd -->
-		      <replacefilter token="&lt;? extends Coverage&gt;"/>
-		      <replacefilter token="&lt;? extends Object&gt;"/>
-		      <replacefilter token="&lt;? extends Polygon&gt;"/>
-		      <replacefilter token="&lt;? extends Primitive&gt;"/>
-		      <replacefilter token="&lt;? extends SurfacePatch&gt;"/>
-		      <replacefilter token="&lt;ApplicationSchemaInformation&gt;"/>
-		      <replacefilter token="&lt;Arc&gt;"/>
-		      <replacefilter token="&lt;ArcClosure&gt;"/>
-		      <replacefilter token="&lt;ArrowStyle&gt;"/>
-		      <replacefilter token="&lt;AuthorityURL&gt;"/>
-		      <replacefilter token="&lt;AxisDirection&gt;"/>
-		      <replacefilter token="&lt;BrowseGraphic&gt;"/>
-		      <replacefilter token="&lt;BSplineSurfaceForm&gt;"/>
-		      <replacefilter token="&lt;ByteInValuePacking&gt;"/>
-		      <replacefilter token="&lt;CatalogEntry&gt;"/>
-		      <replacefilter token="&lt;CellGeometry&gt;"/>
-		      <replacefilter token="&lt;Citation&gt;"/>
-		      <replacefilter token="&lt;CitationDate&gt;"/>
-		      <replacefilter token="&lt;Classification&gt;"/>
-		      <replacefilter token="&lt;Curve&gt;"/>
-		      <replacefilter token="&lt;CurveInterpolation&gt;"/>
-		      <replacefilter token="&lt;CurveSegment&gt;"/>
-		      <replacefilter token="&lt;ColorInterpretation&gt;"/>
-		      <replacefilter token="&lt;Complex&gt;"/>
-		      <replacefilter token="&lt;Constraints&gt;"/>
-		      <replacefilter token="&lt;ContentInformation&gt;"/>
-		      <replacefilter token="&lt;CoordinateOperation&gt;"/>
-		      <replacefilter token="&lt;CoordinateReferenceSystem&gt;"/>
-		      <replacefilter token="&lt;CoverageContentType&gt;"/>
-		      <replacefilter token="&lt;DataQuality&gt;"/>
-		      <replacefilter token="&lt;DataStore&gt;"/>
-		      <replacefilter token="&lt;DataStore,String&gt;"/>
-		      <replacefilter token="&lt;Datatype&gt;"/>
-		      <replacefilter token="&lt;DataType&gt;"/>
-		      <replacefilter token="&lt;DataURL&gt;"/>
-		      <replacefilter token="&lt;Date&gt;"/>
-		      <replacefilter token="&lt;DateType&gt;"/>
-		      <replacefilter token="&lt;DateType,Date&gt;"/>
-		      <replacefilter token="&lt;DigitalTransferOptions&gt;"/>
-		      <replacefilter token="&lt;Dimension&gt;"/>
-		      <replacefilter token="&lt;DimensionNameType&gt;"/>
-		      <replacefilter token="&lt;Distributor&gt;"/>
-		      <replacefilter token="&lt;double[]&gt;"/>
-		      <replacefilter token="&lt;Element&gt;"/>
-		      <replacefilter token="&lt;Envelope&gt;"/>
-		      <replacefilter token="&lt;EvaluationMethodType&gt;"/>
-		      <replacefilter token="&lt;ExtendedElementInformation&gt;"/>
-		      <replacefilter token="&lt;Extent&gt;"/>
-		      <replacefilter token="&lt;ExternalGraphicOrMark&gt;"/>
-		      <replacefilter token="&lt;Feature&gt;"/>
-		      <replacefilter token="&lt;FeatureAttributeDescriptor&gt;"/>
-		      <replacefilter token="&lt;FeatureType&gt;"/>
-		      <replacefilter token="&lt;FeatureTypeList&gt;"/>
-		      <replacefilter token="&lt;FeatureLayer&gt;"/>
-		      <replacefilter token="&lt;FeatureStore&gt;"/>
-		      <replacefilter token="&lt;FeatureStore,String&gt;"/>
-		      <replacefilter token="&lt;FeatureStyle&gt;"/>
-		      <replacefilter token="&lt;FeatureListURL&gt;"/>
-		      <replacefilter token="&lt;Filter&gt;"/>
-		      <replacefilter token="&lt;FillPattern&gt;"/>
-		      <replacefilter token="&lt;FillStyle&gt;"/>
-		      <replacefilter token="&lt;Font&gt;"/>
-		      <replacefilter token="&lt;Format&gt;"/>
-		      <replacefilter token="&lt;GeneralParameterDescriptor&gt;"/>
-		      <replacefilter token="&lt;GeneralParameterValue&gt;"/>
-		      <replacefilter token="&lt;GenericName&gt;"/>
-		      <replacefilter token="&lt;Geodesic&gt;"/>
-		      <replacefilter token="&lt;GeographicBoundingBox&gt;"/>
-		      <replacefilter token="&lt;GeographicDescription&gt;"/>
-		      <replacefilter token="&lt;GeographicExtent&gt;"/>
-		      <replacefilter token="&lt;GeometricObjects&gt;"/>
-		      <replacefilter token="&lt;GeometricObjectType&gt;"/>
-		      <replacefilter token="&lt;Geometry&gt;"/>
-		      <replacefilter token="&lt;Graphic&gt;"/>
-		      <replacefilter token="&lt;GraphicStyle&gt;"/>
-		      <replacefilter token="&lt;Identification&gt;"/>
-		      <replacefilter token="&lt;Identifier&gt;"/>
-		      <replacefilter token="&lt;ImagingCondition&gt;"/>
-		      <replacefilter token="&lt;InternationalString&gt;"/>
-		      <replacefilter token="&lt;Keywords&gt;"/>
-		      <replacefilter token="&lt;KeywordType&gt;"/>
-		      <replacefilter token="&lt;Knot&gt;"/>
-		      <replacefilter token="&lt;KnotType&gt;"/>
-		      <replacefilter token="&lt;Layer&gt;"/>
-		      <replacefilter token="&lt;LegendURL&gt;"/>
-		      <replacefilter token="&lt;LineCap&gt;"/>
-		      <replacefilter token="&lt;LineJoin&gt;"/>
-		      <replacefilter token="&lt;LinePattern&gt;"/>
-		      <replacefilter token="&lt;LineSegment&gt;"/>
-		      <replacefilter token="&lt;LineString&gt;"/>
-		      <replacefilter token="&lt;LineStyle&gt;"/>
-		      <replacefilter token="&lt;Locale&gt;"/>
-		      <replacefilter token="&lt;Locale,String&gt;"/>
-		      <replacefilter token="&lt;LocalName&gt;"/>
-		      <replacefilter token="&lt;MaintenanceFrequency&gt;"/>
-		      <replacefilter token="&lt;MaintenanceInformation&gt;"/>
-		      <replacefilter token="&lt;Mark&gt;"/>
-		      <replacefilter token="&lt;MediumFormat&gt;"/>
-		      <replacefilter token="&lt;MediumName&gt;"/>
-		      <replacefilter token="&lt;MetadataEntity&gt;"/>
-		      <replacefilter token="&lt;MetadataExtensionInformation&gt;"/>
-		      <replacefilter token="&lt;MetadataURL&gt;"/>
-		      <replacefilter token="&lt;Number&gt;"/>
-		      <replacefilter token="&lt;Object&gt;"/>
-		      <replacefilter token="&lt;Obligation&gt;"/>
-		      <replacefilter token="&lt;OnLineFunction&gt;"/>
-		      <replacefilter token="&lt;OnLineResource&gt;"/>
-		      <replacefilter token="&lt;Operation&gt;"/>
-		      <replacefilter token="&lt;OperationMethod&gt;"/>
-		      <replacefilter token="&lt;OrientableCurve&gt;"/>
-		      <replacefilter token="&lt;OrientableSurface&gt;"/>
-		      <replacefilter token="&lt;PaletteInterpretation&gt;"/>
-		      <replacefilter token="&lt;ParameterDescriptorGroup&gt;"/>
-		      <replacefilter token="&lt;ParameterValueGroup&gt;"/>
-		      <replacefilter token="&lt;PathType&gt;"/>
-		      <replacefilter token="&lt;PixelInCell&gt;"/>
-		      <replacefilter token="&lt;PixelOrientation&gt;"/>
-		      <replacefilter token="&lt;Point&gt;"/>
-		      <replacefilter token="&lt;PointArray&gt;"/>
-		      <replacefilter token="&lt;Polygon&gt;"/>
-		      <replacefilter token="&lt;PortrayalCatalogueReference&gt;"/>
-		      <replacefilter token="&lt;Position&gt;"/>
-		      <replacefilter token="&lt;PositionalAccuracy&gt;"/>
-		      <replacefilter token="&lt;Primitive&gt;"/>
-		      <replacefilter token="&lt;PresentationForm&gt;"/>
-		      <replacefilter token="&lt;ProcessStep&gt;"/>
-		      <replacefilter token="&lt;Progress&gt;"/>
-		      <replacefilter token="&lt;QName&gt;"/>
-		      <replacefilter token="&lt;ReferenceSystem&gt;"/>
-		      <replacefilter token="&lt;Resolution&gt;"/>
-		      <replacefilter token="&lt;Result&gt;"/>
-		      <replacefilter token="&lt;ResponsibleParty&gt;"/>
-		      <replacefilter token="&lt;Restriction&gt;"/>
-		      <replacefilter token="&lt;Ring&gt;"/>
-		      <replacefilter token="&lt;Role&gt;"/>
-		      <replacefilter token="&lt;Rule&gt;"/>
-		      <replacefilter token="&lt;SampleDimensionType&gt;"/>
-		      <replacefilter token="&lt;ScopeCode&gt;"/>
-		      <replacefilter token="&lt;SingleOperation&gt;"/>
-		      <replacefilter token="&lt;Source&gt;"/>
-		      <replacefilter token="&lt;SpatialRepresentation&gt;"/>
-		      <replacefilter token="&lt;SpatialRepresentationType&gt;"/>
-		      <replacefilter token="&lt;SplineCurveForm&gt;"/>
-		      <replacefilter token="&lt;StandardOrderProcess&gt;"/>
-		      <replacefilter token="&lt;String&gt;"/>
-		      <replacefilter token="&lt;String,Class&gt;"/>
-		      <replacefilter token="&lt;String,Object&gt;"/>
-		      <replacefilter token="&lt;String, ? extends Object&gt;"/>
-		      <replacefilter token="&lt;Style&gt;"/>
-		      <replacefilter token="&lt;Surface&gt;"/>
-		      <replacefilter token="&lt;SurfaceInterpolation&gt;"/>
-		      <replacefilter token="&lt;SurfacePatch&gt;"/>
-		      <replacefilter token="&lt;Symbol&gt;"/>
-		      <replacefilter token="&lt;TemporalExtent&gt;"/>
-		      <replacefilter token="&lt;TopicCategory&gt;"/>
-		      <replacefilter token="&lt;TopologyLevel&gt;"/>
-		      <replacefilter token="&lt;Triangle&gt;"/>
-		      <replacefilter token="&lt;Usage&gt;"/>
-		      <replacefilter token="&lt;ValueInBytePacking&gt;"/>
-		      <replacefilter token="&lt;VerticalDatumType&gt;"/>
-		      <replacefilter token="&lt;VerticalExtent&gt;"/>
-		      <replacefilter token="&lt;XAnchor&gt;"/>
-		      <replacefilter token="&lt;YAnchor&gt;"/>
-
-		      <replacefilter token=     "(E)"/>
-		      <replacefilter token=  "&lt;E&gt;"/>
-		      <replacefilter token=  "&lt;E extends CodeList&gt;"/>
-		      <replacefilter token=  "&lt;E extends SimpleEnumerationType&gt;"/>
-		      <replacefilter token="final E " value="final Object "/>
-			  <replacefilter token="Record&lt;T&gt;" value="Record"/>
-			  <replacefilter token="RecordType&lt;T&gt;" value="RecordType"/>
-			  <replacefilter token="RecordSchema&lt;T&gt;" value="RecordSchema"/>			
-			  <replacefilter token="&lt;RecordType&gt;" value="/*&lt;RecordType&gt;*/"/>
-			  <replacefilter token="&lt;TypeName, RecordType&gt;" value="/*&lt;TypeName, RecordType&gt;*/"/>
-			  <replacefilter token="&lt;AttributeName, T&lt;" value="/*&lt;AttributeName, T&lt;*/"/>
-			  <replacefilter token="&lt;TypeFlag&gt;" value="/*&lt;TypeFlag&gt;*/"/>
+			<replacefilter token="&lt;B&gt;AttributeType&lt;B&gt; addBinding( Class&lt;B&gt; binding, AttributeType&lt;B&gt; type"
+					value="/*&lt;B&gt;*/AttributeType/*&lt;B&gt;*/ addBinding( Class/*&lt;B&gt;*/ binding, AttributeType/*&lt;B&gt;*/ type"/>
+					
+			<replacefilter token="&lt;E extends T&gt;" value="/*&lt;E extends T&gt;*/"/>
 			
-		      <replacefilter token="@UML"                          value="//@UML"                          />
-		      <replacefilter token="@Profile"                      value="//@Profile"                      />
-		      <replacefilter token="@Extension"                    value="//@Extension"                    />
-		      <replacefilter token="@Deprecated"                   value="//@Deprecated"                   />
-		      <replacefilter token="@XmlSchema"                    value="//@XmlSchema"                    />
-		      <replacefilter token="@XmlElement"                   value="//@XmlElement"                   />
-		      <replacefilter token="import static"                 value="//import static"                 />
-		      <replacefilter token="import org.opengis.annotation" value="//import org.opengis.annotation" />
+			<replacefilter token="E getSuper()" value="ComplexType/*E*/ getSuper()"/>
+			<replacefilter token="setSuper(E" value="setSuper(ComplexType/*E*/"/>
 			
-
-		    </replace>
+			<replacefilter token="S get()" value="Set/*&lt;Attribute&gt;*/ get()"/>
+			<replacefilter token="L get()" value="List/*&lt;Attribute&gt;*/ get()"/>
+		</replace>
+		
+		<!-- 1. Assignment statements of the form 
+			List<Object> list = new ArrayList<Object> -->
+		<replaceregexp byline="true">
+			<fileset dir="dist/src" includes="**/*.java"/>
+			<regexp pattern="&lt;(\w+)&gt;(.*)=(.*)new(.*)&lt;(\w+)&gt;"/>
+			<substitution expression="/*&lt;\1&gt;*/\2=\3new\4/*&lt;\5&gt;*/"/>
+		</replaceregexp>
+		
+		<!-- 2. all other uses -->
+		<replaceregexp byline="true">
+			<fileset dir="dist/src" includes="**/*.java"/>
+			<regexp pattern="(\w+)&lt;([\w|,|\s|&lt;|&gt;|\?]*)&gt;"/>
+			<substitution expression="\1/*&lt;\2&gt;*/"/>
+		</replaceregexp>
+		
+		<!-- 3. fix up javadoc lines, #2 screwed with html -->
+		<replaceregexp byline="true">
+			<fileset dir="dist/src" includes="**/*.java"/>
+			<regexp pattern="(\s+)\*(.*)/\*(.*)\*/"/>
+			<substitution expression="\1*\2\3"/>
+		</replaceregexp>
+		
+		<!-- == TYPE NARROWING == -->
+		<replace dir="dist/src/org/opengis/feature/simple" includes="SimpleFeature.java">
+			<replacefilter token="SimpleFeatureType getType();"
+				value="AttributeType/*SimpleFeautreType*/ getType();"/>
+		</replace>
+		<replace dir="dist/src/org/opengis/feature/simple" includes="SimpleFeatureCollection.java">
+			<replacefilter token="SimpleFeatureCollectionType getType();"
+				value="AttributeType/*SimpleFeatureCollectionType*/ getType();"/>
+		</replace>
+		
 	</target>
 </project>

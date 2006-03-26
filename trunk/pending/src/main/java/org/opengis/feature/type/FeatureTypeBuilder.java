@@ -26,6 +26,7 @@ import org.opengis.referencing.crs.CoordinateReferenceSystem;
  * @since GeoAPI 2.1
  * @version GeoAPI 2.1
  */
+
 public interface FeatureTypeBuilder<C extends Collection<Attribute>, T extends FeatureType<C>>
 	extends ComplexTypeBuilder<C,T> {
 	
