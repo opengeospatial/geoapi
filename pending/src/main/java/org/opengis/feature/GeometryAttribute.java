@@ -1,23 +1,15 @@
 package org.opengis.feature;
 
-import org.opengis.feature.type.AttributeType;
 import org.opengis.feature.type.GeometryType;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 import org.opengis.spatialschema.geometry.Envelope;
 
 /**
- * Represent a Geometry as complex content.
- * <p>
- * List of information to make available through ComplexAttribute api:
- * <ul>
- * <li>srs
- * <li>bounds
- * </ul>
- * </p>
+ * Represent a Geometry as an attribute content.
  * <p>
  * This class is cotten candy and does not add any new ability to our modeling.
  * We are using generics to avoid making the exact instance of the Geometry known
- * at this time, allowing the use of JTS for SFSQL use.
+ * at this time, allowing the use of JTS for SFSQL use, or GeoAPI interfaces for ISO.
  * </p>
  */
 public interface GeometryAttribute<G, T extends GeometryType<G>> extends Attribute<G,T> {

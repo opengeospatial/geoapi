@@ -1,7 +1,6 @@
 package org.opengis.feature.simple;
 
 import org.opengis.feature.FeatureCollection;
-import org.opengis.feature.type.AttributeType;
 import org.opengis.feature.type.FeatureType;
 
 /**
