@@ -76,6 +76,8 @@
 		</replace>
 		
 		<replace dir="dist/src/org/opengis/feature" includes="**/*.java">
+			<replacefilter	token="//import org.opengis.feature.type.AttributeType;"
+					value="import org.opengis.feature.type.AttributeType;"/>
 			<replacefilter token="T getType();" value="AttributeType getType();"/>
 			<replacefilter token="B get();" value="Object get();"/>
 			<replacefilter token="void set(B" value="void set(Object"/>
@@ -131,10 +133,14 @@
 		
 		<!-- == TYPE NARROWING == -->
 		<replace dir="dist/src/org/opengis/feature/simple" includes="SimpleFeature.java">
-			<replacefilter token="SimpleFeatureType getType();"
-				value="AttributeType/*SimpleFeautreType*/ getType();"/>
+			<replacefilter	token="//import org.opengis.feature.type.AttributeType;"
+					value="import org.opengis.feature.type.AttributeType;"/>
+			<replacefilter	token="SimpleFeatureType getType();"
+					value="AttributeType/*SimpleFeautreType*/ getType();"/>
 		</replace>
 		<replace dir="dist/src/org/opengis/feature/simple" includes="SimpleFeatureCollection.java">
+			<replacefilter	token="//import org.opengis.feature.type.AttributeType;"
+					value="import org.opengis.feature.type.AttributeType;"/>
 			<replacefilter token="SimpleFeatureCollectionType getType();"
 				value="AttributeType/*SimpleFeatureCollectionType*/ getType();"/>
 		</replace>
