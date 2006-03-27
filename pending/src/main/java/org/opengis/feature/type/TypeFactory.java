@@ -24,7 +24,6 @@ public interface TypeFactory {
 	 * @param name The name of the type.
 	 * @param binding The class with which the type is bound to.
 	 * @param isIdentifiable Flag indicating wether type is identifiable.
-	 * @param isNillable Flag indicating wether type is nillable.
 	 * @param isAbstract Flag indicating wether type is abstract.
 	 * @param restrictions Additional restrictions to be placed on attributes 
 	 * of the type. Specified as instances of {@link Filter}.
@@ -32,8 +31,7 @@ public interface TypeFactory {
 	 */
 	AttributeType createAttributeType(
 		TypeName name, Class binding, boolean isIdentifiable, 
-		boolean isNillable, boolean isAbstract, Set restrictions, 
-		AttributeType superType
+		boolean isAbstract, Set<Filter> restrictions, AttributeType superType
 	);
 	
 	/**
@@ -42,7 +40,6 @@ public interface TypeFactory {
 	 * @param name The name of the type.
 	 * @param schema The collection of attributes that make up the complex type.
 	 * @param isIdentifiable Flag indicating wether type is identifiable.
-	 * @param isNillable Flag indicating wether type is nillable.
 	 * @param isAbstract Flag indicating wether type is abstract.
 	 * @param restrictions Additional restrictions to be placed on attributes 
 	 * of the type. Specified as instances of {@link Filter}.
@@ -50,8 +47,8 @@ public interface TypeFactory {
 	 */
 	ComplexType createComplexType(
 		TypeName name, Collection<AttributeDescriptor> schema, 
-		boolean isIdentifiable, boolean isNillable, boolean isAbstract, 
-		Set restrictions, ComplexType superType
+		boolean isIdentifiable, boolean isAbstract, 
+		Set<Filter> restrictions, ComplexType superType
 	);
 	
 	/**
@@ -60,7 +57,6 @@ public interface TypeFactory {
 	 * @param name The name of the type.
 	 * @param binding The class with which the type is bound to.
 	 * @param isIdentifiable Flag indicating wether type is identifiable.
-	 * @param isNillable Flag indicating wether type is nillable.
 	 * @param isAbstract Flag indicating wether type is abstract.
 	 * @param crs The coordinate reference system of the type.
 	 * @param restrictions Additional restrictions to be placed on attributes 
@@ -69,9 +65,9 @@ public interface TypeFactory {
 	 
 	 */
 	GeometryType createGeometryType(
-		TypeName name, Class binding, boolean isIdentifiable, 
-		boolean isNillable, boolean isAbstract, CoordinateReferenceSystem crs, 
-		Set restrictions, AttributeType superType
+		TypeName name, Class binding, CoordinateReferenceSystem crs,
+		boolean isIdentifiable, boolean isAbstract,  
+		Set<Filter> restrictions, AttributeType superType
 	);
 
 	/**
@@ -87,8 +83,8 @@ public interface TypeFactory {
 	 */
 	FeatureType createFeatureType(
 		TypeName name, Collection<AttributeDescriptor> schema,
-		GeometryType defaultGeometry, boolean isAbstract, Set restrictions, 
-		FeatureType superType
+		GeometryType defaultGeometry, boolean isAbstract, 
+		Set<Filter> restrictions, ComplexType superType
 	);
 
 	/**
@@ -104,8 +100,8 @@ public interface TypeFactory {
 	 */
 	SimpleFeatureType createSimpleFeatureType(
 		TypeName name,List<AttributeDescriptor> schema,
-		GeometryType defaultGeometry, boolean isAbstract, Set restrictions, 
-		SimpleFeatureType superType
+		GeometryType defaultGeometry, boolean isAbstract, 
+		Set<Filter> restrictions
 	);
 	
 	/**
@@ -122,10 +118,9 @@ public interface TypeFactory {
 	 * @param isAbstract Flag indicating wether type is abstract.
 	 */
 	FeatureCollectionType createFeatureCollectionType(
-		TypeName name, Set<AttributeDescriptor> membersTypes, 
+		TypeName name, Set<FeatureType> membersTypes, 
 		Collection<AttributeDescriptor> schema, GeometryType defaultGeom, 
-		Set<Filter> restrictions, FeatureType superType, 
-		boolean isAbstract
+		boolean isAbstract, Set<Filter> restrictions, ComplexType superType 
 	);
 	
 	/**
