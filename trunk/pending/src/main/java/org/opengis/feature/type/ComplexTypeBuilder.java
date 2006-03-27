@@ -90,11 +90,6 @@ public interface ComplexTypeBuilder<C extends Collection<Attribute>, T extends C
 	//
 
 	/**
-	 * Initialize the builder based on provided type.
-	 */
-	void init(T type);
-
-	/**
 	 * Create a ComplexType based on the configuration of this builder.
 	 * <p>
 	 * This method will use the provided TypeFactory to create an ComplexType
@@ -120,7 +115,7 @@ public interface ComplexTypeBuilder<C extends Collection<Attribute>, T extends C
 	 * @param binding
 	 * @return
 	 */
-	<B>AttributeType<B> getBinding( Class<B> binding );
+	<B> AttributeType<B> getBinding( Class<B> binding );
 	
 	/**
 	 * Add addutuibak class to AttributeType bindingsto be used when adding
@@ -134,10 +129,8 @@ public interface ComplexTypeBuilder<C extends Collection<Attribute>, T extends C
 	 * @param type
 	 * @return
 	 */
-	<B>AttributeType<B> addBinding( Class<B> binding, AttributeType<B> type );
+	<B> void addBinding( Class<B> binding, AttributeType<B> type);
 	
-
-
 	//
 	// State
 	//
@@ -187,7 +180,7 @@ public interface ComplexTypeBuilder<C extends Collection<Attribute>, T extends C
 	 * @param name
 	 * @return
 	 */
-	TypeName setTypeName(TypeName name);
+	void setTypeName(TypeName name);
 
 	//
 	// Type Metadata
@@ -221,6 +214,11 @@ public interface ComplexTypeBuilder<C extends Collection<Attribute>, T extends C
 	 */
 	<E extends T> E getSuper();
 
+	/**
+	 * Adds an additional restriction on the created type.
+	 */
+	void addRestriction(Filter restriction);
+	
 	/**
 	 * Sets additional restrictions on created types.
 	 * 
@@ -307,16 +305,18 @@ public interface ComplexTypeBuilder<C extends Collection<Attribute>, T extends C
 	 *            Minimum number of occurences of the attribute.
 	 * @param maxOccurs
 	 *            Maximum number of occurences of the attribute.
+	 * @param isNillable
+	 * 		True if the attribute value is allowed to be <code>null</code>, 
+	 * 		otherwise false.          
 	 */
-	void add(String name, AttributeType type, int minOccurs, int maxOccurs);
+	void add(String name, AttributeType type, int minOccurs, int maxOccurs, boolean isNillable);
 
 	/**
-	 * This is the list of attribute descriptors maintained by the type builder.
+	 * This is the collection of attribute descriptors maintained by the type builder.
 	 * <p>
 	 * To add an attribue descriptor: builder.getAttributes().add( descriptor );
 	 * </p>
 	 * 
-	 * @return
 	 */
-	List<AttributeDescriptor> getAttributes();
+	Collection<AttributeDescriptor> getAttributes();
 }
