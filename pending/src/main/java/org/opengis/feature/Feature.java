@@ -1,5 +1,9 @@
 package org.opengis.feature;
 
+import java.util.Collection;
+
+import org.opengis.feature.type.ComplexType;
+import org.opengis.feature.type.FeatureType;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 import org.opengis.spatialschema.geometry.BoundingBox;
 
@@ -17,7 +21,9 @@ import org.opengis.spatialschema.geometry.BoundingBox;
  * </p>
  * @author Jody Garnett, Refractions Research
  */
-public interface Feature extends ComplexAttribute {
+public interface Feature<C extends Collection<Attribute>, T extends FeatureType<C>> 
+	extends ComplexAttribute<C,T> {
+	
 	/**
 	 * Allows the association of process specific information.
 	 * 
