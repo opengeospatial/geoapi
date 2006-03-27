@@ -19,7 +19,9 @@ import org.opengis.feature.Attribute;
  * @param <C>
  * @param <M>
  */
-public interface FeatureCollectionType<C extends Collection<Attribute>, M extends FeatureType> extends FeatureType<C> {	
+public interface FeatureCollectionType<C extends Collection<Attribute>, M extends FeatureType> 
+	extends FeatureType<C> {
+	
 	/**
 	 * FeatureTypes allowable as members of this set.
 	 * <p>
