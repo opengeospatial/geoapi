@@ -6,6 +6,9 @@ import org.opengis.feature.Attribute;
 import org.opengis.feature.type.AttributeType;
 import org.opengis.feature.type.FeatureTypeBuilder;
 
+//Java 1.4 imports
+//import org.opengis.feature.type.ComplexType;
+
 /**
  * A builder for simple feature types. 
  * <p>
