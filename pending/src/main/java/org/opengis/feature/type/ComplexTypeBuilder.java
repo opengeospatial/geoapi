@@ -88,7 +88,14 @@ public interface ComplexTypeBuilder<C extends Collection<Attribute>, T extends C
 	//
 	// Use
 	//
-
+	/**
+	 * Initializes the state of the builder based on a previously built type.
+	 * <p>
+	 *	This method is useful when extending another type. 
+	 * </p>
+	 */
+	void init(T type);
+	
 	/**
 	 * Create a ComplexType based on the configuration of this builder.
 	 * <p>
