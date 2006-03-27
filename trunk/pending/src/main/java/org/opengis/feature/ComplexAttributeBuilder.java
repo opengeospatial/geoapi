@@ -47,6 +47,12 @@ public interface ComplexAttributeBuilder<C extends Collection<Attribute>, T exte
 	void setType(T type);
 	
 	/**
+	 * Returns the type
+	 * @return
+	 */
+	T getType();
+	
+	/**
 	 * Adds an attribute to the complex attribute to be created.
 	 * <br>
 	 * <p>
@@ -60,11 +66,39 @@ public interface ComplexAttributeBuilder<C extends Collection<Attribute>, T exte
 	 * 	The value of the attribute.
 	 * 
 	 */
-	<B> Attribute<B,AttributeType<B>> attribute(String name, B value);
+	<B> ComplexAttributeBuilder<C,T,A> add(String name, B value);
+	
+	/**
+	 * Adds an attribute to the complex attribute to be created.
+	 * <br>
+	 * <p>
+	 * This method uses the type supplied in {@link #setType(T)} in order to 
+	 * determine the attribute type.
+	 * </p>
+	 * 
+	 * @param name
+	 * 	The name of the attribute.
+	 * @param value
+	 * 	The value of the attribute.
+	 * @param id
+	 * 	The id of the attribute.
+	 */
+	<B> ComplexAttributeBuilder<C,T,A> add(String name, B value, String id);
 	
 	/**
 	 * Builds the complex attribute.
+	 * <p>
+	 * Note: This method clears all added attributes.
+	 * </p>
 	 */
 	A build();
 	
+	/**
+	 * Builds the complex attribute with a specific id.
+	 * <p>
+	 * Note: This method clears all added attributes.
+	 * </p>
+	 */
+	A build(String id);
+
 }
