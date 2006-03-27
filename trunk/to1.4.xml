@@ -59,7 +59,10 @@
 			<replacefilter token="&lt;G, T extends GeometryType&lt;G&gt;&gt; extends Attribute&lt;G,T&gt;"
 				value="/*&lt;G, T extends GeometryType{G}&gt; extends Attribute/*&lt;G,T&gt;*/"/>
 		</replace>
-		
+
+		<replace dir="dist/src/org/opengis/feature/type" includes="AttributeDescriptor.java">
+			<replacefilter token="T getType()" value="AttributeType/*T*/ getType()"/>
+		</replace>
 		<replace dir="dist/src/org/opengis/feature/type" includes="ComplexType.java">
 			<replacefilter token="&lt;C extends Collection&lt;Attribute&gt;&gt; extends AttributeType&lt;C&gt;"
 				value="/*&lt;C extends Collection{Attribute}&gt;*/ extends AttributeType/*&lt;C&gt;*/"/>
@@ -72,50 +75,93 @@
 			<replacefilter token="&lt;C extends Collection&lt;Attribute&gt;&gt; extends ComplexType&lt;C&gt;"
 				value="/*&lt;C extends Collection{Attribute}*/ extends ComplexType/*&lt;C&gt;*/"/>
 		</replace>
+		<replace dir="dist/src/org/opengis/feature/type" includes="ComplexTypeBuilder.java">
+			<replacefilter token="void init(T" value="void init(ComplexType"/>
+			<replacefilter token="T build()" value="ComplexType build()"/>
+			
+			<replacefilter token="&lt;B&gt; AttributeType&lt;B&gt; getBinding( Class&lt;B&gt; binding"
+				value="/*&lt;B&gt;*/ AttributeType/*&lt;B&gt;*/ getBinding( Class/*&lt;B&gt;*/ binding"/>
+			
+			<replacefilter token="&lt;B&gt; void addBinding( Class&lt;B&gt; binding, AttributeType&lt;B&gt; type"
+				value="/*&lt;B&gt;*/ void addBinding( Class/*&lt;B&gt;*/ binding, AttributeType/*&lt;B&gt;*/ type"/>
+			
+			<replacefilter token="&lt;E extends T&gt;" value="/*&lt;E extends T&gt;*/"/>
+			
+			<replacefilter token="E getSuper()" value="ComplexType/*E*/ getSuper()"/>
+			<replacefilter token="setSuper(E" value="setSuper(ComplexType/*E*/"/>
+		</replace>
+		<replace dir="dist/src/org/opengis/feature/type" includes="FeatureCollectionTypeBuilder.java">
+			<replacefilter token="void addMemberType(M" value="void addMemberType(FeatureType/*M*/"/>
+		</replace>
 		<replace dir="dist/src/org/opengis/feature/simple" includes="SimpleFeatureType.java">
 			<replacefilter token="&lt;L extends List&lt;Attribute&gt;&gt; extends SequenceType&lt;L&gt;, FeatureType&lt;L&gt;"
 				value="/*&lt;L extends List{Attribute}&gt;*/ extends SequenceType/*&lt;L&gt;*/, FeatureType/*&lt;L&gt;*/"/>
+		</replace>
+		<replace dir="dist/src/org/opengis/feature/simple" includes="SimpleFeatureTypeBuilder.java">
+			<replacefilter token="&lt;E extends T&gt; E getSuper();"
+				value="/*&lt;E extends T&gt;*/ComplexType/*E*/ getSuper();"/>
+		</replace>
+		<replace dir="dist/src/org/opengis/feature/simple" includes="SimpleFeatureCollectionType.java">
+			<replacefilter token="M getMemberType()" value="FeatureType getMemberType()"/>
 		</replace>
 		<replace dir="dist/src/org/opengis/feature/xml" includes="SequenceType.java">
 			<replacefilter token="&lt;L extends List&lt;Attribute&gt;&gt; extends ComplexType&lt;L&gt;"
 				value="/*&lt;L extends List{Attribute}&gt;*/ extends ComplexType/*&lt;L&gt;*/"/>
 		</replace>		
+		<replace dir="dist/src/org/opengis/feature/xml" includes="Sequence.java">
+			<replacefilter token="T getType();" value="AttributeType/*T*/ getType();"/>
+			<replacefilter token="L get()" value="List/*&lt;Attribute&gt;*/ get()"/>
+		</replace>		
 		<replace dir="dist/src/org/opengis/feature/xml" includes="ChoiceType.java">
 			<replacefilter token="&lt;S extends Set&lt;Attribute&gt;&gt; extends ComplexType&lt;S&gt;"
 				value="/*&lt;S extends Set{Attribute}&gt;*/ extends ComplexType/*&lt;S&gt;*/"/>
-		</replace>		
-		<replace dir="dist/src/org/opengis/feature" includes="**/*.java">
-			<replacefilter	token="//import org.opengis.feature.type.AttributeType;"
-					value="import org.opengis.feature.type.AttributeType;"/>
+		</replace>	
+		<replace dir="dist/src/org/opengis/feature/xml" includes="Choice.java">
+			<replacefilter token="T getType();" value="AttributeType/*T*/ getType();"/>
+			<replacefilter token="S get()" value="Set/*&lt;Attribute&gt;*/ get()"/>
+		</replace>	
+		
+		<replace dir="dist/src/org/opengis/feature/" includes="Attribute.java">
 			<replacefilter token="T getType();" value="AttributeType getType();"/>
 			<replacefilter token="B get();" value="Object get();"/>
 			<replacefilter token="void set(B" value="void set(Object"/>
+		</replace>
+		
+		<replace dir="dist/src/org/opengis/feature/" includes="ComplexAttribute.java">
 			<replacefilter token="C get();" value="Object/*Collection{Attribute}*/ get();"/>
 			<replacefilter token="void set(C" value="void set(Object/*Collection{Attribute}*/"/>
+		</replace>
+		<replace dir="dist/src/org/opengis/feature/" includes="ComplexAttributeBuilder.java">
+			<replacefilter token="void setType(T" value="void setType(ComplexType/*T*/"/>
+			<replacefilter token="T getType()" value="ComplexType/*T*/ getType()"/>
+			<replacefilter token="&lt;B&gt; ComplexAttributeBuilder&lt;C,T,A&gt; add(String name, B value"
+				value="/*&lt;B&gt;*/ ComplexAttributeBuilder/*&gt;C,T,A&lt;*/ add(String name, Object/*B*/ value"/>
+			<replacefilter token="A build(" value="ComplexAttribute build("/>
+		</replace>
+		
+		<replace dir="dist/src/org/opengis/feature/" includes="GeometryAttribute.java">
 			<replacefilter token="G get();" value="Object/*Geometry*/ get();"/>
 			<replacefilter token="void set(G" value="void set(Object/*Geometry*/"/>	
-			<replacefilter token="void init(T" value="void init(ComplexType"/>
-			<replacefilter token="T build()" value="ComplexType build()"/>
 			
-			<replacefilter token="&lt;B&gt; AttributeType&lt;B&gt; getType( Class&lt;B&gt; binding"
-				value="/*&lt;B&gt;*/ AttributeType/*&lt;B&gt;*/ getType( Class/*&lt;B&gt;*/ binding"/>
-			
-			<replacefilter token="&lt;B&gt; AttributeType&lt;B&gt; setType( Class&lt;B&gt; binding"
-				value="/*&lt;B&gt;*/ AttributeType/*&lt;B&gt;*/ setType( Class/*&lt;B&gt;*/ binding"/>
+			<replacefilter token="T getType()" value="AttributeType/*T*/ getType()"/>
+		</replace>
 		
-			<replacefilter token="&lt;B&gt;AttributeType&lt;B&gt; getBinding( Class&lt;B&gt; binding"
-				value="/*&lt;B&gt;*/AttributeType/*&lt;B&gt;*/ getBinding( Class/*&lt;B&gt;*/ binding"/>
-			
-			<replacefilter token="&lt;B&gt;AttributeType&lt;B&gt; addBinding( Class&lt;B&gt; binding, AttributeType&lt;B&gt; type"
-					value="/*&lt;B&gt;*/AttributeType/*&lt;B&gt;*/ addBinding( Class/*&lt;B&gt;*/ binding, AttributeType/*&lt;B&gt;*/ type"/>
-					
-			<replacefilter token="&lt;E extends T&gt;" value="/*&lt;E extends T&gt;*/"/>
-			
-			<replacefilter token="E getSuper()" value="ComplexType/*E*/ getSuper()"/>
-			<replacefilter token="setSuper(E" value="setSuper(ComplexType/*E*/"/>
-			
-			<replacefilter token="S get()" value="Set/*&lt;Attribute&gt;*/ get()"/>
-			<replacefilter token="L get()" value="List/*&lt;Attribute&gt;*/ get()"/>
+		
+		
+		
+
+		
+		<replace dir="dist/src/org/opengis/feature" includes="**/*.java">
+			<replacefilter	token="//import org.opengis.feature.type.AttributeType;"
+					value="import org.opengis.feature.type.AttributeType;"/>
+			<replacefilter	token="//import org.opengis.feature.type.ComplexType;"
+					value="import org.opengis.feature.type.ComplexType;"/>
+
+			<!--replacefilter token="&lt;B&gt; AttributeType&lt;B&gt; getType( Class&lt;B&gt; binding"
+				value="/*&lt;B&gt;*/ AttributeType/*&lt;B&gt;*/ getType( Class/*&lt;B&gt;*/ binding"/>
+						
+			<replacefilter token="&lt;B&gt; AttributeType&lt;B&gt; setType( Class&lt;B&gt; binding"
+				value="/*&lt;B&gt;*/ AttributeType/*&lt;B&gt;*/ setType( Class/*&lt;B&gt;*/ binding"/-->
 		</replace>
 		
 		<!-- 1. Assignment statements of the form 
