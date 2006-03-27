@@ -15,13 +15,7 @@ import org.opengis.feature.Attribute;
  *
  */
 public interface FeatureType<C extends Collection<Attribute>> extends ComplexType<C> {
-	
-	/** I am under the impression this should return Boolean.FALSE? */
-	Boolean isNillable();
-	
-	/** Must always return true */
-	boolean isIdentified();
-	
+			
 	/**
 	 * Indicates which AttributeType is to be considered the default
 	 * geometry.
