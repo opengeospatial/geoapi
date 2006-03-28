@@ -8,6 +8,7 @@ import org.opengis.feature.simple.BooleanAttribute;
 import org.opengis.feature.simple.NumericAttribute;
 import org.opengis.feature.simple.SimpleFeature;
 import org.opengis.feature.simple.SimpleFeatureCollection;
+import org.opengis.feature.simple.SimpleFeatureCollectionType;
 import org.opengis.feature.simple.SimpleFeatureType;
 import org.opengis.feature.simple.TemporalAttribute;
 import org.opengis.feature.simple.TextAttribute;
@@ -106,7 +107,7 @@ public interface AttributeFactory {
 	);
 	
 	ComplexAttribute createComplexAttribute(
-		Collection value, AttributeType type, String id	
+		Collection value, ComplexType type, String id	
 	);
 	
 	/**
@@ -122,7 +123,7 @@ public interface AttributeFactory {
 	 */
 	Feature createFeature(Collection value, AttributeDescriptor desc, String id);
 	
-	Feature createFeature(Collection value, AttributeType type, String id);
+	Feature createFeature(Collection value, FeatureType type, String id);
 	
 	/**
 	 * Creates a new simple feature.
@@ -142,6 +143,8 @@ public interface AttributeFactory {
 	/**
 	 * Createsa a new feature collection.
 	 * 
+	 * @param value The initial value of the attribute, may be null depending on 
+	 * the type of the feature.
 	 * @param desc The attribute descriptor.
 	 * @param id The id of the feature collection, may be null depending on the 
 	 * type.
@@ -149,14 +152,15 @@ public interface AttributeFactory {
 	 * @throws IllegalArgumentException If desc.getType() does not return an 
 	 * instanceof {@link FeatureCollectionType}.
 	 */
-	FeatureCollection createFeatureCollection(AttributeDescriptor desc, String id);
-
-	FeatureCollection createFeatureCollection( FeatureCollectionType collectionType );
+	FeatureCollection createFeatureCollection(Collection value, AttributeDescriptor desc, String id);
 	
-	FeatureCollection createFeatureCollection(List value, FeatureCollectionType type, String id);
+	FeatureCollection createFeatureCollection(Collection value, FeatureCollectionType type, String id);
+	
 	/**
 	 * Createsa a new simple feature collection.
 	 * 
+	 * @param value The initial value of the attribute, may be null depending on 
+	 * the type of the feature.
 	 * @param desc The attribute descriptor.
 	 * @param id The id of the feature collection, may be null depending on the 
 	 * type.
@@ -166,7 +170,7 @@ public interface AttributeFactory {
 	 */
 	SimpleFeatureCollection createSimpleFeatureCollection(AttributeDescriptor desc, String id);
 	
-	SimpleFeatureCollection createSimpleFeatureCollection(SimpleFeatureType type, String id);
+	SimpleFeatureCollection createSimpleFeatureCollection(SimpleFeatureCollectionType type, String id);
 	
 }
 
