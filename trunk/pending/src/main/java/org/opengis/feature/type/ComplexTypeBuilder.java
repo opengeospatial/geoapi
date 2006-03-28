@@ -88,6 +88,13 @@ public interface ComplexTypeBuilder<C extends Collection<Attribute>, T extends C
 	//
 	// Use
 	//
+	
+	/**
+	 * Initializes the state of the builder, leaving the builder in the same
+	 * state as after it is instantiated.
+	 */
+	void init();
+	
 	/**
 	 * Initializes the state of the builder based on a previously built type.
 	 * <p>
