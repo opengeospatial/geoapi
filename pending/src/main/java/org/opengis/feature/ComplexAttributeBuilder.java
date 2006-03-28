@@ -24,6 +24,12 @@ public interface ComplexAttributeBuilder<C extends Collection<Attribute>, T exte
 	
 	// State
 	/**
+	 * Initializes the builder to its initial state, the same state it is in 
+	 * directly after being instantiated.
+	 */
+	void init();
+	
+	/**
 	 * This namespace will be used when constructing AttributeName
 	 */
 	void setNamespaceURI(String uri );
