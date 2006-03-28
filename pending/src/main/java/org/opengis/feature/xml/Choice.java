@@ -21,7 +21,8 @@ import org.opengis.feature.ComplexAttribute;
  * user interfaces designed against the pure TypeSystem.
  * </p>
  */
-public interface Choice<S extends Set<Attribute>, T extends ChoiceType<S>> extends ComplexAttribute<S,T> {
+public interface Choice<S extends Set<Attribute>, T extends ChoiceType<S>> 
+	extends ComplexAttribute<S,T> {
 
     T getType();
 	
