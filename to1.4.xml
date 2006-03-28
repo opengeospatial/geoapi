@@ -98,8 +98,8 @@
 				value="/*&lt;L extends List{Attribute}&gt;*/ extends SequenceType/*&lt;L&gt;*/, FeatureType/*&lt;L&gt;*/"/>
 		</replace>
 		<replace dir="dist/src/org/opengis/feature/simple" includes="SimpleFeatureTypeBuilder.java">
-			<replacefilter token="&lt;E extends T&gt; E getSuper();"
-				value="/*&lt;E extends T&gt;*/ComplexType/*E*/ getSuper();"/>
+			<replacefilter token="&lt;E extends SimpleFeatureType&gt; E getSuper()"
+				value="/*&lt;E extends SimpleFeatureType&gt;*/ComplexType /*E*/ getSuper()"/>
 		</replace>
 		<replace dir="dist/src/org/opengis/feature/simple" includes="SimpleFeatureCollectionType.java">
 			<replacefilter token="M getMemberType()" value="FeatureType getMemberType()"/>
@@ -110,7 +110,7 @@
 		</replace>		
 		<replace dir="dist/src/org/opengis/feature/xml" includes="Sequence.java">
 			<replacefilter token="T getType();" value="AttributeType/*T*/ getType();"/>
-			<replacefilter token="L get()" value="List/*&lt;Attribute&gt;*/ get()"/>
+			<replacefilter token="L get()" value="Object/*List/*&lt;Attribute&gt;*/ get()"/>
 		</replace>		
 		<replace dir="dist/src/org/opengis/feature/xml" includes="ChoiceType.java">
 			<replacefilter token="&lt;S extends Set&lt;Attribute&gt;&gt; extends ComplexType&lt;S&gt;"
@@ -118,7 +118,7 @@
 		</replace>	
 		<replace dir="dist/src/org/opengis/feature/xml" includes="Choice.java">
 			<replacefilter token="T getType();" value="AttributeType/*T*/ getType();"/>
-			<replacefilter token="S get()" value="Set/*&lt;Attribute&gt;*/ get()"/>
+			<replacefilter token="S get()" value="Object/*Set/*&lt;Attribute&gt;*/ get()"/>
 		</replace>	
 		
 		<replace dir="dist/src/org/opengis/feature/" includes="Attribute.java">
