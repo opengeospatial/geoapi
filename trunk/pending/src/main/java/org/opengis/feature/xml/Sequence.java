@@ -20,7 +20,8 @@ import org.opengis.feature.ComplexAttribute;
  * </p>
  * @author Jody Garnett, Refractions Research
  */
-public interface Sequence<L extends List<Attribute>, T extends SequenceType<L>> extends ComplexAttribute<L,T> {
+public interface Sequence<L extends List<Attribute>, T extends SequenceType<L>> 
+	extends ComplexAttribute<L,T> {
     
 	/**
 	 * Indicates that this ComplexType is to maintain its attributes
