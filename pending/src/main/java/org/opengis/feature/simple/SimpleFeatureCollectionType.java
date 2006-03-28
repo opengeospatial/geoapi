@@ -29,7 +29,8 @@ import org.opengis.feature.type.FeatureType;
  * @author Justin Deoliveira, The Open Planning Project, jdeolive@openplans.org
  *
  */
-public interface SimpleFeatureCollectionType<M extends FeatureType> extends FeatureCollectionType<Collection<Attribute>,M> {
+public interface SimpleFeatureCollectionType<M extends FeatureType> 
+	extends FeatureCollectionType<Collection<Attribute>,M> {
 
 	/**
 	 * Returns the single feature of allowed members of the collection.
