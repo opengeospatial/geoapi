@@ -9,6 +9,7 @@ import org.opengis.feature.type.AttributeType;
  * @author Justin Deoliveira, The Open Planning Project, jdeolive@openplans.org
  *
  */
-public interface TextAttribute<T extends AttributeType<CharSequence>> extends Attribute<CharSequence,T> {
+public interface TextAttribute<T extends AttributeType<CharSequence>> 
+	extends Attribute<CharSequence,T> {
 
 }
