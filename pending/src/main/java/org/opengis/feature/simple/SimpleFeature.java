@@ -2,6 +2,7 @@ package org.opengis.feature.simple;
 
 import java.util.List;
 
+import org.opengis.feature.Attribute;
 import org.opengis.feature.Feature;
 import org.opengis.feature.type.AttributeType;
 
@@ -28,8 +29,9 @@ import org.opengis.feature.type.AttributeType;
  * </p>
  * @author Jody Garnett, Refractions Research
  */
-public interface SimpleFeature extends Feature {
+public interface SimpleFeature extends Feature<List<Attribute>,SimpleFeatureType> {
 	
+
 	/**
 	 * List of attributes is in the same order as that defined
 	 * by SimpleFeatureType.
