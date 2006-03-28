@@ -17,13 +17,14 @@ import org.opengis.feature.xml.SequenceType;
  *  
  * @author Jody Garnett, Refractions Research
  */
-public interface SimpleFeatureType<L extends List<Attribute>> extends SequenceType<L>, FeatureType<L> {
+public interface SimpleFeatureType extends SequenceType<List<Attribute>>, FeatureType<List<Attribute>> {
 	
 	/**
 	 * Must be <code>null</code> for truely simple content.
 	 * @return <code>null</code>, as no super types are allowed
 	 */
 ///	SimpleFeatureType getSuper();
+	
 	
 	/**
 	 * Types are returned in the perscribed index order.

@@ -9,6 +9,7 @@ import org.opengis.feature.type.AttributeType;
  * @author Justin Deoliveira, The Open Planning Project, jdeolive@openplans.org
  *
  */
-public interface NumericAttribute<N extends Number,T extends AttributeType<N>> extends Attribute<N,T> {
+public interface NumericAttribute<N extends Number,T extends AttributeType<N>> 
+	extends Attribute<N,T> {
 
 }

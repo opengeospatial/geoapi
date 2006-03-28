@@ -22,8 +22,7 @@ import org.opengis.feature.type.FeatureTypeBuilder;
  *
  * @param <B> The binding for the returned type. 
  */
-public interface SimpleFeatureTypeBuilder<L extends List<Attribute>, T extends SimpleFeatureType<L>>
-	extends FeatureTypeBuilder<L,T> {
+public interface SimpleFeatureTypeBuilder extends FeatureTypeBuilder<List<Attribute>,SimpleFeatureType> {
 	
 	/**
 	 * Imposes the following restrictions:
@@ -40,5 +39,5 @@ public interface SimpleFeatureTypeBuilder<L extends List<Attribute>, T extends S
 	/**
 	 * Returns null.
 	 */
-	<E extends T> E getSuper();
+	<E extends SimpleFeatureType> E getSuper();
 }
