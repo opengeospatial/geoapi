@@ -30,6 +30,20 @@ import org.opengis.referencing.crs.CoordinateReferenceSystem;
 public interface AttributeFactory {
 
 	/**
+	 * Creates an attribute descriptor.
+	 * 
+	 * @param type The type.
+	 * @param name The name.
+	 * @param minOccurs The minimum number of occurences of an attribute.
+	 * @param maxOccurs The maximum number of occurences of an attribute.
+	 * @param nillable Wether the attribute may have a null value.
+	 */
+	AttributeDescriptor createAttributeDescriptor(
+		AttributeType type, AttributeName name, int minOccurs, int maxOccurs, 
+		boolean nillable
+	);
+	
+	/**
 	 * Creates a new attribute.
 	 * 
 	 * @param value The value of the attribute, may be null depending on type.
