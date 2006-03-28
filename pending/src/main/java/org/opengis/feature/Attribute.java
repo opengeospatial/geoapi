@@ -34,6 +34,17 @@ public interface Attribute<B, T extends AttributeType<B>> {
 	AttributeName name();
 	
 	/**
+	 * Determines if the attribute is allowed to have a <code>null</code> value.
+	 * <p>
+	 *	For those attributes which are contained within a complex type 
+	 *	(ie. getDescriptor() != null), this method defers to the descriptor
+	 * </p>
+	 * 
+	 * @see AttributeDescriptor#isNillable()
+	 */
+	boolean nillable();
+	
+	/**
 	 * Indicate the AttributeType, if we have a descriptor it will be in agreement.
 	 * 
 	 * @return AttributeType information descirbing allowable content
