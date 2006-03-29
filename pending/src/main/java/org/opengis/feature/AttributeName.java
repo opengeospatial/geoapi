@@ -29,14 +29,6 @@ public interface AttributeName {
      * With generic name this is represented with name().toString()
      */
     public String getLocalPart();
-
-    /**
-     * Get prefix is not supported.
-     * <p>
-     * Please store process specific things as AttributeDescriptor
-     * client properties.
-     */
-    // public String getPrefix();
     
     /**
      * Fully qualified name.
