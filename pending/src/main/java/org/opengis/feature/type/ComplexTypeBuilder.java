@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Set;
 
 import org.opengis.feature.Attribute;
+import org.opengis.feature.AttributeName;
 import org.opengis.filter.Filter;
 
 
@@ -98,7 +99,7 @@ public interface ComplexTypeBuilder<C extends Collection<Attribute>, T extends C
 	/**
 	 * Initializes the state of the builder based on a previously built type.
 	 * <p>
-	 *	This method is useful when extending another type. 
+	 *	This method is useful when extending another copying another type. 
 	 * </p>
 	 */
 	void init(T type);
@@ -247,6 +248,51 @@ public interface ComplexTypeBuilder<C extends Collection<Attribute>, T extends C
 	 */
 	Set<Filter> getRestrictions();
 
+	/**
+	 * Sets the nillable property of any attributes added subsequentley.
+	 * <p>
+	 * This method will not effect any previously added attributes.
+	 * </p>
+	 * 
+	 * @see AttributeDescriptor#isNillable()
+	 */
+	void setNillable(boolean isNillable);
+	
+	/**
+	 * Returns the nillable property of attributes.
+	 */
+	boolean isNillable();
+	
+	/**
+	 * Sets the minimum occurence property of any attributes added subsequentley.
+	 * <p>
+	 * This method will not effect any previously added attributes.
+	 * </p>
+	 * 
+	 * @see AttributeDescriptor#isNillable()
+	 */
+	void setMinOccurs(int minOccurs);
+	
+	/**
+	 * Returns the minimum occurence property of attributes.
+	 */
+	int getMinOccurs();
+	
+	/**
+	 * Sets the maximum occurence property of any attributes added subsequentley.
+	 * <p>
+	 * This method will not effect any previously added attributes.
+	 * </p>
+	 * 
+	 * @see AttributeDescriptor#isNillable()
+	 */
+	void setMaxOccurs(int maxOccurs);
+	
+	/**
+	 * Returns the maximum occurence property of attributes.
+	 */
+	int getMaxOccurs();
+	
 	//
 	// Attributes
 	//
@@ -263,12 +309,64 @@ public interface ComplexTypeBuilder<C extends Collection<Attribute>, T extends C
 	 * </ul>
 	 * </p>
 	 * <p>
+	 * In the event that the builder already contains an attribute with the 
+	 * specified name, it will be overridden with the new attribute.
+	 * </p>
+	 * <p>
 	 * This method invokes: getAttributes().add( descriptor ), if you require
 	 * more control please use this technique directly with your own
 	 * AttributeDescriptor.
 	 * </p>
 	 */
 	void add(String name, Class binding);
+	
+	/**
+	 * Adds an attribute descriptor to the type being created.
+	 * <p>
+	 * The attribue descriptor is based on the following:
+	 * <ul>
+	 * <li>AttributeName based on namespaceURI + name
+	 * <li>MinOccurs 1
+	 * <li>MaxOccurs 1
+	 * <li>Nillable true
+	 * <li>AttributeType provided by getBinding( binding )
+	 * </ul>
+	 * </p>
+	 * <p>
+	 * In the event that the builder already contains an attribute with the 
+	 * specified name, it will be overridden with the new attribute.
+	 * </p>
+	 * <p>
+	 * This method invokes: getAttributes().add( descriptor ), if you require
+	 * more control please use this technique directly with your own
+	 * AttributeDescriptor.
+	 * </p>
+	 */
+	void add(String name, String namespaceURI, Class binding);
+	
+	/**
+	 * Adds an attribute descriptor to the type being created.
+	 * <p>
+	 * The attribue descriptor is based on the following:
+	 * <ul>
+	 * <li>AttributeName based on name
+	 * <li>MinOccurs 1
+	 * <li>MaxOccurs 1
+	 * <li>Nillable true
+	 * <li>AttributeType provided by getBinding( binding )
+	 * </ul>
+	 * </p>
+	 * <p>
+	 * In the event that the builder already contains an attribute with the 
+	 * specified name, it will be overridden with the new attribute.
+	 * </p>
+	 * <p>
+	 * This method invokes: getAttributes().add( descriptor ), if you require
+	 * more control please use this technique directly with your own
+	 * AttributeDescriptor.
+	 * </p>
+	 */
+	void add(AttributeName name, Class binding);
 
 	/**
 	 * Adds an attribute descriptor to the type being created.
@@ -280,6 +378,10 @@ public interface ComplexTypeBuilder<C extends Collection<Attribute>, T extends C
 	 * <li>MaxOccurs 1
 	 * <li>Nillable true
 	 * </ul>
+	 * </p>
+	 * <p>
+	 * In the event that the builder already contains an attribute with the 
+	 * specified name, it will be overridden with the new attribute.
 	 * </p>
 	 * <p>
 	 * This method invokes: getAttributes().add( descriptor ), if you require
@@ -297,13 +399,19 @@ public interface ComplexTypeBuilder<C extends Collection<Attribute>, T extends C
 	void add(String name, AttributeType type);
 
 	/**
-	 * Adds an attribute descriptor to the type.
+	 * Adds an attribute descriptor to the type being created.
 	 * <p>
 	 * The attribue descriptor is based on the following:
 	 * <ul>
-	 * <li>AttributeName based on getNamespaceURI + name
+	 * <li>AttributeName based on namespaceURI + name
+	 * <li>MinOccurs 1
+	 * <li>MaxOccurs 1
 	 * <li>Nillable true
 	 * </ul>
+	 * </p>
+	 * <p>
+	 * In the event that the builder already contains an attribute with the 
+	 * specified name, it will be overridden with the new attribute.
 	 * </p>
 	 * <p>
 	 * This method invokes: getAttributes().add( descriptor ), if you require
@@ -312,19 +420,42 @@ public interface ComplexTypeBuilder<C extends Collection<Attribute>, T extends C
 	 * </p>
 	 * 
 	 * @param name
-	 *            The name of the attribute.
+	 * 		The name of the attribute, combined with namespace for AttributeName
+	 * @param namespaceURI
+	 *		The namespace of the attribute, combined with name for AttributeName
 	 * @param type
-	 *            The type of the attribute.
-	 * @param minOccurs
-	 *            Minimum number of occurences of the attribute.
-	 * @param maxOccurs
-	 *            Maximum number of occurences of the attribute.
-	 * @param isNillable
-	 * 		True if the attribute value is allowed to be <code>null</code>, 
-	 * 		otherwise false.          
+	 * 		The type of the attribute.
 	 */
-	void add(String name, AttributeType type, int minOccurs, int maxOccurs, boolean isNillable);
-
+	void add(String name, String namespaceURI, AttributeType type);
+	
+	/**
+	 * Adds an attribute descriptor to the type being created.
+	 * <p>
+	 * The attribue descriptor is based on the following:
+	 * <ul>
+	 * <li>AttributeName based on namespaceURI + name
+	 * <li>MinOccurs 1
+	 * <li>MaxOccurs 1
+	 * <li>Nillable true
+	 * </ul>
+	 * </p>
+	 * <p>
+	 * In the event that the builder already contains an attribute with the 
+	 * specified name, it will be overridden with the new attribute.
+	 * </p>
+	 * <p>
+	 * This method invokes: getAttributes().add( descriptor ), if you require
+	 * more control please use this technique directly with your own
+	 * AttributeDescriptor.
+	 * </p>
+	 * 
+	 * @param name
+	 * 		The qualified name of the attribute.
+	 * @param type
+	 * 		The type of the attribute.
+	 */
+	void add(AttributeName name, AttributeType type);
+	
 	/**
 	 * This is the collection of attribute descriptors maintained by the type builder.
 	 * <p>
