@@ -3,6 +3,7 @@ package org.opengis.feature.type;
 import java.util.Collection;
 
 import org.opengis.feature.Attribute;
+import org.opengis.feature.AttributeName;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 
 /**
@@ -39,6 +40,23 @@ public interface FeatureTypeBuilder<C extends Collection<Attribute>, T extends F
 //	 * Returns the coordinate reference system of the type to be created.
 //	 */
 //	CoordinateReferenceSystem getCRS();
+	
+	/**
+	 * Sets the default geometry attribute of the type to be created by name.
+	 */
+	void setDefaultGeometry(String name);
+	
+	/**
+	 * Sets the default geometry attribute of the type to be created by 
+	 * qualified name.
+	 */
+	void setDefaultGeometry(String name, String namespaceURI);
+	
+	/**
+	 * Sets the default geometry attribute of the type to be created by 
+	 * qualified name.
+	 */
+	void setDefaultGeometry(AttributeName name);
 	
 	/**
 	 * Sets the default geometry attribute of the type to be created.
