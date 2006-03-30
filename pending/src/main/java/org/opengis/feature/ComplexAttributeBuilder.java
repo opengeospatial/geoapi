@@ -30,6 +30,14 @@ public interface ComplexAttributeBuilder<C extends Collection<Attribute>, T exte
 	void init();
 	
 	/**
+	 * Initializes the state of the builder based on a previously built attribute.
+	 * <p>
+	 *	This method is useful when copying another attribute.
+	 * </p>
+	 */
+	void init(A attribute);
+	
+	/**
 	 * This namespace will be used when constructing AttributeName
 	 */
 	void setNamespaceURI(String uri );
@@ -62,6 +70,10 @@ public interface ComplexAttributeBuilder<C extends Collection<Attribute>, T exte
 	 * Adds an attribute to the complex attribute to be created.
 	 * <br>
 	 * <p>
+	 * This method uses the result of {@link #getNamespaceURI()} to build a 
+	 * qualified attribute name.
+	 * </p>
+	 * <p>
 	 * This method uses the type supplied in {@link #setType(T)} in order to 
 	 * determine the attribute type.
 	 * </p>
@@ -72,7 +84,81 @@ public interface ComplexAttributeBuilder<C extends Collection<Attribute>, T exte
 	 * 	The value of the attribute.
 	 * 
 	 */
-	<B> ComplexAttributeBuilder<C,T,A> add(String name, B value);
+	ComplexAttributeBuilder<C,T,A> add(Object value, String name);
+	
+	/**
+	 * Adds an attribute to the complex attribute to be created.
+	 * <br>
+	 * <p>
+	 * This method uses the type supplied in {@link #setType(T)} in order to 
+	 * determine the attribute type.
+	 * </p>
+	 * 
+	 * @param name
+	 * 	The name of the attribute.
+	 * @param namespace
+	 * 	The namespace of the attribute.
+	 * @param value
+	 * 	The value of the attribute.
+	 * 
+	 */
+	ComplexAttributeBuilder<C,T,A> add(Object value, String name, String namespaceURI);
+	
+	/**
+	 * Adds an attribute to the complex attribute to be created.
+	 * <br>
+	 * <p>
+	 * This method uses the type supplied in {@link #setType(T)} in order to 
+	 * determine the attribute type.
+	 * </p>
+	 * 
+	 * @param name
+	 *	The name of the attribute.
+	 * @param value
+	 * 	The value of the attribute.
+	 * 
+	 */
+	ComplexAttributeBuilder<C,T,A> add(Object value, AttributeName name);
+	
+	/**
+	 * Adds an attribute to the complex attribute to be created.
+	 * <br>
+	 * <p>
+	 * The result of {@link #getNamespaceURI()} to build a qualified attribute 
+	 * name.
+	 * </p>
+	 * <p>
+	 * This method uses the type supplied in {@link #setType(T)} in order to 
+	 * determine the attribute type.
+	 * </p>
+	 * 
+	 * @param name
+	 * 	The name of the attribute.
+	 * @param value
+	 * 	The value of the attribute.
+	 * @param id
+	 * 	The id of the attribute.
+	 */
+	ComplexAttributeBuilder<C,T,A> add(String id, Object value, String name);
+	
+	/**
+	 * Adds an attribute to the complex attribute to be created.
+	 * <br>
+	 * <p>
+	 * This method uses the type supplied in {@link #setType(T)} in order to 
+	 * determine the attribute type.
+	 * </p>
+	 * 
+	 * @param name
+	 * 	The name of the attribute.
+	 * @param namespaceURI
+	 * 	The namespace of the attribute.
+	 * @param value
+	 * 	The value of the attribute.
+	 * @param id
+	 * 	The id of the attribute.
+	 */
+	ComplexAttributeBuilder<C,T,A> add(String id, Object value, String name, String namespaceURI);
 	
 	/**
 	 * Adds an attribute to the complex attribute to be created.
@@ -89,7 +175,7 @@ public interface ComplexAttributeBuilder<C extends Collection<Attribute>, T exte
 	 * @param id
 	 * 	The id of the attribute.
 	 */
-	<B> ComplexAttributeBuilder<C,T,A> add(String name, B value, String id);
+	ComplexAttributeBuilder<C,T,A> add(String id, Object value, AttributeName name);
 	
 	/**
 	 * Builds the complex attribute.
