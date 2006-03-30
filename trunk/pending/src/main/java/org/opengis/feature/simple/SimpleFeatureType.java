@@ -17,7 +17,8 @@ import org.opengis.feature.xml.SequenceType;
  *  
  * @author Jody Garnett, Refractions Research
  */
-public interface SimpleFeatureType extends SequenceType<List<Attribute>>, FeatureType<List<Attribute>> {
+public interface SimpleFeatureType extends SequenceType<List<Attribute>>, 
+	FeatureType<List<Attribute>> {
 	
 	/**
 	 * Must be <code>null</code> for truely simple content.
