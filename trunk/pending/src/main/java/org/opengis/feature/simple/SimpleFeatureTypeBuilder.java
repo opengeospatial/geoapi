@@ -25,19 +25,13 @@ import org.opengis.feature.type.FeatureTypeBuilder;
 public interface SimpleFeatureTypeBuilder extends FeatureTypeBuilder<List<Attribute>,SimpleFeatureType> {
 	
 	/**
-	 * Imposes the following restrictions:
-	 * <ul>
-	 *  <li><code>type</code> paramter to a non-complex type.
-	 *  <li><code>minOccurs</code> == 1
-	 *  <li><code>maxOccurs</code> == 1 
-	 * </ul>
-	 * @throws IllegalArgumentException In the event that any of the above 
-	 * restrictions does not hold.
+	 * Returns 1.
 	 */
-	void add(String name, AttributeType type, int minOccurs, int maxOccurs, boolean isNillable);
+	int getMinOccurs();
 	
 	/**
-	 * Returns null.
+	 * Returns 1.
 	 */
-	<E extends SimpleFeatureType> E getSuper();
+	int getMaxOccurs();
+	
 }

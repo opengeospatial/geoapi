@@ -134,9 +134,12 @@
 		<replace dir="dist/src/org/opengis/feature/" includes="ComplexAttributeBuilder.java">
 			<replacefilter token="void setType(T" value="void setType(ComplexType/*T*/"/>
 			<replacefilter token="T getType()" value="ComplexType/*T*/ getType()"/>
-			<replacefilter token="&lt;B&gt; ComplexAttributeBuilder&lt;C,T,A&gt; add(String name, B value"
-				value="/*&lt;B&gt;*/ ComplexAttributeBuilder/*&gt;C,T,A&lt;*/ add(String name, Object/*B*/ value"/>
+			<!--replacefilter token="&lt;B&gt; ComplexAttributeBuilder&lt;C,T,A&gt; add(B value"
+				value="/*&lt;B&gt;*/ ComplexAttributeBuilder/*&lt;C,T,A&gt;*/ add(Object/*B*/ value"/>
+			<replacefilter token="&lt;B&gt; ComplexAttributeBuilder&lt;C,T,A&gt; add(String id, B value"
+							value="/*&lt;B&gt;*/ ComplexAttributeBuilder/*&lt;C,T,A&gt;*/ add(String id, Object/*B*/ value"/-->
 			<replacefilter token="A build(" value="ComplexAttribute build("/>
+			<replacefilter token="void init(A" value="void init(ComplexAttribute"/>
 		</replace>
 		
 		<replace dir="dist/src/org/opengis/feature/" includes="GeometryAttribute.java">
