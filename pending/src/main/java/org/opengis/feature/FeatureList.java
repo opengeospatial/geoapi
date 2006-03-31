@@ -1,7 +1,10 @@
 package org.opengis.feature;
 
+import java.util.Collection;
 import java.util.List;
 
+import org.opengis.feature.type.FeatureCollectionType;
+import org.opengis.feature.type.FeatureType;
 import org.opengis.filter.Filter;
 
 /**
@@ -18,7 +21,8 @@ import org.opengis.filter.Filter;
  * </p>
  * @author Jody Garnett, Refractions Research, Inc.
  */
-public interface FeatureList extends FeatureCollection, List<Feature> {
+public interface FeatureList<C extends Collection<Attribute>, M extends FeatureType, T extends FeatureCollectionType<C,M>> 
+	extends FeatureCollection<C,M,T>, List<Feature> {
     
 	/**
 	 * Similar to subCollection, explicitly constructs a ordered List.
