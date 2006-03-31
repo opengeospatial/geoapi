@@ -5,6 +5,7 @@ import java.util.List;
 import org.opengis.feature.Attribute;
 import org.opengis.feature.Feature;
 import org.opengis.feature.type.AttributeType;
+import org.opengis.feature.xml.Sequence;
 
 /**
  * Feature interface customized for Simple content.
@@ -29,7 +30,8 @@ import org.opengis.feature.type.AttributeType;
  * </p>
  * @author Jody Garnett, Refractions Research
  */
-public interface SimpleFeature extends Feature<List<Attribute>,SimpleFeatureType> {
+public interface SimpleFeature extends Sequence<List<Attribute>,SimpleFeatureType>, 
+	Feature<List<Attribute>,SimpleFeatureType> {
 	
 
 	/**
