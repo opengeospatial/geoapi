@@ -3,6 +3,7 @@ package org.opengis.feature;
 import java.util.Collection;
 import java.util.Iterator;
 
+import org.opengis.feature.type.FeatureCollectionType;
 import org.opengis.feature.type.FeatureType;
 import org.opengis.filter.Filter;
 import org.opengis.filter.sort.SortBy;
@@ -16,12 +17,14 @@ import org.opengis.filter.sort.SortBy;
  * </p>
  * @author Jody Garnett
  */
-public interface FeatureCollection extends Feature, Collection<Feature> {
+public interface FeatureCollection<C extends Collection<Attribute>, M extends FeatureType, T extends FeatureCollectionType<C,M>> 
+	extends Feature<C,T>, Collection<Feature> {
 	/**
 	 * Restricted to return a FeatureCollectionType.
 	 */
 /// FeatureCollectionType getType();
 
+	
     /**
 	 * Access contents of this collection.
 	 * <p>
