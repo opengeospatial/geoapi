@@ -47,5 +47,5 @@ public interface SimpleFeatureBuilder extends FeatureBuilder<List<Attribute>,Sim
 	 * 	The value of the attribute.
 	 * 
 	 */
-	SimpleFeatureBuilder add(Object value, String id);
+	SimpleFeatureBuilder add(String id, Object value);
 }
