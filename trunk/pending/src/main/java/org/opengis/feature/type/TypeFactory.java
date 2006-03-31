@@ -101,7 +101,7 @@ public interface TypeFactory {
 	SimpleFeatureType createSimpleFeatureType(
 		TypeName name,List<AttributeDescriptor> schema,
 		GeometryType defaultGeometry, boolean isAbstract, 
-		Set<Filter> restrictions
+		Set<Filter> restrictions, SimpleFeatureType superType
 	);
 	
 	/**
