@@ -30,16 +30,8 @@ import java.util.Set;
  * @since GeoAPI 2.1
  */
 //@UML(identifier="NameSpace", specification=ISO_19103)
-public interface Namespace extends Set<Name> {
+public interface Namespace<N extends Name> extends Set<N> {
 	
-    /**
-     * Indicates whether this namespace is a "top level" namespace.
-     * 
-     * @return <code>true</code> if getName() is not contained in another namespace
-     */
-    //@UML(identifier="global", obligation=MANDATORY, specification=ISO_19103)
-    boolean isGlobal();
-
     /**
      * Represents the identifier of this namespace.
      */
@@ -49,4 +41,6 @@ public interface Namespace extends Set<Name> {
     /** Same as getName().getURI() */
     String getURI();
     
+    /** Allows lookup via just the localPart of the name */
+    N lookup( String name );
 }

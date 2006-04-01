@@ -10,10 +10,14 @@ import java.util.Set;
  *
  */
 public interface Schema extends Map<TypeName,AttributeType> {
-	public Namespace keySet();
+	/**
+	 * The keySet is actually a Namespace<TypeName> where you can also look
+	 * up TypeNames by their local part.
+	 */
+	public Namespace<TypeName> keySet();
 	
 	/** Same as keySet() */
-	public Namespace namespace(); // for java 1.4.x
+	public Namespace<TypeName> namespace(); // for java 1.4.x
 	
 	/**
 	 * Here is a helper method to retrive the "uri" for this schema.

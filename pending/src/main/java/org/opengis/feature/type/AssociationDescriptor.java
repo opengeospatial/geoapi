@@ -16,7 +16,7 @@ import org.opengis.feature.AttributeName;
  * </p>
  * @author Jody Garnett, Refractions Research
  */
-public interface AssociationDescriptor<T extends AssociationType> extends PropertyDescriptor {
+public interface AssociationDescriptor<T extends AttributeType, A extends AssociationType<T>> extends PropertyDescriptor {
 	
 	/** Captures cadinality */
 	public int getMinOccurs();
@@ -32,7 +32,7 @@ public interface AssociationDescriptor<T extends AssociationType> extends Proper
 	public boolean isNillable();
 	
 	/** Indicates the type of this attribute */
-	T getType();
+	A getType();
 
 	/**
 	 * Indicates Name of defined attribute in a ComplexType, this method may 
