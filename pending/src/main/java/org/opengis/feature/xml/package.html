@@ -1,30 +1,67 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 
 <HTML>
-  <HEAD>
-    <TITLE>package org.opengis.feature.xml</TITLE>
-  </HEAD>
-  <BODY>
-  Helper classes to model XML content as a
-  {@linkplain org.opengis.feature.Feature}, these add no additional modeling power - they
-  simply document the best practice.
-  
-  <p>
-  The XML model is similar, but more permissive, then that employed by the feature model.
-  In particular two ideas give rise to trouble: ordering constraints (all,sequence,choice)
-  and grouping (repeat series of attributes).
-  </p>
-  </p>
-  <ul>
-  <li>All - modeled as a {@linkplain org.opengis.feature.ComplexAttribute}, contains a colleciton of attributes
-  <li>Sequence - modeled as a {@linkplain org.opengis.feature.xml.Sequence}, specifies that
-      attributes are returned in a List of attribtues
-  <li>Choice - models as a {@linkplain org.opengis.feature.xml.Choice}, specifies attributes are returned in a list of length 1    
-  </ul>
-  <p>
-  To model the concept of anonymous groups of attribtues you will need to explicity model
-  this behavior with the above constructs (aka strongly type them), to preserve
-  the inline behavior for XPath you can make use of {@linkplain org.opengis.feature.type.ComplexType.isInline}
-  </BODY>
+<HEAD>
+<TITLE>package org.opengis.feature.xml</TITLE>
+</HEAD>
+<BODY>
+Helper classes to model XML content as a {@linkplain
+org.opengis.feature.Feature}, these add no additional modeling power -
+they simply document the best practice.
+
+<p>The XML model is similar, but more permissive, then that employed by
+the feature model. In particular two ideas give rise to trouble:
+ordering constraints (all,sequence,choice) and grouping (repeat series
+of attributes).</p>
+</p>
+<ul>
+	<li>All - modeled as a {@linkplain
+	org.opengis.feature.ComplexAttribute}, contains a colleciton of
+	attributes
+	<li>Sequence - modeled as a {@linkplain
+	org.opengis.feature.xml.Sequence}, specifies that attributes are
+	returned in a List of attribtues
+	<li>Choice - models as a {@linkplain org.opengis.feature.xml.Choice},
+	specifies attributes are returned in a list of length 1
+</ul>
+<p>To model the concept of anonymous groups of attribtues you will need
+to explicity model this behavior with the above constructs (aka strongly
+type them), to preserve the inline behavior for XPath you can make use
+of {@linkplain org.opengis.feature.type.ComplexType.isInline}</p>
+
+<h2>Namespace vs URI
+<h2>
+<p>This is a real knock down brawl between the XML Schema happy and the
+ISO modelers, and where most of the remaining friction in this api
+occurs. This is complicated by the fact that a lot of the same words
+are used in both places:</p>
+<ul>
+<li>xsd:schema - maps to a Schema, with lookup by Namespace, targetNamespace used for Name of Schema (and Namespace)
+<li>xsd:element - maps to an AttributeType, with TypeName based on targetNamespace + xsd:element name, this TypeName and AttributeType are placed in the Schema for safe keeping and lookup.
+<li>xsd:complexType - maps to a ComplexType, with TypeName based on targetNamespace + xsd:element, this TypeName and ComplexType are placed into the Schema
+    <ul>
+    <li>xsd:element (local) - will be defined with a TypeName based on complexType + element name, this value is not placed into any Schema, a Namespace could be associated with the Type if you want?
+    </ul>
+</ul>
+<p>So lets work out what maps to what: TODO need an example XSD here so we can be explicit
+<ul>
+	<li>Schema maps (when parsed into the type system) into:
+	<ul>
+		<li>Schema - aka lookup of types by name, implemened directly as a Map
+		of TypeName to AttributeType</li>
+		<li>Namespace - holds the TypeNames in a set for you, returned
+		directly from Schema.keySet(), has a name based on target namespace</li>
+		<li>Name based on targetNamespace
+	</ul>
+	<li>elments become ComplexType (or FeatureType) depending on mapping:
+	<ul>
+		<li>ComplexType - defined by elements in the schema with names based
+		on the schema uri + element name
+		<li>ComplexType
+	</ul>
+	</li>
+</ul>
+</p>
+</BODY>
 
 </HTML>

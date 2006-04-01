@@ -9,7 +9,16 @@ import java.util.Set;
  * @author Jody Garnett, Refractions Research, Inc.
  *
  */
-public interface Schema extends Map<Name,AttributeType>{
-	public Namespace keySet();	
-	public Namespace getNamespace(); // for java 1.4.x
+public interface Schema extends Map<TypeName,AttributeType> {
+	public Namespace keySet();
+	
+	/** Same as keySet() */
+	public Namespace namespace(); // for java 1.4.x
+	
+	/**
+	 * Here is a helper method to retrive the "uri" for this schema.
+	 * 
+	 * @return value from namespace().getName().toString().
+	 */
+	public String toURI();
 }

@@ -47,7 +47,17 @@ public interface Name {
     public String getLocalPart();
     
     /**
-     * A local-independant representation of this name.
+     * Convert this name to a complete URI.
+     * <p>
+     * This URI is constructed with the getNamespaceURI and getLocalPart().
+     * </p>
+     * @return a uri for this name
+     */
+    public String getURI();
+    
+    /**
+     * A local-independant representation of this name, see getURI().
+     * 
      */
     public String toString();
 }
