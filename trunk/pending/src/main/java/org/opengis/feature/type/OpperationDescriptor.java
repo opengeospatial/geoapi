@@ -13,7 +13,7 @@ import org.opengis.feature.AttributeName;
  * </p>
  * @author Jody Garnett, Refractions Research
  */
-public interface OpperationDescriptor<B, T extends AttributeType<B>, O extends OpperationType> extends PropertyDescriptor {
+public interface OpperationDescriptor<B, T extends AttributeType<B>, O extends OpperationType<B,T>> extends PropertyDescriptor {
 	
 	
 	/** Indicates the type of this attribute */
@@ -25,5 +25,16 @@ public interface OpperationDescriptor<B, T extends AttributeType<B>, O extends O
 	 */
 	Name getName();
 	
-	Object call( Attribute<T> value ); 
+	/**
+	 * Call the opperation with an attribtue and a set of parameters.
+	 * <p>
+	 * The state of the opperation may be used and / or updated during
+	 * the execution of the opperation.
+	 * </p>
+	 * 
+	 * @param anAttribute This is the attribute used for context when evaulating the opperation
+	 * @param params
+	 * @return the result of the opperation
+	 */
+	Object call( T anAttribute, Object params[] ); 
 }

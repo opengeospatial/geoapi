@@ -79,4 +79,6 @@ public interface PropertyType {
 	 * @return getName().hashCode()
 	 */
 	public int hashCode();
+	
+	public InternationalStirng getDescription();
 }

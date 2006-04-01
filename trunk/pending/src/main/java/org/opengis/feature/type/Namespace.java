@@ -23,16 +23,6 @@ import java.util.Set;
 /**
  * A collection of 0 or more {@linkplain Name  names), with no duplicates.
  * <p>
- * The following is handled from ISO 19103:
- * <ul>
- * <li>A Global name will return null for Namespace and NamespaceURI
- * <ul>
- * </p>
- * <p>
- * The following concessions are made to usability in the Java environment:
- * <ul>
- * <li>method compatiability with QName
- * <ul>
  * If this was not an interface only project we could make use of the javax.naming package
  * </p>
  * 
@@ -55,5 +45,8 @@ public interface Namespace extends Set<Name> {
      */
     //@UML(identifier="name", obligation=MANDATORY, specification=ISO_19103)
     Name getName();
+    
+    /** Same as getName().getURI() */
+    String getURI();
     
 }
