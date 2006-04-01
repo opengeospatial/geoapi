@@ -1,5 +1,8 @@
 package org.opengis.feature;
 
+import org.opengis.feature.type.Name;
+import org.opengis.feature.type.Namespace;
+
 /**
  * Represents a scoped attribute name.
  * <p>
@@ -13,28 +16,21 @@ package org.opengis.feature;
  * </p>
  * @author Jody Garnett, Refractions Research
  */
-public interface AttributeName {
+public interface AttributeName extends Name {
+	
 	/**
-	 * Namespace, usually a URI.
+	 * This namespace is often based on a specific domain such as "science".
 	 * <p>
-	 * With generic name this is represented as getScope().toString().
+	 * AttributeTypes are designed for resuse, so please don't assume that there
+	 * is any relationship between type containement and namespace.
 	 * </p>
-	 * @return Indication of attribute namespace
+	 * <p>
+	 * As an example:
+	 * <ul>
+	 * <li>namespace of "Conductor" is "cim" which is defined with a voltage
+	 * <li>namespace of "voltage" is "physics"
+	 * </ul>
 	 */
-    public String getNamespaceURI();
+	public Namespace getScope();
     
-    /**
-     * Local name of attribute();
-     * <p>
-     * With generic name this is represented with name().toString()
-     */
-    public String getLocalPart();
-    
-    /**
-     * Fully qualified name.
-     * <p>
-     * With generic name this is represented as getName().toString()
-     * </p>
-     */
-    public String toString();
 }

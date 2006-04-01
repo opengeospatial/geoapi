@@ -14,33 +14,12 @@ package org.opengis.feature.type;
  * </p>
  * @author Jody Garnett, Refractions Research
  */
-public interface TypeName {
+public interface TypeName extends Name {
 	/**
+	 * For a TypeName this is the Namespace of a Schema.
 	 * 
-	 * @return
+	 * @return Namespace (of schema)
 	 */
 	public Namespace getNamespace();
-	/**
-	 * Namespace, usually a URI.
-	 * <p>
-	 * With generic name this is represented as getScope().toString().
-	 * </p>
-	 * @return Indication of attribute namespace
-	 */
-    public String getNamespaceURI();
-    
-    /**
-     * Local name of attribute();
-     * <p>
-     * With generic name this is represented with name().toString()
-     */
-    public String getLocalPart();
-    
-    /**
-     * Fully qualified name.
-     * <p>
-     * With generic name this is represented as getName().toString()
-     * </p>
-     */
-    public String toString();
+
 }

@@ -3,6 +3,7 @@ package org.opengis.feature.type;
 import java.util.List;
 import java.util.Set;
 
+import org.opengis.feature.Attribute;
 import org.opengis.filter.Filter;
 
 /**
@@ -28,7 +29,7 @@ import org.opengis.filter.Filter;
  * <li>
  * </ul>
  */
-public interface OpperationType<B extends AttributeType> extends PropertyType {	
+public interface OpperationType<B, T extends AttributeType<B>> extends PropertyType {	
 
 	/**
 	 * Access to super type information.
@@ -39,7 +40,7 @@ public interface OpperationType<B extends AttributeType> extends PropertyType {
 	 * 
 	 * @return AttributeType of supertype
 	 */
-	public OpperationType<? super B> getSuper();
+	public OpperationType<? super B, ? super T> getSuper();
 	
 	/**
 	 * Indicate that this AttributeType may not be used directly.
@@ -55,12 +56,15 @@ public interface OpperationType<B extends AttributeType> extends PropertyType {
 	/**
 	 * AttributeType this opperation type can function against.
 	 */
-	public Class<B> getThis();
+	public Attribute<? super B,? super T> getThis();
 
 	/**
 	 * We need the following AttributeTypes as parameters.
-	 * 
-	 * @return
+	 * <p>
+	 * Note we do not need AttributeDescriptors here as parameters
+	 * are ordered, so name is not needed.
+	 * </p>
+	 * @return inidicates paramters required for opperation
 	 */
 	public List<AttributeType> getParameters();
 	
