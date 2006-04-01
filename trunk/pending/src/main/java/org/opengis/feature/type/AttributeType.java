@@ -1,5 +1,6 @@
 package org.opengis.feature.type;
 
+import java.util.Collection;
 import java.util.Set;
 
 import org.opengis.filter.Filter;
@@ -47,4 +48,10 @@ public interface AttributeType<B> extends PropertyType {
 	 */
 	public Set<Filter> getRestrictions();
 	
+	/**
+	 * Opperations that may be invoked against this type.
+	 * 
+	 * @return
+	 */
+	Collection<OpperationDescriptor> getOpperations();	
 }

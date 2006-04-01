@@ -3,6 +3,7 @@ package org.opengis.feature.type;
 import java.util.Set;
 
 import org.opengis.filter.Filter;
+import org.opengis.util.InternationalString;
 
 /**
  * PropertyType information, captured as AttributeType, AssociationType and OpperationType.
@@ -80,5 +81,12 @@ public interface PropertyType {
 	 */
 	public int hashCode();
 	
-	public InternationalStirng getDescription();
+	/**
+	 * A description for the type is allowed.
+	 * <p>
+	 * InternationalString is used to allow for translations.
+	 * </p>
+	 * @return description of this type
+	 */
+	public InternationalString getDescription();
 }

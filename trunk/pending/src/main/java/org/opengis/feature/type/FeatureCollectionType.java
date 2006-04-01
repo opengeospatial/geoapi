@@ -13,6 +13,11 @@ import org.opengis.feature.Attribute;
  * <li>C is the Collection of Attributes for the FeatureCollection itself, these usually are derrived from the members (ie. "bounds")
  * <li>M is the Set of member FeatureTypes, in many cases this will be of size() == 1
  * </ul>
+ * <p>
+ * Features are actually associated with the collection, according to the guidelines for
+ * AssociationType. You can use this information to describe in what manner the contents
+ * are related.
+ * </p>
  * 
  * @author Jody
  *
@@ -33,5 +38,5 @@ public interface FeatureCollectionType<C extends Collection<Attribute>, M extend
 	 * constraints placed on memberFeatures for xPath.
 	 * </p>
 	 */
-	Set<M> getMemberTypes();
+	Set<AssociationDescriptor<M,? extends AssociationType<M>>> getMembers();
 }

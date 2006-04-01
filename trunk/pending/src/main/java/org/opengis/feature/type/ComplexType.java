@@ -5,7 +5,17 @@ import java.util.Collection;
 import org.opengis.feature.Attribute;
 
 /**
- * The type
+ * Represents an AttirbuteType with internal strucutre composed of properties.
+ * <p>
+ * There are two kinds of properties that may be used to compose a complex type:
+ * <ul>
+ * <li>attributes - describes data contained in this complex type 
+ * <li>associations - captures relationships with other types
+ * </ul>
+ * When choosing between attribute and associations - just answer this question. Is the
+ * value removed when you delete? If it is removed the value is an attribute, if it 
+ * is an attribute, if the value would still be around you should model it with an association.
+ * </p>
  * @author Jody Garnett
  *
  */
@@ -73,7 +83,7 @@ public interface ComplexType<C extends Collection<Attribute>> extends AttributeT
 	Class<C> getBinding();
 
 	/**
-	 * Super is restricted to other ComplexType.
+	 * Super is restricted to other ComplexTypes.
 	 * <p>
 	 * Note: If generics get in the way of reuse in this manner
 	 * we will have to get rid of them. I cannot thing of a real
@@ -107,6 +117,17 @@ public interface ComplexType<C extends Collection<Attribute>> extends AttributeT
 ///	ComplexType getSuper();
 	
 	/**
+	 * Returns the strucutral properties (Attributes and Associations) used to define
+	 * this type.
+	 * <p>
+	 * We are not including the OpperationDescriptors in this list as they do not
+	 * vary on a instance by instance basis. The difference between a ComplexType
+	 * and a AttributeType is this notion of inner strucutre.
+	 * </p>
+	 */
+	Collection<PropertyDescriptor> getStructuralProperties();
+	
+	/**
 	 * Describes allowable content, indicating containment.
 	 * <p>
 	 * A collection of AttributeDescriptors (name and AttributeType) is used.
@@ -123,6 +144,11 @@ public interface ComplexType<C extends Collection<Attribute>> extends AttributeT
 	 * our data model.
 	 * </p>
 	 */
-	Collection<AttributeDescriptor> getAttributes();
+	Collection<AttributeDescriptor> getAttributes(); // TODO: rename to attributes
+	
+	/**
+	 * Allowable associations, indicating non containment relationships.
+	 */
+	Collection<AssociationDescriptor> associations();
 	
 }
