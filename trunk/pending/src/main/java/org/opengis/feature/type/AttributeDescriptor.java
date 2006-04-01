@@ -10,16 +10,13 @@ import org.opengis.feature.AttributeName;
  * If in the future the nature of the containment relationship needs further
  * definition you may expected additional information to be gathered here.
  * </p>
- * Proposal:<br>
- * It is tempting to allow additional "tempoary" metadata to be associated
- * with attributes descriptors in order to facilitiate procesing services.
- * These services traditionally setting up "shadow" structures such
- * as a HashMap. Allowing non persisted bread crumbs is considered
- * preferable.
- * <ul>
- * <li>putClientProperty(String key, Object value );
- * <li>getClientProperty(String key);
- * </ul>
+ * <h2>Note on Use of Client Properties</h2>
+ * </p>
+ * Client properties are used to allow additional "tempoary" metadata to
+ * be associated with attributes descriptors in order to facilitiate
+ * procesing services. These services traditionally setting up "shadow"
+ * structures such as a HashMap. Allowing non persisted bread crumbs is
+ * considered preferable.
  * </p>
  * @author Jody Garnett, Refractions Research
  */

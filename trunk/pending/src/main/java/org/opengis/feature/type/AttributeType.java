@@ -7,18 +7,7 @@ import org.opengis.filter.Filter;
 /**
  * AttributeType information, immutable.
  */
-public interface AttributeType<B> {
-	/**
-	 * Indicates the actual name of this AttributeType.
-	 * <p>
-	 * AttributeType is used, and becomes important when working with supertypes and complex content.
-	 * </p>
-	 * <p>
-	 * Follows Java beans naming conventions indicating this is part of our data model.
-	 * </p>
-	 * @return Name containing both the namespace and name for this type
-	 */
-	public TypeName getName();
+public interface AttributeType<B> extends PropertyType {
 	
 	/**
 	 * True if this type is usable as a target of a reference.
@@ -58,18 +47,4 @@ public interface AttributeType<B> {
 	 */
 	public Set<Filter> getRestrictions();
 	
-	/**
-	 * AttributeType identity should be based on TypeName.
-	 * <p>
-	 * </p>
-	 * @return true iff this equals other
-	 */
-	public boolean equals(Object other);
-
-	/**
-	 * Hashcode should be based on TypeName.
-	 * 
-	 * @return getName().hashCode()
-	 */
-	public int hashCode();
 }

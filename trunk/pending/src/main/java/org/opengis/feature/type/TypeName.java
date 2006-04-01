@@ -1,6 +1,5 @@
 package org.opengis.feature.type;
 
-import org.opengis.feature.AttributeName;
 
 /**
  * Represents a scoped type name.
@@ -16,6 +15,11 @@ import org.opengis.feature.AttributeName;
  * @author Jody Garnett, Refractions Research
  */
 public interface TypeName {
+	/**
+	 * 
+	 * @return
+	 */
+	public Namespace getNamespace();
 	/**
 	 * Namespace, usually a URI.
 	 * <p>
