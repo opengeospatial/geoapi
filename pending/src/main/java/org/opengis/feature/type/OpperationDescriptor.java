@@ -1,5 +1,8 @@
 package org.opengis.feature.type;
 
+import java.lang.reflect.InvocationTargetException;
+
+import org.opengis.feature.Attribute;
 import org.opengis.feature.AttributeName;
 
 /**
@@ -15,7 +18,6 @@ import org.opengis.feature.AttributeName;
  */
 public interface OpperationDescriptor<B, T extends AttributeType<B>, O extends OpperationType<B,T>> extends PropertyDescriptor {
 	
-	
 	/** Indicates the type of this attribute */
 	O getType();
 
@@ -26,15 +28,34 @@ public interface OpperationDescriptor<B, T extends AttributeType<B>, O extends O
 	Name getName();
 	
 	/**
+	 * Indicates if invoke may be called.
+	 * <p>
+	 * In order allow for faithful modeling of a software system we will need
+	 * construct models dynamically at runtime, possibly when no implementation
+	 * has been discouvered for the required opperations. (for example we may be
+	 * modeling a schema where the opperations are only available when the information
+	 * is executed on a remote web processing service. We still need to track the
+	 * opperations, even those we cannot execute them in the current environment.
+	 * </p>
+	 * @return true if invoke may be called.
+	 */
+	boolean isImplemented();
+	
+	/**
 	 * Call the opperation with an attribtue and a set of parameters.
 	 * <p>
 	 * The state of the opperation may be used and / or updated during
 	 * the execution of the opperation.
 	 * </p>
+	 * <p>
+	 * Please check to ensure that isImplemented returns <code>true</code> before
+	 * calling invoke.
 	 * 
 	 * @param anAttribute This is the attribute used for context when evaulating the opperation
 	 * @param params
 	 * @return the result of the opperation
+	 * @throws InvoationTargetException if an error occured while processing
 	 */
-	Object call( T anAttribute, Object params[] ); 
+	Object invoke( Attribute<B,T> anAttribute, Object params[] ) throws InvocationTargetException;
+	
 }

@@ -51,7 +51,8 @@ import java.util.Set;
  * @since GeoAPI 2.1
  */
 //@UML(identifier="NameSpace", specification=ISO_19103)
-public interface Namespace<N extends Name> extends Set<N> {
+public interface Namespace<N extends Name>
+	extends Set<N> {
 	    
 	/** Indicates the URI of this namespace. */
     String getURI();
