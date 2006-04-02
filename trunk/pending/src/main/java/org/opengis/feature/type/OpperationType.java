@@ -28,8 +28,16 @@ import org.opengis.filter.Filter;
  *     state or result
  * <li>
  * </ul>
+ * <p>
+ * Notes:
+ * <ul>
+ * <li>TODO: We will need to set up a system for advertising expected exceptions
+ * <li>if the type isAbstract then the call method is not implemented
+ * </ul>
+ * 
+ * @author Jody Garnett, Refractions Research, Inc.
  */
-public interface OpperationType<B, T extends AttributeType<B>> extends PropertyType {	
+ public interface OpperationType<B, T extends AttributeType<B>> extends PropertyType {	
 
 	/**
 	 * Access to super type information.
@@ -40,24 +48,31 @@ public interface OpperationType<B, T extends AttributeType<B>> extends PropertyT
 	 * 
 	 * @return AttributeType of supertype
 	 */
-	public OpperationType<? super B, ? super T> getSuper();
+	 OpperationType<? super B, ? super T> getSuper();
 	
 	/**
-	 * Indicate that this AttributeType may not be used directly.
+	 * Indicate that this OpperationType may not be used directly.
 	 * <p>
 	 * This indicates that a subclass will need to actually define the opperation
 	 * meaning here. As an example a graph system could have an Edge that would
-	 * have "related" opperation returning that was abstract, and a sub type would
-	 * define "related" based on touches, or contains.
+	 * have "related" opperation returning that was abstract, and a sub type road
+	 * would define "related" based on touches, or contains or a common vertex.
 	 * </p>
 	 */
-	public boolean isAbstract();
+	 boolean isAbstract();
 	
 	/**
 	 * AttributeType this opperation type can function against.
 	 */
-	public T getThis();
+	 T getTarget();
 
+	 /**
+	  * Inidcates the expected result type, may be <code>null</code>.
+	  * 
+	  * @return expected result type, may be <code>null</code>
+	  */
+	 AttributeType getResult();
+	 
 	/**
 	 * We need the following AttributeTypes as parameters.
 	 * <p>
@@ -66,13 +81,12 @@ public interface OpperationType<B, T extends AttributeType<B>> extends PropertyT
 	 * </p>
 	 * @return inidicates paramters required for opperation
 	 */
-	public List<AttributeType> getParameters();
+	List<AttributeType> getParameters();
 	
 	/**
 	 * List of restrictions used to limit the allowable returned value.
 	 * 
 	 * @return List<Filter> used to validate allowable values.
 	 */
-	public Set<Filter> getRestrictions();
-	
+	 Set<Filter> getRestrictions();
 }

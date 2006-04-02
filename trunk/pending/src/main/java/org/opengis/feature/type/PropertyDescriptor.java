@@ -52,5 +52,5 @@ public interface PropertyDescriptor {
 	 * The name is actually defined by the sub type, this is derrived quantity.
 	 * </p>
 	 */
-	Name name();	
+	Name name();
 }

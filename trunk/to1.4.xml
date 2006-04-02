@@ -19,7 +19,6 @@
 			</fileset>
 		</copy>
 		
-
 		<!-- == ANNOTATIONS == -->
 		<replace dir="dist/src">
 			<replacefilter token="@Override" value="//@Override"/>
@@ -49,17 +48,29 @@
 				value="SimpleEnumerationType/*&lt;E extends SimpleEnumerationType{E}&gt;*/ extends CodeList/*&lt;E&gt;*/"/>
 		</replace>
 		
-		<!-- org.opengis.feature* -->
-		<replace dir="dist/src/org/opengis/feature" includes="ComplexAttribute.java">
+		<!-- org.opengis.feature.type (naming) -->
+		<replace dir="dist/src/org/opengis/feature/type" includes="Namespace.java">
 			<replacefilter
-				token="&lt;C extends Collection&lt;Attribute&gt;, T extends ComplexType&lt;C&gt;&gt; extends Attribute&lt;C,T&gt;"
-				value="/*&lt;C extends Collection{Attribute}, T extends ComplexType{C}&gt;*/ extends Attribute/*&lt;C,T&gt;*/"/>
+				token="N lookup("
+				value="Name lookup("/>
 		</replace>
-		<replace dir="dist/src/org/opengis/feature" includes="GeometryAttribute.java">
-			<replacefilter token="&lt;G, T extends GeometryType&lt;G&gt;&gt; extends Attribute&lt;G,T&gt;"
-				value="/*&lt;G, T extends GeometryType{G}&gt; extends Attribute/*&lt;G,T&gt;*/"/>
+		<replace dir="dist/src/org/opengis/feature/type" includes="Schema.java">
+			<replacefilter
+				token="Namespace&lt;TypeName&gt; keySet"
+				value="Set/*Namespace&lt;TypeName&gt;*/ keySet"/>
 		</replace>
-
+				
+		<!-- org.opengis.feature.type (model) -->
+		<replace dir="dist/src/org/opengis/feature/type" includes="PropertyType.java">
+			<!-- PropertyType is abstract and we are knocking away methods that are type narrowed later -->
+			<replacefilter token="PropertyType getSuper()" value="//PropertyType getSuper()"/>
+		</replace>
+		<replace dir="dist/src/org/opengis/feature/type" includes="OpperationType.java">
+			<replacefilter token="T getTarget()" value="AttributeType getTargetr()"/>
+		</replace>
+		<replace dir="dist/src/org/opengis/feature/type" includes="AssociationDescriptor.java">
+			<replacefilter token="A getType()" value="AssociationType/*T*/ getType()"/>
+		</replace>
 		<replace dir="dist/src/org/opengis/feature/type" includes="AttributeDescriptor.java">
 			<replacefilter token="T getType()" value="AttributeType/*T*/ getType()"/>
 		</replace>
@@ -93,6 +104,8 @@
 		<replace dir="dist/src/org/opengis/feature/type" includes="FeatureCollectionTypeBuilder.java">
 			<replacefilter token="void addMemberType(M" value="void addMemberType(FeatureType/*M*/"/>
 		</replace>
+
+		<!-- org.opengis.feature.simple -->			
 		<replace dir="dist/src/org/opengis/feature/simple" includes="SimpleFeatureType.java">
 			<replacefilter token="&lt;L extends List&lt;Attribute&gt;&gt; extends SequenceType&lt;L&gt;, FeatureType&lt;L&gt;"
 				value="/*&lt;L extends List{Attribute}&gt;*/ extends SequenceType/*&lt;L&gt;*/, FeatureType/*&lt;L&gt;*/"/>
@@ -104,6 +117,8 @@
 		<replace dir="dist/src/org/opengis/feature/simple" includes="SimpleFeatureCollectionType.java">
 			<replacefilter token="M getMemberType()" value="FeatureType getMemberType()"/>
 		</replace>
+
+		<!-- org.opengis.feature.xml -->		
 		<replace dir="dist/src/org/opengis/feature/xml" includes="SequenceType.java">
 			<replacefilter token="&lt;L extends List&lt;Attribute&gt;&gt; extends ComplexType&lt;L&gt;"
 				value="/*&lt;L extends List{Attribute}&gt;*/ extends ComplexType/*&lt;L&gt;*/"/>
@@ -121,6 +136,16 @@
 			<replacefilter token="S get()" value="Object/*Set/*&lt;Attribute&gt;*/ get()"/>
 		</replace>	
 		
+		<!-- org.opengis.feature -->		
+		<replace dir="dist/src/org/opengis/feature" includes="ComplexAttribute.java">
+			<replacefilter
+				token="&lt;C extends Collection&lt;Attribute&gt;, T extends ComplexType&lt;C&gt;&gt; extends Attribute&lt;C,T&gt;"
+				value="/*&lt;C extends Collection{Attribute}, T extends ComplexType{C}&gt;*/ extends Attribute/*&lt;C,T&gt;*/"/>
+		</replace>
+		<replace dir="dist/src/org/opengis/feature" includes="GeometryAttribute.java">
+			<replacefilter token="&lt;G, T extends GeometryType&lt;G&gt;&gt; extends Attribute&lt;G,T&gt;"
+				value="/*&lt;G, T extends GeometryType{G}&gt; extends Attribute/*&lt;G,T&gt;*/"/>
+		</replace>
 		<replace dir="dist/src/org/opengis/feature/" includes="Attribute.java">
 			<replacefilter token="T getType();" value="AttributeType getType();"/>
 			<replacefilter token="B get();" value="Object get();"/>
@@ -149,17 +174,16 @@
 			<replacefilter token="T getType()" value="AttributeType/*T*/ getType()"/>
 		</replace>
 		
-		
-		
-		
-
-		
 		<replace dir="dist/src/org/opengis/feature" includes="**/*.java">
 			<replacefilter	token="//import org.opengis.feature.type.AttributeType;"
 					value="import org.opengis.feature.type.AttributeType;"/>
+
 			<replacefilter	token="//import org.opengis.feature.type.ComplexType;"
 					value="import org.opengis.feature.type.ComplexType;"/>
-
+			
+			<replacefilter	token="//import java.util."
+					value="import java.util."/>
+			
 			<!--replacefilter token="&lt;B&gt; AttributeType&lt;B&gt; getType( Class&lt;B&gt; binding"
 				value="/*&lt;B&gt;*/ AttributeType/*&lt;B&gt;*/ getType( Class/*&lt;B&gt;*/ binding"/>
 						
