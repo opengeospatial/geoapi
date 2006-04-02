@@ -84,7 +84,7 @@ public interface TypeFactory {
 	 */
 	FeatureType createFeatureType(
 		TypeName name, Collection<AttributeDescriptor> schema,
-		GeometryType defaultGeometry, CoordinateReferenceSystem crs,
+		AttributeDescriptor<GeometryType> defaultGeometry, CoordinateReferenceSystem crs,
 		boolean isAbstract, Set<Filter> restrictions, ComplexType superType
 	);
 
@@ -102,7 +102,7 @@ public interface TypeFactory {
 	 */
 	SimpleFeatureType createSimpleFeatureType(
 		TypeName name,List<AttributeDescriptor> schema,
-		GeometryType defaultGeometry, CoordinateReferenceSystem crs, 
+		AttributeDescriptor<GeometryType> defaultGeometry, CoordinateReferenceSystem crs, 
 		boolean isAbstract, Set<Filter> restrictions, SimpleFeatureType superType
 	);
 	
@@ -122,7 +122,8 @@ public interface TypeFactory {
 	 */
 	FeatureCollectionType createFeatureCollectionType(
 		TypeName name, Set<FeatureType> membersTypes, 
-		Collection<AttributeDescriptor> schema, GeometryType defaultGeom, 
+		Collection<AttributeDescriptor> schema, 
+		AttributeDescriptor<GeometryType> defaultGeom, 
 		CoordinateReferenceSystem crs, boolean isAbstract, 
 		Set<Filter> restrictions, ComplexType superType 
 	);
