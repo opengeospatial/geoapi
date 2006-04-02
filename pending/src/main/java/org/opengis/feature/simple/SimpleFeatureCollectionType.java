@@ -4,6 +4,8 @@ import java.util.Collection;
 import java.util.Set;
 
 import org.opengis.feature.Attribute;
+import org.opengis.feature.type.AssociationDescriptor;
+import org.opengis.feature.type.AssociationType;
 import org.opengis.feature.type.AttributeType;
 import org.opengis.feature.type.FeatureCollectionType;
 import org.opengis.feature.type.FeatureType;
@@ -17,7 +19,6 @@ import org.opengis.feature.type.FeatureType;
  * 	<li>The type of the collection is empty 
  *  <li>The set of member types contains a single feature type 
  *  <li>The type is not abstract
- *  <li>The type cannot inherit from a parent type.
  *  /ul>
  * <br>
  * With code the amounts to the following assertions being held:
@@ -36,18 +37,16 @@ public interface SimpleFeatureCollectionType<M extends FeatureType>
 	 * Returns the single feature of allowed members of the collection.
 	 */
 	M getMemberType();
+	
 	/**
 	 * Returned set contains a single member.
 	 */
-	Set<M> getMemberTypes();
+	Set<AssociationDescriptor<M, ? extends AssociationType<M>>> getMembers();
+	//Set<M> getMemberTypes();
 	
 	/**
 	 * Returns false.
 	 */
 	boolean isAbstract();
 	
-	/**
-	 * Returns null.
-	 */
-	AttributeType getSuper();
 }
