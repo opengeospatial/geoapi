@@ -56,7 +56,7 @@ public interface OpperationType<B, T extends AttributeType<B>> extends PropertyT
 	/**
 	 * AttributeType this opperation type can function against.
 	 */
-	public Attribute<? super B,? super T> getThis();
+	public T getThis();
 
 	/**
 	 * We need the following AttributeTypes as parameters.

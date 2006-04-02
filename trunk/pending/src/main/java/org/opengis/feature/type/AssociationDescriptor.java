@@ -24,13 +24,6 @@ public interface AssociationDescriptor<T extends AttributeType, A extends Associ
 	/** Captures cadinality */
 	public int getMaxOccurs();
 	
-	/**
-	 * True attribute is allowed to be null.
-	 * 
-	 * @return true if value may be null, false if value my be present
-	 */
-	public boolean isNillable();
-	
 	/** Indicates the type of this attribute */
 	A getType();
 
