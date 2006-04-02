@@ -78,6 +78,8 @@ public interface ScopedName extends GenericName {
      * Returns a name which contains every element of the
      * {@linkplain #getParsedNames parsed names list} except for the last element.
      *
+     * @see java.io.File#getPath
+     *
      * @since GeoAPI 2.1
      */
     @Extension
@@ -85,6 +87,8 @@ public interface ScopedName extends GenericName {
 
     /**
      * Returns the last element in the sequence of {@linkplain #getParsedNames parsed names}.
+     *
+     * @see java.io.File#getName
      *
      * @since GeoAPI 2.1
      */
