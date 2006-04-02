@@ -76,6 +76,7 @@ public interface TypeFactory {
 	 * @param name The name of the type.
 	 * @param schema The collection of attributes that make up the type. 
 	 * @param defaultGeometry The default geometry of the type.
+	 * @param crs The coordinate reference system of the type.
 	 * @param isAbstract Flag indicating wether type is abstract.
 	 * @param restrictions Additional restrictions to be placed on attributes 
 	 * of the type. Specified as instances of {@link Filter}.
@@ -83,8 +84,8 @@ public interface TypeFactory {
 	 */
 	FeatureType createFeatureType(
 		TypeName name, Collection<AttributeDescriptor> schema,
-		GeometryType defaultGeometry, boolean isAbstract, 
-		Set<Filter> restrictions, ComplexType superType
+		GeometryType defaultGeometry, CoordinateReferenceSystem crs,
+		boolean isAbstract, Set<Filter> restrictions, ComplexType superType
 	);
 
 	/**
@@ -93,6 +94,7 @@ public interface TypeFactory {
 	 * @param name The name of the type.
 	 * @param schema The ordered list of attribute types making up this type.
 	 * @param defaultGeometry The default geometry type.
+	 * @param crs The coordinate reference system of the type.
 	 * @param isAbstract Flag indicating wether type is abstract.
 	 * @param restrictions Additional restrictions to be placed on attributes 
 	 * of the type. Specified as instances of {@link Filter}.
@@ -100,8 +102,8 @@ public interface TypeFactory {
 	 */
 	SimpleFeatureType createSimpleFeatureType(
 		TypeName name,List<AttributeDescriptor> schema,
-		GeometryType defaultGeometry, boolean isAbstract, 
-		Set<Filter> restrictions, SimpleFeatureType superType
+		GeometryType defaultGeometry, CoordinateReferenceSystem crs, 
+		boolean isAbstract, Set<Filter> restrictions, SimpleFeatureType superType
 	);
 	
 	/**
@@ -112,6 +114,7 @@ public interface TypeFactory {
 	 * collection may implement.
 	 * @param schema The collection of attribute types making up this type.
 	 * @param defaultGeom The default geometry attribute of the type.
+	 * @param crs The coordinate reference system of the type.
 	 * @param restrictions Additional restrictions to be placed on attributes 
 	 * of the type. Specified as instances of {@link Filter}.
 	 * @param superType The parent type, may be null.
@@ -120,7 +123,8 @@ public interface TypeFactory {
 	FeatureCollectionType createFeatureCollectionType(
 		TypeName name, Set<FeatureType> membersTypes, 
 		Collection<AttributeDescriptor> schema, GeometryType defaultGeom, 
-		boolean isAbstract, Set<Filter> restrictions, ComplexType superType 
+		CoordinateReferenceSystem crs, boolean isAbstract, 
+		Set<Filter> restrictions, ComplexType superType 
 	);
 	
 	/**
@@ -128,11 +132,13 @@ public interface TypeFactory {
 	 * 
 	 * @param name The name of the type.
 	 * @param memberType The type of members of a collection of this type.
+	 * @param crs The coordinate reference system of the type.
 	 * @param restrictions Additional restrictions to be placed on attributes 
 	 * of the type. Specified as instances of {@link Filter}.
 	 */
 	SimpleFeatureCollectionType createSimpleFeatureCollectionType(
-		TypeName name, FeatureType memberType, Set<Filter> restrictions	
+		TypeName name, FeatureType memberType, CoordinateReferenceSystem crs, 
+		Set<Filter> restrictions	
 	);
 
 }

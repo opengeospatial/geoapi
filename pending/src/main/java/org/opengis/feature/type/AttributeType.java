@@ -26,15 +26,15 @@ public interface AttributeType<B> extends PropertyType {
 	 * 
 	 * @return AttributeType of supertype
 	 */
-	public AttributeType<? super B> getSuper();
+	AttributeType<? super B> getSuper();
 
 	/** Indicate that this AttributeType may not be used directly */
-	public boolean isAbstract();
+	boolean isAbstract();
 
 	/**
 	 * Java class bound to this content type.
 	 */
-	public Class<B> getBinding();
+	Class<B> getBinding();
 
 	/**
 	 * List of restrictions used to limit the allowable values for objects of
@@ -46,7 +46,7 @@ public interface AttributeType<B> extends PropertyType {
 	 * </p>
 	 * @return List<Restriction> used to validate allowable values.
 	 */
-	public Set<Filter> getRestrictions();
+	Set<Filter> getRestrictions();
 	
 	/**
 	 * Opperations that may be invoked against this type.
