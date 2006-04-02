@@ -76,7 +76,11 @@ public interface Record {
      * to <code>{@linkplain #getAttributes()}.{@linkplain Map#put put}(name,value)</code>.
      * Remind that {@code name} keys are constrained to {@linkplain RecordType#getMembers
      * record type members} only.
+     *
+     * @param  name  The name of the attribute to modify.
+     * @param  value The new value for the attribute.
+     * @throws UnsupportedOperationException if this record is not modifiable.
      */
     @Extension
-    void set(MemberName name, Object value);
+    void set(MemberName name, Object value) throws UnsupportedOperationException;
 }

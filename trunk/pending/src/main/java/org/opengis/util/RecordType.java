@@ -69,8 +69,6 @@ public interface RecordType {
      * The {@linkplain NameSpace name space} associated with a {@code RecordType} contains only
      * members of this {@code RecordType}. There is no potential for conflict with subpackages.
      *
-     * @todo Is this method defined in ISO or is it an extension?
-     *
      * @see Class#getFields()
      */
     @Extension
