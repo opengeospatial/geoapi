@@ -35,7 +35,7 @@ public interface PropertyType {
 	 * </p>
 	 * @return Name containing both the namespace and name for this type
 	 */
-	public TypeName getName();
+	TypeName getName();
 	
 	/**
 	 * Access to super type information.
@@ -46,10 +46,10 @@ public interface PropertyType {
 	 * 
 	 * @return PropertyType of supertype
 	 */
-	public PropertyType getSuper();
+	PropertyType getSuper();
 
 	/** Indicate that this PropertyType may not be used directly and must be subtyped */
-	public boolean isAbstract();
+	boolean isAbstract();
 	
 	/**
 	 * List of restrictions used to limit the allowable values for objects of
@@ -64,7 +64,7 @@ public interface PropertyType {
 	 * </p>
 	 * @return List<Restriction> used to validate allowable values.
 	 */
-	public Set<Filter> getRestrictions();
+	Set<Filter> getRestrictions();
 	
 	/**
 	 * PropertyType identity should be based on TypeName.
@@ -72,14 +72,14 @@ public interface PropertyType {
 	 * </p>
 	 * @return true iff this equals other
 	 */
-	public boolean equals(Object other);
+	boolean equals(Object other);
 
 	/**
 	 * Hashcode should be based on TypeName.
 	 * 
 	 * @return getName().hashCode()
 	 */
-	public int hashCode();
+	int hashCode();
 	
 	/**
 	 * A description for the type is allowed.
@@ -88,5 +88,5 @@ public interface PropertyType {
 	 * </p>
 	 * @return description of this type
 	 */
-	public InternationalString getDescription();
+	InternationalString getDescription();
 }

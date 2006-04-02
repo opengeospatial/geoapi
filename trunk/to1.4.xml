@@ -57,7 +57,7 @@
 		<replace dir="dist/src/org/opengis/feature/type" includes="Schema.java">
 			<replacefilter
 				token="Namespace&lt;TypeName&gt; keySet"
-				value="Set/*Namespace&lt;TypeName&gt;*/ keySet"/>
+				value="Set/*Namespace*/ keySet"/>
 		</replace>
 				
 		<!-- org.opengis.feature.type (model) -->
@@ -67,6 +67,9 @@
 		</replace>
 		<replace dir="dist/src/org/opengis/feature/type" includes="OpperationType.java">
 			<replacefilter token="T getTarget()" value="AttributeType getTargetr()"/>
+		</replace>
+		<replace dir="dist/src/org/opengis/feature/type" includes="OpperationDescriptor.java">
+			<replacefilter token="O getType()" value="OpperationType/*T*/ getType()"/>
 		</replace>
 		<replace dir="dist/src/org/opengis/feature/type" includes="AssociationDescriptor.java">
 			<replacefilter token="A getType()" value="AssociationType/*T*/ getType()"/>
