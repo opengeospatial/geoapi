@@ -31,15 +31,15 @@ import org.opengis.referencing.crs.CoordinateReferenceSystem;
 public interface FeatureTypeBuilder<C extends Collection<Attribute>, T extends FeatureType<C>>
 	extends ComplexTypeBuilder<C,T> {
 	
-//	/**
-//	 * Sets the coordinate reference system of the type to be created.
-//	 */
-//	void setCRS(CoordinateReferenceSystem crs);
-//	
-//	/**
-//	 * Returns the coordinate reference system of the type to be created.
-//	 */
-//	CoordinateReferenceSystem getCRS();
+	/**
+	 * Sets the coordinate reference system of the type to be created.
+	 */
+	void setCRS(CoordinateReferenceSystem crs);
+	
+	/**
+	 * Returns the coordinate reference system of the type to be created.
+	 */
+	CoordinateReferenceSystem getCRS();
 	
 	/**
 	 * Sets the default geometry attribute of the type to be created by name.
