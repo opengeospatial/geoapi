@@ -10,12 +10,12 @@ import org.opengis.referencing.crs.CoordinateReferenceSystem;
 public interface GeometryType<T> extends AttributeType<T> {
 	
 	/** Explicitly bound to Geometry */
-	public Class<T> getBinding();
+	Class<T> getBinding();
 	
 	/**
 	 * If there is a superclass it better also be a Geometry
 	 */
-	public AttributeType<? super T> getSuper();
+	AttributeType<? super T> getSuper();
 		
 	/**
 	 * The coordinate reference system of the Geometries
@@ -26,6 +26,6 @@ public interface GeometryType<T> extends AttributeType<T> {
 	 * CRS).
 	 * </p>
 	 */
-	public CoordinateReferenceSystem getCRS();
+	CoordinateReferenceSystem getCRS();
 	
 }
