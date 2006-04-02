@@ -22,7 +22,8 @@ public interface FeatureType<C extends Collection<Attribute>> extends ComplexTyp
 	 * geometry.
 	 * @return AttributeType used to locate the default Geometry
 	 */
-	GeometryType getDefaultGeometry();
+	AttributeDescriptor<GeometryType> getDefaultGeometry();
+	//GeometryType getDefaultGeometry();
 	
 	/**
 	 * The coordinate reference system of the Geometries
