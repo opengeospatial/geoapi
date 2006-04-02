@@ -6,6 +6,7 @@ import org.opengis.feature.Attribute;
 import org.opengis.feature.AttributeName;
 import org.opengis.feature.type.AttributeType;
 import org.opengis.feature.type.FeatureType;
+import org.opengis.feature.type.GeometryType;
 import org.opengis.feature.xml.SequenceType;
 
 /**
@@ -32,6 +33,12 @@ public interface SimpleFeatureType extends SequenceType<List<Attribute>>,
 	 * @return Types in prescribed order
 	 */
 	List<AttributeType> types();
+	
+	/**
+	 * @return the default geometry type contained by the feature type, or 
+	 * null if none such exists.
+	 */
+	GeometryType defaultGeometry();
 	
 	/** List of named attributes in perscribed order */
 ///	List<AttributeDescriptor> getAttributes();
