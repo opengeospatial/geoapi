@@ -5,9 +5,12 @@ import java.util.Set;
 
 /**
  * Allows for type discouverability and reuse.
- * 
+ * <p>
+ * We have not specified how schemas may be looked up, we recommend a JNDI solution
+ * based on the namespace uri used here. If needed you may also consider 
+ * a Map<Name,Schema> in your application.
+ * </p>
  * @author Jody Garnett, Refractions Research, Inc.
- *
  */
 public interface Schema extends Map<TypeName,AttributeType> {
 	/**
@@ -16,13 +19,13 @@ public interface Schema extends Map<TypeName,AttributeType> {
 	 */
 	public Namespace<TypeName> keySet();
 	
-	/** Same as keySet() */
+	/** Dervived quantity from keySet() */
 	public Namespace<TypeName> namespace(); // for java 1.4.x
 	
 	/**
 	 * Here is a helper method to retrive the "uri" for this schema.
 	 * 
-	 * @return value from namespace().getName().toString().
+	 * @return value from namespace().getURI().
 	 */
 	public String toURI();
 }

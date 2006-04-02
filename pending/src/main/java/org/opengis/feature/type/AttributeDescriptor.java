@@ -25,7 +25,7 @@ public interface AttributeDescriptor<T extends AttributeType> extends PropertyDe
 	/**
 	 * True attribute is allowed to be null.
 	 * 
-	 * @return true if value may be null, false if value my be present
+	 * @return true if value may be null, false if value must be present
 	 */
 	public boolean isNillable();
 	
