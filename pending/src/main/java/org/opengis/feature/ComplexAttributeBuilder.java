@@ -4,6 +4,7 @@ import java.util.Collection;
 
 import org.opengis.feature.type.AttributeType;
 import org.opengis.feature.type.ComplexType;
+import org.opengis.feature.type.Name;
 
 public interface ComplexAttributeBuilder<C extends Collection<Attribute>, T extends ComplexType<C>, A extends ComplexAttribute<C,T>> {
 
@@ -118,7 +119,7 @@ public interface ComplexAttributeBuilder<C extends Collection<Attribute>, T exte
 	 * 	The value of the attribute.
 	 * 
 	 */
-	ComplexAttributeBuilder<C,T,A> add(Object value, AttributeName name);
+	ComplexAttributeBuilder<C,T,A> add(Object value, Name name);
 	
 	/**
 	 * Adds an attribute to the complex attribute to be created.
@@ -175,7 +176,7 @@ public interface ComplexAttributeBuilder<C extends Collection<Attribute>, T exte
 	 * @param id
 	 * 	The id of the attribute.
 	 */
-	ComplexAttributeBuilder<C,T,A> add(String id, Object value, AttributeName name);
+	ComplexAttributeBuilder<C,T,A> add(String id, Object value, Name name);
 	
 	/**
 	 * Builds the complex attribute.

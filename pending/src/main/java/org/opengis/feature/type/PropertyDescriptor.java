@@ -1,7 +1,5 @@
 package org.opengis.feature.type;
 
-import org.opengis.feature.AttributeName;
-
 /**
  * Describes how a ComplexType may be composed of types,
  * associations and opperations.

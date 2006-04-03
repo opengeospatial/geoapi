@@ -1,11 +1,9 @@
 package org.opengis.feature.type;
 
 import java.util.Collection;
-import java.util.List;
 import java.util.Set;
 
 import org.opengis.feature.Attribute;
-import org.opengis.feature.AttributeName;
 import org.opengis.filter.Filter;
 
 
@@ -366,7 +364,7 @@ public interface ComplexTypeBuilder<C extends Collection<Attribute>, T extends C
 	 * AttributeDescriptor.
 	 * </p>
 	 */
-	void add(AttributeName name, Class binding);
+	void add(Name name, Class binding);
 
 	/**
 	 * Adds an attribute descriptor to the type being created.
@@ -454,7 +452,7 @@ public interface ComplexTypeBuilder<C extends Collection<Attribute>, T extends C
 	 * @param type
 	 * 		The type of the attribute.
 	 */
-	void add(AttributeName name, AttributeType type);
+	void add(Name name, AttributeType type);
 	
 	/**
 	 * This is the collection of attribute descriptors maintained by the type builder.

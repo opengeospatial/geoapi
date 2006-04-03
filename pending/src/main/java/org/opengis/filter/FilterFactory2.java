@@ -10,7 +10,7 @@
  *************************************************************************************************/
 package org.opengis.filter;
 
-import org.opengis.feature.AttributeName;
+import org.opengis.feature.type.Name;
 import org.opengis.filter.expression.Expression;
 import org.opengis.filter.expression.PropertyName;
 import org.opengis.filter.spatial.BBOX;
@@ -47,7 +47,7 @@ public interface FilterFactory2 extends FilterFactory {
 ////////////////////////////////////////////////////////////////////////////////
 
     /** Retrieves the value of a {@linkplain org.opengis.feature.Feature feature}'s property. */
-    PropertyName property(AttributeName name);
+    PropertyName property(Name name);
     
 ////////////////////////////////////////////////////////////////////////////////
 //

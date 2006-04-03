@@ -18,6 +18,7 @@ import org.opengis.feature.type.ComplexType;
 import org.opengis.feature.type.FeatureCollectionType;
 import org.opengis.feature.type.FeatureType;
 import org.opengis.feature.type.GeometryType;
+import org.opengis.feature.type.Name;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 
 /**
@@ -39,7 +40,7 @@ public interface AttributeFactory {
 	 * @param nillable Wether the attribute may have a null value.
 	 */
 	AttributeDescriptor createAttributeDescriptor(
-		AttributeType type, AttributeName name, int minOccurs, int maxOccurs, 
+		AttributeType type, Name name, int minOccurs, int maxOccurs, 
 		boolean nillable
 	);
 	

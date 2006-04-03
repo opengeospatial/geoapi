@@ -2,6 +2,7 @@ package org.opengis.feature;
 
 import org.opengis.feature.type.AttributeDescriptor;
 import org.opengis.feature.type.AttributeType;
+import org.opengis.feature.type.Name;
 
 
 /**
@@ -31,7 +32,7 @@ public interface Attribute<B, T extends AttributeType<B>> {
 	 * 
 	 * @return name of this attrubute.
 	 */
-	AttributeName name();
+	Name name();
 	
 	/**
 	 * Determines if the attribute is allowed to have a <code>null</code> value.

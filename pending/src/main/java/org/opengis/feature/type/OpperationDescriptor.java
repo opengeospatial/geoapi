@@ -3,7 +3,6 @@ package org.opengis.feature.type;
 import java.lang.reflect.InvocationTargetException;
 
 import org.opengis.feature.Attribute;
-import org.opengis.feature.AttributeName;
 
 /**
  * Indicating an implementation of a opperation type for a specific type.

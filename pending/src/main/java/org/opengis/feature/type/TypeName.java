@@ -15,11 +15,6 @@ package org.opengis.feature.type;
  * @author Jody Garnett, Refractions Research
  */
 public interface TypeName extends Name {
-	/**
-	 * For a TypeName this is the Namespace of a Schema.
-	 * 
-	 * @return Namespace (of schema)
-	 */
-	public Namespace getNamespace();
+	
 
 }
