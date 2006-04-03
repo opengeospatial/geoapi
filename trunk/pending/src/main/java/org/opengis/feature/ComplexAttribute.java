@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.opengis.feature.type.AttributeDescriptor;
 import org.opengis.feature.type.ComplexType;
+import org.opengis.feature.type.Name;
 
 /**
  * A complex Atribtue holds a collection of attribute values in a single group.
@@ -61,6 +62,6 @@ public interface ComplexAttribute<C extends Collection<Attribute>, T extends Com
 	 * 
 	 * @return List of attributes matching name, empty list if no match.
 	 */
-	List<Attribute> get(AttributeName name);
+	List<Attribute> get(Name name);
 	
 }

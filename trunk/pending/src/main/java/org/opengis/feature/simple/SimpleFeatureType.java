@@ -3,10 +3,10 @@ package org.opengis.feature.simple;
 import java.util.List;
 
 import org.opengis.feature.Attribute;
-import org.opengis.feature.AttributeName;
 import org.opengis.feature.type.AttributeType;
 import org.opengis.feature.type.FeatureType;
 import org.opengis.feature.type.GeometryType;
+import org.opengis.feature.type.Name;
 import org.opengis.feature.xml.SequenceType;
 
 /**
@@ -46,7 +46,7 @@ public interface SimpleFeatureType extends SequenceType<List<Attribute>>,
 	/**
 	 * Retrive attributeType by qualified name
 	 */
-	AttributeType get( AttributeName name );
+	AttributeType get( Name name );
 	
 	/**
 	 * Retrive attributeType by name.

@@ -1,6 +1,5 @@
 package org.opengis.feature.type;
 
-import org.opengis.feature.AttributeName;
 
 /**
  * Indicating a named association.
@@ -31,5 +30,5 @@ public interface AssociationDescriptor<T extends AttributeType, A extends Associ
 	 * Indicates Name of defined attribute in a ComplexType, this method may 
 	 * never return a null value.
 	 */
-	AttributeName getName();	
+	Name getName();	
 }

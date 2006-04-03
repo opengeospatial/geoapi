@@ -1,6 +1,5 @@
 package org.opengis.feature.type;
 
-import org.opengis.feature.AttributeName;
 
 /**
  * Indicating a named entry for a perscribed AttributeType.
@@ -37,5 +36,5 @@ public interface AttributeDescriptor<T extends AttributeType> extends PropertyDe
 	 * Indicates Name of defined attribute in a ComplexType, this method may 
 	 * never return a null value.
 	 */
-	AttributeName getName();
+	Name getName();
 }
