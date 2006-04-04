@@ -330,7 +330,7 @@ public interface ComplexTypeBuilder<C extends Collection<Attribute>, T extends C
 	 * AttributeDescriptor.
 	 * </p>
 	 */
-	void add(String name, Class binding);
+	void attribute(String name, Class binding);
 	
 	/**
 	 * Adds an attribute descriptor to the type being created.
@@ -354,7 +354,7 @@ public interface ComplexTypeBuilder<C extends Collection<Attribute>, T extends C
 	 * AttributeDescriptor.
 	 * </p>
 	 */
-	void add(String name, String namespaceURI, Class binding);
+	void attribute(String name, String namespaceURI, Class binding);
 	
 	/**
 	 * Adds an attribute descriptor to the type being created.
@@ -378,7 +378,7 @@ public interface ComplexTypeBuilder<C extends Collection<Attribute>, T extends C
 	 * AttributeDescriptor.
 	 * </p>
 	 */
-	void add(Name name, Class binding);
+	void attribute(Name name, Class binding);
 
 	/**
 	 * Adds an attribute descriptor to the type being created.
@@ -408,7 +408,7 @@ public interface ComplexTypeBuilder<C extends Collection<Attribute>, T extends C
 	 *            The type of the attribute, combined with namespacxe for
 	 *            AttirbuteName
 	 */
-	void add(String name, AttributeType type);
+	void attribute(String name, AttributeType type);
 
 	/**
 	 * Adds an attribute descriptor to the type being created.
@@ -438,7 +438,7 @@ public interface ComplexTypeBuilder<C extends Collection<Attribute>, T extends C
 	 * @param type
 	 * 		The type of the attribute.
 	 */
-	void add(String name, String namespaceURI, AttributeType type);
+	void attribute(String name, String namespaceURI, AttributeType type);
 	
 	/**
 	 * Adds an attribute descriptor to the type being created.
@@ -466,7 +466,7 @@ public interface ComplexTypeBuilder<C extends Collection<Attribute>, T extends C
 	 * @param type
 	 * 		The type of the attribute.
 	 */
-	void add(Name name, AttributeType type);
+	void attribute(Name name, AttributeType type);
 	
 	/**
 	 * This is the collection of attribute descriptors maintained by the type builder.
@@ -476,4 +476,153 @@ public interface ComplexTypeBuilder<C extends Collection<Attribute>, T extends C
 	 * 
 	 */
 	Collection<AttributeDescriptor> getAttributes();
+	
+	//
+	//Associations
+	//
+	/**
+	 * Adds an association descriptor to the type being created.
+	 * <p>
+	 * The association descriptor is based on the following:
+	 * <ul>
+	 * <li>Name based on getNamespaceURI + name
+	 * <li>MinOccurs 1
+	 * <li>MaxOccurs 1
+	 * <li>AttributeType provided by getBinding( binding )
+	 * </ul>
+	 * </p>
+	 * <p>
+	 * In the event that the builder already contains an association with the 
+	 * specified name, it will be overridden with the new association.
+	 * </p>
+	 * <p>
+	 * This method invokes: getAssociations().add( descriptor ), if you require
+	 * more control please use this technique directly with your own
+	 * AssociationDescriptor.
+	 * </p>
+	 */
+	void association(String name, Class binding);
+	
+	/**
+	 * Adds an association descriptor to the type being created.
+	 * <p>
+	 * The association descriptor is based on the following:
+	 * <ul>
+	 * <li>Name based on namespaceURI + name
+	 * <li>MinOccurs 1
+	 * <li>MaxOccurs 1
+	 * <li>AttributeType provided by getBinding( binding )
+	 * </ul>
+	 * </p>
+	 * <p>
+	 * In the event that the builder already contains an association with the 
+	 * specified name, it will be overridden with the new association.
+	 * </p>
+	 * <p>
+	 * This method invokes: getAssociations().add( descriptor ), if you require
+	 * more control please use this technique directly with your own
+	 * AssociationDescriptor.
+	 * </p>
+	 */
+	void association(String name, String namespaceURI, Class binding);
+	
+	/**
+	 * Adds an association descriptor to the type being created.
+	 * <p>
+	 * The association descriptor is based on the following:
+	 * <ul>
+	 * <li>Name based on name
+	 * <li>MinOccurs 1
+	 * <li>MaxOccurs 1
+	 * <li>AttributeType provided by getBinding( binding )
+	 * </ul>
+	 * </p>
+	 * <p>
+	 * In the event that the builder already contains an association with the 
+	 * specified name, it will be overridden with the new association.
+	 * </p>
+	 * <p>
+	 * This method invokes: getAssociations().add( descriptor ), if you require
+	 * more control please use this technique directly with your own
+	 * AssociationDescriptor.
+	 * </p>
+	 */
+	void association(Name name, Class binding);
+
+	/**
+	 * Adds an association descriptor to the type being created.
+	 * <p>
+	 * The association descriptor is based on the following:
+	 * <ul>
+	 * <li>Name based on getNamespaceURI + name
+	 * <li>MinOccurs 1
+	 * <li>MaxOccurs 1
+	 * </ul>
+	 * </p>
+	 * <p>
+	 * In the event that the builder already contains an association with the 
+	 * specified name, it will be overridden with the new association.
+	 * </p>
+	 * <p>
+	 * This method invokes: getAssociations().add( descriptor ), if you require
+	 * more control please use this technique directly with your own
+	 * AssocitionDescriptor.
+	 * </p>
+	 * 
+	 */
+	void association(String name, AttributeType type);
+
+	/**
+	 * Adds an association descriptor to the type being created.
+	 * <p>
+	 * The association descriptor is based on the following:
+	 * <ul>
+	 * <li>Name based on namespaceURI + name
+	 * <li>MinOccurs 1
+	 * <li>MaxOccurs 1
+	 * </ul>
+	 * </p>
+	 * <p>
+	 * In the event that the builder already contains an association with the 
+	 * specified name, it will be overridden with the new association.
+	 * </p>
+	 * <p>
+	 * This method invokes: getAssociations().add( descriptor ), if you require
+	 * more control please use this technique directly with your own
+	 * AssociationDescriptor.
+	 * </p>
+	 * 
+	 */
+	void association(String name, String namespaceURI, AttributeType type);
+	
+	/**
+	 * Adds an association descriptor to the type being created.
+	 * <p>
+	 * The attribue descriptor is based on the following:
+	 * <ul>
+	 * <li>Name based on namespaceURI + name
+	 * <li>MinOccurs 1
+	 * <li>MaxOccurs 1
+	 * </ul>
+	 * </p>
+	 * <p>
+	 * In the event that the builder already contains an association with the 
+	 * specified name, it will be overridden with the new association.
+	 * </p>
+	 * <p>
+	 * This method invokes: getAssociations().add( descriptor ), if you require
+	 * more control please use this technique directly with your own
+	 * AssociationDescriptor.
+	 * </p>
+	 */
+	void association(Name name, AttributeType type);
+	
+	/**
+	 * This is the collection of association descriptors maintained by the type builder.
+	 * <p>
+	 * To add an association descriptor: builder.getAssociations().add( descriptor );
+	 * </p>
+	 * 
+	 */
+	Collection<AssociationDescriptor> getAssociations();
 }
