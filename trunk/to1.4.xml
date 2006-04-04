@@ -81,6 +81,19 @@
 			<replacefilter token="&lt;C extends Collection&lt;Attribute&gt;&gt; extends AttributeType&lt;C&gt;"
 				value="/*&lt;C extends Collection{Attribute}&gt;*/ extends AttributeType/*&lt;C&gt;*/"/>
 		</replace>
+		<replace dir="dist/src/org/opengis/feature/type" includes="DescriptorFactory.java">
+			<replacefilter token="T type" value="AttributeType type"/>
+			<replacefilter token="A type" value="AssociationType type"/>
+			<replacefilter token="O type" value="OpperationType type"/>
+			<replacefilter token="&lt;T extends AttributeType&gt;"
+				value="/*&lt;T extends AttributeType&gt;*/"/>
+			
+			<replacefilter token="&lt;T extends AttributeType, A extends AssociationType&lt;T&gt;&gt;"
+				value="/*&lt;T extends AttributeType, A extends AssociationType&lt;T&gt;&gt;*/"/>
+			<replacefilter token="&lt;B, T extends AttributeType&lt;B&gt;, O extends OpperationType&lt;B,T&gt;&gt;"
+				value="/*&lt;B, T extends AttributeType&lt;B&gt;, O extends OpperationType&lt;B,T&gt;&gt;*/"/>
+			
+		</replace>
 		<replace dir="dist/src/org/opengis/feature/type" includes="GeometryType.java">
 			<replacefilter token="&lt;T&gt; extends AttributeType&lt;T&gt;"
 				value="/*&lt;T&gt;*/ extends AttributeType/*&lt;T&gt;*/"/>
@@ -209,12 +222,19 @@
 			<substitution expression="\1/*&lt;\2&gt;*/"/>
 		</replaceregexp>
 		
+		
 		<!-- 3. fix up javadoc lines, #2 screwed with html -->
 		<replaceregexp byline="true">
 			<fileset dir="dist/src" includes="**/*.java"/>
 			<regexp pattern="(\s+)\*(.*)/\*(.*)\*/"/>
 			<substitution expression="\1*\2\3"/>
 		</replaceregexp>
+		<replaceregexp byline="true">
+			<fileset dir="dist/src" includes="**/*.java"/>
+			<regexp pattern="\*/\*/"/>
+			<substitution expression="\*/"/>
+		</replaceregexp>
+		
 		
 		<!-- == TYPE NARROWING == -->
 		<replace dir="dist/src/org/opengis/feature/simple" includes="SimpleFeature.java">
