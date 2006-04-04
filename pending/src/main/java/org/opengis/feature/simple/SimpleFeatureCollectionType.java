@@ -16,10 +16,8 @@ import org.opengis.feature.type.FeatureType;
  * <p>
  * Maintains the following properties:
  * <ul>
- * 	<li>The type of the collection is empty 
- *  <li>The set of member types contains a single feature type 
- *  <li>The type is not abstract
- *  /ul>
+ * 	<li>The set of member types contains a single feature type 
+ * </ul>
  * <br>
  * With code the amounts to the following assertions being held:
  * <pre>
@@ -43,10 +41,5 @@ public interface SimpleFeatureCollectionType<M extends FeatureType>
 	 */
 	Set<AssociationDescriptor<M, ? extends AssociationType<M>>> getMembers();
 	//Set<M> getMemberTypes();
-	
-	/**
-	 * Returns false.
-	 */
-	boolean isAbstract();
 	
 }

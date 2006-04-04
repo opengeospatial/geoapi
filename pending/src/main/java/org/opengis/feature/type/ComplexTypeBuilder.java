@@ -5,6 +5,7 @@ import java.util.Set;
 
 import org.opengis.feature.Attribute;
 import org.opengis.filter.Filter;
+import org.opengis.util.InternationalString;
 
 
 /**
@@ -195,6 +196,19 @@ public interface ComplexTypeBuilder<C extends Collection<Attribute>, T extends C
 	 */
 	void setTypeName(TypeName name);
 
+	/**
+	 * 
+	 * @return The description of the type.
+	 */
+	InternationalString getDescription();
+	
+	/**
+	 * Sets the description of the type.
+	 * 
+	 * @param description The description as an internationalized string.
+	 */
+	void setDescription(InternationalString description);
+	
 	//
 	// Type Metadata
 	//

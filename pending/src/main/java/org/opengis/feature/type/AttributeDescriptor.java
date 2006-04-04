@@ -16,17 +16,17 @@ package org.opengis.feature.type;
 public interface AttributeDescriptor<T extends AttributeType> extends PropertyDescriptor {
 	
 	/** Captures cadinality */
-	public int getMinOccurs();
+	int getMinOccurs();
 	
 	/** Captures cadinality */
-	public int getMaxOccurs();
+	int getMaxOccurs();
 	
 	/**
 	 * True attribute is allowed to be null.
 	 * 
 	 * @return true if value may be null, false if value must be present
 	 */
-	public boolean isNillable();
+	boolean isNillable();
 	
 	/** Indicates the type of this attribute */
 	T getType();

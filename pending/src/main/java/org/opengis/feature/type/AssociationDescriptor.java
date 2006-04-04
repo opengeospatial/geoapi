@@ -18,10 +18,10 @@ package org.opengis.feature.type;
 public interface AssociationDescriptor<T extends AttributeType, A extends AssociationType<T>> extends PropertyDescriptor {
 	
 	/** Captures cadinality */
-	public int getMinOccurs();
+	int getMinOccurs();
 	
 	/** Captures cadinality */
-	public int getMaxOccurs();
+	int getMaxOccurs();
 	
 	/** Indicates the type of this attribute */
 	A getType();
