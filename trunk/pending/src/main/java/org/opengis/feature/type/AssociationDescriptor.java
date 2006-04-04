@@ -15,7 +15,7 @@ package org.opengis.feature.type;
  * </p>
  * @author Jody Garnett, Refractions Research
  */
-public interface AssociationDescriptor<T extends AttributeType, A extends AssociationType<T>> extends StructuralDescriptor {
+public interface AssociationDescriptor<A extends AssociationType> extends StructuralDescriptor {
 		
 	/** Indicates the type of this attribute */
 	A getType();
