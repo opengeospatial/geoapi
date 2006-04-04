@@ -37,7 +37,10 @@ public interface Association<B,T extends AttributeType<B>,A extends AssociationT
 	/**
 	 * Indicate the AssociationType, if we have a descriptor it will be in
 	 * agreement.
-	 * 
+	 * <p>
+	 * This information indicates the nature of the relationship captured by this assocation.
+	 * At a minimum the following categories shoul dbe thought about aggregation (ie member of
+	 * shared), temporal (before after ) or spatial (contained, touches).
 	 * @return AttributeType information descirbing allowable content
 	 */
 	T getType();
