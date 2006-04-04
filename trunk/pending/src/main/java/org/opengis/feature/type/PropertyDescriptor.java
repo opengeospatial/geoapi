@@ -33,7 +33,7 @@ public interface PropertyDescriptor {
 	 * @param key Object used to allow String and Enum keys
 	 * @param value Associated with key
 	 */
-	public void putClientProperty( Object key, Object value );
+	void putClientProperty( Object key, Object value );
 	
 	/**
 	 * Retrive associated process specific information
@@ -41,7 +41,7 @@ public interface PropertyDescriptor {
 	 * 
 	 * @param key Object used to allow String and Enum keys
 	 */	
-	public Object getClientProperty( Object key );
+	Object getClientProperty( Object key );
 
 	/**
 	 * Indicates Name of defined attribute in a ComplexType, this method may 
