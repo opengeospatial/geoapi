@@ -13,14 +13,8 @@ package org.opengis.feature.type;
  * 
  * @author Jody Garnett, Refractions Research
  */
-public interface AttributeDescriptor<T extends AttributeType> extends PropertyDescriptor {
-	
-	/** Captures cadinality */
-	int getMinOccurs();
-	
-	/** Captures cadinality */
-	int getMaxOccurs();
-	
+public interface AttributeDescriptor<T extends AttributeType> extends StructuralDescriptor {
+		
 	/**
 	 * True attribute is allowed to be null.
 	 * 
@@ -30,11 +24,4 @@ public interface AttributeDescriptor<T extends AttributeType> extends PropertyDe
 	
 	/** Indicates the type of this attribute */
 	T getType();
-
-	
-	/**
-	 * Indicates Name of defined attribute in a ComplexType, this method may 
-	 * never return a null value.
-	 */
-	Name getName();
 }
