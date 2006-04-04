@@ -117,15 +117,17 @@ public interface ComplexType<C extends Collection<Attribute>> extends AttributeT
 ///	ComplexType getSuper();
 	
 	/**
-	 * Returns the strucutral properties (Attributes and Associations) used to define
+	 * Returns the only the strucutral properties (Attributes and Associations) used to define
 	 * this type.
 	 * <p>
 	 * We are not including the OpperationDescriptors in this list as they do not
 	 * vary on a instance by instance basis. The difference between a ComplexType
-	 * and a AttributeType is this notion of inner strucutre.
+	 * and a AttributeType is the notion of inner strucutre represented by this
+	 * method.
 	 * </p>
+	 * @return Collection of StructuralDescriptors describing allowable contents
 	 */
-	Collection<PropertyDescriptor> getStructuralProperties();
+	Collection<StructuralDescriptor> getProperties();
 	
 	/**
 	 * Describes allowable content, indicating containment.

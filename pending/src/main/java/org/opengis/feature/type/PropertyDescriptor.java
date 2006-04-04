@@ -4,7 +4,7 @@ package org.opengis.feature.type;
  * Describes how a ComplexType may be composed of types,
  * associations and opperations.
  * <p>
- * Name, type and multiplicity need to be defined in most cases.
+ * Name and Type need to be defined in most cases.
  * <p>
  * <h2>Naming</h2>
  * <p>
@@ -25,7 +25,6 @@ package org.opengis.feature.type;
  * @author Jody Garnett, Refractions Research
  */
 public interface PropertyDescriptor {
-
 	/**
 	 * Allows the association of process specific information
 	 * (such as XML prefix) with an attribute descriptor.
