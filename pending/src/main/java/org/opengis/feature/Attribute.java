@@ -6,15 +6,22 @@ import org.opengis.feature.type.Name;
 
 
 /**
- * Contains information as defined by an AttributeDescriptor.
+ * Contains information defining an attirbute (ie aggregation).
  * <p>
- * The AttributeDescriptor defines both the name and the type (T) of
- * this attribute. The type define the java class (B) to which
- * this attribute is bound.
+ * An Attribute is used to hold a value in our data model, similar
+ * to the way a Map.Entry holds values in a Map. Rather then use a Name
+ * we use an AttributeType providing additional information such as the
+ * java class this Attribtue is "bound" to. Validaiton is provied by way
+ * of constraints implemented using Filter.
+ * </p>
+ * <p>
+ * If this Attribute is contained in another data sturcutre you may
+ * use the provided Descriptor. This descriptor will provided any additional
+ * information (such as name and multiplicity) needed.
  * </p>
  * @author Jody Garnett, Refractions Research
  */
-public interface Attribute<B, T extends AttributeType<B>> {
+public interface Attribute<B, T extends AttributeType<B>> extends Property<T> {
 
 	/**
 	 * Indicates the AttirbuteDescriptor for this content.
@@ -26,13 +33,6 @@ public interface Attribute<B, T extends AttributeType<B>> {
 	 * @return Descriptor for this attribute, may be null.
 	 */
 	AttributeDescriptor<T> getDescriptor();
-
-	/**
-	 * AttributeName (from the descriptor) for this attribute.
-	 * 
-	 * @return name of this attrubute.
-	 */
-	Name name();
 	
 	/**
 	 * Determines if the attribute is allowed to have a <code>null</code> value.

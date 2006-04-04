@@ -125,6 +125,9 @@ public interface ComplexType<C extends Collection<Attribute>> extends AttributeT
 	 * and a AttributeType is the notion of inner strucutre represented by this
 	 * method.
 	 * </p>
+	 * <p>
+	 * You may access "views" of this information:
+	 * </p>
 	 * @return Collection of StructuralDescriptors describing allowable contents
 	 */
 	Collection<StructuralDescriptor> getProperties();
