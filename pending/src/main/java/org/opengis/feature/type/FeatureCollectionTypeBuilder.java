@@ -10,20 +10,45 @@ public interface FeatureCollectionTypeBuilder<C extends Collection<Attribute>, M
 	extends FeatureTypeBuilder<C,T> {
 
 	/**
-	 * Adss a  memeber type to be used as children for the created 
-	 * FeatureCollection.
+	 * Adds a FeatureType association to the collection.
+	 * <p>
+	 * <ul>
+	 * 	<li>Name is based on getNamespaceURI() + <code>name</code>
+	 * </ul>
+	 * </p>
+	 * <p>
+	 * The FeatureType constraints the allowable Feature members of a feature 
+	 * collection. In other words, added features must implement one of the 
+	 * types in association set.
+	 * </p>
+	 * 
+	 * 
 	 */
-	void addMemberType(M memberType);
+	void addMemberType(String name, AssociationType<M> memberType);
 	
 	/**
-	 * Sets memeber types to be used as children for the created 
-	 * FeatureCollection.
+	 * Adds a FeatureType association to the collection.
+	 * <p>
+	 * <ul>
+	 * 	<li>Name is based on <code>namespaceURI</code> + <code>name</code>
+	 * </ul>
+	 * </p>
+	 * <p>
+	 * The FeatureType constraints the allowable Feature members of a feature 
+	 * collection. In other words, added features must implement one of the 
+	 * types in association set.
+	 * </p>
 	 */
-	void setMemberTypes(Set<M> memeberTypes);
+	void addMemberType(String namespaceURI, String name, AssociationType<M> memberType);
 	
 	/**
-	 * List of memeber types to be used as children for the created 
-	 * FeatureCollection.
+	 * Adds a FeatureType association to the collection.
+	 * <p>
+	 * The FeatureType constraints the allowable Feature members of a feature 
+	 * collection. In other words, added features must implement one of the 
+	 * types in association set.
+	 * </p>
 	 */
-	Set<M> getMemberTypes();	
+	void addMemberType(Name name, AssociationType<M> memberType);
+	
 }
