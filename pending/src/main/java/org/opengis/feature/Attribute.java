@@ -21,7 +21,8 @@ import org.opengis.feature.type.Name;
  * </p>
  * @author Jody Garnett, Refractions Research
  */
-public interface Attribute<B, T extends AttributeType<B>> extends Property<T> {
+public interface Attribute<B, T extends AttributeType<B>> 
+	extends Property<T> {
 
 	/**
 	 * Indicates the AttirbuteDescriptor for this content.
