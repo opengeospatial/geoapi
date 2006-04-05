@@ -39,7 +39,7 @@ public interface SimpleFeatureCollectionType<M extends FeatureType>
 	/**
 	 * Returned set contains a single member.
 	 */
-	Set<AssociationDescriptor<M, ? extends AssociationType<M>>> getMembers();
+	Set<AssociationDescriptor<? extends AssociationType<M>>> getMembers();
 	//Set<M> getMemberTypes();
 	
 }
