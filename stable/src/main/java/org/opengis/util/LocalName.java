@@ -55,7 +55,7 @@ public interface LocalName extends GenericName {
     /**
      * Returns the sequence of local name for this {@linkplain GenericName generic name}.
      * Since this object is itself a locale name, this method always returns a
-     * {@linkplain Collections#singletonSet singleton} containing only {@code this}.
+     * {@linkplain Collections#singleton singleton} containing only {@code this}.
      */
     @UML(identifier="parsedName", obligation=MANDATORY, specification=ISO_19103)
     List<LocalName> getParsedNames();

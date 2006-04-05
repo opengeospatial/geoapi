@@ -17,7 +17,7 @@
  *    License along with this library; if not, write to the Free Software
  *    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  */
-package org.opengis.tools;
+package org.opengis.util;
 
 // J2SE dependencies
 import java.io.File;
@@ -37,12 +37,8 @@ import java.util.logging.Logger;
  *
  * @version $Id$
  * @author Martin Desruisseaux
- *
- * @deprecated Should not be needed anymore when we will replace current {@link DatabaseGenerator}
- *             and its friends by annotation processing tools (APT).
  */
-@Deprecated
-public final class ClassFinder implements FileFilter, Comparator<File> {
+final class ClassFinder implements FileFilter, Comparator<File> {
     /**
      * The default root directory, or <code>null</code> if not found.
      * The default root directory is the one where the implementation
@@ -151,7 +147,7 @@ public final class ClassFinder implements FileFilter, Comparator<File> {
     }
 
     /**
-     * Compare two files for order.
+     * Compares two files for order.
      */
     public int compare(final File f1, final File f2) {
         if (f1.isFile() && f2.isDirectory()) return -1;
@@ -160,7 +156,7 @@ public final class ClassFinder implements FileFilter, Comparator<File> {
     }
     
     /**
-     * Scan the directory and all subdirectory for classes implementing {@link CodeList}.
+     * Scans the directory and all subdirectory for classes implementing {@link CodeList}.
      */
     private void scan(final File directory) {
         if (directory == null || !directory.exists() || !directory.isDirectory()) {

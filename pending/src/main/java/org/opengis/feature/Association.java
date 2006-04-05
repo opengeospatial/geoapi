@@ -69,5 +69,5 @@ public interface Association<B,T extends AttributeType<B>,A extends AssociationT
 	 * Set the association to the provided Attribute
 	 * @param value
 	 */
-	void setAssociate(Attribute<B,V> value );
+	void setAssociate(Attribute<B,T> value);
 }
