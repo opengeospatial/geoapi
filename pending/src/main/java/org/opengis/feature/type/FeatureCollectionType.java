@@ -38,5 +38,5 @@ public interface FeatureCollectionType<C extends Collection<Attribute>, M extend
 	 * constraints placed on memberFeatures for xPath.
 	 * </p>
 	 */
-	Set<AssociationDescriptor<M,? extends AssociationType<M>>> getMembers();
+	Set<AssociationDescriptor<? extends AssociationType<M>>> getMembers();
 }
