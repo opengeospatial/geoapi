@@ -21,7 +21,7 @@ import java.util.Set;
 
 
 /**
- * A collection of 0 or more {@linkplain Name  names), with no duplicates.
+ * A collection of 0 or more {@linkplain Name names}, with no duplicates.
  * <p>
  * If this was not an interface only project we could make use of the
  * javax.naming package As such we recommend storing your

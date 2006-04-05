@@ -17,7 +17,7 @@
  *    License along with this library; if not, write to the Free Software
  *    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  */
-package org.opengis.tools;
+package org.opengis.util;
 
 // J2SE dependencies
 import java.util.*;
@@ -32,7 +32,7 @@ import junit.framework.*;
 
 
 /**
- * Test all code list in all packages found.
+ * Tests all code list in all packages found.
  *
  * @version $Id$
  * @author Martin Desruisseaux

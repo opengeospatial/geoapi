@@ -6,7 +6,7 @@
      Ant script for building GeoAPI interfaces, javadoc, jars and zip file.
      Before running, make sure to set following properties:
 
-         homepath   :     The CVS installation.
+         homepath   :     The source directory.
          basedir    :     The destination directory.
          merlin     :     The J2SE 1.4 installation directory.
                           If no J2SE 1.4 is available on the system, a 1.5
@@ -20,10 +20,10 @@
      Version: $Id$
      ======================================================================== -->
 
-<project name="GeoAPI" default="release" basedir="..\target-ant">
+<project name="GeoAPI" default="release" basedir="target">
 
-  <property name="homepath"         value="P:/projects/GeoAPI/trunk"/>
-  <property name="homepath-pending" value="P:/projects/GeoAPI/pending"/>
+  <property name="homepath"         value="P:/GeoAPI/trunk/stable/src/main/java/"/>
+  <property name="homepath-pending" value="P:/GeoAPI/trunk/pending/src/main/java/"/>
   <property name="merlin"           value="C:/Java/1.4"/>
   <property name="version"          value="2.1 alpha"/>
   <property name="proxy"            value="-J-DproxyHost=proxy -J-DproxyPort=3128"/>
@@ -77,7 +77,7 @@
 
     <mkdir  dir="snapshot/tiger/sources"/>
     <copy todir="snapshot/tiger/sources" includeEmptyDirs="false">
-      <fileset dir="${homepath}/src">
+      <fileset dir="${homepath}">
         <include name="**/*.MF"/>
         <include name="**/*.png"/>
         <include name="**/*.xml"/>
@@ -90,15 +90,14 @@
 
     <mkdir  dir="pending/sources"/>
     <copy todir="pending/sources" includeEmptyDirs="false">
-      <fileset dir="${homepath-pending}/src">
+      <fileset dir="${homepath-pending}">
         <include name="**/*.MF"/>
         <include name="**/*.png"/>
         <include name="**/*.xml"/>
         <include name="**/*.html"/>
         <include name="**/*.properties"/>
-        <include name="com/**/*.java"/>
-        <include name="org/opengis/coverage/**/*.java"/>
-        <exclude name="*.*"/>
+        <include name="**/*.java"/>
+        <exclude name="com/**/*.java"/>
       </fileset>
     </copy>
 
@@ -590,83 +589,50 @@
       <link href="http://jsr-108.sourceforge.net/javadoc"/>
       <link href="http://geoapi.sourceforge.net/snapshot/javadoc"/>
 
+      <group title="&lt;TABLE WIDTH='100%'&gt;&lt;TR&gt;&lt;TD&gt;Display objects
+                    &lt;/TD&gt;&lt;TD ALIGN='right'&gt;&lt;FONT SIZE='-1' COLOR='Navy'&gt;OGC 03-064
+                    &lt;/FONT&gt;&lt;/TD&gt;&lt;/TR&gt;&lt;/TABLE&gt;"
+             packages="org.opengis.go*"/>
+
+      <group title="&lt;TABLE WIDTH='100%'&gt;&lt;TR&gt;&lt;TD&gt;Map server (layers &amp; styling)
+                    &lt;/TD&gt;&lt;TD ALIGN='right'&gt;&lt;FONT SIZE='-1' COLOR='Navy'&gt;ISO-19128
+                    &lt;/FONT&gt;&lt;/TD&gt;&lt;/TR&gt;&lt;/TABLE&gt;"
+             packages="org.opengis.layer*:org.opengis.sld*"/>
+
+      <group title="&lt;TABLE WIDTH='100%'&gt;&lt;TR&gt;&lt;TD&gt;Feature, filter
+                    &lt;/TD&gt;&lt;TD ALIGN='right'&gt;&lt;FONT SIZE='-1' COLOR='Navy'&gt;OGC 02-059
+                    &lt;/FONT&gt;&lt;/TD&gt;&lt;/TR&gt;&lt;/TABLE&gt;"
+             packages="org.opengis.feature*:org.opengis.filter*"/>
+
+      <group title="&lt;TABLE WIDTH='100%'&gt;&lt;TR&gt;&lt;TD&gt;Geometry and topology
+                    &lt;/TD&gt;&lt;TD ALIGN='right'&gt;&lt;FONT SIZE='-1' COLOR='Navy'&gt;ISO-19107
+                    &lt;/FONT&gt;&lt;/TD&gt;&lt;/TR&gt;&lt;/TABLE&gt;"
+             packages="org.opengis.spatialschema*"/>
+
+      <group title="&lt;TABLE WIDTH='100%'&gt;&lt;TR&gt;&lt;TD&gt;Spatial Referencing by Coordinates
+                    &lt;/TD&gt;&lt;TD ALIGN='right'&gt;&lt;FONT SIZE='-1' COLOR='Navy'&gt;ISO-19111
+                    &lt;/FONT&gt;&lt;/TD&gt;&lt;/TR&gt;&lt;/TABLE&gt;"
+             packages="org.opengis.referencing*:org.opengis.parameter*"/>
+
+      <group title="&lt;TABLE WIDTH='100%'&gt;&lt;TR&gt;&lt;TD&gt;Catalog Services
+                    &lt;/TD&gt;&lt;TD ALIGN='right'&gt;&lt;FONT SIZE='-1' COLOR='Navy'&gt;OGC 02-087
+                    &lt;/FONT&gt;&lt;/TD&gt;&lt;/TR&gt;&lt;/TABLE&gt;"
+             packages="org.opengis.catalog*"/>
+
+      <group title="&lt;TABLE WIDTH='100%'&gt;&lt;TR&gt;&lt;TD&gt;Meta Data
+                    &lt;/TD&gt;&lt;TD ALIGN='right'&gt;&lt;FONT SIZE='-1' COLOR='Navy'&gt;ISO-19115
+                    &lt;/FONT&gt;&lt;/TD&gt;&lt;/TR&gt;&lt;/TABLE&gt;"
+             packages="org.opengis.metadata*"/>
+
+      <group title="&lt;TABLE WIDTH='100%'&gt;&lt;TR&gt;&lt;TD&gt;Grid Coverage
+                    &lt;/TD&gt;&lt;TD ALIGN='right'&gt;&lt;FONT SIZE='-1' COLOR='Navy'&gt;OGC 01-004
+                    &lt;/FONT&gt;&lt;/TD&gt;&lt;/TR&gt;&lt;/TABLE&gt;"
+             packages="org.opengis.coverage*"/>
+
       <packageset dir="pending/sources">
         <include name="**"/>
       </packageset>
 
-    </javadoc>
-
-  </target>
-
-
-
-
-  <!-- ======================================================================
-
-       LEGACY: Create HTML javadoc for legacy interfaces
-
-       ====================================================================== -->
-
-  <target name="legacy">
-
-    <delete includeEmptyDirs="true" failonerror="false">
-      <fileset dir="legacy"/>
-    </delete>
-
-    <mkdir dir="legacy/classes"/>
-    <javac srcdir        = "${homepath}/legacy"
-           destdir       = "legacy/classes"
-           encoding      = "ISO-8859-1"
-           includes      = "org/**/*.java"
-           bootclasspath = "${merlin}/jre/lib/rt.jar"
-           extdirs       = "${merlin}/jre/lib/ext"
-           source        = "1.4"
-           target        = "1.4"
-           optimize      = "true"
-           debug         = "false"
-           failonerror   = "true">
-    </javac>
-
-    <javadoc sourcepath       = "${homepath}/legacy"
-             classpath        = "classes:snapshot/tiger/classes"
-             destdir          = "legacy/javadoc"
-             charset          = "ISO-8859-1"
-             encoding         = "ISO-8859-1"
-             locale           = "en_US"
-             use              = "true"
-             nodeprecatedlist = "true"
-             author           = "false"
-             version          = "true"
-             breakiterator    = "true"
-             noqualifier      = "all"
-             overview         = "${homepath}/legacy/org/opengis/overview.html"
-             windowtitle      = "Legacy OpenGIS API"
-             doctitle         = "Legacy OpenGIS API"
-             header           = "Legacy OpenGIS API">
-
-      <arg line="-quiet"/>
-      <arg line="-keywords"/>
-      <arg line="-docfilessubdirs"/>
-      <arg line="${proxy}"/>
-
-      <bottom>
-        &lt;TABLE WIDTH='100%'&gt;&lt;TR&gt;&lt;TD NOWRAP&gt;
-        &lt;A HREF=&quot;{@docRoot}/../../snapshot/javadoc/index.html&quot;&gt;New (current) interfaces&lt;/A&gt;&lt;BR&gt;
-        &lt;/TD&gt;&lt;TD NOWRAP ALIGN='right'&gt;
-        &lt;FONT SIZE='2'&gt;Copyright &lt;A HREF=&quot;http://www.opengis.org/&quot;&gt;OpenGIS&amp;reg; Consortium&lt;/A&gt;&lt;/FONT&gt;
-        &lt;/TD&gt;&lt;/TR&gt;&lt;/TABLE&gt;
-      </bottom>
-
-      <packageset dir="${homepath}/legacy">
-        <include name="**"/>
-      </packageset>
-
-      <link href="http://java.sun.com/j2se/1.4/docs/api"/>
-      <link href="http://jsr-108.sourceforge.net/javadoc"/>
-      <link href="http://geoapi.sourceforge.net/snapshot/javadoc"/>
-
-      <group title="Coordinate Transformation services" packages="org.opengis.cs:org.opengis.ct:org.opengis.pt"/>
-      <group title="Grid Coverages services"            packages="org.opengis.cv:org.opengis.gc:org.opengis.gp"/>
     </javadoc>
 
   </target>
@@ -686,8 +652,7 @@
 
     <jar destfile = "snapshot/binaries/geoapi.jar"
          basedir  = "snapshot/classes"
-         index    = "true"
-         manifest = "snapshot/sources/META-INF/MANIFEST.MF">
+         index    = "true">
       <include name="org/**"/>
     </jar>
 
@@ -699,8 +664,7 @@
 
     <jar destfile = "snapshot/binaries/geoapi-tiger.jar"
          basedir  = "snapshot/tiger/classes"
-         index    = "true"
-         manifest = "snapshot/tiger/sources/META-INF/MANIFEST.MF">
+         index    = "true">
       <include name="org/**"/>
     </jar>
 
