@@ -20,7 +20,8 @@ import org.opengis.feature.type.AttributeType;
  * 
  * @author Jody Garnett, Refractions Research
  */
-public interface Association<B,T extends AttributeType<B>,A extends AssociationType<T>> extends Property<T> {
+public interface Association<B,A extends AttributeType<B>,T extends AssociationType<A>> 
+	extends Property<T> {
 
 	/**
 	 * Indicates the AttirbuteDescriptor for this content.
@@ -63,11 +64,11 @@ public interface Association<B,T extends AttributeType<B>,A extends AssociationT
 	 * 
 	 * @return associated attribtue
 	 */
-	Attribute<B,T> getAssociate();
+	Attribute<B,A> getAssociate();
 	
 	/**
 	 * Set the association to the provided Attribute
 	 * @param value
 	 */
-	void setAssociate(Attribute<B,T> value);
+	void setAssociate(Attribute<B,A> value);
 }
