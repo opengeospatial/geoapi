@@ -31,129 +31,147 @@ import org.opengis.spatialschema.geometry.primitive.PrimitiveFactory;
 import org.opengis.util.NameFactory;
 
 /**
- * <code>CommonFactory</code> defines a common abstraction for 
- * getting the different factories for classes that all GO-1 objects
- * have a common dependency on.
+ * Defines a common abstraction for getting the different factories for classes that all GO-1
+ * objects have a common dependency on.
  *
  * @author Open GIS Consortium, Inc.
  * @version $Revision$, $Date$
  */
 public interface CommonFactory {
-
     /**
      * Returns an object that represents the capabilities of this
      * common factory and its associated canvas.
-     * @return this <code>CommonFactory</code>'s capabilities
+     *
+     * @return this {@code CommonFactory}'s capabilities
      */
     CommonCapabilities getCapabilities();
        
     /**
-     * Returns the <code>FeatureDisplayFactory</code> singleton.
-     * @return the <code>FeatureDisplayFactory</code>
+     * Returns the {@linkplain FeatureDisplayFactory feature display factory} singleton.
+     *
+     * @return the feature display factory.
      */
     FeatureDisplayFactory getFeatureDisplayFactory();
 
     /**
-     * Returns the <code>FeatureTypeFactory</code> singleton.
-     * @return the <code>FeatureTypeFactory</code>
+     * Returns the {@linkplain FeatureTypeFactory feature type factory} singleton.
+     *
+     * @return the feature type factory.
      */
     FeatureTypeFactory getFeatureTypeFactory();
     
     /**
-     * Returns the <code>FilterFactory</code> singleton.
-     * @return the <code>FilterFactory</code>
+     * Returns the {@linkplain FilterFactory filter factory} singleton.
+     *
+     * @return the filter factory.
      */
     FilterFactory getFilterFactory();
        
     /**
-     * Returns the <code>DisplayFactory</code> singleton.
-     * @return the <code>DisplayFactory</code>
+     * Returns the {@linkplain DisplayFactory display factory} singleton.
+     *
+     * @return the display factory.
      */
     DisplayFactory getDisplayFactory();
     
     /**
-     * Returns the <code>CitationFactory</code> singleton.
-     * @return the <code>CitationFactory</code>
+     * Returns the {@linkplain NameFactory name factory} singleton.
+     *
+     * @return the name factory.
+     */
+    NameFactory getNameFactory();
+    
+    /**
+     * Returns the {@linkplain CitationFactory citation factory} singleton.
+     *
+     * @return the citation factory.
      */
     CitationFactory getCitationFactory();
 
     /**
-     * Returns the <code>CRSAuthorityFactory</code> singleton.
-     * @return the <code>CRSAuthorityFactory</code>
+     * Returns the {@linkplain CRSAuthorityFactory CRS authority factory} singleton.
+     *
+     * @return the CRS authority factory.
      */
     CRSAuthorityFactory getCRSAuthorityFactory();
 
     /**
-     * Returns the <code>CRSFactory</code> singleton.
-     * @return the <code>CRSFactory</code>
+     * Returns the {@linkplain CRSFactory CRS factory} singleton.
+     *
+     * @return the CRS factory.
      */
     CRSFactory getCRSFactory();
 
     /**
-     * Returns the <code>CSAuthorityFactory</code> singleton.
-     * @return the <code>CSAuthorityFactory</code>
+     * Returns the {@linkplain CSAuthorityFactory CS authority factory} singleton.
+     *
+     * @return the CS authority factory.
      */
     CSAuthorityFactory getCSAuthorityFactory();
 
     /**
-     * Returns the <code>CSFactory</code> singleton.
-     * @return the <code>CSFactory</code>
+     * Returns the {@linkplain CSFactory CS factory} singleton.
+     *
+     * @return the CS factory.
      */
     CSFactory getCSFactory();
 
     /**
-     * Returns the <code>DatumAuthorityFactory</code> singleton.
-     * @return the <code>DatumAuthorityFactory</code>
+     * Returns the {@linkplain DatumAuthorityFactory datum authority factory} singleton.
+     *
+     * @return the datum authority factory.
      */
     DatumAuthorityFactory getDatumAuthorityFactory();
 
     /**
-     * Returns the <code>DatumFactory</code> singleton.
-     * @return the <code>DatumFactory</code>
+     * Returns the {@linkplain DatumFactory datum factory} singleton.
+     *
+     * @return the datum factory.
      */
     DatumFactory getDatumFactory();
 
     /**
-     * Returns the <code>CoordinateOperationFactory</code> singleton.
-     * @return the <code>CoordinateOperationFactory</code>
+     * Returns the {@linkplain CoordinateOperationAuthorityFactory coordinate operation authority
+     * factory} singleton.
+     *
+     * @return the coordinate operation authority factory.
      */
     CoordinateOperationAuthorityFactory getCoordinateOperationAuthorityFactory();
     
     /**
-     * Returns the <code>CoordinateOperationFactory</code> singleton.
-     * @return the <code>CoordinateOperationFactory</code>
+     * Returns the {@linkplain CoordinateOperationFactory coordinate operation factory} singleton.
+     *
+     * @return the coordinate operation factory.
      */
     CoordinateOperationFactory getCoordinateOperationFactory();
     
     /**
-     * Returns the <code>FeatureStyleFactory</code> singleton.
-     * @return the <code>FeatureStyleFactory</code>
+     * Returns the {@linkplain FeatureStyleFactory feature style factory} singleton.
+     *
+     * @return the feature style factory.
      */
     FeatureStyleFactory getFeatureStyleFactory();
     
     /**
-     * Returns the <code>GeometryFactory</code> equiped to build geometries
-     * using the given <code>CoordinateReferenceSystem</code>.
-     * @param crs the <code>CoordinateReferenceSystem</code> the <code>GeometryFactory</code> 
-     *      should use
-     * @return the requested <code>GeometryFactory</code> or null if the 
-     *      <code>CoordinateReferenceSystem</code> is not supported 
+     * Returns the {@linkplain GeometryFactory geometry factory} equiped to build geometries
+     * using the given {@linkplain CoordinateReferenceSystem coordinate reference system}.
+     *
+     * @param crs the {@linkplain CoordinateReferenceSystem coordinate reference system} the
+     *        {@linkplain GeometryFactory geometry factory} should use.
+     * @return the requested {@linkplain GeometryFactory geometry factory} or {@code null} if the 
+     *         {@linkplain CoordinateReferenceSystem coordinate reference system} is not supported.
+     *
      */
     GeometryFactory getGeometryFactory(CoordinateReferenceSystem crs);
     
     /**
-     * Returns the <code>PrimitiveFactory</code> equiped to build primitives
-     * using the given <code>CoordinateReferenceSystem</code>.
-     * @param crs the <code>CoordinateReferenceSystem</code> the <code>PrimitiveFactory</code> 
-     *      should use
-     * @return the requested <code>PrimitiveFactory</code> or null if the 
-     *      <code>CoordinateReferenceSystem</code> is not supported 
+     * Returns the {@linkplain PrimitiveFactory primitive factory} equiped to build primitives
+     * using the given {@linkplain CoordinateReferenceSystem coordinate reference system}.
+     *
+     * @param crs the {@linkplain CoordinateReferenceSystem coordinate reference system} the
+     *        {@linkplain PrimitiveFactory primitive factory} should use.
+     * @return the requested {@linkplain PrimitiveFactory primitive factory} or {@code null} if the 
+     *         {@linkplain CoordinateReferenceSystem coordinate reference system} is not supported.
      */
     PrimitiveFactory getPrimitiveFactory(CoordinateReferenceSystem crs);
-    
-    /**
-     * Returns the <code>NameFactory</code> singleton.
-     * @return the <code>NameFactory</code>
-     */
-    NameFactory getNameFactory();
 }
