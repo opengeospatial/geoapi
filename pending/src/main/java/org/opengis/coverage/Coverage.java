@@ -252,11 +252,12 @@ public interface Coverage {
      * @throws CannotEvaluateException If the point can't be evaluate for some other reason.
      * @see Raster#getDataElements(int, int, Object)
      *
-     * @deprecated No replacement.
-     * @todo Consider keeping this method as undeprecated.
+     * The original return type (Object) is replaced by something that returns a set (The ISO 19123
+     * implementation will always return a set).
+     * 
      */
     @UML(identifier="evaluate", obligation=MANDATORY, specification=OGC_01004)
-    Object evaluate(DirectPosition point) throws CannotEvaluateException;
+    Set evaluate(DirectPosition point) throws CannotEvaluateException;
 
     /**
      * Return a sequence of boolean values for a given point in the coverage.
