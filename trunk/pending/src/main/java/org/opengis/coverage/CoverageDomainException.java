@@ -21,7 +21,7 @@ import org.opengis.spatialschema.geometry.DirectPosition;
  *
  * @author Alexander Petkov
  */
-public class CoverageDomainException extends Exception {
+public class CoverageDomainException extends CannotEvaluateException {
     /**
      * Serial number for interoperability with different versions.
      */

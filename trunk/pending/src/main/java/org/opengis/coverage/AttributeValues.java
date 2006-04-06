@@ -11,7 +11,6 @@
 package org.opengis.coverage;
 
 // J2SE dependencies
-import java.util.Set;
 
 // OpenGIS direct dependencies
 import org.opengis.util.Record;
@@ -45,5 +44,5 @@ public interface AttributeValues {
      * </ul>
      */
     @UML(identifier="values", obligation=MANDATORY, specification=ISO_19123)
-    Set<Record> getValues();
+    Record getValues();
 }
