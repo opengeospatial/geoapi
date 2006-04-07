@@ -40,8 +40,14 @@ public interface Association<B,A extends AttributeType<B>,T extends AssociationT
 	 * agreement.
 	 * <p>
 	 * This information indicates the nature of the relationship captured by this assocation.
-	 * At a minimum the following categories shoul dbe thought about aggregation (ie member of
-	 * shared), temporal (before after ) or spatial (contained, touches).
+	 * <p>
+	 * At a minimum the following categories should be thought about:
+	 * <ul>
+	 * <li>aggregation (ie member of shared)
+	 * <li>temporal (before after )
+	 * <li>spatial (contained, touches).
+	 * </ul>
+	 * </p>
 	 * @return AttributeType information descirbing allowable content
 	 */
 	T getType();
@@ -55,7 +61,7 @@ public interface Association<B,A extends AttributeType<B>,T extends AssociationT
 	 * </p>
 	 * @return type of attribute we are related to.
 	 */
-	A getAssociateType();
+	A getRelatedType();
 	
 	/**
 	 * An associated Attribute.
@@ -64,11 +70,11 @@ public interface Association<B,A extends AttributeType<B>,T extends AssociationT
 	 * 
 	 * @return associated attribtue
 	 */
-	Attribute<B,A> getAssociate();
+	Attribute<B,A> getRelated();
 	
 	/**
 	 * Set the association to the provided Attribute
 	 * @param value
 	 */
-	void setAssociate(Attribute<B,A> value);
+	void setRelated(Attribute<B,A> value);
 }

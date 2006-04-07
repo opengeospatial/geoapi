@@ -20,9 +20,4 @@ public interface StructuralDescriptor extends PropertyDescriptor {
 	/** Captures cadinality */
 	int getMaxOccurs();
 	
-	/**
-	 * Indicates Name of defined attribute in a ComplexType, this method may 
-	 * never return a null value.
-	 */
-	Name getName();
 }

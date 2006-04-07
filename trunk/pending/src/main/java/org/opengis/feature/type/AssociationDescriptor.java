@@ -17,12 +17,11 @@ package org.opengis.feature.type;
  */
 public interface AssociationDescriptor<A extends AssociationType> extends StructuralDescriptor {
 		
-	/** Indicates the type of this attribute */
+	/**
+	 * Indicates the type of this association.
+	 * <p>
+	 * This indicates the relationship represented by the association.
+	 */
 	A getType();
 
-	/**
-	 * Indicates Name of defined attribute in a ComplexType, this method may 
-	 * never return a null value.
-	 */
-	Name getName();	
 }
