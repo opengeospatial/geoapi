@@ -44,7 +44,7 @@ public interface AssociationType<B extends AttributeType> extends PropertyType {
 	 * 
 	 * @return true if this complex type must have non null getID()
 	 */
-	boolean isIdentified();
+	//boolean isIdentified();
 	
 	/**
 	 * Access to super type information.
@@ -57,13 +57,22 @@ public interface AssociationType<B extends AttributeType> extends PropertyType {
 	 */
 	public AssociationType<? super B> getSuper();
 
-	/** Indicate that this AttributeType may not be used directly */
+	/**
+	 * Indicate that this AttributeType may not be used directly.
+	 * <p>
+	 * An example abstract association would be "spatial" which would need to be sub typed
+	 * to indicate "touches" or "contained".
+	 * </p>
+	 */
 	public boolean isAbstract();
 
 	/**
-	 * Java class bound to this content type.
+	 * AttributeType related by this association.
+	 * <p>
+	 * This is the AttributeType you are in effect pointing to by using an association.
+	 * <p>
 	 */
-	public Class<B> getAssociation();
+	public B getReferenceType();
 
 	/**
 	 * List of restrictions used to limit the allowable values for objects of
