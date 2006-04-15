@@ -340,7 +340,7 @@
   <!--     All GeoAPI modules included in the build         -->
   <!-- ==================================================== -->
   <modules>
-    <module>stable</module>
+    <module>geoapi</module>
+    <module>dist</module>
   </modules>
-
 </project>
