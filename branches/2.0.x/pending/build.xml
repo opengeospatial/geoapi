@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- ========================================================================
+
+     ANT BUILD FILE (Ref. http://jakarta.apache.org/ant )
+
+     Build javadoc. This is a temporary script until Apache fix blocker
+     bugs in the Maven 2 javadoc plugins.
+
+     Author:  Martin Desruisseaux
+     Version: $Id$
+     ======================================================================== -->
+
+<project name="GeoAPI" default="javadoc">
+
+  <description>
+      GeoAPI interfaces.
+  </description>
+
+  <tstamp>
+    <format property="TODAY" pattern="yyyy-MM-dd" locale="ca"/>
+  </tstamp>
+
+  <property name="source"  value="src/main/java"  />
+  <property name="classes" value="target/classes" />
+  <property name="target"  value="target/javadoc" />
+
+
+
+
+  <!-- ======================================================================
+
+       COMPARE: Creates table comparing Java methods with UML identifiers.
+
+       ====================================================================== -->
+
+  <target name="tables">
+
+    <mkdir dir="${target}/org/opengis/metadata/doc-files/postgre"/>
+    <mkdir dir="${target}/org/opengis/doc-files"/>
+
+    <java classname   = "org.opengis.tools.DatabaseGenerator"
+          dir         = "${target}/org/opengis/metadata/doc-files/postgre"
+          failonerror = "true"
+          fork        = "true">
+      <classpath>
+        <pathelement location="${classes}"/>
+        <pathelement path="${java.class.path}"/>
+      </classpath>
+      <arg value="-tables"/>
+    </java>
+
+    <java classname   = "org.opengis.tools.DatabaseGenerator"
+          dir         = "${target}/org/opengis/metadata/doc-files/postgre"
+          failonerror = "true"
+          fork        = "true">
+      <classpath>
+        <pathelement location="${classes}"/>
+        <pathelement path="${java.class.path}"/>
+      </classpath>
+      <arg value="-quiet"/>
+    </java>
+
+    <java classname   = "org.opengis.tools.ModelComparator"
+          dir         = "${target}/org/opengis/doc-files"
+          failonerror = "true"
+          fork        = "true">
+      <classpath>
+        <pathelement location="${classes}"/>
+        <pathelement path="${java.class.path}"/>
+      </classpath>
+    </java>
+
+    <java classname   = "org.opengis.tools.NameMapGenerator"
+          dir         = "${classes}/org/opengis/metadata"
+          failonerror = "true"
+          fork        = "true">
+      <classpath>
+        <pathelement location="${classes}"/>
+        <pathelement path="${java.class.path}"/>
+      </classpath>
+    </java>
+
+  </target>
+
+
+
+
+  <!-- ======================================================================
+
+       JAVADOC: Creates HTML javadoc.
+
+       ====================================================================== -->
+
+  <target name="javadoc">
+
+    <mkdir dir="target/javadoc"/>
+
+    <javadoc sourcepath       = "src/main/java"
+             classpath        = "target/classes"
+             destdir          = "target/javadoc"
+             charset          = "ISO-8859-1"
+             encoding         = "ISO-8859-1"
+             locale           = "en_US"
+             source           = "1.5"
+             use              = "true"
+             nodeprecatedlist = "false"
+             author           = "false"
+             version          = "true"
+             breakiterator    = "true"
+             noqualifier      = "all"
+             overview         = "src/main/java/overview.html"
+             windowtitle      = "GeoAPI (pending interfaces)"
+             doctitle         = "GeoAPI (pending interfaces)"
+             header           = "GeoAPI (pending interfaces)&lt;br&gt;Build ${TODAY}">
+
+      <arg line="-quiet"/>
+      <arg line="-docfilessubdirs"/>
+
+      <bottom>
+        &lt;TABLE WIDTH='100%'&gt;&lt;TR&gt;&lt;TD NOWRAP&gt;
+        &lt;A HREF=&quot;{@docRoot}/org/opengis/doc-files/Terms.html&quot;&gt;Symbols, terms and definitions&lt;/A&gt;&lt;BR&gt;
+        &lt;/TD&gt;&lt;TD NOWRAP ALIGN='right'&gt;
+        &lt;FONT SIZE='2'&gt;Copyright &lt;A HREF=&quot;http://www.opengis.org/&quot;&gt;OpenGIS&amp;reg; Consortium&lt;/A&gt;&lt;/FONT&gt;
+        &lt;/TD&gt;&lt;/TR&gt;&lt;/TABLE&gt;
+      </bottom>
+
+      <tag name="unitof" scope="fields,methods" description="Unit of" enabled="false"/>
+      <taglet name="org.opengis.tools.UmlTaglet"/>
+      <tag name="rename" scope="types,fields,methods" description="Name change from the UML:" enabled="false"/>
+      <taglet name="org.opengis.tools.RevisitTaglet"/>
+
+      <link href="http://java.sun.com/j2se/1.5/docs/api"/>
+      <link href="http://java.sun.com/products/java-media/jai/forDevelopers/jai-apidocs"/>
+      <link href="http://java.sun.com/products/java-media/3D/forDevelopers/j3dapi"/>
+      <link href="http://jsr-108.sourceforge.net/javadoc"/>
+
+      <group title="&lt;TABLE WIDTH='100%'&gt;&lt;TR&gt;&lt;TD&gt;Display objects
+                    &lt;/TD&gt;&lt;TD ALIGN='right'&gt;&lt;FONT SIZE='-1' COLOR='Navy'&gt;OGC 03-064
+                    &lt;/FONT&gt;&lt;/TD&gt;&lt;/TR&gt;&lt;/TABLE&gt;"
+             packages="org.opengis.go*"/>
+
+      <group title="&lt;TABLE WIDTH='100%'&gt;&lt;TR&gt;&lt;TD&gt;Map server (layers &amp; styling)
+                    &lt;/TD&gt;&lt;TD ALIGN='right'&gt;&lt;FONT SIZE='-1' COLOR='Navy'&gt;ISO-19128
+                    &lt;/FONT&gt;&lt;/TD&gt;&lt;/TR&gt;&lt;/TABLE&gt;"
+             packages="org.opengis.layer*:org.opengis.sld*"/>
+
+      <group title="&lt;TABLE WIDTH='100%'&gt;&lt;TR&gt;&lt;TD&gt;Feature, filter
+                    &lt;/TD&gt;&lt;TD ALIGN='right'&gt;&lt;FONT SIZE='-1' COLOR='Navy'&gt;OGC 02-059
+                    &lt;/FONT&gt;&lt;/TD&gt;&lt;/TR&gt;&lt;/TABLE&gt;"
+             packages="org.opengis.feature*:org.opengis.filter*"/>
+
+      <group title="&lt;TABLE WIDTH='100%'&gt;&lt;TR&gt;&lt;TD&gt;Geometry and topology
+                    &lt;/TD&gt;&lt;TD ALIGN='right'&gt;&lt;FONT SIZE='-1' COLOR='Navy'&gt;ISO-19107
+                    &lt;/FONT&gt;&lt;/TD&gt;&lt;/TR&gt;&lt;/TABLE&gt;"
+             packages="org.opengis.spatialschema*"/>
+
+      <group title="&lt;TABLE WIDTH='100%'&gt;&lt;TR&gt;&lt;TD&gt;Spatial Referencing by Coordinates
+                    &lt;/TD&gt;&lt;TD ALIGN='right'&gt;&lt;FONT SIZE='-1' COLOR='Navy'&gt;ISO-19111
+                    &lt;/FONT&gt;&lt;/TD&gt;&lt;/TR&gt;&lt;/TABLE&gt;"
+             packages="org.opengis.referencing*:org.opengis.parameter*"/>
+
+      <group title="&lt;TABLE WIDTH='100%'&gt;&lt;TR&gt;&lt;TD&gt;Catalog Services
+                    &lt;/TD&gt;&lt;TD ALIGN='right'&gt;&lt;FONT SIZE='-1' COLOR='Navy'&gt;OGC 02-087
+                    &lt;/FONT&gt;&lt;/TD&gt;&lt;/TR&gt;&lt;/TABLE&gt;"
+             packages="org.opengis.catalog*"/>
+
+      <group title="&lt;TABLE WIDTH='100%'&gt;&lt;TR&gt;&lt;TD&gt;Meta Data
+                    &lt;/TD&gt;&lt;TD ALIGN='right'&gt;&lt;FONT SIZE='-1' COLOR='Navy'&gt;ISO-19115
+                    &lt;/FONT&gt;&lt;/TD&gt;&lt;/TR&gt;&lt;/TABLE&gt;"
+             packages="org.opengis.metadata*"/>
+
+      <group title="&lt;TABLE WIDTH='100%'&gt;&lt;TR&gt;&lt;TD&gt;Grid Coverage
+                    &lt;/TD&gt;&lt;TD ALIGN='right'&gt;&lt;FONT SIZE='-1' COLOR='Navy'&gt;OGC 01-004
+                    &lt;/FONT&gt;&lt;/TD&gt;&lt;/TR&gt;&lt;/TABLE&gt;"
+             packages="org.opengis.coverage*"/>
+
+      <packageset dir="src/main/java">
+        <include name="org/opengis/**" />
+      </packageset>
+
+    </javadoc>
+
+  </target>
+
+</project>

@@ -1,0 +1,14 @@
+The GeoAPI project
+
+  The development community in building GIS solutions is sustaining an enormous level of effort.
+  The GeoAPI project aims to reduce duplication and increase interoperability by providing neutral,
+  interface-only APIs derived from OGC/ISO Standards. GeoAPI is an OGC working group. See the
+  {{{charter.html}charter}} for more informations.
+
+  Current version is GeoAPI 2.0.
+
+    * {{{http://geoapi.sourceforge.net/2.0/javadoc/index.html}Browse javadoc}}
+
+    * {{{http://sourceforge.net/project/showfiles.php?group_id=70002&package_id=69096&release_id=333419}Download sources and binaries}}
+
+    * {{{http://docs.codehaus.org/display/GEO/Home}News and discussions (wiki pages)}}
