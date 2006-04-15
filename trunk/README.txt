@@ -1,20 +1,20 @@
 This is the root directory for the GeoAPI project.
 
+- geoapi    contains the next GeoAPI release being put forward for approval. In order to get early
+            feedback from implementors we will occasionally issue a milestone release. For details
+            please visit the project website.
 
-- stable   contains the latest GeoAPI release, with minor bug fixes. Changes that do not
-           impact the API (javadoc clarifications, bug fixes in our very few implementations
-           like code lists, etc.) are applied directly in this directory. Those changes may
-           lead to a dot-dot release (e.g. 2.0.1 after 2.0.0).
+- dist      contains a build target for a Java 1.4 distribution of geoapi suitable for use with
+            J2EE. This target will producea jar that lacks generics and typenarrowing.
 
-- pending  contains interfaces under development for possible inclusion in a future GeoAPI
-           release. This directory content is much more volatile than the stable directory.
-           Changes in this directory need to be submitted to OGC before to be included in a
-           dot release (e.g. 2.1.0 after 2.0.0).
+- tools-ant Used to downgrade java 5 code to Java 1.4
 
 
-The following example show the difference applied in the pending directory for the referencing
-packages. Note that you don’t need to local copy (svn checkout) in order to run this command.
+To build the first time:
+ cd trunk/tools-ant
+ mvn install           (to be done only once, or everytime erasure.build.xml changed).
+ cd dist
+ mvn package 
 
-
-  svn diff https://svn.sourceforge.net/svnroot/geoapi/trunk/stable/src/main/java/org/opengis/referencing/
-           https://svn.sourceforge.net/svnroot/geoapi/trunk/pending/src/main/java/org/opengis/referencing/
+To build normally:
+ mvn install
