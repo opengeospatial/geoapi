@@ -2,7 +2,7 @@ package org.opengis.feature.type;
 
 /**
  * Describes how a ComplexType may be composed of types,
- * associations and opperations.
+ * associations and operations.
  * <p>
  * Name and Type need to be defined in most cases.
  * <p>

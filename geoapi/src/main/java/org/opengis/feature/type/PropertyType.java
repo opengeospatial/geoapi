@@ -6,7 +6,7 @@ import org.opengis.filter.Filter;
 import org.opengis.util.InternationalString;
 
 /**
- * PropertyType information, captured as AttributeType, AssociationType and OpperationType.
+ * PropertyType information, captured as AttributeType, AssociationType and OperationType.
  * <p>
  * The following information from the GFM MetaModel are represented:
  * <ul>

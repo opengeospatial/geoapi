@@ -27,7 +27,7 @@ import org.opengis.annotation.XmlElement;
  * uding GML3, while a JTS Geometry may be written out using GML2. You should
  * not assume that the same instance will be made available to all callers,
  * please limit your self to pure data objects and don't use Literal to pass
- * state or opperations between systems.
+ * state or operations between systems.
  * <p>
  * 
  * @version <A HREF="http://www.opengis.org/docs/02-059.pdf">Implementation specification 1.0</A>

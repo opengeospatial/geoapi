@@ -49,9 +49,9 @@ public interface AttributeType<B> extends PropertyType {
 	Set<Filter> getRestrictions();
 	
 	/**
-	 * Opperations that may be invoked against this type.
+	 * Operations that may be invoked against this type.
 	 * 
 	 * @return
 	 */
-	Collection<OpperationDescriptor> getOpperations();	
+	Collection<OperationDescriptor> getOperations();	
 }

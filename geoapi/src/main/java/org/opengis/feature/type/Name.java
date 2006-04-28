@@ -108,7 +108,7 @@ public interface Name {
 	 * which they can use this URI.
 	 * </p>
 	 * The namespace URI does serve to make this name unique and is checked as
-	 * part of the equals opperation.
+	 * part of the equals operation.
 	 * </p>
 	 * 
 	 * @since GeoAPI 2.1
