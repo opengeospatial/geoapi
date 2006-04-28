@@ -65,8 +65,8 @@ public interface TypeFactory {
 	 * @param isImplemented
 	 * 	Flag indicating if the described operation is implemented or not.
 	 */
-	<B, T extends AttributeType<B>, O extends OpperationType<B,T>>
-	OpperationDescriptor<B,T,O> createOpperationDescriptor(
+	<B, T extends AttributeType<B>, O extends OperationType<B,T>>
+	OperationDescriptor<B,T,O> createOperationDescriptor(
 		O type, boolean isImplemented
 	);
 	

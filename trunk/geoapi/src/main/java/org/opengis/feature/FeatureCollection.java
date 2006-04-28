@@ -71,7 +71,7 @@ public interface FeatureCollection<C extends Collection<Attribute>, M extends Fe
      * This method is used cut down on the number of filter based methods
      * required for a useful FeatureCollection construct. The FeatureCollections
      * returned really should be considered as a temporary "view" used to
-     * control the range of a removeAll, or modify opperation.
+     * control the range of a removeAll, or modify operation.
      * <p>
      * Example Use:
      * <pre><code>

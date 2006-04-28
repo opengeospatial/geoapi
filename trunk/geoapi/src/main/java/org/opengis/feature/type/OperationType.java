@@ -7,9 +7,9 @@ import org.opengis.feature.Attribute;
 import org.opengis.filter.Filter;
 
 /**
- * Opperation information, immutable.
+ * Operation information, immutable.
  * <p>
- * This represents a type of opperation that can be used to update the state of
+ * This represents a type of pperation that can be used to update the state of
  * a AttributeType, this gets more exciting with ComplexAttribtueType.
  * <p>
  * If you come to this from a pure java background this is where we capture the
@@ -17,12 +17,12 @@ import org.opengis.filter.Filter;
  * would do best to think of this as an interface definition.
  * </p>
  * <p>
- * To implement a method you will need to examine the OpperationDescriptor that
+ * To implement a method you will need to examine the OperationDescriptor that
  * can put you in touch with actual functionality, often implemented directly in
  * java, or using a scripting language.
  * </p>
  * <p>
- * The implementation of the opperations is against the bound AttributeType "B":
+ * The implementation of the operations is against the bound AttributeType "B":
  * <ul>
  * <li>the descriptor will be able to evaulate against B and produced a change
  *     state or result
@@ -37,7 +37,7 @@ import org.opengis.filter.Filter;
  * 
  * @author Jody Garnett, Refractions Research, Inc.
  */
- public interface OpperationType<B, T extends AttributeType<B>> extends PropertyType {	
+ public interface OperationType<B, T extends AttributeType<B>> extends PropertyType {	
 
 	/**
 	 * Access to super type information.
@@ -48,21 +48,21 @@ import org.opengis.filter.Filter;
 	 * 
 	 * @return AttributeType of supertype
 	 */
-	 OpperationType<? super B, ? super T> getSuper();
+	 OperationType<? super B, ? super T> getSuper();
 	
 	/**
-	 * Indicate that this OpperationType may not be used directly.
+	 * Indicate that this OperationType may not be used directly.
 	 * <p>
-	 * This indicates that a subclass will need to actually define the opperation
+	 * This indicates that a subclass will need to actually define the operation
 	 * meaning here. As an example a graph system could have an Edge that would
-	 * have "related" opperation returning that was abstract, and a sub type road
+	 * have "related" operation returning that was abstract, and a sub type road
 	 * would define "related" based on touches, or contains or a common vertex.
 	 * </p>
 	 */
 	 boolean isAbstract();
 	
 	/**
-	 * AttributeType this opperation type can function against.
+	 * AttributeType this operation type can function against.
 	 */
 	 T getTarget();
 
@@ -79,7 +79,7 @@ import org.opengis.filter.Filter;
 	 * Note we do not need AttributeDescriptors here as parameters
 	 * are ordered, so name is not needed.
 	 * </p>
-	 * @return inidicates paramters required for opperation
+	 * @return inidicates paramters required for operation
 	 */
 	List<AttributeType> getParameters();
 	

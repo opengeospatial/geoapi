@@ -120,7 +120,7 @@ public interface ComplexType<C extends Collection<Attribute>> extends AttributeT
 	 * Returns the only the strucutral properties (Attributes and Associations) used to define
 	 * this type.
 	 * <p>
-	 * We are not including the OpperationDescriptors in this list as they do not
+	 * We are not including the OperationDescriptors in this list as they do not
 	 * vary on a instance by instance basis. The difference between a ComplexType
 	 * and a AttributeType is the notion of inner strucutre represented by this
 	 * method.
