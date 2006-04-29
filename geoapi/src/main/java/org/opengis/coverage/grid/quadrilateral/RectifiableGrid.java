@@ -1,7 +1,16 @@
-
+/*$************************************************************************************************
+ **
+ ** $Id$
+ **
+ ** $Source$
+ **
+ ** Copyright (C) 2005 Open GIS Consortium, Inc.
+ ** All Rights Reserved. http://www.opengis.org/legal/
+ **
+ *************************************************************************************************/
 package org.opengis.coverage.grid.quadrilateral;
 
-//OpenGIS dependencies:
+// OpenGIS dependencies:
 import org.opengis.referencing.operation.Conversion;
 import org.opengis.referencing.operation.MathTransform;
 import org.opengis.referencing.operation.Operation;
@@ -10,77 +19,94 @@ import org.opengis.spatialschema.geometry.DirectPosition;
 // Annotations
 import org.opengis.annotation.UML;
 import org.opengis.annotation.Extension;
-
-
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
 
 
 /**
  * Represents a general coordinate conversion algorithm to be applied to the grid.  
- * In the special case where the coordinate conversion is affine, see RectifiedGrid (section 1.6.8.)  
- * This class defines the required convertCoordinates and inverseConvertCoordinates methods required by the RectifiableGrid interface 
- * and provides access to the MathTransform object associated with the algorithm.  
- * Children of this class need only supply the Conversion object (stored in the inherited “operation” attribute) to produce a functional coordinate conversion object.
+ * In the special case where the coordinate conversion is affine, see {@link RectifiedGrid}.
+ * This class defines the required {@code convertCoordinates} and {@code inverseConvertCoordinates}
+ * methods required by the {@code RectifiableGrid} interface and provides access to the
+ * {@link MathTransform} object associated with the algorithm.  Children of this class need
+ * only supply the {@link Conversion} object (stored in the inherited {@code operation} attribute)
+ * to produce a functional coordinate conversion object.
  *  
  * @author Alexander Petkov
  */
 @Extension
-public interface RectifiableGrid  extends GridPositioning{
+public interface RectifiableGrid  extends GridPositioning {
     /**
-     * This association shall link the {@linkplain RectifiableGrid} class with the coordinate conversion object 
-     * which defines the coordinate operation to be performed.  
-     * This conversion object shall be identical to the inherited “operation” attribute.
+     * This association shall link the {@link RectifiableGrid} class with the coordinate
+     * conversion object which defines the coordinate operation to be performed.
+     * This conversion object shall be identical to the inherited "operation" attribute.
      */
     @Extension
 	Conversion getConversion();
 
     /**
-     * This attribute shall contain only the {@linkplain Conversion} subtype of the {@linkplain Operation} interface, 
-     * signifying that RectifiableGrid and children represent only coordinate conversions as defined by ISO 19111.  
-     * This attribute shall be identical to the conversion attribute.
+     * This attribute shall contain only the {@link Conversion} subtype of the {@link Operation}
+     * interface, signifying that {@code RectifiableGrid} and children represent only coordinate
+     * conversions as defined by ISO 19111.  This attribute shall be identical to the conversion
+     * attribute.
+     *
+     * @todo We could narrow the return type to {@link Conversion} and delete the
+     *       {@link #getOperation} method instead.
      */
     @Extension
     Operation getOperation();
-    
+
     /**
-     * This association shall link the {@linkplain RectifiableGrid} class with the coordinate conversion object 
-     * which defines the inverse coordinate operation to be performed.  
-     * This conversion object shall be identical to the inherited “inverseOperation” attribute.
+     * This association shall link the {@link RectifiableGrid} class with the coordinate
+     * conversion object which defines the inverse coordinate operation to be performed.  
+     * This conversion object shall be identical to the inherited "inverseOperation" attribute.
      */
     @Extension
     Conversion getInverseConversion();
-    
+
     /**
-     * This inherited attribute shall contain only the {@linkplain Conversion} subtype of the {@linkplain Operation} interface, 
-     * signifying that {@linkplain RectifiableGrid} and children represent only coordinate conversions as defined by ISO 19111.   
-     * This attribute shall be identical to the conversion attribute.
+     * This inherited attribute shall contain only the {@link Conversion} subtype of the
+     * {@link Operation} interface, signifying that {@code RectifiableGrid} and children
+     * represent only coordinate conversions as defined by ISO 19111.  This attribute shall
+     * be identical to the conversion attribute.
+     *
+     * @todo We could narrow the return type to {@link Conversion} and delete the
+     *       {@link #getInverseConversion} method instead.
      */
     @Extension
 	Conversion getInverseOperation();
-    
+
     /**
      * Converts grid coordinates through an affine transform to a direct position.  
-     * This is an adapter method for the {@linkplain MathTransform#transform()} method.  
-     * The {@linkplain MathTransform} object used in the conversion is associated with the “conversion” and “operation” attributes.
+     * This is an adapter method for the {@link MathTransform#transform()} method.  
+     * The {@link MathTransform} object used in the conversion is associated with
+     * the "conversion" and "operation" attributes.
+     *
+     * @todo Is a {@link GridCoordinates} argument missing? What about {@code TransformException}?
      */
     @Extension
 	DirectPosition convertCoordinates();
-    
+
     /**
-     * Converts through an affine transform a direct position to the grid coordinates of the nearest grid point.  
-     * This is an adapter method for the {@linkplain MathTransform#transform()} method.  
-     * The {@linkplain MathTransform} object used in the conversion is associated with the “inverseConversion” and “inverseOperation” attributes.
+     * Converts through an affine transform a direct position to the grid coordinates of the nearest
+     * grid point.  This is an adapter method for the {@link MathTransform#transform()} method.  
+     * The {@link MathTransform} object used in the conversion is associated with the "inverseConversion"
+     * and "inverseOperation" attributes.
+     *
+     * @todo Is a {@link DirectPosition} argument missing? What about {@code TransformException}?
      */
     @Extension
     GridCoordinates inverseConvertCoordinates();
-    
+
     /**
-     * This optional attribute is specified on the {@linkplain GridGeometry} from the legacy OGC 01-004 specification.  
-     * It is retained here because it allows the user access to a conversion object which yields non-integer results.  
-     * This property is derived from the {@linkplain MathTransform} object associated with the operation and conversion attributes, and is merely a convenience method.
+     * This optional attribute is specified on the {@link GridGeometry} from the legacy OGC 01-004
+     * specification.  It is retained here because it allows the user access to a conversion object
+     * which yields non-integer results.  This property is derived from the {@link MathTransform}
+     * object associated with the operation and conversion attributes, and is merely a convenience
+     * method.
+     *
+     * @todo Should be renamed as {@code getGridToCRS()}.
      */
     @Extension
     MathTransform getGridToCoordinateSystem();
-    
 }
