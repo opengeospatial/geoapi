@@ -86,9 +86,9 @@ public interface Grid {
 	 */
     @UML(identifier="cell", obligation=MANDATORY, specification=ISO_19123)
 	Set<GridCell> getCells();
-	
+
 	/**
-	 * Specified in ISO 19123 as a “partition” of an inheritance relation, 
+	 * Specified in ISO 19123 as a "partition" of an inheritance relation, 
 	 * the valuation facility is recast here as a composition association.  
 	 * This increases clarity and eliminates the required multiple inheritance.  
 	 * The valuation association organizes the multi-dimensional grid 
@@ -96,9 +96,9 @@ public interface Grid {
 	 */
 	@Extension
 	GridValuesMatrix getValuation();
-	
+
 	/**
-	 * Specified in ISO 19123 as a “partition” of an inheritance relation, 
+	 * Specified in ISO 19123 as a "partition" of an inheritance relation, 
 	 * the positioning facility is recast here as a composition association.  
 	 * This increases clarity and eliminates the required multiple inheritance.  
 	 * The positioning association shall link this grid with an object capable of 
