@@ -7,13 +7,8 @@
 		
 	<target name="transform" depends="clean">
 		<!-- copy over the files -->
-		<copy todir="dist/src">
-			<fileset dir="stable/src/main/java" includes="org/**/*.java">
-				<exclude name="**/annotation/**/*.java"/>
-			</fileset>
-		</copy>
 		<copy todir="dist/src" overwrite="true">
-			<fileset dir="pending/src/main/java" includes="org/**/*.java">
+			<fileset dir="geoapi/src/main/java" includes="org/**/*.java">
 				<exclude name="**/coverage/**/*.java"/>
 				<exclude name="**/annotation/**/*.java"/>
 			</fileset>
@@ -65,11 +60,11 @@
 			<!-- PropertyType is abstract and we are knocking away methods that are type narrowed later -->
 			<replacefilter token="PropertyType getSuper()" value="//PropertyType getSuper()"/>
 		</replace>
-		<replace dir="dist/src/org/opengis/feature/type" includes="OpperationType.java">
+		<replace dir="dist/src/org/opengis/feature/type" includes="OperationType.java">
 			<replacefilter token="T getTarget()" value="AttributeType getTargetr()"/>
 		</replace>
-		<replace dir="dist/src/org/opengis/feature/type" includes="OpperationDescriptor.java">
-			<replacefilter token="O getType()" value="OpperationType/*T*/ getType()"/>
+		<replace dir="dist/src/org/opengis/feature/type" includes="OperationDescriptor.java">
+			<replacefilter token="O getType()" value="OperationType/*T*/ getType()"/>
 		</replace>
 		<replace dir="dist/src/org/opengis/feature/type" includes="AssociationDescriptor.java">
 			<replacefilter token="A getType()" value="AssociationType/*T*/ getType()"/>
@@ -84,14 +79,14 @@
 		<replace dir="dist/src/org/opengis/feature/type" includes="DescriptorFactory.java">
 			<replacefilter token="T type" value="AttributeType type"/>
 			<replacefilter token="A type" value="AssociationType type"/>
-			<replacefilter token="O type" value="OpperationType type"/>
+			<replacefilter token="O type" value="OperationType type"/>
 			<replacefilter token="&lt;T extends AttributeType&gt;"
 				value="/*&lt;T extends AttributeType&gt;*/"/>
 			
 			<replacefilter token="&lt;T extends AttributeType, A extends AssociationType&lt;T&gt;&gt;"
 				value="/*&lt;T extends AttributeType, A extends AssociationType&lt;T&gt;&gt;*/"/>
-			<replacefilter token="&lt;B, T extends AttributeType&lt;B&gt;, O extends OpperationType&lt;B,T&gt;&gt;"
-				value="/*&lt;B, T extends AttributeType&lt;B&gt;, O extends OpperationType&lt;B,T&gt;&gt;*/"/>
+			<replacefilter token="&lt;B, T extends AttributeType&lt;B&gt;, O extends OperationType&lt;B,T&gt;&gt;"
+				value="/*&lt;B, T extends AttributeType&lt;B&gt;, O extends OperationType&lt;B,T&gt;&gt;*/"/>
 			
 		</replace>
 		<replace dir="dist/src/org/opengis/feature/type" includes="GeometryType.java">

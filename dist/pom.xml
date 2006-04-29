@@ -47,7 +47,7 @@
         <groupId>org.opengis</groupId>
         <artifactId>tools-ant</artifactId>
         <configuration>
-          <sourceDirectory>${basedir}/../pending/src/main/java</sourceDirectory>
+          <sourceDirectory>${basedir}/../geoapi/src/main/java</sourceDirectory>
         </configuration>
         <executions>
           <execution>
