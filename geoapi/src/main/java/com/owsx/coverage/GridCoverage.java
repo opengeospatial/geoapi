@@ -20,7 +20,7 @@ package com.owsx.coverage;
  * 
  * @author Stephane Fellah
  * @since Jan 14, 2005
- * @version $Revision$
+ * @version $Revision: 658 $
  */
 public interface GridCoverage extends Coverage  {
 

@@ -20,7 +20,7 @@ package com.owsx.coverage;
  * 
  * @author Stephane Fellah
  * @since Jan 18, 2005
- * @version $Revision$
+ * @version $Revision: 658 $
  */
 public enum InterpolationMethod {
     /**

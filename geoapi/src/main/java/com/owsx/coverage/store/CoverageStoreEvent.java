@@ -30,7 +30,7 @@ import com.owsx.coverage.CoverageType;
  * Event fired by CoverageStore and listened by CoverageStoreListener
  *
  * @author Stephane Fellah
- * @version $Revision$
+ * @version $Revision: 658 $
  * @since Jan 5, 2005
  */
 public class CoverageStoreEvent extends EventObject {
@@ -40,7 +40,7 @@ public class CoverageStoreEvent extends EventObject {
      * Enumeration defining the type of event.
      *
      * @author Stephane Fellah
-     * @version $Revision$
+     * @version $Revision: 658 $
      * @since Jan 5, 2005
      */
     public static enum EventType { TYPE_ADDED, 

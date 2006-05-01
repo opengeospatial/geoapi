@@ -17,7 +17,7 @@ package com.owsx.coverage;
  * 
  * @author Stephane Fellah
  * @since Feb 28, 2005
- * @version $Revision$
+ * @version $Revision: 658 $
  */
 public interface GeometryValuePair {
     /**

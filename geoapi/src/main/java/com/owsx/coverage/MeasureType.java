@@ -34,7 +34,7 @@ import com.owsx.datatype.Datatype;
  *       the dimension of the quantity by giving a unit of measure. 
  *
  * @author Stephane Fellah
- * @version $Revision$
+ * @version $Revision: 658 $
  * @since Jan 3, 2005
  */
 public interface MeasureType {

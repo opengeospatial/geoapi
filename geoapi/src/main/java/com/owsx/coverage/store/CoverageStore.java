@@ -25,7 +25,7 @@ import com.owsx.coverage.CoverageType;
  * up collections of Coverage instances.
  * 
  * @author Stephane Fellah
- * @version $Revision$
+ * @version $Revision: 658 $
  * @since Jan 5, 2005
  */
 public interface CoverageStore {

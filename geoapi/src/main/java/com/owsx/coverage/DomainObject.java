@@ -22,7 +22,7 @@ import com.owsx.temporal.TemporalGeometricPrimitive;
  * Domain Object representing a spatial temporal Object
  *
  * @author Stephane Fellah
- * @version $Revision$
+ * @version $Revision: 658 $
  * @since Jan 4, 2005
  */
 public interface DomainObject {

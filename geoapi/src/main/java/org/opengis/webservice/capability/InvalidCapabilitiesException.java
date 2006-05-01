@@ -51,11 +51,11 @@ import org.opengis.webservice.WebServiceException;
 /**
  * 
  *
- * @version $Revision$
+ * @version $Revision: 658 $
  * @author <a href="mailto:poth@lat-lon.de">Andreas Poth</a>
- * @author last edited by: $Author$
+ * @author last edited by: $Author: Desruisseaux $
  *
- * @version 1.0. $Revision$, $Date$
+ * @version 1.0. $Revision: 658 $, $Date: 2006-02-23 12:09:34 +1100 (jeu., 23 févr. 2006) $
  *
  * @since 1.1
  */

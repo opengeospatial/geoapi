@@ -32,7 +32,7 @@ package com.owsx.common.datatype;
  * datatype fails.
  * 
  * @author Stephane Fellah
- * @version $Revision$
+ * @version $Revision: 658 $
  * @since Dec 28, 2004
  */
 public class DatatypeConversionException extends RuntimeException {

@@ -27,7 +27,7 @@ import com.owsx.common.datatype.Datatype;
  * Value interface
  *
  * @author Stephane Fellah
- * @version $Revision$
+ * @version $Revision: 658 $
  * @since Jan 4, 2005
  */
 public interface Value {

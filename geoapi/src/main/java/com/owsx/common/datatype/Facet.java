@@ -23,7 +23,7 @@ package com.owsx.common.datatype;
  * each facet characterizes a ·value space· along independent axes or dimensions. 
  *
  * @author Stephane Fellah
- * @version $Revision$
+ * @version $Revision: 658 $
  * @since Dec 30, 2004
  */
 public interface Facet {

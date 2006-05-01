@@ -21,7 +21,7 @@ import java.util.Set;
  * 
  * @author Stephane Fellah
  * @since Jan 08, 2005
- * @version $Revision$
+ * @version $Revision: 658 $
  */
 public interface RangeType {
     
