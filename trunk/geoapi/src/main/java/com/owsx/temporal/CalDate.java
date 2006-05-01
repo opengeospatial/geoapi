@@ -25,7 +25,7 @@ import java.util.Calendar;
  * 
  * @author Stephane Fellah
  * @since Feb 28, 2005
- * @version $Revision$
+ * @version $Revision: 658 $
  */
 public interface CalDate extends TemporalPosition {
     public Calendar asCalendar();

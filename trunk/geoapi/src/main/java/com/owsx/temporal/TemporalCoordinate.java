@@ -23,7 +23,7 @@ package com.owsx.temporal;
  * 
  * @author Stephane Fellah
  * @since Feb 28, 2005
- * @version $Revision$
+ * @version $Revision: 658 $
  */
 public interface TemporalCoordinate extends TemporalPosition{
 

@@ -19,7 +19,7 @@ package com.owsx.coverage;
  * Enumeration definition the Measurement Scale
  * 
  * @author Stephane Fellah
- * @version $Revision$
+ * @version $Revision: 658 $
  * @since Jan 5, 2005
  */
 public enum MeasurementScale {

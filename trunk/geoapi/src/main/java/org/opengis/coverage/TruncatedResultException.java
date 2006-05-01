@@ -1,8 +1,8 @@
 /*$************************************************************************************************
  **
- ** $Id: PointOutsideCoverageException.java 707 2006-03-13 22:57:11Z sa5h $
+ ** $Id$
  **
- ** $Source$
+ ** $URL$
  **
  ** Copyright (C) 2003-2005 Open GIS Consortium, Inc.
  ** All Rights Reserved. http://www.opengis.org/legal/

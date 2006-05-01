@@ -21,7 +21,7 @@ package com.owsx.common.value;
 /**
  *
  * @author Stephane Fellah
- * @version $Revision$
+ * @version $Revision: 658 $
  * @since Jan 4, 2005
  */
 public interface ValueArray extends Value {

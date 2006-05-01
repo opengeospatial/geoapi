@@ -61,7 +61,7 @@ import static org.opengis.annotation.Specification.*;
  * is available. (OGC document 03-098, p. 98).
  * 
  * @author Andreas Poth
- * @version $Revision$ $Date$
+ * @version $Revision: 708 $ $Date: 2006-03-16 05:12:32 +1100 (jeu., 16 mars 2006) $
  */
 public interface WebFeatureService extends WebService {
     /**

@@ -57,9 +57,9 @@ import static org.opengis.annotation.Specification.*;
  * Represents the capabilities for an OGC-CSW 2.0.0 compliant service instance.
  * 
  * @author <a href="mailto:mschneider@lat-lon.de">Markus Schneider </a>
- * @author last edited by: $Author$
+ * @author last edited by: $Author: Desruisseaux $
  * 
- * @version 2.0, $Revision$, $Date$
+ * @version 2.0, $Revision: 671 $, $Date: 2006-02-28 20:37:45 +1100 (mar., 28 févr. 2006) $
  * 
  * @since 2.0
  */

@@ -2,7 +2,7 @@
  **
  ** $Id$
  **
- ** $Source$
+ ** $URL$
  **
  ** Copyright (C) 2005-2005 Open GIS Consortium, Inc.
  ** All Rights Reserved. http://www.opengis.org/legal/

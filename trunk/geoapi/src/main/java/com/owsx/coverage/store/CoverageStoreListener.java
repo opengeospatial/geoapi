@@ -26,7 +26,7 @@ import java.util.EventListener;
  * invoke the addCoverageStoreListener() method on CoverageStore. 
  * 
  * @author Stephane Fellah
- * @version $Revision$
+ * @version $Revision: 658 $
  * @since Jan 5, 2005
  */
 public interface CoverageStoreListener extends EventListener {

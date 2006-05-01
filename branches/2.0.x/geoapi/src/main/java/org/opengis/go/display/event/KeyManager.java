@@ -2,7 +2,7 @@
  **
  ** $Id$
  **
- ** $Source$
+ ** $URL$
  **
  ** Copyright (C) 2003-2005 Open GIS Consortium, Inc.
  ** All Rights Reserved. http://www.opengis.org/legal/
@@ -16,7 +16,7 @@ package org.opengis.go.display.event;
  * It prescribes a stack mechanism for managing <code>KeyHandler</code>s.
  *
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
- * @version $Revision$, $Date$
+ * @version $Revision: 658 $, $Date: 2006-02-23 12:09:34 +1100 (jeu., 23 févr. 2006) $
  */
 public interface KeyManager extends EventManager {
 

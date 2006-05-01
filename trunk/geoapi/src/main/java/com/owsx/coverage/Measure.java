@@ -37,7 +37,7 @@ import com.owsx.value.Value;
  * is associated with.
  * 
  * @author Stephane Fellah
- * @version $Revision$
+ * @version $Revision: 658 $
  * @since Jan 3, 2005
  */
 public interface Measure {

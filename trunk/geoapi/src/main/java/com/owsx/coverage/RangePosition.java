@@ -24,7 +24,7 @@ import java.util.Map;
  * 
  * @author Stephane Fellah
  * @since Jan 14, 2005
- * @version $Revision$
+ * @version $Revision: 658 $
  */
 public interface RangePosition {
     /**

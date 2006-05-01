@@ -2,7 +2,7 @@
  **
  ** $Id$
  **
- ** $Source$
+ ** $URL$
  **
  ** Copyright (C) 2003-2005 Open GIS Consortium, Inc.
  ** All Rights Reserved. http://www.opengis.org/legal/
@@ -35,7 +35,7 @@ import org.opengis.util.NameFactory;
  * objects have a common dependency on.
  *
  * @author Open GIS Consortium, Inc.
- * @version $Revision$, $Date$
+ * @version $Revision: 816 $, $Date: 2006-04-06 11:16:19 +1100 (jeu., 06 avr. 2006) $
  */
 public interface CommonFactory {
     /**

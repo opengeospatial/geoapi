@@ -17,7 +17,7 @@ package com.owsx.coverage.store;
  * 
  * @author Stephane Fellah
  * @since Feb 3, 2005
- * @version $Revision$
+ * @version $Revision: 658 $
  */
 public interface CoverageStoreFactory {
 

@@ -51,7 +51,7 @@ import org.opengis.webservice.capability.Capabilities;
 
 /**
  * @author <a href="mailto:poth@lat-lon.de">Andreas Poth </a>
- * @author last edited by: $Author$
+ * @author last edited by: $Author: Desruisseaux $
  */
 public interface WebService {
     /**

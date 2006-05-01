@@ -29,7 +29,7 @@ package com.owsx.common.datatype;
  * to convert typed literals between lexical and value forms. 
  *
  * @author Stephane Fellah
- * @version $Revision$
+ * @version $Revision: 658 $
  * @since Dec 28, 2004
  */
 public interface Datatype {

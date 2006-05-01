@@ -28,7 +28,7 @@ import org.opengis.util.InternationalString;
  * of a Coverage. Every Coverage must be associated to a CoverageType. 
  *
  * @author Stephane Fellah
- * @version $Revision$
+ * @version $Revision: 658 $
  * @since Jan 3, 2005
  */
 public interface CoverageType {

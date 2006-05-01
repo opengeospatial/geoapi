@@ -52,7 +52,7 @@ import org.opengis.spatialschema.geometry.DirectPosition;
  * </OL>
  * 
  * @author Stephane Fellah
- * @version $Revision$
+ * @version $Revision: 658 $
  * @since Dec 27, 2004
  */
 public interface Coverage {
