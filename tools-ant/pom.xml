@@ -22,7 +22,7 @@
   <artifactId>tools-ant</artifactId>
   <packaging>maven-plugin</packaging>
   <version>pending-SNAPSHOT</version>
-  <name>GeoAPI</name>
+  <name>Generic types erasure for GeoAPI</name>
   <url>http://geoapi.sourceforge.net/tools-ant/</url>
   <scm>
     <connection>scm:svn:https://svn.sourceforge.net/svnroot/geoapi/trunk/tools-ant/</connection>

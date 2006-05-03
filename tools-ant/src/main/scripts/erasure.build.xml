@@ -65,7 +65,7 @@
         <!-- NOTE: we should not copy the same block of code many times! But Ant
              doesn't support loops,  and I have been unable to get <antcall/> to
              work (it tries to locate a build.xml file;  it doesn't seem to look
-             in the current xml file, even if Apache's doc said that it does. -->
+             in the current xml file, even if Apache's doc said that it does). -->
 
         <!-- Erase generic types (first pass) -->
         <replaceregexp byline="true">

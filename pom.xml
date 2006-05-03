@@ -340,6 +340,8 @@
   <!--     All GeoAPI modules included in the build         -->
   <!-- ==================================================== -->
   <modules>
+    <module>tools</module>
+    <module>tools-ant</module>
     <module>geoapi</module>
     <module>dist</module>
   </modules>
