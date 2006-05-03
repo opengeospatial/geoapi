@@ -45,7 +45,7 @@
     <plugins>
       <plugin>
         <groupId>org.opengis</groupId>
-        <artifactId>tools-ant</artifactId>
+        <artifactId>geoapi-erasure</artifactId>
         <configuration>
           <sourceDirectory>${basedir}/../geoapi/src/main/java</sourceDirectory>
         </configuration>
