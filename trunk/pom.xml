@@ -16,7 +16,7 @@
   <groupId>org.opengis</groupId>
   <artifactId>geoapi-parent</artifactId>
   <packaging>pom</packaging>
-  <version>pending-SNAPSHOT</version>
+  <version>2.1-SNAPSHOT</version>
   <name>GeoAPI common settings</name>
   <url>http://geoapi.sourceforge.net/</url>
   <description>
@@ -341,7 +341,7 @@
   <!-- ==================================================== -->
   <modules>
     <module>tools</module>
-    <module>tools-ant</module>
+    <module>erasure</module>
     <module>geoapi</module>
     <module>dist</module>
   </modules>
