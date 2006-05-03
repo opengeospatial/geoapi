@@ -22,7 +22,7 @@
   <artifactId>geoapi-nogenerics</artifactId>
   <packaging>jar</packaging>
   <version>pending-SNAPSHOT</version>
-  <name>GeoAPI</name>
+  <name>GeoAPI for J2SE 1.4</name>
   <url>http://geoapi.sourceforge.net/dist/</url>
   <scm>
     <connection>scm:svn:https://svn.sourceforge.net/svnroot/geoapi/trunk/dist/</connection>
