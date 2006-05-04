@@ -343,6 +343,6 @@
     <module>tools</module>
     <module>erasure</module>
     <module>geoapi</module>
-    <module>dist</module>
+    <module>nogenerics</module>
   </modules>
 </project>
