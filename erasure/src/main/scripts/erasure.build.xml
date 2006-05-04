@@ -110,7 +110,7 @@
             <include name="org/opengis/coverage/grid/quadrilateral/RectifiedGrid.java"/>
             <include name="org/opengis/coverage/grid/quadrilateral/RectifiableGrid.java"/>
             <replacefilter token="Conversion getInverseConversion(" value="Operation getInverseConversion("/>
-            <replacefilter token="Conversion getInverseOpperation(" value="Operation getInverseOpperation("/>
+            <replacefilter token="Conversion getInverseOperation(" value="Operation getInverseOperation("/>
 	    <replacefilter token="//import org.opengis.referencing.operation.Operation;" value="import org.opengis.referencing.operation.Operation;"/>
 	</replace>
 	
@@ -134,8 +134,8 @@
 	</replace>
 
 	<!-- operation -->
-        <replace dir="${generatedSourceDirectory}" includes="org/opengis/feature/type/OpperationType.java">
-            <replacefilter token="T getTarget()" value="AttributeType getTarget()"/>
+        <replace dir="${generatedSourceDirectory}" includes="org/opengis/feature/type/OperationType.java">
+            <replacefilter token="T getTarget()" value="OperationType getTarget()"/>
         </replace>
         <replace dir="${generatedSourceDirectory}" includes="org/opengis/feature/type/OperationDescriptor.java">
             <replacefilter token="O getType()" value="OperationType/*O*/ getType()"/>
