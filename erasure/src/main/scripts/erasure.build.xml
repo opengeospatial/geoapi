@@ -170,7 +170,13 @@
             <replacefilter token="void set(G " value="void set(Object/*Geometry*/"/>
             <replacefilter token="T getType()" value="AttributeType getType()"    />
         </replace>
-	
+
+    	<!-- FeatureCollection -->
+            <replace dir="${generatedSourceDirectory}" includes="org/opengis/feature/FeatureCollection.java">
+                <replacefilter token="T getType();" value="AttributeType getType();" />
+                <replacefilter token="//import org.opengis.feature.type.AttributeType;" value="import org.opengis.feature.type.AttributeType;" />
+            </replace>
+    	
 	<!-- org.opengis.feature.simple -->
         <replace dir="${generatedSourceDirectory}" includes="org/opengis/feature/simple/SimpleFeatureTypeBuilder.java">
             <replacefilter token="E getSuper()" value="ComplexType getSuper()"/>
