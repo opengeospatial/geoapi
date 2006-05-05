@@ -9,9 +9,6 @@ import java.util.Map;
 // Standard JavaDoc dependencies
 import com.sun.javadoc.Tag;
 import com.sun.javadoc.Doc;
-import com.sun.javadoc.RootDoc;
-import com.sun.tools.doclets.Taglet;
-import com.sun.tools.doclets.formats.html.HtmlDocletWriter;
 import com.sun.tools.doclets.internal.toolkit.taglets.SimpleTaglet;
 import com.sun.tools.doclets.internal.toolkit.taglets.TagletOutput;
 import com.sun.tools.doclets.internal.toolkit.taglets.TagletWriter;
@@ -23,21 +20,21 @@ import com.sun.tools.doclets.internal.toolkit.taglets.TagletWriter;
  * @version $Id$
  * @author Martin Desruisseaux
  */
-public final class RevisitTaglet extends SimpleTaglet {
+public final class TodoTaglet extends SimpleTaglet {
     /**
      * Register this taglet.
      *
      * @param tagletMap the map to register this tag to.
      */
     public static void register(final Map tagletMap) {
-       final RevisitTaglet tag = new RevisitTaglet();
+       final TodoTaglet tag = new TodoTaglet();
        tagletMap.put(tag.getName(), tag);
     }
 
     /**
      * Constructs a default <code>@todo</code> taglet.
      */
-    private RevisitTaglet() {
+    private TodoTaglet() {
         super("todo", "<U>REVISIT OPEN ISSUE "+
               "<FONT COLOR='#A01020'>(a GeoAPI comment)</FONT></U>",
               "tmf");
