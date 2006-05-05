@@ -71,7 +71,7 @@ public interface TypeFactory {
 	);
 	
 	AssociationType createAssociationType(
-		TypeName name, Class<AttributeType> association, boolean isIdentifiable, 
+		TypeName name, AttributeType referenceType,boolean isIdentifiable,
 		boolean isAbstract, Set<Filter> restrictions, AssociationType superType,
 		InternationalString description
 	);
