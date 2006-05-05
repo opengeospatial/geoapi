@@ -25,12 +25,8 @@ import org.opengis.util.GenericName;
 import org.opengis.util.InternationalString;
 import org.opengis.annotation.UML;
 import org.opengis.annotation.Obligation;
-import org.opengis.parameter.ParameterValueGroup;
-import org.opengis.parameter.ParameterDescriptorGroup;
 import org.opengis.spatialschema.geometry.Geometry;
 import org.opengis.spatialschema.geometry.primitive.Point;
-import org.opengis.spatialschema.geometry.geometry.PointGrid;
-import org.opengis.spatialschema.geometry.geometry.PointArray;
 
 
 /**

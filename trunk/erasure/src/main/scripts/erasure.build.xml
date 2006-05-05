@@ -104,15 +104,6 @@
             <replacefilter token="(E)"/>
             <replacefilter token="final E " value="final Object "/>
         </replace>
-
-        <!-- org.opengis.coverage (coverage) -->
-        <replace dir="${generatedSourceDirectory}">
-            <include name="org/opengis/coverage/grid/quadrilateral/RectifiedGrid.java"/>
-            <include name="org/opengis/coverage/grid/quadrilateral/RectifiableGrid.java"/>
-            <replacefilter token="Conversion getInverseConversion(" value="Operation getInverseConversion("/>
-            <replacefilter token="Conversion getInverseOperation(" value="Operation getInverseOperation("/>
-	    <replacefilter token="//import org.opengis.referencing.operation.Operation;" value="import org.opengis.referencing.operation.Operation;"/>
-	</replace>
 	
 	<!-- org.opengis.feature.type (naming) -->
         <replace dir="${generatedSourceDirectory}" includes="org/opengis/feature/type/Namespace.java">

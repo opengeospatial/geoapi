@@ -14,9 +14,7 @@ package org.opengis.coverage.grid.quadrilateral;
 import java.util.List;
 
 // OpenGIS dependencies
-//OpenGIS dependencies:
 import org.opengis.referencing.operation.Conversion;
-//import org.opengis.referencing.operation.Operation;
 import org.opengis.spatialschema.geometry.DirectPosition;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 import org.opengis.referencing.datum.Datum;  // For javadoc
@@ -56,37 +54,39 @@ import static org.opengis.annotation.Specification.*;
  */
 @UML(identifier="CV_RectifiedGrid", specification=ISO_19123)
 public interface RectifiedGrid extends RectifiableGrid {
-	/**
-	 * Returns the origin of the rectified grid in an external coordinate reference system. 
-	 */
-	@UML(identifier="origin", obligation=MANDATORY, specification=ISO_19123)
-	DirectPosition getOrigin();
+    /**
+     * Returns the origin of the rectified grid in an external coordinate reference system. 
+     */
+    @UML(identifier="origin", obligation=MANDATORY, specification=ISO_19123)
+    DirectPosition getOrigin();
 
-	/**
-	 * Returns the offset vectors that determine the grid spacing in each direction. The vectors
+    /**
+     * Returns the offset vectors that determine the grid spacing in each direction. The vectors
      * are defined in terms of the external coordinate reference system.
-	 */
-	@UML(identifier="offsetVectors", obligation=MANDATORY, specification=ISO_19123)
-	List<double[]> getOffsetVectors();
+     */
+    @UML(identifier="offsetVectors", obligation=MANDATORY, specification=ISO_19123)
+    List<double[]> getOffsetVectors();
 
-	/**
-	 * In the context of the RectifiedGrid type, 
-	 * the coordinateReferenceSystem attribute inherited from GridPositioning shall be derived from the Coordinate Reference System association of the origin.
-	 */
-	@Extension
-	CoordinateReferenceSystem getCoordinateReferenceSystem();
-	
-	/**
-	 * The conversion defined by this object is an affine transformation 
-	 * defined by the origin and offset vectors attributes.
-	 */
-	@Extension
-	Conversion getConversion();
-	
-	 /**
-	  * The inverseConversion defined by this object is an affine transformation 
-	  * defined by the origin and offset vectors attributes.
-	  */
-	 @Extension
-	 Conversion getInverseConversion();
+    /**
+     * {@inheritDoc}
+     * In the context of the {@code RectifiedGrid} type, the {@linkplain CoordinateReferenceSystem
+     * coordinate reference system} attribute inherited from {@linkplain GridPositioning grid positioning}
+     * shall be derived from the Coordinate Reference System association of the origin.
+     */
+    @Extension
+    CoordinateReferenceSystem getCoordinateReferenceSystem();
+
+    /**
+     * The conversion defined by this object is an affine transformation 
+     * defined by the origin and offset vectors attributes.
+     */
+/// @Extension
+/// Conversion getConversion();
+
+     /**
+      * The inverseConversion defined by this object is an affine transformation 
+      * defined by the origin and offset vectors attributes.
+      */
+///  @Extension
+///  Conversion getInverseConversion();
 }

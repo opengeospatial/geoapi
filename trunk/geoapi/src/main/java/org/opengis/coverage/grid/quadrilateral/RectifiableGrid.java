@@ -11,10 +11,9 @@
 package org.opengis.coverage.grid.quadrilateral;
 
 // OpenGIS dependencies:
+import org.opengis.referencing.operation.Operation;  // For javadoc
 import org.opengis.referencing.operation.Conversion;
-import org.opengis.referencing.operation.Operation;
 import org.opengis.referencing.operation.MathTransform;
-import org.opengis.referencing.operation.Operation;
 import org.opengis.spatialschema.geometry.DirectPosition;
 
 // Annotations
@@ -38,44 +37,22 @@ import static org.opengis.annotation.Specification.*;
 @Extension
 public interface RectifiableGrid  extends GridPositioning {
     /**
-     * This association shall link the {@link RectifiableGrid} class with the coordinate
-     * conversion object which defines the coordinate operation to be performed.
-     * This conversion object shall be identical to the inherited "operation" attribute.
-     */
-    @Extension
-	Conversion getConversion();
-
-    /**
      * This attribute shall contain only the {@link Conversion} subtype of the {@link Operation}
      * interface, signifying that {@code RectifiableGrid} and children represent only coordinate
      * conversions as defined by ISO 19111.  This attribute shall be identical to the conversion
      * attribute.
-     *
-     * @todo We could narrow the return type to {@link Conversion} and delete the
-     *       {@link #getOperation} method instead.
      */
-    @Extension
-    Operation getOperation();
-
-    /**
-     * This association shall link the {@link RectifiableGrid} class with the coordinate
-     * conversion object which defines the inverse coordinate operation to be performed.  
-     * This conversion object shall be identical to the inherited "inverseOperation" attribute.
-     */
-    @Extension
-    Conversion getInverseConversion();
+/// @Extension
+/// Conversion getOperation();
 
     /**
      * This inherited attribute shall contain only the {@link Conversion} subtype of the
      * {@link Operation} interface, signifying that {@code RectifiableGrid} and children
      * represent only coordinate conversions as defined by ISO 19111.  This attribute shall
      * be identical to the conversion attribute.
-     *
-     * @todo We could narrow the return type to {@link Conversion} and delete the
-     *       {@link #getInverseConversion} method instead.
      */
-    @Extension
-	Conversion getInverseOperation();
+/// @Extension
+/// Conversion getInverseOperation();
 
     /**
      * Converts grid coordinates through an affine transform to a direct position.  
@@ -86,7 +63,7 @@ public interface RectifiableGrid  extends GridPositioning {
      * @todo Is a {@link GridCoordinates} argument missing? What about {@code TransformException}?
      */
     @Extension
-	DirectPosition convertCoordinates();
+    DirectPosition convertCoordinates();
 
     /**
      * Converts through an affine transform a direct position to the grid coordinates of the nearest

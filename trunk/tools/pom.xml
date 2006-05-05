@@ -29,7 +29,7 @@
     <url>https://svn.sourceforge.net/viewcvs.cgi/geoapi/trunk/tools/</url>
   </scm>
   <description>
-    Maven plugins, davadoc taglets and annotation processing tools for processing GeoAPI
+    Javadoc taglets and annotation processing tools for processing GeoAPI
     after compilation. Those tools are used mostly for javadoc generation.
   </description>
 
