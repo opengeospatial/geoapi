@@ -44,7 +44,7 @@ public interface AssociationType<B extends AttributeType> extends PropertyType {
 	 * 
 	 * @return true if this complex type must have non null getID()
 	 */
-	//boolean isIdentified();
+	boolean isIdentified();
 	
 	/**
 	 * Access to super type information.
@@ -85,5 +85,4 @@ public interface AssociationType<B extends AttributeType> extends PropertyType {
 	 * @return List<Restriction> used to validate allowable values.
 	 */
 	public Set<Filter> getRestrictions();
-	
 }

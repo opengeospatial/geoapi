@@ -3,6 +3,7 @@ package org.opengis.feature;
 import java.util.Collection;
 import java.util.Iterator;
 
+//import org.opengis.feature.type.AttributeType;
 import org.opengis.feature.type.FeatureCollectionType;
 import org.opengis.feature.type.FeatureType;
 import org.opengis.filter.Filter;
@@ -24,7 +25,7 @@ public interface FeatureCollection<C extends Collection<Attribute>, M extends Fe
 	/**
 	 * Restricted to return a FeatureCollectionType.
 	 */
-/// FeatureCollectionType getType();
+    T getType();
 
 	
     /**
