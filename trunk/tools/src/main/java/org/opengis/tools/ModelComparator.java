@@ -10,15 +10,31 @@
 package org.opengis.tools;
 
 // J2SE dependencies
-import java.io.*;
-import java.util.*;
-import java.lang.reflect.*;
+import java.io.File;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.StringWriter;
+import java.util.Map;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.Collection;
+
+// Annotation processing tools
+import com.sun.mirror.apt.Filer;
+import com.sun.mirror.type.InterfaceType;
+import com.sun.mirror.util.Declarations;
+import com.sun.mirror.declaration.Modifier;
+import com.sun.mirror.declaration.Declaration;
+import com.sun.mirror.declaration.TypeDeclaration;
+import com.sun.mirror.declaration.ClassDeclaration;
+import com.sun.mirror.declaration.FieldDeclaration;
+import com.sun.mirror.declaration.MemberDeclaration;
+import com.sun.mirror.declaration.MethodDeclaration;
 
 // OpenGIS dependencies
 import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
 import org.opengis.annotation.XmlElement;
-import org.opengis.annotation.Specification;
 import org.opengis.parameter.ParameterValueGroup;
 import org.opengis.parameter.ParameterDescriptorGroup;
 import org.opengis.spatialschema.geometry.geometry.PointGrid;
@@ -28,14 +44,30 @@ import org.opengis.spatialschema.geometry.geometry.PointArray;
 /**
  * Checks interfaces and attributes names against the name declared in the annotation tags.
  * All differences are listed in HTML files.
+ * <p>
+ * <b>How to use</b>
+ * {@code chdir} to the root directory of source code. Then invoke the following command,
+ * where {@code opengis.txt} is a file containing the path to all java classes to parse
+ * in the {@value #ROOT_PACKAGE} package.
+ *
+ * <blockquote><pre>
+ * apt -nocompile -factory org.opengis.tools.ModelComparator @opengis.txt
+ * </pre></blockquote>
+ *
+ * The HTML files will be stored in the <code>{@value #ROOT_PACKAGE}/doc-files</code> package.
  *
  * @author Martin Desruisseaux
  */
-public class ModelComparator {
+public class ModelComparator extends UmlProcessor {
     /**
-     * The line separator.
+     * Set to {@code true} for printing some debug information to the standard output.
      */
-    private static final String lineSeparator = System.getProperty("line.separator", "\n");
+    private static final boolean DEBUG = false;
+
+    /**
+     * The root package.
+     */
+    public static final String ROOT_PACKAGE = "org.opengis";
 
     /**
      * The string to use for classes/methods adapted from legacy specifications.
@@ -48,232 +80,222 @@ public class ModelComparator {
     private static final String EXTENSION = "(none - this is a GeoAPI extension)";
 
     /**
-     * Do not allows instances of this class.
+     * Comparator used for sorting members according their name.
      */
-    private ModelComparator() {
+    private static final Comparator<MemberDeclaration> MEMBER_COMPARATOR = new Comparator<MemberDeclaration>() {
+        public int compare(final MemberDeclaration m1, final MemberDeclaration m2) {
+            return m1.getSimpleName().compareTo(m2.getSimpleName());
+        }
+    };
+
+    /**
+     * The writter where to write classes informations.
+     */
+    private PrintWriter classes;
+
+    /**
+     * The writter where to write members informations.
+     */
+    private PrintWriter members;
+
+    /**
+     * Last package visited.
+     */
+    private String lastPackage;
+
+    /**
+     * Creates a default processor.
+     */
+    public ModelComparator() {
     }
 
     /**
-     * Scan all classes and members and write the differences to the stream.
+     * Process all program elements supported by this annotation processor. This method scan
+     * all interfaces and their methods (as well as code lists and their fields) and write
+     * the comparaison result to a HTML file.
      */
-    public static void main(String[] args) throws IOException {
-        /*
-         * Open the stream where to write class differences.
-         */
-        final Writer classes = new BufferedWriter(new FileWriter("departures-list.html"));
-        classes.write("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">");
-        classes.write(lineSeparator);
-        classes.write("<HTML>");
-        classes.write(lineSeparator);
-        classes.write("  <HEAD>");
-        classes.write(lineSeparator);
-        classes.write("    <TITLE>Significant name changes between GeoAPI and OGC models</TITLE>");
-        classes.write(lineSeparator);
-        classes.write("  </HEAD>");
-        classes.write(lineSeparator);
-        classes.write("  <BODY>");
-        classes.write(lineSeparator);
-        classes.write("  <H1>Significant name changes for classes</H1>");
-        classes.write(lineSeparator);
-        classes.write("  <P>This list do not includes the following changes:</P>");
-        classes.write(lineSeparator);
-        classes.write("  <UL>");
-        classes.write(lineSeparator);
-        classes.write("    <LI>Omission of 2 letters prefix (<CODE>MD_</CODE>, <CODE>RS_</CODE>, etc...)</LI>");
-        classes.write(lineSeparator);
-        classes.write("    <LI>Omission of <CODE>Code</CODE> suffix for code list</LI>");
-        classes.write(lineSeparator);
-        classes.write("    <LI>Addition of <CODE>Exception</CODE> suffix for exceptions</LI>");
-        classes.write(lineSeparator);
-        classes.write("  </UL>");
-        classes.write(lineSeparator);
-        classes.write("  <TABLE cellpadding='0' cellspacing='0'>");
-        classes.write(lineSeparator);
-        classes.write("  <TR><TH bgcolor='#CCCCFF'>GeoAPI name</TH><TH bgcolor='#CCCCFF'>ISO name</TH></TR>");
-        classes.write(lineSeparator);
+    @Override
+    public void process() {
+        final Filer filer = environment.getFiler();
+        try {
+            classes = filer.createTextFile(Filer.Location.SOURCE_TREE, ROOT_PACKAGE,
+                        new File("doc-files/departures-list.html"), null);
+        } catch (IOException e) {
+            String name = e.getClass().getName();
+            name = name.substring(name.lastIndexOf('.') + 1);
+            environment.getMessager().printError("Unable to create output files. The cause is " +
+                                                 name + ": " + e.getLocalizedMessage());
+            return;
+        }
+        classes.println("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">");
+        classes.println("<HTML>");
+        classes.println("  <HEAD>");
+        classes.println("    <TITLE>Significant name changes between GeoAPI and OGC models</TITLE>");
+        classes.println("  </HEAD>");
+        classes.println("  <BODY>");
+        classes.println("  <H1>Significant name changes for classes</H1>");
+        classes.println("  <P>This list do not includes the following changes:</P>");
+        classes.println("  <UL>");
+        classes.println("    <LI>Omission of 2 letters prefix (<CODE>MD_</CODE>, <CODE>RS_</CODE>, etc...)</LI>");
+        classes.println("    <LI>Omission of <CODE>Code</CODE> suffix for code list</LI>");
+        classes.println("    <LI>Addition of <CODE>Exception</CODE> suffix for exceptions</LI>");
+        classes.println("  </UL>");
+        classes.println("  <TABLE cellpadding='0' cellspacing='0'>");
+        classes.println("  <TR><TH bgcolor='#CCCCFF'>GeoAPI name</TH><TH bgcolor='#CCCCFF'>ISO name</TH></TR>");
         /*
          * Open the stream where to write attributes differences differences.
          */
-        final Writer members = new StringWriter();
-        members.write("<P>&nbsp;</P>");
-        members.write(lineSeparator);
-        members.write("<HR>");
-        members.write(lineSeparator);
-        members.write("<P>&nbsp;</P>");
-        members.write(lineSeparator);
-        members.write("  <H1>Significant name changes for operations, attributes or codes</H1>");
-        members.write(lineSeparator);
-        members.write("  <P>This list do not includes the following changes:</P>");
-        members.write(lineSeparator);
-        members.write("  <UL>");
-        members.write(lineSeparator);
-        members.write("    <LI>Omission of 2 letters prefix (<CODE>MD_</CODE>, <CODE>RS_</CODE>, etc...)</LI>");
-        members.write(lineSeparator);
-        members.write("    <LI>Omission of <CODE>uses</CODE> or <CODE>includes</CODE> prefixes for associations</LI>");
-        members.write(lineSeparator);
-        members.write("    <LI>Addition of <CODE>get</CODE> or <CODE>is</CODE> prefix</LI>");
-        members.write(lineSeparator);
-        members.write("    <LI>Plural form for methods returning an array or a collection</LI>");
-        members.write(lineSeparator);
-        members.write("    <LI>Code list elements in upper case</LI>");
-        members.write(lineSeparator);
-        members.write("  </UL>");
-        members.write(lineSeparator);
-        members.write("  <TABLE cellpadding='0' cellspacing='0'>");
-        members.write(lineSeparator);
-        members.write("  <TR><TH bgcolor='#CCCCFF'>GeoAPI name</TH bgcolor='#CCCCFF'><TH>ISO name</TH></TR>");
-        members.write(lineSeparator);
+        final StringWriter buffer = new StringWriter();
+        members = new PrintWriter(buffer);
+        members.println("<P>&nbsp;</P>");
+        members.println("<HR>");
+        members.println("<P>&nbsp;</P>");
+        members.println("  <H1>Significant name changes for operations, attributes or codes</H1>");
+        members.println("  <P>This list do not includes the following changes:</P>");
+        members.println("  <UL>");
+        members.println("    <LI>Omission of 2 letters prefix (<CODE>MD_</CODE>, <CODE>RS_</CODE>, etc...)</LI>");
+        members.println("    <LI>Omission of <CODE>uses</CODE> or <CODE>includes</CODE> prefixes for associations</LI>");
+        members.println("    <LI>Addition of <CODE>get</CODE> or <CODE>is</CODE> prefix</LI>");
+        members.println("    <LI>Plural form for methods returning an array or a collection</LI>");
+        members.println("    <LI>Code list elements in upper case</LI>");
+        members.println("  </UL>");
+        members.println("  <TABLE cellpadding='0' cellspacing='0'>");
+        members.println("  <TR><TH bgcolor='#CCCCFF'>GeoAPI name</TH bgcolor='#CCCCFF'><TH>ISO name</TH></TR>");
         /*
-         * Process to the analysis.
+         * Performs the analysis.
          */
-        String lastPackage = "";
-        for (final Class classe : ClassFinder.getClasses(CodeList.class)) {
-            /*
-             * Check for class changes or additions.
-             */
-            String identifier = getIdentifier(classe);
-            final String classname = ClassFinder.getShortName(classe);
-            final String qualifiedClassname = classe.getName();
-            String pathToClassJavadoc = qualifiedClassname.replace('.', '/');
-            if (pathToClassJavadoc.startsWith("org/opengis/")) {
-                pathToClassJavadoc = "../" + pathToClassJavadoc.substring(12) + ".html";
-            } else {
-                pathToClassJavadoc = "../../../" + pathToClassJavadoc + ".html";
-            }
-            if (identifier==null || !compareClassName(classe, classname, identifier)) {
-                final int splitIndex = qualifiedClassname.lastIndexOf('.');
-                final String packageName = (splitIndex >= 0) ? qualifiedClassname.substring(0, splitIndex) : qualifiedClassname;
-                if (!packageName.equals(lastPackage)) {
-                    classes.write("  <TR><TD>&nbsp;</TD></TR>");
-                    classes.write(lineSeparator);
-                    classes.write("  <TR><TD bgcolor='#DDDDFF'><STRONG>Package&nbsp; <CODE>");
-                    classes.write(packageName);
-                    classes.write("</CODE></STRONG></TD></TR>");
-                    classes.write(lineSeparator);
-                    lastPackage = packageName;
-                }
-                classes.write("  <TR><TD><CODE><A HREF=\"");
-                classes.write(pathToClassJavadoc);
-                classes.write("\">");
-                classes.write(classname);
-                classes.write("</A></CODE></TD>");
-                classes.write("<TD><CODE>&nbsp;&nbsp;");
-                if (identifier!=LEGACY && identifier!=EXTENSION) {
-                    classes.write(identifier);
-                    classes.write("</CODE></TD>");
-                } else {
-                    classes.write("</CODE><FONT SIZE='-1' COLOR='#808080'>");
-                    classes.write(identifier);
-                    classes.write("</FONT></TD>");
-                }
-                classes.write("</TR>");
-                classes.write(lineSeparator);
-                if (identifier == null) {
-                    continue;
-                }
-            }
-            /*
-             * Check for changes in attributes.
-             */
-            final Member[] attributes;
-            if (CodeList.class.isAssignableFrom(classe)) {
-                attributes = classe.getDeclaredFields();
-            } else {
-                attributes = classe.getDeclaredMethods();
-            }
-            Arrays.sort(attributes, new Comparator<Member>() {
-                public int compare(final Member m1, final Member m2) {
-                    return m1.getName().compareTo(m2.getName());
-                }
-            });
-            boolean classHeader = false;
-scanMembers:for (final Member attribute : attributes) {
-                if (!Modifier.isPublic(attribute.getModifiers())) {
-                    continue;
-                }
-                identifier = getIdentifier((AnnotatedElement) attribute);
-                final String name = attribute.getName();
-                if (identifier != null) {
-                    if (attribute instanceof Method) {
-                        if (compareMethodName((Method) attribute, name, identifier)) {
-                            continue;
-                        }
-                    } else {
-                        if (compareCodeName((Field) attribute, name, identifier)) {
-                            continue;
-                        }
-                    }
-                } else if (attribute instanceof Method) {
-                    /*
-                     * No UML identifier. Doesn't mind if this method overrides
-                     * a method defined in super interface.
-                     *
-                     * TODO: We shouldn't not! Annotation should contains @Inherit
-                     *       if we want to do so.
-                     */
-                    for (final Class parent : classe.getInterfaces()) {
-                        try {
-                            parent.getMethod(name, ((Method) attribute).getParameterTypes());
-                            continue scanMembers; // Found the method in superclass: don't document it.
-                        } catch (NoSuchMethodException ignore) {
-                            // No such method in superclass. Checks other interfaces.
-                        }
-                    }
-                }
-                if (!classHeader) {
-                    members.write("  <TR><TD>&nbsp;</TD></TR>");
-                    members.write(lineSeparator);
-                    members.write("  <TR><TD bgcolor='#DDDDFF'><STRONG>");
-                    if (CodeList.class.isAssignableFrom(classe)) {
-                        members.write("Code list");
-                    } else {
-                        members.write("Interface");
-                    }
-                    members.write("&nbsp; <CODE><A HREF=\"");
-                    members.write(pathToClassJavadoc);
-                    members.write("\">");
-                    members.write(classname);
-                    members.write("</A></CODE></STRONG></TD></TR>");
-                    members.write(lineSeparator);
-                    classHeader = true;
-                }
-                members.write("  <TR><TD><CODE>");
-                members.write(name);
-                members.write("</CODE></TD>");
-                members.write("<TD><CODE>&nbsp;&nbsp;");
-                if (identifier!=LEGACY && identifier!=EXTENSION) {
-                    members.write(identifier);
-                    members.write("</CODE>");
-                } else {
-                    members.write("</CODE><FONT SIZE='-1' COLOR='#808080'>");
-                    members.write(identifier);
-                    members.write("</FONT>");
-                }
-                members.write("</TD></TR>");
-                members.write(lineSeparator);
-            }
-        }
-        /*
-         * Close the streams.
-         */
-        members.write("  </TABLE>");
-        members.write(lineSeparator);
+        lastPackage = "";
+        super.process();
+        members.println("  </TABLE>");
         members.close();
-        classes.write("  </TABLE>");
-        classes.write(lineSeparator);
-        classes.write(members.toString());
-        classes.write("  </BODY>");
-        classes.write(lineSeparator);
-        classes.write("</HTML>");
-        classes.write(lineSeparator);
+        classes.println("  </TABLE>");
+        classes.print(buffer);
+        classes.println("  </BODY>");
+        classes.println("</HTML>");
         classes.close();
     }
 
     /**
-     * Returns the UML identifier for the specified element, or <code>null</code>
+     * Checks for class changes or additions. Will also checks for methods or fields
+     * inside that class.
+     */
+    @Override
+    public void visitTypeDeclaration(final TypeDeclaration declaration) {
+        super.visitTypeDeclaration(declaration);
+        String identifier         = getUmlDisplay(declaration);
+        String classname          = declaration.getSimpleName();
+        String qualifiedClassname = declaration.getQualifiedName();
+        String pathToClassJavadoc = qualifiedClassname.replace('.', '/');
+        if (pathToClassJavadoc.startsWith("org/opengis/")) {
+            pathToClassJavadoc = "../" + pathToClassJavadoc.substring(12) + ".html";
+        } else {
+            pathToClassJavadoc = "../../../" + pathToClassJavadoc + ".html";
+        }
+        if (!compareClassName(declaration, classname, identifier)) {
+            final int splitIndex = qualifiedClassname.lastIndexOf('.');
+            final String packageName = (splitIndex >= 0) ? qualifiedClassname.substring(0, splitIndex) : qualifiedClassname;
+            if (!packageName.equals(lastPackage)) {
+                classes.println("  <TR><TD>&nbsp;</TD></TR>");
+                classes.print  ("  <TR><TD bgcolor='#DDDDFF'><STRONG>Package&nbsp; <CODE>");
+                classes.print  (packageName);
+                classes.println("</CODE></STRONG></TD></TR>");
+                lastPackage = packageName;
+            }
+            classes.print("  <TR><TD><CODE><A HREF=\"");
+            classes.print(pathToClassJavadoc);
+            classes.print("\">");
+            classes.print(classname);
+            classes.print("</A></CODE></TD>");
+            classes.print("<TD><CODE>&nbsp;&nbsp;");
+            if (identifier!=LEGACY && identifier!=EXTENSION) {
+                classes.print(identifier);
+                classes.print("</CODE></TD>");
+            } else {
+                classes.print("</CODE><FONT SIZE='-1' COLOR='#808080'>");
+                classes.print(identifier);
+                classes.print("</FONT></TD>");
+            }
+            classes.println("</TR>");
+        }
+        /*
+         * Check for changes in attributes.
+         */
+        final MemberDeclaration[] attributes;
+        final boolean isCodeList = isCodeList(declaration);
+        if (isCodeList) {
+            final Collection<FieldDeclaration> c = declaration.getFields();
+            attributes = c.toArray(new FieldDeclaration[c.size()]);
+        } else {
+            final Collection<? extends MethodDeclaration> c = declaration.getMethods();
+            attributes = c.toArray(new MethodDeclaration[c.size()]);
+        }
+        Arrays.sort(attributes, MEMBER_COMPARATOR);
+        boolean classHeader = false;
+
+scanMembers:
+        for (final MemberDeclaration attribute : attributes) {
+            if (!attribute.getModifiers().contains(Modifier.PUBLIC)) {
+                continue;
+            }
+            identifier = getUmlDisplay(attribute);
+            final String name = attribute.getSimpleName();
+            if (identifier != EXTENSION) {
+                if (attribute instanceof MethodDeclaration) {
+                    if (compareMethodName((MethodDeclaration) attribute, name, identifier)) {
+                        continue;
+                    }
+                } else {
+                    if (compareCodeName(name, identifier)) {
+                        continue;
+                    }
+                }
+            } else if (attribute instanceof MethodDeclaration) {
+                /*
+                 * No UML identifier. Doesn't mind if this method overrides
+                 * a method defined in super interface.
+                 */
+                final MethodDeclaration method = (MethodDeclaration) attribute;
+                final Declarations util = environment.getDeclarationUtils();
+                for (final InterfaceType parent : declaration.getSuperinterfaces()) {
+                    for (final MethodDeclaration candidate : parent.getDeclaration().getMethods()) {
+                        if (util.overrides(candidate, method)) {
+                            continue scanMembers; // Found the method in superclass: don't document it.
+                        }
+                    }
+                }
+            }
+            if (!classHeader) {
+                members.println("  <TR><TD>&nbsp;</TD></TR>");
+                members.print  ("  <TR><TD bgcolor='#DDDDFF'><STRONG>");
+                members.print  (isCodeList ? "Code list" : "Interface");
+                members.print  ("&nbsp; <CODE><A HREF=\"");
+                members.print  (pathToClassJavadoc);
+                members.print  ("\">");
+                members.print  (classname);
+                members.println("</A></CODE></STRONG></TD></TR>");
+                classHeader = true;
+            }
+            members.print("  <TR><TD><CODE>");
+            members.print(name);
+            members.print("</CODE></TD>");
+            members.print("<TD><CODE>&nbsp;&nbsp;");
+            if (identifier!=LEGACY && identifier!=EXTENSION) {
+                members.print(identifier);
+                members.print("</CODE>");
+            } else {
+                members.print("</CODE><FONT SIZE='-1' COLOR='#808080'>");
+                members.print(identifier);
+                members.print("</FONT>");
+            }
+            members.println("</TD></TR>");
+        }
+    }
+
+    /**
+     * Returns the UML identifier for the specified element, or {@code null}
      * if the specified element is not part of the UML model.
      */
-    private static String getIdentifier(final AnnotatedElement element) {
+    private static String getUmlDisplay(final Declaration element) {
         String identifier;
         final UML uml = element.getAnnotation(UML.class);
         if (uml != null) {
@@ -307,7 +329,7 @@ scanMembers:for (final Member attribute : attributes) {
      * specifications.
      */
     private static String dropPrefix(String ogc) {
-        if (ogc.length()>=4 &&
+        if (ogc.length() >= 4 &&
             Character.isUpperCase(ogc.charAt(0)) &&
             Character.isUpperCase(ogc.charAt(1)) &&
             ogc.charAt(2)=='_')
@@ -337,10 +359,10 @@ scanMembers:for (final Member attribute : attributes) {
     }
 
     /**
-     * Compare a GeoAPI name with a OGC name. Returns <code>true</code> if the
-     * name change is not significant. Returns <code>false</code> otherwise.
+     * Compares a GeoAPI name with a OGC name. Returns {@code true} if the
+     * name change is not significant. Returns {@code false} otherwise.
      */
-    private static boolean compareClassName(final Class classe, final String geoapi, String ogc) {
+    private boolean compareClassName(final TypeDeclaration declaration, final String geoapi, String ogc) {
         /*
          * The 2 letters prefix is always omitted.
          */
@@ -348,30 +370,33 @@ scanMembers:for (final Member attribute : attributes) {
         /*
          * For exceptions, the "Exception" suffix is always added after the class name.
          */
-        if (Exception.class.isAssignableFrom(classe)) {
-            ogc += "Exception";
-        }
-        /*
-         * For CodeList, the "Code" suffix is usually omitted
-         * (except if there is a name clash with an other class).
-         */
-        if (CodeList.class.isAssignableFrom(classe)) {
-            if (geoapi.equals(ogc)) {
-                return true;
+        if (declaration instanceof ClassDeclaration) {
+            final Class classe = getClass(declaration);
+            if (Exception.class.isAssignableFrom(classe)) {
+                ogc += "Exception";
             }
-            if (ogc.endsWith("Code")) {
-                ogc = ogc.substring(0, ogc.length()-4);
+            /*
+             * For CodeList, the "Code" suffix is usually omitted
+             * (except if there is a name clash with an other class).
+             */
+            if (CodeList.class.isAssignableFrom(classe)) {
+                if (geoapi.equals(ogc)) {
+                    return true;
+                }
+                if (ogc.endsWith("Code")) {
+                    ogc = ogc.substring(0, ogc.length()-4);
+                }
             }
         }
         return geoapi.equals(ogc);
     }
 
     /**
-     * Compare a GeoAPI name with a OGC name. Returns <code>true</code> if the
-     * name change is not significant (e.g. addition of a <code>get</code> prefix).
-     * Returns <code>false</code> otherwise.
+     * Compares a GeoAPI name with a OGC name. Returns {@code true} if the
+     * name change is not significant (e.g. addition of a {@code get} prefix).
+     * Returns {@code false} otherwise.
      */
-    private static boolean compareMethodName(final Method method, String geoapi, String ogc) {
+    private boolean compareMethodName(final MethodDeclaration declaration, String geoapi, String ogc) {
         /*
          * Omit the "uses" or "includes" prefix used for associations in the UML.
          */
@@ -386,8 +411,8 @@ scanMembers:for (final Member attribute : attributes) {
          * character is adjusted (usually to a lower case).
          */
         final boolean startWithLowerCase = Character.isLowerCase(ogc.charAt(0));
-        final Class returnType = method.getReturnType();
-        if (returnType.equals(Boolean.TYPE) || returnType.equals(Boolean.class)) {
+        final Class returnClass = getClass(declaration.getReturnType());
+        if (returnClass.equals(Boolean.TYPE) || returnClass.equals(Boolean.class)) {
             if (geoapi.startsWith("is") && !ogc.startsWith("is")) {
                 geoapi = geoapi.substring(2);
                 if (startWithLowerCase) {
@@ -412,16 +437,16 @@ scanMembers:for (final Member attribute : attributes) {
         if (geoapi.equals(ogc)) {
             return true;
         }
-        if (returnType.isArray() ||
-            Collection              .class.isAssignableFrom(returnType) ||
-            Map                     .class.isAssignableFrom(returnType) ||
-            PointGrid               .class.isAssignableFrom(returnType) ||
-            PointArray              .class.isAssignableFrom(returnType) ||
-            ParameterValueGroup     .class.isAssignableFrom(returnType) ||
-            ParameterDescriptorGroup.class.isAssignableFrom(returnType))
+        if (returnClass.isArray() ||
+            Collection              .class.isAssignableFrom(returnClass) ||
+            Map                     .class.isAssignableFrom(returnClass) ||
+            PointGrid               .class.isAssignableFrom(returnClass) ||
+            PointArray              .class.isAssignableFrom(returnClass) ||
+            ParameterValueGroup     .class.isAssignableFrom(returnClass) ||
+            ParameterDescriptorGroup.class.isAssignableFrom(returnClass))
         {
             final int length = ogc.length();
-            if (length!=0) {
+            if (length != 0) {
                 switch (ogc.charAt(length-1)) {
                     case 'y': ogc = ogc.substring(0, length-1) + "ies"; break;
                     case 's': if (length<2 || ogc.charAt(length-2)!='s') break;
@@ -431,20 +456,23 @@ scanMembers:for (final Member attribute : attributes) {
                 }
             }
         }
-        if (false) {
+        if (DEBUG) {
             // Debug code
             if (!geoapi.equals(ogc)) {
-                System.out.println(geoapi + "  " + ogc);
+                System.out.print("Member names : GeoAPI=");
+                System.out.print(geoapi);
+                System.out.print("  OGC=");
+                System.out.println(ogc);
             }
         }
         return geoapi.equals(ogc);
     }
 
     /**
-     * Compare a GeoAPI name with a OGC name. Returns <code>true</code> if the
-     * name change is not significant. Returns <code>false</code> otherwise.
+     * Compares a GeoAPI name with an OGC name. Returns {@code true} if the
+     * name change is not significant. Returns {@code false} otherwise.
      */
-    private static boolean compareCodeName(final Field method, String geoapi, String ogc) {
+    private static boolean compareCodeName(String geoapi, String ogc) {
         ogc = firstCharAsLowerCase(dropPrefix(ogc));
         /*
          * GeoAPI constants are always in upper-case.
@@ -456,7 +484,7 @@ scanMembers:for (final Member attribute : attributes) {
             if (Character.isSpaceChar(c)) {
                 continue;
             }
-            if (i!=0) {
+            if (i != 0) {
                 final char p = ogc.charAt(i-1);
                 if (Character.isUpperCase(c) && Character.isLowerCase(p) ||
                     Character.isLetter   (c) != Character.isLetter   (p))
@@ -470,10 +498,13 @@ scanMembers:for (final Member attribute : attributes) {
             buffer.append(Character.toUpperCase(c));
         }
         ogc = buffer.toString();
-        if (false) {
+        if (DEBUG) {
             // Debug code
             if (!geoapi.equals(ogc)) {
-                System.out.println(geoapi + "  " + ogc);
+                System.out.print("Code names   : GeoAPI=");
+                System.out.print(geoapi);
+                System.out.print("  OGC=");
+                System.out.println(ogc);
             }
         }
         return ogc.equals(geoapi);
