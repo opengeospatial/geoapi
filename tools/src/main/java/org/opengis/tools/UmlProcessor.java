@@ -17,16 +17,21 @@ import java.util.Collections;
 import java.lang.reflect.AnnotatedElement;
 
 // Annotation processing tools
+import com.sun.mirror.type.TypeMirror;
+import com.sun.mirror.type.DeclaredType;
+import com.sun.mirror.type.PrimitiveType;
 import com.sun.mirror.apt.AnnotationProcessor;
 import com.sun.mirror.apt.AnnotationProcessorEnvironment;
 import com.sun.mirror.apt.AnnotationProcessorFactory;
 import com.sun.mirror.declaration.Declaration;
 import com.sun.mirror.declaration.TypeDeclaration;
+import com.sun.mirror.declaration.ClassDeclaration;
 import com.sun.mirror.declaration.AnnotationTypeDeclaration;
 import com.sun.mirror.util.DeclarationVisitors;
 import com.sun.mirror.util.SimpleDeclarationVisitor;
 
 // OpenGIS dependencies
+import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
 
 
@@ -146,6 +151,51 @@ public abstract class UmlProcessor extends SimpleDeclarationVisitor
             return identifier;
         }
         return null;
+    }
+
+    /**
+     * Returns {@code true} if the specified declaration is a {@link CodeList}.
+     */
+    protected final boolean isCodeList(final TypeDeclaration declaration) {
+        return (declaration instanceof ClassDeclaration) &&
+               CodeList.class.isAssignableFrom(getClass(declaration));
+    }
+
+    /**
+     * Returns the class object for the specified declaration. If the class can't be found,
+     * then this method returns {@link Void#TYPE}.
+     */
+    protected final Class getClass(final TypeDeclaration declaration) {
+        try {
+            return Class.forName(declaration.getQualifiedName());
+        } catch (ClassNotFoundException e) {
+            environment.getMessager().printWarning("Class not found: " + e.getLocalizedMessage());
+            return Void.TYPE;
+        }
+    }
+
+    /**
+     * Returns the class object for the specified declaration. If the class can't be found,
+     * then this method returns {@link Void#TYPE}.
+     */
+    protected final Class getClass(final TypeMirror type) {
+        if (type instanceof PrimitiveType) {
+            switch (((PrimitiveType) type).getKind()) {
+                case BOOLEAN : return Boolean  .TYPE;
+                case BYTE    : return Byte     .TYPE;
+                case SHORT   : return Short    .TYPE;
+                case INT     : return Integer  .TYPE;
+                case LONG    : return Long     .TYPE;
+                case CHAR    : return Character.TYPE;
+                case FLOAT   : return Float    .TYPE;
+                case DOUBLE  : return Double   .TYPE;
+                default      : throw new AssertionError(type);
+            }
+        }
+        if (type instanceof DeclaredType) {
+            return getClass(((DeclaredType) type).getDeclaration());
+        }
+        return Void.TYPE;
     }
 
     /**

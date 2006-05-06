@@ -34,9 +34,9 @@ import com.sun.mirror.declaration.MethodDeclaration;
  * J2SE 1.5 environment are encouraged to inspect the annotations as runtime instead.
  * <p>
  * <b>How to use</b>
- * <code>chdir</code> to the root directory of source code. Then invoke the following command,
- * where {@code metadata.txt} is a file containing the path to all java classes to parse in the
- * {@value #ROOT_PACKAGE} package.
+ * {@code chdir} to the root directory of source code. Then invoke the following command,
+ * where {@code metadata.txt} is a file containing the path to all java classes to parse
+ * in the {@value #ROOT_PACKAGE} package.
  *
  * <blockquote><pre>
  * apt -nocompile -factory org.opengis.tools.NameMapGenerator @metadata.txt
