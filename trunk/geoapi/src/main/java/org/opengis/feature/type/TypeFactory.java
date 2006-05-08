@@ -83,7 +83,7 @@ public interface TypeFactory {
 	
 	ComplexType createComplexType(
 		TypeName name, Collection<StructuralDescriptor> schema, boolean isIdentifiable, 
-		boolean isAbstract, Set<Filter> restrictions, ComplexType superType,
+		boolean isAbstract, Set<Filter> restrictions, AttributeType superType,
 		InternationalString description
 	);
 	
