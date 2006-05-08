@@ -16,7 +16,7 @@
   <groupId>org.opengis</groupId>
   <artifactId>geoapi-parent</artifactId>
   <packaging>pom</packaging>
-  <version>pending-SNAPSHOT</version>
+  <version>2.0-SNAPSHOT</version>
   <name>GeoAPI common settings</name>
   <url>http://geoapi.sourceforge.net/</url>
   <description>
@@ -192,26 +192,9 @@
 
 
   <!-- ==================================================== -->
-  <!--     Build configuration (resources, ...)             -->
+  <!--     Compilation                                      -->
   <!-- ==================================================== -->
   <build>
-    <resources>
-      <resource>
-        <directory>src/main/java</directory>
-        <includes>
-          <include>**/*.properties</include>
-        </includes>
-        <excludes>
-          <exclude>**/doc-files/**</exclude>
-        </excludes>
-      </resource>
-    </resources>
-
-
-
-    <!-- ==================================================== -->
-    <!--     Compilation                                      -->
-    <!-- ==================================================== -->
     <plugins>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
@@ -321,16 +304,9 @@
   <!-- ==================================================== -->
   <distributionManagement>
     <repository>
-      <id>repository</id>
+      <id>geotools-fr</id>
       <name>Geotools release repository</name>
-      <url>scpexe://maven.geotools.fr/var/www/geotools.fr/maven/repository</url>
-      <!-- NOTE: We use external SSH ("scpexe:") instead of the one bundled into Maven ("scp:")
-                 because the Maven SSH still asking for password again and again for every file
-                 to transfert, no matter what we put in ~/.ssh directory. But this external SSH
-                 seems much slower than the default one. We need to try again the Maven default
-                 SSH when http://jira.codehaus.org/browse/WAGONSSH-37 will be fixed (the latest
-                 version tested was 1.0-alpha-6). We could then remove the <extension>
-                 declaration above. -->
+      <url>scp://maven.geotools.fr/var/www/geotools.fr/maven/repository</url>
     </repository>
   </distributionManagement>
 
@@ -340,7 +316,9 @@
   <!--     All GeoAPI modules included in the build         -->
   <!-- ==================================================== -->
   <modules>
+    <module>tools</module>
+    <module>erasure</module>
     <module>geoapi</module>
-    <module>dist</module>
+    <module>nogenerics</module>
   </modules>
 </project>

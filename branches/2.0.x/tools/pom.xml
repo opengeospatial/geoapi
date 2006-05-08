@@ -10,7 +10,7 @@
   <parent>
     <groupId>org.opengis</groupId>
     <artifactId>geoapi-parent</artifactId>
-    <version>pending-SNAPSHOT</version>
+    <version>2.0-SNAPSHOT</version>
   </parent>
 
 
@@ -20,18 +20,17 @@
   <!-- ==================================================== -->
   <groupId>org.opengis</groupId>
   <artifactId>geoapi-tools</artifactId>
-  <packaging>maven-plugin</packaging>
-  <version>2.0</version>
-  <name>GeoAPI</name>
+  <packaging>jar</packaging>
+  <version>2.0-SNAPSHOT</version>
+  <name>GeoAPI processing tools</name>
   <url>http://geoapi.sourceforge.net/tools/</url>
   <scm>
     <connection>scm:svn:https://svn.sourceforge.net/svnroot/geoapi/trunk/tools/</connection>
     <url>https://svn.sourceforge.net/viewcvs.cgi/geoapi/trunk/tools/</url>
   </scm>
   <description>
-    Maven plugins, davadoc taglets and annotation processing tools for building GeoAPI.
-    This include Ant scripts for converting J2SE 1.5 source code into J2SE 1.4 source
-    code, by applying erasure on generic types.
+    Javadoc taglets and annotation processing tools for processing GeoAPI
+    after compilation. Those tools are used mostly for javadoc generation.
   </description>
 
 
@@ -41,44 +40,18 @@
   <!-- ==================================================== -->
   <dependencies>
     <dependency>
-      <groupId>org.apache.maven</groupId>
-      <artifactId>maven-script-ant</artifactId>
-      <version>2.0.3</version>
-    </dependency>
-    <dependency>
       <groupId>sun.jdk</groupId>
       <artifactId>tools</artifactId>
       <version>1.5</version>
       <scope>system</scope>
       <systemPath>${java.home}/../lib/tools.jar</systemPath>
     </dependency>
+    <dependency>
+      <groupId>org.opengis</groupId>
+      <artifactId>geoapi</artifactId>
+      <version>2.0-SNAPSHOT</version>
+    </dependency>
   </dependencies>
-
-
-
-  <!-- ==================================================== -->
-  <!--     Build configuration                              -->
-  <!-- ==================================================== -->
-  <build>
-    <plugins>
-      <plugin>
-      <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-plugin-plugin</artifactId>
-        
-        <!-- Add the Ant plugin tools -->
-        <dependencies>
-          <dependency>
-            <groupId>org.apache.maven</groupId>
-            <artifactId>maven-plugin-tools-ant</artifactId>
-            <version>2.0.3</version>
-          </dependency>
-        </dependencies>
-        <configuration>
-          <prefix>hello</prefix>
-        </configuration>
-      </plugin>
-    </plugins>
-  </build>
 
 
 
