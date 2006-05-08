@@ -89,11 +89,8 @@ public class NameMapGenerator extends UmlProcessor {
             typeMap.store(out, "This is a temporary file for J2SE 1.4 implementations. " +
                                "Implementations for J2SE 5.0 should inspect generic types instead.");
             out.close();
-        } catch (IOException e) {
-            String name = e.getClass().getName();
-            name = name.substring(name.lastIndexOf('.') + 1);
-            environment.getMessager().printError("Unable to create output files. The cause is " +
-                                                 name + ": " + e.getLocalizedMessage());
+        } catch (IOException exception) {
+            printError(exception);
         }
     }
 

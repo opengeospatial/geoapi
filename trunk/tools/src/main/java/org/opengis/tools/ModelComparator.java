@@ -89,12 +89,12 @@ public class ModelComparator extends UmlProcessor {
     };
 
     /**
-     * The writter where to write classes informations.
+     * The writer where to write classes informations.
      */
     private PrintWriter classes;
 
     /**
-     * The writter where to write members informations.
+     * The writer where to write members informations.
      */
     private PrintWriter members;
 
@@ -120,11 +120,8 @@ public class ModelComparator extends UmlProcessor {
         try {
             classes = filer.createTextFile(Filer.Location.SOURCE_TREE, ROOT_PACKAGE,
                         new File("doc-files/departures-list.html"), null);
-        } catch (IOException e) {
-            String name = e.getClass().getName();
-            name = name.substring(name.lastIndexOf('.') + 1);
-            environment.getMessager().printError("Unable to create output files. The cause is " +
-                                                 name + ": " + e.getLocalizedMessage());
+        } catch (IOException exception) {
+            printError(exception);
             return;
         }
         classes.println("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">");
