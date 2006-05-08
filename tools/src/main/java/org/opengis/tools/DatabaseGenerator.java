@@ -9,36 +9,68 @@
  *************************************************************************************************/
 package org.opengis.tools;
 
-// J2SE dependencies and extensions
-import java.io.*;
-import java.util.*;
+// J2SE dependencies
+import java.awt.Point;
 import java.net.URI;
 import java.net.URL;
-import java.lang.reflect.*;
-import java.util.logging.Logger;
+import java.io.File;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.nio.charset.Charset;
+import java.util.List;
+import java.util.Date;
+import java.util.Locale;
+import java.util.Iterator;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Collection;
+import java.lang.reflect.Field;
 import javax.units.Unit;
 
+// Annotation processing tools
+import com.sun.mirror.apt.Filer;
+import com.sun.mirror.type.ArrayType;
+import com.sun.mirror.type.TypeMirror;
+import com.sun.mirror.type.DeclaredType;
+import com.sun.mirror.type.InterfaceType;
+import com.sun.mirror.util.Declarations;
+import com.sun.mirror.declaration.Modifier;
+import com.sun.mirror.declaration.ClassDeclaration;
+import com.sun.mirror.declaration.FieldDeclaration;
+import com.sun.mirror.declaration.MethodDeclaration;
+import com.sun.mirror.declaration.InterfaceDeclaration;
+
 // OpenGIS dependencies
-import org.opengis.util.CodeList;
-import org.opengis.util.GenericName;
-import org.opengis.util.InternationalString;
 import org.opengis.annotation.UML;
 import org.opengis.annotation.Obligation;
 import org.opengis.spatialschema.geometry.Geometry;
-import org.opengis.spatialschema.geometry.primitive.Point;
+import org.opengis.util.CodeList;
+import org.opengis.util.GenericName;
+import org.opengis.util.InternationalString;
 
 
 /**
- * Generate a database from a set of GeoAPI interfaces.
+ * Generates a database from a set of GeoAPI interfaces.
+ * <p>
+ * <b>How to use</b>
+ * {@code chdir} to the root directory of source code. Then invoke the following command,
+ * where {@code metadata.txt} is a file containing the path to all java classes to parse
+ * in the {@value #ROOT_PACKAGE} package.
+ *
+ * <blockquote><pre>
+ * apt -nocompile -factory org.opengis.tools.DatabaseGenerator @metadata.txt
+ * </pre></blockquote>
+ *
+ * The SQL files will be stored in the <code>{@value #ROOT_PACKAGE}/doc-files</code> package.
  *
  * @author Martin Desruisseaux
  */
-public class DatabaseGenerator {
+public class DatabaseGenerator extends UmlProcessor {
     /**
      * The root package.
      */
-    private final String rootPackage = "org.opengis.metadata";
+    public static final String ROOT_PACKAGE = "org.opengis.metadata";
 
     /**
      * The schema where to create the tables.
@@ -46,378 +78,398 @@ public class DatabaseGenerator {
     private final String schema = "metadata";
 
     /**
-     * The owner for the database to create, or <code>null</code> for the default one.
+     * The owner for the database to create, or {@code null} for the default one.
      */
     private final String owner = null;
 
     /**
-     * The line separator.
+     * Interfaces to process. See {@link #visitInterfaceDeclaration}.
      */
-    private final String LINE_SEPARATOR = System.getProperty("line.separator", "\n");
+    private List<InterfaceDeclaration> interfaces;
 
     /**
-     * The list of table created in inverse order. Used for the "DROP TABLE" statements.
+     * The writer where to write SQL statements for table creation with arrays.
      */
-    private final LinkedList<String> drop = new LinkedList<String>();
+    private PrintWriter createWithArrays;
 
     /**
-     * The "ALTER TABLE" instructions for foreigner keys.
+     * The writer where to write SQL statements for table creation without arrays.
      */
-    private final StringBuilder constraints = new StringBuilder();
+    private PrintWriter createWithoutArrays;
 
     /**
-     * <code>true</code> in order to allows tables, or <code>false</code> in order
-     * to collapse tables in an ordinary field (i.e. allow only singletons). If we
-     * know that we are not going to put more than one element per cell, it allow
-     * to enforce foreigner keys.
+     * The writer where to write SQL statements, both with and without arrays.
      */
-    private final boolean allowTables;
+    private PrintWriter create;
 
     /**
-     * If <code>true</code>, disable warnings.
+     * The writer where to write SQL statements for foreigner keys, with arrays.
      */
-    private final boolean quiet;
+    private StringWriter constraintWithArrays;
 
     /**
-     * Constructs an instance of the database generator.
+     * The writer where to write SQL statement for foreigner keys, without arrays.
      */
-    private DatabaseGenerator(final boolean allowTables, final boolean quiet) {
-        this.allowTables = allowTables;
-        this.quiet       = quiet;
+    private StringWriter constraintWithoutArrays;
+
+    /**
+     * The writer where to write SQL statement for foreigner keys, both with and without arrays.
+     */
+    private PrintWriter constraints;
+
+    /**
+     * {@link #constraintWithoutArrays} as a print writer.
+     */
+    private PrintWriter constraints2;
+
+    /**
+     * The buffer where to write the "DROP TABLE" statements.
+     */
+    private StringBuilder drop;
+
+    /**
+     * Creates a default processor.
+     */
+    public DatabaseGenerator() {
     }
 
     /**
-     * Scan all classes and members and write an SQL script.
+     * Process all program elements supported by this annotation processor. This method scan
+     * all interfaces and their methods (as well as code lists and their fields) and write
+     * the table creation SQL script.
      */
-    public static void main(final String[] args) throws Exception {
-        boolean allowTables = false;
-        boolean quiet = false;
-        for (int i=0; i<args.length; i++) {
-            if (args[i].equalsIgnoreCase("-tables")) {
-                allowTables = true;
-            }
-            if (args[i].equalsIgnoreCase("-quiet")) {
-                quiet = true;
-            }
+    @Override
+    public void process() {
+        drop = new StringBuilder();
+        interfaces = new LinkedList<InterfaceDeclaration>();
+        final Filer filer = environment.getFiler();
+        final PrintWriter dropPrinter;
+        try {
+            dropPrinter             = filer.createTextFile(Filer.Location.SOURCE_TREE, ROOT_PACKAGE,
+                                      new File("doc-files/postgre/drop.sql"), null);
+            createWithArrays        = filer.createTextFile(Filer.Location.SOURCE_TREE, ROOT_PACKAGE,
+                                      new File("doc-files/postgre/create.sql"), null);
+            createWithoutArrays     = filer.createTextFile(Filer.Location.SOURCE_TREE, ROOT_PACKAGE,
+                                      new File("doc-files/postgre/create-noarrays.sql"), null);
+            create                  = new PrintWriter(new EchoWriter(createWithArrays, createWithoutArrays));
+            constraintWithArrays    = new StringWriter();
+            constraintWithoutArrays = new StringWriter();
+            constraints2            = new PrintWriter(constraintWithoutArrays);
+            constraints             = new PrintWriter(new EchoWriter(constraintWithArrays, constraintWithoutArrays));
+        } catch (IOException exception) {
+            printError(exception);
+            return;
         }
-        new DatabaseGenerator(allowTables, quiet).writeScripts();
+        create.println("CREATE TABLE public.\"Locale\"");
+        create.println('(');
+        create.println("  code CHARACTER VARYING(5) NOT NULL,");
+        create.println("  CONSTRAINT \"Locale_primaryKey\" PRIMARY KEY (code)");
+        create.println(") WITHOUT OIDS;");
+        create.println("INSERT INTO \"Locale\" VALUES ('en');");
+        create.println("INSERT INTO \"Locale\" VALUES ('fr');");
+        create.println("INSERT INTO \"Locale\" VALUES ('fr_CA');");
+        create.println("INSERT INTO \"Locale\" VALUES ('es');");
+        create.println();
+        create.println("CREATE TABLE public.\"Unit\"");
+        create.println('(');
+        create.println("  symbol CHARACTER VARYING(10) NOT NULL,");
+        create.println("  CONSTRAINT \"Unit_primaryKey\" PRIMARY KEY (symbol)");
+        create.println(") WITHOUT OIDS;");
+        create.println("INSERT INTO \"Unit\" VALUES ('m');");
+        create.println("INSERT INTO \"Unit\" VALUES ('cm');");
+        create.println("INSERT INTO \"Unit\" VALUES ('km');");
+        create.println();
+        super.process();
+        sortInterfaceDeclarations();
+        for (final InterfaceDeclaration declaration : interfaces) {
+            processInterfaceDeclaration(declaration);
+        }
+        create.println();
+        createWithArrays   .print(constraintWithArrays   );
+        createWithoutArrays.print(constraintWithoutArrays);
+        create.close();
+        dropPrinter.print(drop);
+        dropPrinter.close();
     }
 
     /**
-     * Scan all classes and members and write an SQL script.
+     * Add an "DROP TABLE" statement for the specified table name.
+     * Statements are added in reverse order.
      */
-    private void writeScripts() throws Exception {
-        Writer sql = new FileWriter(allowTables ? "create.sql" : "create-noarrays.sql");
-
-        sql.write("CREATE TABLE public.\"Locale\"");                          sql.write(LINE_SEPARATOR);
-        sql.write('(');                                                       sql.write(LINE_SEPARATOR);
-        sql.write("  code CHARACTER VARYING(5) NOT NULL,");                   sql.write(LINE_SEPARATOR);
-        sql.write("  CONSTRAINT \"Locale_primaryKey\" PRIMARY KEY (code)");   sql.write(LINE_SEPARATOR);
-        sql.write(") WITHOUT OIDS;");                                         sql.write(LINE_SEPARATOR);
-        sql.write("INSERT INTO \"Locale\" VALUES ('en');");                   sql.write(LINE_SEPARATOR);
-        sql.write("INSERT INTO \"Locale\" VALUES ('fr');");                   sql.write(LINE_SEPARATOR);
-        sql.write("INSERT INTO \"Locale\" VALUES ('fr_CA');");                sql.write(LINE_SEPARATOR);
-        sql.write("INSERT INTO \"Locale\" VALUES ('es');");                   sql.write(LINE_SEPARATOR);
-                                                                              sql.write(LINE_SEPARATOR);
-        sql.write("CREATE TABLE public.\"Unit\"");                            sql.write(LINE_SEPARATOR);
-        sql.write('(');                                                       sql.write(LINE_SEPARATOR);
-        sql.write("  symbol CHARACTER VARYING(10) NOT NULL,");                sql.write(LINE_SEPARATOR);
-        sql.write("  CONSTRAINT \"Unit_primaryKey\" PRIMARY KEY (symbol)");   sql.write(LINE_SEPARATOR);
-        sql.write(") WITHOUT OIDS;");                                         sql.write(LINE_SEPARATOR);
-        sql.write("INSERT INTO \"Unit\" VALUES ('m');");                      sql.write(LINE_SEPARATOR);
-        sql.write("INSERT INTO \"Unit\" VALUES ('cm');");                     sql.write(LINE_SEPARATOR);
-        sql.write("INSERT INTO \"Unit\" VALUES ('km');");                     sql.write(LINE_SEPARATOR);
-                                                                              sql.write(LINE_SEPARATOR);
-
-        final Set<Class> classes = ClassFinder.getClasses(CodeList.class, rootPackage);
-        for (final Iterator<Class> it=classes.iterator(); it.hasNext();) {
-            final Class classe = it.next();
-            if (Throwable.class.isAssignableFrom(classe)) {
-                it.remove();
-                continue;
-            }
-            if (CodeList.class.isAssignableFrom(classe)) {
-                it.remove();
-                final String statement = sqlCodeList(classe);
-                if (statement != null) {
-                    sql.write(statement);
-                }
-            }
-        }
-        while (!classes.isEmpty()) {
-            try {
-                for (final Iterator<Class> it=classes.iterator(); it.hasNext();) {
-                    final Class classe = it.next();
-                    if (classe.isInterface()) {
-                        it.remove(); // Most be invoked before 'sqlInterface'.
-                        final String statement = sqlInterface(classe, classes);
-                        if (statement != null) {
-                            sql.write(statement);
-                        }
-                    }
-                }
-                break; // All interfaces were processed.
-            } catch (ConcurrentModificationException ignore) {
-                // The Set has been modified (in order to solve dependencies).
-                // The iteration must be restarted.
-            }
-        }
-        sql.write(LINE_SEPARATOR);
-        sql.write(constraints.toString());
-        sql.close();
-        sql = new BufferedWriter(new FileWriter("drop.sql"));
-        for (final String name : drop) {
-            sql.write("DROP TABLE ");
-            sql.write(schema);
-            sql.write(".\"");
-            sql.write(name);
-            sql.write("\";");
-            sql.write(LINE_SEPARATOR);
-        }
-        sql.close();
-        if (!classes.isEmpty()) {
-            Logger.getLogger("org.opengis.tools").warning("Unrecognized classes.");
-        }
+    private final void drop(final String name) {
+        final StringBuilder buffer = new StringBuilder();
+        buffer.append("DROP TABLE ");
+        buffer.append(schema);
+        buffer.append(".\"");
+        buffer.append(name);
+        buffer.append("\" CASCADE;");
+        buffer.append(System.getProperty("line.separator", "\n"));
+        drop.insert(0, buffer);
     }
 
     /**
-     * Create an SQL "CREATE TABLE" statement for the specified code list.
-     * Returns <code>null</code> if the specified interface doesn't have @UML tags.
-     *
-     * @param  classe The class to process.
-     * @return The SQL string to add to the 'create.sql' file.
+     * Creates an SQL "CREATE TABLE" statement for the specified code list.
+     * Do nothing if the specified interface doesn't have @UML tags.
      */
-    private String sqlCodeList(final Class classe) throws IllegalAccessException {
-        final String className = getIdentifier(classe);
+    @Override
+    public void visitClassDeclaration(final ClassDeclaration declaration) {
+        super.visitClassDeclaration(declaration);
+        final String className = getUmlIdentifier(declaration);
         if (className == null) {
-            return null;
+            return;
+        }
+        final Class classe = getClass(declaration);
+        if (!CodeList.class.isAssignableFrom(classe)) {
+            return;
         }
         final String unprefixedClassName = unprefixed(className);
-        final StringBuilder sql = new StringBuilder();
-        sql.append("CREATE TABLE ");
-        sql.append(schema);
-        sql.append(".\"");
-        sql.append(className);
-        sql.append('"');
-        sql.append(LINE_SEPARATOR);
-        sql.append('(');
-        sql.append(LINE_SEPARATOR);
-        sql.append("  \"code\" INT2 NOT NULL,");
-        sql.append(LINE_SEPARATOR);
-        sql.append("  \"name\" CHARACTER VARYING(32) NOT NULL,");
-        sql.append(LINE_SEPARATOR);
-        sql.append("  CONSTRAINT \"");
-        sql.append(unprefixedClassName);
-        sql.append("_primaryKey\" PRIMARY KEY (\"code\"),");
-        sql.append(LINE_SEPARATOR);
-        sql.append("  CONSTRAINT \"");
-        sql.append(unprefixedClassName);
-        sql.append("_uniqueName\" UNIQUE (\"name\")");
-        sql.append(LINE_SEPARATOR);
-        sql.append(") WITHOUT OIDS;");
-        sql.append(LINE_SEPARATOR);
+        create.print  ("CREATE TABLE ");
+        create.print  (schema);
+        create.print  (".\"");
+        create.print  (className);
+        create.println('"');
+        create.println('(');
+        create.println("  \"code\" INT2 NOT NULL,");
+        create.println("  \"name\" CHARACTER VARYING(32) NOT NULL,");
+        create.print  ("  CONSTRAINT \"");
+        create.print  (unprefixedClassName);
+        create.println("_primaryKey\" PRIMARY KEY (\"code\"),");
+        create.print  ("  CONSTRAINT \"");
+        create.print  (unprefixedClassName);
+        create.println("_uniqueName\" UNIQUE (\"name\")");
+        create.println(") WITHOUT OIDS;");
         if (owner != null) {
-            sql.append("ALTER TABLE ");
-            sql.append(schema);
-            sql.append(".\"");
-            sql.append(className);
-            sql.append("\" OWNER TO \"");
-            sql.append(owner);
-            sql.append("\";");
-            sql.append(LINE_SEPARATOR);
-        }        
-        final Field[] attributes = classe.getDeclaredFields();
-        for (final Field attribute : attributes) {
-            if (!Modifier.isPublic(attribute.getModifiers())) {
+            create.print  ("ALTER TABLE ");
+            create.print  (schema);
+            create.print  (".\"");
+            create.print  (className);
+            create.print  ("\" OWNER TO \"");
+            create.print  (owner);
+            create.println("\";");
+        }
+        for (final FieldDeclaration attribute : declaration.getFields()) {
+            if (!attribute.getModifiers().contains(Modifier.PUBLIC)) {
                 continue;
             }
-            final String attributeName = getIdentifier(attribute);
+            final String attributeName = getUmlIdentifier(attribute);
             if (attributeName == null) {
                 continue;
             }
-            final CodeList code = (CodeList) attribute.get(null);
-            sql.append("INSERT INTO ");
-            sql.append(schema);
-            sql.append(".\"");
-            sql.append(className);
-            sql.append("\" VALUES (");
-            sql.append(code.ordinal() + 1);
-            sql.append(", '");
-            sql.append(attributeName.replace("'", "''"));
-            sql.append("');");
-            sql.append(LINE_SEPARATOR);
+            final Field field;
+            try {
+                field = classe.getField(attribute.getSimpleName());
+            } catch (NoSuchFieldException e) {
+                environment.getMessager().printError("No such field: " + e.getLocalizedMessage());
+                continue;
+            }
+            final CodeList code;
+            try {
+                code = (CodeList) field.get(null);
+            } catch (IllegalAccessException e) {
+                environment.getMessager().printError("Illegal access: " + e.getLocalizedMessage());
+                continue;
+            }
+            create.print  ("INSERT INTO ");
+            create.print  (schema);
+            create.print  (".\"");
+            create.print  (className);
+            create.print  ("\" VALUES (");
+            create.print  (code.ordinal() + 1);
+            create.print  (", '");
+            create.print  (attributeName.replace("'", "''"));
+            create.println("');");
         }
-        sql.append(LINE_SEPARATOR);
-        sql.append(LINE_SEPARATOR);
-        drop.addFirst(className);
-        return sql.toString();
+        create.println();
+        create.println();
+        drop(className);
     }
 
     /**
-     * Create an SQL "CREATE TABLE" statement for the specified interface.
-     * Returns <code>null</code> if the specified interface doesn't have @UML tags.
-     *
-     * @param  classe The class to process.
-     * @param  classes The remaining classes to process. Element in this set will be
-     *         removed if this method determine that it need to create some other classes
-     *         before this one, in order to resolve dependencies.
-     * @return The SQL string to add to the 'create.sql' file.
+     * Prepare the creates of SQL "CREATE TABLE" statement for the specified interface.
+     * The actual SQL statement creation is done later by {@link #processInterfaceDeclaration}.
      */
-    private String sqlInterface(final Class classe, final Set<Class> classes) {
-        final String className = getIdentifier(classe);
+    @Override
+    public void visitInterfaceDeclaration(final InterfaceDeclaration declaration) {
+        super.visitInterfaceDeclaration(declaration);
+        interfaces.add(declaration);
+    }
+
+    /**
+     * Sort the interface declaration before processing, in order to process super interfaces first.
+     */
+    private void sortInterfaceDeclarations() {
+        final List<InterfaceDeclaration> sorted = new ArrayList<InterfaceDeclaration>(interfaces.size());
+        while (!interfaces.isEmpty()) {
+scan:       for (final Iterator<InterfaceDeclaration> it=interfaces.iterator(); it.hasNext();) {
+                final InterfaceDeclaration declaration = it.next();
+                for (final InterfaceType parent : declaration.getSuperinterfaces()) {
+                    if (interfaces.contains(parent.getDeclaration())) {
+                        continue scan;
+                    }
+                }
+                it.remove();
+                sorted.add(declaration);
+            }
+        }
+        interfaces = sorted;
+    }
+
+    /**
+     * Creates a SQL "CREATE TABLE" statement for the specified interface.
+     * Do nothing if the specified interface doesn't have @UML tags.
+     */
+    private void processInterfaceDeclaration(final InterfaceDeclaration declaration) {
+        final String className = getUmlIdentifier(declaration);
         if (className == null) {
-            return null;
+            return;
         }
         final String unprefixedClassName = unprefixed(className);
-        final StringBuilder sql = new StringBuilder();
-        sql.append("CREATE TABLE ");
-        sql.append(schema);
-        sql.append(".\"");
-        sql.append(className);
-        sql.append('"');
-        sql.append(LINE_SEPARATOR);
-        sql.append('(');
-        sql.append(LINE_SEPARATOR);
-        sql.append("  \"id\" OID NOT NULL,");
-        sql.append(LINE_SEPARATOR);
-        final Method[] attributes = classe.getDeclaredMethods();
-scan:   for (final Method attribute : attributes) {
-            if (!Modifier.isPublic(attribute.getModifiers())) {
-                continue;
-            }
-            final String attributeName = getIdentifier(attribute);
+        create.print  ("CREATE TABLE ");
+        create.print  (schema);
+        create.print  (".\"");
+        create.print  (className);
+        create.println('"');
+        create.println('(');
+        create.println("  \"id\" OID NOT NULL,");
+        final Declarations util = environment.getDeclarationUtils();
+scan:   for (final MethodDeclaration attribute : declaration.getMethods()) {
+            final String attributeName = getUmlIdentifier(attribute);
             if (attributeName == null) {
                 continue;
             }
-            for (final Class parent : classe.getInterfaces()) {
-                try {
-                    parent.getMethod(attributeName, attribute.getParameterTypes());
-                    continue scan; // Found the method in superclass: don't add it again.
-                } catch (NoSuchMethodException ignore) {
-                    // No such method in superclass. Checks other interfaces.
-                }
-            }
-            Class attributeType = attribute.getReturnType();
-            Type genericType = attribute.getGenericReturnType();
-            if (!allowTables) {
-                if (attributeType.isArray()) {
-                    attributeType = attributeType.getComponentType();
-                } else if (Collection.class.isAssignableFrom(attributeType)) {
-                    if (genericType instanceof ParameterizedType) {
-                        final Type[] types = ((ParameterizedType) genericType).getActualTypeArguments();
-                        if (types.length == 1) {
-                            attributeType = (Class) types[0];
-                            genericType = null;
-                        }
+            for (final InterfaceType parent : declaration.getSuperinterfaces()) {
+                for (final MethodDeclaration candidate : parent.getDeclaration().getMethods()) {
+                    if (util.overrides(attribute, candidate)) {
+                        // Found the method in superclass: don't add it again.
+                        continue scan;
                     }
                 }
             }
-            final String sqlType = toSQLType(attributeType, genericType);
+            /*
+             * Gets the attribute type in declaration order. If the attribute is an array, gets
+             * also the array component type. We don't look futher than one dimensional arrays.
+             */
+            final TypeMirror attributeType = attribute.getReturnType();
+            TypeMirror componentType = attributeType;
+            if (attributeType instanceof ArrayType) {
+                componentType = ((ArrayType) attributeType).getComponentType();
+            } else if (attributeType instanceof DeclaredType) {
+                final Class c = getClass(attributeType);
+                if (Collection.class.isAssignableFrom(c)) {
+                    final Collection<TypeMirror> types = ((DeclaredType) attributeType).getActualTypeArguments();
+                    if (types.size() == 1) {
+                        componentType = types.iterator().next();
+                    }
+                }
+            }
+            /*
+             * Writes the SQL statement for a column mapping the attribute type.
+             */
+            final String sqlType = toSQLType(getClass(componentType));
             if (sqlType == null) {
                 continue;
             }
-            sql.append("  \"");
-            sql.append(attributeName);
-            sql.append("\" ");
-            sql.append(sqlType);
-            if (Obligation.MANDATORY.equals(attribute.getAnnotation(UML.class).obligation())) {
-                sql.append(" NOT NULL");
+            create.print("  \"");
+            create.print(attributeName);
+            create.print("\" ");
+            create.print(sqlType);
+            if (attributeType != componentType) {
+                createWithArrays.print("[]");
             }
-            sql.append(',');
-            sql.append(LINE_SEPARATOR);
+            if (Obligation.MANDATORY.equals(attribute.getAnnotation(UML.class).obligation())) {
+                create.print(" NOT NULL");
+            }
+            create.println(',');
+            /*
+             * Create the constraint in a separated buffer.
+             */
+            PrintWriter constraints = this.constraints;
+            if (attributeType != componentType) {
+                constraints = constraints2;
+            }
             final String foreignKey;
             final String foreignTable;
             final boolean inSchema;
-            if (Locale.class.isAssignableFrom(attributeType)) {
+            final Class componentClass = getClass(componentType);
+            if (Locale.class.isAssignableFrom(componentClass)) {
                 inSchema     = false;
                 foreignTable = "Locale";
                 foreignKey   = "code";
-            } else if (Unit.class.isAssignableFrom(attributeType)) {
+            } else if (Unit.class.isAssignableFrom(componentClass)) {
                 inSchema     = false;
                 foreignTable = "Unit";
                 foreignKey   = "symbol";
-            } else if (CodeList.class.isAssignableFrom(attributeType)) {
+            } else if (CodeList.class.isAssignableFrom(componentClass)) {
                 inSchema     = true;
-                foreignTable = getIdentifier(attributeType);
+                foreignTable = getUmlIdentifier(componentType);
                 foreignKey   = "code";
-            } else if (attributeType.getName().startsWith(rootPackage)) {
+            } else if (componentClass.getName().startsWith(ROOT_PACKAGE)) {
                 inSchema     = true;
-                foreignTable = getIdentifier(attributeType);
+                foreignTable = getUmlIdentifier(componentType);
                 foreignKey   = "id";
             } else {
                 continue;
             }
-            constraints.append("ALTER TABLE ");
-            constraints.append(schema);
-            constraints.append(".\"");
-            constraints.append(className);
-            constraints.append("\" ADD CONSTRAINT \"");
-            constraints.append(unprefixedClassName);
-            constraints.append('_');
-            constraints.append(attributeName);
-            constraints.append("\" FOREIGN KEY (\"");
-            constraints.append(attributeName);
-            constraints.append("\") REFERENCES ");
+            constraints.print("ALTER TABLE ");
+            constraints.print(schema);
+            constraints.print(".\"");
+            constraints.print(className);
+            constraints.print("\" ADD CONSTRAINT \"");
+            constraints.print(unprefixedClassName);
+            constraints.print('_');
+            constraints.print(attributeName);
+            constraints.print("\" FOREIGN KEY (\"");
+            constraints.print(attributeName);
+            constraints.print("\") REFERENCES ");
             if (inSchema) {
-                constraints.append(schema);
-                constraints.append('.');
+                constraints.print(schema);
+                constraints.print('.');
             }
-            constraints.append('"');
-            constraints.append(foreignTable);
-            constraints.append("\" (");
-            constraints.append(foreignKey);
-            constraints.append(") ON UPDATE RESTRICT ON DELETE RESTRICT;");
-            constraints.append(LINE_SEPARATOR);
-            if (classes.remove(attributeType)) {
-                // Resolve dependencies first.
-                sql.insert(0, sqlInterface(attributeType, classes));
-            }
+            constraints.print('"');
+            constraints.print(foreignTable);
+            constraints.print("\" (");
+            constraints.print(foreignKey);
+            constraints.println(") ON UPDATE CASCADE ON DELETE RESTRICT;");
         }
-        sql.append("  CONSTRAINT \"");
-        sql.append(unprefixedClassName);
-        sql.append("_primaryKey\" PRIMARY KEY (id)");
-        sql.append(LINE_SEPARATOR);
-        sql.append(')');
-        final Class[] parents = classe.getInterfaces();
-        if (parents != null) {
-            for (int i=0; i<parents.length; i++) {
-                final Class parent = parents[i];
-                if (classes.remove(parent)) {
-                    // Resolve dependencies first.
-                    sql.insert(0, sqlInterface(parent, classes));
+        create.print  ("  CONSTRAINT \"");
+        create.print  (unprefixedClassName);
+        create.println("_primaryKey\" PRIMARY KEY (id)");
+        create.print  (')');
+        final Collection<InterfaceType> parents = declaration.getSuperinterfaces();
+        if (!parents.isEmpty()) {
+            create.print(" INHERITS (");
+            boolean multi = false;
+            for (final InterfaceType parent : parents) {
+                if (multi) {
+                    create.print(", ");
                 }
-                sql.append(i==0 ? " INHERITS (" : ", ");
-                sql.append(schema);
-                sql.append(".\"");
-                sql.append(getIdentifier(parent));
-                sql.append('"');
+                create.print(schema);
+                create.print(".\"");
+                create.print(getUmlIdentifier(parent));
+                create.print('"');
+                multi = true;
             }
-            if (parents.length != 0) {
-                sql.append(')');
-            }
+            create.print(')');
         }
-        sql.append(" WITHOUT OIDS;");
-        sql.append(LINE_SEPARATOR);
+        create.println(" WITHOUT OIDS;");
         if (owner != null) {
-            sql.append("ALTER TABLE ");
-            sql.append(schema);
-            sql.append(".\"");
-            sql.append(className);
-            sql.append("\" OWNER TO \"");
-            sql.append(owner);
-            sql.append("\";");
-            sql.append(LINE_SEPARATOR);
+            create.print  ("ALTER TABLE ");
+            create.print  (schema);
+            create.print  (".\"");
+            create.print  (className);
+            create.print  ("\" OWNER TO \"");
+            create.print  (owner);
+            create.println("\";");
         }        
-        sql.append(LINE_SEPARATOR);
-        sql.append(LINE_SEPARATOR);
-        drop.addFirst(className);
-        return sql.toString();
+        create.println();
+        create.println();
+        drop(className);
     }
 
     /**
      * Returns the SQL type for the specified Java classe.
      */
-    private String toSQLType(final Class classe, final Type type) {
+    private String toSQLType(final Class classe) {
         if (       CharSequence.class.isAssignableFrom(classe) ||
             InternationalString.class.isAssignableFrom(classe) ||
                         Charset.class.isAssignableFrom(classe))
@@ -491,52 +543,15 @@ scan:   for (final Method attribute : attributes) {
         {
             return "INT2";
         }
-        if (classe.getName().startsWith(rootPackage)) {
+        if (classe.getName().startsWith(ROOT_PACKAGE)) {
             return "OID";
         }
-        if (classe.isArray()) {
-            final String sql = toSQLType(classe.getComponentType(), null);
-            return (sql != null) ? sql+"[]" : null;
-        }
-        if (Collection.class.isAssignableFrom(classe)) {
-            if (type instanceof ParameterizedType) {
-                final Type[] types = ((ParameterizedType) type).getActualTypeArguments();
-                if (types.length == 1) {
-                    final String sql = toSQLType((Class) types[0], null);
-                    return (sql != null) ? sql+"[]" : null;
-                }
-            }
-        }
-        if (!quiet) {
-            Logger.getLogger("org.opengis.tools").warning("No mapping to SQL type: "+classe.getName());
-        }
+        environment.getMessager().printWarning("No mapping to SQL type: "+classe.getName());
         return null;
     }
 
     /**
-     * Returns the UML identifier for the specified element, or <code>null</code>
-     * if the specified element is not part of the UML model.
-     */
-    private static String getIdentifier(final AnnotatedElement element) {
-        final UML uml = element.getAnnotation(UML.class);
-        if (uml != null) {
-            String identifier = uml.identifier();
-            /*
-             * If there is two or more UML identifier collapsed in only one
-             * Java method, keep only the first identifier (which is usually
-             * the main attribute).
-             */
-            final int split = identifier.indexOf(',');
-            if (split >= 0) {
-                identifier = identifier.substring(0, split);
-            }
-            return identifier;
-        }
-        return null;
-    }
-
-    /**
-     * Returns the classname without the prefix.
+     * Returns the classname without the OGC prefix.
      */
     private static String unprefixed(String className) {
         if (className.length() >= 4 && className.charAt(2)=='_') {

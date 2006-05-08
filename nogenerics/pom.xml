@@ -38,6 +38,12 @@
   <!--     Compilation from modified sources                -->
   <!-- ==================================================== -->
   <build>
+    <resources>
+      <resource>
+        <!-- Uses the same resources than the master module. -->
+        <directory>${basedir}/../geoapi/src/main/resources</directory>
+      </resource>
+    </resources>
     <sourceDirectory>${basedir}/target/generated-sources</sourceDirectory>
     <!-- TODO: it would be better if we can get our plugin-erasure to add the
                generaged sources to the <compileSourceRoots> list instead. -->

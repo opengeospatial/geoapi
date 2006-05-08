@@ -14,6 +14,7 @@ import java.util.Set;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
+import java.io.IOException;
 import java.lang.reflect.AnnotatedElement;
 
 // Annotation processing tools
@@ -134,6 +135,14 @@ public abstract class UmlProcessor extends SimpleDeclarationVisitor
     }
 
     /**
+     * Returns the UML identifier for the specified element, or {@code null}
+     * if the specified element is not part of the UML model.
+     */
+    protected static String getUmlIdentifier(final TypeMirror element) {
+        return (element instanceof DeclaredType) ? getUmlIdentifier(((DeclaredType) element).getDeclaration()) : null;
+    }
+
+    /**
      * Returns the UML identifier, or {@code null} if none.
      */
     private static String getUmlIdentifier(final UML uml) {
@@ -163,22 +172,24 @@ public abstract class UmlProcessor extends SimpleDeclarationVisitor
 
     /**
      * Returns the class object for the specified declaration. If the class can't be found,
-     * then this method returns {@link Void#TYPE}.
+     * then this method returns {@link Void#TYPE}. The later is not quite correct (but do
+     * the trick for this package purpose), which is why this method is package-private.
      */
-    protected final Class getClass(final TypeDeclaration declaration) {
+    final Class getClass(final TypeDeclaration declaration) {
         try {
             return Class.forName(declaration.getQualifiedName());
         } catch (ClassNotFoundException e) {
-            environment.getMessager().printWarning("Class not found: " + e.getLocalizedMessage());
+            environment.getMessager().printError("Class not found: " + e.getLocalizedMessage());
             return Void.TYPE;
         }
     }
 
     /**
      * Returns the class object for the specified declaration. If the class can't be found,
-     * then this method returns {@link Void#TYPE}.
+     * then this method returns {@link Void#TYPE}. The later is not quite correct (but do
+     * the trick for this package purpose), which is why this method is package-private.
      */
-    protected final Class getClass(final TypeMirror type) {
+    final Class getClass(final TypeMirror type) {
         if (type instanceof PrimitiveType) {
             switch (((PrimitiveType) type).getKind()) {
                 case BOOLEAN : return Boolean  .TYPE;
@@ -230,5 +241,15 @@ public abstract class UmlProcessor extends SimpleDeclarationVisitor
             name = buffer.toString();
         }
         return name;
+    }
+
+    /**
+     * Print an error message after the failure to open a file.
+     */
+    final void printError(final IOException exception) {
+        String name = exception.getClass().getName();
+        name = name.substring(name.lastIndexOf('.') + 1);
+        environment.getMessager().printError("Unable to create output files. The cause is " +
+                                             name + ": " + exception.getLocalizedMessage());
     }
 }
