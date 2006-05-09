@@ -32,8 +32,8 @@ import org.opengis.filter.Filter;
  * aiming to let you describe how the types in your system are related.
  * </p>
  * <p>
- * You may gather associations into a heirarchy where refine is needed, thus a lake could be
- * associated with "connected" rivers, and this refined with "up stream" and "down stream". 
+ * You may gather associations into a hierarchy and refine where needed, thus a lake could be
+ * associated with "connected" rivers, and thus refined with "up stream" and "down stream". 
  * </p>
  * @author Jody Garnett, Refractions Research, Inc.
  */
