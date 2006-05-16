@@ -114,10 +114,9 @@ public interface TypeFactory {
 		InternationalString description
 	);
 	
-//	SimpleFeatureCollectionType createSimpleFeatureCollectionType(
-//		TypeName name, Collection<AssociationDescriptor> schema, CoordinateReferenceSystem crs, 
-//		boolean isAbstract, Set<Filter> restrictions, SimpleFeatureCollectionType superType,
-//		InternationalString description
-//	);
+	SimpleFeatureCollectionType createSimpleFeatureCollectionType(
+		TypeName name, AssociationDescriptor member, Set<Filter> restrictions, 
+		InternationalString description
+	);
 
 }

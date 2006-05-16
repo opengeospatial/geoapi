@@ -16,13 +16,16 @@ import org.opengis.feature.type.FeatureType;
  * <p>
  * Maintains the following properties:
  * <ul>
- * 	<li>The set of member types contains a single feature type 
+ * 	<li>Contains a single member feature type.
+ * 	<li>Contains no attributes of its own
+ * 	<li>Has no super type
  * </ul>
  * <br>
  * With code the amounts to the following assertions being held:
  * <pre>
- * 	<code>getType().getAttribute().isEmpty()</code>
  * 	<code>getMemberTypes().size() == 1</code>
+ * 	<code>getType().getAttribute().isEmpty()</code>
+ * 	<code>getSuper() == null</code>
  * </pre>
  * </p>
  * @author Justin Deoliveira, The Open Planning Project, jdeolive@openplans.org

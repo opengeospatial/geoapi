@@ -7,6 +7,7 @@ import org.opengis.feature.Attribute;
 import org.opengis.feature.type.AttributeType;
 import org.opengis.feature.type.FeatureCollectionTypeBuilder;
 import org.opengis.feature.type.FeatureType;
+import org.opengis.feature.type.Name;
 
 /**
  * Builder for building SimpleFeatureCollectionType's.
@@ -28,21 +29,17 @@ public interface SimpleFeatureCollectionTypeBuilder extends
 	 * 
 	 * @throws UnsupportedOperationException
 	 */
-	void add(String name, AttributeType type, int minOccurs, int maxOccurs, boolean isNillable);
-
-	/**
-	 * Ensures that the total number of added types == 1.
-	 * 
-	 * @throws IllegalArgumentException If this call leaves in the builder in 
-	 * a state such that {@link #getMemberTypes()}.size() > 1
-	 */
-	void addMemberType(FeatureType memberType);
+	void attribute(Name name, AttributeType type);
+	void attribute(Name name, Class binding);
+	void attribute(String name, AttributeType type);
+	void attribute(String name, Class binding);
+	void attribute(String name, String namespaceURI, AttributeType type);
+	void attribute(String name, String namespaceURI, Class binding);
 	
 	/**
-	 * Ensures that the supplied set is of sizs 1.
-	 * 
-	 * @throws IllegalArgumentException If <code>memberTypes.size()</code> > 1.
+	 * Sets the single member type to be associated to the simple feature 
+	 * collection.
 	 */
-	void setMemberTypes(Set<FeatureType> memeberTypes);
+	void setMemberType(FeatureType memberType);
 	
 }
