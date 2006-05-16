@@ -195,7 +195,7 @@
                            value="AttributeType/*SimpleFeautreType*/ getType();"/>
         </replace>
         <replace dir="${generatedSourceDirectory}" includes="org/opengis/feature/simple/SimpleFeatureCollection.java">
-            <replacefilter token="SimpleFeatureCollectionType getType()" value="AttributeType/*SimpleFeatureCollectionType*/ getType()"/>
+            <replacefilter token="T getType()" value="AttributeType/*SimpleFeatureCollectionType*/ getType()"/>
 	    <replacefilter token="M getMemberType()" value="FeatureType getMemberType()"/>
         </replace>
 

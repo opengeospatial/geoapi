@@ -62,8 +62,8 @@ public interface FeatureTypeBuilder<C extends Collection<Attribute>, T extends F
 //	 */
 //	void setDefaultGeometry(GeometryType type);
 //	
-//	/**
-//	 * Returns the default geometry attribute of the type to be created.
-//	 */
-//	GeometryType getDefaultGeometry();
+	/**
+	 * Returns the default geometry attribute of the type to be created.
+	 */
+	Name getDefaultGeometry();
 }
