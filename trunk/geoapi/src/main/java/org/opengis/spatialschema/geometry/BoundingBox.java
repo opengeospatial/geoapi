@@ -87,6 +87,11 @@ public interface BoundingBox extends Envelope {
     void include( BoundingBox bounds );
     
     /**
+     * Include the provided coordinates, expanding as necessary.
+     */
+    void include( double x, double y );
+    
+    /**
      * True if lengths of all ordinates is zero.
      * 
      * @return true if bounding box is empty
