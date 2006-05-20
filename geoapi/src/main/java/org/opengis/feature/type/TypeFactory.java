@@ -7,6 +7,8 @@ import java.util.Set;
 import org.opengis.feature.simple.SimpleFeatureCollectionType;
 import org.opengis.feature.simple.SimpleFeatureType;
 import org.opengis.filter.Filter;
+import org.opengis.filter.FilterFactory;
+import org.opengis.referencing.crs.CRSFactory;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 import org.opengis.util.InternationalString;
 
@@ -19,7 +21,27 @@ import org.opengis.util.InternationalString;
  */
 public interface TypeFactory {
 
-	/**
+    /**
+     * @return The CRS factory used to create CRS info for created types.
+     */
+    CRSFactory getCRSFactory();
+    
+    /**
+     * Sets the CRS factory used to create CRS info for created types.
+     */
+    void setCRSFactory(CRSFactory crsFactory);
+    
+    /**
+     * @return The Filter Facotry used to create type restrictions.
+     */
+    FilterFactory getFilterFactory();
+    
+    /**
+     * Sets the filter factory used to create type restrictions.
+     */
+    void setFilterFactory(FilterFactory filterFactory);
+    
+    /**
 	 * Creates a new attribute descriptor.
 	 * 
 	 * @param type
@@ -96,21 +118,21 @@ public interface TypeFactory {
 	FeatureType createFeatureType(
 		TypeName name, Collection<StructuralDescriptor> schema,
 		AttributeDescriptor<GeometryType> defaultGeometry, CoordinateReferenceSystem crs,
-		boolean isAbstract, Set<Filter> restrictions, ComplexType superType,
+		boolean isAbstract, Set<Filter> restrictions, AttributeType superType,
 		InternationalString description
 	);
 
 	SimpleFeatureType createSimpleFeatureType(
 		TypeName name,List<AttributeDescriptor> schema,
 		AttributeDescriptor<GeometryType> defaultGeometry, CoordinateReferenceSystem crs, 
-		boolean isAbstract, Set<Filter> restrictions, SimpleFeatureType superType,
+		boolean isAbstract, Set<Filter> restrictions, AttributeType superType,
 		InternationalString description
 	);
 	
 	FeatureCollectionType createFeatureCollectionType(
 		TypeName name,  Collection<StructuralDescriptor> schema, 
 		AttributeDescriptor<GeometryType> defaultGeom, CoordinateReferenceSystem crs, 
-		boolean isAbstract, Set<Filter> restrictions, ComplexType superType,
+		boolean isAbstract, Set<Filter> restrictions, AttributeType superType,
 		InternationalString description
 	);
 	
@@ -118,5 +140,5 @@ public interface TypeFactory {
 		TypeName name, AssociationDescriptor member, Set<Filter> restrictions, 
 		InternationalString description
 	);
-
+   
 }

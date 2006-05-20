@@ -243,11 +243,11 @@
             <replacefilter token="void init(A "    value="void init(ComplexAttribute "/>
         </replace>
 
-        <replace dir="${generatedSourceDirectory}" includes="org/opengis/feature/type/ComplexTypeBuilder.java">
-            <replacefilter token="void init(T " value="void init(ComplexType "/>
-            <replacefilter token="T build()"    value="ComplexType build()"   />
-            <replacefilter token="E getSuper()" value="ComplexType getSuper()"/>
-            <replacefilter token="setSuper(E "  value="setSuper(ComplexType " />
+        <replace dir="${generatedSourceDirectory}" includes="org/opengis/feature/type/AttributeTypeBuilder.java">
+            <replacefilter token="void init(T " value="void init(AttributeType "/>
+            <replacefilter token="T build()"    value="AttributeType build()"   />
+            <replacefilter token="E getSuper()" value="AttributeType getSuper()"/>
+            <replacefilter token="setSuper(E "  value="setSuper(AttributeType " />
         </replace>
 
         <replace dir="${generatedSourceDirectory}" includes="org/opengis/feature/type/FeatureCollectionTypeBuilder.java">

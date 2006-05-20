@@ -67,54 +67,11 @@ import org.opengis.util.InternationalString;
  *            class of Attribute.
  */
 
-public interface ComplexTypeBuilder<C extends Collection<Attribute>, T extends ComplexType<C>> {
+public interface ComplexTypeBuilder<C extends Collection<Attribute>, T extends ComplexType<C>> 
+    extends AttributeTypeBuilder<C,T> {
 
-
-	//
-	// Dependences Injection
-	// (aka what we need to function)
-	//
-
-	/**
-	 * Returns the underlying type factory.
-	 */
-	TypeFactory getTypeFactory();
-
-	/**
-	 * Sets the underyling type factory.
-	 */
-	void setTypeFactory(TypeFactory factory);
-
-	//
-	// Use
-	//
-	
-	/**
-	 * Initializes the state of the builder, leaving the builder in the same
-	 * state as after it is instantiated.
-	 */
-	void init();
-	
-	/**
-	 * Initializes the state of the builder based on a previously built type.
-	 * <p>
-	 *	This method is useful when extending another copying another type. 
-	 * </p>
-	 */
-	void init(T type);
-	
-	/**
-	 * Create a ComplexType based on the configuration of this builder.
-	 * <p>
-	 * This method will use the provided TypeFactory to create an ComplexType
-	 * based on the builder configuration.
-	 */
-	T build();
-
-	//
-	// Setup
-	//
-	/**
+    
+    /**
  	 * AttributeType bound to an indicated class.
  	 * <p>
 	 * The following bindings are supported "out of the box":
@@ -145,137 +102,11 @@ public interface ComplexTypeBuilder<C extends Collection<Attribute>, T extends C
 	 */
 	<B> void addBinding( Class<B> binding, AttributeType<B> type);
 	
-	//
-	// State
-	//
-	// These methods capture state used in helping produce
-	// objects.
-	//
-	/**
-	 * Sets the namespace to be used when constructing type and attribute names.
-	 */
-	void setNamespaceURI(String uri);
-
-	/**
-	 * Returns The namespace to be used when constructing type and attribute
-	 * names.
-	 */
-	String getNamespaceURI();
-
-	/**
-	 * Sets the name of the type, combined with getNamespaceURI to produce the
-	 * TypeName.
-	 * <p>
-	 * This value must be set prior to calling create()
-	 * </p>
-	 */
-	void setName(String name);
-
-	/**
-	 * Returns the name component of the type to be created.
-	 */
-	String getName();
-
-	/**
-	 * The TypeName for the type to be created.
-	 * 
-	 * @return
-	 */
-	TypeName getTypeName();
-
-	/**
-	 * Provide a TypeName for the type to be created.
-	 * <p>
-	 * This method is useful when working with TypeNames created by the
-	 * application using the library (ie an application specific
-	 * implementation).
-	 * </p>
-	 * 
-	 * @param name
-	 * @return
-	 */
-	void setTypeName(TypeName name);
-
-	/**
-	 * 
-	 * @return The description of the type.
-	 */
-	InternationalString getDescription();
-	
-	/**
-	 * Sets the description of the type.
-	 * 
-	 * @param description The description as an internationalized string.
-	 */
-	void setDescription(InternationalString description);
 	
 	//
 	// Type Metadata
 	//
-
-	/**
-	 * Sets the abstract property of created types.
-	 * 
-	 * @see AttributeType#isAbstract()
-	 */
-	void setAbstract(boolean isAbstract);
-
-	/**
-	 * Returns the abstract property of created types.
-	 * 
-	 * @see AttributeType#isAbstract()
-	 */
-	boolean isAbstract();
-
-	/**
-	 * Sets the super type of created types.
-	 * 
-	 * @see AttributeType#getSuper()
-	 */
-	<E extends T> void setSuper(E superType);
-
-	/**
-	 * Sets the super type of created types.
-	 * 
-	 * @see AttributeType#getSuper()
-	 */
-	<E extends T> E getSuper();
-
-	/**
-	 * Adds an additional restriction on the created type.
-	 */
-	void addRestriction(Filter restriction);
-	
-	/**
-	 * Sets additional restrictions on created types.
-	 * 
-	 * @see AttributeType#getRestrictions()
-	 */
-	void setRestrictions(Set<Filter> restrictions);
-
-	/**
-	 * Returns additional restrictions on created types.
-	 * 
-	 * @see AttributeType#getRestrictions()
-	 */
-	Set<Filter> getRestrictions();
-
-	/**
-	 * Sets the nillable property of any attributes added subsequentley.
-	 * <p>
-	 * This method will not effect any previously added attributes.
-	 * </p>
-	 * 
-	 * @see AttributeDescriptor#isNillable()
-	 */
-	void setNillable(boolean isNillable);
-	
-	/**
-	 * Returns the nillable property of attributes.
-	 */
-	boolean isNillable();
-	
-	/**
+    /**
 	 * Sets the minimum occurence property of any attributes added subsequentley.
 	 * <p>
 	 * This method will not effect any previously added attributes.

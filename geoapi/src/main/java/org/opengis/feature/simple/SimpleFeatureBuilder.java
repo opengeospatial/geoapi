@@ -25,7 +25,7 @@ public interface SimpleFeatureBuilder extends FeatureBuilder<List<Attribute>,Sim
 	 * 
 	 * 
 	 */
-	SimpleFeatureBuilder add(Object value);
+	void add(Object value);
 	
 	/**
 	 * Adds an attribute to the complex attribute to be created.
@@ -47,5 +47,5 @@ public interface SimpleFeatureBuilder extends FeatureBuilder<List<Attribute>,Sim
 	 * 	The value of the attribute.
 	 * 
 	 */
-	SimpleFeatureBuilder add(String id, Object value);
+	void add(String id, Object value);
 }
