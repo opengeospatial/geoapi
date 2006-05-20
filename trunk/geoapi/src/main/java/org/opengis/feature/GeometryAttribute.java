@@ -29,6 +29,11 @@ public interface GeometryAttribute<G, T extends GeometryType<G>> extends Attribu
 	 */
 	CoordinateReferenceSystem getCRS();
 
+    /**
+     * Sets the coordinate reference system for the attribute.
+     */
+    void setCRS(CoordinateReferenceSystem crs);
+    
 	/**
 	 * The bounds of this geometry.
 	 * <p>
