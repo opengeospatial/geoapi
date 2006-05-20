@@ -85,7 +85,7 @@ public interface ComplexAttributeBuilder<C extends Collection<Attribute>, T exte
 	 * 	The value of the attribute.
 	 * 
 	 */
-	ComplexAttributeBuilder<C,T,A> add(Object value, String name);
+	void add(Object value, String name);
 	
 	/**
 	 * Adds an attribute to the complex attribute to be created.
@@ -103,7 +103,7 @@ public interface ComplexAttributeBuilder<C extends Collection<Attribute>, T exte
 	 * 	The value of the attribute.
 	 * 
 	 */
-	ComplexAttributeBuilder<C,T,A> add(Object value, String name, String namespaceURI);
+	void add(Object value, String name, String namespaceURI);
 	
 	/**
 	 * Adds an attribute to the complex attribute to be created.
@@ -119,7 +119,7 @@ public interface ComplexAttributeBuilder<C extends Collection<Attribute>, T exte
 	 * 	The value of the attribute.
 	 * 
 	 */
-	ComplexAttributeBuilder<C,T,A> add(Object value, Name name);
+	void add(Object value, Name name);
 	
 	/**
 	 * Adds an attribute to the complex attribute to be created.
@@ -140,7 +140,7 @@ public interface ComplexAttributeBuilder<C extends Collection<Attribute>, T exte
 	 * @param id
 	 * 	The id of the attribute.
 	 */
-	ComplexAttributeBuilder<C,T,A> add(String id, Object value, String name);
+	void add(String id, Object value, String name);
 	
 	/**
 	 * Adds an attribute to the complex attribute to be created.
@@ -159,7 +159,7 @@ public interface ComplexAttributeBuilder<C extends Collection<Attribute>, T exte
 	 * @param id
 	 * 	The id of the attribute.
 	 */
-	ComplexAttributeBuilder<C,T,A> add(String id, Object value, String name, String namespaceURI);
+	void add(String id, Object value, String name, String namespaceURI);
 	
 	/**
 	 * Adds an attribute to the complex attribute to be created.
@@ -176,7 +176,7 @@ public interface ComplexAttributeBuilder<C extends Collection<Attribute>, T exte
 	 * @param id
 	 * 	The id of the attribute.
 	 */
-	ComplexAttributeBuilder<C,T,A> add(String id, Object value, Name name);
+	void add(String id, Object value, Name name);
 	
 	/**
 	 * Builds the complex attribute.

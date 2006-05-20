@@ -18,4 +18,14 @@ public interface FeatureBuilder<C extends Collection<Attribute>,T extends Featur
      * if not set.
      */
     CoordinateReferenceSystem getCRS();
+    
+    /**
+     * Sets the default geometry of the feature.
+     */
+    void setDefaultGeometry(Object geometry);
+    
+    /**
+     * @return The default geometry of the feature.
+     */
+    Object getDefaultGeometry();
 }

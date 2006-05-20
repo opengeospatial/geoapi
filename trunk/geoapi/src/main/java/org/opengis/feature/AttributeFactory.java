@@ -19,7 +19,9 @@ import org.opengis.feature.type.FeatureCollectionType;
 import org.opengis.feature.type.FeatureType;
 import org.opengis.feature.type.GeometryType;
 import org.opengis.feature.type.Name;
+import org.opengis.referencing.crs.CRSFactory;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
+import org.opengis.spatialschema.geometry.geometry.GeometryFactory;
 
 /**
  * Plays the role of making actual instances of types in this puzzle.
@@ -30,6 +32,26 @@ import org.opengis.referencing.crs.CoordinateReferenceSystem;
  */
 public interface AttributeFactory {
 
+    /**
+     * @return The CRS factory used to create CRS info for created attributes.
+     */
+    CRSFactory getCRSFactory();
+    
+    /**
+     * Sets the CRS factory used to create CRS info for created attributes.
+     */
+    void setCRSFactory(CRSFactory crsFactory);
+    
+    /**
+     * @return The factory used to create geometric data.
+     */
+    GeometryFactory getGeometryFactory();
+    
+    /**
+     * Sets the factory used to create geometric data.  
+     */
+    void setGeometryFactory(GeometryFactory geometryFactory);
+    
 	/**
 	 * Creates an attribute descriptor.
 	 * 
@@ -90,7 +112,7 @@ public interface AttributeFactory {
 	 */
 	TemporalAttribute createTemporalAttribute(Date value, AttributeDescriptor descriptor);
 	
-	/**
+    /**
 	 * Creates a new geometry attribute.
 	 * 
 	 * @param value The initial value of the attribute, may be null depending on 
