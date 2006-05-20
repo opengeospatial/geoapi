@@ -71,9 +71,16 @@ public interface Feature<C extends Collection<Attribute>, T extends FeatureType<
 	 * be available here.
 	 * </p>
 	 * 
-	 * @return CoordinateReferenceSystem if known or null.
+	 * @return CoordinateReferenceSystem if set or null.
 	 */
 	CoordinateReferenceSystem getCRS();
+    
+    /**
+     * Sets the CRS of the feature. 
+     * 
+     * @param crs The coordinate reference system of the feature.
+     */
+    void setCRS(CoordinateReferenceSystem crs);
 
 	/**
 	 * The bounds of this Feature, if available.
@@ -98,18 +105,15 @@ public interface Feature<C extends Collection<Attribute>, T extends FeatureType<
 ///	FeatureType getType();
 
 	/**
-	 * @return Default geomtry Attribute or null if unknown or not applicable.
+	 * @return The default geometry attribute.
 	 */
-	Object getDefaultGeometry();
+	GeometryAttribute getDefaultGeometry();
 
 	/**
-	 * Sets the content of default geometry attribute
+	 * Sets the default geometry attribute.
 	 * 
-	 * @param geom Geometry object
-	 * @throws IllegalArgumentException
-	 *             if FeatureType has no default geometry type, or
-	 *             <code>geom</code> does not validates against the default
-	 *             GeometryType
+	 * @param geom A geometry attribute.
+	 
 	 */
-	void setDefaultGeometry(Object geom);
+	void setDefaultGeometry(GeometryAttribute geometryAttribute);
 }
