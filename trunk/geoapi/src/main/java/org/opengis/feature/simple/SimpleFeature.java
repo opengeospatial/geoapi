@@ -111,4 +111,23 @@ public interface SimpleFeature extends Sequence<List<Attribute>,SimpleFeatureTyp
 	 * @return number of available attribtues
 	 */
 	int getNumberOfAttributes();
+
+    /**
+     * Returns the default geometry for the simple feature.
+     * <p>
+     * This method is convenience for getDefaultGeometry().get();
+     * </p>
+     * @return The default geometry, or null if none exists. 
+     * 
+     */
+    Object defaultGeometry();
+    
+    /**
+     * Sets the default geometry for the simple feature.
+     * <p>
+     * This method is convenience for getDefaultGeometry().set(geometry);
+     * </p>
+     * @param geometry The new defautl geometry.
+     */
+    void defaultGeometry(Object geometry);
 }
