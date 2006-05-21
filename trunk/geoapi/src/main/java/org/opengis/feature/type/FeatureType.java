@@ -3,6 +3,7 @@ package org.opengis.feature.type;
 import java.util.Collection;
 
 import org.opengis.feature.Attribute;
+import org.opengis.feature.Property;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 
 
@@ -15,7 +16,7 @@ import org.opengis.referencing.crs.CoordinateReferenceSystem;
  * @author Jody Garnett
  *
  */
-public interface FeatureType<C extends Collection<Attribute>> extends ComplexType<C> {
+public interface FeatureType<E extends Property,C extends Collection<E>> extends ComplexType<E,C> {
 			
 	/**
 	 * Indicates which AttributeType is to be considered the default

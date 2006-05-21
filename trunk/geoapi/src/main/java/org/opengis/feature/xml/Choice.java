@@ -22,7 +22,7 @@ import org.opengis.feature.ComplexAttribute;
  * </p>
  */
 public interface Choice<S extends Set<Attribute>, T extends ChoiceType<S>> 
-	extends ComplexAttribute<S,T> {
+	extends ComplexAttribute<Attribute,S,T> {
 
     T getType();
 	

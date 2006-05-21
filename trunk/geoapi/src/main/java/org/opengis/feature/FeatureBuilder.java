@@ -5,8 +5,8 @@ import java.util.Collection;
 import org.opengis.feature.type.FeatureType;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 
-public interface FeatureBuilder<C extends Collection<Attribute>,T extends FeatureType<C>, A extends Feature<C,T>>
-	extends ComplexAttributeBuilder<C,T,A> {
+public interface FeatureBuilder<E extends Property, C extends Collection<E>,T extends FeatureType<E,C>, A extends Feature<E,C,T>>
+	extends ComplexAttributeBuilder<E,C,T,A> {
 
     /**
      * Sets the coordinate reference system of the built feature.

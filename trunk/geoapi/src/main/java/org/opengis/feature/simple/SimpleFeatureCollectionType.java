@@ -32,7 +32,7 @@ import org.opengis.feature.type.FeatureType;
  *
  */
 public interface SimpleFeatureCollectionType<M extends FeatureType> 
-	extends FeatureCollectionType<Collection<Attribute>,M> {
+	extends FeatureCollectionType<Attribute,Collection<Attribute>,M> {
 
 	/**
 	 * Returns the single feature of allowed members of the collection.

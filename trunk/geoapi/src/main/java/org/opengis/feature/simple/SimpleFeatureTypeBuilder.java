@@ -22,7 +22,7 @@ import org.opengis.feature.type.FeatureTypeBuilder;
  *
  * @param <B> The binding for the returned type. 
  */
-public interface SimpleFeatureTypeBuilder extends FeatureTypeBuilder<List<Attribute>,SimpleFeatureType> {
+public interface SimpleFeatureTypeBuilder extends FeatureTypeBuilder<Attribute,List<Attribute>,SimpleFeatureType> {
 	
 	/**
 	 * Returns 1.

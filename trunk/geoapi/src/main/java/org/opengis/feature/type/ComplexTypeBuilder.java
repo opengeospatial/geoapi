@@ -4,6 +4,7 @@ import java.util.Collection;
 import java.util.Set;
 
 import org.opengis.feature.Attribute;
+import org.opengis.feature.Property;
 import org.opengis.filter.Filter;
 import org.opengis.util.InternationalString;
 
@@ -67,7 +68,7 @@ import org.opengis.util.InternationalString;
  *            class of Attribute.
  */
 
-public interface ComplexTypeBuilder<C extends Collection<Attribute>, T extends ComplexType<C>> 
+public interface ComplexTypeBuilder<E extends Property, C extends Collection<E>, T extends ComplexType<E,C>> 
     extends AttributeTypeBuilder<C,T> {
 
     

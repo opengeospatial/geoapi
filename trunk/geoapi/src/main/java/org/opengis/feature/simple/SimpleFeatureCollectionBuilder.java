@@ -7,7 +7,7 @@ import org.opengis.feature.FeatureCollectionBuilder;
 import org.opengis.feature.type.FeatureType;
 
 public interface SimpleFeatureCollectionBuilder<M extends FeatureType, T extends SimpleFeatureCollectionType<M>> 
-	extends FeatureCollectionBuilder<Collection<Attribute>,M,T,SimpleFeatureCollection<M,T>> {
+	extends FeatureCollectionBuilder<Attribute,Collection<Attribute>,M,T,SimpleFeatureCollection<M,T>> {
 
 	
 	

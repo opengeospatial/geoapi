@@ -21,8 +21,8 @@ import org.opengis.filter.Filter;
  * </p>
  * @author Jody Garnett, Refractions Research, Inc.
  */
-public interface FeatureList<C extends Collection<Attribute>, M extends FeatureType, T extends FeatureCollectionType<C,M>> 
-	extends FeatureCollection<C,M,T>, List<Feature> {
+public interface FeatureList<E extends Property,C extends Collection<E>, M extends FeatureType, T extends FeatureCollectionType<E,C,M>> 
+	extends FeatureCollection<E,C,M,T>, List<Feature> {
     
 	/**
 	 * Similar to subCollection, explicitly constructs a ordered List.

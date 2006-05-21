@@ -50,4 +50,13 @@ public interface PropertyDescriptor {
 	 * </p>
 	 */
 	Name getName();
+    
+    /**
+     * Convenience method for getting at the type of the desciptor.
+     * <p>
+     * This is considered "derived" because the specific type is declared 
+     * by the sublcass.
+     * </p>
+     */
+    PropertyType type();
 }

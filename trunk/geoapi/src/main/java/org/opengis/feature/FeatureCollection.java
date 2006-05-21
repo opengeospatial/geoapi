@@ -18,8 +18,8 @@ import org.opengis.filter.sort.SortBy;
  * </p>
  * @author Jody Garnett
  */
-public interface FeatureCollection<C extends Collection<Attribute>, M extends FeatureType, T extends FeatureCollectionType<C,M>> 
-	extends Feature<C,T>, 
+public interface FeatureCollection<E extends Property,C extends Collection<E>, M extends FeatureType, T extends FeatureCollectionType<E,C,M>> 
+	extends Feature<E,C,T>, 
 	Collection<Feature> {
 	
 	/**
