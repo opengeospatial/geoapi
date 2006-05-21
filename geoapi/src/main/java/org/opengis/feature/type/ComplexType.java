@@ -3,6 +3,7 @@ package org.opengis.feature.type;
 import java.util.Collection;
 
 import org.opengis.feature.Attribute;
+import org.opengis.feature.Property;
 
 /**
  * Represents an AttirbuteType with internal strucutre composed of properties.
@@ -19,7 +20,7 @@ import org.opengis.feature.Attribute;
  * @author Jody Garnett
  *
  */
-public interface ComplexType<C extends Collection<Attribute>> extends AttributeType<C> {
+public interface ComplexType<E extends Property,C extends Collection<E>> extends AttributeType<C> {
 	
 	/**
 	 * Indicates ability of XPath to notice this attribute.
@@ -149,7 +150,7 @@ public interface ComplexType<C extends Collection<Attribute>> extends AttributeT
 	 * our data model.
 	 * </p>
 	 */
-	Collection<AttributeDescriptor> getAttributes(); // TODO: rename to attributes
+	Collection<AttributeDescriptor> attributes(); // TODO: rename to attributes
 	
 	/**
 	 * Allowable associations, indicating non containment relationships.

@@ -31,7 +31,7 @@ import org.opengis.feature.xml.Sequence;
  * @author Jody Garnett, Refractions Research
  */
 public interface SimpleFeature extends Sequence<List<Attribute>,SimpleFeatureType>, 
-	Feature<List<Attribute>,SimpleFeatureType> {
+	Feature<Attribute,List<Attribute>,SimpleFeatureType> {
 	
 
 	/**

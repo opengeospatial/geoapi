@@ -4,10 +4,11 @@ import java.util.Collection;
 import java.util.Set;
 
 import org.opengis.feature.Attribute;
+import org.opengis.feature.Property;
 
 
-public interface FeatureCollectionTypeBuilder<C extends Collection<Attribute>, M extends FeatureType,T extends FeatureCollectionType<C,M>>
-	extends FeatureTypeBuilder<C,T> {
+public interface FeatureCollectionTypeBuilder<E extends Property, C extends Collection<E>, M extends FeatureType,T extends FeatureCollectionType<E,C,M>>
+	extends FeatureTypeBuilder<E,C,T> {
 
 	/**
 	 * Adds a FeatureType association to the collection.

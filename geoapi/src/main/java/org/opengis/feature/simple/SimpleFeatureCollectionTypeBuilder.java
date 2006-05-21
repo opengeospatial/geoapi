@@ -22,7 +22,7 @@ import org.opengis.feature.type.Name;
  *
  */
 public interface SimpleFeatureCollectionTypeBuilder extends
-		FeatureCollectionTypeBuilder<Collection<Attribute>,FeatureType,SimpleFeatureCollectionType<FeatureType>> {
+		FeatureCollectionTypeBuilder<Attribute,Collection<Attribute>,FeatureType,SimpleFeatureCollectionType<FeatureType>> {
 
 	/**
 	 * SimpleFeatureCollectionType does not support attributes.

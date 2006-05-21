@@ -6,7 +6,7 @@ import org.opengis.feature.type.AttributeType;
 import org.opengis.feature.type.ComplexType;
 import org.opengis.feature.type.Name;
 
-public interface ComplexAttributeBuilder<C extends Collection<Attribute>, T extends ComplexType<C>, A extends ComplexAttribute<C,T>> {
+public interface ComplexAttributeBuilder<E extends Property, C extends Collection<E>, T extends ComplexType<E,C>, A extends ComplexAttribute<E,C,T>> {
 
 	//
 	// Injection

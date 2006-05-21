@@ -21,7 +21,7 @@ import org.opengis.feature.type.FeatureType;
  *
  */
 public interface SimpleFeatureCollection<M extends FeatureType, T extends SimpleFeatureCollectionType<M>> 
-	extends FeatureCollection<Collection<Attribute>,M,T> {
+	extends FeatureCollection<Attribute,Collection<Attribute>,M,T> {
 
 	/**
 	 * Restricted to return a SimpleFeatureCollectionType.

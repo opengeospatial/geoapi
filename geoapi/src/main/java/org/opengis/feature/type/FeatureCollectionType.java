@@ -4,6 +4,7 @@ import java.util.Collection;
 import java.util.Set;
 
 import org.opengis.feature.Attribute;
+import org.opengis.feature.Property;
 
 /**
  * Represents a FeatureCollection
@@ -24,8 +25,8 @@ import org.opengis.feature.Attribute;
  * @param <C>
  * @param <M>
  */
-public interface FeatureCollectionType<C extends Collection<Attribute>, M extends FeatureType> 
-	extends FeatureType<C> {
+public interface FeatureCollectionType<E extends Property,C extends Collection<E>, M extends FeatureType> 
+	extends FeatureType<E,C> {
 	
 	/**
 	 * FeatureTypes allowable as members of this set.

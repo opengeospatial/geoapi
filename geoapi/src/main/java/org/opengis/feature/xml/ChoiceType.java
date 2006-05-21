@@ -11,7 +11,7 @@ import org.opengis.filter.Filter;
  * 
  * @author Jody Garnett, Refractions Research
  */
-public interface ChoiceType<S extends Set<Attribute>> extends ComplexType<S> {
+public interface ChoiceType<S extends Set<Attribute>> extends ComplexType<Attribute,S> {
 	/**
 	 * Inorder to smoothly intergrate with the feature model this list include a filter limiting the number
 	 * of attribute to one.

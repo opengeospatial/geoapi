@@ -5,8 +5,8 @@ import java.util.Collection;
 import org.opengis.feature.type.FeatureCollectionType;
 import org.opengis.feature.type.FeatureType;
 
-public interface FeatureCollectionBuilder<C extends Collection<Attribute>, M extends FeatureType, T extends FeatureCollectionType<C,M>, A extends FeatureCollection<C,M,T>> 
-	extends FeatureBuilder<C,T,A> {
+public interface FeatureCollectionBuilder<E extends Property, C extends Collection<E>, M extends FeatureType, T extends FeatureCollectionType<E,C,M>, A extends FeatureCollection<E,C,M,T>> 
+	extends FeatureBuilder<E,C,T,A> {
 
 	
 }

@@ -39,6 +39,16 @@ public interface Property<T extends PropertyType> {
 	 */
 	PropertyDescriptor getDescriptor();
 
+    /**
+     * Convenience method to access descriptor.
+     * <p>
+     * This method only exists to aid in the transform to Java 1.4 since the 
+     * {@link #getDescriptor()} is erased to allow for type narrowing.
+     * </p>
+     * 
+     */
+    PropertyDescriptor descriptor();
+    
 	/**
 	 * Name (from the descriptor) of this Property.
 	 * 

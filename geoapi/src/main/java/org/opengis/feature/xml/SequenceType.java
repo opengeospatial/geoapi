@@ -13,7 +13,7 @@ import org.opengis.feature.type.ComplexType;
  * 
  * @author Jody Garnett, Refractions Research
  */
-public interface SequenceType<L extends List<Attribute>> extends ComplexType<L> {
+public interface SequenceType<L extends List<Attribute>> extends ComplexType<Attribute,L> {
 	
 	/** Indicates required ordering for Attributes */
     ///	List<AttributeDescriptor> getAttributes();

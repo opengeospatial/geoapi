@@ -21,8 +21,8 @@ import org.opengis.spatialschema.geometry.BoundingBox;
  * </p>
  * @author Jody Garnett, Refractions Research
  */
-public interface Feature<C extends Collection<Attribute>, T extends FeatureType<C>> 
-	extends ComplexAttribute<C,T> {
+public interface Feature<E extends Property,C extends Collection<E>, T extends FeatureType<E,C>> 
+	extends ComplexAttribute<E,C,T> {
 	
 	/**
 	 * Allows the association of process specific information.

@@ -28,7 +28,7 @@ import org.opengis.feature.type.Name;
  * @author Jody Garnett, Refractions Research, jgarnett@refractions.net 
  * @author Gabriel Roldan
  */
-public interface ComplexAttribute<C extends Collection<Attribute>, T extends ComplexType<C>> extends Attribute<C,T> {
+public interface ComplexAttribute<E extends Property,C extends Collection<E>, T extends ComplexType<E,C>> extends Attribute<C,T> {
 
 	/**
 	 * Indicates the AttirbuteDescriptor for this content.
@@ -49,12 +49,27 @@ public interface ComplexAttribute<C extends Collection<Attribute>, T extends Com
 	void set(C newValue) throws IllegalArgumentException;
 
 	/**
-	 * Returns the value of the attribute, which is a list of other attributes.
+	 * Returns the value of the attribute, which is a list of other properties,
+     * attributes + associations..
 	 * 
 	 */
 	C get();
-
-	/**
+    
+    /**
+     * Convenience method for getting at the attributes contained in this 
+     * complex attribute.
+     * 
+     */
+    Collection<E> attributes();
+    
+    /**
+     * Convenience method for getting at the associations contained in this 
+     * complex attribute.
+     * @return
+     */
+    Collection<E> associations();
+    
+    /**
 	 * Returns the subset of the attributes returned by {@link #get()} which 
 	 * match the specified name.
 	 * 
@@ -62,6 +77,6 @@ public interface ComplexAttribute<C extends Collection<Attribute>, T extends Com
 	 * 
 	 * @return List of attributes matching name, empty list if no match.
 	 */
-	List<Attribute> get(Name name);
+	List<Property> get(Name name);
 	
 }

@@ -5,7 +5,7 @@ import java.util.List;
 import org.opengis.feature.Attribute;
 import org.opengis.feature.FeatureBuilder;
 
-public interface SimpleFeatureBuilder extends FeatureBuilder<List<Attribute>,SimpleFeatureType,SimpleFeature> {
+public interface SimpleFeatureBuilder extends FeatureBuilder<Attribute,List<Attribute>,SimpleFeatureType,SimpleFeature> {
 
 	/**
 	 * Adds an attribute to the complex attribute to be created.

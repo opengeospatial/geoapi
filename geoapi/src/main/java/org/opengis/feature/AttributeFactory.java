@@ -12,6 +12,8 @@ import org.opengis.feature.simple.SimpleFeatureCollectionType;
 import org.opengis.feature.simple.SimpleFeatureType;
 import org.opengis.feature.simple.TemporalAttribute;
 import org.opengis.feature.simple.TextAttribute;
+import org.opengis.feature.type.AssociationDescriptor;
+import org.opengis.feature.type.AssociationType;
 import org.opengis.feature.type.AttributeDescriptor;
 import org.opengis.feature.type.AttributeType;
 import org.opengis.feature.type.ComplexType;
@@ -51,6 +53,27 @@ public interface AttributeFactory {
      * Sets the factory used to create geometric data.  
      */
     void setGeometryFactory(GeometryFactory geometryFactory);
+    
+    /**
+     * Creates an association descriptor.
+     * 
+     * @param type The type.
+     * @param name The name.
+     * @param minOccurs The minimum number of occurences of the association.
+     * @param maxOccurs The maximum number of occurences of hte association.
+     * 
+     */
+    AssociationDescriptor createAssociationDescriptor(
+        AssociationType type, Name name, int minOccurs, int maxOccurs      
+    );
+    
+    /**
+     * Creates an association.
+     * 
+     * @param value The value of the association, an attribute.
+     * @param descriptor The descriptor.
+     */
+    Association createAssociation(Attribute value, AssociationDescriptor descriptor);
     
 	/**
 	 * Creates an attribute descriptor.
