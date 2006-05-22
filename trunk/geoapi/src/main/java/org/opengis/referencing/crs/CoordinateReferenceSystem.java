@@ -16,6 +16,7 @@ import org.opengis.referencing.cs.CoordinateSystem;
 
 // Annotations
 import org.opengis.annotation.UML;
+import org.opengis.annotation.Extension;
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
 
@@ -50,12 +51,27 @@ import static org.opengis.annotation.Specification.*;
 @UML(identifier="SC_CRS", specification=ISO_19111)
 public interface CoordinateReferenceSystem extends ReferenceSystem {
     /**
-     * Returns the coordinate system. One of {@linkplain CoordinateSystem coordinate system}
-     * sub-interfaces is associated with {@linkplain SingleCRS single CRS}. Other CRS
-     * like {@linkplain CompoundCRS compound CRS} may also provides a synthetic coordinate
-     * system in order to allow users to access to two commonly requested information:
+     * Returns a relevant coordinate system instance. Special cases:
+     *
+     * <ul>
+     *   <li><p>If the CRS instance on which this method is invoked is an instance of the
+     *       {@linkplain SingleCRS single CRS} interface, then the CS instance which is
+     *       returned shall be one of the defined sub-interfaces of {@linkplain CoordinateSystem
+     *       coordinate system}.</p></li>
+     *
+     *   <li><p>If the CRS instance on which this method is invoked is an instance of the
+     *       {@linkplain CompoundCRS compound CRS} interface, then the CS instance which is
+     *       returned shall have dimension and axis components obtained from different
+     *       {@linkplain CompoundCRS#getCoordinateReferenceSystems components} of the instance
+     *       CRS.</p></li>
+     * </ul>
+     *
+     * Strictly speaking, this method is defined by ISO 19111 for {@linkplain SingleCRS single CRS}
+     * only. GeoAPI declares this method in this parent interface for user convenience, since CS
      * {@linkplain CoordinateSystem#getDimension dimension} and
-     * {@linkplain CoordinateSystem#getAxis axis}.
+     * {@linkplain CoordinateSystem#getAxis axis} are commonly requested information and shall be
+     * available, directly or indirectly, in all cases (including {@linkplain CompoundCRS compound CRS}).
      */
+    @Extension
     CoordinateSystem getCoordinateSystem();
 }
