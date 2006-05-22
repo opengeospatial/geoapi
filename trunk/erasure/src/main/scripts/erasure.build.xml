@@ -178,9 +178,6 @@
             </replace>
     	
 	<!-- org.opengis.feature.simple -->
-        <replace dir="${generatedSourceDirectory}" includes="org/opengis/feature/simple/SimpleFeatureTypeBuilder.java">
-            <replacefilter token="E getSuper()" value="ComplexType getSuper()"/>
-        </replace>
 
         <replace dir="${generatedSourceDirectory}" includes="org/opengis/feature/simple/SimpleFeatureCollectionType.java">
             <replacefilter token="M getMemberType()" value="FeatureType getMemberType()"/>
@@ -236,24 +233,7 @@
             <replacefilter token="O type" value="OpperationType type"/>
         </replace>
 
-	<replace dir="${generatedSourceDirectory}" includes="org/opengis/feature/ComplexAttributeBuilder.java">
-            <replacefilter token="void setType(T " value="void setType(ComplexType "  />
-            <replacefilter token="T getType()"     value="ComplexType getType()"      />
-            <replacefilter token="A build("        value="ComplexAttribute build("    />
-            <replacefilter token="void init(A "    value="void init(ComplexAttribute "/>
-        </replace>
 
-        <replace dir="${generatedSourceDirectory}" includes="org/opengis/feature/type/AttributeTypeBuilder.java">
-            <replacefilter token="void init(T " value="void init(AttributeType "/>
-            <replacefilter token="T build()"    value="AttributeType build()"   />
-            <replacefilter token="E getSuper()" value="AttributeType getSuper()"/>
-            <replacefilter token="setSuper(E "  value="setSuper(AttributeType " />
-        </replace>
-
-        <replace dir="${generatedSourceDirectory}" includes="org/opengis/feature/type/FeatureCollectionTypeBuilder.java">
-            <replacefilter token="void addMemberType(M " value="void addMemberType(FeatureType "/>
-        </replace>
-	
         <replace dir="${generatedSourceDirectory}" includes="org/opengis/feature/type/Schema.java">
             <replacefilter token="Namespace keySet" value="Set keySet"/>
         </replace>
