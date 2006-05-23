@@ -14,6 +14,7 @@ package org.opengis.coverage.grid.quadrilateral;
 import org.opengis.referencing.operation.Operation;  // For javadoc
 import org.opengis.referencing.operation.Conversion;
 import org.opengis.referencing.operation.MathTransform;
+import org.opengis.referencing.operation.TransformException;
 import org.opengis.spatialschema.geometry.DirectPosition;
 
 // Annotations
@@ -59,22 +60,18 @@ public interface RectifiableGrid  extends GridPositioning {
      * This is an adapter method for the {@link MathTransform#transform()} method.  
      * The {@link MathTransform} object used in the conversion is associated with
      * the "conversion" and "operation" attributes.
-     *
-     * @todo Is a {@link GridCoordinates} argument missing? What about {@code TransformException}?
      */
     @Extension
-    DirectPosition convertCoordinates();
+    DirectPosition convertCoordinates(GridCoordinates g) throws TransformException;
 
     /**
      * Converts through an affine transform a direct position to the grid coordinates of the nearest
      * grid point.  This is an adapter method for the {@link MathTransform#transform()} method.  
      * The {@link MathTransform} object used in the conversion is associated with the "inverseConversion"
      * and "inverseOperation" attributes.
-     *
-     * @todo Is a {@link DirectPosition} argument missing? What about {@code TransformException}?
      */
     @Extension
-    GridCoordinates inverseConvertCoordinates();
+    GridCoordinates inverseConvertCoordinates(DirectPosition p) throws TransformException;
 
     /**
      * This optional attribute is specified on the {@link GridGeometry} from the legacy OGC 01-004
@@ -82,9 +79,7 @@ public interface RectifiableGrid  extends GridPositioning {
      * which yields non-integer results.  This property is derived from the {@link MathTransform}
      * object associated with the operation and conversion attributes, and is merely a convenience
      * method.
-     *
-     * @todo Should be renamed as {@code getGridToCRS()}.
      */
     @Extension
-    MathTransform getGridToCoordinateSystem();
+    MathTransform getGridToCRS();
 }

@@ -52,7 +52,7 @@ public interface GridCoordinates extends Cloneable {
      * efficienty. 
      */
     @Extension
-    int setCoordinateValue(int i, int value);
+    void setCoordinateValue(int i, int value);
     
 
 	/**
