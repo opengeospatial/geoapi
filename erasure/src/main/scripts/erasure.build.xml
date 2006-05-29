@@ -189,7 +189,7 @@
             <replacefilter token="//import org.opengis.feature.type.AttributeType;"
                            value="import org.opengis.feature.type.AttributeType;"/>
             <replacefilter token="SimpleFeatureType getType();"
-                           value="AttributeType/*SimpleFeautreType*/ getType();"/>
+                           value="AttributeType/*SimpleFeatureType*/ getType();"/>
         </replace>
         <replace dir="${generatedSourceDirectory}" includes="org/opengis/feature/simple/SimpleFeatureCollection.java">
             <replacefilter token="T getType()" value="AttributeType/*SimpleFeatureCollectionType*/ getType()"/>
@@ -230,7 +230,7 @@
         <replace dir="${generatedSourceDirectory}" includes="org/opengis/feature/type/DescriptorFactory.java">
             <replacefilter token="T type" value="AttributeType type"/>
             <replacefilter token="A type" value="AssociationType type"/>
-            <replacefilter token="O type" value="OpperationType type"/>
+            <replacefilter token="O type" value="OperationType type"/>
         </replace>
 
 

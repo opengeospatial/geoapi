@@ -19,10 +19,10 @@ import org.opengis.annotation.Extension;
 
 
 /**
- * Represents an evenlope with a common coordinate reference system.
+ * Represents an envelope with a common coordinate reference system.
  * <p>
  * This interface combines the ideas of {@link GeographicBoundingBox} with
- * those of {@link Envelope}. We have provided convience methods using non
+ * those of {@link Envelope}. We have provided convenience methods using non
  * Java Beans naming conventions to assist in accessing the formal
  * properties of this object.
  * <p>
