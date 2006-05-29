@@ -2,7 +2,6 @@ package org.opengis.feature.type;
 
 import java.util.Collection;
 
-import org.opengis.feature.Attribute;
 import org.opengis.feature.Property;
 
 /**
@@ -115,7 +114,7 @@ public interface ComplexType<E extends Property,C extends Collection<E>> extends
 	 * to put into use the better.
 	 * </p>
 	 */
-///	ComplexType getSuper();
+	///ComplexType getSuper(); // TODO Restore this
 	
 	/**
 	 * Returns the only the strucutral properties (Attributes and Associations) used to define
@@ -150,7 +149,7 @@ public interface ComplexType<E extends Property,C extends Collection<E>> extends
 	 * our data model.
 	 * </p>
 	 */
-	Collection<AttributeDescriptor> attributes(); // TODO: rename to attributes
+	Collection<AttributeDescriptor> attributes();
 	
 	/**
 	 * Allowable associations, indicating non containment relationships.

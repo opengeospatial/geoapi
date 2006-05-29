@@ -15,6 +15,5 @@ package org.opengis.feature.type;
  * @author Jody Garnett, Refractions Research
  */
 public interface TypeName extends Name {
-	
 
 }

@@ -60,6 +60,13 @@ public interface SimpleFeatureType extends SequenceType<List<Attribute>>,
 	/** AttribtueType indicated by index */
 	AttributeType get( int index );
 	
+	/**
+	 * The index of the AttributeType with the provided name.
+	 * @param name
+	 * @return index of named attribute, or -1 if not found.
+	 */
+	int indexOf( String name );
+	
 	/** Number of available attributes */
 	int getNumberOfAttribtues();
 	

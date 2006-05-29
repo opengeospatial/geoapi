@@ -4,7 +4,6 @@ import java.util.Collection;
 
 import org.opengis.feature.Attribute;
 import org.opengis.feature.FeatureCollection;
-import org.opengis.feature.type.FeatureCollectionType;
 import org.opengis.feature.type.FeatureType;
 
 //Java 1.4 imports

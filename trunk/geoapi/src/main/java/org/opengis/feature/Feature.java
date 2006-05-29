@@ -2,18 +2,17 @@ package org.opengis.feature;
 
 import java.util.Collection;
 
-import org.opengis.feature.type.ComplexType;
 import org.opengis.feature.type.FeatureType;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 import org.opengis.spatialschema.geometry.BoundingBox;
 
 /**
- * A Feature of abitrary complexity.
+ * A Feature, of abitrary complexity, with at a minimum Geometry and CRS information.
  * <p>
- * Proposal:
- * It is tempting to allow additional "tempoary" metadata to be associated
- * with Attributes in order to facilitiate procesing services. These services traditionally
- * end up hold "shadow" structures such as a HashMap referenced by FeatureID.
+ * We have allowed for additional "tempoary" user data to be associated
+ * with Attributes in order to facilitiate procesing services. These services
+ * traditionally end up hold "shadow" structures such as a HashMap referenced
+ * by FeatureID.
  * <ul>
  * <li>putClientProperty(String key, Object value );
  * <li>getClientProperty(String key);

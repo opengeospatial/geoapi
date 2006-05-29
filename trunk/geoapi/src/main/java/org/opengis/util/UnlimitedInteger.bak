@@ -1,0 +1,68 @@
+package org.opengis.util;
+
+/**
+ * An Integer with associated infinite flag, often used for cardinality.
+ * <p>
+ * I would also be happy with a static final INFINTE interger
+ * defined on the multiplicity object.
+ * </p>
+ * @author Jody Garnett, Refractions Resarch
+ */
+public final class UnlimitedInteger extends Number {
+	/**
+	 * Sentinal value used to indicate INFINITY,
+	 * since Number allows for truncation we are using MAX_VALUE
+	 * currently.
+	 */
+	final static Integer INFINITE = new Integer( Integer.MAX_VALUE );
+	
+	final Integer integer;
+	public UnlimitedInteger(){
+		this( INFINITE );
+	}
+	public UnlimitedInteger( Integer number ){
+		integer = number;
+	}
+	public UnlimitedInteger( Number number ){
+		this( number.intValue() );
+	}
+	public UnlimitedInteger( int number ){
+		integer = new Integer( number );
+	}
+	
+	public boolean isInfinite(){
+		return integer == INFINITE;
+	}
+	@Override
+	public int intValue() {
+		return integer.intValue();
+	}
+
+	@Override
+	public long longValue() {
+		return integer.longValue();
+	}
+
+	@Override
+	public float floatValue() {
+		return integer.floatValue();
+	}
+
+	@Override
+	public double doubleValue() {
+		return integer.doubleValue();
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if( isInfinite() && obj instanceof UnlimitedInteger ){
+			return ((UnlimitedInteger) obj ).isInfinite();			
+		}
+		return integer.equals( obj );
+	}
+	@Override
+	public int hashCode() {
+		return integer.intValue();
+	}
+
+}
