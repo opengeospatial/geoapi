@@ -2,6 +2,7 @@ package org.opengis.feature;
 
 import org.opengis.feature.type.GeometryType;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
+import org.opengis.spatialschema.geometry.BoundingBox;
 import org.opengis.spatialschema.geometry.Envelope;
 
 //Java 1.4 imports
@@ -45,7 +46,17 @@ public interface GeometryAttribute<G, T extends GeometryType<G>> extends Attribu
 	 * GeoAPI Geometry implementations are made avaialble.
 	 * </p>
 	 */
-	Envelope getBounds();
+	BoundingBox getBounds();
+	
+	/**
+	 * Although this is tipically a derrived quantity of the contents, this
+	 * value is often available in precomputed form from data providers.
+	 * <p>
+	 * This method allows a data provider to store the bounds information
+	 * associated with the contents of this geometry attribute.
+	 * @param bounds
+	 */
+	public void setBounds( BoundingBox bounds );
 
 	/**
 	 * GeometryType should be configued with a Geometry for getJavaType.

@@ -3,7 +3,6 @@ package org.opengis.feature.type;
 import java.util.Collection;
 import java.util.Set;
 
-import org.opengis.feature.Attribute;
 import org.opengis.feature.Property;
 
 /**

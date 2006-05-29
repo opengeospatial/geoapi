@@ -2,19 +2,24 @@ package org.opengis.feature.type;
 
 import java.util.Collection;
 
-import org.opengis.feature.Attribute;
 import org.opengis.feature.Property;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 
 
 /**
- * Describes a Feature, this is a step in the chain towards FeatureCollectionType.
+ * Describes the contents of a Feature, basically a ComplexType with at least a
+ * Geometry and CRS.
  * <p>
- * This class provides no additional modeling power beyond ComplexType, it does however
- * come with additional restrictions that may be described at the Java level.
+ * This class provides no additional modeling power beyond ComplexType. It does
+ * formally includes both a Geometry and a CRS these items are available to
+ * you to place restrictions against.
+ * </p>
+ * <p>
+ * You should be aware that the GML definition of AbstractFeatureType includes
+ * bounds, crs name and description as "optional" attributes - as such these
+ * ideas are very common and have been included in the Feature API.
  * </p>
  * @author Jody Garnett
- *
  */
 public interface FeatureType<E extends Property,C extends Collection<E>> extends ComplexType<E,C> {
 			
@@ -24,7 +29,6 @@ public interface FeatureType<E extends Property,C extends Collection<E>> extends
 	 * @return AttributeType used to locate the default Geometry
 	 */
 	AttributeDescriptor<GeometryType> getDefaultGeometry();
-	//GeometryType getDefaultGeometry();
 	
 	/**
 	 * The coordinate reference system of the Geometries

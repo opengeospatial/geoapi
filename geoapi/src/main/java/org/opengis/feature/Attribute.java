@@ -2,7 +2,6 @@ package org.opengis.feature;
 
 import org.opengis.feature.type.AttributeDescriptor;
 import org.opengis.feature.type.AttributeType;
-import org.opengis.feature.type.Name;
 
 
 /**

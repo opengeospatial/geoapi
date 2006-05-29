@@ -20,7 +20,6 @@ import org.opengis.util.InternationalString;
  * 
  */
 public interface TypeFactory {
-
     /**
      * @return The CRS factory used to create CRS info for created types.
      */
@@ -40,6 +39,14 @@ public interface TypeFactory {
      * Sets the filter factory used to create type restrictions.
      */
     void setFilterFactory(FilterFactory filterFactory);
+    
+    /**
+     * Create a Schema to hold instances of Types created by this factory.
+     * 
+     * @param namespaceURI
+     * @return
+     */
+    Schema createSchema(String namespaceURI );
     
     /**
 	 * Creates a new attribute descriptor.

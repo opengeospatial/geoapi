@@ -6,7 +6,6 @@ import java.util.Set;
 import org.opengis.feature.Attribute;
 import org.opengis.feature.type.AssociationDescriptor;
 import org.opengis.feature.type.AssociationType;
-import org.opengis.feature.type.AttributeType;
 import org.opengis.feature.type.FeatureCollectionType;
 import org.opengis.feature.type.FeatureType;
 
