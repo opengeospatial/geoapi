@@ -11,7 +11,7 @@ import org.opengis.spatialschema.geometry.Envelope;
 /**
  * Represent a Geometry as an attribute content.
  * <p>
- * This class is cotten candy and does not add any new ability to our modeling.
+ * This class is cotton candy and does not add any new ability to our modeling.
  * We are using generics to avoid making the exact instance of the Geometry known
  * at this time, allowing the use of JTS for SFSQL use, or GeoAPI interfaces for ISO.
  * </p>

@@ -32,7 +32,7 @@ public interface Feature<E extends Property,C extends Collection<E>, T extends F
 	public void putClientProperty( Object key, Object value );
 	
 	/**
-	 * Retrive associated process specific information.
+	 * Retrieve associated process specific information.
 	 * 
 	 * @param key Object used to allow String and Enum keys
 	 */	
@@ -85,8 +85,8 @@ public interface Feature<E extends Property,C extends Collection<E>, T extends F
 	 * The bounds of this Feature, if available.
 	 * <p>
 	 * This should be a "shadow" of information available as part of the
-	 * attribue model, for instance of BoundedFeatureType should how bounds as a
-	 * required attribute and you would be able to expect a non null value from
+	 * attribute model, for instance of BoundedFeatureType should show bounds as a
+	 * required attribute and you would be able to expect a non-null value from
 	 * this method.
 	 * </p>
 	 * <p>

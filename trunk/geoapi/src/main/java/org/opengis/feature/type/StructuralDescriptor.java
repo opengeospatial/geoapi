@@ -7,17 +7,17 @@ package org.opengis.feature.type;
  * ComplexType specific information such as Name, type and multiplicity are defined.
  * <p>
  * If in the future the nature of the containment relationship needs further
- * definition you may expected additional information to be gathered here.
+ * definition; you may expect additional information to be gathered here.
  * </p>
  * 
  * @author Jody Garnett, Refractions Research
  */
 public interface StructuralDescriptor extends PropertyDescriptor {
 	
-	/** Captures cadinality */
+	/** Captures cardinality */
 	int getMinOccurs();
 	
-	/** Captures cadinality */
+	/** Captures cardinality */
 	int getMaxOccurs();
 	
 }

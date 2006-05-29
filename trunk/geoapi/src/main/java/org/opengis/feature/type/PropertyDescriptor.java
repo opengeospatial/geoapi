@@ -16,7 +16,7 @@ package org.opengis.feature.type;
  * 
  * <h2>Note on Use of User Data</h2>
  * </p>
- * User Data is used to allow additional "tempoary" metadata to be associated
+ * User Data is used to allow additional "temporary" metadata to be associated
  * with attributes descriptors in order to facilitiate procesing services. These
  * services traditionally setting up "shadow" structures such as a HashMap.
  * Allowing non persisted bread crumbs is considered preferable.
@@ -56,7 +56,7 @@ public interface PropertyDescriptor {
 	 * PropertyType.
 	 * <p>
 	 * Client application often are forced to keep tract of additional informal
-	 * metadata during processing or transformation opperations. By supporting
+	 * metadata during processing or transformation operations. By supporting
 	 * user data in a limited way offer a way to prevent the creation of
 	 * numerous Map<PropertyDescriptor,Object> in client code that must be kept
 	 * in sync with the feature model.
@@ -86,7 +86,7 @@ public interface PropertyDescriptor {
 	 * Convenience method for getting at the type of the desciptor.
 	 * <p>
 	 * This is considered "derived" because the specific type is declared by the
-	 * sublcass.
+	 * subclass.
 	 * </p>
 	 */
 	PropertyType type();
