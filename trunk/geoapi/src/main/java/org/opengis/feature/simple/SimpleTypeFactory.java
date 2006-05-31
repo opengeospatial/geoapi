@@ -5,7 +5,6 @@ import java.util.Set;
 
 import org.opengis.feature.type.AssociationDescriptor;
 import org.opengis.feature.type.AttributeDescriptor;
-import org.opengis.feature.type.AttributeType;
 import org.opengis.feature.type.GeometryType;
 import org.opengis.feature.type.TypeFactory;
 import org.opengis.feature.type.TypeName;
@@ -15,9 +14,18 @@ import org.opengis.util.InternationalString;
 
 /**
  * Provides two new factory methods that allow for direct creation of
- * SimpleFeatureType and SimpleFeatureCollectionType.
- * 
- * @author Jody
+ * SimpleFeatureType and SimpleFeatureCollectionType. These methods
+ * are *not* stricktly required, they only serve as an optimization
+ * to allow more direct creation.
+ * <p>
+ * Please note that this is an follows the Factory "GOF pattern" and we
+ * are creating not one kind of content, but a collection of content designed
+ * to work together.
+ * </p>
+ * To make using these factories more tracktable we recommend
+ * the construction of a builder (an example exists in the geotools library).
+ * <p>
+ * @author Jody Garnett
  */
 public interface SimpleTypeFactory extends TypeFactory {
 	/**
@@ -27,10 +35,9 @@ public interface SimpleTypeFactory extends TypeFactory {
 	 * While no 
 	 */
 	SimpleFeatureType createSimpleFeatureType(
-		TypeName name,List<AttributeDescriptor> schema,
+		TypeName name, List<AttributeDescriptor> schema,
 		AttributeDescriptor<GeometryType> defaultGeometry, CoordinateReferenceSystem crs, 
-		boolean isAbstract, Set<Filter> restrictions, AttributeType superType,
-		InternationalString description
+		Set<Filter> restrictions, InternationalString description
 	);
 	
 	/**

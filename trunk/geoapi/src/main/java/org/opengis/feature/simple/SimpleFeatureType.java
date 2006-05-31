@@ -15,7 +15,17 @@ import org.opengis.feature.xml.SequenceType;
  * This interface also defines several helper methods that only
  * make sense given the above constratins.
  * </p>
- *  
+ * <p>
+ * For reference these are the limitations of a SimpleFeatureType:
+ * <ol>
+ * <li>Properties limited to attributes only!
+ * <li>Sequence - order of attributes matters
+ * <li>Attribute "index" is as good as a Name
+ * <li>Attribute "name" (ie String) is as good as Name
+ * <li>getSuper() is null, required for point 3
+ * <li>No name conflict, so lookup with simple string is okay
+ * </ol>
+ * </p>
  * @author Jody Garnett, Refractions Research
  */
 public interface SimpleFeatureType extends SequenceType<List<Attribute>>, 
