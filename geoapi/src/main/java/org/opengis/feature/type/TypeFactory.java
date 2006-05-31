@@ -1,11 +1,8 @@
 package org.opengis.feature.type;
 
 import java.util.Collection;
-import java.util.List;
 import java.util.Set;
 
-import org.opengis.feature.simple.SimpleFeatureCollectionType;
-import org.opengis.feature.simple.SimpleFeatureType;
 import org.opengis.filter.Filter;
 import org.opengis.filter.FilterFactory;
 import org.opengis.referencing.crs.CRSFactory;
@@ -129,12 +126,12 @@ public interface TypeFactory {
 		InternationalString description
 	);
 
-	SimpleFeatureType createSimpleFeatureType(
-		TypeName name,List<AttributeDescriptor> schema,
-		AttributeDescriptor<GeometryType> defaultGeometry, CoordinateReferenceSystem crs, 
-		boolean isAbstract, Set<Filter> restrictions, AttributeType superType,
-		InternationalString description
-	);
+//	SimpleFeatureType createSimpleFeatureType(
+//		TypeName name,List<AttributeDescriptor> schema,
+//		AttributeDescriptor<GeometryType> defaultGeometry, CoordinateReferenceSystem crs, 
+//		boolean isAbstract, Set<Filter> restrictions, AttributeType superType,
+//		InternationalString description
+//	);
 	
 	FeatureCollectionType createFeatureCollectionType(
 		TypeName name,  Collection<StructuralDescriptor> schema, 
@@ -143,9 +140,9 @@ public interface TypeFactory {
 		InternationalString description
 	);
 	
-	SimpleFeatureCollectionType createSimpleFeatureCollectionType(
-		TypeName name, AssociationDescriptor member, Set<Filter> restrictions, 
-		InternationalString description
-	);
+//	SimpleFeatureCollectionType createSimpleFeatureCollectionType(
+//		TypeName name, AssociationDescriptor member, Set<Filter> restrictions, 
+//		InternationalString description
+//	);
    
 }
