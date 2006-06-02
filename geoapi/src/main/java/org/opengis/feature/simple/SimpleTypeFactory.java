@@ -3,9 +3,8 @@ package org.opengis.feature.simple;
 import java.util.List;
 import java.util.Set;
 
-import org.opengis.feature.type.AssociationDescriptor;
-import org.opengis.feature.type.AttributeDescriptor;
-import org.opengis.feature.type.GeometryType;
+import org.opengis.feature.type.AssociationType;
+import org.opengis.feature.type.AttributeType;
 import org.opengis.feature.type.TypeFactory;
 import org.opengis.feature.type.TypeName;
 import org.opengis.filter.Filter;
@@ -13,39 +12,44 @@ import org.opengis.referencing.crs.CoordinateReferenceSystem;
 import org.opengis.util.InternationalString;
 
 /**
- * Provides two new factory methods that allow for direct creation of
- * SimpleFeatureType and SimpleFeatureCollectionType. These methods
- * are *not* stricktly required, they only serve as an optimization
- * to allow more direct creation.
+ * A TypeFactory that creates SimpleFeatureType and SimpleFeatureCollectionType.
  * <p>
- * Please note that this is an follows the Factory "GOF pattern" and we
- * are creating not one kind of content, but a collection of content designed
- * to work together.
- * </p>
- * To make using these factories more tracktable we recommend
- * the construction of a builder (an example exists in the geotools library).
+ * This interface serves as a "marker" that the Factory produces Simple types.
+ * While we have provided two methods here they are <b>not</b> strictkly
+ * required as createFeatureType and createFeatureCollectionType will
+ * also produce simple types.
  * <p>
  * @author Jody Garnett
  */
 public interface SimpleTypeFactory extends TypeFactory {
 	/**
-	 * Create a SimpleFeatureType describing a Feature containing only
-	 * directly bound attributes with no multiplicity.
-	 * <p>
-	 * While no 
+	 * Create a SimpleFeatureType describing a Feature containing only directly
+	 * bound attributes with no multiplicity.
+	 * 
+	 * @param name TypeName of type to be created
+	 * @param types AttributeTypes of contents, in order specified
+	 * @param defaultGeometry Member of types to be used as the defaultGeometry
+	 * @param crs CoordinateReferenceSystem for the contents of this feature
+	 * @param restrictions Filters used to check the contents of this feature
+	 * @param description description of this feature
+	 * @return created SimpleFeatureType
 	 */
-	SimpleFeatureType createSimpleFeatureType(
-		TypeName name, List<AttributeDescriptor> schema,
-		AttributeDescriptor<GeometryType> defaultGeometry, CoordinateReferenceSystem crs, 
-		Set<Filter> restrictions, InternationalString description
-	);
-	
+	SimpleFeatureType createSimpleFeatureType(TypeName name,
+			List<AttributeType> types, AttributeType defaultGeometry,
+			CoordinateReferenceSystem crs, Set<Filter> restrictions,
+			InternationalString description);
+
 	/**
-	 * Create a SimpleFeatureType describing a Feature containing only
-	 * directly bound attributes with no multiplicity.
+	 * Create a SimpleFeatureType describing a Feature containing only directly
+	 * bound attributes with no multiplicity.
+	 *
+	 * @param name TypeName of collection type to be created
+	 * @param member FeatureType of collection members
+	 * @param description description of this feature
+	 * @return created SimpleFeatureCollectionType
 	 */
 	SimpleFeatureCollectionType createSimpleFeatureCollectionType(
-		TypeName name, AssociationDescriptor member, Set<Filter> restrictions, 
-		InternationalString description
-	);
+			TypeName name, SimpleFeatureType member,
+			InternationalString description);
+	
 }
