@@ -42,6 +42,11 @@ public interface CoordinateOperationFactory extends ObjectFactory {
      * Returns an operation for conversion or transformation between two coordinate reference systems.
      * If an operation exists, it is returned. If more than one operation exists, the default is returned.
      * If no operation exists, then the exception is thrown.
+     * <p>
+     * Implementations may try to
+     * {@linkplain CoordinateOperationAuthorityFactory#createFromCoordinateReferenceSystemCodes
+     * query an authority factory} first, and compute the operation next if no operation from
+     * {@code source} to {@code target} code was explicitly defined by the authority.
      *
      * @param  sourceCRS Input coordinate reference system.
      * @param  targetCRS Output coordinate reference system.
