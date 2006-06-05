@@ -29,14 +29,14 @@ public interface Feature<E extends Property,C extends Collection<E>, T extends F
 	 * @param key Object used to allow String and Enum keys
 	 * @param value Associated with key
 	 */
-	public void putClientProperty( Object key, Object value );
+	public void putUserData( Object key, Object value );
 	
 	/**
 	 * Retrieve associated process specific information.
 	 * 
 	 * @param key Object used to allow String and Enum keys
 	 */	
-	public Object getClientProperty( Object key );
+	public Object getUserData( Object key );
 	
 	/**
 	 * Feature ID, should be unique, inmutable identification for physical

@@ -2,14 +2,9 @@ package org.opengis.feature;
 
 import java.util.Collection;
 import java.util.Date;
-import java.util.List;
 
 import org.opengis.feature.simple.BooleanAttribute;
 import org.opengis.feature.simple.NumericAttribute;
-import org.opengis.feature.simple.SimpleFeature;
-import org.opengis.feature.simple.SimpleFeatureCollection;
-import org.opengis.feature.simple.SimpleFeatureCollectionType;
-import org.opengis.feature.simple.SimpleFeatureType;
 import org.opengis.feature.simple.TemporalAttribute;
 import org.opengis.feature.simple.TextAttribute;
 import org.opengis.feature.type.AssociationDescriptor;
@@ -186,21 +181,6 @@ public interface AttributeFactory {
 	Feature createFeature(Collection value, FeatureType type, String id);
 	
 	/**
-	 * Creates a new simple feature.
-	 * 
-	 * @param value The initial value of the attribute, may be null depending on 
-	 * the type of the feature.
-	 * @param desc The attribute descriptor. 
-	 * @param id The id of the feature, (fid), may be null depending on the type.
-	 * 
-	 * @throws IllegalArgumentException If desc.getType() does not return an 
-	 * instanceof {@link SimpleFeatureType}.
-	 */
-	SimpleFeature createSimpleFeature(List value, AttributeDescriptor desc, String id);
-
-	SimpleFeature createSimpleFeature(List value, SimpleFeatureType type, String id);
-	
-	/**
 	 * Createsa a new feature collection.
 	 * 
 	 * @param value The initial value of the attribute, may be null depending on 
@@ -215,22 +195,6 @@ public interface AttributeFactory {
 	FeatureCollection createFeatureCollection(Collection value, AttributeDescriptor desc, String id);
 	
 	FeatureCollection createFeatureCollection(Collection value, FeatureCollectionType type, String id);
-	
-	/**
-	 * Createsa a new simple feature collection.
-	 * 
-	 * @param value The initial value of the attribute, may be null depending on 
-	 * the type of the feature.
-	 * @param desc The attribute descriptor.
-	 * @param id The id of the feature collection, may be null depending on the 
-	 * type.
-	 * 
-	 * @throws IllegalArgumentException If desc.getType() does not return an 
-	 * instanceof {@link org.opengis.feature.simple.SimpleFeatureCollectionType}.
-	 */
-	SimpleFeatureCollection createSimpleFeatureCollection(AttributeDescriptor desc, String id);
-	
-	SimpleFeatureCollection createSimpleFeatureCollection(SimpleFeatureCollectionType type, String id);
-	
+
 }
 
