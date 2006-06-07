@@ -3,7 +3,6 @@ package org.opengis.feature.simple;
 import java.util.List;
 import java.util.Set;
 
-import org.opengis.feature.type.AssociationType;
 import org.opengis.feature.type.AttributeType;
 import org.opengis.feature.type.TypeFactory;
 import org.opengis.feature.type.TypeName;

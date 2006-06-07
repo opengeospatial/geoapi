@@ -1,21 +1,13 @@
 package org.opengis.feature;
 
 import java.util.Collection;
-import java.util.Date;
 
-import org.opengis.feature.simple.BooleanAttribute;
-import org.opengis.feature.simple.NumericAttribute;
-import org.opengis.feature.simple.TemporalAttribute;
-import org.opengis.feature.simple.TextAttribute;
 import org.opengis.feature.type.AssociationDescriptor;
-import org.opengis.feature.type.AssociationType;
 import org.opengis.feature.type.AttributeDescriptor;
-import org.opengis.feature.type.AttributeType;
 import org.opengis.feature.type.ComplexType;
 import org.opengis.feature.type.FeatureCollectionType;
 import org.opengis.feature.type.FeatureType;
 import org.opengis.feature.type.GeometryType;
-import org.opengis.feature.type.Name;
 import org.opengis.referencing.crs.CRSFactory;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 import org.opengis.spatialschema.geometry.geometry.GeometryFactory;
@@ -27,7 +19,7 @@ import org.opengis.spatialschema.geometry.geometry.GeometryFactory;
  * @author Justin Deoliveira, The Open Planning Project
  *
  */
-public interface AttributeFactory {
+public interface FeatureFactory {
 
     /**
      * @return The CRS factory used to create CRS info for created attributes.
@@ -36,6 +28,11 @@ public interface AttributeFactory {
     
     /**
      * Sets the CRS factory used to create CRS info for created attributes.
+     * <p>
+     * Creating a CRS for a both Features and GeometryAttributes is a common
+     * need when creating content, this serves to cut down on the number of
+     * dependencies needed.
+     * </p>
      */
     void setCRSFactory(CRSFactory crsFactory);
     
@@ -45,25 +42,16 @@ public interface AttributeFactory {
     GeometryFactory getGeometryFactory();
     
     /**
-     * Sets the factory used to create geometric data.  
+     * Sets the factory used to create geometric data.
+     * <p>
+     * Creating spatial data is a common need when creating features, this
+     * serves to cut down on the number of dependencies needed.
+     * </p>
      */
     void setGeometryFactory(GeometryFactory geometryFactory);
     
     /**
-     * Creates an association descriptor.
-     * 
-     * @param type The type.
-     * @param name The name.
-     * @param minOccurs The minimum number of occurences of the association.
-     * @param maxOccurs The maximum number of occurences of hte association.
-     * 
-     */
-    AssociationDescriptor createAssociationDescriptor(
-        AssociationType type, Name name, int minOccurs, int maxOccurs      
-    );
-    
-    /**
-     * Creates an association.
+     * Creates an association (always nested).
      * 
      * @param value The value of the association, an attribute.
      * @param descriptor The descriptor.
@@ -71,21 +59,16 @@ public interface AttributeFactory {
     Association createAssociation(Attribute value, AssociationDescriptor descriptor);
     
 	/**
-	 * Creates an attribute descriptor.
-	 * 
-	 * @param type The type.
-	 * @param name The name.
-	 * @param minOccurs The minimum number of occurences of an attribute.
-	 * @param maxOccurs The maximum number of occurences of an attribute.
-	 * @param nillable Wether the attribute may have a null value.
-	 */
-	AttributeDescriptor createAttributeDescriptor(
-		AttributeType type, Name name, int minOccurs, int maxOccurs, 
-		boolean nillable
-	);
-	
-	/**
-	 * Creates a new attribute.
+	 * Creates a new attribute (always nested).
+	 * <p>
+	 * As currently defined this factory allows for the explicit creation of:
+	 * <ul>
+	 * <li>BooleanAttribute
+	 * <li>NumericAttribute
+	 * <li>TextAttribute
+	 * <li>TemporalAttribute
+	 * <li>GeometryAttribute (formal part of the model)
+	 * </ul>
 	 * 
 	 * @param value The value of the attribute, may be null depending on type.
 	 * @param descriptor The attribute descriptor.
@@ -93,45 +76,9 @@ public interface AttributeFactory {
 	 * 
 	 */
 	Attribute createAttribute(Object value, AttributeDescriptor descriptor, String id);
-	
-	/**
-	 * Creates a new boolean attribute.
-	 * 
-	 * @param value The boolean value of the attribute.
-	 * @param descriptor The attribute descriptor.
-	 * 
-	 */
-	BooleanAttribute createBooleanAttribute(Boolean value, AttributeDescriptor descriptor);
-	
-	/**
-	 * Creates a new numberic attribute.
-	 * 
-	 * @param value The numeric value of the attribute.
-	 * @param descriptor The attribute descriptor.
-	 * 
-	 */
-	NumericAttribute createNumericAttribute(Number value, AttributeDescriptor descriptor);
-	
-	/**
-	 * Creates a new text attribute.
-	 * 
-	 * @param value The text value of the attribute.
-	 * @param descriptor The attribute descriptor.
-	 * 
-	 */
-	TextAttribute createTextAttribute(CharSequence value, AttributeDescriptor descriptor);
-	
-	/**
-	 * Creates a new temporal attribute.
-	 * 
-	 * @param value The date value of the attribute.
-	 * @param descriptor Teh attribute descriptor.
-	 * 
-	 */
-	TemporalAttribute createTemporalAttribute(Date value, AttributeDescriptor descriptor);
-	
+		
     /**
-	 * Creates a new geometry attribute.
+	 * Creates a new geometry attribute (always nested).
 	 * 
 	 * @param value The initial value of the attribute, may be null depending on 
 	 * the type of the type of the attribute.
@@ -147,7 +94,7 @@ public interface AttributeFactory {
 	);
 	
 	/**
-	 * Creates a new complex attribute.
+	 * Creates a nested complex attribute.
 	 * 
 	 * @param value The initial value of the attribute, may be null depending on 
 	 * the type of the attribute.
@@ -160,13 +107,20 @@ public interface AttributeFactory {
 	ComplexAttribute createComplexAttribute(
 		Collection value, AttributeDescriptor desc, String id 
 	);
-	
+	/**
+	 * Create attribute based explicitly on type (not nested).
+	 * 
+	 * @param value
+	 * @param type
+	 * @param id
+	 * @return
+	 */
 	ComplexAttribute createComplexAttribute(
 		Collection value, ComplexType type, String id	
 	);
 	
 	/**
-	 * Creates a new feature.
+	 * Creates a nested feature.
 	 * 
 	 * @param id The id of the feature, (fid), may be null depending on the type.
 	 * @param desc The attribute descriptor. 
@@ -178,10 +132,18 @@ public interface AttributeFactory {
 	 */
 	Feature createFeature(Collection value, AttributeDescriptor desc, String id);
 	
+	/**
+	 * Create a new feature based on type (not nested)
+	 * 
+	 * @param value
+	 * @param type
+	 * @param id
+	 * @return
+	 */
 	Feature createFeature(Collection value, FeatureType type, String id);
 	
 	/**
-	 * Createsa a new feature collection.
+	 * Createsa a nested feature collection.
 	 * 
 	 * @param value The initial value of the attribute, may be null depending on 
 	 * the type of the feature.
@@ -194,6 +156,14 @@ public interface AttributeFactory {
 	 */
 	FeatureCollection createFeatureCollection(Collection value, AttributeDescriptor desc, String id);
 	
+	/**
+	 * Create a new feature collection based on type (not nested).
+	 * 
+	 * @param value
+	 * @param type
+	 * @param id
+	 * @return
+	 */
 	FeatureCollection createFeatureCollection(Collection value, FeatureCollectionType type, String id);
 
 }

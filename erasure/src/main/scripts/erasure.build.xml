@@ -227,12 +227,6 @@
             <replacefilter token="O type" value="OperationType type"/>
 	</replace>
 
-        <replace dir="${generatedSourceDirectory}" includes="org/opengis/feature/type/DescriptorFactory.java">
-            <replacefilter token="T type" value="AttributeType type"/>
-            <replacefilter token="A type" value="AssociationType type"/>
-            <replacefilter token="O type" value="OperationType type"/>
-        </replace>
-
 
         <replace dir="${generatedSourceDirectory}" includes="org/opengis/feature/type/Schema.java">
             <replacefilter token="Namespace keySet" value="Set keySet"/>
