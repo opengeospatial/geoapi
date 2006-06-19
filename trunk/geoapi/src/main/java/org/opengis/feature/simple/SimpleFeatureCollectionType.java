@@ -7,7 +7,6 @@ import org.opengis.feature.Attribute;
 import org.opengis.feature.type.AssociationDescriptor;
 import org.opengis.feature.type.AssociationType;
 import org.opengis.feature.type.FeatureCollectionType;
-import org.opengis.feature.type.FeatureType;
 
 /**
  * Extension of FeatureCollectionType for a simple collection.
@@ -30,7 +29,7 @@ import org.opengis.feature.type.FeatureType;
  * @author Justin Deoliveira, The Open Planning Project, jdeolive@openplans.org
  *
  */
-public interface SimpleFeatureCollectionType<M extends FeatureType> 
+public interface SimpleFeatureCollectionType<M extends SimpleFeatureType> 
 	extends FeatureCollectionType<Attribute,Collection<Attribute>,M> {
 
 	/**

@@ -43,9 +43,9 @@ import org.opengis.util.ProgressListener;
  * @see java.util.Collection
  */
 @XmlElement("FeatureCollection")
-public interface FeatureCollection<E extends Property,C extends Collection<E>, M extends FeatureType, T extends FeatureCollectionType<E,C,M>> 
-	extends Feature<E,C,T>, 
-	Collection<Feature> {
+public interface FeatureCollection<E extends Property,C extends Collection<E>, M extends FeatureType, T extends FeatureCollectionType<E,C,M>,F extends Feature> 
+	extends Feature<E,C,T>,
+	Collection<F> {
 	
 	/**
 	 * Restricted to return a FeatureCollectionType.
@@ -94,7 +94,7 @@ public interface FeatureCollection<E extends Property,C extends Collection<E>, M
 	 * </ul>
      * @return Iterator over the contents of this feature collection.
      */
-    Iterator<Feature> iterator();
+    Iterator<F> iterator();
     
     /**
      * You are required to close iterators after use.
