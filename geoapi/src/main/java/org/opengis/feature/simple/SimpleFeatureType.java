@@ -7,7 +7,6 @@ import org.opengis.feature.type.AttributeType;
 import org.opengis.feature.type.FeatureType;
 import org.opengis.feature.type.GeometryType;
 import org.opengis.feature.type.Name;
-import org.opengis.feature.xml.SequenceType;
 
 /**
  * Defines a simple feature model of attribute in a perscribed order.
@@ -18,17 +17,17 @@ import org.opengis.feature.xml.SequenceType;
  * <p>
  * For reference these are the limitations of a SimpleFeatureType:
  * <ol>
- * <li>Properties limited to attributes only!
- * <li>Sequence - order of attributes matters
- * <li>Attribute "index" is as good as a Name
- * <li>Attribute "name" (ie String) is as good as Name
+ * <li>Attributes - properties limited to attributes only!
+ * <li>Attributes - List collection - ie. order of attributes matters
+ * <li>Attribute lookup by index
+ * <li>Attribute lookup by name (ie String)
  * <li>getSuper() is null, required for point 3
- * <li>No name conflict, so lookup with simple string is okay
  * </ol>
+ * Name conflict is not permitted (in order to allow lookup by a simple String).
  * </p>
  * @author Jody Garnett, Refractions Research
  */
-public interface SimpleFeatureType extends SequenceType<List<Attribute>>, 
+public interface SimpleFeatureType extends 
 	FeatureType<Attribute,List<Attribute>> {
 	
 	/**
@@ -78,6 +77,5 @@ public interface SimpleFeatureType extends SequenceType<List<Attribute>>,
 	int indexOf( String name );
 	
 	/** Number of available attributes */
-	int getNumberOfAttribtues();
-	
+	int getNumberOfAttribtues();	
 }

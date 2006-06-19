@@ -17,10 +17,9 @@ import org.opengis.feature.type.FeatureType;
  * 	<li>It itself, contains no attributes.
  *  </ol>
  * @author Justin Deoliveira, The Open Planning Project, jdeolive@openplans.org
- *
  */
-public interface SimpleFeatureCollection<M extends FeatureType, T extends SimpleFeatureCollectionType<M>> 
-	extends FeatureCollection<Attribute,Collection<Attribute>,M,T> {
+public interface SimpleFeatureCollection<M extends SimpleFeatureType, T extends SimpleFeatureCollectionType<M>> 
+	extends FeatureCollection<Attribute,Collection<Attribute>,M,T,SimpleFeature> {
 
 	/**
 	 * Restricted to return a SimpleFeatureCollectionType.

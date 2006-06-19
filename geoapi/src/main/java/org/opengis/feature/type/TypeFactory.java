@@ -11,10 +11,31 @@ import org.opengis.util.InternationalString;
 
 /**
  * Factory interface for the typing system.
- * 
+ * <p>
+ * This interface supports setter dependency injection:
+ * <ul>
+ * <li>CRSFactory - used for spatial content creation
+ * <li>FilterFactory - used for type restrictions
+ * </ul>
+ * Implementors are encouraged to allow constructor injection:
+ * <table width=80% border=1 bgcolor=%BBBBBB><tr><td><pre><code>class MyTypeFactory {
+ *    CRSFactory crsFactory;
+ *    FilterFactory filterFactory;
+ *    public MyTypeFactory( CRSFactory crsFactory, FilterFactory filterFactory){
+ *       this.crsFactory = crsFactory;
+ *       this.filterFactory = filterFactory;
+ *    }
+ *    public void setCRSFactory( CRSFactory factory ){
+ *       this.crsFactory = factory;
+ *    }
+ *    public void setFilterFactory( FilterFactory factory ){
+ *       this.filterFactory = factory;
+ *    }
+ *    ...
+ *  }</code></pre></td></tr></table>
+ * </p>
  * @author Gabriel Roldan, Axios Engineering 
  * @author Justin Deoliveira, The Open Planning Project
- * 
  */
 public interface TypeFactory {
     /**
@@ -41,7 +62,7 @@ public interface TypeFactory {
      * Create a Schema to hold instances of Types created by this factory.
      * 
      * @param namespaceURI
-     * @return
+     * @return Schema
      */
     Schema createSchema(String namespaceURI );
     
@@ -125,24 +146,12 @@ public interface TypeFactory {
 		boolean isAbstract, Set<Filter> restrictions, AttributeType superType,
 		InternationalString description
 	);
-
-//	SimpleFeatureType createSimpleFeatureType(
-//		TypeName name,List<AttributeDescriptor> schema,
-//		AttributeDescriptor<GeometryType> defaultGeometry, CoordinateReferenceSystem crs, 
-//		boolean isAbstract, Set<Filter> restrictions, AttributeType superType,
-//		InternationalString description
-//	);
 	
 	FeatureCollectionType createFeatureCollectionType(
-		TypeName name,  Collection<StructuralDescriptor> schema, 
+		TypeName name,  Collection<StructuralDescriptor> schema, Collection<AssociationDescriptor> members,
 		AttributeDescriptor<GeometryType> defaultGeom, CoordinateReferenceSystem crs, 
 		boolean isAbstract, Set<Filter> restrictions, AttributeType superType,
 		InternationalString description
 	);
-	
-//	SimpleFeatureCollectionType createSimpleFeatureCollectionType(
-//		TypeName name, AssociationDescriptor member, Set<Filter> restrictions, 
-//		InternationalString description
-//	);
    
 }

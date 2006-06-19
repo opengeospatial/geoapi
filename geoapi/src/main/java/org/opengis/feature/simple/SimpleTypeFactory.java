@@ -1,9 +1,16 @@
 package org.opengis.feature.simple;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 
+import org.opengis.feature.type.AssociationDescriptor;
+import org.opengis.feature.type.AttributeDescriptor;
 import org.opengis.feature.type.AttributeType;
+//import org.opengis.feature.type.FeatureType;
+//import org.opengis.feature.type.FeatureCollectionType;
+import org.opengis.feature.type.GeometryType;
+import org.opengis.feature.type.StructuralDescriptor;
 import org.opengis.feature.type.TypeFactory;
 import org.opengis.feature.type.TypeName;
 import org.opengis.filter.Filter;
@@ -21,6 +28,17 @@ import org.opengis.util.InternationalString;
  * @author Jody Garnett
  */
 public interface SimpleTypeFactory extends TypeFactory {
+	
+	/**
+	 * SimpleTypeFactory can only produce SimpleFeatureType.
+	 */
+	SimpleFeatureType createFeatureType(TypeName name, Collection<StructuralDescriptor> schema, AttributeDescriptor<GeometryType> defaultGeometry, CoordinateReferenceSystem crs, boolean isAbstract, Set<Filter> restrictions, AttributeType superType, InternationalString description);
+
+	/**
+	 * Can only produce SimpleFeatureCollectionType.
+	 */
+	SimpleFeatureCollectionType createFeatureCollectionType(TypeName name, Collection<StructuralDescriptor> schema, Collection<AssociationDescriptor> members, AttributeDescriptor<GeometryType> defaultGeom, CoordinateReferenceSystem crs, boolean isAbstract, Set<Filter> restrictions, AttributeType superType, InternationalString description);
+	
 	/**
 	 * Create a SimpleFeatureType describing a Feature containing only directly
 	 * bound attributes with no multiplicity.

@@ -30,4 +30,15 @@ public interface Schema extends Map<TypeName, AttributeType> {
 	 * @return value from namespace().getURI().
 	 */
 	String toURI();
+	
+	/**
+	 * Used to select a profile of this schema.
+	 * <p>
+	 * Used to select a subset of types for a specific application. Profiles
+	 * often are used to express limitiations of a source of data.
+	 * </p>
+	 * @param profile
+	 * @return Subset of this schema
+	 */
+	Schema profile( Namespace<TypeName> profile );
 }
