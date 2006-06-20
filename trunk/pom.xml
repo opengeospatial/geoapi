@@ -176,11 +176,6 @@
         <enabled>true</enabled>
       </snapshots>
     </repository>
-    <repository>
-      <id>apache-snapshots</id>
-      <name>Snapshot repository</name>
-      <url>http://people.apache.org/maven-snapshot-repository/</url>
-    </repository>
   </repositories>
 
 
@@ -285,7 +280,6 @@
       <extension>
         <groupId>org.apache.maven.wagon</groupId>
         <artifactId>wagon-webdav</artifactId>
-        <version>1.0-beta-1-SNAPSHOT</version>
       </extension>
     </extensions> 
   </build>
