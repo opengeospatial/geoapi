@@ -163,7 +163,7 @@
     <repository>
       <id>geotools-fr</id>
       <name>Geotools repository</name>
-      <url>http://maven.geotools.fr/repository/</url>
+      <url>http://maven.geotools.fr/repository</url>
       <snapshots>
         <enabled>true</enabled>
       </snapshots>
@@ -171,7 +171,7 @@
     <repository>
       <id>refractions</id>
       <name>Refractions Research - Maven 2 Repository</name>
-      <url>http://lists.refractions.net/m2/</url>
+      <url>http://lists.refractions.net/m2</url>
       <snapshots>
         <enabled>true</enabled>
       </snapshots>
