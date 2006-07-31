@@ -1,8 +1,8 @@
 /*$************************************************************************************************
  **
- ** $Id$
+ ** $Id: LineSymbol.java 831 2006-05-01 00:27:23Z Desruisseaux $
  **
- ** $URL$
+ ** $URL: https://svn.sourceforge.net/svnroot/geoapi/branches/sld-1.1/geoapi/src/main/java/org/opengis/sld/LineSymbol.java $
  **
  ** Copyright (C) 2005 Open GIS Consortium, Inc.
  ** All Rights Reserved. http://www.opengis.org/legal/
@@ -22,7 +22,7 @@ import org.opengis.annotation.XmlElement;
  * @since GeoAPI 2.0
  */
 @XmlElement("LineSymbol")
-public interface LineSymbol extends Symbol {
+public interface MappedColorSymbol extends Symbol {
     /**
      * Returns the object containing all the information necessary to draw
      * styled lines.

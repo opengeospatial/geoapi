@@ -21,7 +21,7 @@ import org.opengis.annotation.XmlElement;
  * @author Chris Dillard (SYS Technologies)
  * @since GeoAPI 2.0
  */
-@XmlElement("PointSymbolizer")
+@XmlElement("PointSymbol")
 public interface PointSymbol extends Symbol {
     /**
      * Returns the graphic that will be drawn at each point of the geometry.

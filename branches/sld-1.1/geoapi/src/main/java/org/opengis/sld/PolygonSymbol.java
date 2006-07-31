@@ -21,7 +21,7 @@ import org.opengis.annotation.XmlElement;
  * @author Chris Dillard (SYS Technologies)
  * @since GeoAPI 2.0
  */
-@XmlElement("PolygonSymbolizer")
+@XmlElement("PolygonSymbol")
 public interface PolygonSymbol extends Symbol {
     /**
      * Returns the object containing all the information necessary to draw

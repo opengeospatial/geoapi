@@ -56,17 +56,18 @@
   previous section, rule activation may also be controlled by the {@code MinScaleDenominator} and the
   {@code MaxScaleDenominator} elements as well as the map-rendering scale.</P>
 
-  <H3>Symbolizers</H3>
+  <H3>Symbols</H3>
   <P ALIGN="JUSTIFY">Embedded inside of {@link org.opengis.sld.Rule}s, which group conditions for styling
-  features, are symbolizers. A symbolizer describes how a feature is to appear on a map. The symbolizer
+  features, are symbols. A symbol describes how a feature is to appear on a map. The symbol
   describes not just the shape that should appear but also such graphical properties as color and opacity.
-  A symbol is obtained by specifying one of a small number of different types of symbolizer and then supplying
-  parameters to override its default behaviour. Currently, four types of symbolizers are defined:</P>
+  A symbol is obtained by specifying one of a small number of different types of symbol and then supplying
+  parameters to override its default behaviour. Currently, five types of symbols are defined:</P>
   <UL>
     <LI>{@linkplain org.opengis.sld.LineSymbol Line}</LI>
     <LI>{@linkplain org.opengis.sld.PolygonSymbol Polygon}</LI>
     <LI>{@linkplain org.opengis.sld.PointSymbol Point}</LI>
     <LI>{@linkplain org.opengis.sld.TextSymbol Text}</LI>
+    <LI>{@linkplain org.opengis.sld.MappedColorSymbol MappedColor}</LI>
   </UL>
   </BODY>
 </HTML>

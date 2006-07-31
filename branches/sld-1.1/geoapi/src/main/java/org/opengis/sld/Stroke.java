@@ -24,7 +24,7 @@ import org.opengis.annotation.XmlElement;
  * repeated linear graphic is plotted linearly and has its graphic symbol bent around the curves
  * of the line string, and a graphic fill has the pixels of the line rendered with a repeating
  * area-fill pattern. If neither a {@link #getGraphicFill GraphicFill} nor {@link #getGraphicStroke
- * GraphicStroke} element is given, then the line symbolizer will render a solid color.
+ * GraphicStroke} element is given, then the line symbol will render a solid color.
  *
  * @version <A HREF="http://portal.opengeospatial.org/files/?artifact_id=1188">Implementation specification 1.0</A>
  * @author Chris Dillard (SYS Technologies)

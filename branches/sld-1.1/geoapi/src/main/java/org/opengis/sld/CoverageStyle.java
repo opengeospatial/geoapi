@@ -1,8 +1,8 @@
 /*$************************************************************************************************
  **
- ** $Id$
+ ** $Id: FeatureStyle.java 831 2006-05-01 00:27:23Z Desruisseaux $
  **
- ** $URL$
+ ** $URL: https://svn.sourceforge.net/svnroot/geoapi/branches/sld-1.1/geoapi/src/main/java/org/opengis/sld/FeatureStyle.java $
  **
  ** Copyright (C) 2005 Open GIS Consortium, Inc.
  ** All Rights Reserved. http://www.opengis.org/legal/
@@ -24,11 +24,11 @@ import org.opengis.annotation.XmlElement;
  * Represents a style that applies to the features of a given type.
  *
  * @version <A HREF="http://portal.opengeospatial.org/files/?artifact_id=1188">Implementation specification 1.0</A>
- * @author Chris Dillard (SYS Technologies)
- * @since GeoAPI 2.0
+ * @author Cory Horner, Refractions Research
+ * @since GeoAPI 2.1
  */
-@XmlElement("FeatureStyle")
-public interface FeatureStyle {
+@XmlElement("CoverageStyle")
+public interface CoverageStyle {
     /**
      * Returns a name for this style.
      * This can be any string that uniquely identifies this style within a given
@@ -75,19 +75,19 @@ public interface FeatureStyle {
     void setAbstract(InternationalString abs);
 
     /**
-     * Returns the name of the feature type that this style is meant to act
+     * Returns the name of the coverage that this style is meant to act
      * upon.  This may return null if a style can operate on many different
      * feature types.
      */
-    @XmlElement("FeatureTypeName")
-    String getFeatureTypeName();
+    @XmlElement("CoverageName")
+    String getCoverageName();
 
     /**
-     * Sets the name of the feature type that this style is meant to act upon.
-     * See {@link #getFeatureTypeName} for details.
+     * Sets the name of the coverage that this style is meant to act upon.
+     * See {@link #getCoverageName} for details.
      */
-    @XmlElement("FeatureTypeName")
-    void setFeatureTypeName(String featureTypeName);
+    @XmlElement("CoverageName")
+    void setCoverageName(String coverageName);
 
     /**
      * Returns a string that identifies the more general "type" of geometry

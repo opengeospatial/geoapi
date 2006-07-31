@@ -27,7 +27,7 @@ import org.opengis.annotation.XmlElement;
  * @author Chris Dillard (SYS Technologies)
  * @since GeoAPI 2.0
  */
-@XmlElement("TextSymbolizer")
+@XmlElement("TextSymbol")
 public interface TextSymbol extends Symbol {
     /**
      * Returns the expression that will be evaluated to determine what text is
