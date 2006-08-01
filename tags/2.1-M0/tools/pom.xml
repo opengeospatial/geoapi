@@ -10,7 +10,7 @@
   <parent>
     <groupId>org.opengis</groupId>
     <artifactId>geoapi-parent</artifactId>
-    <version>2.1-SNAPSHOT</version>
+    <version>2.1-M0</version>
   </parent>
 
 
@@ -21,7 +21,7 @@
   <groupId>org.opengis</groupId>
   <artifactId>geoapi-tools</artifactId>
   <packaging>jar</packaging>
-  <version>2.1-SNAPSHOT</version>
+  <version>2.1-M0</version>
   <name>GeoAPI processing tools</name>
   <url>http://geoapi.sourceforge.net/tools/</url>
   <scm>
@@ -49,7 +49,7 @@
     <dependency>
       <groupId>org.opengis</groupId>
       <artifactId>geoapi</artifactId>
-      <version>2.1-SNAPSHOT</version>
+      <version>2.1-M0</version>
     </dependency>
   </dependencies>
 

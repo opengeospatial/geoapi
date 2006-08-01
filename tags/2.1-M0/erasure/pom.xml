@@ -10,7 +10,7 @@
   <parent>
     <groupId>org.opengis</groupId>
     <artifactId>geoapi-parent</artifactId>
-    <version>2.1-SNAPSHOT</version>
+    <version>2.1-M0</version>
   </parent>
 
 
@@ -21,7 +21,7 @@
   <groupId>org.opengis</groupId>
   <artifactId>geoapi-erasure</artifactId>
   <packaging>maven-plugin</packaging>
-  <version>2.1-SNAPSHOT</version>
+  <version>2.1-M0</version>
   <name>Generic types erasure for GeoAPI</name>
   <url>http://geoapi.sourceforge.net/tools-ant/</url>
   <scm>
