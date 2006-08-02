@@ -4,11 +4,11 @@
  **
  ** $URL$
  **
- ** Copyright (C) 2003-2005 Open GIS Consortium, Inc.
+ ** Copyright (C) 2005 Open GIS Consortium, Inc.
  ** All Rights Reserved. http://www.opengis.org/legal/
  **
  *************************************************************************************************/
-package org.opengis.go.display.primitive.store;
+package org.opengis.layer.source;
 
 // J2SE direct dependencies
 import java.io.IOException;
@@ -20,15 +20,15 @@ import org.opengis.util.InternationalString;
 
 
 /**
- * The <code>GraphicStoreFactory</code> class/interface...
+ * A factory for {@link LayerSource} objects.
  * 
- * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @author Jesse Crossley (SYS Technologies)
+ * @since GeoAPI 2.0
  */
-public interface GraphicStoreFactory {
+public interface LayerSourceFactory {    
     /**
-     * Ask for a {@code GraphicStore} connecting to the indicated provider or service.
-     * The returned {@code GraphicStore} may have been previously cached.
+     * Ask for a {@code LayerSource} connecting to the indicated provider or service.
+     * The returned {@code LayerSource} may have been previously cached.
      * <p>
      * Additional hints or configuration information may be provided according
      * to the metadata indicated by {@link #getParametersInfo}. This information
@@ -37,13 +37,13 @@ public interface GraphicStoreFactory {
      * @param provider Often a URI or JDBC URI locating the service to connect to.
      * @param params Map of hints or configuration information.
      * @return {@code GraphicStore} connected to the indicated provider or service.
-     * @throws IOException if the {@code GraphicStore} cannot connect to its source.
-     * @throws GraphicStoreException if anything else goes wrong while creating the {@code GraphicStore}.
+     * @throws IOException if the {@code LayerSource} cannot connect to its source.
+     * @throws LayerException if the {@code LayerSource} cannot be created for some other reason.
      */
-    GraphicStore createGraphicStore(URI provider, Map<String,Object> params) throws IOException, GraphicStoreException;
+    LayerSource createLayerSource(URI provider, Map<String,Object> params) throws IOException, LayerSourceException;
 
     /**
-     * Ask for a new {@code GraphicStore} connecting to the indicated provider or service.
+     * Ask for a new {@code LayerSource} connecting to the indicated provider or service.
      * <p>
      * Additional hints or configuration information may be provided according
      * to the metadata indicated by {@link #getParametersInfo}. This information
@@ -51,61 +51,60 @@ public interface GraphicStoreFactory {
      * 
      * @param provider Often a URI or JDBC URI locating the service to connect to.
      * @param params Map of hints or configuration information.
-     * @return {@code GraphicStore} connected to the newly created provider or service.
-     * @throws IOException if the {@code GraphicStore} cannot connect to its source.
-     * @throws GraphicStoreException if anything else goes wrong while creating the {@code GraphicStore}.
+     * @return {@code LayerSource} connected to the newly created provider or service.
+     * @throws IOException if the {@code LayerSource} cannot connect to its source.
+     * @throws LayerException if the {@code LayerSource} cannot be created for some other reason.
      */
-    GraphicStore createNewGraphicStore(URI provider, Map<String,Object> params) throws IOException, GraphicStoreException;
-
+    LayerSource createNewLayerSource(URI provider, Map<String,Object> params) throws IOException, LayerSourceException;
+    
     /**
-     * Icon representing this category of <code>GraphicStore</code>s.
-     * 
-     * @return the icon.
-     * @todo Assumed to point to a 16x16 icon?
+     * Icon representing this category of layer source.
+     *
+     * @return URI to a icon (GIF or PNG) representing this factory.
      */
     URI getIcon();
 
     /**
-     * Display name used to communicate this type of {@code GraphicStore} to end users.
+     * Display name used to communicate this type of FeatureStore to end users.
      */
     InternationalString getDisplayName();
-
+    
     /** 
-     * Description of this type of {@code GraphicStore}.
+     * Description of this type of FeatureStore.
      */
     InternationalString getDescription();
 
     /**
      * Gets an {@code Object} array relating to the parameters needed (beyond
-     * the URI) to instantiate a {@code GraphicStore}.
+     * the URI) to instantiate a {@code FeatureStore}.
      * 
-     * @todo Should be replaced with a <code>Param</code>[] based on ISO standards (ISO 19119).
+     * @todo Should be replaced with a {@code Param}[] based on ISO standards (ISO 19119?).
      */
     Map<String,Class> getParametersInfo();
 
     /**
-     * Indicates this {@code GraphicStoreFactory} communicate with the indicated provider or service.
+     * Indicates this {@code FeatureStoreFactory} communicate with the indicated provider or service.
      * <p>
      * This method should not fail, if a connection needs to be made
      * to parse a {@code GetCapabilities} file or negotiate WMS versions any
-     * IO problems simply indicate the inability to process.
-     * </p>
+     * IO problems simply indicate the inabiity to process.
      * <p>
      * This method may be considered the same as:
      * <code>{@linkplain #canProcess(URI,Map) canProcess}(provider, hints)</code>
      * where hints was generated by using all the default values specified by the
      * {@link #getParametersInfo} method.
-     * </p>
+     *
      * @param provider Provider or Server of spatial information. 
+     * @return {@code true} if this factory can communicate with the provider.
      */
     boolean canProcess(URI provider);
-    
+
     /**
-     * Indicates this {@code GraphicStoreFactory} communicate with the indicated provider or service.
+     * Indicates this {@code FeatureStoreFactory} communicate with the indicated provider or service.
      * <p>
      * This method differs from {@link #canProcess(URI)} in that additional configuration
      * information may be supplied. 
-     * </p>
+     *
      * @param provider Provider or Server of spatial information. 
      * @param params additional configuration information.
      * @return {@code true} if this factory can communicate with the provider.
@@ -113,10 +112,8 @@ public interface GraphicStoreFactory {
     boolean canProcess(URI provider, Map<String,Object> params);
 
     /**
-     * Allows a {@code GraphicStoreFactory} to ensure all its preconditions are met,
+     * Allows a {@code FeatureStoreFactory} to ensure all its preconditions are met,
      * such as the presense of required libraries.
-     *
-     * @return {@code true} if available
      */
     boolean isAvailable();
 }

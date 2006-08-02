@@ -11,8 +11,7 @@
 
 package org.opengis.go;
 
-import org.opengis.feature.FeatureTypeFactory;
-import org.opengis.feature.display.FeatureDisplayFactory;
+import org.opengis.feature.type.TypeFactory;
 import org.opengis.filter.FilterFactory;
 import org.opengis.go.display.DisplayFactory;
 import org.opengis.metadata.citation.CitationFactory;
@@ -50,15 +49,16 @@ public interface CommonFactory {
      * Returns the {@linkplain FeatureDisplayFactory feature display factory} singleton.
      *
      * @return the feature display factory.
-     */
+     *
     FeatureDisplayFactory getFeatureDisplayFactory();
-
+	 */
+    
     /**
      * Returns the {@linkplain FeatureTypeFactory feature type factory} singleton.
      *
      * @return the feature type factory.
      */
-    FeatureTypeFactory getFeatureTypeFactory();
+    TypeFactory getTypeFactory();
     
     /**
      * Returns the {@linkplain FilterFactory filter factory} singleton.
