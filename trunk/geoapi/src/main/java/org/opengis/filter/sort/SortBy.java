@@ -74,7 +74,7 @@ public interface SortBy {
 		public void setPropertyName(PropertyName name) {
 			throw new UnsupportedOperationException("Natural Ordering cannot be modified");
 		}
-		public SortOrder getSortOrderType() {
+		public SortOrder getSortOrder() {
 			return SortOrder.ASCENDING;
 		}
 		public void setSortOrder(SortOrder order) {
@@ -102,7 +102,7 @@ public interface SortBy {
 		public void setPropertyName(PropertyName name) {
 			throw new UnsupportedOperationException("Natural Ordering cannot be modified");
 		}
-		public SortOrder getSortOrderType() {
+		public SortOrder getSortOrder() {
 			return SortOrder.DESCENDING;
 		}
 		public void setSortOrder(SortOrder order) {
@@ -138,7 +138,7 @@ public interface SortBy {
 	 * 
 	 * @return ASC or DESC.
 	 */
-	public SortOrder getSortOrderType();
+	public SortOrder getSortOrder();
 	
 	/**
 	 * Set the sort order - to ASC or DESC.
