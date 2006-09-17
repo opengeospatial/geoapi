@@ -21,9 +21,12 @@ import org.opengis.annotation.XmlElement;
 
 
 /**
- * Represents a style that applies to the features of a given type.
- *
- * @version <A HREF="http://portal.opengeospatial.org/files/?artifact_id=1188">Implementation specification 1.0</A>
+ * Contains styling information specific to one Coverage offering. This is the
+ * SLD level that separates the 'layer' handling from the 'coverage' handling.
+ * 
+ * @version <A
+ *          HREF="http://portal.opengeospatial.org/files/?artifact_id=1188">Implementation
+ *          specification 1.0</A>
  * @author Cory Horner, Refractions Research
  * @since GeoAPI 2.1
  */
@@ -75,10 +78,10 @@ public interface CoverageStyle {
     void setAbstract(InternationalString abs);
 
     /**
-     * Returns the name of the coverage that this style is meant to act
-     * upon.  This may return null if a style can operate on many different
-     * feature types.
-     */
+	 * Returns the name of the coverage that this style is meant to act upon.
+	 * This may return null if a style can operate on many different coverage
+	 * types.
+	 */
     @XmlElement("CoverageName")
     String getCoverageName();
 
@@ -117,4 +120,28 @@ public interface CoverageStyle {
      */
     @XmlElement("Rule")
     List<Rule> getRules();
+    
+    /**
+	 * <p>
+	 * Returns the URL of a CoverageStyle XML document. This should be null if
+	 * other elements are defined.
+	 * </p>
+	 * 
+	 * <p>
+	 * The OnlineResource element can be used instead of the other elements
+	 * described to reference a CoverageStyle that is stored remotely. The URL
+	 * given in the OnlineResource must reference a CoverageStyle XML document.
+	 * </p>
+	 */
+    @XmlElement("OnlineResource")
+    String getOnlineResource();
+
+    /**
+	 * <p>
+	 * Returns the SLD version number that the CoverageStyle corresponds to. This
+	 * value may be null.
+	 * </p>
+	 */
+    String getVersion();
+
 }

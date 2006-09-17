@@ -32,21 +32,21 @@ public interface Font {
      * preferred order.  The list of available font families is system
      * dependent.  If null, a system dependent default will be used.
      */
-    @XmlElement("font-familly") // TODO: Actually a CssParameter
+    @XmlElement("font-family") // TODO: Actually a SvgParameter
     Expression getFamily();
 
     /**
      * Sets the name of the font or font family to use.
      * See {@link #getFamily} for details.
      */
-    @XmlElement("font-familly") // TODO: Actually a CssParameter
+    @XmlElement("font-family") // TODO: Actually a SvgParameter
     void setFamily(Expression expression);
 
     /**
      * Indicates the style of the font.  Allowed values are
      * "normal", "italic", and "oblique".  If null, the default is "normal".
      */
-    @XmlElement("font-style") // TODO: Actually a CssParameter
+    @XmlElement("font-style") // TODO: Actually a SvgParameter
     Expression getStyle();
 
     /**
@@ -54,34 +54,34 @@ public interface Font {
      * "normal", "italic", and "oblique".  If null, the default is "normal".
      * See {@link #getStyle} for details.
      */
-    @XmlElement("font-style") // TODO: Actually a CssParameter
+    @XmlElement("font-style") // TODO: Actually a SvgParameter
     void setStyle(Expression expression);
 
     /**
      * Expression that indicates the weight of the font.  Allowed values are
      * "normal" and "bold".  If null, the default is "normal".
      */
-    @XmlElement("font-weight") // TODO: Actually a CssParameter
+    @XmlElement("font-weight") // TODO: Actually a SvgParameter
     Expression getWeight();
 
     /**
      * Expression that indicates the weight of the font.
      * See {@link #getWeight} for details.
      */
-    @XmlElement("font-weight") // TODO: Actually a CssParameter
+    @XmlElement("font-weight") // TODO: Actually a SvgParameter
     void setWeight(Expression expression);
 
     /**
      * Expression that indicates the pixel size of the font.  If null, the
      * default value is 10.
      */
-    @XmlElement("font-size") // TODO: Actually a CssParameter
+    @XmlElement("font-size") // TODO: Actually a SvgParameter
     Expression getSize();
 
     /**
      * Expression that indicates the pixel size of the font.
      * See {@link #getSize} for details.
      */
-    @XmlElement("font-size") // TODO: Actually a CssParameter
+    @XmlElement("font-size") // TODO: Actually a SvgParameter
     void setSize(Expression expression);
 }

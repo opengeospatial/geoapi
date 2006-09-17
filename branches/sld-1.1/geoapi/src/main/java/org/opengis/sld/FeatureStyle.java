@@ -23,6 +23,8 @@ import org.opengis.annotation.XmlElement;
 /**
  * Represents a style that applies to the features of a given type.
  *
+ * a.k.a FeatureTypeStyle in SLD 1.0.0
+ *
  * @version <A HREF="http://portal.opengeospatial.org/files/?artifact_id=1188">Implementation specification 1.0</A>
  * @author Chris Dillard (SYS Technologies)
  * @since GeoAPI 2.0
@@ -117,4 +119,37 @@ public interface FeatureStyle {
      */
     @XmlElement("Rule")
     List<Rule> getRules();
+    
+    /**
+	 * <p>
+	 * Returns the URL of a FeatureStyle XML document. This should be null if
+	 * other elements are defined.
+	 * </p>
+	 * 
+	 * <p>
+	 * The OnlineResource element can be used instead of the other elements
+	 * described to reference a FeatureStyle that is stored remotely. The URL
+	 * given in the OnlineResource must reference a FeatureStyle XML document.
+	 * This organization allows the more convenient use of feature-style
+	 * libraries.
+	 * </p>
+	 */
+    @XmlElement("OnlineResource")
+    String getOnlineResource();
+
+    /**
+	 * <p>
+	 * Returns the SLD version number that the FeatureStyle corresponds to. This
+	 * value may be null.
+	 * </p>
+	 * 
+	 * <p>
+	 * This attribute is redundant when used with in-line feature styles, but it
+	 * should be used with feature styles that are stored remotely and
+	 * referenced, to allow applications to identify and handle SLD fragments
+	 * that are of different versions.
+	 * </p>
+	 */
+    String getVersion();
+    
 }
