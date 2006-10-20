@@ -10,35 +10,37 @@
  *************************************************************************************************/
 package org.opengis.filter;
 
-// J2SE dependencies
-import java.util.Set;
-
 import org.opengis.annotation.XmlElement;
+import org.opengis.feature.Feature;
 
 
 /**
- * Instances of this interface represent a filter that passes only the IDs given to this object.
+ * Feature identifier.
  * <p>
- * This application of this filter for Features is well understood. For other identifiable Objects
- * such as Geometry or Records we may have to provide more thought.
+ * Features are identified as strings. 
  * </p>
  * 
  * @version <A HREF="http://www.opengis.org/docs/02-059.pdf">Implementation specification 1.0</A>
  * @author Chris Dillard (SYS Technologies)
+ * @author Justin Deoliveira, The Open Planning Project
  * @since GeoAPI 2.0
  */
 @XmlElement("FeatureId")
-public interface FeatureId extends Filter {
-    /**
-     * Returns a {@linkplain Set} containing the IDs of that will pass this filter.
-     */
+public interface FeatureId extends Identifier<String,Feature> {
+    
+	/**
+	 * The identifier value, which is a string.
+	 */
     @XmlElement("fid")
-    Set<String> getIDs();
+    String getID();
     
     /**
-     * {@linkplain Set} containing the IDs of that will pass this filter
+     * Evaluates the identifer value against the given feature.
      * 
-     *  @param ids Set of IDs that will passs
+     * @param feature The feature to be tested.
+     * 
+     * @return <code>true</code> if a match, otherwise <code>false</code>
      */
-    void setIDs( Set<String> ids );
+    boolean matches( Feature feature );
+    
 }
