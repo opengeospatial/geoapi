@@ -8,40 +8,39 @@
  ** All Rights Reserved. http://www.opengis.org/legal/
  **
  *************************************************************************************************/
-package org.opengis.filter;
+package org.opengis.filter.identity;
 
 import org.opengis.annotation.XmlElement;
 import org.opengis.feature.Feature;
-import org.opengis.filter.identity.Identifier;
 
 
 /**
- * Feature identifier.
+ * 
+ * RecordId refered to by CSW-2 specification.
  * <p>
- * Features are identified as strings. 
+ * Records are identified with a String, commonly referred to as an "id".
  * </p>
  * 
  * @version <A HREF="http://www.opengis.org/docs/02-059.pdf">Implementation specification 1.0</A>
- * @author Chris Dillard (SYS Technologies)
- * @author Justin Deoliveira, The Open Planning Project
- * @since GeoAPI 2.0
+ * @author Jody Garnett, Refractions Research Inc.
+ * @since GeoAPI 2.1
  */
-@XmlElement("FeatureId")
-public interface FeatureId extends Identifier<String,Feature> {
+@XmlElement("RecordId")
+public interface RecordId extends Identifier<String,Feature> {
     
 	/**
 	 * The identifier value, which is a string.
 	 */
-    @XmlElement("fid")
+    @XmlElement("id")
     String getID();
     
     /**
-     * Evaluates the identifer value against the given feature.
+     * Evaluates the identifer value against the given record.
      * 
-     * @param feature The feature to be tested.
+     * @param record The recrod construct to be tested.
      * 
      * @return <code>true</code> if a match, otherwise <code>false</code>
      */
-    boolean matches( Feature feature );
+    boolean matches( Object record );
     
 }

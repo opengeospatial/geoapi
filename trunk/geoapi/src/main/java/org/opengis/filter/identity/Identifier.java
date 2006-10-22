@@ -1,4 +1,4 @@
-package org.opengis.filter;
+package org.opengis.filter.identity;
 
 /**
  * An object identifier.
@@ -14,6 +14,9 @@ package org.opengis.filter;
  *
  * @param <T> The type of the identifer itself.
  * @param <O> The type of objects to be identified.
+ * 
+ * @version <A HREF="http://www.opengis.org/docs/02-059.pdf">Implementation specification 1.0</A>
+ * @author Jody Garnett, Refractions Research Inc.
  */
 public interface Identifier<T,O> {
 
