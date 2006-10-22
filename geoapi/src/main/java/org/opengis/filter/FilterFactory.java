@@ -22,6 +22,7 @@ import org.opengis.filter.expression.Literal;
 import org.opengis.filter.expression.Multiply;
 import org.opengis.filter.expression.PropertyName;
 import org.opengis.filter.expression.Subtract;
+import org.opengis.filter.identity.Identifier;
 import org.opengis.filter.sort.SortBy;
 import org.opengis.filter.sort.SortOrder;
 import org.opengis.filter.spatial.BBOX;
@@ -54,6 +55,7 @@ public interface FilterFactory {
 ////////////////////////////////////////////////////////////////////////////////
 	/** Creates a new feautre id from a string */
 	FeatureId featureId( String id );
+	
 ////////////////////////////////////////////////////////////////////////////////
 //
 //  FILTERS
