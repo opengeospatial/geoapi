@@ -235,7 +235,7 @@
 		<!-- ===================================================================
 					Filter / Expression
           =================================================================== -->
-		<replace dir="${generatedSourceDirectory}" includes="org/opengis/filter/Identifier.java">
+		<replace dir="${generatedSourceDirectory}" includes="org/opengis/filter/identity/Identifier.java">
 			<replacefilter token="T getID();" value="//T getID();" />
 			<replacefilter token="O object" value="Object object" />
 		</replace>
