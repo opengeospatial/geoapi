@@ -44,6 +44,35 @@ import org.opengis.filter.spatial.Within;
  */
 @Extension
 public interface FilterVisitor {
+	/**
+	 * Used to account for a <code>null</code> filter value.
+	 * <p>
+	 * This is particularly used during data structure transofrmations, however
+	 * the use of <code>null</code> is not recommended. Please make use of Filter.NONE
+	 * and Filter.ALL as placeholder objects that communicate intent.
+	 * </p>
+	 * @param extraData Value object provided to visitor
+	 * @return subclass defined
+	 */
+	Object visitNullFilter(                              Object extraData);
+	
+	/**
+	 * Visit Filter.ALL (often used during data structure transformations).
+	 * 
+	 * @param filter Filter.ALL
+	 * @param extraData
+	 * @return subclass supplied
+	 */
+	Object visit( AllFilter filter,                     Object extraData);
+	
+	/**
+	 * Visit Filter.NONE (often used during data structure transformations)
+	 * @param filter Filter.NONE
+	 * @param extraData
+	 * @return subclass supplied
+	 */
+	Object visit( NoneFilter filter,                    Object extraData);
+	
     Object visit(And filter,                            Object extraData);
     Object visit(FeatureId filter,                      Object extraData);
     Object visit(Not filter,                            Object extraData);

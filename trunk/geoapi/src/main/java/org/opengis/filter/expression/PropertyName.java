@@ -22,6 +22,11 @@ import org.opengis.annotation.XmlElement;
  * a {@linkplain org.opengis.feature.Feature feature}'s property using
  * an xpath expression.
  * </p>
+ * <p>
+ * Please note that the Filter specification allows a limited subset of
+ * XPath to be used for the PropertyName. We encourage implementations to
+ * match this functionality.
+ * </p>
  * @version <A HREF="http://www.opengis.org/docs/02-059.pdf">Implementation specification 1.0</A>
  * @author Chris Dillard (SYS Technologies)
  * @since GeoAPI 2.0

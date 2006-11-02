@@ -29,7 +29,16 @@ import org.opengis.feature.Feature;
  */
 @XmlElement("expression")
 public interface Expression {
-  
+	
+	/**
+	 * Constant expression that always evaulates to <code>null</code>.
+	 * <p>
+	 * This constant is a "NullObject" that can represent the absense of
+	 * expression in a data structures. As example it can be used to represent
+	 * the default stroke color in a LineSymbolizer Stroke structure.
+	 */
+	public static Expression NIL = new NilExpression();
+	
     /**
      * Evaluates the given expression based on the content of the given object.
      */
