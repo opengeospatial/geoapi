@@ -74,7 +74,7 @@ public interface FilterVisitor {
 	Object visit( NoneFilter filter,                    Object extraData);
 	
     Object visit(And filter,                            Object extraData);
-    Object visit(FeatureId filter,                      Object extraData);
+    Object visit(Id filter,                      Object extraData);
     Object visit(Not filter,                            Object extraData);
     Object visit(Or filter,                             Object extraData);
     Object visit(PropertyIsBetween filter,              Object extraData);
