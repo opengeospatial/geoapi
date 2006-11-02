@@ -24,7 +24,14 @@ import org.opengis.filter.identity.Identifier;
  */
 public interface Id extends Filter {
 	/**
-     * Returns a {@linkplain Set} containing the IDs of that will pass this filter.
+	 * Set of IDs representing the Identifiers used by this filter.
+	 * 
+     * @return {@linkplain Set} of IDs
      */
-	Set<Identifier> getIDs();
+	Set<Object> getIDs();
+	
+	/**
+     * @return {@linkplain Set} of Identifiers used by this filter.
+     */
+	Set<Identifier> getIdentifiers();
 }

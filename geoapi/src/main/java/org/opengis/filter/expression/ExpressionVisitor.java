@@ -31,12 +31,23 @@ import org.opengis.annotation.Extension;
  */
 @Extension
 public interface ExpressionVisitor {
-	// Object visit(Expression   expression, Object extraData); // bad idea
-    Object visit(Add          expression, Object extraData);
-    Object visit(Divide       expression, Object extraData);
-    Object visit(Function     expression, Object extraData);
-    Object visit(Literal      expression, Object extraData);
-    Object visit(Multiply     expression, Object extraData);
-    Object visit(PropertyName expression, Object extraData);
-    Object visit(Subtract     expression, Object extraData);
+	/**
+	 * Used to visit a Expression.NIL, also called for <code>null</code> where an
+	 * expression is expected.
+	 * <p>
+	 * This is particularly useful when doing data transformations, as an example when
+	 * using a StyleSymbolizer Expression.NIL can be used to represent the default
+	 * stroke color.
+	 * </p> 
+	 * @param extraData
+	 * @return implementation specific
+	 */
+	Object visit(NilExpression  expression, Object extraData);
+    Object visit(Add            expression, Object extraData);
+    Object visit(Divide         expression, Object extraData);
+    Object visit(Function       expression, Object extraData);
+    Object visit(Literal        expression, Object extraData);
+    Object visit(Multiply       expression, Object extraData);
+    Object visit(PropertyName   expression, Object extraData);
+    Object visit(Subtract       expression, Object extraData);
 }
