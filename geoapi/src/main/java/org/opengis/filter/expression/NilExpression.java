@@ -1,5 +1,7 @@
 package org.opengis.filter.expression;
 
+import java.io.Serializable;
+
 /**
  * Placeholder class used to represent a NIL expression, evaultates to <code>null</code>.
  * <p>
@@ -10,7 +12,9 @@ package org.opengis.filter.expression;
  * </p>
  * @author Jody Garnett, Refractions Research, Inc.
  */
-public final class NilExpression implements Expression {
+public final class NilExpression implements Expression, Serializable {
+	private static final long serialVersionUID = 4999313240542653655L;
+
 	/** Not extensible */ 
 	NilExpression(){}
 	
