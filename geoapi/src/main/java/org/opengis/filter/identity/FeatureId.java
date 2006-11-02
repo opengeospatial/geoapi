@@ -8,7 +8,7 @@
  ** All Rights Reserved. http://www.opengis.org/legal/
  **
  *************************************************************************************************/
-package org.opengis.filter;
+package org.opengis.filter.identity;
 
 import org.opengis.annotation.XmlElement;
 import org.opengis.feature.Feature;
