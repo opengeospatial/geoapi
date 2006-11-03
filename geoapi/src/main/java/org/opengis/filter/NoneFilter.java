@@ -32,7 +32,7 @@ public final class NoneFilter implements Filter, Serializable {
 	 * Returns <code>true</code>, content is included. 
 	 */
 	public boolean evaluate(Object object) {
-		return false;
+		return true;
 	}
 	@Override
 	public boolean equals(Object obj) {
