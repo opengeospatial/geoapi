@@ -23,5 +23,5 @@ import org.opengis.annotation.XmlElement;
  * @since GeoAPI 2.0
  */
 @XmlElement("Equals")
-public interface Equals extends BinarySpatialOperator {
+public interface Equals extends BinarySpatialOperator, BoundedSpatialOperator {
 }

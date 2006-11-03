@@ -24,5 +24,5 @@ import org.opengis.annotation.XmlElement;
  * @since GeoAPI 2.0
  */
 @XmlElement("Intersects")
-public interface Intersects extends BinarySpatialOperator {
+public interface Intersects extends BinarySpatialOperator, BoundedSpatialOperator {
 }

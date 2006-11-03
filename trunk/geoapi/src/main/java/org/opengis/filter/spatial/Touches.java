@@ -24,5 +24,5 @@ import org.opengis.annotation.XmlElement;
  * @since GeoAPI 2.0
  */
 @XmlElement("Touches")
-public interface Touches extends BinarySpatialOperator {
+public interface Touches extends BinarySpatialOperator, BoundedSpatialOperator {
 }
