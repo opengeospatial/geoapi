@@ -23,5 +23,5 @@ import org.opengis.annotation.XmlElement;
  * @since GeoAPI 2.0
  */
 @XmlElement("Contains")
-public interface Contains extends BinarySpatialOperator {
+public interface Contains extends BinarySpatialOperator, BoundedSpatialOperator {
 }

@@ -24,5 +24,5 @@ import org.opengis.annotation.XmlElement;
  * @since GeoAPI 2.0
  */
 @XmlElement("Crosses")
-public interface Crosses extends BinarySpatialOperator {
+public interface Crosses extends BinarySpatialOperator, BoundedSpatialOperator {
 }

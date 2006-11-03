@@ -24,5 +24,5 @@ import org.opengis.annotation.XmlElement;
  * @since GeoAPI 2.0
  */
 @XmlElement("Overlaps")
-public interface Overlaps extends BinarySpatialOperator {
+public interface Overlaps extends BinarySpatialOperator, BoundedSpatialOperator {
 }
