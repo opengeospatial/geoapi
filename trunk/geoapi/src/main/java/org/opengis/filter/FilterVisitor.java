@@ -63,7 +63,7 @@ public interface FilterVisitor {
 	 * @param extraData
 	 * @return subclass supplied
 	 */
-	Object visit( AllFilter filter,                     Object extraData);
+	Object visit( ExcludeFilter filter,                     Object extraData);
 	
 	/**
 	 * Visit Filter.NONE (often used during data structure transformations)
@@ -71,7 +71,7 @@ public interface FilterVisitor {
 	 * @param extraData
 	 * @return subclass supplied
 	 */
-	Object visit( NoneFilter filter,                    Object extraData);
+	Object visit( IncludeFilter filter,                    Object extraData);
 	
     Object visit(And filter,                            Object extraData);
     Object visit(Id filter,                      Object extraData);

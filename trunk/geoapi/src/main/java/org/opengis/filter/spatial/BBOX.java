@@ -25,7 +25,7 @@ import org.opengis.annotation.XmlElement;
  * @since GeoAPI 2.0
  */
 @XmlElement("BBOX")
-public interface BBOX extends SpatialOperator, BoundedSpatialOperator {
+public interface BBOX extends SpatialOperator {
     /**
      * Returns the name of the geometric property that will be used in this
      * spatial operator.  This may be null if the default spatial property is
