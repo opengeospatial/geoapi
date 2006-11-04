@@ -9,9 +9,9 @@ import java.io.Serializable;
  * structuring definition.
  * <ul>
  * <li>
- * <ul>NONE or  Filter ==> NONE
- * <ul>NONE and Filter ==> Filter
- * <ul>       not NONE ==> ALL
+ * <ul>INCLUDE or  Filter ==> INCLUDE
+ * <ul>INCLUDE and Filter ==> Filter
+ * <ul>       not INCLUDE ==> EXCLUDE
  * </ul>
  * The above does imply that the OR opperator can short circuit on
  * encountering NONE.
@@ -19,11 +19,11 @@ import java.io.Serializable;
  * 
  * @author Jody Garnett, Refractions Research, Inc.
  */
-public final class NoneFilter implements Filter, Serializable {	
+public final class IncludeFilter implements Filter, Serializable {	
 	private static final long serialVersionUID = -8429407144421087160L;
 	
 	/** non extensible */
-	NoneFilter(){}
+	IncludeFilter(){}
 	
 	public Object accept(FilterVisitor visitor, Object extraData) {
 		return visitor.visit( this, extraData );
@@ -36,13 +36,13 @@ public final class NoneFilter implements Filter, Serializable {
 	}
 	@Override
 	public boolean equals(Object obj) {
-		return Filter.NONE == obj;
+		return Filter.INCLUDE == obj;
 	}
 	@Override
 	public int hashCode() {
 		return 0;
 	}
 	public String toString() {
-		return "Filter.NONE";
+		return "Filter.INCLUDE";
 	}
 }

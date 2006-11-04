@@ -10,11 +10,11 @@ import java.io.Serializable;
  * <ul>
  * <li>
  * <ul>
- * ALL or Filter ==> Filter
+ * EXCLUDE or Filter ==> Filter
  * <ul>
- * ALL and Filter ==> ALL
+ * EXCLUDE and Filter ==> EXCLUDE
  * <ul>
- * not ALL ==> NONE
+ * not EXCLUDE ==> INCLUDE
  * </ul>
  * The above does imply that the AND opperator can short circuit on encountering
  * ALL.
@@ -22,11 +22,11 @@ import java.io.Serializable;
  * 
  * @author Jody Garnett, Refractions Research, Inc.
  */
-public final class AllFilter implements Filter, Serializable {
+public final class ExcludeFilter implements Filter, Serializable {
 	private static final long serialVersionUID = -716705962006999508L;
 
 	/** non extensible */
-	AllFilter() {
+	ExcludeFilter() {
 	}
 
 	public Object accept(FilterVisitor visitor, Object extraData) {
@@ -42,7 +42,7 @@ public final class AllFilter implements Filter, Serializable {
 
 	@Override
 	public boolean equals(Object obj) {
-		return Filter.ALL == obj;
+		return Filter.EXCLUDE == obj;
 	}
 	
 	@Override
@@ -51,6 +51,6 @@ public final class AllFilter implements Filter, Serializable {
 	}
 	
 	public String toString() {
-		return "Filter.ALL";
+		return "Filter.EXCLUDE";
 	}
 }
