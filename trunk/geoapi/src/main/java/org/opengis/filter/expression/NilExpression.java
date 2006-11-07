@@ -27,6 +27,11 @@ public final class NilExpression implements Expression, Serializable {
 		return null;
 	}
 
+	/** Returns <code>null</code> */
+	public <T> T evaluate(Object object, Class<T> context) {
+		return null;
+	}
+	
 	/**
 	 * Equals is defined only against <code>Expression.NIL</code>.
 	 * @param other
