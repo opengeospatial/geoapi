@@ -50,6 +50,7 @@ public interface FilterVisitor {
     Object visit(Or filter,                             Object extraData);
     Object visit(PropertyIsBetween filter,              Object extraData);
     Object visit(PropertyIsEqualTo filter,              Object extraData);
+    Object visit(PropertyIsNotEqualTo filter, 			Object extraData);
     Object visit(PropertyIsGreaterThan filter,          Object extraData);
     Object visit(PropertyIsGreaterThanOrEqualTo filter, Object extraData);
     Object visit(PropertyIsLessThan filter,             Object extraData);

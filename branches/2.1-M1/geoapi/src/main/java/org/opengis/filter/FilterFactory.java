@@ -81,7 +81,10 @@ public interface FilterFactory {
      * @todo should be equalTo (so equals can refer to geometry)
      */
     PropertyIsEqualTo equals(Expression expr1, Expression expr2);
-
+    
+    /** Checks that two expressions are not equal to each other */
+    PropertyIsNotEqualTo notEqual(Expression expr1, Expression expr2);
+    
     /** Checks that the first sub-expression is greater than the second subexpression. */
     PropertyIsGreaterThan greater(Expression expr1, Expression expr2);
 
