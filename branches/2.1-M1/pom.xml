@@ -16,7 +16,7 @@
   <groupId>org.opengis</groupId>
   <artifactId>geoapi-parent</artifactId>
   <packaging>pom</packaging>
-  <version>2.1-SNAPSHOT</version>
+  <version>2.1-M1</version>
   <name>GeoAPI common settings</name>
   <url>http://geoapi.sourceforge.net/</url>
   <description>
@@ -82,12 +82,12 @@
       <id>desruisseaux</id>
       <name>Martin Desruisseaux</name>
       <email>desruisseaux@users.sourceforge.net</email>
-      <organization>Geomatys</organization>
-      <organizationUrl>http://www.geomatys.fr/</organizationUrl>
+      <organization>Institut de Recherche pour le Développement</organization>
+      <organizationUrl>http://www.ird.fr/</organizationUrl>
       <roles>
         <role>Java Developer</role>
       </roles>
-      <timezone>+1</timezone>
+      <timezone>+11</timezone>
     </developer>
     <developer>
       <id>dillard</id>
@@ -237,15 +237,6 @@
       <!-- ==================================================== -->
       <!--     Javadoc generation                               -->
       <!-- ==================================================== -->
-      <!-- NOTES:
-           * Do NOT enable deep copying of "doc-files" directories ("-docfilessubdirs" option),
-             because it has the unwanted side effect to copy .svn directories as well.
-
-           * In theory, the <sourcepath/> and <subpackages/> elements below are not needed.
-             However our experience show that without them, javadoc fails to link expressions
-             like {@link org.opengis.somepackage}, i.e. a link to a package (not a class or a
-             method, which still okay). See http://jira.codehaus.org/browse/MJAVADOC-28 -->
-
       <!-- NOTE: This plugin configuration is usually performed in the <reporting> section instead of <build>.  -->
       <!-- For now we let it in <build> in order to exclude this javadoc from the web site generation. We will  -->
       <!-- continue to use the Ant script, at least until Apache fixes some remaining bugs like <group> not     -->
@@ -326,6 +317,11 @@
   <!--     Deployment to public servers                     -->
   <!-- ==================================================== -->
   <distributionManagement>
+    <!--repository>
+      <id>geotools-fr</id>
+      <name>Geotools release repository</name>
+      <url>scpexe://maven.geotools.fr/var/www/geotools.fr/maven/repository</url>
+    </repository-->
     <repository>
       <id>refractions</id>
       <name>Refractions Research - Maven 2 Repository</name>

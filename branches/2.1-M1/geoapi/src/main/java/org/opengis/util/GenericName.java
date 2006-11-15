@@ -97,7 +97,7 @@ public interface GenericName extends Comparable {
      * Returns a view of this object as a local name. This is always the last element in the
      * sequence of {@linkplain #getParsedNames parsed names}.
      *
-     * @deprecated Renamed as {@link #name()}.
+     * @deprecated Renammed as {@link #name()}.
      */
     @Extension
     LocalName asLocalName();
@@ -137,7 +137,7 @@ public interface GenericName extends Comparable {
      */
     @Extension
     GenericName toFullyQualifiedName();
-
+    
     /**
      * Returns this name expanded with the specified scope. One may represent this operation
      * as a concatenation of the specified {@code name} with {@code this}. In pseudo-code,
@@ -156,7 +156,7 @@ public interface GenericName extends Comparable {
      * @since GeoAPI 2.1
      */
     @UML(identifier="push", obligation=MANDATORY, specification=ISO_19103)
-    ScopedName push(GenericName name);
+    ScopedName push(GenericName scope);
 
     /**
      * Returns a string representation of this generic name. This string representation
