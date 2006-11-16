@@ -11,6 +11,7 @@
 package org.opengis.coverage.grid;
 
 // OpenGIS direct dependencies
+import org.opengis.referencing.datum.PixelInCell;
 import org.opengis.referencing.operation.MathTransform;
 
 // Annotations
@@ -39,7 +40,6 @@ import static org.opengis.annotation.Specification.*;
  * @version <A HREF="http://www.opengis.org/docs/01-004.pdf">Grid Coverage specification 1.0</A>
  * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 1.0
- * @deprecated In favor of migrating to ISO 19123 definition for Coverage.
  */
 @UML(identifier="CV_GridGeometry", specification=OGC_01004)
 public interface GridGeometry {
@@ -55,16 +55,23 @@ public interface GridGeometry {
     GridRange getGridRange();
 
     /**
-     * The conversion allows for the transformations from grid coordinates to real
-     * world earth coordinates. The transform is often an affine transformation. The
-     * coordinate reference system of the real world coordinates is given by the
-     * {@link org.opengis.coverage.Coverage#getCoordinateReferenceSystem} method.
-     * If no conversion is given, this attribute will be {@code null}.
+     * Returns the conversion from grid coordinates to real world earth coordinates.
+     * The transform is often an affine transform. The coordinate reference system
+     * of the real world coordinates is given by the
+     * {@link org.opengis.coverage.Coverage#getCoordinateReferenceSystem} method
+     * and maps to {@linkplain PixelInCell#CELL_CENTER pixel center}.
      *
      * @return The conversion from grid coordinates to
      *         {@linkplain org.opengis.coverage.Coverage#getCoordinateReferenceSystem
      *         real world earth coordinates}.
+     *
+     * @since GeoAPI 2.1
      */
     @UML(identifier="gridToCoordinateSystem", obligation=MANDATORY, specification=OGC_01004)
+    MathTransform getGridToCRS();
+
+    /**
+     * @deprecated Renamed as {@link #getGridToCRS()}.
+     */
     MathTransform getGridToCoordinateSystem();
 }
