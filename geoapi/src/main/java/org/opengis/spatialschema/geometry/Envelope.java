@@ -34,6 +34,14 @@ import static org.opengis.annotation.Specification.*;
 @UML(identifier="GM_Envelope", specification=ISO_19107)
 public interface Envelope {
     /**
+     * Returns the envelope coordinate reference system, or {@code null} if unknown.
+     *
+     * @since GeoAPI 2.1
+     */
+    @Extension
+    CoordinateReferenceSystem getCoordinateReferenceSystem();
+
+    /**
      * The length of coordinate sequence (the number of entries) in this envelope.
      *
      * @return The dimensionality of this envelope.
