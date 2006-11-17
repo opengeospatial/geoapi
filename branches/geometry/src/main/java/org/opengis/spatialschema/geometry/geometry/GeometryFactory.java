@@ -21,6 +21,7 @@ import org.opengis.spatialschema.geometry.Envelope;
 import org.opengis.spatialschema.geometry.MismatchedDimensionException;
 import org.opengis.spatialschema.geometry.MismatchedReferenceSystemException;
 import org.opengis.spatialschema.geometry.aggregate.MultiPrimitive;
+import org.opengis.spatialschema.geometry.geometry.Position;
 import org.opengis.spatialschema.geometry.primitive.Ring;
 import org.opengis.spatialschema.geometry.primitive.Surface;
 import org.opengis.spatialschema.geometry.primitive.SurfaceBoundary;
@@ -397,4 +398,14 @@ public interface GeometryFactory {
      */
     @Deprecated
     MultiPrimitive createMultiPrimitive();
+    
+	// This method was added to GeoAPI by Sanjay, because no factory contained a constructor method for Position´s yet, but do contain methods which require Positions as parameter. -> Inconsistent state
+	/**
+	 * Constructs a Position from a DirectPosition by copying the coordinate values of the DirectPosition. There will be no further reference to the DirectPosition instance.
+	 * 
+	 * @param DirectPosition a direct position
+	 * @return Position the position which defines the coordinates for the direct position
+	 */
+    public Position createPosition(DirectPosition dp);
+    
 }
