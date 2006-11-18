@@ -54,27 +54,28 @@ public interface FilterVisitor {
 	 * @param extraData Value object provided to visitor
 	 * @return subclass defined
 	 */
-	Object visitNullFilter(                              Object extraData);
+	Object visitNullFilter(Object extraData);
 	
 	/**
-	 * Visit Filter.ALL (often used during data structure transformations).
+	 * Visit {@link Filter#EXCLUDE} (often used during data structure transformations).
 	 * 
-	 * @param filter Filter.ALL
-	 * @param extraData
+	 * @param filter {@link Filter#EXCLUDE}.
+	 * @param extraData Value object provided to visitor
 	 * @return subclass supplied
 	 */
-	Object visit( ExcludeFilter filter,                     Object extraData);
+	Object visit(ExcludeFilter filter, Object extraData);
 	
 	/**
-	 * Visit Filter.NONE (often used during data structure transformations)
-	 * @param filter Filter.NONE
-	 * @param extraData
+	 * Visit {@link Filter#INCLUDE} (often used during data structure transformations).
+     *
+	 * @param filter {@link Filter#INCLUDE}.
+	 * @param extraData Value object provided to visitor
 	 * @return subclass supplied
 	 */
-	Object visit( IncludeFilter filter,                    Object extraData);
+	Object visit(IncludeFilter filter, Object extraData);
 	
     Object visit(And filter,                            Object extraData);
-    Object visit(Id filter,                      Object extraData);
+    Object visit(Id filter,                             Object extraData);
     Object visit(Not filter,                            Object extraData);
     Object visit(Or filter,                             Object extraData);
     Object visit(PropertyIsBetween filter,              Object extraData);
