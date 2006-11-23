@@ -24,7 +24,6 @@ import org.opengis.filter.spatial.Intersects;
 import org.opengis.filter.spatial.Overlaps;
 import org.opengis.filter.spatial.Touches;
 import org.opengis.filter.spatial.Within;
-import org.opengis.spatialschema.geometry.Geometry;
 
 
 /**
@@ -60,7 +59,7 @@ public interface FilterFactory2 extends FilterFactory {
     
 
     /** Check if all of a geometry is more distant than the given distance from this object's geometry. */
-    Beyond      beyond( Expression geometry1, Geometry geometry2, double distance, String units);
+    Beyond      beyond( Expression geometry1, Expression geometry2, double distance, String units);
 
     /** Checks if the the first geometric operand contains the second. */
     Contains    contains(Expression geometry1, Expression geometry2);
@@ -89,5 +88,5 @@ public interface FilterFactory2 extends FilterFactory {
     Touches     touches(Expression propertyName1, Expression geometry2);
 
     /** Checks if the feature's geometry is completely contained by the specified constant geometry. */
-    Within      within(Expression geometry1, Geometry geometry2);
+    Within      within(Expression geometry1, Expression geometry2);
 }
