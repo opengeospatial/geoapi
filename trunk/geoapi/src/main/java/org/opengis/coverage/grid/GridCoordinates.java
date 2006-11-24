@@ -10,12 +10,13 @@
  *************************************************************************************************/
 package org.opengis.coverage.grid;
 
+// Direct dependencies
+import org.opengis.util.Cloneable;
+import org.opengis.spatialschema.geometry.DirectPosition;
+
 // Annotations
 import org.opengis.annotation.UML;
 import org.opengis.annotation.Extension;
-import org.opengis.spatialschema.geometry.DirectPosition;
-import org.opengis.util.Cloneable;
-
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
 
@@ -48,7 +49,7 @@ public interface GridCoordinates extends Cloneable {
      *         back in this {@code GridCoordinates} object.
      */
     @UML(identifier="coordValues", obligation=MANDATORY, specification=ISO_19123)
-	int[] getCoordinateValues();
+    int[] getCoordinateValues();
 
     /**
      * Returns the coordinate value at the specified dimension. This method is equivalent to
@@ -66,5 +67,5 @@ public interface GridCoordinates extends Cloneable {
      * @throws UnsupportedOperationException if this grid coordinates is not modifiable.
      */
     @Extension
-    int setCoordinateValue(int i, int value) throws UnsupportedOperationException;
+    void setCoordinateValue(int i, int value) throws UnsupportedOperationException;
 }
