@@ -11,6 +11,7 @@
 package org.opengis.spatialschema.geometry.complex;
 
 // J2SE direct dependencies
+import java.util.Collection;
 import java.util.Set;
 
 // OpenGIS direct dependencies
@@ -84,7 +85,7 @@ public interface Complex extends Geometry {
      * @return The set of primitives for this complex.
      */
     @UML(identifier="element", obligation=MANDATORY, specification=ISO_19107)
-    public Set<Primitive> getElements();
+    public Collection<? extends Primitive> getElements();
 
 //    public org.opengis.spatialschema.topology.complex.TP_Complex topology[];
 }
