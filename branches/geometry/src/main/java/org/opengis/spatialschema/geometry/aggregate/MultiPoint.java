@@ -12,6 +12,14 @@
  *************************************************************************************************/
 package org.opengis.spatialschema.geometry.aggregate;
 
+import java.util.Set;
+
+import org.opengis.annotation.UML;
+import org.opengis.spatialschema.geometry.primitive.Point;
+
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
+
 
 /**
  * {@linkplain MultiPoint} is an aggregate class containing only instances of {@linkplain Point}.

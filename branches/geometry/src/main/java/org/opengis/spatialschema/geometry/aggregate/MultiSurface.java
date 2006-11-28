@@ -4,6 +4,9 @@ package org.opengis.spatialschema.geometry.aggregate;
 
 import java.util.Set;
 
+import org.opengis.annotation.UML;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
 import org.opengis.spatialschema.geometry.DirectPosition;
 import org.opengis.spatialschema.geometry.primitive.OrientableSurface;
 
