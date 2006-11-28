@@ -2,6 +2,9 @@
 
 package org.opengis.spatialschema.geometry.complex;
 
+import org.opengis.annotation.UML;
+import static org.opengis.annotation.Specification.*;
+
 /**
  * A separate class for composite point, {@linkplain CompositePoint} is included for completeness.
  * It is a {@linkplain Complex} containing one and only one {@linkplain Point}.
