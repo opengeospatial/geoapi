@@ -76,11 +76,10 @@ public interface Coverage {
 	/**
      * Returns the coordinate reference system to which the objects in its domain are referenced.
      * This is the CRS used when accessing a coverage or grid coverage with the {@code evaluate(...)}
-     * methods. It is also the coordinate reference system of the coordinates used with the math
-     * transform (see {@link org.opengis.coverage.grid.GridGeometry#getGridToCoordinateSystem
-     * gridToCoordinateSystem}).
+     * methods. This coordinate reference system is usually different than coordinate system of the
+     * grid. It is the target coordinate reference system of the
+     * {@link org.opengis.coverage.grid.GridGeometry#getGridToCRS gridToCRS} math transform.
      * <p>
-     * This coordinate reference system is usually different than coordinate system of the grid.
      * Grid coverage can be accessed (re-projected) with new coordinate reference system with the
      * {@link org.opengis.coverage.processing.GridCoverageProcessor} component. In this case, a new
      * instance of a grid coverage is created.
@@ -107,17 +106,10 @@ public interface Coverage {
      *
      * @return The bounding box for the coverage domain in coordinate system coordinates.
      *
-     * @deprecated No replacement.
+     * @todo We need to explain the relationship with {@link #getDomainExtents}, if any.
      */
     @UML(identifier="envelope", obligation=MANDATORY, specification=OGC_01004)
     Envelope getEnvelope();
-
-    /**
-     * Returns the set of domain objects in the domain.
-     * The collection must contains at least one element.
-     */
-    @UML(identifier="domainElement", obligation=MANDATORY, specification=ISO_19123)
-    Set<? extends DomainObject> getDomainElements();
 
     /**
      * Returns the extent of the domain of the coverage. Extents may be specified in space,
@@ -125,6 +117,13 @@ public interface Coverage {
      */
     @UML(identifier="domainExtent", obligation=MANDATORY, specification=ISO_19123)
     Set<Extent> getDomainExtents();
+
+    /**
+     * Returns the set of domain objects in the domain.
+     * The collection must contains at least one element.
+     */
+    @UML(identifier="domainElement", obligation=MANDATORY, specification=ISO_19123)
+    Set<? extends DomainObject> getDomainElements();
 
     /**
      * Returns the set of attribute values in the range. The range of a coverage shall be a
@@ -233,6 +232,8 @@ public interface Coverage {
      * according to the {@linkplain #getCommonPointRule common point rule}.
      * <P>
      * <B>NOTE:</B> Normally, the operation will return a single record of feature attribute values.
+     *
+     * @todo According javadoc, the {@code list} parameter should be of type {@link Collection}.
      */
     @UML(identifier="evaluate", obligation=MANDATORY, specification=ISO_19123)
     Set<Record> evaluate(DirectPosition p, Set<String> list);
@@ -245,15 +246,17 @@ public interface Coverage {
      * <p>
      * The coordinate reference system of the point is the same as the grid coverage coordinate
      * reference system (specified by the {@link #getCoordinateReferenceSystem} method).
+     * <p>
+     * <strong>WARNING:</strong> This method is inherited from the legacy OGC 01-004
+     * specification and may be deprecated in a future version. We are for more experience
+     * and feedbacks on the value of this method.
      *
      * @param point Point at which to find the grid values.
      * @return The value vector for a given point in the coverage.
      * @throws PointOutsideCoverageException if the point is outside the coverage
      *         {@linkplain #getEnvelope envelope}.
-     * @throws CannotEvaluateException If the point can't be evaluate for some other reason.
+     * @throws CannotEvaluateException If the point can't be evaluated for some other reason.
      * @see Raster#getDataElements(int, int, Object)
-     *
-     * @deprecated Use one of the more specific {@code evaluate(...)} flavors instead.
      */
     @UML(identifier="evaluate", obligation=MANDATORY, specification=OGC_01004)
     Object evaluate(DirectPosition point) throws CannotEvaluateException;
@@ -275,7 +278,7 @@ public interface Coverage {
      *         Otherwise, a new array is allocated and returned.
      * @throws PointOutsideCoverageException if the point is outside the coverage
      *         {@linkplain #getEnvelope envelope}.
-     * @throws CannotEvaluateException if the point can't be evaluate for some othe reason.
+     * @throws CannotEvaluateException if the point can't be evaluated for some othe reason.
      * @throws ArrayIndexOutOfBoundsException if the {@code destination} array is not null
      *         and too small to hold the output.
      */
@@ -300,7 +303,7 @@ public interface Coverage {
      *         Otherwise, a new array is allocated and returned.
      * @throws PointOutsideCoverageException if the point is outside the coverage
      *         {@linkplain #getEnvelope envelope}.
-     * @throws CannotEvaluateException if the point can't be evaluate for some othe reason.
+     * @throws CannotEvaluateException if the point can't be evaluated for some othe reason.
      * @throws ArrayIndexOutOfBoundsException if the {@code destination} array is not null
      *         and too small to hold the output.
      */
@@ -325,7 +328,7 @@ public interface Coverage {
      *         Otherwise, a new array is allocated and returned.
      * @throws PointOutsideCoverageException if the point is outside the coverage
      *         {@linkplain #getEnvelope envelope}.
-     * @throws CannotEvaluateException if the point can't be evaluate for some othe reason.
+     * @throws CannotEvaluateException if the point can't be evaluated for some othe reason.
      * @throws ArrayIndexOutOfBoundsException if the {@code destination} array is not null
      *         and too small to hold the output.
      *
@@ -352,7 +355,7 @@ public interface Coverage {
      *         Otherwise, a new array is allocated and returned.
      * @throws PointOutsideCoverageException if the point is outside the coverage
      *         {@linkplain #getEnvelope envelope}.
-     * @throws CannotEvaluateException if the point can't be evaluate for some othe reason.
+     * @throws CannotEvaluateException if the point can't be evaluated for some othe reason.
      * @throws ArrayIndexOutOfBoundsException if the {@code destination} array is not null
      *         and too small to hold the output.
      *
@@ -378,7 +381,7 @@ public interface Coverage {
      *         Otherwise, a new array is allocated and returned.
      * @throws PointOutsideCoverageException if the point is outside the coverage
      *         {@linkplain #getEnvelope envelope}.
-     * @throws CannotEvaluateException If the point can't be evaluate for some othe reason.
+     * @throws CannotEvaluateException If the point can't be evaluated for some othe reason.
      * @throws ArrayIndexOutOfBoundsException if the {@code destination} array is not null
      *         and too small to hold the output.
      *
@@ -412,7 +415,7 @@ public interface Coverage {
      * The number of dimensions of the coverage is the number of entries in the
      * list of dimension names.
      *
-     * @deprecated No replacement.
+     * @deprecated This information can be obtained from the underlying coordinate system.
      */
     @UML(identifier="dimensionNames", obligation=MANDATORY, specification=OGC_01004)
     InternationalString[] getDimensionNames();
@@ -420,10 +423,12 @@ public interface Coverage {
     /**
      * The number of sample dimensions in the coverage.
      * For grid coverages, a sample dimension is a band.
+     * <p>
+     * <strong>WARNING:</strong> This method is inherited from the legacy OGC 01-004
+     * specification and may be deprecated in a future version. We are for more experience
+     * and feedbacks on the value of this method.
      *
      * @return The number of sample dimensions in the coverage.
-     *
-     * @deprecated No replacement.
      */
     @UML(identifier="numSampleDimensions", obligation=MANDATORY, specification=OGC_01004)
     int getNumSampleDimensions();
@@ -434,13 +439,15 @@ public interface Coverage {
      * include such things as description, data type of the value (bit, byte, integer...),
      * the no data values, minimum and maximum values and a color table if one is
      * associated with the dimension. A coverage must have at least one sample dimension.
+     * <p>
+     * <strong>WARNING:</strong> This method is inherited from the legacy OGC 01-004
+     * specification and may be deprecated in a future version. We are for more experience
+     * and feedbacks on the value of this method.
      *
      * @param  index Index for sample dimension to retrieve. Indices are numbered 0 to
      *         (<var>{@linkplain #getNumSampleDimensions n}</var>-1).
      * @return Sample dimension information for the coverage.
      * @throws IndexOutOfBoundsException if {@code index} is out of bounds.
-     *
-     * @deprecated No replacement.
      */
     @UML(identifier="getSampleDimension", obligation=MANDATORY, specification=OGC_01004)
     SampleDimension getSampleDimension(int index) throws IndexOutOfBoundsException;
@@ -449,14 +456,16 @@ public interface Coverage {
      * Returns the sources data for a coverage.
      * This is intended to allow applications to establish what {@code Coverage}s
      * will be affected when others are updated, as well as to trace back to the "raw data".
-     *
+     * <p>
      * This implementation specification does not include interfaces for creating
      * collections of coverages therefore the list size will usually be one indicating
      * an adapted grid coverage, or zero indicating a raw grid coverage.
+     * <p>
+     * <strong>WARNING:</strong> This method is inherited from the legacy OGC 01-004
+     * specification and may be deprecated in a future version. We are for more experience
+     * and feedbacks on the value of this method.
      * 
      * @return The list of sources data for a coverage.
-     *
-     * @deprecated No replacement.
      */
     @UML(identifier="getSource, numSource", obligation=MANDATORY, specification=OGC_01004)
     List<? extends Coverage> getSources();
