@@ -88,9 +88,12 @@ public interface FilterFactory {
     PropertyIsBetween between(Expression expr, Expression lower, Expression upper);
 
     /** Compares that two sub-expressions are equal to each other.
-     * @todo should be equalTo (so equals can refer to geometry)
+     * @todo should be equal (so equals can refer to geometry)
      */
     PropertyIsEqualTo equals(Expression expr1, Expression expr2);
+    
+    /** Compares that two sub-expressions are equal to eacher other */
+    PropertyIsEqualTo equal(Expression expr1, Expression expr2, boolean matchCase);
     
     /** Checks that the first sub-expression is not equal to the second subexpression. */
     PropertyIsNotEqualTo notEqual(Expression expr1, Expression expr2);
