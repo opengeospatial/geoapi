@@ -23,6 +23,7 @@ import org.opengis.filter.expression.Multiply;
 import org.opengis.filter.expression.PropertyName;
 import org.opengis.filter.expression.Subtract;
 import org.opengis.filter.identity.FeatureId;
+import org.opengis.filter.identity.GmlObjectId;
 import org.opengis.filter.identity.Identifier;
 import org.opengis.filter.sort.SortBy;
 import org.opengis.filter.sort.SortOrder;
@@ -56,6 +57,9 @@ public interface FilterFactory {
 ////////////////////////////////////////////////////////////////////////////////
 	/** Creates a new feautre id from a string */
 	FeatureId featureId( String id );
+	
+	/** Creates a new gml object id from a string */
+	GmlObjectId gmlObjectId( String id );
 	
 ////////////////////////////////////////////////////////////////////////////////
 //
@@ -96,7 +100,7 @@ public interface FilterFactory {
     PropertyIsEqualTo equal(Expression expr1, Expression expr2, boolean matchCase);
     
     /** Checks that the first sub-expression is not equal to the second subexpression. */
-    PropertyIsNotEqualTo notEqual(Expression expr1, Expression expr2);
+    PropertyIsNotEqualTo notEqual(Expression expr1, Expression expr2, boolean matchCase);
     
     /** Checks that the first sub-expression is greater than the second subexpression. */
     PropertyIsGreaterThan greater(Expression expr1, Expression expr2);
