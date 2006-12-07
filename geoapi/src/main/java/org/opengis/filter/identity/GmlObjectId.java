@@ -26,7 +26,7 @@ import org.opengis.feature.Feature;
  * @since GeoAPI 2.0
  */
 @XmlElement("GMLObjectId")
-public interface GmlObjectId extends Identifier<String,Feature> {
+public interface GmlObjectId<O> extends Identifier<String,O> {
     
 	/**
 	 * The identifier value, which is a string.
@@ -41,6 +41,5 @@ public interface GmlObjectId extends Identifier<String,Feature> {
      * 
      * @return <code>true</code> if a match, otherwise <code>false</code>
      */
-    boolean matches( Object feature );
-    
+    public boolean matches(O object);
 }
