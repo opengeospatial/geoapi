@@ -18,10 +18,10 @@ Pending proposals for GeoAPI
    directory need to be submitted to OGC before to be included in a dot release (e.g. 2.1.0
    after 2.0.0).
 
-   The following example show the difference applied in the pending directory for the referencing
-   packages. Note that you don't need to local copy (svn checkout) in order to run this command.
+   The following example show the difference applied in the pending directory compared to the
+   2.0 branch. Note that you don't need to local copy (svn checkout) in order to run this command.
 
---------------------------------------------------------------------------------------------------------
-svn diff https://svn.sourceforge.net/svnroot/geoapi/trunk/stable/src/main/java/org/opengis/referencing/
-         https://svn.sourceforge.net/svnroot/geoapi/trunk/pending/src/main/java/org/opengis/referencing/
---------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------
+svn diff https://svn.sourceforge.net/svnroot/geoapi/branches/2.0.x/geoapi/src/main/
+         https://svn.sourceforge.net/svnroot/geoapi/trunk/geoapi/src/main/
+-----------------------------------------------------------------------------------
