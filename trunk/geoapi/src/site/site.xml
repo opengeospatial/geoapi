@@ -28,7 +28,7 @@
     <!--     Menus to appears on the left side of each page   -->
     <!-- ==================================================== -->
     <menu name="Pending">
-      <item name="Javadoc"              href="http://geoapi.sourceforge.net/pending/javadoc/index.html"/>
+      <item name="Javadoc"              href="http://geoapi.sourceforge.net/pending/site/apidocs/index.html"/>
       <item name="News (Wiki pages)"    href="http://docs.codehaus.org/display/GEO/Home"/>
     </menu>
 
