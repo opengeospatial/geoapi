@@ -2,7 +2,7 @@
  **
  ** $Id$
  **
- ** $URL$
+ ** $Source: /cvsroot/geoapi/src/org/opengis/metadata/distribution/Medium.java,v $
  **
  ** Copyright (C) 2004-2005 Open GIS Consortium, Inc.
  ** All Rights Reserved. http://www.opengis.org/legal/
@@ -15,6 +15,7 @@ import java.util.Collection;
 import javax.units.Unit;
 
 // OpenGIS direct dependencies
+import org.opengis.metadata.MetadataEntity;
 import org.opengis.util.InternationalString;
 
 // Annotations
@@ -31,7 +32,7 @@ import static org.opengis.annotation.Specification.*;
  * @since GeoAPI 2.0
  */
 @UML(identifier="MD_Medium", specification=ISO_19115)
-public interface Medium {
+public interface Medium extends MetadataEntity{
     /**
      * Name of the medium on which the resource can be received.
      */

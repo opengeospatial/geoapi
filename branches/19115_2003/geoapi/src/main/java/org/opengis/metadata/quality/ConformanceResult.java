@@ -2,7 +2,7 @@
  **
  ** $Id$
  **
- ** $URL$
+ ** $Source: /cvsroot/geoapi/src/org/opengis/metadata/quality/ConformanceResult.java,v $
  **
  ** Copyright (C) 2004-2005 Open GIS Consortium, Inc.
  ** All Rights Reserved. http://www.opengis.org/legal/
@@ -44,6 +44,13 @@ public interface ConformanceResult extends Result {
 
     /**
      * Indication of the conformance result.
+     */
+    @UML(identifier="pass", obligation=MANDATORY, specification=ISO_19115)
+    boolean isPass();
+
+    /**
+     * Indication of the conformance result.
+     * @deprecated use {@link #isPass()} instead
      */
     @UML(identifier="pass", obligation=MANDATORY, specification=ISO_19115)
     boolean pass();

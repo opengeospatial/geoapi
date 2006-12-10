@@ -2,7 +2,7 @@
  **
  ** $Id$
  **
- ** $URL$
+ ** $Source: /cvsroot/geoapi/src/org/opengis/metadata/FeatureTypeList.java,v $
  **
  ** Copyright (C) 2004-2005 Open GIS Consortium, Inc.
  ** All Rights Reserved. http://www.opengis.org/legal/
@@ -24,7 +24,7 @@ import static org.opengis.annotation.Specification.*;
  * @since GeoAPI 2.0
  */
 @UML(identifier="MD_FeatureTypeList", specification=ISO_19115)
-public interface FeatureTypeList {
+public interface FeatureTypeList extends MetadataEntity{
     /**
      * Instance of a type defined in the spatial schema.
      */

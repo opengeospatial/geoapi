@@ -2,7 +2,7 @@
  **
  ** $Id$
  **
- ** $URL$
+ ** $Source: /cvsroot/geoapi/src/org/opengis/metadata/extent/BoundingPolygon.java,v $
  **
  ** Copyright (C) 2004-2005 Open GIS Consortium, Inc.
  ** All Rights Reserved. http://www.opengis.org/legal/

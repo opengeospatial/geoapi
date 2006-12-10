@@ -2,7 +2,7 @@
  **
  ** $Id$
  **
- ** $URL$
+ ** $Source: /cvsroot/geoapi/src/org/opengis/metadata/extent/VerticalExtent.java,v $
  **
  ** Copyright (C) 2004-2005 Open GIS Consortium, Inc.
  ** All Rights Reserved. http://www.opengis.org/legal/
@@ -14,6 +14,7 @@ package org.opengis.metadata.extent;
 import javax.units.Unit;
 
 // OpenGIS direct dependencies
+import org.opengis.metadata.MetadataEntity;
 import org.opengis.referencing.datum.VerticalDatum;
 
 // Annotations
@@ -30,7 +31,7 @@ import static org.opengis.annotation.Specification.*;
  * @since GeoAPI 1.0
  */
 @UML(identifier="EX_VerticalExtent", specification=ISO_19115)
-public interface VerticalExtent {
+public interface VerticalExtent extends MetadataEntity {
     /**
      * Returns the lowest vertical extent contained in the dataset.
      */

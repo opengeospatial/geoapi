@@ -2,7 +2,7 @@
  **
  ** $Id$
  **
- ** $URL$
+ ** $Source: /cvsroot/geoapi/src/org/opengis/metadata/lineage/Source.java,v $
  **
  ** Copyright (C) 2004-2005 Open GIS Consortium, Inc.
  ** All Rights Reserved. http://www.opengis.org/legal/
@@ -14,6 +14,7 @@ package org.opengis.metadata.lineage;
 import java.util.Collection;
 
 // OpenGIS direct dependencies
+import org.opengis.metadata.MetadataEntity;
 import org.opengis.metadata.extent.Extent;
 import org.opengis.metadata.citation.Citation;
 import org.opengis.referencing.ReferenceSystem;
@@ -33,7 +34,7 @@ import static org.opengis.annotation.Specification.*;
  * @since GeoAPI 2.0
  */
 @UML(identifier="LI_Source", specification=ISO_19115)
-public interface Source {
+public interface Source extends MetadataEntity{
     /**
      * Detailed description of the level of the source data.
      */
@@ -46,7 +47,7 @@ public interface Source {
      * @unitof RepresentativeFraction
      */
     @UML(identifier="scaleDenominator", obligation=OPTIONAL, specification=ISO_19115)
-    long getScaleDenominator();
+    Long getScaleDenominator();
 
     /**
      * Spatial reference system used by the source data.

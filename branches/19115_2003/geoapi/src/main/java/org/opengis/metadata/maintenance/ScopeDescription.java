@@ -2,7 +2,7 @@
  **
  ** $Id$
  **
- ** $URL$
+ ** $Source: /cvsroot/geoapi/src/org/opengis/metadata/maintenance/ScopeDescription.java,v $
  **
  ** Copyright (C) 2004-2005 Open GIS Consortium, Inc.
  ** All Rights Reserved. http://www.opengis.org/legal/
@@ -15,6 +15,9 @@ import java.util.Set;
 
 // Annotations
 import org.opengis.annotation.UML;
+import org.opengis.metadata.MetadataEntity;
+import org.opengis.util.InternationalString;
+
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
 
@@ -30,7 +33,7 @@ import static org.opengis.annotation.Specification.*;
  *       {@code Feature} and {@code FeatureType}.
  */
 @UML(identifier="MD_ScopeDescription", specification=ISO_19115)
-public interface ScopeDescription {
+public interface ScopeDescription extends MetadataEntity{
     /**
      * Attributes to which the information applies.
      */
@@ -44,8 +47,27 @@ public interface ScopeDescription {
     public Set getFeatures();
 
     /**
-     * Reature instances to which the information applies.
+     * Feature instances to which the information applies.
      */
     @UML(identifier="featureInstances", obligation=CONDITIONAL, specification=ISO_19115)
     public Set getFeatureInstances();
+
+    /**
+     * Attribute instances to which the information applies.
+     */
+    @UML(identifier="attributeInstances", obligation=CONDITIONAL, specification=ISO_19115)
+    public Set getAttributeInstances();
+    
+    /**
+     * Dataset to which the information applies.
+     */
+    @UML(identifier="attributeInstances", obligation=CONDITIONAL, specification=ISO_19115)
+    public InternationalString getDataSet();
+
+    /**
+     * class of information that does not fall into the other categories to 
+     * which the information applies.
+     */
+    @UML(identifier="other", obligation=CONDITIONAL, specification=ISO_19115)
+    public InternationalString getOther();
 }

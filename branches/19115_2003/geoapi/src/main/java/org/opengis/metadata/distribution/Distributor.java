@@ -2,7 +2,7 @@
  **
  ** $Id$
  **
- ** $URL$
+ ** $Source: /cvsroot/geoapi/src/org/opengis/metadata/distribution/Distributor.java,v $
  **
  ** Copyright (C) 2004-2005 Open GIS Consortium, Inc.
  ** All Rights Reserved. http://www.opengis.org/legal/
@@ -14,6 +14,7 @@ package org.opengis.metadata.distribution;
 import java.util.Collection;
 
 // OpenGIS direct dependencies
+import org.opengis.metadata.MetadataEntity;
 import org.opengis.metadata.citation.ResponsibleParty;
 
 // Annotations
@@ -30,7 +31,7 @@ import static org.opengis.annotation.Specification.*;
  * @since GeoAPI 2.0
  */
 @UML(identifier="MD_Distributor", specification=ISO_19115)
-public interface Distributor {
+public interface Distributor extends MetadataEntity{
     /**
      * Party from whom the resource may be obtained. This list need not be exhaustive.
      */

@@ -2,7 +2,7 @@
  **
  ** $Id$
  **
- ** $URL$
+ ** $Source: /cvsroot/geoapi/src/org/opengis/metadata/citation/Address.java,v $
  **
  ** Copyright (C) 2004-2005 Open GIS Consortium, Inc.
  ** All Rights Reserved. http://www.opengis.org/legal/
@@ -14,6 +14,7 @@ package org.opengis.metadata.citation;
 import java.util.Collection;
 
 // OpenGIS direct dependencies
+import org.opengis.metadata.MetadataEntity;
 import org.opengis.util.InternationalString;
 
 // Annotations
@@ -30,7 +31,7 @@ import static org.opengis.annotation.Specification.*;
  * @since GeoAPI 1.0
  */
 @UML(identifier="CI_Address", specification=ISO_19115)
-public interface Address {
+public interface Address extends MetadataEntity{
     /**
      * Address line for the location (as described in ISO 11180, Annex A).
      * Returns an empty array if none.

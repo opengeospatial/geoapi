@@ -31,7 +31,6 @@ import static org.opengis.annotation.Specification.*;
  * @see Coverage#evaluate(DirectPosition, byte[])
  * @see Coverage#evaluate(DirectPosition, double[])
  *
- * @deprecated In favor of {@linkplain CoverageDomainException}.
  * @todo  {@linkplain CoverageDomainException} seems to duplicate the role
  * 		  of this class. Evaluate which one is to be used, especially since
  * 		  {@linkplain CoverageDomainException} is not explicitly defined in ISO 19123.

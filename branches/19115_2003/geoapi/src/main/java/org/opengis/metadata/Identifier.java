@@ -2,7 +2,7 @@
  **
  ** $Id$
  **
- ** $URL$
+ ** $Source: /cvsroot/geoapi/src/org/opengis/metadata/Identifier.java,v $
  **
  ** Copyright (C) 2004-2005 Open GIS Consortium, Inc.
  ** All Rights Reserved. http://www.opengis.org/legal/
@@ -11,13 +11,13 @@
 package org.opengis.metadata;
 
 // OpenGIS direct dependencies
-import org.opengis.metadata.citation.Citation;
+import static org.opengis.annotation.Obligation.MANDATORY;
+import static org.opengis.annotation.Obligation.OPTIONAL;
+import static org.opengis.annotation.Specification.ISO_19115;
 
-// Annotations
-import org.opengis.annotation.UML;
 import org.opengis.annotation.Extension;
-import static org.opengis.annotation.Obligation.*;
-import static org.opengis.annotation.Specification.*;
+import org.opengis.annotation.UML;
+import org.opengis.metadata.citation.Citation;
 
 
 /**
@@ -28,7 +28,7 @@ import static org.opengis.annotation.Specification.*;
  * @since GeoAPI 2.0
  */
 @UML(identifier="MD_Identifier", specification=ISO_19115)
-public interface Identifier {
+public interface Identifier extends MetadataEntity{
     /**
      * Key for the <code>{@value}</code> property to be given to the
      * {@linkplain org.opengis.referencing.ObjectFactory CRS factory} <code>createFoo(&hellip;)</code>
@@ -54,7 +54,7 @@ public interface Identifier {
      *
      * @see #getVersion
      */
-    String VERSION_KEY = "version";
+     String VERSION_KEY = "version";
 
     /**
      * Alphanumeric value identifying an instance in the namespace.
@@ -68,6 +68,7 @@ public interface Identifier {
      */
     @UML(identifier="authority", obligation=OPTIONAL, specification=ISO_19115)
     Citation getAuthority();
+
 
     /**
      * Identifier of the version of the associated code, as specified by the code authority.

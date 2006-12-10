@@ -30,11 +30,21 @@ import static org.opengis.annotation.Specification.*;
  * For {@linkplain org.opengis.coverage.grid.GridCoverage grid coverages},
  * the sample dimension refers to an individual band.
  *
+ * <P>&nbsp;</P>
+ * <TABLE WIDTH="80%" ALIGN="center" CELLPADDING="18" BORDER="4" BGCOLOR="#FFE0B0">
+ *   <TR><TD>
+ *     <P align="justify"><STRONG>WARNING: THIS CLASS WILL CHANGE.</STRONG> Current API is derived from OGC
+ *     <A HREF="http://www.opengis.org/docs/01-004.pdf">Grid Coverages Implementation specification 1.0</A>.
+ *     We plan to replace it by new interfaces derived from ISO 19123 (<CITE>Schema for coverage geometry
+ *     and functions</CITE>). Current interfaces should be considered as legacy and are included in this
+ *     distribution only because they were part of GeoAPI 1.0 release. We will try to preserve as much 
+ *     compatibility as possible, but no migration plan has been determined yet.</P>
+ *   </TD></TR>
+ * </TABLE>
+ *
  * @version <A HREF="http://www.opengis.org/docs/01-004.pdf">Grid Coverage specification 1.0</A>
  * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 1.0
- *
- * @deprecated No replacement.
  */
 @UML(identifier="CV_SampleDimension", specification=OGC_01004)
 public interface SampleDimension {
@@ -79,6 +89,8 @@ public interface SampleDimension {
      * value is {@link ColorInterpretation#UNDEFINED UNDEFINED}.
      *
      * @return The color interpretation of the sample dimension.
+     *
+     * @deprecated No replacement.
      */
     @UML(identifier="colorInterpretation", obligation=MANDATORY, specification=OGC_01004)
     ColorInterpretation getColorInterpretation();
@@ -91,6 +103,8 @@ public interface SampleDimension {
      * A palette entry type can be Gray, RGB, CMYK or HLS.
      *
      * @return The type of color palette entry for sample dimensions which have a palette.
+     *
+     * @deprecated No replacement.
      */
     @UML(identifier="paletteInterpretation", obligation=MANDATORY, specification=OGC_01004)
     PaletteInterpretation getPaletteInterpretation();
@@ -106,6 +120,8 @@ public interface SampleDimension {
      * @see #getPaletteInterpretation
      * @see #getColorInterpretation
      * @see java.awt.image.IndexColorModel
+     *
+     * @deprecated No replacement.
      */
     @UML(identifier="palette", obligation=MANDATORY, specification=OGC_01004)
     int[][] getPalette();
@@ -205,6 +221,8 @@ public interface SampleDimension {
      *
      * @see #getMetadataValue
      * @see javax.media.jai.PropertySource#getPropertyNames
+     *
+     * @deprecated No replacement.
      */
     @UML(identifier="metadataNames", obligation=MANDATORY, specification=OGC_01004)
     String[] getMetaDataNames();
@@ -218,6 +236,8 @@ public interface SampleDimension {
      *
      * @see #getMetaDataNames
      * @see javax.media.jai.PropertySource#getProperty
+     *
+     * @deprecated No replacement.
      */
     @UML(identifier="getMetadataValue", obligation=MANDATORY, specification=OGC_01004)
     String getMetadataValue(String name) throws MetadataNameNotFoundException;

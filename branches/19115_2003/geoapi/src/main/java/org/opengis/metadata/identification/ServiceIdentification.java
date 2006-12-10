@@ -23,6 +23,7 @@ import static org.opengis.annotation.Specification.*;
  * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
  * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 2.0
+ * @deprecated actual interface located at {@link org.opengis.service.ServiceIdentification}
  */
 @UML(identifier="MD_ServiceIdentification", specification=ISO_19115)
 public interface ServiceIdentification extends Identification {

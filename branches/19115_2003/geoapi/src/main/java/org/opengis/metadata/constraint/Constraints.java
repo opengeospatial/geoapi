@@ -2,7 +2,7 @@
  **
  ** $Id$
  **
- ** $URL$
+ ** $Source: /cvsroot/geoapi/src/org/opengis/metadata/constraint/Constraints.java,v $
  **
  ** Copyright (C) 2004-2005 Open GIS Consortium, Inc.
  ** All Rights Reserved. http://www.opengis.org/legal/
@@ -14,6 +14,7 @@ package org.opengis.metadata.constraint;
 import java.util.Collection;
 
 // OpenGIS direct dependencies
+import org.opengis.metadata.MetadataEntity;
 import org.opengis.util.InternationalString;
 
 // Annotations
@@ -30,7 +31,7 @@ import static org.opengis.annotation.Specification.*;
  * @since GeoAPI 2.0
  */
 @UML(identifier="MD_Constraints", specification=ISO_19115)
-public interface Constraints {
+public interface Constraints extends MetadataEntity{
     /**
      * Limitation affecting the fitness for use of the resource.
      * Example, "not to be used for navigation".

@@ -2,7 +2,7 @@
  **
  ** $Id$
  **
- ** $URL$
+ ** $Source: /cvsroot/geoapi/src/org/opengis/metadata/content/ContentInformation.java,v $
  **
  ** Copyright (C) 2004-2005 Open GIS Consortium, Inc.
  ** All Rights Reserved. http://www.opengis.org/legal/
@@ -12,6 +12,8 @@ package org.opengis.metadata.content;
 
 // Annotations
 import org.opengis.annotation.UML;
+import org.opengis.metadata.MetadataEntity;
+
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
 
@@ -24,5 +26,5 @@ import static org.opengis.annotation.Specification.*;
  * @since GeoAPI 2.0
  */
 @UML(identifier="MD_ContentInformation", specification=ISO_19115)
-public interface ContentInformation {
+public interface ContentInformation extends MetadataEntity{
 }

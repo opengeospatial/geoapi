@@ -2,7 +2,7 @@
  **
  ** $Id$
  **
- ** $URL$
+ ** $Source: /cvsroot/geoapi/src/org/opengis/metadata/citation/OnLineResource.java,v $
  **
  ** Copyright (C) 2004-2005 Open GIS Consortium, Inc.
  ** All Rights Reserved. http://www.opengis.org/legal/
@@ -14,6 +14,7 @@ package org.opengis.metadata.citation;
 import java.net.URI;
 
 // OpenGIS direct dependencies
+import org.opengis.metadata.MetadataEntity;
 import org.opengis.util.InternationalString;
 
 // Annotations
@@ -35,27 +36,35 @@ import static org.opengis.annotation.Specification.*;
  */
 @Profile (level=CORE)
 @UML(identifier="CI_OnlineResource", specification=ISO_19115)
-public interface OnLineResource {
+public interface OnLineResource extends MetadataEntity{
     /**
      * Location (address) for on-line access using a Uniform Resource Locator address or
      * similar addressing scheme such as http://www.statkart.no/isotc211.
      */
     @UML(identifier="linkage", obligation=MANDATORY, specification=ISO_19115)
     URI getLinkage();
+        
 
     /**
      * Connection protocol to be used. Returns {@code null} if none.
      */
     @UML(identifier="protocol", obligation=OPTIONAL, specification=ISO_19115)
-    String getProtocol();
+    InternationalString getProtocol();
+        
 
     /**
      * Name of an application profile that can be used with the online resource.
      * Returns {@code null} if none.
      */
     @UML(identifier="applicationProfile", obligation=OPTIONAL, specification=ISO_19115)
-    String getApplicationProfile();
+    InternationalString getApplicationProfile();
 
+    /**
+     * The name of the online resource
+     */
+    @UML(identifier="name", obligation=OPTIONAL, specification=ISO_19115)
+    public InternationalString getName();
+    
     /**
      * Detailed text description of what the online resource is/does.
      * Returns {@code null} if none.
@@ -69,4 +78,6 @@ public interface OnLineResource {
      */
     @UML(identifier="function", obligation=OPTIONAL, specification=ISO_19115)
     OnLineFunction getFunction();
+    
+    
 }

@@ -14,11 +14,11 @@
   <!--     Project description (including license)          -->
   <!-- ==================================================== -->
   <groupId>org.opengis</groupId>
-  <artifactId>geoapi-parent</artifactId>
+  <artifactId>parent</artifactId>
   <packaging>pom</packaging>
-  <version>2.1-SNAPSHOT</version>
+  <version>2.1-CSW</version>
   <name>GeoAPI common settings</name>
-  <url>http://geoapi.sourceforge.net/</url>
+  <url>http://geoapi.sourceforge.net/snapshot/</url>
   <description>
     Common setting for all GeoAPI modules.
   </description>
@@ -60,99 +60,6 @@
       <archive>http://sourceforge.net/mailarchive/forum.php?forum=geoapi-devel</archive>
     </mailingList>
   </mailingLists>
-
-
-
-  <!-- ==================================================== -->
-  <!--     Developers and contributors                      -->
-  <!-- ==================================================== -->
-  <developers>
-    <developer>
-      <id>crossley</id>
-      <name>Jesse Crossley</name>
-      <email>jcrossley@systechnologies.com</email>
-      <organization>SYS Technologies</organization>
-      <organizationUrl>http://www.systechnologies.com</organizationUrl>
-      <roles>
-        <role>Java Developer</role>
-      </roles>
-      <timezone>-8</timezone>
-    </developer>
-    <developer>
-      <id>desruisseaux</id>
-      <name>Martin Desruisseaux</name>
-      <email>desruisseaux@users.sourceforge.net</email>
-      <organization>Geomatys</organization>
-      <organizationUrl>http://www.geomatys.fr/</organizationUrl>
-      <roles>
-        <role>Java Developer</role>
-      </roles>
-      <timezone>+1</timezone>
-    </developer>
-    <developer>
-      <id>dillard</id>
-      <name>Chris Dillard</name>
-      <email>cdillard@systechnologies.com</email>
-      <organization>SYS Technologies</organization>
-      <organizationUrl>http://www.systechnologies.com</organizationUrl>
-      <roles>
-        <role>Java Developer</role>
-      </roles>
-      <timezone>-6</timezone>
-    </developer>
-    <developer>
-      <id>fabiani</id>
-      <name>Alessio Fabiani</name>
-      <email>alessio.fabiani@gmail.com</email>
-      <roles>
-        <role>Java Developer</role>
-      </roles>
-    </developer>
-    <developer>
-      <id>fellah</id>
-      <name>Stephane Fellah</name>
-      <email>stephanef@imagemattersllc.com</email>
-      <organization>Image Matters</organization>
-      <roles>
-        <role>Java Developer</role>
-      </roles>
-    </developer>
-    <developer>
-      <id>jive</id>
-      <name>Jody Garnett</name>
-      <email>jive@users.sourceforge.net</email>
-      <organization>Refractions Research</organization>
-      <roles>
-        <role>Java Developer</role>
-      </roles>
-    </developer>
-    <developer>
-      <id>jmacgill</id>
-      <name>James Macgill</name>
-      <email>jmacgill@users.sourceforge.net</email>
-      <organization>PennState</organization>
-      <roles>
-        <role>Java Developer</role>
-        <role>Project founder</role>
-      </roles>
-    </developer>
-    <developer>
-      <id>koolhoven</id>
-      <name>Wim Koolhoven</name>
-      <email>koolhoven@users.sourceforge.net</email>
-      <roles>
-        <role>Java Developer</role>
-      </roles>
-    </developer>
-    <developer>
-      <name>Greg Reynolds</name>
-      <email>gregreynolds@cox.net</email>
-      <roles>
-        <role>Chairman</role>
-        <role>Project manager</role>
-      </roles>
-    </developer>
-  </developers>
 
 
 
@@ -231,60 +138,13 @@
           </archive>
         </configuration>
       </plugin>
-
-
-
-      <!-- ==================================================== -->
-      <!--     Javadoc generation                               -->
-      <!-- ==================================================== -->
-      <!-- NOTES:
-           * Do NOT enable deep copying of "doc-files" directories ("-docfilessubdirs" option),
-             because it has the unwanted side effect to copy .svn directories as well.
-
-           * In theory, the <sourcepath/> and <subpackages/> elements below are not needed.
-             However our experience show that without them, javadoc fails to link expressions
-             like {@link org.opengis.somepackage}, i.e. a link to a package (not a class or a
-             method, which still okay). See http://jira.codehaus.org/browse/MJAVADOC-28 -->
-
-      <!-- NOTE: This plugin configuration is usually performed in the <reporting> section instead of <build>.  -->
-      <!-- For now we let it in <build> in order to exclude this javadoc from the web site generation. We will  -->
-      <!-- continue to use the Ant script, at least until Apache fixes some remaining bugs like <group> not     -->
-      <!-- working. Users can still generate the javadoc with Maven by running "mvn javadoc:javadoc" explicitly -->
-      <!-- on the command line.                                                                                 -->
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-javadoc-plugin</artifactId>
-        <configuration>
-          <author>false</author>                    <!-- Specifies whether or not the author text is included.              -->
-          <encoding>ISO-8859-1</encoding>           <!-- Specifies the encoding name of the source files.                   -->
-          <source>1.5</source>                      <!-- Necessary to enable javadoc to handle J2SE 1.5 features.           -->
-          <noqualifier>all</noqualifier>            <!-- Omits qualifying package name from ahead of class names in output. -->
-          <quiet>true</quiet>                       <!-- Shuts off non-error and non-warning messages.                      -->
-          <maxmemory>384M</maxmemory>               <!-- The maximum Java heap size to be used when launching the javadoc.  -->
-          <tag> <!-- Enables the Javadoc tool to interpret a simple, one-argument custom block tag tagname in doc comments. -->
-            todo:tfmc:TODO,
-            unitof:fm:Unit,
-            rename:X:Rename
-          </tag>
-          <link> <!-- Creates links to existing javadoc-generated documentation of external referenced classes. -->
-            http://java.sun.com/j2se/1.5/docs/api,
-            http://java.sun.com/products/java-media/jai/forDevelopers/jai-apidocs,
-            http://java.sun.com/products/java-media/3D/forDevelopers/j3dapi,
-            http://jsr-108.sourceforge.net/javadoc
-          </link>
-          <group> <!-- Separates packages on the overview page into whatever groups. -->
-<!--        "Display objects"                       org.opengis.go*,
-            "Map server (layers and styling)"       org.opengis.layer*:org.opengis.sld*,
-            "Feature and filter"                    org.opengis.feature*:org.opengis.filter*,
-            "Geometry and topology"                 org.opengis.spatialschema*,
-            "Spatial Referencing by Coordinates"    org.opengis.referencing*:org.opengis.parameter*,
-            "Catalog Services"                      org.opengis.catalog*,
-            "Meta Data"                             org.opengis.metadata*,
-            "Grid Coverage"                         org.opengis.coverage* -->
-          </group>
-        </configuration>
-      </plugin>
     </plugins>
+
+
+
+    <!-- ==================================================== -->
+    <!--     Required for deployment to the repository        -->
+    <!-- ==================================================== -->
     <extensions>
       <extension>
         <groupId>org.apache.maven.wagon</groupId>
@@ -296,10 +156,114 @@
 
 
   <!-- ==================================================== -->
-  <!--     Web site generation                              -->
+  <!--     Web site and Javadoc generation                  -->
   <!-- ==================================================== -->
   <reporting>
     <plugins>
+      <!-- NOTES: Do NOT enable deep copying of "doc-files" directories ("-docfilessubdirs" option),
+                  because it has the unwanted side effect to copy .svn directories as well. -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <configuration>
+          <author>false</author>          <!-- Specifies whether or not the author text is included.              -->
+          <encoding>ISO-8859-1</encoding> <!-- Specifies the encoding name of the source files.                   -->
+          <source>1.5</source>            <!-- Necessary to enable javadoc to handle J2SE 1.5 features.           -->
+          <noqualifier>all</noqualifier>  <!-- Omits qualifying package name from ahead of class names in output. -->
+          <quiet>true</quiet>             <!-- Shuts off non-error and non-warning messages.                      -->
+          <maxmemory>384M</maxmemory>     <!-- The maximum Java heap size to be used when launching the javadoc.  -->
+          <breakiterator>true</breakiterator>
+          <additionalparam>-keywords</additionalparam> 
+
+          <!-- Enables the Javadoc tool to interpret a simple, one-argument
+               custom block tag tagname in doc comments. Note: <placement/>
+               should be a combinaison of the letters Xaoptcmf. -->
+          <tags>
+            <tag>
+              <name>todo</name>
+              <placement>tfmc</placement>
+              <head>TODO:</head>
+            </tag>
+            <tag>
+              <name>unitof</name>
+              <placement>fm</placement>
+              <head>Unit:</head>
+            </tag>
+            <tag>
+              <name>rename</name>
+              <placement>X</placement>
+              <head>Renamed from:</head>
+            </tag>
+          </tags>
+
+          <!-- Creates links to existing javadoc-generated
+               documentation of external referenced classes. -->
+          <links>
+            <link>http://java.sun.com/j2se/1.5/docs/api</link>
+            <link>http://java.sun.com/products/java-media/jai/forDevelopers/jai-apidocs</link>
+            <link>http://java.sun.com/products/java-media/3D/forDevelopers/j3dapi</link>
+            <link>http://jsr-108.sourceforge.net/javadoc</link>
+          </links>
+
+          <!-- Separates packages on the overview page into the groups  specified. -->
+          <groups>
+            <group>
+              <title>Spatial Referencing by Coordinates</title>
+              <packages>
+                org.opengis.referencing*:org.opengis.temporal*:org.opengis.parameter*
+              </packages>
+            </group>
+            <group>
+              <title>Geometry and topology</title>
+              <packages>
+                org.opengis.spatialschema*
+              </packages>
+            </group>
+            <group>
+              <title>Feature and filter</title>
+              <packages>
+                org.opengis.feature*:org.opengis.filter*
+              </packages>
+            </group>
+            <group>
+              <title>Grid Coverage</title>
+              <packages>
+                org.opengis.coverage*
+              </packages>
+            </group>
+            <group>
+              <title>Meta Data</title>
+              <packages>
+                org.opengis.metadata*
+              </packages>
+            </group>
+            <group>
+              <title>Catalog Services</title>
+              <packages>
+                org.opengis.catalog*
+              </packages>
+            </group>
+            <group>
+              <title>Styling and web services</title>
+              <packages>
+                org.opengis.layer*:org.opengis.sld*:org.opengis.web*
+              </packages>
+            </group>
+            <group>
+              <title>Display objects</title>
+              <packages>
+                org.opengis.go*
+              </packages>
+            </group>
+          </groups>
+        </configuration>
+      </plugin>
+
+
+
+      <!-- ==================================================== -->
+      <!--     Web site generation                              -->
+      <!-- ==================================================== -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-site-plugin</artifactId>
@@ -316,6 +280,35 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-project-info-reports-plugin</artifactId>
+      </plugin>
+
+
+
+      <!-- ==================================================== -->
+      <!--     Changes log from Subversion                      -->
+      <!-- ==================================================== -->
+      <plugin>
+        <!-- TODO: the officiel name is the commented-one below,
+                   but it doesn't seem to be deployed on ibiblio. -->
+<!--    <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-changelog-plugin</artifactId> -->
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>changelog-maven-plugin</artifactId>
+        <version>2.0-beta-1</version>
+        <reportSets>
+          <reportSet>
+            <id>changes-report</id>
+            <reports>
+              <report>changelog</report>
+              <report>file-activity</report>
+<!--          <report>dev-activity</report> -->
+            </reports>
+            <configuration>
+              <type>range</type>
+              <range>30</range>
+            </configuration>
+          </reportSet>
+        </reportSets>
       </plugin>
     </plugins>
   </reporting>
@@ -336,6 +329,11 @@
       <name>Refractions Research - Maven 2 Repository</name>
       <url>dav:http://lists.refractions.net/m2/</url>
     </snapshotRepository>
+    <site>
+      <id>SourceForge</id>
+      <name>GeoAPI web site</name>
+      <url>scp://geoapi.sourceforge.net:/home/groups/g/ge/geoapi/htdocs/snapshot/</url>
+    </site>
   </distributionManagement>
 
 

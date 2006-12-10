@@ -2,7 +2,7 @@
  **
  ** $Id$
  **
- ** $URL$
+ ** $Source: /cvsroot/geoapi/src/org/opengis/metadata/extent/Extent.java,v $
  **
  ** Copyright (C) 2004-2005 Open GIS Consortium, Inc.
  ** All Rights Reserved. http://www.opengis.org/legal/
@@ -14,6 +14,7 @@ package org.opengis.metadata.extent;
 import java.util.Collection;
 
 // OpenGIS direct dependencies
+import org.opengis.metadata.MetadataEntity;
 import org.opengis.util.InternationalString;
 
 // Annotations
@@ -24,7 +25,7 @@ import static org.opengis.annotation.Specification.*;
 
 /**
  * Information about spatial, vertical, and temporal extent.
- * This interface has four optional attributes
+ * This interface has three optional attributes
  * ({@linkplain #getGeographicElements geographic elements},
  *  {@linkplain #getTemporalElements temporal elements}, and
  *  {@linkplain #getVerticalElements vertical elements}) and an element called
@@ -36,7 +37,7 @@ import static org.opengis.annotation.Specification.*;
  * @since GeoAPI 1.0
  */
 @UML(identifier="EX_Extent", specification=ISO_19115)
-public interface Extent {
+public interface Extent extends MetadataEntity{
     /**
      * Returns the spatial and temporal extent for the referring object.
      */

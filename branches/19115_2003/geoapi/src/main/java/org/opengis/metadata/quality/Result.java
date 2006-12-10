@@ -2,7 +2,7 @@
  **
  ** $Id$
  **
- ** $URL$
+ ** $Source: /cvsroot/geoapi/src/org/opengis/metadata/quality/Result.java,v $
  **
  ** Copyright (C) 2004-2005 Open GIS Consortium, Inc.
  ** All Rights Reserved. http://www.opengis.org/legal/
@@ -11,9 +11,10 @@
 package org.opengis.metadata.quality;
 
 // Annotations
+import static org.opengis.annotation.Specification.ISO_19115;
+
 import org.opengis.annotation.UML;
-import static org.opengis.annotation.Obligation.*;
-import static org.opengis.annotation.Specification.*;
+import org.opengis.metadata.MetadataEntity;
 
 
 /**
@@ -24,5 +25,5 @@ import static org.opengis.annotation.Specification.*;
  * @since GeoAPI 2.0
  */
 @UML(identifier="DQ_Result", specification=ISO_19115)
-public interface Result {
+public interface Result extends MetadataEntity{
 }

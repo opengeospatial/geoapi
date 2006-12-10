@@ -2,7 +2,7 @@
  **
  ** $Id$
  **
- ** $URL$
+ ** $Source: /cvsroot/geoapi/src/org/opengis/metadata/identification/Resolution.java,v $
  **
  ** Copyright (C) 2004-2005 Open GIS Consortium, Inc.
  ** All Rights Reserved. http://www.opengis.org/legal/
@@ -11,12 +11,13 @@
 package org.opengis.metadata.identification;
 
 // Annotations
-import org.opengis.annotation.UML;
+import static org.opengis.annotation.ComplianceLevel.CORE;
+import static org.opengis.annotation.Obligation.CONDITIONAL;
+import static org.opengis.annotation.Specification.ISO_19115;
+
 import org.opengis.annotation.Profile;
-import static org.opengis.annotation.Obligation.*;
-import static org.opengis.annotation.Specification.*;
-import static org.opengis.annotation.ComplianceLevel.*;
-import static org.opengis.annotation.Specification.*;
+import org.opengis.annotation.UML;
+import org.opengis.metadata.MetadataEntity;
 
 
 /**
@@ -28,7 +29,7 @@ import static org.opengis.annotation.Specification.*;
  */
 @Profile (level=CORE)
 @UML(identifier="MD_Resolution", specification=ISO_19115)
-public interface Resolution {
+public interface Resolution extends MetadataEntity{
     /**
      * Level of detail expressed as the scale of a comparable hardcopy map or chart.
      * This value should be between 0 and 1.

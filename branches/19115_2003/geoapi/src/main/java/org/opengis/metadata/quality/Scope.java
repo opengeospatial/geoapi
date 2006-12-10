@@ -2,7 +2,7 @@
  **
  ** $Id$
  **
- ** $URL$
+ ** $Source: /cvsroot/geoapi/src/org/opengis/metadata/quality/Scope.java,v $
  **
  ** Copyright (C) 2004-2005 Open GIS Consortium, Inc.
  ** All Rights Reserved. http://www.opengis.org/legal/
@@ -11,8 +11,12 @@
 package org.opengis.metadata.quality;
 
 // OpenGIS direct dependencies
+import java.util.Collection;
+
+import org.opengis.metadata.MetadataEntity;
 import org.opengis.metadata.extent.Extent;
 import org.opengis.metadata.maintenance.ScopeCode;
+import org.opengis.metadata.maintenance.ScopeDescription;
 
 // Annotations
 import org.opengis.annotation.UML;
@@ -28,7 +32,7 @@ import static org.opengis.annotation.Specification.*;
  * @since GeoAPI 2.0
  */
 @UML(identifier="DQ_Scope", specification=ISO_19115)
-public interface Scope {
+public interface Scope extends MetadataEntity{
     /**
      * Hierarchical level of the data specified by the scope.
      */
@@ -48,6 +52,6 @@ public interface Scope {
      * @todo Need to define the {@code ScopeDescription} union. This union depends
      *       on {@code FeatureType} and {@code AttributeType}.
      */
-//  @UML(identifier="levelDescription", obligation=CONDITIONAL)
-//  Collection<ScopeDescription> getLevelDescription();
+    @UML(identifier="levelDescription", obligation=CONDITIONAL, specification=ISO_19115)
+    Collection<ScopeDescription> getLevelDescription();
 }

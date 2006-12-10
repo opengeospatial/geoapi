@@ -2,7 +2,7 @@
  **
  ** $Id$
  **
- ** $URL$
+ ** $Source: /cvsroot/geoapi/src/org/opengis/metadata/content/CoverageDescription.java,v $
  **
  ** Copyright (C) 2004-2005 Open GIS Consortium, Inc.
  ** All Rights Reserved. http://www.opengis.org/legal/
@@ -11,7 +11,11 @@
 package org.opengis.metadata.content;
 
 // Annotations
+import java.util.Collection;
+
 import org.opengis.annotation.UML;
+import org.opengis.util.InternationalString;
+
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
 
@@ -31,9 +35,11 @@ public interface CoverageDescription extends ContentInformation {
      * @todo In the UML, the return type is {@code RecordType}, which is defined in
      *       ISO 19103. We currently map {@code RecordType} to a Java {@link Class},
      *       but it may be revisited in a future version.
+     * @revisit GR: it is actually a description, people is being putting textual
+     * descriptions here in metadata records, so I'm changing it to InternationalString
      */
     @UML(identifier="attributeDescription", obligation=MANDATORY, specification=ISO_19115)
-    Class getAttributeDescription();
+    InternationalString getAttributeDescription();
 
     /**
      * Type of information represented by the cell value.
@@ -45,5 +51,5 @@ public interface CoverageDescription extends ContentInformation {
      * Information on the dimensions of the cell measurement value.
      */
     @UML(identifier="dimension", obligation=OPTIONAL, specification=ISO_19115)
-    RangeDimension getDimension();
+    Collection<RangeDimension> getDimensions();
 }

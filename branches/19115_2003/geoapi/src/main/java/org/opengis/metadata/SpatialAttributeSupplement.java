@@ -2,7 +2,7 @@
  **
  ** $Id$
  **
- ** $URL$
+ ** $Source: /cvsroot/geoapi/src/org/opengis/metadata/SpatialAttributeSupplement.java,v $
  **
  ** Copyright (C) 2004-2005 Open GIS Consortium, Inc.
  ** All Rights Reserved. http://www.opengis.org/legal/
@@ -27,7 +27,7 @@ import static org.opengis.annotation.Specification.*;
  * @since GeoAPI 2.0
  */
 @UML(identifier="MD_SpatialAttributeSupplement", specification=ISO_19115)
-public interface SpatialAttributeSupplement {
+public interface SpatialAttributeSupplement extends MetadataEntity{
     /**
      * Provides information about the list of feature types with the same spatial representation.
      */

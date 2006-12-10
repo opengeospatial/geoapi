@@ -240,6 +240,10 @@
 			<replacefilter token="O object" value="Object object" />
 		</replace>
 
+		<replace dir="${generatedSourceDirectory}" includes="org/opengis/filter/identity/GmlObjectId.java">
+			<replacefilter token="O object" value="Object object" />
+		</replace>
+
 		<replace dir="${generatedSourceDirectory}" includes="org/opengis/filter/expression/Expression.java,org/opengis/filter/expression/NilExpression.java">
 			<replacefilter token="T evaluate(" value="Object evaluate(" />
 		</replace>

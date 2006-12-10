@@ -78,7 +78,6 @@ import static org.opengis.annotation.Specification.*;
  * @version <A HREF="http://www.opengis.org/docs/01-004.pdf">Grid Coverage specification 1.0</A>
  * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 1.0
- * @deprecated In favor of migrating to ISO 19123 definition for Coverage.
  */
 @UML(identifier="GP_GridCoverageProcessor", specification=OGC_01004)
 public interface GridCoverageProcessor {
@@ -87,7 +86,10 @@ public interface GridCoverageProcessor {
      * An empty list will returned if no metadata is available.
      *
      * @return The list of metadata keywords for the interface.
+     *
+     * @deprecated No replacement.
      */
+    @Deprecated
     @UML(identifier="metadataNames", obligation=MANDATORY, specification=OGC_01004)
     String[] getMetadataNames();
 
@@ -97,7 +99,10 @@ public interface GridCoverageProcessor {
      * @param  name Metadata keyword for which to retrieve metadata.
      * @return The metadata value for a given metadata name.
      * @throws MetadataNameNotFoundException if there is no value for the specified metadata name.
+     *
+     * @deprecated No replacement.
      */
+    @Deprecated
     @UML(identifier="getMetadataValue", obligation=MANDATORY, specification=OGC_01004)
     String getMetadataValue(String name) throws MetadataNameNotFoundException;
 
@@ -141,7 +146,10 @@ public interface GridCoverageProcessor {
      *
      * @param  gridCoverage Grid coverage on which the analysis will be performed.
      * @return A new {@link GridAnalysis} interface.
+     *
+     * @deprecated No replacement.
      */
+    @Deprecated
     @UML(identifier="analyze", obligation=MANDATORY, specification=OGC_01004)
     GridAnalysis analyze(GridCoverage gridCoverage);
 

@@ -2,7 +2,7 @@
  **
  ** $Id$
  **
- ** $URL$
+ ** $Source: /cvsroot/geoapi/src/org/opengis/metadata/distribution/StandardOrderProcess.java,v $
  **
  ** Copyright (C) 2004-2005 Open GIS Consortium, Inc.
  ** All Rights Reserved. http://www.opengis.org/legal/
@@ -14,6 +14,7 @@ package org.opengis.metadata.distribution;
 import java.util.Date;
 
 // OpenGIS direct dependencies
+import org.opengis.metadata.MetadataEntity;
 import org.opengis.util.InternationalString;
 
 // Annotations
@@ -31,7 +32,7 @@ import static org.opengis.annotation.Specification.*;
  * @since GeoAPI 2.0
  */
 @UML(identifier="MD_StandardOrderProcess", specification=ISO_19115)
-public interface StandardOrderProcess {
+public interface StandardOrderProcess extends MetadataEntity{
     /**
      * Fees and terms for retrieving the resource.
      * Include monetary units (as specified in ISO 4217).

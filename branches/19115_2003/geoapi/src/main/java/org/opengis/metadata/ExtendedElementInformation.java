@@ -2,7 +2,7 @@
  **
  ** $Id$
  **
- ** $URL$
+ ** $Source: /cvsroot/geoapi/src/org/opengis/metadata/ExtendedElementInformation.java,v $
  **
  ** Copyright (C) 2004-2005 Open GIS Consortium, Inc.
  ** All Rights Reserved. http://www.opengis.org/legal/
@@ -31,7 +31,7 @@ import static org.opengis.annotation.Specification.*;
  * @since GeoAPI 2.0
  */
 @UML(identifier="MD_ExtendedElementInformation", specification=ISO_19115)
-public interface ExtendedElementInformation {
+public interface ExtendedElementInformation extends MetadataEntity{
     /**
      * Name of the extended metadata element.
      */

@@ -2,7 +2,7 @@
  **
  ** $Id$
  **
- ** $URL$
+ ** $Source: /cvsroot/geoapi/src/org/opengis/metadata/citation/Citation.java,v $
  **
  ** Copyright (C) 2004-2005 Open GIS Consortium, Inc.
  ** All Rights Reserved. http://www.opengis.org/legal/
@@ -11,19 +11,19 @@
 package org.opengis.metadata.citation;
 
 // J2SE direct dependencies
+import static org.opengis.annotation.ComplianceLevel.CORE;
+import static org.opengis.annotation.Obligation.MANDATORY;
+import static org.opengis.annotation.Obligation.OPTIONAL;
+import static org.opengis.annotation.Specification.ISO_19115;
+
 import java.util.Collection;
 import java.util.Date;
 
-// OpenGIS direct dependencies
-import org.opengis.util.InternationalString;
-
-// Annotations
-import org.opengis.annotation.UML;
 import org.opengis.annotation.Profile;
-import static org.opengis.annotation.Obligation.*;
-import static org.opengis.annotation.Specification.*;
-import static org.opengis.annotation.ComplianceLevel.*;
-import static org.opengis.annotation.Specification.*;
+import org.opengis.annotation.UML;
+import org.opengis.metadata.Identifier;
+import org.opengis.metadata.MetadataEntity;
+import org.opengis.util.InternationalString;
 
 
 /**
@@ -35,7 +35,7 @@ import static org.opengis.annotation.Specification.*;
  */
 @Profile (level=CORE)
 @UML(identifier="CI_Citation", specification=ISO_19115)
-public interface Citation {
+public interface Citation extends MetadataEntity{
     /**
      * Name by which the cited resource is known.
      */
@@ -74,7 +74,7 @@ public interface Citation {
      * National Stock Number (NSN).
      */
     @UML(identifier="identifier", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<String> getIdentifiers();
+    Collection<Identifier> getIdentifiers();
 
     /**
      * Reference form of the unique identifier (ID). Example: Universal Product Code (UPC),

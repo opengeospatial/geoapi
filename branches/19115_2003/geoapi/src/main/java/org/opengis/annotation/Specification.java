@@ -55,6 +55,14 @@ public enum Specification {
     ISO_19115,
 
     /**
+     * ISO 19119, OpenGIS Service Architecture (Topic 12).
+     * This is the specification for package {@link org.opengis.service} and sub-packages.
+     *
+     * @see <A HREF="http://portal.opengeospatial.org/files/?artifact_id=1221">Download from OGC</A>
+     */
+    ISO_19119,
+
+    /**
      * ISO 19123, Schema for coverage geometry and functions.
      *
      * @see #OGC_01004

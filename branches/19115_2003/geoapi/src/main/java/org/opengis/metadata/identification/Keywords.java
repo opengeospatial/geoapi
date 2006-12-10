@@ -2,7 +2,7 @@
  **
  ** $Id$
  **
- ** $URL$
+ ** $Source: /cvsroot/geoapi/src/org/opengis/metadata/identification/Keywords.java,v $
  **
  ** Copyright (C) 2004-2005 Open GIS Consortium, Inc.
  ** All Rights Reserved. http://www.opengis.org/legal/
@@ -15,6 +15,7 @@ import java.util.Collection;
 
 // OpenGIS direct dependencies
 import org.opengis.util.InternationalString;
+import org.opengis.metadata.MetadataEntity;
 import org.opengis.metadata.citation.Citation;
 
 // Annotations
@@ -31,7 +32,7 @@ import static org.opengis.annotation.Specification.*;
  * @since GeoAPI 2.0
  */
 @UML(identifier="MD_Keywords", specification=ISO_19115)
-public interface Keywords {
+public interface Keywords extends MetadataEntity{
     /**
      * Commonly used word(s) or formalised word(s) or phrase(s) used to describe the subject.
      */

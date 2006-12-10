@@ -2,7 +2,7 @@
  **
  ** $Id$
  **
- ** $URL$
+ ** $Source: /cvsroot/geoapi/src/org/opengis/metadata/citation/ResponsibleParty.java,v $
  **
  ** Copyright (C) 2004-2005 Open GIS Consortium, Inc.
  ** All Rights Reserved. http://www.opengis.org/legal/
@@ -11,6 +11,7 @@
 package org.opengis.metadata.citation;
 
 // OpenGIS direct dependencies
+import org.opengis.metadata.MetadataEntity;
 import org.opengis.util.InternationalString;
 
 // Annotations
@@ -32,14 +33,14 @@ import static org.opengis.annotation.Specification.*;
  */
 @Profile (level=CORE)
 @UML(identifier="CI_ResponsibleParty", specification=ISO_19115)
-public interface ResponsibleParty {
+public interface ResponsibleParty extends MetadataEntity{
     /**
      * Name of the responsible person- surname, given name, title separated by a delimiter.
      * Only one of {@code individualName}, {@link #getOrganisationName organisationName}
      * and {@link #getPositionName positionName} should be provided.
      */
     @UML(identifier="individualName", obligation=CONDITIONAL, specification=ISO_19115)
-    String getIndividualName();
+    InternationalString getIndividualName();
 
     /**
      * Name of the responsible organization.

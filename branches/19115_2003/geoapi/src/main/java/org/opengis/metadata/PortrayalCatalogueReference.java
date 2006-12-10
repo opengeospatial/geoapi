@@ -2,7 +2,7 @@
  **
  ** $Id$
  **
- ** $URL$
+ ** $Source: /cvsroot/geoapi/src/org/opengis/metadata/PortrayalCatalogueReference.java,v $
  **
  ** Copyright (C) 2004-2005 Open GIS Consortium, Inc.
  ** All Rights Reserved. http://www.opengis.org/legal/
@@ -30,7 +30,7 @@ import static org.opengis.annotation.Specification.*;
  * @since GeoAPI 2.0
  */
 @UML(identifier="MD_PortrayalCatalogueReference", specification=ISO_19115)
-public interface PortrayalCatalogueReference {
+public interface PortrayalCatalogueReference extends MetadataEntity {
     /**
      * Bibliographic reference to the portrayal catalogue cited.
      */

@@ -2,7 +2,7 @@
  **
  ** $Id$
  **
- ** $URL$
+ ** $Source: /cvsroot/geoapi/src/org/opengis/metadata/constraint/LegalConstraints.java,v $
  **
  ** Copyright (C) 2004-2005 Open GIS Consortium, Inc.
  ** All Rights Reserved. http://www.opengis.org/legal/
@@ -52,5 +52,5 @@ public interface LegalConstraints extends Constraints {
      * {@linkplain Restriction#OTHER_RESTRICTIONS other restrictions}.
      */
     @UML(identifier="otherConstraints", obligation=CONDITIONAL, specification=ISO_19115)
-    InternationalString getOtherConstraints();
+    Collection<InternationalString> getOtherConstraints();
 }

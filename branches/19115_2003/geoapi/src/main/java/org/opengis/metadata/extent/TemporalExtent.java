@@ -2,7 +2,7 @@
  **
  ** $Id$
  **
- ** $URL$
+ ** $Source: /cvsroot/geoapi/src/org/opengis/metadata/extent/TemporalExtent.java,v $
  **
  ** Copyright (C) 2004-2005 Open GIS Consortium, Inc.
  ** All Rights Reserved. http://www.opengis.org/legal/
@@ -11,12 +11,12 @@
 package org.opengis.metadata.extent;
 
 // J2SE direct dependencies
+import static org.opengis.annotation.Specification.ISO_19115;
+
 import java.util.Date;
 
-// Annotations
 import org.opengis.annotation.UML;
-import static org.opengis.annotation.Obligation.*;
-import static org.opengis.annotation.Specification.*;
+import org.opengis.metadata.MetadataEntity;
 
 
 /**
@@ -29,13 +29,18 @@ import static org.opengis.annotation.Specification.*;
  * @todo UML specifies only one attribute, {@code extent}, of {@code TM_Primitive} type.
  */
 @UML(identifier="EX_TemporalExtent", specification=ISO_19115)
-public interface TemporalExtent {
+public interface TemporalExtent extends MetadataEntity{
     /**
      * Returns the date and time for the content of the dataset.
      *
      * @todo ISO 19115 use a TM_Primitive return type from ISO 19108.
      *       We need to give a closer look at this specification.
      */
+	
+	
 //  @UML(identifier="extent", obligation=MANDATORY)
 //  Date getExtent();
+    Date getStartTime();
+    Date getEndTime();
+
 }

@@ -2,7 +2,7 @@
  **
  ** $Id$
  **
- ** $URL$
+ ** $Source: /cvsroot/geoapi/src/org/opengis/metadata/MetadataExtensionInformation.java,v $
  **
  ** Copyright (C) 2004-2005 Open GIS Consortium, Inc.
  ** All Rights Reserved. http://www.opengis.org/legal/
@@ -30,7 +30,7 @@ import static org.opengis.annotation.Specification.*;
  * @since GeoAPI 2.0
  */
 @UML(identifier="MD_MetadataExtensionInformation", specification=ISO_19115)
-public interface MetadataExtensionInformation {
+public interface MetadataExtensionInformation extends MetadataEntity {
     /**
      * Information about on-line sources containing the community profile name and
      * the extended metadata elements. Information for all new metadata elements.

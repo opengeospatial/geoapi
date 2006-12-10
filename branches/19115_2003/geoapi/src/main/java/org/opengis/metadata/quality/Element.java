@@ -2,7 +2,7 @@
  **
  ** $Id$
  **
- ** $URL$
+ ** $Source: /cvsroot/geoapi/src/org/opengis/metadata/quality/Element.java,v $
  **
  ** Copyright (C) 2004-2005 Open GIS Consortium, Inc.
  ** All Rights Reserved. http://www.opengis.org/legal/
@@ -16,6 +16,7 @@ import java.util.Date;
 
 // OpenGIS direct dependencies
 import org.opengis.metadata.Identifier;
+import org.opengis.metadata.MetadataEntity;
 import org.opengis.metadata.citation.Citation;
 import org.opengis.util.InternationalString;
 
@@ -33,7 +34,7 @@ import static org.opengis.annotation.Specification.*;
  * @since GeoAPI 2.0
  */
 @UML(identifier="DQ_Element", specification=ISO_19115)
-public interface Element {
+public interface Element extends MetadataEntity{
     /**
      * Name of the test applied to the data.
      */
@@ -82,6 +83,18 @@ public interface Element {
      * Value (or set of values) obtained from applying a data quality measure or the out
      * come of evaluating the obtained value (or set of values) against a specified
      * acceptable conformance quality level.
+     * <p>
+     * Cardinality restricted to 0..2
+     * </p>
+     */
+    @UML(identifier="result", obligation=MANDATORY, specification=ISO_19115)
+    Collection getResults();
+    
+    /**
+     * Value (or set of values) obtained from applying a data quality measure or the out
+     * come of evaluating the obtained value (or set of values) against a specified
+     * acceptable conformance quality level.
+     * @deprecated use {@link #getResults()} instead
      */
     @UML(identifier="result", obligation=MANDATORY, specification=ISO_19115)
     Result getResult();

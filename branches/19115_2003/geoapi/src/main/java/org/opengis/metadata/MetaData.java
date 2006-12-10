@@ -2,7 +2,7 @@
  **
  ** $Id$
  **
- ** $URL$
+ ** $Source: /cvsroot/geoapi/src/org/opengis/metadata/MetaData.java,v $
  **
  ** Copyright (C) 2004-2005 Open GIS Consortium, Inc.
  ** All Rights Reserved. http://www.opengis.org/legal/
@@ -11,30 +11,30 @@
 package org.opengis.metadata;
 
 // J2SE direct dependencies
+import static org.opengis.annotation.ComplianceLevel.CORE;
+import static org.opengis.annotation.Obligation.CONDITIONAL;
+import static org.opengis.annotation.Obligation.MANDATORY;
+import static org.opengis.annotation.Obligation.OPTIONAL;
+import static org.opengis.annotation.Specification.ISO_19115;
+
+import java.net.URI;
 import java.nio.charset.Charset;
 import java.util.Collection;
 import java.util.Date;
 import java.util.Locale;
 
-// OpenGIS direct dependencies
-import org.opengis.metadata.quality.DataQuality;
-import org.opengis.metadata.maintenance.ScopeCode;
-import org.opengis.metadata.constraint.Constraints;
-import org.opengis.metadata.distribution.Distribution;
+import org.opengis.annotation.Profile;
+import org.opengis.annotation.UML;
 import org.opengis.metadata.citation.ResponsibleParty;
+import org.opengis.metadata.constraint.Constraints;
 import org.opengis.metadata.content.ContentInformation;
-import org.opengis.metadata.spatial.SpatialRepresentation;
+import org.opengis.metadata.distribution.Distribution;
 import org.opengis.metadata.identification.Identification;
 import org.opengis.metadata.maintenance.MaintenanceInformation;
+import org.opengis.metadata.maintenance.ScopeCode;
+import org.opengis.metadata.quality.DataQuality;
+import org.opengis.metadata.spatial.SpatialRepresentation;
 import org.opengis.referencing.ReferenceSystem;
-
-// Annotations
-import org.opengis.annotation.UML;
-import org.opengis.annotation.Profile;
-import static org.opengis.annotation.Obligation.*;
-import static org.opengis.annotation.Specification.*;
-import static org.opengis.annotation.ComplianceLevel.*;
-import static org.opengis.annotation.Specification.*;
 
 
 /**
@@ -46,7 +46,7 @@ import static org.opengis.annotation.Specification.*;
  */
 @Profile (level=CORE)
 @UML(identifier="MD_MetaData", specification=ISO_19115)
-public interface MetaData {
+public interface MetaData extends MetadataEntity {
     /**
      * Unique identifier for this metadata file, or {@code null} if none.
      */
@@ -87,11 +87,11 @@ public interface MetaData {
     Collection<String> getHierarchyLevelNames();
 
     /**
-     * Party responsible for the metadata information.
+     * Party responsibles for the metadata information.
      */
     @Profile (level=CORE)
     @UML(identifier="contact", obligation=MANDATORY, specification=ISO_19115)
-    ResponsibleParty getContact();
+    Collection<ResponsibleParty> getContacts();
 
     /**
      * Date that the metadata was created.
@@ -186,4 +186,10 @@ public interface MetaData {
      */
     @UML(identifier="metadataMaintenance", obligation=OPTIONAL, specification=ISO_19115)
     MaintenanceInformation getMetadataMaintenance();
+    
+    /**
+     * Uniformed Resource Identifier (URI) of the dataset to which the metadata applies
+     */
+    @UML(identifier="dataSetURI", obligation=OPTIONAL, specification=ISO_19115)
+    URI getDataSetURI();
 }

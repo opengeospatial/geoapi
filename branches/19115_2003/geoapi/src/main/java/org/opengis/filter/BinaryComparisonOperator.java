@@ -54,4 +54,13 @@ public interface BinaryComparisonOperator extends Filter {
      * @param expression second of two expressions compared 
      */
     void setExpression2( Expression expression);
+    
+    /**
+     * Flag controlling wither comparisons are case sensitive.
+     * 
+     * @return <code>true</code> if the comparison is case sensetive, otherwise <code>false</code>.
+     */
+    @XmlElement("matchCase")
+    boolean isMatchingCase();
+    
 }

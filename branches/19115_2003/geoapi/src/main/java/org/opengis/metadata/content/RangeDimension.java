@@ -2,7 +2,7 @@
  **
  ** $Id$
  **
- ** $URL$
+ ** $Source: /cvsroot/geoapi/src/org/opengis/metadata/content/RangeDimension.java,v $
  **
  ** Copyright (C) 2004-2005 Open GIS Consortium, Inc.
  ** All Rights Reserved. http://www.opengis.org/legal/
@@ -11,6 +11,7 @@
 package org.opengis.metadata.content;
 
 // OpenGIS direct dependencies
+import org.opengis.metadata.MetadataEntity;
 import org.opengis.util.InternationalString;
 import org.opengis.util.LocalName;
 
@@ -28,7 +29,7 @@ import static org.opengis.annotation.Specification.*;
  * @since GeoAPI 2.0
  */
 @UML(identifier="MD_RangeDimension", specification=ISO_19115)
-public interface RangeDimension {
+public interface RangeDimension extends MetadataEntity{
     /**
      * Number that uniquely identifies instances of bands of wavelengths on which a sensor
      * operates.

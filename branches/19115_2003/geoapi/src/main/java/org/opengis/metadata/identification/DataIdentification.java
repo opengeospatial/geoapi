@@ -2,7 +2,7 @@
  **
  ** $Id$
  **
- ** $URL$
+ ** $Source: /cvsroot/geoapi/src/org/opengis/metadata/identification/DataIdentification.java,v $
  **
  ** Copyright (C) 2004-2005 Open GIS Consortium, Inc.
  ** All Rights Reserved. http://www.opengis.org/legal/
@@ -11,24 +11,21 @@
 package org.opengis.metadata.identification;
 
 // J2SE direct dependencies
+import static org.opengis.annotation.ComplianceLevel.CORE;
+import static org.opengis.annotation.Obligation.CONDITIONAL;
+import static org.opengis.annotation.Obligation.MANDATORY;
+import static org.opengis.annotation.Obligation.OPTIONAL;
+import static org.opengis.annotation.Specification.ISO_19115;
+
 import java.nio.charset.Charset;
 import java.util.Collection;
 import java.util.Locale;
 
-// OpenGIS direct dependencies
+import org.opengis.annotation.Profile;
+import org.opengis.annotation.UML;
 import org.opengis.metadata.extent.Extent;
-import org.opengis.metadata.extent.GeographicBoundingBox;
-import org.opengis.metadata.extent.GeographicDescription;
 import org.opengis.metadata.spatial.SpatialRepresentationType;
 import org.opengis.util.InternationalString;
-
-// Annotations
-import org.opengis.annotation.UML;
-import org.opengis.annotation.Profile;
-import static org.opengis.annotation.Obligation.*;
-import static org.opengis.annotation.Specification.*;
-import static org.opengis.annotation.ComplianceLevel.*;
-import static org.opengis.annotation.Specification.*;
 
 
 /**
@@ -68,7 +65,7 @@ public interface DataIdentification extends Identification {
      */
     @Profile (level=CORE)
     @UML(identifier="characterSet", obligation=CONDITIONAL, specification=ISO_19115)
-    Charset getCharacterSet();
+    Collection<Charset> getCharacterSets();
 
     /**
      * Main theme(s) of the datset.
@@ -82,18 +79,22 @@ public interface DataIdentification extends Identification {
      * Only one of {@code getGeographicBox()} and {@link #getGeographicDescription()}
      * should be provided.
      */
+    /* GR: non existent in ISO19115:2003, moved to EX_Extent::geographicElement
     @Profile (level=CORE)
     @UML(identifier="geographicBox", obligation=CONDITIONAL, specification=ISO_19115)
     Collection<GeographicBoundingBox> getGeographicBox();
+    */
 
     /**
      * Description of the geographic area within which data is available.
      * Only one of {@link #getGeographicBox()} and {@code getGeographicDescription()}
      * should be provided.
      */
+    /* GR: non existent in ISO19115:2003, moved to EX_Extent::geographicElement
     @Profile (level=CORE)
     @UML(identifier="geographicDescription", obligation=CONDITIONAL, specification=ISO_19115)
     Collection<GeographicDescription> getGeographicDescription();
+    */
 
     /**
      * Description of the dataset in the producer’s processing environment, including items

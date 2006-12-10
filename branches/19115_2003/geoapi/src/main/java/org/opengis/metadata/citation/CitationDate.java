@@ -2,7 +2,7 @@
  **
  ** $Id$
  **
- ** $URL$
+ ** $Source: /cvsroot/geoapi/src/org/opengis/metadata/citation/CitationDate.java,v $
  **
  ** Copyright (C) 2004-2005 Open GIS Consortium, Inc.
  ** All Rights Reserved. http://www.opengis.org/legal/
@@ -11,15 +11,15 @@
 package org.opengis.metadata.citation;
 
 // J2SE direct dependencies
+import static org.opengis.annotation.ComplianceLevel.CORE;
+import static org.opengis.annotation.Obligation.MANDATORY;
+import static org.opengis.annotation.Specification.ISO_19115;
+
 import java.util.Date;
 
-// Annotations
-import org.opengis.annotation.UML;
 import org.opengis.annotation.Profile;
-import static org.opengis.annotation.Obligation.*;
-import static org.opengis.annotation.Specification.*;
-import static org.opengis.annotation.ComplianceLevel.*;
-import static org.opengis.annotation.Specification.*;
+import org.opengis.annotation.UML;
+import org.opengis.metadata.MetadataEntity;
 
 
 /**
@@ -31,7 +31,7 @@ import static org.opengis.annotation.Specification.*;
  */
 @Profile (level=CORE)
 @UML(identifier="CI_Date", specification=ISO_19115)
-public interface CitationDate {
+public interface CitationDate extends MetadataEntity{
     /**
      * Reference date for the cited resource.
      */

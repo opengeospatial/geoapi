@@ -9,8 +9,8 @@
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>org.opengis</groupId>
-    <artifactId>geoapi-parent</artifactId>
-    <version>2.1-SNAPSHOT</version>
+    <artifactId>parent</artifactId>
+    <version>2.1-CSW</version>
   </parent>
 
 
@@ -21,13 +21,7 @@
   <groupId>org.opengis</groupId>
   <artifactId>geoapi</artifactId>
   <packaging>jar</packaging>
-  <version>2.1-SNAPSHOT</version>
-  <name>GeoAPI for J2SE 1.5</name>
-  <url>http://geoapi.sourceforge.net/pending/</url>
-  <scm>
-    <connection>scm:svn:https://svn.sourceforge.net/svnroot/geoapi/trunk/geoapi/</connection>
-    <url>https://svn.sourceforge.net/viewcvs.cgi/geoapi/trunk/geoapi/</url>
-  </scm>
+  <name>GeoAPI</name>
   <description>
     The development community in building GIS solutions is sustaining an enormous
     level of effort. The GeoAPI project aims to reduce duplication and increase
@@ -38,14 +32,124 @@
 
 
   <!-- ==================================================== -->
-  <!--     Deployment to public servers                     -->
+  <!--     Developers and contributors                      -->
   <!-- ==================================================== -->
-  <distributionManagement>
-    <site>
-      <id>SourceForge</id>
-      <name>GeoAPI web site</name>
-      <url>scp://geoapi.sourceforge.net:/home/groups/g/ge/geoapi/htdocs/pending/site</url>
-    </site>
-  </distributionManagement>
+  <developers>
+    <developer>
+      <id>crossley</id>
+      <name>Jesse Crossley</name>
+      <email>jcrossley@systechnologies.com</email>
+      <organization>SYS Technologies</organization>
+      <organizationUrl>http://www.systechnologies.com</organizationUrl>
+      <roles>
+        <role>Java Developer</role>
+      </roles>
+      <timezone>-8</timezone>
+    </developer>
+    <developer>
+      <id>desruisseaux</id>
+      <name>Martin Desruisseaux</name>
+      <email>desruisseaux@users.sourceforge.net</email>
+      <organization>Geomatys</organization>
+      <organizationUrl>http://www.geomatys.fr/</organizationUrl>
+      <roles>
+        <role>Java Developer</role>
+      </roles>
+      <timezone>+1</timezone>
+    </developer>
+    <developer>
+      <id>dillard</id>
+      <name>Chris Dillard</name>
+      <email>cdillard@systechnologies.com</email>
+      <organization>SYS Technologies</organization>
+      <organizationUrl>http://www.systechnologies.com</organizationUrl>
+      <roles>
+        <role>Java Developer</role>
+      </roles>
+      <timezone>-6</timezone>
+    </developer>
+    <developer>
+      <id>fabiani</id>
+      <name>Alessio Fabiani</name>
+      <email>alessio.fabiani@gmail.com</email>
+      <roles>
+        <role>Java Developer</role>
+      </roles>
+    </developer>
+    <developer>
+      <id>fellah</id>
+      <name>Stephane Fellah</name>
+      <email>stephanef@imagemattersllc.com</email>
+      <organization>Image Matters</organization>
+      <roles>
+        <role>Java Developer</role>
+      </roles>
+    </developer>
+    <developer>
+      <id>jive</id>
+      <name>Jody Garnett</name>
+      <email>jive@users.sourceforge.net</email>
+      <organization>Refractions Research</organization>
+      <roles>
+        <role>Java Developer</role>
+      </roles>
+    </developer>
+    <developer>
+      <id>jmacgill</id>
+      <name>James Macgill</name>
+      <email>jmacgill@users.sourceforge.net</email>
+      <organization>PennState</organization>
+      <roles>
+        <role>Java Developer</role>
+        <role>Project founder</role>
+      </roles>
+    </developer>
+    <developer>
+      <id>koolhoven</id>
+      <name>Wim Koolhoven</name>
+      <email>koolhoven@users.sourceforge.net</email>
+      <roles>
+        <role>Java Developer</role>
+      </roles>
+    </developer>
+  </developers>
+
+  <contributors>
+    <contributor>
+      <name>Greg Reynolds</name>
+      <email>gregreynolds@cox.net</email>
+      <roles>
+        <role>Chairman</role>
+        <role>Project manager</role>
+      </roles>
+    </contributor>
+  </contributors>
+
+
+
+  <!-- ==================================================== -->
+  <!--     Generate a change log from JIRA tasks            -->
+  <!-- ==================================================== -->
+  <reporting>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-changes-plugin</artifactId>
+        <reportSets>
+          <reportSet>
+            <reports>
+              <report>jira-report</report>
+            </reports>
+            <configuration>
+              <!-- The following is the filter we want instead of
+                   <resolutionIds>, but it doesn't seem to work. -->
+<!--          <filter>&amp;fixfor=11866</filter> -->
+              <resolutionIds>Unresolved</resolutionIds>
+            </configuration>
+          </reportSet>
+        </reportSets>
+      </plugin>
+    </plugins>
+  </reporting>
 
 </project>

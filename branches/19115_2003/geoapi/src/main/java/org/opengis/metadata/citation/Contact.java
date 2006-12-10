@@ -2,7 +2,7 @@
  **
  ** $Id$
  **
- ** $URL$
+ ** $Source: /cvsroot/geoapi/src/org/opengis/metadata/citation/Contact.java,v $
  **
  ** Copyright (C) 2004-2005 Open GIS Consortium, Inc.
  ** All Rights Reserved. http://www.opengis.org/legal/
@@ -11,6 +11,7 @@
 package org.opengis.metadata.citation;
 
 // OpenGIS direct dependencies
+import org.opengis.metadata.MetadataEntity;
 import org.opengis.util.InternationalString;
 
 // Annotations
@@ -27,7 +28,7 @@ import static org.opengis.annotation.Specification.*;
  * @since GeoAPI 1.0
  */
 @UML(identifier="CI_Contact", specification=ISO_19115)
-public interface Contact {
+public interface Contact extends MetadataEntity{
     /**
      * Telephone numbers at which the organization or individual may be contacted.
      * Returns {@code null} if none.

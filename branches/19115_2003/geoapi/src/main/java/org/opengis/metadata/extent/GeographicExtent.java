@@ -2,7 +2,7 @@
  **
  ** $Id$
  **
- ** $URL$
+ ** $Source: /cvsroot/geoapi/src/org/opengis/metadata/extent/GeographicExtent.java,v $
  **
  ** Copyright (C) 2004-2005 Open GIS Consortium, Inc.
  ** All Rights Reserved. http://www.opengis.org/legal/
@@ -12,6 +12,8 @@ package org.opengis.metadata.extent;
 
 // Annotations
 import org.opengis.annotation.UML;
+import org.opengis.metadata.MetadataEntity;
+
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
 
@@ -24,7 +26,7 @@ import static org.opengis.annotation.Specification.*;
  * @since GeoAPI 1.0
  */
 @UML(identifier="EX_GeographicExtent", specification=ISO_19115)
-public interface GeographicExtent {
+public interface GeographicExtent extends MetadataEntity{
     /**
      * Indication of whether the bounding polygon encompasses an area covered by the data
      * (<cite>inclusion</cite>) or an area where data is not present (<cite>exclusion</cite>).

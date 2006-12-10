@@ -2,7 +2,7 @@
  **
  ** $Id$
  **
- ** $URL$
+ ** $Source: /cvsroot/geoapi/src/org/opengis/metadata/citation/CitationFactory.java,v $
  **
  ** Copyright (C) 2004-2005 Open GIS Consortium, Inc.
  ** All Rights Reserved. http://www.opengis.org/legal/
@@ -14,11 +14,8 @@ package org.opengis.metadata.citation;
 import java.net.URI;
 import java.util.Collection;
 
-// OpenGIS direct dependencies
-import org.opengis.util.InternationalString;
-
-// Annotations
 import org.opengis.annotation.Obligation;
+import org.opengis.util.InternationalString;
 
 
 /**
