@@ -32,10 +32,4 @@ public interface PropertyIsNull extends Filter {
     @XmlElement("PropertyName")
     Expression getExpression();
     
-    /**
-     * Expression whose value will be checked for {code null}
-     * 
-     * @param expression To be checked for {code null}
-     */
-    void setExpression( Expression expression );
 }

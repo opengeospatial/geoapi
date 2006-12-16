@@ -34,11 +34,4 @@ public interface FeatureId extends Filter {
      */
     @XmlElement("fid")
     Set<String> getIDs();
-    
-    /**
-     * {@linkplain Set} containing the IDs of that will pass this filter
-     * 
-     *  @param ids Set of IDs that will passs
-     */
-    void setIDs( Set<String> ids );
 }

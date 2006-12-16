@@ -33,11 +33,4 @@ public interface PropertyName extends Expression {
      * {@link #evaluate evaluate} method.
      */
     String getPropertyName();
- 
-    /**
-     * Name of the propertyValue that will be returned by {@link evaulate}.
-     * 
-     * @param name propertyValue that will be returned
-     */
-    void setPropertyName( String name );
 }

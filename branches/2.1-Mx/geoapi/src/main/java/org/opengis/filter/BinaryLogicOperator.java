@@ -36,10 +36,4 @@ public interface BinaryLogicOperator extends Filter {
      */
     List<Filter> getChildren();
     
-    /**
-     * List containing all of the child filters of this object
-     * 
-     * @param children contains child filters of this object
-     */
-    void setChildren( List<Filter> children );
 }
