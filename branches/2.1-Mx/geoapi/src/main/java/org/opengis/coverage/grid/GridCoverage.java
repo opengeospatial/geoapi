@@ -45,7 +45,6 @@ import static org.opengis.annotation.Specification.*;
  * @version <A HREF="http://www.opengis.org/docs/01-004.pdf">Grid Coverage specification 1.0</A>
  * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 1.0
- * @deprecated In favor of migrating to ISO 19123 definition for Coverage.
  *
  * @see RenderedImage
  * @see javax.media.jai.PixelAccessor
@@ -528,9 +527,9 @@ public interface GridCoverage extends Coverage {
      * @throws GridNotEditableException if the grid coverage is not {@linkplain #isDataEditable editable}.
      * @throws ArrayIndexOutOfBoundsException if the {@code values} array is too small.
      *
-     * @todo This operation can hardly be implemented efficiently in Java with a
-     *       {@code byte[]} argument type, since we can't easily cast an array
-     *       of {@code byte[]} to an array of arbitrary type.
+     * @deprecated This operation can hardly be implemented efficiently in Java with a
+     *             {@code byte[]} argument type, since we can't easily cast an array
+     *             of {@code byte[]} to an array of arbitrary type.
      */
     @UML(identifier="setPackedDataBlock", obligation=MANDATORY, specification=OGC_01004)
     void setPackedDataBlock(GridRange gridRange, byte[] values)

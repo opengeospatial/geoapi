@@ -12,6 +12,7 @@ package org.opengis.coverage.grid;
 
 // Annotations
 import org.opengis.annotation.UML;
+import org.opengis.annotation.Extension;
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
 
@@ -35,7 +36,6 @@ import static org.opengis.annotation.Specification.*;
  * @version <A HREF="http://www.opengis.org/docs/01-004.pdf">Grid Coverage specification 1.0</A>
  * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 1.0
- * @deprecated In favor of migrating to ISO 19123 definition for Coverage.
  */
 @UML(identifier="CV_GridRange", specification=OGC_01004)
 public interface GridRange {
@@ -45,13 +45,32 @@ public interface GridRange {
     int getDimension();
 
     /**
+     * Returns the valid minimum inclusive grid coordinate.
+     * The sequence contains a minimum value for each dimension of the grid coverage.
+     *
+     * @since GeoAPI 2.1
+     */
+    @UML(identifier="lo", obligation=MANDATORY, specification=OGC_01004)
+    GridCoordinates getLower();
+
+    /**
+     * Returns the valid maximum exclusive grid coordinate.
+     * The sequence contains a maximum value for each dimension of the grid coverage.
+     *
+     * @since GeoAPI 2.1
+     */
+    @UML(identifier="hi", obligation=MANDATORY, specification=OGC_01004)
+    GridCoordinates getUpper();
+
+    /**
      * The valid minimum inclusive grid coordinate.
      * The sequence contains a minimum value for each dimension of the grid coverage.
      * The lowest valid grid coordinate is zero.
      *
      * @return The valid minimum inclusive grid coordinate.
+     *
+     * @deprecated Replaced by {@link #getLower()}.
      */
-    @UML(identifier="lo", obligation=MANDATORY, specification=OGC_01004)
     int[] getLowers();
 
     /**
@@ -59,29 +78,29 @@ public interface GridRange {
      * The sequence contains a maximum value for each dimension of the grid coverage.
      *
      * @return The valid maximum exclusive grid coordinate.
+     *
+     * @deprecated Replaced by {@link #getUpper()}.
      */
-    @UML(identifier="hi", obligation=MANDATORY, specification=OGC_01004)
     int[] getUppers();
     
     /**
      * Returns the valid minimum inclusive grid
      * coordinate along the specified dimension.
-     *
-     * @see #getLowers
      */
+    @Extension
     int getLower(int dimension);
     
     /**
      * Returns the valid maximum exclusive grid
      * coordinate along the specified dimension.
-     *
-     * @see #getUppers
      */
+    @Extension
     int getUpper(int dimension);
     
     /**
      * Returns the number of integer grid coordinates along the specified dimension.
      * This is equals to {@code getUpper(dimension)-getLower(dimension)}.
      */
+    @Extension
     int getLength(int dimension);
 }

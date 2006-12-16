@@ -33,14 +33,17 @@ import static org.opengis.annotation.Specification.*;
  * {@linkplain GridPoint grid points} that are associated with records of feature attribute
  * values through a {@linkplain GridValuesMatrix grid values matrix}.
  * <p>
- * {@code DiscreteGridPointCoverage} inherits the {@link #getElements elements} and the operations
- * {@link #locate locate}, {@link #find(DirectPosition,int) find}, and {@link #list list}, from
- * {@link DiscreteCoverage}, with the restriction that the associated {@linkplain GeometryValuePair
- * geometry-value pairs} and those returned by the operations shall be limited to
- * {@link GridPointValuePair (grid point)-value pairs}. The {@linkplain #getElements elements}
- * may be generated from the {@linkplain GridValuesMatrix grid values matrix} through
- * the {@link #getValueAssignment value assignment}. The inherited operations
- * {@link DiscreteCoverage#evaluate evaluate} and {@link #evaluateInverse evaluateInverse} use
+ * {@code DiscreteGridPointCoverage} inherits the {@linkplain #getElements elements} and the
+ * operations {@linkplain #locate locate}, {@linkplain #find(DirectPosition,int) find}, and
+ * {@linkplain #list list}, from {@link DiscreteCoverage}, with the restriction that the
+ * associated {@linkplain GeometryValuePair geometry-value pairs} and those returned by the
+ * operations shall be limited to
+ * {@linkplain GridPointValuePair (grid point)-value pairs}. The
+ * {@linkplain #getElements elements} may be generated from the
+ * {@linkplain GridValuesMatrix grid values matrix} through the
+ * {@linkplain #getValueAssignment value assignment}. The inherited operations
+ * {@linkplain DiscreteCoverage#evaluate evaluate} and
+ * {@linkplain #evaluateInverse evaluateInverse} use
  * {@linkplain GridValuesMatrix grid values matrix} to assign values to the
  * {@linkplain GeometryValuePair geometry value pairs}.
  * 
