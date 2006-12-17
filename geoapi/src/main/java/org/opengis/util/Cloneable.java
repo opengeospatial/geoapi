@@ -15,6 +15,19 @@ package org.opengis.util;
  * Indicates that it is legal to make a field-for-field copy of instances of implementing classes.
  * A cloneable class implements the J2SE's {@link java.lang.Cloneable} standard interface and
  * additionnaly overrides the {@link Object#clone()} method with public access.
+ * <p>
+ * Because the {@link Object#clone()} method has protected access, containers wanting to clone
+ * theirs elements need to 1) use Java reflection (which is less efficient than standard method
+ * calls), or 2) cast every elements to a specific type like {@link java.util.Date} (which may
+ * require a large amount of "{@code if (x instanceof y)}" checks if arbitrary classes are
+ * allowed). This {@code Cloneable} interface had a third alternative: checks only for this
+ * interface instead of a list of particular cases.
+ * <p>
+ * Implementors of cloneable classes may consider implementing this interface, but this is not
+ * mandatory. A large amount of independant classes like {@link java.util.Date} will continue to
+ * ignore this interface, so no rule can be enforced anyway. However this interface may help the
+ * work of containers in some case. For example a container may checks for this interface first,
+ * and uses Java reflection as a fallback.
  *
  * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 1.0
