@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- ==================================================== -->
+<!--     The mapping document which tells Maven how to    -->
+<!--     use the Ant script in erasure.build.xml file.    -->
+<!-- ==================================================== -->
+
+<pluginMetadata>
+  <mojos>
+    <mojo>
+      <goal>transform</goal>
+      <call>transform</call> <!-- This element refers to the Ant target we'll invoke -->
+      <requiresProject>true</requiresProject>
+      <description>
+        Copies the source code in the generated-src directory,
+        and remove the J2SE 1.5 features from this copied code.
+      </description>
+
+      <!-- The parameters to be given to the Ant script -->
+      <parameters>
+        <parameter>
+          <name>sourceDirectory</name> 
+          <property>sourceDirectory</property> 
+          <required>true</required> 
+          <type>java.io.File</type>
+          <description>
+            The source directory in the module that contains J2SE 1.5 code.
+            This directory shall be relative to generated.source.directory.
+          </description>
+        </parameter>
+
+        <parameter>
+          <name>generatedSourceDirectory</name> 
+          <property>generatedSourceDirectory</property>
+          <required>true</required>
+          <defaultValue>${project.build.directory}/generated-sources</defaultValue>
+          <type>java.io.File</type>
+          <description>
+            The target directory for generated sources.
+          </description>
+        </parameter>
+
+        <parameter>
+          <name>regexImpl</name> 
+          <property>ant.regexp.regexpimpl</property>
+          <required>true</required>
+          <readonly>true</readonly>
+          <defaultValue>org.apache.tools.ant.util.regexp.Jdk14RegexpRegexp</defaultValue>
+          <type>java.lang.String</type>
+          <description>
+            Tells which regular expression implementation will be chosen by Ant.
+            We force the use J2SE 1.4+ implementation in order to avoid the need
+            to download extra dependencies.
+          </description>
+        </parameter>
+      </parameters>
+    </mojo>
+  </mojos>
+</pluginMetadata>
