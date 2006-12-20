@@ -39,10 +39,4 @@ public interface PropertyName extends Expression {
      */
     String getPropertyName();
  
-    /**
-     * Name of the propertyValue that will be returned by {@link evaulate}.
-     * 
-     * @param name propertyValue that will be returned
-     */
-    void setPropertyName( String name );
 }

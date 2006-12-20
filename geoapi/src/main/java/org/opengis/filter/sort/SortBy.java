@@ -1,6 +1,5 @@
 package org.opengis.filter.sort;
 
-import org.opengis.filter.expression.Expression;
 import org.opengis.filter.expression.PropertyName;
 
 
@@ -61,25 +60,13 @@ public interface SortBy {
 	 * </p> 
 	 */
 	public static final SortBy NATURAL_ORDER = new SortBy(){
-		public Expression getExpression() {
-			return null;
-		}
-		public void setExpression(Expression expression) {
-			throw new UnsupportedOperationException("Natural Ordering cannot be modified");
-		}
 		/** Natural order usually associated with FID, or Key Attribtues */
 		public PropertyName getPropertyName() {
 			return null;
 		}
-		public void setPropertyName(PropertyName name) {
-			throw new UnsupportedOperationException("Natural Ordering cannot be modified");
-		}
 		public SortOrder getSortOrder() {
 			return SortOrder.ASCENDING;
 		}
-		public void setSortOrder(SortOrder order) {
-			throw new UnsupportedOperationException("Natural Ordering cannot be modified");
-		}			
 	};
 	
 	/**
@@ -89,25 +76,13 @@ public interface SortBy {
 	 * </p> 
 	 */
 	public static final SortBy REVERSE_ORDER = new SortBy(){
-		public Expression getExpression() {
-			return null;
-		}
-		public void setExpression(Expression expression) {
-			throw new UnsupportedOperationException("Natural Ordering cannot be modified");
-		}
 		/** Natural order usually associated with FID, or Key Attribtues */
 		public PropertyName getPropertyName() {
 			return null;
 		}
-		public void setPropertyName(PropertyName name) {
-			throw new UnsupportedOperationException("Natural Ordering cannot be modified");
-		}
 		public SortOrder getSortOrder() {
 			return SortOrder.DESCENDING;
 		}
-		public void setSortOrder(SortOrder order) {
-			throw new UnsupportedOperationException("Natural Ordering cannot be modified");
-		}			
 	};
 	
 	/**
@@ -126,24 +101,10 @@ public interface SortBy {
 	public PropertyName getPropertyName();	
 	
 	/**
-	 * Indicate property.
-	 *   
-	 * @todo Use QName
-	 * @param name
-	 */
-	public void setPropertyName( PropertyName name );
-	
-	/**
 	 * The the sort order - one of ASC or DESC.
 	 * 
 	 * @return ASC or DESC.
 	 */
 	public SortOrder getSortOrder();
 	
-	/**
-	 * Set the sort order - to ASC or DESC.
-	 *  
-	 * @param order ASC or DESC.
-	 */
-	public void setSortOrder( SortOrder order);	
 }
