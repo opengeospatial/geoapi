@@ -32,27 +32,10 @@ public interface BinaryExpression extends Expression {
     Expression getExpression1();
 
     /**
-     * The first of two expression to be cused in computation.
-     * <p>
-     * When parsing the BNF form of Expression this is the "left hand side".
-     * </p>
-     * @param expression first of two expressions compared 
-     */
-    void setExpression1( Expression expression);
-    
-    /**
      * Returns the expression that represents the second (right) value that will
      * be used in the computation of another value.
      */
     @XmlElement("expression")
     Expression getExpression2();
     
-    /**
-     * The second of two expression to be cused in computation.
-     * <p>
-     * When parsing the BNF form of Expression this is the "right hand side".
-     * </p>
-     * @param expression first of two expressions compared 
-     */
-    void setExpression2( Expression expression);
 }

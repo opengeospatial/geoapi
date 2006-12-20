@@ -33,35 +33,15 @@ public interface PropertyIsBetween extends Filter {
     Expression getExpression();
 
     /**
-     * Expression to be compared by this operator.
-     * 
-     * @param expression value to be compared 
-     */
-    void setExpression( Expression expression);
-    
-    /**
      * Returns the lower bounds (inclusive) an an expression.
      */
     @XmlElement("LowerBoundary")
     Expression getLowerBoundary();
 
     /**
-     * Lower bounds (inclusive) of an expression
-     * 
-     * @param lowerBounds Expression of the lower bounds
-     */
-    void setLowerBoundary( Expression lowerBounds );
-    
-    /**
      * Returns the upper bounds (inclusive) as an expression.
      */
     @XmlElement("UpperBoundary")
     Expression getUpperBoundary();
     
-    /**
-     * Upper bounds (inclusive) as an expression
-     * 
-     * @param upperBounds Expression of the upper bounds
-     */
-    void setUpperBoundary( Expression upperBounds);
 }

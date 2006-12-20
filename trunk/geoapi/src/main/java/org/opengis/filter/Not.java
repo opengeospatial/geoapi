@@ -27,11 +27,4 @@ public interface Not extends Filter {
      * The filter to reverse.
      */
     Filter getFilter();
-    
-    /**
-     * Filter to reverse.
-     * 
-     * @param filter Logical value to reverse
-     */
-    void setFilter( Filter filter );
 }
