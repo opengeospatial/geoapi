@@ -1,7 +1,13 @@
 package org.opengis.feature;
 
+import java.util.List;
+
 import org.opengis.feature.type.AttributeDescriptor;
 import org.opengis.feature.type.AttributeType;
+import org.opengis.feature.type.Name;
+import org.opengis.feature.type.OperationDescriptor;
+
+import com.sun.org.omg.CORBA.OperationDescription;
 
 
 /**
@@ -65,6 +71,15 @@ public interface Attribute<B, T extends AttributeType<B>>
 	 * @return Value of the type indicated by type()
 	 */
 	B get();
+
+	/**
+	 * Call operation on <code>this</code> Attribute.
+	 * <p>
+	 * @param name Name of operation to be called
+	 * @param parameters Parameters for the operation
+	 * @return Result of operation, may be <code>null</code> 
+	 */
+	Object operation( Name name, List parameters );
 
 	/**
 	 * Set content to newZValue

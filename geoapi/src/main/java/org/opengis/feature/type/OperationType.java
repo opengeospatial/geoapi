@@ -8,8 +8,8 @@ import org.opengis.filter.Filter;
 /**
  * Operation information, immutable.
  * <p>
- * This represents a type of pperation that can be used to update the state of
- * a AttributeType, this gets more exciting with ComplexAttribtueType.
+ * This represents a type of opperation that can be used to update the state of
+ * an AttributeType, this gets more exciting with ComplexAttribtueType (or Feature)
  * <p>
  * If you come to this from a pure java background this is where we capture the
  * methods in our dynamic model. Since we do not carry implementations here you
@@ -23,8 +23,8 @@ import org.opengis.filter.Filter;
  * <p>
  * The implementation of the operations is against the bound AttributeType "B":
  * <ul>
- * <li>the descriptor will be able to evaulate against B and produced a change
- *     state or result
+ * <li>the descriptor will be able to evaulate against an instance of B
+ *     and produced a change state or result
  * <li>
  * </ul>
  * <p>
@@ -52,10 +52,10 @@ import org.opengis.filter.Filter;
 	/**
 	 * Indicate that this OperationType may not be used directly.
 	 * <p>
-	 * This indicates that a subclass will need to actually define the operation
+	 * This indicates that a sub type will need to actually define the operation
 	 * meaning here. As an example a graph system could have an Edge that would
 	 * have "related" operation returning that was abstract, and a sub type road
-	 * would define "related" based on touches, or contains or a common vertex.
+	 * would define "related" based on touches, or "contains" or "common vertex".
 	 * </p>
 	 */
 	 boolean isAbstract();
@@ -85,7 +85,7 @@ import org.opengis.filter.Filter;
 	/**
 	 * List of restrictions used to limit the allowable returned value.
 	 * 
-	 * @return List<Filter> used to validate allowable values.
+	 * @return Set<Filter> used to validate allowable values.
 	 */
 	 Set<Filter> getRestrictions();
 }

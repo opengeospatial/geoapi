@@ -19,7 +19,7 @@ import org.opengis.feature.Attribute;
 public interface OperationDescriptor<B, T extends AttributeType<B>, O extends OperationType<B, T>>
 		extends PropertyDescriptor {
 
-	/** Indicates the type of this attribute */
+	/** Indicates the OpperationType of this attribute */
 	O getType();
 
 	/**
@@ -54,15 +54,16 @@ public interface OperationDescriptor<B, T extends AttributeType<B>, O extends Op
 	 * Please check to ensure that isImplemented returns <code>true</code>
 	 * before calling invoke.
 	 * 
-	 * @param anAttribute
+	 * @param target
 	 *            This is the attribute used for context when evaulating the
-	 *            operation
-	 * @param params
+	 *            operation, the target may have it's state changed over the
+	 *            course of executation
+	 * @param params Parameters used to execute the opperation
 	 * @return the result of the operation
 	 * @throws InvoationTargetException
 	 *             if an error occured while processing
 	 */
-	Object invoke(Attribute<B, T> anAttribute, Object params[])
+	Object invoke(Attribute<B, T> target, Object params[])
 			throws InvocationTargetException;
 
 }
