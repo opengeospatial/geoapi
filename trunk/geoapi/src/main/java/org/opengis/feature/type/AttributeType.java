@@ -56,4 +56,5 @@ public interface AttributeType<B> extends PropertyType {
 	 * @return
 	 */
 	Collection<OperationDescriptor> getOperations();
+	
 }

@@ -103,6 +103,15 @@ public interface SimpleFeature extends //Sequence<List<Attribute>,SimpleFeatureT
 	void set( int index, Object value);
 	
 	/**
+	 * Call opperation with provided parameters.
+	 * 
+	 * @param name Name of opperation
+	 * @param parameters Should be in agreement with OperationType
+	 * @return Result of operation, may be null if operation does not produce a result
+	 */
+	Object operation( String name, Object parameters );
+	
+	/**
 	 * Number of attributes in SimpleFeatureType.
 	 * <p>
 	 * This is identical to <code>types().size()</code>
