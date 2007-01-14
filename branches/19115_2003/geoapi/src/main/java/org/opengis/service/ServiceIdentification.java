@@ -95,6 +95,6 @@ public interface ServiceIdentification extends Identification {
      * @return Collection of ServiceProvider
      */
     @UML(identifier = "provider", obligation = OPTIONAL, specification = ISO_19119)
-    Collection<ServiceProvider> getProvider();
+    Collection<ServiceProvider> getProviders();
 
 }
