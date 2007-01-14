@@ -71,7 +71,7 @@ public interface OperationMetadata extends MetadataEntity{
 	 * @return Collection of OnLineResource
 	 */
     @UML(identifier="connectPoints", obligation=MANDATORY, specification=ISO_19119)
-	Collection <OnLineResource> getConnectPoint();
+	Collection <OnLineResource> getConnectPoints();
 
 	/**
 	 * List of operations that must be completed immediately before current
