@@ -65,8 +65,8 @@ public interface Parameter extends MetadataEntity{
 	/**
 	 * value type
 	 * 
-	 * @return Collection of CodeList
+	 * @return TODO should be &lt;&lt;Metaclass&gt;&gt;Type fom Records and Class Metadata
 	 */
     @UML(identifier="valueType", obligation=OPTIONAL, specification=ISO_19119)
-	Collection getValueTypes();
+	Collection<String> getValueTypes();
 }
