@@ -93,7 +93,7 @@ public final class Restriction extends CodeList<Restriction> {
     /**
      * Limitation not listed.
      */
-    @UML(identifier="otherRestictions", obligation=CONDITIONAL, specification=ISO_19115)
+    @UML(identifier="otherRestrictions", obligation=CONDITIONAL, specification=ISO_19115)
     public static final Restriction OTHER_RESTRICTIONS = new Restriction("OTHER_RESTRICTIONS");
 
     /**
