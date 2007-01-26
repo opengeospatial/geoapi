@@ -1,8 +1,8 @@
 /*$************************************************************************************************
  **
- ** $Id: Aggregate.java 831 2006-05-01 00:27:23Z Desruisseaux $
+ ** $Id$
  **
- ** $URL: https://geoapi.svn.sourceforge.net/svnroot/geoapi/trunk/geoapi/src/main/java/org/opengis/spatialschema/geometry/aggregate/Aggregate.java $
+ ** $URL$
  **
  ** Copyright (C) 2003-2005 Open GIS Consortium, Inc.
  ** All Rights Reserved. http://www.opengis.org/legal/
