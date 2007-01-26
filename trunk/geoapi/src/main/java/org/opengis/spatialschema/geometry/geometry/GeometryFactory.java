@@ -21,6 +21,7 @@ import org.opengis.spatialschema.geometry.Envelope;
 import org.opengis.spatialschema.geometry.MismatchedDimensionException;
 import org.opengis.spatialschema.geometry.MismatchedReferenceSystemException;
 import org.opengis.spatialschema.geometry.aggregate.MultiPrimitive;
+import org.opengis.spatialschema.geometry.geometry.Position;
 import org.opengis.spatialschema.geometry.primitive.Ring;
 import org.opengis.spatialschema.geometry.primitive.Surface;
 import org.opengis.spatialschema.geometry.primitive.SurfaceBoundary;
@@ -54,11 +55,24 @@ public interface GeometryFactory {
      * Create a direct position with empty coordinates.
      */
     DirectPosition createDirectPosition();
-    
+
     /**
      * Create a direct position at the specified location specified by coordinates.
      */
     DirectPosition createDirectPosition(double[] coordinates);
+
+    // This method was added to GeoAPI by Sanjay, because no factory contained a constructor
+    // method for Position´s yet, but do contain methods which require Positions as parameter.
+    /**
+     * Constructs a position from a direct position by copying the coordinate values of the
+     * direct position. There will be no further reference to the direct position instance.
+     * 
+     * @param dp A direct position.
+     * @return The position which defines the coordinates for the direct position.
+     *
+     * @since GeoAPI 2.1
+     */
+    Position createPosition(DirectPosition dp);
 
     /**
      * Creates a new Envelope with the given corners.
@@ -74,7 +88,7 @@ public interface GeometryFactory {
      */
     Envelope createEnvelope(DirectPosition lowerCorner, DirectPosition upperCorner)
             throws MismatchedReferenceSystemException, MismatchedDimensionException;
-    
+
     /**
      * Takes two positions and creates the appropriate line segment joining them.
      *
@@ -373,7 +387,7 @@ public interface GeometryFactory {
     Tin createTin(Set<Position> post, Set<LineString> stopLines,
                   Set<LineString> breakLines, double maxLength)
             throws MismatchedReferenceSystemException, MismatchedDimensionException;
-    
+
     /**
      * Constructs polyhedral surface from the facet polygons.
      *
@@ -387,7 +401,7 @@ public interface GeometryFactory {
     @UML(identifier="GM_PolyhedralSurace(GM_Polygon)", obligation=MANDATORY, specification=ISO_19107)
     PolyhedralSurface createPolyhedralSurface(List<Polygon> tiles)
             throws MismatchedReferenceSystemException, MismatchedDimensionException;
-    
+
     /**
      * Placeholder to create a MultiPrimitive (or derivatives).
      *

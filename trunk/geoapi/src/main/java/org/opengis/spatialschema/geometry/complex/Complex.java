@@ -11,10 +11,11 @@
 package org.opengis.spatialschema.geometry.complex;
 
 // J2SE direct dependencies
-import java.util.Set;
+import java.util.Collection;
 
 // OpenGIS direct dependencies
 import org.opengis.spatialschema.geometry.Geometry;
+import org.opengis.spatialschema.geometry.primitive.Point;     // For javadoc
 import org.opengis.spatialschema.geometry.primitive.Primitive; // For javadoc
 
 // Annotations
@@ -25,9 +26,9 @@ import static org.opengis.annotation.Specification.*;
 
 /**
  * A collection of geometrically disjoint, simple {@linkplain Primitive primitives}. If a
- * {@linkplain Primitive primitive} (other than a {@linkplain org.opengis.spatialschema.geometry.primitive.Point point}
- * is in a particular {@code Complex}, then there exists a set of primitives of lower dimension
- * in the same complex that form the boundary of this primitive.
+ * {@linkplain Primitive primitive} (other than a {@linkplain Point point} is in a particular
+ * {@code Complex}, then there exists a set of primitives of lower dimension in the same complex
+ * that form the boundary of this primitive.
  * <p>
  * A geometric complex can be thought of as a set in two distinct ways. First, it is a finite set
  * of objects (via delegation to its elements member) and, second, it is an infinite set of point
@@ -56,7 +57,7 @@ public interface Complex extends Geometry {
      * Returns {@code true} if and only if this {@code Complex} is maximal.
      * A complex is maximal if it is a subcomplex of no larger complex.
      *
-     * @return {@code true} if this GM_Complex is maximal.
+     * @return {@code true} if this complex is maximal.
      */
     @UML(identifier="isMaximal", obligation=MANDATORY, specification=ISO_19107)
     public boolean isMaximal();
@@ -65,6 +66,8 @@ public interface Complex extends Geometry {
      * Returns a superset of primitives that is also a complex.
      *
      * @return The supercomplexes, or an empty array if none.
+     *
+     * @todo Consider using a Collection return type instead.
      */
     @UML(identifier="superComplex", obligation=MANDATORY, specification=ISO_19107)
     public Complex[] getSuperComplexes();
@@ -74,17 +77,19 @@ public interface Complex extends Geometry {
      * that is, in its own right, a geometric complex.
      *
      * @return The subcomplexes, or an empty array if none.
+     *
+     * @todo Consider using a Collection return type instead.
      */
     @UML(identifier="subComplex", obligation=MANDATORY, specification=ISO_19107)
     public Complex[] getSubComplexes();
 
     /**
-     * Returns the set of primitives contained in this complex.
+     * Returns the collection of primitives contained in this complex.
      *
-     * @return The set of primitives for this complex.
+     * @return The collection of primitives for this complex.
      */
     @UML(identifier="element", obligation=MANDATORY, specification=ISO_19107)
-    public Set<Primitive> getElements();
+    public Collection<? extends Primitive> getElements();
 
 //    public org.opengis.spatialschema.topology.complex.TP_Complex topology[];
 }
