@@ -9,7 +9,7 @@
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>org.opengis</groupId>
-    <artifactId>geoapi-parent</artifactId>
+    <artifactId>parent</artifactId>
     <version>2.1-SNAPSHOT</version>
   </parent>
 
@@ -21,31 +21,12 @@
   <groupId>org.opengis</groupId>
   <artifactId>geoapi</artifactId>
   <packaging>jar</packaging>
-  <version>2.1-SNAPSHOT</version>
-  <name>GeoAPI for J2SE 1.5</name>
-  <url>http://geoapi.sourceforge.net/pending/</url>
-  <scm>
-    <connection>scm:svn:https://svn.sourceforge.net/svnroot/geoapi/trunk/geoapi/</connection>
-    <url>https://svn.sourceforge.net/viewcvs.cgi/geoapi/trunk/geoapi/</url>
-  </scm>
+  <name>GeoAPI</name>
   <description>
     The development community in building GIS solutions is sustaining an enormous
     level of effort. The GeoAPI project aims to reduce duplication and increase
     interoperability by providing neutral, interface-only APIs derived from OGC/ISO
     Standards.
   </description>
-
-
-
-  <!-- ==================================================== -->
-  <!--     Deployment to public servers                     -->
-  <!-- ==================================================== -->
-  <distributionManagement>
-    <site>
-      <id>SourceForge</id>
-      <name>GeoAPI web site</name>
-      <url>scp://geoapi.sourceforge.net:/home/groups/g/ge/geoapi/htdocs/pending/site</url>
-    </site>
-  </distributionManagement>
 
 </project>
