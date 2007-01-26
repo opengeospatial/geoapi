@@ -11,6 +11,8 @@
 package org.opengis.spatialschema.geometry.primitive;
 
 // Annotations
+import java.util.List;
+
 import org.opengis.annotation.UML;
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -68,7 +70,9 @@ public interface SurfaceBoundary extends PrimitiveBoundary {
      * Returns the interior rings.
      *
      * @return The interior rings. Never {@code null}, but may be an empty array.
+     *
+     * @todo Consider using a Collection return type instead.
      */
     @UML(identifier="interior", obligation=MANDATORY, specification=ISO_19107)
-    public Ring[] getInteriors();
+    public List<Ring> getInteriors();
 }

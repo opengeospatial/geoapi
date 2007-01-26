@@ -211,6 +211,6 @@ public interface PrimitiveFactory {
      *         the expected dimension.
      */
     @Extension
-    Ring createRing(List<Curve> curves)
+    Ring createRing(List<OrientableCurve> curves)
             throws MismatchedReferenceSystemException, MismatchedDimensionException;
 }

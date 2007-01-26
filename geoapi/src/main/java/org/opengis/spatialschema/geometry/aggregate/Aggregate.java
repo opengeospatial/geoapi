@@ -31,10 +31,9 @@ import static org.opengis.annotation.Specification.*;
 @UML(identifier="GM_Aggregate", specification=ISO_19107)
 public interface Aggregate extends Geometry {
     /**
-     * Returns the {@linkplain Set} containing the elements that compose this
-     * aggregate.  The {@linkplain Set} may be modified if this geometry is
-     * {@linkplain #isMutable mutable}.
+     * Returns the set containing the elements that compose this aggregate. The
+     * set may be modified if this geometry {@linkplain #isMutable is mutable}.
      */
     @UML(identifier="element", obligation=MANDATORY, specification=ISO_19107)
-    public Set<Geometry> getElements();
+    public Set<? extends Geometry> getElements();
 }
