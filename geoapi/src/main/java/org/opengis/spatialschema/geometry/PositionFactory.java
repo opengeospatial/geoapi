@@ -23,8 +23,6 @@ import org.opengis.spatialschema.geometry.geometry.Position;
  * 
  * @author Jody Garnett
  * @since GeoAPI 2.1
- *
- * @todo May need to be renamed as {@code DirectPositionFactory}.
  */
 public interface PositionFactory {    
     /**
