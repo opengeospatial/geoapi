@@ -1,8 +1,8 @@
 /*$************************************************************************************************
  **
- ** $Id: KnotType.java 831 2006-05-01 00:27:23Z Desruisseaux $
+ ** $Id$
  **
- ** $URL: https://svn.sourceforge.net/svnroot/geoapi/trunk/geoapi/src/main/java/org/opengis/spatialschema/geometry/geometry/KnotType.java $
+ ** $URL$
  **
  ** Copyright (C) 2003-2005 Open GIS Consortium, Inc.
  ** All Rights Reserved. http://www.opengis.org/legal/
@@ -17,14 +17,10 @@ import java.util.ArrayList;
 // OpenGIS direct dependencies
 import org.opengis.util.CodeList;
 
-// Annotations
-import org.opengis.annotation.UML;
-import static org.opengis.annotation.Obligation.*;
-import static org.opengis.annotation.Specification.*;
-
 
 /**
- * 
+ * The type of {@linkplain PrecisionModel precision model}.
+ *
  * @author Jody Garnett
  * @since GeoAPI 2.1
  */
@@ -32,7 +28,7 @@ public class PrecisionModelType extends CodeList<PrecisionModelType> {
     /**
      * Serial number for compatibility with different versions.
      */
-    private static final long serialVersionUID = -431722533158166557L;
+    private static final long serialVersionUID = -2771887290382853282L;
 
     /**
      * List of all enumerations of this type.
@@ -46,12 +42,14 @@ public class PrecisionModelType extends CodeList<PrecisionModelType> {
     public static final PrecisionModelType FIXED = new PrecisionModelType("FIXED");
 
     /**
-     * Floating precision corresponds to the standard Java double-precision floating-point representation, which is based on the IEEE-754 standard
+     * Floating precision corresponds to the standard Java double-precision floating-point
+     * representation, which is based on the IEEE-754 standard.
      */
     public static final PrecisionModelType FLOATING = new PrecisionModelType("FLOATING");
 
     /**
-     * Floating single precision corresponds to the standard Java single-precision floating-point representation, which is based on the IEEE-754 standard
+     * Floating single precision corresponds to the standard Java single-precision
+     * floating-point representation, which is based on the IEEE-754 standard.
      */
     public static final PrecisionModelType FLOATING_SINGLE = new PrecisionModelType("FLOATING_SINGLE");
 
@@ -66,7 +64,7 @@ public class PrecisionModelType extends CodeList<PrecisionModelType> {
     }
 
     /**
-     * Returns the list of {@code KnotType}s.
+     * Returns the list of {@code PrecisionModelType}s.
      */
     public static PrecisionModelType[] values() {
         synchronized (VALUES) {

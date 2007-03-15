@@ -1,55 +1,79 @@
+/*$************************************************************************************************
+ **
+ ** $Id$
+ **
+ ** $URL$
+ **
+ ** Copyright (C) 2003-2005 Open GIS Consortium, Inc.
+ ** All Rights Reserved. http://www.opengis.org/legal/
+ **
+ *************************************************************************************************/
 package org.opengis.spatialschema.geometry;
 
+// J2SE direct dependencies
 import java.util.List;
 
+// OpenGIS direct dependencies
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 import org.opengis.spatialschema.geometry.geometry.Position;
 
+
 /**
- * A Factory for managing DirectPosition creation.
+ * A Factory for managing {@linkplain DirectPosition direct position} creation.
  * 
- * @since GeoAPI 2.1
  * @author Jody Garnett
+ * @since GeoAPI 2.1
+ *
+ * @todo May need to be renamed as {@code DirectPositionFactory}.
  */
-public interface PositionFactory {
-    
+public interface PositionFactory {    
     /**
      * Returns the coordinate reference system in use for all
-     * {@linkplain org.opengis.spatialschema.geometry.Geometry geometries}
-     * to be created through this interface.
+     * {@linkplain DirectPosition direct positions} to be created
+     * through this interface.
      */
     CoordinateReferenceSystem getCoordinateReferenceSystem();
-    
+
     /**
-     * Precision model used by DirectPositions created with this
-     * factory.
-     * 
-     * @return PrecisionModel
+     * Precision model used by {@linkplain DirectPosition direct positions}
+     * created with this factory.
      */
     PrecisionModel getPrecisionModel();
-    
+
     /**
-     * Creates a (possibiliy optimized) list for direct positions.
+     * Creates a direct position at the specified location specified by coordinates.
+     *
+     * @throws MismatchedDimensionException if the coordinates array length doesn't match
+     *         the {@linkplain #getCoordinateReferenceSystem coordinate reference system}
+     *         dimension.
+     */
+    DirectPosition createDirectPosition(double[] coordinates)
+            throws MismatchedDimensionException;
+
+    /**
+     * Creates a (possibiliy optimized) list for direct positions. The list is initially
+     * empty. New direct positions can be stored using the {@link List#add} method.
+     *
+     * @todo How is the list related to {@link org.opengis.spatialschema.geometry.geometry.PointArray}?
      */
     List<DirectPosition> createPositionList();
-    
-    List<DirectPosition> createPositionList( double[] coordinates, int start, int length );
-    
+
     /**
-     * Note this may only work with PrecisionModel.FLOAT_SINGLE
+     * Creates a list for direct positions initialized from the specified values.
+     */
+    List<DirectPosition> createPositionList(double[] coordinates, int start, int length);
+
+    /**
+     * Creates a list for direct positions initialized from the specified values.
      * 
      * @param coordinates
      * @param start
      * @param length
      * @return
+     *
+     * @todo Javadoc need completion.
      */
-    List<DirectPosition> createPositionList( float[] coordinates, int start, int length );
-    
-    
-    /**
-     * Create a direct position at the specified location specified by coordinates.
-     */
-    DirectPosition createDirectPosition( double[] coordinates);
+    List<DirectPosition> createPositionList(float[] coordinates, int start, int length);
 
     // This method was added to GeoAPI by Sanjay, because no factory contained a constructor
     // method for Position´s yet, but do contain methods which require Positions as parameter.
@@ -60,8 +84,7 @@ public interface PositionFactory {
      * @param dp A direct position.
      * @return The position which defines the coordinates for the direct position.
      *
-     * @since GeoAPI 2.1
+     * @deprecated Sanjay added a method for creating Position, not DirectPosition.
      */
     DirectPosition createDirectPosition(DirectPosition dp);
-    
 }

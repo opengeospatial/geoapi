@@ -65,7 +65,7 @@ public abstract class CodeList<E extends CodeList<E>> implements Comparable<E>, 
     }
 
     /**
-     * Verify if the given collection contains a {@code CodeList} instance
+     * Verifies if the given collection contains a {@code CodeList} instance
      * with the same name than the given {@code name} argument.
      * The comparaison is case-insensitive.
      */
@@ -130,7 +130,7 @@ public abstract class CodeList<E extends CodeList<E>> implements Comparable<E>, 
     }
 
     /**
-     * Resolve the code list to an unique instance after deserialization.
+     * Resolves the code list to an unique instance after deserialization.
      * The instance is resolved using its {@linkplain #name() name} only
      * (not its {@linkplain #ordinal() ordinal}).
      *
