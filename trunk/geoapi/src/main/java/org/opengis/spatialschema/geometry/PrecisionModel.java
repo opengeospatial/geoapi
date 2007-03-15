@@ -1,15 +1,31 @@
+/*$************************************************************************************************
+ **
+ ** $Id$
+ **
+ ** $URL$
+ **
+ ** Copyright (C) 2003-2005 Open GIS Consortium, Inc.
+ ** All Rights Reserved. http://www.opengis.org/legal/
+ **
+ *************************************************************************************************/
 package org.opengis.spatialschema.geometry;
 
+
 /**
- * Specifies the precision model of the DirectPoistions in a Geometry.
+ * Specifies the precision model of the {@linkplain DirectPosition direct positions}
+ * in a {@linkplain Geometry geometry}.
  * <p>
- * A PrevisionModel defines a grid allowable points, toPrecise allows you to round Describes the
- * collapsing behavior of a direct position.
+ * A precision model defines a grid of allowable points. The {@link #round} method
+ * allows to round a direct position to the nearest allowed point. The {@link #getType}
+ * method describes the collapsing behavior of a direct position.
  * <p>
- * PrecisionModel instances can be sorted by their maximum number of significant digits.
+ * {@code PrecisionModel} instances can be sorted by their {@linkplain #getScale scale}.
  * </p>
- * 
- * @author Jody
+ *
+ * @author Jody Garnett
+ * @since GeoAPI 2.1
+ *
+ * @todo Define a {@code compareTo} method for documentation purpose.
  */
 public interface PrecisionModel extends Comparable {
     /**
@@ -29,34 +45,27 @@ public interface PrecisionModel extends Comparable {
      * <p>
      * Multiply by this value and then divide by this value to round correctly:
      * 
-     * <pre><code>
+     * <blockquote><pre>
      * return Math.round(value * pm.getScale()) / pm.getScale();
-     * </code></pre>
+     * </pre></blockquote>
+     *
+     * So to round to {@code 3} significant digits we would have a scale of {@code 1000}.
      * 
-     * </p>
-     * <p>
-     * So to round to 3<code>3 </code>ignificant digits we would have a scale of
-     * <code>1000</code>
-     * 
-     * @return multiplying factor used before rounding
+     * @return Multiplying factor used before rounding.
      */
     double getScale();
 
     /**
-     * Type of precision model.
-     * 
-     * @return type of prevision model
+     * Returns the type of this precision model.
      */
     PrecisionModelType getType();
 
     /**
-     * Rounds a DirectPostion to this percision model in place.
+     * Rounds a direct position to this precision model in place.
      * <p>
-     * It is likely that a PercisionModel instance will keep different rounding rules for diffrent
-     * axis (example x & y ordinages may be handled differently then height), by always rounding a
-     * DirectPosition as a unit we will enable this functionality.
-     * </p>
+     * It is likely that a PrecisionModel instance will keep different rounding rules for different
+     * axis (example <var>x</var> & <var>y</var> ordinates may be handled differently then height),
+     * by always rounding a direct position as a whole we will enable this functionality.
      */
-    void round( DirectPosition position );
-
+    void round(DirectPosition position);
 }
