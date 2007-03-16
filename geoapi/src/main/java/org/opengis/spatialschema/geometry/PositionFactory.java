@@ -20,6 +20,9 @@ import org.opengis.spatialschema.geometry.geometry.Position;
 
 /**
  * A Factory for managing {@linkplain DirectPosition direct position} creation.
+ * <p>
+ * This factory will be created for a known CoordinateReferenceSystem and PrecisionModel.
+ * </p>
  * 
  * @author Jody Garnett
  * @since GeoAPI 2.1

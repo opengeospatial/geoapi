@@ -27,7 +27,20 @@ package org.opengis.spatialschema.geometry;
  *
  * @todo Define a {@code compareTo} method for documentation purpose.
  */
-public interface PrecisionModel extends Comparable {
+public interface PrecisionModel extends Comparable<PrecisionModel> {
+    /**
+     * Sort PrecisionModel according to number of significant digits.
+     * <p>
+     * Implemented as:<pre><code>
+     * return other.getMaximumSignificantDigits() - getMaximumSignificantDigits(); 
+     * </code></pre>
+     * 
+     * @param other Other PrecisionModel to compare against
+     * @return a negative integer, zero, or a positive integer as this object
+     *      is less than, equal to, or greater than precision then other
+     */
+    public int compareTo(PrecisionModel other);
+    
     /**
      * Returns the maximum number of significant digits provided by this precision model..
      * <p>
@@ -36,7 +49,7 @@ public interface PrecisionModel extends Comparable {
      * </p>
      * 
      * @return number of significant digits
-     * @see getScale
+     * @see getScale()
      */
     int getMaximumSignificantDigits();
 

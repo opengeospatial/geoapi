@@ -53,26 +53,15 @@ public interface GeometryFactory {
 
     /**
      * Create a direct position with empty coordinates.
+     * @deprecated Moved to PositionFactory
      */
     DirectPosition createDirectPosition();
 
     /**
      * Create a direct position at the specified location specified by coordinates.
+     * @deprecated Moved to PositionFactory
      */
     DirectPosition createDirectPosition(double[] coordinates);
-
-    // This method was added to GeoAPI by Sanjay, because no factory contained a constructor
-    // method for Position´s yet, but do contain methods which require Positions as parameter.
-    /**
-     * Constructs a position from a direct position by copying the coordinate values of the
-     * direct position. There will be no further reference to the direct position instance.
-     * 
-     * @param dp A direct position.
-     * @return The position which defines the coordinates for the direct position.
-     *
-     * @since GeoAPI 2.1
-     */
-    Position createPosition(DirectPosition dp);
 
     /**
      * Creates a new Envelope with the given corners.
