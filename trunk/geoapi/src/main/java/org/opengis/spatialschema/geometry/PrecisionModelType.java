@@ -31,6 +31,11 @@ public class PrecisionModelType extends CodeList<PrecisionModelType> {
     private static final long serialVersionUID = -2771887290382853282L;
 
     /**
+     * Indicates Precision Model uses floating point math (rather then a grid)
+     */
+    boolean isFloating;
+    
+    /**
      * List of all enumerations of this type.
      * Must be declared before any enum declaration.
      */
@@ -39,19 +44,19 @@ public class PrecisionModelType extends CodeList<PrecisionModelType> {
     /**
      * Fixed Precision indicates that coordinates have a fixed number of decimal places.
      */
-    public static final PrecisionModelType FIXED = new PrecisionModelType("FIXED");
+    public static final PrecisionModelType FIXED = new PrecisionModelType("FIXED", false );
 
     /**
      * Floating precision corresponds to the standard Java double-precision floating-point
      * representation, which is based on the IEEE-754 standard.
      */
-    public static final PrecisionModelType FLOATING = new PrecisionModelType("FLOATING");
+    public static final PrecisionModelType DOUBLE = new PrecisionModelType("DOUBLE", true);
 
     /**
      * Floating single precision corresponds to the standard Java single-precision
      * floating-point representation, which is based on the IEEE-754 standard.
      */
-    public static final PrecisionModelType FLOATING_SINGLE = new PrecisionModelType("FLOATING_SINGLE");
+    public static final PrecisionModelType FLOAT  = new PrecisionModelType("FLOAT", true);
 
     /**
      * Constructs an enum with the given name. The new enum is
@@ -59,10 +64,20 @@ public class PrecisionModelType extends CodeList<PrecisionModelType> {
      *
      * @param name The enum name. This name must not be in use by an other enum of this type.
      */
-    public PrecisionModelType(final String name) {
+    public PrecisionModelType(final String name, boolean isFloating  ) {
         super(name, VALUES);
+        this.isFloating = isFloating;        
     }
 
+    /**
+     * True if PrecisionModelType is a represented using floating point arithmatic (rather then a grid).
+     * 
+     * @return true if floating point arithmatic is used
+     */
+    public boolean isFloating(){
+        return isFloating;
+    }
+    
     /**
      * Returns the list of {@code PrecisionModelType}s.
      */
