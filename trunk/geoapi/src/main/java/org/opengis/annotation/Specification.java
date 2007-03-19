@@ -50,7 +50,7 @@ public enum Specification {
      * ISO 19115, Metadata (Topic 11).
      * This is the specification for package {@link org.opengis.metadata} and sub-packages.
      *
-     * @see <A HREF="http://www.opengis.org/docs/01-111.pdf">Download from OGC</A>
+     * @see <A HREF="http://www.opengeospatial.org/standards/as#01-111">Buy from ISO</A>
      */
     ISO_19115,
 
