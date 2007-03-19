@@ -17,13 +17,12 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * Correctness of non-quantitative attributes.
+ * Accuracy of non-quantitative attributes.
  *
  * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
  * @author Martin Desruisseaux (IRD)
- * @deprecated renamed to NonQuantitativeAttributeAccuracy
  * @since GeoAPI 2.0
  */
-@UML(identifier="DQ_NonQuantitativeAttributeCorrectness", specification=ISO_19115)
-public interface NonQuantitativeAttributeCorrectness extends ThematicAccuracy {
+@UML(identifier="DQ_NonQuantitativeAttributeAccuracy", specification=ISO_19115)
+public interface NonQuantitativeAttributeAccuracy extends ThematicAccuracy {
 }

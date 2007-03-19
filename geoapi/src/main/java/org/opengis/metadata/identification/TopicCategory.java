@@ -127,8 +127,8 @@ public final class TopicCategory extends CodeList<TopicCategory> {
      * Examples: disease and illness, factors affecting health, hygiene, substance abuse,
      *           mental and physical health, health services.
      */
-    @UML(identifier="healt", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final TopicCategory HEALT = new TopicCategory("HEALT");
+    @UML(identifier="health", obligation=CONDITIONAL, specification=ISO_19115)
+    public static final TopicCategory HEALTH = new TopicCategory("HEALTH");
 
     /**
      * Base maps.
@@ -166,7 +166,7 @@ public final class TopicCategory extends CodeList<TopicCategory> {
     public static final TopicCategory LOCATION = new TopicCategory("LOCATION");
 
     /**
-     * Geatures and characteristics of salt water bodies (excluding inland waters).
+     * Features and characteristics of salt water bodies (excluding inland waters).
      *
      * Examples: tides, tidal waves, coastal information, reefs.
      */

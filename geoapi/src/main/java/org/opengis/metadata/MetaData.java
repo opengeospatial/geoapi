@@ -65,25 +65,25 @@ public interface MetaData {
      * Full name of the character coding standard used for the metadata set.
      */
     @Profile (level=CORE)
-    @UML(identifier="characterSet", obligation=OPTIONAL, specification=ISO_19115)
+    @UML(identifier="characterSet", obligation=CONDITIONAL, specification=ISO_19115)
     Charset getCharacterSet();
 
     /**
      * File identifier of the metadata to which this metadata is a subset (child).
      */
-    @UML(identifier="parentIdentifier", obligation=OPTIONAL, specification=ISO_19115)
+    @UML(identifier="parentIdentifier", obligation=CONDITIONAL, specification=ISO_19115)
     String getParentIdentifier();
 
     /**
      * Scope to which the metadata applies.
      */
-    @UML(identifier="hierarchyLevel", obligation=OPTIONAL, specification=ISO_19115)
+    @UML(identifier="hierarchyLevel", obligation=CONDITIONAL, specification=ISO_19115)
     Collection<ScopeCode> getHierarchyLevels();
 
     /**
      * Name of the hierarchy levels for which the metadata is provided.
      */
-    @UML(identifier="hierarchyLevelName", obligation=OPTIONAL, specification=ISO_19115)
+    @UML(identifier="hierarchyLevelName", obligation=CONDITIONAL, specification=ISO_19115)
     Collection<String> getHierarchyLevelNames();
 
     /**
@@ -91,7 +91,7 @@ public interface MetaData {
      */
     @Profile (level=CORE)
     @UML(identifier="contact", obligation=MANDATORY, specification=ISO_19115)
-    ResponsibleParty getContact();
+    Collection<ResponsibleParty> getContacts();
 
     /**
      * Date that the metadata was created.
@@ -113,6 +113,20 @@ public interface MetaData {
     @Profile (level=CORE)
     @UML(identifier="metadataStandardVersion", obligation=OPTIONAL, specification=ISO_19115)
     String getMetadataStandardVersion();
+
+    /**
+     * Uniformed Resource Identifier (URI) of the dataset to which the metadata
+     * applies.
+     */
+    @UML(identifier="dataSetURI", obligation=OPTIONAL, specification=ISO_19115)
+    String getDataSetUri();
+
+    /**
+     * Provides information about an alternatively used localized character
+     * string for a linguistic extension
+     */
+    @UML(identifier="locale", obligation=OPTIONAL, specification=ISO_19115)
+    Collection<Locale> getLocales();    
 
     /**
      * Digital representation of spatial information in the dataset.

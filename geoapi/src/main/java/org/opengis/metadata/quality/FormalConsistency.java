@@ -22,6 +22,7 @@ import static org.opengis.annotation.Specification.*;
  *
  * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
  * @author Martin Desruisseaux (IRD)
+ * @deprecated renamed to FormatConsistency
  * @since GeoAPI 2.0
  */
 @UML(identifier="DQ_FormalConsistency", specification=ISO_19115)
