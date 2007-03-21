@@ -15,6 +15,7 @@ import java.util.Collection;
 import java.util.Date;
 
 // OpenGIS direct dependencies
+import org.opengis.metadata.Identifier;
 import org.opengis.util.InternationalString;
 
 // Annotations
@@ -74,14 +75,7 @@ public interface Citation {
      * National Stock Number (NSN).
      */
     @UML(identifier="identifier", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<String> getIdentifiers();
-
-    /**
-     * Reference form of the unique identifier (ID). Example: Universal Product Code (UPC),
-     * National Stock Number (NSN).
-     */
-    @UML(identifier="identifierType", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<String> getIdentifierTypes();
+    Collection<Identifier> getIdentifiers();
 
     /**
      * Name and position information for an individual or organization that is responsible

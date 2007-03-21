@@ -78,10 +78,4 @@ public interface ApplicationSchemaInformation {
      */
     @UML(identifier="softwareDevelopmentFileFormat", obligation=OPTIONAL, specification=ISO_19115)
     String getSoftwareDevelopmentFileFormat();
-
-    /**
-     * Information about the spatial attributes in the application schema for the feature types.
-     */
-    @UML(identifier="featureCatalogueSupplement", obligation=OPTIONAL, specification=ISO_19115)
-    SpatialAttributeSupplement getFeatureCatalogueSupplement();
 }

@@ -105,6 +105,12 @@ public final class Role extends CodeList<Role> {
     public static final Role PUBLISHER = new Role("PUBLISHER");
 
     /**
+     * Party who authored the resource.
+     */
+    @UML(identifier="author", obligation=CONDITIONAL, specification=ISO_19115)
+    public static final Role AUTHOR = new Role("AUTHOR");
+
+    /**
      * Constructs an enum with the given name. The new enum is
      * automatically added to the list returned by {@link #values}.
      *
