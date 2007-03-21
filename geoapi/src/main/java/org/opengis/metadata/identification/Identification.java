@@ -116,4 +116,10 @@ public interface Identification {
      */
     @UML(identifier="resourceConstraints", obligation=OPTIONAL, specification=ISO_19115)
     Collection<Constraints> getResourceConstraints();
+    
+    /**
+     * Provides aggregate dataset information
+     */
+    @UML(identifier="aggregationInfo", obligation=OPTIONAL, specification=ISO_19115)
+    Collection<AggregateInformation> getAggregateInfo();
 }
