@@ -1,8 +1,8 @@
 /*$************************************************************************************************
  **
- ** $Id:$
+ ** $Id: $
  **
- ** $URL:$
+ ** $URL: $
  **
  ** Copyright (C) 2004-2007 Open GIS Consortium, Inc.
  ** All Rights Reserved. http://www.opengis.org/legal/
