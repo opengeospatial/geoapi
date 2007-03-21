@@ -1,8 +1,8 @@
 /*$************************************************************************************************
  **
- ** $Id: $
+ ** $Id: InitiativeType.java 964 2007-03-21 20:26:40Z cory2070 $
  **
- ** $URL: $
+ ** $URL: https://geoapi.svn.sourceforge.net/svnroot/geoapi/trunk/geoapi/src/main/java/org/opengis/metadata/identification/InitiativeType.java $
  **
  ** Copyright (C) 2004-2007 Open GIS Consortium, Inc.
  ** All Rights Reserved. http://www.opengis.org/legal/
