@@ -15,6 +15,7 @@ import java.util.Collection;
 
 // OpenGIS direct dependencies
 import org.opengis.metadata.extent.Extent;
+import org.opengis.metadata.identification.RepresentativeFraction;
 import org.opengis.metadata.citation.Citation;
 import org.opengis.referencing.ReferenceSystem;
 import org.opengis.util.InternationalString;
@@ -37,16 +38,14 @@ public interface Source {
     /**
      * Detailed description of the level of the source data.
      */
-    @UML(identifier="description", obligation=MANDATORY, specification=ISO_19115)
+    @UML(identifier="description", obligation=CONDITIONAL, specification=ISO_19115)
     InternationalString getDescription();
 
     /**
      * Denominator of the representative fraction on a source map.
-     *
-     * @unitof RepresentativeFraction
      */
     @UML(identifier="scaleDenominator", obligation=OPTIONAL, specification=ISO_19115)
-    long getScaleDenominator();
+    RepresentativeFraction getScaleDenominator();
 
     /**
      * Spatial reference system used by the source data.
@@ -63,7 +62,7 @@ public interface Source {
     /**
      * Information about the spatial, vertical and temporal extent of the source data.
      */
-    @UML(identifier="sourceExtent", obligation=OPTIONAL, specification=ISO_19115)
+    @UML(identifier="sourceExtent", obligation=CONDITIONAL, specification=ISO_19115)
     Collection<Extent> getSourceExtents();
 
     /**
