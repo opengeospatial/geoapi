@@ -10,7 +10,13 @@
  *************************************************************************************************/
 package org.opengis.metadata.content;
 
-// Annotations
+//J2SE direct dependencies
+import java.util.Collection;
+
+//OpenGIS direct dependencies
+import org.opengis.util.RecordType;
+
+//Annotations
 import org.opengis.annotation.UML;
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -27,13 +33,9 @@ import static org.opengis.annotation.Specification.*;
 public interface CoverageDescription extends ContentInformation {
     /**
      * Description of the attribute described by the measurement value.
-     *
-     * @todo In the UML, the return type is {@code RecordType}, which is defined in
-     *       ISO 19103. We currently map {@code RecordType} to a Java {@link Class},
-     *       but it may be revisited in a future version.
      */
     @UML(identifier="attributeDescription", obligation=MANDATORY, specification=ISO_19115)
-    Class getAttributeDescription();
+    RecordType getAttributeDescription();
 
     /**
      * Type of information represented by the cell value.
@@ -45,5 +47,5 @@ public interface CoverageDescription extends ContentInformation {
      * Information on the dimensions of the cell measurement value.
      */
     @UML(identifier="dimension", obligation=OPTIONAL, specification=ISO_19115)
-    RangeDimension getDimension();
+    Collection<RangeDimension> getDimension();
 }
