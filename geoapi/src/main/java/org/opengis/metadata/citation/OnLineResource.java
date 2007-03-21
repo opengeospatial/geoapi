@@ -20,7 +20,6 @@ import org.opengis.util.InternationalString;
 import org.opengis.annotation.UML;
 import org.opengis.annotation.Profile;
 import static org.opengis.annotation.Obligation.*;
-import static org.opengis.annotation.Specification.*;
 import static org.opengis.annotation.ComplianceLevel.*;
 import static org.opengis.annotation.Specification.*;
 
@@ -56,6 +55,12 @@ public interface OnLineResource {
     @UML(identifier="applicationProfile", obligation=OPTIONAL, specification=ISO_19115)
     String getApplicationProfile();
 
+    /**
+     * Name of the online resource. Returns {@code null} if none.
+     */
+    @UML(identifier="name", obligation=OPTIONAL, specification=ISO_19115)
+    String getName();
+    
     /**
      * Detailed text description of what the online resource is/does.
      * Returns {@code null} if none.

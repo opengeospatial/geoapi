@@ -12,7 +12,7 @@ package org.opengis.metadata.content;
 
 // OpenGIS direct dependencies
 import org.opengis.util.InternationalString;
-import org.opengis.util.LocalName;
+import org.opengis.util.MemberName;
 
 // Annotations
 import org.opengis.annotation.UML;
@@ -34,7 +34,7 @@ public interface RangeDimension {
      * operates.
      */
     @UML(identifier="sequenceIdentifier", obligation=OPTIONAL, specification=ISO_19115)
-    LocalName getSequenceIdentifier();
+    MemberName getSequenceIdentifier();
 
     /**
      * Description of the range of a cell measurement value.
