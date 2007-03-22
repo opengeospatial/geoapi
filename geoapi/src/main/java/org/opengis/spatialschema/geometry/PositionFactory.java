@@ -36,10 +36,16 @@ public interface PositionFactory {
     CoordinateReferenceSystem getCoordinateReferenceSystem();
 
     /**
-     * Precision model used by {@linkplain DirectPosition direct positions}
-     * created with this factory.
+     * The Precision used used by {@linkplain DirectPosition direct positions}
+     * created via this factory.
+     * <p>
+     * The Precision used to inform topological operations of the number of
+     * significant digits maintained by the DirectPosition instances. This
+     * information both helps operations stop when the correct level of detail is
+     * reached, and ensure the result will be valid when rounded to the required
+     * precision.
      */
-    PrecisionModel getPrecisionModel();
+    Precision getPrecision();
 
     /**
      * Creates a direct position at the specified location specified by coordinates.
@@ -57,12 +63,12 @@ public interface PositionFactory {
      *
      * @todo How is the list related to {@link org.opengis.spatialschema.geometry.geometry.PointArray}?
      */
-    List<DirectPosition> createPositionList();
+    List<Position> createPositionList();
 
     /**
      * Creates a list for direct positions initialized from the specified values.
      */
-    List<DirectPosition> createPositionList(double[] coordinates, int start, int length);
+    List<Position> createPositionList(double[] coordinates, int start, int length);
 
     /**
      * Creates a list for direct positions initialized from the specified values.
@@ -74,7 +80,7 @@ public interface PositionFactory {
      *
      * @todo Javadoc need completion.
      */
-    List<DirectPosition> createPositionList(float[] coordinates, int start, int length);
+    List<Position> createPositionList(float[] coordinates, int start, int length);
 
     // This method was added to GeoAPI by Sanjay, because no factory contained a constructor
     // method for Position´s yet, but do contain methods which require Positions as parameter.
@@ -84,8 +90,6 @@ public interface PositionFactory {
      * 
      * @param dp A direct position.
      * @return The position which defines the coordinates for the direct position.
-     *
-     * @deprecated Sanjay added a method for creating Position, not DirectPosition.
      */
-    DirectPosition createDirectPosition(DirectPosition dp);
+    Position createPosition(Position dp);
 }
