@@ -69,7 +69,7 @@ public interface Geometry extends TransfiniteSet {
      * </p>
      * @return the precision model used for topological operations. 
      */
-    PrecisionModel getPrecisionModel();
+    Precision getPrecision();
     
     /**
      * Returns a region in the coordinate reference system that contains this {@code Geometry}.
