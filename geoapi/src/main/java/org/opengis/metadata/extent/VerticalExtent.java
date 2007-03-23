@@ -11,7 +11,10 @@
 package org.opengis.metadata.extent;
 
 // OpenGIS direct dependencies
+import javax.units.Unit;
+
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
+import org.opengis.referencing.datum.VerticalDatum;
 
 // Annotations
 import org.opengis.annotation.UML;
@@ -39,6 +42,24 @@ public interface VerticalExtent {
      */
     @UML(identifier="maximumValue", obligation=MANDATORY, specification=ISO_19115)
     double getMaximumValue();
+
+    /**
+     * Returns the vertical units used for vertical extent information.
+     * Examples: metres, feet, millimetres, hectopascals.
+     * 
+     * @deprecated removed from ISO_19115
+     */
+    @UML(identifier="unitOfMeasure", obligation=MANDATORY, specification=ISO_19115)
+    Unit getUnit();
+
+    /**
+     * Provides information about the origin from which the
+     * maximum and minimum elevation values are measured.
+     * 
+     * @deprecated changed to verticalCRS in ISO_19115
+     */
+    @UML(identifier="verticalDatum", obligation=MANDATORY, specification=ISO_19115)
+    VerticalDatum getVerticalDatum();
 
     /**
      * Provides information about the vertical coordinate reference system to

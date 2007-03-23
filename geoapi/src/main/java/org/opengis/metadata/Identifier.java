@@ -59,4 +59,15 @@ public interface Identifier {
      */
     @UML(identifier="authority", obligation=OPTIONAL, specification=ISO_19115)
     Citation getAuthority();
+
+    /**
+     * Identifier of the version of the associated code, as specified by the code authority.
+     * This version is included only when the {@linkplain #getCode code} uses versions. When
+     * appropriate, the edition is identified by the effective date, coded using ISO 8601 date
+     * format.
+     * 
+     * @deprecated see org.opengis.metadata.reference.Identifier.getVersion()
+     */
+    @Extension
+    String getVersion();
 }
