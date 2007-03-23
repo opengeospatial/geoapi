@@ -10,9 +10,10 @@
  *************************************************************************************************/
 package org.opengis.metadata.extent;
 
-// OpenGIS direct dependencies
+// J2SE direct dependencies
 import javax.units.Unit;
 
+// OpenGIS direct dependencies
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 import org.opengis.referencing.datum.VerticalDatum;
 

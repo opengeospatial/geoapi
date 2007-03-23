@@ -48,14 +48,14 @@ public final class GeometricObjectType extends CodeList<GeometricObjectType> {
      * Set of geometric primitives such that their boundaries can be represented as a
      * union of other primitives.
      */
-    @UML(identifier="complexes", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final GeometricObjectType COMPLEXES = new GeometricObjectType("COMPLEXES");
+    @UML(identifier="complex", obligation=CONDITIONAL, specification=ISO_19115)
+    public static final GeometricObjectType COMPLEX = new GeometricObjectType("COMPLEX");
 
     /**
      * Connected set of curves, solids or surfaces.
      */
-    @UML(identifier="composites", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final GeometricObjectType COMPOSITES = new GeometricObjectType("COMPOSITES");
+    @UML(identifier="composite", obligation=CONDITIONAL, specification=ISO_19115)
+    public static final GeometricObjectType COMPOSITE = new GeometricObjectType("COMPOSITE");
 
     /**
      * Bounded, 1-dimensional geometric primitive, representing the continuous image of a line.
@@ -83,6 +83,19 @@ public final class GeometricObjectType extends CodeList<GeometricObjectType> {
     @UML(identifier="surface", obligation=CONDITIONAL, specification=ISO_19115)
     public static final GeometricObjectType SURFACE = new GeometricObjectType("SURFACE");
 
+    /**
+     * Set of geometric primitives such that their boundaries can be represented as a
+     * union of other primitives.
+     * @deprecated use COMPLEX
+     */
+    public static final GeometricObjectType COMPLEXES = COMPLEX;
+    
+    /**
+     * Connected set of curves, solids or surfaces.
+     * @deprecated use COMPOSITE
+     */
+    public static final GeometricObjectType COMPOSITES = COMPOSITE;
+    
     /**
      * Constructs an enum with the given name. The new enum is
      * automatically added to the list returned by {@link #values}.

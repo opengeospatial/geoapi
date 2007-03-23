@@ -72,11 +72,11 @@ public interface Element {
 
     /**
      * Date or range of dates on which a data quality measure was applied.
-     * The array length is 1 for a single date, or 2 for a range. Returns
+     * The collection size is 1 for a single date, or 2 for a range. Returns
      * {@code null} if this information is not available.
      */
     @UML(identifier="dateTime", obligation=OPTIONAL, specification=ISO_19115)
-    Date[] getDate();
+    Collection<Date> getDate();
 
     /**
      * Value (or set of values) obtained from applying a data quality measure or the out
@@ -84,5 +84,5 @@ public interface Element {
      * acceptable conformance quality level.
      */
     @UML(identifier="result", obligation=MANDATORY, specification=ISO_19115)
-    Result getResult();
+    Collection<Result> getResult();
 }
