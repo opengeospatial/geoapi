@@ -46,9 +46,7 @@ public final class ScopeCode extends CodeList<ScopeCode> {
     private static final List<ScopeCode> VALUES = new ArrayList<ScopeCode>(15);
 
     /**
-     * Information applies to the attribute class.
-     *
-     * @todo Should we said "... to the attribute object"?
+     * Information applies to the attribute value.
      */
     @UML(identifier="attribute", obligation=CONDITIONAL, specification=ISO_19115)
     public static final ScopeCode ATTRIBUTE = new ScopeCode("ATTRIBUTE");
@@ -78,7 +76,7 @@ public final class ScopeCode extends CodeList<ScopeCode> {
     public static final ScopeCode DATASET = new ScopeCode("DATASET");
 
     /**
-     * Information applies to the series.
+     * Information applies to the series.  Note: "series" applies to any DS_Aggregate.
      */
     @UML(identifier="series", obligation=CONDITIONAL, specification=ISO_19115)
     public static final ScopeCode SERIES = new ScopeCode("SERIES");
@@ -138,6 +136,12 @@ public final class ScopeCode extends CodeList<ScopeCode> {
      */
     @UML(identifier="model", obligation=CONDITIONAL, specification=ISO_19115)
     public static final ScopeCode MODEL = new ScopeCode("MODEL");
+
+    /**
+     * Information applies to a copy or imitation of an existing or hypothetical object.
+     */
+    @UML(identifier="tile", obligation=CONDITIONAL, specification=ISO_19115)
+    public static final ScopeCode TILE = new ScopeCode("TILE");
 
     /**
      * Constructs an enum with the given name. The new enum is

@@ -11,9 +11,12 @@
 package org.opengis.metadata.maintenance;
 
 // J2SE direct dependencies
+import java.util.Collection;
 import java.util.Date;
 
 // OpenGIS direct dependencies
+import org.opengis.metadata.citation.ResponsibleParty;
+import org.opengis.temporal.PeriodDuration;
 import org.opengis.util.InternationalString;
 
 // Annotations
@@ -51,23 +54,44 @@ public interface MaintenanceInformation {
      * @unitof PeriodDuration
      */
     @UML(identifier="userDefinedMaintenanceFrequency", obligation=OPTIONAL, specification=ISO_19115)
-    long getUserDefinedMaintenanceFrequency();
+    PeriodDuration getUserDefinedMaintenanceFrequency();
+
+    /**
+     * Scope of data to which maintenance is applied.
+     * 
+     * @deprecated use getUpdateScopes
+     */
+    ScopeCode getUpdateScope();
+
+    /**
+     * Additional information about the range or extent of the resource.
+     * 
+     * @deprecated use getUpdateScopeDescriptions
+     */
+    ScopeDescription getUpdateScopeDescription();
 
     /**
      * Scope of data to which maintenance is applied.
      */
     @UML(identifier="updateScope", obligation=OPTIONAL, specification=ISO_19115)
-    ScopeCode getUpdateScope();
+    Collection<ScopeCode> getUpdateScopes();
 
     /**
      * Additional information about the range or extent of the resource.
      */
     @UML(identifier="updateScopeDescription", obligation=OPTIONAL, specification=ISO_19115)
-    ScopeDescription getUpdateScopeDescription();
-
+    Collection<ScopeDescription> getUpdateScopeDescriptions();
+    
     /**
      * Information regarding specific requirements for maintaining the resource.
      */
-    @UML(identifier="maintenanceNote", obligation=CONDITIONAL, specification=ISO_19115)
+    @UML(identifier="maintenanceNote", obligation=OPTIONAL, specification=ISO_19115)
     InternationalString getMaintenanceNote();
+
+    /**
+     * Identification of, and means of communicating with,
+     * person(s) and organization(s) with responsibility for maintaining the metadata
+     */
+    @UML(identifier="contact", obligation=OPTIONAL, specification=ISO_19115)
+    Collection<ResponsibleParty> getContacts();    
 }

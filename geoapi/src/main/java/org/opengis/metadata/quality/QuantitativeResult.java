@@ -11,10 +11,13 @@
 package org.opengis.metadata.quality;
 
 // J2SE direct dependencies and extension
+import java.util.Collection;
 import javax.units.Unit;
 
 // OpenGIS direct dependencies
 import org.opengis.util.InternationalString;
+import org.opengis.util.Record;
+import org.opengis.util.RecordType;
 
 // Annotations
 import org.opengis.annotation.UML;
@@ -33,22 +36,20 @@ import static org.opengis.annotation.Specification.*;
 public interface QuantitativeResult extends Result {
     /**
      * Quantitative value or values, content determined by the evaluation procedure used.
-     *
-     * @unitof Measure
      */
     @UML(identifier="value", obligation=MANDATORY, specification=ISO_19115)
-    double[] getValues();
+    Collection<Record> getValues();
 
     /**
      * Value type for reporting a data quality result, or {@code null} if none.
      */
     @UML(identifier="valueType", obligation=OPTIONAL, specification=ISO_19115)
-    Class getValueType();
+    RecordType getValueType();
 
     /**
      * Value unit for reporting a data quality result, or {@code null} if none.
      */
-    @UML(identifier="valueUnit", obligation=OPTIONAL, specification=ISO_19115)
+    @UML(identifier="valueUnit", obligation=MANDATORY, specification=ISO_19115)
     Unit getValueUnit();
 
     /**
