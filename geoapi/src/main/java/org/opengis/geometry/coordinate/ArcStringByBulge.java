@@ -27,7 +27,7 @@ import static org.opengis.annotation.Specification.*;
  * {@linkplain Position position} is not needed since it is to be calculated.
  * The control point sequence shall consist of the start and end points of each arc.
  *  
- * @version <A HREF="http://www.opengis.org/docs/01-101.pdf">Abstract specification 5</A>
+ * @version <A HREF="http://www.opengeospatial.org/standards/as">ISO 19107</A>
  * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 1.0
  *

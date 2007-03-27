@@ -21,7 +21,7 @@ import static org.opengis.annotation.Specification.*;
  * vertical curves. This is not a polygonal surface, since each of the grid squares is a ruled
  * surface, and not necessarily planar.
  *
- * @version <A HREF="http://www.opengis.org/docs/01-101.pdf">Abstract specification 5</A>
+ * @version <A HREF="http://www.opengeospatial.org/standards/as">ISO 19107</A>
  * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 2.0
  */

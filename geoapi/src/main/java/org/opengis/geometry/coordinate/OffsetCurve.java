@@ -22,7 +22,7 @@ import static org.opengis.annotation.Specification.*;
  * A curve at a constant distance from the basis curve. They can be useful as a cheap and
  * simple alternative to constructing curves that are offsets by definition.
  *
- * @version <A HREF="http://www.opengis.org/docs/01-101.pdf">Abstract specification 5</A>
+ * @version <A HREF="http://www.opengeospatial.org/standards/as">ISO 19107</A>
  * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 2.0
  */

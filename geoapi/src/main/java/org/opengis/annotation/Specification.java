@@ -28,7 +28,8 @@ public enum Specification {
      * ISO 19107, Feature Geometry (Topic 1).
      * This is the specification for package {@link org.opengis.spatialschema.geometry} and sub-packages.
      *
-     * @see <A HREF="http://www.opengis.org/docs/01-101.pdf">Download from OGC</A>
+     * @see <A HREF="http://www.opengeospatial.org/standards/as">Buy from ISO</A>
+     * @note no longer publically available
      */
     ISO_19107,
 
@@ -51,6 +52,7 @@ public enum Specification {
      * This is the specification for package {@link org.opengis.metadata} and sub-packages.
      *
      * @see <A HREF="http://www.opengeospatial.org/standards/as#01-111">Buy from ISO</A>
+     * @note no longer publically available
      */
     ISO_19115,
 

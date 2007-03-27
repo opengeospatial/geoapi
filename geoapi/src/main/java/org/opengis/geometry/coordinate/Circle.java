@@ -25,7 +25,7 @@ import static org.opengis.annotation.Specification.*;
  * This still requires at least 3 distinct non-co-linear points to be unambiguously
  * defined. The arc is simply extended until the first point is encountered.
  *  
- * @version <A HREF="http://www.opengis.org/docs/01-101.pdf">Abstract specification 5</A>
+ * @version <A HREF="http://www.opengeospatial.org/standards/as">ISO 19107</A>
  * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 1.0
  */

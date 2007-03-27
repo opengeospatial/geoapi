@@ -30,7 +30,7 @@ import static org.opengis.annotation.Specification.*;
  * the cordinate reference system is implicitly assumed to take on the value of the containing
  * object's {@linkplain CoordinateReferenceSystem coordinate reference system}.
  * 
- * @version <A HREF="http://www.opengis.org/docs/01-101.pdf">Abstract specification 5</A>
+ * @version <A HREF="http://www.opengeospatial.org/standards/as">ISO 19107</A>
  * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 1.0
  */

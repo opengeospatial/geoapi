@@ -23,7 +23,7 @@ import static org.opengis.annotation.Specification.*;
  * (<var>x</var>,<var>y</var>) coordinates of the polygon. The last
  * point replicates first point.
  *
- * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
+ * @version <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
  * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 1.0
  */

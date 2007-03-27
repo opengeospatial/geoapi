@@ -24,7 +24,7 @@ import static org.opengis.annotation.Specification.*;
  * {@linkplain Ring ring}, a {@code Shell}'s elements have no natural sort order. Like
  * {@linkplain Ring rings}, {@code Shell}s are simple.
  *
- * @version <A HREF="http://www.opengis.org/docs/01-101.pdf">Abstract specification 5</A>
+ * @version <A HREF="http://www.opengeospatial.org/standards/as">ISO 19107</A>
  * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 1.0
  *

@@ -21,7 +21,7 @@ import static org.opengis.annotation.Specification.*;
 /**
  * Graphic that provides an illustration of the dataset (should include a legend for the graphic).
  *
- * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
+ * @version <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
  * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 2.0
  */
