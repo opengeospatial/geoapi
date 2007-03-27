@@ -16,7 +16,7 @@ import javax.units.Unit;
 // OpenGIS direct dependencies
 import org.opengis.go.display.canvas.Canvas;
 import org.opengis.go.display.canvas.CanvasController;
-import org.opengis.spatialschema.geometry.Envelope;
+import org.opengis.geometry.Envelope;
 
 
 /**

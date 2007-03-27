@@ -4,7 +4,7 @@ import java.util.Collection;
 
 import org.opengis.feature.type.FeatureType;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
-import org.opengis.spatialschema.geometry.BoundingBox;
+import org.opengis.geometry.BoundingBox;
 
 /**
  * A Feature, of abitrary complexity, with at a minimum Geometry and CRS information.

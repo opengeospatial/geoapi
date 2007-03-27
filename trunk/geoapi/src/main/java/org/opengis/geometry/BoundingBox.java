@@ -8,7 +8,7 @@
  ** All Rights Reserved. http://www.opengis.org/legal/
  **
  *************************************************************************************************/
-package org.opengis.spatialschema.geometry;
+package org.opengis.geometry;
 
 // OpenGIS direct dependencies
 import org.opengis.referencing.crs.CoordinateReferenceSystem;

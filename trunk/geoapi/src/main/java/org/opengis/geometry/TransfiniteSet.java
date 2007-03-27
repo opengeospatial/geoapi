@@ -8,7 +8,7 @@
  ** All Rights Reserved. http://www.opengis.org/legal/
  **
  *************************************************************************************************/
-package org.opengis.spatialschema.geometry;
+package org.opengis.geometry;
 
 // Annotations
 import org.opengis.annotation.UML;
@@ -30,14 +30,14 @@ public interface TransfiniteSet {
     /**
      * Returns {@code true} if this {@code TransfiniteSet} contains another
      * {@code TransfiniteSet}. If the passed {@code TransfiniteSet} is a
-     * {@linkplain org.opengis.spatialschema.geometry.primitive.Point point}, then this operation is the
+     * {@linkplain org.opengis.geometry.primitive.Point point}, then this operation is the
      * equivalent of a set-element test for the {@linkplain DirectPosition direct position}
      * of that point within this {@code TransfiniteSet}.
      *
      * <blockquote><font size=2>
      * <strong>NOTE:</strong> {@code contains} is strictly a set theoretic containment,
-     * and has no dimensionality constraint. In a {@linkplain org.opengis.spatialschema.geometry.complex.Complex
-     * complex}, no {@linkplain org.opengis.spatialschema.geometry.primitive.Primitive primitive} will contain
+     * and has no dimensionality constraint. In a {@linkplain org.opengis.geometry.complex.Complex
+     * complex}, no {@linkplain org.opengis.geometry.primitive.Primitive primitive} will contain
      * another unless a dimension is skipped.
      * </font></blockquote>
      *
@@ -57,19 +57,19 @@ public interface TransfiniteSet {
 
     /**
      * Returns {@code true} if this {@code TransfiniteSet} intersects another
-     * {@code TransfiniteSet}. Withing a {@linkplain org.opengis.spatialschema.geometry.complex.Complex complex},
-     * the {@linkplain org.opengis.spatialschema.geometry.primitive.Primitive primitives} do not intersect one another.
+     * {@code TransfiniteSet}. Withing a {@linkplain org.opengis.geometry.complex.Complex complex},
+     * the {@linkplain org.opengis.geometry.primitive.Primitive primitives} do not intersect one another.
      * In general, topologically structured data uses shared geometric objects to
      * capture intersection information.
      *
      * <blockquote><font size=2>
      * <strong>NOTE:</strong> This intersect is strictly a set theoretic common containment of
      * {@linkplain DirectPosition direct positions}.
-     * Two {@linkplain org.opengis.spatialschema.geometry.primitive.Curve curves} do not intersect if they share a common
-     * end point because {@linkplain org.opengis.spatialschema.geometry.primitive.Primitive primitives} are considered to be
+     * Two {@linkplain org.opengis.geometry.primitive.Curve curves} do not intersect if they share a common
+     * end point because {@linkplain org.opengis.geometry.primitive.Primitive primitives} are considered to be
      * open (do not contain their boundary).
-     * If two {@linkplain org.opengis.spatialschema.geometry.complex.CompositeCurve composite curves} share a common end point,
-     * then they intersect because {@linkplain org.opengis.spatialschema.geometry.complex.Complex complexes} are considered to
+     * If two {@linkplain org.opengis.geometry.complex.CompositeCurve composite curves} share a common end point,
+     * then they intersect because {@linkplain org.opengis.geometry.complex.Complex complexes} are considered to
      * be closed (contain their boundary).
      * </font></blockquote>
      *

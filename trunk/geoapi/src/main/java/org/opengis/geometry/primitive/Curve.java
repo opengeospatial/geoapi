@@ -8,13 +8,13 @@
  ** All Rights Reserved. http://www.opengis.org/legal/
  **
  *************************************************************************************************/
-package org.opengis.spatialschema.geometry.primitive;
+package org.opengis.geometry.primitive;
 
 // J2SE direct dependencies
 import java.util.List;
 
 // OpenGIS direct dependencies
-import org.opengis.spatialschema.geometry.geometry.GenericCurve;
+import org.opengis.geometry.coordinate.GenericCurve;
 
 // Annotations
 import org.opengis.annotation.UML;

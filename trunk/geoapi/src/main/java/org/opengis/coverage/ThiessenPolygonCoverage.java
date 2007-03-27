@@ -15,8 +15,8 @@ import java.util.Collection;
 import java.util.Set;
 
 // OpenGIS direct dependencies
-import org.opengis.spatialschema.geometry.DirectPosition;
-import org.opengis.spatialschema.geometry.primitive.Surface;
+import org.opengis.geometry.DirectPosition;
+import org.opengis.geometry.primitive.Surface;
 
 // Annotations
 import org.opengis.annotation.UML;

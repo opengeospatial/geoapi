@@ -8,7 +8,7 @@
  ** All Rights Reserved. http://www.opengis.org/legal/
  **
  *************************************************************************************************/
-package org.opengis.spatialschema.geometry.primitive;
+package org.opengis.geometry.primitive;
 
 // Annotations
 import org.opengis.annotation.UML;
@@ -76,7 +76,7 @@ public interface Solid extends Primitive {
     @UML(identifier="volume", obligation=MANDATORY, specification=ISO_19107)
     public double getVolume();
     
-//    public org.opengis.spatialschema.geometry.complex.GM_CompositeSolid composite[];
-//    public void setComposite(org.opengis.spatialschema.geometry.complex.GM_CompositeSolid composite[]) {  }
-//    public org.opengis.spatialschema.geometry.complex.GM_CompositeSolid[] getComposite() { return null; }
+//    public org.opengis.geometry.complex.GM_CompositeSolid composite[];
+//    public void setComposite(org.opengis.geometry.complex.GM_CompositeSolid composite[]) {  }
+//    public org.opengis.geometry.complex.GM_CompositeSolid[] getComposite() { return null; }
 }

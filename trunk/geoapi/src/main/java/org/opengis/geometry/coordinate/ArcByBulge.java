@@ -8,7 +8,7 @@
  ** All Rights Reserved. http://www.opengis.org/legal/
  **
  *************************************************************************************************/
-package org.opengis.spatialschema.geometry.geometry;
+package org.opengis.geometry.coordinate;
 
 // Annotations
 import org.opengis.annotation.UML;

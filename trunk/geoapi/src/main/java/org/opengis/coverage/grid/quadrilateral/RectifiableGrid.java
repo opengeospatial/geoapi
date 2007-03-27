@@ -15,7 +15,7 @@ import org.opengis.referencing.operation.Operation;  // For javadoc
 import org.opengis.referencing.operation.Conversion;
 import org.opengis.referencing.operation.MathTransform;
 import org.opengis.referencing.operation.TransformException;
-import org.opengis.spatialschema.geometry.DirectPosition;
+import org.opengis.geometry.DirectPosition;
 
 // Annotations
 import org.opengis.annotation.UML;

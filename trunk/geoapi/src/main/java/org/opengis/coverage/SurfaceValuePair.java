@@ -11,7 +11,7 @@
 package org.opengis.coverage;
 
 // OpenGIS dependencies
-import org.opengis.spatialschema.geometry.primitive.Surface;
+import org.opengis.geometry.primitive.Surface;
 
 // Annotations
 import org.opengis.annotation.UML;

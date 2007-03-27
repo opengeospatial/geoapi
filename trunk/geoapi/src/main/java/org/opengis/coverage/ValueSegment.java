@@ -14,7 +14,7 @@ package org.opengis.coverage;
 import java.util.Set;
 
 // OpenGIS direct dependencies
-import org.opengis.spatialschema.geometry.primitive.Curve;
+import org.opengis.geometry.primitive.Curve;
 
 // Annotations
 import org.opengis.annotation.UML;

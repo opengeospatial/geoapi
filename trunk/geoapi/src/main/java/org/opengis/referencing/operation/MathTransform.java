@@ -11,8 +11,8 @@
 package org.opengis.referencing.operation;
 
 // OpenGIS direct dependencies
-import org.opengis.spatialschema.geometry.DirectPosition;
-import org.opengis.spatialschema.geometry.MismatchedDimensionException;
+import org.opengis.geometry.DirectPosition;
+import org.opengis.geometry.MismatchedDimensionException;
 
 // Annotations
 import org.opengis.annotation.UML;

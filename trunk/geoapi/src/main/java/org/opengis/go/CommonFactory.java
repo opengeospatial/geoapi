@@ -25,8 +25,8 @@ import org.opengis.referencing.datum.DatumFactory;
 import org.opengis.referencing.operation.CoordinateOperationAuthorityFactory;
 import org.opengis.referencing.operation.CoordinateOperationFactory;
 import org.opengis.sld.FeatureStyleFactory;
-import org.opengis.spatialschema.geometry.geometry.GeometryFactory;
-import org.opengis.spatialschema.geometry.primitive.PrimitiveFactory;
+import org.opengis.geometry.coordinate.GeometryFactory;
+import org.opengis.geometry.primitive.PrimitiveFactory;
 import org.opengis.util.NameFactory;
 
 /**

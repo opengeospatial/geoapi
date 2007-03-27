@@ -8,10 +8,10 @@
  ** All Rights Reserved. http://www.opengis.org/legal/
  **
  *************************************************************************************************/
-package org.opengis.spatialschema.geometry.geometry;
+package org.opengis.geometry.coordinate;
 
 // OpenGIS direct dependencies
-import org.opengis.spatialschema.geometry.primitive.CurveSegment;
+import org.opengis.geometry.primitive.CurveSegment;
 
 // Annotations
 import org.opengis.annotation.UML;

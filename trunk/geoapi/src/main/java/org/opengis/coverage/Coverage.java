@@ -19,9 +19,9 @@ import java.awt.image.renderable.RenderableImage;
 
 // OpenGIS direct dependencies
 import org.opengis.metadata.extent.Extent;
-import org.opengis.spatialschema.geometry.Envelope;
-import org.opengis.spatialschema.geometry.Geometry;
-import org.opengis.spatialschema.geometry.DirectPosition;
+import org.opengis.geometry.Envelope;
+import org.opengis.geometry.Geometry;
+import org.opengis.geometry.DirectPosition;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 import org.opengis.temporal.Period;
 import org.opengis.util.Record;

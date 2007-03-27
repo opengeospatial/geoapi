@@ -19,8 +19,8 @@ import org.opengis.coverage.grid.GridPoint;
 import org.opengis.coverage.grid.GridPointValuePair;
 import org.opengis.coverage.grid.GridCoordinates;
 import org.opengis.coverage.grid.GridValuesMatrix;
-import org.opengis.spatialschema.geometry.Geometry;
-import org.opengis.spatialschema.geometry.DirectPosition;
+import org.opengis.geometry.Geometry;
+import org.opengis.geometry.DirectPosition;
 
 // Annotations
 import org.opengis.annotation.UML;

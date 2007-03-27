@@ -11,7 +11,7 @@
 package org.opengis.coverage.grid.quadrilateral;
 
 // OpenGIS dependencies
-import org.opengis.spatialschema.geometry.Geometry;
+import org.opengis.geometry.Geometry;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 
 // Annotations

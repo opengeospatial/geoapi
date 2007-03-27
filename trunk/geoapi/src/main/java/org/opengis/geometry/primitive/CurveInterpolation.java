@@ -8,7 +8,7 @@
  ** All Rights Reserved. http://www.opengis.org/legal/
  **
  *************************************************************************************************/
-package org.opengis.spatialschema.geometry.primitive;
+package org.opengis.geometry.primitive;
 
 // J2SE directdependencies
 import java.util.List;
@@ -16,7 +16,7 @@ import java.util.ArrayList;
 
 // OpenGIS direct dependencies
 import org.opengis.util.CodeList;
-import org.opengis.spatialschema.geometry.DirectPosition; // For javadoc
+import org.opengis.geometry.DirectPosition; // For javadoc
 
 // Annotations
 import org.opengis.annotation.UML;

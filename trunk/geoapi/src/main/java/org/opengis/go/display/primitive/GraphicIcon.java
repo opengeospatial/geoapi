@@ -16,7 +16,7 @@ import javax.swing.Icon;
 import javax.units.Unit;
 
 import org.opengis.go.display.style.PointSymbolizer;
-import org.opengis.spatialschema.geometry.DirectPosition;
+import org.opengis.geometry.DirectPosition;
 
 /**
  * The GraphicIcon defines a common abstraction for implementations that render

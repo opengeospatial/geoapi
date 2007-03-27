@@ -15,7 +15,7 @@ import java.util.List;
 
 // OpenGIS dependencies
 import org.opengis.referencing.operation.Conversion;
-import org.opengis.spatialschema.geometry.DirectPosition;
+import org.opengis.geometry.DirectPosition;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 import org.opengis.referencing.datum.Datum;  // For javadoc
 

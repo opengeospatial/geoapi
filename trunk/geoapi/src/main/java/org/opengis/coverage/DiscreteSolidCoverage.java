@@ -14,8 +14,8 @@ package org.opengis.coverage;
 import java.util.Set;
 
 // OpenGIS direct dependencies
-import org.opengis.spatialschema.geometry.DirectPosition;
-import org.opengis.spatialschema.geometry.primitive.Solid;
+import org.opengis.geometry.DirectPosition;
+import org.opengis.geometry.primitive.Solid;
 
 // Annotations
 import org.opengis.annotation.UML;
