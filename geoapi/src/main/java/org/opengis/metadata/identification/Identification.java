@@ -120,5 +120,5 @@ public interface Identification {
      * @since GeoAPI 2.1
      */
     @UML(identifier="aggregationInfo", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<AggregateInformation> getAggregateInfo();
+    Collection<AggregateInformation> getAggregationInfo();
 }
