@@ -23,6 +23,7 @@ import static org.opengis.annotation.Specification.*;
  *
  * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
  * @author Martin Desruisseaux (IRD)
+ * @author Cory Horner (Refractions Research)
  * @since GeoAPI 2.0
  */
 @UML(identifier="MD_CoverageDescription", specification=ISO_19115)
@@ -41,7 +42,17 @@ public interface CoverageDescription extends ContentInformation {
 
     /**
      * Information on the dimensions of the cell measurement value.
+     *
+     * @since GeoAPI 2.1
      */
     @UML(identifier="dimension", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<RangeDimension> getDimension();
+    Collection<RangeDimension> getDimensions();
+
+    /**
+     * Information on the dimensions of the cell measurement value.
+     *
+     * @deprecated Use {@link #getDimensions} instead.
+     */
+    @UML(identifier="dimension", obligation=OPTIONAL, specification=ISO_19115)
+    RangeDimension getDimension();
 }

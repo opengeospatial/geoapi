@@ -28,9 +28,9 @@ public class PrecisionType extends CodeList<PrecisionType> {
     private static final long serialVersionUID = -2771887290382853282L;
 
     /**
-     * Indicates Precision Model uses floating point math (rather then a grid)
+     * Indicates Precision Model uses floating point math (rather then a grid).
      */
-    boolean isFloating;
+    private final boolean isFloating;
     
     /**
      * List of all enumerations of this type.
@@ -39,9 +39,9 @@ public class PrecisionType extends CodeList<PrecisionType> {
     private static final List<PrecisionType> VALUES = new ArrayList<PrecisionType>(3);
 
     /**
-     * Fixed Precision indicates that coordinates have a fixed number of decimal places.
+     * Fixed precision indicates that coordinates have a fixed number of decimal places.
      */
-    public static final PrecisionType FIXED = new PrecisionType("FIXED", false );
+    public static final PrecisionType FIXED = new PrecisionType("FIXED", false);
 
     /**
      * Floating precision corresponds to the standard Java double-precision floating-point
@@ -60,16 +60,19 @@ public class PrecisionType extends CodeList<PrecisionType> {
      * automatically added to the list returned by {@link #values}.
      *
      * @param name The enum name. This name must not be in use by an other enum of this type.
+     * @param isFloating {@code true} if the precision model uses floating point math
+     *        (rather then a grid).
      */
-    public PrecisionType(final String name, boolean isFloating  ) {
+    public PrecisionType(final String name, final boolean isFloating) {
         super(name, VALUES);
         this.isFloating = isFloating;        
     }
 
     /**
-     * True if PrecisionModelType is a represented using floating point arithmatic (rather then a grid).
+     * Returns {@code true} if {@code PrecisionModelType} is a represented using floating point
+     * arithmatic (rather then a grid).
      * 
-     * @return true if floating point arithmatic is used
+     * @return true if floating point arithmatic is used.
      */
     public boolean isFloating(){
         return isFloating;

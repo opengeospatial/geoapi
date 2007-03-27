@@ -25,6 +25,7 @@ import static org.opengis.annotation.Specification.*;
  *
  * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
  * @author Martin Desruisseaux (IRD)
+ * @author Cory Horner (Refractions Research)
  * @since GeoAPI 2.0
  */
 @UML(identifier="MD_GeometricObjectTypeCode", specification=ISO_19115)
@@ -82,13 +83,15 @@ public final class GeometricObjectType extends CodeList<GeometricObjectType> {
     /**
      * Set of geometric primitives such that their boundaries can be represented as a
      * union of other primitives.
-     * @deprecated use COMPLEX
+     *
+     * @deprecated Renamed as {@link #COMPLEX}.
      */
     public static final GeometricObjectType COMPLEXES = COMPLEX;
     
     /**
      * Connected set of curves, solids or surfaces.
-     * @deprecated use COMPOSITE
+     *
+     * @deprecated Renamed as {@link #COMPOSITE}.
      */
     public static final GeometricObjectType COMPOSITES = COMPOSITE;
     

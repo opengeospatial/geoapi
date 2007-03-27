@@ -28,6 +28,7 @@ import static org.opengis.annotation.Specification.*;
  *
  * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
  * @author Martin Desruisseaux (IRD)
+ * @author Cory Horner (Refractions Research)
  * @since GeoAPI 1.0
  */
 @Profile (level=CORE)
@@ -80,7 +81,7 @@ public interface Citation {
      * @deprecated removed from ISO_19115
      */
     @UML(identifier="identifierType", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<String> getIdentifierTypes();    
+    Collection<String> getIdentifierTypes();
 
     /**
      * Name and position information for an individual or organization that is responsible

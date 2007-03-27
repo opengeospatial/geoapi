@@ -24,6 +24,7 @@ import static org.opengis.annotation.Specification.*;
  *
  * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
  * @author Martin Desruisseaux (IRD)
+ * @author Cory Horner (Refractions Research)
  * @since GeoAPI 2.0
  *
  * @see org.opengis.metadata.quality.Scope
@@ -72,7 +73,7 @@ public final class ScopeCode extends CodeList<ScopeCode> {
     public static final ScopeCode DATASET = new ScopeCode("DATASET");
 
     /**
-     * Information applies to the series.  Note: "series" applies to any DS_Aggregate.
+     * Information applies to the series.  Note: "series" applies to any {@code DS_Aggregate}.
      */
     @UML(identifier="series", obligation=CONDITIONAL, specification=ISO_19115)
     public static final ScopeCode SERIES = new ScopeCode("SERIES");

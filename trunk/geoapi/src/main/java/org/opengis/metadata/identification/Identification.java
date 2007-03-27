@@ -31,6 +31,7 @@ import static org.opengis.annotation.Specification.*;
  *
  * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
  * @author Martin Desruisseaux (IRD)
+ * @author Cory Horner (Refractions Research)
  * @since GeoAPI 2.0
  */
 @Profile (level=CORE)
@@ -115,6 +116,8 @@ public interface Identification {
     
     /**
      * Provides aggregate dataset information
+     *
+     * @since GeoAPI 2.1
      */
     @UML(identifier="aggregationInfo", obligation=OPTIONAL, specification=ISO_19115)
     Collection<AggregateInformation> getAggregateInfo();

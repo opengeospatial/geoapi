@@ -30,25 +30,25 @@ import static org.opengis.annotation.Specification.ISO_19115;
 @UML(identifier="MD_AggregateInformation", specification=ISO_19115)
 public interface AggregateInformation {
     /**
-     * Citation information about the aggregate dataset
+     * Citation information about the aggregate dataset.
      */
     @UML(identifier="aggregateDataSetName", obligation=CONDITIONAL, specification=ISO_19115)
     Citation getAggregateDataSetName();
     
     /**
-     * Identification information about aggregate dataset
+     * Identification information about aggregate dataset.
      */
     @UML(identifier="aggregateDataSetIdentifier", obligation=CONDITIONAL, specification=ISO_19115)
     Identifier getAggregateDataSetIdentifier();
     
     /**
-     * Association type of the aggregate dataset
+     * Association type of the aggregate dataset.
      */
     @UML(identifier="associationType", obligation=MANDATORY, specification=ISO_19115)
     AssociationType getAssociationType();
     
     /**
-     * Type of initiative under which the aggregate dataset was produced
+     * Type of initiative under which the aggregate dataset was produced.
      */
     @UML(identifier="initiativeType", obligation=OPTIONAL, specification=ISO_19115)
     InitiativeType getInitiativeType();
