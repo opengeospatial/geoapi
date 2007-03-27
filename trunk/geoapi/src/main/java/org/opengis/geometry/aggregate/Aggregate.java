@@ -21,7 +21,7 @@ import static org.opengis.annotation.Specification.*;
 /**
  * Geometry that is an aggregate of other geometries.
  *
- * @version <A HREF="http://www.opengis.org/docs/01-101.pdf">Abstract specification 5</A>
+ * @version <A HREF="http://www.opengeospatial.org/standards/as">ISO 19107</A>
  * @since GeoAPI 1.0
  */
 @UML(identifier="GM_Aggregate", specification=ISO_19107)

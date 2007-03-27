@@ -26,7 +26,7 @@ import static org.opengis.annotation.Specification.*;
  * The association role {@link #getElements element} shall be the set of
  * {@linkplain Point points} contained in this {@code MultiPoint}.
  * 
- * @version <A HREF="http://www.opengis.org/docs/01-101.pdf">Abstract specification 5</A>
+ * @version <A HREF="http://www.opengeospatial.org/standards/as">ISO 19107</A>
  * @since GeoAPI 1.0
  */
 public interface MultiPoint extends MultiPrimitive {

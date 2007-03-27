@@ -24,7 +24,7 @@ import static org.opengis.annotation.Specification.*;
  * 
  * &lt;&lt;P1, P2, P3&gt;, &lt;P4, P5, P6&gt;&gt;.
  *
- * @version <A HREF="http://www.opengis.org/docs/01-101.pdf">Abstract specification 5</A>
+ * @version <A HREF="http://www.opengeospatial.org/standards/as">ISO 19107</A>
  * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 2.0
  */

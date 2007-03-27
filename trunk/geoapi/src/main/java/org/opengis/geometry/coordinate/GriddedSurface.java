@@ -41,7 +41,7 @@ import static org.opengis.annotation.Specification.*;
  * The sub-interfaces provided in this package define some of the most commonly encountered surfaces
  * that can be represented in this manner.
  *
- * @version <A HREF="http://www.opengis.org/docs/01-101.pdf">Abstract specification 5</A>
+ * @version <A HREF="http://www.opengeospatial.org/standards/as">ISO 19107</A>
  * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 2.0
  */

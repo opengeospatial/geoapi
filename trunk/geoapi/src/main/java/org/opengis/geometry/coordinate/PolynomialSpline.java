@@ -34,7 +34,7 @@ import static org.opengis.annotation.Specification.*;
  * is that polynomial splines pass through their control points, making the control point and
  * sample point array identical.
  *
- * @version <A HREF="http://www.opengis.org/docs/01-101.pdf">Abstract specification 5</A>
+ * @version <A HREF="http://www.opengeospatial.org/standards/as">ISO 19107</A>
  * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 2.0
  */

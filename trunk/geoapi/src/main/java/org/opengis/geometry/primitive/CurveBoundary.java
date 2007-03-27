@@ -21,7 +21,7 @@ import static org.opengis.annotation.Specification.*;
  * A {@code CurveBoundary} contains two {@linkplain Point point} references
  * ({@linkplain #getStartPoint start point} and {@linkplain #getEndPoint end point}).
  *
- * @version <A HREF="http://www.opengis.org/docs/01-101.pdf">Abstract specification 5</A>
+ * @version <A HREF="http://www.opengeospatial.org/standards/as">ISO 19107</A>
  * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 1.0
  */

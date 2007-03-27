@@ -27,7 +27,7 @@ import static org.opengis.annotation.Specification.*;
  * which these curves adhere. The default is that the curves are coplanar and the polygon
  * uses planar interpolation in its interior.
  *
- * @version <A HREF="http://www.opengis.org/docs/01-101.pdf">Abstract specification 5</A>
+ * @version <A HREF="http://www.opengeospatial.org/standards/as">ISO 19107</A>
  * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 2.0
  *

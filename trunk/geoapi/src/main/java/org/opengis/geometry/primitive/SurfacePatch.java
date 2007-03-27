@@ -21,7 +21,7 @@ import static org.opengis.annotation.Specification.*;
  * Defines a homogeneous portion of a {@linkplain Surface surface}.
  * Each {@code SurfacePatch} shall be in at most one {@linkplain Surface surface}.
  *
- * @version <A HREF="http://www.opengis.org/docs/01-101.pdf">Abstract specification 5</A>
+ * @version <A HREF="http://www.opengeospatial.org/standards/as">ISO 19107</A>
  * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 1.0
  */

@@ -33,7 +33,7 @@ import static org.opengis.annotation.Specification.*;
  * Creating primitives in a different CRS may requires a different instance of
  * {@code PrimitiveFactory}.
  *
- * @version <A HREF="http://www.opengis.org/docs/01-101.pdf">Abstract specification 5</A>
+ * @version <A HREF="http://www.opengeospatial.org/standards/as">ISO 19107</A>
  * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 1.0
  */

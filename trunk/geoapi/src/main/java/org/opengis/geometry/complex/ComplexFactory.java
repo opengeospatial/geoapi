@@ -28,7 +28,7 @@ import org.opengis.geometry.primitive.OrientableSurface;
  * Creating complexes in a different CRS may requires a different instance of
  * {@code ComplexFactory}.
  *
- * @version <A HREF="http://www.opengis.org/docs/01-101.pdf">Abstract specification 5</A>
+ * @version <A HREF="http://www.opengeospatial.org/standards/as">ISO 19107</A>
  * @author Sanjay Jena
  * @author Prof. Dr. Jackson Roehrig
  * @since GeoAPI 2.1

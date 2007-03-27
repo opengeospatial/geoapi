@@ -22,7 +22,7 @@ import static org.opengis.annotation.Specification.*;
 /**
  * Code which indicates conditions which may affect the image.
  *
- * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
+ * @version <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
  * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 2.0
  */

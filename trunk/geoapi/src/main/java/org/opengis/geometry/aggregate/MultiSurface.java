@@ -27,7 +27,7 @@ import static org.opengis.annotation.Specification.*;
  * The association role {@link #getElements element} shall be the set of
  * {@linkplain OrientableSurface orientable surfaces} contained in this {@code MultiSurface}.
  * 
- * @version <A HREF="http://www.opengis.org/docs/01-101.pdf">Abstract specification 5</A>
+ * @version <A HREF="http://www.opengeospatial.org/standards/as">ISO 19107</A>
  * @author Sanjay Jena
  * @author Prof. Dr. Jackson Roehrig
  * @since GeoAPI 2.1
