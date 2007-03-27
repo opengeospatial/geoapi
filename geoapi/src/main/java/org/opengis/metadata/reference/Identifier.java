@@ -23,6 +23,9 @@ import static org.opengis.annotation.Specification.ISO_19115;
  */
 @UML(identifier="RS_Identifier", specification=ISO_19115)
 public interface Identifier extends org.opengis.metadata.Identifier {
+    
+    String VERSION_KEY = "version";
+    
     /**
      * Name or identifier of the person or organization responsible for namespace.
      */

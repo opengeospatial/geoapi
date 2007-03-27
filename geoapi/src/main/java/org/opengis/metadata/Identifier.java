@@ -48,6 +48,15 @@ public interface Identifier {
     String AUTHORITY_KEY = "authority";
 
     /**
+     * Key for the <code>{@version}</code> property to be given to the
+     * {@linkplain org.opengis.referencing.ObjectFactory CRS factory} <code>createFoo(&hellip;)</code>
+     * methods. This is used for setting the value to be returned by {@link #getAuthority}.
+     *
+     * @see #getVersion
+     */
+    String VERSION_KEY = "version";
+    
+    /**
      * Alphanumeric value identifying an instance in the namespace.
      */
     @UML(identifier="code", obligation=MANDATORY, specification=ISO_19115)

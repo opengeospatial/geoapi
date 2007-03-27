@@ -249,6 +249,6 @@ public class CharacterSet extends CodeList<CharacterSet> {
      * Returns the list of enumerations of the same kind than this enum.
      */
     public CodeList[] family() {
-        return new CodeList[0];
+        return (CodeList[]) VALUES.toArray(new CodeList[VALUES.size()]);
     }
 }
