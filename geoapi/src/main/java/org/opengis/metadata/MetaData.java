@@ -11,7 +11,6 @@
 package org.opengis.metadata;
 
 // J2SE direct dependencies
-import java.nio.charset.Charset;
 import java.util.Collection;
 import java.util.Date;
 import java.util.Locale;
@@ -24,6 +23,7 @@ import org.opengis.metadata.distribution.Distribution;
 import org.opengis.metadata.citation.ResponsibleParty;
 import org.opengis.metadata.content.ContentInformation;
 import org.opengis.metadata.spatial.SpatialRepresentation;
+import org.opengis.metadata.identification.CharacterSet;
 import org.opengis.metadata.identification.Identification;
 import org.opengis.metadata.maintenance.MaintenanceInformation;
 import org.opengis.referencing.ReferenceSystem;
@@ -66,7 +66,7 @@ public interface MetaData {
      */
     @Profile (level=CORE)
     @UML(identifier="characterSet", obligation=CONDITIONAL, specification=ISO_19115)
-    Charset getCharacterSet();
+    CharacterSet getCharacterSet();
 
     /**
      * File identifier of the metadata to which this metadata is a subset (child).

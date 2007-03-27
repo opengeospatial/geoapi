@@ -70,11 +70,11 @@ public interface DataIdentification extends Identification {
     Charset getCharacterSet();
 
     /**
-     * Full name of the character coding standard used for the dataset.
+     * Full name of the character coding standard(s) used for the dataset.
      */
     @Profile (level=CORE)
     @UML(identifier="characterSet", obligation=CONDITIONAL, specification=ISO_19115)
-    Collection<Charset> getCharacterSets();
+    Collection<CharacterSet> getCharacterSets();
 
     /**
      * Main theme(s) of the dataset.
