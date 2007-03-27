@@ -65,13 +65,19 @@ public interface DataIdentification extends Identification {
 
     /**
      * Full name of the character coding standard used for the dataset.
+     * @deprecated use getCharacterSets
      */
-    @Profile (level=CORE)
-    @UML(identifier="characterSet", obligation=CONDITIONAL, specification=ISO_19115)
     Charset getCharacterSet();
 
     /**
-     * Main theme(s) of the datset.
+     * Full name of the character coding standard used for the dataset.
+     */
+    @Profile (level=CORE)
+    @UML(identifier="characterSet", obligation=CONDITIONAL, specification=ISO_19115)
+    Collection<Charset> getCharacterSets();
+
+    /**
+     * Main theme(s) of the dataset.
      */
     @Profile (level=CORE)
     @UML(identifier="topicCategory", obligation=MANDATORY, specification=ISO_19115)
@@ -81,6 +87,7 @@ public interface DataIdentification extends Identification {
      * Minimum bounding rectangle within which data is available.
      * Only one of {@code getGeographicBox()} and {@link #getGeographicDescription()}
      * should be provided.
+     * @deprecated not in ISO 19115:2003
      */
     @Profile (level=CORE)
     @UML(identifier="geographicBox", obligation=CONDITIONAL, specification=ISO_19115)
@@ -90,6 +97,7 @@ public interface DataIdentification extends Identification {
      * Description of the geographic area within which data is available.
      * Only one of {@link #getGeographicBox()} and {@code getGeographicDescription()}
      * should be provided.
+     * @deprecated not in ISO 19115:2003
      */
     @Profile (level=CORE)
     @UML(identifier="geographicDescription", obligation=CONDITIONAL, specification=ISO_19115)
