@@ -36,5 +36,5 @@ public interface VectorSpatialRepresentation extends SpatialRepresentation {
      * Information about the geometric objects used in the dataset.
      */
     @UML(identifier="geometricObjects", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<GeometricObjects> getGeometricObjects();
+    Collection<? extends GeometricObjects> getGeometricObjects();
 }

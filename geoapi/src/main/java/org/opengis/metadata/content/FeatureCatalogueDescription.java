@@ -51,11 +51,11 @@ public interface FeatureCatalogueDescription extends ContentInformation {
      * Subset of feature types from cited feature catalogue occurring in dataset.
      */
     @UML(identifier="featureTypes", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<GenericName> getFeatureTypes();
+    Collection<? extends GenericName> getFeatureTypes();
 
     /**
      * Complete bibliographic reference to one or more external feature catalogues.
      */
     @UML(identifier="featureCatalogueCitation", obligation=MANDATORY, specification=ISO_19115)
-    Collection<Citation> getFeatureCatalogueCitations();
+    Collection<? extends Citation> getFeatureCatalogueCitations();
 }

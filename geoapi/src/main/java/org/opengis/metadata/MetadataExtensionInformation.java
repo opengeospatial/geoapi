@@ -39,5 +39,5 @@ public interface MetadataExtensionInformation {
      * required to describe geographic data.
      */
     @UML(identifier="extendedElementInformation", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<ExtendedElementInformation> getExtendedElementInformation();
+    Collection<? extends ExtendedElementInformation> getExtendedElementInformation();
 }

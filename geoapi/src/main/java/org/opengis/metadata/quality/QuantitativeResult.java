@@ -35,7 +35,7 @@ public interface QuantitativeResult extends Result {
      * Quantitative value or values, content determined by the evaluation procedure used.
      */
     @UML(identifier="value", obligation=MANDATORY, specification=ISO_19115)
-    Collection<Record> getValues();
+    Collection<? extends Record> getValues();
 
     /**
      * Value type for reporting a data quality result, or {@code null} if none.

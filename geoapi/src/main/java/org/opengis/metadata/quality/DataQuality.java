@@ -18,7 +18,6 @@ import org.opengis.annotation.Profile;
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
 import static org.opengis.annotation.ComplianceLevel.*;
-import static org.opengis.annotation.Specification.*;
 
 
 /**
@@ -43,7 +42,7 @@ public interface DataQuality {
      * {@linkplain org.opengis.metadata.maintenance.ScopeCode#DATASET dataset}.
      */
     @UML(identifier="report", obligation=CONDITIONAL, specification=ISO_19115)
-    Collection<Element> getReports();
+    Collection<? extends Element> getReports();
 
     /**
      * Non-quantitative quality information about the lineage of the data specified by the scope.

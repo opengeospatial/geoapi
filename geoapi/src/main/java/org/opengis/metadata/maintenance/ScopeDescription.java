@@ -33,25 +33,25 @@ public interface ScopeDescription {
      * Attributes to which the information applies.
      */
     @UML(identifier="attributes", obligation=CONDITIONAL, specification=ISO_19115)
-    public Set<AttributeType> getAttributes();
+    public Set<? extends AttributeType> getAttributes();
 
     /**
      * Features to which the information applies.
      */
     @UML(identifier="features", obligation=CONDITIONAL, specification=ISO_19115)
-    public Set<FeatureType> getFeatures();
+    public Set<? extends FeatureType> getFeatures();
 
     /**
      * Feature instances to which the information applies.
      */
     @UML(identifier="featureInstances", obligation=CONDITIONAL, specification=ISO_19115)
-    public Set<FeatureType> getFeatureInstances();
+    public Set<? extends FeatureType> getFeatureInstances();
 
     /**
      * Attribute instances to which the information applies
      */
     @UML(identifier="attributeInstances", obligation=CONDITIONAL, specification=ISO_19115)
-    public Set<AttributeType> getAttributeInstances();
+    public Set<? extends AttributeType> getAttributeInstances();
 
     /**
      * Dataset to which the information applies.

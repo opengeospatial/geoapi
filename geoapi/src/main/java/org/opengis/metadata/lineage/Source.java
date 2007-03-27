@@ -60,11 +60,11 @@ public interface Source {
      * Information about the spatial, vertical and temporal extent of the source data.
      */
     @UML(identifier="sourceExtent", obligation=CONDITIONAL, specification=ISO_19115)
-    Collection<Extent> getSourceExtents();
+    Collection<? extends Extent> getSourceExtents();
 
     /**
      * Information about an event in the creation process for the source data.
      */
     @UML(identifier="sourceStep", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<ProcessStep> getSourceSteps();
+    Collection<? extends ProcessStep> getSourceSteps();
 }

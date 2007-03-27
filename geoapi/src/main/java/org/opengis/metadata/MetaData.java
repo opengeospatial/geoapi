@@ -87,7 +87,7 @@ public interface MetaData {
      */
     @Profile (level=CORE)
     @UML(identifier="contact", obligation=MANDATORY, specification=ISO_19115)
-    Collection<ResponsibleParty> getContacts();
+    Collection<? extends ResponsibleParty> getContacts();
 
     /**
      * Date that the metadata was created.
@@ -131,7 +131,7 @@ public interface MetaData {
      * Digital representation of spatial information in the dataset.
      */
     @UML(identifier="spatialRepresentationInfo", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<SpatialRepresentation> getSpatialRepresentationInfo();
+    Collection<? extends SpatialRepresentation> getSpatialRepresentationInfo();
 
     /**
      * Description of the spatial and temporal reference systems used in the dataset.
@@ -140,27 +140,27 @@ public interface MetaData {
      */
     @Profile (level=CORE)
     @UML(identifier="referenceSystemInfo", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<ReferenceSystem> getReferenceSystemInfo();
+    Collection<? extends ReferenceSystem> getReferenceSystemInfo();
 
     /**
      * Information describing metadata extensions.
      */
     @UML(identifier="metadataExtensionInfo", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<MetadataExtensionInformation> getMetadataExtensionInfo();
+    Collection<? extends MetadataExtensionInformation> getMetadataExtensionInfo();
 
     /**
      * Basic information about the resource(s) to which the metadata applies.
      */
     @Profile (level=CORE)
     @UML(identifier="identificationInfo", obligation=MANDATORY, specification=ISO_19115)
-    Collection<Identification> getIdentificationInfo();
+    Collection<? extends Identification> getIdentificationInfo();
 
     /**
      * Provides information about the feature catalogue and describes the coverage and
      * image data characteristics.
      */
     @UML(identifier="contentInfo", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<ContentInformation> getContentInfo();
+    Collection<? extends ContentInformation> getContentInfo();
 
     /**
      * Provides information about the distributor of and options for obtaining the resource(s).
@@ -174,25 +174,25 @@ public interface MetaData {
      */
     @Profile (level=CORE)
     @UML(identifier="dataQualityInfo", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<DataQuality> getDataQualityInfo();
+    Collection<? extends DataQuality> getDataQualityInfo();
 
     /**
      * Provides information about the catalogue of rules defined for the portrayal of a resource(s).
      */
     @UML(identifier="portrayalCatalogueInfo", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<PortrayalCatalogueReference> getPortrayalCatalogueInfo();
+    Collection<? extends PortrayalCatalogueReference> getPortrayalCatalogueInfo();
 
     /**
      * Provides restrictions on the access and use of data.
      */
     @UML(identifier="metadataConstraints", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<Constraints> getMetadataConstraints();
+    Collection<? extends Constraints> getMetadataConstraints();
 
     /**
      * Provides information about the conceptual schema of a dataset.
      */
     @UML(identifier="applicationSchemaInfo", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<ApplicationSchemaInformation> getApplicationSchemaInfo();
+    Collection<? extends ApplicationSchemaInformation> getApplicationSchemaInfo();
      
     /**
      * Provides information about the frequency of metadata updates, and the scope of those updates.

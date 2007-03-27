@@ -38,17 +38,17 @@ public interface Distributor {
      * instructions and fee information.
      */
     @UML(identifier="distributionOrderProcess", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<StandardOrderProcess> getDistributionOrderProcesses();
+    Collection<? extends StandardOrderProcess> getDistributionOrderProcesses();
 
     /**
      * Provides information about the format used by the distributor.
      */
     @UML(identifier="distributorFormat", obligation=CONDITIONAL, specification=ISO_19115)
-    Collection<Format> getDistributorFormats();
+    Collection<? extends Format> getDistributorFormats();
 
     /**
      * Provides information about the technical means and media used by the distributor.
      */
     @UML(identifier="distributorTransferOptions", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<DigitalTransferOptions> getDistributorTransferOptions();
+    Collection<? extends DigitalTransferOptions> getDistributorTransferOptions();
 }
