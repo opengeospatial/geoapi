@@ -43,190 +43,190 @@ public class CharacterSet extends CodeList<CharacterSet> {
      * 16-bit fixed size Universal Character Set, based on ISO/IEC 10646.
      */
     @UML(identifier="ucs2", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final CharacterSet UCS2 = new CharacterSet("UCS2");
+    public static final CharacterSet UCS_2 = new CharacterSet("UCS2");
 
     /**
      * 32-bit fixed size Universal Character Set, based on ISO/IEC 10646.
      */
     @UML(identifier="ucs4", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final CharacterSet UCS4 = new CharacterSet("UCS4");
+    public static final CharacterSet UCS_4 = new CharacterSet("UCS4");
 
     /**
      * 7-bit variable size UCS Transfer Format, based on ISO/IEC 10646.
      */
     @UML(identifier="utf7", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final CharacterSet UTF7 = new CharacterSet("UTF7");
+    public static final CharacterSet UTF_7 = new CharacterSet("UTF_7");
 
     /**
      * 8-bit variable size UCS Transfer Format, based on ISO/IEC 10646.
      */
     @UML(identifier="utf8", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final CharacterSet UTF8 = new CharacterSet("UTF8");
+    public static final CharacterSet UTF_8 = new CharacterSet("UTF_8");
 
     /**
      * 16-bit variable size UCS Transfer Format, based on ISO/IEC 10646.
      */
     @UML(identifier="utf16", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final CharacterSet UTF16 = new CharacterSet("UTF16");
+    public static final CharacterSet UTF_16 = new CharacterSet("UTF_16");
 
     /**
      * ISO/IEC 8859-1, Information technology.
      * 8-bit single-byte coded graphic character sets - Part 1: Latin alphabet No. 1.
      */
     @UML(identifier="8859part1", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final CharacterSet _8859PART1 = new CharacterSet("_8859PART1");
+    public static final CharacterSet ISO_8859_1 = new CharacterSet("ISO_8859_1");
 
     /**
      * ISO/IEC 8859-2, Information technology.
      * 8-bit single-byte coded graphic character sets - Part 2: Latin alphabet No. 2.
      */
     @UML(identifier="8859part2", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final CharacterSet _8859PART2 = new CharacterSet("_8859PART2");
+    public static final CharacterSet ISO_8859_2 = new CharacterSet("ISO_8859_2");
 
     /**
      * ISO/IEC 8859-3, Information technology.
      * 8-bit single-byte coded graphic character sets - Part 3: Latin alphabet No. 3.
      */
     @UML(identifier="8859part3", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final CharacterSet _8859PART3 = new CharacterSet("_8859PART3");
+    public static final CharacterSet ISO_8859_3 = new CharacterSet("ISO_8859_3");
 
     /**
      * ISO/IEC 8859-4, Information technology.
      * 8-bit single-byte coded graphic character sets - Part 4: Latin alphabet No. 4.
      */
     @UML(identifier="8859part4", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final CharacterSet _8859PART4 = new CharacterSet("_8859PART4");
+    public static final CharacterSet ISO_8859_4 = new CharacterSet("ISO_8859_4");
 
     /**
      * ISO/IEC 8859-5, Information technology.
      * 8-bit single-byte coded graphic character sets - Part 5: Latin/Cyrillic alphabet.
      */
     @UML(identifier="8859part5", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final CharacterSet _8859PART5 = new CharacterSet("_8859PART5");
+    public static final CharacterSet ISO_8859_5 = new CharacterSet("ISO_8859_5");
 
     /**
      * ISO/IEC 8859-6, Information technology.
      * 8-bit single-byte coded graphic character sets - Part 6: Latin/Arabic alphabet.
      */
     @UML(identifier="8859part6", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final CharacterSet _8859PART6 = new CharacterSet("_8859PART6");
+    public static final CharacterSet ISO_8859_6 = new CharacterSet("ISO_8859_6");
 
     /**
      * ISO/IEC 8859-7, Information technology.
      * 8-bit single-byte coded graphic character sets - Part 7: Latin/Greek alphabet.
      */
     @UML(identifier="8859part7", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final CharacterSet _8859PART7 = new CharacterSet("_8859PART7");
+    public static final CharacterSet ISO_8859_7 = new CharacterSet("ISO_8859_7");
 
     /**
      * ISO/IEC 8859-8, Information technology.
      * 8-bit single-byte coded graphic character sets - Part 8: Latin/Hebrew alphabet.
      */
     @UML(identifier="8859part8", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final CharacterSet _8859PART8 = new CharacterSet("_8859PART8");
+    public static final CharacterSet ISO_8859_8 = new CharacterSet("ISO_8859_8");
 
     /**
      * ISO/IEC 8859-9, Information technology.
      * 8-bit single-byte coded graphic character sets - Part 9: Latin alphabet No. 5.
      */
     @UML(identifier="8859part9", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final CharacterSet _8859PART9 = new CharacterSet("_8859PART9");
+    public static final CharacterSet ISO_8859_9 = new CharacterSet("ISO_8859_9");
 
     /**
      * ISO/IEC 8859-10, Information technology.
      * 8-bit single-byte coded graphic character sets - Part 10: Latin alphabet No. 6.
      */
     @UML(identifier="8859part10", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final CharacterSet _8859PART10 = new CharacterSet("_8859PART10");
+    public static final CharacterSet ISO_8859_10 = new CharacterSet("ISO_8859_10");
 
     /**
      * ISO/IEC 8859-11, Information technology.
      * 8-bit single-byte coded graphic character sets - Part 11: Latin/Thai alphabet.
      */
     @UML(identifier="8859part11", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final CharacterSet _8859PART11 = new CharacterSet("_8859PART11");
+    public static final CharacterSet ISO_8859_11 = new CharacterSet("ISO_8859_11");
 
     /**
      * A future ISO/IEC 8-bit single-byte coded graphic character set.
      */
     @UML(identifier="8859part12", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final CharacterSet _8859PART12 = new CharacterSet("_8859PART12");
+    public static final CharacterSet ISO_8859_12 = new CharacterSet("ISO_8859_12");
 
     /**
      * ISO/IEC 8859-13, Information technology.
      * 8-bit single-byte coded graphic character sets - Part 13: Latin alphabet No. 7.
      */
     @UML(identifier="8859part13", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final CharacterSet _8859PART13 = new CharacterSet("_8859PART13");
+    public static final CharacterSet ISO_8859_13 = new CharacterSet("ISO_8859_13");
 
     /**
      * ISO/IEC 8859-14, Information technology.
      * 8-bit single-byte coded graphic character sets - Part 14: Latin alphabet No. 8 (Celtic).
      */
     @UML(identifier="8859part14", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final CharacterSet _8859PART14 = new CharacterSet("_8859PART14");
+    public static final CharacterSet ISO_8859_14 = new CharacterSet("ISO_8859_14");
 
     /**
      * ISO/IEC 8859-15, Information technology.
      * 8-bit single-byte coded graphic character sets - Part 15: Latin alphabet No. 9.
      */
     @UML(identifier="8859part15", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final CharacterSet _8859PART15 = new CharacterSet("_8859PART15");
+    public static final CharacterSet ISO_8859_15 = new CharacterSet("ISO_8859_15");
 
     /**
      * ISO/IEC 8859-16, Information technology.
      * 8-bit single-byte coded graphic character sets - Part 16: Latin alphabet No. 10.
      */
     @UML(identifier="8859part16", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final CharacterSet _8859PART16 = new CharacterSet("_8859PART16");
+    public static final CharacterSet ISO_8859_16 = new CharacterSet("ISO_8859_16");
 
     /**
      * Japanese code set used for electronic transmission.
      */
     @UML(identifier="jis", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final CharacterSet jis = new CharacterSet("jis");
+    public static final CharacterSet JIS = new CharacterSet("JIS");
 
     /**
      * Japanese code set used on MS-DOS based machines.
      */
     @UML(identifier="shiftJIS", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final CharacterSet shiftJIS = new CharacterSet("shiftJIS");
+    public static final CharacterSet SHIFT_JIS = new CharacterSet("SJIS");
 
     /**
      * Japanese code set used on UNIX based machines.
      */
     @UML(identifier="eucJP", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final CharacterSet eucJP = new CharacterSet("eucJP");
+    public static final CharacterSet EUC_JP = new CharacterSet("EUC_JP");
 
     /**
      * United States ASCII code set (ISO 646 US).
      */
     @UML(identifier="usAscii", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final CharacterSet usAscii = new CharacterSet("usAscii");
+    public static final CharacterSet US_ASCII = new CharacterSet("US_ASCII");
 
     /**
      * IBM mainframe code set.
      */
     @UML(identifier="ebcdic", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final CharacterSet ebcdic = new CharacterSet("ebcdic");
+    public static final CharacterSet EBCDIC = new CharacterSet("EBCDIC");
 
     /**
      * Korean code set.
      */
     @UML(identifier="eucKR", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final CharacterSet eucKR = new CharacterSet("eucKR");
+    public static final CharacterSet EUC_KR = new CharacterSet("EUC_KR");
 
     /**
      * Traditional Chinese code set used in Taiwan, Hong Kong, and other areas.
      */
     @UML(identifier="big5", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final CharacterSet big5 = new CharacterSet("big5");
+    public static final CharacterSet BIG_5 = new CharacterSet("Big5");
 
     /**
      * Simplified Chinese code set.
      */
     @UML(identifier="GB2312", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final CharacterSet GB2313 = new CharacterSet("GB2312");
+    public static final CharacterSet GB_2313 = new CharacterSet("GBK");
 
     /**
      * Constructs an enum with the given name. The new enum is
