@@ -50,11 +50,11 @@ public interface Lineage {
      * Information about an event in the creation process for the data specified by the scope.
      */
     @UML(identifier="processStep", obligation=CONDITIONAL, specification=ISO_19115)
-    Collection<ProcessStep> getProcessSteps();
+    Collection<? extends ProcessStep> getProcessSteps();
 
     /**
      * Information about the source data used in creating the data specified by the scope.
      */
     @UML(identifier="source", obligation=CONDITIONAL, specification=ISO_19115)
-    Collection<Source> getSources();
+    Collection<? extends Source> getSources();
 }

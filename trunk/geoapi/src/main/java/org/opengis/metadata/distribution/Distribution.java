@@ -35,13 +35,13 @@ public interface Distribution {
      */
     @Profile (level=CORE)
     @UML(identifier="distributionFormat", obligation=CONDITIONAL, specification=ISO_19115)
-    Collection<Format> getDistributionFormats();
+    Collection<? extends Format> getDistributionFormats();
 
     /**
      * Provides information about the distributor.
      */
     @UML(identifier="distributor", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<Distributor> getDistributors();
+    Collection<? extends Distributor> getDistributors();
 
     /**
      * Provides information about technical means and media by which a resource is obtained
@@ -49,5 +49,5 @@ public interface Distribution {
      */
     @Profile (level=CORE)
     @UML(identifier="transferOptions", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<DigitalTransferOptions> getTransferOptions();
+    Collection<? extends DigitalTransferOptions> getTransferOptions();
 }

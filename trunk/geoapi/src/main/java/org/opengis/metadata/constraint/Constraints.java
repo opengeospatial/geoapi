@@ -32,5 +32,5 @@ public interface Constraints {
      * Example, "not to be used for navigation".
      */
     @UML(identifier="useLimitation", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<InternationalString> getUseLimitation();
+    Collection<? extends InternationalString> getUseLimitation();
 }

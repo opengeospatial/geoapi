@@ -46,7 +46,7 @@ public interface CoverageDescription extends ContentInformation {
      * @since GeoAPI 2.1
      */
     @UML(identifier="dimension", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<RangeDimension> getDimensions();
+    Collection<? extends RangeDimension> getDimensions();
 
     /**
      * Information on the dimensions of the cell measurement value.

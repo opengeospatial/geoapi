@@ -46,14 +46,14 @@ public interface Citation {
      * Example: "DCW" as an alternative title for "Digital Chart of the World".
      */
     @UML(identifier="alternateTitle", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<InternationalString> getAlternateTitles();
+    Collection<? extends InternationalString> getAlternateTitles();
 
     /**
      * Reference date for the cited resource.
      */
     @Profile (level=CORE)
     @UML(identifier="date", obligation=MANDATORY, specification=ISO_19115)
-    Collection<CitationDate> getDates();
+    Collection<? extends CitationDate> getDates();
 
     /**
      * Version of the cited resource.
@@ -72,7 +72,7 @@ public interface Citation {
      * National Stock Number (NSN).
      */
     @UML(identifier="identifier", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<Identifier> getIdentifiers();
+    Collection<? extends Identifier> getIdentifiers();
 
     /**
      * Reference form of the unique identifier (ID). Example: Universal Product Code (UPC),
@@ -88,7 +88,7 @@ public interface Citation {
      * for the resource. Returns an empty string if there is none.
      */
     @UML(identifier="citedResponsibleParty", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<ResponsibleParty> getCitedResponsibleParties();
+    Collection<? extends ResponsibleParty> getCitedResponsibleParties();
 
     /**
      * Mode in which the resource is represented, or an empty string if none.

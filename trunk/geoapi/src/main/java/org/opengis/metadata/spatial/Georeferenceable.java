@@ -60,5 +60,5 @@ public interface Georeferenceable extends GridSpatialRepresentation {
      * Reference providing description of the parameters.
      */
     @UML(identifier="parameterCitation", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<Citation> getParameterCitation();
+    Collection<? extends Citation> getParameterCitation();
 }

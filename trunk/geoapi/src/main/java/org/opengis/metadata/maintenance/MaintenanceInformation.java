@@ -77,7 +77,7 @@ public interface MaintenanceInformation {
      * Additional information about the range or extent of the resource.
      */
     @UML(identifier="updateScopeDescription", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<ScopeDescription> getUpdateScopeDescriptions();
+    Collection<? extends ScopeDescription> getUpdateScopeDescriptions();
     
     /**
      * Information regarding specific requirements for maintaining the resource.
@@ -90,5 +90,5 @@ public interface MaintenanceInformation {
      * person(s) and organization(s) with responsibility for maintaining the metadata
      */
     @UML(identifier="contact", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<ResponsibleParty> getContacts();    
+    Collection<? extends ResponsibleParty> getContacts();    
 }

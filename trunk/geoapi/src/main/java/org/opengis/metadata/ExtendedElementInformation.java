@@ -114,11 +114,11 @@ public interface ExtendedElementInformation {
      * Reason for creating the extended element.
      */
     @UML(identifier="rationale", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<InternationalString> getRationales();
+    Collection<? extends InternationalString> getRationales();
 
     /**
      * Name of the person or organization creating the extended element.
      */
     @UML(identifier="source", obligation=MANDATORY, specification=ISO_19115)
-    Collection<ResponsibleParty> getSources();
+    Collection<? extends ResponsibleParty> getSources();
 }

@@ -33,5 +33,5 @@ public interface SpatialTemporalExtent extends TemporalExtent {
      * @return The list of geographic extents (never {@code null}).
      */
     @UML(identifier="spatialExtent", obligation=MANDATORY, specification=ISO_19115)
-    Collection<GeographicExtent> getSpatialExtent();
+    Collection<? extends GeographicExtent> getSpatialExtent();
 }

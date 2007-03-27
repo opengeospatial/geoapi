@@ -49,5 +49,5 @@ public interface LegalConstraints extends Constraints {
      * {@linkplain Restriction#OTHER_RESTRICTIONS other restrictions}.
      */
     @UML(identifier="otherConstraints", obligation=CONDITIONAL, specification=ISO_19115)
-    Collection<InternationalString> getOtherConstraints();
+    Collection<? extends InternationalString> getOtherConstraints();
 }

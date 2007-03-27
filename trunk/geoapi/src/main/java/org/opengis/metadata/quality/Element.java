@@ -81,5 +81,5 @@ public interface Element {
      * acceptable conformance quality level.
      */
     @UML(identifier="result", obligation=MANDATORY, specification=ISO_19115)
-    Collection<Result> getResult();
+    Collection<? extends Result> getResult();
 }

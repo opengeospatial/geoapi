@@ -51,7 +51,7 @@ public interface DigitalTransferOptions {
      */
     @Profile (level=CORE)
     @UML(identifier="onLine", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<OnLineResource> getOnLines();
+    Collection<? extends OnLineResource> getOnLines();
 
     /**
      * Information about offline media on which the resource can be obtained.

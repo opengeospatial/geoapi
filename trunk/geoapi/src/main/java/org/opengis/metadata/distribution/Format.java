@@ -69,5 +69,5 @@ public interface Format {
      * Provides information about the distributor’s format.
      */
     @UML(identifier="formatDistributor", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<Distributor> getFormatDistributors();
+    Collection<? extends Distributor> getFormatDistributors();
 }

@@ -74,44 +74,44 @@ public interface Identification {
      */
     @Profile (level=CORE)
     @UML(identifier="pointOfContact", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<ResponsibleParty> getPointOfContacts();
+    Collection<? extends ResponsibleParty> getPointOfContacts();
 
     /**
      * Provides information about the frequency of resource updates, and the scope of those updates.
      */
     @UML(identifier="resourceMaintenance", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<MaintenanceInformation> getResourceMaintenance();
+    Collection<? extends MaintenanceInformation> getResourceMaintenance();
 
     /**
      * Provides a graphic that illustrates the resource(s) (should include a legend for the graphic).
      */
     @UML(identifier="graphicOverview", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<BrowseGraphic> getGraphicOverviews();
+    Collection<? extends BrowseGraphic> getGraphicOverviews();
 
     /**
      * Provides a description of the format of the resource(s).
      */
     @UML(identifier="resourceFormat", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<Format> getResourceFormat();
+    Collection<? extends Format> getResourceFormat();
 
     /**
      * Provides category keywords, their type, and reference source.
      */
     @UML(identifier="descriptiveKeywords", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<Keywords> getDescriptiveKeywords();
+    Collection<? extends Keywords> getDescriptiveKeywords();
 
     /**
      * Provides basic information about specific application(s) for which the resource(s)
      * has/have been or is being used by different users.
      */
     @UML(identifier="resourceSpecificUsage", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<Usage> getResourceSpecificUsages();
+    Collection<? extends Usage> getResourceSpecificUsages();
 
     /**
      * Provides information about constraints which apply to the resource(s).
      */
     @UML(identifier="resourceConstraints", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<Constraints> getResourceConstraints();
+    Collection<? extends Constraints> getResourceConstraints();
     
     /**
      * Provides aggregate dataset information
@@ -119,5 +119,5 @@ public interface Identification {
      * @since GeoAPI 2.1
      */
     @UML(identifier="aggregationInfo", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<AggregateInformation> getAggregationInfo();
+    Collection<? extends AggregateInformation> getAggregationInfo();
 }

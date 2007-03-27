@@ -45,7 +45,7 @@ public interface Extent {
      * @return The geographic extent, or an empty set if none.
      */
     @UML(identifier="geographicElement", obligation=CONDITIONAL, specification=ISO_19115)
-    Collection<GeographicExtent> getGeographicElements();
+    Collection<? extends GeographicExtent> getGeographicElements();
 
     /**
      * Provides temporal component of the extent of the referring object
@@ -53,7 +53,7 @@ public interface Extent {
      * @return The temporal extent, or an empty set if none.
      */
     @UML(identifier="temporalElement", obligation=CONDITIONAL, specification=ISO_19115)
-    Collection<TemporalExtent> getTemporalElements();
+    Collection<? extends TemporalExtent> getTemporalElements();
 
     /**
      * Provides vertical component of the extent of the referring object
@@ -61,5 +61,5 @@ public interface Extent {
      * @return The vertical extent, or an empty set if none.
      */
     @UML(identifier="verticalElement", obligation=CONDITIONAL, specification=ISO_19115)
-    Collection<VerticalExtent> getVerticalElements();
+    Collection<? extends VerticalExtent> getVerticalElements();
 }

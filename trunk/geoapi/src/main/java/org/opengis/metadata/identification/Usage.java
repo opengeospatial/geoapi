@@ -53,5 +53,5 @@ public interface Usage {
      * using the resource(s).
      */
     @UML(identifier="userContactInfo", obligation=MANDATORY, specification=ISO_19115)
-    Collection<ResponsibleParty> getUserContactInfo();
+    Collection<? extends ResponsibleParty> getUserContactInfo();
 }

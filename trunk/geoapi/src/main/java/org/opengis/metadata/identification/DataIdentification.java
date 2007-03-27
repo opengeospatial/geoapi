@@ -49,7 +49,7 @@ public interface DataIdentification extends Identification {
      */
     @Profile (level=CORE)
     @UML(identifier="spatialResolution", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<Resolution> getSpatialResolutions();
+    Collection<? extends Resolution> getSpatialResolutions();
 
     /**
      * Language(s) used within the dataset.
@@ -111,7 +111,7 @@ public interface DataIdentification extends Identification {
      */
     @Profile (level=CORE)
     @UML(identifier="extent", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<Extent> getExtent();
+    Collection<? extends Extent> getExtent();
 
     /**
      * Any other descriptive information about the dataset.

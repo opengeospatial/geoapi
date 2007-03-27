@@ -52,11 +52,11 @@ public interface ProcessStep {
      * organization(s) associated with the process step.
      */
     @UML(identifier="processor", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<ResponsibleParty> getProcessors();
+    Collection<? extends ResponsibleParty> getProcessors();
 
     /**
      * Information about the source data used in creating the data specified by the scope.
      */
     @UML(identifier="source", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<Source> getSources();
+    Collection<? extends Source> getSources();
 }
