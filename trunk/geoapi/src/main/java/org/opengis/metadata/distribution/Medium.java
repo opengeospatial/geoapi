@@ -11,16 +11,16 @@
 package org.opengis.metadata.distribution;
 
 // J2SE direct dependencies and extensions
+import static org.opengis.annotation.Obligation.CONDITIONAL;
+import static org.opengis.annotation.Obligation.OPTIONAL;
+import static org.opengis.annotation.Specification.ISO_19115;
+
 import java.util.Collection;
+
 import javax.units.Unit;
 
-// OpenGIS direct dependencies
-import org.opengis.util.InternationalString;
-
-// Annotations
 import org.opengis.annotation.UML;
-import static org.opengis.annotation.Obligation.*;
-import static org.opengis.annotation.Specification.*;
+import org.opengis.util.InternationalString;
 
 
 /**

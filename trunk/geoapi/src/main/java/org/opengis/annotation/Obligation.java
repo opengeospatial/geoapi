@@ -11,7 +11,7 @@
 package org.opengis.annotation;
 
 // Annotations
-import static org.opengis.annotation.Specification.*;
+import static org.opengis.annotation.Specification.ISO_19115;
 
 
 /**

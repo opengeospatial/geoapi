@@ -43,15 +43,12 @@
 package org.opengis.webservice.feature;
 
 // OpenGIS direct dependencies
+import static org.opengis.annotation.Specification.UNSPECIFIED;
+
+import org.opengis.annotation.UML;
 import org.opengis.webservice.WebService;
 import org.opengis.webservice.WebServiceRequest;
 import org.opengis.webservice.WebServiceResponse;
-import org.opengis.webservice.capability.WebServiceCapabilities;
-
-// Annotations
-import org.opengis.annotation.UML;
-import static org.opengis.annotation.Obligation.*;
-import static org.opengis.annotation.Specification.*;
 
 
 /**

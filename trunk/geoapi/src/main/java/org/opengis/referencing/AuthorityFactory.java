@@ -11,17 +11,14 @@
 package org.opengis.referencing;
 
 // J2SE direct dependencies
+import static org.opengis.annotation.Specification.OGC_01009;
+
 import java.util.Set;
 
-// OpenGIS direct dependencies
+import org.opengis.annotation.Extension;
+import org.opengis.annotation.UML;
 import org.opengis.metadata.citation.Citation;
 import org.opengis.util.InternationalString;
-
-// Annotations
-import org.opengis.annotation.UML;
-import org.opengis.annotation.Extension;
-import static org.opengis.annotation.Obligation.*;
-import static org.opengis.annotation.Specification.*;
 
 
 /**

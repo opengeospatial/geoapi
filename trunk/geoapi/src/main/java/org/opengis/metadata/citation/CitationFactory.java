@@ -14,11 +14,8 @@ package org.opengis.metadata.citation;
 import java.net.URI;
 import java.util.Collection;
 
-// OpenGIS direct dependencies
-import org.opengis.util.InternationalString;
-
-// Annotations
 import org.opengis.annotation.Obligation;
+import org.opengis.util.InternationalString;
 
 
 /**

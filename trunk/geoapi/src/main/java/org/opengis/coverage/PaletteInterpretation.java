@@ -11,17 +11,15 @@
 package org.opengis.coverage;
 
 // J2SE direct dependencies
-import java.util.List;
+import static org.opengis.annotation.Obligation.CONDITIONAL;
+import static org.opengis.annotation.Specification.OGC_01004;
+
+import java.awt.color.ColorSpace;
 import java.util.ArrayList;
-import java.awt.color.ColorSpace; // For Javadoc
+import java.util.List;
 
-// OpenGIS direct dependencies
-import org.opengis.util.CodeList;
-
-// Annotations
 import org.opengis.annotation.UML;
-import static org.opengis.annotation.Obligation.*;
-import static org.opengis.annotation.Specification.*;
+import org.opengis.util.CodeList;
 
 
 /**

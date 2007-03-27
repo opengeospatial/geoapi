@@ -13,6 +13,8 @@ package org.opengis.go;
 
 import org.opengis.feature.type.TypeFactory;
 import org.opengis.filter.FilterFactory;
+import org.opengis.geometry.coordinate.GeometryFactory;
+import org.opengis.geometry.primitive.PrimitiveFactory;
 import org.opengis.go.display.DisplayFactory;
 import org.opengis.metadata.citation.CitationFactory;
 import org.opengis.referencing.crs.CRSAuthorityFactory;
@@ -25,8 +27,6 @@ import org.opengis.referencing.datum.DatumFactory;
 import org.opengis.referencing.operation.CoordinateOperationAuthorityFactory;
 import org.opengis.referencing.operation.CoordinateOperationFactory;
 import org.opengis.sld.FeatureStyleFactory;
-import org.opengis.spatialschema.geometry.geometry.GeometryFactory;
-import org.opengis.spatialschema.geometry.primitive.PrimitiveFactory;
 import org.opengis.util.NameFactory;
 
 /**

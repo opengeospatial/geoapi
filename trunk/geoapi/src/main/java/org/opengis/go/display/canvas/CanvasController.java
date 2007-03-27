@@ -10,7 +10,7 @@
  *************************************************************************************************/
 package org.opengis.go.display.canvas;
 
-import org.opengis.spatialschema.geometry.DirectPosition;
+import org.opengis.geometry.DirectPosition;
 
 /**
  * The <code>CanvasController</code> interface serves as the token in the 

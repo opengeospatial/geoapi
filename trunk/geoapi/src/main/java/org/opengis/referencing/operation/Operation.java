@@ -11,12 +11,11 @@
 package org.opengis.referencing.operation;
 
 // OpenGIS direct dependencies
-import org.opengis.parameter.ParameterValueGroup;
+import static org.opengis.annotation.Obligation.MANDATORY;
+import static org.opengis.annotation.Specification.ISO_19111;
 
-// Annotations
 import org.opengis.annotation.UML;
-import static org.opengis.annotation.Obligation.*;
-import static org.opengis.annotation.Specification.*;
+import org.opengis.parameter.ParameterValueGroup;
 
 
 /**

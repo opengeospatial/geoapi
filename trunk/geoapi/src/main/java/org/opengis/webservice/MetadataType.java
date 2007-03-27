@@ -44,16 +44,10 @@
 package org.opengis.webservice;
 
 // J2SE direct dependencies
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
 
-// OpenGIS direct dependencies
 import org.opengis.util.CodeList;
-
-// Annotations
-import org.opengis.annotation.UML;
-import static org.opengis.annotation.Obligation.*;
-import static org.opengis.annotation.Specification.*;
 
 
 /**

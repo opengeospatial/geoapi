@@ -12,7 +12,6 @@ package org.opengis.filter.identity;
 
 import org.opengis.annotation.XmlElement;
 import org.opengis.feature.Feature;
-import org.opengis.filter.identity.Identifier;
 
 
 /**

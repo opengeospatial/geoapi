@@ -2,7 +2,7 @@ package org.opengis.feature.simple;
 
 import org.opengis.feature.Attribute;
 import org.opengis.feature.type.AttributeType;
-import org.opengis.spatialschema.geometry.BoundingBox;
+import org.opengis.geometry.BoundingBox;
 
 /**
  * Attribute containing a bounding box value: 

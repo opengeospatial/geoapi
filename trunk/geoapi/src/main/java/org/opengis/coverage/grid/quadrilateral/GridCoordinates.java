@@ -11,13 +11,13 @@
 package org.opengis.coverage.grid.quadrilateral;
 
 // Annotations
-import org.opengis.annotation.UML;
-import org.opengis.annotation.Extension;
-import org.opengis.spatialschema.geometry.DirectPosition;
-import org.opengis.util.Cloneable;
+import static org.opengis.annotation.Obligation.MANDATORY;
+import static org.opengis.annotation.Specification.ISO_19123;
 
-import static org.opengis.annotation.Obligation.*;
-import static org.opengis.annotation.Specification.*;
+import org.opengis.annotation.Extension;
+import org.opengis.annotation.UML;
+import org.opengis.geometry.DirectPosition;
+import org.opengis.util.Cloneable;
 
 
 /**

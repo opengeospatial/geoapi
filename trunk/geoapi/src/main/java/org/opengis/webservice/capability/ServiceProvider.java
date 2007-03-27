@@ -44,14 +44,12 @@
 package org.opengis.webservice.capability;
 
 // OpenGIS direct dependencies
-import org.opengis.webservice.SimpleLink;
+import static org.opengis.annotation.Specification.UNSPECIFIED;
+
+import org.opengis.annotation.UML;
 import org.opengis.metadata.citation.Contact;
 import org.opengis.metadata.identification.KeywordType;
-
-// Annotations
-import org.opengis.annotation.UML;
-import static org.opengis.annotation.Obligation.*;
-import static org.opengis.annotation.Specification.*;
+import org.opengis.webservice.SimpleLink;
 
 
 /**

@@ -11,14 +11,14 @@
 package org.opengis.util;
 
 // J2SE direct dependencies
-import java.util.Map;
-import java.util.Collection;
+import static org.opengis.annotation.Obligation.MANDATORY;
+import static org.opengis.annotation.Obligation.OPTIONAL;
+import static org.opengis.annotation.Specification.ISO_19103;
 
-// Annotations
+import java.util.Collection;
+import java.util.Map;
+
 import org.opengis.annotation.UML;
-import org.opengis.annotation.Extension;
-import static org.opengis.annotation.Obligation.*;
-import static org.opengis.annotation.Specification.*;
 
 
 /**

@@ -11,7 +11,7 @@
 package org.opengis.referencing.operation;
 
 // OpenGIS direct dependencies
-import org.opengis.spatialschema.geometry.DirectPosition;  // For javadoc
+import org.opengis.geometry.DirectPosition;
 
 
 /**

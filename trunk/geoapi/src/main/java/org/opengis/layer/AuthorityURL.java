@@ -11,11 +11,9 @@
 package org.opengis.layer;
 
 // OpenGIS direct dependencies
+import org.opengis.annotation.XmlElement;
 import org.opengis.metadata.Identifier;
 import org.opengis.metadata.citation.OnLineResource;
-
-// Annotations
-import org.opengis.annotation.XmlElement;
 
 
 /**

@@ -14,7 +14,6 @@ package org.opengis.go.display.primitive.store;
 import java.net.URI;
 import java.util.List;
 
-// OpenGIS direct dependencies
 import org.opengis.go.display.DisplayFactory;
 import org.opengis.go.display.primitive.Graphic;
 import org.opengis.util.InternationalString;

@@ -13,12 +13,11 @@ package org.opengis.coverage.grid;
 // J2SE dependencies
 import java.io.IOException;
 
-// OpenGIS direct dependencies
 import org.opengis.coverage.MetadataNameNotFoundException;
 import org.opengis.parameter.GeneralParameterValue;
-import org.opengis.parameter.ParameterNotFoundException;     // For javadoc
-import org.opengis.parameter.InvalidParameterNameException;  // For javadoc
-import org.opengis.parameter.InvalidParameterValueException; // For javadoc
+import org.opengis.parameter.InvalidParameterNameException;
+import org.opengis.parameter.InvalidParameterValueException;
+import org.opengis.parameter.ParameterNotFoundException;
 
 
 /**

@@ -11,13 +11,9 @@
 package org.opengis.referencing.crs;
 
 // OpenGIS direct dependencies
-import org.opengis.referencing.cs.VerticalCS; 	 
-import org.opengis.referencing.datum.VerticalDatum;
+import static org.opengis.annotation.Specification.ISO_19111;
 
-// Annotations
 import org.opengis.annotation.UML;
-import static org.opengis.annotation.Obligation.*;
-import static org.opengis.annotation.Specification.*;
 
 
 /**

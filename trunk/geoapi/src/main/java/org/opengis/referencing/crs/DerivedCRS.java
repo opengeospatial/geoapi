@@ -11,9 +11,9 @@
 package org.opengis.referencing.crs;
 
 // Annotations
+import static org.opengis.annotation.Specification.ISO_19111;
+
 import org.opengis.annotation.UML;
-import static org.opengis.annotation.Obligation.*;
-import static org.opengis.annotation.Specification.*;
 
 
 /**

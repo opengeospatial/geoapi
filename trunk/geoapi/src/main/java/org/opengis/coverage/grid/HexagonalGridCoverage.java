@@ -11,20 +11,19 @@
 package org.opengis.coverage.grid;
 
 // J2SE direct dependencies
-import java.util.Set;
+import static org.opengis.annotation.Obligation.MANDATORY;
+import static org.opengis.annotation.Obligation.OPTIONAL;
+import static org.opengis.annotation.Specification.ISO_19123;
+
 import java.util.Collection;
+import java.util.Set;
 
-// OpenGIS direct dependencies
-import org.opengis.coverage.DomainObject;  // For javadoc
-import org.opengis.coverage.ContinuousCoverage;
-import org.opengis.coverage.InterpolationMethod;
-import org.opengis.coverage.DiscreteSurfaceCoverage;
-import org.opengis.spatialschema.geometry.DirectPosition;
-
-//Annotations
 import org.opengis.annotation.UML;
-import static org.opengis.annotation.Obligation.*;
-import static org.opengis.annotation.Specification.*;
+import org.opengis.coverage.ContinuousCoverage;
+import org.opengis.coverage.DiscreteSurfaceCoverage;
+import org.opengis.coverage.DomainObject;
+import org.opengis.coverage.InterpolationMethod;
+import org.opengis.geometry.DirectPosition;
 
 
 /**

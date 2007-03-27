@@ -11,10 +11,8 @@
 package org.opengis.filter.spatial;
 
 // OpenGIS direct dependencies
-import org.opengis.filter.Filter;
-
-// Annotations
 import org.opengis.annotation.XmlElement;
+import org.opengis.filter.Filter;
 
 
 /**

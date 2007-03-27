@@ -11,12 +11,10 @@
 package org.opengis.coverage;
 
 // OpenGIS direct dependencies
-import org.opengis.spatialschema.geometry.DirectPosition;  // For Javadoc
+import static org.opengis.annotation.Specification.OGC_01004;
 
-// Annotations
 import org.opengis.annotation.UML;
-import static org.opengis.annotation.Obligation.*;
-import static org.opengis.annotation.Specification.*;
+import org.opengis.geometry.DirectPosition;
 
 
 /**

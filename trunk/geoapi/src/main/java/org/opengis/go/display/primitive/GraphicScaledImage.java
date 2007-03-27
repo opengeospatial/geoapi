@@ -13,8 +13,8 @@ package org.opengis.go.display.primitive;
 // J2SE direct dependencies
 import java.awt.image.RenderedImage;
 
+import org.opengis.geometry.DirectPosition;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
-import org.opengis.spatialschema.geometry.DirectPosition;
 
 
 /**

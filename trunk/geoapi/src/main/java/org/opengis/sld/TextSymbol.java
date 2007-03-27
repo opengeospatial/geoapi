@@ -13,11 +13,8 @@ package org.opengis.sld;
 // J2SE direct dependencies
 import java.util.List;
 
-// OpenGIS direct dependencies
-import org.opengis.filter.expression.Expression;
-
-// Annotations
 import org.opengis.annotation.XmlElement;
+import org.opengis.filter.expression.Expression;
 
 
 /**

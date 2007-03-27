@@ -45,7 +45,6 @@ package org.opengis.webservice.capability;
 // J2SE dependencies
 import java.net.URI;
 
-// OpenGIS direct dependencies
 import org.opengis.webservice.SimpleLink;
 
 

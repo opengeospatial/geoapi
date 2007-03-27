@@ -11,15 +11,12 @@
 package org.opengis.referencing.crs;
 
 // OpenGIS direct dependencies and extensions
+import static org.opengis.annotation.Specification.OGC_01009;
+
+import org.opengis.annotation.UML;
 import org.opengis.referencing.AuthorityFactory;
 import org.opengis.referencing.FactoryException;
-import org.opengis.referencing.NoSuchAuthorityCodeException;  // For javadoc
-
-// Annotations
-import org.opengis.annotation.UML;
-import org.opengis.annotation.Extension;
-import static org.opengis.annotation.Obligation.*;
-import static org.opengis.annotation.Specification.*;
+import org.opengis.referencing.NoSuchAuthorityCodeException;
 
 
 /**

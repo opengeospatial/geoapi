@@ -11,12 +11,11 @@
 package org.opengis.metadata.extent;
 
 // OpenGIS direct dependencies
-import org.opengis.metadata.Identifier;
+import static org.opengis.annotation.Obligation.MANDATORY;
+import static org.opengis.annotation.Specification.ISO_19115;
 
-// Annotations
 import org.opengis.annotation.UML;
-import static org.opengis.annotation.Obligation.*;
-import static org.opengis.annotation.Specification.*;
+import org.opengis.metadata.Identifier;
 
 
 /**

@@ -15,7 +15,6 @@
  */
 package org.opengis.feature;
 
-import org.opengis.feature.Feature;
 import org.opengis.feature.type.FeatureCollectionType;
 
 /**
