@@ -8,21 +8,26 @@
  ** All Rights Reserved. http://www.opengis.org/legal/
  **
  *************************************************************************************************/
-package org.opengis.geometry.primitive;
+package org.opengis.spatialschema.geometry.primitive;
 
 // J2SE direct dependencies
-import static org.opengis.annotation.Obligation.MANDATORY;
-import static org.opengis.annotation.Specification.ISO_19107;
-
 import java.util.List;
 
-import org.opengis.annotation.Extension;
-import org.opengis.annotation.UML;
-import org.opengis.geometry.Envelope;
-import org.opengis.geometry.MismatchedDimensionException;
-import org.opengis.geometry.MismatchedReferenceSystemException;
-import org.opengis.geometry.coordinate.Position;
+// OpenGIS direct dependencies
+import org.opengis.spatialschema.geometry.Envelope;
+import org.opengis.spatialschema.geometry.DirectPosition;
+import org.opengis.spatialschema.geometry.geometry.Polygon;
+import org.opengis.spatialschema.geometry.geometry.PolyhedralSurface;
+import org.opengis.spatialschema.geometry.geometry.Position;
+import org.opengis.spatialschema.geometry.MismatchedDimensionException;
+import org.opengis.spatialschema.geometry.MismatchedReferenceSystemException;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
+
+// Annotations
+import org.opengis.annotation.UML;
+import org.opengis.annotation.Extension;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
 
 
 /**
@@ -46,7 +51,7 @@ public interface PrimitiveFactory {
     /**
      * Returns an envelope as a primitive. An {@linkplain Envelope envelope} will often be
      * used in query operations, and therefore must have a cast operation that returns a
-     * {@linkplain org.opengis.geometry.coordinate geometry}. The actual return of the operation depends
+     * {@linkplain org.opengis.spatialschema.geometry.Geometry geometry}. The actual return of the operation depends
      * upon the dimension of the {@linkplain org.opengis.referencing.crs.CoordinateReferenceSystem coordinate
      * reference system} and the extent of the {@linkplain Envelope envelope}. In a 2D system,
      * the primitive returned will be a {@linkplain Surface surface} (if the envelope does not
@@ -66,18 +71,18 @@ public interface PrimitiveFactory {
      * various permutations of the ordinate values to create a list of polygon corners:
      *
      * <blockquote><pre>
-     * {@link org.opengis.geometry.coordinate.aggregate.MultiPoint} = { (x1, y1), (x1, y2), (x2, y1), (x2, y2) }</pre></blockquote>
+     * {@link org.opengis.spatialschema.geometry.aggregate.MultiPoint} = { (x1, y1), (x1, y2), (x2, y1), (x2, y2) }</pre></blockquote>
      *
-     * If we then apply the {@linkplain org.opengis.geometry.coordinate#getConvexHull convex hull}
+     * If we then apply the {@linkplain org.opengis.spatialschema.geometry.Geometry#getConvexHull convex hull}
      * function to the multi point, we get a polygon as a {@linkplain Surface surface}.
      * The extent of a polygon in 2D is totally defined by its
-     * {@linkplain org.opengis.geometry.coordinate#getBoundary boundary} (internal surface
+     * {@linkplain org.opengis.spatialschema.geometry.Geometry#getBoundary boundary} (internal surface
      * patches are planar and do not need interior control points) which gives
      * us a data type to represent {@linkplain Surface surface} in 2D:
      *
      * <blockquote><pre>
-     * {@link org.opengis.geometry.primitive.Ring} = {
-     *     {@link org.opengis.geometry.coordinate.LineString} = { (x1, y1), (x1, y2), (x2, y2), (x2, y1), (x1, y1)}
+     * {@link org.opengis.spatialschema.geometry.primitive.Ring} = {
+     *     {@link org.opengis.spatialschema.geometry.geometry.LineString} = { (x1, y1), (x1, y2), (x2, y2), (x2, y1), (x1, y1)}
      * }</pre></blockquote>
      *
      * So that the {@linkplain SurfaceBoundary surface boundary} record contains the above-cited

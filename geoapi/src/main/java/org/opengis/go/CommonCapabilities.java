@@ -11,8 +11,8 @@
 
 package org.opengis.go;
 
-import org.opengis.go.spatial.PathType;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
+import org.opengis.go.spatial.PathType;
 
 /**
  * The <code>CommonCapabilities</code> interface provides runtime information

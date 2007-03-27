@@ -11,9 +11,9 @@
 package org.opengis.temporal;
 
 // Annotations
-import static org.opengis.annotation.Specification.ISO_19108;
-
 import org.opengis.annotation.UML;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
 
 /**
  * The Julian day numbering system is a temporal coordinate system that has its origin at noon

@@ -11,8 +11,10 @@
 package org.opengis.sld;
 
 // OpenGIS direct dependencies
-import org.opengis.annotation.Extension;
 import org.opengis.util.InternationalString;
+
+// Annotations
+import org.opengis.annotation.Extension;
 
 
 /**

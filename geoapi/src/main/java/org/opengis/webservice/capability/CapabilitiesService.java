@@ -43,14 +43,16 @@ E-Mail: jens.fitzke@uni-bonn.de
 package org.opengis.webservice.capability;
 
 // OpenGIS direct dependencies
-import static org.opengis.annotation.Specification.UNSPECIFIED;
-
-import org.opengis.annotation.UML;
+import org.opengis.util.InternationalString;
 import org.opengis.metadata.citation.Contact;
 import org.opengis.metadata.citation.OnLineResource;
-import org.opengis.metadata.constraint.Constraints;
 import org.opengis.metadata.identification.Keywords;
-import org.opengis.util.InternationalString;
+import org.opengis.metadata.constraint.Constraints;
+
+// Annotations
+import org.opengis.annotation.UML;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
 
 
 /**

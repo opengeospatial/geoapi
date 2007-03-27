@@ -11,14 +11,14 @@
 
 package org.opengis.go.display.canvas;
 
-import org.opengis.geometry.DirectPosition;
-import org.opengis.geometry.Envelope;
 import org.opengis.go.display.DisplayFactory;
 import org.opengis.go.display.event.EventManager;
 import org.opengis.go.display.primitive.Graphic;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 import org.opengis.referencing.operation.IncompatibleOperationException;
 import org.opengis.referencing.operation.MathTransform;
+import org.opengis.spatialschema.geometry.DirectPosition;
+import org.opengis.spatialschema.geometry.Envelope;
 
 /**
  * <code>Canvas</code> defines a common abstraction for implementations that

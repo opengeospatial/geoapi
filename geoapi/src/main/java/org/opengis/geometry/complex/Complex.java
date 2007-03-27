@@ -8,19 +8,20 @@
  ** All Rights Reserved. http://www.opengis.org/legal/
  **
  *************************************************************************************************/
-package org.opengis.geometry.complex;
+package org.opengis.spatialschema.geometry.complex;
 
 // J2SE direct dependencies
-import static org.opengis.annotation.Obligation.MANDATORY;
-import static org.opengis.annotation.Specification.ISO_19107;
-
 import java.util.Collection;
-import java.util.Set;
 
+// OpenGIS direct dependencies
+import org.opengis.spatialschema.geometry.Geometry;
+import org.opengis.spatialschema.geometry.primitive.Point;     // For javadoc
+import org.opengis.spatialschema.geometry.primitive.Primitive; // For javadoc
+
+// Annotations
 import org.opengis.annotation.UML;
-import org.opengis.geometry.Geometry;
-import org.opengis.geometry.primitive.Point;
-import org.opengis.geometry.primitive.Primitive;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
 
 
 /**
@@ -38,7 +39,7 @@ import org.opengis.geometry.primitive.Primitive;
  * <p>
  * The "{@linkplain #getElements elements}" attribute allows {@code Complex} to inherit the
  * behavior of {@link Set Set&lt;Primitive&gt;} without confusing the same sort of behavior
- * inherited from {@link org.opengis.geometry.coordinate.TransfiniteSet TransfiniteSet&lt;DirectPosition&gt;}
+ * inherited from {@link org.opengis.spatialschema.geometry.TransfiniteSet TransfiniteSet&lt;DirectPosition&gt;}
  * inherited through {@link Geometry}. Complexes shall be used in application schemas where
  * the sharing of geometry is important, such as in the use of computational topology. In a
  * complex, primitives may be aggregated many-to-many into composites for use as attributes
@@ -90,5 +91,5 @@ public interface Complex extends Geometry {
     @UML(identifier="element", obligation=MANDATORY, specification=ISO_19107)
     public Collection<? extends Primitive> getElements();
 
-//    public org.opengis.geometry.topology.complex.TP_Complex topology[];
+//    public org.opengis.spatialschema.topology.complex.TP_Complex topology[];
 }

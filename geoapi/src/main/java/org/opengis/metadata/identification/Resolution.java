@@ -11,12 +11,11 @@
 package org.opengis.metadata.identification;
 
 // Annotations
-import static org.opengis.annotation.ComplianceLevel.CORE;
-import static org.opengis.annotation.Obligation.CONDITIONAL;
-import static org.opengis.annotation.Specification.ISO_19115;
-
-import org.opengis.annotation.Profile;
 import org.opengis.annotation.UML;
+import org.opengis.annotation.Profile;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
+import static org.opengis.annotation.ComplianceLevel.*;
 
 
 /**

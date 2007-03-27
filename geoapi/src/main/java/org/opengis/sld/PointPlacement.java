@@ -11,8 +11,10 @@
 package org.opengis.sld;
 
 // OpenGIS direct dependencies
-import org.opengis.annotation.XmlElement;
 import org.opengis.filter.expression.Expression;
+
+// Annotations
+import org.opengis.annotation.XmlElement;
 
 
 /**

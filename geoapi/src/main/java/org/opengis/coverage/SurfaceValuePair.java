@@ -11,11 +11,12 @@
 package org.opengis.coverage;
 
 // OpenGIS dependencies
-import static org.opengis.annotation.Obligation.MANDATORY;
-import static org.opengis.annotation.Specification.ISO_19123;
+import org.opengis.spatialschema.geometry.primitive.Surface;
 
+// Annotations
 import org.opengis.annotation.UML;
-import org.opengis.geometry.primitive.Surface;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
 
 
 /**

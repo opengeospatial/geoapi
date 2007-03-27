@@ -11,13 +11,15 @@
 package org.opengis.referencing.crs;
 
 // OpenGIS direct dependencies
-import static org.opengis.annotation.Obligation.MANDATORY;
-import static org.opengis.annotation.Specification.ISO_19111;
-
-import org.opengis.annotation.UML;
 import org.opengis.referencing.cs.CartesianCS;
-import org.opengis.referencing.cs.CoordinateSystem;
 import org.opengis.referencing.cs.SphericalCS;
+import org.opengis.referencing.cs.CoordinateSystem;
+import org.opengis.referencing.datum.GeodeticDatum;
+
+// Annotations
+import org.opengis.annotation.UML;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
 
 
 /**

@@ -11,17 +11,19 @@
 // This class was created by Sanjay Jena and Prof. Jackson Roehrig in order to complete
 // missing parts of the GeoAPI and submit the results to GeoAPI afterwards as proposal.
 
-package org.opengis.geometry.aggregate;
+package org.opengis.spatialschema.geometry.aggregate;
 
 // J2SE direct dependencies
-import static org.opengis.annotation.Obligation.MANDATORY;
-import static org.opengis.annotation.Specification.ISO_19107;
-
 import java.util.Set;
 
+// OpenGIS direct dependencies
+import org.opengis.spatialschema.geometry.DirectPosition;
+import org.opengis.spatialschema.geometry.primitive.OrientableSurface;
+
+// Annotations
 import org.opengis.annotation.UML;
-import org.opengis.geometry.DirectPosition;
-import org.opengis.geometry.primitive.OrientableSurface;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
 
 
 /**

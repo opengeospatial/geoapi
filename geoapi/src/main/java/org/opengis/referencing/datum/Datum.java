@@ -11,15 +11,18 @@
 package org.opengis.referencing.datum;
 
 // J2SE direct dependencies
-import static org.opengis.annotation.Obligation.OPTIONAL;
-import static org.opengis.annotation.Specification.ISO_19111;
-
 import java.util.Date;
+import java.util.Locale;
 
-import org.opengis.annotation.UML;
-import org.opengis.metadata.extent.Extent;
+// OpenGIS direct dependencies
 import org.opengis.referencing.IdentifiedObject;
+import org.opengis.metadata.extent.Extent;
 import org.opengis.util.InternationalString;
+
+// Annotations
+import org.opengis.annotation.UML;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
 
 
 /**

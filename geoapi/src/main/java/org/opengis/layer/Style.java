@@ -13,13 +13,16 @@ package org.opengis.layer;
 // J2SE direct dependencies
 import java.util.List;
 
-import org.opengis.annotation.Extension;
-import org.opengis.annotation.XmlElement;
-import org.opengis.feature.display.canvas.FeatureLayer;
-import org.opengis.go.display.primitive.Graphic;
-import org.opengis.go.display.style.GraphicStyle;
+// OpenGIS direct dependencies
 import org.opengis.sld.FeatureStyle;
 import org.opengis.util.InternationalString;
+import org.opengis.go.display.primitive.Graphic;
+import org.opengis.go.display.style.GraphicStyle;
+import org.opengis.feature.display.canvas.FeatureLayer;
+
+// Annotations
+import org.opengis.annotation.Extension;
+import org.opengis.annotation.XmlElement;
 
 
 /**

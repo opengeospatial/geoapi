@@ -8,16 +8,16 @@
  ** All Rights Reserved. http://www.opengis.org/legal/
  **
  *************************************************************************************************/
-package org.opengis.geometry.primitive;
+package org.opengis.spatialschema.geometry.primitive;
 
 // OpenGIS direct dependencies
-import static org.opengis.annotation.Obligation.MANDATORY;
-import static org.opengis.annotation.Obligation.OPTIONAL;
-import static org.opengis.annotation.Specification.ISO_19107;
+import org.opengis.spatialschema.geometry.geometry.GenericCurve;
+import org.opengis.spatialschema.geometry.geometry.PointArray;
 
+// Annotations
 import org.opengis.annotation.UML;
-import org.opengis.geometry.coordinate.GenericCurve;
-import org.opengis.geometry.coordinate.PointArray;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
 
 
 /**
@@ -144,8 +144,8 @@ public interface CurveSegment extends GenericCurve {
      * be cycles in themselves. The most likely scenario is that all of the points used will be transients
      * (constructed to support the return value), except for the start point and end point of the aggregated
      * {@linkplain Curve curve}. These two positions, in the case where the {@linkplain Curve curve} is
-     * involved in a {@linkplain org.opengis.geometry.complex.Complex complex}, will be represented as
-     * {@linkplain Point points} in the same {@linkplain org.opengis.geometry.complex.Complex complex}.
+     * involved in a {@linkplain org.opengis.spatialschema.geometry.complex.Complex complex}, will be represented as
+     * {@linkplain Point points} in the same {@linkplain org.opengis.spatialschema.geometry.complex.Complex complex}.
      * </font></blockquote>
      *
      * @return The sets of positions on the boundary.

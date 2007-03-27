@@ -11,9 +11,9 @@
 package org.opengis.go.display.primitive;
 
 // OpenGIS direct dependencies
-import org.opengis.geometry.DirectPosition;
 import org.opengis.go.display.style.PolygonSymbolizer;
 import org.opengis.go.spatial.PathType;
+import org.opengis.spatialschema.geometry.DirectPosition;
 
 /**
  * Defines a common abstraction for graphic representation of polygons.  

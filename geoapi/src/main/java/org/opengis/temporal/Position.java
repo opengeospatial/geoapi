@@ -1,14 +1,16 @@
 package org.opengis.temporal;
 
 //J2SE dependencies:
-import static org.opengis.annotation.Obligation.OPTIONAL;
-import static org.opengis.annotation.Specification.ISO_19108;
-
-import java.sql.Time;
 import java.util.Date;
+import java.sql.Time;
 
-import org.opengis.annotation.UML;
+//OpenGIS dependencies:
 import org.opengis.util.InternationalString;
+
+// Annotations
+import org.opengis.annotation.UML;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
 
 /**
  * A union class that consists of one of the data types listed as its attributes.

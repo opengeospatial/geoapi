@@ -11,29 +11,28 @@
 package org.opengis.coverage;
 
 // J2SE direct dependencies
-import static org.opengis.annotation.Obligation.MANDATORY;
-import static org.opengis.annotation.Obligation.OPTIONAL;
-import static org.opengis.annotation.Specification.ISO_19123;
-import static org.opengis.annotation.Specification.OGC_01004;
-
-import java.awt.image.Raster;
-import java.awt.image.renderable.RenderableImage;
-import java.util.Collection;
-import java.util.List;
 import java.util.Set;
+import java.util.List;
+import java.util.Collection;
+import java.awt.image.Raster;  // For Javadoc
+import java.awt.image.renderable.RenderableImage;
 
-import org.opengis.annotation.Extension;
-import org.opengis.annotation.Specification;
-import org.opengis.annotation.UML;
-import org.opengis.geometry.DirectPosition;
-import org.opengis.geometry.Envelope;
-import org.opengis.geometry.Geometry;
+// OpenGIS direct dependencies
 import org.opengis.metadata.extent.Extent;
+import org.opengis.spatialschema.geometry.Envelope;
+import org.opengis.spatialschema.geometry.Geometry;
+import org.opengis.spatialschema.geometry.DirectPosition;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 import org.opengis.temporal.Period;
-import org.opengis.util.InternationalString;
 import org.opengis.util.Record;
 import org.opengis.util.RecordType;
+import org.opengis.util.InternationalString;
+
+// Annotations
+import org.opengis.annotation.UML;
+import org.opengis.annotation.Extension;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
 
 
 /**

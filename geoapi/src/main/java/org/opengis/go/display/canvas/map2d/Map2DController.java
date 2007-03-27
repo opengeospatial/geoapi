@@ -13,9 +13,10 @@ package org.opengis.go.display.canvas.map2d;
 // J2SE extensions
 import javax.units.Unit;
 
-import org.opengis.geometry.Envelope;
+// OpenGIS direct dependencies
 import org.opengis.go.display.canvas.Canvas;
 import org.opengis.go.display.canvas.CanvasController;
+import org.opengis.spatialschema.geometry.Envelope;
 
 
 /**

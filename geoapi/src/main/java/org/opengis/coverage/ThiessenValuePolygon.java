@@ -11,12 +11,12 @@
 package org.opengis.coverage;
 
 // J2SE direct dependencies
-import static org.opengis.annotation.Obligation.MANDATORY;
-import static org.opengis.annotation.Specification.ISO_19123;
-
 import java.util.Set;
 
+// Annotations
 import org.opengis.annotation.UML;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
 
 
 /**
@@ -39,9 +39,9 @@ public interface ThiessenValuePolygon extends ValueObject {
      * Returns the geometry of the Thiessen polygon centred on the {@linkplain PointValuePair
      * point-value pair} identified by the {@linkplain #getControlValues control values}.
      *
-     * @todo The ISO 19123 specification returns a {@link org.opengis.geometry.coordinate.Polygon}.
+     * @todo The ISO 19123 specification returns a {@link org.opengis.spatialschema.geometry.geometry.Polygon}.
      *       We will have some trouble here, since {@code Polygon} is not a
-     *       {@link org.opengis.geometry.coordinate}.
+     *       {@link org.opengis.spatialschema.geometry.Geometry}.
      */
     @UML(identifier="geometry", obligation=MANDATORY, specification=ISO_19123)
     DomainObject getGeometry();  

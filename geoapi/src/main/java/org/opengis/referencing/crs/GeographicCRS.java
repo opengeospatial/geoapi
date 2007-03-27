@@ -11,9 +11,13 @@
 package org.opengis.referencing.crs;
 
 // OpenGIS direct dependencies
-import static org.opengis.annotation.Specification.ISO_19111;
+import org.opengis.referencing.cs.EllipsoidalCS;
+import org.opengis.referencing.datum.GeodeticDatum;
 
+// Annotations
 import org.opengis.annotation.UML;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
 
 
 /**

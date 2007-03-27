@@ -45,6 +45,7 @@
 package org.opengis.webservice;
 
 // OpenGIS direct dependencies
+import org.opengis.webservice.WebServiceEvent;
 import org.opengis.webservice.capability.Capabilities;
 
 

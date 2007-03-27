@@ -11,14 +11,19 @@
 package org.opengis.coverage;
 
 // J2SE direct dependencies
-import static org.opengis.annotation.Obligation.MANDATORY;
-import static org.opengis.annotation.Specification.ISO_19123;
-
+import java.util.List;
 import java.util.Set;
 
+// OpenGIS direct dependencies
+import org.opengis.coverage.ValueObject;
+import org.opengis.coverage.grid.GridPointValuePair;
+import org.opengis.spatialschema.geometry.DirectPosition;
+import org.opengis.spatialschema.geometry.geometry.Triangle;
+
+// Annotations
 import org.opengis.annotation.UML;
-import org.opengis.geometry.DirectPosition;
-import org.opengis.geometry.coordinate.Triangle;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
 
 
 /**

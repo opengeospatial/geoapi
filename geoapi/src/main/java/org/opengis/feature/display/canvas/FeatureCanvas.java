@@ -14,11 +14,13 @@ package org.opengis.feature.display.canvas;
 import java.util.Iterator;
 import java.util.List;
 
+// OpenGIS direct dependencies
+import org.opengis.layer.Layer;                // For javadoc
 import org.opengis.feature.Feature;
-import org.opengis.feature.FeatureCollection;
+// // import org.opengis.feature.FeatureStore;       // For javadoc
+import org.opengis.feature.FeatureCollection;  // For javadoc
 import org.opengis.go.display.canvas.Canvas;
 import org.opengis.go.display.primitive.Graphic;
-import org.opengis.layer.Layer;
 
 
 /**

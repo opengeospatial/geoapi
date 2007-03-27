@@ -5,6 +5,9 @@ import java.util.List;
 import org.opengis.feature.type.AttributeDescriptor;
 import org.opengis.feature.type.AttributeType;
 import org.opengis.feature.type.Name;
+import org.opengis.feature.type.OperationDescriptor;
+
+import com.sun.org.omg.CORBA.OperationDescription;
 
 
 /**

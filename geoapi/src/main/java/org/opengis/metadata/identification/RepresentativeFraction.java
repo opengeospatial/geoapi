@@ -11,10 +11,9 @@
 package org.opengis.metadata.identification;
 
 //Annotations
+import org.opengis.annotation.UML;
 import static org.opengis.annotation.Obligation.MANDATORY;
 import static org.opengis.annotation.Specification.ISO_19115;
-
-import org.opengis.annotation.UML;
 
 /**
  * Derived from ISO 19103 Scale where MD_Representative Fraction.denominator = 1 / Scale.

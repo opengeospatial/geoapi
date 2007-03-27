@@ -13,9 +13,12 @@ package org.opengis.sld;
 // J2SE direct dependencies
 import java.util.List;
 
-import org.opengis.annotation.XmlElement;
+// OpenGIS direct dependencies
 import org.opengis.filter.Filter;
 import org.opengis.util.InternationalString;
+
+// Annotations
+import org.opengis.annotation.XmlElement;
 
 
 /**

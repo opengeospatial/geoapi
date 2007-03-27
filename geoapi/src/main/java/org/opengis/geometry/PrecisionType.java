@@ -8,12 +8,13 @@
  ** All Rights Reserved. http://www.opengis.org/legal/
  **
  *************************************************************************************************/
-package org.opengis.geometry;
+package org.opengis.spatialschema.geometry;
 
 // J2SE directdependencies
-import java.util.ArrayList;
 import java.util.List;
+import java.util.ArrayList;
 
+// OpenGIS direct dependencies
 import org.opengis.util.CodeList;
 
 

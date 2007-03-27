@@ -13,5 +13,5 @@
 package org.opengis.filter.spatial;
 
 // Annotations
-import static org.opengis.annotation.Specification.OGC_02059;
-
+import org.opengis.annotation.XmlSchema;
+import static org.opengis.annotation.Specification.*;

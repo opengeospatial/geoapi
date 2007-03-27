@@ -11,13 +11,15 @@
 package org.opengis.metadata;
 
 // J2SE direct dependencies
-import static org.opengis.annotation.Obligation.MANDATORY;
-import static org.opengis.annotation.Specification.ISO_19115;
-
 import java.util.Collection;
 
-import org.opengis.annotation.UML;
+// OpenGIS direct dependencies
 import org.opengis.metadata.citation.Citation;
+
+// Annotations
+import org.opengis.annotation.UML;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
 
 
 /**

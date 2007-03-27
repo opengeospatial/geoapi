@@ -8,21 +8,23 @@
  ** All Rights Reserved. http://www.opengis.org/legal/
  **
  *************************************************************************************************/
-package org.opengis.geometry;
+package org.opengis.spatialschema.geometry;
 
 // J2SE direct dependencies
-import static org.opengis.annotation.Obligation.MANDATORY;
-import static org.opengis.annotation.Specification.ISO_19107;
-
 import java.util.Set;
 
-import org.opengis.annotation.Extension;
-import org.opengis.annotation.UML;
-import org.opengis.geometry.complex.Complex;
+// OpenGIS direct dependencies
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 import org.opengis.referencing.operation.MathTransform;
 import org.opengis.referencing.operation.TransformException;
-import org.opengis.util.Cloneable;
+import org.opengis.spatialschema.geometry.complex.Complex;
+import org.opengis.util.Cloneable; // For javadoc
+
+// Annotations
+import org.opengis.annotation.UML;
+import org.opengis.annotation.Extension;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
 
 
 /**
@@ -46,7 +48,7 @@ public interface Geometry extends TransfiniteSet {
      * The most common example where the coordinate reference system is {@code null} is the elements
      * and subcomplexes of a maximal {@linkplain Complex complex}. The {@linkplain Complex complex} can
      * carry the {@linkplain CoordinateReferenceSystem coordinate reference system} for all
-     * {@linkplain org.opengis.geometry.primitive.Primitive primitive} elements
+     * {@linkplain org.opengis.spatialschema.geometry.primitive.Primitive primitive} elements
      * and for all {@link Complex} subcomplexes.
      * <p>
      * This association is only navigable from {@code Geometry} to {@linkplain CoordinateReferenceSystem
@@ -162,7 +164,7 @@ public interface Geometry extends TransfiniteSet {
     /**
      * Returns {@code true} if this {@code Geometry} has an empty boundary after topological
      * simplification (removal of overlaps between components in non-structured aggregates, such as
-     * subclasses of {@link org.opengis.geometry.coordinate.aggregate.Aggregate}). This condition is alternatively
+     * subclasses of {@link org.opengis.spatialschema.geometry.aggregate.Aggregate}). This condition is alternatively
      * referred to as being "closed" as in a "closed curve." This creates some confusion since there
      * are two distinct and incompatible definitions for the word "closed". The use of the word cycle
      * is rarer (generally restricted to the field of algebraic topology), but leads to less confusion.
@@ -341,8 +343,8 @@ public interface Geometry extends TransfiniteSet {
      * The {@code Geometry} returned is in the same reference system as this original
      * {@code Geometry}. The dimension of the returned {@code Geometry} is normally
      * the same as the coordinate dimension - a collection of
-     * {@linkplain org.opengis.geometry.primitive.Surface surfaces} in 2D space and a collection of
-     * {@linkplain org.opengis.geometry.primitive.Solid solids} in 3D space, but this may be application
+     * {@linkplain org.opengis.spatialschema.geometry.primitive.Surface surfaces} in 2D space and a collection of
+     * {@linkplain org.opengis.spatialschema.geometry.primitive.Solid solids} in 3D space, but this may be application
      * defined.
      *
      * @param distance The distance.

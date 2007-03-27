@@ -11,11 +11,13 @@
 package org.opengis.referencing.operation;
 
 // OpenGIS direct dependencies
-import static org.opengis.annotation.Specification.OGC_01009;
+import org.opengis.spatialschema.geometry.DirectPosition;
+import org.opengis.spatialschema.geometry.MismatchedDimensionException;
 
+// Annotations
 import org.opengis.annotation.UML;
-import org.opengis.geometry.DirectPosition;
-import org.opengis.geometry.MismatchedDimensionException;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
 
 
 /**

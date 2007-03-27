@@ -11,7 +11,7 @@
 // This class was created by Sanjay Jena and Prof. Jackson Roehrig in order to complete
 // missing parts of the GeoAPI and submit the results to GeoAPI afterwards as proposal.
 
-package org.opengis.geometry.complex;
+package org.opengis.spatialschema.geometry.complex;
 
 // Annotations
 import org.opengis.annotation.UML;

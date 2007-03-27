@@ -11,30 +11,40 @@
 package org.opengis.referencing.crs;
 
 // J2SE direct dependencies
-import static org.opengis.annotation.Specification.OGC_01009;
-
 import java.util.Map;
+import java.util.Set;
 
-import org.opengis.annotation.UML;
-import org.opengis.referencing.FactoryException;
+// OpenGIS dependencies
 import org.opengis.referencing.ObjectFactory;
+import org.opengis.referencing.FactoryException;
+import org.opengis.referencing.NoSuchIdentifierException;
 import org.opengis.referencing.cs.AffineCS;
 import org.opengis.referencing.cs.CartesianCS;
+import org.opengis.referencing.cs.SphericalCS;
+import org.opengis.referencing.cs.EllipsoidalCS;
+import org.opengis.referencing.cs.VerticalCS;
+import org.opengis.referencing.cs.TimeCS;
 import org.opengis.referencing.cs.CoordinateSystem;
 import org.opengis.referencing.cs.CoordinateSystemAxis;
-import org.opengis.referencing.cs.EllipsoidalCS;
-import org.opengis.referencing.cs.SphericalCS;
-import org.opengis.referencing.cs.TimeCS;
-import org.opengis.referencing.cs.VerticalCS;
 import org.opengis.referencing.datum.EngineeringDatum;
 import org.opengis.referencing.datum.GeodeticDatum;
 import org.opengis.referencing.datum.ImageDatum;
 import org.opengis.referencing.datum.TemporalDatum;
 import org.opengis.referencing.datum.VerticalDatum;
 import org.opengis.referencing.operation.Conversion;
-import org.opengis.referencing.operation.MathTransform;
-import org.opengis.referencing.operation.OperationMethod;
 import org.opengis.referencing.operation.Projection;
+import org.opengis.referencing.operation.MathTransform;
+import org.opengis.referencing.operation.MathTransformFactory;
+import org.opengis.referencing.operation.OperationMethod;
+import org.opengis.parameter.GeneralParameterValue;
+import org.opengis.parameter.ParameterValueGroup;
+import org.opengis.parameter.ParameterDescriptorGroup; // For javadoc
+
+// Annotations
+import org.opengis.annotation.UML;
+import org.opengis.annotation.Extension;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
 
 
 /**
