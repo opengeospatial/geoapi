@@ -11,13 +11,13 @@
 package org.opengis.metadata;
 
 // OpenGIS direct dependencies
-import static org.opengis.annotation.Obligation.MANDATORY;
-import static org.opengis.annotation.Obligation.OPTIONAL;
-import static org.opengis.annotation.Specification.ISO_19115;
-
-import org.opengis.annotation.Extension;
-import org.opengis.annotation.UML;
 import org.opengis.metadata.citation.Citation;
+
+// Annotations
+import org.opengis.annotation.UML;
+import org.opengis.annotation.Extension;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
 
 
 /**

@@ -14,6 +14,7 @@ package org.opengis.go.display.style;
 import java.util.ArrayList;
 import java.util.List;
 
+// OpenGIS dependencies
 import org.opengis.util.CodeList;
 
 

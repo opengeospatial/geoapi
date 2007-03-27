@@ -10,10 +10,9 @@
  *************************************************************************************************/
 package org.opengis.metadata.reference;
 
+import org.opengis.annotation.UML;
 import static org.opengis.annotation.Obligation.OPTIONAL;
 import static org.opengis.annotation.Specification.ISO_19115;
-
-import org.opengis.annotation.UML;
 
 /**
  * Identifier used for reference systems.

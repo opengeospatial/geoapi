@@ -45,6 +45,7 @@ package org.opengis.webservice;
 // J2SE direct dependencies
 import java.net.URI;
 
+// OpenGIS direct dependencies
 import org.opengis.util.InternationalString;
 
 

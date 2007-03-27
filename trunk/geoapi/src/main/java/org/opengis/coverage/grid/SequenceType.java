@@ -11,14 +11,16 @@
 package org.opengis.coverage.grid;
 
 // J2SE direct dependencies
-import static org.opengis.annotation.Obligation.CONDITIONAL;
-import static org.opengis.annotation.Specification.ISO_19123;
-
-import java.util.ArrayList;
 import java.util.List;
+import java.util.ArrayList;
 
-import org.opengis.annotation.UML;
+// OpenGIS direct dependencies
 import org.opengis.util.CodeList;
+
+// Annotations
+import org.opengis.annotation.UML;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
 
 
 /**

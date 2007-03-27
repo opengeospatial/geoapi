@@ -15,7 +15,9 @@ import java.io.IOException;
 import java.net.URI;
 import java.util.List;
 
+// OpenGIS direct dependencies
 import org.opengis.feature.Feature;
+// // import org.opengis.feature.FeatureStore;
 import org.opengis.feature.display.canvas.FeatureLayer;
 import org.opengis.filter.Filter;
 import org.opengis.layer.Layer;

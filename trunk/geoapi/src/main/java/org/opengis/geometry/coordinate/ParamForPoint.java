@@ -8,10 +8,10 @@
  ** All Rights Reserved. http://www.opengis.org/legal/
  **
  *************************************************************************************************/
-package org.opengis.geometry.coordinate;
+package org.opengis.spatialschema.geometry.geometry;
 
 // OpenGIS direct dependencies
-import org.opengis.geometry.DirectPosition;
+import org.opengis.spatialschema.geometry.DirectPosition;
 
 
 /**

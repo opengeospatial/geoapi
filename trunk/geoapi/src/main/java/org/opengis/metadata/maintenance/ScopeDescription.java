@@ -11,14 +11,15 @@
 package org.opengis.metadata.maintenance;
 
 // J2SE directdependencies
-import static org.opengis.annotation.Obligation.CONDITIONAL;
-import static org.opengis.annotation.Specification.ISO_19115;
-
 import java.util.Set;
 
+// Annotations
 import org.opengis.annotation.UML;
 import org.opengis.feature.type.AttributeType;
 import org.opengis.feature.type.FeatureType;
+
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
 
 
 /**

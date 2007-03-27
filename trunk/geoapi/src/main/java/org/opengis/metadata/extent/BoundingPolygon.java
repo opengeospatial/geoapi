@@ -11,13 +11,15 @@
 package org.opengis.metadata.extent;
 
 // J2SE direct dependencies
-import static org.opengis.annotation.Obligation.MANDATORY;
-import static org.opengis.annotation.Specification.ISO_19115;
-
 import java.util.Collection;
 
+// OpenGIS direct dependencies
+import org.opengis.spatialschema.geometry.Geometry;
+
+// Annotations
 import org.opengis.annotation.UML;
-import org.opengis.geometry.Geometry;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
 
 
 /**

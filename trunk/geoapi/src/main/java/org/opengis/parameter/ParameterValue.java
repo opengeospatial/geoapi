@@ -11,14 +11,13 @@
 package org.opengis.parameter;
 
 // J2SE direct dependencies and extensions
-import static org.opengis.annotation.Obligation.CONDITIONAL;
-import static org.opengis.annotation.Specification.ISO_19111;
-
 import java.net.URI;
-
 import javax.units.Unit;
 
+// Annotations
 import org.opengis.annotation.UML;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
 
 
 /**

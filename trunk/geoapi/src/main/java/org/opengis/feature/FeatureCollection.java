@@ -10,10 +10,10 @@
  *************************************************************************************************/
 package org.opengis.feature;
 
-import java.io.IOException;
 import java.util.Collection;
 import java.util.Iterator;
 
+//import org.opengis.feature.type.AttributeType;
 import org.opengis.annotation.XmlElement;
 import org.opengis.feature.type.FeatureCollectionType;
 import org.opengis.feature.type.FeatureType;

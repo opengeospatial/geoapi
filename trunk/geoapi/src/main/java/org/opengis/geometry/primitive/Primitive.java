@@ -8,19 +8,20 @@
  ** All Rights Reserved. http://www.opengis.org/legal/
  **
  *************************************************************************************************/
-package org.opengis.geometry.primitive;
+package org.opengis.spatialschema.geometry.primitive;
 
 // J2SE direct dependencies
-import static org.opengis.annotation.Obligation.MANDATORY;
-import static org.opengis.annotation.Obligation.OPTIONAL;
-import static org.opengis.annotation.Specification.ISO_19107;
-
 import java.util.Set;
 
+// OpenGIS direct dependencies
+import org.opengis.spatialschema.geometry.Geometry;
+import org.opengis.spatialschema.geometry.Envelope;
+import org.opengis.spatialschema.geometry.complex.Complex;
+
+// Annotations
 import org.opengis.annotation.UML;
-import org.opengis.geometry.Envelope;
-import org.opengis.geometry.Geometry;
-import org.opengis.geometry.complex.Complex;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
 
 
 /**
@@ -64,7 +65,7 @@ public interface Primitive extends Geometry {
     /**
      * Returns the {@code Primitive}s which are by definition coincident with this one.
      * This allows applications to override the
-     * {@link org.opengis.geometry.coordinate.TransfiniteSet TransfiniteSet&lt;DirectPosition&gt;}
+     * {@link org.opengis.spatialschema.geometry.TransfiniteSet TransfiniteSet&lt;DirectPosition&gt;}
      * interpretation and its associated computational geometry, and declare one
      * {@code Primitive} to be "interior to" another.
      *
@@ -133,6 +134,6 @@ public interface Primitive extends Geometry {
     @UML(identifier="proxy", obligation=OPTIONAL, specification=ISO_19107)
     public OrientablePrimitive[] getProxy();
 
-//    public org.opengis.geometry.topology.primitive.TP_Primitive topology[];
-//    public org.opengis.geometry.complex.GM_Composite composite[];
+//    public org.opengis.spatialschema.topology.primitive.TP_Primitive topology[];
+//    public org.opengis.spatialschema.geometry.complex.GM_Composite composite[];
 }

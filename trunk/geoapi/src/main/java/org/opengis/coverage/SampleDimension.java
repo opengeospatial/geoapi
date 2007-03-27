@@ -11,14 +11,17 @@
 package org.opengis.coverage;
 
 // J2SE and extensions
-import static org.opengis.annotation.Obligation.MANDATORY;
-import static org.opengis.annotation.Specification.OGC_01004;
-
+import java.util.Locale;
 import javax.units.Unit;
 
-import org.opengis.annotation.UML;
-import org.opengis.referencing.operation.MathTransform1D;
+// OpenGIS direct dependencies
 import org.opengis.util.InternationalString;
+import org.opengis.referencing.operation.MathTransform1D;
+
+// Annotations
+import org.opengis.annotation.UML;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
 
 
 /**

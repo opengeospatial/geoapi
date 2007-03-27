@@ -11,18 +11,16 @@
 // This class was created by Sanjay Jena and Prof. Jackson Roehrig in order to complete
 // missing parts of the GeoAPI and submit the results to GeoAPI afterwards as proposal.
 
-package org.opengis.geometry.aggregate;
+package org.opengis.spatialschema.geometry.aggregate;
 
 // J2SE direct dependencies
 import java.util.Set;
 
-import org.opengis.geometry.primitive.OrientableCurve;
-import org.opengis.geometry.primitive.OrientableSurface;
-import org.opengis.geometry.primitive.Point;
-import org.opengis.geometry.primitive.Primitive;
-import org.opengis.geometry.primitive.Surface;
-
-import sun.awt.geom.Curve;
+// OpenGIS direct dependencies
+import org.opengis.spatialschema.geometry.primitive.Point;
+import org.opengis.spatialschema.geometry.primitive.Primitive;
+import org.opengis.spatialschema.geometry.primitive.OrientableCurve;
+import org.opengis.spatialschema.geometry.primitive.OrientableSurface;
 
 
 /**

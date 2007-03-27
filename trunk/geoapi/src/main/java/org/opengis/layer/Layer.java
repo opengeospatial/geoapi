@@ -12,20 +12,23 @@ package org.opengis.layer;
 
 // J2SE direct dependencies
 import java.util.Collection;
-import java.util.List;
-import java.util.Map;
+import java.util.Map;  // For javadoc
 import java.util.Set;
+import java.util.List;
 
-import org.opengis.annotation.XmlElement;
+// OpenGIS direct dependencies
 import org.opengis.feature.display.canvas.FeatureCanvas;
 import org.opengis.feature.display.canvas.FeatureLayer;
-import org.opengis.geometry.Envelope;
 import org.opengis.go.display.canvas.Canvas;
 import org.opengis.go.display.primitive.Graphic;
 import org.opengis.metadata.Identifier;
 import org.opengis.metadata.extent.GeographicBoundingBox;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
+import org.opengis.spatialschema.geometry.Envelope;
 import org.opengis.util.InternationalString;
+
+// Annotations
+import org.opengis.annotation.XmlElement;
 
 
 /**

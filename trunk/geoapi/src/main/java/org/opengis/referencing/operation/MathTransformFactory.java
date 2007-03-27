@@ -11,18 +11,21 @@
 package org.opengis.referencing.operation;
 
 // J2SE direct dependencies
-import static org.opengis.annotation.Obligation.MANDATORY;
-import static org.opengis.annotation.Specification.OGC_01009;
-
 import java.util.Set;
 
-import org.opengis.annotation.Extension;
-import org.opengis.annotation.UML;
-import org.opengis.parameter.ParameterDescriptorGroup;
-import org.opengis.parameter.ParameterValueGroup;
+// OpenGIS direct dependencies
+import org.opengis.metadata.Identifier;  // For javadoc
 import org.opengis.referencing.Factory;
 import org.opengis.referencing.FactoryException;
 import org.opengis.referencing.NoSuchIdentifierException;
+import org.opengis.parameter.ParameterDescriptorGroup; // For javadoc
+import org.opengis.parameter.ParameterValueGroup;
+
+// Annotations
+import org.opengis.annotation.UML;
+import org.opengis.annotation.Extension;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
 
 
 /**

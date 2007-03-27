@@ -11,9 +11,9 @@
 package org.opengis.coverage.grid;
 
 // Annotations
-import static org.opengis.annotation.Specification.OGC_01004;
-
 import org.opengis.annotation.UML;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
 
 
 /**

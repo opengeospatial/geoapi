@@ -8,19 +8,19 @@
  ** All Rights Reserved. http://www.opengis.org/legal/
  **
  *************************************************************************************************/
-package org.opengis.geometry.coordinate;
+package org.opengis.spatialschema.geometry.geometry;
 
 // Annotations
-import static org.opengis.annotation.Specification.ISO_19107;
-
 import org.opengis.annotation.UML;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
 
 
 /**
- * Two distinct {@linkplain org.opengis.geometry.coordinate.DirectPosition direct positions}
+ * Two distinct {@linkplain org.opengis.spatialschema.geometry.DirectPosition direct positions}
  * (the {@linkplain #getStartPoint start point} and {@linkplain #getEndPoint end point}) joined
  * by a straight line. Thus its interpolation attribute shall be
- * {@link org.opengis.geometry.primitive.CurveInterpolation#LINEAR LINEAR}.
+ * {@link org.opengis.spatialschema.geometry.primitive.CurveInterpolation#LINEAR LINEAR}.
  * The default parameterization is:
  *
  * <blockquote><pre>

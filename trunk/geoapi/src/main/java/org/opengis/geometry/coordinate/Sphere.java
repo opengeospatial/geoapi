@@ -8,12 +8,12 @@
  ** All Rights Reserved. http://www.opengis.org/legal/
  **
  *************************************************************************************************/
-package org.opengis.geometry.coordinate;
+package org.opengis.spatialschema.geometry.geometry;
 
 // Annotations
-import static org.opengis.annotation.Specification.ISO_19107;
-
 import org.opengis.annotation.UML;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
 
 
 /**

@@ -11,15 +11,17 @@
 package org.opengis.coverage.grid;
 
 // J2SE directdependencies
-import static org.opengis.annotation.Obligation.CONDITIONAL;
-import static org.opengis.annotation.Specification.OGC_01004;
-
-import java.util.ArrayList;
 import java.util.List;
+import java.util.ArrayList;
 
-import org.opengis.annotation.UML;
-import org.opengis.coverage.SampleDimensionType;
+//OpenGIS direct dependencies
 import org.opengis.util.CodeList;
+import org.opengis.coverage.SampleDimensionType; // For Javadoc
+
+// Annotations
+import org.opengis.annotation.UML;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
 
 
 /**

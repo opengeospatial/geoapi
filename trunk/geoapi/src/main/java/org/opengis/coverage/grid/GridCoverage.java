@@ -11,16 +11,18 @@
 package org.opengis.coverage.grid;
 
 // J2SE direct dependencies
-import static org.opengis.annotation.Obligation.MANDATORY;
-import static org.opengis.annotation.Obligation.OPTIONAL;
-import static org.opengis.annotation.Specification.OGC_01004;
+import java.util.List;
+import java.awt.image.Raster;          // For Javadoc
+import java.awt.image.WritableRaster;  // For Javadoc
+import java.awt.image.RenderedImage;   // For Javadoc
 
-import java.awt.image.Raster;
-import java.awt.image.RenderedImage;
-import java.awt.image.WritableRaster;
-
-import org.opengis.annotation.UML;
+// OpenGIS direct dependencies
 import org.opengis.coverage.Coverage;
+
+// Annotations
+import org.opengis.annotation.UML;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
 
 
 /**

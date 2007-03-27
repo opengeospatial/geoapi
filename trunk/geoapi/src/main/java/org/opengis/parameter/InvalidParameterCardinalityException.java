@@ -11,7 +11,7 @@
 package org.opengis.parameter;
 
 // J2SE dependencies
-import java.util.List;
+import java.util.List;  // For javadoc
 
 
 /**

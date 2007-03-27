@@ -8,18 +8,20 @@
  ** All Rights Reserved. http://www.opengis.org/legal/
  **
  *************************************************************************************************/
-package org.opengis.geometry.complex;
+package org.opengis.spatialschema.geometry.complex;
 
 // OpenGIS direct dependencies
-import static org.opengis.annotation.Specification.ISO_19107;
+import org.opengis.spatialschema.geometry.Boundary;
 
+// Annotations
 import org.opengis.annotation.UML;
-import org.opengis.geometry.Boundary;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
 
 
 /**
  * The boundary of {@linkplain Complex complex} objects. The
- * {@link org.opengis.geometry.coordinate#getBoundary getBoundary()} method for {@link Complex}
+ * {@link org.opengis.spatialschema.geometry.Geometry#getBoundary getBoundary()} method for {@link Complex}
  * objects shall return a {@code ComplexBoundary}, which is a collection of primitives
  * and a {@linkplain Complex complex} of dimension 1 less than the original object.
  *

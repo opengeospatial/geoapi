@@ -15,7 +15,7 @@ import java.io.IOException;
 import java.net.URI;
 import java.util.Map;
 
-import org.opengis.layer.LayerException;
+// OpenGIS direct dependencies
 import org.opengis.util.InternationalString;
 
 

@@ -11,15 +11,18 @@
 package org.opengis.coverage.grid.quadrilateral;
 
 // J2SE direct dependencies
-import static org.opengis.annotation.Obligation.MANDATORY;
-import static org.opengis.annotation.Specification.ISO_19123;
-
 import java.util.Set;
 
-import org.opengis.annotation.Extension;
-import org.opengis.annotation.UML;
-import org.opengis.geometry.Geometry;
+// OpenGiS dependencies:
+import org.opengis.coverage.DomainObject;
+import org.opengis.spatialschema.geometry.Geometry;
 import org.opengis.temporal.TemporalGeometricPrimitive;
+
+// Annotations
+import org.opengis.annotation.UML;
+import org.opengis.annotation.Extension;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
 
 
 /**

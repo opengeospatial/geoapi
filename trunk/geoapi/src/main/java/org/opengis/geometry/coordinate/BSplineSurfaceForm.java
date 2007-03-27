@@ -8,17 +8,19 @@
  ** All Rights Reserved. http://www.opengis.org/legal/
  **
  *************************************************************************************************/
-package org.opengis.geometry.coordinate;
+package org.opengis.spatialschema.geometry.geometry;
 
 // J2SE directdependencies
-import static org.opengis.annotation.Obligation.CONDITIONAL;
-import static org.opengis.annotation.Specification.ISO_19107;
-
-import java.util.ArrayList;
 import java.util.List;
+import java.util.ArrayList;
 
-import org.opengis.annotation.UML;
+// OpenGIS direct dependencies
 import org.opengis.util.CodeList;
+
+// Annotations
+import org.opengis.annotation.UML;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
 
 
 /**

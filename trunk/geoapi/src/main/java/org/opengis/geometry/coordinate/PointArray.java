@@ -8,18 +8,20 @@
  ** All Rights Reserved. http://www.opengis.org/legal/
  **
  *************************************************************************************************/
-package org.opengis.geometry.coordinate;
+package org.opengis.spatialschema.geometry.geometry;
 
 // J2SE direct dependencies
-import static org.opengis.annotation.Obligation.MANDATORY;
-import static org.opengis.annotation.Specification.ISO_19107;
-
 import java.util.List;
 
-import org.opengis.annotation.Extension;
-import org.opengis.annotation.UML;
-import org.opengis.geometry.DirectPosition;
+// OpenGIS direct dependencies
+import org.opengis.spatialschema.geometry.DirectPosition;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
+
+// Annotations
+import org.opengis.annotation.UML;
+import org.opengis.annotation.Extension;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
 
 /**
  * A sequence of points.
