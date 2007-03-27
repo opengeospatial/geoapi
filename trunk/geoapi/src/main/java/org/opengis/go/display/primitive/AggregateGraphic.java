@@ -10,9 +10,9 @@
  *************************************************************************************************/
 package org.opengis.go.display.primitive;
 
-// OpenGIS direct dependencies
 import org.opengis.go.display.event.AggregationChangeEvent;
 import org.opengis.go.display.event.AggregationListener;
+
 
 /**
  * A common abstraction for implementations of aggregated {@link Graphic}s.
@@ -35,7 +35,6 @@ import org.opengis.go.display.event.AggregationListener;
  * @version $Revision: 658 $, $Date: 2006-02-23 12:09:34 +1100 (jeu., 23 févr. 2006) $
  */
 public interface AggregateGraphic extends Graphic {
-
     /**
      * Sets the children of this <code>AggregateGraphic</code> to the given
      * set of <code>Graphic</code>s.  If there are already children assigned,
@@ -44,7 +43,7 @@ public interface AggregateGraphic extends Graphic {
      *
      * @param children the new children of the <code>AggregateGraphic</code>.
      */
-    public void setChildren(Graphic[] children);
+    void setChildren(Graphic[] children);
 
     /**
      * Returns the children of this <code>AggregateGraphic</code>. If no
@@ -52,7 +51,7 @@ public interface AggregateGraphic extends Graphic {
      *
      * @return the child <code>Graphic</code>s of the <code>AggregateGraphic</code>.
      */
-    public Graphic[] getChildren();
+    Graphic[] getChildren();
 
     /**
      * Adds the given child to this <code>AggregateGraphic</code>.
@@ -60,7 +59,7 @@ public interface AggregateGraphic extends Graphic {
      * @param child <code>Graphic</code> child to add to the aggregate.
      * @return the added <code>Graphic</code>.
      */
-    public Graphic addChild(Graphic child);
+    Graphic addChild(Graphic child);
 
     /**
      * Adds the given children to this <code>AggregateGraphic</code>.
@@ -68,7 +67,7 @@ public interface AggregateGraphic extends Graphic {
      * @param children <code>Graphic</code> children to add to the aggregate.
      * @return the added <code>Graphic</code>s.
      */
-    public Graphic[] addChildren(Graphic[] children);
+    Graphic[] addChildren(Graphic[] children);
 
     /**
      * Removes the given child from this <code>AggregateGraphic</code>.
@@ -76,7 +75,7 @@ public interface AggregateGraphic extends Graphic {
      * @param child the <code>Graphic</code> child to remove from the aggregate.
      * @return the removed <code>Graphic</code>, or {@code null} if it is not found.
      */
-    public Graphic removeChild(Graphic child);
+    Graphic removeChild(Graphic child);
 
     /**
      * Removes the given children from this <code>AggregateGraphic</code>.
@@ -84,12 +83,12 @@ public interface AggregateGraphic extends Graphic {
      * @param children the <code>Graphic</code> children to remove from the aggregate.
      * @return the removed <code>Graphic</code>s, or {@code null} if none are found.
      */
-    public Graphic[] removeChildren(Graphic[] children);
+    Graphic[] removeChildren(Graphic[] children);
 
     /**
      * Removes all of the children from this <code>AggregateGraphic</code>.
      */
-    public void removeChildren();
+    void removeChildren();
 
     /**
      * Replaces the <code>oldChild</code> with the <code>newChild</code>.
@@ -98,7 +97,7 @@ public interface AggregateGraphic extends Graphic {
      * @param newChild the child to be added in its place.
      * @return the <code>newChild</code> that replaced the <code>oldChild</code>.
      */
-    public Graphic replaceChild(Graphic oldChild, Graphic newChild);
+    Graphic replaceChild(Graphic oldChild, Graphic newChild);
 
     /**
      * Returns the number of children currently assigned to this
@@ -106,7 +105,7 @@ public interface AggregateGraphic extends Graphic {
      *
      * @return the number of children currently assigned.
      */
-    public int getChildCount();
+    int getChildCount();
 
     /**
      * Adds the given <code>AggregationListener</code> to this 
@@ -115,7 +114,7 @@ public interface AggregateGraphic extends Graphic {
      * 
      * @param listener the <code>AggregationListener</code> to be added.
      */
-    public void addAggregationListener(AggregationListener listener);
+    void addAggregationListener(AggregationListener listener);
 
     /**
      * Removes the given <code>AggregationListener</code> from this 
@@ -123,7 +122,7 @@ public interface AggregateGraphic extends Graphic {
      * 
      * @param listener the <code>AggregationListener</code> to be removed.
      */
-    public void removeAggregationListener(AggregationListener listener);
+    void removeAggregationListener(AggregationListener listener);
 
     /**
      * Calls the <code>aggregationChanged()</code> method of all <code>AggregationListener</code>s
@@ -135,6 +134,5 @@ public interface AggregateGraphic extends Graphic {
      * @todo Usually, this kind of method is a protected one in the implementation class,
      *       not a public method in the interface...
      */
-    public void aggregationChanged(AggregationChangeEvent event);
+    void aggregationChanged(AggregationChangeEvent event);
 }
-

@@ -10,12 +10,10 @@
  *************************************************************************************************/
 package org.opengis.metadata.quality;
 
-// OpenGIS direct dependencies
 import org.opengis.metadata.extent.Extent;
 import org.opengis.metadata.maintenance.ScopeCode;
-
-// Annotations
 import org.opengis.annotation.UML;
+
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
 

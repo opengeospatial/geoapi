@@ -8,12 +8,11 @@
  ** All Rights Reserved. http://www.opengis.org/legal/
  **
  *************************************************************************************************/
-
 package org.opengis.go.display.event;
 
-// J2SE direct dependencies
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+
 
 /**
  * Defines a common abstraction whose implementations can associate
@@ -27,4 +26,3 @@ import java.awt.event.MouseMotionListener;
 public interface MouseHandler extends EventHandler, MouseListener, MouseMotionListener {
 
 }
-

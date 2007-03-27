@@ -1,7 +1,16 @@
+/*$************************************************************************************************
+ **
+ ** $Id$
+ **
+ ** $URL$
+ **
+ ** Copyright (C) 2003-2005 Open GIS Consortium, Inc.
+ ** All Rights Reserved. http://www.opengis.org/legal/
+ **
+ *************************************************************************************************/
 package org.opengis.go.display.canvas.map2d;
 
 import javax.units.Unit;
-
 import org.opengis.go.display.canvas.CanvasState;
 import org.opengis.geometry.Envelope;
 
@@ -15,7 +24,6 @@ import org.opengis.geometry.Envelope;
  * @author crossley
  */
 public interface Map2DState extends CanvasState {
-
     /**
      * Gets the pixel width of the <code>Canvas</code> represented by this 
      * <code>Map2DState</code>.
@@ -51,5 +59,4 @@ public interface Map2DState extends CanvasState {
      * @return the envelope
      */
     Envelope getEnvelope();
-    
 }

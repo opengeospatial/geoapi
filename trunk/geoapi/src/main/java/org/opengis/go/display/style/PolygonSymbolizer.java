@@ -10,8 +10,8 @@
  *************************************************************************************************/
 package org.opengis.go.display.style;
 
-// J2SE direct dependencies
 import java.awt.Color;
+
 
 /**
  * Encapsulates the style data applicable to
@@ -30,22 +30,22 @@ public interface PolygonSymbolizer extends LineSymbolizer {
     //**  Default PolygonSymbolizer property values  **
 
     /**  Default fill color value.  */
-    public static final Color DEFAULT_FILL_COLOR = Color.GRAY;
+    Color DEFAULT_FILL_COLOR = Color.GRAY;
 
     /**  Default fill background color value.  */
-    public static final Color DEFAULT_FILL_BACKGROUND_COLOR = Color.BLACK;
+    Color DEFAULT_FILL_BACKGROUND_COLOR = Color.BLACK;
 
     /**  Default fill gradient points value.  */
-    public static final float[] DEFAULT_FILL_GRADIENT_POINTS = new float[2];
+    float[] DEFAULT_FILL_GRADIENT_POINTS = new float[2];
 
     /**  Default fill opacity value.  */
-    public static final float DEFAULT_FILL_OPACITY = 1.f;
+    float DEFAULT_FILL_OPACITY = 1.f;
 
     /**  Default fill pattern value.  */
-    public static final FillPattern DEFAULT_FILL_PATTERN = FillPattern.NONE;
+    FillPattern DEFAULT_FILL_PATTERN = FillPattern.NONE;
 
     /**  Default fill style value.  */
-    public static final FillStyle DEFAULT_FILL_STYLE = FillStyle.EMPTY;
+    FillStyle DEFAULT_FILL_STYLE = FillStyle.EMPTY;
 
     //*************************************************************************
     //  Methods
@@ -55,7 +55,7 @@ public interface PolygonSymbolizer extends LineSymbolizer {
      * Returns the fill color rgb value.
      * @return the fill color value.
      */
-    public Color getFillColor();
+    Color getFillColor();
 
     /**
      * Sets the fill color rgb value.  
@@ -63,37 +63,37 @@ public interface PolygonSymbolizer extends LineSymbolizer {
      * use {@link #setFillOpacity} instead.
      * @param fillColor the fill color value.
      */
-    public void setFillColor(Color fillColor);
+    void setFillColor(Color fillColor);
 
     /**
      * Returns the fill background color value.
      * @return the fill background color value.
      */
-    public Color getFillBackgroundColor();
+    Color getFillBackgroundColor();
 
     /**
      * Sets the fill background color value.
      * @param fillBackgroundColor the fill background color value.
      */
-    public void setFillBackgroundColor(Color fillBackgroundColor);
+    void setFillBackgroundColor(Color fillBackgroundColor);
 
     /**
      * Returns the fill gradient points value.
      * @return the fill gradient points value.
      */
-    public float[] getFillGradientPoints();
+    float[] getFillGradientPoints();
 
     /**
      * Sets the fill gradient points value.
      * @param fillGradientPoints the fill gradient points value.
      */
-    public void setFillGradientPoints(float[] fillGradientPoints);
+    void setFillGradientPoints(float[] fillGradientPoints);
 
     /**
      * Returns the fill opacity value.
      * @return the fill opacity value.
      */
-    public float getFillOpacity();
+    float getFillOpacity();
 
     /**
      * Sets the fill opacity value.  If semi-transparency is specified in
@@ -101,30 +101,29 @@ public interface PolygonSymbolizer extends LineSymbolizer {
      * fill color, the alpha channel value should be ignored.
      * @param fillOpacity the fill opacity value.
      */
-    public void setFillOpacity(float fillOpacity);
+    void setFillOpacity(float fillOpacity);
 
     /**
      * Returns the fill pattern value.
      * @return the fill pattern value.
      */
-    public FillPattern getFillPattern();
+    FillPattern getFillPattern();
 
     /**
      * Sets the fill pattern value.
      * @param fillPattern the fill pattern value.
      */
-    public void setFillPattern(FillPattern fillPattern);
+    void setFillPattern(FillPattern fillPattern);
 
     /**
      * Returns the fill style value.
      * @return the fill style value.
      */
-    public FillStyle getFillStyle();
+    FillStyle getFillStyle();
 
     /**
      * Sets the fill style value.
      * @param fillStyle the fill style value.
      */
-    public void setFillStyle(FillStyle fillStyle);
+    void setFillStyle(FillStyle fillStyle);
 }
-

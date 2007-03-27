@@ -10,6 +10,7 @@
  *************************************************************************************************/
 package org.opengis.go.display.event;
 
+
 /**
  * Defines a common abstraction for classes that handle mouse events.
  * It prescribes a stack mechanism for managing <code>MouseHandler</code>s.
@@ -18,14 +19,13 @@ package org.opengis.go.display.event;
  * @version $Revision: 658 $, $Date: 2006-02-23 12:09:34 +1100 (jeu., 23 févr. 2006) $
  */
 public interface MouseManager extends EventManager {
-
     /**
      * The window will pass mouse events to only this <code>MouseHandler</code>,
      * until the <code>MouseHandler</code> is changed or removed.
      *
      * @param mouseHandler  the current mouse handler.
      */
-    public void enableMouseHandler(MouseHandler mouseHandler);
+    void enableMouseHandler(MouseHandler mouseHandler);
 
     /**
      * Enable the given <code>MouseHandler</code>, and push it on the stack
@@ -35,7 +35,7 @@ public interface MouseManager extends EventManager {
      * @param mouseHandler  The <code>MouseHandler</code> to enable and push.
      * @see #enableMouseHandler
      */
-    public void pushMouseHandler(MouseHandler mouseHandler);
+    void pushMouseHandler(MouseHandler mouseHandler);
 
     /**
      * Remove the given <code>MouseHandler</code> and reinstate the
@@ -43,7 +43,7 @@ public interface MouseManager extends EventManager {
      *
      * @param mouseHandler  the <code>MouseHandler</code> to disable and remove.
      */
-    public void removeMouseHandler(MouseHandler mouseHandler);
+    void removeMouseHandler(MouseHandler mouseHandler);
 
     /**
      * Replace a <code>MouseHandler</code> in the stack with another
@@ -55,15 +55,14 @@ public interface MouseManager extends EventManager {
      * @return <code>true</code> if <code>existingHandler</code> was found and replaced
      *         by <code>replacementHandler</code>.
      */
-    public boolean replaceMouseHandler(MouseHandler existingHandler,
-        MouseHandler replacementHandler);
+    boolean replaceMouseHandler(MouseHandler existingHandler, MouseHandler replacementHandler);
 
     /**
      * Returns the current <code>MouseHandler</code> or {@code null} if none.
      *
      * @return the current <code>MouseHandler</code> or {@code null} if none.
      */
-    public MouseHandler getCurrentMouseHandler();
+    MouseHandler getCurrentMouseHandler();
 
     /**
      * Returns an array of additional <code>MouseHandler</code>s to call for a given
@@ -73,7 +72,6 @@ public interface MouseManager extends EventManager {
      *
      * @return the array of additional <code>MouseHandler</code>s.
      */
-    public MouseHandler[] getFallbackMouseHandlers();
-
+    MouseHandler[] getFallbackMouseHandlers();
 }
 

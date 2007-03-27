@@ -10,7 +10,6 @@
  *************************************************************************************************/
 package org.opengis.coverage.grid.quadrilateral;
 
-// Annotations
 import org.opengis.annotation.UML;
 import org.opengis.annotation.Extension;
 import org.opengis.geometry.DirectPosition;

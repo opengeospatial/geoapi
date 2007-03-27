@@ -10,13 +10,10 @@
  *************************************************************************************************/
 package org.opengis.referencing;
 
-// OpenGIS dependencies
 import org.opengis.metadata.Identifier;
 import org.opengis.metadata.citation.Citation;
 import org.opengis.util.InternationalString;
 import org.opengis.util.GenericName;
-
-// Annotations
 import org.opengis.annotation.Extension;
 
 

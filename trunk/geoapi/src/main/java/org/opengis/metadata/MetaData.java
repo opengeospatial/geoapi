@@ -10,12 +10,9 @@
  *************************************************************************************************/
 package org.opengis.metadata;
 
-// J2SE direct dependencies
 import java.util.Collection;
 import java.util.Date;
 import java.util.Locale;
-
-// OpenGIS direct dependencies
 import org.opengis.metadata.quality.DataQuality;
 import org.opengis.metadata.maintenance.ScopeCode;
 import org.opengis.metadata.constraint.Constraints;
@@ -27,10 +24,9 @@ import org.opengis.metadata.identification.CharacterSet;
 import org.opengis.metadata.identification.Identification;
 import org.opengis.metadata.maintenance.MaintenanceInformation;
 import org.opengis.referencing.ReferenceSystem;
-
-// Annotations
 import org.opengis.annotation.UML;
 import org.opengis.annotation.Profile;
+
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
 import static org.opengis.annotation.ComplianceLevel.*;

@@ -10,11 +10,8 @@
  *************************************************************************************************/
 package org.opengis.go.display.primitive.store;
 
-// J2SE direct dependencies
 import java.net.URI;
 import java.util.List;
-
-// OpenGIS direct dependencies
 import org.opengis.go.display.DisplayFactory;
 import org.opengis.go.display.primitive.Graphic;
 import org.opengis.util.InternationalString;

@@ -13,6 +13,7 @@ package org.opengis.go.display.style;
 import org.opengis.go.display.style.event.GraphicStyleListener;
 import org.opengis.util.Cloneable;
 
+
 /**
  * Serves as the base interface for the collection of drawing attributes that are
  * applied to a {@link org.opengis.go.display.primitive.Graphic}.  Subclasses provide
@@ -25,12 +26,11 @@ import org.opengis.util.Cloneable;
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  */
 public interface GraphicStyle extends Cloneable {
-
     /**
      * Registers the given object as a listener to receive events when the
      * properties of this style have changed.
      */
-    public void addGraphicStyleListener(GraphicStyleListener listener);
+    void addGraphicStyleListener(GraphicStyleListener listener);
 
     /**
      * For a listener that was previously added using the
@@ -38,7 +38,7 @@ public interface GraphicStyle extends Cloneable {
      * it so that it will no longer receive events when the properties of this
      * style have changed.
      */
-    public void removeGraphicStyleListener(GraphicStyleListener listener);
+    void removeGraphicStyleListener(GraphicStyleListener listener);
 
     /**
      * Returns the given implementation-specific hint for the given name.
@@ -46,7 +46,7 @@ public interface GraphicStyle extends Cloneable {
      * @param hintName The hint key.
      * @return the hint object associated with the hint name.
      */
-    public Object getImplHint(String hintName);
+    Object getImplHint(String hintName);
 
     /**
      * Sets the given implementation-specific hint for the given name.
@@ -54,7 +54,7 @@ public interface GraphicStyle extends Cloneable {
      * @param hintname The hint key.
      * @param hint The hint.
      */
-    public void setImplHint(String hintname, Object hint);
+    void setImplHint(String hintname, Object hint);
 
     /**
      * Sets the properties of this <code>GraphicStyle</code> from the
@@ -64,7 +64,7 @@ public interface GraphicStyle extends Cloneable {
      * @param style the <code>GraphicStyle</code> used to set this
      *        <code>GraphicStyle</code> properties.
      */
-    public void setPropertiesFrom(GraphicStyle style);
+    void setPropertiesFrom(GraphicStyle style);
 
     /**
      * Method inherited from the <code>Cloneable</code> interface, included here
@@ -75,5 +75,5 @@ public interface GraphicStyle extends Cloneable {
      *   referenced by the result.  These objects include the values for
      *   <code>implHint</code>s, etc.
      */
-    public Object clone();
+    Object clone();
 }

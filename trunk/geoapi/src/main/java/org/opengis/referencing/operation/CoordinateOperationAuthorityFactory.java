@@ -10,18 +10,14 @@
  *************************************************************************************************/
 package org.opengis.referencing.operation;
 
-// J2SE dependencies
 import java.util.Set;
-
-// OpenGIS direct dependencies and extensions
 import org.opengis.metadata.Identifier;                       // For javadoc
 import org.opengis.referencing.AuthorityFactory;
 import org.opengis.referencing.FactoryException;
 import org.opengis.referencing.NoSuchAuthorityCodeException;  // For javadoc
 import org.opengis.referencing.crs.CoordinateReferenceSystem; // For javadoc
-
-// Annotations
 import org.opengis.annotation.UML;
+
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
 

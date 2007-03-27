@@ -10,7 +10,6 @@
  *************************************************************************************************/
 package org.opengis.geometry.coordinate;
 
-// OpenGIS direct dependencies
 import org.opengis.geometry.DirectPosition;
 
 

@@ -10,10 +10,7 @@
  *************************************************************************************************/
 package org.opengis.coverage.processing;
 
-// J2SE dependencies
 import java.util.Collection;
-
-// OpenGIS direct dependencies
 import org.opengis.coverage.grid.GridCoverage;
 import org.opengis.coverage.SampleDimensionType; // For javadoc
 import org.opengis.coverage.MetadataNameNotFoundException;
@@ -22,9 +19,8 @@ import org.opengis.parameter.ParameterValueGroup;
 import org.opengis.parameter.ParameterNotFoundException;
 import org.opengis.parameter.InvalidParameterNameException;
 import org.opengis.parameter.InvalidParameterValueException;
-
-// Annotations
 import org.opengis.annotation.UML;
+
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
 

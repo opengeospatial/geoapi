@@ -10,6 +10,7 @@
  *************************************************************************************************/
 package org.opengis.go.display.event;
 
+
 /**
  * Marker interface for classes that handle events from input devices.
  *

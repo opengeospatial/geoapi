@@ -10,12 +10,10 @@
  *************************************************************************************************/
 package org.opengis.metadata.content;
 
-// OpenGIS direct dependencies
 import org.opengis.util.InternationalString;
 import org.opengis.util.MemberName;
-
-// Annotations
 import org.opengis.annotation.UML;
+
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
 

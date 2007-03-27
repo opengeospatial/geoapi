@@ -10,8 +10,8 @@
  *************************************************************************************************/
 package org.opengis.go.display.event;
 
-// J2SE direct dependencies
 import java.awt.event.KeyEvent;
+
 
 /**
  * Provides a common abstraction for the various event objects pertaining to key
@@ -21,7 +21,6 @@ import java.awt.event.KeyEvent;
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  */
 public interface GraphicKeyEvent extends GraphicEvent {
-
     /**
      * Returns the <code>KeyEvent</code> that this event references.
      *
@@ -30,5 +29,5 @@ public interface GraphicKeyEvent extends GraphicEvent {
      * @todo This {@link KeyEvent} implementation is specific to AWT and Swing
      *       (i.e. is not used by SWT as far as I know).
      */
-    public KeyEvent getKeyEvent();
+    KeyEvent getKeyEvent();
 }

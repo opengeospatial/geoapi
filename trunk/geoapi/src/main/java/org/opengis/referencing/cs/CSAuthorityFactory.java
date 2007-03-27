@@ -10,17 +10,13 @@
  *************************************************************************************************/
 package org.opengis.referencing.cs;
 
-// J2SE extensions
 import javax.units.Unit;
-
-// OpenGIS direct dependencies and extensions
 import org.opengis.referencing.AuthorityFactory;
 import org.opengis.referencing.FactoryException;
 import org.opengis.referencing.NoSuchAuthorityCodeException;  // For javadoc
-
-// Annotations
 import org.opengis.annotation.UML;
 import org.opengis.annotation.Extension;
+
 import static org.opengis.annotation.Specification.*;
 
 

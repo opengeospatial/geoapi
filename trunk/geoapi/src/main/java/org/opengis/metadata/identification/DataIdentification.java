@@ -10,21 +10,17 @@
  *************************************************************************************************/
 package org.opengis.metadata.identification;
 
-// J2SE direct dependencies
 import java.nio.charset.Charset;
 import java.util.Collection;
 import java.util.Locale;
-
-// OpenGIS direct dependencies
 import org.opengis.metadata.extent.Extent;
 import org.opengis.metadata.extent.GeographicBoundingBox;
 import org.opengis.metadata.extent.GeographicDescription;
 import org.opengis.metadata.spatial.SpatialRepresentationType;
 import org.opengis.util.InternationalString;
-
-// Annotations
 import org.opengis.annotation.UML;
 import org.opengis.annotation.Profile;
+
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
 import static org.opengis.annotation.ComplianceLevel.*;

@@ -10,8 +10,8 @@
  *************************************************************************************************/
 package org.opengis.go.display.event;
 
-// J2SE direct dependencies
 import java.util.EventListener;
+
 
 /**
  * Allows a program to listen to a {@link org.opengis.go.display.primitive.Graphic}
@@ -25,21 +25,20 @@ import java.util.EventListener;
  * @version $Revision: 658 $, $Date: 2006-02-23 12:09:34 +1100 (jeu., 23 févr. 2006) $
  */
 public interface GraphicListener extends EventListener {
-
     /**
      * Invoked when the mouse has been clicked on a <code>Graphic</code>.
      */
-    public void mouseClicked(GraphicMouseEvent ge);
+    void mouseClicked(GraphicMouseEvent ge);
 
     /**
      * Invoked when a mouse button has been pressed on a <code>Graphic</code>.
      */
-    public void mousePressed(GraphicMouseEvent ge);
+    void mousePressed(GraphicMouseEvent ge);
 
     /**
      * Invoked when a mouse button has been released on a <code>Graphic</code>.
      */
-    public void mouseReleased(GraphicMouseEvent ge);
+    void mouseReleased(GraphicMouseEvent ge);
 
     /**
      * Invoked when the mouse dwells on a <code>Graphic</code>.  Dwelling 
@@ -47,43 +46,43 @@ public interface GraphicListener extends EventListener {
      * after <code>mouseMoved</code> events have ceased for an arbitrary
      * length of time.  
      */
-    public void mouseDwelled(GraphicMouseEvent ge);
+    void mouseDwelled(GraphicMouseEvent ge);
 
     /**
      * Invoked when a <code>Graphic</code> is selected, either programmatically
      * or through a mouse gesture.
      */
-    public void graphicSelected(GraphicChangeEvent ge);
+    void graphicSelected(GraphicChangeEvent ge);
 
     /**
      * Invoked when a <code>Graphic</code> is deselected, either 
      * programmatically or through a mouse gesture.
      */
-    public void graphicDeselected(GraphicChangeEvent ge);
+    void graphicDeselected(GraphicChangeEvent ge);
 
     /**
      * Invoked when a <code>Graphic</code> is disposed.
      */
-    public void graphicDisposed(GraphicChangeEvent ge);
+    void graphicDisposed(GraphicChangeEvent ge);
 
     /**
      * Invoked when a <code>Graphic</code> is put into an editable state.
      */
-    public void graphicEditableStart(GraphicChangeEvent ge);
+    void graphicEditableStart(GraphicChangeEvent ge);
 
     /**
      * Invoked when a <code>Graphic</code> is edited by a gui user.
      */
-    public void graphicEditableChanged(GraphicChangeEvent ge);
+    void graphicEditableChanged(GraphicChangeEvent ge);
 
     /**
      * Invoked when a <code>Graphic</code> is no longer in an editable state.
      */
-    public void graphicEditableEnd(GraphicChangeEvent ge);
+    void graphicEditableEnd(GraphicChangeEvent ge);
 
     /**
      * Invoked when a <code>Graphic</code> changes in any way, other
      * than editing.
      */
-    public void graphicChanged(GraphicChangeEvent ge);
+    void graphicChanged(GraphicChangeEvent ge);
 }

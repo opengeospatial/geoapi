@@ -10,14 +10,10 @@
  *************************************************************************************************/
 package org.opengis.metadata.extent;
 
-// J2SE direct dependencies
 import java.util.Date;
-
-// OpenGIS direct dependencies
 import org.opengis.geometry.primitive.Primitive;
-
-// Annotations
 import org.opengis.annotation.UML;
+
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
 

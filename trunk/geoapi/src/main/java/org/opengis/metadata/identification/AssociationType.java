@@ -1,8 +1,8 @@
 /*$************************************************************************************************
  **
- ** $Id: $
+ ** $Id$
  **
- ** $URL: $
+ ** $URL$
  **
  ** Copyright (C) 2004-2007 Open GIS Consortium, Inc.
  ** All Rights Reserved. http://www.opengis.org/legal/
@@ -10,15 +10,11 @@
  *************************************************************************************************/
 package org.opengis.metadata.identification;
 
-//J2SE direct dependencies
 import java.util.ArrayList;
 import java.util.List;
-
-//OpenGIS direct dependencies
 import org.opengis.util.CodeList;
-
-//Annotations
 import org.opengis.annotation.UML;
+
 import static org.opengis.annotation.Obligation.CONDITIONAL;
 import static org.opengis.annotation.Specification.ISO_19115;
 

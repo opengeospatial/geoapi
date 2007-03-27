@@ -1,8 +1,8 @@
 /*$************************************************************************************************
  **
- ** $Id: PrecisionModel.java 960 2007-03-16 00:44:53Z jive $
+ ** $Id$
  **
- ** $URL: https://svn.sourceforge.net/svnroot/geoapi/trunk/geoapi/src/main/java/org/opengis/spatialschema/geometry/PrecisionModel.java $
+ ** $URL$
  **
  ** Copyright (C) 2003-2005 Open GIS Consortium, Inc.
  ** All Rights Reserved. http://www.opengis.org/legal/

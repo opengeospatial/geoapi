@@ -10,7 +10,6 @@
  *************************************************************************************************/
 package org.opengis.referencing;
 
-// OpenGIS dependencies
 import org.opengis.metadata.Identifier;   // For javadoc
 
 

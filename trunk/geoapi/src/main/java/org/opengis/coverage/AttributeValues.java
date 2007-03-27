@@ -10,13 +10,9 @@
  *************************************************************************************************/
 package org.opengis.coverage;
 
-// J2SE dependencies
-
-// OpenGIS direct dependencies
 import org.opengis.util.Record;
-
-// Annotations
 import org.opengis.annotation.UML;
+
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
 

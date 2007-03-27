@@ -10,11 +10,9 @@
  *************************************************************************************************/
 package org.opengis.coverage;
 
-// OpenGIS dependencies
 import org.opengis.geometry.primitive.Solid;
-
-// Annotations
 import org.opengis.annotation.UML;
+
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
 

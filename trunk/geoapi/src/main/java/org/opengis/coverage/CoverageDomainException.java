@@ -10,7 +10,6 @@
  *************************************************************************************************/
 package org.opengis.coverage;
 
-// OpenGIS direct dependencies
 import org.opengis.coverage.Coverage;
 import org.opengis.geometry.DirectPosition;
 

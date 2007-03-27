@@ -10,8 +10,8 @@
  *************************************************************************************************/
 package org.opengis.go.display.event;
 
-// J2SE direct dependencies
 import java.awt.event.MouseEvent;
+
 
 /**
  * Provides a common abstraction for the various event objects pertaining
@@ -20,29 +20,28 @@ import java.awt.event.MouseEvent;
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version $Revision: 658 $, $Date: 2006-02-23 12:09:34 +1100 (jeu., 23 févr. 2006) $
  *
- * @todo This interface wrap a {@link MouseEvent}, which is not used by some toolkit like SWT.
+ * @todo This interface wraps a {@link MouseEvent}, which is not used by some toolkit like SWT.
  */
 public interface GraphicMouseEvent extends GraphicEvent {
-    
     /**
      * Flag for mouse clicked.
      */
-    public static final int MOUSE_CLICKED = 0;    
+    int MOUSE_CLICKED = 0;    
     
     /**
      * Flag for mouse dwelled.
      */
-    public static final int MOUSE_DWELLED = 1; 
+    int MOUSE_DWELLED = 1; 
     
     /**
      * Flag for mouse pressed.
      */   
-    public static final int MOUSE_PRESSED = 2;   
+    int MOUSE_PRESSED = 2;   
     
     /**
      * Flag for mouse released.
      */ 
-    public static final int MOUSE_RELEASED = 3;
+    int MOUSE_RELEASED = 3;
     
     /**
      * Get the ID flag for this event. Returns {@link MouseEvent#getID()},
@@ -53,15 +52,12 @@ public interface GraphicMouseEvent extends GraphicEvent {
      *       This is because {@link #MOUSE_CLICKED} value is different from
      *       {@link MouseEvent#MOUSE_CLICKED} value, etc.
      */
-    public int getID();
+    int getID();
     
-	/**
+    /**
      * Returns the <code>MouseEvent</code> that this event references.
      *
      * @return the <code>MouseEvent</code> referenced by this event.
-	 */
-	public MouseEvent getMouseEvent();
-	
+     */
+    MouseEvent getMouseEvent();	
 }
-
-

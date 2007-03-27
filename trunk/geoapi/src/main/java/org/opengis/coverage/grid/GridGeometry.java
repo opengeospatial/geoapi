@@ -10,12 +10,10 @@
  *************************************************************************************************/
 package org.opengis.coverage.grid;
 
-// OpenGIS direct dependencies
 import org.opengis.referencing.datum.PixelInCell;
 import org.opengis.referencing.operation.MathTransform;
-
-// Annotations
 import org.opengis.annotation.UML;
+
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
 

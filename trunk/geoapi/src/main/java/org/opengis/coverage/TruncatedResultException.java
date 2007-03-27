@@ -10,7 +10,6 @@
  *************************************************************************************************/
 package org.opengis.coverage;
 
-// J2SE dependencies
 import java.util.List;
 
 

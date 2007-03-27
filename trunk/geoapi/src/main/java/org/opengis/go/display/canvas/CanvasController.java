@@ -12,6 +12,7 @@ package org.opengis.go.display.canvas;
 
 import org.opengis.geometry.DirectPosition;
 
+
 /**
  * The <code>CanvasController</code> interface serves as the token in the 
  * <code>CanvasController &lt;--&gt; Canvas</code> interaction.  When 
@@ -33,14 +34,10 @@ import org.opengis.geometry.DirectPosition;
  * @version $Revision: 658 $, $Date: 2006-02-23 12:09:34 +1100 (jeu., 23 févr. 2006) $
  */
 public interface CanvasController {
-
     /**
      * Sets the position of the center pixel of the <code>Canvas</code> this
      * controller works for, if it is the active controller.
      * @see CanvasState#getCenter()
      */
-    public void setCenter(DirectPosition newCenter);
-
-    
-
+    void setCenter(DirectPosition newCenter);
 }

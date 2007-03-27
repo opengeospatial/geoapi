@@ -10,14 +10,10 @@
  *************************************************************************************************/
 package org.opengis.temporal;
 
-// J2SE direct dependencies
 import java.util.Collection;
-
-//OpenGIS direct dependencies
 import org.opengis.util.InternationalString;
-
-// Annotations
 import org.opengis.annotation.UML;
+
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
 

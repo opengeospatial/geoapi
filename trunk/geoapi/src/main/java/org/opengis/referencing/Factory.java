@@ -10,10 +10,7 @@
  *************************************************************************************************/
 package org.opengis.referencing;
 
-// OpenGIS dependencies
 import org.opengis.metadata.citation.Citation;
-
-// Annotations
 import org.opengis.annotation.Extension;
 
 

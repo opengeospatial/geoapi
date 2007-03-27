@@ -1,3 +1,13 @@
+/**************************************************************************************************
+ **
+ ** $Id$
+ **
+ ** $URL$
+ **
+ ** Copyright (C) 2003-2005 Open GIS Consortium, Inc.
+ ** All Rights Reserved. http://www.opengis.org/legal/
+ **
+ *************************************************************************************************/
 package org.opengis.go.display.style.event;
 
 /**
@@ -6,5 +16,5 @@ package org.opengis.go.display.style.event;
  * <code>GraphicStyle</code>.
  */
 public interface GraphicStyleListener {
-    public void styleChanged(GraphicStyleEvent event);
+    void styleChanged(GraphicStyleEvent event);
 }

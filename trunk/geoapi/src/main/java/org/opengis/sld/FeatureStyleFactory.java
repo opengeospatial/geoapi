@@ -10,11 +10,8 @@
  *************************************************************************************************/
 package org.opengis.sld;
 
-// J2SE direct dependencies
 import java.io.InputStream;
 import org.xml.sax.InputSource;
-
-// Annotations
 import org.opengis.annotation.Extension;
 
 

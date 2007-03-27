@@ -10,12 +10,10 @@
  *************************************************************************************************/
 package org.opengis.coverage.grid;
 
-// OpenGIS direct dependencies
 import org.opengis.coverage.GeometryValuePair;
 import org.opengis.util.Record;
-
-// Annotations
 import org.opengis.annotation.UML;
+
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
 

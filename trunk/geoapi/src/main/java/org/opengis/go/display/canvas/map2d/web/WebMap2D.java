@@ -1,8 +1,13 @@
-/*
- * $ Id $
- * $ Source $
- * Created on Mar 11, 2005
- */
+/*$************************************************************************************************
+ **
+ ** $Id$
+ **
+ ** $URL$
+ **
+ ** Copyright (C) 2003-2005 Open GIS Consortium, Inc.
+ ** All Rights Reserved. http://www.opengis.org/legal/
+ **
+ *************************************************************************************************/
 package org.opengis.go.display.canvas.map2d.web;
 
 import org.opengis.go.display.canvas.map2d.Map2D;

@@ -10,6 +10,7 @@
  *************************************************************************************************/
 package org.opengis.go.spatial;
 
+
 /**
  * This class serves to contain two constants: 
  * <ol>
@@ -33,7 +34,6 @@ package org.opengis.go.spatial;
  * @version $Revision: 658 $, $Date: 2006-02-23 12:09:34 +1100 (jeu., 23 févr. 2006) $
  */
 public class UnprojectedPathType extends PathType {
-
     /**
      * Creates a new UnprojectedPathType with the given value and name.
      * @param name the short name for the enum.
@@ -56,6 +56,4 @@ public class UnprojectedPathType extends PathType {
     
     /** Enumeration value of the <code>CONTINUOUS_SPLINE</code> constant. */
    // public static final int CONTINUOUS_SPLINE_VALUE = CONTINUOUS_SPLINE.getValue();
-    
-
 }

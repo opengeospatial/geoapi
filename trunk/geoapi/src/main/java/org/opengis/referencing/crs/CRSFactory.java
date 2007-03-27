@@ -10,11 +10,8 @@
  *************************************************************************************************/
 package org.opengis.referencing.crs;
 
-// J2SE direct dependencies
 import java.util.Map;
 import java.util.Set;
-
-// OpenGIS dependencies
 import org.opengis.referencing.ObjectFactory;
 import org.opengis.referencing.FactoryException;
 import org.opengis.referencing.NoSuchIdentifierException;
@@ -39,10 +36,9 @@ import org.opengis.referencing.operation.OperationMethod;
 import org.opengis.parameter.GeneralParameterValue;
 import org.opengis.parameter.ParameterValueGroup;
 import org.opengis.parameter.ParameterDescriptorGroup; // For javadoc
-
-// Annotations
 import org.opengis.annotation.UML;
 import org.opengis.annotation.Extension;
+
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
 

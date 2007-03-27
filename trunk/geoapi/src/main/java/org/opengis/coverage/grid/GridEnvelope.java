@@ -10,7 +10,6 @@
  *************************************************************************************************/
 package org.opengis.coverage.grid;
 
-// Annotations
 import org.opengis.annotation.UML;
 import org.opengis.geometry.coordinate.Position;
 import org.opengis.util.Cloneable;

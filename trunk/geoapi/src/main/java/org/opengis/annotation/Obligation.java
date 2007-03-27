@@ -10,7 +10,6 @@
  *************************************************************************************************/
 package org.opengis.annotation;
 
-// Annotations
 import static org.opengis.annotation.Specification.*;
 
 
@@ -27,8 +26,8 @@ import static org.opengis.annotation.Specification.*;
 public enum Obligation {
     /**
      * Element is required when a specific condition is met.
-     */    
-	// @UML(identifier="conditional", obligation=CONDITIONAL, specification=ISO_19115)
+     */
+    // @UML(identifier="conditional", obligation=CONDITIONAL, specification=ISO_19115)
     CONDITIONAL,
 
     /**

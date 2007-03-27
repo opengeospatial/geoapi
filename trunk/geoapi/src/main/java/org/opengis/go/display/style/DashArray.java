@@ -10,11 +10,8 @@
  *************************************************************************************************/
 package org.opengis.go.display.style;
 
-// J2SE direct dependencies
 import java.util.ArrayList;
 import java.util.List;
-
-// OpenGIS dependencies
 import org.opengis.util.CodeList;
 
 

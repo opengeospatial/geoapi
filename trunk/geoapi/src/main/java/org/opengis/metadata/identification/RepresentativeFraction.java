@@ -1,8 +1,8 @@
 /*$************************************************************************************************
  **
- ** $Id: RepresentativeFraction.java $
+ ** $Id$
  **
- ** $URL: https://geoapi.svn.sourceforge.net/svnroot/geoapi/trunk/geoapi/src/main/java/org/opengis/metadata/identification/RepresentativeFraction.java $
+ ** $URL$
  **
  ** Copyright (C) 2004-2007 Open GIS Consortium, Inc.
  ** All Rights Reserved. http://www.opengis.org/legal/
@@ -10,10 +10,11 @@
  *************************************************************************************************/
 package org.opengis.metadata.identification;
 
-//Annotations
 import org.opengis.annotation.UML;
+
 import static org.opengis.annotation.Obligation.MANDATORY;
 import static org.opengis.annotation.Specification.ISO_19115;
+
 
 /**
  * Derived from ISO 19103 Scale where MD_Representative Fraction.denominator = 1 / Scale.

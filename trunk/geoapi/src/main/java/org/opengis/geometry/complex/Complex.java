@@ -10,16 +10,12 @@
  *************************************************************************************************/
 package org.opengis.geometry.complex;
 
-// J2SE direct dependencies
 import java.util.Collection;
-
-// OpenGIS direct dependencies
 import org.opengis.geometry.Geometry;
 import org.opengis.geometry.primitive.Point;     // For javadoc
 import org.opengis.geometry.primitive.Primitive; // For javadoc
-
-// Annotations
 import org.opengis.annotation.UML;
+
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
 

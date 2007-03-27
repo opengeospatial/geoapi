@@ -10,11 +10,9 @@
  *************************************************************************************************/
 package org.opengis.coverage.processing;
 
-// OpenGIS dependencies
 import org.opengis.parameter.ParameterValueGroup;
-
-// Annotations
 import org.opengis.annotation.UML;
+
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
 

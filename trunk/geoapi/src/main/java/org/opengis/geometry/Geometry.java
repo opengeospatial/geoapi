@@ -10,19 +10,15 @@
  *************************************************************************************************/
 package org.opengis.geometry;
 
-// J2SE direct dependencies
 import java.util.Set;
-
-// OpenGIS direct dependencies
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 import org.opengis.referencing.operation.MathTransform;
 import org.opengis.referencing.operation.TransformException;
 import org.opengis.geometry.complex.Complex;
 import org.opengis.util.Cloneable; // For javadoc
-
-// Annotations
 import org.opengis.annotation.UML;
 import org.opengis.annotation.Extension;
+
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
 

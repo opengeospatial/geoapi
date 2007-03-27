@@ -10,16 +10,12 @@
  *************************************************************************************************/
 package org.opengis.coverage.grid.quadrilateral;
 
-// J2SE direct dependencies
 import java.util.List;
 import java.util.Set;
-
-// OpenGIS dependencies
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
-
-// Annotations
 import org.opengis.annotation.UML;
 import org.opengis.annotation.Extension;
+
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
 

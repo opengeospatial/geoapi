@@ -10,17 +10,13 @@
  *************************************************************************************************/
 package org.opengis.referencing.operation;
 
-// J2SE dependencies
 import java.util.Map;
-
-// OpenGIS dependencies
 import org.opengis.referencing.ObjectFactory;
 import org.opengis.referencing.FactoryException;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
-
-// Annotations
 import org.opengis.annotation.UML;
 import org.opengis.annotation.Extension;
+
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
 

@@ -1,3 +1,13 @@
+/*$************************************************************************************************
+ **
+ ** $Id$
+ **
+ ** $URL$
+ **
+ ** Copyright (C) 2003-2005 Open GIS Consortium, Inc.
+ ** All Rights Reserved. http://www.opengis.org/legal/
+ **
+ *************************************************************************************************/
 package org.opengis.go.display.canvas.map2d;
 
 import org.opengis.go.display.canvas.Canvas;
@@ -16,5 +26,4 @@ import org.opengis.go.display.canvas.Canvas;
  *
  */
 public interface Map2D extends Canvas {
-
 }

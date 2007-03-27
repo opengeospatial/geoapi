@@ -13,15 +13,11 @@
 
 package org.opengis.geometry.aggregate;
 
-// J2SE direct dependencies
 import java.util.Set;
-
-// OpenGIS direct dependencies
 import org.opengis.geometry.primitive.OrientableCurve;
 import org.opengis.geometry.primitive.OrientableSurface;
-
-// Annotations
 import org.opengis.annotation.UML;
+
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
 

@@ -1,16 +1,23 @@
+/*$************************************************************************************************
+ **
+ ** $Id$
+ **
+ ** $URL$
+ **
+ ** Copyright (C) 2005 Open GIS Consortium, Inc.
+ ** All Rights Reserved. http://www.opengis.org/legal/
+ **
+ *************************************************************************************************/
 package org.opengis.temporal;
 
-//J2SE dependencies:
 import java.util.Date;
 import java.sql.Time;
-
-//OpenGIS dependencies:
 import org.opengis.util.InternationalString;
-
-// Annotations
 import org.opengis.annotation.UML;
+
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
+
 
 /**
  * A union class that consists of one of the data types listed as its attributes.

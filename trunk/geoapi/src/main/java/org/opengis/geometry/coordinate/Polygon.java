@@ -10,18 +10,14 @@
  *************************************************************************************************/
 package org.opengis.geometry.coordinate;
 
-// J2SE direct dependencies
 import java.util.List;
-
-// OpenGIS direct dependencies
 import org.opengis.geometry.primitive.Curve;
 import org.opengis.geometry.primitive.Surface;
 import org.opengis.geometry.primitive.SurfacePatch;
 import org.opengis.geometry.primitive.SurfaceBoundary;
 import org.opengis.geometry.complex.Complex;
-
-// Annotations
 import org.opengis.annotation.UML;
+
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
 

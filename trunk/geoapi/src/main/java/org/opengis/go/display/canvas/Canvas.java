@@ -8,7 +8,6 @@
  ** All Rights Reserved. http://www.opengis.org/legal/
  **
  *************************************************************************************************/
-
 package org.opengis.go.display.canvas;
 
 import org.opengis.go.display.DisplayFactory;
@@ -19,6 +18,7 @@ import org.opengis.referencing.operation.IncompatibleOperationException;
 import org.opengis.referencing.operation.MathTransform;
 import org.opengis.geometry.DirectPosition;
 import org.opengis.geometry.Envelope;
+
 
 /**
  * <code>Canvas</code> defines a common abstraction for implementations that
@@ -336,5 +336,4 @@ public interface Canvas {
      * @return the coordinate transformation object
      */
     MathTransform getDisplayToObjectiveTransform();
-
 }

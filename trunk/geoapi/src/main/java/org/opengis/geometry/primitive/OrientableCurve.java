@@ -10,11 +10,9 @@
  *************************************************************************************************/
 package org.opengis.geometry.primitive;
 
-// OpenGIS direct dependencies
 import org.opengis.geometry.complex.CompositeCurve;
-
-// Annotations
 import org.opengis.annotation.UML;
+
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
 
