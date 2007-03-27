@@ -10,8 +10,11 @@
  *************************************************************************************************/
 package org.opengis.metadata.quality;
 
+import java.util.Collection;
+
 import org.opengis.metadata.extent.Extent;
 import org.opengis.metadata.maintenance.ScopeCode;
+import org.opengis.metadata.maintenance.ScopeDescription;
 import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Obligation.*;
@@ -42,10 +45,7 @@ public interface Scope {
 
     /**
      * Detailed description about the level of the data specified by the scope.
-     *
-     * @todo Need to define the {@code ScopeDescription} union. This union depends
-     *       on {@code FeatureType} and {@code AttributeType}.
      */
-//  @UML(identifier="levelDescription", obligation=CONDITIONAL)
-//  Collection<ScopeDescription> getLevelDescription();
+    @UML(identifier="levelDescription", obligation=CONDITIONAL, specification=ISO_19115)
+    Collection<? extends ScopeDescription> getLevelDescription();
 }
