@@ -10,12 +10,10 @@
  *************************************************************************************************/
 package org.opengis.temporal;
 
-// OpenGIS direct dependencies
 import org.opengis.metadata.Identifier;
 import org.opengis.metadata.extent.Extent;
-
-// Annotations
 import org.opengis.annotation.UML;
+
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
 

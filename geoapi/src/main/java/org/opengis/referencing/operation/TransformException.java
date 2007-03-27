@@ -10,7 +10,6 @@
  *************************************************************************************************/
 package org.opengis.referencing.operation;
 
-// OpenGIS direct dependencies
 import org.opengis.geometry.DirectPosition;  // For javadoc
 
 

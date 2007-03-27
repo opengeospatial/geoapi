@@ -10,12 +10,10 @@
  *************************************************************************************************/
 package org.opengis.coverage.processing;
 
-// OpenGIS direct dependencies
 import org.opengis.coverage.grid.GridCoverage;
 import org.opengis.referencing.operation.Matrix;
-
-// Annotations
 import org.opengis.annotation.UML;
+
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
 

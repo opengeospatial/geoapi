@@ -10,18 +10,14 @@
  *************************************************************************************************/
 package org.opengis.coverage;
 
-// J2SE direct dependencies
 import java.util.List;
 import java.util.Set;
-
-// OpenGIS direct dependencies
 import org.opengis.coverage.ValueObject;
 import org.opengis.coverage.grid.GridPointValuePair;
 import org.opengis.geometry.DirectPosition;
 import org.opengis.geometry.coordinate.Triangle;
-
-// Annotations
 import org.opengis.annotation.UML;
+
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
 

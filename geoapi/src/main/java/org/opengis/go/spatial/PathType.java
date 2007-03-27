@@ -10,12 +10,11 @@
  *************************************************************************************************/
 package org.opengis.go.spatial;
 
-// J2SE direct dependencies
 import java.util.ArrayList;
 import java.util.List;
-
 import org.opengis.util.CodeList;
 import org.opengis.util.SimpleEnumerationType;
+
 
 /**
  * This class serves as the base class for objects that represent the

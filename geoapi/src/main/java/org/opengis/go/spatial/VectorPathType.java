@@ -28,7 +28,6 @@ package org.opengis.go.spatial;
  * @version $Revision: 658 $, $Date: 2006-02-23 12:09:34 +1100 (jeu., 23 févr. 2006) $
  */
 public class VectorPathType extends PathType {
-    
     /**
      * Creates a new VectorPathType with the given value and name.
      * @param name the short name for the enum.
@@ -40,5 +39,4 @@ public class VectorPathType extends PathType {
     
     public static final VectorPathType VECTOR =
         new VectorPathType("VECTOR", "The path that is the Euclidean shortest distance path.");
-    
 }

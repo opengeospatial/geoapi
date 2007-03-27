@@ -10,12 +10,10 @@
  *************************************************************************************************/
 package org.opengis.coverage.grid;
 
-// OpenGIS dependencies
 import org.opengis.geometry.Geometry;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
-
-// Annotations
 import org.opengis.annotation.UML;
+
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
 

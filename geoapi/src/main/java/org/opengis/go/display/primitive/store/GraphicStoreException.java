@@ -1,8 +1,13 @@
-/*
- * $ Id $
- * $ Source $
- * Created on Jan 10, 2005
- */
+/*$************************************************************************************************
+ **
+ ** $Id$
+ **
+ ** $URL$
+ **
+ ** Copyright (C) 2003-2005 Open GIS Consortium, Inc.
+ ** All Rights Reserved. http://www.opengis.org/legal/
+ **
+ *************************************************************************************************/
 package org.opengis.go.display.primitive.store;
 
 import java.io.IOException;
@@ -13,7 +18,6 @@ import java.io.IOException;
  * 
  * @author SYS Technologies
  * @author crossley
- * @version $Revision $
  */
 public class GraphicStoreException extends IOException {
     

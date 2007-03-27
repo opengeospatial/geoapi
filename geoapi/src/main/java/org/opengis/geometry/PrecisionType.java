@@ -1,8 +1,8 @@
 /*$************************************************************************************************
  **
- ** $Id: PrecisionModelType.java 960 2007-03-16 00:44:53Z jive $
+ ** $Id$
  **
- ** $URL: https://svn.sourceforge.net/svnroot/geoapi/trunk/geoapi/src/main/java/org/opengis/spatialschema/geometry/PrecisionModelType.java $
+ ** $URL$
  **
  ** Copyright (C) 2003-2005 Open GIS Consortium, Inc.
  ** All Rights Reserved. http://www.opengis.org/legal/
@@ -10,11 +10,8 @@
  *************************************************************************************************/
 package org.opengis.geometry;
 
-// J2SE directdependencies
 import java.util.List;
 import java.util.ArrayList;
-
-// OpenGIS direct dependencies
 import org.opengis.util.CodeList;
 
 

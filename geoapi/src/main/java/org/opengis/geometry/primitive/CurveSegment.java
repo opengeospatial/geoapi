@@ -10,12 +10,10 @@
  *************************************************************************************************/
 package org.opengis.geometry.primitive;
 
-// OpenGIS direct dependencies
 import org.opengis.geometry.coordinate.GenericCurve;
 import org.opengis.geometry.coordinate.PointArray;
-
-// Annotations
 import org.opengis.annotation.UML;
+
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
 

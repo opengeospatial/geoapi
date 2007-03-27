@@ -8,11 +8,11 @@
  ** All Rights Reserved. http://www.opengis.org/legal/
  **
  *************************************************************************************************/
-
 package org.opengis.go;
 
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 import org.opengis.go.spatial.PathType;
+
 
 /**
  * The <code>CommonCapabilities</code> interface provides runtime information
@@ -24,7 +24,6 @@ import org.opengis.go.spatial.PathType;
  * @version $Revision: 658 $, $Date: 2006-02-23 12:09:34 +1100 (jeu., 23 févr. 2006) $
  */
 public interface CommonCapabilities {
-
     /**
      * Returns an array of <code>Class</code> objects for the directposition
      * interfaces that are supported by a given implementation.

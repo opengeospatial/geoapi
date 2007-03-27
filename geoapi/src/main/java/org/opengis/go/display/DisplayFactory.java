@@ -12,10 +12,10 @@ package org.opengis.go.display;
 
 import java.awt.Container;
 import java.util.Properties;
-
 import org.opengis.go.display.canvas.Canvas;
 import org.opengis.go.display.primitive.Graphic;
 import org.opengis.go.display.style.GraphicStyle;
+
 
 /**
  * <code>DisplayFactory</code> defines a common abstraction for creating
@@ -25,7 +25,6 @@ import org.opengis.go.display.style.GraphicStyle;
  * @version $Revision: 658 $, $Date: 2006-02-23 12:09:34 +1100 (jeu., 23 févr. 2006) $
  */
 public interface DisplayFactory {
-
     /**
      * Creates a new <code>Graphic</code>.
      * @param implementsGraphic The <code>Class</code> of a Graphic
@@ -35,7 +34,7 @@ public interface DisplayFactory {
      *      primitive interface that this factory supports.
      * @return the newly created <code>Graphic</code>.
      */
-    public Graphic createGraphic(Class implementsGraphic);
+    Graphic createGraphic(Class implementsGraphic);
 
     /**
      * Creates a new <code>GraphicStyle</code>.  Implementations of
@@ -47,13 +46,13 @@ public interface DisplayFactory {
      *      interface.
      * @return the newly created <code>GraphicStyle</code>.
      */
-    public GraphicStyle createGraphicStyle(Class implementsGraphicStyle);
+    GraphicStyle createGraphicStyle(Class implementsGraphicStyle);
 
     /**
      * Returns an object that represents the capabilities of this
      * Display factory and its associated canvas.
      */
-    public DisplayCapabilities getCapabilities();
+    DisplayCapabilities getCapabilities();
     
     /**
      * Creates a new <code>Canvas</code> object that is embedded in the given 
@@ -74,7 +73,7 @@ public interface DisplayFactory {
      *     <code>Canvas</code> in.
      * @return the newly-created Canvas.
      */
-    public Canvas createCanvas(Properties canvasProperties, Container container);
+    Canvas createCanvas(Properties canvasProperties, Container container);
     
     /**
      * Creates a new <code>Canvas</code> object that is returned embedded in a window, as 
@@ -89,11 +88,11 @@ public interface DisplayFactory {
      * @param canvasProperties <code>Properties</code> that can be used to determine
      *    which <code>Canvas</code> implementation to use.
      */
-    public Canvas createCanvas(Properties canvasProperties);
+    Canvas createCanvas(Properties canvasProperties);
     
     /**
      * Gets an existing <code>Canvas</code> object by UID, or null if no 
      * <code>Canvas</code> exists for the given UID.
      */
-    public Canvas getCanvas(String uid);
+    Canvas getCanvas(String uid);
 }

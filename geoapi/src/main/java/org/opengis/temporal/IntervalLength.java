@@ -10,14 +10,10 @@
  *************************************************************************************************/
 package org.opengis.temporal;
 
-// J2SE extensions
 import javax.units.Unit;
-
-// OpenGIS direct dependencies
 import org.opengis.util.InternationalString;
-
-// Annotations
 import org.opengis.annotation.UML;
+
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
 
@@ -32,7 +28,7 @@ import static org.opengis.annotation.Specification.*;
  */
 @UML(identifier="TM_IntervalLength", specification=ISO_19108)
 public interface IntervalLength extends Duration {
-	/**
+    /**
      * The unit of measure used to express the length of the interval.
      */
     @UML(identifier="unit", specification=ISO_19108)

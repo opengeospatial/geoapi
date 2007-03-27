@@ -10,10 +10,7 @@
  *************************************************************************************************/
 package org.opengis.geometry.primitive;
 
-// J2SE direct dependencies
 import java.util.List;
-
-// OpenGIS direct dependencies
 import org.opengis.geometry.Envelope;
 import org.opengis.geometry.DirectPosition;
 import org.opengis.geometry.coordinate.Polygon;
@@ -22,10 +19,9 @@ import org.opengis.geometry.coordinate.Position;
 import org.opengis.geometry.MismatchedDimensionException;
 import org.opengis.geometry.MismatchedReferenceSystemException;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
-
-// Annotations
 import org.opengis.annotation.UML;
 import org.opengis.annotation.Extension;
+
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
 

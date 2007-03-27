@@ -10,11 +10,9 @@
  *************************************************************************************************/
 package org.opengis.metadata.content;
 
-// J2SE extensions
 import javax.units.Unit;
-
-// Annotations
 import org.opengis.annotation.UML;
+
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
 

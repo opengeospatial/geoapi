@@ -16,21 +16,20 @@ package org.opengis.go.display.style;
  * of properties that can exist for a symbol graphic.  This interface allows
  * you to get or set the values of those properties on the graphic.
  */
-public interface Symbology {    
-    
+public interface Symbology {
     /**
      * Gets the number of properties that exist for the graphic
      * that uses this symbology.
      * @return the number of properties for the graphic
      */
-    public int getSymbologyPropertyCount(SymbologyInfo info);
+    int getSymbologyPropertyCount(SymbologyInfo info);
     
     /**
      * Gets the list of all the property names that exist for the graphic
      * that uses this symbology.
      * @return the list of property names
      */
-    public String[] getSymbologyPropertyNames(SymbologyInfo info);
+    String[] getSymbologyPropertyNames(SymbologyInfo info);
     
     /**
      * Gets the java class type for the property value defined by the property
@@ -38,7 +37,7 @@ public interface Symbology {
      * @param propertyName the name of the property in question
      * @return the java class of the property value
      */
-    public Class getSymbologyPropertyType(SymbologyInfo info, String propertyName);
+    Class getSymbologyPropertyType(SymbologyInfo info, String propertyName);
     
     /**
      * Gets the property value defined by the given property name
@@ -46,7 +45,7 @@ public interface Symbology {
      * @return the value of the property
      * @throws IllegalArgumentException if the property name isn't a valid one
      */
-    public Object getSymbologyProperty(SymbologyInfo info, String propertyName) throws IllegalArgumentException;
+    Object getSymbologyProperty(SymbologyInfo info, String propertyName) throws IllegalArgumentException;
     
     /**
      * Sets the value of a property for the given property name
@@ -55,7 +54,7 @@ public interface Symbology {
      * @throws IllegalArgumentException if the property name isn't valid or if
      *         the value is of the wrong java class type
      */
-    public void setSymbologyProperty(SymbologyInfo info, String propertyName, Object value)
+    void setSymbologyProperty(SymbologyInfo info, String propertyName, Object value)
         throws IllegalArgumentException;
     
     /**
@@ -64,7 +63,7 @@ public interface Symbology {
      * set on the Symbology object that will define how the graphic is displayed
      * @return the active symbology name
      */
-    public SymbologyInfo getActiveSymbology();
+    SymbologyInfo getActiveSymbology();
     
     /**
      * Sets the active symbology name that is being used to render this
@@ -72,5 +71,5 @@ public interface Symbology {
      * @param info the new active symbology
      * @throws IllegalArgumentException if the symbology isn't supported
      */
-    public void setActiveSymbology(SymbologyInfo info) throws IllegalArgumentException;
+    void setActiveSymbology(SymbologyInfo info) throws IllegalArgumentException;
 }

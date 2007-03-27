@@ -10,18 +10,15 @@
  *************************************************************************************************/
 package org.opengis.geometry.coordinate;
 
-// J2SE direct dependencies
 import java.util.List;
-
-// OpenGIS direct dependencies
 import org.opengis.geometry.DirectPosition;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
-
-// Annotations
 import org.opengis.annotation.UML;
 import org.opengis.annotation.Extension;
+
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
+
 
 /**
  * A sequence of points.
@@ -45,16 +42,20 @@ import static org.opengis.annotation.Specification.*;
  * @version <A HREF="http://www.opengis.org/docs/01-101.pdf">Abstract specification 5</A>
  * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 1.0
+ *
  * @see Position
  * @see PointGrid
  */
-@UML(identifier = "GM_PointArray", specification = ISO_19107)
+@UML(identifier="GM_PointArray", specification=ISO_19107)
 public interface PointArray extends List<Position> {    
     /**
      * Returns the length (the number of elements) of this array. This is equivalent to
      * <code>{@linkplain #positions positions}().{@linkplain List#size size}()</code>.
-     * @deprecated Please use size()
+     *
+     * @deprecated Please use {@link #size()}
+     *
      * @return The array length.
+     *
      * @see List#size
      * @see PointGrid#width
      */
@@ -63,13 +64,14 @@ public interface PointArray extends List<Position> {
 
     /**
      * Returns the dimensionality of the coordinates in this array. It should be equals to the
-     * dimensionality of the
-     * {@linkplain #getCoordinateReferenceSystem() coordinate reference system} for these
-     * coordinates.
+     * dimensionality of the {@linkplain #getCoordinateReferenceSystem() coordinate reference system}
+     * for these coordinates.
      * <p>
-     * This method is the same as:<code>
-     *   return getCoordinateReferenceSystem().getCoordinateSystem().getDimension();
-     * </code>
+     * This method is the same as:
+     * 
+     * <blockquote><pre>
+     * return getCoordinateReferenceSystem().getCoordinateSystem().getDimension();
+     * </pre></blockquote>
      * 
      * @return the dimensionality of this array.
      * @see DirectPosition#getDimension
@@ -95,17 +97,16 @@ public interface PointArray extends List<Position> {
      * this {@code PointArray}. If the {@code dest} argument is non-null, that object will be
      * populated with the value from the array. In all cases, the position in insulated from changes
      * in the {@code PointArray}, and vice-versa. Consequently, the same {@code DirectPosition}
-     * object can be reused for fetching many points from this array. Example: <blockquote>
+     * object can be reused for fetching many points from this array. Example:
      * 
-     * <pre>
+     * <blockquote><pre>
      * DirectPosition position = null;
-     * for( int i = 0; i &lt; array.length(); i++ ) {
+     * final int length = array.length();
+     * for (int i=0; i&lt;length; i++) {
      *     position = array.get(i, position);
      *     // Do some processing...
      * }
-     * </pre>
-     * 
-     * </blockquote>
+     * </pre></blockquote>
      * 
      * @param index The location in the array, from 0 inclusive to the array
      *        {@linkplain #length length} exclusive.
@@ -114,7 +115,7 @@ public interface PointArray extends List<Position> {
      * @throws IndexOutOfBoundsException if the index is out of bounds.
      */
     @Extension
-    DirectPosition getPosition( int index, DirectPosition dest ) throws IndexOutOfBoundsException;
+    DirectPosition getPosition(int index, DirectPosition dest) throws IndexOutOfBoundsException;
 
     /**
      * Sets the point at the given index. The point coordinates will be copied, i.e. changes to the
@@ -127,12 +128,13 @@ public interface PointArray extends List<Position> {
      * @param position The point to set at the given location in this array.
      * @throws IndexOutOfBoundsException if the index is out of bounds.
      * @throws UnsupportedOperationException if this array is immutable.
+     *
      * @see List#set
      */
     @Extension
-    void setPosition( int index, DirectPosition position ) throws IndexOutOfBoundsException,
-            UnsupportedOperationException;
-    
+    void setPosition(int index, DirectPosition position)
+            throws IndexOutOfBoundsException, UnsupportedOperationException;
+
     /**
      * Returns a view of the points in this array as a list of {@linkplain Position positions}. The
      * list is backed by this {@code PointArray}, so changes to the point array are reflected in
@@ -141,9 +143,10 @@ public interface PointArray extends List<Position> {
      * Note that random access may be costly in some implementations. If the returned list doesn't
      * implement the {@link java.util.RandomAccess} interface, then consider avoiding the
      * {@link List#get(int)} method. Favor the {@linkplain List#iterator list iterator} instead.
+     *
      * @deprecated use <b>this</b>
      * @return The list of positions in this array.
      */
-    @UML(identifier = "column", obligation = MANDATORY, specification = ISO_19107)
+    @UML(identifier="column", obligation=MANDATORY, specification=ISO_19107)
     List<Position> positions();
 }

@@ -10,14 +10,11 @@
  *************************************************************************************************/
 package org.opengis.geometry.primitive;
 
-// OpenGIS direct dependencies
 import org.opengis.geometry.DirectPosition;
 import org.opengis.geometry.coordinate.Position;
 import org.opengis.geometry.UnmodifiableGeometryException;
-
-
-// Annotations
 import org.opengis.annotation.UML;
+
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
 

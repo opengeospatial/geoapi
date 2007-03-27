@@ -10,17 +10,13 @@
  *************************************************************************************************/
 package org.opengis.coverage.grid;
 
-// J2SE direct dependencies
 import java.util.List;
 import java.awt.image.Raster;          // For Javadoc
 import java.awt.image.WritableRaster;  // For Javadoc
 import java.awt.image.RenderedImage;   // For Javadoc
-
-// OpenGIS direct dependencies
 import org.opengis.coverage.Coverage;
-
-// Annotations
 import org.opengis.annotation.UML;
+
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
 

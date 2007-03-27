@@ -10,13 +10,11 @@
  *************************************************************************************************/
 package org.opengis.referencing.crs;
 
-// OpenGIS direct dependencies
 import org.opengis.referencing.ReferenceSystem;
 import org.opengis.referencing.cs.CoordinateSystem;
-
-// Annotations
 import org.opengis.annotation.UML;
 import org.opengis.annotation.Extension;
+
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
 

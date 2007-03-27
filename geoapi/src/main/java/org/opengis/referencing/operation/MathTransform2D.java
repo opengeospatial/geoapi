@@ -10,11 +10,8 @@
  *************************************************************************************************/
 package org.opengis.referencing.operation;
 
-// J2SE direct dependencies
 import java.awt.Shape;
 import java.awt.geom.Point2D;
-
-// Annotations
 import org.opengis.annotation.Extension;
 
 

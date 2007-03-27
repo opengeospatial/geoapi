@@ -10,6 +10,7 @@
  *************************************************************************************************/
 package org.opengis.go.spatial;
 
+
 /**
  * The instances of this class represent methods of calculating a path
  * between two locations. The in-between points of the path satisfy two
@@ -29,13 +30,12 @@ package org.opengis.go.spatial;
  * @version $Revision: 658 $, $Date: 2006-02-23 12:09:34 +1100 (jeu., 23 févr. 2006) $
  */
 public class GlobalPathType extends PathType {
-
     /**
      * The list of enumeration available in this virtual machine.
      * <strong>Must be declared first!</strong>.
      */
   //  private static final List VALUES = new ArrayList(4);   
-        
+
     /**
      * Creates a new GlobalPathType with the given value and name.
      * @param name the short name for the enum.

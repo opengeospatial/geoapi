@@ -10,16 +10,12 @@
  *************************************************************************************************/
 package org.opengis.metadata.content;
 
-// J2SE direct dependencies
 import java.util.Collection;
 import java.util.Locale;
-
-// OpenGIS direct dependencies
 import org.opengis.util.GenericName;
 import org.opengis.metadata.citation.Citation;
-
-// Annotations
 import org.opengis.annotation.UML;
+
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
 

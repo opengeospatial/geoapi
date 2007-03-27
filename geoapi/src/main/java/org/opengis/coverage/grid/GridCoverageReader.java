@@ -10,11 +10,8 @@
  *************************************************************************************************/
 package org.opengis.coverage.grid;
 
-// J2SE dependencies
 import java.io.IOException;
 import java.io.FileNotFoundException;  // For Javadoc
-
-// OpenGIS direct dependencies
 import org.opengis.coverage.MetadataNameNotFoundException;
 import org.opengis.parameter.GeneralParameterValue;
 import org.opengis.parameter.ParameterNotFoundException;     // For javadoc

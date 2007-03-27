@@ -10,8 +10,8 @@
  *************************************************************************************************/
 package org.opengis.go.display.event;
 
-// J2SE direct dependencies
 import java.util.EventListener;
+
 
 /**
  * Common abstraction whose implementations can associate different key
@@ -28,14 +28,14 @@ public interface EventHandler extends EventListener {
      *
      * @see #handlerDisabled
      */
-    public abstract void handlerEnabled();
+    void handlerEnabled();
 
     /**
      * Invoked when the handler is temporarily disabled.
      *
      * @see #handlerEnabled
      */
-    public abstract void handlerDisabled();
+    void handlerDisabled();
 
     /**
      * Invoked when the handler is permanently removed.
@@ -43,7 +43,5 @@ public interface EventHandler extends EventListener {
      * @todo According <code>EventManagerSupport</code> implementation, a handler
      *       is disabled before to be removed. The specification should said that.
      */
-    public abstract void handlerRemoved();
-
+    void handlerRemoved();
 }
-

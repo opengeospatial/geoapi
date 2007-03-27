@@ -10,11 +10,11 @@
  *************************************************************************************************/
 package org.opengis.go.display.primitive;
 
-// OpenGIS direct dependencies
 import org.opengis.go.display.event.GraphicEvent;
 import org.opengis.go.display.event.GraphicListener;
 import org.opengis.go.display.style.GraphicStyle;
 import org.opengis.go.display.style.Symbology;
+
 
 /**
  * <code>Graphic</code> defines the root abstraction of a graphic object
@@ -34,38 +34,38 @@ public interface Graphic {
     //**  Default Editability property values  **
 
     /**  Default auto edit value.  */
-    static final boolean DEFAULT_AUTO_EDIT = true;
+    boolean DEFAULT_AUTO_EDIT = true;
 
     /**  Default drag selectable value.  */
-    static final boolean DEFAULT_DRAG_SELECTABLE = true;
+    boolean DEFAULT_DRAG_SELECTABLE = true;
 
     /** Default pickable value.  */
-    static final boolean DEFAULT_PICKABLE = true;
+    boolean DEFAULT_PICKABLE = true;
 
     /**  Default selected value.  */
-    static final boolean DEFAULT_SELECTED = false;
+    boolean DEFAULT_SELECTED = false;
 
     //**  Default Highlight property values  **
 
     /**  Default blinking value.  */
-    static final boolean DEFAULT_BLINKING = false;
+    boolean DEFAULT_BLINKING = false;
 
     /**  Default blink pattern value.  */
-    static final float[] DEFAULT_BLINK_PATTERN = {0.5f, 0.5f};
+    float[] DEFAULT_BLINK_PATTERN = {0.5f, 0.5f};
 
     //**  Default Viewability property values  **
 
     /**  Default max scale value.  */
-    static final int DEFAULT_MAX_SCALE = Integer.MAX_VALUE;
+    int DEFAULT_MAX_SCALE = Integer.MAX_VALUE;
 
     /**  Default min scale value.  */
-    static final int DEFAULT_MIN_SCALE = 1;
+    int DEFAULT_MIN_SCALE = 1;
 
     /**  Default visible value.  */
-    static final boolean DEFAULT_VISIBLE = true;
+    boolean DEFAULT_VISIBLE = true;
 
     /**  Default z order value.  */
-    static final double DEFAULT_Z_ORDER = 0.0;
+    double DEFAULT_Z_ORDER = 0.0;
 
     //**  deconstructor  **
 

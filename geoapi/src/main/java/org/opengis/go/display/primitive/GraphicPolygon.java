@@ -10,10 +10,10 @@
  *************************************************************************************************/
 package org.opengis.go.display.primitive;
 
-// OpenGIS direct dependencies
 import org.opengis.go.display.style.PolygonSymbolizer;
 import org.opengis.go.spatial.PathType;
 import org.opengis.geometry.DirectPosition;
+
 
 /**
  * Defines a common abstraction for graphic representation of polygons.  
@@ -42,14 +42,14 @@ public interface GraphicPolygon extends Graphic {
      *   than zero or greater than or equal to the number points in the exterior
      *   ring.
      */
-    public DirectPosition getExteriorPoint(int index);
+    DirectPosition getExteriorPoint(int index);
 
     /**
      * Adds a new point to the list of vertices in the exterior ring.
      *
      * @param position The new position to add to the list.
      */
-    public void addExteriorPoint(DirectPosition position);
+    void addExteriorPoint(DirectPosition position);
 
     /**
      * Inserts a new point into the list of vertices for the exterior ring.
@@ -61,7 +61,7 @@ public interface GraphicPolygon extends Graphic {
      *   than zero or greater than or equal to the number points in the exterior
      *   ring.
      */
-    public void insertExteriorPoint(int index, DirectPosition position);
+    void insertExteriorPoint(int index, DirectPosition position);
 
     /**
      * Replaces a position in the list of vertices for the exterior ring.
@@ -73,7 +73,7 @@ public interface GraphicPolygon extends Graphic {
      *   than zero or greater than or equal to the number points in the exterior
      *   ring.
      */
-    public DirectPosition setExteriorPoint(int index, DirectPosition position);
+    DirectPosition setExteriorPoint(int index, DirectPosition position);
 
     /**
      * Removes a position from the list of vertices for the exterior ring.
@@ -86,7 +86,7 @@ public interface GraphicPolygon extends Graphic {
      *   than zero or greater than or equal to the number points in the exterior
      *   ring.
      */
-    public DirectPosition removeExteriorPoint(int index);
+    DirectPosition removeExteriorPoint(int index);
 
     /**
      * Returns a new array containing references to all of the vertices in the
@@ -94,7 +94,7 @@ public interface GraphicPolygon extends Graphic {
      *
      * @return A newly allocated array containing references to the vertices.
      */
-    public DirectPosition [] getExteriorRing();
+    DirectPosition [] getExteriorRing();
 
     /**
      * Clears the list of vertices in the exterior ring and adds all of the
@@ -102,12 +102,12 @@ public interface GraphicPolygon extends Graphic {
      * {@linkplain DirectPosition}s in the array, but not the array object
      * itself.
      */
-    public void setExteriorRing(DirectPosition [] newVertices);
+    void setExteriorRing(DirectPosition [] newVertices);
 
     /**
      * Returns the number of vertices in the exterior ring.
      */
-    public int getNumExteriorPoints();
+    int getNumExteriorPoints();
 
     /**
      * Returns a live reference to the vertex at the given index.
@@ -122,7 +122,7 @@ public interface GraphicPolygon extends Graphic {
      *   index is less than zero or greater than or equal to the number of
      *   interior rings.
      */
-    public DirectPosition getInteriorPoint(int index, int interiorRingIndex);
+    DirectPosition getInteriorPoint(int index, int interiorRingIndex);
 
     /**
      * Adds a new point to the list of vertices of an interior ring.
@@ -134,7 +134,7 @@ public interface GraphicPolygon extends Graphic {
      *   is less than zero or greater than or equal to the number of interior
      *   rings.
      */
-    public void addInteriorPoint(int interiorRingIndex, DirectPosition position);
+    void addInteriorPoint(int interiorRingIndex, DirectPosition position);
 
     /**
      * Inserts a new point into the list of vertices for an interior ring.
@@ -150,8 +150,7 @@ public interface GraphicPolygon extends Graphic {
      *   index is less than zero or greater than or equal to the number of
      *   interior rings.
      */
-    public void insertInteriorPoint(int index, int interiorRingIndex,
-            DirectPosition position);
+    void insertInteriorPoint(int index, int interiorRingIndex, DirectPosition position);
 
     /**
      * Replaces a position in the list of vertices for an interior ring.
@@ -167,8 +166,7 @@ public interface GraphicPolygon extends Graphic {
      *   index is less than zero or greater than or equal to the number of
      *   interior rings.
      */
-    public DirectPosition setInteriorPoint(int index, int interiorRingIndex,
-            DirectPosition position);
+    DirectPosition setInteriorPoint(int index, int interiorRingIndex, DirectPosition position);
 
     /**
      * Removes a position from the list of vertices for an interior ring.
@@ -185,7 +183,7 @@ public interface GraphicPolygon extends Graphic {
      *   index is less than zero or greater than or equal to the number of
      *   interior rings.
      */
-    public DirectPosition removeInteriorPoint(int index, int interiorRingIndex);
+    DirectPosition removeInteriorPoint(int index, int interiorRingIndex);
 
     /**
      * Returns a new array containing references to all of the vertices in the
@@ -198,14 +196,14 @@ public interface GraphicPolygon extends Graphic {
      *   is less than zero or greater than or equal to the number of interior
      *   rings.
      */
-    public DirectPosition [] getInteriorRing(int interiorRingIndex);
+    DirectPosition[] getInteriorRing(int interiorRingIndex);
 
     /**
      * Creates a new interior ring (hole) for this polygon.
      * 
      * @return Returns the index of the newly created ring.
      */
-    public int addInteriorRing();
+    int addInteriorRing();
 
     /**
      * Creates a new interior ring for this polygon and immediately sets its
@@ -213,7 +211,7 @@ public interface GraphicPolygon extends Graphic {
      *
      * @return Returns the index of the newly created ring.
      */
-    public int addInteriorRing(DirectPosition [] vertices);
+    int addInteriorRing(DirectPosition [] vertices);
 
     /**
      * Clears the list of vertices in an exterior ring and adds all of the
@@ -229,8 +227,7 @@ public interface GraphicPolygon extends Graphic {
      *   is less than zero or greater than or equal to the number of interior
      *   rings.
      */
-    public void setInteriorRing(int interiorRingIndex,
-            DirectPosition [] newVertices);
+    void setInteriorRing(int interiorRingIndex, DirectPosition [] newVertices);
 
     /**
      * Returns the number of vertices in an interior ring.
@@ -241,19 +238,19 @@ public interface GraphicPolygon extends Graphic {
      *   is less than zero or greater than or equal to the number of interior
      *   rings.
      */
-    public int getNumInteriorPoints(int interiorRingIndex);
+    int getNumInteriorPoints(int interiorRingIndex);
 
     /**
      * Removes an interior ring.
      *
      * @param interiorRingIndex Index of the ring to remove.
      */
-    public void removeInteriorRing(int interiorRingIndex);
+    void removeInteriorRing(int interiorRingIndex);
 
     /**
      * Returns the number of interior rings currently in this polygon.
      */
-    public int getNumInteriorRings();
+    int getNumInteriorRings();
 
     /**
      * Returns a newly allocated two-dimensional array of points.  The first
@@ -262,7 +259,7 @@ public interface GraphicPolygon extends Graphic {
      * the list are references to the same objects held by this polygon, but the
      * array object is newly allocated.
      */
-    public DirectPosition [][] getInteriorRings();
+    DirectPosition[][] getInteriorRings();
 
     /**
      * Clears the lists of vertices of all the interior rings and adds all of the
@@ -278,7 +275,7 @@ public interface GraphicPolygon extends Graphic {
      * which is required to be a <code>PolygonSymbolizer</code>.
      * @return the GraphicPolygon's <code>GraphicStyle</code>.
      */
-    public PolygonSymbolizer getPolygonSymbolizer();
+    PolygonSymbolizer getPolygonSymbolizer();
 
     /**
      * Sets the parameter that indicates how the "in-between" points between
@@ -287,23 +284,23 @@ public interface GraphicPolygon extends Graphic {
      * @param pathType One of the static constants indicating the method to
      *   use.
      */
-    public void setPathType(PathType pathType);
+    void setPathType(PathType pathType);
 
     /**
      * Returns the parameter that indicates how the "in-between" points between
      * vertices are to be drawn.
      */
-    public PathType getPathType();
+    PathType getPathType();
 
     /**
      * Indicates whether clicking on an edge of this graphic linestring should
      * insert a new vertex at that location when the object is in edit mode.
      */
-    public boolean isAllowingNewVertices();
+    boolean isAllowingNewVertices();
 
     /**
      * Sets the boolean that indicates whether clicking on an edge of this
      * graphic linestring should insert a new vertex at that location.
      */
-    public void setAllowingNewVertices(boolean newValue);
+    void setAllowingNewVertices(boolean newValue);
 }

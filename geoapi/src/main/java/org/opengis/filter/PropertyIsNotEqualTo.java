@@ -2,7 +2,7 @@
  **
  ** $Id$
  **
- ** $URL: https://svn.sourceforge.net/svnroot/geoapi/trunk/geoapi/src/main/java/org/opengis/filter/PropertyIsEqualTo.java $
+ ** $URL$
  **
  ** Copyright (C) 2005 Open GIS Consortium, Inc.
  ** All Rights Reserved. http://www.opengis.org/legal/

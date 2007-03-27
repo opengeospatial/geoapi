@@ -10,12 +10,10 @@
  *************************************************************************************************/
 package org.opengis.referencing.cs;
 
-// Direct dependencies
 import javax.units.Unit;
 import org.opengis.referencing.IdentifiedObject;
-
-// Annotations
 import org.opengis.annotation.UML;
+
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
 

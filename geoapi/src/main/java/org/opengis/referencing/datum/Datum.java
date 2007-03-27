@@ -10,17 +10,13 @@
  *************************************************************************************************/
 package org.opengis.referencing.datum;
 
-// J2SE direct dependencies
 import java.util.Date;
 import java.util.Locale;
-
-// OpenGIS direct dependencies
 import org.opengis.referencing.IdentifiedObject;
 import org.opengis.metadata.extent.Extent;
 import org.opengis.util.InternationalString;
-
-// Annotations
 import org.opengis.annotation.UML;
+
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
 

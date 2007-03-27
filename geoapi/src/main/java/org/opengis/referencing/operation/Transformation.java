@@ -10,8 +10,8 @@
  *************************************************************************************************/
 package org.opengis.referencing.operation;
 
-// Annotations
 import org.opengis.annotation.UML;
+
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
 

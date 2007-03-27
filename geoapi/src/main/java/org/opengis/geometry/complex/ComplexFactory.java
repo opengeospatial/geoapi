@@ -13,10 +13,7 @@
 
 package org.opengis.geometry.complex;
 
-// J2SE direct dependencies
 import java.util.List;
-
-// OpenGIS direct dependencies
 import org.opengis.geometry.primitive.Point;
 import org.opengis.geometry.primitive.Primitive;
 import org.opengis.geometry.aggregate.Aggregate;

@@ -10,16 +10,14 @@
  *************************************************************************************************/
 package org.opengis.geometry.coordinate;
 
-// OpenGIS direct dependencies
 import org.opengis.geometry.DirectPosition;
 import org.opengis.geometry.primitive.Curve;
 import org.opengis.geometry.primitive.Surface;
 import org.opengis.geometry.primitive.SurfacePatch;
 import org.opengis.geometry.primitive.CurveInterpolation;
 import org.opengis.geometry.complex.Complex;
-
-// Annotations
 import org.opengis.annotation.UML;
+
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
 

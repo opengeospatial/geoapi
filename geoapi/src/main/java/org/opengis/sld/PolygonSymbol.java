@@ -10,7 +10,6 @@
  *************************************************************************************************/
 package org.opengis.sld;
 
-// Annotations
 import org.opengis.annotation.XmlElement;
 
 

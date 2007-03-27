@@ -10,11 +10,9 @@
  *************************************************************************************************/
 package org.opengis.geometry.aggregate;
 
-// OpenGIS direct dependencies
 import org.opengis.geometry.primitive.Primitive;
-
-// Annotations
 import org.opengis.annotation.UML;
+
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
 

@@ -10,10 +10,7 @@
  *************************************************************************************************/
 package org.opengis.util;
 
-// Direct J2SE dependencies
 import java.util.Locale;
-
-// Annotations
 import org.opengis.annotation.Extension;
 
 

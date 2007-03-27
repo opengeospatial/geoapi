@@ -10,17 +10,13 @@
  *************************************************************************************************/
 package org.opengis.coverage.grid.quadrilateral;
 
-// J2SE direct dependencies
 import java.util.Set;
-
-// OpenGiS dependencies:
 import org.opengis.coverage.DomainObject;
 import org.opengis.geometry.Geometry;
 import org.opengis.temporal.TemporalGeometricPrimitive;
-
-// Annotations
 import org.opengis.annotation.UML;
 import org.opengis.annotation.Extension;
+
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
 

@@ -10,15 +10,11 @@
  *************************************************************************************************/
 package org.opengis.coverage;
 
-// J2SE direct dependencies
 import java.util.Set;
 import java.util.Collection;
-
-// OpenGIS direct dependencies
 import org.opengis.geometry.DirectPosition;
-
-// Annotations
 import org.opengis.annotation.UML;
+
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
 

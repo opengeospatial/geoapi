@@ -8,7 +8,6 @@
  ** All Rights Reserved. http://www.opengis.org/legal/
  **
  *************************************************************************************************/
-
 package org.opengis.go;
 
 import org.opengis.feature.type.TypeFactory;
@@ -28,6 +27,7 @@ import org.opengis.sld.FeatureStyleFactory;
 import org.opengis.geometry.coordinate.GeometryFactory;
 import org.opengis.geometry.primitive.PrimitiveFactory;
 import org.opengis.util.NameFactory;
+
 
 /**
  * Defines a common abstraction for getting the different factories for classes that all GO-1

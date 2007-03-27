@@ -10,11 +10,9 @@
  *************************************************************************************************/
 package org.opengis.referencing.crs;
 
-// OpenGIS direct dependencies
 import org.opengis.referencing.operation.Conversion;
-
-// Annotations
 import org.opengis.annotation.UML;
+
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
 

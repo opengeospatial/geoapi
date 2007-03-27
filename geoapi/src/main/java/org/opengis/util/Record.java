@@ -10,13 +10,11 @@
  *************************************************************************************************/
 package org.opengis.util;
 
-// J2SE dependencies
 import java.util.Map;
 import java.util.Set;  // For Javadoc
-
-// Annotations
 import org.opengis.annotation.UML;
 import org.opengis.annotation.Extension;
+
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
 

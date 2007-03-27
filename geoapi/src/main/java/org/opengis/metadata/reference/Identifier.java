@@ -1,8 +1,8 @@
 /*$************************************************************************************************
  **
- ** $Id: Identifier.java  $
+ ** $Id$
  **
- ** $URL: https://geoapi.svn.sourceforge.net/svnroot/geoapi/trunk/geoapi/src/main/java/org/opengis/metadata/reference/Identifier.java $
+ ** $URL$
  **
  ** Copyright (C) 2004-2007 Open GIS Consortium, Inc.
  ** All Rights Reserved. http://www.opengis.org/legal/
@@ -11,8 +11,10 @@
 package org.opengis.metadata.reference;
 
 import org.opengis.annotation.UML;
+
 import static org.opengis.annotation.Obligation.OPTIONAL;
 import static org.opengis.annotation.Specification.ISO_19115;
+
 
 /**
  * Identifier used for reference systems.

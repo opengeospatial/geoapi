@@ -10,9 +10,9 @@
  *************************************************************************************************/
 package org.opengis.util;
 
-// Annotations
 import org.opengis.annotation.UML;
 import org.opengis.annotation.Extension;
+
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
 

@@ -10,18 +10,16 @@
  *************************************************************************************************/
 package org.opengis.geometry;
 
-// J2SE direct dependencies
 import java.util.List;
-
-// OpenGIS direct dependencies
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 import org.opengis.geometry.coordinate.Position;
 
 
 /**
- * A Factory for managing {@linkplain DirectPosition direct position} creation.
+ * A factory for managing {@linkplain DirectPosition direct position} creation.
  * <p>
- * This factory will be created for a known CoordinateReferenceSystem and PrecisionModel.
+ * This factory will be created for a known {@linkplain CoordinateReferenceSystem
+ * Coordinate Reference System} and {@linkplain Precision precision} model.
  * </p>
  * 
  * @author Jody Garnett
@@ -39,8 +37,8 @@ public interface PositionFactory {
      * The Precision used used by {@linkplain DirectPosition direct positions}
      * created via this factory.
      * <p>
-     * The Precision used to inform topological operations of the number of
-     * significant digits maintained by the DirectPosition instances. This
+     * The Precision is used to inform topological operations of the number of
+     * significant digits maintained by the {@link DirectPosition} instances. This
      * information both helps operations stop when the correct level of detail is
      * reached, and ensure the result will be valid when rounded to the required
      * precision.
@@ -58,38 +56,39 @@ public interface PositionFactory {
             throws MismatchedDimensionException;
 
     /**
-     * Creates a (possibiliy optimized) list for direct positions. The list is initially
+     * Creates a (possibiliy optimized) list for positions. The list is initially
      * empty. New direct positions can be stored using the {@link List#add} method.
      *
-     * @todo How is the list related to {@link org.opengis.geometry.coordinate.PointArray}?
+     * @todo How is the list related to {@link org.opengis.geometry.geometry.PointArray}?
      */
     List<Position> createPositionList();
 
     /**
-     * Creates a list for direct positions initialized from the specified values.
+     * Creates a list for positions initialized from the specified values.
+     * 
+     * @param coordinates The coordinates to assign to the list of positions.
+     * @param start       The first valid value in the {@code coordinates} array.
+     * @param length      The number of valid values in the {@code coordinates} array.
+     * @return            The list of positions.
      */
     List<Position> createPositionList(double[] coordinates, int start, int length);
 
     /**
-     * Creates a list for direct positions initialized from the specified values.
+     * Creates a list for positions initialized from the specified values.
      * 
-     * @param coordinates
-     * @param start
-     * @param length
-     * @return
-     *
-     * @todo Javadoc need completion.
+     * @param coordinates The coordinates to assign to the list of positions.
+     * @param start       The first valid value in the {@code coordinates} array.
+     * @param length      The number of valid values in the {@code coordinates} array.
+     * @return            The list of positions.
      */
     List<Position> createPositionList(float[] coordinates, int start, int length);
 
-    // This method was added to GeoAPI by Sanjay, because no factory contained a constructor
-    // method for Position´s yet, but do contain methods which require Positions as parameter.
     /**
-     * Constructs a position from a direct position by copying the coordinate values of the
-     * direct position. There will be no further reference to the direct position instance.
+     * Constructs a position from an other position by copying the coordinate values of the
+     * position. There will be no further reference to the position instance.
      * 
-     * @param dp A direct position.
-     * @return The position which defines the coordinates for the direct position.
+     * @param position A position.
+     * @return The position which defines the coordinates for the other position.
      */
-    Position createPosition(Position dp);
+    Position createPosition(Position position);
 }

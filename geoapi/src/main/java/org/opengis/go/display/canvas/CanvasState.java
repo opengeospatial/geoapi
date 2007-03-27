@@ -12,6 +12,7 @@ package org.opengis.go.display.canvas;
 
 import org.opengis.geometry.DirectPosition;
 
+
 /**
  * Instances of this interface (and its sub-interfaces) describe the current
  * state of a <code>Canvas</code>.  The information contained by instances
@@ -30,18 +31,18 @@ public interface CanvasState {
     /**
      * Returns the title of the <code>Canvas</code>.
      */
-    public String getTitle();
+    String getTitle();
 
     /**
      * Returns the position of the center pixel of this Canvas.
      */
-    public DirectPosition getCenter();
+    DirectPosition getCenter();
 
     /**
      * Returns a copy of this state object. The implementation should also clone
      * the object returned by <code>getCanvasParameterAccessor()</code>.
      */
-    public Object clone() throws CloneNotSupportedException;
+    Object clone() throws CloneNotSupportedException;
 
     /**
      * Determines if the given object is the same type of Canvas state object
@@ -49,5 +50,5 @@ public interface CanvasState {
      * should also test equivalency of the object returned by 
      * <code>getCanvasParameterAccessor()</code>.
      */
-    public boolean equals(Object object);
+    boolean equals(Object object);
 }

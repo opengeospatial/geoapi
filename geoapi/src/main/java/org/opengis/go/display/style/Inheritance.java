@@ -21,29 +21,29 @@ public interface Inheritance {
     /**
      * Default inherit style from parent value.
      */
-    public static final boolean DEFAULT_INHERIT_STYLE_FROM_PARENT = false;
+    boolean DEFAULT_INHERIT_STYLE_FROM_PARENT = false;
 
     /**
      * Default override aggregated graphics value.
      */
-    public static final boolean DEFAULT_OVERRIDE_AGGREGATED_GRAPHICS = false;
+    boolean DEFAULT_OVERRIDE_AGGREGATED_GRAPHICS = false;
     
     /**
      * Inherit style from parent attribute name.
      */
-    public static final String INHERIT_STYLE_FROM_PARENT = "INHERITANCE_INHERIT_STYLE_FROM_PARENT";
+    String INHERIT_STYLE_FROM_PARENT = "INHERITANCE_INHERIT_STYLE_FROM_PARENT";
 
     /**
      * Override aggregated graphics attribute name.
      */
-    public static final String OVERRIDE_AGGREGATED_GRAPHICS = "INHERITANCE_OVERRIDE_AGGREGATED_GRAPHICS";
+    String OVERRIDE_AGGREGATED_GRAPHICS = "INHERITANCE_OVERRIDE_AGGREGATED_GRAPHICS";
             
     /**
      * Returns the inherit style from parent value.
      *
      * @return the inherit style from parent value.
      */
-    public boolean isInheritingStyleFromParent();
+    boolean isInheritingStyleFromParent();
     
     /**
      * Returns whether the inherit style from parent value has been set.
@@ -51,14 +51,14 @@ public interface Inheritance {
      * @return <code>true</code> if the inherit style from parent value
      *         has been set, <code>false</code> otherwise.
      */    
-    public boolean isInheritingStyleFromParentSet();
+    boolean isInheritingStyleFromParentSet();
     
     /**
      * Sets the inherit style from parent value.
      *
      * @param inheritStyleFromParent the inherit style from parent value.
      */    
-    public void setInheritingStyleFromParent(boolean inheritStyleFromParent);
+    void setInheritingStyleFromParent(boolean inheritStyleFromParent);
     
     /**
      * Sets the fact that the inherit style from parent value has been set.
@@ -66,14 +66,14 @@ public interface Inheritance {
      * @param flag <code>true</code> if the inherit style from parent value
      *             has been set, <code>false</code> otherwise.
      */    
-    public void setInheritingStyleFromParentSet(boolean flag);
+    void setInheritingStyleFromParentSet(boolean flag);
  
     /**
      * Returns the override aggregated graphics value.
      *
      * @return the override aggregated graphics value.
      */
-    public boolean isOverridingAggregatedGraphics();
+    boolean isOverridingAggregatedGraphics();
     
     /**
      * Returns whether the override aggregated graphics value has been set.
@@ -81,14 +81,14 @@ public interface Inheritance {
      * @return <code>true</code> if the override aggregated graphics value
      *         has been set, <code>false</code> otherwise.
      */    
-    public boolean isOverridingAggregatedGraphicsSet();
+    boolean isOverridingAggregatedGraphicsSet();
     
     /**
      * Sets the override aggregated graphics value.
      *
      * @param overrideAggregatedGraphics the override aggregated graphics value.
      */    
-    public void setOverridingAggregatedGraphics(boolean overrideAggregatedGraphics);
+    void setOverridingAggregatedGraphics(boolean overrideAggregatedGraphics);
     
     /**
      * Sets the fact that the override aggregated graphics value has been set.
@@ -96,5 +96,5 @@ public interface Inheritance {
      * @param flag <code>true</code> if the override aggregated graphics value
      *             has been set, <code>false</code> otherwise.
      */    
-    public void setOverridingAggregatedGraphicsSet(boolean flag);
+    void setOverridingAggregatedGraphicsSet(boolean flag);
 }

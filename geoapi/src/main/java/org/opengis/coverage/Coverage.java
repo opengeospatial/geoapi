@@ -10,14 +10,11 @@
  *************************************************************************************************/
 package org.opengis.coverage;
 
-// J2SE direct dependencies
 import java.util.Set;
 import java.util.List;
 import java.util.Collection;
 import java.awt.image.Raster;  // For Javadoc
 import java.awt.image.renderable.RenderableImage;
-
-// OpenGIS direct dependencies
 import org.opengis.metadata.extent.Extent;
 import org.opengis.geometry.Envelope;
 import org.opengis.geometry.Geometry;
@@ -27,10 +24,9 @@ import org.opengis.temporal.Period;
 import org.opengis.util.Record;
 import org.opengis.util.RecordType;
 import org.opengis.util.InternationalString;
-
-// Annotations
 import org.opengis.annotation.UML;
 import org.opengis.annotation.Extension;
+
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
 

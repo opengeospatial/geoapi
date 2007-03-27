@@ -10,8 +10,8 @@
  *************************************************************************************************/
 package org.opengis.go.display.event;
 
-// OpenGIS direct dependencies
 import org.opengis.go.display.primitive.Graphic;
+
 
 /**
  * Provides a common abstraction for the various event objects pertaining to
@@ -32,18 +32,18 @@ public interface GraphicEvent {
      *
      * @return the <code>Graphic</code> source of this event or {@code null} if none.
      */
-    public Graphic getGraphic();
+    Graphic getGraphic();
 
     /**
      * Consumes this <code>GraphicEvent</code> so that it will not be 
      * processed in the default manner by the source from which it originated.
      */
-    public void consume();
+    void consume();
 
     /**
      * Returns whether or not this event has been consumed.
      *
      * @return the consumed status.
      */
-    public boolean isConsumed();
+    boolean isConsumed();
 }

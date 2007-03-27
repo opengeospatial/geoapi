@@ -10,10 +10,7 @@
  *************************************************************************************************/
 package org.opengis.metadata.maintenance;
 
-// J2SE directdependencies
 import java.util.Set;
-
-// Annotations
 import org.opengis.annotation.UML;
 import org.opengis.feature.type.AttributeType;
 import org.opengis.feature.type.FeatureType;

@@ -10,7 +10,6 @@
  *************************************************************************************************/
 package org.opengis.referencing.operation;
 
-// Annotations
 import org.opengis.annotation.Extension;
 
 
