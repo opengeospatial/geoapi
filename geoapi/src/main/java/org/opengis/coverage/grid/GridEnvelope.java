@@ -12,7 +12,7 @@ package org.opengis.coverage.grid;
 
 // Annotations
 import org.opengis.annotation.UML;
-import org.opengis.spatialschema.geometry.geometry.Position;
+import org.opengis.geometry.coordinate.Position;
 import org.opengis.util.Cloneable;
 
 import static org.opengis.annotation.Obligation.*;

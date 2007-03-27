@@ -15,8 +15,8 @@ import java.util.Set;
 import java.util.Collection;
 
 // OpenGIS direct dependencies
-import org.opengis.spatialschema.geometry.Geometry;
-import org.opengis.spatialschema.geometry.DirectPosition;
+import org.opengis.geometry.Geometry;
+import org.opengis.geometry.DirectPosition;
 import org.opengis.temporal.Period;
 import org.opengis.util.Record;
 import org.opengis.util.RecordType;

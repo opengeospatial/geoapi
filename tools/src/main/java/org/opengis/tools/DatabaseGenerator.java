@@ -44,7 +44,7 @@ import com.sun.mirror.declaration.InterfaceDeclaration;
 // OpenGIS dependencies
 import org.opengis.annotation.UML;
 import org.opengis.annotation.Obligation;
-import org.opengis.spatialschema.geometry.Geometry;
+import org.opengis.geometry.Geometry;
 import org.opengis.util.CodeList;
 import org.opengis.util.GenericName;
 import org.opengis.util.InternationalString;

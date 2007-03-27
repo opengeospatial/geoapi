@@ -10,7 +10,7 @@ import org.opengis.feature.type.FeatureType;
 import org.opengis.feature.type.GeometryType;
 import org.opengis.referencing.crs.CRSFactory;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
-import org.opengis.spatialschema.geometry.geometry.GeometryFactory;
+import org.opengis.geometry.coordinate.GeometryFactory;
 
 /**
  * Plays the role of making actual instances of types in this puzzle.

@@ -15,7 +15,7 @@ import java.util.Set;
 
 // OpenGiS dependencies:
 import org.opengis.coverage.DomainObject;
-import org.opengis.spatialschema.geometry.Geometry;
+import org.opengis.geometry.Geometry;
 import org.opengis.temporal.TemporalGeometricPrimitive;
 
 // Annotations

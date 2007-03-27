@@ -24,7 +24,7 @@ import org.opengis.go.display.primitive.Graphic;
 import org.opengis.metadata.Identifier;
 import org.opengis.metadata.extent.GeographicBoundingBox;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
-import org.opengis.spatialschema.geometry.Envelope;
+import org.opengis.geometry.Envelope;
 import org.opengis.util.InternationalString;
 
 // Annotations

@@ -39,9 +39,9 @@ public interface ThiessenValuePolygon extends ValueObject {
      * Returns the geometry of the Thiessen polygon centred on the {@linkplain PointValuePair
      * point-value pair} identified by the {@linkplain #getControlValues control values}.
      *
-     * @todo The ISO 19123 specification returns a {@link org.opengis.spatialschema.geometry.geometry.Polygon}.
+     * @todo The ISO 19123 specification returns a {@link org.opengis.geometry.coordinate.Polygon}.
      *       We will have some trouble here, since {@code Polygon} is not a
-     *       {@link org.opengis.spatialschema.geometry.Geometry}.
+     *       {@link org.opengis.geometry.Geometry}.
      */
     @UML(identifier="geometry", obligation=MANDATORY, specification=ISO_19123)
     DomainObject getGeometry();  

@@ -3,7 +3,7 @@ package org.opengis.go.display.canvas.map2d;
 import javax.units.Unit;
 
 import org.opengis.go.display.canvas.CanvasState;
-import org.opengis.spatialschema.geometry.Envelope;
+import org.opengis.geometry.Envelope;
 
 
 /**

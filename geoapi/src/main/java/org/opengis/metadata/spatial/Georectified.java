@@ -16,7 +16,7 @@ import java.util.List;
 
 // OpenGIS direct dependencies
 import org.opengis.util.InternationalString;
-import org.opengis.spatialschema.geometry.primitive.Point;
+import org.opengis.geometry.primitive.Point;
 
 // Annotations
 import org.opengis.annotation.UML;

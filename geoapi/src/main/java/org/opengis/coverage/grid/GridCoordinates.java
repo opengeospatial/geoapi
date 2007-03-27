@@ -12,7 +12,7 @@ package org.opengis.coverage.grid;
 
 // Direct dependencies
 import org.opengis.util.Cloneable;
-import org.opengis.spatialschema.geometry.DirectPosition;
+import org.opengis.geometry.DirectPosition;
 
 // Annotations
 import org.opengis.annotation.UML;

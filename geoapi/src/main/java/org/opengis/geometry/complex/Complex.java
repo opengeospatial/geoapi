@@ -8,15 +8,15 @@
  ** All Rights Reserved. http://www.opengis.org/legal/
  **
  *************************************************************************************************/
-package org.opengis.spatialschema.geometry.complex;
+package org.opengis.geometry.complex;
 
 // J2SE direct dependencies
 import java.util.Collection;
 
 // OpenGIS direct dependencies
-import org.opengis.spatialschema.geometry.Geometry;
-import org.opengis.spatialschema.geometry.primitive.Point;     // For javadoc
-import org.opengis.spatialschema.geometry.primitive.Primitive; // For javadoc
+import org.opengis.geometry.Geometry;
+import org.opengis.geometry.primitive.Point;     // For javadoc
+import org.opengis.geometry.primitive.Primitive; // For javadoc
 
 // Annotations
 import org.opengis.annotation.UML;
@@ -39,7 +39,7 @@ import static org.opengis.annotation.Specification.*;
  * <p>
  * The "{@linkplain #getElements elements}" attribute allows {@code Complex} to inherit the
  * behavior of {@link Set Set&lt;Primitive&gt;} without confusing the same sort of behavior
- * inherited from {@link org.opengis.spatialschema.geometry.TransfiniteSet TransfiniteSet&lt;DirectPosition&gt;}
+ * inherited from {@link org.opengis.geometry.TransfiniteSet TransfiniteSet&lt;DirectPosition&gt;}
  * inherited through {@link Geometry}. Complexes shall be used in application schemas where
  * the sharing of geometry is important, such as in the use of computational topology. In a
  * complex, primitives may be aggregated many-to-many into composites for use as attributes

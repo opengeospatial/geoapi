@@ -8,10 +8,10 @@
  ** All Rights Reserved. http://www.opengis.org/legal/
  **
  *************************************************************************************************/
-package org.opengis.spatialschema.geometry.primitive;
+package org.opengis.geometry.primitive;
 
 // OpenGIS direct dependencies
-import org.opengis.spatialschema.geometry.Boundary;
+import org.opengis.geometry.Boundary;
 
 // Annotations
 import org.opengis.annotation.UML;
@@ -21,7 +21,7 @@ import static org.opengis.annotation.Specification.*;
 
 /**
  * The boundary of {@linkplain Primitive primitive} objects. This is the root for the various
- * return types of the {@link org.opengis.spatialschema.geometry.Geometry#getBoundary getBoundary()} method for
+ * return types of the {@link org.opengis.geometry.Geometry#getBoundary getBoundary()} method for
  * subtypes of {@link Primitive}. Since points have no boundary, no special subclass is needed
  * for their boundary.
  *

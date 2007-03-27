@@ -8,15 +8,15 @@
  ** All Rights Reserved. http://www.opengis.org/legal/
  **
  *************************************************************************************************/
-package org.opengis.spatialschema.geometry.primitive;
+package org.opengis.geometry.primitive;
 
 // J2SE direct dependencies
 import java.util.Set;
 
 // OpenGIS direct dependencies
-import org.opengis.spatialschema.geometry.Geometry;
-import org.opengis.spatialschema.geometry.Envelope;
-import org.opengis.spatialschema.geometry.complex.Complex;
+import org.opengis.geometry.Geometry;
+import org.opengis.geometry.Envelope;
+import org.opengis.geometry.complex.Complex;
 
 // Annotations
 import org.opengis.annotation.UML;
@@ -65,7 +65,7 @@ public interface Primitive extends Geometry {
     /**
      * Returns the {@code Primitive}s which are by definition coincident with this one.
      * This allows applications to override the
-     * {@link org.opengis.spatialschema.geometry.TransfiniteSet TransfiniteSet&lt;DirectPosition&gt;}
+     * {@link org.opengis.geometry.TransfiniteSet TransfiniteSet&lt;DirectPosition&gt;}
      * interpretation and its associated computational geometry, and declare one
      * {@code Primitive} to be "interior to" another.
      *
@@ -135,5 +135,5 @@ public interface Primitive extends Geometry {
     public OrientablePrimitive[] getProxy();
 
 //    public org.opengis.spatialschema.topology.primitive.TP_Primitive topology[];
-//    public org.opengis.spatialschema.geometry.complex.GM_Composite composite[];
+//    public org.opengis.geometry.complex.GM_Composite composite[];
 }

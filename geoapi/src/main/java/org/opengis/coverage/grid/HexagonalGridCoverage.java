@@ -19,7 +19,7 @@ import org.opengis.coverage.DomainObject;  // For javadoc
 import org.opengis.coverage.ContinuousCoverage;
 import org.opengis.coverage.InterpolationMethod;
 import org.opengis.coverage.DiscreteSurfaceCoverage;
-import org.opengis.spatialschema.geometry.DirectPosition;
+import org.opengis.geometry.DirectPosition;
 
 //Annotations
 import org.opengis.annotation.UML;

@@ -2,7 +2,7 @@ package org.opengis.feature;
 
 import org.opengis.feature.type.GeometryType;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
-import org.opengis.spatialschema.geometry.BoundingBox;
+import org.opengis.geometry.BoundingBox;
 
 //Java 1.4 imports
 //import org.opengis.feature.type.AttributeType;

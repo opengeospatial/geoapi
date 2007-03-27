@@ -15,7 +15,7 @@ import java.util.Set;
 
 // OpenGIS direct dependencies
 import org.opengis.coverage.DomainObject;
-import org.opengis.spatialschema.geometry.primitive.Point;
+import org.opengis.geometry.primitive.Point;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 
 // Annotations

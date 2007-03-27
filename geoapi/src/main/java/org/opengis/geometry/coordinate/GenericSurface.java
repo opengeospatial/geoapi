@@ -8,10 +8,10 @@
  ** All Rights Reserved. http://www.opengis.org/legal/
  **
  *************************************************************************************************/
-package org.opengis.spatialschema.geometry.geometry;
+package org.opengis.geometry.coordinate;
 
 // OpenGIS direct dependencies
-import org.opengis.spatialschema.geometry.DirectPosition;
+import org.opengis.geometry.DirectPosition;
 
 // Annotations
 import org.opengis.annotation.UML;
@@ -20,8 +20,8 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * Common interface for {@linkplain org.opengis.spatialschema.geometry.primitive.Surface surface} and
- * {@linkplain org.opengis.spatialschema.geometry.primitive.SurfacePatch surface patch}. {@code Surface}
+ * Common interface for {@linkplain org.opengis.geometry.primitive.Surface surface} and
+ * {@linkplain org.opengis.geometry.primitive.SurfacePatch surface patch}. {@code Surface}
  * and {@code SurfacePatch} represent sections of surface geometry,
  * and therefore share a number of operation signatures.
  *

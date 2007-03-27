@@ -8,10 +8,10 @@
  ** All Rights Reserved. http://www.opengis.org/legal/
  **
  *************************************************************************************************/
-package org.opengis.spatialschema.geometry;
+package org.opengis.geometry;
 
 // OpenGIS direct dependencies
-import org.opengis.spatialschema.geometry.complex.Complex;
+import org.opengis.geometry.complex.Complex;
 
 // Annotations
 import org.opengis.annotation.UML;

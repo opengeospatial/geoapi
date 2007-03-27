@@ -8,13 +8,13 @@
  ** All Rights Reserved. http://www.opengis.org/legal/
  **
  *************************************************************************************************/
-package org.opengis.spatialschema.geometry.aggregate;
+package org.opengis.geometry.aggregate;
 
 // J2SE direct dependencies
 import java.util.Set;
 
 // OpenGIS direct dependencies
-import org.opengis.spatialschema.geometry.Geometry;
+import org.opengis.geometry.Geometry;
 
 // Annotations
 import org.opengis.annotation.UML;

@@ -14,7 +14,7 @@ package org.opengis.go.display.primitive;
 import java.awt.image.RenderedImage;
 
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
-import org.opengis.spatialschema.geometry.DirectPosition;
+import org.opengis.geometry.DirectPosition;
 
 
 /**

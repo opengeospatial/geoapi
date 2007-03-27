@@ -8,13 +8,13 @@
  ** All Rights Reserved. http://www.opengis.org/legal/
  **
  *************************************************************************************************/
-package org.opengis.spatialschema.geometry.complex;
+package org.opengis.geometry.complex;
 
 // J2SE direct dependencies
 import java.util.List;
 
 // OpenGIS direct dependencies
-import org.opengis.spatialschema.geometry.primitive.Primitive;
+import org.opengis.geometry.primitive.Primitive;
 
 // Annotations
 import org.opengis.annotation.UML;
@@ -39,7 +39,7 @@ public interface Composite extends Complex {
      * Returns a homogeneous collection of {@linkplain Primitive primitives} whose union would be
      * the core geometry of the composite. The complex would include all primitives in the generator
      * and all primitives on the boundary of these primitives, and so forth until
-     * {@linkplain org.opengis.spatialschema.geometry.primitive.Point points} are included. Thus the
+     * {@linkplain org.opengis.geometry.primitive.Point points} are included. Thus the
      * {@code generators} on {@code Composite} is a subset of the
      * {@linkplain Complex#getElements elements} on {@linkplain Complex complex}.
      *

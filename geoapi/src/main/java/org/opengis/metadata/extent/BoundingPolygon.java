@@ -14,7 +14,7 @@ package org.opengis.metadata.extent;
 import java.util.Collection;
 
 // OpenGIS direct dependencies
-import org.opengis.spatialschema.geometry.Geometry;
+import org.opengis.geometry.Geometry;
 
 // Annotations
 import org.opengis.annotation.UML;

@@ -17,7 +17,7 @@ import java.util.Collection;
 // OpenGIS direct dependencies
 import org.opengis.coverage.ContinuousCoverage;
 import org.opengis.coverage.InterpolationMethod;
-import org.opengis.spatialschema.geometry.DirectPosition;
+import org.opengis.geometry.DirectPosition;
 
 // Annotations
 import org.opengis.annotation.UML;

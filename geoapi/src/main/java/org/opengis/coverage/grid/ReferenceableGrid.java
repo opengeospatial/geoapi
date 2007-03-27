@@ -12,7 +12,7 @@ package org.opengis.coverage.grid;
 
 // OpenGIS direct dependencies
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
-import org.opengis.spatialschema.geometry.DirectPosition;
+import org.opengis.geometry.DirectPosition;
 
 // Annotations
 import org.opengis.annotation.UML;

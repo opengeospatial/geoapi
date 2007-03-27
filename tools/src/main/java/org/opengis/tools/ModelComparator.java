@@ -37,8 +37,8 @@ import org.opengis.annotation.UML;
 import org.opengis.annotation.XmlElement;
 import org.opengis.parameter.ParameterValueGroup;
 import org.opengis.parameter.ParameterDescriptorGroup;
-import org.opengis.spatialschema.geometry.geometry.PointGrid;
-import org.opengis.spatialschema.geometry.geometry.PointArray;
+import org.opengis.geometry.coordinate.PointGrid;
+import org.opengis.geometry.coordinate.PointArray;
 
 
 /**
