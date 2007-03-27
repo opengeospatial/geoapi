@@ -19,27 +19,23 @@ package org.opengis.geometry;
  * allows to round a direct position to the nearest allowed point. The {@link #getType}
  * method describes the collapsing behavior of a direct position.
  * <p>
- * {@code PrecisionModel} instances can be sorted by their {@linkplain #getScale scale}.
+ * {@code Precision} instances can be sorted by their {@linkplain #getScale scale}.
  * </p>
  *
  * @author Jody Garnett
  * @since GeoAPI 2.1
- *
- * @todo Define a {@code compareTo} method for documentation purpose.
  */
 public interface Precision extends Comparable<Precision> {
     /**
-     * Sort PrecisionModel according to number of significant digits.
-     * <p>
-     * Implemented as:<pre><code>
-     * return other.getMaximumSignificantDigits() - getMaximumSignificantDigits(); 
-     * </code></pre>
+     * Compares this precision model with the specified one. Returns -1 is this model is
+     * less accurate than the other one, +1 if it is more accurate, or 0 if they have the
+     * same accuracy.
      * 
-     * @param other Other PrecisionModel to compare against
+     * @param other Other precision model to compare against.
      * @return a negative integer, zero, or a positive integer as this object
-     *      is less than, equal to, or greater than precision then other
+     *      is less than, equal to, or greater than the other.
      */
-    public int compareTo(Precision other);
+    int compareTo(Precision other);
     
     /**
      * Returns the maximum number of significant digits provided by this precision model..
@@ -49,7 +45,9 @@ public interface Precision extends Comparable<Precision> {
      * </p>
      * 
      * @return number of significant digits
-     * @see getScale()
+     * @see #getScale()
+     *
+     * @deprecated This is redundant with {@link #getScale}.
      */
     int getMaximumSignificantDigits();
 
@@ -59,10 +57,16 @@ public interface Precision extends Comparable<Precision> {
      * Multiply by this value and then divide by this value to round correctly:
      * 
      * <blockquote><pre>
-     * return Math.round(value * pm.getScale()) / pm.getScale();
+     * double scale = pm.getScale();
+     * return Math.round(value * scale) / scale;
      * </pre></blockquote>
      *
      * So to round to {@code 3} significant digits we would have a scale of {@code 1000}.
+     * Tip: the number of significant digits can be computed as below:
+     * 
+     * <blockquote><pre>
+     * int significantDigits = (int) Math.ceil(Math.log10(pm.getScale()));
+     * </pre></blockquote>
      * 
      * @return Multiplying factor used before rounding.
      */
@@ -76,7 +80,7 @@ public interface Precision extends Comparable<Precision> {
     /**
      * Rounds a direct position to this precision model in place.
      * <p>
-     * It is likely that a PrecisionModel instance will keep different rounding rules for different
+     * It is likely that a {@code Precision} instance will keep different rounding rules for different
      * axis (example <var>x</var> & <var>y</var> ordinates may be handled differently then height),
      * by always rounding a direct position as a whole we will enable this functionality.
      */

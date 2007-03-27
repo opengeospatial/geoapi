@@ -38,6 +38,7 @@ import static org.opengis.annotation.Specification.*;
  *
  * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
  * @author Martin Desruisseaux (IRD)
+ * @author Cory Horner (Refractions Research)
  * @since GeoAPI 2.0
  */
 @Profile (level=CORE)
@@ -111,8 +112,9 @@ public interface MetaData {
     String getMetadataStandardVersion();
 
     /**
-     * Uniformed Resource Identifier (URI) of the dataset to which the metadata
-     * applies.
+     * Uniformed Resource Identifier (URI) of the dataset to which the metadata applies.
+     *
+     * @since GeoAPI 2.1
      */
     @UML(identifier="dataSetURI", obligation=OPTIONAL, specification=ISO_19115)
     String getDataSetUri();
@@ -120,6 +122,8 @@ public interface MetaData {
     /**
      * Provides information about an alternatively used localized character
      * string for a linguistic extension
+     *
+     * @since GeoAPI 2.1
      */
     @UML(identifier="locale", obligation=OPTIONAL, specification=ISO_19115)
     Collection<Locale> getLocales();    

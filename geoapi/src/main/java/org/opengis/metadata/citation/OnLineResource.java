@@ -26,6 +26,7 @@ import static org.opengis.annotation.Specification.*;
  *
  * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
  * @author Martin Desruisseaux (IRD)
+ * @author Cory Horner (Refractions Research)
  * @since GeoAPI 1.0
  */
 @Profile (level=CORE)

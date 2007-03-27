@@ -40,35 +40,34 @@ public final class AssociationType extends CodeList<AssociationType> {
     private static final List<AssociationType> VALUES = new ArrayList<AssociationType>(5);
 
     /**
-     * reference from one dataset to another
+     * Reference from one dataset to another.
      */
     @UML(identifier="crossReference", obligation=CONDITIONAL, specification=ISO_19115)
     public static final AssociationType CROSS_REFERENCE = new AssociationType("CROSS_REFERENCE");
 
     /**
-     * reference to a master dataset of which this one is a part
+     * Reference to a master dataset of which this one is a part.
      */
     @UML(identifier="largerWorkCitation", obligation=CONDITIONAL, specification=ISO_19115)
     public static final AssociationType LARGER_WORD_CITATION = new AssociationType("LARGER_WORD_CITATION");
 
     /**
-     *  part of same structured set of data held in a computer
+     * Part of same structured set of data held in a computer.
      */
     @UML(identifier="partOfSeamlessDatabase", obligation=CONDITIONAL, specification=ISO_19115)
     public static final AssociationType PART_OF_SEAMLESS_DATABASE = new AssociationType("PART_OF_SEAMLESS_DATABASE");
 
     /**
-     * mapping and charting information from which the dataset content originates
+     * Mapping and charting information from which the dataset content originates.
      */
     @UML(identifier="source", obligation=CONDITIONAL, specification=ISO_19115)
     public static final AssociationType SOURCE = new AssociationType("SOURCE");
 
     /**
-     * part of a set of imagery that when used together, provides three-dimensional images
+     * Part of a set of imagery that when used together, provides three-dimensional images.
      */
     @UML(identifier="stereoMate", obligation=CONDITIONAL, specification=ISO_19115)
     public static final AssociationType STEREO_MATE = new AssociationType("STEREO_MATE");
-
 
     /**
      * Constructs an enum with the given name. The new enum is

@@ -10,9 +10,8 @@
  *************************************************************************************************/
 package org.opengis.metadata.extent;
 
-import java.util.Date;
-import org.opengis.geometry.primitive.Primitive;
 import org.opengis.annotation.UML;
+import org.opengis.temporal.TemporalPrimitive;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -31,5 +30,5 @@ public interface TemporalExtent {
      * Returns the date and time for the content of the dataset.
      */
     @UML(identifier="extent", obligation=MANDATORY, specification=ISO_19108)
-    Primitive getExtent();
+    TemporalPrimitive getExtent();
 }
