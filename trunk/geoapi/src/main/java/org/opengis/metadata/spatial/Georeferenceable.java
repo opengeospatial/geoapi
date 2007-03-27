@@ -12,6 +12,7 @@ package org.opengis.metadata.spatial;
 
 import java.util.Collection;
 import org.opengis.util.InternationalString;
+import org.opengis.util.Record;
 import org.opengis.metadata.citation.Citation;
 import org.opengis.annotation.UML;
 
@@ -26,6 +27,7 @@ import static org.opengis.annotation.Specification.*;
  *
  * @version <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
  * @author Martin Desruisseaux (IRD)
+ * @author Cory Horner (Refractions Research)
  * @since GeoAPI 2.0
  */
 @UML(identifier="MD_Georeferenceable", specification=ISO_19115)
@@ -50,10 +52,15 @@ public interface Georeferenceable extends GridSpatialRepresentation {
 
     /**
      * Terms which support grid data georeferencing.
-     *
-     * @todo Return type in UML is {@code Record}.
      */
-    @UML(identifier="parameters", obligation=OPTIONAL, specification=ISO_19115)
+    @UML(identifier="parameters", obligation=MANDATORY, specification=ISO_19115)
+    Record getGeoreferencedParameters();
+    
+    /**
+     * Terms which support grid data georeferencing.
+     *
+     * @deprecated Use getGeoreferencedParameters instead.
+     */
     Object getParameters();
 
     /**

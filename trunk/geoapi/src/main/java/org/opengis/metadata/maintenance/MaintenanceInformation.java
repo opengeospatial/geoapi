@@ -81,9 +81,16 @@ public interface MaintenanceInformation {
     
     /**
      * Information regarding specific requirements for maintaining the resource.
+     * 
+     * @deprecated use getMaintenanceNotes()
+     */
+    InternationalString getMaintenanceNote();
+
+    /**
+     * Information regarding specific requirements for maintaining the resource.
      */
     @UML(identifier="maintenanceNote", obligation=OPTIONAL, specification=ISO_19115)
-    InternationalString getMaintenanceNote();
+    Collection<InternationalString> getMaintenanceNotes();
 
     /**
      * Identification of, and means of communicating with,
