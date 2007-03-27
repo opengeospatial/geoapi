@@ -12,14 +12,12 @@ package org.opengis.referencing.cs;
 
 // J2SE and extensions
 import java.util.Map;
+
 import javax.units.Unit;
 
-// OpenGIS dependencies
-import org.opengis.referencing.ObjectFactory;
-import org.opengis.referencing.FactoryException;
-
-// Annotations
 import org.opengis.annotation.Extension;
+import org.opengis.referencing.FactoryException;
+import org.opengis.referencing.ObjectFactory;
 
 
 /**

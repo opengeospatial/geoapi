@@ -8,22 +8,21 @@
  ** All Rights Reserved. http://www.opengis.org/legal/
  **
  *************************************************************************************************/
-package org.opengis.spatialschema.geometry;
+package org.opengis.geometry;
 
 // OpenGIS direct dependencies
-import org.opengis.util.Cloneable;
-import org.opengis.spatialschema.geometry.geometry.Position;
-import org.opengis.referencing.crs.CoordinateReferenceSystem;
+import static org.opengis.annotation.Obligation.MANDATORY;
+import static org.opengis.annotation.Specification.ISO_19107;
 
-// Annotations
 import org.opengis.annotation.UML;
-import static org.opengis.annotation.Obligation.*;
-import static org.opengis.annotation.Specification.*;
+import org.opengis.geometry.coordinate.Position;
+import org.opengis.referencing.crs.CoordinateReferenceSystem;
+import org.opengis.util.Cloneable;
 
 /**
  * Holds the coordinates for a position within some coordinate reference system. Since
  * {@code DirectPosition}s, as data types, will often be included in larger objects (such as
- * {@linkplain org.opengis.spatialschema.geometry.Geometry geometries}) that have references to
+ * {@linkplain org.opengis.geometry.coordinate geometries}) that have references to
  * {@link CoordinateReferenceSystem}, the {@link #getCoordinateReferenceSystem} method may returns
  * {@code null} if this particular {@code DirectPosition} is included in a larger object with such a
  * reference to a {@linkplain CoordinateReferenceSystem coordinate reference system}. In this case,

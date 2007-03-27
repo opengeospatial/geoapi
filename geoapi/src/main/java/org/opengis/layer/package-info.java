@@ -13,5 +13,5 @@
 package org.opengis.layer;
 
 // Annotations
-import org.opengis.annotation.XmlSchema;
-import static org.opengis.annotation.Specification.*;
+import static org.opengis.annotation.Specification.ISO_19128;
+

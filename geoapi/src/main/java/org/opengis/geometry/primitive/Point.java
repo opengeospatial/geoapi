@@ -8,18 +8,16 @@
  ** All Rights Reserved. http://www.opengis.org/legal/
  **
  *************************************************************************************************/
-package org.opengis.spatialschema.geometry.primitive;
+package org.opengis.geometry.primitive;
 
 // OpenGIS direct dependencies
-import org.opengis.spatialschema.geometry.DirectPosition;
-import org.opengis.spatialschema.geometry.geometry.Position;
-import org.opengis.spatialschema.geometry.UnmodifiableGeometryException;
+import static org.opengis.annotation.Obligation.MANDATORY;
+import static org.opengis.annotation.Specification.ISO_19107;
 
-
-// Annotations
 import org.opengis.annotation.UML;
-import static org.opengis.annotation.Obligation.*;
-import static org.opengis.annotation.Specification.*;
+import org.opengis.geometry.DirectPosition;
+import org.opengis.geometry.UnmodifiableGeometryException;
+import org.opengis.geometry.coordinate.Position;
 
 
 /**
@@ -93,5 +91,5 @@ public interface Point extends Primitive, Position {
     @UML(identifier="bearing", obligation=MANDATORY, specification=ISO_19107)
     public Bearing getBearing(Position toPoint);
 
-//    public org.opengis.spatialschema.geometry.complex.GM_CompositePoint composite[];
+//    public org.opengis.geometry.complex.GM_CompositePoint composite[];
 }

@@ -8,20 +8,19 @@
  ** All Rights Reserved. http://www.opengis.org/legal/
  **
  *************************************************************************************************/
-package org.opengis.spatialschema.geometry.geometry;
+package org.opengis.geometry.coordinate;
 
 // OpenGIS direct dependencies
-import org.opengis.spatialschema.geometry.DirectPosition;
+import static org.opengis.annotation.Obligation.MANDATORY;
+import static org.opengis.annotation.Specification.ISO_19107;
 
-// Annotations
 import org.opengis.annotation.UML;
-import static org.opengis.annotation.Obligation.*;
-import static org.opengis.annotation.Specification.*;
+import org.opengis.geometry.DirectPosition;
 
 
 /**
- * Common interface for {@linkplain org.opengis.spatialschema.geometry.primitive.Curve curve} and
- * {@linkplain org.opengis.spatialschema.geometry.primitive.CurveSegment curve segment}. {@code Curve}
+ * Common interface for {@linkplain org.opengis.geometry.primitive.Curve curve} and
+ * {@linkplain org.opengis.geometry.primitive.CurveSegment curve segment}. {@code Curve}
  * and {@code CurveSegment} both represent sections of curvilinear
  * geometry, and therefore share a number of operation signatures.
  *
@@ -33,7 +32,7 @@ import static org.opengis.annotation.Specification.*;
 public interface GenericCurve {
     /**
      * Returns the direct position of the first point on the {@code GenericCurve}.
-     * This differs from the boundary operator in {@link org.opengis.spatialschema.geometry.primitive.Primitive},
+     * This differs from the boundary operator in {@link org.opengis.geometry.primitive.Primitive},
      * since it returns only the values of this point, not representative objects.
      *
      * @return The first point on the {@code GenericCurve}.
@@ -46,7 +45,7 @@ public interface GenericCurve {
 
     /**
      * Returns the direct position of the last point on the {@code GenericCurve}.
-     * This differs from the boundary operator in {@link org.opengis.spatialschema.geometry.primitive.Primitive},
+     * This differs from the boundary operator in {@link org.opengis.geometry.primitive.Primitive},
      * since it returns only the values of this point, not representative objects.
      *
      * @return The last point on the {@code GenericCurve}.
@@ -75,11 +74,11 @@ public interface GenericCurve {
 
     /**
      * Indicates the parameter for the {@linkplain #getStartPoint start point}.
-     * The start parameter of a {@linkplain org.opengis.spatialschema.geometry.primitive.Curve curve} shall always be 0.
-     * For {@linkplain org.opengis.spatialschema.geometry.primitive.CurveSegment curve segments} within a
-     * {@linkplain org.opengis.spatialschema.geometry.primitive.Curve curve}, the start of the
-     * {@linkplain org.opengis.spatialschema.geometry.primitive.CurveSegment curve segment} shall be equal to those of the
-     * {@linkplain org.opengis.spatialschema.geometry.primitive.Curve curve} where this segment begins, so that the
+     * The start parameter of a {@linkplain org.opengis.geometry.primitive.Curve curve} shall always be 0.
+     * For {@linkplain org.opengis.geometry.primitive.CurveSegment curve segments} within a
+     * {@linkplain org.opengis.geometry.primitive.Curve curve}, the start of the
+     * {@linkplain org.opengis.geometry.primitive.CurveSegment curve segment} shall be equal to those of the
+     * {@linkplain org.opengis.geometry.primitive.Curve curve} where this segment begins, so that the
      * start parameter of any segment (except the first) shall be equal to the end
      * parameter of the previous segment.
      *
@@ -96,11 +95,11 @@ public interface GenericCurve {
 
     /**
      * Indicates the parameter for the {@linkplain #getEndPoint end point}.
-     * The end parameter of a {@linkplain org.opengis.spatialschema.geometry.primitive.Curve curve} shall always be the arc
-     * length of the curve. For {@linkplain org.opengis.spatialschema.geometry.primitive.CurveSegment curve segments} within a
-     * {@linkplain org.opengis.spatialschema.geometry.primitive.Curve curve}, the end parameters of the
-     * {@linkplain org.opengis.spatialschema.geometry.primitive.CurveSegment curve segment} shall be equal to those of the
-     * {@linkplain org.opengis.spatialschema.geometry.primitive.Curve curve} where this segment ends, so that the
+     * The end parameter of a {@linkplain org.opengis.geometry.primitive.Curve curve} shall always be the arc
+     * length of the curve. For {@linkplain org.opengis.geometry.primitive.CurveSegment curve segments} within a
+     * {@linkplain org.opengis.geometry.primitive.Curve curve}, the end parameters of the
+     * {@linkplain org.opengis.geometry.primitive.CurveSegment curve segment} shall be equal to those of the
+     * {@linkplain org.opengis.geometry.primitive.Curve curve} where this segment ends, so that the
      * start parameter of any segment (except the first) shall be equal to the end
      * parameter of the previous segment.
      *
@@ -165,8 +164,8 @@ public interface GenericCurve {
      * Returns the direct position for a constructive parameter. This method shall be
      * an alternate representation of the curve as the continuous image of a real number
      * interval without the restriction that the parameter represents the arc length of the curve,
-     * nor restrictions between a {@linkplain org.opengis.spatialschema.geometry.primitive.Curve curve} and its component
-     * {@linkplain org.opengis.spatialschema.geometry.primitive.CurveSegment curve segments}. The most common use of this
+     * nor restrictions between a {@linkplain org.opengis.geometry.primitive.Curve curve} and its component
+     * {@linkplain org.opengis.geometry.primitive.CurveSegment curve segments}. The most common use of this
      * operation is to expose the constructive equations of the underlying curve, especially useful
      * when that curve is used to construct a parametric surface.
      *
@@ -221,7 +220,7 @@ public interface GenericCurve {
      * points is not on the curve, then it shall be projected to the nearest {@linkplain DirectPosition
      * direct position} on the curve before the distance is calculated. If the curve is not simple and
      * passes through either of the two points more than once, the distance shall be the minimal distance
-     * between the two points on this {@linkplain org.opengis.spatialschema.geometry.primitive.Curve curve}.
+     * between the two points on this {@linkplain org.opengis.geometry.primitive.Curve curve}.
      *
      * @param point1 The first point, or {@code null} for the
      *               {@linkplain #getStartPoint start point}.

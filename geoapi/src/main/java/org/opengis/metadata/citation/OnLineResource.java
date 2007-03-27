@@ -11,17 +11,16 @@
 package org.opengis.metadata.citation;
 
 // J2SE direct dependencies
+import static org.opengis.annotation.ComplianceLevel.CORE;
+import static org.opengis.annotation.Obligation.MANDATORY;
+import static org.opengis.annotation.Obligation.OPTIONAL;
+import static org.opengis.annotation.Specification.ISO_19115;
+
 import java.net.URI;
 
-// OpenGIS direct dependencies
-import org.opengis.util.InternationalString;
-
-// Annotations
-import org.opengis.annotation.UML;
 import org.opengis.annotation.Profile;
-import static org.opengis.annotation.Obligation.*;
-import static org.opengis.annotation.ComplianceLevel.*;
-import static org.opengis.annotation.Specification.*;
+import org.opengis.annotation.UML;
+import org.opengis.util.InternationalString;
 
 
 /**

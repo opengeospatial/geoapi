@@ -8,14 +8,13 @@
  ** All Rights Reserved. http://www.opengis.org/legal/
  **
  *************************************************************************************************/
-package org.opengis.spatialschema.geometry;
+package org.opengis.geometry;
 
 // J2SE direct dependencies
 import java.util.List;
 
-// OpenGIS direct dependencies
+import org.opengis.geometry.coordinate.Position;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
-import org.opengis.spatialschema.geometry.geometry.Position;
 
 
 /**
@@ -61,7 +60,7 @@ public interface PositionFactory {
      * Creates a (possibiliy optimized) list for direct positions. The list is initially
      * empty. New direct positions can be stored using the {@link List#add} method.
      *
-     * @todo How is the list related to {@link org.opengis.spatialschema.geometry.geometry.PointArray}?
+     * @todo How is the list related to {@link org.opengis.geometry.coordinate.PointArray}?
      */
     List<Position> createPositionList();
 

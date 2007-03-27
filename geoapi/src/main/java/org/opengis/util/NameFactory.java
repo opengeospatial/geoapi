@@ -14,7 +14,6 @@ package org.opengis.util;
 import java.util.Locale;
 import java.util.Map;
 
-// Annotations
 import org.opengis.annotation.Extension;
 
 

@@ -11,20 +11,20 @@
 package org.opengis.referencing.operation;
 
 // J2SE direct dependencies
+import static org.opengis.annotation.Obligation.CONDITIONAL;
+import static org.opengis.annotation.Obligation.MANDATORY;
+import static org.opengis.annotation.Obligation.OPTIONAL;
+import static org.opengis.annotation.Specification.ISO_19111;
+import static org.opengis.annotation.Specification.OGC_01009;
+
 import java.util.Collection;
 
-// OpenGIS direct dependencies
+import org.opengis.annotation.UML;
+import org.opengis.metadata.extent.Extent;
+import org.opengis.metadata.quality.PositionalAccuracy;
 import org.opengis.referencing.IdentifiedObject;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
-import org.opengis.metadata.quality.PositionalAccuracy;
-import org.opengis.metadata.extent.Extent;
 import org.opengis.util.InternationalString;
-
-// Annotations
-import org.opengis.annotation.UML;
-import org.opengis.annotation.Extension;
-import static org.opengis.annotation.Obligation.*;
-import static org.opengis.annotation.Specification.*;
 
 
 /**

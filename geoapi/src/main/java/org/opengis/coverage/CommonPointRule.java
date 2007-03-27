@@ -11,18 +11,16 @@
 package org.opengis.coverage;
 
 // J2SE direct dependencies
-import java.util.List;
+import static org.opengis.annotation.Obligation.CONDITIONAL;
+import static org.opengis.annotation.Specification.ISO_19123;
+
 import java.util.ArrayList;
-import java.util.Collection; // For javadoc
+import java.util.Collection;
+import java.util.List;
 
-// OpenGIS direct dependencies
-import org.opengis.util.CodeList;
-import org.opengis.spatialschema.geometry.DirectPosition;  // For javadoc
-
-// Annotations
 import org.opengis.annotation.UML;
-import static org.opengis.annotation.Obligation.*;
-import static org.opengis.annotation.Specification.*;
+import org.opengis.geometry.DirectPosition;
+import org.opengis.util.CodeList;
 
 
 /**

@@ -15,7 +15,6 @@ import java.io.IOException;
 import java.net.URI;
 import java.util.Map;
 
-// OpenGIS direct dependencies
 import org.opengis.util.InternationalString;
 
 

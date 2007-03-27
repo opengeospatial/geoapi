@@ -11,17 +11,15 @@
 package org.opengis.coverage.grid;
 
 // J2SE direct dependencies
+import static org.opengis.annotation.Obligation.MANDATORY;
+import static org.opengis.annotation.Specification.ISO_19123;
+
 import java.util.List;
 
-// OpenGIS dependencies
-import org.opengis.spatialschema.geometry.DirectPosition;
-import org.opengis.referencing.crs.CoordinateReferenceSystem;
-import org.opengis.referencing.datum.Datum;  // For javadoc
-
-// Annotations
 import org.opengis.annotation.UML;
-import static org.opengis.annotation.Obligation.*;
-import static org.opengis.annotation.Specification.*;
+import org.opengis.geometry.DirectPosition;
+import org.opengis.referencing.crs.CoordinateReferenceSystem;
+import org.opengis.referencing.datum.Datum;
 
 
 /**

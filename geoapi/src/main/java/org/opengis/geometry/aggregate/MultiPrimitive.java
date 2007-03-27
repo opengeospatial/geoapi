@@ -8,15 +8,13 @@
  ** All Rights Reserved. http://www.opengis.org/legal/
  **
  *************************************************************************************************/
-package org.opengis.spatialschema.geometry.aggregate;
+package org.opengis.geometry.aggregate;
 
 // OpenGIS direct dependencies
-import org.opengis.spatialschema.geometry.primitive.Primitive;
+import static org.opengis.annotation.Specification.ISO_19107;
 
-// Annotations
 import org.opengis.annotation.UML;
-import static org.opengis.annotation.Obligation.*;
-import static org.opengis.annotation.Specification.*;
+import org.opengis.geometry.primitive.Primitive;
 
 
 /**

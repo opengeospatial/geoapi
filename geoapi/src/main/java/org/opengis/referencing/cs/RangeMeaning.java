@@ -11,17 +11,14 @@
 package org.opengis.referencing.cs;
 
 // J2SE directdependencies
-import java.util.List;
+import static org.opengis.annotation.Obligation.CONDITIONAL;
+import static org.opengis.annotation.Specification.ISO_19111;
+
 import java.util.ArrayList;
+import java.util.List;
 
-// OpenGIS direct dependencies
-import org.opengis.util.CodeList;
-
-// Annotations
 import org.opengis.annotation.UML;
-import org.opengis.annotation.Extension;
-import static org.opengis.annotation.Obligation.*;
-import static org.opengis.annotation.Specification.*;
+import org.opengis.util.CodeList;
 
 
 /**

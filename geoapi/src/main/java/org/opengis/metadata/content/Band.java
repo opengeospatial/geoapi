@@ -11,12 +11,13 @@
 package org.opengis.metadata.content;
 
 // J2SE extensions
+import static org.opengis.annotation.Obligation.CONDITIONAL;
+import static org.opengis.annotation.Obligation.OPTIONAL;
+import static org.opengis.annotation.Specification.ISO_19115;
+
 import javax.units.Unit;
 
-// Annotations
 import org.opengis.annotation.UML;
-import static org.opengis.annotation.Obligation.*;
-import static org.opengis.annotation.Specification.*;
 
 
 /**

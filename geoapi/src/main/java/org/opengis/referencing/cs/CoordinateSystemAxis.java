@@ -11,13 +11,15 @@
 package org.opengis.referencing.cs;
 
 // Direct dependencies
-import javax.units.Unit;
-import org.opengis.referencing.IdentifiedObject;
+import static org.opengis.annotation.Obligation.CONDITIONAL;
+import static org.opengis.annotation.Obligation.MANDATORY;
+import static org.opengis.annotation.Obligation.OPTIONAL;
+import static org.opengis.annotation.Specification.ISO_19111;
 
-// Annotations
+import javax.units.Unit;
+
 import org.opengis.annotation.UML;
-import static org.opengis.annotation.Obligation.*;
-import static org.opengis.annotation.Specification.*;
+import org.opengis.referencing.IdentifiedObject;
 
 
 /**

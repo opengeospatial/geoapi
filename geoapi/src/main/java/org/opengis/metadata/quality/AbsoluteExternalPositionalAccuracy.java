@@ -11,12 +11,9 @@
 package org.opengis.metadata.quality;
 
 // J2SE extensions
-import javax.units.Unit;
+import static org.opengis.annotation.Specification.ISO_19115;
 
-// Annotations
 import org.opengis.annotation.UML;
-import static org.opengis.annotation.Obligation.*;
-import static org.opengis.annotation.Specification.*;
 
 
 /**

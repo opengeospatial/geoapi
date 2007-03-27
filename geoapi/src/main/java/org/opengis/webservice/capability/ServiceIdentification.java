@@ -44,18 +44,12 @@
 package org.opengis.webservice.capability;
 
 // OpenGIS direct dependencies
-import org.opengis.webservice.Description;
-import org.opengis.webservice.MetadataLink;
-import org.opengis.webservice.WebServiceException;
+import static org.opengis.annotation.Specification.UNSPECIFIED;
+
+import org.opengis.annotation.UML;
 import org.opengis.metadata.constraint.Constraints;
 import org.opengis.metadata.identification.Keywords;
-import org.opengis.metadata.citation.ResponsibleParty;
 import org.opengis.util.InternationalString;
-
-// Annotations
-import org.opengis.annotation.UML;
-import static org.opengis.annotation.Obligation.*;
-import static org.opengis.annotation.Specification.*;
 
 
 /**

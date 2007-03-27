@@ -15,7 +15,6 @@ import java.awt.Component;
 import java.awt.Graphics;
 import java.net.URL;
 import java.util.Collection;
-import java.util.List;
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;

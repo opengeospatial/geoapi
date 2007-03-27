@@ -11,7 +11,7 @@
 package org.opengis.referencing;
 
 // OpenGIS dependencies
-import org.opengis.metadata.Identifier;   // For javadoc
+import org.opengis.metadata.Identifier;
 
 
 /**

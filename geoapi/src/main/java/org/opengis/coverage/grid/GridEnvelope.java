@@ -11,12 +11,11 @@
 package org.opengis.coverage.grid;
 
 // Annotations
-import org.opengis.annotation.UML;
-import org.opengis.spatialschema.geometry.geometry.Position;
-import org.opengis.util.Cloneable;
+import static org.opengis.annotation.Obligation.MANDATORY;
+import static org.opengis.annotation.Specification.ISO_19123;
 
-import static org.opengis.annotation.Obligation.*;
-import static org.opengis.annotation.Specification.*;
+import org.opengis.annotation.UML;
+import org.opengis.util.Cloneable;
 
 
 /**

@@ -11,19 +11,16 @@
 package org.opengis.referencing.datum;
 
 // J2SE and extensions direct dependencies
-import java.util.Map;
+import static org.opengis.annotation.Specification.OGC_01009;
+
 import java.util.Date;
+import java.util.Map;
+
 import javax.units.Unit;
 
-// OpenGIS direct dependencies
-import org.opengis.referencing.ObjectFactory;
-import org.opengis.referencing.FactoryException;
-
-// Annotations
 import org.opengis.annotation.UML;
-import org.opengis.annotation.Extension;
-import static org.opengis.annotation.Obligation.*;
-import static org.opengis.annotation.Specification.*;
+import org.opengis.referencing.FactoryException;
+import org.opengis.referencing.ObjectFactory;
 
 
 /**

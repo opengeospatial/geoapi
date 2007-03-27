@@ -11,17 +11,12 @@
 package org.opengis.coverage.grid.quadrilateral;
 
 // OpenGIS dependencies:
-import org.opengis.referencing.operation.Operation;  // For javadoc
+import org.opengis.annotation.Extension;
+import org.opengis.coverage.grid.GridGeometry;
+import org.opengis.geometry.DirectPosition;
 import org.opengis.referencing.operation.Conversion;
 import org.opengis.referencing.operation.MathTransform;
 import org.opengis.referencing.operation.TransformException;
-import org.opengis.spatialschema.geometry.DirectPosition;
-
-// Annotations
-import org.opengis.annotation.UML;
-import org.opengis.annotation.Extension;
-import static org.opengis.annotation.Obligation.*;
-import static org.opengis.annotation.Specification.*;
 
 
 /**

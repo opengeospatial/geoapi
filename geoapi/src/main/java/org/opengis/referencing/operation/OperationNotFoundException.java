@@ -12,7 +12,7 @@ package org.opengis.referencing.operation;
 
 // OpenGIS direct dependencies
 import org.opengis.referencing.FactoryException;
-import org.opengis.referencing.crs.CoordinateReferenceSystem;  // For javadoc
+import org.opengis.referencing.crs.CoordinateReferenceSystem;
 
 
 /**

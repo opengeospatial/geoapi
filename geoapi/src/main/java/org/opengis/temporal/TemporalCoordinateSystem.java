@@ -11,16 +11,13 @@
 package org.opengis.temporal;
 
 // OpenGIS direct dependencies
-import org.opengis.util.InternationalString;
+import static org.opengis.annotation.Obligation.MANDATORY;
+import static org.opengis.annotation.Specification.ISO_19108;
 
-// J2SE direct dependencies
-import java.util.Collection;
 import java.util.Date;
 
-// Annotations
 import org.opengis.annotation.UML;
-import static org.opengis.annotation.Obligation.*;
-import static org.opengis.annotation.Specification.*;
+import org.opengis.util.InternationalString;
 
 
 /**

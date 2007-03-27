@@ -14,7 +14,6 @@ package org.opengis.feature.display;
 import java.awt.Container;
 import java.util.Properties;
 
-// OpenGIS direct dependencies
 import org.opengis.feature.display.canvas.FeatureCanvas;
 
 

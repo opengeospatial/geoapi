@@ -11,11 +11,11 @@
 package org.opengis.temporal;
 
 // Annotations
-import org.opengis.annotation.UML;
-import static org.opengis.annotation.Obligation.*;
-import static org.opengis.annotation.Specification.*;
+import static org.opengis.annotation.Obligation.MANDATORY;
+import static org.opengis.annotation.Obligation.OPTIONAL;
+import static org.opengis.annotation.Specification.ISO_19108;
 
-// OpenGIS direct dependencies
+import org.opengis.annotation.UML;
 import org.opengis.util.InternationalString;
 
 /**

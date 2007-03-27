@@ -8,32 +8,28 @@
  ** All Rights Reserved. http://www.opengis.org/legal/
  **
  *************************************************************************************************/
-package org.opengis.spatialschema.geometry.geometry;
+package org.opengis.geometry.coordinate;
 
 // J2SE direct dependencies
+import static org.opengis.annotation.Obligation.MANDATORY;
+import static org.opengis.annotation.Specification.ISO_19107;
+
 import java.util.List;
 import java.util.Set;
 
-// OpenGIS direct dependencies
-import org.opengis.referencing.crs.CoordinateReferenceSystem;
-import org.opengis.spatialschema.geometry.DirectPosition;
-import org.opengis.spatialschema.geometry.Envelope;
-import org.opengis.spatialschema.geometry.MismatchedDimensionException;
-import org.opengis.spatialschema.geometry.MismatchedReferenceSystemException;
-import org.opengis.spatialschema.geometry.aggregate.MultiPrimitive;
-import org.opengis.spatialschema.geometry.geometry.Position;
-import org.opengis.spatialschema.geometry.primitive.Ring;
-import org.opengis.spatialschema.geometry.primitive.Surface;
-import org.opengis.spatialschema.geometry.primitive.SurfaceBoundary;
-
-// Annotations
 import org.opengis.annotation.UML;
-import static org.opengis.annotation.Obligation.*;
-import static org.opengis.annotation.Specification.*;
+import org.opengis.geometry.DirectPosition;
+import org.opengis.geometry.Envelope;
+import org.opengis.geometry.MismatchedDimensionException;
+import org.opengis.geometry.MismatchedReferenceSystemException;
+import org.opengis.geometry.aggregate.MultiPrimitive;
+import org.opengis.geometry.primitive.Surface;
+import org.opengis.geometry.primitive.SurfaceBoundary;
+import org.opengis.referencing.crs.CoordinateReferenceSystem;
 
 
 /**
- * A factory of {@linkplain org.opengis.spatialschema.geometry.Geometry geometries}.
+ * A factory of {@linkplain org.opengis.geometry.coordinate geometries}.
  * All geometries created through this interface will use the
  * {@linkplain #getCoordinateReferenceSystem factory's coordinate reference system}.
  * Creating geometries in a different CRS may requires a different instance of
@@ -46,7 +42,7 @@ import static org.opengis.annotation.Specification.*;
 public interface GeometryFactory {
     /**
      * Returns the coordinate reference system in use for all
-     * {@linkplain org.opengis.spatialschema.geometry.Geometry geometries}
+     * {@linkplain org.opengis.geometry.coordinate geometries}
      * to be created through this interface.
      */
     CoordinateReferenceSystem getCoordinateReferenceSystem();

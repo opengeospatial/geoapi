@@ -11,13 +11,12 @@
 package org.opengis.parameter;
 
 // OpenGIS direct dependencies
-import org.opengis.referencing.IdentifiedObject;
+import static org.opengis.annotation.Obligation.OPTIONAL;
+import static org.opengis.annotation.Specification.ISO_19111;
 
-// Annotations
-import org.opengis.annotation.UML;
 import org.opengis.annotation.Extension;
-import static org.opengis.annotation.Obligation.*;
-import static org.opengis.annotation.Specification.*;
+import org.opengis.annotation.UML;
+import org.opengis.referencing.IdentifiedObject;
 
 
 /**

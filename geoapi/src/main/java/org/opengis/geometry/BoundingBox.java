@@ -8,14 +8,12 @@
  ** All Rights Reserved. http://www.opengis.org/legal/
  **
  *************************************************************************************************/
-package org.opengis.spatialschema.geometry;
+package org.opengis.geometry;
 
 // OpenGIS direct dependencies
-import org.opengis.referencing.crs.CoordinateReferenceSystem;
-import org.opengis.metadata.extent.GeographicBoundingBox;  // For javadoc
-
-// Annotations
 import org.opengis.annotation.Extension;
+import org.opengis.metadata.extent.GeographicBoundingBox;
+import org.opengis.referencing.crs.CoordinateReferenceSystem;
 
 
 /**

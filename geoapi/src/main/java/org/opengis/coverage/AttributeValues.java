@@ -13,12 +13,11 @@ package org.opengis.coverage;
 // J2SE dependencies
 
 // OpenGIS direct dependencies
-import org.opengis.util.Record;
+import static org.opengis.annotation.Obligation.MANDATORY;
+import static org.opengis.annotation.Specification.ISO_19123;
 
-// Annotations
 import org.opengis.annotation.UML;
-import static org.opengis.annotation.Obligation.*;
-import static org.opengis.annotation.Specification.*;
+import org.opengis.util.Record;
 
 
 /**

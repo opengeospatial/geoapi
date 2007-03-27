@@ -11,12 +11,11 @@
 package org.opengis.coverage.grid;
 
 // J2SE direct dependencies
+import static org.opengis.annotation.Specification.OGC_01004;
+
 import javax.imageio.IIOException;
 
-// Annotations
 import org.opengis.annotation.UML;
-import static org.opengis.annotation.Obligation.*;
-import static org.opengis.annotation.Specification.*;
 
 
 /**

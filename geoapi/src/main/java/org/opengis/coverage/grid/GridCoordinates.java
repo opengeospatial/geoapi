@@ -11,14 +11,12 @@
 package org.opengis.coverage.grid;
 
 // Direct dependencies
-import org.opengis.util.Cloneable;
-import org.opengis.spatialschema.geometry.DirectPosition;
+import static org.opengis.annotation.Obligation.MANDATORY;
+import static org.opengis.annotation.Specification.ISO_19123;
 
-// Annotations
-import org.opengis.annotation.UML;
 import org.opengis.annotation.Extension;
-import static org.opengis.annotation.Obligation.*;
-import static org.opengis.annotation.Specification.*;
+import org.opengis.annotation.UML;
+import org.opengis.util.Cloneable;
 
 
 /**

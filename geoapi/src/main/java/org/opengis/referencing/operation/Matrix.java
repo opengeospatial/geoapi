@@ -11,13 +11,11 @@
 package org.opengis.referencing.operation;
 
 // OpenGIS direct dependencies
-import org.opengis.util.Cloneable;
+import static org.opengis.annotation.Specification.OGC_01009;
 
-// Annotations
-import org.opengis.annotation.UML;
 import org.opengis.annotation.Extension;
-import static org.opengis.annotation.Obligation.*;
-import static org.opengis.annotation.Specification.*;
+import org.opengis.annotation.UML;
+import org.opengis.util.Cloneable;
 
 
 /**
