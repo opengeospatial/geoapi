@@ -45,6 +45,7 @@ import com.sun.mirror.declaration.InterfaceDeclaration;
 import org.opengis.annotation.UML;
 import org.opengis.annotation.Obligation;
 import org.opengis.geometry.Geometry;
+import org.opengis.metadata.identification.CharacterSet;
 import org.opengis.util.CodeList;
 import org.opengis.util.GenericName;
 import org.opengis.util.InternationalString;
@@ -472,7 +473,8 @@ scan:   for (final MethodDeclaration attribute : declaration.getMethods()) {
     private String toSQLType(final Class classe) {
         if (       CharSequence.class.isAssignableFrom(classe) ||
             InternationalString.class.isAssignableFrom(classe) ||
-                        Charset.class.isAssignableFrom(classe))
+                        Charset.class.isAssignableFrom(classe) ||
+                   CharacterSet.class.isAssignableFrom(classe))
         {
             return "TEXT";
         }
