@@ -50,9 +50,9 @@ public interface Identifier {
      * {@linkplain org.opengis.referencing.ObjectFactory CRS factory} <code>createFoo(&hellip;)</code>
      * methods. This is used for setting the value to be returned by {@link #getAuthority}.
      * 
-     * @deprecated Moved to {@link org.opengis.metadata.reference.Identifier#VERSION_KEY}.
+     * @deprecated Moved to {@link org.opengis.referencing.ReferenceIdentifier#VERSION_KEY}.
      */
-    String VERSION_KEY = org.opengis.metadata.reference.Identifier.VERSION_KEY;
+    String VERSION_KEY = org.opengis.referencing.ReferenceIdentifier.VERSION_KEY;
     
     /**
      * Alphanumeric value identifying an instance in the namespace.
@@ -73,7 +73,7 @@ public interface Identifier {
      * appropriate, the edition is identified by the effective date, coded using ISO 8601 date
      * format.
      * 
-     * @deprecated Moved to {@link org.opengis.metadata.reference.Identifier#getVersion()}.
+     * @deprecated Moved to {@link org.opengis.referencing.ReferenceIdentifier#getVersion()}.
      */
     @Extension
     String getVersion();
