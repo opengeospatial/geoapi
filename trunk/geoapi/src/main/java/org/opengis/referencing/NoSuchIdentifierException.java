@@ -10,9 +10,6 @@
  *************************************************************************************************/
 package org.opengis.referencing;
 
-import org.opengis.metadata.Identifier;   // For javadoc
-
-
 /**
  * Thrown when a {@linkplain org.opengis.referencing.operation.MathTransform math transform}
  * as been requested with an unknow {@linkplain org.opengis.referencing.operation.OperationMethod
@@ -39,7 +36,7 @@ public class NoSuchIdentifierException extends FactoryException {
      *
      * @param  message The detail message. The detail message is saved
      *         for later retrieval by the {@link #getMessage()} method.
-     * @param identifier {@linkplain Identifier#getCode identifier code}.
+     * @param identifier {@linkplain ReferenceIdentifier#getCode identifier code}.
      */
     public NoSuchIdentifierException(final String message, final String identifier) {
         super(message);
@@ -47,7 +44,7 @@ public class NoSuchIdentifierException extends FactoryException {
     }
     
     /**
-     * Returns the {@linkplain Identifier#getCode identifier code}.
+     * Returns the {@linkplain ReferenceIdentifier#getCode identifier code}.
      */
     public String getIdentifierCode() {
         return identifier;

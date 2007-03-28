@@ -11,6 +11,7 @@
 package org.opengis.referencing;
 
 import org.opengis.annotation.UML;
+import org.opengis.metadata.Identifier;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -24,7 +25,7 @@ import static org.opengis.annotation.Specification.*;
  * @since GeoAPI 2.1
  */
 @UML(identifier="RS_Identifier", specification=ISO_19115)
-public interface ReferenceIdentifier extends org.opengis.metadata.Identifier {
+public interface ReferenceIdentifier extends Identifier {
     /**
      * Key for the <code>{@value}</code> property to be given to the
      * {@linkplain org.opengis.referencing.ObjectFactory CRS factory} <code>createFoo(&hellip;)</code>
