@@ -44,7 +44,7 @@ import org.opengis.annotation.Extension;
  *   </tr>
  *   <tr>
  *     <td nowrap>&nbsp;{@value org.opengis.referencing.IdentifiedObject#NAME_KEY}&nbsp;</td>
- *     <td nowrap>&nbsp;{@link Identifier} or {@link String}&nbsp;</td>
+ *     <td nowrap>&nbsp;{@link org.opengis.metadata.Identifer} or {@link String}&nbsp;</td>
  *     <td nowrap>&nbsp;{@link IdentifiedObject#getName}</td>
  *   </tr>
  *   <tr>
@@ -59,9 +59,9 @@ import org.opengis.annotation.Extension;
  *     <td nowrap>&nbsp;{@link Identifier#getAuthority} on the {@linkplain IdentifiedObject#getName name}</td>
  *   </tr>
  *   <tr>
- *     <td nowrap>&nbsp;{@value org.opengis.metadata.Identifier#VERSION_KEY}&nbsp;</td>
+ *     <td nowrap>&nbsp;{@value ReferenceIdentifier#VERSION_KEY}&nbsp;</td>
  *     <td nowrap>&nbsp;{@link String}&nbsp;</td>
- *     <td nowrap>&nbsp;{@link Identifier#getVersion} on the {@linkplain IdentifiedObject#getName name}</td>
+ *     <td nowrap>&nbsp;{@link ReferenceIdentifier#getVersion} on the {@linkplain IdentifiedObject#getName name}</td>
  *   </tr>
  *   <tr>
  *     <td nowrap>&nbsp;{@value org.opengis.referencing.IdentifiedObject#IDENTIFIERS_KEY}&nbsp;</td>
