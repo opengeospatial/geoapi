@@ -12,7 +12,6 @@ package org.opengis.referencing;
 
 import java.util.Set;
 import java.util.Collection;
-import org.opengis.metadata.Identifier;
 import org.opengis.util.GenericName;
 import org.opengis.util.InternationalString;
 import org.opengis.annotation.UML;
@@ -78,7 +77,7 @@ public interface IdentifiedObject {
      * The primary name by which this object is identified.
      */
     @UML(identifier="name", obligation=MANDATORY, specification=ISO_19111)
-    Identifier getName();
+    ReferenceIdentifier getName();
 
     /**
      * An alternative name by which this object is identified.
@@ -95,7 +94,7 @@ public interface IdentifiedObject {
      * @return This object identifiers, or an empty set if there is none.
      */
     @UML(identifier="identifier", obligation=OPTIONAL, specification=ISO_19111)
-    Set<Identifier> getIdentifiers();
+    Set<ReferenceIdentifier> getIdentifiers();
 
     /**
      * Comments on or information about this object, including data source information.
