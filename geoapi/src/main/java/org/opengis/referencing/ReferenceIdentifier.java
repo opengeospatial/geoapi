@@ -1,19 +1,19 @@
 /*$************************************************************************************************
  **
- ** $Id$
+ ** $Id: Identifier.java 988 2007-03-27 20:39:14Z cory2070 $
  **
- ** $URL$
+ ** $URL: https://geoapi.svn.sourceforge.net/svnroot/geoapi/trunk/geoapi/src/main/java/org/opengis/metadata/reference/Identifier.java $
  **
  ** Copyright (C) 2004-2007 Open GIS Consortium, Inc.
  ** All Rights Reserved. http://www.opengis.org/legal/
  **
  *************************************************************************************************/
-package org.opengis.metadata.reference;
+package org.opengis.referencing;
 
 import org.opengis.annotation.UML;
 
-import static org.opengis.annotation.Obligation.OPTIONAL;
-import static org.opengis.annotation.Specification.ISO_19115;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
 
 
 /**
@@ -24,7 +24,7 @@ import static org.opengis.annotation.Specification.ISO_19115;
  * @since GeoAPI 2.1
  */
 @UML(identifier="RS_Identifier", specification=ISO_19115)
-public interface Identifier extends org.opengis.metadata.Identifier {
+public interface ReferenceIdentifier extends org.opengis.metadata.Identifier {
     /**
      * Key for the <code>{@value}</code> property to be given to the
      * {@linkplain org.opengis.referencing.ObjectFactory CRS factory} <code>createFoo(&hellip;)</code>
