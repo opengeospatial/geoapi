@@ -40,22 +40,22 @@ public class YAnchor extends SimpleEnumerationType<YAnchor> {
     /**
       * Align to the top of the field.
       */
-    public static final YAnchor TOP = new YAnchor("Top", "");
+    public static final YAnchor TOP = new YAnchor("TOP", "");
 
     /**
       * Align the middle of the field.
       */
-    public static final YAnchor MIDDLE = new YAnchor("Middle", "");
+    public static final YAnchor MIDDLE = new YAnchor("MIDDLE", "");
 
     /**
       * Align to the baseline of the field.
       */
-    public static final YAnchor BASELINE = new YAnchor("Baseline", "");
+    public static final YAnchor BASELINE = new YAnchor("BASELINE", "");
 
     /**
       * Align to the bottom of the field.
       */
-    public static final YAnchor BOTTOM = new YAnchor("Bottom", "");
+    public static final YAnchor BOTTOM = new YAnchor("BOTTOM", "");
 
     /**
      * The next value to be assigned and the count of number of styles

@@ -43,91 +43,91 @@ public final class InitiativeType extends CodeList<InitiativeType>{
      * Series of organized planned actions.
      */
     @UML(identifier="campaign", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final AssociationType CAMPAIGN = new AssociationType("CAMPAIGN");
+    public static final InitiativeType CAMPAIGN = new InitiativeType("CAMPAIGN");
 
     /**
      * Accumulation of datasets assembled for a specific purpose.
      */
     @UML(identifier="collection", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final AssociationType COLLECTION = new AssociationType("COLLECTION");
+    public static final InitiativeType COLLECTION = new InitiativeType("COLLECTION");
 
     /**
      * Specific performance of a function or group of functions.
      */
     @UML(identifier="exercise", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final AssociationType EXERCISE = new AssociationType("EXERCISE");
+    public static final InitiativeType EXERCISE = new InitiativeType("EXERCISE");
 
     /**
      * Process designed to find if something is effective or valid.
      */
     @UML(identifier="experiment", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final AssociationType EXPERIMENT = new AssociationType("EXPERIMENT");
+    public static final InitiativeType EXPERIMENT = new InitiativeType("EXPERIMENT");
 
     /**
      * Search or systematic inquiry.
      */
     @UML(identifier="investigation", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final AssociationType INVESTIGATION = new AssociationType("INVESTIGATION");
+    public static final InitiativeType INVESTIGATION = new InitiativeType("INVESTIGATION");
 
     /**
      * Specific operation of a data collection system.
      */
     @UML(identifier="mission", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final AssociationType MISSION = new AssociationType("MISSION");
+    public static final InitiativeType MISSION = new InitiativeType("MISSION");
 
     /**
      * Device or piece of equipment which detects or records.
      */
     @UML(identifier="sensor", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final AssociationType SENSOR = new AssociationType("SENSOR");
+    public static final InitiativeType SENSOR = new InitiativeType("SENSOR");
 
     /**
      * Action that is part of a series of actions.
      */
     @UML(identifier="oepration", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final AssociationType OPERATION = new AssociationType("OPERATION");
+    public static final InitiativeType OPERATION = new InitiativeType("OPERATION");
 
     /**
      * Vehicle or other support base that holds a sensor.
      */
     @UML(identifier="platform", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final AssociationType PLATFORM = new AssociationType("PLATFORM");
+    public static final InitiativeType PLATFORM = new InitiativeType("PLATFORM");
 
     /**
      * Method of doing something involving a number of steps.
      */
     @UML(identifier="process", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final AssociationType PROCESS = new AssociationType("PROCESS");
+    public static final InitiativeType PROCESS = new InitiativeType("PROCESS");
 
     /**
      * Specific planned activity.
      */
     @UML(identifier="program", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final AssociationType PROGRAM = new AssociationType("PROGRAM");
+    public static final InitiativeType PROGRAM = new InitiativeType("PROGRAM");
 
     /**
      * Organized undertaking, research, or development.
      */
     @UML(identifier="project", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final AssociationType PROJECT = new AssociationType("PROJECT");
+    public static final InitiativeType PROJECT = new InitiativeType("PROJECT");
 
     /**
      * Examination or investigation.
      */
     @UML(identifier="study", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final AssociationType STUDY = new AssociationType("STUDY");
+    public static final InitiativeType STUDY = new InitiativeType("STUDY");
 
     /**
      * Piece of work.
      */
     @UML(identifier="task", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final AssociationType TASK = new AssociationType("TASK");
+    public static final InitiativeType TASK = new InitiativeType("TASK");
 
     /**
      * Process of testing to discover or demonstrate something.
      */
     @UML(identifier="trial", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final AssociationType TRIAL = new AssociationType("TRIAL");
+    public static final InitiativeType TRIAL = new InitiativeType("TRIAL");
 
     /**
      * Constructs an enum with the given name. The new enum is

@@ -73,8 +73,8 @@ public final class MetadataType extends CodeList<MetadataType> {
 
     public static final MetadataType TC211 = new MetadataType("TC211");
     public static final MetadataType FGDC = new MetadataType("FGDC");
-    public static final MetadataType DUBLIN_CORE = new MetadataType("DublinCore");
-    public static final MetadataType NONE = new MetadataType("none");
+    public static final MetadataType DUBLIN_CORE = new MetadataType("DUBLIN_CORE");
+    public static final MetadataType NONE = new MetadataType("NONE");
 
     /**
      * Constructs an enum with the given name. The new enum is

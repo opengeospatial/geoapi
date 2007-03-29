@@ -33,27 +33,58 @@ package org.opengis.go.spatial;
  * @author Open GIS Consortium, Inc.
  * @version $Revision: 658 $, $Date: 2006-02-23 12:09:34 +1100 (jeu., 23 févr. 2006) $
  */
-public class UnprojectedPathType extends PathType {
+public final class UnprojectedPathType extends PathType {
     /**
-     * Creates a new UnprojectedPathType with the given value and name.
-     * @param name the short name for the enum.
-     * @param description the description for the enum.
+     * Serial number for compatibility with different versions.
      */
-    protected UnprojectedPathType(String name, String description) {
-        super(name, description);
-    }
-    
+    private static final long serialVersionUID = 5983938773013515674L;
+
+    /**
+     * Number of enum of this type created up to date.
+     */
+    private static int count = 0;
+
+    /**
+     * The path that is drawn as screen-straight, regardless of any current projection.
+     */
     public static final UnprojectedPathType PIXEL_STRAIGHT =
         new UnprojectedPathType("PIXEL_STRAIGHT",
             "The path that is drawn as screen-straight, regardless of any current projection.");
-            
+
+    /**
+     * The path that connects its points via a continuous (although not necessarily smooth) spline.
+     */
     public static final UnprojectedPathType CONTINUOUS_SPLINE =
         new UnprojectedPathType("CONTINUOUS_SPLINE",
             "The path that connects its points via a continuous (although not necessarily smooth) spline.");
-    
-    /** Enumeration value of the <code>PIXEL_STRAIGHT<\code> constant. */
-   // public static final int PIXEL_STRAIGHT_VALUE = PIXEL_STRAIGHT.getValue();
-    
-    /** Enumeration value of the <code>CONTINUOUS_SPLINE</code> constant. */
-   // public static final int CONTINUOUS_SPLINE_VALUE = CONTINUOUS_SPLINE.getValue();
+
+    /**
+     * Creates a new {@code UnprojectedPathType} with the given name.
+     *
+     * @param name the short name for the enum.
+     * @param description the description for the enum.
+     */
+    public UnprojectedPathType(String name, String description) {
+        super(name, description);
+        synchronized (VALUES) {
+            count++;
+        }
+    }
+
+    /**
+     * Returns the list of {@code UnprojectedPathType}s.
+     */
+    public static /*{UnprojectedPathType}*/ PathType[] values() {
+        synchronized (VALUES) {
+            return values(UnprojectedPathType.class, count);
+        }
+    }
+
+    /**
+     * Returns the list of enumerations of the same kind than this enum.
+     */
+    @Override
+    public /*{UnprojectedPathType}*/ org.opengis.util.CodeList[] family() {
+        return values();
+    }
 }

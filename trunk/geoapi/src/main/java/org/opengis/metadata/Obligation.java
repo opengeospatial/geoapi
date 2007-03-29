@@ -36,7 +36,7 @@ public final class Obligation extends CodeList<Obligation> {
      * List of all enumerations of this type.
      * Must be declared before any enum declaration.
      */
-    private static final List<Obligation> VALUES = new ArrayList<Obligation>(2);
+    private static final List<Obligation> VALUES = new ArrayList<Obligation>(3);
 
     /**
      * Element is always required.

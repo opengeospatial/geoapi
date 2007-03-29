@@ -18,82 +18,85 @@ package org.opengis.go.spatial;
  * <OL>
  * <LI>The in-between points are the same regardless of the way the current
  *     path is displayed (i.e. the path is independent of map projection,
- *     current viewport, etc.)
+ *     current viewport, etc.)</LI>
  * <LI>The in-between points are claculated along a surface that the points
- *     are projected onto (such as the surface of the earth).
+ *     are projected onto (such as the surface of the earth).</LI>
  * </OL>
  * The second condition implies that altitude is not taken into account
  * when calculating paths of type GlobalPathType.  Hence paths of this type
- * are well suited for navigation of surface ships or vehicles.\
+ * are well suited for navigation of surface ships or vehicles.
  * 
  * @author Open GIS Consortium, Inc.
  * @version $Revision: 658 $, $Date: 2006-02-23 12:09:34 +1100 (jeu., 23 févr. 2006) $
  */
-public class GlobalPathType extends PathType {
+public final class GlobalPathType extends PathType {
     /**
-     * The list of enumeration available in this virtual machine.
-     * <strong>Must be declared first!</strong>.
+     * Serial number for compatibility with different versions.
      */
-  //  private static final List VALUES = new ArrayList(4);   
+    private static final long serialVersionUID = -3807198607057483081L;
 
     /**
-     * Creates a new GlobalPathType with the given value and name.
-     * @param name the short name for the enum.
-     * @param description the description for the enum.
+     * Number of enum of this type created up to date.
      */
-    protected GlobalPathType (String name, String description) {
-        super(name, description);
-    }
-    
+    private static int count = 0;
+
+    /**
+     * The path that is the shortest distance path over the WGS84 ellipsoid.
+     */
     public static final GlobalPathType GREAT_CIRCLE_ELLIPSOIDAL =
         new GlobalPathType("GREAT_CIRCLE_ELLIPSOIDAL",
             "The path that is the shortest distance path over the WGS84 ellipsoid.");
-            
+
+    /**
+     * The path that is the shortest distance path over the sphere whose radius is the
+     * equatorial radius of the WGS84 ellipsoid.
+     */
     public static final GlobalPathType GREAT_CIRCLE_SPHERICAL =
         new GlobalPathType("GREAT_CIRCLE_SPHERICAL",
             "The path that is the shortest distance path over the sphere whose radius is the equatorial radius of the WGS84 ellipsoid.");
-    
+
+    /**
+     * The path that is the path of constant bearing over the WGS84 ellipsoid.
+     */
     public static final GlobalPathType RHUMBLINE_ELLIPSOIDAL =
         new GlobalPathType("RHUMBLINE_ELLIPSOIDAL",
             "The path that is the path of constant bearing over the WGS84 ellipsoid.");
-    
+
+    /**
+     * The path that is the path of constant bearing over the sphere whose radius is the
+     * equatorial radius of the WGS84 ellipsoid.
+     */
     public static final GlobalPathType RHUMBLINE_SPHERICAL =
         new GlobalPathType("RHUMBLINE_SPHERICAL",
             "The path that is the path of constant bearing over the sphere whose radius is the equatorial radius of the WGS84 ellipsoid.");
-    
+
     /**
-     * Enumeration value of the <code>GREAT_CIRCLE_ELLIPSOIDAL</code>
-     * constant.
+     * Creates a new {@code GlobalPathType} with the given name.
+     *
+     * @param name the short name for the enum.
+     * @param description the description for the enum.
      */
-    //public static final int GREAT_CIRCLE_ELLIPSOIDAL_VALUE = GREAT_CIRCLE_ELLIPSOIDAL.getValue();
-    
+    public GlobalPathType(String name, String description) {
+        super(name, description);
+        synchronized (VALUES) {
+            count++;
+        }
+    }
+
     /**
-     * Enumeration value of the <code>GREAT_CIRCLE_SPHERICAL</code>
-     * constant.
+     * Returns the list of {@code GlobalPathType}s.
      */
-    //public static final int GREAT_CIRCLE_SPHERICAL_VALUE = GREAT_CIRCLE_SPHERICAL.getValue();
-    
+    public static /*{GlobalPathType}*/ PathType[] values() {
+        synchronized (VALUES) {
+            return values(GlobalPathType.class, count);
+        }
+    }
+
     /**
-     * Enumeration value of the <code>RHUMBLINE_ELLIPSOIDAL</code>
-     * constant.
+     * Returns the list of enumerations of the same kind than this enum.
      */
-    //public static final int RHUMBLINE_ELLIPSOIDAL_VALUE = RHUMBLINE_ELLIPSOIDAL.getValue();
-    
-    /**
-     * Enumeration value of the <code>RHUMBLINE_SPHERICAL</code>
-     * constant.
-     */
-    //public static final int RHUMBLINE_SPHERICAL_VALUE = RHUMBLINE_SPHERICAL.getValue();
-    
-    /**
-     * A list containing all the enumerators so that the list can be
-     * "walked" and also to do reverse lookups (id to object).
-     */
-    private static final GlobalPathType[] enumList =
-        {
-            GREAT_CIRCLE_ELLIPSOIDAL,
-            GREAT_CIRCLE_SPHERICAL,
-            RHUMBLINE_ELLIPSOIDAL,
-            RHUMBLINE_SPHERICAL };
-  
+    @Override
+    public /*{GlobalPathType}*/ org.opengis.util.CodeList[] family() {
+        return values();
+    }
 }
