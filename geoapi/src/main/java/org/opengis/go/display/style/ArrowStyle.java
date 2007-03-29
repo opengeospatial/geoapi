@@ -101,7 +101,7 @@ public class ArrowStyle extends SimpleEnumerationType<ArrowStyle> {
     /**
      * Returns the list of <code>ArrowStyle</code>s.
      */
-    public ArrowStyle[] values() {
+    public static ArrowStyle[] values() {
         synchronized (VALUES) {
             return (ArrowStyle[]) VALUES.toArray(new ArrowStyle[VALUES.size()]);
         }

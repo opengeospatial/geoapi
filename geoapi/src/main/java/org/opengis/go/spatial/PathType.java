@@ -10,6 +10,7 @@
  *************************************************************************************************/
 package org.opengis.go.spatial;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 import org.opengis.util.CodeList;
@@ -58,13 +59,16 @@ public class PathType extends SimpleEnumerationType<PathType> {
     /**
      * The list of enumeration available in this virtual machine.
      * <strong>Must be declared first!</strong>.
-     *
-     * @todo This field should be private.
+     * <p>
+     * This field is not private because it is used as synchronization lock by
+     * implementation of {@code values()} method in subclasses only. The content
+     * should not be modified by any class in this package.
      */
-    protected static final List<PathType> VALUES = new ArrayList<PathType>();
+    static final List<PathType> VALUES = new ArrayList<PathType>(7);
 
     /**
-     * Creates a new PathType with the given value and name.
+     * Creates a new {@code PathType} with the given name.
+     *
      * @param name the short name for the enum.
      * @param description the description for the enum.
      */
@@ -73,12 +77,46 @@ public class PathType extends SimpleEnumerationType<PathType> {
     }
 
     /**
-     * Returns the list of <code>PathType</code>s.
+     * Returns the list of {@code PathType}s.
      */
     public static PathType[] values() {
         synchronized (VALUES) {
             return (PathType[]) VALUES.toArray(new PathType[VALUES.size()]);
         }
+    }
+
+    /**
+     * Returns the list of {@code PathType}s of the specified subclasses.
+     * For implementation of {@code values()} method in subclasses only.
+     *
+     * @todo Uncomment the method below when we will be allowed to compile for J2SE 1.5
+     *       and promote the return type in values() implementation in subclasses.
+     */
+//    @SuppressWarnings("unchecked")
+//    static <T extends PathType> T[] values(final Class<T> type, final int count) {
+//        assert Thread.holdsLock(VALUES);
+//        final T[] codes = (T[]) Array.newInstance(type, count);
+//        int index = 0;
+//        for (final PathType candidate : VALUES) {
+//            if (type.isInstance(candidate)) {
+//                codes[index++] = (T) candidate;
+//            }
+//        }
+//        assert index == codes.length;
+//        return codes;
+//    }
+    static PathType[] values(final Class type, final int count) {
+        assert Thread.holdsLock(VALUES);
+        final PathType[] codes = (PathType[]) Array.newInstance(type, count);
+        int index = 0;
+        for (final java.util.Iterator it=VALUES.iterator(); it.hasNext();) {
+            final PathType candidate = (PathType) it.next();
+            if (type.isInstance(candidate)) {
+                codes[index++] = candidate;
+            }
+        }
+        assert index == codes.length;
+        return codes;
     }
 
     /**

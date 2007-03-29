@@ -312,20 +312,20 @@ public interface GraphicArc extends Graphic {
          * Closure type that indicates that the endpoints of the arc
          * should not be connected.
          */
-        public static final ArcClosure OPEN = new ArcClosure("Open", "");
+        public static final ArcClosure OPEN = new ArcClosure("OPEN", "");
 
         /**
          * Closure type that indicates that one line should be drawn between
          * the endpoints of the arc.
          */
-        public static final ArcClosure CHORD = new ArcClosure("Chord", "");
+        public static final ArcClosure CHORD = new ArcClosure("CHORD", "");
 
         /**
          * Closure type that indicates that two lines, one from each
          * endpoint of the arc, should be drawn to the center of the ellipse
          * defining the arc.
          */
-        public static final ArcClosure PIE = new ArcClosure("Pie", "");
+        public static final ArcClosure PIE = new ArcClosure("PIE", "");
 
         /**
          * Constructor that should only be called to create the static

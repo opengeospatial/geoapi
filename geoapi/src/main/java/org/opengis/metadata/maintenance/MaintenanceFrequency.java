@@ -38,7 +38,7 @@ public final class MaintenanceFrequency extends CodeList<MaintenanceFrequency> {
      * List of all enumerations of this type.
      * Must be declared before any enum declaration.
      */
-    private static final List<MaintenanceFrequency> VALUES = new ArrayList<MaintenanceFrequency>(10);
+    private static final List<MaintenanceFrequency> VALUES = new ArrayList<MaintenanceFrequency>(12);
 
     /**
      * Data is repeatedly and frequently updated.

@@ -40,7 +40,7 @@ public final class ScopeCode extends CodeList<ScopeCode> {
      * List of all enumerations of this type.
      * Must be declared before any enum declaration.
      */
-    private static final List<ScopeCode> VALUES = new ArrayList<ScopeCode>(15);
+    private static final List<ScopeCode> VALUES = new ArrayList<ScopeCode>(16);
 
     /**
      * Information applies to the attribute value.
