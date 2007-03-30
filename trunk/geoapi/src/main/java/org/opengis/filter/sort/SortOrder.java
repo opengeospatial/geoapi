@@ -1,11 +1,13 @@
 package org.opengis.filter.sort;
 
+import static org.opengis.annotation.Obligation.CONDITIONAL;
+import static org.opengis.annotation.Specification.OGC_02059;
+
 import java.util.ArrayList;
 import java.util.List;
 
+import org.opengis.annotation.UML;
 import org.opengis.util.CodeList;
-
-
 /**
  * Captures the {@link SortBy} order, {@code ASC} or {@code DESC}.
  * 
@@ -32,6 +34,7 @@ public final class SortOrder extends CodeList<SortOrder> {
      * with the Filter 1.1 specification.
      * </p>
      */
+    @UML(identifier="ASC", obligation=CONDITIONAL, specification=OGC_02059)    
     public static final SortOrder ASCENDING  = new SortOrder("ASCENDING", "ASC");
 
     /**
@@ -41,6 +44,7 @@ public final class SortOrder extends CodeList<SortOrder> {
      * with the Filter 1.1 specification.
      * </p> 
      */	
+    @UML(identifier="DESC", obligation=CONDITIONAL, specification=OGC_02059)
     public static final SortOrder DESCENDING = new SortOrder("DESCENDING", "DESC");
 
     /**
@@ -58,16 +62,19 @@ public final class SortOrder extends CodeList<SortOrder> {
      * @todo Should invoke {code super(name)}, not {@code super(sqlKeyword}).
      */
     private SortOrder(final String name, final String sqlKeyword) {
-//        super(name, VALUES);
+//      super(name, VALUES);
         super(sqlKeyword, VALUES);
         this.sqlKeyword = sqlKeyword;
     }
 
     /**
-     * Returns the SQL keyword for this sorting order.
-     * This is either {@code "ASC"} or {@code "DESC"}.
+     * Returns the element name for this sorting order.
+     * <p>
+     * We have chosen to use the full names ASCENDING and
+     * DESENDING for our code list. The origional XMLSchema
+     * matches the SQL convention of ASC and DESC.
      */
-    public String sqlKeyword() {
+    public String toSQL() {
         return sqlKeyword;
     }
 
