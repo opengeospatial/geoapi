@@ -1,0 +1,75 @@
+/*$************************************************************************************************
+ **
+ ** $Id$
+ **
+ ** $URL$
+ **
+ ** Copyright (C) 2004-2005 Open GIS Consortium, Inc.
+ ** All Rights Reserved. http://www.opengis.org/legal/
+ **
+ *************************************************************************************************/
+package org.opengis.metadata.spatial;
+
+import java.util.Collection;
+import org.opengis.util.InternationalString;
+import org.opengis.util.Record;
+import org.opengis.metadata.citation.Citation;
+import org.opengis.annotation.UML;
+
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
+
+
+/**
+ * Grid with cells irregularly spaced in any given geographic/map projection coordinate
+ * system, whose individual cells can be geolocated using geolocation information
+ * supplied with the data but cannot be geolocated from the grid properties alone.
+ *
+ * @version <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
+ * @author Martin Desruisseaux (IRD)
+ * @author Cory Horner (Refractions Research)
+ * @since GeoAPI 2.0
+ */
+@UML(identifier="MD_Georeferenceable", specification=ISO_19115)
+public interface Georeferenceable extends GridSpatialRepresentation {
+    /**
+     * Indication of whether or not control point(s) exists.
+     *
+     * @returns Boolean mandatory for valid content, may be null for an invalid document 
+     */
+    @UML(identifier="controlPointAvailability", obligation=MANDATORY, specification=ISO_19115)
+    boolean isControlPointAvailable();
+
+    /**
+     * Indication of whether or not orientation parameters are available.
+     * 
+     * @returns Boolean mandatory for valid content, may be null for an invalid document 
+     */
+    @UML(identifier="orientationParameterAvailability", obligation=MANDATORY, specification=ISO_19115)
+    boolean isOrientationParameterAvailable();
+
+    /**
+     * Description of parameters used to describe sensor orientation.
+     */
+    @UML(identifier="orientationParameterDescription", obligation=OPTIONAL, specification=ISO_19115)
+    InternationalString getOrientationParameterDescription();
+
+    /**
+     * Terms which support grid data georeferencing.
+     */
+    @UML(identifier="parameters", obligation=MANDATORY, specification=ISO_19115)
+    Record getGeoreferencedParameters();
+    
+    /**
+     * Terms which support grid data georeferencing.
+     *
+     * @deprecated Use getGeoreferencedParameters instead.
+     */
+    Object getParameters();
+
+    /**
+     * Reference providing description of the parameters.
+     */
+    @UML(identifier="parameterCitation", obligation=OPTIONAL, specification=ISO_19115)
+    Collection<? extends Citation> getParameterCitation();
+}
