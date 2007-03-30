@@ -44,7 +44,7 @@ public interface DigitalTransferOptions {
      * Returns {@code null} if the transfer size is unknown.
      */
     @UML(identifier="transferSize", obligation=OPTIONAL, specification=ISO_19115)
-    Number getTransferSize();
+    Double getTransferSize();
 
     /**
      * Information about online sources from which the resource can be obtained.

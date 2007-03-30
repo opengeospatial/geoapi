@@ -31,15 +31,19 @@ import static org.opengis.annotation.Specification.*;
 public interface VerticalExtent {
     /**
      * Returns the lowest vertical extent contained in the dataset.
+     * 
+     * @returns Double mandatory for valid content, may be null for an invalid document 
      */
     @UML(identifier="minimumValue", obligation=MANDATORY, specification=ISO_19115)
-    double getMinimumValue();
+    Double getMinimumValue();
 
     /**
      * Returns the highest vertical extent contained in the dataset.
+     * 
+     * @returns Double mandatory for valid content, may be null for an invalid document 
      */
     @UML(identifier="maximumValue", obligation=MANDATORY, specification=ISO_19115)
-    double getMaximumValue();
+    Double getMaximumValue();
 
     /**
      * Returns the vertical units used for vertical extent information.

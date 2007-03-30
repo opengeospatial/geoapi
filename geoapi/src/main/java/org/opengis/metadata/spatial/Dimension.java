@@ -33,9 +33,11 @@ public interface Dimension {
 
     /**
      * Number of elements along the axis.
+     * 
+     * @returns Integer mandatory for valid content, may be null for an invalid document 
      */
     @UML(identifier="dimensionSize", obligation=MANDATORY, specification=ISO_19115)
-    int getDimensionSize();
+    Integer getDimensionSize();
 
     /**
      * Degree of detail in the grid dataset.
@@ -43,5 +45,5 @@ public interface Dimension {
      * @unitof Measure
      */
     @UML(identifier="resolution", obligation=OPTIONAL, specification=ISO_19115)
-    double getResolution();
+    Double getResolution();
 }
