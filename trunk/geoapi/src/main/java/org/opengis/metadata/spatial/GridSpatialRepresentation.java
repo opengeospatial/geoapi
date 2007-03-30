@@ -28,9 +28,11 @@ import static org.opengis.annotation.Specification.*;
 public interface GridSpatialRepresentation extends SpatialRepresentation {
     /**
      * Number of independent spatial-temporal axes.
+     *
+     * @returns Integer mandatory for valid content, may be null for an invalid document 
      */
     @UML(identifier="numberOfDimensions", obligation=MANDATORY, specification=ISO_19115)
-    int getNumberOfDimensions();
+    Integer getNumberOfDimensions();
 
     /**
      * Information about spatial-temporal axis properties.

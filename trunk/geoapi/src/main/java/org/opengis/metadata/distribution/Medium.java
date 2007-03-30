@@ -39,7 +39,7 @@ public interface Medium {
      * The numbers should be greater than zero.
      */
     @UML(identifier="density", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<? extends Number> getDensities();
+    Collection<Double> getDensities();
 
     /**
      * Units of measure for the recording density.

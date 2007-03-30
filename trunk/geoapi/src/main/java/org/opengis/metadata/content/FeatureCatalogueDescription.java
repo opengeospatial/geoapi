@@ -31,9 +31,11 @@ import static org.opengis.annotation.Specification.*;
 public interface FeatureCatalogueDescription extends ContentInformation {
     /**
      * Indication of whether or not the cited feature catalogue complies with ISO 19110.
+     * 
+     * This value is optional, and therefore may be null.
      */
     @UML(identifier="complianceCode", obligation=OPTIONAL, specification=ISO_19115)
-    boolean isCompliant();
+    Boolean isCompliant();
 
     /**
      * Language(s) used within the catalogue

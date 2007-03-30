@@ -35,5 +35,5 @@ public interface GeometricObjects {
      * Total number of the point or vector object type occurring in the dataset.
      */
     @UML(identifier="geometricObjectCount", obligation=OPTIONAL, specification=ISO_19115)
-    int getGeometricObjectCount();
+    Integer getGeometricObjectCount();
 }

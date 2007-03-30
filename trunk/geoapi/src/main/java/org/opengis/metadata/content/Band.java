@@ -31,14 +31,14 @@ public interface Band extends RangeDimension {
      * Returns {@code null} if unspecified.
      */
     @UML(identifier="maxValue", obligation=OPTIONAL, specification=ISO_19115)
-    Number getMaxValue();
+    Double getMaxValue();
 
     /**
      * Shortest wavelength that the sensor is capable of collecting within a designated band.
      * Returns {@code null} if unspecified.
      */
     @UML(identifier="minValue", obligation=OPTIONAL, specification=ISO_19115)
-    Number getMinValue();
+    Double getMinValue();
 
     /**
      * Units in which sensor wavelengths are expressed. Should be non-null if
@@ -53,7 +53,7 @@ public interface Band extends RangeDimension {
      * Returns {@code null} if unspecified.
      */
     @UML(identifier="peakResponse", obligation=OPTIONAL, specification=ISO_19115)
-    Number getPeakResponse();
+    Double getPeakResponse();
 
     /**
      * Maximum number of significant bits in the uncompressed representation for the value
@@ -75,12 +75,12 @@ public interface Band extends RangeDimension {
      * Returns {@code null} if unspecified.
      */
     @UML(identifier="scaleFactor", obligation=OPTIONAL, specification=ISO_19115)
-    Number getScaleFactor();
+    Double getScaleFactor();
 
     /**
      * The physical value corresponding to a cell value of zero.
      * Returns {@code null} if unspecified.
      */
     @UML(identifier="offset", obligation=OPTIONAL, specification=ISO_19115)
-    Number getOffset();
+    Double getOffset();
 }

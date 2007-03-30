@@ -33,9 +33,10 @@ public interface GeographicBoundingBox extends GeographicExtent {
      *
      * @return The western-most longitude between -180 and +180°.
      * @unitof Angle
+     * @returns Double mandatory for valid content, may be null for an invalid document 
      */
     @UML(identifier="westBoundLongitude", obligation=MANDATORY, specification=ISO_19115)
-    double getWestBoundLongitude();
+    Double getWestBoundLongitude();
 
     /**
      * Returns the eastern-most coordinate of the limit of the
@@ -44,9 +45,10 @@ public interface GeographicBoundingBox extends GeographicExtent {
      *
      * @return The eastern-most longitude between -180 and +180°.
      * @unitof Angle
+     * @returns Double mandatory for valid content, may be null for an invalid document 
      */
     @UML(identifier="eastBoundLongitude", obligation=MANDATORY, specification=ISO_19115)
-    double getEastBoundLongitude();
+    Double getEastBoundLongitude();
 
     /**
      * Returns the southern-most coordinate of the limit of the
@@ -55,9 +57,10 @@ public interface GeographicBoundingBox extends GeographicExtent {
      *
      * @return The southern-most latitude between -90 and +90°.
      * @unitof Angle
+     * @returns Double mandatory for valid content, may be null for an invalid document 
      */
     @UML(identifier="southBoundLatitude", obligation=MANDATORY, specification=ISO_19115)
-    double getSouthBoundLatitude();
+    Double getSouthBoundLatitude();
 
     /**
      * Returns the northern-most, coordinate of the limit of the
@@ -66,7 +69,8 @@ public interface GeographicBoundingBox extends GeographicExtent {
      *
      * @return The northern-most latitude between -90 and +90°.
      * @unitof Angle
+     * @returns Double mandatory for valid content, may be null for an invalid document 
      */
     @UML(identifier="northBoundLatitude", obligation=MANDATORY, specification=ISO_19115)
-    double getNorthBoundLatitude();
+    Double getNorthBoundLatitude();
 }

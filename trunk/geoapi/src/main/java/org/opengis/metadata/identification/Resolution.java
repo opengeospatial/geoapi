@@ -47,5 +47,5 @@ public interface Resolution {
      */
     @Profile (level=CORE)
     @UML(identifier="distance", obligation=CONDITIONAL, specification=ISO_19115)
-    double getDistance();
+    Double getDistance();
 }

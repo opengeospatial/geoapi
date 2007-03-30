@@ -32,5 +32,5 @@ public interface GeographicExtent {
      * @return {@code true} for inclusion, or {@code false} for exclusion.
      */
     @UML(identifier="extentTypeCode", obligation=OPTIONAL, specification=ISO_19115)
-    boolean getInclusion();
+    Boolean getInclusion();
 }
