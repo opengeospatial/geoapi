@@ -13,7 +13,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Iterator;
 
-import org.opengis.feature.Transaction.State;
+import org.opengis.feature.DefaultTransaction;
 
 public class DefaultLock {
     private long duration;

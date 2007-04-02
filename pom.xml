@@ -361,5 +361,6 @@
     <module>erasure</module>
     <module>geoapi</module>
     <module>nogenerics</module>
+    <module>examples</module>
   </modules>
 </project>
