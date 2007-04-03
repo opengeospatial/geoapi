@@ -13,7 +13,10 @@ package org.opengis.feature;
 // J2SE direct dependencies
 import java.util.List;
 
+import javax.xml.namespace.QName;
+
 // OpenGIS direct dependencies
+import org.opengis.feature.type.TypeName;
 import org.opengis.filter.Filter;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 import org.opengis.util.GenericName;
@@ -44,13 +47,16 @@ import org.opengis.annotation.XmlElement;
 public interface Query {
     /**
      * Returns the name of the type that is to be queried.
-     *
+     * <p>
+     * The provided TypeName is used to look up the correct dataset
+     * to be querried.
+     * </p>
      * @todo OGC specification said that a list should be returned.
      *       We may add a {@code getTypeNames()} (plural form) in a
      *       future version.
      */
     @XmlElement("typeName")
-    GenericName getTypeName();
+    TypeName getTypeName();
 
     /**
      * Returns the name of the type that is to be queried.
