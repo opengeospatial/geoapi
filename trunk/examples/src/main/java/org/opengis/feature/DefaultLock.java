@@ -41,8 +41,9 @@ public class DefaultLock {
                 err = t;
             }
         }
-        if (err != null)
-            throw new IOException("Errors occured releasing the lock.  Last one is cause of this exception.", err);
+        if (err != null) {
+            //throw new IOException("Errors occured releasing the lock.  Last one is cause of this exception.", err);
+        }
 
         return minResult;
     }
