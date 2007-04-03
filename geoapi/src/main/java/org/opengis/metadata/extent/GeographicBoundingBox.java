@@ -33,10 +33,9 @@ public interface GeographicBoundingBox extends GeographicExtent {
      *
      * @return The western-most longitude between -180 and +180°.
      * @unitof Angle
-     * @returns Double mandatory for valid content, may be null for an invalid document 
      */
     @UML(identifier="westBoundLongitude", obligation=MANDATORY, specification=ISO_19115)
-    Double getWestBoundLongitude();
+    double getWestBoundLongitude();
 
     /**
      * Returns the eastern-most coordinate of the limit of the
@@ -45,10 +44,9 @@ public interface GeographicBoundingBox extends GeographicExtent {
      *
      * @return The eastern-most longitude between -180 and +180°.
      * @unitof Angle
-     * @returns Double mandatory for valid content, may be null for an invalid document 
      */
     @UML(identifier="eastBoundLongitude", obligation=MANDATORY, specification=ISO_19115)
-    Double getEastBoundLongitude();
+    double getEastBoundLongitude();
 
     /**
      * Returns the southern-most coordinate of the limit of the
@@ -57,10 +55,9 @@ public interface GeographicBoundingBox extends GeographicExtent {
      *
      * @return The southern-most latitude between -90 and +90°.
      * @unitof Angle
-     * @returns Double mandatory for valid content, may be null for an invalid document 
      */
     @UML(identifier="southBoundLatitude", obligation=MANDATORY, specification=ISO_19115)
-    Double getSouthBoundLatitude();
+    double getSouthBoundLatitude();
 
     /**
      * Returns the northern-most, coordinate of the limit of the
@@ -69,8 +66,17 @@ public interface GeographicBoundingBox extends GeographicExtent {
      *
      * @return The northern-most latitude between -90 and +90°.
      * @unitof Angle
-     * @returns Double mandatory for valid content, may be null for an invalid document 
      */
     @UML(identifier="northBoundLatitude", obligation=MANDATORY, specification=ISO_19115)
-    Double getNorthBoundLatitude();
+    double getNorthBoundLatitude();
+    
+    /**
+     * Compares this geographic bounding box with the specified object for equality.
+     */
+    public boolean equals(Object object);
+    
+    /**
+     * Returns a hash code value for this object.
+     */
+    public int hashCode();
 }
