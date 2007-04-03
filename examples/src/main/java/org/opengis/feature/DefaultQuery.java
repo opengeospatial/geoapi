@@ -12,11 +12,9 @@ package org.opengis.feature;
 import java.util.Arrays;
 import java.util.List;
 
-import javax.xml.namespace.QName;
-
+import org.opengis.feature.type.TypeName;
 import org.opengis.filter.Filter;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
-import org.opengis.util.GenericName;
 
 /**
  * The query object is used by the {@link DataStore#getFeatures(Query)} method
@@ -43,7 +41,7 @@ public class DefaultQuery implements Query {
     private Filter filter;
 
     /** The typeName to get */
-    private QName typeName;
+    private TypeName typeName;
 
     /** The handle associated with this query. */
     private String handle;
@@ -60,7 +58,7 @@ public class DefaultQuery implements Query {
      * No argument constructor.
      */
     public DefaultQuery() {
-        this((QName) null);
+        this( (TypeName) null);
     }
 
     /**
@@ -68,7 +66,7 @@ public class DefaultQuery implements Query {
      *
      * @param typeName the name of the featureType to retrieve
      */
-    public DefaultQuery(QName typeName){
+    public DefaultQuery(TypeName typeName){
         this(typeName, null);
     }
 
@@ -95,7 +93,7 @@ public class DefaultQuery implements Query {
      * @param typeName the name of the featureType to retrieve.
      * @param filter the OGC filter to constrain the request.
      */
-    public DefaultQuery(QName typeName, Filter filter) {
+    public DefaultQuery(TypeName typeName, Filter filter) {
         this(typeName, filter, (List) null);
     }
 
@@ -112,11 +110,11 @@ public class DefaultQuery implements Query {
         this(null, filter, properties);
     }
 
-    public DefaultQuery(QName typeName, Filter filter, String [] properties) {
+    public DefaultQuery(TypeName typeName, Filter filter, String [] properties) {
         this(typeName, filter, properties==null ? (List) null : Arrays.asList(properties), -1, null);
     }
 
-    public DefaultQuery(QName typeName, Filter filter, List properties) {
+    public DefaultQuery(TypeName typeName, Filter filter, List properties) {
         this(typeName, filter, properties, -1, null);
     }
 
@@ -129,7 +127,7 @@ public class DefaultQuery implements Query {
      * @param propNames an array of the properties to fetch.
      * @param handle the name to associate with the query.
      */
-    public DefaultQuery(QName typeName, Filter filter,
+    public DefaultQuery(TypeName typeName, Filter filter,
             List/*<String>*/ propNames, int maxFeatures, String handle) {
         this.typeName = typeName;
         this.filter = filter;
@@ -240,10 +238,20 @@ public class DefaultQuery implements Query {
      * The DataStore API does not assume one feature type per datastore.
      * It currently makes use of this field to to specify with each request
      * what type to get.
-     *
+     * <p>
+     * Notes:
+     * <ul>
+     * <li>Origional example from SYS-TECHNOLOGIES used QName here, TypeName is
+     *     method compatable with QName and is used in a consistent manner with
+     *     the intention here (ie to look up the correct dataset).
+     * <li>The GeoAPI 2.0.x interface used GenericName - unfortantly GenericName
+     *     cannot be used to indicate which type is to be used (it already *is* the
+     *     type being discovered). GenericName subclass FeatureType is what we would
+     *     expect to discover - "name" indicating that FeatureType has a name.
+     * </ul>
      * @return the name of the feature type to be returned with this query.
      */
-    public QName getTypeName() {
+    public TypeName getTypeName() {
         return typeName;
     }
 
@@ -252,7 +260,7 @@ public class DefaultQuery implements Query {
      *
      * @param typeName the name of the featureType to retrieve.
      */
-    public void setTypeName(QName typeName) {
+    public void setTypeName(TypeName typeName) {
         this.typeName = typeName;
     }
 

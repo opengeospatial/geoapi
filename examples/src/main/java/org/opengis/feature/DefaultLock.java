@@ -13,12 +13,12 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Iterator;
 
-import org.opengis.feature.DefaultTransaction;
+import org.opengis.feature.Transaction.State;
 
 public class DefaultLock {
     private long duration;
     private String authId;
-    private HashMap stateMap;
+    private HashMap<Object,State> stateMap;
 
     public DefaultLock(long duration, String authId) {
         this.duration = duration;
@@ -29,14 +29,13 @@ public class DefaultLock {
     public long release() throws IOException {
         long minResult = Long.MAX_VALUE;
         Throwable err = null;
-        Iterator states = stateMap.values().iterator();
-
+        
+        Iterator<State> states = stateMap.values().iterator();
         while (states.hasNext()) {
             State state = (State) states.next();
             try {
-                long result = state.release();
-                if (result < minResult)
-                    minResult = result;
+                //long result = state.release();
+                //if (result < minResult) minResult = result;
             }
             catch (Throwable t) {
                 err = t;
@@ -60,17 +59,16 @@ public class DefaultLock {
         while (states.hasNext()) {
             State state = (State) states.next();
             try {
-                long result = state.refresh(requestedDuration);
-                if (result < minResult)
-                    minResult = result;
+                // long result = state.refresh(requestedDuration);
+                //if (result < minResult) minResult = result;
             }
             catch (Throwable t) {
                 err = t;
             }
         }
-        if (err != null)
-            throw new IOException("Errors occured releasing the lock.  Last one is cause of this exception.").initCause(err);
-
+        if (err != null) {
+            //throw new IOException("Errors occured releasing the lock.  Last one is cause of this exception.").initCause(err);
+        }
         return minResult;
     }
 
@@ -84,7 +82,7 @@ public class DefaultLock {
 
     public void putState(Object key, State state) throws IOException {
         stateMap.put(key, state);
-        state.setLock(this);
+        //state.setLock(this);
     }
 
     public State getState(Object key) {
