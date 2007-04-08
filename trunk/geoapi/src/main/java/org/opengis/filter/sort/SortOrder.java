@@ -1,19 +1,30 @@
+/*$************************************************************************************************
+ **
+ ** $Id$
+ **
+ ** $URL$
+ **
+ ** Copyright (C) 2003-2005 Open GIS Consortium, Inc.
+ ** All Rights Reserved. http://www.opengis.org/legal/
+ **
+ *************************************************************************************************/
 package org.opengis.filter.sort;
+
+import java.util.ArrayList;
+import java.util.List;
+import org.opengis.annotation.UML;
+import org.opengis.util.CodeList;
 
 import static org.opengis.annotation.Obligation.CONDITIONAL;
 import static org.opengis.annotation.Specification.OGC_02059;
 
-import java.util.ArrayList;
-import java.util.List;
 
-import org.opengis.annotation.UML;
-import org.opengis.util.CodeList;
 /**
  * Captures the {@link SortBy} order, {@code ASC} or {@code DESC}.
  * 
  * @see <a href="http://schemas.opengis.net/filter/1.1.0/sort.xsd">
- * @author Jody Garnett, Refractions Research.
- * @since GeoTools 2.2, Filter 1.1
+ * @author Jody Garnett (Refractions Research)
+ * @since GeoAPI 2.1
  */
 public final class SortOrder extends CodeList<SortOrder> {
     /**
@@ -30,7 +41,7 @@ public final class SortOrder extends CodeList<SortOrder> {
     /**
      * Represents acending order.
      * <p>
-     * Note this has the string representation of ASC to agree
+     * Note this has the string representation of {@code "ASC"} to agree
      * with the Filter 1.1 specification.
      * </p>
      */
@@ -40,7 +51,7 @@ public final class SortOrder extends CodeList<SortOrder> {
     /**
      * Represents descending order.
      * <p>
-     * Note this has the string representation of DESC to agree
+     * Note this has the string representation of {@code "DESC"} to agree
      * with the Filter 1.1 specification.
      * </p> 
      */	
@@ -58,21 +69,19 @@ public final class SortOrder extends CodeList<SortOrder> {
      *
      * @param name The enum name. This name must not be in use by an other enum of this type.
      * @param sqlKeyword The SQL keyword for this sorting order.
-     *
-     * @todo Should invoke {code super(name)}, not {@code super(sqlKeyword}).
      */
     private SortOrder(final String name, final String sqlKeyword) {
-//      super(name, VALUES);
-        super(sqlKeyword, VALUES);
+        super(name, VALUES);
         this.sqlKeyword = sqlKeyword;
     }
 
     /**
-     * Returns the element name for this sorting order.
+     * Returns the element name for this sorting order as a SQL {@code "ASC"}
+     * or {@code "DESC"} keyword.
      * <p>
-     * We have chosen to use the full names ASCENDING and
-     * DESENDING for our code list. The origional XMLSchema
-     * matches the SQL convention of ASC and DESC.
+     * We have chosen to use the full names {@link #ASCENDING} and
+     * {@link #DESCENDING} for our code list. The original XML schema
+     * matches the SQL convention of {@code ASC} and {@code DESC}.
      */
     public String toSQL() {
         return sqlKeyword;

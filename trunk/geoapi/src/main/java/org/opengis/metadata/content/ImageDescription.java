@@ -18,10 +18,11 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * Information about an image’s suitability for use.
+ * Information about an image's suitability for use.
  *
  * @version <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
  * @author Martin Desruisseaux (IRD)
+ * @author Cory Horner (Refractions Research)
  * @since GeoAPI 2.0
  */
 @UML(identifier="MD_ImageDescription", specification=ISO_19115)
