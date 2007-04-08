@@ -42,6 +42,7 @@ public interface Resolution {
      * Ground sample distance.
      * Only one of {@linkplain #getEquivalentScale equivalent scale} and
      * {@linkplain #getDistance ground sample distance} may be provided.
+     *
      * @todo change return type to ISO 19103 Distance
      * @unitof Distance
      */

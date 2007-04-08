@@ -15,6 +15,7 @@ import org.opengis.annotation.UML;
 import static org.opengis.annotation.Obligation.MANDATORY;
 import static org.opengis.annotation.Specification.ISO_19115;
 
+
 /**
  * Derived from ISO 19103 Scale where {@linkplain #getDenominator denominator} = 1 / Scale.
  * {@code Measure} and {@code Scale.targetUnits} = {@code Scale.sourceUnits}.
@@ -22,25 +23,23 @@ import static org.opengis.annotation.Specification.ISO_19115;
  * Implementations are encouraged to extend {@link Number} in the following manner:
  * 
  * <pre></code>
- *  class MyRepresentedFraction implements Number, RepresentedFraction {
- *  ...
- *  public double doubleValue() {
- *      return 1.0 / (double) denominator;
- *  }
- *  public float floatValue() {
- *      return 1.0f / (float) denominator;
- *  }
- *  public long longValue() {
- *      return 0;
- *  }
- *  public int intValue() {
- *      return 0;
- *  }
- *  ...
+ *  class MyRepresentedFraction extends Number implements RepresentedFraction {
+ *      ...
+ *      public double doubleValue() {
+ *          return 1.0 / (double) denominator;
+ *      }
+ *      public float floatValue() {
+ *          return 1.0f / (float) denominator;
+ *      }
+ *      public long longValue() {
+ *          return 0;
+ *      }
+ *      public int intValue() {
+ *          return 0;
+ *      }
+ *      ...
  *  }
  * </code></pre>
- * 
- * </p>
  * 
  * @version <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
  * @author Ely Conn (Leica Geosystems Geospatial Imaging, LLC)
@@ -64,13 +63,15 @@ public interface RepresentativeFraction {
     int getDenominator();
 
     /**
-     * RepresentativeFraction is a data object - equals is defined acoording to getDenominator;
+     * Compares this representative fraction with the specified object for equality.
+     * {@code RepresentativeFraction} is a data object - {@code equals} is defined
+     * acoording to {@link #getDenominator};
      * <p>
      * Implementations should exactly match the following:
      * 
      * <pre><code>
-     * public boolean equals( final Object object ) {
-     *     if (object != null &amp;&amp; object instanceof RepresentativeFraction) {
+     * public boolean equals(final Object object) {
+     *     if (object instanceof RepresentativeFraction) {
      *         final RepresentativeFraction that = (RepresentativeFraction) object;
      *         return denominator == that.getDenominator();
      *     }
@@ -78,12 +79,16 @@ public interface RepresentativeFraction {
      * }
      * </code></pre>
      * 
-     * @param other
-     * @return ture of other is a RepresentedFraction with the same getDenominator value
+     * @param other The object to compare with.
+     * @return {@code true} if {@code other} is a {@code RepresentedFraction} with the same
+     *         {@linkplain #getDenominator denominator} value.
      */
-    public boolean equals( Object other );
+    boolean equals(Object other);
+
     /**
-     * RepresentedFraction is a data object - hashcode defined according to getDenominator.
+     * Returns a hash value for this representative fraction.
+     * {@code RepresentativeFraction} is a data object - {@code hashcode} is defined
+     * according to {@link #getDenominator}.
      * <p>
      * Implementations should exactly match the following:
      * 
@@ -93,7 +98,7 @@ public interface RepresentativeFraction {
      * }
      * </code></pre>
      * 
-     * @return hashcode for RepresentedFraction
+     * @return A hash code value for this representative fraction.
      */
-    public int hashCode();
+    int hashCode();
 }

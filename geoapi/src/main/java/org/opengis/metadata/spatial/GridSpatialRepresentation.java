@@ -22,6 +22,7 @@ import static org.opengis.annotation.Specification.*;
  *
  * @version <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
  * @author Martin Desruisseaux (IRD)
+ * @author Cory Horner (Refractions Research)
  * @since GeoAPI 2.0
  */
 @UML(identifier="MD_GridSpatialRepresentation", specification=ISO_19115)
@@ -29,7 +30,7 @@ public interface GridSpatialRepresentation extends SpatialRepresentation {
     /**
      * Number of independent spatial-temporal axes.
      *
-     * @returns Integer mandatory for valid content, may be null for an invalid document 
+     * @returns Integer mandatory for valid content, may be null for an invalid document.
      */
     @UML(identifier="numberOfDimensions", obligation=MANDATORY, specification=ISO_19115)
     Integer getNumberOfDimensions();
