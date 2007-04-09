@@ -57,7 +57,7 @@
       <name>GeoAPI-devel</name>
       <subscribe>http://lists.sourceforge.net/lists/listinfo/geoapi-devel</subscribe>
       <post>geoapi-devel@lists.sourceforge.net</post>
-      <archive>http://sourceforge.net/mailarchive/forum.php?forum=geoapi-devel</archive>
+      <archive>http://sourceforge.net/mailarchive/forum.php?forum_name=geoapi-devel</archive>
     </mailingList>
   </mailingLists>
 
