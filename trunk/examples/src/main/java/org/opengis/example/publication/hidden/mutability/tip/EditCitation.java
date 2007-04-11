@@ -5,22 +5,25 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class EditCitation implements Citation {
-    String isbn;
-    private Set<EditCitationDate> dates;    
-    EditCitation(){
+    private String isbn;
+
+    private Set<EditCitationDate> dates;
+
+    EditCitation() {
         isbn = null;
         dates = new HashSet<EditCitationDate>();
     }
-    public synchronized String getISBN(){
-          return isbn;
+
+    public synchronized String getISBN() {
+        return isbn;
     }
-    public synchronized void setISBN( String isbn){
-          this.isbn = isbn;
+
+    public synchronized void setISBN(String isbn) {
+        this.isbn = isbn;
     }
+
     public synchronized Collection<EditCitationDate> getDates() {
         return dates;
     }
-    public synchronized void setDates( Collection<EditCitationDate> dates ) {
-        this.dates = new HashSet<EditCitationDate>(dates);
-    }
+
 }
