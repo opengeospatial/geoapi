@@ -54,7 +54,7 @@ public class DataCitation implements Citation {
 			DataCitation data = (DataCitation) other;
 
 			return (dates == null && data.dates == null)
-					|| (dates.equals(data.dates));
+					|| (dates != null && dates.equals(data.dates));
 		}
 		Collection<CitationDate> otherDates = other.getDates();
 		return (dates == null && otherDates == null)
