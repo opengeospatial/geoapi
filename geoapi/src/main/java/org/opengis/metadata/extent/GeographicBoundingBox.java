@@ -69,14 +69,4 @@ public interface GeographicBoundingBox extends GeographicExtent {
      */
     @UML(identifier="northBoundLatitude", obligation=MANDATORY, specification=ISO_19115)
     double getNorthBoundLatitude();
-
-    /**
-     * Compares this geographic bounding box with the specified object for equality.
-     */
-    boolean equals(Object object);
-
-    /**
-     * Returns a hash code value for this object.
-     */
-    int hashCode();
 }
