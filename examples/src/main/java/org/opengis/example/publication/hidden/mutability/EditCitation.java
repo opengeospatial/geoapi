@@ -9,25 +9,28 @@ import org.opengis.example.publication.Citation;
 import org.opengis.example.publication.CitationDate;
 
 public class EditCitation implements Citation {
-    String isbn;
-    private Set<EditCitationDate> dates;    
-    EditCitation(){
+    private String isbn;
+
+    Collection<EditCitationDate> dates;
+
+    EditCitation() {
         isbn = null;
-        dates = new HashSet<EditCitationDate>();
+        dates=new HashSet<EditCitationDate>();
     }
-    public synchronized String getISBN(){
-          return isbn;
+
+    public synchronized String getISBN() {
+        return isbn;
     }
-    public synchronized void setISBN( String isbn){
-          this.isbn = isbn;
+
+    public synchronized void setISBN(String isbn) {
+        this.isbn = isbn;
     }
+
     public Collection<CitationDate> getDates() {
-        return Collections.unmodifiableSet((Set<? extends CitationDate>) dates);
+        return Collections.unmodifiableSet((Set<? extends CitationDate>)dates);
     }
-   public synchronized Collection<EditCitationDate> getEditDates() {
-        return Collections.synchronizedSet(dates);
-   }
-   public synchronized void setEditDate( Collection<EditCitationDate> dates ) {
-        this.dates = new HashSet<EditCitationDate>(dates);
-   }
+
+    public Collection<EditCitationDate> getEditDates() {
+        return Collections.synchronizedCollection(dates);
+    }
 }
