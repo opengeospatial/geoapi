@@ -44,7 +44,7 @@ public interface LegalConstraints extends Constraints {
 
     /**
      * Other restrictions and legal prerequisites for accessing and using the resource.
-     * This method should returns a non-null value only if {@linkplain #getAccessConstraints
+     * This method should returns a non-empty value only if {@linkplain #getAccessConstraints
      * access constraints} or {@linkplain #getUseConstraints use constraints} declares
      * {@linkplain Restriction#OTHER_RESTRICTIONS other restrictions}.
      */

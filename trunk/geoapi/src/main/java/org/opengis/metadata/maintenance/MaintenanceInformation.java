@@ -88,13 +88,17 @@ public interface MaintenanceInformation {
 
     /**
      * Information regarding specific requirements for maintaining the resource.
+     *
+     * @since GeoAPI 2.1
      */
     @UML(identifier="maintenanceNote", obligation=OPTIONAL, specification=ISO_19115)
     Collection<InternationalString> getMaintenanceNotes();
 
     /**
      * Identification of, and means of communicating with,
-     * person(s) and organization(s) with responsibility for maintaining the metadata
+     * person(s) and organization(s) with responsibility for maintaining the metadata.
+     *
+     * @since GeoAPI 2.1
      */
     @UML(identifier="contact", obligation=OPTIONAL, specification=ISO_19115)
     Collection<? extends ResponsibleParty> getContacts();    

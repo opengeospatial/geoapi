@@ -82,6 +82,7 @@ public interface DataIdentification extends Identification {
      * Minimum bounding rectangle within which data is available.
      * Only one of {@code getGeographicBox()} and {@link #getGeographicDescription()}
      * should be provided.
+     *
      * @deprecated not in ISO 19115:2003
      */
     @Profile (level=CORE)
@@ -92,6 +93,7 @@ public interface DataIdentification extends Identification {
      * Description of the geographic area within which data is available.
      * Only one of {@link #getGeographicBox()} and {@code getGeographicDescription()}
      * should be provided.
+     *
      * @deprecated not in ISO 19115:2003
      */
     @Profile (level=CORE)
