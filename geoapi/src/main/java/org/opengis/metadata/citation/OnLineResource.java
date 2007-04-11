@@ -54,6 +54,8 @@ public interface OnLineResource {
 
     /**
      * Name of the online resource. Returns {@code null} if none.
+     *
+     * @since GeoAPI 2.1
      */
     @UML(identifier="name", obligation=OPTIONAL, specification=ISO_19115)
     String getName();

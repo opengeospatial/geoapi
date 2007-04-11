@@ -48,13 +48,17 @@ public interface ScopeDescription {
     public Set<? extends FeatureType> getFeatureInstances();
 
     /**
-     * Attribute instances to which the information applies
+     * Attribute instances to which the information applies.
+     *
+     * @since GeoAPI 2.1
      */
     @UML(identifier="attributeInstances", obligation=CONDITIONAL, specification=ISO_19115)
     public Set<? extends AttributeType> getAttributeInstances();
 
     /**
      * Dataset to which the information applies.
+     *
+     * @since GeoAPI 2.1
      */
     @UML(identifier="dataset", obligation=CONDITIONAL, specification=ISO_19115)
     public String getDataset();
@@ -62,6 +66,8 @@ public interface ScopeDescription {
     /**
      * Class of information that does not fall into the other categories to
      * which the information applies.
+     *
+     * @since GeoAPI 2.1
      */
     @UML(identifier="other", obligation=CONDITIONAL, specification=ISO_19115)
     public String getOther();
