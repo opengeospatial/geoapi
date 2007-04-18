@@ -61,7 +61,7 @@ public interface ImageDescription extends CoverageDescription {
     /**
      * Area of the dataset obscured by clouds, expressed as a percentage of the spatial extent.
      *
-     * @return A value between 0 and 100, or {@code null} if unknow.
+     * @return A value between 0 and 100, or {@code null} if unknown.
      */
     @UML(identifier="cloudCoverPercentage", obligation=OPTIONAL, specification=ISO_19115)
     Double getCloudCoverPercentage();

@@ -35,7 +35,7 @@ public interface Georeferenceable extends GridSpatialRepresentation {
     /**
      * Indication of whether or not control point(s) exists.
      *
-     * @returns Boolean mandatory for valid content, may be null for an invalid document.
+     * @returns boolean
      */
     @UML(identifier="controlPointAvailability", obligation=MANDATORY, specification=ISO_19115)
     boolean isControlPointAvailable();
@@ -43,7 +43,7 @@ public interface Georeferenceable extends GridSpatialRepresentation {
     /**
      * Indication of whether or not orientation parameters are available.
      * 
-     * @returns Boolean mandatory for valid content, may be null for an invalid document.
+     * @returns boolean
      */
     @UML(identifier="orientationParameterAvailability", obligation=MANDATORY, specification=ISO_19115)
     boolean isOrientationParameterAvailable();
