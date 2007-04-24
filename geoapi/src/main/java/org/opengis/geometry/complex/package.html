@@ -2,13 +2,13 @@
 
 <HTML>
   <HEAD>
-    <TITLE>package org.opengis.spatialschema.geometry.complex</TITLE>
+    <TITLE>package org.opengis.geometry.complex</TITLE>
   </HEAD>
   <BODY>
   Set of primitive geometric objects whose interiors are disjoint. The following is adapted from
   <A HREF="http://www.opengis.org/docs/01-101.pdf">Feature Geometry (Topic 1)</A> specification.
 
-  <P ALIGN="justify">A geometric complex ({@link org.opengis.spatialschema.geometry.complex.Complex}) is a set of
+  <P ALIGN="justify">A geometric complex ({@link org.opengis.geometry.complex.Complex}) is a set of
   primitive geometric objects (in a common coordinate system) whose interiors are disjoint.
   Further, if a primitive is in a geometric complex, then there exists a set of primitives in
   that complex whose point-wise union is the boundary of this first primitive.</P>
@@ -48,7 +48,7 @@
   <P ALIGN="justify">Many systems have a concept of a universal face (for 2D) or universal solid
   (for 3D). This is valid only in the case where the underlying space of the complex is an
   unbounded Euclidean space. In this case, for 2D, the universal face is the surface in the
-  {@link org.opengis.spatialschema.geometry.complex.Complex} that has only interior boundary rings (its exterior
+  {@link org.opengis.geometry.complex.Complex} that has only interior boundary rings (its exterior
   one being the "point at infinity"). Analogously, in 3D, the universal solid is the one that
   has only interior boundary shells. In bounded manifolds, such as the sphere, there is no point
   at infinity, and all primitives are bounded. Without the Jordan Separation Theorem, all boundaries
@@ -63,16 +63,16 @@
   <P ALIGN="justify"><FONT SIZE=2><STRONG>NOTE:</STRONG> A maximal complex could reasonably be
   considered a strong aggregation of its primitives depending on the internal semantics of the
   application. For this reason, the mechanism for the containment of
-  {@link org.opengis.spatialschema.geometry.primitive.Primitive}s in a {@link org.opengis.spatialschema.geometry.complex.Complex} is left
-  unspecified. In any case, once a {@link org.opengis.spatialschema.geometry.primitive.Primitive} is within a complex,
-  or a {@link org.opengis.spatialschema.geometry.complex.Complex} is a subcomplex of a maximal
-  {@link org.opengis.spatialschema.geometry.complex.Complex}, its boundary operation will not need to construct
-  representative {@link org.opengis.spatialschema.geometry.Geometry}, since by the definition of a complex, the
+  {@link org.opengis.geometry.primitive.Primitive}s in a {@link org.opengis.geometry.complex.Complex} is left
+  unspecified. In any case, once a {@link org.opengis.geometry.primitive.Primitive} is within a complex,
+  or a {@link org.opengis.geometry.complex.Complex} is a subcomplex of a maximal
+  {@link org.opengis.geometry.complex.Complex}, its boundary operation will not need to construct
+  representative {@link org.opengis.geometry.Geometry}, since by the definition of a complex, the
   objects needed to represent the boundary of the contained object will already exist, and
-  only references to those objects are required by the {@link org.opengis.spatialschema.geometry.Geometry#getBoundary}
-  method. Remember that the containment of {@link org.opengis.spatialschema.geometry.complex.Complex} in one another
-  is a subset-superset association, while the containment of {@link org.opengis.spatialschema.geometry.primitive.Primitive}s
-  in a {@link org.opengis.spatialschema.geometry.complex.Complex} is an element-set association.</FONT></P>
+  only references to those objects are required by the {@link org.opengis.geometry.Geometry#getBoundary}
+  method. Remember that the containment of {@link org.opengis.geometry.complex.Complex} in one another
+  is a subset-superset association, while the containment of {@link org.opengis.geometry.primitive.Primitive}s
+  in a {@link org.opengis.geometry.complex.Complex} is an element-set association.</FONT></P>
   </BLOCKQUOTE>
   </BODY>
 </HTML>

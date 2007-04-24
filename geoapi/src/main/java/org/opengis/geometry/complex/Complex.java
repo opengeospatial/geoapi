@@ -87,5 +87,5 @@ public interface Complex extends Geometry {
     @UML(identifier="element", obligation=MANDATORY, specification=ISO_19107)
     public Collection<? extends Primitive> getElements();
 
-//    public org.opengis.spatialschema.topology.complex.TP_Complex topology[];
+//    public org.opengis.topology.complex.TP_Complex topology[];
 }

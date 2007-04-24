@@ -30,7 +30,7 @@ public interface GridSpatialRepresentation extends SpatialRepresentation {
     /**
      * Number of independent spatial-temporal axes.
      *
-     * @returns Integer mandatory for valid content, may be null for an invalid document.
+     * @return Integer mandatory for valid content, may be null for an invalid document.
      */
     @UML(identifier="numberOfDimensions", obligation=MANDATORY, specification=ISO_19115)
     Integer getNumberOfDimensions();

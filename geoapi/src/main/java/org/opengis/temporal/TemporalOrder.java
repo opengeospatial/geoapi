@@ -17,13 +17,14 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * Provides an operation for determining the position of this {@link Primitive}
- * relative to another {@link Primitive}.
+ * Provides an operation for determining the position of this {@linkplain TemporalPrimitive
+ * temporal primitive} relative to another {@linkplain TemporalPrimitive temporal primitive}.
  *
  * @author Stephane Fellah (Image Matters)
  * @author Alexander Petkov
  *
- * @todo The javadoc suggests that this interface should extends some kind of {@link Primitive}.
+ * @todo The javadoc suggests that this interface should extends some kind of
+ *       {@link TemporalPrimitive}.
  */
 @UML(identifier="TM_Order", specification=ISO_19108)
 public interface TemporalOrder {

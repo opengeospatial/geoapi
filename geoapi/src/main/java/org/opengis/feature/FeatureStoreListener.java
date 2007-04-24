@@ -10,8 +10,8 @@
  *************************************************************************************************/
 package org.opengis.feature;
 
-// J2SE direct dependencies
 import java.util.EventListener;
+import org.opengis.feature.type.FeatureType;  // For javadoc
 
 
 /**

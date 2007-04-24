@@ -16,6 +16,7 @@ import java.util.List;
 import javax.xml.namespace.QName;
 
 // OpenGIS direct dependencies
+import org.opengis.feature.type.FeatureType;  // For javadoc
 import org.opengis.feature.type.TypeName;
 import org.opengis.filter.Filter;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;

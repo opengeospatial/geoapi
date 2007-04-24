@@ -35,7 +35,7 @@ public interface Dimension {
     /**
      * Number of elements along the axis.
      * 
-     * @returns Integer mandatory for valid content, may be null for an invalid document.
+     * @return Integer mandatory for valid content, may be null for an invalid document.
      */
     @UML(identifier="dimensionSize", obligation=MANDATORY, specification=ISO_19115)
     Integer getDimensionSize();

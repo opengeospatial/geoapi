@@ -92,7 +92,7 @@ public interface FeatureStore {
      * Gets all features of the given type.
      *
      * @throws IOException if an error occurs while reading the backing store. If the cause is
-     *         not a standard I/O exception, it may be wrapped ina {@link FeatureStoreException}.
+     *         not a standard I/O exception, it may be wrapped in a {@link FeatureStoreException}.
      */
     FeatureCollection getFeatures(GenericName type) throws IOException;
 
@@ -100,7 +100,7 @@ public interface FeatureStore {
      * Gets all features of the given type that pass some filter.
      *
      * @throws IOException if an error occurs while reading the backing store. If the cause is
-     *         not a standard I/O exception, it may be wrapped ina {@link FeatureStoreException}.
+     *         not a standard I/O exception, it may be wrapped in a {@link FeatureStoreException}.
      */
     FeatureCollection getFeatures(GenericName type, Filter filter) throws IOException;
 
@@ -111,7 +111,7 @@ public interface FeatureStore {
      * property list.  Note that the type is indicated in the query.
      *
      * @throws IOException if an error occurs while reading the backing store. If the cause is
-     *         not a standard I/O exception, it may be wrapped ina {@link FeatureStoreException}.
+     *         not a standard I/O exception, it may be wrapped in a {@link FeatureStoreException}.
      */
     FeatureCollection getFeatures(Query query) throws IOException;
 
@@ -121,7 +121,7 @@ public interface FeatureStore {
      * on the result.
      *
      * @throws IOException if an error occurs while reading the backing store. If the cause is
-     *         not a standard I/O exception, it may be wrapped ina {@link FeatureStoreException}.
+     *         not a standard I/O exception, it may be wrapped in a {@link FeatureStoreException}.
      */
     FeatureCollection getFeatures(Query q, Transaction t) throws IOException;
 
@@ -180,7 +180,7 @@ public interface FeatureStore {
      * @throws IllegalArgumentException If the given feature schema is somehow
      *         incompatible with the persisten store that backs this feature store.
      * @throws IOException if an error occurs while accessing the backing store. If the cause is
-     *         not a standard I/O exception, it may be wrapped ina {@link FeatureStoreException}.
+     *         not a standard I/O exception, it may be wrapped in a {@link FeatureStoreException}.
      */
     void createType(FeatureType type) throws UnsupportedOperationException, IllegalArgumentException, IOException;
 
@@ -191,7 +191,7 @@ public interface FeatureStore {
      *
      * @throws UnsupportedOperationException if the removal of whole feature types is not supported.
      * @throws IOException if an error occurs while accessing the backing store. If the cause is
-     *         not a standard I/O exception, it may be wrapped ina {@link FeatureStoreException}.
+     *         not a standard I/O exception, it may be wrapped in a {@link FeatureStoreException}.
      */
     void removeType(GenericName type) throws UnsupportedOperationException, IOException;
 
@@ -200,7 +200,7 @@ public interface FeatureStore {
      * 
      * @throws UnsupportedOperationException if the modification of types is not supported.
      * @throws IOException if an error occurs while accessing the backing store. If the cause is
-     *         not a standard I/O exception, it may be wrapped ina {@link FeatureStoreException}.
+     *         not a standard I/O exception, it may be wrapped in a {@link FeatureStoreException}.
      */
     void modifyType(FeatureType type) throws UnsupportedOperationException, IOException;
 

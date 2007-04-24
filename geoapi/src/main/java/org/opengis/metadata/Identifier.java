@@ -46,7 +46,7 @@ public interface Identifier {
     String AUTHORITY_KEY = "authority";
 
     /**
-     * Key for the <code>{@version}</code> property to be given to the
+     * Key for the <code>{@value}</code> property to be given to the
      * {@linkplain org.opengis.referencing.ObjectFactory CRS factory} <code>createFoo(&hellip;)</code>
      * methods. This is used for setting the value to be returned by {@link #getAuthority}.
      * 

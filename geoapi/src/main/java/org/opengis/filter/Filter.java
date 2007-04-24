@@ -10,10 +10,10 @@
  *************************************************************************************************/
 package org.opengis.filter;
 
-// OpenGIS direct dependencies
 import org.opengis.annotation.Extension;
 import org.opengis.annotation.XmlElement;
 import org.opengis.feature.Feature;
+import org.opengis.feature.type.FeatureType;  // For javadoc
 
 
 /**

@@ -87,23 +87,23 @@
   </UL>
   <H3>Changes in Geometry packages</H3>
   <UL>
-    <LI><P>Set <code><A HREF="../spatialschema/geometry/geometry/Position.html">Position</A></code> as the super-interface
-        for <code><A HREF="../spatialschema/geometry/DirectPosition.html">DirectPosition</A></code> and
-        <code><A HREF="../spatialschema/geometry/primitive/Point.html">Point</A></code> interfaces instead
+    <LI><P>Set <code><A HREF="../geometry/coordinate/Position.html">Position</A></code> as the super-interface
+        for <code><A HREF="../geometry/DirectPosition.html">DirectPosition</A></code> and
+        <code><A HREF="../geometry/primitive/Point.html">Point</A></code> interfaces instead
         of an union of them. The union type do no exists in Java and this change lead to a more object oriented
         approach. This change was done after a comment on the GeoAPI mailing list.</P></LI>
 
-    <LI><P>In <code><A HREF="../spatialschema/geometry/Envelope.html">Envelope</A></code> interface,
+    <LI><P>In <code><A HREF="../geometry/Envelope.html">Envelope</A></code> interface,
         added convenience methods <code>getMinimum</code>, <code>getMaximum</code>, <code>getCenter</code>
         and <code>getLength</code>.</P></LI>
 
-    <LI><P>In <code><A HREF="../spatialschema/geometry/geometry/GenericCurve.html">GenericCurve</A></code>, renamed the
+    <LI><P>In <code><A HREF="../geometry/coordinate/GenericCurve.html">GenericCurve</A></code>, renamed the
         <code>getParam</code> and <code>getConstructiveParam</code> method as
         <code>forParam</code> and <code>forConstructiveParam</code> respectively.
         The former names was misleading since those methods do not return a constructive
         parameter; they expect it as argument instead.</P>
 
-    <LI><P>In <code><A HREF="../spatialschema/geometry/complex/Complex.html">Complex</A></code>, renamed the
+    <LI><P>In <code><A HREF="../geometry/complex/Complex.html">Complex</A></code>, renamed the
         <code>getSuperComplexex</code> method as <code>getSuperComplexes</code>. The former was a typo.</P>
 
     <LI><P>Addition of more geometry interfaces from ISO 19107. The work is not finished however.</P></LI>
