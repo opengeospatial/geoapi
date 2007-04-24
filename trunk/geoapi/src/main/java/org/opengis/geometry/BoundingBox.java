@@ -26,7 +26,7 @@ import org.opengis.annotation.Extension;
  * This interface combines the ideas of {@link GeographicBoundingBox} with
  * those of {@link Envelope}. It provides convenience methods to assist
  * in accessing the formal properties of this object. Those methods
- * (for example #getMinX()} match common usage in existing libraries
+ * (for example {@link #getMinX()}) match common usage in existing libraries
  * like {@linkplain Rectangle2D Java2D}.
  * <p>
  * This object contains no additional information beyond that provided
