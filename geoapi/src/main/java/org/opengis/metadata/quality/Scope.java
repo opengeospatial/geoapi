@@ -37,15 +37,19 @@ public interface Scope {
     ScopeCode getLevel();
 
     /**
+     * Detailed description about the level of the data specified by the scope.
+     * Should be defined only if the {@linkplain #getLevel level} is not equal
+     * to {@link ScopeCode#DATASET DATASET} or {@link ScopeCode#SERIES SERIES}.
+     *
+     * @since GeoAPI 2.1
+     */
+    @UML(identifier="levelDescription", obligation=CONDITIONAL, specification=ISO_19115)
+    Collection<? extends ScopeDescription> getLevelDescription();
+
+    /**
      * Information about the spatial, vertical and temporal extent of the data specified by the
      * scope.
      */
     @UML(identifier="extent", obligation=OPTIONAL, specification=ISO_19115)
     Extent getExtent();
-
-    /**
-     * Detailed description about the level of the data specified by the scope.
-     */
-    @UML(identifier="levelDescription", obligation=CONDITIONAL, specification=ISO_19115)
-    Collection<? extends ScopeDescription> getLevelDescription();
 }
