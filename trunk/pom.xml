@@ -231,7 +231,7 @@
             <group>
               <title>Geometry and topology</title>
               <packages>
-                org.opengis.spatialschema*
+                org.opengis.geometry*:org.opengis.topology*
               </packages>
             </group>
             <group>

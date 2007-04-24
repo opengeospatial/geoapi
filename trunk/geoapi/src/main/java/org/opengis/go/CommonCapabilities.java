@@ -15,23 +15,23 @@ import org.opengis.go.spatial.PathType;
 
 
 /**
- * The <code>CommonCapabilities</code> interface provides runtime information
+ * The {@code CommonCapabilities} interface provides runtime information
  * about the capabilities of a given GO-1 implementation. Objects implementing
  * this interface are obtained through the
- * <code>CommonFactory.getCapabilities()</code> method.
+ * {@code CommonFactory.getCapabilities()} method.
  *
  * @author Open GIS Consortium, Inc.
  * @version $Revision: 658 $, $Date: 2006-02-23 12:09:34 +1100 (jeu., 23 févr. 2006) $
  */
 public interface CommonCapabilities {
     /**
-     * Returns an array of <code>Class</code> objects for the directposition
+     * Returns an array of {@code Class} objects for the directposition
      * interfaces that are supported by a given implementation.
      */
     Class[] getSupportedDirectPositions();
 
     /**
-     * Returns an array of <code>Class</code> objects for the directposition
+     * Returns an array of {@code Class} objects for the directposition
      * interfaces that are supported by a given implementation for the specified
      * Coordinate Reference System.
      *
@@ -40,7 +40,7 @@ public interface CommonCapabilities {
     Class[] getSupportedDirectPositions(CoordinateReferenceSystem crs);
 
     /**
-     * Returns an array of <code>Class</code> objects from the
+     * Returns an array of {@code Class} objects from the
      * spatialschema-package that are supported by a given implementation for
      * the specified Coordinate Reference System.
      *
@@ -49,13 +49,13 @@ public interface CommonCapabilities {
     Class[] getSupportedSpatialSchemaObjects(CoordinateReferenceSystem crs);
 
     /**
-     * Returns an array of <code>Class</code> objects for the orientation
+     * Returns an array of {@code Class} objects for the orientation
      * interfaces that are supported by a given implementation.
      */
     Class[] getSupportedOrientations();
 
     /**
-     * Returns an array of <code>Class</code> objects for the orientation
+     * Returns an array of {@code Class} objects for the orientation
      * interfaces that are supported by a given implementation for the specified
      * Coordinate Reference System.
      *
@@ -64,10 +64,10 @@ public interface CommonCapabilities {
     Class[] getSupportedOrientations(CoordinateReferenceSystem crs);
 
     /**
-     * Returns an array of <code>Class</code> objects for the geometry
+     * Returns an array of {@code Class} objects for the geometry
      * interfaces that are supported by a given implementation. These Class
      * objects can be used in a call to
-     * <code>GeometryFactory.getGeometry(Class)</code>.
+     * {@code GeometryFactory.getGeometry(Class)}.
      */
     Class[] getSupportedGeometries();
 
@@ -75,19 +75,19 @@ public interface CommonCapabilities {
      * Returns an array of Strings that are keys for the Coordinate Reference
      * Systems that this implementation supports. These strings can be used in a
      * call to
-     * <code>CoordinateReferenceSystemFactory.getCoordinateReferenceSystem(String)</code>.
+     * {@code CoordinateReferenceSystemFactory.getCoordinateReferenceSystem(String)}.
      */
     String[] getSupportedCoordinateReferenceSystems();
 
     /**
      * Returns an array of Strings that are keys for the datums that this
      * implementation supports. These strings can be used in a call to
-     * <code>DatumFactory.getDatum(String)</code>.
+     * {@code DatumFactory.getDatum(String)}.
      */
     String[] getSupportedDatums();
 
     /**
-     * Returns an array of <code>PathType</code> objects that indicates the
+     * Returns an array of {@code PathType} objects that indicates the
      * path types that are supported.
      */
     PathType[] getSupportedPathTypes();

@@ -14,6 +14,7 @@ package org.opengis.feature;
 import java.util.EventObject;
 
 // OpenGIS direct dependencies
+import org.opengis.feature.type.FeatureType;  // For javadoc
 import org.opengis.util.GenericName;
 import org.opengis.util.InternationalString;
 

@@ -51,10 +51,10 @@ public interface CommonFactory {
      * @return the feature display factory.
      *
     FeatureDisplayFactory getFeatureDisplayFactory();
-	 */
+     */
     
     /**
-     * Returns the {@linkplain FeatureTypeFactory feature type factory} singleton.
+     * Returns the {@linkplain TypeFactory type factory} singleton.
      *
      * @return the feature type factory.
      */

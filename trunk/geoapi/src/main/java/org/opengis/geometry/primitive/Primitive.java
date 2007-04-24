@@ -130,6 +130,6 @@ public interface Primitive extends Geometry {
     @UML(identifier="proxy", obligation=OPTIONAL, specification=ISO_19107)
     public OrientablePrimitive[] getProxy();
 
-//    public org.opengis.spatialschema.topology.primitive.TP_Primitive topology[];
+//    public org.opengis.topology.primitive.TP_Primitive topology[];
 //    public org.opengis.geometry.complex.GM_Composite composite[];
 }

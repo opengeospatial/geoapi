@@ -123,7 +123,7 @@ public final class TopicCategory extends CodeList<TopicCategory> {
      * Examples: disease and illness, factors affecting health, hygiene, substance abuse,
      *           mental and physical health, health services.
      *
-     * @sinced GeoAPI 2.1
+     * @since GeoAPI 2.1
      */
     @UML(identifier="health", obligation=CONDITIONAL, specification=ISO_19115)
     public static final TopicCategory HEALTH = new TopicCategory("HEALTH");
