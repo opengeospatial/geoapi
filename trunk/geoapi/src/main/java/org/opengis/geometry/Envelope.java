@@ -33,6 +33,8 @@ import static org.opengis.annotation.Specification.*;
 public interface Envelope {
     /**
      * Returns the envelope coordinate reference system, or {@code null} if unknown.
+     * If non-null, it shall be the same as {@linkplain #getLowerCorner lower corner}
+     * and {@linkplain #getUpperCorner upper corner} CRS.
      *
      * @since GeoAPI 2.1
      */
@@ -40,7 +42,9 @@ public interface Envelope {
     CoordinateReferenceSystem getCoordinateReferenceSystem();
 
     /**
-     * The length of coordinate sequence (the number of entries) in this envelope.
+     * The length of coordinate sequence (the number of entries) in this envelope. Mandatory
+     * even when the {@linkplain #getCoordinateReferenceSystem coordinate reference system}
+     * is unknown.
      *
      * @return The dimensionality of this envelope.
      *

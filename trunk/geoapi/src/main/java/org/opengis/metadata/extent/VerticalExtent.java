@@ -11,7 +11,7 @@
 package org.opengis.metadata.extent;
 
 import javax.units.Unit;
-import org.opengis.referencing.crs.CoordinateReferenceSystem;
+import org.opengis.referencing.crs.VerticalCRS;
 import org.opengis.referencing.datum.VerticalDatum;
 import org.opengis.annotation.UML;
 
@@ -58,7 +58,7 @@ public interface VerticalExtent {
      * Provides information about the origin from which the
      * maximum and minimum elevation values are measured.
      * 
-     * @deprecated changed to verticalCRS in ISO_19115:2003/Cor.1:2006
+     * @deprecated changed to {@link #getVerticalCRS} in ISO_19115:2003/Cor.1:2006
      */
     @UML(identifier="verticalDatum", obligation=MANDATORY, specification=ISO_19115)
     VerticalDatum getVerticalDatum();
@@ -71,5 +71,5 @@ public interface VerticalExtent {
      * @since GeoAPI 2.1
      */
     @UML(identifier="verticalCRS", obligation=MANDATORY, specification=ISO_19115)
-    CoordinateReferenceSystem getVerticalCRS();
+    VerticalCRS getVerticalCRS();
 }

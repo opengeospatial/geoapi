@@ -24,11 +24,11 @@ import static org.opengis.annotation.Specification.*;
 /**
  * Supplementary identification and remarks information for a CRS or CRS-related object.
  * When {@link org.opengis.referencing.crs.CRSAuthorityFactory} is used to create an object,
- * the {@linkplain Identifier#getAuthority authority} and {@linkplain Identifier#getCode
- * authority code} values should be set to the authority name of the factory object,
- * and the authority code supplied by the client, respectively. The other values may
- * or may not be set. If the authority is EPSG, the implementer may consider using the
- * corresponding metadata values in the EPSG tables.
+ * the {@linkplain ReferenceIdentifier#getAuthority authority} and
+ * {@linkplain ReferenceIdentifier#getCode authority code} values should be set to the
+ * authority name of the factory object, and the authority code supplied by the client,
+ * respectively. The other values may or may not be set. If the authority is EPSG, the
+ * implementer may consider using the corresponding metadata values in the EPSG tables.
  *
  * @version <A HREF="http://portal.opengeospatial.org/files/?artifact_id=6716">Abstract specification 2.0</A>
  * @author ISO/DIS 19111

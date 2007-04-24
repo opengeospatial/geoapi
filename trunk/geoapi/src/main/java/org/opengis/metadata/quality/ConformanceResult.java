@@ -43,8 +43,6 @@ public interface ConformanceResult extends Result {
 
     /**
      * Indication of the conformance result.
-     * 
-     * @returns Boolean mandatory for valid content, may be null for an invalid document. 
      */
     @UML(identifier="pass", obligation=MANDATORY, specification=ISO_19115)
     boolean pass();

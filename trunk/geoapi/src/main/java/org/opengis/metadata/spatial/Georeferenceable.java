@@ -34,16 +34,12 @@ import static org.opengis.annotation.Specification.*;
 public interface Georeferenceable extends GridSpatialRepresentation {
     /**
      * Indication of whether or not control point(s) exists.
-     *
-     * @returns boolean
      */
     @UML(identifier="controlPointAvailability", obligation=MANDATORY, specification=ISO_19115)
     boolean isControlPointAvailable();
 
     /**
      * Indication of whether or not orientation parameters are available.
-     * 
-     * @returns boolean
      */
     @UML(identifier="orientationParameterAvailability", obligation=MANDATORY, specification=ISO_19115)
     boolean isOrientationParameterAvailable();
@@ -56,14 +52,16 @@ public interface Georeferenceable extends GridSpatialRepresentation {
 
     /**
      * Terms which support grid data georeferencing.
+     *
+     * @since GeoAPI 2.1
      */
-    @UML(identifier="parameters", obligation=MANDATORY, specification=ISO_19115)
+    @UML(identifier="georeferencedParameters", obligation=MANDATORY, specification=ISO_19115)
     Record getGeoreferencedParameters();
     
     /**
      * Terms which support grid data georeferencing.
      *
-     * @deprecated Use getGeoreferencedParameters instead.
+     * @deprecated Use {@link #getGeoreferencedParameters} instead.
      */
     Object getParameters();
 
