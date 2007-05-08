@@ -117,6 +117,43 @@ public interface DirectPosition extends Position, Cloneable {
     CoordinateReferenceSystem getCoordinateReferenceSystem();
 
     /**
+     * Implementation of equals (for comparisions between implementations of DirectPosiiton).
+     * <p>
+     * Please implement equals to perform the following test:<pre><code>
+     * if (obj == null || !(obj instanceof DirectPosition)) return false;
+     * DirectPosition other = (DirectPosition) obj;
+     * final int D = getDimension();
+     * if( D != other.getDimension() ) return false;
+     * //if( !other.getCoordianteReferenceSystem().equals( getCoodinateReferenceSystem() ) return false;
+     * for( int i; i<D; i++ ){
+     *     if( getOrdinate(i) == other.getOrdinate(i) ) return false;
+     * }
+     * return true;       
+     * </code></pre>
+     * 
+     * Please note that hashCode also also been strictly defined.
+     * </p>
+     * @param obj
+     * @return
+     */
+    public boolean equals(Object obj);
+    
+    /**
+     * Implementation of hashcode (for comparison between implementations of DirectPosition).
+     * <p>
+     * Please implement hashCode based on the example:<pre><code>
+     *  final int PRIME = 31;
+     *  int result = 1;
+     *  result = PRIME * result + getOrdinate(0);
+     *  result = PRIME * result + getOrdinate(1);
+     *  //result = PRIME * result + getCoordianteReferenceSystem().hashCode();
+     *  return result;
+     * </code></pre>
+     * 
+     * @return
+     */
+    public int hashCode();
+    /**
      * Makes an exact copy of this coordinate.
      *
      * @deprecated The {@linkplain Cloneable} status of {@code DirectPosition} should be left
