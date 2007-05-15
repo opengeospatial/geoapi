@@ -10,6 +10,8 @@
  *************************************************************************************************/
 package org.opengis.metadata.citation;
 
+import java.util.Collection;
+
 import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Obligation.*;
@@ -29,11 +31,11 @@ public interface Telephone {
      * Telephone number by which individuals can speak to the responsible organization or individual.
      */
     @UML(identifier="voice", obligation=OPTIONAL, specification=ISO_19115)
-    String getVoice();
+    Collection<String> getVoice();
 
     /**
      * Telephone number of a facsimile machine for the responsible organization or individual.
      */
     @UML(identifier="facsimile", obligation=OPTIONAL, specification=ISO_19115)
-    String getFacsimile();
+    Collection<String> getFacsimile();
 }
