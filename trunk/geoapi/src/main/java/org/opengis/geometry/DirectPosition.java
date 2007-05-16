@@ -117,42 +117,34 @@ public interface DirectPosition extends Position, Cloneable {
     CoordinateReferenceSystem getCoordinateReferenceSystem();
 
     /**
-     * Implementation of equals (for comparisions between implementations of DirectPosiiton).
+     * Compares this direct position with the specified object for equality.
+     * Two direct positions are considered equal if the following conditions
+     * are meet:
      * <p>
-     * Please implement equals to perform the following test:<pre><code>
-     * if (obj == null || !(obj instanceof DirectPosition)) return false;
-     * DirectPosition other = (DirectPosition) obj;
-     * final int D = getDimension();
-     * if( D != other.getDimension() ) return false;
-     * //if( !other.getCoordianteReferenceSystem().equals( getCoodinateReferenceSystem() ) return false;
-     * for( int i; i<D; i++ ){
-     *     if( getOrdinate(i) == other.getOrdinate(i) ) return false;
-     * }
-     * return true;       
-     * </code></pre>
-     * 
-     * Please note that hashCode also also been strictly defined.
-     * </p>
-     * @param obj
-     * @return
+     * <ul>
+     *   <li>{@code object} is non-null and is an instance of {@code DirectPosition}.</li>
+     *   <li>Both direct positions have the same {@linkplain #getDimension number of dimension}.</li>
+     *   <li>Both direct positions have the same or equal {@linkplain #getCoordinateReferenceSystem
+     *       coordinate reference system}.</li>
+     *   <li>For all dimension <var>i</var>, the {@linkplain #getOrdinate ordinate value} of both
+     *       direct positions at that dimension are equals in the sense of {@link Double#equals}
+     *       (or, equivalently, to {@link java.util.Arrays#equals(double[],double[])}).</li>
+     * </ul>
      */
-    public boolean equals(Object obj);
+    boolean equals(Object object);
     
     /**
-     * Implementation of hashcode (for comparison between implementations of DirectPosition).
-     * <p>
-     * Please implement hashCode based on the example:<pre><code>
-     *  final int PRIME = 31;
-     *  int result = 1;
-     *  result = PRIME * result + getOrdinate(0);
-     *  result = PRIME * result + getOrdinate(1);
-     *  //result = PRIME * result + getCoordianteReferenceSystem().hashCode();
-     *  return result;
-     * </code></pre>
-     * 
-     * @return
+     * Returns a hash code value for this direct position. This method should returns
+     * the same value as:
+     *
+     * <code>{@linkplain java.util.Arrays.hashCode(double[]) Arrays.hashCode}({@linkplain
+     * #getCoordinates()}) + {@linkplain #getCoordinateReferenceSystem()}.hashCode()</code>
+     *
+     * where the right hand side of the addition is omitted if the coordinate reference
+     * system is null.
      */
-    public int hashCode();
+    int hashCode();
+
     /**
      * Makes an exact copy of this coordinate.
      *

@@ -30,13 +30,33 @@ import static org.opengis.annotation.Specification.*;
 public interface Telephone {
     /**
      * Telephone number by which individuals can speak to the responsible organization or individual.
+     *
+     * @deprecated Replaced by {@link #getVoices}.
      */
     @UML(identifier="voice", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<String> getVoice();
+    String getVoice();
+
+    /**
+     * Telephone number by which individuals can speak to the responsible organization or individual.
+     *
+     * @since GeoAPI 2.1
+     */
+    @UML(identifier="voice", obligation=OPTIONAL, specification=ISO_19115)
+    Collection<String> getVoices();
 
     /**
      * Telephone number of a facsimile machine for the responsible organization or individual.
+     *
+     * @deprecated Replaced by {@link #getFacsimiles}.
      */
     @UML(identifier="facsimile", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<String> getFacsimile();
+    String getFacsimile();
+
+    /**
+     * Telephone number of a facsimile machine for the responsible organization or individual.
+     *
+     * @since GeoAPI 2.1
+     */
+    @UML(identifier="facsimile", obligation=OPTIONAL, specification=ISO_19115)
+    Collection<String> getFacsimiles();
 }
