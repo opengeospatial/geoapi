@@ -127,9 +127,13 @@ public interface DirectPosition extends Position, Cloneable {
      *   <li>Both direct positions have the same or equal {@linkplain #getCoordinateReferenceSystem
      *       coordinate reference system}.</li>
      *   <li>For all dimension <var>i</var>, the {@linkplain #getOrdinate ordinate value} of both
-     *       direct positions at that dimension are equals in the sense of {@link Double#equals}
-     *       (or, equivalently, to {@link java.util.Arrays#equals(double[],double[])}).</li>
+     *       direct positions at that dimension are equals in the sense of {@link Double#equals}.
+     *       In other words, <code>{@linkplain java.util.Arrays#equals(double[],double[])
+     *       Arrays.equals}({@linkplain #getCoordinates()}, object.getCoordinates())</code>
+     *       returns {@code true}.</li>
      * </ul>
+     *
+     * @since GeoAPI 2.1
      */
     boolean equals(Object object);
     
@@ -142,6 +146,8 @@ public interface DirectPosition extends Position, Cloneable {
      *
      * where the right hand side of the addition is omitted if the coordinate reference
      * system is null.
+     *
+     * @since GeoAPI 2.1
      */
     int hashCode();
 

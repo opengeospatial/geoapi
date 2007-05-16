@@ -11,7 +11,6 @@
 package org.opengis.metadata.citation;
 
 import java.util.Collection;
-
 import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Obligation.*;
@@ -37,7 +36,7 @@ public interface Telephone {
     String getVoice();
 
     /**
-     * Telephone number by which individuals can speak to the responsible organization or individual.
+     * Telephone numbers by which individuals can speak to the responsible organization or individual.
      *
      * @since GeoAPI 2.1
      */
@@ -53,7 +52,7 @@ public interface Telephone {
     String getFacsimile();
 
     /**
-     * Telephone number of a facsimile machine for the responsible organization or individual.
+     * Telephone numbers of a facsimile machine for the responsible organization or individual.
      *
      * @since GeoAPI 2.1
      */
