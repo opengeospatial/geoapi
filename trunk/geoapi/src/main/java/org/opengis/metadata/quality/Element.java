@@ -68,18 +68,40 @@ public interface Element {
     Citation getEvaluationProcedure();
 
     /**
+     * Date that the metadata was created.
+     * The array length is 1 for a single date, or 2 for a range.
+     * Returns {@code null} if this information is not available.
+     *
+     * @deprecated Replaced by {@link #getDates}.
+     */
+    Date[] getDate();
+    
+    /**
      * Date or range of dates on which a data quality measure was applied.
      * The collection size is 1 for a single date, or 2 for a range. Returns
      * an empty collection if this information is not available.
+     *
+     * @since GeoAPI 2.1
      */
     @UML(identifier="dateTime", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<Date> getDate();
+    Collection<Date> getDates();
 
     /**
      * Value (or set of values) obtained from applying a data quality measure or the out
      * come of evaluating the obtained value (or set of values) against a specified
      * acceptable conformance quality level.
+     *
+     * @deprecated Replaced by {@link #getResults}.
+     */
+    Result getResult();
+
+    /**
+     * Value (or set of values) obtained from applying a data quality measure or the out
+     * come of evaluating the obtained value (or set of values) against a specified
+     * acceptable conformance quality level.
+     *
+     * @since GeoAPI 2.1
      */
     @UML(identifier="result", obligation=MANDATORY, specification=ISO_19115)
-    Collection<? extends Result> getResult();
+    Collection<? extends Result> getResults();
 }

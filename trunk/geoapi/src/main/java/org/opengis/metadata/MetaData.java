@@ -84,6 +84,15 @@ public interface MetaData {
 
     /**
      * Party responsible for the metadata information.
+     *
+     * @deprecated Replaced by {@link #getContacts}.
+     */
+    ResponsibleParty getContact();
+
+    /**
+     * Party responsible for the metadata information.
+     *
+     * @since GeoAPI 2.1
      */
     @Profile (level=CORE)
     @UML(identifier="contact", obligation=MANDATORY, specification=ISO_19115)
