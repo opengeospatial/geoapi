@@ -33,19 +33,19 @@ public interface ScopeDescription {
      * Attributes to which the information applies.
      */
     @UML(identifier="attributes", obligation=CONDITIONAL, specification=ISO_19115)
-    public Set<? extends AttributeType> getAttributes();
+    Set<? extends AttributeType> getAttributes();
 
     /**
      * Features to which the information applies.
      */
     @UML(identifier="features", obligation=CONDITIONAL, specification=ISO_19115)
-    public Set<? extends FeatureType> getFeatures();
+    Set<? extends FeatureType> getFeatures();
 
     /**
      * Feature instances to which the information applies.
      */
     @UML(identifier="featureInstances", obligation=CONDITIONAL, specification=ISO_19115)
-    public Set<? extends FeatureType> getFeatureInstances();
+    Set<? extends FeatureType> getFeatureInstances();
 
     /**
      * Attribute instances to which the information applies.
@@ -53,7 +53,7 @@ public interface ScopeDescription {
      * @since GeoAPI 2.1
      */
     @UML(identifier="attributeInstances", obligation=CONDITIONAL, specification=ISO_19115)
-    public Set<? extends AttributeType> getAttributeInstances();
+    Set<? extends AttributeType> getAttributeInstances();
 
     /**
      * Dataset to which the information applies.
@@ -61,7 +61,7 @@ public interface ScopeDescription {
      * @since GeoAPI 2.1
      */
     @UML(identifier="dataset", obligation=CONDITIONAL, specification=ISO_19115)
-    public String getDataset();
+    String getDataset();
 
     /**
      * Class of information that does not fall into the other categories to
@@ -70,5 +70,5 @@ public interface ScopeDescription {
      * @since GeoAPI 2.1
      */
     @UML(identifier="other", obligation=CONDITIONAL, specification=ISO_19115)
-    public String getOther();
+    String getOther();
 }
