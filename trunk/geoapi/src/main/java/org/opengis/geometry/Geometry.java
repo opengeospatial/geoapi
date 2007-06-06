@@ -211,12 +211,22 @@ public interface Geometry extends TransfiniteSet {
      * @param  geometry The other object.
      * @return The distance between the two objects.
      * @unitof Distance
+     * @since 2.1
      *
      * @see #getBoundary
      * @see #getBuffer
      * @see org.opengis.referencing.cs.CoordinateSystem#getAxis
      */
     @UML(identifier="distance", obligation=MANDATORY, specification=ISO_19107)
+    double distance(Geometry geometry);
+    
+    /**
+     * Returns the distance between this {@code Geometry} and another {@code Geometry}.
+     * 
+     * @param  geometry The other object.
+     * @return The distance between the two objects.
+     * @deprecated use distance(Geometry)
+     */
     double getDistance(Geometry geometry);
 
     /**
