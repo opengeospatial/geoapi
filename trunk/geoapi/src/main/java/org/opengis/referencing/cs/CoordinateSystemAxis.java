@@ -74,7 +74,7 @@ public interface CoordinateSystemAxis extends IdentifiedObject {
     /**
      * Returns the maximum value normally allowed for this axis, in the
      * {@linkplain #getUnit unit of measure for the axis}. If there is no maximum value, then
-     * this method returns {@linkplain Double#POSITIVE_INFINITY negative infinity}.
+     * this method returns {@linkplain Double#POSITIVE_INFINITY positive infinity}.
      */
     @UML(identifier="maximumValue", obligation=OPTIONAL, specification=ISO_19111)
     double getMaximumValue();
