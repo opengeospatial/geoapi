@@ -211,7 +211,7 @@ public interface Geometry extends TransfiniteSet {
      * @param  geometry The other object.
      * @return The distance between the two objects.
      * @unitof Distance
-     * @since 2.1
+     * @since GeoAPI 2.1
      *
      * @see #getBoundary
      * @see #getBuffer
@@ -225,7 +225,8 @@ public interface Geometry extends TransfiniteSet {
      * 
      * @param  geometry The other object.
      * @return The distance between the two objects.
-     * @deprecated use distance(Geometry)
+     *
+     * @deprecated use {@link #distance}.
      */
     double getDistance(Geometry geometry);
 
