@@ -26,5 +26,5 @@ import static org.opengis.annotation.Specification.*;
  * @since GeoAPI 2.0
  */
 @UML(identifier="DQ_FormalConsistency", specification=ISO_19115)
-public interface FormalConsistency extends LogicalConsistency {
+public interface FormalConsistency extends FormatConsistency {
 }

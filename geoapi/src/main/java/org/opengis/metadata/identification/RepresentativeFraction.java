@@ -45,7 +45,7 @@ import static org.opengis.annotation.Specification.ISO_19115;
  * @author Ely Conn (Leica Geosystems Geospatial Imaging, LLC)
  * @since GeoAPI 2.1
  */
-@UML(identifier = "MD_RepresentativeFraction", specification = ISO_19115)
+@UML(identifier="MD_RepresentativeFraction", specification=ISO_19115)
 public interface RepresentativeFraction {
     /**
      * Returns this value in a form usable for computation.

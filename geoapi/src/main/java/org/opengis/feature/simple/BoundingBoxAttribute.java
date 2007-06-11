@@ -4,6 +4,7 @@ import org.opengis.feature.Attribute;
 import org.opengis.feature.type.AttributeType;
 import org.opengis.geometry.BoundingBox;
 
+
 /**
  * Attribute containing a bounding box value: 
  * 	Attribute<T extends AttributeType<BoundingBox>>
@@ -12,11 +13,9 @@ import org.opengis.geometry.BoundingBox;
  * class for this for those working against java 1.4 interfaces.
  * </p>
  * 
- * @author Justin Deoliveira, The Open Planning Project, jdeolive@openplans.org
- *
+ * @author Justin Deoliveira (The Open Planning Project)
  */
 public interface BoundingBoxAttribute<T extends AttributeType<BoundingBox>> 
-	extends Attribute<BoundingBox,T> {
-	
-	
+	extends Attribute<BoundingBox,T>
+{
 }
