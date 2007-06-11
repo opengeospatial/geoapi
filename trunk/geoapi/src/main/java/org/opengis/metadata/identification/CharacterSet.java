@@ -28,6 +28,7 @@ import static org.opengis.annotation.Obligation.CONDITIONAL;
  * @author Ely Conn (Leica Geosystems Geospatial Imaging, LLC)
  * @since GeoAPI 2.1
  */
+@UML(identifier="MD_CharacterSetCode", specification=ISO_19115)
 public final class CharacterSet extends CodeList<CharacterSet> {
     /**
      * Serial number for compatibility with different versions.

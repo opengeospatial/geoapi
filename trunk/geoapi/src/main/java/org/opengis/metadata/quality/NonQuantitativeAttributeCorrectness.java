@@ -25,5 +25,5 @@ import static org.opengis.annotation.Specification.*;
  * @since GeoAPI 2.0
  */
 @UML(identifier="DQ_NonQuantitativeAttributeCorrectness", specification=ISO_19115)
-public interface NonQuantitativeAttributeCorrectness extends ThematicAccuracy {
+public interface NonQuantitativeAttributeCorrectness extends NonQuantitativeAttributeAccuracy {
 }

@@ -6,8 +6,7 @@ import org.opengis.feature.type.AttributeType;
 /**
  * Attribute containing a text value.
  * 
- * @author Justin Deoliveira, The Open Planning Project, jdeolive@openplans.org
- *
+ * @author Justin Deoliveira (The Open Planning Project)
  */
 public interface TextAttribute<T extends AttributeType<CharSequence>> 
 	extends Attribute<CharSequence,T> {

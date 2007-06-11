@@ -15,8 +15,8 @@ import org.opengis.geometry.coordinate.GeometryFactory;
 /**
  * Plays the role of making actual instances of types in this puzzle.
  * 
- * @author Gabriel Roldan, Axios Engineering
- * @author Justin Deoliveira, The Open Planning Project
+ * @author Gabriel Roldan (Axios Engineering)
+ * @author Justin Deoliveira (The Open Planning Project)
  *
  */
 public interface FeatureFactory {

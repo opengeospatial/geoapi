@@ -3,6 +3,7 @@ package org.opengis.feature.simple;
 import org.opengis.feature.Attribute;
 import org.opengis.feature.type.AttributeType;
 
+
 /**
  * Attribute containing a boolean value: Attribute<T extends AttributeType<Boolean>>
  * <p>
@@ -10,10 +11,10 @@ import org.opengis.feature.type.AttributeType;
  * class for this for those working against java 1.4 interfaces.
  * </p>
  * 
- * @author Justin Deoliveira, The Open Planning Project, jdeolive@openplans.org
- *
+ * @author Justin Deoliveira (The Open Planning Project)
  */
 public interface BooleanAttribute<T extends AttributeType<Boolean>>
-	extends Attribute<Boolean,T> {
+	extends Attribute<Boolean,T>
+{
 
 }

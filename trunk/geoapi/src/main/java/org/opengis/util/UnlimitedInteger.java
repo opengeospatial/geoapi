@@ -19,7 +19,7 @@ import static org.opengis.annotation.Specification.*;
 
 /**
  * An {@linkplain Integer integer} with associated infinite flag. This implementation uses
- * {@link Integer#MAX_VALUE} as a sentinal value for positive infinity. This approach is
+ * {@link Integer#MAX_VALUE} as a sentinel value for positive infinity. This approach is
  * consistent with J2SE {@link java.util.Collection#size()} contract. For consistency,
  * {@link Integer#MIN_VALUE} is a sentinal value for negative infinity.
  *
@@ -28,21 +28,31 @@ import static org.opengis.annotation.Specification.*;
  * @since GeoAPI 2.1
  */
 @UML(identifier="UnlimitedInteger", specification=ISO_19103)
-public final class UnlimitedInteger extends Number {
+public final class UnlimitedInteger extends Number implements Comparable/*<UnlimitedInteger>*/ {
     /**
      * For compatibility with different versions.
      */
     private static final long serialVersionUID = 4748246369364771836L;
 
     /**
-     * A constant holding the positive infinity.
-     */
-    private final UnlimitedInteger POSITIVE_INFINITY = new UnlimitedInteger(Integer.MAX_VALUE);
-
-    /**
      * A constant holding the negative infinity.
      */
-    private final UnlimitedInteger NEGATIVE_INFINITY = new UnlimitedInteger(Integer.MIN_VALUE);
+    public static final UnlimitedInteger NEGATIVE_INFINITY = new UnlimitedInteger(Integer.MIN_VALUE);
+
+    /**
+     * A constant holding the positive infinity.
+     */
+    public static final UnlimitedInteger POSITIVE_INFINITY = new UnlimitedInteger(Integer.MAX_VALUE);
+
+    /**
+     * A constant holding the minimum finite value a {@code UnlimitedInteger} can have.
+     */
+    public static final int MIN_VALUE = Integer.MIN_VALUE + 1;
+
+    /**
+     * A constant holding the maximum finite value a {@code UnlimitedInteger} can have.
+     */
+    public static final int MAX_VALUE = Integer.MAX_VALUE - 1;
 
     /**
      * The integer value.
@@ -62,8 +72,7 @@ public final class UnlimitedInteger extends Number {
      * Returns {@code true} if this integer represents a positive or negative infinity.
      */
     public boolean isInfinite(){
-        return value == Integer.MAX_VALUE ||
-               value == Integer.MIN_VALUE;
+        return (value == Integer.MAX_VALUE) || (value == Integer.MIN_VALUE);
     }
 
     /**
@@ -139,5 +148,20 @@ public final class UnlimitedInteger extends Number {
     @Override
     public boolean equals(final Object object) {
         return (object instanceof UnlimitedInteger) && ((UnlimitedInteger) object).value == value;
+    }
+
+    /**
+     * Compares two {@code UnlimitedInteger} objects numerically.
+     *
+     * @param   other the unlimited integer to be compared.
+     * @return	{@code 0} if this {@code UnlimitedInteger} is equal to the given value,
+     *          {@code -1} if this {@code UnlimitedInteger} is numerically less than the given value, and
+     *          {@code +1} if this {@code UnlimitedInteger} is numerically greater than the given value,
+     */
+    public int compareTo(final Object /*UnlimitedInteger*/ other) {
+        final UnlimitedInteger o = (UnlimitedInteger) other;
+        if (value < o.value) return -1;
+        if (value > o.value) return +1;
+        return 0;
     }
 }
