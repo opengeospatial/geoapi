@@ -6,6 +6,8 @@ import org.opengis.feature.Attribute;
 import org.opengis.feature.FeatureCollection;
 import org.opengis.feature.type.FeatureType;
 
+//Java 1.4 imports
+//import org.opengis.feature.type.AttributeType;
 
 /**
  * A FeatureCollection which placed the following contraints on its
