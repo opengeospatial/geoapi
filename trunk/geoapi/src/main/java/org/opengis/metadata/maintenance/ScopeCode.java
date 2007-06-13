@@ -136,6 +136,8 @@ public final class ScopeCode extends CodeList<ScopeCode> {
 
     /**
      * Information applies to a copy or imitation of an existing or hypothetical object.
+     *
+     * @since GeoAPI 2.1
      */
     @UML(identifier="tile", obligation=CONDITIONAL, specification=ISO_19115)
     public static final ScopeCode TILE = new ScopeCode("TILE");
