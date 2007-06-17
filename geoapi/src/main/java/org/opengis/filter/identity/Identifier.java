@@ -11,7 +11,7 @@ package org.opengis.filter.identity;
  * </ul>
  * </p>
  *
- * @param <T> The type of the identifer itself.
+ * @param <T> The type of the identifier itself.
  * @param <O> The type of objects to be identified.
  * 
  * @version <A HREF="http://www.opengis.org/docs/02-059.pdf">Implementation specification 1.0</A>
@@ -33,7 +33,7 @@ public interface Identifier<T,O> {
     boolean matches(O object);
 
     /**
-     * Returns a string representation of the identfier.
+     * Returns a string representation of the identifier.
      */
     String toString();
 }
