@@ -61,7 +61,7 @@ public interface RecordType {
 
     /**
      * Returns the set of attribute names defined in this {@code RecordType}'s dictionary.
-     * If there are no attributes, this method returns the empty set. This method is functionnaly
+     * If there are no attributes, this method returns the empty set. This method is functionally
      * equivalent to <code>{@linkplain #getAttributeTypes()}.{@linkplain Map#keySet() keySet()}</code>.
      * <p>
      * The {@linkplain NameSpace name space} associated with a {@code RecordType} contains only

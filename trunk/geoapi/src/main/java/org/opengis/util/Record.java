@@ -70,7 +70,7 @@ public interface Record {
     Object locate(MemberName name);
 
     /**
-     * Set the value for the attribute of the specified name. This is functionnaly equivalent
+     * Set the value for the attribute of the specified name. This is functionally equivalent
      * to <code>{@linkplain #getAttributes()}.{@linkplain Map#put put}(name,value)</code>.
      * Remind that {@code name} keys are constrained to {@linkplain RecordType#getMembers
      * record type members} only.
