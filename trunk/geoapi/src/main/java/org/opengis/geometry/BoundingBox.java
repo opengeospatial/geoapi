@@ -35,8 +35,6 @@ import org.opengis.annotation.Extension;
  * @author Jody Garnett (Refractions Research)
  * @author Martin Desruisseaux (Geomatys)
  * @since GeoAPI 2.1
- *
- * @todo Remove deprecated methods before release.
  */
 @Extension
 public interface BoundingBox extends Envelope {
@@ -164,61 +162,4 @@ public interface BoundingBox extends Envelope {
      *         target CRS, or if the transformation failed for an other reason.
      */
     BoundingBox toBounds(CoordinateReferenceSystem targetCRS) throws TransformException;
-
-    /**
-     * The coordinate reference system common direct positions defining
-     * this bounding box.
-     * 
-     * @return CoordinateRefernceSystem of provided ordinates.
-     *
-     * @deprecated Replaced by {@link #getCoordinateReferenceSystem()}.
-     */
-    CoordinateReferenceSystem crs();
-
-    /**
-     * Provides the minimium easting ordinate.
-     * <p>
-     * This is a helper method for <code>{@linkplain #getMinimum getMinimum}(i)</code>
-     * where <var>i</var> is the ordinate used to represent easting.
-     *
-     * @deprecated Replaced by {@link #getMinX}.
-     */
-    double minX();
-
-    /**
-     * Provides the maximum easting ordinate.
-     * <p>
-     * This is a helper method for <code>{@linkplain #getMaximum getMaximum}(i)</code>
-     * where <var>i</var> is the ordinate used to represent easting.
-     *
-     * @deprecated Replaced by {@link #getMaxX}.
-     */
-    double maxX();
-
-    /**
-     * Provides the minimium northing ordinate.
-     * <p>
-     * This is a helper method for <code>{@linkplain #getMinimum getMinimum}(i)</code>
-     * where <var>i</var> is the ordinate used to represent northing.
-     *
-     * @deprecated Replaced by {@link #getMinY}.
-     */
-    double minY();
-
-    /**
-     * Provides the northing easting ordinate.
-     * <p>
-     * This is a helper method for <code>{@linkplain #getMaximum getMaximum}(i)</code>
-     * where <var>i</var> is the ordinate used to represent northing.
-     *
-     * @deprecated Replaced by {@link #getMaxY}.
-     */
-    double maxY();
-
-    /**
-     * Initialize the bounding box with another bounding box.
-     *
-     * @deprecated Renamed as {@link #setBounds}.
-     */
-    void init(BoundingBox bounds);
 }
