@@ -37,7 +37,7 @@ import static org.opengis.annotation.Specification.*;
  * If a particular {@code PointArray} implementation supports efficiently random access through any
  * {@code get} or {@code set} method, it shall announce this capability by implementing the
  * {@link java.util.RandomAccess} interface. Otherwise, users should read the positions through the
- * <code>{@linkplain #positions()}.iterator()</code> instead.
+ * {@link #iterator() iterator()} instead.
  * 
  * @version <A HREF="http://www.opengeospatial.org/standards/as">ISO 19107</A>
  * @author Martin Desruisseaux (IRD)
@@ -103,7 +103,7 @@ public interface PointArray extends List<Position> {
      * DirectPosition position = null;
      * final int length = array.length();
      * for (int i=0; i&lt;length; i++) {
-     *     position = array.get(i, position);
+     *     position = array.getDirectPosition(i, position);
      *     // Do some processing...
      * }
      * </pre></blockquote>
@@ -115,7 +115,7 @@ public interface PointArray extends List<Position> {
      * @throws IndexOutOfBoundsException if the index is out of bounds.
      */
     @Extension
-    DirectPosition getPosition(int index, DirectPosition dest) throws IndexOutOfBoundsException;
+    DirectPosition getDirectPosition(int index, DirectPosition dest) throws IndexOutOfBoundsException;
 
     /**
      * Sets the point at the given index. The point coordinates will be copied, i.e. changes to the
@@ -132,7 +132,7 @@ public interface PointArray extends List<Position> {
      * @see List#set
      */
     @Extension
-    void setPosition(int index, DirectPosition position)
+    void setDirectPosition(int index, DirectPosition position)
             throws IndexOutOfBoundsException, UnsupportedOperationException;
 
     /**
