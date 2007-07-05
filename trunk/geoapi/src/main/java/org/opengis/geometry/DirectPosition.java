@@ -37,6 +37,18 @@ import static org.opengis.annotation.Specification.*;
 @UML(identifier="DirectPosition", specification=ISO_19107)
 public interface DirectPosition extends Position, Cloneable {
     /**
+     * The coordinate reference system in which the coordinate is given. May be {@code null} if this
+     * particular {@code DirectPosition} is included in a larger object with such a reference to a
+     * {@linkplain CoordinateReferenceSystem coordinate reference system}. In this case, the
+     * cordinate reference system is implicitly assumed to take on the value of the containing
+     * object's {@linkplain CoordinateReferenceSystem coordinate reference system}.
+     * 
+     * @return The coordinate reference system, or {@code null}.
+     */
+    @UML(identifier="coordinateReferenceSystem", obligation=MANDATORY, specification=ISO_19107)
+    CoordinateReferenceSystem getCoordinateReferenceSystem();
+
+    /**
      * The length of coordinate sequence (the number of entries). This is determined by the
      * {@linkplain #getCoordinateReferenceSystem() coordinate reference system}.
      * 
@@ -103,18 +115,6 @@ public interface DirectPosition extends Position, Cloneable {
      * @throws IndexOutOfBoundsException if the specified dimension is out of bounds.
      */
     void setOrdinate(int dimension, double value) throws IndexOutOfBoundsException;
-
-    /**
-     * The coordinate reference system in which the coordinate is given. May be {@code null} if this
-     * particular {@code DirectPosition} is included in a larger object with such a reference to a
-     * {@linkplain CoordinateReferenceSystem coordinate reference system}. In this case, the
-     * cordinate reference system is implicitly assumed to take on the value of the containing
-     * object's {@linkplain CoordinateReferenceSystem coordinate reference system}.
-     * 
-     * @return The coordinate reference system, or {@code null}.
-     */
-    @UML(identifier="coordinateReferenceSystem", obligation=MANDATORY, specification=ISO_19107)
-    CoordinateReferenceSystem getCoordinateReferenceSystem();
 
     /**
      * Compares this direct position with the specified object for equality.
