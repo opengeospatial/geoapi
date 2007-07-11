@@ -32,7 +32,7 @@
   <licenses>
     <license>
       <name>OGC copyright</name>
-      <url>https://svn.sourceforge.net/svnroot/geoapi/trunk/LICENSE.txt</url>
+      <url>https://geoapi.svn.sourceforge.net/svnroot/geoapi/trunk/LICENSE.txt</url>
       <distribution>manual</distribution>
     </license>
   </licenses>
@@ -43,8 +43,8 @@
   <!--     Issue managements and mailing lists              -->
   <!-- ==================================================== -->
   <scm>
-    <connection>scm:svn:https://svn.sourceforge.net/svnroot/geoapi/trunk/</connection>
-    <url>https://svn.sourceforge.net/viewcvs.cgi/geoapi/trunk/</url>
+    <connection>scm:svn:https://geoapi.svn.sourceforge.net/svnroot/geoapi/trunk/</connection>
+    <url>http://geoapi.svn.sourceforge.net/viewvc/geoapi/trunk/</url>
   </scm>
 
   <issueManagement>
