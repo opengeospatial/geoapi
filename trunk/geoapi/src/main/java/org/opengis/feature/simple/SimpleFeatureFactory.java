@@ -1,10 +1,14 @@
 package org.opengis.feature.simple;
 
 import java.util.Date;
+import java.util.List;
 
 import org.opengis.feature.Attribute;
 import org.opengis.feature.FeatureFactory;
+import org.opengis.feature.GeometryAttribute;
 import org.opengis.feature.type.AttributeDescriptor;
+import org.opengis.feature.type.GeometryType;
+import org.opengis.referencing.crs.CoordinateReferenceSystem;
 
 /**
  * This interface denotes a factory capable of producing SimpleFeature.
@@ -16,7 +20,7 @@ import org.opengis.feature.type.AttributeDescriptor;
  * 
  * @author Jody Garnett
  */
-public interface SimpleFeatureFactory extends FeatureFactory {
+public interface SimpleFeatureFactory {
 	
 	/**
 	 * Creates a new attribute (always nested).
@@ -37,62 +41,34 @@ public interface SimpleFeatureFactory extends FeatureFactory {
 	 */
 	Attribute createAttribute(Object value, AttributeDescriptor descriptor, String id);
 	
-	/**
-	 * Creates a new boolean attribute (always nested).
+	 /**
+	 * Creates a new geometry attribute (always nested).
 	 * 
-	 * XXX: Does this do more then shortcut getType().getBinding().isAssignableFrom( Boolean.class )?
-	 * 
-	 * @param value The boolean value of the attribute.
-	 * @param descriptor The attribute descriptor.
-	 * 
-	 */
-	BooleanAttribute createBooleanAttribute(Boolean value, AttributeDescriptor descriptor);
-	
-	/**
-	 * Creates a new numberic attribute (always nested).
-	 * 
-	 * XXX: Does this do more then shortcut getType().getBinding().isAssignableFrom( Number.class )?
-	 * 
-	 * @param value The numeric value of the attribute.
-	 * @param descriptor The attribute descriptor.
-	 * 
-	 */
-	NumericAttribute createNumericAttribute(Number value, AttributeDescriptor descriptor);
-	
-	/**
-	 * Creates a new text attribute (always nested).
-	 * 
-	 * XXX: Does this do more then shortcut getType().getBinding().isAssignableFrom( CharSequence.class )?
-	 * 
-	 * @param value The text value of the attribute.
-	 * @param descriptor The attribute descriptor.
-	 * 
-	 */
-	TextAttribute createTextAttribute(CharSequence value, AttributeDescriptor descriptor);
-	
-	/**
-	 * Creates a new temporal attribute (always nested).
-	 * 
-	 * XXX: Does this do more then shortcut getType().getBinding().isAssignableFrom( Date.class )?
+	 * @param value The initial value of the attribute, may be null depending on 
+	 * the type of the type of the attribute.
+	 * @param desc The attribute descriptor.
+	 * @param id The id of the attribute, may be null depending on the type.
+	 * @param crs The coordinate reference system of the attribute, may be null.
 	 *
-	 * @param value The date value of the attribute.
-	 * @param descriptor Teh attribute descriptor.
-	 * 
+	 * @throws IllegalArgumentException If desc.getType() does not return an 
+	 * instanceof {@link GeometryType}.
 	 */
-	TemporalAttribute createTemporalAttribute(Date value, AttributeDescriptor descriptor);
-
+	GeometryAttribute createGeometryAttribute(
+		Object value, AttributeDescriptor desc, String id, CoordinateReferenceSystem crs
+	);
+	
 	/**
 	 * Creates a new simple feature.
 	 * 
+	 * @param attributes attributes order dicated by provided <code>type</code>
 	 * @param type Type of SimpleFeature to be created
 	 * @param id The id of the feature, (fid), may be null depending on the type.
-	 * @param values Values order dicated by provided <code>type</code>
+	 * 
 	 * 
 	 * @throws IllegalArgumentException If desc.getType() does not return an 
 	 * instanceof {@link SimpleFeatureType}.
 	 */
-	public SimpleFeature createSimpleFeature(SimpleFeatureType type, String id,
-			Object values[]);
+	SimpleFeature createSimpleFeature(List attributes, SimpleFeatureType type, String id );
 
 	/**
 	 * Createsa a new simple feature collection.
@@ -103,7 +79,7 @@ public interface SimpleFeatureFactory extends FeatureFactory {
 	 * @throws IllegalArgumentException If desc.getType() does not return an 
 	 * instanceof {@link org.opengis.feature.simple.SimpleFeatureCollectionType}.
 	 */
-	public SimpleFeatureCollection createSimpleFeatureCollection(
+	SimpleFeatureCollection createSimpleFeatureCollection(
 			SimpleFeatureCollectionType type, String id);
 		
 }
