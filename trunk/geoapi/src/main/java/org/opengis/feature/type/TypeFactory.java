@@ -81,11 +81,12 @@ public interface TypeFactory {
      * 	The maximum number of occurences of the described attribute.
      * @param isNillable
      * 	Flag indicating if the described attribute may have a null value.
-     * 
+     * @param defaulValue
+     * 	The default value of the described attribute. 
      */
     <T extends AttributeType>  
     AttributeDescriptor<T> createAttributeDescriptor(
-            T type, Name name, int minOccurs, int maxOccurs, boolean isNillable
+            T type, Name name, int minOccurs, int maxOccurs, boolean isNillable, Object defaultValue
     );
 
     /**
