@@ -27,17 +27,7 @@ import org.opengis.util.InternationalString;
  * <p>
  * @author Jody Garnett
  */
-public interface SimpleTypeFactory extends TypeFactory {
-	
-	/**
-	 * SimpleTypeFactory can only produce SimpleFeatureType.
-	 */
-	SimpleFeatureType createFeatureType(TypeName name, Collection<StructuralDescriptor> schema, AttributeDescriptor<GeometryType> defaultGeometry, CoordinateReferenceSystem crs, boolean isAbstract, Set<Filter> restrictions, AttributeType superType, InternationalString description);
-
-	/**
-	 * Can only produce SimpleFeatureCollectionType.
-	 */
-	SimpleFeatureCollectionType createFeatureCollectionType(TypeName name, Collection<StructuralDescriptor> schema, Collection<AssociationDescriptor> members, AttributeDescriptor<GeometryType> defaultGeom, CoordinateReferenceSystem crs, boolean isAbstract, Set<Filter> restrictions, AttributeType superType, InternationalString description);
+public interface SimpleTypeFactory {
 	
 	/**
 	 * Create a SimpleFeatureType describing a Feature containing only directly
@@ -52,7 +42,7 @@ public interface SimpleTypeFactory extends TypeFactory {
 	 * @return created SimpleFeatureType
 	 */
 	SimpleFeatureType createSimpleFeatureType(TypeName name,
-			List<AttributeType> types, AttributeType defaultGeometry,
+			List<AttributeType> types, AttributeDescriptor defaultGeometry,
 			CoordinateReferenceSystem crs, Set<Filter> restrictions,
 			InternationalString description);
 
