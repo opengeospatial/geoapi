@@ -47,7 +47,7 @@ public interface SimpleFeature extends //Sequence<List<Attribute>,SimpleFeatureT
      * </p>
      * @return List of AttribtueTypes in order defined by SimpleFeatureType
      */
-    List<AttributeType> types();
+    List<AttributeType> getTypes();
     
     /**
 	 * Value view of attribtue types, in a manner similar Map.values().
@@ -60,7 +60,7 @@ public interface SimpleFeature extends //Sequence<List<Attribute>,SimpleFeatureT
 	 * Collections naming conventions are used to indicate this is a view into
 	 * our data model.
 	 */
-	 List<Object> values();
+	 List<Object> getValues();
     
 	/**
 	 * Restrictued to SimpleFeatureType
@@ -77,14 +77,14 @@ public interface SimpleFeature extends //Sequence<List<Attribute>,SimpleFeatureT
 	 * @param name
 	 * @return Attribute Value associated with name
 	 */
-	Object get(String name);
+	Object getValue(String name);
 	
 	/**
 	 * Access attribute by "index" indicated by SimpleFeatureType.
 	 * 
 	 * @param index
 	 */
-	Object get( int index );
+	Object getValue( int index );
 
 	/**
 	 * Modify attribute with "name" indicated by SimpleFeatureType.
@@ -92,7 +92,7 @@ public interface SimpleFeature extends //Sequence<List<Attribute>,SimpleFeatureT
 	 * @param name
 	 * @param value
 	 */
-	void set( String name, Object value );
+	void setValue( String name, Object value );
 
 	/**
 	 * Modify attribute at the "index" indicated by SimpleFeatureType.
@@ -100,7 +100,18 @@ public interface SimpleFeature extends //Sequence<List<Attribute>,SimpleFeatureT
 	 * @param index
 	 * @param value
 	 */
-	void set( int index, Object value);
+	void setValue( int index, Object value);
+	
+	/**
+	 * Sets the values of the feautre.
+	 */
+	void setValues( List values );
+	
+	/**
+	 * Sets the values of the feautre.
+	 * 
+	 */
+	void setValues( Object[] values );
 	
 	/**
 	 * Call opperation with provided parameters.
@@ -109,7 +120,7 @@ public interface SimpleFeature extends //Sequence<List<Attribute>,SimpleFeatureT
 	 * @param parameters Should be in agreement with OperationType
 	 * @return Result of operation, may be null if operation does not produce a result
 	 */
-	Object operation( String name, Object parameters );
+	//Object operation( String name, Object parameters );
 	
 	/**
 	 * Number of attributes in SimpleFeatureType.
@@ -128,7 +139,7 @@ public interface SimpleFeature extends //Sequence<List<Attribute>,SimpleFeatureT
      * @return The default geometry, or null if none exists. 
      * 
      */
-    Object defaultGeometry();
+    Object getDefaultGeometryValue();
     
     /**
      * Sets the default geometry for the simple feature.
@@ -137,5 +148,5 @@ public interface SimpleFeature extends //Sequence<List<Attribute>,SimpleFeatureT
      * </p>
      * @param geometry The new defautl geometry.
      */
-    void defaultGeometry(Object geometry);
+    void setDefaultGeometryValue(Object geometry);
 }
