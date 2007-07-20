@@ -3,6 +3,7 @@ package org.opengis.feature.simple;
 import java.util.List;
 
 import org.opengis.feature.Attribute;
+import org.opengis.feature.type.AttributeDescriptor;
 import org.opengis.feature.type.AttributeType;
 import org.opengis.feature.type.FeatureType;
 import org.opengis.feature.type.GeometryType;
@@ -34,28 +35,24 @@ public interface SimpleFeatureType extends
 	 * Must be <code>null</code> for truely simple content.
 	 * @return <code>null</code>, as no super types are allowed
 	 */
-///	SimpleFeatureType getSuper();
-	
+	//SimpleFeatureType getSuper();
 	
 	/**
 	 * Types are returned in the perscribed index order.
 	 * @return Types in prescribed order
 	 */
-	List<AttributeType> types();
+	//List<AttributeType> types();
+	List<AttributeType> getTypes();
 	
 	/**
 	 * @return the default geometry type contained by the feature type, or 
 	 * null if none such exists.
 	 */
-	GeometryType defaultGeometry();
+	//GeometryType defaultGeometry();
+	GeometryType getDefaultGeometryType();
 	
 	/** List of named attributes in perscribed order */
-///	List<AttributeDescriptor> getAttributes();
-	
-	/**
-	 * Retrive attributeType by qualified name
-	 */
-	AttributeType get( Name name );
+	//List<AttributeDescriptor> getAttributes();
 	
 	/**
 	 * Retrive attributeType by name.
@@ -64,10 +61,12 @@ public interface SimpleFeatureType extends
 	 * namespace) please use a complete Qualified name to disambiguate.
 	 * </p>
 	 */
-	AttributeType get( String name );
+	AttributeType getType( String name );
+	AttributeDescriptor getAttribute( String name );
 	
 	/** AttribtueType indicated by index */
-	AttributeType get( int index );
+	AttributeType getType( int index );
+	AttributeDescriptor getAttribute( int indedx );
 	
 	/**
 	 * The index of the AttributeType with the provided name.
@@ -77,5 +76,5 @@ public interface SimpleFeatureType extends
 	int indexOf( String name );
 	
 	/** Number of available attributes */
-	int getNumberOfAttribtues();	
+	int getAttributeCount();	
 }
