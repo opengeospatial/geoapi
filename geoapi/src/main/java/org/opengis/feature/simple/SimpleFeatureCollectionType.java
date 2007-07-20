@@ -1,6 +1,6 @@
 package org.opengis.feature.simple;
 
-import java.util.Collection;
+import java.util.List;
 import java.util.Set;
 
 import org.opengis.feature.Attribute;
@@ -29,7 +29,7 @@ import org.opengis.feature.type.FeatureCollectionType;
  * @author Justin Deoliveira (The Open Planning Project)
  */
 public interface SimpleFeatureCollectionType<M extends SimpleFeatureType> 
-	extends FeatureCollectionType<Attribute,Collection<Attribute>,M>
+	extends FeatureCollectionType<Attribute,List<Attribute>,M>,  SimpleFeatureType
 {
     /**
      * Returns the single feature of allowed members of the collection.
