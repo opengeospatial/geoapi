@@ -22,6 +22,13 @@ public interface AttributeDescriptor<T extends AttributeType> extends Structural
 	 */
 	boolean isNillable();
 	
-	/** Indicates the type of this attribute */
+	/** 
+	 * Indicates the type of this attribute 
+	 */
 	T getType();
+	
+	/**
+	 * The default value of this attribute, could be <code>null</code>.
+	 */
+	Object getDefaultValue();
 }
