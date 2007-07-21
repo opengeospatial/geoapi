@@ -16,7 +16,7 @@ import org.opengis.util.CodeList;
 
 
 /**
- * The type of {@linkplain Precision precision model}.
+ * The rounding policy used for a {@linkplain Precision precision model}.
  *
  * @author Jody Garnett
  * @since GeoAPI 2.1
