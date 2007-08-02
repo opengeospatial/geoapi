@@ -2,12 +2,12 @@ package org.opengis.feature.simple;
 
 import java.util.List;
 
-import org.opengis.feature.Attribute;
+import org.opengis.feature.type.AssociationDescriptor;
 import org.opengis.feature.type.AttributeDescriptor;
 import org.opengis.feature.type.AttributeType;
 import org.opengis.feature.type.FeatureType;
 import org.opengis.feature.type.GeometryType;
-import org.opengis.feature.type.Name;
+import org.opengis.feature.type.StructuralDescriptor;
 
 /**
  * Defines a simple feature model of attribute in a perscribed order.
@@ -28,31 +28,40 @@ import org.opengis.feature.type.Name;
  * </p>
  * @author Jody Garnett, Refractions Research
  */
-public interface SimpleFeatureType extends 
-	FeatureType<Attribute,List<Attribute>> {
+public interface SimpleFeatureType extends FeatureType {
 	
 	/**
-	 * Must be <code>null</code> for truely simple content.
+	 * Must be <code>null</code> for truly simple content.
 	 * @return <code>null</code>, as no super types are allowed
 	 */
-	//SimpleFeatureType getSuper();
+	SimpleFeatureType getSuper();
 	
 	/**
-	 * Types are returned in the perscribed index order.
+	 * Types are returned in the prescribed index order.
 	 * @return Types in prescribed order
 	 */
-	//List<AttributeType> types();
 	List<AttributeType> getTypes();
 	
 	/**
 	 * @return the default geometry type contained by the feature type, or 
 	 * null if none such exists.
 	 */
-	//GeometryType defaultGeometry();
 	GeometryType getDefaultGeometryType();
 	
-	/** List of named attributes in perscribed order */
-	//List<AttributeDescriptor> getAttributes();
+	/**
+	 * Associations not permitted in SimpleFeatureType.
+	 * @return Collections.EMPTY_LIST
+	 */
+	public List<AssociationDescriptor> associations();
+	
+	/**
+	 * List of named attribute descriptors in prescribed order.
+	 */
+	public List<StructuralDescriptor> getProperties();
+
+	
+	/** List of named attributes in prescribed order */
+	List<AttributeDescriptor> getAttributes();
 	
 	/**
 	 * Retrive attributeType by name.

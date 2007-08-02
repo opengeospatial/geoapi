@@ -120,7 +120,7 @@
 			<replacefilter token="PropertyType getSuper()" value="//PropertyType getSuper()" />
 		</replace>
 		<replace dir="${generatedSourceDirectory}" includes="org/opengis/feature/Property.java">
-			<replacefilter token="T getType()" value="//PropertyType getType()" />
+			<replacefilter token="PropertyType getType()" value="//PropertyType getType()" />
 			<replacefilter token="PropertyDescriptor getDescriptor()" value="//PropertyDescriptor getDescriptor()" />
 		</replace>
 

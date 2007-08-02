@@ -5,29 +5,37 @@ import java.util.List;
 import org.opengis.feature.type.AttributeDescriptor;
 import org.opengis.feature.type.AttributeType;
 import org.opengis.feature.type.Name;
-import org.opengis.feature.type.OperationDescriptor;
-
-import com.sun.org.omg.CORBA.OperationDescription;
 
 
 /**
- * Contains information defining an attirbute (ie aggregation).
+ * Contains information defining an attribute.
  * <p>
- * An Attribute is used to hold a value in our data model, similar
- * to the way a Map.Entry holds values in a Map. Rather then use a Name
- * we use an AttributeType providing additional information such as the
- * java class this Attribtue is "bound" to. Validaiton is provied by way
- * of constraints implemented using Filter.
- * </p>
+ * An Attribute is used to hold a value (ie aggregation), similar
+ * to the way a Map.Entry holds values in a java.util.Map. Attribute
+ * is responsible for holding onto the following three things:
+ * <ul>
+ * <li>descriptor: An AttributeDescriptor acting as the "key" for this attribute
+ * <li>value: A Java Object acting as the "value" for this attribute
+ * <li>type: An AttributeType acting as the "type" of this attribute
+ * </ul>
  * <p>
- * If this Attribute is contained in another data sturcutre you may
+ * If this Attribute is contained in another data structure you may
  * use the provided Descriptor. This descriptor will provided any additional
  * information (such as name and multiplicity) needed.
  * </p>
- * @author Jody Garnett, Refractions Research
+ * The use of Attribute in our feature model is similar to the use of a "field" in
+ * a Java Object. A field also brings together a field name, value and type.
+ * <p>
+ * <b>Differences from ISO 19107</b>:
+ * We do not use TypeName directly, the functionality is served by our  AttributeType
+ * class which provides additional functionality. AttributeType provides a Name, the
+ * java class for our value, and any additional restrictions.
+ * <p>
+ * Validation is provided by way of constraints implemented using Filter.
+ * 
+ * @author Jody Garnett (Refractions Research)
  */
-public interface Attribute<B, T extends AttributeType<B>> 
-	extends Property<T> {
+public interface Attribute extends Property {
 
 	/**
 	 * Indicates the AttirbuteDescriptor for this content.
@@ -38,7 +46,7 @@ public interface Attribute<B, T extends AttributeType<B>>
 	 * </p>
 	 * @return Descriptor for this attribute, may be null.
 	 */
-	AttributeDescriptor<T> getDescriptor();
+	AttributeDescriptor getDescriptor();
 	
 	/**
 	 * Determines if the attribute is allowed to have a <code>null</code> value.
@@ -54,12 +62,12 @@ public interface Attribute<B, T extends AttributeType<B>>
 	/**
 	 * Indicate the AttributeType, if we have a descriptor it will be in agreement.
 	 * 
-	 * @return AttributeType information descirbing allowable content
+	 * @return AttributeType information describing allowable content
 	 */
-	T getType();
+	AttributeType getType();
 
     /**
-     * Unique, inmutable identification for domain object being modeled.
+     * Unique, immutable identification for domain object being modeled.
      *  
      * @return Unique ID, may not be null if getType().isIdentifiable() is true
      */
@@ -70,7 +78,7 @@ public interface Attribute<B, T extends AttributeType<B>>
 	 * 
 	 * @return Value of the type indicated by type()
 	 */
-	B get();
+	Object getValue();
 
 	/**
 	 * Call operation on <code>this</code> Attribute.
@@ -79,12 +87,13 @@ public interface Attribute<B, T extends AttributeType<B>>
 	 * @param parameters Parameters for the operation
 	 * @return Result of operation, may be <code>null</code> 
 	 */
-	Object operation( Name name, List parameters );
+	Object operation( Name name, List<Object> parameters );
 
 	/**
-	 * Set content to newZValue
+	 * Set content to newValue
 	 * @param newValue
-	 *            Must be of type indicated by type()
+	 *            Must be of type indicated by getType().getBinding()
+	 * @throws IllegalArgumentException If provided value does not match attribute type
 	 */
-	void set(B newValue)throws IllegalArgumentException;
+	void setValue(Object newValue);
 }

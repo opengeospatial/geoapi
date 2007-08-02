@@ -2,8 +2,10 @@ package org.opengis.feature.xml;
 
 import java.util.List;
 
+import org.opengis.feature.Association;
 import org.opengis.feature.Attribute;
 import org.opengis.feature.ComplexAttribute;
+import org.opengis.feature.Property;
 
 //Java 1.4 imports
 //import org.opengis.feature.type.AttributeType;
@@ -20,18 +22,23 @@ import org.opengis.feature.ComplexAttribute;
  * </p>
  * @author Jody Garnett, Refractions Research
  */
-public interface Sequence<L extends List<Attribute>, T extends SequenceType<L>> 
-	extends ComplexAttribute<Attribute,L,T> {
+public interface Sequence extends ComplexAttribute {
     
 	/**
 	 * Indicates that this ComplexType is to maintain its attributes
 	 * in the perscribed order.
 	 */
-    T getType();
+    SequenceType getType();
 	
     /**
      * Attributes are to be maintained in a sequence, the order of this
      * sequence to to be in agreement with that described by the SequenceType.
      */
-	L get();
+	public List<Property> getValue();
+	
+	public void setValue(List<Property> values);
+	
+	public List<Association> associations();
+	
+	public List<Attribute> attributes();
 }

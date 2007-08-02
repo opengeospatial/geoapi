@@ -12,7 +12,7 @@ import org.opengis.util.InternationalString;
  * The following information from the GFM MetaModel are represented:
  * <ul>
  * <li>memberName - actually bound to specific TypeName, these names are
- * gathered tgether into a Namespace
+ * gathered together into a Namespace
  * <li>description - we use an InternationalString as description may be
  * available in more then one language.
  * </ul>

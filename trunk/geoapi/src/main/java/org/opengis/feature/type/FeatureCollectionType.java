@@ -1,9 +1,6 @@
 package org.opengis.feature.type;
 
-import java.util.Collection;
 import java.util.Set;
-
-import org.opengis.feature.Property;
 
 /**
  * Represents a FeatureCollection
@@ -24,8 +21,7 @@ import org.opengis.feature.Property;
  * @param <C>
  * @param <M>
  */
-public interface FeatureCollectionType<E extends Property,C extends Collection<E>, M extends FeatureType> 
-	extends FeatureType<E,C> {
+public interface FeatureCollectionType extends FeatureType {
 	
 	/**
 	 * FeatureTypes allowable as members of this set.
@@ -38,5 +34,5 @@ public interface FeatureCollectionType<E extends Property,C extends Collection<E
 	 * constraints placed on memberFeatures for xPath.
 	 * </p>
 	 */
-	Set<AssociationDescriptor<? extends AssociationType<M>>> getMembers();
+	Set<AssociationDescriptor> getMembers();
 }

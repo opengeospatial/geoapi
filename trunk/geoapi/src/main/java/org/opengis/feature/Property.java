@@ -25,7 +25,7 @@ import org.opengis.feature.type.PropertyType;
  * </p>
  * @author Jody Garnett, Refractions Research
  */
-public interface Property<T extends PropertyType> {
+public interface Property {
 
 	/**
 	 * Indicates the Descriptor for this content.
@@ -57,8 +57,8 @@ public interface Property<T extends PropertyType> {
 	/**
 	 * Indicate the PropertyType, if we have a descriptor it will be in agreement.
 	 * 
-	 * @return PropertyType information descirbing content and use
+	 * @return PropertyType information describing content and use
 	 */
-	T getType();
+	PropertyType getType();
  
 }

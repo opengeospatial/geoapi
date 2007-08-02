@@ -5,23 +5,22 @@ import org.opengis.feature.type.AssociationType;
 import org.opengis.feature.type.AttributeType;
 
 /**
- * Contains information defining an associated attribtue (ie shared value).
+ * Contains information defining an association (i.e. shared value).
  * <p>
  * An Association is used to hold a relation in our data model, similar to the
- * way a Key is used to Associatte a Value in a Map. Rather then use Map.Entry
- * to capture this link we are using a strongly typed AssociationType providing
- * additional information indicating the nature of the association.
+ * way a Key is used to Associate a Value in a java.util.Map. Rather then use
+ * Map.Entry to capture this link we are using a strongly typed AssociationType
+ * providing additional information indicating the nature of the association.
  * </p>
  * <p>
- * If this Association is contained in another data sturcutre you may use the
- * provided AssociationDescriptor. This descriptor will provided any additional
- * information (such as name and multiplicity) needed.
+ * If this Association is contained in another data structure you may use the
+ * provided AssociationDescriptor for additional information. This descriptor
+ * will provided any additional information (such as name and multiplicity) needed.
  * </p>
  * 
  * @author Jody Garnett, Refractions Research
  */
-public interface Association<B,A extends AttributeType<B>,T extends AssociationType<A>> 
-	extends Property<T> {
+public interface Association extends Property {
 
 	/**
 	 * Indicates the AttirbuteDescriptor for this content.
@@ -33,7 +32,7 @@ public interface Association<B,A extends AttributeType<B>,T extends AssociationT
 	 * 
 	 * @return Descriptor for this attribute, may be null.
 	 */
-	AssociationDescriptor<T> getDescriptor();
+	AssociationDescriptor getDescriptor();
 
 	/**
 	 * Indicate the AssociationType, if we have a descriptor it will be in
@@ -48,33 +47,33 @@ public interface Association<B,A extends AttributeType<B>,T extends AssociationT
 	 * <li>spatial (contained, touches).
 	 * </ul>
 	 * </p>
-	 * @return AttributeType information descirbing allowable content
+	 * @return AssociationType of allowable content
 	 */
-	T getType();
+	AssociationType getType();
 	
 	/**
 	 * Indicates the AttributeType we are associated with.
 	 * <p>
-	 * Note the target attirbute type is likely maintained in another part of the
+	 * Note the target attribute type is likely maintained in another part of the
 	 * forest, often it will be fetched via either a query or optimally by ID lookup
 	 * behind the scenes.
 	 * </p>
 	 * @return type of attribute we are related to.
 	 */
-	A getRelatedType();
+	AttributeType getRelatedType();
 	
 	/**
 	 * An associated Attribute.
 	 * <p>
 	 * This will be of the type indicated by the getAssociateType.
 	 * 
-	 * @return associated attribtue
+	 * @return associated attribute
 	 */
-	Attribute<B,A> getRelated();
+	Attribute getRelated();
 	
 	/**
 	 * Set the association to the provided Attribute
 	 * @param value
 	 */
-	void setRelated(Attribute<B,A> value);
+	void setRelated(Attribute attribute);
 }

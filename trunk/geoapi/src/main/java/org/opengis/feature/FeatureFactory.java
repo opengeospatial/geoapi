@@ -90,7 +90,7 @@ public interface FeatureFactory {
 	 * instanceof {@link GeometryType}.
 	 */
 	GeometryAttribute createGeometryAttribute(
-		Object value, AttributeDescriptor desc, String id, CoordinateReferenceSystem crs
+		Object geometry, AttributeDescriptor desc, String id, CoordinateReferenceSystem crs
 	);
 	
 	/**
@@ -105,7 +105,7 @@ public interface FeatureFactory {
 	 * instanceof {@link ComplexType}.
 	 */
 	ComplexAttribute createComplexAttribute(
-		Collection value, AttributeDescriptor desc, String id 
+		Collection<Property> value, AttributeDescriptor desc, String id 
 	);
 	/**
 	 * Create attribute based explicitly on type (not nested).
@@ -116,7 +116,7 @@ public interface FeatureFactory {
 	 * @return
 	 */
 	ComplexAttribute createComplexAttribute(
-		Collection value, ComplexType type, String id	
+		Collection<Property> value, ComplexType type, String id	
 	);
 	
 	/**
@@ -130,7 +130,7 @@ public interface FeatureFactory {
 	 * @throws IllegalArgumentException If desc.getType() does not return an 
 	 * instanceof {@link FeatureType}.
 	 */
-	Feature createFeature(Collection value, AttributeDescriptor desc, String id);
+	Feature createFeature(Collection<Property> value, AttributeDescriptor desc, String id);
 	
 	/**
 	 * Create a new feature based on type (not nested)
@@ -140,7 +140,7 @@ public interface FeatureFactory {
 	 * @param id
 	 * @return
 	 */
-	Feature createFeature(Collection value, FeatureType type, String id);
+	Feature createFeature(Collection<Property> value, FeatureType type, String id);
 	
 	/**
 	 * Createsa a nested feature collection.
@@ -154,7 +154,7 @@ public interface FeatureFactory {
 	 * @throws IllegalArgumentException If desc.getType() does not return an 
 	 * instanceof {@link FeatureCollectionType}.
 	 */
-	FeatureCollection createFeatureCollection(Collection value, AttributeDescriptor desc, String id);
+	FeatureCollection createFeatureCollection(Collection<Property> value, AttributeDescriptor desc, String id);
 	
 	/**
 	 * Create a new feature collection based on type (not nested).
@@ -164,7 +164,7 @@ public interface FeatureFactory {
 	 * @param id
 	 * @return
 	 */
-	FeatureCollection createFeatureCollection(Collection value, FeatureCollectionType type, String id);
+	FeatureCollection createFeatureCollection(Collection<Property> value, FeatureCollectionType type, String id);
 
 }
 

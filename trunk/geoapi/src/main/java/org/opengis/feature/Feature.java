@@ -1,16 +1,14 @@
 package org.opengis.feature;
 
-import java.util.Collection;
-
 import org.opengis.feature.type.FeatureType;
-import org.opengis.referencing.crs.CoordinateReferenceSystem;
 import org.opengis.geometry.BoundingBox;
+import org.opengis.referencing.crs.CoordinateReferenceSystem;
 
 /**
- * A Feature, of abitrary complexity, with at a minimum Geometry and CRS information.
+ * A Feature, of arbitrary complexity, with at a minimum Geometry and CRS information.
  * <p>
- * We have allowed for additional "tempoary" user data to be associated
- * with Attributes in order to facilitiate procesing services. These services
+ * We have allowed for additional "temporary" user data to be associated
+ * with Attributes in order to facilitate processing services. These services
  * traditionally end up hold "shadow" structures such as a HashMap referenced
  * by FeatureID.
  * <ul>
@@ -20,8 +18,7 @@ import org.opengis.geometry.BoundingBox;
  * </p>
  * @author Jody Garnett, Refractions Research
  */
-public interface Feature<E extends Property,C extends Collection<E>, T extends FeatureType<E,C>> 
-	extends ComplexAttribute<E,C,T> {
+public interface Feature extends ComplexAttribute {
 	
 	/**
 	 * Allows the association of process specific information.
@@ -101,7 +98,7 @@ public interface Feature<E extends Property,C extends Collection<E>, T extends F
 	/**
 	 * Access the type of this Feature.
 	 */
-///	FeatureType getType();
+	FeatureType getType();
 
 	/**
 	 * @return The default geometry attribute.

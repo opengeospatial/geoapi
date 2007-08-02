@@ -15,13 +15,13 @@ package org.opengis.feature.type;
  * </p>
  * @author Jody Garnett, Refractions Research
  */
-public interface AssociationDescriptor<A extends AssociationType> extends StructuralDescriptor {
+public interface AssociationDescriptor extends StructuralDescriptor {
 		
 	/**
 	 * Indicates the type of this association.
 	 * <p>
 	 * This indicates the relationship represented by the association.
 	 */
-	A getType();
+	AssociationType getType();
 
 }

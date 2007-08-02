@@ -64,11 +64,11 @@ public interface PropertyDescriptor {
 	 * <p>
 	 * There is no bridge from our Type system to the formal ISO Metadata
 	 * classes right now, please use this facility as a temporary measure and
-	 * join us on the developers list as we would request your assistence.
+	 * join us on the developers list as we would request your assistance.
 	 * </p>
 	 * 
 	 * @param key
-	 *            key used to retrive user data
+	 *            key used to retrieve user data
 	 * @return user data previously stored under the provided key
 	 */
 	Object getUserData(Object key);
@@ -77,13 +77,13 @@ public interface PropertyDescriptor {
 	 * Indicates Name of defined attribute in a ComplexType, this method may
 	 * never return a null value.
 	 * <p>
-	 * The name is actually defined by the sub type, this is derrived quantity.
+	 * The name is actually defined by the sub type, this is derived quantity.
 	 * </p>
 	 */
 	Name getName();
 
 	/**
-	 * Convenience method for getting at the type of the desciptor.
+	 * Convenience method for getting at the type of the descriptor.
 	 * <p>
 	 * This is considered "derived" because the specific type is declared by the
 	 * subclass.

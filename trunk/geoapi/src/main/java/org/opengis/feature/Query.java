@@ -13,18 +13,12 @@ package org.opengis.feature;
 // J2SE direct dependencies
 import java.util.List;
 
-import javax.xml.namespace.QName;
-
-// OpenGIS direct dependencies
-import org.opengis.feature.type.FeatureType;  // For javadoc
+import org.opengis.annotation.Extension;
+import org.opengis.annotation.XmlElement;
+import org.opengis.feature.type.FeatureType;
 import org.opengis.feature.type.TypeName;
 import org.opengis.filter.Filter;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
-import org.opengis.util.GenericName;
-
-// Annotations
-import org.opengis.annotation.Extension;
-import org.opengis.annotation.XmlElement;
 
 
 /**

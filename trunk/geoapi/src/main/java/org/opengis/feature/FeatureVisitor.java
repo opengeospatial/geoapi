@@ -15,7 +15,6 @@
  */
 package org.opengis.feature;
 
-import org.opengis.feature.Feature;
 import org.opengis.feature.type.FeatureCollectionType;
 
 /**
@@ -35,7 +34,7 @@ import org.opengis.feature.type.FeatureCollectionType;
  */
 public interface FeatureVisitor {
 	/**
-	 * Called before accepting Features to allow the calculation to prepair
+	 * Called before accepting Features to allow the calculation to set up
 	 * any state required.
 	 */
     public void init( FeatureCollectionType collection );

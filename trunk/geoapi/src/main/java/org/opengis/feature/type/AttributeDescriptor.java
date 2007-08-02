@@ -2,7 +2,7 @@ package org.opengis.feature.type;
 
 
 /**
- * Indicating a named entry for a perscribed AttributeType.
+ * Indicating a named entry for a prescribed AttributeType.
  * <p>
  * This class carries the ComplexType specific information required
  * for useing a contained attribute. Name, type and multiplicity are defined.
@@ -13,8 +13,8 @@ package org.opengis.feature.type;
  * 
  * @author Jody Garnett, Refractions Research
  */
-public interface AttributeDescriptor<T extends AttributeType> extends StructuralDescriptor {
-		
+public interface AttributeDescriptor extends StructuralDescriptor {
+
 	/**
 	 * True attribute is allowed to be null.
 	 * 
@@ -25,7 +25,7 @@ public interface AttributeDescriptor<T extends AttributeType> extends Structural
 	/** 
 	 * Indicates the type of this attribute 
 	 */
-	T getType();
+	AttributeType getType();
 	
 	/**
 	 * The default value of this attribute, could be <code>null</code>.
