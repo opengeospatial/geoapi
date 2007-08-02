@@ -1,9 +1,11 @@
 package org.opengis.feature.xml;
 
+import java.util.Collection;
 import java.util.Set;
 
-import org.opengis.feature.Attribute;
+import org.opengis.feature.Property;
 import org.opengis.feature.type.ComplexType;
+import org.opengis.feature.type.StructuralDescriptor;
 import org.opengis.filter.Filter;
 
 /**
@@ -11,9 +13,18 @@ import org.opengis.filter.Filter;
  * 
  * @author Jody Garnett, Refractions Research
  */
-public interface ChoiceType<S extends Set<Attribute>> extends ComplexType<Attribute,S> {
+public interface ChoiceType extends ComplexType {
+	
 	/**
-	 * Inorder to smoothly intergrate with the feature model this list include a filter limiting the number
+	 * A Set<Property> only one of which may be chosen.
+	 */
+	public Class<Collection<Property>> getBinding();
+	
+	/** A Set<Property> only one of which may be chosen. */
+	public Set<StructuralDescriptor> getProperties();
+	
+	/**
+	 * In order to smoothly integrate with the feature model this list include a filter limiting the number
 	 * of attribute to one.
 	 * <p>
 	 * This exact nature of this limitation is dependent on the capabilities of your particular implemenation

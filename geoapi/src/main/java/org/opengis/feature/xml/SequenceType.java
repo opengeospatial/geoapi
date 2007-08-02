@@ -3,6 +3,7 @@ package org.opengis.feature.xml;
 import java.util.List;
 
 import org.opengis.feature.Attribute;
+import org.opengis.feature.type.AttributeDescriptor;
 import org.opengis.feature.type.ComplexType;
 
 /**
@@ -13,8 +14,8 @@ import org.opengis.feature.type.ComplexType;
  * 
  * @author Jody Garnett, Refractions Research
  */
-public interface SequenceType<L extends List<Attribute>> extends ComplexType<Attribute,L> {
+public interface SequenceType extends ComplexType {
 	
 	/** Indicates required ordering for Attributes */
-    ///	List<AttributeDescriptor> getAttributes();
+    List<AttributeDescriptor> attributes();
 }

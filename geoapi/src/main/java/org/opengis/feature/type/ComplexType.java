@@ -5,7 +5,14 @@ import java.util.Collection;
 import org.opengis.feature.Property;
 
 /**
- * Represents an AttirbuteType with internal strucutre composed of properties.
+ * Represents an AttirbuteType with interesting internal structure made
+ * available as properties.
+ * <p>
+ * When creating a wrapper for an existing java domain model the use of ComplexType
+ * is optional; the interface allows you to make available to the dynamic type system
+ * additional attributes, associations and operations. By making this detail available
+ * your feature model will be more rich and capable.
+ * 
  * <p>
  * There are two kinds of properties that may be used to compose a complex type:
  * <ul>
@@ -16,10 +23,9 @@ import org.opengis.feature.Property;
  * value removed when you delete? If it is removed the value is an attribute, if it 
  * is an attribute, if the value would still be around you should model it with an association.
  * </p>
- * @author Jody Garnett
- *
+ * @author Jody Garnett (Refractions Research)
  */
-public interface ComplexType<E extends Property,C extends Collection<E>> extends AttributeType<C> {
+public interface ComplexType extends AttributeType {
 	
 	/**
 	 * Indicates ability of XPath to notice this attribute.
@@ -80,7 +86,7 @@ public interface ComplexType<E extends Property,C extends Collection<E>> extends
 	 * </p>
 	 * @return Java binding, or null if not applicable
 	 */
-	Class<C> getBinding();
+	Class<Collection<Property>> getBinding();
 
 	/**
 	 * Super is restricted to other ComplexTypes.
@@ -117,12 +123,12 @@ public interface ComplexType<E extends Property,C extends Collection<E>> extends
 	///ComplexType getSuper(); // TODO Restore this
 	
 	/**
-	 * Returns the only the strucutral properties (Attributes and Associations) used to define
+	 * Returns the only the structural properties (Attributes and Associations) used to define
 	 * this type.
 	 * <p>
 	 * We are not including the OperationDescriptors in this list as they do not
 	 * vary on a instance by instance basis. The difference between a ComplexType
-	 * and a AttributeType is the notion of inner strucutre represented by this
+	 * and a AttributeType is the notion of inner structure represented by this
 	 * method.
 	 * </p>
 	 * <p>

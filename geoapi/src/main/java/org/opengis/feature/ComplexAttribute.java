@@ -28,17 +28,19 @@ import org.opengis.feature.type.Name;
  * @author Jody Garnett, Refractions Research, jgarnett@refractions.net 
  * @author Gabriel Roldan
  */
-public interface ComplexAttribute<E extends Property,C extends Collection<E>, T extends ComplexType<E,C>> extends Attribute<C,T> {
+public interface ComplexAttribute extends Attribute {
 
+	public ComplexType getType();
+	
 	/**
 	 * Indicates the AttirbuteDescriptor for this content.
 	 * <p>
 	 * The attribute descriptor formally captures the name and multiplicity
-	 * and type associated with this attirbute.
+	 * and type associated with this attribute.
 	 * </p>
 	 * @return Descriptor for this attribute, if it is contained by another ComplexAttribute
 	 */
-	public AttributeDescriptor<T> getDescriptor();
+	public AttributeDescriptor getDescriptor();
 	
 	/**
 	 * Sets the complete contents of this Attribute, that must be valid against
@@ -46,28 +48,27 @@ public interface ComplexAttribute<E extends Property,C extends Collection<E>, T 
 	 * 
 	 * @throws IllegalArgumentException
 	 */
-	void set(C newValue) throws IllegalArgumentException;
+	void setValue(Collection<Property> values);
 
 	/**
 	 * Returns the value of the attribute, which is a list of other properties,
      * attributes + associations..
 	 * 
 	 */
-	C get();
+	Collection<Property> getValue();
     
     /**
      * Convenience method for getting at the attributes contained in this 
      * complex attribute.
-     * 
      */
-    Collection<E> attributes();
+    Collection<Attribute> attributes();
     
     /**
      * Convenience method for getting at the associations contained in this 
      * complex attribute.
      * @return
      */
-    Collection<E> associations();
+    Collection<Association> associations();
     
     /**
 	 * Returns the subset of the attributes returned by {@link #get()} which 

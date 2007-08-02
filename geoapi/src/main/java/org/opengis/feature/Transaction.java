@@ -15,8 +15,6 @@ import java.io.IOException;
 import java.util.Collections;
 import java.util.Set;
 
-// Annotations
-import org.opengis.annotation.Extension;
 import org.opengis.annotation.XmlElement;
 
 

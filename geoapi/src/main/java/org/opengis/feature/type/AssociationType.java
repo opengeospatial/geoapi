@@ -7,7 +7,7 @@ import org.opengis.filter.Filter;
 /**
  * Association information, immutable.
  * <p>
- * The model must recognize the following specific Association types:
+ * The model must recognise the following specific Association types:
  * <ul>
  * <li>aggregation
  * <li>spatial
@@ -37,7 +37,7 @@ import org.opengis.filter.Filter;
  * </p>
  * @author Jody Garnett, Refractions Research, Inc.
  */
-public interface AssociationType<B extends AttributeType> extends PropertyType {
+public interface AssociationType extends PropertyType {
 	
 	/**
 	 * True if this type is usable as a target of a reference.
@@ -55,7 +55,7 @@ public interface AssociationType<B extends AttributeType> extends PropertyType {
 	 * 
 	 * @return AttributeType of supertype
 	 */
-	public AssociationType<? super B> getSuper();
+	public AssociationType getSuper();
 
 	/**
 	 * Indicate that this AttributeType may not be used directly.
@@ -72,7 +72,7 @@ public interface AssociationType<B extends AttributeType> extends PropertyType {
 	 * This is the AttributeType you are in effect pointing to by using an association.
 	 * <p>
 	 */
-	public B getReferenceType();
+	public AttributeType getReferenceType();
 
 	/**
 	 * List of restrictions used to limit the allowable values for objects of

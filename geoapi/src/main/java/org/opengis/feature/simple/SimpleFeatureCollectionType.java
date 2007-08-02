@@ -28,17 +28,21 @@ import org.opengis.feature.type.FeatureCollectionType;
  *
  * @author Justin Deoliveira (The Open Planning Project)
  */
-public interface SimpleFeatureCollectionType<M extends SimpleFeatureType> 
-	extends FeatureCollectionType<Attribute,List<Attribute>,M>,  SimpleFeatureType
+public interface SimpleFeatureCollectionType extends FeatureCollectionType,  SimpleFeatureType
 {
     /**
      * Returns the single feature of allowed members of the collection.
      */
-    M getMemberType();
+    SimpleFeature getMemberType();
 
     /**
      * Returned set contains a single member.
      */
-    Set<AssociationDescriptor<? extends AssociationType<M>>> getMembers();
-    //Set<M> getMemberTypes();
+    Set<AssociationDescriptor> getMembers();
+
+    /**
+     * Singleton set, use getMemberType()
+     * @return Collections.singleton( getMemberType() )O
+     */
+    Set<SimpleFeature> getMemberTypes();
 }

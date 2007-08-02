@@ -15,7 +15,7 @@ import org.opengis.geometry.BoundingBox;
  * at this time, allowing the use of JTS for SFSQL use, or GeoAPI interfaces for ISO.
  * </p>
  */
-public interface GeometryAttribute<G, T extends GeometryType<G>> extends Attribute<G,T> {
+public interface GeometryAttribute extends Attribute {
 	/**
 	 * The Coordinate Reference System of this geometry.
 	 * <p>
@@ -58,13 +58,13 @@ public interface GeometryAttribute<G, T extends GeometryType<G>> extends Attribu
 	public void setBounds( BoundingBox bounds );
 
 	/**
-	 * GeometryType should be configued with a Geometry for getJavaType.
+	 * GeometryType should be configured with a Geometry for getJavaType.
 	 * <p>
 	 * Q: If needed a set of well-known GeometryType can be constructed, may be
 	 * needed to report CRS and Bounds constraints on data? A: It was needed
 	 * when we switched over to Attribute
 	 */
-	T getType();
+	GeometryType getType();
 
 	/**
 	 * Retrieve Geometry.
@@ -72,7 +72,7 @@ public interface GeometryAttribute<G, T extends GeometryType<G>> extends Attribu
 	 * We may want to relax this to Object to allow for JTS or GeoAPI based
 	 * objects for the first release.
 	 */
-	G get();
+	Object getValue();
 
 	/**
 	 * Set provided Geometry
@@ -80,5 +80,5 @@ public interface GeometryAttribute<G, T extends GeometryType<G>> extends Attribu
 	 * We may want to relax this to Object to allow for JTS or GeoAPI based
 	 * objects for the first release.
 	 */
-	void set(G geom);
+	void setValue(Object geom);
 }

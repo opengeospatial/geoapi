@@ -84,9 +84,8 @@ public interface TypeFactory {
      * @param defaulValue
      * 	The default value of the described attribute. 
      */
-    <T extends AttributeType>  
-    AttributeDescriptor<T> createAttributeDescriptor(
-            T type, Name name, int minOccurs, int maxOccurs, boolean isNillable, Object defaultValue
+    AttributeDescriptor createAttributeDescriptor(
+    		AttributeType type, Name name, int minOccurs, int maxOccurs, boolean isNillable, Object defaultValue
     );
 
     /**
@@ -102,9 +101,8 @@ public interface TypeFactory {
      * 	The maximum number of occurences of the described association.
      * 
      */
-    <B extends AttributeType, A extends AssociationType<B>> 
-    AssociationDescriptor<A> createAssociationDescriptor(
-            A type, Name name, int minOccurs, int maxOCcurs
+    AssociationDescriptor createAssociationDescriptor(
+    		AssociationType type, Name name, int minOccurs, int maxOCcurs
     );
 
     /**
@@ -115,10 +113,7 @@ public interface TypeFactory {
      * @param isImplemented
      * 	Flag indicating if the described operation is implemented or not.
      */
-    <B, T extends AttributeType<B>, O extends OperationType<B,T>>
-    OperationDescriptor<B,T,O> createOperationDescriptor(
-            O type, boolean isImplemented
-    );
+    OperationDescriptor createOperationDescriptor( OperationType type, boolean isImplemented );
 
     AssociationType createAssociationType(
             TypeName name, AttributeType referenceType,boolean isIdentifiable,
@@ -127,7 +122,7 @@ public interface TypeFactory {
     );
 
     AttributeType createAttributeType(
-            TypeName name, Class binding, boolean isIdentifiable, boolean isAbstract, 
+            TypeName name, Class<?> binding, boolean isIdentifiable, boolean isAbstract, 
             Set<Filter> restrictions, AttributeType superType, InternationalString description
     );
 
@@ -136,23 +131,22 @@ public interface TypeFactory {
             boolean isAbstract, Set<Filter> restrictions, AttributeType superType,
             InternationalString description
     );
-
     GeometryType createGeometryType(
-            TypeName name, Class binding, CoordinateReferenceSystem crs, boolean isIdentifiable, 
+            TypeName name, Class<?> binding, CoordinateReferenceSystem crs, boolean isIdentifiable, 
             boolean isAbstract, Set<Filter> restrictions, AttributeType superType,
             InternationalString description
     );
 
     FeatureType createFeatureType(
             TypeName name, Collection<StructuralDescriptor> schema,
-            AttributeDescriptor<GeometryType> defaultGeometry, CoordinateReferenceSystem crs,
+            AttributeDescriptor defaultGeometry, CoordinateReferenceSystem crs,
             boolean isAbstract, Set<Filter> restrictions, AttributeType superType,
             InternationalString description
     );
 
     FeatureCollectionType createFeatureCollectionType(
             TypeName name,  Collection<StructuralDescriptor> schema, Collection<AssociationDescriptor> members,
-            AttributeDescriptor<GeometryType> defaultGeom, CoordinateReferenceSystem crs, 
+            AttributeDescriptor defaultGeom, CoordinateReferenceSystem crs, 
             boolean isAbstract, Set<Filter> restrictions, AttributeType superType,
             InternationalString description
     );

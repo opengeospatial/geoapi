@@ -13,8 +13,6 @@ package org.opengis.feature;
 // J2SE direct dependencies
 import java.util.Set;
 
-// Annotations
-import org.opengis.annotation.Extension;
 import org.opengis.annotation.XmlElement;
 
 

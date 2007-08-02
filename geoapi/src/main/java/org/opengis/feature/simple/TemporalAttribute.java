@@ -10,6 +10,7 @@ import org.opengis.feature.type.AttributeType;
  * 
  * @author Justin Deoliveira (The Open Planning Project)
  */
-public interface TemporalAttribute<T extends AttributeType<Date>> extends Attribute<Date,T> {
-
+public interface TemporalAttribute extends Attribute {
+	public void setValue(Date newValue);
+	public Date getValue();
 }

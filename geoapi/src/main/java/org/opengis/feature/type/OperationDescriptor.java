@@ -16,11 +16,10 @@ import org.opengis.feature.Attribute;
  * 
  * @author Jody Garnett, Refractions Research
  */
-public interface OperationDescriptor<B, T extends AttributeType<B>, O extends OperationType<B, T>>
-		extends PropertyDescriptor {
+public interface OperationDescriptor extends PropertyDescriptor {
 
 	/** Indicates the OpperationType of this attribute */
-	O getType();
+	OperationType getType();
 
 	/**
 	 * Indicates Name of defined operation in a ComplexType, this method may
@@ -63,7 +62,7 @@ public interface OperationDescriptor<B, T extends AttributeType<B>, O extends Op
 	 * @throws InvoationTargetException
 	 *             if an error occured while processing
 	 */
-	Object invoke(Attribute<B, T> target, Object params[])
+	Object invoke(Attribute target, Object params[])
 			throws InvocationTargetException;
 
 }

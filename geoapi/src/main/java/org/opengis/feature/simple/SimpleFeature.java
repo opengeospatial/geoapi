@@ -1,9 +1,12 @@
 package org.opengis.feature.simple;
 
+import java.util.Collection;
 import java.util.List;
 
+import org.opengis.feature.Association;
 import org.opengis.feature.Attribute;
 import org.opengis.feature.Feature;
+import org.opengis.feature.Property;
 import org.opengis.feature.type.AttributeType;
 
 /**
@@ -29,15 +32,20 @@ import org.opengis.feature.type.AttributeType;
  * </p>
  * @author Jody Garnett, Refractions Research
  */
-public interface SimpleFeature extends //Sequence<List<Attribute>,SimpleFeatureType>, 
-	Feature<Attribute,List<Attribute>,SimpleFeatureType> {
+public interface SimpleFeature extends Feature {
 	
-
+	/**
+	 * Associations are not supported by SimpleFeature.
+	 * @return Collection.EMPTY_LIST
+	 */
+	public List<Association> associations();
+	
+	public List<Attribute> attributes();
 	/**
 	 * List of attributes is in the same order as that defined
 	 * by SimpleFeatureType.
 	 */
-	//List<Attribute> getAttributes();
+	List<Attribute> getAttributes();
 
     /**
      * AttributeTypes in the order defined by SimpleFeatureType.
@@ -50,20 +58,35 @@ public interface SimpleFeature extends //Sequence<List<Attribute>,SimpleFeatureT
     List<AttributeType> getTypes();
     
     /**
-	 * Value view of attribtue types, in a manner similar Map.values().
+     * List<Attribute> (since associations are not allowed).
+     * <p>
+     * You may wish to use getValues() instead, in order to access
+     * feature contents directly.
+     * </p>
+     * @return List of attribtues in the order defined by SimpleFeatureType
+     */
+    public List<Property> getValue();
+    
+    /**
+     * Update the feature with these attributes.
+     * <p>
+     * You may wish to use setValues() instead, in order to access
+     * feature contents directly.
+     * </p>
+     */
+    public void setValue(List<Property> values);
+    
+    /**
+	 * Value view of attributes, in a manner similar Map.values().
 	 * <p>
-	 * The content avalable through types() an values() are considered a view of
-	 * attribtues(). Order is maintained, and removing content will result in a
-	 * modification to all three lists. in a manner simialr to Map.keysSet() and
-	 * Map.values().
-	 * <p>
-	 * Collections naming conventions are used to indicate this is a view into
-	 * our data model.
+	 * The content available through getTypes() and getvalues() are considered
+	 * a view of getAttribtues(). Order is maintained, and removing content will
+	 * result in a modification to all three lists.
 	 */
 	 List<Object> getValues();
     
 	/**
-	 * Restrictued to SimpleFeatureType
+	 * Restricted to SimpleFeatureType
 	 * <p>
 	 * This restriction enabled client code to confidently
 	 * assume that each attribute occurs in the perscribed order

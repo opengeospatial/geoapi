@@ -20,13 +20,12 @@ import org.opengis.feature.type.FeatureType;
  *
  * @author Justin Deoliveira (The Open Planning Project)
  */
-public interface SimpleFeatureCollection<M extends SimpleFeatureType, T extends SimpleFeatureCollectionType<M>> 
-	extends FeatureCollection<Attribute,List<Attribute>,M,T,SimpleFeature>
+public interface SimpleFeatureCollection  extends FeatureCollection
 {
     /**
      * Restricted to return a SimpleFeatureCollectionType.
      */
-    T getType();
+	SimpleFeatureCollectionType getType();
     SimpleFeatureCollectionType getFeatureCollectionType();
 
     /**

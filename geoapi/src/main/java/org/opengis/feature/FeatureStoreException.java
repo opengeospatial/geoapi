@@ -11,8 +11,7 @@
 package org.opengis.feature;
 
 // J2SE direct dependencies
-import java.io.IOException;    // For javadoc
-import java.sql.SQLException;  // For javadoc
+import java.io.IOException;
 
 
 /**

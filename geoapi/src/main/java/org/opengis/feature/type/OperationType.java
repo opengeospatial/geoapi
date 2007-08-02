@@ -8,7 +8,7 @@ import org.opengis.filter.Filter;
 /**
  * Operation information, immutable.
  * <p>
- * This represents a type of opperation that can be used to update the state of
+ * This represents a type of operation that can be used to update the state of
  * an AttributeType, this gets more exciting with ComplexAttribtueType (or Feature)
  * <p>
  * If you come to this from a pure java background this is where we capture the
@@ -23,7 +23,7 @@ import org.opengis.filter.Filter;
  * <p>
  * The implementation of the operations is against the bound AttributeType "B":
  * <ul>
- * <li>the descriptor will be able to evaulate against an instance of B
+ * <li>the descriptor will be able to evaluate against an instance of B
  *     and produced a change state or result
  * <li>
  * </ul>
@@ -36,7 +36,7 @@ import org.opengis.filter.Filter;
  * 
  * @author Jody Garnett, Refractions Research, Inc.
  */
- public interface OperationType<B, T extends AttributeType<B>> extends PropertyType {	
+ public interface OperationType extends PropertyType {	
 
 	/**
 	 * Access to super type information.
@@ -47,7 +47,7 @@ import org.opengis.filter.Filter;
 	 * 
 	 * @return AttributeType of supertype
 	 */
-	 OperationType<? super B, ? super T> getSuper();
+	 OperationType getSuper();
 	
 	/**
 	 * Indicate that this OperationType may not be used directly.
@@ -63,10 +63,10 @@ import org.opengis.filter.Filter;
 	/**
 	 * AttributeType this operation type can function against.
 	 */
-	 T getTarget();
+	 AttributeType getTarget();
 
 	 /**
-	  * Inidcates the expected result type, may be <code>null</code>.
+	  * Indicates the expected result type, may be <code>null</code>.
 	  * 
 	  * @return expected result type, may be <code>null</code>
 	  */
@@ -78,7 +78,7 @@ import org.opengis.filter.Filter;
 	 * Note we do not need AttributeDescriptors here as parameters
 	 * are ordered, so name is not needed.
 	 * </p>
-	 * @return inidicates paramters required for operation
+	 * @return indicates paramters required for operation
 	 */
 	List<AttributeType> getParameters();
 	

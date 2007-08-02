@@ -10,10 +10,10 @@
  *************************************************************************************************/
 package org.opengis.feature;
 
+import java.io.IOException;
 import java.util.Collection;
 import java.util.Iterator;
 
-//import org.opengis.feature.type.AttributeType;
 import org.opengis.annotation.XmlElement;
 import org.opengis.feature.type.FeatureCollectionType;
 import org.opengis.feature.type.FeatureType;
@@ -43,14 +43,12 @@ import org.opengis.util.ProgressListener;
  * @see java.util.Collection
  */
 @XmlElement("FeatureCollection")
-public interface FeatureCollection<E extends Property,C extends Collection<E>, M extends FeatureType, T extends FeatureCollectionType<E,C,M>,F extends Feature> 
-	extends Feature<E,C,T>,
-	Collection<F> {
+public interface FeatureCollection extends Feature {
 	
 	/**
 	 * Restricted to return a FeatureCollectionType.
 	 */
-    T getType();
+    FeatureCollectionType getType();
 
 	
     /**
@@ -62,7 +60,7 @@ public interface FeatureCollection<E extends Property,C extends Collection<E>, M
 	 * <li>FeatureCollections are often backed by resource use and the
 	 * iterators must be passed to FeatureCollection.close( Iterator ) after
 	 * use. This is a requirement over an beyond that imposed by the Java
-	 * Collections API, it does represent a commmon solution seen in other
+	 * Collections API, it does represent a common solution seen in other
 	 * Java libraries.
 	 * <lil>The Feature returned by <code>next()</code> is only "valid" until the
 	 * call to <code>next()</code> is made.
@@ -94,7 +92,7 @@ public interface FeatureCollection<E extends Property,C extends Collection<E>, M
 	 * </ul>
      * @return Iterator over the contents of this feature collection.
      */
-    Iterator<F> iterator();
+    Iterator<Feature> iterator();
     
     /**
      * You are required to close iterators after use.
@@ -144,10 +142,10 @@ public interface FeatureCollection<E extends Property,C extends Collection<E>, M
      * @param order
      * @return FeatureList in requested order
      */
-    FeatureList sort( SortBy order  );
+    FeatureCollection sort( SortBy order  );
     
     /**
-     * Convenience method for obtaining the collection of memeber types in 
+     * Convenience method for obtaining the collection of member types in 
      * which members of this collection may implement.
      * <br>
      * <p>
@@ -171,6 +169,5 @@ public interface FeatureCollection<E extends Property,C extends Collection<E>, M
      * @param visitor
      * @throws IOException 
      */
-    void accepts( FeatureVisitor visitor, ProgressListener progress );
-       
+    void accepts( FeatureVisitor visitor, ProgressListener progress );       
 }

@@ -6,9 +6,15 @@ import java.util.Set;
 import org.opengis.filter.Filter;
 
 /**
- * AttributeType information, immutable.
+ * Declaration of attribute type.
+ * <p>
+ * Please note that this is a formal "dynamic type system", we have not
+ * indicated at this level *which* class this attribute type is bound to.
+ * As an implementation option getBinding may be restricted to a specific
+ * class for compile time checks, this will only be of benefit when
+ * implementing wrappers around existing staticly defined Java domain models.
  */
-public interface AttributeType<B> extends PropertyType {
+public interface AttributeType extends PropertyType {
 
 	/**
 	 * True if this type is usable as a target of a reference.
@@ -26,7 +32,7 @@ public interface AttributeType<B> extends PropertyType {
 	 * 
 	 * @return AttributeType of supertype
 	 */
-	AttributeType<? super B> getSuper();
+	AttributeType getSuper();
 
 	/** Indicate that this AttributeType may not be used directly */
 	boolean isAbstract();
@@ -34,7 +40,7 @@ public interface AttributeType<B> extends PropertyType {
 	/**
 	 * Java class bound to this content type.
 	 */
-	Class<B> getBinding();
+	Class<?> getBinding();
 
 	/**
 	 * List of restrictions used to limit the allowable values for objects of
@@ -55,6 +61,5 @@ public interface AttributeType<B> extends PropertyType {
 	 * 
 	 * @return
 	 */
-	Collection<OperationDescriptor> getOperations();
-	
+	Collection<OperationDescriptor> getOperations();	
 }

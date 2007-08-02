@@ -15,7 +15,8 @@ import org.opengis.geometry.BoundingBox;
  * 
  * @author Justin Deoliveira (The Open Planning Project)
  */
-public interface BoundingBoxAttribute<T extends AttributeType<BoundingBox>> 
-	extends Attribute<BoundingBox,T>
+public interface BoundingBoxAttribute extends Attribute
 {
+	  public BoundingBox getValue();
+      public void setValue(BoundingBox newValue);
 }

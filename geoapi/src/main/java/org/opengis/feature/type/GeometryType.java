@@ -7,15 +7,23 @@ import org.opengis.referencing.crs.CoordinateReferenceSystem;
  * 
  * @author Jody Garnett
  */
-public interface GeometryType<T> extends AttributeType<T> {
+public interface GeometryType extends AttributeType {
 	
-	/** Explicitly bound to Geometry */
-	Class<T> getBinding();
+	/**
+	 * The Geometry type represented.
+	 * <p>
+	 * The class indicated here may be specified using generics, while the geoapi
+	 * Geometry interface is common, JTS Geometry and plain old Java2D Shape
+	 * may also be pressed into service.
+	 * 
+	 * @return Geometry binding
+	 */
+	Class<?> getBinding();
 	
 	/**
 	 * If there is a superclass it better also be a Geometry
 	 */
-	AttributeType<? super T> getSuper();
+	AttributeType getSuper();
 		
 	/**
 	 * The coordinate reference system of the Geometries
@@ -26,6 +34,5 @@ public interface GeometryType<T> extends AttributeType<T> {
 	 * CRS).
 	 * </p>
 	 */
-	CoordinateReferenceSystem getCRS();
-	
+	CoordinateReferenceSystem getCRS();	
 }
