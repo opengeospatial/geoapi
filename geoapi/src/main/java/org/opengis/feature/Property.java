@@ -8,22 +8,21 @@ import org.opengis.feature.type.PropertyType;
 /**
  * Contains information as defined by an descriptor.
  * <p>
- * A Property is used to hold information in our data model, similar to the
- * way a Map.Entry holds values in a Map. Rathen then
- * simpliy defining a Name, we are using a slightly more rich data
- * structure called a ProperType.
+ * A Property is used to hold information in our data model. This is
+ * similar to how a Map.Entry holds a key/value pair in a Map.
  * </p>
- * There are two useful PropertyTypes:
+ * The value held in a PropertyDescriptor/Value pair is defined
+ * according to the PropertyType:
  * <ul>
- * <li>AttributeType - containing data
- * <li>AssociationType - linking to other typed objects
+ * <li>AttributeType - the value directly containing data
+ * <li>AssociationType - the value is a link to another object
  * </ul>
  * <p>
  * If this property is contained in another data structure you may
  * use the provided Descriptor. This descriptor will provide any
  * additional information (such as the name and multiplicity) needed.
  * </p>
- * @author Jody Garnett, Refractions Research
+ * @author Jody Garnett (Refractions Research)
  */
 public interface Property {
 

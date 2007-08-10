@@ -23,9 +23,15 @@ import org.opengis.feature.type.FeatureType;
 public interface SimpleFeatureCollection  extends FeatureCollection
 {
     /**
-     * Restricted to return a SimpleFeatureCollectionType.
+     * Restricted to SimpleFeatureCollectionType.
+     * @return SimpleFeatureCollectionType for this collection
      */
 	SimpleFeatureCollectionType getType();
+	/**
+	 * 
+     * This is the same as getType(), this method is used for Java 1.4 applications.
+     * @return SimpleFeatureCollectionType for this collection
+     */
     SimpleFeatureCollectionType getFeatureCollectionType();
 
     /**

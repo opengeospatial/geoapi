@@ -1,6 +1,7 @@
 package org.opengis.feature.xml;
 
 import java.util.List;
+//import java.util.Collection;
 
 import org.opengis.feature.Association;
 import org.opengis.feature.Attribute;
@@ -33,12 +34,23 @@ public interface Sequence extends ComplexAttribute {
     /**
      * Attributes are to be maintained in a sequence, the order of this
      * sequence to to be in agreement with that described by the SequenceType.
+     * @return List<Property> List of properties (attribtues or associations) in order expected.
      */
-	public List<Property> getValue();
+	List<Property> getValue();
 	
-	public void setValue(List<Property> values);
+	/**
+	 * List of properties (the order should agree with the SequenceType).
+	 * @param values Ordered List<Property> of attributes or associations 
+	 */
+	void setValue(List<Property> values);
 	
-	public List<Association> associations();
-	
-	public List<Attribute> attributes();
+	/**
+	 * Ordered view of associations.
+	 */
+	List<Association> associations();
+
+	/**
+	 * Ordered view of attributes.
+	 */
+	List<Attribute> attributes();
 }

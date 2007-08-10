@@ -20,7 +20,7 @@ import org.opengis.feature.type.FeatureType;
 import org.opengis.filter.Filter;
 import org.opengis.filter.sort.SortBy;
 import org.opengis.util.ProgressListener;
-
+//import org.opengis.feature.type.AttributeType;
 /**
  * Represents a FeatureCollection (explicitly a Collection<Feature>.
  * <p>

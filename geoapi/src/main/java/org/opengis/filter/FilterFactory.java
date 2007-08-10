@@ -129,8 +129,18 @@ public interface FilterFactory {
 //
 ////////////////////////////////////////////////////////////////////////////////
 
-    /** Checks if the bounding box of the feature's geometry overlaps the specified bounding box.
-     * @todo Redefine to agree with specification "geometry overlaps the specified bounding box"
+    /**
+     * Checks if the bounding box of the feature's geometry overlaps the indicated bounds.
+     * <p>
+     * This method is defined in strict accordance with the Filter 1.0 specification, you may
+     * find the FilterFactory2.bbox( Expression, BoundingBox ) to be easier to use.
+     * </p>
+     * @param propertyName Name of geometry property (for a PropertyName to access a Feature's Geometry)
+     * @param minx Minimum "x" value (for a literal BoundingBox)
+     * @param miny Minimum "y" value (for a literal BoundingBox )
+     * @param maxx Maximum "x" value (for a literal BoundingBox )
+     * @param maxy Maximum "y" value (for a literal BoundingBox )
+     * @param srs Indicating the CoordianteReferenceSystem to use for a literal BoundingBox 
      */
     BBOX        bbox(String propertyName, double minx, double miny, double maxx, double maxy, String srs);
 

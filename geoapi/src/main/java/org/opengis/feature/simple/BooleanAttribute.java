@@ -5,15 +5,38 @@ import org.opengis.feature.type.AttributeType;
 
 
 /**
- * Attribute containing a boolean value: Attribute<T extends AttributeType<Boolean>>
+ * Attribute known to be bound to a Boolean class.
  * <p>
- * While we can indicate this with genetics, it is helpful to have a named
- * class for this for those working against java 1.4 interfaces.
+ * This class indicates getValue() returns a Boolean using Java 5
+ * type narrowing, for for those working against java 1.4 interfaces
+ * the additional methods getBoolean() and setBoolean have been
+ * introduced.
  * </p>
- * 
  * @author Justin Deoliveira (The Open Planning Project)
  */
 public interface BooleanAttribute extends Attribute {
-	  public Boolean getValue();
-      public void setValue(Boolean newValue);
+	  /**
+	   * Boolean value for this attribute.
+	   * Java 1.4 developers may wish to use getBoolean.
+	   * @return Boolean value
+	   */
+	  Boolean getValue();      
+	  /**
+	   * Set the Boolean value for this attribute.
+	   * Java 1.4 developers may wish to use setBoolean.
+	   * @param newValue Boolean value for this attribute.
+	   */
+	  void setValue(Boolean newValue);
+      
+      /**
+       * Java 1.4 type safe access to getValue
+       * @return (Boolean) getValue()
+       */
+      boolean getBoolean();
+      
+      /**
+       * Java 1.4 type safe access to setValue
+       * @param newValue
+       */
+      void setBoolean(Boolean newValue);      
 }

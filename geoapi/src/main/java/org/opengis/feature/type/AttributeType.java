@@ -59,7 +59,7 @@ public interface AttributeType extends PropertyType {
 	/**
 	 * Operations that may be invoked against this type.
 	 * 
-	 * @return
+	 * @return Collection<OperationDescriptor> that may be invoked on values of this type.
 	 */
 	Collection<OperationDescriptor> getOperations();	
 }
