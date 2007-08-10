@@ -9,11 +9,14 @@ import org.opengis.feature.type.FeatureType;
 import org.opengis.feature.type.GeometryType;
 import org.opengis.feature.type.StructuralDescriptor;
 
+// Java 1.4 imports
+//import java.util.Collection;
+//import org.opengis.feature.type.AttributeType;
 /**
- * Defines a simple feature model of attribute in a perscribed order.
+ * Defines a simple feature model of attribute in a prescribed order.
  * <p>
  * This interface also defines several helper methods that only
- * make sense given the above constratins.
+ * make sense given the above constraints.
  * </p>
  * <p>
  * For reference these are the limitations of a SimpleFeatureType:
@@ -52,12 +55,18 @@ public interface SimpleFeatureType extends FeatureType {
 	 * Associations not permitted in SimpleFeatureType.
 	 * @return Collections.EMPTY_LIST
 	 */
-	public List<AssociationDescriptor> associations();
+	List<AssociationDescriptor> associations();
+	
+	/**
+	 * Attributes defining this SimpleFeatureType.
+	 * @return List of AttribtueDescritor in order prescribed
+	 */
+	List<AttributeDescriptor> attributes();
 	
 	/**
 	 * List of named attribute descriptors in prescribed order.
 	 */
-	public List<StructuralDescriptor> getProperties();
+	List<StructuralDescriptor> getProperties();
 
 	
 	/** List of named attributes in prescribed order */

@@ -4,6 +4,9 @@ import org.opengis.feature.type.FeatureType;
 import org.opengis.geometry.BoundingBox;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 
+// Java 1.4 imports
+//import org.opengis.feature.type.AttributeType;
+
 /**
  * A Feature, of arbitrary complexity, with at a minimum Geometry and CRS information.
  * <p>
@@ -16,7 +19,7 @@ import org.opengis.referencing.crs.CoordinateReferenceSystem;
  * <li>getClientProperty(String key);
  * </ul>
  * </p>
- * @author Jody Garnett, Refractions Research
+ * @author Jody Garnett (Refractions Research)
  */
 public interface Feature extends ComplexAttribute {
 	

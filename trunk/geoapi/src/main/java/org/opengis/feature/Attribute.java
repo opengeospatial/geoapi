@@ -74,12 +74,15 @@ public interface Attribute extends Property {
     String getID();
    
 	/**
-	 * Access to the content of this attribtue.
-	 * 
-	 * @return Value of the type indicated by type()
+	 * Access to the content of this Attribute.
+	 * <p>
+	 * A subclass may define a more specific method to access this value, in order
+	 * to improve readability or make allowances for Java 1.4 use.
+	 * </p>
+	 * @return Value Object of the class indicated by getType().getBinding()
 	 */
 	Object getValue();
-
+	
 	/**
 	 * Call operation on <code>this</code> Attribute.
 	 * <p>
@@ -92,8 +95,8 @@ public interface Attribute extends Property {
 	/**
 	 * Set content to newValue
 	 * @param newValue
-	 *            Must be of type indicated by getType().getBinding()
-	 * @throws IllegalArgumentException If provided value does not match attribute type
+	 *            Object of the class indicated by getType().getBinding()
+	 * @throws IllegalArgumentException If newValue does not match getType().getBinding()
 	 */
 	void setValue(Object newValue);
 }

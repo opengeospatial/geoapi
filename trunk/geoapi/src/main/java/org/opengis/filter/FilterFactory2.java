@@ -24,6 +24,7 @@ import org.opengis.filter.spatial.Intersects;
 import org.opengis.filter.spatial.Overlaps;
 import org.opengis.filter.spatial.Touches;
 import org.opengis.filter.spatial.Within;
+import org.opengis.geometry.BoundingBox;
 
 
 /**
@@ -56,6 +57,17 @@ public interface FilterFactory2 extends FilterFactory {
 
     /** Checks if the geometry expression overlaps the specified bounding box. */
     BBOX        bbox( Expression geometry, double minx, double miny, double maxx, double maxy, String srs);
+    
+    /**
+     * Checks if the bounding box of the feature's geometry overlaps the indicated bounds.
+     * <p>
+     * This method does not strictly confirm to the the Filter 1.0 specification, you may
+     * use it to check expressions other than PropertyName.
+     * </p>
+     * @param geometry Expression used to access a Geometry, in order to check for interaction with bounds
+     * @param bounds Indicates the bounds to check geometry against 
+     */
+    BBOX        bbox( Expression geometry, BoundingBox bounds);
     
 
     /** Check if all of a geometry is more distant than the given distance from this object's geometry. */

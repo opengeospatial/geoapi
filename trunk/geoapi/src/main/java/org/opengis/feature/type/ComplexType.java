@@ -132,7 +132,7 @@ public interface ComplexType extends AttributeType {
 	 * method.
 	 * </p>
 	 * <p>
-	 * You may access "views" of this information:
+	 * You may access "views" of this information using the attributes() and associations() methods.
 	 * </p>
 	 * @return Collection of StructuralDescriptors describing allowable contents
 	 */

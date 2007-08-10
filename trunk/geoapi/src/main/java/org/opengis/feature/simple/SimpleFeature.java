@@ -10,7 +10,7 @@ import org.opengis.feature.Property;
 import org.opengis.feature.type.AttributeType;
 
 /**
- * Feature interface customized for Simple content.
+ * Feature interface customised for Simple content.
  * <p>
  * This class has a different target audience then that
  * of the rest of the Feature Model - the target user
@@ -19,18 +19,18 @@ import org.opengis.feature.type.AttributeType;
  * the better.
  * </p>
  * <p>
- * Note this is extention of Feature, and thus it is complete
+ * Note this is extension of Feature, and thus it is complete
  * with respect to the needs of XPath and GML generation. This
  * represents a restriction as indicated by SimpleFeatureType,
- * and this restriction has allowed us to unambigously create
- * convience methods based in name and index.
+ * and this restriction has allowed us to unambiguously create
+ * helpful methods based in name and index.
  * </p>
  * <p>
  * We considered providing a helper method based on GenericName to
  * this class or directly to Feature. There is no significant
  * advantage over direct use of AttribtueType.
  * </p>
- * @author Jody Garnett, Refractions Research
+ * @author Jody Garnett (Refractions Research)
  */
 public interface SimpleFeature extends Feature {
 	
@@ -38,9 +38,14 @@ public interface SimpleFeature extends Feature {
 	 * Associations are not supported by SimpleFeature.
 	 * @return Collection.EMPTY_LIST
 	 */
-	public List<Association> associations();
+	List<Association> associations();
 	
-	public List<Attribute> attributes();
+	/**
+	 * List of attributes in prescribed order.
+	 * @return List of Attribute in order indicated by SimpleFeatureType
+	 */
+	List<Attribute> attributes();
+	
 	/**
 	 * List of attributes is in the same order as that defined
 	 * by SimpleFeatureType.
@@ -65,7 +70,7 @@ public interface SimpleFeature extends Feature {
      * </p>
      * @return List of attribtues in the order defined by SimpleFeatureType
      */
-    public List<Property> getValue();
+    List<Property> getValue();
     
     /**
      * Update the feature with these attributes.
@@ -74,7 +79,7 @@ public interface SimpleFeature extends Feature {
      * feature contents directly.
      * </p>
      */
-    public void setValue(List<Property> values);
+    void setValue(List<Property> values);
     
     /**
 	 * Value view of attributes, in a manner similar Map.values().
@@ -96,7 +101,7 @@ public interface SimpleFeature extends Feature {
 	SimpleFeatureType getType();
 
 	/**
-	 * Retrive value by attribute name.
+	 * Retrieve value by attribute name.
 	 * @param name
 	 * @return Attribute Value associated with name
 	 */
@@ -128,7 +133,7 @@ public interface SimpleFeature extends Feature {
 	/**
 	 * Sets the values of the feautre.
 	 */
-	void setValues( List values );
+	void setValues( List<Attribute> values );
 	
 	/**
 	 * Sets the values of the feautre.

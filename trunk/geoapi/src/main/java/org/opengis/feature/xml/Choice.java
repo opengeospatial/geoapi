@@ -1,6 +1,5 @@
 package org.opengis.feature.xml;
 
-import java.util.Collection;
 import java.util.Set;
 
 import org.opengis.feature.Association;
@@ -10,6 +9,7 @@ import org.opengis.feature.Property;
 
 // Java 1.4 imports
 //import org.opengis.feature.type.AttributeType;
+//import java.util.Collection;
 
 /**
  * Represents a ComplexAttribute in which only one attribute is alloewd a value at a time.
@@ -31,11 +31,11 @@ public interface Choice extends ComplexAttribute {
     Set<Property> getValue();
     
     /** Limited to a Set of size one */
-    public void setValue(Set<Property> values);
+    void setValue(Set<Property> values);
     
     /** Limited to a Set of size one */
-    public Set<Attribute> attributes();
+    Set<Attribute> attributes();
 
     /** Limited to a Set of size one */
-    public Set<Association> associations();
+    Set<Association> associations();
 }
