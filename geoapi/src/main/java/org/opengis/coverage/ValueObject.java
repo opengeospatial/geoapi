@@ -26,6 +26,7 @@ import static org.opengis.annotation.Specification.*;
  * {@link Coverage#evaluate(DirectPosition,Collection) evaluate} operation, and need not
  * be persistent.
  *
+ * @author ISO/DIS 19123
  * @author Martin Desruisseaux
  *
  * @todo Consider renaming as Value.

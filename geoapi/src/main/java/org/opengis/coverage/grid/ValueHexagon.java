@@ -24,6 +24,7 @@ import static org.opengis.annotation.Specification.*;
  * coverage}. A {@code ValueHexagon} is a collection of {@linkplain GridPointValuePair grid-point
  * value pairs} with a geometric structure.
  *
+ * @author ISO/DIS 19123
  * @author Alessio Fabiani
  * @author Martin Desruisseaux
  */

@@ -23,6 +23,7 @@ import static org.opengis.annotation.Specification.*;
  * with a sequencing rule that specifies an algorithm for assigning records of feature attribute
  * values to grid points.
  * 
+ * @author ISO/DIS 19123
  * @author Wim Koolhoven
  * @author Martin Schouwenburg
  * @author Alexander Petkov

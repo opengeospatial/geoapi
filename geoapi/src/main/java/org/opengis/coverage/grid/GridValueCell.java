@@ -24,6 +24,7 @@ import static org.opengis.annotation.Specification.*;
  * of {@linkplain GridPointValuePair grid point value pairs} with a geometric structure
  * defined by a {@linkplain GridCell grid cell}.
  * 
+ * @author ISO/DIS 19123
  * @author Wim Koolhoven
  * @author Martin Schouwenburg
  */

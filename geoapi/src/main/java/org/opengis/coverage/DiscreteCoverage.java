@@ -26,6 +26,7 @@ import static org.opengis.annotation.Specification.*;
  * the type of geometric object in the spatial domain. Each subclass of {@code DiscreteCoverage} is
  * associated with a specific subclass of {@link GeometryValuePair}.
  *
+ * @author ISO/DIS 19123
  * @author Martin Desruisseaux
  * @author Wim Koolhoven
  */

@@ -39,6 +39,7 @@ import static org.opengis.annotation.Specification.*;
  * composed of a set of {@link ValueCurve}s, each of which maps feature attribute values to
  * position on a {@linkplain Curve curve}.
  *
+ * @author ISO/DIS 19123
  * @author Alessio Fabiani
  * @author Martin Desruisseaux
  */

@@ -24,6 +24,7 @@ import static org.opengis.annotation.Specification.*;
  * coordinate system. The transformation between grid and external coordinate system can be some
  * analytical or non-analytical form.
  * 
+ * @author ISO/DIS 19123
  * @author Wim Koolhoven
  * @author Martin Schouwenburg
  * @author Martin Desruisseaux

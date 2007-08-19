@@ -20,7 +20,7 @@ import static org.opengis.annotation.Specification.*;
  * Geographic position of the dataset. This is only an approximate
  * so specifying the co-ordinate reference system is unnecessary.
  *
- * @version <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
+ * @author <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
  * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 1.0
  */

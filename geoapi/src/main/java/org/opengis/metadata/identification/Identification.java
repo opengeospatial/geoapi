@@ -28,7 +28,7 @@ import static org.opengis.annotation.ComplianceLevel.*;
 /**
  * Basic information required to uniquely identify a resource or resources.
  *
- * @version <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
+ * @author <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
  * @author Martin Desruisseaux (IRD)
  * @author Cory Horner (Refractions Research)
  * @since GeoAPI 2.0

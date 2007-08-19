@@ -37,6 +37,7 @@ import static org.opengis.annotation.Specification.*;
  * may be, at the same time, an instance of either the subclass {@link RectifiedGrid} or of the subclass
  * {@link ReferenceableGrid}.
  * 
+ * @author ISO/DIS 19123
  * @author Martin Schouwenburg
  * @author Wim Koolhoven
  * @author Martin Desruisseaux

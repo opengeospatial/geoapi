@@ -26,6 +26,7 @@ import static org.opengis.annotation.Specification.*;
  * Thus the number of elements in the direction of the first axis is
  * {@code getHigh().getCoordinateValue(0) - getLow().getCoordinateValue(0) + 1}  
  *  
+ * @author ISO/DIS 19123
  * @author Wim Koolhoven
  * @author Martin Schouwenburg
  */

@@ -23,7 +23,7 @@ import static org.opengis.annotation.Specification.*;
 /**
  * Brief description of ways in which the resource(s) is/are currently used.
  *
- * @version <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
+ * @author <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
  * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 2.0
  */

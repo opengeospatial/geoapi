@@ -21,6 +21,7 @@ import static org.opengis.annotation.Specification.*;
  * A {@linkplain GeometryValuePair geometry-value pair} that has a {@linkplain Point point}
  * as the value of its geometry attribute.
  *
+ * @author ISO/DIS 19123
  * @author Wim Koolhoven
  */
 @UML(identifier="CV_PointValuePair", specification=ISO_19123)

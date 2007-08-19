@@ -23,6 +23,7 @@ import static org.opengis.annotation.Specification.*;
  * Holds the set of grid coordinates that specifies the location of the
  * {@linkplain GridPoint grid point} within the {@linkplain Grid grid}.
  * 
+ * @author ISO/DIS 19123
  * @author Martin Schouwenburg
  * @author Wim Koolhoven
  * @author Martin Desruisseaux

@@ -20,6 +20,7 @@ import static org.opengis.annotation.Specification.*;
 /**
  * Represents an element from the range of the {@linkplain Coverage coverage}.
  *
+ * @author ISO/DIS 19123
  * @author Martin Desruisseaux
  *
  * @see Coverage#getRangeElements

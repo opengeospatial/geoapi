@@ -29,6 +29,7 @@ import static org.opengis.annotation.Specification.*;
  * persistent. {@code GeometryValuePair} is subclassed to restrict the pairing of a feature
  * attribute value record to a specific subtype of domain object.
  *
+ * @author ISO/DIS 19123
  * @author Stephane Fellah
  * @author Martin Desruisseaux
  *

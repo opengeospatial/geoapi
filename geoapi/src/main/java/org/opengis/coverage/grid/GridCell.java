@@ -22,6 +22,7 @@ import static org.opengis.annotation.Specification.*;
  * are associated with the {@linkplain GridPoint grid points} at the intersections of
  * the grid lines that bound it
  * 
+ * @author ISO/DIS 19123
  * @author Martin Schouwenburg
  * @author Wim Koolhoven
  * @author Martin Desruisseaux

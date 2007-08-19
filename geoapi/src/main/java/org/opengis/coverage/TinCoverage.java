@@ -35,6 +35,7 @@ import static org.opengis.annotation.Specification.*;
  * coverage other than those at the vertices of the triangle. {@link Tin} describes a Delaunay
  * triangulation.
  *
+ * @author ISO/DIS 19123
  * @author Alessio Fabiani
  * @author Martin Desruisseaux
  *

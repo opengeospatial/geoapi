@@ -22,6 +22,7 @@ import static org.opengis.annotation.Specification.*;
  * A {@linkplain GeometryValuePair geometry value pair} that has a {@linkplain GridPoint grid point}
  * as the value of its geometry attribute.
  * 
+ * @author ISO/DIS 19123
  * @author Wim Koolhoven
  * @author Martin Desruisseaux
  */

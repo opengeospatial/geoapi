@@ -23,6 +23,7 @@ import static org.opengis.annotation.Specification.*;
 /**
  * Point located at the intersection of two or more curves in a {@linkplain Grid grid}.
  * 
+ * @author ISO/DIS 19123
  * @author Martin Schouwenburg
  * @author Wim Koolhoven
  * @author Martin Desruisseaux

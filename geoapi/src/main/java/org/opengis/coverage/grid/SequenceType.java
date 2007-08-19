@@ -45,6 +45,7 @@ import static org.opengis.annotation.Specification.*;
  * edge and two corners. In the three dimensional case, a cell is maximally connected to those
  * cells with which it shares a face.
  * 
+ * @author ISO/DIS 19123
  * @author Wim Koolhoven
  * @author Martin Schouwenburg
  * @author Martin Desruisseaux
@@ -52,11 +53,11 @@ import static org.opengis.annotation.Specification.*;
 @UML(identifier="CV_SequenceType", specification=ISO_19123)
 public class SequenceType extends CodeList<SequenceType> {
     /**
-	 * Serial number for compatibility with different versions.
-	 */
-	private static final long serialVersionUID = -6231205465579495566L;
+     * Serial number for compatibility with different versions.
+     */
+    private static final long serialVersionUID = -6231205465579495566L;
 
-	/**
+    /**
      * List of all enumerations of this type.
      * Must be declared before any enum declaration.
      */

@@ -62,6 +62,7 @@ import static org.opengis.annotation.Specification.*;
  * encouraged to implement the {@link javax.media.jai.PropertySource} or
  * {@link javax.media.jai.WritablePropertySource} interface.
  *
+ * @author ISO/DIS 19123
  * @author Stephane Fellah
  * @author Martin Desruisseaux
  * @author Wim Koolhoven
@@ -69,7 +70,7 @@ import static org.opengis.annotation.Specification.*;
  */
 @UML(identifier="CV_Coverage", specification=ISO_19123)
 public interface Coverage {
-	/**
+    /**
      * Returns the coordinate reference system to which the objects in its domain are referenced.
      * This is the CRS used when accessing a coverage or grid coverage with the {@code evaluate(...)}
      * methods. This coordinate reference system is usually different than coordinate system of the

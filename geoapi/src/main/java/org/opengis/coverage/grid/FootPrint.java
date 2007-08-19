@@ -22,6 +22,7 @@ import static org.opengis.annotation.Specification.*;
  * The presentation of an observed or measured space surrounding a sample point in the context
  * of some external {@linkplain CoordinateReferenceSystem coordinate reference system}.
  * 
+ * @author ISO/DIS 19123
  * @author Martin Schouwenburg
  * @author Wim Koolhoven
  */
