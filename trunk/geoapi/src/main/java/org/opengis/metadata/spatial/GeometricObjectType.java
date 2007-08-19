@@ -23,7 +23,7 @@ import static org.opengis.annotation.Specification.*;
  * Name of point and vector spatial objects used to locate zero-, one-, and twodimensional
  * spatial locations in the dataset.
  *
- * @version <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
+ * @author <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
  * @author Martin Desruisseaux (IRD)
  * @author Cory Horner (Refractions Research)
  * @since GeoAPI 2.0

@@ -22,7 +22,7 @@ import static org.opengis.annotation.Specification.ISO_19115;
 /**
  * Type of aggregation activity in which datasets are related
  * 
- * @version <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
+ * @author <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
  * @author Ely Conn (Leica Geosystems Geospatial Imaging, LLC)
  * @since GeoAPI 2.1
  */

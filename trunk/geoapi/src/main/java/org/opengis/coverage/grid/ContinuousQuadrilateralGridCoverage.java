@@ -31,6 +31,7 @@ import static org.opengis.annotation.Specification.*;
  * is to extend the coverage to direct positions within the interior of each grid cell by
  * interpolation from the grid points at the corners of the cell.
  * 
+ * @author ISO/DIS 19123
  * @author Wim Koolhoven
  * @author Martin Desruisseaux
  */

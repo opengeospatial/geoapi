@@ -24,6 +24,7 @@ import static org.opengis.annotation.Specification.*;
  * of objects that may include any combination of {@linkplain Geometry geometry}, or spatial or
  * temporal objects such as {@linkplain org.opengis.coverage.grid.GridPoint grid point}.
  * 
+ * @author ISO/DIS 19123
  * @author Stephane Fellah
  * @author Martin Desruisseaux
  *

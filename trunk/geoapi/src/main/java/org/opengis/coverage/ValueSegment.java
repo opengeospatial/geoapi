@@ -22,6 +22,7 @@ import static org.opengis.annotation.Specification.*;
  * Limits of a value segment specified by two values of the arc-length parameter of the
  * {@linkplain Curve curve} underlying its parent {@linkplain ValueCurve value curve}.
  *
+ * @author ISO/DIS 19123
  * @author Alessio Fabiani
  * @author Martin Desruisseaux
  */

@@ -26,6 +26,7 @@ import static org.opengis.annotation.Specification.*;
  * the determination of feature attribute values at any position on that curve. Value curves depend
  * upon the arc-length parameterization operations defined for {@link Curve}.
  *
+ * @author ISO/DIS 19123
  * @author Alessio Fabiani
  * @author Martin Desruisseaux
  */

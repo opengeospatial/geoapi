@@ -24,7 +24,7 @@ import static org.opengis.annotation.Specification.*;
  * Identification of, and means of communication with, person(s) and
  * organizations associated with the dataset.
  *
- * @version <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
+ * @author <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
  * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 1.0
  */

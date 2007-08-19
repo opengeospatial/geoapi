@@ -22,7 +22,7 @@ import static org.opengis.annotation.Specification.*;
  * Common ways in which the resource may be obtained or received, and related instructions
  * and fee information.
  *
- * @version <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
+ * @author <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
  * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 2.0
  */

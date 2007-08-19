@@ -19,7 +19,7 @@ import static org.opengis.annotation.Specification.*;
 /**
  * Validity of data specified by the scope with respect to time.
  *
- * @version <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
+ * @author <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
  * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 2.0
  */

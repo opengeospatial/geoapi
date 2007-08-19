@@ -42,6 +42,7 @@ import static org.opengis.annotation.Specification.*;
  * will be a set of congruent hexagons. The hexagons will be irregular unless the offset vectors
  * differ in direction by exactly 60°.
  *
+ * @author ISO/DIS 19123
  * @author Alessio Fabiani
  * @author Martin Desruisseaux
  *

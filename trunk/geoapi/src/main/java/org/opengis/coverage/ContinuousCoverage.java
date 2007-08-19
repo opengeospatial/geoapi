@@ -29,6 +29,7 @@ import static org.opengis.annotation.Specification.*;
  * of its spatial and/or temporal extent, it can be subdivided into an infinite number of direct
  * positions.
  *
+ * @author ISO/DIS 19123
  * @author Martin Desruisseaux
  * @author Wim Koolhoven
  */

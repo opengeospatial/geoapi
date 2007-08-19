@@ -40,6 +40,7 @@ import static org.opengis.annotation.Specification.*;
  * polygon network provides a structure that supports interpolation of feature attribute values from
  * the polygon centres to direct positions within the polygons.
  *
+ * @author ISO/DIS 19123
  * @author Alessio Fabiani
  * @author Martin Desruisseaux
  * 

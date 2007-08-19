@@ -43,6 +43,7 @@ import static org.opengis.annotation.Specification.*;
  *       system, even if an offset vector is aligned with an axis of the external coordinate system.</li>
  * </ul>
  * 
+ * @author ISO/DIS 19123
  * @author Wim Koolhoven
  * @author Martin Schouwenburg
  * @author Martin Desruisseaux

@@ -24,7 +24,7 @@ import static org.opengis.annotation.Obligation.CONDITIONAL;
 /**
  * Name of the character coding standard used for the resource.
  * 
- * @version <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
+ * @author <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
  * @author Ely Conn (Leica Geosystems Geospatial Imaging, LLC)
  * @since GeoAPI 2.1
  */

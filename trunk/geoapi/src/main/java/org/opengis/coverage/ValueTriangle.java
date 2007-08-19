@@ -27,6 +27,7 @@ import static org.opengis.annotation.Specification.*;
  * point-value pairs} where the points are non-collinear. Value triangles are used for interpolation
  * of a coverage.
  *
+ * @author ISO/DIS 19123
  * @author Alessio Fabiani
  * @author Martin Desruisseaux
  */

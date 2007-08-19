@@ -32,6 +32,7 @@ import static org.opengis.annotation.Specification.*;
  * for each {@link ValueObject} that contains the direct position. The rule shall then be applied to the set
  * of interpolated values for each attribute.
  *
+ * @author ISO/DIS 19123
  * @author Martin Desruisseaux
  * @author Stephane Fellah
  *
