@@ -24,7 +24,7 @@ public interface BoundingBoxAttribute extends Attribute
        * Java 1.4 type safe access to getValue
        * @return (BoundingBox) getValue()
        */
-      public boolean getBoundingBox();
+      public BoundingBox getBoundingBox();
       
       /**
        * Java 1.4 type safe access to setValue
