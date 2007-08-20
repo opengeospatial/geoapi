@@ -32,7 +32,7 @@ public interface BooleanAttribute extends Attribute {
        * Java 1.4 type safe access to getValue
        * @return (Boolean) getValue()
        */
-      boolean getBoolean();
+      Boolean getBoolean();
       
       /**
        * Java 1.4 type safe access to setValue

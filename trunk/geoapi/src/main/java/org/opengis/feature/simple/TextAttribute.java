@@ -25,5 +25,5 @@ public interface TextAttribute extends Attribute {
      * Java 1.4 type safe access to setValue
      * @param newValue
      */
-    public boolean setText(CharSequence newValue); 
+    public void setText(CharSequence newValue); 
 }
