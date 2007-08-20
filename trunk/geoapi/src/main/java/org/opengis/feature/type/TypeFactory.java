@@ -116,36 +116,36 @@ public interface TypeFactory {
     OperationDescriptor createOperationDescriptor( OperationType type, boolean isImplemented );
 
     AssociationType createAssociationType(
-            TypeName name, AttributeType referenceType,boolean isIdentifiable,
+            Name name, AttributeType referenceType,boolean isIdentifiable,
             boolean isAbstract, Set<Filter> restrictions, AssociationType superType,
             InternationalString description
     );
 
     AttributeType createAttributeType(
-            TypeName name, Class<?> binding, boolean isIdentifiable, boolean isAbstract, 
+            Name name, Class<?> binding, boolean isIdentifiable, boolean isAbstract, 
             Set<Filter> restrictions, AttributeType superType, InternationalString description
     );
 
     ComplexType createComplexType(
-            TypeName name, Collection<StructuralDescriptor> schema, boolean isIdentifiable, 
+            Name name, Collection<StructuralDescriptor> schema, boolean isIdentifiable, 
             boolean isAbstract, Set<Filter> restrictions, AttributeType superType,
             InternationalString description
     );
     GeometryType createGeometryType(
-            TypeName name, Class<?> binding, CoordinateReferenceSystem crs, boolean isIdentifiable, 
+            Name name, Class<?> binding, CoordinateReferenceSystem crs, boolean isIdentifiable, 
             boolean isAbstract, Set<Filter> restrictions, AttributeType superType,
             InternationalString description
     );
 
     FeatureType createFeatureType(
-            TypeName name, Collection<StructuralDescriptor> schema,
+            Name name, Collection<StructuralDescriptor> schema,
             AttributeDescriptor defaultGeometry, CoordinateReferenceSystem crs,
             boolean isAbstract, Set<Filter> restrictions, AttributeType superType,
             InternationalString description
     );
 
     FeatureCollectionType createFeatureCollectionType(
-            TypeName name,  Collection<StructuralDescriptor> schema, Collection<AssociationDescriptor> members,
+            Name name,  Collection<StructuralDescriptor> schema, Collection<AssociationDescriptor> members,
             AttributeDescriptor defaultGeom, CoordinateReferenceSystem crs, 
             boolean isAbstract, Set<Filter> restrictions, AttributeType superType,
             InternationalString description

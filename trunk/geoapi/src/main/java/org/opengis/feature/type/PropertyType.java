@@ -40,7 +40,7 @@ public interface PropertyType {
 	 * 
 	 * @return Name containing both the namespace and name for this type
 	 */
-	TypeName getName();
+	Name getName();
 
 	/**
 	 * Access to super type information.
