@@ -12,6 +12,7 @@ package org.opengis.geometry;
 
 import java.util.List;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
+import org.opengis.geometry.coordinate.PointArray;
 import org.opengis.geometry.coordinate.Position;
 
 
@@ -56,34 +57,6 @@ public interface PositionFactory {
             throws MismatchedDimensionException;
 
     /**
-     * Creates a (possibiliy optimized) list for positions. The list is initially
-     * empty. New direct positions can be stored using the {@link List#add} method.
-     *
-     * @todo How is the list related to {@link org.opengis.geometry.geometry.PointArray}?
-     */
-    List<Position> createPositionList();
-
-    /**
-     * Creates a list for positions initialized from the specified values.
-     * 
-     * @param coordinates The coordinates to assign to the list of positions.
-     * @param start       The first valid value in the {@code coordinates} array.
-     * @param length      The number of valid values in the {@code coordinates} array.
-     * @return            The list of positions.
-     */
-    List<Position> createPositionList(double[] coordinates, int start, int length);
-
-    /**
-     * Creates a list for positions initialized from the specified values.
-     * 
-     * @param coordinates The coordinates to assign to the list of positions.
-     * @param start       The first valid value in the {@code coordinates} array.
-     * @param length      The number of valid values in the {@code coordinates} array.
-     * @return            The list of positions.
-     */
-    List<Position> createPositionList(float[] coordinates, int start, int length);
-
-    /**
      * Constructs a position from an other position by copying the coordinate values of the
      * position. There will be no further reference to the position instance.
      * 
@@ -91,4 +64,30 @@ public interface PositionFactory {
      * @return The position which defines the coordinates for the other position.
      */
     Position createPosition(Position position);
+    
+    /**
+     * Creates a (possibiliy optimized) list for positions. The list is initially
+     * empty. New direct positions can be stored using the {@link List#add} method.
+     */
+    PointArray createPointArray();
+
+    /**
+     * Creates a list for positions initialized from the specified values.
+     * 
+     * @param coordinates The coordinates to assign to the list of positions.
+     * @param start       The first valid value in the {@code coordinates} array.
+     * @param length      The number of valid values in the {@code coordinates} array.
+     * @return            The list of positions.
+     */
+    PointArray createPointArray(double[] coordinates, int start, int length);
+
+    /**
+     * Creates a list for positions initialized from the specified values.
+     * 
+     * @param coordinates The coordinates to assign to the list of positions.
+     * @param start       The first valid value in the {@code coordinates} array.
+     * @param length      The number of valid values in the {@code coordinates} array.
+     * @return            The list of positions.
+     */
+    PointArray createPointArray(float[] coordinates, int start, int length);
 }

@@ -14,15 +14,15 @@ import java.util.Map;
  * 
  * @author Jody Garnett, Refractions Research, Inc.
  */
-public interface Schema extends Map<TypeName, AttributeType> {
+public interface Schema extends Map<Name, AttributeType> {
 	/**
 	 * The keySet is actually a Namespace<TypeName> where you can also look up
 	 * TypeNames by their local part.
 	 */
-	Namespace<TypeName> keySet();
+	Namespace keySet();
 
 	/** Dervived quantity from keySet() */
-	Namespace<TypeName> namespace(); // for java 1.4.x
+	Namespace namespace(); // for java 1.4.x
 
 	/**
 	 * Here is a helper method to retrive the "uri" for this schema.
@@ -40,5 +40,5 @@ public interface Schema extends Map<TypeName, AttributeType> {
 	 * @param profile
 	 * @return Subset of this schema
 	 */
-	Schema profile( Namespace<TypeName> profile );
+	Schema profile( Namespace profile );
 }

@@ -10,6 +10,7 @@ import org.opengis.feature.type.AttributeType;
 //import org.opengis.feature.type.FeatureType;
 //import org.opengis.feature.type.FeatureCollectionType;
 import org.opengis.feature.type.GeometryType;
+import org.opengis.feature.type.Name;
 import org.opengis.feature.type.StructuralDescriptor;
 import org.opengis.feature.type.TypeFactory;
 import org.opengis.feature.type.TypeName;
@@ -41,7 +42,7 @@ public interface SimpleTypeFactory {
 	 * @param description description of this feature
 	 * @return created SimpleFeatureType
 	 */
-	SimpleFeatureType createSimpleFeatureType(TypeName name,
+	SimpleFeatureType createSimpleFeatureType(Name name,
 			List<AttributeType> types, AttributeDescriptor defaultGeometry,
 			CoordinateReferenceSystem crs, Set<Filter> restrictions,
 			InternationalString description);
@@ -56,7 +57,7 @@ public interface SimpleTypeFactory {
 	 * @return created SimpleFeatureCollectionType
 	 */
 	SimpleFeatureCollectionType createSimpleFeatureCollectionType(
-			TypeName name, SimpleFeatureType member,
+			Name name, SimpleFeatureType member,
 			InternationalString description);
 	
 }
