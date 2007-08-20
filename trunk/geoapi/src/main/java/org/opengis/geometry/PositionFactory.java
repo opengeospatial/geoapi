@@ -48,7 +48,12 @@ public interface PositionFactory {
 
     /**
      * Creates a direct position at the specified location specified by coordinates.
-     *
+     * <p>
+     * Implementations have the option of taking ownership of the provided
+     * coordinate array. You should not attempt to reuse this array after it
+     * has been provided to this factory method.
+     * 
+     * @param coordinates Array of ordinates used for this DirectPosition
      * @throws MismatchedDimensionException if the coordinates array length doesn't match
      *         the {@linkplain #getCoordinateReferenceSystem coordinate reference system}
      *         dimension.
@@ -72,7 +77,11 @@ public interface PositionFactory {
     PointArray createPointArray();
 
     /**
-     * Creates a list for positions initialized from the specified values.
+     * Creates a list for positions initialised from the specified values.
+     * <p>
+     * Implementations have the option of taking ownership of the provided
+     * coordinate array. You should not attempt to reuse this array after it
+     * has been provided to this factory method.
      * 
      * @param coordinates The coordinates to assign to the list of positions.
      * @param start       The first valid value in the {@code coordinates} array.
@@ -83,6 +92,10 @@ public interface PositionFactory {
 
     /**
      * Creates a list for positions initialized from the specified values.
+     * <p>
+     * Implementations have the option of taking ownership of the provided
+     * coordinate array. You should not attempt to reuse this array after it
+     * has been provided to this factory method.
      * 
      * @param coordinates The coordinates to assign to the list of positions.
      * @param start       The first valid value in the {@code coordinates} array.
