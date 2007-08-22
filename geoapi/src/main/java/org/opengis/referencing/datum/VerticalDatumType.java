@@ -10,6 +10,7 @@
  *************************************************************************************************/
 package org.opengis.referencing.datum;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.ArrayList;
 import org.opengis.util.CodeList;
@@ -127,7 +128,9 @@ public final class VerticalDatumType extends CodeList<VerticalDatumType> {
     	if (code == null) {
     		return null;
     	}
-    	for (VerticalDatumType type : VALUES) {
+    	Iterator iter = VALUES.iterator();
+    	while (iter.hasNext()) {
+    		VerticalDatumType type = (VerticalDatumType) iter.next();
     		if (code.equalsIgnoreCase(type.name())) {
     			return type;
     		}

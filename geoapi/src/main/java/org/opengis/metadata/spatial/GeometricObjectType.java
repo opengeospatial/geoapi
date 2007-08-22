@@ -10,6 +10,7 @@
  *************************************************************************************************/
 package org.opengis.metadata.spatial;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.ArrayList;
 import org.opengis.util.CodeList;
@@ -134,7 +135,9 @@ public final class GeometricObjectType extends CodeList<GeometricObjectType> {
     	if (code == null) {
     		return null;
     	}
-    	for (GeometricObjectType type : VALUES) {
+    	Iterator iter = VALUES.iterator();
+    	while (iter.hasNext()) {
+    		GeometricObjectType type = (GeometricObjectType) iter.next();
     		if (code.equalsIgnoreCase(type.name())) {
     			return type;
     		}

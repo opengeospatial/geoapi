@@ -10,6 +10,7 @@
  *************************************************************************************************/
 package org.opengis.coverage.grid;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.ArrayList;
 import org.opengis.util.CodeList;
@@ -107,7 +108,9 @@ public final class ByteInValuePacking extends CodeList<ByteInValuePacking> {
     	if (code == null) {
     		return null;
     	}
-    	for (ByteInValuePacking type : VALUES) {
+    	Iterator iter = VALUES.iterator();
+    	while (iter.hasNext()) {
+    		ByteInValuePacking type = (ByteInValuePacking) iter.next();
     		if (code.equalsIgnoreCase(type.name())) {
     			return type;
     		}

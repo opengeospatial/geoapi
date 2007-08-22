@@ -10,6 +10,7 @@
  *************************************************************************************************/
 package org.opengis.metadata.content;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.ArrayList;
 import org.opengis.util.CodeList;
@@ -93,7 +94,9 @@ public final class CoverageContentType extends CodeList<CoverageContentType> {
     	if (code == null) {
     		return null;
     	}
-    	for (CoverageContentType type : VALUES) {
+    	Iterator iter = VALUES.iterator();
+    	while (iter.hasNext()) {
+    		CoverageContentType type = (CoverageContentType) iter.next();
     		if (code.equalsIgnoreCase(type.name())) {
     			return type;
     		}

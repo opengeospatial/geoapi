@@ -10,6 +10,7 @@
  *************************************************************************************************/
 package org.opengis.geometry.primitive;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.ArrayList;
 import org.opengis.util.CodeList;
@@ -150,7 +151,9 @@ public final class SurfaceInterpolation extends CodeList<SurfaceInterpolation> {
     	if (code == null) {
     		return null;
     	}
-    	for (SurfaceInterpolation type : VALUES) {
+    	Iterator iter = VALUES.iterator();
+    	while (iter.hasNext()) {
+    		SurfaceInterpolation type = (SurfaceInterpolation) iter.next();
     		if (code.equalsIgnoreCase(type.name())) {
     			return type;
     		}

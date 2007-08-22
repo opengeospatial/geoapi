@@ -11,6 +11,7 @@
 package org.opengis.filter.sort;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import org.opengis.annotation.UML;
 import org.opengis.coverage.grid.quadrilateral.SequenceType;
@@ -112,7 +113,9 @@ public final class SortOrder extends CodeList<SortOrder> {
     	if (code == null) {
     		return null;
     	}
-    	for (SortOrder type : VALUES) {
+    	Iterator iter = VALUES.iterator();
+    	while (iter.hasNext()) {
+    		SortOrder type = (SortOrder) iter.next();
     		if (code.equalsIgnoreCase(type.name())) {
     			return type;
     		}

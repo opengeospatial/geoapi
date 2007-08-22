@@ -44,6 +44,7 @@
 package org.opengis.webservice;
 
 // J2SE direct dependencies
+import java.util.Iterator;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -154,7 +155,9 @@ public final class ExceptionCode extends CodeList<ExceptionCode> {
     	if (code == null) {
     		return null;
     	}
-    	for (ExceptionCode type : VALUES) {
+    	Iterator iter = VALUES.iterator();
+    	while (iter.hasNext()) {
+    		ExceptionCode type = (ExceptionCode) iter.next();
     		if (code.equalsIgnoreCase(type.name())) {
     			return type;
     		}

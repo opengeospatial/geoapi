@@ -10,6 +10,7 @@
  *************************************************************************************************/
 package org.opengis.coverage;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Collection; // For javadoc
@@ -125,7 +126,9 @@ public class CommonPointRule extends CodeList<CommonPointRule> {
     	if (code == null) {
     		return null;
     	}
-    	for (CommonPointRule type : VALUES) {
+    	Iterator iter = VALUES.iterator();
+    	while (iter.hasNext()) {
+    		CommonPointRule type = (CommonPointRule) iter.next();
     		if (code.equalsIgnoreCase(type.name())) {
     			return type;
     		}

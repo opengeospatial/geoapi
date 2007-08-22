@@ -10,6 +10,7 @@
  *************************************************************************************************/
 package org.opengis.metadata.identification;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.ArrayList;
 import org.opengis.util.CodeList;
@@ -104,7 +105,9 @@ public final class KeywordType extends CodeList<KeywordType> {
     	if (code == null) {
     		return null;
     	}
-    	for (KeywordType type : VALUES) {
+    	Iterator iter = VALUES.iterator();
+    	while (iter.hasNext()) {
+    		KeywordType type = (KeywordType) iter.next();
     		if (code.equalsIgnoreCase(type.name())) {
     			return type;
     		}

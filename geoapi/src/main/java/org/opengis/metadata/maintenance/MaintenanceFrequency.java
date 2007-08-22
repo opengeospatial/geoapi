@@ -10,6 +10,7 @@
  *************************************************************************************************/
 package org.opengis.metadata.maintenance;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.ArrayList;
 import org.opengis.util.CodeList;
@@ -147,7 +148,9 @@ public final class MaintenanceFrequency extends CodeList<MaintenanceFrequency> {
     	if (code == null) {
     		return null;
     	}
-    	for (MaintenanceFrequency type : VALUES) {
+    	Iterator iter = VALUES.iterator();
+    	while (iter.hasNext()) {
+    		MaintenanceFrequency type = (MaintenanceFrequency) iter.next();
     		if (code.equalsIgnoreCase(type.name())) {
     			return type;
     		}

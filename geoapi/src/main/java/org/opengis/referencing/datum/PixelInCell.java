@@ -10,6 +10,7 @@
  *************************************************************************************************/
 package org.opengis.referencing.datum;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.ArrayList;
 import org.opengis.util.CodeList;
@@ -88,7 +89,9 @@ public final class PixelInCell extends CodeList<PixelInCell> {
     	if (code == null) {
     		return null;
     	}
-    	for (PixelInCell type : VALUES) {
+    	Iterator iter = VALUES.iterator();
+    	while (iter.hasNext()) {
+    		PixelInCell type = (PixelInCell) iter.next();
     		if (code.equalsIgnoreCase(type.name())) {
     			return type;
     		}

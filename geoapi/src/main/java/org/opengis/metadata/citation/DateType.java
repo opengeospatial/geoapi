@@ -10,6 +10,7 @@
  *************************************************************************************************/
 package org.opengis.metadata.citation;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -93,7 +94,9 @@ public final class DateType extends CodeList<DateType> {
     	if (code == null) {
     		return null;
     	}
-    	for (DateType type : VALUES) {
+    	Iterator iter = VALUES.iterator();
+    	while (iter.hasNext()) {
+    		DateType type = (DateType) iter.next();
     		if (code.equalsIgnoreCase(type.name())) {
     			return type;
     		}

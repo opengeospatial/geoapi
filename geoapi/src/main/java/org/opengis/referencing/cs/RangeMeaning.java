@@ -10,6 +10,7 @@
  *************************************************************************************************/
 package org.opengis.referencing.cs;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -97,7 +98,9 @@ public final class RangeMeaning extends CodeList<RangeMeaning> {
     	if (code == null) {
     		return null;
     	}
-    	for (RangeMeaning type : VALUES) {
+    	Iterator iter = VALUES.iterator();
+    	while (iter.hasNext()) {
+    		RangeMeaning type = (RangeMeaning) iter.next();
     		if (code.equalsIgnoreCase(type.name())) {
     			return type;
     		}

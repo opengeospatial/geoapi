@@ -10,6 +10,7 @@
  *************************************************************************************************/
 package org.opengis.coverage;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.ArrayList;
 import java.awt.image.DataBuffer; // For Javadoc
@@ -212,7 +213,9 @@ public final class SampleDimensionType extends CodeList<SampleDimensionType> {
     	if (code == null) {
     		return null;
     	}
-    	for (SampleDimensionType type : VALUES) {
+    	Iterator iter = VALUES.iterator();
+    	while (iter.hasNext()) {
+    		SampleDimensionType type = (SampleDimensionType) iter.next();
     		if (code.equalsIgnoreCase(type.name())) {
     			return type;
     		}

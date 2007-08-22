@@ -10,6 +10,7 @@
  *************************************************************************************************/
 package org.opengis.geometry.primitive;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.ArrayList;
 import org.opengis.util.CodeList;
@@ -170,7 +171,9 @@ public final class CurveInterpolation extends CodeList<CurveInterpolation> {
     	if (code == null) {
     		return null;
     	}
-    	for (CurveInterpolation type : VALUES) {
+    	Iterator iter = VALUES.iterator();
+    	while (iter.hasNext()) {
+    		CurveInterpolation type = (CurveInterpolation) iter.next();
     		if (code.equalsIgnoreCase(type.name())) {
     			return type;
     		}

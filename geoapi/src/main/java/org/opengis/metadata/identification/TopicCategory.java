@@ -10,6 +10,7 @@
  *************************************************************************************************/
 package org.opengis.metadata.identification;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.ArrayList;
 import org.opengis.util.CodeList;
@@ -257,7 +258,9 @@ public final class TopicCategory extends CodeList<TopicCategory> {
     	if (code == null) {
     		return null;
     	}
-    	for (TopicCategory type : VALUES) {
+    	Iterator iter = VALUES.iterator();
+    	while (iter.hasNext()) {
+    		TopicCategory type = (TopicCategory) iter.next();
     		if (code.equalsIgnoreCase(type.name())) {
     			return type;
     		}

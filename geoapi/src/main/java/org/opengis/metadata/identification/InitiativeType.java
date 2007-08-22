@@ -11,6 +11,7 @@
 package org.opengis.metadata.identification;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import org.opengis.temporal.IndeterminateValue;
@@ -165,7 +166,9 @@ public final class InitiativeType extends CodeList<InitiativeType>{
     	if (code == null) {
     		return null;
     	}
-    	for (InitiativeType type : VALUES) {
+    	Iterator iter = VALUES.iterator();
+    	while (iter.hasNext()) {
+    		InitiativeType type = (InitiativeType) iter.next();
     		if (code.equalsIgnoreCase(type.name())) {
     			return type;
     		}

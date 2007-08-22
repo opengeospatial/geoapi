@@ -10,6 +10,7 @@
  *************************************************************************************************/
 package org.opengis.referencing.cs;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -420,7 +421,9 @@ public final class AxisDirection extends CodeList<AxisDirection> {
     	if (code == null) {
     		return null;
     	}
-    	for (AxisDirection type : VALUES) {
+    	Iterator iter = VALUES.iterator();
+    	while (iter.hasNext()) {
+    		AxisDirection type = (AxisDirection) iter.next();
     		if (code.equalsIgnoreCase(type.name())) {
     			return type;
     		}

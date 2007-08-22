@@ -10,6 +10,7 @@
  *************************************************************************************************/
 package org.opengis.geometry;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -104,7 +105,9 @@ public final class PrecisionType extends CodeList<PrecisionType> {
     	if (code == null) {
     		return null;
     	}
-    	for (PrecisionType type : VALUES) {
+    	Iterator iter = VALUES.iterator();
+    	while (iter.hasNext()) {
+    		PrecisionType type = (PrecisionType) iter.next();
     		if (code.equalsIgnoreCase(type.name())) {
     			return type;
     		}

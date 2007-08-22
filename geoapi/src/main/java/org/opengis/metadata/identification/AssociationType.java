@@ -11,6 +11,7 @@
 package org.opengis.metadata.identification;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import org.opengis.metadata.maintenance.ScopeCode;
@@ -105,7 +106,9 @@ public final class AssociationType extends CodeList<AssociationType> {
     	if (code == null) {
     		return null;
     	}
-    	for (AssociationType type : VALUES) {
+    	Iterator iter = VALUES.iterator();
+    	while (iter.hasNext()) {
+    		AssociationType type = (AssociationType) iter.next();
     		if (code.equalsIgnoreCase(type.name())) {
     			return type;
     		}

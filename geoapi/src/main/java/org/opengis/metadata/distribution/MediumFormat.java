@@ -10,6 +10,7 @@
  *************************************************************************************************/
 package org.opengis.metadata.distribution;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -111,7 +112,9 @@ public final class MediumFormat extends CodeList<MediumFormat> {
     	if (code == null) {
     		return null;
     	}
-    	for (MediumFormat type : VALUES) {
+    	Iterator iter = VALUES.iterator();
+    	while (iter.hasNext()) {
+    		MediumFormat type = (MediumFormat) iter.next();
     		if (code.equalsIgnoreCase(type.name())) {
     			return type;
     		}

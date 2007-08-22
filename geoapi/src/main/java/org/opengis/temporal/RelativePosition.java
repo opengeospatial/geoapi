@@ -10,6 +10,7 @@
  *************************************************************************************************/
 package org.opengis.temporal;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -92,7 +93,9 @@ public final class RelativePosition extends CodeList<RelativePosition> {
     	if (code == null) {
     		return null;
     	}
-    	for (RelativePosition type : VALUES) {
+    	Iterator iter = VALUES.iterator();
+    	while (iter.hasNext()) {
+    		RelativePosition type = (RelativePosition) iter.next();
     		if (code.equalsIgnoreCase(type.name())) {
     			return type;
     		}

@@ -10,6 +10,7 @@
  *************************************************************************************************/
 package org.opengis.coverage.grid.quadrilateral;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.ArrayList;
 import org.opengis.util.CodeList;
@@ -189,7 +190,9 @@ public class SequenceType extends CodeList<SequenceType> {
     	if (code == null) {
     		return null;
     	}
-    	for (SequenceType type : VALUES) {
+    	Iterator iter = VALUES.iterator();
+    	while (iter.hasNext()) {
+    		SequenceType type = (SequenceType) iter.next();
     		if (code.equalsIgnoreCase(type.name())) {
     			return type;
     		}
