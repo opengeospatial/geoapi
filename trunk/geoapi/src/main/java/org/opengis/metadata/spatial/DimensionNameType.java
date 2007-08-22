@@ -12,6 +12,8 @@ package org.opengis.metadata.spatial;
 
 import java.util.List;
 import java.util.ArrayList;
+
+import org.opengis.metadata.citation.DateType;
 import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
 
@@ -93,7 +95,7 @@ public final class DimensionNameType extends CodeList<DimensionNameType> {
      *
      * @param name The enum name. This name must not be in use by an other enum of this type.
      */
-    public DimensionNameType(final String name) {
+    private DimensionNameType(final String name) {
         super(name, VALUES);
     }
 
@@ -112,4 +114,20 @@ public final class DimensionNameType extends CodeList<DimensionNameType> {
     public /*{DimensionNameType}*/ CodeList[] family() {
         return values();
     }
+    
+    /**
+     * Returns the DimensionNameType that matches the given string, or returns a 
+     * new one if none match it.
+     */    
+    public static synchronized DimensionNameType valueOf(String code) {
+    	if (code == null) {
+    		return null;
+    	}
+    	for (DimensionNameType type : VALUES) {
+    		if (code.equalsIgnoreCase(type.name())) {
+    			return type;
+    		}
+    	}
+    	return new DimensionNameType(code);
+	}
 }

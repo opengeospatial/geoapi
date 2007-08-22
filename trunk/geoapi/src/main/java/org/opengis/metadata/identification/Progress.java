@@ -12,6 +12,8 @@ package org.opengis.metadata.identification;
 
 import java.util.List;
 import java.util.ArrayList;
+
+import org.opengis.metadata.citation.PresentationForm;
 import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
 
@@ -87,7 +89,7 @@ public final class Progress extends CodeList<Progress> {
      *
      * @param name The enum name. This name must not be in use by an other enum of this type.
      */
-    public Progress(final String name) {
+    private Progress(final String name) {
         super(name, VALUES);
     }
 
@@ -106,4 +108,20 @@ public final class Progress extends CodeList<Progress> {
     public /*{Progress}*/ CodeList[] family() {
         return values();
     }
+    
+    /**
+     * Returns the Progress that matches the given string, or returns a 
+     * new one if none match it.
+     */    
+    public static synchronized Progress valueOf(String code) {
+    	if (code == null) {
+    		return null;
+    	}
+    	for (Progress type : VALUES) {
+    		if (code.equalsIgnoreCase(type.name())) {
+    			return type;
+    		}
+    	}
+    	return new Progress(code);
+	}
 }

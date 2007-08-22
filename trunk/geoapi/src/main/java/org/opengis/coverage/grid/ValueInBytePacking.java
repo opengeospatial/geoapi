@@ -12,6 +12,8 @@ package org.opengis.coverage.grid;
 
 import java.util.List;
 import java.util.ArrayList;
+
+import org.opengis.metadata.spatial.TopologyLevel;
 import org.opengis.util.CodeList;
 import org.opengis.coverage.SampleDimensionType; // For Javadoc
 import org.opengis.annotation.UML;
@@ -78,7 +80,7 @@ public final class ValueInBytePacking extends CodeList<ValueInBytePacking> {
      *
      * @param name The enum name. This name must not be in use by an other enum of this type.
      */
-    public ValueInBytePacking(final String name) {
+    private ValueInBytePacking(final String name) {
         super(name, VALUES);
     }
 
@@ -97,4 +99,20 @@ public final class ValueInBytePacking extends CodeList<ValueInBytePacking> {
     public /*{ValueInBytePacking}*/ CodeList[] family() {
         return values();
     }
+    
+    /**
+     * Returns the ValueInBytePacking that matches the given string, or returns a 
+     * new one if none match it.
+     */    
+    public static synchronized ValueInBytePacking valueOf(String code) {
+    	if (code == null) {
+    		return null;
+    	}
+    	for (ValueInBytePacking type : VALUES) {
+    		if (code.equalsIgnoreCase(type.name())) {
+    			return type;
+    		}
+    	}
+    	return new ValueInBytePacking(code);
+	}
 }

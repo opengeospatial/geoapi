@@ -12,6 +12,8 @@ package org.opengis.geometry;
 
 import java.util.List;
 import java.util.ArrayList;
+
+import org.opengis.metadata.spatial.PixelOrientation;
 import org.opengis.util.CodeList;
 
 
@@ -63,7 +65,7 @@ public final class PrecisionType extends CodeList<PrecisionType> {
      * @param isFloating {@code true} if the precision model uses floating point math
      *        (rather then a grid).
      */
-    public PrecisionType(final String name, final boolean isFloating) {
+    private PrecisionType(final String name, final boolean isFloating) {
         super(name, VALUES);
         this.isFloating = isFloating;        
     }
@@ -93,4 +95,20 @@ public final class PrecisionType extends CodeList<PrecisionType> {
     public /*{PrecisionModelType}*/ CodeList[] family() {
         return values();
     }
+    
+    /**
+     * Returns the PrecisionType that matches the given string, or returns a 
+     * new one if none match it.
+     */    
+    public static synchronized PrecisionType valueOf(String code) {
+    	if (code == null) {
+    		return null;
+    	}
+    	for (PrecisionType type : VALUES) {
+    		if (code.equalsIgnoreCase(type.name())) {
+    			return type;
+    		}
+    	}
+    	return new PrecisionType(code, true);
+	}
 }

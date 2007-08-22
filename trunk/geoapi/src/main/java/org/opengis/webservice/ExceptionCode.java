@@ -48,6 +48,7 @@ import java.util.List;
 import java.util.ArrayList;
 
 // OpenGIS direct dependencies
+import org.opengis.metadata.quality.EvaluationMethodType;
 import org.opengis.util.CodeList;
 
 // Annotations
@@ -125,7 +126,7 @@ public final class ExceptionCode extends CodeList<ExceptionCode> {
      *
      * @param name The enum name. This name must not be in use by an other enum of this type.
      */
-    public ExceptionCode(final String name) {
+    private ExceptionCode(final String name) {
         super(name, VALUES);
     }
 
@@ -144,4 +145,20 @@ public final class ExceptionCode extends CodeList<ExceptionCode> {
     public /*{ExceptionCode}*/ CodeList[] family() {
         return values();
     }
+    
+    /**
+     * Returns the ExceptionCode that matches the given string, or returns a 
+     * new one if none match it.
+     */    
+    public static synchronized ExceptionCode valueOf(String code) {
+    	if (code == null) {
+    		return null;
+    	}
+    	for (ExceptionCode type : VALUES) {
+    		if (code.equalsIgnoreCase(type.name())) {
+    			return type;
+    		}
+    	}
+    	return new ExceptionCode(code);
+	}
 }

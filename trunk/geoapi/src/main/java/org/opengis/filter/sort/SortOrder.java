@@ -13,6 +13,7 @@ package org.opengis.filter.sort;
 import java.util.ArrayList;
 import java.util.List;
 import org.opengis.annotation.UML;
+import org.opengis.coverage.grid.quadrilateral.SequenceType;
 import org.opengis.util.CodeList;
 
 import static org.opengis.annotation.Obligation.CONDITIONAL;
@@ -102,4 +103,20 @@ public final class SortOrder extends CodeList<SortOrder> {
     public /*{SortOrder}*/ CodeList[] family() {
         return values();
     }
+    
+    /**
+     * Returns the SortOrder that matches the given string, or returns a 
+     * new one if none match it.
+     */    
+    public static synchronized SortOrder valueOf(String code) {
+    	if (code == null) {
+    		return null;
+    	}
+    	for (SortOrder type : VALUES) {
+    		if (code.equalsIgnoreCase(type.name())) {
+    			return type;
+    		}
+    	}
+    	return new SortOrder(code, code);
+	}
 }

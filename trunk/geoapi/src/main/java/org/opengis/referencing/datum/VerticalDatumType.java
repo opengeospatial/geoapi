@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.ArrayList;
 import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
+import org.opengis.coverage.grid.ValueInBytePacking;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -98,7 +99,7 @@ public final class VerticalDatumType extends CodeList<VerticalDatumType> {
      *
      * @param name The enum name. This name must not be in use by an other enum of this type.
      */
-    public VerticalDatumType(final String name) {
+    private VerticalDatumType(final String name) {
         super(name, VALUES);
     }
 
@@ -117,4 +118,20 @@ public final class VerticalDatumType extends CodeList<VerticalDatumType> {
     public /*{VerticalDatumType}*/ CodeList[] family() {
         return values();
     }
+    
+    /**
+     * Returns the VerticalDatumType that matches the given string, or returns a 
+     * new one if none match it.
+     */    
+    public static synchronized VerticalDatumType valueOf(String code) {
+    	if (code == null) {
+    		return null;
+    	}
+    	for (VerticalDatumType type : VALUES) {
+    		if (code.equalsIgnoreCase(type.name())) {
+    			return type;
+    		}
+    	}
+    	return new VerticalDatumType(code);
+	}
 }

@@ -12,6 +12,8 @@ package org.opengis.referencing.cs;
 
 import java.util.List;
 import java.util.ArrayList;
+
+import org.opengis.metadata.identification.AssociationType;
 import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
 import org.opengis.annotation.Extension;
@@ -317,7 +319,7 @@ public final class AxisDirection extends CodeList<AxisDirection> {
      *
      * @param name The enum name. This name must not be in use by an other enum of this type.
      */
-    public AxisDirection(final String name) {
+    private AxisDirection(final String name) {
         super(name, VALUES);
     }
 
@@ -409,4 +411,20 @@ public final class AxisDirection extends CodeList<AxisDirection> {
         }
         return this;
     }
+    
+    /**
+     * Returns the AxisDirection that matches the given string, or returns a 
+     * new one if none match it.
+     */    
+    public static synchronized AxisDirection valueOf(String code) {
+    	if (code == null) {
+    		return null;
+    	}
+    	for (AxisDirection type : VALUES) {
+    		if (code.equalsIgnoreCase(type.name())) {
+    			return type;
+    		}
+    	}
+    	return new AxisDirection(code);
+	}
 }

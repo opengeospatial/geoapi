@@ -12,6 +12,8 @@ package org.opengis.coverage;
 
 import java.util.List;
 import java.util.ArrayList;
+
+import org.opengis.metadata.constraint.Classification;
 import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
 
@@ -192,7 +194,7 @@ public final class ColorInterpretation extends CodeList<ColorInterpretation> {
      *
      * @param name The enum name. This name must not be in use by an other enum of this type.
      */
-    public ColorInterpretation(final String name) {
+    private ColorInterpretation(final String name) {
         super(name, VALUES);
     }
 
@@ -211,4 +213,20 @@ public final class ColorInterpretation extends CodeList<ColorInterpretation> {
     public /*{ColorInterpretation}*/ CodeList[] family() {
         return values();
     }
+    
+    /**
+     * Returns the ColorInterpretation that matches the given string, or returns a 
+     * new one if none match it.
+     */    
+    public static synchronized ColorInterpretation valueOf(String code) {
+    	if (code == null) {
+    		return null;
+    	}
+    	for (ColorInterpretation type : VALUES) {
+    		if (code.equalsIgnoreCase(type.name())) {
+    			return type;
+    		}
+    	}
+    	return new ColorInterpretation(code);
+	}
 }

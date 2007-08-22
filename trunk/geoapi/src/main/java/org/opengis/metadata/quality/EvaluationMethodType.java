@@ -12,6 +12,8 @@ package org.opengis.metadata.quality;
 
 import java.util.List;
 import java.util.ArrayList;
+
+import org.opengis.metadata.spatial.DimensionNameType;
 import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
 
@@ -65,7 +67,7 @@ public final class EvaluationMethodType extends CodeList<EvaluationMethodType> {
      *
      * @param name The enum name. This name must not be in use by an other enum of this type.
      */
-    public EvaluationMethodType(final String name) {
+    private EvaluationMethodType(final String name) {
         super(name, VALUES);
     }
 
@@ -84,4 +86,20 @@ public final class EvaluationMethodType extends CodeList<EvaluationMethodType> {
     public /*{EvaluationMethodType}*/ CodeList[] family() {
         return values();
     }
+    
+    /**
+     * Returns the EvaluationMethodType that matches the given string, or returns a 
+     * new one if none match it.
+     */    
+    public static synchronized EvaluationMethodType valueOf(String code) {
+    	if (code == null) {
+    		return null;
+    	}
+    	for (EvaluationMethodType type : VALUES) {
+    		if (code.equalsIgnoreCase(type.name())) {
+    			return type;
+    		}
+    	}
+    	return new EvaluationMethodType(code);
+	}
 }

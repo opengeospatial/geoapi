@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.ArrayList;
 import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
+import org.opengis.coverage.CommonPointRule;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -64,7 +65,7 @@ public final class CoverageContentType extends CodeList<CoverageContentType> {
      *
      * @param name The enum name. This name must not be in use by an other enum of this type.
      */
-    public CoverageContentType(final String name) {
+    private CoverageContentType(final String name) {
         super(name, VALUES);
     }
 
@@ -83,4 +84,20 @@ public final class CoverageContentType extends CodeList<CoverageContentType> {
     public /*{CoverageContentType}*/ CodeList[] family() {
         return values();
     }
+    
+    /**
+     * Returns the CoverageContentType that matches the given string, or returns a 
+     * new one if none match it.
+     */    
+    public static synchronized CoverageContentType valueOf(String code) {
+    	if (code == null) {
+    		return null;
+    	}
+    	for (CoverageContentType type : VALUES) {
+    		if (code.equalsIgnoreCase(type.name())) {
+    			return type;
+    		}
+    	}
+    	return new CoverageContentType(code);
+	}
 }

@@ -12,6 +12,8 @@ package org.opengis.metadata.identification;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import org.opengis.metadata.maintenance.ScopeCode;
 import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
 
@@ -75,7 +77,7 @@ public final class AssociationType extends CodeList<AssociationType> {
      *
      * @param name The enum name. This name must not be in use by an other enum of this type.
      */
-    public AssociationType(final String name) {
+    private AssociationType(final String name) {
         super(name, VALUES);
     }
 
@@ -94,4 +96,20 @@ public final class AssociationType extends CodeList<AssociationType> {
     public /*{AssociationType}*/ CodeList[] family() {
         return values();
     }
+    
+    /**
+     * Returns the AssociationType that matches the given string, or returns a 
+     * new one if none match it.
+     */    
+    public static synchronized AssociationType valueOf(String code) {
+    	if (code == null) {
+    		return null;
+    	}
+    	for (AssociationType type : VALUES) {
+    		if (code.equalsIgnoreCase(type.name())) {
+    			return type;
+    		}
+    	}
+    	return new AssociationType(code);
+	}
 }

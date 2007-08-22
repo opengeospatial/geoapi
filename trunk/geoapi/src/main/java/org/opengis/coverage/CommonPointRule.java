@@ -97,7 +97,7 @@ public class CommonPointRule extends CodeList<CommonPointRule> {
      *
      * @param name The enum name. This name must not be in use by an other enum of this type.
      */
-    public CommonPointRule(final String name) {
+    private CommonPointRule(final String name) {
         super(name, VALUES);
     }
 
@@ -116,4 +116,20 @@ public class CommonPointRule extends CodeList<CommonPointRule> {
     public /*{CommonPointRule}*/ CodeList[] family() {
         return values();
     }
+    
+    /**
+     * Returns the CommonPointRule that matches the given string, or returns a 
+     * new one if none match it.
+     */    
+    public static synchronized CommonPointRule valueOf(String code) {
+    	if (code == null) {
+    		return null;
+    	}
+    	for (CommonPointRule type : VALUES) {
+    		if (code.equalsIgnoreCase(type.name())) {
+    			return type;
+    		}
+    	}
+    	return new CommonPointRule(code);
+	}
 }

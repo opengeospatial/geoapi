@@ -12,6 +12,8 @@ package org.opengis.metadata.distribution;
 
 import java.util.List;
 import java.util.ArrayList;
+
+import org.opengis.metadata.maintenance.MaintenanceFrequency;
 import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
 
@@ -81,7 +83,7 @@ public final class MediumFormat extends CodeList<MediumFormat> {
      *
      * @param name The enum name. This name must not be in use by an other enum of this type.
      */
-    public MediumFormat(final String name) {
+    private MediumFormat(final String name) {
         super(name, VALUES);
     }
 
@@ -100,4 +102,20 @@ public final class MediumFormat extends CodeList<MediumFormat> {
     public /*{MediumFormat}*/ CodeList[] family() {
         return values();
     }
+    
+    /**
+     * Returns the MediumFormat that matches the given string, or returns a 
+     * new one if none match it.
+     */    
+    public static synchronized MediumFormat valueOf(String code) {
+    	if (code == null) {
+    		return null;
+    	}
+    	for (MediumFormat type : VALUES) {
+    		if (code.equalsIgnoreCase(type.name())) {
+    			return type;
+    		}
+    	}
+    	return new MediumFormat(code);
+	}
 }

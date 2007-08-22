@@ -12,6 +12,8 @@ package org.opengis.geometry.coordinate;
 
 import java.util.List;
 import java.util.ArrayList;
+
+import org.opengis.referencing.cs.AxisDirection;
 import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
 
@@ -81,7 +83,7 @@ public class BSplineSurfaceForm extends CodeList<BSplineSurfaceForm> {
      *
      * @param name The enum name. This name must not be in use by an other enum of this type.
      */
-    public BSplineSurfaceForm(final String name) {
+    private BSplineSurfaceForm(final String name) {
         super(name, VALUES);
     }
 
@@ -100,4 +102,20 @@ public class BSplineSurfaceForm extends CodeList<BSplineSurfaceForm> {
     public /*{BSplineSurfaceForm}*/ CodeList[] family() {
         return values();
     }
+    
+    /**
+     * Returns the BSplineSurfaceForm that matches the given string, or returns a 
+     * new one if none match it.
+     */    
+    public static synchronized BSplineSurfaceForm valueOf(String code) {
+    	if (code == null) {
+    		return null;
+    	}
+    	for (BSplineSurfaceForm type : VALUES) {
+    		if (code.equalsIgnoreCase(type.name())) {
+    			return type;
+    		}
+    	}
+    	return new BSplineSurfaceForm(code);
+	}
 }

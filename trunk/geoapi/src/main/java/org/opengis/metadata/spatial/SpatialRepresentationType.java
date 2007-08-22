@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
 import org.opengis.annotation.Profile;
+import org.opengis.coverage.grid.quadrilateral.SequenceType;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -85,7 +86,7 @@ public final class SpatialRepresentationType extends CodeList<SpatialRepresentat
      *
      * @param name The enum name. This name must not be in use by an other enum of this type.
      */
-    public SpatialRepresentationType(final String name) {
+    private SpatialRepresentationType(final String name) {
         super(name, VALUES);
     }
 
@@ -104,4 +105,20 @@ public final class SpatialRepresentationType extends CodeList<SpatialRepresentat
     public /*{SpatialRepresentationType}*/ CodeList[] family() {
         return values();
     }
+    
+    /**
+     * Returns the SpatialRepresentationType that matches the given string, or returns a 
+     * new one if none match it.
+     */    
+    public static synchronized SpatialRepresentationType valueOf(String code) {
+    	if (code == null) {
+    		return null;
+    	}
+    	for (SpatialRepresentationType type : VALUES) {
+    		if (code.equalsIgnoreCase(type.name())) {
+    			return type;
+    		}
+    	}
+    	return new SpatialRepresentationType(code);
+	}
 }

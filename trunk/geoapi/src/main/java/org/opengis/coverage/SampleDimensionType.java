@@ -13,6 +13,8 @@ package org.opengis.coverage;
 import java.util.List;
 import java.util.ArrayList;
 import java.awt.image.DataBuffer; // For Javadoc
+
+import org.opengis.metadata.citation.Role;
 import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
 
@@ -182,7 +184,7 @@ public final class SampleDimensionType extends CodeList<SampleDimensionType> {
      *
      * @param name The enum name. This name must not be in use by an other enum of this type.
      */
-    public SampleDimensionType(final String name) {
+    private SampleDimensionType(final String name) {
         super(name, VALUES);
     }
 
@@ -201,4 +203,20 @@ public final class SampleDimensionType extends CodeList<SampleDimensionType> {
     public /*{SampleDimensionType}*/ CodeList[] family() {
         return values();
     }
+    
+    /**
+     * Returns the SampleDimensionType that matches the given string, or returns a 
+     * new one if none match it.
+     */    
+    public static synchronized SampleDimensionType valueOf(String code) {
+    	if (code == null) {
+    		return null;
+    	}
+    	for (SampleDimensionType type : VALUES) {
+    		if (code.equalsIgnoreCase(type.name())) {
+    			return type;
+    		}
+    	}
+    	return new SampleDimensionType(code);
+	}
 }

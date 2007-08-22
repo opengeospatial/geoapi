@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.ArrayList;
 import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
+import org.opengis.geometry.coordinate.SplineCurveForm;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -121,7 +122,7 @@ public final class SurfaceInterpolation extends CodeList<SurfaceInterpolation> {
      *
      * @param name The enum name. This name must not be in use by an other enum of this type.
      */
-    public SurfaceInterpolation(final String name) {
+    private SurfaceInterpolation(final String name) {
         super(name, VALUES);
     }
 
@@ -140,4 +141,20 @@ public final class SurfaceInterpolation extends CodeList<SurfaceInterpolation> {
     public /*{SurfaceInterpolation}*/ CodeList[] family() {
         return values();
     }
+    
+    /**
+     * Returns the SurfaceInterpolation that matches the given string, or returns a 
+     * new one if none match it.
+     */    
+    public static synchronized SurfaceInterpolation valueOf(String code) {
+    	if (code == null) {
+    		return null;
+    	}
+    	for (SurfaceInterpolation type : VALUES) {
+    		if (code.equalsIgnoreCase(type.name())) {
+    			return type;
+    		}
+    	}
+    	return new SurfaceInterpolation(code);
+	}
 }

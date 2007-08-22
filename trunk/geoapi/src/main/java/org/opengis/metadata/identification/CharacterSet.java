@@ -14,6 +14,8 @@ import java.nio.charset.Charset;
 import java.nio.charset.UnsupportedCharsetException;
 import java.util.List;
 import java.util.ArrayList;
+
+import org.opengis.metadata.spatial.CellGeometry;
 import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
 
@@ -242,7 +244,7 @@ public final class CharacterSet extends CodeList<CharacterSet> {
      * @param name The enum name. This name must not be in use by an other enum of this type.
      * @param charset The Java {@link Charset} name, or {@code null} if none.
      */
-    public CharacterSet(final String name, final String charset) {
+    private CharacterSet(final String name, final String charset) {
         super(name, VALUES);
         this.charset = (charset != null) ? charset : name;
     }
@@ -274,4 +276,20 @@ public final class CharacterSet extends CodeList<CharacterSet> {
     public /*{CharacterSet}*/ CodeList[] family() {
         return (CodeList[]) VALUES.toArray(new CodeList[VALUES.size()]);
     }
+    
+    /**
+     * Returns the CharacterSet that matches the given string, or returns a 
+     * new one if none match it.
+     */    
+    public static synchronized CharacterSet valueOf(String code) {
+    	if (code == null) {
+    		return null;
+    	}
+    	for (CharacterSet type : VALUES) {
+    		if (code.equalsIgnoreCase(type.name())) {
+    			return type;
+    		}
+    	}
+    	return new CharacterSet(code, code);
+	}
 }

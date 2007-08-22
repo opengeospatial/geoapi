@@ -148,7 +148,7 @@ public final class ScopeCode extends CodeList<ScopeCode> {
      *
      * @param name The enum name. This name must not be in use by an other enum of this type.
      */
-    public ScopeCode(final String name) {
+    private ScopeCode(final String name) {
         super(name, VALUES);
     }
 
@@ -167,4 +167,20 @@ public final class ScopeCode extends CodeList<ScopeCode> {
     public /*{ScopeCode}*/ CodeList[] family() {
         return values();
     }
+    
+    /**
+     * Returns the scopecode that matches the given string, or returns a 
+     * new one if none match it.
+     */    
+    public static synchronized ScopeCode valueOf(String code) {
+    	if (code == null) {
+    		return null;
+    	}
+    	for (ScopeCode scopeCode : ScopeCode.values()) {
+    		if (code.equalsIgnoreCase(scopeCode.name())) {
+    			return scopeCode;
+    		}
+    	}
+    	return new ScopeCode(code);
+	}
 }

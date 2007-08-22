@@ -12,6 +12,8 @@ package org.opengis.metadata.citation;
 
 import java.util.List;
 import java.util.ArrayList;
+
+import org.opengis.metadata.Obligation;
 import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
 
@@ -75,7 +77,7 @@ public final class OnLineFunction extends CodeList<OnLineFunction> {
      *
      * @param name The enum name. This name must not be in use by an other enum of this type.
      */
-    public OnLineFunction(final String name) {
+    private OnLineFunction(final String name) {
         super(name, VALUES);
     }
 
@@ -94,4 +96,20 @@ public final class OnLineFunction extends CodeList<OnLineFunction> {
     public /*{OnLineFunction}*/ CodeList[] family() {
         return values();
     }
+    
+    /**
+     * Returns the OnLineFunction that matches the given string, or returns a 
+     * new one if none match it.
+     */    
+    public static synchronized OnLineFunction valueOf(String code) {
+    	if (code == null) {
+    		return null;
+    	}
+    	for (OnLineFunction type : VALUES) {
+    		if (code.equalsIgnoreCase(type.name())) {
+    			return type;
+    		}
+    	}
+    	return new OnLineFunction(code);
+	}
 }

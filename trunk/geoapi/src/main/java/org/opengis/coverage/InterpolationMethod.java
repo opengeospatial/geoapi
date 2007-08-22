@@ -12,6 +12,8 @@ package org.opengis.coverage;
 
 import java.util.List;
 import java.util.ArrayList;
+
+import org.opengis.metadata.identification.InitiativeType;
 import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
 
@@ -176,7 +178,7 @@ public class InterpolationMethod extends CodeList<InterpolationMethod> {
      *
      * @param name The enum name. This name must not be in use by an other enum of this type.
      */
-    public InterpolationMethod(final String name) {
+    private InterpolationMethod(final String name) {
         super(name, VALUES);
     }
 
@@ -195,4 +197,20 @@ public class InterpolationMethod extends CodeList<InterpolationMethod> {
     public /*{InterpolationMethod}*/ CodeList[] family() {
         return values();
     }
+    
+    /**
+     * Returns the InterpolationMethod that matches the given string, or returns a 
+     * new one if none match it.
+     */    
+    public static synchronized InterpolationMethod valueOf(String code) {
+    	if (code == null) {
+    		return null;
+    	}
+    	for (InterpolationMethod type : VALUES) {
+    		if (code.equalsIgnoreCase(type.name())) {
+    			return type;
+    		}
+    	}
+    	return new InterpolationMethod(code);
+	}
 }

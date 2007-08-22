@@ -12,6 +12,8 @@ package org.opengis.referencing.cs;
 
 import java.util.List;
 import java.util.ArrayList;
+
+import org.opengis.metadata.identification.Progress;
 import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
 import org.opengis.annotation.Extension;
@@ -67,7 +69,7 @@ public final class RangeMeaning extends CodeList<RangeMeaning> {
      *
      * @param name The enum name. This name must not be in use by an other enum of this type.
      */
-    public RangeMeaning(final String name) {
+    private RangeMeaning(final String name) {
         super(name, VALUES);
     }
 
@@ -86,4 +88,20 @@ public final class RangeMeaning extends CodeList<RangeMeaning> {
     public /*{RangeMeaning}*/ CodeList[] family() {
         return values();
     }
+    
+    /**
+     * Returns the RangeMeaning that matches the given string, or returns a 
+     * new one if none match it.
+     */    
+    public static synchronized RangeMeaning valueOf(String code) {
+    	if (code == null) {
+    		return null;
+    	}
+    	for (RangeMeaning type : VALUES) {
+    		if (code.equalsIgnoreCase(type.name())) {
+    			return type;
+    		}
+    	}
+    	return new RangeMeaning(code);
+	}
 }
