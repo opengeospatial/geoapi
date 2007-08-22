@@ -10,6 +10,7 @@
  *************************************************************************************************/
 package org.opengis.metadata.identification;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -117,7 +118,9 @@ public final class Progress extends CodeList<Progress> {
     	if (code == null) {
     		return null;
     	}
-    	for (Progress type : VALUES) {
+    	Iterator iter = VALUES.iterator();
+    	while (iter.hasNext()) {
+    		Progress type = (Progress) iter.next();
     		if (code.equalsIgnoreCase(type.name())) {
     			return type;
     		}

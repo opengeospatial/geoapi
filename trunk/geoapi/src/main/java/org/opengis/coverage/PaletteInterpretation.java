@@ -10,6 +10,7 @@
  *************************************************************************************************/
 package org.opengis.coverage;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.ArrayList;
 import java.awt.color.ColorSpace; // For Javadoc
@@ -113,7 +114,9 @@ public final class PaletteInterpretation extends CodeList<PaletteInterpretation>
     	if (code == null) {
     		return null;
     	}
-    	for (PaletteInterpretation type : VALUES) {
+    	Iterator iter = VALUES.iterator();
+    	while (iter.hasNext()) {
+    		PaletteInterpretation type = (PaletteInterpretation) iter.next();
     		if (code.equalsIgnoreCase(type.name())) {
     			return type;
     		}

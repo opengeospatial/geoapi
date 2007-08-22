@@ -10,6 +10,7 @@
  *************************************************************************************************/
 package org.opengis.metadata;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.ArrayList;
 import org.opengis.util.CodeList;
@@ -167,7 +168,9 @@ public final class Datatype extends CodeList<Datatype> {
     	if (code == null) {
     		return null;
     	}
-    	for (Datatype type : VALUES) {
+    	Iterator iter = VALUES.iterator();
+    	while (iter.hasNext()) {
+    		Datatype type = (Datatype) iter.next();
     		if (code.equalsIgnoreCase(type.name())) {
     			return type;
     		}

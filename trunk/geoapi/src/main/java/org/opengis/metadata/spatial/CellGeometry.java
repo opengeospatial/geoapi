@@ -10,6 +10,7 @@
  *************************************************************************************************/
 package org.opengis.metadata.spatial;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.ArrayList;
 import org.opengis.util.CodeList;
@@ -86,7 +87,9 @@ public final class CellGeometry extends CodeList<CellGeometry> {
     	if (code == null) {
     		return null;
     	}
-    	for (CellGeometry type : VALUES) {
+    	Iterator iter = VALUES.iterator();
+    	while (iter.hasNext()) {
+    		CellGeometry type = (CellGeometry) iter.next();
     		if (code.equalsIgnoreCase(type.name())) {
     			return type;
     		}

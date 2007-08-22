@@ -10,10 +10,12 @@
  *************************************************************************************************/
 package org.opengis.metadata.maintenance;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.ArrayList;
 import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
+import org.opengis.coverage.SampleDimensionType;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -176,9 +178,11 @@ public final class ScopeCode extends CodeList<ScopeCode> {
     	if (code == null) {
     		return null;
     	}
-    	for (ScopeCode scopeCode : ScopeCode.values()) {
-    		if (code.equalsIgnoreCase(scopeCode.name())) {
-    			return scopeCode;
+    	Iterator iter = VALUES.iterator();
+    	while (iter.hasNext()) {
+    		ScopeCode type = (ScopeCode) iter.next();
+    		if (code.equalsIgnoreCase(type.name())) {
+    			return type;
     		}
     	}
     	return new ScopeCode(code);

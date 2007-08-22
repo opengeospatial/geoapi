@@ -10,6 +10,7 @@
  *************************************************************************************************/
 package org.opengis.metadata.citation;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -145,7 +146,9 @@ public final class Role extends CodeList<Role> {
     	if (code == null) {
     		return null;
     	}
-    	for (Role type : VALUES) {
+    	Iterator iter = VALUES.iterator();
+    	while (iter.hasNext()) {
+    		Role type = (Role) iter.next();
     		if (code.equalsIgnoreCase(type.name())) {
     			return type;
     		}

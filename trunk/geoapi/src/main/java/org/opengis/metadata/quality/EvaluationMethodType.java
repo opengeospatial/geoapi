@@ -10,6 +10,7 @@
  *************************************************************************************************/
 package org.opengis.metadata.quality;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -95,7 +96,9 @@ public final class EvaluationMethodType extends CodeList<EvaluationMethodType> {
     	if (code == null) {
     		return null;
     	}
-    	for (EvaluationMethodType type : VALUES) {
+    	Iterator iter = VALUES.iterator();
+    	while (iter.hasNext()) {
+    		EvaluationMethodType type = (EvaluationMethodType) iter.next();
     		if (code.equalsIgnoreCase(type.name())) {
     			return type;
     		}

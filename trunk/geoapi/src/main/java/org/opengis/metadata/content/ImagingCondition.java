@@ -10,6 +10,7 @@
  *************************************************************************************************/
 package org.opengis.metadata.content;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -144,7 +145,9 @@ public final class ImagingCondition extends CodeList<ImagingCondition> {
     	if (code == null) {
     		return null;
     	}
-    	for (ImagingCondition type : VALUES) {
+    	Iterator iter = VALUES.iterator();
+    	while (iter.hasNext()) {
+    		ImagingCondition type = (ImagingCondition) iter.next();
     		if (code.equalsIgnoreCase(type.name())) {
     			return type;
     		}

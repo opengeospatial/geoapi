@@ -10,6 +10,7 @@
  *************************************************************************************************/
 package org.opengis.geometry.coordinate;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -111,7 +112,9 @@ public class BSplineSurfaceForm extends CodeList<BSplineSurfaceForm> {
     	if (code == null) {
     		return null;
     	}
-    	for (BSplineSurfaceForm type : VALUES) {
+    	Iterator iter = VALUES.iterator();
+    	while (iter.hasNext()) {
+    		BSplineSurfaceForm type = (BSplineSurfaceForm) iter.next();
     		if (code.equalsIgnoreCase(type.name())) {
     			return type;
     		}

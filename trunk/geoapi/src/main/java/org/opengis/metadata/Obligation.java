@@ -10,6 +10,7 @@
  *************************************************************************************************/
 package org.opengis.metadata;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.ArrayList;
 import org.opengis.util.CodeList;
@@ -91,7 +92,9 @@ public final class Obligation extends CodeList<Obligation> {
     	if (code == null) {
     		return null;
     	}
-    	for (Obligation type : VALUES) {
+    	Iterator iter = VALUES.iterator();
+    	while (iter.hasNext()) {
+    		Obligation type = (Obligation) iter.next();
     		if (code.equalsIgnoreCase(type.name())) {
     			return type;
     		}

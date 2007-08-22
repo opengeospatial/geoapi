@@ -10,6 +10,7 @@
  *************************************************************************************************/
 package org.opengis.coverage;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -206,7 +207,9 @@ public class InterpolationMethod extends CodeList<InterpolationMethod> {
     	if (code == null) {
     		return null;
     	}
-    	for (InterpolationMethod type : VALUES) {
+    	Iterator iter = VALUES.iterator();
+    	while (iter.hasNext()) {
+    		InterpolationMethod type = (InterpolationMethod) iter.next();
     		if (code.equalsIgnoreCase(type.name())) {
     			return type;
     		}

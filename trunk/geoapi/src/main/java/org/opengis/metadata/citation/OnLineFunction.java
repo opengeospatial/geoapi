@@ -10,6 +10,7 @@
  *************************************************************************************************/
 package org.opengis.metadata.citation;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -105,7 +106,9 @@ public final class OnLineFunction extends CodeList<OnLineFunction> {
     	if (code == null) {
     		return null;
     	}
-    	for (OnLineFunction type : VALUES) {
+    	Iterator iter = VALUES.iterator();
+    	while (iter.hasNext()) {
+    		OnLineFunction type = (OnLineFunction) iter.next();
     		if (code.equalsIgnoreCase(type.name())) {
     			return type;
     		}

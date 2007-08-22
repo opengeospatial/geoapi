@@ -10,6 +10,7 @@
  *************************************************************************************************/
 package org.opengis.coverage;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -222,7 +223,9 @@ public final class ColorInterpretation extends CodeList<ColorInterpretation> {
     	if (code == null) {
     		return null;
     	}
-    	for (ColorInterpretation type : VALUES) {
+    	Iterator iter = VALUES.iterator();
+    	while (iter.hasNext()) {
+    		ColorInterpretation type = (ColorInterpretation) iter.next();
     		if (code.equalsIgnoreCase(type.name())) {
     			return type;
     		}

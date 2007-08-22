@@ -12,6 +12,7 @@ package org.opengis.metadata.identification;
 
 import java.nio.charset.Charset;
 import java.nio.charset.UnsupportedCharsetException;
+import java.util.Iterator;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -285,7 +286,9 @@ public final class CharacterSet extends CodeList<CharacterSet> {
     	if (code == null) {
     		return null;
     	}
-    	for (CharacterSet type : VALUES) {
+    	Iterator iter = VALUES.iterator();
+    	while (iter.hasNext()) {
+    		CharacterSet type = (CharacterSet) iter.next();
     		if (code.equalsIgnoreCase(type.name())) {
     			return type;
     		}

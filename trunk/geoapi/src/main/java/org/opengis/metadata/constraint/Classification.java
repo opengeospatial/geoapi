@@ -10,9 +10,11 @@
  *************************************************************************************************/
 package org.opengis.metadata.constraint;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.ArrayList;
 
+import org.opengis.metadata.identification.CharacterSet;
 import org.opengis.metadata.spatial.CellGeometry;
 import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
@@ -105,7 +107,9 @@ public final class Classification extends CodeList<Classification> {
     	if (code == null) {
     		return null;
     	}
-    	for (Classification type : VALUES) {
+    	Iterator iter = VALUES.iterator();
+    	while (iter.hasNext()) {
+    		Classification type = (Classification) iter.next();
     		if (code.equalsIgnoreCase(type.name())) {
     			return type;
     		}

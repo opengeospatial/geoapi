@@ -10,6 +10,7 @@
  *************************************************************************************************/
 package org.opengis.geometry.coordinate;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -99,7 +100,9 @@ public class KnotType extends CodeList<KnotType> {
     	if (code == null) {
     		return null;
     	}
-    	for (KnotType type : VALUES) {
+    	Iterator iter = VALUES.iterator();
+    	while (iter.hasNext()) {
+    		KnotType type = (KnotType) iter.next();
     		if (code.equalsIgnoreCase(type.name())) {
     			return type;
     		}

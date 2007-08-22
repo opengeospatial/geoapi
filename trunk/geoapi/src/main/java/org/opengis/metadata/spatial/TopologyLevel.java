@@ -10,6 +10,7 @@
  *************************************************************************************************/
 package org.opengis.metadata.spatial;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -129,7 +130,9 @@ public final class TopologyLevel extends CodeList<TopologyLevel> {
     	if (code == null) {
     		return null;
     	}
-    	for (TopologyLevel type : VALUES) {
+    	Iterator iter = VALUES.iterator();
+    	while (iter.hasNext()) {
+    		TopologyLevel type = (TopologyLevel) iter.next();
     		if (code.equalsIgnoreCase(type.name())) {
     			return type;
     		}

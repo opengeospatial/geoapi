@@ -10,6 +10,7 @@
  *************************************************************************************************/
 package org.opengis.temporal;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -82,7 +83,9 @@ public final class IndeterminateValue extends CodeList<IndeterminateValue> {
     	if (code == null) {
     		return null;
     	}
-    	for (IndeterminateValue type : VALUES) {
+    	Iterator iter = VALUES.iterator();
+    	while (iter.hasNext()) {
+    		IndeterminateValue type = (IndeterminateValue) iter.next();
     		if (code.equalsIgnoreCase(type.name())) {
     			return type;
     		}
