@@ -12,6 +12,8 @@ package org.opengis.metadata.spatial;
 
 import java.util.List;
 import java.util.ArrayList;
+
+import org.opengis.metadata.identification.TopicCategory;
 import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
 
@@ -99,7 +101,7 @@ public final class TopologyLevel extends CodeList<TopologyLevel> {
      *
      * @param name The enum name. This name must not be in use by an other enum of this type.
      */
-    public TopologyLevel(final String name) {
+    private TopologyLevel(final String name) {
         super(name, VALUES);
     }
 
@@ -118,4 +120,20 @@ public final class TopologyLevel extends CodeList<TopologyLevel> {
     public /*{TopologyLevel}*/ CodeList[] family() {
         return values();
     }
+    
+    /**
+     * Returns the TopologyLevel that matches the given string, or returns a 
+     * new one if none match it.
+     */    
+    public static synchronized TopologyLevel valueOf(String code) {
+    	if (code == null) {
+    		return null;
+    	}
+    	for (TopologyLevel type : VALUES) {
+    		if (code.equalsIgnoreCase(type.name())) {
+    			return type;
+    		}
+    	}
+    	return new TopologyLevel(code);
+	}
 }

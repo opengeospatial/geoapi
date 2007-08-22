@@ -48,6 +48,7 @@ import java.util.List;
 import java.util.ArrayList;
 
 // OpenGIS direct dependencies
+import org.opengis.metadata.distribution.MediumName;
 import org.opengis.util.CodeList;
 
 // Annotations
@@ -82,7 +83,7 @@ public final class MetadataType extends CodeList<MetadataType> {
      *
      * @param name The enum name. This name must not be in use by an other enum of this type.
      */
-    public MetadataType(final String name) {
+    private MetadataType(final String name) {
         super(name, VALUES);
     }
 
@@ -101,4 +102,20 @@ public final class MetadataType extends CodeList<MetadataType> {
     public /*{MetadataType}*/ CodeList[] family() {
         return values();
     }
+    
+    /**
+     * Returns the MetadataType that matches the given string, or returns a 
+     * new one if none match it.
+     */    
+    public static synchronized MetadataType valueOf(String code) {
+    	if (code == null) {
+    		return null;
+    	}
+    	for (MetadataType type : VALUES) {
+    		if (code.equalsIgnoreCase(type.name())) {
+    			return type;
+    		}
+    	}
+    	return new MetadataType(code);
+	}
 }

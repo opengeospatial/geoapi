@@ -12,6 +12,8 @@ package org.opengis.metadata.citation;
 
 import java.util.List;
 import java.util.ArrayList;
+
+import org.opengis.metadata.spatial.PixelOrientation;
 import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
 
@@ -137,7 +139,7 @@ public final class PresentationForm extends CodeList<PresentationForm> {
      *
      * @param name The enum name. This name must not be in use by an other enum of this type.
      */
-    public PresentationForm(final String name) {
+    private PresentationForm(final String name) {
         super(name, VALUES);
     }
 
@@ -156,4 +158,20 @@ public final class PresentationForm extends CodeList<PresentationForm> {
     public /*{PresentationForm}*/ CodeList[] family() {
         return values();
     }
+    
+    /**
+     * Returns the PresentationForm that matches the given string, or returns a 
+     * new one if none match it.
+     */    
+    public static synchronized PresentationForm valueOf(String code) {
+    	if (code == null) {
+    		return null;
+    	}
+    	for (PresentationForm type : VALUES) {
+    		if (code.equalsIgnoreCase(type.name())) {
+    			return type;
+    		}
+    	}
+    	return new PresentationForm(code);
+	}
 }

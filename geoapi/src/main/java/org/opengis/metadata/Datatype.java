@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.ArrayList;
 import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
+import org.opengis.geometry.primitive.CurveInterpolation;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -138,7 +139,7 @@ public final class Datatype extends CodeList<Datatype> {
      *
      * @param name The enum name. This name must not be in use by an other enum of this type.
      */
-    public Datatype(final String name) {
+    private Datatype(final String name) {
         super(name, VALUES);
     }
 
@@ -157,4 +158,20 @@ public final class Datatype extends CodeList<Datatype> {
     public /*{Datatype}*/ CodeList[] family() {
         return values();
     }
+    
+    /**
+     * Returns the Datatype that matches the given string, or returns a 
+     * new one if none match it.
+     */    
+    public static synchronized Datatype valueOf(String code) {
+    	if (code == null) {
+    		return null;
+    	}
+    	for (Datatype type : VALUES) {
+    		if (code.equalsIgnoreCase(type.name())) {
+    			return type;
+    		}
+    	}
+    	return new Datatype(code);
+	}
 }

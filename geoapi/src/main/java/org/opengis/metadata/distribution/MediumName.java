@@ -153,7 +153,7 @@ public final class MediumName extends CodeList<MediumName> {
      *
      * @param name The enum name. This name must not be in use by an other enum of this type.
      */
-    public MediumName(final String name) {
+    private MediumName(final String name) {
         super(name, VALUES);
     }
 
@@ -172,4 +172,20 @@ public final class MediumName extends CodeList<MediumName> {
     public /*{MediumName}*/ CodeList[] family() {
         return values();
     }
+    
+    /**
+     * Returns the MediumName that matches the given string, or returns a 
+     * new one if none match it.
+     */    
+    public static synchronized MediumName valueOf(String code) {
+    	if (code == null) {
+    		return null;
+    	}
+    	for (MediumName type : VALUES) {
+    		if (code.equalsIgnoreCase(type.name())) {
+    			return type;
+    		}
+    	}
+    	return new MediumName(code);
+	}
 }

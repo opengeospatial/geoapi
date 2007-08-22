@@ -12,6 +12,8 @@ package org.opengis.metadata.content;
 
 import java.util.List;
 import java.util.ArrayList;
+
+import org.opengis.metadata.spatial.GeometricObjectType;
 import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
 
@@ -114,7 +116,7 @@ public final class ImagingCondition extends CodeList<ImagingCondition> {
      *
      * @param name The enum name. This name must not be in use by an other enum of this type.
      */
-    public ImagingCondition(final String name) {
+    private ImagingCondition(final String name) {
         super(name, VALUES);
     }
 
@@ -133,4 +135,20 @@ public final class ImagingCondition extends CodeList<ImagingCondition> {
     public /*{ImagingCondition}*/ CodeList[] family() {
         return values();
     }
+    
+    /**
+     * Returns the ImagingCondition that matches the given string, or returns a 
+     * new one if none match it.
+     */    
+    public static synchronized ImagingCondition valueOf(String code) {
+    	if (code == null) {
+    		return null;
+    	}
+    	for (ImagingCondition type : VALUES) {
+    		if (code.equalsIgnoreCase(type.name())) {
+    			return type;
+    		}
+    	}
+    	return new ImagingCondition(code);
+	}
 }

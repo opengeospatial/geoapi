@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.ArrayList;
 import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
+import org.opengis.coverage.InterpolationMethod;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -75,7 +76,7 @@ public final class KeywordType extends CodeList<KeywordType> {
      *
      * @param name The enum name. This name must not be in use by an other enum of this type.
      */
-    public KeywordType(final String name) {
+    private KeywordType(final String name) {
         super(name, VALUES);
     }
 
@@ -94,4 +95,20 @@ public final class KeywordType extends CodeList<KeywordType> {
     public /*{KeywordType}*/ CodeList[] family() {
         return values();
     }
+    
+    /**
+     * Returns the KeywordType that matches the given string, or returns a 
+     * new one if none match it.
+     */    
+    public static synchronized KeywordType valueOf(String code) {
+    	if (code == null) {
+    		return null;
+    	}
+    	for (KeywordType type : VALUES) {
+    		if (code.equalsIgnoreCase(type.name())) {
+    			return type;
+    		}
+    	}
+    	return new KeywordType(code);
+	}
 }

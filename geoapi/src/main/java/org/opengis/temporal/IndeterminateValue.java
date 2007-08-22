@@ -12,6 +12,8 @@ package org.opengis.temporal;
 
 import java.util.List;
 import java.util.ArrayList;
+
+import org.opengis.metadata.content.ImagingCondition;
 import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
 
@@ -52,7 +54,7 @@ public final class IndeterminateValue extends CodeList<IndeterminateValue> {
      *
      * @param name The enum name. This name must not be in use by an other enum of this type.
      */
-    public IndeterminateValue(final String name) {
+    private IndeterminateValue(final String name) {
         super(name, VALUES);
     }
 
@@ -71,4 +73,20 @@ public final class IndeterminateValue extends CodeList<IndeterminateValue> {
     public /*IndeterminateValue[]*/ CodeList[] family() {
         return values();
     }
+    
+    /**
+     * Returns the IndeterminateValue that matches the given string, or returns a 
+     * new one if none match it.
+     */    
+    public static synchronized IndeterminateValue valueOf(String code) {
+    	if (code == null) {
+    		return null;
+    	}
+    	for (IndeterminateValue type : VALUES) {
+    		if (code.equalsIgnoreCase(type.name())) {
+    			return type;
+    		}
+    	}
+    	return new IndeterminateValue(code);
+	}
 }

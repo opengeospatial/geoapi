@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.ArrayList;
 import org.opengis.util.CodeList;
 import org.opengis.geometry.DirectPosition; // For javadoc
+import org.opengis.metadata.content.CoverageContentType;
 import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Obligation.*;
@@ -141,7 +142,7 @@ public final class CurveInterpolation extends CodeList<CurveInterpolation> {
      *
      * @param name The enum name. This name must not be in use by an other enum of this type.
      */
-    public CurveInterpolation(final String name) {
+    private CurveInterpolation(final String name) {
         super(name, VALUES);
     }
 
@@ -160,4 +161,20 @@ public final class CurveInterpolation extends CodeList<CurveInterpolation> {
     public /*{CurveInterpolation}*/ CodeList[] family() {
         return values();
     }
+    
+    /**
+     * Returns the CoverageContentType that matches the given string, or returns a 
+     * new one if none match it.
+     */    
+    public static synchronized CurveInterpolation valueOf(String code) {
+    	if (code == null) {
+    		return null;
+    	}
+    	for (CurveInterpolation type : VALUES) {
+    		if (code.equalsIgnoreCase(type.name())) {
+    			return type;
+    		}
+    	}
+    	return new CurveInterpolation(code);
+	}
 }

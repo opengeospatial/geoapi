@@ -12,6 +12,8 @@ package org.opengis.metadata.constraint;
 
 import java.util.List;
 import java.util.ArrayList;
+
+import org.opengis.metadata.spatial.CellGeometry;
 import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
 
@@ -75,7 +77,7 @@ public final class Classification extends CodeList<Classification> {
      *
      * @param name The enum name. This name must not be in use by an other enum of this type.
      */
-    public Classification(final String name) {
+    private Classification(final String name) {
         super(name, VALUES);
     }
 
@@ -94,4 +96,20 @@ public final class Classification extends CodeList<Classification> {
     public /*{Classification}*/ CodeList[] family() {
         return values();
     }
+    
+    /**
+     * Returns the Classification that matches the given string, or returns a 
+     * new one if none match it.
+     */    
+    public static synchronized Classification valueOf(String code) {
+    	if (code == null) {
+    		return null;
+    	}
+    	for (Classification type : VALUES) {
+    		if (code.equalsIgnoreCase(type.name())) {
+    			return type;
+    		}
+    	}
+    	return new Classification(code);
+	}
 }

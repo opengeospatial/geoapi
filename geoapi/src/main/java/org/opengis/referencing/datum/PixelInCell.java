@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.ArrayList;
 import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
+import org.opengis.coverage.PaletteInterpretation;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -59,7 +60,7 @@ public final class PixelInCell extends CodeList<PixelInCell> {
      *
      * @param name The enum name. This name must not be in use by an other enum of this type.
      */
-    public PixelInCell(final String name) {
+    private PixelInCell(final String name) {
         super(name, VALUES);
     }
 
@@ -78,4 +79,20 @@ public final class PixelInCell extends CodeList<PixelInCell> {
     public /*{PixelInCell}*/ CodeList[] family() {
         return values();
     }
+    
+    /**
+     * Returns the PixelInCell that matches the given string, or returns a 
+     * new one if none match it.
+     */    
+    public static synchronized PixelInCell valueOf(String code) {
+    	if (code == null) {
+    		return null;
+    	}
+    	for (PixelInCell type : VALUES) {
+    		if (code.equalsIgnoreCase(type.name())) {
+    			return type;
+    		}
+    	}
+    	return new PixelInCell(code);
+	}
 }

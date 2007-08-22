@@ -12,6 +12,8 @@ package org.opengis.metadata.citation;
 
 import java.util.List;
 import java.util.ArrayList;
+
+import org.opengis.metadata.Datatype;
 import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
 
@@ -63,7 +65,7 @@ public final class DateType extends CodeList<DateType> {
      *
      * @param name The enum name. This name must not be in use by an other enum of this type.
      */
-    public DateType(final String name) {
+    private DateType(final String name) {
         super(name, VALUES);
     }
 
@@ -82,4 +84,20 @@ public final class DateType extends CodeList<DateType> {
     public /*{DateType}*/ CodeList[] family() {
         return values();
     }
+    
+    /**
+     * Returns the DateType that matches the given string, or returns a 
+     * new one if none match it.
+     */    
+    public static synchronized DateType valueOf(String code) {
+    	if (code == null) {
+    		return null;
+    	}
+    	for (DateType type : VALUES) {
+    		if (code.equalsIgnoreCase(type.name())) {
+    			return type;
+    		}
+    	}
+    	return new DateType(code);
+	}
 }

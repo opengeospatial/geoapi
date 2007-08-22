@@ -12,6 +12,8 @@ package org.opengis.temporal;
 
 import java.util.List;
 import java.util.ArrayList;
+
+import org.opengis.referencing.cs.RangeMeaning;
 import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
 
@@ -62,7 +64,7 @@ public final class RelativePosition extends CodeList<RelativePosition> {
      *
      * @param name The enum name. This name must not be in use by an other enum of this type.
      */
-    public RelativePosition(final String name) {
+    private RelativePosition(final String name) {
         super(name, VALUES);
     }
 
@@ -81,4 +83,20 @@ public final class RelativePosition extends CodeList<RelativePosition> {
     public /*RelativePosition[]*/ CodeList[] family() {
         return values();
     }
+    
+    /**
+     * Returns the RelativePosition that matches the given string, or returns a 
+     * new one if none match it.
+     */    
+    public static synchronized RelativePosition valueOf(String code) {
+    	if (code == null) {
+    		return null;
+    	}
+    	for (RelativePosition type : VALUES) {
+    		if (code.equalsIgnoreCase(type.name())) {
+    			return type;
+    		}
+    	}
+    	return new RelativePosition(code);
+	}
 }

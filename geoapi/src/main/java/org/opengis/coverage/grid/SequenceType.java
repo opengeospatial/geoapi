@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.ArrayList;
 import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
+import org.opengis.coverage.SampleDimensionType;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -161,7 +162,7 @@ public class SequenceType extends CodeList<SequenceType> {
      *
      * @param name The enum name. This name must not be in use by an other enum of this type.
      */
-    public SequenceType(final String name) {
+    private SequenceType(final String name) {
         super(name, VALUES);
     }
 
@@ -180,4 +181,20 @@ public class SequenceType extends CodeList<SequenceType> {
     public /*{SequenceType}*/ CodeList[] family() {
         return values();
     }
+    
+    /**
+     * Returns the SequenceType that matches the given string, or returns a 
+     * new one if none match it.
+     */    
+    public static synchronized SequenceType valueOf(String code) {
+    	if (code == null) {
+    		return null;
+    	}
+    	for (SequenceType type : VALUES) {
+    		if (code.equalsIgnoreCase(type.name())) {
+    			return type;
+    		}
+    	}
+    	return new SequenceType(code);
+	}
 }

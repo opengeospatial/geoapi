@@ -13,6 +13,7 @@ package org.opengis.metadata.spatial;
 import java.util.List;
 import java.util.ArrayList;
 import org.opengis.util.CodeList;
+import org.opengis.webservice.ExceptionCode;
 import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Obligation.*;
@@ -105,7 +106,7 @@ public final class GeometricObjectType extends CodeList<GeometricObjectType> {
      *
      * @param name The enum name. This name must not be in use by an other enum of this type.
      */
-    public GeometricObjectType(final String name) {
+    private GeometricObjectType(final String name) {
         super(name, VALUES);
     }
 
@@ -124,4 +125,20 @@ public final class GeometricObjectType extends CodeList<GeometricObjectType> {
     public /*{GeometricObjectType}*/ CodeList[] family() {
         return values();
     }
+    
+    /**
+     * Returns the GeometricObjectType that matches the given string, or returns a 
+     * new one if none match it.
+     */    
+    public static synchronized GeometricObjectType valueOf(String code) {
+    	if (code == null) {
+    		return null;
+    	}
+    	for (GeometricObjectType type : VALUES) {
+    		if (code.equalsIgnoreCase(type.name())) {
+    			return type;
+    		}
+    	}
+    	return new GeometricObjectType(code);
+	}
 }

@@ -12,6 +12,8 @@ package org.opengis.metadata.citation;
 
 import java.util.List;
 import java.util.ArrayList;
+
+import org.opengis.metadata.constraint.Restriction;
 import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
 
@@ -115,7 +117,7 @@ public final class Role extends CodeList<Role> {
      *
      * @param name The enum name. This name must not be in use by an other enum of this type.
      */
-    public Role(final String name) {
+    private Role(final String name) {
         super(name, VALUES);
     }
 
@@ -134,4 +136,20 @@ public final class Role extends CodeList<Role> {
     public /*{Role}*/ CodeList[] family() {
         return values();
     }
+    
+    /**
+     * Returns the Role that matches the given string, or returns a 
+     * new one if none match it.
+     */    
+    public static synchronized Role valueOf(String code) {
+    	if (code == null) {
+    		return null;
+    	}
+    	for (Role type : VALUES) {
+    		if (code.equalsIgnoreCase(type.name())) {
+    			return type;
+    		}
+    	}
+    	return new Role(code);
+	}
 }

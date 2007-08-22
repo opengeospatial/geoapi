@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.ArrayList;
 import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
+import org.opengis.geometry.coordinate.BSplineSurfaceForm;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -78,7 +79,7 @@ public final class ByteInValuePacking extends CodeList<ByteInValuePacking> {
      *
      * @param name The enum name. This name must not be in use by an other enum of this type.
      */
-    public ByteInValuePacking(final String name) {
+    private ByteInValuePacking(final String name) {
         super(name, VALUES);
     }
 
@@ -97,4 +98,20 @@ public final class ByteInValuePacking extends CodeList<ByteInValuePacking> {
     public /*{ByteInValuePacking}*/ CodeList[] family() {
         return values();
     }
+    
+    /**
+     * Returns the ByteInValuePacking that matches the given string, or returns a 
+     * new one if none match it.
+     */    
+    public static synchronized ByteInValuePacking valueOf(String code) {
+    	if (code == null) {
+    		return null;
+    	}
+    	for (ByteInValuePacking type : VALUES) {
+    		if (code.equalsIgnoreCase(type.name())) {
+    			return type;
+    		}
+    	}
+    	return new ByteInValuePacking(code);
+	}
 }
