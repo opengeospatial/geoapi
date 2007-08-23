@@ -25,7 +25,6 @@ import org.opengis.feature.type.StructuralDescriptor;
  * <li>Attributes - List collection - ie. order of attributes matters
  * <li>Attribute lookup by index
  * <li>Attribute lookup by name (ie String)
- * <li>getSuper() is null, required for point 3
  * </ol>
  * Name conflict is not permitted (in order to allow lookup by a simple String).
  * </p>
@@ -34,8 +33,7 @@ import org.opengis.feature.type.StructuralDescriptor;
 public interface SimpleFeatureType extends FeatureType {
 	
 	/**
-	 * Must be <code>null</code> for truly simple content.
-	 * @return <code>null</code>, as no super types are allowed
+	 * Must also be a simple feature type.
 	 */
 	SimpleFeatureType getSuper();
 	
