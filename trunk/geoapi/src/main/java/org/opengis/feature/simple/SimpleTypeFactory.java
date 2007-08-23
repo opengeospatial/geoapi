@@ -38,13 +38,16 @@ public interface SimpleTypeFactory {
 	 * @param types AttributeTypes of contents, in order specified
 	 * @param defaultGeometry Member of types to be used as the defaultGeometry
 	 * @param crs CoordinateReferenceSystem for the contents of this feature
+	 * @param isAbstract Flag determining if type is abstract
 	 * @param restrictions Filters used to check the contents of this feature
+	 * @param superType The super or parent type
 	 * @param description description of this feature
 	 * @return created SimpleFeatureType
 	 */
 	SimpleFeatureType createSimpleFeatureType(Name name,
 			List<AttributeType> types, AttributeDescriptor defaultGeometry,
-			CoordinateReferenceSystem crs, Set<Filter> restrictions,
+			CoordinateReferenceSystem crs, boolean isAbstract, 
+			Set<Filter> restrictions, SimpleFeatureType superType, 
 			InternationalString description);
 
 	/**
