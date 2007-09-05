@@ -1,0 +1,366 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- ==================================================== -->
+<!--     Maven 2 project configuration file               -->
+<!--     http://maven.apache.org/maven2/                  -->
+<!-- ==================================================== -->
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+
+
+  <!-- ==================================================== -->
+  <!--     Project description (including license)          -->
+  <!-- ==================================================== -->
+  <groupId>org.opengis</groupId>
+  <artifactId>parent</artifactId>
+  <packaging>pom</packaging>
+  <version>2.1-SNAPSHOT</version>
+  <name>GeoAPI common settings</name>
+  <url>http://geoapi.sourceforge.net/snapshot/</url>
+  <description>
+    Common setting for all GeoAPI modules.
+  </description>
+
+  <organization>
+    <name>Open Geospatial Consortium</name>
+    <url>http://www.opengeospatial.org/</url>
+  </organization>
+  <inceptionYear>1994</inceptionYear>
+
+  <licenses>
+    <license>
+      <name>OGC copyright</name>
+      <url>https://geoapi.svn.sourceforge.net/svnroot/geoapi/trunk/LICENSE.txt</url>
+      <distribution>manual</distribution>
+    </license>
+  </licenses>
+
+
+
+  <!-- ==================================================== -->
+  <!--     Issue managements and mailing lists              -->
+  <!-- ==================================================== -->
+  <scm>
+    <connection>scm:svn:https://geoapi.svn.sourceforge.net/svnroot/geoapi/trunk/</connection>
+    <url>http://geoapi.svn.sourceforge.net/viewvc/geoapi/trunk/</url>
+  </scm>
+
+  <issueManagement>
+    <system>JIRA</system>
+    <url>http://jira.codehaus.org/browse/GEO</url>
+  </issueManagement>
+
+  <mailingLists>
+    <mailingList>
+      <name>GeoAPI-devel</name>
+      <subscribe>http://lists.sourceforge.net/lists/listinfo/geoapi-devel</subscribe>
+      <post>geoapi-devel@lists.sourceforge.net</post>
+      <archive>http://sourceforge.net/mailarchive/forum.php?forum_name=geoapi-devel</archive>
+    </mailingList>
+  </mailingLists>
+
+
+
+  <!-- ==================================================== -->
+  <!--     Repositories (used for javax.units dependency)   -->
+  <!-- ==================================================== -->
+  <repositories>
+    <repository>
+      <id>geotools-fr</id>
+      <name>Geotools repository</name>
+      <url>http://maven.geotools.fr/repository</url>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+    </repository>
+    <repository>
+      <id>refractions</id>
+      <name>Refractions Research - Maven 2 Repository</name>
+      <url>http://lists.refractions.net/m2</url>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+    </repository>
+  </repositories>
+
+
+
+  <!-- ==================================================== -->
+  <!--     External dependencies                            -->
+  <!-- ==================================================== -->
+  <dependencies>
+    <dependency>
+      <groupId>javax.units</groupId>
+      <artifactId>jsr108</artifactId>
+      <version>0.01</version>
+    </dependency>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>3.8.1</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+
+
+
+  <!-- ==================================================== -->
+  <!--     Compilation                                      -->
+  <!-- ==================================================== -->
+  <build>
+    <plugins>
+
+      <plugin>
+        <inherited>true</inherited>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-source-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>attach-sources</id>
+            <goals>
+              <goal>jar</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <source>1.5</source>            <!-- The -source argument for the Java compiler.   -->
+          <target>1.5</target>            <!-- The -target argument for the Java compiler.   -->
+          <debug>false</debug>            <!-- Whether to include debugging information.     -->
+          <encoding>ISO-8859-1</encoding> <!-- The -encoding argument for the Java compiler. -->
+        </configuration>
+      </plugin>
+
+
+
+      <!-- ==================================================== -->
+      <!--     JAR packaging                                    -->
+      <!-- ==================================================== -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jar-plugin</artifactId>
+        <configuration>
+          <archive>
+            <manifest>
+              <addClasspath>true</addClasspath>
+            </manifest>
+          </archive>
+        </configuration>
+      </plugin>
+    </plugins>
+
+
+
+    <!-- ==================================================== -->
+    <!--     Required for deployment to the repository        -->
+    <!-- ==================================================== -->
+    <extensions>
+      <extension>
+        <groupId>org.apache.maven.wagon</groupId>
+        <artifactId>wagon-webdav</artifactId>
+      </extension>
+    </extensions> 
+  </build>
+
+
+
+  <!-- ==================================================== -->
+  <!--     Web site and Javadoc generation                  -->
+  <!-- ==================================================== -->
+  <reporting>
+    <plugins>
+      <!-- NOTES: Do NOT enable deep copying of "doc-files" directories ("-docfilessubdirs" option),
+                  because it has the unwanted side effect to copy .svn directories as well. -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <configuration>
+          <author>false</author>          <!-- Specifies whether or not the author text is included.              -->
+          <encoding>ISO-8859-1</encoding> <!-- Specifies the encoding name of the source files.                   -->
+          <source>1.5</source>            <!-- Necessary to enable javadoc to handle J2SE 1.5 features.           -->
+          <noqualifier>all</noqualifier>  <!-- Omits qualifying package name from ahead of class names in output. -->
+          <quiet>true</quiet>             <!-- Shuts off non-error and non-warning messages.                      -->
+          <maxmemory>384M</maxmemory>     <!-- The maximum Java heap size to be used when launching the javadoc.  -->
+          <breakiterator>true</breakiterator>
+          <additionalparam>-keywords</additionalparam> 
+
+          <!-- Enables the Javadoc tool to interpret a simple, one-argument
+               custom block tag tagname in doc comments. Note: <placement/>
+               should be a combinaison of the letters Xaoptcmf. -->
+          <tags>
+            <tag>
+              <name>todo</name>
+              <placement>tfmc</placement>
+              <head>TODO:</head>
+            </tag>
+            <tag>
+              <name>unitof</name>
+              <placement>fm</placement>
+              <head>Unit:</head>
+            </tag>
+            <tag>
+              <name>rename</name>
+              <placement>X</placement>
+              <head>Renamed from:</head>
+            </tag>
+          </tags>
+
+          <!-- Creates links to existing javadoc-generated
+               documentation of external referenced classes. -->
+          <links>
+            <link>http://java.sun.com/j2se/1.5/docs/api</link>
+            <link>http://java.sun.com/products/java-media/jai/forDevelopers/jai-apidocs</link>
+            <link>http://java.sun.com/products/java-media/3D/forDevelopers/j3dapi</link>
+            <link>http://jsr-108.sourceforge.net/javadoc</link>
+          </links>
+
+          <!-- Separates packages on the overview page into the groups  specified. -->
+          <groups>
+            <group>
+              <title>Spatial Referencing by Coordinates</title>
+              <packages>
+                org.opengis.referencing*:org.opengis.temporal*:org.opengis.parameter*
+              </packages>
+            </group>
+            <group>
+              <title>Geometry and topology</title>
+              <packages>
+                org.opengis.geometry*:org.opengis.topology*
+              </packages>
+            </group>
+            <group>
+              <title>Feature and filter</title>
+              <packages>
+                org.opengis.feature*:org.opengis.filter*
+              </packages>
+            </group>
+            <group>
+              <title>Grid Coverage</title>
+              <packages>
+                org.opengis.coverage*
+              </packages>
+            </group>
+            <group>
+              <title>Meta Data</title>
+              <packages>
+                org.opengis.metadata*
+              </packages>
+            </group>
+            <group>
+              <title>Catalog Services</title>
+              <packages>
+                org.opengis.catalog*
+              </packages>
+            </group>
+            <group>
+              <title>Styling and web services</title>
+              <packages>
+                org.opengis.layer*:org.opengis.sld*:org.opengis.web*
+              </packages>
+            </group>
+            <group>
+              <title>Display objects</title>
+              <packages>
+                org.opengis.go*
+              </packages>
+            </group>
+          </groups>
+        </configuration>
+      </plugin>
+
+
+
+      <!-- ==================================================== -->
+      <!--     Web site generation                              -->
+      <!-- ==================================================== -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-site-plugin</artifactId>
+        <configuration>
+          <locales>en</locales>
+        </configuration>
+      </plugin>
+
+
+
+      <!-- ==================================================== -->
+      <!--     Reports configuration for the web site           -->
+      <!-- ==================================================== -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-project-info-reports-plugin</artifactId>
+      </plugin>
+
+
+
+      <!-- ==================================================== -->
+      <!--     Changes log from Subversion                      -->
+      <!-- ==================================================== -->
+      <plugin>
+        <!-- TODO: the officiel name is the commented-one below,
+                   but it doesn't seem to be deployed on ibiblio. -->
+<!--    <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-changelog-plugin</artifactId> -->
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>changelog-maven-plugin</artifactId>
+        <version>2.0-beta-1</version>
+        <reportSets>
+          <reportSet>
+            <id>changes-report</id>
+            <reports>
+              <report>changelog</report>
+              <report>file-activity</report>
+<!--          <report>dev-activity</report> -->
+            </reports>
+            <configuration>
+              <type>range</type>
+              <range>30</range>
+            </configuration>
+          </reportSet>
+        </reportSets>
+      </plugin>
+    </plugins>
+  </reporting>
+
+
+
+  <!-- ==================================================== -->
+  <!--     Deployment to public servers                     -->
+  <!-- ==================================================== -->
+  <distributionManagement>
+    <repository>
+      <id>refractions</id>
+      <name>Refractions Research - Maven 2 Repository</name>
+      <url>dav:http://lists.refractions.net/m2/</url>
+    </repository>
+    <snapshotRepository>
+      <id>refractions</id>
+      <name>Refractions Research - Maven 2 Repository</name>
+      <url>dav:http://lists.refractions.net/m2/</url>
+    </snapshotRepository>
+    <site>
+      <id>SourceForge</id>
+      <name>GeoAPI web site</name>
+      <url>scp://geoapi.sourceforge.net:/home/groups/g/ge/geoapi/htdocs/snapshot/</url>
+    </site>
+  </distributionManagement>
+
+
+
+  <!-- ==================================================== -->
+  <!--     All GeoAPI modules included in the build         -->
+  <!-- ==================================================== -->
+  <modules>
+    <module>tools</module>
+    <module>erasure</module>
+    <module>geoapi</module>
+    <module>nogenerics</module>
+    <module>examples</module>
+  </modules>
+</project>
