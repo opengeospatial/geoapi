@@ -1,84 +1,201 @@
 package org.opengis.feature;
 
 import java.util.Collection;
-import java.util.List;
 
-import org.opengis.feature.type.AttributeDescriptor;
 import org.opengis.feature.type.ComplexType;
 import org.opengis.feature.type.Name;
-//import org.opengis.feature.type.AttributeType;
+import org.opengis.filter.expression.Expression;
 
 /**
- * A complex Atribtue holds a collection of attribute values in a single group.
+ * An attribute which is composed of other properties.
  * <p>
- * Direct Access:
- * <ul>
- * <li>Collection<Attribute> get() - list of attributes, may be modified
- * <li>List<Attribute> get( AttributeName ) - retrieve attributes matching provided name
- * </ul>
- * Note that the AttributeName name used above can be deterimed by
- * examining the information available from getType().
+ * A complex attribute is a container for other properties (attributes +
+ * associations). The value of a complex attribute is a collection of those
+ * contained properties.
  * </p>
+ * <br/>
  * <p>
- * It is recommended practice to formally use an Expression to access the contents
- * of a ComplexAttribute, the Expression implementation will provide a more
- * complete query langage then supported via direct access.  Once again please
- * use the information in getType() to assist in constructing useful Expressions.
+ * <h3>Property Access</h3>
+ * The {@link #getValue()} method returns a collection of the properties
+ * contained by the complex attribute.
+ * 
+ * <pre>
+ *    ComplexAttribute attribute = ...;
+ *    
+ *    //loop through all the properties
+ *    for (Property p : attribute.getValue(); ) {
+ *        // do something with the property
+ *    }
+ * </pre>
+ * 
+ * <br>
+ * Contained properties can also be fetched by name by {@link Name} with the
+ * {@link #getProperties(Name)} and {@link #getProperties(String)} methods.
+ * 
+ * <pre>
+ *    ComplexAttribute attribute = ...;
+ *    
+ *    //loop through all the &quot;foo&quot; attributes
+ *    for ( Property p : attribute.getProperties( &quot;foo&quot; ) ) {
+ *        p.getName().getLocalPart() == &quot;foo&quot;;
+ *    }
+ * </pre>
+ * 
+ * <br>
+ * Often it is known in advance that a single instance of a particular property
+ * exists. When this is the case the {@link #getProperty(Name)} and
+ * {@link #getProperty(String)} methods can be used to get direct access to the
+ * property.
+ * 
+ * <pre>
+ *    ComplexAttribute attribute = ...;
+ *    
+ *    //get the single foo attribute
+ *    Property foo = attribute.getProperty( &quot;foo&quot; );
+ * </pre>
+ * 
+ * </p>
+ * <br>
+ * <p>
+ * <h3>Xpath and Query Language Access</h3>
+ * The above property access methods perform an exact match on property name
+ * against the name passed in. However, often it is necesary to access
+ * properties via a query language such as xpath.
+ * </p>
+ * <br>
+ * <p>
+ * For instance.the expression <code>"//foo"</code> should return all the
+ * properties named "foo". Or the expression <code>"foo/bar"</code> should
+ * return the "bar" property nested inside of the "foo" property. In these
+ * cases, an {@link Expression} must be used:
+ * 
+ * <pre>
+ *   ComplexAttribute attribute = ...;
+ * 
+ *   //get the 'foo/bar' property
+ *   FilterFactory factory = ...;
+ *   PropertyName xpath = factory.property( &quot;foo/bar&quot; );
+ *   Property bar = xpath.evaluate( attribute );
+ * </pre>
+ * 
  * </p>
  * 
- * @author Jody Garnett, Refractions Research, jgarnett@refractions.net 
- * @author Gabriel Roldan
+ * @author Jody Garnett, Refractions Research
+ * @author Gabriel Roldan, Axios Engineering
+ * @author Justin Deoliveira, The Open Planning Project
  */
 public interface ComplexAttribute extends Attribute {
 
-	public ComplexType getType();
-	
-	/**
-	 * Indicates the AttirbuteDescriptor for this content.
-	 * <p>
-	 * The attribute descriptor formally captures the name and multiplicity
-	 * and type associated with this attribute.
-	 * </p>
-	 * @return Descriptor for this attribute, if it is contained by another ComplexAttribute
-	 */
-	public AttributeDescriptor getDescriptor();
-	
-	/**
-	 * Sets the complete contents of this Attribute, that must be valid against
-	 * the type's schema descriptor.
-	 * 
-	 * @throws IllegalArgumentException
-	 */
-	void setValue(Collection<Property> values);
+    /**
+     * Override of {@link Attribute#getType()} which type narrows to
+     * {@link ComplexType}.
+     * 
+     * @see Attribute#getType()
+     */
+    ComplexType getType();
 
-	/**
-	 * Returns the value of the attribute, which is a list of other properties,
-     * attributes + associations..
-	 * 
-	 */
-	Collection<Property> getValue();
-    
     /**
-     * Convenience method for getting at the attributes contained in this 
-     * complex attribute.
+     * Sets the contained properties of the complex attribute.
+     * <p>
+     * The <tt>values</tt> should match the structure defined by
+     * <code>getDescriptor()</code>.
+     * </p>
      */
-    Collection<Attribute> attributes();
-    
+    void setValue(Collection<Property> values);
+
     /**
-     * Convenience method for getting at the associations contained in this 
-     * complex attribute.
-     * @return
+     * Override of {@link Property#getValue()} which returns the collection of
+     * {@link Property} which make up the value of the complex attribute.
      */
-    Collection<Association> associations();
-    
+    Collection<Property> getValue();
+
     /**
-	 * Returns the subset of the attributes returned by {@link #get()} which 
-	 * match the specified name.
-	 * 
-	 * @param name Name of attributes to return.
-	 * 
-	 * @return List of attributes matching name, empty list if no match.
-	 */
-	List<Property> get(Name name);
-	
+     * Returns a subset of the properties of the complex attribute which match
+     * the specified name.
+     * <p>
+     * The <tt>name</tt> parameter is matched against each contained
+     * {@link Property#getName()}, those that are equal are returned.
+     * </p>
+     * 
+     * @param name
+     *            The name of the properties to return.
+     * 
+     * @return The collection of properties which match the specified name, or
+     *         an empty collection if no such properties match.
+     */
+    Collection<Property> getProperties(Name name);
+
+    /**
+     * Returns single property of the complex attribute which matches the
+     * specified name.
+     * <p>
+     * Note: This method is a convenience and care should be taken when calling
+     * it if more then a single property matches <tt>name</tt>. In such a
+     * case the first encountered property in which {@link Property#getName()}
+     * is equal to <tt>name</tt> is returned, and no order is guaranteed.
+     * </p>
+     * <p>
+     * This method is a safe convenience for:
+     * 
+     * <code>getProperties(name).iterator().next()</code>.
+     * 
+     * In the event that no property matches the specified name
+     * <code>null</code> is returned.
+     * </p>
+     * 
+     * @param name
+     *            The name of the property to return.
+     * 
+     * @return The property matching the specified name, or <code>null</code>.
+     */
+    Property getProperty(Name name);
+
+    /**
+     * Returns a subset of the properties of the complex attribute which match
+     * the specified name.
+     * <p>
+     * This method is a convenience for {@link #getProperties(Name)} in which
+     * {@link Name#getNamespaceURI()} is <code>null</code>.
+     * </p>
+     * <p>
+     * Note: Special care should be taken when using this method in the case
+     * that two properties with the same local name but different namespace uri
+     * exist. For this reason using {@link #getProperties(Name)} is safer.
+     * </p>
+     * 
+     * @param name
+     *            The local name of the properties to return.
+     * 
+     * @return The collection of properties which match the specified name, or
+     *         an empty collection if no such properties match.
+     * 
+     * @see #getProperties(Name)
+     */
+    Collection<Property> getProperties(String name);
+
+    /**
+     * Returns single property of the complex attribute which matches the
+     * specified name.
+     * <p>
+     * This method is a convenience for {@link #getProperty(Name)} in which
+     * {@link Name#getNamespaceURI()} is <code>null</code>.
+     * </p>
+     * <p>
+     * Note: This method is a convenience and care should be taken when calling
+     * it if more then a single property matches <tt>name</tt>. In such a
+     * case the first encountered property in which {@link Property#getName()}
+     * is matches <tt>name</tt> is returned, and no order is guaranteed.
+     * </p>
+     * <p>
+     * Note: Special care should be taken when using this method in the case
+     * that two properties with the same local name but different namespace uri
+     * exist. For this reason using {@link #getProperties(Name)} is safer.
+     * </p>
+     * 
+     * @param name
+     *            The local name of the property to return.
+     * 
+     * @return The property matching the specified name, or <code>null</code>.
+     */
+    Property getProperty(String name);
 }
