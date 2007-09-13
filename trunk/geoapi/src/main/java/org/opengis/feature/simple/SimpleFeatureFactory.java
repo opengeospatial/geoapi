@@ -1,10 +1,8 @@
 package org.opengis.feature.simple;
 
-import java.util.Date;
 import java.util.List;
 
 import org.opengis.feature.Attribute;
-import org.opengis.feature.FeatureFactory;
 import org.opengis.feature.GeometryAttribute;
 import org.opengis.feature.type.AttributeDescriptor;
 import org.opengis.feature.type.GeometryType;

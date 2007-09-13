@@ -3,7 +3,6 @@ package org.opengis.feature.simple;
 import java.util.Date;
 
 import org.opengis.feature.Attribute;
-import org.opengis.feature.type.AttributeType;
 
 /**
  * Attribute bound to a Date class.

@@ -15,7 +15,7 @@ package org.opengis.feature.type;
  * </p>
  * @author Jody Garnett, Refractions Research
  */
-public interface AssociationDescriptor extends StructuralDescriptor {
+public interface AssociationDescriptor extends PropertyDescriptor {
 		
 	/**
 	 * Indicates the type of this association.

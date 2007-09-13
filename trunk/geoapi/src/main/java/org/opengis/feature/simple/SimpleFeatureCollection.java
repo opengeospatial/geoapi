@@ -1,11 +1,6 @@
 package org.opengis.feature.simple;
 
-import java.util.Collection;
-import java.util.List;
-
-import org.opengis.feature.Attribute;
 import org.opengis.feature.FeatureCollection;
-import org.opengis.feature.type.FeatureType;
 
 //Java 1.4 imports
 //import org.opengis.feature.type.AttributeType;

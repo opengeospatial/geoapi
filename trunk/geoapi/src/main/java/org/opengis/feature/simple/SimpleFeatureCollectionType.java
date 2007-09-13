@@ -1,11 +1,8 @@
 package org.opengis.feature.simple;
 
-import java.util.List;
 import java.util.Set;
 
-import org.opengis.feature.Attribute;
 import org.opengis.feature.type.AssociationDescriptor;
-import org.opengis.feature.type.AssociationType;
 import org.opengis.feature.type.FeatureCollectionType;
 
 /**

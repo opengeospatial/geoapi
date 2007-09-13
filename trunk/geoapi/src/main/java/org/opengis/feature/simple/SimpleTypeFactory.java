@@ -1,19 +1,11 @@
 package org.opengis.feature.simple;
 
-import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 
-import org.opengis.feature.type.AssociationDescriptor;
 import org.opengis.feature.type.AttributeDescriptor;
 import org.opengis.feature.type.AttributeType;
-//import org.opengis.feature.type.FeatureType;
-//import org.opengis.feature.type.FeatureCollectionType;
-import org.opengis.feature.type.GeometryType;
 import org.opengis.feature.type.Name;
-import org.opengis.feature.type.StructuralDescriptor;
-import org.opengis.feature.type.TypeFactory;
-import org.opengis.feature.type.TypeName;
 import org.opengis.filter.Filter;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 import org.opengis.util.InternationalString;

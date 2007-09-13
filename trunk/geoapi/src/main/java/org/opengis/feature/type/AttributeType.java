@@ -1,65 +1,42 @@
 package org.opengis.feature.type;
 
-import java.util.Collection;
-import java.util.Set;
-
-import org.opengis.filter.Filter;
+import org.opengis.feature.Attribute;
 
 /**
- * Declaration of attribute type.
+ * The type of an Attribute.
  * <p>
- * Please note that this is a formal "dynamic type system", we have not
- * indicated at this level *which* class this attribute type is bound to.
- * As an implementation option getBinding may be restricted to a specific
- * class for compile time checks, this will only be of benefit when
- * implementing wrappers around existing staticly defined Java domain models.
+ * An AttributeType is an extension of {@link PropertyType} which defines some 
+ * additional information: 
+ * <ul>
+ *  <li>if the attribute is identified or not
+ * </ul>
  */
 public interface AttributeType extends PropertyType {
 
 	/**
-	 * True if this type is usable as a target of a reference.
+	 * Indicates if the type is identified or not.
+	 * <p>
+	 * If this method returns <code>true</code>, then the corresponding 
+	 * attribute must have a unique identifier.
+	 * </p>
 	 * 
-	 * @return true if this complex type must have non null getID()
+	 * @return <code>true</code> if the attribute is identified, otherwise <code>false</code>.
+	 * @see Attribute#getID()
 	 */
 	boolean isIdentified();
 
 	/**
-	 * Access to super type information.
-	 * <p>
-	 * The super type may contain additional restrictions to be considered, or a
-	 * definition of isNilable.
-	 * </p>
+	 * Override of {@link PropertyType#getSuper()} which type narrows to 
+	 * {@link AttributeType}.
 	 * 
-	 * @return AttributeType of supertype
+	 * @see PropertyType#getSuper()
 	 */
 	AttributeType getSuper();
-
-	/** Indicate that this AttributeType may not be used directly */
-	boolean isAbstract();
-
-	/**
-	 * Java class bound to this content type.
-	 */
-	Class<?> getBinding();
-
-	/**
-	 * List of restrictions used to limit the allowable values for objects of
-	 * this type.
-	 * <p>
-	 * These restrictions should be considered in light of those available
-	 * through getSuper, in the case where Restrictions conflict these should be
-	 * considered complete overrides of the restrictions available via the
-	 * getSuper.
-	 * </p>
-	 * 
-	 * @return List<Restriction> used to validate allowable values.
-	 */
-	Set<Filter> getRestrictions();
-
+	
 	/**
 	 * Operations that may be invoked against this type.
 	 * 
 	 * @return Collection<OperationDescriptor> that may be invoked on values of this type.
 	 */
-	Collection<OperationDescriptor> getOperations();	
+	//Collection<OperationDescriptor> getOperations();
 }
