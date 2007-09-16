@@ -1,60 +1,37 @@
 package org.opengis.feature.type;
 
-import java.util.Set;
-
-import org.opengis.filter.Filter;
+import org.opengis.feature.Association;
 
 /**
- * Type of association between two properties.
+ * The type of an association.
  * <p>
- * The AssociationType is used to represent the way in which two properties are
- * associated. Common examples include:
- * <ul>
- * <li>aggregation: a university may contain the buildings
- * <li>spatial: "touches" the current feature would be used in a graph package
- * <li>temporal: "before" the current feature would be used in a versioning
- * system
- * <li>custom: domain specific relationships such as "business partners"
- * </ul>
- * Multiplicity information described as part of the AssociationDescriptor, here
- * we are focused on capturing the way in which values can be related.
+ * The notion of an "association" is similar to that of an association in UML 
+ * and is used to model a relationship among two attributes. See the javadoc for
+ * {@link Association} for more info on the semantics of associations. 
+ * </p>
  * <p>
- * Your applications associations may be gathered into a hierarchy offering
- * further refinement where needed. Thus a lake can be associated with
- * "connected" rivers, and thus refined with "up stream" and "down stream"
- * associations.
+ * An association is used to relate one attribute to another. The type of the 
+ * association specifies the type of the related attribute with the 
+ * {@link #getRelatedType()} method. 
  * </p>
  * 
  * @author Jody Garnett, Refractions Research, Inc.
+ * @author Justin Deoliveira, The Open Planning Project
  */
 public interface AssociationType extends PropertyType {
 
+    /**
+     * Override of {@link PropertyType#getSuper()} which type narrows to 
+     * {@link AssociationType}.
+     * 
+     * @see PropertyType#getSuper()
+     */
+	AssociationType getSuper();
+
 	/**
-	 * Access to super type information.
-	 * <p>
-	 * The super type may contain additional restrictions to be considered, or a
-	 * definition of isNilable.
-	 * </p>
+	 * The attribute type of the related attribute in the association.
 	 * 
-	 * @return AttributeType of supertype
+	 * @return The type of the related attribute.
 	 */
-	public AssociationType getSuper();
-
-	/**
-	 * Indicate that this AttributeType may not be used directly.
-	 * <p>
-	 * An example abstract association would be "spatial" which would need to be
-	 * sub typed to indicate "touches" or "contained".
-	 * </p>
-	 */
-	public boolean isAbstract();
-
-	/**
-	 * AttributeType related by this association.
-	 * <p>
-	 * This is the AttributeType you are in effect pointing to by using an
-	 * association.
-	 * <p>
-	 */
-	public AttributeType getReferenceType();
+	AttributeType getRelatedType();
 }
