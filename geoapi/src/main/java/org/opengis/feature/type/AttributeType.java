@@ -1,11 +1,23 @@
 package org.opengis.feature.type;
 
-import java.util.List;
-
 import org.opengis.feature.Attribute;
 
 /**
- * Type of content stored in an attribute.
+ * The type of an attribute.
+ * <p>
+ * An attribute is similar to the notion of a UML attribute, or a field of a java
+ * object. See the javadoc of {@link Attribute} for more info on the semantics 
+ * of attributes.
+ * </p>
+ * <p>
+ * <h3>Identifiablily</h3>
+ * An attribute may be "identifiable". When this is the case the attribute has a
+ * unique identifier associated with it. See {@link Attribute#getID()}. The type
+ * of the attribute specifies wether it is identifiable or not ({@link #isIdentified()}. 
+ * </p>
+ * 
+ * @author Jody Garnett, Refractions Research
+ * @author Justin Deoliveira, The Open Planning Project
  */
 public interface AttributeType extends PropertyType {
 
@@ -13,10 +25,12 @@ public interface AttributeType extends PropertyType {
 	 * Indicates if the type is identified or not.
 	 * <p>
 	 * If this method returns <code>true</code>, then the corresponding 
-	 * attribute must have a unique identifier.
+	 * attribute must have a unique identifier, ie, {@link Attribute#getID()} 
+	 * must return a value, and cannot be <code>null</code>.
 	 * </p>
 	 * 
 	 * @return <code>true</code> if the attribute is identified, otherwise <code>false</code>.
+	 * 
 	 * @see Attribute#getID()
 	 */
 	boolean isIdentified();
@@ -28,11 +42,4 @@ public interface AttributeType extends PropertyType {
 	 * @see PropertyType#getSuper()
 	 */
 	AttributeType getSuper();
-	
-	/**
-	 * Operations that may be invoked against this type.
-	 * 
-	 * @return Collection<OperationDescriptor> that may be invoked on values of this type.
-	 */
-	List<Operation> getOperations();
 }
