@@ -40,7 +40,7 @@ import org.opengis.feature.Property;
  *   foo.getName().getLocalPart() == "bar";
  *   foo.getMinOccurs() == 1;
  *   foo.getMaxOccurs() == 1;
- *   foo.isNillable() == true;
+ *   foo.isNillable() == false;
  *   foo.getType().getName().getLocalPart() == "int";
  * </pre>
  * </p>

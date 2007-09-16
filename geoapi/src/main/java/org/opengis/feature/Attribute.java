@@ -6,12 +6,16 @@ import org.opengis.feature.type.AttributeType;
 /**
  * An extension of Property for an attribute.
  * <p>
- * The semantics of an attribute are similar to that of UML. Simple data
- * types are held inside an Attribute instance. For complex data there is
- * a specific subclass.
+ * The notion of an "attribute" is similar to that of an attribute in UML.
  * </p>
  * <p>
- * A second analogy for an attribute is a "field" in a java object. A field also
+ * This interface is capable of modeling "primitive data", things like strings,
+ * numerics, dates, etc... However for "complex data" (that is non-primitive 
+ * data types which are made up other primitive data types), a specific 
+ * sub-interface is used, see {@link ComplexAttribute}.
+ * </p>
+ * <p>
+ * An analogy for an attribute is a "field" in a java object. A field also
  * brings together a field name, value and type.
  * </p>
  * 
