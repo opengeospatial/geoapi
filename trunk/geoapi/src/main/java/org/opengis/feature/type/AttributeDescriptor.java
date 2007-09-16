@@ -1,7 +1,7 @@
 package org.opengis.feature.type;
 
 /**
- * Describes an instance of a Attribute.
+ * Describes an instance of an Attribute.
  * <p>
  * An AttributeDescriptor is an extension of {@link PropertyDescriptor} which 
  * defines some additional information:
