@@ -47,7 +47,7 @@ import org.opengis.feature.type.PropertyType;
  * A property can often be part of another entity, often a
  * {@link ComplexAttribute}. When this is the case, the relationship between
  * the property and its "container" is described by a {@link PropertyDescriptor}.
- * The descriptor of a property defines things like nullablility, multiplicity,
+ * The descriptor of a property defines things like nilablility, multiplicity,
  * etc... See the javadoc of {@link PropertyDescriptor} for more details. The
  * descriptor is available via the {@link #getDescriptor()} method.
  * 

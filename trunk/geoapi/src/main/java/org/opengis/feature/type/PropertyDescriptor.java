@@ -14,7 +14,7 @@ import org.opengis.feature.ComplexAttribute;
  *   <li>type of the property
  *   <li>the name of the property
  *   <li>number of allowable occurrences of the property
- *   <li>nullability of the property
+ *   <li>nilability of the property
  * </ul>
  * </p>
  * <br>
@@ -61,7 +61,7 @@ import org.opengis.feature.ComplexAttribute;
  *  for ( Property p : properties ) {
  *      p.getDescriptor() == descriptor
  *    
- *      p.getValue() != null //nillable = false
+ *      p.getValue() != null; //nilable = false
  *      p.getType().getBinding() == String.class; //type = xs:string
  *      p.getValue() instanceof String; //type = xs:string
  *  }

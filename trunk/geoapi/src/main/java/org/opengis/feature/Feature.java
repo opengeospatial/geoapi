@@ -44,7 +44,7 @@ public interface Feature extends ComplexAttribute {
      * @return The feature identifier, never <code>null</code>.
      */
     String getID();
-
+    
     /**
      * The bounds of this Feature, if available.
      * <p>

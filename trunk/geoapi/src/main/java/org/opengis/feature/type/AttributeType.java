@@ -1,15 +1,11 @@
 package org.opengis.feature.type;
 
+import java.util.List;
+
 import org.opengis.feature.Attribute;
 
 /**
- * The type of an Attribute.
- * <p>
- * An AttributeType is an extension of {@link PropertyType} which defines some 
- * additional information: 
- * <ul>
- *  <li>if the attribute is identified or not
- * </ul>
+ * Type of content stored in an attribute.
  */
 public interface AttributeType extends PropertyType {
 
@@ -38,5 +34,5 @@ public interface AttributeType extends PropertyType {
 	 * 
 	 * @return Collection<OperationDescriptor> that may be invoked on values of this type.
 	 */
-	//Collection<OperationDescriptor> getOperations();
+	List<Operation> getOperations();
 }

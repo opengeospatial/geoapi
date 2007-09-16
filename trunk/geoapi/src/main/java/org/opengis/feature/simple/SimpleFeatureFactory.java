@@ -58,7 +58,7 @@ public interface SimpleFeatureFactory {
 	/**
 	 * Creates a new simple feature.
 	 * 
-	 * @param attributes attributes order dicated by provided <code>type</code>
+	 * @param attributes attributes order dictated by provided <code>type</code>
 	 * @param type Type of SimpleFeature to be created
 	 * @param id The id of the feature, (fid), may be null depending on the type.
 	 * 
@@ -66,18 +66,6 @@ public interface SimpleFeatureFactory {
 	 * @throws IllegalArgumentException If desc.getType() does not return an 
 	 * instanceof {@link SimpleFeatureType}.
 	 */
-	SimpleFeature createSimpleFeature(List attributes, SimpleFeatureType type, String id );
-
-	/**
-	 * Createsa a new simple feature collection.
-	 * 
-	 * @param type Type of SimpleFeatureCollection to be created
-	 * @param id The id of the feature collection
-	 * 
-	 * @throws IllegalArgumentException If desc.getType() does not return an 
-	 * instanceof {@link org.opengis.feature.simple.SimpleFeatureCollectionType}.
-	 */
-	SimpleFeatureCollection createSimpleFeatureCollection(
-			SimpleFeatureCollectionType type, String id);
+	SimpleFeature createSimpleFeature(List<?> attributes, SimpleFeatureType type, String id );
 		
 }

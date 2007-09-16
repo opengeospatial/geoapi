@@ -1,38 +1,15 @@
 package org.opengis.feature.type;
 
 import java.util.List;
-import java.util.Set;
 
 import org.opengis.filter.Filter;
 
 /**
- * Operation information, immutable.
+ * The type of operations to be invoked on an attribute.
  * <p>
- * This represents a type of operation that can be used to update the state of
- * an AttributeType, this gets more exciting with ComplexAttribtueType (or Feature)
- * <p>
- * If you come to this from a pure java background this is where we capture the
- * methods in our dynamic model. Since we do not carry implementations here you
- * would do best to think of this as an interface definition.
- * </p>
- * <p>
- * To implement a method you will need to examine the OperationDescriptor that
- * can put you in touch with actual functionality, often implemented directly in
- * java, or using a scripting language.
- * </p>
- * <p>
- * The implementation of the operations is against the bound AttributeType "B":
- * <ul>
- * <li>the descriptor will be able to evaluate against an instance of B
- *     and produced a change state or result
- * <li>
- * </ul>
- * <p>
- * Notes:
- * <ul>
- * <li>TODO: We will need to set up a system for advertising expected exceptions
- * <li>if the type isAbstract then the call method is not implemented
- * </ul>
+ * Invoking an operation on an attribute is used to calculate a derived quantity
+ * or update attribute state. OperationType is used to define the required
+ * parameters and expected result for an Operation.
  * 
  * @author Jody Garnett, Refractions Research, Inc.
  */
@@ -41,11 +18,10 @@ import org.opengis.filter.Filter;
 	/**
 	 * Access to super type information.
 	 * <p>
-	 * The super type may contain an implementation based on the  additional restrictions to be considered, or a
-	 * definition of isNilable.
-	 * </p>
-	 * 
-	 * @return AttributeType of supertype
+	 * The super type of an operation provides additional
+	 * restrictions and description for this operation.
+	 * </p> 
+	 * @return super type
 	 */
 	 OperationType getSuper();
 	
@@ -85,7 +61,7 @@ import org.opengis.filter.Filter;
 	/**
 	 * List of restrictions used to limit the allowable returned value.
 	 * 
-	 * @return Set<Filter> used to validate allowable values.
+	 * @return Restrictions on valid return values
 	 */
-	 Set<Filter> getRestrictions();
+	 List<Filter> getRestrictions();
 }

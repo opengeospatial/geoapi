@@ -1,7 +1,7 @@
 package org.opengis.feature.type;
 
+import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import org.opengis.feature.Property;
 import org.opengis.filter.Filter;
@@ -126,7 +126,7 @@ public interface PropertyType {
      * </p>
      * @return The binding of the property type.
      */
-    Class getBinding();
+    Class<?> getBinding();
     
     /**
      * The parent type of the property type.
@@ -150,32 +150,26 @@ public interface PropertyType {
     boolean isAbstract();
     
     /**
-     * List of restrictions used to limit the allowable values for properties 
-     * of the property type.
+     * List of restrictions used define valid values for properties of this
+     * property type.
      * <p>
      * Each restriction is a {@link Filter} object in which the property is 
      * passed through. If {@link Filter#evaluate(Object)} returns <code>true</code> 
      * the restriction is met. If <code>false</code> is returned then the 
      * restriction has not been met and the property should be considered invalid.
-     * </p>
+     * Remember to check getSuper().getRestrictions() as well.
      * <p>
      * This method returns an empty set in the case of no restrictions and should
      * not return <code>null</code>.
      * </p>
      * @return List<Restriction> used to validate allowable values.
      */
-    Set<Filter> getRestrictions();
+    List<Filter> getRestrictions();
 	
 	/**
-     * The description of the type.
-     * <p>
-     * This value may be <code>null</code>.
-     * </p>
-     * <p>
-     * InternationalString is used to allow for translations.
-     * </p>
+     * Human readable description of this property type.
      * 
-     * @return description of this type
+     * @return Human readable description of this property type.
      */
     InternationalString getDescription();
     
@@ -201,12 +195,10 @@ public interface PropertyType {
     Map<Object,Object> getUserData();
 
     /**
-     * Equals override for this interface.
-     * <p>
-     * Equality is based soley on the {@link #getName()} property.
+     * Equality based on property {@link #getName()}.
      * </p>
      * 
-     * @return true iff this equals other
+     * @return <code>true</code> if other is a PropertyType with the same name
      */
     boolean equals(Object other);
     
