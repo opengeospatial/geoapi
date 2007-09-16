@@ -41,18 +41,5 @@ public interface SimpleTypeFactory {
 			CoordinateReferenceSystem crs, boolean isAbstract, 
 			Set<Filter> restrictions, SimpleFeatureType superType, 
 			InternationalString description);
-
-	/**
-	 * Create a SimpleFeatureType describing a Feature containing only directly
-	 * bound attributes with no multiplicity.
-	 *
-	 * @param name TypeName of collection type to be created
-	 * @param member FeatureType of collection members
-	 * @param description description of this feature
-	 * @return created SimpleFeatureCollectionType
-	 */
-	SimpleFeatureCollectionType createSimpleFeatureCollectionType(
-			Name name, SimpleFeatureType member,
-			InternationalString description);
 	
 }

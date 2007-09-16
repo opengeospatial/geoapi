@@ -15,23 +15,70 @@ import java.util.Collection;
 import java.util.Iterator;
 
 import org.opengis.annotation.XmlElement;
-import org.opengis.feature.type.FeatureCollectionType;
 import org.opengis.feature.type.FeatureType;
 import org.opengis.filter.Filter;
 import org.opengis.filter.sort.SortBy;
+import org.opengis.geometry.BoundingBox;
 import org.opengis.util.ProgressListener;
 //import org.opengis.feature.type.AttributeType;
 /**
- * Represents a FeatureCollection (explicitly a Collection<Feature>.
+ * Access to a collection of features.
  * <p>
- * Note the "attributes" available in a FeatureCollection are to be
- * considered a derrived quality based on the contents (or members) of the
- * collection. An "empty" FeatureCollection should not exist.
- * </p>
- * Implementations and client code should adhere to the rules set forth
- * by {@link java.util.Collection}. That is, some methods are optional
- * to implement, and may throw an {@link UnsupportedOperationException}.
- * </p>
+ * Many of the values available for this FeatureCollection (such as getBounds())
+ * are to be considered a derived quantities based on the contents (or members)
+ * of this collection. 
+ * 
+ * <h4>Resource Access</h4>
+ * 
+ * FeatureCollection implementations make use of resources to access sometimes
+ * vast quantities of information. The preferred way of accessing the contents
+ * of a feature collection is using a FeatureVisitor.
+ * <pre><code>BoundingBox box = geometryFactory.createBoundingBox();
+ * features.accepts( new FeatureVisitor(){
+ *     public void visit(Feature feature){
+ *         box.include( feature.getBounds() );
+ *     }
+ * }, progress );
+ * </code></pre>
+ * This technique is <b>safe</b> and ensures that and memory cache or database connection
+ * associated with data access will be returned.
+ * 
+ * <h4>Use of Iterator with try finally</h4>
+ * If you are using a for loop please use a try/finally statement to close any iterators used.
+ * <pre><code>BoundingBox box = geometryFactory.createBoundingBox();
+ * Iterator<Feature> iterator = features.iterator();
+ * try {
+ *    while( iterator.hasNext() ){
+ *        Feature feature = iterator.next();
+ *        box.include( feature.getBounds() );
+ *    }
+ * }
+ * finally {
+ *    features.close( iterator );
+ * }
+ * </code></pre>
+ * Often database connections and memory caches are maintained for the
+ * life of the iterator.
+ *  
+ * <h4>Java 5</h4>
+ * This class no longer implements Collection<Feature> as Java 5 syntactic sugar has
+ * made it too easy to avoid closing your FeatureIterators.
+ * <p>
+ * <h4>Geographic Markup Language</h4>
+ * In GML a <code>AbstractFeatureCollection</code> is defined as both a feature and as
+ * an associations to contained "members". This can be represented within the abilities
+ * of our general feature model.
+ * <ul>
+ * <li>members: is an Association with mutiplicity 0:*, the reference type of this association
+ * is the type of features contained in the collection, the association captures the reason the
+ * members are in the collection.
+ * </ul>
+ * If you wish you can model AbstractFeatureCollection as a normal Feature as outlined above,
+ * you may optionally implement this FeatureCollection interface as follows:
+ * <ul>
+ * <li>getMemberTypes(): the reference type for your members association.
+ * <li>iterator() and visit(): navigate the members association visiting each feature in turn
+ * </ul>
  * 
  * @author Ian Turton (CCG)
  * @author Rob Hranac (VFNY)
@@ -43,14 +90,30 @@ import org.opengis.util.ProgressListener;
  * @see java.util.Collection
  */
 @XmlElement("FeatureCollection")
-public interface FeatureCollection extends Feature {
-	
-	/**
-	 * Restricted to return a FeatureCollectionType.
-	 */
-    FeatureCollectionType getType();
-
-	
+public interface FeatureCollection {
+    /**
+     * The bounds of the feature collection contents.
+     * <p>
+     * This value is derived from the members of the feature collection
+     * and may be O(N).
+     * </p>
+     * <p>
+     * In the case that the collection is empty, or the members have
+     * no geometric attributes this method an empty bounds,
+     * ie, <code>bounds.isEmpty() == true</code>.
+     * This method should never return <code>null</code>.
+     * </p>
+     * <p>
+     * The coordinate reference system of the returned bounds is derived from
+     * the geometric attributes which were used to compute the bounds. In the
+     * event that the feature contains multiple geometric attributes which have
+     * different crs's, the one defined by {@link #getDefaultGeometry()} should
+     * take precedence and the others should be reprojected accordingly.
+     * </p>
+     * @return the feature bounds, possibly empty.
+     */
+    BoundingBox getBounds();
+    
     /**
 	 * Access contents of this collection, you are required to close iterators
 	 * after use.
@@ -98,12 +161,10 @@ public interface FeatureCollection extends Feature {
      * You are required to close iterators after use.
      * <p>
      * Many FeatureCollections are backed by IO resources that need
-     * to be returned to the opperating system after use.
+     * to be returned to the operating system after use.
      * </p>
      */
     void close( Iterator<Feature> iterator );
-    
-
     
     /**
      * FeatureCollection "view" indicated by provided filter.
@@ -145,6 +206,13 @@ public interface FeatureCollection extends Feature {
     FeatureCollection sort( SortBy order  );
     
     /**
+     * The first member type.
+     * 
+     * @return getMemberTypes().iterator()
+     */
+    FeatureType getMemberType();
+    
+    /**
      * Convenience method for obtaining the collection of member types in 
      * which members of this collection may implement.
      * <br>
@@ -158,7 +226,7 @@ public interface FeatureCollection extends Feature {
      *  </p>
      * 
      */
-    Collection<FeatureType> memberTypes();
+    Collection<FeatureType> getMemberTypes();
     
     /**
      * Will visit the contents of the feature collection.

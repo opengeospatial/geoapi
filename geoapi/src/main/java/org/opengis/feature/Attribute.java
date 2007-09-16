@@ -6,8 +6,9 @@ import org.opengis.feature.type.AttributeType;
 /**
  * An extension of Property for an attribute.
  * <p>
- * The semantics of an attribute are similar to that of UML in that attributes
- * are used to model properties whose types are "simple" data types.
+ * The semantics of an attribute are similar to that of UML. Simple data
+ * types are held inside an Attribute instance. For complex data there is
+ * a specific subclass.
  * </p>
  * <p>
  * A second analogy for an attribute is a "field" in a java object. A field also
@@ -16,6 +17,7 @@ import org.opengis.feature.type.AttributeType;
  * 
  * <p>
  * <h3>Identifiable</h3>
+ * 
  * When an attribute is identifiable the {@link #getID()} method returns a
  * unique identifier for the attribute. The type of the attribute is used to
  * determine identifiability.

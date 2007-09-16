@@ -17,7 +17,7 @@ import org.opengis.feature.Property;
  * &lt;complexType name="myComplexType">
  *   &lt;sequence>
  *     &lt;element name="foo" type="xs:string" minOccurs="2" maxOccurs="4">
- *     &lt;element name="bar" type="xs:int" nillable="false"/>
+ *     &lt;element name="bar" type="xs:int" nillable=false/>
  *   &lt;/sequence>
  * &lt;/complexType>
  * </pre>
