@@ -22,7 +22,7 @@ public interface FeatureType extends ComplexType {
 	 * 
 	 * @return <code>true</code>
 	 */
-	public boolean isIdentified();
+	boolean isIdentified();
 	
     /**
      * The default geometric attribute of the feature.
