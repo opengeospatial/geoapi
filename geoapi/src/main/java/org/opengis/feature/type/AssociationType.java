@@ -34,4 +34,11 @@ public interface AssociationType extends PropertyType {
 	 * @return The type of the related attribute.
 	 */
 	AttributeType getRelatedType();
+	
+	/**
+	 * Override of {@link PropertyType#getBinding()} which specifies that this
+	 * method should return <code>getRelatedType().getBinding()</code>, that is
+	 * it returns the binding of the related type.
+	 */
+	Class<?> getBinding();
 }
