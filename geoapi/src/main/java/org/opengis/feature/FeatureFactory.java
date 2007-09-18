@@ -9,6 +9,7 @@ import org.opengis.feature.type.AssociationDescriptor;
 import org.opengis.feature.type.AttributeDescriptor;
 import org.opengis.feature.type.ComplexType;
 import org.opengis.feature.type.FeatureType;
+import org.opengis.feature.type.GeometryDescriptor;
 import org.opengis.feature.type.GeometryType;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 
@@ -56,7 +57,7 @@ public interface FeatureFactory {
      *
      */
     GeometryAttribute createGeometryAttribute(
-    	Object geometry, AttributeDescriptor descriptor, String id, CoordinateReferenceSystem crs
+    	Object geometry, GeometryDescriptor descriptor, String id, CoordinateReferenceSystem crs
     );
 	
     /**
@@ -109,12 +110,23 @@ public interface FeatureFactory {
     
     /**
      * Creates a simple feature.
+     * <p>
+     *   <code>descriptor.getType()</code> must be an instance of {@link SimpleFeatureType}.
+     * </p>
+     * @param value The value of the feature, a collection of attributes.
+     * @param descriptor The attribute descriptor. 
+     * @param id The id of the feature.
+     *
+     */
+    SimpleFeature createSimpleFeautre(List<Attribute> value, AttributeDescriptor decsriptor, String id);
+    
+    /**
+     * Creates a simple feature.
      * 
      * @param value The value of the feature, a collection of attributes.
      * @param type The type of the simple feature.
      * @param id The id of the feature.
      */
     SimpleFeature createSimpleFeature(List<Attribute> value, SimpleFeatureType type, String id);
-	
 }
 
