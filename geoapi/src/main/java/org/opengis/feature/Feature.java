@@ -89,6 +89,9 @@ public interface Feature extends ComplexAttribute {
      * 
      * @param geometryAttribute
      *            The new geomtric attribute.
+     *            
+     * @throws IllegalArgumentException If the specified attribute is not already
+     * an attribute of the feature.
      */
     void setDefaultGeometryProperty(GeometryAttribute geometryAttribute);
 }
