@@ -107,7 +107,7 @@ public interface ComplexAttribute extends Attribute {
      * Override of {@link Property#getValue()} which returns the collection of
      * {@link Property} which make up the value of the complex attribute.
      */
-    Collection<Property> getValue();
+    Collection<? extends Property> getValue();
 
     /**
      * Returns a subset of the properties of the complex attribute which match
