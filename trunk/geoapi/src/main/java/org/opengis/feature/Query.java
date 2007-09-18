@@ -16,7 +16,8 @@ import java.util.List;
 import org.opengis.annotation.Extension;
 import org.opengis.annotation.XmlElement;
 import org.opengis.feature.type.FeatureType;
-import org.opengis.feature.type.TypeName;
+import org.opengis.feature.type.Name;
+
 import org.opengis.filter.Filter;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 
@@ -51,7 +52,7 @@ public interface Query {
      *       future version.
      */
     @XmlElement("typeName")
-    TypeName getTypeName();
+    Name getTypeName();
 
     /**
      * Returns the name of the type that is to be queried.
