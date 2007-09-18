@@ -32,7 +32,7 @@ public interface FeatureType extends ComplexType {
      * </p>
      * @return The descriptor of the default geometry attribute, or <code>null</code>.
      */
-    AttributeDescriptor getDefaultGeometryProperty();
+    GeometryDescriptor getDefaultGeometry();
 	
     /**
      * The coordinate reference system of the feature.
