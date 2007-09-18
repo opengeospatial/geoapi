@@ -12,7 +12,8 @@ package org.opengis.feature;
 import java.util.Arrays;
 import java.util.List;
 
-import org.opengis.feature.type.TypeName;
+import org.opengis.feature.type.Name;
+import org.opengis.feature.type.Name;
 import org.opengis.filter.Filter;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 
@@ -40,8 +41,8 @@ public class DefaultQuery implements Query {
     /** The filter to constrain the request. */
     private Filter filter;
 
-    /** The typeName to get */
-    private TypeName typeName;
+    /** The Name to get */
+    private Name Name;
 
     /** The handle associated with this query. */
     private String handle;
@@ -58,43 +59,43 @@ public class DefaultQuery implements Query {
      * No argument constructor.
      */
     public DefaultQuery() {
-        this( (TypeName) null);
+        this( (Name) null);
     }
 
     /**
-     * Query with typeName.
+     * Query with Name.
      *
-     * @param typeName the name of the featureType to retrieve
+     * @param Name the name of the featureType to retrieve
      */
-    public DefaultQuery(TypeName typeName){
-        this(typeName, null);
+    public DefaultQuery(Name Name){
+        this(Name, null);
     }
 
     /**
      * Constructor that sets only the filter.
      * <p>
-     * Using a Query with only a filter and no typeName almost always results in
+     * Using a Query with only a filter and no Name almost always results in
      * an error.
      * <p>
-     * Please use DefaultQuery( typeName, filter ) 
+     * Please use DefaultQuery( Name, filter ) 
      * </p>
      * @param filter the OGC filter to constrain the request.
-     * @deprecated Please use DefaultQuery( typeName, filter ) instead.
+     * @deprecated Please use DefaultQuery( Name, filter ) instead.
      */
     public DefaultQuery(Filter filter) {
         this(null, filter);
     }
 
     /**
-     * Constructor with typeName and filter.  Note that current datasource
-     * implementations only have one type per datasource, so the typeName
+     * Constructor with Name and filter.  Note that current datasource
+     * implementations only have one type per datasource, so the Name
      * field will likely be ignored.
      *
-     * @param typeName the name of the featureType to retrieve.
+     * @param Name the name of the featureType to retrieve.
      * @param filter the OGC filter to constrain the request.
      */
-    public DefaultQuery(TypeName typeName, Filter filter) {
-        this(typeName, filter, (List) null);
+    public DefaultQuery(Name Name, Filter filter) {
+        this(Name, filter, (List) null);
     }
 
     /**
@@ -103,33 +104,33 @@ public class DefaultQuery implements Query {
      * @param filter the OGC filter to constrain the request.
      * @param properties an array of the properties to fetch.
      *
-     * @deprecated Use a constructor with the typeName, as datastores depend on
+     * @deprecated Use a constructor with the Name, as datastores depend on
      *             it.
      */
     public DefaultQuery(Filter filter, String[] properties) {
         this(null, filter, properties);
     }
 
-    public DefaultQuery(TypeName typeName, Filter filter, String [] properties) {
-        this(typeName, filter, properties==null ? (List) null : Arrays.asList(properties), -1, null);
+    public DefaultQuery(Name Name, Filter filter, String [] properties) {
+        this(Name, filter, properties==null ? (List) null : Arrays.asList(properties), -1, null);
     }
 
-    public DefaultQuery(TypeName typeName, Filter filter, List properties) {
-        this(typeName, filter, properties, -1, null);
+    public DefaultQuery(Name Name, Filter filter, List properties) {
+        this(Name, filter, properties, -1, null);
     }
 
     /**
      * Constructor that sets all fields.
      *
-     * @param typeName the name of the featureType to retrieve.
+     * @param Name the name of the featureType to retrieve.
      * @param filter the OGC filter to constrain the request.
      * @param maxFeatures the maximum number of features to be returned.
      * @param propNames an array of the properties to fetch.
      * @param handle the name to associate with the query.
      */
-    public DefaultQuery(TypeName typeName, Filter filter,
+    public DefaultQuery(Name Name, Filter filter,
             List/*<String>*/ propNames, int maxFeatures, String handle) {
-        this.typeName = typeName;
+        this.Name = Name;
         this.filter = filter;
         this.maxFeatures = maxFeatures;
         this.properties = propNames;
@@ -232,7 +233,7 @@ public class DefaultQuery implements Query {
     }
 
     /**
-     * The typeName attribute is used to indicate the name of the feature type
+     * The Name attribute is used to indicate the name of the feature type
      * to be queried.
      * <p>
      * The DataStore API does not assume one feature type per datastore.
@@ -241,7 +242,7 @@ public class DefaultQuery implements Query {
      * <p>
      * Notes:
      * <ul>
-     * <li>Origional example from SYS-TECHNOLOGIES used QName here, TypeName is
+     * <li>Origional example from SYS-TECHNOLOGIES used QName here, Name is
      *     method compatable with QName and is used in a consistent manner with
      *     the intention here (ie to look up the correct dataset).
      * <li>The GeoAPI 2.0.x interface used GenericName - unfortantly GenericName
@@ -251,17 +252,17 @@ public class DefaultQuery implements Query {
      * </ul>
      * @return the name of the feature type to be returned with this query.
      */
-    public TypeName getTypeName() {
-        return typeName;
+    public Name getTypeName() {
+        return Name;
     }
 
     /**
-     * Sets the typename.
+     * Sets the Name.
      *
-     * @param typeName the name of the featureType to retrieve.
+     * @param Name the name of the featureType to retrieve.
      */
-    public void setTypeName(TypeName typeName) {
-        this.typeName = typeName;
+    public void setName(Name Name) {
+        this.Name = Name;
     }
 
     /**
