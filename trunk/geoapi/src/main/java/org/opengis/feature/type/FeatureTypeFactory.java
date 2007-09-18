@@ -2,7 +2,6 @@ package org.opengis.feature.type;
 
 import java.util.Collection;
 import java.util.List;
-import java.util.Set;
 
 import org.opengis.feature.simple.SimpleFeatureType;
 import org.opengis.filter.Filter;
@@ -38,9 +37,12 @@ public interface FeatureTypeFactory {
      * 	The minimum number of occurences of the described association.
      * @param maxOCcurs
      * 	The maximum number of occurences of the described association.
+     * @param isNillable
+     *  Flag indicating wether the association is allowed to be <code>null</code>.
      */
     AssociationDescriptor createAssociationDescriptor(
-	AssociationType type, Name name, int minOccurs, int maxOCcurs
+        AssociationType type, Name name, int minOccurs, int maxOCcurs, 
+        boolean isNillable
     );
 
     /**
@@ -60,7 +62,29 @@ public interface FeatureTypeFactory {
      *  The default value of the described attribute. 
      */
     AttributeDescriptor createAttributeDescriptor(
-        AttributeType type, Name name, int minOccurs, int maxOccurs, boolean isNillable, Object defaultValue
+        AttributeType type, Name name, int minOccurs, int maxOccurs, 
+        boolean isNillable, Object defaultValue
+    );
+    
+    /**
+     * Creates a geometry descriptor.
+     * 
+     * @param type
+     *  The type of the described attribute.
+     * @param name
+     *  The name of the described attribute. 
+     * @param minOccurs
+     *  The minimum number of occurences of the described attribute.
+     * @param maxOccurs
+     *  The maximum number of occurences of the described attribute.
+     * @param isNillable
+     *  Flag indicating if the described attribute may have a null value.
+     * @param defaulValue
+     *  The default value of the described attribute. 
+     */
+    GeometryDescriptor createGeometryDescriptor(
+        GeometryType type, Name name, int minOccurs, int maxOccurs, 
+        boolean isNillable, Object defaultValue
     );
     
     /**
@@ -68,10 +92,8 @@ public interface FeatureTypeFactory {
      * 
      * @param name
      *  The name of the type.
-     * @param referenceType
+     * @param relatedType
      *  The type of attributes referenced by the association.
-     * @param isIdentifiable
-     *  Flag indicating if the association is identifiable.
      * @param isAbstract
      *  Flag indicating if the type is abstract.
      * @param restrictions
@@ -82,8 +104,8 @@ public interface FeatureTypeFactory {
      *  A description of the type..
      */
     AssociationType createAssociationType(
-        Name name, AttributeType referenceType,boolean isIdentifiable,
-        boolean isAbstract, Set<Filter> restrictions, AssociationType superType,
+        Name name, AttributeType relatedType, boolean isAbstract, 
+        List<Filter> restrictions, AssociationType superType, 
         InternationalString description
     );
 
@@ -107,7 +129,7 @@ public interface FeatureTypeFactory {
      */
     AttributeType createAttributeType(
         Name name, Class<?> binding, boolean isIdentifiable, boolean isAbstract, 
-        Set<Filter> restrictions, AttributeType superType, InternationalString description
+        List<Filter> restrictions, AttributeType superType, InternationalString description
     );
 
     /**
@@ -132,7 +154,7 @@ public interface FeatureTypeFactory {
      */
     GeometryType createGeometryType(
         Name name, Class<?> binding, CoordinateReferenceSystem crs, boolean isIdentifiable, 
-        boolean isAbstract, Set<Filter> restrictions, AttributeType superType,
+        boolean isAbstract, List<Filter> restrictions, AttributeType superType,
         InternationalString description
     );
     
@@ -156,7 +178,7 @@ public interface FeatureTypeFactory {
      */
     ComplexType createComplexType(
         Name name, Collection<PropertyDescriptor> schema, boolean isIdentifiable, 
-        boolean isAbstract, Set<Filter> restrictions, AttributeType superType,
+        boolean isAbstract, List<Filter> restrictions, AttributeType superType,
         InternationalString description
     );
     
@@ -178,9 +200,8 @@ public interface FeatureTypeFactory {
      */
     FeatureType createFeatureType(
         Name name, Collection<PropertyDescriptor> schema,
-        AttributeDescriptor defaultGeometry, CoordinateReferenceSystem crs,
-        boolean isAbstract, Set<Filter> restrictions, AttributeType superType,
-        InternationalString description
+        GeometryDescriptor defaultGeometry, boolean isAbstract, 
+        List<Filter> restrictions, AttributeType superType, InternationalString description
     );
     
     /**
@@ -200,8 +221,8 @@ public interface FeatureTypeFactory {
      *  A description of the type.
      */
     SimpleFeatureType createSimpleFeatureType(
-        Name name, List<AttributeDescriptor> schema, AttributeDescriptor defaultGeometry,
-        CoordinateReferenceSystem crs, Set<Filter> restrictions, AttributeType superType,
+        Name name, List<AttributeDescriptor> schema, GeometryDescriptor defaultGeometry,
+        boolean isAbstract, List<Filter> restrictions, AttributeType superType, 
         InternationalString description
     );
 }
