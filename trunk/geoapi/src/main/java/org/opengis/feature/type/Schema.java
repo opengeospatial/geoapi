@@ -1,6 +1,7 @@
 package org.opengis.feature.type;
 
 import java.util.Map;
+import java.util.Set;
 
 /**
  * A collection of AttributeType.
@@ -34,13 +35,6 @@ import java.util.Map;
  * @author Justin Deoliveira, The Open Planning Project
  */
 public interface Schema extends Map<Name, AttributeType> {
-    /**
-     * Override and type narror to {@link Namespace}.
-     * <p>
-     * The namespace can be used to lookup names just using the local part.
-     * </p>
-     */
-    Namespace keySet();
     
     /**
      * The uri of the schema.
@@ -76,5 +70,5 @@ public interface Schema extends Map<Name, AttributeType> {
      * 
      * @return The profile of the original schema.
      */
-    Schema profile( Namespace profile );
+    Schema profile( Set<Name> profile );
 }
