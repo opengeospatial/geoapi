@@ -1,5 +1,6 @@
 package org.opengis.feature;
 
+import org.opengis.feature.type.GeometryDescriptor;
 import org.opengis.feature.type.GeometryType;
 import org.opengis.geometry.BoundingBox;
 
@@ -29,6 +30,11 @@ public interface GeometryAttribute extends Attribute {
      */
     GeometryType getType();
 
+    /**
+     * Override and type narrow to GeometryDescriptor.
+     */
+    GeometryDescriptor getDescriptor();
+    
     /**
      * The bounds of the attribute.
      * <p>
