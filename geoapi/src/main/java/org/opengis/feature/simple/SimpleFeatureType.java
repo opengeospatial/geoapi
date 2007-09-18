@@ -5,7 +5,6 @@ import java.util.List;
 import org.opengis.feature.type.AttributeDescriptor;
 import org.opengis.feature.type.AttributeType;
 import org.opengis.feature.type.FeatureType;
-import org.opengis.feature.type.GeometryType;
 import org.opengis.feature.type.Name;
 
 /**
@@ -156,6 +155,15 @@ public interface SimpleFeatureType extends FeatureType {
             throws IndexOutOfBoundsException;
 
     /**
+     * Returns the number of attributes composing the feature type
+     * <p>
+     * This method is convenience for <code>getAttributes().size()</code>.
+     * </p>
+     * @return The number of attributes.
+     */
+    int getAttributeCount();
+    
+    /**
      * Returns the types of all the attributes which make up the feature.
      * <p>
      * This method is convenience for:
@@ -242,25 +250,6 @@ public interface SimpleFeatureType extends FeatureType {
     AttributeType getType(int index) throws IndexOutOfBoundsException;
 
     /**
-     * Returns the type of the default geometry attribute.
-     * <p>
-     * This method is convenience for:
-     * 
-     * <pre>
-     * return (GeometryType) getDefaultGeometry().getType();
-     * </pre>
-     * 
-     * </p>
-     * <p>
-     * This method returns <code>null</code> if there is no default geometry
-     * attribute.
-     * </p>
-     * 
-     * @return The type of the default geometry, or <code>null</code>.
-     */
-    GeometryType getDefaultGeometry();
-
-    /**
      * Returns the index of the attribute which matches the specified name.
      * <p>
      * -1 is returned in the instance there is no attribute matching the
@@ -287,11 +276,4 @@ public interface SimpleFeatureType extends FeatureType {
      * @return index of named attribute, or -1 if not found.
      */
     int indexOf(Name name);
-
-    /**
-     * Returns the number of attributes composing the feature type
-     * 
-     * @return The number of attributes.
-     */
-    int getNumberOfAttributes();
 }
