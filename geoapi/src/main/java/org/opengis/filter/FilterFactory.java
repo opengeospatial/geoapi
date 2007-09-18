@@ -83,7 +83,7 @@ public interface FilterFactory {
     Not not(Filter f);
 
     /** Passes only for objects that have one of the IDs given to this object. */
-    Id id( Set<Identifier> ids);
+    Id id( Set<? extends Identifier> ids);
     
     /** Retrieves the value of a {@linkplain org.opengis.feature.Feature feature}'s property. */
     PropertyName property(String name);
