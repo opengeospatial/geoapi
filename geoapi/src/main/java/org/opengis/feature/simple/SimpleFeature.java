@@ -230,12 +230,12 @@ public interface SimpleFeature extends Feature {
      * <p>
      * This is a convenience for:
      * <pre>
-     *   return getProperties().size();
+     *   return getAttributes().size();
      * </pre>
      * </p>
      * @return Number of attributes of the feature.
      */
-    int getNumberOfAttributes();
+    int getAttributeCount();
 
     /**
      * Returns the value of the default geometry of the feature.
