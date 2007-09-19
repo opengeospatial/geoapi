@@ -149,8 +149,8 @@
 		<replace dir="${generatedSourceDirectory}" includes="org/opengis/feature/type/OperationDescriptor.java">
 			<replacefilter token="O getType()" value="OperationType/*O*/ getType()" />
 		</replace>
-		<replace dir="${generatedSourceDirectory}" includes="org/opengis/feature/Operation.java">
-			<replacefilter token="T getTarget()" value="OpperationType getTarget()" />
+		<replace dir="${generatedSourceDirectory}" includes="org/opengis/feature/type/Operation.java">
+			<replacefilter token="OperationType getType()" value="//OperationType getType()" />
 		</replace>
 
 		<!-- Association: structural property -->
@@ -158,26 +158,35 @@
 			<replacefilter token="B getReferenceType()" value="AttributeType getReferenceType()" />
 		</replace>
 		<replace dir="${generatedSourceDirectory}" includes="org/opengis/feature/type/AssociationDescriptor.java">
-			<replacefilter token="A getType()" value="AssociationType getType()" />
+			<replacefilter token="AssociationType getType()" value="//AssociationType getType()" />
 		</replace>
 		<replace dir="${generatedSourceDirectory}" includes="org/opengis/feature/Association.java">
 			<replacefilter token="T getType()" value="AssociationType getType()" />
 			<replacefilter token="A getRelatedType()" value="AttributeType getRelatedType()" />
+			<replacefilter token="Attribute getValue()" value="//Attribute getValue()" />
+
 		</replace>
 
 		<!-- Attribute: structural property -->
-		<!-- no changes needed -->
+		<replace dir="${generatedSourceDirectory}" includes="org/opengis/feature/type/AttributeDescriptor.java">
+			<replacefilter token="AttributeType getType()" value="//AttributeType getType()"/>
+		</replace>
+
+		<!-- Attribute: structural property -->
+		<replace dir="${generatedSourceDirectory}" includes="org/opengis/feature/type/GeometryDescriptor.java">
+			<replacefilter token="GeometryType getType()" value="//GeometryType getType()"/>
+		</replace>
 
 		<!-- ComplexAttribute -->
 		<replace dir="${generatedSourceDirectory}" includes="org/opengis/feature/ComplexAttribute.java">
-			<replacefilter token="ComplexType getType()" value="AttributeType/*ComplexType*/ getType();" />
+			<replacefilter token="ComplexType getType()" value="org.opengis.feature.type.AttributeType/*ComplexType*/ getType();" />
 			<replacefilter token="Collection getValue();" value="Object/*Collection*/ getValue();" />
 			<replacefilter token="void setValue(Collection " value="void setValue(Object/*Collection*/" />
 		</replace>
 
 		<!-- Feature  -->
 		<replace dir="${generatedSourceDirectory}" includes="org/opengis/feature/Feature.java">
-			<replacefilter token="FeatureType getType()" value="AttributeType/*FeatureType*/ getType();" />
+			<replacefilter token="FeatureType getType()" value="org.opengis.feature.type.AttributeType/*FeatureType*/ getType();" />
 			<replacefilter token="//import org.opengis.feature.type.AttributeType;" value="import org.opengis.feature.type.AttributeType;" />
 		</replace>
 		<replace dir="${generatedSourceDirectory}" includes="org/opengis/feature/type/FeatureType.java">
@@ -186,7 +195,8 @@
 
 		<!-- "Type Narrowed" Attributes -->
 		<replace dir="${generatedSourceDirectory}" includes="org/opengis/feature/GeometryAttribute.java">
-			<replacefilter token="GeometryType getType()" value="AttributeType getType()" />
+			<replacefilter token="GeometryType getType()" value="org.opengis.feature.type.AttributeType getType()" />
+			<replacefilter token="GeometryDescriptor getDescriptor()" value="//GeometryDescriptor getDescriptor()"/>
 		</replace>
 		<!-- Simple "Type Narrowed" Attributes -->
 		<replace dir="${generatedSourceDirectory}" includes="org/opengis/feature/simple/BooleanAttribute.java">
@@ -221,9 +231,7 @@
 			<replacefilter token="Set getMembers()" value="FeatureType getMemberType()" />
 		</replace-->
 		<replace dir="${generatedSourceDirectory}" includes="org/opengis/feature/simple/SimpleFeature.java">
-			<replacefilter token="//import org.opengis.feature.type.AttributeType;" value="import org.opengis.feature.type.AttributeType;" />
-			<replacefilter token="SimpleFeatureType getSuper();" value="AttributeType/*SimpleFeatureType*/ getSuper();" />
-			<replacefilter token="SimpleFeatureType getType();" value="AttributeType/*SimpleFeatureType*/ getType();" />
+			<replacefilter token="SimpleFeatureType getType();" value="org.opengis.feature.type.AttributeType/*SimpleFeatureType*/ getType();" />
 			<replacefilter token="List associations();" value="Collection/*List*/ associations();" />
 			<replacefilter token="List attributes();" value="Collection/*List*/ attributes();" />
 			<replacefilter token="List getValue();" value="Object/*List*/ getValue();" />
