@@ -73,6 +73,14 @@ import org.opengis.feature.type.Name;
  */
 public interface SimpleFeatureType extends FeatureType {
 
+	/**
+	 * The local name for this FeatureType.
+	 * 
+	 * Specifically this method returns <code>getName().getLocalPart().</code>
+	 * @return The local name for this FeatureType.
+	 */
+	String getTypeName();
+	
     /**
      * The list of attribute descriptors which make up the feature type.
      * <p>
