@@ -1,5 +1,7 @@
 package org.opengis.feature.type;
 
+import org.opengis.referencing.crs.CoordinateReferenceSystem;
+
 /**
  * Describes an instance of a geometry attribute.
  * <p>
@@ -10,10 +12,19 @@ package org.opengis.feature.type;
  *
  */
 public interface GeometryDescriptor extends AttributeDescriptor {
-
-    /**
+	/**
      * Override of {@link AttributeDescriptor#getType()} which type narrows
      * to {@link GeometryType}.
      */
     GeometryType getType();
+    
+	/**
+	 * The coordinate reference system in which these geometries are defined.
+	 * <p>
+	 * This method may return <code>null</code>, but this should only occur in 
+	 * cases where the actual crs is not known. A common case is when a shapefile
+	 * does not have an accompanied .prj file.
+	 * </p>
+	 */
+	CoordinateReferenceSystem getCRS();	
 }
