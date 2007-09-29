@@ -172,6 +172,15 @@ public interface ComplexAttribute extends Attribute {
      * @see #getProperties(Name)
      */
     Collection<Property> getProperties(String name);
+    
+    /**
+     * Complete collection of properties.
+     * <p>
+     * This method is a convenience method for calling (Collection<Property>) getValue().
+     * </p>
+     * @return The complete collection of properties.
+     */
+    Collection<Property> getProperties();
 
     /**
      * Returns single property of the complex attribute which matches the
