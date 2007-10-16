@@ -47,7 +47,6 @@ package org.opengis.filter.capability;
 
 // Annotations
 import org.opengis.annotation.UML;
-import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
 
 
@@ -76,9 +75,10 @@ public interface FilterCapabilities {
     @UML(identifier="spatialCapabilities", specification=UNSPECIFIED)
     SpatialCapabilities getSpatialCapabilities();
     
-    /**
-     * Returns the idCapabilities.
+    /** 
+     * 
      */
+    @UML(identifier="idCapabilities", specification=UNSPECIFIED) 
     IdCapabilities getIdCapabilities();
     
     /**

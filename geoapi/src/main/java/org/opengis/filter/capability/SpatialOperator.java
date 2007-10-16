@@ -46,7 +46,6 @@
 package org.opengis.filter.capability;
 
 // OpenGIS direct dependencies
-import org.opengis.util.GenericName;
 
 
 /**
@@ -58,5 +57,6 @@ public interface SpatialOperator extends Operator {
     /**
      * Returns the geometryOperands.
      */
-    GenericName[] getGeometryOperands();
+    //GenericName[] getGeometryOperands();
+    GeometryOperand[] getGeometryOperands();
 }

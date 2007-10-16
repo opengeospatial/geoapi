@@ -46,19 +46,44 @@
 package org.opengis.filter.capability;
 
 // OpenGIS direct dependencies
-import org.opengis.util.GenericName;
 
 
 /**
- * SpatialCapabilitiesBean
+ * Capabilities used to convey supported spatial operators.
+ * <p>
+ *   <pre>
+ *  &lt;xsd:complexType name="Spatial_CapabilitiesType">
+ *     &lt;xsd:sequence>
+ *        &lt;xsd:element name="GeometryOperands"
+ *                    type="ogc:GeometryOperandsType"/>
+ *        &lt;xsd:element name="SpatialOperators"
+ *                     type="ogc:SpatialOperatorsType"/>
+ *     &lt;/xsd:sequence>
+ *  &lt;/xsd:complexType>
+ *   </pre>
+ * </p>
  * 
  * @author <a href="mailto:tfr@users.sourceforge.net">Torsten Friebe </A>
+ * @author Justin Deoliveira, The Open Planning Project
  */
 public interface SpatialCapabilities {
-    SpatialOperator[] getSpatialOperators();
-
     /**
-     * Returns the geometryOperands.
+     * Supported geometry operands.
+     * <p>
+     * <pre>
+     * &lt;xsd:element name="GeometryOperands" type="ogc:GeometryOperandsType"/>
+     * </pre>
+     * </p>
      */
-    GenericName[] getGeometryOperands();
+    GeometryOperand[] getGeometryOperands();
+    
+    /**
+     * Supported spatial operators.
+     * <p>
+     * <pre>
+     * &lt;xsd:element name="SpatialOperators" type="ogc:SpatialOperatorsType"/>
+     * </pre>
+     * </p>
+     */
+    SpatialOperator[] getSpatialOperators();
 }
