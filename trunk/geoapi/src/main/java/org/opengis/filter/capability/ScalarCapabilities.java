@@ -46,42 +46,64 @@
 package org.opengis.filter.capability;
 
 // Annotations
+import static org.opengis.annotation.Specification.UNSPECIFIED;
+
 import org.opengis.annotation.UML;
-import static org.opengis.annotation.Obligation.*;
-import static org.opengis.annotation.Specification.*;
 
 
 /**
- * 
+ * Capabilities used to convey supported scalar operators.
+ * <p>
+ * <pre>
+ * &lt;xsd:complexType name="Scalar_CapabilitiesType">
+      &lt;xsd:sequence>
+         &lt;xsd:element ref="ogc:LogicalOperators"
+                      minOccurs="0" maxOccurs="1"/>
+         &lt;xsd:element name="ComparisonOperators"
+                      type="ogc:ComparisonOperatorsType"
+                      minOccurs="0" maxOccurs="1"/>
+                      minOccurs="0" maxOccurs="1"/>
+      &lt;/xsd:sequence>
+   &lt;/xsd:complexType>
+ * </pre>
+ * </p>
  * @author <a href="mailto:tfr@users.sourceforge.net">Torsten Friebe </a>
  * @author <a href="mailto:mschneider@lat-lon.de">Markus Schneider </a>
+ * @author Justin Deoliveira, The Open Planning Project
  */
 public interface ScalarCapabilities {
-    boolean hasLogicalOperatorsSupport();
+    /**
+     * Indicates if logical operator support is provided.
+     * <p>
+     * <pre>
+     * &lt;xsd:element ref="ogc:LogicalOperators" minOccurs="0" maxOccurs="1"/>
+     * </pre>
+     * </p>
+     */
+    boolean hasLogicalOperators();
 
     /**
-     * 
+     * Provided comparison operators.
+     * <p>
+     * <pre>
+     * &lt;xsd:element name="ComparisonOperators" type="ogc:ComparisonOperatorsType" 
+     *    minOccurs="0" maxOccurs="1"/>
+     * </pre>
+     * </p>
      */
     @UML(identifier="comparisonOperators", specification=UNSPECIFIED)
-    Operator[] getComparisonOperators();
-
+    ComparisonOperators getComparisonOperators();
+    
     /**
-     * 
+     * Provided arithmetic operators.
+     * <p>
+     * <pre>
+     * &lt;xsd:element name="ComparisonOperators" type="ogc:ComparisonOperatorsType" 
+     *     minOccurs="0" maxOccurs="1"/>
+     * </pre>
+     * </p>
      */
     @UML(identifier="arithmeticOperators", specification=UNSPECIFIED)
-    Operator[] getArithmeticOperators();
-
-    /**
-     * Returns if the given operator is supported.
-     *
-     * @todo Not needed if {@link #getComparisonOperators} returns a {@link java.util.Map}.
-     */
-    boolean hasComparisonOperator(String operatorName);
-
-    /**
-     * Returns if the given operator is supported.
-     *
-     * @todo Not needed if {@link #getArithmeticOperators} returns a {@link java.util.Map}.
-     */
-    boolean hasArithmeticOperator(String operatorName);
+    ArithmeticOperators getArithmeticOperators();
+    
 }

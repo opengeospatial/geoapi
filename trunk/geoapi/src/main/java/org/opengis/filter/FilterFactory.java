@@ -14,6 +14,15 @@ package org.opengis.filter;
 import java.util.List;
 import java.util.Set;
 
+import org.opengis.filter.capability.ArithmeticOperators;
+import org.opengis.filter.capability.ComparisonOperators;
+import org.opengis.filter.capability.FilterCapabilities;
+import org.opengis.filter.capability.GeometryOperand;
+import org.opengis.filter.capability.IdCapabilities;
+import org.opengis.filter.capability.Operator;
+import org.opengis.filter.capability.ScalarCapabilities;
+import org.opengis.filter.capability.SpatialCapabilities;
+import org.opengis.filter.capability.SpatialOperator;
 import org.opengis.filter.expression.Add;
 import org.opengis.filter.expression.Divide;
 import org.opengis.filter.expression.Expression;
@@ -233,10 +242,45 @@ public interface FilterFactory {
     
     ////////////////////////////////////////////////////////////////////////////////
     //
-    //      SORT BY
+    //  SORT BY
     //
     //////////////////////////////////////////////////////////////////////////////    //
     /** Indicates an property by which contents should be sorted, along with intended order. */
     SortBy sort(String propertyName, SortOrder order );
     
+    ////////////////////////////////////////////////////////////////////////////////
+    //
+    //  CAPABILITIES
+    //
+    ////////////////////////////////////////////////////////////////////////////////
+    /** operators */
+    Operator operator ( String name );
+    
+    /** spatial operator */
+    SpatialOperator spatialOperator( String name, 
+            GeometryOperand[] geometryOperands );
+    
+    /** function name */
+    Function functionName( String name, int nargs );
+    
+    /** comparison operators */
+    ComparisonOperators comparison( Operator[] comparisonOperators );
+    
+    /** arithmetic operators */
+    ArithmeticOperators arithmetic( boolean simple, Function[] functionNames );
+    
+    /** scalar capabilities */
+    ScalarCapabilities scalarCapabilities( ComparisonOperators comparison, 
+        ArithmeticOperators arithmeti, boolean logicalOperators );
+    
+    /** spatial capabilities */
+    SpatialCapabilities spatialCapabilities( GeometryOperand[] geometryOperands,
+        SpatialOperator[] spatialOperators);
+    
+    /** id capabilities */
+    IdCapabilities idCapabilities( boolean eid, boolean fid );
+    
+    /** filter capabilities */
+    FilterCapabilities capabilities( String version, ScalarCapabilities scalar, 
+        SpatialCapabilities spatial, IdCapabilities id );
 }

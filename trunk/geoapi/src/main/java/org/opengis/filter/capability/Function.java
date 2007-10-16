@@ -47,16 +47,34 @@ package org.opengis.filter.capability;
 
 // Annotations
 import org.opengis.annotation.UML;
-import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
 
-
 /**
+ * Function provided in a filter capabilities.
+ * <p>
+ * <pre>
+ * &lt;xsd:complexType name="FunctionNameType">
+ *     &lt;xsd:simpleContent>
+ *        &lt;xsd:extension base="xsd:string">
+ *           &lt;xsd:attribute name="nArgs" type="xsd:string" use="required"/>
+ *        &lt;/xsd:extension>
+ *     &lt;/xsd:simpleContent>
+ *  &lt;/xsd:complexType>
+ * </pre>
+ * </p>
  * @author <a href="mailto:tfr@users.sourceforge.net">Torsten Friebe </A>
+ * @author Justin Deoliveira, The Open Planning Project
+ * 
+ * TODO: rename this to FunctionName
  */
 public interface Function extends Operator {
     /**
-     * 
+     * Number of arguments the function accepts.
+     * <p>
+     * <pre>
+     * &lt;xsd:attribute name="nArgs" type="xsd:string" use="required"/>
+     * </pre>
+     * </p>
      */
     @UML(identifier="argumentCount", specification=UNSPECIFIED)
     int getArgumentCount();

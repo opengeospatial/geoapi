@@ -43,20 +43,39 @@
 package org.opengis.filter.capability;
 
 // J2SE direct dependencies
-import org.w3c.dom.Element;
 
 
 /**
+ * Capabilities used to convey supported id operators.
+ * <p>
+ * <pre>
+ *  &lt;xsd:complexType name="Id_CapabilitiesType">
+ *     &lt;xsd:choice maxOccurs="unbounded">
+ *       &lt;xsd:element ref="ogc:EID"/>
+ *       &lt;xsd:element ref="ogc:FID"/>
+ *     &lt;/xsd:choice>
+ *  &lt;/xsd:complexType>
+ *  &lt;xsd:element name="EID">
+ *     &lt;xsd:complexType/>
+ *  &lt;/xsd:element>
+ *  &lt;xsd:element name="FID">
+ *     &lt;xsd:complexType/>
+ *  &lt;/xsd:element>
+ * </pre>
+ * </p>
  * @author <a href="mailto:schneider@lat-lon.de">Markus Schneider </a>
+ * @author Justin Deoliveira, The Open Planning Project
  */
 public interface IdCapabilities {
+    
     /**
-     * Returns the eidElements.
+     * Indicates if the capabilities support EID.
      */
-    Element[] getEidElements();
-
+    boolean hasEID();
+    
     /**
-     * Returns the fidElements.
+     * Indicates if the capabilities support FID.
+     * @return
      */
-    Element[] getFidElements();
+    boolean hasFID();
 }
