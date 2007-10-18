@@ -27,8 +27,11 @@ public interface ComparisonOperators {
     Operator[] getOperators();
     
     /**
-     * Returns true if the operator with the specified name is supported.
-     *
+     * Looks up an operator by name, returning null if no such operator found.
+     * 
+     * @param name the name of the operator.
+     * 
+     * @return The operator, or null.
      */
-    boolean hasComparisonOperator(String operatorName);
+    Operator getOperator( String name );
 }

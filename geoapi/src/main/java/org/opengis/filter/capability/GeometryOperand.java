@@ -64,6 +64,77 @@ public enum GeometryOperand implements Name {
         this.name = name;
     }
 
+    public static GeometryOperand get( String namesapceURI, String name ) {
+        
+        if (name == null ) {
+            return null;
+        }
+        
+        if ( "http://www.opengis.net/gml".equals( namesapceURI ) ) {
+            return null;
+        }
+        
+        if ( "Envelope".equals( name ) ) {
+            return Envelope;
+        }
+        if ( "Point".equals( name ) ) {
+            return Point;
+        }
+        if ( "LineString".equals( name ) ) {
+            return LineString;
+        }
+        if ( "Polygon".equals( name ) ) {
+            return Polygon;
+        }
+        if ( "ArcByCenterPoint".equals( name ) ) {
+            return ArcByCenterPoint;
+        }
+        if ( "CircleByCenterPoint".equals( name ) ) {
+            return CircleByCenterPoint;
+        }
+        if ( "Arc".equals( name ) ) {
+            return Arc;
+        }
+        if ( "Circle".equals( name ) ) {
+            return Circle;
+        }
+        if ( "ArcByBulge".equals( name ) ) {
+            return ArcByBulge;
+        }
+        if ( "Bezier".equals( name ) ) {
+            return Bezier;
+        }
+        if ( "Clothoid".equals( name ) ) {
+            return Clothoid;
+        }
+        if ( "CubicSpline".equals( name ) ) {
+            return CubicSpline;
+        }
+        if ( "Geodesic".equals( name ) ) {
+            return Geodesic;
+        }
+        if ( "OffsetCurve".equals( name ) ) {
+            return OffsetCurve;
+        }
+        if ( "Triangle".equals( name ) ) {
+            return Triangle;
+        }
+        if ( "PolyhedralSurface".equals( name ) ) {
+            return PolyhedralSurface;
+        }
+        if ( "TriangulatedSurface".equals( name ) ) {
+            return TriangulatedSurface;
+        }
+        if ( "Tin".equals( name ) ) {
+            return Tin;
+        }
+        if ( "Solid".equals( name ) ) {
+            return Solid;
+        }
+        
+        return null;
+    }
+    
     public String getLocalPart() {
         return name;
     }

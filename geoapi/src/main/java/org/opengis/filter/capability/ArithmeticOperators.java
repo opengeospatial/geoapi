@@ -35,5 +35,5 @@ public interface ArithmeticOperators {
      * </pre>
      * </p>
      */
-    Function[] getFunctions();
+    Functions getFunctions();
 }

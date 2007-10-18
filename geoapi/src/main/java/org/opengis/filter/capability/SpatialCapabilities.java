@@ -85,5 +85,5 @@ public interface SpatialCapabilities {
      * </pre>
      * </p>
      */
-    SpatialOperator[] getSpatialOperators();
+    SpatialOperators getSpatialOperators();
 }

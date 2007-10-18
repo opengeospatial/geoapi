@@ -17,12 +17,14 @@ import java.util.Set;
 import org.opengis.filter.capability.ArithmeticOperators;
 import org.opengis.filter.capability.ComparisonOperators;
 import org.opengis.filter.capability.FilterCapabilities;
+import org.opengis.filter.capability.Functions;
 import org.opengis.filter.capability.GeometryOperand;
 import org.opengis.filter.capability.IdCapabilities;
 import org.opengis.filter.capability.Operator;
 import org.opengis.filter.capability.ScalarCapabilities;
 import org.opengis.filter.capability.SpatialCapabilities;
 import org.opengis.filter.capability.SpatialOperator;
+import org.opengis.filter.capability.SpatialOperators;
 import org.opengis.filter.expression.Add;
 import org.opengis.filter.expression.Divide;
 import org.opengis.filter.expression.Expression;
@@ -261,21 +263,27 @@ public interface FilterFactory {
             GeometryOperand[] geometryOperands );
     
     /** function name */
-    Function functionName( String name, int nargs );
+    org.opengis.filter.capability.Function functionName( String name, int nargs );
+    
+    /** functions */
+    Functions functions( org.opengis.filter.capability.Function[] functionNames );
+    
+    /** spatial operators */
+    SpatialOperators spatialOperators( SpatialOperator[] spatialOperators );
     
     /** comparison operators */
-    ComparisonOperators comparison( Operator[] comparisonOperators );
+    ComparisonOperators comparisonOperators( Operator[] comparisonOperators );
     
     /** arithmetic operators */
-    ArithmeticOperators arithmetic( boolean simple, Function[] functionNames );
+    ArithmeticOperators arithmeticOperators( boolean simple, Functions functions );
     
     /** scalar capabilities */
     ScalarCapabilities scalarCapabilities( ComparisonOperators comparison, 
-        ArithmeticOperators arithmeti, boolean logicalOperators );
+        ArithmeticOperators arithmetic, boolean logical );
     
     /** spatial capabilities */
     SpatialCapabilities spatialCapabilities( GeometryOperand[] geometryOperands,
-        SpatialOperator[] spatialOperators);
+        SpatialOperators spatial );
     
     /** id capabilities */
     IdCapabilities idCapabilities( boolean eid, boolean fid );
