@@ -34,27 +34,46 @@ import org.opengis.feature.type.Name;
  * @author Justin Deoliveira, The Open Planning Project
  *
  */
-public enum GeometryOperand implements Name {
+public class GeometryOperand implements Name {
 
-    Envelope( "http://www.opengis.net/gml", "Envelope"),
-    Point( "http://www.opengis.net/gml", "Point" ),
-    LineString( "http://www.opengis.net/gml", "LineString" ),
-    Polygon( "http://www.opengis.net/gml", "Polygon" ),
-    ArcByCenterPoint( "http://www.opengis.net/gml", "ArcByCenterPoint" ),
-    CircleByCenterPoint( "http://www.opengis.net/gml", "CircleByCenterPoint" ),
-    Arc( "http://www.opengis.net/gml", "Arc" ),
-    Circle( "http://www.opengis.net/gml", "Circle" ),
-    ArcByBulge( "http://www.opengis.net/gml", "ArcByBulge" ),
-    Bezier( "http://www.opengis.net/gml", "Bezier" ),
-    Clothoid( "http://www.opengis.net/gml", "Clothoid" ),
-    CubicSpline( "http://www.opengis.net/gml", "CubicSpline" ),
-    Geodesic( "http://www.opengis.net/gml", "Geodesic" ),
-    OffsetCurve( "http://www.opengis.net/gml", "OffsetCurve" ),
-    Triangle( "http://www.opengis.net/gml", "Triangle" ),
-    PolyhedralSurface( "http://www.opengis.net/gml", "PolyhedralSurface" ),
-    TriangulatedSurface( "http://www.opengis.net/gml", "TriangulatedSurface" ),
-    Tin( "http://www.opengis.net/gml", "Tin" ),
-    Solid( "http://www.opengis.net/gml", "Solid" );
+    public static final GeometryOperand Envelope = 
+        new GeometryOperand( "http://www.opengis.net/gml", "Envelope");
+    public static final GeometryOperand Point = 
+        new GeometryOperand( "http://www.opengis.net/gml", "Point" );
+    public static final GeometryOperand LineString = 
+        new GeometryOperand( "http://www.opengis.net/gml", "LineString" );
+    public static final GeometryOperand Polygon = 
+        new GeometryOperand( "http://www.opengis.net/gml", "Polygon" );
+    public static final GeometryOperand ArcByCenterPoint = 
+        new GeometryOperand( "http://www.opengis.net/gml", "ArcByCenterPoint" );
+    public static final GeometryOperand CircleByCenterPoint = 
+        new GeometryOperand( "http://www.opengis.net/gml", "CircleByCenterPoint" );
+    public static final GeometryOperand Arc = 
+        new GeometryOperand( "http://www.opengis.net/gml", "Arc" );
+    public static final GeometryOperand Circle = 
+        new GeometryOperand( "http://www.opengis.net/gml", "Circle" );
+    public static final GeometryOperand ArcByBulge = 
+        new GeometryOperand( "http://www.opengis.net/gml", "ArcByBulge" );
+    public static final GeometryOperand Bezier = 
+        new GeometryOperand( "http://www.opengis.net/gml", "Bezier" );
+    public static final GeometryOperand Clothoid = 
+        new GeometryOperand( "http://www.opengis.net/gml", "Clothoid" );
+    public static final GeometryOperand CubicSpline = 
+        new GeometryOperand( "http://www.opengis.net/gml", "CubicSpline" );
+    public static final GeometryOperand Geodesic = 
+        new GeometryOperand( "http://www.opengis.net/gml", "Geodesic" );
+    public static final GeometryOperand OffsetCurve = 
+        new GeometryOperand( "http://www.opengis.net/gml", "OffsetCurve" );
+    public static final GeometryOperand Triangle = 
+        new GeometryOperand( "http://www.opengis.net/gml", "Triangle" );
+    public static final GeometryOperand PolyhedralSurface = 
+        new GeometryOperand( "http://www.opengis.net/gml", "PolyhedralSurface" );
+    public static final GeometryOperand TriangulatedSurface = 
+        new GeometryOperand( "http://www.opengis.net/gml", "TriangulatedSurface" );
+    public static final GeometryOperand Tin = 
+        new GeometryOperand( "http://www.opengis.net/gml", "Tin" );
+    public static final GeometryOperand Solid = 
+        new GeometryOperand( "http://www.opengis.net/gml", "Solid" );
     
     private final String namespaceURI;
     private final String name;
