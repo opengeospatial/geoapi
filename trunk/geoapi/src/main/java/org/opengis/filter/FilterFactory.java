@@ -263,10 +263,10 @@ public interface FilterFactory {
             GeometryOperand[] geometryOperands );
     
     /** function name */
-    org.opengis.filter.capability.Function functionName( String name, int nargs );
+    org.opengis.filter.capability.FunctionName functionName( String name, int nargs );
     
     /** functions */
-    Functions functions( org.opengis.filter.capability.Function[] functionNames );
+    Functions functions( org.opengis.filter.capability.FunctionName[] functionNames );
     
     /** spatial operators */
     SpatialOperators spatialOperators( SpatialOperator[] spatialOperators );

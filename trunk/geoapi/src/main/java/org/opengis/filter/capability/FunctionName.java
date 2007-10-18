@@ -67,7 +67,7 @@ import static org.opengis.annotation.Specification.*;
  * 
  * TODO: rename this to FunctionName
  */
-public interface Function extends Operator {
+public interface FunctionName extends Operator {
     /**
      * Number of arguments the function accepts.
      * <p>
