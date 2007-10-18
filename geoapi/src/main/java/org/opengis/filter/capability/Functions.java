@@ -24,7 +24,7 @@ public interface Functions {
      * </pre>
      * </p>
      */
-    Function[] getFunctionNames();
+    FunctionName[] getFunctionNames();
 
     /**
      * Looks up a function by name, returning null if no such function is found.
@@ -33,5 +33,5 @@ public interface Functions {
      * 
      * @return A function, or null.
      */
-    Function getFunctionName( String name );
+    FunctionName getFunctionName( String name );
 }
