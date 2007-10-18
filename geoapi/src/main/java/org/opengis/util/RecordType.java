@@ -30,6 +30,8 @@ import static org.opengis.annotation.Specification.*;
  * member.  This is a limited association because a named member may be defined to be a single
  * instance of some externally defined {@code RecordType}.  This does not permit aggregation of any
  * kind.
+ * <p>
+ * This class can be think as the equivalent of the Java {@link Class} class.
  *
  * @author Bryce Nordgren (USDA)
  * @author Martin Desruisseaux (IRD)
@@ -37,18 +39,21 @@ import static org.opengis.annotation.Specification.*;
  *
  * @see Record
  * @see RecordSchema
- * @see Class
  */
 @UML(identifier="RecordType", specification=ISO_19103)
 public interface RecordType {
     /**
      * Returns the name that identifies this record type.
-     * If this {@code RecordType} is contained in a {@linkplain RecordSchema record schema}, then the
-     * record type name should be a valid in the {@linkplain NameSpace name space} of the record schema
-     * (<code>getTypeName().{@linkplain RecordSchema#getSchemaName getSchemaName()}.{@linkplain
-     * LocalName#scope scope()}</code>).
+     * If this {@code RecordType} is contained in a {@linkplain RecordSchema record schema},
+     * then the record type name should be a valid in the {@linkplain NameSpace name space}
+     * of the record schema:
      *
-     * @see Class#getName()
+     * <blockquote><code>
+     * {@linkplain #getContainer()}.{@linkplain RecordSchema#getSchemaName
+     * getSchemaName()}.{@linkplain LocalName#scope scope()}
+     * </code></blockquote>
+     *
+     * This method can be think as the equivalent of the Java {@link Class#getName()} method.
      */
     @UML(identifier="typeName", obligation=MANDATORY, specification=ISO_19103)
     TypeName getTypeName();
@@ -60,19 +65,6 @@ public interface RecordType {
     RecordSchema getContainer();
 
     /**
-     * Returns the set of attribute names defined in this {@code RecordType}'s dictionary.
-     * If there are no attributes, this method returns the empty set. This method is functionally
-     * equivalent to <code>{@linkplain #getAttributeTypes()}.{@linkplain Map#keySet() keySet()}</code>.
-     * <p>
-     * The {@linkplain NameSpace name space} associated with a {@code RecordType} contains only
-     * members of this {@code RecordType}. There is no potential for conflict with subpackages.
-     *
-     * @see Class#getFields()
-     */
-    @Extension
-    Set<MemberName> getMembers();
-
-    /**
      * Returns the dictionary of all (<var>name</var>, <var>type</var>) pairs in this record type.
      * The dictionary shall be {@linkplain java.util.Collections#unmodifiableMap unmodifiable}.
      *
@@ -82,12 +74,29 @@ public interface RecordType {
     Map<MemberName, TypeName> getAttributeTypes();
 
     /**
+     * Returns the set of attribute names defined in this {@code RecordType}'s dictionary.
+     * If there are no attributes, this method returns the empty set. This method is functionally
+     * equivalent to <code>{@linkplain #getAttributeTypes()}.{@linkplain Map#keySet() keySet()}</code>.
+     * <p>
+     * The {@linkplain NameSpace name space} associated with a {@code RecordType} contains only
+     * members of this {@code RecordType}. There is no potential for conflict with subpackages.
+     * <p>
+     * This method can be think as the equivalent of the Java {@link Class#getFields()} method.
+     */
+    @Extension
+    Set<MemberName> getMembers();
+
+    /**
      * Looks up the provided attribute name and returns the associated type name. If the attribute name is
      * not defined in this record type, then this method returns {@code null}. This method is functionnaly
      * equivalent to <code>{@linkplain #getAttributeTypes()}.{@linkplain Map#get get}(name)</code>.
+     * <p>
+     * This method can be think as the equivalent of the Java {@link Class#getField(String)} method.
      *
      * @see Record#locate
-     * @see Class#getField(String)
+     *
+     * @todo Does it make sense given that {@link MemberName#getAttributeType} already provides
+     *       this information?
      */
     @UML(identifier="locate", obligation=MANDATORY, specification=ISO_19103)
     TypeName locate(MemberName name);
@@ -98,12 +107,12 @@ public interface RecordType {
      * holds:
      * <p>
      * <ul>
-     *    <li><code>{@linkplain #getMembers()}.{@linkplain Set#equals equals}(record.{@linkplain
+     *    <li><code>{@linkplain #getMembers()}.{@linkplain Set#containsAll containsAll}(record.{@linkplain
      *        Record#getAttributes() getAttributes()}.{@linkplain Map#keySet keySet()})</code></li>
      *    <li>Any other implementation-specific conditions.
      * </ul>
-     *
-     * @see Class#isInstance(Object)
+     * <p>
+     * This method can be think as the equivalent of the Java {@link Class#isInstance(Object)} method.
      */
     @Extension
     boolean isInstance(Record record);

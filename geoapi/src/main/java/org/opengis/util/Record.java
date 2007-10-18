@@ -22,13 +22,14 @@ import static org.opengis.annotation.Specification.*;
 /**
  * A list of logically related elements as (<var>name</var>, <var>value</var>) pairs in a
  * dictionary.  A record may be used as an implementation representation for features.
+ * <p>
+ * This class can be think as the equivalent of the Java {@link Object} class.
  *
  * @author Bryce Nordgren (USDA)
  * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 2.1
  *
  * @see RecordType
- * @see Object
  */
 @UML(identifier="Record", specification=ISO_19103)
 public interface Record {
@@ -42,8 +43,8 @@ public interface Record {
      *        Set#containsAll containsAll}({@linkplain #getAttributes()}.{@linkplain
      *        Map#keySet keySet()})</code></li>
      * </ul>
-     *
-     * @see Object#getClass()
+     * <p>
+     * This method can be think as the equivalent of the Java {@link Object#getClass()} method.
      */
     @UML(identifier="recordType", obligation=OPTIONAL, specification=ISO_19103)
     RecordType getRecordType();

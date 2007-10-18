@@ -48,7 +48,7 @@ import static org.opengis.annotation.Specification.*;
  * @see javax.naming.Name
  */
 @UML(identifier="GenericName", specification=ISO_19103)
-public interface GenericName extends Comparable {
+public interface GenericName extends Comparable<GenericName> {
     /**
      * Returns the scope (name space) in which this name is local. The scope is set on creation
      * and is not modifiable. The scope of a name determines where a name "starts". For instance,
