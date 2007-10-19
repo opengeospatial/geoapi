@@ -83,13 +83,17 @@ public class GeometryOperand implements Name {
         this.name = name;
     }
 
-    public static GeometryOperand get( String namesapceURI, String name ) {
+    public static GeometryOperand get( String namespaceURI, String name ) {
         
         if (name == null ) {
             return null;
         }
         
-        if ( !"http://www.opengis.net/gml".equals( namesapceURI ) ) {
+        if ( namespaceURI == null || "".equals( namespaceURI ) ) {
+            namespaceURI = "http://www.opengis.net/gml";
+        }
+        
+        if ( !"http://www.opengis.net/gml".equals( namespaceURI ) ) {
             return null;
         }
         
