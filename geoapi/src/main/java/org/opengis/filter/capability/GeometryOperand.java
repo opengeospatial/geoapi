@@ -89,7 +89,7 @@ public class GeometryOperand implements Name {
             return null;
         }
         
-        if ( "http://www.opengis.net/gml".equals( namesapceURI ) ) {
+        if ( !"http://www.opengis.net/gml".equals( namesapceURI ) ) {
             return null;
         }
         
