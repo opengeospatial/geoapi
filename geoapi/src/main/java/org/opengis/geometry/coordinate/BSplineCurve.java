@@ -21,11 +21,11 @@ import static org.opengis.annotation.Specification.*;
  * in terms of control points and basis functions. If the weights in the knots are equal
  * then it is a polynomial spline. If not, then it is a rational function spline. If
  * the boolean {@link #isPolynomial} is set to {@code true} then the weights shall all be set to 1.
- * A B-spline curve is a piecewise Bézier curve if it is quasi-uniform except that the
+ * A B-spline curve is a piecewise BÃ©zier curve if it is quasi-uniform except that the
  * interior knots have multiplicity "degree" rather than having multiplicity one. In
- * this subtype the knot spacing shall be 1.0, starting at 0.0. A piecewise Bézier curve
+ * this subtype the knot spacing shall be 1.0, starting at 0.0. A piecewise BÃ©zier curve
  * that has only two knots, 0.0, and 1.0, each of multiplicity (degree+1), is equivalent
- * to a simple Bézier curve. 
+ * to a simple BÃ©zier curve. 
  *
  * @version <A HREF="http://www.opengeospatial.org/standards/as">ISO 19107</A>
  * @author Martin Desruisseaux (IRD)

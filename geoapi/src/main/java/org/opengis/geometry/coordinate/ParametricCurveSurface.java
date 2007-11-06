@@ -92,7 +92,7 @@ import static org.opengis.annotation.Specification.*;
  * If the coordinate reference system is 2D, then the vector <b>k</b> extends the local coordinate
  * system by supplying an "upward" elevation vector. In this case the vector basis
  * (<b>i</b>,&nbsp;<b>j</b>) must be a right hand system, that is to say, the oriented angle from
- * <b>i</b> to <b>j</b> must be less than 180°. This gives a right-handed "moving frame" of local
+ * <b>i</b> to <b>j</b> must be less than 180Â°. This gives a right-handed "moving frame" of local
  * coordinate axes given by &lt;<b>i</b>, <b>j</b>&gt;. A moving frame is defined to be a continuous
  * function from the geometric object to a basis for the local tangent space of that object. For
  * curves, this is the derivative of the curve, the local tangent. For surfaces, this is a local
@@ -102,7 +102,7 @@ import static org.opengis.annotation.Specification.*;
  * <blockquote><font size=2>
  * <strong>NOTE:</strong> The existence of a viable moving frame is the definition of "orientable"
  * manifold. This is why the existence of a continuous {@linkplain #getUpNormal upNormal} implies
- * that the surface is orientable. Non-orientable surfaces, such as the Möbius band and Klein bottle
+ * that the surface is orientable. Non-orientable surfaces, such as the MÃ¶bius band and Klein bottle
  * are counter-intuitive. {@link Surface} forbids their use in application schemas conforming to
  * the ISO 19107 standard. Klein bottles cannot even be constructed in 3D space, but require 4D
  * space for non-singular representations.

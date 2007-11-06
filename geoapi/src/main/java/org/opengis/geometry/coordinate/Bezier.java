@@ -20,7 +20,7 @@ import static org.opengis.annotation.Specification.*;
  * Polynomial splines that use Bezier or Bernstein polynomials for interpolation
  * purposes. An <var>n</var>-long control point array shall create a polynomial
  * curve of degree <var>n</var> that defines the entire curve segment. These curves
- * are defined in terms of a set of basis functions called the Bézier or Bernstein
+ * are defined in terms of a set of basis functions called the BÃ©zier or Bernstein
  * polynomials. 
  *
  * @version <A HREF="http://www.opengeospatial.org/standards/as">ISO 19107</A>

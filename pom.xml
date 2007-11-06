@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!-- ==================================================== -->
 <!--     Maven 2 project configuration file               -->
 <!--     http://maven.apache.org/maven2/                  -->
@@ -133,7 +133,7 @@
           <source>1.5</source>            <!-- The -source argument for the Java compiler.   -->
           <target>1.5</target>            <!-- The -target argument for the Java compiler.   -->
           <debug>false</debug>            <!-- Whether to include debugging information.     -->
-          <encoding>ISO-8859-1</encoding> <!-- The -encoding argument for the Java compiler. -->
+          <encoding>UTF-8</encoding>      <!-- The -encoding argument for the Java compiler. -->
         </configuration>
       </plugin>
 
@@ -182,7 +182,7 @@
         <artifactId>maven-javadoc-plugin</artifactId>
         <configuration>
           <author>false</author>          <!-- Specifies whether or not the author text is included.              -->
-          <encoding>ISO-8859-1</encoding> <!-- Specifies the encoding name of the source files.                   -->
+          <encoding>UTF-8</encoding>      <!-- Specifies the encoding name of the source files.                   -->
           <source>1.5</source>            <!-- Necessary to enable javadoc to handle J2SE 1.5 features.           -->
           <noqualifier>all</noqualifier>  <!-- Omits qualifying package name from ahead of class names in output. -->
           <quiet>true</quiet>             <!-- Shuts off non-error and non-warning messages.                      -->
