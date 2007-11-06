@@ -145,7 +145,7 @@ public class SequenceType extends CodeList<SequenceType> {
      * unlike the simple replication of a single pattern as in Morton ordering. There are two sets of patterns.
      * The left-hand column of the figure includes those for which the sense of the scan directions is the same
      * - both are positive or both negative. The right-hand column of the figure includes those for which the
-     * sense of the scan directions is opposite ï¿½ one is positive and one is negative. A Hilbert curve can only
+     * sense of the scan directions is opposite - one is positive and one is negative. A Hilbert curve can only
      * be constructed with patterns from the same set; it uses all the patterns in that set.
      * <p>
      * <b>NOTE:</b> Because of the shape of the curve formed by the initial ordering of quadrants, Hilbert

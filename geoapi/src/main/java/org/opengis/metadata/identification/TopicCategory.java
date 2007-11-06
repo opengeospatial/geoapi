@@ -112,7 +112,7 @@ public final class TopicCategory extends CodeList<TopicCategory> {
      * Information pertaining to earth sciences.
      *
      * Examples: geophysical features and processes, geology, minerals, sciences
-     *           dealing with the composition, structure and origin of the earths rocks, risks of
+     *           dealing with the composition, structure and origin of the earth's rocks, risks of
      *           earthquakes, volcanic activity, landslides, gravity information, soils, permafrost,
      *           hydrogeology, erosion.
      */

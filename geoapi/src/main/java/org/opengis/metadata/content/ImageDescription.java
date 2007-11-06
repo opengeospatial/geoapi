@@ -67,7 +67,7 @@ public interface ImageDescription extends CoverageDescription {
     Double getCloudCoverPercentage();
 
     /**
-     * Image distributor’s code that identifies the level of radiometric and geometric
+     * Image distributor's code that identifies the level of radiometric and geometric
      * processing that has been applied.
      */
     @UML(identifier="processingLevelCode", obligation=OPTIONAL, specification=ISO_19115)
