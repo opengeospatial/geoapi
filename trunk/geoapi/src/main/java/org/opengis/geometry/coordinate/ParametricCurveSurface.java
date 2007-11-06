@@ -92,7 +92,7 @@ import static org.opengis.annotation.Specification.*;
  * If the coordinate reference system is 2D, then the vector <b>k</b> extends the local coordinate
  * system by supplying an "upward" elevation vector. In this case the vector basis
  * (<b>i</b>,&nbsp;<b>j</b>) must be a right hand system, that is to say, the oriented angle from
- * <b>i</b> to <b>j</b> must be less than 180°. This gives a right-handed "moving frame" of local
+ * <b>i</b> to <b>j</b> must be less than 180&deg;. This gives a right-handed "moving frame" of local
  * coordinate axes given by &lt;<b>i</b>, <b>j</b>&gt;. A moving frame is defined to be a continuous
  * function from the geometric object to a basis for the local tangent space of that object. For
  * curves, this is the derivative of the curve, the local tangent. For surfaces, this is a local

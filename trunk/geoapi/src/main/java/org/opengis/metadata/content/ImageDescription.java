@@ -32,7 +32,7 @@ public interface ImageDescription extends CoverageDescription {
      * intersection of the optical line of sight with the Earth's surface. For images from a
      * scanning device, refer to the centre pixel of the image.
      *
-     * @return A value between -90° and +90°, or {@code null} if unspecified.
+     * @return A value between -90&deg; and +90&deg;, or {@code null} if unspecified.
      */
     @UML(identifier="illuminationElevationAngle", obligation=OPTIONAL, specification=ISO_19115)
     Double getIlluminationElevationAngle();
@@ -41,7 +41,7 @@ public interface ImageDescription extends CoverageDescription {
      * Illumination azimuth measured in degrees clockwise from true north at the time the
      * image is taken. For images from a scanning device, refer to the centre pixel of the image.
      *
-     * @return A value between 0° and 360°, or {@code null} if unspecified.
+     * @return A value between 0&deg; and 360&deg;, or {@code null} if unspecified.
      */
     @UML(identifier="illuminationAzimuthAngle", obligation=OPTIONAL, specification=ISO_19115)
     Double getIlluminationAzimuthAngle();
