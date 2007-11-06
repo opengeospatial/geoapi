@@ -32,7 +32,7 @@ import static org.opengis.annotation.Specification.*;
  * are usually called hexagonal grids. In fact, the centers of a set of regular hexagons that form
  * such a tessellation correspond to the grid points of a quadrilateral grid. That grid can be
  * described as a rectified grid in which the two offset vectors are of equal length but differ in
- * direction by 60°. The length of a side of the hexagon is <var>L</var> = <var>S</var>&times;tan&nbsp;30°,
+ * direction by 60&deg;. The length of a side of the hexagon is <var>L</var> = <var>S</var>&times;tan&nbsp;30&deg;,
  * where <var>S</var> is the length of the offset vector. This means that the values in the coverage
  * range can be stored as a grid values matrix and accessed through a sequence rule. The hexagons
  * are the Thiessen polygons that are generated around the grid points.
@@ -40,7 +40,7 @@ import static org.opengis.annotation.Specification.*;
  * <b>NOTE:</b> A set of Thiessen polygons generated from the grid points of any 2-dimensional
  * rectified grid described by two offset vectors that are equal in length but not orthogonal
  * will be a set of congruent hexagons. The hexagons will be irregular unless the offset vectors
- * differ in direction by exactly 60°.
+ * differ in direction by exactly 60&deg;.
  *
  * @author ISO/DIS 19123
  * @author Alessio Fabiani
