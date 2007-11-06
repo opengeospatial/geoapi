@@ -36,7 +36,7 @@ import static org.opengis.annotation.Specification.*;
 @UML(identifier="LI_Lineage", specification=ISO_19115)
 public interface Lineage {
     /**
-     * General explanation of the data producer’s knowledge about the lineage of a dataset.
+     * General explanation of the data producer's knowledge about the lineage of a dataset.
      * Should be provided only if
      * {@linkplain org.opengis.metadata.quality.Scope#getLevel scope level} is
      * {@linkplain org.opengis.metadata.maintenance.ScopeCode#DATASET dataset} or

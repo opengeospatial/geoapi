@@ -300,9 +300,9 @@ public interface GridCoverage extends Coverage {
      *
      * The number of values returned will equal:
      * <center>
-     * (max<sub>1</sub> � min<sub>1</sub> + 1) *
-     * (max<sub>2</sub> � min<sub>2</sub> + 1) ... *
-     * (max<sub>n</sub> � min<sub>n</sub> + 1) *
+     * (max<sub>1</sub> - min<sub>1</sub> + 1) *
+     * (max<sub>2</sub> - min<sub>2</sub> + 1) ... *
+     * (max<sub>n</sub> - min<sub>n</sub> + 1) *
      * {@link #getNumSampleDimensions numSampleDimensions}
      * </center>
      *
@@ -489,9 +489,9 @@ public interface GridCoverage extends Coverage {
      * The number of values must equal:
      *
      * <center>
-     * (max<sub>1</sub> � min<sub>1</sub> + 1) *
-     * (max<sub>2</sub> � min<sub>2</sub> + 1) ... *
-     * (max<sub>n</sub> � min<sub>n</sub> + 1) *
+     * (max<sub>1</sub> ï¿½ min<sub>1</sub> + 1) *
+     * (max<sub>2</sub> ï¿½ min<sub>2</sub> + 1) ... *
+     * (max<sub>n</sub> ï¿½ min<sub>n</sub> + 1) *
      * {@link #getNumSampleDimensions numSampleDimensions}
      * </center>
      *

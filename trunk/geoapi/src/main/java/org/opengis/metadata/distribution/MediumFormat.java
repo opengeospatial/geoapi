@@ -61,7 +61,7 @@ public final class MediumFormat extends CodeList<MediumFormat> {
     public static final MediumFormat HIGH_SIERRA = new MediumFormat("HIGH_SIERRA");
 
     /**
-     * Information processing – volume and file structure of CD-ROM.
+     * Information processing - volume and file structure of CD-ROM.
      */
     @UML(identifier="iso9660", obligation=CONDITIONAL, specification=ISO_19115)
     public static final MediumFormat ISO_9660 = new MediumFormat("ISO_9660");

@@ -32,13 +32,13 @@ import static org.opengis.annotation.Specification.*;
  * primitive agrees or disagrees with the orientation of the referenced object.
  *
  * <blockquote><font size=2>
- * <strong>NOTE:</strong> There are several reasons for subclassing the “positive” primitives
+ * <strong>NOTE:</strong> There are several reasons for subclassing the "positive" primitives
  * under the orientable primitives. First is a matter of the semantics of subclassing. Subclassing
- * is assumed to be a “is type of” hierarchy. In the view used, the “positive” primitive is simply
+ * is assumed to be a "is type of" hierarchy. In the view used, the Â“positiveÂ” primitive is simply
  * the orientable one with the positive orientation. If the opposite view were taken, and orientable
- * primitives were subclassed under the “positive” primitive, then by subclassing logic, the
- * “negative” primitive would have to hold the same sort of geometric description that the
- * “positive” primitive does. The only viable solution would be to separate “negative” primitives
+ * primitives were subclassed under the "positive" primitive, then by subclassing logic, the
+ * "negative" primitive would have to hold the same sort of geometric description that the
+ * "positive" primitive does. The only viable solution would be to separate "negative" primitives
  * under the geometric root as being some sort of reference to their opposite. This adds a great
  * deal of complexity to the subclassing tree. To minimize the number of objects and to bypass this
  * logical complexity, positively oriented primitives are self-referential (are instances of the

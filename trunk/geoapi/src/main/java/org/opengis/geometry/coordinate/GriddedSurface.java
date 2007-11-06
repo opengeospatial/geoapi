@@ -25,7 +25,7 @@ import static org.opengis.annotation.Specification.*;
  * control points:
  *
  * <blockquote>
- * &lt;c<sub>n</sub>(<var>s</var>) : <var>s</var> = 1 … columns&gt;
+ * &lt;c<sub>n</sub>(<var>s</var>) : <var>s</var> = 1 &hellip; columns&gt;
  * </blockquote>
  *
  * From this sequence, a vertical curve is calculated for <var>s</var>, and evaluated at <var>t</var>.

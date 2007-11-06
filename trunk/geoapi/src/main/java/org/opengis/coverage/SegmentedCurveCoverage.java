@@ -47,7 +47,7 @@ import static org.opengis.annotation.Specification.*;
 public interface SegmentedCurveCoverage extends ContinuousCoverage {
     /**
      * Returns the set of value objects used to evaluate the coverage. This
-     * association is optional – an analytical coverage needs no value objects.
+     * association is optional - an analytical coverage needs no value objects.
      */
     @UML(identifier="element", obligation=OPTIONAL, specification=ISO_19123)
     Set<ValueCurve> getElements();

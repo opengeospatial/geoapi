@@ -45,7 +45,7 @@ public interface Solid extends Primitive {
      * </font></blockquote>
      *
      * The {@linkplain OrientableSurface orientable surfaces} that bound a solid shall be oriented
-     * outward – that is, the "top" of each {@linkplain Surface surface} as defined by its orientation
+     * outward - that is, the "top" of each {@linkplain Surface surface} as defined by its orientation
      * shall face away from the interior of the solid. Each {@linkplain Shell shell}, when viewed as
      * a composite surface, shall be a cycle.
      *

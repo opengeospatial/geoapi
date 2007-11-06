@@ -29,7 +29,7 @@ import static org.opengis.annotation.Specification.*;
 public interface ImageDescription extends CoverageDescription {
     /**
      * Illumination elevation measured in degrees clockwise from the target plane at
-     * intersection of the optical line of sight with the Earth’s surface. For images from a
+     * intersection of the optical line of sight with the Earth's surface. For images from a
      * scanning device, refer to the centre pixel of the image.
      *
      * @return A value between -90° and +90°, or {@code null} if unspecified.

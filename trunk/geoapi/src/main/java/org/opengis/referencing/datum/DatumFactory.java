@@ -93,7 +93,7 @@ public interface DatumFactory extends ObjectFactory {
      *
      * @param  properties Name and other properties to give to the new object.
      *         Available properties are {@linkplain ObjectFactory listed there}.
-     * @param  type The type of this vertical datum (often “geoidal”).
+     * @param  type The type of this vertical datum (often "geoidal").
      * @throws FactoryException if the object creation failed.
      */
     @UML(identifier="createVerticalDatum", specification=OGC_01009)
