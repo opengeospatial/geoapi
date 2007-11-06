@@ -22,7 +22,6 @@ import org.opengis.util.Cloneable;
  * related to viewability, editability, and highlighting, are contained in
  * <code>Graphic</code>.
  *
- * @version $Revision: 658 $, $Date: 2006-02-23 12:09:34 +1100 (jeu., 23 févr. 2006) $
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  */
 public interface GraphicStyle extends Cloneable {

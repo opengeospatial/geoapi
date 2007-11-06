@@ -16,7 +16,6 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * @version $Revision: 671 $
  * @author <a href="mailto:poth@lat-lon.de">Andreas Poth</a>
  */
 public interface Service extends Description {

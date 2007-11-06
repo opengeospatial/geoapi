@@ -19,7 +19,6 @@ import org.opengis.go.display.canvas.web.WebCanvas;
  * 
  * @author SYS Technologies
  * @author crossley
- * @version $Revision $
  */
 public interface WebMap2D extends WebCanvas, Map2D {
 

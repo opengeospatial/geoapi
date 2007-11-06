@@ -27,7 +27,6 @@ package org.opengis.go.spatial;
  * are well suited for navigation of surface ships or vehicles.
  * 
  * @author Open GIS Consortium, Inc.
- * @version $Revision: 658 $, $Date: 2006-02-23 12:09:34 +1100 (jeu., 23 févr. 2006) $
  */
 public final class GlobalPathType extends PathType {
     /**
