@@ -37,7 +37,7 @@ import static org.opengis.annotation.Specification.*;
  * A number of global best-fit ellipsoids are now available. An association of an ellipsoid with
  * the earth is made through the definition of the size and shape of the ellipsoid and the position
  * and orientation of this ellipsoid with respect to the earth. Collectively this choice is captured
- * by the concept of “{@linkplain GeodeticDatum geodetic datum}”. A change of size, shape, position
+ * by the concept of "{@linkplain GeodeticDatum geodetic datum}". A change of size, shape, position
  * or orientation of an ellipsoid will result in a change of geographic coordinates of a point and
  * be described as a different geodetic datum. Conversely geographic coordinates are unambiguous
  * only when associated with a geodetic datum.

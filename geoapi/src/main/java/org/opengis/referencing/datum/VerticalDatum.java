@@ -32,7 +32,7 @@ import static org.opengis.annotation.Specification.*;
 @UML(identifier="CD_VerticalDatum", specification=ISO_19111)
 public interface VerticalDatum extends Datum {
     /**
-     * The type of this vertical datum. Default is “geoidal”.
+     * The type of this vertical datum. Default is "geoidal".
      */
     @UML(identifier="vertDatumType", obligation=MANDATORY, specification=ISO_19111)
     VerticalDatumType getVerticalDatumType();

@@ -27,7 +27,7 @@ import static org.opengis.annotation.Specification.*;
  * </ul>
  * <p>
  * Earth-fixed Engineering CRSs are commonly based on a simple flat-earth approximation of the
- * earth’s surface, and the effect of earth curvature on feature geometry is ignored: calculations
+ * earth's surface, and the effect of earth curvature on feature geometry is ignored: calculations
  * on coordinates use simple plane arithmetic without any corrections for earth curvature. The
  * application of such Engineering CRSs to relatively small areas and "contextually local" is in
  * this case equivalent to "spatially local".

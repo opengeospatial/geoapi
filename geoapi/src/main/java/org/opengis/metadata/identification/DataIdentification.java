@@ -101,7 +101,7 @@ public interface DataIdentification extends Identification {
     Collection<GeographicDescription> getGeographicDescription();
 
     /**
-     * Description of the dataset in the producer’s processing environment, including items
+     * Description of the dataset in the producer's processing environment, including items
      * such as the software, the computer operating system, file name, and the dataset size.
      */
     @UML(identifier="environmentDescription", obligation=OPTIONAL, specification=ISO_19115)

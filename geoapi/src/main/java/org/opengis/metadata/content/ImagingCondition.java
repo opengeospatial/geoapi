@@ -55,7 +55,7 @@ public final class ImagingCondition extends CodeList<ImagingCondition> {
     public static final ImagingCondition CLOUD = new ImagingCondition("CLOUD");
 
     /**
-     * Acute angle between the plane of the ecliptic (the plane of the Earth’s orbit) and
+     * Acute angle between the plane of the ecliptic (the plane of the Earth's orbit) and
      * the plane of the celestial equator.
      */
     @UML(identifier="degradingObliquity", obligation=CONDITIONAL, specification=ISO_19115)
@@ -86,7 +86,7 @@ public final class ImagingCondition extends CodeList<ImagingCondition> {
     public static final ImagingCondition RAIN = new ImagingCondition("RAIN");
 
     /**
-     * Image was taken during semi-dark conditions—twilight conditions.
+     * Image was taken during semi-dark conditions or twilight conditions.
      */
     @UML(identifier="semiDarkness", obligation=CONDITIONAL, specification=ISO_19115)
     public static final ImagingCondition SEMI_DARKNESS = new ImagingCondition("SEMI_DARKNESS");

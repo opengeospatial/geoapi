@@ -25,7 +25,7 @@ import static org.opengis.annotation.Specification.*;
 
 /**
  * Specifies the order in which attribute value records are assigned to {@linkplain GridPoint grid points}.
- * There are several sequencing rules based on incrementing – or decrementing – grid coordinate values in
+ * There are several sequencing rules based on incrementing - or decrementing - grid coordinate values in
  * a simple fashion. More complex space filling curves can also be used. Space filling curves are generated
  * by progressively subdividing a space in a regular way and connecting the elements resulting from each
  * subdivision according to some rule. They can be used to generate a grid, but they can also be used to
@@ -147,8 +147,8 @@ public class SequenceType extends CodeList<SequenceType> {
      * for Hilbert curves. Further subdivision involves replacement of parts of the curve by different patterns,
      * unlike the simple replication of a single pattern as in Morton ordering. There are two sets of patterns.
      * The left-hand column of the figure includes those for which the sense of the scan directions is the same
-     * – both are positive or both negative. The right-hand column of the figure includes those for which the
-     * sense of the scan directions is opposite – one is positive and one is negative. A Hilbert curve can only
+     * - both are positive or both negative. The right-hand column of the figure includes those for which the
+     * sense of the scan directions is opposite - one is positive and one is negative. A Hilbert curve can only
      * be constructed with patterns from the same set; it uses all the patterns in that set.
      * <p>
      * <b>NOTE:</b> Because of the shape of the curve formed by the initial ordering of quadrants, Hilbert

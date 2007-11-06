@@ -66,7 +66,7 @@ public interface Format {
     InternationalString getFileDecompressionTechnique();
 
     /**
-     * Provides information about the distributor’s format.
+     * Provides information about the distributor's format.
      */
     @UML(identifier="formatDistributor", obligation=OPTIONAL, specification=ISO_19115)
     Collection<? extends Distributor> getFormatDistributors();

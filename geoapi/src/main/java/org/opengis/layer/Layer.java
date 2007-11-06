@@ -10,24 +10,20 @@
  *************************************************************************************************/
 package org.opengis.layer;
 
-// J2SE direct dependencies
 import java.util.Collection;
 import java.util.Map;  // For javadoc
 import java.util.Set;
 import java.util.List;
 
-// OpenGIS direct dependencies
-import org.opengis.feature.display.canvas.FeatureCanvas;
+import org.opengis.feature.display.canvas.FeatureCanvas; // For javadoc
 import org.opengis.feature.display.canvas.FeatureLayer;
-import org.opengis.go.display.canvas.Canvas;
+import org.opengis.go.display.canvas.Canvas; // For javadoc
 import org.opengis.go.display.primitive.Graphic;
 import org.opengis.metadata.Identifier;
 import org.opengis.metadata.extent.GeographicBoundingBox;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 import org.opengis.geometry.Envelope;
 import org.opengis.util.InternationalString;
-
-// Annotations
 import org.opengis.annotation.XmlElement;
 
 
@@ -360,7 +356,7 @@ public interface Layer {
      * of differing colours will have no transparent areas. The opaque declaration should be taken as
      * a hint to the client to place such a layer at the bottom of a stack of maps.
      * <p>
-     * This attribute describes only the layer’s data content, not the picture format of the map response.
+     * This attribute describes only the layer's data content, not the picture format of the map response.
      * Whether or not a layer is listed as opaque, a server shall still comply the {@code GetMap}
      * {@code TRANSPARENT} parameter: that is, the server shall send an image with a transparent
      * background if and only if the client requests {@code TRANSPARENT=TRUE} and a picture
