@@ -26,7 +26,6 @@ import org.opengis.geometry.DirectPosition;
  * Coordinate Reference System and ending at the x-axis of the local Cartesian plane.
  * 
  * @author Open GIS Consortium, Inc.
- * @version $Revision: 658 $, $Date: 2006-02-23 12:09:34 +1100 (jeu., 23 févr. 2006) $
  */
 public interface GraphicIcon extends Graphic {
     /**

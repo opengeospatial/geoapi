@@ -18,7 +18,6 @@ import java.awt.event.MouseEvent;
  * to mouse events on a {@link org.opengis.go.display.primitive.Graphic}.
  * 
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
- * @version $Revision: 658 $, $Date: 2006-02-23 12:09:34 +1100 (jeu., 23 févr. 2006) $
  *
  * @todo This interface wraps a {@link MouseEvent}, which is not used by some toolkit like SWT.
  */

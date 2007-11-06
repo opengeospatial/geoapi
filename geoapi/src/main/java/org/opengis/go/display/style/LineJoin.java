@@ -20,7 +20,6 @@ import org.opengis.util.SimpleEnumerationType;
  * Indicates the various various ways of joining two lines at their intersection.
  * This class defines static constants for all of the standard choices.
  * 
- * @version $Revision: 658 $, $Date: 2006-02-23 12:09:34 +1100 (jeu., 23 févr. 2006) $
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  *
  * @todo Localize descriptions.

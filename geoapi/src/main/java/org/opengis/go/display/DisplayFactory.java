@@ -22,7 +22,6 @@ import org.opengis.go.display.style.GraphicStyle;
  * the different kinds of display objects.
  *
  * @author Open GIS Consortium, Inc.
- * @version $Revision: 658 $, $Date: 2006-02-23 12:09:34 +1100 (jeu., 23 févr. 2006) $
  */
 public interface DisplayFactory {
     /**

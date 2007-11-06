@@ -23,7 +23,6 @@ import java.awt.Font;
  * called the "text color" as it is the primary color used to draw the text.
  *
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
- * @version $Revision: 658 $, $Date: 2006-02-23 12:09:34 +1100 (jeu., 23 févr. 2006) $
  */
 public interface TextSymbolizer extends GraphicStyle {
 

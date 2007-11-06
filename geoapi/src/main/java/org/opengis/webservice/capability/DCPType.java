@@ -49,7 +49,6 @@ package org.opengis.webservice.capability;
  * 
  * @author <a href="mailto:k.lupp@web.de">Katharina Lupp </a>
  * @author <a href="mailto:mschneider@lat-lon.de">Markus Schneider </a>
- * @version $Revision: 658 $ $Date: 2006-02-23 12:09:34 +1100 (jeu., 23 févr. 2006) $
  */
 public interface DCPType {
     /**

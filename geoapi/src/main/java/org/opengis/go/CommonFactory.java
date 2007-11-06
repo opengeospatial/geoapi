@@ -34,7 +34,6 @@ import org.opengis.util.NameFactory;
  * objects have a common dependency on.
  *
  * @author Open GIS Consortium, Inc.
- * @version $Revision: 816 $, $Date: 2006-04-06 11:16:19 +1100 (jeu., 06 avr. 2006) $
  */
 public interface CommonFactory {
     /**

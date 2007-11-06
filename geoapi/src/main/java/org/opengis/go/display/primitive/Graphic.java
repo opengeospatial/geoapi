@@ -21,7 +21,6 @@ import org.opengis.go.display.style.Symbology;
  * taxonomy, specifying the methods common to a lightweight set of graphic objects.
  *
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
- * @version $Revision: 658 $, $Date: 2006-02-23 12:09:34 +1100 (jeu., 23 févr. 2006) $
  */
 public interface Graphic {
 
