@@ -44,7 +44,7 @@ import static org.opengis.annotation.Specification.*;
  * logical complexity, positively oriented primitives are self-referential (are instances of the
  * corresponding primitive subtype) while negatively oriented primitives are not.
  * </font></blockquote>
- *  
+ *
  * @version <A HREF="http://www.opengeospatial.org/standards/as">ISO 19107</A>
  * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 1.0
@@ -61,14 +61,17 @@ public interface OrientablePrimitive extends Primitive {
 
     /**
      * Returns the primitive associated with this {@code OrientablePrimitive}.
-     * Each {@linkplain Primitive primitive} of dimension 1 or 2 is associated to two
-     * {@code OrientablePrimitive}s, one for each possible orientation.
+     * Each {@linkplain Primitive primitive} of dimension 1 or 2 is associated
+     * to two {@code OrientablePrimitive}s, one for each possible orientation.
      * For curves and surfaces, there are exactly two orientable primitives
-     * for each geometric object.
+     * for each geometric object. For the positive orientation, the orientable
+     * primitive shall be the corresponding {@linkplain Curve curve} or
+     * {@linkplain Surface surface}.
      *
      * @return The primitive, never {@code null}.
      *
-     * @see Primitive#getProxy
+     * @deprecated The association in ISO 19107 specification is not navigable that way. See
+     *             {@link OrientableCurve#getComposite} and {@link OrientableSurface#getComposite}.
      */
     @UML(identifier="primitive", obligation=MANDATORY, specification=ISO_19107)
     public Primitive getPrimitive();

@@ -23,7 +23,7 @@ import static org.opengis.annotation.Specification.*;
  * orientation is negative, then the {@code OrientableSurface} is a reference to a
  * {@linkplain Surface surface} with an upNormal that reverses the direction for this
  * {@code OrientableSurface}, the sense of "the top of the surface".
- *  
+ *
  * @version <A HREF="http://www.opengeospatial.org/standards/as">ISO 19107</A>
  * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 1.0
@@ -55,8 +55,8 @@ public interface OrientableSurface extends OrientablePrimitive {
      *
      * @return The owner of this orientable surface, or {@code null} if none.
      *
-     * @todo I'm not sure to interpret correctly the ISO specification.
-     *       Sound like ISO returns an array (or a sequence) here.
+     * @deprecated The association in ISO 19107 specification is navigable only from
+     *             {@link CompositeSurface} to {@code OrientableSurface}, not the other way.
      */
     @UML(identifier="composite", obligation=OPTIONAL, specification=ISO_19107)
     public CompositeSurface getComposite();

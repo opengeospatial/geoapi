@@ -10,7 +10,12 @@
  *************************************************************************************************/
 package org.opengis.geometry.coordinate;
 
+import java.util.Set;
 import org.opengis.geometry.DirectPosition;
+import org.opengis.annotation.Extension;
+import org.opengis.annotation.UML;
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
 
 
 /**
@@ -21,6 +26,7 @@ import org.opengis.geometry.DirectPosition;
  * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 1.0
  */
+@UML(identifier="paramForPoint", specification=ISO_19107)
 public interface ParamForPoint {
     /**
      * Returns the parameter distance computed by
@@ -32,7 +38,18 @@ public interface ParamForPoint {
      *
      * @return The parameter distance.
      * @unitof Distance
+     *
+     * @since GeoAPI 2.1
      */
+    public Set<Number> getDistances();
+
+    /**
+     * Returns the first value in the {@linkplain #getDistances distances} set.
+     *
+     * @return The parameter distance.
+     * @unitof Distance
+     */
+    @Extension
     public double getDistance();
 
     /**

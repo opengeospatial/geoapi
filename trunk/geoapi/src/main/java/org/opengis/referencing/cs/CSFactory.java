@@ -46,10 +46,10 @@ public interface CSFactory extends ObjectFactory {
      * @param  unit The coordinate axis unit.
      * @throws FactoryException if the object creation failed.
      */
-    CoordinateSystemAxis createCoordinateSystemAxis(Map<String, ? extends Object> properties,
-                                                    String        abbreviation,
-                                                    AxisDirection direction,
-                                                    Unit          unit) throws FactoryException;
+    CoordinateSystemAxis createCoordinateSystemAxis(Map<String, ? > properties,
+                                                    String          abbreviation,
+                                                    AxisDirection   direction,
+                                                    Unit            unit) throws FactoryException;
 
     /**
      * Creates a two dimensional cartesian coordinate system from the given pair of axis.
@@ -60,7 +60,7 @@ public interface CSFactory extends ObjectFactory {
      * @param  axis1 The second axis.
      * @throws FactoryException if the object creation failed.
      */
-    CartesianCS createCartesianCS(Map<String, ? extends Object> properties,
+    CartesianCS createCartesianCS(Map<String, ?>  properties,
                                   CoordinateSystemAxis axis0,
                                   CoordinateSystemAxis axis1) throws FactoryException;
 
@@ -74,7 +74,7 @@ public interface CSFactory extends ObjectFactory {
      * @param  axis2 The third  axis.
      * @throws FactoryException if the object creation failed.
      */
-    CartesianCS createCartesianCS(Map<String, ? extends Object> properties,
+    CartesianCS createCartesianCS(Map<String, ?>  properties,
                                   CoordinateSystemAxis axis0,
                                   CoordinateSystemAxis axis1,
                                   CoordinateSystemAxis axis2) throws FactoryException;
@@ -88,7 +88,7 @@ public interface CSFactory extends ObjectFactory {
      * @param  axis1 The second axis.
      * @throws FactoryException if the object creation failed.
      */
-    AffineCS createAffineCS(Map<String, ? extends Object> properties,
+    AffineCS createAffineCS(Map<String, ?>  properties,
                             CoordinateSystemAxis axis0,
                             CoordinateSystemAxis axis1) throws FactoryException;
 
@@ -102,7 +102,7 @@ public interface CSFactory extends ObjectFactory {
      * @param  axis2 The third  axis.
      * @throws FactoryException if the object creation failed.
      */
-    AffineCS createAffineCS(Map<String, ? extends Object> properties,
+    AffineCS createAffineCS(Map<String, ?>  properties,
                             CoordinateSystemAxis axis0,
                             CoordinateSystemAxis axis1,
                             CoordinateSystemAxis axis2) throws FactoryException;
@@ -116,7 +116,7 @@ public interface CSFactory extends ObjectFactory {
      * @param  axis1 The second axis.
      * @throws FactoryException if the object creation failed.
      */
-    PolarCS createPolarCS(Map<String, ? extends Object> properties,
+    PolarCS createPolarCS(Map<String, ?>  properties,
                           CoordinateSystemAxis axis0,
                           CoordinateSystemAxis axis1) throws FactoryException;
 
@@ -130,7 +130,7 @@ public interface CSFactory extends ObjectFactory {
      * @param  axis2 The third  axis.
      * @throws FactoryException if the object creation failed.
      */
-    CylindricalCS createCylindricalCS(Map<String, ? extends Object> properties,
+    CylindricalCS createCylindricalCS(Map<String, ?>  properties,
                                       CoordinateSystemAxis axis0,
                                       CoordinateSystemAxis axis1,
                                       CoordinateSystemAxis axis2) throws FactoryException;
@@ -145,7 +145,7 @@ public interface CSFactory extends ObjectFactory {
      * @param  axis2 The third  axis.
      * @throws FactoryException if the object creation failed.
      */
-    SphericalCS createSphericalCS(Map<String, ? extends Object> properties,
+    SphericalCS createSphericalCS(Map<String, ?>  properties,
                                   CoordinateSystemAxis axis0,
                                   CoordinateSystemAxis axis1,
                                   CoordinateSystemAxis axis2) throws FactoryException;
@@ -159,7 +159,7 @@ public interface CSFactory extends ObjectFactory {
      * @param  axis1 The second axis.
      * @throws FactoryException if the object creation failed.
      */
-    EllipsoidalCS createEllipsoidalCS(Map<String, ? extends Object> properties,
+    EllipsoidalCS createEllipsoidalCS(Map<String, ?>  properties,
                                       CoordinateSystemAxis axis0,
                                       CoordinateSystemAxis axis1) throws FactoryException;
 
@@ -173,7 +173,7 @@ public interface CSFactory extends ObjectFactory {
      * @param  axis2 The third  axis.
      * @throws FactoryException if the object creation failed.
      */
-    EllipsoidalCS createEllipsoidalCS(Map<String, ? extends Object> properties,
+    EllipsoidalCS createEllipsoidalCS(Map<String, ?>  properties,
                                       CoordinateSystemAxis axis0,
                                       CoordinateSystemAxis axis1,
                                       CoordinateSystemAxis axis2) throws FactoryException;
@@ -186,7 +186,7 @@ public interface CSFactory extends ObjectFactory {
      * @param  axis The axis.
      * @throws FactoryException if the object creation failed.
      */
-    VerticalCS createVerticalCS(Map<String, ? extends Object> properties,
+    VerticalCS createVerticalCS(Map<String, ?> properties,
                                 CoordinateSystemAxis axis) throws FactoryException;
 
     /**
@@ -197,7 +197,7 @@ public interface CSFactory extends ObjectFactory {
      * @param  axis The axis.
      * @throws FactoryException if the object creation failed.
      */
-    TimeCS createTimeCS(Map<String, ? extends Object> properties,
+    TimeCS createTimeCS(Map<String, ?> properties,
                         CoordinateSystemAxis axis) throws FactoryException;
 
     /**
@@ -208,7 +208,7 @@ public interface CSFactory extends ObjectFactory {
      * @param  axis The axis.
      * @throws FactoryException if the object creation failed.
      */
-    LinearCS createLinearCS(Map<String, ? extends Object> properties,
+    LinearCS createLinearCS(Map<String, ?> properties,
                             CoordinateSystemAxis axis) throws FactoryException;
 
     /**
@@ -220,7 +220,7 @@ public interface CSFactory extends ObjectFactory {
      * @param  axis1 The second axis.
      * @throws FactoryException if the object creation failed.
      */
-    UserDefinedCS createUserDefinedCS(Map<String, ? extends Object> properties,
+    UserDefinedCS createUserDefinedCS(Map<String, ?>  properties,
                                       CoordinateSystemAxis axis0,
                                       CoordinateSystemAxis axis1) throws FactoryException;
 
@@ -234,7 +234,7 @@ public interface CSFactory extends ObjectFactory {
      * @param  axis2 The third  axis.
      * @throws FactoryException if the object creation failed.
      */
-    UserDefinedCS createUserDefinedCS(Map<String, ? extends Object> properties,
+    UserDefinedCS createUserDefinedCS(Map<String, ?>  properties,
                                       CoordinateSystemAxis axis0,
                                       CoordinateSystemAxis axis1,
                                       CoordinateSystemAxis axis2) throws FactoryException;

@@ -13,7 +13,6 @@ package org.opengis.geometry.coordinate;
 import java.util.List;
 import org.opengis.geometry.primitive.CurveSegment;
 import org.opengis.annotation.UML;
-
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
 
@@ -45,7 +44,7 @@ public interface OffsetCurve extends CurveSegment {
     public double getDistance();
 
     /**
-     * Define the vector direction of the offset curve from the basis curve. It can be
+     * Defines the vector direction of the offset curve from the basis curve. It can be
      * omitted in the 2D case, where the distance can be positive or negative. In that
      * case, distance defines left side (positive distance) or right side (negative distance)
      * with respect to the tangent to the basis curve. In 3D the basis curve shall have a

@@ -42,6 +42,9 @@ public interface CurveSegment extends GenericCurve {
      * @return The owner of this curve segment, or {@code null} if none.
      *
      * @see Curve#getSegments
+     *
+     * @deprecated The association in ISO 19107 specification is navigable only from
+     *             {@link CurveSegment} to {@code Curve}, not the other way.
      */
     @UML(identifier="curve", obligation=OPTIONAL, specification=ISO_19107)
     public Curve getCurve();
