@@ -43,8 +43,8 @@ public interface OrientableCurve extends OrientablePrimitive {
      *
      * @return The owner of this orientable curve, or {@code null} if none.
      *
-     * @todo I'm not sure to interpret correctly the ISO specification.
-     *       Sound like ISO returns an array (or a sequence) here.
+     * @deprecated The association in ISO 19107 specification is navigable only from
+     *             {@link CompositeCurve} to {@code OrientableCurve}, not the other way.
      */
     @UML(identifier="composite", obligation=OPTIONAL, specification=ISO_19107)
     public CompositeCurve getComposite();

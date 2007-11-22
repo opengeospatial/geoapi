@@ -15,8 +15,10 @@ import org.opengis.metadata.Identifier;  // For javadoc
 import org.opengis.referencing.Factory;
 import org.opengis.referencing.FactoryException;
 import org.opengis.referencing.NoSuchIdentifierException;
-import org.opengis.parameter.ParameterDescriptorGroup; // For javadoc
-import org.opengis.parameter.ParameterValueGroup;
+import org.opengis.referencing.cs.CoordinateSystem;
+import org.opengis.referencing.datum.Ellipsoid; // For javadoc
+import org.opengis.referencing.crs.*; // Contains some import for javadoc.
+import org.opengis.parameter.*;       // Contains some import for javadoc.
 import org.opengis.annotation.UML;
 import org.opengis.annotation.Extension;
 
@@ -85,6 +87,23 @@ public interface MathTransformFactory extends Factory {
     Set<OperationMethod> getAvailableMethods(Class type);
 
     /**
+     * Returns the operation method used for the latest call to
+     * {@link #createParameterizedTransform createParameterizedTransform},
+     * or {@code null} if not applicable.
+     * <p>
+     * Implementors should document how their implementation behave in a multi-threads environment.
+     * For example some implementations use {@linkplain java.lang.ThreadLocal thread local variables},
+     * while other can choose to returns {@code null} in all cases since this method is optional.
+     * <p>
+     * Note that this method may apply as well to convenience methods that delegate their work to
+     * {@code createParameterizedTransform}, like {@link #createBaseToDerived createBaseToDerived}.
+     *
+     * @since GeoAPI 2.1
+     */
+    @Extension
+    OperationMethod getLastMethodUsed();
+
+    /**
      * Returns the default parameter values for a math transform using the given method.
      * The {@code method} argument is the name of any operation method returned by
      * <code>{@link #getAvailableMethods getAvailableMethods}({@linkplain Operation}.class)</code>.
@@ -108,6 +127,32 @@ public interface MathTransformFactory extends Factory {
     ParameterValueGroup getDefaultParameters(String method) throws NoSuchIdentifierException;
 
     /**
+     * Creates a {@linkplain #createParameterizedTransform parameterized transform} from a base CRS
+     * to a derived CS. This convenience method {@linkplain #createConcatenatedTransform concatenates}
+     * the parameterized transform with any other transform required for performing units changes and
+     * ordinates swapping, as described in <cite>Note on cartographic projections</cite>.
+     * <p>
+     * In addition, implementations are encouraged to infer the {@code "semi_major"} and
+     * {@code "semi_minor"} parameter values from the {@linkplain Ellipsoid ellipsoid}, if
+     * they are not explicitly given.
+     *
+     * @param  baseCRS The source coordinate reference system.
+     * @param  parameters The parameter values for the transform.
+     * @param  derivedCS The target coordinate system.
+     * @return The parameterized transform.
+     * @throws NoSuchIdentifierException if there is no transform registered for the method.
+     * @throws FactoryException if the object creation failed. This exception is thrown
+     *         if some required parameter has not been supplied, or has illegal value.
+     *
+     * @since GeoAPI 2.1
+     */
+    @Extension
+    MathTransform createBaseToDerived(CoordinateReferenceSystem baseCRS,
+                                      ParameterValueGroup       parameters,
+                                      CoordinateSystem          derivedCS)
+            throws FactoryException;
+
+    /**
      * Creates a transform from a group of parameters. The method name is inferred from
      * the {@linkplain ParameterDescriptorGroup#getName parameter group name}. Example:
      *
@@ -119,23 +164,20 @@ public interface MathTransformFactory extends Factory {
      * </pre></blockquote>
      *
      * <strong>Note on cartographic projections:</strong>
-     * <P>Cartographic projection transforms are used by {@linkplain org.opengis.referencing.crs.ProjectedCRS
-     * projected coordinate reference systems} to map geographic coordinates (e.g. <var>Longitude</var> and
-     * <var>Latitude</var>) into (<var>X</var>,<var>Y</var>) coordinates. These (<var>X</var>,<var>Y</var>)
-     * coordinates can be imagined to lie on a plane, such as a paper map or a screen. All cartographic projection
-     * transforms created through this method will have the following properties:</P>
+     * <P>Cartographic projection transforms are used by {@linkplain ProjectedCRS projected coordinate reference systems}
+     * to map geographic coordinates (e.g. <var>longitude</var> and <var>latitude</var>) into (<var>x</var>,<var>y</var>)
+     * coordinates. These (<var>x</var>,<var>y</var>) coordinates can be imagined to lie on a plane, such as a paper map
+     * or a screen. All cartographic projection transforms created through this method will have the following properties:</P>
      * <UL>
-     * <LI>Converts from (<var>Longitude</var>, <var>Latitude</var>) coordinates to (<var>X</var>,<var>Y</var>).</LI>
-     * <LI>All angles are assumed to be degrees, and all distances are assumed to be meters.</LI>
-     * <LI>The domain should be a subset of {[-180,180)&times;(-90,90)}.</LI>
+     *   <LI>Converts from (<var>longitude</var>,<var>latitude</var>) coordinates to (<var>x</var>,<var>y</var>).</LI>
+     *   <LI>All angles are assumed to be degrees, and all distances are assumed to be meters.</LI>
+     *   <LI>The domain should be a subset of {[-180,180)&times;(-90,90)}.</LI>
      * </UL>
-     * <P>Although all cartographic projection transforms must have the properties listed above, many
-     * projected coordinate reference systems have different properties. For example, in Europe some
-     * projected CRSs use grads instead of degrees, and often the
-     * {@linkplain org.opengis.referencing.crs.ProjectedCRS#getBaseCRS base geographic CRS} is
-     * (<var>Latitude</var>, <var>Longitude</var>) instead of (<var>Longitude</var>, <var>Latitude</var>).
-     * This means that the cartographic projected transform is often used as a single step in a series of
-     * transforms, where the other steps change units and swap ordinates.</P>
+     * <P>Although all cartographic projection transforms must have the properties listed above, many projected coordinate
+     * reference systems have different properties. For example, in Europe some projected CRSs use grads instead of degrees,
+     * and often the {@linkplain ProjectedCRS#getBaseCRS base geographic CRS} is (<var>latitude</var>, <var>longitude</var>)
+     * instead of (<var>longitude</var>, <var>latitude</var>). This means that the cartographic projected transform is often
+     * used as a single step in a series of transforms, where the other steps change units and swap ordinates.</P>
      *
      * @param  parameters The parameter values.
      * @return The parameterized transform.

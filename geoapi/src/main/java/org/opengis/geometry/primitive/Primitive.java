@@ -47,7 +47,7 @@ import static org.opengis.annotation.Specification.*;
 @UML(identifier="GM_Primitive", specification=ISO_19107)
 public interface Primitive extends Geometry {
     /**
-     * Returns the boundary of a {@code Primitive} as a set of 
+     * Returns the boundary of a {@code Primitive} as a set of
      * {@code Primitive}s. This is a specialization of the operation at
      * {@link Geometry}, which does not restrict the class of the returned collection.
      * The organization of the boundary set of a {@code Primitive} depends on the
@@ -116,8 +116,8 @@ public interface Primitive extends Geometry {
     public Set<Complex> getComplexes();
 
     /**
-     * Returns the orientable primitives associated with this primitive. Each {@code Primitive}
-     * of dimension 1 or 2 is associated to two {@linkplain OrientablePrimitive orientable primitives},
+     * Returns the orientable primitives associated with this primitive. Each {@code Primitive} of
+     * dimension 1 or 2 is associated to two {@linkplain OrientablePrimitive orientable primitives},
      * one for each possible orientation. For curves and surfaces, there are exactly two orientable
      * primitives for each geometric object. For the positive orientation, the
      * {@linkplain OrientablePrimitive orientable primitive} shall be the corresponding
@@ -126,6 +126,8 @@ public interface Primitive extends Geometry {
      * @return The orientable primitives as an array of length 2, or {@code null} if none.
      *
      * @see OrientablePrimitive#getPrimitive
+     *
+     * @deprecated The association in ISO 19107 specification do not provides navigation that way.
      */
     @UML(identifier="proxy", obligation=OPTIONAL, specification=ISO_19107)
     public OrientablePrimitive[] getProxy();
