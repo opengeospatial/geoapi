@@ -14,6 +14,7 @@ import java.util.Map;
 import org.opengis.referencing.ObjectFactory;
 import org.opengis.referencing.FactoryException;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
+import org.opengis.parameter.ParameterValueGroup;
 import org.opengis.annotation.UML;
 import org.opengis.annotation.Extension;
 
@@ -72,10 +73,10 @@ public interface CoordinateOperationFactory extends ObjectFactory {
      *         to {@code targetCRS}.
      * @throws FactoryException if the operation creation failed for some other reason.
      *
-     * @todo More than one operation step may be involved in the path from {@code sourceCRS}
-     *       to {@code targetCRS}, but this method has only one {@code method} argument.
-     *       The user could have more fine grain control with {@link MathTransformFactory} (ported
-     *       from OGC 2001-09).
+     * @deprecated {@code CoordinateOperationFactory} is supposed to infers the operation from
+     *             the CRS. In addition, more than one operation step may be involved in the
+     *             path from {@code sourceCRS} to {@code targetCRS}, but this method has only
+     *             one {@code method} argument.
      */
     @Extension
     CoordinateOperation createOperation(CoordinateReferenceSystem sourceCRS,
@@ -93,7 +94,61 @@ public interface CoordinateOperationFactory extends ObjectFactory {
      * @throws FactoryException if the object creation failed.
      */
     @Extension
-    CoordinateOperation createConcatenatedOperation(Map<String, ? extends Object> properties,
+    CoordinateOperation createConcatenatedOperation(Map<String, ?> properties,
                                                     CoordinateOperation[] operations)
             throws FactoryException;
+
+    /**
+     * Constructs a defining conversion from a set of properties. Defining conversions have no
+     * {@linkplain Conversion#getSourceCRS source} and {@linkplain Conversion#getTargetCRS target
+     * CRS}, and do not need to have a {@linkplain Conversion#getMathTransform math transform}.
+     * Their sole purpose is to be given as an argument to
+     * {@linkplain org.opengis.referencing.crs.CRSFactory#createdDerivedCRS derived CRS} and
+     * {@linkplain org.opengis.referencing.crs.CRSFactory#createdDerivedCRS projected CRS constructors}.
+     * <p>
+     * Some available properties are {@linkplain ObjectFactory listed there}.
+     * Additionally, the following properties are understood by this construtor:
+     * <p>
+     * <table border='1'>
+     *   <tr bgcolor="#CCCCFF" class="TableHeadingColor">
+     *     <th nowrap>Property name</th>
+     *     <th nowrap>Value type</th>
+     *     <th nowrap>Value given to</th>
+     *   </tr>
+     *   <tr>
+     *     <td nowrap>&nbsp;{@value org.opengis.referencing.operation.CoordinateOperation#OPERATION_VERSION_KEY}&nbsp;</td>
+     *     <td nowrap>&nbsp;{@link String}&nbsp;</td>
+     *     <td nowrap>&nbsp;{@link CoordinateOperation#getOperationVersion}</td>
+     *   </tr>
+     *   <tr>
+     *     <td nowrap>&nbsp;{@value org.opengis.referencing.operation.CoordinateOperation#POSITIONAL_ACCURACY_KEY}&nbsp;</td>
+     *     <td nowrap>&nbsp;<code>{@linkplain PositionalAccuracy}[]</code>&nbsp;</td>
+     *     <td nowrap>&nbsp;{@link CoordinateOperation#getPositionalAccuracy}</td>
+     *   </tr>
+     *   <tr>
+     *     <td nowrap>&nbsp;{@value org.opengis.referencing.operation.CoordinateOperation#VALID_AREA_KEY}&nbsp;</td>
+     *     <td nowrap>&nbsp;{@link Extent}&nbsp;</td>
+     *     <td nowrap>&nbsp;{@link CoordinateOperation#getValidArea}</td>
+     *   </tr>
+     *   <tr>
+     *     <td nowrap>&nbsp;{@value org.opengis.referencing.operation.CoordinateOperation#SCOPE_KEY}&nbsp;</td>
+     *     <td nowrap>&nbsp;{@link String} or {@link InternationalString}&nbsp;</td>
+     *     <td nowrap>&nbsp;{@link CoordinateOperation#getScope}</td>
+     *   </tr>
+     * </table>
+     *
+     * @param  properties Set of properties. Should contains at least {@code "name"}.
+     * @param  method The operation method.
+     * @param  parameters The parameter values.
+     * @return The defining conversion.
+     * @throws FactoryException if the object creation failed.
+     * 
+     * @see org.opengis.referencing.crs.CRSFactory#createdProjectedCRS
+     * @see org.opengis.referencing.crs.CRSFactory#createdDerivedCRS
+     *
+     * @since GeoAPI 2.1
+     */
+    Conversion createDefiningConversion(Map<String,?>       properties,
+                                        OperationMethod     method,
+                                        ParameterValueGroup parameters) throws FactoryException;
 }

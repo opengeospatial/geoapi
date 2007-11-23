@@ -59,12 +59,12 @@ import org.opengis.annotation.Extension;
  *     <td nowrap>&nbsp;{@link Identifier#getAuthority} on the {@linkplain IdentifiedObject#getName name}</td>
  *   </tr>
  *   <tr>
- *     <td nowrap>&nbsp;{@value ReferenceIdentifier#CODESPACE_KEY}&nbsp;</td>
+ *     <td nowrap>&nbsp;{@value org.opengis.referencing.ReferenceIdentifier#CODESPACE_KEY}&nbsp;</td>
  *     <td nowrap>&nbsp;{@link String}&nbsp;</td>
  *     <td nowrap>&nbsp;{@link ReferenceIdentifier#getCodeSpace} on the {@linkplain IdentifiedObject#getName name}</td>
  *   </tr>
  *   <tr>
- *     <td nowrap>&nbsp;{@value ReferenceIdentifier#VERSION_KEY}&nbsp;</td>
+ *     <td nowrap>&nbsp;{@value org.opengis.referencing.ReferenceIdentifier#VERSION_KEY}&nbsp;</td>
  *     <td nowrap>&nbsp;{@link String}&nbsp;</td>
  *     <td nowrap>&nbsp;{@link ReferenceIdentifier#getVersion} on the {@linkplain IdentifiedObject#getName name}</td>
  *   </tr>
