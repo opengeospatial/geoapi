@@ -17,7 +17,6 @@ import org.opengis.metadata.quality.PositionalAccuracy;
 import org.opengis.metadata.extent.Extent;
 import org.opengis.util.InternationalString;
 import org.opengis.annotation.UML;
-import org.opengis.annotation.Extension;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -37,7 +36,7 @@ import static org.opengis.annotation.Specification.*;
  * inverse operations, but the same operation parameter values are used. If (some)
  * entirely different parameter values are needed, a different coordinate operation
  * shall be defined.
- *  
+ *
  * @version <A HREF="http://portal.opengeospatial.org/files/?artifact_id=6716">Abstract specification 2.0</A>
  * @author ISO/DIS 19111
  * @author Martin Desruisseaux (IRD)
@@ -132,12 +131,13 @@ public interface CoordinateOperation extends IdentifiedObject {
      */
     @UML(identifier="scope", obligation=OPTIONAL, specification=ISO_19111)
     InternationalString getScope();
-    
+
     /**
      * Gets the math transform. The math transform will transform positions in the
-     * {@linkplain #getSourceCRS source coordinate reference system}
-     * into positions in the
-     * {@linkplain #getTargetCRS target coordinate reference system}.
+     * {@linkplain #getSourceCRS source coordinate reference system} into positions in the
+     * {@linkplain #getTargetCRS target coordinate reference system}. It may be {@code null}
+     * in the case of {@linkplain CoordinateOperationFactory#createDefiningConversion
+     * defining conversions}.
      */
     @UML(identifier="CT_CoordinateTransformation.getMathTransform", specification=OGC_01009)
     MathTransform getMathTransform();
