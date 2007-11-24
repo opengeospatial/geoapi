@@ -16,7 +16,7 @@ import org.opengis.go.display.canvas.web.WebCanvas;
 
 /**
  * The <code>WebMap2D</code> class/interface...
- * 
+ *
  * @author SYS Technologies
  * @author crossley
  */

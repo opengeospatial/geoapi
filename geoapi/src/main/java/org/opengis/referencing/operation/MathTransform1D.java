@@ -33,7 +33,7 @@ public interface MathTransform1D extends MathTransform {
      * @throws TransformException if the value can't be transformed.
      */
     double transform(final double value) throws TransformException;
-    
+
     /**
      * Gets the derivative of this function at a value. The derivative is the
      * 1&times;1 matrix of the non-translating portion of the approximate affine

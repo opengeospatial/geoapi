@@ -18,24 +18,24 @@ package org.opengis.filter.capability;
  *          &lt;xsd:element ref="ogc:Beyond"/&gt;
  *          &lt;xsd:element ref="ogc:DWithin"/&gt;
  *      &lt;/xsd:choice&gt;
- *  &lt;/xsd:complexType&gt; 
+ *  &lt;/xsd:complexType&gt;
  * </pre>
  * </p>
  * @author Justin Deoliveira, The Open Planning Project
  *
  */
 public interface SpatialOperators {
-    
+
     /**
      * Provided spatial operators.
      */
     SpatialOperator[] getOperators();
-    
+
     /**
      * Looks up an operator by name, returning null if no such operator found.
-     * 
+     *
      * @param name the name of the operator.
-     * 
+     *
      * @return The operator, or null.
      */
     SpatialOperator getOperator( String name );

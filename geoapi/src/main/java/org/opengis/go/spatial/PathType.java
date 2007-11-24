@@ -27,7 +27,7 @@ import org.opengis.util.SimpleEnumerationType;
  * <ul>
  * <li>For <b>rhumbline</b>, <b>great circle</b>, and <b>vector</b>, first
  * <i>interpolation</i> is done on the verteces, which gives in-between points.
- * These in-between points are then <i>projected</i> into the display space, 
+ * These in-between points are then <i>projected</i> into the display space,
  * which converts them to display points.</li>
  * <li>For <b>pixel-straight</b> and <b>spline</b>, the verteces are first <i>projected</i>
  * into the display space as display points. These display points are <i>interpolated</i>,
@@ -72,7 +72,7 @@ public class PathType extends SimpleEnumerationType<PathType> {
      * @param description the description for the enum.
      */
     protected PathType(String name, String description) {
-        super(VALUES, name, description);		
+        super(VALUES, name, description);       
     }
 
     /**

@@ -17,7 +17,7 @@ import org.opengis.go.display.primitive.Graphic;
  * Provides a common abstraction for the various event objects pertaining to
  * key, mouse, other implementation-specific controls, or change events on a
  * {@link org.opengis.go.display.primitive.Graphic}.
- * 
+ *
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  */
 public interface GraphicEvent {
@@ -34,7 +34,7 @@ public interface GraphicEvent {
     Graphic getGraphic();
 
     /**
-     * Consumes this <code>GraphicEvent</code> so that it will not be 
+     * Consumes this <code>GraphicEvent</code> so that it will not be
      * processed in the default manner by the source from which it originated.
      */
     void consume();

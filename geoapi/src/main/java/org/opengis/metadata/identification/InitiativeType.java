@@ -24,7 +24,7 @@ import static org.opengis.annotation.Specification.ISO_19115;
 
 /**
  * Type of aggregation activity in which datasets are related
- * 
+ *
  * @author <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
  * @author Ely Conn (Leica Geosystems Geospatial Imaging, LLC)
  * @since GeoAPI 2.1
@@ -157,22 +157,22 @@ public final class InitiativeType extends CodeList<InitiativeType>{
     public /*{InitiativeType}*/ CodeList[] family() {
         return values();
     }
-    
+
     /**
-     * Returns the InitiativeType that matches the given string, or returns a 
+     * Returns the InitiativeType that matches the given string, or returns a
      * new one if none match it.
-     */    
+     */
     public static synchronized InitiativeType valueOf(String code) {
-    	if (code == null) {
-    		return null;
-    	}
-    	Iterator iter = VALUES.iterator();
-    	while (iter.hasNext()) {
-    		InitiativeType type = (InitiativeType) iter.next();
-    		if (code.equalsIgnoreCase(type.name())) {
-    			return type;
-    		}
-    	}
-    	return new InitiativeType(code);
-	}
+        if (code == null) {
+            return null;
+        }
+        Iterator iter = VALUES.iterator();
+        while (iter.hasNext()) {
+            InitiativeType type = (InitiativeType) iter.next();
+            if (code.equalsIgnoreCase(type.name())) {
+                return type;
+            }
+        }
+        return new InitiativeType(code);
+    }
 }

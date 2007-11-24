@@ -22,11 +22,11 @@ import org.opengis.geometry.coordinate.Position;
  * This factory will be created for a known {@linkplain CoordinateReferenceSystem
  * Coordinate Reference System} and {@linkplain Precision precision} model.
  * </p>
- * 
+ *
  * @author Jody Garnett
  * @since GeoAPI 2.1
  */
-public interface PositionFactory {    
+public interface PositionFactory {
     /**
      * Returns the coordinate reference system in use for all
      * {@linkplain DirectPosition direct positions} to be created
@@ -52,7 +52,7 @@ public interface PositionFactory {
      * Implementations have the option of taking ownership of the provided
      * coordinate array. You should not attempt to reuse this array after it
      * has been provided to this factory method.
-     * 
+     *
      * @param coordinates Array of ordinates used for this DirectPosition
      * @throws MismatchedDimensionException if the coordinates array length doesn't match
      *         the {@linkplain #getCoordinateReferenceSystem coordinate reference system}
@@ -64,12 +64,12 @@ public interface PositionFactory {
     /**
      * Constructs a position from an other position by copying the coordinate values of the
      * position. There will be no further reference to the position instance.
-     * 
+     *
      * @param position A position.
      * @return The position which defines the coordinates for the other position.
      */
     Position createPosition(Position position);
-    
+
     /**
      * Creates a (possibiliy optimized) list for positions. The list is initially
      * empty. New direct positions can be stored using the {@link List#add} method.
@@ -82,7 +82,7 @@ public interface PositionFactory {
      * Implementations have the option of taking ownership of the provided
      * coordinate array. You should not attempt to reuse this array after it
      * has been provided to this factory method.
-     * 
+     *
      * @param coordinates The coordinates to assign to the list of positions.
      * @param start       The first valid value in the {@code coordinates} array.
      * @param length      The number of valid values in the {@code coordinates} array.
@@ -96,7 +96,7 @@ public interface PositionFactory {
      * Implementations have the option of taking ownership of the provided
      * coordinate array. You should not attempt to reuse this array after it
      * has been provided to this factory method.
-     * 
+     *
      * @param coordinates The coordinates to assign to the list of positions.
      * @param start       The first valid value in the {@code coordinates} array.
      * @param length      The number of valid values in the {@code coordinates} array.

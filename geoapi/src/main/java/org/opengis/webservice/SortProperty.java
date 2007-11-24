@@ -38,7 +38,7 @@
  53115 Bonn
  Germany
  E-Mail: jens.fitzke@uni-bonn.de
- 
+
  ---------------------------------------------------------------------------*/
 package org.opengis.webservice;
 
@@ -49,7 +49,7 @@ import org.opengis.filter.expression.PropertyName;
 /**
  * Java incarnation of the <code>SortPropertyType</code> defined in
  * <code>sort.xsd</code> from the OGC.
- * 
+ *
  * @author <a href="mailto:mschneider@lat-lon.de">Markus Schneider </a>
  */
 public interface SortProperty {

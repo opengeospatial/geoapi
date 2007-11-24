@@ -39,7 +39,7 @@
  Germany
  E-Mail: jens.fitzke@uni-bonn.de
 
- 
+
  ---------------------------------------------------------------------------*/
 package org.opengis.webservice.capability;
 
@@ -58,10 +58,10 @@ import static org.opengis.annotation.Specification.*;
  * Represents the ServiceProvider section of the capabilities of an OGC
  * compliant web service according to the OGC Common Implementation
  * Specification 0.3.
- * 
+ *
  * This section corresponds to and expands the SV_ServiceProvider class in ISO
  * 19119.
- * 
+ *
  * @author <a href="mailto:mschneider@lat-lon.de">Markus Schneider </a>
  */
 public interface ServiceProvider {

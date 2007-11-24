@@ -20,7 +20,7 @@ import java.util.EventListener;
  * Note that a <code>Graphic</code>
  * is <i>editable</i> when it can be modified by a user via the display GUI
  * (generally by clicking on graphic editing handles).
- * 
+ *
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  */
 public interface GraphicListener extends EventListener {
@@ -40,10 +40,10 @@ public interface GraphicListener extends EventListener {
     void mouseReleased(GraphicMouseEvent ge);
 
     /**
-     * Invoked when the mouse dwells on a <code>Graphic</code>.  Dwelling 
+     * Invoked when the mouse dwells on a <code>Graphic</code>.  Dwelling
      * occurs after a <code>mouseEntered</code> event transpires and only
      * after <code>mouseMoved</code> events have ceased for an arbitrary
-     * length of time.  
+     * length of time.
      */
     void mouseDwelled(GraphicMouseEvent ge);
 
@@ -54,7 +54,7 @@ public interface GraphicListener extends EventListener {
     void graphicSelected(GraphicChangeEvent ge);
 
     /**
-     * Invoked when a <code>Graphic</code> is deselected, either 
+     * Invoked when a <code>Graphic</code> is deselected, either
      * programmatically or through a mouse gesture.
      */
     void graphicDeselected(GraphicChangeEvent ge);

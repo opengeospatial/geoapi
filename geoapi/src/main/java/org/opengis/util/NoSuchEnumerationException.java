@@ -28,7 +28,7 @@ public class NoSuchEnumerationException extends Exception {
      * The invalid value.
      */
     private final int value;
-    
+
     /**
      * Constructs an exception with the given invalid value.
      *
@@ -39,7 +39,7 @@ public class NoSuchEnumerationException extends Exception {
         super("No enumeration exists for the value " + value);
         this.value = value;
     }
-    
+
     /**
      * Returns the invalid value.
      */

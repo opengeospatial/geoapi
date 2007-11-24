@@ -28,7 +28,7 @@ public class OperationNotFoundException extends FactoryException {
      * Serial number for interoperability with different versions.
      */
     private static final long serialVersionUID = -382625493416204214L;
-    
+
     /**
      * Construct an exception with no detail message.
      */

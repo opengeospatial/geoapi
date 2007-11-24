@@ -39,7 +39,7 @@
  Germany
  E-Mail: jens.fitzke@uni-bonn.de
 
- 
+
  ---------------------------------------------------------------------------*/
 package org.opengis.webservice.capability;
 
@@ -51,7 +51,7 @@ import static org.opengis.annotation.Specification.*;
 
 /**
  * base interface for capabilities of any OGC service instance.
- * 
+ *
  * @author <a href="mailto:mschneider@lat-lon.de">Markus Schneider </a>
  * @author <a href="mailto:poth@lat-lon.de">Andreas Poth </a>
  */

@@ -21,11 +21,11 @@ import static org.opengis.annotation.Specification.*;
 /**
  * Provides the {@linkplain GridCoordinates grid coordinate} values for the diametrically opposed
  * corners of the {@linkplain Grid grid}.
- * 
- * Remark that both corners are inclusive. 
+ *
+ * Remark that both corners are inclusive.
  * Thus the number of elements in the direction of the first axis is
- * {@code getHigh().getCoordinateValue(0) - getLow().getCoordinateValue(0) + 1}  
- *  
+ * {@code getHigh().getCoordinateValue(0) - getLow().getCoordinateValue(0) + 1}
+ *
  * @author ISO/DIS 19123
  * @author Wim Koolhoven
  * @author Martin Schouwenburg

@@ -22,7 +22,7 @@ import static org.opengis.annotation.Specification.*;
 /**
  * The definition of a parameter used by an operation method. Most parameter values are
  * numeric, but other types of parameter values are possible.
- *  
+ *
  * @version <A HREF="http://portal.opengeospatial.org/files/?artifact_id=6716">Abstract specification 2.0</A>
  * @author ISO/DIS 19111
  * @author Martin Desruisseaux (IRD)
@@ -81,7 +81,7 @@ public interface ParameterDescriptor extends GeneralParameterDescriptor {
 
     /**
      * Returns the minimum parameter value.
-     * 
+     *
      * If there is no minimum value, or if minimum
      * value is inappropriate for the {@linkplain #getValueClass parameter type}, then
      * this method returns {@code null}.
@@ -96,7 +96,7 @@ public interface ParameterDescriptor extends GeneralParameterDescriptor {
 
     /**
      * Returns the maximum parameter value.
-     * 
+     *
      * If there is no maximum value, or if maximum
      * value is inappropriate for the {@linkplain #getValueClass parameter type}, then
      * this method returns {@code null}.

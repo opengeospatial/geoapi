@@ -34,15 +34,15 @@ import static org.opengis.annotation.Specification.*;
  */
 @UML(identifier="SC_TemporalCRS", specification=ISO_19111)
 public interface TemporalCRS extends SingleCRS {
-    /** 	 
-     * Returns the coordinate system, which must be temporal. 	 
-     */ 	 
+    /**     
+     * Returns the coordinate system, which must be temporal.   
+     */     
 /// @UML(identifier="usesCS", obligation=MANDATORY, specification=ISO_19111)
-/// TimeCS getCoordinateSystem(); 	 
+/// TimeCS getCoordinateSystem();   
 
-    /** 	 
-     * Returns the datum, which must be temporal. 	 
-     */ 	 
+    /**     
+     * Returns the datum, which must be temporal.   
+     */     
 /// @UML(identifier="usesDatum", obligation=MANDATORY, specification=ISO_19111)
 /// TemporalDatum getDatum();
 }

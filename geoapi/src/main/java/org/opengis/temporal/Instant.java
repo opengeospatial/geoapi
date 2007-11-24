@@ -24,18 +24,18 @@ import static org.opengis.annotation.Specification.*;
  * @author Stephane Fellah (Image Matters)
  * @author Alexander Petkov
  * TODO There is a bit of a conflict in the spec document as to what should be returned
- * for "position." The diagram shows that Position should be returned, while the text in the document 
- * demands that TemporalPosition should represent position in time.  
+ * for "position." The diagram shows that Position should be returned, while the text in the document
+ * demands that TemporalPosition should represent position in time.
  */
 @UML(identifier="TM_Instant", specification=ISO_19108)
 public interface Instant extends TemporalGeometricPrimitive {
     /**
      * Get the position of this instant.
-     * 
+     *
      */
     @UML(identifier="position", obligation=MANDATORY, specification=ISO_19108)
     Position getPosition();
-    
+
     /**
      * Get the Collection of temporal {@link Period}s,
      * for which this Instant is the beginning. The collection may be empty.

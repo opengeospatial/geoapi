@@ -38,7 +38,7 @@ import static org.opengis.annotation.Specification.*;
  * {@code get} or {@code set} method, it shall announce this capability by implementing the
  * {@link java.util.RandomAccess} interface. Otherwise, users should read the positions through the
  * {@link #iterator() iterator()} instead.
- * 
+ *
  * @version <A HREF="http://www.opengeospatial.org/standards/as">ISO 19107</A>
  * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 1.0
@@ -47,7 +47,7 @@ import static org.opengis.annotation.Specification.*;
  * @see PointGrid
  */
 @UML(identifier="GM_PointArray", specification=ISO_19107)
-public interface PointArray extends List<Position> {    
+public interface PointArray extends List<Position> {
     /**
      * Returns the length (the number of elements) of this array. This is equivalent to
      * <code>{@linkplain #positions positions}().{@linkplain List#size size}()</code>.
@@ -68,11 +68,11 @@ public interface PointArray extends List<Position> {
      * for these coordinates.
      * <p>
      * This method is the same as:
-     * 
+     *
      * <blockquote><pre>
      * return getCoordinateReferenceSystem().getCoordinateSystem().getDimension();
      * </pre></blockquote>
-     * 
+     *
      * @return the dimensionality of this array.
      * @see DirectPosition#getDimension
      */
@@ -85,7 +85,7 @@ public interface PointArray extends List<Position> {
      * reference to a coordinate reference system}. In this case, the cordinate reference system is
      * implicitly assumed to take on the value of the containing object's coordinate reference
      * system.
-     * 
+     *
      * @return The coordinate reference system, or {@code null}.
      * @see DirectPosition#getCoordinateReferenceSystem
      */
@@ -98,7 +98,7 @@ public interface PointArray extends List<Position> {
      * populated with the value from the array. In all cases, the position in insulated from changes
      * in the {@code PointArray}, and vice-versa. Consequently, the same {@code DirectPosition}
      * object can be reused for fetching many points from this array. Example:
-     * 
+     *
      * <blockquote><pre>
      * DirectPosition position = null;
      * final int length = array.length();
@@ -107,7 +107,7 @@ public interface PointArray extends List<Position> {
      *     // Do some processing...
      * }
      * </pre></blockquote>
-     * 
+     *
      * @param index The location in the array, from 0 inclusive to the array
      *        {@linkplain #length length} exclusive.
      * @param dest An optionnaly pre-allocated direct position.
@@ -122,7 +122,7 @@ public interface PointArray extends List<Position> {
      * given {@code position} after this method call will not be reflected into this point array.
      * Consequently, the same {@code DirectPosition} object can be reused for setting many points in
      * this array.
-     * 
+     *
      * @param index The location in the array, from 0 inclusive to the array
      *        {@linkplain #length length} exclusive.
      * @param position The point to set at the given location in this array.

@@ -18,7 +18,7 @@ import static org.opengis.annotation.Specification.*;
 
 /**
  * An abstract class that represents a non-decomposed element of geometry or topology of time.
- * 
+ *
  * @author Stephane Fellah (Image Matters)
  * @author Alexander Petkov
  */

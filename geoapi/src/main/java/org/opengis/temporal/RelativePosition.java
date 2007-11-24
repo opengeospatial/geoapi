@@ -84,22 +84,22 @@ public final class RelativePosition extends CodeList<RelativePosition> {
     public /*RelativePosition[]*/ CodeList[] family() {
         return values();
     }
-    
+
     /**
-     * Returns the RelativePosition that matches the given string, or returns a 
+     * Returns the RelativePosition that matches the given string, or returns a
      * new one if none match it.
-     */    
+     */
     public static synchronized RelativePosition valueOf(String code) {
-    	if (code == null) {
-    		return null;
-    	}
-    	Iterator iter = VALUES.iterator();
-    	while (iter.hasNext()) {
-    		RelativePosition type = (RelativePosition) iter.next();
-    		if (code.equalsIgnoreCase(type.name())) {
-    			return type;
-    		}
-    	}
-    	return new RelativePosition(code);
-	}
+        if (code == null) {
+            return null;
+        }
+        Iterator iter = VALUES.iterator();
+        while (iter.hasNext()) {
+            RelativePosition type = (RelativePosition) iter.next();
+            if (code.equalsIgnoreCase(type.name())) {
+                return type;
+            }
+        }
+        return new RelativePosition(code);
+    }
 }

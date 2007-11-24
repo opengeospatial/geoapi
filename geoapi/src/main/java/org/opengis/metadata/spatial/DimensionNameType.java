@@ -115,22 +115,22 @@ public final class DimensionNameType extends CodeList<DimensionNameType> {
     public /*{DimensionNameType}*/ CodeList[] family() {
         return values();
     }
-    
+
     /**
-     * Returns the DimensionNameType that matches the given string, or returns a 
+     * Returns the DimensionNameType that matches the given string, or returns a
      * new one if none match it.
-     */    
+     */
     public static synchronized DimensionNameType valueOf(String code) {
-    	if (code == null) {
-    		return null;
-    	}
-    	Iterator iter = VALUES.iterator();
-    	while (iter.hasNext()) {
-    		DimensionNameType type = (DimensionNameType) iter.next();
-    		if (code.equalsIgnoreCase(type.name())) {
-    			return type;
-    		}
-    	}
-    	return new DimensionNameType(code);
-	}
+        if (code == null) {
+            return null;
+        }
+        Iterator iter = VALUES.iterator();
+        while (iter.hasNext()) {
+            DimensionNameType type = (DimensionNameType) iter.next();
+            if (code.equalsIgnoreCase(type.name())) {
+                return type;
+            }
+        }
+        return new DimensionNameType(code);
+    }
 }

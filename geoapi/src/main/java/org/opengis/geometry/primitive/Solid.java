@@ -75,7 +75,7 @@ public interface Solid extends Primitive {
      */
     @UML(identifier="volume", obligation=MANDATORY, specification=ISO_19107)
     public double getVolume();
-    
+
 //    public org.opengis.geometry.complex.GM_CompositeSolid composite[];
 //    public void setComposite(org.opengis.geometry.complex.GM_CompositeSolid composite[]) {  }
 //    public org.opengis.geometry.complex.GM_CompositeSolid[] getComposite() { return null; }

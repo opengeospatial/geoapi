@@ -59,7 +59,7 @@ public interface OnLineResource {
      */
     @UML(identifier="name", obligation=OPTIONAL, specification=ISO_19115)
     String getName();
-    
+
     /**
      * Detailed text description of what the online resource is/does.
      * Returns {@code null} if none.

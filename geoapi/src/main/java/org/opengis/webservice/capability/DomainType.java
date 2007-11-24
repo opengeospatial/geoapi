@@ -38,7 +38,7 @@
  53115 Bonn
  Germany
  E-Mail: jens.fitzke@uni-bonn.de
- 
+
  ---------------------------------------------------------------------------*/
 package org.opengis.webservice.capability;
 
@@ -48,7 +48,7 @@ package org.opengis.webservice.capability;
  * <code>owsOperationsMetadata.xsd</code> from the
  * <code>OWS Common Implementation
  * Specification 0.3</code>.
- * 
+ *
  * @author <a href="mailto:schneider@lat-lon.de">Markus Schneider </a>
  */
 public interface DomainType {

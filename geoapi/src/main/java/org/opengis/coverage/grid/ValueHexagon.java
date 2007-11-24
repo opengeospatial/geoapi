@@ -30,16 +30,16 @@ import static org.opengis.annotation.Specification.*;
  */
 @UML(identifier="CV_ValueHexagon", specification=ISO_19123)
 public interface ValueHexagon extends ValueObject {
-	/**
-	 * Returns the geometry of the value hexagon centred on the {@linkplain GridPointValuePair
+    /**
+     * Returns the geometry of the value hexagon centred on the {@linkplain GridPointValuePair
      * grid point-value pairs} identified by the {@linkplain #getControlValues control values}.
-	 */
-	@UML(identifier="geometry", obligation=MANDATORY, specification=ISO_19123)
-	DomainObject getGeometry();
-	
-	/**
-	 * Returns the <var>grid point</var>-<var>value</var> pairs at the {@code ValueHexagon} centre.
-	 */
-	@UML(identifier="controlValue", obligation=MANDATORY, specification=ISO_19123)
-	Set<GridPointValuePair> getControlValues();
+     */
+    @UML(identifier="geometry", obligation=MANDATORY, specification=ISO_19123)
+    DomainObject getGeometry();
+    
+    /**
+     * Returns the <var>grid point</var>-<var>value</var> pairs at the {@code ValueHexagon} centre.
+     */
+    @UML(identifier="controlValue", obligation=MANDATORY, specification=ISO_19123)
+    Set<GridPointValuePair> getControlValues();
 }

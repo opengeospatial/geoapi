@@ -80,22 +80,22 @@ public final class PixelInCell extends CodeList<PixelInCell> {
     public /*{PixelInCell}*/ CodeList[] family() {
         return values();
     }
-    
+
     /**
-     * Returns the PixelInCell that matches the given string, or returns a 
+     * Returns the PixelInCell that matches the given string, or returns a
      * new one if none match it.
-     */    
+     */
     public static synchronized PixelInCell valueOf(String code) {
-    	if (code == null) {
-    		return null;
-    	}
-    	Iterator iter = VALUES.iterator();
-    	while (iter.hasNext()) {
-    		PixelInCell type = (PixelInCell) iter.next();
-    		if (code.equalsIgnoreCase(type.name())) {
-    			return type;
-    		}
-    	}
-    	return new PixelInCell(code);
-	}
+        if (code == null) {
+            return null;
+        }
+        Iterator iter = VALUES.iterator();
+        while (iter.hasNext()) {
+            PixelInCell type = (PixelInCell) iter.next();
+            if (code.equalsIgnoreCase(type.name())) {
+                return type;
+            }
+        }
+        return new PixelInCell(code);
+    }
 }

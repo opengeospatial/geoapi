@@ -41,7 +41,7 @@ public class DashArray extends LinePattern {
     /**
      * The line should be drawn with no dash array.
      */
-	public static final DashArray NONE = new DashArray("NONE", "No Dash Array", new float[0]);
+    public static final DashArray NONE = new DashArray("NONE", "No Dash Array", new float[0]);
 
     //*************************************************************************
     //  Fields

@@ -34,5 +34,5 @@ public interface CurveValuePair extends GeometryValuePair {
      *       geometry objects do not extends {@link DomainObject}...
      */
     @UML(identifier="geometry", obligation=MANDATORY, specification=ISO_19123)
-    DomainObject getGeometry(); 
+    DomainObject getGeometry();
 }

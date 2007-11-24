@@ -19,7 +19,7 @@ import org.opengis.feature.Feature;
  * <p>
  * GML3 constructs are are identified with a String, commonly referred to as a "id".
  * </p>
- * 
+ *
  * @version <A HREF="http://www.opengis.org/docs/02-059.pdf">Implementation specification 1.0</A>
  * @author Chris Dillard (SYS Technologies)
  * @author Justin Deoliveira (The Open Planning Project)
@@ -35,7 +35,7 @@ public interface GmlObjectId<O> extends Identifier<String,O> {
 
     /**
      * Evaluates the identifer value against the given GML3 construct.
-     * 
+     *
      * @param feature The GML3 construct to be tested.
      * @return {@code true} if a match, otherwise {@code false}.
      */

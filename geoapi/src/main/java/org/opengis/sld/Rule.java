@@ -85,7 +85,7 @@ public interface Rule {
      */
     @XmlElement("LegendGraphic")
     Graphic getLegendGraphic();
-    
+
     /**
      * Sets the small Graphic that may be used by the rendering engine to draw
      * a legend window.

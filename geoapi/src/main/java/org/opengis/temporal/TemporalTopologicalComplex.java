@@ -19,8 +19,8 @@ import static org.opengis.annotation.Specification.*;
 
 /**
  * An aggregation of connected {@linkplain TemporalTopologicalPrimitive temporal topological
- * primitives}. This is the only subclass of {@linkplain TemporalComplex temporal complex}. 
- * 
+ * primitives}. This is the only subclass of {@linkplain TemporalComplex temporal complex}.
+ *
  * @author Alexander Petkov
  */
 @UML(identifier="TM_TopologicalComplex", specification=ISO_19108)

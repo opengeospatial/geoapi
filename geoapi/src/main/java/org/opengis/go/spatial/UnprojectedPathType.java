@@ -12,15 +12,15 @@ package org.opengis.go.spatial;
 
 
 /**
- * This class serves to contain two constants: 
+ * This class serves to contain two constants:
  * <ol>
  *   <li>
  *     PIXEL_STRAIGHT, that indicates that a path between two points should
- *     be drawn on the screen as a straight line, regardless of the location 
+ *     be drawn on the screen as a straight line, regardless of the location
  *     or orientation of the vertices.
  *   </li>
  *   <li>
- *     CONTINUOUS_SPLINE, that indicates a spline is to be used to connect 
+ *     CONTINUOUS_SPLINE, that indicates a spline is to be used to connect
  *     points along a path.
  *   </li>
  * </ol>
@@ -29,7 +29,7 @@ package org.opengis.go.spatial;
  * current viewport of the map.  Note that this applies to both
  * two dimensional and three dimensional displays; in a three dimensional
  * display, the path may cross other objects, but will always appear straight.
- * 
+ *
  * @author Open GIS Consortium, Inc.
  */
 public final class UnprojectedPathType extends PathType {

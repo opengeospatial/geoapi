@@ -19,18 +19,18 @@ import static org.opengis.annotation.Specification.*;
 /**
  * A data type that shall be used for identifying temporal position within a temporal coordinate
  * system.
- * 
+ *
  * @author Stephane Fellah (Image Matters)
  * @author Alexander Petkov
  */
 @UML(identifier="TM_Coordinate", specification=ISO_19108)
 public interface TemporalCoordinate extends TemporalPosition {
-	/**
+    /**
      * Returns the distance from the scale origin expressed as a multiple of the standard
      * interval associated with the temporal coordinate system.
      *
      * @todo Should we return a primitive type?
      */
-	@UML(identifier="CoordinateValue", obligation=MANDATORY, specification=ISO_19108)
-	Number getCoordinateValue();
+    @UML(identifier="CoordinateValue", obligation=MANDATORY, specification=ISO_19108)
+    Number getCoordinateValue();
 }

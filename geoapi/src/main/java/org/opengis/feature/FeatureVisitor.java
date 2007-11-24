@@ -31,12 +31,12 @@ package org.opengis.feature;
  * @author Cory Horner, Refractions
  */
 public interface FeatureVisitor {
-	/**
-	 * Visit the provided feature.
-	 * <p>
-	 * Please consult the documentation for the FeatureCollection you are visiting
-	 * to learn more - the provided feature may be invalid, or read only.
-	 * @param feature
-	 */
-	public void visit(Feature feature);
+    /**
+     * Visit the provided feature.
+     * <p>
+     * Please consult the documentation for the FeatureCollection you are visiting
+     * to learn more - the provided feature may be invalid, or read only.
+     * @param feature
+     */
+    public void visit(Feature feature);
 }

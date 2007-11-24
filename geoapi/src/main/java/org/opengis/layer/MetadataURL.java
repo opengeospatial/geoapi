@@ -16,7 +16,7 @@ import org.opengis.annotation.XmlElement;
 
 /**
  * Offers detailed, standardized metadata about the data corresponding to a particular {@link Layer}.
- * 
+ *
  * @version <A HREF="http://portal.opengeospatial.org/files/?artifact_id=5316">Implementation specification 1.3</A>
  * @author Jesse Crossley (SYS Technologies)
  * @since GeoAPI 2.0

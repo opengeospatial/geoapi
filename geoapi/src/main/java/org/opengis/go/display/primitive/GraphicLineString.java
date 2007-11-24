@@ -49,7 +49,7 @@ public interface GraphicLineString extends Graphic {
     void addPoint(DirectPosition coord);
 
     /**
-     * Removes the postion at the specified index from the array of 
+     * Removes the postion at the specified index from the array of
      * positions.
      * Value is deleted on the underlying LineString geometry for this Graphic.
      *
@@ -94,7 +94,7 @@ public interface GraphicLineString extends Graphic {
      * @return whether or not the graphic linestring is closed.
      */
     boolean isClosed();
-    
+
     /**
      * Returns the <code>GraphicStyle</code> for this <code>GraphicLineString</code>,
      * which is required to be a <code>LineSymbolizer</code>.

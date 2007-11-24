@@ -33,11 +33,11 @@ public interface Function extends Expression {
      * be "{@code cos}" or "{@code atan2}".
      */
     String getName();
-    
+
    /**
      * Returns the list subexpressions that will be evaluated to provide the
      * parameters to the function.
      */
     List<Expression> getParameters();
-    
+
 }

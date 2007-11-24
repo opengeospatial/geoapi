@@ -34,19 +34,19 @@ public interface AggregateInformation {
      */
     @UML(identifier="aggregateDataSetName", obligation=CONDITIONAL, specification=ISO_19115)
     Citation getAggregateDataSetName();
-    
+
     /**
      * Identification information about aggregate dataset.
      */
     @UML(identifier="aggregateDataSetIdentifier", obligation=CONDITIONAL, specification=ISO_19115)
     Identifier getAggregateDataSetIdentifier();
-    
+
     /**
      * Association type of the aggregate dataset.
      */
     @UML(identifier="associationType", obligation=MANDATORY, specification=ISO_19115)
     AssociationType getAssociationType();
-    
+
     /**
      * Type of initiative under which the aggregate dataset was produced.
      */

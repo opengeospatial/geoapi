@@ -162,7 +162,7 @@ public interface GeometryFactory {
      * from <var>P</var><sub>0</sub> is:
      *
      * <blockquote>
-     * <b><var>u</var></b> = (<var>u</var><sub>0</sub>,&nbsp;<var>u</var><sub>1</sub>) = 
+     * <b><var>u</var></b> = (<var>u</var><sub>0</sub>,&nbsp;<var>u</var><sub>1</sub>) =
      * (<var>x</var><sub>1</sub>-<var>x</var><sub>0</sub>,
      *  <var>y</var><sub>1</sub>-<var>y</var><sub>0</sub>) /
      * {@link Math#sqrt sqrt}((<var>x</var><sub>1</sub>-<var>x</var><sub>0</sub>)<sup>2</sup> +
@@ -174,7 +174,7 @@ public interface GeometryFactory {
      * the leftward normal to complete the pair is:
      *
      * <blockquote>
-     * <b><var>v</var></b> = (<var>v</var><sub>0</sub>,&nbsp;<var>v</var><sub>1</sub>) = 
+     * <b><var>v</var></b> = (<var>v</var><sub>0</sub>,&nbsp;<var>v</var><sub>1</sub>) =
      *                      (-<var>u</var><sub>1</sub>,&nbsp;<var>u</var><sub>0</sub>)
      * </blockquote>
      *

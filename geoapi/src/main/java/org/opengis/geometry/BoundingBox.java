@@ -31,7 +31,7 @@ import org.opengis.annotation.Extension;
  * <p>
  * This object contains no additional information beyond that provided
  * by {@link Envelope}.
- * 
+ *
  * @author Jody Garnett (Refractions Research)
  * @author Martin Desruisseaux (Geomatys)
  * @since GeoAPI 2.1
@@ -114,17 +114,17 @@ public interface BoundingBox extends Envelope {
      */
     boolean intersects(BoundingBox bounds);
 
-    /** 
+    /**
      * Returns {@code true} if the provided bounds are contained by this bounding box.
      */
     boolean contains(BoundingBox bounds);
 
-    /** 
+    /**
      * Returns {@code true} if the provided location is contained by this bounding box.
      */
     boolean contains(DirectPosition location);
 
-    /** 
+    /**
      * Returns {@code true} if the provided location is contained by this bounding box.
      */
     boolean contains(double x, double y);

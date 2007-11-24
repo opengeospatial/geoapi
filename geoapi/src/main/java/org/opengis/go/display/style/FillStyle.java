@@ -22,7 +22,7 @@ import org.opengis.util.SimpleEnumerationType;
  * Depending on the choice of fill style, the current color, background
  * color, fill pattern, and gradient points may affect the appearance of
  * an object.
- * 
+ *
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  */
 public class FillStyle extends SimpleEnumerationType<FillStyle> {

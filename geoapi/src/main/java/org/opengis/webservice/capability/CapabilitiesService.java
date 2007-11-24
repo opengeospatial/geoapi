@@ -38,7 +38,7 @@ Meckenheimer Allee 166
 Germany
 E-Mail: jens.fitzke@uni-bonn.de
 
-                 
+
  ---------------------------------------------------------------------------*/
 package org.opengis.webservice.capability;
 

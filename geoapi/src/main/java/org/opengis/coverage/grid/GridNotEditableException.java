@@ -26,7 +26,7 @@ import static org.opengis.annotation.Specification.*;
  *     <A HREF="http://www.opengis.org/docs/01-004.pdf">Grid Coverages Implementation specification 1.0</A>.
  *     We plan to replace it by new interfaces derived from ISO 19123 (<CITE>Schema for coverage geometry
  *     and functions</CITE>). Current interfaces should be considered as legacy and are included in this
- *     distribution only because they were part of GeoAPI 1.0 release. We will try to preserve as much 
+ *     distribution only because they were part of GeoAPI 1.0 release. We will try to preserve as much
  *     compatibility as possible, but no migration plan has been determined yet.</P>
  *   </TD></TR>
  * </TABLE>
@@ -54,7 +54,7 @@ public class GridNotEditableException extends IllegalStateException {
     /**
      * Creates an exception with the specified message.
      *
-     * @param  message The detail message. The detail message is saved for 
+     * @param  message The detail message. The detail message is saved for
      *         later retrieval by the {@link #getMessage()} method.
      */
     public GridNotEditableException(String message) {

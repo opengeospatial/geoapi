@@ -29,7 +29,7 @@ import static org.opengis.annotation.Specification.*;
  *
  * @author ISO/DIS 19123
  * @author Alessio Fabiani
- * 
+ *
  * @todo evaluate and evaluateInverse
  */
 @UML(identifier="CV_DiscreteCurveCoverage", specification=ISO_19123)

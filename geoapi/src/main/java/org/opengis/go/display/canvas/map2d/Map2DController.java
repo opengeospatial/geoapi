@@ -18,13 +18,13 @@ import org.opengis.geometry.Envelope;
 
 /**
  * Setter methods for properties that define a rectangular, 2D {@link Canvas}.
- * 
+ *
  * @see Map2D
- * 
+ *
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @author Jesse Crossley (SYS Technologies)
  */
-public interface Map2DController extends CanvasController {    
+public interface Map2DController extends CanvasController {
     /**
      * Sets the pixel width of the {@linkplain Canvas canvas}, provided this
      * {@code Map2DController} is the active controller.
@@ -32,7 +32,7 @@ public interface Map2DController extends CanvasController {
      * @param newPixelWidth the new pixel width.
      */
     void setPixelWidth(int newPixelWidth);
-    
+
     /**
      * Sets the pixel height of the {@linkplain Canvas canvas}, provided this
      * {@code Map2DController} is the active controller.
@@ -40,7 +40,7 @@ public interface Map2DController extends CanvasController {
      * @param newPixelHeight the new pixel height.
      */
     void setPixelHeight(int newPixelHeight);
-    
+
     /**
      * Sets the map width of the {@linkplain Canvas canvas}, provided this
      * {@code Map2DController} is the active controller.
@@ -49,7 +49,7 @@ public interface Map2DController extends CanvasController {
      * @param widthUnit the {@linkplain Unit unit} of the {@code newMapWidth}.
      */
     void setMapWidth(double newMapWidth, Unit widthUnit);
-    
+
     /**
      * Sets the scale of the {@linkplain Canvas canvas}, provided this
      * {@code Map2DController} is the active controller.
@@ -57,7 +57,7 @@ public interface Map2DController extends CanvasController {
      * @param newScale the new scale.
      */
     void setScale(double newScale);
-    
+
     /**
      * Sets the envelope of the {@linkplain Canvas canvas}, provided this
      * {@code Map2DController} is the active controller.

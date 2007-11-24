@@ -18,7 +18,7 @@ import org.opengis.util.SimpleEnumerationType;
 
 /**
  * Defines the various YAnchor types.
- * 
+ *
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  */
 public class YAnchor extends SimpleEnumerationType<YAnchor> {

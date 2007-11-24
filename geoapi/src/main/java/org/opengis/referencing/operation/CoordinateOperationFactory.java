@@ -142,7 +142,7 @@ public interface CoordinateOperationFactory extends ObjectFactory {
      * @param  parameters The parameter values.
      * @return The defining conversion.
      * @throws FactoryException if the object creation failed.
-     * 
+     *
      * @see org.opengis.referencing.crs.CRSFactory#createdProjectedCRS
      * @see org.opengis.referencing.crs.CRSFactory#createdDerivedCRS
      *

@@ -23,7 +23,7 @@ import static org.opengis.annotation.Specification.*;
  * used by the {@linkplain org.opengis.referencing.crs.CoordinateReferenceSystem coordinate reference system} may
  * be used to interpolate other positions. Any other point in the {@link #getControlPoints controlPoint}
  * array must fall on this geodesic.
- *  
+ *
  * @version <A HREF="http://www.opengeospatial.org/standards/as">ISO 19107</A>
  * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 1.0

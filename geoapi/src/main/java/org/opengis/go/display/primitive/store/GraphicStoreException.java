@@ -15,12 +15,12 @@ import java.io.IOException;
 
 /**
  * The <code>GraphicStoreException</code> class...
- * 
+ *
  * @author SYS Technologies
  * @author crossley
  */
 public class GraphicStoreException extends IOException {
-    
+
     public GraphicStoreException() {
         super();
     }

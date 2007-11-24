@@ -27,7 +27,7 @@ import org.opengis.util.SimpleEnumerationType;
  * from a {@link org.opengis.go.display.DisplayCapabilities} object (that was itself
  * retrieved from a <code>Canvas</code>).  An implementation may also implement
  * other patterns not listed here.</p>
- * 
+ *
  * <p>NOTE: Two different implementations may have fill patterns with
  * the same name, but use different <code>FillPattern</code> instances
  * (since they may not know about each others name use). If clients
@@ -39,7 +39,7 @@ import org.opengis.util.SimpleEnumerationType;
  * <p>This list was compiled by examining the behavior of various
  * software packages.  Where possible, a reference document is given.
  * For others, a description of the style is given.</p>
- * 
+ *
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  */
 public class FillPattern extends SimpleEnumerationType<FillPattern> {

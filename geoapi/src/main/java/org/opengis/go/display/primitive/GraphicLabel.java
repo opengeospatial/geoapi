@@ -19,10 +19,10 @@ import org.opengis.geometry.DirectPosition;
 
 /**
  * Defines a common abstraction for implementations that render text on a drawing surface.
- * The rotation of the label with respect to an external Coordinate Reference System is 
- * measured positively as a clockwise angle, starting from a reference line within the 
+ * The rotation of the label with respect to an external Coordinate Reference System is
+ * measured positively as a clockwise angle, starting from a reference line within the
  * Coordinate Reference System and ending at the x-axis of the local Cartesian plane.
- * 
+ *
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  */
 public interface GraphicLabel extends Graphic {
@@ -39,7 +39,7 @@ public interface GraphicLabel extends Graphic {
     String getText();
 
     /**
-     * Sets the position of the upper left corner of the label. 
+     * Sets the position of the upper left corner of the label.
      * @param coord the wrapper for the position of the label.
      */
     void setPosition(DirectPosition coord);
@@ -52,23 +52,23 @@ public interface GraphicLabel extends Graphic {
 
     /**
      * Specifies the x-axis portion of the place on the text string that
-     * corresponds to the rendering position (see the [gs]etPosition method). 
+     * corresponds to the rendering position (see the [gs]etPosition method).
      * @param xAnchor the x-axis location on the string
      * (i.e., left, center, right).
-     * 
+     *
      */
     void setXAnchor(XAnchor xAnchor);
 
     /**
      * Returns the x-axis portion of the place on the text string that
-     * corresponds to the rendering position (see the [gs]etPosition method). 
-     * @return the x-axis portion of the text anchor point. 
+     * corresponds to the rendering position (see the [gs]etPosition method).
+     * @return the x-axis portion of the text anchor point.
      */
     XAnchor getXAnchor();
 
     /**
      * Specifies the y-axis portion of the place on the text string that
-     * corresponds to the rendering position (see the [gs]etPosition method). 
+     * corresponds to the rendering position (see the [gs]etPosition method).
      * @param yAnchor the y-axis location on the string
      * (i.e., top, middle, baseline, bottom).
      */
@@ -76,8 +76,8 @@ public interface GraphicLabel extends Graphic {
 
     /**
      * Returns the y-axis portion of the place on the text string that
-     * corresponds to the rendering position (see the [gs]etPosition method). 
-     * @return the y-axis portion of the text anchor point. 
+     * corresponds to the rendering position (see the [gs]etPosition method).
+     * @return the y-axis portion of the text anchor point.
      */
     YAnchor getYAnchor();
 
@@ -95,7 +95,7 @@ public interface GraphicLabel extends Graphic {
      * @return the rotation orientation.
      */
     double getRotation(Unit unit);
-    
+
     /**
      * Returns the <code>GraphicStyle</code> for this <code>GraphicLabel</code>,
      * which is required to be a <code>TextSymbolizer</code>.

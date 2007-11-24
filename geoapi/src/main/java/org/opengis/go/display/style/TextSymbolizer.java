@@ -99,7 +99,7 @@ public interface TextSymbolizer extends GraphicStyle {
     /**
      * Sets the color that is used as the pattern background color when a
      * stipple pattern is used for the fill color.
-     * @param fillBackgroundColor the font glyph background color for 
+     * @param fillBackgroundColor the font glyph background color for
      * stippled text rendering.
      */
     void setFillBackgroundColor(Color fillBackgroundColor);
@@ -200,7 +200,7 @@ public interface TextSymbolizer extends GraphicStyle {
 
     /**
      * Sets the color that is used for rendering a background behind the text.
-     * @param backgroundColor the font glyph background color for 
+     * @param backgroundColor the font glyph background color for
      * stippled text rendering.
      */
     void setBackgroundColor(Color backgroundColor);

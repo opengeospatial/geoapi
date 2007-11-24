@@ -14,7 +14,7 @@ import org.opengis.geometry.BoundingBox;
  * <li>The bounds of all the geometric attributes of the feature
  * </ul>
  * </p>
- * 
+ *
  * @author Jody Garnett (Refractions Research)
  * @author Justin Deoliveira (The Open Planning Project)
  */
@@ -40,11 +40,11 @@ public interface Feature extends ComplexAttribute {
      * that client code being able to depend on this value as a persistent
      * entity is dependent on which storage medium or data source is being used.
      * </p>
-     * 
+     *
      * @return The feature identifier, never <code>null</code>.
      */
     String getID();
-    
+
     /**
      * The bounds of this Feature, if available.
      * <p>
@@ -63,7 +63,7 @@ public interface Feature extends ComplexAttribute {
      * different crs's, the one defined by {@link #getDefaultGeometry()} should
      * take precedence and the others should be reprojected accordingly.
      * </p>
-     * 
+     *
      * @return the feature bounds, possibly empty.
      */
     BoundingBox getBounds();
@@ -74,7 +74,7 @@ public interface Feature extends ComplexAttribute {
      * This method returns <code>null</code> in the case where no such
      * attribute exists.
      * </p>
-     * 
+     *
      * @return The default geometry attribute, or <code>null</code>.
      */
     GeometryAttribute getDefaultGeometryProperty();
@@ -86,10 +86,10 @@ public interface Feature extends ComplexAttribute {
      * In other words, this method can not be used to add a new attribute to the
      * feature.
      * </p>
-     * 
+     *
      * @param geometryAttribute
      *            The new geomtric attribute.
-     *            
+     *
      * @throws IllegalArgumentException If the specified attribute is not already
      * an attribute of the feature.
      */

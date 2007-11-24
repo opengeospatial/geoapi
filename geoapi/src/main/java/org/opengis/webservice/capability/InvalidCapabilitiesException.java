@@ -39,7 +39,7 @@
  Germany
  E-Mail: jens.fitzke@uni-bonn.de
 
- 
+
  ---------------------------------------------------------------------------*/
 package org.opengis.webservice.capability;
 
@@ -48,7 +48,7 @@ import org.opengis.webservice.WebServiceException;
 
 
 /**
- * 
+ *
  *
  * @author <a href="mailto:poth@lat-lon.de">Andreas Poth</a>
  *
@@ -63,7 +63,7 @@ public class InvalidCapabilitiesException extends WebServiceException {
     public InvalidCapabilitiesException(String message) {
         super(message);
     }
-    
+
     public InvalidCapabilitiesException(String locator, String message) {
         super(locator, message);
     }

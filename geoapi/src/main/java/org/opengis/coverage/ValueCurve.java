@@ -67,7 +67,7 @@ public interface ValueCurve extends ValueObject {
      *       distance from the input direct position. The method {@code getParamForPoint} returns
      *       two or more parameter values. In this case, the method {@code segment} shall raise an
      *       exception.</li>
-     * 
+     *
      *   <li>The position on the {@code ValueCurve} that is closest to the input direct position is
      *       at the end of one {@code ValueSegment} and the start of the next. In this case, the
      *       method shall return both value segments.</li>

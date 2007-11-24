@@ -93,14 +93,14 @@ public final class GeometricObjectType extends CodeList<GeometricObjectType> {
      * @deprecated Renamed as {@link #COMPLEX}.
      */
     public static final GeometricObjectType COMPLEXES = COMPLEX;
-    
+
     /**
      * Connected set of curves, solids or surfaces.
      *
      * @deprecated Renamed as {@link #COMPOSITE}.
      */
     public static final GeometricObjectType COMPOSITES = COMPOSITE;
-    
+
     /**
      * Constructs an enum with the given name. The new enum is
      * automatically added to the list returned by {@link #values}.
@@ -126,22 +126,22 @@ public final class GeometricObjectType extends CodeList<GeometricObjectType> {
     public /*{GeometricObjectType}*/ CodeList[] family() {
         return values();
     }
-    
+
     /**
-     * Returns the GeometricObjectType that matches the given string, or returns a 
+     * Returns the GeometricObjectType that matches the given string, or returns a
      * new one if none match it.
-     */    
+     */
     public static synchronized GeometricObjectType valueOf(String code) {
-    	if (code == null) {
-    		return null;
-    	}
-    	Iterator iter = VALUES.iterator();
-    	while (iter.hasNext()) {
-    		GeometricObjectType type = (GeometricObjectType) iter.next();
-    		if (code.equalsIgnoreCase(type.name())) {
-    			return type;
-    		}
-    	}
-    	return new GeometricObjectType(code);
-	}
+        if (code == null) {
+            return null;
+        }
+        Iterator iter = VALUES.iterator();
+        while (iter.hasNext()) {
+            GeometricObjectType type = (GeometricObjectType) iter.next();
+            if (code.equalsIgnoreCase(type.name())) {
+                return type;
+            }
+        }
+        return new GeometricObjectType(code);
+    }
 }

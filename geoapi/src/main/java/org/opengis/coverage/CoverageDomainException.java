@@ -27,7 +27,7 @@ public class CoverageDomainException extends CannotEvaluateException {
     private static final long serialVersionUID = -4989587403487024559L;
 
     /**
-     * Represents a direct position which is outside 
+     * Represents a direct position which is outside
      * the domain of the coverage.
      */
     private DirectPosition offendingLocation;
@@ -49,7 +49,7 @@ public class CoverageDomainException extends CannotEvaluateException {
     /**
      * Creates an exception with the specified message.
      *
-     * @param  message The detail message. The detail message is saved for 
+     * @param  message The detail message. The detail message is saved for
      *         later retrieval by the {@link #getMessage()} method.
      */
     public CoverageDomainException(String message) {
@@ -58,7 +58,7 @@ public class CoverageDomainException extends CannotEvaluateException {
 
     /**
      * Returns the {@linkplain DirectPosition direct position}
-     * which is outside the domain of the coverage. 
+     * which is outside the domain of the coverage.
      */
     public DirectPosition getOffendingLocation() {
         return offendingLocation;
@@ -66,7 +66,7 @@ public class CoverageDomainException extends CannotEvaluateException {
 
     /**
      * Sets the {@linkplain DirectPosition direct position}
-     * which is outside the domain of the coverage. 
+     * which is outside the domain of the coverage.
      */
     public void setOffendingLocation(final DirectPosition offendingLocation) {
         this.offendingLocation = offendingLocation;

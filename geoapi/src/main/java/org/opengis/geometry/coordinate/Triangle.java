@@ -30,7 +30,7 @@ import static org.opengis.annotation.Specification.*;
  *
  * <var>c</var><sub>1</sub> + <var>c</var><sub>2</sub> + <var>c</var><sub>3</sub> = 1.0.
  *
- * Then, each point <var>P</var> in the triangle can be expressed for some set of barycentric coordinates as: 
+ * Then, each point <var>P</var> in the triangle can be expressed for some set of barycentric coordinates as:
  * <p>
  * <blockquote>
  * P = <var>c</var><sub>1</sub><var>P</var><sub>1</sub> +

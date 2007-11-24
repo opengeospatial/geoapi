@@ -52,9 +52,9 @@ public interface DisplayFactory {
      * Display factory and its associated canvas.
      */
     DisplayCapabilities getCapabilities();
-    
+
     /**
-     * Creates a new <code>Canvas</code> object that is embedded in the given 
+     * Creates a new <code>Canvas</code> object that is embedded in the given
      * <code>Container</code>.
      * <p>
      * If the GO-1 implementation has multiple types of <code>Canvas</code> implementations,
@@ -62,35 +62,35 @@ public interface DisplayFactory {
      * is the object returned. The criteria for "best fit" are left up to the particular GO-1
      * implementation.
      * <p>
-     * The <code>Canvas</code> rendering takes up the full extent of the <code>Container</code> 
-     * display space. It is assumed that the <code>Container</code> will be embedded by a user 
+     * The <code>Canvas</code> rendering takes up the full extent of the <code>Container</code>
+     * display space. It is assumed that the <code>Container</code> will be embedded by a user
      * program in another user interface.
-     * 
+     *
      * @param canvasProperties <code>Properties</code> that can be used to determine
      *    which <code>Canvas</code> implementation to use.
-     * @param container the <code>java.awt.Container</code> to place the 
+     * @param container the <code>java.awt.Container</code> to place the
      *     <code>Canvas</code> in.
      * @return the newly-created Canvas.
      */
     Canvas createCanvas(Properties canvasProperties, Container container);
-    
+
     /**
-     * Creates a new <code>Canvas</code> object that is returned embedded in a window, as 
-     * determined by the GO-1 implementation. For example, it could create a new top level 
+     * Creates a new <code>Canvas</code> object that is returned embedded in a window, as
+     * determined by the GO-1 implementation. For example, it could create a new top level
      * frame window. The implementor may include all of its standard user interface components.
      * <p>
      * If the GO-1 implementation has multiple types of <code>Canvas</code> implementations,
      * then the <code>Canvas</code> object that best fits the given <code>Properties</code>
      * is the object returned. The criteria for "best fit" are left up to the particular GO-1
      * implementation.
-     * 
+     *
      * @param canvasProperties <code>Properties</code> that can be used to determine
      *    which <code>Canvas</code> implementation to use.
      */
     Canvas createCanvas(Properties canvasProperties);
-    
+
     /**
-     * Gets an existing <code>Canvas</code> object by UID, or null if no 
+     * Gets an existing <code>Canvas</code> object by UID, or null if no
      * <code>Canvas</code> exists for the given UID.
      */
     Canvas getCanvas(String uid);

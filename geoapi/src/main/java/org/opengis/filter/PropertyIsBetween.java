@@ -43,5 +43,5 @@ public interface PropertyIsBetween extends Filter {
      */
     @XmlElement("UpperBoundary")
     Expression getUpperBoundary();
-    
+
 }

@@ -77,7 +77,7 @@ public class BSplineSurfaceForm extends CodeList<BSplineSurfaceForm> {
      */
     @UML(identifier="unspecified", obligation=CONDITIONAL, specification=ISO_19107)
     public static final BSplineSurfaceForm UNSPECIFIED = new BSplineSurfaceForm("UNSPECIFIED");
-    
+
     /**
      * Constructs an enum with the given name. The new enum is
      * automatically added to the list returned by {@link #values}.
@@ -103,22 +103,22 @@ public class BSplineSurfaceForm extends CodeList<BSplineSurfaceForm> {
     public /*{BSplineSurfaceForm}*/ CodeList[] family() {
         return values();
     }
-    
+
     /**
-     * Returns the BSplineSurfaceForm that matches the given string, or returns a 
+     * Returns the BSplineSurfaceForm that matches the given string, or returns a
      * new one if none match it.
-     */    
+     */
     public static synchronized BSplineSurfaceForm valueOf(String code) {
-    	if (code == null) {
-    		return null;
-    	}
-    	Iterator iter = VALUES.iterator();
-    	while (iter.hasNext()) {
-    		BSplineSurfaceForm type = (BSplineSurfaceForm) iter.next();
-    		if (code.equalsIgnoreCase(type.name())) {
-    			return type;
-    		}
-    	}
-    	return new BSplineSurfaceForm(code);
-	}
+        if (code == null) {
+            return null;
+        }
+        Iterator iter = VALUES.iterator();
+        while (iter.hasNext()) {
+            BSplineSurfaceForm type = (BSplineSurfaceForm) iter.next();
+            if (code.equalsIgnoreCase(type.name())) {
+                return type;
+            }
+        }
+        return new BSplineSurfaceForm(code);
+    }
 }

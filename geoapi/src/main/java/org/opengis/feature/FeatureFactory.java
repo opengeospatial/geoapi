@@ -20,7 +20,7 @@ import org.opengis.referencing.crs.CoordinateReferenceSystem;
  * creating attributes and features. Method implementations should be straight
  * through calls to a constructor.
  * </p>
- * 
+ *
  * @author Gabriel Roldan (Axios Engineering)
  * @author Justin Deoliveira (The Open Planning Project)
  *
@@ -29,22 +29,22 @@ public interface FeatureFactory {
 
     /**
      * Creates an association.
-     * 
+     *
      * @param value The value of the association, an attribute.
      * @param descriptor The association descriptor.
      */
     Association createAssociation(Attribute value, AssociationDescriptor descriptor);
-    
+
     /**
      * Creates an attribute.
-     * 
+     *
      * @param value The value of the attribute, may be <code>null</code>.
      * @param descriptor The attribute descriptor.
      * @param id The id of the attribute, may be <code>null</code>.
-     * 
+     *
      */
     Attribute createAttribute(Object value, AttributeDescriptor descriptor, String id);
-		
+        
     /**
      * Creates a geometry attribute.
      * <p>
@@ -57,72 +57,72 @@ public interface FeatureFactory {
      *
      */
     GeometryAttribute createGeometryAttribute(
-    	Object geometry, GeometryDescriptor descriptor, String id, CoordinateReferenceSystem crs
+        Object geometry, GeometryDescriptor descriptor, String id, CoordinateReferenceSystem crs
     );
-	
+    
     /**
      * Creates a complex attribute.
      * <p>
      * <code>descriptor.getType()</code> must be an instance of {@link ComplexType}.
      * </p>
-     * @param value The value of the attribute, a collection of properties. 
+     * @param value The value of the attribute, a collection of properties.
      * @param descriptor The attribute descriptor.
      * @param id The id of the attribute, may be <code>null</code>.
-     * 
+     *
      */
     ComplexAttribute createComplexAttribute(
-    	Collection<Property> value, AttributeDescriptor descriptor, String id 
+        Collection<Property> value, AttributeDescriptor descriptor, String id
     );
 
     /**
      * Creates a complex attribute.
-     * 
+     *
      * @param value The value of the attribute, a collection of properties.
      * @param type The type of the attribute.
      * @param id The id of the attribute, may be <code>null</code>.
-     * 
+     *
      */
     ComplexAttribute createComplexAttribute(
-    	Collection<Property> value, ComplexType type, String id	
+        Collection<Property> value, ComplexType type, String id 
     );
-    
+
     /**
      * Creates a feature.
      * <p>
      *   <code>descriptor.getType()</code> must be an instance of {@link FeatureType}.
      * </p>
      * @param value The value of the feature, a collection of properties.
-     * @param descriptor The attribute descriptor. 
+     * @param descriptor The attribute descriptor.
      * @param id The id of the feature.
      *
      */
     Feature createFeature(Collection<Property> value, AttributeDescriptor descriptor, String id);
-    
+
     /**
      * Creates a feature.
-     * 
+     *
      * @param value The value of the feature, a collection of properties.
      * @param type The type of the feature.
      * @param id The id of the feature.
-     * 
+     *
      */
     Feature createFeature(Collection<Property> value, FeatureType type, String id);
-    
+
     /**
      * Creates a simple feature.
      * <p>
      *   <code>descriptor.getType()</code> must be an instance of {@link SimpleFeatureType}.
      * </p>
      * @param value The value of the feature, a collection of attributes.
-     * @param descriptor The attribute descriptor. 
+     * @param descriptor The attribute descriptor.
      * @param id The id of the feature.
      *
      */
     SimpleFeature createSimpleFeautre(List<Attribute> value, AttributeDescriptor decsriptor, String id);
-    
+
     /**
      * Creates a simple feature.
-     * 
+     *
      * @param value The value of the feature, a collection of attributes.
      * @param type The type of the simple feature.
      * @param id The id of the feature.

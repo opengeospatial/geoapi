@@ -18,12 +18,12 @@ import org.opengis.annotation.Extension;
 /**
  * Factory for {@linkplain GenericName generic names} and
  * {@linkplain InternationalString international strings}.
- * 
+ *
  * @author Jesse Crossley (SYS Technologies)
  * @since GeoAPI 2.0
  */
 @Extension
-public interface NameFactory {    
+public interface NameFactory {
     /**
      * Creates an international string from a set of strings in different locales.
      *

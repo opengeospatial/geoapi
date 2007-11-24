@@ -20,14 +20,14 @@ import static org.opengis.annotation.Specification.*;
 
 /**
  * Provides only the attributes inherited from temporal reference system.
- * 
+ *
  * @author Alexander Petkov
  *
  * @todo The javadoc doesn't seem accurate.
  * @todo Missing UML annotations.
  */
 public interface OrdinalReferenceSystem extends TemporalReferenceSystem {
-	/**
+    /**
      * Get the set of ordinal eras of which this ordinal reference system consists of.
      *
      * @return A hierarchically-structured collection of ordinal eras.

@@ -89,22 +89,22 @@ public final class RangeMeaning extends CodeList<RangeMeaning> {
     public /*{RangeMeaning}*/ CodeList[] family() {
         return values();
     }
-    
+
     /**
-     * Returns the RangeMeaning that matches the given string, or returns a 
+     * Returns the RangeMeaning that matches the given string, or returns a
      * new one if none match it.
-     */    
+     */
     public static synchronized RangeMeaning valueOf(String code) {
-    	if (code == null) {
-    		return null;
-    	}
-    	Iterator iter = VALUES.iterator();
-    	while (iter.hasNext()) {
-    		RangeMeaning type = (RangeMeaning) iter.next();
-    		if (code.equalsIgnoreCase(type.name())) {
-    			return type;
-    		}
-    	}
-    	return new RangeMeaning(code);
-	}
+        if (code == null) {
+            return null;
+        }
+        Iterator iter = VALUES.iterator();
+        while (iter.hasNext()) {
+            RangeMeaning type = (RangeMeaning) iter.next();
+            if (code.equalsIgnoreCase(type.name())) {
+                return type;
+            }
+        }
+        return new RangeMeaning(code);
+    }
 }

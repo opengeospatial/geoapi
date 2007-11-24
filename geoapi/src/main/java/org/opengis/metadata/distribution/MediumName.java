@@ -173,22 +173,22 @@ public final class MediumName extends CodeList<MediumName> {
     public /*{MediumName}*/ CodeList[] family() {
         return values();
     }
-    
+
     /**
-     * Returns the MediumName that matches the given string, or returns a 
+     * Returns the MediumName that matches the given string, or returns a
      * new one if none match it.
-     */    
+     */
     public static synchronized MediumName valueOf(String code) {
-    	if (code == null) {
-    		return null;
-    	}
-    	Iterator iter = VALUES.iterator();
-    	while (iter.hasNext()) {
-    		MediumName type = (MediumName) iter.next();
-    		if (code.equalsIgnoreCase(type.name())) {
-    			return type;
-    		}
-    	}
-    	return new MediumName(code);
-	}
+        if (code == null) {
+            return null;
+        }
+        Iterator iter = VALUES.iterator();
+        while (iter.hasNext()) {
+            MediumName type = (MediumName) iter.next();
+            if (code.equalsIgnoreCase(type.name())) {
+                return type;
+            }
+        }
+        return new MediumName(code);
+    }
 }

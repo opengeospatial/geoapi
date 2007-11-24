@@ -10,7 +10,7 @@
  *************************************************************************************************/
 package org.opengis.referencing.crs;
 
-import org.opengis.referencing.cs.VerticalCS; 	 
+import org.opengis.referencing.cs.VerticalCS;   
 import org.opengis.referencing.datum.VerticalDatum;
 import org.opengis.annotation.UML;
 

@@ -18,10 +18,10 @@ import org.opengis.go.display.canvas.Canvas;
  * define a group of properties for 2 dimensional maps.  These properties are accessed
  * through <code>Map2DState</code> objects and modified through <code>Map2DController</code>
  * objects.
- * 
+ *
  * @see Map2DController
  * @see Map2DState
- * 
+ *
  * @author crossley
  *
  */

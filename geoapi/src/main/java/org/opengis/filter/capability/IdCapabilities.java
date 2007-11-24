@@ -38,7 +38,7 @@
  53115 Bonn
  Germany
  E-Mail: jens.fitzke@uni-bonn.de
- 
+
  ---------------------------------------------------------------------------*/
 package org.opengis.filter.capability;
 
@@ -67,12 +67,12 @@ package org.opengis.filter.capability;
  * @author Justin Deoliveira, The Open Planning Project
  */
 public interface IdCapabilities {
-    
+
     /**
      * Indicates if the capabilities support EID.
      */
     boolean hasEID();
-    
+
     /**
      * Indicates if the capabilities support FID.
      * @return

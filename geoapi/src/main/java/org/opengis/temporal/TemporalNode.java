@@ -23,12 +23,12 @@ import static org.opengis.annotation.Specification.*;
  */
 @UML(identifier="TM_Node", specification=ISO_19108)
 public interface TemporalNode extends TemporalTopologicalPrimitive {
-	/**
-     * An optional association that may link this temporal node 
+    /**
+     * An optional association that may link this temporal node
      * to its corresponding instant.
      */
-	@UML(identifier="Realization", obligation=OPTIONAL, specification=ISO_19108)
-	Instant getRealization();
+    @UML(identifier="Realization", obligation=OPTIONAL, specification=ISO_19108)
+    Instant getRealization();
 
     /**
      * Links this temporal node to the previous temporal edge.

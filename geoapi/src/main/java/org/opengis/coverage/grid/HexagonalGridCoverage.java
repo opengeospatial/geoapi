@@ -83,7 +83,7 @@ public interface HexagonalGridCoverage extends ContinuousCoverage {
      * Returns a set of records of feature attribute values for the specified direct position.
      * Evaluation of a hexagonal grid coverage involves two steps. The first is to locate the
      * {@linkplain ValueHexagon value hexagon} that contains the input direct position; the
-     * second is to interpolate the feature attribute values at the direct position from the 
+     * second is to interpolate the feature attribute values at the direct position from the
      * {@linkplain GridPointValuePair grid point-value pairs} at the centres of the surrounding
      * value hexagons.
      *

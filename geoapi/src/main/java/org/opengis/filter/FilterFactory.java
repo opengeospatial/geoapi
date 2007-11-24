@@ -55,7 +55,7 @@ import org.opengis.geometry.Geometry;
 /**
  * Interface whose methods allow the caller to create instances of the various
  * {@link Filter} and {@link Expression} subclasses.
- * 
+ *
  * @version <A HREF="http://www.opengis.org/docs/02-059.pdf">Implementation specification 1.0</A>
  * @author Chris Dillard (SYS Technologies)
  * @since GeoAPI 2.0
@@ -63,15 +63,15 @@ import org.opengis.geometry.Geometry;
 public interface FilterFactory {
 ////////////////////////////////////////////////////////////////////////////////
 //
-//  IDENTIFIERS 
+//  IDENTIFIERS
 //
 ////////////////////////////////////////////////////////////////////////////////
-	/** Creates a new feautre id from a string */
-	FeatureId featureId( String id );
-	
-	/** Creates a new gml object id from a string */
-	GmlObjectId gmlObjectId( String id );
-	
+    /** Creates a new feautre id from a string */
+    FeatureId featureId( String id );
+    
+    /** Creates a new gml object id from a string */
+    GmlObjectId gmlObjectId( String id );
+    
 ////////////////////////////////////////////////////////////////////////////////
 //
 //  FILTERS
@@ -95,7 +95,7 @@ public interface FilterFactory {
 
     /** Passes only for objects that have one of the IDs given to this object. */
     Id id( Set<? extends Identifier> ids);
-    
+
     /** Retrieves the value of a {@linkplain org.opengis.feature.Feature feature}'s property. */
     PropertyName property(String name);
 
@@ -106,13 +106,13 @@ public interface FilterFactory {
      * @todo should be equal (so equals can refer to geometry)
      */
     PropertyIsEqualTo equals(Expression expr1, Expression expr2);
-    
+
     /** Compares that two sub-expressions are equal to eacher other */
     PropertyIsEqualTo equal(Expression expr1, Expression expr2, boolean matchCase);
-    
+
     /** Checks that the first sub-expression is not equal to the second subexpression. */
     PropertyIsNotEqualTo notEqual(Expression expr1, Expression expr2, boolean matchCase);
-    
+
     /** Checks that the first sub-expression is greater than the second subexpression. */
     PropertyIsGreaterThan greater(Expression expr1, Expression expr2);
 
@@ -151,7 +151,7 @@ public interface FilterFactory {
      * @param miny Minimum "y" value (for a literal BoundingBox )
      * @param maxx Maximum "x" value (for a literal BoundingBox )
      * @param maxy Maximum "y" value (for a literal BoundingBox )
-     * @param srs Indicating the CoordianteReferenceSystem to use for a literal BoundingBox 
+     * @param srs Indicating the CoordianteReferenceSystem to use for a literal BoundingBox
      */
     BBOX        bbox(String propertyName, double minx, double miny, double maxx, double maxy, String srs);
 
@@ -241,7 +241,7 @@ public interface FilterFactory {
 
     /** A constant, literal {@link Boolean} value that can be used in expressions. */
     Literal  literal(boolean b);
-    
+
     ////////////////////////////////////////////////////////////////////////////////
     //
     //  SORT BY
@@ -249,7 +249,7 @@ public interface FilterFactory {
     //////////////////////////////////////////////////////////////////////////////    //
     /** Indicates an property by which contents should be sorted, along with intended order. */
     SortBy sort(String propertyName, SortOrder order );
-    
+
     ////////////////////////////////////////////////////////////////////////////////
     //
     //  CAPABILITIES
@@ -257,38 +257,38 @@ public interface FilterFactory {
     ////////////////////////////////////////////////////////////////////////////////
     /** operators */
     Operator operator ( String name );
-    
+
     /** spatial operator */
-    SpatialOperator spatialOperator( String name, 
+    SpatialOperator spatialOperator( String name,
             GeometryOperand[] geometryOperands );
-    
+
     /** function name */
     org.opengis.filter.capability.FunctionName functionName( String name, int nargs );
-    
+
     /** functions */
     Functions functions( org.opengis.filter.capability.FunctionName[] functionNames );
-    
+
     /** spatial operators */
     SpatialOperators spatialOperators( SpatialOperator[] spatialOperators );
-    
+
     /** comparison operators */
     ComparisonOperators comparisonOperators( Operator[] comparisonOperators );
-    
+
     /** arithmetic operators */
     ArithmeticOperators arithmeticOperators( boolean simple, Functions functions );
-    
+
     /** scalar capabilities */
-    ScalarCapabilities scalarCapabilities( ComparisonOperators comparison, 
+    ScalarCapabilities scalarCapabilities( ComparisonOperators comparison,
         ArithmeticOperators arithmetic, boolean logical );
-    
+
     /** spatial capabilities */
     SpatialCapabilities spatialCapabilities( GeometryOperand[] geometryOperands,
         SpatialOperators spatial );
-    
+
     /** id capabilities */
     IdCapabilities idCapabilities( boolean eid, boolean fid );
-    
+
     /** filter capabilities */
-    FilterCapabilities capabilities( String version, ScalarCapabilities scalar, 
+    FilterCapabilities capabilities( String version, ScalarCapabilities scalar,
         SpatialCapabilities spatial, IdCapabilities id );
 }

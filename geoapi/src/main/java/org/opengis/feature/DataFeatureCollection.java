@@ -27,7 +27,7 @@ package org.opengis.feature;
  * @author Rob Hranac (VFNY)
  * @author Ian Schneider (USDA-ARS)
  * @author Jody Garnett (Refracitons Research)
- * 
+ *
  * @since GeoAPI 2.1
  * @see java.util.Collection
  */
@@ -47,14 +47,14 @@ public interface DataFeatureCollection extends FeatureCollection {
      * will be called on the state object that was attached.
      */
     //void setTransaction(Transaction t);
-    
+
     /**
      * Retrieves the current transaction on this feature collection or null if
      * there is no current transaction.
      */
     //Transaction getTransaction();
-    
-    
+
+
     /**
      * Lock this collection of features. To unlock, or operate on these features, one needs
      * to perform a {@linkplain Transaction transaction} with the authorization token provided
@@ -79,7 +79,7 @@ public interface DataFeatureCollection extends FeatureCollection {
      *         when used in a {@linkplain Transaction transaction}.
      */
     //LockResponse lock();
-    
+
     /**
      * Returns the request indicating the duration for the {@link #lockAll} method.
      */
@@ -93,7 +93,7 @@ public interface DataFeatureCollection extends FeatureCollection {
      * lock only endure for the duration of the current {@linkplain Transaction transaction}.
      */
     //void setLockRequest(LockRequest lock);
-    
+
     /**
      * If some sort of connection was opened to a backing store to support this
      * collection, then closes this connection.  Users of this API should always
@@ -107,7 +107,7 @@ public interface DataFeatureCollection extends FeatureCollection {
      * objects will be cleared and no further events will be fired.
      */
     void close();
-    
+
     /**
      * Adds a listener whose methods will be called whenever a new feature is
      * added or removed from this collection.  Since {@code FeatureCollection} objects
@@ -120,5 +120,5 @@ public interface DataFeatureCollection extends FeatureCollection {
     /**
      * Removes a listener that was previously added with {@link #addFeatureListener}.
      */
-    void removeFeatureListener(FeatureListener fl);   
+    void removeFeatureListener(FeatureListener fl);
 }

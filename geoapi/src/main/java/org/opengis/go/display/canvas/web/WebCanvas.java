@@ -24,8 +24,8 @@ import org.opengis.go.display.canvas.Canvas;
 public interface WebCanvas extends Canvas {
     /**
      * Renders this <code>WebCanvas</code>'s map image using the given <code>Graphics</code> object.
-     * The immediate use case is for creating WMS (or other webapp) map images using the 
-     * <code>Graphics</code> from a <code>BufferedImage</code>, though any case with a need for 
+     * The immediate use case is for creating WMS (or other webapp) map images using the
+     * <code>Graphics</code> from a <code>BufferedImage</code>, though any case with a need for
      * on-demand rendering could be satisfied with this method
      * @param g
      */

@@ -75,8 +75,8 @@ public interface CRSAuthorityFactory extends AuthorityFactory {
      * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
      * @throws FactoryException if the object creation failed for some other reason.
      */
-    DerivedCRS createDerivedCRS(String code) throws FactoryException;        
-    
+    DerivedCRS createDerivedCRS(String code) throws FactoryException;
+
     /**
      * Create a {@linkplain EngineeringCRS engineering coordinate reference system} from a code.
      *

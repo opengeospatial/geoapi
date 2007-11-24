@@ -55,14 +55,14 @@ public interface MaintenanceInformation {
 
     /**
      * Scope of data to which maintenance is applied.
-     * 
+     *
      * @deprecated use getUpdateScopes
      */
     ScopeCode getUpdateScope();
 
     /**
      * Additional information about the range or extent of the resource.
-     * 
+     *
      * @deprecated use getUpdateScopeDescriptions
      */
     ScopeDescription getUpdateScopeDescription();
@@ -78,10 +78,10 @@ public interface MaintenanceInformation {
      */
     @UML(identifier="updateScopeDescription", obligation=OPTIONAL, specification=ISO_19115)
     Collection<? extends ScopeDescription> getUpdateScopeDescriptions();
-    
+
     /**
      * Information regarding specific requirements for maintaining the resource.
-     * 
+     *
      * @deprecated use getMaintenanceNotes()
      */
     InternationalString getMaintenanceNote();
@@ -101,5 +101,5 @@ public interface MaintenanceInformation {
      * @since GeoAPI 2.1
      */
     @UML(identifier="contact", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<? extends ResponsibleParty> getContacts();    
+    Collection<? extends ResponsibleParty> getContacts();
 }

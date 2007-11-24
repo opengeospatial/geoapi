@@ -23,7 +23,7 @@ import static org.opengis.annotation.Specification.*;
  * {@link LineSegment}. The class essentially combines a
  * {@link List List&lt;LineSegment&gt;} into a single object,
  * with the obvious savings of storage space.
- *  
+ *
  * @version <A HREF="http://www.opengeospatial.org/standards/as">ISO 19107</A>
  * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 1.0

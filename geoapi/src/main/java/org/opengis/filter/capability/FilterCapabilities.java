@@ -41,7 +41,7 @@
  Germany
  E-Mail: jens.fitzke@uni-bonn.de
 
- 
+
  ---------------------------------------------------------------------------*/
 package org.opengis.filter.capability;
 
@@ -54,7 +54,7 @@ import static org.opengis.annotation.Specification.*;
  * FilterCapabilitiesBean used to represent
  * <code>Filter<code> expressions according to the
  * 1.0.0 as well as the 1.1.1 <code>Filter Encoding Implementation Specification</code>.
- * 
+ *
  * @author <a href="mailto:tfr@users.sourceforge.net">Torsten Friebe</a>
  * @author <a href="mailto:mschneider@lat-lon.de">Markus Schneider</a>
  */
@@ -64,23 +64,23 @@ public interface FilterCapabilities {
     public static final String VERSION_110 = "1.1.0";
 
     /**
-     * 
+     *
      */
     @UML(identifier="scalarCapabilities", specification=UNSPECIFIED)
     ScalarCapabilities getScalarCapabilities();
 
     /**
-     * 
+     *
      */
     @UML(identifier="spatialCapabilities", specification=UNSPECIFIED)
     SpatialCapabilities getSpatialCapabilities();
-    
-    /** 
-     * 
+
+    /**
+     *
      */
-    @UML(identifier="idCapabilities", specification=UNSPECIFIED) 
+    @UML(identifier="idCapabilities", specification=UNSPECIFIED)
     IdCapabilities getIdCapabilities();
-    
+
     /**
      * Returns the version.
      */

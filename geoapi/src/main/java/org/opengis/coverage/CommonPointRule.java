@@ -117,22 +117,22 @@ public class CommonPointRule extends CodeList<CommonPointRule> {
     public /*{CommonPointRule}*/ CodeList[] family() {
         return values();
     }
-    
+
     /**
-     * Returns the CommonPointRule that matches the given string, or returns a 
+     * Returns the CommonPointRule that matches the given string, or returns a
      * new one if none match it.
-     */    
+     */
     public static synchronized CommonPointRule valueOf(String code) {
-    	if (code == null) {
-    		return null;
-    	}
-    	Iterator iter = VALUES.iterator();
-    	while (iter.hasNext()) {
-    		CommonPointRule type = (CommonPointRule) iter.next();
-    		if (code.equalsIgnoreCase(type.name())) {
-    			return type;
-    		}
-    	}
-    	return new CommonPointRule(code);
-	}
+        if (code == null) {
+            return null;
+        }
+        Iterator iter = VALUES.iterator();
+        while (iter.hasNext()) {
+            CommonPointRule type = (CommonPointRule) iter.next();
+            if (code.equalsIgnoreCase(type.name())) {
+                return type;
+            }
+        }
+        return new CommonPointRule(code);
+    }
 }

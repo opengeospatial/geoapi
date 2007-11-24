@@ -38,5 +38,5 @@ public interface PropertyName extends Expression {
      * {@link #evaluate evaluate} method.
      */
     String getPropertyName();
- 
+
 }

@@ -23,7 +23,7 @@ import static org.opengis.annotation.Specification.OGC_02059;
 
 /**
  * Captures the {@link SortBy} order, {@code ASC} or {@code DESC}.
- * 
+ *
  * @see <a href="http://schemas.opengis.net/filter/1.1.0/sort.xsd">
  * @author Jody Garnett (Refractions Research)
  * @since GeoAPI 2.1
@@ -47,7 +47,7 @@ public final class SortOrder extends CodeList<SortOrder> {
      * with the Filter 1.1 specification.
      * </p>
      */
-    @UML(identifier="ASC", obligation=CONDITIONAL, specification=OGC_02059)    
+    @UML(identifier="ASC", obligation=CONDITIONAL, specification=OGC_02059)
     public static final SortOrder ASCENDING  = new SortOrder("ASCENDING", "ASC");
 
     /**
@@ -55,8 +55,8 @@ public final class SortOrder extends CodeList<SortOrder> {
      * <p>
      * Note this has the string representation of {@code "DESC"} to agree
      * with the Filter 1.1 specification.
-     * </p> 
-     */	
+     * </p>
+     */ 
     @UML(identifier="DESC", obligation=CONDITIONAL, specification=OGC_02059)
     public static final SortOrder DESCENDING = new SortOrder("DESCENDING", "DESC");
 
@@ -104,22 +104,22 @@ public final class SortOrder extends CodeList<SortOrder> {
     public /*{SortOrder}*/ CodeList[] family() {
         return values();
     }
-    
+
     /**
-     * Returns the SortOrder that matches the given string, or returns a 
+     * Returns the SortOrder that matches the given string, or returns a
      * new one if none match it.
-     */    
+     */
     public static synchronized SortOrder valueOf(String code) {
-    	if (code == null) {
-    		return null;
-    	}
-    	Iterator iter = VALUES.iterator();
-    	while (iter.hasNext()) {
-    		SortOrder type = (SortOrder) iter.next();
-    		if (code.equalsIgnoreCase(type.name())) {
-    			return type;
-    		}
-    	}
-    	return new SortOrder(code, code);
-	}
+        if (code == null) {
+            return null;
+        }
+        Iterator iter = VALUES.iterator();
+        while (iter.hasNext()) {
+            SortOrder type = (SortOrder) iter.next();
+            if (code.equalsIgnoreCase(type.name())) {
+                return type;
+            }
+        }
+        return new SortOrder(code, code);
+    }
 }

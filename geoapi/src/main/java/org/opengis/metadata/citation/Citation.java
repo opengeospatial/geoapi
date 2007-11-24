@@ -77,7 +77,7 @@ public interface Citation {
     /**
      * Reference form of the unique identifier (ID). Example: Universal Product Code (UPC),
      * National Stock Number (NSN).
-     * 
+     *
      * @deprecated removed from ISO_19115
      */
     @UML(identifier="identifierType", obligation=OPTIONAL, specification=ISO_19115)

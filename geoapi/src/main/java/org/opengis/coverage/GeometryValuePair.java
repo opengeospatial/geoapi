@@ -49,7 +49,7 @@ public interface GeometryValuePair {
      * The domain object that is a member of this <var>geometry</var>-<var>value</var> pair.
      */
     @UML(identifier="geometry", obligation=MANDATORY, specification=ISO_19123)
-    DomainObject getGeometry();  
+    DomainObject getGeometry();
 
     /**
      * Holds the record of feature attribute values associated with the domain object.

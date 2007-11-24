@@ -12,7 +12,7 @@ import org.opengis.util.InternationalString;
  * Factory for types and descriptors.
  * <p>
  * Implementations of this interface should not contain any "special logic" for
- * creating types. Method implementations should be straight through calls to a 
+ * creating types. Method implementations should be straight through calls to a
  * constructor.
  * </p>
  * @author Gabriel Roldan (Axios Engineering)
@@ -21,37 +21,37 @@ import org.opengis.util.InternationalString;
 public interface FeatureTypeFactory {
     /**
      * Creates a schema.
-     * 
+     *
      * @param namespaceURI The uri of the schema.
      */
     Schema createSchema(String namespaceURI);
-    
+
     /**
      * Creates an association descriptor.
-     * 
+     *
      * @param type
-     * 	The type of the described association.
+     *  The type of the described association.
      * @param name
-     * 	The name of the described association.
+     *  The name of the described association.
      * @param minOccurs
-     * 	The minimum number of occurences of the described association.
+     *  The minimum number of occurences of the described association.
      * @param maxOCcurs
-     * 	The maximum number of occurences of the described association.
+     *  The maximum number of occurences of the described association.
      * @param isNillable
      *  Flag indicating wether the association is allowed to be <code>null</code>.
      */
     AssociationDescriptor createAssociationDescriptor(
-        AssociationType type, Name name, int minOccurs, int maxOCcurs, 
+        AssociationType type, Name name, int minOccurs, int maxOCcurs,
         boolean isNillable
     );
 
     /**
      * Creates an attribute descriptor.
-     * 
+     *
      * @param type
      *  The type of the described attribute.
      * @param name
-     *  The name of the described attribute. 
+     *  The name of the described attribute.
      * @param minOccurs
      *  The minimum number of occurences of the described attribute.
      * @param maxOccurs
@@ -59,20 +59,20 @@ public interface FeatureTypeFactory {
      * @param isNillable
      *  Flag indicating if the described attribute may have a null value.
      * @param defaulValue
-     *  The default value of the described attribute. 
+     *  The default value of the described attribute.
      */
     AttributeDescriptor createAttributeDescriptor(
-        AttributeType type, Name name, int minOccurs, int maxOccurs, 
+        AttributeType type, Name name, int minOccurs, int maxOccurs,
         boolean isNillable, Object defaultValue
     );
-    
+
     /**
      * Creates a geometry descriptor.
-     * 
+     *
      * @param type
      *  The type of the described attribute.
      * @param name
-     *  The name of the described attribute. 
+     *  The name of the described attribute.
      * @param minOccurs
      *  The minimum number of occurences of the described attribute.
      * @param maxOccurs
@@ -80,16 +80,16 @@ public interface FeatureTypeFactory {
      * @param isNillable
      *  Flag indicating if the described attribute may have a null value.
      * @param defaulValue
-     *  The default value of the described attribute. 
+     *  The default value of the described attribute.
      */
     GeometryDescriptor createGeometryDescriptor(
-        GeometryType type, Name name, int minOccurs, int maxOccurs, 
+        GeometryType type, Name name, int minOccurs, int maxOccurs,
         boolean isNillable, Object defaultValue
     );
-    
+
     /**
      * Creates an association type.
-     * 
+     *
      * @param name
      *  The name of the type.
      * @param relatedType
@@ -104,14 +104,14 @@ public interface FeatureTypeFactory {
      *  A description of the type..
      */
     AssociationType createAssociationType(
-        Name name, AttributeType relatedType, boolean isAbstract, 
-        List<Filter> restrictions, AssociationType superType, 
+        Name name, AttributeType relatedType, boolean isAbstract,
+        List<Filter> restrictions, AssociationType superType,
         InternationalString description
     );
 
     /**
      * Creates an attribute type.
-     * 
+     *
      * @param name
      *  The name of the type.
      * @param binding
@@ -128,13 +128,13 @@ public interface FeatureTypeFactory {
      *  A description of the type.
      */
     AttributeType createAttributeType(
-        Name name, Class<?> binding, boolean isIdentifiable, boolean isAbstract, 
+        Name name, Class<?> binding, boolean isIdentifiable, boolean isAbstract,
         List<Filter> restrictions, AttributeType superType, InternationalString description
     );
 
     /**
      * Creates a geometric attribute type.
-     * 
+     *
      * @param name
      *  The name of the type.
      * @param binding
@@ -153,14 +153,14 @@ public interface FeatureTypeFactory {
      *  A description of the type.
      */
     GeometryType createGeometryType(
-        Name name, Class<?> binding, CoordinateReferenceSystem crs, boolean isIdentifiable, 
+        Name name, Class<?> binding, CoordinateReferenceSystem crs, boolean isIdentifiable,
         boolean isAbstract, List<Filter> restrictions, AttributeType superType,
         InternationalString description
     );
-    
+
     /**
      * Creates a complex type.
-     * 
+     *
      * @param name
      *  The name of the type.
      * @param schema
@@ -177,14 +177,14 @@ public interface FeatureTypeFactory {
      *  A description of the type.
      */
     ComplexType createComplexType(
-        Name name, Collection<PropertyDescriptor> schema, boolean isIdentifiable, 
+        Name name, Collection<PropertyDescriptor> schema, boolean isIdentifiable,
         boolean isAbstract, List<Filter> restrictions, AttributeType superType,
         InternationalString description
     );
-    
+
     /**
      * Creates a feature type.
-     * 
+     *
      * @param name
      *  The name of the type.
      * @param schema
@@ -200,13 +200,13 @@ public interface FeatureTypeFactory {
      */
     FeatureType createFeatureType(
         Name name, Collection<PropertyDescriptor> schema,
-        GeometryDescriptor defaultGeometry, boolean isAbstract, 
+        GeometryDescriptor defaultGeometry, boolean isAbstract,
         List<Filter> restrictions, AttributeType superType, InternationalString description
     );
-    
+
     /**
      * Creates a simple feature type.
-     * 
+     *
      * @param name
      *  The name of the type.
      * @param schema
@@ -222,7 +222,7 @@ public interface FeatureTypeFactory {
      */
     SimpleFeatureType createSimpleFeatureType(
         Name name, List<AttributeDescriptor> schema, GeometryDescriptor defaultGeometry,
-        boolean isAbstract, List<Filter> restrictions, AttributeType superType, 
+        boolean isAbstract, List<Filter> restrictions, AttributeType superType,
         InternationalString description
     );
 }

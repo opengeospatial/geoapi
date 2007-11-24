@@ -31,18 +31,18 @@ public interface Halo {
     /**
      * Returns whether the halo radius value has been set.
      * @return true if the halo radius value has been set, false otherwise.
-     */    
+     */
     boolean isRadiusSet();
 
     /**
      * Sets the halo radius value.
      * @param haloRadius the value of the halo radius.
-     */    
+     */
     void setRadius(float haloRadius);
 
     /**
      * Sets the fact that the halo radius value has been set.
      * @param flag true if the halo radius value has been set, false otherwise.
-     */    
+     */
     void setRadiusSet(boolean flag);
 }

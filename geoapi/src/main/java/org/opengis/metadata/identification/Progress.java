@@ -109,22 +109,22 @@ public final class Progress extends CodeList<Progress> {
     public /*{Progress}*/ CodeList[] family() {
         return values();
     }
-    
+
     /**
-     * Returns the Progress that matches the given string, or returns a 
+     * Returns the Progress that matches the given string, or returns a
      * new one if none match it.
-     */    
+     */
     public static synchronized Progress valueOf(String code) {
-    	if (code == null) {
-    		return null;
-    	}
-    	Iterator iter = VALUES.iterator();
-    	while (iter.hasNext()) {
-    		Progress type = (Progress) iter.next();
-    		if (code.equalsIgnoreCase(type.name())) {
-    			return type;
-    		}
-    	}
-    	return new Progress(code);
-	}
+        if (code == null) {
+            return null;
+        }
+        Iterator iter = VALUES.iterator();
+        while (iter.hasNext()) {
+            Progress type = (Progress) iter.next();
+            if (code.equalsIgnoreCase(type.name())) {
+                return type;
+            }
+        }
+        return new Progress(code);
+    }
 }

@@ -52,13 +52,13 @@ public interface MathTransform {
      */
     @UML(identifier="getDimSource", specification=OGC_01009)
     int getSourceDimensions();
-    
+
     /**
      * Gets the dimension of output points.
      */
     @UML(identifier="getDimTarget", specification=OGC_01009)
     int getTargetDimensions();
-    
+
     /**
      * Transforms the specified {@code ptSrc} and stores the result in
      * {@code ptDst}. If {@code ptDst} is {@code null}, a new
@@ -82,7 +82,7 @@ public interface MathTransform {
     @UML(identifier="transform", specification=OGC_01009)
     DirectPosition transform(DirectPosition ptSrc, DirectPosition ptDst)
             throws MismatchedDimensionException, TransformException;
-    
+
     /**
      * Transforms a list of coordinate point ordinal values.
      * This method is provided for efficiently transforming many points.
@@ -109,7 +109,7 @@ public interface MathTransform {
     void transform(double[] srcPts, int srcOff,
                    double[] dstPts, int dstOff,
                    int numPts) throws TransformException;
-    
+
     /**
      * Transforms a list of coordinate point ordinal values.
      * This method is provided for efficiently transforming many points.
@@ -186,7 +186,7 @@ public interface MathTransform {
     @UML(identifier="derivative", specification=OGC_01009)
     Matrix derivative(final DirectPosition point)
             throws MismatchedDimensionException, TransformException;
-    
+
     /**
      * Creates the inverse transform of this object. The target of the inverse transform
      * is the source of the original. The source of the inverse transform is the target
@@ -200,7 +200,7 @@ public interface MathTransform {
      */
     @UML(identifier="inverse", specification=OGC_01009)
     MathTransform inverse() throws NoninvertibleTransformException;
-    
+
     /**
      * Tests whether this transform does not move any points.
      *

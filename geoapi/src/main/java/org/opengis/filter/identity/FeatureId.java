@@ -17,7 +17,7 @@ import org.opengis.filter.identity.Identifier;
 
 /**
  * Feature identifier.
- * Features are identified as strings. 
+ * Features are identified as strings.
  *
  * @version <A HREF="http://www.opengis.org/docs/02-059.pdf">Implementation specification 1.0</A>
  * @author Chris Dillard (SYS Technologies)
@@ -25,7 +25,7 @@ import org.opengis.filter.identity.Identifier;
  * @since GeoAPI 2.0
  */
 @XmlElement("FeatureId")
-public interface FeatureId extends Identifier<String,Feature> {    
+public interface FeatureId extends Identifier<String,Feature> {
     /**
      * The identifier value, which is a string.
      */
@@ -34,7 +34,7 @@ public interface FeatureId extends Identifier<String,Feature> {
 
     /**
      * Evaluates the identifer value against the given feature.
-     * 
+     *
      * @param feature The feature to be tested.
      * @return {@code true} if a match, otherwise {@code false}.
      */

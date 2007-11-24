@@ -142,22 +142,22 @@ public final class SurfaceInterpolation extends CodeList<SurfaceInterpolation> {
     public /*{SurfaceInterpolation}*/ CodeList[] family() {
         return values();
     }
-    
+
     /**
-     * Returns the SurfaceInterpolation that matches the given string, or returns a 
+     * Returns the SurfaceInterpolation that matches the given string, or returns a
      * new one if none match it.
-     */    
+     */
     public static synchronized SurfaceInterpolation valueOf(String code) {
-    	if (code == null) {
-    		return null;
-    	}
-    	Iterator iter = VALUES.iterator();
-    	while (iter.hasNext()) {
-    		SurfaceInterpolation type = (SurfaceInterpolation) iter.next();
-    		if (code.equalsIgnoreCase(type.name())) {
-    			return type;
-    		}
-    	}
-    	return new SurfaceInterpolation(code);
-	}
+        if (code == null) {
+            return null;
+        }
+        Iterator iter = VALUES.iterator();
+        while (iter.hasNext()) {
+            SurfaceInterpolation type = (SurfaceInterpolation) iter.next();
+            if (code.equalsIgnoreCase(type.name())) {
+                return type;
+            }
+        }
+        return new SurfaceInterpolation(code);
+    }
 }

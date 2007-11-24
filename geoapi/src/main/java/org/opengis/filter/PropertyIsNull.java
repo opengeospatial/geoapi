@@ -31,5 +31,5 @@ public interface PropertyIsNull extends Filter {
      */
     @XmlElement("PropertyName")
     Expression getExpression();
-    
+
 }

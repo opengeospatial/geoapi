@@ -14,7 +14,7 @@ package org.opengis.go.display.event;
 /**
  * Defines a common abstraction for classes that handle mouse events.
  * It prescribes a stack mechanism for managing <code>MouseHandler</code>s.
- * 
+ *
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  */
 public interface MouseManager extends EventManager {

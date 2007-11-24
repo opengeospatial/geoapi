@@ -26,7 +26,7 @@ import static org.opengis.annotation.Specification.*;
  * system associated with the concatenated operation. Instead of a forward operation, an inverse
  * operation may be used for one or more of the operation steps mentioned above, if the inverse
  * operation is uniquely defined by the forward operation.
- *  
+ *
  * @version <A HREF="http://portal.opengeospatial.org/files/?artifact_id=6716">Abstract specification 2.0</A>
  * @author ISO/DIS 19111
  * @author Martin Desruisseaux (IRD)

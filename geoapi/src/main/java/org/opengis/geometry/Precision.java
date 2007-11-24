@@ -30,20 +30,20 @@ public interface Precision extends Comparable<Precision> {
      * Compares this precision model with the specified one. Returns -1 is this model is
      * less accurate than the other one, +1 if it is more accurate, or 0 if they have the
      * same accuracy.
-     * 
+     *
      * @param other Other precision model to compare against.
      * @return a negative integer, zero, or a positive integer as this object
      *      is less than, equal to, or greater than the other.
      */
     int compareTo(Precision other);
-    
+
     /**
      * Returns the maximum number of significant digits provided by this precision model..
      * <p>
      * Apparently this is usually used for output, note GML generation usually has its own concept
      * of significant digits. You may be able to capture this in terms of the getScale().
      * </p>
-     * 
+     *
      * @return number of significant digits
      * @see #getScale()
      *
@@ -55,7 +55,7 @@ public interface Precision extends Comparable<Precision> {
      * Multiplying factor used to obtain a precise ordinate.
      * <p>
      * Multiply by this value and then divide by this value to round correctly:
-     * 
+     *
      * <blockquote><pre>
      * double scale = pm.getScale();
      * return Math.round(value * scale) / scale;
@@ -63,11 +63,11 @@ public interface Precision extends Comparable<Precision> {
      *
      * So to round to {@code 3} significant digits we would have a scale of {@code 1000}.
      * Tip: the number of significant digits can be computed as below:
-     * 
+     *
      * <blockquote><pre>
      * int significantDigits = (int) Math.ceil(Math.log10(pm.getScale()));
      * </pre></blockquote>
-     * 
+     *
      * @return Multiplying factor used before rounding.
      */
     double getScale();

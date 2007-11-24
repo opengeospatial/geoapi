@@ -84,16 +84,16 @@ public interface Graphic {
     void dispose();
 
     /**
-     * Flags this <code>Graphic</code> object as needing to be redrawn, 
+     * Flags this <code>Graphic</code> object as needing to be redrawn,
      * due to changes to the internal data of the object which affect the
      * rendering of the object.
      * <p>
-     * The actual flag set/unset mechanism is implementation-specific. 
-     * The implementation also choses the manner and timing in which both 
+     * The actual flag set/unset mechanism is implementation-specific.
+     * The implementation also choses the manner and timing in which both
      * the flag is checked and the <code>Graphic</code> object is redrawn.
      * <p>
-     * An application would call this method when any geometric 
-     * information for this <code>Graphic</code> object has changed; 
+     * An application would call this method when any geometric
+     * information for this <code>Graphic</code> object has changed;
      * for example, when the underlying <code>Geometry</code> instance
      * is changed or data in that instance has changed.
      */
@@ -109,7 +109,7 @@ public interface Graphic {
 
     /**
      * Returns the name assigned to this <code>Graphic</code>.
-     * @return	the name assigned to this <code>Graphic</code>.
+     * @return  the name assigned to this <code>Graphic</code>.
      */
     String getName();
 
@@ -120,9 +120,9 @@ public interface Graphic {
     void setParent(Graphic parent);
 
     /**
-     * Returns the parent of this <code>Graphic</code>.  Currently, only 
+     * Returns the parent of this <code>Graphic</code>.  Currently, only
      * <code>AggregateGraphic</code>s have <code>Graphic</code> children.
-     * @return	the parent of this <code>Graphic</code>.
+     * @return  the parent of this <code>Graphic</code>.
      */
     Graphic getParent();
 
@@ -145,7 +145,7 @@ public interface Graphic {
 
     /**
      * Returns the value of the property with the specified key. Only
-     * properties added with <code>putClientProperty</code> will return a 
+     * properties added with <code>putClientProperty</code> will return a
      * non-null value.
      * @return the value of this property or null
      * @see #putClientProperty
@@ -160,7 +160,7 @@ public interface Graphic {
      * <p>
      * If value is null this method will remove the property. Changes to client
      * properties are reported with property change events. The name of the
-     * property (for the sake of property change events) is {@code key.toString()}. 
+     * property (for the sake of property change events) is {@code key.toString()}.
      * The {@code clientProperty} dictionary is not intended to support large scale
      * extensions to <code>Graphic</code> nor should be it considered an alternative to
      * subclassing when designing a new component.
@@ -251,7 +251,7 @@ public interface Graphic {
 
     /**
      * Removes the given <code>GraphicListener</code> from this <code>Graphic</code>'s list of
-     * listeners.  
+     * listeners.
      *
      * @param listener the <code>GraphicListener</code> to remove.
      */
@@ -259,8 +259,8 @@ public interface Graphic {
 
     /**
      * Calls the graphic event method of all <code>GraphicListener</code>s in this
-     * <code>Graphic</code>'s list of listeners. The listeners need to 
-     * determine which subclassed event is called and what event-specific 
+     * <code>Graphic</code>'s list of listeners. The listeners need to
+     * determine which subclassed event is called and what event-specific
      * action was taken.
      *
      * @param ge the <code>GraphicEvent</code> to give to the listeners.

@@ -57,7 +57,7 @@ package org.opengis.webservice.capability;
  * <li>Contents (whenever relevant, contains set of elements that each
  * corresponds to the MD_DataIdentification class in ISO 19119 and 19115)
  * </ul>
- * 
+ *
  * @author <a href="mailto:mschneider@lat-lon.de">Markus Schneider </a>
  */
 public interface CommonCapabilities extends Capabilities {

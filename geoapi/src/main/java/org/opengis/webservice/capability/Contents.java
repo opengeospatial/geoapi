@@ -39,7 +39,7 @@
  Germany
  E-Mail: jens.fitzke@uni-bonn.de
 
- 
+
  ---------------------------------------------------------------------------*/
 package org.opengis.webservice.capability;
 
@@ -47,7 +47,7 @@ package org.opengis.webservice.capability;
 /**
  * Represents the Contents part in the capabilities of an OGC-web
  * service according to the OWS Common Implementation Specification 0.2.
- * 
+ *
  * @author <a href="mailto:mschneider@lat-lon.de">Markus Schneider </a>
  */
 public interface Contents {

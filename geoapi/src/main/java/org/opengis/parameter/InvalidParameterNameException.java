@@ -40,7 +40,7 @@ public class InvalidParameterNameException extends IllegalArgumentException {
     /**
      * Creates an exception with the specified message and parameter name.
      *
-     * @param  message The detail message. The detail message is saved for 
+     * @param  message The detail message. The detail message is saved for
      *         later retrieval by the {@link #getMessage()} method.
      * @param parameterName The invalid parameter name.
      */

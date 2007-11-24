@@ -37,5 +37,5 @@ public interface BinaryExpression extends Expression {
      */
     @XmlElement("expression")
     Expression getExpression2();
-    
+
 }

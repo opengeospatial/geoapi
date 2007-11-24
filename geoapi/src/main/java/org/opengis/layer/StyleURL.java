@@ -19,7 +19,7 @@ import org.opengis.annotation.XmlElement;
  * While the semantics are not well-defined, as long as the results of an HTTP GET request
  * against the {@code StyleURL} are properly MIME-typed, Viewer Clients and Cascading Map Servers
  * can make use of this. A possible use could be to allow a Map Server to provide legend information.
- * 
+ *
  * @version <A HREF="http://portal.opengeospatial.org/files/?artifact_id=5316">Implementation specification 1.3</A>
  * @author Jesse Crossley (SYS Technologies)
  * @since GeoAPI 2.0

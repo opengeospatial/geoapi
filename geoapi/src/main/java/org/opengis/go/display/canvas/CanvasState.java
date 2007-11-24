@@ -17,7 +17,7 @@ import org.opengis.geometry.DirectPosition;
  * Instances of this interface (and its sub-interfaces) describe the current
  * state of a <code>Canvas</code>.  The information contained by instances
  * of this interface should only describe the viewing area or volume of the
- * Canvas and should not contain any state information regarding the data 
+ * Canvas and should not contain any state information regarding the data
  * contained within it.
  * <p>
  * When an instance of this class is returned from <code>Canvas</code>
@@ -45,8 +45,8 @@ public interface CanvasState {
 
     /**
      * Determines if the given object is the same type of Canvas state object
-     * and has values equal to this one. As part of the test, the implementation 
-     * should also test equivalency of the object returned by 
+     * and has values equal to this one. As part of the test, the implementation
+     * should also test equivalency of the object returned by
      * <code>getCanvasParameterAccessor()</code>.
      */
     boolean equals(Object object);

@@ -26,7 +26,7 @@ public interface AbstractSizedURL extends AbstractURL {
      * @return the expected width.
      */
     int getWidth();
-    
+
     /**
      * Provides the expected height of the response data.
      *

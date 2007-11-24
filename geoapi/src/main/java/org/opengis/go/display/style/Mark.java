@@ -96,7 +96,7 @@ public class Mark extends SimpleEnumerationType<Mark> {
      */
     protected Mark(String name, String description) {
         super(VALUES, name, description);
-    }        
+    }
 
     //*************************************************************************
     //  Methods

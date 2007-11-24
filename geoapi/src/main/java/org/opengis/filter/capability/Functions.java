@@ -28,9 +28,9 @@ public interface Functions {
 
     /**
      * Looks up a function by name, returning null if no such function is found.
-     * 
+     *
      * @param name The name of the function.
-     * 
+     *
      * @return A function, or null.
      */
     FunctionName getFunctionName( String name );

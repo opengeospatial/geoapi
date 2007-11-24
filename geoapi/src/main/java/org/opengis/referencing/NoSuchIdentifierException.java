@@ -25,7 +25,7 @@ public class NoSuchIdentifierException extends FactoryException {
      * Serial number for interoperability with different versions.
      */
     private static final long serialVersionUID = -6846799994429345902L;
-    
+
     /**
      * The {@linkplain Identifier#getCode identifier code}.
      */
@@ -42,7 +42,7 @@ public class NoSuchIdentifierException extends FactoryException {
         super(message);
         this.identifier = identifier;
     }
-    
+
     /**
      * Returns the {@linkplain ReferenceIdentifier#getCode identifier code}.
      */

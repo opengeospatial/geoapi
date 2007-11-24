@@ -26,7 +26,7 @@ public interface ArithmeticOperators {
      * </p>
      */
     boolean hasSimpleArithmetic();
-    
+
     /**
      * Provided functions.
      * <p>

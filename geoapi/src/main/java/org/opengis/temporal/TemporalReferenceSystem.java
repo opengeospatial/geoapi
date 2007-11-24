@@ -36,10 +36,10 @@ public interface TemporalReferenceSystem extends ReferenceSystem {
     /**
      * Provides a name that uniquely identifies the temporal referece system.
      *
-     * Currently returns MD_Identifier, which is defined in ISO 19115, while ISO 19108 
-     * requires that RS_Identifier (defined in ISO 19111 and http://www.opengis.org/docs/03-073r1.zip) 
+     * Currently returns MD_Identifier, which is defined in ISO 19115, while ISO 19108
+     * requires that RS_Identifier (defined in ISO 19111 and http://www.opengis.org/docs/03-073r1.zip)
      * is returned. From the looks of it, org.opengis.referencing.ReferenceSystem could also fit the bill.
-     * 
+     *
      * @return {@link ReferenceIdentifier} for the temporal reference system
      */
     @UML(identifier="name", obligation=MANDATORY, specification=ISO_19108)

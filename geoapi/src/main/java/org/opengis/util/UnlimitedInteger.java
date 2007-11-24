@@ -154,7 +154,7 @@ public final class UnlimitedInteger extends Number implements Comparable/*<Unlim
      * Compares two {@code UnlimitedInteger} objects numerically.
      *
      * @param   other the unlimited integer to be compared.
-     * @return	{@code 0} if this {@code UnlimitedInteger} is equal to the given value,
+     * @return  {@code 0} if this {@code UnlimitedInteger} is equal to the given value,
      *          {@code -1} if this {@code UnlimitedInteger} is numerically less than the given value, and
      *          {@code +1} if this {@code UnlimitedInteger} is numerically greater than the given value,
      */

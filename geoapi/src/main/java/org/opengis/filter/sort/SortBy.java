@@ -35,10 +35,10 @@ import org.opengis.filter.expression.PropertyName;
  * expression matches more then one element), we will splice it in to
  * AttributeExpression as an optional parameter. Note function is defined
  * to return a single value (so we don't need to worry there).
- * </p> 
+ * </p>
  * @see <a href="http://schemas.opengis.net/filter/1.1.0/sort.xsd">
  * @see <a href="http://schemas.opengis.net/wfs/1.1.0/wfs.xsd">
- * 
+ *
  * @since GeoAPI 2.1
  * @author Jody Garnett (Refractions Research)
  */
@@ -48,7 +48,7 @@ public interface SortBy {
      * <p>
      * This is the default value for used when setting up a Query.
      * </p>
-     */	
+     */ 
     public static final SortBy[] UNSORTED = new SortBy[0];
 
     /**
@@ -67,7 +67,7 @@ public interface SortBy {
      * </p>
      * <p>
      * This is a "NullObject".
-     * </p> 
+     * </p>
      */
     public static final SortBy NATURAL_ORDER = new NullSortBy(SortOrder.ASCENDING);
 
@@ -75,7 +75,7 @@ public interface SortBy {
      * Indicate the reverse order, usually assoicated with "Fid".
      * <p>
      * This is a "NullObject".
-     * </p> 
+     * </p>
      */
     public static final SortBy REVERSE_ORDER = new NullSortBy(SortOrder.DESCENDING);
 
@@ -92,7 +92,7 @@ public interface SortBy {
      * @todo Use QName
      * @return Name of property to sort by.
      */
-    PropertyName getPropertyName();	
+    PropertyName getPropertyName(); 
 
     /**
      * The the sort order - one of {@link SortOrder#ASCENDING ASCENDING}

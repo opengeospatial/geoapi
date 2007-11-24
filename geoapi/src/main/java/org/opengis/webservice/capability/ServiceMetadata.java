@@ -38,7 +38,7 @@
  53115 Bonn
  Germany
  E-Mail: jens.fitzke@uni-bonn.de
- 
+
  ---------------------------------------------------------------------------*/
 package org.opengis.webservice.capability;
 
@@ -62,7 +62,7 @@ import org.opengis.webservice.SimpleLink;
  * this element to always be a reference or always contain metadata.
  * (Informative: This element was adapted from the metaDataProperty element in
  * GML 3.0.)
- * 
+ *
  * @author <a href="mailto:schneider@lat-lon.de">Markus Schneider </a>
  */
 public interface ServiceMetadata  {
@@ -73,7 +73,7 @@ public interface ServiceMetadata  {
      * an ows:Metadata - Element has the same attributes as a SimpleLink
      */
     SimpleLink getLink();
-    
+
     /*
      * ows:_MetaData - Element.
      *

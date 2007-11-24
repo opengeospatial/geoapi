@@ -17,7 +17,7 @@ import org.opengis.annotation.XmlElement;
 /**
  * Provides the linkage to the logo image of the data provider defined by the enclosing
  * {@link Attribution}.
- * 
+ *
  * @version <A HREF="http://portal.opengeospatial.org/files/?artifact_id=5316">Implementation specification 1.3</A>
  * @author Jesse Crossley (SYS Technologies)
  * @since GeoAPI 2.0

@@ -40,7 +40,7 @@
  Germany
  E-Mail: jens.fitzke@uni-bonn.de
 
- 
+
  ---------------------------------------------------------------------------*/
 package org.opengis.webservice;
 
@@ -63,10 +63,10 @@ public interface WebService {
      *
      * @param request request (WMS, WCS, WFS, CSW, WFS-G) to perform
      *
-     * @throws WebServiceException 
+     * @throws WebServiceException
      */
     Object doService(WebServiceRequest request) throws WebServiceException;
-    
+
     /**
      * Performs the handling of the passed WebServiceEvent in an new own Thread.
      * The receiver of the response to the request must implement the

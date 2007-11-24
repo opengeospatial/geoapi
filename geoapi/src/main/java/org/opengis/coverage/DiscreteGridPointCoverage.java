@@ -42,7 +42,7 @@ import static org.opengis.annotation.Specification.*;
  * {@linkplain #evaluateInverse evaluateInverse} use
  * {@linkplain GridValuesMatrix grid values matrix} to assign values to the
  * {@linkplain GeometryValuePair geometry value pairs}.
- * 
+ *
  * @author ISO/DIS 19123
  * @author Wim Koolhoven
  * @author Martin Desruiseaux
@@ -115,7 +115,7 @@ public interface DiscreteGridPointCoverage extends DiscreteCoverage {
      * position. This is a shortcut for <code>{@linkplain #find(DirectPosition,int) find}(p,1)</code>.
      */
 /// @UML(identifier="find", obligation=MANDATORY, specification=ISO_19123)
-/// GridPointValuePair find(DirectPosition p); 
+/// GridPointValuePair find(DirectPosition p);
 
     /**
      * Uses data from the associated {@linkplain GridValuesMatrix grid values matrix} to construct

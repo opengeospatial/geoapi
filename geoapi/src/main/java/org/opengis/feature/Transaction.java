@@ -96,7 +96,7 @@ public interface Transaction {
      * @see #getProperty
      */
     void putProperty(Object key, Object value) throws IOException;
-    
+
     /**
      * Retrieves a transaction property held by this transaction.
      * This may be used to provide hints to {@link FeatureStore} implementations.
@@ -157,7 +157,7 @@ public interface Transaction {
 
     /**
      * Allows {@code FeatureStore}s to clean up information (and callbacks) they earlier provided.
-     * Care should be taken when using shared State to not remove State required by another 
+     * Care should be taken when using shared State to not remove State required by another
      * feature sources.
      * <p>
      * <code>{@linkplain org.opengis.feature.Transaction.State#setTransaction State.setTransaction}(null)</code>
@@ -212,7 +212,7 @@ public interface Transaction {
      * @throws IOException if there are problems with the {@linkplain FeatureStore feature store}.
      */
     void rollback() throws UnsupportedOperationException, IOException;
- 
+
     /**
      * Provides an opportunity for a transaction to free any
      * {@link org.opengis.feature.Transaction.State State} it maintains.
@@ -283,7 +283,7 @@ final class AutoCommit implements Transaction {
      * @throws IOException Indicating to client code that properties are not supported
      */
     public void putProperty(Object key, Object value) throws IOException {
-        throw new UnsupportedOperationException("AUTO_COMMIT does not support properties");        
+        throw new UnsupportedOperationException("AUTO_COMMIT does not support properties");
     }
 
     /** AutoCommit cannot retain properties */
@@ -291,12 +291,12 @@ final class AutoCommit implements Transaction {
         return null;
     }
 
-    /** AutoCommit cannot retain authorizations */ 
+    /** AutoCommit cannot retain authorizations */
     public void useAuthorization(String authorizationID) throws IOException {
         throw new IOException("Authorization IDs are not valid for AutoCommit Transaction");
     }
 
-    /** AutoCommit cannot retain authorizations */ 
+    /** AutoCommit cannot retain authorizations */
     public Set<String> getAuthorizations() {
         return Collections.EMPTY_SET;
     }
@@ -320,7 +320,7 @@ final class AutoCommit implements Transaction {
         return /* LockResponse.PENDING */ null;
     }
 
-	/**
+    /**
      * AutoCommit does not support rollback - it is already too late.
      * @throws IOException Indicating to client code that rollback cannot be supported
      */
