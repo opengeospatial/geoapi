@@ -266,7 +266,7 @@ public interface Coverage {
      * <p>
      * The coordinate reference system of the point is the same as the grid coverage coordinate
      * reference system (specified by the {@link #getCoordinateReferenceSystem} method).
-     * 
+     *
      * @param  point Point at which to find the coverage values.
      * @param  destination An optionally preallocated array in which to store the values,
      *         or {@code null} if none.
@@ -461,7 +461,7 @@ public interface Coverage {
      * <strong>WARNING:</strong> This method is inherited from the legacy OGC 01-004
      * specification and may be deprecated in a future version. We are for more experience
      * and feedbacks on the value of this method.
-     * 
+     *
      * @return The list of sources data for a coverage.
      */
     @UML(identifier="getSource, numSource", obligation=MANDATORY, specification=OGC_01004)
@@ -483,7 +483,7 @@ public interface Coverage {
 
     /**
      * Retrieve the metadata value for a given metadata name.
-     * 
+     *
      * @param name Metadata keyword for which to retrieve data.
      * @return the metadata value for a given metadata name.
      * @throws MetadataNameNotFoundException if there is no value for the specified metadata name.

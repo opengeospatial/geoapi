@@ -126,7 +126,7 @@ public interface Query {
      * larger than the largest version is specified then the latest version is return. The default
      * action shall be for the query to return the latest version. Systems that do not support
      * versioning can ignore the parameter and return the only version that they have.
-     * 
+     *
      * @return the version of the feature to return, or null for latest.
      */
     @XmlElement("featureVersion")

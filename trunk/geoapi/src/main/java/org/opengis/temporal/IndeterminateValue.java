@@ -74,22 +74,22 @@ public final class IndeterminateValue extends CodeList<IndeterminateValue> {
     public /*IndeterminateValue[]*/ CodeList[] family() {
         return values();
     }
-    
+
     /**
-     * Returns the IndeterminateValue that matches the given string, or returns a 
+     * Returns the IndeterminateValue that matches the given string, or returns a
      * new one if none match it.
-     */    
+     */
     public static synchronized IndeterminateValue valueOf(String code) {
-    	if (code == null) {
-    		return null;
-    	}
-    	Iterator iter = VALUES.iterator();
-    	while (iter.hasNext()) {
-    		IndeterminateValue type = (IndeterminateValue) iter.next();
-    		if (code.equalsIgnoreCase(type.name())) {
-    			return type;
-    		}
-    	}
-    	return new IndeterminateValue(code);
-	}
+        if (code == null) {
+            return null;
+        }
+        Iterator iter = VALUES.iterator();
+        while (iter.hasNext()) {
+            IndeterminateValue type = (IndeterminateValue) iter.next();
+            if (code.equalsIgnoreCase(type.name())) {
+                return type;
+            }
+        }
+        return new IndeterminateValue(code);
+    }
 }

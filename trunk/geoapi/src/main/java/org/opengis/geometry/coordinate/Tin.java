@@ -23,7 +23,7 @@ import static org.opengis.annotation.Specification.*;
  * with consideration for breaklines, stoplines and maximum length of triangle sides. These
  * networks satisfy the Delaunay criterion away from the modifications: For each triangle in
  * the network, the circle passing through its vertexes does not contain, in its interior, the
- * vertex of any other triangle. 
+ * vertex of any other triangle.
  *
  * @version <A HREF="http://www.opengeospatial.org/standards/as">ISO 19107</A>
  * @author Martin Desruisseaux (IRD)

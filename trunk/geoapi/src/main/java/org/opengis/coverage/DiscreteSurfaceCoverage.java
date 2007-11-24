@@ -38,7 +38,7 @@ import static org.opengis.annotation.Specification.*;
  * @author ISO/DIS 19123
  * @author Alessio Fabiani
  * @author Martin Desruisseaux
- * 
+ *
  * @todo evaluate and evaluateInverse
  */
 @UML(identifier="CV_DiscreteSurfaceCoverage", specification=ISO_19123)
@@ -94,5 +94,5 @@ public interface DiscreteSurfaceCoverage extends DiscreteCoverage {
      * position. This is a shortcut for <code>{@linkplain #find(DirectPosition,int) find}(p,1)</code>.
      */
 /// @UML(identifier="find", obligation=MANDATORY, specification=ISO_19123)
-/// SurfaceValuePair find(DirectPosition p); 
+/// SurfaceValuePair find(DirectPosition p);
 }

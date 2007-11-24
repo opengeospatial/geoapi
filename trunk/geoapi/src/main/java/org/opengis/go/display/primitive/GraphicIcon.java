@@ -21,10 +21,10 @@ import org.opengis.geometry.DirectPosition;
  * The GraphicIcon defines a common abstraction for implementations that render
  * icons on a drawing surface.
  * <p>
- * The rotation of the icon with respect to an external Coordinate Reference System is 
- * measured positively as a clockwise angle, starting from a reference line within the 
+ * The rotation of the icon with respect to an external Coordinate Reference System is
+ * measured positively as a clockwise angle, starting from a reference line within the
  * Coordinate Reference System and ending at the x-axis of the local Cartesian plane.
- * 
+ *
  * @author Open GIS Consortium, Inc.
  */
 public interface GraphicIcon extends Graphic {
@@ -93,7 +93,7 @@ public interface GraphicIcon extends Graphic {
      * @return the GraphicIcon's <code>GraphicStyle</code>.
      */
     PointSymbolizer getPointSymbolizer();
-    
+
     /**
      * Indicates whether this primitive is displaying anchor handles that allow the
      * user to change the rotation of this icon.

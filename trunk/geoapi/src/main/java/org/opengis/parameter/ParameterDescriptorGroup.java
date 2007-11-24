@@ -21,7 +21,7 @@ import static org.opengis.annotation.Specification.*;
 
 /**
  * The definition of a group of related parameters used by an operation method.
- *  
+ *
  * @version <A HREF="http://portal.opengeospatial.org/files/?artifact_id=6716">Abstract specification 2.0</A>
  * @author ISO/DIS 19111
  * @author Martin Desruisseaux (IRD)
@@ -40,7 +40,7 @@ public interface ParameterDescriptorGroup extends GeneralParameterDescriptor {
      * for the created group will be {@code this} object.
      *
      * The number of {@link ParameterValue} objects included must be between the
-     * {@linkplain ParameterDescriptor#getMinimumOccurs minimum} and 
+     * {@linkplain ParameterDescriptor#getMinimumOccurs minimum} and
      * {@linkplain ParameterDescriptor#getMaximumOccurs maximum occurences} required.
      * For example:
      * <ul>
@@ -53,7 +53,7 @@ public interface ParameterDescriptorGroup extends GeneralParameterDescriptor {
      */
 /// @Extension
 /// ParameterValueGroup createValue();
- 
+
     /**
      * Returns the parameters in this group.
      */

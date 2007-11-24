@@ -34,7 +34,7 @@ public final class PrecisionType extends CodeList<PrecisionType> {
      * Indicates Precision Model uses floating point math (rather then a grid).
      */
     private final boolean isFloating;
-    
+
     /**
      * List of all enumerations of this type.
      * Must be declared before any enum declaration.
@@ -68,19 +68,19 @@ public final class PrecisionType extends CodeList<PrecisionType> {
      */
     private PrecisionType(final String name, final boolean isFloating) {
         super(name, VALUES);
-        this.isFloating = isFloating;        
+        this.isFloating = isFloating;
     }
 
     /**
      * Returns {@code true} if {@code PrecisionModelType} is a represented using floating point
      * arithmatic (rather then a grid).
-     * 
+     *
      * @return true if floating point arithmatic is used.
      */
     public boolean isFloating(){
         return isFloating;
     }
-    
+
     /**
      * Returns the list of {@code PrecisionModelType}s.
      */
@@ -96,22 +96,22 @@ public final class PrecisionType extends CodeList<PrecisionType> {
     public /*{PrecisionModelType}*/ CodeList[] family() {
         return values();
     }
-    
+
     /**
-     * Returns the PrecisionType that matches the given string, or returns a 
+     * Returns the PrecisionType that matches the given string, or returns a
      * new one if none match it.
-     */    
+     */
     public static synchronized PrecisionType valueOf(String code) {
-    	if (code == null) {
-    		return null;
-    	}
-    	Iterator iter = VALUES.iterator();
-    	while (iter.hasNext()) {
-    		PrecisionType type = (PrecisionType) iter.next();
-    		if (code.equalsIgnoreCase(type.name())) {
-    			return type;
-    		}
-    	}
-    	return new PrecisionType(code, true);
-	}
+        if (code == null) {
+            return null;
+        }
+        Iterator iter = VALUES.iterator();
+        while (iter.hasNext()) {
+            PrecisionType type = (PrecisionType) iter.next();
+            if (code.equalsIgnoreCase(type.name())) {
+                return type;
+            }
+        }
+        return new PrecisionType(code, true);
+    }
 }

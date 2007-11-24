@@ -47,7 +47,7 @@ public interface ValueObject {
      * to this value object by the {@linkplain #getControlValues control values}.
      */
     @UML(identifier="geometry", obligation=MANDATORY, specification=ISO_19123)
-    DomainObject getGeometry();  
+    DomainObject getGeometry();
 
     /**
      * Holds the values of the parameters required to execute the interpolate operation, as

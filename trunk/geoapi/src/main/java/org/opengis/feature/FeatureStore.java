@@ -55,7 +55,7 @@ public interface FeatureStore {
      * <p>
      * It is too much overhead to indicate metadata changing with an extra set of
      * events. {@link FeatureStoreEvent}s will be used to indicate new content is
-     * available. 
+     * available.
      */
     // Metadata getMetadata();
 
@@ -128,7 +128,7 @@ public interface FeatureStore {
     /**
      * Registers the given feature collection so that it may hear any adds, removes,
      * or updates of {@link Feature}s of the given {@code type}.
-     * 
+     *
      * @param featureCollection the feature collection to register.
      * @param type the {@link FeatureType} to listen for.
      */
@@ -138,7 +138,7 @@ public interface FeatureStore {
      * Registers the given feature collection so that it may hear
      * any adds, removes, or updates of {@link Feature}s of the given
      * {@code type} that meet the given {@code filter}.
-     * 
+     *
      * @param featureCollection the feature collection to register.
      * @param type the {@link FeatureType} to register with.
      * @param filter the filter to register with.
@@ -149,7 +149,7 @@ public interface FeatureStore {
      * Registers the given feature collection so that it may hear
      * any adds, removes, or updates of {@link Feature}s of the given
      * {@code type} that meet the given {@code filter}.
-     * 
+     *
      * @param featureCollection the feature collection to register.
      * @param query the query to register with.
      */
@@ -159,7 +159,7 @@ public interface FeatureStore {
      * Unregisters the given feature collection so that it will no
      * longer hear any adds, removes, or updates of {@link Feature}s for
      * which it had previously registered.
-     * 
+     *
      * @param featureCollection the feature collection to unregister.
      */
     void unregisterFeatureCollection(FeatureCollection featureCollection);
@@ -174,7 +174,7 @@ public interface FeatureStore {
      * Creates a new type.  If this feature store is backed by a persistent store of
      * some kind, then structures corresponding to the given type should be
      * created in this persistent store.
-     * 
+     *
      * @throws UnsupportedOperationException if the addition feature types is not supported.
      * @throws IllegalArgumentException If a type of the given name already exists.
      * @throws IllegalArgumentException If the given feature schema is somehow
@@ -197,7 +197,7 @@ public interface FeatureStore {
 
     /**
      * Modifies the type by changing the schema to what is passed as a parameter.
-     * 
+     *
      * @throws UnsupportedOperationException if the modification of types is not supported.
      * @throws IOException if an error occurs while accessing the backing store. If the cause is
      *         not a standard I/O exception, it may be wrapped in a {@link FeatureStoreException}.

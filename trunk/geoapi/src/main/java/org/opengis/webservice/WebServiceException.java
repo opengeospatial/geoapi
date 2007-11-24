@@ -39,7 +39,7 @@
  Germany
  E-Mail: jens.fitzke@uni-bonn.de
 
- 
+
  ---------------------------------------------------------------------------*/
 package org.opengis.webservice;
 
@@ -50,7 +50,7 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * 
+ *
  *
  * @author <a href="mailto:poth@lat-lon.de">Andreas Poth</a>
  */
@@ -88,11 +88,11 @@ public class WebServiceException extends Exception  {
     public WebServiceException(String locator, String message) {
         this(message, locator, null);
     }
-    
+
     /**
      * @param locator
      * @param message
-     * @param code 
+     * @param code
      *
      * @todo The argument order (locator before message) may surprises users who don't read
      *       carefully the javadoc. We could expect optional argument to appears next to

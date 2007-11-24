@@ -22,7 +22,7 @@ import static org.opengis.annotation.Specification.*;
 /**
  * Holds the set of grid coordinates that specifies the location of the
  * {@linkplain GridPoint grid point} within the {@linkplain Grid grid}.
- * 
+ *
  * @author ISO/DIS 19123
  * @author Martin Schouwenburg
  * @author Wim Koolhoven
@@ -45,32 +45,32 @@ public interface GridCoordinates extends Cloneable {
      */
     @Extension
     int getCoordinateValue(int i);
-    
+
     /**
      * Sets the coordinate value at the specified dimension. This method is equivalent to
      * <code>{@linkplain #getCoordinateValues()}[<var>i</var>] = <var>value</var></code>. It is provided for
-     * efficienty. 
+     * efficienty.
      */
     @Extension
     void setCoordinateValue(int i, int value);
-    
 
-	/**
+
+    /**
      * Returns one integer value for each dimension of the grid. The ordering of these coordinate
      * values shall be the same as that of the elements of {@link Grid#getAxisNames}. The value of
      * a single coordinate shall be the number of offsets from the origin of the grid in the direction
      * of a specific axis.
-     * 
+     *
      * @todo decide whether the returned values are changeable. Compare {@link DirectPosition} which states
      * @return A copy of the coordinates. Changes in the returned array will not be reflected
      *         back in this {@code GridCoordinates} object.
      */
     @UML(identifier="coordValues", obligation=MANDATORY, specification=ISO_19123)
-	int[] getCoordinateValues();
-    
+    int[] getCoordinateValues();
+
     /**
-     * This is a compromise method which loads the values of this GridCoordinates implementation 
-     * into the array provided by the user.   
+     * This is a compromise method which loads the values of this GridCoordinates implementation
+     * into the array provided by the user.
      * Use of this method should be encouraged by those desiring to access the grid coordinates as an array.
      */
     @Extension

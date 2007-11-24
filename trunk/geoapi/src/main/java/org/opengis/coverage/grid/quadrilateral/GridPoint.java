@@ -22,7 +22,7 @@ import static org.opengis.annotation.Specification.*;
 
 /**
  * Point located at the intersection of two or more curves in a {@linkplain Grid grid}.
- * 
+ *
  * @author ISO/DIS 19123
  * @author Martin Schouwenburg
  * @author Wim Koolhoven
@@ -30,12 +30,12 @@ import static org.opengis.annotation.Specification.*;
  */
 @UML(identifier="CV_GridPoint", specification=ISO_19123)
 public interface GridPoint extends DomainObject {
-	/**
-	 * Returns the set of grid coordinates that specifies the location of the
+    /**
+     * Returns the set of grid coordinates that specifies the location of the
      * grid point within the {@linkplain Grid grid}.
-	 */
+     */
     @UML(identifier="gridCoord", obligation=MANDATORY, specification=ISO_19123)
-	GridCoordinates getGridCoordinates();
+    GridCoordinates getGridCoordinates();
 
     /**
      * Returns the {@linkplain Grid grid} of which it is an element.
@@ -53,15 +53,15 @@ public interface GridPoint extends DomainObject {
     @UML(identifier="cell", obligation=MANDATORY, specification=ISO_19123)
     Set<GridCell> getCells();
 
-	/**
-	 * Returns the representation of the grid point in an external
+    /**
+     * Returns the representation of the grid point in an external
      * {@linkplain CoordinateReferenceSystem coordinate reference system}.
-	 */
+     */
     @UML(identifier="groundPoint", obligation=OPTIONAL, specification=ISO_19123)
-	Point getGroundPoint();
+    Point getGroundPoint();
 
-	/**
-	 * Returns the {@linkplain FootPrint foot prints} that represents the sample space in an external
+    /**
+     * Returns the {@linkplain FootPrint foot prints} that represents the sample space in an external
      * {@linkplain CoordinateReferenceSystem coordinate reference system} associated with this grid
      * point. The multiplicity of the association allows for multiple external coordinate reference
      * systems for foot print.
@@ -69,5 +69,5 @@ public interface GridPoint extends DomainObject {
      * @see FootPrint#getCenter
      */
     @UML(identifier="footprint", obligation=OPTIONAL, specification=ISO_19123)
-	Set<FootPrint> getFootPrint();
+    Set<FootPrint> getFootPrint();
 }

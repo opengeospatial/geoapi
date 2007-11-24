@@ -22,7 +22,7 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * Type of a vertical datum. 
+ * Type of a vertical datum.
  *
  * @version <A HREF="http://portal.opengeospatial.org/files/?artifact_id=6716">Abstract specification 2.0</A>
  * @author ISO/DIS 19111
@@ -119,22 +119,22 @@ public final class VerticalDatumType extends CodeList<VerticalDatumType> {
     public /*{VerticalDatumType}*/ CodeList[] family() {
         return values();
     }
-    
+
     /**
-     * Returns the VerticalDatumType that matches the given string, or returns a 
+     * Returns the VerticalDatumType that matches the given string, or returns a
      * new one if none match it.
-     */    
+     */
     public static synchronized VerticalDatumType valueOf(String code) {
-    	if (code == null) {
-    		return null;
-    	}
-    	Iterator iter = VALUES.iterator();
-    	while (iter.hasNext()) {
-    		VerticalDatumType type = (VerticalDatumType) iter.next();
-    		if (code.equalsIgnoreCase(type.name())) {
-    			return type;
-    		}
-    	}
-    	return new VerticalDatumType(code);
-	}
+        if (code == null) {
+            return null;
+        }
+        Iterator iter = VALUES.iterator();
+        while (iter.hasNext()) {
+            VerticalDatumType type = (VerticalDatumType) iter.next();
+            if (code.equalsIgnoreCase(type.name())) {
+                return type;
+            }
+        }
+        return new VerticalDatumType(code);
+    }
 }

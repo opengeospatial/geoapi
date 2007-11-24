@@ -38,7 +38,7 @@
  Germany
  E-Mail: jens.fitzke@uni-bonn.de
 
- 
+
  ---------------------------------------------------------------------------*/
 package org.opengis.webservice.feature;
 
@@ -59,12 +59,12 @@ import static org.opengis.annotation.Specification.*;
  * inherited from {@link WebService}. The specification states that only one object of this
  * class is implemented in each server instance, and this object always exists while server
  * is available. (OGC document 03-098, p. 98).
- * 
+ *
  * @author Andreas Poth
  */
 public interface WebFeatureService extends WebService {
     /**
-     * 
+     *
      */
     @UML(identifier="capabilities", specification=UNSPECIFIED)
 /// WebServiceCapabilities getCapabilities();

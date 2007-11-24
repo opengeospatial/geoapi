@@ -38,7 +38,7 @@
  53115 Bonn
  Germany
  E-Mail: jens.fitzke@uni-bonn.de
- 
+
  ---------------------------------------------------------------------------*/
 package org.opengis.webservice.capability;
 
@@ -102,7 +102,7 @@ public interface Operation {
     /**
      * Returns the specified <code>Parameter</code> value for the
      * <code>Operation</code>.
-     * 
+     *
      * @param name
      */
     DomainType getParameter(String name);

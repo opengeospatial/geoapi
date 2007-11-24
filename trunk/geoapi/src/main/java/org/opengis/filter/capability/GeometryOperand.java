@@ -36,67 +36,67 @@ import org.opengis.feature.type.Name;
  */
 public class GeometryOperand implements Name {
 
-    public static final GeometryOperand Envelope = 
+    public static final GeometryOperand Envelope =
         new GeometryOperand( "http://www.opengis.net/gml", "Envelope");
-    public static final GeometryOperand Point = 
+    public static final GeometryOperand Point =
         new GeometryOperand( "http://www.opengis.net/gml", "Point" );
-    public static final GeometryOperand LineString = 
+    public static final GeometryOperand LineString =
         new GeometryOperand( "http://www.opengis.net/gml", "LineString" );
-    public static final GeometryOperand Polygon = 
+    public static final GeometryOperand Polygon =
         new GeometryOperand( "http://www.opengis.net/gml", "Polygon" );
-    public static final GeometryOperand ArcByCenterPoint = 
+    public static final GeometryOperand ArcByCenterPoint =
         new GeometryOperand( "http://www.opengis.net/gml", "ArcByCenterPoint" );
-    public static final GeometryOperand CircleByCenterPoint = 
+    public static final GeometryOperand CircleByCenterPoint =
         new GeometryOperand( "http://www.opengis.net/gml", "CircleByCenterPoint" );
-    public static final GeometryOperand Arc = 
+    public static final GeometryOperand Arc =
         new GeometryOperand( "http://www.opengis.net/gml", "Arc" );
-    public static final GeometryOperand Circle = 
+    public static final GeometryOperand Circle =
         new GeometryOperand( "http://www.opengis.net/gml", "Circle" );
-    public static final GeometryOperand ArcByBulge = 
+    public static final GeometryOperand ArcByBulge =
         new GeometryOperand( "http://www.opengis.net/gml", "ArcByBulge" );
-    public static final GeometryOperand Bezier = 
+    public static final GeometryOperand Bezier =
         new GeometryOperand( "http://www.opengis.net/gml", "Bezier" );
-    public static final GeometryOperand Clothoid = 
+    public static final GeometryOperand Clothoid =
         new GeometryOperand( "http://www.opengis.net/gml", "Clothoid" );
-    public static final GeometryOperand CubicSpline = 
+    public static final GeometryOperand CubicSpline =
         new GeometryOperand( "http://www.opengis.net/gml", "CubicSpline" );
-    public static final GeometryOperand Geodesic = 
+    public static final GeometryOperand Geodesic =
         new GeometryOperand( "http://www.opengis.net/gml", "Geodesic" );
-    public static final GeometryOperand OffsetCurve = 
+    public static final GeometryOperand OffsetCurve =
         new GeometryOperand( "http://www.opengis.net/gml", "OffsetCurve" );
-    public static final GeometryOperand Triangle = 
+    public static final GeometryOperand Triangle =
         new GeometryOperand( "http://www.opengis.net/gml", "Triangle" );
-    public static final GeometryOperand PolyhedralSurface = 
+    public static final GeometryOperand PolyhedralSurface =
         new GeometryOperand( "http://www.opengis.net/gml", "PolyhedralSurface" );
-    public static final GeometryOperand TriangulatedSurface = 
+    public static final GeometryOperand TriangulatedSurface =
         new GeometryOperand( "http://www.opengis.net/gml", "TriangulatedSurface" );
-    public static final GeometryOperand Tin = 
+    public static final GeometryOperand Tin =
         new GeometryOperand( "http://www.opengis.net/gml", "Tin" );
-    public static final GeometryOperand Solid = 
+    public static final GeometryOperand Solid =
         new GeometryOperand( "http://www.opengis.net/gml", "Solid" );
-    
+
     private final String namespaceURI;
     private final String name;
-    
+
     GeometryOperand( String namespaceURI, String name ) {
         this.namespaceURI = namespaceURI;
         this.name = name;
     }
 
     public static GeometryOperand get( String namespaceURI, String name ) {
-        
+
         if (name == null ) {
             return null;
         }
-        
+
         if ( namespaceURI == null || "".equals( namespaceURI ) ) {
             namespaceURI = "http://www.opengis.net/gml";
         }
-        
+
         if ( !"http://www.opengis.net/gml".equals( namespaceURI ) ) {
             return null;
         }
-        
+
         if ( "Envelope".equals( name ) ) {
             return Envelope;
         }
@@ -154,10 +154,10 @@ public class GeometryOperand implements Name {
         if ( "Solid".equals( name ) ) {
             return Solid;
         }
-        
+
         return null;
     }
-    
+
     public String getLocalPart() {
         return name;
     }

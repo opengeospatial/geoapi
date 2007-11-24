@@ -49,7 +49,7 @@ public interface Canvas {
     void dispose();
 
     /**
-     * Method that may be called when the <code>EventManager</code>s of a 
+     * Method that may be called when the <code>EventManager</code>s of a
      * <code>Canvas</code> are no longer needed. Implementations may use this
      * method to release resources or to return the object to an object pool. It
      * is an error to reference any <code>EventManager</code> s of a
@@ -64,7 +64,7 @@ public interface Canvas {
      * assigned by the implementation. The UID is immutable and may be used to
      * retrieve a particular <code>Canvas</code> from the
      * <code>GraphicFactory</code>.
-     * 
+     *
      * @return the UID of this <code>Canvas</code>.
      */
     String getUID();
@@ -73,14 +73,14 @@ public interface Canvas {
      * Sets the title of this <code>Canvas</code>.  The title of a
      * <code>Canvas</code> may or may not be displayed on the titlebar of an
      * application's window.
-     * 
+     *
      * @param title the new title for this <code>Canvas</code>.
      */
     void setTitle(String title);
 
     /**
      * Returns the title assigned to this <code>Canvas</code>.
-     * 
+     *
      * @return the title of this <code>Canvas</code>.
      */
     String getTitle();
@@ -88,7 +88,7 @@ public interface Canvas {
     /**
      * Returns the <code>DisplayFactory</code> associated with this
      * <code>Canvas</code>.
-     * 
+     *
      * @return the <code>DisplayFactory</code>.
      */
     DisplayFactory getFactory();
@@ -101,7 +101,7 @@ public interface Canvas {
     CanvasState getState();
 
     /**
-     * Returns true if the given coordinate is visible on this 
+     * Returns true if the given coordinate is visible on this
      * <code>Canvas</code>.
      */
     boolean isVisible(DirectPosition coordinate);
@@ -114,7 +114,7 @@ public interface Canvas {
      * <code>Graphic.getGraphicStyle().getZOrderHint()</code>.  When two added
      * <code>Graphic</code>s have the same zOrder, the most recently added
      * one should be on top.
-     * 
+     *
      * @param graphic the <code>Graphic</code> to add.
      */
     Graphic add(Graphic graphic);
@@ -124,16 +124,16 @@ public interface Canvas {
      * immediately placing the <code>Graphic</code> in an editing/drawing
      * mode, as defined by the <code>Canvas</code> implementation.  A
      * <code>Graphic</code> added as editable may or may not be visible when
-     * it is added, as it may wait for user input to define the 
+     * it is added, as it may wait for user input to define the
      * <code>Graphic</code>'s values through mouse gestures or key input.
-     * 
+     *
      * @param graphic the <code>Graphic</code> to add as editable.
      */
     Graphic addAsEditable(Graphic graphic);
 
     /**
      * Removes the given <code>Graphic</code> from this <code>Canvas</code>.
-     * 
+     *
      * @param graphic the <code>Graphic</code> to remove.
      */
     void remove(Graphic graphic);
@@ -153,7 +153,7 @@ public interface Canvas {
      * mechanism. Otherwise, if the class implementing Canvas <i>does </i>
      * implement the particular <code>EventManager</code> subinterface, this
      * method can return the <code>this</code> reference.
-     * 
+     *
      * @param eventManagerClass the class type of the EventManager subinterface.
      * @return a class that implements the requested EventManager subinterface,
      *         or null if there is no implementing class.
@@ -163,42 +163,42 @@ public interface Canvas {
     /**
      * Adds the <code>EventManager</code> subinterface if it not currently in
      * the <code>Canvas</code>'s collection of <code>EventManager</code>s.
-     * 
+     *
      * @param eventManager the <code>EventManager</code> type to be added to
      *        the <code>Canvas</code>'s collection.
      */
     void addEventManager(EventManager eventManager);
 
     /**
-     * Returns the top-most <code>Graphic</code> that occupies given 
+     * Returns the top-most <code>Graphic</code> that occupies given
      * <code>DirectPosition</code>. The top-most <code>Graphic</code> will
      * have the highest zOrder.
-     * 
-     * @param directPosition the <code>DirectPosition</code> at which to look 
+     *
+     * @param directPosition the <code>DirectPosition</code> at which to look
      *   for <code>Graphic</code>s.
-     * @return the top-most <code>Graphic</code> at the given 
+     * @return the top-most <code>Graphic</code> at the given
      *   <code>DirectPosition</code>.
      */
     Graphic getTopGraphicAt(DirectPosition directPosition);
 
     /**
-     * Returns the <code>Graphic</code>s that occupy the given 
+     * Returns the <code>Graphic</code>s that occupy the given
      * <code>DirectPosition</code>. The order is implementation-specific.
-     * 
-     * @param directPosition the <code>DirectPosition</code> at which to look 
+     *
+     * @param directPosition the <code>DirectPosition</code> at which to look
      *   for <code>Graphic</code>s.
-     * @return the array of <code>Graphic</code>s at the given 
+     * @return the array of <code>Graphic</code>s at the given
      *   <code>DirectPosition</code>.
      */
     Graphic[] getGraphicsAt(DirectPosition directPosition);
 
     /**
-     * Returns the <code>Graphic</code>s that occupy the given 
+     * Returns the <code>Graphic</code>s that occupy the given
      * <code>Envelope</code>. The order is implementation-specific.
-     * 
+     *
      * @param bounds the <code>Envelope</code> in which to look for
      *   <code>Graphic</code>s.
-     * @return the array of <code>Graphic</code>s in the given 
+     * @return the array of <code>Graphic</code>s in the given
      *   <code>Envelope</code>.
      */
     Graphic[] getGraphicsIn(Envelope bounds);
@@ -219,15 +219,15 @@ public interface Canvas {
     //**  CanvasManager methods  **
 
     /**
-     * Enables the given <code>CanvasHandler</code>, removing the current 
-     * handler (if any).  The new handler's 
+     * Enables the given <code>CanvasHandler</code>, removing the current
+     * handler (if any).  The new handler's
      * <code>handlerEnabled(CanvasController)</code> method is called, passing
-     * in a new, active <code>CanvasController</code> that will allow the 
+     * in a new, active <code>CanvasController</code> that will allow the
      * programmer to modify the <code>Canvas</code>'s properties. <p/>
      * Implementation suggestion:
-     * 
+     *
      * <pre><code>
-     * 
+     *
      * public void enableCanvasHandler(CanvasHandler handler) {
      *      if (handler != activeHandler) {
      *          if (activeHandler != null) {
@@ -243,7 +243,7 @@ public interface Canvas {
     void enableCanvasHandler(CanvasHandler handler);
 
     /**
-     * Removes the given <code>CanvasHandler</code> from this 
+     * Removes the given <code>CanvasHandler</code> from this
      * <code>Canvas</code>.
      */
     void removeCanvasHandler(CanvasHandler handler);
@@ -259,7 +259,7 @@ public interface Canvas {
     /**
      * Sets a rendering hint for implementation or platform specific rendering
      * information.
-     * 
+     *
      * @param hintName the name of the hint.
      * @param hint the rendering hint.
      */
@@ -267,7 +267,7 @@ public interface Canvas {
 
     /**
      * Returns the rendering hint associated with the hint name.
-     * 
+     *
      * @param hintName the name of the hint.
      * @return         the rendering hint.
      */
@@ -280,7 +280,7 @@ public interface Canvas {
      * this <code>Canvas</code>. The display Coordinate Reference System
      * corresponds to the geometry of the display device (e.g. video monitor =
      * Cartesian, planetarium = Spherical).
-     * 
+     *
      * @return the display Coordinate Reference System
      */
     CoordinateReferenceSystem getDisplayCoordinateReferenceSystem();
@@ -290,47 +290,47 @@ public interface Canvas {
      * a georeferenced Coordinate Reference System) for this <code>Canvas</code>.
      * This is the default objective Coordinate Reference System for this
      * <code>Canvas</code>.
-     * 
+     *
      * @return the objective Coordinate Reference System
      */
     CoordinateReferenceSystem getObjectiveCoordinateReferenceSystem();
 
     /**
-     * Sets the objective Coordinate Reference System (e.g. the projection of a 
+     * Sets the objective Coordinate Reference System (e.g. the projection of a
      * georeferenced Coordinate Reference System) for this <code>Canvas</code>.
      * This is the default objective Coordinate Reference System for this
      * <code>Canvas</code>.
-     * 
+     *
      * @param crs the objective Coordinate Reference System
      * @throws IncompatibleOperationException when the specified transformation does not apply to either the objective or the display Coordinate Reference Systems.
      */
     void setObjectiveCoordinateReferenceSystem(CoordinateReferenceSystem crs);
-    
+
     /**
-     * Sets the objective Coordinate Reference System (e.g. the projection of a 
+     * Sets the objective Coordinate Reference System (e.g. the projection of a
      * georeferenced Coordinate Reference System) for this <code>Canvas</code>.
      * This is the default objective Coordinate Reference System for this
      * <code>Canvas</code>.
-     * 
+     *
      * @param crs the objective Coordinate Reference System
      * @param objectiveToDisplay the trasformation that converts between this objective Coordinate Reference System and the Canvas display Coordinate Reference System.
      * @param displayToObjective the trasformation that converts between the Canvas display Coordinate Reference System and this objective Coordinate Reference System.
      * @throws IncompatibleOperationException when the specified transformation does not apply to either the objective or the display Coordinate Reference Systems.
      */
-    void setObjectiveCoordinateReferenceSystem(CoordinateReferenceSystem crs, MathTransform objectiveToDisplay, 
-    				MathTransform displayToObjective) throws IncompatibleOperationException;
+    void setObjectiveCoordinateReferenceSystem(CoordinateReferenceSystem crs, MathTransform objectiveToDisplay,
+                    MathTransform displayToObjective) throws IncompatibleOperationException;
 
     /**
      * Returns the coordinate transformation object for this
-     * <code>Canvas</code>. This allows the <code>Canvas</code> to resolve 
+     * <code>Canvas</code>. This allows the <code>Canvas</code> to resolve
      * conversions of coordinates between the objective and display Coordinate Reference Systems.
      * @return the coordinate transformation object
      */
     MathTransform getObjectiveToDisplayTransform();
-    
+
     /**
      * Returns the coordinate transformation object for this
-     * <code>Canvas</code>. This allows the <code>Canvas</code> to resolve 
+     * <code>Canvas</code>. This allows the <code>Canvas</code> to resolve
      * conversions of coordinates between the display and objective Coordinate Reference Systems.
      * @return the coordinate transformation object
      */

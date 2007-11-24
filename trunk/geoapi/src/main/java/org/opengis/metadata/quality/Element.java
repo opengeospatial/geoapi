@@ -75,7 +75,7 @@ public interface Element {
      * @deprecated Replaced by {@link #getDates}.
      */
     Date[] getDate();
-    
+
     /**
      * Date or range of dates on which a data quality measure was applied.
      * The collection size is 1 for a single date, or 2 for a range. Returns

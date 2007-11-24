@@ -17,7 +17,7 @@ package org.opengis.geometry;
  * <p>
  * Here are a couple of examples of creating a Precision using a
  * PrecisionFactory:
- * 
+ *
  * <pre><code>
  * factory.createPrecision(PrecisionType.FIXED, 1000); // three significant digits
  * factory.createPrecision(PrecisionType.FLOAT, 0); // float precision - 6 digits
@@ -38,28 +38,28 @@ package org.opengis.geometry;
  * rounding policy would "collapse" all the points of the outer ring into the
  * same location - a WFS faced with this situtation may choose to skip the polygon
  * or represent it as a Point.
- * 
+ *
  * @author Jody Garnett
  * @since GeoAPI 2.1
  */
 public interface PrecisionFactory {
 
-	/**
-	 * Creates a Precision of the provided type, scale is used for
-	 * PrecisionType.FIXED.
-	 * <p>
-	 * Here are a couple of examples:
-	 * 
-	 * <pre><code>
-	 * factory.createPrecision(PrecisionType.FIXED, 1000); // three significant digits
-	 * factory.createPrecision(PrecisionType.FLOAT, 0); // float precision - 6 digits
-	 * factory.createPrecision(PrecisionType.DOUBLE, 0); // double precision - 16 digits
-	 * <code></pre>
-	 * 
-	 * @param type PercisionType The rounding policy used
-	 * @param scale Multiplying factor used to obtain a precise coordinate
-	 * @return Precision capable of rounding as described by type and scale
-	 */
-	Precision createFixedPrecision(PrecisionType code, double scale);
+    /**
+     * Creates a Precision of the provided type, scale is used for
+     * PrecisionType.FIXED.
+     * <p>
+     * Here are a couple of examples:
+     *
+     * <pre><code>
+     * factory.createPrecision(PrecisionType.FIXED, 1000); // three significant digits
+     * factory.createPrecision(PrecisionType.FLOAT, 0); // float precision - 6 digits
+     * factory.createPrecision(PrecisionType.DOUBLE, 0); // double precision - 16 digits
+     * <code></pre>
+     *
+     * @param type PercisionType The rounding policy used
+     * @param scale Multiplying factor used to obtain a precise coordinate
+     * @return Precision capable of rounding as described by type and scale
+     */
+    Precision createFixedPrecision(PrecisionType code, double scale);
 
 }

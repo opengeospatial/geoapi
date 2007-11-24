@@ -40,7 +40,7 @@ public interface ComplexFactory {
      * Creates a {@linkplain CompositePoint composite point} from a {@linkplain Point point}.
      * The constructed composite point is backed by the given point.
      * That is, the composite point holds a reference to the point instance.
-     * 
+     *
      * @param generator a point.
      * @return a composite point.
      */
@@ -51,7 +51,7 @@ public interface ComplexFactory {
      * {@linkplain OrientableCurve orientable curves}.
      * The constructed composite curve is backed by the given curves.
      * That is, the composite curve holds references to the curve instances.
-     * 
+     *
      * @param generator a list of orientable curves.
      * @return a composite curve.
      */
@@ -62,7 +62,7 @@ public interface ComplexFactory {
      * {@linkplain OrientableSurface orientable surfaces}.
      * The constructed composite surface is backed by the given surface.
      * That is, the composite surface holds references to the surface instances.
-     * 
+     *
      * @param generator a list of orientable surface.
      * @return a composite surface.
      */

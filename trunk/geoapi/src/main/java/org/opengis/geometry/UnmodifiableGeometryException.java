@@ -33,14 +33,14 @@ public class UnmodifiableGeometryException extends UnsupportedOperationException
     public UnmodifiableGeometryException() {
         super();
     }
-    
+
     /**
      * Creates an exception with the specified message.
      *
-     * @param  message The detail message. The detail message is saved for 
+     * @param  message The detail message. The detail message is saved for
      *         later retrieval by the {@link #getMessage()} method.
      */
     public UnmodifiableGeometryException(final String message) {
         super(message);
-    }    
+    }
 }

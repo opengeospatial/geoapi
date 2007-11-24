@@ -22,7 +22,7 @@ import static org.opengis.annotation.Specification.*;
 /**
  * Holds the set of grid coordinates that specifies the location of the
  * {@linkplain GridPoint grid point} within the {@linkplain Grid grid}.
- * 
+ *
  * @author ISO/DIS 19123
  * @author Martin Schouwenburg
  * @author Wim Koolhoven
@@ -43,7 +43,7 @@ public interface GridCoordinates extends Cloneable {
      * values shall be the same as that of the elements of {@link Grid#getAxisNames}. The value of
      * a single coordinate shall be the number of offsets from the origin of the grid in the direction
      * of a specific axis.
-     * 
+     *
      * @return A copy of the coordinates. Changes in the returned array will not be reflected
      *         back in this {@code GridCoordinates} object.
      */

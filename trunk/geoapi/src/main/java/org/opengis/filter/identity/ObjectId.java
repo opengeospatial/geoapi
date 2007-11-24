@@ -21,27 +21,27 @@ import org.opengis.feature.Feature;
  * here in order to show identification being defined with a long (as with several
  * popular object relational mappers).
  * </p>
- * 
+ *
  * @version <A HREF="http://portal.opengeospatial.org/files/?artifact_id=5929">Implementation specification 1.1</A>
  * @author Jody Garnett, Refractions Research Inc.
  * @since GeoAPI 2.1
  */
 @XmlElement("RecordId")
 public interface ObjectId extends Identifier<Long,Feature> {
-    
-	/**
-	 * The identifier value, which is a Long.
-	 */
+
+    /**
+     * The identifier value, which is a Long.
+     */
     @XmlElement("id")
     Long getID();
-    
+
     /**
      * Evaluates the identifer value against the given Object.
-     * 
+     *
      * @param obj Object to be tested.
-     * 
+     *
      * @return <code>true</code> if a match, otherwise <code>false</code>
      */
     boolean matches( Object obj );
-    
+
 }

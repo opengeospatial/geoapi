@@ -52,7 +52,7 @@ import org.opengis.go.display.primitive.Graphic;
  * information as defined in the corresponding OGC spec.  After further
  * reflection, the {@code FeatureCanvas} abstraction may need to be refactored in light
  * of these other two specs.
- * 
+ *
  * @author Chris Dillard (SYS Technologies)
  * @since GeoAPI 2.0
  */
@@ -63,7 +63,7 @@ public interface FeatureCanvas {
      * created as a result of an {@link #addFeatureLayer addFeatureLayer(...)}
      * call.
      *
-     * @param graphic Find the feature instances associated with the given 
+     * @param graphic Find the feature instances associated with the given
      *        graphic. {@code FeatureCanvas}es are required to maintain this
      *        mapping of graphics to feature.  However, you must use the contained
      *        GO-1 canvas to obtain instances of Graphic based on their position
@@ -116,7 +116,7 @@ public interface FeatureCanvas {
     List<FeatureLayer> getLayers();
 
     /**
-     * Returns the Canvas onto which the Graphics will be rendered.  References to 
+     * Returns the Canvas onto which the Graphics will be rendered.  References to
      * this canvas <strong>must not</strong> be held by the callers of the feature
      * canvas API.  The feature canvas instance that provides the GO-1 canvas is
      * expected to have the freedom to control the life-cycle of the GO-1 canvas

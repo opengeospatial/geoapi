@@ -48,7 +48,7 @@ import org.opengis.annotation.XmlElement;
  * @since GeoAPI 2.0
  */
 @XmlElement("Layer") // 7.2.4.5 Layers and styles
-public interface Layer {    
+public interface Layer {
     /**
      * Provides a unique name for identifying this {@code Layer}. If, and only if, a layer has a
      * name, then it is a map layer that can be requested by using that name in the {@code LAYERS}
@@ -77,7 +77,7 @@ public interface Layer {
     @XmlElement("Title") // 7.2.4.6.2
     InternationalString getTitle();
 
-    /** 
+    /**
      * Provides the narrative description of this {@code Layer}.
      * Equivalent to {@link org.opengis.metadata.identification.DataIdentification#getAbstract}
      * in {@linkplain org.opengis.annotation.Specification#ISO_19115 ISO 19115}.
@@ -97,7 +97,7 @@ public interface Layer {
      * <p>
      * The returned {@code List} (if modifiable) should not be live, and
      * modifying it should not affect this {@code Layer}'s set of keywords.
-     * 
+     *
      * @return this {@code Layer}'s keyword list.
      */
     @XmlElement("KeywordList") // 7.2.4.6.4
@@ -196,7 +196,7 @@ public interface Layer {
      * {@linkplain org.opengis.annotation.Specification#ISO_19115 ISO 19115}.
      * The attribution is inherited by child layers. Any redefinition by
      * a child replaces the inherited value.
-     * 
+     *
      * @return this {@code Layer}'s attribution.
      */
     @XmlElement("Attribution") // 7.2.4.6.12
@@ -209,7 +209,7 @@ public interface Layer {
      * <p>
      * The returned {@code List} (if modifiable) should not be live, and
      * modifying it should have no affect on this {@code Layer}'s set of authority URLs.
-     * 
+     *
      * @return this {@code Layer}'s authority URLs.
      */
     @XmlElement("AuthorityURL") // 7.2.4.6.13
@@ -222,7 +222,7 @@ public interface Layer {
      * <p>
      * The returned {@code List} (if modifiable) should not be live, and
      * modifying it should have no affect on this {@code Layer}'s set of identifiers.
-     *    
+     *
      * @return this {@code Layer}'s identifiers.
      */
     @XmlElement("Identifier") // 7.2.4.6.13
@@ -234,7 +234,7 @@ public interface Layer {
      * <p>
      * The returned {@code List} (if modifiable) should not be live, and modifying
      * it should have no affect on this {@code Layer}'s set of metadata URLs.
-     * 
+     *
      * @return this {@code Layer}'s metadata URLs.
      */
     @XmlElement("MetadataURL") // 7.2.4.6.11
@@ -258,7 +258,7 @@ public interface Layer {
      * <p>
      * The returned {@code List} (if modifiable) should not be live, and modifying
      * it should have no affect on this {@code Layer}'s feature list URLs.
-     * 
+     *
      * @return this {@code Layer}'s feature list URLs.
      */
     @XmlElement("FeatureListURL") // 7.2.4.6.14
@@ -279,7 +279,7 @@ public interface Layer {
      * <p>
      * The returned {@code List} (if modifiable) should not be live, and
      * modifying it should have no affect on this {@code Layer}'s styles.
-     * 
+     *
      * @return this {@code Layer}'s styles.
      */
     @XmlElement("Style") // 7.2.4.6.5
@@ -293,7 +293,7 @@ public interface Layer {
      *
      * @return the minimum scale denominator, inclusive.
      */
-    @XmlElement("MinScaleDenominator") // 7.2.4.6.9 
+    @XmlElement("MinScaleDenominator") // 7.2.4.6.9
     double getMinScaleDenominator();
 
     /**
@@ -391,7 +391,7 @@ public interface Layer {
     int getFixedWidth();
 
     /**
-     * Indicates that this {@code Layer} is not able to produce a map 
+     * Indicates that this {@code Layer} is not able to produce a map
      * with a height different from the fixed height indicated. A value
      * of 0 indicates this {@code Layer} has no fixed height.
      *
@@ -423,7 +423,7 @@ public interface Layer {
      * The returned {@code List} (if modifiable) should not be a live list of this {@code Layer}'s
      * {@code FeatureLayer}s, and modifying the list should not affect this {@code Layer}'s set of
      * {@code FeatureLayer}s.
-     * 
+     *
      * @return the feature layers to add to a {@code FeatureCanvas}.
      */
     List<FeatureLayer> getFeatureLayers();
@@ -435,7 +435,7 @@ public interface Layer {
      * The returned {@code List} (if modifiable) should not be a live list of this {@code Layer}'s
      * {@code Graphic}s, and modifying the list should not affect this {@code Layer}'s set of
      * {@code Graphic}s.
-     * 
+     *
      * @return the {@code Graphic}s to add to a {@code Canvas}.
      */
     List<Graphic> getGraphics();

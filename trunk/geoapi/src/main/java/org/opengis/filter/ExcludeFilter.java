@@ -19,38 +19,38 @@ import java.io.Serializable;
  * The above does imply that the AND opperator can short circuit on encountering
  * ALL.
  * </p>
- * 
+ *
  * @author Jody Garnett, Refractions Research, Inc.
  */
 public final class ExcludeFilter implements Filter, Serializable {
-	private static final long serialVersionUID = -716705962006999508L;
+    private static final long serialVersionUID = -716705962006999508L;
 
-	/** non extensible */
-	ExcludeFilter() {
-	}
+    /** non extensible */
+    ExcludeFilter() {
+    }
 
-	public Object accept(FilterVisitor visitor, Object extraData) {
-		return visitor.visit(this, extraData);
-	}
+    public Object accept(FilterVisitor visitor, Object extraData) {
+        return visitor.visit(this, extraData);
+    }
 
-	/**
-	 * Returns <code>false</code>, content is excluded.
-	 */
-	public boolean evaluate(Object object) {
-		return false;
-	}
+    /**
+     * Returns <code>false</code>, content is excluded.
+     */
+    public boolean evaluate(Object object) {
+        return false;
+    }
 
-	@Override
-	public boolean equals(Object obj) {
-		return Filter.EXCLUDE == obj;
-	}
-	
-	@Override
-	public int hashCode() {
-		return 1;
-	}
-	
-	public String toString() {
-		return "Filter.EXCLUDE";
-	}
+    @Override
+    public boolean equals(Object obj) {
+        return Filter.EXCLUDE == obj;
+    }
+    
+    @Override
+    public int hashCode() {
+        return 1;
+    }
+    
+    public String toString() {
+        return "Filter.EXCLUDE";
+    }
 }

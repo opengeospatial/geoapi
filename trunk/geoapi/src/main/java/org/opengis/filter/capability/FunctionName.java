@@ -41,7 +41,7 @@
  Germany
  E-Mail: jens.fitzke@uni-bonn.de
 
- 
+
  ---------------------------------------------------------------------------*/
 package org.opengis.filter.capability;
 
@@ -64,7 +64,7 @@ import static org.opengis.annotation.Specification.*;
  * </p>
  * @author <a href="mailto:tfr@users.sourceforge.net">Torsten Friebe </A>
  * @author Justin Deoliveira, The Open Planning Project
- * 
+ *
  * TODO: rename this to FunctionName
  */
 public interface FunctionName extends Operator {

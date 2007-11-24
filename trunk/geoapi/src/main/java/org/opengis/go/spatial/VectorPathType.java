@@ -24,7 +24,7 @@ package org.opengis.go.spatial;
  * fire a laser at the other, the beam would follow a straight path that does
  * not bend with the surface of the earth.  This straight path is what is
  * meant by VECTOR.
- * 
+ *
  * @author Open GIS Consortium, Inc.
  */
 public final class VectorPathType extends PathType {

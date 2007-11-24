@@ -26,7 +26,7 @@ import static org.opengis.annotation.Specification.*;
  * An aggregate class containing only instances of {@link OrientableCurve}.
  * The association role {@link #getElements element} shall be the set of
  * {@linkplain OrientableCurve orientable curves} contained in this {@code MultiCurve}.
- * 
+ *
  * @version <A HREF="http://www.opengeospatial.org/standards/as">ISO 19107</A>
  * @author Sanjay Jena
  * @author Prof. Dr. Jackson Roehrig

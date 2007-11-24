@@ -23,7 +23,7 @@ import static org.opengis.annotation.Specification.*;
  * Sequence of geodesic segments. The interface essentially combines a
  * <code>Sequence&lt;{@link Geodesic}&gt;</code> into a single object,
  * with the obvious savings of storage space.
- *  
+ *
  * @version <A HREF="http://www.opengeospatial.org/standards/as">ISO 19107</A>
  * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 1.0

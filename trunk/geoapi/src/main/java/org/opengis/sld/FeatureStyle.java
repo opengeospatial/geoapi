@@ -47,7 +47,7 @@ public interface FeatureStyle {
      */
     @XmlElement("Title")
     InternationalString getTitle();
-    
+
     /**
      * Sets the human readable title of this style.
      * See {@link #getTitle} for details.
@@ -61,7 +61,7 @@ public interface FeatureStyle {
      */
     @XmlElement("Abstract")
     InternationalString getAbstract();
-    
+
     /**
      * Sets the human readable, prose description of this style.
      * See {@link #getAbstract} for details.

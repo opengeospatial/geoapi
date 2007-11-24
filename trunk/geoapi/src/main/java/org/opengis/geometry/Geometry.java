@@ -63,10 +63,10 @@ public interface Geometry extends TransfiniteSet {
      * Returns the precision model used to guide the accuracy of topology operations.
      * <p>
      * </p>
-     * @return the precision model used for topological operations. 
+     * @return the precision model used for topological operations.
      */
     Precision getPrecision();
-    
+
     /**
      * Returns a region in the coordinate reference system that contains this {@code Geometry}.
      * The default shall be to return an instance of an appropriate {@code Geometry} subclass
@@ -219,10 +219,10 @@ public interface Geometry extends TransfiniteSet {
      */
     @UML(identifier="distance", obligation=MANDATORY, specification=ISO_19107)
     double distance(Geometry geometry);
-    
+
     /**
      * Returns the distance between this {@code Geometry} and another {@code Geometry}.
-     * 
+     *
      * @param  geometry The other object.
      * @return The distance between the two objects.
      *

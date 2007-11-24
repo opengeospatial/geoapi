@@ -13,7 +13,7 @@ package org.opengis.filter.identity;
  *
  * @param <T> The type of the identifier itself.
  * @param <O> The type of objects to be identified.
- * 
+ *
  * @version <A HREF="http://www.opengis.org/docs/02-059.pdf">Implementation specification 1.0</A>
  * @author Jody Garnett (Refractions Research)
  * @author Justin Deoliveira (The Open Planning Project)
@@ -26,7 +26,7 @@ public interface Identifier<T,O> {
 
     /**
      * Determines if the id of an object matches the value of the identifier.
-     * 
+     *
      * @param object The object to perform the test against.
      * @return {@code true} if a match, otherwise {@code false}.
      */

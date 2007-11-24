@@ -17,7 +17,7 @@ import static org.opengis.annotation.Specification.*;
  * Obligation of the element or entity. The enum values declared here are an exact copy of
  * the code list elements declared in the {@link org.opengis.metadata.Obligation} code list
  * from the metadata package.
- * 
+ *
  * @version <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
  * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 2.0

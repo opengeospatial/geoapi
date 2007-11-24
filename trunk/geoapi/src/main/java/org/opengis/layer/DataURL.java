@@ -17,7 +17,7 @@ import org.opengis.annotation.XmlElement;
 /**
  * Offers a link to the underlying data represented by a particular {@link Layer}.
  * The enclosed Format element indicates the file format MIME type of the data file.
- * 
+ *
  * @version <A HREF="http://portal.opengeospatial.org/files/?artifact_id=5316">Implementation specification 1.3</A>
  * @author Jesse Crossley (SYS Technologies)
  * @since GeoAPI 2.0

@@ -76,7 +76,7 @@ public interface Point extends Primitive, Position {
     /**
      * Returns the bearing, as a unit vector, of the tangent (at this {@code Point}) to
      * the curve between this {@code Point} and a passed {@linkplain Position position}.
-     * The choice of the curve type for defining the bearing is dependent on the 
+     * The choice of the curve type for defining the bearing is dependent on the
      * {@linkplain org.opengis.referencing.crs.CoordinateReferenceSystem coordinate reference system}
      * in which this {@code Point} is defined.
      * For example, in the Mercator projection, the curve is the rhumb line.

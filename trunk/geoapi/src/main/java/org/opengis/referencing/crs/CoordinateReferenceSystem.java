@@ -20,7 +20,7 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * Abstract coordinate reference system, usually defined by a 
+ * Abstract coordinate reference system, usually defined by a
  * {@linkplain org.opengis.referencing.cs.CoordinateSystem coordinate system} and a
  * {@linkplain org.opengis.referencing.datum.Datum datum}. The concept of a coordinate
  * reference system (CRS) captures the choice of values for the parameters that constitute

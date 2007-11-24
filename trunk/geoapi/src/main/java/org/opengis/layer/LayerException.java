@@ -27,7 +27,7 @@ public class LayerException extends IOException {
      * Serial number for interoperability with different versions.
      */
     private static final long serialVersionUID = -1234809939315146143L;
-    
+
     /**
      * Creates an exception with no message.
      */
@@ -38,7 +38,7 @@ public class LayerException extends IOException {
     /**
      * Creates an exception with the specified message.
      *
-     * @param  message The detail message. The detail message is saved for 
+     * @param  message The detail message. The detail message is saved for
      *         later retrieval by the {@link #getMessage()} method.
      */
     public LayerException(final String message) {
@@ -59,7 +59,7 @@ public class LayerException extends IOException {
     /**
      * Creates an exception with the specified message.
      *
-     * @param  message The detail message. The detail message is saved for 
+     * @param  message The detail message. The detail message is saved for
      *         later retrieval by the {@link #getMessage()} method.
      * @param  cause The cause for this exception. The cause is saved
      *         for later retrieval by the {@link #getCause()} method.

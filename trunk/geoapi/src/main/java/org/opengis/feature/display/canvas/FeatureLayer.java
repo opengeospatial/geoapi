@@ -26,7 +26,7 @@ import org.opengis.sld.FeatureStyle;
  * The current style and the Z-order are changeable at runtime, so consumers of
  * {@code FeatureLayer} objects must add listeners to know if they have
  * been changed.
- * 
+ *
  * @author Chris Dillard (SYS Technologies)
  * @since GeoAPI 2.0
  */

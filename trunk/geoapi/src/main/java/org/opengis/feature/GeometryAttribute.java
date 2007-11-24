@@ -19,7 +19,7 @@ import org.opengis.geometry.BoundingBox;
  * which can be useful in situations where the data source stores the bounds
  * explicitly along with the geometry.
  * </p>
- * 
+ *
  * @author Jody Garnett, Refractions Research
  * @author Justin Deoliveira, The Open Planning Project
  */
@@ -34,7 +34,7 @@ public interface GeometryAttribute extends Attribute {
      * Override and type narrow to GeometryDescriptor.
      */
     GeometryDescriptor getDescriptor();
-    
+
     /**
      * The bounds of the attribute.
      * <p>
@@ -46,7 +46,7 @@ public interface GeometryAttribute extends Attribute {
      * method should return an empty bounds as opposed to returning
      * <code>null</code>.
      * </p>
-     * 
+     *
      * @return The bounds of the underlying geometry, possibly empty.
      */
     BoundingBox getBounds();
@@ -62,7 +62,7 @@ public interface GeometryAttribute extends Attribute {
      * Setting the bounds to <code>null</code> is allowed and will force the
      * bounds to be derived manually on the next call to {@link #getBounds()}.
      * </p>
-     * 
+     *
      * @param bounds
      *            The bounds of the attribute.
      */

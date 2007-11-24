@@ -30,7 +30,7 @@ import static org.opengis.annotation.Specification.*;
  * within the convex hull of the grid points provided by the grid values matrix. The general idea
  * is to extend the coverage to direct positions within the interior of each grid cell by
  * interpolation from the grid points at the corners of the cell.
- * 
+ *
  * @author ISO/DIS 19123
  * @author Wim Koolhoven
  * @author Martin Desruisseaux
@@ -77,7 +77,7 @@ public interface ContinuousQuadrilateralGridCoverage extends ContinuousCoverage 
      * {@linkplain GridValueCell grid value cell} that contains the input {@linkplain DirectPosition
      * direct position}; the second is to interpolate the feature attribute values at the direct
      * position from the {@linkplain GridPointValuePair grid point value pairs} at the corners of
-     * the {@linkplain GridValueCell grid value cell}. Some interpolation methods (e.g. 
+     * the {@linkplain GridValueCell grid value cell}. Some interpolation methods (e.g.
      * {@linkplain InterpolationMethod#BICUBIC bicubic interpolation}) may require the use of
      * {@linkplain GridPointValuePair grid point value pairs} outside of the {@linkplain GridValueCell
      * grid value cell} that contains the {@linkplain DirectPosition direct position}.

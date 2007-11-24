@@ -249,22 +249,22 @@ public final class TopicCategory extends CodeList<TopicCategory> {
     public /*{TopicCategory}*/ CodeList[] family() {
         return values();
     }
-    
+
     /**
-     * Returns the TopicCategory that matches the given string, or returns a 
+     * Returns the TopicCategory that matches the given string, or returns a
      * new one if none match it.
-     */    
+     */
     public static synchronized TopicCategory valueOf(String code) {
-    	if (code == null) {
-    		return null;
-    	}
-    	Iterator iter = VALUES.iterator();
-    	while (iter.hasNext()) {
-    		TopicCategory type = (TopicCategory) iter.next();
-    		if (code.equalsIgnoreCase(type.name())) {
-    			return type;
-    		}
-    	}
-    	return new TopicCategory(code);
-	}
+        if (code == null) {
+            return null;
+        }
+        Iterator iter = VALUES.iterator();
+        while (iter.hasNext()) {
+            TopicCategory type = (TopicCategory) iter.next();
+            if (code.equalsIgnoreCase(type.name())) {
+                return type;
+            }
+        }
+        return new TopicCategory(code);
+    }
 }

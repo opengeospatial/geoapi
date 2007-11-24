@@ -43,5 +43,5 @@ public interface ThiessenValuePolygon extends ValueObject {
      *       {@link org.opengis.geometry.Geometry}.
      */
     @UML(identifier="geometry", obligation=MANDATORY, specification=ISO_19123)
-    DomainObject getGeometry();  
+    DomainObject getGeometry();
 }

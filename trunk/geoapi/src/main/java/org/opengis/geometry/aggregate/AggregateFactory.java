@@ -40,7 +40,7 @@ public interface AggregateFactory {
      * The created {@code MultiPrimitive} will hold only references to the given primitive,
      * e.g. changes in the primitive instances will have consequences in the
      * geometric behaviour of the {@code MultiPrimitive} and vice versa.
-     * 
+     *
      * @param points A set of primitives.
      * @return the resulting multi primitive.
      */
@@ -51,7 +51,7 @@ public interface AggregateFactory {
      * The created {@code MultiPoint} will hold only references to the given points,
      * e.g. changes in the point instances will have consequences in the
      * geometric behaviour of the {@code MultiPoint} and vice versa.
-     * 
+     *
      * @param points A set of points.
      * @return the resulting multi point.
      */
@@ -62,7 +62,7 @@ public interface AggregateFactory {
      * The created {@code MultiCurve} will hold only references to the given curves,
      * e.g. changes in the curve instances will have consequences in the
      * geometric behaviour of the {@code MultiCurve} and vice versa.
-     * 
+     *
      * @param curves A set of curves.
      * @return the resulting multi curve.
      */
@@ -73,7 +73,7 @@ public interface AggregateFactory {
      * The created {@code MultiSurface} will hold only references to the given surfaces,
      * e.g. changes in the surface instances will have consequences in the
      * geometric behaviour of the {@code MultiSurface} and vice versa.
-     * 
+     *
      * @param surfaces A set of surfaces.
      * @return the resulting multi surface.
      */

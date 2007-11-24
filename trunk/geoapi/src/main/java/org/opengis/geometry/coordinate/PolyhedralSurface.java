@@ -21,7 +21,7 @@ import static org.opengis.annotation.Specification.*;
 /**
  * A surface composed of {@linkplain Polygon polygon surfaces} connected along their common
  * boundary curves. This differs from {@link Surface} only in the restriction on the types of
- * surface patches acceptable. 
+ * surface patches acceptable.
  *
  * @version <A HREF="http://www.opengeospatial.org/standards/as">ISO 19107</A>
  * @author Martin Desruisseaux (IRD)

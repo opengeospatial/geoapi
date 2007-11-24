@@ -25,7 +25,7 @@ package org.opengis.go.spatial;
  * The second condition implies that altitude is not taken into account
  * when calculating paths of type GlobalPathType.  Hence paths of this type
  * are well suited for navigation of surface ships or vehicles.
- * 
+ *
  * @author Open GIS Consortium, Inc.
  */
 public final class GlobalPathType extends PathType {

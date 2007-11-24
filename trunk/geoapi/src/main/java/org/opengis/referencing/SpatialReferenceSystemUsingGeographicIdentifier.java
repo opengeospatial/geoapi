@@ -20,7 +20,7 @@ import static org.opengis.annotation.Specification.*;
  * Spatial reference system using geographic identifier, a reference to a feature with a known
  * spatial location. Spatial reference systems using geographic identifiers are not based on
  * coordinates.
- *  
+ *
  * @version <A HREF="http://portal.opengeospatial.org/files/?artifact_id=6716">Abstract specification 2.0</A>
  * @author ISO/DIS 19111
  * @author Martin Desruisseaux (IRD)

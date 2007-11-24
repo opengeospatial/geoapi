@@ -24,25 +24,25 @@ import org.opengis.annotation.Extension;
  * <p>
  * It is very common for a single instnace to implement both ExpressionVisitor and FilterVisitor.
  * </p>
- * 
+ *
  * @version <A HREF="http://www.opengis.org/docs/02-059.pdf">Implementation specification 1.0</A>
  * @author Chris Dillard (SYS Technologies)
  * @since GeoAPI 2.0
  */
 @Extension
 public interface ExpressionVisitor {
-	/**
-	 * Used to visit a Expression.NIL, also called for <code>null</code> where an
-	 * expression is expected.
-	 * <p>
-	 * This is particularly useful when doing data transformations, as an example when
-	 * using a StyleSymbolizer Expression.NIL can be used to represent the default
-	 * stroke color.
-	 * </p> 
-	 * @param extraData
-	 * @return implementation specific
-	 */
-	Object visit(NilExpression  expression, Object extraData);
+    /**
+     * Used to visit a Expression.NIL, also called for <code>null</code> where an
+     * expression is expected.
+     * <p>
+     * This is particularly useful when doing data transformations, as an example when
+     * using a StyleSymbolizer Expression.NIL can be used to represent the default
+     * stroke color.
+     * </p>
+     * @param extraData
+     * @return implementation specific
+     */
+    Object visit(NilExpression  expression, Object extraData);
     Object visit(Add            expression, Object extraData);
     Object visit(Divide         expression, Object extraData);
     Object visit(Function       expression, Object extraData);

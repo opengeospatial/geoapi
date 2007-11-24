@@ -48,7 +48,7 @@ public class InvalidParameterValueException extends IllegalArgumentException {
     /**
      * Creates an exception with the specified invalid value.
      *
-     * @param  message The detail message. The detail message is saved for 
+     * @param  message The detail message. The detail message is saved for
      *         later retrieval by the {@link #getMessage()} method.
      * @param  parameterName The parameter name.
      * @param  value The invalid parameter value.
@@ -62,7 +62,7 @@ public class InvalidParameterValueException extends IllegalArgumentException {
     /**
      * Creates an exception with the specified invalid value as a floating point.
      *
-     * @param  message The detail message. The detail message is saved for 
+     * @param  message The detail message. The detail message is saved for
      *         later retrieval by the {@link #getMessage()} method.
      * @param  parameterName The parameter name.
      * @param  value The invalid parameter value.
@@ -74,7 +74,7 @@ public class InvalidParameterValueException extends IllegalArgumentException {
     /**
      * Creates an exception with the specified invalid value as an integer.
      *
-     * @param  message The detail message. The detail message is saved for 
+     * @param  message The detail message. The detail message is saved for
      *         later retrieval by the {@link #getMessage()} method.
      * @param  parameterName The parameter name.
      * @param  value The invalid parameter value.

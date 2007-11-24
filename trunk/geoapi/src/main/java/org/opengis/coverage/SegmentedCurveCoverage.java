@@ -55,7 +55,7 @@ public interface SegmentedCurveCoverage extends ContinuousCoverage {
     /**
      * Returns the interpolation method to be used in evaluating the coverage. The default value
      * shall be "{@linkplain InterpolationMethod#LINEAR linear}". An application schema may define
-     * other interpolation methods. 
+     * other interpolation methods.
      */
     @UML(identifier="interpolationType", obligation=OPTIONAL, specification=ISO_19123)
     InterpolationMethod getInterpolationMethod();

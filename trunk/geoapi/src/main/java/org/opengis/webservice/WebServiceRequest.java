@@ -38,7 +38,7 @@ Meckenheimer Allee 166
 Germany
 E-Mail: jens.fitzke@uni-bonn.de
 
-                 
+
  ---------------------------------------------------------------------------*/
 package org.opengis.webservice;
 
@@ -50,10 +50,10 @@ import java.util.Map;
  * Base interface for all request on OGC Web Services (OWS). Each
  * class that capsulates a request against an OWS has to implements this
  * interface.
- * 
+ *
  * @author <a href="mailto:poth@lat-lon.de">Andreas Poth</a>
  */
-public interface WebServiceRequest {   
+public interface WebServiceRequest {
     /**
      * Finally, the requests allow for optional vendor-specific parameters (VSPs)
      * that will enhance the results of a request. Typically, these are used for

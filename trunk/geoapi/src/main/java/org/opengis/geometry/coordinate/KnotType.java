@@ -91,22 +91,22 @@ public class KnotType extends CodeList<KnotType> {
     public /*{KnotType}*/ CodeList[] family() {
         return values();
     }
-    
+
     /**
-     * Returns the KnotType that matches the given string, or returns a 
+     * Returns the KnotType that matches the given string, or returns a
      * new one if none match it.
-     */    
+     */
     public static synchronized KnotType valueOf(String code) {
-    	if (code == null) {
-    		return null;
-    	}
-    	Iterator iter = VALUES.iterator();
-    	while (iter.hasNext()) {
-    		KnotType type = (KnotType) iter.next();
-    		if (code.equalsIgnoreCase(type.name())) {
-    			return type;
-    		}
-    	}
-    	return new KnotType(code);
-	}
+        if (code == null) {
+            return null;
+        }
+        Iterator iter = VALUES.iterator();
+        while (iter.hasNext()) {
+            KnotType type = (KnotType) iter.next();
+            if (code.equalsIgnoreCase(type.name())) {
+                return type;
+            }
+        }
+        return new KnotType(code);
+    }
 }

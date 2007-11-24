@@ -17,7 +17,7 @@ import java.util.EventListener;
 /**
  * Methods on this interface are invoked when a {@link FeatureLayer}
  * has been modified.
- * 
+ *
  * @author Chris Dillard (SYS Technologies)
  * @since GeoAPI 2.0
  */

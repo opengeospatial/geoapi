@@ -16,7 +16,7 @@ import org.opengis.geometry.DirectPosition;
 
 
 /**
- * Defines a common abstraction for graphic representation of polygons.  
+ * Defines a common abstraction for graphic representation of polygons.
  * A <code>GraphicPolygon</code> consists of a an exterior ring of vertices
  * and a set of non-mutually-overlapping interior rings of vertices.
  * The exterior and interior rings of a polygon are defined by a list of
@@ -80,7 +80,7 @@ public interface GraphicPolygon extends Graphic {
      * @param index Index of the position to remove.  All positions after this
      *   index are moved forward in the list.
      * @return Returns the {@linkplain DirectPosition} previously at the given
-     *   index. 
+     *   index.
      * @throws IndexOutOfBoundsException Throws this if the given index is less
      *   than zero or greater than or equal to the number points in the exterior
      *   ring.
@@ -175,7 +175,7 @@ public interface GraphicPolygon extends Graphic {
      * @param interiorRingIndex Index of the interior ring whose vertex list is
      *   to be modified.
      * @return Returns the {@linkplain DirectPosition} previously at the given
-     *   index. 
+     *   index.
      * @throws IndexOutOfBoundsException Throws this if the vertex index is
      *   less than zero or greater than or equal to the number of vertices in
      *   the given interior ring.  May also throw this if the interior ring
@@ -199,7 +199,7 @@ public interface GraphicPolygon extends Graphic {
 
     /**
      * Creates a new interior ring (hole) for this polygon.
-     * 
+     *
      * @return Returns the index of the newly created ring.
      */
     int addInteriorRing();
@@ -265,10 +265,10 @@ public interface GraphicPolygon extends Graphic {
      * vertices in the given arrays.  This polygon will keep references to the
      * {@linkplain DirectPosition}s in the arrays, but not the array objecst
      * themselves.
-     * 
+     *
      */
     void setInteriorRings(DirectPosition[][] interiorRingPoints);
-    
+
     /**
      * Returns the <code>GraphicStyle</code> for this <code>GraphicPolygon</code>,
      * which is required to be a <code>PolygonSymbolizer</code>.

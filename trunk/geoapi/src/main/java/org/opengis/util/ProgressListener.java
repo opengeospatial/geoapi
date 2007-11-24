@@ -124,7 +124,7 @@ public interface ProgressListener {
      *
      * @todo Is it really listener job to cancel a task?
      */
-    void setCanceled(boolean cancel);    
+    void setCanceled(boolean cancel);
 
     /**
      * Reports a warning. This warning may be {@linkplain java.util.logger.Logger logged}, printed

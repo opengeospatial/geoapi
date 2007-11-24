@@ -27,7 +27,7 @@ import org.opengis.annotation.XmlElement;
 
 /**
  * Encapsulates the information necessary to style the renderable data for a given {@link Layer}.
- * 
+ *
  * @version <A HREF="http://portal.opengeospatial.org/files/?artifact_id=5316">Implementation specification 1.3</A>
  * @author Jesse Crossley (SYS Technologies)
  * @since GeoAPI 2.0
@@ -41,7 +41,7 @@ public interface Style {
      */
     @XmlElement("Name")
     String getName();
-    
+
     /**
      * Provides the human-readable string for presenting this {@code Style}.
      *
@@ -49,7 +49,7 @@ public interface Style {
      */
     @XmlElement("Title")
     InternationalString getTitle();
-    
+
     /**
      * Provides the narrative description of this {@code Style}.
      *
@@ -57,7 +57,7 @@ public interface Style {
      */
     @XmlElement("Abstract")
     InternationalString getAbstract();
-    
+
     /**
      * Provides the linkage to an image of a map legend appropriate to this {@code Style}.
      *
@@ -65,7 +65,7 @@ public interface Style {
      */
     @XmlElement("LegendURL")
     List<LegendURL> getLegendURLs();
-    
+
     /**
      * Provides the linkage to symbology information for this {@code Style}.
      *
@@ -73,16 +73,16 @@ public interface Style {
      */
     @XmlElement("StyleSheetURL")
     StyleSheetURL getStyleSheetURL();
-    
+
     /**
-     * Provides the linkage to more information about the data or symbology 
+     * Provides the linkage to more information about the data or symbology
      * underlying this {@code Style}.
      *
      * @return the linkage to more info about this {@code Style}'s data or symbology.
      */
     @XmlElement("StyleURL")
     StyleURL getStyleURL();
-    
+
     /**
      * Gets the {@link FeatureStyle}s used to style the {@link FeatureLayer}s used
      * by a {@link Layer} using this {@code Style}.  The returned {@code List}
@@ -93,11 +93,11 @@ public interface Style {
      */
     @Extension
     List<FeatureStyle> getFeatureStyles();
-    
+
     /**
-     * Gets the {@link GraphicStyle}s used to style the {@link Graphic}s used by a 
+     * Gets the {@link GraphicStyle}s used to style the {@link Graphic}s used by a
      * {@link Layer} using this {@code Style}.  The returned {@code List} (if modifiable)
-     * should NOT be live, and modifying it should not affect this {@code Style}'s set of 
+     * should NOT be live, and modifying it should not affect this {@code Style}'s set of
      * {@code GraphicStyle}s.
      *
      * @return this {@code Style}'s {@code GraphicStyle}s.

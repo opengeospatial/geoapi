@@ -39,7 +39,7 @@
  Germany
  E-Mail: jens.fitzke@uni-bonn.de
 
- 
+
  ---------------------------------------------------------------------------*/
 package org.opengis.webservice.capability;
 
@@ -109,7 +109,7 @@ import static org.opengis.annotation.Specification.*;
  * constraints.</td>
  * </tr>
  * </table>
- * 
+ *
  * @author <a href="mailto:mschneider@lat-lon.de">Markus Schneider </a>
  */
 public interface ServiceIdentification {

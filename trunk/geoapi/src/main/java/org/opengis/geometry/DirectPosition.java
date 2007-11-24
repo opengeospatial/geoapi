@@ -29,7 +29,7 @@ import static org.opengis.annotation.Specification.*;
  * {@linkplain CoordinateReferenceSystem coordinate reference system}. In this case,
  * the cordinate reference system is implicitly assumed to take on the value of the containing
  * object's {@linkplain CoordinateReferenceSystem coordinate reference system}.
- * 
+ *
  * @version <A HREF="http://www.opengeospatial.org/standards/as">ISO 19107</A>
  * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 1.0
@@ -42,7 +42,7 @@ public interface DirectPosition extends Position, Cloneable {
      * {@linkplain CoordinateReferenceSystem coordinate reference system}. In this case, the
      * cordinate reference system is implicitly assumed to take on the value of the containing
      * object's {@linkplain CoordinateReferenceSystem coordinate reference system}.
-     * 
+     *
      * @return The coordinate reference system, or {@code null}.
      */
     @UML(identifier="coordinateReferenceSystem", obligation=MANDATORY, specification=ISO_19107)
@@ -51,7 +51,7 @@ public interface DirectPosition extends Position, Cloneable {
     /**
      * The length of coordinate sequence (the number of entries). This is determined by the
      * {@linkplain #getCoordinateReferenceSystem() coordinate reference system}.
-     * 
+     *
      * @return The dimensionality of this position.
      */
     @UML(identifier="dimension", obligation=MANDATORY, specification=ISO_19107)
@@ -62,20 +62,20 @@ public interface DirectPosition extends Position, Cloneable {
      * Please note that this is only a copy (the real values may be stored in another format).
      * <p>
      * To quickly access individual ordinates please use the following:
-     * 
+     *
      * <blockquote><pre>
      * final int dim = position.{@linkplain #getDimension getDimension}();
      * for (int i=0; i&lt;dim; i++) {
      *     position.{@linkplain #getOrdinate getOrdinate}(i); // no copy overhead
      * }
      * </pre></blockquote>
-     * 
+     *
      * If you want to manipulate ordinates please use:
-     * 
+     *
      * <blockquote><pre>
      * position.{@linkplain #setOrdinate setOrdinate}(i, value); // edit in place
      * </pre></blockquote>
-     * 
+     *
      * There are a couple reasons you would like a copy:
      * <ul>
      *   <li>We want an array of coordinates with the intend to modify it for computation purpose
@@ -91,7 +91,7 @@ public interface DirectPosition extends Position, Cloneable {
      *
      * Precedence is given to data integrity over {@code getOrdinates()} performance.
      * Performance concern can be avoided with usage of {@link #getOrdinate(int)}.
-     * 
+     *
      * @return A copy of the coordinates. Changes in the returned array will not be reflected back
      *         in this {@code DirectPosition} object.
      */
@@ -100,7 +100,7 @@ public interface DirectPosition extends Position, Cloneable {
 
     /**
      * Returns the ordinate at the specified dimension.
-     * 
+     *
      * @param dimension The dimension in the range 0 to {@linkplain #getDimension dimension}-1.
      * @return The coordinate at the specified dimension.
      * @throws IndexOutOfBoundsException if the specified dimension is out of bounds.
@@ -109,7 +109,7 @@ public interface DirectPosition extends Position, Cloneable {
 
     /**
      * Sets the ordinate value along the specified dimension.
-     * 
+     *
      * @param dimension the dimension for the ordinate of interest.
      * @param value the ordinate value of interest.
      * @throws IndexOutOfBoundsException if the specified dimension is out of bounds.
@@ -136,7 +136,7 @@ public interface DirectPosition extends Position, Cloneable {
      * @since GeoAPI 2.1
      */
     boolean equals(Object object);
-    
+
     /**
      * Returns a hash code value for this direct position. This method should returns
      * the same value as:

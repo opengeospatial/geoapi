@@ -18,7 +18,7 @@ import org.opengis.util.SimpleEnumerationType;
 
 /**
  * Defines the various XAnchor types.
- * 
+ *
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  *
  * @todo Localize descriptions.

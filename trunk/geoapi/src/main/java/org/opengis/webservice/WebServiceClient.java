@@ -38,7 +38,7 @@
  Germany
  E-Mail: jens.fitzke@uni-bonn.de
 
- 
+
  ---------------------------------------------------------------------------*/
 package org.opengis.webservice;
 
@@ -46,7 +46,7 @@ package org.opengis.webservice;
 /**
  * This is the base interface clients to OGC Web Services within the deegree
  * framework. It may be specialized defining additional write-methods.
- * 
+ *
  * @author <a href="mailto:poth@lat-lon.de">Andreas Poth</a>
  * @version 2002-04-16
  * @deprecated Legacy code of deegree 1.x.

@@ -26,7 +26,7 @@ import org.opengis.util.SimpleEnumerationType;
  * object (that was itself retrieved from a <code>Canvas</code>).
  * An implementation may also implement other line patterns not listed here by
  * creating instances of a {@link DashArray}.</p>
- * 
+ *
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  */
 public class LinePattern extends SimpleEnumerationType<LinePattern> {

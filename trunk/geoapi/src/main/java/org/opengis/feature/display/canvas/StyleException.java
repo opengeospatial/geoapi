@@ -14,7 +14,7 @@ package org.opengis.feature.display.canvas;
 /**
  * Thrown when the canvas is unable to apply a style
  * to a feature that has been added to one of its layers.
- * 
+ *
  * @author Chris Dillard (SYS Technologies)
  * @since GeoAPI 2.0
  */

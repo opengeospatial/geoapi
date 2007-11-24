@@ -15,7 +15,7 @@ import java.util.List;  // For javadoc
 
 /**
  * Throws if adding a {@linkplain ParameterValue parameter value} to a
- * {@linkplain ParameterValueGroup group} would result in more parameters 
+ * {@linkplain ParameterValueGroup group} would result in more parameters
  * than the {@linkplain ParameterDescriptor#getMaximumOccurs maximum occurence}
  * allowed. This operation may be throws during {@linkplain List#add} or
  * {@linkplain List#remove} operation on the list returned by
@@ -47,7 +47,7 @@ public class InvalidParameterCardinalityException extends IllegalStateException 
     /**
      * Creates an exception with the specified message and parameter name.
      *
-     * @param  message The detail message. The detail message is saved for 
+     * @param  message The detail message. The detail message is saved for
      *         later retrieval by the {@link #getMessage()} method.
      * @param parameterName The name of the parameter with invalid cardinality.
      */

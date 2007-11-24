@@ -57,7 +57,7 @@ public interface Georeferenceable extends GridSpatialRepresentation {
      */
     @UML(identifier="georeferencedParameters", obligation=MANDATORY, specification=ISO_19115)
     Record getGeoreferencedParameters();
-    
+
     /**
      * Terms which support grid data georeferencing.
      *

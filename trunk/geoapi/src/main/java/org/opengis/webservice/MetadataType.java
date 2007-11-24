@@ -39,7 +39,7 @@
  Germany
  E-Mail: jens.fitzke@uni-bonn.de
 
- 
+
  ---------------------------------------------------------------------------*/
 package org.opengis.webservice;
 
@@ -103,22 +103,22 @@ public final class MetadataType extends CodeList<MetadataType> {
     public /*{MetadataType}*/ CodeList[] family() {
         return values();
     }
-    
+
     /**
-     * Returns the MetadataType that matches the given string, or returns a 
+     * Returns the MetadataType that matches the given string, or returns a
      * new one if none match it.
-     */    
+     */
     public static synchronized MetadataType valueOf(String code) {
-    	if (code == null) {
-    		return null;
-    	}
-    	Iterator iter = VALUES.iterator();
-    	while (iter.hasNext()) {
-    		MetadataType type = (MetadataType) iter.next();
-    		if (code.equalsIgnoreCase(type.name())) {
-    			return type;
-    		}
-    	}
-    	return new MetadataType(code);
-	}
+        if (code == null) {
+            return null;
+        }
+        Iterator iter = VALUES.iterator();
+        while (iter.hasNext()) {
+            MetadataType type = (MetadataType) iter.next();
+            if (code.equalsIgnoreCase(type.name())) {
+                return type;
+            }
+        }
+        return new MetadataType(code);
+    }
 }

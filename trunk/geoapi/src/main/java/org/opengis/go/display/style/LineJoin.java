@@ -19,7 +19,7 @@ import org.opengis.util.SimpleEnumerationType;
 /**
  * Indicates the various various ways of joining two lines at their intersection.
  * This class defines static constants for all of the standard choices.
- * 
+ *
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  *
  * @todo Localize descriptions.
@@ -77,7 +77,7 @@ public class LineJoin extends SimpleEnumerationType<LineJoin> {
      */
     protected LineJoin(String name, String description) {
         super(VALUES, name, description);
-    }        
+    }
 
     //*************************************************************************
     //  Methods

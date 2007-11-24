@@ -85,22 +85,22 @@ public final class CoverageContentType extends CodeList<CoverageContentType> {
     public /*{CoverageContentType}*/ CodeList[] family() {
         return values();
     }
-    
+
     /**
-     * Returns the CoverageContentType that matches the given string, or returns a 
+     * Returns the CoverageContentType that matches the given string, or returns a
      * new one if none match it.
-     */    
+     */
     public static synchronized CoverageContentType valueOf(String code) {
-    	if (code == null) {
-    		return null;
-    	}
-    	Iterator iter = VALUES.iterator();
-    	while (iter.hasNext()) {
-    		CoverageContentType type = (CoverageContentType) iter.next();
-    		if (code.equalsIgnoreCase(type.name())) {
-    			return type;
-    		}
-    	}
-    	return new CoverageContentType(code);
-	}
+        if (code == null) {
+            return null;
+        }
+        Iterator iter = VALUES.iterator();
+        while (iter.hasNext()) {
+            CoverageContentType type = (CoverageContentType) iter.next();
+            if (code.equalsIgnoreCase(type.name())) {
+                return type;
+            }
+        }
+        return new CoverageContentType(code);
+    }
 }

@@ -16,7 +16,7 @@ import org.opengis.annotation.XmlElement;
 
 /**
  * Contains the linkage to an image of a map legend appropriate to the enclosing {@link Style}.
- * 
+ *
  * @version <A HREF="http://portal.opengeospatial.org/files/?artifact_id=5316">Implementation specification 1.3</A>
  * @author Jesse Crossley (SYS Technologies)
  * @since GeoAPI 2.0

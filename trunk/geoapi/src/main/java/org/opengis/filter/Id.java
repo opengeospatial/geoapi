@@ -17,7 +17,7 @@ import org.opengis.filter.identity.Identifier;
  *   <li>RecordId - from CSW-2</li>
  *   <li>ObjectId - from CSW-2</li>
  * </ul>
- * 
+ *
  * @author Chris Dillard (SYS Technologies)
  * @author Justin Deoliveira (The Open Planning Project)
  */

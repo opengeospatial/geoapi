@@ -21,7 +21,7 @@ import static org.opengis.annotation.Specification.*;
  * vary along a set of parallel lines, keeping the cross sectional horizontal curves of a constant
  * shape. Given the same working assumptions as in {@linkplain GriddedSurface gridded surface}, a
  * cylinder can be given by two circles, giving us control points of the form
- * 
+ *
  * &lt;&lt;P1, P2, P3&gt;, &lt;P4, P5, P6&gt;&gt;.
  *
  * @version <A HREF="http://www.opengeospatial.org/standards/as">ISO 19107</A>

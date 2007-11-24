@@ -27,27 +27,27 @@ import static org.opengis.annotation.Specification.*;
  * levels of complexity for the referencing of gridded data.  A {@link RectifiedGrid} object is
  * capable of transforming coordinates through a simple affine transformation.
  * A {@link ReferencableGrid} object encapsulates an operation of arbitrary complexity.
- * This type does not exist in ISO 19123. 
- *  
+ * This type does not exist in ISO 19123.
+ *
  * @author Alexander Petkov
  */
 @Extension
 public interface GridPositioning {
     /**
      * Specifies the coordinate system into which this object transforms coordinates.
-     * ISO 19123 only specifies this association on the {@link ReferenceableGrid} type, 
-     * but it is promoted to this superclass because it is required by both 
+     * ISO 19123 only specifies this association on the {@link ReferenceableGrid} type,
+     * but it is promoted to this superclass because it is required by both
      * {@linkplain ReferenceableGrid} and {@linkplain RectifiedGrid}.
      */
     @Extension
-	CoordinateReferenceSystem getCoordinateReferenceSystem();
+    CoordinateReferenceSystem getCoordinateReferenceSystem();
 
     /**
      * Associates this {@code GridPositioning} object with a geometric description provided
      * by the {@link Grid} object.
      */
     @Extension
-	Grid getGrid();
+    Grid getGrid();
 
     /**
      * Associates this {@code GridPositioning} object with descriptive information about the
@@ -56,11 +56,11 @@ public interface GridPositioning {
      * will be associated with a coordinate transformation operation.  All operations include
      * a reference to a {@link MathTransform} object, which actually performs the corodinate
      * conversion.  The {@code targetCRS} association of the operation attribute is considered
-     * mandatory in this context.	 	 	
+     * mandatory in this context.           
      */
     @Extension
-	Operation getOperation();
-    
+    Operation getOperation();
+
     /**
      * Associates this {@code GridPositioning} object with descriptive information about the
      * coordinate operation it implements.  A {@link RectifiableGrid} (or child thereof) will
@@ -72,5 +72,5 @@ public interface GridPositioning {
      * which is the inverse of the operation attribute.
      */
     @Extension
-	Operation getInverseOperation();
+    Operation getInverseOperation();
 }

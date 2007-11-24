@@ -85,22 +85,22 @@ public final class DateType extends CodeList<DateType> {
     public /*{DateType}*/ CodeList[] family() {
         return values();
     }
-    
+
     /**
-     * Returns the DateType that matches the given string, or returns a 
+     * Returns the DateType that matches the given string, or returns a
      * new one if none match it.
-     */    
+     */
     public static synchronized DateType valueOf(String code) {
-    	if (code == null) {
-    		return null;
-    	}
-    	Iterator iter = VALUES.iterator();
-    	while (iter.hasNext()) {
-    		DateType type = (DateType) iter.next();
-    		if (code.equalsIgnoreCase(type.name())) {
-    			return type;
-    		}
-    	}
-    	return new DateType(code);
-	}
+        if (code == null) {
+            return null;
+        }
+        Iterator iter = VALUES.iterator();
+        while (iter.hasNext()) {
+            DateType type = (DateType) iter.next();
+            if (code.equalsIgnoreCase(type.name())) {
+                return type;
+            }
+        }
+        return new DateType(code);
+    }
 }

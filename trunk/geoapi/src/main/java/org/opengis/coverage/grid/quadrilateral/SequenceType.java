@@ -45,7 +45,7 @@ import static org.opengis.annotation.Specification.*;
  * shares at least one corner. It is maximally connected to the 4 cells with which it shares an
  * edge and two corners. In the three dimensional case, a cell is maximally connected to those
  * cells with which it shares a face.
- * 
+ *
  * @author ISO/DIS 19123
  * @author Wim Koolhoven
  * @author Martin Schouwenburg
@@ -155,7 +155,7 @@ public class SequenceType extends CodeList<SequenceType> {
      */
     @UML(identifier="Hilbert order", obligation=CONDITIONAL, specification=ISO_19123)
     public static final SequenceType HILBERT = new SequenceType("HILBERT");
-    
+
     /**
      * Constructs an enum with the given name. The new enum is
      * automatically added to the list returned by {@link #values}.
@@ -181,22 +181,22 @@ public class SequenceType extends CodeList<SequenceType> {
     public /*{SequenceType}*/ CodeList[] family() {
         return values();
     }
-    
+
     /**
-     * Returns the SequenceType that matches the given string, or returns a 
+     * Returns the SequenceType that matches the given string, or returns a
      * new one if none match it.
-     */    
+     */
     public static synchronized SequenceType valueOf(String code) {
-    	if (code == null) {
-    		return null;
-    	}
-    	Iterator iter = VALUES.iterator();
-    	while (iter.hasNext()) {
-    		SequenceType type = (SequenceType) iter.next();
-    		if (code.equalsIgnoreCase(type.name())) {
-    			return type;
-    		}
-    	}
-    	return new SequenceType(code);
-	}
+        if (code == null) {
+            return null;
+        }
+        Iterator iter = VALUES.iterator();
+        while (iter.hasNext()) {
+            SequenceType type = (SequenceType) iter.next();
+            if (code.equalsIgnoreCase(type.name())) {
+                return type;
+            }
+        }
+        return new SequenceType(code);
+    }
 }

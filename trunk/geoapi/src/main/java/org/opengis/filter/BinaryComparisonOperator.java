@@ -30,19 +30,19 @@ public interface BinaryComparisonOperator extends Filter {
      */
     @XmlElement("expression")
     Expression getExpression1();
-    
+
    /**
      * Returns the second of the two expressions to be compared by this operator.
      */
     @XmlElement("expression")
     Expression getExpression2();
-    
+
     /**
      * Flag controlling wither comparisons are case sensitive.
-     * 
+     *
      * @return <code>true</code> if the comparison is case sensetive, otherwise <code>false</code>.
      */
     @XmlElement("matchCase")
     boolean isMatchingCase();
-    
+
 }

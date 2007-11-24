@@ -41,7 +41,7 @@
  Germany
  E-Mail: jens.fitzke@uni-bonn.de
 
- 
+
  ---------------------------------------------------------------------------*/
 package org.opengis.filter.capability;
 
@@ -86,24 +86,24 @@ public interface ScalarCapabilities {
      * Provided comparison operators.
      * <p>
      * <pre>
-     * &lt;xsd:element name="ComparisonOperators" type="ogc:ComparisonOperatorsType" 
+     * &lt;xsd:element name="ComparisonOperators" type="ogc:ComparisonOperatorsType"
      *    minOccurs="0" maxOccurs="1"/>
      * </pre>
      * </p>
      */
     @UML(identifier="comparisonOperators", specification=UNSPECIFIED)
     ComparisonOperators getComparisonOperators();
-    
+
     /**
      * Provided arithmetic operators.
      * <p>
      * <pre>
-     * &lt;xsd:element name="ComparisonOperators" type="ogc:ComparisonOperatorsType" 
+     * &lt;xsd:element name="ComparisonOperators" type="ogc:ComparisonOperatorsType"
      *     minOccurs="0" maxOccurs="1"/>
      * </pre>
      * </p>
      */
     @UML(identifier="arithmeticOperators", specification=UNSPECIFIED)
     ArithmeticOperators getArithmeticOperators();
-    
+
 }

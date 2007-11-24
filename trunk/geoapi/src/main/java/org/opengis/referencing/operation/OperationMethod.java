@@ -23,7 +23,7 @@ import static org.opengis.annotation.Specification.*;
  * Definition of an algorithm used to perform a coordinate operation. Most operation
  * methods use a number of operation parameters, although some coordinate conversions
  * use none. Each coordinate operation using the method assigns values to these parameters.
- *  
+ *
  * @version <A HREF="http://portal.opengeospatial.org/files/?artifact_id=6716">Abstract specification 2.0</A>
  * @author ISO/DIS 19111
  * @author Martin Desruisseaux (IRD)

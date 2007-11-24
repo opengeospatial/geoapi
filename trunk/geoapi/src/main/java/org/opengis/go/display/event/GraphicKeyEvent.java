@@ -16,7 +16,7 @@ import java.awt.event.KeyEvent;
 /**
  * Provides a common abstraction for the various event objects pertaining to key
  * events on a {@link org.opengis.go.display.primitive.Graphic}.
- * 
+ *
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  */
 public interface GraphicKeyEvent extends GraphicEvent {

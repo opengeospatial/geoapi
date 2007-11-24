@@ -16,7 +16,7 @@ import org.opengis.go.display.primitive.Graphic;
 /**
  * Provides a mechanism for notification of additions, removals, and
  * reorderings of elements in an aggregation.
- * 
+ *
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  */
 public interface AggregationChangeEvent {
@@ -43,7 +43,7 @@ public interface AggregationChangeEvent {
      *         constants.
      */
     int getID();
-    
+
     /**
      * Gets the <code>Graphic</code> elements pertinent to the event.
      * @return an array of <code>Graphic</code>s that were affected by the event,

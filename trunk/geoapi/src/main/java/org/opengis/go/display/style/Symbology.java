@@ -23,14 +23,14 @@ public interface Symbology {
      * @return the number of properties for the graphic
      */
     int getSymbologyPropertyCount(SymbologyInfo info);
-    
+
     /**
      * Gets the list of all the property names that exist for the graphic
      * that uses this symbology.
      * @return the list of property names
      */
     String[] getSymbologyPropertyNames(SymbologyInfo info);
-    
+
     /**
      * Gets the java class type for the property value defined by the property
      * name.
@@ -38,7 +38,7 @@ public interface Symbology {
      * @return the java class of the property value
      */
     Class getSymbologyPropertyType(SymbologyInfo info, String propertyName);
-    
+
     /**
      * Gets the property value defined by the given property name
      * @param propertyName the name of the property to look up
@@ -46,7 +46,7 @@ public interface Symbology {
      * @throws IllegalArgumentException if the property name isn't a valid one
      */
     Object getSymbologyProperty(SymbologyInfo info, String propertyName) throws IllegalArgumentException;
-    
+
     /**
      * Sets the value of a property for the given property name
      * @param propertyName the property to set
@@ -56,7 +56,7 @@ public interface Symbology {
      */
     void setSymbologyProperty(SymbologyInfo info, String propertyName, Object value)
         throws IllegalArgumentException;
-    
+
     /**
      * Gets the active symbology name that is being used to render this
      * graphic symbol.  An active symbology will use the settings that were
@@ -64,10 +64,10 @@ public interface Symbology {
      * @return the active symbology name
      */
     SymbologyInfo getActiveSymbology();
-    
+
     /**
      * Sets the active symbology name that is being used to render this
-     * graphic symbol.  
+     * graphic symbol.
      * @param info the new active symbology
      * @throws IllegalArgumentException if the symbology isn't supported
      */

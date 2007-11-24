@@ -12,17 +12,17 @@ import org.opengis.feature.type.PropertyType;
  * <br>
  * A property is a wrapper around an arbitrary object or value. The value is
  * available via the {@link #getValue()} and {@link #setValue(Object)}.
- * 
+ *
  * <pre>
  *  Property property = ...;
- * 
+ *
  *  //set the value
  *  property.setValue( &quot;foo&quot; );
- *  
+ *
  *  //get the value
  *  String value = (String) property.getValue();
  * </pre>
- * 
+ *
  * </p>
  * <p>
  * Every property has a type. This {@link PropertyType} defines information
@@ -30,18 +30,18 @@ import org.opengis.feature.type.PropertyType;
  * is an instance of, any restrictions on the value, etc... See the javadoc for
  * PropertyType for more details. The type is available via the
  * {@link #getType()} method.
- * 
+ *
  * <pre>
  *   Property property = ...;
- *   
+ *
  *   //get the type
  *   PropertyType type = property.getType();
- *   
+ *
  *   //get the class of the value
  *   Class&lt;String&gt; valueClass = (Class&lt;String&gt;)type.getBinding();
- *   
+ *
  * </pre>
- * 
+ *
  * </p>
  * <p>
  * A property can often be part of another entity, often a
@@ -50,20 +50,20 @@ import org.opengis.feature.type.PropertyType;
  * The descriptor of a property defines things like nilablility, multiplicity,
  * etc... See the javadoc of {@link PropertyDescriptor} for more details. The
  * descriptor is available via the {@link #getDescriptor()} method.
- * 
+ *
  * <pre>
  *   Property property = ...;
- *   
- *   //get the descriptor 
+ *
+ *   //get the descriptor
  *   PropertyDescriptor descriptor = property.getDescriptor()l
- *   
+ *
  *   //is the value allowed to be null?
  *   descriptor.isNillable();
- *   
+ *
  *   //how many instances of this property are allowed?
  *   descriptor.getMaxOccurs();
  * </pre>
- * 
+ *
  * @author Jody Garnett (Refractions Research)
  * @author Justin Deoliveira (The Open Planning Project)
  */
@@ -79,7 +79,7 @@ public interface Property {
      * This value may be <code>null</code>. In this case
      * <code>getDescriptor().isNillable()</code> would be <code>true</code>.
      * </p>
-     * 
+     *
      * @return The value of the property.
      */
     Object getValue();
@@ -94,10 +94,10 @@ public interface Property {
      * <tt>newValue</tt> may be <code>null</code> if
      * <code>getDescriptor().isNillable()</code> is <code>true</code>.
      * </p>
-     * 
+     *
      * @param newValue
      *            The new value of the property.
-     * 
+     *
      */
     void setValue(Object newValue);
 
@@ -110,7 +110,7 @@ public interface Property {
      * <p>
      * This value is also available via <code>getDescriptor().getType()</code>.
      * </p>
-     * 
+     *
      * @return The property type.
      */
     PropertyType getType();
@@ -124,7 +124,7 @@ public interface Property {
      * <p>
      * The descriptor is never <code>null</code>.
      * </p>
-     * 
+     *
      * @return The property descriptor.
      * @see ComplexAttribute
      */
@@ -135,7 +135,7 @@ public interface Property {
      * <p>
      * This method is convenience for <code>getDescriptor().getName()</code>.
      * </p>
-     * 
+     *
      * @return name of the property.
      */
     Name getName();
@@ -146,7 +146,7 @@ public interface Property {
      * <p>
      * This method is convenience for <code>getDescriptor().isNillable()</code>.
      * </p>
-     * 
+     *
      * @return <code>true</code> if the value of the property is allowed to be
      *         <code>null</code>, otherwise <code>false</code>.
      */
@@ -159,22 +159,22 @@ public interface Property {
      * An example of information that may wish to be stored along with an
      * attribute could be its srs information (in the case of a geometric
      * attribute ).
-     * 
+     *
      * <pre>
      * <code>
      *  GeometryAttribute attribute = ...;
-     * 
+     *
      *  //set the crs
      *  CoordinateReferenceSystem crs = CRS.decode(&quot;EPSG:4326&quot;);
      *  attribute.setCRS( crs );
-     *  
+     *
      *  //set the srs
      *  attribute.getUserData().put( &quot;srs&quot;, &quot;EPSG:4326&quot; );
      * </code>
      * </pre>
-     * 
+     *
      * </p>
-     * 
+     *
      * @return A map of user data.
      */
     Map<Object, Object> getUserData();

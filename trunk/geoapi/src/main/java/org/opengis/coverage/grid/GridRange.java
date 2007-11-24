@@ -28,7 +28,7 @@ import static org.opengis.annotation.Specification.*;
  *     <A HREF="http://www.opengis.org/docs/01-004.pdf">Grid Coverages Implementation specification 1.0</A>.
  *     We plan to replace it by new interfaces derived from ISO 19123 (<CITE>Schema for coverage geometry
  *     and functions</CITE>). Current interfaces should be considered as legacy and are included in this
- *     distribution only because they were part of GeoAPI 1.0 release. We will try to preserve as much 
+ *     distribution only because they were part of GeoAPI 1.0 release. We will try to preserve as much
  *     compatibility as possible, but no migration plan has been determined yet.</P>
  *   </TD></TR>
  * </TABLE>
@@ -82,21 +82,21 @@ public interface GridRange {
      * @deprecated Replaced by {@link #getUpper()}.
      */
     int[] getUppers();
-    
+
     /**
      * Returns the valid minimum inclusive grid
      * coordinate along the specified dimension.
      */
     @Extension
     int getLower(int dimension);
-    
+
     /**
      * Returns the valid maximum exclusive grid
      * coordinate along the specified dimension.
      */
     @Extension
     int getUpper(int dimension);
-    
+
     /**
      * Returns the number of integer grid coordinates along the specified dimension.
      * This is equals to {@code getUpper(dimension)-getLower(dimension)}.

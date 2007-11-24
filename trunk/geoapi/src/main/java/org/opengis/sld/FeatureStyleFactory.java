@@ -28,12 +28,12 @@ public interface FeatureStyleFactory {
      * Parses a feature style from a J2SE input stream.
      */
     FeatureStyle parse(InputStream is);
-    
+
     /**
      * Parses a feature style from a XML input source.
      */
     FeatureStyle parse(InputSource is);
-    
+
     /**
      * Parses a feature style from a character string.
      */

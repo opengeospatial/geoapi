@@ -31,7 +31,7 @@ import static org.opengis.annotation.Specification.*;
 @UML(identifier="TM_CoordinateSystem", specification=ISO_19108)
 public interface TemporalCoordinateSystem extends TemporalReferenceSystem {
     /**
-     * Position of the origin of the scale on which the temporal coordinate system is based 
+     * Position of the origin of the scale on which the temporal coordinate system is based
      * expressed as a date in the Gregorian calendar and time of day in UTC.
      */
     @UML(identifier="origin", obligation=MANDATORY, specification=ISO_19108)
@@ -48,14 +48,14 @@ public interface TemporalCoordinateSystem extends TemporalReferenceSystem {
     /**
      * Transforms a value of a {@linkplain TemporalCoordinate coordinate} within this
      * temporal coordinate system and returns the equivalent {@linkplain DateAndTime date
-     * and time} in the Gregorian Calendar and UTC 
+     * and time} in the Gregorian Calendar and UTC
      */
     @UML(identifier="transformCoord", obligation=MANDATORY, specification=ISO_19108)
     Date transformCoord(TemporalCoordinate coordinates);
 
     /**
      * Transforms a {@linkplain DateAndTime date and time} in the Gregorian Calendar and UTC
-     * to an equivalent {@linkplain TemporalCoordinate coordinate} within this temporal 
+     * to an equivalent {@linkplain TemporalCoordinate coordinate} within this temporal
      * coordinate system.
      */
     @UML(identifier="transformDateTime", obligation=MANDATORY, specification=ISO_19108)

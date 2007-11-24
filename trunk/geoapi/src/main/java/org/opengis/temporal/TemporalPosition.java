@@ -32,6 +32,6 @@ public interface TemporalPosition {
      *
      * @todo Method name doesn't match the return type.
      */
-	@UML(identifier="indeterminatePosition", obligation=OPTIONAL, specification=ISO_19108)
+    @UML(identifier="indeterminatePosition", obligation=OPTIONAL, specification=ISO_19108)
     IndeterminateValue getIndeterminatePosition();
 }

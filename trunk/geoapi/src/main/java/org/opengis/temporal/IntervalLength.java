@@ -19,7 +19,7 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * A data type for intervals of time which supports the expression of duration in 
+ * A data type for intervals of time which supports the expression of duration in
  * terms of a specified multiple of a single unit of time.
  *
  * @author Stephane Fellah (Image Matters)
@@ -33,19 +33,19 @@ public interface IntervalLength extends Duration {
      */
     @UML(identifier="unit", specification=ISO_19108)
     Unit getUnit();
-    
+
     /**
      * A positive integer that is the base of the mulitplier of the unit.
      */
     @UML(identifier="radix", specification=ISO_19108)
     int getRadix();
-    
+
     /**
      * The exponent of the base.
      */
     @UML(identifier="factor", specification=ISO_19108)
     int getFactor();
-    
+
     /**
      * The length of the time interval as an integer multiple of one
      * {@linkplain #getRadix radix}<sup>(-{@linkplain #getFactor factor})</sup>

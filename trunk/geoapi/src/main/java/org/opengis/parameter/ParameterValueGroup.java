@@ -24,7 +24,7 @@ import static org.opengis.annotation.Specification.*;
  * {@linkplain org.opengis.referencing.operation.Operation operation} or higher level {@code ParameterValueGroup},
  * if those instances contain different values of one or more {@link ParameterValue}s which suitably
  * distinquish among those groups.
- * 
+ *
  * @version <A HREF="http://portal.opengeospatial.org/files/?artifact_id=6716">Abstract specification 2.0</A>
  * @author ISO/DIS 19111
  * @author Martin Desruisseaux (IRD)
@@ -90,7 +90,7 @@ public interface ParameterValueGroup extends GeneralParameterValue {
      * appropriate one to use.</P>
      *
      * @param  name The case insensitive {@linkplain Identifier#getCode identifier code} of the
-     *              parameter to search for. 
+     *              parameter to search for.
      * @return The parameter value for the given identifier code.
      * @throws ParameterNotFoundException if there is no parameter value for the given identifier code.
      */

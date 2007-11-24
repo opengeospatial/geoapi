@@ -28,7 +28,7 @@ import static org.opengis.annotation.Specification.*;
  *   <li>In the variant direct case, uses {@link #getPosition} method.</li>
  *   <li>In the variant indirect case, cast this position to a {@link Point}.</li>
  * </ul>
- *  
+ *
  * @version <A HREF="http://www.opengeospatial.org/standards/as">ISO 19107</A>
  * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 1.0

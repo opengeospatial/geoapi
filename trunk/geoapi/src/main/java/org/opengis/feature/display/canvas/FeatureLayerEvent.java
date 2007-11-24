@@ -17,7 +17,7 @@ import java.util.EventObject;
 /**
  * Instance of this event are passed to {@link FeatureLayerListener}s
  * when a property of the canvas has changed.
- * 
+ *
  * @author Chris Dillard (SYS Technologies)
  * @since GeoAPI 2.0
  */

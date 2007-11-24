@@ -20,7 +20,7 @@ import static org.opengis.annotation.Specification.*;
 
 /**
  * A data type that shall be used to identify temporal position within a calendar.
- * 
+ *
  * @author Stephane Fellah (Image Matters)
  * @author Alexander Petkov
  */

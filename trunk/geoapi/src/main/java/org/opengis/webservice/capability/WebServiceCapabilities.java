@@ -38,7 +38,7 @@
  Germany
  E-Mail: jens.fitzke@uni-bonn.de
 
- 
+
  ---------------------------------------------------------------------------*/
 package org.opengis.webservice.capability;
 
@@ -54,7 +54,7 @@ import static org.opengis.annotation.Specification.*;
  * Map CapabilitiesService, the response of a GetCapabilities request is general
  * information about the service itself and specific information about the
  * available maps.
- * 
+ *
  * @author <a href="mailto:k.lupp@web.de">Katharina Lupp </a>
  * @author <a href="mailto:tfr@users.sourceforge.net">Torsten Friebe </a>
  */

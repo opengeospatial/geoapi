@@ -21,7 +21,7 @@ import org.opengis.annotation.XmlElement;
 /**
  * Provides a way to identify the source of geographic information used in a {@link Layer}
  * or collection of {@code Layer}s.
- * 
+ *
  * @version <A HREF="http://portal.opengeospatial.org/files/?artifact_id=5316">Implementation specification 1.3</A>
  * @author Jesse Crossley (SYS Technologies)
  * @since GeoAPI 2.0
@@ -35,7 +35,7 @@ public interface Attribution {
      */
     @XmlElement("Title")
     InternationalString getTitle();
-    
+
     /**
      * Provides the data provider's linkage.
      *
@@ -43,7 +43,7 @@ public interface Attribution {
      */
     @XmlElement("OnlineResource")
     OnLineResource getOnlineResource();
-    
+
     /**
      * Provides linkage to a logo image.
      *

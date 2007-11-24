@@ -40,7 +40,7 @@ import org.opengis.util.SimpleEnumerationType;
  * software packages.  Where possible, a reference document is given.
  * For others, a description of the style or an indication of the
  * software where the style can be seen is given.</p>
- * 
+ *
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  */
 public class LineStyle extends SimpleEnumerationType<LineStyle> {

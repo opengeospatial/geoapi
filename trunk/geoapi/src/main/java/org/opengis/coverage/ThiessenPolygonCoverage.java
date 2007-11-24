@@ -43,7 +43,7 @@ import static org.opengis.annotation.Specification.*;
  * @author ISO/DIS 19123
  * @author Alessio Fabiani
  * @author Martin Desruisseaux
- * 
+ *
  * @todo Provide a figure derived from figure 11 in ISO 19123.
  */
 @UML(identifier="CV_ThiessenPolygonCoverage", specification=ISO_19123)

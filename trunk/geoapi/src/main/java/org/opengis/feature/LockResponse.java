@@ -46,7 +46,7 @@ public interface LockResponse {
      */
     void increaseNumberLocked(int amount);
 
-	/**
+    /**
      * Add an additional authorization token to collected results for {@link Transaction#commit()}.
      * Note this abstraction does not allow the collection of more than one token per
      * {@link FeatureStore}. This should not be an issue give our two workflows:
@@ -61,7 +61,7 @@ public interface LockResponse {
      *       a single authorization token (even if more then one of its {@link FeatureCollection}s
      *       was involved in the transaction.</li>
      * </ul>
-     */  
+     */
     void addAuthorization(FeatureStore store, String token);
 
     /**
@@ -80,7 +80,7 @@ public interface LockResponse {
     /**
      * Returns the authorization token for indicated feature store,
      * or null if there is no locks known for the feature store.
-     * 
+     *
      * @param store The feature store to search for.
      * @return token, or null if a token for feature store was unavailable.
      */

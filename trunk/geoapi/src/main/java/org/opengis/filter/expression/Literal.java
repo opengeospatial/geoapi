@@ -29,7 +29,7 @@ import org.opengis.annotation.XmlElement;
  * please limit your self to pure data objects and don't use Literal to pass
  * state or operations between systems.
  * <p>
- * 
+ *
  * @version <A HREF="http://www.opengis.org/docs/02-059.pdf">Implementation specification 1.0</A>
  * @author Chris Dillard (SYS Technologies)
  * @since GeoAPI 2.0
@@ -40,5 +40,5 @@ public interface Literal extends Expression {
      * Returns the constant value held by this object.
      */
     Object getValue();
-    
+
 }

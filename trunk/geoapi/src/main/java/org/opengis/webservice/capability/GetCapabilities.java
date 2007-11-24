@@ -12,7 +12,7 @@ import org.opengis.webservice.WebServiceRequest;
  * request against a WCS and offeres two factory methods inherited from <tT>
  * GetCapabilities</tt> for request creation using KVP and one own method for
  * request creation from a DOM object.
- * 
+ *
  * @author <a href="mailto:poth@lat-lon.de">Andreas Poth </a>
  */
 public interface GetCapabilities extends WebServiceRequest {
@@ -20,7 +20,7 @@ public interface GetCapabilities extends WebServiceRequest {
      * Returns the capabilities section.
      */
     String[] getSections();
-    
+
     /**
      */
     String[] getAcceptVersions();

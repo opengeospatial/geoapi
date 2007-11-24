@@ -38,14 +38,14 @@
  Germany
  E-Mail: jens.fitzke@uni-bonn.de
 
- 
+
  ---------------------------------------------------------------------------*/
 package org.opengis.webservice.capability;
 
 
 /**
  * Protocols for DCPTypes.
- * 
+ *
  * @author <a href="mailto:uzs6tr@uni-bonn.de">Axel Schaefer </a>
  */
 public interface Protocol {

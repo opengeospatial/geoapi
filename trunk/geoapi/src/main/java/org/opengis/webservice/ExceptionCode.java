@@ -39,7 +39,7 @@
  Germany
  E-Mail: jens.fitzke@uni-bonn.de
 
- 
+
  ---------------------------------------------------------------------------*/
 package org.opengis.webservice;
 
@@ -74,49 +74,49 @@ public final class ExceptionCode extends CodeList<ExceptionCode> {
     private static final List<ExceptionCode> VALUES = new ArrayList<ExceptionCode>(8);
 
     /**
-     * 
+     *
      */
     @UML(identifier="InvalidFormat", obligation=CONDITIONAL, specification=UNSPECIFIED)
     public static final ExceptionCode INVALID_FORMAT = new ExceptionCode("INVALID_FORMAT");
 
     /**
-     * 
+     *
      */
     @UML(identifier="CurrentUpdateSequence", obligation=CONDITIONAL, specification=UNSPECIFIED)
     public static final ExceptionCode CURRENT_UPDATE_SEQUENCE = new ExceptionCode("CURRENT_UPDATE_SEQUENCE");
 
     /**
-     * 
+     *
      */
     @UML(identifier="InvalidUpdateSequence", obligation=CONDITIONAL, specification=UNSPECIFIED)
     public static final ExceptionCode INVALID_UPDATE_SEQUENCE = new ExceptionCode("INVALID_UPDATE_SEQUENCE");
 
     /**
-     * 
+     *
      */
     @UML(identifier="MissingParameterValue", obligation=CONDITIONAL, specification=UNSPECIFIED)
     public static final ExceptionCode MISSING_PARAMETER_VALUE = new ExceptionCode("MISSING_PARAMETER_VALUE");
 
     /**
-     * 
+     *
      */
     @UML(identifier="InvalidParameterValue", obligation=CONDITIONAL, specification=UNSPECIFIED)
     public static final ExceptionCode INVALID_PARAMETER_VALUE = new ExceptionCode("INVALID_PARAMETER_VALUE");
 
     /**
-     * 
+     *
      */
     @UML(identifier="OperationNotSupported", obligation=CONDITIONAL, specification=UNSPECIFIED)
     public static final ExceptionCode OPERATION_NOT_SUPPORTED = new ExceptionCode("OPERATION_NOT_SUPPORTED");
 
     /**
-     * 
+     *
      */
     @UML(identifier="VersionNegotiationFailed", obligation=CONDITIONAL, specification=UNSPECIFIED)
     public static final ExceptionCode VERSION_NEGOTIATION_FAILED = new ExceptionCode("VERSION_NEGOTIATION_FAILED");
 
     /**
-     * 
+     *
      */
     @UML(identifier="NoApplicableCode", obligation=CONDITIONAL, specification=UNSPECIFIED)
     public static final ExceptionCode NO_APPLICABLE_CODE = new ExceptionCode("NO_APPLICABLE_CODE");
@@ -146,22 +146,22 @@ public final class ExceptionCode extends CodeList<ExceptionCode> {
     public /*{ExceptionCode}*/ CodeList[] family() {
         return values();
     }
-    
+
     /**
-     * Returns the ExceptionCode that matches the given string, or returns a 
+     * Returns the ExceptionCode that matches the given string, or returns a
      * new one if none match it.
-     */    
+     */
     public static synchronized ExceptionCode valueOf(String code) {
-    	if (code == null) {
-    		return null;
-    	}
-    	Iterator iter = VALUES.iterator();
-    	while (iter.hasNext()) {
-    		ExceptionCode type = (ExceptionCode) iter.next();
-    		if (code.equalsIgnoreCase(type.name())) {
-    			return type;
-    		}
-    	}
-    	return new ExceptionCode(code);
-	}
+        if (code == null) {
+            return null;
+        }
+        Iterator iter = VALUES.iterator();
+        while (iter.hasNext()) {
+            ExceptionCode type = (ExceptionCode) iter.next();
+            if (code.equalsIgnoreCase(type.name())) {
+                return type;
+            }
+        }
+        return new ExceptionCode(code);
+    }
 }

@@ -21,7 +21,7 @@ import java.io.IOException;
  * @todo Since this is a {@link FeatureStore} exception should we have a backpointer
  *       to the {@code FeatureStore}? Or at least an indication of which data store
  *       caused the problem?
- * 
+ *
  * @since GeoAPI 2.0
  */
 public class FeatureStoreException extends IOException {

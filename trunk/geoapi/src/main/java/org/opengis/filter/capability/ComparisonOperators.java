@@ -25,12 +25,12 @@ public interface ComparisonOperators {
      * </p>
      */
     Operator[] getOperators();
-    
+
     /**
      * Looks up an operator by name, returning null if no such operator found.
-     * 
+     *
      * @param name the name of the operator.
-     * 
+     *
      * @return The operator, or null.
      */
     Operator getOperator( String name );

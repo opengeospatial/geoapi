@@ -38,7 +38,7 @@
  53115 Bonn
  Germany
  E-Mail: jens.fitzke@uni-bonn.de
- 
+
  ---------------------------------------------------------------------------*/
 package org.opengis.webservice.capability;
 
@@ -48,7 +48,7 @@ import org.opengis.webservice.WebServiceException;
 
 /**
  * Thrown if a given name is not a known <code>Operator</code>.
- * 
+ *
  * @author <a href="mailto:mschneider@lat-lon.de">Markus Schneider</a>
  */
 public class UnknownOperatorNameException extends WebServiceException {

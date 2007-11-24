@@ -40,27 +40,27 @@ import org.opengis.feature.type.FeatureType;  // For javadoc
  */
 @XmlElement("Filter")
 public interface Filter {
-	/**
-	 * Placeholder Filter that evaulates to <code>true</code>.
-	 * <p>
-	 * Filtering a set with Filter.INCLUDE results in the origional set.
-	 * </p>
-	 */
-	public static final IncludeFilter INCLUDE = new IncludeFilter();
-	
-	/**Placeholder Filter that evaulates to <code>false</code>.
-	 * <p>
-	 * Filtering a set with Filter.EXCLUDE results in the Empty Set.
-	 * */
-	public static final ExcludeFilter EXCLUDE = new ExcludeFilter();
-	
+    /**
+     * Placeholder Filter that evaulates to <code>true</code>.
+     * <p>
+     * Filtering a set with Filter.INCLUDE results in the origional set.
+     * </p>
+     */
+    public static final IncludeFilter INCLUDE = new IncludeFilter();
+    
+    /**Placeholder Filter that evaulates to <code>false</code>.
+     * <p>
+     * Filtering a set with Filter.EXCLUDE results in the Empty Set.
+     * */
+    public static final ExcludeFilter EXCLUDE = new ExcludeFilter();
+    
     /**
      * Give an object, this method determines if the test(s) represented by this filter object
      * are passed.
      * <p>
      * This ability is used to allow Queries against both Features and and non spatial data (such as Record) and
      * to express constraints on permissable data values.
-     * </p> 
+     * </p>
      * @param object
      * @return <code>true</true> if the test(s) are passed for the provided object
      */

@@ -38,7 +38,7 @@
  53115 Bonn
  Germany
  E-Mail: jens.fitzke@uni-bonn.de
- 
+
  ---------------------------------------------------------------------------*/
 package org.opengis.webservice;
 
@@ -53,7 +53,7 @@ import org.opengis.util.InternationalString;
  * Class representation of an <code>xlink:simpleLink</code> according to the
  * <code>xlinks.xsd</code> provided with the
  * <code>OWS Common Specification 0.3</code>.
- * 
+ *
  * @author <a href="mailto:schneider@lat-lon.de">Markus Schneider </a>
  */
 public interface SimpleLink {

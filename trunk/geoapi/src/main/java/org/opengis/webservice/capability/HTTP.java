@@ -38,7 +38,7 @@
  Germany
  E-Mail: jens.fitzke@uni-bonn.de
 
- 
+
  ---------------------------------------------------------------------------*/
 package org.opengis.webservice.capability;
 
@@ -48,7 +48,7 @@ import java.net.URL;
 
 /**
  * The HTTP-Protocol.
- * 
+ *
  * @author <a href="mailto:k.lupp@web.de">Katharina Lupp </a>
  * @author <a href="mailto:mschneider@lat-lon.de">Markus Schneider </a>
  */
@@ -61,7 +61,7 @@ public interface HTTP extends Protocol {
      * the protocol, hostname, optional port number, path, a question mark '?',
      * and, optionally, one or more server-specific parameters ending in an
      * ampersand '&'.
-     *  
+     *
      */
     URL[] getGetOnlineResources();
 

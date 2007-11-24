@@ -160,22 +160,22 @@ public final class PresentationForm extends CodeList<PresentationForm> {
     public /*{PresentationForm}*/ CodeList[] family() {
         return values();
     }
-    
+
     /**
-     * Returns the PresentationForm that matches the given string, or returns a 
+     * Returns the PresentationForm that matches the given string, or returns a
      * new one if none match it.
-     */    
+     */
     public static synchronized PresentationForm valueOf(String code) {
-    	if (code == null) {
-    		return null;
-    	}
-    	Iterator iter = VALUES.iterator();
-    	while (iter.hasNext()) {
-    		PresentationForm type = (PresentationForm) iter.next();
-    		if (code.equalsIgnoreCase(type.name())) {
-    			return type;
-    		}
-    	}
-    	return new PresentationForm(code);
-	}
+        if (code == null) {
+            return null;
+        }
+        Iterator iter = VALUES.iterator();
+        while (iter.hasNext()) {
+            PresentationForm type = (PresentationForm) iter.next();
+            if (code.equalsIgnoreCase(type.name())) {
+                return type;
+            }
+        }
+        return new PresentationForm(code);
+    }
 }

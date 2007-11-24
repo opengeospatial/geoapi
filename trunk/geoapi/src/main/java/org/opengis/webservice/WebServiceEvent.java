@@ -38,7 +38,7 @@ Meckenheimer Allee 166
 Germany
 E-Mail: jens.fitzke@uni-bonn.de
 
-                 
+
  ---------------------------------------------------------------------------*/
 package org.opengis.webservice;
 
@@ -52,16 +52,16 @@ import java.util.EventObject;
  * <p>
  * the kind of contained imformation can be determined by calling the
  * {@link #getType} method.
- * 
+ *
  * @author <a href="mailto:poth@lat-lon.de">Andreas Poth</a>
  * @version 2002-04-16
  * @deprecated Legacy code of deegree 1.x.
  */
 public final class WebServiceEvent extends EventObject {
-    
+
     public static final int REQUEST = 0;
     public static final int RESPONSE = 1;
-    
+
     private final WebServiceClient client;
     private final WebServiceRequest request;
     private final WebServiceResponse response;
@@ -72,9 +72,9 @@ public final class WebServiceEvent extends EventObject {
     /**
      * Creates a new WebServiceEvent object.
      *
-     * @param source 
-     * @param request 
-     * @param message 
+     * @param source
+     * @param request
+     * @param message
      */
     public WebServiceEvent(WebService source, WebServiceRequest request, String message) {
         super(source);
@@ -89,10 +89,10 @@ public final class WebServiceEvent extends EventObject {
     /**
      * Creates a new WebServiceEvent object.
      *
-     * @param source 
-     * @param request 
-     * @param message 
-     * @param client 
+     * @param source
+     * @param request
+     * @param message
+     * @param client
      */
     public WebServiceEvent(WebService source, WebServiceRequest request, String message, WebServiceClient client) {
         super(source);
@@ -107,9 +107,9 @@ public final class WebServiceEvent extends EventObject {
     /**
      * Creates a new WebServiceEvent object.
      *
-     * @param source 
-     * @param response 
-     * @param message 
+     * @param source
+     * @param response
+     * @param message
      */
     public WebServiceEvent(WebService source, WebServiceResponse response, String message) {
         super(source);
@@ -174,9 +174,9 @@ public final class WebServiceEvent extends EventObject {
     public WebServiceClient getDestination() {
         return client;
     }
-    
+
     public String getMessage(){
-    	return message;
+        return message;
     }
 
     @Override

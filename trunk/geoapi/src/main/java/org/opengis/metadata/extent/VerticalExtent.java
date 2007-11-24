@@ -31,7 +31,7 @@ import static org.opengis.annotation.Specification.*;
 public interface VerticalExtent {
     /**
      * Returns the lowest vertical extent contained in the dataset.
-     * 
+     *
      * @return Double mandatory for valid content, may be null for an invalid document.
      */
     @UML(identifier="minimumValue", obligation=MANDATORY, specification=ISO_19115)
@@ -39,7 +39,7 @@ public interface VerticalExtent {
 
     /**
      * Returns the highest vertical extent contained in the dataset.
-     * 
+     *
      * @return Double mandatory for valid content, may be null for an invalid document.
      */
     @UML(identifier="maximumValue", obligation=MANDATORY, specification=ISO_19115)
@@ -48,7 +48,7 @@ public interface VerticalExtent {
     /**
      * Returns the vertical units used for vertical extent information.
      * Examples: metres, feet, millimetres, hectopascals.
-     * 
+     *
      * @deprecated removed from ISO_19115:2003/Cor.1:2006
      */
     @UML(identifier="unitOfMeasure", obligation=MANDATORY, specification=ISO_19115)
@@ -57,7 +57,7 @@ public interface VerticalExtent {
     /**
      * Provides information about the origin from which the
      * maximum and minimum elevation values are measured.
-     * 
+     *
      * @deprecated changed to {@link #getVerticalCRS} in ISO_19115:2003/Cor.1:2006
      */
     @UML(identifier="verticalDatum", obligation=MANDATORY, specification=ISO_19115)
@@ -67,7 +67,7 @@ public interface VerticalExtent {
      * Provides information about the vertical coordinate reference system to
      * which the maximum and minimum elevation values are measured. The CRS
      * identification includes unit of measure.
-     * 
+     *
      * @since GeoAPI 2.1
      */
     @UML(identifier="verticalCRS", obligation=MANDATORY, specification=ISO_19115)

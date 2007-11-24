@@ -134,7 +134,7 @@ public interface MetaData {
      * @since GeoAPI 2.1
      */
     @UML(identifier="locale", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<Locale> getLocales();    
+    Collection<Locale> getLocales();
 
     /**
      * Digital representation of spatial information in the dataset.
@@ -200,7 +200,7 @@ public interface MetaData {
      */
     @UML(identifier="applicationSchemaInfo", obligation=OPTIONAL, specification=ISO_19115)
     Collection<? extends ApplicationSchemaInformation> getApplicationSchemaInfo();
-     
+
     /**
      * Provides information about the frequency of metadata updates, and the scope of those updates.
      */

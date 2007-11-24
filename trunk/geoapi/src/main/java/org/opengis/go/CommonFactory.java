@@ -43,7 +43,7 @@ public interface CommonFactory {
      * @return this {@code CommonFactory}'s capabilities
      */
     CommonCapabilities getCapabilities();
-       
+
     /**
      * Returns the {@linkplain FeatureDisplayFactory feature display factory} singleton.
      *
@@ -51,35 +51,35 @@ public interface CommonFactory {
      *
     FeatureDisplayFactory getFeatureDisplayFactory();
      */
-    
+
     /**
      * Returns the {@linkplain TypeFactory type factory} singleton.
      *
      * @return the feature type factory.
      */
     FeatureTypeFactory getTypeFactory();
-    
+
     /**
      * Returns the {@linkplain FilterFactory filter factory} singleton.
      *
      * @return the filter factory.
      */
     FilterFactory getFilterFactory();
-       
+
     /**
      * Returns the {@linkplain DisplayFactory display factory} singleton.
      *
      * @return the display factory.
      */
     DisplayFactory getDisplayFactory();
-    
+
     /**
      * Returns the {@linkplain NameFactory name factory} singleton.
      *
      * @return the name factory.
      */
     NameFactory getNameFactory();
-    
+
     /**
      * Returns the {@linkplain CitationFactory citation factory} singleton.
      *
@@ -136,40 +136,40 @@ public interface CommonFactory {
      * @return the coordinate operation authority factory.
      */
     CoordinateOperationAuthorityFactory getCoordinateOperationAuthorityFactory();
-    
+
     /**
      * Returns the {@linkplain CoordinateOperationFactory coordinate operation factory} singleton.
      *
      * @return the coordinate operation factory.
      */
     CoordinateOperationFactory getCoordinateOperationFactory();
-    
+
     /**
      * Returns the {@linkplain FeatureStyleFactory feature style factory} singleton.
      *
      * @return the feature style factory.
      */
     FeatureStyleFactory getFeatureStyleFactory();
-    
+
     /**
      * Returns the {@linkplain GeometryFactory geometry factory} equiped to build geometries
      * using the given {@linkplain CoordinateReferenceSystem coordinate reference system}.
      *
      * @param crs the {@linkplain CoordinateReferenceSystem coordinate reference system} the
      *        {@linkplain GeometryFactory geometry factory} should use.
-     * @return the requested {@linkplain GeometryFactory geometry factory} or {@code null} if the 
+     * @return the requested {@linkplain GeometryFactory geometry factory} or {@code null} if the
      *         {@linkplain CoordinateReferenceSystem coordinate reference system} is not supported.
      *
      */
     GeometryFactory getGeometryFactory(CoordinateReferenceSystem crs);
-    
+
     /**
      * Returns the {@linkplain PrimitiveFactory primitive factory} equiped to build primitives
      * using the given {@linkplain CoordinateReferenceSystem coordinate reference system}.
      *
      * @param crs the {@linkplain CoordinateReferenceSystem coordinate reference system} the
      *        {@linkplain PrimitiveFactory primitive factory} should use.
-     * @return the requested {@linkplain PrimitiveFactory primitive factory} or {@code null} if the 
+     * @return the requested {@linkplain PrimitiveFactory primitive factory} or {@code null} if the
      *         {@linkplain CoordinateReferenceSystem coordinate reference system} is not supported.
      */
     PrimitiveFactory getPrimitiveFactory(CoordinateReferenceSystem crs);

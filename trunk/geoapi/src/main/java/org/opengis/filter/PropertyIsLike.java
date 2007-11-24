@@ -45,7 +45,7 @@ public interface PropertyIsLike extends Filter {
      */
     @XmlElement("Literal")
     String getLiteral();
-    
+
    /**
      * Returns the string that can be used in the "literal" property of this
      * object to match any sequence of characters.
@@ -54,7 +54,7 @@ public interface PropertyIsLike extends Filter {
      */
     @XmlElement("wildCard")
     String getWildCard();
-    
+
     /**
      * Returns the string that can be used in the "literal" property of this
      * object to match exactly one character.
@@ -72,5 +72,5 @@ public interface PropertyIsLike extends Filter {
      */
     @XmlElement("escape")
     String getEscape();
-    
+
 }

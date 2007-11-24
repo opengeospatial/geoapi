@@ -21,7 +21,7 @@ import static org.opengis.annotation.Specification.*;
  * Ties feature attributes values to the a grid geometry. It holds a sequence of records associated
  * with a sequencing rule that specifies an algorithm for assigning records of feature attribute
  * values to grid points.
- * 
+ *
  * @author ISO/DIS 19123
  * @author Wim Koolhoven
  * @author Martin Schouwenburg
@@ -40,28 +40,28 @@ public interface GridValuesMatrix extends Grid {
      *         <tr><td>DTM<td>double<td>List&lt;double&gt;
      *         <tr><td>TM image<td>7 bytes<td>
      *         <tr><td>Landuse map<td>string<td>{@code List<double>} with look up table for the strings
-     *       </table>   
+     *       </table>
      */
-	@UML(identifier="values", obligation=MANDATORY, specification=ISO_19123)
-	List/*<Record>*/ getValues();
+    @UML(identifier="values", obligation=MANDATORY, specification=ISO_19123)
+    List/*<Record>*/ getValues();
 
-	/**
-	 * Describes how the grid points are ordered for association to the elements of the sequence
+    /**
+     * Describes how the grid points are ordered for association to the elements of the sequence
      * values.
-	 */
-	@UML(identifier="sequencingRule", obligation=MANDATORY, specification=ISO_19123)
-	SequenceRule getSequencingRule();
+     */
+    @UML(identifier="sequencingRule", obligation=MANDATORY, specification=ISO_19123)
+    SequenceRule getSequencingRule();
 
-	/**
-	 * Identifies the grid point to be associated with the first record
+    /**
+     * Identifies the grid point to be associated with the first record
      * in the values sequence.
-	 */
-	@UML(identifier="startSequence", obligation=MANDATORY, specification=ISO_19123)
-	GridCoordinates getStartSequence();
+     */
+    @UML(identifier="startSequence", obligation=MANDATORY, specification=ISO_19123)
+    GridCoordinates getStartSequence();
 
-	/**
-	 * Returns the limits of a section of the grid. This envelope can not be empty.
-	 */
+    /**
+     * Returns the limits of a section of the grid. This envelope can not be empty.
+     */
     @UML(identifier="extent", obligation=OPTIONAL, specification=ISO_19123)
-	GridEnvelope getExtent();
+    GridEnvelope getExtent();
 }

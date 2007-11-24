@@ -41,7 +41,7 @@
  Germany
  E-Mail: jens.fitzke@uni-bonn.de
 
- 
+
  ---------------------------------------------------------------------------*/
 package org.opengis.filter.capability;
 
@@ -62,7 +62,7 @@ package org.opengis.filter.capability;
  *  &lt;/xsd:complexType>
  *   </pre>
  * </p>
- * 
+ *
  * @author <a href="mailto:tfr@users.sourceforge.net">Torsten Friebe </A>
  * @author Justin Deoliveira, The Open Planning Project
  */
@@ -76,7 +76,7 @@ public interface SpatialCapabilities {
      * </p>
      */
     GeometryOperand[] getGeometryOperands();
-    
+
     /**
      * Supported spatial operators.
      * <p>

@@ -40,7 +40,7 @@ import static org.opengis.annotation.Specification.*;
  *   <li>The dimension of all offset vectors shall equal the dimension of the coordinate reference
  *       system, even if an offset vector is aligned with an axis of the external coordinate system.</li>
  * </ul>
- * 
+ *
  * @author ISO/DIS 19123
  * @author Wim Koolhoven
  * @author Martin Schouwenburg
@@ -49,7 +49,7 @@ import static org.opengis.annotation.Specification.*;
 @UML(identifier="CV_RectifiedGrid", specification=ISO_19123)
 public interface RectifiedGrid extends Grid {
     /**
-     * Returns the origin of the rectified grid in an external coordinate reference system. 
+     * Returns the origin of the rectified grid in an external coordinate reference system.
      */
     @UML(identifier="origin", obligation=MANDATORY, specification=ISO_19123)
     DirectPosition getOrigin();
@@ -70,7 +70,7 @@ public interface RectifiedGrid extends Grid {
     /**
      * Converts through an affine transform a direct position to the grid coordinates of
      * the nearest grid point.
-     * 
+     *
      * @todo Question (Wim): GridCoordinates are always integers, how to get
      *       the not rounded results?<br>
      *       Martin: The legacy OGC specification defined a "gridToCRS" math transform for

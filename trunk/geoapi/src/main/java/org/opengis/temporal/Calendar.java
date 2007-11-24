@@ -19,7 +19,7 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * A discrete temporal reference system that provides a 
+ * A discrete temporal reference system that provides a
  * basis for defining temporal position to a resolution of one day.
  *
  * @author Alexander Petkov

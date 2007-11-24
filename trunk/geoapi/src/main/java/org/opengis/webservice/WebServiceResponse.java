@@ -38,7 +38,7 @@ Meckenheimer Allee 166
 Germany
 E-Mail: jens.fitzke@uni-bonn.de
 
-                 
+
  ---------------------------------------------------------------------------*/
 package org.opengis.webservice;
 
@@ -47,7 +47,7 @@ package org.opengis.webservice;
  * This is the base interface for all responses to OGC Web Services (OWS)
  * requests. Each class that capsulates a response within an OWS has to implement
  * this interface.
- * 
+ *
  * @author <a href="mailto:poth@lat-lon.de">Andreas Poth</a>
  * @version 2002-03-01
  * @deprecated Legacy code of deegree 1.x.
@@ -57,7 +57,7 @@ public interface WebServiceResponse {
     * Returns the request that causes the response.
     */
     WebServiceRequest getRequest();
-       
+
    /**
     * Returns an XML encoding of the exception that raised. If no exception
     * raised <tt>null</tt> will be returned.

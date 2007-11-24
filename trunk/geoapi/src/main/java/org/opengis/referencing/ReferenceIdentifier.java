@@ -34,7 +34,7 @@ public interface ReferenceIdentifier extends Identifier {
      * @see #getCodeSpace
      */
     String CODESPACE_KEY = "codespace";
-    
+
     /**
      * Key for the <code>{@value}</code> property to be given to the
      * {@linkplain org.opengis.referencing.ObjectFactory CRS factory} <code>createFoo(&hellip;)</code>

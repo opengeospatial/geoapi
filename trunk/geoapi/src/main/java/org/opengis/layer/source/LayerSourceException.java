@@ -17,7 +17,7 @@ import java.io.IOException;
 /**
  * Throws when a {@linkplain LayerSourceFactory layer source factory} failed to create a
  * {@linkplain LayerSource layer source}.
- * 
+ *
  * @author Jesse Crossley (SYS Technologies)
  * @since GeoAPI 2.0
  */
@@ -37,7 +37,7 @@ public class LayerSourceException extends IOException {
     /**
      * Creates an exception with the specified message.
      *
-     * @param  message The detail message. The detail message is saved for 
+     * @param  message The detail message. The detail message is saved for
      *         later retrieval by the {@link #getMessage()} method.
      */
     public LayerSourceException(final String message) {
@@ -58,7 +58,7 @@ public class LayerSourceException extends IOException {
     /**
      * Creates an exception with the specified message.
      *
-     * @param  message The detail message. The detail message is saved for 
+     * @param  message The detail message. The detail message is saved for
      *         later retrieval by the {@link #getMessage()} method.
      * @param  cause The cause for this exception. The cause is saved
      *         for later retrieval by the {@link #getCause()} method.

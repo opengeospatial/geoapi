@@ -30,14 +30,14 @@ import org.opengis.go.display.event.AggregationListener;
  * <code>Graphic</code> are to be used in a multi-threaded environment,
  * the implementation will have to address thread safety by synchronizing
  * methods or by invoking all methods from a single thread.
- * 
+ *
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  */
 public interface AggregateGraphic extends Graphic {
     /**
      * Sets the children of this <code>AggregateGraphic</code> to the given
      * set of <code>Graphic</code>s.  If there are already children assigned,
-     * then those children will be removed and their parent will be set to 
+     * then those children will be removed and their parent will be set to
      * {@code null}.
      *
      * @param children the new children of the <code>AggregateGraphic</code>.
@@ -107,27 +107,27 @@ public interface AggregateGraphic extends Graphic {
     int getChildCount();
 
     /**
-     * Adds the given <code>AggregationListener</code> to this 
+     * Adds the given <code>AggregationListener</code> to this
      * <code>AggregateGraphic</code>'s list of listeners. The listeners will
      * be notified if this <code>AggregateGraphic</code> adds or removes any elements.
-     * 
+     *
      * @param listener the <code>AggregationListener</code> to be added.
      */
     void addAggregationListener(AggregationListener listener);
 
     /**
-     * Removes the given <code>AggregationListener</code> from this 
+     * Removes the given <code>AggregationListener</code> from this
      * <code>AggregateGraphic</code>'s list of listeners.
-     * 
+     *
      * @param listener the <code>AggregationListener</code> to be removed.
      */
     void removeAggregationListener(AggregationListener listener);
 
     /**
      * Calls the <code>aggregationChanged()</code> method of all <code>AggregationListener</code>s
-     * in this <code>AggregateGraphic</code>'s list of listeners. This method is called when any 
+     * in this <code>AggregateGraphic</code>'s list of listeners. This method is called when any
      * elements are added, removed, or reorderd in this <code>AggregateGraphic</code>.
-     * 
+     *
      * @param event the <code>AggregationChangedEvent</code> to give to the listeners.
      *
      * @todo Usually, this kind of method is a protected one in the implementation class,

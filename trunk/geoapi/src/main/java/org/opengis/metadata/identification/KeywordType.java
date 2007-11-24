@@ -96,22 +96,22 @@ public final class KeywordType extends CodeList<KeywordType> {
     public /*{KeywordType}*/ CodeList[] family() {
         return values();
     }
-    
+
     /**
-     * Returns the KeywordType that matches the given string, or returns a 
+     * Returns the KeywordType that matches the given string, or returns a
      * new one if none match it.
-     */    
+     */
     public static synchronized KeywordType valueOf(String code) {
-    	if (code == null) {
-    		return null;
-    	}
-    	Iterator iter = VALUES.iterator();
-    	while (iter.hasNext()) {
-    		KeywordType type = (KeywordType) iter.next();
-    		if (code.equalsIgnoreCase(type.name())) {
-    			return type;
-    		}
-    	}
-    	return new KeywordType(code);
-	}
+        if (code == null) {
+            return null;
+        }
+        Iterator iter = VALUES.iterator();
+        while (iter.hasNext()) {
+            KeywordType type = (KeywordType) iter.next();
+            if (code.equalsIgnoreCase(type.name())) {
+                return type;
+            }
+        }
+        return new KeywordType(code);
+    }
 }

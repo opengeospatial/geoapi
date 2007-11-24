@@ -21,7 +21,7 @@ import org.opengis.annotation.XmlElement;
 /**
  * Encloses an {@link OnLineResource} which states the linkage of a document defining
  * the meaning of the {@link Identifier} values which reference this {@code AuthorityURL}.
- * 
+ *
  * @version <A HREF="http://portal.opengeospatial.org/files/?artifact_id=5316">Implementation specification 1.3</A>
  * @author Jesse Crossley (SYS Technologies)
  * @since GeoAPI 2.0
@@ -36,7 +36,7 @@ public interface AuthorityURL {
      */
     @XmlElement("Name")
     String getName();
-    
+
     /**
      * Provides the linkage to the document defining the meaning of the values
      * used by {@link Identifier}s which reference this {@code AuthorityURL}.

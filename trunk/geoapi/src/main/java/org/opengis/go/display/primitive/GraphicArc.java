@@ -33,27 +33,27 @@ import org.opengis.util.SimpleEnumerationType;
  * <LI>Its arc <code>end</code> angle, a double precision value.
  * </UL>
  * <P>
- * The geometric shape of <code>GraphicArc</code> can be modified via these parameters 
+ * The geometric shape of <code>GraphicArc</code> can be modified via these parameters
  * (the parameters are converted and passed to the underlying <code>Conic</code> object).
- * Similarly, if the underlying <code>Conic</code> changes shape but remains an ellipse, 
- * then the <code>GraphicArc</code> reflects that behavior 
- * (see <code>Graphic.refresh()</code>). If the <code>Conic</code> changes to a form 
+ * Similarly, if the underlying <code>Conic</code> changes shape but remains an ellipse,
+ * then the <code>GraphicArc</code> reflects that behavior
+ * (see <code>Graphic.refresh()</code>). If the <code>Conic</code> changes to a form
  * other than an ellipse, then the behavior of <code>GraphicArc</code> is undefined.
  * <p>
- * The ellipse is oriented by centering it at the origin of a local Cartesian plane, 
+ * The ellipse is oriented by centering it at the origin of a local Cartesian plane,
  * with the major axis of the ellipse is aligned with the x-axis (abcissa).
  * Start and end points of the elliptic arc are measured positively as a counterclockwise angle
  * from the positive x-axis.
  * <p>
- * The rotation of the ellipse with respect to an external Coordinate Reference System is 
- * measured positively as a clockwise angle, starting from a reference line within the 
+ * The rotation of the ellipse with respect to an external Coordinate Reference System is
+ * measured positively as a clockwise angle, starting from a reference line within the
  * Coordinate Reference System and ending at the x-axis of the local Cartesian plane.
  * <p>
  * The external Coordinate Reference System is the Coordinate Reference System of the DirectPosition
  * correlating to the center of the ellipse.
  *
  * <img src="images/GraphicArc.gif">
- * 
+ *
  * If the width and height parameters are specified
  * in <code>com.dautelle.units.Length.Pixel</code>s, then a
  * <code>GraphicArc</code> shall retain shape and orientation regardless
@@ -66,24 +66,24 @@ import org.opengis.util.SimpleEnumerationType;
  * <code>com.dautelle.units.Length.Meter</code> <code>Unit</code>,
  * then the <code>GraphicArc</code> should convert its height to meters as
  * well.
- * 
+ *
  * @author Open GIS Consortium, Inc.
  */
 public interface GraphicArc extends Graphic {
     /**
      * Sets the geometry for this <code>GraphicArc</code>.
      * <p>
-     * The geometry is oriented by centering the ellipse at the origin of a local Cartesian plane, 
+     * The geometry is oriented by centering the ellipse at the origin of a local Cartesian plane,
      * with the major axis of the ellipse is aligned with the x-axis (abcissa).
      * Start and end points of the elliptic arc are measured positively as a counterclockwise angle
      * from the positive x-axis.
      * <p>
-     * The rotation of the ellipse with respect to an external Coordinate Reference System is 
-     * measured positively as a clockwise angle, starting from a reference line within the 
+     * The rotation of the ellipse with respect to an external Coordinate Reference System is
+     * measured positively as a clockwise angle, starting from a reference line within the
      * Coordinate Reference System and ending at the x-axis of the local Cartesian plane.
      * <p>
      * The geometric values are set on the underlying <code>Conic</code> geometry for this <code>Graphic</code>.
-     * 
+     *
      * @param center the location of the centerpoint of the ellipse defining this <code>GraphicArc</code>.
      * @param width the length of the major axis of the ellipse defining this <code>GraphicArc</code>.
      * @param height the length of the minor axis of the ellipse defining this <code>GraphicArc</code>.
@@ -105,7 +105,7 @@ public interface GraphicArc extends Graphic {
         Unit angleUnit);
 
     /**
-     * Sets the center of the ellipse defining this <code>GraphicArc</code>. 
+     * Sets the center of the ellipse defining this <code>GraphicArc</code>.
      * Value is set on the underlying <code>Conic</code> geometry for this <code>Graphic</code>.
      */
     void setCenter(DirectPosition center);
@@ -117,7 +117,7 @@ public interface GraphicArc extends Graphic {
     DirectPosition getCenter();
 
     /**
-     * Sets the size of the width axis 
+     * Sets the size of the width axis
      * of the ellipse defining this <code>GraphicArc</code>, in terms of the given <code>Unit</code>.
      * Value is set on the underlying <code>Conic</code> geometry for this <code>Graphic</code>.
      * @param width Size of the width axis.
@@ -126,7 +126,7 @@ public interface GraphicArc extends Graphic {
     void setWidth(double width, Unit unit);
 
     /**
-     * Returns the size of the width axis 
+     * Returns the size of the width axis
      * of the ellipse defining this <code>GraphicArc</code>, in terms of the given <code>Unit</code>.
      * Value is acquired from the underlying <code>Conic</code> geometry for this <code>Graphic</code>.
      * @param unit the <code>Unit</code> of the width value.
@@ -135,7 +135,7 @@ public interface GraphicArc extends Graphic {
     double getWidth(Unit unit);
 
     /**
-     * Sets the size of the height axis 
+     * Sets the size of the height axis
      * of the ellipse defining this <code>GraphicArc</code>, in terms of the given <code>Unit</code>.
      * Value is set on the underlying <code>Conic</code> geometry for this <code>Graphic</code>.
      * @param height Size of the height axis.
@@ -144,7 +144,7 @@ public interface GraphicArc extends Graphic {
     void setHeight(double height, Unit unit);
 
     /**
-     * Returns the size of the height axis 
+     * Returns the size of the height axis
      * of the ellipse defining this <code>GraphicArc</code>, in terms of the given <code>Unit</code>.
      * Value is acquired from the underlying <code>Conic</code> geometry for this <code>Graphic</code>.
      * @param unit the <code>Unit</code> of the height value.
@@ -181,7 +181,7 @@ public interface GraphicArc extends Graphic {
      * Returns this <code>GraphicArc</code>'s start bearing. The arc is stroked
      * counter-clockwise from start to end.
      * @param unit the <code>Unit</code> for the angle value.
-     * @return the arc start Orientation. 
+     * @return the arc start Orientation.
      */
     double getStart(Unit unit);
 
@@ -228,7 +228,7 @@ public interface GraphicArc extends Graphic {
     boolean isAllowingRotation();
 
     /**
-     * Sets the boolean that indicates whether this <code>GraphicArc</code> displays 
+     * Sets the boolean that indicates whether this <code>GraphicArc</code> displays
      * an anchor handle for changing the rotation of the defining ellipse.
      */
     void setAllowingRotation(boolean newValue);
@@ -295,7 +295,7 @@ public interface GraphicArc extends Graphic {
      *
      * @author Open GIS Consortium, Inc.
      */
-    public static class ArcClosure extends SimpleEnumerationType<ArcClosure> {    
+    public static class ArcClosure extends SimpleEnumerationType<ArcClosure> {
         /**
          * Serial number for compatibility with different versions.
          */
@@ -350,7 +350,7 @@ public interface GraphicArc extends Graphic {
         public static ArcClosure[] getArray() {
             return values();
         }
-        
+
         /**
          * Returns the list of <code>ArcClosure</code>s.
          */

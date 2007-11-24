@@ -52,7 +52,7 @@ public interface Envelope {
      */
     @Extension
     int getDimension();
-    
+
     /**
      * Returns the minimal ordinate along the specified dimension.
      *
@@ -60,7 +60,7 @@ public interface Envelope {
      */
     @Extension
     double getMinimum(final int dimension);
-    
+
     /**
      * Returns the maximal ordinate along the specified dimension.
      *
@@ -68,7 +68,7 @@ public interface Envelope {
      */
     @Extension
     double getMaximum(final int dimension);
-    
+
     /**
      * Returns the center ordinate along the specified dimension.
      *
@@ -76,7 +76,7 @@ public interface Envelope {
      */
     @Extension
     double getCenter(final int dimension);
-    
+
     /**
      * Returns the envelope length along the specified dimension.
      * This length is equals to the {@linkplain #getMaximum maximum ordinate}

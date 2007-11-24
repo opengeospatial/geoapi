@@ -26,7 +26,7 @@ import static org.opengis.annotation.Obligation.CONDITIONAL;
 
 /**
  * Name of the character coding standard used for the resource.
- * 
+ *
  * @author <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
  * @author Ely Conn (Leica Geosystems Geospatial Imaging, LLC)
  * @since GeoAPI 2.1
@@ -252,7 +252,7 @@ public final class CharacterSet extends CodeList<CharacterSet> {
 
     /**
      * Converts the Character Set to a java Charset, if it can.
-     * 
+     *
      * @return The Java Charset.
      * @throws UnsupportedCharsetException If no support for the charset is available.
      *
@@ -277,22 +277,22 @@ public final class CharacterSet extends CodeList<CharacterSet> {
     public /*{CharacterSet}*/ CodeList[] family() {
         return (CodeList[]) VALUES.toArray(new CodeList[VALUES.size()]);
     }
-    
+
     /**
-     * Returns the CharacterSet that matches the given string, or returns a 
+     * Returns the CharacterSet that matches the given string, or returns a
      * new one if none match it.
-     */    
+     */
     public static synchronized CharacterSet valueOf(String code) {
-    	if (code == null) {
-    		return null;
-    	}
-    	Iterator iter = VALUES.iterator();
-    	while (iter.hasNext()) {
-    		CharacterSet type = (CharacterSet) iter.next();
-    		if (code.equalsIgnoreCase(type.name())) {
-    			return type;
-    		}
-    	}
-    	return new CharacterSet(code, code);
-	}
+        if (code == null) {
+            return null;
+        }
+        Iterator iter = VALUES.iterator();
+        while (iter.hasNext()) {
+            CharacterSet type = (CharacterSet) iter.next();
+            if (code.equalsIgnoreCase(type.name())) {
+                return type;
+            }
+        }
+        return new CharacterSet(code, code);
+    }
 }

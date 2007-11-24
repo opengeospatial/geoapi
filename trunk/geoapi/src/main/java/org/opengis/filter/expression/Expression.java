@@ -22,14 +22,14 @@ import org.opengis.feature.Feature;
  * The most common use is with potentially using {@linkplain Feature feature} and
  * metadata.  The ability to access "attributes" based on the provided content is
  * defined based on XPath queries currently.
- * 
+ *
  * @version <A HREF="http://www.opengis.org/docs/02-059.pdf">Implementation specification 1.0</A>
  * @author Chris Dillard (SYS Technologies)
  * @author Justin Deoliveira (The Open Planning Project)
  * @since GeoAPI 2.0
  */
 @XmlElement("expression")
-public interface Expression {	
+public interface Expression {   
     /**
      * Constant expression that always evaulates to {@code null}.
      * <p>
@@ -46,17 +46,17 @@ public interface Expression {
     Object evaluate(Object object);
 
     /**
-     * Evaluates the given expressoin based on the content of the given object 
+     * Evaluates the given expressoin based on the content of the given object
      * and the context type.
      * <p>
-     * The {@code context} parameter is used to control the type of the 
-     * result of the expression. A particular expression may not be able to evaluate 
-     * to an instance of {@code context}. Therefore to be safe calling code 
+     * The {@code context} parameter is used to control the type of the
+     * result of the expression. A particular expression may not be able to evaluate
+     * to an instance of {@code context}. Therefore to be safe calling code
      * should do a null check on the return value of this method, and call {@link #evaluate(Object)}
      * if neccessary. Example:
      * <pre>
      *  Object input = ...;
-     * 	String result = expression.evaluate( input, String.class );
+     *  String result = expression.evaluate( input, String.class );
      *  if ( result == null ) {
      *     result = expression.evalute( input ).toString();
      *  }
@@ -70,8 +70,8 @@ public interface Expression {
      * @param <T> The type of the returned object.
      * @param object The object to evaluate the expression against.
      * @param context The type of the resulting value of the expression.
-     * 
-     * @return Evaluates the given expression based on the content of the given object an 
+     *
+     * @return Evaluates the given expression based on the content of the given object an
      *         an instance of {@code context}.
      */
     @Extension

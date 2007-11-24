@@ -25,7 +25,7 @@ import static org.opengis.annotation.Specification.*;
  * An aggregate class containing only instances of {@link Point}.
  * The association role {@link #getElements element} shall be the set of
  * {@linkplain Point points} contained in this {@code MultiPoint}.
- * 
+ *
  * @version <A HREF="http://www.opengeospatial.org/standards/as">ISO 19107</A>
  * @since GeoAPI 1.0
  */

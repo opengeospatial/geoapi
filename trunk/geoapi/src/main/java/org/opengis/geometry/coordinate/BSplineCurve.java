@@ -25,7 +25,7 @@ import static org.opengis.annotation.Specification.*;
  * interior knots have multiplicity "degree" rather than having multiplicity one. In
  * this subtype the knot spacing shall be 1.0, starting at 0.0. A piecewise Bézier curve
  * that has only two knots, 0.0, and 1.0, each of multiplicity (degree+1), is equivalent
- * to a simple Bézier curve. 
+ * to a simple Bézier curve.
  *
  * @version <A HREF="http://www.opengeospatial.org/standards/as">ISO 19107</A>
  * @author Martin Desruisseaux (IRD)

@@ -54,7 +54,7 @@ import org.opengis.annotation.UML;
  * Namespace is the Schema etc...). ISO_19103 is consistent and workable when
  * Name is not used as a pure identify solution.
  * <p>
- * 
+ *
  * <h2>Problems with GenericName as a pure Identity Solution</h2>
  * <p>
  * Unfortantly we *need* a pure identify solution, remember that we need Names
@@ -87,92 +87,92 @@ import org.opengis.annotation.UML;
  * practice please see the Schema interface which includes a namespace for its
  * contents.
  * </p>
- * 
+ *
  * @author Jody Garnett, Refractions Research
  */
 public interface Name {
 
-	/**
-	 * Returns <code>true</code> if getNamespaceURI is <code>null</code>
-	 * 
-	 * @return Returns <code>true</code> if getNamespaceURI is <code>null</code>
-	 */
-	boolean isGlobal();
-	
-	/**
-	 * Returns the URI of the namespace for this name.
-	 * <p>
-	 * In ISO 19103 this is known as <b>scope</b> and containes a backpointer
-	 * to the containing namespace. This solution is too heavy for our purposes,
-	 * and we expect applications to provide their own lookup mechanism through
-	 * which they can use this URI.
-	 * </p>
-	 * The namespace URI does serve to make this name unique and is checked as
-	 * part of the equals operation.
-	 * </p>
-	 * 
-	 * @since GeoAPI 2.1
-	 */
-	@UML(identifier = "scope", obligation = MANDATORY, specification = ISO_19103)
-	public String getNamespaceURI();
+    /**
+     * Returns <code>true</code> if getNamespaceURI is <code>null</code>
+     *
+     * @return Returns <code>true</code> if getNamespaceURI is <code>null</code>
+     */
+    boolean isGlobal();
+    
+    /**
+     * Returns the URI of the namespace for this name.
+     * <p>
+     * In ISO 19103 this is known as <b>scope</b> and containes a backpointer
+     * to the containing namespace. This solution is too heavy for our purposes,
+     * and we expect applications to provide their own lookup mechanism through
+     * which they can use this URI.
+     * </p>
+     * The namespace URI does serve to make this name unique and is checked as
+     * part of the equals operation.
+     * </p>
+     *
+     * @since GeoAPI 2.1
+     */
+    @UML(identifier = "scope", obligation = MANDATORY, specification = ISO_19103)
+    public String getNamespaceURI();
 
-	/**
-	 * Retrieve the Local name.
-	 * <p>
-	 * This mechanism captures the following ISO 19103 concerns:
-	 * <ul>
-	 * <li>GenericName.depth(): this concept is not interesting, we assume a
-	 * namespace would be able to navigate through contained namespace on its
-	 * own based on this local part.
-	 * <li>GenericName.asLocalName()
-	 * <li>GenericName.name()
-	 * </ul>
-	 * @return local name (can be used in namespace lookup)
-	 */
-	public String getLocalPart();
+    /**
+     * Retrieve the Local name.
+     * <p>
+     * This mechanism captures the following ISO 19103 concerns:
+     * <ul>
+     * <li>GenericName.depth(): this concept is not interesting, we assume a
+     * namespace would be able to navigate through contained namespace on its
+     * own based on this local part.
+     * <li>GenericName.asLocalName()
+     * <li>GenericName.name()
+     * </ul>
+     * @return local name (can be used in namespace lookup)
+     */
+    public String getLocalPart();
 
-	/**
-	 * Convert this name to a complete URI.
-	 * <p>
-	 * This URI is constructed with the getNamespaceURI and getLocalPart().
-	 * </p>
-	 * <p>
-	 * This method captures the following concerns of GenericName:
-	 * <ul>
-	 * <li>GenericName.getParsedNames()
-	 * <li>toFullyQuantifiedName()
-	 * </ul>
-	 * <p>
-	 * As an example:
-	 * <ul>
-	 * <li>namespace: "gopher://localhost/example" local: "name"
-	 * <li>namespace: "gopher://localhost" local: "example/name"
-	 * </ul>
-	 * Both return: "gopher://localhost/example/name" as they indicate
-	 * the same entry in the namespace system.
-	 * </p>
-	 * @return a complete URI constructed of namespace URI and the local part.
-	 */
-	@UML(identifier = "parsedName", obligation = MANDATORY, specification = ISO_19103)
-	public String getURI();
+    /**
+     * Convert this name to a complete URI.
+     * <p>
+     * This URI is constructed with the getNamespaceURI and getLocalPart().
+     * </p>
+     * <p>
+     * This method captures the following concerns of GenericName:
+     * <ul>
+     * <li>GenericName.getParsedNames()
+     * <li>toFullyQuantifiedName()
+     * </ul>
+     * <p>
+     * As an example:
+     * <ul>
+     * <li>namespace: "gopher://localhost/example" local: "name"
+     * <li>namespace: "gopher://localhost" local: "example/name"
+     * </ul>
+     * Both return: "gopher://localhost/example/name" as they indicate
+     * the same entry in the namespace system.
+     * </p>
+     * @return a complete URI constructed of namespace URI and the local part.
+     */
+    @UML(identifier = "parsedName", obligation = MANDATORY, specification = ISO_19103)
+    public String getURI();
 
-	/**
-	 * Must be based on getURI().
-	 * 
-	 * @return a hascode based on getURI()
-	 */
-	public int hashCode();
-	
-	/**
-	 * <code>true</code> if getURI is equal.
-	 * 
-	 * @param other 
-	 * @return <code>true</code> if getURI is equal.
-	 */
-	public boolean equals(Object obj);
-	
-	/**
-	 * A local-independant representation of this name, see getURI().
-	 */
-	public String toString();
+    /**
+     * Must be based on getURI().
+     *
+     * @return a hascode based on getURI()
+     */
+    public int hashCode();
+    
+    /**
+     * <code>true</code> if getURI is equal.
+     *
+     * @param other
+     * @return <code>true</code> if getURI is equal.
+     */
+    public boolean equals(Object obj);
+    
+    /**
+     * A local-independant representation of this name, see getURI().
+     */
+    public String toString();
 }

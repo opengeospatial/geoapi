@@ -33,7 +33,7 @@ import org.opengis.util.SimpleEnumerationType;
  * <code>getSupportedArrowStyles</code> from the
  * <code>DisplayCapabilities</code> instance associated with the
  * correct provider.</p>
- * 
+ *
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  */
 public class ArrowStyle extends SimpleEnumerationType<ArrowStyle> {

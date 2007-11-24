@@ -21,7 +21,7 @@ import static org.opengis.annotation.Specification.ISO_19115;
  * {@code Measure} and {@code Scale.targetUnits} = {@code Scale.sourceUnits}.
  * <p>
  * Implementations are encouraged to extend {@link Number} in the following manner:
- * 
+ *
  * <pre></code>
  *  class MyRepresentedFraction extends Number implements RepresentedFraction {
  *      ...
@@ -40,7 +40,7 @@ import static org.opengis.annotation.Specification.ISO_19115;
  *      ...
  *  }
  * </code></pre>
- * 
+ *
  * @author <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
  * @author Ely Conn (Leica Geosystems Geospatial Imaging, LLC)
  * @since GeoAPI 2.1
@@ -49,14 +49,14 @@ import static org.opengis.annotation.Specification.ISO_19115;
 public interface RepresentativeFraction {
     /**
      * Returns this value in a form usable for computation.
-     * 
+     *
      * @return <code>1.0 / (double) {@linkplain #getDenominator()}</code>
      */
     double toScale();
 
     /**
      * The number below the line in a vulgar fraction.
-     * 
+     *
      * @todo Return type may need to be a {@code long}? Source interface seems to indicate such.
      */
     @UML(identifier = "denominator", obligation = MANDATORY, specification = ISO_19115)
@@ -68,7 +68,7 @@ public interface RepresentativeFraction {
      * acoording to {@link #getDenominator};
      * <p>
      * Implementations should exactly match the following:
-     * 
+     *
      * <pre><code>
      * public boolean equals(final Object object) {
      *     if (object instanceof RepresentativeFraction) {
@@ -78,7 +78,7 @@ public interface RepresentativeFraction {
      *     return false;
      * }
      * </code></pre>
-     * 
+     *
      * @param other The object to compare with.
      * @return {@code true} if {@code other} is a {@code RepresentedFraction} with the same
      *         {@linkplain #getDenominator denominator} value.
@@ -91,13 +91,13 @@ public interface RepresentativeFraction {
      * according to {@link #getDenominator}.
      * <p>
      * Implementations should exactly match the following:
-     * 
+     *
      * <pre><code>
      * public int hashCode() {
      *     return getDenominator();
      * }
      * </code></pre>
-     * 
+     *
      * @return A hash code value for this representative fraction.
      */
     int hashCode();

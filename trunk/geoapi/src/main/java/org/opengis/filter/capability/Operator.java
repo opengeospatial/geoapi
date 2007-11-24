@@ -41,7 +41,7 @@
  Germany
  E-Mail: jens.fitzke@uni-bonn.de
 
- 
+
  ---------------------------------------------------------------------------*/
 package org.opengis.filter.capability;
 
@@ -51,14 +51,14 @@ import static org.opengis.annotation.Specification.UNSPECIFIED;
 import org.opengis.annotation.UML;
 
 /**
- * 
+ *
  * @author <a href="mailto:tfr@users.sourceforge.net">Torsten Friebe</A>
  *
  * @todo Which relationship with Filter and expressions?
  */
 public interface Operator {
     /**
-     * 
+     *
      */
     @UML(identifier="name", specification=UNSPECIFIED)
     String getName();

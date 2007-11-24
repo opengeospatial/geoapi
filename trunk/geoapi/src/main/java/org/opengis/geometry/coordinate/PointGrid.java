@@ -24,7 +24,7 @@ import static org.opengis.annotation.Specification.*;
  * point arrays}. While a point grid conceptually contains {@linkplain Position positions}, it
  * provides convenience methods for fetching directly the {@linkplain DirectPosition direct positions}
  * instead.
- *  
+ *
  * @version <A HREF="http://www.opengeospatial.org/standards/as">ISO 19107</A>
  * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 1.0
@@ -66,7 +66,7 @@ public interface PointGrid {
     public DirectPosition get(int row, int column) throws IndexOutOfBoundsException;
 
     /**
-     * Gets a copy of the {@code DirectPosition} at the particular location in this 
+     * Gets a copy of the {@code DirectPosition} at the particular location in this
      * {@code PointGrid}. If the {@code dest} argument is non-null, that object
      * will be populated with the value from the array. In all cases, the position in insulated
      * from changes in the {@code PointArray}, and vice-versa. Consequently, the same

@@ -28,7 +28,7 @@ import static org.opengis.annotation.Specification.*;
  * @version <A HREF="http://www.opengis.org/docs/01-004.pdf">Grid Coverage specification 1.0</A>
  * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 1.0
- * 
+ *
  * @see PaletteInterpretation
  * @see SampleDimension
  *
@@ -214,22 +214,22 @@ public final class ColorInterpretation extends CodeList<ColorInterpretation> {
     public /*{ColorInterpretation}*/ CodeList[] family() {
         return values();
     }
-    
+
     /**
-     * Returns the ColorInterpretation that matches the given string, or returns a 
+     * Returns the ColorInterpretation that matches the given string, or returns a
      * new one if none match it.
-     */    
+     */
     public static synchronized ColorInterpretation valueOf(String code) {
-    	if (code == null) {
-    		return null;
-    	}
-    	Iterator iter = VALUES.iterator();
-    	while (iter.hasNext()) {
-    		ColorInterpretation type = (ColorInterpretation) iter.next();
-    		if (code.equalsIgnoreCase(type.name())) {
-    			return type;
-    		}
-    	}
-    	return new ColorInterpretation(code);
-	}
+        if (code == null) {
+            return null;
+        }
+        Iterator iter = VALUES.iterator();
+        while (iter.hasNext()) {
+            ColorInterpretation type = (ColorInterpretation) iter.next();
+            if (code.equalsIgnoreCase(type.name())) {
+                return type;
+            }
+        }
+        return new ColorInterpretation(code);
+    }
 }

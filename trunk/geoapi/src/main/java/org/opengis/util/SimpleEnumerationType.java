@@ -151,7 +151,7 @@ public abstract class SimpleEnumerationType<E extends SimpleEnumerationType<E>> 
         return icon;
     }
 
-    
+
     //*************************************************************************
     //  the private, static NullIcon inner class
     //*************************************************************************

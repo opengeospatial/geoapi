@@ -23,14 +23,14 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * Represents a general coordinate conversion algorithm to be applied to the grid.  
+ * Represents a general coordinate conversion algorithm to be applied to the grid.
  * In the special case where the coordinate conversion is affine, see {@link RectifiedGrid}.
  * This class defines the required {@code convertCoordinates} and {@code inverseConvertCoordinates}
  * methods required by the {@code RectifiableGrid} interface and provides access to the
  * {@link MathTransform} object associated with the algorithm.  Children of this class need
  * only supply the {@link Conversion} object (stored in the inherited {@code operation} attribute)
  * to produce a functional coordinate conversion object.
- *  
+ *
  * @author Alexander Petkov
  */
 @Extension
@@ -54,8 +54,8 @@ public interface RectifiableGrid  extends GridPositioning {
 /// Conversion getInverseOperation();
 
     /**
-     * Converts grid coordinates through an affine transform to a direct position.  
-     * This is an adapter method for the {@link MathTransform#transform()} method.  
+     * Converts grid coordinates through an affine transform to a direct position.
+     * This is an adapter method for the {@link MathTransform#transform()} method.
      * The {@link MathTransform} object used in the conversion is associated with
      * the "conversion" and "operation" attributes.
      */
@@ -64,7 +64,7 @@ public interface RectifiableGrid  extends GridPositioning {
 
     /**
      * Converts through an affine transform a direct position to the grid coordinates of the nearest
-     * grid point.  This is an adapter method for the {@link MathTransform#transform()} method.  
+     * grid point.  This is an adapter method for the {@link MathTransform#transform()} method.
      * The {@link MathTransform} object used in the conversion is associated with the "inverseConversion"
      * and "inverseOperation" attributes.
      */

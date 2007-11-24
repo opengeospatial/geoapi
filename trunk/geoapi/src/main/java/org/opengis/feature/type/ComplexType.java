@@ -21,12 +21,12 @@ import org.opengis.feature.Property;
  *   &lt;/sequence>
  * &lt;/complexType>
  * </pre>
- * 
+ *
  * The corresponding complex type that would emerge would be composed as follows:
  * <pre>
  *   ComplexType complexType = ...;
  *   complexType.getProperties().size() == 2;
- *   
+ *
  *   //the foo property descriptor
  *   PropertyDescriptor foo = complexType.getProperty( "foo" );
  *   foo.getName().getLocalPart() == "foo";
@@ -34,7 +34,7 @@ import org.opengis.feature.Property;
  *   foo.getMaxOccurs() == 4;
  *   foo.isNillable() == true;
  *   foo.getType().getName().getLocalPart() == "string";
- *   
+ *
  *   //the bar property descriptor
  *   PropertyDescriptor bar = complexType.getProperty( "bar" );
  *   foo.getName().getLocalPart() == "bar";
@@ -59,25 +59,25 @@ import org.opengis.feature.Property;
  *   ComplexAttribute attribute = ...;
  *   attribute.getName().getLocalPart() == "myComplexElement";
  *   attribute.getType().getName().getLocalPart() == "myComplexType";
- *   
+ *
  *   Collection foo = attribute.getProperties( "foo" );
  *   foo.size() == 3;
  *   foo.get(0).getValue() == "one";
  *   foo.get(1).getValue() == "two";
  *   foo.get(2).getValue() == "three";
- *   
+ *
  *   Property bar = attribute.getProperty( "bar" );
  *   bar.getValue() == 1;
  * </pre>
  * </p>
  * @see ComplexAttribute
- * 
+ *
  * @author Jody Garnett (Refractions Research)
  * @author Justin Deoliveira (The Open Planning Project)
  */
 public interface ComplexType extends AttributeType {
     /**
-     * Override and type narrow to Collection<Property>.class. 
+     * Override and type narrow to Collection<Property>.class.
      */
     Class<Collection<Property>> getBinding();
 
@@ -85,30 +85,30 @@ public interface ComplexType extends AttributeType {
      * The property descriptor which compose the complex type.
      * <p>
      * A complex type can be composed of attributes and associations which means
-     * this collection returns instances of {@link AttributeDescriptor} and 
+     * this collection returns instances of {@link AttributeDescriptor} and
      * {@link AssociationDescriptor}.
      * </p>
      *
-     * @return Collection of descriptors representing the composition of the 
+     * @return Collection of descriptors representing the composition of the
      * complex type.
      */
     Collection<PropertyDescriptor> getProperties();
-	
+    
     /**
      * Returns a single property by name.
      * <p>
      * This method returns <code>null</code> if no such property is found.
      * </p>
      * @param name The name of the property to get.
-     * 
+     *
      * @return The property matching the specified name, or <code>null</code>.
      */
     PropertyDescriptor getProperty( Name name );
-    
+
     /**
      * Returns a single property by unqualified name.
      * <p>
-     * Note: Special care should be taken when using this method in the case 
+     * Note: Special care should be taken when using this method in the case
      * that two properties with the same local name but different namespace uri
      * exist. For this reason using {@link #getProperty(Name)} is safer.
      * </p>
@@ -116,84 +116,84 @@ public interface ComplexType extends AttributeType {
      * This method returns <code>null</code> if no such property is found.
      * </p>
      * @param name The name of the property to get.
-     * 
+     *
      * @return The property matching the specified name, or <code>null</code>.
      */
     PropertyDescriptor getProperty( String name );
-	
+    
     /**
-	 * Indicates ability of XPath to notice this attribute.
-	 * <p>
-	 * This facility is used to "hide" an attribute from XPath searches, while the compelx contents will still
-	 * be navigated no additional nesting will be considered. It will be as if the content were "folded" inline
-	 * resulting in a flatter nesting structure.
-	 * </p>
-	 * <p>
-	 * Construct described using Java Interfaces:<pre><code>
-	 * interface TestSample {
-	 *     String name;
-	 *     List<Measurement> measurement;
-	 * }
-	 * interface Measurement {
-	 *     long timestamp;
-	 *     Point point;
-	 *     long reading;
-	 * }
-	 * </code></pre>
-	 * The above is can hold the following information:<pre><code>
-	 * [ name="survey1",
-	 *   measurements=(
-	 *       [timestamp=3,point=(2,3), reading=4200],
-	 *       [timestamp=9,point=(2,4), reading=445600],
-	 *   )
-	 * ]
-	 * </code></pre>
-	 * Out of the box this is represented to XPath as the following tree:<pre><code>
-	 * root/name: survey1
-	 * root/measurement[0]/timestamp:3
-	 * root/measurement[0]/point: (2,3)
-	 * root/measurement[0]/reading: 4200     
-	 * root/measurement[1]/timestamp:9
-	 * root/measurement[2]/point: (2,4)
-	 * root/measurement[3]/reading: 445600     
-	 * </code></pre>
-	 * 
-	 * By inlining Measurement we can achive the following:<pre><code>
-	 * root/name: survey1
-	 * root/timestamp[0]:3
-	 * root/point[0]: (2,3)
-	 * root/reading[0]: 4200     
-	 * root/timestamp[1]:9
-	 * root/point[1]: (2,4)
-	 * root/reading[1] 445600     
-	 * </code></pre>
-	 * 
-	 * @return true if  attribute is to be considered transparent by XPath queries
-	 */
-	boolean isInline();
-	
-	/**
-	 * Describes allowable content, indicating containment.
-	 * <p>
-	 * A collection of AttributeDescriptors (name and AttributeType) is used.
-	 * We make no restrictions as to attribute order. All attributes are considered
-	 * accessable by name (and order is thus insignificant).
-	 * </p>
-	 * <p>
-	 * If you are modling a typing system where attribute order is relevant
-	 * you may make use of a List. Similarly if duplicate attributes are
-	 * disallowed you may make use of a Set.
-	 * </p>
-	 * <p>
-	 * This method follows JavaBeans naming convention indicating this is part of
-	 * our data model.
-	 * </p>
-	 */
-	//Collection<AttributeDescriptor> attributes();
-	
-	/**
-	 * Allowable associations, indicating non containment relationships.
-	 */
-	//Collection<AssociationDescriptor> associations();
-	
+     * Indicates ability of XPath to notice this attribute.
+     * <p>
+     * This facility is used to "hide" an attribute from XPath searches, while the compelx contents will still
+     * be navigated no additional nesting will be considered. It will be as if the content were "folded" inline
+     * resulting in a flatter nesting structure.
+     * </p>
+     * <p>
+     * Construct described using Java Interfaces:<pre><code>
+     * interface TestSample {
+     *     String name;
+     *     List<Measurement> measurement;
+     * }
+     * interface Measurement {
+     *     long timestamp;
+     *     Point point;
+     *     long reading;
+     * }
+     * </code></pre>
+     * The above is can hold the following information:<pre><code>
+     * [ name="survey1",
+     *   measurements=(
+     *       [timestamp=3,point=(2,3), reading=4200],
+     *       [timestamp=9,point=(2,4), reading=445600],
+     *   )
+     * ]
+     * </code></pre>
+     * Out of the box this is represented to XPath as the following tree:<pre><code>
+     * root/name: survey1
+     * root/measurement[0]/timestamp:3
+     * root/measurement[0]/point: (2,3)
+     * root/measurement[0]/reading: 4200
+     * root/measurement[1]/timestamp:9
+     * root/measurement[2]/point: (2,4)
+     * root/measurement[3]/reading: 445600
+     * </code></pre>
+     *
+     * By inlining Measurement we can achive the following:<pre><code>
+     * root/name: survey1
+     * root/timestamp[0]:3
+     * root/point[0]: (2,3)
+     * root/reading[0]: 4200
+     * root/timestamp[1]:9
+     * root/point[1]: (2,4)
+     * root/reading[1] 445600
+     * </code></pre>
+     *
+     * @return true if  attribute is to be considered transparent by XPath queries
+     */
+    boolean isInline();
+    
+    /**
+     * Describes allowable content, indicating containment.
+     * <p>
+     * A collection of AttributeDescriptors (name and AttributeType) is used.
+     * We make no restrictions as to attribute order. All attributes are considered
+     * accessable by name (and order is thus insignificant).
+     * </p>
+     * <p>
+     * If you are modling a typing system where attribute order is relevant
+     * you may make use of a List. Similarly if duplicate attributes are
+     * disallowed you may make use of a Set.
+     * </p>
+     * <p>
+     * This method follows JavaBeans naming convention indicating this is part of
+     * our data model.
+     * </p>
+     */
+    //Collection<AttributeDescriptor> attributes();
+    
+    /**
+     * Allowable associations, indicating non containment relationships.
+     */
+    //Collection<AssociationDescriptor> associations();
+    
 }

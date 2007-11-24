@@ -23,7 +23,7 @@ import static org.opengis.annotation.Specification.*;
  * spaces in formulae are given as (<var>u</var>, <var>v</var>) in 2D and
  * (<var>u</var>, <var>v</var>, <var>w</var>) in 3D. Coordinate reference systems
  * positions are given in formulae by either (<var>x</var>, <var>y</var>) in 2D,
- * or (<var>x</var>, <var>y</var>, <var>z</var>) in 3D. 
+ * or (<var>x</var>, <var>y</var>, <var>z</var>) in 3D.
  *
  * @version <A HREF="http://www.opengeospatial.org/standards/as">ISO 19107</A>
  * @author Martin Desruisseaux (IRD)
