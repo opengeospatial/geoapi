@@ -33,7 +33,7 @@ import static org.opengis.annotation.Specification.*;
  * @see ParameterDescriptorGroup
  */
 @UML(identifier="CC_OperationParameter", specification=ISO_19111)
-public interface ParameterDescriptor extends GeneralParameterDescriptor {
+public interface ParameterDescriptor<T> extends GeneralParameterDescriptor {
     /**
      * Creates a new instance of {@linkplain ParameterValue parameter value}
      * initialized with the {@linkplain #getDefaultValue default value}.
@@ -41,13 +41,13 @@ public interface ParameterDescriptor extends GeneralParameterDescriptor {
      * for the created parameter value will be {@code this} object.
      */
 /// @Extension
-/// ParameterValue createValue();
+/// ParameterValue<T> createValue();
 
     /**
      * Returns the class that describe the type of the parameter.
      */
     @UML(identifier="GC_ParameterInfo.type", obligation=MANDATORY, specification=ISO_19111)
-    Class getValueClass();
+    Class<T> getValueClass();
 
     /**
      * If this parameter allows only a finite set of values, returns this set.
@@ -67,7 +67,7 @@ public interface ParameterDescriptor extends GeneralParameterDescriptor {
      *         or {@code null} if it doesn't apply.
      */
     @Extension
-    Set<? extends Object> getValidValues();
+    Set<T> getValidValues();
 
     /**
      * Returns the default value for the parameter. The return type can be any type
@@ -77,7 +77,7 @@ public interface ParameterDescriptor extends GeneralParameterDescriptor {
      * @return The default value, or {@code null} in none.
      */
     @UML(identifier="GC_ParameterInfo.defaultValue", obligation=OPTIONAL, specification=ISO_19111)
-    Object getDefaultValue();
+    T getDefaultValue();
 
     /**
      * Returns the minimum parameter value.
@@ -92,7 +92,7 @@ public interface ParameterDescriptor extends GeneralParameterDescriptor {
      * @return The minimum parameter value (often an instance of {@link Double}), or {@code null}.
      */
     @UML(identifier="GC_ParameterInfo.minimumValue", obligation=OPTIONAL, specification=ISO_19111)
-    Comparable getMinimumValue();
+    Comparable<T> getMinimumValue();
 
     /**
      * Returns the maximum parameter value.
@@ -107,7 +107,7 @@ public interface ParameterDescriptor extends GeneralParameterDescriptor {
      * @return The minimum parameter value (often an instance of {@link Double}), or {@code null}.
      */
     @UML(identifier="GC_ParameterInfo.maximumValue", obligation=OPTIONAL, specification=ISO_19111)
-    Comparable getMaximumValue();
+    Comparable<T> getMaximumValue();
 
     /**
      * Returns the unit for

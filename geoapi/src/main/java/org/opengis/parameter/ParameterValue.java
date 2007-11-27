@@ -35,13 +35,13 @@ import static org.opengis.annotation.Specification.*;
  * @see ParameterValueGroup
  */
 @UML(identifier="CC_ParameterValue", specification=ISO_19111)
-public interface ParameterValue extends GeneralParameterValue {
+public interface ParameterValue<T> extends GeneralParameterValue {
     /**
      * Returns the abstract definition of this parameter value.
      *
      * @return The abstract definition of this parameter value.
      */
-/// ParameterDescriptor getDescriptor();
+/// ParameterDescriptor<T> getDescriptor();
 
     /**
      * Returns the unit of measure of the {@linkplain #doubleValue() parameter value}.
@@ -211,7 +211,7 @@ public interface ParameterValue extends GeneralParameterValue {
      * @see #setValue(Object)
      */
     @UML(identifier="value", obligation=CONDITIONAL, specification=ISO_19111)
-    Object getValue();
+    T getValue();
 
     /**
      * Set the parameter value as an array of floating point and their associated unit.
@@ -284,7 +284,7 @@ public interface ParameterValue extends GeneralParameterValue {
      *
      * @see #getValue
      */
-    void setValue(Object value) throws InvalidParameterValueException;
+    void setValue(T value) throws InvalidParameterValueException;
 
     /**
      * Returns a copy of this parameter value.
