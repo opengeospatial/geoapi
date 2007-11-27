@@ -41,7 +41,7 @@ public interface GeodesicString extends CurveSegment {
      * @return The control points.
      */
     @UML(identifier="controlPoint", obligation=MANDATORY, specification=ISO_19107)
-    public PointArray getControlPoints();
+    PointArray getControlPoints();
 
     /**
      * The interpolation for a {@code GeodesicString} is
@@ -50,7 +50,7 @@ public interface GeodesicString extends CurveSegment {
      * @return Always {@link CurveInterpolation#GEODESIC}.
      */
     @UML(identifier="interpolation", obligation=MANDATORY, specification=ISO_19107)
-    public CurveInterpolation getInterpolation();
+    CurveInterpolation getInterpolation();
 
     /**
      * Decomposes a geodesic string into an equivalent sequence of geodesic segments.
@@ -58,5 +58,5 @@ public interface GeodesicString extends CurveSegment {
      * @return The equivalent sequence of geodesic segments.
      */
     @UML(identifier="asGM_Geodesic", obligation=MANDATORY, specification=ISO_19107)
-    public List<Geodesic> asGeodesics();
+    List<Geodesic> asGeodesics();
 }

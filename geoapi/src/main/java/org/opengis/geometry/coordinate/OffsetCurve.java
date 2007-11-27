@@ -31,7 +31,7 @@ public interface OffsetCurve extends CurveSegment {
      * Returns the base curves.
      */
     @UML(identifier="baseCurve", obligation=MANDATORY, specification=ISO_19107)
-    public List<CurveSegment> getBaseCurves();
+    List<CurveSegment> getBaseCurves();
 
     /**
      * Returns the distance at which the offset curve is generated from the basis curve.
@@ -41,7 +41,7 @@ public interface OffsetCurve extends CurveSegment {
      * @unitof Length
      */
     @UML(identifier="distance", obligation=MANDATORY, specification=ISO_19107)
-    public double getDistance();
+    double getDistance();
 
     /**
      * Defines the vector direction of the offset curve from the basis curve. It can be
@@ -63,5 +63,5 @@ public interface OffsetCurve extends CurveSegment {
      * viewed from above.
      */
     @UML(identifier="refDirection", obligation=OPTIONAL, specification=ISO_19107)
-    public double[] getReferenceDirection();
+    double[] getReferenceDirection();
 }

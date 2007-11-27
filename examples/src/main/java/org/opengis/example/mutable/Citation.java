@@ -14,8 +14,8 @@ import java.util.Collection;
  * @author Jody
  */
 public interface Citation {
-    public static String ISBN_PROPERTY = "ISBN";
-    public static String DATES_PROPERTY = "dates";
+    String ISBN_PROPERTY = "ISBN";
+    String DATES_PROPERTY = "dates";
 
     /**
      * @return ISBN property

@@ -48,7 +48,7 @@ public interface Point extends Primitive, Position {
      * @return The direct position.
      */
     @UML(identifier="position", obligation=MANDATORY, specification=ISO_19107)
-    public DirectPosition getPosition();
+    DirectPosition getPosition();
 
     /**
      * Sets the direct position of this point. {@code Point} is the only subclass
@@ -63,7 +63,7 @@ public interface Point extends Primitive, Position {
      * @throws UnmodifiableGeometryException if this geometry is not modifiable.
      */
     @UML(identifier="position", obligation=MANDATORY, specification=ISO_19107)
-    public void setPosition(DirectPosition position) throws UnmodifiableGeometryException;
+    void setPosition(DirectPosition position) throws UnmodifiableGeometryException;
 
     /**
      * Returns always {@code null}, since point has no boundary.
@@ -88,7 +88,7 @@ public interface Point extends Primitive, Position {
      * @return The tangent to the curve between this point and the passed position.
      */
     @UML(identifier="bearing", obligation=MANDATORY, specification=ISO_19107)
-    public Bearing getBearing(Position toPoint);
+    Bearing getBearing(Position toPoint);
 
 //    public org.opengis.geometry.complex.GM_CompositePoint composite[];
 }

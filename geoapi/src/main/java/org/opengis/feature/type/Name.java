@@ -114,7 +114,7 @@ public interface Name {
      * @since GeoAPI 2.1
      */
     @UML(identifier = "scope", obligation = MANDATORY, specification = ISO_19103)
-    public String getNamespaceURI();
+    String getNamespaceURI();
 
     /**
      * Retrieve the Local name.
@@ -129,7 +129,7 @@ public interface Name {
      * </ul>
      * @return local name (can be used in namespace lookup)
      */
-    public String getLocalPart();
+    String getLocalPart();
 
     /**
      * Convert this name to a complete URI.
@@ -154,14 +154,14 @@ public interface Name {
      * @return a complete URI constructed of namespace URI and the local part.
      */
     @UML(identifier = "parsedName", obligation = MANDATORY, specification = ISO_19103)
-    public String getURI();
+    String getURI();
 
     /**
      * Must be based on getURI().
      *
      * @return a hascode based on getURI()
      */
-    public int hashCode();
+    int hashCode();
 
     /**
      * <code>true</code> if getURI is equal.
@@ -169,10 +169,10 @@ public interface Name {
      * @param other
      * @return <code>true</code> if getURI is equal.
      */
-    public boolean equals(Object obj);
+    boolean equals(Object obj);
 
     /**
      * A local-independant representation of this name, see getURI().
      */
-    public String toString();
+    String toString();
 }

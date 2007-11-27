@@ -44,7 +44,7 @@ public interface Bearing {
      *       a {@code getDimension()} method too?
      */
     @UML(identifier="angle", obligation=MANDATORY, specification=ISO_19107)
-    public double[] getAngles();
+    double[] getAngles();
 
     /**
      * Returns the direction as a vector.
@@ -54,5 +54,5 @@ public interface Bearing {
      * @return The direction.
      */
     @UML(identifier="direction", obligation=MANDATORY, specification=ISO_19107)
-    public double[] getDirection();
+    double[] getDirection();
 }

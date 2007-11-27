@@ -40,12 +40,12 @@ public interface MultiCurve extends MultiPrimitive {
      * {@linkplain #isMutable is mutable}.
      */
     @UML(identifier="element", obligation=MANDATORY, specification=ISO_19107)
-    public Set<OrientableCurve> getElements();
+    Set<OrientableCurve> getElements();
 
     /**
      * Returns the accumulated length of all {@linkplain OrientableCurve orientable curves}
      * contained in this {@code MultiCurve}.
      */
     @UML(identifier="length", obligation=MANDATORY, specification=ISO_19107)
-    public double length();
+    double length();
 }

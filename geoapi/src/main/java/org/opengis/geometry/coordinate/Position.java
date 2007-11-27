@@ -41,5 +41,5 @@ public interface Position {
      * @return The direct position.
      */
     @UML(identifier="direct", obligation=CONDITIONAL, specification=ISO_19107)
-    public DirectPosition getPosition();
+    DirectPosition getPosition();
 }

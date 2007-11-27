@@ -56,7 +56,7 @@ public interface Complex extends Geometry {
      * @return {@code true} if this complex is maximal.
      */
     @UML(identifier="isMaximal", obligation=MANDATORY, specification=ISO_19107)
-    public boolean isMaximal();
+    boolean isMaximal();
 
     /**
      * Returns a superset of primitives that is also a complex.
@@ -66,7 +66,7 @@ public interface Complex extends Geometry {
      * @todo Consider using a Collection return type instead.
      */
     @UML(identifier="superComplex", obligation=MANDATORY, specification=ISO_19107)
-    public Complex[] getSuperComplexes();
+    Complex[] getSuperComplexes();
 
     /**
      * Returns a subset of the primitives of that complex
@@ -77,7 +77,7 @@ public interface Complex extends Geometry {
      * @todo Consider using a Collection return type instead.
      */
     @UML(identifier="subComplex", obligation=MANDATORY, specification=ISO_19107)
-    public Complex[] getSubComplexes();
+    Complex[] getSubComplexes();
 
     /**
      * Returns the collection of primitives contained in this complex.
@@ -85,7 +85,7 @@ public interface Complex extends Geometry {
      * @return The collection of primitives for this complex.
      */
     @UML(identifier="element", obligation=MANDATORY, specification=ISO_19107)
-    public Collection<? extends Primitive> getElements();
+    Collection<? extends Primitive> getElements();
 
 //    public org.opengis.topology.complex.TP_Complex topology[];
 }

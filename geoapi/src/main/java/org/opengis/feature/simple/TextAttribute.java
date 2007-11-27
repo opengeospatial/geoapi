@@ -12,17 +12,17 @@ import org.opengis.feature.Attribute;
  * @author Justin Deoliveira (The Open Planning Project)
  */
 public interface TextAttribute extends Attribute {
-    public void setValue(CharSequence newValue);
-    public CharSequence getValue();
+    void setValue(CharSequence newValue);
+    CharSequence getValue();
     /**
      * Java 1.4 type safe access to getValue
      * @return (Boolean) getValue()
      */
-    public CharSequence getText();
+    CharSequence getText();
 
     /**
      * Java 1.4 type safe access to setValue
      * @param newValue
      */
-    public void setText(CharSequence newValue);
+    void setText(CharSequence newValue);
 }

@@ -59,7 +59,7 @@ public interface ArcStringByBulge extends CurveSegment {
      * @return The offset of each arc's midpoint.
      */
     @UML(identifier="bulge", obligation=MANDATORY, specification=ISO_19107)
-    public double[] getBulges();
+    double[] getBulges();
 
     /**
      * Returns the number of circular arcs in the string. Since the interpolation method
@@ -73,7 +73,7 @@ public interface ArcStringByBulge extends CurveSegment {
      * @return The number of circular arcs.
      */
     @UML(identifier="numArc", obligation=MANDATORY, specification=ISO_19107)
-    public int getNumArc();
+    int getNumArc();
 
     /**
      * Returns a vector normal (perpendicular) to the chord of the arc, the line joining the
@@ -92,7 +92,7 @@ public interface ArcStringByBulge extends CurveSegment {
      * @return The sequence of normal vectors.
      */
     @UML(identifier="normal", obligation=MANDATORY, specification=ISO_19107)
-    public List<double[]> getNormals();
+    List<double[]> getNormals();
 
     /**
      * The interpolation for a {@code ArcStringByBulge} is
@@ -102,7 +102,7 @@ public interface ArcStringByBulge extends CurveSegment {
      * @return Always {@link CurveInterpolation#CIRCULAR_ARC_2_POINTS_WITH_BULGE}.
      */
     @UML(identifier="interpolation", obligation=MANDATORY, specification=ISO_19107)
-    public CurveInterpolation getInterpolation();
+    CurveInterpolation getInterpolation();
 
     /**
      * Recast as a base {@linkplain ArcString arc string}.
@@ -110,5 +110,5 @@ public interface ArcStringByBulge extends CurveSegment {
      * @return This arc string by bulge as a base {@linkplain ArcString arc string}.
      */
     @UML(identifier="asGM_ArcString", obligation=MANDATORY, specification=ISO_19107)
-    public ArcString asArcString();
+    ArcString asArcString();
 }

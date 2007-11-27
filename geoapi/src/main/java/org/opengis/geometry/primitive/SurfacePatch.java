@@ -43,7 +43,7 @@ public interface SurfacePatch extends GenericSurface {
      * @see Surface#getPatches
      */
     @UML(identifier="surface", obligation=MANDATORY, specification=ISO_19107)
-    public Surface getSurface();
+    Surface getSurface();
 
     /**
      * Determines the surface interpolation mechanism used for this {@code SurfacePatch}.
@@ -53,7 +53,7 @@ public interface SurfacePatch extends GenericSurface {
      * @return The interpolation mechanism.
      */
     @UML(identifier="interpolation", obligation=MANDATORY, specification=ISO_19107)
-    public SurfaceInterpolation getInterpolation();
+    SurfaceInterpolation getInterpolation();
 
     /**
      * Specifies the type of continuity between this surface patch and its immediate neighbors
@@ -68,7 +68,7 @@ public interface SurfacePatch extends GenericSurface {
      * @return The type of continuity between this surface patch and its immediate neighbors.
      */
     @UML(identifier="numDerivativesOnBoundary", obligation=MANDATORY, specification=ISO_19107)
-    public int getNumDerivativesOnBoundary();
+    int getNumDerivativesOnBoundary();
 
     /**
      * Returns the boundary of this {@code SurfacePatch} represented as a collection of
@@ -84,5 +84,5 @@ public interface SurfacePatch extends GenericSurface {
      * @return The boundary of this {@code SurfacePatch}
      */
     @UML(identifier="boundary", obligation=MANDATORY, specification=ISO_19107)
-    public SurfaceBoundary getBoundary();
+    SurfaceBoundary getBoundary();
 }

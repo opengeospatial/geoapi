@@ -44,7 +44,7 @@ public interface ComplexFactory {
      * @param generator a point.
      * @return a composite point.
      */
-    public CompositePoint createCompositePoint(Point generator);
+    CompositePoint createCompositePoint(Point generator);
 
     /**
      * Creates a {@linkplain CompositeCurve composite curve} from a list of
@@ -55,7 +55,7 @@ public interface ComplexFactory {
      * @param generator a list of orientable curves.
      * @return a composite curve.
      */
-    public CompositeCurve createCompositeCurve(List<OrientableCurve> generator);
+    CompositeCurve createCompositeCurve(List<OrientableCurve> generator);
 
     /**
      * Creates a {@linkplain CompositeSurface composite surface} from a list of
@@ -66,5 +66,5 @@ public interface ComplexFactory {
      * @param generator a list of orientable surface.
      * @return a composite surface.
      */
-    public CompositeSurface createCompositeSurface(List<OrientableSurface> generator);
+    CompositeSurface createCompositeSurface(List<OrientableSurface> generator);
 }

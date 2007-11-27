@@ -59,5 +59,5 @@ public interface OrientableSurface extends OrientablePrimitive {
      *             {@link CompositeSurface} to {@code OrientableSurface}, not the other way.
      */
     @UML(identifier="composite", obligation=OPTIONAL, specification=ISO_19107)
-    public CompositeSurface getComposite();
+    CompositeSurface getComposite();
 }

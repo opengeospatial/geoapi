@@ -62,7 +62,7 @@ public interface Solid extends Primitive {
      * @todo In UML diagram, this operation has an {@code Area} return type.
      */
     @UML(identifier="area", obligation=MANDATORY, specification=ISO_19107)
-    public double getArea();
+    double getArea();
 
     /**
      * Returns the volume of this solid. This is the volume interior to the exterior
@@ -74,7 +74,7 @@ public interface Solid extends Primitive {
      * @todo In UML diagram, this operation has a {@code Volume} return type.
      */
     @UML(identifier="volume", obligation=MANDATORY, specification=ISO_19107)
-    public double getVolume();
+    double getVolume();
 
 //    public org.opengis.geometry.complex.GM_CompositeSolid composite[];
 //    public void setComposite(org.opengis.geometry.complex.GM_CompositeSolid composite[]) {  }

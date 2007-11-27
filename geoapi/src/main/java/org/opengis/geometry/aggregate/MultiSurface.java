@@ -40,7 +40,7 @@ public interface MultiSurface extends MultiPrimitive {
      * {@linkplain #isMutable is mutable}.
      */
     @UML(identifier="element", obligation=MANDATORY, specification=ISO_19107)
-    public Set<OrientableSurface> getElements();
+    Set<OrientableSurface> getElements();
 
     /**
      * Returns the accumulated area of all {@linkplain OrientableSurface orientable surfaces}
@@ -62,5 +62,5 @@ public interface MultiSurface extends MultiPrimitive {
      * @unitof Area
      */
     @UML(identifier="area", obligation=MANDATORY, specification=ISO_19107)
-    public double getArea();
+    double getArea();
 }

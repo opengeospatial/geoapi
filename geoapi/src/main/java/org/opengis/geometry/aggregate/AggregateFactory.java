@@ -44,7 +44,7 @@ public interface AggregateFactory {
      * @param points A set of primitives.
      * @return the resulting multi primitive.
      */
-    public MultiPrimitive createMultiPrimitive(Set<Primitive> primitives);
+    MultiPrimitive createMultiPrimitive(Set<Primitive> primitives);
 
     /**
      * Creates a {@linkplain MultiPoint multi point} by a set of {@linkplain Point points}.
@@ -55,7 +55,7 @@ public interface AggregateFactory {
      * @param points A set of points.
      * @return the resulting multi point.
      */
-    public MultiPoint createMultiPoint(Set<Point> points);
+    MultiPoint createMultiPoint(Set<Point> points);
 
     /**
      * Creates a {@linkplain MultiCurve multi curve} by a set of {@linkplain Curve curves}.
@@ -66,7 +66,7 @@ public interface AggregateFactory {
      * @param curves A set of curves.
      * @return the resulting multi curve.
      */
-    public MultiCurve createMultiCurve(Set<OrientableCurve> curves);
+    MultiCurve createMultiCurve(Set<OrientableCurve> curves);
 
     /**
      * Creates a {@linkplain MultiSurface multi surface} by a set of {@linkplain Surface surfaces}.
@@ -77,5 +77,5 @@ public interface AggregateFactory {
      * @param surfaces A set of surfaces.
      * @return the resulting multi surface.
      */
-    public MultiSurface createMultiSurface(Set<OrientableSurface> surfaces);
+    MultiSurface createMultiSurface(Set<OrientableSurface> surfaces);
 }

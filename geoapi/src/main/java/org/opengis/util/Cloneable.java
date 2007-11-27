@@ -43,5 +43,5 @@ public interface Cloneable extends java.lang.Cloneable {
      *
      * @see Object#clone
      */
-    public Object clone();
+    Object clone();
 }

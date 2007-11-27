@@ -18,7 +18,7 @@ public interface Citation {
      * Hashcode as defined by getDates().hashCode() | getISBN().hashCode().
      * @return getDates().hashCode() | getISBN().hashCode()
      */
-    public int hashCode();
+    int hashCode();
 
     /**
      * Euqals if provided obj has the same ISBN and Dates.
@@ -26,5 +26,5 @@ public interface Citation {
      * @param obj Other object
      * @return <true> if obj is a Citation with the same ISBN and Dates
      */
-    public boolean equals(Object obj);
+    boolean equals(Object obj);
 }

@@ -82,7 +82,7 @@ public interface Primitive extends Geometry {
      * @see #getContainingPrimitives
      */
     @UML(identifier="containedPrimitive", obligation=MANDATORY, specification=ISO_19107)
-    public Set<Primitive> getContainedPrimitives();
+    Set<Primitive> getContainedPrimitives();
 
     /**
      * Returns the {@code Primitive}s which are by definition coincident with this one.
@@ -100,7 +100,7 @@ public interface Primitive extends Geometry {
      * @see #getContainedPrimitives
      */
     @UML(identifier="containingPrimitive", obligation=MANDATORY, specification=ISO_19107)
-    public Set<Primitive> getContainingPrimitives();
+    Set<Primitive> getContainingPrimitives();
 
     /**
      * Returns the set of complexes which contains this primitive. A {@code Primitive} may
@@ -113,7 +113,7 @@ public interface Primitive extends Geometry {
      *       adding this primitive to a complex will change this set?
      */
     @UML(identifier="complex", obligation=MANDATORY, specification=ISO_19107)
-    public Set<Complex> getComplexes();
+    Set<Complex> getComplexes();
 
     /**
      * Returns the orientable primitives associated with this primitive. Each {@code Primitive} of
@@ -130,7 +130,7 @@ public interface Primitive extends Geometry {
      * @deprecated The association in ISO 19107 specification do not provides navigation that way.
      */
     @UML(identifier="proxy", obligation=OPTIONAL, specification=ISO_19107)
-    public OrientablePrimitive[] getProxy();
+    OrientablePrimitive[] getProxy();
 
 //    public org.opengis.topology.primitive.TP_Primitive topology[];
 //    public org.opengis.geometry.complex.GM_Composite composite[];

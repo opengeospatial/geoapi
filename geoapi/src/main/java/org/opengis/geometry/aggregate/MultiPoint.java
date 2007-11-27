@@ -37,7 +37,7 @@ public interface MultiPoint extends MultiPrimitive {
      * @since GeoAPI 2.1
      */
     @UML(identifier="element", obligation=MANDATORY, specification=ISO_19107)
-    public Set<Point> getElements();
+    Set<Point> getElements();
 
 //    public java.util.Vector /*DirectPosition*/ position;
 //    public void setPosition(java.util.Vector /*DirectPosition*/ position) {  }

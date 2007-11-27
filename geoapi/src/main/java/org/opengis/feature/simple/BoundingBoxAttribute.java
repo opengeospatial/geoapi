@@ -16,18 +16,18 @@ import org.opengis.geometry.BoundingBox;
  */
 public interface BoundingBoxAttribute extends Attribute
 {
-      public BoundingBox getValue();
-      public void setValue(BoundingBox newValue);
+      BoundingBox getValue();
+      void setValue(BoundingBox newValue);
 
       /**
        * Java 1.4 type safe access to getValue
        * @return (BoundingBox) getValue()
        */
-      public BoundingBox getBoundingBox();
+      BoundingBox getBoundingBox();
 
       /**
        * Java 1.4 type safe access to setValue
        * @param newValue
        */
-      public void setBoundingBox(BoundingBox newValue);
+      void setBoundingBox(BoundingBox newValue);
 }

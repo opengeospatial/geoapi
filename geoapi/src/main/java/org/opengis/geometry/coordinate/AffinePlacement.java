@@ -45,7 +45,7 @@ public interface AffinePlacement extends Placement {
      * in the formulae in the class description.
      */
     @UML(identifier="location", obligation=MANDATORY, specification=ISO_19107)
-    public Position getLocation();
+    Position getLocation();
 
     /**
      * Gives the target directions for the coordinate basis vectors of the parameter space.
@@ -58,5 +58,5 @@ public interface AffinePlacement extends Placement {
      * @return The direction as an array of length {@link #getOutDimension outDimension}.
      */
     @UML(identifier="refDirection", obligation=MANDATORY, specification=ISO_19107)
-    public double[] getReferenceDirection(int dimension);
+    double[] getReferenceDirection(int dimension);
 }
