@@ -107,6 +107,10 @@
             <replacefilter token="(E)" />
             <replacefilter token="final E " value="final Object " />
         </replace>
+        <replace dir="${generatedSourceDirectory}" includes="org/opengis/parameter/Parameter*.java">
+            <replacefilter token=" T " value=" Object " />
+            <replacefilter token="(T " value="(Object " />
+        </replace>
 
         <!-- org.opengis.feature.type (naming) -->
         <replace dir="${generatedSourceDirectory}" includes="org/opengis/feature/type/Namespace.java">
@@ -164,7 +168,6 @@
             <replacefilter token="T getType()" value="AssociationType getType()" />
             <replacefilter token="A getRelatedType()" value="AttributeType getRelatedType()" />
             <replacefilter token="Attribute getValue()" value="//Attribute getValue()" />
-
         </replace>
 
         <!-- Attribute: structural property -->
@@ -298,7 +301,7 @@
              Feature Model Infrastructure
              ===================================================================
          schema, naming, factory, creation, utilitiy etc...
-    -->
+        -->
         <replace dir="${generatedSourceDirectory}" includes="org/opengis/feature/**/*.java">
             <replacefilter token="//import org.opengis.feature." value="import org.opengis.feature." />
             <replacefilter token="//import java.util." value="import java.util." />
