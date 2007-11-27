@@ -42,7 +42,7 @@ public interface PointGrid {
      * @see PointArray#length
      */
     @Extension
-    public int width();
+    int width();
 
     /**
      * Returns the length of this array. This is equivalent to
@@ -51,7 +51,7 @@ public interface PointGrid {
      * @return The grid height.
      */
     @Extension
-    public int height();
+    int height();
 
     /**
      * Returns the point at the given row and column index. This is equivalent to
@@ -63,7 +63,7 @@ public interface PointGrid {
      * @throws IndexOutOfBoundsException if an index is out of bounds.
      */
     @Extension
-    public DirectPosition get(int row, int column) throws IndexOutOfBoundsException;
+    DirectPosition get(int row, int column) throws IndexOutOfBoundsException;
 
     /**
      * Gets a copy of the {@code DirectPosition} at the particular location in this
@@ -89,7 +89,7 @@ public interface PointGrid {
      * @throws IndexOutOfBoundsException if an index is out of bounds.
      */
     @Extension
-    public DirectPosition get(int row, int column, DirectPosition dest) throws IndexOutOfBoundsException;
+    DirectPosition get(int row, int column, DirectPosition dest) throws IndexOutOfBoundsException;
 
     /**
      * Set the point at the given index. The point coordinates will be copied, i.e. changes
@@ -104,7 +104,7 @@ public interface PointGrid {
      * @throws UnsupportedOperationException if this grid is immutable.
      */
     @Extension
-    public void set(int row, int column, DirectPosition position) throws IndexOutOfBoundsException,
+    void set(int row, int column, DirectPosition position) throws IndexOutOfBoundsException,
                                                                          UnsupportedOperationException;
 
     /**
@@ -117,7 +117,7 @@ public interface PointGrid {
      * @throws IndexOutOfBoundsException if the index is out of bounds.
      */
     @Extension
-    public PointArray getRow(int row) throws IndexOutOfBoundsException;
+    PointArray getRow(int row) throws IndexOutOfBoundsException;
 
     /**
      * Returns a view of all rows in this array.
@@ -127,5 +127,5 @@ public interface PointGrid {
      * @return The rows in this grid.
      */
     @UML(identifier="row", obligation=MANDATORY, specification=ISO_19107)
-    public List<PointArray> rows();
+    List<PointArray> rows();
 }

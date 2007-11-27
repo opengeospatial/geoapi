@@ -47,7 +47,7 @@ public interface CurveSegment extends GenericCurve {
      *             {@link CurveSegment} to {@code Curve}, not the other way.
      */
     @UML(identifier="curve", obligation=OPTIONAL, specification=ISO_19107)
-    public Curve getCurve();
+    Curve getCurve();
 
     /**
      * Specifies the curve interpolation mechanism used for this segment. This mechanism
@@ -57,7 +57,7 @@ public interface CurveSegment extends GenericCurve {
      * @return The interpolation mechanism used for this segment.
      */
     @UML(identifier="interpolation", obligation=MANDATORY, specification=ISO_19107)
-    public CurveInterpolation getInterpolation();
+    CurveInterpolation getInterpolation();
 
     /**
      * Specifies the type of continuity between this curve segment and its immediate neighbors.
@@ -78,7 +78,7 @@ public interface CurveSegment extends GenericCurve {
      * @see #getNumDerivativesAtEnd
      */
     @UML(identifier="numDerivativesAtStart", obligation=MANDATORY, specification=ISO_19107)
-    public int getNumDerivativesAtStart();
+    int getNumDerivativesAtStart();
 
     /**
      * Specifies the type of continuity that is guaranteed interior to the curve. The default
@@ -94,7 +94,7 @@ public interface CurveSegment extends GenericCurve {
      * @see #getNumDerivativesAtEnd
      */
     @UML(identifier="numDerivativesInterior", obligation=MANDATORY, specification=ISO_19107)
-    public int getNumDerivativesInterior();
+    int getNumDerivativesInterior();
 
     /**
      * Specifies the type of continuity between this curve segment and its immediate neighbors.
@@ -115,7 +115,7 @@ public interface CurveSegment extends GenericCurve {
      * @see #getNumDerivativesInterior
      */
     @UML(identifier="numDerivativesAtEnd", obligation=MANDATORY, specification=ISO_19107)
-    public int getNumDerivativesAtEnd();
+    int getNumDerivativesAtEnd();
 
     /**
      * Returns an ordered array of point values that lie on the {@linkplain CurveSegment curve segment}.
@@ -131,7 +131,7 @@ public interface CurveSegment extends GenericCurve {
      * @return The control points.
      */
     @UML(identifier="samplePoint", obligation=MANDATORY, specification=ISO_19107)
-    public PointArray getSamplePoints();
+    PointArray getSamplePoints();
 
     /**
      * Returns an ordered pair of points, which are the start point and end point of the curve.
@@ -152,7 +152,7 @@ public interface CurveSegment extends GenericCurve {
      * @return The sets of positions on the boundary.
      */
     @UML(identifier="boundary", obligation=MANDATORY, specification=ISO_19107)
-    public CurveBoundary getBoundary();
+    CurveBoundary getBoundary();
 
     /**
      * Reverses the orientation of the parameterizations of the segment.
@@ -160,5 +160,5 @@ public interface CurveSegment extends GenericCurve {
      * @return The reverse of this curve segment.
      */
     @UML(identifier="reverse", obligation=MANDATORY, specification=ISO_19107)
-    public CurveSegment reverse();
+    CurveSegment reverse();
 }

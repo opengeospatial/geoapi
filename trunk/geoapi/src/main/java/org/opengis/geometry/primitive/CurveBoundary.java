@@ -33,7 +33,7 @@ public interface CurveBoundary extends PrimitiveBoundary {
      * @see #getEndPoint
      */
     @UML(identifier="startPoint", obligation=MANDATORY, specification=ISO_19107)
-    public Point getStartPoint();
+    Point getStartPoint();
 
     /**
      * Returns the end point.
@@ -41,5 +41,5 @@ public interface CurveBoundary extends PrimitiveBoundary {
      * @see #getStartPoint
      */
     @UML(identifier="endPoint", obligation=MANDATORY, specification=ISO_19107)
-    public Point getEndPoint();
+    Point getEndPoint();
 }

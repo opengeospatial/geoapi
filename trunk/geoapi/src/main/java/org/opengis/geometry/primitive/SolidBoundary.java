@@ -44,7 +44,7 @@ public interface SolidBoundary extends PrimitiveBoundary {
      * @return The exterior shell, or {@code null}.
      */
     @UML(identifier="exterior", obligation=MANDATORY, specification=ISO_19107)
-    public Shell getExterior();
+    Shell getExterior();
 
     /**
      * Returns the interior shells.
@@ -52,5 +52,5 @@ public interface SolidBoundary extends PrimitiveBoundary {
      * @return The interior shells. Never {@code null}, but may be an empty array.
      */
     @UML(identifier="interior", obligation=MANDATORY, specification=ISO_19107)
-    public Shell[] getInteriors();
+    Shell[] getInteriors();
 }

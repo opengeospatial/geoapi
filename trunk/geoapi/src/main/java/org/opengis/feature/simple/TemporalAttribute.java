@@ -14,17 +14,17 @@ import org.opengis.feature.Attribute;
  * @author Justin Deoliveira (The Open Planning Project)
  */
 public interface TemporalAttribute extends Attribute {
-    public void setValue(Date newValue);
-    public Date getValue();
+    void setValue(Date newValue);
+    Date getValue();
     /**
      * Java 1.4 type safe access to getValue
      * @return (Boolean) getValue()
      */
-    public Date getDate();
+    Date getDate();
 
     /**
      * Java 1.4 type safe access to setValue
      * @param newValue
      */
-    public void setDate(Date newValue);
+    void setDate(Date newValue);
 }

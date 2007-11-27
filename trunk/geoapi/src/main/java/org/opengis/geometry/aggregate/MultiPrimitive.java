@@ -30,5 +30,5 @@ import static org.opengis.annotation.Specification.*;
 @UML(identifier="GM_MultiPrimitive", specification=ISO_19107)
 public interface MultiPrimitive extends Aggregate {
     // No additional methods or members.
-    public Set<? extends Primitive> getElements();
+    Set<? extends Primitive> getElements();
 }

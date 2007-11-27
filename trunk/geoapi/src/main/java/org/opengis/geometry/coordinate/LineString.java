@@ -41,7 +41,7 @@ public interface LineString extends CurveSegment {
      * @return The control points between which the curve is linearly interpolated.
      */
     @UML(identifier="controlPoint", obligation=MANDATORY, specification=ISO_19107)
-    public PointArray getControlPoints();
+    PointArray getControlPoints();
 
     /**
      * Decomposes a line string into an equivalent sequence of line segments.
@@ -49,5 +49,5 @@ public interface LineString extends CurveSegment {
      * @return The sequence of line segments.
      */
     @UML(identifier="asGM_LineSegment", obligation=MANDATORY, specification=ISO_19107)
-    public List<LineSegment> asLineSegments();
+    List<LineSegment> asLineSegments();
 }

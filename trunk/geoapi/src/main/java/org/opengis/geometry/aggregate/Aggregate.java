@@ -31,5 +31,5 @@ public interface Aggregate extends Geometry {
      * set may be modified if this geometry {@linkplain #isMutable is mutable}.
      */
     @UML(identifier="element", obligation=MANDATORY, specification=ISO_19107)
-    public Set<? extends Geometry> getElements();
+    Set<? extends Geometry> getElements();
 }

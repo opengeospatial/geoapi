@@ -35,7 +35,7 @@ public interface Placement {
      * Return the dimension of the input parameter space.
      */
     @UML(identifier="inDimension", obligation=MANDATORY, specification=ISO_19107)
-    public int getInDimension();
+    int getInDimension();
 
     /**
      * Return the dimension of the output coordinate reference system.
@@ -45,7 +45,7 @@ public interface Placement {
      * parameter space.
      */
     @UML(identifier="outDimension", obligation=MANDATORY, specification=ISO_19107)
-    public int getOutDimension();
+    int getOutDimension();
 
     /**
      * Maps the parameter coordinate points to the coordinate points in the output Cartesian space.
@@ -54,5 +54,5 @@ public interface Placement {
      * @return The output coordinate points. The length of this vector is equals to {@link #getOutDimension outDimension}.
      */
     @UML(identifier="transform", obligation=MANDATORY, specification=ISO_19107)
-    public double[] transform (double[] in);
+    double[] transform (double[] in);
 }

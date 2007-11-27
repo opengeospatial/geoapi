@@ -49,7 +49,7 @@ public interface ArcString extends CurveSegment {
      * @return The number of circular arcs.
      */
     @UML(identifier="numArc", obligation=MANDATORY, specification=ISO_19107)
-    public int getNumArc();
+    int getNumArc();
 
     /**
      * Returns the sequence of points used to control the arcs in this string. The first three
@@ -60,7 +60,7 @@ public interface ArcString extends CurveSegment {
      * @return The control points. The array size is <code>2*{@link #getNumArc numArc}&nbsp;+1</code>.
      */
     @UML(identifier="controlPoints", obligation=MANDATORY, specification=ISO_19107)
-    public PointArray getControlPoints();
+    PointArray getControlPoints();
 
     /**
      * The interpolation for a {@code ArcString} is
@@ -69,7 +69,7 @@ public interface ArcString extends CurveSegment {
      * @return Always {@link CurveInterpolation#CIRCULAR_ARC_3_POINTS}.
      */
     @UML(identifier="interpolation", obligation=MANDATORY, specification=ISO_19107)
-    public CurveInterpolation getInterpolation();
+    CurveInterpolation getInterpolation();
 
     /**
      * Constructs a sequence of arcs that is the geometric equivalent of this arc string.
@@ -77,5 +77,5 @@ public interface ArcString extends CurveSegment {
      * @return The sequence of arcs.
      */
     @UML(identifier="asGM_Arc", obligation=MANDATORY, specification=ISO_19107)
-    public List<Arc> asArcs();
+    List<Arc> asArcs();
 }

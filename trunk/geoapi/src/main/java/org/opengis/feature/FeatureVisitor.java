@@ -38,5 +38,5 @@ public interface FeatureVisitor {
      * to learn more - the provided feature may be invalid, or read only.
      * @param feature
      */
-    public void visit(Feature feature);
+    void visit(Feature feature);
 }

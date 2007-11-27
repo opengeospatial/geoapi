@@ -73,7 +73,7 @@ public interface Conic extends CurveSegment {
      * is given by the formulae in the class description.
      */
     @UML(identifier="position", obligation=MANDATORY, specification=ISO_19107)
-    public AffinePlacement getPosition();
+    AffinePlacement getPosition();
 
     /**
      * Returns {@code false} if the affine transformation is used on the unshifted
@@ -82,7 +82,7 @@ public interface Conic extends CurveSegment {
      * whether the focus or the vertex of the conic is at the origin in parameter space.
      */
     @UML(identifier="shifted", obligation=MANDATORY, specification=ISO_19107)
-    public boolean isShifted();
+    boolean isShifted();
 
     /**
      * Returns the value of the eccentricity parameter "<var>e</var>" used in the defining
@@ -90,14 +90,14 @@ public interface Conic extends CurveSegment {
      * curve is a circle, ellipse, parabola, or hyperbola.
      */
     @UML(identifier="eccentricity", obligation=MANDATORY, specification=ISO_19107)
-    public double getEccentricity();
+    double getEccentricity();
 
     /**
      * Returns the value of the parameter "<var>P</var>" used in the defining equation
      * above. It controls how broad the conic is at each of its foci.
      */
     @UML(identifier="semiLatusRectum", obligation=MANDATORY, specification=ISO_19107)
-    public double getSemiLatusRectum();
+    double getSemiLatusRectum();
 
     /**
      * Return the start point parameter used in the constructive paramerization.
@@ -112,7 +112,7 @@ public interface Conic extends CurveSegment {
      * must be strictly monotonic (strictly increasing, or strictly decreasing).
      */
     @UML(identifier="startConstrParam", obligation=MANDATORY, specification=ISO_19107)
-    public double getStartConstructiveParam();
+    double getStartConstructiveParam();
 
     /**
      * Return the end point parameter used in the constructive paramerization.
@@ -127,5 +127,5 @@ public interface Conic extends CurveSegment {
      * must be strictly monotonic (strictly increasing, or strictly decreasing).
      */
     @UML(identifier="endConstrParam", obligation=MANDATORY, specification=ISO_19107)
-    public double getEndConstructiveParam();
+    double getEndConstructiveParam();
 }

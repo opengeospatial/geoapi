@@ -60,8 +60,8 @@ import static org.opengis.annotation.Specification.*;
  */
 public interface FilterCapabilities {
 
-    public static final String VERSION_100 = "1.0.0";
-    public static final String VERSION_110 = "1.1.0";
+    String VERSION_100 = "1.0.0";
+    String VERSION_110 = "1.1.0";
 
     /**
      *

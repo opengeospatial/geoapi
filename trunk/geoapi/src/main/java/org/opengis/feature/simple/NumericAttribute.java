@@ -15,17 +15,17 @@ import org.opengis.feature.Attribute;
  */
 public interface NumericAttribute extends Attribute
 {
-    public void setValue(Number newValue);
-    public Number getValue();
+    void setValue(Number newValue);
+    Number getValue();
     /**
      * Java 1.4 type safe access to getValue
      * @return (Number) getValue()
      */
-    public Number getNumber();
+    Number getNumber();
 
     /**
      * Java 1.4 type safe access to setValue
      * @param newValue
      */
-    public void setNumber(Number newValue);
+    void setNumber(Number newValue);
 }

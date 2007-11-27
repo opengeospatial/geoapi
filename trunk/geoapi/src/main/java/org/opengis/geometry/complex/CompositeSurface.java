@@ -47,5 +47,5 @@ public interface CompositeSurface extends Composite, OrientableSurface {
      * @return The list of orientable surfaces in this composite.
      */
     @UML(identifier="generator", obligation=MANDATORY, specification=ISO_19107)
-    public List<OrientableSurface> getGenerators();
+    List<OrientableSurface> getGenerators();
 }

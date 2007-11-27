@@ -63,7 +63,7 @@ public interface SurfaceBoundary extends PrimitiveBoundary {
      * @return The exterior ring, or {@code null}.
      */
     @UML(identifier="exterior", obligation=MANDATORY, specification=ISO_19107)
-    public Ring getExterior();
+    Ring getExterior();
 
     /**
      * Returns the interior rings.
@@ -73,5 +73,5 @@ public interface SurfaceBoundary extends PrimitiveBoundary {
      * @todo Consider using a Collection return type instead.
      */
     @UML(identifier="interior", obligation=MANDATORY, specification=ISO_19107)
-    public List<Ring> getInteriors();
+    List<Ring> getInteriors();
 }

@@ -45,5 +45,5 @@ public interface Ring extends CompositeCurve {
      *
      * @return Always {@code true}.
      */
-    public boolean isSimple();
+    boolean isSimple();
 }

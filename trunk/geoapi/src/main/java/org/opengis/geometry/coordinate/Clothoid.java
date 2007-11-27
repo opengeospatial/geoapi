@@ -41,13 +41,13 @@ public interface Clothoid extends CurveSegment {
      * into the coordinate reference system of this object.
      */
     @UML(identifier="refLocation", obligation=MANDATORY, specification=ISO_19107)
-    public AffinePlacement getReferenceLocation();
+    AffinePlacement getReferenceLocation();
 
     /**
      * Gives the value for <var>A</var> in the equations above.
      */
     @UML(identifier="scaleFactor", obligation=MANDATORY, specification=ISO_19107)
-    public double getScaleFactor();
+    double getScaleFactor();
 
     /**
      * Returns the arc length distance from the inflection point that will be the
@@ -67,7 +67,7 @@ public interface Clothoid extends CurveSegment {
      * deterministic.</P>
      */
     @UML(identifier="startParameter", obligation=MANDATORY, specification=ISO_19107)
-    public double getStartConstructiveParam();
+    double getStartConstructiveParam();
 
     /**
      * Returns the arc length distance from the inflection point that will be the
@@ -77,5 +77,5 @@ public interface Clothoid extends CurveSegment {
      * can be either positive or negative.
      */
     @UML(identifier="endParameter", obligation=MANDATORY, specification=ISO_19107)
-    public double getEndConstructiveParam();
+    double getEndConstructiveParam();
 }

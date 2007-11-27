@@ -57,7 +57,7 @@ public interface OrientablePrimitive extends Primitive {
      * @return +1 for a positive orientation, or -1 for a negative orientation.
      */
     @UML(identifier="orientation", obligation=MANDATORY, specification=ISO_19107)
-    public int getOrientation();
+    int getOrientation();
 
     /**
      * Returns the primitive associated with this {@code OrientablePrimitive}.
@@ -74,5 +74,5 @@ public interface OrientablePrimitive extends Primitive {
      *             {@link OrientableCurve#getComposite} and {@link OrientableSurface#getComposite}.
      */
     @UML(identifier="primitive", obligation=MANDATORY, specification=ISO_19107)
-    public Primitive getPrimitive();
+    Primitive getPrimitive();
 }

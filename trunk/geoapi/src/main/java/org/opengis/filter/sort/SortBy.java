@@ -49,7 +49,7 @@ public interface SortBy {
      * This is the default value for used when setting up a Query.
      * </p>
      */
-    public static final SortBy[] UNSORTED = new SortBy[0];
+    SortBy[] UNSORTED = new SortBy[0];
 
     /**
      * Used to indicate "natural" sorting order, usually according
@@ -69,7 +69,7 @@ public interface SortBy {
      * This is a "NullObject".
      * </p>
      */
-    public static final SortBy NATURAL_ORDER = new NullSortBy(SortOrder.ASCENDING);
+    SortBy NATURAL_ORDER = new NullSortBy(SortOrder.ASCENDING);
 
     /**
      * Indicate the reverse order, usually assoicated with "Fid".
@@ -77,7 +77,7 @@ public interface SortBy {
      * This is a "NullObject".
      * </p>
      */
-    public static final SortBy REVERSE_ORDER = new NullSortBy(SortOrder.DESCENDING);
+    SortBy REVERSE_ORDER = new NullSortBy(SortOrder.DESCENDING);
 
     /**
      * Indicate property to sort by, specification is limited to PropertyName.

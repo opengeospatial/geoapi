@@ -38,5 +38,5 @@ public interface Shell extends CompositeSurface {
      *
      * @return Always {@code true}.
      */
-    public boolean isSimple();
+    boolean isSimple();
 }

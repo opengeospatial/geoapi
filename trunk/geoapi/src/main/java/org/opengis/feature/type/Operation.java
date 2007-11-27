@@ -15,13 +15,13 @@ public interface Operation extends PropertyDescriptor {
      * Operations are not part of the structure.
      * @return 0 in order to not trip up
      */
-    public int getMaxOccurs();
+    int getMaxOccurs();
 
     /**
      * Operations are not part of the structure.
      * @return 0 in order to not trip up
      */
-    public int getMinOccurs();
+    int getMinOccurs();
 
     /** Indicates the OpperationType of this attribute */
     OperationType getType();

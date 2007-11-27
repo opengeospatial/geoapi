@@ -59,7 +59,7 @@ public interface GenericSurface {
      * @return The upNormal unit vector.
      */
     @UML(identifier="upNormal", obligation=MANDATORY, specification=ISO_19107)
-    public double[] getUpNormal(DirectPosition point);
+    double[] getUpNormal(DirectPosition point);
 
     /**
      * Returns the sum of the lengths of all the boundary components of this
@@ -78,7 +78,7 @@ public interface GenericSurface {
      * @unitof Length
      */
     @UML(identifier="perimeter", obligation=MANDATORY, specification=ISO_19107)
-    public double getPerimeter();
+    double getPerimeter();
 
     /**
      * Returns the area of this {@code GenericSurface}. The area of a 2-dimensional geometric
@@ -99,5 +99,5 @@ public interface GenericSurface {
      * @unitof Area
      */
     @UML(identifier="area", obligation=MANDATORY, specification=ISO_19107)
-    public double getArea();
+    double getArea();
 }

@@ -41,7 +41,7 @@ public interface ParamForPoint {
      *
      * @since GeoAPI 2.1
      */
-    public Set<Number> getDistances();
+    Set<Number> getDistances();
 
     /**
      * Returns the first value in the {@linkplain #getDistances distances} set.
@@ -50,7 +50,7 @@ public interface ParamForPoint {
      * @unitof Distance
      */
     @Extension
-    public double getDistance();
+    double getDistance();
 
     /**
      * Returns the actual value for the direct position used by
@@ -60,5 +60,5 @@ public interface ParamForPoint {
      *
      * @return The actual position used.
      */
-    public DirectPosition getPosition();
+    DirectPosition getPosition();
 }

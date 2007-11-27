@@ -239,7 +239,7 @@ public interface Transaction {
      * @author Jody Garnett, Refractions Reasearch Inc.
      * @since GeoAPI 2.0
      */
-    public static interface State {
+    interface State {
         /**
          * Provides configuration information for this {@code Transaction.State}.
          * This method is called with non null {@code transaction} when this state is

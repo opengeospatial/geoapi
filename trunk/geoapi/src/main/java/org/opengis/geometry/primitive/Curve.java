@@ -73,5 +73,5 @@ public interface Curve extends OrientableCurve, GenericCurve {
      * @return The list of curve segments. Should never be {@code null} neither empty.
      */
     @UML(identifier="segment", obligation=MANDATORY, specification=ISO_19107)
-    public List<CurveSegment> getSegments();
+    List<CurveSegment> getSegments();
 }

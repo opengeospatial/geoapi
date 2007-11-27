@@ -47,5 +47,5 @@ public interface OrientableCurve extends OrientablePrimitive {
      *             {@link CompositeCurve} to {@code OrientableCurve}, not the other way.
      */
     @UML(identifier="composite", obligation=OPTIONAL, specification=ISO_19107)
-    public CompositeCurve getComposite();
+    CompositeCurve getComposite();
 }

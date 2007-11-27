@@ -40,7 +40,7 @@ public interface GenericCurve {
      * @see #getEndPoint
      */
     @UML(identifier="startPoint", obligation=MANDATORY, specification=ISO_19107)
-    public DirectPosition getStartPoint();
+    DirectPosition getStartPoint();
 
     /**
      * Returns the direct position of the last point on the {@code GenericCurve}.
@@ -53,7 +53,7 @@ public interface GenericCurve {
      * @see #getStartPoint
      */
     @UML(identifier="endPoint", obligation=MANDATORY, specification=ISO_19107)
-    public DirectPosition getEndPoint();
+    DirectPosition getEndPoint();
 
     /**
      * Returns the tangent vector along this {@code GenericCurve} at the passed parameter
@@ -69,7 +69,7 @@ public interface GenericCurve {
      * @see #getEndParam
      */
     @UML(identifier="tangent", obligation=MANDATORY, specification=ISO_19107)
-    public double[] getTangent(double s);
+    double[] getTangent(double s);
 
     /**
      * Indicates the parameter for the {@linkplain #getStartPoint start point}.
@@ -90,7 +90,7 @@ public interface GenericCurve {
      * @see #forParam
      */
     @UML(identifier="startParam", obligation=MANDATORY, specification=ISO_19107)
-    public double getStartParam();
+    double getStartParam();
 
     /**
      * Indicates the parameter for the {@linkplain #getEndPoint end point}.
@@ -111,7 +111,7 @@ public interface GenericCurve {
      * @see #forParam
      */
     @UML(identifier="endParam", obligation=MANDATORY, specification=ISO_19107)
-    public double getEndParam();
+    double getEndParam();
 
     /**
      * Indicates the parameter used in the constructive paramerization for the start point.
@@ -134,7 +134,7 @@ public interface GenericCurve {
      * @see #forConstructiveParam
      */
     @UML(identifier="startConstrParam", obligation=MANDATORY, specification=ISO_19107)
-    public double getStartConstructiveParam();
+    double getStartConstructiveParam();
 
     /**
      * Indicates the parameter used in the constructive paramerization for the end point.
@@ -157,7 +157,7 @@ public interface GenericCurve {
      * @see #forConstructiveParam
      */
     @UML(identifier="endConstrParam", obligation=MANDATORY, specification=ISO_19107)
-    public double getEndConstructiveParam();
+    double getEndConstructiveParam();
 
     /**
      * Returns the direct position for a constructive parameter. This method shall be
@@ -176,7 +176,7 @@ public interface GenericCurve {
      * @see #forParam
      */
     @UML(identifier="constrParam", obligation=MANDATORY, specification=ISO_19107)
-    public DirectPosition forConstructiveParam(double cp);
+    DirectPosition forConstructiveParam(double cp);
 
     /**
      * Returns the direct position for a parameter. This method shall be the parameterized
@@ -193,7 +193,7 @@ public interface GenericCurve {
      * @see #forConstructiveParam
      */
     @UML(identifier="param", obligation=MANDATORY, specification=ISO_19107)
-    public DirectPosition forParam(double s);
+    DirectPosition forParam(double s);
 
     /**
      * Returns the parameter for this {@code GenericCurve} at the passed direct position.
@@ -207,7 +207,7 @@ public interface GenericCurve {
      * @see #forParam
      */
     @UML(identifier="paramForPoint", obligation=MANDATORY, specification=ISO_19107)
-    public ParamForPoint getParamForPoint(DirectPosition p);
+    ParamForPoint getParamForPoint(DirectPosition p);
 
     /**
      * Returns the length between two points.
@@ -229,7 +229,7 @@ public interface GenericCurve {
      * @unitof Length
      */
     @UML(identifier="length", obligation=MANDATORY, specification=ISO_19107)
-    public double length(Position point1, Position point2);
+    double length(Position point1, Position point2);
 
     /**
      * Returns the length between two constructive parameters.
@@ -252,7 +252,7 @@ public interface GenericCurve {
      * @unitof Length
      */
     @UML(identifier="length", obligation=MANDATORY, specification=ISO_19107)
-    public double length(double cparam1, double cparam2);
+    double length(double cparam1, double cparam2);
 
     /**
      * Constructs a line string (sequence of line segments) where the control points (ends of
@@ -285,5 +285,5 @@ public interface GenericCurve {
      * @unitof Distance (for arguments)
      */
     @UML(identifier="asLineString", obligation=MANDATORY, specification=ISO_19107)
-    public LineString asLineString(double maxSpacing, double maxOffset);
+    LineString asLineString(double maxSpacing, double maxOffset);
 }

@@ -72,7 +72,7 @@ public interface Arc extends ArcString {
      * @return The center of the circle of which this arc is a portion.
      */
     @UML(identifier="center", obligation=MANDATORY, specification=ISO_19107)
-    public DirectPosition getCenter();
+    DirectPosition getCenter();
 
     /**
      * Calculates the radius of the circle of which this arc is a portion.
@@ -81,7 +81,7 @@ public interface Arc extends ArcString {
      * @unitof Distance
      */
     @UML(identifier="radius", obligation=MANDATORY, specification=ISO_19107)
-    public double getRadius();
+    double getRadius();
 
     /**
      * Calculates the bearing of the line from the center of the circle of which this arc is a
@@ -96,7 +96,7 @@ public interface Arc extends ArcString {
      *       Which one is the right one?
      */
     @UML(identifier="startAngle", obligation=MANDATORY, specification=ISO_19107)
-    public Bearing getStartAngle();
+    Bearing getStartAngle();
 
     /**
      * Calculates the bearing of the line from the center of the circle of which this arc is a
@@ -111,5 +111,5 @@ public interface Arc extends ArcString {
      *       Which one is the right one?
      */
     @UML(identifier="endAngle", obligation=MANDATORY, specification=ISO_19107)
-    public Bearing getEndAngle();
+    Bearing getEndAngle();
 }

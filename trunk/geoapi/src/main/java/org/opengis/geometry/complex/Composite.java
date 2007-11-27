@@ -42,5 +42,5 @@ public interface Composite extends Complex {
      * @return The list of primitives in this composite.
      */
     @UML(identifier="generator", obligation=MANDATORY, specification=ISO_19107)
-    public List<? extends Primitive> getGenerators();
+    List<? extends Primitive> getGenerators();
 }
