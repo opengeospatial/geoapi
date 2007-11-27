@@ -9,5 +9,5 @@ public class AMetadataFactory implements MetadataFactory {
     }
     public ACitationDate createCitationDate(Date date) {
         return new ACitationDate( date );
-    }   
+    }
 }

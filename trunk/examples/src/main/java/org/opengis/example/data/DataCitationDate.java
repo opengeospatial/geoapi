@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class DataCitationDate implements CitationDate {
     private Date date;
-    
+
     public DataCitationDate(){
         this( new Date() );
     }

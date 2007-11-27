@@ -22,12 +22,12 @@ public class VisitTest extends TestCase {
         assertEquals( "Same content", citation.getDates().iterator().next().getDate(),
                 copy.getDates().iterator().next().getDate() );
     }
-    
+
     public void testTime(){
-        Calendar time = Calendar.getInstance();     
+        Calendar time = Calendar.getInstance();
         time.set( 1991, 1, 3 );
         Date then = time.getTime();
-        
+
         MetadataFactory factory = new FinalMetadataFactory();
         CitationDate date = factory.createCitationDate( then );
         Citation citation = factory.createCitation( "1", Collections.singleton( date ) );
@@ -38,5 +38,5 @@ public class VisitTest extends TestCase {
         Date after = transformed.getDates().iterator().next().getDate();
         assertTrue( "Later", then.before( after ) );
     }
-    
+
 }
