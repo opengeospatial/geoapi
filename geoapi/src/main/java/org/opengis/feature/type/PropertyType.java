@@ -165,7 +165,7 @@ public interface PropertyType {
      * @return List<Restriction> used to validate allowable values.
      */
     List<Filter> getRestrictions();
-    
+
     /**
      * Human readable description of this property type.
      *
@@ -209,5 +209,5 @@ public interface PropertyType {
      */
     int hashCode();
 
-    
+
 }

@@ -23,14 +23,14 @@ public interface AttributeDescriptor extends PropertyDescriptor {
      *  @see PropertyDescriptor#getType()
      */
     AttributeType getType();
-    
+
     /**
      * The local name for this AttributeDescriptor.
      * Specifically this returns <code>getName().getLocalPart</code>().
      * @return The local name for this attribute descriptor.
      */
     String getLocalName();
-    
+
     /**
      * The default value for the attribute.
      * <p>

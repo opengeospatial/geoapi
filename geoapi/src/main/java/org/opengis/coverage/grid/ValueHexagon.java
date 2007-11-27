@@ -36,7 +36,7 @@ public interface ValueHexagon extends ValueObject {
      */
     @UML(identifier="geometry", obligation=MANDATORY, specification=ISO_19123)
     DomainObject getGeometry();
-    
+
     /**
      * Returns the <var>grid point</var>-<var>value</var> pairs at the {@code ValueHexagon} centre.
      */

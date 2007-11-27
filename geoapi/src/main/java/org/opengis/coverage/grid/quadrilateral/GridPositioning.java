@@ -56,7 +56,7 @@ public interface GridPositioning {
      * will be associated with a coordinate transformation operation.  All operations include
      * a reference to a {@link MathTransform} object, which actually performs the corodinate
      * conversion.  The {@code targetCRS} association of the operation attribute is considered
-     * mandatory in this context.           
+     * mandatory in this context.
      */
     @Extension
     Operation getOperation();

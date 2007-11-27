@@ -18,5 +18,5 @@ class CitationSecure implements Citation {
     public Collection<SecureCitationDate> getDates() {
         assert User.isAuthorized( "citation.date" );
         return dates;
-    }    
+    }
 }

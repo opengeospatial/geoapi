@@ -14,12 +14,12 @@ public interface SymbologyInfo {
     /**
      * Gets name of symbology
      * @return the symbology name
-     */ 
+     */
     String getSymbologyName();
 
     /**
      * Gets version of symbology
      * @return the symbology name or null if not supported
-     */ 
+     */
     String getSymbologyVersion();
 }

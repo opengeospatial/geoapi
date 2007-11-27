@@ -15,16 +15,16 @@ import java.util.Collection;
  * <li>No Notification: there is no way to recieve notificaitons when contents
  *   are changed
  * </ul>
- * 
+ *
  * @author Jody
  */
 public interface Citation {
-	String getISBN();
-	/**
-	 * @return Direct access to CitationDates
-	 */
-	Collection<CitationDate> getDates();
-	
-	void setISBN(String isbn);
-	void setDates(Collection<CitationDate> dates);
+    String getISBN();
+    /**
+     * @return Direct access to CitationDates
+     */
+    Collection<CitationDate> getDates();
+    
+    void setISBN(String isbn);
+    void setDates(Collection<CitationDate> dates);
 }

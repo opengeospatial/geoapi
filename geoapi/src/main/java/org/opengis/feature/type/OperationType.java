@@ -13,7 +13,7 @@ import org.opengis.filter.Filter;
  *
  * @author Jody Garnett, Refractions Research, Inc.
  */
- public interface OperationType extends PropertyType {  
+ public interface OperationType extends PropertyType {
 
     /**
      * Access to super type information.
@@ -24,7 +24,7 @@ import org.opengis.filter.Filter;
      * @return super type
      */
      OperationType getSuper();
-    
+
     /**
      * Indicate that this OperationType may not be used directly.
      * <p>
@@ -35,7 +35,7 @@ import org.opengis.filter.Filter;
      * </p>
      */
      boolean isAbstract();
-    
+
     /**
      * AttributeType this operation type can function against.
      */
@@ -47,7 +47,7 @@ import org.opengis.filter.Filter;
       * @return expected result type, may be <code>null</code>
       */
      AttributeType getResult();
-    
+
     /**
      * We need the following AttributeTypes as parameters.
      * <p>
@@ -57,7 +57,7 @@ import org.opengis.filter.Filter;
      * @return indicates paramters required for operation
      */
     List<AttributeType> getParameters();
-    
+
     /**
      * List of restrictions used to limit the allowable returned value.
      *

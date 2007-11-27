@@ -7,7 +7,7 @@ import java.util.Set;
 class MetadataFactorySecure implements MetadataFactory {
     public Citation createCitation( String isbn, Set<? extends CitationDate> dates ){
         assert User.isAuthorized( "citation" );
-        
+
         return new CitationSecure( isbn, copyDates(dates) );
     }
 

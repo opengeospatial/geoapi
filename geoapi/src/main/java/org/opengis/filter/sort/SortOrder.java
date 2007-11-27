@@ -56,7 +56,7 @@ public final class SortOrder extends CodeList<SortOrder> {
      * Note this has the string representation of {@code "DESC"} to agree
      * with the Filter 1.1 specification.
      * </p>
-     */ 
+     */
     @UML(identifier="DESC", obligation=CONDITIONAL, specification=OGC_02059)
     public static final SortOrder DESCENDING = new SortOrder("DESCENDING", "DESC");
 

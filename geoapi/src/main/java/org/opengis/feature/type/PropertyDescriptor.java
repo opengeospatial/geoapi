@@ -80,7 +80,7 @@ public interface PropertyDescriptor {
      * </p>
      */
     PropertyType getType();
-    
+
     /**
      * The name of the property defined by the descriptor, with respect to its
      * containing type or entity..

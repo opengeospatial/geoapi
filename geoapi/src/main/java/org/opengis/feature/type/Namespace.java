@@ -59,7 +59,7 @@ import java.util.Set;
  */
 //@UML(identifier="NameSpace", specification=ISO_19103)
 public interface Namespace extends Set<Name> {
-    
+
     /**
      * The namespace uri of this namespace.
      * <p>

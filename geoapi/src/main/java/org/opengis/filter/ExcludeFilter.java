@@ -44,12 +44,12 @@ public final class ExcludeFilter implements Filter, Serializable {
     public boolean equals(Object obj) {
         return Filter.EXCLUDE == obj;
     }
-    
+
     @Override
     public int hashCode() {
         return 1;
     }
-    
+
     public String toString() {
         return "Filter.EXCLUDE";
     }

@@ -29,7 +29,7 @@ import org.opengis.feature.Feature;
  * @since GeoAPI 2.0
  */
 @XmlElement("expression")
-public interface Expression {   
+public interface Expression {
     /**
      * Constant expression that always evaulates to {@code null}.
      * <p>

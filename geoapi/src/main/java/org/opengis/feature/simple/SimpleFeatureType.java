@@ -80,7 +80,7 @@ public interface SimpleFeatureType extends FeatureType {
      * @return The local name for this FeatureType.
      */
     String getTypeName();
-    
+
     /**
      * The list of attribute descriptors which make up the feature type.
      * <p>

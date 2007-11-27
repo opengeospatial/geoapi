@@ -29,7 +29,7 @@ public class DefaultLock {
     public long release() throws IOException {
         long minResult = Long.MAX_VALUE;
         Throwable err = null;
-        
+
         Iterator<State> states = stateMap.values().iterator();
         while (states.hasNext()) {
             State state = (State) states.next();

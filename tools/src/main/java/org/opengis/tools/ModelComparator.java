@@ -415,7 +415,7 @@ scanMembers:
                 if (startWithLowerCase) {
                     geoapi = firstCharAsLowerCase(geoapi);
                 }
-            }            
+            }
         } else {
             if ((geoapi.startsWith("get") && !ogc.startsWith("get")) ||
                 (geoapi.startsWith("set") && !ogc.startsWith("set")))

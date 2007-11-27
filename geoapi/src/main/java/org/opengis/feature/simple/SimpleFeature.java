@@ -106,7 +106,7 @@ public interface SimpleFeature extends Feature {
      * @param values The attribute values to set.
      */
     void setAttributes( List<Object> values );
-    
+
     /**
      * Sets the values of the attributes contained by the feature.
      * <p>
@@ -124,7 +124,7 @@ public interface SimpleFeature extends Feature {
      * @param values The attribute values to set.
      */
     void setAttributes( Object[] values );
-    
+
     /**
      * Gets an attribute value by name.
      * <p>
@@ -140,7 +140,7 @@ public interface SimpleFeature extends Feature {
      * exists with the specified name.
      */
     Object getAttribute( String name );
-    
+
     /**
      * Sets an attribute value by name.
      * <p>
@@ -154,7 +154,7 @@ public interface SimpleFeature extends Feature {
      * @param value The new value of the attribute.
      */
     void setAttribute( String name, Object value );
-    
+
     /**
      * Gets an attribute value by name.
      * <p>
@@ -174,7 +174,7 @@ public interface SimpleFeature extends Feature {
      * exists with the specified name.
      */
     Object getAttribute( Name name );
-    
+
     /**
      * Sets an attribute value by name.
      * <p>
@@ -192,7 +192,7 @@ public interface SimpleFeature extends Feature {
      * @param value The new value of the attribute.
      */
     void setAttribute( Name name, Object value );
-    
+
     /**
      * Gets an attribute value by index.
      * <p>

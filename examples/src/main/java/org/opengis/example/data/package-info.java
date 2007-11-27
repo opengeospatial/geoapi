@@ -19,7 +19,7 @@
  * <p>
  * This package is self contained and does not reflect any specification. For more information please
  * visit the GeoAPI wiki:
- * 
+ *
  * @link http://docs.codehaus.org/display/GEO/Interface+Design
  */
 package org.opengis.example.data;

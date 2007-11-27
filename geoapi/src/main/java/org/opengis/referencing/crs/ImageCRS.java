@@ -43,7 +43,7 @@ public interface ImageCRS extends SingleCRS {
      */
 /// @UML(identifier="usesObliqueCartesianCS, usesCartesianCS", obligation=MANDATORY, specification=ISO_19111)
 /// AffineCS getCoordinateSystem();
-    
+
     /**
      * Returns the datum, which must be an image one.
      */
