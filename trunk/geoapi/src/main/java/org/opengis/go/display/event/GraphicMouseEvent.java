@@ -58,5 +58,5 @@ public interface GraphicMouseEvent extends GraphicEvent {
      *
      * @return the <code>MouseEvent</code> referenced by this event.
      */
-    MouseEvent getMouseEvent(); 
+    MouseEvent getMouseEvent();
 }

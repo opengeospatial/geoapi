@@ -98,7 +98,7 @@ public interface Name {
      * @return Returns <code>true</code> if getNamespaceURI is <code>null</code>
      */
     boolean isGlobal();
-    
+
     /**
      * Returns the URI of the namespace for this name.
      * <p>
@@ -162,7 +162,7 @@ public interface Name {
      * @return a hascode based on getURI()
      */
     public int hashCode();
-    
+
     /**
      * <code>true</code> if getURI is equal.
      *
@@ -170,7 +170,7 @@ public interface Name {
      * @return <code>true</code> if getURI is equal.
      */
     public boolean equals(Object obj);
-    
+
     /**
      * A local-independant representation of this name, see getURI().
      */

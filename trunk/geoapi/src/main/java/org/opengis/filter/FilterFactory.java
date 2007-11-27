@@ -68,10 +68,10 @@ public interface FilterFactory {
 ////////////////////////////////////////////////////////////////////////////////
     /** Creates a new feautre id from a string */
     FeatureId featureId( String id );
-    
+
     /** Creates a new gml object id from a string */
     GmlObjectId gmlObjectId( String id );
-    
+
 ////////////////////////////////////////////////////////////////////////////////
 //
 //  FILTERS

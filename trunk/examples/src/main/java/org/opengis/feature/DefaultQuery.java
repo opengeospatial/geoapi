@@ -77,7 +77,7 @@ public class DefaultQuery implements Query {
      * Using a Query with only a filter and no Name almost always results in
      * an error.
      * <p>
-     * Please use DefaultQuery( Name, filter ) 
+     * Please use DefaultQuery( Name, filter )
      * </p>
      * @param filter the OGC filter to constrain the request.
      * @deprecated Please use DefaultQuery( Name, filter ) instead.
@@ -296,16 +296,16 @@ public class DefaultQuery implements Query {
      * the latest version is return. The default action shall be for the query
      * to return the latest version. Systems that do not support versioning
      * can ignore the parameter and return the only version  that they have.
-     * 
+     *
      * <p>
      * This is ready for use, it will be up to data store implementors to
      * support it.
      * </p>
      *
-     * @return the version of the feature to return, or null for latest. 
+     * @return the version of the feature to return, or null for latest.
      */
     public String getVersion() {
-        return version; 
+        return version;
     }
 
     public void setVersion(String version) {

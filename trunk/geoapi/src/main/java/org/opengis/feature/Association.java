@@ -86,7 +86,7 @@ public interface Association extends Property {
      * @see Property#getType()
      */
     AssociationType getType();
-    
+
     /**
      * Override of {@link Property#getValue()} which type narrows to
      * {@link Attribute}.
@@ -94,7 +94,7 @@ public interface Association extends Property {
      * @see Property#getValue()
      */
     Attribute getValue();
-    
+
     /**
      * Override of {@link Property#setValue(Object)} which specifies that
      * <tt>newValue</tt> should be an instance of {@link Attribute}.
@@ -102,7 +102,7 @@ public interface Association extends Property {
      * @throws IllegalArgumentException If <tt>newValue</tt> is not an attribute.
      */
     void setValue(Object newValue) throws IllegalArgumentException;
-    
+
     /**
      * Returns the type of the associated attribute.
      * <p>

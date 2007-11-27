@@ -16,14 +16,14 @@ import org.opengis.referencing.crs.CoordinateReferenceSystem;
  * @author Justin Deoliveira, The Open Planning Project
  */
 public interface FeatureType extends ComplexType {
-    
+
     /**
      * Features are always identified.
      *
      * @return <code>true</code>
      */
     boolean isIdentified();
-    
+
     /**
      * The default geometric attribute of the feature.
      * <p>
@@ -33,7 +33,7 @@ public interface FeatureType extends ComplexType {
      * @return The descriptor of the default geometry attribute, or <code>null</code>.
      */
     GeometryDescriptor getDefaultGeometry();
-    
+
     /**
      * The coordinate reference system of the feature.
      * <p>

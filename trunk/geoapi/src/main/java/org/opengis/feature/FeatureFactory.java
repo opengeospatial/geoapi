@@ -44,7 +44,7 @@ public interface FeatureFactory {
      *
      */
     Attribute createAttribute(Object value, AttributeDescriptor descriptor, String id);
-        
+
     /**
      * Creates a geometry attribute.
      * <p>
@@ -59,7 +59,7 @@ public interface FeatureFactory {
     GeometryAttribute createGeometryAttribute(
         Object geometry, GeometryDescriptor descriptor, String id, CoordinateReferenceSystem crs
     );
-    
+
     /**
      * Creates a complex attribute.
      * <p>
@@ -83,7 +83,7 @@ public interface FeatureFactory {
      *
      */
     ComplexAttribute createComplexAttribute(
-        Collection<Property> value, ComplexType type, String id 
+        Collection<Property> value, ComplexType type, String id
     );
 
     /**

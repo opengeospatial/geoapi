@@ -72,7 +72,7 @@ public class PathType extends SimpleEnumerationType<PathType> {
      * @param description the description for the enum.
      */
     protected PathType(String name, String description) {
-        super(VALUES, name, description);       
+        super(VALUES, name, description);
     }
 
     /**

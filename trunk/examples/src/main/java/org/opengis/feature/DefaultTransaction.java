@@ -50,13 +50,13 @@ public class DefaultTransaction implements Transaction {
 
     /**
      * Remembers Externalized State for a DataSource.
-     * 
+     *
      * <p>
      * This is the GOF Memento pattern: a FeatureSource is able to externalize
      * its internal State required for Transaction support and have this class
      * manage it. It may retrieve this State with getState( key ).
      * </p>
-     * 
+     *
      * <p>
      * In addition several FeatureSource implementations may share State, a
      * common example is JDBCDataSources keeping a shared JDBC connection
@@ -94,7 +94,7 @@ public class DefaultTransaction implements Transaction {
 
     /**
      * Removes state from DefaultTransaction's care.
-     * 
+     *
      * <p>
      * Currently does not complain if there is no State associated with key to
      * remove - this may change in the future.
@@ -110,7 +110,7 @@ public class DefaultTransaction implements Transaction {
     public void removeState(Object key) {
         if( stateLookup == null){
             throw new IllegalStateException("Transaction has been closed");
-        }        
+        }
         if (stateLookup.containsKey(key)) {
             State state = (State) stateLookup.remove(key);
             state.setTransaction(null);
@@ -123,7 +123,7 @@ public class DefaultTransaction implements Transaction {
 
     /**
      * Returns externalized state or <code>null</code> if not available.
-     * 
+     *
      * <p>
      * Used by DataStore implementations to externalize information required
      * for Transaction support using the GOF Momento pattern.
@@ -144,7 +144,7 @@ public class DefaultTransaction implements Transaction {
 
     /**
      * Commits all modifications against this Transaction.
-     * 
+     *
      * <p>
      * This implementation will call commit() on all State managed by this
      * Transaction. This allows DataStores to provide their own implementation
@@ -186,7 +186,7 @@ public class DefaultTransaction implements Transaction {
 
     /**
      * Rollsback all modifications against this Transaction.
-     * 
+     *
      * <p>
      * This implementation will call rollback() on all State managed by this
      * Transaction. This allows DataStores to provide their own implementation
@@ -231,7 +231,7 @@ public class DefaultTransaction implements Transaction {
     public synchronized void close(){
         for( Iterator i=stateLookup.values().iterator(); i.hasNext();){
             State state = (State) i.next();
-            state.setTransaction( null );            
+            state.setTransaction( null );
         }
         stateLookup.clear();
         stateLookup = null;
@@ -243,7 +243,7 @@ public class DefaultTransaction implements Transaction {
 
     /**
      * The current set of Authorization IDs held by this Transaction.
-     * 
+     *
      * <p>
      * This set is reset by the next call to commit or rollback.
      * </p>
@@ -253,13 +253,13 @@ public class DefaultTransaction implements Transaction {
     public Set getAuthorizations() {
         if( authorizations == null){
             throw new IllegalStateException("Transaction has been closed");
-        }        
+        }
         return Collections.unmodifiableSet(authorizations);
     }
 
     /**
      * Provides an authorization ID allowing access to locked Features.
-     * 
+     *
      * <p>
      * Remember authorizations are cleared after every commit/rollback.
      * </p>
@@ -274,7 +274,7 @@ public class DefaultTransaction implements Transaction {
     public void addAuthorization(String authID) throws IOException {
         if( authorizations == null){
             throw new IllegalStateException("Transaction has been closed");
-        }                
+        }
         int problemCount = 0;
         IOException io = null;
         State state;
@@ -299,7 +299,7 @@ public class DefaultTransaction implements Transaction {
                 + problemCount + " problems - the first was").initCause( io);
         }
     }
-    
+
     /* (non-Javadoc)
      * @see java.lang.Object#toString()
      */
@@ -309,24 +309,24 @@ public class DefaultTransaction implements Transaction {
 
     /**
      * Implementation of getProperty.
-     * 
+     *
      * @see org.opengis.data.Transaction#getProperty(java.lang.Object)
-     * 
+     *
      * @param key
      * @return
      */
     public Object getProperty(Object key) {
         if( propertyLookup == null){
             throw new IllegalStateException("Transaction has been closed");
-        }        
+        }
         return propertyLookup.get( key );
     }
 
     /**
      * Implementation of addProperty.
-     * 
+     *
      * @see org.opengis.data.Transaction#addProperty(java.lang.Object, java.lang.Object)
-     * 
+     *
      * @param key
      * @param value
      * @throws IOException
@@ -338,7 +338,7 @@ public class DefaultTransaction implements Transaction {
         propertyLookup.put( key, value );
     }
 
-	public void useAuthorization(String authorizationID) throws IOException {
-		addAuthorization( authorizationID );
-	}
+    public void useAuthorization(String authorizationID) throws IOException {
+        addAuthorization( authorizationID );
+    }
 }

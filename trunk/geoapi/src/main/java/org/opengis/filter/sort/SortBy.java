@@ -48,7 +48,7 @@ public interface SortBy {
      * <p>
      * This is the default value for used when setting up a Query.
      * </p>
-     */ 
+     */
     public static final SortBy[] UNSORTED = new SortBy[0];
 
     /**
@@ -92,7 +92,7 @@ public interface SortBy {
      * @todo Use QName
      * @return Name of property to sort by.
      */
-    PropertyName getPropertyName(); 
+    PropertyName getPropertyName();
 
     /**
      * The the sort order - one of {@link SortOrder#ASCENDING ASCENDING}

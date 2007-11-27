@@ -39,7 +39,7 @@ public interface Position {
      */
     @UML(identifier="anyOther", obligation=OPTIONAL, specification=ISO_19108)
     TemporalPosition anyOther();
-    
+
     /**
      * May be used for describing temporal positions in ISO8601 format referenced to the
      * Gregorian calendar and UTC.
@@ -47,7 +47,7 @@ public interface Position {
      */
     @UML(identifier="date8601", obligation=OPTIONAL, specification=ISO_19108)
     Date getDate();
-    
+
     /**
      * May be used for describing temporal positions in ISO8601 format referenced to the
      * Gregorian calendar and UTC.

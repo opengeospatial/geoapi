@@ -19,7 +19,7 @@ import java.util.EventListener;
  *
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  */
-public interface AggregationListener extends EventListener {    
+public interface AggregationListener extends EventListener {
     /**
      * Invoked when any elements are added, removed,
      * or reorderd (if supported) in the aggregating object.

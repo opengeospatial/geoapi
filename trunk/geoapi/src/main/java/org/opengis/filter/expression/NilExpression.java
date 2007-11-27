@@ -17,7 +17,7 @@ public final class NilExpression implements Expression, Serializable {
 
     /** Not extensible */
     NilExpression(){}
-    
+
     public Object accept(ExpressionVisitor visitor, Object extraData) {
         return visitor.visit( this, extraData);
     }
@@ -31,7 +31,7 @@ public final class NilExpression implements Expression, Serializable {
     public <T> T evaluate(Object object, Class<T> context) {
         return null;
     }
-    
+
     /**
      * Equals is defined only against <code>Expression.NIL</code>.
      * @param other
@@ -46,7 +46,7 @@ public final class NilExpression implements Expression, Serializable {
     public int hashCode() {
         return 0;
     }
-    
+
     @Override
     public String toString() {
         return "Expression.NIL";

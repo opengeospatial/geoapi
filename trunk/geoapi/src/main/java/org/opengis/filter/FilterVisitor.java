@@ -55,7 +55,7 @@ public interface FilterVisitor {
      * @return subclass defined
      */
     Object visitNullFilter(Object extraData);
-    
+
     /**
      * Visit {@link Filter#EXCLUDE} (often used during data structure transformations).
      *
@@ -64,7 +64,7 @@ public interface FilterVisitor {
      * @return subclass supplied
      */
     Object visit(ExcludeFilter filter, Object extraData);
-    
+
     /**
      * Visit {@link Filter#INCLUDE} (often used during data structure transformations).
      *
@@ -73,7 +73,7 @@ public interface FilterVisitor {
      * @return subclass supplied
      */
     Object visit(IncludeFilter filter, Object extraData);
-    
+
     Object visit(And filter,                            Object extraData);
     Object visit(Id filter,                             Object extraData);
     Object visit(Not filter,                            Object extraData);

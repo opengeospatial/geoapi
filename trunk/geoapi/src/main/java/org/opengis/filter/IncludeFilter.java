@@ -19,12 +19,12 @@ import java.io.Serializable;
  *
  * @author Jody Garnett, Refractions Research, Inc.
  */
-public final class IncludeFilter implements Filter, Serializable {  
+public final class IncludeFilter implements Filter, Serializable {
     private static final long serialVersionUID = -8429407144421087160L;
-    
+
     /** non extensible */
     IncludeFilter(){}
-    
+
     public Object accept(FilterVisitor visitor, Object extraData) {
         return visitor.visit( this, extraData );
     }

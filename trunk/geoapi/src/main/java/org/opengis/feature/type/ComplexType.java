@@ -93,7 +93,7 @@ public interface ComplexType extends AttributeType {
      * complex type.
      */
     Collection<PropertyDescriptor> getProperties();
-    
+
     /**
      * Returns a single property by name.
      * <p>
@@ -120,7 +120,7 @@ public interface ComplexType extends AttributeType {
      * @return The property matching the specified name, or <code>null</code>.
      */
     PropertyDescriptor getProperty( String name );
-    
+
     /**
      * Indicates ability of XPath to notice this attribute.
      * <p>
@@ -171,7 +171,7 @@ public interface ComplexType extends AttributeType {
      * @return true if  attribute is to be considered transparent by XPath queries
      */
     boolean isInline();
-    
+
     /**
      * Describes allowable content, indicating containment.
      * <p>
@@ -190,10 +190,10 @@ public interface ComplexType extends AttributeType {
      * </p>
      */
     //Collection<AttributeDescriptor> attributes();
-    
+
     /**
      * Allowable associations, indicating non containment relationships.
      */
     //Collection<AssociationDescriptor> associations();
-    
+
 }

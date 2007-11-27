@@ -21,5 +21,5 @@ public interface GeometryType extends AttributeType {
      * does not have an accompanied .prj file.
      * </p>
      */
-    CoordinateReferenceSystem getCRS(); 
+    CoordinateReferenceSystem getCRS();
 }
