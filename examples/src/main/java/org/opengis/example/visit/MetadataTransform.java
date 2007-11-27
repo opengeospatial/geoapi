@@ -10,7 +10,7 @@ public class MetadataTransform implements MetadataVisitor {
     public MetadataTransform( MetadataFactory factory ){
         this.factory = factory;
     }
-    public CitationDate visit(CitationDate date, Object extraData) {        
+    public CitationDate visit(CitationDate date, Object extraData) {
         return factory.createCitationDate( date.getDate() );
     }
     public Citation visit(Citation citation, Object extraData) {
@@ -19,7 +19,7 @@ public class MetadataTransform implements MetadataVisitor {
             CitationDate newDate = (CitationDate) date.accept( this, extraData );
             copiedDates.add( newDate );
         }
-        
+
         return factory.createCitation( citation.getISBN(), copiedDates );
-    }   
+    }
 }

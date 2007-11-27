@@ -11,7 +11,7 @@ public class MutableCitation implements Citation {
     final private PropertyChangeSupport listeners = new PropertyChangeSupport(this);
     private Collection<CitationDate> dates = Collections.synchronizedList( new CitationDates());
     private String isbn;
-    
+
     public synchronized Collection<CitationDate> getDates() {
         return dates;
     }
@@ -48,11 +48,11 @@ public class MutableCitation implements Citation {
         return listeners.getPropertyChangeListeners();
     }
     class CitationDates extends ArrayList<CitationDate>{
-        private static final long serialVersionUID = 0L;        
+        private static final long serialVersionUID = 0L;
         public CitationDate set( int index, CitationDate date ){
             CitationDate old = super.set( index, date );
             listeners.fireIndexedPropertyChange( DATES_PROPERTY, index, old, date );
-            return old;         
+            return old;
         }
         public boolean add( CitationDate date){
             try {
@@ -74,10 +74,10 @@ public class MutableCitation implements Citation {
         public boolean remove(Object o) {
             int index = super.indexOf( o );
             if( index == -1 ) return false;
-            
+
             super.remove(o);
             listeners.fireIndexedPropertyChange( DATES_PROPERTY, index, o, null );
             return true;
-        }       
+        }
     }
 }

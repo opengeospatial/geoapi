@@ -8,10 +8,10 @@ public class TemporalTransform extends MetadataTransform {
     }
     public CitationDate visit(CitationDate date, Object extraData) {
         Integer adjust = (Integer) extraData;
-        
-        long time = date.getDate().getTime() + adjust;      
+
+        long time = date.getDate().getTime() + adjust;
         Date adjusted = new Date( time );
-        
-        return factory.createCitationDate( adjusted );      
+
+        return factory.createCitationDate( adjusted );
     }
 }

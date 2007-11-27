@@ -18,7 +18,7 @@ public class FinalMetadataFactory implements MetadataFactory {
             }
             public String getISBN() {
                 return isbn;
-            }           
+            }
         };
     }
 
@@ -29,7 +29,7 @@ public class FinalMetadataFactory implements MetadataFactory {
             }
             public Date getDate() {
                 return date;
-            }           
+            }
         };
     }
 }

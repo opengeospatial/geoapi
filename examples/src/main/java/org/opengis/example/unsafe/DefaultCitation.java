@@ -6,7 +6,7 @@ import java.util.HashSet;
 public class DefaultCitation implements Citation {
     private Collection<CitationDate> dates = new HashSet<CitationDate>();
     private String isbn;
-    
+
     public Collection<CitationDate> getDates() {
         return dates;
     }

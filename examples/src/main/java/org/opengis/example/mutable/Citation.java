@@ -16,12 +16,12 @@ import java.util.Collection;
 public interface Citation {
     public static String ISBN_PROPERTY = "ISBN";
     public static String DATES_PROPERTY = "dates";
-    
+
     /**
      * @return ISBN property
      */
     String getISBN();
-    
+
     /**
      * Set ISBN property.
      * <p>

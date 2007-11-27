@@ -10,7 +10,7 @@ public class CitationImplTest extends TestCase {
      public void testImplementation(){
          Set<CitationDate> dates = new HashSet<CitationDate>();
          dates.add( new CitationDateImpl() );
-        
+
          Citation citation = new CitationImpl( "1234", dates );
      }
 }

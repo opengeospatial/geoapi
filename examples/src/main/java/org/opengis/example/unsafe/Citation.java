@@ -24,7 +24,7 @@ public interface Citation {
      * @return Direct access to CitationDates
      */
     Collection<CitationDate> getDates();
-    
+
     void setISBN(String isbn);
     void setDates(Collection<CitationDate> dates);
 }
