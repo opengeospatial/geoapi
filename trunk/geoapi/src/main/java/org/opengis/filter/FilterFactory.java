@@ -10,13 +10,13 @@
  *************************************************************************************************/
 package org.opengis.filter;
 
-// J2SE direct dependencies
 import java.util.List;
 import java.util.Set;
 
 import org.opengis.filter.capability.ArithmeticOperators;
 import org.opengis.filter.capability.ComparisonOperators;
 import org.opengis.filter.capability.FilterCapabilities;
+import org.opengis.filter.capability.FunctionName;
 import org.opengis.filter.capability.Functions;
 import org.opengis.filter.capability.GeometryOperand;
 import org.opengis.filter.capability.IdCapabilities;
@@ -67,10 +67,10 @@ public interface FilterFactory {
 //
 ////////////////////////////////////////////////////////////////////////////////
     /** Creates a new feautre id from a string */
-    FeatureId featureId( String id );
+    FeatureId featureId(String id);
 
     /** Creates a new gml object id from a string */
-    GmlObjectId gmlObjectId( String id );
+    GmlObjectId gmlObjectId(String id);
 
 ////////////////////////////////////////////////////////////////////////////////
 //
@@ -94,7 +94,7 @@ public interface FilterFactory {
     Not not(Filter f);
 
     /** Passes only for objects that have one of the IDs given to this object. */
-    Id id( Set<? extends Identifier> ids);
+    Id id(Set<? extends Identifier> ids);
 
     /** Retrieves the value of a {@linkplain org.opengis.feature.Feature feature}'s property. */
     PropertyName property(String name);
@@ -144,13 +144,13 @@ public interface FilterFactory {
      * Checks if the bounding box of the feature's geometry overlaps the indicated bounds.
      * <p>
      * This method is defined in strict accordance with the Filter 1.0 specification, you may
-     * find the FilterFactory2.bbox( Expression, BoundingBox ) to be easier to use.
+     * find the FilterFactory2.bbox(Expression, BoundingBox) to be easier to use.
      * </p>
      * @param propertyName Name of geometry property (for a PropertyName to access a Feature's Geometry)
      * @param minx Minimum "x" value (for a literal BoundingBox)
-     * @param miny Minimum "y" value (for a literal BoundingBox )
-     * @param maxx Maximum "x" value (for a literal BoundingBox )
-     * @param maxy Maximum "y" value (for a literal BoundingBox )
+     * @param miny Minimum "y" value (for a literal BoundingBox)
+     * @param maxx Maximum "x" value (for a literal BoundingBox)
+     * @param maxy Maximum "y" value (for a literal BoundingBox)
      * @param srs Indicating the CoordianteReferenceSystem to use for a literal BoundingBox
      */
     BBOX        bbox(String propertyName, double minx, double miny, double maxx, double maxy, String srs);
@@ -248,7 +248,7 @@ public interface FilterFactory {
     //
     //////////////////////////////////////////////////////////////////////////////    //
     /** Indicates an property by which contents should be sorted, along with intended order. */
-    SortBy sort(String propertyName, SortOrder order );
+    SortBy sort(String propertyName, SortOrder order);
 
     ////////////////////////////////////////////////////////////////////////////////
     //
@@ -256,39 +256,38 @@ public interface FilterFactory {
     //
     ////////////////////////////////////////////////////////////////////////////////
     /** operators */
-    Operator operator ( String name );
+    Operator operator(String name);
 
     /** spatial operator */
-    SpatialOperator spatialOperator( String name,
-            GeometryOperand[] geometryOperands );
+    SpatialOperator spatialOperator(String name, GeometryOperand[] geometryOperands);
 
     /** function name */
-    org.opengis.filter.capability.FunctionName functionName( String name, int nargs );
+    FunctionName functionName(String name, int nargs);
 
     /** functions */
-    Functions functions( org.opengis.filter.capability.FunctionName[] functionNames );
+    Functions functions(FunctionName[] functionNames);
 
     /** spatial operators */
-    SpatialOperators spatialOperators( SpatialOperator[] spatialOperators );
+    SpatialOperators spatialOperators(SpatialOperator[] spatialOperators);
 
     /** comparison operators */
-    ComparisonOperators comparisonOperators( Operator[] comparisonOperators );
+    ComparisonOperators comparisonOperators(Operator[] comparisonOperators);
 
     /** arithmetic operators */
-    ArithmeticOperators arithmeticOperators( boolean simple, Functions functions );
+    ArithmeticOperators arithmeticOperators(boolean simple, Functions functions);
 
     /** scalar capabilities */
-    ScalarCapabilities scalarCapabilities( ComparisonOperators comparison,
-        ArithmeticOperators arithmetic, boolean logical );
+    ScalarCapabilities scalarCapabilities(ComparisonOperators comparison,
+        ArithmeticOperators arithmetic, boolean logical);
 
     /** spatial capabilities */
-    SpatialCapabilities spatialCapabilities( GeometryOperand[] geometryOperands,
-        SpatialOperators spatial );
+    SpatialCapabilities spatialCapabilities(GeometryOperand[] geometryOperands,
+        SpatialOperators spatial);
 
     /** id capabilities */
-    IdCapabilities idCapabilities( boolean eid, boolean fid );
+    IdCapabilities idCapabilities(boolean eid, boolean fid);
 
     /** filter capabilities */
-    FilterCapabilities capabilities( String version, ScalarCapabilities scalar,
-        SpatialCapabilities spatial, IdCapabilities id );
+    FilterCapabilities capabilities(String version, ScalarCapabilities scalar,
+        SpatialCapabilities spatial, IdCapabilities id);
 }

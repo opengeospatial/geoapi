@@ -42,6 +42,7 @@
             <replacefilter token="@Override" value="//@Override" />
             <replacefilter token="@UML" value="//@UML" />
             <replacefilter token="@Profile" value="//@Profile" />
+            <replacefilter token="@Association" value="//@Association" />
             <replacefilter token="@Extension" value="//@Extension" />
             <replacefilter token="@Deprecated" value="//@Deprecated" />
             <replacefilter token="@XmlSchema" value="//@XmlSchema" />

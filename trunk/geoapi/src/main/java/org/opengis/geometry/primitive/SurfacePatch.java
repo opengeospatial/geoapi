@@ -11,6 +11,7 @@
 package org.opengis.geometry.primitive;
 
 import org.opengis.geometry.coordinate.GenericSurface;
+import org.opengis.annotation.Association;
 import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Obligation.*;
@@ -28,21 +29,27 @@ import static org.opengis.annotation.Specification.*;
 @UML(identifier="GM_SurfacePatch", specification=ISO_19107)
 public interface SurfacePatch extends GenericSurface {
     /**
-     * Returns the patch which own this surface patch.
+     * Returns the patch which own this surface patch. This method is <em>optional</em> since the
+     * association in ISO 19107 is navigable only from {@code Surface} to {@code SurfacePatch},
+     * not the other way.
      *
      * <blockquote><font size=2>
-     * <strong>NOTE:</strong> In this specification, surface patches do not appear except in the
-     * context of a surface, and therefore this method should never returns {@code null}
-     * which would preclude the use of surface patches except in this manner. While this would
-     * not affect this specification, allowing {@code null} owner allows other standards
-     * based on this one to use surface patches in a more open-ended manner.
+     * <strong>NOTE:</strong> In the specification, surface patches do not appear except in the
+     * context of a surface, and therefore this method should never returns {@code null} which
+     * would preclude the use of surface patches except in this manner. While this would not
+     * affect the specification, allowing {@code null} owner allows other standards based on
+     * ISO 19107 one to use surface patches in a more open-ended manner.
      * </font></blockquote>
      *
-     * @return The owner of this surface patch, or {@code null} if none.
+     * @return The owner of this surface patch, or {@code null} if the association is
+     *         not available or not implemented that way.
      *
      * @see Surface#getPatches
+     * @see CurveSegment#getCurve
+     * @issue http://jira.codehaus.org/browse/GEO-63
      */
-    @UML(identifier="surface", obligation=MANDATORY, specification=ISO_19107)
+    @Association("Segmentation")
+    @UML(identifier="surface", obligation=OPTIONAL, specification=ISO_19107)
     Surface getSurface();
 
     /**

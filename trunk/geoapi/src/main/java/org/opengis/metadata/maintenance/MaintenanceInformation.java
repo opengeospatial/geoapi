@@ -92,7 +92,7 @@ public interface MaintenanceInformation {
      * @since GeoAPI 2.1
      */
     @UML(identifier="maintenanceNote", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<InternationalString> getMaintenanceNotes();
+    Collection<? extends InternationalString> getMaintenanceNotes();
 
     /**
      * Identification of, and means of communicating with,

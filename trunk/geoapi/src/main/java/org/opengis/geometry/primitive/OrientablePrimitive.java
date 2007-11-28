@@ -10,6 +10,7 @@
  *************************************************************************************************/
 package org.opengis.geometry.primitive;
 
+import org.opengis.annotation.Association;
 import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Obligation.*;
@@ -67,12 +68,17 @@ public interface OrientablePrimitive extends Primitive {
      * for each geometric object. For the positive orientation, the orientable
      * primitive shall be the corresponding {@linkplain Curve curve} or
      * {@linkplain Surface surface}.
+     * <p>
+     * This method is <em>optional</em> since the association in ISO 19107 is navigable
+     * only from {@code Primitive} to {@code OrientablePrimitive}, not the other way.
      *
-     * @return The primitive, never {@code null}.
+     * @return The primitive, or {@code null} if the association is
+     *         not available or not implemented that way.
      *
-     * @deprecated The association in ISO 19107 specification is not navigable that way. See
-     *             {@link OrientableCurve#getComposite} and {@link OrientableSurface#getComposite}.
+     * @see Primitive#getProxy
+     * @issue http://jira.codehaus.org/browse/GEO-63
      */
-    @UML(identifier="primitive", obligation=MANDATORY, specification=ISO_19107)
+    @Association("Oriented")
+    @UML(identifier="primitive", obligation=OPTIONAL, specification=ISO_19107)
     Primitive getPrimitive();
 }

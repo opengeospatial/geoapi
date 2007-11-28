@@ -11,6 +11,7 @@
 package org.opengis.geometry.primitive;
 
 import org.opengis.geometry.complex.CompositeCurve;
+import org.opengis.annotation.Association;
 import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Obligation.*;
@@ -39,13 +40,30 @@ public interface OrientableCurve extends OrientablePrimitive {
 /// public CurveBoundary getBoundary();
 
     /**
-     * Returns the owner of this orientable curve, or {@code null} if none.
+     * Returns the primitive associated with this {@code OrientableCurve}.
      *
-     * @return The owner of this orientable curve, or {@code null} if none.
+     * @return The primitive, or {@code null} if the association is
+     *         not available or not implemented that way.
      *
-     * @deprecated The association in ISO 19107 specification is navigable only from
-     *             {@link CompositeCurve} to {@code OrientableCurve}, not the other way.
+     * @see Curve#getProxy
+     * @issue http://jira.codehaus.org/browse/GEO-63
      */
-    @UML(identifier="composite", obligation=OPTIONAL, specification=ISO_19107)
-    CompositeCurve getComposite();
+/// @Association("Oriented")
+/// @UML(identifier="primitive", obligation=OPTIONAL, specification=ISO_19107)
+/// Curve getPrimitive();
+
+    /**
+     * Returns the owner of this orientable curve. This method is <em>optional</em> since
+     * the association in ISO 19107 is navigable only from {@code CompositeCurve} to
+     * {@code OrientableCurve}, not the other way.
+     *
+     * @return The owner of this orientable curve, or {@code null} if the association is
+     *         not available or not implemented that way.
+     *
+     * @see CompositeCurve#getGenerators
+     * @issue http://jira.codehaus.org/browse/GEO-63
+     */
+/// @Association("Composition")
+/// @UML(identifier="composite", obligation=OPTIONAL, specification=ISO_19107)
+/// CompositeCurve getComposite();
 }

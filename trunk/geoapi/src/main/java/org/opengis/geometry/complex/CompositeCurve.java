@@ -12,6 +12,7 @@ package org.opengis.geometry.complex;
 
 import java.util.List;
 import org.opengis.geometry.primitive.OrientableCurve;
+import org.opengis.annotation.Association;
 import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Obligation.*;
@@ -39,14 +40,17 @@ import static org.opengis.annotation.Specification.*;
 public interface CompositeCurve extends Composite, OrientableCurve {
     /**
      * Returns the list of orientable curves in this composite.
-     *
      * To get a full representation of the elements in the {@linkplain Complex complex},
      * the {@linkplain org.opengis.geometry.primitive.Point points} on the boundary of the
      * generator set of {@linkplain org.opengis.geometry.primitive.Curve curve} would be
      * added to the curves in the generator list.
      *
      * @return The list of orientable curves in this composite.
+     *
+     * @see OrientableCurve#getComposite
+     * @issue http://jira.codehaus.org/browse/GEO-63
      */
-    @UML(identifier="generator", obligation=MANDATORY, specification=ISO_19107)
-    List<OrientableCurve> getGenerators();
+/// @Association("Composition")
+/// @UML(identifier="generator", obligation=MANDATORY, specification=ISO_19107)
+/// List<OrientableCurve> getGenerators();
 }

@@ -12,8 +12,9 @@ package org.opengis.geometry.primitive;
 
 import java.util.Set;
 import org.opengis.geometry.Geometry;
-import org.opengis.geometry.Envelope;
 import org.opengis.geometry.complex.Complex;
+import org.opengis.geometry.complex.Composite;
+import org.opengis.annotation.Association;
 import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Obligation.*;
@@ -40,7 +41,7 @@ import static org.opengis.annotation.Specification.*;
  * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 1.0
  *
- * @see PrimitiveFactory#createPrimitive(Envelope)
+ * @see PrimitiveFactory#createPrimitive(org.opengis.geometry.Envelope)
  *
  * @todo Some associations are commented out for now.
  */
@@ -107,13 +108,25 @@ public interface Primitive extends Geometry {
      * be in several {@linkplain Complex complexes}. This association may not be navigable in this
      * direction (from primitive to complex), depending on the implementation.
      *
-     * @return The set of complexex which contains this primitive.
-     *
-     * @todo Does it means that {@code Primitive} can't be immutable, since
-     *       adding this primitive to a complex will change this set?
+     * @return The set of complexes which contains this primitive.
      */
     @UML(identifier="complex", obligation=MANDATORY, specification=ISO_19107)
     Set<Complex> getComplexes();
+
+    /**
+     * Returns the owner of this primitive. This method is <em>optional</em> since
+     * the association in ISO 19107 is navigable only from {@code Composite} to
+     * {@code Primitive}, not the other way.
+     *
+     * @return The owner of this primitive, or {@code null} if the association is
+     *         not available or not implemented that way.
+     *
+     * @see Composite#getGenerators
+     * @issue http://jira.codehaus.org/browse/GEO-63
+     */
+    @Association("Composition")
+    @UML(identifier="composite", obligation=OPTIONAL, specification=ISO_19107)
+    Composite getComposite();
 
     /**
      * Returns the orientable primitives associated with this primitive. Each {@code Primitive} of
@@ -122,16 +135,19 @@ public interface Primitive extends Geometry {
      * primitives for each geometric object. For the positive orientation, the
      * {@linkplain OrientablePrimitive orientable primitive} shall be the corresponding
      * {@linkplain Curve curve} or {@linkplain Surface surface}.
+     * <p>
+     * This method is mandatory for {@linkplain Curve curves} and {@link Surface surfaces},
+     * and is not allowed for {@linkplain Point Points} and {@linkplain Solid solids}. The
+     * later should return {@code null}.
      *
      * @return The orientable primitives as an array of length 2, or {@code null} if none.
      *
      * @see OrientablePrimitive#getPrimitive
-     *
-     * @deprecated The association in ISO 19107 specification do not provides navigation that way.
+     * @issue http://jira.codehaus.org/browse/GEO-63
      */
-    @UML(identifier="proxy", obligation=OPTIONAL, specification=ISO_19107)
+    @Association("Oriented")
+    @UML(identifier="proxy", obligation=CONDITIONAL, specification=ISO_19107)
     OrientablePrimitive[] getProxy();
 
 //    public org.opengis.topology.primitive.TP_Primitive topology[];
-//    public org.opengis.geometry.complex.GM_Composite composite[];
 }
