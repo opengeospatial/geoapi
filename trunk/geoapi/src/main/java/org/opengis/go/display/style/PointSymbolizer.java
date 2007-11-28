@@ -67,7 +67,7 @@ public interface PointSymbolizer extends GraphicStyle {
     Color DEFAULT_STROKE_COLOR = Color.BLACK;
 
     /**  Default dash array value.  */
-    DashArray DEFAULT_STROKE_DASH_ARRAY = DashArray.NONE;
+    DashArray DEFAULT_STROKE_DASH_ARRAY = DashArray.NO_DASH;
 
     /**  Default dash offset value.  */
     float DEFAULT_STROKE_DASH_OFFSET = 0.f;

@@ -40,8 +40,17 @@ public class DashArray extends LinePattern {
 
     /**
      * The line should be drawn with no dash array.
+     *
+     * @issue http://jira.codehaus.org/browse/GEO-79
      */
-    public static final DashArray NONE = new DashArray("NONE", "No Dash Array", new float[0]);
+    public static final DashArray NO_DASH = new DashArray("NO_DASH", "No Dash Array", new float[0]);
+
+    /**
+     * The line should be drawn with no dash array.
+     *
+     * @deprecated Renamed as {@link #NO_DASH}.
+     */
+    public static final DashArray NONE = NO_DASH;
 
     //*************************************************************************
     //  Fields
