@@ -10,7 +10,6 @@
  *************************************************************************************************/
 package org.opengis.referencing;
 
-import java.util.Locale;
 import org.opengis.metadata.extent.Extent;
 import org.opengis.util.InternationalString;
 import org.opengis.annotation.UML;
@@ -40,11 +39,24 @@ public interface ReferenceSystem extends IdentifiedObject {
     /**
      * Key for the <code>{@value}</code> property to be given to the
      * {@linkplain ObjectFactory object factory} <code>createFoo(&hellip;)</code> methods.
+     * This is used for setting the value to be returned by {@link #getDomainOfValidity}.
+     *
+     * @see #getDomainOfValidity
+     *
+     * @since GeoAPI 2.1
+     */
+    String DOMAIN_OF_VALIDITY_KEY = "domainOfValidity";
+
+    /**
+     * Key for the <code>{@value}</code> property to be given to the
+     * {@linkplain ObjectFactory object factory} <code>createFoo(&hellip;)</code> methods.
      * This is used for setting the value to be returned by {@link #getValidArea}.
      *
      * @see #getValidArea
+     *
+     * @deprecated Renamed as {@link #DOMAIN_OF_VALIDITY_KEY}.
      */
-    String VALID_AREA_KEY = "validArea";
+    String VALID_AREA_KEY = DOMAIN_OF_VALIDITY_KEY;
 
     /**
      * Key for the <code>{@value}</code> property to be given to the
@@ -56,9 +68,21 @@ public interface ReferenceSystem extends IdentifiedObject {
     String SCOPE_KEY = "scope";
 
     /**
+     * Area or region or timeframe in which this (coordinate) reference system is valid.
+     *
+     * @return The reference system valid domain, or {@code null} if not available.
+     *
+     * @since GeoAPI 2.1
+     */
+    @UML(identifier="domainOfValidity", obligation=OPTIONAL, specification=ISO_19111)
+    Extent getDomainOfValidity();
+
+    /**
      * Area for which the (coordinate) reference system is valid.
      *
      * @return Coordinate reference system valid area, or {@code null} if not available.
+     *
+     * @deprecated Renamed as {@link #getDomainOfValidity}.
      */
     @UML(identifier="domainOfValidity", obligation=OPTIONAL, specification=ISO_19115)
     Extent getValidArea();

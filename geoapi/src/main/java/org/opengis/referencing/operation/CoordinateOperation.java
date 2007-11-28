@@ -54,19 +54,43 @@ public interface CoordinateOperation extends IdentifiedObject {
 
     /**
      * Key for the <code>{@value}</code> property.
+     * This is used for setting the value to be returned by {@link #getCoordinateOperationAccuracy}.
+     *
+     * @see #getCoordinateOperationAccuracy
+     *
+     * @since GeoAPI 2.1
+     */
+    String COORDINATE_OPERATION_ACCURACY_KEY = "coordinateOperationAccuracy";
+
+    /**
+     * Key for the <code>{@value}</code> property.
      * This is used for setting the value to be returned by {@link #getPositionalAccuracy}.
      *
      * @see #getPositionalAccuracy
+     *
+     * @deprecated Renamed as {@link #COORDINATE_OPERATION_ACCURACY_KEY}.
      */
-    String POSITIONAL_ACCURACY_KEY = "positionalAccuracy";
+    String POSITIONAL_ACCURACY_KEY = COORDINATE_OPERATION_ACCURACY_KEY;
+
+    /**
+     * Key for the <code>{@value}</code> property.
+     * This is used for setting the value to be returned by {@link #getDomainOfValidity}.
+     *
+     * @see #getDomainOfValidity
+     *
+     * @since GeoAPI 2.1
+     */
+    String DOMAIN_OF_VALIDITY_KEY = "domainOfValidity";
 
     /**
      * Key for the <code>{@value}</code> property.
      * This is used for setting the value to be returned by {@link #getValidArea}.
      *
      * @see #getValidArea
+     *
+     * @deprecated Renamed as {@link #DOMAIN_OF_VALIDITY_KEY}.
      */
-    String VALID_AREA_KEY = "validArea";
+    String VALID_AREA_KEY = DOMAIN_OF_VALIDITY_KEY;
 
     /**
      * Key for the <code>{@value}</code> property.
@@ -114,14 +138,40 @@ public interface CoordinateOperation extends IdentifiedObject {
      * operation, assuming no errors in source coordinates.
      *
      * @return The position error estimates, or an empty collection if not available.
+     *
+     * @since GeoAPI 2.1
+     */
+    @UML(identifier="coordinateOperationAccuracy", obligation=OPTIONAL, specification=ISO_19111)
+    Collection<PositionalAccuracy> getCoordinateOperationAccuracy();
+
+    /**
+     * Estimate(s) of the impact of this operation on point accuracy. Gives
+     * position error estimates for target coordinates of this coordinate
+     * operation, assuming no errors in source coordinates.
+     *
+     * @return The position error estimates, or an empty collection if not available.
+     *
+     * @deprecated Renamed as {@link #getCoordinateOperationAccuracy}.
      */
     @UML(identifier="positionalAccuracy", obligation=OPTIONAL, specification=ISO_19111)
     Collection<PositionalAccuracy> getPositionalAccuracy();
 
     /**
+     * Area or region or timeframe in which this coordinate operation is valid.
+     *
+     * @return The coordinate operation valid domain, or {@code null} if not available.
+     *
+     * @since GeoAPI 2.1
+     */
+    @UML(identifier="domainOfValidity", obligation=OPTIONAL, specification=ISO_19111)
+    Extent getDomainOfValidity();
+
+    /**
      * Area in which this operation is valid.
      *
      * @return Coordinate operation valid area, or {@code null} if not available.
+     *
+     * @deprecated Renamed as {@link #getDomainOfValidity}.
      */
     @UML(identifier="validArea", obligation=OPTIONAL, specification=ISO_19111)
     Extent getValidArea();

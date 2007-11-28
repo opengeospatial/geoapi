@@ -11,7 +11,6 @@
 package org.opengis.referencing.datum;
 
 import java.util.Date;
-import java.util.Locale;
 import org.opengis.referencing.IdentifiedObject;
 import org.opengis.metadata.extent.Extent;
 import org.opengis.util.InternationalString;
@@ -59,11 +58,24 @@ public interface Datum extends IdentifiedObject {
     /**
      * Key for the <code>{@value}</code> property to be given to the
      * {@linkplain DatumFactory datum factory} <code>createFoo(&hellip;)</code> methods.
+     * This is used for setting the value to be returned by {@link #getDomainOfValidity}.
+     *
+     * @see #getDomainOfValidity
+     *
+     * @since GeoAPI 2.1
+     */
+    String DOMAIN_OF_VALIDITY_KEY = "domainOfValidity";
+
+    /**
+     * Key for the <code>{@value}</code> property to be given to the
+     * {@linkplain DatumFactory datum factory} <code>createFoo(&hellip;)</code> methods.
      * This is used for setting the value to be returned by {@link #getValidArea}.
      *
      * @see #getValidArea
+     *
+     * @deprecated Renamed as {@link #DOMAIN_OF_VALIDITY_KEY}.
      */
-    String VALID_AREA_KEY = "validArea";
+    String VALID_AREA_KEY = DOMAIN_OF_VALIDITY_KEY;
 
     /**
      * Key for the <code>{@value}</code> property to be given to the
@@ -113,9 +125,21 @@ public interface Datum extends IdentifiedObject {
     Date getRealizationEpoch();
 
     /**
+     * Area or region or timeframe in which this datum is valid.
+     *
+     * @return The datum valid domain, or {@code null} if not available.
+     *
+     * @since GeoAPI 2.1
+     */
+    @UML(identifier="domainOfValidity", obligation=OPTIONAL, specification=ISO_19111)
+    Extent getDomainOfValidity();
+
+    /**
      * Area or region in which this datum object is valid.
      *
      * @return The datum valid area, or {@code null} if not available.
+     *
+     * @deprecated Renamed as {@link #getDomainOfValidity}.
      */
     @UML(identifier="validArea", obligation=OPTIONAL, specification=ISO_19111)
     Extent getValidArea();
