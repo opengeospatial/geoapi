@@ -12,6 +12,7 @@ package org.opengis.geometry.primitive;
 
 import org.opengis.geometry.coordinate.GenericCurve;
 import org.opengis.geometry.coordinate.PointArray;
+import org.opengis.annotation.Association;
 import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Obligation.*;
@@ -29,23 +30,26 @@ import static org.opengis.annotation.Specification.*;
 @UML(identifier="GM_CurveSegment", specification=ISO_19107)
 public interface CurveSegment extends GenericCurve {
     /**
-     * Returns the curve which own this curve segment.
+     * Returns the curve which own this curve segment. This method is <em>optional</em> since
+     * the association in ISO 19107 is navigable only from {@code Curve} to {@code CurveSegment},
+     * not the other way.
      *
      * <blockquote><font size=2>
-     * <strong>NOTE:</strong> In this specification, curve segments do not appear except in the
-     * context of a curve, and therefore this method should never returns {@code null}
-     * which would preclude the use of curve segments except in this manner. While this would
-     * not affect this specification, allowing {@code null} owner allows other standards
-     * based on this one to use curve segments in a more open-ended manner.
+     * <strong>NOTE:</strong> In the specification, curve segments do not appear except in the
+     * context of a curve, and therefore this method should never returns {@code null} which
+     * would preclude the use of curve segments except in this manner. While this would not
+     * affect the specification, allowing {@code null} owner allows other standards based on
+     * ISO 19107 one to use curve segments in a more open-ended manner.
      * </font></blockquote>
      *
-     * @return The owner of this curve segment, or {@code null} if none.
+     * @return The owner of this curve segment, or {@code null} if the association is
+     *         not available or not implemented that way.
      *
      * @see Curve#getSegments
-     *
-     * @deprecated The association in ISO 19107 specification is navigable only from
-     *             {@link CurveSegment} to {@code Curve}, not the other way.
+     * @see SurfacePatch#getSurface
+     * @issue http://jira.codehaus.org/browse/GEO-63
      */
+    @Association("Segmentation")
     @UML(identifier="curve", obligation=OPTIONAL, specification=ISO_19107)
     Curve getCurve();
 

@@ -32,7 +32,7 @@ public interface Keywords {
      * Commonly used word(s) or formalised word(s) or phrase(s) used to describe the subject.
      */
     @UML(identifier="keyword", obligation=MANDATORY, specification=ISO_19115)
-    Collection<InternationalString> getKeywords();
+    Collection<? extends InternationalString> getKeywords();
 
     /**
      * Subject matter used to group similar keywords.

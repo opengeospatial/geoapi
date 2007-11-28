@@ -12,6 +12,7 @@ package org.opengis.geometry.primitive;
 
 import java.util.List;
 import org.opengis.geometry.coordinate.GenericCurve;
+import org.opengis.annotation.Association;
 import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Obligation.*;
@@ -71,7 +72,24 @@ public interface Curve extends OrientableCurve, GenericCurve {
      * {@link CurveSegment} agree.
      *
      * @return The list of curve segments. Should never be {@code null} neither empty.
+     *
+     * @see CurveSegment#getCurve
+     * @see Surface#getPatches
+     * @issue http://jira.codehaus.org/browse/GEO-63
      */
+    @Association("Segmentation")
     @UML(identifier="segment", obligation=MANDATORY, specification=ISO_19107)
-    List<CurveSegment> getSegments();
+    List<? extends CurveSegment> getSegments();
+
+    /**
+     * Returns the orientable curves associated with this curve.
+     *
+     * @return The orientable curves as an array of length 2.
+     *
+     * @see OrientableCurve#getPrimitive
+     * @issue http://jira.codehaus.org/browse/GEO-63
+     */
+/// @Association("Oriented")
+/// @UML(identifier="proxy", obligation=MANDATORY, specification=ISO_19107)
+/// OrientableCurve[] getProxy();
 }

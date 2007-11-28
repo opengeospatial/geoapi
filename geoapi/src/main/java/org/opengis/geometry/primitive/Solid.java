@@ -10,6 +10,7 @@
  *************************************************************************************************/
 package org.opengis.geometry.primitive;
 
+import org.opengis.annotation.Association;
 import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Obligation.*;
@@ -76,7 +77,14 @@ public interface Solid extends Primitive {
     @UML(identifier="volume", obligation=MANDATORY, specification=ISO_19107)
     double getVolume();
 
-//    public org.opengis.geometry.complex.GM_CompositeSolid composite[];
-//    public void setComposite(org.opengis.geometry.complex.GM_CompositeSolid composite[]) {  }
+    /**
+     * Returns always {@code null}, since solids have no proxy.
+     *
+     * @issue http://jira.codehaus.org/browse/GEO-63
+     */
+    @Association("Oriented")
+    @UML(identifier="proxy", obligation=FORBIDDEN, specification=ISO_19107)
+    OrientablePrimitive[] getProxy();
+
 //    public org.opengis.geometry.complex.GM_CompositeSolid[] getComposite() { return null; }
 }

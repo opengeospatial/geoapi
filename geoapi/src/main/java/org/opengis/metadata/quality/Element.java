@@ -35,7 +35,7 @@ public interface Element {
      * Name of the test applied to the data.
      */
     @UML(identifier="nameOfMeasure", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<InternationalString> getNamesOfMeasure();
+    Collection<? extends InternationalString> getNamesOfMeasure();
 
     /**
      * Code identifying a registered standard procedure, or {@code null} if none.
@@ -84,7 +84,7 @@ public interface Element {
      * @since GeoAPI 2.1
      */
     @UML(identifier="dateTime", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<Date> getDates();
+    Collection<? extends Date> getDates();
 
     /**
      * Value (or set of values) obtained from applying a data quality measure or the out

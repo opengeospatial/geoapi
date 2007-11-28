@@ -11,6 +11,7 @@
 package org.opengis.geometry.primitive;
 
 import org.opengis.geometry.complex.CompositeSurface;
+import org.opengis.annotation.Association;
 import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Obligation.*;
@@ -51,13 +52,30 @@ public interface OrientableSurface extends OrientablePrimitive {
 /// public SurfaceBoundary getBoundary();
 
     /**
-     * Returns the owner of this orientable surface, or {@code null} if none.
+     * Returns the primitive associated with this {@code OrientableSurface}.
      *
-     * @return The owner of this orientable surface, or {@code null} if none.
+     * @return The primitive, or {@code null} if the association is
+     *         not available or not implemented that way.
      *
-     * @deprecated The association in ISO 19107 specification is navigable only from
-     *             {@link CompositeSurface} to {@code OrientableSurface}, not the other way.
+     * @see Surface#getProxy
+     * @issue http://jira.codehaus.org/browse/GEO-63
      */
-    @UML(identifier="composite", obligation=OPTIONAL, specification=ISO_19107)
-    CompositeSurface getComposite();
+/// @Association("Oriented")
+/// @UML(identifier="primitive", obligation=OPTIONAL, specification=ISO_19107)
+/// Surface getPrimitive();
+
+    /**
+     * Returns the owner of this orientable surface. This method is <em>optional</em> since
+     * the association in ISO 19107 is navigable only from {@code CompositeSurface} to
+     * {@code OrientableSurface}, not the other way.
+     *
+     * @return The owner of this orientable surface, or {@code null} if the association is
+     *         not available or not implemented that way.
+     *
+     * @see CompositeSurface#getGenerators
+     * @issue http://jira.codehaus.org/browse/GEO-63
+     */
+/// @Association("Composition")
+/// @UML(identifier="composite", obligation=OPTIONAL, specification=ISO_19107)
+/// CompositeSurface getComposite();
 }

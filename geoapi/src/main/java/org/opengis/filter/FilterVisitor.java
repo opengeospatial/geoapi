@@ -10,7 +10,6 @@
  *************************************************************************************************/
 package org.opengis.filter;
 
-// OpenGIS direct dependencies
 import org.opengis.annotation.Extension;
 import org.opengis.filter.spatial.BBOX;
 import org.opengis.filter.spatial.Beyond;

@@ -53,7 +53,7 @@ public interface Georectified extends GridSpatialRepresentation {
      * georectified grid; at least two corner points along one diagonal are required.
      */
     @UML(identifier="cornerPoints", obligation=MANDATORY, specification=ISO_19115)
-    List<Point> getCornerPoints();
+    List<? extends Point> getCornerPoints();
 
     /**
      * Earth location in the coordinate system defined by the Spatial Reference System
@@ -79,5 +79,5 @@ public interface Georectified extends GridSpatialRepresentation {
      * Information about which grid dimensions are the spatial dimensions.
      */
     @UML(identifier="transformationDimensionMapping", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<InternationalString> getTransformationDimensionMapping();
+    Collection<? extends InternationalString> getTransformationDimensionMapping();
 }

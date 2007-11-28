@@ -13,6 +13,7 @@ package org.opengis.geometry.primitive;
 import org.opengis.geometry.DirectPosition;
 import org.opengis.geometry.coordinate.Position;
 import org.opengis.geometry.UnmodifiableGeometryException;
+import org.opengis.annotation.Association;
 import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Obligation.*;
@@ -89,6 +90,15 @@ public interface Point extends Primitive, Position {
      */
     @UML(identifier="bearing", obligation=MANDATORY, specification=ISO_19107)
     Bearing getBearing(Position toPoint);
+
+    /**
+     * Returns always {@code null}, since points have no proxy.
+     *
+     * @issue http://jira.codehaus.org/browse/GEO-63
+     */
+    @Association("Oriented")
+    @UML(identifier="proxy", obligation=FORBIDDEN, specification=ISO_19107)
+    OrientablePrimitive[] getProxy();
 
 //    public org.opengis.geometry.complex.GM_CompositePoint composite[];
 }

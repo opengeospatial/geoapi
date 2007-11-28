@@ -12,6 +12,7 @@ package org.opengis.geometry.primitive;
 
 import java.util.List;
 import org.opengis.geometry.coordinate.GenericSurface;
+import org.opengis.annotation.Association;
 import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Obligation.*;
@@ -56,7 +57,22 @@ public interface Surface extends OrientableSurface, GenericSurface {
      * @return The list of surface patches. Should never be {@code null} neither empty.
      *
      * @see SurfacePatch#getSurface
+     * @see Curve#getSegments
+     * @issue http://jira.codehaus.org/browse/GEO-63
      */
+    @Association("Segmentation")
     @UML(identifier="patch", obligation=MANDATORY, specification=ISO_19107)
     List<? extends SurfacePatch> getPatches();
+
+    /**
+     * Returns the orientable surfaces associated with this surface.
+     *
+     * @return The orientable surfaces as an array of length 2.
+     *
+     * @see OrientableSurface#getPrimitive
+     * @issue http://jira.codehaus.org/browse/GEO-63
+     */
+/// @Association("Oriented")
+/// @UML(identifier="proxy", obligation=MANDATORY, specification=ISO_19107)
+/// OrientableSurface[] getProxy();
 }
