@@ -1,0 +1,72 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<HTML>
+  <HEAD>
+    <TITLE>package org.opengis.sld</TITLE>
+  </HEAD>
+  <BODY>
+  Allows user-defined symbolization of feature data. The following is adapted from
+  <A HREF="http://portal.opengeospatial.org/files/?artifact_id=1188">OpenGIS&reg; Styled Layer Descriptor</A>
+  specification.
+
+  <P ALIGN="JUSTIFY">Package {@link org.opengis.layer} describes the appearance of a
+  map in terms of <CITE>styled layers</CITE>. A styled layer can be considered as a
+  transparent sheet with features symbolized upon it. A map is made up of a number of
+  these styled layers put together in a specified order. The styled layers are said to
+  be Z-ordered. Users can define more complex or simpler maps by adding or removing
+  styled layers.</P>
+
+  <P ALIGN="JUSTIFY">A styled layer itself represents a particular combination of
+  <CITE>layer</CITE> and a <CITE>style</CITE> in which that layer can be symbolized.
+  Conceptually, the layer defines a stream of features and the style defines how those
+  features are symbolized. This concept is underlined by the fact that there may be multiple
+  styles in which a layer can be symbolized.</P>
+
+  <H3>Scale selection</H3>
+  <P ALIGN="JUSTIFY">The {@code MinScaleDenominator} and {@code MaxScaleDenominator} elements of a
+  {@link org.opengis.sld.Rule} define the range of map-rendering scales for which the rule should be
+  applied. The values used are actually the scale <EM>denominators</EM> relative to a "standardized
+  rendering pixel size".</P>
+
+  <P ALIGN="JUSTIFY">The "standardized rendering pixel size" is defined to be 0.28mm &times; 0.28mm
+  (millimeters). Frequently, the true pixel size of the final rendering device is unknown in the web
+  environment, and 0.28mm is a common actual size for contemporary video displays. If the map-rendering
+  software has information available about the actual pixel size of the final display device, then an
+  extra processing step will be needed (if the actual pixel size is different from the standard pixel
+  size) to adjust the actual rendering scale to calculate the standard rendering scale, which will then
+  be used to compare to the scale range of an SLD {@linkplain org.opengis.sld.Rule rule}. If the actual
+  display device has non-square pixels, then a method of "linear equivalence" to square pixels should be
+  used to calculate the standard rendering scale.</P>
+
+  <P ALIGN="JUSTIFY">Since it is common to integrate the output of multiple servers into a single displayed
+  result in the web-mapping environment, it is important that different map servers have consistent behaviour
+  with respect to processing scales, so that all of the independent servers will select or deselect rules at
+  the same scales.</P>
+
+  <P ALIGN="JUSTIFY">To insure consistent behaviour, scales relative to coordinate spaces must be handled
+  consistently between map servers. For geographic coordinate systems, which use angular units, the angular
+  coverage of a map should be converted to linear units for computation of scale by using the circumference
+  of the Earth at the equator and by assuming perfectly square linear units. For linear coordinate systems,
+  the size of the coordinate space should be used directly without compensating for distortions in it with
+  respect to the shape of the real Earth.</P>
+  
+  <H3>Feature filtering</H3>
+  <P ALIGN="JUSTIFY">The {@code Filter} and {@code ElseFilter} elements of a {@link org.opengis.sld.Rule}
+  allow the selection of features in rules to be controlled by attribute conditions. As discussed in the
+  previous section, rule activation may also be controlled by the {@code MinScaleDenominator} and the
+  {@code MaxScaleDenominator} elements as well as the map-rendering scale.</P>
+
+  <H3>Symbolizers</H3>
+  <P ALIGN="JUSTIFY">Embedded inside of {@link org.opengis.sld.Rule}s, which group conditions for styling
+  features, are symbolizers. A symbolizer describes how a feature is to appear on a map. The symbolizer
+  describes not just the shape that should appear but also such graphical properties as color and opacity.
+  A symbol is obtained by specifying one of a small number of different types of symbolizer and then supplying
+  parameters to override its default behaviour. Currently, four types of symbolizers are defined:</P>
+  <UL>
+    <LI>{@linkplain org.opengis.sld.LineSymbol Line}</LI>
+    <LI>{@linkplain org.opengis.sld.PolygonSymbol Polygon}</LI>
+    <LI>{@linkplain org.opengis.sld.PointSymbol Point}</LI>
+    <LI>{@linkplain org.opengis.sld.TextSymbol Text}</LI>
+  </UL>
+  </BODY>
+</HTML>
