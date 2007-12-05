@@ -1,74 +1,43 @@
 package org.opengis.feature.type;
 
 import java.util.Map;
-import java.util.Set;
 
+//import java.util.Set;
 /**
- * A collection of AttributeType.
+ * Allows for type discouverability and reuse.
  * <p>
- * A schema is organized as a map of {@link Name} to {@link AttributeType}. In
- * each name,type tuple, the name matches the name of the type.
- * <pre>
- *   //create some attribute types
- *   AttributeType pointType =
- *     new AttributeTypeImpl( new NameImpl( "http://www.opengis.net/gml", "PointType" ), ... );
- *   AttributeType lineStringType =
- *     new AttributeTypeImpl( new NameImpl( "http://www.opengis.net/gml", "LineStringType" ), ... );
- *   AttributeType polygonType =
- *     new AttributeTypeImpl( new NameImpl( "http://www.opengis.net/gml", "PolygonType" ), ... );
- *
- *   //create a schema
- *   Schema schema = new SchemaImpl( "http://www.opengis.net/gml" );
- *
- *   //add types to the schema
- *   schema.add( pointType );
- *   schema.add( lineStringType );
- *   schema.add( polygonType );
- * </pre>
- * </p>
- * <p>
- * The intention of a schema is to provide a resuable set of attribute types.
- * These types are used when building attribute instances.
+ * We have not specified how schemas may be looked up, we recommend a JNDI
+ * solution based on the namespace uri used here. If needed you may also
+ * consider a Map<Name,Schema> in your application.
  * </p>
  *
  * @author Jody Garnett, Refractions Research, Inc.
- * @author Justin Deoliveira, The Open Planning Project
  */
 public interface Schema extends Map<Name, AttributeType> {
+    /**
+     * The keySet is actually a Namespace<TypeName> where you can also look up
+     * TypeNames by their local part.
+     */
+    Namespace keySet();
+
+    /** Dervived quantity from keySet() */
+    Namespace namespace(); // for java 1.4.x
 
     /**
-     * The uri of the schema.
-     * <p>
-     * This method is a convenience for <code>keySet().getURI()</code>.
-     * </p>
+     * Here is a helper method to retrive the "uri" for this schema.
      *
-     * @return The uri of the schema.
+     * @return value from namespace().getURI().
      */
-    String getURI();
+    String toURI();
 
     /**
-     * Adds a type to the schema.
-     * <p>
-     * This method is a convenience for <code>put(type.getName(),type)</code>.
-     * </p>
-     * @param type The type to add.
-     */
-    void add( AttributeType type );
-
-    /**
-     * Profiles the schema, creating a new schema in the process.
-     * <p>
-     * A profile of a schema is a subset of the schema, and it also a schema
-     * itself.
-     * </p>
+     * Used to select a profile of this schema.
      * <p>
      * Used to select a subset of types for a specific application. Profiles
      * often are used to express limitiations of a source of data.
      * </p>
-     * @param profile The set of names which corresond to entries that will make
-     * up the profile.
-     *
-     * @return The profile of the original schema.
+     * @param profile
+     * @return Subset of this schema
      */
-    Schema profile( Set<Name> profile );
+    Schema profile(Namespace profile);
 }

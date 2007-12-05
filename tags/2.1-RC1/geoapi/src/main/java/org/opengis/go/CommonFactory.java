@@ -10,7 +10,6 @@
  *************************************************************************************************/
 package org.opengis.go;
 
-import org.opengis.feature.type.FeatureTypeFactory;
 import org.opengis.filter.FilterFactory;
 import org.opengis.go.display.DisplayFactory;
 import org.opengis.metadata.citation.CitationFactory;
@@ -57,7 +56,7 @@ public interface CommonFactory {
      *
      * @return the feature type factory.
      */
-    FeatureTypeFactory getTypeFactory();
+//    FeatureTypeFactory getTypeFactory();
 
     /**
      * Returns the {@linkplain FilterFactory filter factory} singleton.

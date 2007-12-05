@@ -2,125 +2,31 @@ package org.opengis.feature.type;
 
 import java.util.Collection;
 
-import org.opengis.feature.ComplexAttribute;
 import org.opengis.feature.Property;
 
+
 /**
- * The type of a complex attribute.
- * <br/>
+ * Represents an AttirbuteType with interesting internal structure made
+ * available as properties.
  * <p>
- * Similar to how a complex attribute is composed of other properties, a complex
- * type is composed of property descriptors. A complex type is very much like a
- * complex type from xml schema. Consider the following xml schema complex type:
- * <pre>
- * &lt;element name="myComplexElement" type="myComplexType"/>
- * &lt;complexType name="myComplexType">
- *   &lt;sequence>
- *     &lt;element name="foo" type="xs:string" minOccurs="2" maxOccurs="4">
- *     &lt;element name="bar" type="xs:int" nillable=false/>
- *   &lt;/sequence>
- * &lt;/complexType>
- * </pre>
+ * When creating a wrapper for an existing java domain model the use of ComplexType
+ * is optional; the interface allows you to make available to the dynamic type system
+ * additional attributes, associations and operations. By making this detail available
+ * your feature model will be more rich and capable.
  *
- * The corresponding complex type that would emerge would be composed as follows:
- * <pre>
- *   ComplexType complexType = ...;
- *   complexType.getProperties().size() == 2;
- *
- *   //the foo property descriptor
- *   PropertyDescriptor foo = complexType.getProperty( "foo" );
- *   foo.getName().getLocalPart() == "foo";
- *   foo.getMinOccurs() == 2;
- *   foo.getMaxOccurs() == 4;
- *   foo.isNillable() == true;
- *   foo.getType().getName().getLocalPart() == "string";
- *
- *   //the bar property descriptor
- *   PropertyDescriptor bar = complexType.getProperty( "bar" );
- *   foo.getName().getLocalPart() == "bar";
- *   foo.getMinOccurs() == 1;
- *   foo.getMaxOccurs() == 1;
- *   foo.isNillable() == false;
- *   foo.getType().getName().getLocalPart() == "int";
- * </pre>
+ * <p>
+ * There are two kinds of properties that may be used to compose a complex type:
+ * <ul>
+ * <li>attributes - describes data contained in this complex type
+ * <li>associations - captures relationships with other types
+ * </ul>
+ * When choosing between attribute and associations - just answer this question. Is the
+ * value removed when you delete? If it is removed the value is an attribute, if it
+ * is an attribute, if the value would still be around you should model it with an association.
  * </p>
- * Now consider the following xml instance document:
- * <pre>
- * &lt;myComplexElement>
- *   &lt;foo>one&lt;/foo>
- *   &lt;foo>two&lt;/foo>
- *   &lt;foo>three&lt;/foo>
- *   &lt;bar>1&lt;/bar>
- * &lt;/myComplexElement>
- * </pre>
- * <br>
- * The resulting complex attribute would be composed as follows:
- * <pre>
- *   ComplexAttribute attribute = ...;
- *   attribute.getName().getLocalPart() == "myComplexElement";
- *   attribute.getType().getName().getLocalPart() == "myComplexType";
- *
- *   Collection foo = attribute.getProperties( "foo" );
- *   foo.size() == 3;
- *   foo.get(0).getValue() == "one";
- *   foo.get(1).getValue() == "two";
- *   foo.get(2).getValue() == "three";
- *
- *   Property bar = attribute.getProperty( "bar" );
- *   bar.getValue() == 1;
- * </pre>
- * </p>
- * @see ComplexAttribute
- *
  * @author Jody Garnett (Refractions Research)
- * @author Justin Deoliveira (The Open Planning Project)
  */
 public interface ComplexType extends AttributeType {
-    /**
-     * Override and type narrow to Collection<Property>.class.
-     */
-    Class<Collection<Property>> getBinding();
-
-    /**
-     * The property descriptor which compose the complex type.
-     * <p>
-     * A complex type can be composed of attributes and associations which means
-     * this collection returns instances of {@link AttributeDescriptor} and
-     * {@link AssociationDescriptor}.
-     * </p>
-     *
-     * @return Collection of descriptors representing the composition of the
-     * complex type.
-     */
-    Collection<PropertyDescriptor> getProperties();
-
-    /**
-     * Returns a single property by name.
-     * <p>
-     * This method returns <code>null</code> if no such property is found.
-     * </p>
-     * @param name The name of the property to get.
-     *
-     * @return The property matching the specified name, or <code>null</code>.
-     */
-    PropertyDescriptor getProperty( Name name );
-
-    /**
-     * Returns a single property by unqualified name.
-     * <p>
-     * Note: Special care should be taken when using this method in the case
-     * that two properties with the same local name but different namespace uri
-     * exist. For this reason using {@link #getProperty(Name)} is safer.
-     * </p>
-     * <p>
-     * This method returns <code>null</code> if no such property is found.
-     * </p>
-     * @param name The name of the property to get.
-     *
-     * @return The property matching the specified name, or <code>null</code>.
-     */
-    PropertyDescriptor getProperty( String name );
-
     /**
      * Indicates ability of XPath to notice this attribute.
      * <p>
@@ -170,7 +76,66 @@ public interface ComplexType extends AttributeType {
      *
      * @return true if  attribute is to be considered transparent by XPath queries
      */
-    boolean isInline();
+    public boolean isInline();
+
+    /**
+     * Java class bound to this complex type.
+     * <p>
+     * Note this method will return null if the complex type does not
+     * bind to a Java object.
+     * </p>
+     * @return Java binding, or null if not applicable
+     */
+    Class<Collection<Property>> getBinding();
+
+    /**
+     * Super is restricted to other ComplexTypes.
+     * <p>
+     * Note: If generics get in the way of reuse in this manner
+     * we will have to get rid of them. I cannot thing of a real
+     * world example where this is the case at the moment.
+     * </p>
+     * <p>
+     * Note: Although you may be tempted to make this
+     * ComplexType<List<Attribtue>> this would be inaccurate, a
+     * list of Attribtues is the data model, representing
+     * the representation of content to the feature modeling
+     * system. The real content may be expressed in terms a of
+     * Plain-old Java Object (POJO) as per the domain model
+     * being represented.
+     * </p>
+     * <p>
+     * A good sanity check is this: only use complex types
+     * when you need to make content accessable as attributes
+     * (perhaps you want to access the content via XPath for visialization?).
+     * </p>
+     * <p>
+     * Other ideas for making things easy:
+     * <ul>
+     * <li>An implementation of ComplexAttribute based on Java Bean
+     *     reflection.
+     * <li>Direct use of Java Beans in xPath expressions (see JXPath)
+     * </ul>
+     * In short the less work you as the end-user of this API have
+     * to put into use the better.
+     * </p>
+     */
+    ///ComplexType getSuper(); // TODO Restore this
+    /**
+     * Returns the only the structural properties (Attributes and Associations) used to define
+     * this type.
+     * <p>
+     * We are not including the OperationDescriptors in this list as they do not
+     * vary on a instance by instance basis. The difference between a ComplexType
+     * and a AttributeType is the notion of inner structure represented by this
+     * method.
+     * </p>
+     * <p>
+     * You may access "views" of this information using the attributes() and associations() methods.
+     * </p>
+     * @return Collection of StructuralDescriptors describing allowable contents
+     */
+    Collection<StructuralDescriptor> getProperties();
 
     /**
      * Describes allowable content, indicating containment.
@@ -189,11 +154,10 @@ public interface ComplexType extends AttributeType {
      * our data model.
      * </p>
      */
-    //Collection<AttributeDescriptor> attributes();
+    Collection<AttributeDescriptor> attributes();
 
     /**
      * Allowable associations, indicating non containment relationships.
      */
-    //Collection<AssociationDescriptor> associations();
-
+    Collection<AssociationDescriptor> associations();
 }

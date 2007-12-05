@@ -58,7 +58,6 @@ public interface FeatureStore {
      * available.
      */
     // Metadata getMetadata();
-
     /**
      * Gets a list of all the names of the types held in this feature store.
      * The typical usage of these generic names will be as follows:  In most

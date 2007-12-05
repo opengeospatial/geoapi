@@ -52,7 +52,7 @@ public class FeatureStoreException extends IOException {
      * @param cause the cause, saved for later retrieval by the {@link #getCause} method.
      */
     public FeatureStoreException(final Throwable cause) {
-        super(cause==null ? null : cause.toString());
+        super(cause == null ? null : cause.toString());
         initCause(cause);
     }
 
