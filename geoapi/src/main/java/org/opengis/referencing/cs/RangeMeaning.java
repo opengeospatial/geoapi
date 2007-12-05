@@ -79,14 +79,14 @@ public final class RangeMeaning extends CodeList<RangeMeaning> {
      */
     public static RangeMeaning[] values() {
         synchronized (VALUES) {
-            return (RangeMeaning[]) VALUES.toArray(new RangeMeaning[VALUES.size()]);
+            return VALUES.toArray(new RangeMeaning[VALUES.size()]);
         }
     }
 
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
-    public /*{RangeMeaning}*/ CodeList[] family() {
+    public RangeMeaning[] family() {
         return values();
     }
 

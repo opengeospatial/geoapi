@@ -12,6 +12,7 @@ package org.opengis.coverage;
 
 import java.util.Collection;
 import java.util.Set;
+import org.opengis.util.Record;
 import org.opengis.geometry.DirectPosition;
 import org.opengis.geometry.primitive.Curve;
 import org.opengis.annotation.UML;
@@ -98,5 +99,5 @@ public interface SegmentedCurveCoverage extends ContinuousCoverage {
      * @todo The return type should be Set<Record>.
      */
     @UML(identifier="evaluate", obligation=MANDATORY, specification=ISO_19123)
-    Set/*<Record>*/ evaluate(DirectPosition p, Collection<String> list);
+    Set<Record> evaluate(DirectPosition p, Collection<String> list);
 }

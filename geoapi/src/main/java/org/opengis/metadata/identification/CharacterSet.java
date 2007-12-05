@@ -267,15 +267,15 @@ public final class CharacterSet extends CodeList<CharacterSet> {
      */
     public static CharacterSet[] values() {
         synchronized (VALUES) {
-            return (CharacterSet[]) VALUES.toArray(new CharacterSet[VALUES.size()]);
+            return VALUES.toArray(new CharacterSet[VALUES.size()]);
         }
     }
 
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
-    public /*{CharacterSet}*/ CodeList[] family() {
-        return (CodeList[]) VALUES.toArray(new CodeList[VALUES.size()]);
+    public CharacterSet[] family() {
+        return values();
     }
 
     /**

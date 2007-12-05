@@ -92,14 +92,14 @@ public final class SplineCurveForm extends CodeList<SplineCurveForm> {
      */
     public static SplineCurveForm[] values() {
         synchronized (VALUES) {
-            return (SplineCurveForm[]) VALUES.toArray(new SplineCurveForm[VALUES.size()]);
+            return VALUES.toArray(new SplineCurveForm[VALUES.size()]);
         }
     }
 
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
-    public /*{SplineCurveForm}*/ CodeList[] family() {
+    public SplineCurveForm[] family() {
         return values();
     }
 

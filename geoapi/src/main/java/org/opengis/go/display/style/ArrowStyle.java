@@ -102,14 +102,14 @@ public class ArrowStyle extends SimpleEnumerationType<ArrowStyle> {
      */
     public static ArrowStyle[] values() {
         synchronized (VALUES) {
-            return (ArrowStyle[]) VALUES.toArray(new ArrowStyle[VALUES.size()]);
+            return VALUES.toArray(new ArrowStyle[VALUES.size()]);
         }
     }
 
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
-    public /*{ArrowStyle}*/ CodeList[] family() {
+    public ArrowStyle[] family() {
         return values();
     }
 }

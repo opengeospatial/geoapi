@@ -135,6 +135,7 @@ public interface DirectPosition extends Position, Cloneable {
      *
      * @since GeoAPI 2.1
      */
+    @Override
     boolean equals(Object object);
 
     /**
@@ -149,6 +150,7 @@ public interface DirectPosition extends Position, Cloneable {
      *
      * @since GeoAPI 2.1
      */
+    @Override
     int hashCode();
 
     /**
@@ -157,5 +159,5 @@ public interface DirectPosition extends Position, Cloneable {
      * @deprecated The {@linkplain Cloneable} status of {@code DirectPosition} should be left
      *             to implementors.
      */
-    /* {DirectPosition} */Object clone();
+    DirectPosition clone();
 }

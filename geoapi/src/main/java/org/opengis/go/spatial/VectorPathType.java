@@ -60,7 +60,7 @@ public final class VectorPathType extends PathType {
     /**
      * Returns the list of {@code VectorPathType}s.
      */
-    public static /*{VectorPathType}*/ PathType[] values() {
+    public static VectorPathType[] values() {
         synchronized (VALUES) {
             return values(VectorPathType.class, count);
         }
@@ -70,7 +70,7 @@ public final class VectorPathType extends PathType {
      * Returns the list of enumerations of the same kind than this enum.
      */
     @Override
-    public /*{VectorPathType}*/ org.opengis.util.CodeList[] family() {
+    public VectorPathType[] family() {
         return values();
     }
 }

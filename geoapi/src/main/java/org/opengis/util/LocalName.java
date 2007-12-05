@@ -58,5 +58,6 @@ public interface LocalName extends GenericName {
      * Returns a locale-independant string representation of this local name.
      */
     @UML(identifier="aName", obligation=MANDATORY, specification=ISO_19103)
+    @Override
     String toString();
 }

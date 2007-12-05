@@ -72,7 +72,7 @@ public interface Surface extends OrientableSurface, GenericSurface {
      * @see OrientableSurface#getPrimitive
      * @issue http://jira.codehaus.org/browse/GEO-63
      */
-/// @Association("Oriented")
-/// @UML(identifier="proxy", obligation=MANDATORY, specification=ISO_19107)
-/// OrientableSurface[] getProxy();
+    @Association("Oriented")
+    @UML(identifier="proxy", obligation=MANDATORY, specification=ISO_19107)
+    OrientableSurface[] getProxy();
 }

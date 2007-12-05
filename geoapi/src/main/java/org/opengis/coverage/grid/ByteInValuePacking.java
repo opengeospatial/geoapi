@@ -89,14 +89,14 @@ public final class ByteInValuePacking extends CodeList<ByteInValuePacking> {
      */
     public static ByteInValuePacking[] values() {
         synchronized (VALUES) {
-            return (ByteInValuePacking[]) VALUES.toArray(new ByteInValuePacking[VALUES.size()]);
+            return VALUES.toArray(new ByteInValuePacking[VALUES.size()]);
         }
     }
 
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
-    public /*{ByteInValuePacking}*/ CodeList[] family() {
+    public ByteInValuePacking[] family() {
         return values();
     }
 

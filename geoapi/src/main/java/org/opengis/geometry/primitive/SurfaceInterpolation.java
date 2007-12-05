@@ -132,14 +132,14 @@ public final class SurfaceInterpolation extends CodeList<SurfaceInterpolation> {
      */
     public static SurfaceInterpolation[] values() {
         synchronized (VALUES) {
-            return (SurfaceInterpolation[]) VALUES.toArray(new SurfaceInterpolation[VALUES.size()]);
+            return VALUES.toArray(new SurfaceInterpolation[VALUES.size()]);
         }
     }
 
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
-    public /*{SurfaceInterpolation}*/ CodeList[] family() {
+    public SurfaceInterpolation[] family() {
         return values();
     }
 

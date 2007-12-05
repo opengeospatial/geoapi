@@ -53,7 +53,7 @@ public class FeatureStoreException extends IOException {
      */
     public FeatureStoreException(final Throwable cause) {
         super(cause==null ? null : cause.toString());
-        initCause(cause);
+        initCause(cause); // TODO: inline when we will be allowed to target Java 6.
     }
 
     /**
@@ -64,6 +64,6 @@ public class FeatureStoreException extends IOException {
      */
     public FeatureStoreException(final String message, final Throwable cause) {
         super(message);
-        initCause(cause);
+        initCause(cause); // TODO: inline when we will be allowed to target Java 6.
     }
 }

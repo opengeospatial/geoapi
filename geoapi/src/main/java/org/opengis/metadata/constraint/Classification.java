@@ -88,14 +88,14 @@ public final class Classification extends CodeList<Classification> {
      */
     public static Classification[] values() {
         synchronized (VALUES) {
-            return (Classification[]) VALUES.toArray(new Classification[VALUES.size()]);
+            return VALUES.toArray(new Classification[VALUES.size()]);
         }
     }
 
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
-    public /*{Classification}*/ CodeList[] family() {
+    public Classification[] family() {
         return values();
     }
 

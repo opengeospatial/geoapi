@@ -77,14 +77,14 @@ public final class EvaluationMethodType extends CodeList<EvaluationMethodType> {
      */
     public static EvaluationMethodType[] values() {
         synchronized (VALUES) {
-            return (EvaluationMethodType[]) VALUES.toArray(new EvaluationMethodType[VALUES.size()]);
+            return VALUES.toArray(new EvaluationMethodType[VALUES.size()]);
         }
     }
 
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
-    public /*{EvaluationMethodType}*/ CodeList[] family() {
+    public EvaluationMethodType[] family() {
         return values();
     }
 

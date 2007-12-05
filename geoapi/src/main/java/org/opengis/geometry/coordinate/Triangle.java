@@ -53,6 +53,6 @@ public interface Triangle extends Polygon {
     /**
      * Returns the patch which own this surface patch.
      */
-/// @UML(identifier="surface", obligation=MANDATORY, specification=ISO_19107)
-/// TriangulatedSurface getSurface();
+    @UML(identifier="surface", obligation=MANDATORY, specification=ISO_19107)
+    TriangulatedSurface getSurface();
 }

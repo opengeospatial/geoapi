@@ -12,6 +12,7 @@ package org.opengis.coverage;
 
 import java.util.Set;
 import java.util.Collection;
+import org.opengis.util.Record;
 import org.opengis.geometry.DirectPosition;
 import org.opengis.annotation.UML;
 
@@ -66,7 +67,7 @@ public interface DiscreteCoverage extends Coverage {
      * @todo Returns type should be Set<Record>.
      */
     @UML(identifier="evaluate", obligation=MANDATORY, specification=ISO_19123)
-    Set/*<Record>*/ evaluate(DirectPosition p, Collection<String> list);
+    Set<Record> evaluate(DirectPosition p, Collection<String> list);
 
     /**
      * Locates the <var>geometry</var>-<var>value</var> pairs for which value equals the input
@@ -74,9 +75,7 @@ public interface DiscreteCoverage extends Coverage {
      * <var>geometry</var>-<var>value</var> pairs. It shall return {@code null} set if none of the
      * <var>geometry</var>-<var>value</var> pairs associated with this discrete coverage has a
      * value equal to the input record.
-     *
-     * @todo Missing the Record argument.
      */
     @UML(identifier="evaluateInverse", obligation=OPTIONAL, specification=ISO_19123)
-    Set<? extends DomainObject> evaluateInverse(Object /*<Record>*/ v);
+    Set<? extends DomainObject> evaluateInverse(Record v);
 }

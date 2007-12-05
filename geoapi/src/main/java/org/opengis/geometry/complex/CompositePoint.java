@@ -38,7 +38,7 @@ public interface CompositePoint extends Composite {
      *
      * @return The single point in this composite.
      */
-/// @Association("Composition")
-/// @UML(identifier="generator", obligation=MANDATORY, specification=ISO_19107)
-/// List<Point> getGenerators();
+    @Association("Composition")
+    @UML(identifier="generator", obligation=MANDATORY, specification=ISO_19107)
+    List<Point> getGenerators();
 }

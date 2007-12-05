@@ -109,14 +109,14 @@ public final class VerticalDatumType extends CodeList<VerticalDatumType> {
      */
     public static VerticalDatumType[] values() {
         synchronized (VALUES) {
-            return (VerticalDatumType[]) VALUES.toArray(new VerticalDatumType[VALUES.size()]);
+            return VALUES.toArray(new VerticalDatumType[VALUES.size()]);
         }
     }
 
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
-    public /*{VerticalDatumType}*/ CodeList[] family() {
+    public VerticalDatumType[] family() {
         return values();
     }
 

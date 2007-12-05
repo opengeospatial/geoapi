@@ -40,16 +40,16 @@ public interface ProjectedCRS extends GeneralDerivedCRS {
     /**
      * Returns the base coordinate reference system, which must be geographic.
      */
-/// GeographicCRS getBaseCRS();
+    GeographicCRS getBaseCRS();
 
     /**
      * Returns the map projection from the {@linkplain #getBaseCRS base CRS} to this CRS.
      */
-/// Projection getConversionFromBase();
+    Projection getConversionFromBase();
 
     /**
      * Returns the coordinate system, which must be cartesian.
      */
-/// @UML(identifier="usesCS", obligation=MANDATORY, specification=ISO_19111)
-/// CartesianCS getCoordinateSystem();
+    @UML(identifier="usesCS", obligation=MANDATORY, specification=ISO_19111)
+    CartesianCS getCoordinateSystem();
 }

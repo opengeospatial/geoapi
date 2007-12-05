@@ -101,14 +101,14 @@ public class LinePattern extends SimpleEnumerationType<LinePattern> {
      */
     public static LinePattern[] values() {
         synchronized (VALUES) {
-            return (LinePattern[]) VALUES.toArray(new LinePattern[VALUES.size()]);
+            return VALUES.toArray(new LinePattern[VALUES.size()]);
         }
     }
 
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
-    public /*{LinePattern}*/ CodeList[] family() {
+    public LinePattern[] family() {
         return values();
     }
 }

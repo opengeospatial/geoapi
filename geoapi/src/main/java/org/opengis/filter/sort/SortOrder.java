@@ -94,14 +94,14 @@ public final class SortOrder extends CodeList<SortOrder> {
      */
     public static SortOrder[] values() {
         synchronized (VALUES) {
-            return (SortOrder[]) VALUES.toArray(new SortOrder[VALUES.size()]);
+            return VALUES.toArray(new SortOrder[VALUES.size()]);
         }
     }
 
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
-    public /*{SortOrder}*/ CodeList[] family() {
+    public SortOrder[] family() {
         return values();
     }
 

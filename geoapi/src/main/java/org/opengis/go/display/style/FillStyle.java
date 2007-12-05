@@ -109,14 +109,14 @@ public class FillStyle extends SimpleEnumerationType<FillStyle> {
      */
     public static FillStyle[] values() {
         synchronized (VALUES) {
-            return (FillStyle[]) VALUES.toArray(new FillStyle[VALUES.size()]);
+            return VALUES.toArray(new FillStyle[VALUES.size()]);
         }
     }
 
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
-    public /*{FillStyle}*/ CodeList[] family() {
+    public FillStyle[] family() {
         return values();
     }
 }

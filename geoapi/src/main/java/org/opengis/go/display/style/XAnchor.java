@@ -80,14 +80,14 @@ public class XAnchor extends SimpleEnumerationType<XAnchor> {
      */
     public static XAnchor[] values() {
         synchronized (VALUES) {
-            return (XAnchor[]) VALUES.toArray(new XAnchor[VALUES.size()]);
+            return VALUES.toArray(new XAnchor[VALUES.size()]);
         }
     }
 
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
-    public /*{XAnchor}*/ CodeList[] family() {
+    public XAnchor[] family() {
         return values();
     }
 }

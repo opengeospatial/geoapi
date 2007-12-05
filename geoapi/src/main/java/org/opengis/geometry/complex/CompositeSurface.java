@@ -50,7 +50,7 @@ public interface CompositeSurface extends Composite, OrientableSurface {
      * @see OrientableSurface#getComposite
      * @issue http://jira.codehaus.org/browse/GEO-63
      */
-/// @Association("Composition")
-/// @UML(identifier="generator", obligation=MANDATORY, specification=ISO_19107)
-/// Set<OrientableSurface> getGenerators();
+    @Association("Composition")
+    @UML(identifier="generator", obligation=MANDATORY, specification=ISO_19107)
+    Set<OrientableSurface> getGenerators();
 }

@@ -40,8 +40,8 @@ public interface ParameterDescriptor<T> extends GeneralParameterDescriptor {
      * The {@linkplain ParameterValue#getDescriptor parameter value descriptor}
      * for the created parameter value will be {@code this} object.
      */
-/// @Extension
-/// ParameterValue<T> createValue();
+    @Extension
+    ParameterValue<T> createValue();
 
     /**
      * Returns the class that describe the type of the parameter.

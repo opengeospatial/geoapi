@@ -67,7 +67,7 @@ public interface WebFeatureService extends WebService {
      *
      */
     @UML(identifier="capabilities", specification=UNSPECIFIED)
-/// WebServiceCapabilities getCapabilities();
+    WebServiceCapabilities getCapabilities();
 
     String getVersion();
 

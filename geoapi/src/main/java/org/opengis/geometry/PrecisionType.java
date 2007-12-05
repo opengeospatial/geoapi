@@ -86,14 +86,14 @@ public final class PrecisionType extends CodeList<PrecisionType> {
      */
     public static PrecisionType[] values() {
         synchronized (VALUES) {
-            return (PrecisionType[]) VALUES.toArray(new PrecisionType[VALUES.size()]);
+            return VALUES.toArray(new PrecisionType[VALUES.size()]);
         }
     }
 
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
-    public /*{PrecisionModelType}*/ CodeList[] family() {
+    public PrecisionType[] family() {
         return values();
     }
 

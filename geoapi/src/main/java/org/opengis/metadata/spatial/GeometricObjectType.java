@@ -116,14 +116,14 @@ public final class GeometricObjectType extends CodeList<GeometricObjectType> {
      */
     public static GeometricObjectType[] values() {
         synchronized (VALUES) {
-            return (GeometricObjectType[]) VALUES.toArray(new GeometricObjectType[VALUES.size()]);
+            return VALUES.toArray(new GeometricObjectType[VALUES.size()]);
         }
     }
 
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
-    public /*{GeometricObjectType}*/ CodeList[] family() {
+    public GeometricObjectType[] family() {
         return values();
     }
 

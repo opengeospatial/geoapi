@@ -70,14 +70,14 @@ public final class PixelInCell extends CodeList<PixelInCell> {
      */
     public static PixelInCell[] values() {
         synchronized (VALUES) {
-            return (PixelInCell[]) VALUES.toArray(new PixelInCell[VALUES.size()]);
+            return VALUES.toArray(new PixelInCell[VALUES.size()]);
         }
     }
 
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
-    public /*{PixelInCell}*/ CodeList[] family() {
+    public PixelInCell[] family() {
         return values();
     }
 

@@ -51,8 +51,8 @@ public interface ParameterDescriptorGroup extends GeneralParameterDescriptor {
      *     {@link ParameterValue} entries may be created only as needed.</li>
      * </ul>
      */
-/// @Extension
-/// ParameterValueGroup createValue();
+    @Extension
+    ParameterValueGroup createValue();
 
     /**
      * Returns the parameters in this group.

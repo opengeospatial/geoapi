@@ -81,14 +81,15 @@ public class FeatureStoreEvent extends EventObject {
     /**
      * Returns the source as a feature store.
      */
-    public /*{FeatureStore}*/ Object getSource() {
+    @Override
+    public FeatureStore getSource() {
         return (FeatureStore) super.getSource();
     }
 
     /**
      * Synonym for {@link #getSource}, but does the cast for you.
      *
-     * @todo To be replaced by {@link #getSource} in a J2SE 1.5 profile.
+     * @deprecated To be replaced by {@link #getSource} in a J2SE 1.5 profile.
      */
     public FeatureStore getFeatureStore() {
         return (FeatureStore) super.getSource();
@@ -113,20 +114,21 @@ public class FeatureStoreEvent extends EventObject {
      * Returns a string representation of this event. Of the form
      * {@code "FeatureStore (featureStore.displayName|featureStore) (ADD|MODIFY|DELETE) Event"}.
      */
+    @Override
     public String toString() {
-        final StringBuffer buffer = new StringBuffer("FeatureStore ");
-        final FeatureStore featureStore = getFeatureStore();
+        final StringBuilder buffer = new StringBuilder("FeatureStore ");
+        final FeatureStore featureStore = getSource();
         if (featureStore != null) {
             final InternationalString name = featureStore.getDisplayName();
-            buffer.append(name!=null ? name.toString() : featureStore.toString());
+            buffer.append(name!=null ? (Object) name : (Object) featureStore);
         }
-        buffer.append(' ');
+        final String type;
         switch (eventType) {
-            case ADD:    buffer.append("ADD");    break;
-            case MODIFY: buffer.append("MODIFY"); break;
-            case DELETE: buffer.append("DELETE"); break;
+            case ADD:    type = "ADD";     break;
+            case MODIFY: type = "MODIFY";  break;
+            case DELETE: type = "DELETE";  break;
+            default:     type = "unknown"; break;
         }
-        buffer.append(" Event");
-        return buffer.toString();
+        return buffer.append(' ').append(type).append(" Event").toString();
     }
 }

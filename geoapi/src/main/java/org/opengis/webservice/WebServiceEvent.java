@@ -181,13 +181,12 @@ public final class WebServiceEvent extends EventObject {
 
     @Override
     public String toString() {
-        String ret = null;
-        ret = getClass().getName() + ":\n";
-        ret += ( "request = " + request + "\n" );
-        ret += ( "response = " + response + "\n" );
-        ret += ( "client = " + client + "\n" );
-        ret += ( "type = " + type + "\n" );
-        ret += ( "message = " + message + "\n" );
-        return ret;
+        final String lineSeparator = System.getProperty("line.separator", "\n");
+        return getClass().getSimpleName() + ':' + lineSeparator +
+                "request  = " + request  + lineSeparator +
+                "response = " + response + lineSeparator +
+                "client   = " + client   + lineSeparator +
+                "type     = " + type     + lineSeparator +
+                "message  = " + message  + lineSeparator;
     }
 }

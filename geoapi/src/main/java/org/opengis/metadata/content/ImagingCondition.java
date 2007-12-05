@@ -126,14 +126,14 @@ public final class ImagingCondition extends CodeList<ImagingCondition> {
      */
     public static ImagingCondition[] values() {
         synchronized (VALUES) {
-            return (ImagingCondition[]) VALUES.toArray(new ImagingCondition[VALUES.size()]);
+            return VALUES.toArray(new ImagingCondition[VALUES.size()]);
         }
     }
 
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
-    public /*{ImagingCondition}*/ CodeList[] family() {
+    public ImagingCondition[] family() {
         return values();
     }
 

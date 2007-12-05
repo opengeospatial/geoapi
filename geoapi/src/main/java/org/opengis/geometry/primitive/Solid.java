@@ -52,8 +52,8 @@ public interface Solid extends Primitive {
      *
      * @return The sets of positions on the boundary.
      */
-/// @UML(identifier="boundary", obligation=MANDATORY, specification=ISO_19107)
-/// public SolidBoundary getBoundary();
+    @UML(identifier="boundary", obligation=MANDATORY, specification=ISO_19107)
+    SolidBoundary getBoundary();
 
     /**
      * Returns the sum of the surface areas of all of the boundary components of a solid.

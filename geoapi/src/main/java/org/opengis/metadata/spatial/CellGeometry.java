@@ -68,14 +68,14 @@ public final class CellGeometry extends CodeList<CellGeometry> {
      */
     public static CellGeometry[] values() {
         synchronized (VALUES) {
-            return (CellGeometry[]) VALUES.toArray(new CellGeometry[VALUES.size()]);
+            return VALUES.toArray(new CellGeometry[VALUES.size()]);
         }
     }
 
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
-    public /*{CellGeometry}*/ CodeList[] family() {
+    public CellGeometry[] family() {
         return values();
     }
 

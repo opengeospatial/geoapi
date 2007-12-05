@@ -160,7 +160,7 @@ public interface GridCoverage extends Coverage {
      *
      * @return The sources data for a grid coverage.
      */
-/// List<GridCoverage> getSources();
+    List<GridCoverage> getSources();
 
     /**
      * Return a sequence of boolean values for a block.

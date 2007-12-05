@@ -356,14 +356,14 @@ public interface GraphicArc extends Graphic {
          */
         public static ArcClosure[] values() {
             synchronized (VALUES) {
-                return (ArcClosure[]) VALUES.toArray(new ArcClosure[VALUES.size()]);
+                return VALUES.toArray(new ArcClosure[VALUES.size()]);
             }
         }
 
         /**
          * Returns the list of enumerations of the same kind than this enum.
          */
-        public /*{ArcClosure}*/ CodeList[] family() {
+        public ArcClosure[] family() {
             return values();
         }
     }  // end class ArcClosure

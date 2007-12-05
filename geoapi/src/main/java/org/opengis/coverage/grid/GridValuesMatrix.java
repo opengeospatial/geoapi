@@ -11,6 +11,7 @@
 package org.opengis.coverage.grid;
 
 import java.util.List;
+import org.opengis.util.Record;
 import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Obligation.*;
@@ -43,7 +44,7 @@ public interface GridValuesMatrix extends Grid {
      *       </table>
      */
     @UML(identifier="values", obligation=MANDATORY, specification=ISO_19123)
-    List/*<Record>*/ getValues();
+    List<Record> getValues();
 
     /**
      * Describes how the grid points are ordered for association to the elements of the sequence

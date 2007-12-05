@@ -89,9 +89,9 @@ public class DashArray extends LinePattern {
     /**
      * Returns the list of {@code DashArray}s.
      */
-    public static /*{DashArray}*/ LinePattern[] values() {
+    public static DashArray[] values() {
         synchronized (VALUES) {
-            return (DashArray[]) VALUES.toArray(new DashArray[VALUES.size()]);
+            return VALUES.toArray(new DashArray[VALUES.size()]);
         }
     }
 
@@ -99,7 +99,7 @@ public class DashArray extends LinePattern {
      * Returns the list of enumerations of the same kind than this enum.
      */
     @Override
-    public /*{DashArray}*/ CodeList[] family() {
+    public DashArray[] family() {
         return values();
     }
 }

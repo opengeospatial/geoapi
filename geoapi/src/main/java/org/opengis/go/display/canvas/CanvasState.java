@@ -41,7 +41,7 @@ public interface CanvasState {
      * Returns a copy of this state object. The implementation should also clone
      * the object returned by <code>getCanvasParameterAccessor()</code>.
      */
-    Object clone() throws CloneNotSupportedException;
+    CanvasState clone() throws CloneNotSupportedException;
 
     /**
      * Determines if the given object is the same type of Canvas state object
@@ -49,5 +49,6 @@ public interface CanvasState {
      * should also test equivalency of the object returned by
      * <code>getCanvasParameterAccessor()</code>.
      */
+    @Override
     boolean equals(Object object);
 }

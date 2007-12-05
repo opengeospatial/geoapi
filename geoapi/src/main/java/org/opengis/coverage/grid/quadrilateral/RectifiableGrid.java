@@ -41,8 +41,8 @@ public interface RectifiableGrid  extends GridPositioning {
      * conversions as defined by ISO 19111.  This attribute shall be identical to the conversion
      * attribute.
      */
-/// @Extension
-/// Conversion getOperation();
+    @Extension
+    Conversion getOperation();
 
     /**
      * This inherited attribute shall contain only the {@link Conversion} subtype of the
@@ -50,8 +50,8 @@ public interface RectifiableGrid  extends GridPositioning {
      * represent only coordinate conversions as defined by ISO 19111.  This attribute shall
      * be identical to the conversion attribute.
      */
-/// @Extension
-/// Conversion getInverseOperation();
+    @Extension
+    Conversion getInverseOperation();
 
     /**
      * Converts grid coordinates through an affine transform to a direct position.

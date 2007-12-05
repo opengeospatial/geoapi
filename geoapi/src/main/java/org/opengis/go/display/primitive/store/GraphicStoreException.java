@@ -31,11 +31,11 @@ public class GraphicStoreException extends IOException {
 
     public GraphicStoreException(final Throwable cause) {
         super();
-        initCause(cause);
+        initCause(cause); // TODO: inline when we will be allowed to target Java 6.
     }
 
     public GraphicStoreException(final String message, final Throwable cause) {
         super(message);
-        initCause(cause);
+        initCause(cause); // TODO: inline when we will be allowed to target Java 6.
     }
 }

@@ -10,8 +10,10 @@
  *************************************************************************************************/
 package org.opengis.feature.type;
 
-// J2SE direct dependencies
 import java.util.Set;
+import org.opengis.annotation.UML;
+import static org.opengis.annotation.Specification.*;
+
 
 /**
  * A set of 0 or more names, with no duplicates.
@@ -57,7 +59,7 @@ import java.util.Set;
  *
  * @since GeoAPI 2.1
  */
-//@UML(identifier="NameSpace", specification=ISO_19103)
+@UML(identifier="NameSpace", specification=ISO_19103)
 public interface Namespace extends Set<Name> {
 
     /**

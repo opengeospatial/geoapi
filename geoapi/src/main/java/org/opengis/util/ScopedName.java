@@ -105,5 +105,6 @@ public interface ScopedName extends GenericName {
      * will depend on the mode of expression: URN or {@code Authority:Identifier} notation.
      */
     @UML(identifier="scopedName", obligation=MANDATORY, specification=ISO_19103)
+    @Override
     String toString();
 }

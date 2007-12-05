@@ -341,14 +341,14 @@ public final class AxisDirection extends CodeList<AxisDirection> {
      */
     public static AxisDirection[] values() {
         synchronized (VALUES) {
-            return (AxisDirection[]) VALUES.toArray(new AxisDirection[VALUES.size()]);
+            return VALUES.toArray(new AxisDirection[VALUES.size()]);
         }
     }
 
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
-    public /*{AxisDirection}*/ CodeList[] family() {
+    public AxisDirection[] family() {
         return values();
     }
 

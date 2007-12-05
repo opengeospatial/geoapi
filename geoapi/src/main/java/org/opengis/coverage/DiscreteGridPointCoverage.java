@@ -12,6 +12,7 @@ package org.opengis.coverage;
 
 import java.util.List;
 import java.util.Set;
+import org.opengis.util.Record;
 import org.opengis.coverage.grid.GridPoint;
 import org.opengis.coverage.grid.GridPointValuePair;
 import org.opengis.coverage.grid.GridCoordinates;
@@ -114,8 +115,8 @@ public interface DiscreteGridPointCoverage extends DiscreteCoverage {
      * Returns the nearest <var>point</var>-<var>value</var> pair from the specified direct
      * position. This is a shortcut for <code>{@linkplain #find(DirectPosition,int) find}(p,1)</code>.
      */
-/// @UML(identifier="find", obligation=MANDATORY, specification=ISO_19123)
-/// GridPointValuePair find(DirectPosition p);
+    @UML(identifier="find", obligation=MANDATORY, specification=ISO_19123)
+    GridPointValuePair find(DirectPosition p);
 
     /**
      * Uses data from the associated {@linkplain GridValuesMatrix grid values matrix} to construct
@@ -130,9 +131,7 @@ public interface DiscreteGridPointCoverage extends DiscreteCoverage {
      * in the domain that are associated with values equal to those in the input record. However,
      * the operation may return other {@linkplain GridPoint points} derived from those in the
      * domain, as specified by the application schema.
-     *
-     * @todo Missing the Record argument.
      */
     @UML(identifier="evaluateInverse", obligation=MANDATORY, specification=ISO_19123)
-    Set<GridPoint> evaluateInverse(Object /*<Record>*/ v);
+    Set<GridPoint> evaluateInverse(Record v);
 }
