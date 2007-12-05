@@ -10,11 +10,9 @@
  *************************************************************************************************/
 package org.opengis.geometry.coordinate;
 
-import java.util.Iterator;
 import java.util.List;
 import java.util.ArrayList;
 
-import org.opengis.metadata.identification.KeywordType;
 import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
 
@@ -96,17 +94,7 @@ public class KnotType extends CodeList<KnotType> {
      * Returns the KnotType that matches the given string, or returns a
      * new one if none match it.
      */
-    public static synchronized KnotType valueOf(String code) {
-        if (code == null) {
-            return null;
-        }
-        Iterator iter = VALUES.iterator();
-        while (iter.hasNext()) {
-            KnotType type = (KnotType) iter.next();
-            if (code.equalsIgnoreCase(type.name())) {
-                return type;
-            }
-        }
-        return new KnotType(code);
+    public static KnotType valueOf(String code) {
+        return valueOf(KnotType.class, code);
     }
 }

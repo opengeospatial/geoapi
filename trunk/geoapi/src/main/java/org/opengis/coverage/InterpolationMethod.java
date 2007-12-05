@@ -10,11 +10,9 @@
  *************************************************************************************************/
 package org.opengis.coverage;
 
-import java.util.Iterator;
 import java.util.List;
 import java.util.ArrayList;
 
-import org.opengis.metadata.identification.InitiativeType;
 import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
 
@@ -200,20 +198,10 @@ public class InterpolationMethod extends CodeList<InterpolationMethod> {
     }
 
     /**
-     * Returns the InterpolationMethod that matches the given string, or returns a
+     * Returns the interpolation method that matches the given string, or returns a
      * new one if none match it.
      */
-    public static synchronized InterpolationMethod valueOf(String code) {
-        if (code == null) {
-            return null;
-        }
-        Iterator iter = VALUES.iterator();
-        while (iter.hasNext()) {
-            InterpolationMethod type = (InterpolationMethod) iter.next();
-            if (code.equalsIgnoreCase(type.name())) {
-                return type;
-            }
-        }
-        return new InterpolationMethod(code);
+    public static InterpolationMethod valueOf(String code) {
+        return valueOf(InterpolationMethod.class, code);
     }
 }

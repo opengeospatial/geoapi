@@ -10,11 +10,9 @@
  *************************************************************************************************/
 package org.opengis.metadata.spatial;
 
-import java.util.Iterator;
 import java.util.List;
 import java.util.ArrayList;
 
-import org.opengis.metadata.citation.DateType;
 import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
 
@@ -117,20 +115,10 @@ public final class DimensionNameType extends CodeList<DimensionNameType> {
     }
 
     /**
-     * Returns the DimensionNameType that matches the given string, or returns a
+     * Returns the dimension name type that matches the given string, or returns a
      * new one if none match it.
      */
-    public static synchronized DimensionNameType valueOf(String code) {
-        if (code == null) {
-            return null;
-        }
-        Iterator iter = VALUES.iterator();
-        while (iter.hasNext()) {
-            DimensionNameType type = (DimensionNameType) iter.next();
-            if (code.equalsIgnoreCase(type.name())) {
-                return type;
-            }
-        }
-        return new DimensionNameType(code);
+    public static DimensionNameType valueOf(String code) {
+        return valueOf(DimensionNameType.class, code);
     }
 }

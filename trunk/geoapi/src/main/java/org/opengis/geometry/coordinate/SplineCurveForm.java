@@ -10,11 +10,9 @@
  *************************************************************************************************/
 package org.opengis.geometry.coordinate;
 
-import java.util.Iterator;
 import java.util.List;
 import java.util.ArrayList;
 
-import org.opengis.metadata.spatial.SpatialRepresentationType;
 import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
 
@@ -104,20 +102,10 @@ public final class SplineCurveForm extends CodeList<SplineCurveForm> {
     }
 
     /**
-     * Returns the SplineCurveForm that matches the given string, or returns a
+     * Returns the spline curve form that matches the given string, or returns a
      * new one if none match it.
      */
-    public static synchronized SplineCurveForm valueOf(String code) {
-        if (code == null) {
-            return null;
-        }
-        Iterator iter = VALUES.iterator();
-        while (iter.hasNext()) {
-            SplineCurveForm type = (SplineCurveForm) iter.next();
-            if (code.equalsIgnoreCase(type.name())) {
-                return type;
-            }
-        }
-        return new SplineCurveForm(code);
+    public static SplineCurveForm valueOf(String code) {
+        return valueOf(SplineCurveForm.class, code);
     }
 }

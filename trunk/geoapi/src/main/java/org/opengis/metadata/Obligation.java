@@ -10,11 +10,9 @@
  *************************************************************************************************/
 package org.opengis.metadata;
 
-import java.util.Iterator;
 import java.util.List;
 import java.util.ArrayList;
 import org.opengis.util.CodeList;
-import org.opengis.webservice.MetadataType;
 import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Specification.*;
@@ -85,20 +83,10 @@ public final class Obligation extends CodeList<Obligation> {
     }
 
     /**
-     * Returns the Obligation that matches the given string, or returns a
+     * Returns the obligation that matches the given string, or returns a
      * new one if none match it.
      */
-    public static synchronized Obligation valueOf(String code) {
-        if (code == null) {
-            return null;
-        }
-        Iterator iter = VALUES.iterator();
-        while (iter.hasNext()) {
-            Obligation type = (Obligation) iter.next();
-            if (code.equalsIgnoreCase(type.name())) {
-                return type;
-            }
-        }
-        return new Obligation(code);
+    public static Obligation valueOf(String code) {
+        return valueOf(Obligation.class, code);
     }
 }

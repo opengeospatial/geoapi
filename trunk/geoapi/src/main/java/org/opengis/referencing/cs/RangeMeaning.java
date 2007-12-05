@@ -10,14 +10,11 @@
  *************************************************************************************************/
 package org.opengis.referencing.cs;
 
-import java.util.Iterator;
 import java.util.List;
 import java.util.ArrayList;
 
-import org.opengis.metadata.identification.Progress;
 import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
-import org.opengis.annotation.Extension;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -91,20 +88,10 @@ public final class RangeMeaning extends CodeList<RangeMeaning> {
     }
 
     /**
-     * Returns the RangeMeaning that matches the given string, or returns a
+     * Returns the range meaning that matches the given string, or returns a
      * new one if none match it.
      */
-    public static synchronized RangeMeaning valueOf(String code) {
-        if (code == null) {
-            return null;
-        }
-        Iterator iter = VALUES.iterator();
-        while (iter.hasNext()) {
-            RangeMeaning type = (RangeMeaning) iter.next();
-            if (code.equalsIgnoreCase(type.name())) {
-                return type;
-            }
-        }
-        return new RangeMeaning(code);
+    public static RangeMeaning valueOf(String code) {
+        return valueOf(RangeMeaning.class, code);
     }
 }

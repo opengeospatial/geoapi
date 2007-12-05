@@ -10,11 +10,9 @@
  *************************************************************************************************/
 package org.opengis.metadata.spatial;
 
-import java.util.Iterator;
 import java.util.List;
 import java.util.ArrayList;
 
-import org.opengis.metadata.identification.TopicCategory;
 import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
 
@@ -123,20 +121,10 @@ public final class TopologyLevel extends CodeList<TopologyLevel> {
     }
 
     /**
-     * Returns the TopologyLevel that matches the given string, or returns a
+     * Returns the topology level that matches the given string, or returns a
      * new one if none match it.
      */
-    public static synchronized TopologyLevel valueOf(String code) {
-        if (code == null) {
-            return null;
-        }
-        Iterator iter = VALUES.iterator();
-        while (iter.hasNext()) {
-            TopologyLevel type = (TopologyLevel) iter.next();
-            if (code.equalsIgnoreCase(type.name())) {
-                return type;
-            }
-        }
-        return new TopologyLevel(code);
+    public static TopologyLevel valueOf(String code) {
+        return valueOf(TopologyLevel.class, code);
     }
 }

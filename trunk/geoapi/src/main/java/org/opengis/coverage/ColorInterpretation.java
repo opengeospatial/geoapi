@@ -10,11 +10,9 @@
  *************************************************************************************************/
 package org.opengis.coverage;
 
-import java.util.Iterator;
 import java.util.List;
 import java.util.ArrayList;
 
-import org.opengis.metadata.constraint.Classification;
 import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
 
@@ -216,20 +214,10 @@ public final class ColorInterpretation extends CodeList<ColorInterpretation> {
     }
 
     /**
-     * Returns the ColorInterpretation that matches the given string, or returns a
+     * Returns the color interpretation that matches the given string, or returns a
      * new one if none match it.
      */
-    public static synchronized ColorInterpretation valueOf(String code) {
-        if (code == null) {
-            return null;
-        }
-        Iterator iter = VALUES.iterator();
-        while (iter.hasNext()) {
-            ColorInterpretation type = (ColorInterpretation) iter.next();
-            if (code.equalsIgnoreCase(type.name())) {
-                return type;
-            }
-        }
-        return new ColorInterpretation(code);
+    public static ColorInterpretation valueOf(String code) {
+        return valueOf(ColorInterpretation.class, code);
     }
 }

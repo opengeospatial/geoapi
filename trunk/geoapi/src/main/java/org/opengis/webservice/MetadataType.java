@@ -43,16 +43,10 @@
  ---------------------------------------------------------------------------*/
 package org.opengis.webservice;
 
-// J2SE direct dependencies
-import java.util.Iterator;
 import java.util.List;
 import java.util.ArrayList;
 
-// OpenGIS direct dependencies
-import org.opengis.metadata.distribution.MediumName;
 import org.opengis.util.CodeList;
-
-// Annotations
 import org.opengis.annotation.UML;
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -105,20 +99,10 @@ public final class MetadataType extends CodeList<MetadataType> {
     }
 
     /**
-     * Returns the MetadataType that matches the given string, or returns a
+     * Returns the metadata type that matches the given string, or returns a
      * new one if none match it.
      */
-    public static synchronized MetadataType valueOf(String code) {
-        if (code == null) {
-            return null;
-        }
-        Iterator iter = VALUES.iterator();
-        while (iter.hasNext()) {
-            MetadataType type = (MetadataType) iter.next();
-            if (code.equalsIgnoreCase(type.name())) {
-                return type;
-            }
-        }
-        return new MetadataType(code);
+    public static MetadataType valueOf(String code) {
+        return valueOf(MetadataType.class, code);
     }
 }

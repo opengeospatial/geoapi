@@ -12,11 +12,9 @@ package org.opengis.metadata.identification;
 
 import java.nio.charset.Charset;
 import java.nio.charset.UnsupportedCharsetException;
-import java.util.Iterator;
 import java.util.List;
 import java.util.ArrayList;
 
-import org.opengis.metadata.spatial.CellGeometry;
 import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
 
@@ -251,6 +249,14 @@ public final class CharacterSet extends CodeList<CharacterSet> {
     }
 
     /**
+     * Constructs an enum with identical name and charset.
+     * This is needed for {@link CodeList#valueOf} reflection.
+     */
+    private CharacterSet(final String name) {
+        this(name, name);
+    }
+
+    /**
      * Converts the Character Set to a java Charset, if it can.
      *
      * @return The Java Charset.
@@ -279,20 +285,10 @@ public final class CharacterSet extends CodeList<CharacterSet> {
     }
 
     /**
-     * Returns the CharacterSet that matches the given string, or returns a
+     * Returns the character set that matches the given string, or returns a
      * new one if none match it.
      */
-    public static synchronized CharacterSet valueOf(String code) {
-        if (code == null) {
-            return null;
-        }
-        Iterator iter = VALUES.iterator();
-        while (iter.hasNext()) {
-            CharacterSet type = (CharacterSet) iter.next();
-            if (code.equalsIgnoreCase(type.name())) {
-                return type;
-            }
-        }
-        return new CharacterSet(code, code);
+    public static CharacterSet valueOf(String code) {
+        return valueOf(CharacterSet.class, code);
     }
 }

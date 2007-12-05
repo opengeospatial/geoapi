@@ -11,6 +11,7 @@
 package org.opengis.referencing.crs;
 
 import org.opengis.referencing.cs.CartesianCS;
+import org.opengis.referencing.datum.GeodeticDatum;
 import org.opengis.referencing.operation.Projection;
 import org.opengis.annotation.UML;
 
@@ -52,4 +53,9 @@ public interface ProjectedCRS extends GeneralDerivedCRS {
      */
     @UML(identifier="usesCS", obligation=MANDATORY, specification=ISO_19111)
     CartesianCS getCoordinateSystem();
+
+    /**
+     * Returns the datum.
+     */
+    GeodeticDatum getDatum();
 }

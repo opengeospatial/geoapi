@@ -10,11 +10,9 @@
  *************************************************************************************************/
 package org.opengis.coverage.grid;
 
-import java.util.Iterator;
 import java.util.List;
 import java.util.ArrayList;
 
-import org.opengis.metadata.spatial.TopologyLevel;
 import org.opengis.util.CodeList;
 import org.opengis.coverage.SampleDimensionType; // For Javadoc
 import org.opengis.annotation.UML;
@@ -102,20 +100,10 @@ public final class ValueInBytePacking extends CodeList<ValueInBytePacking> {
     }
 
     /**
-     * Returns the ValueInBytePacking that matches the given string, or returns a
+     * Returns the value in byte packing that matches the given string, or returns a
      * new one if none match it.
      */
-    public static synchronized ValueInBytePacking valueOf(String code) {
-        if (code == null) {
-            return null;
-        }
-        Iterator iter = VALUES.iterator();
-        while (iter.hasNext()) {
-            ValueInBytePacking type = (ValueInBytePacking) iter.next();
-            if (code.equalsIgnoreCase(type.name())) {
-                return type;
-            }
-        }
-        return new ValueInBytePacking(code);
+    public static ValueInBytePacking valueOf(String code) {
+        return valueOf(ValueInBytePacking.class, code);
     }
 }
