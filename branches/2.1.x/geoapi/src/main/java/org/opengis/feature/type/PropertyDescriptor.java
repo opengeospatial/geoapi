@@ -1,133 +1,94 @@
 package org.opengis.feature.type;
 
-import java.util.Map;
-
-import org.opengis.feature.ComplexAttribute;
 
 /**
- * Describes a Property, and how it relates to its containing entity, which is
- * often a {@link ComplexAttribute}.
- * <br>
+ * Describes how a ComplexType may be composed of types, associations and
+ * operations.
  * <p>
- * A property descriptor defines the following about the property:
- * <ul>
- *   <li>type of the property
- *   <li>the name of the property
- *   <li>number of allowable occurrences of the property
- *   <li>nilability of the property
- * </ul>
+ * Name and Type need to be defined in most cases.
+ * <p>
+ * <h2>Naming</h2>
+ * <p>
+ * Since a descriptor is defined with respect to a ComplexAttribute you can use
+ * the provided name to lookup a descriptor at runtime. The name however belongs
+ * to a namespace that may have no relationship with the containing ComplexType,
+ * so please be sure
  * </p>
- * <br>
- * <p>
- * The concept of a descriptor is similar to that of a element declaration in
- * xml. Consider the following xml schema definition:
- * <pre>
- *   &lt;complexType name="someComplexType">
- *     &lt;sequence>
- *       &lt;element name="foo" minOccurs="2" maxOccurs="4" type="xs:string" nillable="false"/>
- *     &lt;sequence>
- *   &lt;complexType>
- * </pre>
- * <br>
- * In the above, the element declaration named "foo" maps to a property descriptor.
- * From the above schema, the following property descriptor would result:
- * <pre>
- *  //the complex type
- *  ComplexType complexType = ...;
  *
- *  //get the descriptor
- *  PropertyDescriptor descriptor = complexType.getProperty( "foo" );
- *
- *  //make the following assertions
- *  descriptor.getName().getLocalPart().equals( "foo" );
- *
- *  descriptor.getType().getName().getNamespaceURI().equals( "http://www.w3.org/2001/XMLSchema" )
- *  descriptor.getType().getName().getLocalPart().equals( "string" );
- *  descriptor.getMinOccurs() == 2;
- *  descriptor.getMaxOccurs() == 4;
- *  descriptor.isNillable() == true;
- *
- *  //the complex attribute
- *  ComplexAttribute complexAttribute = ...
- *  complexAttribute.getType() == complexType;
- *
- *  //get the properties
- *  Collection properties = complexAttribute.getProperties( "foo" );
- *
- *  //make assertions about properties
- *  properties.size() >= 2;  //minOccurs = 2
- *  properties.size() <= 4; //maxOccurs = 4
- *
- *  for ( Property p : properties ) {
- *      p.getDescriptor() == descriptor
- *
- *      p.getValue() != null; //nilable = false
- *      p.getType().getBinding() == String.class; //type = xs:string
- *      p.getValue() instanceof String; //type = xs:string
- *  }
- * </pre>
- * <p>
+ * <h2>Note on Use of User Data</h2>
+ * </p>
+ * User Data is used to allow additional "temporary" metadata to be associated
+ * with attributes descriptors in order to facilitiate procesing services. These
+ * services traditionally setting up "shadow" structures such as a HashMap.
+ * Allowing non persisted bread crumbs is considered preferable.
+ * </p>
  *
  * @author Jody Garnett, Refractions Research
- * @author Justin Deoliveira, The Open Planning Project
  */
 public interface PropertyDescriptor {
     /**
-     * The type of the property defined by the descriptor.
+     * Used to retrieve application specific data associated with this
+     * Descriptor.
      * <p>
-     * This value should never be <code>null</code>. The type contains information
-     * about the value of the property such as its java class.
+     * Client application often are forced to keep tract of additional informal
+     * metadata during processing or transformation opperations. By supporting
+     * user data in a limited way offer a way to prevent the creation of
+     * numerous Map<PropertyDescriptor,Object> in client code that must be kept
+     * in sync with the type system.
      * </p>
+     * <p>
+     * There is no bridge from our Type system to the formal ISO Metadata
+     * classes right now, please use this facility as a temporary measure and
+     * join us on the developers list as we would request your assistence.
+     * </p>
+     * <p>
+     * A very simple example is the association of an XML prefix with this
+     * attribute descriptor.
+     * </p>
+     *
+     * @param key
+     *            key used to retrive user data
+     * @return user data previously stored under the provided key
      */
-    PropertyType getType();
+    void putUserData(Object key, Object data);
 
     /**
-     * The name of the property defined by the descriptor, with respect to its
-     * containing type or entity..
+     * Used to retrieve application specific data associated with this
+     * PropertyType.
      * <p>
-     * This value may be <code>null</code> in some instances. Also note that this
-     * is not the same name as <code>getType().getName()</code>. The former is
-     * the name of the instance, the latter is the name of the type of the
-     * instance.
+     * Client application often are forced to keep tract of additional informal
+     * metadata during processing or transformation operations. By supporting
+     * user data in a limited way offer a way to prevent the creation of
+     * numerous Map<PropertyDescriptor,Object> in client code that must be kept
+     * in sync with the feature model.
+     * </p>
+     * <p>
+     * There is no bridge from our Type system to the formal ISO Metadata
+     * classes right now, please use this facility as a temporary measure and
+     * join us on the developers list as we would request your assistance.
+     * </p>
+     *
+     * @param key
+     *            key used to retrieve user data
+     * @return user data previously stored under the provided key
+     */
+    Object getUserData(Object key);
+
+    /**
+     * Indicates Name of defined attribute in a ComplexType, this method may
+     * never return a null value.
+     * <p>
+     * The name is actually defined by the sub type, this is derived quantity.
      * </p>
      */
     Name getName();
 
     /**
-     * The minimum number of occurrences of the property within its containing
-     * entity.
+     * Convenience method for getting at the type of the descriptor.
      * <p>
-     * This value is always an integer greater than or equal to zero.
+     * This is considered "derived" because the specific type is declared by the
+     * subclass.
      * </p>
-     * @return An integer >= 0
      */
-    int getMinOccurs();
-
-    /**
-     * The maximum number of occurrences of the property within its containing
-     * entity.
-     * <p>
-     * This value is a positive integer. A value of <code>-1</code> means that
-     * the max number of occurrences is unbounded.
-     * </p>
-     * @return An integer >= 0, or -1.
-     */
-    int getMaxOccurs();
-
-    /**
-     * Flag indicating if <code>null</code> is an allowable value for the
-     * property.
-     *
-     * @return <code>true</code> if the property is allowed to be <code>null</code>,
-     * otherwise <code>false</code>.
-     */
-    boolean isNillable();
-
-    /**
-     * A map of "user data" which enables applications to store "application-specific"
-     * information against a property descriptor.
-     *
-     * @return A map of user data.
-     */
-    Map<Object,Object> getUserData();
+    PropertyType type();
 }

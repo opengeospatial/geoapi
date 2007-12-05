@@ -4,115 +4,76 @@ import org.opengis.feature.type.AssociationDescriptor;
 import org.opengis.feature.type.AssociationType;
 import org.opengis.feature.type.AttributeType;
 
+
 /**
- * An extension of Property for an association.
+ * Contains information defining an association (i.e. shared value).
  * <p>
- * The notion of an "association" is similar to that of an association in UML
- * and is used to model a relationship among two attributes.
+ * An Association is used to hold a relation in our data model, similar to the
+ * way a Key is used to Associate a Value in a java.util.Map. Rather then use
+ * Map.Entry to capture this link we are using a strongly typed AssociationType
+ * providing additional information indicating the nature of the association.
  * </p>
  * <p>
- * The value of an association is an {@link Attribute}. As an example consider
- * the following xml complex type definitions:
- * <pre>
- *   &lt;complexType name="fooType">
- *     ...
- *   &lt;/complexType>
- *   &lt;element name="foo" type="fooType"/>
- *
- *   &lt;complexType name="barType">
- *     &lt;sequence>
- *       &lt;element name="intAttribute" type="xs:int"/>
- *       &lt;element name="stringAttribute" type="xs:string"/>
- *       &lt;element name="fooAssociation" type="xlink:href"/>
- *     &lt;/sequence>
- *   &lt;/complexType>
- *   &lt;element name="bar" type="barType"/>
- * </pre>
- * In the above, "fooType" is an identifiable type. Now consider the following
- * section of an xml instance document:
- * <pre>
- *   &lt;foo id="someId">
- *     ...
- *   &lt;/foo>
- *   ...
- *   &lt;bar>
- *     &lt;intAttribute>1&lt;/intAttribute>
- *     &lt;stringAttribute>one&lt;/stringAttribute>
- *     &lt;fooAssociation>someId&lt;/fooAssociation>
- *   &lt;/bar>
- * </pre>
- * Realizing this as objects with attributes and associations we get:
- * <pre>
- *   ComplexAttribute bar = ...;
- *
- *   //intAttribute
- *   Attribute intAttribute = (Attribute) bar.getProperty( "intAttribute" );
- *   intAttribute.getValue() == 1
- *
- *   //stringAttribute
- *   Attribute stringAttribute = (Attribute) bar.getProperty( "stringAttribute" );
- *   stringAttribute.getValue() == "one"
- *
- *   //fooAssociation
- *   Association fooAssociation = (Association) bar.getProperty( "fooAssociation" );
- *   Attribute foo =  fooAssociation.getValue();
- * </pre>
+ * If this Association is contained in another data structure you may use the
+ * provided AssociationDescriptor for additional information. This descriptor
+ * will provided any additional information (such as name and multiplicity) needed.
  * </p>
- * <p>Associations are used to model some sort of relationship among attributes.
- * Examples of such a relationship could be:
- * <ul>
- * <li>aggregation: An attribute may contain another attribute
- * <li>spatial: A feature is spatial related to another (touches, intersects, etc..)
- * <li>temporal: An is a previous version of another attribute in a versioning system
- * </ul>
- * </p>
+ *
  * @author Jody Garnett, Refractions Research
- * @author Justin Deoliveira, The Open Planning Project
  */
 public interface Association extends Property {
-
     /**
-     * Override of {@link Property#getDescriptor()} which type narrows to
-     * {@link AssociationDescriptor}.
+     * Indicates the AttirbuteDescriptor for this content.
+     * <p>
+     * The attribute descriptor formally captures the name and multiplicity
+     * information for this attribute. If this attribute is not contained in a
+     * container, then the descriptor will be null.
+     * </p>
      *
-     * @see Property#getDescriptor()
+     * @return Descriptor for this attribute, may be null.
      */
     AssociationDescriptor getDescriptor();
 
-     /**
-     * Override of {@link Property#getType()} which type narrows to
-     * {@link AssociationType}.
-     *
-     * @see Property#getType()
+    /**
+     * Indicate the AssociationType, if we have a descriptor it will be in
+     * agreement.
+     * <p>
+     * This information indicates the nature of the relationship captured by this assocation.
+     * <p>
+     * At a minimum the following categories should be thought about:
+     * <ul>
+     * <li>aggregation (ie member of shared)
+     * <li>temporal (before after )
+     * <li>spatial (contained, touches).
+     * </ul>
+     * </p>
+     * @return AssociationType of allowable content
      */
     AssociationType getType();
 
     /**
-     * Override of {@link Property#getValue()} which type narrows to
-     * {@link Attribute}.
-     *
-     * @see Property#getValue()
-     */
-    Attribute getValue();
-
-    /**
-     * Override of {@link Property#setValue(Object)} which specifies that
-     * <tt>newValue</tt> should be an instance of {@link Attribute}.
-     *
-     * @throws IllegalArgumentException If <tt>newValue</tt> is not an attribute.
-     */
-    void setValue(Object newValue) throws IllegalArgumentException;
-
-    /**
-     * Returns the type of the associated attribute.
+     * Indicates the AttributeType we are associated with.
      * <p>
-     * This method is a convenience for:
-     * <pre>
-     * getType().getRelatedType()
-     * </pre>
-     * <p>
-     *
-     * @return type of the attribute of the association.
+     * Note the target attribute type is likely maintained in another part of the
+     * forest, often it will be fetched via either a query or optimally by ID lookup
+     * behind the scenes.
+     * </p>
+     * @return type of attribute we are related to.
      */
     AttributeType getRelatedType();
+
+    /**
+     * An associated Attribute.
+     * <p>
+     * This will be of the type indicated by the getAssociateType.
+     *
+     * @return associated attribute
+     */
+    Attribute getRelated();
+
+    /**
+     * Set the association to the provided Attribute
+     * @param value
+     */
+    void setRelated(Attribute attribute);
 }

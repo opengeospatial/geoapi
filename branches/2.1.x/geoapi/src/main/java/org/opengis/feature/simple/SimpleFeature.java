@@ -1,265 +1,178 @@
 package org.opengis.feature.simple;
 
+import java.util.Collection;
 import java.util.List;
 
-import org.opengis.feature.ComplexAttribute;
+import org.opengis.feature.Association;
+import org.opengis.feature.Attribute;
 import org.opengis.feature.Feature;
-import org.opengis.feature.type.Name;
+import org.opengis.feature.Property;
+import org.opengis.feature.type.AttributeType;
 
 /**
- * A feature restricted to simple content.
+ * Feature interface customised for Simple content.
  * <p>
- * The definition of a "simple feature" can be summed up as the following:
- * <ul>
- *   <li>made up of only non-complex attributes, no associations
- *   <li>attributes are of multiplicity 1
- *   <li>attributes are ordered
- *   <li>attribute names are unqualified (namespaceURI == null)
- * </ul>
+ * This class has a different target audience then that
+ * of the rest of the Feature Model - the target user
+ * is a casual user of Shapefiles, if they can switch
+ * over to database tables without noticing so much
+ * the better.
  * </p>
  * <p>
- *  <h3>Attribute Access</h3>
- *  The order and multiplicity restrictions on simple feature make attribute
- *  values accessible via an index. For example consider the following shapefile
- *  entry:
- *  <pre>
- *  | GEOMETRY | INT | STRING |
- *  |POINT(0 0)|  0  | "zero" |
- *  </pre>
- *  Accessing attributes via index would look like:
- *  <pre>
- *  SimpleFeature feature = ...;
- *
- *  Geometry g = (Geometry) feature.getAttribute( 0 );
- *  Integer i = (Integer) feature.getAttribute( 1 );
- *  String s = (String) feature.getAttribute( 2 );
- *  </pre>
- *  One could also access by name:
- *  <pre>
- *  SimpleFeature feature = ...;
- *
- *  Geometry g = (Geometry) feature.getAttribute( "GEOMETRY" );
- *  Integer i = (Integer) feature.getAttribute( "INT" );
- *  String s = (String) feature.getAttribute( "STRING" );
- *  </pre>
+ * Note this is extension of Feature, and thus it is complete
+ * with respect to the needs of XPath and GML generation. This
+ * represents a restriction as indicated by SimpleFeatureType,
+ * and this restriction has allowed us to unambiguously create
+ * helpful methods based in name and index.
  * </p>
  * <p>
- * <b>Note:</b> Attribute access via getAttribute() methods returns attribute
- * values, and not the attributes themselves. For access to the actual attributes
- * {@link ComplexAttribute#getProperty(String)} can be used.
+ * We considered providing a helper method based on GenericName to
+ * this class or directly to Feature. There is no significant
+ * advantage over direct use of AttribtueType.
  * </p>
- *
- * @see SimpleFeatureType
- *
  * @author Jody Garnett (Refractions Research)
- * @author Justin Deoliveira (The Open Planning Project)
  */
 public interface SimpleFeature extends Feature {
     /**
-     * Override and type narrow to SimpleFeatureType.
+     * Associations are not supported by SimpleFeature.
+     * @return Collection.EMPTY_LIST
+     */
+    List<Association> associations();
+
+    /**
+     * List of attributes in prescribed order.
+     * @return List of Attribute in order indicated by SimpleFeatureType
+     */
+    List<Attribute> attributes();
+
+    /**
+     * List of attributes is in the same order as that defined
+     * by SimpleFeatureType.
+     */
+    List<Attribute> getAttributes();
+
+    /**
+     * AttributeTypes in the order defined by SimpleFeatureType.
+     * <p>
+     * This method is not part of the data model and does not follow
+     * Java Bean naming conventions.
+     * </p>
+     * @return List of AttribtueTypes in order defined by SimpleFeatureType
+     */
+    List<AttributeType> getTypes();
+
+    /**
+     * List<Attribute> (since associations are not allowed).
+     * <p>
+     * You may wish to use getValues() instead, in order to access
+     * feature contents directly.
+     * </p>
+     * @return List of attribtues in the order defined by SimpleFeatureType
+     */
+    List<Property> getValue();
+
+    /**
+     * Update the feature with these attributes.
+     * <p>
+     * You may wish to use setValues() instead, in order to access
+     * feature contents directly.
+     * </p>
+     */
+    void setValue(List<Property> values);
+
+    /**
+     * Value view of attributes, in a manner similar Map.values().
+     * <p>
+     * The content available through getTypes() and getvalues() are considered
+     * a view of getAttribtues(). Order is maintained, and removing content will
+     * result in a modification to all three lists.
+     */
+    List<Object> getValues();
+
+    /**
+     * Restricted to SimpleFeatureType
+     * <p>
+     * This restriction enabled client code to confidently
+     * assume that each attribute occurs in the perscribed order
+     * and that no super types are used.
+     * </p>
      */
     SimpleFeatureType getType();
 
     /**
-     * The type of the feature.
-     * <p>
-     * This method is a synonym for {@link #getType()}.
-     * </p>
-     * @see #getType()
+     * Retrieve value by attribute name.
+     * @param name
+     * @return Attribute Value associated with name
      */
-    SimpleFeatureType getFeatureType();
+    Object getValue(String name);
 
     /**
-     * Returns a list of the values of the attributes contained by the feature.
-     * <br>
-     * <p>
-     * This method is a convenience for:
-     * <pre>
-     * List values = new ArrayList();
-     * for ( Property p : getProperties(); ) {
-     *   values.add( p.getValue() );
-     * }
+     * Access attribute by "index" indicated by SimpleFeatureType.
      *
-     * return values;
-     * </pre>
-     * </p>
+     * @param index
+     */
+    Object getValue(int index);
+
+    /**
+     * Modify attribute with "name" indicated by SimpleFeatureType.
      *
-     * @return List of attribute values for the feature.
+     * @param name
+     * @param value
      */
-    List<Object> getAttributes();
+    void setValue(String name, Object value);
 
     /**
-     * Sets the values of the attributes contained by the feature.
-     * <p>
-     * The <tt>values</tt> must be in the order of the attributes defined by the
-     * feature type.
-     * </p>
-     * <p>
-     * This method is a convenience for:
-     * <pre>
-     * int i = 0;
-     * for ( Property p : getProperties() ) {
-     *   p.setValue( values.get( i++ ) );
-     * }
-     * </pre>
-     * </p>
-     * @param values The attribute values to set.
-     */
-    void setAttributes( List<Object> values );
-
-    /**
-     * Sets the values of the attributes contained by the feature.
-     * <p>
-     * The <tt>values</tt> must be in the order of the attributes defined by the
-     * feature type.
-     * </p>
-     * <p>
-     * This method is a convenience for:
-     * <pre>
-     * for ( Property p : getProperties() ) {
-     *   p.setValue( values[i] );
-     * }
-     * </pre>
-     * </p>
-     * @param values The attribute values to set.
-     */
-    void setAttributes( Object[] values );
-
-    /**
-     * Gets an attribute value by name.
-     * <p>
-     * This method is a convenience for:
-     * <pre>
-     * Property p = getProperty( name );
-     * return p.getValue();
-     * </pre>
-     * </p>
-     * @param name The name of the attribute whose value to retrieve.
+     * Modify attribute at the "index" indicated by SimpleFeatureType.
      *
-     * @return The attribute value, or <code>null</code> if no such attribute
-     * exists with the specified name.
+     * @param index
+     * @param value
      */
-    Object getAttribute( String name );
+    void setValue(int index, Object value);
 
     /**
-     * Sets an attribute value by name.
-     * <p>
-     * This method is a convenience for:
-     * <pre>
-     * Property p = getProperty( name );
-     * p.setValue(value);
-     * </pre>
-     * </p>
-     * @param name The name of the attribute whose value to set.
-     * @param value The new value of the attribute.
+     * Sets the values of the feautre.
      */
-    void setAttribute( String name, Object value );
+    void setValues(List<Attribute> values);
 
     /**
-     * Gets an attribute value by name.
-     * <p>
-     * This method is a convenience for:
-     * <pre>
-     * Property p = getProperty( name );
-     * return p.getValue();
-     * </pre>
-     * </p>
-     * <p>
-     * Since attribute names in simple features do not have a namespace uri
-     * this method is equivalent to calling <code>getAttribute(name.getLocalPart())</code>.
-     * </p>
-     * @param name The name of the attribute whose value to retrieve.
-     *
-     * @return The attribute value, or <code>null</code> if no such attribute
-     * exists with the specified name.
-     */
-    Object getAttribute( Name name );
-
-    /**
-     * Sets an attribute value by name.
-     * <p>
-     * This method is a convenience for:
-     * <pre>
-     * Property p = getProperty( name );
-     * p.setValue(value);
-     * </pre>
-     * </p>
-     * <p>
-     * Since attribute names in simple features do not have a namespace uri
-     * this method is equivalent to calling <code>setAttribute(name.getLocalPart(), value)</code>.
-     * </p>
-     * @param name The name of the attribute whose value to set.
-     * @param value The new value of the attribute.
-     */
-    void setAttribute( Name name, Object value );
-
-    /**
-     * Gets an attribute value by index.
-     * <p>
-     * This method is a convenience for:
-     * <pre>
-     * Property p = ((List)getProperties()).get( i ) ;
-     * return p.getValue();
-     * </pre>
-     * </p>
-     * @param index The index of the attribute whose value to get.
-     *
-     * @return The attribute value at the specified index.
-     * @throws IndexOutOfBoundsException If the specified index is out of bounds.
-     */
-    Object getAttribute( int index ) throws IndexOutOfBoundsException;
-
-    /**
-     * Sets an attribute value by index.
-     * <p>
-     * This method is a convenience for:
-     * <pre>
-     * Property p = ((List)getProperties()).get( i ) ;
-     * p.setValue(value);
-     * </pre>
-     * </p>
-     * @param index The index of the attribute whose value to set.
-     * @param value The new value of the attribute.
-     *
-     * @throws IndexOutOfBoundsException If the specified index is out of bounds.
-     */
-    void setAttribute( int index, Object value ) throws IndexOutOfBoundsException;
-
-    /**
-     * The number of attributes the feature is composed of.
-     * <p>
-     * This is a convenience for:
-     * <pre>
-     *   return getAttributes().size();
-     * </pre>
-     * </p>
-     * @return Number of attributes of the feature.
-     */
-    int getAttributeCount();
-
-    /**
-     * Returns the value of the default geometry of the feature.
-     * <p>
-     * This method is convenience for:
-     * <pre>
-     * return getDefaultGeometry().getValue();
-     * </pre>
-     * </p>
-     * @return The default geometry, or <code>null</code> if no default geometry
-     * attribute exists.
+     * Sets the values of the feautre.
      *
      */
-    Object getDefaultGeometry();
+    void setValues(Object[] values);
 
     /**
-     * Sets the value of the default geometry for the feature.
-     * <p>
-     * This method is convenience for:
-     * <pre>
-     * getDefaultGeometry().setValue(geometry);
-     * </pre>
-     * </p>
-     * @param geometry The new default geometry value.
+     * Call opperation with provided parameters.
+     *
+     * @param name Name of opperation
+     * @param parameters Should be in agreement with OperationType
+     * @return Result of operation, may be null if operation does not produce a result
      */
-    void setDefaultGeometry(Object geometry);
+    //Object operation( String name, Object parameters );
+    /**
+     * Number of attributes in SimpleFeatureType.
+     * <p>
+     * This is identical to <code>types().size()</code>
+     * </p>
+     * @return number of available attribtues
+     */
+    int getNumberOfAttributes();
+
+    /**
+     * Returns the default geometry for the simple feature.
+     * <p>
+     * This method is convenience for getDefaultGeometry().get();
+     * </p>
+     * @return The default geometry, or null if none exists.
+     *
+     */
+    Object getDefaultGeometryValue();
+
+    /**
+     * Sets the default geometry for the simple feature.
+     * <p>
+     * This method is convenience for getDefaultGeometry().set(geometry);
+     * </p>
+     * @param geometry The new defautl geometry.
+     */
+    void setDefaultGeometryValue(Object geometry);
 }

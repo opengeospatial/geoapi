@@ -15,8 +15,11 @@
  */
 package org.opengis.feature;
 
+import org.opengis.feature.type.FeatureCollectionType;
+
+
 /**
- * FeatureVisitor interface to allow for container optimised traversal.
+ * FeatureVisitor interface to allow for container optimized opperations.
  * <p>
  * The iterator construct from the Collections api is well understood and
  * loved, but breaks down for working with large GIS data volumes. By using a
@@ -25,18 +28,17 @@ package org.opengis.feature;
  * concurrently.
  * </p>
  * This interface is most often used for calculations and data
- * transformations and an implementations may intercept known visitors
+ * transformations and an implementaiton may intercept commands it knows about
  * (such as "bounds" or reprojection) and engage an alternate workflow.
  * </p>
  * @author Cory Horner, Refractions
  */
 public interface FeatureVisitor {
     /**
-     * Visit the provided feature.
-     * <p>
-     * Please consult the documentation for the FeatureCollection you are visiting
-     * to learn more - the provided feature may be invalid, or read only.
-     * @param feature
+     * Called before accepting Features to allow the calculation to set up
+     * any state required.
      */
+    void init(FeatureCollectionType collection);
+
     void visit(Feature feature);
 }

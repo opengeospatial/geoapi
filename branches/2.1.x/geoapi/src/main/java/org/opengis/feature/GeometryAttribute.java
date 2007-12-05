@@ -1,71 +1,105 @@
 package org.opengis.feature;
 
-import org.opengis.feature.type.GeometryDescriptor;
 import org.opengis.feature.type.GeometryType;
+import org.opengis.referencing.crs.CoordinateReferenceSystem;
 import org.opengis.geometry.BoundingBox;
 
+//Java 1.4 imports
+//import org.opengis.feature.type.AttributeType;
 /**
- * An attribute which has a geometric value.
+ * Represent a Geometry as an attribute content.
  * <p>
- * The type of the value of the attribute is an arbitrary object and is
- * implementation dependent. Implementations of this interface may wish to type
- * narrow {@link Property#getValue()} to be specific about the type geometry.
- * For instance to return explicitly a JTS geometry.
- * </p>
+ * This class is cotton candy and does not add any new modelling ability beyond
+ * what could be accomplished by type narrowing an Attribute to return one of our
+ * Geometry classes based on the ISO 19107 specification.
  * <p>
- * Past a regular attribute, GeometryAttribute provides a method for obtaining
- * the bounds of the underlying geometry, {@link #getBounds()}. The
- * {@link #setBounds(BoundingBox)} method is used to explicitly set the bounds
- * which can be useful in situations where the data source stores the bounds
- * explicitly along with the geometry.
+ * What this class does allows is a bridge to applications making use of a more simple
+ * model of geometry. Two are in popular use:
+ * <ul>
+ * <li>Java 2D Shape: Simple topology representation used for Graphics2D, with no concept
+ * of coordinate reference system.
+ * <li>JTS Topology Suite Geometry: topology representation used by the SFSQL specification,
+ * coordinate reference system is indicated by a getSRS() integer (the meaning of which is
+ * application specific). In practice most applications use this value to store a EPSG code.
+ * </ul>
+ * This GeometryAttribute interface supplements these strict definitions of topology with the
+ * information needed for wider use as a geometry.
+ * <ul>
+ * <li>getCRS() - the CoordinateReferenceSystem of the geometry value
+ * <li>getBounds() - a BoundingBox for the geometry value
+ * </ul>
+ * We are not specifying the topology binding here, an application may safely implement this
+ * interface using any of the above options (or make use of propiatary definitions such as
+ * oracle SDO). We recommend the ISO 19107 Geometry definition supplied with GeoAPI simply
+ * because we know it is complete.
  * </p>
- *
- * @author Jody Garnett, Refractions Research
- * @author Justin Deoliveira, The Open Planning Project
  */
 public interface GeometryAttribute extends Attribute {
-
     /**
-     * Override and type narrow to GeometryType.
-     */
-    GeometryType getType();
-
-    /**
-     * Override and type narrow to GeometryDescriptor.
-     */
-    GeometryDescriptor getDescriptor();
-
-    /**
-     * The bounds of the attribute.
+     * The Coordinate Reference System of this geometry.
      * <p>
-     * This value should be derived unless explicitly set via
-     * {@link #setBounds(BoundingBox)}.
+     * This may not be needed when using GeoAPI Geometry, it would
+     * be a simple helper method for:
+     * ((Geometry)getValue()).getCoordinateReferenceSystem().
      * </p>
      * <p>
-     * In the case that the underlying geometry is <code>null</code>, this
-     * method should return an empty bounds as opposed to returning
-     * <code>null</code>.
+     * As it stands this method will help transition code over from JTS as
+     * GeoAPI Geometry implementations are made avaialble.
      * </p>
-     *
-     * @return The bounds of the underlying geometry, possibly empty.
+     */
+    CoordinateReferenceSystem getCRS();
+
+    /**
+     * Sets the coordinate reference system for the attribute.
+     */
+    void setCRS(CoordinateReferenceSystem crs);
+
+    /**
+     * The bounds of this geometry.
+     * <p>
+     * This may not be needed when using GeoAPI Geometry, it would
+     * be a simple helper method for:
+     * ((Geometry)getValue()).getEnvelope().
+     * </p>
+     * <p>
+     * As it stands this method will help transition code over from JTS as
+     * GeoAPI Geometry implementations are made avaialble.
+     * </p>
      */
     BoundingBox getBounds();
 
     /**
-     * Sets the bounds of the geometry.
+     * Although this is tipically a derrived quantity of the contents, this
+     * value is often available in precomputed form from data providers.
      * <p>
-     * This method should be used when the bounds is pre-computed and there is
-     * no need to derive it from scratch. This is mostly only relevant to data
-     * sources which store the bounds along with the geometry.
-     * </p>
-     * <p>
-     * Setting the bounds to <code>null</code> is allowed and will force the
-     * bounds to be derived manually on the next call to {@link #getBounds()}.
-     * </p>
-     *
+     * This method allows a data provider to store the bounds information
+     * associated with the contents of this geometry attribute.
      * @param bounds
-     *            The bounds of the attribute.
      */
     void setBounds(BoundingBox bounds);
 
+    /**
+     * GeometryType should be configured with a Geometry for getJavaType.
+     * <p>
+     * Q: If needed a set of well-known GeometryType can be constructed, may be
+     * needed to report CRS and Bounds constraints on data? A: It was needed
+     * when we switched over to Attribute
+     */
+    GeometryType getType();
+
+    /**
+     * Retrieve Geometry.
+     * <p>
+     * We may want to relax this to Object to allow for JTS or GeoAPI based
+     * objects for the first release.
+     */
+    Object getValue();
+
+    /**
+     * Set provided Geometry
+     * <p>
+     * We may want to relax this to Object to allow for JTS or GeoAPI based
+     * objects for the first release.
+     */
+    void setValue(Object geom);
 }

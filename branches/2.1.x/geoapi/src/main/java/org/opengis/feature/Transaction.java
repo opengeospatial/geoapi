@@ -228,6 +228,7 @@ public interface Transaction {
      */
     void close() throws IOException;
 
+
     /**
      * {@link FeatureStore} implementations can use this interface to externalize the
      * state they require to implement {@link Transaction} support.
@@ -239,7 +240,7 @@ public interface Transaction {
      * @author Jody Garnett, Refractions Reasearch Inc.
      * @since GeoAPI 2.0
      */
-    interface State {
+    public static interface State {
         /**
          * Provides configuration information for this {@code Transaction.State}.
          * This method is called with non null {@code transaction} when this state is
@@ -269,6 +270,7 @@ public interface Transaction {
         void rollback() throws IOException;
     }
 }
+
 
 /**
  * NullObject indicating AUTO_COMMIT mode.
@@ -333,6 +335,6 @@ final class AutoCommit implements Transaction {
 
     /** AutoCommit does not maintain State - so this is a NOP */
     public void close() {
-        // We have no state to clean up after
+    // We have no state to clean up after
     }
 }

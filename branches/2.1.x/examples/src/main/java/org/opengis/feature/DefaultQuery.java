@@ -13,7 +13,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.opengis.feature.type.Name;
-import org.opengis.feature.type.Name;
+import org.opengis.feature.type.TypeName;
 import org.opengis.filter.Filter;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 
@@ -252,8 +252,8 @@ public class DefaultQuery implements Query {
      * </ul>
      * @return the name of the feature type to be returned with this query.
      */
-    public Name getTypeName() {
-        return Name;
+    public TypeName getTypeName() {
+        return (TypeName) Name;
     }
 
     /**

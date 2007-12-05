@@ -1,71 +1,101 @@
 package org.opengis.feature;
 
+import java.util.List;
+
 import org.opengis.feature.type.AttributeDescriptor;
 import org.opengis.feature.type.AttributeType;
+import org.opengis.feature.type.Name;
+
 
 /**
- * An extension of Property for an attribute.
+ * Contains information defining an attribute.
  * <p>
- * The notion of an "attribute" is similar to that of an attribute in UML.
- * </p>
+ * An Attribute is used to hold a value (ie aggregation), similar
+ * to the way a Map.Entry holds values in a java.util.Map. Attribute
+ * is responsible for holding onto the following three things:
+ * <ul>
+ * <li>descriptor: An AttributeDescriptor acting as the "key" for this attribute
+ * <li>value: A Java Object acting as the "value" for this attribute
+ * <li>type: An AttributeType acting as the "type" of this attribute
+ * </ul>
  * <p>
- * This interface is capable of modeling "primitive data", things like strings,
- * numerics, dates, etc... However for "complex data" (that is non-primitive
- * data types which are made up other primitive data types), a specific
- * sub-interface is used, see {@link ComplexAttribute}.
+ * If this Attribute is contained in another data structure you may
+ * use the provided Descriptor. This descriptor will provided any additional
+ * information (such as name and multiplicity) needed.
  * </p>
+ * The use of Attribute in our feature model is similar to the use of a "field" in
+ * a Java Object. A field also brings together a field name, value and type.
  * <p>
- * An analogy for an attribute is a "field" in a java object. A field also
- * brings together a field name, value and type.
- * </p>
- *
+ * <b>Differences from ISO 19107</b>:
+ * We do not use TypeName directly, the functionality is served by our  AttributeType
+ * class which provides additional functionality. AttributeType provides a Name, the
+ * java class for our value, and any additional restrictions.
  * <p>
- * <h3>Identifiable</h3>
- *
- * When an attribute is identifiable the {@link #getID()} method returns a
- * unique identifier for the attribute. The type of the attribute is used to
- * determine identifiability.
- *
- * <pre>
- * Attribute attribute = ...;
- * if ( attribute.getType().isIdentified() ) {
- *   String id = attribute.getID();
- * }
- * </pre>
- * </p>
- *
- * @see Property
+ * Validation is provided by way of constraints implemented using Filter.
  *
  * @author Jody Garnett (Refractions Research)
- * @author Justin Deoliveira (The Open Planning Project)
  */
 public interface Attribute extends Property {
-
     /**
-     * Override of {@link Property#getDescriptor()} which type narrows to
-     * {@link AttributeDescriptor}.
-     *
-     * @see Property#getDescriptor()
+     * Indicates the AttirbuteDescriptor for this content.
+     * <p>
+     * The attribute descriptor formally captures the name and multiplicity
+     * information for this attribute. If this attribute is not contained
+     * in a container, then the descriptor will be null.
+     * </p>
+     * @return Descriptor for this attribute, may be null.
      */
     AttributeDescriptor getDescriptor();
 
     /**
-     * Override of {@link Property#getType()} which type narrows to
-     * {@link AttributeType}.
+     * Determines if the attribute is allowed to have a <code>null</code> value.
+     * <p>
+     *	For those attributes which are contained within a complex type
+     *	(ie. getDescriptor() != null), this method defers to the descriptor
+     * </p>
      *
-     * @see Property#getType()
+     * @see AttributeDescriptor#isNillable()
+     */
+    boolean nillable();
+
+    /**
+     * Indicate the AttributeType, if we have a descriptor it will be in agreement.
+     *
+     * @return AttributeType information describing allowable content
      */
     AttributeType getType();
 
     /**
-     * Unique Identifier for the attribute.
-     * <p>
-     * This value is non-null in the case that
-     * <code>getType().isIdentifiable()</code> is <code>true</code>.
-     * </p>
+     * Unique, immutable identification for domain object being modeled.
      *
-     * @return A unique identifier for the attribute, or <code>null</code> if
-     *         the attribute is non-identifiable.
+     * @return Unique ID, may not be null if getType().isIdentifiable() is true
      */
     String getID();
+
+    /**
+     * Access to the content of this Attribute.
+     * <p>
+     * A subclass may define a more specific method to access this value, in order
+     * to improve readability or make allowances for Java 1.4 use.
+     * </p>
+     * @return Value Object of the class indicated by getType().getBinding()
+     */
+    Object getValue();
+
+    /**
+     * Call operation on <code>this</code> Attribute.
+     * <p>
+     * @param name Name of operation to be called
+     * @param parameters Parameters for the operation
+     * @return Result of operation, may be <code>null</code>
+     */
+    Object operation(Name name, List<Object> parameters);
+
+    /**
+     * Set content to newValue
+     * @param newValue
+     *            Object of the class indicated by getType().getBinding()
+     * @throws IllegalArgumentException If newValue does not match getType().getBinding()
+     */
+    void setValue(Object newValue);
 }

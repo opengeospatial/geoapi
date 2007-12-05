@@ -3,6 +3,8 @@ package org.opengis.feature.simple;
 import java.util.Date;
 
 import org.opengis.feature.Attribute;
+import org.opengis.feature.type.AttributeType;
+
 
 /**
  * Attribute bound to a Date class.
@@ -14,17 +16,19 @@ import org.opengis.feature.Attribute;
  * @author Justin Deoliveira (The Open Planning Project)
  */
 public interface TemporalAttribute extends Attribute {
-    void setValue(Date newValue);
-    Date getValue();
+    public void setValue(Date newValue);
+
+    public Date getValue();
+
     /**
      * Java 1.4 type safe access to getValue
      * @return (Boolean) getValue()
      */
-    Date getDate();
+    public Date getDate();
 
     /**
      * Java 1.4 type safe access to setValue
      * @param newValue
      */
-    void setDate(Date newValue);
+    public void setDate(Date newValue);
 }

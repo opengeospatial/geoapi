@@ -16,8 +16,7 @@ import java.util.List;
 import org.opengis.annotation.Extension;
 import org.opengis.annotation.XmlElement;
 import org.opengis.feature.type.FeatureType;
-import org.opengis.feature.type.Name;
-
+import org.opengis.feature.type.TypeName;
 import org.opengis.filter.Filter;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 
@@ -52,7 +51,7 @@ public interface Query {
      *       future version.
      */
     @XmlElement("typeName")
-    Name getTypeName();
+    TypeName getTypeName();
 
     /**
      * Returns the name of the type that is to be queried.
@@ -64,7 +63,6 @@ public interface Query {
      */
 //    @XmlElement("typeName")
 //    Collection<GenericName> getTypeNames();
-
     /**
      * Returns the filter that will limit which {@linkplain Feature features} are returned.
      * The filter element is used to define spatial and/or non-spatial constraints on query.
@@ -173,7 +171,6 @@ public interface Query {
      */
     @Extension
     CoordinateReferenceSystem getCoordinateSystemReproject();
-
     /**
      * Specifies a specific WFS-supported CRS that should be used for returned feature
      * geometries.  The value may be the WFS {@code "StorageSRS"} value,

@@ -1,132 +1,167 @@
 package org.opengis.feature;
 
 import java.util.Collection;
-import java.util.List;
 
-import org.opengis.feature.simple.SimpleFeature;
-import org.opengis.feature.simple.SimpleFeatureType;
 import org.opengis.feature.type.AssociationDescriptor;
 import org.opengis.feature.type.AttributeDescriptor;
 import org.opengis.feature.type.ComplexType;
+import org.opengis.feature.type.FeatureCollectionType;
 import org.opengis.feature.type.FeatureType;
-import org.opengis.feature.type.GeometryDescriptor;
 import org.opengis.feature.type.GeometryType;
+import org.opengis.referencing.crs.CRSFactory;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
+import org.opengis.geometry.coordinate.GeometryFactory;
+
 
 /**
- * Factory for attributes, associations, and features.
- * <p>
- * Implementations of this interface should not contain any "special logic" for
- * creating attributes and features. Method implementations should be straight
- * through calls to a constructor.
- * </p>
+ * Plays the role of making actual instances of types in this puzzle.
  *
  * @author Gabriel Roldan (Axios Engineering)
  * @author Justin Deoliveira (The Open Planning Project)
  *
  */
 public interface FeatureFactory {
+    /**
+     * @return The CRS factory used to create CRS info for created attributes.
+     */
+    CRSFactory getCRSFactory();
 
     /**
-     * Creates an association.
+     * Sets the CRS factory used to create CRS info for created attributes.
+     * <p>
+     * Creating a CRS for a both Features and GeometryAttributes is a common
+     * need when creating content, this serves to cut down on the number of
+     * dependencies needed.
+     * </p>
+     */
+    void setCRSFactory(CRSFactory crsFactory);
+
+    /**
+     * @return The factory used to create geometric data.
+     */
+    GeometryFactory getGeometryFactory();
+
+    /**
+     * Sets the factory used to create geometric data.
+     * <p>
+     * Creating spatial data is a common need when creating features, this
+     * serves to cut down on the number of dependencies needed.
+     * </p>
+     */
+    void setGeometryFactory(GeometryFactory geometryFactory);
+
+    /**
+     * Creates an association (always nested).
      *
      * @param value The value of the association, an attribute.
-     * @param descriptor The association descriptor.
+     * @param descriptor The descriptor.
      */
     Association createAssociation(Attribute value, AssociationDescriptor descriptor);
 
     /**
-     * Creates an attribute.
+     * Creates a new attribute (always nested).
+     * <p>
+     * As currently defined this factory allows for the explicit creation of:
+     * <ul>
+     * <li>BooleanAttribute
+     * <li>NumericAttribute
+     * <li>TextAttribute
+     * <li>TemporalAttribute
+     * <li>GeometryAttribute (formal part of the model)
+     * </ul>
      *
-     * @param value The value of the attribute, may be <code>null</code>.
+     * @param value The value of the attribute, may be null depending on type.
      * @param descriptor The attribute descriptor.
-     * @param id The id of the attribute, may be <code>null</code>.
+     * @param id The id of the attribute, may be null depending on type.
      *
      */
     Attribute createAttribute(Object value, AttributeDescriptor descriptor, String id);
 
     /**
-     * Creates a geometry attribute.
-     * <p>
-     *  <code>descriptor.getType()</code> must be an instance of {@link GeometryType}.
-     * </p>
-     * @param value The value of the attribute, may be <code>null</code>.
-     * @param descriptor The attribute descriptor.
-     * @param id The id of the attribute, may be <code>null</code>.
-     * @param crs The coordinate reference system of the attribute, may be <code>null</code>.
+     * Creates a new geometry attribute (always nested).
      *
+     * @param value The initial value of the attribute, may be null depending on
+     * the type of the type of the attribute.
+     * @param desc The attribute descriptor.
+     * @param id The id of the attribute, may be null depending on the type.
+     * @param crs The coordinate reference system of the attribute, may be null.
+     *
+     * @throws IllegalArgumentException If desc.getType() does not return an
+     * instanceof {@link GeometryType}.
      */
     GeometryAttribute createGeometryAttribute(
-        Object geometry, GeometryDescriptor descriptor, String id, CoordinateReferenceSystem crs
-    );
+            Object geometry, AttributeDescriptor desc, String id, CoordinateReferenceSystem crs);
 
     /**
-     * Creates a complex attribute.
-     * <p>
-     * <code>descriptor.getType()</code> must be an instance of {@link ComplexType}.
-     * </p>
-     * @param value The value of the attribute, a collection of properties.
-     * @param descriptor The attribute descriptor.
-     * @param id The id of the attribute, may be <code>null</code>.
+     * Creates a nested complex attribute.
      *
+     * @param value The initial value of the attribute, may be null depending on
+     * the type of the attribute.
+     * @param id The id of the attribute, may be null depending on the type.
+     * @param desc The attribute descriptor.
+     *
+     * @throws IllegalArgumentException If desc.getType() does not return an
+     * instanceof {@link ComplexType}.
      */
     ComplexAttribute createComplexAttribute(
-        Collection<Property> value, AttributeDescriptor descriptor, String id
-    );
+            Collection<Property> value, AttributeDescriptor desc, String id);
 
     /**
-     * Creates a complex attribute.
+     * Create attribute based explicitly on type (not nested).
      *
-     * @param value The value of the attribute, a collection of properties.
-     * @param type The type of the attribute.
-     * @param id The id of the attribute, may be <code>null</code>.
-     *
+     * @param value
+     * @param type
+     * @param id
+     * @return
      */
     ComplexAttribute createComplexAttribute(
-        Collection<Property> value, ComplexType type, String id
-    );
+            Collection<Property> value, ComplexType type, String id);
 
     /**
-     * Creates a feature.
-     * <p>
-     *   <code>descriptor.getType()</code> must be an instance of {@link FeatureType}.
-     * </p>
-     * @param value The value of the feature, a collection of properties.
-     * @param descriptor The attribute descriptor.
-     * @param id The id of the feature.
+     * Creates a nested feature.
      *
+     * @param id The id of the feature, (fid), may be null depending on the type.
+     * @param desc The attribute descriptor.
+     * @param value The initial value of the attribute, may be null depending on
+     * the type of the feature.
+     *
+     * @throws IllegalArgumentException If desc.getType() does not return an
+     * instanceof {@link FeatureType}.
      */
-    Feature createFeature(Collection<Property> value, AttributeDescriptor descriptor, String id);
+    Feature createFeature(Collection<Property> value, AttributeDescriptor desc, String id);
 
     /**
-     * Creates a feature.
+     * Create a new feature based on type (not nested)
      *
-     * @param value The value of the feature, a collection of properties.
-     * @param type The type of the feature.
-     * @param id The id of the feature.
-     *
+     * @param value
+     * @param type
+     * @param id
+     * @return
      */
     Feature createFeature(Collection<Property> value, FeatureType type, String id);
 
     /**
-     * Creates a simple feature.
-     * <p>
-     *   <code>descriptor.getType()</code> must be an instance of {@link SimpleFeatureType}.
-     * </p>
-     * @param value The value of the feature, a collection of attributes.
-     * @param descriptor The attribute descriptor.
-     * @param id The id of the feature.
+     * Createsa a nested feature collection.
      *
+     * @param value The initial value of the attribute, may be null depending on
+     * the type of the feature.
+     * @param desc The attribute descriptor.
+     * @param id The id of the feature collection, may be null depending on the
+     * type.
+     *
+     * @throws IllegalArgumentException If desc.getType() does not return an
+     * instanceof {@link FeatureCollectionType}.
      */
-    SimpleFeature createSimpleFeautre(List<Attribute> value, AttributeDescriptor decsriptor, String id);
+    FeatureCollection createFeatureCollection(Collection<Property> value, AttributeDescriptor desc, String id);
 
     /**
-     * Creates a simple feature.
+     * Create a new feature collection based on type (not nested).
      *
-     * @param value The value of the feature, a collection of attributes.
-     * @param type The type of the simple feature.
-     * @param id The id of the feature.
+     * @param value
+     * @param type
+     * @param id
+     * @return
      */
-    SimpleFeature createSimpleFeature(List<Attribute> value, SimpleFeatureType type, String id);
+    FeatureCollection createFeatureCollection(Collection<Property> value, FeatureCollectionType type, String id);
 }
 

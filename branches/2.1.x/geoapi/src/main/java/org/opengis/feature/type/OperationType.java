@@ -1,29 +1,53 @@
 package org.opengis.feature.type;
 
 import java.util.List;
+import java.util.Set;
 
 import org.opengis.filter.Filter;
 
+
 /**
- * The type of operations to be invoked on an attribute.
+ * Operation information, immutable.
  * <p>
- * Invoking an operation on an attribute is used to calculate a derived quantity
- * or update attribute state. OperationType is used to define the required
- * parameters and expected result for an Operation.
+ * This represents a type of operation that can be used to update the state of
+ * an AttributeType, this gets more exciting with ComplexAttribtueType (or Feature)
+ * <p>
+ * If you come to this from a pure java background this is where we capture the
+ * methods in our dynamic model. Since we do not carry implementations here you
+ * would do best to think of this as an interface definition.
+ * </p>
+ * <p>
+ * To implement a method you will need to examine the OperationDescriptor that
+ * can put you in touch with actual functionality, often implemented directly in
+ * java, or using a scripting language.
+ * </p>
+ * <p>
+ * The implementation of the operations is against the bound AttributeType "B":
+ * <ul>
+ * <li>the descriptor will be able to evaluate against an instance of B
+ *     and produced a change state or result
+ * <li>
+ * </ul>
+ * <p>
+ * Notes:
+ * <ul>
+ * <li>TODO: We will need to set up a system for advertising expected exceptions
+ * <li>if the type isAbstract then the call method is not implemented
+ * </ul>
  *
  * @author Jody Garnett, Refractions Research, Inc.
  */
- public interface OperationType extends PropertyType {
-
+public interface OperationType extends PropertyType {
     /**
      * Access to super type information.
      * <p>
-     * The super type of an operation provides additional
-     * restrictions and description for this operation.
+     * The super type may contain an implementation based on the  additional restrictions to be considered, or a
+     * definition of isNilable.
      * </p>
-     * @return super type
+     *
+     * @return AttributeType of supertype
      */
-     OperationType getSuper();
+    OperationType getSuper();
 
     /**
      * Indicate that this OperationType may not be used directly.
@@ -34,19 +58,19 @@ import org.opengis.filter.Filter;
      * would define "related" based on touches, or "contains" or "common vertex".
      * </p>
      */
-     boolean isAbstract();
+    boolean isAbstract();
 
     /**
      * AttributeType this operation type can function against.
      */
-     AttributeType getTarget();
+    AttributeType getTarget();
 
-     /**
-      * Indicates the expected result type, may be <code>null</code>.
-      *
-      * @return expected result type, may be <code>null</code>
-      */
-     AttributeType getResult();
+    /**
+     * Indicates the expected result type, may be <code>null</code>.
+     *
+     * @return expected result type, may be <code>null</code>
+     */
+    AttributeType getResult();
 
     /**
      * We need the following AttributeTypes as parameters.
@@ -61,7 +85,7 @@ import org.opengis.filter.Filter;
     /**
      * List of restrictions used to limit the allowable returned value.
      *
-     * @return Restrictions on valid return values
+     * @return Set<Filter> used to validate allowable values.
      */
-     List<Filter> getRestrictions();
+    Set<Filter> getRestrictions();
 }

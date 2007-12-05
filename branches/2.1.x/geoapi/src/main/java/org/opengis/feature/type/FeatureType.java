@@ -1,52 +1,52 @@
 package org.opengis.feature.type;
 
+import java.util.Collection;
+
+import org.opengis.feature.Property;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 
+
 /**
- * The type of a Feature.
+ * Describes the contents of a Feature, basically a ComplexType with at least a
+ * Geometry and CRS.
  * <p>
- * Beyond a complex type, a feature defines some additional information:
- * <ul>
- *   <li>The default geometric attribute
- *   <li>The coordinate referencing system (derived from the default geometry)
- * </ul>
+ * This class provides no additional modeling power beyond ComplexType. It does
+ * formally includes both a Geometry and a CRS these items are available to
+ * you to place restrictions against.
  * </p>
- *
- * @author Jody Garnett, Refractions Research
- * @author Justin Deoliveira, The Open Planning Project
+ * <p>
+ * You should be aware that the GML definition of AbstractFeatureType includes
+ * bounds, crs name and description as "optional" attributes - as such these
+ * ideas are very common and have been included in the Feature API.
+ * </p>
+ * @author Jody Garnett
  */
 public interface FeatureType extends ComplexType {
+    /**
+     * Indicates which AttributeType is to be considered the default
+     * geometry.
+     * @return AttributeType used to locate the default Geometry
+     */
+    AttributeDescriptor getDefaultGeometry();
 
     /**
-     * Features are always identified.
-     *
-     * @return <code>true</code>
+     * The coordinate reference system of the Geometries
+     * attributes contained by this feature type.
+     * <p>
+     * Note: since this appears in the type system (CRS is XPathable) we can define
+     * restrictions as a Filter - these restrictions are intended to be applied to
+     * any contained geometry attributes.
+     * </p>
+     * <p>
+     * This value may be null, in which case you may need to check the GeomtryType
+     * CRS directly. When working with GML any associated FeatureCollection may also
+     * provide CRS information.
+     * </p>
      */
-    boolean isIdentified();
+    public CoordinateReferenceSystem getCRS();
 
     /**
-     * The default geometric attribute of the feature.
-     * <p>
-     * This method returns <code>null</code> in the case where no such attribute
-     * exists.
-     * </p>
-     * @return The descriptor of the default geometry attribute, or <code>null</code>.
+     * Super may be a normal ComplexType.
      */
-    GeometryDescriptor getDefaultGeometry();
-
-    /**
-     * The coordinate reference system of the feature.
-     * <p>
-     * This value is derived from the default geometry attribute:
-     * <pre>
-     *   ((GeometryType)getDefaultGeometry().getType()).getCRS();
-     * </pre>
-     * </p>
-     * <p>
-     * This method will return <code>null</code> in the case where no default
-     * geometric attribute is defined.
-     * </p>
-     * @return The coordinate referencing system, or <code>null</code>.
-     */
-    CoordinateReferenceSystem getCRS();
+    ComplexType getSuper();
 }

@@ -2,6 +2,7 @@ package org.opengis.feature.simple;
 
 import org.opengis.feature.Attribute;
 
+
 /**
  * Attribute bound to a CharSequence.
  * <p>
@@ -13,7 +14,9 @@ import org.opengis.feature.Attribute;
  */
 public interface TextAttribute extends Attribute {
     void setValue(CharSequence newValue);
+
     CharSequence getValue();
+
     /**
      * Java 1.4 type safe access to getValue
      * @return (Boolean) getValue()
