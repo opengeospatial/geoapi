@@ -10,11 +10,9 @@
  *************************************************************************************************/
 package org.opengis.metadata.distribution;
 
-import java.util.Iterator;
 import java.util.List;
 import java.util.ArrayList;
 
-import org.opengis.metadata.maintenance.MaintenanceFrequency;
 import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
 
@@ -105,20 +103,10 @@ public final class MediumFormat extends CodeList<MediumFormat> {
     }
 
     /**
-     * Returns the MediumFormat that matches the given string, or returns a
+     * Returns the medium format that matches the given string, or returns a
      * new one if none match it.
      */
-    public static synchronized MediumFormat valueOf(String code) {
-        if (code == null) {
-            return null;
-        }
-        Iterator iter = VALUES.iterator();
-        while (iter.hasNext()) {
-            MediumFormat type = (MediumFormat) iter.next();
-            if (code.equalsIgnoreCase(type.name())) {
-                return type;
-            }
-        }
-        return new MediumFormat(code);
+    public static MediumFormat valueOf(String code) {
+        return valueOf(MediumFormat.class, code);
     }
 }

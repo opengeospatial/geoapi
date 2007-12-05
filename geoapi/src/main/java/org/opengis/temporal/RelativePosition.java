@@ -10,11 +10,9 @@
  *************************************************************************************************/
 package org.opengis.temporal;
 
-import java.util.Iterator;
 import java.util.List;
 import java.util.ArrayList;
 
-import org.opengis.referencing.cs.RangeMeaning;
 import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
 
@@ -74,32 +72,22 @@ public final class RelativePosition extends CodeList<RelativePosition> {
      */
     public static RelativePosition[] values() {
         synchronized (VALUES) {
-            return (RelativePosition[]) VALUES.toArray(new RelativePosition[VALUES.size()]);
+            return VALUES.toArray(new RelativePosition[VALUES.size()]);
         }
     }
 
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
-    public /*RelativePosition[]*/ CodeList[] family() {
+    public RelativePosition[] family() {
         return values();
     }
 
     /**
-     * Returns the RelativePosition that matches the given string, or returns a
+     * Returns the relative position that matches the given string, or returns a
      * new one if none match it.
      */
-    public static synchronized RelativePosition valueOf(String code) {
-        if (code == null) {
-            return null;
-        }
-        Iterator iter = VALUES.iterator();
-        while (iter.hasNext()) {
-            RelativePosition type = (RelativePosition) iter.next();
-            if (code.equalsIgnoreCase(type.name())) {
-                return type;
-            }
-        }
-        return new RelativePosition(code);
+    public static RelativePosition valueOf(String code) {
+        return valueOf(RelativePosition.class, code);
     }
 }

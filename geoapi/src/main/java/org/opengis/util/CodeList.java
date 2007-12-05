@@ -13,8 +13,10 @@ package org.opengis.util;
 import java.io.InvalidObjectException;
 import java.io.ObjectStreamException;
 import java.io.Serializable;
+import java.lang.reflect.Constructor;
 import java.util.Collection;
-import java.util.Iterator;
+import java.util.HashMap;
+import java.util.Map;
 
 
 /**
@@ -32,6 +34,20 @@ public abstract class CodeList<E extends CodeList<E>> implements Comparable<E>, 
      * Serial number for compatibility with different versions.
      */
     private static final long serialVersionUID = 5655809691319522885L;
+
+    /**
+     * The values for each code list.
+     */
+    private static final Map<Class<? extends CodeList>, Collection<? extends CodeList>> VALUES =
+            new HashMap<Class<? extends CodeList>, Collection<? extends CodeList>>();
+
+    /**
+     * The types expected in constructors.
+     */
+    @SuppressWarnings("unchecked")
+    private static final Class<String>[] CONSTRUCTOR_PARAMETERS = new Class[] {
+        String.class
+    };
 
     /**
      * The code value.
@@ -52,30 +68,58 @@ public abstract class CodeList<E extends CodeList<E>> implements Comparable<E>, 
      * @param name   The code name.
      * @param values The collection to add the element to.
      */
+    @SuppressWarnings("unchecked")
     protected CodeList(String name, final Collection<E> values) {
-        this.name = (name=name.trim());
+        this.name = (name = name.trim());
         synchronized (values) {
             this.ordinal = values.size();
-            assert !contains(values, name) : name;
             if (!values.add((E) this)) {
-                throw new IllegalArgumentException(String.valueOf(values));
+                throw new IllegalArgumentException("Duplicated value: " + name);
+            }
+        }
+        final Class<? extends CodeList> codeType = getClass();
+        synchronized (VALUES) {
+            final Collection<? extends CodeList> previous = VALUES.put(codeType, values);
+            if (previous != null && previous != values) {
+                VALUES.put(codeType, previous); // Roll back
+                throw new IllegalArgumentException("List already exists: " + values);
             }
         }
     }
 
     /**
-     * Verifies if the given collection contains a {@code CodeList} instance
-     * with the same name than the given {@code name} argument.
-     * The comparaison is case-insensitive.
+     * Returns the code of the given class that matches the given string, or returns a
+     * new one if none match it. The comparaison is case-insensitive.
+     *
+     * @param codeType The type of code list.
+     * @param name The name of the code to obtain.
      */
-    private static boolean contains(final Collection values, final String name) {
-        for (final Iterator it=values.iterator(); it.hasNext();) {
-            final CodeList code = (CodeList) it.next();
-            if (name.equalsIgnoreCase(code.name)) {
-                return true;
+    public static <T extends CodeList> T valueOf(final Class<T> codeType, String name) {
+        if (name == null) {
+            return null;
+        }
+        name = name.trim();
+        final Collection<? extends CodeList> values;
+        synchronized (VALUES) {
+            values = VALUES.get(codeType);
+            if (values == null) {
+                throw new IllegalStateException("No list for " + codeType.getSimpleName());
             }
         }
-        return false;
+        synchronized (values) {
+            for (final CodeList code : values) {
+                if (name.equalsIgnoreCase(code.name)) {
+                    return codeType.cast(code);
+                }
+            }
+            try {
+                final Constructor<T> constructor = codeType.getDeclaredConstructor(CONSTRUCTOR_PARAMETERS);
+                constructor.setAccessible(true);
+                return constructor.newInstance(name);
+            } catch (Exception exception) {
+                throw new IllegalArgumentException("Can't create code of type " + codeType.getSimpleName(), exception);
+            }
+        }
     }
 
     /**
@@ -96,7 +140,7 @@ public abstract class CodeList<E extends CodeList<E>> implements Comparable<E>, 
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
-    public abstract CodeList[] family();
+    public abstract E[] family();
 
     /**
      * Compares this code with the specified object for order. Returns a
@@ -121,12 +165,7 @@ public abstract class CodeList<E extends CodeList<E>> implements Comparable<E>, 
      */
     @Override
     public String toString() {
-        String classname = getClass().getName();
-        final int i = classname.lastIndexOf('.');
-        if (i >= 0) {
-            classname = classname.substring(i+1);
-        }
-        return classname + '[' + name + ']';
+        return getClass().getSimpleName() + '[' + name + ']';
     }
 
     /**
@@ -145,6 +184,6 @@ public abstract class CodeList<E extends CodeList<E>> implements Comparable<E>, 
                 return codes[i];
             }
         }
-        throw new InvalidObjectException(toString());
+        return this;
     }
 }

@@ -10,7 +10,6 @@
  *************************************************************************************************/
 package org.opengis.coverage.grid.quadrilateral;
 
-import java.util.Iterator;
 import java.util.List;
 import java.util.ArrayList;
 import org.opengis.util.CodeList;
@@ -183,20 +182,10 @@ public class SequenceType extends CodeList<SequenceType> {
     }
 
     /**
-     * Returns the SequenceType that matches the given string, or returns a
+     * Returns the sequence type that matches the given string, or returns a
      * new one if none match it.
      */
-    public static synchronized SequenceType valueOf(String code) {
-        if (code == null) {
-            return null;
-        }
-        Iterator iter = VALUES.iterator();
-        while (iter.hasNext()) {
-            SequenceType type = (SequenceType) iter.next();
-            if (code.equalsIgnoreCase(type.name())) {
-                return type;
-            }
-        }
-        return new SequenceType(code);
+    public static SequenceType valueOf(String code) {
+        return valueOf(SequenceType.class, code);
     }
 }

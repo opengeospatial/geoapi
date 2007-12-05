@@ -10,12 +10,10 @@
  *************************************************************************************************/
 package org.opengis.metadata;
 
-import java.util.Iterator;
 import java.util.List;
 import java.util.ArrayList;
 import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
-import org.opengis.geometry.primitive.CurveInterpolation;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -161,20 +159,10 @@ public final class Datatype extends CodeList<Datatype> {
     }
 
     /**
-     * Returns the Datatype that matches the given string, or returns a
+     * Returns the datatype that matches the given string, or returns a
      * new one if none match it.
      */
-    public static synchronized Datatype valueOf(String code) {
-        if (code == null) {
-            return null;
-        }
-        Iterator iter = VALUES.iterator();
-        while (iter.hasNext()) {
-            Datatype type = (Datatype) iter.next();
-            if (code.equalsIgnoreCase(type.name())) {
-                return type;
-            }
-        }
-        return new Datatype(code);
+    public static Datatype valueOf(String code) {
+        return valueOf(Datatype.class, code);
     }
 }

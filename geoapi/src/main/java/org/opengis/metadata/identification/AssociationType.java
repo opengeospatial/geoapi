@@ -11,10 +11,8 @@
 package org.opengis.metadata.identification;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
-import org.opengis.metadata.maintenance.ScopeCode;
 import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
 
@@ -99,20 +97,10 @@ public final class AssociationType extends CodeList<AssociationType> {
     }
 
     /**
-     * Returns the AssociationType that matches the given string, or returns a
+     * Returns the association type that matches the given string, or returns a
      * new one if none match it.
      */
-    public static synchronized AssociationType valueOf(String code) {
-        if (code == null) {
-            return null;
-        }
-        Iterator iter = VALUES.iterator();
-        while (iter.hasNext()) {
-            AssociationType type = (AssociationType) iter.next();
-            if (code.equalsIgnoreCase(type.name())) {
-                return type;
-            }
-        }
-        return new AssociationType(code);
+    public static AssociationType valueOf(String code) {
+        return valueOf(AssociationType.class, code);
     }
 }

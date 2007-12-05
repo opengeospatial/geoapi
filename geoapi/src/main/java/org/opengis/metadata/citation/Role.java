@@ -10,11 +10,9 @@
  *************************************************************************************************/
 package org.opengis.metadata.citation;
 
-import java.util.Iterator;
 import java.util.List;
 import java.util.ArrayList;
 
-import org.opengis.metadata.constraint.Restriction;
 import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
 
@@ -139,20 +137,10 @@ public final class Role extends CodeList<Role> {
     }
 
     /**
-     * Returns the Role that matches the given string, or returns a
+     * Returns the role that matches the given string, or returns a
      * new one if none match it.
      */
-    public static synchronized Role valueOf(String code) {
-        if (code == null) {
-            return null;
-        }
-        Iterator iter = VALUES.iterator();
-        while (iter.hasNext()) {
-            Role type = (Role) iter.next();
-            if (code.equalsIgnoreCase(type.name())) {
-                return type;
-            }
-        }
-        return new Role(code);
+    public static Role valueOf(String code) {
+        return valueOf(Role.class, code);
     }
 }

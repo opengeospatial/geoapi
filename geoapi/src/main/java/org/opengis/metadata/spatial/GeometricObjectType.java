@@ -10,11 +10,9 @@
  *************************************************************************************************/
 package org.opengis.metadata.spatial;
 
-import java.util.Iterator;
 import java.util.List;
 import java.util.ArrayList;
 import org.opengis.util.CodeList;
-import org.opengis.webservice.ExceptionCode;
 import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Obligation.*;
@@ -128,20 +126,10 @@ public final class GeometricObjectType extends CodeList<GeometricObjectType> {
     }
 
     /**
-     * Returns the GeometricObjectType that matches the given string, or returns a
+     * Returns the geometric object type that matches the given string, or returns a
      * new one if none match it.
      */
-    public static synchronized GeometricObjectType valueOf(String code) {
-        if (code == null) {
-            return null;
-        }
-        Iterator iter = VALUES.iterator();
-        while (iter.hasNext()) {
-            GeometricObjectType type = (GeometricObjectType) iter.next();
-            if (code.equalsIgnoreCase(type.name())) {
-                return type;
-            }
-        }
-        return new GeometricObjectType(code);
+    public static GeometricObjectType valueOf(String code) {
+        return valueOf(GeometricObjectType.class, code);
     }
 }

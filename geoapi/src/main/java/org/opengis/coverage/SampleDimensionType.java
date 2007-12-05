@@ -10,12 +10,10 @@
  *************************************************************************************************/
 package org.opengis.coverage;
 
-import java.util.Iterator;
 import java.util.List;
 import java.util.ArrayList;
 import java.awt.image.DataBuffer; // For Javadoc
 
-import org.opengis.metadata.citation.Role;
 import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
 
@@ -206,20 +204,10 @@ public final class SampleDimensionType extends CodeList<SampleDimensionType> {
     }
 
     /**
-     * Returns the SampleDimensionType that matches the given string, or returns a
+     * Returns the sample dimension type that matches the given string, or returns a
      * new one if none match it.
      */
-    public static synchronized SampleDimensionType valueOf(String code) {
-        if (code == null) {
-            return null;
-        }
-        Iterator iter = VALUES.iterator();
-        while (iter.hasNext()) {
-            SampleDimensionType type = (SampleDimensionType) iter.next();
-            if (code.equalsIgnoreCase(type.name())) {
-                return type;
-            }
-        }
-        return new SampleDimensionType(code);
+    public static SampleDimensionType valueOf(String code) {
+        return valueOf(SampleDimensionType.class, code);
     }
 }

@@ -169,7 +169,7 @@ public class CodeListTest extends TestCase {
             assertTrue(className + ".family() mismatch.", Arrays.equals(values, family));
         }
         /*
-         * Get the private VALUES field only if CodeList is the direct parent.
+         * Gets the private VALUES field only if CodeList is the direct parent.
          */
         if (classe.getSuperclass().equals(CodeList.class)) {
             fullName = className + ".VALUES";
@@ -220,6 +220,26 @@ public class CodeListTest extends TestCase {
                 assertEquals(fullName + " not properly sized.", asList.size(), capacity);
             }
         }
+        /*
+         * Tries to create a new element.
+         */
+        try {
+            method = classe.getMethod("valueOf", String.class);
+        } catch (NoSuchMethodException e) {
+            return;
+        }
+        final CodeList value;
+        try {
+            value = classe.cast(method.invoke(null, "Dummy"));
+        } catch (IllegalAccessException e) {
+            fail(e.toString());
+            return;
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+            fail(e.getTargetException().toString());
+            return;
+        }
+        assertEquals("Dummy", value.name());
     }
 
     /**

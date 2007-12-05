@@ -10,12 +10,9 @@
  *************************************************************************************************/
 package org.opengis.metadata.constraint;
 
-import java.util.Iterator;
 import java.util.List;
 import java.util.ArrayList;
 
-import org.opengis.metadata.identification.CharacterSet;
-import org.opengis.metadata.spatial.CellGeometry;
 import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
 
@@ -100,20 +97,10 @@ public final class Classification extends CodeList<Classification> {
     }
 
     /**
-     * Returns the Classification that matches the given string, or returns a
+     * Returns the classification that matches the given string, or returns a
      * new one if none match it.
      */
-    public static synchronized Classification valueOf(String code) {
-        if (code == null) {
-            return null;
-        }
-        Iterator iter = VALUES.iterator();
-        while (iter.hasNext()) {
-            Classification type = (Classification) iter.next();
-            if (code.equalsIgnoreCase(type.name())) {
-                return type;
-            }
-        }
-        return new Classification(code);
+    public static Classification valueOf(String code) {
+        return valueOf(Classification.class, code);
     }
 }

@@ -10,12 +10,9 @@
  *************************************************************************************************/
 package org.opengis.metadata.citation;
 
-import java.util.Iterator;
 import java.util.List;
 import java.util.ArrayList;
 
-import org.opengis.geometry.PrecisionType;
-import org.opengis.metadata.spatial.PixelOrientation;
 import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
 
@@ -162,20 +159,10 @@ public final class PresentationForm extends CodeList<PresentationForm> {
     }
 
     /**
-     * Returns the PresentationForm that matches the given string, or returns a
+     * Returns the presentation form that matches the given string, or returns a
      * new one if none match it.
      */
-    public static synchronized PresentationForm valueOf(String code) {
-        if (code == null) {
-            return null;
-        }
-        Iterator iter = VALUES.iterator();
-        while (iter.hasNext()) {
-            PresentationForm type = (PresentationForm) iter.next();
-            if (code.equalsIgnoreCase(type.name())) {
-                return type;
-            }
-        }
-        return new PresentationForm(code);
+    public static PresentationForm valueOf(String code) {
+        return valueOf(PresentationForm.class, code);
     }
 }

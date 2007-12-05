@@ -10,7 +10,6 @@
  *************************************************************************************************/
 package org.opengis.metadata.distribution;
 
-import java.util.Iterator;
 import java.util.List;
 import java.util.ArrayList;
 import org.opengis.util.CodeList;
@@ -175,20 +174,10 @@ public final class MediumName extends CodeList<MediumName> {
     }
 
     /**
-     * Returns the MediumName that matches the given string, or returns a
+     * Returns the medium name that matches the given string, or returns a
      * new one if none match it.
      */
-    public static synchronized MediumName valueOf(String code) {
-        if (code == null) {
-            return null;
-        }
-        Iterator iter = VALUES.iterator();
-        while (iter.hasNext()) {
-            MediumName type = (MediumName) iter.next();
-            if (code.equalsIgnoreCase(type.name())) {
-                return type;
-            }
-        }
-        return new MediumName(code);
+    public static MediumName valueOf(String code) {
+        return valueOf(MediumName.class, code);
     }
 }
