@@ -14,7 +14,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.ArrayList;
 import org.opengis.util.CodeList;
-import org.opengis.webservice.MetadataType;
 import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Specification.*;
