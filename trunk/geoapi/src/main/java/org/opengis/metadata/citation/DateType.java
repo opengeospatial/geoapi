@@ -75,14 +75,14 @@ public final class DateType extends CodeList<DateType> {
      */
     public static DateType[] values() {
         synchronized (VALUES) {
-            return (DateType[]) VALUES.toArray(new DateType[VALUES.size()]);
+            return VALUES.toArray(new DateType[VALUES.size()]);
         }
     }
 
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
-    public /*{DateType}*/ CodeList[] family() {
+    public DateType[] family() {
         return values();
     }
 

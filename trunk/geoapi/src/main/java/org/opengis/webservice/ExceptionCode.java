@@ -136,14 +136,14 @@ public final class ExceptionCode extends CodeList<ExceptionCode> {
      */
     public static ExceptionCode[] values() {
         synchronized (VALUES) {
-            return (ExceptionCode[]) VALUES.toArray(new ExceptionCode[VALUES.size()]);
+            return VALUES.toArray(new ExceptionCode[VALUES.size()]);
         }
     }
 
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
-    public /*{ExceptionCode}*/ CodeList[] family() {
+    public ExceptionCode[] family() {
         return values();
     }
 

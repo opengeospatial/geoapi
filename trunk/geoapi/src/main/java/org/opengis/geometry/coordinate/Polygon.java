@@ -63,6 +63,6 @@ public interface Polygon extends SurfacePatch {
     /**
      * Returns the patch which own this surface patch.
      */
-/// @UML(identifier="surface", obligation=MANDATORY, specification=ISO_19107)
-/// PolyhedralSurface getSurface();
+    @UML(identifier="surface", obligation=MANDATORY, specification=ISO_19107)
+    PolyhedralSurface getSurface();
 }

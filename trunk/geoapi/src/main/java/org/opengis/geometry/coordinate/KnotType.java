@@ -81,14 +81,14 @@ public class KnotType extends CodeList<KnotType> {
      */
     public static KnotType[] values() {
         synchronized (VALUES) {
-            return (KnotType[]) VALUES.toArray(new KnotType[VALUES.size()]);
+            return VALUES.toArray(new KnotType[VALUES.size()]);
         }
     }
 
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
-    public /*{KnotType}*/ CodeList[] family() {
+    public KnotType[] family() {
         return values();
     }
 

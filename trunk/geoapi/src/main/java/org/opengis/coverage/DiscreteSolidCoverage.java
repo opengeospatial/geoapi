@@ -65,6 +65,6 @@ public interface DiscreteSolidCoverage extends DiscreteCoverage {
      * Returns the nearest <var>solid</var>-<var>value</var> pair from the specified direct
      * position. This is a shortcut for <code>{@linkplain #find(DirectPosition,int) find}(p,1)</code>.
      */
-/// @UML(identifier="find", obligation=MANDATORY, specification=ISO_19123)
-/// SolidValuePair find(DirectPosition p);
+    @UML(identifier="find", obligation=MANDATORY, specification=ISO_19123)
+    SolidValuePair find(DirectPosition p);
 }

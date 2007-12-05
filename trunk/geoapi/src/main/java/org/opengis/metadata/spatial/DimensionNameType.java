@@ -105,14 +105,14 @@ public final class DimensionNameType extends CodeList<DimensionNameType> {
      */
     public static DimensionNameType[] values() {
         synchronized (VALUES) {
-            return (DimensionNameType[]) VALUES.toArray(new DimensionNameType[VALUES.size()]);
+            return VALUES.toArray(new DimensionNameType[VALUES.size()]);
         }
     }
 
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
-    public /*{DimensionNameType}*/ CodeList[] family() {
+    public DimensionNameType[] family() {
         return values();
     }
 

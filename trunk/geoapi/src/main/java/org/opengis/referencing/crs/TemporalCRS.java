@@ -37,12 +37,12 @@ public interface TemporalCRS extends SingleCRS {
     /**
      * Returns the coordinate system, which must be temporal.
      */
-/// @UML(identifier="usesCS", obligation=MANDATORY, specification=ISO_19111)
-/// TimeCS getCoordinateSystem();
+    @UML(identifier="usesCS", obligation=MANDATORY, specification=ISO_19111)
+    TimeCS getCoordinateSystem();
 
     /**
      * Returns the datum, which must be temporal.
      */
-/// @UML(identifier="usesDatum", obligation=MANDATORY, specification=ISO_19111)
-/// TemporalDatum getDatum();
+    @UML(identifier="usesDatum", obligation=MANDATORY, specification=ISO_19111)
+    TemporalDatum getDatum();
 }

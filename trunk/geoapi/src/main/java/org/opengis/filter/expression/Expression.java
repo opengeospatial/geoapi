@@ -10,7 +10,6 @@
  *************************************************************************************************/
 package org.opengis.filter.expression;
 
-// OpenGIS direct dependencies
 import org.opengis.annotation.Extension;
 import org.opengis.annotation.XmlElement;
 import org.opengis.feature.Feature;

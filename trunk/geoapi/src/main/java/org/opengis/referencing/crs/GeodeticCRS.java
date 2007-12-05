@@ -37,6 +37,6 @@ public interface GeodeticCRS extends SingleCRS {
     /**
      * Returns the datum, which must be geodetic.
      */
-/// @UML(identifier="usesDatum", obligation=MANDATORY, specification=ISO_19111)
-/// GeodeticDatum getDatum();
+    @UML(identifier="usesDatum", obligation=MANDATORY, specification=ISO_19111)
+    GeodeticDatum getDatum();
 }

@@ -33,8 +33,8 @@ public interface GridPointValuePair extends GeometryValuePair {
      * It is one of the {@linkplain GridPoint grid points} linked to the
      * {@linkplain GridValuesMatrix grid value matrix} through {@link Grid#getIntersections}.
      */
-/// @UML(identifier="geometry", obligation=MANDATORY, specification=ISO_19123)
-/// GridPoint getGeometry();
+    @UML(identifier="geometry", obligation=MANDATORY, specification=ISO_19123)
+    GridPoint getGeometry();
 
     /**
      * Holds the record of feature attribute values associated with the grid point.

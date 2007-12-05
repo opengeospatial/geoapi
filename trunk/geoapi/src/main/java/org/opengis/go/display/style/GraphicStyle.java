@@ -74,5 +74,5 @@ public interface GraphicStyle extends Cloneable {
      *   referenced by the result.  These objects include the values for
      *   <code>implHint</code>s, etc.
      */
-    Object clone();
+    GraphicStyle clone();
 }

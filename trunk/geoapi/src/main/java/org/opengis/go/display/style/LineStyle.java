@@ -97,14 +97,14 @@ public class LineStyle extends SimpleEnumerationType<LineStyle> {
      */
     public static LineStyle[] values() {
         synchronized (VALUES) {
-            return (LineStyle[]) VALUES.toArray(new LineStyle[VALUES.size()]);
+            return VALUES.toArray(new LineStyle[VALUES.size()]);
         }
     }
 
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
-    public /*{LineStyle}*/ CodeList[] family() {
+    public LineStyle[] family() {
         return values();
     }
 }

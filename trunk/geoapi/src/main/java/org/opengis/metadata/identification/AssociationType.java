@@ -87,14 +87,14 @@ public final class AssociationType extends CodeList<AssociationType> {
      */
     public static AssociationType[] values() {
         synchronized (VALUES) {
-            return (AssociationType[]) VALUES.toArray(new AssociationType[VALUES.size()]);
+            return VALUES.toArray(new AssociationType[VALUES.size()]);
         }
     }
 
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
-    public /*{AssociationType}*/ CodeList[] family() {
+    public AssociationType[] family() {
         return values();
     }
 

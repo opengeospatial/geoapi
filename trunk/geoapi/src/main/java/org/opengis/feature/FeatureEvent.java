@@ -53,14 +53,15 @@ public class FeatureEvent extends EventObject {
     /**
      * Returns the source as a feature collection.
      */
-    public /*{FeatureCollection}*/ Object getSource() {
+    @Override
+    public FeatureCollection getSource() {
         return (FeatureCollection) super.getSource();
     }
 
     /**
      * Synonym for {@link #getSource}, but does the cast for you.
      *
-     * @todo To be replaced by {@link #getSource} in a J2SE 1.5 profile.
+     * @deprecated To be replaced by {@link #getSource} in a J2SE 1.5 profile.
      */
     public FeatureCollection getFeatureCollection() {
         return (FeatureCollection) super.getSource();

@@ -97,14 +97,14 @@ public final class SpatialRepresentationType extends CodeList<SpatialRepresentat
      */
     public static SpatialRepresentationType[] values() {
         synchronized (VALUES) {
-            return (SpatialRepresentationType[]) VALUES.toArray(new SpatialRepresentationType[VALUES.size()]);
+            return VALUES.toArray(new SpatialRepresentationType[VALUES.size()]);
         }
     }
 
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
-    public /*{SpatialRepresentationType}*/ CodeList[] family() {
+    public SpatialRepresentationType[] family() {
         return values();
     }
 

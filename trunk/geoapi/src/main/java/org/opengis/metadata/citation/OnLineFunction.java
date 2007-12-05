@@ -87,14 +87,14 @@ public final class OnLineFunction extends CodeList<OnLineFunction> {
      */
     public static OnLineFunction[] values() {
         synchronized (VALUES) {
-            return (OnLineFunction[]) VALUES.toArray(new OnLineFunction[VALUES.size()]);
+            return VALUES.toArray(new OnLineFunction[VALUES.size()]);
         }
     }
 
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
-    public /*{OnLineFunction}*/ CodeList[] family() {
+    public OnLineFunction[] family() {
         return values();
     }
 

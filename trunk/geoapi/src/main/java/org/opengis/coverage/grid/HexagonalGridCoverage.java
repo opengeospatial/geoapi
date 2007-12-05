@@ -12,6 +12,7 @@ package org.opengis.coverage.grid;
 
 import java.util.Set;
 import java.util.Collection;
+import org.opengis.util.Record;
 import org.opengis.coverage.DomainObject;  // For javadoc
 import org.opengis.coverage.ContinuousCoverage;
 import org.opengis.coverage.InterpolationMethod;
@@ -86,11 +87,9 @@ public interface HexagonalGridCoverage extends ContinuousCoverage {
      * second is to interpolate the feature attribute values at the direct position from the
      * {@linkplain GridPointValuePair grid point-value pairs} at the centres of the surrounding
      * value hexagons.
-     *
-     * @todo The return type should be Set<Record>.
      */
     @UML(identifier="evaluate", obligation=MANDATORY, specification=ISO_19123)
-    Set/*<Record>*/ evaluate(DirectPosition p, Collection<String> list);
+    Set<Record> evaluate(DirectPosition p, Collection<String> list);
 
     /**
      * Links this hexagonal coverage to the grid values matrix for which it is an evaluator.

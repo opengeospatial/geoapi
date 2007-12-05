@@ -127,14 +127,14 @@ public final class Role extends CodeList<Role> {
      */
     public static Role[] values() {
         synchronized (VALUES) {
-            return (Role[]) VALUES.toArray(new Role[VALUES.size()]);
+            return VALUES.toArray(new Role[VALUES.size()]);
         }
     }
 
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
-    public /*{Role}*/ CodeList[] family() {
+    public Role[] family() {
         return values();
     }
 

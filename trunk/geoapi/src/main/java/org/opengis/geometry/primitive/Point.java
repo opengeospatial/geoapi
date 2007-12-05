@@ -71,8 +71,8 @@ public interface Point extends Primitive, Position {
      *
      * @return Always {@code null}.
      */
-/// @UML(identifier="boundary", obligation=MANDATORY, specification=ISO_19107)
-/// public PrimitiveBoundary getBoundary();
+    @UML(identifier="boundary", obligation=MANDATORY, specification=ISO_19107)
+    PrimitiveBoundary getBoundary();
 
     /**
      * Returns the bearing, as a unit vector, of the tangent (at this {@code Point}) to

@@ -95,14 +95,14 @@ public final class PaletteInterpretation extends CodeList<PaletteInterpretation>
      */
     public static PaletteInterpretation[] values() {
         synchronized (VALUES) {
-            return (PaletteInterpretation[]) VALUES.toArray(new PaletteInterpretation[VALUES.size()]);
+            return VALUES.toArray(new PaletteInterpretation[VALUES.size()]);
         }
     }
 
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
-    public /*{PaletteInterpretation}*/ CodeList[] family() {
+    public PaletteInterpretation[] family() {
         return values();
     }
 

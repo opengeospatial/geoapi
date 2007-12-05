@@ -239,14 +239,14 @@ public final class TopicCategory extends CodeList<TopicCategory> {
      */
     public static TopicCategory[] values() {
         synchronized (VALUES) {
-            return (TopicCategory[]) VALUES.toArray(new TopicCategory[VALUES.size()]);
+            return VALUES.toArray(new TopicCategory[VALUES.size()]);
         }
     }
 
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
-    public /*{TopicCategory}*/ CodeList[] family() {
+    public TopicCategory[] family() {
         return values();
     }
 

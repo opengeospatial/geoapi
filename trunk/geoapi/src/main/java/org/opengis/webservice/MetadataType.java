@@ -93,14 +93,14 @@ public final class MetadataType extends CodeList<MetadataType> {
      */
     public static MetadataType[] values() {
         synchronized (VALUES) {
-            return (MetadataType[]) VALUES.toArray(new MetadataType[VALUES.size()]);
+            return VALUES.toArray(new MetadataType[VALUES.size()]);
         }
     }
 
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
-    public /*{MetadataType}*/ CodeList[] family() {
+    public MetadataType[] family() {
         return values();
     }
 

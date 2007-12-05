@@ -147,14 +147,14 @@ public final class InitiativeType extends CodeList<InitiativeType>{
      */
     public static InitiativeType[] values() {
         synchronized (VALUES) {
-            return (InitiativeType[]) VALUES.toArray(new InitiativeType[VALUES.size()]);
+            return VALUES.toArray(new InitiativeType[VALUES.size()]);
         }
     }
 
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
-    public /*{InitiativeType}*/ CodeList[] family() {
+    public InitiativeType[] family() {
         return values();
     }
 

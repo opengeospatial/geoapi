@@ -93,5 +93,5 @@ public interface Matrix extends Cloneable {
     /**
      * Returns a clone of this matrix.
      */
-    /*{Matrix}*/ Object clone();
+    Matrix clone();
 }

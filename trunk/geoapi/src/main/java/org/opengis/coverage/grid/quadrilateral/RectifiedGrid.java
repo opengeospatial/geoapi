@@ -77,13 +77,13 @@ public interface RectifiedGrid extends RectifiableGrid {
      * The conversion defined by this object is an affine transformation
      * defined by the origin and offset vectors attributes.
      */
-/// @Extension
-/// Conversion getConversion();
+    @Extension
+    Conversion getConversion();
 
      /**
       * The inverseConversion defined by this object is an affine transformation
       * defined by the origin and offset vectors attributes.
       */
-///  @Extension
-///  Conversion getInverseConversion();
+    @Extension
+    Conversion getInverseConversion();
 }

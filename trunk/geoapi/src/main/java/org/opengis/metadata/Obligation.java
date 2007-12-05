@@ -73,14 +73,14 @@ public final class Obligation extends CodeList<Obligation> {
      */
     public static Obligation[] values() {
         synchronized (VALUES) {
-            return (Obligation[]) VALUES.toArray(new Obligation[VALUES.size()]);
+            return VALUES.toArray(new Obligation[VALUES.size()]);
         }
     }
 
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
-    public /*{Obligation}*/ CodeList[] family() {
+    public Obligation[] family() {
         return values();
     }
 

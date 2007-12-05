@@ -159,14 +159,14 @@ public final class ScopeCode extends CodeList<ScopeCode> {
      */
     public static ScopeCode[] values() {
         synchronized (VALUES) {
-            return (ScopeCode[]) VALUES.toArray(new ScopeCode[VALUES.size()]);
+            return VALUES.toArray(new ScopeCode[VALUES.size()]);
         }
     }
 
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
-    public /*{ScopeCode}*/ CodeList[] family() {
+    public ScopeCode[] family() {
         return values();
     }
 

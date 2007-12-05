@@ -166,6 +166,7 @@ public interface GenericName extends Comparable<GenericName> {
      * separated by an arbitrary character (usually {@code :} or {@code /}).
      */
     @Extension
+    @Override
     String toString();
 
     /**

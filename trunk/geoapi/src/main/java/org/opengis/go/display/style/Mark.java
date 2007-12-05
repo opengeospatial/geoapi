@@ -107,14 +107,14 @@ public class Mark extends SimpleEnumerationType<Mark> {
      */
     public static Mark[] values() {
         synchronized (VALUES) {
-            return (Mark[]) VALUES.toArray(new Mark[VALUES.size()]);
+            return VALUES.toArray(new Mark[VALUES.size()]);
         }
     }
 
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
-    public /*{Mark}*/ CodeList[] family() {
+    public Mark[] family() {
         return  values();
     }
 }

@@ -111,14 +111,14 @@ public final class TopologyLevel extends CodeList<TopologyLevel> {
      */
     public static TopologyLevel[] values() {
         synchronized (VALUES) {
-            return (TopologyLevel[]) VALUES.toArray(new TopologyLevel[VALUES.size()]);
+            return VALUES.toArray(new TopologyLevel[VALUES.size()]);
         }
     }
 
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
-    public /*{TopologyLevel}*/ CodeList[] family() {
+    public TopologyLevel[] family() {
         return values();
     }
 

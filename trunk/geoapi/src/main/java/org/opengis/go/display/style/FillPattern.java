@@ -153,14 +153,14 @@ public class FillPattern extends SimpleEnumerationType<FillPattern> {
      */
     public static FillPattern[] values() {
         synchronized (VALUES) {
-            return (FillPattern[]) VALUES.toArray(new FillPattern[VALUES.size()]);
+            return VALUES.toArray(new FillPattern[VALUES.size()]);
         }
     }
 
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
-    public /*{FillPattern}*/ CodeList[] family() {
+    public FillPattern[] family() {
         return values();
     }
 }
