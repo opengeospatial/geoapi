@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ==================================================== -->
+<!--     Maven 2 project configuration file               -->
+<!--     http://maven.apache.org/maven2/                  -->
+<!-- ==================================================== -->
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>org.opengis</groupId>
+    <artifactId>parent</artifactId>
+    <version>2.1-SNAPSHOT</version>
+  </parent>
+
+
+
+  <!-- ==================================================== -->
+  <!--     Project description                              -->
+  <!-- ==================================================== -->
+  <groupId>org.opengis</groupId>
+  <artifactId>erasure</artifactId>
+  <packaging>maven-plugin</packaging>
+  <name>Generic types erasure for GeoAPI</name>
+  <description>
+    Copies the source code in the generated-src directory,
+    and erase the J2SE 1.5 features from this copied code.
+    The work is performed by the erasure.build.xml ant script.
+  </description>
+
+
+
+  <!-- ==================================================== -->
+  <!--     Dependencies                                     -->
+  <!-- ==================================================== -->
+  <dependencies>
+    <dependency>
+      <groupId>ant</groupId>
+      <artifactId>ant-optional</artifactId>
+      <version>1.5.3-1</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.maven</groupId>
+      <artifactId>maven-script-ant</artifactId>
+      <version>2.0.4</version>
+    </dependency>
+  </dependencies>
+
+
+
+  <!-- ==================================================== -->
+  <!--     Build configuration                              -->
+  <!-- ==================================================== -->
+  <build>
+    <plugins>
+      <plugin>
+      <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-plugin-plugin</artifactId>
+        
+        <!-- Add the Ant plugin tools -->
+        <dependencies>
+          <dependency>
+            <groupId>org.apache.maven</groupId>
+            <artifactId>maven-plugin-tools-ant</artifactId>
+            <version>2.0.4</version>
+          </dependency>
+        </dependencies>
+        <configuration>
+          <prefix>transform</prefix>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+
+</project>
