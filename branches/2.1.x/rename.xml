@@ -4,7 +4,7 @@
     <replace dir=".">
       <include name="**/pom.xml"/>
       <replacefilter token="&lt;version&gt;2.1-SNAPSHOT&lt;/version&gt;"
-                     value="&lt;version&gt;2.1-RC1&lt;/version&gt;"/>
+                     value="&lt;version&gt;2.1-RC2&lt;/version&gt;"/>
     </replace>
   </target>
 </project>
