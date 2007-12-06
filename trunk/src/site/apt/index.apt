@@ -27,9 +27,9 @@ The GeoAPI project
 
     * Changes since GeoAPI 2.0 (PDF documents)
 
-    ** {{{http://jira.codehaus.org/secure/attachment/30886/GeoAPI+alignment+with+standards.pdf}Alignment with standards}}
+        * {{{http://jira.codehaus.org/secure/attachment/30886/GeoAPI+alignment+with+standards.pdf}Alignment with standards}}
 
-    ** {{{http://jira.codehaus.org/secure/attachment/30887/GeoAPI+specific+changes.pdf}GeoAPI specific changes}}
+        * {{{http://jira.codehaus.org/secure/attachment/30887/GeoAPI+specific+changes.pdf}GeoAPI specific changes}}
 
   Last version derived from OGC working group is GeoAPI 2.0.0. This version is provided in two
   flavors: <<<geoapi-nogenerics.jar>>> requires Java 4 or higher while <<<geoapi.jar>>> requires
