@@ -72,6 +72,25 @@
 
 
   <!-- ==================================================== -->
+  <!--     Developers and contributors                      -->
+  <!-- ==================================================== -->
+  <developers>
+    <developer>
+      <id>desruisseaux</id>
+      <name>Martin Desruisseaux</name>
+      <email>desruisseaux@users.sourceforge.net</email>
+      <organization>Geomatys</organization>
+      <organizationUrl>http://www.geomatys.fr/</organizationUrl>
+      <roles>
+        <role>Java Developer</role>
+      </roles>
+      <timezone>+1</timezone>
+    </developer>
+  </developers>
+
+
+
+  <!-- ==================================================== -->
   <!--     Repositories (used for javax.units dependency)   -->
   <!-- ==================================================== -->
   <repositories>
@@ -315,30 +334,6 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-project-info-reports-plugin</artifactId>
-      </plugin>
-
-
-
-      <!-- ==================================================== -->
-      <!--     Changes log from Subversion                      -->
-      <!-- ==================================================== -->
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-changelog-plugin</artifactId>
-        <reportSets>
-          <reportSet>
-            <id>changes-report</id>
-            <reports>
-              <report>changelog</report>
-              <report>file-activity</report>
-              <report>dev-activity</report>
-            </reports>
-            <configuration>
-              <type>range</type>
-              <range>90</range>
-            </configuration>
-          </reportSet>
-        </reportSets>
       </plugin>
 
 

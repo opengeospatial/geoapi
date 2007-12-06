@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<project name="GeoAPI">
+  <body>
+    <menu name="GeoAPI">
+      <item name="Javadoc"    href="http://geoapi.sourceforge.net/snapshot/javadoc/index.html"/>
+      <item name="Wiki pages" href="http://docs.codehaus.org/display/GEO/Home"/>
+      <item name="FAQ"        href="../faq.html"/>
+    </menu>
+
+    ${reports}  <!-- Replaced by menus for any configured reports (mailing lists, etc.) -->
+
+  </body>
+</project>
