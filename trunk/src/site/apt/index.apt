@@ -5,27 +5,37 @@ The GeoAPI project
   interface-only APIs derived from OGC/ISO Standards. GeoAPI is an OGC working group. See the
   {{{charter.html}charter}} for more informations.
 
+  {{{http://maven.apache.org/}Maven}} projects can download GeoAPI from the
+  {{{maven.html}repositories listed here}}.
+
   Development version is GeoAPI 2.2-SNAPSHOT. This version requires Java 5 or higher.
-  Supports for Java 4 has been dropped in this version.
 
     * {{{http://geoapi.sourceforge.net/snapshot/javadoc/index.html}Browse javadoc}}
 
     * {{{geoapi/index.html}Browse Maven reports}}
 
-    * {{{http://maven.geotools.fr/repository/org/opengis/geoapi/}Browse Maven repository}}
+    * {{{http://dien.geomatys.fr/hudson/job/GeoAPI/org.opengis$geoapi/}Nightly builds (last 2 weeks)}}
 
     * {{{http://docs.codehaus.org/display/GEO/Home}News and discussions (wiki pages)}}
 
   Last unofficial milestone is GeoAPI 2.1-RC1. This milestone is provided as a transition between
-  GeoAPI 2.0 and what may be a next OGC official release. This version is provided in two flavors:
+  GeoAPI 2.0 and what may be the next OGC official release. This version is provided in two flavors:
   <<<geoapi-nogenerics.jar>>> requires Java 4 or higher while <<<geoapi.jar>>> requires Java 5 or
   higher.
 
     * {{{http://geoapi.sourceforge.net/2.1/javadoc/index.html}Browse javadoc}}
 
+    * Changes since GeoAPI 2.0 (PDF documents)
+
+    ** {{{http://jira.codehaus.org/secure/attachment/30886/GeoAPI+alignment+with+standards.pdf}Alignment with standards}}
+
+    ** {{{http://jira.codehaus.org/secure/attachment/30887/GeoAPI+specific+changes.pdf}GeoAPI specific changes}}
+
   Last version derived from OGC working group is GeoAPI 2.0.0. This version is provided in two
   flavors: <<<geoapi-nogenerics.jar>>> requires Java 4 or higher while <<<geoapi.jar>>> requires
   Java 5 or higher.
+
+    * {{{http://www.opengeospatial.org/standards/go}OGC Geographic Objects Implementation Specification}}
 
     * {{{http://geoapi.sourceforge.net/2.0/javadoc/index.html}Browse javadoc}}
 

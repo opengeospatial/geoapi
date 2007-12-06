@@ -20,8 +20,8 @@
     <!--     Links to appears just below the right banner     -->
     <!-- ==================================================== -->
     <links>
-      <item name="OGC"    href="http://www.opengeospatial.org/" />
-      <item name="GeoAPI" href="http://geoapi.sourceforge.net/" />
+      <item name="Open Geospatial Consortium" href="http://www.opengeospatial.org/" />
+      <item name="GeoAPI home page"           href="http://geoapi.sourceforge.net/" />
     </links>
 
     <!-- ==================================================== -->
@@ -29,7 +29,9 @@
     <!-- ==================================================== -->
     <menu name="Snapshot">
       <item name="Javadoc"    href="http://geoapi.sourceforge.net/snapshot/javadoc/index.html"/>
+      <item name="Examples"   href="../examples/index.html"/>
       <item name="Wiki pages" href="http://docs.codehaus.org/display/GEO/Home"/>
+      <item name="FAQ"        href="../faq.html"/>
     </menu>
 
     ${reports}  <!-- Replaced by menus for any configured reports (mailing lists, etc.) -->

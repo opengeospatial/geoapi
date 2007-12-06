@@ -20,24 +20,25 @@
     <!--     Links to appears just below the right banner     -->
     <!-- ==================================================== -->
     <links>
-      <item name="OGC"    href="http://www.opengeospatial.org/" />
-      <item name="GeoAPI" href="http://geoapi.sourceforge.net/" />
+      <item name="Open Geospatial Consortium" href="http://www.opengeospatial.org/" />
+      <item name="GeoAPI home page"           href="http://geoapi.sourceforge.net/" />
     </links>
 
     <!-- ==================================================== -->
     <!--     Menus to appears on the left side of each page   -->
     <!-- ==================================================== -->
-    <menu name="Stable Release">
+    <menu name="GeoAPI 2.2-SNAPSHOT">
+      <item name="Javadoc"    href="http://geoapi.sourceforge.net/snapshot/javadoc/index.html"/>
+      <item name="Reports"    href="geoapi/index.html"/>
+      <item name="Examples"   href="examples/index.html"/>
+      <item name="Wiki pages" href="http://docs.codehaus.org/display/GEO/Home"/>
+    </menu>
+
+    <menu name="GeoAPI 2.0.0">
       <item name="Javadoc"  href="http://geoapi.sourceforge.net/2.0/javadoc/index.html"/>
       <item name="Download" href="http://sourceforge.net/project/showfiles.php?group_id=70002&amp;package_id=69096&amp;release_id=333419"/>
       <item name="Charter"  href="charter.html"/>
       <item name="FAQ"      href="faq.html"/>
-    </menu>
-
-    <menu name="Current Development">
-      <item name="Snapshot"   href="geoapi/index.html"/>
-      <item name="Examples"   href="examples/index.html"/>
-      <item name="Wiki pages" href="http://docs.codehaus.org/display/GEO/Home"/>
     </menu>
 
     ${reports}  <!-- Replaced by menus for any configured reports (mailing lists, etc.) -->
