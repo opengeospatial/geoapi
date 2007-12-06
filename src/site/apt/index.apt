@@ -1,0 +1,32 @@
+The GeoAPI project
+
+  The development community in building GIS solutions is sustaining an enormous level of effort.
+  The GeoAPI project aims to reduce duplication and increase interoperability by providing neutral,
+  interface-only APIs derived from OGC/ISO Standards. GeoAPI is an OGC working group. See the
+  {{{charter.html}charter}} for more informations.
+
+  Development version is GeoAPI 2.2-SNAPSHOT. This version requires Java 5 or higher.
+  Supports for Java 4 has been dropped in this version.
+
+    * {{{http://geoapi.sourceforge.net/snapshot/javadoc/index.html}Browse javadoc}}
+
+    * {{{geoapi/index.html}Browse Maven reports}}
+
+    * {{{http://maven.geotools.fr/repository/org/opengis/geoapi/}Browse Maven repository}}
+
+    * {{{http://docs.codehaus.org/display/GEO/Home}News and discussions (wiki pages)}}
+
+  Last unofficial milestone is GeoAPI 2.1-RC1. This milestone is provided as a transition between
+  GeoAPI 2.0 and what may be a next OGC official release. This version is provided in two flavors:
+  <<<geoapi-nogenerics.jar>>> requires Java 4 or higher while <<<geoapi.jar>>> requires Java 5 or
+  higher.
+
+    * {{{http://geoapi.sourceforge.net/2.1/javadoc/index.html}Browse javadoc}}
+
+  Last version derived from OGC working group is GeoAPI 2.0.0. This version is provided in two
+  flavors: <<<geoapi-nogenerics.jar>>> requires Java 4 or higher while <<<geoapi.jar>>> requires
+  Java 5 or higher.
+
+    * {{{http://geoapi.sourceforge.net/2.0/javadoc/index.html}Browse javadoc}}
+
+    * {{{http://sourceforge.net/project/showfiles.php?group_id=70002&package_id=69096&release_id=333419}Download sources and binaries}}

@@ -17,10 +17,13 @@
   <artifactId>parent</artifactId>
   <packaging>pom</packaging>
   <version>2.2-SNAPSHOT</version>
-  <name>Common settings</name>
+  <name>GeoAPI</name>
   <url>http://geoapi.sourceforge.net/snapshot/</url>
   <description>
-    Common setting for all GeoAPI modules.
+    The development community in building GIS solutions is sustaining an enormous
+    level of effort. The GeoAPI project aims to reduce duplication and increase
+    interoperability by providing neutral, interface-only APIs derived from OGC/ISO
+    Standards.
   </description>
 
   <organization>
@@ -332,7 +335,7 @@
             </reports>
             <configuration>
               <type>range</type>
-              <range>365</range>
+              <range>90</range>
             </configuration>
           </reportSet>
         </reportSets>

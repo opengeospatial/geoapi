@@ -1,8 +1,7 @@
-Pending proposals for GeoAPI
+GeoAPI snapshot
 
-  Interfaces under development for inclusion in some future
-  {{{../../stable/site/index.html}GeoAPI release}}. The GeoAPI source repository
-  contains a few modules, but the two most importants are listed below.
+  Interfaces under development for inclusion in some future GeoAPI release. The GeoAPI
+  source repository contains a few modules, but the two most importants are listed below.
 
 * stable
 
