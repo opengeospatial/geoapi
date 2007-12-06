@@ -21,7 +21,7 @@
   <groupId>org.opengis</groupId>
   <artifactId>tools</artifactId>
   <packaging>jar</packaging>
-  <name>GeoAPI processing tools</name>
+  <name>Processing tools</name>
   <description>
     Javadoc taglets and annotation processing tools for processing GeoAPI
     after compilation. Those tools are used mostly for javadoc generation.
@@ -46,5 +46,24 @@
       <version>${project.version}</version>
     </dependency>
   </dependencies>
+
+
+
+  <!-- ==================================================== -->
+  <!--     Developers and contributors                      -->
+  <!-- ==================================================== -->
+  <developers>
+    <developer>
+      <id>desruisseaux</id>
+      <name>Martin Desruisseaux</name>
+      <email>desruisseaux@users.sourceforge.net</email>
+      <organization>Geomatys</organization>
+      <organizationUrl>http://www.geomatys.fr/</organizationUrl>
+      <roles>
+        <role>Java Developer</role>
+      </roles>
+      <timezone>+1</timezone>
+    </developer>
+  </developers>
 
 </project>
