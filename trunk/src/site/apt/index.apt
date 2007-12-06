@@ -8,6 +8,9 @@ The GeoAPI project
   {{{http://maven.apache.org/}Maven}} projects can download GeoAPI from the
   {{{maven.html}repositories listed here}}.
 
+
+* Development version
+
   Development version is GeoAPI 2.2-SNAPSHOT. This version requires Java 5 or higher.
 
     * {{{http://geoapi.sourceforge.net/snapshot/javadoc/index.html}Browse javadoc}}
@@ -17,6 +20,9 @@ The GeoAPI project
     * {{{http://dien.geomatys.fr/hudson/job/GeoAPI/org.opengis$geoapi/}Nightly builds (last 2 weeks)}}
 
     * {{{http://docs.codehaus.org/display/GEO/Home}News and discussions (wiki pages)}}
+
+
+* Milestone
 
   Last unofficial milestone is GeoAPI 2.1-RC1. This milestone is provided as a transition between
   GeoAPI 2.0 and what may be the next OGC official release. This version is provided in two flavors:
@@ -30,6 +36,9 @@ The GeoAPI project
         * {{{http://jira.codehaus.org/secure/attachment/30886/GeoAPI+alignment+with+standards.pdf}Alignment with standards}}
 
         * {{{http://jira.codehaus.org/secure/attachment/30887/GeoAPI+specific+changes.pdf}GeoAPI specific changes}}
+
+
+* Open Geospatial Consortium
 
   Last version derived from OGC working group is GeoAPI 2.0.0. This version is provided in two
   flavors: <<<geoapi-nogenerics.jar>>> requires Java 4 or higher while <<<geoapi.jar>>> requires
