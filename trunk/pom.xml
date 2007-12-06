@@ -17,7 +17,7 @@
   <artifactId>parent</artifactId>
   <packaging>pom</packaging>
   <version>2.2-SNAPSHOT</version>
-  <name>GeoAPI common settings</name>
+  <name>Common settings</name>
   <url>http://geoapi.sourceforge.net/snapshot/</url>
   <description>
     Common setting for all GeoAPI modules.
@@ -46,6 +46,11 @@
     <connection>scm:svn:https://geoapi.svn.sourceforge.net/svnroot/geoapi/trunk/</connection>
     <url>http://geoapi.svn.sourceforge.net/viewvc/geoapi/trunk/</url>
   </scm>
+
+  <ciManagement>
+    <system>hudson</system>
+    <url>http://dien.geomatys.fr/hudson/job/GeoAPI/</url>
+  </ciManagement>
 
   <issueManagement>
     <system>JIRA</system>
@@ -99,7 +104,7 @@
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
-      <version>3.8.1</version>
+      <version>4.3.1</version>
       <scope>test</scope>
     </dependency>
   </dependencies>
@@ -165,7 +170,7 @@
         <groupId>org.apache.maven.wagon</groupId>
         <artifactId>wagon-webdav</artifactId>
       </extension>
-    </extensions> 
+    </extensions>
   </build>
 
 
@@ -180,15 +185,25 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-javadoc-plugin</artifactId>
+        <reportSets>
+          <reportSet>
+            <reports>
+              <report>javadoc</report>    <!-- We want API javadoc only, not tests javadoc. -->
+            </reports>
+          </reportSet>
+        </reportSets>
         <configuration>
           <author>false</author>          <!-- Specifies whether or not the author text is included.              -->
+          <version>false</version>        <!-- Includes or not the version text in the generated docs.            -->
           <encoding>UTF-8</encoding>      <!-- Specifies the encoding name of the source files.                   -->
+          <charset>UTF-8</charset>        <!-- Specifies the HTML character set for this document.                -->
           <source>1.5</source>            <!-- Necessary to enable javadoc to handle J2SE 1.5 features.           -->
           <noqualifier>all</noqualifier>  <!-- Omits qualifying package name from ahead of class names in output. -->
           <quiet>true</quiet>             <!-- Shuts off non-error and non-warning messages.                      -->
           <maxmemory>384M</maxmemory>     <!-- The maximum Java heap size to be used when launching the javadoc.  -->
+          <locale>en</locale>             <!-- The locale that javadoc uses when generating documentation.        -->
+          <keywords>true</keywords>       <!-- Adds HTML meta keyword tags to the generated file for each class.  -->
           <breakiterator>true</breakiterator>
-          <additionalparam>-keywords</additionalparam> 
 
           <!-- Enables the Javadoc tool to interpret a simple, one-argument
                custom block tag tagname in doc comments. Note: <placement/>
@@ -284,6 +299,8 @@
         <artifactId>maven-site-plugin</artifactId>
         <configuration>
           <locales>en</locales>
+          <inputEncoding>UTF-8</inputEncoding>
+          <outputEncoding>UTF-8</outputEncoding>
         </configuration>
       </plugin>
 
@@ -303,27 +320,63 @@
       <!--     Changes log from Subversion                      -->
       <!-- ==================================================== -->
       <plugin>
-        <!-- TODO: the officiel name is the commented-one below,
-                   but it doesn't seem to be deployed on ibiblio. -->
-<!--    <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-changelog-plugin</artifactId> -->
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>changelog-maven-plugin</artifactId>
-        <version>2.0-beta-1</version>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-changelog-plugin</artifactId>
         <reportSets>
           <reportSet>
             <id>changes-report</id>
             <reports>
               <report>changelog</report>
               <report>file-activity</report>
-<!--          <report>dev-activity</report> -->
+              <report>dev-activity</report>
             </reports>
             <configuration>
               <type>range</type>
-              <range>30</range>
+              <range>365</range>
             </configuration>
           </reportSet>
         </reportSets>
+      </plugin>
+
+
+
+      <!-- ==================================================== -->
+      <!--     JUnit test results                               -->
+      <!-- ==================================================== -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-report-plugin</artifactId>
+      </plugin>
+
+
+
+      <!-- ==================================================== -->
+      <!--     Source code                                      -->
+      <!-- ==================================================== -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jxr-plugin</artifactId>
+        <reportSets>
+          <reportSet>
+            <reports>
+              <report>jxr</report>   <!-- Want API sources only, not test sources. -->
+            </reports>
+          </reportSet>
+        </reportSets>
+        <configuration>
+          <inputEncoding>UTF-8</inputEncoding>
+          <outputEncoding>UTF-8</outputEncoding>
+        </configuration>
+      </plugin>
+
+
+
+      <!-- ==================================================== -->
+      <!--     TODO tags                                        -->
+      <!-- ==================================================== -->
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>taglist-maven-plugin</artifactId>
       </plugin>
     </plugins>
   </reporting>
@@ -347,7 +400,7 @@
     <site>
       <id>SourceForge</id>
       <name>GeoAPI web site</name>
-      <url>scp://geoapi.sourceforge.net:/home/groups/g/ge/geoapi/htdocs/snapshot/</url>
+      <url>scp://geoapi.sourceforge.net:/home/groups/g/ge/geoapi/htdocs/</url>
     </site>
   </distributionManagement>
 

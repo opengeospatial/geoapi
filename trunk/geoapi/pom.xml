@@ -75,6 +75,7 @@
       <roles>
         <role>Java Developer</role>
       </roles>
+      <timezone>+2</timezone>
     </developer>
     <developer>
       <id>fellah</id>
@@ -124,32 +125,5 @@
       </roles>
     </contributor>
   </contributors>
-
-
-
-  <!-- ==================================================== -->
-  <!--     Generate a change log from JIRA tasks            -->
-  <!-- ==================================================== -->
-  <reporting>
-    <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-changes-plugin</artifactId>
-        <reportSets>
-          <reportSet>
-            <reports>
-              <report>jira-report</report>
-            </reports>
-            <configuration>
-              <!-- The following is the filter we want instead of
-                   <resolutionIds>, but it doesn't seem to work. -->
-<!--          <filter>&amp;fixfor=11866</filter> -->
-              <resolutionIds>Unresolved</resolutionIds>
-            </configuration>
-          </reportSet>
-        </reportSets>
-      </plugin>
-    </plugins>
-  </reporting>
 
 </project>
