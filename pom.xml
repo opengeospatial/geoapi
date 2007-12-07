@@ -52,7 +52,7 @@
 
   <ciManagement>
     <system>hudson</system>
-    <url>http://dien.geomatys.fr/hudson/job/GeoAPI/</url>
+    <url>http://hudson.geomatys.fr/job/GeoAPI/</url>
   </ciManagement>
 
   <issueManagement>

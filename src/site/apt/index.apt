@@ -17,7 +17,7 @@ The GeoAPI project
 
     * {{{geoapi/index.html}Browse Maven reports}}
 
-    * {{{http://dien.geomatys.fr/hudson/job/GeoAPI/org.opengis$geoapi/}Nightly builds (last 2 weeks)}}
+    * {{{http://hudson.geomatys.fr/job/GeoAPI/org.opengis$geoapi/}Nightly builds (last 2 weeks)}}
 
     * {{{http://docs.codehaus.org/display/GEO/Home}News and discussions (wiki pages)}}
 
