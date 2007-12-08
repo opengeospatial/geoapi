@@ -33,6 +33,18 @@ public class TransformException extends Exception {
     private static final long serialVersionUID = -8923944544398567533L;
 
     /**
+     * The last transform that either transformed successfuly all coordinates, or filled the
+     * untransformable coordinates with {@linkplain Double#NaN NaN} values. This information
+     * is useful in the context of concatenated transforms. May be {@code null} if unknown.
+     *
+     * @see #getLastCompletedTransform
+     * @see #setLastCompletedTransform
+     *
+     * @since GeoAPI 2.2
+     */
+    private MathTransform lastCompletedTransform;
+
+    /**
      * Construct an exception with no detail message.
      */
     public TransformException() {
@@ -58,5 +70,26 @@ public class TransformException extends Exception {
      */
     public TransformException(String message, Throwable cause) {
         super(message, cause);
+    }
+
+    /**
+     * Returns the last transform that either transformed successfuly all coordinates, or filled
+     * the untransformable coordinates with {@linkplain Double#NaN NaN} values. This information
+     * is useful in the context of concatenated transforms. May be {@code null} if unknown.
+     *
+     * @since GeoAPI 2.2
+     */
+    public MathTransform getLastCompletedTransform() {
+        return lastCompletedTransform;
+    }
+
+    /**
+     * Sets the last transform that either transformed successfuly all coordinates, or
+     * filled the untransformable coordinates with {@linkplain Double#NaN NaN} values.
+     *
+     * @since GeoAPI 2.2
+     */
+    public void setLastCompletedTransform(final MathTransform transform) {
+        lastCompletedTransform = transform;
     }
 }
