@@ -103,7 +103,11 @@ public interface MathTransform {
      *               transformed point that is stored in the
      *               destination array.
      * @param numPts the number of point objects to be transformed.
-     * @throws TransformException if a point can't be transformed.
+     * @throws TransformException if a point can't be transformed. Some implementations will stop
+     *         at the first failure, wile some other implementations will fill the untransformable
+     *         points with {@linkplain Double#NaN NaN} values, continue and throw the exception
+     *         only at end. Implementations that fall in the later case should set the {@linkplain
+     *         TransformException#getLastCompletedTransform last completed transform} to {@code this}.
      */
     @UML(identifier="transformList", specification=OGC_01009)
     void transform(double[] srcPts, int srcOff,
@@ -130,7 +134,11 @@ public interface MathTransform {
      *               transformed point that is stored in the
      *               destination array.
      * @param numPts the number of point objects to be transformed.
-     * @throws TransformException if a point can't be transformed.
+     * @throws TransformException if a point can't be transformed. Some implementations will stop
+     *         at the first failure, wile some other implementations will fill the untransformable
+     *         points with {@linkplain Double#NaN NaN} values, continue and throw the exception
+     *         only at end. Implementations that fall in the later case should set the {@linkplain
+     *         TransformException#getLastCompletedTransform last completed transform} to {@code this}.
      */
     void transform(float[] srcPts, int srcOff,
                    float[] dstPts, int dstOff,
