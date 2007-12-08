@@ -189,17 +189,19 @@ public class SequenceType extends CodeList<SequenceType> {
      * Returns the SequenceType that matches the given string, or returns a
      * new one if none match it.
      */
-    public static synchronized SequenceType valueOf(String code) {
+    public static SequenceType valueOf(String code) {
         if (code == null) {
             return null;
         }
-        Iterator iter = VALUES.iterator();
-        while (iter.hasNext()) {
-            SequenceType type = (SequenceType) iter.next();
-            if (code.equalsIgnoreCase(type.name())) {
-                return type;
+        synchronized (VALUES) {
+            Iterator iter = VALUES.iterator();
+            while (iter.hasNext()) {
+                SequenceType type = (SequenceType) iter.next();
+                if (code.equalsIgnoreCase(type.name())) {
+                    return type;
+                }
             }
+            return new SequenceType(code);
         }
-        return new SequenceType(code);
     }
 }

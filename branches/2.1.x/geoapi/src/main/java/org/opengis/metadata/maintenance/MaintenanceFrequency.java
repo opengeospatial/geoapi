@@ -144,17 +144,19 @@ public final class MaintenanceFrequency extends CodeList<MaintenanceFrequency> {
      * Returns the MaintenanceFrequency that matches the given string, or returns a
      * new one if none match it.
      */
-    public static synchronized MaintenanceFrequency valueOf(String code) {
+    public static MaintenanceFrequency valueOf(String code) {
         if (code == null) {
             return null;
         }
-        Iterator iter = VALUES.iterator();
-        while (iter.hasNext()) {
-            MaintenanceFrequency type = (MaintenanceFrequency) iter.next();
-            if (code.equalsIgnoreCase(type.name())) {
-                return type;
+        synchronized (VALUES) {
+            Iterator iter = VALUES.iterator();
+            while (iter.hasNext()) {
+                MaintenanceFrequency type = (MaintenanceFrequency) iter.next();
+                if (code.equalsIgnoreCase(type.name())) {
+                    return type;
+                }
             }
+            return new MaintenanceFrequency(code);
         }
-        return new MaintenanceFrequency(code);
     }
 }

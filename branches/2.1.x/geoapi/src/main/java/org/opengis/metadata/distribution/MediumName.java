@@ -178,17 +178,19 @@ public final class MediumName extends CodeList<MediumName> {
      * Returns the MediumName that matches the given string, or returns a
      * new one if none match it.
      */
-    public static synchronized MediumName valueOf(String code) {
+    public static MediumName valueOf(String code) {
         if (code == null) {
             return null;
         }
-        Iterator iter = VALUES.iterator();
-        while (iter.hasNext()) {
-            MediumName type = (MediumName) iter.next();
-            if (code.equalsIgnoreCase(type.name())) {
-                return type;
+        synchronized (VALUES) {
+            Iterator iter = VALUES.iterator();
+            while (iter.hasNext()) {
+                MediumName type = (MediumName) iter.next();
+                if (code.equalsIgnoreCase(type.name())) {
+                    return type;
+                }
             }
+            return new MediumName(code);
         }
-        return new MediumName(code);
     }
 }

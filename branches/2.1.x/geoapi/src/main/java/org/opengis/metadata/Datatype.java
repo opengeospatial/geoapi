@@ -164,17 +164,19 @@ public final class Datatype extends CodeList<Datatype> {
      * Returns the Datatype that matches the given string, or returns a
      * new one if none match it.
      */
-    public static synchronized Datatype valueOf(String code) {
+    public static Datatype valueOf(String code) {
         if (code == null) {
             return null;
         }
-        Iterator iter = VALUES.iterator();
-        while (iter.hasNext()) {
-            Datatype type = (Datatype) iter.next();
-            if (code.equalsIgnoreCase(type.name())) {
-                return type;
+        synchronized (VALUES) {
+            Iterator iter = VALUES.iterator();
+            while (iter.hasNext()) {
+                Datatype type = (Datatype) iter.next();
+                if (code.equalsIgnoreCase(type.name())) {
+                    return type;
+                }
             }
+            return new Datatype(code);
         }
-        return new Datatype(code);
     }
 }

@@ -107,17 +107,19 @@ public final class SplineCurveForm extends CodeList<SplineCurveForm> {
      * Returns the SplineCurveForm that matches the given string, or returns a
      * new one if none match it.
      */
-    public static synchronized SplineCurveForm valueOf(String code) {
+    public static SplineCurveForm valueOf(String code) {
         if (code == null) {
             return null;
         }
-        Iterator iter = VALUES.iterator();
-        while (iter.hasNext()) {
-            SplineCurveForm type = (SplineCurveForm) iter.next();
-            if (code.equalsIgnoreCase(type.name())) {
-                return type;
+        synchronized (VALUES) {
+            Iterator iter = VALUES.iterator();
+            while (iter.hasNext()) {
+                SplineCurveForm type = (SplineCurveForm) iter.next();
+                if (code.equalsIgnoreCase(type.name())) {
+                    return type;
+                }
             }
+            return new SplineCurveForm(code);
         }
-        return new SplineCurveForm(code);
     }
 }

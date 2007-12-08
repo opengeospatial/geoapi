@@ -87,17 +87,19 @@ public final class Obligation extends CodeList<Obligation> {
      * Returns the Obligation that matches the given string, or returns a
      * new one if none match it.
      */
-    public static synchronized Obligation valueOf(String code) {
+    public static Obligation valueOf(String code) {
         if (code == null) {
             return null;
         }
-        Iterator iter = VALUES.iterator();
-        while (iter.hasNext()) {
-            Obligation type = (Obligation) iter.next();
-            if (code.equalsIgnoreCase(type.name())) {
-                return type;
+        synchronized (VALUES) {
+            Iterator iter = VALUES.iterator();
+            while (iter.hasNext()) {
+                Obligation type = (Obligation) iter.next();
+                if (code.equalsIgnoreCase(type.name())) {
+                    return type;
+                }
             }
+            return new Obligation(code);
         }
-        return new Obligation(code);
     }
 }

@@ -83,17 +83,19 @@ public final class CellGeometry extends CodeList<CellGeometry> {
      * Returns the CellGeometry that matches the given string, or returns a
      * new one if none match it.
      */
-    public static synchronized CellGeometry valueOf(String code) {
+    public static CellGeometry valueOf(String code) {
         if (code == null) {
             return null;
         }
-        Iterator iter = VALUES.iterator();
-        while (iter.hasNext()) {
-            CellGeometry type = (CellGeometry) iter.next();
-            if (code.equalsIgnoreCase(type.name())) {
-                return type;
+        synchronized (VALUES) {
+            Iterator iter = VALUES.iterator();
+            while (iter.hasNext()) {
+                CellGeometry type = (CellGeometry) iter.next();
+                if (code.equalsIgnoreCase(type.name())) {
+                    return type;
+                }
             }
+            return new CellGeometry(code);
         }
-        return new CellGeometry(code);
     }
 }

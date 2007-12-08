@@ -130,17 +130,19 @@ public final class GeometricObjectType extends CodeList<GeometricObjectType> {
      * Returns the GeometricObjectType that matches the given string, or returns a
      * new one if none match it.
      */
-    public static synchronized GeometricObjectType valueOf(String code) {
+    public static GeometricObjectType valueOf(String code) {
         if (code == null) {
             return null;
         }
-        Iterator iter = VALUES.iterator();
-        while (iter.hasNext()) {
-            GeometricObjectType type = (GeometricObjectType) iter.next();
-            if (code.equalsIgnoreCase(type.name())) {
-                return type;
+        synchronized (VALUES) {
+            Iterator iter = VALUES.iterator();
+            while (iter.hasNext()) {
+                GeometricObjectType type = (GeometricObjectType) iter.next();
+                if (code.equalsIgnoreCase(type.name())) {
+                    return type;
+                }
             }
+            return new GeometricObjectType(code);
         }
-        return new GeometricObjectType(code);
     }
 }

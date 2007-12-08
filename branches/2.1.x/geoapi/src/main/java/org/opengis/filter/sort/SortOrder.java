@@ -109,17 +109,19 @@ public final class SortOrder extends CodeList<SortOrder> {
      * Returns the SortOrder that matches the given string, or returns a
      * new one if none match it.
      */
-    public static synchronized SortOrder valueOf(String code) {
+    public static SortOrder valueOf(String code) {
         if (code == null) {
             return null;
         }
-        Iterator iter = VALUES.iterator();
-        while (iter.hasNext()) {
-            SortOrder type = (SortOrder) iter.next();
-            if (code.equalsIgnoreCase(type.name())) {
-                return type;
+        synchronized (VALUES) {
+            Iterator iter = VALUES.iterator();
+            while (iter.hasNext()) {
+                SortOrder type = (SortOrder) iter.next();
+                if (code.equalsIgnoreCase(type.name())) {
+                    return type;
+                }
             }
+            return new SortOrder(code, code);
         }
-        return new SortOrder(code, code);
     }
 }

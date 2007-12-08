@@ -141,17 +141,19 @@ public final class ImagingCondition extends CodeList<ImagingCondition> {
      * Returns the ImagingCondition that matches the given string, or returns a
      * new one if none match it.
      */
-    public static synchronized ImagingCondition valueOf(String code) {
+    public static ImagingCondition valueOf(String code) {
         if (code == null) {
             return null;
         }
-        Iterator iter = VALUES.iterator();
-        while (iter.hasNext()) {
-            ImagingCondition type = (ImagingCondition) iter.next();
-            if (code.equalsIgnoreCase(type.name())) {
-                return type;
+        synchronized (VALUES) {
+            Iterator iter = VALUES.iterator();
+            while (iter.hasNext()) {
+                ImagingCondition type = (ImagingCondition) iter.next();
+                if (code.equalsIgnoreCase(type.name())) {
+                    return type;
+                }
             }
+            return new ImagingCondition(code);
         }
-        return new ImagingCondition(code);
     }
 }

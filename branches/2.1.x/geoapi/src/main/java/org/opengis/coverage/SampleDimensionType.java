@@ -209,17 +209,19 @@ public final class SampleDimensionType extends CodeList<SampleDimensionType> {
      * Returns the SampleDimensionType that matches the given string, or returns a
      * new one if none match it.
      */
-    public static synchronized SampleDimensionType valueOf(String code) {
+    public static SampleDimensionType valueOf(String code) {
         if (code == null) {
             return null;
         }
-        Iterator iter = VALUES.iterator();
-        while (iter.hasNext()) {
-            SampleDimensionType type = (SampleDimensionType) iter.next();
-            if (code.equalsIgnoreCase(type.name())) {
-                return type;
+        synchronized (VALUES) {
+            Iterator iter = VALUES.iterator();
+            while (iter.hasNext()) {
+                SampleDimensionType type = (SampleDimensionType) iter.next();
+                if (code.equalsIgnoreCase(type.name())) {
+                    return type;
+                }
             }
+            return new SampleDimensionType(code);
         }
-        return new SampleDimensionType(code);
     }
 }

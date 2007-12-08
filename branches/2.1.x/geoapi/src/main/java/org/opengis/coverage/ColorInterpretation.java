@@ -219,17 +219,19 @@ public final class ColorInterpretation extends CodeList<ColorInterpretation> {
      * Returns the ColorInterpretation that matches the given string, or returns a
      * new one if none match it.
      */
-    public static synchronized ColorInterpretation valueOf(String code) {
+    public static ColorInterpretation valueOf(String code) {
         if (code == null) {
             return null;
         }
-        Iterator iter = VALUES.iterator();
-        while (iter.hasNext()) {
-            ColorInterpretation type = (ColorInterpretation) iter.next();
-            if (code.equalsIgnoreCase(type.name())) {
-                return type;
+        synchronized (VALUES) {
+            Iterator iter = VALUES.iterator();
+            while (iter.hasNext()) {
+                ColorInterpretation type = (ColorInterpretation) iter.next();
+                if (code.equalsIgnoreCase(type.name())) {
+                    return type;
+                }
             }
+            return new ColorInterpretation(code);
         }
-        return new ColorInterpretation(code);
     }
 }

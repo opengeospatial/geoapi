@@ -108,17 +108,19 @@ public class BSplineSurfaceForm extends CodeList<BSplineSurfaceForm> {
      * Returns the BSplineSurfaceForm that matches the given string, or returns a
      * new one if none match it.
      */
-    public static synchronized BSplineSurfaceForm valueOf(String code) {
+    public static BSplineSurfaceForm valueOf(String code) {
         if (code == null) {
             return null;
         }
-        Iterator iter = VALUES.iterator();
-        while (iter.hasNext()) {
-            BSplineSurfaceForm type = (BSplineSurfaceForm) iter.next();
-            if (code.equalsIgnoreCase(type.name())) {
-                return type;
+        synchronized (VALUES) {
+            Iterator iter = VALUES.iterator();
+            while (iter.hasNext()) {
+                BSplineSurfaceForm type = (BSplineSurfaceForm) iter.next();
+                if (code.equalsIgnoreCase(type.name())) {
+                    return type;
+                }
             }
+            return new BSplineSurfaceForm(code);
         }
-        return new BSplineSurfaceForm(code);
     }
 }

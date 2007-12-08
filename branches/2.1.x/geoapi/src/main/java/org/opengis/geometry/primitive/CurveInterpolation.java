@@ -167,17 +167,19 @@ public final class CurveInterpolation extends CodeList<CurveInterpolation> {
      * Returns the CoverageContentType that matches the given string, or returns a
      * new one if none match it.
      */
-    public static synchronized CurveInterpolation valueOf(String code) {
+    public static CurveInterpolation valueOf(String code) {
         if (code == null) {
             return null;
         }
-        Iterator iter = VALUES.iterator();
-        while (iter.hasNext()) {
-            CurveInterpolation type = (CurveInterpolation) iter.next();
-            if (code.equalsIgnoreCase(type.name())) {
-                return type;
+        synchronized (VALUES) {
+            Iterator iter = VALUES.iterator();
+            while (iter.hasNext()) {
+                CurveInterpolation type = (CurveInterpolation) iter.next();
+                if (code.equalsIgnoreCase(type.name())) {
+                    return type;
+                }
             }
+            return new CurveInterpolation(code);
         }
-        return new CurveInterpolation(code);
     }
 }

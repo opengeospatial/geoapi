@@ -108,17 +108,19 @@ public final class MediumFormat extends CodeList<MediumFormat> {
      * Returns the MediumFormat that matches the given string, or returns a
      * new one if none match it.
      */
-    public static synchronized MediumFormat valueOf(String code) {
+    public static MediumFormat valueOf(String code) {
         if (code == null) {
             return null;
         }
-        Iterator iter = VALUES.iterator();
-        while (iter.hasNext()) {
-            MediumFormat type = (MediumFormat) iter.next();
-            if (code.equalsIgnoreCase(type.name())) {
-                return type;
+        synchronized (VALUES) {
+            Iterator iter = VALUES.iterator();
+            while (iter.hasNext()) {
+                MediumFormat type = (MediumFormat) iter.next();
+                if (code.equalsIgnoreCase(type.name())) {
+                    return type;
+                }
             }
+            return new MediumFormat(code);
         }
-        return new MediumFormat(code);
     }
 }

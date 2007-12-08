@@ -105,17 +105,19 @@ public final class ValueInBytePacking extends CodeList<ValueInBytePacking> {
      * Returns the ValueInBytePacking that matches the given string, or returns a
      * new one if none match it.
      */
-    public static synchronized ValueInBytePacking valueOf(String code) {
+    public static ValueInBytePacking valueOf(String code) {
         if (code == null) {
             return null;
         }
-        Iterator iter = VALUES.iterator();
-        while (iter.hasNext()) {
-            ValueInBytePacking type = (ValueInBytePacking) iter.next();
-            if (code.equalsIgnoreCase(type.name())) {
-                return type;
+        synchronized (VALUES) {
+            Iterator iter = VALUES.iterator();
+            while (iter.hasNext()) {
+                ValueInBytePacking type = (ValueInBytePacking) iter.next();
+                if (code.equalsIgnoreCase(type.name())) {
+                    return type;
+                }
             }
+            return new ValueInBytePacking(code);
         }
-        return new ValueInBytePacking(code);
     }
 }

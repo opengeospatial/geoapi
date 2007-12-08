@@ -142,17 +142,19 @@ public final class Role extends CodeList<Role> {
      * Returns the Role that matches the given string, or returns a
      * new one if none match it.
      */
-    public static synchronized Role valueOf(String code) {
+    public static Role valueOf(String code) {
         if (code == null) {
             return null;
         }
-        Iterator iter = VALUES.iterator();
-        while (iter.hasNext()) {
-            Role type = (Role) iter.next();
-            if (code.equalsIgnoreCase(type.name())) {
-                return type;
+        synchronized (VALUES) {
+            Iterator iter = VALUES.iterator();
+            while (iter.hasNext()) {
+                Role type = (Role) iter.next();
+                if (code.equalsIgnoreCase(type.name())) {
+                    return type;
+                }
             }
+            return new Role(code);
         }
-        return new Role(code);
     }
 }

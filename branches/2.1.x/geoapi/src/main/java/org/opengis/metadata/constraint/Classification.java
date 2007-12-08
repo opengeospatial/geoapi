@@ -103,17 +103,19 @@ public final class Classification extends CodeList<Classification> {
      * Returns the Classification that matches the given string, or returns a
      * new one if none match it.
      */
-    public static synchronized Classification valueOf(String code) {
+    public static Classification valueOf(String code) {
         if (code == null) {
             return null;
         }
-        Iterator iter = VALUES.iterator();
-        while (iter.hasNext()) {
-            Classification type = (Classification) iter.next();
-            if (code.equalsIgnoreCase(type.name())) {
-                return type;
+        synchronized (VALUES) {
+            Iterator iter = VALUES.iterator();
+            while (iter.hasNext()) {
+                Classification type = (Classification) iter.next();
+                if (code.equalsIgnoreCase(type.name())) {
+                    return type;
+                }
             }
+            return new Classification(code);
         }
-        return new Classification(code);
     }
 }

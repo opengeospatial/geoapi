@@ -125,17 +125,19 @@ public final class Restriction extends CodeList<Restriction> {
      * Returns the Restriction that matches the given string, or returns a
      * new one if none match it.
      */
-    public static synchronized Restriction valueOf(String code) {
+    public static Restriction valueOf(String code) {
         if (code == null) {
             return null;
         }
-        Iterator iter = VALUES.iterator();
-        while (iter.hasNext()) {
-            Restriction type = (Restriction) iter.next();
-            if (code.equalsIgnoreCase(type.name())) {
-                return type;
+        synchronized (VALUES) {
+            Iterator iter = VALUES.iterator();
+            while (iter.hasNext()) {
+                Restriction type = (Restriction) iter.next();
+                if (code.equalsIgnoreCase(type.name())) {
+                    return type;
+                }
             }
+            return new Restriction(code);
         }
-        return new Restriction(code);
     }
 }

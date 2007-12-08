@@ -101,17 +101,19 @@ public final class KeywordType extends CodeList<KeywordType> {
      * Returns the KeywordType that matches the given string, or returns a
      * new one if none match it.
      */
-    public static synchronized KeywordType valueOf(String code) {
+    public static KeywordType valueOf(String code) {
         if (code == null) {
             return null;
         }
-        Iterator iter = VALUES.iterator();
-        while (iter.hasNext()) {
-            KeywordType type = (KeywordType) iter.next();
-            if (code.equalsIgnoreCase(type.name())) {
-                return type;
+        synchronized (VALUES) {
+            Iterator iter = VALUES.iterator();
+            while (iter.hasNext()) {
+                KeywordType type = (KeywordType) iter.next();
+                if (code.equalsIgnoreCase(type.name())) {
+                    return type;
+                }
             }
+            return new KeywordType(code);
         }
-        return new KeywordType(code);
     }
 }

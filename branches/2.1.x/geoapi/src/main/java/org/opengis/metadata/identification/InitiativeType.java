@@ -162,17 +162,19 @@ public final class InitiativeType extends CodeList<InitiativeType>{
      * Returns the InitiativeType that matches the given string, or returns a
      * new one if none match it.
      */
-    public static synchronized InitiativeType valueOf(String code) {
+    public static InitiativeType valueOf(String code) {
         if (code == null) {
             return null;
         }
-        Iterator iter = VALUES.iterator();
-        while (iter.hasNext()) {
-            InitiativeType type = (InitiativeType) iter.next();
-            if (code.equalsIgnoreCase(type.name())) {
-                return type;
+        synchronized (VALUES) {
+            Iterator iter = VALUES.iterator();
+            while (iter.hasNext()) {
+                InitiativeType type = (InitiativeType) iter.next();
+                if (code.equalsIgnoreCase(type.name())) {
+                    return type;
+                }
             }
+            return new InitiativeType(code);
         }
-        return new InitiativeType(code);
     }
 }

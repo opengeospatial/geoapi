@@ -174,17 +174,19 @@ public final class ScopeCode extends CodeList<ScopeCode> {
      * Returns the scopecode that matches the given string, or returns a
      * new one if none match it.
      */
-    public static synchronized ScopeCode valueOf(String code) {
+    public static ScopeCode valueOf(String code) {
         if (code == null) {
             return null;
         }
-        Iterator iter = VALUES.iterator();
-        while (iter.hasNext()) {
-            ScopeCode type = (ScopeCode) iter.next();
-            if (code.equalsIgnoreCase(type.name())) {
-                return type;
+        synchronized (VALUES) {
+            Iterator iter = VALUES.iterator();
+            while (iter.hasNext()) {
+                ScopeCode type = (ScopeCode) iter.next();
+                if (code.equalsIgnoreCase(type.name())) {
+                    return type;
+                }
             }
+            return new ScopeCode(code);
         }
-        return new ScopeCode(code);
     }
 }

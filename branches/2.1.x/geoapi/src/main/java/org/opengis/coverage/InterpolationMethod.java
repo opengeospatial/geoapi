@@ -203,17 +203,19 @@ public class InterpolationMethod extends CodeList<InterpolationMethod> {
      * Returns the InterpolationMethod that matches the given string, or returns a
      * new one if none match it.
      */
-    public static synchronized InterpolationMethod valueOf(String code) {
+    public static InterpolationMethod valueOf(String code) {
         if (code == null) {
             return null;
         }
-        Iterator iter = VALUES.iterator();
-        while (iter.hasNext()) {
-            InterpolationMethod type = (InterpolationMethod) iter.next();
-            if (code.equalsIgnoreCase(type.name())) {
-                return type;
+        synchronized (VALUES) {
+            Iterator iter = VALUES.iterator();
+            while (iter.hasNext()) {
+                InterpolationMethod type = (InterpolationMethod) iter.next();
+                if (code.equalsIgnoreCase(type.name())) {
+                    return type;
+                }
             }
+            return new InterpolationMethod(code);
         }
-        return new InterpolationMethod(code);
     }
 }

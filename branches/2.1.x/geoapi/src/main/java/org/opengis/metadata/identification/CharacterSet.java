@@ -282,17 +282,19 @@ public final class CharacterSet extends CodeList<CharacterSet> {
      * Returns the CharacterSet that matches the given string, or returns a
      * new one if none match it.
      */
-    public static synchronized CharacterSet valueOf(String code) {
+    public static CharacterSet valueOf(String code) {
         if (code == null) {
             return null;
         }
-        Iterator iter = VALUES.iterator();
-        while (iter.hasNext()) {
-            CharacterSet type = (CharacterSet) iter.next();
-            if (code.equalsIgnoreCase(type.name())) {
-                return type;
+        synchronized (VALUES) {
+            Iterator iter = VALUES.iterator();
+            while (iter.hasNext()) {
+                CharacterSet type = (CharacterSet) iter.next();
+                if (code.equalsIgnoreCase(type.name())) {
+                    return type;
+                }
             }
+            return new CharacterSet(code, code);
         }
-        return new CharacterSet(code, code);
     }
 }

@@ -103,17 +103,19 @@ public final class PixelOrientation extends CodeList<PixelOrientation> {
      * Returns the PixelOrientation that matches the given string, or returns a
      * new one if none match it.
      */
-    public static synchronized PixelOrientation valueOf(String code) {
+    public static PixelOrientation valueOf(String code) {
         if (code == null) {
             return null;
         }
-        Iterator iter = VALUES.iterator();
-        while (iter.hasNext()) {
-            PixelOrientation type = (PixelOrientation) iter.next();
-            if (code.equalsIgnoreCase(type.name())) {
-                return type;
+        synchronized (VALUES) {
+            Iterator iter = VALUES.iterator();
+            while (iter.hasNext()) {
+                PixelOrientation type = (PixelOrientation) iter.next();
+                if (code.equalsIgnoreCase(type.name())) {
+                    return type;
+                }
             }
+            return new PixelOrientation(code);
         }
-        return new PixelOrientation(code);
     }
 }
