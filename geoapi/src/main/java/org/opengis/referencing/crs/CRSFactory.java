@@ -188,6 +188,7 @@ public interface CRSFactory extends ObjectFactory {
      * @deprecated Use {@link CoordinateOperationFactory#createDefiningConversion} followed by
      *             {@link #createDerivedCRS} instead.
      */
+    @Deprecated
     @UML(identifier="createFittedCoordinateSystem", specification=OGC_01009)
     DerivedCRS createDerivedCRS(Map<String, ?>            properties,
                                 OperationMethod           method,
@@ -258,6 +259,7 @@ public interface CRSFactory extends ObjectFactory {
      * @deprecated Use {@link CoordinateOperationFactory#createDefiningConversion} followed by
      *             {@link #createProjectedCRS} instead.
      */
+    @Deprecated
     @UML(identifier="createProjectedCoordinateSystem", specification=OGC_01009)
     ProjectedCRS createProjectedCRS(Map<String, ?>  properties,
                                     OperationMethod method,

@@ -32,6 +32,7 @@ public interface Telephone {
      *
      * @deprecated Replaced by {@link #getVoices}.
      */
+    @Deprecated
     @UML(identifier="voice", obligation=OPTIONAL, specification=ISO_19115)
     String getVoice();
 
@@ -48,6 +49,7 @@ public interface Telephone {
      *
      * @deprecated Replaced by {@link #getFacsimiles}.
      */
+    @Deprecated
     @UML(identifier="facsimile", obligation=OPTIONAL, specification=ISO_19115)
     String getFacsimile();
 

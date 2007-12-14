@@ -55,6 +55,7 @@ public interface ProgressListener {
      *
      * @deprecated Please use getTask().toString()
      */
+    @Deprecated
     String getDescription();
 
     /**
@@ -88,6 +89,7 @@ public interface ProgressListener {
      *
      * @deprecated please use setTask
      */
+    @Deprecated
     void setDescription(String description);
 
     /**

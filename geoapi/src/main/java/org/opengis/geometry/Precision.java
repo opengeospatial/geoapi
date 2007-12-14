@@ -49,6 +49,7 @@ public interface Precision extends Comparable<Precision> {
      *
      * @deprecated This is redundant with {@link #getScale}.
      */
+    @Deprecated
     int getMaximumSignificantDigits();
 
     /**

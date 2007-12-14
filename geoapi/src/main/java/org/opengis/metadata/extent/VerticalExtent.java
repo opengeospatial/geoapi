@@ -51,6 +51,7 @@ public interface VerticalExtent {
      *
      * @deprecated removed from ISO_19115:2003/Cor.1:2006
      */
+    @Deprecated
     @UML(identifier="unitOfMeasure", obligation=MANDATORY, specification=ISO_19115)
     Unit getUnit();
 
@@ -60,6 +61,7 @@ public interface VerticalExtent {
      *
      * @deprecated changed to {@link #getVerticalCRS} in ISO_19115:2003/Cor.1:2006
      */
+    @Deprecated
     @UML(identifier="verticalDatum", obligation=MANDATORY, specification=ISO_19115)
     VerticalDatum getVerticalDatum();
 

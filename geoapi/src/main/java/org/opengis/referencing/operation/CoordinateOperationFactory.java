@@ -78,6 +78,7 @@ public interface CoordinateOperationFactory extends ObjectFactory {
      *             path from {@code sourceCRS} to {@code targetCRS}, but this method has only
      *             one {@code method} argument.
      */
+    @Deprecated
     @Extension
     CoordinateOperation createOperation(CoordinateReferenceSystem sourceCRS,
                                         CoordinateReferenceSystem targetCRS,

@@ -50,6 +50,7 @@ public class DashArray extends LinePattern {
      *
      * @deprecated Renamed as {@link #NO_DASH}.
      */
+    @Deprecated
     public static final DashArray NONE = NO_DASH;
 
     //*************************************************************************

@@ -146,7 +146,7 @@
 }</source></td></tr>
 </table>
 
-        <p>Since the collection is read-only in the above example, it doesn’t need to be cloned (note: the <em>elements</em>
+        <p>Since the collection is read-only in the above example, it doesn't need to be cloned (note: the <em>elements</em>
         in an array or collection may still mutable, but this is a separated topic). The collection in this example is a
         <strong>view</strong> over the array elements. This view doesn't copy the array, and any change in the array is
         reflected in the view. This is different from <code>Collection.toArray()</code>, which always copy all elements
@@ -205,7 +205,7 @@
         <ul>
           <li>In the Java language, collections are more abstract than arrays. A collection can be a view over an
           array (<code>using Arrays.asList(...)</code> for example). The converse is impossible in the general case
-          (<code>Collection.toArray()</code> doesn’t create a view; it usually copies the array).</li>
+          (<code>Collection.toArray()</code> doesn't create a view; it usually copies the array).</li>
 
           <li>Collections are more abstract than arrays in .NET too: an array is a collection, but a collection
           is not always an array (conversions from an arbitrary collection to an array may require a copy, like

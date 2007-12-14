@@ -52,6 +52,7 @@ public interface Identifier {
      *
      * @deprecated Moved to {@link org.opengis.referencing.ReferenceIdentifier#VERSION_KEY}.
      */
+    @Deprecated
     String VERSION_KEY = org.opengis.referencing.ReferenceIdentifier.VERSION_KEY;
 
     /**
@@ -75,6 +76,7 @@ public interface Identifier {
      *
      * @deprecated Moved to {@link org.opengis.referencing.ReferenceIdentifier#getVersion()}.
      */
+    @Deprecated
     @Extension
     String getVersion();
 }

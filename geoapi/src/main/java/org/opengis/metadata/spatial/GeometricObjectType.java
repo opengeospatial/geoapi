@@ -90,6 +90,7 @@ public final class GeometricObjectType extends CodeList<GeometricObjectType> {
      *
      * @deprecated Renamed as {@link #COMPLEX}.
      */
+    @Deprecated
     public static final GeometricObjectType COMPLEXES = COMPLEX;
 
     /**
@@ -97,6 +98,7 @@ public final class GeometricObjectType extends CodeList<GeometricObjectType> {
      *
      * @deprecated Renamed as {@link #COMPOSITE}.
      */
+    @Deprecated
     public static final GeometricObjectType COMPOSITES = COMPOSITE;
 
     /**

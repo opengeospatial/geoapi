@@ -25,6 +25,7 @@ import static org.opengis.annotation.Specification.*;
  * @deprecated renamed to {@link FormatConsistency}.
  * @since GeoAPI 2.0
  */
+@Deprecated
 @UML(identifier="DQ_FormalConsistency", specification=ISO_19115)
 public interface FormalConsistency extends FormatConsistency {
 }

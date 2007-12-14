@@ -87,6 +87,7 @@ public interface MetaData {
      *
      * @deprecated Replaced by {@link #getContacts}.
      */
+    @Deprecated
     ResponsibleParty getContact();
 
     /**

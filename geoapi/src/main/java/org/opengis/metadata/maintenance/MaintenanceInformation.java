@@ -58,6 +58,7 @@ public interface MaintenanceInformation {
      *
      * @deprecated use getUpdateScopes
      */
+    @Deprecated
     ScopeCode getUpdateScope();
 
     /**
@@ -65,6 +66,7 @@ public interface MaintenanceInformation {
      *
      * @deprecated use getUpdateScopeDescriptions
      */
+    @Deprecated
     ScopeDescription getUpdateScopeDescription();
 
     /**
@@ -84,6 +86,7 @@ public interface MaintenanceInformation {
      *
      * @deprecated use getMaintenanceNotes()
      */
+    @Deprecated
     InternationalString getMaintenanceNote();
 
     /**
