@@ -228,6 +228,7 @@ public interface Geometry extends TransfiniteSet {
      *
      * @deprecated use {@link #distance}.
      */
+    @Deprecated
     double getDistance(Geometry geometry);
 
     /**

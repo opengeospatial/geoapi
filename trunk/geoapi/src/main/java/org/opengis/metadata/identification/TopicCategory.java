@@ -131,6 +131,7 @@ public final class TopicCategory extends CodeList<TopicCategory> {
     /**
      * @deprecated Renamed as {@link #HEALTH}.
      */
+    @Deprecated
     public static final TopicCategory HEALT = HEALTH;
 
     /**

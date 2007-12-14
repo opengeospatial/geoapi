@@ -63,6 +63,7 @@ public interface Georeferenceable extends GridSpatialRepresentation {
      *
      * @deprecated Use {@link #getGeoreferencedParameters} instead.
      */
+    @Deprecated
     Object getParameters();
 
     /**

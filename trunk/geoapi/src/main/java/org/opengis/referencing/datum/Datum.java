@@ -75,6 +75,7 @@ public interface Datum extends IdentifiedObject {
      *
      * @deprecated Renamed as {@link #DOMAIN_OF_VALIDITY_KEY}.
      */
+    @Deprecated
     String VALID_AREA_KEY = DOMAIN_OF_VALIDITY_KEY;
 
     /**
@@ -141,6 +142,7 @@ public interface Datum extends IdentifiedObject {
      *
      * @deprecated Renamed as {@link #getDomainOfValidity}.
      */
+    @Deprecated
     @UML(identifier="validArea", obligation=OPTIONAL, specification=ISO_19111)
     Extent getValidArea();
 

@@ -62,6 +62,7 @@ public interface DataIdentification extends Identification {
      * Full name of the character coding standard used for the dataset.
      * @deprecated use getCharacterSets
      */
+    @Deprecated
     Charset getCharacterSet();
 
     /**
@@ -85,6 +86,7 @@ public interface DataIdentification extends Identification {
      *
      * @deprecated not in ISO 19115:2003
      */
+    @Deprecated
     @Profile (level=CORE)
     @UML(identifier="geographicBox", obligation=CONDITIONAL, specification=ISO_19115)
     Collection<GeographicBoundingBox> getGeographicBox();
@@ -96,6 +98,7 @@ public interface DataIdentification extends Identification {
      *
      * @deprecated not in ISO 19115:2003
      */
+    @Deprecated
     @Profile (level=CORE)
     @UML(identifier="geographicDescription", obligation=CONDITIONAL, specification=ISO_19115)
     Collection<GeographicDescription> getGeographicDescription();

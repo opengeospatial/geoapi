@@ -60,6 +60,7 @@ public interface PointArray extends List<Position> {
      * @see PointGrid#width
      */
     @Extension
+    @Deprecated
     int length();
 
     /**
@@ -147,6 +148,7 @@ public interface PointArray extends List<Position> {
      * @deprecated use <b>this</b>
      * @return The list of positions in this array.
      */
+    @Deprecated
     @UML(identifier="column", obligation=MANDATORY, specification=ISO_19107)
     List<Position> positions();
 }

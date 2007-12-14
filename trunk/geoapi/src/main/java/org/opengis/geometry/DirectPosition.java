@@ -159,5 +159,6 @@ public interface DirectPosition extends Position, Cloneable {
      * @deprecated The {@linkplain Cloneable} status of {@code DirectPosition} should be left
      *             to implementors.
      */
+    @Deprecated
     DirectPosition clone();
 }

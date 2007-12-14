@@ -91,6 +91,7 @@ public class FeatureStoreEvent extends EventObject {
      *
      * @deprecated To be replaced by {@link #getSource} in a J2SE 1.5 profile.
      */
+    @Deprecated
     public FeatureStore getFeatureStore() {
         return (FeatureStore) super.getSource();
     }
