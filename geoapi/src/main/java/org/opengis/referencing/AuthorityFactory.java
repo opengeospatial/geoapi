@@ -61,14 +61,14 @@ public interface AuthorityFactory extends Factory {
      *       {@link org.opengis.referencing.crs.CRSAuthorityFactory#createProjectedCRS createProjectedCRS}.</li>
      * </ul>
      *
-     * @param  type The spatial reference objects type (may be {@code Object.class}).
+     * @param  type The spatial reference objects type.
      * @return The set of authority codes for spatial reference objects of the given type.
      *         If this factory doesn't contains any object of the given type, then this method
      *         returns an {@linkplain java.util.Collections#EMPTY_SET empty set}.
      * @throws FactoryException if access to the underlying database failed.
      */
     @Extension
-    Set<String> getAuthorityCodes(Class type) throws FactoryException;
+    Set<String> getAuthorityCodes(Class<? extends IdentifiedObject> type) throws FactoryException;
 
     /**
      * Gets a description of the object corresponding to a code.
