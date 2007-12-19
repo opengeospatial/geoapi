@@ -27,7 +27,7 @@ import org.opengis.annotation.XmlElement;
  */
 @XmlElement("BinarySpatialOpType")
 public interface BinarySpatialOperator extends SpatialOperator {
-    /**
+	/**
      * Returns an expression that will be evaluated to determine the first
      * operand to the spatial predicate represented by this operator.  The
      * result of evaluating this expression must be a geometry object.

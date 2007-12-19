@@ -32,6 +32,8 @@ import org.opengis.filter.expression.Expression;
  */
 @XmlElement("PropertyIsLike")
 public interface PropertyIsLike extends Filter {
+	/** Operator name used to check FilterCapabilities */
+	public static String NAME = "Like";
     /**
      * Returns the expression whose value will be compared against the wildcard-
      * containing string provided by the getLiteral() method.

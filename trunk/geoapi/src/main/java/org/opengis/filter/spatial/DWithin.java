@@ -25,4 +25,6 @@ import org.opengis.annotation.XmlElement;
  */
 @XmlElement("DWithin")
 public interface DWithin extends DistanceBufferOperator {
+	/** Operator name used to check FilterCapabilities */
+	public static String NAME = "DWithin";
 }

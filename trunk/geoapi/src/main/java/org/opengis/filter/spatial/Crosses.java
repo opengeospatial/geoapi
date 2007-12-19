@@ -25,4 +25,6 @@ import org.opengis.annotation.XmlElement;
  */
 @XmlElement("Crosses")
 public interface Crosses extends BinarySpatialOperator, BoundedSpatialOperator {
+	/** Operator name used to check FilterCapabilities */
+	public static String NAME = "Crosses";
 }

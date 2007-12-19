@@ -51,9 +51,18 @@ import java.util.Collection;
 
 
 /**
+ * Indicates support for the named spatial operator.
+ * <p>
+ * The filter that is supported is indicated by the getName() field, these
+ * names matc
+ * <ul>
+ * <li>A subclass of Filter. Examples include "BBOX" and "Beyond"
+ * </ul>
+ * Each filter subclass has an associated name, you can use this name to
+ * determine if a matching SpatialOperator is defined as part of
+ * FilterCapabilities.
+ * 
  * @author <a href="mailto:schneider@lat-lon.de">Markus Schneider </a>
- *
- * @todo Which relationship with {@link org.opengis.spatial.SpatialOperation}?
  */
 public interface SpatialOperator extends Operator {
     /**

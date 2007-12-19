@@ -51,15 +51,42 @@ import static org.opengis.annotation.Specification.UNSPECIFIED;
 import org.opengis.annotation.UML;
 
 /**
- *
+ * Indicates a supported Operator.
+ * <p>
+ * The operator that is supported is indicated by the getName() field, these
+ * names are formally defined to match:
+ * <ul>
+ * <li>A subclass of Filter. Examples include "BBOX" and "EqualsTo"
+ * <li>A subclass of Expression or Function. Examples include "ADD" and "Length"
+ * </ul>
+ * Each filter subclass has an associated name (such as BBOX or EqualsTo), you
+ * can use this name to determine if a matching Operator is defined as part of
+ * FilterCapabilities.
+ * 
  * @author <a href="mailto:tfr@users.sourceforge.net">Torsten Friebe</A>
- *
+ * @author Jody Garnett (Refractions Research)
  * @todo Which relationship with Filter and expressions?
  */
-public interface Operator {
+public interface Operator {	
     /**
-     *
+     * Name of supported Operator.
+     * <p>
+     * Each filter subclass has an associated name (such as BBOX or EqualsTo), you
+     * can use this name to determine if a matching Operator is defined as part of
+     * FilterCapabilities. 
      */
     @UML(identifier="name", specification=UNSPECIFIED)
     String getName();
+    
+    /**
+     * The supported interface enabled by this Operator.
+     * <p>
+     * The mapping from getName() to supported interface is formally defined; and
+     * is must agree with the interfaces defined in org.opengis.filter. Because this
+     * binding is formal we should replace Operator here with a CodeList and capture
+     * it as part of the GeoAPI project.
+     * </p>
+     * @return Interface marked as supported by this Operator
+     */
+    //Class getSupportedType();
 }

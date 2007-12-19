@@ -25,4 +25,6 @@ import org.opengis.annotation.XmlElement;
  */
 @XmlElement("Intersects")
 public interface Intersects extends BinarySpatialOperator, BoundedSpatialOperator {
+	/** Operator name used to check FilterCapabilities */
+	public static String NAME = "Intersects";
 }

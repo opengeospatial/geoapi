@@ -55,12 +55,21 @@ import org.opengis.geometry.Geometry;
 /**
  * Interface whose methods allow the caller to create instances of the various
  * {@link Filter} and {@link Expression} subclasses.
- *
+ * <p>
  * @version <A HREF="http://www.opengis.org/docs/02-059.pdf">Implementation specification 1.0</A>
  * @author Chris Dillard (SYS Technologies)
  * @since GeoAPI 2.0
  */
 public interface FilterFactory {
+	/**
+	 * The FilterCapabilities data structure is used to describe the abilities of
+	 * this FilterFactory, it includes restrictions on the available spatial operations,
+	 * scalar operations, lists the supported functions, and describes what geometry
+	 * literals are understood.
+	 * @return FilterCapabilities describing the abilities of this FilterFactory
+	 */
+	// FilterCapabilities getCapabilities();
+	
 ////////////////////////////////////////////////////////////////////////////////
 //
 //  IDENTIFIERS

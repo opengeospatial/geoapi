@@ -27,4 +27,6 @@ import org.opengis.annotation.XmlElement;
  */
 @XmlElement("Sub")
 public interface Subtract extends BinaryExpression {
+	/** Operator name used to check FilterCapabilities */
+	public static String NAME = "Sub";
 }
