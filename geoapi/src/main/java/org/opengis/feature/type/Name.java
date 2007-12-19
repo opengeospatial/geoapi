@@ -176,5 +176,6 @@ public interface Name {
     /**
      * A local-independant representation of this name, see getURI().
      */
+    ///@Override
     String toString();
 }
