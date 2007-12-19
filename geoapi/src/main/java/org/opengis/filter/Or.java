@@ -20,6 +20,11 @@ import org.opengis.annotation.XmlElement;
  * This interface exposes no additional methods beyond those of {@link BinaryLogicOperator}.
  * It only serves as a marker of what type of operator this is.
  * </p>
+ * <p>
+ * You can check if the Or operation is supported using:<pre><code>
+ * scalarCapabilities.hasLogicalOperators() == true
+ * </code></pre>
+ * 
  * @version <A HREF="http://www.opengis.org/docs/02-059.pdf">Implementation specification 1.0</A>
  * @author Chris Dillard (SYS Technologies)
  * @since GeoAPI 2.0

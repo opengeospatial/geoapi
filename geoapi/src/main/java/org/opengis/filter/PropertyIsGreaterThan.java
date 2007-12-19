@@ -24,4 +24,6 @@ import org.opengis.annotation.XmlElement;
  */
 @XmlElement("PropertyIsGreaterThan")
 public interface PropertyIsGreaterThan extends BinaryComparisonOperator {
+	/** Operator name used to check FilterCapabilities */
+	public static String NAME = "GreaterThan";
 }

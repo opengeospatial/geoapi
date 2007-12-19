@@ -25,4 +25,6 @@ import org.opengis.annotation.XmlElement;
  */
 @XmlElement("Within")
 public interface Within extends BinarySpatialOperator, BoundedSpatialOperator {
+	/** Operator name used to check FilterCapabilities */
+	public static String NAME = "Within";
 }

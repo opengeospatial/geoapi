@@ -26,6 +26,9 @@ import org.opengis.filter.expression.Expression;
  */
 @XmlElement("PropertyIsBetween")
 public interface PropertyIsBetween extends Filter {
+	/** Operator name used to check FilterCapabilities */
+	public static String NAME = "Between";
+	
     /**
      * Returns the expression to be compared by this operator.
      */

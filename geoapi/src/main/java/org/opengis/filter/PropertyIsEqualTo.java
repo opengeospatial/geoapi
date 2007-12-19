@@ -23,4 +23,6 @@ import org.opengis.annotation.XmlElement;
  */
 @XmlElement("PropertyIsEqualTo")
 public interface PropertyIsEqualTo extends BinaryComparisonOperator {
+	/** Operator name used to check FilterCapabilities */
+	public static String NAME = "EqualTo";
 }

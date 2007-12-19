@@ -18,7 +18,13 @@ import org.opengis.annotation.XmlElement;
 
 /**
  * Instances of this class represent a function call into some implementation-specific
- * function.  This is included for completeness with respect to the
+ * function.
+ * <p>
+ * Each execution environment should provide a list of supported functions
+ * (and the number of arguments they expect) as part of a FilterCapabilities
+ * data structure.  
+ * <p>
+ * This is included for completeness with respect to the
  * OGC Filter specification.  However, no functions are required to be supported
  * by that specification.
  *
@@ -31,6 +37,10 @@ public interface Function extends Expression {
     /**
      * Returns the name of the function to be called.  For example, this might
      * be "{@code cos}" or "{@code atan2}".
+     * <p>
+     * You can use this name to look up the number of required parameters
+     * in a FilterCapabilities data structure. For the specific meaning of
+     * the required parameters you will need to consult the documentation.
      */
     String getName();
 
@@ -39,5 +49,4 @@ public interface Function extends Expression {
      * parameters to the function.
      */
     List<Expression> getParameters();
-
 }

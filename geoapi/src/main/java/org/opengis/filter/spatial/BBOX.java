@@ -26,6 +26,9 @@ import org.opengis.annotation.XmlElement;
  */
 @XmlElement("BBOX")
 public interface BBOX extends SpatialOperator {
+	/** Operator name used to check FilterCapabilities */
+	public static String NAME = "BBOX";
+	
     /**
      * Returns the name of the geometric property that will be used in this
      * spatial operator.  This may be null if the default spatial property is
