@@ -161,7 +161,7 @@ public interface Name {
      *
      * @return a hascode based on getURI()
      */
-    @Override
+    ///@Override
     int hashCode();
 
     /**
@@ -170,12 +170,11 @@ public interface Name {
      * @param other
      * @return <code>true</code> if getURI is equal.
      */
-    @Override
+    ///@Override
     boolean equals(Object obj);
 
     /**
      * A local-independant representation of this name, see getURI().
      */
-    @Override
     String toString();
 }

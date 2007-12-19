@@ -33,8 +33,23 @@ public interface Identifier<T,O> {
     boolean matches(O object);
 
     /**
+     * Identifier is a data object, equals is based just on getID()
+     * @param obj
+     * @return true if obj is an Identifier with the same getID()
+     */
+    ///@Override
+    public boolean equals(Object obj);
+    
+    /**
+     * Identifier is a data object, hashCode is based just on getID()
+     * @return hashCode based on getID()
+     */
+    ///@Override
+    public int hashCode();
+    
+    /**
      * Returns a string representation of the identifier.
      */
-    @Override
+    ///@Override 
     String toString();
 }

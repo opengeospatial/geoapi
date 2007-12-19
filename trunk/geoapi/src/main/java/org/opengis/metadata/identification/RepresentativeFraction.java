@@ -83,7 +83,7 @@ public interface RepresentativeFraction {
      * @return {@code true} if {@code other} is a {@code RepresentedFraction} with the same
      *         {@linkplain #getDenominator denominator} value.
      */
-    @Override
+    ///@Override
     boolean equals(Object other);
 
     /**
@@ -101,6 +101,6 @@ public interface RepresentativeFraction {
      *
      * @return A hash code value for this representative fraction.
      */
-    @Override
+    ///@Override
     int hashCode();
 }
