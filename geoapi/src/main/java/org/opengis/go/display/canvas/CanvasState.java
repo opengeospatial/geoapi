@@ -49,6 +49,6 @@ public interface CanvasState {
      * should also test equivalency of the object returned by
      * <code>getCanvasParameterAccessor()</code>.
      */
-    @Override
+    ///@Override    
     boolean equals(Object object);
 }

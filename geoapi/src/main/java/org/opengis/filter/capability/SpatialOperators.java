@@ -1,5 +1,7 @@
 package org.opengis.filter.capability;
 
+import java.util.Collection;
+
 /**
  * Supported spatial operators in a filter capabilities document.
  * <p>
@@ -29,7 +31,7 @@ public interface SpatialOperators {
     /**
      * Provided spatial operators.
      */
-    SpatialOperator[] getOperators();
+    Collection<SpatialOperator> getOperators();
 
     /**
      * Looks up an operator by name, returning null if no such operator found.
