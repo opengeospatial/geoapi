@@ -89,4 +89,15 @@ public interface Operator {
      * @return Interface marked as supported by this Operator
      */
     //Class getSupportedType();
+    
+    /**
+     * Equals should be implemented simply in terms of getName()
+     */
+    ///@Override
+    boolean equals(Object obj);
+    /**
+     * HashCode should be implemented simply in terms of getName().
+     */
+    ///@Override
+    int hashCode();
 }
