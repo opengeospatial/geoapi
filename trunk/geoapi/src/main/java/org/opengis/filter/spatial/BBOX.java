@@ -25,7 +25,7 @@ import org.opengis.annotation.XmlElement;
  * @since GeoAPI 2.0
  */
 @XmlElement("BBOX")
-public interface BBOX extends SpatialOperator {
+public interface BBOX extends BinarySpatialOperator {
 	/** Operator name used to check FilterCapabilities */
 	public static String NAME = "BBOX";
 	
@@ -66,4 +66,6 @@ public interface BBOX extends SpatialOperator {
      * Returns the maximum value for the second coordinate.
      */
     double getMaxY();
+    
+    
 }
