@@ -47,6 +47,7 @@ package org.opengis.filter.capability;
 
 // Annotations
 import java.util.Collection;
+import java.util.List;
 
 import org.opengis.annotation.UML;
 import static org.opengis.annotation.Specification.*;
@@ -85,5 +86,5 @@ public interface FunctionName extends Operator {
      * 
      * @return Argument names (for documentation purposes) if known
      */
-    Collection<String> getArgumentNames();
+    List<String> getArgumentNames();
 }
