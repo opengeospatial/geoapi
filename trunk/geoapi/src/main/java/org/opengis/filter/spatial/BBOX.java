@@ -66,6 +66,4 @@ public interface BBOX extends BinarySpatialOperator {
      * Returns the maximum value for the second coordinate.
      */
     double getMaxY();
-    
-    
 }

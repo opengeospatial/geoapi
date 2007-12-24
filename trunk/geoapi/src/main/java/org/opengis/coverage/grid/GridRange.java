@@ -63,27 +63,6 @@ public interface GridRange {
     GridCoordinates getUpper();
 
     /**
-     * The valid minimum inclusive grid coordinate.
-     * The sequence contains a minimum value for each dimension of the grid coverage.
-     * The lowest valid grid coordinate is zero.
-     *
-     * @return The valid minimum inclusive grid coordinate.
-     *
-     * @deprecated Replaced by {@link #getLower()}.
-     */
-    int[] getLowers();
-
-    /**
-     * The valid maximum exclusive grid coordinate.
-     * The sequence contains a maximum value for each dimension of the grid coverage.
-     *
-     * @return The valid maximum exclusive grid coordinate.
-     *
-     * @deprecated Replaced by {@link #getUpper()}.
-     */
-    int[] getUppers();
-
-    /**
      * Returns the valid minimum inclusive grid
      * coordinate along the specified dimension.
      */

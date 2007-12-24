@@ -403,21 +403,6 @@ public interface Coverage {
     Set<? extends DomainObject> evaluateInverse(Record v);
 
     /**
-     * The names of each dimension in the coverage.
-     * Typically these names are <var>x</var>, <var>y</var>, <var>z</var> and <var>t</var>.
-     * The number of items in the sequence is the number of dimensions in the coverage.
-     * Grid coverages are typically 2D (<var>x</var>, <var>y</var>) while other coverages
-     * may be 3D (<var>x</var>, <var>y</var>, <var>z</var>) or
-     * 4D (<var>x</var>, <var>y</var>, <var>z</var>, <var>t</var>).
-     * The number of dimensions of the coverage is the number of entries in the
-     * list of dimension names.
-     *
-     * @deprecated This information can be obtained from the underlying coordinate system.
-     */
-    @UML(identifier="dimensionNames", obligation=MANDATORY, specification=OGC_01004)
-    InternationalString[] getDimensionNames();
-
-    /**
      * The number of sample dimensions in the coverage.
      * For grid coverages, a sample dimension is a band.
      * <p>
@@ -466,35 +451,6 @@ public interface Coverage {
      */
     @UML(identifier="getSource, numSource", obligation=MANDATORY, specification=OGC_01004)
     List<? extends Coverage> getSources();
-
-    /**
-     * List of metadata keywords for a coverage.
-     * If no metadata is available, the sequence will be empty.
-     *
-     * @return the list of metadata keywords for a coverage.
-     *
-     * @see #getMetadataValue
-     * @see javax.media.jai.PropertySource#getPropertyNames
-     *
-     * @deprecated Replaced by {@link javax.media.jai.PropertySource#getPropertyNames()}.
-     */
-    @UML(identifier="metadataNames", obligation=MANDATORY, specification=OGC_01004)
-    String[] getMetadataNames();
-
-    /**
-     * Retrieve the metadata value for a given metadata name.
-     *
-     * @param name Metadata keyword for which to retrieve data.
-     * @return the metadata value for a given metadata name.
-     * @throws MetadataNameNotFoundException if there is no value for the specified metadata name.
-     *
-     * @see #getMetadataNames
-     * @see javax.media.jai.PropertySource#getProperty
-     *
-     * @deprecated Replaced by {@link javax.media.jai.PropertySource#getProperty}.
-     */
-    @UML(identifier="getMetadataValue", obligation=MANDATORY, specification=OGC_01004)
-    String getMetadataValue(String name) throws MetadataNameNotFoundException;
 
     /**
      * Returns 2D view of this coverage as a renderable image.
