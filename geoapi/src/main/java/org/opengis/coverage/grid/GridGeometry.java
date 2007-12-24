@@ -67,9 +67,4 @@ public interface GridGeometry {
      */
     @UML(identifier="gridToCoordinateSystem", obligation=MANDATORY, specification=OGC_01004)
     MathTransform getGridToCRS();
-
-    /**
-     * @deprecated Renamed as {@link #getGridToCRS()}.
-     */
-    MathTransform getGridToCoordinateSystem();
 }

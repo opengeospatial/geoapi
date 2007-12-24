@@ -512,22 +512,4 @@ public interface GridCoverage extends Coverage {
     @UML(identifier="setDataBlockAsDouble", obligation=MANDATORY, specification=OGC_01004)
     void setDataBlock(GridRange gridRange, double[] values)
             throws InvalidRangeException, GridNotEditableException, ArrayIndexOutOfBoundsException;
-
-    /**
-     * Set a block of grid coverage data for all sample dimensions.
-     * See {@link #getPackedDataBlock} for details on how to pack the values.
-     *
-     * @param gridRange Grid range for block of data to be accessed.
-     * @param values Sequence of grid values for the given region.
-     * @throws InvalidRangeException if {@code gridRange} is out of this grid range bounds.
-     * @throws GridNotEditableException if the grid coverage is not {@linkplain #isDataEditable editable}.
-     * @throws ArrayIndexOutOfBoundsException if the {@code values} array is too small.
-     *
-     * @deprecated This operation can hardly be implemented efficiently in Java with a
-     *             {@code byte[]} argument type, since we can't easily cast an array
-     *             of {@code byte[]} to an array of arbitrary type.
-     */
-    @UML(identifier="setPackedDataBlock", obligation=MANDATORY, specification=OGC_01004)
-    void setPackedDataBlock(GridRange gridRange, byte[] values)
-            throws InvalidRangeException, GridNotEditableException, ArrayIndexOutOfBoundsException;
 }
