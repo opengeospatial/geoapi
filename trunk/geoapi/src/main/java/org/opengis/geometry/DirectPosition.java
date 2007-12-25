@@ -152,13 +152,4 @@ public interface DirectPosition extends Position, Cloneable {
      */
     ///@Override    
     int hashCode();
-
-    /**
-     * Makes an exact copy of this coordinate.
-     *
-     * @deprecated The {@linkplain Cloneable} status of {@code DirectPosition} should be left
-     *             to implementors.
-     */
-    @Deprecated
-    DirectPosition clone();
 }
