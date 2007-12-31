@@ -28,6 +28,11 @@ import static org.opengis.annotation.Specification.*;
  * {@linkplain CoordinateReferenceSystem coordinate reference system}. In this case,
  * the cordinate reference system is implicitly assumed to take on the value of the containing
  * object's {@linkplain CoordinateReferenceSystem coordinate reference system}.
+ * <p>
+ * <b>Note:</b> this interface does not extends {@link org.opengis.util.Cloneable} on purpose,
+ * since {@code DirectPosition} implementations are most likely to be backed by references to
+ * internal structures of the geometry containing this position. A direct position may or may
+ * not be cloneable at implementor choice.
  *
  * @version <A HREF="http://www.opengeospatial.org/standards/as">ISO 19107</A>
  * @author Martin Desruisseaux (IRD)
