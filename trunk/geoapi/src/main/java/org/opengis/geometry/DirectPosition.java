@@ -10,7 +10,6 @@
  *************************************************************************************************/
 package org.opengis.geometry;
 
-import org.opengis.util.Cloneable;
 import org.opengis.geometry.coordinate.Position;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 import org.opengis.annotation.UML;
@@ -35,7 +34,7 @@ import static org.opengis.annotation.Specification.*;
  * @since GeoAPI 1.0
  */
 @UML(identifier="DirectPosition", specification=ISO_19107)
-public interface DirectPosition extends Position, Cloneable {
+public interface DirectPosition extends Position {
     /**
      * The coordinate reference system in which the coordinate is given. May be {@code null} if this
      * particular {@code DirectPosition} is included in a larger object with such a reference to a
@@ -135,7 +134,7 @@ public interface DirectPosition extends Position, Cloneable {
      *
      * @since GeoAPI 2.1
      */
-    ///@Override    
+    ///@Override
     boolean equals(Object object);
 
     /**
@@ -150,6 +149,6 @@ public interface DirectPosition extends Position, Cloneable {
      *
      * @since GeoAPI 2.1
      */
-    ///@Override    
+    ///@Override
     int hashCode();
 }
