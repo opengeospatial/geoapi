@@ -41,4 +41,15 @@ public class MismatchedReferenceSystemException extends IllegalArgumentException
     public MismatchedReferenceSystemException(final String message) {
         super(message);
     }
+
+    /**
+     * Creates an exception with the specified message and cause.
+     *
+     * @param  message The detail message. The detail message is saved for
+     *         later retrieval by the {@link #getMessage()} method.
+     * @param  cause The cause.
+     */
+    public MismatchedReferenceSystemException(final String message, final Throwable cause) {
+        super(message, cause);
+    }
 }
