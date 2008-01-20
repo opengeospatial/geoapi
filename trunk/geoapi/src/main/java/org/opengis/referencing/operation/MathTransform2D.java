@@ -83,4 +83,12 @@ public interface MathTransform2D extends MathTransform {
      *         specified point.
      */
     Matrix derivative(final Point2D point) throws TransformException;
+
+    /**
+     * Creates the inverse transform of this object.
+     *
+     * @return The inverse transform.
+     * @throws NoninvertibleTransformException if the transform can't be inversed.
+     */
+    MathTransform2D inverse() throws NoninvertibleTransformException;
 }
