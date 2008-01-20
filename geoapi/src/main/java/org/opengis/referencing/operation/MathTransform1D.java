@@ -45,4 +45,12 @@ public interface MathTransform1D extends MathTransform {
      *         specified point.
      */
     double derivative(final double value) throws TransformException;
+
+    /**
+     * Creates the inverse transform of this object.
+     *
+     * @return The inverse transform.
+     * @throws NoninvertibleTransformException if the transform can't be inversed.
+     */
+    MathTransform1D inverse() throws NoninvertibleTransformException;
 }
