@@ -89,6 +89,8 @@ public interface MathTransform2D extends MathTransform {
      *
      * @return The inverse transform.
      * @throws NoninvertibleTransformException if the transform can't be inversed.
+     *
+     * @since GeoAPI 2.2
      */
     MathTransform2D inverse() throws NoninvertibleTransformException;
 }
