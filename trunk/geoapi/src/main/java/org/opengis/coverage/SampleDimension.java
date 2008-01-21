@@ -10,10 +10,10 @@
  *************************************************************************************************/
 package org.opengis.coverage;
 
-import java.util.Locale;
 import javax.units.Unit;
 import org.opengis.util.InternationalString;
 import org.opengis.referencing.operation.MathTransform1D;
+import org.opengis.annotation.Extension;
 import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Obligation.*;
@@ -209,32 +209,6 @@ public interface SampleDimension {
      * @see #getOffset
      * @see #getNoDataValues
      */
+    @Extension
     MathTransform1D getSampleToGeophysics();
-
-    /**
-     * The list of metadata keywords for a sample dimension.
-     * If no metadata is available, the sequence will be empty.
-     *
-     * @see #getMetadataValue
-     * @see javax.media.jai.PropertySource#getPropertyNames
-     *
-     * @deprecated No replacement.
-     */
-    @UML(identifier="metadataNames", obligation=MANDATORY, specification=OGC_01004)
-    String[] getMetaDataNames();
-
-    /**
-     * Retrieve the metadata value for a given metadata name.
-     *
-     * @param  name Metadata keyword for which to retrieve metadata.
-     * @return The metadata value for a given metadata name.
-     * @throws MetadataNameNotFoundException if there is no value for the specified metadata name.
-     *
-     * @see #getMetaDataNames
-     * @see javax.media.jai.PropertySource#getProperty
-     *
-     * @deprecated No replacement.
-     */
-    @UML(identifier="getMetadataValue", obligation=MANDATORY, specification=OGC_01004)
-    String getMetadataValue(String name) throws MetadataNameNotFoundException;
 }
