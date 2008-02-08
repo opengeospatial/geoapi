@@ -27,7 +27,7 @@ import static org.opengis.annotation.Specification.*;
  * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 2.0
  */
-@UML(identifier="CI_DateType", specification=ISO_19115)
+@UML(identifier="CI_DateTypeCode", specification=ISO_19115)
 public final class DateType extends CodeList<DateType> {
     /**
      * Serial number for compatibility with different versions.
