@@ -10,6 +10,8 @@
  *************************************************************************************************/
 package org.opengis.util;
 
+import org.opengis.annotation.Extension;
+
 
 /**
  * Monitor the progress of some lengthly operation, and allows cancelation.
@@ -48,6 +50,7 @@ package org.opengis.util;
  * @author Martin Desruisseaux
  * @author Jody Garnet
  */
+@Extension
 public interface ProgressListener {
     /**
      * Description for the lengthly operation to be reported, or
@@ -65,7 +68,7 @@ public interface ProgressListener {
      * that the process is "in progress" or "working" as represented in the
      * current locale.
      *
-     * @return task being performed.
+     * @return Description of the task being performed.
      */
     InternationalString getTask();
 
@@ -75,7 +78,7 @@ public interface ProgressListener {
      * This task may be user visible and is represented as an
      * {@linkplain InternationalString international string} for locale support.
      *
-     * @param task
+     * @param task Description of the task being performed.
      */
     void setTask(InternationalString task);
 
@@ -105,11 +108,13 @@ public interface ProgressListener {
 
     /**
      * Access the current progress as a percent completed.
-     * 
-     * @return percent completed
+     *
+     * @return Percent completed.
+     *
+     * @since GeoAPI 2.2
      */
     float getProgress();
-    
+
     /**
      * Notifies this listener that the operation has finished. The progress indicator will
      * shows 100% or disappears, at implementor choice. If warning messages were pending,
@@ -124,12 +129,12 @@ public interface ProgressListener {
     void dispose();
 
     /**
-     * Is this job cancelled?
+     * Returns {@code true} if this job is cancelled.
      */
     boolean isCanceled();
 
     /**
-     * Indicate that progress should is cancelled.
+     * Indicates that task should be cancelled.
      */
     void setCanceled(boolean cancel);
 
@@ -140,16 +145,16 @@ public interface ProgressListener {
      * <p>
      * <table>
      * <tr><td>parameter</td><td>Java</td><td>Data</td></tr>
-     * <tr><td>source</td><td>filename</td><td>url</td></tr>
+     * <tr><td>source</td><td>filename</td><td>URL</td></tr>
      * <tr><td>location</td><td>line number</td><td>featureId</td></tr>
      * <tr><td>warning</td><td>warning message</td><td>warning message</td></tr>
      * <table>
      *
      * @param source Name of the warning source, or {@code null} if none. This is typically the
-     *        filename in process of being parsed or the url of the data being processed
+     *        filename in process of being parsed or the URL of the data being processed
      * @param location Text to write on the left side of the warning message, or {@code null} if none.
      *        This is typically the line number where the error occured in the {@code source} file or
-     *        the feature id of the feature that produced the message
+     *        the feature ID of the feature that produced the message
      * @param warning The warning message.
      */
     void warningOccurred(String source, String location, String warning);
