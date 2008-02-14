@@ -104,8 +104,15 @@ public interface ProgressListener {
     void progress(float percent);
 
     /**
+     * Access the current progress as a percent completed.
+     * 
+     * @return percent completed
+     */
+    float getProgress();
+    
+    /**
      * Notifies this listener that the operation has finished. The progress indicator will
-     * shows 100% or disaspears, at implementor choice. If warning messages were pending,
+     * shows 100% or disappears, at implementor choice. If warning messages were pending,
      * they will be displayed now.
      */
     void complete();
@@ -117,14 +124,12 @@ public interface ProgressListener {
     void dispose();
 
     /**
-     * Is this job canceled?
+     * Is this job cancelled?
      */
     boolean isCanceled();
 
     /**
-     * Indicate that progress should is canceled.
-     *
-     * @todo Is it really listener job to cancel a task?
+     * Indicate that progress should is cancelled.
      */
     void setCanceled(boolean cancel);
 
@@ -132,14 +137,22 @@ public interface ProgressListener {
      * Reports a warning. This warning may be {@linkplain java.util.logger.Logger logged}, printed
      * to the {@linkplain System#err standard error stream}, appears in a windows or be ignored,
      * at implementor choice.
+     * <p>
+     * <table>
+     * <tr><td>parameter</td><td>Java</td><td>Data</td></tr>
+     * <tr><td>source</td><td>filename</td><td>url</td></tr>
+     * <tr><td>location</td><td>line number</td><td>featureId</td></tr>
+     * <tr><td>warning</td><td>warning message</td><td>warning message</td></tr>
+     * <table>
      *
      * @param source Name of the warning source, or {@code null} if none. This is typically the
-     *        filename in process of being parsed.
-     * @param margin Text to write on the left side of the warning message, or {@code null} if none.
-     *        This is typically the line number where the error occured in the {@code source} file.
+     *        filename in process of being parsed or the url of the data being processed
+     * @param location Text to write on the left side of the warning message, or {@code null} if none.
+     *        This is typically the line number where the error occured in the {@code source} file or
+     *        the feature id of the feature that produced the message
      * @param warning The warning message.
      */
-    void warningOccurred(String source, String margin, String warning);
+    void warningOccurred(String source, String location, String warning);
 
     /**
      * Reports an exception. This method may prints the stack trace to the {@linkplain System#err
