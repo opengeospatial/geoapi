@@ -10,13 +10,16 @@
  *************************************************************************************************/
 package org.opengis.util;
 
-import java.io.InvalidObjectException;
-import java.io.ObjectStreamException;
 import java.io.Serializable;
+import java.io.ObjectStreamException;
+import java.io.InvalidObjectException;
 import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
+import org.opengis.annotation.UML;
 
 
 /**
@@ -60,6 +63,13 @@ public abstract class CodeList<E extends CodeList<E>> implements Comparable<E>, 
     private final String name;
 
     /**
+     * The identifier declared in the {@link UML} annotation, or an empty string if there is
+     * no such annotation or if the annotation contains an empty string.  This field will be
+     * computed only when first needed.
+     */
+    private transient String identifier;
+
+    /**
      * Creates a new code list element and add it to the given collection. Subclasses
      * will typically give a static reference to an {@link java.util.ArrayList} for
      * the {@code values} argument. This list is used for {@code values()}
@@ -88,8 +98,11 @@ public abstract class CodeList<E extends CodeList<E>> implements Comparable<E>, 
     }
 
     /**
-     * Returns the code of the given class that matches the given string, or returns a
-     * new one if none match it. The comparaison is case-insensitive.
+     * Returns the code of the given type that matches the given name, or returns a new one if none
+     * match it. More specifically, this methods returns the first element of the given class where
+     * <code>{@linkplain #matches matches}(name)</code> returned {@code true}. If no such element is
+     * found, then a new instance is created using the constructor expecting a single {@link String}
+     * argument.
      *
      * @param codeType The type of code list.
      * @param name The name of the code to obtain.
@@ -103,12 +116,16 @@ public abstract class CodeList<E extends CodeList<E>> implements Comparable<E>, 
         synchronized (VALUES) {
             values = VALUES.get(codeType);
             if (values == null) {
-                throw new IllegalStateException("No list for " + codeType.getSimpleName());
+                if (codeType == null) {
+                    throw new IllegalArgumentException("Code type is null");
+                } else {
+                    throw new IllegalStateException("No collection of " + codeType.getSimpleName());
+                }
             }
         }
         synchronized (values) {
             for (final CodeList code : values) {
-                if (name.equalsIgnoreCase(code.name)) {
+                if (code.matches(name)) {
                     return codeType.cast(code);
                 }
             }
@@ -123,18 +140,79 @@ public abstract class CodeList<E extends CodeList<E>> implements Comparable<E>, 
     }
 
     /**
-     * Returns the ordinal of this enumeration constant (its position in its enum declaration,
-     * where the initial constant is assigned an ordinal of zero).
+     * Returns the ordinal of this code constant. This is its position in its elements declaration,
+     * where the initial constant is assigned an ordinal of zero.
      */
     public final int ordinal() {
         return ordinal;
     }
 
     /**
-     * Returns the name of this enum constant.
+     * Returns the identifier declared in the {@link UML} annotation, or {@code null} if none.
+     *
+     * @since GeoAPI 2.2
+     */
+    public String identifier() {
+        // Save the field in a local variable for protection against concurrent change (this
+        // operation is garanteed atomic according Java specification). We don't synchronize
+        // since it is not a problem if this method is executed twice in concurrent threads.
+        String identifier = this.identifier;
+        if (identifier == null) {
+            final Class<? extends CodeList> codeType = getClass();
+            Field field;
+            try {
+                field = codeType.getField(name);
+            } catch (NoSuchFieldException e) {
+                // There is no field for a code of this name. It may be normal, since the user
+                // may have created a custom CodeList without declaring it as a constant.
+                field = null;
+            }
+            if (field != null && Modifier.isStatic(field.getModifiers())) {
+                final Object value;
+                try {
+                    value = field.get(null);
+                } catch (IllegalAccessException e) {
+                    // Should never happen since getField(String) returns only public fields.
+                    throw new AssertionError(e);
+                }
+                if (equals(value)) {
+                    final UML annotation = field.getAnnotation(UML.class);
+                    if (annotation != null) {
+                        identifier = annotation.identifier();
+                    }
+                }
+            }
+            if (identifier == null) {
+                identifier = "";
+            }
+            this.identifier = identifier;
+        }
+        return identifier.length() != 0 ? identifier : null;
+    }
+
+    /**
+     * Returns the name of this code list constant.
      */
     public final String name() {
         return name;
+    }
+
+    /**
+     * Returns {@code true} if the given name matches the {@linkplain #name name},
+     * {@linkplain #identifier identifier} or any other identification string of
+     * this code list element. The comparison is case-insensitive.
+     *
+     * @since GeoAPI 2.2
+     */
+    public boolean matches(String name) {
+        if (name == null) {
+            return false;
+        }
+        if (name.equalsIgnoreCase(this.name)) {
+            return true;
+        }
+        final String identifier = identifier();
+        return (identifier != null) && name.equalsIgnoreCase(identifier);
     }
 
     /**
@@ -152,12 +230,27 @@ public abstract class CodeList<E extends CodeList<E>> implements Comparable<E>, 
      * the constants are declared.
      */
     public final int compareTo(final E other) {
-        final Class ct =  this.getClass();
-        final Class co = other.getClass();
+        final Class<? extends CodeList> ct =  this.getClass();
+        final Class<? extends CodeList> co = other.getClass();
         if (!ct.equals(co)) {
-            throw new ClassCastException("Can't compare " + ct.getName() + " to " + co.getName());
+            throw new ClassCastException("Can't compare " + ct.getSimpleName() + " to " + co.getSimpleName());
         }
         return ordinal - ((CodeList) other).ordinal;
+    }
+
+    /**
+     * Compares the specified object with this code list for equality. This method compares only
+     * {@linkplain #ordinal ordinal} values for consistency with the {@link #compareTo} method.
+     * Ordinal values are unique for each code list element of the same class.
+     *
+     * @since GeoAPI 2.2
+     */
+    @Override
+    public final boolean equals(final Object object) {
+        if (object != null && object.getClass().equals(getClass())) {
+            return ordinal == ((CodeList) object).ordinal;
+        }
+        return false;
     }
 
     /**
@@ -169,19 +262,39 @@ public abstract class CodeList<E extends CodeList<E>> implements Comparable<E>, 
     }
 
     /**
-     * Resolves the code list to an unique instance after deserialization.
-     * The instance is resolved using its {@linkplain #name() name} only
-     * (not its {@linkplain #ordinal() ordinal}).
+     * Resolves the code list to an unique instance after deserialization. The instance is resolved
+     * using its {@linkplain #name() name} only (not its {@linkplain #ordinal() ordinal}).
      *
      * @return This code list as an unique instance.
      * @throws ObjectStreamException if the deserialization failed.
      */
     protected Object readResolve() throws ObjectStreamException {
-        final CodeList[] codes = family();
-        for (int i=0; i<codes.length; i++) {
-            assert codes[i].ordinal == i : i;
-            if (name.equals(codes[i].name)) {
-                return codes[i];
+        final Class<? extends CodeList> codeType = getClass();
+        final Collection<? extends CodeList> values;
+        synchronized (VALUES) {
+            values = VALUES.get(codeType);
+        }
+        if (values != null) {
+            synchronized (values) {
+                for (final CodeList code : values) {
+                    if (!codeType.isInstance(code)) {
+                        // Paranoiac check - should never happen unless the subclass
+                        // modifies itself the collection given to the constructor,
+                        // in which case we will not touch it.
+                        return this;
+                    }
+                    if (code.matches(name)) {
+                        return code;
+                    }
+                }
+                // We have verified with codeType.isInstance(code) that every elements are
+                // of the appropriate class. This is the best we can do for type safety.
+                @SuppressWarnings("unchecked")
+                final Collection<CodeList> unsafe = (Collection) values;
+                if (!unsafe.add(this)) {
+                    // Paranoiac check - should never happen.
+                    throw new InvalidObjectException(name);
+                }
             }
         }
         return this;
