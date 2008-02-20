@@ -278,6 +278,17 @@ public final class CharacterSet extends CodeList<CharacterSet> {
     }
 
     /**
+     * {@inheritDoc}
+     */
+    @Override
+    public boolean matches(final String name) {
+        if (super.matches(name)) {
+            return true;
+        }
+        return (name != null) && name.equalsIgnoreCase(charset);
+    }
+
+    /**
      * Returns the list of enumerations of the same kind than this enum.
      */
     public CharacterSet[] family() {
