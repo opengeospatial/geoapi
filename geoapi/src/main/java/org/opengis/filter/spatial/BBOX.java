@@ -30,40 +30,56 @@ public interface BBOX extends BinarySpatialOperator {
 	public static String NAME = "BBOX";
 	
     /**
-     * Returns the name of the geometric property that will be used in this
-     * spatial operator.  This may be null if the default spatial property is
-     * to be used.
+     * Name of the geometric property that will be used in this spatial operator.
+     * <p>
+     * This may be null if the default spatial property is to be used.
+     * @deprecated Please check getExpression1(), if it is a PropertyName
      */
     @XmlElement("PropertyName")
     String getPropertyName();
 
     /**
      * Returns the spatial reference system in which the bounding box
-     * coordinates contained by this object should be interpreted.  This string
-     * must take one of two forms: either "EPSG:xxxxx" where "xxxxx" is a valid
-     * EPSG coordinate system code, or an OGC well-known-text representation of
-     * a coordinate system as defined in the OGC Simple Features for SQL
-     * specification.
+     * coordinates contained by this object should be interpreted.
+     * <p>
+     * This string must take one of two forms: either 
+     * <ul>
+     * <li>"EPSG:xxxxx" where "xxxxx" is a valid EPSG coordinate system code;
+     * <li>OGC URI format
+     * <li>or an OGC well-known-text representation of a coordinate system as
+     *     defined in the OGC Simple Features for SQL specification.
+     * </ul>
+     * @deprecated please use getExpression2(), if it is a literal BoundingBox.getCoordinateReferenceSystem()
      */
     String getSRS();
 
     /**
-     * Returns the minimum value for the first coordinate.
+     * Assuming getExpression2() is a literal bounding box access
+     * the minimum value for the first coordinate.
+     * 
+     * @deprecated please use getExpression2(), to check for a literal BoundingBox.getMinimum(0)
      */
     double getMinX();
 
     /**
-     * Returns the minimum value for the second coordinate.
+     * Assuming getExpression2() is a literal bounding box access 
+     * the minimum value for the second ordinate.
+     * @deprecated please use getExpression2(), to check for a literal BoundingBox.getMinimum(1)
      */
     double getMinY();
 
     /**
-     * Returns the maximum value for the first coordinate.
+     * Assuming getExpression2() is a literal bounding box access 
+     * the maximum value for the first ordinate.
+     * 
+     * @deprecated please use getExpression2(), to check for a literal BoundingBox.getMaximum(0)
      */
     double getMaxX();
 
     /**
-     * Returns the maximum value for the second coordinate.
+     * Assuming getExpression2() is a literal bounding box access
+     * the maximum value for the second coordinate.
+     * @deprecated please use getExpression2(), to check for a literal BoundingBox.getMaximum(1)
      */
     double getMaxY();
 }
