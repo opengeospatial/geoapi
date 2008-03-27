@@ -15,6 +15,7 @@ import java.util.Iterator;
 
 import org.opengis.feature.Transaction.State;
 
+@Deprecated
 public class DefaultLock {
     private long duration;
     private String authId;

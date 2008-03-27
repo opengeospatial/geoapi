@@ -27,6 +27,7 @@ import java.util.Set;
  *
  * @author Jody Garnett, Refractions Research
  */
+@Deprecated
 public class DefaultTransaction implements Transaction {
     /** Records State by key */
     Map stateLookup = new HashMap();

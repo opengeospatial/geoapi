@@ -30,7 +30,10 @@ package org.opengis.feature;
  *
  * @since GeoAPI 2.1
  * @see java.util.Collection
+ * 
+ * @deprecated Removed pending a redesign of feature storage interfaces
  */
+@Deprecated
 public interface DataFeatureCollection extends FeatureCollection {
     /**
      * Begins a new transaction on this collection.  Any calls that may modify

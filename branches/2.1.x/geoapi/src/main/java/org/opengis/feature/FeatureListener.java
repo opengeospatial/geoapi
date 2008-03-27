@@ -18,7 +18,10 @@ import java.util.EventListener;
  * The listener interface for receiving feature events.
  *
  * @since GeoAPI 2.0
+ * 
+ * @deprecated Removed pending a redesign of feature storage interfaces
  */
+@Deprecated
 public interface FeatureListener extends EventListener {
     /**
      * Invoked if features were added to or became members of a collection we

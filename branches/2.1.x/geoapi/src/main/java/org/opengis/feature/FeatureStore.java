@@ -28,7 +28,10 @@ import org.opengis.util.InternationalString;
  * of {@link Feature} objects.
  *
  * @since GeoAPI 2.0
+ * 
+ * @deprecated Removed pending a redesign of feature storage interfaces
  */
+@Deprecated
 public interface FeatureStore {
     /**
      * Icon representing this {@code FeatureStore}.

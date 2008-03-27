@@ -28,7 +28,10 @@ import org.opengis.annotation.XmlElement;
  *
  * @author Jody Garnett (Refractions Research)
  * @since GeoAPI 2.0
+ * 
+ * @deprecated Removed pending a redesign of feature storage interfaces
  */
+@Deprecated
 @XmlElement("LockFeatureResponse")
 public interface LockResponse {
     /**

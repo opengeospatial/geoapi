@@ -20,7 +20,10 @@ import org.opengis.feature.type.FeatureType;  // For javadoc
  * {@link FeatureStore#addFeatureStoreListener addFeatureStoreListener} method on feature store.
  *
  * @since GeoAPI 2.0
+ * 
+ * @deprecated Removed pending a redesign of feature storage interfaces
  */
+@Deprecated
 public interface FeatureStoreListener extends EventListener {
     /**
      * Invoked when a new {@link FeatureType} has been created.

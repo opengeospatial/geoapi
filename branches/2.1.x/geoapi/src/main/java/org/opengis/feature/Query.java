@@ -37,7 +37,10 @@ import org.opengis.referencing.crs.CoordinateReferenceSystem;
  *
  * @todo The following XML elements are not yet defined in this interface:
  *       {@code Function}, {@code SortBy}.
+ * 
+ * @deprecated Removed pending a redesign of feature storage interfaces
  */
+@Deprecated
 @XmlElement("Query")
 public interface Query {
     /**

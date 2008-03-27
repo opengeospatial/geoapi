@@ -23,7 +23,10 @@ import java.io.IOException;
  *       caused the problem?
  *
  * @since GeoAPI 2.0
+ * 
+ * @deprecated Removed pending a redesign of feature storage interfaces
  */
+@Deprecated
 public class FeatureStoreException extends IOException {
     /**
      * Serial version UID allowing cross compiler use of {@code FeatureStoreException}.

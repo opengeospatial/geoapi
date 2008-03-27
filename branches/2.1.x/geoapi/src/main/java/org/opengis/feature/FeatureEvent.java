@@ -20,7 +20,10 @@ import java.util.List;
  * new feature is added to, removed from, or changed within a given feature collection.
  *
  * @since GeoAPI 2.0
+ * 
+ * @deprecated Removed pending a redesign of feature storage interfaces
  */
+ @Deprecated
 public class FeatureEvent extends EventObject {
     /**
      * Serial version for compatibility with different versions.

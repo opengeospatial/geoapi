@@ -31,6 +31,7 @@ import org.opengis.referencing.crs.CoordinateReferenceSystem;
  *
  * @author Chris Holmes
  */
+@Deprecated
 public class DefaultQuery implements Query {
     /** The properties to fetch */
     private List/*<String>*/ properties;

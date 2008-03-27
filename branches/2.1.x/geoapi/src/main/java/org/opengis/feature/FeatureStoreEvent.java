@@ -25,7 +25,10 @@ import org.opengis.util.InternationalString;
  * regarding changes to an individual feature are given with an instance of {@code FeatureEvent}.
  *
  * @since GeoAPI 2.0
+ * 
+ * @deprecated Removed pending a redesign of feature storage interfaces
  */
+@Deprecated
 public class FeatureStoreEvent extends EventObject {
     /**
      * Value that must be changed should this class ever become serialization

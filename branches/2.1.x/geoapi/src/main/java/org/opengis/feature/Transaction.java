@@ -76,7 +76,10 @@ import org.opengis.annotation.XmlElement;
  * @author Jody Garnett (Refractions Research)
  * @author Chris Holmes (TOPP)
  * @since GeoAPI 2.0
+ * 
+ * @deprecated Removed pending a redesign of feature storage interfaces
  */
+@Deprecated
 @XmlElement("Transaction")
 public interface Transaction {
     /**
