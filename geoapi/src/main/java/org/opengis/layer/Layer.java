@@ -15,8 +15,8 @@ import java.util.Map;  // For javadoc
 import java.util.Set;
 import java.util.List;
 
-import org.opengis.feature.display.canvas.FeatureCanvas; // For javadoc
-import org.opengis.feature.display.canvas.FeatureLayer;
+import org.opengis.display.canvas.FeatureCanvas; // For javadoc
+import org.opengis.display.canvas.FeatureLayer;
 import org.opengis.go.display.canvas.Canvas; // For javadoc
 import org.opengis.go.display.primitive.Graphic;
 import org.opengis.metadata.Identifier;

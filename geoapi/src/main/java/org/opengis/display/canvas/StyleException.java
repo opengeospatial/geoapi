@@ -8,7 +8,7 @@
  ** All Rights Reserved. http://www.opengis.org/legal/
  **
  *************************************************************************************************/
-package org.opengis.feature.display.canvas;
+package org.opengis.display.canvas;
 
 
 /**

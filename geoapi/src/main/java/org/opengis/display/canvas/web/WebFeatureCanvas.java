@@ -8,10 +8,10 @@
  ** All Rights Reserved. http://www.opengis.org/legal/
  **
  *************************************************************************************************/
-package org.opengis.feature.display.canvas.web;
+package org.opengis.display.canvas.web;
 
 // OpenGIS direct dependencies
-import org.opengis.feature.display.canvas.FeatureCanvas;
+import org.opengis.display.canvas.FeatureCanvas;
 
 
 /**

@@ -8,14 +8,13 @@
  ** All Rights Reserved. http://www.opengis.org/legal/
  **
  *************************************************************************************************/
-package org.opengis.feature.display;
+package org.opengis.display;
 
 // J2SE direct dependencies
 import java.awt.Container;
 import java.util.Properties;
 
-// OpenGIS direct dependencies
-import org.opengis.feature.display.canvas.FeatureCanvas;
+import org.opengis.display.canvas.FeatureCanvas;
 
 
 /**
