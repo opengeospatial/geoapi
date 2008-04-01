@@ -12,6 +12,7 @@ package org.opengis.parameter;
 
 import java.util.Set;
 import javax.units.Unit;
+import org.opengis.util.CodeList; // For javadoc
 import org.opengis.annotation.UML;
 import org.opengis.annotation.Extension;
 
@@ -35,10 +36,9 @@ import static org.opengis.annotation.Specification.*;
 @UML(identifier="CC_OperationParameter", specification=ISO_19111)
 public interface ParameterDescriptor<T> extends GeneralParameterDescriptor {
     /**
-     * Creates a new instance of {@linkplain ParameterValue parameter value}
-     * initialized with the {@linkplain #getDefaultValue default value}.
-     * The {@linkplain ParameterValue#getDescriptor parameter value descriptor}
-     * for the created parameter value will be {@code this} object.
+     * Creates a new instance of {@linkplain ParameterValue parameter value} initialized with the
+     * {@linkplain #getDefaultValue default value}. The {@linkplain ParameterValue#getDescriptor
+     * parameter value descriptor} for the created parameter value will be {@code this} object.
      */
     @Extension
     ParameterValue<T> createValue();
@@ -50,20 +50,11 @@ public interface ParameterDescriptor<T> extends GeneralParameterDescriptor {
     Class<T> getValueClass();
 
     /**
-     * If this parameter allows only a finite set of values, returns this set.
-     * This set is usually a {linkplain org.opengis.util.CodeList code list} or
-     * enumerations. This method returns {@code null} if this parameter
-     * doesn't limits values to a finite set.
-     * <p>
-     * Note even when CodeList is used one can use this set to allow only a
-     * subset of the permissable values provided by the CodeList.
-     * </p>
-     * <p>
-     * When the getValueClass() is an array or Collection getValidValues()
-     * may be used to constrain the contained elements.
-     * </p>
-     * @return A finite set of valid values (usually from a
-     *         {linkplain org.opengis.util.CodeList code list}),
+     * Returns the set of allowed values when these are restricted to some finite set or returns
+     * {@code null} otherwise. The returned set usually contains {@linkplain CodeList code list}
+     * or enumeration elements.
+     *
+     * @return A finite set of valid values (usually from a {@linkplain CodeList code list}),
      *         or {@code null} if it doesn't apply.
      */
     @Extension
@@ -103,7 +94,7 @@ public interface ParameterDescriptor<T> extends GeneralParameterDescriptor {
      * <p>
      * When the getValueClass() is an array or Collection getMaximumValue
      * may be used to constratin the contained elements.
-     * </p>
+     *
      * @return The minimum parameter value (often an instance of {@link Double}), or {@code null}.
      */
     @UML(identifier="GC_ParameterInfo.maximumValue", obligation=OPTIONAL, specification=ISO_19111)

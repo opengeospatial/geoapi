@@ -95,7 +95,7 @@ public interface ParameterValueGroup extends GeneralParameterValue {
      * @throws ParameterNotFoundException if there is no parameter value for the given identifier code.
      */
     @Extension
-    ParameterValue parameter(String name) throws ParameterNotFoundException;
+    ParameterValue<?> parameter(String name) throws ParameterNotFoundException;
 
     /**
      * Returns all subgroups with the specified name. This method do not create new groups.
