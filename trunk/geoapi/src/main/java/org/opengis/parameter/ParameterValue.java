@@ -276,6 +276,11 @@ public interface ParameterValue<T> extends GeneralParameterValue {
      * Set the parameter value as an object. The object type is typically a {@link Double},
      * {@link Integer}, {@link Boolean}, {@link String}, {@link URI}, {@code double[]}
      * or {@code int[]}.
+     * <p>
+     * The argument is not restricted to the parameterized type {@code T} because the type
+     * is typically unknown (as in <code>group.{@linkplain ParameterValueGroup#parameter
+     * parameter}("<var>name</var>").setValue(<var>value</var>)</code>) and
+     * because some implementations may choose to convert a wider range of types.
      *
      * @param  value The parameter value.
      * @throws InvalidParameterValueException if the type of {@code value} is inappropriate
@@ -284,7 +289,7 @@ public interface ParameterValue<T> extends GeneralParameterValue {
      *
      * @see #getValue
      */
-    void setValue(T value) throws InvalidParameterValueException;
+    void setValue(Object value) throws InvalidParameterValueException;
 
     /**
      * Returns a copy of this parameter value.
