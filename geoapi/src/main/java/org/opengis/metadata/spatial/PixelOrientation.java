@@ -22,6 +22,10 @@ import static org.opengis.annotation.Specification.*;
 
 /**
  * Point in a pixel corresponding to the Earth location of the pixel.
+ * <p>
+ * This code list is restricted to the two-dimensional case. A similar code
+ * list, {@link org.opengis.referencing.datum.PixelInCell}, can be used for
+ * <var>n</var>-dimensional grid cell.
  *
  * @author <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
  * @author Martin Desruisseaux (IRD)
@@ -42,6 +46,8 @@ public final class PixelOrientation extends CodeList<PixelOrientation> {
 
     /**
      * Point in a pixel corresponding to the Earth location of the pixel.
+     *
+     * @see org.opengis.referencing.datum.PixelInCell#CELL_CENTER
      */
     @UML(identifier="center", obligation=CONDITIONAL, specification=ISO_19115)
     public static final PixelOrientation CENTER = new PixelOrientation("CENTER");
@@ -49,24 +55,29 @@ public final class PixelOrientation extends CodeList<PixelOrientation> {
     /**
      * The corner in the pixel closest to the origin of the SRS; if two are at the same
      * distance from the origin, the one with the smallest x-value.
+     *
+     * @todo The sentence "<cite>closest to the origin of the SRS</cite> probably applies to
+     *       positive coordinates only. For the general case including both positive and negative
+     *       coordinates, we should probably read "in the direction of negative infinity". This
+     *       interpretation should be clarified with ISO.
      */
     @UML(identifier="lowerLeft", obligation=CONDITIONAL, specification=ISO_19115)
     public static final PixelOrientation LOWER_LEFT = new PixelOrientation("LOWER_LEFT");
 
     /**
-     * Next corner counterclockwise from the lower left.
+     * Next corner counterclockwise from the {@linkplain #LOWER_LEFT lower left}.
      */
     @UML(identifier="lowerRight", obligation=CONDITIONAL, specification=ISO_19115)
     public static final PixelOrientation LOWER_RIGHT = new PixelOrientation("LOWER_RIGHT");
 
     /**
-     * Next corner counterclockwise from the lower right.
+     * Next corner counterclockwise from the {@linkplain #LOWER_RIGHT lower right}.
      */
     @UML(identifier="upperRight", obligation=CONDITIONAL, specification=ISO_19115)
     public static final PixelOrientation UPPER_RIGHT = new PixelOrientation("UPPER_RIGHT");
 
     /**
-     * Next corner counterclockwise from the upper right.
+     * Next corner counterclockwise from the {@linkplain #UPPER_RIGHT upper right}.
      */
     @UML(identifier="upperLeft", obligation=CONDITIONAL, specification=ISO_19115)
     public static final PixelOrientation UPPER_LEFT = new PixelOrientation("UPPER_LEFT");
