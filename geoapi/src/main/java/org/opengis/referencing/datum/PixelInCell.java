@@ -54,6 +54,8 @@ public final class PixelInCell extends CodeList<PixelInCell> {
     /**
      * The origin of the image coordinate system is the corner of a grid cell, or half-way
      * between the centres of adjacent image pixels.
+     *
+     * @see org.opengis.metadata.spatial.PixelOrientation#LOWER_LEFT
      */
     @UML(identifier="cell corner", obligation=CONDITIONAL, specification=ISO_19111)
     public static final PixelInCell CELL_CORNER = new PixelInCell("CELL_CORNER");

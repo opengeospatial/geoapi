@@ -104,8 +104,8 @@ public interface CoordinateOperationFactory extends ObjectFactory {
      * {@linkplain Conversion#getSourceCRS source} and {@linkplain Conversion#getTargetCRS target
      * CRS}, and do not need to have a {@linkplain Conversion#getMathTransform math transform}.
      * Their sole purpose is to be given as an argument to
-     * {@linkplain org.opengis.referencing.crs.CRSFactory#createdDerivedCRS derived CRS} and
-     * {@linkplain org.opengis.referencing.crs.CRSFactory#createdDerivedCRS projected CRS constructors}.
+     * {@linkplain org.opengis.referencing.crs.CRSFactory#createDerivedCRS derived CRS} and
+     * {@linkplain org.opengis.referencing.crs.CRSFactory#createProjectedCRS projected CRS} constructors.
      * <p>
      * Some available properties are {@linkplain ObjectFactory listed there}.
      * Additionally, the following properties are understood by this construtor:
@@ -123,17 +123,17 @@ public interface CoordinateOperationFactory extends ObjectFactory {
      *   </tr>
      *   <tr>
      *     <td nowrap>&nbsp;{@value org.opengis.referencing.operation.CoordinateOperation#POSITIONAL_ACCURACY_KEY}&nbsp;</td>
-     *     <td nowrap>&nbsp;<code>{@linkplain PositionalAccuracy}[]</code>&nbsp;</td>
+     *     <td nowrap>&nbsp;<code>{@linkplain org.opengis.metadata.quality.PositionalAccuracy}[]</code>&nbsp;</td>
      *     <td nowrap>&nbsp;{@link CoordinateOperation#getPositionalAccuracy}</td>
      *   </tr>
      *   <tr>
      *     <td nowrap>&nbsp;{@value org.opengis.referencing.operation.CoordinateOperation#VALID_AREA_KEY}&nbsp;</td>
-     *     <td nowrap>&nbsp;{@link Extent}&nbsp;</td>
+     *     <td nowrap>&nbsp;{@link org.opengis.metadata.extent.Extent}&nbsp;</td>
      *     <td nowrap>&nbsp;{@link CoordinateOperation#getValidArea}</td>
      *   </tr>
      *   <tr>
      *     <td nowrap>&nbsp;{@value org.opengis.referencing.operation.CoordinateOperation#SCOPE_KEY}&nbsp;</td>
-     *     <td nowrap>&nbsp;{@link String} or {@link InternationalString}&nbsp;</td>
+     *     <td nowrap>&nbsp;{@link String} or {@link org.opengis.util.InternationalString}&nbsp;</td>
      *     <td nowrap>&nbsp;{@link CoordinateOperation#getScope}</td>
      *   </tr>
      * </table>

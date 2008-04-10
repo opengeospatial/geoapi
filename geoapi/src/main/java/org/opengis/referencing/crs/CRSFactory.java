@@ -214,12 +214,12 @@ public interface CRSFactory extends ObjectFactory {
      * @param  properties Name and other properties to give to the new object.
      *         Available properties are {@linkplain ObjectFactory listed there}.
      * @param  baseCRS Coordinate reference system to base the projection on. The number of axes
-     *         must matches the {@linkplain Conversion#getSourceDimensions source dimensions} of
-     *         the conversion from base.
+     *         must matches the {@linkplain OperationMethod#getSourceDimensions source dimensions}
+     *         of the conversion from base.
      * @param  conversionFromBase The
      *         {@linkplain CoordinateOperationFactory#createDefiningConversion defining conversion}.
      * @param  derivedCS The coordinate system for the derived CRS. The number of axes must matches
-     *         the {@linkplain Conversion#getTargetDimensions target dimensions} of the conversion
+     *         the {@linkplain OperationMethod#getTargetDimensions target dimensions} of the conversion
      *         from base.
      * @throws FactoryException if the object creation failed.
      *
@@ -279,12 +279,12 @@ public interface CRSFactory extends ObjectFactory {
      * @param  properties Name and other properties to give to the new object.
      *         Available properties are {@linkplain ObjectFactory listed there}.
      * @param  baseCRS Geographic coordinate reference system to base the projection on. The number
-     *         of axes must matches the {@linkplain Conversion#getSourceDimensions source dimensions}
+     *         of axes must matches the {@linkplain OperationMethod#getSourceDimensions source dimensions}
      *         of the conversion from base.
      * @param  conversionFromBase The
      *         {@linkplain CoordinateOperationFactory#createDefiningConversion defining conversion}.
      * @param  derivedCS The coordinate system for the projected CRS. The number of axes must matches
-     *         the {@linkplain Conversion#getTargetDimensions target dimensions} of the conversion
+     *         the {@linkplain OperationMethod#getTargetDimensions target dimensions} of the conversion
      *         from base.
      * @throws FactoryException if the object creation failed.
      *
