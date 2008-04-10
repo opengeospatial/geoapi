@@ -60,6 +60,8 @@ public final class PixelOrientation extends CodeList<PixelOrientation> {
      *       positive coordinates only. For the general case including both positive and negative
      *       coordinates, we should probably read "in the direction of negative infinity". This
      *       interpretation should be clarified with ISO.
+     *
+     * @see org.opengis.referencing.datum.PixelInCell#CELL_CORNER
      */
     @UML(identifier="lowerLeft", obligation=CONDITIONAL, specification=ISO_19115)
     public static final PixelOrientation LOWER_LEFT = new PixelOrientation("LOWER_LEFT");
