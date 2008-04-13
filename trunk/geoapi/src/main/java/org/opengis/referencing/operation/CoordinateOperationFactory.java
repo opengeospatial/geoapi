@@ -144,8 +144,8 @@ public interface CoordinateOperationFactory extends ObjectFactory {
      * @return The defining conversion.
      * @throws FactoryException if the object creation failed.
      *
-     * @see org.opengis.referencing.crs.CRSFactory#createdProjectedCRS
-     * @see org.opengis.referencing.crs.CRSFactory#createdDerivedCRS
+     * @see org.opengis.referencing.crs.CRSFactory#createProjectedCRS
+     * @see org.opengis.referencing.crs.CRSFactory#createDerivedCRS
      *
      * @since GeoAPI 2.1
      */

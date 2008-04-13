@@ -315,6 +315,11 @@
               <head>TODO:</head>
             </tag>
             <tag>
+              <name>issue</name>
+              <placement>X</placement>
+              <head>JIRA:</head>
+            </tag>
+            <tag>
               <name>unitof</name>
               <placement>fm</placement>
               <head>Unit:</head>

@@ -29,7 +29,6 @@ public enum Specification {
      * This is the specification for package {@link org.opengis.geometry} and sub-packages.
      *
      * @see <A HREF="http://www.opengeospatial.org/standards/as">Buy from ISO</A>
-     * @note no longer publically available
      */
     ISO_19107,
 
@@ -53,7 +52,6 @@ public enum Specification {
      * This is the specification for package {@link org.opengis.metadata} and sub-packages.
      *
      * @see <A HREF="http://www.opengeospatial.org/standards/as#01-111">Buy from ISO</A>
-     * @note no longer publically available
      */
     ISO_19115,
 
