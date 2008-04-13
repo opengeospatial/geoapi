@@ -288,14 +288,14 @@ public interface GridCoverage extends Coverage {
      * (sample dimension, column, row).
      *
      * The index values will be based from 0. The indices in the returned <VAR>N</VAR> dimensional
-     * safe array will need to be offset by {@code gridRange} {@linkplain GridRange#getLowers()
+     * safe array will need to be offset by {@code gridRange} {@linkplain GridRange#getLower()
      * minimum coordinates} to get equivalent grid coordinates.
      * <p>
      * The requested grid range must satisfy the following rules for each dimension of the grid
      * coverage:
      * <center>
-     * minimum grid coordinate <= {@linkplain GridRange#getLowers() grid range mimimun} <=
-     * {@linkplain GridRange#getUppers() grid range maximum} <= maximum grid coordinate
+     * minimum grid coordinate <= {@linkplain GridRange#getLower() grid range mimimun} <=
+     * {@linkplain GridRange#getUpper() grid range maximum} <= maximum grid coordinate
      * </center>
      *
      * The number of values returned will equal:
@@ -346,8 +346,8 @@ public interface GridCoverage extends Coverage {
      * of the grid coverage:
      *
      * <center>
-     * minimum grid coordinate <= {@linkplain GridRange#getLowers() grid range mimimun} <=
-     * {@linkplain GridRange#getUppers() grid range maximum} <= maximum grid coordinate
+     * minimum grid coordinate <= {@linkplain GridRange#getLower() grid range mimimun} <=
+     * {@linkplain GridRange#getUpper() grid range maximum} <= maximum grid coordinate
      * </center>
      *
      * The sequence of bytes returned will match the data type of
@@ -482,8 +482,8 @@ public interface GridCoverage extends Coverage {
      * dimension of the grid coverage:
      *
      * <center>
-     * minimum grid coordinate <= {@linkplain GridRange#getLowers() grid range mimimun} <=
-     * {@linkplain GridRange#getUppers() grid range maximum} <= maximum grid coordinate
+     * minimum grid coordinate <= {@linkplain GridRange#getLower() grid range mimimun} <=
+     * {@linkplain GridRange#getUpper() grid range maximum} <= maximum grid coordinate
      * </center>
      *
      * The number of values must equal:
