@@ -117,8 +117,10 @@ public interface DirectPosition extends Position {
      * @param dimension the dimension for the ordinate of interest.
      * @param value the ordinate value of interest.
      * @throws IndexOutOfBoundsException if the specified dimension is out of bounds.
+     * @throws UnsupportedOperationException if this direct position is immutable.
      */
-    void setOrdinate(int dimension, double value) throws IndexOutOfBoundsException;
+    void setOrdinate(int dimension, double value)
+            throws IndexOutOfBoundsException, UnsupportedOperationException;
 
     /**
      * Compares this direct position with the specified object for equality.
