@@ -29,6 +29,7 @@ import org.opengis.annotation.XmlElement;
  * by that specification.
  *
  * @version <A HREF="http://www.opengis.org/docs/02-059.pdf">Implementation specification 1.0</A>
+ * @version <A HREF="http://www.opengeospatial.org/standards/symbol">Symbology Encoding Implementation Specification 1.1.0</A>
  * @author Chris Dillard (SYS Technologies)
  * @since GeoAPI 2.0
  */
@@ -49,4 +50,14 @@ public interface Function extends Expression {
      * parameters to the function.
      */
     List<Expression> getParameters();
+    
+    /**
+     * The value of the fallbackValue attribute is used as a default value, if the SE
+     * implementation does not support the function. If the implementation supports the
+     * function, then the result value is determined by executing the function.
+     * 
+     * @return Optional Literal to use if an implementation for this function is not available
+     */
+    @XmlElement("fallbackValue")
+    Literal getFallbackValue();    
 }

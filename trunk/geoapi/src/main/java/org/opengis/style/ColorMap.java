@@ -11,7 +11,7 @@
 package org.opengis.style;
 
 import org.opengis.annotation.XmlElement;
-import org.opengis.style.function.Function;
+import org.opengis.filter.expression.Function;
 
 
 /**
