@@ -10,7 +10,6 @@
  *************************************************************************************************/
 package org.opengis.filter.expression;
 
-// Annotations
 import java.util.List;
 
 import org.opengis.annotation.XmlElement;
@@ -22,7 +21,7 @@ import org.opengis.annotation.XmlElement;
  * <p>
  * Each execution environment should provide a list of supported functions
  * (and the number of arguments they expect) as part of a FilterCapabilities
- * data structure.  
+ * data structure.
  * <p>
  * This is included for completeness with respect to the
  * OGC Filter specification.  However, no functions are required to be supported
@@ -50,14 +49,16 @@ public interface Function extends Expression {
      * parameters to the function.
      */
     List<Expression> getParameters();
-    
+
     /**
      * The value of the fallbackValue attribute is used as a default value, if the SE
      * implementation does not support the function. If the implementation supports the
      * function, then the result value is determined by executing the function.
-     * 
-     * @return Optional Literal to use if an implementation for this function is not available
+     *
+     * @return Optional literal to use if an implementation for this function is not available.
+     *
+     * @since GeoAPI 2.2
      */
     @XmlElement("fallbackValue")
-    Literal getFallbackValue();    
+    Literal getFallbackValue();
 }
