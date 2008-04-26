@@ -15,8 +15,6 @@ import java.util.Map;  // For javadoc
 import java.util.Set;
 import java.util.List;
 
-import org.opengis.display.canvas.FeatureCanvas; // For javadoc
-import org.opengis.display.canvas.FeatureLayer;
 import org.opengis.go.display.canvas.Canvas; // For javadoc
 import org.opengis.go.display.primitive.Graphic;
 import org.opengis.metadata.Identifier;
@@ -25,6 +23,8 @@ import org.opengis.referencing.crs.CoordinateReferenceSystem;
 import org.opengis.geometry.Envelope;
 import org.opengis.util.InternationalString;
 import org.opengis.annotation.XmlElement;
+import org.opengis.go.display.canvas.FeatureCanvas;
+import org.opengis.go.display.canvas.FeatureLayer;
 
 
 /**
