@@ -18,7 +18,6 @@ import org.opengis.sld.FeatureStyle;
 import org.opengis.util.InternationalString;
 import org.opengis.go.display.primitive.Graphic;
 import org.opengis.go.display.style.GraphicStyle;
-import org.opengis.display.canvas.FeatureLayer;
 
 // Annotations
 import org.opengis.annotation.Extension;
