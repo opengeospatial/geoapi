@@ -10,7 +10,6 @@
  *************************************************************************************************/
 package org.opengis.display.primitive;
 
-import org.opengis.go.display.event.GraphicListener;
 
 
 /**

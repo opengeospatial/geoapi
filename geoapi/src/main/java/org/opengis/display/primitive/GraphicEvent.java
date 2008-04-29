@@ -11,7 +11,6 @@
 package org.opengis.display.primitive;
 
 import java.util.EventObject;
-import org.opengis.go.display.primitive.Graphic;
 
 
 /**
