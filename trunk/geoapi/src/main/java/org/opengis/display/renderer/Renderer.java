@@ -13,7 +13,7 @@ package org.opengis.display.renderer;
 import java.awt.image.RenderedImage;
 import java.util.Collection;
 import org.opengis.display.canvas.CanvasState;
-import org.opengis.go.display.primitive.Graphic;
+import org.opengis.display.primitive.Graphic;
 
 
 /**
