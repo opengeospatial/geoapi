@@ -10,9 +10,10 @@
  *************************************************************************************************/
 package org.opengis.display.renderer;
 
+import java.awt.RenderingHints;
 import java.awt.image.RenderedImage;
 import java.util.Collection;
-import org.opengis.display.canvas.CanvasState;
+import org.opengis.display.canvas.Canvas;
 import org.opengis.display.primitive.Graphic;
 
 
@@ -30,14 +31,14 @@ public interface Renderer {
      *
      * @param canvas
      */
-    void setCanvas(CanvasState canvas);
+    void setCanvas(Canvas canvas);
 
     /**
      * Returns the Canvas used by the renderer.
      *
      * @return canvas or null if no canvas
      */
-    CanvasState getCanvas();
+    Canvas getCanvas();
 
     /**
      * Get a snapshot image of the actual mapcontext used with
@@ -91,18 +92,18 @@ public interface Renderer {
      * Sets a rendering hint for implementation or platform specific rendering
      * information.
      *
-     * @param hintName the name of the hint.
+     * @param hintKey the key of the hint.
      * @param hint the rendering hint.
      */
-    void setHint(String hintName, Object hint);
+    void setHint(RenderingHints.Key hintKey, Object hint);
 
     /**
      * Returns the rendering hint associated with the hint name.
      *
-     * @param hintName the name of the hint.
+     * @param hintKey the key of the hint.
      * @return the rendering hint.
      */
-    Object getHint(String hintName);
+    Object getHint(RenderingHints.Key hintKey);
 
     /**
      * Add a RendererListener

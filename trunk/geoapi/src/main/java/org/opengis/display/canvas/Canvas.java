@@ -10,6 +10,7 @@
  *************************************************************************************************/
 package org.opengis.display.canvas;
 
+import java.awt.RenderingHints;
 import org.opengis.geometry.DirectPosition;
 
 
@@ -42,7 +43,7 @@ public interface Canvas {
      * 
      * @return immutable CanvasState
      */
-    public CanvasState getState();
+    CanvasState getState();
     
     /**
      * Returns true if the given coordinate is visible on this
@@ -57,37 +58,37 @@ public interface Canvas {
      * 
      * @return CanvasController
      */
-    public CanvasController getController();
+    CanvasController getController();
 
     /**
      * Sets a rendering hint for implementation or platform specific rendering
      * information.
      *
-     * @param hintName the name of the hint.
+     * @param hintKey the key of the hint.
      * @param hint the rendering hint.
      */
-    public void setHint(String hintName, Object hint);
+    void setHint(RenderingHints.Key hintKey, Object hint);
 
     /**
      * Returns the rendering hint associated with the hint name.
      *
-     * @param hintName the name of the hint.
+     * @param hintKey the key of the hint.
      * @return the rendering hint.
      */
-    public Object getHint(String hintName);
+    Object getHint(RenderingHints.Key hintKey);
 
     /**
      * Add a <code>CanvasListener</code> on this canvas.
      * 
      * @param listener
      */
-    public void addCanvasListener(CanvasListener listener);
+    void addCanvasListener(CanvasListener listener);
 
     /**
      * Remove <code>CanvasListener</code> listener.
      * 
      * @param listener
      */
-    public void removeCanvasListener(CanvasListener listener);
+    void removeCanvasListener(CanvasListener listener);
     
 }

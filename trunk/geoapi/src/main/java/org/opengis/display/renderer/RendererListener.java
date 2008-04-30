@@ -10,6 +10,8 @@
  *************************************************************************************************/
 package org.opengis.display.renderer;
 
+import java.util.EventListener;
+
 
 /**
  * Listen to the renderer. Methods are called when graphics are added or removed from
@@ -19,7 +21,7 @@ package org.opengis.display.renderer;
  * @author Johann Sorel (Geomatys)
  * @since GeoAPI 2.2
  */
-public interface RendererListener {
+public interface RendererListener extends EventListener{
             
     /**
      * Called when graphic objects are added.
