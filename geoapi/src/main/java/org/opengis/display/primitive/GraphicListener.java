@@ -25,6 +25,7 @@ public interface GraphicListener extends EventListener {
     
     /**
      * Invoked when a <code>Graphic</code> changes in any way.
+     * 
      * @param event 
      */
     void graphicChanged(GraphicEvent event);

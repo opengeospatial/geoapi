@@ -10,6 +10,8 @@
  *************************************************************************************************/
 package org.opengis.display.canvas;
 
+import java.util.EventListener;
+
 
 /**
  * The one method in this interface is called by a <code>Canvas</code> when
@@ -19,7 +21,7 @@ package org.opengis.display.canvas;
  * @author Johann Sorel (Geomatys)
  * @since GeoAPI 2.2
  */
-public interface CanvasListener {
+public interface CanvasListener extends EventListener{
     
     /**
      * This method is called by a <code>Canvas</code> when its state has

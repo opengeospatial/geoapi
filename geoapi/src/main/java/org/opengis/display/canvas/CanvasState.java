@@ -13,6 +13,7 @@ package org.opengis.display.canvas;
 import org.opengis.geometry.DirectPosition;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 import org.opengis.referencing.operation.MathTransform;
+import org.opengis.util.InternationalString;
 
 
 /**
@@ -36,7 +37,7 @@ public interface CanvasState {
      * Returns the title of the <code>Canvas</code>.
      * @return canvas title
      */
-    String getTitle();
+    InternationalString getTitle();
 
     /**
      * Returns the position of the center point of this Canvas.

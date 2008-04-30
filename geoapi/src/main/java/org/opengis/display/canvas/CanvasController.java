@@ -12,6 +12,7 @@ package org.opengis.display.canvas;
 
 import org.opengis.geometry.DirectPosition;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
+import org.opengis.util.InternationalString;
 
 
 /**
@@ -27,12 +28,13 @@ import org.opengis.referencing.crs.CoordinateReferenceSystem;
 public interface CanvasController {
         
     /**
-     * Set the canvas title
+     * Sets the canvas title.
+     * 
      * @param title
      */
-    public void setTitle(String title);
+    void setTitle(InternationalString title);
     
-   /**
+    /**
      * Sets the objective Coordinate Reference System (e.g. the projection of a
      * georeferenced Coordinate Reference System) for this <code>Canvas</code>.
      * This is the default objective Coordinate Reference System for this
@@ -40,7 +42,7 @@ public interface CanvasController {
      *
      * @param crs the objective Coordinate Reference System
      */
-    public void setObjectiveCRS(CoordinateReferenceSystem crs);
+    void setObjectiveCRS(CoordinateReferenceSystem crs);
     
     /**
      * Set the center point of the Canvas.
