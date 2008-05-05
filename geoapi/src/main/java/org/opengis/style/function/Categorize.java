@@ -8,11 +8,12 @@
  ** All Rights Reserved. http://www.opengis.org/legal/
  **
  *************************************************************************************************/
-package org.opengis.se.function;
+package org.opengis.style.function;
 
 import java.util.List;
 import org.opengis.annotation.XmlElement;
 import org.opengis.filter.expression.Expression;
+import org.opengis.filter.expression.Function;
 
 /**
  * Categorization: The transformation of continuous values to distinct values. This is

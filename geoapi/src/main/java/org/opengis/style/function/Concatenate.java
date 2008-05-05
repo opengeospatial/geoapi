@@ -8,10 +8,11 @@
  ** All Rights Reserved. http://www.opengis.org/legal/
  **
  *************************************************************************************************/
-package org.opengis.se.function;
+package org.opengis.style.function;
 
 import org.opengis.annotation.XmlElement;
 import org.opengis.filter.expression.Expression;
+import org.opengis.filter.expression.Function;
 
 /**
  * The function concatenates strings. It is used to create concatenated strings as arguments
@@ -23,7 +24,7 @@ import org.opengis.filter.expression.Expression;
  * @since GeoAPI 2.2
  */
 @XmlElement("Concatenate")
-public interface Concatenate extends Function<String>{
+public interface Concatenate extends Function{
         
     /**
      * Get values to concatenate.

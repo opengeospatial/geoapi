@@ -8,10 +8,11 @@
  ** All Rights Reserved. http://www.opengis.org/legal/
  **
  *************************************************************************************************/
-package org.opengis.se.function;
+package org.opengis.style.function;
 
 import org.opengis.annotation.XmlElement;
 import org.opengis.filter.expression.Expression;
+import org.opengis.filter.expression.Function;
 
 /**
  * One of the most needed is a function for formatting numbers to make them human
@@ -24,7 +25,7 @@ import org.opengis.filter.expression.Expression;
  * @since GeoAPI 2.2
  */
 @XmlElement("FormatNumber")
-public interface FormatNumber extends Function<String>{
+public interface FormatNumber extends Function{
         
     /**
      * Get value to format.

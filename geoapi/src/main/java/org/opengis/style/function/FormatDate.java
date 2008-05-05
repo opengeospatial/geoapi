@@ -8,10 +8,11 @@
  ** All Rights Reserved. http://www.opengis.org/legal/
  **
  *************************************************************************************************/
-package org.opengis.se.function;
+package org.opengis.style.function;
 
 import org.opengis.annotation.XmlElement;
 import org.opengis.filter.expression.Expression;
+import org.opengis.filter.expression.Function;
 
 /**
  * This function is used for several date types. The argument of the function can consist of
@@ -35,7 +36,7 @@ import org.opengis.filter.expression.Expression;
  * @since GeoAPI 2.2
  */
 @XmlElement("FormatDate")
-public interface FormatDate extends Function<String>{
+public interface FormatDate extends Function{
         
     /**
      * Get value to format.

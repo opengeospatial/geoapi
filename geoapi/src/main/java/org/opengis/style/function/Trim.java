@@ -8,10 +8,11 @@
  ** All Rights Reserved. http://www.opengis.org/legal/
  **
  *************************************************************************************************/
-package org.opengis.se.function;
+package org.opengis.style.function;
 
 import org.opengis.annotation.XmlElement;
 import org.opengis.filter.expression.Expression;
+import org.opengis.filter.expression.Function;
 
 /**
  * The function strips off "leading", "trailing", or "both" chars from a string value.
@@ -23,7 +24,7 @@ import org.opengis.filter.expression.Expression;
  * @since GeoAPI 2.2
  */
 @XmlElement("Trim")
-public interface Trim extends Function<String>{
+public interface Trim extends Function{
         
     /**
      * possible stripOffPosition

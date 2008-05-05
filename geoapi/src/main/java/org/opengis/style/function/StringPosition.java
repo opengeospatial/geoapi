@@ -8,10 +8,11 @@
  ** All Rights Reserved. http://www.opengis.org/legal/
  **
  *************************************************************************************************/
-package org.opengis.se.function;
+package org.opengis.style.function;
 
 import org.opengis.annotation.XmlElement;
 import org.opengis.filter.expression.Expression;
+import org.opengis.filter.expression.Function;
 
 /**
  * This function returns the position of the first occurrence (counting from 1) of the
@@ -25,7 +26,7 @@ import org.opengis.filter.expression.Expression;
  * @since GeoAPI 2.2
  */
 @XmlElement("StringPosition")
-public interface StringPosition extends Function<Integer>{
+public interface StringPosition extends Function{
         
     /**
      * possible search directions.
