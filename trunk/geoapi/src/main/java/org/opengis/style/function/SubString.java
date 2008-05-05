@@ -8,10 +8,11 @@
  ** All Rights Reserved. http://www.opengis.org/legal/
  **
  *************************************************************************************************/
-package org.opengis.se.function;
+package org.opengis.style.function;
 
 import org.opengis.annotation.XmlElement;
 import org.opengis.filter.expression.Expression;
+import org.opengis.filter.expression.Function;
 
 /**
  * SE supports a repertoire of string manipulation functions. The following is a collection of
@@ -27,7 +28,7 @@ import org.opengis.filter.expression.Expression;
  * @since GeoAPI 2.2
  */
 @XmlElement("SubString")
-public interface SubString extends Function<String>{
+public interface SubString extends Function{
         
     /**
      * Get value to substring.

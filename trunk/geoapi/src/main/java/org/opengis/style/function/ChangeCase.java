@@ -8,10 +8,11 @@
  ** All Rights Reserved. http://www.opengis.org/legal/
  **
  *************************************************************************************************/
-package org.opengis.se.function;
+package org.opengis.style.function;
 
 import org.opengis.annotation.XmlElement;
 import org.opengis.filter.expression.Expression;
+import org.opengis.filter.expression.Function;
 
 /**
  * The function changes the case of the StringValue as indicated by the attribute direction.
@@ -24,7 +25,7 @@ import org.opengis.filter.expression.Expression;
  * @since GeoAPI 2.2
  */
 @XmlElement("ChangeCase")
-public interface ChangeCase extends Function<String>{
+public interface ChangeCase extends Function{
         
     /**
      * possible directions

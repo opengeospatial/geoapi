@@ -8,7 +8,7 @@
  ** All Rights Reserved. http://www.opengis.org/legal/
  **
  *************************************************************************************************/
-package org.opengis.se.function;
+package org.opengis.style.function;
 
 import org.opengis.annotation.XmlElement;
 import org.opengis.filter.expression.Expression;
