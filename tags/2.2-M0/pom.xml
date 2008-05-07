@@ -16,7 +16,7 @@
   <groupId>org.opengis</groupId>
   <artifactId>parent</artifactId>
   <packaging>pom</packaging>
-  <version>2.2-SNAPSHOT</version>
+  <version>2.2-M0</version>
   <name>GeoAPI</name>
   <url>http://geoapi.sourceforge.net/snapshot/</url>
   <description>
