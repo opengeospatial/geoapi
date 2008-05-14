@@ -34,11 +34,9 @@ import static org.opengis.annotation.Specification.*;
 public interface ValueCurve extends ValueObject {
     /**
      * Returns the cruve that is the basis of this value curve.
-     *
-     * @todo According ISO 19123, the return value should be {@link Curve}.
      */
     @UML(identifier="geometry", obligation=MANDATORY, specification=ISO_19123)
-    DomainObject getGeometry();
+    DomainObject<Curve> getGeometry();
 
     /**
      * Returns the set of <var>point</var>-<var>value</var> pairs that provide control
@@ -73,9 +71,13 @@ public interface ValueCurve extends ValueObject {
      *       method shall return both value segments.</li>
      * </ul>
      *
+     * @param p The position where to search for segments.
+     * @param tolerance The tolerance.
+     * @return The value segments nearest to the specified position.
+     *
      * @todo I'm not sure to understand how the exception clause is related to the first sentence
      *       in the two first points?
      */
     @UML(identifier="segment", obligation=MANDATORY, specification=ISO_19123)
-    Set<ValueSegment> segment(DirectPosition p, Double tolerance);
+    Set<ValueSegment> segment(DirectPosition p, double tolerance);
 }

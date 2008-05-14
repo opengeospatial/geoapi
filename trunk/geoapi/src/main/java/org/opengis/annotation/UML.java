@@ -32,6 +32,8 @@ public @interface UML {
      * The UML identifier for the annotated interface, method or code list element.
      * Scripts can use this identifier in order to maps a GeoAPI method to the UML
      * entity where it come from.
+     *
+     * @return The UML identifier used in the standard.
      */
     String identifier();
 
@@ -39,11 +41,15 @@ public @interface UML {
      * The obligation declared in the UML. This metadata can be queried in order to
      * determine if a null value is allowed for the annotated method or not. If the
      * obligation is {@link Obligation#MANDATORY}, then null value are not allowed.
+     *
+     * @return The obligation declared in the standard.
      */
     Obligation obligation() default Obligation.MANDATORY;
 
     /**
      * The specification where this UML come from.
+     *
+     * @return The originating specification.
      */
     Specification specification();
 }

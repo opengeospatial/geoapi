@@ -13,6 +13,7 @@ package org.opengis.coverage.grid;
 import java.util.Set;
 import org.opengis.coverage.ValueObject;
 import org.opengis.coverage.DomainObject;
+import org.opengis.geometry.Geometry;
 import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Obligation.*;
@@ -35,7 +36,7 @@ public interface ValueHexagon extends ValueObject {
      * grid point-value pairs} identified by the {@linkplain #getControlValues control values}.
      */
     @UML(identifier="geometry", obligation=MANDATORY, specification=ISO_19123)
-    DomainObject getGeometry();
+    DomainObject<Geometry> getGeometry();
 
     /**
      * Returns the <var>grid point</var>-<var>value</var> pairs at the {@code ValueHexagon} centre.

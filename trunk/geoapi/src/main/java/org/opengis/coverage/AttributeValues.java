@@ -24,8 +24,6 @@ import static org.opengis.annotation.Specification.*;
  * @author Martin Desruisseaux
  *
  * @see Coverage#getRangeElements
- *
- * @todo Do we really need this interface, since it contains only one attribute?
  */
 @UML(identifier="CV_AttributeValues", specification=ISO_19123)
 public interface AttributeValues {
@@ -39,6 +37,8 @@ public interface AttributeValues {
      *   <li>A coverage with a series (array / tensor) of values all defined in the same way
      *       (such as brightness values in different parts of the electromagnetic spectrum).</li>
      * </ul>
+     *
+     * @return The value for each attribute.
      */
     @UML(identifier="values", obligation=MANDATORY, specification=ISO_19123)
     Record getValues();

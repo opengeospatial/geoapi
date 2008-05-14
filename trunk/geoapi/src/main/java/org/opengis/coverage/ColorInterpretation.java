@@ -199,6 +199,8 @@ public final class ColorInterpretation extends CodeList<ColorInterpretation> {
 
     /**
      * Returns the list of {@code ColorInterpretation}s.
+     *
+     * @return All color interpretations defined.
      */
     public static ColorInterpretation[] values() {
         synchronized (VALUES) {
@@ -208,6 +210,8 @@ public final class ColorInterpretation extends CodeList<ColorInterpretation> {
 
     /**
      * Returns the list of enumerations of the same kind than this enum.
+     *
+     * @return All color interpretations defined.
      */
     public ColorInterpretation[] family() {
         return values();
@@ -216,6 +220,9 @@ public final class ColorInterpretation extends CodeList<ColorInterpretation> {
     /**
      * Returns the color interpretation that matches the given string, or returns a
      * new one if none match it.
+     *
+     * @param code The code name.
+     * @return The code value.
      */
     public static ColorInterpretation valueOf(String code) {
         return valueOf(ColorInterpretation.class, code);

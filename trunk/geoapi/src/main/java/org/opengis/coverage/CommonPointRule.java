@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Collection; // For javadoc
 import org.opengis.util.CodeList;
-import org.opengis.geometry.DirectPosition;  // For javadoc
+import org.opengis.geometry.DirectPosition;
 import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Obligation.*;
@@ -103,6 +103,8 @@ public class CommonPointRule extends CodeList<CommonPointRule> {
 
     /**
      * Returns the list of {@code CommonPointRule}s.
+     *
+     * @return All common point rules defined.
      */
     public static CommonPointRule[] values() {
         synchronized (VALUES) {
@@ -112,6 +114,8 @@ public class CommonPointRule extends CodeList<CommonPointRule> {
 
     /**
      * Returns the list of enumerations of the same kind than this enum.
+     *
+     * @return All common point rules defined.
      */
     public CommonPointRule[] family() {
         return values();
@@ -120,6 +124,9 @@ public class CommonPointRule extends CodeList<CommonPointRule> {
     /**
      * Returns the common point rule that matches the given string, or returns a
      * new one if none match it.
+     *
+     * @param code The code name.
+     * @return The code value.
      */
     public static CommonPointRule valueOf(String code) {
         return valueOf(CommonPointRule.class, code);
