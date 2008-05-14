@@ -13,7 +13,7 @@ package org.opengis.coverage;
 import java.util.Set;
 import java.util.List;
 import java.util.Collection;
-import java.awt.image.Raster;  // For Javadoc
+import java.awt.image.Raster;
 import java.awt.image.renderable.RenderableImage;
 import org.opengis.metadata.extent.Extent;
 import org.opengis.geometry.Envelope;
@@ -23,7 +23,6 @@ import org.opengis.referencing.crs.CoordinateReferenceSystem;
 import org.opengis.temporal.Period;
 import org.opengis.util.Record;
 import org.opengis.util.RecordType;
-import org.opengis.util.InternationalString;
 import org.opengis.annotation.UML;
 import org.opengis.annotation.Extension;
 
@@ -111,6 +110,8 @@ public interface Coverage {
     /**
      * Returns the extent of the domain of the coverage. Extents may be specified in space,
      * time or space-time. The collection must contains at least one element.
+     *
+     * @return The domain extent of the coverage.
      */
     @UML(identifier="domainExtent", obligation=MANDATORY, specification=ISO_19123)
     Set<Extent> getDomainExtents();
@@ -118,9 +119,11 @@ public interface Coverage {
     /**
      * Returns the set of domain objects in the domain.
      * The collection must contains at least one element.
+     *
+     * @return The domain elements.
      */
     @UML(identifier="domainElement", obligation=MANDATORY, specification=ISO_19123)
-    Set<? extends DomainObject> getDomainElements();
+    Set<? extends DomainObject<?>> getDomainElements();
 
     /**
      * Returns the set of attribute values in the range. The range of a coverage shall be a
@@ -143,6 +146,8 @@ public interface Coverage {
      * and {@linkplain #getRangeElements range} associations are to be implemented. The relevant
      * data may be generated in real time, it may be held in persistent local storage, or it may
      * be electronically accessible from remote locations.
+     *
+     * @return The attribute values in the range.
      */
     @UML(identifier="rangeElement", obligation=OPTIONAL, specification=ISO_19123)
     Set<AttributeValues> getRangeElements();
@@ -152,6 +157,8 @@ public interface Coverage {
      * A simple list is the most common form of range type, but {@code RecordType} can be used
      * recursively to describe more complex structures. The range type for a specific coverage
      * shall be specified in an application schema.
+     *
+     * @return The coverage range.
      */
     @UML(identifier="rangeType", obligation=MANDATORY, specification=ISO_19123)
     RecordType getRangeType();
@@ -161,6 +168,8 @@ public interface Coverage {
      * either on a boundary between geometric objects or within the boundaries of two or more
      * overlapping geometric objects. The geometric objects are either {@linkplain DomainObject
      * domain objects} or {@linkplain ValueObject value objects}.
+     *
+     * @return The procedure for evaluating the coverage on overlapping geometries.
      */
     @UML(identifier="commonPointRule", obligation=MANDATORY, specification=ISO_19123)
     CommonPointRule getCommonPointRule();
@@ -171,7 +180,7 @@ public interface Coverage {
      * record of feature attribute values. In the case of an analytical coverage, the operation
      * shall return the empty set.
      *
-     * @todo Consider using a Map. May force a renaming of this method.
+     * @return The geometry-value pairs.
      */
     @UML(identifier="list", obligation=MANDATORY, specification=ISO_19123)
     Set<? extends GeometryValuePair> list();
@@ -185,7 +194,9 @@ public interface Coverage {
      * pair that contain {@linkplain DomainObject domain objects} within {@code s}. In the case
      * of an analytical coverage, the operation shall return the empty set.
      *
-     * @todo Consider using a Map as return type.
+     * @param s The spatial component.
+     * @param t The temporal component.
+     * @return The values in the given spatio-temporal domain.
      */
     @UML(identifier="select", obligation=MANDATORY, specification=ISO_19123)
     Set<? extends GeometryValuePair> select(Geometry s, Period t);
@@ -207,6 +218,9 @@ public interface Coverage {
      * partition the extent of the coverage. Even in that case, the first element of the sequence
      * returned may be the <var>geometry</var>-<var>value</var> pair that contains the input direct
      * position.
+     * @param p
+     * @param limit
+     * @return
      */
     @UML(identifier="find", obligation=MANDATORY, specification=ISO_19123)
     List<? extends GeometryValuePair> find(DirectPosition p, int limit);
@@ -214,6 +228,8 @@ public interface Coverage {
     /**
      * Returns the nearest <var>geometry</var>-<var>value</var> pair from the specified direct
      * position. This is a shortcut for <code>{@linkplain #find(DirectPosition,int) find}(p,1)</code>.
+     * @param p
+     * @return
      */
     @UML(identifier="find", obligation=MANDATORY, specification=ISO_19123)
     GeometryValuePair find(DirectPosition p);
@@ -230,10 +246,15 @@ public interface Coverage {
      * <P>
      * <B>NOTE:</B> Normally, the operation will return a single record of feature attribute values.
      *
+     * @param p The position where to evaluate.
+     * @param list The field of interest, or {@code null} for every fields.
+     * @return The feature attributes.
+     * @throws PointOutsideCoverageException if the point is outside the coverage domain.
+     * @throws CannotEvaluateException If the point can't be evaluated for some other reason.
      * @todo According javadoc, the {@code list} parameter should be of type {@link Collection}.
      */
     @UML(identifier="evaluate", obligation=MANDATORY, specification=ISO_19123)
-    Set<Record> evaluate(DirectPosition p, Set<String> list);
+    Set<Record> evaluate(DirectPosition p, Set<String> list) throws CannotEvaluateException;
 
     /**
      * Return the value vector for a given point in the coverage.
@@ -398,9 +419,12 @@ public interface Coverage {
      * <B>Example:</B> The {@code evaluateInverse} operation could return a set
      * of contours derived from the feature attribute values associated with the
      * {@linkplain org.opengis.coverage.grid.GridPoint grid points} of a grid coverage.
+     *
+     * @param v The feature attributes.
+     * @return The domain where the attributes are found.
      */
     @UML(identifier="evaluateInverse", obligation=MANDATORY, specification=ISO_19123)
-    Set<? extends DomainObject> evaluateInverse(Record v);
+    Set<? extends DomainObject<?>> evaluateInverse(Record v);
 
     /**
      * The number of sample dimensions in the coverage.

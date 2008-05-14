@@ -31,6 +31,8 @@ import static java.lang.annotation.RetentionPolicy.*;
 public @interface Association {
     /**
      * Association name.
+     *
+     * @return The association name.
      */
     String value();
 }

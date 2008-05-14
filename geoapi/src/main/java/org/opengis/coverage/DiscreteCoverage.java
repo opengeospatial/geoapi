@@ -77,5 +77,5 @@ public interface DiscreteCoverage extends Coverage {
      * value equal to the input record.
      */
     @UML(identifier="evaluateInverse", obligation=OPTIONAL, specification=ISO_19123)
-    Set<? extends DomainObject> evaluateInverse(Record v);
+    Set<? extends DomainObject<?>> evaluateInverse(Record v);
 }

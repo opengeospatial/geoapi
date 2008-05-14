@@ -26,6 +26,9 @@ import static org.opengis.annotation.Specification.*;
  * @version <A HREF="http://www.opengeospatial.org/standards/as">ISO 19107</A>
  * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 1.0
+ *
+ * @todo Investigate why this interface doesn't extends {@link Geometry}, since it is a cause
+ *       of difficulty with {@link org.opengis.coverage.Coverage}.
  */
 @UML(identifier="GM_GenericSurface", specification=ISO_19107)
 public interface GenericSurface {

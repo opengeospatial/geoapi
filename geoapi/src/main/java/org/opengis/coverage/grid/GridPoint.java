@@ -12,6 +12,7 @@ package org.opengis.coverage.grid;
 
 import java.util.Set;
 import org.opengis.coverage.DomainObject;
+import org.opengis.geometry.Geometry;
 import org.opengis.geometry.primitive.Point;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 import org.opengis.annotation.UML;
@@ -29,7 +30,7 @@ import static org.opengis.annotation.Specification.*;
  * @author Martin Desruisseaux
  */
 @UML(identifier="CV_GridPoint", specification=ISO_19123)
-public interface GridPoint extends DomainObject {
+public interface GridPoint extends DomainObject<Geometry> {
     /**
      * Returns the set of grid coordinates that specifies the location of the
      * grid point within the {@linkplain Grid grid}.

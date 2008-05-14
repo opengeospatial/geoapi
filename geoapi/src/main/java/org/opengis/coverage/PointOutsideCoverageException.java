@@ -10,28 +10,24 @@
  *************************************************************************************************/
 package org.opengis.coverage;
 
-import org.opengis.geometry.DirectPosition;  // For Javadoc
+import org.opengis.geometry.DirectPosition;
+import org.opengis.annotation.Extension;
 import org.opengis.annotation.UML;
 
-import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
 
 
 /**
- * Thrown when a
- * <code>{@linkplain Coverage#evaluate(DirectPosition, double[]) evaluate}(&hellip;)</code>
- * method is invoked with a point outside coverage.
+ * Thrown when a {@link Coverage#evaluate(DirectPosition, java.util.Set) evaluate} method
+ * is invoked for a location outside the domain of the coverage.
  *
  * @version <A HREF="http://www.opengis.org/docs/01-004.pdf">Grid Coverage specification 1.0</A>
  * @author Martin Desruisseaux (IRD)
+ * @author Alexander Petkov
  * @since GeoAPI 1.0
  *
  * @see Coverage#evaluate(DirectPosition, byte[])
  * @see Coverage#evaluate(DirectPosition, double[])
- *
- * @todo  {@linkplain CoverageDomainException} seems to duplicate the role
- *        of this class. Evaluate which one is to be used, especially since
- *        {@linkplain CoverageDomainException} is not explicitly defined in ISO 19123.
  */
 @UML(identifier="CV_PointOutsideCoverage", specification=OGC_01004)
 public class PointOutsideCoverageException extends CannotEvaluateException {
@@ -39,6 +35,11 @@ public class PointOutsideCoverageException extends CannotEvaluateException {
      * Serial number for interoperability with different versions.
      */
     private static final long serialVersionUID = -8718412090539227101L;
+
+    /**
+     * Represents a direct position which is outside the domain of the coverage.
+     */
+    private DirectPosition offendingLocation;
 
     /**
      * Creates an exception with no message.
@@ -55,5 +56,31 @@ public class PointOutsideCoverageException extends CannotEvaluateException {
      */
     public PointOutsideCoverageException(String message) {
         super(message);
+    }
+
+    /**
+     * Returns the {@linkplain DirectPosition direct position}
+     * which is outside the domain of the {@linkplain #getCoverage coverage}.
+     *
+     * @return The position outside the coverage, or {@code null} if unknown.
+     *
+     * @since GeoAPI 2.2
+     */
+    @Extension
+    public DirectPosition getOffendingLocation() {
+        return offendingLocation;
+    }
+
+    /**
+     * Sets the {@linkplain DirectPosition direct position}
+     * which is outside the domain of the {@linkplain #getCoverage coverage}.
+     *
+     * @param location The position outside the coverage, or {@code null} if unknown.
+     *
+     * @since GeoAPI 2.2
+     */
+    @Extension
+    public void setOffendingLocation(final DirectPosition location) {
+        this.offendingLocation = location;
     }
 }

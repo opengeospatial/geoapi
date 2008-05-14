@@ -10,10 +10,7 @@
  *************************************************************************************************/
 package org.opengis.coverage;
 
-import java.util.List;
 import java.util.Set;
-import org.opengis.coverage.ValueObject;
-import org.opengis.coverage.grid.GridPointValuePair;
 import org.opengis.geometry.DirectPosition;
 import org.opengis.geometry.coordinate.Triangle;
 import org.opengis.annotation.UML;
@@ -37,14 +34,18 @@ public interface ValueTriangle extends ValueObject {
      * Returns the triangle that defines the relative position of the three
      * {@linkplain PointValuePair point-value pairs} at its vertices.
      *
+     * @return The geometry as a triangle.
+     *
      * @todo The returns type in ISO-19123 is {@link Triangle}.
      */
     @UML(identifier="geometry", obligation=MANDATORY, specification=ISO_19123)
-    DomainObject getGeometry();
+    DomainObject<?> getGeometry();
 
     /**
      * Returns the three <var>point</var>-<var>value</var> pairs at the vertices of this
      * value triangle.
+     *
+     * @return The control values.
      */
     @UML(identifier="controlValue", obligation=MANDATORY, specification=ISO_19123)
     Set<PointValuePair> getControlValues();
@@ -52,7 +53,8 @@ public interface ValueTriangle extends ValueObject {
     /**
      * Returns the barycentric coordinates of the specified position as a sequence of numbers.
      *
-     * @todo Why not returning an other {@link DirectPosition}?
+     * @param p The position where to calculate.
+     * @return The barycentric coordinates.
      */
     @UML(identifier="point", obligation=MANDATORY, specification=ISO_19123)
     double[] point(DirectPosition p);

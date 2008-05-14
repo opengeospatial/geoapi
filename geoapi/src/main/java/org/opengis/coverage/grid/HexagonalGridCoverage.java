@@ -13,7 +13,7 @@ package org.opengis.coverage.grid;
 import java.util.Set;
 import java.util.Collection;
 import org.opengis.util.Record;
-import org.opengis.coverage.DomainObject;  // For javadoc
+import org.opengis.coverage.DomainObject;
 import org.opengis.coverage.ContinuousCoverage;
 import org.opengis.coverage.InterpolationMethod;
 import org.opengis.coverage.DiscreteSurfaceCoverage;
