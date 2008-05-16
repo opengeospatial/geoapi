@@ -67,6 +67,8 @@ public interface CoordinateSystemAxis extends IdentifiedObject {
      * Returns the minimum value normally allowed for this axis, in the
      * {@linkplain #getUnit unit of measure for the axis}. If there is no minimum value, then
      * this method returns {@linkplain Double#NEGATIVE_INFINITY negative infinity}.
+     *
+     * @return The minimum value, or {@link Double#NEGATIVE_INFINITY} if none.
      */
     @UML(identifier="minimumValue", obligation=OPTIONAL, specification=ISO_19111)
     double getMinimumValue();
@@ -75,6 +77,8 @@ public interface CoordinateSystemAxis extends IdentifiedObject {
      * Returns the maximum value normally allowed for this axis, in the
      * {@linkplain #getUnit unit of measure for the axis}. If there is no maximum value, then
      * this method returns {@linkplain Double#POSITIVE_INFINITY positive infinity}.
+     *
+     * @return The maximum value, or {@link Double#POSITIVE_INFINITY} if none.
      */
     @UML(identifier="maximumValue", obligation=OPTIONAL, specification=ISO_19111)
     double getMaximumValue();
@@ -85,6 +89,8 @@ public interface CoordinateSystemAxis extends IdentifiedObject {
      * when both minimum and maximum values are omitted. It may be included when minimum and/or
      * maximum values are included. If this element is omitted when minimum or maximum values are
      * included, the meaning is unspecified.
+     *
+     * @return The range meaning, or {@code null} in none.
      */
     @UML(identifier="rangeMeaning", obligation=CONDITIONAL, specification=ISO_19111)
     RangeMeaning getRangeMeaning();

@@ -63,6 +63,8 @@ public interface ParameterValueGroup extends GeneralParameterValue {
      *   <LI><P>The list may also supports the {@link List#remove(Object) remove} operation as a
      *       way to remove parameter created by the {@link #parameter} method.</P></LI>
      * </UL>
+     *
+     * @return The values in this group.
      */
     @UML(identifier="includesValue", obligation=MANDATORY, specification=ISO_19111)
     List<GeneralParameterValue> values();

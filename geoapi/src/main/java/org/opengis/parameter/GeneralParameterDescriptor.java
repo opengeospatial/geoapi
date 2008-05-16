@@ -36,6 +36,8 @@ public interface GeneralParameterDescriptor extends IdentifiedObject {
      * initialized with the {@linkplain ParameterDescriptor#getDefaultValue default value(s)}.
      * The {@linkplain GeneralParameterValue#getDescriptor parameter value descriptor} for
      * the created parameter value(s) will be {@code this} object.
+     *
+     * @return A new parameter initialized to its default value.
      */
     @Extension
     GeneralParameterValue createValue();
@@ -44,6 +46,8 @@ public interface GeneralParameterDescriptor extends IdentifiedObject {
      * The minimum number of times that values for this parameter group or
      * parameter are required. The default value is one. A value of 0 means
      * an optional parameter.
+     *
+     * @return The minimum occurence.
      *
      * @see #getMaximumOccurs
      */
@@ -55,6 +59,8 @@ public interface GeneralParameterDescriptor extends IdentifiedObject {
      * parameter can be included. For a {@linkplain ParameterDescriptor single parameter},
      * the value is always 1. For a {@linkplain ParameterDescriptorGroup parameter group},
      * it may vary. The default value is one.
+     *
+     * @return The maximum occurence.
      *
      * @see #getMinimumOccurs
      */

@@ -57,6 +57,8 @@ public interface GenericName extends Comparable<GenericName> {
      * {@code "org.opengis"}, then the fully qualified name would be
      * {@code "org.opengis.util.GenericName"}.
      *
+     * @return The name space of this name.
+     *
      * @since GeoAPI 2.1
      */
     @UML(identifier="scope", obligation=MANDATORY, specification=ISO_19103)
@@ -66,6 +68,7 @@ public interface GenericName extends Comparable<GenericName> {
      * Returns the scope (name space) of this generic name. If this name has no scope
      * (e.g. is the root), then this method returns {@code null}.
      *
+     * @return The name space of this name.
      * @deprecated Replaced by {@link #scope}.
      */
     @Deprecated
@@ -80,6 +83,8 @@ public interface GenericName extends Comparable<GenericName> {
      * The depth is the length of the list returned by the {@link #getParsedNames} method.
      * As such it is a derived parameter.
      *
+     * @return The depth of this name.
+     *
      * @since GeoAPI 2.1
      */
     @UML(identifier="depth", obligation=MANDATORY, specification=ISO_19103)
@@ -89,6 +94,8 @@ public interface GenericName extends Comparable<GenericName> {
      * Returns the sequence of {@linkplain LocalName local names} making this generic name. All
      * elements of the list except for the last one refer to {@linkplain NameSpace name spaces}.
      * The length of this sequence is the {@linkplain #depth depth}.
+     *
+     * @return The local names making this generic name.
      *
      * @todo What means the "All elements of the list except for the last one refer to name
      *       spaces"? Does it means that the last element refer to the global name space?
@@ -100,6 +107,7 @@ public interface GenericName extends Comparable<GenericName> {
      * Returns a view of this object as a local name. This is always the last element in the
      * sequence of {@linkplain #getParsedNames parsed names}.
      *
+     * @return The local part of this name.
      * @deprecated Renamed as {@link #name()}.
      */
     @Deprecated
@@ -109,6 +117,8 @@ public interface GenericName extends Comparable<GenericName> {
     /**
      * Returns the last element in the sequence of {@linkplain #getParsedNames parsed names}.
      * For any {@link LocalName}, this is always {@code this}.
+     *
+     * @return The local part of this name.
      *
      * @see LocalName#name
      * @see ScopedName#name
@@ -127,6 +137,7 @@ public interface GenericName extends Comparable<GenericName> {
      * is already {@linkplain NameSpace#isGlobal global}, returns {@code null} since it is not
      * possible to derive a scoped name.
      *
+     * @return The fully-qualified name.
      * @deprecated Replaced by {@link #toFullyQualifiedName}.
      */
     @Deprecated
@@ -137,6 +148,8 @@ public interface GenericName extends Comparable<GenericName> {
      * Returns a view of this name as a fully-qualified name. The {@linkplain #scope scope}
      * of a fully qualified name must be {@linkplain NameSpace#isGlobal global}. This method
      * never returns {@code null}.
+     *
+     * @return The fully-qualified name.
      *
      * @since GeoAPI 2.1
      */
@@ -158,18 +171,23 @@ public interface GenericName extends Comparable<GenericName> {
      * <strong>Note:</strong> Those conditions can be understood in terms of the Java
      * {@link Object#equals equals} method instead of the Java identity comparator {@code ==}.
      *
+     * @param scope The name to use as prefix.
+     * @return A concatenation of the given name with this name.
+     *
      * @since GeoAPI 2.1
      */
     @UML(identifier="push", obligation=MANDATORY, specification=ISO_19103)
-    ScopedName push(GenericName name);
+    ScopedName push(GenericName scope);
 
     /**
      * Returns a string representation of this generic name. This string representation
      * is local-independant. It contains all elements listed by {@link #getParsedNames}
      * separated by an arbitrary character (usually {@code :} or {@code /}).
+     *
+     * @return A local-independant string representation of this name.
      */
     @Extension
-    ///@Override    
+    ///@Override
     String toString();
 
     /**
@@ -178,6 +196,8 @@ public interface GenericName extends Comparable<GenericName> {
      * been localized in the {@linkplain InternationalString#toString(java.util.Locale)
      * specified locale}. If no international string is available, then this method should
      * returns an implementation mapping to {@link #toString} for all locales.
+     *
+     * @return A localizable string representation of this name.
      */
     @Extension
     InternationalString toInternationalString();

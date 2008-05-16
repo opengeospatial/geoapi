@@ -92,6 +92,8 @@ public interface ReferenceSystem extends IdentifiedObject {
     /**
      * Description of domain of usage, or limitations of usage, for which this
      * (coordinate) reference system object is valid.
+     *
+     * @return The domain of usage, or {@code null} if none.
      */
     @UML(identifier="SC_CRS.scope", obligation=OPTIONAL, specification=ISO_19111)
     InternationalString getScope();
