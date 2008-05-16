@@ -75,6 +75,8 @@ public interface IdentifiedObject {
 
     /**
      * The primary name by which this object is identified.
+     *
+     * @return The primary name.
      */
     @UML(identifier="name", obligation=MANDATORY, specification=ISO_19111)
     ReferenceIdentifier getName();
@@ -98,6 +100,8 @@ public interface IdentifiedObject {
 
     /**
      * Comments on or information about this object, including data source information.
+     *
+     * @return The remarks, or {@code null} if none.
      */
     @UML(identifier="remarks", obligation=OPTIONAL, specification=ISO_19111)
     InternationalString getRemarks();

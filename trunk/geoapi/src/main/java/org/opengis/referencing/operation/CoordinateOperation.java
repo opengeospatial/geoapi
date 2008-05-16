@@ -182,6 +182,8 @@ public interface CoordinateOperation extends IdentifiedObject {
 
     /**
      * Description of domain of usage, or limitations of usage, for which this operation is valid.
+     *
+     * @return A description of domain of usage, or {@code null} if none.
      */
     @UML(identifier="scope", obligation=OPTIONAL, specification=ISO_19111)
     InternationalString getScope();
@@ -192,6 +194,8 @@ public interface CoordinateOperation extends IdentifiedObject {
      * {@linkplain #getTargetCRS target coordinate reference system}. It may be {@code null}
      * in the case of {@linkplain CoordinateOperationFactory#createDefiningConversion
      * defining conversions}.
+     *
+     * @return The transform from source to target CRS, or {@code null} if not applicable.
      */
     @UML(identifier="CT_CoordinateTransformation.getMathTransform", specification=OGC_01009)
     MathTransform getMathTransform();

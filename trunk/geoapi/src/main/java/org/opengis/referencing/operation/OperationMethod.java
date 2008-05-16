@@ -45,6 +45,8 @@ public interface OperationMethod extends IdentifiedObject {
      * Formula(s) or procedure used by this operation method. This may be a reference to a
      * publication. Note that the operation method may not be analytic, in which case this
      * attribute references or contains the procedure, not an analytic formula.
+     *
+     * @return The formula used by this method.
      */
     @UML(identifier="formula", obligation=MANDATORY, specification=ISO_19111)
     InternationalString getFormula();

@@ -37,13 +37,14 @@ public interface PrimeMeridian extends IdentifiedObject {
      * when the {@linkplain #getName meridian name} value is "Greenwich".
      *
      * @return The prime meridian Greenwich longitude, in {@linkplain #getAngularUnit angular unit}.
-     * @unitof Length
      */
     @UML(identifier="greenwichLongitude", obligation=CONDITIONAL, specification=ISO_19111)
     double getGreenwichLongitude();
 
     /**
      * Returns the angular unit of the {@linkplain #getGreenwichLongitude Greenwich longitude}.
+     *
+     * @return The angular unit of greenwich longitude.
      */
     @UML(identifier="getAngularUnit", specification=OGC_01009)
     Unit getAngularUnit();
