@@ -25,7 +25,6 @@ import org.opengis.display.primitive.Graphic;
  * @since GeoAPI 2.2
  */
 public interface Renderer {
-
     /**
      * Sets the Canvas to use, canvas define the rendered area.
      *
@@ -68,7 +67,7 @@ public interface Renderer {
      * @param graphic
      */
     void remove(Graphic graphic);
-    
+
     /**
      * Remove a collection of Graphic Object.
      *
@@ -95,7 +94,7 @@ public interface Renderer {
      * @param hintKey the key of the hint.
      * @param hint the rendering hint.
      */
-    void setHint(RenderingHints.Key hintKey, Object hint);
+    void setRenderingHint(RenderingHints.Key hintKey, Object hint);
 
     /**
      * Returns the rendering hint associated with the hint name.
@@ -103,7 +102,7 @@ public interface Renderer {
      * @param hintKey the key of the hint.
      * @return the rendering hint.
      */
-    Object getHint(RenderingHints.Key hintKey);
+    Object getRenderingHint(RenderingHints.Key hintKey);
 
     /**
      * Add a RendererListener
@@ -122,5 +121,4 @@ public interface Renderer {
      * the used resources.
      */
     void dispose();
-    
 }
