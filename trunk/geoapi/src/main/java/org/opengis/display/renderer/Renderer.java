@@ -48,42 +48,9 @@ public interface Renderer {
     RenderedImage getSnapShot();
 
     /**
-     * Add a single graphic object.
-     *
-     * @param graphic
-     */
-    void add(Graphic graphic);
-
-    /**
-     * Add a collection of graphic objects.
-     *
-     * @param graphics
-     */
-    void add(Collection<Graphic> graphics);
-
-    /**
-     * Remove a specific Graphic Object.
-     *
-     * @param graphic
-     */
-    void remove(Graphic graphic);
-
-    /**
-     * Remove a collection of Graphic Object.
-     *
-     * @param graphics
-     */
-    void remove(Collection<Graphic> graphics);
-
-    /**
-     * Removes all Graphics objects.
-     */
-    void removeAll();
-
-    /**
      * Returns the list of all graphics that may be rendered.
      *
-     * @return collection of all graphics
+     * @return collection of all graphics, live list
      */
     Collection<Graphic> getGraphics();
 

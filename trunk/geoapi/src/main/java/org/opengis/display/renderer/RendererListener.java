@@ -35,13 +35,13 @@ public interface RendererListener extends EventListener{
      * 
      * @param event 
      */
-    void graphicRemoved(RendererEvent event);
+    void graphicsRemoved(RendererEvent event);
     
     /**
      * Called when graphic objects are updated.
      * 
      * @param event 
      */
-    void graphicChanged(RendererEvent event);
+    void graphicsChanged(RendererEvent event);
     
 }
