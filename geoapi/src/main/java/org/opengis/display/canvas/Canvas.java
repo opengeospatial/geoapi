@@ -15,12 +15,10 @@ import org.opengis.geometry.DirectPosition;
 
 
 /**
- * <p><code>Canvas</code> defines a common abstraction for implementations that
- * manage the display. Canvas can be extended for cartesian display or any kind.
- * the canvas define the renderered Area by using different attributs.
- * </p>
- * A <code>Canvas</code> with an XY (Cartesian) display field should support
- * the following properties:
+ * Defines a common abstraction for implementations that manage the display. Canvas can be extended
+ * for cartesian display or any kind. A {@code Canvas} with an XY (Cartesian) display field should
+ * support the following properties:
+ * <p>
  * <ul>
  *   <li>pixelWidth</li>
  *   <li>pixelHeight</li>
@@ -35,28 +33,28 @@ import org.opengis.geometry.DirectPosition;
  * @since GeoAPI 2.2
  */
 public interface Canvas {
-
     /**
-     * Returns a copy of the current state of this <code>Canvas</code>. The
-     * object returned will implement <code>CanvasState</code> or one of its
-     * subinterfaces, depending on the type of Canvas.
-     * 
-     * @return immutable CanvasState
+     * Returns a copy of the current state of this {@code Canvas}. The object returned will
+     * implement <code>CanvasState</code> or one of its subinterfaces, depending on the type
+     * of canvas.
+     *
+     * @return A snapshot of current canvas state.
      */
     CanvasState getState();
-    
+
     /**
-     * Returns true if the given coordinate is visible on this
-     * <code>Canvas</code>.
-     * @param coordinate
-     * @return true if the given coordinate is visible
+     * Returns {@code true} if the given coordinate is visible on this {@code Canvas}.
+     *
+     * @param coordinate The coordinate to test for visibility.
+     * @return {@code true} if the given coordinate is visible on this canvas.
      */
     boolean isVisible(DirectPosition coordinate);
 
     /**
-     * Returns the controller object with all setters methods.
-     * 
-     * @return CanvasController
+     * Returns the controller that allows the programmer to modify the
+     * {@code Canvas}'s properties.
+     *
+     * @return The controller for this canvas.
      */
     CanvasController getController();
 
@@ -64,10 +62,10 @@ public interface Canvas {
      * Sets a rendering hint for implementation or platform specific rendering
      * information.
      *
-     * @param hintKey the key of the hint.
-     * @param hint the rendering hint.
+     * @param hintKey The key of the hint.
+     * @param hint The rendering hint.
      */
-    void setHint(RenderingHints.Key hintKey, Object hint);
+    void setRenderingHint(RenderingHints.Key hintKey, Object hint);
 
     /**
      * Returns the rendering hint associated with the hint name.
@@ -75,20 +73,20 @@ public interface Canvas {
      * @param hintKey the key of the hint.
      * @return the rendering hint.
      */
-    Object getHint(RenderingHints.Key hintKey);
+    Object getRenderingHint(RenderingHints.Key hintKey);
 
     /**
      * Add a <code>CanvasListener</code> on this canvas.
-     * 
+     *
      * @param listener
      */
     void addCanvasListener(CanvasListener listener);
 
     /**
      * Remove <code>CanvasListener</code> listener.
-     * 
+     *
      * @param listener
      */
     void removeCanvasListener(CanvasListener listener);
-    
+
 }
