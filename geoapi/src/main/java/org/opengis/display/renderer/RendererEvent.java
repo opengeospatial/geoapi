@@ -16,28 +16,37 @@ import org.opengis.display.primitive.Graphic;
 
 
 /**
- * RendererEvent send to listener when the Graphics changes.
- * 
+ * Event sent to {@linkplain RendererListener renderer listeners} when
+ * {@linkplain Graphic graphics} changed.
+ *
  * @author Open Geospatial Consortium
  * @author Johann Sorel (Geomatys)
  * @since GeoAPI 2.2
  */
 public abstract class RendererEvent extends EventObject{
-    
+    /**
+     * Creates an event emitted by the given source.
+     *
+     * @param source The source, or {@code null} if unknown.
+     */
     public RendererEvent(Renderer source) {
         super(source);
     }
 
     /**
-     * Get the affected Graphics of this event
-     * 
-     * @param graphics
+     * Returns the source of thie event.
+     *
+     * @return The source of this event, or {@code null} if unknown.
      */
-    public abstract void getGraphics(Collection<Graphic> graphics);
-
     @Override
     public Renderer getSource() {
         return (Renderer) super.getSource();
     }
-    
+
+    /**
+     * Returns the graphics affected by this event
+     *
+     * @return The graphics affected by this event.
+     */
+    public abstract Collection<Graphic> getGraphics();
 }
