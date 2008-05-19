@@ -33,22 +33,6 @@ public interface Graphic {
      * @param visible the visible value.
      */
     void setVisible(boolean visible);
-    
-    /**
-     * Adds the given <code>GraphicListener</code> to this <code>Graphic</code>'s list of
-     * listeners.  
-     *
-     * @param listener the <code>GraphicListener</code> to add.
-     */
-    void addGraphicListener(GraphicListener listener);
-
-    /**
-     * Removes the given <code>GraphicListener</code> from this <code>Graphic</code>'s list of
-     * listeners.
-     *
-     * @param listener the <code>GraphicListener</code> to remove.
-     */
-    void removeGraphicListener(GraphicListener listener);
 
     /**
      * Method that can be called when an object is no longer needed.
