@@ -26,66 +26,73 @@ import org.opengis.display.primitive.Graphic;
  */
 public interface Renderer {
     /**
-     * Sets the Canvas to use, canvas define the rendered area.
+     * Sets the canvas to use, which defines the rendered area.
      *
-     * @param canvas
+     * @param canvas The canvas.
      */
     void setCanvas(Canvas canvas);
 
     /**
-     * Returns the Canvas used by the renderer.
+     * Returns the canvas used by this renderer.
      *
-     * @return canvas or null if no canvas
+     * @return The canvas or {@code null} if undefined.
      */
     Canvas getCanvas();
 
     /**
-     * Get a snapshot image of the actual mapcontext used with
-     * the canvas.
+     * Gets a snapshot image of the actual renderer content.
      *
-     * @return RenderedImage
+     * @return RenderedImage A snapshot image.
      */
     RenderedImage getSnapShot();
 
     /**
-     * Returns the list of all graphics that may be rendered.
+     * Returns the collection of all graphics to render. Changes to this collection (addition,
+     * removal) are reflected into the set of graphics to be rendered. Note that the returned
+     * collection must notifies the {@linkplain RendererListener renderer listener} about any
+     * addition or removal.
      *
-     * @return collection of all graphics, live list
+     * @return Collection of all graphics, as a live collection.
      */
     Collection<Graphic> getGraphics();
 
     /**
-     * Sets a rendering hint for implementation or platform specific rendering
-     * information.
+     * Sets a rendering hint for implementation or platform specific rendering information.
      *
-     * @param hintKey the key of the hint.
-     * @param hint the rendering hint.
+     * @param hintKey The key of the hint.
+     * @param hint The rendering hint.
      */
     void setRenderingHint(RenderingHints.Key hintKey, Object hint);
 
     /**
-     * Returns the rendering hint associated with the hint name.
+     * Returns the rendering hint associated with the hint key.
      *
-     * @param hintKey the key of the hint.
-     * @return the rendering hint.
+     * @param hintKey The key of the hint.
+     * @return The rendering hint.
      */
     Object getRenderingHint(RenderingHints.Key hintKey);
 
     /**
-     * Add a RendererListener
-     * @param listener : RendererListener to add
+     * Adds a listener to be notified when a graphic is added or removed.
+     *
+     * @param listener The listener to add.
      */
     void addRendererListener(RendererListener listener);
 
     /**
-     * Remove a RendererListener
-     * @param listener : RendererListener to remove
+     * Removes a listener.
+     *
+     * @param listener The listener to remove.
      */
     void removeRendererListener(RendererListener listener);
 
     /**
-     * Must be called once the renderer is not used anymore, to free
-     * the used resources.
+     * Provides a hint that a renderer is no longer needed. Implementations may use this method to
+     * release resources, if needed. Implementations may also implement this method to return the
+     * renderer to a renderer pool.
+     * <p>
+     * It is an error to reference a {@link Renderer} in any way after its dispose method has been
+     * called.
      */
     void dispose();
 }

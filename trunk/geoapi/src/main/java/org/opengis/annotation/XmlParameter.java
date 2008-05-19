@@ -1,8 +1,8 @@
 /*$************************************************************************************************
  **
- ** $Id: XmlElement.java 982 2007-03-27 10:54:51Z desruisseaux $
+ ** $Id$
  **
- ** $URL: https://geoapi.svn.sourceforge.net/svnroot/geoapi/trunk/geoapi/src/main/java/org/opengis/annotation/XmlElement.java $
+ ** $URL$
  **
  ** Copyright (C) 2003-2005 Open GIS Consortium, Inc.
  ** All Rights Reserved. http://www.opengis.org/legal/
