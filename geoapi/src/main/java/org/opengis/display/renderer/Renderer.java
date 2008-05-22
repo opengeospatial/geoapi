@@ -40,13 +40,6 @@ public interface Renderer {
     Canvas getCanvas();
 
     /**
-     * Gets a snapshot image of the actual renderer content.
-     *
-     * @return RenderedImage A snapshot image.
-     */
-    RenderedImage getSnapShot();
-
-    /**
      * Returns the collection of all graphics to render. Changes to this collection (addition,
      * removal) are reflected into the set of graphics to be rendered. Note that the returned
      * collection must notifies the {@linkplain RendererListener renderer listener} about any
