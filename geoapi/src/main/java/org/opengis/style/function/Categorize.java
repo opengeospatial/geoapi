@@ -32,11 +32,6 @@ import org.opengis.filter.expression.Function;
 @XmlElement("Categorize")
 public interface Categorize extends Function{
         
-    public static enum BELONG{
-        SUCCEEDING,
-        PRECEDING
-    };
-    
     /**
      * Get value.
      * 
@@ -90,7 +85,7 @@ public interface Categorize extends Function{
      * @return SUCCEEDING or PRECEDING
      */
     @XmlElement("ThreshholdsBelongTo")
-    BELONG getBelongTo();
+    ThreshholdsBelongTo getBelongTo();
     
     /**
      * See {@link #getDirection} for details.
@@ -98,6 +93,6 @@ public interface Categorize extends Function{
      * @param belong 
      */
     @XmlElement("ThreshholdsBelongTo")
-    void setBelongTo(BELONG belong);
+    void setBelongTo(ThreshholdsBelongTo belong);
     
 }

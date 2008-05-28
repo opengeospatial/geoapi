@@ -31,18 +31,7 @@ import org.opengis.filter.expression.Function;
  */
 @XmlElement("Interpolate")
 public interface Interpolate extends Function{
-        
-    public static enum METHOD{
-        NUMERIC,
-        COLOR
-    };
-    
-    public static enum MODE{
-        LINEAR,
-        COSINE,
-        CUBIC
-    };
-            
+                
     /**
      * Get lookup value.
      *  
@@ -71,7 +60,7 @@ public interface Interpolate extends Function{
      * @return LINEAR, COSINE or CUBIC.
      */
     @XmlElement("Mode")
-    MODE getMode();
+    Mode getMode();
     
     /**
      * See {@link #getMode} for details.
@@ -79,7 +68,7 @@ public interface Interpolate extends Function{
      * @param mode 
      */
     @XmlElement("Mode")
-    void setMode(MODE mode);
+    void setMode(Mode mode);
                     
     /**
      * Get the interpolation method.
@@ -87,7 +76,7 @@ public interface Interpolate extends Function{
      * @return NUMERIC or COLOR
      */
     @XmlElement("Method")
-    METHOD getMethod();
+    Method getMethod();
     
     /**
      * See {@link #getMethod} for details.
@@ -95,6 +84,6 @@ public interface Interpolate extends Function{
      * @param method 
      */
     @XmlElement("Method")
-    void setMethod(METHOD method);
+    void setMethod(Method method);
     
 }

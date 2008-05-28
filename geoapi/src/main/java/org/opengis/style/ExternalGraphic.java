@@ -10,7 +10,9 @@
  *************************************************************************************************/
 package org.opengis.style;
 
+import java.util.Collection;
 import org.opengis.annotation.XmlElement;
+import org.opengis.style.function.Interpolate;
 
 
 /**
@@ -77,5 +79,13 @@ public interface ExternalGraphic extends GraphicSymbol {
      */
     @XmlElement("Format")
     void setFormat(String format);
+    
+    /**
+     * The ColorReplacement element, which may occur multiple times, allows to replace a
+     * color in the ExternalGraphic, the color specified in the OriginalColor sub-element, by
+     * another color as a result of a recode function as defined in {@link Interpolate} .
+     */
+    @XmlElement("ColorReplacement")
+    Collection<ColorReplacement> getColorReplacements();
     
 }
