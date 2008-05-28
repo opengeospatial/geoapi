@@ -16,7 +16,7 @@ import org.opengis.annotation.XmlElement;
 /**
  * The ShadedRelief element selects the application of relief shading (or “hill shading”) to
  * an image for a three-dimensional visual effect.
- * 
+ *
  * Exact parameters of the shading are system-dependent (for now). If the BrightnessOnly
  * flag is “0” or “false” (false, default), the shading is applied to the layer being rendered as
  * the current RasterSymbolizer. If BrightnessOnly is “1” or “true” (true), the shading is
@@ -34,14 +34,6 @@ import org.opengis.annotation.XmlElement;
  */
 @XmlElement("ShadedRelief")
 public interface ShadedRelief {
-        
-    /**
-     * turns brightnessOnly on or off depending on value of flag.
-     *
-     * @param flag boolean
-     */
-    @XmlElement("BrightnessOnly")
-    public void setBrightnessOnly(boolean flag);
 
     /**
      * indicates if brightnessOnly is true or false. Default is false.
@@ -60,15 +52,5 @@ public interface ShadedRelief {
      */
     @XmlElement("ReliefFactor")
     public double getReliefFactor();
-    
-    /**
-     * The ReliefFactor gives the amount of exaggeration to use for the height
-     * of the ?hills.?  A value of around 55 (times) gives reasonable results
-     * for Earth-based DEMs. The default value is system-dependent.
-     *
-     * @param reliefFactor an expression which evaluates to a double.
-     */
-    @XmlElement("ReliefFactor")
-    public void setReliefFactor(double reliefFactor);
 
 }

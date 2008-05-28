@@ -18,7 +18,7 @@ import org.opengis.util.InternationalString;
  * A Description is used to store various informations
  * who describe an element. Description values are mostly used
  * in User Interfaces (Lists, trees, ...).
- * 
+ *
  * @version <A HREF="http://www.opengeospatial.org/standards/symbol">Symbology Encoding Implementation Specification 1.1.0</A>
  * @author Open Geospatial Consortium
  * @author Johann Sorel (Geomatys)
@@ -37,7 +37,6 @@ public interface Description {
     @XmlElement("Title")
     InternationalString getTitle();
 
-
     /**
      * Returns a human readable, prose description of this style.
      * This can be any string and can consist of any amount of text.
@@ -45,6 +44,6 @@ public interface Description {
      */
     @XmlElement("Abstract")
     InternationalString getAbstract();
-    
+
 }
 

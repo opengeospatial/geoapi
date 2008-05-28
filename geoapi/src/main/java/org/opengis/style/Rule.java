@@ -20,7 +20,7 @@ import org.opengis.annotation.XmlElement;
  * engine examines each rule in the FeatureStyle, first checking its Filter (or ElseFilter).  If the
  * Filter passes, then every Symbolizer for that rule is applied to the given
  * feature.
- * 
+ *
  * @version <A HREF="http://www.opengeospatial.org/standards/symbol">Symbology Encoding Implementation Specification 1.1.0</A>
  * @author Open Geospatial Consortium
  * @author Johann Sorel (Geomatys)
@@ -41,30 +41,14 @@ public interface Rule {
     String getName();
 
     /**
-     * Sets the name for this rule.
-     * See {@link #getName} for details.
-     * @param name , new name for the style
-     */
-    @XmlElement("Name")
-    void setName( String name);
-
-    /**
      * Returns the description of this rule.
-     * 
+     *
      * @return Description with usual informations used
      * for user interfaces.
      */
     @XmlElement("Description")
     Description getDescription();
 
-    /**
-     * Sets the description of this rule.
-     * See {@link #getDescription} for details.
-     * @param description : the new description
-     */
-    @XmlElement("Description")
-    void setDescription( Description description);
-    
     /**
      * Returns a small Graphic that could be used by the rendering engine to
      * draw a legend window.
@@ -73,19 +57,10 @@ public interface Rule {
      * indicates how features of a given type are being portrayed.  Through its
      * {@code LegendGraphic} property, a {@code Rule} may provide a custom picture
      * to be used in such a legend window.
-     * @return 
+     * @return
      */
     @XmlElement("LegendGraphic")
     LegendGraphic getLegendGraphic();
-
-    /**
-     * Sets the small Graphic that may be used by the rendering engine to draw
-     * a legend window.
-     * See {@link #getLegendGraphic} for details.
-     * @param graphic 
-     */
-    @XmlElement("LegendGraphic")
-    void setLegendGraphic(LegendGraphic graphic);
 
     /**
      * Returns the filter that will limit the features for which this {@code Rule} will
@@ -94,16 +69,8 @@ public interface Rule {
      * should fire for all features.
      * @return Filter, if null the rule is always true
      */
-    @XmlElement("Filter")  
+    @XmlElement("Filter")
     Filter getFilter();
-
-    /**
-     * Sets the filter that will limit the features for which this {@code Rule} will fire.
-     * See {@link #getFilter} for details.
-     * @param filter 
-     */
-    @XmlElement("Filter")  
-    void setFilter(Filter filter);
 
     /**
      * Returns true if this {@code Rule} is to fire only if no other rules in the containing
@@ -112,16 +79,6 @@ public interface Rule {
      */
     @XmlElement("ElseFilter")
     boolean isElseFilter();
-
-    /**
-     * Sets the flag that indicates whether this {@code Rule} is an "else filter".
-     * A value of true indicates that this rule is to fire only if no other rules
-     * in the containing style have fired.
-     * See {@link #isElseFilter} for details.
-     * @param newValue 
-     */
-    @XmlElement("ElseFilter")
-    void setElseFilter(boolean newValue);
 
     /**
      * Returns the minimum value (inclusive) in the denominator of the current map scale
@@ -135,15 +92,6 @@ public interface Rule {
     double getMinScaleDenominator();
 
     /**
-     * Sets the minimum value (inclusive) in the denominator of the current map scale at
-     * which this {@code Rule} will fire.
-     * See {@link #getMinScaleDenominator} for details.
-     * @param scale : Min scale double value
-     */
-    @XmlElement("MinScaleDenominator")
-    void setMinScaleDenominator(double scale);
-
-    /**
      * Returns the maximum value (exclusive) in the denominator of the current map scale
      * at which this {@code Rule} will fire.
      * If, for example, the {@code MaxScaleDenominator} were 98765, then this rule
@@ -155,19 +103,10 @@ public interface Rule {
     double getMaxScaleDenominator();
 
     /**
-     * Sets the maximum value (exclusive) in the denominator of the current map scale
-     * at which this {@code Rule} will fire.
-     * See {@link #getMaxScaleDenominator} for details.
-     * @param scale : Max scale double value 
-     */
-    @XmlElement("MaxScaleDenominator")
-    void setMaxScaleDenominator(double scale);
-
-    /**
-     * This method returns a pointer to the "live" list of Symbolizer objects
-     * contained by this {@code Rule}.  This list can be modified by the caller, so
-     * there is no need for a {@code setSymbols} method.
-     * @return the "live" list of Symbolizer
+     * This method returns the list of Symbolizer objects
+     * contained by this {@code Rule}.
+     *
+     * @return the list of Symbolizer
      */
     @XmlElement("Symbolizer")
     List<Symbolizer> getSymbolizers();

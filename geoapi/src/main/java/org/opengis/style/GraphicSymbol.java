@@ -21,6 +21,5 @@ package org.opengis.style;
  * @since GeoAPI 2.0
  */
 public interface GraphicSymbol {
-    
-    
+
 }

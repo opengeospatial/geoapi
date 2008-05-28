@@ -26,7 +26,7 @@ import org.opengis.filter.expression.Expression;
  */
 @XmlElement("RasterSymbolizer")
 public interface RasterSymbolizer extends Symbolizer {
-    
+
     /**
      * Indicates the level of translucency as a floating point number whose value is between 0.0
      * and 1.0 (inclusive).  A value of zero means completely transparent.  A value of 1.0 means
@@ -36,14 +36,6 @@ public interface RasterSymbolizer extends Symbolizer {
     @XmlElement("Opacity")
     Expression getOpacity();
 
-    /**
-     * Sets the level of translucency as a floating point number whose value is between 0.0 and 1.0 (inclusive).
-     * See {@link #getOpacity} for details.
-     * @param expression 
-     */
-    @XmlElement("Opacity")
-    void setOpacity(Expression expression);
-    
     /**
      * The ChannelSelection element specifies the false-color channel selection
      * for a multi-spectral raster source (such as a multi-band
@@ -59,15 +51,6 @@ public interface RasterSymbolizer extends Symbolizer {
      */
     @XmlElement("ChannelSelection")
     ChannelSelection getChannelSelection();
-    
-    /**
-     * Set the channelSelection.
-     * See {@link #getChannelSelection} for details.
-     *
-     * @param channel the channel selected
-     */
-    @XmlElement("ChannelSelection")
-    void setChannelSelection(ChannelSelection channel);
 
     /**
      * The OverlapBehavior element tells a system how to behave when multiple
@@ -88,16 +71,6 @@ public interface RasterSymbolizer extends Symbolizer {
     Expression getOverlap();
 
     /**
-     * Set OverlapBehavior
-     * See {@link #getOverlap} for details.
-     *
-     * @param overlap the expression which evaluates to LATEST_ON_TOP,
-     *        EARLIEST_ON_TOP, AVERAGE or RANDOM
-     */
-    @XmlElement("OverlapBehavior")
-    void setOverlap(Expression overlap);
-    
-    /**
      * The ColorMap element defines either the colors of a palette-type raster
      * source or the mapping of  fixed-numeric pixel values to colors.  For
      * example, a DEM raster giving elevations in meters above sea level can
@@ -115,16 +88,7 @@ public interface RasterSymbolizer extends Symbolizer {
      */
     @XmlElement("ColorMap")
     ColorMap getColorMap();
-    
-    /**
-     * Set color map.
-     * See {@link #getColorMap} for details.
-     *
-     * @param colorMap the ColorMap for the raster
-     */
-    @XmlElement("ColorMap")
-    void setColorMap(ColorMap colorMap);
-    
+
     /**
      * The ContrastEnhancement element defines contrast enhancement for a
      * channel of a false-color image or  for a color image. In the case of a
@@ -145,16 +109,7 @@ public interface RasterSymbolizer extends Symbolizer {
      */
     @XmlElement("ContrastEnhancement")
     ContrastEnhancement getContrastEnhancement();
-    
-    /**
-     * Set the Contrast Enchancement.
-     * See {@link #getContrastEnchancement} for details.
-     *
-     * @param ce the contrastEnhancement
-     */
-    @XmlElement("ContrastEnhancement")
-    void setContrastEnhancement(ContrastEnhancement ce);
-        
+
     /**
      * The ShadedRelief element selects the application of relief shading (or
      * ?hill shading?) to an image for  a three-dimensional visual effect.  It
@@ -175,20 +130,10 @@ public interface RasterSymbolizer extends Symbolizer {
     ShadedRelief getShadedRelief();
 
     /**
-     * Set the shadedRelief
-     * 
-     * Seee {@link getShadedRelief} for details
-     *
-     * @param relief the shadedrelief object
-     */
-    @XmlElement("ShadedRelief")
-    void setShadedRelief(ShadedRelief relief);
-    
-    /**
      * The ImageOutline element specifies that individual source rasters in a
      * multi-raster set (such as a  set of satellite-image scenes) should be
-     * outlined with either a LineStringSymbol or PolygonSymbol. 
-     * 
+     * outlined with either a LineStringSymbol or PolygonSymbol.
+     *
      * An Opacity of 0.0 can be selected for the main raster to avoid rendering
      * the main-raster pixels, or  an opacity can be used for a
      * PolygonSymbolizer Fill to allow the main-raster data be visible through
@@ -199,15 +144,4 @@ public interface RasterSymbolizer extends Symbolizer {
     @XmlElement("ShadedRelief")
     Symbolizer getImageOutline();
 
-    /**
-     * Set image outline.
-     * See {@link getImageOutline} for details.
-     *
-     * @param symbolizer the symbolizer to be used. If this is <B>not</B> a
-     *        polygon or a line symbolizer an unexpected argument exception
-     *        may be thrown by an implementing class.
-     */
-    @XmlElement("ShadedRelief")
-    void setImageOutline(Symbolizer symbolizer);
-    
 }

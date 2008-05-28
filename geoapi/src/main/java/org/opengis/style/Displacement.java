@@ -28,7 +28,7 @@ import org.opengis.filter.expression.Expression;
  */
 @XmlElement("Displacement")
 public interface Displacement {
-    
+
     /**
      * Returns an expression that computes a pixel offset from the geometry
      * point.  This offset point is where the text's anchor point gets
@@ -41,16 +41,6 @@ public interface Displacement {
     Expression getDisplacementX();
 
     /**
-     * Sets the expression that computes a pixel offset from the geometry
-     * point.
-     * See {@link #getDisplacementX} for details.
-     *
-     * @param exp :new X displacement
-     */
-    @XmlElement("DisplacementX")
-    void setDisplacementX(Expression exp);
-
-    /**
      * Returns an expression that computes a pixel offset from the geometry
      * point.  This offset point is where the text's anchor point gets
      * located. If this expression is null, the default offset of zero is
@@ -60,16 +50,6 @@ public interface Displacement {
      */
     @XmlElement("DisplacementY")
     Expression getDisplacementY();
-
-    /**
-     * Sets the expression that computes a pixel offset from the geometry
-     * point.
-     * See {@link #getDisplacementY} for details.
-     *
-     * @param exp : new Y displacement 
-     */
-    @XmlElement("DisplacementY")
-    void setDisplacementY(Expression exp);
 
 }
 

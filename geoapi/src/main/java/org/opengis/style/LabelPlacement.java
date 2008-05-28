@@ -23,6 +23,6 @@ import org.opengis.annotation.XmlElement;
  * @since GeoAPI 2.2
  */
 @XmlElement("LabelPlacement")
-public interface LabelPlacement {    
-    
+public interface LabelPlacement {
+
 }

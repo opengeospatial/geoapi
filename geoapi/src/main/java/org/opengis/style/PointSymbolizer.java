@@ -24,7 +24,7 @@ import org.opengis.annotation.XmlElement;
  */
 @XmlElement("PointSymbolizer")
 public interface PointSymbolizer extends Symbolizer {
-    
+
     /**
      * Returns the graphic that will be drawn at each point of the geometry.
      * @return Graphic
@@ -32,13 +32,4 @@ public interface PointSymbolizer extends Symbolizer {
     @XmlElement("Graphic")
     Graphic getGraphic();
 
-    /**
-     * Sets the graphic that will be drawn at each point of the geometry.
-     * See {@link #getGraphic} for details.
-     * 
-     * @param graphic : new Graphic object
-     */
-    @XmlElement("Graphic")
-    void setGraphic(Graphic graphic);
-    
 }

@@ -27,16 +27,16 @@ import org.opengis.annotation.XmlParameter;
  */
 @XmlElement("Font")
 public interface Font {
-    
+
     //*************************************************************
     // SVG PARAMETERS
-    //************************************************************* 
-    
+    //*************************************************************
+
     /**
      * The “font-family” SvgParameter element gives the family name of a font to use.
      * Allowed values are system-dependent. Any number of font-family SvgParameter
      * elements may be given and they are assumed to be in preferred order.
-     * 
+     *
      * @return live list of font family
      */
     @XmlParameter("font-familly")
@@ -52,53 +52,23 @@ public interface Font {
     Expression getStyle();
 
     /**
-     * Sets the style of the font.  Allowed values are
-     * "normal", "italic", and "oblique".  
-     * If null, the default is "normal".
-     * See {@link #getStyle} for details.
-     * 
-     * @param expression 
-     */
-    @XmlParameter("font-style")
-    void setStyle(Expression expression);
-
-    /**
      * The “font-weight” SvgParameter element gives the amount of weight or boldness to use
      * for a font. Allowed values are “normal” and “bold”.
      * If null, the default is "normal".
-     * 
+     *
      * @return Expression or null
      */
     @XmlParameter("font-weight")
     Expression getWeight();
 
     /**
-     * The “font-weight” SvgParameter element gives the amount of weight or boldness to use
-     * for a font. Allowed values are “normal” and “bold”.
-     * If null, the default is "normal".
-     * 
-     * See {@link #getWeight} for details.
-     * @param expression 
-     */
-    @XmlParameter("font-weight")
-    void setWeight(Expression expression);
-
-    /**
      * The “font-size” SvgParameter element gives the size to use for the font in pixels. The
      * default is defined to be 10 pixels, though various systems may have restrictions on what
      * sizes are available.
-     * 
+     *
      * @return Expression or null
      */
     @XmlParameter("font-size")
     Expression getSize();
 
-    /**
-     * Expression that indicates the pixel size of the font.
-     * See {@link #getSize} for details.
-     * 
-     * @param expression 
-     */
-    @XmlParameter("font-size")
-    void setSize(Expression expression);
 }
