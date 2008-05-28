@@ -32,7 +32,7 @@ import org.opengis.annotation.XmlParameter;
  */
 @XmlElement("Stroke")
 public interface Stroke {
-    
+
     /**
      * If non-null, indicates that line should be drawn by tiling the (thin) area of the line with
      * the given graphic. Between {@code getGraphicFill()} and {@link #getGraphicStroke()}, only one
@@ -42,14 +42,6 @@ public interface Stroke {
      */
     @XmlElement("GraphicFill")
     GraphicFill getGraphicFill();
-
-    /**
-     * Sets the line that should be drawn by tiling the (thin) area of the line with the given graphic.
-     * See {@link #getGraphicFill} for details.
-     * @param graphicFill 
-     */
-    @XmlElement("GraphicFill")
-    void setGraphicFill(GraphicFill graphicFill);
 
     /**
      * If non-null, indicates that lines should be drawn by repeatedly plotting the given graphic
@@ -62,19 +54,10 @@ public interface Stroke {
     @XmlElement("GraphicStroke")
     GraphicStroke getGraphicStroke();
 
-    /**
-     * Sets the lines that should be drawn by repeatedly plotting the given graphic along the path
-     * of the lines, rotating it according to the orientation of the line.
-     * See {@link #getGraphicStroke} for details.
-     * @param graphicStroke 
-     */
-    @XmlElement("GraphicStroke")
-    void setGraphicStroke(GraphicStroke graphicStroke);
-
     //*************************************************************
     // SVG PARAMETERS
-    //*************************************************************    
-    
+    //*************************************************************
+
     /**
      * Indicates the color of the line if it is to be solid-color filled.  The format of color
      * values is {@code "#rrggbb"} where {@code rr}, {@code gg}, and {@code bb}, are red, green,
@@ -83,16 +66,8 @@ public interface Stroke {
      * If null, the default color is {@code "#000000"}, black.
      * @return Expression
      */
-    @XmlParameter("stroke")  
+    @XmlParameter("stroke")
     Expression getColor();
-
-    /**
-     * Sets the color of the line if it is to be solid-color filled.
-     * See {@link #getColor} for details.
-     * @param expression 
-     */
-    @XmlParameter("stroke")  
-    void setColor(Expression expression);
 
     /**
      * Indicates the level of translucency as a floating point number whose value is between 0.0
@@ -104,14 +79,6 @@ public interface Stroke {
     Expression getOpacity();
 
     /**
-     * Sets the level of translucency as a floating point number whose value is between 0.0 and 1.0 (inclusive).
-     * See {@link #getOpacity} for details.
-     * @param expression 
-     */
-    @XmlParameter("stroke-opacity")
-    void setOpacity(Expression expression);
-
-    /**
      * Gives the absolute width in uoms of the line stroke as a floating point number.
      * Fractional numbers are allowed (with system-dependent interpretation), but negative
      * numbers are not.  If null, the default value is 1.0.
@@ -119,14 +86,6 @@ public interface Stroke {
      */
     @XmlParameter("stroke-width")
     Expression getWidth();
-
-    /**
-     * Sets the absolute width in uoms of the line stroke as a floating point number.
-     * See {@link #getWidth} for details.
-     * @param expression 
-     */
-    @XmlParameter("stroke-width")
-    void setWidth(Expression expression);
 
     /**
      * Indicates how the various segments of a (thick) line string should be joined.
@@ -138,15 +97,6 @@ public interface Stroke {
     Expression getLineJoin();
 
     /**
-     * Sets how the various segments of a (thick) line string should be joined.
-     * Valid values are "miter", "round", and "bevel".
-     * See {@link #getLineJoin} for details.
-     * @param expression 
-     */
-    @XmlParameter("stroke-linejoin")
-    void setLineJoin(Expression expression);
-
-    /**
      * Indicates how the beginning and ending segments of a line string will be terminated.
      * Valid values are "butt", "round", and "square".  If null, the default value is system
      * dependent.
@@ -154,15 +104,6 @@ public interface Stroke {
      */
     @XmlParameter("stroke-linecap")
     Expression getLineCap();
-
-    /**
-     * Sets how the beginning and ending segments of a line string will be terminated.
-     * Valid values are "butt", "round", and "square".
-     * See {@link #getLineCap} for details.
-     * @param expression 
-     */
-    @XmlParameter("stroke-linecap")
-    void setLineCap(Expression expression);
 
     /**
      * If present, indicates the dash pattern as a space-separated sequence of floating point numbers.
@@ -177,14 +118,6 @@ public interface Stroke {
     Expression getDashArray();
 
     /**
-     * Set the dash pattern as a space-separated sequence of floating point numbers.
-     * See {@link #getDashArray} for details.
-     * @param expression 
-     */
-    @XmlParameter("stroke-dasharray")
-    void setDashArray(Expression expression);
-
-    /**
      * Indicates the distance offset into the dash array to begin drawing.
      * If null, the default value is zero.
      * @return expression
@@ -192,11 +125,4 @@ public interface Stroke {
     @XmlParameter("stroke-dashoffset")
     Expression getDashOffset();
 
-    /**
-     * Sets the distance offset into the dash array to begin drawing.
-     * See {@link #getDashOffset} for details.
-     * @param expression 
-     */
-    @XmlParameter("stroke-dashoffset")
-    void setDashOffset(Expression expression);
 }

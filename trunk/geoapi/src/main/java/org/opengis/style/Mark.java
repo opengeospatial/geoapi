@@ -25,7 +25,7 @@ import org.opengis.annotation.XmlElement;
  */
 @XmlElement("Mark")
 public interface Mark extends GraphicSymbol {
-    
+
     /**
      * Returns the expression whose value will indicate the symbol to draw.
      * The WellKnownName element gives the well-known name of the shape of the mark.
@@ -33,45 +33,29 @@ public interface Mark extends GraphicSymbol {
      * though map servers may draw a different symbol instead if they don't have a shape for all
      * of these. The default WellKnownName is “square”. Renderings of these marks may be
      * made solid or hollow depending on Fill and Stroke elements.
-     * 
+     *
      * if the WellKnowname is null, check the ExternalMark before using the default square
      * symbol.
-     * 
+     *
      * Both WellKnowName and ExternalMark canot be set, but both can be null.
      * If none are set then the default square symbol is used.
-     * 
+     *
      * @return Expression or null
      */
     @XmlElement("WellKnownName")
     Expression getWellKnownName();
 
     /**
-     * Sets the expression whose value will indicate the symbol to draw.
-     * See {@link #getWellKnownName} for details.
-     * @param name 
-     */
-    @XmlElement("WellKnownName")
-    void setWellKnownName(Expression name);
-    
-    /**
      * The alternative to a WellKnownName is an external mark format.
      * See {@link ExternalMark} for details.
-     * 
+     *
      * Both WellKnowName and ExternalMark canot be set, but both can be null.
      * If none are set then the default square symbol is used.
-     * 
+     *
      * @return ExternalMark or null
      */
     ExternalMark getExternalMark();
-    
-    /**
-     * Set the externalMark.
-     * See {@link #getExternalMark} for details.
-     * 
-     * @param mark 
-     */
-    void setExternalMark(ExternalMark mark);
-    
+
     /**
      * Returns the object that indicates how the mark should be filled.
      * Null means no fill.
@@ -81,28 +65,12 @@ public interface Mark extends GraphicSymbol {
     Fill getFill();
 
     /**
-     * Sets the object that indicates how the mark should be filled.
-     * See {@link #getFill} for details.
-     * @param fill 
-     */
-    @XmlElement("Fill")
-    void setFill(Fill fill);
-
-    /**
      * Returns the object that indicates how the edges of the mark will be
      * drawn.  Null means that the edges will not be drawn at all.
-     * 
+     *
      * @return stroke or null
      */
     @XmlElement("Stroke")
     Stroke getStroke();
 
-    /**
-     * Sets the object that indicates how the edges of the mark will be drawn.
-     * See {@link #getStroke} for details.
-     * @param stroke 
-     */
-    @XmlElement("Stroke")
-    void setStroke(Stroke stroke);
-    
 }

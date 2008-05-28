@@ -36,17 +36,11 @@ import org.opengis.filter.expression.Function;
  */
 @XmlElement("ColorMap")
 public interface ColorMap {
-    
+
     /**
-     * 
+     *
      * @return Interpolate or Categorize function
      */
     Function getFunction();
 
-    /**
-     * 
-     * @param function : Interpolate or Categorize function
-     */
-    void setFunction(Function function);
-    
 }

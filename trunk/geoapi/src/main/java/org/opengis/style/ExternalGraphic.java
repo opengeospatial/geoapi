@@ -26,60 +26,34 @@ import org.opengis.style.function.Interpolate;
  */
 @XmlElement("ExternalGraphic")
 public interface ExternalGraphic extends GraphicSymbol {
-    
+
     /**
      * Returns a OnlineResource to a file (perhaps a local file) that contains an image.
      * This can be null if the image is already loaded locally and the
      * {@link #getInlineContent InlineContent} property is set.
-     * 
+     *
      * @return OnlineResource
      */
     @XmlElement("OnlineResource")
     OnlineResource getOnlineResource();
 
     /**
-     * Sets the OnlineResource to a file (perhaps a local file) that contains an image.
-     * See {@link #getOnlineResource} for details.
-     * 
-     * @param resource 
-     */
-    @XmlElement("OnlineResource")
-    void setOnlineResource(OnlineResource resource);
-
-    /**
      * Returns the InlineContent that comprise the image.  This overrides the
      * {@link #getOnlineResource OnlineResource} property, if it is set.
-     * 
-     * @return 
+     *
+     * @return
      */
     @XmlElement("InlineContent")
     InlineContent getInlineContent();
 
     /**
-     * Sets the InlineContent that comprise the image.
-     * See {@link #getInlineContent} for details.
-     * @param content 
-     */
-    @XmlElement("InlineContent")
-    void setInlineContent(InlineContent content);
-
-    /**
      * Returns the mime type of the onlineResource/InlineContent
-     * 
+     *
      * @return mime type
      */
     @XmlElement("Format")
     String getFormat();
-    
-    /**
-     * Sets the mime type of the onlineResource/InlineContent
-     * See {@link #getFormat} for details.
-     * 
-     * @param format
-     */
-    @XmlElement("Format")
-    void setFormat(String format);
-    
+
     /**
      * The ColorReplacement element, which may occur multiple times, allows to replace a
      * color in the ExternalGraphic, the color specified in the OriginalColor sub-element, by
@@ -87,5 +61,5 @@ public interface ExternalGraphic extends GraphicSymbol {
      */
     @XmlElement("ColorReplacement")
     Collection<ColorReplacement> getColorReplacements();
-    
+
 }

@@ -25,7 +25,7 @@ import org.opengis.filter.expression.Expression;
  */
 @XmlElement("AnchorPoint")
 public interface AnchorPoint {
-    
+
     /**
      * get the x coordinate of the anchor point
      *
@@ -35,27 +35,11 @@ public interface AnchorPoint {
     Expression getAnchorPointX();
 
     /**
-     * set the X coordinate for the anchor point
-     *
-     * @param x an expression which represents the X coordinate
-     */
-    @XmlElement("AnchorPointX")
-    void setAnchorPointX(Expression x);
-
-    /**
      * get the y coordinate of the anchor point
      *
      * @return the expression which represents the Y coordinate
      */
     @XmlElement("AnchorPointY")
     Expression getAnchorPointY();
-
-    /**
-     * set the Y coordinate for the anchor point
-     *
-     * @param y an expression which represents the Y coordinate
-     */
-    @XmlElement("AnchorPointY")
-    void setAnchorPointY(Expression y);
 
 }

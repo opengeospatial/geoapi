@@ -15,8 +15,8 @@ import org.opengis.annotation.XmlElement;
 
 /**
  * Interpolation method used by the Interpolate function.
- * 
- * 
+ *
+ *
  * @version <A HREF="http://www.opengeospatial.org/standards/symbol">Symbology Encoding Implementation Specification 1.1.0</A>
  * @author Open Geospatial Consortium
  * @author Johann Sorel (Geomatys)

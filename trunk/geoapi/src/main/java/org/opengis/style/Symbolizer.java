@@ -19,7 +19,7 @@ import org.opengis.annotation.XmlElement;
  * <p>
  * you can use static geometry if needed, see {@link #getGeometryAttribut}
  * </p>
- * 
+ *
  * <b>Particular cases if the geometry is not the defined type of the symbolizer</b>
  * <p>
  * Geometry types other than inherently linear types can also be used. If a point geometry is
@@ -29,7 +29,7 @@ import org.opengis.annotation.XmlElement;
  * (with no end caps). If a raster geometry is used, its coverage-area outline is used for the
  * line, rendered with no end caps.
  * </p>
- *  
+ *
  * @version <A HREF="http://www.opengeospatial.org/standards/symbol">Symbology Encoding Implementation Specification 1.1.0</A>
  * @author Open Geospatial Consortium
  * @author Johann Sorel (Geomatys)
@@ -37,12 +37,12 @@ import org.opengis.annotation.XmlElement;
  * @since GeoAPI 2.2
  */
 public interface Symbolizer {
-    
+
     /**
      * Returns a string of containing the measure unit name.
      * This parameter is herited from GML.
      * Renderers shall use the unit to correctly render symbols.
-     * 
+     *
      * recommended uom definitions are :
      * <p>
      * <ul>
@@ -51,25 +51,17 @@ public interface Symbolizer {
      *     <li>{@code pixel}</li>
      * </ul>
      * <p>
-     *  
+     *
      * @return String name for the measure unit to use,
      * can be null. If the unit is null than we shall use a the pixel unit
      */
     @XmlElement("uom")
     String getUnitOfMeasure();
-    
-    /**
-     * Set the measure unit
-     * See {@link #getUnitOfMeasure}
-     * @param unitName : measure unit name 
-     */
-    @XmlElement("uom")
-    void setUnitOfMeasure(String unitName);
-    
+
     /**
      * Returns the name of the geometry feature attribute to use for drawing.
      * May return null if this symbol is to use the default geometry attribute,
-     * whatever it may be. 
+     * whatever it may be.
      * <p>                                                                               The content
      * of the element gives the property name in XPath syntax. In principle, a fixed geometry
      * could be defined using GML or operators could be defined for computing the geometry
@@ -82,15 +74,6 @@ public interface Symbolizer {
     String getGeometryAttribute();
 
     /**
-     * Sets the name of the geometry feature attribute that will be used for
-     * drawing this symbol.
-     * See {@link #getGeometryAttribute} for details.
-     * @param name : geometry attribut name
-     */
-    @XmlElement("Geometry")
-    void setGeometryAttribute(String name);
-
-    /**
      * Returns a name for this symbolizer.
      * This can be any string that uniquely identifies this style within a given
      * canvas.  It is not meant to be human-friendly.  (The "title" property is
@@ -101,28 +84,12 @@ public interface Symbolizer {
     String getName();
 
     /**
-     * Sets the name for this symbolizer.
-     * See {@link #getName} for details.
-     * @param name , new name for the style
-     */
-    @XmlElement("Name")
-    void setName( String name);
-
-    /**
      * Returns the description of this symbolizer.
-     * 
+     *
      * @return Description with usual informations used
      * for user interfaces.
      */
     @XmlElement("Description")
     Description getDescription();
-
-    /**
-     * Sets the description of this symbolizer.
-     * See {@link #getDescription} for details.
-     * @param description : the new description
-     */
-    @XmlElement("Description")
-    void setDescription(Description description);
 
 }

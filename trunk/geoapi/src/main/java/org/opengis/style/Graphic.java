@@ -30,21 +30,21 @@ import org.opengis.annotation.XmlParameter;
  */
 @XmlElement("Graphic")
 public interface Graphic {
-    
+
     /**
      * Returns the list of external image files or marks that comprise this
-     * graphic.  The returned list is "live" and can be modified by the user.
+     * graphic.
      * All elements of the list must be instances of either {@link Mark}
      * or {@link ExternalGraphic}.
-     * @return 
+     * @return
      */
     @XmlElement("ExternalGraphic,Mark")
     List<GraphicSymbol> getExternalGraphicOrMark();
-    
+
     //*************************************************************
     // SVG PARAMETERS
-    //************************************************************* 
-    
+    //*************************************************************
+
     /**
      * Indicates the level of translucency as a floating point number whose value is between 0.0
      * and 1.0 (inclusive).  A value of zero means completely transparent.  A value of 1.0 means
@@ -53,14 +53,6 @@ public interface Graphic {
      */
     @XmlParameter("stroke-opacity")
     Expression getOpacity();
-
-    /**
-     * Sets the level of translucency as a floating point number whose value is between 0.0 and 1.0 (inclusive).
-     * See {@link #getOpacity} for details.
-     * @param expression 
-     */
-    @XmlParameter("stroke-opacity")
-    void setOpacity(Expression expression);
 
     /**
      * The Size element gives the absolute size of the graphic in uoms encoded as a floating-
@@ -74,26 +66,16 @@ public interface Graphic {
      * for image graphics to be on the order of 200 pixels in linear size and to be scaled to lower
      * sizes. On systems that can resample these graphic images “smoothly,” the results will be
      * visually pleasing.
-     * 
-     * @return Expression 
+     *
+     * @return Expression
      */
     @XmlParameter("Size")
     Expression getSize();
 
     /**
-     * Sets the expression that will be evaluated to determine the height
-     * of the image when it is drawn on the screen.
-     * See {@link #getSize} for details.
-     * 
-     * @param sizeExpression : new size expression
-     */
-    @XmlParameter("Size")
-    void setSize(Expression sizeExpression);
-
-    /**
      * Returns the expression that will be used to calculate the rotation of the
-     * graphic when it is drawn. 
-     * 
+     * graphic when it is drawn.
+     *
      * The Rotation element gives the rotation of a graphic in the clockwise direction about its
      * center point in decimal degrees, encoded as a floating-point number. Negative values
      * mean counter-clockwise rotation. The default value is 0.0 (no rotation). Note that there is
@@ -101,23 +83,12 @@ public interface Graphic {
      * has no inherent direction. Also, the point within the graphic about which it is rotated is
      * format dependent. If a format does not include an inherent rotation point, then the point
      * of rotation should be the centroid.
-     * 
+     *
      * @return Expression
      */
     @XmlParameter("Rotation")
     Expression getRotation();
 
-    /**
-     * Sets the expression that will be used to calculate the rotation of the
-     * graphic when it is drawn.
-     * 
-     * See {@link #getRotation} for details.
-     * 
-     * @param rotationExpression : new rotation expression
-     */
-    @XmlParameter("Rotation")
-    void setRotation(Expression rotationExpression);
-    
     /**
      * The AnchorPoint element of a PointSymbolizer gives the location inside of a Graphic
      * (or label - see 11.4.4) to use for anchoring the graphic to the main-geometry point. The
@@ -128,27 +99,18 @@ public interface Graphic {
      * point in this space. The default point is X=0.5, Y=0.5, which is at the middle height and
      * middle length of the graphic/label text. A system may choose different anchor points to
      * de-conflict graphics/labels.
-     * 
+     *
      * @return AnchorPoint , if null should use a default point X=0.5 Y=0.5
      */
     @XmlParameter("AnchorPoint")
     AnchorPoint getAnchorPoint();
-    
-    /**
-     * Set the new AnchorPoint.
-     * See {@link #getAnchorPoint} for details.
-     *  
-     * @param anchor
-     */
-    @XmlParameter("AnchorPoint")
-    void setAnchorPoint(AnchorPoint anchor);
-        
+
     /**
      * The Displacement gives the X and Y displacements from the “hot-spot” point. This
      * element may be used to avoid over-plotting of multiple graphic symbols used as part of
      * the same point symbol. The displacements are in units of measure above and to the right
      * of the point. The default displacement is X=0, Y=0.
-     * 
+     *
      * If Displacement is used in conjunction with Size and/or Rotation then the graphic
      * symbol shall be scaled and/or rotated before it is displaced.s
      *
@@ -156,14 +118,5 @@ public interface Graphic {
      */
     @XmlParameter("Displacement")
     Displacement getDisplacement();
-    
-    /**
-     * Set the new displacement
-     * See {@link #getDisplacement} for details.
-     * 
-     * @param disp : new displacement
-     */
-    @XmlParameter("Displacement")
-    void setDisplacement(Displacement disp);    
-    
+
 }
