@@ -37,13 +37,6 @@ public interface Description {
     @XmlElement("Title")
     InternationalString getTitle();
 
-    /**
-     * Sets the human readable title of this style.
-     * See {@link #getTitle} for details.
-     * @param title : new human readable title of this style.
-     */
-    @XmlElement("Title")
-    void setTitle(InternationalString title);
 
     /**
      * Returns a human readable, prose description of this style.
@@ -52,14 +45,6 @@ public interface Description {
      */
     @XmlElement("Abstract")
     InternationalString getAbstract();
-
-    /**
-     * Sets the human readable, prose description of this style.
-     * See {@link #getAbstract} for details.
-     * @param abs : the new human readable, prose description of this style.
-     */
-    @XmlElement("Abstract")
-    void setAbstract(InternationalString abs);
     
 }
 
