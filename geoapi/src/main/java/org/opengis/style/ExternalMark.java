@@ -10,9 +10,8 @@
  *************************************************************************************************/
 package org.opengis.style;
 
+import javax.swing.Icon;
 import org.opengis.annotation.XmlElement;
-
-
 
 /**
  * The alternative to a WellKnownName is an external mark format. The MarkIndex
@@ -47,7 +46,7 @@ public interface ExternalMark {
      * @return InlineContent or null
      */
     @XmlElement("InlineContent")
-    InlineContent getInlineContent();
+    Icon getInlineContent();
 
     /**
      * Returns the mime type of the onlineResource/InlineContent

@@ -10,8 +10,13 @@
  *************************************************************************************************/
 package org.opengis.style;
 
+import java.util.Collection;
 import java.util.List;
+import org.opengis.annotation.UML;
 import org.opengis.annotation.XmlElement;
+
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
 
 /**
  * Represents a style that applies to features or coverage.
@@ -23,6 +28,7 @@ import org.opengis.annotation.XmlElement;
  * @since GeoAPI 2.2
  */
 @XmlElement("FeatureTypeStyle")
+@UML(identifier="PF_FeaturePortrayal", specification=ISO_19117)
 public interface FeatureTypeStyle {
 
     /**
@@ -54,17 +60,41 @@ public interface FeatureTypeStyle {
      * for user interfaces.
      */
     @XmlElement("Description")
+    @UML(identifier="description", obligation=OPTIONAL, specification=ISO_19117)
     Description getDescription();
 
     /**
-     * Returns the name of the feature type that this style is meant to act
-     * upon.  This may return null if a style can operate on many different
-     * feature types.
+     * Returns a collection of Object identifying features object.
+     * 
+     * <p>
+     * ISO 19117 extends FeatureTypeStyle be providing this method.
+     * This method enable the possibility to use a feature type style
+     * on a given list of features only, which is not possible in OGC SE.
+     * </p>
+     * 
+     * @return Collection<String>
+     */
+    @UML(identifier="definedForInst", obligation=OPTIONAL, specification=ISO_19117)
+    Collection<Object> getFeatureInstanceID();
+    
+    /**
+     * <p>
+     * Returns the names of the feature type that this style is meant to act
+     * upon.  
+     * </p>
+     * <p>
+     * In OGC Symbology Encoding define this method to return a single
+     * String, and ISO 19117 use a Collection of String. We've choosen
+     * ISO because it is more logic that a featureTypeStyle can be applied
+     * to multiple featuretypes and not limited to a single one. 
+     * </p>
+     * 
      * @return the name of the feature type that this style is meant
      * to act upon.
      */
     @XmlElement("FeatureTypeName")
-    String getFeatureTypeName();
+    @UML(identifier="definedFor", obligation=OPTIONAL, specification=ISO_19117)
+    Collection<String> getFeatureTypeName();
 
     /**
      * Returns a string that identifies the more general "type" of geometry
@@ -89,20 +119,10 @@ public interface FeatureTypeStyle {
     /**
      * Returns the list of rules contained by this style.
      *
-     * @return the list of rules.
-     * if this method return null than you must use the getResources method,
-     * One of getRules or getResources must return a list, even an empty one.
+     * @return the list of rules. can not be null but can be empty.
      */
     @XmlElement("Rule")
+    @UML(identifier="portrayalRule", obligation=MANDATORY, specification=ISO_19117)
     List<Rule> getRules();
-
-    /**
-     * Returns the list of online resources.
-     *
-     * @return the list of online resources.
-     * if this method return null than you must use the getRules method,
-     * One of getRules or getResources must return a list, even an empty one.
-     */
-    @XmlElement("OnlineResource")
-    List<OnlineResource> getResources();
+    
 }
