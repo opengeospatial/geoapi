@@ -46,6 +46,8 @@ public interface ReferenceIdentifier extends Identifier {
 
     /**
      * Name or identifier of the person or organization responsible for namespace.
+     *
+     * @return The identifier code space.
      */
     @UML(identifier="codeSpace", obligation=OPTIONAL, specification=ISO_19115)
     String getCodeSpace();
@@ -54,6 +56,9 @@ public interface ReferenceIdentifier extends Identifier {
      * Version identifier for the namespace, as specified by the code authority.
      * When appropriate, the edition is identified by the effective date, coded
      * using ISO 8601 date format.
+     *
+     * @return The version for the namespace (for example the version of the
+     *         underlying EPSG database).
      */
     @UML(identifier="version", obligation=OPTIONAL, specification=ISO_19115)
     String getVersion();

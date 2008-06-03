@@ -11,8 +11,6 @@
 package org.opengis.referencing.crs;
 
 import org.opengis.annotation.UML;
-
-import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
 
 
@@ -21,6 +19,11 @@ import static org.opengis.annotation.Specification.*;
  * coordinate reference system but is not a projected coordinate reference system. This
  * category includes coordinate reference systems derived from a {@linkplain ProjectedCRS
  * projected coordinate reference system}.
+ *
+ * @departure
+ *   ISO 19111 defines a {@code DerivedCRSType} code list. The later is omitted in GeoAPI since
+ *   Java expressions like {@code (baseCRS instanceof FooCRS)} provides the same capability
+ *   with more flexibility.
  *
  * @version <A HREF="http://portal.opengeospatial.org/files/?artifact_id=6716">Abstract specification 2.0</A>
  * @author ISO/DIS 19111
