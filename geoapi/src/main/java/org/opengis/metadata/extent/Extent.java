@@ -35,6 +35,8 @@ import static org.opengis.annotation.Specification.*;
 public interface Extent {
     /**
      * Returns the spatial and temporal extent for the referring object.
+     *
+     * @return The spatial and temporal extent, or {@code null} in none.
      */
     @UML(identifier="description", obligation=CONDITIONAL, specification=ISO_19115)
     InternationalString getDescription();
