@@ -103,7 +103,9 @@ public class Mark extends SimpleEnumerationType<Mark> {
     //*************************************************************************
 
     /**
-     * Returns the list of <code>Mark</code>s.
+     * Returns the list of {@code Mark}s.
+     *
+     * @return The list of codes declared in the current JVM.
      */
     public static Mark[] values() {
         synchronized (VALUES) {

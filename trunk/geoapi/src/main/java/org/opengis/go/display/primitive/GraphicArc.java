@@ -353,6 +353,8 @@ public interface GraphicArc extends Graphic {
 
         /**
          * Returns the list of <code>ArcClosure</code>s.
+         *
+         * @return The list of codes declared in the current JVM.
          */
         public static ArcClosure[] values() {
             synchronized (VALUES) {

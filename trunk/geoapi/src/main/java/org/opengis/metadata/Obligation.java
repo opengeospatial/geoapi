@@ -68,6 +68,8 @@ public final class Obligation extends CodeList<Obligation> {
 
     /**
      * Returns the list of {@code Obligation}s.
+     *
+     * @return The list of codes declared in the current JVM.
      */
     public static Obligation[] values() {
         synchronized (VALUES) {
@@ -85,6 +87,9 @@ public final class Obligation extends CodeList<Obligation> {
     /**
      * Returns the obligation that matches the given string, or returns a
      * new one if none match it.
+     *
+     * @param code The name of the code to fetch or to create.
+     * @return A code matching the given name.
      */
     public static Obligation valueOf(String code) {
         return valueOf(Obligation.class, code);

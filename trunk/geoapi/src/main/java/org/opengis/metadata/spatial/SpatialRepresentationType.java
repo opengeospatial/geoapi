@@ -91,6 +91,8 @@ public final class SpatialRepresentationType extends CodeList<SpatialRepresentat
 
     /**
      * Returns the list of {@code SpatialRepresentationType}s.
+     *
+     * @return The list of codes declared in the current JVM.
      */
     public static SpatialRepresentationType[] values() {
         synchronized (VALUES) {
@@ -108,6 +110,9 @@ public final class SpatialRepresentationType extends CodeList<SpatialRepresentat
     /**
      * Returns the spatial representation type that matches the given string, or returns a
      * new one if none match it.
+     *
+     * @param code The name of the code to fetch or to create.
+     * @return A code matching the given name.
      */
     public static SpatialRepresentationType valueOf(String code) {
         return valueOf(SpatialRepresentationType.class, code);

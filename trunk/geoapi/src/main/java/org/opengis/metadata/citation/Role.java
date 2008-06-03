@@ -122,6 +122,8 @@ public final class Role extends CodeList<Role> {
 
     /**
      * Returns the list of {@code Role}s.
+     *
+     * @return The list of codes declared in the current JVM.
      */
     public static Role[] values() {
         synchronized (VALUES) {
@@ -139,6 +141,9 @@ public final class Role extends CodeList<Role> {
     /**
      * Returns the role that matches the given string, or returns a
      * new one if none match it.
+     *
+     * @param code The name of the code to fetch or to create.
+     * @return A code matching the given name.
      */
     public static Role valueOf(String code) {
         return valueOf(Role.class, code);

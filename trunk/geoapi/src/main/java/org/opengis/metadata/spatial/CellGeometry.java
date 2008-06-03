@@ -63,6 +63,8 @@ public final class CellGeometry extends CodeList<CellGeometry> {
 
     /**
      * Returns the list of {@code CellGeometry}s.
+     *
+     * @return The list of codes declared in the current JVM.
      */
     public static CellGeometry[] values() {
         synchronized (VALUES) {
@@ -80,6 +82,9 @@ public final class CellGeometry extends CodeList<CellGeometry> {
     /**
      * Returns the CellGeometry that matches the given string, or returns a
      * new one if none match it.
+     *
+     * @param code The name of the code to fetch or to create.
+     * @return A code matching the given name.
      */
     public static CellGeometry valueOf(String code) {
         return valueOf(CellGeometry.class, code);

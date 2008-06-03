@@ -59,6 +59,8 @@ public final class VectorPathType extends PathType {
 
     /**
      * Returns the list of {@code VectorPathType}s.
+     *
+     * @return The list of codes declared in the current JVM.
      */
     public static VectorPathType[] values() {
         synchronized (VALUES) {

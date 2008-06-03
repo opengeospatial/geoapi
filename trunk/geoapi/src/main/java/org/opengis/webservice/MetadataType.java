@@ -84,6 +84,8 @@ public final class MetadataType extends CodeList<MetadataType> {
 
     /**
      * Returns the list of <code>MetadataType</code>s.
+     *
+     * @return The list of codes declared in the current JVM.
      */
     public static MetadataType[] values() {
         synchronized (VALUES) {
@@ -101,6 +103,9 @@ public final class MetadataType extends CodeList<MetadataType> {
     /**
      * Returns the metadata type that matches the given string, or returns a
      * new one if none match it.
+     *
+     * @param code The name of the code to fetch or to create.
+     * @return A code matching the given name.
      */
     public static MetadataType valueOf(String code) {
         return valueOf(MetadataType.class, code);

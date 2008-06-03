@@ -89,6 +89,8 @@ public final class PrecisionType extends CodeList<PrecisionType> {
 
     /**
      * Returns the list of {@code PrecisionModelType}s.
+     *
+     * @return The list of codes declared in the current JVM.
      */
     public static PrecisionType[] values() {
         synchronized (VALUES) {
@@ -106,6 +108,9 @@ public final class PrecisionType extends CodeList<PrecisionType> {
     /**
      * Returns the precision type that matches the given string, or returns a
      * new one if none match it.
+     *
+     * @param code The name of the code to fetch or to create.
+     * @return A code matching the given name.
      */
     public static PrecisionType valueOf(String code) {
         return valueOf(PrecisionType.class, code);

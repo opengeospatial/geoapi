@@ -98,7 +98,9 @@ public class ArrowStyle extends SimpleEnumerationType<ArrowStyle> {
     //*************************************************************************
 
     /**
-     * Returns the list of <code>ArrowStyle</code>s.
+     * Returns the list of {@code ArrowStyle}s.
+     *
+     * @return The list of codes declared in the current JVM.
      */
     public static ArrowStyle[] values() {
         synchronized (VALUES) {

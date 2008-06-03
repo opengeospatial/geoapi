@@ -72,6 +72,8 @@ public final class UnprojectedPathType extends PathType {
 
     /**
      * Returns the list of {@code UnprojectedPathType}s.
+     *
+     * @return The list of codes declared in the current JVM.
      */
     public static UnprojectedPathType[] values() {
         synchronized (VALUES) {

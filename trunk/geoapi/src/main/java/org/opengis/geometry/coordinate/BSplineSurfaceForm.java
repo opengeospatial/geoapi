@@ -88,6 +88,8 @@ public class BSplineSurfaceForm extends CodeList<BSplineSurfaceForm> {
 
     /**
      * Returns the list of {@code BSplineSurfaceForm}s.
+     *
+     * @return The list of codes declared in the current JVM.
      */
     public static BSplineSurfaceForm[] values() {
         synchronized (VALUES) {
@@ -105,6 +107,9 @@ public class BSplineSurfaceForm extends CodeList<BSplineSurfaceForm> {
     /**
      * Returns the B-spline surface form that matches the given string, or returns a
      * new one if none match it.
+     *
+     * @param code The name of the code to fetch or to create.
+     * @return A code matching the given name.
      */
     public static BSplineSurfaceForm valueOf(String code) {
         return valueOf(BSplineSurfaceForm.class, code);

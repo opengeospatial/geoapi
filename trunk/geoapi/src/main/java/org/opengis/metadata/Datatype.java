@@ -144,6 +144,8 @@ public final class Datatype extends CodeList<Datatype> {
 
     /**
      * Returns the list of {@code Datatype}s.
+     *
+     * @return The list of codes declared in the current JVM.
      */
     public static Datatype[] values() {
         synchronized (VALUES) {
@@ -161,6 +163,9 @@ public final class Datatype extends CodeList<Datatype> {
     /**
      * Returns the datatype that matches the given string, or returns a
      * new one if none match it.
+     *
+     * @param code The name of the code to fetch or to create.
+     * @return A code matching the given name.
      */
     public static Datatype valueOf(String code) {
         return valueOf(Datatype.class, code);

@@ -72,6 +72,8 @@ public final class PixelInCell extends CodeList<PixelInCell> {
 
     /**
      * Returns the list of {@code PixelInCell}s.
+     *
+     * @return The list of codes declared in the current JVM.
      */
     public static PixelInCell[] values() {
         synchronized (VALUES) {
@@ -89,6 +91,9 @@ public final class PixelInCell extends CodeList<PixelInCell> {
     /**
      * Returns the pixel in cell that matches the given string, or returns a
      * new one if none match it.
+     *
+     * @param code The name of the code to fetch or to create.
+     * @return A code matching the given name.
      */
     public static PixelInCell valueOf(String code) {
         return valueOf(PixelInCell.class, code);

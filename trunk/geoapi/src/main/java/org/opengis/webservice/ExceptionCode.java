@@ -126,7 +126,9 @@ public final class ExceptionCode extends CodeList<ExceptionCode> {
     }
 
     /**
-     * Returns the list of <code>ExceptionCode</code>s.
+     * Returns the list of {@code ExceptionCode}s.
+     *
+     * @return The list of codes declared in the current JVM.
      */
     public static ExceptionCode[] values() {
         synchronized (VALUES) {
@@ -144,6 +146,9 @@ public final class ExceptionCode extends CodeList<ExceptionCode> {
     /**
      * Returns the exception code that matches the given string, or returns a
      * new one if none match it.
+     *
+     * @param code The name of the code to fetch or to create.
+     * @return A code matching the given name.
      */
     public static ExceptionCode valueOf(String code) {
         return valueOf(ExceptionCode.class, code);

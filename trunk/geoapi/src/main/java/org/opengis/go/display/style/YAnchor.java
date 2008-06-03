@@ -101,7 +101,9 @@ public class YAnchor extends SimpleEnumerationType<YAnchor> {
     //*************************************************************************
 
     /**
-     * Returns the list of <code>YAnchor</code>s.
+     * Returns the list of {@code YAnchor}s.
+     *
+     * @return The list of codes declared in the current JVM.
      */
     public static YAnchor[] values() {
         synchronized (VALUES) {

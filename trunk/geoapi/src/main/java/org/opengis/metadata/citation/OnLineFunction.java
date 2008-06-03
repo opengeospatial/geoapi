@@ -82,6 +82,8 @@ public final class OnLineFunction extends CodeList<OnLineFunction> {
 
     /**
      * Returns the list of {@code OnLineFunction}s.
+     *
+     * @return The list of codes declared in the current JVM.
      */
     public static OnLineFunction[] values() {
         synchronized (VALUES) {
@@ -99,6 +101,9 @@ public final class OnLineFunction extends CodeList<OnLineFunction> {
     /**
      * Returns the on line function that matches the given string, or returns a
      * new one if none match it.
+     *
+     * @param code The name of the code to fetch or to create.
+     * @return A code matching the given name.
      */
     public static OnLineFunction valueOf(String code) {
         return valueOf(OnLineFunction.class, code);

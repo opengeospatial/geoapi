@@ -104,7 +104,7 @@ public class CommonPointRule extends CodeList<CommonPointRule> {
     /**
      * Returns the list of {@code CommonPointRule}s.
      *
-     * @return All common point rules defined.
+     * @return The list of codes declared in the current JVM.
      */
     public static CommonPointRule[] values() {
         synchronized (VALUES) {
@@ -125,8 +125,8 @@ public class CommonPointRule extends CodeList<CommonPointRule> {
      * Returns the common point rule that matches the given string, or returns a
      * new one if none match it.
      *
-     * @param code The code name.
-     * @return The code value.
+     * @param code The name of the code to fetch or to create.
+     * @return A code matching the given name.
      */
     public static CommonPointRule valueOf(String code) {
         return valueOf(CommonPointRule.class, code);

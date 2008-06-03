@@ -81,6 +81,8 @@ public final class KeywordType extends CodeList<KeywordType> {
 
     /**
      * Returns the list of {@code KeywordType}s.
+     *
+     * @return The list of codes declared in the current JVM.
      */
     public static KeywordType[] values() {
         synchronized (VALUES) {
@@ -98,6 +100,9 @@ public final class KeywordType extends CodeList<KeywordType> {
     /**
      * Returns the KeywordType that matches the given string, or returns a
      * new one if none match it.
+     *
+     * @param code The name of the code to fetch or to create.
+     * @return A code matching the given name.
      */
     public static KeywordType valueOf(String code) {
         return valueOf(KeywordType.class, code);

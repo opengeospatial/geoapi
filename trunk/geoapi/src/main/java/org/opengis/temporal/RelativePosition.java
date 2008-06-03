@@ -69,6 +69,8 @@ public final class RelativePosition extends CodeList<RelativePosition> {
 
     /**
      * Returns the list of {@code RelativePosition}s.
+     *
+     * @return The list of codes declared in the current JVM.
      */
     public static RelativePosition[] values() {
         synchronized (VALUES) {
@@ -86,6 +88,9 @@ public final class RelativePosition extends CodeList<RelativePosition> {
     /**
      * Returns the relative position that matches the given string, or returns a
      * new one if none match it.
+     *
+     * @param code The name of the code to fetch or to create.
+     * @return A code matching the given name.
      */
     public static RelativePosition valueOf(String code) {
         return valueOf(RelativePosition.class, code);

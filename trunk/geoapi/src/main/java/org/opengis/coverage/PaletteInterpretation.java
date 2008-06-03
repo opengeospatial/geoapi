@@ -90,6 +90,8 @@ public final class PaletteInterpretation extends CodeList<PaletteInterpretation>
 
     /**
      * Returns the list of {@code PaletteInterpretation}s.
+     *
+     * @return The list of codes declared in the current JVM.
      */
     public static PaletteInterpretation[] values() {
         synchronized (VALUES) {
@@ -107,6 +109,9 @@ public final class PaletteInterpretation extends CodeList<PaletteInterpretation>
     /**
      * Returns the palette interpretation that matches the given string, or returns a
      * new one if none match it.
+     *
+     * @param code The name of the code to fetch or to create.
+     * @return A code matching the given name.
      */
     public static PaletteInterpretation valueOf(String code) {
         return valueOf(PaletteInterpretation.class, code);

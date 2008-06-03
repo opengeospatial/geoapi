@@ -70,6 +70,8 @@ public final class DateType extends CodeList<DateType> {
 
     /**
      * Returns the list of {@code DateType}s.
+     *
+     * @return The list of codes declared in the current JVM.
      */
     public static DateType[] values() {
         synchronized (VALUES) {
@@ -87,6 +89,9 @@ public final class DateType extends CodeList<DateType> {
     /**
      * Returns the date type that matches the given string, or returns a
      * new one if none match it.
+     *
+     * @param code The name of the code to fetch or to create.
+     * @return A code matching the given name.
      */
     public static DateType valueOf(String code) {
         return valueOf(DateType.class, code);
