@@ -127,6 +127,8 @@ public final class SurfaceInterpolation extends CodeList<SurfaceInterpolation> {
 
     /**
      * Returns the list of {@code SurfaceInterpolation}s.
+     *
+     * @return The list of codes declared in the current JVM.
      */
     public static SurfaceInterpolation[] values() {
         synchronized (VALUES) {
@@ -144,6 +146,9 @@ public final class SurfaceInterpolation extends CodeList<SurfaceInterpolation> {
     /**
      * Returns the surface interpolation that matches the given string, or returns a
      * new one if none match it.
+     *
+     * @param code The name of the code to fetch or to create.
+     * @return A code matching the given name.
      */
     public static SurfaceInterpolation valueOf(String code) {
         return valueOf(SurfaceInterpolation.class, code);

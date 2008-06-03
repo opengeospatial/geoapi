@@ -73,6 +73,8 @@ public final class RangeMeaning extends CodeList<RangeMeaning> {
 
     /**
      * Returns the list of {@code RangeMeaning}s.
+     *
+     * @return The list of codes declared in the current JVM.
      */
     public static RangeMeaning[] values() {
         synchronized (VALUES) {
@@ -90,6 +92,9 @@ public final class RangeMeaning extends CodeList<RangeMeaning> {
     /**
      * Returns the range meaning that matches the given string, or returns a
      * new one if none match it.
+     *
+     * @param code The name of the code to fetch or to create.
+     * @return A code matching the given name.
      */
     public static RangeMeaning valueOf(String code) {
         return valueOf(RangeMeaning.class, code);

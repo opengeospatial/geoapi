@@ -29,6 +29,8 @@ import org.opengis.annotation.UML;
  * automatically add the newly created {@code CodeList} element in the array to be
  * returned by {@code values()}.
  *
+ * @param <E> The type of this code list.
+ *
  * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 1.0
  */
@@ -104,8 +106,10 @@ public abstract class CodeList<E extends CodeList<E>> implements Comparable<E>, 
      * found, then a new instance is created using the constructor expecting a single {@link String}
      * argument.
      *
+     * @param <T> The type given at compile-time for {@code codeType}.
      * @param codeType The type of code list.
      * @param name The name of the code to obtain.
+     * @return A code matching the given name.
      */
     public static <T extends CodeList> T valueOf(final Class<T> codeType, String name) {
         if (name == null) {
@@ -142,6 +146,8 @@ public abstract class CodeList<E extends CodeList<E>> implements Comparable<E>, 
     /**
      * Returns the ordinal of this code constant. This is its position in its elements declaration,
      * where the initial constant is assigned an ordinal of zero.
+     *
+     * @return The position of this code constants in elements declaration.
      */
     public final int ordinal() {
         return ordinal;
@@ -149,6 +155,9 @@ public abstract class CodeList<E extends CodeList<E>> implements Comparable<E>, 
 
     /**
      * Returns the identifier declared in the {@link UML} annotation, or {@code null} if none.
+     * The UML identifier shall be the ISO or OGC name for this code constant.
+     *
+     * @return The ISO/OGC identifier for this code constant, or {@code null} if none.
      *
      * @since GeoAPI 2.2
      */
@@ -192,6 +201,8 @@ public abstract class CodeList<E extends CodeList<E>> implements Comparable<E>, 
 
     /**
      * Returns the name of this code list constant.
+     *
+     * @return The name of this code constant.
      */
     public final String name() {
         return name;
@@ -201,6 +212,9 @@ public abstract class CodeList<E extends CodeList<E>> implements Comparable<E>, 
      * Returns {@code true} if the given name matches the {@linkplain #name name},
      * {@linkplain #identifier identifier} or any other identification string of
      * this code list element. The comparison is case-insensitive.
+     *
+     * @param name The name to check.
+     * @return {@code true} if the given name matches the code name or identifier.
      *
      * @since GeoAPI 2.2
      */
@@ -216,7 +230,9 @@ public abstract class CodeList<E extends CodeList<E>> implements Comparable<E>, 
     }
 
     /**
-     * Returns the list of enumerations of the same kind than this enum.
+     * Returns the list of codes of the same kind than this code.
+     *
+     * @return The codes of the same kind than this code.
      */
     public abstract E[] family();
 
@@ -228,6 +244,9 @@ public abstract class CodeList<E extends CodeList<E>> implements Comparable<E>, 
      * Code list constants are only comparable to other code list constants of the
      * same type.  The natural order implemented by this method is the order in which
      * the constants are declared.
+     *
+     * @param other The code constant to compare with this code.
+     * @return -1 if the given code is less than this code, +1 if greater or 0 if equal.
      */
     public final int compareTo(final E other) {
         final Class<? extends CodeList> ct =  this.getClass();
@@ -242,6 +261,9 @@ public abstract class CodeList<E extends CodeList<E>> implements Comparable<E>, 
      * Compares the specified object with this code list for equality. This method compares only
      * {@linkplain #ordinal ordinal} values for consistency with the {@link #compareTo} method.
      * Ordinal values are unique for each code list element of the same class.
+     *
+     * @param object The object to compare with this code.
+     * @return {@code true} if the given object is equals to this code.
      *
      * @since GeoAPI 2.2
      */

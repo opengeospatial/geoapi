@@ -106,6 +106,8 @@ public final class TopologyLevel extends CodeList<TopologyLevel> {
 
     /**
      * Returns the list of {@code TopologyLevel}s.
+     *
+     * @return The list of codes declared in the current JVM.
      */
     public static TopologyLevel[] values() {
         synchronized (VALUES) {
@@ -123,6 +125,9 @@ public final class TopologyLevel extends CodeList<TopologyLevel> {
     /**
      * Returns the topology level that matches the given string, or returns a
      * new one if none match it.
+     *
+     * @param code The name of the code to fetch or to create.
+     * @return A code matching the given name.
      */
     public static TopologyLevel valueOf(String code) {
         return valueOf(TopologyLevel.class, code);

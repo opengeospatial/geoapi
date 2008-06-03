@@ -147,6 +147,8 @@ public final class CurveInterpolation extends CodeList<CurveInterpolation> {
 
     /**
      * Returns the list of {@code CurveInterpolation}s.
+     *
+     * @return The list of codes declared in the current JVM.
      */
     public static CurveInterpolation[] values() {
         synchronized (VALUES) {
@@ -164,6 +166,9 @@ public final class CurveInterpolation extends CodeList<CurveInterpolation> {
     /**
      * Returns the curve interpolation that matches the given string, or returns a
      * new one if none match it.
+     *
+     * @param code The name of the code to fetch or to create.
+     * @return A code matching the given name.
      */
     public static CurveInterpolation valueOf(String code) {
         return valueOf(CurveInterpolation.class, code);

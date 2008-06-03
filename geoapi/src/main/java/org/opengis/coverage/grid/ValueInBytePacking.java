@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.ArrayList;
 
 import org.opengis.util.CodeList;
-import org.opengis.coverage.SampleDimensionType; // For Javadoc
+import org.opengis.coverage.SampleDimensionType;
 import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Obligation.*;
@@ -85,6 +85,8 @@ public final class ValueInBytePacking extends CodeList<ValueInBytePacking> {
 
     /**
      * Returns the list of {@code ValueInBytePacking}s.
+     *
+     * @return The list of codes declared in the current JVM.
      */
     public static ValueInBytePacking[] values() {
         synchronized (VALUES) {
@@ -102,6 +104,9 @@ public final class ValueInBytePacking extends CodeList<ValueInBytePacking> {
     /**
      * Returns the value in byte packing that matches the given string, or returns a
      * new one if none match it.
+     *
+     * @param code The name of the code to fetch or to create.
+     * @return A code matching the given name.
      */
     public static ValueInBytePacking valueOf(String code) {
         return valueOf(ValueInBytePacking.class, code);

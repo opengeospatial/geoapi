@@ -97,6 +97,8 @@ public final class SortOrder extends CodeList<SortOrder> {
 
     /**
      * Returns the list of {@code SortOrder}s.
+     *
+     * @return The list of codes declared in the current JVM.
      */
     public static SortOrder[] values() {
         synchronized (VALUES) {
@@ -114,6 +116,9 @@ public final class SortOrder extends CodeList<SortOrder> {
     /**
      * Returns the sort order that matches the given string, or returns a
      * new one if none match it.
+     *
+     * @param code The name of the code to fetch or to create.
+     * @return A code matching the given name.
      */
     public static SortOrder valueOf(String code) {
         return valueOf(SortOrder.class, code);

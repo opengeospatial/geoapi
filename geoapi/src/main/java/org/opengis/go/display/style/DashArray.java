@@ -89,6 +89,8 @@ public class DashArray extends LinePattern {
 
     /**
      * Returns the list of {@code DashArray}s.
+     *
+     * @return The list of codes declared in the current JVM.
      */
     public static DashArray[] values() {
         synchronized (VALUES) {

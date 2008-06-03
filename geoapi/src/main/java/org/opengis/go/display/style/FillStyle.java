@@ -105,7 +105,9 @@ public class FillStyle extends SimpleEnumerationType<FillStyle> {
     }
 
     /**
-     * Returns the list of <code>FillStyle</code>s.
+     * Returns the list of {@code FillStyle}s.
+     *
+     * @return The list of codes declared in the current JVM.
      */
     public static FillStyle[] values() {
         synchronized (VALUES) {

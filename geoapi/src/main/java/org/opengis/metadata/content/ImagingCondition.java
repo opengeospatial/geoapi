@@ -121,6 +121,8 @@ public final class ImagingCondition extends CodeList<ImagingCondition> {
 
     /**
      * Returns the list of {@code ImagingCondition}s.
+     *
+     * @return The list of codes declared in the current JVM.
      */
     public static ImagingCondition[] values() {
         synchronized (VALUES) {
@@ -138,6 +140,9 @@ public final class ImagingCondition extends CodeList<ImagingCondition> {
     /**
      * Returns the imaging condition that matches the given string, or returns a
      * new one if none match it.
+     *
+     * @param code The name of the code to fetch or to create.
+     * @return A code matching the given name.
      */
     public static ImagingCondition valueOf(String code) {
         return valueOf(ImagingCondition.class, code);

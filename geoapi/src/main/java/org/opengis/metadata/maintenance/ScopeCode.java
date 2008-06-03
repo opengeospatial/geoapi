@@ -154,6 +154,8 @@ public final class ScopeCode extends CodeList<ScopeCode> {
 
     /**
      * Returns the list of {@code ScopeCode}s.
+     *
+     * @return The list of codes declared in the current JVM.
      */
     public static ScopeCode[] values() {
         synchronized (VALUES) {
@@ -171,6 +173,9 @@ public final class ScopeCode extends CodeList<ScopeCode> {
     /**
      * Returns the scope code that matches the given string, or returns a
      * new one if none match it.
+     *
+     * @param code The name of the code to fetch or to create.
+     * @return A code matching the given name.
      */
     public static ScopeCode valueOf(String code) {
         return valueOf(ScopeCode.class, code);

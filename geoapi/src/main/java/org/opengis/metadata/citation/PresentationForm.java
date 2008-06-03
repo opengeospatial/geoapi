@@ -144,6 +144,8 @@ public final class PresentationForm extends CodeList<PresentationForm> {
 
     /**
      * Returns the list of {@code PresentationForm}s.
+     *
+     * @return The list of codes declared in the current JVM.
      */
     public static PresentationForm[] values() {
         synchronized (VALUES) {
@@ -161,6 +163,9 @@ public final class PresentationForm extends CodeList<PresentationForm> {
     /**
      * Returns the presentation form that matches the given string, or returns a
      * new one if none match it.
+     *
+     * @param code The name of the code to fetch or to create.
+     * @return A code matching the given name.
      */
     public static PresentationForm valueOf(String code) {
         return valueOf(PresentationForm.class, code);

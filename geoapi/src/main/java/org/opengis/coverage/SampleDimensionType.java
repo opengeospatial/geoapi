@@ -189,6 +189,8 @@ public final class SampleDimensionType extends CodeList<SampleDimensionType> {
 
     /**
      * Returns the list of {@code SampleDimensionType}s.
+     *
+     * @return The list of codes declared in the current JVM.
      */
     public static SampleDimensionType[] values() {
         synchronized (VALUES) {
@@ -206,6 +208,9 @@ public final class SampleDimensionType extends CodeList<SampleDimensionType> {
     /**
      * Returns the sample dimension type that matches the given string, or returns a
      * new one if none match it.
+     *
+     * @param code The name of the code to fetch or to create.
+     * @return A code matching the given name.
      */
     public static SampleDimensionType valueOf(String code) {
         return valueOf(SampleDimensionType.class, code);

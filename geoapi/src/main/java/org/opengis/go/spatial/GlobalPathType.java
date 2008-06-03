@@ -84,6 +84,8 @@ public final class GlobalPathType extends PathType {
 
     /**
      * Returns the list of {@code GlobalPathType}s.
+     *
+     * @return The list of codes declared in the current JVM.
      */
     public static GlobalPathType[] values() {
         synchronized (VALUES) {

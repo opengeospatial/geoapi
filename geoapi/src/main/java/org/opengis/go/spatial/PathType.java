@@ -77,6 +77,8 @@ public class PathType extends SimpleEnumerationType<PathType> {
 
     /**
      * Returns the list of {@code PathType}s.
+     *
+     * @return The list of codes declared in the current JVM.
      */
     public static PathType[] values() {
         synchronized (VALUES) {

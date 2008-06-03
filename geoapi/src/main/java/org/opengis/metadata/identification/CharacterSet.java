@@ -270,6 +270,8 @@ public final class CharacterSet extends CodeList<CharacterSet> {
 
     /**
      * Returns the list of {@code CharacterSet}s.
+     *
+     * @return The list of codes declared in the current JVM.
      */
     public static CharacterSet[] values() {
         synchronized (VALUES) {
@@ -298,6 +300,9 @@ public final class CharacterSet extends CodeList<CharacterSet> {
     /**
      * Returns the character set that matches the given string, or returns a
      * new one if none match it.
+     *
+     * @param code The name of the code to fetch or to create.
+     * @return A code matching the given name.
      */
     public static CharacterSet valueOf(String code) {
         return valueOf(CharacterSet.class, code);

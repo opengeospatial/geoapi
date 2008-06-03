@@ -93,7 +93,9 @@ public class LineStyle extends SimpleEnumerationType<LineStyle> {
     //*************************************************************************
 
     /**
-     * Returns the list of <code>LineStyle</code>s.
+     * Returns the list of {@code LineStyle}s.
+     *
+     * @return The list of codes declared in the current JVM.
      */
     public static LineStyle[] values() {
         synchronized (VALUES) {

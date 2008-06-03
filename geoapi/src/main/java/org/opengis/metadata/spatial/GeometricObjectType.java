@@ -113,6 +113,8 @@ public final class GeometricObjectType extends CodeList<GeometricObjectType> {
 
     /**
      * Returns the list of {@code GeometricObjectType}s.
+     *
+     * @return The list of codes declared in the current JVM.
      */
     public static GeometricObjectType[] values() {
         synchronized (VALUES) {
@@ -130,6 +132,9 @@ public final class GeometricObjectType extends CodeList<GeometricObjectType> {
     /**
      * Returns the geometric object type that matches the given string, or returns a
      * new one if none match it.
+     *
+     * @param code The name of the code to fetch or to create.
+     * @return A code matching the given name.
      */
     public static GeometricObjectType valueOf(String code) {
         return valueOf(GeometricObjectType.class, code);

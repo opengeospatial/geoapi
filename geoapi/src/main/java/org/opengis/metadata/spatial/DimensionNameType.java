@@ -100,6 +100,8 @@ public final class DimensionNameType extends CodeList<DimensionNameType> {
 
     /**
      * Returns the list of {@code DimensionNameType}s.
+     *
+     * @return The list of codes declared in the current JVM.
      */
     public static DimensionNameType[] values() {
         synchronized (VALUES) {
@@ -117,6 +119,9 @@ public final class DimensionNameType extends CodeList<DimensionNameType> {
     /**
      * Returns the dimension name type that matches the given string, or returns a
      * new one if none match it.
+     *
+     * @param code The name of the code to fetch or to create.
+     * @return A code matching the given name.
      */
     public static DimensionNameType valueOf(String code) {
         return valueOf(DimensionNameType.class, code);

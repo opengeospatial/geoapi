@@ -76,7 +76,9 @@ public class XAnchor extends SimpleEnumerationType<XAnchor> {
     //*************************************************************************
 
     /**
-     * Returns the list of <code>XAnchor</code>s.
+     * Returns the list of {@code XAnchor}s.
+     *
+     * @return The list of codes declared in the current JVM.
      */
     public static XAnchor[] values() {
         synchronized (VALUES) {

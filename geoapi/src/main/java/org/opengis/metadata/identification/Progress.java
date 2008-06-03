@@ -94,6 +94,8 @@ public final class Progress extends CodeList<Progress> {
 
     /**
      * Returns the list of {@code Progress}s.
+     *
+     * @return The list of codes declared in the current JVM.
      */
     public static Progress[] values() {
         synchronized (VALUES) {
@@ -111,6 +113,9 @@ public final class Progress extends CodeList<Progress> {
     /**
      * Returns the progress that matches the given string, or returns a
      * new one if none match it.
+     *
+     * @param code The name of the code to fetch or to create.
+     * @return A code matching the given name.
      */
     public static Progress valueOf(String code) {
         return valueOf(Progress.class, code);

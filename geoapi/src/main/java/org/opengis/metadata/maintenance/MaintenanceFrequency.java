@@ -124,6 +124,8 @@ public final class MaintenanceFrequency extends CodeList<MaintenanceFrequency> {
 
     /**
      * Returns the list of {@code MaintenanceFrequency}s.
+     *
+     * @return The list of codes declared in the current JVM.
      */
     public static MaintenanceFrequency[] values() {
         synchronized (VALUES) {
@@ -141,6 +143,9 @@ public final class MaintenanceFrequency extends CodeList<MaintenanceFrequency> {
     /**
      * Returns the maintenance frequency that matches the given string, or returns a
      * new one if none match it.
+     *
+     * @param code The name of the code to fetch or to create.
+     * @return A code matching the given name.
      */
     public static MaintenanceFrequency valueOf(String code) {
         return valueOf(MaintenanceFrequency.class, code);

@@ -76,6 +76,8 @@ public class KnotType extends CodeList<KnotType> {
 
     /**
      * Returns the list of {@code KnotType}s.
+     *
+     * @return The list of codes declared in the current JVM.
      */
     public static KnotType[] values() {
         synchronized (VALUES) {
@@ -93,6 +95,9 @@ public class KnotType extends CodeList<KnotType> {
     /**
      * Returns the KnotType that matches the given string, or returns a
      * new one if none match it.
+     *
+     * @param code The name of the code to fetch or to create.
+     * @return A code matching the given name.
      */
     public static KnotType valueOf(String code) {
         return valueOf(KnotType.class, code);

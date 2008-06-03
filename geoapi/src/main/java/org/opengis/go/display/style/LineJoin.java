@@ -84,7 +84,9 @@ public class LineJoin extends SimpleEnumerationType<LineJoin> {
     //*************************************************************************
 
     /**
-     * Returns the list of <code>LineJoin</code>s.
+     * Returns the list of {@code LineJoin}s.
+     *
+     * @return The list of codes declared in the current JVM.
      */
     public static LineJoin[] values() {
         synchronized (VALUES) {

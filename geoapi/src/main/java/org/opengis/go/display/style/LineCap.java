@@ -80,6 +80,8 @@ public class LineCap extends SimpleEnumerationType<LineCap> {
 
     /**
      * Returns the list of <code>LineCap</code>s.
+     *
+     * @return The list of codes declared in the current JVM.
      */
     public static LineCap[] values() {
         synchronized (VALUES) {
