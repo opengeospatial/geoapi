@@ -12,7 +12,11 @@ package org.opengis.style;
 
 import java.util.List;
 import org.opengis.filter.Filter;
+import org.opengis.annotation.UML;
 import org.opengis.annotation.XmlElement;
+
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
 
 /**
  * A rule consists of two important parts: a {@linkplain Filter filter} and a list of
@@ -28,6 +32,7 @@ import org.opengis.annotation.XmlElement;
  * @since GeoAPI 2.2
  */
 @XmlElement("Rule")
+@UML(identifier="PF_PortrayalRule", specification=ISO_19117)
 public interface Rule {
 
     /**
@@ -38,6 +43,7 @@ public interface Rule {
      * @return a name for this rule.
      */
     @XmlElement("Name")
+    @UML(identifier="ruleName", obligation=MANDATORY, specification=ISO_19117)
     String getName();
 
     /**
@@ -47,6 +53,7 @@ public interface Rule {
      * for user interfaces.
      */
     @XmlElement("Description")
+    @UML(identifier="description", obligation=OPTIONAL, specification=ISO_19117)
     Description getDescription();
 
     /**
@@ -70,6 +77,7 @@ public interface Rule {
      * @return Filter, if null the rule is always true
      */
     @XmlElement("Filter")
+    @UML(identifier="queryStatement", obligation=MANDATORY, specification=ISO_19117)
     Filter getFilter();
 
     /**
@@ -109,5 +117,6 @@ public interface Rule {
      * @return the list of Symbolizer
      */
     @XmlElement("Symbolizer")
+    @UML(identifier="portrayAction", obligation=MANDATORY, specification=ISO_19117)
     List<Symbolizer> getSymbolizers();
 }

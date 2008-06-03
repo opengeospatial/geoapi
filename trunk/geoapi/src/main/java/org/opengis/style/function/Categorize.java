@@ -10,10 +10,11 @@
  *************************************************************************************************/
 package org.opengis.style.function;
 
-import java.util.List;
+import java.util.SortedMap;
 import org.opengis.annotation.XmlElement;
 import org.opengis.filter.expression.Expression;
 import org.opengis.filter.expression.Function;
+import org.opengis.filter.expression.Literal;
 
 /**
  * Categorization: The transformation of continuous values to distinct values. This is
@@ -33,17 +34,6 @@ import org.opengis.filter.expression.Function;
 public interface Categorize extends Function{
 
     /**
-     * Get value.
-     *
-     * The Values can be of any type, dependent on which symbolization context the function is
-     * employed. Color values (like #00ffff) or numeric values are typical.
-     *
-     * @return Expression
-     */
-    @XmlElement("Value")
-    Expression getValue();
-
-    /**
      * Get lookup value.
      *
      * @return Expression
@@ -58,9 +48,8 @@ public interface Categorize extends Function{
      * interval ranges from -Infinity to the first given threshold and the last one accordingly
      * from the last threshold to +Infinity.
      *
-     * @return Live list, this means you can modify it.
      */
-    List<ThresholdEntry> getThresholds();
+    SortedMap<Literal,Literal> getThresholds();
 
     /**
      * Get the function direction.

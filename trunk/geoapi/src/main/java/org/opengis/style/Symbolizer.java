@@ -10,7 +10,10 @@
  *************************************************************************************************/
 package org.opengis.style;
 
+import org.opengis.annotation.UML;
 import org.opengis.annotation.XmlElement;
+
+import static org.opengis.annotation.Specification.*;
 
 /**
  * Abstract superclass of the various symbolizer classes.
@@ -36,6 +39,7 @@ import org.opengis.annotation.XmlElement;
  * @author Chris Dillard (SYS Technologies)
  * @since GeoAPI 2.2
  */
+@UML(identifier="PF_PortrayalSpecification", specification=ISO_19117)
 public interface Symbolizer {
 
     /**

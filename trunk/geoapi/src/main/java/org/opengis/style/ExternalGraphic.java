@@ -11,6 +11,7 @@
 package org.opengis.style;
 
 import java.util.Collection;
+import javax.swing.Icon;
 import org.opengis.annotation.XmlElement;
 import org.opengis.style.function.Interpolate;
 
@@ -44,7 +45,7 @@ public interface ExternalGraphic extends GraphicSymbol {
      * @return
      */
     @XmlElement("InlineContent")
-    InlineContent getInlineContent();
+    Icon getInlineContent();
 
     /**
      * Returns the mime type of the onlineResource/InlineContent
