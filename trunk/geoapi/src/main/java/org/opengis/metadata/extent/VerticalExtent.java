@@ -70,6 +70,8 @@ public interface VerticalExtent {
      * which the maximum and minimum elevation values are measured. The CRS
      * identification includes unit of measure.
      *
+     * @return The vertical CRS.
+     *
      * @since GeoAPI 2.1
      */
     @UML(identifier="verticalCRS", obligation=MANDATORY, specification=ISO_19115)

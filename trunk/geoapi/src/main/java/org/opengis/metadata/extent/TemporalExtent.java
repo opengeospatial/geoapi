@@ -28,6 +28,8 @@ import static org.opengis.annotation.Specification.*;
 public interface TemporalExtent {
     /**
      * Returns the date and time for the content of the dataset.
+     *
+     * @return The date and time for the content.
      */
     @UML(identifier="extent", obligation=MANDATORY, specification=ISO_19108)
     TemporalPrimitive getExtent();
