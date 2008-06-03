@@ -315,6 +315,11 @@
               <head>TODO:</head>
             </tag>
             <tag>
+              <name>departure</name>
+              <placement>tfmc</placement>
+              <head>Departure from OGC/ISO</head>
+            </tag>
+            <tag>
               <name>issue</name>
               <placement>X</placement>
               <head>JIRA:</head>
@@ -355,15 +360,15 @@
               </packages>
             </group>
             <group>
-              <title>Feature and filter</title>
+              <title>Coverage</title>
               <packages>
-                org.opengis.feature*:org.opengis.filter*
+                org.opengis.coverage*
               </packages>
             </group>
             <group>
-              <title>Grid Coverage</title>
+              <title>Feature and filter</title>
               <packages>
-                org.opengis.coverage*
+                org.opengis.feature*:org.opengis.filter*
               </packages>
             </group>
             <group>
@@ -379,15 +384,21 @@
               </packages>
             </group>
             <group>
-              <title>Styling and web services</title>
+              <title>Styling</title>
               <packages>
-                org.opengis.layer*:org.opengis.sld*:org.opengis.web*
+                org.opengis.style*:org.opengis.layer*:org.opengis.sld*
               </packages>
             </group>
             <group>
               <title>Display objects</title>
               <packages>
-                org.opengis.go*
+                org.opengis.display*:org.opengis.go*
+              </packages>
+            </group>
+            <group>
+              <title>Web services</title>
+              <packages>
+                org.opengis.web*
               </packages>
             </group>
           </groups>

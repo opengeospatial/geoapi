@@ -60,6 +60,26 @@ public final class VerticalDatumType extends CodeList<VerticalDatumType> {
     /**
      * A vertical datum for ellipsoidal heights that are measured along the
      * normal to the ellipsoid used in the definition of horizontal datum.
+     *
+     * @departure
+     *   This code is a violation of ISO 19111 specification, which does not allow instantation of
+     *   {@linkplain org.opengis.referencing.crs.VerticalCRS Vertical CRS} for ellipsoidal height.
+     *   More specifically {@linkplain org.opengis.referencing.crs.GeographicCRS Geographic CRS}
+     *   with ellipsoidal height shall be backed by a three-dimensional
+     *   {@linkplain org.opengis.referencing.cs.EllipsoidalCS Ellipsoidal CS}; they should never
+     *   be built as {@linkplain org.opengis.referencing.crs.CompoundCRS Compound CRS}.
+     *   <p>
+     *   However an API needs to express the ellipsoidal height alone in some cases, e.g. for type
+     *   safety in methods like {@link org.opengis.metadata.extent.VerticalExtent#getVerticalCRS}.
+     *   The alternative would be to pass an arbitrary
+     *   {@linkplain org.opengis.referencing.crs.CoordinateReferenceSystem Coordinate Reference System}
+     *   and let the user extracts the vertical component himself.
+     *   <p>
+     *   Furthermore the <A HREF="../doc-files/WKT.html">WKT format</A> still in wide use, and this
+     *   format (defined before ISO 19111) does not treat ellipsoidal height in a special way. A WKT
+     *   parser needs to get the vertical CRS separatly before to merge it with the geographic CRS.
+     *
+     * @issue http://jira.codehaus.org/browse/GEO-133
      */
     @UML(identifier="CS_DatumType.CS_VD_Ellipsoidal", obligation=CONDITIONAL, specification=OGC_01009)
     public static final VerticalDatumType ELLIPSOIDAL = new VerticalDatumType("ELLIPSOIDAL");

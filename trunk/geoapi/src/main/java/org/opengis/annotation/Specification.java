@@ -62,7 +62,7 @@ public enum Specification {
      * @see <A HREF="http://www.iso.org/iso/iso_catalogue/catalogue_tc/catalogue_detail.htm?csnumber=40395">Buy from ISO</A>
      */
     ISO_19117,
-    
+
     /**
      * ISO 19123, Schema for coverage geometry and functions.
      * This is the specification for package {@link org.opengis.coverage} and sub-packages.

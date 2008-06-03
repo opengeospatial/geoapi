@@ -106,7 +106,7 @@ public abstract class CodeList<E extends CodeList<E>> implements Comparable<E>, 
      * found, then a new instance is created using the constructor expecting a single {@link String}
      * argument.
      *
-     * @param <T> The type given at compile-time for {@code codeType}.
+     * @param <T> The compile-time type given as the {@code codeType} parameter.
      * @param codeType The type of code list.
      * @param name The name of the code to obtain.
      * @return A code matching the given name.
