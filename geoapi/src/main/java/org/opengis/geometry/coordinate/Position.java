@@ -35,6 +35,8 @@ import static org.opengis.annotation.Specification.*;
  * @version <A HREF="http://www.opengeospatial.org/standards/as">ISO 19107</A>
  * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 1.0
+ *
+ * @issue http://jira.codehaus.org/browse/GEO-87
  */
 @UML(identifier="GM_Position", specification=ISO_19107)
 public interface Position {
