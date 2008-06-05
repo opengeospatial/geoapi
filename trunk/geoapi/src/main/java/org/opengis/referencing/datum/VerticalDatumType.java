@@ -69,12 +69,12 @@ public final class VerticalDatumType extends CodeList<VerticalDatumType> {
      *   {@linkplain org.opengis.referencing.cs.EllipsoidalCS Ellipsoidal CS}; they should never
      *   be built as {@linkplain org.opengis.referencing.crs.CompoundCRS Compound CRS}.
      *   <p>
-     *   However an API needs to express the ellipsoidal height alone in some cases, e.g. for type
-     *   safety in methods like {@link org.opengis.metadata.extent.VerticalExtent#getVerticalCRS}.
+     *   However some API need to express the ellipsoidal height alone, e.g. for type safety
+     *   in methods like {@link org.opengis.metadata.extent.VerticalExtent#getVerticalCRS}.
      *   The alternative would be to pass an arbitrary
      *   {@linkplain org.opengis.referencing.crs.CoordinateReferenceSystem Coordinate Reference System}
      *   and let the user extracts the vertical component himself.
-     *   <p>
+     *
      *   Furthermore the <A HREF="../doc-files/WKT.html">WKT format</A> still in wide use, and this
      *   format (defined before ISO 19111) does not treat ellipsoidal height in a special way. A WKT
      *   parser needs to get the vertical CRS separatly before to merge it with the geographic CRS.

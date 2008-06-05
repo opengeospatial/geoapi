@@ -33,6 +33,8 @@ import static org.opengis.annotation.Specification.*;
 public interface VerticalDatum extends Datum {
     /**
      * The type of this vertical datum. Default is "geoidal".
+     *
+     * @return The type of this vertical datum.
      */
     @UML(identifier="vertDatumType", obligation=MANDATORY, specification=ISO_19111)
     VerticalDatumType getVerticalDatumType();
