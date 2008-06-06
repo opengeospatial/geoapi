@@ -49,7 +49,7 @@ public interface ContrastEnhancement {
      * @return boolean
      */
     @XmlElement("Normalize")
-    public boolean isNormalize();
+    public boolean usesNormalization();
 
     /**
      * “Histogram” means to stretch the contrast based on a histogram of how many
@@ -60,7 +60,7 @@ public interface ContrastEnhancement {
      * @return boolean
      */
     @XmlElement("Histogram")
-    public boolean isHistogram();
+    public boolean usesHistogram();
 
     /**
      * A “GammaValue” tells how much to brighten (values

@@ -35,12 +35,4 @@ public interface GraphicFill {
     @XmlElement("Graphic")
     Graphic getGraphic();
 
-    /**
-     * Set the Graphic object.
-     * See {@link #getGraphic} for details.
-     *
-     * @param graphic
-     */
-    void setGraphic(Graphic graphic);
-
 }
