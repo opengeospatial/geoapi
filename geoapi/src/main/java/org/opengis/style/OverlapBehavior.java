@@ -1,8 +1,8 @@
 /*$************************************************************************************************
  **
- ** $Id: OnlineResource.java 1218 2008-05-28 09:44:54Z eclesia $
+ ** $Id$
  **
- ** $URL: https://geoapi.svn.sourceforge.net/svnroot/geoapi/trunk/geoapi/src/main/java/org/opengis/style/OnlineResource.java $
+ ** $URL$
  **
  ** Copyright (C) 2008 Open GIS Consortium, Inc.
  ** All Rights Reserved. http://www.opengis.org/legal/
