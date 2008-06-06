@@ -115,7 +115,7 @@ public interface Stroke {
      * @return expression
      */
     @XmlParameter("stroke-dasharray")
-    Expression getDashArray();
+    float[] getDashArray();
 
     /**
      * Indicates the distance offset into the dash array to begin drawing.

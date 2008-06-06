@@ -35,14 +35,6 @@ public interface GraphicStroke {
     Graphic getGraphic();
 
     /**
-     * Set the Graphic object.
-     * See {@link #getGraphic} for details.
-     *
-     * @param graphic
-     */
-    void setGraphic(Graphic graphic);
-
-    /**
      * InitialGap specifies how far away the first graphic will be drawn relative to the start of
      * the rendering line
      *
@@ -52,29 +44,11 @@ public interface GraphicStroke {
     Expression getInitialGap();
 
     /**
-     * Set the initialGap.
-     * See {@link getInitialGap} for details.
-     *
-     * @param exp
-     */
-    @XmlElement("initialGap")
-    void setInitialGap(Expression exp);
-
-    /**
      * Gap gives the distance between two graphics.
      *
      * @return Expression
      */
     @XmlElement("Gap")
     Expression getGap();
-
-    /**
-     * Set the Graphic gap.
-     * See {@link getGap} for details.
-     *
-     * @param exp
-     */
-    @XmlElement("Gap")
-    void setGap(Expression exp);
 
 }

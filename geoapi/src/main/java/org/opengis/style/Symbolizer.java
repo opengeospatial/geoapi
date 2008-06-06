@@ -43,6 +43,21 @@ import static org.opengis.annotation.Specification.*;
 public interface Symbolizer {
 
     /**
+     * Unit of mesure : meters
+     */
+    public static final String UOM_METER = "meter";
+    
+    /**
+     * Unit of mesure : feets
+     */
+    public static final String UOM_FOOT = "foot";
+    
+    /**
+     * Unit of mesure : display units, pixel for a screen
+     */
+    public static final String UOM_DISPLAY = "display";
+    
+    /**
      * Returns a string of containing the measure unit name.
      * This parameter is herited from GML.
      * Renderers shall use the unit to correctly render symbols.
