@@ -114,7 +114,7 @@ public interface FeatureTypeStyle {
      *
      */
     @XmlElement("SemanticTypeIdentifier")
-    List<String> getSemanticTypeIdentifiers();
+    Collection<String> getSemanticTypeIdentifiers();
 
     /**
      * Returns the list of rules contained by this style.
