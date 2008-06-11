@@ -14,45 +14,18 @@ import java.util.Set;
 import org.opengis.coverage.DomainObject;
 import org.opengis.geometry.Geometry;
 import org.opengis.temporal.TemporalGeometricPrimitive;
-import org.opengis.annotation.UML;
 import org.opengis.annotation.Extension;
-
-import static org.opengis.annotation.Obligation.*;
-import static org.opengis.annotation.Specification.*;
 
 
 /**
- * A grid cell delineated by the grid lines of a {@linkplain Grid grid}. Its corners
- * are associated with the {@linkplain GridPoint grid points} at the intersections of
- * the grid lines that bound it
+ * Proposed extension of ISO {@link org.opengis.coverage.grid.GridCell}.
  *
- * @author ISO/DIS 19123
- * @author Martin Schouwenburg
- * @author Wim Koolhoven
- * @author Martin Desruisseaux
+ * @issue http://jira.codehaus.org/browse/GEO-82
+ *
  * @author Alexander Petkov
  */
-@UML(identifier="CV_GridCell", specification=ISO_19123)
-public interface GridCell {
-    /**
-     * Returns the collection of {@linkplain GridPoint grid points} at the corners of the grid cell.
-     * The size of this collection has no upper bound, to allow for grids of any dimension.
-     * In a quadrilateral grid, the multiplicity of corner equals 2&times;<var>d</var>, where
-     * <var>d</var> is the value of {@link Grid#getDimension}.
-     *
-     * @see GridPoint#getCells
-     */
-    @UML(identifier="corner", obligation=MANDATORY, specification=ISO_19123)
-    Set<GridPoint> getCorners();
-
-    /**
-     * Returns the {@linkplain Grid grid} of which this cell is a component.
-     *
-     * @see Grid#getCells
-     */
-    @UML(identifier="framework", obligation=MANDATORY, specification=ISO_19123)
-    Grid getFramework();
-
+@Extension
+public interface GridCell extends org.opengis.coverage.grid.GridCell {
     /**
      * This role name is inherited from {@link DomainObject} and associates the grid cell with a
      * geometric object which encodes only the spatial components of the grid index. Spatial axes

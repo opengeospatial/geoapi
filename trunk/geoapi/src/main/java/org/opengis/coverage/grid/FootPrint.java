@@ -30,15 +30,25 @@ import static org.opengis.annotation.Specification.*;
 public interface FootPrint {
     /**
      * Returns the geometry that shapes the foot print. In the simplest case this
-     * can be a point, but it can also be a disc, sphere or hypersphere
+     * can be a point, but it can also be a disc, sphere or hypersphere.
+     *
+     * @return The geometry that shapes the foot print.
      */
     @UML(identifier="geometry", obligation=MANDATORY, specification=ISO_19123)
     Geometry getGeometry();
 
     /**
-     * Returns the {@linkplain GridPoint grid point} to which this foor print corresponds.
+     * Returns the {@linkplain GridPoint grid point} to which this foot print corresponds.
+     *
+     * @return the grid point to which this foot print corresponds.
      *
      * @see GridPoint#getFootPrint
+     *
+     * @todo his role name in ISO 19123, "center", is a misnomer.  By definition, the sample point
+     *       represented in the same external coordinate reference system as the footprint, is the
+     *       "center" of the footprint.  This "center" attribute associates the footprint with a
+     *       grid point, which represents only the index into the grid.  This implementation
+     *       specification, therefore, has renamed the association role to "index".
      */
     @UML(identifier="center", obligation=MANDATORY, specification=ISO_19123)
     GridPoint getCenter();

@@ -14,15 +14,19 @@ import java.util.List;
 import org.opengis.util.Record;
 import org.opengis.annotation.UML;
 import org.opengis.annotation.Extension;
+import org.opengis.coverage.grid.GridEnvelope;
+import org.opengis.coverage.grid.SequenceRule;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
 
 
 /**
- * Ties feature attributes values to the a grid geometry. It holds a sequence of records associated
- * with a sequencing rule that specifies an algorithm for assigning records of feature attribute
- * values to grid points.
+ * A modified copy of {@link org.opengis.coverage.grid.GridValuesMatrix} wich does not inherit
+ * {@link org.opengis.coverage.grid.Grid}. The later is replaced by a composition to be
+ * queried by {@link #getGrid}.
+ *
+ * @issue http://jira.codehaus.org/browse/GEO-82
  *
  * @author ISO/DIS 19123
  * @author Wim Koolhoven
@@ -75,5 +79,4 @@ public interface GridValuesMatrix {
      */
     @Extension
     Grid getGrid();
-
 }

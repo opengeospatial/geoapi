@@ -35,6 +35,8 @@ public interface GridCell {
      * In a quadrilateral grid, the multiplicity of corner equals 2&times;<var>d</var>, where
      * <var>d</var> is the value of {@link Grid#getDimension}.
      *
+     * @return The corners of the grid cell.
+     *
      * @see GridPoint#getCells
      */
     @UML(identifier="corner", obligation=MANDATORY, specification=ISO_19123)
@@ -42,6 +44,8 @@ public interface GridCell {
 
     /**
      * Returns the {@linkplain Grid grid} of which this cell is a component.
+     *
+     * @return The grid of which this cell is a component.
      *
      * @see Grid#getCells
      */

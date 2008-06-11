@@ -50,19 +50,26 @@ import static org.opengis.annotation.Specification.*;
 public interface RectifiedGrid extends Grid {
     /**
      * Returns the origin of the rectified grid in an external coordinate reference system.
+     *
+     * @return The origin of the rectified grid.
      */
     @UML(identifier="origin", obligation=MANDATORY, specification=ISO_19123)
     DirectPosition getOrigin();
 
     /**
-     * Returns the offset vectors that determine the grid spacing in each direction. The vectors
-     * are defined in terms of the external coordinate reference system.
+     * Returns the offset vectors that determine the grid spacing in each direction.
+     * The vectors are defined in terms of the external coordinate reference system.
+     *
+     * @return The offset vectors that determine the grid spacing in each direction.
      */
     @UML(identifier="offsetVectors", obligation=MANDATORY, specification=ISO_19123)
     List<double[]> getOffsetVectors();
 
     /**
      * Converts through an affine transform grid coordinates to a direct position.
+     *
+     * @param  g The grid coordinates to transform.
+     * @return The "real world" coordinates.
      */
     @UML(identifier="coordConv", obligation=MANDATORY, specification=ISO_19123)
     DirectPosition convertCoordinates(GridCoordinates g);
@@ -70,6 +77,9 @@ public interface RectifiedGrid extends Grid {
     /**
      * Converts through an affine transform a direct position to the grid coordinates of
      * the nearest grid point.
+     *
+     * @param p The "real world" coordinates to transform.
+     * @return The grid coordinates.
      *
      * @todo Question (Wim): GridCoordinates are always integers, how to get
      *       the not rounded results?<br>
