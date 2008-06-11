@@ -33,25 +33,33 @@ import static org.opengis.annotation.Specification.*;
  *       i.e. exactly fitting on all GridPoints.<br>
  *       Martin: a possible approach is to import the "gridToCRS" attribute from the legacy OGC
  *       specification, exactly as proposed for {@link RectifiedGrid}. Two ReferenceableGrids with
- *       the same grid geometry and the same "gridToCRS" math transform exactly fitting on all
+ *       the same grid geometry and the same "gridToCRS" math transform are exactly fitting on all
  *       GridPoints.
  */
 @UML(identifier="CV_ReferenceableGrid", specification=ISO_19123)
 public interface ReferenceableGrid extends Grid {
     /**
      * Returns the coordinate reference system to which this grid is referenceable.
+     *
+     * @return The coordinate reference system.
      */
     @UML(identifier="CoordinateReferenceSystem", obligation=MANDATORY, specification=ISO_19123)
     CoordinateReferenceSystem getCoordinateReferenceSystem();
 
     /**
      * Transforms a grid coordinates to a direct position.
+     *
+     * @param  g The grid coordinates to transform.
+     * @return The "real world" coordinates.
      */
     @UML(identifier="coordTransform", obligation=MANDATORY, specification=ISO_19123)
     DirectPosition transformCoordinates(GridCoordinates g);
 
     /**
      * Transforms from a direct position to the grid coordinates of the nearest grid point.
+     *
+     * @param p The "real world" coordinates to transform.
+     * @return The grid coordinates.
      *
      * @todo Question (Wim): GridCoordinates are always integers, how to get
      *       the not rounded results?<br>

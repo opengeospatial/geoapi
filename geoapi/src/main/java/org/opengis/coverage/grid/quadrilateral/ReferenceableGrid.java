@@ -19,22 +19,16 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * A grid whose relation with an external {@linkplain CoordinateReferenceSystem coordinate reference
- * system} is specified in another way than in terms of origin, orientation and spacing in that
- * coordinate system. The transformation between grid and external coordinate system can be some
- * analytical or non-analytical form.
+ * A modified copy of {@link org.opengis.coverage.grid.ReferenceableGrid} wich does not inherit
+ * {@link org.opengis.coverage.grid.Grid}.
+ *
+ * @issue http://jira.codehaus.org/browse/GEO-82
  *
  * @author ISO/DIS 19123
  * @author Wim Koolhoven
  * @author Martin Schouwenburg
  * @author Martin Desruisseaux
- *
- * @todo Comment (Wim): there seems to be no way to check whether two ReferenceableGrids are equal,
- *       i.e. exactly fitting on all GridPoints.<br>
- *       Martin: a possible approach is to import the "gridToCRS" attribute from the legacy OGC
- *       specification, exactly as proposed for {@link RectifiedGrid}. Two ReferenceableGrids with
- *       the same grid geometry and the same "gridToCRS" math transform exactly fitting on all
- *       GridPoints.
+ * @author Alexander Petkov
  */
 @UML(identifier="CV_ReferenceableGrid", specification=ISO_19123)
 public interface ReferenceableGrid extends RectifiableGrid {

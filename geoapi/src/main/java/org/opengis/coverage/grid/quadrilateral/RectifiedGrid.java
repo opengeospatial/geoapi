@@ -14,7 +14,6 @@ import java.util.List;
 import org.opengis.referencing.operation.Conversion;
 import org.opengis.geometry.DirectPosition;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
-import org.opengis.referencing.datum.Datum;  // For javadoc
 import org.opengis.annotation.UML;
 import org.opengis.annotation.Extension;
 
@@ -23,25 +22,11 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * Grid for which there is an affine transformation between the grid coordinates and the coordinates of
- * an external {@linkplain CoordinateReferenceSystem coordinate reference system}. A rectified grid is
- * defined by an origin in an external {@linkplain CoordinateReferenceSystem coordinate reference system},
- * and a set of offset vectors that specify the direction and distance between grid lines within
- * that external CRS.
- * <p>
- * <b>NOTE:</b> If the coordinate reference system is related to the earth by a
- * {@linkplain Datum datum}, the grid is a georectified grid.
- * <p>
- * <b>Constraints:</b>
- * <ul>
- *   <li>The {@linkplain Grid#getDimension dimension of the grid} shall be less than or equal to the
- *       dimension of the {@linkplain DirectPosition#getCoordinateReferenceSystem coordinate
- *       reference system of the point} that is the {@linkplain #getOrigin origin}.</li>
- *   <li>The number of {@linkplain #getOffsetVectors offset vectors} shall equal the
- *       {@linkplain Grid#getDimension dimension of the grid}.</li>
- *   <li>The dimension of all offset vectors shall equal the dimension of the coordinate reference
- *       system, even if an offset vector is aligned with an axis of the external coordinate system.</li>
- * </ul>
+ * A modified copy of {@link org.opengis.coverage.grid.RectifiedGrid} wich does not inherit
+ * {@link org.opengis.coverage.grid.Grid}. In addition, conversion methods have been replaced
+ * by a conversion object.
+ *
+ * @issue http://jira.codehaus.org/browse/GEO-82
  *
  * @author ISO/DIS 19123
  * @author Wim Koolhoven

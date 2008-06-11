@@ -47,6 +47,8 @@ public interface Grid {
     /**
      * Returns the dimensionality of the grid. The dimensionality is the number
      * of definining curve sets that constitute the grid.
+     *
+     * @return The dimensionality of the grid.
      */
     @UML(identifier="dimension", obligation=MANDATORY, specification=ISO_19123)
     int getDimension();
@@ -54,6 +56,8 @@ public interface Grid {
     /**
      * Returns a list containing the names of the grid axes. Each name is
      * linked to one of the defining curve sets that constitute the grid.
+     *
+     * @return The names of the grid axes.
      */
     @UML(identifier="axisNames", obligation=MANDATORY, specification=ISO_19123)
     List<String> getAxisNames();
@@ -61,6 +65,8 @@ public interface Grid {
     /**
      * Returns the limits of a section of the grid. The envelope contains the low
      * and high coordinates of the minimal envelope that can contain the grid.
+     *
+     * @return The limits of a section of the grid.
      */
     @UML(identifier="extent", obligation=OPTIONAL, specification=ISO_19123)
     GridEnvelope getExtent();
@@ -68,6 +74,8 @@ public interface Grid {
     /**
      * Returns the set of {@linkplain GridPoint grid points} that are located at the
      * intersections of the grid lines. The collection contains one or more grid points.
+     *
+     * @return The intersections of the grid lines.
      *
      * @see GridPoint#getFramework
      */
@@ -77,6 +85,8 @@ public interface Grid {
     /**
      * Returns the set of {@linkplain GridCell grid cells} delineated by the grid lines.
      * The collection contains one or more grid cells.
+     *
+     * @return The grid cells delineated by the grid lines.
      *
      * @see GridCell#getFramework
      */

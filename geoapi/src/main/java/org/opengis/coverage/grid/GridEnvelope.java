@@ -11,7 +11,6 @@
 package org.opengis.coverage.grid;
 
 import org.opengis.annotation.UML;
-import org.opengis.geometry.coordinate.Position;
 import org.opengis.util.Cloneable;
 
 import static org.opengis.annotation.Obligation.*;
@@ -34,12 +33,18 @@ import static org.opengis.annotation.Specification.*;
 public interface GridEnvelope extends Cloneable {
     /**
      * Returns the minimal coordinate values for all grid points within the {@linkplain Grid grid}.
+     *
+     * @return The minimal coordinate values for all grid points, inclusive.
      */
     @UML(identifier="low", obligation=MANDATORY, specification=ISO_19123)
     GridCoordinates getLow();
 
     /**
      * Returns the maximal coordinate values for all grid points within the {@linkplain Grid grid}.
+     *
+     * @return The maximal coordinate values for all grid points.
+     *
+     * @todo Inclusive or exclusive?
      */
     @UML(identifier="high", obligation=MANDATORY, specification=ISO_19123)
     GridCoordinates getHigh();

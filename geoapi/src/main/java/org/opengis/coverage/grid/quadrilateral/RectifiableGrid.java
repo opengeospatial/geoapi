@@ -31,6 +31,8 @@ import static org.opengis.annotation.Specification.*;
  * only supply the {@link Conversion} object (stored in the inherited {@code operation} attribute)
  * to produce a functional coordinate conversion object.
  *
+ * @issue http://jira.codehaus.org/browse/GEO-82
+ *
  * @author Alexander Petkov
  */
 @Extension
