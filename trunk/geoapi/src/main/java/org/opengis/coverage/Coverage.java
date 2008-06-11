@@ -218,9 +218,10 @@ public interface Coverage {
      * partition the extent of the coverage. Even in that case, the first element of the sequence
      * returned may be the <var>geometry</var>-<var>value</var> pair that contains the input direct
      * position.
-     * @param p
-     * @param limit
-     * @return
+     *
+     * @param  p The search position.
+     * @param  limit The maximal size of the list to be returned.
+     * @return The <var>geometry</var>-<var>value</var> pairs nearest to the given position.
      */
     @UML(identifier="find", obligation=MANDATORY, specification=ISO_19123)
     List<? extends GeometryValuePair> find(DirectPosition p, int limit);
@@ -228,8 +229,9 @@ public interface Coverage {
     /**
      * Returns the nearest <var>geometry</var>-<var>value</var> pair from the specified direct
      * position. This is a shortcut for <code>{@linkplain #find(DirectPosition,int) find}(p,1)</code>.
-     * @param p
-     * @return
+     *
+     * @param  p The search position.
+     * @return The <var>geometry</var>-<var>value</var> pair nearest to the given position.
      */
     @UML(identifier="find", obligation=MANDATORY, specification=ISO_19123)
     GeometryValuePair find(DirectPosition p);
@@ -246,8 +248,8 @@ public interface Coverage {
      * <P>
      * <B>NOTE:</B> Normally, the operation will return a single record of feature attribute values.
      *
-     * @param p The position where to evaluate.
-     * @param list The field of interest, or {@code null} for every fields.
+     * @param  p The position where to evaluate.
+     * @param  list The field of interest, or {@code null} for every fields.
      * @return The feature attributes.
      * @throws PointOutsideCoverageException if the point is outside the coverage domain.
      * @throws CannotEvaluateException If the point can't be evaluated for some other reason.
@@ -269,7 +271,7 @@ public interface Coverage {
      * specification and may be deprecated in a future version. We are for more experience
      * and feedbacks on the value of this method.
      *
-     * @param point Point at which to find the grid values.
+     * @param  point Point at which to find the grid values.
      * @return The value vector for a given point in the coverage.
      * @throws PointOutsideCoverageException if the point is outside the coverage
      *         {@linkplain #getEnvelope envelope}.
@@ -313,7 +315,7 @@ public interface Coverage {
      * The coordinate reference system of the point is the same as the grid coverage coordinate
      * reference system (specified by the {@link #getCoordinateReferenceSystem} method).
      *
-     * @param point Point at which to find the coverage values.
+     * @param  point Point at which to find the coverage values.
      * @param  destination An optionally preallocated array in which to store the values,
      *         or {@code null} if none.
      * @return A sequence of unsigned byte values for a given point in the coverage.
@@ -338,7 +340,7 @@ public interface Coverage {
      * The coordinate reference system of the point is the same as the grid coverage coordinate
      * reference system (specified by the {@link #getCoordinateReferenceSystem} method).
      *
-     * @param point Point at which to find the grid values.
+     * @param  point Point at which to find the grid values.
      * @param  destination An optionally preallocated array in which to store the values,
      *         or {@code null} if none.
      * @return A sequence of integer values for a given point in the coverage.
@@ -365,7 +367,7 @@ public interface Coverage {
      * The coordinate reference system of the point is the same as the grid coverage coordinate
      * reference system (specified by the {@link #getCoordinateReferenceSystem} method).
      *
-     * @param point Point at which to find the grid values.
+     * @param  point Point at which to find the grid values.
      * @param  destination An optionally preallocated array in which to store the values,
      *         or {@code null} if none.
      * @return A sequence of float values for a given point in the coverage.
@@ -391,7 +393,7 @@ public interface Coverage {
      * The coordinate reference system of the point is the same as the grid coverage coordinate
      * reference system (specified by the {@link #getCoordinateReferenceSystem} method).
      *
-     * @param point Point at which to find the grid values.
+     * @param  point Point at which to find the grid values.
      * @param  destination An optionally preallocated array in which to store the values,
      *         or {@code null} if none.
      * @return A sequence of double values for a given point in the coverage.
@@ -420,7 +422,7 @@ public interface Coverage {
      * of contours derived from the feature attribute values associated with the
      * {@linkplain org.opengis.coverage.grid.GridPoint grid points} of a grid coverage.
      *
-     * @param v The feature attributes.
+     * @param  v The feature attributes.
      * @return The domain where the attributes are found.
      */
     @UML(identifier="evaluateInverse", obligation=MANDATORY, specification=ISO_19123)
