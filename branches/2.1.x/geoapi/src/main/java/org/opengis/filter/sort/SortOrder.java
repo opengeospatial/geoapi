@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import org.opengis.annotation.UML;
-import org.opengis.coverage.grid.quadrilateral.SequenceType;
+import org.opengis.coverage.grid.SequenceType;
 import org.opengis.util.CodeList;
 
 import static org.opengis.annotation.Obligation.CONDITIONAL;

@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
 import org.opengis.annotation.Profile;
-import org.opengis.coverage.grid.quadrilateral.SequenceType;
+import org.opengis.coverage.grid.SequenceType;
 import org.opengis.filter.sort.SortOrder;
 
 import static org.opengis.annotation.Obligation.*;
