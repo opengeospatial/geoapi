@@ -44,7 +44,7 @@ public interface ExternalFunction {
      * @return collection of AttributeDefinition
      */
     @UML(identifier="formalParameter", obligation=MANDATORY, specification=ISO_19117)
-    Collection<AttributDefinition> getParameters();
+    Collection<AttributeDefinition> getParameters();
             
     /**
      * Returns the name of the function.

@@ -35,7 +35,7 @@ import static org.opengis.annotation.Specification.*;
  * @since GeoAPI 2.2
  */
 @UML(identifier="PF_ParameterSet", specification=ISO_19117)
-public interface ParameterSet extends Collection<AttributValue>{
+public interface ParameterSet extends Collection<AttributeValue>{
 
     /**
      * Label used for this parameter set.
