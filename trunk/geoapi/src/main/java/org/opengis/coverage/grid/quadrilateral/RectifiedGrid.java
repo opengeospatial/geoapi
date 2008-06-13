@@ -22,7 +22,7 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * A modified copy of {@link org.opengis.coverage.grid.RectifiedGrid} wich does not inherit
+ * A modified copy of {@link org.opengis.coverage.grid.RectifiedGrid} which does not inherit
  * {@link org.opengis.coverage.grid.Grid}. In addition, conversion methods have been replaced
  * by a conversion object.
  *

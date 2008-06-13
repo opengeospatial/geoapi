@@ -22,7 +22,7 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * A modified copy of {@link org.opengis.coverage.grid.GridValuesMatrix} wich does not inherit
+ * A modified copy of {@link org.opengis.coverage.grid.GridValuesMatrix} which does not inherit
  * {@link org.opengis.coverage.grid.Grid}. The later is replaced by a composition to be
  * queried by {@link #getGrid}.
  *
