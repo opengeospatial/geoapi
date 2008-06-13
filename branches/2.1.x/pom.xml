@@ -165,7 +165,7 @@
         <groupId>org.apache.maven.wagon</groupId>
         <artifactId>wagon-webdav</artifactId>
       </extension>
-    </extensions> 
+    </extensions>
   </build>
 
 
@@ -188,7 +188,7 @@
           <quiet>true</quiet>             <!-- Shuts off non-error and non-warning messages.                      -->
           <maxmemory>384M</maxmemory>     <!-- The maximum Java heap size to be used when launching the javadoc.  -->
           <breakiterator>true</breakiterator>
-          <additionalparam>-keywords</additionalparam> 
+          <additionalparam>-keywords</additionalparam>
 
           <!-- Enables the Javadoc tool to interpret a simple, one-argument
                custom block tag tagname in doc comments. Note: <placement/>
