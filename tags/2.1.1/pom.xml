@@ -16,9 +16,9 @@
   <groupId>org.opengis</groupId>
   <artifactId>parent</artifactId>
   <packaging>pom</packaging>
-  <version>2.1-SNAPSHOT</version>
+  <version>2.1.1</version>
   <name>GeoAPI common settings</name>
-  <url>http://geoapi.sourceforge.net/snapshot/</url>
+  <url>http://geoapi.sourceforge.net/2.1/</url>
   <description>
     Common setting for all GeoAPI modules.
   </description>
@@ -347,7 +347,7 @@
     <site>
       <id>SourceForge</id>
       <name>GeoAPI web site</name>
-      <url>scp://geoapi.sourceforge.net:/home/groups/g/ge/geoapi/htdocs/snapshot/</url>
+      <url>scp://geoapi.sourceforge.net:/home/groups/g/ge/geoapi/htdocs/2.1/</url>
     </site>
   </distributionManagement>
 
