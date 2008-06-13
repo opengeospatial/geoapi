@@ -19,7 +19,7 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * A modified copy of {@link org.opengis.coverage.grid.ReferenceableGrid} wich does not inherit
+ * A modified copy of {@link org.opengis.coverage.grid.ReferenceableGrid} which does not inherit
  * {@link org.opengis.coverage.grid.Grid}.
  *
  * @issue http://jira.codehaus.org/browse/GEO-82
