@@ -66,7 +66,7 @@ public interface PortrayalOperation {
      * @return Collection<AttributDefinition>
      */
     @UML(identifier="formalParameter{ordered}", obligation=MANDATORY, specification=ISO_19117)
-    Collection<AttributDefinition> getFormalParameters();
+    Collection<AttributeDefinition> getFormalParameters();
     
     /**
      * Parameterset to use.

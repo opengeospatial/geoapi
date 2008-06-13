@@ -25,8 +25,8 @@ import static org.opengis.annotation.Specification.*;
  * @author Johann Sorel (Geomatys)
  * @since GeoAPI 2.2
  */
-@UML(identifier="PF_AttributDefinition", specification=ISO_19117)
-public interface AttributDefinition {
+@UML(identifier="PF_AttributeDefinition", specification=ISO_19117)
+public interface AttributeDefinition {
 
     /**
      * Returns the name of the attribute definition.

@@ -24,8 +24,8 @@ import static org.opengis.annotation.Specification.*;
  * @author Johann Sorel (Geomatys)
  * @since GeoAPI 2.2
  */
-@UML(identifier="PF_AttributValue", specification=ISO_19117)
-public interface AttributValue {
+@UML(identifier="PF_AttributeValue", specification=ISO_19117)
+public interface AttributeValue {
 
     /**
      * Gets the value for the associated AttributeDefinition.
@@ -42,6 +42,6 @@ public interface AttributValue {
      * @return AttributDefinition
      */
     @UML(identifier="attributType", obligation=MANDATORY, specification=ISO_19117)
-    AttributDefinition getDefinition();
+    AttributeDefinition getDefinition();
         
 }
