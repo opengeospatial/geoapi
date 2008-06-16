@@ -45,5 +45,11 @@ public interface Description {
     @XmlElement("Abstract")
     InternationalString getAbstract();
 
+    /**
+     * calls the visit method of a StyleVisitor
+     *
+     * @param visitor the style visitor
+     */
+    void accept(StyleVisitor visitor);
 }
 

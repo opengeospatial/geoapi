@@ -119,4 +119,12 @@ public interface Rule {
     @XmlElement("Symbolizer")
     @UML(identifier="portrayAction", obligation=MANDATORY, specification=ISO_19117)
     List<Symbolizer> getSymbolizers();
+    
+    /**
+     * calls the visit method of a StyleVisitor
+     *
+     * @param visitor the style visitor
+     */
+    void accept(StyleVisitor visitor);
+    
 }

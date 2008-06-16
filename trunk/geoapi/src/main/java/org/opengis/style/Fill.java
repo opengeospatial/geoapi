@@ -63,4 +63,11 @@ public interface Fill {
     @XmlParameter("Opacity")
     Expression getOpacity();
 
+    /**
+     * calls the visit method of a StyleVisitor
+     *
+     * @param visitor the style visitor
+     */
+    void accept(StyleVisitor visitor);
+    
 }
