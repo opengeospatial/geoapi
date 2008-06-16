@@ -83,4 +83,11 @@ public interface Style {
     @UML(identifier="defaultPortrayalSpec", obligation=MANDATORY, specification=ISO_19117)
     Symbolizer getDefaultSpecification();
 
+    /**
+     * calls the visit method of a StyleVisitor
+     *
+     * @param visitor the style visitor
+     */
+    void accept(StyleVisitor visitor);
+    
 }

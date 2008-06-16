@@ -43,4 +43,11 @@ public interface ColorMap {
      */
     Function getFunction();
 
+    /**
+     * calls the visit method of a StyleVisitor
+     *
+     * @param visitor the style visitor
+     */
+    void accept(StyleVisitor visitor);
+    
 }

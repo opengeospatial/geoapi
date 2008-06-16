@@ -32,4 +32,11 @@ public interface ColorReplacement {
     @XmlElement("Recode")
     Function getRecoding();
 
+    /**
+     * calls the visit method of a StyleVisitor
+     *
+     * @param visitor the style visitor
+     */
+    void accept(StyleVisitor visitor);
+    
 }

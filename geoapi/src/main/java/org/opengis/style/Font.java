@@ -71,4 +71,11 @@ public interface Font {
     @XmlParameter("font-size")
     Expression getSize();
 
+    /**
+     * calls the visit method of a StyleVisitor
+     *
+     * @param visitor the style visitor
+     */
+    void accept(StyleVisitor visitor);
+    
 }

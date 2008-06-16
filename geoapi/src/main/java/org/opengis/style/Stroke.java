@@ -125,4 +125,11 @@ public interface Stroke {
     @XmlParameter("stroke-dashoffset")
     Expression getDashOffset();
 
+    /**
+     * calls the visit method of a StyleVisitor
+     *
+     * @param visitor the style visitor
+     */
+    void accept(StyleVisitor visitor);
+    
 }

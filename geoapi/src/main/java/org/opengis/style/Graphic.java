@@ -119,4 +119,11 @@ public interface Graphic {
     @XmlParameter("Displacement")
     Displacement getDisplacement();
 
+    /**
+     * calls the visit method of a StyleVisitor
+     *
+     * @param visitor the style visitor
+     */
+    void accept(StyleVisitor visitor);
+    
 }

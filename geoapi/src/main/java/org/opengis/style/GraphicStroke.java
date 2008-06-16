@@ -51,4 +51,11 @@ public interface GraphicStroke {
     @XmlElement("Gap")
     Expression getGap();
 
+    /**
+     * calls the visit method of a StyleVisitor
+     *
+     * @param visitor the style visitor
+     */
+    void accept(StyleVisitor visitor);
+    
 }

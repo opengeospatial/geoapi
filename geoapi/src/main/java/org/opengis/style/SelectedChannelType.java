@@ -41,4 +41,11 @@ public interface SelectedChannelType {
     @XmlElement("SelectedChannelType")
     public ContrastEnhancement getContrastEnhancement();
 
+    /**
+     * calls the visit method of a StyleVisitor
+     *
+     * @param visitor the style visitor
+     */
+    void accept(StyleVisitor visitor);
+    
 }

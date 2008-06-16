@@ -125,4 +125,11 @@ public interface FeatureTypeStyle {
     @UML(identifier="portrayalRule", obligation=MANDATORY, specification=ISO_19117)
     List<Rule> getRules();
     
+    /**
+     * calls the visit method of a StyleVisitor
+     *
+     * @param visitor the style visitor
+     */
+    void accept(StyleVisitor visitor);
+    
 }

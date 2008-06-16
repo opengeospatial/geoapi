@@ -51,5 +51,11 @@ public interface Displacement {
     @XmlElement("DisplacementY")
     Expression getDisplacementY();
 
+    /**
+     * calls the visit method of a StyleVisitor
+     *
+     * @param visitor the style visitor
+     */
+    void accept(StyleVisitor visitor);
 }
 

@@ -41,5 +41,11 @@ public interface AnchorPoint {
      */
     @XmlElement("AnchorPointY")
     Expression getAnchorPointY();
-
+    
+    /**
+     * calls the visit method of a StyleVisitor
+     *
+     * @param visitor the style visitor
+     */
+    void accept(StyleVisitor visitor);
 }
