@@ -1,8 +1,8 @@
 /*$************************************************************************************************
  **
- ** $Id: Style.java 1233 2008-06-13 09:38:24Z eclesia $
+ ** $Id$
  **
- ** $URL: https://geoapi.svn.sourceforge.net/svnroot/geoapi/trunk/geoapi/src/main/java/org/opengis/style/Style.java $
+ ** $URL$
  **
  ** Copyright (C) 2008 Open GIS Consortium, Inc.
  ** All Rights Reserved. http://www.opengis.org/legal/
