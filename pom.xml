@@ -180,14 +180,6 @@
         <enabled>true</enabled>
       </snapshots>
     </repository>
-    <repository>
-      <id>refractions</id>
-      <name>Refractions Research - Maven 2 Repository</name>
-      <url>http://lists.refractions.net/m2</url>
-      <snapshots>
-        <enabled>true</enabled>
-      </snapshots>
-    </repository>
   </repositories>
 
 
