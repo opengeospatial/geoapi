@@ -10,7 +10,7 @@
  *************************************************************************************************/
 package org.opengis.metadata.content;
 
-import javax.units.Unit;
+import javax.measure.unit.Unit;
 import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Obligation.*;

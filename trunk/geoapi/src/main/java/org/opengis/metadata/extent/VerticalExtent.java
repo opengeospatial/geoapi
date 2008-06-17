@@ -10,7 +10,7 @@
  *************************************************************************************************/
 package org.opengis.metadata.extent;
 
-import javax.units.Unit;
+import javax.measure.unit.Unit;
 import org.opengis.referencing.crs.VerticalCRS;
 import org.opengis.referencing.datum.VerticalDatum;
 import org.opengis.annotation.UML;

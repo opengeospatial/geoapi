@@ -45,6 +45,8 @@ public class NoSuchIdentifierException extends FactoryException {
 
     /**
      * Returns the {@linkplain ReferenceIdentifier#getCode identifier code}.
+     *
+     * @return The identifier code.
      */
     public String getIdentifierCode() {
         return identifier;

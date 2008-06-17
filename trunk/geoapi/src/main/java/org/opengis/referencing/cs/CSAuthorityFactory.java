@@ -10,10 +10,10 @@
  *************************************************************************************************/
 package org.opengis.referencing.cs;
 
-import javax.units.Unit;
+import javax.measure.unit.Unit;
 import org.opengis.referencing.AuthorityFactory;
 import org.opengis.referencing.FactoryException;
-import org.opengis.referencing.NoSuchAuthorityCodeException;  // For javadoc
+import org.opengis.referencing.NoSuchAuthorityCodeException;
 import org.opengis.annotation.UML;
 import org.opengis.annotation.Extension;
 
@@ -45,91 +45,111 @@ public interface CSAuthorityFactory extends AuthorityFactory {
      * instead of <code>&nbsp;createCoordinateSystem(code)&nbsp;</code> if the caller
      * know he is asking for a {@linkplain CartesianCS cartesian coordinate system}).
      *
-     * @param code Value allocated by authority.
+     * @param  code Value allocated by authority.
+     * @return The coordinate system for the given code.
      * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
      * @throws FactoryException if the object creation failed for some other reason.
      */
-    CoordinateSystem createCoordinateSystem(String code) throws FactoryException;
+    CoordinateSystem createCoordinateSystem(String code)
+            throws NoSuchAuthorityCodeException, FactoryException;
 
     /**
      * Creates a cartesian coordinate system from a code.
      *
-     * @param code Value allocated by authority.
+     * @param  code Value allocated by authority.
+     * @return The coordinate system for the given code.
      * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
      * @throws FactoryException if the object creation failed for some other reason.
      */
-    CartesianCS createCartesianCS(String code) throws FactoryException;
+    CartesianCS createCartesianCS(String code)
+            throws NoSuchAuthorityCodeException, FactoryException;
 
     /**
      * Creates a polar coordinate system from a code.
      *
-     * @param code Value allocated by authority.
+     * @param  code Value allocated by authority.
+     * @return The coordinate system for the given code.
      * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
      * @throws FactoryException if the object creation failed for some other reason.
      */
-    PolarCS createPolarCS(String code) throws FactoryException;
+    PolarCS createPolarCS(String code)
+            throws NoSuchAuthorityCodeException, FactoryException;
 
     /**
      * Creates a cylindrical coordinate system from a code.
      *
-     * @param code Value allocated by authority.
+     * @param  code Value allocated by authority.
+     * @return The coordinate system for the given code.
      * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
      * @throws FactoryException if the object creation failed for some other reason.
      */
-    CylindricalCS createCylindricalCS(String code) throws FactoryException;
+    CylindricalCS createCylindricalCS(String code)
+            throws NoSuchAuthorityCodeException, FactoryException;
 
     /**
      * Creates a spherical coordinate system from a code.
      *
-     * @param code Value allocated by authority.
+     * @param  code Value allocated by authority.
+     * @return The coordinate system for the given code.
      * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
      * @throws FactoryException if the object creation failed for some other reason.
      */
-    SphericalCS createSphericalCS(String code) throws FactoryException;
+    SphericalCS createSphericalCS(String code)
+            throws NoSuchAuthorityCodeException, FactoryException;
 
     /**
      * Creates an ellipsoidal coordinate system from a code.
      *
-     * @param code Value allocated by authority.
+     * @param  code Value allocated by authority.
+     * @return The coordinate system for the given code.
      * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
      * @throws FactoryException if the object creation failed for some other reason.
      */
-    EllipsoidalCS createEllipsoidalCS(String code) throws FactoryException;
+    EllipsoidalCS createEllipsoidalCS(String code)
+            throws NoSuchAuthorityCodeException, FactoryException;
 
     /**
      * Creates a vertical coordinate system from a code.
      *
-     * @param code Value allocated by authority.
+     * @param  code Value allocated by authority.
+     * @return The coordinate system for the given code.
      * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
      * @throws FactoryException if the object creation failed for some other reason.
      */
-    VerticalCS createVerticalCS(String code) throws FactoryException;
+    VerticalCS createVerticalCS(String code)
+            throws NoSuchAuthorityCodeException, FactoryException;
 
     /**
      * Creates a temporal coordinate system from a code.
      *
-     * @param code Value allocated by authority.
+     * @param  code Value allocated by authority.
+     * @return The coordinate system for the given code.
      * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
      * @throws FactoryException if the object creation failed for some other reason.
      */
-    TimeCS createTimeCS(String code) throws FactoryException;
+    TimeCS createTimeCS(String code)
+            throws NoSuchAuthorityCodeException, FactoryException;
 
     /**
      * Returns a {@linkplain CoordinateSystemAxis coordinate system axis} from a code.
      *
      * @param  code Value allocated by authority.
+     * @return The axis for the given code.
      * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
      * @throws FactoryException if the object creation failed for some other reason.
      */
-    CoordinateSystemAxis createCoordinateSystemAxis(String code) throws FactoryException;
+    CoordinateSystemAxis createCoordinateSystemAxis(String code)
+            throws NoSuchAuthorityCodeException, FactoryException;
 
     /**
      * Returns an {@linkplain Unit unit} from a code.
      *
      * @param  code Value allocated by authority.
+     * @return The unit for the given code.
      * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
      * @throws FactoryException if the object creation failed for some other reason.
      */
     @UML(identifier="CS_CoordinateSystemAuthorityFactory.createLinearUnit, createAngularUnit", specification=OGC_01009)
-    Unit createUnit(String code) throws FactoryException;
+    Unit<?> createUnit(String code)
+            throws NoSuchAuthorityCodeException, FactoryException;
 }

@@ -15,8 +15,6 @@ import org.opengis.metadata.citation.Citation;
 import org.opengis.util.InternationalString;
 import org.opengis.annotation.UML;
 import org.opengis.annotation.Extension;
-
-import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
 
 
@@ -40,6 +38,8 @@ public interface AuthorityFactory extends Factory {
     /**
      * Returns the organization or party responsible for definition and maintenance of the
      * database.
+     *
+     * @return The organization reponsible for definition of the database.
      */
     @UML(identifier="getAuthority", specification=OGC_01009)
     Citation getAuthority();
@@ -80,7 +80,7 @@ public interface AuthorityFactory extends Factory {
      * @throws FactoryException if the query failed for some other reason.
      */
     @UML(identifier="descriptionText", specification=OGC_01009)
-    InternationalString getDescriptionText(String code) throws FactoryException;
+    InternationalString getDescriptionText(String code) throws NoSuchAuthorityCodeException, FactoryException;
 
     /**
      * Returns an arbitrary object from a code. The returned object will typically be an
@@ -94,6 +94,7 @@ public interface AuthorityFactory extends Factory {
      * reference system}).
      *
      * @param  code Value allocated by authority.
+     * @return The object for the given code.
      * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
      * @throws FactoryException if the object creation failed for some other reason.
      *
@@ -101,5 +102,5 @@ public interface AuthorityFactory extends Factory {
      * @see org.opengis.referencing.crs.CRSAuthorityFactory#createCoordinateReferenceSystem
      */
     @Extension
-    IdentifiedObject createObject(String code) throws FactoryException;
+    IdentifiedObject createObject(String code) throws NoSuchAuthorityCodeException, FactoryException;
 }

@@ -11,7 +11,7 @@
 package org.opengis.parameter;
 
 import java.net.URI;
-import javax.units.Unit;
+import javax.measure.unit.Unit;
 import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Obligation.*;
@@ -24,6 +24,8 @@ import static org.opengis.annotation.Specification.*;
  * <code>{@linkplain #getValue()}.{@linkplain Object#getClass() getClass()}</code> idiom.
  * The {@link #getValue()} and {@link #setValue(Object)} methods can be invoked at any time.
  * Others getters and setters are parameter-type dependents.
+ *
+ * @param <T> The type of parameter values.
  *
  * @version <A HREF="http://portal.opengeospatial.org/files/?artifact_id=6716">Abstract specification 2.0</A>
  * @author ISO/DIS 19111
@@ -49,15 +51,17 @@ public interface ParameterValue<T> extends GeneralParameterValue {
      * then this method returns {@code null}. Note that "no unit" doesn't means
      * "dimensionless".
      *
+     * @return The unit of measure of the parameter value.
+     *
      * @see #doubleValue()
      * @see #doubleValueList
      * @see #getValue
      */
-    Unit getUnit();
+    Unit<?> getUnit();
 
     /**
      * Returns the numeric value of the coordinate operation parameter in the specified unit
-     * of measure. This convenience method apply unit conversion on the fly as needed.
+     * of measure. This convenience method applies unit conversion on the fly as needed.
      *
      * @param  unit The unit of measure for the value to be returned.
      * @return The numeric value represented by this parameter after conversion to type
@@ -69,7 +73,7 @@ public interface ParameterValue<T> extends GeneralParameterValue {
      * @see #setValue(double,Unit)
      * @see #doubleValueList(Unit)
      */
-    double doubleValue(Unit unit) throws InvalidParameterTypeException;
+    double doubleValue(Unit<?> unit) throws InvalidParameterTypeException;
 
     /**
      * Returns the numeric value of the coordinate operation parameter with its
@@ -134,7 +138,7 @@ public interface ParameterValue<T> extends GeneralParameterValue {
 
     /**
      * Returns an ordered sequence of numeric values in the specified unit of measure.
-     * This convenience method apply unit conversion on the fly as needed.
+     * This convenience method applies unit conversions on the fly as needed.
      *
      * @param  unit The unit of measure for the value to be returned.
      * @return The sequence of values represented by this parameter after conversion to type
@@ -146,7 +150,7 @@ public interface ParameterValue<T> extends GeneralParameterValue {
      * @see #setValue(double[],Unit)
      * @see #doubleValue(Unit)
      */
-    double[] doubleValueList(final Unit unit) throws InvalidParameterTypeException;
+    double[] doubleValueList(Unit<?> unit) throws InvalidParameterTypeException;
 
     /**
      * Returns an ordered sequence of two or more numeric values of an operation parameter
@@ -214,7 +218,7 @@ public interface ParameterValue<T> extends GeneralParameterValue {
     T getValue();
 
     /**
-     * Set the parameter value as an array of floating point and their associated unit.
+     * Sets the parameter value as an array of floating point and their associated unit.
      *
      * @param  values The parameter values.
      * @param  unit The unit for the specified value.
@@ -222,10 +226,10 @@ public interface ParameterValue<T> extends GeneralParameterValue {
      *         parameter, or if the value is illegal for some other reason (for example a value out
      *         of range).
      */
-    void setValue(double[] values, Unit unit) throws InvalidParameterValueException;
+    void setValue(double[] values, Unit<?> unit) throws InvalidParameterValueException;
 
     /**
-     * Set the parameter value as a floating point and its associated unit.
+     * Sets the parameter value as a floating point and its associated unit.
      *
      * @param  value The parameter value.
      * @param  unit The unit for the specified value.
@@ -236,12 +240,12 @@ public interface ParameterValue<T> extends GeneralParameterValue {
      * @see #setValue(double)
      * @see #doubleValue(Unit)
      */
-    void setValue(double value, Unit unit) throws InvalidParameterValueException;
+    void setValue(double value, Unit<?> unit) throws InvalidParameterValueException;
 
     /**
-     * Set the parameter value as a floating point.
+     * Sets the parameter value as a floating point.
      *
-     * @param value The parameter value.
+     * @param  value The parameter value.
      * @throws InvalidParameterValueException if the floating point type is inappropriate for this
      *         parameter, or if the value is illegal for some other reason (for example a value out
      *         of range).

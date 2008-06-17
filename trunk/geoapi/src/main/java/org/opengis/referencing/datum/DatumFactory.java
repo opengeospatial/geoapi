@@ -12,12 +12,13 @@ package org.opengis.referencing.datum;
 
 import java.util.Map;
 import java.util.Date;
-import javax.units.Unit;
+import javax.measure.unit.Unit;
+import javax.measure.quantity.Angle;
+import javax.measure.quantity.Length;
 import org.opengis.referencing.ObjectFactory;
 import org.opengis.referencing.FactoryException;
 import org.opengis.annotation.UML;
 
-import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
 
 
@@ -44,6 +45,7 @@ public interface DatumFactory extends ObjectFactory {
      *
      * @param  properties Name and other properties to give to the new object.
      *         Available properties are {@linkplain ObjectFactory listed there}.
+     * @return The datum for the given properties.
      * @throws FactoryException if the object creation failed.
      */
     @UML(identifier="createLocalDatum", specification=OGC_01009)
@@ -57,6 +59,7 @@ public interface DatumFactory extends ObjectFactory {
      *         Available properties are {@linkplain ObjectFactory listed there}.
      * @param  ellipsoid Ellipsoid to use in new geodetic datum.
      * @param  primeMeridian Prime meridian to use in new geodetic datum.
+     * @return The datum for the given properties.
      * @throws FactoryException if the object creation failed.
      */
     @UML(identifier="createHorizontalDatum", specification=OGC_01009)
@@ -71,6 +74,7 @@ public interface DatumFactory extends ObjectFactory {
      *         Available properties are {@linkplain ObjectFactory listed there}.
      * @param  pixelInCell Specification of the way the image grid is associated
      *         with the image data attributes.
+     * @return The datum for the given properties.
      * @throws FactoryException if the object creation failed.
      */
     ImageDatum createImageDatum(Map<String, ?> properties,
@@ -82,6 +86,7 @@ public interface DatumFactory extends ObjectFactory {
      * @param  properties Name and other properties to give to the new object.
      *         Available properties are {@linkplain ObjectFactory listed there}.
      * @param  origin The date and time origin of this temporal datum.
+     * @return The datum for the given properties.
      * @throws FactoryException if the object creation failed.
      */
     TemporalDatum createTemporalDatum(Map<String, ?> properties,
@@ -93,6 +98,7 @@ public interface DatumFactory extends ObjectFactory {
      * @param  properties Name and other properties to give to the new object.
      *         Available properties are {@linkplain ObjectFactory listed there}.
      * @param  type The type of this vertical datum (often "geoidal").
+     * @return The datum for the given properties.
      * @throws FactoryException if the object creation failed.
      */
     @UML(identifier="createVerticalDatum", specification=OGC_01009)
@@ -107,13 +113,14 @@ public interface DatumFactory extends ObjectFactory {
      * @param  semiMajorAxis Equatorial radius in supplied linear units.
      * @param  semiMinorAxis Polar radius in supplied linear units.
      * @param  unit Linear units of ellipsoid axes.
+     * @return The ellipsoid for the given properties.
      * @throws FactoryException if the object creation failed.
      */
     @UML(identifier="createEllipsoid", specification=OGC_01009)
     Ellipsoid createEllipsoid(Map<String, ?> properties,
                               double         semiMajorAxis,
                               double         semiMinorAxis,
-                              Unit           unit) throws FactoryException;
+                              Unit<Length>   unit) throws FactoryException;
 
     /**
      * Creates an ellipsoid from an major radius, and inverse flattening.
@@ -123,13 +130,14 @@ public interface DatumFactory extends ObjectFactory {
      * @param  semiMajorAxis Equatorial radius in supplied linear units.
      * @param  inverseFlattening Eccentricity of ellipsoid.
      * @param  unit Linear units of major axis.
+     * @return The ellipsoid for the given properties.
      * @throws FactoryException if the object creation failed.
      */
     @UML(identifier="createFlattenedSphere", specification=OGC_01009)
     Ellipsoid createFlattenedSphere(Map<String, ?> properties,
                                     double         semiMajorAxis,
                                     double         inverseFlattening,
-                                    Unit           unit) throws FactoryException;
+                                    Unit<Length>   unit) throws FactoryException;
 
     /**
      * Creates a prime meridian, relative to Greenwich.
@@ -137,11 +145,12 @@ public interface DatumFactory extends ObjectFactory {
      * @param  properties Name and other properties to give to the new object.
      *         Available properties are {@linkplain ObjectFactory listed there}.
      * @param  longitude Longitude of prime meridian in supplied angular units East of Greenwich.
-     * @param  angularUnit Angular units of longitude.
+     * @param  unit Angular units of longitude.
+     * @return The prime meridian for the given properties.
      * @throws FactoryException if the object creation failed.
      */
     @UML(identifier="createPrimeMeridian", specification=OGC_01009)
     PrimeMeridian createPrimeMeridian(Map<String, ?> properties,
                                       double         longitude,
-                                      Unit           angularUnit) throws FactoryException;
+                                      Unit<Angle>    unit) throws FactoryException;
 }

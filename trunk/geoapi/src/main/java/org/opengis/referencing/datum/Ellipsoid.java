@@ -10,10 +10,10 @@
  *************************************************************************************************/
 package org.opengis.referencing.datum;
 
-import javax.units.Unit;
+import javax.measure.unit.Unit;
+import javax.measure.quantity.Length;
 import org.opengis.referencing.IdentifiedObject;
 import org.opengis.annotation.UML;
-import org.opengis.annotation.Extension;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -56,7 +56,7 @@ public interface Ellipsoid extends IdentifiedObject {
      * @return The axis linear unit.
      */
     @UML(identifier="getAxisUnit", specification=OGC_01009)
-    Unit getAxisUnit();
+    Unit<Length> getAxisUnit();
 
     /**
      * Length of the semi-major axis of the ellipsoid. This is the

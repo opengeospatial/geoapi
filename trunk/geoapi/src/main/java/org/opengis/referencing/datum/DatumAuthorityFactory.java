@@ -10,14 +10,11 @@
  *************************************************************************************************/
 package org.opengis.referencing.datum;
 
-import javax.units.Unit;
 import org.opengis.referencing.AuthorityFactory;
 import org.opengis.referencing.FactoryException;
 import org.opengis.referencing.NoSuchAuthorityCodeException;
 import org.opengis.annotation.UML;
-import org.opengis.annotation.Extension;
 
-import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
 
 
@@ -46,6 +43,7 @@ public interface DatumAuthorityFactory extends AuthorityFactory {
      * {@linkplain GeodeticDatum geodetic datum}).
      *
      * @param  code Value allocated by authority.
+     * @return The datum for the given code.
      * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
      * @throws FactoryException if the object creation failed for some other reason.
      *
@@ -53,57 +51,67 @@ public interface DatumAuthorityFactory extends AuthorityFactory {
      * @see #createVerticalDatum
      * @see #createTemporalDatum
      */
-    Datum createDatum(String code) throws FactoryException;
+    Datum createDatum(String code)
+            throws NoSuchAuthorityCodeException, FactoryException;
 
     /**
      * Creates a {@linkplain EngineeringDatum engineering datum} from a code.
      *
      * @param  code Value allocated by authority.
+     * @return The datum for the given code.
      * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
      * @throws FactoryException if the object creation failed for some other reason.
      *
      * @see org.opengis.referencing.crs.CRSAuthorityFactory#createEngineeringCRS
      */
-    EngineeringDatum createEngineeringDatum(String code) throws FactoryException;
+    EngineeringDatum createEngineeringDatum(String code)
+            throws NoSuchAuthorityCodeException, FactoryException;
 
     /**
      * Creates a {@linkplain ImageDatum image datum} from a code.
      *
      * @param  code Value allocated by authority.
+     * @return The datum for the given code.
      * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
      * @throws FactoryException if the object creation failed for some other reason.
      *
      * @see org.opengis.referencing.crs.CRSAuthorityFactory#createImageCRS
      */
-    ImageDatum createImageDatum(String code) throws FactoryException;
+    ImageDatum createImageDatum(String code)
+            throws NoSuchAuthorityCodeException, FactoryException;
 
     /**
      * Creates a {@linkplain VerticalDatum vertical datum} from a code.
      *
      * @param  code Value allocated by authority.
+     * @return The datum for the given code.
      * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
      * @throws FactoryException if the object creation failed for some other reason.
      *
      * @see org.opengis.referencing.crs.CRSAuthorityFactory#createVerticalCRS
      */
     @UML(identifier="createVerticalDatum", specification=OGC_01009)
-    VerticalDatum createVerticalDatum(String code) throws FactoryException;
+    VerticalDatum createVerticalDatum(String code)
+            throws NoSuchAuthorityCodeException, FactoryException;
 
     /**
      * Creates a {@linkplain TemporalDatum temporal datum} from a code.
      *
      * @param  code Value allocated by authority.
+     * @return The datum for the given code.
      * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
      * @throws FactoryException if the object creation failed for some other reason.
      *
      * @see org.opengis.referencing.crs.CRSAuthorityFactory#createTemporalCRS
      */
-    TemporalDatum createTemporalDatum(String code) throws FactoryException;
+    TemporalDatum createTemporalDatum(String code)
+            throws NoSuchAuthorityCodeException, FactoryException;
 
     /**
      * Returns a {@linkplain GeodeticDatum geodetic datum} from a code.
      *
      * @param  code Value allocated by authority.
+     * @return The datum for the given code.
      * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
      * @throws FactoryException if the object creation failed for some other reason.
      *
@@ -113,29 +121,34 @@ public interface DatumAuthorityFactory extends AuthorityFactory {
      * @see org.opengis.referencing.crs.CRSAuthorityFactory#createProjectedCRS
      */
     @UML(identifier="createHorizontalDatum", specification=OGC_01009)
-    GeodeticDatum createGeodeticDatum(String code) throws FactoryException;
+    GeodeticDatum createGeodeticDatum(String code)
+            throws NoSuchAuthorityCodeException, FactoryException;
 
     /**
      * Returns an {@linkplain Ellipsoid ellipsoid} from a code.
      *
      * @param  code Value allocated by authority.
+     * @return The ellipsoid for the given code.
      * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
      * @throws FactoryException if the object creation failed for some other reason.
      *
      * @see #createGeodeticDatum
      */
     @UML(identifier="createEllipsoid", specification=OGC_01009)
-    Ellipsoid createEllipsoid(String code) throws FactoryException;
+    Ellipsoid createEllipsoid(String code)
+            throws NoSuchAuthorityCodeException, FactoryException;
 
     /**
      * Returns a {@linkplain PrimeMeridian prime meridian} from a code.
      *
      * @param  code Value allocated by authority.
+     * @return The prime meridian for the given code.
      * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
      * @throws FactoryException if the object creation failed for some other reason.
      *
      * @see #createGeodeticDatum
      */
     @UML(identifier="createPrimeMeridian", specification=OGC_01009)
-    PrimeMeridian createPrimeMeridian(String code) throws FactoryException;
+    PrimeMeridian createPrimeMeridian(String code)
+            throws NoSuchAuthorityCodeException, FactoryException;
 }

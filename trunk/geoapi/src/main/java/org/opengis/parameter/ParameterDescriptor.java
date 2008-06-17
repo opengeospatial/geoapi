@@ -11,8 +11,8 @@
 package org.opengis.parameter;
 
 import java.util.Set;
-import javax.units.Unit;
-import org.opengis.util.CodeList; // For javadoc
+import javax.measure.unit.Unit;
+import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
 import org.opengis.annotation.Extension;
 
@@ -23,6 +23,8 @@ import static org.opengis.annotation.Specification.*;
 /**
  * The definition of a parameter used by an operation method. Most parameter values are
  * numeric, but other types of parameter values are possible.
+ *
+ * @param <T> The type of parameter values.
  *
  * @version <A HREF="http://portal.opengeospatial.org/files/?artifact_id=6716">Abstract specification 2.0</A>
  * @author ISO/DIS 19111
@@ -45,6 +47,8 @@ public interface ParameterDescriptor<T> extends GeneralParameterDescriptor {
 
     /**
      * Returns the class that describe the type of the parameter.
+     *
+     * @return The type of parameter values.
      */
     @UML(identifier="GC_ParameterInfo.type", obligation=MANDATORY, specification=ISO_19111)
     Class<T> getValueClass();
@@ -111,5 +115,5 @@ public interface ParameterDescriptor<T> extends GeneralParameterDescriptor {
      * @return The unit for numeric value, or {@code null} if it doesn't apply to the value type.
      */
     @Extension
-    Unit getUnit();
+    Unit<?> getUnit();
 }
