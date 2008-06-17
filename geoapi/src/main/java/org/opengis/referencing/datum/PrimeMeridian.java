@@ -10,7 +10,8 @@
  *************************************************************************************************/
 package org.opengis.referencing.datum;
 
-import javax.units.Unit;
+import javax.measure.unit.Unit;
+import javax.measure.quantity.Angle;
 import org.opengis.referencing.IdentifiedObject;
 import org.opengis.annotation.UML;
 
@@ -47,5 +48,5 @@ public interface PrimeMeridian extends IdentifiedObject {
      * @return The angular unit of greenwich longitude.
      */
     @UML(identifier="getAngularUnit", specification=OGC_01009)
-    Unit getAngularUnit();
+    Unit<Angle> getAngularUnit();
 }

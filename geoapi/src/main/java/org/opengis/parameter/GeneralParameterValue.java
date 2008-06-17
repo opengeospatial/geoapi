@@ -13,7 +13,6 @@ package org.opengis.parameter;
 import org.opengis.util.Cloneable;
 import org.opengis.annotation.UML;
 
-import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
 
 

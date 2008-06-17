@@ -12,7 +12,7 @@ package org.opengis.go.display.primitive;
 
 import java.awt.geom.Point2D;
 import javax.swing.Icon;
-import javax.units.Unit;
+import javax.measure.unit.Unit;
 import org.opengis.go.display.style.PointSymbolizer;
 import org.opengis.geometry.DirectPosition;
 

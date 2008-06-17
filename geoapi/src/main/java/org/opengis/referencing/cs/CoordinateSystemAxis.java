@@ -10,7 +10,7 @@
  *************************************************************************************************/
 package org.opengis.referencing.cs;
 
-import javax.units.Unit;
+import javax.measure.unit.Unit;
 import org.opengis.referencing.IdentifiedObject;
 import org.opengis.annotation.UML;
 
@@ -104,5 +104,5 @@ public interface CoordinateSystemAxis extends IdentifiedObject {
      * @return  The coordinate system axis unit.
      */
     @UML(identifier="axisUnitID", obligation=MANDATORY, specification=ISO_19111)
-    Unit getUnit();
+    Unit<?> getUnit();
 }

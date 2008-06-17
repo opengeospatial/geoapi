@@ -10,7 +10,7 @@
  *************************************************************************************************/
 package org.opengis.go.display.canvas.map2d;
 
-import javax.units.Unit;
+import javax.measure.unit.Unit;
 import org.opengis.go.display.canvas.Canvas;
 import org.opengis.go.display.canvas.CanvasController;
 import org.opengis.geometry.Envelope;

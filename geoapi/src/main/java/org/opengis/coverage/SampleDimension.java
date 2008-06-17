@@ -10,7 +10,7 @@
  *************************************************************************************************/
 package org.opengis.coverage;
 
-import javax.units.Unit;
+import javax.measure.unit.Unit;
 import org.opengis.util.InternationalString;
 import org.opengis.referencing.operation.MathTransform1D;
 import org.opengis.annotation.Extension;
@@ -47,6 +47,8 @@ public interface SampleDimension {
     /**
      * Sample dimension title or description.
      * This string may be null or empty if no description is present.
+     *
+     * @return A description for this sample dimension.
      */
     @UML(identifier="description", obligation=MANDATORY, specification=OGC_01004)
     InternationalString getDescription();
@@ -74,6 +76,8 @@ public interface SampleDimension {
      *    <li>3 Urban</li>
      *  </UL>
      * Note: If no category names exist, an empty sequence is returned.
+     *
+     * @return The category names.
      */
     @UML(identifier="categoryNames", obligation=MANDATORY, specification=OGC_01004)
     InternationalString[] getCategoryNames();
@@ -171,12 +175,14 @@ public interface SampleDimension {
      * @return The unit information for this sample dimension.
      */
     @UML(identifier="units", obligation=MANDATORY, specification=OGC_01004)
-    Unit getUnits();
+    Unit<?> getUnits();
 
     /**
      * Offset is the value to add to grid values for this sample dimension.
      * This attribute is typically used when the sample dimension represents
      * elevation data. The default for this value is 0.
+     *
+     * @return The offset.
      *
      * @see #getScale
      */
@@ -187,6 +193,8 @@ public interface SampleDimension {
      * Scale is the value which is multiplied to grid values for this sample dimension.
      * This attribute is typically used when the sample dimension represents elevation
      * data. The default for this value is 1.
+     *
+     * @return The scale factor.
      *
      * @see #getOffset
      */

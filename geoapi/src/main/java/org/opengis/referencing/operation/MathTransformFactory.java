@@ -11,12 +11,11 @@
 package org.opengis.referencing.operation;
 
 import java.util.Set;
-import org.opengis.metadata.Identifier;  // For javadoc
 import org.opengis.referencing.Factory;
 import org.opengis.referencing.FactoryException;
 import org.opengis.referencing.NoSuchIdentifierException;
 import org.opengis.referencing.cs.CoordinateSystem;
-import org.opengis.referencing.datum.Ellipsoid; // For javadoc
+import org.opengis.referencing.datum.Ellipsoid;
 import org.opengis.referencing.crs.*; // Contains some import for javadoc.
 import org.opengis.parameter.*;       // Contains some import for javadoc.
 import org.opengis.annotation.UML;
@@ -98,6 +97,8 @@ public interface MathTransformFactory extends Factory {
      * Note that this method may apply as well to convenience methods that delegate their work to
      * {@code createParameterizedTransform}, like {@link #createBaseToDerived createBaseToDerived}.
      *
+     * @return The last method used, or {@code null} if unknown of unsupported.
+     *
      * @since GeoAPI 2.1
      */
     @Extension
@@ -150,7 +151,7 @@ public interface MathTransformFactory extends Factory {
     MathTransform createBaseToDerived(CoordinateReferenceSystem baseCRS,
                                       ParameterValueGroup       parameters,
                                       CoordinateSystem          derivedCS)
-            throws FactoryException;
+            throws NoSuchIdentifierException, FactoryException;
 
     /**
      * Creates a transform from a group of parameters. The method name is inferred from
@@ -189,7 +190,8 @@ public interface MathTransformFactory extends Factory {
      * @see #getAvailableMethods
      */
     @UML(identifier="createParameterizedTransform", obligation=MANDATORY, specification=OGC_01009)
-    MathTransform createParameterizedTransform(ParameterValueGroup parameters) throws FactoryException;
+    MathTransform createParameterizedTransform(ParameterValueGroup parameters)
+            throws NoSuchIdentifierException, FactoryException;
 
     /**
      * Creates an affine transform from a matrix.
@@ -254,6 +256,7 @@ public interface MathTransformFactory extends Factory {
      * Creates a math transform object from a XML string.
      *
      * @param  xml Math transform encoded in XML format.
+     * @return The math transform (never {@code null}).
      * @throws FactoryException if the object creation failed.
      */
     @UML(identifier="createFromXML", obligation=MANDATORY, specification=OGC_01009)

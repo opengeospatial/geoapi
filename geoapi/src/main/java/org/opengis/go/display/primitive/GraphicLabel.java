@@ -10,7 +10,7 @@
  *************************************************************************************************/
 package org.opengis.go.display.primitive;
 
-import javax.units.Unit;
+import javax.measure.unit.Unit;
 import org.opengis.go.display.style.TextSymbolizer;
 import org.opengis.go.display.style.XAnchor;
 import org.opengis.go.display.style.YAnchor;

@@ -30,7 +30,7 @@ import static org.opengis.annotation.Specification.*;
  * @since GeoAPI 1.0
  *
  * @see org.opengis.referencing.cs.CoordinateSystemAxis
- * @see javax.units.Unit
+ * @see javax.measure.unit.Unit
  * @see org.opengis.referencing.datum.Datum
  * @see org.opengis.referencing.crs.CoordinateReferenceSystem
  */

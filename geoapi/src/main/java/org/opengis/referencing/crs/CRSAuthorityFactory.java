@@ -14,9 +14,7 @@ import org.opengis.referencing.AuthorityFactory;
 import org.opengis.referencing.FactoryException;
 import org.opengis.referencing.NoSuchAuthorityCodeException;  // For javadoc
 import org.opengis.annotation.UML;
-import org.opengis.annotation.Extension;
 
-import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
 
 
@@ -45,7 +43,8 @@ public interface CRSAuthorityFactory extends AuthorityFactory {
      * instead of <code>&nbsp;createCoordinateReferenceSystem(code)&nbsp;</code> if the caller
      * know he is asking for a {@linkplain GeographicCRS geographic coordinate reference system}).
      *
-     * @param code Value allocated by authority.
+     * @param  code Value allocated by authority.
+     * @return The coordinate reference system for the given code.
      * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
      * @throws FactoryException if the object creation failed for some other reason.
      *
@@ -56,99 +55,119 @@ public interface CRSAuthorityFactory extends AuthorityFactory {
      * @see #createCompoundCRS
      */
     @UML(identifier="createHorizontalCoordinateSystem", specification=OGC_01009)
-    CoordinateReferenceSystem createCoordinateReferenceSystem(String code) throws FactoryException;
+    CoordinateReferenceSystem createCoordinateReferenceSystem(String code)
+            throws NoSuchAuthorityCodeException, FactoryException;
 
     /**
      * Creates a 3D coordinate reference system from a code.
      *
-     * @param code Value allocated by authority.
+     * @param  code Value allocated by authority.
+     * @return The coordinate reference system for the given code.
      * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
      * @throws FactoryException if the object creation failed for some other reason.
      */
     @UML(identifier="createCompoundCoordinateSystem", specification=OGC_01009)
-    CompoundCRS createCompoundCRS(String code) throws FactoryException;
+    CompoundCRS createCompoundCRS(String code)
+            throws NoSuchAuthorityCodeException, FactoryException;
 
     /**
      * Creates a derived coordinate reference system from a code.
      *
-     * @param code Value allocated by authority.
+     * @param  code Value allocated by authority.
+     * @return The coordinate reference system for the given code.
      * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
      * @throws FactoryException if the object creation failed for some other reason.
      */
-    DerivedCRS createDerivedCRS(String code) throws FactoryException;
+    DerivedCRS createDerivedCRS(String code)
+            throws NoSuchAuthorityCodeException, FactoryException;
 
     /**
      * Create a {@linkplain EngineeringCRS engineering coordinate reference system} from a code.
      *
-     * @param code Value allocated by authority.
+     * @param  code Value allocated by authority.
+     * @return The coordinate reference system for the given code.
      * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
      * @throws FactoryException if the object creation failed for some other reason.
      */
-    EngineeringCRS createEngineeringCRS(String code) throws FactoryException;
+    EngineeringCRS createEngineeringCRS(String code)
+            throws NoSuchAuthorityCodeException, FactoryException;
 
     /**
      * Returns a {@linkplain GeographicCRS geographic coordinate reference system} from a code.
      *
-     * @param code Value allocated by authority.
+     * @param  code Value allocated by authority.
+     * @return The coordinate reference system for the given code.
      * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
      * @throws FactoryException if the object creation failed for some other reason.
      *
      * @see org.opengis.referencing.datum.DatumAuthorityFactory#createGeodeticDatum
      */
     @UML(identifier="createGeographicCoordinateSystem", specification=OGC_01009)
-    GeographicCRS createGeographicCRS(String code) throws FactoryException;
+    GeographicCRS createGeographicCRS(String code)
+            throws NoSuchAuthorityCodeException, FactoryException;
 
     /**
      * Returns a {@linkplain GeocentricCRS geocentric coordinate reference system} from a code.
      *
-     * @param code Value allocated by authority.
+     * @param  code Value allocated by authority.
+     * @return The coordinate reference system for the given code.
+     * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
      * @throws FactoryException if the object creation failed.
      *
      * @see org.opengis.referencing.datum.DatumAuthorityFactory#createGeodeticDatum
      */
-    GeocentricCRS createGeocentricCRS(String code) throws FactoryException;
+    GeocentricCRS createGeocentricCRS(String code)
+            throws NoSuchAuthorityCodeException, FactoryException;
 
     /**
      * Create a {@linkplain ImageCRS image coordinate reference system} from a code.
      *
-     * @param code Value allocated by authority.
+     * @param  code Value allocated by authority.
+     * @return The coordinate reference system for the given code.
      * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
      * @throws FactoryException if the object creation failed for some other reason.
      */
-    ImageCRS createImageCRS(String code) throws FactoryException;
+    ImageCRS createImageCRS(String code)
+            throws NoSuchAuthorityCodeException, FactoryException;
 
     /**
      * Returns a {@linkplain ProjectedCRS projected coordinate reference system} from a code.
      *
-     * @param code Value allocated by authority.
+     * @param  code Value allocated by authority.
+     * @return The coordinate reference system for the given code.
      * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
      * @throws FactoryException if the object creation failed for some other reason.
      *
      * @see org.opengis.referencing.datum.DatumAuthorityFactory#createGeodeticDatum
      */
     @UML(identifier="createProjectedCoordinateSystem", specification=OGC_01009)
-    ProjectedCRS createProjectedCRS(String code) throws FactoryException;
+    ProjectedCRS createProjectedCRS(String code)
+            throws NoSuchAuthorityCodeException, FactoryException;
 
     /**
      * Create a {@linkplain TemporalCRS temporal coordinate reference system} from a code.
      *
-     * @param code Value allocated by authority.
+     * @param  code Value allocated by authority.
+     * @return The coordinate reference system for the given code.
      * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
      * @throws FactoryException if the object creation failed for some other reason.
      *
      * @see org.opengis.referencing.datum.DatumAuthorityFactory#createTemporalDatum
      */
-    TemporalCRS createTemporalCRS(String code) throws FactoryException;
+    TemporalCRS createTemporalCRS(String code)
+            throws NoSuchAuthorityCodeException, FactoryException;
 
     /**
      * Create a {@linkplain VerticalCRS vertical coordinate reference system} from a code.
      *
-     * @param code Value allocated by authority.
+     * @param  code Value allocated by authority.
+     * @return The coordinate reference system for the given code.
      * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
      * @throws FactoryException if the object creation failed for some other reason.
      *
      * @see org.opengis.referencing.datum.DatumAuthorityFactory#createVerticalDatum
      */
     @UML(identifier="createVerticalCoordinateSystem", specification=OGC_01009)
-    VerticalCRS createVerticalCRS(String code) throws FactoryException;
+    VerticalCRS createVerticalCRS(String code)
+            throws NoSuchAuthorityCodeException, FactoryException;
 }

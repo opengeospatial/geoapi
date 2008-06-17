@@ -12,11 +12,10 @@ package org.opengis.go.display.primitive;
 
 import java.util.ArrayList;
 import java.util.List;
-import javax.units.Unit;
+import javax.measure.unit.Unit;
 import org.opengis.go.display.style.PolygonSymbolizer;
 import org.opengis.go.spatial.PathType;
 import org.opengis.geometry.DirectPosition;
-import org.opengis.util.CodeList;
 import org.opengis.util.SimpleEnumerationType;
 
 

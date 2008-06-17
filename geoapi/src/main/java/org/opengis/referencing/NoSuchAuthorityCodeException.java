@@ -38,7 +38,7 @@ public class NoSuchAuthorityCodeException extends FactoryException {
     private final String code;
 
     /**
-     * Construct an exception with the specified detail message and authority code.
+     * Constructs an exception with the specified detail message and authority code.
      *
      * @param  message The detail message. The detail message is saved
      *         for later retrieval by the {@link #getMessage()} method.
@@ -53,6 +53,8 @@ public class NoSuchAuthorityCodeException extends FactoryException {
 
     /**
      * Returns the authority.
+     *
+     * @return The authority, or {@code null} if unknown.
      */
     public String getAuthority() {
         return authority;
@@ -60,6 +62,8 @@ public class NoSuchAuthorityCodeException extends FactoryException {
 
     /**
      * Returns the invalid authority code.
+     *
+     * @return The authority code, or {@code null} if unknown.
      */
     public String getAuthorityCode() {
         return code;

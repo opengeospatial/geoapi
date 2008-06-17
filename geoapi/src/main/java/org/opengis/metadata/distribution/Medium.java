@@ -11,7 +11,7 @@
 package org.opengis.metadata.distribution;
 
 import java.util.Collection;
-import javax.units.Unit;
+import javax.measure.unit.Unit;
 import org.opengis.util.InternationalString;
 import org.opengis.annotation.UML;
 
