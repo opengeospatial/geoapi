@@ -59,6 +59,8 @@ public interface ThiessenPolygonCoverage extends ContinuousCoverage {
     /**
      * Returns the extent of the Thiessen polygon network. Its boundary determines the boundaries
      * of the outermost polygons in the network, which would otherwise be unbounded.
+     *
+     * @return The extent of th polygon network.
      */
     @UML(identifier="clipArea", obligation=MANDATORY, specification=ISO_19123)
     Surface getClipArea();
@@ -93,8 +95,9 @@ public interface ThiessenPolygonCoverage extends ContinuousCoverage {
      * from the {@linkplain PointValuePair point-value pairs} at the centres of the surrounding
      * Thiessen value polygons.
      *
-     * @todo The return type should be Set<Record>.
+     * @throws PointOutsideCoverageException if the point is outside the coverage domain.
+     * @throws CannotEvaluateException If the point can't be evaluated for some other reason.
      */
     @UML(identifier="evaluate", obligation=MANDATORY, specification=ISO_19123)
-    Set<Record> evaluate(DirectPosition p, Collection<String> list);
+    Set<Record> evaluate(DirectPosition p, Collection<String> list) throws CannotEvaluateException;
 }

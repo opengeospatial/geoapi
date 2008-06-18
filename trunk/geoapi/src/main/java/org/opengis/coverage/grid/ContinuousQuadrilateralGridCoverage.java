@@ -15,6 +15,7 @@ import java.util.Collection;
 import org.opengis.util.Record;
 import org.opengis.coverage.ContinuousCoverage;
 import org.opengis.coverage.InterpolationMethod;
+import org.opengis.coverage.CannotEvaluateException;
 import org.opengis.geometry.DirectPosition;
 import org.opengis.annotation.UML;
 import org.opengis.annotation.Extension;
@@ -90,10 +91,11 @@ public interface ContinuousQuadrilateralGridCoverage extends ContinuousCoverage 
      * {@linkplain GridValueCell grid value cell}. In other words, a continuous grid coverage
      * that uses nearest neighbour interpolation acts as a discrete surface coverage.
      *
-     * @todo The return type should be Set<Record>.
+     * @throws PointOutsideCoverageException if the point is outside the coverage domain.
+     * @throws CannotEvaluateException If the point can't be evaluated for some other reason.
      */
     @UML(identifier="evaluate", obligation=MANDATORY, specification=ISO_19123)
-    Set<Record> evaluate(DirectPosition p, Collection<String> list);
+    Set<Record> evaluate(DirectPosition p, Collection<String> list) throws CannotEvaluateException;
 
     /**
      * Provides the data for the {@linkplain #evaluate evaluate} operation.

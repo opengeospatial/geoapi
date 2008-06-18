@@ -96,8 +96,9 @@ public interface SegmentedCurveCoverage extends ContinuousCoverage {
      *       #getCommonPointRule common point rule}.</li>
      * </ul>
      *
-     * @todo The return type should be Set<Record>.
+     * @throws PointOutsideCoverageException if the point is outside the coverage domain.
+     * @throws CannotEvaluateException If the point can't be evaluated for some other reason.
      */
     @UML(identifier="evaluate", obligation=MANDATORY, specification=ISO_19123)
-    Set<Record> evaluate(DirectPosition p, Collection<String> list);
+    Set<Record> evaluate(DirectPosition p, Collection<String> list) throws CannotEvaluateException;
 }

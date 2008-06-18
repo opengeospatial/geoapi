@@ -36,6 +36,8 @@ public interface DiscreteCoverage extends Coverage {
     /**
      * Returns the set of <var>geometry</var>-<var>value</var> pairs included in this coverage.
      *
+     * @return The set of <var>geometry</var>-<var>value</var> pairs, or {@code null}.
+     *
      * @todo Is it duplicating {@link Coverage#list}?
      */
     @UML(identifier="element", obligation=OPTIONAL, specification=ISO_19123)
@@ -46,6 +48,9 @@ public interface DiscreteCoverage extends Coverage {
      * {@linkplain DomainObject domain objects} containing the specified direct position.
      * It shall return {@code null} if the direct position is not on any of the
      * {@linkplain DomainObject objects} within the domain of the discrete coverage.
+     *
+     * @param p The position where to search for <var>geometry</var>-<var>value</var> pairs.
+     * @return <var>geometry</var>-<var>value</var> pairs, or {@code null}.
      */
     @UML(identifier="locate", obligation=OPTIONAL, specification=ISO_19123)
     Set<? extends GeometryValuePair> locate(DirectPosition p);
@@ -58,16 +63,14 @@ public interface DiscreteCoverage extends Coverage {
      * two <var>geometry</var>-<var>value</var> pairs, or within two or more overlapping
      * <var>geometry</var>-<var>value</var> pairs, the operation shall return a record of feature
      * attribute values derived according to the {@linkplain Coverage#getCommonPointRule common point rule}.
-     * It shall return {@code null} if the direct position is not on any of the
+     * It shall return an empty set if the direct position is not on any of the
      * {@linkplain DomainObject objects} within the domain of the discrete coverage.
      *
-     * @todo Superclass throws an exception if the position is not in the domain (instead of
-     *       returning null)...
-     *
-     * @todo Returns type should be Set<Record>.
+     * @throws PointOutsideCoverageException if the point is outside the coverage domain.
+     * @throws CannotEvaluateException If the point can't be evaluated for some other reason.
      */
     @UML(identifier="evaluate", obligation=MANDATORY, specification=ISO_19123)
-    Set<Record> evaluate(DirectPosition p, Collection<String> list);
+    Set<Record> evaluate(DirectPosition p, Collection<String> list) throws CannotEvaluateException;
 
     /**
      * Locates the <var>geometry</var>-<var>value</var> pairs for which value equals the input
