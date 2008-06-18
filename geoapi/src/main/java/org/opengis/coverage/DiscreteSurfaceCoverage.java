@@ -51,6 +51,8 @@ public interface DiscreteSurfaceCoverage extends DiscreteCoverage {
      * == triangleSource.{@linkplain ValueTriangle#getControlValues controlValue}.{@link
      * ValueObject#getGeometry geometry}</code>
      *
+     * @return The TIN coverage.
+     *
      * @todo Review the constraints. Something must be missing...
      */
     @UML(identifier="triangleSource", obligation=OPTIONAL, specification=ISO_19123)
@@ -62,6 +64,8 @@ public interface DiscreteSurfaceCoverage extends DiscreteCoverage {
      * <p>
      * <code>{@linkplain #getElements element}.{@linkplain SurfaceValuePair#getGeometry geometry}
      * == polygonSource.controlValue.{@link ValueObject#getGeometry geometry}</code>
+     *
+     * @return The thiessen polygon coverage.
      *
      * @todo Review the constraints. Something must be missing...
      */

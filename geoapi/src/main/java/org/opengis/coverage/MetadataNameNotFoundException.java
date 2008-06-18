@@ -11,8 +11,6 @@
 package org.opengis.coverage;
 
 import org.opengis.annotation.UML;
-
-import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
 
 
@@ -30,6 +28,7 @@ import static org.opengis.annotation.Specification.*;
  *
  * @deprecated No replacement.
  */
+@Deprecated
 @UML(identifier="CV_MetadataNameNotFound", specification=OGC_01004)
 public class MetadataNameNotFoundException extends IllegalArgumentException {
     /**

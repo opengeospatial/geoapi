@@ -13,6 +13,7 @@ package org.opengis.coverage;
 import java.util.List;
 import java.util.Set;
 import org.opengis.util.Record;
+import org.opengis.temporal.Period;
 import org.opengis.coverage.grid.GridPoint;
 import org.opengis.coverage.grid.GridPointValuePair;
 import org.opengis.coverage.grid.GridCoordinates;
@@ -64,6 +65,8 @@ public interface DiscreteGridPointCoverage extends DiscreteCoverage {
     /**
      * Links this discrete grid point coverage to the grid values matrix
      * for which it is an evaluator.
+     *
+     * @return The underlying grid values matrix.
      */
     @UML(identifier="valueAssignment", obligation=MANDATORY, specification=ISO_19123)
     GridValuesMatrix getValueAssignment();
@@ -90,11 +93,9 @@ public interface DiscreteGridPointCoverage extends DiscreteCoverage {
      * pairs that contain {@linkplain DomainObject domain objects} within {@code t}. If the value
      * of {@code t} is null, the operation shall return all <var>point</var>-<var>value</var>
      * pair that contain {@linkplain DomainObject domain objects} within {@code s}.
-     *
-     * @todo Missing the TM_Period argument
      */
     @UML(identifier="select", obligation=MANDATORY, specification=ISO_19123)
-    Set<GridPointValuePair> select(Geometry s/*, TM_Period t*/);
+    Set<GridPointValuePair> select(Geometry s, Period t);
 
     /**
      * Returns the sequence of <var>point</var>-<var>value</var> pairs that include the
@@ -121,6 +122,9 @@ public interface DiscreteGridPointCoverage extends DiscreteCoverage {
     /**
      * Uses data from the associated {@linkplain GridValuesMatrix grid values matrix} to construct
      * and return the grid point value pair associated with the specified grid position.
+     *
+     * @param g The position where to search for a value.
+     * @return The point and value at the specified position.
      */
     @UML(identifier="point", obligation=MANDATORY, specification=ISO_19123)
     GridPointValuePair point(GridCoordinates g);
