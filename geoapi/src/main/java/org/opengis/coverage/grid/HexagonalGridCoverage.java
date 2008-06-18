@@ -17,6 +17,7 @@ import org.opengis.coverage.DomainObject;
 import org.opengis.coverage.ContinuousCoverage;
 import org.opengis.coverage.InterpolationMethod;
 import org.opengis.coverage.DiscreteSurfaceCoverage;
+import org.opengis.coverage.CannotEvaluateException;
 import org.opengis.geometry.DirectPosition;
 import org.opengis.annotation.UML;
 
@@ -87,9 +88,12 @@ public interface HexagonalGridCoverage extends ContinuousCoverage {
      * second is to interpolate the feature attribute values at the direct position from the
      * {@linkplain GridPointValuePair grid point-value pairs} at the centres of the surrounding
      * value hexagons.
+     *
+     * @throws PointOutsideCoverageException if the point is outside the coverage domain.
+     * @throws CannotEvaluateException If the point can't be evaluated for some other reason.
      */
     @UML(identifier="evaluate", obligation=MANDATORY, specification=ISO_19123)
-    Set<Record> evaluate(DirectPosition p, Collection<String> list);
+    Set<Record> evaluate(DirectPosition p, Collection<String> list) throws CannotEvaluateException;
 
     /**
      * Links this hexagonal coverage to the grid values matrix for which it is an evaluator.

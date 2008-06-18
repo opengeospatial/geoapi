@@ -32,6 +32,7 @@ import static org.opengis.annotation.Specification.*;
  *
  * @deprecated No replacement.
  */
+@Deprecated
 @UML(identifier="CV_ColorInterpretation", specification=OGC_01004)
 public final class ColorInterpretation extends CodeList<ColorInterpretation> {
     /**

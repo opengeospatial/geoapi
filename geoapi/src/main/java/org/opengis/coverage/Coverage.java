@@ -253,10 +253,9 @@ public interface Coverage {
      * @return The feature attributes.
      * @throws PointOutsideCoverageException if the point is outside the coverage domain.
      * @throws CannotEvaluateException If the point can't be evaluated for some other reason.
-     * @todo According javadoc, the {@code list} parameter should be of type {@link Collection}.
      */
     @UML(identifier="evaluate", obligation=MANDATORY, specification=ISO_19123)
-    Set<Record> evaluate(DirectPosition p, Set<String> list) throws CannotEvaluateException;
+    Set<Record> evaluate(DirectPosition p, Collection<String> list) throws CannotEvaluateException;
 
     /**
      * Return the value vector for a given point in the coverage.

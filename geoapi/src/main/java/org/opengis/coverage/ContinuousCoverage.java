@@ -11,6 +11,7 @@
 package org.opengis.coverage;
 
 import java.util.Set;
+import java.util.Collection;
 import org.opengis.geometry.Geometry;
 import org.opengis.geometry.DirectPosition;
 import org.opengis.temporal.Period;
@@ -100,14 +101,11 @@ public interface ContinuousCoverage extends Coverage {
      * {@linkplain Coverage#getCommonPointRule common point rule}. It shall return an empty set if the direct
      * position is not on any {@linkplain ValueObject value object}.
      *
-     * @param p The position where to evaluate.
-     * @param list The field of interest, or {@code null} for every fields.
-     * @return The feature attributes.
      * @throws PointOutsideCoverageException if the point is outside the coverage domain.
      * @throws CannotEvaluateException If the point can't be evaluated for some other reason.
      */
     @UML(identifier="evaluate", obligation=MANDATORY, specification=ISO_19123)
-    Set<Record> evaluate(DirectPosition p, Set<String> list) throws CannotEvaluateException;
+    Set<Record> evaluate(DirectPosition p, Collection<String> list) throws CannotEvaluateException;
 
     /**
      * Locates the <var>geometry</var>-<var>value</var> pairs for which value equals the specified
