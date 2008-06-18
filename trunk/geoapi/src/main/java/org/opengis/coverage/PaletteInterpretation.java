@@ -12,7 +12,7 @@ package org.opengis.coverage;
 
 import java.util.List;
 import java.util.ArrayList;
-import java.awt.color.ColorSpace; // For Javadoc
+import java.awt.color.ColorSpace;
 
 import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
@@ -33,6 +33,7 @@ import static org.opengis.annotation.Specification.*;
  *
  * @deprecated No replacement.
  */
+@Deprecated
 @UML(identifier="CV_PaletteInterpretation", specification=OGC_01004)
 public final class PaletteInterpretation extends CodeList<PaletteInterpretation> {
     /**

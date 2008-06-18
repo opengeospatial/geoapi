@@ -10,8 +10,8 @@
  *************************************************************************************************/
 package org.opengis.coverage;
 
-import java.util.Collection;
 import java.util.Set;
+import java.util.Collection; // For javadoc
 import org.opengis.geometry.DirectPosition;
 import org.opengis.util.Record;
 import org.opengis.annotation.UML;

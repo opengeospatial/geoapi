@@ -12,7 +12,7 @@ package org.opengis.coverage;
 
 import java.util.List;
 import java.util.ArrayList;
-import java.awt.image.DataBuffer; // For Javadoc
+import java.awt.image.DataBuffer;
 
 import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;

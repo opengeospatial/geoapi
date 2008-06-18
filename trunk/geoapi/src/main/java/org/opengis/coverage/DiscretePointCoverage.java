@@ -12,6 +12,7 @@ package org.opengis.coverage;
 
 import java.util.Set;
 import java.util.List;
+import org.opengis.temporal.Period;
 import org.opengis.geometry.Geometry;
 import org.opengis.geometry.DirectPosition;
 import org.opengis.annotation.UML;
@@ -72,11 +73,9 @@ public interface DiscretePointCoverage extends DiscreteCoverage {
      * pairs that contain {@linkplain DomainObject domain objects} within {@code t}. If the value
      * of {@code t} is null, the operation shall return all <var>point</var>-<var>value</var>
      * pair that contain {@linkplain DomainObject domain objects} within {@code s}.
-     *
-     * @todo Missing the TM_Period argument.
      */
     @UML(identifier="select", obligation=MANDATORY, specification=ISO_19123)
-    Set<PointValuePair> select(Geometry s/*, TM_Period t*/);
+    Set<PointValuePair> select(Geometry s, Period t);
 
     /**
      * Returns the sequence of <var>point</var>-<var>value</var> pairs that include the

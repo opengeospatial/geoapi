@@ -66,6 +66,10 @@ public interface SegmentedCurveCoverage extends ContinuousCoverage {
      * an exception if the direct position is not close (i.e., within the distance specified by the
      * tolerance parameter) to one of the {@linkplain ValueCurve value curves} in this segmented
      * curve coverage. The default value for tolerance is zero.
+     *
+     * @param position The position where to search for a value curve.
+     * @param tolerance The maximal distance between the curve and the specified position.
+     * @return The curve nearest to the specified position.
      */
     @UML(identifier="curve", obligation=MANDATORY, specification=ISO_19123)
     ValueCurve curve(DirectPosition position, double tolerance);
@@ -73,6 +77,9 @@ public interface SegmentedCurveCoverage extends ContinuousCoverage {
     /**
      * Return the value curve nearest to the specified direct position. This method is equivalent
      * to <code>{@linkplain #curve(DirectPosition,double) curve}(position, 0)</code>.
+     *
+     * @param position The position where to search for a value curve.
+     * @return The curve nearest to the specified position.
      */
     @UML(identifier="curve", obligation=MANDATORY, specification=ISO_19123)
     ValueCurve curve(DirectPosition position);

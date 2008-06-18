@@ -11,7 +11,6 @@
 package org.opengis.coverage;
 
 import java.util.Set;
-import org.opengis.coverage.ValueObject;
 import org.opengis.geometry.DirectPosition;
 import org.opengis.geometry.primitive.Curve;
 import org.opengis.annotation.UML;
