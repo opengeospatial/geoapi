@@ -62,10 +62,9 @@ public interface DirectPosition extends Position {
     int getDimension();
 
     /**
-     * A <b>copy</b> of the ordinates presented as a double array.
-     * Please note that this is only a copy (the real values may be stored in another format).
-     * <p>
-     * To quickly access individual ordinates please use the following:
+     * A <b>copy</b> of the ordinates presented as a double array. The semantic is to return
+     * a copy in all case - the real values may be stored in another format. To quickly access
+     * individual ordinates, the following idiom can be used:
      *
      * <blockquote><pre>
      * final int dim = position.{@linkplain #getDimension getDimension}();
@@ -74,13 +73,14 @@ public interface DirectPosition extends Position {
      * }
      * </pre></blockquote>
      *
-     * If you want to manipulate ordinates please use:
+     * To manipulate ordinates, the following idiom can be used:
      *
      * <blockquote><pre>
      * position.{@linkplain #setOrdinate setOrdinate}(i, value); // edit in place
      * </pre></blockquote>
      *
-     * There are a couple reasons you would like a copy:
+     * There are a couple reasons for requerying a copy:
+     * <p>
      * <ul>
      *   <li>We want an array of coordinates with the intend to modify it for computation purpose
      *       (without modifying the original {@code DirectPosition}), or we want to protect the
@@ -92,7 +92,7 @@ public interface DirectPosition extends Position {
      *       forced to returns a new array anyway (for example because the coordinates were
      *       computed on the fly)</li>
      * </ul>
-     *
+     * <p>
      * Precedence is given to data integrity over {@code getOrdinates()} performance.
      * Performance concern can be avoided with usage of {@link #getOrdinate(int)}.
      *
@@ -107,7 +107,8 @@ public interface DirectPosition extends Position {
      *
      * @param dimension The dimension in the range 0 to {@linkplain #getDimension dimension}-1.
      * @return The coordinate at the specified dimension.
-     * @throws IndexOutOfBoundsException if the specified dimension is out of bounds.
+     * @throws IndexOutOfBoundsException If the given index is negative or is equals or greater
+     *         than the {@linkplain #getDimension envelope dimension}.
      */
     double getOrdinate(int dimension) throws IndexOutOfBoundsException;
 
@@ -116,7 +117,8 @@ public interface DirectPosition extends Position {
      *
      * @param dimension the dimension for the ordinate of interest.
      * @param value the ordinate value of interest.
-     * @throws IndexOutOfBoundsException if the specified dimension is out of bounds.
+     * @throws IndexOutOfBoundsException If the given index is negative or is equals or greater
+     *         than the {@linkplain #getDimension envelope dimension}.
      * @throws UnsupportedOperationException if this direct position is immutable.
      */
     void setOrdinate(int dimension, double value)
@@ -139,6 +141,9 @@ public interface DirectPosition extends Position {
      *       returns {@code true}.</li>
      * </ul>
      *
+     * @param object The object to compare with this direct position for equality.
+     * @return {@code true} if the given object is equals to this direct position.
+     *
      * @since GeoAPI 2.1
      */
     ///@Override
@@ -153,6 +158,8 @@ public interface DirectPosition extends Position {
      *
      * where the right hand side of the addition is omitted if the coordinate reference
      * system is null.
+     *
+     * @return A hash code value for this direct position.
      *
      * @since GeoAPI 2.1
      */

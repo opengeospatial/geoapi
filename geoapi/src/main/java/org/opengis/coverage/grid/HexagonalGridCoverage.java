@@ -18,6 +18,7 @@ import org.opengis.coverage.ContinuousCoverage;
 import org.opengis.coverage.InterpolationMethod;
 import org.opengis.coverage.DiscreteSurfaceCoverage;
 import org.opengis.coverage.CannotEvaluateException;
+import org.opengis.coverage.PointOutsideCoverageException;
 import org.opengis.geometry.DirectPosition;
 import org.opengis.annotation.UML;
 
@@ -93,7 +94,8 @@ public interface HexagonalGridCoverage extends ContinuousCoverage {
      * @throws CannotEvaluateException If the point can't be evaluated for some other reason.
      */
     @UML(identifier="evaluate", obligation=MANDATORY, specification=ISO_19123)
-    Set<Record> evaluate(DirectPosition p, Collection<String> list) throws CannotEvaluateException;
+    Set<Record> evaluate(DirectPosition p, Collection<String> list)
+            throws PointOutsideCoverageException, CannotEvaluateException;
 
     /**
      * Links this hexagonal coverage to the grid values matrix for which it is an evaluator.
@@ -107,7 +109,7 @@ public interface HexagonalGridCoverage extends ContinuousCoverage {
      *   <li>The lengths of the {@linkplain RectifiedGrid#getOffsetVectors offset vectors} are equal.</li>
      * <ul>
      *
-     * @todo The first constraints doesn't seem very consistent with the return type.
+     * @return The underlying data.
      */
     @UML(identifier="source", obligation=MANDATORY, specification=ISO_19123)
     GridValuesMatrix getSource();

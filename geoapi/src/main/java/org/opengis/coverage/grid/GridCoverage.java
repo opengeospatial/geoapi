@@ -11,9 +11,9 @@
 package org.opengis.coverage.grid;
 
 import java.util.List;
-import java.awt.image.Raster;          // For Javadoc
-import java.awt.image.WritableRaster;  // For Javadoc
-import java.awt.image.RenderedImage;   // For Javadoc
+import java.awt.image.Raster;
+import java.awt.image.WritableRaster;
+import java.awt.image.RenderedImage;
 import org.opengis.coverage.Coverage;
 import org.opengis.annotation.UML;
 

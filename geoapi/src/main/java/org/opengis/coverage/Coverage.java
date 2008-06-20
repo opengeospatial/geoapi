@@ -255,7 +255,8 @@ public interface Coverage {
      * @throws CannotEvaluateException If the point can't be evaluated for some other reason.
      */
     @UML(identifier="evaluate", obligation=MANDATORY, specification=ISO_19123)
-    Set<Record> evaluate(DirectPosition p, Collection<String> list) throws CannotEvaluateException;
+    Set<Record> evaluate(DirectPosition p, Collection<String> list)
+            throws PointOutsideCoverageException, CannotEvaluateException;
 
     /**
      * Return the value vector for a given point in the coverage.
@@ -278,7 +279,7 @@ public interface Coverage {
      * @see Raster#getDataElements(int, int, Object)
      */
     @UML(identifier="evaluate", obligation=MANDATORY, specification=OGC_01004)
-    Object evaluate(DirectPosition point) throws CannotEvaluateException;
+    Object evaluate(DirectPosition point) throws PointOutsideCoverageException, CannotEvaluateException;
 
     /**
      * Return a sequence of boolean values for a given point in the coverage.
@@ -303,7 +304,7 @@ public interface Coverage {
      */
     @UML(identifier="evaluateAsBoolean", obligation=MANDATORY, specification=OGC_01004)
     boolean[] evaluate(DirectPosition point, boolean[] destination)
-            throws CannotEvaluateException, ArrayIndexOutOfBoundsException;
+            throws PointOutsideCoverageException, CannotEvaluateException, ArrayIndexOutOfBoundsException;
 
     /**
      * Return a sequence of unsigned byte values for a given point in the coverage.
@@ -328,7 +329,7 @@ public interface Coverage {
      */
     @UML(identifier="evaluateAsByte", obligation=MANDATORY, specification=OGC_01004)
     byte[] evaluate(DirectPosition point, byte[] destination)
-            throws CannotEvaluateException, ArrayIndexOutOfBoundsException;
+            throws PointOutsideCoverageException, CannotEvaluateException, ArrayIndexOutOfBoundsException;
 
     /**
      * Return a sequence of integer values for a given point in the coverage.
@@ -355,7 +356,7 @@ public interface Coverage {
      */
     @UML(identifier="evaluateAsInteger", obligation=MANDATORY, specification=OGC_01004)
     int[] evaluate(DirectPosition point, int[] destination)
-            throws CannotEvaluateException, ArrayIndexOutOfBoundsException;
+            throws PointOutsideCoverageException, CannotEvaluateException, ArrayIndexOutOfBoundsException;
 
     /**
      * Return a sequence of float values for a given point in the coverage.
@@ -381,7 +382,7 @@ public interface Coverage {
      * @see Raster#getPixel(int, int, float[])
      */
     float[] evaluate(DirectPosition point, float[] destination)
-            throws CannotEvaluateException, ArrayIndexOutOfBoundsException;
+            throws PointOutsideCoverageException, CannotEvaluateException, ArrayIndexOutOfBoundsException;
 
     /**
      * Return a sequence of double values for a given point in the coverage.
@@ -408,7 +409,7 @@ public interface Coverage {
      */
     @UML(identifier="evaluateAsDouble", obligation=MANDATORY, specification=OGC_01004)
     double[] evaluate(DirectPosition point, double[] destination)
-            throws CannotEvaluateException, ArrayIndexOutOfBoundsException;
+            throws PointOutsideCoverageException, CannotEvaluateException, ArrayIndexOutOfBoundsException;
 
     /**
      * Returns a set of {@linkplain DomainObject domain objects} for the specified record of feature

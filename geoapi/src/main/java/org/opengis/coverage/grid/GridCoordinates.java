@@ -56,19 +56,24 @@ public interface GridCoordinates extends Cloneable {
      * <code>{@linkplain #getCoordinateValues()}[<var>i</var>]</code>. It is provided for
      * efficienty.
      *
-     * @param  i The dimension for which to obtain the coordinate value.
+     * @param  dimension The dimension for which to obtain the coordinate value.
      * @return The coordinate value at the given dimension.
+     * @throws IndexOutOfBoundsException If the given index is negative or is equals or greater
+     *         than the {@linkplain #getDimension grid dimension}.
      */
     @Extension
-    int getCoordinateValue(int i);
+    int getCoordinateValue(int dimension) throws IndexOutOfBoundsException;
 
     /**
      * Sets the coordinate value at the specified dimension (optional operation).
      *
-     * @param  i The dimension for which to set the coordinate value.
+     * @param  dimension The dimension for which to set the coordinate value.
      * @param  value The new value.
+     * @throws IndexOutOfBoundsException If the given index is negative or is equals or greater
+     *         than the {@linkplain #getDimension grid dimension}.
      * @throws UnsupportedOperationException if this grid coordinates is not modifiable.
      */
     @Extension
-    void setCoordinateValue(int i, int value) throws UnsupportedOperationException;
+    void setCoordinateValue(int dimension, int value)
+            throws IndexOutOfBoundsException, UnsupportedOperationException;
 }

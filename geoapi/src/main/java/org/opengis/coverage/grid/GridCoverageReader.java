@@ -11,12 +11,12 @@
 package org.opengis.coverage.grid;
 
 import java.io.IOException;
-import java.io.FileNotFoundException;  // For Javadoc
+import java.io.FileNotFoundException;
 import org.opengis.coverage.MetadataNameNotFoundException;
 import org.opengis.parameter.GeneralParameterValue;
-import org.opengis.parameter.ParameterNotFoundException;     // For javadoc
-import org.opengis.parameter.InvalidParameterNameException;  // For javadoc
-import org.opengis.parameter.InvalidParameterValueException; // For javadoc
+import org.opengis.parameter.ParameterNotFoundException;
+import org.opengis.parameter.InvalidParameterNameException;
+import org.opengis.parameter.InvalidParameterValueException;
 
 
 /**
@@ -44,6 +44,7 @@ import org.opengis.parameter.InvalidParameterValueException; // For javadoc
  * @see GridCoverageExchange#getReader
  * @see javax.imageio.ImageReader
  */
+@Deprecated
 public interface GridCoverageReader {
     /**
      * Returns the format handled by this {@code GridCoverageReader}.

@@ -42,6 +42,15 @@ import static org.opengis.annotation.Specification.*;
  * be described as a different geodetic datum. Conversely geographic coordinates are unambiguous
  * only when associated with a geodetic datum.
  *
+ * @departure
+ *   ISO 19111 defines {@link #getSemiMinorAxis semiMinorAxis}, {@link #getInverseFlattening
+ *   inverseFlattening} and {@link #isIvfDefinitive isSphere} in a separated structure named
+ *   {@code secondDefiningParameter} of type {@code union}. The C/C++ concept of {@code union}
+ *   doesn't exist in Java, but implementors can achieve the same functionality by providing
+ *   different {@code Ellipsoid} subclasses computing one parameter on-the-fly from the other
+ *   one. The {@link #isIvfDefinitive isIvfDefinitive} attribute imported from OGC 01-004 can
+ *   be used for distinguishing between the two cases.
+ *
  * @version <A HREF="http://portal.opengeospatial.org/files/?artifact_id=6716">Abstract specification 2.0</A>
  * @author ISO/DIS 19111
  * @author Martin Desruisseaux (IRD)

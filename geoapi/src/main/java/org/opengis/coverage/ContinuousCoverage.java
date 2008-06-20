@@ -105,7 +105,8 @@ public interface ContinuousCoverage extends Coverage {
      * @throws CannotEvaluateException If the point can't be evaluated for some other reason.
      */
     @UML(identifier="evaluate", obligation=MANDATORY, specification=ISO_19123)
-    Set<Record> evaluate(DirectPosition p, Collection<String> list) throws CannotEvaluateException;
+    Set<Record> evaluate(DirectPosition p, Collection<String> list)
+            throws PointOutsideCoverageException, CannotEvaluateException;
 
     /**
      * Locates the <var>geometry</var>-<var>value</var> pairs for which value equals the specified

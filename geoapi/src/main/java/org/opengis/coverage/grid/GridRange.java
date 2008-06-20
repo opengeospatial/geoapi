@@ -36,20 +36,21 @@ import static org.opengis.annotation.Specification.*;
  * @version <A HREF="http://www.opengis.org/docs/01-004.pdf">Grid Coverage specification 1.0</A>
  * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 1.0
+ *
+ * @deprecated Replaced by {@link GridEnvelope}.
  */
+@Deprecated
 @UML(identifier="CV_GridRange", specification=OGC_01004)
-public interface GridRange {
-    /**
-     * Returns the number of dimensions.
-     */
-    int getDimension();
-
+public interface GridRange extends GridEnvelope {
     /**
      * Returns the valid minimum inclusive grid coordinate.
      * The sequence contains a minimum value for each dimension of the grid coverage.
      *
      * @since GeoAPI 2.1
+     *
+     * @deprecated Renamed as {@link #getLow()}.
      */
+    @Deprecated
     @UML(identifier="lo", obligation=MANDATORY, specification=OGC_01004)
     GridCoordinates getLower();
 
@@ -58,28 +59,40 @@ public interface GridRange {
      * The sequence contains a maximum value for each dimension of the grid coverage.
      *
      * @since GeoAPI 2.1
+     *
+     * @deprecated Replaced as {@link #getHigh()} with 1 added to all ordinate values.
      */
+    @Deprecated
     @UML(identifier="hi", obligation=MANDATORY, specification=OGC_01004)
     GridCoordinates getUpper();
 
     /**
      * Returns the valid minimum inclusive grid
      * coordinate along the specified dimension.
+     *
+     * @deprecated Renamed as {@link #getLow(int)}.
      */
     @Extension
+    @Deprecated
     int getLower(int dimension);
 
     /**
      * Returns the valid maximum exclusive grid
      * coordinate along the specified dimension.
+     *
+     * @deprecated Renamed as {@link #getHigh(int)} <strong>+ 1</strong>.
      */
     @Extension
+    @Deprecated
     int getUpper(int dimension);
 
     /**
      * Returns the number of integer grid coordinates along the specified dimension.
      * This is equals to {@code getUpper(dimension)-getLower(dimension)}.
+     *
+     * @deprecated Renamed as {@link #getSpan(int)}.
      */
     @Extension
+    @Deprecated
     int getLength(int dimension);
 }
