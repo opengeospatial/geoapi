@@ -13,7 +13,7 @@ package org.opengis.coverage.grid;
 import java.util.List;
 import org.opengis.geometry.DirectPosition;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
-import org.opengis.referencing.datum.Datum;  // For javadoc
+import org.opengis.referencing.datum.Datum;
 import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Obligation.*;

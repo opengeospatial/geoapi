@@ -10,7 +10,7 @@
  *************************************************************************************************/
 package org.opengis.coverage.grid;
 
-import org.opengis.coverage.SampleDimensionType;  // For Javadoc
+import org.opengis.coverage.SampleDimensionType;
 import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Obligation.*;
@@ -40,6 +40,7 @@ import static org.opengis.annotation.Specification.*;
  * @since GeoAPI 1.0
  * @deprecated In favor of migrating to ISO 19123 definition for Coverage.
  */
+@Deprecated
 @UML(identifier="GC_GridPacking", specification=OGC_01004)
 public interface GridPacking {
     /**

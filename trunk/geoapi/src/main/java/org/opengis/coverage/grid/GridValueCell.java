@@ -36,10 +36,14 @@ public interface GridValueCell extends ValueObject {
      * of a feature attribute value at a {@linkplain DirectPosition direct position} within the
      * {@linkplain GridCell grid cell}.
      *
-     * @todo Clash in the return type!!!!
+     * @departure
+     *   ISO defines this method as a specialization of {@link #getGeometry}. We can
+     *   not reflect this association in Java because of incompatible return type.
+     *
+     * @return The structure of grid points.
      */
-//    @UML(identifier="geometry", obligation=MANDATORY, specification=ISO_19123)
-//    GridCell getGeometry();
+    @UML(identifier="geometry", obligation=MANDATORY, specification=ISO_19123)
+    GridCell getGridCell();
 
     /**
      * Returns the set of <var>grid point</var>-<var>value</var> pairs at the corners of this

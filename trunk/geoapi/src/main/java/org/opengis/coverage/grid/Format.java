@@ -39,6 +39,7 @@ import static org.opengis.annotation.Specification.*;
  * @since GeoAPI 2.0
  * @deprecated In favor of migrating to ISO 19123 definition for Coverage.
  */
+@Deprecated
 @UML(identifier="CV_Format", specification=OGC_01004)
 public interface Format {
     /**

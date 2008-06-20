@@ -13,7 +13,6 @@ package org.opengis.coverage.grid;
 import javax.imageio.IIOException;
 import org.opengis.annotation.UML;
 
-import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
 
 
@@ -39,6 +38,7 @@ import static org.opengis.annotation.Specification.*;
  *
  * @see GridCoverageReader#read
  */
+@Deprecated
 @UML(identifier="GC_CannotCreateGridCoverage", specification=OGC_01004)
 public class CannotCreateGridCoverageException extends IIOException {
     /**

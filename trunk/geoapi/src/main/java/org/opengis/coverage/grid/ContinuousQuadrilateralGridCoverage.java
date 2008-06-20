@@ -16,9 +16,9 @@ import org.opengis.util.Record;
 import org.opengis.coverage.ContinuousCoverage;
 import org.opengis.coverage.InterpolationMethod;
 import org.opengis.coverage.CannotEvaluateException;
+import org.opengis.coverage.PointOutsideCoverageException;
 import org.opengis.geometry.DirectPosition;
 import org.opengis.annotation.UML;
-import org.opengis.annotation.Extension;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -62,16 +62,6 @@ public interface ContinuousQuadrilateralGridCoverage extends ContinuousCoverage 
     Set<GridValueCell> locate(DirectPosition p);
 
     /**
-     * Returns the grid value cell that contains the specified direct position. This is a
-     * convenience method for <code>{@linkplain #locate locate}(p).iterator().next()</code>.
-     *
-     * @todo Consider moving this method in some parent class. It may force a renaming as
-     *       <code>locateFirst</code>.
-     */
-    @Extension
-    GridValueCell locateCell(DirectPosition p);
-
-    /**
      * Returns a set of records of feature attribute values for the specified direct position.
      * Evaluation of a continuous quadrilateral grid coverage involves two steps. The first is
      * to use the information from the {@linkplain GridValuesMatrix values matrix} at {@linkplain
@@ -95,10 +85,13 @@ public interface ContinuousQuadrilateralGridCoverage extends ContinuousCoverage 
      * @throws CannotEvaluateException If the point can't be evaluated for some other reason.
      */
     @UML(identifier="evaluate", obligation=MANDATORY, specification=ISO_19123)
-    Set<Record> evaluate(DirectPosition p, Collection<String> list) throws CannotEvaluateException;
+    Set<Record> evaluate(DirectPosition p, Collection<String> list)
+            throws PointOutsideCoverageException, CannotEvaluateException;
 
     /**
      * Provides the data for the {@linkplain #evaluate evaluate} operation.
+     *
+     * @return The underlying data.
      */
     @UML(identifier="source", obligation=MANDATORY, specification=ISO_19123)
     GridValuesMatrix getSource();

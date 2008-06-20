@@ -46,6 +46,7 @@ import static org.opengis.annotation.Specification.*;
  * @see GridCoverageReader
  * @see GridCoverageWriter
  */
+@Deprecated
 @UML(identifier="CV_GridCoverageExchange", specification=OGC_01004)
 public interface GridCoverageExchange {
     /**

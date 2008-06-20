@@ -10,6 +10,7 @@
  *************************************************************************************************/
 package org.opengis.geometry;
 
+import java.awt.geom.Rectangle2D; // Used in @see javadoc tags
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 import org.opengis.annotation.UML;
 import org.opengis.annotation.Extension;
@@ -28,6 +29,8 @@ import static org.opengis.annotation.Specification.*;
  * @version <A HREF="http://www.opengeospatial.org/standards/as">ISO 19107</A>
  * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 1.0
+ *
+ * @see org.opengis.coverage.grid.GridEnvelope
  */
 @UML(identifier="GM_Envelope", specification=ISO_19107)
 public interface Envelope {
@@ -35,6 +38,8 @@ public interface Envelope {
      * Returns the envelope coordinate reference system, or {@code null} if unknown.
      * If non-null, it shall be the same as {@linkplain #getLowerCorner lower corner}
      * and {@linkplain #getUpperCorner upper corner} CRS.
+     *
+     * @return The envelope CRS, or {@code null} if unknown.
      *
      * @since GeoAPI 2.1
      */
@@ -54,38 +59,13 @@ public interface Envelope {
     int getDimension();
 
     /**
-     * Returns the minimal ordinate along the specified dimension.
+     * A coordinate position consisting of all the minimal ordinates for each
+     * dimension for all points within the {@code Envelope}.
      *
-     * @since GeoAPI 2.0
+     * @return The lower corner.
      */
-    @Extension
-    double getMinimum(final int dimension);
-
-    /**
-     * Returns the maximal ordinate along the specified dimension.
-     *
-     * @since GeoAPI 2.0
-     */
-    @Extension
-    double getMaximum(final int dimension);
-
-    /**
-     * Returns the center ordinate along the specified dimension.
-     *
-     * @since GeoAPI 2.0
-     */
-    @Extension
-    double getCenter(final int dimension);
-
-    /**
-     * Returns the envelope length along the specified dimension.
-     * This length is equals to the {@linkplain #getMaximum maximum ordinate}
-     * minus the {@linkplain #getMinimum minimal ordinate}.
-     *
-     * @since GeoAPI 2.0
-     */
-    @Extension
-    double getLength(final int dimension);
+    @UML(identifier="lowerCorner", obligation=MANDATORY, specification=ISO_19107)
+    DirectPosition getLowerCorner();
 
     /**
      * A coordinate position consisting of all the maximal ordinates for each
@@ -97,11 +77,114 @@ public interface Envelope {
     DirectPosition getUpperCorner();
 
     /**
-     * A coordinate position consisting of all the minimal ordinates for each
-     * dimension for all points within the {@code Envelope}.
+     * Returns the minimal ordinate along the specified dimension. This is a shortcut for
+     * <code>{@linkplain #getLowerCorner}.{@linkplain DirectPosition#getOrdinate getOrdinate}(dimension)</code>
+     * without the cost of creating a temporary {@link DirectPosition} object.
      *
-     * @return The lower corner.
+     * @param  dimension The dimension for which to obtain the ordinate value.
+     * @return The minimal ordinate at the given dimension.
+     * @throws IndexOutOfBoundsException If the given index is negative or is equals or greater
+     *         than the {@linkplain #getDimension envelope dimension}.
+     *
+     * @see Rectangle2D#getMinX
+     * @see Rectangle2D#getMinY
+     *
+     * @since GeoAPI 2.0
      */
-    @UML(identifier="lowerCorner", obligation=MANDATORY, specification=ISO_19107)
-    DirectPosition getLowerCorner();
+    @Extension
+    double getMinimum(int dimension) throws IndexOutOfBoundsException;
+
+    /**
+     * Returns the maximal ordinate along the specified dimension. This is a shortcut for
+     * <code>{@linkplain #getUpperCorner}.{@linkplain DirectPosition#getOrdinate getOrdinate}(dimension)</code>
+     * without the cost of creating a temporary {@link DirectPosition} object.
+     *
+     * @param  dimension The dimension for which to obtain the ordinate value.
+     * @return The maximal ordinate at the given dimension.
+     * @throws IndexOutOfBoundsException If the given index is negative or is equals or greater
+     *         than the {@linkplain #getDimension envelope dimension}.
+     *
+     * @see Rectangle2D#getMaxX
+     * @see Rectangle2D#getMaxY
+     *
+     * @since GeoAPI 2.0
+     */
+    @Extension
+    double getMaximum(int dimension) throws IndexOutOfBoundsException;
+
+    /**
+     * Returns the center ordinate along the specified dimension.
+     *
+     * @param  dimension The dimension for which to obtain the ordinate value.
+     * @return The center ordinate at the given dimension.
+     * @throws IndexOutOfBoundsException If the given index is negative or is equals or greater
+     *         than the {@linkplain #getDimension envelope dimension}.
+     *
+     * @see Rectangle2D#getCenterX
+     * @see Rectangle2D#getCenterY
+     *
+     * @since GeoAPI 2.0
+     *
+     * @deprecated Renamed as {@link #getMedian}.
+     */
+    @Extension
+    @Deprecated
+    double getCenter(int dimension) throws IndexOutOfBoundsException;
+
+    /**
+     * Returns the median ordinate along the specified dimension. The result should be equals
+     * (minus rounding error) to <code>({@linkplain #getMaximum getMaximum}(dimension) -
+     * {@linkplain #getMinimum getMinimum}(dimension)) / 2</code>.
+     *
+     * @param  dimension The dimension for which to obtain the ordinate value.
+     * @return The median ordinate at the given dimension.
+     * @throws IndexOutOfBoundsException If the given index is negative or is equals or greater
+     *         than the {@linkplain #getDimension envelope dimension}.
+     *
+     * @see Rectangle2D#getCenterX
+     * @see Rectangle2D#getCenterY
+     *
+     * @since GeoAPI 2.2
+     */
+    @Extension
+    double getMedian(int dimension) throws IndexOutOfBoundsException;
+
+    /**
+     * Returns the envelope length along the specified dimension.
+     * This length is equals to the {@linkplain #getMaximum maximum ordinate}
+     * minus the {@linkplain #getMinimum minimal ordinate}.
+     *
+     * @param  dimension The dimension for which to obtain the ordinate value.
+     * @return The length at the given dimension.
+     * @throws IndexOutOfBoundsException If the given index is negative or is equals or greater
+     *         than the {@linkplain #getDimension envelope dimension}.
+     *
+     * @see Rectangle2D#getWidth
+     * @see Rectangle2D#getHeight
+     *
+     * @since GeoAPI 2.0
+     *
+     * @deprecated Renamed as {@link #getSpan}.
+     */
+    @Extension
+    @Deprecated
+    double getLength(int dimension) throws IndexOutOfBoundsException;
+
+    /**
+     * Returns the envelope span (typically width or height) along the specified dimension.
+     * The result should be equals (minus rounding error) to <code>{@linkplain #getMaximum
+     * getMaximum}(dimension) - {@linkplain #getMinimum getMinimum}(dimension)</code>.
+     *
+     * @param  dimension The dimension for which to obtain the ordinate value.
+     * @return The span (typically width or height) at the given dimension.
+     * @throws IndexOutOfBoundsException If the given index is negative or is equals or greater
+     *         than the {@linkplain #getDimension envelope dimension}.
+     *
+     * @see Rectangle2D#getWidth
+     * @see Rectangle2D#getHeight
+     *
+     * @since GeoAPI 2.2
+     */
+    @Extension
+    double getSpan(int dimension) throws IndexOutOfBoundsException;
 }

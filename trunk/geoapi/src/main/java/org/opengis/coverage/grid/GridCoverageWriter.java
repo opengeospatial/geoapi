@@ -13,9 +13,9 @@ package org.opengis.coverage.grid;
 import java.io.IOException;
 import org.opengis.coverage.MetadataNameNotFoundException;
 import org.opengis.parameter.GeneralParameterValue;
-import org.opengis.parameter.ParameterNotFoundException;     // For javadoc
-import org.opengis.parameter.InvalidParameterNameException;  // For javadoc
-import org.opengis.parameter.InvalidParameterValueException; // For javadoc
+import org.opengis.parameter.ParameterNotFoundException;
+import org.opengis.parameter.InvalidParameterNameException;
+import org.opengis.parameter.InvalidParameterValueException;
 
 
 /**
@@ -43,6 +43,7 @@ import org.opengis.parameter.InvalidParameterValueException; // For javadoc
  * @see GridCoverageExchange#getWriter
  * @see javax.imageio.ImageWriter
  */
+@Deprecated
 public interface GridCoverageWriter {
     /**
      * Returns the format handled by this {@code GridCoverageWriter}.
