@@ -39,7 +39,7 @@ public interface Graphic {
      * @return
      */
     @XmlElement("ExternalGraphic,Mark")
-    List<GraphicSymbol> getExternalGraphicOrMark();
+    List<GraphicSymbol> graphicSymbols();
 
     //*************************************************************
     // SVG PARAMETERS

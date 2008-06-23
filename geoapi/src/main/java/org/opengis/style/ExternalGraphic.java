@@ -13,6 +13,7 @@ package org.opengis.style;
 import java.util.Collection;
 import javax.swing.Icon;
 import org.opengis.annotation.XmlElement;
+import org.opengis.metadata.citation.OnLineResource;
 import org.opengis.style.function.Interpolate;
 
 
@@ -36,7 +37,7 @@ public interface ExternalGraphic extends GraphicSymbol {
      * @return OnlineResource
      */
     @XmlElement("OnlineResource")
-    OnlineResource getOnlineResource();
+    OnLineResource getOnlineResource();
 
     /**
      * Returns the InlineContent that comprise the image.  This overrides the

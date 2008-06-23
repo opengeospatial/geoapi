@@ -65,13 +65,12 @@ public interface Style {
     boolean isDefault();
     
     /**
-     * Returns a collection of feature portrayals.
+     * Returns a collection of feature type style.
      * 
-     * @return Collection<FeaturePortrayal> , this is the live collection.
      */
     @UML(identifier="featurePortrayal", obligation=MANDATORY, specification=ISO_19117)
     @XmlElement("FeatureTypeStyle")
-    List<FeatureTypeStyle> getFeatureTypes();
+    List<FeatureTypeStyle> featureTypeStyles();
         
     /**
      * Returns the default specification used if no rule return true.
