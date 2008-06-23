@@ -90,7 +90,7 @@ public interface Symbolizer {
      * @return geometry attribut name
      */
     @XmlElement("Geometry")
-    String getGeometryAttribute();
+    String getGeometryPropertyName();
 
     /**
      * Returns a name for this symbolizer.

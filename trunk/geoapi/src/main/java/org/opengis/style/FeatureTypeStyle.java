@@ -75,7 +75,7 @@ public interface FeatureTypeStyle {
      * @return Collection<String>
      */
     @UML(identifier="definedForInst", obligation=OPTIONAL, specification=ISO_19117)
-    Collection<Object> getFeatureInstanceID();
+    Collection<Object> featureInstanceIDs();
     
     /**
      * <p>
@@ -94,7 +94,7 @@ public interface FeatureTypeStyle {
      */
     @XmlElement("FeatureTypeName")
     @UML(identifier="definedFor", obligation=OPTIONAL, specification=ISO_19117)
-    Collection<String> getFeatureTypeName();
+    Collection<String> featureTypeNames();
 
     /**
      * Returns a string that identifies the more general "type" of geometry
@@ -114,7 +114,7 @@ public interface FeatureTypeStyle {
      *
      */
     @XmlElement("SemanticTypeIdentifier")
-    Collection<String> getSemanticTypeIdentifiers();
+    Collection<String> semanticTypeIdentifiers();
 
     /**
      * Returns the list of rules contained by this style.
@@ -123,7 +123,7 @@ public interface FeatureTypeStyle {
      */
     @XmlElement("Rule")
     @UML(identifier="portrayalRule", obligation=MANDATORY, specification=ISO_19117)
-    List<Rule> getRules();
+    List<Rule> rules();
     
     /**
      * calls the visit method of a StyleVisitor

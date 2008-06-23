@@ -10,6 +10,8 @@
  *************************************************************************************************/
 package org.opengis.style;
 
+import org.opengis.metadata.citation.OnLineResource;
+
 
 /**
  * An interface for classes that want to perform operations on a Style
@@ -217,7 +219,7 @@ public interface StyleVisitor {
      *
      * @param rs the online resource to visit
      */
-    void visit(OnlineResource rs);
+    void visit(OnLineResource rs);
 
     /**
      * Called when accept is called on a halo

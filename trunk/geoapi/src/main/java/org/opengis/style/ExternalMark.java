@@ -12,6 +12,7 @@ package org.opengis.style;
 
 import javax.swing.Icon;
 import org.opengis.annotation.XmlElement;
+import org.opengis.metadata.citation.OnLineResource;
 
 /**
  * The alternative to a WellKnownName is an external mark format. The MarkIndex
@@ -35,7 +36,7 @@ public interface ExternalMark {
      * @return OnlineResource or null
      */
     @XmlElement("OnlineResource")
-    OnlineResource getOnlineResource();
+    OnLineResource getOnlineResource();
 
     /**
      * Returns on inline content.
