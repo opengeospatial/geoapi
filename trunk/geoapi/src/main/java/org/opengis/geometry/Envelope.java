@@ -78,8 +78,11 @@ public interface Envelope {
 
     /**
      * Returns the minimal ordinate along the specified dimension. This is a shortcut for
-     * <code>{@linkplain #getLowerCorner}.{@linkplain DirectPosition#getOrdinate getOrdinate}(dimension)</code>
-     * without the cost of creating a temporary {@link DirectPosition} object.
+     * the following without the cost of creating a temporary {@link DirectPosition} object:
+     *
+     * <blockquote><code>
+     * {@linkplain #getLowerCorner}.{@linkplain DirectPosition#getOrdinate getOrdinate}(dimension)
+     * </code></blockquote>
      *
      * @param  dimension The dimension for which to obtain the ordinate value.
      * @return The minimal ordinate at the given dimension.
@@ -96,8 +99,11 @@ public interface Envelope {
 
     /**
      * Returns the maximal ordinate along the specified dimension. This is a shortcut for
-     * <code>{@linkplain #getUpperCorner}.{@linkplain DirectPosition#getOrdinate getOrdinate}(dimension)</code>
-     * without the cost of creating a temporary {@link DirectPosition} object.
+     * the following without the cost of creating a temporary {@link DirectPosition} object:
+     *
+     * <blockquote><code>
+     * {@linkplain #getUpperCorner}.{@linkplain DirectPosition#getOrdinate getOrdinate}(dimension)
+     * </code></blockquote>
      *
      * @param  dimension The dimension for which to obtain the ordinate value.
      * @return The maximal ordinate at the given dimension.
@@ -133,8 +139,11 @@ public interface Envelope {
 
     /**
      * Returns the median ordinate along the specified dimension. The result should be equals
-     * (minus rounding error) to <code>({@linkplain #getMaximum getMaximum}(dimension) -
-     * {@linkplain #getMinimum getMinimum}(dimension)) / 2</code>.
+     * (minus rounding error) to:
+     *
+     * <blockquote><code>
+     * ({@linkplain #getMaximum getMaximum}(dimension) + {@linkplain #getMinimum getMinimum}(dimension)) / 2
+     * </code></blockquote>
      *
      * @param  dimension The dimension for which to obtain the ordinate value.
      * @return The median ordinate at the given dimension.
@@ -172,8 +181,11 @@ public interface Envelope {
 
     /**
      * Returns the envelope span (typically width or height) along the specified dimension.
-     * The result should be equals (minus rounding error) to <code>{@linkplain #getMaximum
-     * getMaximum}(dimension) - {@linkplain #getMinimum getMinimum}(dimension)</code>.
+     * The result should be equals (minus rounding error) to:
+     *
+     * <blockquote><code>
+     * {@linkplain #getMaximum getMaximum}(dimension) - {@linkplain #getMinimum getMinimum}(dimension)
+     * </code></blockquote>
      *
      * @param  dimension The dimension for which to obtain the ordinate value.
      * @return The span (typically width or height) at the given dimension.

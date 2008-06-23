@@ -64,9 +64,12 @@ public interface GridEnvelope {
     GridCoordinates getHigh();
 
     /**
-     * Returns the valid minimum inclusive grid coordinate along the specified dimension. This is a shortcut for
-     * <code>{@linkplain #getLow}.{@linkplain GridCoordinates#getCoordinateValue getCoordinateValue}(dimension)</code>
-     * without the cost of creating a temporary {@link GridCoordinates} object.
+     * Returns the valid minimum inclusive grid coordinate along the specified dimension. This is a
+     * shortcut for the following without the cost of creating a temporary {@link GridCoordinates} object:
+     *
+     * <blockquote><code>
+     * {@linkplain #getLow}.{@linkplain GridCoordinates#getCoordinateValue getCoordinateValue}(dimension)
+     * </code></blockquote>
      *
      * @param  dimension The dimension for which to obtain the coordinate value.
      * @return The coordinate value at the given dimension, inclusive.
@@ -82,9 +85,12 @@ public interface GridEnvelope {
     int getLow(int dimension) throws IndexOutOfBoundsException;
 
     /**
-     * Returns the valid maximum inclusive grid coordinate along the specified dimension. This is a shortcut for
-     * <code>{@linkplain #getHigh}.{@linkplain GridCoordinates#getCoordinateValue getCoordinateValue}(dimension)</code>
-     * without the cost of creating a temporary {@link GridCoordinates} object.
+     * Returns the valid maximum inclusive grid coordinate along the specified dimension. This is a
+     * shortcut for the following without the cost of creating a temporary {@link GridCoordinates} object:
+     *
+     * <blockquote><code>
+     * {@linkplain #getHigh}.{@linkplain GridCoordinates#getCoordinateValue getCoordinateValue}(dimension)
+     * </code></blockquote>
      *
      * @param  dimension The dimension for which to obtain the coordinate value.
      * @return The coordinate value at the given dimension, <strong>inclusive</strong>.
@@ -98,7 +104,11 @@ public interface GridEnvelope {
 
     /**
      * Returns the number of integer grid coordinates along the specified dimension.
-     * This is equals to {@code getHigh(dimension) - getLow(dimension) + 1}.
+     * This is equals to:
+     *
+     * <blockquote><code>
+     * {@linkplain #getHigh getHigh}(dimension) - {@linkplain #getLow getLow}(dimension) + 1
+     * </code></blockquote>
      *
      * @param  dimension The dimension for which to obtain the coordinate value.
      * @return The coordinate value at the given dimension.
