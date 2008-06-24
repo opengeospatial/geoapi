@@ -32,18 +32,6 @@ import static org.opengis.annotation.Specification.*;
 public interface FeatureTypeStyle {
 
     /**
-     * Defaults semantic identifiers.
-     * See {@link #getSemanticTypeIdentifiers} for details.
-     */
-    public static final String SEMANTIC_ID_LINE = "generic:line";
-    public static final String SEMANTIC_ID_POLYGON = "generic:polygon";
-    public static final String SEMANTIC_ID_POINT = "generic:point";
-    public static final String SEMANTIC_ID_TEXT = "generic:text";
-    public static final String SEMANTIC_ID_RASTER = "generic:raster";
-    public static final String SEMANTIC_ID_ANY = "generic:any";
-
-
-    /**
      * Returns a name for this style.
      * This can be any string that uniquely identifies this style within a given
      * canvas.  It is not meant to be human-friendly.  (The "title" property is
@@ -65,30 +53,30 @@ public interface FeatureTypeStyle {
 
     /**
      * Returns a collection of Object identifying features object.
-     * 
+     *
      * <p>
      * ISO 19117 extends FeatureTypeStyle be providing this method.
      * This method enable the possibility to use a feature type style
      * on a given list of features only, which is not possible in OGC SE.
      * </p>
-     * 
+     *
      * @return Collection<String>
      */
     @UML(identifier="definedForInst", obligation=OPTIONAL, specification=ISO_19117)
     Collection<Object> featureInstanceIDs();
-    
+
     /**
      * <p>
      * Returns the names of the feature type that this style is meant to act
-     * upon.  
+     * upon.
      * </p>
      * <p>
      * In OGC Symbology Encoding define this method to return a single
      * String, and ISO 19117 use a Collection of String. We've choosen
      * ISO because it is more logic that a featureTypeStyle can be applied
-     * to multiple featuretypes and not limited to a single one. 
+     * to multiple featuretypes and not limited to a single one.
      * </p>
-     * 
+     *
      * @return the name of the feature type that this style is meant
      * to act upon.
      */
@@ -97,7 +85,7 @@ public interface FeatureTypeStyle {
     Collection<String> featureTypeNames();
 
     /**
-     * Returns a string that identifies the more general "type" of geometry
+     * Returns a collection that identifies the more general "type" of geometry
      * that this style is meant to act upon.
      * In the current OGC SE specifications, this is an experimental element and
      * can take only one of the following values:
@@ -114,7 +102,7 @@ public interface FeatureTypeStyle {
      *
      */
     @XmlElement("SemanticTypeIdentifier")
-    Collection<String> semanticTypeIdentifiers();
+    Collection<SemanticType> semanticTypeIdentifiers();
 
     /**
      * Returns the list of rules contained by this style.
@@ -124,12 +112,12 @@ public interface FeatureTypeStyle {
     @XmlElement("Rule")
     @UML(identifier="portrayalRule", obligation=MANDATORY, specification=ISO_19117)
     List<Rule> rules();
-    
+
     /**
      * calls the visit method of a StyleVisitor
      *
      * @param visitor the style visitor
      */
     void accept(StyleVisitor visitor);
-    
+
 }
