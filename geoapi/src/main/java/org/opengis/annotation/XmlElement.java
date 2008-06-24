@@ -30,7 +30,7 @@ import static java.lang.annotation.RetentionPolicy.*;
  * @since  GeoAPI 2.0
  */
 @Documented
-@Target({TYPE,METHOD})
+@Target({TYPE,METHOD,FIELD})
 @Retention(RUNTIME)
 public @interface XmlElement {
     /**

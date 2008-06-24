@@ -10,6 +10,7 @@
  *************************************************************************************************/
 package org.opengis.style;
 
+import javax.measure.unit.Unit;
 import org.opengis.annotation.UML;
 import org.opengis.annotation.XmlElement;
 
@@ -41,24 +42,9 @@ import static org.opengis.annotation.Specification.*;
  */
 @UML(identifier="PF_PortrayalSpecification", specification=ISO_19117)
 public interface Symbolizer {
-
-    /**
-     * Unit of mesure : meters
-     */
-    public static final String UOM_METER = "meter";
     
     /**
-     * Unit of mesure : feets
-     */
-    public static final String UOM_FOOT = "foot";
-    
-    /**
-     * Unit of mesure : display units, pixel for a screen
-     */
-    public static final String UOM_DISPLAY = "display";
-    
-    /**
-     * Returns a string of containing the measure unit name.
+     * Returns a  measure unit.
      * This parameter is herited from GML.
      * Renderers shall use the unit to correctly render symbols.
      *
@@ -70,12 +56,11 @@ public interface Symbolizer {
      *     <li>{@code pixel}</li>
      * </ul>
      * <p>
-     *
-     * @return String name for the measure unit to use,
-     * can be null. If the unit is null than we shall use a the pixel unit
+     * 
+     * @return can be null. If the unit is null than we shall use a the pixel unit
      */
     @XmlElement("uom")
-    String getUnitOfMeasure();
+    Unit getUnitOfMeasure();
 
     /**
      * Returns the name of the geometry feature attribute to use for drawing.
