@@ -23,7 +23,7 @@ import static org.opengis.annotation.Specification.*;
  * corners of the {@linkplain Grid grid}.
  * <p>
  * Remark that both corners are inclusive. Thus the number of elements in the direction of the first
- * axis is <code>{@linkplain #getHigh(int) getHigh}(0) - {@linkplain #getLow(int) getLow}(0) + 1}.
+ * axis is <code>{@linkplain #getHigh(int) getHigh}(0) - {@linkplain #getLow(int) getLow}(0) + 1</code>.
  * This is the opposite of Java2D usage where maximal values in {@link Rectangle} (as computed by
  * {@linkplain Rectangle#getMaxX getMaxX()} and {@linkplain Rectangle#getMinY getMaxY()}) are
  * exclusive.
@@ -31,6 +31,7 @@ import static org.opengis.annotation.Specification.*;
  * @author ISO/DIS 19123
  * @author Wim Koolhoven
  * @author Martin Schouwenburg
+ * @since  GeoAPI 2.1
  *
  * @see org.opengis.geometry.Envelope
  */

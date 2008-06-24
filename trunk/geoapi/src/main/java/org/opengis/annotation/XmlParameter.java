@@ -22,7 +22,7 @@ import static java.lang.annotation.RetentionPolicy.*;
  * finding the corresponding XML parameter in the {@linkplain XmlSchema schema}.
  *
  * @author Johann Sorel (Geomatys)
- * @since GeoAPI 2.2
+ * @since  GeoAPI 2.2
  */
 @Documented
 @Target(METHOD)

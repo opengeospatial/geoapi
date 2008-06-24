@@ -27,7 +27,7 @@ import static java.lang.annotation.RetentionPolicy.*;
  * the {@linkplain XmlSchema schema}.
  *
  * @author Martin Desruisseaux (IRD)
- * @since GeoAPI 2.0
+ * @since  GeoAPI 2.0
  */
 @Documented
 @Target({TYPE,METHOD})

@@ -22,7 +22,7 @@ import org.opengis.annotation.Extension;
  *
  * @author Martin Desruisseaux (IRD)
  * @author Alexander Petkov
- * @since GeoAPI 1.0
+ * @since  GeoAPI 1.0
  *
  * @see Coverage#evaluate(DirectPosition, byte[])
  * @see Coverage#evaluate(DirectPosition, double[])

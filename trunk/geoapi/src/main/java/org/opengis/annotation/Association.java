@@ -23,7 +23,7 @@ import static java.lang.annotation.RetentionPolicy.*;
  * inferred from the return type.
  *
  * @author Martin Desruisseaux (IRD)
- * @since GeoAPI 2.1
+ * @since  GeoAPI 2.1
  */
 @Documented
 @Target(METHOD)

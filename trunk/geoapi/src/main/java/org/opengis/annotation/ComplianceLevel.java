@@ -18,8 +18,8 @@ package org.opengis.annotation;
  * for a dataset.
  *
  * @version <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
- * @author Martin Desruisseaux (IRD)
- * @since GeoAPI 2.0
+ * @author  Martin Desruisseaux (IRD)
+ * @since   GeoAPI 2.0
  */
 public enum ComplianceLevel {
     /**

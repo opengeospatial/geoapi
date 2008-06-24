@@ -35,6 +35,7 @@ import static org.opengis.annotation.Specification.*;
  *
  * @author ISO/DIS 19123
  * @author Alessio Fabiani
+ * @since  GeoAPI 2.1
  *
  * @todo evaluate and evaluateInverse
  */

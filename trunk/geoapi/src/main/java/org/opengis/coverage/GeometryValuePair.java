@@ -32,6 +32,7 @@ import static org.opengis.annotation.Specification.*;
  * @author ISO/DIS 19123
  * @author Stephane Fellah
  * @author Martin Desruisseaux
+ * @since  GeoAPI 2.1
  *
  * @see Coverage#evaluate(DirectPosition,Collection)
  * @see Coverage#select

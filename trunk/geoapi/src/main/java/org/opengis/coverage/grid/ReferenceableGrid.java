@@ -28,6 +28,7 @@ import static org.opengis.annotation.Specification.*;
  * @author Wim Koolhoven
  * @author Martin Schouwenburg
  * @author Martin Desruisseaux
+ * @since  GeoAPI 2.1
  *
  * @todo Comment (Wim): there seems to be no way to check whether two ReferenceableGrids are equal,
  *       i.e. exactly fitting on all GridPoints.<br>

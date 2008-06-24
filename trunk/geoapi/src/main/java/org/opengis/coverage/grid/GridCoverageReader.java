@@ -38,7 +38,8 @@ import org.opengis.parameter.InvalidParameterValueException;
  * </TABLE>
  *
  * @author Martin Desruisseaux (IRD)
- * @since GeoAPI 2.0
+ * @since  GeoAPI 2.0
+ *
  * @deprecated In favor of migrating to ISO 19123 definition for Coverage.
  *
  * @see GridCoverageExchange#getReader
