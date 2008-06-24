@@ -39,6 +39,7 @@ import static org.opengis.annotation.Specification.*;
  * @author ISO/DIS 19123
  * @author Alessio Fabiani
  * @author Martin Desruisseaux
+ * @since  GeoAPI 2.1
  *
  * @todo Add a figure derived from figure 22 in ISO 19123.
  */

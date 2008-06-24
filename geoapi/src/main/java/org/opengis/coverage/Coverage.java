@@ -66,6 +66,7 @@ import static org.opengis.annotation.Specification.*;
  * @author Martin Desruisseaux
  * @author Wim Koolhoven
  * @author Alexander Petkov
+ * @since  GeoAPI 2.1
  */
 @UML(identifier="CV_Coverage", specification=ISO_19123)
 public interface Coverage {

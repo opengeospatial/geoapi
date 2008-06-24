@@ -12,5 +12,7 @@
 /**
  * Set of annotations mapping <A HREF="http://geoapi.sourceforge.net">GeoAPI</A>
  * interfaces to <A HREF="http://www.opengis.org">OpenGIS</A> UML or XML schemas.
+ *
+ * @since GeoAPI 2.0
  */
 package org.opengis.annotation;

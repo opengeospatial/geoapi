@@ -35,6 +35,7 @@ import static org.opengis.annotation.Specification.*;
  * @author ISO/DIS 19123
  * @author Martin Desruisseaux
  * @author Stephane Fellah
+ * @since  GeoAPI 2.1
  *
  * @see Coverage#getCommonPointRule
  */

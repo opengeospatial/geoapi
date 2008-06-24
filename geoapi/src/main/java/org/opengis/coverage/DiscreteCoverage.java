@@ -30,6 +30,7 @@ import static org.opengis.annotation.Specification.*;
  * @author ISO/DIS 19123
  * @author Martin Desruisseaux
  * @author Wim Koolhoven
+ * @since  GeoAPI 2.1
  */
 @UML(identifier="CV_DiscreteCoverage", specification=ISO_19123)
 public interface DiscreteCoverage extends Coverage {

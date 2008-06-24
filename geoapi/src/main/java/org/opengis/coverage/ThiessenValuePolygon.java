@@ -25,6 +25,7 @@ import static org.opengis.annotation.Specification.*;
  * @author ISO/DIS 19123
  * @author Alessio Fabiani
  * @author Martin Desruisseaux
+ * @since  GeoAPI 2.1
  */
 @UML(identifier="CV_ThiessenValuePolygon", specification=ISO_19123)
 public interface ThiessenValuePolygon extends ValueObject {

@@ -19,8 +19,8 @@ import static org.opengis.annotation.Specification.*;
  * from the metadata package.
  *
  * @version <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
- * @author Martin Desruisseaux (IRD)
- * @since GeoAPI 2.0
+ * @author  Martin Desruisseaux (IRD)
+ * @since   GeoAPI 2.0
  */
 @UML(identifier="MD_ObligationCode", specification=ISO_19115)
 public enum Obligation {

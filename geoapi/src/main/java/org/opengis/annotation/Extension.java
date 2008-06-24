@@ -22,7 +22,7 @@ import static java.lang.annotation.RetentionPolicy.*;
  * extension. This annotation is mutually exclusive with {@link UML}.
  *
  * @author Martin Desruisseaux (IRD)
- * @since GeoAPI 2.0
+ * @since  GeoAPI 2.0
  */
 @Documented
 @Target({TYPE, FIELD, METHOD})

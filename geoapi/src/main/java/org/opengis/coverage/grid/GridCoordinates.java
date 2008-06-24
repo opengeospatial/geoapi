@@ -26,6 +26,7 @@ import static org.opengis.annotation.Specification.*;
  * @author Martin Schouwenburg
  * @author Wim Koolhoven
  * @author Martin Desruisseaux
+ * @since  GeoAPI 2.1
  */
 @UML(identifier="CV_GridCoordinates", specification=ISO_19123)
 public interface GridCoordinates extends Cloneable {

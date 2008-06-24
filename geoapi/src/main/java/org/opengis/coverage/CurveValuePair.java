@@ -24,6 +24,7 @@ import static org.opengis.annotation.Specification.*;
  * @author ISO/DIS 19123
  * @author Alessio Fabiani
  * @author Martin Desruisseaux
+ * @since  GeoAPI 2.1
  */
 @UML(identifier="CV_CurveValuePair", specification=ISO_19123)
 public interface CurveValuePair extends GeometryValuePair {

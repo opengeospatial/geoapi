@@ -23,6 +23,7 @@ import static org.opengis.annotation.Specification.*;
  *
  * @author ISO/DIS 19123
  * @author Wim Koolhoven
+ * @since  GeoAPI 2.1
  */
 @UML(identifier="CV_PointValuePair", specification=ISO_19123)
 public interface PointValuePair extends GeometryValuePair {

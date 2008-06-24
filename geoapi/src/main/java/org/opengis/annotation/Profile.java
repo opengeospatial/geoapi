@@ -19,7 +19,7 @@ import static java.lang.annotation.ElementType.*;
  * An annotation mapping an interface, methods or fields to a profile.
  *
  * @author Martin Desruisseaux (IRD)
- * @since GeoAPI 2.0
+ * @since  GeoAPI 2.0
  */
 @Documented
 @Target({TYPE, FIELD, METHOD})

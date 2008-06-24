@@ -27,8 +27,8 @@ import static org.opengis.annotation.Specification.*;
  * accessible attributes.
  *
  * @version <A HREF="http://www.opengeospatial.org/standards/as">ISO 19107</A>
- * @author Martin Desruisseaux (IRD)
- * @since GeoAPI 1.0
+ * @author  Martin Desruisseaux (IRD)
+ * @since   GeoAPI 1.0
  *
  * @see org.opengis.coverage.grid.GridEnvelope
  */
@@ -142,7 +142,7 @@ public interface Envelope {
      * (minus rounding error) to:
      *
      * <blockquote><code>
-     * ({@linkplain #getMaximum getMaximum}(dimension) + {@linkplain #getMinimum getMinimum}(dimension)) / 2
+     * ({@linkplain #getMinimum getMinimum}(dimension) + {@linkplain #getMaximum getMaximum}(dimension)) / 2
      * </code></blockquote>
      *
      * @param  dimension The dimension for which to obtain the ordinate value.

@@ -36,8 +36,8 @@ import static org.opengis.annotation.Specification.*;
  * </TABLE>
  *
  * @version <A HREF="http://www.opengis.org/docs/01-004.pdf">Grid Coverage specification 1.0</A>
- * @author Martin Desruisseaux (IRD)
- * @since GeoAPI 1.0
+ * @author  Martin Desruisseaux (IRD)
+ * @since   GeoAPI 1.0
  */
 @UML(identifier="CV_GridGeometry", specification=OGC_01004)
 public interface GridGeometry {
