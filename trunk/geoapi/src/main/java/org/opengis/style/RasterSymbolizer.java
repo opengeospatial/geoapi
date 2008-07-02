@@ -67,7 +67,7 @@ public interface RasterSymbolizer extends Symbolizer {
      * @return LATEST_ON_TOP,EARLIEST_ON_TOP, AVERAGE or RANDOM
      */
     @XmlElement("OverlapBehavior")
-    OverlapBehavior getOverlap();
+    OverlapBehavior getOverlapBehavior();
 
     /**
      * The ColorMap element defines either the colors of a palette-type raster
