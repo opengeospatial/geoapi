@@ -42,26 +42,11 @@ import org.opengis.annotation.XmlElement;
 public interface ContrastEnhancement {
 
     /**
-     * “Normalize” means to stretch the contrast so that the dimmest color is stretched to black
-     * and the brightest color is stretched to white, with all colors in between stretched out
-     * linearly.
-     *
-     * @return boolean
+     * We use a codeList to enable more enchancement type possibilities.
      */
-    @XmlElement("Normalize")
-    public boolean usesNormalization();
-
-    /**
-     * “Histogram” means to stretch the contrast based on a histogram of how many
-     * colors are at each brightness level on input, with the goal of producing equal number of
-     * pixels in the image at each brightness level on output. This has the effect of revealing
-     * many subtle ground features.
-     *
-     * @return boolean
-     */
-    @XmlElement("Histogram")
-    public boolean usesHistogram();
-
+    @XmlElement("Normalize,Histogram")
+    public ContrastType getType();
+    
     /**
      * A “GammaValue” tells how much to brighten (values
      * greater than 1.0) or dim (values less than 1.0) an image. The default GammaValue is 1.0
