@@ -13,11 +13,6 @@ package org.opengis.coverage.grid.quadrilateral;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 import org.opengis.referencing.operation.Operation;
 import org.opengis.annotation.Extension;
-import org.opengis.geometry.coordinate.Position;
-import org.opengis.util.Cloneable;
-
-import static org.opengis.annotation.Obligation.*;
-import static org.opengis.annotation.Specification.*;
 
 
 /**
@@ -34,10 +29,12 @@ import static org.opengis.annotation.Specification.*;
 @Extension
 public interface GridPositioning {
     /**
-     * Specifies the coordinate system into which this object transforms coordinates.
+     * Specifies the coordinate reference system into which this object transforms coordinates.
      * ISO 19123 only specifies this association on the {@link ReferenceableGrid} type,
      * but it is promoted to this superclass because it is required by both
      * {@linkplain ReferenceableGrid} and {@linkplain RectifiedGrid}.
+     *
+     * @return The coordinate reference system.
      */
     @Extension
     CoordinateReferenceSystem getCoordinateReferenceSystem();
@@ -45,6 +42,8 @@ public interface GridPositioning {
     /**
      * Associates this {@code GridPositioning} object with a geometric description provided
      * by the {@link Grid} object.
+     *
+     * @return The gridded data.
      */
     @Extension
     Grid getGrid();
@@ -57,6 +56,8 @@ public interface GridPositioning {
      * a reference to a {@link MathTransform} object, which actually performs the corodinate
      * conversion.  The {@code targetCRS} association of the operation attribute is considered
      * mandatory in this context.
+     *
+     * @return Information about the implemented coordinate operation.
      */
     @Extension
     Operation getOperation();
@@ -70,6 +71,8 @@ public interface GridPositioning {
      * conversion.  The {@code targetCRS} association of the {@code inverseOperation} attribute
      * is considered mandatory in this context.  This attribute shall represent the {@link Operation}
      * which is the inverse of the operation attribute.
+     *
+     * @return The inverse of {@link #getOperation}.
      */
     @Extension
     Operation getInverseOperation();

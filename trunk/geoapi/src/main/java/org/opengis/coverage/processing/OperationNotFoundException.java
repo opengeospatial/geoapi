@@ -11,15 +11,11 @@
 package org.opengis.coverage.processing;
 
 import org.opengis.annotation.UML;
-
-import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
 
 
 /**
- * Throws if an operation name given to
- * <code>{@linkplain GridCoverageProcessor#doOperation doOperation}(&hellip;)</code>
- * is not a know operation.
+ * Throws if an operation name given to {@link GridCoverageProcessor} is not a know operation.
  *
  * <P>&nbsp;</P>
  * <TABLE WIDTH="80%" ALIGN="center" CELLPADDING="18" BORDER="4" BGCOLOR="#FFE0B0">
@@ -59,5 +55,18 @@ public class OperationNotFoundException extends IllegalArgumentException {
      */
     public OperationNotFoundException(String message) {
         super(message);
+    }
+
+    /**
+     * Creates an exception with the specified message.
+     *
+     * @param  message The detail message. The detail message is saved for
+     *         later retrieval by the {@link #getMessage()} method.
+     * @param  cause The cause, or {@code null}.
+     *
+     * @since GeoAPI 2.2
+     */
+    public OperationNotFoundException(String message, Throwable cause) {
+        super(message, cause);
     }
 }

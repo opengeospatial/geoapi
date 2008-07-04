@@ -345,6 +345,12 @@
           <!-- Separates packages on the overview page into the groups  specified. -->
           <groups>
             <group>
+              <title>Metadata</title>
+              <packages>
+                org.opengis.metadata*
+              </packages>
+            </group>
+            <group>
               <title>Spatial Referencing by Coordinates</title>
               <packages>
                 org.opengis.referencing*:org.opengis.temporal*:org.opengis.parameter*
@@ -366,12 +372,6 @@
               <title>Feature and filter</title>
               <packages>
                 org.opengis.feature*:org.opengis.filter*
-              </packages>
-            </group>
-            <group>
-              <title>Meta Data</title>
-              <packages>
-                org.opengis.metadata*
               </packages>
             </group>
             <group>
