@@ -99,7 +99,15 @@ public interface DirectPosition extends Position {
      * @return A copy of the coordinates. Changes in the returned array will not be reflected back
      *         in this {@code DirectPosition} object.
      */
-    @UML(identifier = "coordinates", obligation = MANDATORY, specification = ISO_19107)
+    @UML(identifier = "coordinate", obligation = MANDATORY, specification = ISO_19107)
+    double[] getCoordinate();
+
+    /**
+     * @deprecated Renamed as {@link #getCoordinate} for consistency with ISO 19107.
+     *
+     * @return A copy of the coordinates.
+     */
+    @Deprecated
     double[] getCoordinates();
 
     /**
@@ -137,7 +145,7 @@ public interface DirectPosition extends Position {
      *   <li>For all dimension <var>i</var>, the {@linkplain #getOrdinate ordinate value} of both
      *       direct positions at that dimension are equals in the sense of {@link Double#equals}.
      *       In other words, <code>{@linkplain java.util.Arrays#equals(double[],double[])
-     *       Arrays.equals}({@linkplain #getCoordinates()}, object.getCoordinates())</code>
+     *       Arrays.equals}({@linkplain #getCoordinate()}, object.getCoordinate())</code>
      *       returns {@code true}.</li>
      * </ul>
      *
@@ -154,7 +162,7 @@ public interface DirectPosition extends Position {
      * the same value as:
      *
      * <code>{@linkplain java.util.Arrays.hashCode(double[]) Arrays.hashCode}({@linkplain
-     * #getCoordinates()}) + {@linkplain #getCoordinateReferenceSystem()}.hashCode()</code>
+     * #getCoordinate()}) + {@linkplain #getCoordinateReferenceSystem()}.hashCode()</code>
      *
      * where the right hand side of the addition is omitted if the coordinate reference
      * system is null.

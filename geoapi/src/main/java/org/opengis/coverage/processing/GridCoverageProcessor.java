@@ -12,13 +12,7 @@ package org.opengis.coverage.processing;
 
 import java.util.Collection;
 import org.opengis.coverage.grid.GridCoverage;
-import org.opengis.coverage.SampleDimensionType; // For javadoc
-import org.opengis.coverage.MetadataNameNotFoundException;
-import org.opengis.parameter.GeneralParameterValue;
-import org.opengis.parameter.ParameterValueGroup;
-import org.opengis.parameter.ParameterNotFoundException;
-import org.opengis.parameter.InvalidParameterNameException;
-import org.opengis.parameter.InvalidParameterValueException;
+import org.opengis.coverage.SampleDimensionType;
 import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Obligation.*;
@@ -30,7 +24,7 @@ import static org.opengis.annotation.Specification.*;
  * image processing functionality. The list of available processing operations is implementation
  * dependent. The interface has a discovery mechanism to determine the available processing
  * operations.
- *
+ * <p>
  * These processing operations will transform values within a single sample dimension, and
  * leave the values in other sample dimensions unaffected. The modified sample dimension may
  * also change its type (e.g. from {@link SampleDimensionType#UNSIGNED_4BITS UNSIGNED_4BITS} to
@@ -74,96 +68,19 @@ import static org.opengis.annotation.Specification.*;
  * @version <A HREF="http://www.opengis.org/docs/01-004.pdf">Grid Coverage specification 1.0</A>
  * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 1.0
+ *
+ * @deprecated Need to be replaced by a mechanism better aligned on WCPS specification.
  */
+@Deprecated
 @UML(identifier="GP_GridCoverageProcessor", specification=OGC_01004)
 public interface GridCoverageProcessor {
-    /**
-     * Retrieves the list of metadata keywords for the interface.
-     * An empty list will returned if no metadata is available.
-     *
-     * @return The list of metadata keywords for the interface.
-     *
-     * @deprecated No replacement.
-     */
-    @Deprecated
-    @UML(identifier="metadataNames", obligation=MANDATORY, specification=OGC_01004)
-    String[] getMetadataNames();
-
-    /**
-     * Retrieves the metadata value for a given metadata name.
-     *
-     * @param  name Metadata keyword for which to retrieve metadata.
-     * @return The metadata value for a given metadata name.
-     * @throws MetadataNameNotFoundException if there is no value for the specified metadata name.
-     *
-     * @deprecated No replacement.
-     */
-    @Deprecated
-    @UML(identifier="getMetadataValue", obligation=MANDATORY, specification=OGC_01004)
-    String getMetadataValue(String name) throws MetadataNameNotFoundException;
-
-    /**
-     * The number of operations supported by the {@code GridCoverageProcessor}.
-     *
-     * @return The number of operations supported by the {@code GridCoverageProcessor}.
-     *
-     * @deprecated Use {@link #getOperations} instead.
-     */
-    @Deprecated
-    @UML(identifier="numOperations", obligation=MANDATORY, specification=OGC_01004)
-    int getNumOperations();
-
-    /**
-     * Retrieves a grid processing operation information.
-     * The operation information will contain the name of the operation as well
-     * as a list of its parameters.
-     *
-     * @param  index Index for which to retrieve the operation information.
-     * @return A grid processing operation information.
-     * @throws IndexOutOfBoundsException if {@code index} is out of bounds.
-     *
-     * @deprecated Use {@link #getOperations} instead.
-     */
-    @Deprecated
-    @UML(identifier="getOperation", obligation=MANDATORY, specification=OGC_01004)
-    Operation getOperation(int index) throws IndexOutOfBoundsException;
-
     /**
      * Retrieves grid processing operations information.
      * Each operation information will contain the name of the operation as well
      * as a list of its parameters.
+     *
+     * @return The available operations.
      */
     @UML(identifier="getOperation", obligation=MANDATORY, specification=OGC_01004)
     Collection<Operation> getOperations();
-
-    /**
-     * Creates a {@link GridAnalysis} interface from a grid coverage.
-     * This allows grid analysis functions to be performed on a grid coverage.
-     *
-     * @param  gridCoverage Grid coverage on which the analysis will be performed.
-     * @return A new {@link GridAnalysis} interface.
-     *
-     * @deprecated No replacement.
-     */
-    @Deprecated
-    @UML(identifier="analyze", obligation=MANDATORY, specification=OGC_01004)
-    GridAnalysis analyze(GridCoverage gridCoverage);
-
-    /**
-     * Applies a process operation to a grid coverage.
-     *
-     * @param  operationName Name of the operation to be applied to the grid coverage.
-     * @param  parameters List of name value pairs for the parameters required for the operation.
-     * @return The grid coverage which has been applied the process operation.
-     * @throws OperationNotFoundException if {@code name} is not a know operation.
-     * @throws ParameterNotFoundException if a parameter was required for the operation but was
-     *         not provided in the {@code parameters} list.
-     * @throws InvalidParameterNameException if a parameter doesn't have a recognized name.
-     * @throws InvalidParameterValueException if a parameter doesn't have a valid value.
-     */
-    @Deprecated
-    @UML(identifier="doOperation", obligation=MANDATORY, specification=OGC_01004)
-    GridCoverage doOperation(String operationName, GeneralParameterValue[] parameters)
-            throws OperationNotFoundException, ParameterNotFoundException,
-                   InvalidParameterNameException, InvalidParameterValueException;
 }

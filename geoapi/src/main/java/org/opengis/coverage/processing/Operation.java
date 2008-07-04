@@ -10,7 +10,10 @@
  *************************************************************************************************/
 package org.opengis.coverage.processing;
 
+import org.opengis.metadata.Identifier;
+import org.opengis.metadata.citation.Citation;
 import org.opengis.parameter.ParameterValueGroup;
+import org.opengis.util.InternationalString;
 import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Obligation.*;
@@ -38,6 +41,8 @@ import static org.opengis.annotation.Specification.*;
  * @version <A HREF="http://www.opengis.org/docs/01-004.pdf">Grid Coverage specification 1.0</A>
  * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 1.0
+ *
+ * @todo This interface should be renamed {@code CoverageOperation}.
  */
 @UML(identifier="CV_Operation", specification=OGC_01004)
 public interface Operation {
@@ -47,6 +52,8 @@ public interface Operation {
      * a new grid coverage on which the processing operation is performed.
      *
      * @return The name of the processing operation.
+     *
+     * @todo The return type will be changed from {@link String} to {@link Identifier}.
      */
     @UML(identifier="name", obligation=MANDATORY, specification=OGC_01004)
     String getName();
@@ -56,7 +63,10 @@ public interface Operation {
      * If no description is available, the value will be {@code null}.
      *
      * @return The description of the processing operation, or {@code null}.
+     *
+     * @deprecated Return type need to be changed, maybe to {@link InternationalString}.
      */
+    @Deprecated
     @UML(identifier="description", obligation=OPTIONAL, specification=OGC_01004)
     String getDescription();
 
@@ -65,7 +75,10 @@ public interface Operation {
      * If no vendor name is available, the value will be {@code null}.
      *
      * @return The implementation vendor name, or {@code null}.
+     *
+     * @deprecated To be replaced by {@code getName().getAuthority()}.
      */
+    @Deprecated
     @UML(identifier="vendor", obligation=OPTIONAL, specification=OGC_01004)
     String getVendor();
 
@@ -74,7 +87,10 @@ public interface Operation {
      * If no online documentation is available the string will be {@code null}.
      *
      * @return The URL for documentation on the processing operation, or {@code null}.
+     *
+     * @deprecated To be replaced by a method returning a {@link Citation}.
      */
+    @Deprecated
     @UML(identifier="docURL", obligation=OPTIONAL, specification=OGC_01004)
     String getDocURL();
 
@@ -82,7 +98,10 @@ public interface Operation {
      * Version number for the implementation.
      *
      * @return The version number for the implementation, or {@code null}.
+     *
+     * @deprecated Replacement to be determined.
      */
+    @Deprecated
     @UML(identifier="version", obligation=OPTIONAL, specification=OGC_01004)
     String getVersion();
 

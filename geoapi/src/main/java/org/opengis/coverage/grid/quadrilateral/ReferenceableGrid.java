@@ -33,8 +33,8 @@ import static org.opengis.annotation.Specification.*;
 @UML(identifier="CV_ReferenceableGrid", specification=ISO_19123)
 public interface ReferenceableGrid extends RectifiableGrid {
     /**
-     * This inherited association from GridPositioning specifies the coordinate system into which this object transforms coordinates.
-     * ISO 19123 specifies this association directly on this class.
+     * This inherited association from GridPositioning specifies the coordinate system into which
+     * this object transforms coordinates. ISO 19123 specifies this association directly on this class.
      */
     @UML(identifier="CoordinateReferenceSystem", obligation=MANDATORY, specification=ISO_19123)
     CoordinateReferenceSystem getCoordinateReferenceSystem();
@@ -43,12 +43,18 @@ public interface ReferenceableGrid extends RectifiableGrid {
      * Transforms the specified {@linkplain GridCoordinates} to a location in an external CRS.
      * This method may transform the {@linkplain GridCoordinates} directly,
      * or may transform the associated sample point.
+     *
+     * @param g The coordinate to transform.
+     * @return The transformed coordinate.
      */
     @UML(identifier="coordTransform", obligation=MANDATORY, specification=ISO_19123)
     DirectPosition transformCoordinates(GridCoordinates g);
 
     /**
      * Transforms from a direct position to the grid coordinates of the nearest grid point.
+     *
+     * @param p The coordinate to transform.
+     * @return The transformed coordinate.
      *
      * @todo Question (Wim): GridCoordinates are always integers, how to get
      *       the not rounded results?<br>
