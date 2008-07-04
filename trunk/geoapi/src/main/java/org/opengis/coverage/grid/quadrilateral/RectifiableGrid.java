@@ -10,7 +10,7 @@
  *************************************************************************************************/
 package org.opengis.coverage.grid.quadrilateral;
 
-import org.opengis.referencing.operation.Operation;  // For javadoc
+import org.opengis.referencing.operation.Operation;
 import org.opengis.referencing.operation.Conversion;
 import org.opengis.referencing.operation.MathTransform;
 import org.opengis.referencing.operation.TransformException;

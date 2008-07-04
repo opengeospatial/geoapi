@@ -34,15 +34,14 @@ import static org.opengis.annotation.Specification.*;
  *   </TD></TR>
  * </TABLE>
  *
- * @version <A HREF="http://www.opengis.org/docs/01-004.pdf">Grid Coverage specification 1.0</A>
  * @author  Martin Desruisseaux (IRD)
+ * @version <A HREF="http://www.opengis.org/docs/01-004.pdf">Grid Coverage specification 1.0</A>
+ * @see     GridPacking
+ * @see     ValueInBytePacking
+ * @see     java.nio.ByteOrder
  * @since   GeoAPI 1.0
  *
  * @deprecated In favor of migrating to ISO 19123 definition for Coverage.
- *
- * @see GridPacking
- * @see ValueInBytePacking
- * @see java.nio.ByteOrder
  */
 @UML(identifier="GC_ByteInValuePacking", specification=OGC_01004)
 public final class ByteInValuePacking extends CodeList<ByteInValuePacking> {

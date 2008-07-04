@@ -22,10 +22,9 @@ import org.opengis.annotation.Extension;
  *
  * @author Martin Desruisseaux (IRD)
  * @author Alexander Petkov
+ * @see    Coverage#evaluate(DirectPosition, byte[])
+ * @see    Coverage#evaluate(DirectPosition, double[])
  * @since  GeoAPI 1.0
- *
- * @see Coverage#evaluate(DirectPosition, byte[])
- * @see Coverage#evaluate(DirectPosition, double[])
  */
 public class CannotEvaluateException extends RuntimeException {
     /**

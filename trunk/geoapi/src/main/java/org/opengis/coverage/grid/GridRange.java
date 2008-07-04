@@ -33,8 +33,8 @@ import static org.opengis.annotation.Specification.*;
  *   </TD></TR>
  * </TABLE>
  *
- * @version <A HREF="http://www.opengis.org/docs/01-004.pdf">Grid Coverage specification 1.0</A>
  * @author  Martin Desruisseaux (IRD)
+ * @version <A HREF="http://www.opengis.org/docs/01-004.pdf">Grid Coverage specification 1.0</A>
  * @since   GeoAPI 1.0
  *
  * @deprecated Replaced by {@link GridEnvelope}.

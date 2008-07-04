@@ -24,10 +24,9 @@ import static org.opengis.annotation.Specification.*;
  * @version <A HREF="http://www.opengis.org/docs/01-004.pdf">Grid Coverage specification 1.0</A>
  * @author  Martin Desruisseaux (IRD)
  * @author  Alexander Petkov
+ * @see     Coverage#evaluate(DirectPosition, byte[])
+ * @see     Coverage#evaluate(DirectPosition, double[])
  * @since   GeoAPI 1.0
- *
- * @see Coverage#evaluate(DirectPosition, byte[])
- * @see Coverage#evaluate(DirectPosition, double[])
  */
 @UML(identifier="CV_PointOutsideCoverage", specification=OGC_01004)
 public class PointOutsideCoverageException extends CannotEvaluateException {

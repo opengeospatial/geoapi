@@ -22,9 +22,8 @@ import static org.opengis.annotation.Specification.*;
  *
  * @author ISO/DIS 19123
  * @author Martin Desruisseaux
+ * @see    Coverage#getRangeElements
  * @since  GeoAPI 2.1
- *
- * @see Coverage#getRangeElements
  */
 @UML(identifier="CV_AttributeValues", specification=ISO_19123)
 public interface AttributeValues {
