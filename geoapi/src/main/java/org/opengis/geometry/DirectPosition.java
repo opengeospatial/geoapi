@@ -62,9 +62,10 @@ public interface DirectPosition extends Position {
     int getDimension();
 
     /**
-     * A <b>copy</b> of the ordinates presented as a double array. The semantic is to return
-     * a copy in all case - the real values may be stored in another format. To quickly access
-     * individual ordinates, the following idiom can be used:
+     * A <b>copy</b> of the ordinates presented as an array of double values.
+     * Please note that this is only a copy (the real values may be stored in
+     * another format) so changes to the returned array will not affect the
+     * source DirectPosition.
      *
      * <blockquote><pre>
      * final int dim = position.{@linkplain #getDimension getDimension}();
@@ -99,10 +100,14 @@ public interface DirectPosition extends Position {
      * @return A copy of the coordinates. Changes in the returned array will not be reflected back
      *         in this {@code DirectPosition} object.
      */
-    @UML(identifier = "coordinate", obligation = MANDATORY, specification = ISO_19107)
+    @UML(identifier="coordinate", obligation=MANDATORY, specification=ISO_19107)
     double[] getCoordinate();
 
     /**
+     * The deprecated method to obtain a <b>copy</b> of the ordinates for the
+     * DirectPosition, presented as an array of double values. For details, see
+     * the current method {@link #getCoordinate()}.
+     *
      * @deprecated Renamed as {@link #getCoordinate} for consistency with ISO 19107.
      *
      * @return A copy of the coordinates.

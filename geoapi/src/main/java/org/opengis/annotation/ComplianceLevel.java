@@ -17,8 +17,8 @@ package org.opengis.annotation;
  * However, it is essential that a basic minimum number of metadata elements be maintained
  * for a dataset.
  *
- * @version <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
  * @author  Martin Desruisseaux (IRD)
+ * @version <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
  * @since   GeoAPI 2.0
  */
 public enum ComplianceLevel {

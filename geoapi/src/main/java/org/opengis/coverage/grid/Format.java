@@ -34,8 +34,8 @@ import static org.opengis.annotation.Specification.*;
  *   </TD></TR>
  * </TABLE>
  *
- * @version <A HREF="http://www.opengis.org/docs/01-004.pdf">Grid Coverage specification 1.0</A>
  * @author  Martin Desruisseaux (IRD)
+ * @version <A HREF="http://www.opengis.org/docs/01-004.pdf">Grid Coverage specification 1.0</A>
  * @since   GeoAPI 2.0
  *
  * @deprecated In favor of migrating to ISO 19123 definition for Coverage.

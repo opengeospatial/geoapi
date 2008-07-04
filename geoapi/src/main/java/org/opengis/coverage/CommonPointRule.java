@@ -35,9 +35,8 @@ import static org.opengis.annotation.Specification.*;
  * @author ISO/DIS 19123
  * @author Martin Desruisseaux
  * @author Stephane Fellah
+ * @see    Coverage#getCommonPointRule
  * @since  GeoAPI 2.1
- *
- * @see Coverage#getCommonPointRule
  */
 @UML(identifier="CV_CommonPointRule", specification=ISO_19123)
 public class CommonPointRule extends CodeList<CommonPointRule> {

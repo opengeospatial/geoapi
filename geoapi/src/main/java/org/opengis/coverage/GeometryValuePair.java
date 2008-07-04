@@ -32,12 +32,11 @@ import static org.opengis.annotation.Specification.*;
  * @author ISO/DIS 19123
  * @author Stephane Fellah
  * @author Martin Desruisseaux
+ * @see    Coverage#evaluate(DirectPosition,Collection)
+ * @see    Coverage#select
+ * @see    Coverage#find(DirectPosition,int)
+ * @see    Coverage#list
  * @since  GeoAPI 2.1
- *
- * @see Coverage#evaluate(DirectPosition,Collection)
- * @see Coverage#select
- * @see Coverage#find(DirectPosition,int)
- * @see Coverage#list
  */
 @UML(identifier="CV_GeometryValuePair", specification=ISO_19123)
 public interface GeometryValuePair {

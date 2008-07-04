@@ -22,21 +22,12 @@ public interface GridCoordinatesFactory {
     @Extension
     GridCoordinates createCoordinates(int dimensions);
 
-    /**
-     *
-     */
     @Extension
     GridCoordinates createCoordinates(int x0, int x1);
 
-    /**
-     *
-     */
     @Extension
     GridCoordinates createCoordinates(int x0, int x1, int x2);
 
-    /**
-     *
-     */
     @Extension
     GridCoordinates createCoordinates(int x0, int x1, int x2, int x3);
 }

@@ -37,11 +37,10 @@ import static org.opengis.annotation.Specification.*;
  *   </TD></TR>
  * </TABLE>
  *
- * @version <A HREF="http://www.opengis.org/docs/01-004.pdf">Grid Coverage specification 1.0</A>
  * @author  Martin Desruisseaux (IRD)
+ * @version <A HREF="http://www.opengis.org/docs/01-004.pdf">Grid Coverage specification 1.0</A>
+ * @see     SampleDimension
  * @since   GeoAPI 1.0
- *
- * @see SampleDimension
  */
 @UML(identifier="CV_SampleDimensionType", specification=OGC_01004)
 public final class SampleDimensionType extends CodeList<SampleDimensionType> {
