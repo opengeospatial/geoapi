@@ -31,7 +31,10 @@ import org.opengis.geometry.DirectPosition;
  * enabled).
  *
  * @author Open GIS Consortium, Inc.
+ *
+ * @deprecated Moved to {@link org.opengis.display.canvas}.
  */
+@Deprecated
 public interface CanvasController {
     /**
      * Sets the position of the center pixel of the <code>Canvas</code> this

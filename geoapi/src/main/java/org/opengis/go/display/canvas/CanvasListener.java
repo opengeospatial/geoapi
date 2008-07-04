@@ -16,7 +16,10 @@ package org.opengis.go.display.canvas;
  * its state has changed.
  *
  * @author Open GIS Consortium, Inc.
+ *
+ * @deprecated Moved to {@link org.opengis.display.canvas}.
  */
+@Deprecated
 public interface CanvasListener {
     /**
      * This method is called by a <code>Canvas</code> when its state has

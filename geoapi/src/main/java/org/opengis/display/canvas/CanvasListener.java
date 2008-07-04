@@ -14,20 +14,17 @@ import java.util.EventListener;
 
 
 /**
- * The one method in this interface is called by a <code>Canvas</code> when
- * its state has changed.
- * 
+ * Listener notified when a {@linkplain Canvas canvas} state changed.
+ *
  * @author Open Geospatial Consortium
  * @author Johann Sorel (Geomatys)
- * @since GeoAPI 2.2
+ * @since  GeoAPI 2.2
  */
-public interface CanvasListener extends EventListener{
-    
+public interface CanvasListener extends EventListener {
     /**
-     * This method is called by a <code>Canvas</code> when its state has
-     * changed.
-     * @param event describe the changes.
+     * Invoked by a {@linkplain Canvas canvas} when its state has changed.
+     *
+     * @param event A description of the change.
      */
     void canvasChanged(CanvasEvent event);
-    
 }

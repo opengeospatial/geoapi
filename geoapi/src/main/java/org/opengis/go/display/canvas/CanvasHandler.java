@@ -20,7 +20,10 @@ package org.opengis.go.display.canvas;
  * change the canvas, until the handler is removed.
  *
  * @author Open GIS Consortium, Inc.
+ *
+ * @deprecated No replacement.
  */
+@Deprecated
 public interface CanvasHandler {
     /**
      * Enables this <code>CanvasHandler</code>, giving it the active

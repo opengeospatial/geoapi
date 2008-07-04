@@ -35,7 +35,10 @@ import org.opengis.geometry.Envelope;
  * </ul>
  *
  * @author Open GIS Consortium, Inc.
+ *
+ * @deprecated Splitted to {@link org.opengis.display.canvas} and to {@link org.opengis.display.renderer}.
  */
+@Deprecated
 public interface Canvas {
 
     //**  deconstructor  **
@@ -66,7 +69,10 @@ public interface Canvas {
      * <code>GraphicFactory</code>.
      *
      * @return the UID of this <code>Canvas</code>.
+     *
+     * @deprecated No replacement.
      */
+    @Deprecated
     String getUID();
 
     /**
@@ -75,14 +81,20 @@ public interface Canvas {
      * application's window.
      *
      * @param title the new title for this <code>Canvas</code>.
+     *
+     * @deprecated Moved to {@link org.opengis.display.canvas.CanvasController#setTitle}.
      */
+    @Deprecated
     void setTitle(String title);
 
     /**
      * Returns the title assigned to this <code>Canvas</code>.
      *
      * @return the title of this <code>Canvas</code>.
+     *
+     * @deprecated Moved to {@link org.opengis.display.canvas.CanvasState#getTitle}.
      */
+    @Deprecated
     String getTitle();
 
     /**
@@ -97,13 +109,19 @@ public interface Canvas {
      * Returns a copy of the current state of this <code>Canvas</code>. The
      * object returned will implement <code>CanvasState</code> or one of its
      * subinterfaces, depending on the type of Canvas.
+     *
+     * @deprecated Moved to {@link org.opengis.display.canvas.Canvas#getState}.
      */
+    @Deprecated
     CanvasState getState();
 
     /**
      * Returns true if the given coordinate is visible on this
      * <code>Canvas</code>.
+     *
+     * @deprecated Moved to {@link org.opengis.display.canvas.Canvas#isVisible}.
      */
+    @Deprecated
     boolean isVisible(DirectPosition coordinate);
 
     //**  Graphic methods  **
@@ -116,7 +134,10 @@ public interface Canvas {
      * one should be on top.
      *
      * @param graphic the <code>Graphic</code> to add.
+     *
+     * @deprecated Replaced by {@link org.opengis.display.renderer.Renderer#graphics}.
      */
+    @Deprecated
     Graphic add(Graphic graphic);
 
     /**
@@ -128,14 +149,20 @@ public interface Canvas {
      * <code>Graphic</code>'s values through mouse gestures or key input.
      *
      * @param graphic the <code>Graphic</code> to add as editable.
+     *
+     * @deprecated No direct repacement.
      */
+    @Deprecated
     Graphic addAsEditable(Graphic graphic);
 
     /**
      * Removes the given <code>Graphic</code> from this <code>Canvas</code>.
      *
      * @param graphic the <code>Graphic</code> to remove.
+     *
+     * @deprecated Replaced by {@link org.opengis.display.renderer.Renderer#graphics}.
      */
+    @Deprecated
     void remove(Graphic graphic);
 
     /**
@@ -208,12 +235,18 @@ public interface Canvas {
     /**
      * Adds the given listener that will be notified when the state of this
      * <code>Canvas</code> has changed.
+     *
+     * @deprecated Moved to {@link org.opengis.display.canvas.canvas#addCanvasListener}.
      */
+    @Deprecated
     void addCanvasListener(CanvasListener listener);
 
     /**
      * Removes the given listener.
+     *
+     * @deprecated Moved to {@link org.opengis.display.canvas.canvas#removeCanvasListener}.
      */
+    @Deprecated
     void removeCanvasListener(CanvasListener listener);
 
     //**  CanvasManager methods  **
@@ -239,19 +272,29 @@ public interface Canvas {
      *      }
      *  }
      * </code></pre>
+     *
+     * @deprecated Replaced by {@link org.opengis.display.canvas.canvas#getController}.
      */
+    @Deprecated
     void enableCanvasHandler(CanvasHandler handler);
 
     /**
      * Removes the given <code>CanvasHandler</code> from this
      * <code>Canvas</code>.
+     *
+     * @deprecated Replaced by {@link org.opengis.display.canvas.canvas#getController}.
      */
+    @Deprecated
     void removeCanvasHandler(CanvasHandler handler);
 
     /**
      * Returns the currently active <code>CanvasHandler</code> or null if no
      * handler is active.
+     *
+     * @deprecated Replaced by {@code getController}. A side effect is to suppress
+     *             one level of indirection.
      */
+    @Deprecated
     CanvasHandler getActiveCanvasHandler();
 
     //**  imlementation hints  **
@@ -262,7 +305,10 @@ public interface Canvas {
      *
      * @param hintName the name of the hint.
      * @param hint the rendering hint.
+     *
+     * @deprecated Moved to {@link org.opengis.display.canvas.Canvas#setRenderingHint}.
      */
+    @Deprecated
     void setImplHint(String hintName, Object hint);
 
     /**
@@ -270,7 +316,10 @@ public interface Canvas {
      *
      * @param hintName the name of the hint.
      * @return         the rendering hint.
+     *
+     * @deprecated Moved to {@link org.opengis.display.canvas.Canvas#getRenderingHint}.
      */
+    @Deprecated
     Object getImplHint(String hintName);
 
     //** CoordinateReferenceSystem methods **
@@ -282,7 +331,10 @@ public interface Canvas {
      * Cartesian, planetarium = Spherical).
      *
      * @return the display Coordinate Reference System
+     *
+     * @deprecated Moved to {@link org.opengis.display.canvas.CanvasState#getDisplayCRS}.
      */
+    @Deprecated
     CoordinateReferenceSystem getDisplayCoordinateReferenceSystem();
 
     /**
@@ -292,7 +344,10 @@ public interface Canvas {
      * <code>Canvas</code>.
      *
      * @return the objective Coordinate Reference System
+     *
+     * @deprecated Moved to {@link org.opengis.display.canvas.CanvasState#getObjectiveCRS}.
      */
+    @Deprecated
     CoordinateReferenceSystem getObjectiveCoordinateReferenceSystem();
 
     /**
@@ -303,7 +358,10 @@ public interface Canvas {
      *
      * @param crs the objective Coordinate Reference System
      * @throws IncompatibleOperationException when the specified transformation does not apply to either the objective or the display Coordinate Reference Systems.
+     *
+     * @deprecated Moved to {@link org.opengis.display.canvas.CanvasSController#setObjectiveCRS}.
      */
+    @Deprecated
     void setObjectiveCoordinateReferenceSystem(CoordinateReferenceSystem crs);
 
     /**
@@ -316,7 +374,10 @@ public interface Canvas {
      * @param objectiveToDisplay the trasformation that converts between this objective Coordinate Reference System and the Canvas display Coordinate Reference System.
      * @param displayToObjective the trasformation that converts between the Canvas display Coordinate Reference System and this objective Coordinate Reference System.
      * @throws IncompatibleOperationException when the specified transformation does not apply to either the objective or the display Coordinate Reference Systems.
+     *
+     * @deprecated No replacement.
      */
+    @Deprecated
     void setObjectiveCoordinateReferenceSystem(CoordinateReferenceSystem crs, MathTransform objectiveToDisplay,
                     MathTransform displayToObjective) throws IncompatibleOperationException;
 
@@ -325,14 +386,21 @@ public interface Canvas {
      * <code>Canvas</code>. This allows the <code>Canvas</code> to resolve
      * conversions of coordinates between the objective and display Coordinate Reference Systems.
      * @return the coordinate transformation object
+     *
+     * @deprecated Moved to {@link org.opengis.display.canvas.CanvasState#getObjectiveToDisplayTransform}.
      */
+    @Deprecated
     MathTransform getObjectiveToDisplayTransform();
 
     /**
      * Returns the coordinate transformation object for this
      * <code>Canvas</code>. This allows the <code>Canvas</code> to resolve
      * conversions of coordinates between the display and objective Coordinate Reference Systems.
+     *
      * @return the coordinate transformation object
+     *
+     * @deprecated Moved to {@link org.opengis.display.canvas.CanvasState#getDisplayToObjectiveTransform}.
      */
+    @Deprecated
     MathTransform getDisplayToObjectiveTransform();
 }
