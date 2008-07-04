@@ -78,4 +78,15 @@ public interface Attribute extends Property {
      *         the attribute is non-identifiable.
      */
     String getID();
+    
+    /**
+     * Check the attribute value against the constraints provided by the AttributeDescriptor.
+     * <p>
+     * Please note this method confirms value binding and restrictions only; the number of
+     * times an attribute is used (minOccurs and maxOccurs) is not varified by
+     * this method.
+     * 
+     * @return true if the value is compatable with getType().getBinding() and getType().getRestrictions()
+     */
+    boolean isValid();
 }

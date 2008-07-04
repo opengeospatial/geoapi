@@ -59,6 +59,6 @@ public interface Function extends Expression {
      *
      * @since GeoAPI 2.2
      */
-//    @XmlElement("fallbackValue")
-//    Literal getFallbackValue();
+    @XmlElement("fallbackValue")
+    Literal getFallbackValue();
 }
