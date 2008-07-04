@@ -138,5 +138,28 @@ public interface FeatureFactory {
      * @param id The id of the feature.
      */
     SimpleFeature createSimpleFeature(List<Attribute> value, SimpleFeatureType type, String id);
+    
+    
+    /**
+     * Create a SimpleFeature from an array of objects.
+     * <p>
+     * Please note that the provided array may be used directly by an implementation.
+     * 
+     * @param array Object array of values; this array may beused directly.
+     * @param type The type of the simple feature.
+     * @param id The id of the feature.
+     */   
+    SimpleFeature createSimpleFeature( Object[] array, SimpleFeatureType type, String id );   
+    
+    /**
+     * Creates a simple feature.
+     * <p>
+     *   <code>descriptor.getType()</code> must be an instance of {@link SimpleFeatureType}.
+     * </p>
+     * @param array Object array of values; this array may be used directly.
+     * @param descriptor The attribute descriptor.
+     * @param id The id of the feature.
+     *
+     */
+    SimpleFeature createSimpleFeautre( Object[] array, AttributeDescriptor decsriptor, String id);
 }
-
