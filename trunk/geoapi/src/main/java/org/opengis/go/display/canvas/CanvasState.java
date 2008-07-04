@@ -25,7 +25,10 @@ import org.opengis.geometry.DirectPosition;
  * and the values will never change (even if the Canvas changes state).
  *
  * @author Open GIS Consortium, Inc.
+ *
+ * @deprecated Moved to {@link org.opengis.display.canvas}.
  */
+@Deprecated
 public interface CanvasState {
     /**
      * Returns the title of the <code>Canvas</code>.
@@ -40,7 +43,10 @@ public interface CanvasState {
     /**
      * Returns a copy of this state object. The implementation should also clone
      * the object returned by <code>getCanvasParameterAccessor()</code>.
+     *
+     * @deprecated This is left to implementor.
      */
+    @Deprecated
     CanvasState clone() throws CloneNotSupportedException;
 
     /**
@@ -48,7 +54,10 @@ public interface CanvasState {
      * and has values equal to this one. As part of the test, the implementation
      * should also test equivalency of the object returned by
      * <code>getCanvasParameterAccessor()</code>.
+     *
+     * @deprecated This is left to implementor.
      */
-    ///@Override    
+    ///@Override
+    @Deprecated
     boolean equals(Object object);
 }

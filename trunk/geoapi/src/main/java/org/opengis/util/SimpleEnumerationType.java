@@ -14,7 +14,6 @@ import java.awt.Component;
 import java.awt.Graphics;
 import java.net.URL;
 import java.util.Collection;
-import java.util.List;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 
@@ -27,10 +26,12 @@ import javax.swing.ImageIcon;
  * @author Jesse Crossley (SYS Technologies)
  * @since GeoAPI 1.0
  *
- * @todo The name doesn't said what is the difference between this class and {@link CodeList}.
+ * @deprecated
+ *       The name doesn't said what is the difference between this class and {@link CodeList}.
  *       Furthermore, according ISO 19103, enumeration and code list are not the same thing.
  *       This base class is closer to a code list than an enumeration.
  */
+@Deprecated
 public abstract class SimpleEnumerationType<E extends SimpleEnumerationType<E>> extends CodeList<E> {
 
     //*************************************************************************

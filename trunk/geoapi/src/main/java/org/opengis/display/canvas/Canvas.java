@@ -30,12 +30,12 @@ import org.opengis.geometry.DirectPosition;
  *
  * @author Open Geospatial Consortium
  * @author Johann Sorel (Geomatys)
- * @since GeoAPI 2.2
+ * @since  GeoAPI 2.2
  */
 public interface Canvas {
     /**
      * Returns a copy of the current state of this {@code Canvas}. The object returned will
-     * implement <code>CanvasState</code> or one of its subinterfaces, depending on the type
+     * implement {@link CanvasState} or one of its subinterfaces, depending on the type
      * of canvas.
      *
      * @return A snapshot of current canvas state.
@@ -70,23 +70,23 @@ public interface Canvas {
     /**
      * Returns the rendering hint associated with the hint name.
      *
-     * @param hintKey the key of the hint.
-     * @return the rendering hint.
+     * @param hintKey The key of the hint.
+     * @return The rendering hint.
      */
     Object getRenderingHint(RenderingHints.Key hintKey);
 
     /**
-     * Add a <code>CanvasListener</code> on this canvas.
+     * Adds the given listener that will be notified when the state of this
+     * {@code Canvas} has changed.
      *
-     * @param listener
+     * @param listener The listener to add.
      */
     void addCanvasListener(CanvasListener listener);
 
     /**
-     * Remove <code>CanvasListener</code> listener.
+     * Removes the given listener.
      *
-     * @param listener
+     * @param listener The listener to remove.
      */
     void removeCanvasListener(CanvasListener listener);
-
 }
