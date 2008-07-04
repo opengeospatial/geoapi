@@ -35,7 +35,10 @@ import static org.opengis.annotation.Specification.*;
  * @version <A HREF="http://www.opengis.org/docs/01-004.pdf">Grid Coverage specification 1.0</A>
  * @see     GridCoverage#isDataEditable
  * @since   GeoAPI 1.0
+ *
+ * @deprecated No replacement.
  */
+@Deprecated
 @UML(identifier="GC_GridNotEditable", specification=OGC_01004)
 public class GridNotEditableException extends IllegalStateException {
     /**

@@ -11,7 +11,6 @@
 package org.opengis.coverage.grid;
 
 import java.io.IOException;
-import org.opengis.coverage.MetadataNameNotFoundException;
 import org.opengis.parameter.GeneralParameterValue;
 import org.opengis.parameter.ParameterNotFoundException;
 import org.opengis.parameter.InvalidParameterNameException;
@@ -76,12 +75,10 @@ public interface GridCoverageWriter {
      * @param  name Metadata keyword for which to set the metadata.
      * @param  value The metadata value for the given metadata name.
      * @throws IOException if an error occurs during writing.
-     * @throws MetadataNameNotFoundException if the specified metadata name is not handled
-     *         for this format.
      *
      * @todo This javadoc may not apply thats well in the iterator scheme.
      */
-    void setMetadataValue(String name, String value) throws IOException, MetadataNameNotFoundException;
+    void setMetadataValue(String name, String value) throws IOException;
 
     /**
      * Set the name for the next grid coverage to {@linkplain #write write} within the

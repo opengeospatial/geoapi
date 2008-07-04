@@ -12,7 +12,6 @@ package org.opengis.coverage.grid;
 
 import java.io.IOException;
 import java.io.FileNotFoundException;
-import org.opengis.coverage.MetadataNameNotFoundException;
 import org.opengis.parameter.GeneralParameterValue;
 import org.opengis.parameter.ParameterNotFoundException;
 import org.opengis.parameter.InvalidParameterNameException;
@@ -78,11 +77,10 @@ public interface GridCoverageReader {
      * @return The metadata value for the given metadata name. Should be one of
      *         the name returned by {@link #getMetadataNames}.
      * @throws IOException if an error occurs during reading.
-     * @throws MetadataNameNotFoundException if there is no value for the specified metadata name.
      *
      * @todo This javadoc may not apply thats well in the iterator scheme.
      */
-    String getMetadataValue(String name) throws IOException, MetadataNameNotFoundException;
+    String getMetadataValue(String name) throws IOException;
 
     /**
      * Retrieve the list of grid coverages contained within the {@linkplain #getSource
