@@ -98,12 +98,12 @@ public interface GridCoverage extends Coverage {
     /**
      * Returns the grid geometry for an overview.
      *
-     * @param overviewIndex Overview index for which to retrieve grid geometry. Indices start at 0.
+     * @param  index Overview index for which to retrieve grid geometry. Indices start at 0.
      * @return The grid geometry for an overview.
      * @throws IndexOutOfBoundsException if {@code overviewIndex} is out of bounds.
      */
     @UML(identifier="getOverviewGridGeometry", obligation=MANDATORY, specification=OGC_01004)
-    GridGeometry getOverviewGridGeometry(int overviewIndex) throws IndexOutOfBoundsException;
+    GridGeometry getOverviewGridGeometry(int index) throws IndexOutOfBoundsException;
 
     /**
      * Returns a pre-calculated overview for a grid coverage. The overview indices are numbered
@@ -136,12 +136,12 @@ public interface GridCoverage extends Coverage {
      *   </table></td>
      * </table></blockquote>
      *
-     * @param overviewIndex Index of grid coverage overview to retrieve. Indexes start at 0.
-     * @return a pre-calculated overview for a grid coverage.
+     * @param  index Index of grid coverage overview to retrieve. Indexes start at 0.
+     * @return A pre-calculated overview for a grid coverage.
      * @throws IndexOutOfBoundsException if {@code overviewIndex} is out of bounds.
      */
     @UML(identifier="getOverview", obligation=MANDATORY, specification=OGC_01004)
-    GridCoverage getOverview(int overviewIndex) throws IndexOutOfBoundsException;
+    GridCoverage getOverview(int index) throws IndexOutOfBoundsException;
 
     /**
      * Returns the sources data for a grid coverage. If the {@code GridCoverage} was
@@ -167,20 +167,24 @@ public interface GridCoverage extends Coverage {
      * The semantic is the same as {@link #getDataBlock(GridRange, double[])}
      * except for the return type.
      *
-     * @param  gridRange Grid range for block of data to be accessed.
+     * @param  range Grid range for block of data to be accessed.
      * @param  destination An optionally preallocated array in which to store the values,
      *         or {@code null} if none.
      * @return A sequence of boolean values for a given block in the coverage.
      *         If {@code destination} was non-null, then it is returned.
      *         Otherwise, a new array is allocated and returned.
-     * @throws InvalidRangeException if {@code gridRange} is out of this grid range bounds.
+     * @throws InvalidRangeException if {@code range} is out of this grid range bounds.
      * @throws ArrayIndexOutOfBoundsException if the {@code destination} array is not null
      *         and too small to hold the output.
      *
      * @see #setDataBlock(GridRange, boolean[])
+     *
+     * @deprecated We should use some higher level construct instead (multi-dimensional array
+     *             or something similar).
      */
+    @Deprecated
     @UML(identifier="getDataBlockAsBoolean", obligation=MANDATORY, specification=OGC_01004)
-    boolean[] getDataBlock(GridRange gridRange, boolean[] destination)
+    boolean[] getDataBlock(GridRange range, boolean[] destination)
             throws InvalidRangeException, ArrayIndexOutOfBoundsException;
 
     /**
@@ -189,21 +193,25 @@ public interface GridCoverage extends Coverage {
      * The semantic is the same as {@link #getDataBlock(GridRange, double[])}
      * except for the return type.
      *
-     * @param  gridRange Grid range for block of data to be accessed.
+     * @param  range Grid range for block of data to be accessed.
      * @param  destination An optionally preallocated array in which to store the values,
      *         or {@code null} if none.
      * @return A sequence of 8 bits values for a given block in the coverage.
      *         If {@code destination} was non-null, then it is returned.
      *         Otherwise, a new array is allocated and returned.
-     * @throws InvalidRangeException if {@code gridRange} is out of this grid range bounds.
+     * @throws InvalidRangeException if {@code range} is out of this grid range bounds.
      * @throws ArrayIndexOutOfBoundsException if the {@code destination} array is not null
      *         and too small to hold the output.
      *
      * @see #setDataBlock(GridRange, byte[])
      * @see javax.media.jai.UnpackedImageData#getByteData()
+     *
+     * @deprecated We should use some higher level construct instead (multi-dimensional array
+     *             or something similar).
      */
+    @Deprecated
     @UML(identifier="getDataBlockAsByte", obligation=MANDATORY, specification=OGC_01004)
-    byte[] getDataBlock(GridRange gridRange, byte[] destination)
+    byte[] getDataBlock(GridRange range, byte[] destination)
             throws InvalidRangeException, ArrayIndexOutOfBoundsException;
 
     /**
@@ -212,21 +220,25 @@ public interface GridCoverage extends Coverage {
      * The semantic is the same as {@link #getDataBlock(GridRange, double[])}
      * except for the return type.
      *
-     * @param  gridRange Grid range for block of data to be accessed.
+     * @param  range Grid range for block of data to be accessed.
      * @param  destination An optionally preallocated array in which to store the values,
      *         or {@code null} if none.
      * @return A sequence of 16 bits values for a given block in the coverage.
      *         If {@code destination} was non-null, then it is returned.
      *         Otherwise, a new array is allocated and returned.
-     * @throws InvalidRangeException if {@code gridRange} is out of this grid range bounds.
+     * @throws InvalidRangeException if {@code range} is out of this grid range bounds.
      * @throws ArrayIndexOutOfBoundsException if the {@code destination} array is not null
      *         and too small to hold the output.
      *
      * @see #setDataBlock(GridRange, int[])
      * @see javax.media.jai.UnpackedImageData#getShortData()
+     *
+     * @deprecated We should use some higher level construct instead (multi-dimensional array
+     *             or something similar).
      */
+    @Deprecated
     @UML(identifier="getDataBlockAsInteger", obligation=MANDATORY, specification=OGC_01004)
-    short[] getDataBlock(GridRange gridRange, short[] destination)
+    short[] getDataBlock(GridRange range, short[] destination)
             throws InvalidRangeException, ArrayIndexOutOfBoundsException;
 
     /**
@@ -235,22 +247,26 @@ public interface GridCoverage extends Coverage {
      * The semantic is the same as {@link #getDataBlock(GridRange, double[])}
      * except for the return type.
      *
-     * @param  gridRange Grid range for block of data to be accessed.
+     * @param  range Grid range for block of data to be accessed.
      * @param  destination An optionally preallocated array in which to store the values,
      *         or {@code null} if none.
      * @return A sequence of 32 bits values for a given block in the coverage.
      *         If {@code destination} was non-null, then it is returned.
      *         Otherwise, a new array is allocated and returned.
-     * @throws InvalidRangeException if {@code gridRange} is out of this grid range bounds.
+     * @throws InvalidRangeException if {@code range} is out of this grid range bounds.
      * @throws ArrayIndexOutOfBoundsException if the {@code destination} array is not null
      *         and too small to hold the output.
      *
      * @see #setDataBlock(GridRange, int[])
      * @see Raster#getPixels(int,int,int,int,int[])
      * @see javax.media.jai.UnpackedImageData#getIntData()
+     *
+     * @deprecated We should use some higher level construct instead (multi-dimensional array
+     *             or something similar).
      */
+    @Deprecated
     @UML(identifier="getDataBlockAsInteger", obligation=MANDATORY, specification=OGC_01004)
-    int[] getDataBlock(GridRange gridRange, int[] destination)
+    int[] getDataBlock(GridRange range, int[] destination)
             throws InvalidRangeException, ArrayIndexOutOfBoundsException;
 
     /**
@@ -259,21 +275,25 @@ public interface GridCoverage extends Coverage {
      * The semantic is the same as {@link #getDataBlock(GridRange, double[])}
      * except for the return type.
      *
-     * @param  gridRange Grid range for block of data to be accessed.
+     * @param  range Grid range for block of data to be accessed.
      * @param  destination An optionally preallocated array in which to store the values,
      *         or {@code null} if none.
      * @return A sequence of float values for a given block in the coverage.
      *         If {@code destination} was non-null, then it is returned.
      *         Otherwise, a new array is allocated and returned.
-     * @throws InvalidRangeException if {@code gridRange} is out of this grid range bounds.
+     * @throws InvalidRangeException if {@code range} is out of this grid range bounds.
      * @throws ArrayIndexOutOfBoundsException if the {@code destination} array is not null
      *         and too small to hold the output.
      *
      * @see #setDataBlock(GridRange, float[])
      * @see Raster#getPixels(int,int,int,int,float[])
      * @see javax.media.jai.UnpackedImageData#getFloatData()
+     *
+     * @deprecated We should use some higher level construct instead (multi-dimensional array
+     *             or something similar).
      */
-    float[] getDataBlock(GridRange gridRange, float[] destination)
+    @Deprecated
+    float[] getDataBlock(GridRange range, float[] destination)
             throws InvalidRangeException, ArrayIndexOutOfBoundsException;
 
     /**
@@ -287,7 +307,7 @@ public interface GridCoverage extends Coverage {
      * (sample dimension, column, row).
      *
      * The index values will be based from 0. The indices in the returned <VAR>N</VAR> dimensional
-     * safe array will need to be offset by {@code gridRange} {@linkplain GridRange#getLower()
+     * safe array will need to be offset by {@code range} {@linkplain GridRange#getLower()
      * minimum coordinates} to get equivalent grid coordinates.
      * <p>
      * The requested grid range must satisfy the following rules for each dimension of the grid
@@ -309,13 +329,13 @@ public interface GridCoverage extends Coverage {
      * <var>max</var> is the maximum ordinate in the grid range and
      * <VAR>N</VAR> is the number of dimensions in the grid coverage.
      *
-     * @param  gridRange Grid range for block of data to be accessed.
+     * @param  range Grid range for block of data to be accessed.
      * @param  destination An optionally preallocated array in which to store the values,
      *         or {@code null} if none.
      * @return A sequence of double values for a given block in the coverage.
      *         If {@code destination} was non-null, then it is returned.
      *         Otherwise, a new array is allocated and returned.
-     * @throws InvalidRangeException if {@code gridRange} is out of this grid range bounds.
+     * @throws InvalidRangeException if {@code range} is out of this grid range bounds.
      * @throws ArrayIndexOutOfBoundsException if the {@code destination} array is not null
      *         and too small to hold the output.
      *
@@ -328,9 +348,13 @@ public interface GridCoverage extends Coverage {
      * @see #setDataBlock(GridRange, double[])
      * @see Raster#getPixels(int,int,int,int,double[])
      * @see javax.media.jai.UnpackedImageData#getDoubleData()
+     *
+     * @deprecated We should use some higher level construct instead (multi-dimensional array
+     *             or something similar).
      */
+    @Deprecated
     @UML(identifier="getValueBlockAsDouble", obligation=MANDATORY, specification=OGC_01004)
-    double[] getDataBlock(GridRange gridRange, double[] destination)
+    double[] getDataBlock(GridRange range, double[] destination)
             throws InvalidRangeException, ArrayIndexOutOfBoundsException;
 
     /**
@@ -376,103 +400,127 @@ public interface GridCoverage extends Coverage {
      * For grid values bigger than 8 bits, the order of their bytes is given by the
      * value defined in {@link GridPacking#getByteInValuePacking byteInValuePacking}.
      *
-     * @param gridRange Grid range for block of data to be accessed.
+     * @param range Grid range for block of data to be accessed.
      * @return a block of grid coverage data for all sample dimensions.
-     * @throws InvalidRangeException if {@code gridRange} is out of this grid range bounds.
+     * @throws InvalidRangeException if {@code range} is out of this grid range bounds.
      *
      * @todo This operation can't be implemented efficiently in Java with a {@code byte[]}
      *       return type, since there is no way to cast an array of arbitrary type to an array
      *       of type {@code byte[]}. Even the {@code java.nio.Buffer} doesnt allow
      *       that (it allows the opposite way however).
+     *
+     * @deprecated We should use some higher level construct instead (multi-dimensional array
+     *             or something similar).
      */
+    @Deprecated
     @UML(identifier="getPackedDataBlock", obligation=MANDATORY, specification=OGC_01004)
-    byte[] getPackedDataBlock(GridRange gridRange) throws InvalidRangeException;
+    byte[] getPackedDataBlock(GridRange range) throws InvalidRangeException;
 
     /**
      * Set a block of boolean values for all sample dimensions.
      * The semantic is the same as {@link #setDataBlock(GridRange, double[])}.
      *
-     * @param gridRange Grid range for block of data to be accessed.
+     * @param range Grid range for block of data to be accessed.
      * @param values Sequence of grid values for the given region.
-     * @throws InvalidRangeException if {@code gridRange} is out of this grid range bounds.
+     * @throws InvalidRangeException if {@code range} is out of this grid range bounds.
      * @throws GridNotEditableException if the grid coverage is not {@linkplain #isDataEditable editable}.
      * @throws ArrayIndexOutOfBoundsException if the {@code values} array is too small.
      *
      * @see #isDataEditable
      * @see #getDataBlock(GridRange, boolean[])
+     *
+     * @deprecated We should use some higher level construct instead (multi-dimensional array
+     *             or something similar).
      */
+    @Deprecated
     @UML(identifier="setDataBlockAsBoolean", obligation=MANDATORY, specification=OGC_01004)
-    void setDataBlock(GridRange gridRange, boolean[] values)
+    void setDataBlock(GridRange range, boolean[] values)
             throws InvalidRangeException, GridNotEditableException, ArrayIndexOutOfBoundsException;
 
     /**
      * Set a block of 8 bits values for all sample dimensions.
      * The semantic is the same as {@link #setDataBlock(GridRange, double[])}.
      *
-     * @param gridRange Grid range for block of data to be accessed.
+     * @param range Grid range for block of data to be accessed.
      * @param values Sequence of grid values for the given region.
-     * @throws InvalidRangeException if {@code gridRange} is out of this grid range bounds.
+     * @throws InvalidRangeException if {@code range} is out of this grid range bounds.
      * @throws GridNotEditableException if the grid coverage is not {@linkplain #isDataEditable editable}.
      * @throws ArrayIndexOutOfBoundsException if the {@code values} array is too small.
      *
      * @see #isDataEditable
      * @see #getDataBlock(GridRange, byte[])
+     *
+     * @deprecated We should use some higher level construct instead (multi-dimensional array
+     *             or something similar).
      */
+    @Deprecated
     @UML(identifier="setDataBlockAsByte", obligation=MANDATORY, specification=OGC_01004)
-    void setDataBlock(GridRange gridRange, byte[] values)
+    void setDataBlock(GridRange range, byte[] values)
             throws InvalidRangeException, GridNotEditableException, ArrayIndexOutOfBoundsException;
 
     /**
      * Set a block of 16 bits values for all sample dimensions.
      * The semantic is the same as {@link #setDataBlock(GridRange, double[])}.
      *
-     * @param gridRange Grid range for block of data to be accessed.
+     * @param range Grid range for block of data to be accessed.
      * @param values Sequence of grid values for the given region.
-     * @throws InvalidRangeException if {@code gridRange} is out of this grid range bounds.
+     * @throws InvalidRangeException if {@code range} is out of this grid range bounds.
      * @throws GridNotEditableException if the grid coverage is not {@linkplain #isDataEditable editable}.
      * @throws ArrayIndexOutOfBoundsException if the {@code values} array is too small.
      *
      * @see #isDataEditable
      * @see #getDataBlock(GridRange, short[])
+     *
+     * @deprecated We should use some higher level construct instead (multi-dimensional array
+     *             or something similar).
      */
+    @Deprecated
     @UML(identifier="setDataBlockAsByte", obligation=MANDATORY, specification=OGC_01004)
-    void setDataBlock(GridRange gridRange, short[] values)
+    void setDataBlock(GridRange range, short[] values)
             throws InvalidRangeException, GridNotEditableException, ArrayIndexOutOfBoundsException;
 
     /**
      * Set a block of 32 bits values for all sample dimensions.
      * The semantic is the same as {@link #setDataBlock(GridRange, double[])}.
      *
-     * @param gridRange Grid range for block of data to be accessed.
+     * @param range Grid range for block of data to be accessed.
      * @param values Sequence of grid values for the given region.
-     * @throws InvalidRangeException if {@code gridRange} is out of this grid range bounds.
+     * @throws InvalidRangeException if {@code range} is out of this grid range bounds.
      * @throws GridNotEditableException if the grid coverage is not {@linkplain #isDataEditable editable}.
      * @throws ArrayIndexOutOfBoundsException if the {@code values} array is too small.
      *
      * @see #isDataEditable
      * @see #getDataBlock(GridRange, int[])
      * @see WritableRaster#setPixels(int,int,int,int,int[])
+     *
+     * @deprecated We should use some higher level construct instead (multi-dimensional array
+     *             or something similar).
      */
+    @Deprecated
     @UML(identifier="setDataBlockAsInteger", obligation=MANDATORY, specification=OGC_01004)
-    void setDataBlock(GridRange gridRange, int[] values)
+    void setDataBlock(GridRange range, int[] values)
             throws InvalidRangeException, GridNotEditableException, ArrayIndexOutOfBoundsException;
 
     /**
      * Set a block of float values for all sample dimensions.
      * The semantic is the same as {@link #setDataBlock(GridRange, double[])}.
      *
-     * @param gridRange Grid range for block of data to be accessed.
+     * @param range Grid range for block of data to be accessed.
      * @param values Sequence of grid values for the given region.
-     * @throws InvalidRangeException if {@code gridRange} is out of this grid range bounds.
+     * @throws InvalidRangeException if {@code range} is out of this grid range bounds.
      * @throws GridNotEditableException if the grid coverage is not {@linkplain #isDataEditable editable}.
      * @throws ArrayIndexOutOfBoundsException if the {@code values} array is too small.
      *
      * @see #isDataEditable
      * @see #getDataBlock(GridRange, float[])
      * @see WritableRaster#setPixels(int,int,int,int,float[])
+     *
+     * @deprecated We should use some higher level construct instead (multi-dimensional array
+     *             or something similar).
      */
+    @Deprecated
     @UML(identifier="setDataBlockAsInteger", obligation=MANDATORY, specification=OGC_01004)
-    void setDataBlock(GridRange gridRange, float[] values)
+    void setDataBlock(GridRange range, float[] values)
             throws InvalidRangeException, GridNotEditableException, ArrayIndexOutOfBoundsException;
 
     /**
@@ -498,17 +546,21 @@ public interface GridCoverage extends Coverage {
      * <var>max</var> is the maximum ordinate in the grid range and
      * <VAR>N</VAR> is the number of dimensions in the grid coverage.
      *
-     * @param gridRange Grid range for block of data to be accessed.
+     * @param range Grid range for block of data to be accessed.
      * @param values Sequence of grid values for the given region.
-     * @throws InvalidRangeException if {@code gridRange} is out of this grid range bounds.
+     * @throws InvalidRangeException if {@code range} is out of this grid range bounds.
      * @throws GridNotEditableException if the grid coverage is not {@linkplain #isDataEditable editable}.
      * @throws ArrayIndexOutOfBoundsException if the {@code values} array is too small.
      *
      * @see #isDataEditable
      * @see #getDataBlock(GridRange, double[])
      * @see WritableRaster#setPixels(int,int,int,int,double[])
+     *
+     * @deprecated We should use some higher level construct instead (multi-dimensional array
+     *             or something similar).
      */
+    @Deprecated
     @UML(identifier="setDataBlockAsDouble", obligation=MANDATORY, specification=OGC_01004)
-    void setDataBlock(GridRange gridRange, double[] values)
+    void setDataBlock(GridRange range, double[] values)
             throws InvalidRangeException, GridNotEditableException, ArrayIndexOutOfBoundsException;
 }
