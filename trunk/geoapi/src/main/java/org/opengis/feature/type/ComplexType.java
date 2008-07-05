@@ -102,10 +102,10 @@ public interface ComplexType extends AttributeType {
      * @return Collection of descriptors representing the composition of the
      * complex type.
      */
-    Collection<PropertyDescriptor> getProperties();
+    Collection<PropertyDescriptor> getDescriptors();
 
     /**
-     * Returns a single property by name.
+     * Describe a single property by name.
      * <p>
      * This method returns <code>null</code> if no such property is found.
      * </p>
@@ -113,14 +113,14 @@ public interface ComplexType extends AttributeType {
      *
      * @return The property matching the specified name, or <code>null</code>.
      */
-    PropertyDescriptor getProperty( Name name );
+    PropertyDescriptor getDescriptor( Name name );
 
     /**
-     * Returns a single property by unqualified name.
+     * Describe a single property by unqualified name.
      * <p>
      * Note: Special care should be taken when using this method in the case
      * that two properties with the same local name but different namespace uri
-     * exist. For this reason using {@link #getProperty(Name)} is safer.
+     * exist. For this reason using {@link #getDescriptor(Name)} is safer.
      * </p>
      * <p>
      * This method returns <code>null</code> if no such property is found.
@@ -129,7 +129,7 @@ public interface ComplexType extends AttributeType {
      *
      * @return The property matching the specified name, or <code>null</code>.
      */
-    PropertyDescriptor getProperty( String name );
+    PropertyDescriptor getDescriptor( String name );
 
     /**
      * Indicates ability of XPath to notice this attribute.

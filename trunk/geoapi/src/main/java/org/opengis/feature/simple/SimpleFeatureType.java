@@ -65,7 +65,7 @@ import org.opengis.feature.type.Name;
  * <h3>Attribute Naming</h3>
  * The names of attributes in a simple feature type are never namespace
  * qualified. For this reason there is no difference between accessing an
- * attribute with {@link #getAttribute(String)} and {@link #getAttribute(Name)}.
+ * attribute with {@link #getDescriptor(String)} and {@link #getDescriptor(Name)}.
  * </p>
  *
  * @author Jody Garnett, Refractions Research
@@ -94,7 +94,7 @@ public interface SimpleFeatureType extends FeatureType {
      *
      * @return The ordered list of attribute descriptors.
      */
-    List<AttributeDescriptor> getAttributes();
+    List<AttributeDescriptor> getAttributeDescriptors();
 
     /**
      * Returns the attribute descriptor which matches the specified name.
@@ -116,7 +116,7 @@ public interface SimpleFeatureType extends FeatureType {
      * @return The attribute descriptor matching the specified name, or
      *         <code>null</code> if no such attribute exists.
      */
-    AttributeDescriptor getAttribute(String name);
+    AttributeDescriptor getDescriptor(String name);
 
     /**
      * Returns the attribute descriptor which matches the specified name.
@@ -138,7 +138,7 @@ public interface SimpleFeatureType extends FeatureType {
      * @return The attribute descriptor matching the specified name, or
      *         <code>null</code> if no such attribute exists.
      */
-    AttributeDescriptor getAttribute(Name name);
+    AttributeDescriptor getDescriptor(Name name);
 
     /**
      * Returns the attribute descriptor at the specified index.
@@ -159,7 +159,7 @@ public interface SimpleFeatureType extends FeatureType {
      * @throws IndexOutOfBoundsException
      *             When the index is out of bounds.
      */
-    AttributeDescriptor getAttribute(int index)
+    AttributeDescriptor getDescriptor(int index)
             throws IndexOutOfBoundsException;
 
     /**
