@@ -16,7 +16,7 @@ import org.opengis.referencing.crs.CoordinateReferenceSystem;
  * The type of a GeometryAttribute.
  * <p>
  * Beyond AttributeType, this class stores the coordinate reference system that
- * geometries are defined in, see {@link #getCRS()}.
+ * geometries are defined in, see {@link #getCoordinateReferenceSystem()}.
  * </p>
  *
  * @author Jody Garnett, Refractions Research
@@ -31,5 +31,5 @@ public interface GeometryType extends AttributeType {
      * does not have an accompanied .prj file.
      * </p>
      */
-    CoordinateReferenceSystem getCRS();
+    CoordinateReferenceSystem getCoordinateReferenceSystem();
 }

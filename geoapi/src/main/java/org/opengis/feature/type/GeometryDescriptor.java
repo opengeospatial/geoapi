@@ -36,5 +36,5 @@ public interface GeometryDescriptor extends AttributeDescriptor {
      * does not have an accompanied .prj file.
      * </p>
      */
-    CoordinateReferenceSystem getCRS();
+    CoordinateReferenceSystem getCoordinateReferenceSystem();
 }

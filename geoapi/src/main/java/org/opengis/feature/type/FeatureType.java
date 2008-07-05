@@ -35,14 +35,14 @@ public interface FeatureType extends ComplexType {
     boolean isIdentified();
 
     /**
-     * The default geometric attribute of the feature.
+     * Describe the default geometric attribute for this feature.
      * <p>
      * This method returns <code>null</code> in the case where no such attribute
      * exists.
      * </p>
      * @return The descriptor of the default geometry attribute, or <code>null</code>.
      */
-    GeometryDescriptor getDefaultGeometry();
+    GeometryDescriptor getGeometryDescriptor();
 
     /**
      * The coordinate reference system of the feature.
@@ -58,5 +58,5 @@ public interface FeatureType extends ComplexType {
      * </p>
      * @return The coordinate referencing system, or <code>null</code>.
      */
-    CoordinateReferenceSystem getCRS();
+    CoordinateReferenceSystem getCoordinateReferenceSystem();
 }
