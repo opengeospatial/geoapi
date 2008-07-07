@@ -20,7 +20,7 @@ package org.opengis.style;
  * @author Chris Dillard (SYS Technologies)
  * @since GeoAPI 2.0
  */
-public interface GraphicSymbol {
+public interface GraphicalSymbol {
 
     /**
      * calls the visit method of a StyleVisitor

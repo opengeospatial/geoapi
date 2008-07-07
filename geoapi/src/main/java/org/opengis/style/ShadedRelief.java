@@ -11,6 +11,7 @@
 package org.opengis.style;
 
 import org.opengis.annotation.XmlElement;
+import org.opengis.filter.expression.Expression;
 
 
 /**
@@ -51,7 +52,7 @@ public interface ShadedRelief {
      * @return an expression which evaluates to a double.
      */
     @XmlElement("ReliefFactor")
-    public double getReliefFactor();
+    public Expression getReliefFactor();
 
     /**
      * calls the visit method of a StyleVisitor

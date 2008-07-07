@@ -25,21 +25,6 @@ import org.opengis.annotation.XmlElement;
  * @since GeoAPI 2.2
  */
 @XmlElement("GraphicFill")
-public interface GraphicFill {
-
-    /**
-     * Returns the graphic fill used.
-     *
-     * @return Graphic
-     */
-    @XmlElement("Graphic")
-    Graphic getGraphic();
-
-    /**
-     * calls the visit method of a StyleVisitor
-     *
-     * @param visitor the style visitor
-     */
-    void accept(StyleVisitor visitor);
+public interface GraphicFill extends Graphic{
     
 }

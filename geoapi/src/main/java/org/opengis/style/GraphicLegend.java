@@ -23,20 +23,6 @@ import org.opengis.annotation.XmlElement;
  * @since GeoAPI 2.2
  */
 @XmlElement("LegendGraphic")
-public interface LegendGraphic {
-
-    /**
-     * Returns a graphic object to display in the legend of the map
-     * @return Graphic object
-     */
-    @XmlElement("Graphic")
-    Graphic getGraphic();
-
-    /**
-     * calls the visit method of a StyleVisitor
-     *
-     * @param visitor the style visitor
-     */
-    void accept(StyleVisitor visitor);
+public interface GraphicLegend extends Graphic{
     
 }

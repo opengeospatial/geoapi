@@ -23,16 +23,7 @@ import org.opengis.filter.expression.Expression;
  * @since GeoAPI 2.2
  */
 @XmlElement("GraphicStroke")
-public interface GraphicStroke {
-
-    /**
-     * The Graphic sub-element specifies the linear graphic
-     * Returns the graphic fill used.
-     *
-     * @return Graphic
-     */
-    @XmlElement("Graphic")
-    Graphic getGraphic();
+public interface GraphicStroke extends Graphic{
 
     /**
      * InitialGap specifies how far away the first graphic will be drawn relative to the start of
@@ -50,12 +41,5 @@ public interface GraphicStroke {
      */
     @XmlElement("Gap")
     Expression getGap();
-
-    /**
-     * calls the visit method of a StyleVisitor
-     *
-     * @param visitor the style visitor
-     */
-    void accept(StyleVisitor visitor);
     
 }

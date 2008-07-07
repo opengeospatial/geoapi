@@ -24,7 +24,7 @@ import org.opengis.annotation.XmlElement;
  * @since GeoAPI 2.2
  */
 @XmlElement("Mark")
-public interface Mark extends GraphicSymbol {
+public interface Mark extends GraphicalSymbol {
 
     /**
      * Returns the expression whose value will indicate the symbol to draw.
