@@ -26,7 +26,7 @@ import org.opengis.metadata.citation.OnLineResource;
  * @since GeoAPI 2.2
  */
 @XmlElement("ExternalGraphic")
-public interface ExternalGraphic extends GraphicSymbol {
+public interface ExternalGraphic extends GraphicalSymbol {
 
     /**
      * Returns a OnlineResource to a file (perhaps a local file) that contains an image.

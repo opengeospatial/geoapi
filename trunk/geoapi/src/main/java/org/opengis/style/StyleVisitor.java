@@ -156,7 +156,7 @@ public interface StyleVisitor {
      *
      * @param gr the graphic symbol to visit
      */
-    void visit(GraphicSymbol gr);
+    void visit(GraphicalSymbol gr);
 
     /**
      * Called when accept is called on a mark
@@ -212,7 +212,7 @@ public interface StyleVisitor {
      *
      * @param lp the legend graphic to visit
      */
-    void visit(LegendGraphic lp);
+    void visit(GraphicLegend lp);
     
     /**
      * Called when accept is called on an online resource

@@ -35,7 +35,7 @@ import org.opengis.annotation.XmlElement;
  * @since GeoAPI 2.2
  */
 @XmlElement("ContrastEnchancement:type")
-public final class ContrastType extends CodeList<ContrastType> {
+public final class ContrastMethod extends CodeList<ContrastMethod> {
     /**
      * Serial number for compatibility with different versions.
      */
@@ -45,7 +45,7 @@ public final class ContrastType extends CodeList<ContrastType> {
      * List of all enumerations of this type.
      * Must be declared before any enum declaration.
      */
-    private static final List<ContrastType> VALUES = new ArrayList<ContrastType>(3);
+    private static final List<ContrastMethod> VALUES = new ArrayList<ContrastMethod>(3);
 
     /**
      * Normalize enchancement.
@@ -54,7 +54,7 @@ public final class ContrastType extends CodeList<ContrastType> {
      * linearly.
      */
     @XmlElement("Normalize")
-    public static final ContrastType NORMALIZE = new ContrastType("NORMALIZE");
+    public static final ContrastMethod NORMALIZE = new ContrastMethod("NORMALIZE");
 
     /**
      * Histogram enchancement.
@@ -63,13 +63,13 @@ public final class ContrastType extends CodeList<ContrastType> {
      * pixels in the image at each brightness level on output.
      */
     @XmlElement("Histogram")
-    public static final ContrastType HISTOGRAM = new ContrastType("HISTOGRAM");
+    public static final ContrastMethod HISTOGRAM = new ContrastMethod("HISTOGRAM");
 
     /**
      * No enchancement.
      * this is the default value.
      */
-    public static final ContrastType NONE = new ContrastType("NONE");
+    public static final ContrastMethod NONE = new ContrastMethod("NONE");
 
     /**
      * Constructs an enum with the given name. The new enum is
@@ -77,7 +77,7 @@ public final class ContrastType extends CodeList<ContrastType> {
      *
      * @param name The enum name. This name must not be in use by an other enum of this type.
      */
-    private ContrastType(final String name) {
+    private ContrastMethod(final String name) {
         super(name, VALUES);
     }
 
@@ -86,16 +86,16 @@ public final class ContrastType extends CodeList<ContrastType> {
      *
      * @return The list of codes declared in the current JVM.
      */
-    public static ContrastType[] values() {
+    public static ContrastMethod[] values() {
         synchronized (VALUES) {
-            return VALUES.toArray(new ContrastType[VALUES.size()]);
+            return VALUES.toArray(new ContrastMethod[VALUES.size()]);
         }
     }
 
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
-    public ContrastType[] family() {
+    public ContrastMethod[] family() {
         return values();
     }
 
@@ -106,7 +106,7 @@ public final class ContrastType extends CodeList<ContrastType> {
      * @param code The name of the code to fetch or to create.
      * @return A code matching the given name.
      */
-    public static ContrastType valueOf(String code) {
-        return valueOf(ContrastType.class, code);
+    public static ContrastMethod valueOf(String code) {
+        return valueOf(ContrastMethod.class, code);
     }
 }

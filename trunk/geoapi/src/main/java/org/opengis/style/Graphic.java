@@ -10,7 +10,7 @@
  *************************************************************************************************/
 package org.opengis.style;
 
-import java.util.List;
+import java.util.Set;
 import org.opengis.filter.expression.Expression;
 import org.opengis.annotation.XmlElement;
 import org.opengis.annotation.XmlParameter;
@@ -39,7 +39,7 @@ public interface Graphic {
      * @return
      */
     @XmlElement("ExternalGraphic,Mark")
-    List<GraphicSymbol> graphicSymbols();
+    Set<GraphicalSymbol> graphicalSymbols();
 
     //*************************************************************
     // SVG PARAMETERS

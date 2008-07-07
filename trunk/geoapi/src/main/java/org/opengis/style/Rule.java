@@ -67,7 +67,7 @@ public interface Rule {
      * @return
      */
     @XmlElement("LegendGraphic")
-    LegendGraphic getLegendGraphic();
+    GraphicLegend getLegend();
 
     /**
      * Returns the filter that will limit the features for which this {@code Rule} will
