@@ -21,8 +21,8 @@ import static org.opengis.annotation.Specification.*;
  * Identifier used for reference systems.
  *
  * @version <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
- * @author Ely Conn (Leica Geosystems Geospatial Imaging, LLC)
- * @since GeoAPI 2.1
+ * @author  Ely Conn (Leica Geosystems Geospatial Imaging, LLC)
+ * @since   GeoAPI 2.1
  */
 @UML(identifier="RS_Identifier", specification=ISO_19115)
 public interface ReferenceIdentifier extends Identifier {

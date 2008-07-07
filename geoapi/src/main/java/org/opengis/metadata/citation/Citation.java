@@ -28,7 +28,7 @@ import static org.opengis.annotation.ComplianceLevel.*;
  * @author <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
  * @author Martin Desruisseaux (IRD)
  * @author Cory Horner (Refractions Research)
- * @since GeoAPI 1.0
+ * @since  GeoAPI 1.0
  */
 @Profile (level=CORE)
 @UML(identifier="CI_Citation", specification=ISO_19115)
@@ -46,7 +46,7 @@ public interface Citation {
      * Short name or other language name by which the cited information is known.
      * Example: "DCW" as an alternative title for "Digital Chart of the World".
      *
-     * @return Other names for the resource, or an empty set if none.
+     * @return Other names for the resource, or an empty collection if none.
      */
     @UML(identifier="alternateTitle", obligation=OPTIONAL, specification=ISO_19115)
     Collection<? extends InternationalString> getAlternateTitles();
@@ -80,26 +80,16 @@ public interface Citation {
      * Unique identifier for the resource. Example: Universal Product Code (UPC),
      * National Stock Number (NSN).
      *
-     * @return The identifiers, or an empty set if none.
+     * @return The identifiers, or an empty collection if none.
      */
     @UML(identifier="identifier", obligation=OPTIONAL, specification=ISO_19115)
     Collection<? extends Identifier> getIdentifiers();
 
     /**
-     * Reference form of the unique identifier (ID). Example: Universal Product Code (UPC),
-     * National Stock Number (NSN).
-     *
-     * @deprecated removed from ISO_19115
-     */
-    @Deprecated
-    @UML(identifier="identifierType", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<String> getIdentifierTypes();
-
-    /**
      * Name and position information for an individual or organization that is responsible
      * for the resource. Returns an empty string if there is none.
      *
-     * @return The individual or organization that is responsible, or an empty set if none.
+     * @return The individual or organization that is responsible, or an empty collection if none.
      */
     @UML(identifier="citedResponsibleParty", obligation=OPTIONAL, specification=ISO_19115)
     Collection<? extends ResponsibleParty> getCitedResponsibleParties();
@@ -107,7 +97,7 @@ public interface Citation {
     /**
      * Mode in which the resource is represented, or an empty string if none.
      *
-     * @return The presentation mode, or an empty set if none.
+     * @return The presentation mode, or an empty collection if none.
      */
     @UML(identifier="presentationForm", obligation=OPTIONAL, specification=ISO_19115)
     Collection<PresentationForm> getPresentationForm();

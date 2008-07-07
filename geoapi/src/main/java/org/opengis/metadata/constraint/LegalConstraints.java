@@ -24,13 +24,15 @@ import static org.opengis.annotation.Specification.*;
  * @author <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
  * @author Martin Desruisseaux (IRD)
  * @author Cory Horner (Refractions Research)
- * @since GeoAPI 2.0
+ * @since  GeoAPI 2.0
  */
 @UML(identifier="MD_LegalConstraints", specification=ISO_19115)
 public interface LegalConstraints extends Constraints {
     /**
      * Access constraints applied to assure the protection of privacy or intellectual property,
      * and any special restrictions or limitations on obtaining the resource.
+     *
+     * @return Access constraints applied to assure the protection of privacy or intellectual property.
      */
     @UML(identifier="accessConstraints", obligation=OPTIONAL, specification=ISO_19115)
     Collection<Restriction> getAccessConstraints();
@@ -38,6 +40,8 @@ public interface LegalConstraints extends Constraints {
     /**
      * Constraints applied to assure the protection of privacy or intellectual property, and any
      * special restrictions or limitations or warnings on using the resource.
+     *
+     * @return Constraints applied to assure the protection of privacy or intellectual property.
      */
     @UML(identifier="useConstraints", obligation=OPTIONAL, specification=ISO_19115)
     Collection<Restriction> getUseConstraints();
@@ -47,6 +51,8 @@ public interface LegalConstraints extends Constraints {
      * This method should returns a non-empty value only if {@linkplain #getAccessConstraints
      * access constraints} or {@linkplain #getUseConstraints use constraints} declares
      * {@linkplain Restriction#OTHER_RESTRICTIONS other restrictions}.
+     *
+     * @return Other restrictions and legal prerequisites for accessing and using the resource.
      */
     @UML(identifier="otherConstraints", obligation=CONDITIONAL, specification=ISO_19115)
     Collection<? extends InternationalString> getOtherConstraints();

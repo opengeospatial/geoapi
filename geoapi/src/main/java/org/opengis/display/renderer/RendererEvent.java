@@ -17,13 +17,13 @@ import org.opengis.display.primitive.Graphic;
 
 /**
  * Event sent to {@linkplain RendererListener renderer listeners} when
- * {@linkplain Graphic graphics} changed.
+ * a {@linkplain Graphic graphics} changed.
  *
  * @author Open Geospatial Consortium
  * @author Johann Sorel (Geomatys)
- * @since GeoAPI 2.2
+ * @since  GeoAPI 2.2
  */
-public abstract class RendererEvent extends EventObject{
+public abstract class RendererEvent extends EventObject {
     /**
      * Creates an event emitted by the given source.
      *

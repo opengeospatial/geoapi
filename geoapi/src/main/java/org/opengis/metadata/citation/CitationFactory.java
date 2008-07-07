@@ -23,7 +23,7 @@ import org.opengis.annotation.Obligation;
  *
  * @author <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
  * @author Jesse Crossley (SYS Technologies)
- * @since GeoAPI 2.0
+ * @since  GeoAPI 2.0
  */
 public interface CitationFactory {
     /**
@@ -35,6 +35,7 @@ public interface CitationFactory {
      * @param postalCode              ZIP or other postal code.
      * @param country                 Country of the physical address.
      * @param electronicMailAddresses Address of the electronic mailbox of the responsible organization or individual.
+     * @return The address.
      */
     Address createAddress(
             Collection<String>  deliveryPoints,
@@ -52,6 +53,7 @@ public interface CitationFactory {
      * @param onLineResource      On-line information that can be used to contact the individual or organization.
      * @param hoursOfService      Time period (including time zone) when individuals can contact the organization or individual.
      * @param contactInstructions Supplemental instructions on how or when to contact the individual or organization.
+     * @return The contact.
      */
     Contact createContact(
             Telephone           phone,
@@ -69,6 +71,7 @@ public interface CitationFactory {
      * @param applicationProfile Name of an application profile that can be used with the online resource.
      * @param description        Detailed text description of what the online resource is/does.
      * @param function           Code for function performed by the online resource.
+     * @return The online resource.
      */
     OnLineResource createOnLineResource(
             URI                 linkage,
@@ -86,6 +89,7 @@ public interface CitationFactory {
      * @param positionName     Role or position of the responsible person.
      * @param contactInfo      Address of the responsible party.
      * @param role             Function performed by the responsible party.
+     * @return The responsible party.
      */
     ResponsibleParty createResponsibleParty(
             String              individualName,
@@ -99,6 +103,7 @@ public interface CitationFactory {
      *
      * @param voice     Telephone number by which individuals can speak to the responsible organization or individual.
      * @param facsimile Telephone number of a facsimile machine for the responsible organization or individual.
+     * @return The telephone.
      */
     Telephone createTelephone(
             String voice,

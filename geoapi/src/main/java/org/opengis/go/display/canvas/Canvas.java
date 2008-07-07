@@ -48,7 +48,10 @@ public interface Canvas {
      * needed.  Implementations may use this method to release resources or to
      * return the object to an object pool.  It is an error to reference a
      * <code>Canvas</code> after its dispose method has been called.
+     *
+     * @deprecated Replaced by {@link org.opengis.display.renderer.Renderer#dispose}.
      */
+    @Deprecated
     void dispose();
 
     /**

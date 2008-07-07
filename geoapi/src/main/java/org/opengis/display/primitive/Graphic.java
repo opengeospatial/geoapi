@@ -10,38 +10,37 @@
  *************************************************************************************************/
 package org.opengis.display.primitive;
 
+import org.opengis.display.renderer.Renderer;
 
 
 /**
- * <code>Graphic</code> defines the root abstraction of a graphic object
- * taxonomy, specifying the methods common to a lightweight set of graphic objects.
- * 
+ * Defines the root abstraction of a graphic object taxonomy. This base interface
+ * specifies the methods common to a lightweight set of graphic objects.
+ *
  * @author Open Geospatial Consortium
  * @author Johann Sorel (Geomatys)
- * @since GeoAPI 2.2
+ * @since  GeoAPI 2.2
  */
 public interface Graphic {
-
     /**
-     * Returns the visible value.
-     * @return the visible value.
+     * Returns {@code true} if this graphic is visible.
+     *
+     * @return {@code true} if this graphic is visible.
      */
     boolean isVisible();
 
     /**
-     * Sets the visible value.
-     * @param visible the visible value.
+     * Sets whatever this graphic should be visible.
+     *
+     * @param visible {@code true} if this graphic should be visible.
      */
     void setVisible(boolean visible);
 
     /**
-     * Method that can be called when an object is no longer needed.
-     * Implementations may use this method to release resources, if needed.
-     * Implementations may also implement this method to return an object
-     * to an object pool.  It is an error to reference a <code>Graphic</code> in any
-     * way after its dispose method has been called.
+     * Invoked by the {@linkplain Renderer renderer} when this graphic is no longer needed.
+     * Implementations may use this method to release resources, if needed. Implementations
+     * may also implement this method to return an object to an object pool. It is an error
+     * to reference a {@code Graphic} in any way after its dispose method has been called.
      */
     void dispose();
-        
 }
-

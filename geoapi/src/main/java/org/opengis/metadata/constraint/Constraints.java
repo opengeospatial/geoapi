@@ -23,13 +23,15 @@ import static org.opengis.annotation.Specification.*;
  *
  * @author <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
  * @author Martin Desruisseaux (IRD)
- * @since GeoAPI 2.0
+ * @since  GeoAPI 2.0
  */
 @UML(identifier="MD_Constraints", specification=ISO_19115)
 public interface Constraints {
     /**
      * Limitation affecting the fitness for use of the resource.
      * Example, "not to be used for navigation".
+     *
+     * @return Limitation affecting the fitness for use of the resource.
      */
     @UML(identifier="useLimitation", obligation=OPTIONAL, specification=ISO_19115)
     Collection<? extends InternationalString> getUseLimitation();

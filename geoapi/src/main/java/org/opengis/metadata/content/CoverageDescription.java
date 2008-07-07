@@ -24,18 +24,22 @@ import static org.opengis.annotation.Specification.*;
  * @author <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
  * @author Martin Desruisseaux (IRD)
  * @author Cory Horner (Refractions Research)
- * @since GeoAPI 2.0
+ * @since  GeoAPI 2.0
  */
 @UML(identifier="MD_CoverageDescription", specification=ISO_19115)
 public interface CoverageDescription extends ContentInformation {
     /**
      * Description of the attribute described by the measurement value.
+     *
+     * @return Description of the attribute.
      */
     @UML(identifier="attributeDescription", obligation=MANDATORY, specification=ISO_19115)
     RecordType getAttributeDescription();
 
     /**
      * Type of information represented by the cell value.
+     *
+     * @return Type of information represented by the cell value.
      */
     @UML(identifier="contentType", obligation=MANDATORY, specification=ISO_19115)
     CoverageContentType getContentType();
@@ -43,17 +47,10 @@ public interface CoverageDescription extends ContentInformation {
     /**
      * Information on the dimensions of the cell measurement value.
      *
+     * @return Dimensions of the cell measurement value.
+     *
      * @since GeoAPI 2.1
      */
     @UML(identifier="dimension", obligation=OPTIONAL, specification=ISO_19115)
     Collection<? extends RangeDimension> getDimensions();
-
-    /**
-     * Information on the dimensions of the cell measurement value.
-     *
-     * @deprecated Use {@link #getDimensions} instead.
-     */
-    @Deprecated
-    @UML(identifier="dimension", obligation=OPTIONAL, specification=ISO_19115)
-    RangeDimension getDimension();
 }

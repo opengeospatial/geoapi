@@ -23,13 +23,16 @@ import static org.opengis.annotation.Specification.*;
  * @author <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
  * @author Martin Desruisseaux (IRD)
  * @author Cory Horner (Refractions Research)
- * @since GeoAPI 2.0
+ * @since  GeoAPI 2.0
  */
 @UML(identifier="MD_Band", specification=ISO_19115)
 public interface Band extends RangeDimension {
     /**
      * Longest wavelength that the sensor is capable of collecting within a designated band.
      * Returns {@code null} if unspecified.
+     *
+     * @return Longest wavelength that the sensor is capable of collecting within a designated band,
+     *         or {@code null}.
      */
     @UML(identifier="maxValue", obligation=OPTIONAL, specification=ISO_19115)
     Double getMaxValue();
@@ -37,6 +40,9 @@ public interface Band extends RangeDimension {
     /**
      * Shortest wavelength that the sensor is capable of collecting within a designated band.
      * Returns {@code null} if unspecified.
+     *
+     * @return Shortest wavelength that the sensor is capable of collecting within a designated band,
+     *         or {@code null}.
      */
     @UML(identifier="minValue", obligation=OPTIONAL, specification=ISO_19115)
     Double getMinValue();
@@ -45,6 +51,8 @@ public interface Band extends RangeDimension {
      * Units in which sensor wavelengths are expressed. Should be non-null if
      * {@linkplain #getMinValue min value} or {@linkplain #getMaxValue max value}
      * are provided.
+     *
+     * @return Units in which sensor wavelengths are expressed, or {@code null}.
      */
     @UML(identifier="units", obligation=CONDITIONAL, specification=ISO_19115)
     Unit getUnits();
@@ -52,6 +60,8 @@ public interface Band extends RangeDimension {
     /**
      * Wavelength at which the response is the highest.
      * Returns {@code null} if unspecified.
+     *
+     * @return Wavelength at which the response is the highest, or {@code null}.
      */
     @UML(identifier="peakResponse", obligation=OPTIONAL, specification=ISO_19115)
     Double getPeakResponse();
@@ -60,6 +70,8 @@ public interface Band extends RangeDimension {
      * Maximum number of significant bits in the uncompressed representation for the value
      * in each band of each pixel.
      * Returns {@code null} if unspecified.
+     *
+     * @return Maximum number of significant bits in the uncompressed representation, or {@code null}.
      */
     @UML(identifier="bitsPerValue", obligation=OPTIONAL, specification=ISO_19115)
     Integer getBitsPerValue();
@@ -67,6 +79,8 @@ public interface Band extends RangeDimension {
     /**
      * Number of discrete numerical values in the grid data.
      * Returns {@code null} if unspecified.
+     *
+     * @return Number of discrete numerical values in the grid data, or {@code null}.
      */
     @UML(identifier="toneGradation", obligation=OPTIONAL, specification=ISO_19115)
     Integer getToneGradation();
@@ -74,6 +88,8 @@ public interface Band extends RangeDimension {
     /**
      * Scale factor which has been applied to the cell value.
      * Returns {@code null} if unspecified.
+     *
+     * @return Scale factor which has been applied to the cell value, or {@code null}.
      */
     @UML(identifier="scaleFactor", obligation=OPTIONAL, specification=ISO_19115)
     Double getScaleFactor();
@@ -81,6 +97,8 @@ public interface Band extends RangeDimension {
     /**
      * The physical value corresponding to a cell value of zero.
      * Returns {@code null} if unspecified.
+     *
+     * @return The physical value corresponding to a cell value of zero, or {@code null}.
      */
     @UML(identifier="offset", obligation=OPTIONAL, specification=ISO_19115)
     Double getOffset();
