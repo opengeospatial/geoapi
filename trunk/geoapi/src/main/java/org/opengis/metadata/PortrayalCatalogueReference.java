@@ -23,12 +23,14 @@ import static org.opengis.annotation.Specification.*;
  *
  * @author <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
  * @author Martin Desruisseaux (IRD)
- * @since GeoAPI 2.0
+ * @since  GeoAPI 2.0
  */
 @UML(identifier="MD_PortrayalCatalogueReference", specification=ISO_19115)
 public interface PortrayalCatalogueReference {
     /**
      * Bibliographic reference to the portrayal catalogue cited.
+     *
+     * @return References to the portrayal catalogue cited.
      */
     @UML(identifier="portrayalCatalogueCitation", obligation=MANDATORY, specification=ISO_19115)
     Collection<? extends Citation> getPortrayalCatalogueCitations();

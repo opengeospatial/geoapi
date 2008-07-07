@@ -17,7 +17,6 @@ import org.opengis.annotation.Profile;
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
 import static org.opengis.annotation.ComplianceLevel.*;
-import static org.opengis.annotation.Specification.*;
 
 
 /**
@@ -25,13 +24,15 @@ import static org.opengis.annotation.Specification.*;
  *
  * @author <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
  * @author Martin Desruisseaux (IRD)
- * @since GeoAPI 2.0
+ * @since  GeoAPI 2.0
  */
 @Profile (level=CORE)
 @UML(identifier="MD_Distribution", specification=ISO_19115)
 public interface Distribution {
     /**
      * Provides a description of the format of the data to be distributed.
+     *
+     * @return Description of the format of the data to be distributed.
      */
     @Profile (level=CORE)
     @UML(identifier="distributionFormat", obligation=CONDITIONAL, specification=ISO_19115)
@@ -39,6 +40,8 @@ public interface Distribution {
 
     /**
      * Provides information about the distributor.
+     *
+     * @return Information about the distributor.
      */
     @UML(identifier="distributor", obligation=OPTIONAL, specification=ISO_19115)
     Collection<? extends Distributor> getDistributors();
@@ -46,6 +49,8 @@ public interface Distribution {
     /**
      * Provides information about technical means and media by which a resource is obtained
      * from the distributor.
+     *
+     * @return Technical means and media by which a resource is obtained from the distributor.
      */
     @Profile (level=CORE)
     @UML(identifier="transferOptions", obligation=OPTIONAL, specification=ISO_19115)

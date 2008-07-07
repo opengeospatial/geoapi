@@ -23,12 +23,14 @@ import static org.opengis.annotation.Specification.*;
  *
  * @author <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
  * @author Martin Desruisseaux (IRD)
- * @since GeoAPI 2.0
+ * @since  GeoAPI 2.0
  */
 @UML(identifier="MD_Distributor", specification=ISO_19115)
 public interface Distributor {
     /**
      * Party from whom the resource may be obtained. This list need not be exhaustive.
+     *
+     * @return Party from whom the resource may be obtained.
      */
     @UML(identifier="distributorContact", obligation=MANDATORY, specification=ISO_19115)
     ResponsibleParty getDistributorContact();
@@ -36,18 +38,24 @@ public interface Distributor {
     /**
      * Provides information about how the resource may be obtained, and related
      * instructions and fee information.
+     *
+     * @return Information about how the resource may be obtained.
      */
     @UML(identifier="distributionOrderProcess", obligation=OPTIONAL, specification=ISO_19115)
     Collection<? extends StandardOrderProcess> getDistributionOrderProcesses();
 
     /**
      * Provides information about the format used by the distributor.
+     *
+     * @return Information about the format used by the distributor.
      */
     @UML(identifier="distributorFormat", obligation=CONDITIONAL, specification=ISO_19115)
     Collection<? extends Format> getDistributorFormats();
 
     /**
      * Provides information about the technical means and media used by the distributor.
+     *
+     * @return Information about the technical means and media used by the distributor.
      */
     @UML(identifier="distributorTransferOptions", obligation=OPTIONAL, specification=ISO_19115)
     Collection<? extends DigitalTransferOptions> getDistributorTransferOptions();

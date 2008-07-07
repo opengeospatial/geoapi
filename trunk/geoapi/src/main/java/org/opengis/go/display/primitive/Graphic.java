@@ -80,7 +80,10 @@ public interface Graphic {
      * Implementations may also implement this method to return an object
      * to an object pool.  It is an error to reference a <code>Graphic</code> in any
      * way after its dispose method has been called.
+     *
+     * @deprecated Moved to {@link org.opengis.display.primitive.Graphic#dispose}.
      */
+    @Deprecated
     void dispose();
 
     /**
@@ -402,14 +405,18 @@ public interface Graphic {
     /**
      * Returns the visible value.
      * @return the visible value.
+     *
+     * @deprecated Moved to {@link org.opengis.display.primitive.Graphic#isVisible}.
      */
+    @Deprecated
     boolean getVisible();
 
     /**
      * Sets the visible value.
      * @param visible the visible value.
+     *
+     * @deprecated Moved to {@link org.opengis.display.primitive.Graphic#getVisible}.
      */
+    @Deprecated
     void setVisible(boolean visible);
-
 }
-

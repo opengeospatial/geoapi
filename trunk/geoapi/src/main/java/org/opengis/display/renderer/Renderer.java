@@ -10,32 +10,42 @@
  *************************************************************************************************/
 package org.opengis.display.renderer;
 
-import java.awt.RenderingHints;
-import java.awt.image.RenderedImage;
 import java.util.Collection;
+import java.awt.RenderingHints;
 import org.opengis.display.canvas.Canvas;
 import org.opengis.display.primitive.Graphic;
 
 
 /**
- * A renderer can generate images from graphics and a define canvas.
+ * Holds a collection of {@linkplain Graphic graphics} to be drawn in a {@linkplain Canvas canvas}.
+ * The renderer implementation typically depends on the canvas implementation. For example an AWT
+ * canvas may be associated to a renderer using a {@link java.awt.Graphics2D} handler for drawing,
+ * while a SWT canvas may be associated to an other renderer implementation using a different
+ * drawing toolkit.
+ * <p>
+ * Graphics can be {@linkplain Collection#add added} or {@linkplain Collection#remove removed} with
+ * method invocations on the collection returned by {@link #graphics}, which is a "live" collection.
+ * Note that a renderer instance may restrict the acceptable graphic implementations.
  *
  * @author Open Geospatial Consortium
  * @author Johann Sorel (Geomatys)
- * @since GeoAPI 2.2
+ * @since  GeoAPI 2.2
  */
 public interface Renderer {
     /**
      * Sets the canvas to use, which defines the rendered area.
      *
      * @param canvas The canvas.
+     *
+     * @deprecated To be given at Renderer construction time.
      */
+    @Deprecated
     void setCanvas(Canvas canvas);
 
     /**
-     * Returns the canvas used by this renderer.
+     * Returns the canvas where this renderer will drawn the {@linkplain Graphic graphics}.
      *
-     * @return The canvas or {@code null} if undefined.
+     * @return The canvas where to drawn.
      */
     Canvas getCanvas();
 
@@ -44,8 +54,15 @@ public interface Renderer {
      * removal) are reflected into the set of graphics to be rendered. Note that the returned
      * collection must notifies the {@linkplain RendererListener renderer listener} about any
      * addition or removal.
+     * <p>
+     * When new graphics are {@linkplain Collection#add added}, implementations shall respect
+     * the <var>z</var>-order retrieved by calling {@link Graphic#getZOrderHint()}. When two
+     * added graphics have the same <var>z</var>-order, the most recently added one should be
+     * on top.
      *
      * @return Collection of all graphics, as a live collection.
+     *
+     * @deprecated Need to be renamed as {@code graphics()}.
      */
     Collection<Graphic> getGraphics();
 

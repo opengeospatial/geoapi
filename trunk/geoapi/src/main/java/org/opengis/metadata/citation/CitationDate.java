@@ -17,7 +17,6 @@ import org.opengis.annotation.Profile;
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
 import static org.opengis.annotation.ComplianceLevel.*;
-import static org.opengis.annotation.Specification.*;
 
 
 /**
@@ -25,13 +24,15 @@ import static org.opengis.annotation.Specification.*;
  *
  * @author <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
  * @author Martin Desruisseaux (IRD)
- * @since GeoAPI 2.0
+ * @since  GeoAPI 2.0
  */
 @Profile (level=CORE)
 @UML(identifier="CI_Date", specification=ISO_19115)
 public interface CitationDate {
     /**
      * Reference date for the cited resource.
+     *
+     * @return Reference date for the cited resource.
      */
     @Profile (level=CORE)
     @UML(identifier="date", obligation=MANDATORY, specification=ISO_19115)
@@ -39,6 +40,8 @@ public interface CitationDate {
 
     /**
      * Event used for reference date.
+     *
+     * @return Event used for reference date.
      */
     @Profile (level=CORE)
     @UML(identifier="dateType", obligation=MANDATORY, specification=ISO_19115)
