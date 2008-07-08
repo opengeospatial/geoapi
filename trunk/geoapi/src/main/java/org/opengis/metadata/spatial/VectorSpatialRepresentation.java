@@ -22,18 +22,22 @@ import static org.opengis.annotation.Specification.*;
  *
  * @author <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
  * @author Martin Desruisseaux (IRD)
- * @since GeoAPI 2.0
+ * @since  GeoAPI 2.0
  */
 @UML(identifier="MD_VectorSpatialRepresentation", specification=ISO_19115)
 public interface VectorSpatialRepresentation extends SpatialRepresentation {
     /**
      * Code which identifies the degree of complexity of the spatial relationships.
+     *
+     * @return The degree of complexity of the spatial relationships, or {@code null}.
      */
     @UML(identifier="topologyLevel", obligation=OPTIONAL, specification=ISO_19115)
     TopologyLevel getTopologyLevel();
 
     /**
      * Information about the geometric objects used in the dataset.
+     *
+     * @return Information about the geometric objects used in the dataset, or {@code null}.
      */
     @UML(identifier="geometricObjects", obligation=OPTIONAL, specification=ISO_19115)
     Collection<? extends GeometricObjects> getGeometricObjects();

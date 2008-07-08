@@ -20,19 +20,23 @@ import static org.opengis.annotation.Specification.*;
  *
  * @author <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
  * @author Martin Desruisseaux (IRD)
- * @since GeoAPI 2.0
+ * @since  GeoAPI 2.0
  */
 @UML(identifier="MD_GeometricObjects", specification=ISO_19115)
 public interface GeometricObjects {
     /**
      * Name of point and vector spatial objects used to locate zero-, one-, and twodimensional
      * spatial locations in the dataset.
+     *
+     * @return Name of spatial objects used to locate spatial locations in the dataset.
      */
     @UML(identifier="geometricObjectType", obligation=MANDATORY, specification=ISO_19115)
     GeometricObjectType getGeometricObjectType();
 
     /**
      * Total number of the point or vector object type occurring in the dataset.
+     *
+     * @return Total number of the point or vector object type, or {@code null}.
      */
     @UML(identifier="geometricObjectCount", obligation=OPTIONAL, specification=ISO_19115)
     Integer getGeometricObjectCount();

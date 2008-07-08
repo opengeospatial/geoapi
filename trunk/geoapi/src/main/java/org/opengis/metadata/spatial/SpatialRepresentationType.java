@@ -26,7 +26,7 @@ import static org.opengis.annotation.ComplianceLevel.*;
  *
  * @author <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
  * @author Martin Desruisseaux (IRD)
- * @since GeoAPI 2.0
+ * @since  GeoAPI 2.0
  */
 @Profile (level=CORE)
 @UML(identifier="MD_SpatialRepresentationTypeCode", specification=ISO_19115)

@@ -31,6 +31,8 @@ import static org.opengis.annotation.Specification.*;
 public interface BoundingPolygon extends GeographicExtent {
     /**
      * Returns the sets of points defining the bounding polygon.
+     *
+     * @return The sets of points defining the bounding polygon.
      */
     @UML(identifier="polygon", obligation=MANDATORY, specification=ISO_19115)
     Collection<? extends Geometry> getPolygons();

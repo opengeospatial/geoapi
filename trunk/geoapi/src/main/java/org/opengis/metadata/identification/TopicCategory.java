@@ -23,13 +23,13 @@ import static org.opengis.annotation.Specification.*;
  * High-level geographic data thematic classification to assist in the grouping and
  * search of available geographic data sets. Can be used to group keywords as well.
  * Listed examples are not exhaustive.
- *
+ * <p>
  * NOTE: It is understood there are overlaps between general categories and the user
  *       is encouraged to select the one most appropriate.
  *
  * @author <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
  * @author Martin Desruisseaux (IRD)
- * @since GeoAPI 2.0
+ * @since  GeoAPI 2.0
  */
 @UML(identifier="MD_TopicCategoryCode", specification=ISO_19115)
 public final class TopicCategory extends CodeList<TopicCategory> {

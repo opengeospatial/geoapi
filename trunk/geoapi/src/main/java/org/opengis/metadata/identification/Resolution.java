@@ -24,7 +24,7 @@ import static org.opengis.annotation.ComplianceLevel.*;
  * @author <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
  * @author Martin Desruisseaux (IRD)
  * @author Cory Horner (Refractions Research)
- * @since GeoAPI 2.0
+ * @since  GeoAPI 2.0
  */
 @Profile (level=CORE)
 @UML(identifier="MD_Resolution", specification=ISO_19115)
@@ -33,6 +33,8 @@ public interface Resolution {
      * Level of detail expressed as the scale of a comparable hardcopy map or chart.
      * Only one of {@linkplain #getEquivalentScale equivalent scale} and
      * {@linkplain #getDistance ground sample distance} may be provided.
+     *
+     * @return Level of detail expressed as the scale of a comparable hardcopy, or {@code null}.
      */
     @Profile (level=CORE)
     @UML(identifier="equivalentScale", obligation=CONDITIONAL, specification=ISO_19115)
@@ -43,7 +45,9 @@ public interface Resolution {
      * Only one of {@linkplain #getEquivalentScale equivalent scale} and
      * {@linkplain #getDistance ground sample distance} may be provided.
      *
-     * @todo change return type to ISO 19103 Distance
+     * @return The ground sample distance, or {@code null}.
+     *
+     * @todo change return type to ISO 19103 {@code Distance} or to JScience {@code Measure}.
      * @unitof Distance
      */
     @Profile (level=CORE)

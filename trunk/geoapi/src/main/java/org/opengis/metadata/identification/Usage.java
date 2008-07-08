@@ -25,18 +25,22 @@ import static org.opengis.annotation.Specification.*;
  *
  * @author <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
  * @author Martin Desruisseaux (IRD)
- * @since GeoAPI 2.0
+ * @since  GeoAPI 2.0
  */
 @UML(identifier="MD_Usage", specification=ISO_19115)
 public interface Usage {
     /**
      * Brief description of the resource and/or resource series usage.
+     *
+     * @return Description of the resource usage.
      */
     @UML(identifier="specificUsage", obligation=MANDATORY, specification=ISO_19115)
     InternationalString getSpecificUsage();
 
     /**
      * Date and time of the first use or range of uses of the resource and/or resource series.
+     *
+     * @return Date of the first use of the resource, or {@code null}.
      */
     @UML(identifier="usageDateTime", obligation=OPTIONAL, specification=ISO_19115)
     Date getUsageDate();
@@ -44,6 +48,8 @@ public interface Usage {
     /**
      * Applications, determined by the user for which the resource and/or resource series
      * is not suitable.
+     *
+     * @return Applications for which the resource and/or resource series is not suitable, or {@code null}.
      */
     @UML(identifier="userDeterminedLimitations", obligation=OPTIONAL, specification=ISO_19115)
     InternationalString getUserDeterminedLimitations();
@@ -51,6 +57,8 @@ public interface Usage {
     /**
      * Identification of and means of communicating with person(s) and organization(s)
      * using the resource(s).
+     *
+     * @return Means of communicating with person(s) and organization(s) using the resource(s).
      */
     @UML(identifier="userContactInfo", obligation=MANDATORY, specification=ISO_19115)
     Collection<? extends ResponsibleParty> getUserContactInfo();

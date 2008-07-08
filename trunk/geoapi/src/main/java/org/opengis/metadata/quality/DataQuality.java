@@ -25,13 +25,15 @@ import static org.opengis.annotation.ComplianceLevel.*;
  *
  * @author <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
  * @author Martin Desruisseaux (IRD)
- * @since GeoAPI 2.0
+ * @since  GeoAPI 2.0
  */
 @Profile (level=CORE)
 @UML(identifier="DQ_DataQuality", specification=ISO_19115)
 public interface DataQuality {
     /**
      * The specific data to which the data quality information applies.
+     *
+     * @return The specific data to which the data quality information applies.
      */
     @UML(identifier="scope", obligation=MANDATORY, specification=ISO_19115)
     Scope getScope();
@@ -40,6 +42,8 @@ public interface DataQuality {
      * Quantitative quality information for the data specified by the scope.
      * Should be provided only if {@linkplain Scope#getLevel scope level} is
      * {@linkplain org.opengis.metadata.maintenance.ScopeCode#DATASET dataset}.
+     *
+     * @return Quantitative quality information for the data.
      */
     @UML(identifier="report", obligation=CONDITIONAL, specification=ISO_19115)
     Collection<? extends Element> getReports();
@@ -48,6 +52,9 @@ public interface DataQuality {
      * Non-quantitative quality information about the lineage of the data specified by the scope.
      * Should be provided only if {@linkplain Scope#getLevel scope level} is
      * {@linkplain org.opengis.metadata.maintenance.ScopeCode#DATASET dataset}.
+     *
+     * @return Non-quantitative quality information about the lineage of the data specified,
+     *         or {@code null}.
      */
     @Profile (level=CORE)
     @UML(identifier="lineage", obligation=CONDITIONAL, specification=ISO_19115)

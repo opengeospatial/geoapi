@@ -27,19 +27,23 @@ import static org.opengis.annotation.Specification.*;
  * @author <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
  * @author Martin Desruisseaux (IRD)
  * @author Cory Horner (Refractions Research)
- * @since GeoAPI 2.0
+ * @since  GeoAPI 2.0
  */
 @UML(identifier="MD_MaintenanceInformation", specification=ISO_19115)
 public interface MaintenanceInformation {
     /**
      * Frequency with which changes and additions are made to the resource after the
      * initial resource is completed.
+     *
+     * @return Frequency with which changes and additions are made to the resource.
      */
     @UML(identifier="maintenanceAndUpdateFrequency", obligation=MANDATORY, specification=ISO_19115)
     MaintenanceFrequency getMaintenanceAndUpdateFrequency();
 
     /**
      * Scheduled revision date for resource.
+     *
+     * @return Scheduled revision date, or {@code null}.
      */
     @UML(identifier="dateOfNextUpdate", obligation=OPTIONAL, specification=ISO_19115)
     Date getDateOfNextUpdate();
@@ -47,8 +51,7 @@ public interface MaintenanceInformation {
     /**
      * Maintenance period other than those defined.
      *
-     * @return The period, in milliseconds.
-     * @unitof PeriodDuration
+     * @return The Maintenance period, or {@code null}.
      */
     @UML(identifier="userDefinedMaintenanceFrequency", obligation=OPTIONAL, specification=ISO_19115)
     PeriodDuration getUserDefinedMaintenanceFrequency();
@@ -56,27 +59,15 @@ public interface MaintenanceInformation {
     /**
      * Scope of data to which maintenance is applied.
      *
-     * @deprecated use getUpdateScopes
-     */
-    @Deprecated
-    ScopeCode getUpdateScope();
-
-    /**
-     * Additional information about the range or extent of the resource.
-     *
-     * @deprecated use getUpdateScopeDescriptions
-     */
-    @Deprecated
-    ScopeDescription getUpdateScopeDescription();
-
-    /**
-     * Scope of data to which maintenance is applied.
+     * @return Scope of data to which maintenance is applied.
      */
     @UML(identifier="updateScope", obligation=OPTIONAL, specification=ISO_19115)
     Collection<ScopeCode> getUpdateScopes();
 
     /**
      * Additional information about the range or extent of the resource.
+     *
+     * @return Additional information about the range or extent of the resource.
      */
     @UML(identifier="updateScopeDescription", obligation=OPTIONAL, specification=ISO_19115)
     Collection<? extends ScopeDescription> getUpdateScopeDescriptions();
@@ -84,13 +75,7 @@ public interface MaintenanceInformation {
     /**
      * Information regarding specific requirements for maintaining the resource.
      *
-     * @deprecated use getMaintenanceNotes()
-     */
-    @Deprecated
-    InternationalString getMaintenanceNote();
-
-    /**
-     * Information regarding specific requirements for maintaining the resource.
+     * @return Information regarding specific requirements for maintaining the resource.
      *
      * @since GeoAPI 2.1
      */
@@ -100,6 +85,9 @@ public interface MaintenanceInformation {
     /**
      * Identification of, and means of communicating with,
      * person(s) and organization(s) with responsibility for maintaining the metadata.
+     *
+     * @return Means of communicating with person(s) and organization(s) with responsibility
+     *         for maintaining the metadata.
      *
      * @since GeoAPI 2.1
      */
