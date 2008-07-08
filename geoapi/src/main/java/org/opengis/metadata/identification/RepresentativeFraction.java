@@ -17,12 +17,12 @@ import static org.opengis.annotation.Specification.ISO_19115;
 
 
 /**
- * Derived from ISO 19103 Scale where {@linkplain #getDenominator denominator} = 1 / Scale.
- * {@code Measure} and {@code Scale.targetUnits} = {@code Scale.sourceUnits}.
+ * A scale defined as the inverse of a denominator. This is derived from ISO 19103 {@code Scale}
+ * where {@linkplain #getDenominator denominator} = 1 / <var>scale</var>.
  * <p>
- * Implementations are encouraged to extend {@link Number} in the following manner:
+ * Implementations are encouraged to extend {@link Number} in a manner equivalent to:
  *
- * <pre></code>
+ * <blockquote><pre>
  *  class MyRepresentedFraction extends Number implements RepresentedFraction {
  *      ...
  *      public double doubleValue() {
@@ -32,52 +32,60 @@ import static org.opengis.annotation.Specification.ISO_19115;
  *          return 1.0f / (float) denominator;
  *      }
  *      public long longValue() {
- *          return 0;
- *      }
- *      public int intValue() {
- *          return 0;
+ *          return 1 / denominator; // Result is zero except for denominator=[0,1].
  *      }
  *      ...
  *  }
- * </code></pre>
+ * </pre></blockquote>
  *
  * @author <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
  * @author Ely Conn (Leica Geosystems Geospatial Imaging, LLC)
- * @since GeoAPI 2.1
+ * @since  GeoAPI 2.1
  */
 @UML(identifier="MD_RepresentativeFraction", specification=ISO_19115)
 public interface RepresentativeFraction {
     /**
-     * Returns this value in a form usable for computation.
-     *
-     * @return <code>1.0 / (double) {@linkplain #getDenominator()}</code>
+     * @deprecated Replaced by {@link #doubleValue}, which is both consistent with
+     *  {@link java.lang.Number} naming and avoid the idea that a representative
+     *  fraction is only for scales - it could be used for any quantity conveniently
+     *  represented as a ratio.
      */
+    @Deprecated
     double toScale();
+
+    /**
+     * Returns the scale value in a form usable for computation.
+     *
+     * @return {@code 1.0 / (double) {@linkplain #getDenominator()}.
+     *
+     * @since GeoAPI 2.2
+     */
+    double doubleValue();
 
     /**
      * The number below the line in a vulgar fraction.
      *
-     * @todo Return type may need to be a {@code long}? Source interface seems to indicate such.
+     * @return The denominator.
      */
     @UML(identifier = "denominator", obligation = MANDATORY, specification = ISO_19115)
-    int getDenominator();
+    long getDenominator();
 
     /**
      * Compares this representative fraction with the specified object for equality.
      * {@code RepresentativeFraction} is a data object - {@code equals} is defined
      * acoording to {@link #getDenominator};
      * <p>
-     * Implementations should exactly match the following:
+     * Implementations should match the following:
      *
-     * <pre><code>
-     * public boolean equals(final Object object) {
+     * <blockquote><pre>
+     * public boolean equals(Object object) {
      *     if (object instanceof RepresentativeFraction) {
      *         final RepresentativeFraction that = (RepresentativeFraction) object;
-     *         return denominator == that.getDenominator();
+     *         return getDenominator() == that.getDenominator();
      *     }
      *     return false;
      * }
-     * </code></pre>
+     * </pre></blockquote>
      *
      * @param other The object to compare with.
      * @return {@code true} if {@code other} is a {@code RepresentedFraction} with the same
@@ -91,13 +99,13 @@ public interface RepresentativeFraction {
      * {@code RepresentativeFraction} is a data object - {@code hashcode} is defined
      * according to {@link #getDenominator}.
      * <p>
-     * Implementations should exactly match the following:
+     * Implementations should match the following:
      *
-     * <pre><code>
+     * <blockquote><pre>
      * public int hashCode() {
      *     return getDenominator();
      * }
-     * </code></pre>
+     * </pre></blockquote>
      *
      * @return A hash code value for this representative fraction.
      */

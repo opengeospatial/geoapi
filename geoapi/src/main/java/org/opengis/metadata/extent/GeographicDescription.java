@@ -22,12 +22,14 @@ import static org.opengis.annotation.Specification.*;
  *
  * @author <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
  * @author Martin Desruisseaux (IRD)
- * @since GeoAPI 1.0
+ * @since  GeoAPI 1.0
  */
 @UML(identifier="EX_GeographicDescription", specification=ISO_19115)
 public interface GeographicDescription extends GeographicExtent {
     /**
      * Returns the identifier used to represent a geographic area.
+     *
+     * @return The identifier used to represent a geographic area.
      */
     @UML(identifier="geographicIdentifier", obligation=MANDATORY, specification=ISO_19115)
     Identifier getGeographicIdentifier();

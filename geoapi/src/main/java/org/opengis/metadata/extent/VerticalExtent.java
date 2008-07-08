@@ -25,7 +25,7 @@ import static org.opengis.annotation.Specification.*;
  * @author <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
  * @author Martin Desruisseaux (IRD)
  * @author Cory Horner (Refractions Research)
- * @since GeoAPI 1.0
+ * @since  GeoAPI 1.0
  */
 @UML(identifier="EX_VerticalExtent", specification=ISO_19115)
 public interface VerticalExtent {
@@ -44,26 +44,6 @@ public interface VerticalExtent {
      */
     @UML(identifier="maximumValue", obligation=MANDATORY, specification=ISO_19115)
     Double getMaximumValue();
-
-    /**
-     * Returns the vertical units used for vertical extent information.
-     * Examples: metres, feet, millimetres, hectopascals.
-     *
-     * @deprecated removed from ISO_19115:2003/Cor.1:2006
-     */
-    @Deprecated
-    @UML(identifier="unitOfMeasure", obligation=MANDATORY, specification=ISO_19115)
-    Unit getUnit();
-
-    /**
-     * Provides information about the origin from which the
-     * maximum and minimum elevation values are measured.
-     *
-     * @deprecated changed to {@link #getVerticalCRS} in ISO_19115:2003/Cor.1:2006
-     */
-    @Deprecated
-    @UML(identifier="verticalDatum", obligation=MANDATORY, specification=ISO_19115)
-    VerticalDatum getVerticalDatum();
 
     /**
      * Provides information about the vertical coordinate reference system to

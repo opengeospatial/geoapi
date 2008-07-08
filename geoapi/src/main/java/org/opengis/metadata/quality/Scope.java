@@ -32,6 +32,8 @@ import static org.opengis.annotation.Specification.*;
 public interface Scope {
     /**
      * Hierarchical level of the data specified by the scope.
+     *
+     * @return Hierarchical level of the data.
      */
     @UML(identifier="level", obligation=MANDATORY, specification=ISO_19115)
     ScopeCode getLevel();
@@ -41,6 +43,8 @@ public interface Scope {
      * Should be defined only if the {@linkplain #getLevel level} is not equal
      * to {@link ScopeCode#DATASET DATASET} or {@link ScopeCode#SERIES SERIES}.
      *
+     * @return Detailed description about the level of the data.
+     *
      * @since GeoAPI 2.1
      */
     @UML(identifier="levelDescription", obligation=CONDITIONAL, specification=ISO_19115)
@@ -49,6 +53,8 @@ public interface Scope {
     /**
      * Information about the spatial, vertical and temporal extent of the data specified by the
      * scope.
+     *
+     * @return Information about the extent of the data, or {@code null}.
      */
     @UML(identifier="extent", obligation=OPTIONAL, specification=ISO_19115)
     Extent getExtent();

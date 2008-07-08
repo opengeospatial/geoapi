@@ -25,7 +25,7 @@ import static org.opengis.annotation.Specification.ISO_19115;
  *
  * @author <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
  * @author Ely Conn (Leica Geosystems Geospatial Imaging, LLC)
- * @since GeoAPI 2.1
+ * @since  GeoAPI 2.1
  */
 @UML(identifier="DS_AssociationTypeCode", specification=ISO_19115)
 public final class AssociationType extends CodeList<AssociationType> {

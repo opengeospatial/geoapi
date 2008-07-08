@@ -26,7 +26,7 @@ import static org.opengis.annotation.Specification.*;
  * @author <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
  * @author Martin Desruisseaux (IRD)
  * @author Cory Horner (Refractions Research)
- * @since GeoAPI 2.0
+ * @since  GeoAPI 2.0
  */
 @UML(identifier="MD_GeometricObjectTypeCode", specification=ISO_19115)
 public final class GeometricObjectType extends CodeList<GeometricObjectType> {
