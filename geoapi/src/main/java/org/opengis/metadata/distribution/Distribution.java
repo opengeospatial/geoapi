@@ -22,9 +22,9 @@ import static org.opengis.annotation.ComplianceLevel.*;
 /**
  * Information about the distributor of and options for obtaining the resource.
  *
- * @author <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
- * @author Martin Desruisseaux (IRD)
- * @since  GeoAPI 2.0
+ * @version <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
+ * @author  Martin Desruisseaux (IRD)
+ * @since   GeoAPI 2.0
  */
 @Profile (level=CORE)
 @UML(identifier="MD_Distribution", specification=ISO_19115)

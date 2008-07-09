@@ -23,9 +23,9 @@ import static org.opengis.annotation.ComplianceLevel.*;
  * Identification of, and means of communication with, person(s) and
  * organizations associated with the dataset.
  *
- * @author <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
- * @author Martin Desruisseaux (IRD)
- * @since  GeoAPI 1.0
+ * @version <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
+ * @author  Martin Desruisseaux (IRD)
+ * @since   GeoAPI 1.0
  */
 @Profile (level=CORE)
 @UML(identifier="CI_ResponsibleParty", specification=ISO_19115)

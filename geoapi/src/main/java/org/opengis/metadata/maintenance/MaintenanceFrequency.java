@@ -23,9 +23,9 @@ import static org.opengis.annotation.Specification.*;
  * Frequency with which modifications and deletions are made to the data after it is
  * first produced.
  *
- * @author <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
- * @author Martin Desruisseaux (IRD)
- * @since  GeoAPI 2.0
+ * @version <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
+ * @author  Martin Desruisseaux (IRD)
+ * @since   GeoAPI 2.0
  */
 @UML(identifier="MD_MaintenanceFrequencyCode", specification=ISO_19115)
 public final class MaintenanceFrequency extends CodeList<MaintenanceFrequency> {

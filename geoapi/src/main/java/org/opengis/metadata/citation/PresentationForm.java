@@ -23,9 +23,9 @@ import static org.opengis.annotation.Specification.*;
 /**
  * Mode in which the data is represented.
  *
- * @author <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
- * @author Martin Desruisseaux (IRD)
- * @since  GeoAPI 2.0
+ * @version <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
+ * @author  Martin Desruisseaux (IRD)
+ * @since   GeoAPI 2.0
  */
 @UML(identifier="CI_PresentationFormCode", specification=ISO_19115)
 public final class PresentationForm extends CodeList<PresentationForm> {

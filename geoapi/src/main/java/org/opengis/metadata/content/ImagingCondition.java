@@ -23,9 +23,9 @@ import static org.opengis.annotation.Specification.*;
 /**
  * Code which indicates conditions which may affect the image.
  *
- * @author <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
- * @author Martin Desruisseaux (IRD)
- * @since  GeoAPI 2.0
+ * @version <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
+ * @author  Martin Desruisseaux (IRD)
+ * @since   GeoAPI 2.0
  */
 @UML(identifier="MD_ImagingConditionCode", specification=ISO_19115)
 public final class ImagingCondition extends CodeList<ImagingCondition> {

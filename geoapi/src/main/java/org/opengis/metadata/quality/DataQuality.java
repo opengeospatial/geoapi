@@ -23,9 +23,9 @@ import static org.opengis.annotation.ComplianceLevel.*;
 /**
  * Quality information for the data specified by a data quality scope.
  *
- * @author <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
- * @author Martin Desruisseaux (IRD)
- * @since  GeoAPI 2.0
+ * @version <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
+ * @author  Martin Desruisseaux (IRD)
+ * @since   GeoAPI 2.0
  */
 @Profile (level=CORE)
 @UML(identifier="DQ_DataQuality", specification=ISO_19115)

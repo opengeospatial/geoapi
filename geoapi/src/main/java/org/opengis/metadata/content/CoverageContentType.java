@@ -22,9 +22,9 @@ import static org.opengis.annotation.Specification.*;
 /**
  * Specific type of information represented in the cell.
  *
- * @author <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
- * @author Martin Desruisseaux (IRD)
- * @since  GeoAPI 2.0
+ * @version <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
+ * @author  Martin Desruisseaux (IRD)
+ * @since   GeoAPI 2.0
  */
 @UML(identifier="MD_CoverageContentTypeCode", specification=ISO_19115)
 public final class CoverageContentType extends CodeList<CoverageContentType> {

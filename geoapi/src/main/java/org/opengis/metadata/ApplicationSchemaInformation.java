@@ -21,9 +21,9 @@ import static org.opengis.annotation.Specification.*;
 /**
  * Information about the application schema used to build the dataset.
  *
- * @author <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
- * @author Martin Desruisseaux (IRD)
- * @since  GeoAPI 2.0
+ * @version <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
+ * @author  Martin Desruisseaux (IRD)
+ * @since   GeoAPI 2.0
  */
 @UML(identifier="MD_ApplicationSchemaInformation", specification=ISO_19115)
 public interface ApplicationSchemaInformation {

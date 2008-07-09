@@ -24,10 +24,10 @@ import static org.opengis.annotation.Specification.*;
  * Information about on-line sources from which the dataset, specification, or
  * community profile name and extended metadata elements can be obtained.
  *
- * @author <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
- * @author Martin Desruisseaux (IRD)
- * @author Cory Horner (Refractions Research)
- * @since  GeoAPI 1.0
+ * @version <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
+ * @author  Martin Desruisseaux (IRD)
+ * @author  Cory Horner (Refractions Research)
+ * @since   GeoAPI 1.0
  */
 @Profile (level=CORE)
 @UML(identifier="CI_OnlineResource", specification=ISO_19115)

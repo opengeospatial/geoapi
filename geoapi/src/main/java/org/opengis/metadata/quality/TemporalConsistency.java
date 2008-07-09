@@ -17,9 +17,9 @@ import static org.opengis.annotation.Specification.*;
 /**
  * Correctness of ordered events or sequences, if reported.
  *
- * @author <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
- * @author Martin Desruisseaux (IRD)
- * @since  GeoAPI 2.0
+ * @version <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
+ * @author  Martin Desruisseaux (IRD)
+ * @since   GeoAPI 2.0
  */
 @UML(identifier="DQ_TemporalConsistency", specification=ISO_19115)
 public interface TemporalConsistency extends TemporalAccuracy {

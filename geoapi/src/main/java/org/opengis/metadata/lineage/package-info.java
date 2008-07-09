@@ -26,7 +26,7 @@
  * {@linkplain org.opengis.metadata.lineage.Source source} and
  * {@linkplain org.opengis.metadata.lineage.ProcessStep process step} are not set.</P>
  *
- * @author <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
- * @since  GeoAPI 2.0
+ * @version <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
+ * @since   GeoAPI 2.0
  */
 package org.opengis.metadata.lineage;
