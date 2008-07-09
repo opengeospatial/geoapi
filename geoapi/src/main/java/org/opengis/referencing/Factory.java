@@ -26,8 +26,8 @@ import org.opengis.annotation.Extension;
  *       easier to use.</LI>
  * </UL>
  *
- * @author Martin Desruisseaux (IRD)
- * @since GeoAPI 1.0
+ * @author  Martin Desruisseaux (IRD)
+ * @since   GeoAPI 1.0
  */
 @Extension
 public interface Factory {

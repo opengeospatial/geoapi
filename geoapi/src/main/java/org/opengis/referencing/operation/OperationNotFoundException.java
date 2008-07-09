@@ -11,7 +11,7 @@
 package org.opengis.referencing.operation;
 
 import org.opengis.referencing.FactoryException;
-import org.opengis.referencing.crs.CoordinateReferenceSystem;  // For javadoc
+import org.opengis.referencing.crs.CoordinateReferenceSystem;
 
 
 /**
@@ -20,8 +20,8 @@ import org.opengis.referencing.crs.CoordinateReferenceSystem;  // For javadoc
  * {@linkplain CoordinateReferenceSystem coordinate reference systems},
  * or because the requested operation is not available in the environment.
  *
- * @author Martin Desruisseaux (IRD)
- * @since GeoAPI 1.0
+ * @author  Martin Desruisseaux (IRD)
+ * @since   GeoAPI 1.0
  */
 public class OperationNotFoundException extends FactoryException {
     /**

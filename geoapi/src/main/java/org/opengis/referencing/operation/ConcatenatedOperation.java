@@ -28,9 +28,8 @@ import static org.opengis.annotation.Specification.*;
  * operation is uniquely defined by the forward operation.
  *
  * @version <A HREF="http://portal.opengeospatial.org/files/?artifact_id=6716">Abstract specification 2.0</A>
- * @author ISO/DIS 19111
- * @author Martin Desruisseaux (IRD)
- * @since GeoAPI 1.0
+ * @author  Martin Desruisseaux (IRD)
+ * @since   GeoAPI 1.0
  */
 @UML(identifier="CC_ConcatenatedOperation", specification=ISO_19111)
 public interface ConcatenatedOperation extends CoordinateOperation {

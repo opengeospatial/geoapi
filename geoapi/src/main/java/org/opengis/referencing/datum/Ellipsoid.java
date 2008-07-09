@@ -52,9 +52,8 @@ import static org.opengis.annotation.Specification.*;
  *   be used for distinguishing between the two cases.
  *
  * @version <A HREF="http://portal.opengeospatial.org/files/?artifact_id=6716">Abstract specification 2.0</A>
- * @author ISO/DIS 19111
- * @author Martin Desruisseaux (IRD)
- * @since GeoAPI 1.0
+ * @author  Martin Desruisseaux (IRD)
+ * @since   GeoAPI 1.0
  */
 @UML(identifier="CD_Ellipsoid", specification=ISO_19111)
 public interface Ellipsoid extends IdentifiedObject {

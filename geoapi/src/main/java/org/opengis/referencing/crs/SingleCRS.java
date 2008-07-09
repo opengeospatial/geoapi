@@ -22,13 +22,13 @@ import static org.opengis.annotation.Specification.*;
  * Abstract coordinate reference system, consisting of a single
  * {@linkplain CoordinateSystem Coordinate System} and a single
  * {@linkplain Datum Datum} (as opposed to {@linkplain CompoundCRS Compound CRS}).
- *
+ * <p>
  * A coordinate reference system consists of an ordered sequence of coordinate system
  * axes that are related to the earth through a datum. A coordinate reference system
  * is defined by one datum and by one coordinate system. Most coordinate reference system
  * do not move relative to the earth, except for engineering coordinate reference systems
  * defined on moving platforms such as cars, ships, aircraft, and spacecraft.
- *
+ * <p>
  * Coordinate reference systems are commonly divided into sub-types. The common classification
  * criterion for sub-typing of coordinate reference systems is the way in which they deal with
  * earth curvature. This has a direct effect on the portion of the earth's surface that can be
@@ -36,9 +36,8 @@ import static org.opengis.annotation.Specification.*;
  * the subtype "Temporal" which has been added by analogy.
  *
  * @version <A HREF="http://portal.opengeospatial.org/files/?artifact_id=6716">Abstract specification 2.0</A>
- * @author ISO/DIS 19111
- * @author Martin Desruisseaux (IRD)
- * @since GeoAPI 2.0
+ * @author  Martin Desruisseaux (IRD)
+ * @since   GeoAPI 2.0
  *
  * @see org.opengis.referencing.cs.CoordinateSystem
  * @see org.opengis.referencing.datum.Datum

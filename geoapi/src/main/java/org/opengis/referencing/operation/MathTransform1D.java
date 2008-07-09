@@ -20,8 +20,8 @@ import org.opengis.annotation.Extension;
  * {@code MathTransform1D} extends {@link MathTransform} by adding a simple method
  * transforming a value without the overhead of creating data array.
  *
- * @author Martin Desruisseaux (IRD)
- * @since GeoAPI 1.0
+ * @author  Martin Desruisseaux (IRD)
+ * @since   GeoAPI 1.0
  */
 @Extension
 public interface MathTransform1D extends MathTransform {
@@ -32,7 +32,7 @@ public interface MathTransform1D extends MathTransform {
      * @return the transformed value.
      * @throws TransformException if the value can't be transformed.
      */
-    double transform(final double value) throws TransformException;
+    double transform(double value) throws TransformException;
 
     /**
      * Gets the derivative of this function at a value. The derivative is the
@@ -44,7 +44,7 @@ public interface MathTransform1D extends MathTransform {
      * @throws TransformException if the derivative can't be evaluated at the
      *         specified point.
      */
-    double derivative(final double value) throws TransformException;
+    double derivative(double value) throws TransformException;
 
     /**
      * Creates the inverse transform of this object.

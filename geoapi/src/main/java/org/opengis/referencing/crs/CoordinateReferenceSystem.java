@@ -15,7 +15,6 @@ import org.opengis.referencing.cs.CoordinateSystem;
 import org.opengis.annotation.UML;
 import org.opengis.annotation.Extension;
 
-import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
 
 
@@ -42,9 +41,8 @@ import static org.opengis.annotation.Specification.*;
  * expressed in whole years.
  *
  * @version <A HREF="http://portal.opengeospatial.org/files/?artifact_id=6716">Abstract specification 2.0</A>
- * @author ISO/DIS 19111
- * @author Martin Desruisseaux (IRD)
- * @since GeoAPI 1.0
+ * @author  Martin Desruisseaux (IRD)
+ * @since   GeoAPI 1.0
  */
 @UML(identifier="SC_CRS", specification=ISO_19111)
 public interface CoordinateReferenceSystem extends ReferenceSystem {
@@ -64,11 +62,12 @@ public interface CoordinateReferenceSystem extends ReferenceSystem {
      *       CRS.</p></li>
      * </ul>
      *
-     * Strictly speaking, this method is defined by ISO 19111 for {@linkplain SingleCRS single CRS}
-     * only. GeoAPI declares this method in this parent interface for user convenience, since CS
-     * {@linkplain CoordinateSystem#getDimension dimension} and
-     * {@linkplain CoordinateSystem#getAxis axis} are commonly requested information and shall be
-     * available, directly or indirectly, in all cases (including {@linkplain CompoundCRS compound CRS}).
+     * @departure
+     *   Strictly speaking, this method is defined by ISO 19111 for {@linkplain SingleCRS single CRS}
+     *   only. GeoAPI declares this method in this parent interface for user convenience, since CS
+     *   {@linkplain CoordinateSystem#getDimension dimension} and {@linkplain CoordinateSystem#getAxis axis}
+     *   are commonly requested information and shall be available, directly or indirectly, in all cases
+     *   (including {@linkplain CompoundCRS compound CRS}).
      *
      * @return The coordinate system.
      */

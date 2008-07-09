@@ -26,9 +26,8 @@ import static org.opengis.annotation.Specification.*;
  * standard.
  *
  * @version <A HREF="http://www.opengis.org/docs/01-009.pdf">Implementation specification 1.0</A>
- * @author Open Geospatial Consortium
- * @author Martin Desruisseaux (IRD)
- * @since GeoAPI 1.0
+ * @author  Martin Desruisseaux (IRD)
+ * @since   GeoAPI 1.0
  *
  * @see org.opengis.referencing.cs.CSAuthorityFactory
  * @see org.opengis.referencing.datum.DatumAuthorityFactory

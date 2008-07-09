@@ -10,6 +10,10 @@
  *************************************************************************************************/
 package org.opengis.referencing;
 
+import java.util.Map;
+import java.util.Locale;
+import java.util.Properties;
+import java.util.Collections;
 import org.opengis.metadata.Identifier;
 import org.opengis.metadata.citation.Citation;
 import org.opengis.util.InternationalString;
@@ -19,23 +23,26 @@ import org.opengis.annotation.Extension;
 
 /**
  * Base interface for all factories of {@linkplain IdentifiedObject identified objects}. Factories
- * build up complex objects from simpler objects or values. This factory allows applications
- * to make {@linkplain org.opengis.referencing.cs.CoordinateSystem coordinate systems},
+ * build up complex objects from simpler objects or values. This factory allows applications to make
+ * {@linkplain org.opengis.referencing.cs.CoordinateSystem coordinate systems},
  * {@linkplain org.opengis.referencing.datum.Datum datum} or
  * {@linkplain org.opengis.referencing.crs.CoordinateReferenceSystem coordinate reference systems}
  * that cannot be created by an {@linkplain AuthorityFactory authority factory}. This factory is
  * very flexible, whereas the authority factory is easier to use.
  * <p>
- * <H3>Object properties</H3>
- * <P>Most factory methods expect a {@link java.util.Map} argument. The map is often (but is not required
- * to be) a {@link java.util.Properties} instance. The map shall contains at least a <code>"name"</code>
- * property. In the common case where the name is the only property, the map may be constructed with
- * <code>Collections.{@linkplain java.util.Collections#singletonMap singletonMap}("name",
- * <var>theName</var>)</code> where <var>theName</var> is an arbitrary name as free text.
- * Additionally, implementations are encouraged to recognize at least the properties listed
- * in the following table. More implementation-specific properties may be added as well.
- * In any case, unknown properties will be ignored.</P>
+ * <b>Object properties</b><br>
+ * Most factory methods expect a {@link Map} argument. The map can be a {@link Properties} instance.
+ * The map shall contains at least a {@code "name"} property. In the common case where the name is
+ * the only property, the map may be constructed with
  *
+ * <code>Collections.{@linkplain Collections#singletonMap singletonMap}("name", <var>theName</var>)</code>
+ *
+ * where <var>theName</var> is an arbitrary name as free text.
+ * <p>
+ * Implementations are encouraged to recognize at least the properties listed in the following
+ * table. Additional implementation-specific properties can be added. Unknown properties shall
+ * be ignored.
+ * <p>
  * <table border='1'>
  *   <tr bgcolor="#CCCCFF" class="TableHeadingColor">
  *     <th nowrap>Property name</th>
@@ -79,17 +86,15 @@ import org.opengis.annotation.Extension;
  *     <td nowrap>&nbsp;{@link IdentifiedObject#getRemarks}</td>
  *   </tr>
  * </table>
- *
- * <P>The <code>"name"</code> property is mandatory. All others are optional. Additionally, all
- * localizable attributes like <code>"remarks"</code> may have a language and country code suffix.
- * For example the <code>"remarks_fr"</code> property stands for remarks in
- * {@linkplain java.util.Locale#FRENCH French} and the <code>"remarks_fr_CA"</code> property
- * stands for remarks in {@linkplain java.util.Locale#CANADA_FRENCH French Canadian}.</P>
+ * <p>
+ * The {@code "name"} property is mandatory. All others are optional. All localizable attributes
+ * like {@code "remarks"} can have a language and country code suffix. For example the
+ * {@code "remarks_fr"} property stands for remarks in {@linkplain Locale#FRENCH French} and the
+ * {@code "remarks_fr_CA"} property stands for remarks in {@linkplain Locale#CANADA_FRENCH French Canadian}.
  *
  * @version <A HREF="http://www.opengis.org/docs/01-009.pdf">Implementation specification 1.0</A>
- * @author Open Geospatial Consortium
- * @author Martin Desruisseaux (IRD)
- * @since GeoAPI 2.0
+ * @author  Martin Desruisseaux (IRD)
+ * @since   GeoAPI 2.0
  */
 @Extension
 public interface ObjectFactory extends Factory {

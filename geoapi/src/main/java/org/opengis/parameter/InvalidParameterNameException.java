@@ -11,8 +11,6 @@
 package org.opengis.parameter;
 
 import org.opengis.annotation.UML;
-
-import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
 
 
@@ -21,9 +19,8 @@ import static org.opengis.annotation.Specification.*;
  * {@linkplain ParameterDescriptorGroup parameter group}.
  *
  * @version <A HREF="http://www.opengis.org/docs/01-004.pdf">Grid Coverage specification 1.0</A>
- * @author Open Geospatial Consortium
- * @author Martin Desruisseaux (IRD)
- * @since GeoAPI 1.0
+ * @author  Martin Desruisseaux (IRD)
+ * @since   GeoAPI 1.0
  */
 @UML(identifier="GC_InvalidParameterName", specification=ISO_19111)
 public class InvalidParameterNameException extends IllegalArgumentException {
@@ -51,6 +48,8 @@ public class InvalidParameterNameException extends IllegalArgumentException {
 
     /**
      * Returns the invalid parameter name.
+     *
+     * @return The name of the invalid parameter.
      */
     public String getParameterName() {
         return parameterName;

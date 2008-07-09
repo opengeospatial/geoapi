@@ -29,9 +29,8 @@ import static org.opengis.annotation.Specification.*;
  * system is '4326'.
  *
  * @version <A HREF="http://www.opengis.org/docs/01-009.pdf">Implementation specification 1.0</A>
- * @author Open Geospatial Consortium
- * @author Martin Desruisseaux (IRD)
- * @since GeoAPI 1.0
+ * @author  Martin Desruisseaux (IRD)
+ * @since   GeoAPI 1.0
  */
 @UML(identifier="CS_CoordinateSystemAuthorityFactory", specification=OGC_01009)
 public interface AuthorityFactory extends Factory {
@@ -49,14 +48,14 @@ public interface AuthorityFactory extends Factory {
      * argument specify the base class. For example if this factory is an instance
      * of {@link org.opengis.referencing.crs.CRSAuthorityFactory}, then:
      * <ul>
-     *   <li><strong><code>{@linkplain org.opengis.referencing.crs.CoordinateReferenceSystem}.class&nbsp;</code></strong>
+     *   <li><b><code>{@linkplain org.opengis.referencing.crs.CoordinateReferenceSystem}.class&nbsp;</code></b>
      *       asks for all authority codes accepted by one of
      *       {@link org.opengis.referencing.crs.CRSAuthorityFactory#createGeographicCRS createGeographicCRS},
      *       {@link org.opengis.referencing.crs.CRSAuthorityFactory#createProjectedCRS createProjectedCRS},
      *       {@link org.opengis.referencing.crs.CRSAuthorityFactory#createVerticalCRS createVerticalCRS},
      *       {@link org.opengis.referencing.crs.CRSAuthorityFactory#createTemporalCRS createTemporalCRS}
      *       and their friends.</li>
-     *   <li><strong><code>{@linkplain org.opengis.referencing.crs.ProjectedCRS}.class&nbsp;</code></strong>
+     *   <li><b><code>{@linkplain org.opengis.referencing.crs.ProjectedCRS}.class&nbsp;</code></b>
      *       asks only for authority codes accepted by
      *       {@link org.opengis.referencing.crs.CRSAuthorityFactory#createProjectedCRS createProjectedCRS}.</li>
      * </ul>

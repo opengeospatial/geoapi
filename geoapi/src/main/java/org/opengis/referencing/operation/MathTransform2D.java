@@ -16,19 +16,16 @@ import org.opengis.annotation.Extension;
 
 
 /**
- * Transforms two-dimensional coordinate points.
- * {@link CoordinateOperation#getMathTransform} may returns instance of this
- * interface when source and destination coordinate systems are both two dimensional.
- * {@code MathTransform2D} extends {@link MathTransform} by adding some methods
- * for easier interoperability with
- *
- * <A HREF="http://java.sun.com/products/java-media/2D/">Java2D</A>.
- *
+ * Transforms two-dimensional coordinate points. {@link CoordinateOperation#getMathTransform} may
+ * returns instance of this interface when source and destination coordinate systems are both two
+ * dimensional. {@code MathTransform2D} extends {@link MathTransform} by adding some methods for
+ * easier interoperability with <A HREF="http://java.sun.com/products/java-media/2D/">Java2D</A>.
+ * <p>
  * If the transformation is affine, then {@code MathTransform} shall be an
  * immutable instance of {@link java.awt.geom.AffineTransform}.
  *
- * @author Martin Desruisseaux (IRD)
- * @since GeoAPI 1.0
+ * @author  Martin Desruisseaux (IRD)
+ * @since   GeoAPI 1.0
  */
 @Extension
 public interface MathTransform2D extends MathTransform {

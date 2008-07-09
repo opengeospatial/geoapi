@@ -50,14 +50,15 @@ import static org.opengis.annotation.Specification.*;
  * (years), e.g. as a reservoir is gradually exhausted of its recoverable oil or gas).
  *
  * @version <A HREF="http://portal.opengeospatial.org/files/?artifact_id=6716">Abstract specification 2.0</A>
- * @author ISO/DIS 19111
- * @author Martin Desruisseaux (IRD)
- * @since GeoAPI 1.0
+ * @author  Martin Desruisseaux (IRD)
+ * @since   GeoAPI 1.0
  */
 @UML(identifier="SC_CompoundCRS", specification=ISO_19111)
 public interface CompoundCRS extends CoordinateReferenceSystem {
     /**
      * The ordered list of coordinate reference systems.
+     *
+     * @return The ordered list of coordinate reference systems.
      */
     @UML(identifier="includesCRS", obligation=MANDATORY, specification=ISO_19111)
     List<CoordinateReferenceSystem> getCoordinateReferenceSystems();

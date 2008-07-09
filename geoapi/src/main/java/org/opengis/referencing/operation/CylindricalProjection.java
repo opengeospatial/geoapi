@@ -19,8 +19,8 @@ import org.opengis.annotation.Extension;
  * <p>&nbsp;</p>
  * <p align="center"><img src="../doc-files/CylindricalProjection.png"></p>
  *
- * @author Martin Desruisseaux (IRD)
- * @since GeoAPI 1.0
+ * @author  Martin Desruisseaux (IRD)
+ * @since   GeoAPI 1.0
  *
  * @see org.opengis.referencing.crs.ProjectedCRS
  * @see <A HREF="http://mathworld.wolfram.com/CylindricalProjection.html">Cylindrical projection on MathWorld</A>

@@ -18,7 +18,6 @@ import org.opengis.parameter.ParameterValueGroup;
 import org.opengis.annotation.UML;
 import org.opengis.annotation.Extension;
 
-import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
 
 
@@ -29,16 +28,18 @@ import static org.opengis.annotation.Specification.*;
  * {@linkplain CoordinateReferenceSystem coordinate reference systems}.
  *
  * @version <A HREF="http://www.opengis.org/docs/01-009.pdf">Implementation specification 1.0</A>
- * @author Open Geospatial Consortium
- * @author Martin Desruisseaux (IRD)
- * @since GeoAPI 1.0
+ * @author  Martin Desruisseaux (IRD)
+ * @since   GeoAPI 1.0
  */
 @UML(identifier="CT_CoordinateTransformationFactory", specification=OGC_01009)
 public interface CoordinateOperationFactory extends ObjectFactory {
     /**
      * Returns an operation for conversion or transformation between two coordinate reference systems.
-     * If an operation exists, it is returned. If more than one operation exists, the default is returned.
-     * If no operation exists, then the exception is thrown.
+     * <ul>
+     *   <li>If an operation exists, it is returned.</li>
+     *   <li>If more than one operation exists, the default is returned.</li>
+     *   <li>If no operation exists, then the exception is thrown.</li>
+     * </ul>
      * <p>
      * Implementations may try to
      * {@linkplain CoordinateOperationAuthorityFactory#createFromCoordinateReferenceSystemCodes
@@ -60,10 +61,22 @@ public interface CoordinateOperationFactory extends ObjectFactory {
     /**
      * Returns an operation using a particular method for conversion or transformation
      * between two coordinate reference systems.
-     * If the operation exists on the implementation, then it is returned.
-     * If the operation does not exist on the implementation, then the implementation has the option
-     * of inferring the operation from the argument objects.
-     * If for whatever reason the specified operation will not be returned, then the exception is thrown.
+     * <ul>
+     *   <li>If the operation exists on the implementation, then it is returned.</li>
+     *   <li>If the operation does not exist on the implementation, then the implementation
+     *       has the option of inferring the operation from the argument objects.</li>
+     *   <li>If for whatever reason the specified operation will not be returned, then
+     *       the exception is thrown.</li>
+     * </ul>
+     * <p>
+     * <b>Example:</b> A transformation between two {@linkplain org.opengis.referencing.crs.GeographicCRS
+     * geographic CRS} using different {@linkplain org.opengis.datum.GeodeticDatum datum} requires a
+     * <cite>datum shift</cite>. Many methods exist for this purpose, including interpolations in a
+     * grid, a scale/rotation/translation in geocentric coordinates or the Molodenski approximation.
+     * When invoking {@code createOperation} without operation method, this factory may select by
+     * default the most accurate transformation (typically interpolation in a grid). When invoking
+     * {@code createOperation} with an operation method, user can force usage of Molodenski
+     * approximation for instance.
      *
      * @param  sourceCRS Input coordinate reference system.
      * @param  targetCRS Output coordinate reference system.
@@ -72,13 +85,7 @@ public interface CoordinateOperationFactory extends ObjectFactory {
      * @throws OperationNotFoundException if no operation path was found from {@code sourceCRS}
      *         to {@code targetCRS}.
      * @throws FactoryException if the operation creation failed for some other reason.
-     *
-     * @deprecated {@code CoordinateOperationFactory} is supposed to infers the operation from
-     *             the CRS. In addition, more than one operation step may be involved in the
-     *             path from {@code sourceCRS} to {@code targetCRS}, but this method has only
-     *             one {@code method} argument.
      */
-    @Deprecated
     @Extension
     CoordinateOperation createOperation(CoordinateReferenceSystem sourceCRS,
                                         CoordinateReferenceSystem targetCRS,
@@ -151,5 +158,6 @@ public interface CoordinateOperationFactory extends ObjectFactory {
      */
     Conversion createDefiningConversion(Map<String,?>       properties,
                                         OperationMethod     method,
-                                        ParameterValueGroup parameters) throws FactoryException;
+                                        ParameterValueGroup parameters)
+            throws FactoryException;
 }

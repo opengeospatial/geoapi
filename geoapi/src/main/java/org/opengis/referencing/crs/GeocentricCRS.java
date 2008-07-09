@@ -13,7 +13,6 @@ package org.opengis.referencing.crs;
 import org.opengis.referencing.cs.CartesianCS;
 import org.opengis.referencing.cs.SphericalCS;
 import org.opengis.referencing.cs.CoordinateSystem;
-import org.opengis.referencing.datum.GeodeticDatum;
 import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Obligation.*;
@@ -33,9 +32,8 @@ import static org.opengis.annotation.Specification.*;
  * </TD></TR></TABLE>
  *
  * @version <A HREF="http://portal.opengeospatial.org/files/?artifact_id=6716">Abstract specification 2.0</A>
- * @author ISO/DIS 19111
- * @author Martin Desruisseaux (IRD)
- * @since GeoAPI 1.0
+ * @author  Martin Desruisseaux (IRD)
+ * @since   GeoAPI 1.0
  */
 @UML(identifier="SC_GeocentricCRS", specification=ISO_19111)
 public interface GeocentricCRS extends GeodeticCRS {

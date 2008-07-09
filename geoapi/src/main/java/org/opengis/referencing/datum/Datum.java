@@ -28,9 +28,8 @@ import static org.opengis.annotation.Specification.*;
  * {@linkplain org.opengis.referencing.cs.CoordinateSystem coordinate systems}.
  *
  * @version <A HREF="http://portal.opengeospatial.org/files/?artifact_id=6716">Abstract specification 2.0</A>
- * @author ISO/DIS 19111
- * @author Martin Desruisseaux (IRD)
- * @since GeoAPI 1.0
+ * @author  Martin Desruisseaux (IRD)
+ * @since   GeoAPI 1.0
  *
  * @see org.opengis.referencing.cs.CoordinateSystem
  * @see org.opengis.referencing.crs.CoordinateReferenceSystem
@@ -65,18 +64,6 @@ public interface Datum extends IdentifiedObject {
      * @since GeoAPI 2.1
      */
     String DOMAIN_OF_VALIDITY_KEY = "domainOfValidity";
-
-    /**
-     * Key for the <code>{@value}</code> property to be given to the
-     * {@linkplain DatumFactory datum factory} <code>createFoo(&hellip;)</code> methods.
-     * This is used for setting the value to be returned by {@link #getValidArea}.
-     *
-     * @see #getValidArea
-     *
-     * @deprecated Renamed as {@link #DOMAIN_OF_VALIDITY_KEY}.
-     */
-    @Deprecated
-    String VALID_AREA_KEY = DOMAIN_OF_VALIDITY_KEY;
 
     /**
      * Key for the <code>{@value}</code> property to be given to the
@@ -136,17 +123,6 @@ public interface Datum extends IdentifiedObject {
      */
     @UML(identifier="domainOfValidity", obligation=OPTIONAL, specification=ISO_19111)
     Extent getDomainOfValidity();
-
-    /**
-     * Area or region in which this datum object is valid.
-     *
-     * @return The datum valid area, or {@code null} if not available.
-     *
-     * @deprecated Renamed as {@link #getDomainOfValidity}.
-     */
-    @Deprecated
-    @UML(identifier="validArea", obligation=OPTIONAL, specification=ISO_19111)
-    Extent getValidArea();
 
     /**
      * Description of domain of usage, or limitations of usage, for which this
