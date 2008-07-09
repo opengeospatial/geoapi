@@ -24,11 +24,11 @@ import static org.opengis.annotation.Specification.*;
  * coordinate system. The transformation between grid and external coordinate system can be some
  * analytical or non-analytical form.
  *
- * @author ISO/DIS 19123
- * @author Wim Koolhoven
- * @author Martin Schouwenburg
- * @author Martin Desruisseaux
- * @since  GeoAPI 2.1
+ * @version ISO 19123:2004
+ * @author  Wim Koolhoven
+ * @author  Martin Schouwenburg
+ * @author  Martin Desruisseaux (IRD)
+ * @since   GeoAPI 2.1
  *
  * @todo Comment (Wim): there seems to be no way to check whether two ReferenceableGrids are equal,
  *       i.e. exactly fitting on all GridPoints.<br>

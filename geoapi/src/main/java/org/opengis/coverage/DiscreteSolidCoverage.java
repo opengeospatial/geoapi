@@ -33,9 +33,9 @@ import static org.opengis.annotation.Specification.*;
  * semiregular tessellation of the extent of the coverage. The tessellation can be defined in terms
  * of a 3 dimensional grid, where the set of grid cells is the spatial domain of the coverage.
  *
- * @author ISO/DIS 19123
- * @author Alessio Fabiani
- * @since  GeoAPI 2.1
+ * @version ISO 19123:2004
+ * @author  Alessio Fabiani
+ * @since   GeoAPI 2.1
  *
  * @todo evaluate and evaluateInverse
  */

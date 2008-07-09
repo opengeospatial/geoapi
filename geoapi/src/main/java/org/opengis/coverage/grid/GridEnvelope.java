@@ -28,11 +28,12 @@ import static org.opengis.annotation.Specification.*;
  * {@linkplain Rectangle#getMaxX getMaxX()} and {@linkplain Rectangle#getMinY getMaxY()}) are
  * exclusive.
  *
- * @author ISO/DIS 19123
- * @author Wim Koolhoven
- * @author Martin Schouwenburg
- * @see    org.opengis.geometry.Envelope
- * @since  GeoAPI 2.1
+ * @version ISO 19123:2004
+ * @author  Wim Koolhoven
+ * @author  Martin Schouwenburg
+ * @since   GeoAPI 2.1
+ *
+ * @see org.opengis.geometry.Envelope
  */
 @UML(identifier="CV_GridEnvelope", specification=ISO_19123)
 public interface GridEnvelope {

@@ -29,10 +29,10 @@ import static org.opengis.annotation.Specification.*;
  * of its spatial and/or temporal extent, it can be subdivided into an infinite number of direct
  * positions.
  *
- * @author ISO/DIS 19123
- * @author Martin Desruisseaux
- * @author Wim Koolhoven
- * @since  GeoAPI 2.1
+ * @version ISO 19123:2004
+ * @author  Martin Desruisseaux (IRD)
+ * @author  Wim Koolhoven
+ * @since   GeoAPI 2.1
  */
 @UML(identifier="CV_ContinuousCoverage", specification=ISO_19123)
 public interface ContinuousCoverage extends Coverage {

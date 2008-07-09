@@ -26,9 +26,10 @@ import static org.opengis.annotation.Specification.*;
  *
  * @version <A HREF="http://www.opengis.org/docs/01-004.pdf">Grid Coverage specification 1.0</A>
  * @author  Martin Desruisseaux (IRD)
- * @see     ColorInterpretation
- * @see     SampleDimension
  * @since   GeoAPI 1.0
+ *
+ * @see ColorInterpretation
+ * @see SampleDimension
  *
  * @deprecated No replacement.
  */

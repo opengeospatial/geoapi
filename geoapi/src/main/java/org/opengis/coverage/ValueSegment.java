@@ -22,10 +22,10 @@ import static org.opengis.annotation.Specification.*;
  * Limits of a value segment specified by two values of the arc-length parameter of the
  * {@linkplain Curve curve} underlying its parent {@linkplain ValueCurve value curve}.
  *
- * @author ISO/DIS 19123
- * @author Alessio Fabiani
- * @author Martin Desruisseaux
- * @since  GeoAPI 2.1
+ * @version ISO 19123:2004
+ * @author  Alessio Fabiani
+ * @author  Martin Desruisseaux (IRD)
+ * @since   GeoAPI 2.1
  */
 @UML(identifier="CV_ValueSegment", specification=ISO_19123)
 public interface ValueSegment {

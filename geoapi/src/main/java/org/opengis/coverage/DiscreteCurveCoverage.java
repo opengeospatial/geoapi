@@ -27,9 +27,9 @@ import static org.opengis.annotation.Specification.*;
  * <b>Example:</b> A coverage that assigns a route a number, a name, a pavement width,
  *                 and a pavement material type to each segment of a road system.
  *
- * @author ISO/DIS 19123
- * @author Alessio Fabiani
- * @since  GeoAPI 2.1
+ * @version ISO 19123:2004
+ * @author  Alessio Fabiani
+ * @since   GeoAPI 2.1
  *
  * @todo evaluate and evaluateInverse
  */

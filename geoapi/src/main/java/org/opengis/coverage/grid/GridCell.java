@@ -22,11 +22,11 @@ import static org.opengis.annotation.Specification.*;
  * are associated with the {@linkplain GridPoint grid points} at the intersections of
  * the grid lines that bound it
  *
- * @author ISO/DIS 19123
- * @author Martin Schouwenburg
- * @author Wim Koolhoven
- * @author Martin Desruisseaux
- * @since  GeoAPI 2.1
+ * @version ISO 19123:2004
+ * @author  Martin Schouwenburg
+ * @author  Wim Koolhoven
+ * @author  Martin Desruisseaux (IRD)
+ * @since   GeoAPI 2.1
  */
 @UML(identifier="CV_GridCell", specification=ISO_19123)
 public interface GridCell {

@@ -24,7 +24,7 @@ import org.opengis.annotation.Extension;
  * A {@link ReferencableGrid} object encapsulates an operation of arbitrary complexity.
  * This type does not exist in ISO 19123.
  *
- * @author Alexander Petkov
+ * @author  Alexander Petkov
  */
 @Extension
 public interface GridPositioning {

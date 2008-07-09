@@ -25,10 +25,10 @@ import static org.opengis.annotation.Specification.*;
  * coverage}. A {@code ValueHexagon} is a collection of {@linkplain GridPointValuePair grid-point
  * value pairs} with a geometric structure.
  *
- * @author ISO/DIS 19123
- * @author Alessio Fabiani
- * @author Martin Desruisseaux
- * @since  GeoAPI 2.1
+ * @version ISO 19123:2004
+ * @author  Alessio Fabiani
+ * @author  Martin Desruisseaux (IRD)
+ * @since   GeoAPI 2.1
  */
 @UML(identifier="CV_ValueHexagon", specification=ISO_19123)
 public interface ValueHexagon extends ValueObject {

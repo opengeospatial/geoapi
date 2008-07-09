@@ -41,10 +41,10 @@ import static org.opengis.annotation.Specification.*;
  * polygon network provides a structure that supports interpolation of feature attribute values from
  * the polygon centres to direct positions within the polygons.
  *
- * @author ISO/DIS 19123
- * @author Alessio Fabiani
- * @author Martin Desruisseaux
- * @since  GeoAPI 2.1
+ * @version ISO 19123:2004
+ * @author  Alessio Fabiani
+ * @author  Martin Desruisseaux (IRD)
+ * @since   GeoAPI 2.1
  *
  * @todo Provide a figure derived from figure 11 in ISO 19123.
  */

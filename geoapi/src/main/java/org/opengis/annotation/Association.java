@@ -22,8 +22,8 @@ import static java.lang.annotation.RetentionPolicy.*;
  * no argument. The association source is the enclosing interface. The association target is
  * inferred from the return type.
  *
- * @author Martin Desruisseaux (IRD)
- * @since  GeoAPI 2.1
+ * @author  Martin Desruisseaux (IRD)
+ * @since   GeoAPI 2.1
  */
 @Documented
 @Target(METHOD)

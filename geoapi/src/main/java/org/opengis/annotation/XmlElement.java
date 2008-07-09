@@ -26,8 +26,8 @@ import static java.lang.annotation.RetentionPolicy.*;
  * only provides enough information for finding the corresponding XML element in
  * the {@linkplain XmlSchema schema}.
  *
- * @author Martin Desruisseaux (IRD)
- * @since  GeoAPI 2.0
+ * @author  Martin Desruisseaux (IRD)
+ * @since   GeoAPI 2.0
  */
 @Documented
 @Target({TYPE,METHOD,FIELD})

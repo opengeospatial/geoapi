@@ -32,11 +32,12 @@ import static org.opengis.annotation.Specification.*;
  * for each {@link ValueObject} that contains the direct position. The rule shall then be applied to the set
  * of interpolated values for each attribute.
  *
- * @author ISO/DIS 19123
- * @author Martin Desruisseaux
- * @author Stephane Fellah
- * @see    Coverage#getCommonPointRule
- * @since  GeoAPI 2.1
+ * @version ISO 19123:2004
+ * @author  Martin Desruisseaux (IRD)
+ * @author  Stephane Fellah
+ * @since   GeoAPI 2.1
+ *
+ * @see Coverage#getCommonPointRule
  */
 @UML(identifier="CV_CommonPointRule", specification=ISO_19123)
 public class CommonPointRule extends CodeList<CommonPointRule> {

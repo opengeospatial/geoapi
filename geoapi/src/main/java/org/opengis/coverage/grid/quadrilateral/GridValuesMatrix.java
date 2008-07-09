@@ -28,10 +28,10 @@ import static org.opengis.annotation.Specification.*;
  *
  * @issue http://jira.codehaus.org/browse/GEO-82
  *
- * @author ISO/DIS 19123
- * @author Wim Koolhoven
- * @author Martin Schouwenburg
- * @author Alexander Petkov
+ * @version ISO 19123:2004
+ * @author  Wim Koolhoven
+ * @author  Martin Schouwenburg
+ * @author  Alexander Petkov
  */
 @UML(identifier="CV_GridValuesMatrix", specification=ISO_19123)
 public interface GridValuesMatrix {

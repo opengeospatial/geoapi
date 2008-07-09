@@ -11,7 +11,7 @@ import org.opengis.annotation.Extension;
  * Specialized methods are provided to create {@linkplain GridCoordinates} objects
  * which are initialized to the supplied two, three or four-dimensional values.
  *
- * @author Alexander Petkov
+ * @author  Alexander Petkov
  */
 @Extension
 public interface GridCoordinatesFactory {

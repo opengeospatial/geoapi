@@ -20,11 +20,12 @@ import org.opengis.annotation.Extension;
  * <code>Coverage.{@linkplain Coverage#evaluate(DirectPosition, double[]) evaluate}(&hellip;)</code>
  * method, for example when a point is outside the coverage.
  *
- * @author Martin Desruisseaux (IRD)
- * @author Alexander Petkov
- * @see    Coverage#evaluate(DirectPosition, byte[])
- * @see    Coverage#evaluate(DirectPosition, double[])
- * @since  GeoAPI 1.0
+ * @author  Martin Desruisseaux (IRD)
+ * @author  Alexander Petkov
+ * @since   GeoAPI 1.0
+ *
+ * @see Coverage#evaluate(DirectPosition, byte[])
+ * @see Coverage#evaluate(DirectPosition, double[])
  */
 public class CannotEvaluateException extends RuntimeException {
     /**

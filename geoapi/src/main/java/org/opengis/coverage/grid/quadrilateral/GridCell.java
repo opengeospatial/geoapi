@@ -22,7 +22,7 @@ import org.opengis.annotation.Extension;
  *
  * @issue http://jira.codehaus.org/browse/GEO-82
  *
- * @author Alexander Petkov
+ * @author  Alexander Petkov
  */
 @Extension
 public interface GridCell extends org.opengis.coverage.grid.GridCell {

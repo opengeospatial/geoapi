@@ -33,7 +33,7 @@ import static org.opengis.annotation.Specification.*;
  *
  * @issue http://jira.codehaus.org/browse/GEO-82
  *
- * @author Alexander Petkov
+ * @author  Alexander Petkov
  */
 @Extension
 public interface RectifiableGrid  extends GridPositioning {

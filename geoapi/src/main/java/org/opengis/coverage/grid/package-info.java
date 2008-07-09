@@ -111,6 +111,7 @@
  * <P ALIGN="justify">Transformation (e.g., rectification) between grid coordinates and an external coordinate
  * reference system may distort the representation of the sample space in a way that causes interpolation errors.</P>
  *
- * @since GeoAPI 2.0
+ * @version ISO 19123:2004
+ * @since   GeoAPI 2.0
  */
 package org.opengis.coverage.grid;

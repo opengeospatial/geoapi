@@ -21,10 +21,10 @@ import static org.opengis.annotation.Specification.*;
  * Contains information for mapping {@linkplain GridCoordinates grid coordinates} to a position
  * within the sequence of records of feature attribute values.
  *
- * @author ISO/DIS 19123
- * @author Wim Koolhoven
- * @author Martin Schouwenburg
- * @since  GeoAPI 2.1
+ * @version ISO 19123:2004
+ * @author  Wim Koolhoven
+ * @author  Martin Schouwenburg
+ * @since   GeoAPI 2.1
  */
 @UML(identifier="CV_SequenceRule", specification=ISO_19123)
 public interface SequenceRule {

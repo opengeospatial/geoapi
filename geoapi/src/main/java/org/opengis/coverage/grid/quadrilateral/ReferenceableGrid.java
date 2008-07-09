@@ -24,11 +24,10 @@ import static org.opengis.annotation.Specification.*;
  *
  * @issue http://jira.codehaus.org/browse/GEO-82
  *
- * @author ISO/DIS 19123
- * @author Wim Koolhoven
- * @author Martin Schouwenburg
- * @author Martin Desruisseaux
- * @author Alexander Petkov
+ * @version ISO 19123:2004
+ * @author  Wim Koolhoven
+ * @author  Martin Schouwenburg
+ * @author  Alexander Petkov
  */
 @UML(identifier="CV_ReferenceableGrid", specification=ISO_19123)
 public interface ReferenceableGrid extends RectifiableGrid {

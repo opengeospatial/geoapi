@@ -21,8 +21,8 @@ import static java.lang.annotation.RetentionPolicy.*;
  * An annotation for classes or method that are <A HREF="http://geoapi.sourceforge.net">GeoAPI</A>
  * extension. This annotation is mutually exclusive with {@link UML}.
  *
- * @author Martin Desruisseaux (IRD)
- * @since  GeoAPI 2.0
+ * @author  Martin Desruisseaux (IRD)
+ * @since   GeoAPI 2.0
  */
 @Documented
 @Target({TYPE, FIELD, METHOD})

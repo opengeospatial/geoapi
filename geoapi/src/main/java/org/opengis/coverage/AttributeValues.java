@@ -20,10 +20,11 @@ import static org.opengis.annotation.Specification.*;
 /**
  * Represents an element from the range of the {@linkplain Coverage coverage}.
  *
- * @author ISO/DIS 19123
- * @author Martin Desruisseaux
- * @see    Coverage#getRangeElements
- * @since  GeoAPI 2.1
+ * @version ISO 19123:2004
+ * @author  Martin Desruisseaux (IRD)
+ * @since   GeoAPI 2.1
+ *
+ * @see Coverage#getRangeElements
  */
 @UML(identifier="CV_AttributeValues", specification=ISO_19123)
 public interface AttributeValues {

@@ -21,10 +21,10 @@ import static org.opengis.annotation.Specification.*;
  * A {@linkplain GeometryValuePair geometry-value pair} that has a {@linkplain Curve curve}
  * as the value of its geometry attribute.
  *
- * @author ISO/DIS 19123
- * @author Alessio Fabiani
- * @author Martin Desruisseaux
- * @since  GeoAPI 2.1
+ * @version ISO 19123:2004
+ * @author  Alessio Fabiani
+ * @author  Martin Desruisseaux (IRD)
+ * @since   GeoAPI 2.1
  */
 @UML(identifier="CV_CurveValuePair", specification=ISO_19123)
 public interface CurveValuePair extends GeometryValuePair {

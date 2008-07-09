@@ -20,8 +20,8 @@ import static java.lang.annotation.RetentionPolicy.*;
 /**
  * An annotation mapping a package to the XML schema from which it was derived.
  *
- * @author Martin Desruisseaux (IRD)
- * @since  GeoAPI 2.0
+ * @author  Martin Desruisseaux (IRD)
+ * @since   GeoAPI 2.0
  */
 @Documented
 @Target(PACKAGE)
