@@ -20,10 +20,10 @@ import static org.opengis.annotation.Specification.*;
 /**
  * Range of wavelengths in the electromagnetic spectrum.
  *
- * @author <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
- * @author Martin Desruisseaux (IRD)
- * @author Cory Horner (Refractions Research)
- * @since  GeoAPI 2.0
+ * @version <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
+ * @author  Martin Desruisseaux (IRD)
+ * @author  Cory Horner (Refractions Research)
+ * @since   GeoAPI 2.0
  */
 @UML(identifier="MD_Band", specification=ISO_19115)
 public interface Band extends RangeDimension {

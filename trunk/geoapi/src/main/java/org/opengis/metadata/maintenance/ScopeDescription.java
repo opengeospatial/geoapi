@@ -22,10 +22,10 @@ import static org.opengis.annotation.Specification.*;
 /**
  * Description of the class of information covered by the information.
  *
- * @author <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
- * @author Martin Desruisseaux (IRD)
- * @author Cory Horner (Refractions Research)
- * @since  GeoAPI 2.0
+ * @version <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
+ * @author  Martin Desruisseaux (IRD)
+ * @author  Cory Horner (Refractions Research)
+ * @since   GeoAPI 2.0
  */
 @UML(identifier="MD_ScopeDescription", specification=ISO_19115)
 public interface ScopeDescription {

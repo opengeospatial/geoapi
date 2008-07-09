@@ -14,6 +14,7 @@ import java.net.URI;
 import java.util.Collection;
 import org.opengis.util.InternationalString;
 import org.opengis.annotation.Obligation;
+import org.opengis.referencing.Factory;
 
 
 /**
@@ -21,11 +22,11 @@ import org.opengis.annotation.Obligation;
  * All factory methods accept null value for {@linkplain Obligation#OPTIONAL optional} arguments.
  * The value must be non-null for {@linkplain Obligation#MANDATORY mandatory} arguments.
  *
- * @author <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
- * @author Jesse Crossley (SYS Technologies)
- * @since  GeoAPI 2.0
+ * @version <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
+ * @author  Jesse Crossley (SYS Technologies)
+ * @since   GeoAPI 2.0
  */
-public interface CitationFactory {
+public interface CitationFactory extends Factory {
     /**
      * Location of the responsible individual or organization.
      *

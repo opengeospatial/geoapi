@@ -20,9 +20,9 @@ import static org.opengis.annotation.Specification.*;
 /**
  * Information required to enable contact with the responsible person and/or organization.
  *
- * @author <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
- * @author Martin Desruisseaux (IRD)
- * @since  GeoAPI 1.0
+ * @version <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
+ * @author  Martin Desruisseaux (IRD)
+ * @since   GeoAPI 1.0
  */
 @UML(identifier="CI_Contact", specification=ISO_19115)
 public interface Contact {

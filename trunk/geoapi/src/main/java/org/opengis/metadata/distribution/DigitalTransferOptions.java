@@ -24,10 +24,10 @@ import static org.opengis.annotation.ComplianceLevel.*;
 /**
  * Technical means and media by which a resource is obtained from the distributor.
  *
- * @author <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
- * @author Martin Desruisseaux (IRD)
- * @author Cory Horner (Refractions Research)
- * @since  GeoAPI 2.0
+ * @version <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
+ * @author  Martin Desruisseaux (IRD)
+ * @author  Cory Horner (Refractions Research)
+ * @since   GeoAPI 2.0
  */
 @Profile (level=CORE)
 @UML(identifier="MD_DigitalTransferOptions", specification=ISO_19115)

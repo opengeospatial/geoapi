@@ -17,7 +17,7 @@
  * <P ALIGN="justify">This package contains information about the scope and frequency of updating
  * data.</P>
  *
- * @author <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
- * @since  GeoAPI 2.0
+ * @version <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
+ * @since   GeoAPI 2.0
  */
 package org.opengis.metadata.maintenance;

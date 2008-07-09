@@ -21,9 +21,9 @@ import static org.opengis.annotation.Specification.*;
 /**
  * Location of the responsible individual or organization.
  *
- * @author <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
- * @author Martin Desruisseaux (IRD)
- * @since  GeoAPI 1.0
+ * @version <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
+ * @author  Martin Desruisseaux (IRD)
+ * @since   GeoAPI 1.0
  */
 @UML(identifier="CI_Address", specification=ISO_19115)
 public interface Address {

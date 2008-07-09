@@ -24,7 +24,7 @@
  * {@linkplain org.opengis.metadata.constraint.LegalConstraints#getUseConstraints use constraints} elements have
  * a value of "{@linkplain org.opengis.metadata.constraint.Restriction#OTHER_RESTRICTIONS other restrictions}".</P>
  *
- * @author <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
- * @since  GeoAPI 2.0
+ * @version <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
+ * @since   GeoAPI 2.0
  */
 package org.opengis.metadata.constraint;

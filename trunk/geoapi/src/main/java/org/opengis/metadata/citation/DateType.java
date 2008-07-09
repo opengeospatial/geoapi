@@ -23,9 +23,9 @@ import static org.opengis.annotation.Specification.*;
 /**
  * Identification of when a given event occurred
  *
- * @author <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
- * @author Martin Desruisseaux (IRD)
- * @since  GeoAPI 2.0
+ * @version <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
+ * @author  Martin Desruisseaux (IRD)
+ * @since   GeoAPI 2.0
  */
 @UML(identifier="CI_DateTypeCode", specification=ISO_19115)
 public final class DateType extends CodeList<DateType> {

@@ -23,9 +23,9 @@ import static org.opengis.annotation.Specification.*;
 /**
  * Limitation(s) placed upon the access or use of the data.
  *
- * @author <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
- * @author Martin Desruisseaux (IRD)
- * @since  GeoAPI 2.0
+ * @version <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
+ * @author  Martin Desruisseaux (IRD)
+ * @since   GeoAPI 2.0
  */
 @UML(identifier="MD_RestrictionCode", specification=ISO_19115)
 public final class Restriction extends CodeList<Restriction> {

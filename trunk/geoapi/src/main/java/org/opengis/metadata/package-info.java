@@ -97,7 +97,7 @@
  *   <LI>The overhead clearance associated with a specific bridge across a road.</LI>
  * </UL>
  *
- * @author <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
- * @since  GeoAPI 2.0
+ * @version <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
+ * @since   GeoAPI 2.0
  */
 package org.opengis.metadata;

@@ -25,10 +25,10 @@ import static org.opengis.annotation.ComplianceLevel.*;
 /**
  * Standardized resource reference.
  *
- * @author <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
- * @author Martin Desruisseaux (IRD)
- * @author Cory Horner (Refractions Research)
- * @since  GeoAPI 1.0
+ * @version <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
+ * @author  Martin Desruisseaux (IRD)
+ * @author  Cory Horner (Refractions Research)
+ * @since   GeoAPI 1.0
  */
 @Profile (level=CORE)
 @UML(identifier="CI_Citation", specification=ISO_19115)

@@ -23,7 +23,7 @@
  * information} entity. {@linkplain org.opengis.metadata.content.CoverageDescription Coverage description}
  * may be subclassed as {@linkplain org.opengis.metadata.content.ImageDescription image description}.</P>
  *
- * @author <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
- * @since  GeoAPI 2.0
+ * @version <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
+ * @since   GeoAPI 2.0
  */
 package org.opengis.metadata.content;

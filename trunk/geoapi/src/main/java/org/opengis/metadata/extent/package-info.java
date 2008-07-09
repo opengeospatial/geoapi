@@ -26,7 +26,7 @@
  * {@linkplain org.opengis.metadata.extent.GeographicBoundingBox geographic bounding box} and
  * {@linkplain org.opengis.metadata.extent.GeographicDescription geographic description}.</P>
  *
- * @author <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
- * @since  GeoAPI 1.0
+ * @version <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
+ * @since   GeoAPI 1.0
  */
 package org.opengis.metadata.extent;

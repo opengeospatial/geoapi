@@ -42,7 +42,7 @@
  * elements of {@linkplain org.opengis.metadata.identification.DataIdentification data identification} are conditional;
  * one of them shall be included if the dataset is spatially referenced. If necessary both may be used.</P>
  *
- * @author <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
- * @since  GeoAPI 2.0
+ * @version <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
+ * @since   GeoAPI 2.0
  */
 package org.opengis.metadata.identification;
