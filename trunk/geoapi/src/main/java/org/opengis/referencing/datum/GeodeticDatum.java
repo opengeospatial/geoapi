@@ -22,9 +22,8 @@ import static org.opengis.annotation.Specification.*;
  * system centered in this ellipsoid (or sphere).
  *
  * @version <A HREF="http://portal.opengeospatial.org/files/?artifact_id=6716">Abstract specification 2.0</A>
- * @author ISO/DIS 19111
- * @author Martin Desruisseaux (IRD)
- * @since GeoAPI 1.0
+ * @author  Martin Desruisseaux (IRD)
+ * @since   GeoAPI 1.0
  *
  * @see Ellipsoid
  * @see PrimeMeridian
@@ -33,12 +32,16 @@ import static org.opengis.annotation.Specification.*;
 public interface GeodeticDatum extends Datum {
     /**
      * Returns the ellipsoid.
+     *
+     * @return The ellipsoid.
      */
     @UML(identifier="usesEllipsoid", obligation=MANDATORY, specification=ISO_19111)
     Ellipsoid getEllipsoid();
 
     /**
      * Returns the prime meridian.
+     *
+     * @return The prime meridian.
      */
     @UML(identifier="usesPrimeMeridian", obligation=MANDATORY, specification=ISO_19111)
     PrimeMeridian getPrimeMeridian();

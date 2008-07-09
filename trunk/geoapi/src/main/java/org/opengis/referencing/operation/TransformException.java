@@ -23,8 +23,8 @@ import org.opengis.geometry.DirectPosition;  // For javadoc
  * It is also thrown when {@link CoordinateOperationFactory} fails to find a path between two
  * {@linkplain org.opengis.referencing.crs.CoordinateReferenceSystem coordinate reference systems}.
  *
- * @author Martin Desruisseaux (IRD)
- * @since GeoAPI 1.0
+ * @author  Martin Desruisseaux (IRD)
+ * @since   GeoAPI 1.0
  */
 public class TransformException extends Exception {
     /**
@@ -45,13 +45,13 @@ public class TransformException extends Exception {
     private MathTransform lastCompletedTransform;
 
     /**
-     * Construct an exception with no detail message.
+     * Constructs an exception with no detail message.
      */
     public TransformException() {
     }
 
     /**
-     * Construct an exception with the specified detail message.
+     * Constructs an exception with the specified detail message.
      *
      * @param  message The detail message. The detail message is saved
      *         for later retrieval by the {@link #getMessage()} method.
@@ -61,7 +61,7 @@ public class TransformException extends Exception {
     }
 
     /**
-     * Construct an exception with the specified detail message and cause.
+     * Constructs an exception with the specified detail message and cause.
      *
      * @param  message The detail message. The detail message is saved
      *         for later retrieval by the {@link #getMessage()} method.
@@ -77,6 +77,8 @@ public class TransformException extends Exception {
      * the untransformable coordinates with {@linkplain Double#NaN NaN} values. This information
      * is useful in the context of concatenated transforms. May be {@code null} if unknown.
      *
+     * @return The last reliable transform.
+     *
      * @since GeoAPI 2.2
      */
     public MathTransform getLastCompletedTransform() {
@@ -86,6 +88,8 @@ public class TransformException extends Exception {
     /**
      * Sets the last transform that either transformed successfuly all coordinates, or
      * filled the untransformable coordinates with {@linkplain Double#NaN NaN} values.
+     *
+     * @param transform The last reliable transform.
      *
      * @since GeoAPI 2.2
      */

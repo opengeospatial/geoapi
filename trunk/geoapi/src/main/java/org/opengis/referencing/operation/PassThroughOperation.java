@@ -21,14 +21,15 @@ import static org.opengis.annotation.Specification.*;
  * coordinate operation.
  *
  * @version <A HREF="http://portal.opengeospatial.org/files/?artifact_id=6716">Abstract specification 2.0</A>
- * @author ISO/DIS 19111
- * @author Martin Desruisseaux (IRD)
- * @since GeoAPI 1.0
+ * @author  Martin Desruisseaux (IRD)
+ * @since   GeoAPI 1.0
  */
 @UML(identifier="CC_PassThroughOperation", specification=ISO_19111)
 public interface PassThroughOperation extends SingleOperation {
     /**
      * Returns the operation to apply on the subset of a coordinate tuple.
+     *
+     * @return The operation to apply on the subset of a coordinate tuple.
      */
     @UML(identifier="usesOperation", obligation=MANDATORY, specification=ISO_19111)
     Operation getOperation();

@@ -10,7 +10,7 @@
  *************************************************************************************************/
 package org.opengis.parameter;
 
-import java.util.List;  // For javadoc
+import java.util.List;
 
 
 /**
@@ -20,14 +20,14 @@ import java.util.List;  // For javadoc
  * allowed. This operation may be throws during {@linkplain List#add} or
  * {@linkplain List#remove} operation on the list returned by
  * {@link ParameterValueGroup#values}.
+ * <p>
+ * <b>Note:</b> This exception is of kind "{@linkplain IllegalStateException illegal state}"
+ * rather than "{@linkplain IllegalArgumentException illegal argument}" because it is not
+ * caused by a bad argument; it is rather a consequence of an {@linkplain ParameterValueGroup
+ * parameter value group} being "full".
  *
- * <P><strong>Note:</strong> This exception is of kind "{@linkplain IllegalStateException illegal
- * state}" rather than "{@linkplain IllegalArgumentException illegal argument}" because it is
- * not caused by a bad argument; it is rather a consequence of an {@linkplain ParameterValueGroup
- * parameter value group} being "full".</P>
- *
- * @author Martin Desruisseaux (IRD)
- * @since GeoAPI 2.0
+ * @author  Martin Desruisseaux (IRD)
+ * @since   GeoAPI 2.0
  *
  * @see ParameterValueGroup#values
  * @see ParameterDescriptor#getMinimumOccurs
@@ -47,8 +47,8 @@ public class InvalidParameterCardinalityException extends IllegalStateException 
     /**
      * Creates an exception with the specified message and parameter name.
      *
-     * @param  message The detail message. The detail message is saved for
-     *         later retrieval by the {@link #getMessage()} method.
+     * @param message The detail message. The detail message is saved for
+     *                later retrieval by the {@link #getMessage()} method.
      * @param parameterName The name of the parameter with invalid cardinality.
      */
     public InvalidParameterCardinalityException(String message, String parameterName) {
@@ -58,6 +58,8 @@ public class InvalidParameterCardinalityException extends IllegalStateException 
 
     /**
      * Returns the name of the parameter with invalid cardinality.
+     *
+     * @return The name of the parameter with invalid cardinality.
      */
     public String getParameterName() {
         return parameterName;

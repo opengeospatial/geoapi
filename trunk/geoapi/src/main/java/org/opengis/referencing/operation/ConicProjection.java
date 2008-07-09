@@ -19,8 +19,8 @@ import org.opengis.annotation.Extension;
  * <p>&nbsp;</p>
  * <p align="center"><img src="../doc-files/ConicProjection.png"></p>
  *
- * @author Martin Desruisseaux (IRD)
- * @since GeoAPI 1.0
+ * @author  Martin Desruisseaux (IRD)
+ * @since   GeoAPI 1.0
  *
  * @see org.opengis.referencing.crs.ProjectedCRS
  * @see <A HREF="http://mathworld.wolfram.com/ConicProjection.html">Conic projection on MathWorld</A>

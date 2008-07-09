@@ -15,8 +15,8 @@ package org.opengis.referencing.operation;
  * Thrown when an operation is applied in a manner inconsistent with one or both of
  * two particular CRS objects.
  *
- * @author Jesse Crossley (SYS Technologies)
- * @since GeoAPI 1.0
+ * @author  Jesse Crossley (SYS Technologies)
+ * @since   GeoAPI 1.0
  */
 public class IncompatibleOperationException extends Exception {
     /**
@@ -42,7 +42,9 @@ public class IncompatibleOperationException extends Exception {
     }
 
     /**
-     * Returns the invalid Operation name.
+     * Returns the invalid operation name.
+     *
+     * @return The invalid operation name.
      */
     public String getOperationName() {
         return operationName;

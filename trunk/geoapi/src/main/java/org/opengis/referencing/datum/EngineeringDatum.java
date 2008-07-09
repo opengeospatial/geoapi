@@ -11,8 +11,6 @@
 package org.opengis.referencing.datum;
 
 import org.opengis.annotation.UML;
-
-import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
 
 
@@ -23,9 +21,8 @@ import static org.opengis.annotation.Specification.*;
  * ship or satellite).
  *
  * @version <A HREF="http://portal.opengeospatial.org/files/?artifact_id=6716">Abstract specification 2.0</A>
- * @author ISO/DIS 19111
- * @author Martin Desruisseaux (IRD)
- * @since GeoAPI 1.0
+ * @author  Martin Desruisseaux (IRD)
+ * @since   GeoAPI 1.0
  */
 @UML(identifier="CD_EngineeringDatum", specification=ISO_19111)
 public interface EngineeringDatum extends Datum {

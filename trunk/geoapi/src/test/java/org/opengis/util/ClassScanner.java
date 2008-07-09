@@ -7,7 +7,7 @@
  ** Copyright (C) 2003 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
  **
  *************************************************************************************************/
-package org.opengis;
+package org.opengis.util;
 
 import java.io.File;
 import java.net.URISyntaxException;
@@ -16,16 +16,18 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.NoSuchElementException;
-import junit.framework.Assert;
+
 import org.opengis.annotation.Specification;
+
+import static org.junit.Assert.*;
 
 
 /**
  * Scans every classes in the OpenGIS classpath.
  *
- * @author Martin Desruisseaux
+ * @author Martin Desruisseaux (IRD)
  */
-public final class ClassScanner extends Assert implements Iterator<Class<?>> {
+final class ClassScanner implements Iterator<Class<?>> {
     /**
      * Extension for class files.
      */

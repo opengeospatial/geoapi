@@ -31,9 +31,8 @@ import static org.opengis.annotation.Specification.*;
  * {@code DatumFactory} can be used to make "special" datums.
  *
  * @version <A HREF="http://www.opengis.org/docs/01-009.pdf">Implementation specification 1.0</A>
- * @author Open Geospatial Consortium
- * @author Martin Desruisseaux (IRD)
- * @since GeoAPI 1.0
+ * @author  Martin Desruisseaux (IRD)
+ * @since   GeoAPI 1.0
  *
  * @see org.opengis.referencing.cs.CSFactory
  * @see org.opengis.referencing.crs.CRSFactory

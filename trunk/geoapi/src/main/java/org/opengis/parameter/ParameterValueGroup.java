@@ -11,7 +11,7 @@
 package org.opengis.parameter;
 
 import java.util.List;
-import org.opengis.metadata.Identifier;  // For javadoc
+import org.opengis.metadata.Identifier;
 import org.opengis.annotation.UML;
 import org.opengis.annotation.Extension;
 
@@ -26,10 +26,9 @@ import static org.opengis.annotation.Specification.*;
  * distinquish among those groups.
  *
  * @version <A HREF="http://portal.opengeospatial.org/files/?artifact_id=6716">Abstract specification 2.0</A>
- * @author ISO/DIS 19111
- * @author Martin Desruisseaux (IRD)
- * @author Jody Garnett (Refractions Research)
- * @since GeoAPI 1.0
+ * @author  Martin Desruisseaux (IRD)
+ * @author  Jody Garnett (Refractions Research)
+ * @since   GeoAPI 1.0
  *
  * @see ParameterDescriptorGroup
  * @see ParameterValue
@@ -39,11 +38,13 @@ public interface ParameterValueGroup extends GeneralParameterValue {
     /**
      * The abstract definition of this group of parameters.
      *
-     * @rename Renamed <CODE>getDescriptor()</CODE> because <CODE>getGroup()</CODE> seems too
-     *         restrictive, misleading (this method returns an abstract definition of a group
-     *         of parameters, not the actual group), and for consistency with usage in other
-     *         Java extensions (e.g.
-     *         {@link javax.media.jai.ParameterList.html#getParameterListDescriptor ParameterList}).
+     * @departure
+     *   The ISO name was {@code "valuesOfGroup"}. GeoAPI uses {@code "descriptor"} instead in order
+     *   to override the {@linkplain GeneralParameterValue#getDescriptor generic method provided in
+     *   the parent interface}. The "descriptor" name make more apparent that this method returns an
+     *   abstract definition of parameters - not their actual values - and is consistent with usage
+     *   in other Java libraries like {@link javax.media.jai.ParameterList#getParameterListDescriptor
+     *   ParameterList}.
      */
     @UML(identifier="valuesOfGroup", obligation=MANDATORY, specification=ISO_19111)
     ParameterDescriptorGroup getDescriptor();
@@ -77,19 +78,19 @@ public interface ParameterValueGroup extends GeneralParameterValue {
      * minimumOccurs} == 0</code>), then a {@linkplain ParameterValue parameter value} is
      * automatically created and initialized to its {@linkplain ParameterDescriptor#getDefaultValue
      * default value} (if any).
-     *
-     * <P>This convenience method provides a way to get and set parameter values by name. For
+     * <p>
+     * This convenience method provides a way to get and set parameter values by name. For
      * example the following idiom fetches a floating point value for the
-     * <code>"false_easting"</code> parameter:</P>
+     * {@code "false_easting"} parameter:
      *
      * <blockquote><code>
      * double value = parameter("false_easting").{@linkplain ParameterValue#doubleValue() doubleValue()};
      * </code></blockquote>
      *
-     * <P>This method do not search recursively in subgroups. This is because more than one
+     * This method do not search recursively in subgroups. This is because more than one
      * subgroup may exist for the same {@linkplain ParameterDescriptorGroup descriptor}.
      * The user must {@linkplain #groups query all subgroups} and select explicitly the
-     * appropriate one to use.</P>
+     * appropriate one to use.
      *
      * @param  name The case insensitive {@linkplain Identifier#getCode identifier code} of the
      *              parameter to search for.
@@ -115,7 +116,7 @@ public interface ParameterValueGroup extends GeneralParameterValue {
     List<ParameterValueGroup> groups(String name) throws ParameterNotFoundException;
 
     /**
-     * Create a new group of the specified name. The specified name must be the
+     * Creates a new group of the specified name. The specified name must be the
      * {@linkplain Identifier#getCode identifier code} of a {@linkplain ParameterDescriptorGroup
      * descriptor group}.
      *

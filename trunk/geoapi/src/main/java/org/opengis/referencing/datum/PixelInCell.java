@@ -26,9 +26,8 @@ import static org.opengis.annotation.Specification.*;
  * except that the later is more clearly restricted to the two-dimensional case.
  *
  * @version <A HREF="http://portal.opengeospatial.org/files/?artifact_id=6716">Abstract specification 2.0</A>
- * @author ISO/DIS 19111
- * @author Martin Desruisseaux (IRD)
- * @since GeoAPI 1.0
+ * @author  Martin Desruisseaux (IRD)
+ * @since   GeoAPI 1.0
  */
 @UML(identifier="CD_PixelInCell", specification=ISO_19111)
 public final class PixelInCell extends CodeList<PixelInCell> {

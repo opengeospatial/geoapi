@@ -15,8 +15,8 @@ package org.opengis.referencing;
  * Thrown when an {@linkplain AuthorityFactory authority factory} can't find
  * the requested authority code.
  *
- * @author Martin Desruisseaux (IRD)
- * @since GeoAPI 1.0
+ * @author  Martin Desruisseaux (IRD)
+ * @since   GeoAPI 1.0
  *
  * @see org.opengis.referencing.datum.DatumAuthorityFactory
  * @see org.opengis.referencing.crs.CRSAuthorityFactory

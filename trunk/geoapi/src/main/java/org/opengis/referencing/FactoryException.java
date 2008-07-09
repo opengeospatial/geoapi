@@ -24,8 +24,8 @@ package org.opengis.referencing;
  * error in the underlying database (e.g. {@link java.io.IOException} or
  * {@link java.sql.SQLException}), then this cause should be specified.
  *
- * @author Martin Desruisseaux (IRD)
- * @since GeoAPI 1.0
+ * @author  Martin Desruisseaux (IRD)
+ * @since   GeoAPI 1.0
  *
  * @see org.opengis.referencing.operation.CoordinateOperationFactory
  */

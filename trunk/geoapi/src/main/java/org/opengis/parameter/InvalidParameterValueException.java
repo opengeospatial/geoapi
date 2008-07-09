@@ -11,8 +11,6 @@
 package org.opengis.parameter;
 
 import org.opengis.annotation.UML;
-
-import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
 
 
@@ -20,9 +18,8 @@ import static org.opengis.annotation.Specification.*;
  * Thrown when an invalid value was given to a {@linkplain ParameterValue parameter}.
  *
  * @version <A HREF="http://www.opengis.org/docs/01-004.pdf">Grid Coverage specification 1.0</A>
- * @author Open Geospatial Consortium
- * @author Martin Desruisseaux (IRD)
- * @since GeoAPI 1.0
+ * @author  Martin Desruisseaux (IRD)
+ * @since   GeoAPI 1.0
  *
  * @see ParameterValue#setValue(int)
  * @see ParameterValue#setValue(double)
@@ -48,10 +45,10 @@ public class InvalidParameterValueException extends IllegalArgumentException {
     /**
      * Creates an exception with the specified invalid value.
      *
-     * @param  message The detail message. The detail message is saved for
-     *         later retrieval by the {@link #getMessage()} method.
-     * @param  parameterName The parameter name.
-     * @param  value The invalid parameter value.
+     * @param message The detail message. The detail message is saved for
+     *                later retrieval by the {@link #getMessage()} method.
+     * @param parameterName The parameter name.
+     * @param value The invalid parameter value.
      */
     public InvalidParameterValueException(String message, String parameterName, Object value) {
         super(message);
@@ -85,6 +82,8 @@ public class InvalidParameterValueException extends IllegalArgumentException {
 
     /**
      * Returns the parameter name.
+     *
+     * @return The parameter name.
      */
     public String getParameterName() {
         return parameterName;
@@ -92,6 +91,8 @@ public class InvalidParameterValueException extends IllegalArgumentException {
 
     /**
      * Returns the invalid parameter value.
+     *
+     * @return The invalid parameter value.
      */
     public Object getValue() {
         return value;

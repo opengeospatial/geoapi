@@ -18,19 +18,19 @@ import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.LogRecord;
 import java.util.logging.Logger;
-import junit.framework.Test;
-import junit.framework.TestCase;
-import junit.framework.TestSuite;
-import org.opengis.ClassScanner;
+
 import org.opengis.metadata.identification.CharacterSet;
+
+import org.junit.*;
+import static org.junit.Assert.*;
 
 
 /**
  * Tests every {@link CodeList}.
  *
- * @author Martin desruisseaux
+ * @author Martin desruisseaux (IRD)
  */
-public class CodeListTest extends TestCase {
+public final class CodeListTest {
     /**
      * The logger to use.
      */
@@ -43,16 +43,10 @@ public class CodeListTest extends TestCase {
     private static boolean capacityFailed = false;
 
     /**
-     * Constructs a test case.
-     */
-    public CodeListTest(final String testName) {
-        super(testName);
-    }
-
-    /**
      * Tests the {@link CharacterSet} code list. At the difference of other code lists,
      * its {@link CodeList#matches} method is overriden.
      */
+    @Test
     public void testCharacterSet() {
         final CodeList code = CharacterSet.UTF_8;
         assertEquals ("UTF_8", code.name());
@@ -71,6 +65,7 @@ public class CodeListTest extends TestCase {
     /**
      * Tests the instantiation of every code lists.
      */
+    @Test
     public void testAll() {
         int count = 0;
         final Class<CodeList> base = CodeList.class;
@@ -260,19 +255,5 @@ public class CodeListTest extends TestCase {
             return;
         }
         assertEquals("Dummy", value.name());
-    }
-
-    /**
-     * Returns the test suite.
-     */
-    public static Test suite() {
-        return new TestSuite(CodeListTest.class);
-    }
-
-    /**
-     * Run the suite from the command line.
-     */
-    public static void main(String[] args) {
-        junit.textui.TestRunner.run(suite());
     }
 }

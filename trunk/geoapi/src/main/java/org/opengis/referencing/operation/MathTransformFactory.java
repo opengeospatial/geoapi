@@ -38,7 +38,7 @@ import static org.opengis.annotation.Specification.*;
  * not know or care how the coordinates relate to positions in the real world.
  * This lack of semantics makes implementing {@code MathTransformFactory}
  * significantly easier than it would be otherwise.
- *
+ * <p>
  * For example the affine transform applies a matrix to the coordinates
  * without knowing how what it is doing relates to the real world. So if
  * the matrix scales <var>Z</var> values by a factor of 1000, then it could
@@ -60,9 +60,8 @@ import static org.opengis.annotation.Specification.*;
  * transform object to keep information on its source and target coordinate systems.
  *
  * @version <A HREF="http://www.opengis.org/docs/01-009.pdf">Implementation specification 1.0</A>
- * @author Open Geospatial Consortium
- * @author Martin Desruisseaux (IRD)
- * @since GeoAPI 1.0
+ * @author  Martin Desruisseaux (IRD)
+ * @since   GeoAPI 1.0
  *
  * @see <A HREF="http://www.remotesensing.org/geotiff/proj_list/">Projection transform list on RemoteSensing.org</A>
  */

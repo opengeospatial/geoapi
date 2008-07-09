@@ -23,13 +23,12 @@ import org.opengis.annotation.Extension;
  * CoordinateSystem coordinate systems} that cannot be created by a {@link CSAuthorityFactory}.
  * This factory is very flexible, whereas the authority factory is easier to use.
  *
- * So {@link CSAuthorityFactory} can be used to make "standard" coordinate systems, and
- * {@code CSFactory} can be used to make "special" coordinate systems.
+ * So {@link CSAuthorityFactory} can be used to make "standard" coordinate systems,
+ * and {@code CSFactory} can be used to make "special" coordinate systems.
  *
  * @version <A HREF="http://www.opengis.org/docs/01-009.pdf">Implementation specification 1.0</A>
- * @author Open Geospatial Consortium
- * @author Martin Desruisseaux (IRD)
- * @since GeoAPI 1.0
+ * @author  Martin Desruisseaux (IRD)
+ * @since   GeoAPI 1.0
  *
  * @see org.opengis.referencing.crs.CRSFactory
  * @see org.opengis.referencing.datum.DatumFactory

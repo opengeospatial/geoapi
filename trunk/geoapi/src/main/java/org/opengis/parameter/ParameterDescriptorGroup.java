@@ -11,7 +11,7 @@
 package org.opengis.parameter;
 
 import java.util.List;
-import org.opengis.metadata.Identifier;  // For javadoc
+import org.opengis.metadata.Identifier;
 import org.opengis.annotation.UML;
 import org.opengis.annotation.Extension;
 
@@ -23,10 +23,9 @@ import static org.opengis.annotation.Specification.*;
  * The definition of a group of related parameters used by an operation method.
  *
  * @version <A HREF="http://portal.opengeospatial.org/files/?artifact_id=6716">Abstract specification 2.0</A>
- * @author ISO/DIS 19111
- * @author Martin Desruisseaux (IRD)
- * @author Jody Garnett (Refractions Research)
- * @since GeoAPI 2.0
+ * @author  Martin Desruisseaux (IRD)
+ * @author  Jody Garnett (Refractions Research)
+ * @since   GeoAPI 2.0
  *
  * @see ParameterValueGroup
  * @see ParameterDescriptor
