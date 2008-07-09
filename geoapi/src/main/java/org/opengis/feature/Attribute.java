@@ -82,11 +82,14 @@ public interface Attribute extends Property {
     /**
      * Check the attribute value against the constraints provided by the AttributeDescriptor.
      * <p>
-     * Please note this method confirms value binding and restrictions only; the number of
-     * times an attribute is used (minOccurs and maxOccurs) is not varified by
-     * this method.
+     * Please note this method checks the value only - it should have the correct java binding,
+     * it should only be null if isNillable is true; and if a value is provided it should
+     * satisfy all of the restrictions provided.
+     * <p>
+     * To check the the number of times an attribute is used (minOccurs and maxOccurs) please
+     * use ComplexAttribute.validate().
      * 
-     * @return true if the value is compatable with getType().getBinding() and getType().getRestrictions()
+     * @thorws IllegalAttributeException If value fails validation
      */
-    boolean isValid();
+    boolean validate() throws IllegalAttributeException;
 }
