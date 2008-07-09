@@ -225,5 +225,5 @@ public interface ComplexAttribute extends Attribute {
      * on each entry in turn (in order to check isNillable, binding and restrictions).
      * @throws IllegalAttributeException If any attribute fails validation
      */
-    boolean validate() throws IllegalAttributeException;
+    void validate() throws IllegalAttributeException;
 }

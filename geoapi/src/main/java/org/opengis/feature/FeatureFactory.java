@@ -11,7 +11,6 @@
 package org.opengis.feature;
 
 import java.util.Collection;
-import java.util.List;
 
 import org.opengis.feature.simple.SimpleFeature;
 import org.opengis.feature.simple.SimpleFeatureType;
@@ -118,28 +117,6 @@ public interface FeatureFactory {
      */
     Feature createFeature(Collection<Property> value, FeatureType type, String id);
 
-    /**
-     * Creates a simple feature.
-     * <p>
-     *   <code>descriptor.getType()</code> must be an instance of {@link SimpleFeatureType}.
-     * </p>
-     * @param value The value of the feature, a collection of attributes.
-     * @param descriptor The attribute descriptor.
-     * @param id The id of the feature.
-     *
-     */
-    SimpleFeature createSimpleFeautre(List<Attribute> value, AttributeDescriptor decsriptor, String id);
-
-    /**
-     * Creates a simple feature.
-     *
-     * @param value The value of the feature, a collection of attributes.
-     * @param type The type of the simple feature.
-     * @param id The id of the feature.
-     */
-    SimpleFeature createSimpleFeature(List<Attribute> value, SimpleFeatureType type, String id);
-    
-    
     /**
      * Create a SimpleFeature from an array of objects.
      * <p>

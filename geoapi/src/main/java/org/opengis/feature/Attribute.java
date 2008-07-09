@@ -91,5 +91,5 @@ public interface Attribute extends Property {
      * 
      * @thorws IllegalAttributeException If value fails validation
      */
-    boolean validate() throws IllegalAttributeException;
+    void validate() throws IllegalAttributeException;
 }
