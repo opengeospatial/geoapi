@@ -33,10 +33,10 @@ import static org.opengis.annotation.Specification.*;
  * is to extend the coverage to direct positions within the interior of each grid cell by
  * interpolation from the grid points at the corners of the cell.
  *
- * @author ISO/DIS 19123
- * @author Wim Koolhoven
- * @author Martin Desruisseaux
- * @since  GeoAPI 2.1
+ * @version ISO 19123:2004
+ * @author  Wim Koolhoven
+ * @author  Martin Desruisseaux (IRD)
+ * @since   GeoAPI 2.1
  */
 @UML(identifier="CV_ContinousQuadrilateralGridCoverage", specification=ISO_19123)
 public interface ContinuousQuadrilateralGridCoverage extends ContinuousCoverage {

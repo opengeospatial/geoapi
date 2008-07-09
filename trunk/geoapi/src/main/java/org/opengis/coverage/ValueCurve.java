@@ -25,10 +25,10 @@ import static org.opengis.annotation.Specification.*;
  * the determination of feature attribute values at any position on that curve. Value curves depend
  * upon the arc-length parameterization operations defined for {@link Curve}.
  *
- * @author ISO/DIS 19123
- * @author Alessio Fabiani
- * @author Martin Desruisseaux
- * @since  GeoAPI 2.1
+ * @version ISO 19123:2004
+ * @author  Alessio Fabiani
+ * @author  Martin Desruisseaux (IRD)
+ * @since   GeoAPI 2.1
  */
 @UML(identifier="CV_ValueCurve", specification=ISO_19123)
 public interface ValueCurve extends ValueObject {

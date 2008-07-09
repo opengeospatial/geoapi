@@ -45,10 +45,10 @@ import static org.opengis.annotation.Specification.*;
  * will be a set of congruent hexagons. The hexagons will be irregular unless the offset vectors
  * differ in direction by exactly 60&deg;.
  *
- * @author ISO/DIS 19123
- * @author Alessio Fabiani
- * @author Martin Desruisseaux
- * @since  GeoAPI 2.1
+ * @version ISO 19123:2004
+ * @author  Alessio Fabiani
+ * @author  Martin Desruisseaux (IRD)
+ * @since   GeoAPI 2.1
  *
  * @todo evaluateInverse
  */

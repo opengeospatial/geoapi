@@ -26,10 +26,10 @@ import static org.opengis.annotation.Specification.*;
  *
  * @param <G> The type of the geometry member.
  *
- * @author ISO/DIS 19123
- * @author Stephane Fellah
- * @author Martin Desruisseaux
- * @since  GeoAPI 2.1
+ * @version ISO 19123:2004
+ * @author  Stephane Fellah
+ * @author  Martin Desruisseaux (IRD)
+ * @since   GeoAPI 2.1
  *
  * @see Coverage#getDomainElements
  */

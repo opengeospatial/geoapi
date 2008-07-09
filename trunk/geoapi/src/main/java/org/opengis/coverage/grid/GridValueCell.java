@@ -24,10 +24,10 @@ import static org.opengis.annotation.Specification.*;
  * of {@linkplain GridPointValuePair grid point value pairs} with a geometric structure
  * defined by a {@linkplain GridCell grid cell}.
  *
- * @author ISO/DIS 19123
- * @author Wim Koolhoven
- * @author Martin Schouwenburg
- * @since  GeoAPI 2.1
+ * @version ISO 19123:2004
+ * @author  Wim Koolhoven
+ * @author  Martin Schouwenburg
+ * @since   GeoAPI 2.1
  */
 @UML(identifier="CV_GridValueCell", specification=ISO_19123)
 public interface GridValueCell extends ValueObject {

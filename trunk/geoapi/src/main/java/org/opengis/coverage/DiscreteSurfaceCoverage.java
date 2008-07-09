@@ -35,10 +35,10 @@ import static org.opengis.annotation.Specification.*;
  * discrete surface coverage may also consist of the triangles that compose a TIN, or the
  * polygons of a Thiessen polygon network.
  *
- * @author ISO/DIS 19123
- * @author Alessio Fabiani
- * @author Martin Desruisseaux
- * @since  GeoAPI 2.1
+ * @version ISO 19123:2004
+ * @author  Alessio Fabiani
+ * @author  Martin Desruisseaux (IRD)
+ * @since   GeoAPI 2.1
  *
  * @todo evaluate and evaluateInverse
  */

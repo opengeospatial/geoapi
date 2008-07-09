@@ -38,11 +38,12 @@ import static org.opengis.annotation.Specification.*;
  *   </TD></TR>
  * </TABLE>
  *
- * @author  Martin Desruisseaux (IRD)
  * @version <A HREF="http://www.opengis.org/docs/01-004.pdf">Grid Coverage specification 1.0</A>
- * @see     RenderedImage
- * @see     javax.media.jai.PixelAccessor
+ * @author  Martin Desruisseaux (IRD)
  * @since   GeoAPI 1.0
+ *
+ * @see RenderedImage
+ * @see javax.media.jai.PixelAccessor
  */
 @UML(identifier="CV_GridCoverage", specification=OGC_01004)
 public interface GridCoverage extends Coverage {

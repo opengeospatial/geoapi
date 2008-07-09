@@ -61,12 +61,12 @@ import static org.opengis.annotation.Specification.*;
  * encouraged to implement the {@link javax.media.jai.PropertySource} or
  * {@link javax.media.jai.WritablePropertySource} interface.
  *
- * @author ISO/DIS 19123
- * @author Stephane Fellah
- * @author Martin Desruisseaux
- * @author Wim Koolhoven
- * @author Alexander Petkov
- * @since  GeoAPI 2.1
+ * @version ISO 19123:2004
+ * @author  Stephane Fellah
+ * @author  Martin Desruisseaux (IRD)
+ * @author  Wim Koolhoven
+ * @author  Alexander Petkov
+ * @since   GeoAPI 2.1
  */
 @UML(identifier="CV_Coverage", specification=ISO_19123)
 public interface Coverage {

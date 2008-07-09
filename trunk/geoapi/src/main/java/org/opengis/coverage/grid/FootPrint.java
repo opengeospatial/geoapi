@@ -22,10 +22,10 @@ import static org.opengis.annotation.Specification.*;
  * The presentation of an observed or measured space surrounding a sample point in the context
  * of some external {@linkplain CoordinateReferenceSystem coordinate reference system}.
  *
- * @author ISO/DIS 19123
- * @author Martin Schouwenburg
- * @author Wim Koolhoven
- * @since  GeoAPI 2.1
+ * @version ISO 19123:2004
+ * @author  Martin Schouwenburg
+ * @author  Wim Koolhoven
+ * @since   GeoAPI 2.1
  */
 @UML(identifier="CV_FootPrint", specification=ISO_19123)
 public interface FootPrint {

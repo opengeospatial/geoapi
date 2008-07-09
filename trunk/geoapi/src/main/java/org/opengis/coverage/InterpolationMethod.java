@@ -43,9 +43,9 @@ import static org.opengis.annotation.Specification.*;
  *   <tr><td>Barycentric</td>      <td>TIN</td>                             <td>2</td></tr>
  * </table>
  *
- * @author ISO/DIS 19123
- * @author Martin Desruisseaux
- * @since  GeoAPI 2.1
+ * @version ISO 19123:2004
+ * @author  Martin Desruisseaux (IRD)
+ * @since   GeoAPI 2.1
  */
 @UML(identifier="CV_InterpolationMethod", specification=ISO_19123)
 public class InterpolationMethod extends CodeList<InterpolationMethod> {

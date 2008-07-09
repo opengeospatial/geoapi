@@ -42,9 +42,10 @@ import static org.opengis.annotation.Specification.*;
  *
  * @version <A HREF="http://www.opengis.org/docs/01-004.pdf">Grid Coverage specification 1.0</A>
  * @author  Martin Desruisseaux (IRD)
- * @see     GridPacking
- * @see     ByteInValuePacking
  * @since   GeoAPI 1.0
+ *
+ * @see GridPacking
+ * @see ByteInValuePacking
  *
  * @deprecated In favor of migrating to ISO 19123 definition for Coverage.
  */

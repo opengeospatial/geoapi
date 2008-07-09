@@ -24,11 +24,11 @@ import static org.opengis.annotation.Specification.*;
 /**
  * Point located at the intersection of two or more curves in a {@linkplain Grid grid}.
  *
- * @author ISO/DIS 19123
- * @author Martin Schouwenburg
- * @author Wim Koolhoven
- * @author Martin Desruisseaux
- * @since  GeoAPI 2.1
+ * @version ISO 19123:2004
+ * @author  Martin Schouwenburg
+ * @author  Wim Koolhoven
+ * @author  Martin Desruisseaux (IRD)
+ * @since   GeoAPI 2.1
  */
 @UML(identifier="CV_GridPoint", specification=ISO_19123)
 public interface GridPoint extends DomainObject<Geometry> {

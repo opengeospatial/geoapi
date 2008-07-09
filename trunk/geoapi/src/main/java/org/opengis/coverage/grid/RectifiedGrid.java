@@ -41,11 +41,11 @@ import static org.opengis.annotation.Specification.*;
  *       system, even if an offset vector is aligned with an axis of the external coordinate system.</li>
  * </ul>
  *
- * @author ISO/DIS 19123
- * @author Wim Koolhoven
- * @author Martin Schouwenburg
- * @author Martin Desruisseaux
- * @since  GeoAPI 2.1
+ * @version ISO 19123:2004
+ * @author  Wim Koolhoven
+ * @author  Martin Schouwenburg
+ * @author  Martin Desruisseaux (IRD)
+ * @since   GeoAPI 2.1
  */
 @UML(identifier="CV_RectifiedGrid", specification=ISO_19123)
 public interface RectifiedGrid extends Grid {

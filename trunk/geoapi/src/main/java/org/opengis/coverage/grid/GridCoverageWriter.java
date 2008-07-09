@@ -35,10 +35,11 @@ import org.opengis.parameter.InvalidParameterValueException;
  *   </TD></TR>
  * </TABLE>
  *
- * @author Martin Desruisseaux (IRD)
- * @see    GridCoverageExchange#getWriter
- * @see    javax.imageio.ImageWriter
- * @since  GeoAPI 2.0
+ * @author  Martin Desruisseaux (IRD)
+ * @since   GeoAPI 2.0
+ *
+ * @see GridCoverageExchange#getWriter
+ * @see javax.imageio.ImageWriter
  *
  * @deprecated In favor of migrating to ISO 19123 definition for Coverage.
  */

@@ -23,10 +23,10 @@ import static org.opengis.annotation.Specification.*;
  * with a sequencing rule that specifies an algorithm for assigning records of feature attribute
  * values to grid points.
  *
- * @author ISO/DIS 19123
- * @author Wim Koolhoven
- * @author Martin Schouwenburg
- * @since  GeoAPI 2.1
+ * @version ISO 19123:2004
+ * @author  Wim Koolhoven
+ * @author  Martin Schouwenburg
+ * @since   GeoAPI 2.1
  */
 @UML(identifier="CV_GridValuesMatrix", specification=ISO_19123)
 public interface GridValuesMatrix extends Grid {

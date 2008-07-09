@@ -29,14 +29,15 @@ import static org.opengis.annotation.Specification.*;
  * persistent. {@code GeometryValuePair} is subclassed to restrict the pairing of a feature
  * attribute value record to a specific subtype of domain object.
  *
- * @author ISO/DIS 19123
- * @author Stephane Fellah
- * @author Martin Desruisseaux
- * @see    Coverage#evaluate(DirectPosition,Collection)
- * @see    Coverage#select
- * @see    Coverage#find(DirectPosition,int)
- * @see    Coverage#list
- * @since  GeoAPI 2.1
+ * @version ISO 19123:2004
+ * @author  Stephane Fellah
+ * @author  Martin Desruisseaux (IRD)
+ * @since   GeoAPI 2.1
+ *
+ * @see Coverage#evaluate(DirectPosition,Collection)
+ * @see Coverage#select
+ * @see Coverage#find(DirectPosition,int)
+ * @see Coverage#list
  */
 @UML(identifier="CV_GeometryValuePair", specification=ISO_19123)
 public interface GeometryValuePair {

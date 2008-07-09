@@ -112,6 +112,7 @@
  * Evaluation of a triangulated irregular network involves interpolation of values within a triangle composed
  * of three neighbouring point value pairs.</P></BLOCKQUOTE>
  *
- * @since GeoAPI 2.0
+ * @version ISO 19123:2004
+ * @since   GeoAPI 2.0
  */
 package org.opengis.coverage;

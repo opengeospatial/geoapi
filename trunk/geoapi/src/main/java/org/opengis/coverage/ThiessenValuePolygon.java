@@ -22,10 +22,10 @@ import static org.opengis.annotation.Specification.*;
  * Individual Thiessen value polygons may be generated during the evaluation of a
  * Thiessen polygon coverage, and need not to be persistent.
  *
- * @author ISO/DIS 19123
- * @author Alessio Fabiani
- * @author Martin Desruisseaux
- * @since  GeoAPI 2.1
+ * @version ISO 19123:2004
+ * @author  Alessio Fabiani
+ * @author  Martin Desruisseaux (IRD)
+ * @since   GeoAPI 2.1
  */
 @UML(identifier="CV_ThiessenValuePolygon", specification=ISO_19123)
 public interface ThiessenValuePolygon extends ValueObject {

@@ -40,9 +40,9 @@ import static org.opengis.annotation.Specification.*;
  * {@linkplain GeometryValuePair geometry-value pairs} and those returned by the operations
  * shall be limited to {@linkplain PointValuePair point-value pairs}.
  *
- * @author ISO/DIS 19123
- * @author Martin Desruisseaux
- * @since  GeoAPI 2.1
+ * @version ISO 19123:2004
+ * @author  Martin Desruisseaux (IRD)
+ * @since   GeoAPI 2.1
  */
 @UML(identifier="CV_DiscretePointCoverage", specification=ISO_19123)
 public interface DiscretePointCoverage extends DiscreteCoverage {

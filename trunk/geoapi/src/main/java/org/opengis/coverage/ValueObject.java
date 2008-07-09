@@ -26,9 +26,9 @@ import static org.opengis.annotation.Specification.*;
  * {@link Coverage#evaluate(DirectPosition,Collection) evaluate} operation, and need not
  * be persistent.
  *
- * @author ISO/DIS 19123
- * @author Martin Desruisseaux
- * @since  GeoAPI 2.1
+ * @version ISO 19123:2004
+ * @author  Martin Desruisseaux (IRD)
+ * @since   GeoAPI 2.1
  */
 @UML(identifier="CV_ValueObject", specification=ISO_19123)
 public interface ValueObject {

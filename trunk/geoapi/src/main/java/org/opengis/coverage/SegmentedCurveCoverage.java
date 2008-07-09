@@ -40,10 +40,10 @@ import static org.opengis.annotation.Specification.*;
  * composed of a set of {@link ValueCurve}s, each of which maps feature attribute values to
  * position on a {@linkplain Curve curve}.
  *
- * @author ISO/DIS 19123
- * @author Alessio Fabiani
- * @author Martin Desruisseaux
- * @since  GeoAPI 2.1
+ * @version ISO 19123:2004
+ * @author  Alessio Fabiani
+ * @author  Martin Desruisseaux (IRD)
+ * @since   GeoAPI 2.1
  */
 @UML(identifier="CV_SegmentedCurveCoverage", specification=ISO_19123)
 public interface SegmentedCurveCoverage extends ContinuousCoverage {

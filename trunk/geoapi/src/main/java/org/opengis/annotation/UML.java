@@ -21,8 +21,8 @@ import static java.lang.annotation.RetentionPolicy.*;
  * An annotation mapping each interface, methods or fields to
  * the UML identifier where they come from.
  *
- * @author Martin Desruisseaux (IRD)
- * @since  GeoAPI 2.0
+ * @author  Martin Desruisseaux (IRD)
+ * @since   GeoAPI 2.0
  */
 @Documented
 @Target({TYPE, FIELD, METHOD})
