@@ -291,7 +291,7 @@
         </reportSets>
         <configuration>
           <author>false</author>          <!-- Specifies whether or not the author text is included.              -->
-          <version>false</version>        <!-- Includes or not the version text in the generated docs.            -->
+          <version>true</version>         <!-- Includes or not the version text in the generated docs.            -->
           <encoding>UTF-8</encoding>      <!-- Specifies the encoding name of the source files.                   -->
           <charset>UTF-8</charset>        <!-- Specifies the HTML character set for this document.                -->
           <source>1.5</source>            <!-- Necessary to enable javadoc to handle J2SE 1.5 features.           -->
@@ -345,12 +345,6 @@
           <!-- Separates packages on the overview page into the groups  specified. -->
           <groups>
             <group>
-              <title>Metadata</title>
-              <packages>
-                org.opengis.metadata*
-              </packages>
-            </group>
-            <group>
               <title>Spatial Referencing by Coordinates</title>
               <packages>
                 org.opengis.referencing*:org.opengis.temporal*:org.opengis.parameter*
@@ -378,6 +372,12 @@
               <title>Catalog Services</title>
               <packages>
                 org.opengis.catalog*
+              </packages>
+            </group>
+            <group>
+              <title>Metadata</title>
+              <packages>
+                org.opengis.metadata*
               </packages>
             </group>
             <group>

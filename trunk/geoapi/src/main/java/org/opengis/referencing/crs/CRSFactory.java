@@ -165,58 +165,24 @@ public interface CRSFactory extends ObjectFactory {
                                       EllipsoidalCS  cs) throws FactoryException;
 
     /**
-     * Creates a derived coordinate reference system. If the transformation is an affine
+     * Creates a derived coordinate reference system. If the transform is an affine
      * map performing a rotation, then any mixed axes must have identical units.
      * For example, a (<var>lat_deg</var>, <var>lon_deg</var>, <var>height_feet</var>)
      * system can be rotated in the (<var>lat</var>, <var>lon</var>) plane, since both
-     * affected axes are in degrees.  But you should not rotate this coordinate system
-     * in any other plane.
+     * affected axes are in degrees. But the transform should not rotate this coordinate
+     * system in any other plane.
      * <p>
-     * It is the user's responsability to ensure that the {@code baseToDerived} transform performs
-     * all required steps, including {@linkplain CoordinateSystemAxis#getUnit unit} conversions and
-     * change of {@linkplain CoordinateSystem#getAxis axis} order, if needed.
-     *
-     * @param  properties Name and other properties to give to the new object.
-     *         Available properties are {@linkplain ObjectFactory listed there}.
-     *         Properties for the {@link Conversion} object to be created can be specified
-     *         with the <code>"conversion."</code> prefix added in front of property names
-     *         (example: <code>"conversion.name"</code>).
-     * @param  method A description of the {@linkplain Conversion#getMethod method for the conversion}.
-     * @param  base Coordinate reference system to base the derived CRS on. The number of axes
-     *         must matches the {@linkplain MathTransform#getSourceDimensions source dimensions}
-     *         of the transform {@code baseToDerived}.
-     * @param  baseToDerived The transform from the base CRS to the newly created CRS.
-     * @param  derivedCS The coordinate system for the derived CRS. The number of axes must matches
-     *         the {@linkplain MathTransform#getTargetDimensions target dimensions} of the transform
-     *         {@code baseToDerived}.
-     * @return The coordinate reference system for the given properties.
-     * @throws FactoryException if the object creation failed.
-     *
-     * @deprecated Use {@link CoordinateOperationFactory#createDefiningConversion} followed by
-     *             {@link #createDerivedCRS} instead.
-     */
-    @Deprecated
-    @UML(identifier="createFittedCoordinateSystem", specification=OGC_01009)
-    DerivedCRS createDerivedCRS(Map<String, ?>            properties,
-                                OperationMethod           method,
-                                CoordinateReferenceSystem base,
-                                MathTransform             baseToDerived,
-                                CoordinateSystem          derivedCS) throws FactoryException;
-
-    /**
-     * Creates a derived coordinate reference system. If the transformation is an affine
-     * map performing a rotation, then any mixed axes must have identical units.
-     * For example, a (<var>lat_deg</var>, <var>lon_deg</var>, <var>height_feet</var>)
-     * system can be rotated in the (<var>lat</var>, <var>lon</var>) plane, since both
-     * affected axes are in degrees.  But you should not rotate this coordinate system
-     * in any other plane.
+     * The {@code conversionFromBase} should contains the {@linkplain Conversion#getParameterValues
+     * parameter values} required for the conversion. It doesn't need to contains the
+     * "{@linkplain MathTransformFactory#createBaseToDerived base to derived}" transform,
+     * since this constructor can build it.
      * <p>
-     * The {@code conversionFromBase} should contains only the {@linkplain Conversion#getParameterValues
-     * parameter values} required for the conversion. It should <strong>not</strong> includes
-     * the "{@linkplain MathTransformFactory#createBaseToDerived base to derived}" transform that
-     * performs the {@linkplain CoordinateSystemAxis#getUnit unit} conversions and change of
-     * {@linkplain CoordinateSystem#getAxis axis} order; the later should be inferred by this
-     * constructor.
+     * The supplied conversion should <strong>not</strong> includes the operation steps for
+     * performing {@linkplain CoordinateSystemAxis#getUnit unit} conversions and change of
+     * {@linkplain CoordinateSystem#getAxis axis} order; those operations shall be inferred
+     * by this constructor.
+     *
+     * @todo Revisit if the last paragraph should be removed.
      *
      * @param  properties Name and other properties to give to the new object.
      *         Available properties are {@linkplain ObjectFactory listed there}.
@@ -243,47 +209,17 @@ public interface CRSFactory extends ObjectFactory {
                                 CoordinateSystem derivedCS) throws FactoryException;
 
     /**
-     * Creates a projected coordinate reference system from a transform.
+     * Creates a projected coordinate reference system from a defining conversion.
      * <p>
-     * It is the user's responsability to ensure that the {@code baseToDerived} transform performs
-     * all required steps, including {@linkplain CoordinateSystemAxis#getUnit unit} conversions and
-     * change of {@linkplain CoordinateSystem#getAxis axis} order, if needed.
-     *
-     * @param  properties Name and other properties to give to the new object.
-     *         Available properties are {@linkplain ObjectFactory listed there}.
-     *         Properties for the {@link Projection} object to be created can be specified
-     *         with the <code>"conversion."</code> prefix added in front of property names
-     *         (example: <code>"conversion.name"</code>).
-     * @param  method A description of the {@linkplain Conversion#getMethod method for the projection}.
-     * @param  base Geographic coordinate reference system to base the projection on. The number of axes
-     *         must matches the {@linkplain MathTransform#getSourceDimensions source dimensions}
-     *         of the transform {@code baseToDerived}.
-     * @param  baseToDerived The transform from the geographic to the projected CRS.
-     * @param  derivedCS The coordinate system for the projected CRS. The number of axes must matches
-     *         the {@linkplain MathTransform#getTargetDimensions target dimensions} of the transform
-     *         {@code baseToDerived}.
-     * @return The coordinate reference system for the given properties.
-     * @throws FactoryException if the object creation failed.
-     *
-     * @deprecated Use {@link CoordinateOperationFactory#createDefiningConversion} followed by
-     *             {@link #createProjectedCRS} instead.
-     */
-    @Deprecated
-    @UML(identifier="createProjectedCoordinateSystem", specification=OGC_01009)
-    ProjectedCRS createProjectedCRS(Map<String, ?>  properties,
-                                    OperationMethod method,
-                                    GeographicCRS   base,
-                                    MathTransform   baseToDerived,
-                                    CartesianCS     derivedCS) throws FactoryException;
-
-    /**
-     * Creates a projected coordinate reference system from a defining conversion. The
-     * {@code conversionFromBase} should contains only the {@linkplain Conversion#getParameterValues
-     * parameter values} required for the map projection. It should <strong>not</strong> includes
-     * the "{@linkplain MathTransformFactory#createBaseToDerived base to derived}" transform that
-     * performs the {@linkplain CoordinateSystemAxis#getUnit unit} conversions and change of
-     * {@linkplain CoordinateSystem#getAxis axis} order; the later should be inferred by this
-     * constructor.
+     * The {@code conversionFromBase} should contains the {@linkplain Conversion#getParameterValues
+     * parameter values} required for the map projection. It doesn't need to contains the
+     * "{@linkplain MathTransformFactory#createBaseToDerived base to derived}" transform,
+     * since this constructor can build it.
+     * <p>
+     * The supplied conversion should <strong>not</strong> includes the operation steps for
+     * performing {@linkplain CoordinateSystemAxis#getUnit unit} conversions and change of
+     * {@linkplain CoordinateSystem#getAxis axis} order; those operations shall be inferred
+     * by this constructor.
      *
      * @param  properties Name and other properties to give to the new object.
      *         Available properties are {@linkplain ObjectFactory listed there}.

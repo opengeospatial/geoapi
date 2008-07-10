@@ -103,7 +103,7 @@ public interface RepresentativeFraction {
      *
      * <blockquote><pre>
      * public int hashCode() {
-     *     return getDenominator();
+     *     return (int) getDenominator();
      * }
      * </pre></blockquote>
      *
