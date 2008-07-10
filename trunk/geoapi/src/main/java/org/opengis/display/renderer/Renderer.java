@@ -32,15 +32,6 @@ import org.opengis.display.primitive.Graphic;
  * @since  GeoAPI 2.2
  */
 public interface Renderer {
-    /**
-     * Sets the canvas to use, which defines the rendered area.
-     *
-     * @param canvas The canvas.
-     *
-     * @deprecated To be given at Renderer construction time.
-     */
-    @Deprecated
-    void setCanvas(Canvas canvas);
 
     /**
      * Returns the canvas where this renderer will drawn the {@linkplain Graphic graphics}.
@@ -61,10 +52,8 @@ public interface Renderer {
      * on top.
      *
      * @return Collection of all graphics, as a live collection.
-     *
-     * @deprecated Need to be renamed as {@code graphics()}.
      */
-    Collection<Graphic> getGraphics();
+    Collection<Graphic> graphics();
 
     /**
      * Sets a rendering hint for implementation or platform specific rendering information.
