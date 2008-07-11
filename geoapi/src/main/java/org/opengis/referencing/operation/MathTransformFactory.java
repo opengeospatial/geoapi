@@ -130,7 +130,8 @@ public interface MathTransformFactory extends Factory {
      * Creates a {@linkplain #createParameterizedTransform parameterized transform} from a base CRS
      * to a derived CS. This convenience method {@linkplain #createConcatenatedTransform concatenates}
      * the parameterized transform with any other transform required for performing units changes and
-     * ordinates swapping, as described in <cite>Note on cartographic projections</cite>.
+     * ordinates swapping, as described in the {@linkplain #createParameterizedTransform note on
+     * cartographic projections}.
      * <p>
      * In addition, implementations are encouraged to infer the {@code "semi_major"} and
      * {@code "semi_minor"} parameter values from the {@linkplain Ellipsoid ellipsoid}, if
@@ -163,7 +164,7 @@ public interface MathTransformFactory extends Factory {
      * MathTransform mt = factory.createParameterizedTransform(p);
      * </pre></blockquote>
      *
-     * <strong>Note on cartographic projections:</strong>
+     * <b>Note on cartographic projections:</b>
      * <P>Cartographic projection transforms are used by {@linkplain ProjectedCRS projected coordinate reference systems}
      * to map geographic coordinates (e.g. <var>longitude</var> and <var>latitude</var>) into (<var>x</var>,<var>y</var>)
      * coordinates. These (<var>x</var>,<var>y</var>) coordinates can be imagined to lie on a plane, such as a paper map
