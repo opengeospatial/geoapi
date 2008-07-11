@@ -196,19 +196,23 @@ public interface CRSFactory extends ObjectFactory {
                                 CoordinateSystem          derivedCS) throws FactoryException;
 
     /**
-     * Creates a derived coordinate reference system. If the transformation is an affine
+     * Creates a derived coordinate reference system. If the transform is an affine
      * map performing a rotation, then any mixed axes must have identical units.
      * For example, a (<var>lat_deg</var>, <var>lon_deg</var>, <var>height_feet</var>)
      * system can be rotated in the (<var>lat</var>, <var>lon</var>) plane, since both
-     * affected axes are in degrees.  But you should not rotate this coordinate system
-     * in any other plane.
+     * affected axes are in degrees. But the transform should not rotate this coordinate
+     * system in any other plane.
      * <p>
-     * The {@code conversionFromBase} should contains only the {@linkplain Conversion#getParameterValues
-     * parameter values} required for the conversion. It should <strong>not</strong> includes
-     * the "{@linkplain MathTransformFactory#createBaseToDerived base to derived}" transform that
-     * performs the {@linkplain CoordinateSystemAxis#getUnit unit} conversions and change of
-     * {@linkplain CoordinateSystem#getAxis axis} order; the later should be inferred by this
-     * constructor.
+     * The {@code conversionFromBase} shall contains the {@linkplain Conversion#getParameterValues
+     * parameter values} required for the conversion. It may or may not contain the corresponding
+     * "{@linkplain Conversion#getMathTransform base to derived}" transform, at user's choice. If
+     * a transform is provided, this method may or may not use it at implementation choice.
+     * Otherwise it shall creates the transform from the parameters.
+     * <p>
+     * It is the user's responsability to ensure that the conversion performs all required steps,
+     * including unit conversions and change of axis order, if needed. Note that this behavior is
+     * different than {@link #createProjectedCRS createProjectedCRS} because transforms other than
+     * <cite>cartographic projections</cite> are not standardized.
      *
      * @param  properties Name and other properties to give to the new object.
      *         Available properties are {@linkplain ObjectFactory listed there}.
@@ -266,13 +270,26 @@ public interface CRSFactory extends ObjectFactory {
                                     CartesianCS     derivedCS) throws FactoryException;
 
     /**
-     * Creates a projected coordinate reference system from a defining conversion. The
-     * {@code conversionFromBase} should contains only the {@linkplain Conversion#getParameterValues
-     * parameter values} required for the map projection. It should <strong>not</strong> includes
-     * the "{@linkplain MathTransformFactory#createBaseToDerived base to derived}" transform that
-     * performs the {@linkplain CoordinateSystemAxis#getUnit unit} conversions and change of
-     * {@linkplain CoordinateSystem#getAxis axis} order; the later should be inferred by this
-     * constructor.
+     * Creates a projected coordinate reference system from a defining conversion.
+     * The {@code conversionFromBase} shall contains the {@linkplain Conversion#getParameterValues
+     * parameter values} required for the projection. It may or may not contain the corresponding
+     * "{@linkplain Conversion#getMathTransform base to derived}" transform, at user's choice. If
+     * a transform is provided, this method may or may not use it at implementation choice.
+     * Otherwise it shall creates the transform from the parameters.
+     * <p>
+     * The supplied conversion should <strong>not</strong> includes the operation steps for
+     * performing {@linkplain CoordinateSystemAxis#getUnit unit} conversions and change of
+     * {@linkplain CoordinateSystem#getAxis axis} order; those operations shall be inferred
+     * by this constructor by some code equivalent to:
+     *
+     * <blockquote><code>
+     * MathTransform baseToDerived = {@linkplain MathTransformFactory#createBaseToDerived
+     * MathTransformFactory.createBaseToDerived}(baseCRS, parameters, derivedCS)
+     * </code></blockquote>
+     *
+     * This behavior is different than {@link #createDerivedCRS createDerivedCRS} because
+     * parameterized transforms are standardized for projections. See the {@linkplain
+     * MathTransformFactory#createParameterizedTransform note on cartographic projections}.
      *
      * @param  properties Name and other properties to give to the new object.
      *         Available properties are {@linkplain ObjectFactory listed there}.
