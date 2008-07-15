@@ -151,7 +151,7 @@ public interface Coverage {
      * @return The attribute values in the range.
      */
     @UML(identifier="rangeElement", obligation=OPTIONAL, specification=ISO_19123)
-    Set<AttributeValues> getRangeElements();
+    Collection<AttributeValues> getRangeElements();
 
     /**
      * Describes the range of the coverage. It consists of a list of attribute name/data type pairs.
