@@ -11,7 +11,9 @@
 package org.opengis.go.display.canvas;
 
 // OpenGIS direct dependencies
-import org.opengis.feature.FeatureCollection;
+import java.util.Collection;
+
+import org.opengis.feature.Feature;
 import org.opengis.sld.FeatureStyle;
 
 
@@ -35,7 +37,7 @@ public interface FeatureLayer {
      * Returns the collection of features that will be portrayed in this layer.
      * A null value is allowed and indicates that nothing will be drawn.
      */
-    FeatureCollection getFeatureCollection();
+    Collection<Feature> getFeatureCollection();
 
     /**
      * Returns the style to apply to features in this layer.  A null value is
