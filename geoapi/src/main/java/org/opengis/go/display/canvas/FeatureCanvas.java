@@ -18,7 +18,6 @@ import java.util.List;
 import org.opengis.layer.Layer;                // For javadoc
 import org.opengis.feature.Feature;
 // // import org.opengis.feature.FeatureStore;       // For javadoc
-import org.opengis.feature.FeatureCollection;  // For javadoc
 import org.opengis.go.display.canvas.Canvas;
 import org.opengis.go.display.primitive.Graphic;
 
