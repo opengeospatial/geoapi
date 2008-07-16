@@ -14,24 +14,25 @@ import org.opengis.feature.type.FeatureType;
 import org.opengis.geometry.BoundingBox;
 
 /**
- * A geographic feature, a complex attribute made up of geometric and
- * non-geometric properties.
+ * An instance of {@link FeatureType} representing a geographic feature composed of geometric
+ * and non-geometric properties. 
  * <p>
- * Beyond being a complex attribute, a feature contains the following
- * information:
+ * Beyond being a complex attribute, a feature contains the following additional information:
  * <ul>
- * <li>A default geometric attribute
+ * <li>A default geometry. To be used when drawing when nothing more
+ *     specific has been provided.
  * <li>The bounds of all the geometric attributes of the feature
  * </ul>
  * </p>
- *
  * @author Jody Garnett (Refractions Research)
  * @author Justin Deoliveira (The Open Planning Project)
+ * @version GeoAPI 2.2
  */
 public interface Feature extends ComplexAttribute {
 
     /**
      * Override and type narrow to FeatureType.
+     * @return The feature type
      */
     FeatureType getType();
 

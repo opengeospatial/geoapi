@@ -17,7 +17,7 @@ import org.opengis.feature.Feature;
 import org.opengis.feature.type.Name;
 
 /**
- * A feature restricted to simple content.
+ * An instance of {@link SimpleFeature} composed of fixed list values in a known order.
  * <p>
  * The definition of a "simple feature" can be summed up as the following:
  * <ul>

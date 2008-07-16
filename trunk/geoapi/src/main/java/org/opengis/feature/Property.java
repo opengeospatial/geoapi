@@ -17,9 +17,8 @@ import org.opengis.feature.type.PropertyDescriptor;
 import org.opengis.feature.type.PropertyType;
 
 /**
- * An instance of a {@link PropertyType}.
+ * An instance of a {@link PropertyType} relised as a {@link Attribute} or {@link Association}.
  * <p>
- * <br>
  * A property is a wrapper around an arbitrary object or value. The value is
  * available via the {@link #getValue()} and {@link #setValue(Object)}.
  *
@@ -37,9 +36,8 @@ import org.opengis.feature.type.PropertyType;
  * <p>
  * Every property has a type. This {@link PropertyType} defines information
  * about the property. This includes which java class the value of the property
- * is an instance of, any restrictions on the value, etc... See the javadoc for
- * PropertyType for more details. The type is available via the
- * {@link #getType()} method.
+ * is an instance of, any restrictions on the value, etc... 
+ * The type is available via the {@link #getType()} method.
  *
  * <pre>
  *   Property property = ...;
@@ -54,9 +52,9 @@ import org.opengis.feature.type.PropertyType;
  *
  * </p>
  * <p>
- * A property can often be part of another entity, often a
- * {@link ComplexAttribute}. When this is the case, the relationship between
- * the property and its "container" is described by a {@link PropertyDescriptor}.
+ * A property can often be part of another entity such as a {@link Feature} or {@link ComplexAttribute}.
+ * When this is the case, the relationship between the property and its "container" is described by
+ * a {@link PropertyDescriptor}.
  * The descriptor of a property defines things like nilablility, multiplicity,
  * etc... See the javadoc of {@link PropertyDescriptor} for more details. The
  * descriptor is available via the {@link #getDescriptor()} method.
@@ -126,16 +124,13 @@ public interface Property {
     PropertyType getType();
 
     /**
-     * The descriptor of the property.
+     * The {@link PropertyDscriptor} of the property, null if this is a top-level value.
      * <p>
      * The descriptor provides information about the property with respect to
-     * its containing entity (more often then not a {@link ComplexAttribute}.
-     * </p>
-     * <p>
-     * The descriptor is never <code>null</code>.
+     * its containing entity (more often then not a {@link Feature} or {@link ComplexAttribute}.
      * </p>
      *
-     * @return The property descriptor.
+     * @return The property descriptor, null if this is a top-level value.
      * @see ComplexAttribute
      */
     PropertyDescriptor getDescriptor();

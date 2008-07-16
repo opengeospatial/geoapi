@@ -14,12 +14,12 @@ import org.opengis.feature.type.AttributeDescriptor;
 import org.opengis.feature.type.AttributeType;
 
 /**
- * An extension of Property for an attribute.
+ * An extension of Property for an attribute, or data.
  * <p>
  * The notion of an "attribute" is similar to that of an attribute in UML.
  * </p>
  * <p>
- * This interface is capable of modeling "primitive data", things like strings,
+ * This interface is capable of modelling "primitive data", things like strings,
  * numerics, dates, etc... However for "complex data" (that is non-primitive
  * data types which are made up other primitive data types), a specific
  * sub-interface is used, see {@link ComplexAttribute}.
@@ -43,7 +43,11 @@ import org.opengis.feature.type.AttributeType;
  * }
  * </pre>
  * </p>
- *
+ * <h3>Validation</h3>
+ * 
+ * An attribute may hold any value at runtime; checking that the value meets the constraints
+ * supplied by the AttributeType is the work of the validate() method.
+ * 
  * @see Property
  *
  * @author Jody Garnett (Refractions Research)
@@ -56,6 +60,7 @@ public interface Attribute extends Property {
      * {@link AttributeDescriptor}.
      *
      * @see Property#getDescriptor()
+     * @return The attribute descriptor, may be null if this is a top level type
      */
     AttributeDescriptor getDescriptor();
 
@@ -64,6 +69,7 @@ public interface Attribute extends Property {
      * {@link AttributeType}.
      *
      * @see Property#getType()
+     * @return The attribute type.
      */
     AttributeType getType();
 

@@ -23,7 +23,7 @@ import org.opengis.feature.type.GeometryType;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 
 /**
- * Factory for attributes, associations, and features.
+ * Factory for creation of attributes, associations, and features.
  * <p>
  * Implementations of this interface should not contain any "special logic" for
  * creating attributes and features. Method implementations should be straight
@@ -32,7 +32,7 @@ import org.opengis.referencing.crs.CoordinateReferenceSystem;
  *
  * @author Gabriel Roldan (Axios Engineering)
  * @author Justin Deoliveira (The Open Planning Project)
- *
+ * @since 2.2
  */
 public interface FeatureFactory {
 
