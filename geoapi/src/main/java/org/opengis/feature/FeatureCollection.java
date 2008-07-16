@@ -85,7 +85,7 @@ import org.opengis.util.ProgressListener;
  * @author Ian Schneider (USDA-ARS)
  * @author Jody Garnett (Refracitons Research)
  *
- * @version GeoAPI 2.1
+ * @version GeoAPI 2.2
  * @since GeoAPI 2.0
  * @see java.util.Collection
  */

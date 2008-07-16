@@ -13,7 +13,7 @@ package org.opengis.feature.type;
 import org.opengis.feature.Association;
 
 /**
- * The type of an association.
+ * The type of an association; used to describe kind of relationship between two entities.
  * <p>
  * The notion of an "association" is similar to that of an association in UML
  * and is used to model a relationship among two attributes. See the javadoc for

@@ -17,7 +17,7 @@ import org.opengis.feature.type.Name;
 import org.opengis.filter.expression.Expression;
 
 /**
- * An attribute which is composed of other properties.
+ * An instance of {@link ComplexType} which is composed of other properties.
  * <p>
  * A complex attribute is a container for other properties (attributes +
  * associations). The value of a complex attribute is a collection of those

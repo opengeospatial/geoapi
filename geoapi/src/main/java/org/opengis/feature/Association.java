@@ -15,11 +15,19 @@ import org.opengis.feature.type.AssociationType;
 import org.opengis.feature.type.AttributeType;
 
 /**
- * An extension of Property for an association.
+ * Extension of Property to represent an Association, or relationship, between two attributes.
  * <p>
  * The notion of an "association" is similar to that of an association in UML
- * and is used to model a relationship among two attributes.
+ * and is used to model a relationship between entities.
  * </p>
+ * Examples of such a relationship could be:
+ * <ul>
+ * <li>aggregation: An attribute may contain another attribute
+ * <li>spatial: A feature is spatial related to another (touches, intersects, etc..)
+ * <li>temporal: An is a previous version of another attribute in a versioning system
+ * </ul>
+ * </p>
+ * <h2>Example</h2>
  * <p>
  * The value of an association is an {@link Attribute}. As an example consider
  * the following xml complex type definitions:
@@ -68,24 +76,21 @@ import org.opengis.feature.type.AttributeType;
  *   Attribute foo =  fooAssociation.getValue();
  * </pre>
  * </p>
- * <p>Associations are used to model some sort of relationship among attributes.
- * Examples of such a relationship could be:
- * <ul>
- * <li>aggregation: An attribute may contain another attribute
- * <li>spatial: A feature is spatial related to another (touches, intersects, etc..)
- * <li>temporal: An is a previous version of another attribute in a versioning system
- * </ul>
- * </p>
+ * 
  * @author Jody Garnett, Refractions Research
  * @author Justin Deoliveira, The Open Planning Project
  */
 public interface Association extends Property {
 
     /**
+     * Description of the relationship between two attributes.
+     * 
      * Override of {@link Property#getDescriptor()} which type narrows to
      * {@link AssociationDescriptor}.
      *
      * @see Property#getDescriptor()
+     * @return AssociationDescriptor used to describe the relationship between two attributes; because
+     *         two attributes are required the descriptor should not be null.
      */
     AssociationDescriptor getDescriptor();
 

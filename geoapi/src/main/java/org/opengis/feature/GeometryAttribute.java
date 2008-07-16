@@ -42,6 +42,7 @@ public interface GeometryAttribute extends Attribute {
 
     /**
      * Override and type narrow to GeometryDescriptor.
+     * @return The geometry descriptor, may be null if this is a top-level value
      */
     GeometryDescriptor getDescriptor();
 
