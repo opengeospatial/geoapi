@@ -70,7 +70,7 @@ public interface Style {
      */
     @UML(identifier="featurePortrayal", obligation=MANDATORY, specification=ISO_19117)
     @XmlElement("FeatureTypeStyle")
-    List<FeatureTypeStyle> featureTypeStyles();
+    List<? extends FeatureTypeStyle> featureTypeStyles();
         
     /**
      * Returns the default specification used if no rule return true.

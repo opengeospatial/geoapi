@@ -113,7 +113,7 @@ public interface FeatureTypeStyle {
      */
     @XmlElement("Rule")
     @UML(identifier="portrayalRule", obligation=MANDATORY, specification=ISO_19117)
-    List<Rule> rules();
+    List<? extends Rule> rules();
 
     /**
      * calls the visit method of a StyleVisitor
