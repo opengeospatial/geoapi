@@ -95,6 +95,9 @@ public interface Association extends Property {
     AssociationDescriptor getDescriptor();
 
      /**
+      * Type of association represented.
+      * <p>
+      * 
      * Override of {@link Property#getType()} which type narrows to
      * {@link AssociationType}.
      *
