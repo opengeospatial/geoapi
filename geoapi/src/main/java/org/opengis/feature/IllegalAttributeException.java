@@ -16,7 +16,8 @@ import org.opengis.feature.type.AttributeDescriptor;
  * Indicates a validation check has failed; the provided descriptor and value
  * are available via this exception.
  * 
- * @author Jody Garnett
+ * @author Jody Garnett (Refractions Research, Inc.)
+ * @since GeoAPI 2.2
  */
 public class IllegalAttributeException  extends IllegalArgumentException {
 	private static final long serialVersionUID = 3373066465585246605L;

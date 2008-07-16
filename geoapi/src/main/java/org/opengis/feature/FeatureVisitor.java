@@ -21,9 +21,9 @@ package org.opengis.feature;
  * </p>
  * This interface is most often used for calculations and data
  * transformations and an implementations may intercept known visitors
- * (such as "bounds" or reprojection) and engage an alternate workflow.
+ * (such as "bounds" or reprojection) and engage an alternate work flow.
  * </p>
- * @author Cory Horner, Refractions
+ * @author Cory Horner (Refractions Research, Inc)
  */
 public interface FeatureVisitor {
     /**
