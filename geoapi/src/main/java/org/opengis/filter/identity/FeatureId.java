@@ -11,8 +11,6 @@
 package org.opengis.filter.identity;
 
 import org.opengis.annotation.XmlElement;
-import org.opengis.feature.Feature;
-import org.opengis.filter.identity.Identifier;
 
 
 /**
@@ -25,7 +23,7 @@ import org.opengis.filter.identity.Identifier;
  * @since GeoAPI 2.0
  */
 @XmlElement("FeatureId")
-public interface FeatureId extends Identifier<String,Feature> {
+public interface FeatureId extends Identifier {
     /**
      * The identifier value, which is a string.
      */
@@ -38,5 +36,5 @@ public interface FeatureId extends Identifier<String,Feature> {
      * @param feature The feature to be tested.
      * @return {@code true} if a match, otherwise {@code false}.
      */
-    boolean matches(Feature feature);
+    boolean matches(Object feature);
 }

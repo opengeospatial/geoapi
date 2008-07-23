@@ -11,6 +11,7 @@
 package org.opengis.feature;
 
 import org.opengis.feature.type.FeatureType;
+import org.opengis.filter.identity.FeatureId;
 import org.opengis.geometry.BoundingBox;
 
 /**
@@ -54,7 +55,7 @@ public interface Feature extends ComplexAttribute {
      *
      * @return The feature identifier, never <code>null</code>.
      */
-    String getID();
+    FeatureId getIdentifier();
 
     /**
      * The bounds of this Feature, if available.

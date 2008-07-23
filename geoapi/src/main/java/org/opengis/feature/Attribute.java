@@ -12,6 +12,7 @@ package org.opengis.feature;
 
 import org.opengis.feature.type.AttributeDescriptor;
 import org.opengis.feature.type.AttributeType;
+import org.opengis.filter.identity.Identifier;
 
 /**
  * An extension of Property for an attribute, or data.
@@ -83,7 +84,7 @@ public interface Attribute extends Property {
      * @return A unique identifier for the attribute, or <code>null</code> if
      *         the attribute is non-identifiable.
      */
-    String getID();
+    Identifier getIdentifier();
     
     /**
      * Check the attribute value against the constraints provided by the AttributeDescriptor.

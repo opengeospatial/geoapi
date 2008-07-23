@@ -18,11 +18,11 @@ package org.opengis.filter.identity;
  * @author Jody Garnett (Refractions Research)
  * @author Justin Deoliveira (The Open Planning Project)
  */
-public interface Identifier<T,O> {
+public interface Identifier {
     /**
      * Returns the identifier itself.
      */
-    T getID();
+    Object getID();
 
     /**
      * Determines if the id of an object matches the value of the identifier.
@@ -30,7 +30,7 @@ public interface Identifier<T,O> {
      * @param object The object to perform the test against.
      * @return {@code true} if a match, otherwise {@code false}.
      */
-    boolean matches(O object);
+    boolean matches(Object object);
 
     /**
      * Identifier is a data object, equals is based just on getID()
@@ -49,6 +49,7 @@ public interface Identifier<T,O> {
     
     /**
      * Returns a string representation of the identifier.
+     * @return getID().toString()
      */
     ///@Override 
     String toString();
