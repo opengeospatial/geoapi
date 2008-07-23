@@ -114,6 +114,15 @@ public interface Rule {
      * This method returns the list of Symbolizer objects
      * contained by this {@code Rule}.
      *
+     * We use a list of <? extends Symbolizer> to enable the possibility
+     * for an implementation to return a special type of Symbolizer.
+     * This doesnt mean a Rule must return a list of PointSymbolizer or
+     * TextSymbolizer only, no. The purpose of this if to offer the solution
+     * to return different implementations like MutableSymbolizer or RichSymbolizer
+     * and then avoid redundant cast in the code.
+     * If you dont intend to use a special interface you can override this method
+     * by : List<Symbolizer> symbolizers();
+     * 
      * @return the list of Symbolizer
      */
     @XmlElement("Symbolizer")
