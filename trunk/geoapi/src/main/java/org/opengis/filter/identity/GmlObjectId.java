@@ -38,5 +38,5 @@ public interface GmlObjectId extends Identifier {
      * @param feature The GML3 construct to be tested.
      * @return {@code true} if a match, otherwise {@code false}.
      */
-    boolean matches(String object);
+    boolean matches(Object object);
 }
