@@ -11,9 +11,6 @@
 package org.opengis.filter.identity;
 
 import org.opengis.annotation.XmlElement;
-import org.opengis.feature.Feature;
-import org.opengis.feature.simple.SimpleFeature;
-import org.opengis.util.Record;
 
 
 /**
@@ -30,7 +27,7 @@ import org.opengis.util.Record;
  * @since GeoAPI 2.1
  */
 @XmlElement("RecordId")
-public interface RecordId extends Identifier<String,SimpleFeature> {
+public interface RecordId extends Identifier {
 
     /**
      * The identifier value, which is a string.

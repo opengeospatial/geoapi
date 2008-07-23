@@ -11,7 +11,6 @@
 package org.opengis.filter.identity;
 
 import org.opengis.annotation.XmlElement;
-import org.opengis.feature.Feature;
 
 
 /**
@@ -26,7 +25,7 @@ import org.opengis.feature.Feature;
  * @since GeoAPI 2.0
  */
 @XmlElement("GMLObjectId")
-public interface GmlObjectId<O> extends Identifier<String,O> {
+public interface GmlObjectId extends Identifier {
     /**
      * The identifier value, which is a string.
      */
@@ -39,5 +38,5 @@ public interface GmlObjectId<O> extends Identifier<String,O> {
      * @param feature The GML3 construct to be tested.
      * @return {@code true} if a match, otherwise {@code false}.
      */
-    boolean matches(O object);
+    boolean matches(String object);
 }

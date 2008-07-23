@@ -66,6 +66,18 @@ import org.opengis.feature.type.Name;
  */
 public interface SimpleFeature extends Feature {
     /**
+     * Unique Identifier for the SimpleFeature
+     * <p>
+     * This value is non-null and should be the same as getIdentifier().toString().
+     * Please note that an ID may be provided  
+     * </p>
+     *
+     * @return A unique identifier for the attribute, or <code>null</code> if
+     *         the attribute is non-identifiable.
+     */
+	String getID();
+	
+    /**
      * Override and type narrow to SimpleFeatureType.
      */
     SimpleFeatureType getType();
