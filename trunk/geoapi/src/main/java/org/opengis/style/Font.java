@@ -33,7 +33,7 @@ public interface Font {
     //*************************************************************
 
     /**
-     * The “font-family” SvgParameter element gives the family name of a font to use.
+     * The "font-family" SvgParameter element gives the family name of a font to use.
      * Allowed values are system-dependent. Any number of font-family SvgParameter
      * elements may be given and they are assumed to be in preferred order.
      *
@@ -43,26 +43,26 @@ public interface Font {
     List<Expression> getFamily();
 
     /**
-     * The “font-style” SvgParameter element gives the style to use for a font. The allowed
-     * values are “normal”, “italic”, and “oblique”.
+     * The "font-style" SvgParameter element gives the style to use for a font. The allowed
+     * values are "normal", "italic", and "oblique".
      * If null, the default is "normal".
-     * @return Expression or nulls
+     * @return Expression or Expression.NIL
      */
     @XmlParameter("font-style")
     Expression getStyle();
 
     /**
-     * The “font-weight” SvgParameter element gives the amount of weight or boldness to use
-     * for a font. Allowed values are “normal” and “bold”.
+     * The "font-weight" SvgParameter element gives the amount of weight or boldness to use
+     * for a font. Allowed values are "normal" and "bold".
      * If null, the default is "normal".
      *
-     * @return Expression or null
+     * @return Expression or or Expression.NIL
      */
     @XmlParameter("font-weight")
     Expression getWeight();
 
     /**
-     * The “font-size” SvgParameter element gives the size to use for the font in pixels. The
+     * The "font-size" SvgParameter element gives the size to use for the font in pixels. The
      * default is defined to be 10 pixels, though various systems may have restrictions on what
      * sizes are available.
      *

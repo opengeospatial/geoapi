@@ -22,7 +22,6 @@ import org.opengis.util.InternationalString;
  * @version <A HREF="http://www.opengeospatial.org/standards/symbol">Symbology Encoding Implementation Specification 1.1.0</A>
  * @author Open Geospatial Consortium
  * @author Johann Sorel (Geomatys)
- * @author Chris Dillard (SYS Technologies)
  * @since GeoAPI 2.2
  */
 @XmlElement("Description")
