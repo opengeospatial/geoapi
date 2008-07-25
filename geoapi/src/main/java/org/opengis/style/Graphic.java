@@ -10,17 +10,17 @@
  *************************************************************************************************/
 package org.opengis.style;
 
-import java.util.Set;
+import java.util.List;
 import org.opengis.filter.expression.Expression;
 import org.opengis.annotation.XmlElement;
 import org.opengis.annotation.XmlParameter;
 
 
 /**
- * A Graphic is a “graphic symbol” with an inherent shape, color(s), and possibly size. A
- * “graphic” can be very informally defined as “a little picture” and can be of either a raster
- * or vector-graphic source type. The term “graphic” is used since the term “symbol” is
- * similar to “Symbolizer” which is used in a different context in SE.
+ * A Graphic is a "graphic symbol" with an inherent shape, color(s), and possibly size. A
+ * "graphic" can be very informally defined as "a little picture" and can be of either a raster
+ * or vector-graphic source type. The term "graphic" is used since the term "symbol" is
+ * similar to "Symbolizer" which is used in a different context in SE.
  *
  * @version <A HREF="http://www.opengeospatial.org/standards/symbol">Symbology Encoding Implementation Specification 1.1.0</A>
  * @author Open Geospatial Consortium
@@ -39,7 +39,7 @@ public interface Graphic {
      * @return
      */
     @XmlElement("ExternalGraphic,Mark")
-    Set<GraphicalSymbol> graphicalSymbols();
+    List<GraphicalSymbol> graphicalSymbols();
 
     //*************************************************************
     // SVG PARAMETERS
@@ -64,7 +64,7 @@ public interface Graphic {
      * size is specified, the height of the graphic will be scaled to that size and the
      * corresponding aspect will be used for the width. An expected common use case will be
      * for image graphics to be on the order of 200 pixels in linear size and to be scaled to lower
-     * sizes. On systems that can resample these graphic images “smoothly,” the results will be
+     * sizes. On systems that can resample these graphic images "smoothly," the results will be
      * visually pleasing.
      *
      * @return Expression
@@ -106,7 +106,7 @@ public interface Graphic {
     AnchorPoint getAnchorPoint();
 
     /**
-     * The Displacement gives the X and Y displacements from the “hot-spot” point. This
+     * The Displacement gives the X and Y displacements from the "hot-spot" point. This
      * element may be used to avoid over-plotting of multiple graphic symbols used as part of
      * the same point symbol. The displacements are in units of measure above and to the right
      * of the point. The default displacement is X=0, Y=0.
