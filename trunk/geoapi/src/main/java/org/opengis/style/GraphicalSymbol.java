@@ -13,7 +13,7 @@ package org.opengis.style;
 
 
 /**
- * Common subclass for the two types of markers that can appear as children of a
+ * Common superclass for the two types of markers that can appear as children of a
  * {@link Graphic} object, namely {@link Mark} and {@link ExternalGraphic}.
  *
  * @version <A HREF="http://portal.opengeospatial.org/files/?artifact_id=1188">Implementation specification 1.0</A>

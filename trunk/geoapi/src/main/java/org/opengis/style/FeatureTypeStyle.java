@@ -65,8 +65,10 @@ public interface FeatureTypeStyle {
      * @return Collection<String>
      */
     @UML(identifier="definedForInst", obligation=OPTIONAL, specification=ISO_19117)
-    Id featureInstanceIDs();
-
+    Id getFeatureInstanceIDs();
+    
+    void setFeatureIntanceIDs(Id featureInstanceIds );
+    
     /**
      * <p>
      * Returns the names of the feature type that this style is meant to act

@@ -44,7 +44,7 @@ public interface PointPlacement extends LabelPlacement {
     AnchorPoint getAnchorPoint();
 
     /**
-     * The Displacement gives the X and Y displacements from the “hot-spot” point. This
+     * The Displacement gives the X and Y displacements from the "hot-spot" point. This
      * element may be used to avoid over-plotting of multiple graphic symbols used as part of
      * the same point symbol. The displacements are in units of measure above and to the right
      * of the point. The default displacement is X=0, Y=0.
@@ -69,5 +69,12 @@ public interface PointPlacement extends LabelPlacement {
      */
     @XmlElement("Rotation")
     Expression getRotation();
+
+    /**
+     * calls the visit method of a StyleVisitor
+     *
+     * @param visitor the style visitor
+     */
+    void accept(PointPlacement visitor);
 
 }

@@ -24,12 +24,5 @@ import org.opengis.annotation.XmlElement;
  */
 @XmlElement("LabelPlacement")
 public interface LabelPlacement {
-
-    /**
-     * calls the visit method of a StyleVisitor
-     *
-     * @param visitor the style visitor
-     */
-    void accept(StyleVisitor visitor);
     
 }

@@ -10,6 +10,7 @@
  *************************************************************************************************/
 package org.opengis.style;
 
+import javax.measure.quantity.Length;
 import javax.measure.unit.Unit;
 import org.opengis.annotation.UML;
 import org.opengis.annotation.XmlElement;
@@ -27,9 +28,9 @@ import static org.opengis.annotation.Specification.*;
  * <b>Particular cases if the geometry is not the defined type of the symbolizer</b>
  * <p>
  * Geometry types other than inherently linear types can also be used. If a point geometry is
- * used, it should be interpreted as a line of “epsilon” (arbitrarily small) length with a
+ * used, it should be interpreted as a line of "epsilon" (arbitrarily small) length with a
  * horizontal orientation centered on the point, and should be rendered with two end caps.
- * If a polygon is used (or other “area” type), then its closed outline is used as the line string
+ * If a polygon is used (or other "area" type), then its closed outline is used as the line string
  * (with no end caps). If a raster geometry is used, its coverage-area outline is used for the
  * line, rendered with no end caps.
  * </p>
@@ -45,10 +46,10 @@ public interface Symbolizer {
     
     /**
      * Returns a  measure unit.
-     * This parameter is herited from GML.
+     * This parameter is inherited from GML.
      * Renderers shall use the unit to correctly render symbols.
      *
-     * recommended uom definitions are :
+     * Recommended uom definitions are :
      * <p>
      * <ul>
      *     <li>{@code metre}</li>
@@ -60,14 +61,14 @@ public interface Symbolizer {
      * @return can be null. If the unit is null than we shall use a the pixel unit
      */
     @XmlElement("uom")
-    Unit getUnitOfMeasure();
+    Unit<Length> getUnitOfMeasure();
 
     /**
      * Returns the name of the geometry feature attribute to use for drawing.
      * May return null if this symbol is to use the default geometry attribute,
      * whatever it may be.
-     * <p>                                                                               The content
-     * of the element gives the property name in XPath syntax. In principle, a fixed geometry
+     * <p>                           
+     * The content of the element gives the property name in XPath syntax. In principle, a fixed geometry
      * could be defined using GML or operators could be defined for computing the geometry
      * from references or literals. However, using a feature property directly is by far the most
      * commonly useful method.
