@@ -74,7 +74,7 @@ public interface Rule {
      * fire.  This can only be non-null if {@link #isElseFilter} returns false.  If this
      * value is null and {@code isElseFilter} is false, this means that this {@code Rule}
      * should fire for all features.
-     * @return Filter, if null the rule is always true
+     * @return Filter, use Filter.INCLUDES to indicate everything; or Filter.EXCLUDES for an "else" rule
      */
     @XmlElement("Filter")
     @UML(identifier="queryStatement", obligation=MANDATORY, specification=ISO_19117)
@@ -82,7 +82,7 @@ public interface Rule {
 
     /**
      * Returns true if this {@code Rule} is to fire only if no other rules in the containing
-     * style have fired yet.  If this is true, then the {@linkplain #getFilter filter} must be null.
+     * style have fired yet.  If this is true, then the {@linkplain #getFilter filter} must be Filter.EXCLUDES.
      * @return true if the filter is an else filter
      */
     @XmlElement("ElseFilter")

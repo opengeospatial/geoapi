@@ -85,5 +85,12 @@ public interface LinePlacement extends LabelPlacement {
      */
     @XmlElement("GeneralizeLine")
     boolean isGeneralizeLine();
+    
+    /**
+     * calls the visit method of a StyleVisitor
+     *
+     * @param visitor the style visitor
+     */
+    void accept(LinePlacement visitor);
 
 }

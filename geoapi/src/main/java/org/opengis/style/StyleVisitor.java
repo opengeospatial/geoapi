@@ -10,20 +10,28 @@
  *************************************************************************************************/
 package org.opengis.style;
 
+import org.opengis.filter.expression.ExpressionVisitor;
 import org.opengis.metadata.citation.OnLineResource;
-
 
 /**
  * An interface for classes that want to perform operations on a Style
- * hierarchy. It forms part of a GoF Visitor Patern implementation. A call to
- * style.accept(StyleVisitor) will result in a call to one of the methods in
- * this interface. The responsibility for traversing sub filters is intended
- * to lie with the visitor (this is unusual, but permited under the Visitor
- * pattern). A typical use would be to transcribe a style into a specific
- * format, e.g. XML or SQL.  Alternativly it may be to extract specific
- * information from the Style structure, for example a list of all fills.
- *
+ * hierarchy. It forms part of a GoF Visitor Pattern implementation.
+ * <p>
+ * A call to style.accept(StyleVisitor) will result in a call to one of the
+ * methods in this interface. The responsibility for traversing sub filters is
+ * intended to lie with the visitor (this is unusual, but permitted under the
+ * Visitor pattern).
+ * <p>
+ * A typical use would be to transcribe a style into a specific format, e.g. XML or SQL.
+ * Alternatively it may be to extract specific information from the Style structure, for example a list of all fills.
+ * Finally a a style visitor is often used (in conjunction with a factory) in the production of a
+ * copy; or slightly modified copy of the original style.
+ * <p>
+ * It is common practice for a StyleVisitor to also implement an ExpressionVisitor in
+ * order to traverse both data structures.
  * 
+ * @see ExpressionVisitor
+ * @see StyleFactory
  * @author Open Geospatial Consortium
  * @author James Macgill
  * @author Ian Turton
@@ -36,239 +44,231 @@ public interface StyleVisitor {
      *
      * @param style The style to visit
      */
-    void visit(Style style);
+    Object visit(Style style, Object data );
     
     /**
-     * Called when accept is called on a fetauretypestyle
+     * Called when accept is called on a FetaureTypeStyle
      *
      * @param fts the feature type styler to visit
      */
-    void visit(FeatureTypeStyle fts);
+    void visit(FeatureTypeStyle featureTypeStyle, Object data );
 
     /**
      * Called when accept is called on a rule
      *
      * @param rule the rule to visit
      */
-    void visit(Rule rule);
-
-    /**
-     * since it is impossible to create a Symbolizer this method should
-     * generate an exception or warning.
-     *
-     * @param sym the symbolizer to visit
-     */
-    void visit(Symbolizer sym);
+    Object visit(Rule rule, Object data );
 
     /**
      * Called when accept is called on a pointsymbolizer
      *
      * @param ps the point symbolizer to visit
      */
-    void visit(PointSymbolizer ps);
+    Object visit(PointSymbolizer pointSymbolizer, Object data );
 
     /**
      * Called when accept is called on a linesymbolizer
      *
      * @param line the line symbolizer to visit
      */
-    void visit(LineSymbolizer line);
+    Object visit(LineSymbolizer lineSymbolizer, Object data );
 
     /**
      * Called when accept is called on a polygon symbolizer
      *
      * @param poly the polygon symbolizer to visit
      */
-    void visit(PolygonSymbolizer poly);
+    Object visit(PolygonSymbolizer polygonSymbolizer, Object data );
 
     /**
      * Called when accept is called on a textsymbolizer
      *
      * @param text the text symbolizer to visit
      */
-    void visit(TextSymbolizer text);
+    Object visit(TextSymbolizer textSymbolizer, Object data );
 
     /**
      * Called when accept is called on a rastersymbolizer
      *
      * @param raster the raster symbolizer to visit
      */
-    void visit(RasterSymbolizer raster);
+    Object visit(RasterSymbolizer rasterSymbolizer, Object data );
     
     /**
      * Called when accept is called on a description
      *
      * @param colorMap the description to visit
      */
-    void visit(Description desc);
+    Object visit(Description description, Object data );
     
     /**
      * Called when accept is called on a displacement
      *
      * @param disp the displacement to visit
      */
-    void visit(Displacement disp);
+    Object visit(Displacement displacement, Object data );
     
     /**
      * Called when accept is called on a fill
      *
      * @param fill the fill to be visited
      */
-    void visit(Fill fill);
+    Object visit(Fill fill, Object data );
     
     /**
      * Called when accept is called on a font
      *
      * @param font the font to be visited
      */
-    void visit(Font font);
+    Object visit(Font font, Object data );
 
     /**
      * Called when accept is called on a stroke
      *
      * @param stroke the stroke to visit
      */
-    void visit(Stroke stroke);
+    Object visit(Stroke stroke, Object data );
 
     /**
      * Called when accept is called on a graphic
      *
      * @param gr the graphic to visit
      */
-    void visit(Graphic gr);
+    Object visit(Graphic graphic, Object data );
     
     /**
      * Called when accept is called on a graphic fill
      *
      * @param gr the graphic fill to visit
      */
-    void visit(GraphicFill gr);
+    Object visit(GraphicFill graphicFill, Object data );
     
     /**
      * Called when accept is called on a graphic stroke
      *
      * @param gr the graphic stroke to visit
      */
-    void visit(GraphicStroke gr);
+    Object visit(GraphicStroke graphicStroke, Object data );
     
     /**
      * Called when accept is called on a graphic symbol
      *
      * @param gr the graphic symbol to visit
      */
-    void visit(GraphicalSymbol gr);
+    Object visit(GraphicalSymbol graphicSymbol, Object data );
 
     /**
      * Called when accept is called on a mark
      *
      * @param mark the mark to visit
      */
-    void visit(Mark mark);
+    Object visit(Mark mark, Object data );
     
     /**
      * Called when accept is called on a external mark
      *
      * @param exmk the external mark to visit
      */
-    void visit(ExternalMark exmk);
+    Object visit(ExternalMark externalMark, Object data );
 
     /**
      * Called when accept is called on a external graphic
      *
      * @param exgr the external graphic to visit
      */
-    void visit(ExternalGraphic exgr);
+    Object visit(ExternalGraphic externalGraphic, Object data );
 
     /**
      * Called when accept is called on a Point Placement
      *
      * @param pp the point placement to visit
      */
-    void visit(PointPlacement pp);
+    Object visit(PointPlacement pointPlacement, Object data );
 
     /**
      * Called when accept is called on a anchor point
      *
      * @param ap the anchor point to visit
      */
-    void visit(AnchorPoint ap);
+    Object visit(AnchorPoint anchorPoint, Object data );
 
     /**
      * Called when accept is called on a Line Placement
      *
      * @param lp the line placement to visit
      */
-    void visit(LinePlacement lp);
+    Object visit(LinePlacement linePlacement, Object data );
     
     /**
      * Called when accept is called on a Label Placement
      *
      * @param lp the label placement to visit
      */
-    void visit(LabelPlacement lp);
+    Object visit(LabelPlacement labelPlacement, Object data );
     
     /**
      * Called when accept is called on a legend graphic
      *
      * @param lp the legend graphic to visit
      */
-    void visit(GraphicLegend lp);
+    Object visit(GraphicLegend graphicLegend, Object data );
     
     /**
      * Called when accept is called on an online resource
      *
      * @param rs the online resource to visit
      */
-    void visit(OnLineResource rs);
+    Object visit(OnLineResource onlineResource, Object data );
 
     /**
      * Called when accept is called on a halo
      *
      * @param halo the halo to visit
      */
-    void visit(Halo halo);
+    Object visit(Halo halo, Object data );
 
     /**
      * Called when accept is called on a raster color map
      *
      * @param colorMap the color map to visit
      */
-    void visit(ColorMap colorMap);
+    Object visit(ColorMap colorMap, Object data );
     
     /**
      * Called when accept is called on a color replacement
      *
      * @param colorMap the color replacement to visit
      */
-    void visit(ColorReplacement replacement);
+    Object visit(ColorReplacement colorReplacement, Object data );
 
     /**
      * Called when accept is called on a raster ContrastEnhancement element
      * @param contrastEnhancement the {@link ContrastEnhancement} to visit.
      */
-    void visit(ContrastEnhancement contrastEnhancement);
+    Object visit(ContrastEnhancement contrastEnhancement, Object data );
 
     /**
      * Called when accept is called on a raster {@link ChannelSelection} element
      * @param cs the {@link ChannelSelection} to visit.
      */
-    void visit(ChannelSelection cs);
+    Object visit(ChannelSelection channelSelection, Object data );
 
     /**
      * Called when accept is called on a raster {@link OverlapBehavior} element
      * @param cs the {@link OverlapBehavior} to visit.
      */
-    void visit(OverlapBehavior ob);
+    Object visit(OverlapBehavior overlapBehavior, Object data );
 
     /**
      * Called when accept is called on a raster {@link SelectedChannelType} element
      * @param cs the {@link SelectedChannelType} to visit.
      */
-    void visit(SelectedChannelType sct);
+    Object visit(SelectedChannelType selectChannelType, Object data );
 
     /**
      * Called when accept is called on a raster {@link ShadedRelief} element
      * @param cs the {@link ShadedRelief} to visit.
      */
-    void visit(ShadedRelief sr);
+    Object visit(ShadedRelief shadedRelief, Object data );
 }
