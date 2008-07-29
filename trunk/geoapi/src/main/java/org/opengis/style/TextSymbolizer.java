@@ -37,10 +37,7 @@ public interface TextSymbolizer extends Symbolizer {
     Expression getLabel();
 
     /**
-     * Returns a list of Fonts to choose from when rendering this symbol.  The
-     * renderer must choose the first one in the list that it is capable of
-     * rendering.  The returned list is "live" and can be modified by the
-     * caller.  (This is why there is no {@code setFonts} method.)
+     * Returns the Font to apply on the text.
      * @return Font
      */
     @XmlElement("Font")

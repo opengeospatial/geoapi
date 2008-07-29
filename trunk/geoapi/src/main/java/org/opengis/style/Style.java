@@ -14,6 +14,7 @@ import java.util.List;
 import org.opengis.annotation.UML;
 
 import org.opengis.annotation.XmlElement;
+import org.opengis.metadata.citation.OnLineResource;
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
 
@@ -81,7 +82,7 @@ public interface Style {
      */
     @UML(identifier="defaultPortrayalSpec", obligation=MANDATORY, specification=ISO_19117)
     Symbolizer getDefaultSpecification();
-
+    
     /**
      * calls the visit method of a StyleVisitor
      *

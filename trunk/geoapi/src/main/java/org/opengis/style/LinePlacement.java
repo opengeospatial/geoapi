@@ -91,6 +91,6 @@ public interface LinePlacement extends LabelPlacement {
      *
      * @param visitor the style visitor
      */
-    void accept(LinePlacement visitor);
+    void accept(StyleVisitor visitor);
 
 }
