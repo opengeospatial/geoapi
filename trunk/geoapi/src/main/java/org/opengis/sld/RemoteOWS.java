@@ -10,6 +10,7 @@
  *************************************************************************************************/
 package org.opengis.sld;
 
+import org.opengis.annotation.Extension;
 import org.opengis.annotation.XmlElement;
 import org.opengis.metadata.citation.OnLineResource;
 
@@ -42,6 +43,7 @@ public interface RemoteOWS extends Source {
      *
      * @param visitor the sld visitor
      */
-    void accept(SLDVisitor visitor);
+    @Extension
+    Object accept(SLDVisitor visitor, Object extraData);
     
 }

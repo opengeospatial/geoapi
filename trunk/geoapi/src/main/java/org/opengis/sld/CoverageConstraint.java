@@ -10,6 +10,7 @@
  *************************************************************************************************/
 package org.opengis.sld;
 
+import org.opengis.annotation.Extension;
 import org.opengis.annotation.XmlElement;
 
 /**
@@ -39,6 +40,7 @@ public interface CoverageConstraint {
      *
      * @param visitor the sld visitor
      */
-    void accept(SLDVisitor visitor);
+    @Extension
+    Object accept(SLDVisitor visitor, Object extraData);
     
 }

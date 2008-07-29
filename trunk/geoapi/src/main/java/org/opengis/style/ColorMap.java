@@ -10,6 +10,7 @@
  *************************************************************************************************/
 package org.opengis.style;
 
+import org.opengis.annotation.Extension;
 import org.opengis.annotation.XmlElement;
 import org.opengis.filter.expression.Function;
 
@@ -48,6 +49,7 @@ public interface ColorMap {
      *
      * @param visitor the style visitor
      */
-    void accept(StyleVisitor visitor);
+    @Extension
+    Object accept(StyleVisitor visitor, Object extraData);
     
 }

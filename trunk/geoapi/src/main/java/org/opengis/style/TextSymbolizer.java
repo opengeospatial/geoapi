@@ -10,6 +10,7 @@
  *************************************************************************************************/
 package org.opengis.style;
 
+import org.opengis.annotation.Extension;
 import org.opengis.filter.expression.Expression;
 import org.opengis.annotation.XmlElement;
 
@@ -67,4 +68,12 @@ public interface TextSymbolizer extends Symbolizer {
     @XmlElement("Fill")
     Fill getFill();
 
+    /**
+     * calls the visit method of a StyleVisitor
+     *
+     * @param visitor the style visitor
+     */
+    @Extension
+    Object accept(StyleVisitor visitor, Object extraData);
+    
 }

@@ -11,6 +11,7 @@
 package org.opengis.sld;
 
 import java.util.List;
+import org.opengis.annotation.Extension;
 import org.opengis.annotation.XmlElement;
 
 /**
@@ -38,6 +39,7 @@ public interface LayerCoverageConstraints extends Constraints {
      *
      * @param visitor the sld visitor
      */
-    void accept(SLDVisitor visitor);
+    @Extension
+    Object accept(SLDVisitor visitor, Object extraData);
     
 }

@@ -10,6 +10,7 @@
  *************************************************************************************************/
 package org.opengis.style;
 
+import org.opengis.annotation.Extension;
 import org.opengis.filter.expression.Expression;
 import org.opengis.annotation.XmlElement;
 
@@ -72,5 +73,13 @@ public interface Mark extends GraphicalSymbol {
      */
     @XmlElement("Stroke")
     Stroke getStroke();
+    
+    /**
+     * calls the visit method of a StyleVisitor
+     *
+     * @param visitor the style visitor
+     */
+    @Extension
+    Object accept(StyleVisitor visitor, Object extraData);
 
 }

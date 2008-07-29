@@ -11,6 +11,7 @@
 package org.opengis.sld;
 
 import java.util.List;
+import org.opengis.annotation.Extension;
 import org.opengis.annotation.XmlElement;
 
 /**
@@ -53,6 +54,7 @@ public interface CoverageExtent {
      *
      * @param visitor the sld visitor
      */
-    void accept(SLDVisitor visitor);
+    @Extension
+    Object accept(SLDVisitor visitor, Object extraData);
     
 }
