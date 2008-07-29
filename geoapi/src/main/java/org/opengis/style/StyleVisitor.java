@@ -51,7 +51,7 @@ public interface StyleVisitor {
      *
      * @param fts the feature type styler to visit
      */
-    void visit(FeatureTypeStyle featureTypeStyle, Object data );
+    Object visit(FeatureTypeStyle featureTypeStyle, Object data );
 
     /**
      * Called when accept is called on a rule
