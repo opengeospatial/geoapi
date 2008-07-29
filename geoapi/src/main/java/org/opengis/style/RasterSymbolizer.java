@@ -141,6 +141,6 @@ public interface RasterSymbolizer extends Symbolizer {
      * @return The relevent symbolizer
      */
     @XmlElement("ImageOutline")
-    LineSymbolizer getImageOutline();
+    Symbolizer getImageOutline();
 
 }

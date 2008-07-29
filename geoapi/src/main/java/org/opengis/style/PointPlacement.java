@@ -75,6 +75,6 @@ public interface PointPlacement extends LabelPlacement {
      *
      * @param visitor the style visitor
      */
-    void accept(PointPlacement visitor);
+    void accept(StyleVisitor visitor);
 
 }

@@ -15,6 +15,7 @@ import org.opengis.filter.Filter;
 import org.opengis.annotation.UML;
 import org.opengis.annotation.XmlElement;
 
+import org.opengis.metadata.citation.OnLineResource;
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
 
@@ -128,6 +129,16 @@ public interface Rule {
     @XmlElement("Symbolizer")
     @UML(identifier="portrayAction", obligation=MANDATORY, specification=ISO_19117)
     List<? extends Symbolizer> symbolizers();
+    
+    /**
+     * It is common to have a style coming from a external xml file, this method
+     * provide a way to get the original source if there is one.
+     * OGC SLD specification can use this method to know if a style must be
+     * written completely or if writing the online resource path is enough.
+     * 
+     * @return OnlineResource or null
+     */
+    OnLineResource getOnlineResource();
     
     /**
      * calls the visit method of a StyleVisitor
