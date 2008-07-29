@@ -11,6 +11,7 @@
 package org.opengis.style;
 
 import java.util.List;
+import org.opengis.annotation.Extension;
 import org.opengis.annotation.UML;
 
 import org.opengis.annotation.XmlElement;
@@ -87,6 +88,7 @@ public interface Style {
      *
      * @param visitor the style visitor
      */
-    void accept(StyleVisitor visitor);
+    @Extension
+    Object accept(StyleVisitor visitor, Object extraData);
     
 }

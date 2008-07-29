@@ -12,6 +12,7 @@
 package org.opengis.sld;
 
 import java.util.Collection;
+import org.opengis.annotation.Extension;
 import org.opengis.annotation.XmlElement;
 import org.opengis.feature.Feature;
 
@@ -41,6 +42,7 @@ public interface InlineFeature extends Source{
      *
      * @param visitor the sld visitor
      */
-    void accept(SLDVisitor visitor);
+    @Extension
+    Object accept(SLDVisitor visitor, Object extraData);
 
 }

@@ -11,6 +11,7 @@
 package org.opengis.sld;
 
 import java.util.List;
+import org.opengis.annotation.Extension;
 import org.opengis.annotation.XmlElement;
 import org.opengis.feature.type.Name;
 import org.opengis.filter.Filter;
@@ -49,6 +50,7 @@ public interface FeatureTypeConstraint {
      *
      * @param visitor the sld visitor
      */
-    void accept(SLDVisitor visitor);
+    @Extension
+    Object accept(SLDVisitor visitor, Object extraData);
     
 }

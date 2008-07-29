@@ -10,6 +10,7 @@
  *************************************************************************************************/
 package org.opengis.sld;
 
+import org.opengis.annotation.Extension;
 import org.opengis.annotation.XmlElement;
 import org.opengis.annotation.XmlParameter;
 import org.opengis.style.Description;
@@ -45,6 +46,7 @@ public interface NamedStyle extends LayerStyle {
      *
      * @param visitor the sld visitor
      */
-    void accept(SLDVisitor visitor);
+    @Extension
+    Object accept(SLDVisitor visitor, Object extraData);
     
 }

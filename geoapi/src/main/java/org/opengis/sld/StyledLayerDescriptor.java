@@ -13,6 +13,7 @@ package org.opengis.sld;
 
 import java.util.List;
 
+import org.opengis.annotation.Extension;
 import org.opengis.style.Description;
 import org.opengis.annotation.XmlElement;
 import org.opengis.annotation.XmlParameter;
@@ -83,5 +84,14 @@ public interface StyledLayerDescriptor {
      */
     @XmlParameter("Version")
     String getVersion();
+    
+    /**
+     * calls the visit method of a SLDVisitor
+     *
+     * @param visitor the sld visitor
+     */
+    @Extension
+    Object accept(SLDVisitor visitor, Object extraData);
+    
     
 }
