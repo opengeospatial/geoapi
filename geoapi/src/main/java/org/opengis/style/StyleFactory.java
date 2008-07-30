@@ -33,23 +33,33 @@ import org.opengis.util.InternationalString;
  */
 public interface StyleFactory {
 
-    AnchorPoint createAnchorPoint(Expression x, Expression y);
+    AnchorPoint anchorPoint(Expression x, Expression y);
 
-    ChannelSelection createChannelSelection(SelectedChannelType gray);
+    ChannelSelection channelSelection(SelectedChannelType gray);
 
-    ChannelSelection createChannelSelection(SelectedChannelType red,
+    ChannelSelection channelSelection(SelectedChannelType red,
             SelectedChannelType green, SelectedChannelType blue);
 
     /**
      * Wrap up a "Categorize" function using the provided expressions.
-     * 
+     * <p>
+     * The function will be created based on:
+	 * <ol>
+	 * <li>PropertyName; use "Rasterdata" to indicate this is a color map
+	 * <li>Literal: lookup value
+	 * <li>Literal: threshold 1
+	 * <li>Literal: value 1
+	 * <li>Literal: threshold 2
+	 * <li>Literal: value 2
+	 * <li>Literal: (Optional) succeeding or preceding
+	 * </ol>
      * @param propertyName
      *            Property name to categorize, or use "Raster"
      * @param mapping
      *            Defined as a series of Expressions
      * @return ColorMap wrapped around the "Cateogize" function
      */
-    ColorMap createColorMap(Expression propertyName, Expression... mapping);
+    ColorMap colorMap(Expression propertyName, Expression... mapping);
 
     /**
      * Wrap up a replacement function using the provided expressions.
@@ -60,27 +70,27 @@ public interface StyleFactory {
      *            Defined as a series of Expressions
      * @return ColorReplacement wrapped around a Function
      */
-    ColorReplacement createColorReplacement(Expression propertyName,
+    ColorReplacement colorReplacement(Expression propertyName,
             Expression... mapping);
 
-    ContrastEnhancement createContrastEnhancement(Expression gamma,
+    ContrastEnhancement contrastEnhancement(Expression gamma,
             ContrastMethod method);
 
-    Description createDescription(InternationalString title,
+    Description description(InternationalString title,
             InternationalString description);
 
-    Displacement createDisplacement(Expression dx, Expression dy);
+    Displacement displacement(Expression dx, Expression dy);
 
-    ExternalGraphic createExternalGraphic(OnLineResource resource,
+    ExternalGraphic externalGraphic(OnLineResource resource,
             String format, Collection<ColorReplacement> replacements);
 
-    ExternalGraphic createExternalGraphic(Icon inline,
+    ExternalGraphic externalGraphic(Icon inline,
             Collection<ColorReplacement> replacements);
 
-    ExternalMark createExternalMark(OnLineResource resource, String format,
+    ExternalMark externalMark(OnLineResource resource, String format,
             int markIndex);
 
-    ExternalMark createExternalMark(Icon inline);
+    ExternalMark externalMark(Icon inline);
 
     /**
      * 
@@ -93,80 +103,80 @@ public interface StyleFactory {
      *            May not be null or empty
      * @return
      */
-    FeatureTypeStyle createFeatureTypeStyle(String name,
+    FeatureTypeStyle featureTypeStyle(String name,
             Description description, Id definedFor, Set<Name> featureTypeNames,
             Set<SemanticType> types, List<Rule> rules);
 
-    Fill createFill(GraphicFill fill, Expression color, Expression opacity);
+    Fill fill(GraphicFill fill, Expression color, Expression opacity);
 
-    Font createFont(List<Expression> family, Expression style,
+    Font font(List<Expression> family, Expression style,
             Expression weight, Expression size);
 
-    GraphicFill createGraphicFill(List<GraphicalSymbol> symbols,
+    GraphicFill graphicFill(List<GraphicalSymbol> symbols,
             Expression opacity, Expression size, AnchorPoint anchorPoint,
             Displacement displacement);
 
-    GraphicLegend createGraphicLegend(List<GraphicalSymbol> symbols,
+    GraphicLegend graphicLegend(List<GraphicalSymbol> symbols,
             Expression opacity, Expression size, AnchorPoint anchorPoint,
             Displacement displacement);
 
-    GraphicStroke createGraphicStroke(List<GraphicalSymbol> symbols,
+    GraphicStroke graphicStroke(List<GraphicalSymbol> symbols,
             Expression opacity, Expression size, AnchorPoint anchorPoint,
             Displacement displacement, Expression initialGap, Expression gap);
 
-    Halo createHalo(Fill fill, Expression radius);
+    Halo halo(Fill fill, Expression radius);
 
-    LinePlacement createLinePlacement(Expression offset, Expression initialGap,
+    LinePlacement linePlacement(Expression offset, Expression initialGap,
             Expression gap, boolean repeated, boolean aligned,
             boolean generalizedLine);
 
-    LineSymbolizer createLineSymbolizer(Expression geometry,
+    LineSymbolizer lineSymbolizer(Expression geometry,
             Description description, Unit unit, Stroke stroke, Expression offset);
 
-    Mark createMark(Expression wellKnownName, Fill fill, Stroke stroke);
+    Mark mark(Expression wellKnownName, Fill fill, Stroke stroke);
 
-    Mark createMark(ExternalMark externalMark, Fill fill, Stroke stroke);
+    Mark mark(ExternalMark externalMark, Fill fill, Stroke stroke);
 
-    PointPlacement createPointPlacement(AnchorPoint anchor,
+    PointPlacement pointPlacement(AnchorPoint anchor,
             Displacement displacement, Expression rotation);
 
-    PointSymbolizer createPointSymbolizer(Expression geometry,
+    PointSymbolizer pointSymbolizer(Expression geometry,
             Description description, Unit unit, Graphic graphic);
 
-    PolygonSymbolizer createPolygonSymbolizer(Expression geometry,
+    PolygonSymbolizer polygonSymbolizer(Expression geometry,
             Description description, Unit unit, Stroke stroke, Fill fill,
             Displacement displacement, Expression offset);
 
-    RasterSymbolizer createRasterSymbolizer(Expression geometry,
+    RasterSymbolizer rasterSymbolizer(Expression geometry,
             Description description, Unit unit, Expression opacity,
             ChannelSelection channelSelection,
             OverlapBehavior overlapsBehaviour, ColorMap colorMap,
             ContrastEnhancement contrast, ShadedRelief shaded,
             LineSymbolizer outline);
 
-    Rule createRule(String name, Description description, GraphicLegend legend,
+    Rule rule(String name, Description description, GraphicLegend legend,
             double min, double max, List<Symbolizer> symbolizers, Filter filter);
 
-    Rule createElse(String name, Description description, GraphicLegend legend,
+    Rule rule(String name, Description description, GraphicLegend legend,
             double min, double max, List<Symbolizer> symbolizers);
 
-    SelectedChannelType createSelectedChannelType();
+    SelectedChannelType selectedChannelType();
 
-    SemanticType createSemanticType(String name, ContrastEnhancement contrast);
+    SemanticType semanticType(String name, ContrastEnhancement contrast);
 
-    ShadedRelief createShadedRelief(Expression reliefFactor,
+    ShadedRelief shadedRelief(Expression reliefFactor,
             boolean brightnessOnly);
 
-    Stroke createStroke(GraphicStroke stroke, GraphicFill fill,
+    Stroke stroke(GraphicStroke stroke, GraphicFill fill,
             Expression color, Expression opacity, Expression width,
             Expression lineJoin, Expression lineCap, float dashArray[],
             Expression dashOffset);
 
-    Style createStyle(String name, Description description, boolean isDefault,
+    Style style(String name, Description description, boolean isDefault,
             List<FeatureTypeStyle> featureTypeStyles,
             Symbolizer defaultSymbolizer);
 
-    TextSymbolizer createTextSymbolizer(Expression geometry,
+    TextSymbolizer textSymbolizer(Expression geometry,
             Description description, Unit unit, Expression label, Font font,
             LabelPlacement placement, Halo halo, Fill fill);
 }

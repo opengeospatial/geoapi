@@ -188,6 +188,10 @@ public final class GeometryOperand implements Name, Serializable {
         return false;
     }
 
+    public String getSeparator() {
+    	return "#";
+    }
+    
     /**
      * Returns a hash code value for this operand.
      */
@@ -201,9 +205,9 @@ public final class GeometryOperand implements Name, Serializable {
      */
     @Override
     public boolean equals(final Object other) {
-        if (other instanceof GeometryOperand) {
-            final GeometryOperand that = (GeometryOperand) other;
-            return namespaceURI.equals(that.namespaceURI) && name.equals(that.name);
+        if (other != null && other instanceof Name) {
+            final Name that = (Name) other;
+            return namespaceURI.equals(that.getNamespaceURI()) && name.equals(that.getLocalPart());
         }
         return false;
     }
