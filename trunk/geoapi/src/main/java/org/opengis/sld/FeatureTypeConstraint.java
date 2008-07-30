@@ -28,7 +28,7 @@ import org.opengis.filter.Filter;
  * @author Johann Sorel (Geomatys)
  * @since GeoAPI 2.2
  */
-public interface FeatureTypeConstraint {
+public interface FeatureTypeConstraint extends Constraint{
 
     /**
      * FeatureType name.
