@@ -24,7 +24,7 @@ import org.opengis.annotation.XmlElement;
  * @author Johann Sorel (Geomatys)
  * @since GeoAPI 2.2
  */
-public interface CoverageConstraint {
+public interface CoverageConstraint extends Constraint{
 
     /**
      * Get the coverage name.

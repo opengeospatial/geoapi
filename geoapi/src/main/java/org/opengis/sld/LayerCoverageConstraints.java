@@ -32,7 +32,7 @@ public interface LayerCoverageConstraints extends Constraints {
      * UserLayer must come from the same WCS source.
      */
     @XmlElement("CoverageConstraint")
-    public List<CoverageConstraint> constraints();
+    public List<? extends CoverageConstraint> constraints();
     
     /**
      * calls the visit method of a SLDVisitor

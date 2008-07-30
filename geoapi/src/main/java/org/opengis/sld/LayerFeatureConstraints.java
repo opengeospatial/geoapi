@@ -30,7 +30,7 @@ public interface LayerFeatureConstraints extends Constraints {
      * List of constraints.
      */
     @XmlElement("FeatureTypeConstraint")
-    List<FeatureTypeConstraint> constraint();
+    List<? extends FeatureTypeConstraint> constraints();
     
     /**
      * calls the visit method of a SLDVisitor
