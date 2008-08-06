@@ -10,6 +10,8 @@
  *************************************************************************************************/
 package org.opengis.util;
 
+import java.io.File;
+import java.util.List;
 import org.opengis.annotation.UML;
 import org.opengis.annotation.Extension;
 
@@ -32,6 +34,25 @@ import static org.opengis.annotation.Specification.*;
  * qualified</cite> name. The {@code ScopedName} type is one link in the chain, not the entire chain.
  * A scoped name is a fully qualified name only if its {@linkplain #scope scope} is
  * {@linkplain NameSpace#isGlobal global}.
+ * <p>
+ * <b>Example</b><br>
+ * The illustration below shows the head, tail, path and name of {@code "org.opengis.util.Record"}.
+ * <blockquote><table border="0">
+ *   <tr>
+ *     <th align="right">org</th>
+ *     <th>.</th><th>opengis</th>
+ *     <th>.</th><th>util</th>
+ *     <th>.</th><th>Record</th>
+ *   </tr>
+ *   <tr align="center">
+ *     <td bgcolor="lightblue" colspan="1">head</td><td></td>
+ *     <td bgcolor="lightblue" colspan="5">tail</td>
+ *   </tr>
+ *   <tr align="center">
+ *     <td bgcolor="lightblue" colspan="5">path</td><td></td>
+ *     <td bgcolor="lightblue" colspan="1">name</td>
+ *   </tr>
+ * </table></blockquote>
  *
  * @author Martin Desruisseaux (IRD)
  * @author Bryce Nordgren (USDA)
@@ -42,18 +63,27 @@ import static org.opengis.annotation.Specification.*;
 @UML(identifier="ScopedName", specification=ISO_19103)
 public interface ScopedName extends GenericName {
     /**
-     * Returns the head of this scoped name. This is the first elements in the sequence of
+     * Returns the head of this scoped name. This is the first element in the sequence of
      * {@linkplain #getParsedNames parsed names}. The head element must exists in the same
      * {@linkplain NameSpace name space} than this scoped name. In other words, the following
      * relationship must holds:
      * <p>
      * <ul>
-     *   <li><code>head().scope() == this.{@linkplain #scope scope()}</code></li>
+     *   <li><code>head().scope() {@linkplain NameSpace#equals equals}
+     *       this.{@linkplain #scope scope()}</code></li>
      * </ul>
      *
-     * @since GeoAPI 2.1
+     * <blockquote>
+     * <b>Example</b><br>
+     * If {@code this} name is {@code "org.opengis.util.Record"}, then this method
+     * shall returns {@code "org"}.
+     * </blockquote>
+     *
+     * @return The first element in the list of {@linkplain #getParsedNames parsed names}.
+     *
+     * @since GeoAPI 2.2
      */
-    @UML(identifier="head", obligation=MANDATORY, specification=ISO_19103)
+    @UML(identifier="ScopedName.head", obligation=MANDATORY, specification=ISO_19103)
     LocalName head();
 
     /**
@@ -62,12 +92,12 @@ public interface ScopedName extends GenericName {
      * {@linkplain #head head}. In other words, the following relationship must holds:
      * <p>
      * <ul>
-     *   <li><code>tail().getParsedNames() == this.{@linkplain #getParsedNames getParsedNames()}.sublist(1,end)</code></li>
+     *   <li><code>tail().getParsedNames() {@linkplain List#equals equals]
+     *   this.{@linkplain #getParsedNames getParsedNames()}.sublist(1,end)</code></li>
      * </ul>
-     * <p>
-     * <strong>Note:</strong> This condition can be understood in terms of the Java
-     * {@link java.util.List#equals equals} method instead of the Java identity
-     * comparator {@code ==}.
+     *
+     * @return All elements except the first one in the in the list of
+     *         {@linkplain #getParsedNames parsed names}.
      *
      * @since GeoAPI 2.1
      */
@@ -77,8 +107,10 @@ public interface ScopedName extends GenericName {
     /**
      * Returns a name which contains every element of the
      * {@linkplain #getParsedNames parsed names list} except for the last element.
+     * In standard Java library, this is method is analog to {@link File#getParent}.
      *
-     * @see java.io.File#getPath
+     * @return All elements except the last one in the in the list of
+     *         {@linkplain #getParsedNames parsed names}.
      *
      * @since GeoAPI 2.1
      */
@@ -87,8 +119,9 @@ public interface ScopedName extends GenericName {
 
     /**
      * Returns the last element in the sequence of {@linkplain #getParsedNames parsed names}.
+     * In standard Java library, this is method is analog to {@link File#getName}.
      *
-     * @see java.io.File#getName
+     * @return The last element in the list of {@linkplain #getParsedNames parsed names}.
      *
      * @since GeoAPI 2.1
      */
@@ -104,7 +137,7 @@ public interface ScopedName extends GenericName {
      * and for {@linkplain org.opengis.referencing.crs.CoordinateReferenceSystem CRS}, it
      * will depend on the mode of expression: URN or {@code Authority:Identifier} notation.
      */
+/// @Override
     @UML(identifier="scopedName", obligation=MANDATORY, specification=ISO_19103)
-    ///@Override    
     String toString();
 }

@@ -11,7 +11,7 @@
 package org.opengis.util;
 
 import java.util.List;
-import java.util.Collections;  // For javadoc
+import java.util.Collections;
 import org.opengis.annotation.UML;
 import org.opengis.annotation.Extension;
 
@@ -39,9 +39,9 @@ public interface LocalName extends GenericName {
     int depth();
 
     /**
-     * Returns the sequence of local name for this {@linkplain GenericName generic name}.
-     * Since this object is itself a locale name, this method always returns a
-     * {@linkplain java.util.Collections#singleton singleton} containing only {@code this}.
+     * Returns the sequence of local name. Since this object is itself a locale name,
+     * this method always returns a {@linkplain Collections#singleton singleton}
+     * containing only {@code this}.
      */
     @UML(identifier="parsedName", obligation=MANDATORY, specification=ISO_19103)
     List<LocalName> getParsedNames();
@@ -57,7 +57,7 @@ public interface LocalName extends GenericName {
     /**
      * Returns a locale-independant string representation of this local name.
      */
+/// @Override
     @UML(identifier="aName", obligation=MANDATORY, specification=ISO_19103)
-    ///@Override
     String toString();
 }
