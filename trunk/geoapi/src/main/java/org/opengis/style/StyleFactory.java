@@ -30,6 +30,10 @@ import org.opengis.util.InternationalString;
  * This factory is responsible for the production of style objects; where noted
  * these create methods are in agreement with the Symbology Encoding 1.1
  * specification.
+ * 
+ * @author Open Geospatial Consortium
+ * @author Johann Sorel (Geomatys)
+ * @since GeoAPI 2.2
  */
 public interface StyleFactory {
 
@@ -44,15 +48,15 @@ public interface StyleFactory {
      * Wrap up a "Categorize" function using the provided expressions.
      * <p>
      * The function will be created based on:
-	 * <ol>
-	 * <li>PropertyName; use "Rasterdata" to indicate this is a color map
-	 * <li>Literal: lookup value
-	 * <li>Literal: threshold 1
-	 * <li>Literal: value 1
-	 * <li>Literal: threshold 2
-	 * <li>Literal: value 2
-	 * <li>Literal: (Optional) succeeding or preceding
-	 * </ol>
+     * <ol>
+     * <li>PropertyName; use "Rasterdata" to indicate this is a color map
+     * <li>Literal: lookup value
+     * <li>Literal: threshold 1
+     * <li>Literal: value 1
+     * <li>Literal: threshold 2
+     * <li>Literal: value 2
+     * <li>Literal: (Optional) succeeding or preceding
+     * </ol>
      * @param propertyName
      *            Property name to categorize, or use "Raster"
      * @param mapping
