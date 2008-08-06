@@ -35,7 +35,7 @@ import static org.opengis.annotation.Specification.*;
  * A scoped name is a fully qualified name only if its {@linkplain #scope scope} is
  * {@linkplain NameSpace#isGlobal global}.
  * <p>
- * <b>Example</b><br>
+ * <b>Example</b>:
  * The illustration below shows the head, tail, path and name of {@code "org.opengis.util.Record"}.
  * <blockquote><table border="0">
  *   <tr>
@@ -72,18 +72,16 @@ public interface ScopedName extends GenericName {
      *   <li><code>head().scope() {@linkplain NameSpace#equals equals}
      *       this.{@linkplain #scope scope()}</code></li>
      * </ul>
-     *
-     * <blockquote>
-     * <b>Example</b><br>
+     * <p>
+     * <b>Example</b>:
      * If {@code this} name is {@code "org.opengis.util.Record"}, then this method
      * shall returns {@code "org"}.
-     * </blockquote>
      *
      * @return The first element in the list of {@linkplain #getParsedNames parsed names}.
      *
      * @since GeoAPI 2.2
      */
-    @UML(identifier="ScopedName.head", obligation=MANDATORY, specification=ISO_19103)
+    @UML(identifier="head", obligation=MANDATORY, specification=ISO_19103)
     LocalName head();
 
     /**
