@@ -152,13 +152,6 @@ public interface StyleVisitor {
     Object visit(GraphicStroke graphicStroke, Object data );
     
     /**
-     * Called when accept is called on a graphic symbol
-     *
-     * @param gr the graphic symbol to visit
-     */
-    Object visit(GraphicalSymbol graphicSymbol, Object data );
-
-    /**
      * Called when accept is called on a mark
      *
      * @param mark the mark to visit
