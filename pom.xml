@@ -314,7 +314,7 @@
             <tag>
               <name>departure</name>
               <placement>tfmc</placement>
-              <head>Departure from ISO specification</head>
+              <head>Departure from ISO specification:</head>
             </tag>
             <tag>
               <name>issue</name>
