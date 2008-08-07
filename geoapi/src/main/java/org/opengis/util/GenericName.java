@@ -62,7 +62,7 @@ import static org.opengis.annotation.Specification.*;
  *
  *   <tr><td colspan="7" height="3"></td></tr>
  *   <tr align="center">
- *     <td bgcolor="palegoldenrod" colspan="1" rowspan="3"><font size="-1">{@linkplain #scope scope</font></td><td rowspan="3"></td>
+ *     <td bgcolor="palegoldenrod" colspan="1" rowspan="3"><font size="-1">{@linkplain #scope scope}</font></td><td rowspan="3"></td>
  *     <td bgcolor="palegoldenrod" colspan="1"><font size="-1">head</font></td><td></td>
  *     <td bgcolor="palegoldenrod" colspan="3"><font size="-1">tail</font></td>
  *     <td rowspan="3"></td>
