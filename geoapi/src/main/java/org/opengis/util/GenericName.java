@@ -34,7 +34,7 @@ import static org.opengis.annotation.Specification.*;
  * like {@code "util.Record"} in the {@code "org.opengis"} scope. The illustration below shows all
  * possible constructions for {@code "org.opengis.util.Record"}.
  *
- * <blockquote><table border="0" cellspacing="0">
+ * <blockquote><table border="1" cellpadding="15"><tr><td><table border="0" cellspacing="0">
  *   <tr>
  *     <th align="right">org</th>
  *     <th>.</th><th>opengis</th>
@@ -46,54 +46,69 @@ import static org.opengis.annotation.Specification.*;
  *   </tr>
  *
  *   <tr align="center">
- *     <td bgcolor="lightblue" colspan="1"><font size="-1">head</font></td><td></td>
- *     <td bgcolor="lightblue" colspan="5"><font size="-1">tail</font></td>
- *     <td rowspan="2"></td>
- *     <td rowspan="2" bgcolor="aliceblue" align="left">{@linkplain NameSpace#isGlobal global}</td>
- *     <td rowspan="2" bgcolor="aliceblue" align="right">{@literal {"org", "opengis", "util", "Record"}}</td>
+ *     <td bgcolor="palegoldenrod" colspan="1"><font size="-1">{@linkplain #head head}</font></td><td></td>
+ *     <td bgcolor="palegoldenrod" colspan="5"><font size="-1">{@linkplain ScopedName#tail tail}</font></td>
+ *     <td rowspan="3"></td>
+ *     <td rowspan="3" bgcolor="beige" align="left">{@linkplain NameSpace#isGlobal global}</td>
+ *     <td rowspan="3" bgcolor="beige" align="right">{@literal {"org", "opengis", "util", "Record"}}</td>
  *   </tr>
  *   <tr align="center">
- *     <td bgcolor="lightsteelblue" colspan="7">ScopedName</td>
+ *     <td bgcolor="wheat" colspan="5"><font size="-1">{@linkplain ScopedName#path path}</font></td><td></td>
+ *     <td bgcolor="wheat" colspan="1"><font size="-1">{@linkplain #tip tip}</font></td>
+ *   </tr>
+ *   <tr align="center">
+ *     <td bgcolor="burlywood" colspan="7">{@linkplain ScopedName}</td>
  *   </tr>
  *
  *   <tr><td colspan="7" height="3"></td></tr>
  *   <tr align="center">
- *     <td bgcolor="lightblue" colspan="1" rowspan="2"><font size="-1">scope</font></td><td rowspan="2"></td>
- *     <td bgcolor="lightblue" colspan="1"><font size="-1">head</font></td><td></td>
- *     <td bgcolor="lightblue" colspan="3"><font size="-1">tail</font></td>
- *     <td rowspan="2"></td>
- *     <td rowspan="2" bgcolor="aliceblue" align="left">{@literal "org"}</td>
- *     <td rowspan="2" bgcolor="aliceblue" align="right">{@literal {"opengis", "util", "Record"}}</td>
+ *     <td bgcolor="palegoldenrod" colspan="1" rowspan="3"><font size="-1">{@linkplain #scope scope</font></td><td rowspan="3"></td>
+ *     <td bgcolor="palegoldenrod" colspan="1"><font size="-1">head</font></td><td></td>
+ *     <td bgcolor="palegoldenrod" colspan="3"><font size="-1">tail</font></td>
+ *     <td rowspan="3"></td>
+ *     <td rowspan="3" bgcolor="beige" align="left">{@literal "org"}</td>
+ *     <td rowspan="3" bgcolor="beige" align="right">{@literal {"opengis", "util", "Record"}}</td>
  *   </tr>
  *   <tr align="center">
- *     <td bgcolor="lightsteelblue" colspan="5">ScopedName</td>
+ *     <td bgcolor="wheat" colspan="3"><font size="-1">path</font></td><td></td>
+ *     <td bgcolor="wheat" colspan="1"><font size="-1">tip</font></td>
+ *   </tr>
+ *   <tr align="center">
+ *     <td bgcolor="burlywood" colspan="5">ScopedName</td>
  *   </tr>
  *
  *   <tr><td colspan="7" height="3"></td></tr>
  *   <tr align="center">
- *     <td bgcolor="lightblue" colspan="3" rowspan="2"><font size="-1">scope</font></td><td rowspan="2"></td>
- *     <td bgcolor="lightblue" colspan="1"><font size="-1">head</font></td><td></td>
- *     <td bgcolor="lightblue" colspan="1"><font size="-1">tail</font></td>
- *     <td rowspan="2"></td>
- *     <td rowspan="2" bgcolor="aliceblue" align="left">{@literal "org.opengis"}</td>
- *     <td rowspan="2" bgcolor="aliceblue" align="right">{@literal {"util", "Record"}}</td>
+ *     <td bgcolor="palegoldenrod" colspan="3" rowspan="3"><font size="-1">scope</font></td><td rowspan="3"></td>
+ *     <td bgcolor="palegoldenrod" colspan="1"><font size="-1">head</font></td><td></td>
+ *     <td bgcolor="palegoldenrod" colspan="1"><font size="-1">tail</font></td>
+ *     <td rowspan="3"></td>
+ *     <td rowspan="3" bgcolor="beige" align="left">{@literal "org.opengis"}</td>
+ *     <td rowspan="3" bgcolor="beige" align="right">{@literal {"util", "Record"}}</td>
  *   </tr>
  *   <tr align="center">
- *     <td bgcolor="lightsteelblue" colspan="3">ScopedName</td>
+ *     <td bgcolor="wheat" colspan="1"><font size="-1">path</font></td><td></td>
+ *     <td bgcolor="wheat" colspan="1"><font size="-1">tip</font></td>
+ *   </tr>
+ *   <tr align="center">
+ *     <td bgcolor="burlywood" colspan="3">ScopedName</td>
  *   </tr>
  *
  *   <tr><td colspan="7" height="3"></td></tr>
  *   <tr align="center">
- *     <td bgcolor="lightblue" colspan="5" rowspan="2"><font size="-1">scope</font></td><td rowspan="2"></td>
- *     <td bgcolor="lightblue" colspan="1"><font size="-1">head</font></td>
- *     <td rowspan="2"></td>
- *     <td rowspan="2" bgcolor="aliceblue" align="left">{@literal "org.opengis.util"}</td>
- *     <td rowspan="2" bgcolor="aliceblue" align="right">{@literal {"Record"}}</td>
+ *     <td bgcolor="palegoldenrod" colspan="5" rowspan="3"><font size="-1">scope</font></td><td rowspan="3"></td>
+ *     <td bgcolor="palegoldenrod" colspan="1"><font size="-1">head</font></td>
+ *     <td rowspan="3"></td>
+ *     <td rowspan="3" bgcolor="beige" align="left">{@literal "org.opengis.util"}</td>
+ *     <td rowspan="3" bgcolor="beige" align="right">{@literal {"Record"}}</td>
  *   </tr>
  *   <tr align="center">
- *     <td bgcolor="lightsteelblue" colspan="1">LocalName</td>
+ *     <td bgcolor="wheat" colspan="1"><font size="-1">tip</font></td>
  *   </tr>
- * </table></blockquote>
+ *   <tr align="center">
+ *     <td bgcolor="burlywood" colspan="1">{@linkplain LocalName}</td>
+ *   </tr>
+ * </table></td></tr></table></blockquote>
  * <p>
  * The {@linkplain Comparable natural ordering} for generic names is implementation dependent.
  * A recommended practice is to {@linkplain String#compareTo compare lexicographically} each
@@ -162,9 +177,23 @@ public interface GenericName extends Comparable<GenericName> {
     List<LocalName> getParsedNames();
 
     /**
-     * Convenience method returning the last element in the sequence of
-     * {@linkplain #getParsedNames parsed names}. For any {@link LocalName},
-     * this is always {@code this}.
+     * Returns the first element in the sequence of {@linkplain #getParsedNames parsed names}.
+     * For any {@link LocalName}, this is always {@code this}.
+     * <p>
+     * <b>Example</b>:
+     * If {@code this} name is {@code "org.opengis.util.Record"} (no matter its
+     * {@linkplain #scope scope}), then this method shall returns {@code "org"}.
+     *
+     * @return The first element in the list of {@linkplain #getParsedNames parsed names}.
+     *
+     * @since GeoAPI 2.2
+     */
+    @UML(identifier="ScopedName.head", obligation=MANDATORY, specification=ISO_19103)
+    LocalName head();
+
+    /**
+     * Returns the last element in the sequence of {@linkplain #getParsedNames parsed names}.
+     * For any {@link LocalName}, this is always {@code this}.
      * <p>
      * <b>Example</b>:
      * If {@code this} name is {@code "org.opengis.util.Record"} (no matter its
@@ -175,6 +204,15 @@ public interface GenericName extends Comparable<GenericName> {
      * @since GeoAPI 2.1
      */
     @Extension
+    LocalName tip();
+
+    /**
+     * @deprecated Renamed as {@link #tip}.
+     *
+     * @return The last element in the list of {@linkplain #getParsedNames parsed names}.
+     */
+    @Extension
+    @Deprecated
     LocalName name();
 
     /**

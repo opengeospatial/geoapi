@@ -10,7 +10,6 @@
  *************************************************************************************************/
 package org.opengis.util;
 
-import java.io.File;
 import java.util.List;
 import org.opengis.annotation.UML;
 import org.opengis.annotation.Extension;
@@ -37,7 +36,7 @@ import static org.opengis.annotation.Specification.*;
  * <p>
  * <b>Example</b>:
  * The illustration below shows the head, tail, path and name of {@code "org.opengis.util.Record"}.
- * <blockquote><table border="0">
+ * <blockquote><table border="1" cellpadding="15"><tr><td><table border="0">
  *   <tr>
  *     <th align="right">org</th>
  *     <th>.</th><th>opengis</th>
@@ -45,14 +44,14 @@ import static org.opengis.annotation.Specification.*;
  *     <th>.</th><th>Record</th>
  *   </tr>
  *   <tr align="center">
- *     <td bgcolor="lightblue" colspan="1">head</td><td></td>
- *     <td bgcolor="lightblue" colspan="5">tail</td>
+ *     <td bgcolor="palegoldenrod" colspan="1">{@linkplain #head head}</td><td></td>
+ *     <td bgcolor="palegoldenrod" colspan="5">{@linkplain #tail tail}</td>
  *   </tr>
  *   <tr align="center">
- *     <td bgcolor="lightblue" colspan="5">path</td><td></td>
- *     <td bgcolor="lightblue" colspan="1">name</td>
+ *     <td bgcolor="wheat" colspan="5">{@linkplain #path path}</td><td></td>
+ *     <td bgcolor="wheat" colspan="1">{@linkplain #tip tip}</td>
  *   </tr>
- * </table></blockquote>
+ * </table></td></tr></table></blockquote>
  *
  * @author Martin Desruisseaux (IRD)
  * @author Bryce Nordgren (USDA)
@@ -81,6 +80,7 @@ public interface ScopedName extends GenericName {
      *
      * @since GeoAPI 2.2
      */
+/// @Override
     @UML(identifier="head", obligation=MANDATORY, specification=ISO_19103)
     LocalName head();
 
@@ -90,7 +90,7 @@ public interface ScopedName extends GenericName {
      * {@linkplain #head head}. In other words, the following relationship must holds:
      * <p>
      * <ul>
-     *   <li><code>tail().getParsedNames() {@linkplain List#equals equals]
+     *   <li><code>tail().getParsedNames() {@linkplain List#equals equals}
      *   this.{@linkplain #getParsedNames getParsedNames()}.sublist(1,end)</code></li>
      * </ul>
      *
@@ -105,7 +105,6 @@ public interface ScopedName extends GenericName {
     /**
      * Returns a name which contains every element of the
      * {@linkplain #getParsedNames parsed names list} except for the last element.
-     * In standard Java library, this is method is analog to {@link File#getParent}.
      *
      * @return All elements except the last one in the in the list of
      *         {@linkplain #getParsedNames parsed names}.
@@ -117,14 +116,14 @@ public interface ScopedName extends GenericName {
 
     /**
      * Returns the last element in the sequence of {@linkplain #getParsedNames parsed names}.
-     * In standard Java library, this is method is analog to {@link File#getName}.
      *
      * @return The last element in the list of {@linkplain #getParsedNames parsed names}.
      *
      * @since GeoAPI 2.1
      */
+/// @Override
     @Extension
-    LocalName name();
+    LocalName tip();
 
     /**
      * Returns a locale-independent string representation of this scoped name.
