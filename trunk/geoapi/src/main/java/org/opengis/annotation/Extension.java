@@ -25,7 +25,7 @@ import static java.lang.annotation.RetentionPolicy.*;
  * @since   GeoAPI 2.0
  */
 @Documented
-@Target({TYPE, FIELD, METHOD})
 @Retention(SOURCE)
+@Target({TYPE, FIELD, METHOD})
 public @interface Extension {
 }
