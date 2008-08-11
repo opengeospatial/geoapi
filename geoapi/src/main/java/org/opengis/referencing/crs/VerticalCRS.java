@@ -31,7 +31,7 @@ import static org.opengis.annotation.Specification.*;
  *
  * <ul>
  *   <li><p>As a transient state while parsing <A HREF="../doc-files/WKT.html">Well Known Text</A>,
- *       ot any other format based on legacy specifications where ellipsoidal heights were allowed
+ *       or any other format based on legacy specifications where ellipsoidal heights were allowed
  *       as an independant axis.</p></li>
  *
  *   <li><p>As short-lived objects to be passed or returned by methods enforcing type safety, for
