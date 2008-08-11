@@ -62,10 +62,9 @@ import static org.opengis.annotation.Specification.*;
 @UML(identifier="ScopedName", specification=ISO_19103)
 public interface ScopedName extends GenericName {
     /**
-     * Returns the head of this scoped name. This is the first element in the sequence of
-     * {@linkplain #getParsedNames parsed names}. The head element must exists in the same
-     * {@linkplain NameSpace name space} than this scoped name. In other words, the following
-     * relationship must holds:
+     * Returns the first element in the sequence of {@linkplain #getParsedNames parsed names}.
+     * The head element must exists in the same {@linkplain NameSpace name space} than this
+     * scoped name. In other words, the following relationship must holds:
      * <p>
      * <ul>
      *   <li><code>head().scope() {@linkplain NameSpace#equals equals}
@@ -75,6 +74,9 @@ public interface ScopedName extends GenericName {
      * <b>Example</b>:
      * If {@code this} name is {@code "org.opengis.util.Record"}, then this method
      * shall returns {@code "org"}.
+     * <p>
+     * This method is similar in purpose to <code>{@linkplain javax.naming.Name#get Name.get}(0)</code>
+     * from the <cite>Java Naming and Directory Interface</cite>.
      *
      * @return The first element in the list of {@linkplain #getParsedNames parsed names}.
      *
@@ -85,14 +87,17 @@ public interface ScopedName extends GenericName {
     LocalName head();
 
     /**
-     * Returns the tail of this scoped name. The returned name contains every elements of the
-     * {@linkplain #getParsedNames parsed names list} except for the first one, which is the
-     * {@linkplain #head head}. In other words, the following relationship must holds:
+     * Returns every elements of the {@linkplain #getParsedNames parsed names list} except for
+     * the {@linkplain #head head}. In other words, the following relationship must holds:
      * <p>
      * <ul>
      *   <li><code>tail().getParsedNames() {@linkplain List#equals equals}
-     *   this.{@linkplain #getParsedNames getParsedNames()}.sublist(1,end)</code></li>
+     *   this.{@linkplain #getParsedNames getParsedNames()}.sublist(1,
+     *   {@linkplain #depth depth})</code></li>
      * </ul>
+     * <p>
+     * This method is similar in purpose to <code>{@link javax.naming.Name#getSuffix(int)
+     * Name.getSuffix}(1)</code> from the <cite>Java Naming and Directory Interface</cite>.
      *
      * @return All elements except the first one in the in the list of
      *         {@linkplain #getParsedNames parsed names}.
@@ -103,8 +108,17 @@ public interface ScopedName extends GenericName {
     GenericName tail();
 
     /**
-     * Returns a name which contains every element of the
-     * {@linkplain #getParsedNames parsed names list} except for the last element.
+     * Returns every elements of the {@linkplain #getParsedNames parsed names list} except for
+     * the {@linkplain #tip tip}. In other words, the following relationship must holds:
+     * <p>
+     * <ul>
+     *   <li><code>tip().getParsedNames() {@linkplain List#equals equals}
+     *   this.{@linkplain #getParsedNames getParsedNames()}.sublist(0,
+     *   {@linkplain #depth depth}-1)</code></li>
+     * </ul>
+     * <p>
+     * This method is similar in purpose to <code>{@link javax.naming.Name#getPrefix(int)
+     * Name.getPrefix}(size-1)</code> from the <cite>Java Naming and Directory Interface</cite>.
      *
      * @return All elements except the last one in the in the list of
      *         {@linkplain #getParsedNames parsed names}.
@@ -118,6 +132,9 @@ public interface ScopedName extends GenericName {
      * Returns the last element in the sequence of {@linkplain #getParsedNames parsed names}.
      *
      * @return The last element in the list of {@linkplain #getParsedNames parsed names}.
+     * <p>
+     * This method is similar in purpose to <code>{@linkplain javax.naming.Name#get(int)
+     * Name.get}(size-1)</code> from the <cite>Java Naming and Directory Interface</cite>.
      *
      * @since GeoAPI 2.1
      */
