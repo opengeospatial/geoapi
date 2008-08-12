@@ -71,12 +71,12 @@ public interface ScopedName extends GenericName {
      *       this.{@linkplain #scope scope()}</code></li>
      * </ul>
      * <p>
+     * This method is similar in purpose to <code>{@linkplain javax.naming.Name#get Name.get}(0)</code>
+     * from the <cite>Java Naming and Directory Interface</cite>.
+     * <p>
      * <b>Example</b>:
      * If {@code this} name is {@code "org.opengis.util.Record"}, then this method
      * shall returns {@code "org"}.
-     * <p>
-     * This method is similar in purpose to <code>{@linkplain javax.naming.Name#get Name.get}(0)</code>
-     * from the <cite>Java Naming and Directory Interface</cite>.
      *
      * @return The first element in the list of {@linkplain #getParsedNames parsed names}.
      *
@@ -130,11 +130,11 @@ public interface ScopedName extends GenericName {
 
     /**
      * Returns the last element in the sequence of {@linkplain #getParsedNames parsed names}.
-     *
-     * @return The last element in the list of {@linkplain #getParsedNames parsed names}.
      * <p>
      * This method is similar in purpose to <code>{@linkplain javax.naming.Name#get(int)
      * Name.get}(size-1)</code> from the <cite>Java Naming and Directory Interface</cite>.
+     *
+     * @return The last element in the list of {@linkplain #getParsedNames parsed names}.
      *
      * @since GeoAPI 2.1
      */
