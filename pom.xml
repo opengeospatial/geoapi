@@ -192,19 +192,21 @@
   <!-- ==================================================== -->
   <!--     External dependencies                            -->
   <!-- ==================================================== -->
-  <dependencies>
-    <dependency>
-      <groupId>net.java.dev.jsr-275</groupId>
-      <artifactId>jsr-275</artifactId>
-      <version>1.0-beta-2</version>
-    </dependency>
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>4.3.1</version>
-      <scope>test</scope>
-    </dependency>
-  </dependencies>
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>net.java.dev.jsr-275</groupId>
+        <artifactId>jsr-275</artifactId>
+        <version>1.0-beta-2</version>
+      </dependency>
+      <dependency>
+        <groupId>junit</groupId>
+        <artifactId>junit</artifactId>
+        <version>4.4</version>
+        <scope>test</scope>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
 
 
 
@@ -213,7 +215,6 @@
   <!-- ==================================================== -->
   <build>
     <plugins>
-
       <plugin>
         <inherited>true</inherited>
         <groupId>org.apache.maven.plugins</groupId>
@@ -502,5 +503,6 @@
     <module>tools</module>
     <module>geoapi</module>
     <module>examples</module>
+    <module>conformance</module>
   </modules>
 </project>
