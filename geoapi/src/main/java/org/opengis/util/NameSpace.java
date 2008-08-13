@@ -18,8 +18,7 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * A domain in which {@linkplain GenericName names} given by character strings
- * can be mapped to objects.
+ * A domain in which {@linkplain GenericName names} given by character strings are defined.
  *
  * @author Bryce Nordgren (USDA)
  * @author Martin Desruisseaux (IRD)
