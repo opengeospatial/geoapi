@@ -146,8 +146,8 @@ public interface ScopedName extends GenericName {
      * Returns a locale-independent string representation of this scoped name.
      * This method encapsulates the domain logic which formats the {@linkplain #getParsedNames
      * parsed names} into a legal string representation of the name. There will be variants on
-     * this theme. XML aficionados may require URIs. For java classes, a dotted notation is more
-     * appropriate, for C++, a double-colon, for directories, a forward or reverse slash,
+     * this theme. XML aficionados may require URIs. For Java classes, a dotted notation is more
+     * appropriate, for C/C++, a double-colon, for directories, a forward or reverse slash,
      * and for {@linkplain org.opengis.referencing.crs.CoordinateReferenceSystem CRS}, it
      * will depend on the mode of expression: URN or {@code Authority:Identifier} notation.
      */
