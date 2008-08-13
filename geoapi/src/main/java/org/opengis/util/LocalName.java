@@ -44,7 +44,7 @@ public interface LocalName extends GenericName {
      * containing only {@code this}.
      */
     @UML(identifier="parsedName", obligation=MANDATORY, specification=ISO_19103)
-    List<LocalName> getParsedNames();
+    List<? extends LocalName> getParsedNames();
 
     /**
      * Returns {@code this} since this object is already a local name.
