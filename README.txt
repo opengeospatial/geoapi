@@ -15,6 +15,8 @@ Modules
              interfaces. The same example is shown for a range of tradeoffs from a simple immutable
              interface, through to data objects and finally objects with event notificaiton.
 
+  compliance A test suite for testing vendor implementations.
+
 
 ---------------------------------------------------------------------------------------------------
 How to build
@@ -27,3 +29,4 @@ How to build
 * Invoke "mvn install" from the command line in this directory.
 
 A jar for will be created in the geoapi/target/ directory.
+

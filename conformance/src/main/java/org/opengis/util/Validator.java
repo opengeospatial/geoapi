@@ -11,7 +11,6 @@
 package org.opengis.util;
 
 import java.util.List;
-import static org.junit.Assert.*;
 
 
 /**
@@ -21,7 +20,7 @@ import static org.junit.Assert.*;
  *
  * @author Martin Desruisseaux (Geomatys)
  */
-public class Validator {
+public class Validator extends org.opengis.Validator {
     /**
      * The system wide instance used by {@link org.opengis.Validators}. Vendor can replace
      * this instance by some {@code Validator} subclass if some tests need to be overrided.
@@ -32,6 +31,7 @@ public class Validator {
      * Creates a new validator.
      */
     protected Validator() {
+        super("org.opengis.util");
     }
 
     /**
@@ -68,7 +68,9 @@ public class Validator {
         final GenericName name = object.name();
         assertNotNull("NameSpace: must have a name.", name);
         final NameSpace scope = name.scope();
-        if (scope != null) {
+        if (scope == null) {
+            logger.warning("NameSpace without scope, while it is a mandatory attribute.");
+        } else {
             assertTrue("NameSpace: scope must be global.", scope.isGlobal());
         }
         if (object.isGlobal()) {
@@ -151,19 +153,25 @@ public class Validator {
             assertNotSame("ScopedName: the enclosing scoped name can not be in any parsed name.", object, name);
             validate(name);
         }
-
         final GenericName tail = object.tail();
-        assertEquals("ScopedName: the tail should have one less element than the enclosing scoped name.",
-                object.depth()-1, tail.depth());
-        assertSame("ScopedName: tip() and tail.tip() should be the same.", object.tip(), tail.tip());
-        assertEquals("ScopedName: the tail should be defined as subList(1,end)",
-                parsedNames.subList(1, parsedNames.size()), tail);
-
+        if (tail == null) {
+            logger.warning("ScopedName without tail, while it is a mandatory attribute.");
+        } else {
+            assertEquals("ScopedName: the tail should have one less element than the enclosing scoped name.",
+                    object.depth()-1, tail.depth());
+            assertSame("ScopedName: tip() and tail.tip() should be the same.", object.tip(), tail.tip());
+            assertEquals("ScopedName: the tail should be defined as subList(1,end)",
+                    parsedNames.subList(1, parsedNames.size()), tail);
+        }
         final GenericName path = object.path();
-        assertEquals("ScopedName: the path should have one less element than the enclosing scoped name.",
-                object.depth()-1, path.depth());
-        assertSame("ScopedName: head() and path.head() should be the same.", object.head(), path.head());
-        assertEquals("ScopedName: the path should be defined as subList(0,end-1)",
-                parsedNames.subList(0, parsedNames.size()-1), path);
+        if (path == null) {
+            logger.warning("ScopedName without path, while it is a mandatory attribute.");
+        } else {
+            assertEquals("ScopedName: the path should have one less element than the enclosing scoped name.",
+                    object.depth()-1, path.depth());
+            assertSame("ScopedName: head() and path.head() should be the same.", object.head(), path.head());
+            assertEquals("ScopedName: the path should be defined as subList(0,end-1)",
+                    parsedNames.subList(0, parsedNames.size()-1), path);
+        }
     }
 }
