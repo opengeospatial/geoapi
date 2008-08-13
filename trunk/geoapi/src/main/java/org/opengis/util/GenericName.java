@@ -180,7 +180,7 @@ public interface GenericName extends Comparable<GenericName> {
      * @return The local names making this generic name, without the {@linkplain #scope scope}.
      */
     @UML(identifier="parsedName", obligation=MANDATORY, specification=ISO_19103)
-    List<LocalName> getParsedNames();
+    List<? extends LocalName> getParsedNames();
 
     /**
      * Returns the first element in the sequence of {@linkplain #getParsedNames parsed names}.
