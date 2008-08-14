@@ -11,6 +11,7 @@
 package org.opengis.util;
 
 import java.util.List;
+import org.opengis.Validator;
 
 
 /**
@@ -20,17 +21,17 @@ import java.util.List;
  *
  * @author Martin Desruisseaux (Geomatys)
  */
-public class Validator extends org.opengis.Validator {
+public class NameValidator extends Validator {
     /**
      * The system wide instance used by {@link org.opengis.Validators}. Vendor can replace
      * this instance by some {@code Validator} subclass if some tests need to be overrided.
      */
-    public static Validator instance = new Validator();
+    public static NameValidator instance = new NameValidator();
 
     /**
      * Creates a new validator.
      */
-    protected Validator() {
+    protected NameValidator() {
         super("org.opengis.util");
     }
 
