@@ -148,7 +148,7 @@ public interface GenericName extends Comparable<GenericName> {
      * any {@link LocalName}, it is always one. For a {@link ScopedName} it is some number greater than or
      * equal to 2.
      * <p>
-     * This method is similar in purpose to {@link javax.naming.Name#size}
+     * This method is similar in purpose to {@link javax.naming.Name#size()}
      * from the <cite>Java Naming and Directory Interface</cite>.
      * <p>
      * <b>Example</b>:
@@ -168,7 +168,7 @@ public interface GenericName extends Comparable<GenericName> {
      * The length of this sequence is the {@linkplain #depth depth}. It does not include the
      * {@linkplain #scope scope}.
      * <p>
-     * This method is similar in purpose to {@link javax.naming.Name#getAll}
+     * This method is similar in purpose to {@link javax.naming.Name#getAll()}
      * from the <cite>Java Naming and Directory Interface</cite>.
      * <p>
      * <b>Example</b>:
@@ -178,6 +178,7 @@ public interface GenericName extends Comparable<GenericName> {
      * returns a list containing only {@code {"util", "Record"}} elements.
      *
      * @return The local names making this generic name, without the {@linkplain #scope scope}.
+     *         Shall never be {@code null} neither {@linkplain List#isEmpty empty}.
      */
     @UML(identifier="parsedName", obligation=MANDATORY, specification=ISO_19103)
     List<? extends LocalName> getParsedNames();
@@ -205,8 +206,7 @@ public interface GenericName extends Comparable<GenericName> {
      * For any {@link LocalName}, this is always {@code this}.
      * <p>
      * This method is similar in purpose to <code>{@linkplain javax.naming.Name#get(int)
-     * Name.get(int) Name.get}(size-1)</code> from the <cite>Java Naming and Directory
-     * Interface</cite>.
+     * Name.get}(size-1)</code> from the <cite>Java Naming and Directory Interface</cite>.
      * <p>
      * <b>Example</b>:
      * If {@code this} name is {@code "org.opengis.util.Record"} (no matter its
@@ -251,23 +251,27 @@ public interface GenericName extends Comparable<GenericName> {
      * the following relationships must hold (the last one is specific to {@link ScopedName}):
      * <p>
      * <ul>
-     *   <li><code>push(<var>foo</var>).{@linkplain ScopedName#tail tail()}
-     *       {@linkplain #equals equals} this</code></li>
+     *   <li><code>push(</code><var>foo</var><code> : LocalName).{@linkplain #head}</code>
+     *       {@linkplain #equals equals} <var>foo</var></li>
      *
-     *   <li><code>push(<var>foo</var>).scope() {@linkplain #equals equals}
-     *       <var>foo</var>.{@linkplain #scope()}</code></li>
+     *   <li><code>push(</code><var>foo</var><code> : LocalName).{@linkplain ScopedName#tail tail()}</code>
+     *       {@linkplain #equals equals} <var>this</var></li>
      *
-     *   <li><code>push(<var>foo</var>).getParsedNames()</code> {@linkplain List#equals equals}
-     *       <code><var>foo</var>.getParsedNames().addAll({@linkplain #getParsedNames()})</code></li>
+     *   <li><code>push(</code><var>foo</var><code> : GenericName).{@linkplain #scope}</code>
+     *       {@linkplain #equals equals} <var>foo</var>.{@link #scope()}</li>
+     *
+     *   <li><code>push(</code><var>foo</var><code> : GenericName).{@linkplain #getParsedNames}</code>
+     *       {@linkplain List#equals equals} <var>foo</var>.<code>getParsedNames().{@linkplain
+     *       List#addAll addAll}(</code><var>this</var>.<code>getParsedNames())</code></li>
      * </ul>
      * <p>
      * This method is similar in purpose to <code>{@linkplain javax.naming.Name#addAll(int,javax.naming.Name)
-     * Name.addAll}(0, name)</code> from the <cite>Java Naming and Directory Interface</cite>.
+     * Name.addAll}(0,name)</code> from the <cite>Java Naming and Directory Interface</cite>.
      * <p>
      * <b>Example</b>:
      * If {@code this} name is {@code "util.Record"} and the given {@code scope} argument is
      * {@code "org.opengis"}, then {@code this.push(scope)} shall returns
-     * {@code {"org.opengis.util.Record"}.
+     * {@code "org.opengis.util.Record"}.
      *
      * @param scope The name to use as prefix.
      * @return A concatenation of the given name with this name.
@@ -286,8 +290,8 @@ public interface GenericName extends Comparable<GenericName> {
      * <ul>
      *   <li><code>{@linkplain #toFullyQualifiedName}.toString()</code> is garanteed to
      *       contains the {@linkplain #scope scope} (if any).</li>
-     *   <li><code>{@linkplain #name}.toString()</code> is garanteed to not contains
-     *       any scope.</li>
+     *   <li><code>{@linkplain #name}.toString()</code> is garanteed to <strong>not</strong>
+     *       contains any scope.</li>
      * </ul>
      *
      * @return A local-independant string representation of this name.

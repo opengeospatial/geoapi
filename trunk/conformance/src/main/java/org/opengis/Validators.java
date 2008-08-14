@@ -32,22 +32,22 @@ public class Validators {
     }
 
     public static void validate(final InternationalString object) {
-        org.opengis.util.Validator.instance.validate(object);
+        NameValidator.instance.validate(object);
     }
 
     public static void validate(final NameSpace object) {
-        org.opengis.util.Validator.instance.validate(object);
+        NameValidator.instance.validate(object);
     }
 
     public static void validate(final GenericName object) {
-        org.opengis.util.Validator.instance.validate(object);
+        NameValidator.instance.validate(object);
     }
 
     public static void validate(final LocalName object) {
-        org.opengis.util.Validator.instance.validate(object);
+        NameValidator.instance.validate(object);
     }
 
     public static void validate(final ScopedName object) {
-        org.opengis.util.Validator.instance.validate(object);
+        NameValidator.instance.validate(object);
     }
 }
