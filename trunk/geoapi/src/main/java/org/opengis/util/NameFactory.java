@@ -28,6 +28,7 @@ public interface NameFactory {
      * Creates an international string from a set of strings in different locales.
      *
      * @param strings String value for each locale key.
+     * @return The international string.
      */
     InternationalString createInternationalString(Map<Locale,String> strings);
 
@@ -41,6 +42,7 @@ public interface NameFactory {
      * @param scope The scope, or {@code null} for the global one.
      * @param name  The unlocalized name.
      * @param localizedName A localized version of the name, or {@code null} if none.
+     * @return The local name.
      */
     LocalName createLocalName(GenericName scope, String name, InternationalString localizedName);
 
@@ -54,6 +56,7 @@ public interface NameFactory {
      * @param scope The scope, or {@code null} for the global one.
      * @param name  The unlocalized name.
      * @param localizedName A localized version of the name, or {@code null} if none.
+     * @return The scoped name.
      */
     ScopedName createScopedName(GenericName scope, String name, InternationalString localizedName);
 }
