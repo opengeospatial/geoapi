@@ -192,7 +192,7 @@ public class NameValidator extends Validator {
         assertSame("ScopedName: tip() and tail.tip() should be the same.",
                 object.tip(), tail.tip());
         assertEquals("ScopedName: the tail should be defined as subList(1, depth).",
-                parsedNames.subList(1, depth), tail);
+                parsedNames.subList(1, depth), tail.getParsedNames());
         /*
          * Validates path.
          */
@@ -203,6 +203,6 @@ public class NameValidator extends Validator {
         assertSame("ScopedName: head() and path.head() should be the same.",
                 object.head(), path.head());
         assertEquals("ScopedName: the path should be defined as subList(0, depth-1).",
-                parsedNames.subList(0, depth-1), path);
+                parsedNames.subList(0, depth-1), path.getParsedNames());
     }
 }
