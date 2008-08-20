@@ -81,4 +81,9 @@ public abstract class CanvasEvent extends EventObject {
      */
     @Deprecated
     public abstract MathTransform getChange(CanvasState other);
+    
+    public abstract RenderingState getOldRenderingstate();
+    
+    public abstract RenderingState getNewRenderingstate();
+    
 }
