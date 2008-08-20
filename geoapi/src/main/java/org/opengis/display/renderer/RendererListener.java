@@ -43,4 +43,13 @@ public interface RendererListener extends EventListener {
      * @param event The event containing the collection of graphics updated.
      */
     void graphicsChanged(RendererEvent event);
+    
+    /**
+     * Called when graphic objects need to be repainted, but no property changed.
+     * Exemple : a blinking or animated graphic.
+     * 
+     * @param event The event containing the collection of graphics updated.
+     */
+    void graphicsDisplayChanged(RendererEvent event);
+    
 }
