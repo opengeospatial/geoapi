@@ -23,6 +23,7 @@ import org.opengis.util.*;
  * Every {@code validate} methods accepts a {@code null} argument.
  *
  * @author Martin Desruisseaux (Geomatys)
+ * @since GeoAPI 2.2
  */
 public class Validators {
     /**

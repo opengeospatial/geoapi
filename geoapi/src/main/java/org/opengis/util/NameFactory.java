@@ -49,6 +49,21 @@ public interface NameFactory {
     NameSpace createNameSpace(GenericName name, String separator);
 
     /**
+     * Creates a local name from the given character sequence. The character sequence can be either
+     * a {@link String} or an {@link InternationalString} instance. In the later case, implementations
+     * can use an arbitrary {@linkplain Locale locale} (typically {@link Locale#ENGLISH ENGLISH},
+     * but not necessarly) for the unlocalized string to be returned by {@link LocalName#toString}.
+     *
+     * @param  scope The {@linkplain GenericName#scope scope} of the local name to be created,
+     *         or {@code null} for a global namespace.
+     * @param  name The local name as a string or an international string.
+     * @return The local name for the given character sequence.
+     *
+     * @since GeoAPI 2.2
+     */
+    LocalName createLocalName(NameSpace scope, CharSequence name);
+
+    /**
      * Creates a local or scoped name from an array of parsed names. The array elements can be either
      * {@link String} or {@link InternationalString} instances. In the later case, implementations
      * can use an arbitrary {@linkplain Locale locale} (typically {@link Locale#ENGLISH ENGLISH},
@@ -69,6 +84,28 @@ public interface NameFactory {
     GenericName createGenericName(NameSpace scope, CharSequence[] parsedNames);
 
     /**
+     * Constructs a generic name from a qualified name. This method splits the given name around a
+     * separator inferred from the given scope, or an implementation-dependant default separator if
+     * the given scope is null.
+     * <p>
+     * For example if the {@code scope} argument is the namespace {@code "urn:ogc:def"}
+     * with {@code ":"} as the separator, and if the {@code name} argument is the string
+     * {@code "crs:epsg:4326"}, then the result is a {@linkplain ScopedName scoped name}
+     * having a {@linkplain GenericName#depth depth} of 3, which is the length of the list
+     * of {@linkplain GenericName#getParsedNames parsed names} ({@code "crs"}, {@code "epsg"},
+     * {@code "4326"}).
+     *
+     * @param  scope The {@linkplain AbstractName#scope scope} of the generic name to
+     *         be created, or {@code null} for a global namespace.
+     * @param  name The qualified name, as a sequence of names separated by a scope-dependant
+     *         separator.
+     * @return A name parsed from the given string.
+     *
+     * @since GeoAPI 2.2
+     */
+    GenericName parseGenericName(NameSpace scope, CharSequence name);
+
+    /**
      * Creates a local name from a {@linkplain LocalName#scope scope} and a
      * {@linkplain LocalName#toString name}. The {@code scope} argument identifies the
      * {@linkplain NameSpace name space} in which the local name will be created.
@@ -83,8 +120,8 @@ public interface NameFactory {
      * @return The local name.
      *
      * @deprecated Replaced by {@link #createNameSpace createNameSpace} for the scope argument,
-     *             and {@link #createGenericName createGenericName} for the name and localized
-     *             name arguments.
+     *             and {@link #createLocalName(NameSpace,CharSequence) createLocalName} for the
+     *             name and localized name arguments.
      */
     @Deprecated
     LocalName createLocalName(GenericName scope, String name, InternationalString localizedName);
@@ -102,7 +139,7 @@ public interface NameFactory {
      * @return The scoped name.
      *
      * @deprecated Replaced by {@link #createNameSpace createNameSpace} for the scope argument,
-     *             and {@link #createGenericName createGenericName} for the name and localized
+     *             and {@link #parseGenericName parseGenericName} for the name and localized
      *             name arguments.
      */
     @Deprecated

@@ -15,11 +15,12 @@ import org.junit.Assert;
 
 
 /**
- * Base class of all validators. A subclass is defined in mean packages.
+ * Base class of all GeoAPI validators.
  *
  * @author Martin Desruisseaux (Geomatys)
+ * @since GeoAPI 2.2
  */
-public class Validator extends Assert {
+public abstract class Validator extends Assert {
     /**
      * The logger for reporting non-fatal warnings.
      */

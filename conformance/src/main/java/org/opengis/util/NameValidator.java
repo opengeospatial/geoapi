@@ -15,11 +15,12 @@ import org.opengis.Validator;
 
 
 /**
- * Validates objects from the {@link org.opengis.util} package and sub-packages.
- * This class should not be used directly; use the {@link org.opengis.Validators}
- * convenience static methods instead.
+ * Validates {@linkplain GenericName generic name} and related objects from the
+ * {@link org.opengis.util} package. This class should not be used directly; use
+ * the {@link org.opengis.Validators} convenience static methods instead.
  *
  * @author Martin Desruisseaux (Geomatys)
+ * @since GeoAPI 2.2
  */
 public class NameValidator extends Validator {
     /**
