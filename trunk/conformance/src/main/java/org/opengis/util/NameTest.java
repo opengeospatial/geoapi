@@ -91,7 +91,7 @@ public class NameTest extends TestCase<NameFactory> {
         assertEquals(EPSG, authority.toString());
         assertEquals(EPSG, authority.toInternationalString().toString());
 
-        final NameSpace ns = factory.createNameSpace(authority, ":");
+        final NameSpace ns = factory.createNameSpace(authority, ":", ":");
         validate(ns);
         assertEquals(authority, ns.name());
 
@@ -147,10 +147,10 @@ public class NameTest extends TestCase<NameFactory> {
      * </ul>
      */
     @Test
-    public void testParsedName() {
+    public void testParsedURN() {
         final LocalName urn = factory.createLocalName(null, "urn");
         validate(urn);
-        final NameSpace ns = factory.createNameSpace(urn, ":");
+        final NameSpace ns = factory.createNameSpace(urn, ":", ":");
         validate(ns);
         final GenericName name = factory.parseGenericName(ns, "ogc:def:crs:epsg:4326");
         validate(name);
@@ -158,5 +158,52 @@ public class NameTest extends TestCase<NameFactory> {
         assertEquals("Depth shall be counted from the \"urn\" namespace.", 5, name.depth());
         assertEquals("ogc:def:crs:epsg:4326", name.toString());
         assertEquals("urn:ogc:def:crs:epsg:4326", name.toFullyQualifiedName().toString());
+    }
+
+    /**
+     * Tests the parsing of {@code "http://www.opengis.net/gml/srs/epsg.xml#4326"} as a local name.
+     * This test uses the following factory methods:
+     * <p>
+     * <ul>
+     *   <li>{@link NameFactory#createLocalName}</li>
+     *   <li>{@link NameFactory#createNameSpace}</li>
+     *   <li>{@link NameFactory#parseGenericName}</li>
+     * </ul>
+     */
+    @Test
+    public void testParsedHTTP() {
+        GenericName name = factory.createLocalName(null, "http");
+        assertEquals(1, name.depth());
+        assertEquals("http", name.head().toString());
+        assertEquals("http", name.tip().toString());
+        NameSpace ns = factory.createNameSpace(name, "://", ".");
+        validate(ns);
+
+        name = factory.parseGenericName(ns, "www.opengis.net");
+        assertEquals(3, name.depth());
+        assertEquals("www", name.head().toString());
+        assertEquals("net", name.tip().toString());
+        ns = factory.createNameSpace(name, "/", "/");
+        validate(ns);
+
+        name = factory.parseGenericName(ns, "gml/srs/epsg.xml");
+        assertEquals(3, name.depth());
+        assertEquals("gml", name.head().toString());
+        assertEquals("epsg.xml", name.tip().toString());
+        ns = factory.createNameSpace(name, "#", ":");
+        validate(ns);
+
+        name = factory.createLocalName(ns, "4326");
+        assertEquals(1, name.depth());
+        assertEquals("4326", name.head().toString());
+        assertEquals("4326", name.tip().toString());
+        validate(name);
+
+        assertEquals("4326", name.toString());
+        name = name.toFullyQualifiedName();
+        assertEquals("http://www.opengis.net/gml/srs/epsg.xml#4326", name.toString());
+        assertEquals(8, name.depth());
+        assertEquals("http", name.head().toString());
+        assertEquals("4326", name.tip().toString());
     }
 }
