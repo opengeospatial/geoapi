@@ -14,12 +14,11 @@ import org.junit.*;
 
 
 /**
- * Base class of all GeoAPI tests. Every subclasses will expect a factory argument in their
- * constructor. This factory needs to be provided by implementors wanting to run the tests.
- * <p>
- * <b<Example:</b> The {@link org.opengis.util.NameTest} class performs tests on instances
- * created by a {@link org.opengis.util.NameFactory}. Implementors wanting to test their
- * factory should subclass {@code NameTest} like below:
+ * Base class of all GeoAPI tests. Subclasses define a constructor expecting a factory argument,
+ * which must be provided by implementors wanting to run the tests. For example the
+ * {@link org.opengis.util.NameTest} class performs tests on instances created by a
+ * {@link org.opengis.util.NameFactory}. Implementors wanting to test their factory
+ * should subclass {@code NameTest} like below:
  *
  * <blockquote><pre>
  * public class MyTest extends NameTest {
