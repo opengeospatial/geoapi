@@ -19,8 +19,6 @@ import org.opengis.util.*;
  * {@code Validator} objects in various packages. Vendors can change the value of
  * {@code instance} fields in those {@code Validator} classes if they wish to override
  * some validation process on a system-wide basis.
- * <p>
- * Every {@code validate} methods accepts a {@code null} argument.
  *
  * @author Martin Desruisseaux (Geomatys)
  * @since GeoAPI 2.2
@@ -32,22 +30,57 @@ public class Validators {
     protected Validators() {
     }
 
+    /**
+     * Tests the conformance of the given object.
+     *
+     * @param object The object to test, or {@code null}.
+     *
+     * @see NameValidator#validate(InternationalString)
+     */
     public static void validate(final InternationalString object) {
         NameValidator.instance.validate(object);
     }
 
+    /**
+     * Tests the conformance of the given object.
+     *
+     * @param object The object to test, or {@code null}.
+     *
+     * @see NameValidator#validate(NameSpace)
+     */
     public static void validate(final NameSpace object) {
         NameValidator.instance.validate(object);
     }
 
+    /**
+     * Tests the conformance of the given object.
+     *
+     * @param object The object to test, or {@code null}.
+     *
+     * @see NameValidator#validate(GenericName)
+     */
     public static void validate(final GenericName object) {
         NameValidator.instance.validate(object);
     }
 
+    /**
+     * Tests the conformance of the given object.
+     *
+     * @param object The object to test, or {@code null}.
+     *
+     * @see NameValidator#validate(LocalName)
+     */
     public static void validate(final LocalName object) {
         NameValidator.instance.validate(object);
     }
 
+    /**
+     * Tests the conformance of the given object.
+     *
+     * @param object The object to test, or {@code null}.
+     *
+     * @see NameValidator#validate(ScopedName)
+     */
     public static void validate(final ScopedName object) {
         NameValidator.instance.validate(object);
     }

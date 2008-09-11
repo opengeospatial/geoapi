@@ -21,7 +21,7 @@ import static org.opengis.Validators.*;
 
 
 /**
- * Tests {@linkplain GenericName generic name} and related objects from the {@link org.opengis.util}
+ * Tests {@linkplain GenericName generic name} and related objects from the {@code org.opengis.util}
  * package. Name instances are created using a {@link NameFactory} given at construction time.
  *
  * @author Martin Desruisseaux (Geomatys)

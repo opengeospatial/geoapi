@@ -16,7 +16,7 @@ import org.opengis.Validator;
 
 /**
  * Validates {@linkplain GenericName generic name} and related objects from the
- * {@link org.opengis.util} package. This class should not be used directly; use
+ * {@code org.opengis.util} package. This class should not be used directly; use
  * the {@link org.opengis.Validators} convenience static methods instead.
  *
  * @author Martin Desruisseaux (Geomatys)
