@@ -11,6 +11,10 @@
 package org.opengis;
 
 import org.opengis.util.*;
+import org.opengis.geometry.*;
+import org.opengis.referencing.*;
+import org.opengis.referencing.cs.*;
+import org.opengis.referencing.crs.*;
 
 
 /**
@@ -35,10 +39,10 @@ public class Validators {
      *
      * @param object The object to test, or {@code null}.
      *
-     * @see NameValidator#validate(InternationalString)
+     * @see GeometryValidator#validate(Envelope)
      */
-    public static void validate(final InternationalString object) {
-        NameValidator.instance.validate(object);
+    public static void validate(final Envelope object) {
+        GeometryValidator.instance.validate(object);
     }
 
     /**
@@ -46,10 +50,54 @@ public class Validators {
      *
      * @param object The object to test, or {@code null}.
      *
-     * @see NameValidator#validate(NameSpace)
+     * @see GeometryValidator#validate(DirectPosition)
      */
-    public static void validate(final NameSpace object) {
-        NameValidator.instance.validate(object);
+    public static void validate(final DirectPosition object) {
+        GeometryValidator.instance.validate(object);
+    }
+
+    /**
+     * Tests the conformance of the given object.
+     *
+     * @param object The object to test, or {@code null}.
+     *
+     * @see ReferencingValidator#validate(CoordinateReferenceSystem)
+     */
+    public static void validate(final CoordinateReferenceSystem object) {
+        ReferencingValidator.instance.validate(object);
+    }
+
+    /**
+     * Tests the conformance of the given object.
+     *
+     * @param object The object to test, or {@code null}.
+     *
+     * @see ReferencingValidator#validate(CoordinateSystem)
+     */
+    public static void validate(final CoordinateSystem object) {
+        ReferencingValidator.instance.validate(object);
+    }
+
+    /**
+     * Tests the conformance of the given object.
+     *
+     * @param object The object to test, or {@code null}.
+     *
+     * @see ReferencingValidator#validate(CoordinateSystemAxis)
+     */
+    public static void validate(final CoordinateSystemAxis object) {
+        ReferencingValidator.instance.validate(object);
+    }
+
+    /**
+     * Tests the conformance of the given object.
+     *
+     * @param object The object to test, or {@code null}.
+     *
+     * @see ReferencingValidator#validate(IdentifiedObject)
+     */
+    public static void validate(final IdentifiedObject object) {
+        ReferencingValidator.instance.validate(object);
     }
 
     /**
@@ -82,6 +130,28 @@ public class Validators {
      * @see NameValidator#validate(ScopedName)
      */
     public static void validate(final ScopedName object) {
+        NameValidator.instance.validate(object);
+    }
+
+    /**
+     * Tests the conformance of the given object.
+     *
+     * @param object The object to test, or {@code null}.
+     *
+     * @see NameValidator#validate(NameSpace)
+     */
+    public static void validate(final NameSpace object) {
+        NameValidator.instance.validate(object);
+    }
+
+    /**
+     * Tests the conformance of the given object.
+     *
+     * @param object The object to test, or {@code null}.
+     *
+     * @see NameValidator#validate(InternationalString)
+     */
+    public static void validate(final InternationalString object) {
         NameValidator.instance.validate(object);
     }
 }
