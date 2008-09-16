@@ -22,6 +22,11 @@ import org.junit.Assert;
  */
 public abstract class Validator extends Assert {
     /**
+     * The default tolerance value for comparaisons of floating point numbers.
+     */
+    protected static final double DEFAULT_TOLERANCE = 1E-6;
+
+    /**
      * The logger for reporting non-fatal warnings.
      */
     protected final Logger logger;
