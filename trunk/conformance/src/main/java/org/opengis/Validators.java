@@ -15,6 +15,7 @@ import org.opengis.geometry.*;
 import org.opengis.referencing.*;
 import org.opengis.referencing.cs.*;
 import org.opengis.referencing.crs.*;
+import org.opengis.referencing.datum.*;
 
 
 /**
@@ -38,7 +39,6 @@ public class Validators {
      * Tests the conformance of the given object.
      *
      * @param object The object to test, or {@code null}.
-     *
      * @see GeometryValidator#validate(Envelope)
      */
     public static void validate(final Envelope object) {
@@ -49,7 +49,6 @@ public class Validators {
      * Tests the conformance of the given object.
      *
      * @param object The object to test, or {@code null}.
-     *
      * @see GeometryValidator#validate(DirectPosition)
      */
     public static void validate(final DirectPosition object) {
@@ -60,51 +59,296 @@ public class Validators {
      * Tests the conformance of the given object.
      *
      * @param object The object to test, or {@code null}.
-     *
-     * @see ReferencingValidator#validate(CoordinateReferenceSystem)
+     * @see CRSValidator#dispatch(CoordinateReferenceSystem)
      */
     public static void validate(final CoordinateReferenceSystem object) {
-        ReferencingValidator.instance.validate(object);
+        CRSValidator.instance.dispatch(object);
     }
 
     /**
      * Tests the conformance of the given object.
      *
      * @param object The object to test, or {@code null}.
+     * @see CRSValidator#validate(GeocentricCRS)
+     */
+    public static void validate(final GeocentricCRS object) {
+        CRSValidator.instance.validate(object);
+    }
+
+    /**
+     * Tests the conformance of the given object.
      *
-     * @see ReferencingValidator#validate(CoordinateSystem)
+     * @param object The object to test, or {@code null}.
+     * @see CRSValidator#validate(GeographicCRS)
+     */
+    public static void validate(final GeographicCRS object) {
+        CRSValidator.instance.validate(object);
+    }
+
+    /**
+     * Validates the given coordinate reference system.
+     *
+     * @param object The object to validate, or {@code null}.
+     * @see CRSValidator#validate(ProjectedCRS)
+     */
+    public static void validate(final ProjectedCRS object) {
+        CRSValidator.instance.validate(object);
+    }
+
+    /**
+     * Validates the given coordinate reference system.
+     *
+     * @param object The object to validate, or {@code null}.
+     * @see CRSValidator#validate(DerivedCRS)
+     */
+    public static void validate(final DerivedCRS object) {
+        CRSValidator.instance.validate(object);
+    }
+
+    /**
+     * Validates the given coordinate reference system.
+     *
+     * @param object The object to validate, or {@code null}.
+     * @see CRSValidator#validate(ImageCRS)
+     */
+    public static void validate(final ImageCRS object) {
+        CRSValidator.instance.validate(object);
+    }
+
+    /**
+     * Validates the given coordinate reference system.
+     *
+     * @param object The object to validate, or {@code null}.
+     * @see CRSValidator#validate(EngineeringCRS)
+     */
+    public static void validate(final EngineeringCRS object) {
+        CRSValidator.instance.validate(object);
+    }
+
+    /**
+     * Validates the given coordinate reference system.
+     *
+     * @param object The object to validate, or {@code null}.
+     * @see CRSValidator#validate(VerticalCRS)
+     */
+    public static void validate(final VerticalCRS object) {
+        CRSValidator.instance.validate(object);
+    }
+
+    /**
+     * Validates the given coordinate reference system.
+     *
+     * @param object The object to validate, or {@code null}.
+     * @see CRSValidator#validate(TemporalCRS)
+     */
+    public static void validate(final TemporalCRS object) {
+        CRSValidator.instance.validate(object);
+    }
+
+    /**
+     * Tests the conformance of the given object.
+     *
+     * @param object The object to test, or {@code null}.
+     * @see CSValidator#dispatch(CoordinateSystem)
      */
     public static void validate(final CoordinateSystem object) {
-        ReferencingValidator.instance.validate(object);
+        CSValidator.instance.dispatch(object);
     }
 
     /**
      * Tests the conformance of the given object.
      *
      * @param object The object to test, or {@code null}.
+     * @see CSValidator#validate(CartesianCS)
+     */
+    public static void validate(final CartesianCS object) {
+        CSValidator.instance.validate(object);
+    }
+
+    /**
+     * Tests the conformance of the given object.
      *
-     * @see ReferencingValidator#validate(CoordinateSystemAxis)
+     * @param object The object to test, or {@code null}.
+     * @see CSValidator#validate(EllipsoidalCS)
+     */
+    public static void validate(final EllipsoidalCS object) {
+        CSValidator.instance.validate(object);
+    }
+
+    /**
+     * Tests the conformance of the given object.
+     *
+     * @param object The object to test, or {@code null}.
+     * @see CSValidator#validate(SphericalCS)
+     */
+    public static void validate(final SphericalCS object) {
+        CSValidator.instance.validate(object);
+    }
+
+    /**
+     * Tests the conformance of the given object.
+     *
+     * @param object The object to test, or {@code null}.
+     * @see CSValidator#validate(CylindricalCS)
+     */
+    public static void validate(final CylindricalCS object) {
+        CSValidator.instance.validate(object);
+    }
+
+    /**
+     * Tests the conformance of the given object.
+     *
+     * @param object The object to test, or {@code null}.
+     * @see CSValidator#validate(PolarCS)
+     */
+    public static void validate(final PolarCS object) {
+        CSValidator.instance.validate(object);
+    }
+
+    /**
+     * Tests the conformance of the given object.
+     *
+     * @param object The object to test, or {@code null}.
+     * @see CSValidator#validate(LinearCS)
+     */
+    public static void validate(final LinearCS object) {
+        CSValidator.instance.validate(object);
+    }
+
+    /**
+     * Tests the conformance of the given object.
+     *
+     * @param object The object to test, or {@code null}.
+     * @see CSValidator#validate(VerticalCS)
+     */
+    public static void validate(final VerticalCS object) {
+        CSValidator.instance.validate(object);
+    }
+
+    /**
+     * Tests the conformance of the given object.
+     *
+     * @param object The object to test, or {@code null}.
+     * @see CSValidator#validate(TimeCS)
+     */
+    public static void validate(final TimeCS object) {
+        CSValidator.instance.validate(object);
+    }
+
+    /**
+     * Tests the conformance of the given object.
+     *
+     * @param object The object to test, or {@code null}.
+     * @see CSValidator#validate(UserDefinedCS)
+     */
+    public static void validate(final UserDefinedCS object) {
+        CSValidator.instance.validate(object);
+    }
+
+    /**
+     * Tests the conformance of the given object.
+     *
+     * @param object The object to test, or {@code null}.
+     * @see CSValidator#validate(CoordinateSystemAxis)
      */
     public static void validate(final CoordinateSystemAxis object) {
-        ReferencingValidator.instance.validate(object);
+        CSValidator.instance.validate(object);
     }
 
     /**
      * Tests the conformance of the given object.
      *
      * @param object The object to test, or {@code null}.
+     * @see DatumValidator#dispatch(Datum)
+     */
+    public static void validate(final Datum object) {
+        DatumValidator.instance.dispatch(object);
+    }
+
+    /**
+     * Tests the conformance of the given object.
      *
+     * @param object The object to test, or {@code null}.
+     * @see DatumValidator#validate(PrimeMeridian)
+     */
+    public static void validate(final PrimeMeridian object) {
+        DatumValidator.instance.validate(object);
+    }
+
+    /**
+     * Tests the conformance of the given object.
+     *
+     * @param object The object to test, or {@code null}.
+     * @see DatumValidator#validate(Ellipsoid)
+     */
+    public static void validate(final Ellipsoid object) {
+        DatumValidator.instance.validate(object);
+    }
+
+    /**
+     * Tests the conformance of the given object.
+     *
+     * @param object The object to test, or {@code null}.
+     * @see DatumValidator#validate(GeodeticDatum)
+     */
+    public static void validate(final GeodeticDatum object) {
+        DatumValidator.instance.validate(object);
+    }
+
+    /**
+     * Tests the conformance of the given object.
+     *
+     * @param object The object to test, or {@code null}.
+     * @see DatumValidator#validate(VerticalDatum)
+     */
+    public static void validate(final VerticalDatum object) {
+        DatumValidator.instance.validate(object);
+    }
+
+    /**
+     * Tests the conformance of the given object.
+     *
+     * @param object The object to test, or {@code null}.
+     * @see DatumValidator#validate(TemporalDatum)
+     */
+    public static void validate(final TemporalDatum object) {
+        DatumValidator.instance.validate(object);
+    }
+
+    /**
+     * Tests the conformance of the given object.
+     *
+     * @param object The object to test, or {@code null}.
+     * @see DatumValidator#validate(ImageDatum)
+     */
+    public static void validate(final ImageDatum object) {
+        DatumValidator.instance.validate(object);
+    }
+
+    /**
+     * Tests the conformance of the given object.
+     *
+     * @param object The object to test, or {@code null}.
+     * @see DatumValidator#validate(EngineeringDatum)
+     */
+    public static void validate(final EngineeringDatum object) {
+        DatumValidator.instance.validate(object);
+    }
+
+    /**
+     * Tests the conformance of the given object.
+     *
+     * @param object The object to test, or {@code null}.
      * @see ReferencingValidator#validate(IdentifiedObject)
      */
     public static void validate(final IdentifiedObject object) {
-        ReferencingValidator.instance.validate(object);
+        ReferencingValidator.instance.dispatch(object);
     }
 
     /**
      * Tests the conformance of the given object.
      *
      * @param object The object to test, or {@code null}.
-     *
      * @see NameValidator#validate(GenericName)
      */
     public static void validate(final GenericName object) {
@@ -115,7 +359,6 @@ public class Validators {
      * Tests the conformance of the given object.
      *
      * @param object The object to test, or {@code null}.
-     *
      * @see NameValidator#validate(LocalName)
      */
     public static void validate(final LocalName object) {
@@ -126,7 +369,6 @@ public class Validators {
      * Tests the conformance of the given object.
      *
      * @param object The object to test, or {@code null}.
-     *
      * @see NameValidator#validate(ScopedName)
      */
     public static void validate(final ScopedName object) {
@@ -137,7 +379,6 @@ public class Validators {
      * Tests the conformance of the given object.
      *
      * @param object The object to test, or {@code null}.
-     *
      * @see NameValidator#validate(NameSpace)
      */
     public static void validate(final NameSpace object) {
@@ -148,7 +389,6 @@ public class Validators {
      * Tests the conformance of the given object.
      *
      * @param object The object to test, or {@code null}.
-     *
      * @see NameValidator#validate(InternationalString)
      */
     public static void validate(final InternationalString object) {
