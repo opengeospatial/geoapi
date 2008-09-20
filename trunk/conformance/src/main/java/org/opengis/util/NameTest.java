@@ -68,8 +68,8 @@ public class NameTest extends TestCase<NameFactory> {
             assertEquals("toString(Locale) should returns the value given to the factory method.",
                     entry.getValue(), localized.toString(entry.getKey()));
         }
-        assertTrue("toString() should returns one of the values given to the factory method.",
-                names.values().contains(localized.toString()));
+        assertContains("toString() should returns one of the values given to the factory method.",
+                names.values(), localized.toString());
     }
 
     /**

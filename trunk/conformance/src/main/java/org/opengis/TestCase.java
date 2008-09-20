@@ -10,8 +10,6 @@
  *************************************************************************************************/
 package org.opengis;
 
-import org.junit.*;
-
 
 /**
  * Base class of all GeoAPI tests. Subclasses define a constructor expecting a factory argument,

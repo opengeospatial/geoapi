@@ -17,6 +17,7 @@ import org.opengis.referencing.cs.*;
 import org.opengis.referencing.crs.*;
 import org.opengis.referencing.datum.*;
 import org.opengis.util.GenericName;
+import org.opengis.parameter.GeneralParameterDescriptor;
 
 
 /**
@@ -62,8 +63,21 @@ public class ReferencingValidator extends Validator {
             DatumValidator.instance.validate((Ellipsoid) object);
         } else if (object instanceof PrimeMeridian) {
             DatumValidator.instance.validate((PrimeMeridian) object);
+        } else if (object instanceof GeneralParameterDescriptor) {
+            ParameterValidator.instance.dispatch((GeneralParameterDescriptor) object);
         } else {
             validate(object);
+        }
+    }
+
+    /**
+     * Ensures that the given identifier has a {@linkplain ReferenceIdentifier#getCode code}.
+     *
+     * @param object The object to validate, or {@code null}.
+     */
+    public void validate(final ReferenceIdentifier object) {
+        if (object != null) {
+            mandatory("ReferenceIdentifier: must have a code.", object.getCode());
         }
     }
 
@@ -73,13 +87,20 @@ public class ReferencingValidator extends Validator {
      * argument.
      *
      * @param object The object to validate (can not be null).
-     *
-     * @todo Validate identifiers and name.
      */
-    protected void validate(final IdentifiedObject object) {
+    final void validate(final IdentifiedObject object) {
+        validate(object.getName());
+        final Collection<ReferenceIdentifier> identifiers = object.getIdentifiers();
+        if (identifiers != null) {
+            for (final ReferenceIdentifier id : identifiers) {
+                assertNotNull("IdentifiedObject: getIdentifiers() can not contain null element.", id);
+                validate(id);
+            }
+        }
         final Collection<GenericName> alias = object.getAlias();
         if (alias != null) {
             for (final GenericName name : alias) {
+                assertNotNull("IdentifiedObject: getAlias() can not contain null element.", alias);
                 Validators.validate(name);
             }
         }

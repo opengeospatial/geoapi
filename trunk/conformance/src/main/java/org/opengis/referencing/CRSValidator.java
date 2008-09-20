@@ -61,8 +61,9 @@ public class CRSValidator extends Validator {
             validate((VerticalCRS) object);
         } else if (object instanceof TemporalCRS) {
             validate((TemporalCRS) object);
-        } else {
+        } else if (object != null) {
             ReferencingValidator.instance.validate(object);
+            CSValidator.instance.dispatch(object.getCoordinateSystem());
         }
     }
 
@@ -72,29 +73,30 @@ public class CRSValidator extends Validator {
      * @param object The object to validate, or {@code null}.
      */
     public void validate(final GeocentricCRS object) {
-        ReferencingValidator.instance.validate(object);
-        if (object != null) {
-            CoordinateSystem cs = object.getCoordinateSystem();
-            assertNotNull("GeocentricCRS: must have a CoordinateSystem.", cs);
-            if (cs instanceof CartesianCS) {
-                CSValidator.instance.validate((CartesianCS) cs);
-                final Set<AxisDirection> axes = getAxisDirections(cs);
-                assertTrue("GeocentricCRS: expected Geocentric X axis direction.",
-                        axes.remove(AxisDirection.GEOCENTRIC_X));
-                assertTrue("GeocentricCRS: expected Geocentric Y axis direction.",
-                        axes.remove(AxisDirection.GEOCENTRIC_Y));
-                assertTrue("GeocentricCRS: expected Geocentric Z axis direction.",
-                        axes.remove(AxisDirection.GEOCENTRIC_Z));
-                assertTrue("GeocentricCRS: unknown axis direction.", axes.isEmpty());
-            } else if (cs instanceof SphericalCS) {
-                CSValidator.instance.validate((SphericalCS) cs);
-            } else {
-                fail("GeocentricCRS: unknown CoordinateSystem.");
-            }
-            GeodeticDatum datum = object.getDatum();
-            assertNotNull("GeocentricCRS: must have a Datum.", datum);
-            DatumValidator.instance.validate(datum);
+        if (object == null) {
+            return;
         }
+        ReferencingValidator.instance.validate(object);
+        CoordinateSystem cs = object.getCoordinateSystem();
+        mandatory("GeocentricCRS: must have a CoordinateSystem.", cs);
+        if (cs instanceof CartesianCS) {
+            CSValidator.instance.validate((CartesianCS) cs);
+            final Set<AxisDirection> axes = getAxisDirections(cs);
+            assertTrue("GeocentricCRS: expected Geocentric X axis direction.",
+                    axes.remove(AxisDirection.GEOCENTRIC_X));
+            assertTrue("GeocentricCRS: expected Geocentric Y axis direction.",
+                    axes.remove(AxisDirection.GEOCENTRIC_Y));
+            assertTrue("GeocentricCRS: expected Geocentric Z axis direction.",
+                    axes.remove(AxisDirection.GEOCENTRIC_Z));
+            assertTrue("GeocentricCRS: unknown axis direction.", axes.isEmpty());
+        } else if (cs instanceof SphericalCS) {
+            CSValidator.instance.validate((SphericalCS) cs);
+        } else if (cs != null) {
+            fail("GeocentricCRS: unknown CoordinateSystem of type " + cs.getClass().getName() + '.');
+        }
+        GeodeticDatum datum = object.getDatum();
+        mandatory("GeocentricCRS: must have a Datum.", datum);
+        DatumValidator.instance.validate(datum);
     }
 
     /**
@@ -103,16 +105,17 @@ public class CRSValidator extends Validator {
      * @param object The object to validate, or {@code null}.
      */
     public void validate(final GeographicCRS object) {
-        ReferencingValidator.instance.validate(object);
-        if (object != null) {
-            EllipsoidalCS cs = object.getCoordinateSystem();
-            assertNotNull("GeographicCRS: must have a CoordinateSystem.", cs);
-            CSValidator.instance.validate(cs);
-
-            GeodeticDatum datum = object.getDatum();
-            assertNotNull("GeographicCRS: must have a Datum.", datum);
-            DatumValidator.instance.validate(datum);
+        if (object == null) {
+            return;
         }
+        ReferencingValidator.instance.validate(object);
+        EllipsoidalCS cs = object.getCoordinateSystem();
+        mandatory("GeographicCRS: must have a CoordinateSystem.", cs);
+        CSValidator.instance.validate(cs);
+
+        GeodeticDatum datum = object.getDatum();
+        mandatory("GeographicCRS: must have a Datum.", datum);
+        DatumValidator.instance.validate(datum);
     }
 
     /**
@@ -121,16 +124,17 @@ public class CRSValidator extends Validator {
      * @param object The object to validate, or {@code null}.
      */
     public void validate(final ProjectedCRS object) {
-        ReferencingValidator.instance.validate(object);
-        if (object != null) {
-            CartesianCS cs = object.getCoordinateSystem();
-            assertNotNull("ProjectedCRS: must have a CoordinateSystem.", cs);
-            CSValidator.instance.validate(cs);
-
-            GeodeticDatum datum = object.getDatum();
-            assertNotNull("ProjectedCRS: must have a Datum.", datum);
-            DatumValidator.instance.validate(datum);
+        if (object == null) {
+            return;
         }
+        ReferencingValidator.instance.validate(object);
+        CartesianCS cs = object.getCoordinateSystem();
+        mandatory("ProjectedCRS: must have a CoordinateSystem.", cs);
+        CSValidator.instance.validate(cs);
+
+        GeodeticDatum datum = object.getDatum();
+        mandatory("ProjectedCRS: must have a Datum.", datum);
+        DatumValidator.instance.validate(datum);
     }
 
     /**
@@ -139,16 +143,17 @@ public class CRSValidator extends Validator {
      * @param object The object to validate, or {@code null}.
      */
     public void validate(final DerivedCRS object) {
-        ReferencingValidator.instance.validate(object);
-        if (object != null) {
-            CoordinateSystem cs = object.getCoordinateSystem();
-            assertNotNull("DerivedCRS: must have a CoordinateSystem.", cs);
-            CSValidator.instance.dispatch(cs);
-
-            Datum datum = object.getDatum();
-            assertNotNull("DerivedCRS: must have a Datum.", datum);
-            DatumValidator.instance.dispatch(datum);
+        if (object == null) {
+            return;
         }
+        ReferencingValidator.instance.validate(object);
+        CoordinateSystem cs = object.getCoordinateSystem();
+        mandatory("DerivedCRS: must have a CoordinateSystem.", cs);
+        CSValidator.instance.dispatch(cs);
+
+        Datum datum = object.getDatum();
+        mandatory("DerivedCRS: must have a Datum.", datum);
+        DatumValidator.instance.dispatch(datum);
     }
 
     /**
@@ -157,16 +162,17 @@ public class CRSValidator extends Validator {
      * @param object The object to validate, or {@code null}.
      */
     public void validate(final ImageCRS object) {
-        ReferencingValidator.instance.validate(object);
-        if (object != null) {
-            AffineCS cs = object.getCoordinateSystem();
-            assertNotNull("ImageCRS: must have a CoordinateSystem.", cs);
-            CSValidator.instance.dispatch(cs);
-
-            ImageDatum datum = object.getDatum();
-            assertNotNull("ImageCRS: must have a Datum.", datum);
-            DatumValidator.instance.validate(datum);
+        if (object == null) {
+            return;
         }
+        ReferencingValidator.instance.validate(object);
+        AffineCS cs = object.getCoordinateSystem();
+        mandatory("ImageCRS: must have a CoordinateSystem.", cs);
+        CSValidator.instance.dispatch(cs);
+
+        ImageDatum datum = object.getDatum();
+        mandatory("ImageCRS: must have a Datum.", datum);
+        DatumValidator.instance.validate(datum);
     }
 
     /**
@@ -175,16 +181,17 @@ public class CRSValidator extends Validator {
      * @param object The object to validate, or {@code null}.
      */
     public void validate(final EngineeringCRS object) {
-        ReferencingValidator.instance.validate(object);
-        if (object != null) {
-            CoordinateSystem cs = object.getCoordinateSystem();
-            assertNotNull("EngineeringCRS: must have a CoordinateSystem.", cs);
-            CSValidator.instance.dispatch(cs);
-
-            Datum datum = object.getDatum();
-            assertNotNull("EngineeringCRS: must have a Datum.", datum);
-            DatumValidator.instance.dispatch(datum);
+        if (object == null) {
+            return;
         }
+        ReferencingValidator.instance.validate(object);
+        CoordinateSystem cs = object.getCoordinateSystem();
+        mandatory("EngineeringCRS: must have a CoordinateSystem.", cs);
+        CSValidator.instance.dispatch(cs);
+
+        Datum datum = object.getDatum();
+        mandatory("EngineeringCRS: must have a Datum.", datum);
+        DatumValidator.instance.dispatch(datum);
     }
 
     /**
@@ -193,16 +200,17 @@ public class CRSValidator extends Validator {
      * @param object The object to validate, or {@code null}.
      */
     public void validate(final VerticalCRS object) {
-        ReferencingValidator.instance.validate(object);
-        if (object != null) {
-            VerticalCS cs = object.getCoordinateSystem();
-            assertNotNull("VerticalCRS: must have a CoordinateSystem.", cs);
-            CSValidator.instance.validate(cs);
-
-            VerticalDatum datum = object.getDatum();
-            assertNotNull("VerticalCRS: must have a Datum.", datum);
-            DatumValidator.instance.validate(datum);
+        if (object == null) {
+            return;
         }
+        ReferencingValidator.instance.validate(object);
+        VerticalCS cs = object.getCoordinateSystem();
+        mandatory("VerticalCRS: must have a CoordinateSystem.", cs);
+        CSValidator.instance.validate(cs);
+
+        VerticalDatum datum = object.getDatum();
+        mandatory("VerticalCRS: must have a Datum.", datum);
+        DatumValidator.instance.validate(datum);
     }
 
     /**
@@ -211,16 +219,17 @@ public class CRSValidator extends Validator {
      * @param object The object to validate, or {@code null}.
      */
     public void validate(final TemporalCRS object) {
-        ReferencingValidator.instance.validate(object);
-        if (object != null) {
-            TimeCS cs = object.getCoordinateSystem();
-            assertNotNull("TemporalCRS: must have a CoordinateSystem.", cs);
-            CSValidator.instance.validate(cs);
-
-            TemporalDatum datum = object.getDatum();
-            assertNotNull("TemporalCRS: must have a Datum.", datum);
-            DatumValidator.instance.validate(datum);
+        if (object == null) {
+            return;
         }
+        ReferencingValidator.instance.validate(object);
+        TimeCS cs = object.getCoordinateSystem();
+        mandatory("TemporalCRS: must have a CoordinateSystem.", cs);
+        CSValidator.instance.validate(cs);
+
+        TemporalDatum datum = object.getDatum();
+        mandatory("TemporalCRS: must have a Datum.", datum);
+        DatumValidator.instance.validate(datum);
     }
 
     /**
@@ -229,14 +238,19 @@ public class CRSValidator extends Validator {
      * @param cs The coordinate system from which to get axis directions.
      * @return The axis directions.
      */
-    private static Set<AxisDirection> getAxisDirections(final CoordinateSystem cs) {
+    private Set<AxisDirection> getAxisDirections(final CoordinateSystem cs) {
         final int dimension = cs.getDimension();
         final Set<AxisDirection> directions = new HashSet<AxisDirection>(dimension * 4/3 + 1);
         for (int i=0; i<dimension; i++) {
             final CoordinateSystemAxis axis = cs.getAxis(i);
             if (axis != null) {
-                assertTrue("CoordinateSystem: duplicated axis direction.",
-                        directions.add(axis.getDirection()));
+                final AxisDirection direction = axis.getDirection();
+                mandatory("Axis must have a direction.", direction);
+                if (direction != null) {
+                    if (!directions.add(direction)) {
+                        fail("CoordinateSystem: duplicated axis direction for " + direction);
+                    }
+                }
             }
         }
         return directions;
