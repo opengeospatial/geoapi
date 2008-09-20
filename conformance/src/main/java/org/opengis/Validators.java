@@ -16,6 +16,7 @@ import org.opengis.referencing.*;
 import org.opengis.referencing.cs.*;
 import org.opengis.referencing.crs.*;
 import org.opengis.referencing.datum.*;
+import org.opengis.parameter.*;
 
 
 /**
@@ -339,7 +340,67 @@ public class Validators {
      * Tests the conformance of the given object.
      *
      * @param object The object to test, or {@code null}.
-     * @see ReferencingValidator#validate(IdentifiedObject)
+     * @see ParameterValidator#dispatch(GeneralParameterDescriptor)
+     */
+    public static void validate(final GeneralParameterDescriptor object) {
+        ParameterValidator.instance.dispatch(object);
+    }
+
+    /**
+     * Tests the conformance of the given object.
+     *
+     * @param object The object to test, or {@code null}.
+     * @see ParameterValidator#validate(ParameterDescriptor)
+     */
+    public static void validate(final ParameterDescriptor<?> object) {
+        ParameterValidator.instance.validate(object);
+    }
+
+    /**
+     * Tests the conformance of the given object.
+     *
+     * @param object The object to test, or {@code null}.
+     * @see ParameterValidator#validate(ParameterDescriptorGroup)
+     */
+    public static void validate(final ParameterDescriptorGroup object) {
+        ParameterValidator.instance.validate(object);
+    }
+
+    /**
+     * Tests the conformance of the given object.
+     *
+     * @param object The object to test, or {@code null}.
+     * @see ParameterValidator#dispatch(GeneralParameterValue)
+     */
+    public static void validate(final GeneralParameterValue object) {
+        ParameterValidator.instance.dispatch(object);
+    }
+
+    /**
+     * Tests the conformance of the given object.
+     *
+     * @param object The object to test, or {@code null}.
+     * @see ParameterValidator#validate(ParameterValue)
+     */
+    public static void validate(final ParameterValue<?> object) {
+        ParameterValidator.instance.validate(object);
+    }
+
+    /**
+     * Tests the conformance of the given object.
+     *
+     * @param object The object to test, or {@code null}.
+     * @see ParameterValidator#validate(ParameterValueGroup)
+     */
+    public static void validate(final ParameterValueGroup object) {
+        ParameterValidator.instance.validate(object);
+    }
+
+    /**
+     * Tests the conformance of the given object.
+     *
+     * @param object The object to test, or {@code null}.
+     * @see ReferencingValidator#dispatch(IdentifiedObject)
      */
     public static void validate(final IdentifiedObject object) {
         ReferencingValidator.instance.dispatch(object);
@@ -349,10 +410,20 @@ public class Validators {
      * Tests the conformance of the given object.
      *
      * @param object The object to test, or {@code null}.
+     * @see ReferencingValidator#validate(ReferenceIdentifier)
+     */
+    public static void validate(final ReferenceIdentifier object) {
+        ReferencingValidator.instance.validate(object);
+    }
+
+    /**
+     * Tests the conformance of the given object.
+     *
+     * @param object The object to test, or {@code null}.
      * @see NameValidator#validate(GenericName)
      */
     public static void validate(final GenericName object) {
-        NameValidator.instance.validate(object);
+        NameValidator.instance.dispatch(object);
     }
 
     /**

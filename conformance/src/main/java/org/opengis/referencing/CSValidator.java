@@ -59,8 +59,9 @@ public class CSValidator extends Validator {
             validate((TimeCS) object);
         } else if (object instanceof UserDefinedCS) {
             validate((UserDefinedCS) object);
-        } else {
+        } else if (object != null) {
             ReferencingValidator.instance.validate(object);
+            validateAxes(object);
         }
     }
 
@@ -68,15 +69,16 @@ public class CSValidator extends Validator {
      * Validates the given axis.
      *
      * @param object The object to validate, or {@code null}.
+     *
+     * @todo Add checks for abbreviations and names standardized by ISO 19111.
      */
     public void validate(final CoordinateSystemAxis object) {
-        ReferencingValidator.instance.validate(object);
         if (object == null) {
             return;
         }
-        // Following tests !(max < min) instead than (max >= min) in order to accept NaN values.
-        assertFalse("CoordinateSystemAxis: maximum value should be greater than the minimum value.",
-                object.getMaximumValue() < object.getMinimumValue());
+        ReferencingValidator.instance.validate(object);
+        assertValidRange("CoordinateSystemAxis: expected maximum >= minimum.",
+                object.getMaximumValue(), object.getMinimumValue());
     }
 
     /**
@@ -85,10 +87,11 @@ public class CSValidator extends Validator {
      * @param object The object to validate, or {@code null}.
      */
     public void validate(final CartesianCS object) {
-        ReferencingValidator.instance.validate(object);
-        if (object != null) {
-            validateAxes(object);
+        if (object == null) {
+            return;
         }
+        ReferencingValidator.instance.validate(object);
+        validateAxes(object);
     }
 
     /**
@@ -97,10 +100,13 @@ public class CSValidator extends Validator {
      * @param object The object to validate, or {@code null}.
      */
     public void validate(final EllipsoidalCS object) {
-        ReferencingValidator.instance.validate(object);
-        if (object != null) {
-            validateAxes(object);
+        if (object == null) {
+            return;
         }
+        ReferencingValidator.instance.validate(object);
+        validateAxes(object);
+        final int dimension = object.getDimension();
+        assertBetween("EllipsoidalCS: wrong number of dimensions.", 2, 3, dimension);
     }
 
     /**
@@ -109,10 +115,13 @@ public class CSValidator extends Validator {
      * @param object The object to validate, or {@code null}.
      */
     public void validate(final SphericalCS object) {
-        ReferencingValidator.instance.validate(object);
-        if (object != null) {
-            validateAxes(object);
+        if (object == null) {
+            return;
         }
+        ReferencingValidator.instance.validate(object);
+        validateAxes(object);
+        final int dimension = object.getDimension();
+        assertEquals("SphericalCS: wrong number of dimensions.", 3, dimension);
     }
 
     /**
@@ -121,10 +130,13 @@ public class CSValidator extends Validator {
      * @param object The object to validate, or {@code null}.
      */
     public void validate(final CylindricalCS object) {
-        ReferencingValidator.instance.validate(object);
-        if (object != null) {
-            validateAxes(object);
+        if (object == null) {
+            return;
         }
+        ReferencingValidator.instance.validate(object);
+        validateAxes(object);
+        final int dimension = object.getDimension();
+        assertEquals("CylindricalCS: wrong number of dimensions.", 3, dimension);
     }
 
     /**
@@ -133,10 +145,13 @@ public class CSValidator extends Validator {
      * @param object The object to validate, or {@code null}.
      */
     public void validate(final PolarCS object) {
-        ReferencingValidator.instance.validate(object);
-        if (object != null) {
-            validateAxes(object);
+        if (object == null) {
+            return;
         }
+        ReferencingValidator.instance.validate(object);
+        validateAxes(object);
+        final int dimension = object.getDimension();
+        assertEquals("PolarCS: wrong number of dimensions.", 2, dimension);
     }
 
     /**
@@ -145,10 +160,13 @@ public class CSValidator extends Validator {
      * @param object The object to validate, or {@code null}.
      */
     public void validate(final LinearCS object) {
-        ReferencingValidator.instance.validate(object);
-        if (object != null) {
-            validateAxes(object);
+        if (object == null) {
+            return;
         }
+        ReferencingValidator.instance.validate(object);
+        validateAxes(object);
+        final int dimension = object.getDimension();
+        assertEquals("LinearCS: wrong number of dimensions.", 1, dimension);
     }
 
     /**
@@ -157,10 +175,13 @@ public class CSValidator extends Validator {
      * @param object The object to validate, or {@code null}.
      */
     public void validate(final VerticalCS object) {
-        ReferencingValidator.instance.validate(object);
-        if (object != null) {
-            validateAxes(object);
+        if (object == null) {
+            return;
         }
+        ReferencingValidator.instance.validate(object);
+        validateAxes(object);
+        final int dimension = object.getDimension();
+        assertEquals("VerticalCS: wrong number of dimensions.", 1, dimension);
     }
 
     /**
@@ -169,10 +190,13 @@ public class CSValidator extends Validator {
      * @param object The object to validate, or {@code null}.
      */
     public void validate(final TimeCS object) {
-        ReferencingValidator.instance.validate(object);
-        if (object != null) {
-            validateAxes(object);
+        if (object == null) {
+            return;
         }
+        ReferencingValidator.instance.validate(object);
+        validateAxes(object);
+        final int dimension = object.getDimension();
+        assertEquals("TimeCS: wrong number of dimensions.", 1, dimension);
     }
 
     /**
@@ -181,10 +205,13 @@ public class CSValidator extends Validator {
      * @param object The object to validate, or {@code null}.
      */
     public void validate(final UserDefinedCS object) {
-        ReferencingValidator.instance.validate(object);
-        if (object != null) {
-            validateAxes(object);
+        if (object == null) {
+            return;
         }
+        ReferencingValidator.instance.validate(object);
+        validateAxes(object);
+        final int dimension = object.getDimension();
+        assertBetween("UserDefinedCS: wrong number of dimensions.", 2, 3, dimension);
     }
 
     /**
@@ -196,10 +223,10 @@ public class CSValidator extends Validator {
      */
     private void validateAxes(final CoordinateSystem object) {
         final int dimension = object.getDimension();
-        assertTrue("CoordinateSystem: dimension must be greater than zero.", dimension >= 1);
+        assertStrictlyPositive("CoordinateSystem: dimension must be greater than zero.", dimension);
         for (int i=0; i<dimension; i++) {
             final CoordinateSystemAxis axis = object.getAxis(i);
-            assertNotNull("CoordinateSystem: axis can't be null.", axis);
+            mandatory("CoordinateSystem: axis can't be null.", axis);
             validate(axis);
         }
     }

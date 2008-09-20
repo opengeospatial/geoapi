@@ -69,17 +69,21 @@ public class DatumValidator extends Validator {
      * @param object The object to validate, or {@code null}.
      */
     public void validate(final PrimeMeridian object) {
+        if (object == null) {
+            return;
+        }
         ReferencingValidator.instance.validate(object);
-        if (object != null) {
-            Unit<Angle> unit = object.getAngularUnit();
-            assertNotNull("PrimeMeridian: must have a unit of measurement.", unit);
+        Unit<Angle> unit = object.getAngularUnit();
+        mandatory("PrimeMeridian: must have a unit of measurement.", unit);
+        if (unit != null) {
             assertTrue("PrimeMeridian: unit must be compatible with degrees.",
                     unit.isCompatible(NonSI.DEGREE_ANGLE));
-            double longitude = object.getGreenwichLongitude();
-            longitude = unit.getConverterTo(NonSI.DEGREE_ANGLE).convert(longitude);
-            assertTrue("PrimeMeridian: expected longitude in [-180 ... +180°] range.",
-                    longitude >= -180 && longitude <= 180);
         }
+        double longitude = object.getGreenwichLongitude();
+        if (unit != null) {
+            longitude = unit.getConverterTo(NonSI.DEGREE_ANGLE).convert(longitude);
+        }
+        assertBetween("PrimeMeridian: expected longitude in [-180 ... +180°] range.", -180, +180, longitude);
     }
 
     /**
@@ -88,17 +92,18 @@ public class DatumValidator extends Validator {
      * @param object The object to validate, or {@code null}.
      */
     public void validate(final Ellipsoid object) {
-        ReferencingValidator.instance.validate(object);
-        if (object != null) {
-            Unit<Length> unit = object.getAxisUnit();
-            assertNotNull("Ellipsoid: must have a unit of measurement.", unit);
-            assertTrue("Ellipsoid: unit must be compatible with metres.",
-                    unit.isCompatible(SI.METRE));
-            double semiMajor = object.getSemiMajorAxis();
-            double semiMinor = object.getSemiMinorAxis();
-            assertTrue("Ellipsoid: semi-minor axis length must be less than or equal to the semi-major axis length.",
-                    semiMinor <= semiMajor);
+        if (object == null) {
+            return;
         }
+        ReferencingValidator.instance.validate(object);
+        Unit<Length> unit = object.getAxisUnit();
+        mandatory("Ellipsoid: must have a unit of measurement.", unit);
+        if (unit != null) {
+            assertTrue("Ellipsoid: unit must be compatible with metres.", unit.isCompatible(SI.METRE));
+        }
+        double semiMajor = object.getSemiMajorAxis();
+        double semiMinor = object.getSemiMinorAxis();
+        assertTrue("Ellipsoid: expected semi-minor <= semi-major axis length.", semiMinor <= semiMajor);
     }
 
     /**
@@ -107,15 +112,17 @@ public class DatumValidator extends Validator {
      * @param object The object to validate, or {@code null}.
      */
     public void validate(final GeodeticDatum object) {
-        ReferencingValidator.instance.validate(object);
-        if (object != null) {
-            PrimeMeridian meridian = object.getPrimeMeridian();
-            assertNotNull("GeodeticDatum: must have a prime meridian.", meridian);
-            validate(meridian);
-            Ellipsoid ellipsoid = object.getEllipsoid();
-            assertNotNull("GeodeticDatum: must have an ellipsoid.", ellipsoid);
-            validate(ellipsoid);
+        if (object == null) {
+            return;
         }
+        ReferencingValidator.instance.validate(object);
+        PrimeMeridian meridian = object.getPrimeMeridian();
+        mandatory("GeodeticDatum: must have a prime meridian.", meridian);
+        validate(meridian);
+
+        Ellipsoid ellipsoid = object.getEllipsoid();
+        mandatory("GeodeticDatum: must have an ellipsoid.", ellipsoid);
+        validate(ellipsoid);
     }
 
     /**
@@ -124,11 +131,12 @@ public class DatumValidator extends Validator {
      * @param object The object to validate, or {@code null}.
      */
     public void validate(final VerticalDatum object) {
-        ReferencingValidator.instance.validate(object);
-        if (object != null) {
-            VerticalDatumType type = object.getVerticalDatumType();
-            assertNotNull("VerticalDatum: must have a datum type.", type);
+        if (object == null) {
+            return;
         }
+        ReferencingValidator.instance.validate(object);
+        VerticalDatumType type = object.getVerticalDatumType();
+        mandatory("VerticalDatum: must have a datum type.", type);
     }
 
     /**
@@ -137,15 +145,14 @@ public class DatumValidator extends Validator {
      * @param object The object to validate, or {@code null}.
      */
     public void validate(final TemporalDatum object) {
-        ReferencingValidator.instance.validate(object);
-        if (object != null) {
-            Date origin = object.getOrigin();
-            assertNotNull("TemporalDatum: expected an origin.", origin);
-            assertNull("TemporalDatum: should not have anchor point.",
-                    object.getAnchorPoint());
-            assertNull("TemporalDatum: should not have realization epoch.",
-                    object.getRealizationEpoch());
+        if (object == null) {
+            return;
         }
+        ReferencingValidator.instance.validate(object);
+        Date origin = object.getOrigin();
+        mandatory("TemporalDatum: expected an origin.", origin);
+        assertNull("TemporalDatum: should not have anchor point.", object.getAnchorPoint());
+        assertNull("TemporalDatum: should not have realization epoch.", object.getRealizationEpoch());
     }
 
     /**
@@ -154,11 +161,12 @@ public class DatumValidator extends Validator {
      * @param object The object to validate, or {@code null}.
      */
     public void validate(final ImageDatum object) {
-        ReferencingValidator.instance.validate(object);
-        if (object != null) {
-            PixelInCell pc = object.getPixelInCell();
-            assertNotNull("ImageDatum: must specify PixelInCell.", pc);
+        if (object == null) {
+            return;
         }
+        ReferencingValidator.instance.validate(object);
+        PixelInCell pc = object.getPixelInCell();
+        mandatory("ImageDatum: must specify PixelInCell.", pc);
     }
 
     /**
@@ -167,9 +175,9 @@ public class DatumValidator extends Validator {
      * @param object The object to validate, or {@code null}.
      */
     public void validate(final EngineeringDatum object) {
-        ReferencingValidator.instance.validate(object);
-        if (object != null) {
-            // Put tests here if any.
+        if (object == null) {
+            return;
         }
+        ReferencingValidator.instance.validate(object);
     }
 }
