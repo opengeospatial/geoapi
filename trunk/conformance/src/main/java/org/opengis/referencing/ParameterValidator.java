@@ -13,28 +13,26 @@ package org.opengis.referencing;
 import java.util.Set;
 import java.util.List;
 import org.opengis.Validator;
+import org.opengis.ValidatorContainer;
 import org.opengis.parameter.*;
 
 
 /**
- * Validates {@linkplain ParameterValue}s. This class should not be used directly;
- * use the {@link org.opengis.Validators} convenience static methods instead.
+ * Validates {@link ParameterValue} and related objects from the {@code org.opengis.parameter}
+ * package. This class should not be used directly; use the {@link org.opengis.Validators}
+ * convenience static methods instead.
  *
  * @author Martin Desruisseaux (Geomatys)
  * @since GeoAPI 2.2
  */
 public class ParameterValidator extends Validator {
     /**
-     * The system wide instance used by {@link org.opengis.Validators}. Vendor can replace
-     * this instance by some {@code Validator} subclass if some tests need to be overrided.
-     */
-    public static ParameterValidator instance = new ParameterValidator();
-
-    /**
      * Creates a new validator.
+     *
+     * @param container The container of this validator.
      */
-    protected ParameterValidator() {
-        super("org.opengis.parameter");
+    public ParameterValidator(ValidatorContainer container) {
+        super(container, "org.opengis.parameter");
     }
 
     /**
@@ -48,7 +46,7 @@ public class ParameterValidator extends Validator {
         } else if (object instanceof ParameterDescriptorGroup) {
             validate((ParameterDescriptorGroup) object);
         } else {
-            ReferencingValidator.instance.validate(object);
+            container.referencing.validate(object);
         }
     }
 
@@ -75,7 +73,7 @@ public class ParameterValidator extends Validator {
         if (object == null) {
             return;
         }
-        ReferencingValidator.instance.validate(object);
+        container.referencing.validate(object);
         Class<T> valueClass = object.getValueClass();
         mandatory("ParameterDescriptor: getValueClass() can not return null.", valueClass);
         Set<T> validValues = object.getValidValues();
@@ -113,7 +111,7 @@ public class ParameterValidator extends Validator {
         if (object == null) {
             return;
         }
-        ReferencingValidator.instance.validate(object);
+        container.referencing.validate(object);
         List<GeneralParameterDescriptor> descriptors = object.descriptors();
         mandatory("ParameterDescriptorGroup: descriptors() should not return null.", descriptors);
         if (descriptors != null) {

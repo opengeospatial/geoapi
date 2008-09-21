@@ -12,28 +12,25 @@ package org.opengis.util;
 
 import java.util.List;
 import org.opengis.Validator;
+import org.opengis.ValidatorContainer;
 
 
 /**
- * Validates {@linkplain GenericName generic name} and related objects from the
- * {@code org.opengis.util} package. This class should not be used directly; use
- * the {@link org.opengis.Validators} convenience static methods instead.
+ * Validates {@link GenericName} and related objects from the {@code org.opengis.util} package.
+ * This class should not be used directly; use the {@link org.opengis.Validators} convenience
+ * static methods instead.
  *
  * @author Martin Desruisseaux (Geomatys)
  * @since GeoAPI 2.2
  */
 public class NameValidator extends Validator {
     /**
-     * The system wide instance used by {@link org.opengis.Validators}. Vendor can replace
-     * this instance by some {@code Validator} subclass if some tests need to be overrided.
-     */
-    public static NameValidator instance = new NameValidator();
-
-    /**
      * Creates a new validator.
+     *
+     * @param container The container of this validator.
      */
-    protected NameValidator() {
-        super("org.opengis.util");
+    public NameValidator(ValidatorContainer container) {
+        super(container, "org.opengis.util");
     }
 
     /**

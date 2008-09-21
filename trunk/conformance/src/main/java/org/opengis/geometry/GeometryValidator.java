@@ -12,27 +12,21 @@ package org.opengis.geometry;
 
 import java.util.Arrays;
 import org.opengis.Validator;
-import org.opengis.Validators;
+import org.opengis.ValidatorContainer;
 import org.opengis.referencing.cs.CoordinateSystem;
 import org.opengis.referencing.cs.CoordinateSystemAxis;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 
 
 /**
- * Validates {@linkplain Geometry geometries} and related objects from the
- * {@code org.opengis.geometry} package. This class should not be used directly;
- * use the {@link org.opengis.Validators} convenience static methods instead.
+ * Validates {@link Geometry} and related objects from the {@code org.opengis.geometry}
+ * package. This class should not be used directly; use the {@link org.opengis.Validators}
+ * convenience static methods instead.
  *
  * @author Martin Desruisseaux (Geomatys)
  * @since GeoAPI 2.2
  */
 public class GeometryValidator extends Validator {
-    /**
-     * The system wide instance used by {@link org.opengis.Validators}. Vendor can replace
-     * this instance by some {@code Validator} subclass if some tests need to be overrided.
-     */
-    public static GeometryValidator instance = new GeometryValidator();
-
     /**
      * Small tolerance values for comparaisons of floating point numbers.
      * The default value is {@value}. Implementors can change this value
@@ -42,9 +36,11 @@ public class GeometryValidator extends Validator {
 
     /**
      * Creates a new validator.
+     *
+     * @param container The container of this validator.
      */
-    protected GeometryValidator() {
-        super("org.opengis.geometry");
+    public GeometryValidator(ValidatorContainer container) {
+        super(container, "org.opengis.geometry");
     }
 
     /**
@@ -59,7 +55,7 @@ public class GeometryValidator extends Validator {
         final int dimension = object.getDimension();
         assertPositive("Envelope: dimension can't be negative.", dimension);
         final CoordinateReferenceSystem crs = object.getCoordinateReferenceSystem();
-        Validators.validate(crs); // May be null.
+        container.crs.dispatch(crs); // May be null.
         /*
          * Validates corners.
          */
@@ -142,7 +138,7 @@ public class GeometryValidator extends Validator {
          * Checks coordinate validity in the CRS.
          */
         final CoordinateReferenceSystem crs = object.getCoordinateReferenceSystem();
-        Validators.validate(crs); // May be null.
+        container.crs.dispatch(crs); // May be null.
         int hashCode = 0;
         if (crs != null) {
             final CoordinateSystem cs = crs.getCoordinateSystem(); // Assume already validated.

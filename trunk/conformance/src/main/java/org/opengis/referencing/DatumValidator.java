@@ -18,28 +18,26 @@ import javax.measure.quantity.Angle;
 import javax.measure.quantity.Length;
 
 import org.opengis.Validator;
+import org.opengis.ValidatorContainer;
 import org.opengis.referencing.datum.*;
 
 
 /**
- * Validates {@link Datum}s. This class should not be used directly;
- * use the {@link org.opengis.Validators} convenience static methods instead.
+ * Validates {@link Datum} and related objects from the {@code org.opengis.datum} package. This
+ * class should not be used directly; use the {@link org.opengis.Validators} convenience static
+ * methods instead.
  *
  * @author Martin Desruisseaux (Geomatys)
  * @since GeoAPI 2.2
  */
 public class DatumValidator extends Validator {
     /**
-     * The system wide instance used by {@link org.opengis.Validators}. Vendor can replace
-     * this instance by some {@code Validator} subclass if some tests need to be overrided.
-     */
-    public static DatumValidator instance = new DatumValidator();
-
-    /**
      * Creates a new validator.
+     *
+     * @param container The container of this validator.
      */
-    protected DatumValidator() {
-        super("org.opengis.referencing.datum");
+    public DatumValidator(ValidatorContainer container) {
+        super(container, "org.opengis.referencing.datum");
     }
 
     /**
@@ -59,7 +57,7 @@ public class DatumValidator extends Validator {
         } else if (object instanceof EngineeringDatum) {
             validate((EngineeringDatum) object);
         } else {
-            ReferencingValidator.instance.validate(object);
+            container.referencing.validate(object);
         }
     }
 
@@ -72,7 +70,7 @@ public class DatumValidator extends Validator {
         if (object == null) {
             return;
         }
-        ReferencingValidator.instance.validate(object);
+        container.referencing.validate(object);
         Unit<Angle> unit = object.getAngularUnit();
         mandatory("PrimeMeridian: must have a unit of measurement.", unit);
         if (unit != null) {
@@ -95,7 +93,7 @@ public class DatumValidator extends Validator {
         if (object == null) {
             return;
         }
-        ReferencingValidator.instance.validate(object);
+        container.referencing.validate(object);
         Unit<Length> unit = object.getAxisUnit();
         mandatory("Ellipsoid: must have a unit of measurement.", unit);
         if (unit != null) {
@@ -115,7 +113,7 @@ public class DatumValidator extends Validator {
         if (object == null) {
             return;
         }
-        ReferencingValidator.instance.validate(object);
+        container.referencing.validate(object);
         PrimeMeridian meridian = object.getPrimeMeridian();
         mandatory("GeodeticDatum: must have a prime meridian.", meridian);
         validate(meridian);
@@ -134,7 +132,7 @@ public class DatumValidator extends Validator {
         if (object == null) {
             return;
         }
-        ReferencingValidator.instance.validate(object);
+        container.referencing.validate(object);
         VerticalDatumType type = object.getVerticalDatumType();
         mandatory("VerticalDatum: must have a datum type.", type);
     }
@@ -148,7 +146,7 @@ public class DatumValidator extends Validator {
         if (object == null) {
             return;
         }
-        ReferencingValidator.instance.validate(object);
+        container.referencing.validate(object);
         Date origin = object.getOrigin();
         mandatory("TemporalDatum: expected an origin.", origin);
         assertNull("TemporalDatum: should not have anchor point.", object.getAnchorPoint());
@@ -164,7 +162,7 @@ public class DatumValidator extends Validator {
         if (object == null) {
             return;
         }
-        ReferencingValidator.instance.validate(object);
+        container.referencing.validate(object);
         PixelInCell pc = object.getPixelInCell();
         mandatory("ImageDatum: must specify PixelInCell.", pc);
     }
@@ -178,6 +176,6 @@ public class DatumValidator extends Validator {
         if (object == null) {
             return;
         }
-        ReferencingValidator.instance.validate(object);
+        container.referencing.validate(object);
     }
 }
