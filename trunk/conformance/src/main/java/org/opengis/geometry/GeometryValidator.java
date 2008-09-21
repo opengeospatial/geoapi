@@ -39,7 +39,7 @@ public class GeometryValidator extends Validator {
      *
      * @param container The container of this validator.
      */
-    public GeometryValidator(ValidatorContainer container) {
+    public GeometryValidator(final ValidatorContainer container) {
         super(container, "org.opengis.geometry");
     }
 

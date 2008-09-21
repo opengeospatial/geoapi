@@ -34,7 +34,7 @@ public class ReferencingValidator extends Validator {
      *
      * @param container The container of this validator.
      */
-    public ReferencingValidator(ValidatorContainer container) {
+    public ReferencingValidator(final ValidatorContainer container) {
         super(container, "org.opengis.referencing");
     }
 
