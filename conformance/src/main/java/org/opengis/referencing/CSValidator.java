@@ -29,7 +29,7 @@ public class CSValidator extends Validator {
      *
      * @param container The container of this validator.
      */
-    public CSValidator(ValidatorContainer container) {
+    public CSValidator(final ValidatorContainer container) {
         super(container, "org.opengis.referencing.cs");
     }
 

@@ -34,7 +34,7 @@ public class CRSValidator extends Validator {
      *
      * @param container The container of this validator.
      */
-    public CRSValidator(ValidatorContainer container) {
+    public CRSValidator(final ValidatorContainer container) {
         super(container, "org.opengis.referencing.crs");
     }
 
@@ -76,7 +76,7 @@ public class CRSValidator extends Validator {
             return;
         }
         container.referencing.validate(object);
-        CoordinateSystem cs = object.getCoordinateSystem();
+        final CoordinateSystem cs = object.getCoordinateSystem();
         mandatory("GeocentricCRS: must have a CoordinateSystem.", cs);
         if (cs instanceof CartesianCS) {
             container.cs.validate((CartesianCS) cs);
@@ -93,7 +93,7 @@ public class CRSValidator extends Validator {
         } else if (cs != null) {
             fail("GeocentricCRS: unknown CoordinateSystem of type " + cs.getClass().getName() + '.');
         }
-        GeodeticDatum datum = object.getDatum();
+        final GeodeticDatum datum = object.getDatum();
         mandatory("GeocentricCRS: must have a Datum.", datum);
         container.datum.validate(datum);
     }
@@ -108,11 +108,11 @@ public class CRSValidator extends Validator {
             return;
         }
         container.referencing.validate(object);
-        EllipsoidalCS cs = object.getCoordinateSystem();
+        final EllipsoidalCS cs = object.getCoordinateSystem();
         mandatory("GeographicCRS: must have a CoordinateSystem.", cs);
         container.cs.validate(cs);
 
-        GeodeticDatum datum = object.getDatum();
+        final GeodeticDatum datum = object.getDatum();
         mandatory("GeographicCRS: must have a Datum.", datum);
         container.datum.validate(datum);
     }
@@ -127,11 +127,11 @@ public class CRSValidator extends Validator {
             return;
         }
         container.referencing.validate(object);
-        CartesianCS cs = object.getCoordinateSystem();
+        final CartesianCS cs = object.getCoordinateSystem();
         mandatory("ProjectedCRS: must have a CoordinateSystem.", cs);
         container.cs.validate(cs);
 
-        GeodeticDatum datum = object.getDatum();
+        final GeodeticDatum datum = object.getDatum();
         mandatory("ProjectedCRS: must have a Datum.", datum);
         container.datum.validate(datum);
     }
@@ -146,11 +146,11 @@ public class CRSValidator extends Validator {
             return;
         }
         container.referencing.validate(object);
-        CoordinateSystem cs = object.getCoordinateSystem();
+        final CoordinateSystem cs = object.getCoordinateSystem();
         mandatory("DerivedCRS: must have a CoordinateSystem.", cs);
         container.cs.dispatch(cs);
 
-        Datum datum = object.getDatum();
+        final Datum datum = object.getDatum();
         mandatory("DerivedCRS: must have a Datum.", datum);
         container.datum.dispatch(datum);
     }
@@ -165,11 +165,11 @@ public class CRSValidator extends Validator {
             return;
         }
         container.referencing.validate(object);
-        AffineCS cs = object.getCoordinateSystem();
+        final AffineCS cs = object.getCoordinateSystem();
         mandatory("ImageCRS: must have a CoordinateSystem.", cs);
         container.cs.dispatch(cs);
 
-        ImageDatum datum = object.getDatum();
+        final ImageDatum datum = object.getDatum();
         mandatory("ImageCRS: must have a Datum.", datum);
         container.datum.validate(datum);
     }
@@ -184,11 +184,11 @@ public class CRSValidator extends Validator {
             return;
         }
         container.referencing.validate(object);
-        CoordinateSystem cs = object.getCoordinateSystem();
+        final CoordinateSystem cs = object.getCoordinateSystem();
         mandatory("EngineeringCRS: must have a CoordinateSystem.", cs);
         container.cs.dispatch(cs);
 
-        Datum datum = object.getDatum();
+        final Datum datum = object.getDatum();
         mandatory("EngineeringCRS: must have a Datum.", datum);
         container.datum.dispatch(datum);
     }
@@ -203,11 +203,11 @@ public class CRSValidator extends Validator {
             return;
         }
         container.referencing.validate(object);
-        VerticalCS cs = object.getCoordinateSystem();
+        final VerticalCS cs = object.getCoordinateSystem();
         mandatory("VerticalCRS: must have a CoordinateSystem.", cs);
         container.cs.validate(cs);
 
-        VerticalDatum datum = object.getDatum();
+        final VerticalDatum datum = object.getDatum();
         mandatory("VerticalCRS: must have a Datum.", datum);
         container.datum.validate(datum);
     }
@@ -222,11 +222,11 @@ public class CRSValidator extends Validator {
             return;
         }
         container.referencing.validate(object);
-        TimeCS cs = object.getCoordinateSystem();
+        final TimeCS cs = object.getCoordinateSystem();
         mandatory("TemporalCRS: must have a CoordinateSystem.", cs);
         container.cs.validate(cs);
 
-        TemporalDatum datum = object.getDatum();
+        final TemporalDatum datum = object.getDatum();
         mandatory("TemporalCRS: must have a Datum.", datum);
         container.datum.validate(datum);
     }

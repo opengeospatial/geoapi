@@ -29,7 +29,7 @@ public class NameValidator extends Validator {
      *
      * @param container The container of this validator.
      */
-    public NameValidator(ValidatorContainer container) {
+    public NameValidator(final ValidatorContainer container) {
         super(container, "org.opengis.util");
     }
 

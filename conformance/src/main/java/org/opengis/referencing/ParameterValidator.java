@@ -31,7 +31,7 @@ public class ParameterValidator extends Validator {
      *
      * @param container The container of this validator.
      */
-    public ParameterValidator(ValidatorContainer container) {
+    public ParameterValidator(final ValidatorContainer container) {
         super(container, "org.opengis.parameter");
     }
 
@@ -74,26 +74,26 @@ public class ParameterValidator extends Validator {
             return;
         }
         container.referencing.validate(object);
-        Class<T> valueClass = object.getValueClass();
+        final Class<T> valueClass = object.getValueClass();
         mandatory("ParameterDescriptor: getValueClass() can not return null.", valueClass);
         Set<T> validValues = object.getValidValues();
         if (validValues != null) {
-            for (T value : validValues) {
+            for (final T value : validValues) {
                 if (value != null) {
                     assertInstanceOf("ParameterDescriptor: getValidValues() has unexpected element.", valueClass, value);
                 }
             }
         }
-        Comparable<T> min = object.getMinimumValue();
+        final Comparable<T> min = object.getMinimumValue();
         if (min != null) {
             assertInstanceOf("ParameterDescriptor: getMinimumValue() returns unexpected value.", valueClass, min);
         }
-        Comparable<T> max = object.getMaximumValue();
+        final Comparable<T> max = object.getMaximumValue();
         if (max != null) {
             assertInstanceOf("ParameterDescriptor: getMaximumValue() returns unexpected value.", valueClass, max);
         }
         assertValidRange("ParameterDescriptor: inconsistent minimum and maximum values.", min, max);
-        T def = object.getDefaultValue();
+        final T def = object.getDefaultValue();
         if (def != null) {
             assertInstanceOf("ParameterDescriptor: getDefaultValue() returns unexpected value.", valueClass, def);
             assertBetween("ParameterDescriptor: getDefaultValue() out of range.", min, max, def);
@@ -112,13 +112,13 @@ public class ParameterValidator extends Validator {
             return;
         }
         container.referencing.validate(object);
-        List<GeneralParameterDescriptor> descriptors = object.descriptors();
+        final List<GeneralParameterDescriptor> descriptors = object.descriptors();
         mandatory("ParameterDescriptorGroup: descriptors() should not return null.", descriptors);
         if (descriptors != null) {
-            for (GeneralParameterDescriptor descriptor : descriptors) {
+            for (final GeneralParameterDescriptor descriptor : descriptors) {
                 assertNotNull("ParameterDescriptorGroup: descriptors() can not contain null element.", descriptor);
                 dispatch(descriptor);
-                GeneralParameterDescriptor byName = object.descriptor(descriptor.getName().getCode());
+                final GeneralParameterDescriptor byName = object.descriptor(descriptor.getName().getCode());
                 mandatory("ParameterDescriptorGroup: descriptor(String) should returns a value.", byName);
                 if (byName != null) {
                     assertSame("ParameterDescriptorGroup: descriptor(String) inconsistent with descriptors().",
@@ -126,7 +126,7 @@ public class ParameterValidator extends Validator {
                 }
             }
         }
-        int minOccurs = object.getMinimumOccurs();
+        final int minOccurs = object.getMinimumOccurs();
         assertPositive("ParameterDescriptor: getMinimumOccurs() can not be negative.", minOccurs);
         assertValidRange("ParameterDescriptor: getMaximumOccurs() gives inconsistent range.",
                 minOccurs, object.getMaximumOccurs());
@@ -142,7 +142,7 @@ public class ParameterValidator extends Validator {
         if (object == null) {
             return;
         }
-        ParameterDescriptor<T> descriptor = object.getDescriptor();
+        final ParameterDescriptor<T> descriptor = object.getDescriptor();
         mandatory("ParameterValue: must have a descriptor.", descriptor);
         validate(descriptor);
         final T value = object.getValue();
@@ -173,14 +173,14 @@ public class ParameterValidator extends Validator {
         final ParameterDescriptorGroup descriptor = object.getDescriptor();
         mandatory("ParameterValueGroup: must have a descriptor.", descriptor);
         validate(descriptor);
-        List<GeneralParameterValue> values = object.values();
+        final List<GeneralParameterValue> values = object.values();
         mandatory("ParameterValueGroup: values() should not return null.", values);
         if (values != null) {
-            for (GeneralParameterValue value : values) {
+            for (final GeneralParameterValue value : values) {
                 assertNotNull("ParameterValueGroup: values() can not contain null element.", value);
                 dispatch(value);
                 if (value instanceof ParameterValue) {
-                    ParameterValue byName = object.parameter(value.getDescriptor().getName().getCode());
+                    final ParameterValue byName = object.parameter(value.getDescriptor().getName().getCode());
                     mandatory("ParameterValueGroup: parameter(String) should returns a value.", byName);
                     if (byName != null) {
                         assertSame("ParameterValueGroup: value(String) inconsistent with values().", value, byName);

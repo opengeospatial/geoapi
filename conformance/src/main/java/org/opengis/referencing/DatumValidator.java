@@ -71,7 +71,7 @@ public class DatumValidator extends Validator {
             return;
         }
         container.referencing.validate(object);
-        Unit<Angle> unit = object.getAngularUnit();
+        final Unit<Angle> unit = object.getAngularUnit();
         mandatory("PrimeMeridian: must have a unit of measurement.", unit);
         if (unit != null) {
             assertTrue("PrimeMeridian: unit must be compatible with degrees.",
@@ -94,13 +94,13 @@ public class DatumValidator extends Validator {
             return;
         }
         container.referencing.validate(object);
-        Unit<Length> unit = object.getAxisUnit();
+        final Unit<Length> unit = object.getAxisUnit();
         mandatory("Ellipsoid: must have a unit of measurement.", unit);
         if (unit != null) {
             assertTrue("Ellipsoid: unit must be compatible with metres.", unit.isCompatible(SI.METRE));
         }
-        double semiMajor = object.getSemiMajorAxis();
-        double semiMinor = object.getSemiMinorAxis();
+        final double semiMajor = object.getSemiMajorAxis();
+        final double semiMinor = object.getSemiMinorAxis();
         assertTrue("Ellipsoid: expected semi-minor <= semi-major axis length.", semiMinor <= semiMajor);
     }
 
@@ -114,11 +114,11 @@ public class DatumValidator extends Validator {
             return;
         }
         container.referencing.validate(object);
-        PrimeMeridian meridian = object.getPrimeMeridian();
+        final PrimeMeridian meridian = object.getPrimeMeridian();
         mandatory("GeodeticDatum: must have a prime meridian.", meridian);
         validate(meridian);
 
-        Ellipsoid ellipsoid = object.getEllipsoid();
+        final Ellipsoid ellipsoid = object.getEllipsoid();
         mandatory("GeodeticDatum: must have an ellipsoid.", ellipsoid);
         validate(ellipsoid);
     }
@@ -133,7 +133,7 @@ public class DatumValidator extends Validator {
             return;
         }
         container.referencing.validate(object);
-        VerticalDatumType type = object.getVerticalDatumType();
+        final VerticalDatumType type = object.getVerticalDatumType();
         mandatory("VerticalDatum: must have a datum type.", type);
     }
 
@@ -147,7 +147,7 @@ public class DatumValidator extends Validator {
             return;
         }
         container.referencing.validate(object);
-        Date origin = object.getOrigin();
+        final Date origin = object.getOrigin();
         mandatory("TemporalDatum: expected an origin.", origin);
         assertNull("TemporalDatum: should not have anchor point.", object.getAnchorPoint());
         assertNull("TemporalDatum: should not have realization epoch.", object.getRealizationEpoch());
@@ -163,7 +163,7 @@ public class DatumValidator extends Validator {
             return;
         }
         container.referencing.validate(object);
-        PixelInCell pc = object.getPixelInCell();
+        final PixelInCell pc = object.getPixelInCell();
         mandatory("ImageDatum: must specify PixelInCell.", pc);
     }
 

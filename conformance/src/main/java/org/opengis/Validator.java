@@ -56,9 +56,9 @@ public abstract class Validator extends Assert {
      * @param container   The container of this validator.
      * @param packageName The name of the package containing the classes to be validated.
      */
-    protected Validator(ValidatorContainer container, String packageName) {
+    protected Validator(final ValidatorContainer container, final String packageName) {
         this.container = container;
-        logger = Logger.getLogger(packageName);
+        this.logger = Logger.getLogger(packageName);
     }
 
     /**
@@ -78,7 +78,7 @@ public abstract class Validator extends Assert {
      *
      * @see #requireMandatoryAttributes
      */
-    protected void mandatory(String message, Object value) {
+    protected void mandatory(final String message, final Object value) {
         if (requireMandatoryAttributes) {
             assertNotNull(message, value);
         } else {
