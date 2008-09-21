@@ -26,6 +26,16 @@ public abstract class Validator extends Assert {
     protected static final double DEFAULT_TOLERANCE = 1E-6;
 
     /**
+     * The container of this validator.
+     */
+    protected final ValidatorContainer container;
+
+    /**
+     * The logger for reporting non-fatal warnings.
+     */
+    public final Logger logger;
+
+    /**
      * {@code true} if mandatory attributes are required to be non-null, or {@code false}
      * for tolerating null values. GeoAPI flags some attributes as mandatory, while some
      * other are optional. Optional attributes are allowed to be null at any time, but
@@ -38,19 +48,16 @@ public abstract class Validator extends Assert {
      *
      * @see #mandatory
      */
-    public static boolean requireMandatoryAttributes = true;
-
-    /**
-     * The logger for reporting non-fatal warnings.
-     */
-    protected final Logger logger;
+    public boolean requireMandatoryAttributes = true;
 
     /**
      * Creates a new validator instance.
      *
+     * @param container   The container of this validator.
      * @param packageName The name of the package containing the classes to be validated.
      */
-    protected Validator(String packageName) {
+    protected Validator(ValidatorContainer container, String packageName) {
+        this.container = container;
         logger = Logger.getLogger(packageName);
     }
 
@@ -64,8 +71,7 @@ public abstract class Validator extends Assert {
      *   <li>Otherwise, the message is logged as a warning and the test continues.</li>
      * </ul>
      *
-     * <p>The above behavior is based on a global setting. Subclasses can override this method
-     * if they want to control the behavior at a finer level.</li>
+     * <p>Subclasses can override this method if they want more control.</li>
      *
      * @param message The message to send in case of failure.
      * @param value   The value to test for non-nullity.

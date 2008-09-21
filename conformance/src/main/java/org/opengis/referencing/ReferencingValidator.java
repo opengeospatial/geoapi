@@ -12,7 +12,7 @@ package org.opengis.referencing;
 
 import java.util.Collection;
 import org.opengis.Validator;
-import org.opengis.Validators;
+import org.opengis.ValidatorContainer;
 import org.opengis.referencing.cs.*;
 import org.opengis.referencing.crs.*;
 import org.opengis.referencing.datum.*;
@@ -21,26 +21,21 @@ import org.opengis.parameter.GeneralParameterDescriptor;
 
 
 /**
- * Validators of {@linkplain CoordinateReferenceSystem Coordinate Reference System} and
- * related objects from the {@code org.opengis.referencing} package. This class should
- * not be used directly; use the {@link org.opengis.Validators} convenience static methods
- * instead.
+ * Validates {@link IdentifiedObject} and related objects from the {@code org.opengis.referencing}
+ * package. This class should not be used directly; use the {@link org.opengis.Validators} convenience
+ * static methods instead.
  *
  * @author Martin Desruisseaux (Geomatys)
  * @since GeoAPI 2.2
  */
 public class ReferencingValidator extends Validator {
     /**
-     * The system wide instance used by {@link org.opengis.Validators}. Vendor can replace
-     * this instance by some {@code Validator} subclass if some tests need to be overrided.
-     */
-    public static ReferencingValidator instance = new ReferencingValidator();
-
-    /**
      * Creates a new validator.
+     *
+     * @param container The container of this validator.
      */
-    protected ReferencingValidator() {
-        super("org.opengis.referencing");
+    public ReferencingValidator(ValidatorContainer container) {
+        super(container, "org.opengis.referencing");
     }
 
     /**
@@ -52,19 +47,19 @@ public class ReferencingValidator extends Validator {
      */
     public void dispatch(final IdentifiedObject object) {
         if (object instanceof CoordinateReferenceSystem) {
-            CRSValidator.instance.dispatch((CoordinateReferenceSystem) object);
+            container.crs.dispatch((CoordinateReferenceSystem) object);
         } else if (object instanceof CoordinateSystem) {
-            CSValidator.instance.dispatch((CoordinateSystem) object);
+            container.cs.dispatch((CoordinateSystem) object);
         } else if (object instanceof CoordinateSystemAxis) {
-            CSValidator.instance.validate((CoordinateSystemAxis) object);
+            container.cs.validate((CoordinateSystemAxis) object);
         } else if (object instanceof Datum) {
-            DatumValidator.instance.dispatch((Datum) object);
+            container.datum.dispatch((Datum) object);
         } else if (object instanceof Ellipsoid) {
-            DatumValidator.instance.validate((Ellipsoid) object);
+            container.datum.validate((Ellipsoid) object);
         } else if (object instanceof PrimeMeridian) {
-            DatumValidator.instance.validate((PrimeMeridian) object);
+            container.datum.validate((PrimeMeridian) object);
         } else if (object instanceof GeneralParameterDescriptor) {
-            ParameterValidator.instance.dispatch((GeneralParameterDescriptor) object);
+            container.parameter.dispatch((GeneralParameterDescriptor) object);
         } else {
             validate(object);
         }
@@ -101,9 +96,9 @@ public class ReferencingValidator extends Validator {
         if (alias != null) {
             for (final GenericName name : alias) {
                 assertNotNull("IdentifiedObject: getAlias() can not contain null element.", alias);
-                Validators.validate(name);
+                container.naming.dispatch(name);
             }
         }
-        Validators.validate(object.getRemarks());
+        container.naming.validate(object.getRemarks());
     }
 }
