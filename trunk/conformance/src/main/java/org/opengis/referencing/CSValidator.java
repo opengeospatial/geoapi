@@ -76,7 +76,7 @@ public class CSValidator extends Validator {
         }
         container.referencing.validate(object);
         assertValidRange("CoordinateSystemAxis: expected maximum >= minimum.",
-                object.getMaximumValue(), object.getMinimumValue());
+                object.getMinimumValue(), object.getMaximumValue());
     }
 
     /**
