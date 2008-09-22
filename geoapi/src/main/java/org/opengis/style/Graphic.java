@@ -33,11 +33,10 @@ import org.opengis.annotation.XmlParameter;
 public interface Graphic {
 
     /**
-     * Returns the list of external image files or marks that comprise this
-     * graphic.
-     * All elements of the list must be instances of either {@link Mark}
-     * or {@link ExternalGraphic}.
-     * @return
+     * Returns the list of external image files or marks that comprise this graphic.
+     * All elements of the list must be instances of either {@link Mark} or {@link ExternalGraphic}.
+     * <p>
+     * @return List of Marks or ExternalGraphics; if empty it is to be treated a single default Mark.
      */
     @XmlElement("ExternalGraphic,Mark")
     List<GraphicalSymbol> graphicalSymbols();
