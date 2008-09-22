@@ -50,7 +50,7 @@ public interface LineSymbolizer extends Symbolizer {
     Expression getPerpendicularOffset();
     
     /**
-     * calls the visit method of a StyleVisitor
+     * Calls the visit method of a StyleVisitor
      *
      * @param visitor the style visitor
      */
