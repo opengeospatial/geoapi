@@ -17,7 +17,6 @@ import javax.measure.unit.Unit;
 import javax.measure.quantity.Angle;
 import javax.measure.quantity.Length;
 
-import org.opengis.Validator;
 import org.opengis.ValidatorContainer;
 import org.opengis.referencing.datum.*;
 
@@ -30,7 +29,7 @@ import org.opengis.referencing.datum.*;
  * @author Martin Desruisseaux (Geomatys)
  * @since GeoAPI 2.2
  */
-public class DatumValidator extends Validator {
+public class DatumValidator extends ReferencingValidator {
     /**
      * Creates a new validator.
      *
@@ -57,7 +56,7 @@ public class DatumValidator extends Validator {
         } else if (object instanceof EngineeringDatum) {
             validate((EngineeringDatum) object);
         } else {
-            container.referencing.validate(object);
+            validateIdentifiedObject(object);
         }
     }
 
@@ -70,7 +69,7 @@ public class DatumValidator extends Validator {
         if (object == null) {
             return;
         }
-        container.referencing.validate(object);
+        validateIdentifiedObject(object);
         final Unit<Angle> unit = object.getAngularUnit();
         mandatory("PrimeMeridian: must have a unit of measurement.", unit);
         if (unit != null) {
@@ -93,7 +92,7 @@ public class DatumValidator extends Validator {
         if (object == null) {
             return;
         }
-        container.referencing.validate(object);
+        validateIdentifiedObject(object);
         final Unit<Length> unit = object.getAxisUnit();
         mandatory("Ellipsoid: must have a unit of measurement.", unit);
         if (unit != null) {
@@ -113,7 +112,7 @@ public class DatumValidator extends Validator {
         if (object == null) {
             return;
         }
-        container.referencing.validate(object);
+        validateIdentifiedObject(object);
         final PrimeMeridian meridian = object.getPrimeMeridian();
         mandatory("GeodeticDatum: must have a prime meridian.", meridian);
         validate(meridian);
@@ -132,7 +131,7 @@ public class DatumValidator extends Validator {
         if (object == null) {
             return;
         }
-        container.referencing.validate(object);
+        validateIdentifiedObject(object);
         final VerticalDatumType type = object.getVerticalDatumType();
         mandatory("VerticalDatum: must have a datum type.", type);
     }
@@ -146,7 +145,7 @@ public class DatumValidator extends Validator {
         if (object == null) {
             return;
         }
-        container.referencing.validate(object);
+        validateIdentifiedObject(object);
         final Date origin = object.getOrigin();
         mandatory("TemporalDatum: expected an origin.", origin);
         assertNull("TemporalDatum: should not have anchor point.", object.getAnchorPoint());
@@ -162,7 +161,7 @@ public class DatumValidator extends Validator {
         if (object == null) {
             return;
         }
-        container.referencing.validate(object);
+        validateIdentifiedObject(object);
         final PixelInCell pc = object.getPixelInCell();
         mandatory("ImageDatum: must specify PixelInCell.", pc);
     }
@@ -176,6 +175,6 @@ public class DatumValidator extends Validator {
         if (object == null) {
             return;
         }
-        container.referencing.validate(object);
+        validateIdentifiedObject(object);
     }
 }

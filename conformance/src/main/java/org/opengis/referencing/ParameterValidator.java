@@ -12,7 +12,6 @@ package org.opengis.referencing;
 
 import java.util.Set;
 import java.util.List;
-import org.opengis.Validator;
 import org.opengis.ValidatorContainer;
 import org.opengis.parameter.*;
 
@@ -25,7 +24,7 @@ import org.opengis.parameter.*;
  * @author Martin Desruisseaux (Geomatys)
  * @since GeoAPI 2.2
  */
-public class ParameterValidator extends Validator {
+public class ParameterValidator extends ReferencingValidator {
     /**
      * Creates a new validator.
      *
@@ -46,7 +45,7 @@ public class ParameterValidator extends Validator {
         } else if (object instanceof ParameterDescriptorGroup) {
             validate((ParameterDescriptorGroup) object);
         } else {
-            container.referencing.validate(object);
+            validateIdentifiedObject(object);
         }
     }
 
@@ -73,7 +72,7 @@ public class ParameterValidator extends Validator {
         if (object == null) {
             return;
         }
-        container.referencing.validate(object);
+        validateIdentifiedObject(object);
         final Class<T> valueClass = object.getValueClass();
         mandatory("ParameterDescriptor: getValueClass() can not return null.", valueClass);
         Set<T> validValues = object.getValidValues();
@@ -111,7 +110,7 @@ public class ParameterValidator extends Validator {
         if (object == null) {
             return;
         }
-        container.referencing.validate(object);
+        validateIdentifiedObject(object);
         final List<GeneralParameterDescriptor> descriptors = object.descriptors();
         mandatory("ParameterDescriptorGroup: descriptors() should not return null.", descriptors);
         if (descriptors != null) {
@@ -170,21 +169,40 @@ public class ParameterValidator extends Validator {
         if (object == null) {
             return;
         }
-        final ParameterDescriptorGroup descriptor = object.getDescriptor();
-        mandatory("ParameterValueGroup: must have a descriptor.", descriptor);
-        validate(descriptor);
+        final ParameterDescriptorGroup descriptors = object.getDescriptor();
+        mandatory("ParameterValueGroup: must have a descriptor.", descriptors);
+        validate(descriptors);
         final List<GeneralParameterValue> values = object.values();
         mandatory("ParameterValueGroup: values() should not return null.", values);
-        if (values != null) {
-            for (final GeneralParameterValue value : values) {
-                assertNotNull("ParameterValueGroup: values() can not contain null element.", value);
-                dispatch(value);
-                if (value instanceof ParameterValue) {
-                    final ParameterValue byName = object.parameter(value.getDescriptor().getName().getCode());
-                    mandatory("ParameterValueGroup: parameter(String) should returns a value.", byName);
-                    if (byName != null) {
-                        assertSame("ParameterValueGroup: value(String) inconsistent with values().", value, byName);
-                    }
+        if (values == null) {
+            return;
+        }
+        for (final GeneralParameterValue value : values) {
+            assertNotNull("ParameterValueGroup: values() can not contain null element.", value);
+            dispatch(value);
+            final GeneralParameterDescriptor descriptor = value.getDescriptor();
+            mandatory("GeneralParameterValue: expected a descriptor.", descriptor);
+            if (descriptor == null) {
+                continue;
+            }
+            final String name = descriptor.getName().getCode();
+            mandatory("GeneralParameterDescriptor: expected a name.", name);
+            if (name == null) {
+                continue;
+            }
+            if (descriptors != null) {
+                final GeneralParameterDescriptor byName = descriptors.descriptor(name);
+                mandatory("ParameterDescriptorGroup: should never return null.", byName);
+                if (byName != null) {
+                    assertSame("ParameterValueGroup: descriptor(String) inconsistent" +
+                            " with value.getDescriptor().", descriptor, byName);
+                }
+            }
+            if (value instanceof ParameterValue) {
+                final ParameterValue byName = object.parameter(name);
+                mandatory("ParameterValueGroup: parameter(String) should returns a value.", byName);
+                if (byName != null) {
+                    assertSame("ParameterValueGroup: value(String) inconsistent with values().", value, byName);
                 }
             }
         }
