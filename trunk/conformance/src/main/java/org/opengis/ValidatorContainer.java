@@ -13,12 +13,16 @@ package org.opengis;
 import java.util.AbstractList;
 import java.util.List;
 import org.opengis.util.*;
+import org.opengis.metadata.*;
+import org.opengis.metadata.extent.*;
+import org.opengis.metadata.citation.*;
 import org.opengis.geometry.*;
 import org.opengis.parameter.*;
 import org.opengis.referencing.*;
 import org.opengis.referencing.cs.*;
 import org.opengis.referencing.crs.*;
 import org.opengis.referencing.datum.*;
+import org.opengis.referencing.operation.*;
 
 
 /**
@@ -39,11 +43,18 @@ public class ValidatorContainer {
     public NameValidator naming = new NameValidator(this);
 
     /**
-     * The validator for {@link IdentifiedObject} and related objects.
+     * The validator for {@link Citation} and related objects.
      * Vendors can change this field to a different validator, or change the setting
      * of the referenced validator. This field shall not be set to {@code null} however.
      */
-    public ReferencingValidator referencing = new ReferencingValidator(this);
+    public CitationValidator citation = new CitationValidator(this);
+
+    /**
+     * The validator for {@link Extent} and related objects.
+     * Vendors can change this field to a different validator, or change the setting
+     * of the referenced validator. This field shall not be set to {@code null} however.
+     */
+    public ExtentValidator extent = new ExtentValidator(this);
 
     /**
      * The validator for {@link Datum} and related objects.
@@ -74,6 +85,13 @@ public class ValidatorContainer {
     public ParameterValidator parameter = new ParameterValidator(this);
 
     /**
+     * The validator for {@link CoordinateOperation} and related objects.
+     * Vendors can change this field to a different validator, or change the setting
+     * of the referenced validator. This field shall not be set to {@code null} however.
+     */
+    public OperationValidator coordinateOperation = new OperationValidator(this);
+
+    /**
      * The validator for {@link Geometry} and related objects.
      * Vendors can change this field to a different validator, or change the setting
      * of the referenced validator. This field shall not be set to {@code null} however.
@@ -90,18 +108,20 @@ public class ValidatorContainer {
      */
     public final List<Validator> all = new AbstractList<Validator>() {
         public int size() {
-            return 7;
+            return 9;
         }
 
         public Validator get(int index) {
             switch (index) {
                 case  0: return naming;
-                case  1: return referencing;
-                case  2: return datum;
-                case  3: return cs;
-                case  4: return crs;
-                case  5: return parameter;
-                case  6: return geometry;
+                case  1: return citation;
+                case  2: return extent;
+                case  3: return datum;
+                case  4: return cs;
+                case  5: return crs;
+                case  6: return parameter;
+                case  7: return coordinateOperation;
+                case  8: return geometry;
                 default: throw new IndexOutOfBoundsException(String.valueOf(index));
             }
         }
@@ -111,6 +131,112 @@ public class ValidatorContainer {
      * Creates a new {@code ValidatorContainer} initialised with default validators.
      */
     public ValidatorContainer() {
+    }
+
+    /**
+     * Dispatches the given object to one of the {@code validate(object)} methods.
+     * Use this method only if the type is unknow at compile-time.
+     *
+     * @param object The object to test, or {@code null}.
+     */
+    public final void dispatch(final Object object) {
+        if (object instanceof InternationalString) {
+            validate((InternationalString) object);
+        } else if (object instanceof ReferenceIdentifier) {
+            validate((ReferenceIdentifier) object);
+        } else if (object instanceof Citation) {
+            validate((Citation) object);
+        } else if (object instanceof GenericName) {
+            validate((GenericName) object);
+        } else if (object instanceof NameSpace) {
+            validate((NameSpace) object);
+        } else if (object instanceof IdentifiedObject) {
+            validate((IdentifiedObject) object);
+        } else if (object instanceof GeneralParameterValue) {
+            validate((GeneralParameterValue) object);
+        } else if (object instanceof DirectPosition) {
+            validate((DirectPosition) object);
+        } else if (object instanceof Envelope) {
+            validate((Envelope) object);
+        } else if (object instanceof GeographicExtent) {
+            validate((GeographicExtent) object);
+        } else if (object instanceof VerticalExtent) {
+            validate((VerticalExtent) object);
+        } else if (object instanceof TemporalExtent) {
+            validate((TemporalExtent) object);
+        } else if (object instanceof Extent) {
+            validate((Extent) object);
+        }
+    }
+
+    /**
+     * Tests the conformance of the given object.
+     *
+     * @param object The object to test, or {@code null}.
+     * @see ExtentValidator#validate(Extent)
+     */
+    public final void validate(final Extent object) {
+        extent.validate(object);
+    }
+
+    /**
+     * Tests the conformance of the given object.
+     *
+     * @param object The object to test, or {@code null}.
+     * @see ExtentValidator#validate(TemporalExtent)
+     */
+    public final void validate(final TemporalExtent object) {
+        extent.validate(object);
+    }
+
+    /**
+     * Tests the conformance of the given object.
+     *
+     * @param object The object to test, or {@code null}.
+     * @see ExtentValidator#validate(VerticalExtent)
+     */
+    public final void validate(final VerticalExtent object) {
+        extent.validate(object);
+    }
+
+    /**
+     * Tests the conformance of the given object.
+     *
+     * @param object The object to test, or {@code null}.
+     * @see ExtentValidator#validate(GeographicExtent)
+     */
+    public final void validate(final GeographicExtent object) {
+        extent.dispatch(object);
+    }
+
+    /**
+     * Tests the conformance of the given object.
+     *
+     * @param object The object to test, or {@code null}.
+     * @see ExtentValidator#validate(GeographicDescription)
+     */
+    public final void validate(final GeographicDescription object) {
+        extent.validate(object);
+    }
+
+    /**
+     * Tests the conformance of the given object.
+     *
+     * @param object The object to test, or {@code null}.
+     * @see ExtentValidator#validate(BoundingPolygon)
+     */
+    public final void validate(final BoundingPolygon object) {
+        extent.validate(object);
+    }
+
+    /**
+     * Tests the conformance of the given object.
+     *
+     * @param object The object to test, or {@code null}.
+     * @see ExtentValidator#validate(GeographicBoundingBox)
+     */
+    public final void validate(final GeographicBoundingBox object) {
+        extent.validate(object);
     }
 
     /**
@@ -417,6 +543,76 @@ public class ValidatorContainer {
      * Tests the conformance of the given object.
      *
      * @param object The object to test, or {@code null}.
+     * @see OperationValidator#validate(CoordinateOperation)
+     */
+    public final void validate(final CoordinateOperation object) {
+        coordinateOperation.dispatch(object);
+    }
+
+    /**
+     * Tests the conformance of the given object.
+     *
+     * @param object The object to test, or {@code null}.
+     * @see OperationValidator#validate(Conversion)
+     */
+    public final void validate(final Conversion object) {
+        coordinateOperation.validate(object);
+    }
+
+    /**
+     * Tests the conformance of the given object.
+     *
+     * @param object The object to test, or {@code null}.
+     * @see OperationValidator#validate(Transformation)
+     */
+    public final void validate(final Transformation object) {
+        coordinateOperation.validate(object);
+    }
+
+    /**
+     * Tests the conformance of the given object.
+     *
+     * @param object The object to test, or {@code null}.
+     * @see OperationValidator#validate(ConcatenatedOperation)
+     */
+    public final void validate(final ConcatenatedOperation object) {
+        coordinateOperation.validate(object);
+    }
+
+    /**
+     * Tests the conformance of the given object.
+     *
+     * @param object The object to test, or {@code null}.
+     * @see OperationValidator#validate(PassThroughOperation)
+     */
+    public final void validate(final PassThroughOperation object) {
+        coordinateOperation.validate(object);
+    }
+
+    /**
+     * Tests the conformance of the given object.
+     *
+     * @param object The object to test, or {@code null}.
+     * @see OperationValidator#validate(OperationMethod)
+     */
+    public final void validate(final OperationMethod object) {
+        coordinateOperation.validate(object);
+    }
+
+    /**
+     * Tests the conformance of the given object.
+     *
+     * @param object The object to test, or {@code null}.
+     * @see OperationValidator#validate(MathTransform)
+     */
+    public final void validate(final MathTransform object) {
+        coordinateOperation.validate(object);
+    }
+
+    /**
+     * Tests the conformance of the given object.
+     *
+     * @param object The object to test, or {@code null}.
      * @see ParameterValidator#dispatch(GeneralParameterDescriptor)
      */
     public final void validate(final GeneralParameterDescriptor object) {
@@ -480,7 +676,7 @@ public class ValidatorContainer {
      * @see ReferencingValidator#dispatch(IdentifiedObject)
      */
     public final void validate(final IdentifiedObject object) {
-        referencing.dispatch(object);
+        crs.dispatchObject(object);
     }
 
     /**
@@ -490,7 +686,17 @@ public class ValidatorContainer {
      * @see ReferencingValidator#validate(ReferenceIdentifier)
      */
     public final void validate(final ReferenceIdentifier object) {
-        referencing.validate(object);
+        crs.validate(object);
+    }
+
+    /**
+     * Tests the conformance of the given object.
+     *
+     * @param object The object to test, or {@code null}.
+     * @see CitationValidator#validate(Citation)
+     */
+    public final void validate(final Citation object) {
+        citation.validate(object);
     }
 
     /**

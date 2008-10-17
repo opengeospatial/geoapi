@@ -11,12 +11,16 @@
 package org.opengis;
 
 import org.opengis.util.*;
+import org.opengis.metadata.*;
+import org.opengis.metadata.extent.*;
+import org.opengis.metadata.citation.*;
 import org.opengis.geometry.*;
 import org.opengis.parameter.*;
 import org.opengis.referencing.*;
 import org.opengis.referencing.cs.*;
 import org.opengis.referencing.crs.*;
 import org.opengis.referencing.datum.*;
+import org.opengis.referencing.operation.*;
 
 
 /**
@@ -48,6 +52,86 @@ public class Validators {
      * For subclass constructors only.
      */
     protected Validators() {
+    }
+
+    /**
+     * Dispatches the given object to one of the {@code validate(object)} methods.
+     * Use this method only if the type is unknow at compile-time.
+     *
+     * @param object The object to test, or {@code null}.
+     */
+    public final void dispatch(final Object object) {
+        DEFAULT.dispatch(object);
+    }
+
+    /**
+     * Tests the conformance of the given object.
+     *
+     * @param object The object to test, or {@code null}.
+     * @see ExtentValidator#validate(Extent)
+     */
+    public static void validate(final Extent object) {
+        DEFAULT.validate(object);
+    }
+
+    /**
+     * Tests the conformance of the given object.
+     *
+     * @param object The object to test, or {@code null}.
+     * @see ExtentValidator#validate(TemporalExtent)
+     */
+    public static void validate(final TemporalExtent object) {
+        DEFAULT.validate(object);
+    }
+
+    /**
+     * Tests the conformance of the given object.
+     *
+     * @param object The object to test, or {@code null}.
+     * @see ExtentValidator#validate(VerticalExtent)
+     */
+    public static void validate(final VerticalExtent object) {
+        DEFAULT.validate(object);
+    }
+
+    /**
+     * Tests the conformance of the given object.
+     *
+     * @param object The object to test, or {@code null}.
+     * @see ExtentValidator#validate(GeographicExtent)
+     */
+    public static void validate(final GeographicExtent object) {
+        DEFAULT.validate(object);
+    }
+
+    /**
+     * Tests the conformance of the given object.
+     *
+     * @param object The object to test, or {@code null}.
+     * @see ExtentValidator#validate(GeographicDescription)
+     */
+    public static void validate(final GeographicDescription object) {
+        DEFAULT.validate(object);
+    }
+
+    /**
+     * Tests the conformance of the given object.
+     *
+     * @param object The object to test, or {@code null}.
+     * @see ExtentValidator#validate(BoundingPolygon)
+     */
+    public static void validate(final BoundingPolygon object) {
+        DEFAULT.validate(object);
+    }
+
+    /**
+     * Tests the conformance of the given object.
+     *
+     * @param object The object to test, or {@code null}.
+     * @see ExtentValidator#validate(GeographicBoundingBox)
+     */
+    public static void validate(final GeographicBoundingBox object) {
+        DEFAULT.validate(object);
     }
 
     /**
@@ -354,6 +438,76 @@ public class Validators {
      * Tests the conformance of the given object.
      *
      * @param object The object to test, or {@code null}.
+     * @see OperationValidator#validate(CoordinateOperation)
+     */
+    public static void validate(final CoordinateOperation object) {
+        DEFAULT.validate(object);
+    }
+
+    /**
+     * Tests the conformance of the given object.
+     *
+     * @param object The object to test, or {@code null}.
+     * @see OperationValidator#validate(Conversion)
+     */
+    public static void validate(final Conversion object) {
+        DEFAULT.validate(object);
+    }
+
+    /**
+     * Tests the conformance of the given object.
+     *
+     * @param object The object to test, or {@code null}.
+     * @see OperationValidator#validate(Transformation)
+     */
+    public static void validate(final Transformation object) {
+        DEFAULT.validate(object);
+    }
+
+    /**
+     * Tests the conformance of the given object.
+     *
+     * @param object The object to test, or {@code null}.
+     * @see OperationValidator#validate(ConcatenatedOperation)
+     */
+    public static void validate(final ConcatenatedOperation object) {
+        DEFAULT.validate(object);
+    }
+
+    /**
+     * Tests the conformance of the given object.
+     *
+     * @param object The object to test, or {@code null}.
+     * @see OperationValidator#validate(PassThroughOperation)
+     */
+    public static void validate(final PassThroughOperation object) {
+        DEFAULT.validate(object);
+    }
+
+    /**
+     * Tests the conformance of the given object.
+     *
+     * @param object The object to test, or {@code null}.
+     * @see OperationValidator#validate(OperationMethod)
+     */
+    public static void validate(final OperationMethod object) {
+        DEFAULT.validate(object);
+    }
+
+    /**
+     * Tests the conformance of the given object.
+     *
+     * @param object The object to test, or {@code null}.
+     * @see OperationValidator#validate(MathTransform)
+     */
+    public static void validate(final MathTransform object) {
+        DEFAULT.validate(object);
+    }
+
+    /**
+     * Tests the conformance of the given object.
+     *
+     * @param object The object to test, or {@code null}.
      * @see ParameterValidator#validate(GeneralParameterDescriptor)
      */
     public static void validate(final GeneralParameterDescriptor object) {
@@ -427,6 +581,16 @@ public class Validators {
      * @see ReferencingValidator#validate(ReferenceIdentifier)
      */
     public static void validate(final ReferenceIdentifier object) {
+        DEFAULT.validate(object);
+    }
+
+    /**
+     * Tests the conformance of the given object.
+     *
+     * @param object The object to test, or {@code null}.
+     * @see CitationValidator#validate(Citation)
+     */
+    public static void validate(final Citation object) {
         DEFAULT.validate(object);
     }
 

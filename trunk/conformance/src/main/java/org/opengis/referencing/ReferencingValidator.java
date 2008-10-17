@@ -16,6 +16,7 @@ import org.opengis.ValidatorContainer;
 import org.opengis.referencing.cs.*;
 import org.opengis.referencing.crs.*;
 import org.opengis.referencing.datum.*;
+import org.opengis.referencing.operation.*;
 import org.opengis.util.GenericName;
 import org.opengis.parameter.GeneralParameterDescriptor;
 
@@ -28,24 +29,23 @@ import org.opengis.parameter.GeneralParameterDescriptor;
  * @author Martin Desruisseaux (Geomatys)
  * @since GeoAPI 2.2
  */
-public class ReferencingValidator extends Validator {
+public abstract class ReferencingValidator extends Validator {
     /**
      * Creates a new validator.
      *
-     * @param container The container of this validator.
+     * @param container   The container of this validator.
+     * @param packageName The name of the package containing the classes to be validated.
      */
-    public ReferencingValidator(final ValidatorContainer container) {
-        super(container, "org.opengis.referencing");
+    public ReferencingValidator(final ValidatorContainer container, final String packageName) {
+        super(container, packageName);
     }
 
     /**
-     * Delegates to a {@code validate} method expecting a more specific argument. Do not override
-     * this method. Override {@code #validate(IdentifiedObject)} instead unless a new type needs
-     * to be checked.
+     * Delegates to a {@code validate} method expecting a more specific argument.
      *
      * @param object The object to validate, or {@code null}.
      */
-    public void dispatch(final IdentifiedObject object) {
+    public final void dispatchObject(final IdentifiedObject object) {
         if (object instanceof CoordinateReferenceSystem) {
             container.crs.dispatch((CoordinateReferenceSystem) object);
         } else if (object instanceof CoordinateSystem) {
@@ -60,8 +60,14 @@ public class ReferencingValidator extends Validator {
             container.datum.validate((PrimeMeridian) object);
         } else if (object instanceof GeneralParameterDescriptor) {
             container.parameter.dispatch((GeneralParameterDescriptor) object);
-        } else {
-            validate(object);
+        } else if (object instanceof CoordinateOperation) {
+            container.coordinateOperation.dispatch((CoordinateOperation) object);
+        } else if (object instanceof OperationMethod) {
+            container.coordinateOperation.validate((OperationMethod) object);
+        } else if (object instanceof ReferenceSystem) {
+            validateReferenceSystem((ReferenceSystem) object);
+        } else if (object != null) {
+            validateIdentifiedObject(object);
         }
     }
 
@@ -71,9 +77,24 @@ public class ReferencingValidator extends Validator {
      * @param object The object to validate, or {@code null}.
      */
     public void validate(final ReferenceIdentifier object) {
-        if (object != null) {
-            mandatory("ReferenceIdentifier: must have a code.", object.getCode());
+        if (object == null) {
+            return;
         }
+        mandatory("ReferenceIdentifier: must have a code.", object.getCode());
+        container.citation.validate(object.getAuthority());
+    }
+
+    /**
+     * Performs the validation that are common to all reference systems. This method is
+     * invoked by {@code validate} methods after they have determined the type of their
+     * argument.
+     *
+     * @param object The object to validate (can not be null).
+     */
+    final void validateReferenceSystem(final ReferenceSystem object) {
+        validateIdentifiedObject(object);
+        container.naming.validate(object.getScope());
+        container.extent.validate(object.getDomainOfValidity());
     }
 
     /**
@@ -83,7 +104,7 @@ public class ReferencingValidator extends Validator {
      *
      * @param object The object to validate (can not be null).
      */
-    final void validate(final IdentifiedObject object) {
+    final void validateIdentifiedObject(final IdentifiedObject object) {
         validate(object.getName());
         final Collection<ReferenceIdentifier> identifiers = object.getIdentifiers();
         if (identifiers != null) {

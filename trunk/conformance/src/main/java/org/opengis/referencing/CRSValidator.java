@@ -12,11 +12,11 @@ package org.opengis.referencing;
 
 import java.util.Set;
 import java.util.HashSet;
-import org.opengis.Validator;
 import org.opengis.ValidatorContainer;
 import org.opengis.referencing.cs.*;
 import org.opengis.referencing.crs.*;
 import org.opengis.referencing.datum.*;
+import org.opengis.referencing.operation.Conversion;
 
 
 /**
@@ -28,7 +28,13 @@ import org.opengis.referencing.datum.*;
  * @author Martin Desruisseaux (Geomatys)
  * @since GeoAPI 2.2
  */
-public class CRSValidator extends Validator {
+public class CRSValidator extends ReferencingValidator {
+    /**
+     * {@code true} if validation of the conversion by {@link #validateGeneralDerivedCRS}
+     * is under way. Used in order to avoid never-ending recursivity.
+     */
+    private final ThreadLocal<Boolean> VALIDATING = new ThreadLocal<Boolean>();
+
     /**
      * Creates a new validator.
      *
@@ -61,7 +67,7 @@ public class CRSValidator extends Validator {
         } else if (object instanceof TemporalCRS) {
             validate((TemporalCRS) object);
         } else if (object != null) {
-            container.referencing.validate(object);
+            validateReferenceSystem(object);
             container.cs.dispatch(object.getCoordinateSystem());
         }
     }
@@ -75,7 +81,7 @@ public class CRSValidator extends Validator {
         if (object == null) {
             return;
         }
-        container.referencing.validate(object);
+        validateReferenceSystem(object);
         final CoordinateSystem cs = object.getCoordinateSystem();
         mandatory("GeocentricCRS: must have a CoordinateSystem.", cs);
         if (cs instanceof CartesianCS) {
@@ -107,7 +113,7 @@ public class CRSValidator extends Validator {
         if (object == null) {
             return;
         }
-        container.referencing.validate(object);
+        validateReferenceSystem(object);
         final EllipsoidalCS cs = object.getCoordinateSystem();
         mandatory("GeographicCRS: must have a CoordinateSystem.", cs);
         container.cs.validate(cs);
@@ -126,7 +132,12 @@ public class CRSValidator extends Validator {
         if (object == null) {
             return;
         }
-        container.referencing.validate(object);
+        validateReferenceSystem(object);
+
+        final GeographicCRS baseCRS = object.getBaseCRS();
+        mandatory("ProjectedCRS: must have a base CRS.", baseCRS);
+        validate(baseCRS);
+
         final CartesianCS cs = object.getCoordinateSystem();
         mandatory("ProjectedCRS: must have a CoordinateSystem.", cs);
         container.cs.validate(cs);
@@ -134,6 +145,8 @@ public class CRSValidator extends Validator {
         final GeodeticDatum datum = object.getDatum();
         mandatory("ProjectedCRS: must have a Datum.", datum);
         container.datum.validate(datum);
+
+        validateGeneralDerivedCRS(object);
     }
 
     /**
@@ -145,7 +158,12 @@ public class CRSValidator extends Validator {
         if (object == null) {
             return;
         }
-        container.referencing.validate(object);
+        validateReferenceSystem(object);
+
+        final CoordinateReferenceSystem baseCRS = object.getBaseCRS();
+        mandatory("DerivedCRS: must have a base CRS.", baseCRS);
+        dispatch(baseCRS);
+
         final CoordinateSystem cs = object.getCoordinateSystem();
         mandatory("DerivedCRS: must have a CoordinateSystem.", cs);
         container.cs.dispatch(cs);
@@ -153,6 +171,38 @@ public class CRSValidator extends Validator {
         final Datum datum = object.getDatum();
         mandatory("DerivedCRS: must have a Datum.", datum);
         container.datum.dispatch(datum);
+
+        validateGeneralDerivedCRS(object);
+    }
+
+    /**
+     * Validates the conversion in the given derived CRS. This method is private because
+     * it doesn't perform a full validation; only the one not already done by the public
+     * {@link #validate(ProjectedCRS)} and {@link #validate(DerivedCRS)} methods.
+     *
+     * @param object The object to validate, or {@code null}.
+     */
+    private void validateGeneralDerivedCRS(final GeneralDerivedCRS object) {
+        if (!Boolean.TRUE.equals(VALIDATING.get())) try {
+            VALIDATING.set(Boolean.TRUE);
+            final Conversion conversion = object.getConversionFromBase();
+            if (conversion != null) {
+                container.coordinateOperation.validate(conversion);
+                final CoordinateReferenceSystem   baseCRS = object.getBaseCRS();
+                final CoordinateReferenceSystem sourceCRS = conversion.getSourceCRS();
+                final CoordinateReferenceSystem targetCRS = conversion.getTargetCRS();
+                if (baseCRS != null && sourceCRS != null) {
+                    assertSame("GeneralDerivedCRS: The base CRS should be " +
+                            "the source CRS of the conversion.", baseCRS, sourceCRS);
+                }
+                if (targetCRS != null) {
+                    assertSame("GeneralDerivedCRS: The derived CRS should be " +
+                            "the target CRS of the conversion.", object, targetCRS);
+                }
+            }
+        } finally {
+            VALIDATING.set(Boolean.FALSE);
+        }
     }
 
     /**
@@ -164,7 +214,7 @@ public class CRSValidator extends Validator {
         if (object == null) {
             return;
         }
-        container.referencing.validate(object);
+        validateReferenceSystem(object);
         final AffineCS cs = object.getCoordinateSystem();
         mandatory("ImageCRS: must have a CoordinateSystem.", cs);
         container.cs.dispatch(cs);
@@ -183,7 +233,7 @@ public class CRSValidator extends Validator {
         if (object == null) {
             return;
         }
-        container.referencing.validate(object);
+        validateReferenceSystem(object);
         final CoordinateSystem cs = object.getCoordinateSystem();
         mandatory("EngineeringCRS: must have a CoordinateSystem.", cs);
         container.cs.dispatch(cs);
@@ -202,7 +252,7 @@ public class CRSValidator extends Validator {
         if (object == null) {
             return;
         }
-        container.referencing.validate(object);
+        validateReferenceSystem(object);
         final VerticalCS cs = object.getCoordinateSystem();
         mandatory("VerticalCRS: must have a CoordinateSystem.", cs);
         container.cs.validate(cs);
@@ -221,7 +271,7 @@ public class CRSValidator extends Validator {
         if (object == null) {
             return;
         }
-        container.referencing.validate(object);
+        validateReferenceSystem(object);
         final TimeCS cs = object.getCoordinateSystem();
         mandatory("TemporalCRS: must have a CoordinateSystem.", cs);
         container.cs.validate(cs);

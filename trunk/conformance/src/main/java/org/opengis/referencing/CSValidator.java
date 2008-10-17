@@ -10,7 +10,6 @@
  *************************************************************************************************/
 package org.opengis.referencing;
 
-import org.opengis.Validator;
 import org.opengis.ValidatorContainer;
 import org.opengis.referencing.cs.*;
 
@@ -23,7 +22,7 @@ import org.opengis.referencing.cs.*;
  * @author Martin Desruisseaux (Geomatys)
  * @since GeoAPI 2.2
  */
-public class CSValidator extends Validator {
+public class CSValidator extends ReferencingValidator {
     /**
      * Creates a new validator.
      *
@@ -58,7 +57,7 @@ public class CSValidator extends Validator {
         } else if (object instanceof UserDefinedCS) {
             validate((UserDefinedCS) object);
         } else if (object != null) {
-            container.referencing.validate(object);
+            validateIdentifiedObject(object);
             validateAxes(object);
         }
     }
@@ -74,7 +73,7 @@ public class CSValidator extends Validator {
         if (object == null) {
             return;
         }
-        container.referencing.validate(object);
+        validateIdentifiedObject(object);
         assertValidRange("CoordinateSystemAxis: expected maximum >= minimum.",
                 object.getMinimumValue(), object.getMaximumValue());
     }
@@ -88,7 +87,7 @@ public class CSValidator extends Validator {
         if (object == null) {
             return;
         }
-        container.referencing.validate(object);
+        validateIdentifiedObject(object);
         validateAxes(object);
     }
 
@@ -101,7 +100,7 @@ public class CSValidator extends Validator {
         if (object == null) {
             return;
         }
-        container.referencing.validate(object);
+        validateIdentifiedObject(object);
         validateAxes(object);
         final int dimension = object.getDimension();
         assertBetween("EllipsoidalCS: wrong number of dimensions.", 2, 3, dimension);
@@ -116,7 +115,7 @@ public class CSValidator extends Validator {
         if (object == null) {
             return;
         }
-        container.referencing.validate(object);
+        validateIdentifiedObject(object);
         validateAxes(object);
         final int dimension = object.getDimension();
         assertEquals("SphericalCS: wrong number of dimensions.", 3, dimension);
@@ -131,7 +130,7 @@ public class CSValidator extends Validator {
         if (object == null) {
             return;
         }
-        container.referencing.validate(object);
+        validateIdentifiedObject(object);
         validateAxes(object);
         final int dimension = object.getDimension();
         assertEquals("CylindricalCS: wrong number of dimensions.", 3, dimension);
@@ -146,7 +145,7 @@ public class CSValidator extends Validator {
         if (object == null) {
             return;
         }
-        container.referencing.validate(object);
+        validateIdentifiedObject(object);
         validateAxes(object);
         final int dimension = object.getDimension();
         assertEquals("PolarCS: wrong number of dimensions.", 2, dimension);
@@ -161,7 +160,7 @@ public class CSValidator extends Validator {
         if (object == null) {
             return;
         }
-        container.referencing.validate(object);
+        validateIdentifiedObject(object);
         validateAxes(object);
         final int dimension = object.getDimension();
         assertEquals("LinearCS: wrong number of dimensions.", 1, dimension);
@@ -176,7 +175,7 @@ public class CSValidator extends Validator {
         if (object == null) {
             return;
         }
-        container.referencing.validate(object);
+        validateIdentifiedObject(object);
         validateAxes(object);
         final int dimension = object.getDimension();
         assertEquals("VerticalCS: wrong number of dimensions.", 1, dimension);
@@ -191,7 +190,7 @@ public class CSValidator extends Validator {
         if (object == null) {
             return;
         }
-        container.referencing.validate(object);
+        validateIdentifiedObject(object);
         validateAxes(object);
         final int dimension = object.getDimension();
         assertEquals("TimeCS: wrong number of dimensions.", 1, dimension);
@@ -206,7 +205,7 @@ public class CSValidator extends Validator {
         if (object == null) {
             return;
         }
-        container.referencing.validate(object);
+        validateIdentifiedObject(object);
         validateAxes(object);
         final int dimension = object.getDimension();
         assertBetween("UserDefinedCS: wrong number of dimensions.", 2, 3, dimension);
