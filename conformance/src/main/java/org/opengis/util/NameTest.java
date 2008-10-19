@@ -27,7 +27,7 @@ import static org.opengis.Validators.*;
  * @author Martin Desruisseaux (Geomatys)
  * @since GeoAPI 2.2
  */
-public class NameTest extends TestCase<NameFactory> {
+public class NameTest extends TestCase {
     /**
      * The factory to be used for testing {@linkplain GenericName generic name} instances.
      */
@@ -40,13 +40,6 @@ public class NameTest extends TestCase<NameFactory> {
      */
     protected NameTest(final NameFactory factory) {
         this.factory = factory;
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public Class<NameFactory> getFactoryClass() {
-        return NameFactory.class;
     }
 
     /**
