@@ -15,6 +15,7 @@ import java.util.Arrays;
 import org.opengis.geometry.DirectPosition;
 import org.opengis.referencing.operation.MathTransform;
 import org.opengis.referencing.operation.TransformException;
+import org.opengis.referencing.operation.NoninvertibleTransformException;
 
 import org.junit.Before;
 import org.opengis.test.TestCase;
@@ -99,6 +100,9 @@ public strictfp abstract class TransformTestCase extends TestCase {
      * By default all transform methods are tested, but some tests can be disabled by setting the
      * corresponding {@code isFooSupported} fields to {@code false}.
      * <p>
+     * This method does not {@linkplain org.opengis.test.Validators#validate(MathTransform) validate}
+     * the transform. It is caller responsability to validate the transform if wanted.
+     * <p>
      * This method expects an array of {@code float} values instead than {@code double}
      * for making sure that the {@code MathTransform.transform(float[], ...)} and
      * {@code MathTransform.transform(double[], ...)} methods get the same numerical values.
@@ -159,11 +163,11 @@ public strictfp abstract class TransformTestCase extends TestCase {
             Arrays.fill(targetDoubles, Double.NaN);
             transform.transform(sourceDoubles, 0, targetDoubles, 0, numPts);
             for (int i=0; i<sourceDoubles.length; i++) {
-                assertEquals("MathTransform.transform(double[],0,double[],0,n) modified a source coordinate.",
+                assertFloatEquals("MathTransform.transform(double[],0,double[],0,n) modified a source coordinate.",
                         sourceFloats[i], (float) sourceDoubles[i], STRICT, i, sourceDimension);
             }
             for (int i=0; i<transformed.length; i++) {
-                assertEquals("MathTransform.transform(double[],0,double[],0,n) error.",
+                assertFloatEquals("MathTransform.transform(double[],0,double[],0,n) error.",
                         transformed[i], (float) targetDoubles[i], eps, i, targetDimension);
             }
         }
@@ -171,11 +175,11 @@ public strictfp abstract class TransformTestCase extends TestCase {
             Arrays.fill(targetFloats, Float.NaN);
             transform.transform(sourceFloats, 0, targetFloats, 0, numPts);
             for (int i=0; i<sourceFloats.length; i++) {
-                assertEquals("MathTransform.transform(float[],0,float[],0,n) modified a source coordinate.",
+                assertFloatEquals("MathTransform.transform(float[],0,float[],0,n) modified a source coordinate.",
                         (float) sourceDoubles[i], sourceFloats[i], STRICT, i, sourceDimension);
             }
             for (int i=0; i<transformed.length; i++) {
-                assertEquals("MathTransform.transform(float[],0,float[],0,n) error.",
+                assertFloatEquals("MathTransform.transform(float[],0,float[],0,n) error.",
                         transformed[i], targetFloats[i], eps, i, targetDimension);
             }
         }
@@ -183,11 +187,11 @@ public strictfp abstract class TransformTestCase extends TestCase {
             Arrays.fill(targetFloats, Float.NaN);
             transform.transform(sourceDoubles, 0, targetFloats, 0, numPts);
             for (int i=0; i<sourceDoubles.length; i++) {
-                assertEquals("MathTransform.transform(double[],0,float[],0,n) modified a source coordinate.",
+                assertFloatEquals("MathTransform.transform(double[],0,float[],0,n) modified a source coordinate.",
                         sourceFloats[i], (float) sourceDoubles[i], STRICT, i, sourceDimension);
             }
             for (int i=0; i<transformed.length; i++) {
-                assertEquals("MathTransform.transform(double[],0,float[],0,n) error.",
+                assertFloatEquals("MathTransform.transform(double[],0,float[],0,n) error.",
                         transformed[i], targetFloats[i], eps, i, targetDimension);
             }
         }
@@ -195,11 +199,11 @@ public strictfp abstract class TransformTestCase extends TestCase {
             Arrays.fill(targetDoubles, Double.NaN);
             transform.transform(sourceFloats, 0, targetDoubles, 0, numPts);
             for (int i=0; i<sourceFloats.length; i++) {
-                assertEquals("MathTransform.transform(float[],0,double[],0,n) modified a source coordinate.",
+                assertFloatEquals("MathTransform.transform(float[],0,double[],0,n) modified a source coordinate.",
                         (float) sourceDoubles[i], sourceFloats[i], STRICT, i, sourceDimension);
             }
             for (int i=0; i<transformed.length; i++) {
-                assertEquals("MathTransform.transform(float[],0,double[],0,n) error.",
+                assertFloatEquals("MathTransform.transform(float[],0,double[],0,n) error.",
                         transformed[i], (float) targetDoubles[i], eps, i, targetDimension);
             }
         }
@@ -214,9 +218,9 @@ public strictfp abstract class TransformTestCase extends TestCase {
                     transform.transform(targetFloats,  sourceOffset, targetFloats,  targetOffset, numPts);
                     transform.transform(targetDoubles, sourceOffset, targetDoubles, targetOffset, numPts);
                     for (int i=0; i<transformed.length; i++) {
-                        assertEquals("MathTransform.transform(float[],0,float[],0,n) error.",
+                        assertFloatEquals("MathTransform.transform(float[],0,float[],0,n) error.",
                                 transformed[i], targetFloats[targetOffset + i], eps, i, targetDimension);
-                        assertEquals("MathTransform.transform(double[],0,double[],0,n) error.",
+                        assertFloatEquals("MathTransform.transform(double[],0,double[],0,n) error.",
                                 transformed[i], (float) targetDoubles[targetOffset + i], eps, i, targetDimension);
                     }
                 }
@@ -226,9 +230,85 @@ public strictfp abstract class TransformTestCase extends TestCase {
     }
 
     /**
+     * Transforms the given coordinates, applies the inverse transform and compares with the
+     * original values.
+     * <p>
+     * This method does not {@linkplain org.opengis.test.Validators#validate(MathTransform) validate}
+     * the transform. It is caller responsability to validate the transform if wanted.
+     *
+     * @param  coordinates The source coordinates to transform.
+     * @param  eps Comparaison threshold when comparing transformed coordinates.
+     * @throws TransformException if at least one coordinate can't be transformed.
+     */
+    protected void testInversion(final float[] coordinates, final float eps)
+            throws TransformException
+    {
+        final double[] sourceDoubles = new double[coordinates.length];
+        for (int i=0; i<coordinates.length; i++) {
+            sourceDoubles[i] = coordinates[i];
+        }
+        testInversion(sourceDoubles, eps);
+        final int dimension = transform.getSourceDimensions();
+        for (int i=0; i<coordinates.length; i++) {
+            assertFloatEquals("Unexpected change in source coordinates.",
+                    coordinates[i], (float) sourceDoubles[i], STRICT, i, dimension);
+        }
+    }
+
+    /**
+     * Transforms the given coordinates, applies the inverse transform and compares with the
+     * original values.
+     * <p>
+     * This method does not {@linkplain org.opengis.test.Validators#validate(MathTransform) validate}
+     * the transform. It is caller responsability to validate the transform if wanted.
+     *
+     * @param  coordinates The source coordinates to transform.
+     * @param  eps Comparaison threshold when comparing transformed coordinates.
+     * @throws TransformException if at least one coordinate can't be transformed.
+     */
+    protected void testInversion(final double[] coordinates, final double eps)
+            throws TransformException
+    {
+        final MathTransform transform = this.transform; // Protect from changes.
+        assertNotNull("The TransformTestCase.transform field must be assigned a value.", transform);
+        final MathTransform inverse;
+        try {
+            inverse = transform.inverse();
+        } catch (NoninvertibleTransformException e) {
+            fail(e.toString());
+            return;
+        }
+        final int sourceDimension = transform.getSourceDimensions();
+        final int targetDimension = transform.getTargetDimensions();
+        assertEquals("Source dimension is not a divisor of the coordinates array length.",
+                0, coordinates.length % sourceDimension);
+        DirectPosition targetPoint = null;
+        DirectPosition sourcePoint = null;
+        final SimpleDirectPosition givenPoint = new SimpleDirectPosition(sourceDimension);
+        for (int i=0; i < coordinates.length; i += sourceDimension) {
+            System.arraycopy(coordinates, i, givenPoint.ordinates, 0, sourceDimension);
+            targetPoint = transform.transform(givenPoint, targetPoint);
+            sourcePoint = inverse.transform(targetPoint, sourcePoint);
+            assertEquals("Transformed point has wrong dimension.",
+                    targetDimension, targetPoint.getDimension());
+            assertEquals("Inverse-transformed point has wrong dimension.",
+                    sourceDimension, sourcePoint.getDimension());
+            for (int j=0; j<sourceDimension; j++) {
+                assertDoubleEquals("Source coordinate has been modified.",
+                        coordinates[i+j], givenPoint.ordinates[j], STRICT, i, j);
+                assertDoubleEquals("Unexpected result of inverse transform.",
+                        givenPoint.ordinates[j], sourcePoint.getOrdinate(j), eps, i, j);
+            }
+        }
+    }
+
+    /**
      * Asserts that two ordinate values are equal to within a positive delta. If the comparaison
      * fails, the given message is completed with the expected and actual values, and the index
      * of the coordinate where the failure was found.
+     * <p>
+     * Be aware that arguments doesn't have the same meaning than {@link #assertDoubleEquals}.
+     * This method is not public partially for this reason.
      *
      * @param message   The message to print in case of failure.
      * @param expected  The expected value.
@@ -237,7 +317,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
      * @param index     The index of the ordinate being compared. Used only in case of failure.
      * @param dimension The dimension of coordinates being compared. Used only in case of failure.
      */
-    private static void assertEquals(final String message, final float expected, final float actual,
+    private static void assertFloatEquals(final String message, final float expected, final float actual,
             final float delta, final int index, final int dimension)
     {
         // Following condition uses !(a <= b) instead than (a > b) for catching NaN.
@@ -247,6 +327,35 @@ public strictfp abstract class TransformTestCase extends TestCase {
                 throw new TransformFailure(message + System.getProperty("line.separator", "\n") +
                         "Expected " + expected + " but got " + actual + " at DirectPosition[" +
                         (index / dimension) + "].ordinate(" + (index % dimension) + ").");
+            }
+        }
+    }
+
+    /**
+     * Asserts that two ordinate values are equal to within a positive delta. If the comparaison
+     * fails, the given message is completed with the expected and actual values, and the index
+     * of the coordinate where the failure was found.
+     * <p>
+     * Be aware that arguments doesn't have the same meaning than {@link #assertFloatEquals}.
+     * This method is not public partially for this reason.
+     *
+     * @param message   The message to print in case of failure.
+     * @param expected  The expected value.
+     * @param actual    The value to check against the expected one.
+     * @param delta     The maximum delta between expected and actual values.
+     * @param point     The index of the point being compared. Used only in case of failure.
+     * @param ordinate  The index of ordinate in the above point. Used only in case of failure.
+     */
+    private static void assertDoubleEquals(final String message, final double expected, final double actual,
+            final double delta, final int point, final int ordinate)
+    {
+        // Following condition uses !(a <= b) instead than (a > b) for catching NaN.
+        if (!(Math.abs(actual - expected) <= delta)) {
+            // Following condition checks for NaN and Infinity values.
+            if (Double.doubleToLongBits(actual) != Double.doubleToLongBits(expected)) {
+                throw new TransformFailure(message + System.getProperty("line.separator", "\n") +
+                        "Expected " + expected + " but got " + actual + " at DirectPosition[" +
+                        point + "].ordinate(" + ordinate + ").");
             }
         }
     }

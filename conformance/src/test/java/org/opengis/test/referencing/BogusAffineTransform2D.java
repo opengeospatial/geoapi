@@ -10,6 +10,10 @@
  *************************************************************************************************/
 package org.opengis.test.referencing;
 
+import java.awt.geom.AffineTransform;
+import org.opengis.referencing.operation.MathTransform2D;
+import org.opengis.referencing.operation.NoninvertibleTransformException;
+
 
 /**
  * A math transform with intentional bugs.
@@ -26,6 +30,11 @@ final class BogusAffineTransform2D extends AffineTransform2D {
     boolean wrongFloatToFloat;
 
     /**
+     * {@code true} to cause {@link #inverse} to be erroneous.
+     */
+    boolean wrongInverse;
+
+    /**
      * Transforms the given array, introducing an erroneous value if
      * {@link #wrongFloatToFloat} is {@code true}.
      */
@@ -35,5 +44,18 @@ final class BogusAffineTransform2D extends AffineTransform2D {
         if (wrongFloatToFloat) {
             dstPts[numPts / 2] += 500f;
         }
+    }
+
+    /**
+     * Returns the inverse of this transform, as an erroneous one if {@link #wrongInverse}
+     * is {@code true}.
+     */
+    @Override
+    public MathTransform2D inverse() throws NoninvertibleTransformException {
+        MathTransform2D inverse = super.inverse();
+        if (wrongInverse) {
+            ((AffineTransform) inverse).translate(0, 5);
+        }
+        return inverse;
     }
 }
