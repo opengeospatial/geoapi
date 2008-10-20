@@ -12,6 +12,7 @@ package org.opengis.test.referencing;
 
 import java.util.Random;
 import org.opengis.referencing.operation.TransformException;
+import org.opengis.test.Validators;
 import org.junit.*;
 
 
@@ -70,6 +71,7 @@ public strictfp class TransformCaseTest extends TransformTestCase {
      */
     @Test
     public void testConsistencyUsingValidTransform() throws TransformException {
+        Validators.validate(transform);
         testConsistency(coordinates, 0f);
     }
 
@@ -81,7 +83,32 @@ public strictfp class TransformCaseTest extends TransformTestCase {
      */
     @Test(expected=TransformFailure.class)
     public void testConsistencyUsingBogusTransform() throws TransformException {
+        Validators.validate(transform);
         ((BogusAffineTransform2D) transform).wrongFloatToFloat = true;
         testConsistency(coordinates, 0f);
+    }
+
+    /**
+     * Tests {@link #testInversion} using a valid transform.
+     *
+     * @throws TransformException Should never happen.
+     */
+    @Test
+    public void testInversionUsingValidTransform() throws TransformException {
+        Validators.validate(transform);
+        testInversion(coordinates, 1E-6f);
+    }
+
+    /**
+     * Tests {@link #testInversion} using a bogus transform.
+     * A {@link TransformFailure} exception should be thrown.
+     *
+     * @throws TransformException Should never happen.
+     */
+    @Test(expected=TransformFailure.class)
+    public void testInversionUsingBogusTransform() throws TransformException {
+        Validators.validate(transform);
+        ((BogusAffineTransform2D) transform).wrongInverse = true;
+        testInversion(coordinates, 1E-6f);
     }
 }
