@@ -28,7 +28,7 @@ import org.opengis.referencing.operation.TransformException;
  * @author Martin Desruisseaux (Geomatys)
  * @since GeoAPI 2.2
  */
-public abstract class TransformTestCase extends TestCase {
+public strictfp abstract class TransformTestCase extends TestCase {
     /**
      * The maximal offset (in number of coordinate points), exclusive, to apply when testing
      * {@code MathTransform.transform(...)} with overlapping arrays.  Higher values make the
@@ -90,15 +90,12 @@ public abstract class TransformTestCase extends TestCase {
     }
 
     /**
-     * Transforms the given array of coordinates. This method transforms the same coordinates
-     * using the various versions of {@code MathTransform.transform(...)} working on direct
-     * position and float/double arrays, and makes sure that they produce the same numerical
-     * values.
-     * <p>
-     * Values calculated by {@link MathTransform#transform(DirectPosition,DirectPosition)} are
-     * used as the reference. All other transform methods (operating on arrays) will be compared
-     * against that reference. By default all transform methods are tested, but some tests can be
-     * disabled by setting the corresponding {@code isFooSupported} fields to {@code false}.
+     * Transforms coordinates using various versions of {@code MathTransform.transform(...)}
+     * and asserts that they produce the same numerical values. The values calculated by
+     * {@link MathTransform#transform(DirectPosition,DirectPosition)} are used as the reference.
+     * All other transform methods (operating on arrays) will be compared against that reference.
+     * By default all transform methods are tested, but some tests can be disabled by setting the
+     * corresponding {@code isFooSupported} fields to {@code false}.
      * <p>
      * This method expects an array of {@code float} values instead than {@code double}
      * for making sure that the {@code MathTransform.transform(float[], ...)} and
@@ -107,14 +104,14 @@ public abstract class TransformTestCase extends TestCase {
      * this is not significant if their IEEE 754 representation in base 2 are equivalent).
      *
      * @param  sourceFloats The source coordinates to transform as an array of {@code float} values.
-     * @param  eps Comparaison threshold when comparing a coordinate transformed as {@code float[]}
-     *         with the same coordinate transformed as {@code double[]}. If the {@link MathTransform}
-     *         implementation converts all ordinates to {@code double} before to perform its internal
-     *         computation (which is usually the case), then this value should be strictly zero.
+     * @param  eps Comparaison threshold when comparing transformed coordinates. If the
+     *         {@link MathTransform} implementation converts all ordinates to {@code double}
+     *         before to perform its internal computation (which is usually the case), then
+     *         this value should be strictly zero.
      * @return The transformed coordinates.
      * @throws TransformException if at least one coordinate can't be transformed.
      */
-    protected strictfp float[] transform(final float[] sourceFloats, final float eps)
+    protected float[] testConsistency(final float[] sourceFloats, final float eps)
             throws TransformException
     {
         final MathTransform transform = this.transform; // Protect from changes.
@@ -140,7 +137,7 @@ public abstract class TransformTestCase extends TestCase {
             final SimpleDirectPosition sourcePosition = new SimpleDirectPosition(sourceDimension);
             DirectPosition targetPosition = null;
             int targetOffset = 0;
-            for (int i=0; i<sourceDoubles.length; i += sourceDimension) {
+            for (int i=0; i < sourceDoubles.length; i += sourceDimension) {
                 System.arraycopy(sourceDoubles, i, sourcePosition.ordinates, 0, sourceDimension);
                 targetPosition = transform.transform(sourcePosition, targetPosition);
                 assertNotNull("MathTransform.transform(DirectPosition) must return a non-null position.", targetPosition);
@@ -165,7 +162,7 @@ public abstract class TransformTestCase extends TestCase {
             }
             for (int i=0; i<transformed.length; i++) {
                 assertEquals("MathTransform.transform(double[],0,double[],0,n) error.",
-                        transformed[i], (float) sourceDoubles[i], eps, i, targetDimension);
+                        transformed[i], (float) targetDoubles[i], eps, i, targetDimension);
             }
         }
         if (isFloatToFloatSupported) {
@@ -177,7 +174,7 @@ public abstract class TransformTestCase extends TestCase {
             }
             for (int i=0; i<transformed.length; i++) {
                 assertEquals("MathTransform.transform(float[],0,float[],0,n) error.",
-                        transformed[i], sourceFloats[i], eps, i, targetDimension);
+                        transformed[i], targetFloats[i], eps, i, targetDimension);
             }
         }
         if (isDoubleToFloatSupported) {
@@ -213,7 +210,7 @@ public abstract class TransformTestCase extends TestCase {
                     System.arraycopy(sourceFloats,  0, targetFloats,  sourceOffset, sourceFloats .length);
                     System.arraycopy(sourceDoubles, 0, targetDoubles, sourceOffset, sourceDoubles.length);
                     transform.transform(targetFloats,  sourceOffset, targetFloats,  targetOffset, numPts);
-                    transform.transform(sourceDoubles, sourceOffset, targetDoubles, targetOffset, numPts);
+                    transform.transform(targetDoubles, sourceOffset, targetDoubles, targetOffset, numPts);
                     for (int i=0; i<transformed.length; i++) {
                         assertEquals("MathTransform.transform(float[],0,float[],0,n) error.",
                                 transformed[i], targetFloats[targetOffset + i], eps, i, targetDimension);
@@ -244,10 +241,10 @@ public abstract class TransformTestCase extends TestCase {
         // Following condition uses !(a <= b) instead than (a > b) for catching NaN.
         if (!(Math.abs(actual - expected) <= delta)) {
             // Following condition checks for NaN and Infinity values.
-            if (Float.floatToIntBits(expected) != Float.floatToIntBits(expected)) {
-                fail(message + System.getProperty("line.separator", "\n") +
+            if (Float.floatToIntBits(actual) != Float.floatToIntBits(expected)) {
+                throw new TransformFailure(message + System.getProperty("line.separator", "\n") +
                         "Expected " + expected + " but got " + actual + " at DirectPosition[" +
-                        (index / dimension) + "].ordinate(" + (index % dimension) + ")");
+                        (index / dimension) + "].ordinate(" + (index % dimension) + ").");
             }
         }
     }
