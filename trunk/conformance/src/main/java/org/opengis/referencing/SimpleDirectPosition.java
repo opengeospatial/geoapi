@@ -11,6 +11,7 @@
 package org.opengis.referencing;
 
 import java.util.Arrays;
+import java.awt.geom.Point2D;
 import org.opengis.geometry.DirectPosition;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 
@@ -35,6 +36,16 @@ final class SimpleDirectPosition implements DirectPosition {
      */
     public SimpleDirectPosition(final int dimension) {
         ordinates = new double[dimension];
+    }
+
+    /**
+     * Creates a new two-dimensional direct position initialized to the given point.
+     */
+    public SimpleDirectPosition(final Point2D point) {
+        ordinates = new double[] {
+            point.getX(),
+            point.getY()
+        };
     }
 
     /**
