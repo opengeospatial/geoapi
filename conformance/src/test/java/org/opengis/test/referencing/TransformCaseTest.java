@@ -65,42 +65,65 @@ public strictfp class TransformCaseTest extends TransformTestCase {
     }
 
     /**
-     * Tests {@link #testConsistency} using a valid transform.
+     * Tests {@link #verifyTransform} using a valid transform.
+     *
+     * @throws TransformException Should never happen.
+     */
+    @Test
+    public void testTransform() throws TransformException {
+        tolerance = 0;
+        ((AffineTransform2D) transform).setToScale(10, 100);
+        Validators.validate(transform);
+        verifyTransform(new double[] { 2,  3},
+                        new double[] { 20, 300});
+        try {
+            verifyTransform(new double[] { 2,  3},
+                            new double[] { 20, 300.01});
+            fail("Expected TransformFailure exception.");
+        } catch (TransformFailure e) {
+            // This is the expected exception.
+        }
+    }
+
+    /**
+     * Tests {@link #verifyConsistency} using a valid transform.
      *
      * @throws TransformException Should never happen.
      */
     @Test
     public void testConsistencyUsingValidTransform() throws TransformException {
+        tolerance = 0;
         Validators.validate(transform);
-        testConsistency(coordinates, 0f);
+        verifyConsistency(coordinates);
     }
 
     /**
-     * Tests {@link #testConsistency} using a bogus transform.
+     * Tests {@link #verifyConsistency} using a bogus transform.
      * A {@link TransformFailure} exception should be thrown.
      *
      * @throws TransformException Should never happen.
      */
     @Test(expected=TransformFailure.class)
     public void testConsistencyUsingBogusTransform() throws TransformException {
+        tolerance = 0;
         Validators.validate(transform);
         ((BogusAffineTransform2D) transform).wrongFloatToFloat = true;
-        testConsistency(coordinates, 0f);
+        verifyConsistency(coordinates);
     }
 
     /**
-     * Tests {@link #testInversion} using a valid transform.
+     * Tests {@link #verifyInverse} using a valid transform.
      *
      * @throws TransformException Should never happen.
      */
     @Test
     public void testInversionUsingValidTransform() throws TransformException {
         Validators.validate(transform);
-        testInversion(coordinates, 1E-6f);
+        verifyInverse(coordinates);
     }
 
     /**
-     * Tests {@link #testInversion} using a bogus transform.
+     * Tests {@link #verifyInverse} using a bogus transform.
      * A {@link TransformFailure} exception should be thrown.
      *
      * @throws TransformException Should never happen.
@@ -109,6 +132,6 @@ public strictfp class TransformCaseTest extends TransformTestCase {
     public void testInversionUsingBogusTransform() throws TransformException {
         Validators.validate(transform);
         ((BogusAffineTransform2D) transform).wrongInverse = true;
-        testInversion(coordinates, 1E-6f);
+        verifyInverse(coordinates);
     }
 }
