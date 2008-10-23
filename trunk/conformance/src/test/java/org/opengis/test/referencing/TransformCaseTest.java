@@ -118,6 +118,7 @@ public strictfp class TransformCaseTest extends TransformTestCase {
      */
     @Test
     public void testInversionUsingValidTransform() throws TransformException {
+        tolerance = 1E-10;
         Validators.validate(transform);
         verifyInverse(coordinates);
     }
@@ -130,6 +131,7 @@ public strictfp class TransformCaseTest extends TransformTestCase {
      */
     @Test(expected=TransformFailure.class)
     public void testInversionUsingBogusTransform() throws TransformException {
+        tolerance = 1E-10;
         Validators.validate(transform);
         ((BogusAffineTransform2D) transform).wrongInverse = true;
         verifyInverse(coordinates);
