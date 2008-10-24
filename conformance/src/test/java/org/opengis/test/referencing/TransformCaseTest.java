@@ -72,6 +72,7 @@ public strictfp class TransformCaseTest extends TransformTestCase {
     @Test
     public void testTransform() throws TransformException {
         tolerance = 0;
+        assertAllTestsEnabled();
         ((AffineTransform2D) transform).setToScale(10, 100);
         Validators.validate(transform);
         verifyTransform(new double[] { 2,  3},
@@ -93,6 +94,7 @@ public strictfp class TransformCaseTest extends TransformTestCase {
     @Test
     public void testConsistencyUsingValidTransform() throws TransformException {
         tolerance = 0;
+        assertAllTestsEnabled();
         Validators.validate(transform);
         verifyConsistency(coordinates);
     }
@@ -106,6 +108,7 @@ public strictfp class TransformCaseTest extends TransformTestCase {
     @Test(expected=TransformFailure.class)
     public void testConsistencyUsingBogusTransform() throws TransformException {
         tolerance = 0;
+        assertAllTestsEnabled();
         Validators.validate(transform);
         ((BogusAffineTransform2D) transform).wrongFloatToFloat = true;
         verifyConsistency(coordinates);
@@ -119,6 +122,7 @@ public strictfp class TransformCaseTest extends TransformTestCase {
     @Test
     public void testInversionUsingValidTransform() throws TransformException {
         tolerance = 1E-10;
+        assertAllTestsEnabled();
         Validators.validate(transform);
         verifyInverse(coordinates);
     }
@@ -132,6 +136,7 @@ public strictfp class TransformCaseTest extends TransformTestCase {
     @Test(expected=TransformFailure.class)
     public void testInversionUsingBogusTransform() throws TransformException {
         tolerance = 1E-10;
+        assertAllTestsEnabled();
         Validators.validate(transform);
         ((BogusAffineTransform2D) transform).wrongInverse = true;
         verifyInverse(coordinates);
