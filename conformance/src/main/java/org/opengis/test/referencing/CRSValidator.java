@@ -4,7 +4,7 @@
  **
  ** $URL$
  **
- ** Copyright (C) 2004-2005 Open GIS Consortium, Inc.
+ ** Copyright (C) 2008 Open GIS Consortium, Inc.
  ** All Rights Reserved. http://www.opengis.org/legal/
  **
  *************************************************************************************************/
