@@ -156,34 +156,6 @@ public strictfp abstract class TransformTestCase extends TestCase {
     }
 
     /**
-     * Transforms the given coordinate and verifies that the result is equals (within a positive
-     * delta) to the expected one. If the difference between an expected and actual ordinate value
-     * is greater than the {@linkplain #tolerance(double) tolerance} threshold, then the assertion
-     * fails.
-     * <p>
-     * If {@link #isInverseTransformSupported} is {@code true}, then this method will also
-     * transform the expected coordinate point using the {@linkplain MathTransform#inverse
-     * inverse transform} and compare the result with the source coordinate.
-     * <p>
-     * The default implementation delegates to {@link #verifyTransform(double[][],double[][])}.
-     *
-     * @param  coordinate A single coordinate point to transform.
-     * @param  expected The expect result of the transformation, or
-     *         {@code null} if {@code coordinate} is expected to be null.
-     * @throws TransformException if the transformation failed.
-     */
-    protected void verifyTransform(final double[] coordinate, final double[] expected)
-            throws TransformException
-    {
-        if (expected == null) {
-            assertNull(coordinate);
-        } else {
-            assertNotNull(coordinate);
-            verifyTransform(new double[][] {coordinate}, new double[][] {expected});
-        }
-    }
-
-    /**
      * Transforms the given coordinates and verifies that the result is equals (within a positive
      * delta) to the expected ones. If the difference between an expected and actual ordinate value
      * is greater than the {@linkplain #tolerance(double) tolerance} threshold, then the assertion
@@ -193,66 +165,77 @@ public strictfp abstract class TransformTestCase extends TestCase {
      * transform the expected coordinate points using the {@linkplain MathTransform#inverse
      * inverse transform} and compare with the source coordinates.
      *
-     * @param  coordinates An array of coordinate points to transform.
-     * @param  expected The expect results of the transformations, or
+     * @param  coordinates The coordinate points to transform.
+     * @param  expected The expect result of the transformation, or
      *         {@code null} if {@code coordinates} is expected to be null.
      * @throws TransformException if the transformation failed.
      */
-    protected void verifyTransform(final double[][] coordinates, final double[][] expected)
+    protected void verifyTransform(final double[] coordinates, final double[] expected)
             throws TransformException
     {
+        /*
+         * Checks the state of this TransformTestCase object, including a shallow inspection of
+         * the MathTransform. We check only the parts that are significant to this test method.
+         * Full MathTransform validation is not the job of this method.
+         */
+        final MathTransform transform = this.transform; // Protect from changes.
+        assertNotNull("TransformTestCase.transform shall be assigned a value.", transform);
+        final int sourceDimension = transform.getSourceDimensions();
+        final int targetDimension = transform.getTargetDimensions();
+        assertStrictlyPositive("Source dimension must be positive.", sourceDimension);
+        assertStrictlyPositive("Target dimension must be positive.", targetDimension);
+        final MathTransform inverse;
+        if (isInverseTransformSupported) {
+            inverse = transform.inverse();
+            assertNotNull("MathTransform.inverse() shall not return null.", inverse);
+            assertEquals("Inconsistent source dimension of the inverse transform.",
+                    targetDimension, inverse.getSourceDimensions());
+            assertEquals("Inconsistent target dimension of the inverse transform.",
+                    sourceDimension, inverse.getTargetDimensions());
+        } else {
+            inverse = null;
+        }
+        /*
+         * Checks the method arguments.
+         */
         if (expected == null) {
             assertNull(coordinates);
             return;
         }
         assertNotNull(coordinates);
-        assertEquals("Mismatched arrays length.", expected.length, coordinates.length);
+        assertEquals("Source dimension is not a divisor of the coordinates array length.",
+                0, coordinates.length % sourceDimension);
+        assertEquals("Target dimension is not a divisor of the expected array length.",
+                0, expected.length % targetDimension);
+        final int numPts = expected.length / targetDimension;
+        assertEquals("Mismatched number of points.", numPts, coordinates.length / sourceDimension);
+        /*
+         * Now performs the test.
+         */
+        final SimpleDirectPosition source = new SimpleDirectPosition(sourceDimension);
+        final SimpleDirectPosition target = new SimpleDirectPosition(targetDimension);
+        final SimpleDirectPosition back   = new SimpleDirectPosition(sourceDimension);
+        for (int i=0; i<numPts; i++) {
+            final int sourceOffset = i * sourceDimension;
+            final int targetOffset = i * targetDimension;
+            System.arraycopy(coordinates, sourceOffset, source.ordinates, 0, sourceDimension);
+            assertSame("MathTransform.transform(DirectPosition,...) shall use the given target.",
+                    target, transform.transform(source, target));
+            assertCoordinatesEqual("Unexpected transform result.", targetDimension,
+                    expected, targetOffset, target.ordinates, 0, 1, false, i);
+            assertCoordinatesEqual("Source coordinate has been modified.", sourceDimension,
+                    coordinates, sourceOffset, source.ordinates, 0, 1, true, i);
 
-        final MathTransform transform = this.transform; // Protect from changes.
-        assertNotNull("TransformTestCase.transform shall be assigned a value.", transform);
-        final MathTransform inverse;
-        if (isInverseTransformSupported) {
-            inverse = transform.inverse();
-            assertNotNull("MathTransform.inverse() shall not return null.", inverse);
-        } else {
-            inverse = null;
-        }
-
-        SimpleDirectPosition source = null;
-        DirectPosition target = null;
-        DirectPosition back = null;
-        for (int i=0; i<coordinates.length; i++) {
-            final double[] sourceCoordinate = coordinates[i];
-            final double[] targetCoordinate = expected[i];
-            if (targetCoordinate == null) {
-                assertNull(sourceCoordinate);
-                return;
+            if (inverse == null) {
+                continue;
             }
-            assertNotNull(sourceCoordinate);
-            final int sourceDimension = sourceCoordinate.length;
-            final int targetDimension = targetCoordinate.length;
-            if (source == null || source.getDimension() != sourceDimension) {
-                source = new SimpleDirectPosition(sourceDimension);
-                back = null;
-            }
-            System.arraycopy(sourceCoordinate, 0, source.ordinates, 0, sourceDimension);
-            if (target != null && target.getDimension() != targetDimension) {
-                target = null;
-            }
-            target = transform.transform(source, target);
-            assertNotNull("MathTransform.transform(DirectPosition,...) shall not return null.", target);
-            assertEquals("Transformed point has wrong dimension.", targetDimension, target.getDimension());
-            assertCoordinateEquals("Unexpected transform result.",
-                    targetCoordinate, target.getCoordinate(), i, false);
-            assertCoordinateEquals("Source coordinate has been modified.",
-                    sourceCoordinate, source.ordinates, i, true);
-            if (inverse != null) {
-                back = inverse.transform(target, back);
-                assertNotNull("MathTransform.transform(DirectPosition,...) shall not return null.", back);
-                assertEquals("Inverse-transformed point has wrong dimension.", sourceDimension, back.getDimension());
-                assertCoordinateEquals("Unexpected result of inverse transform.",
-                        sourceCoordinate, back.getCoordinate(), i, false);
-            }
+            System.arraycopy(expected, targetOffset, target.ordinates, 0, targetDimension);
+            assertSame("MathTransform.transform(DirectPosition,...) shall use the given target.",
+                    back, inverse.transform(target, back));
+            assertCoordinateEquals("Unexpected result of inverse transform.",
+                    source.ordinates, back.ordinates, i, false);
+            assertCoordinatesEqual("Source coordinate has been modified.", targetDimension,
+                    expected, targetOffset, target.ordinates, 0, 1, true, i);
         }
     }
 
@@ -270,34 +253,50 @@ public strictfp abstract class TransformTestCase extends TestCase {
      * @throws TransformException if at least one coordinate can't be transformed.
      */
     protected void verifyInverse(final double[] coordinates) throws TransformException {
-        assertNotNull("Coordinates array expected in argument.", coordinates);
-        assertTrue("\"isInverseTransformSupported\" is set to false.", isInverseTransformSupported);
+        /*
+         * Checks the state of this TransformTestCase object, including a shallow inspection of
+         * the MathTransform. We check only the parts that are significant to this test method.
+         * Full MathTransform validation is not the job of this method.
+         */
         final MathTransform transform = this.transform; // Protect from changes.
         assertNotNull("TransformTestCase.transform shall be assigned a value.", transform);
-        final MathTransform inverse = transform.inverse();
         final int sourceDimension = transform.getSourceDimensions();
         final int targetDimension = transform.getTargetDimensions();
+        assertStrictlyPositive("Source dimension must be positive.", sourceDimension);
+        assertStrictlyPositive("Target dimension must be positive.", targetDimension);
+        assertTrue("isInverseTransformSupported == false.", isInverseTransformSupported);
+        final MathTransform inverse = transform.inverse();
+        assertNotNull("MathTransform.inverse() shall not return null.", inverse);
+        assertEquals("Inconsistent source dimension of the inverse transform.",
+                targetDimension, inverse.getSourceDimensions());
+        assertEquals("Inconsistent target dimension of the inverse transform.",
+                sourceDimension, inverse.getTargetDimensions());
+        /*
+         * Checks the method arguments.
+         */
+        assertNotNull("Coordinates array expected in argument.", coordinates);
         assertEquals("Source dimension is not a divisor of the coordinates array length.",
                 0, coordinates.length % sourceDimension);
         final int numPts = coordinates.length / sourceDimension;
-        DirectPosition targetPoint = null;
-        DirectPosition sourcePoint = null;
-        final SimpleDirectPosition givenPoint = new SimpleDirectPosition(sourceDimension);
+        /*
+         * Now performs the test.
+         */
+        final SimpleDirectPosition source = new SimpleDirectPosition(sourceDimension);
+        final SimpleDirectPosition back   = new SimpleDirectPosition(targetDimension);
+        DirectPosition target = null;
         for (int i=0; i<numPts; i++) {
             final int offset = i*sourceDimension;
-            System.arraycopy(coordinates, offset, givenPoint.ordinates, 0, sourceDimension);
-            targetPoint = transform.transform(givenPoint, targetPoint);
-            assertNotNull("MathTransform.transform(DirectPosition,...) shall not return null.", targetPoint);
-            sourcePoint = inverse.transform(targetPoint, sourcePoint);
-            assertNotNull("MathTransform.transform(DirectPosition,...) shall not return null.", sourcePoint);
+            System.arraycopy(coordinates, offset, source.ordinates, 0, sourceDimension);
+            target = transform.transform(source, target);
+            assertNotNull("MathTransform.transform(DirectPosition,...) shall not return null.", target);
             assertEquals("Transformed point has wrong dimension.",
-                    targetDimension, targetPoint.getDimension());
-            assertEquals("Inverse-transformed point has wrong dimension.",
-                    sourceDimension, sourcePoint.getDimension());
-            assertCoordinatesEqual("Source coordinate has been modified.", sourceDimension,
-                    coordinates, offset, givenPoint.ordinates, 0, 1, true, i);
+                    targetDimension, target.getDimension());
+            assertSame("MathTransform.transform(DirectPosition,...) shall use the given target.",
+                    back, inverse.transform(target, back));
             assertCoordinateEquals("Unexpected result of inverse transform.",
-                    givenPoint.ordinates, sourcePoint.getCoordinate(), i, false);
+                    source.ordinates, back.ordinates, i, false);
+            assertCoordinatesEqual("Source coordinate has been modified.", sourceDimension,
+                    coordinates, offset, source.ordinates, 0, 1, true, i);
         }
     }
 
@@ -370,7 +369,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
             for (int i=0; i < sourceDoubles.length; i += sourceDimension) {
                 System.arraycopy(sourceDoubles, i, sourcePosition.ordinates, 0, sourceDimension);
                 targetPosition = transform.transform(sourcePosition, targetPosition);
-                assertNotNull("MathTransform.transform(DirectPosition) must return a non-null position.", targetPosition);
+                assertNotNull("MathTransform.transform(DirectPosition,...) shall not return null.", targetPosition);
                 assertEquals("MathTransform.transform(DirectPosition) must return a position having " +
                         "the same dimension than MathTransform.getTargetDimension().",
                         targetDimension, targetPosition.getDimension());
@@ -447,7 +446,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
      * @param strict   {@code true} for ignoring the {@linkplain #tolerance(double) tolerance}
      *                 threshold. In such case, ordinate values are checked for strict equality.
      */
-    protected void assertCoordinateEquals(final String message, final float[] expected,
+    protected final void assertCoordinateEquals(final String message, final float[] expected,
             final float[] actual, final int index, final boolean strict)
     {
         final int dimension = expected.length;
@@ -467,7 +466,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
      * @param strict   {@code true} for ignoring the {@linkplain #tolerance(double) tolerance}
      *                 threshold. In such case, ordinate values are checked for strict equality.
      */
-    protected void assertCoordinateEquals(final String message, final float[] expected,
+    protected final void assertCoordinateEquals(final String message, final float[] expected,
             final double[] actual, final int index, final boolean strict)
     {
         final int dimension = expected.length;
@@ -487,7 +486,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
      * @param strict   {@code true} for ignoring the {@linkplain #tolerance(double) tolerance}
      *                 threshold. In such case, ordinate values are checked for strict equality.
      */
-    protected void assertCoordinateEquals(final String message, final double[] expected,
+    protected final void assertCoordinateEquals(final String message, final double[] expected,
             final float[] actual, final int index, final boolean strict)
     {
         final int dimension = expected.length;
@@ -507,7 +506,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
      * @param strict   {@code true} for ignoring the {@linkplain #tolerance(double) tolerance}
      *                 threshold. In such case, ordinate values are checked for strict equality.
      */
-    protected void assertCoordinateEquals(final String message, final double[] expected,
+    protected final void assertCoordinateEquals(final String message, final double[] expected,
             final double[] actual, final int index, final boolean strict)
     {
         final int dimension = expected.length;
@@ -530,7 +529,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
      * @param strict         {@code true} for ignoring the {@linkplain #tolerance(double) tolerance}
      *                       threshold. In such case, ordinate values are checked for strict equality.
      */
-    protected void assertCoordinatesEqual(
+    protected final void assertCoordinatesEqual(
             final String  message,     final int dimension,
             final float[] expectedPts, final int expectedOffset,
             final float[] actualPts,   final int actualOffset,
@@ -555,7 +554,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
      * @param strict         {@code true} for ignoring the {@linkplain #tolerance(double) tolerance}
      *                       threshold. In such case, ordinate values are checked for strict equality.
      */
-    protected void assertCoordinatesEqual(
+    protected final void assertCoordinatesEqual(
             final String   message,     final int dimension,
             final float[]  expectedPts, final int expectedOffset,
             final double[] actualPts,   final int actualOffset,
@@ -580,10 +579,11 @@ public strictfp abstract class TransformTestCase extends TestCase {
      * @param strict         {@code true} for ignoring the {@linkplain #tolerance(double) tolerance}
      *                       threshold. In such case, ordinate values are checked for strict equality.
      */
-    protected void assertCoordinatesEqual(final String message, final int dimension,
-                                          final double[] expectedPts, int expectedOffset,
-                                          final float [] actualPts,   int actualOffset,
-                                          final int numPoints, final boolean strict)
+    protected final void assertCoordinatesEqual(
+            final String   message,     final int dimension,
+            final double[] expectedPts, final int expectedOffset,
+            final float [] actualPts,   final int actualOffset,
+            final int      numPoints,   final boolean strict)
     {
         assertCoordinatesEqual(message, dimension, expectedPts, expectedOffset,
                 actualPts, actualOffset, numPoints, strict, 0);
@@ -604,10 +604,11 @@ public strictfp abstract class TransformTestCase extends TestCase {
      * @param strict         {@code true} for ignoring the {@linkplain #tolerance(double) tolerance}
      *                       threshold. In such case, ordinate values are checked for strict equality.
      */
-    protected void assertCoordinatesEqual(final String message, final int dimension,
-                                          final double[] expectedPts, int expectedOffset,
-                                          final double[] actualPts,   int actualOffset,
-                                          final int numPoints, final boolean strict)
+    protected final void assertCoordinatesEqual(
+            final String   message,     final int dimension,
+            final double[] expectedPts, final int expectedOffset,
+            final double[] actualPts,   final int actualOffset,
+            final int      numPoints,   final boolean strict)
     {
         assertCoordinatesEqual(message, dimension, expectedPts, expectedOffset,
                 actualPts, actualOffset, numPoints, strict, 0);
