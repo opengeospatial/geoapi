@@ -351,7 +351,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
                 0, sourceFloats.length % sourceDimension);
         final int numPts = sourceFloats.length / sourceDimension;
         final float [] transformed   = new float [targetDimension * numPts];
-        final float [] targetFloats  = new float [targetDimension * (numPts + POINTS_OFFSET)];
+        final float [] targetFloats  = new float [Math.max(sourceDimension, targetDimension) * (numPts + POINTS_OFFSET)];
         final double[] sourceDoubles = new double[sourceFloats.length];
         final double[] targetDoubles = new double[targetFloats.length];
         /*
