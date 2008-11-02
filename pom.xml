@@ -488,9 +488,9 @@
       <url>dav:http://lists.refractions.net/m2/</url>
     </snapshotRepository>
     <site>
-      <id>SourceForge</id>
+      <id>geomatys</id>
       <name>GeoAPI web site</name>
-      <url>scp://web.sourceforge.net:/home/groups/g/ge/geoapi/htdocs/</url>
+      <url>scp://www.geotools.fr:/var/www/geotools.fr/geoapi/</url>
     </site>
   </distributionManagement>
 
