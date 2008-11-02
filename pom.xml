@@ -490,7 +490,7 @@
     <site>
       <id>SourceForge</id>
       <name>GeoAPI web site</name>
-      <url>scp://geoapi.sourceforge.net:/home/groups/g/ge/geoapi/htdocs/</url>
+      <url>scp://web.sourceforge.net:/home/groups/g/ge/geoapi/htdocs/</url>
     </site>
   </distributionManagement>
 
