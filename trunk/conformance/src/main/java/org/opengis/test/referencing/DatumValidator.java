@@ -23,8 +23,8 @@ import org.opengis.test.ValidatorContainer;
 
 /**
  * Validates {@link Datum} and related objects from the {@code org.opengis.datum} package. This
- * class should not be used directly; use the {@link org.opengis.Validators} convenience static
- * methods instead.
+ * class should not be used directly; use the {@link org.opengis.test.Validators} convenience
+ * static methods instead.
  *
  * @author Martin Desruisseaux (Geomatys)
  * @since GeoAPI 2.2

@@ -468,20 +468,6 @@
 
 
       <!-- ==================================================== -->
-      <!--     Source code                                      -->
-      <!-- ==================================================== -->
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-jxr-plugin</artifactId>
-        <configuration>
-          <inputEncoding>UTF-8</inputEncoding>
-          <outputEncoding>UTF-8</outputEncoding>
-        </configuration>
-      </plugin>
-
-
-
-      <!-- ==================================================== -->
       <!--     TODO tags                                        -->
       <!-- ==================================================== -->
       <plugin>

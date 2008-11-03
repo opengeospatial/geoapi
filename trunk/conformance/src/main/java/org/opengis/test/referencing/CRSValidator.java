@@ -24,7 +24,7 @@ import org.opengis.test.ValidatorContainer;
 /**
  * Validates {@link CoordinateReferenceSystem} and related objects from the
  * {@code org.opengis.referencing.crs} package. This class should not be used
- * directly; use the {@link org.opengis.Validators} convenience static methods
+ * directly; use the {@link org.opengis.test.Validators} convenience static methods
  * instead.
  *
  * @author Martin Desruisseaux (Geomatys)

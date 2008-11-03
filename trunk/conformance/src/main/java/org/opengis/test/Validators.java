@@ -21,6 +21,12 @@ import org.opengis.referencing.crs.*;
 import org.opengis.referencing.datum.*;
 import org.opengis.referencing.operation.*;
 
+// Following imports are for javadoc
+import org.opengis.test.util.*;
+import org.opengis.test.geometry.*;
+import org.opengis.test.metadata.*;
+import org.opengis.test.referencing.*;
+
 
 /**
  * A set of convenience static methods for validating GeoAPI implementations. Every
