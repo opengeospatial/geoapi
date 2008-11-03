@@ -13,6 +13,25 @@
     <version>2.2-SNAPSHOT</version>
   </parent>
 
+  <!-- Temporary patch to be deleted when the following issue will be fixed:
+       http://jira.codehaus.org/browse/MDEPLOY-57 -->
+  <profiles>
+    <profile>
+      <id>geotidy</id>
+      <properties>
+        <java.version>1.6</java.version>
+      </properties>
+      <distributionManagement>
+        <repository>
+           <id>geotidy</id>
+           <name>GeoTools 3.0 binaries</name>
+           <url>dav:http://geotidy.geomatys.fr/repository/</url>
+           <uniqueVersion>false</uniqueVersion>
+        </repository>
+      </distributionManagement>
+    </profile>
+  </profiles>
+
 
 
   <!-- ==================================================== -->
