@@ -19,7 +19,7 @@ import org.opengis.test.ValidatorContainer;
 
 /**
  * Validates {@link ParameterValue} and related objects from the {@code org.opengis.parameter}
- * package. This class should not be used directly; use the {@link org.opengis.Validators}
+ * package. This class should not be used directly; use the {@link org.opengis.test.Validators}
  * convenience static methods instead.
  *
  * @author Martin Desruisseaux (Geomatys)

@@ -22,7 +22,7 @@ import org.opengis.test.ValidatorContainer;
 /**
  * Validates {@link CoordinateOperation} and related objects from the
  * {@code org.opengis.referencing.operation} package. This class should not be used directly;
- * use the {@link org.opengis.Validators} convenience static methods instead.
+ * use the {@link org.opengis.test.Validators} convenience static methods instead.
  *
  * @author Martin Desruisseaux (Geomatys)
  * @since GeoAPI 2.2
