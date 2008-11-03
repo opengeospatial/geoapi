@@ -11,6 +11,33 @@
 
 
   <!-- ==================================================== -->
+  <!--     Profiles and properties                          -->
+  <!-- ==================================================== -->
+  <properties>
+    <java.version>1.5</java.version>
+  </properties>
+
+  <!-- Profiles set on the command-line overwrite default properties. -->
+  <profiles>
+    <profile>
+      <id>geotidy</id>
+      <properties>
+        <java.version>1.6</java.version>
+      </properties>
+      <distributionManagement>
+        <repository>
+           <id>geotidy</id>
+           <name>GeoTools 3.0 binaries</name>
+           <url>dav:http://geotidy.geomatys.fr/repository/</url>
+           <uniqueVersion>false</uniqueVersion>
+        </repository>
+      </distributionManagement>
+    </profile>
+  </profiles>
+
+
+
+  <!-- ==================================================== -->
   <!--     Project description (including license)          -->
   <!-- ==================================================== -->
   <groupId>org.opengis</groupId>
@@ -36,7 +63,7 @@
     <license>
       <name>OGC copyright</name>
       <url>https://geoapi.svn.sourceforge.net/svnroot/geoapi/trunk/LICENSE.txt</url>
-      <distribution>manual</distribution>
+      <distribution>repo</distribution>
     </license>
   </licenses>
 
@@ -233,10 +260,10 @@
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
         <configuration>
-          <source>1.5</source>            <!-- The -source argument for the Java compiler.   -->
-          <target>1.5</target>            <!-- The -target argument for the Java compiler.   -->
-          <debug>false</debug>            <!-- Whether to include debugging information.     -->
-          <encoding>UTF-8</encoding>      <!-- The -encoding argument for the Java compiler. -->
+          <source>1.5</source>             <!-- The -source argument for the Java compiler.   -->
+          <target>${java.version}</target> <!-- The -target argument for the Java compiler.   -->
+          <debug>false</debug>             <!-- Whether to include debugging information.     -->
+          <encoding>UTF-8</encoding>       <!-- The -encoding argument for the Java compiler. -->
         </configuration>
       </plugin>
 
@@ -446,13 +473,6 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-jxr-plugin</artifactId>
-        <reportSets>
-          <reportSet>
-            <reports>
-              <report>jxr</report>   <!-- Want API sources only, not test sources. -->
-            </reports>
-          </reportSet>
-        </reportSets>
         <configuration>
           <inputEncoding>UTF-8</inputEncoding>
           <outputEncoding>UTF-8</outputEncoding>
@@ -482,15 +502,12 @@
       <name>Refractions Research - Maven 2 Repository</name>
       <url>dav:http://lists.refractions.net/m2/</url>
     </repository>
-    <snapshotRepository>
-      <id>refractions</id>
-      <name>Refractions Research - Maven 2 Repository</name>
-      <url>dav:http://lists.refractions.net/m2/</url>
-    </snapshotRepository>
     <site>
       <id>geomatys</id>
       <name>GeoAPI web site</name>
-      <url>scp://www.geotools.fr:/var/www/geotools.fr/geoapi/</url>
+      <!-- We are enable to deploy directly to SourceForge. So we deploy to a mirror,
+           and a daily  rsync task copies the content to SourceForge later. -->
+      <url>dav:http://geoapi.geomatys.fr/</url>
     </site>
   </distributionManagement>
 
