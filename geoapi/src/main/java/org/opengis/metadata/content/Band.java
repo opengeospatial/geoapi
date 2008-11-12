@@ -10,6 +10,7 @@
  *************************************************************************************************/
 package org.opengis.metadata.content;
 
+import javax.measure.quantity.Length;
 import javax.measure.unit.Unit;
 import org.opengis.annotation.UML;
 
@@ -55,7 +56,7 @@ public interface Band extends RangeDimension {
      * @return Units in which sensor wavelengths are expressed, or {@code null}.
      */
     @UML(identifier="units", obligation=CONDITIONAL, specification=ISO_19115)
-    Unit getUnits();
+    Unit<Length> getUnits();
 
     /**
      * Wavelength at which the response is the highest.
