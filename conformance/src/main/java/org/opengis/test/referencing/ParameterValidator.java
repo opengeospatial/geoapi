@@ -200,7 +200,7 @@ public class ParameterValidator extends ReferencingValidator {
                 }
             }
             if (value instanceof ParameterValue) {
-                final ParameterValue byName = object.parameter(name);
+                final ParameterValue<?> byName = object.parameter(name);
                 mandatory("ParameterValueGroup: parameter(String) should returns a value.", byName);
                 if (byName != null) {
                     assertSame("ParameterValueGroup: value(String) inconsistent with values().", value, byName);
