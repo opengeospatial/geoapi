@@ -8,7 +8,7 @@
  ** All Rights Reserved. http://www.opengis.org/legal/
  **
  *************************************************************************************************/
-package org.opengis.display.renderer;
+package org.opengis.display.container;
 
 import java.util.EventListener;
 import org.opengis.display.primitive.Graphic;
@@ -16,33 +16,33 @@ import org.opengis.display.primitive.Graphic;
 
 /**
  * Listener notified when {@linkplain Graphic graphics} are added or removed from a
- * {@linkplain Renderer renderer}.
+ * {@linkplain GraphicsContainer container}.
  *
  * @author Open Geospatial Consortium
  * @author Johann Sorel (Geomatys)
  * @since GeoAPI 2.2
  */
-public interface RendererListener extends EventListener {
+public interface ContainerListener extends EventListener {
     /**
      * Called when graphic objects are added.
      *
      * @param event The event containing the collection of graphics added.
      */
-    void graphicsAdded(RendererEvent event);
+    void graphicsAdded(ContainerEvent event);
 
     /**
      * Called when graphics objects are removed.
      *
      * @param event The event containing the collection of graphics removed.
      */
-    void graphicsRemoved(RendererEvent event);
+    void graphicsRemoved(ContainerEvent event);
 
     /**
      * Called when graphic objects are updated.
      *
      * @param event The event containing the collection of graphics updated.
      */
-    void graphicsChanged(RendererEvent event);
+    void graphicsChanged(ContainerEvent event);
     
     /**
      * Called when graphic objects need to be repainted, but no property changed.
@@ -50,6 +50,6 @@ public interface RendererListener extends EventListener {
      * 
      * @param event The event containing the collection of graphics updated.
      */
-    void graphicsDisplayChanged(RendererEvent event);
+    void graphicsDisplayChanged(ContainerEvent event);
     
 }

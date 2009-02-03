@@ -8,7 +8,7 @@
  ** All Rights Reserved. http://www.opengis.org/legal/
  **
  *************************************************************************************************/
-package org.opengis.display.renderer;
+package org.opengis.display.container;
 
 import java.util.Collection;
 import java.util.EventObject;
@@ -16,20 +16,20 @@ import org.opengis.display.primitive.Graphic;
 
 
 /**
- * Event sent to {@linkplain RendererListener renderer listeners} when
+ * Event sent to {@linkplain ContainerListener container listeners} when
  * a {@linkplain Graphic graphics} changed.
  *
  * @author Open Geospatial Consortium
  * @author Johann Sorel (Geomatys)
  * @since  GeoAPI 2.2
  */
-public abstract class RendererEvent extends EventObject {
+public abstract class ContainerEvent extends EventObject {
     /**
      * Creates an event emitted by the given source.
      *
      * @param source The source, or {@code null} if unknown.
      */
-    public RendererEvent(Renderer source) {
+    public ContainerEvent(GraphicsContainer source) {
         super(source);
     }
 
@@ -39,8 +39,8 @@ public abstract class RendererEvent extends EventObject {
      * @return The source of this event, or {@code null} if unknown.
      */
     @Override
-    public Renderer getSource() {
-        return (Renderer) super.getSource();
+    public GraphicsContainer getSource() {
+        return (GraphicsContainer) super.getSource();
     }
 
     /**
