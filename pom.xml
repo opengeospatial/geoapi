@@ -14,7 +14,7 @@
   <!--     Profiles and properties                          -->
   <!-- ==================================================== -->
   <properties>
-    <java.version>1.5</java.version>
+    <target.version>1.5</target.version>
   </properties>
 
   <!-- Profiles set on the command-line overwrite default properties. -->
@@ -22,7 +22,7 @@
     <profile>
       <id>geotidy</id>
       <properties>
-        <java.version>1.6</java.version>
+        <target.version>1.6</target.version>
       </properties>
       <distributionManagement>
         <repository>
@@ -260,10 +260,10 @@
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
         <configuration>
-          <source>1.5</source>             <!-- The -source argument for the Java compiler.   -->
-          <target>${java.version}</target> <!-- The -target argument for the Java compiler.   -->
-          <debug>false</debug>             <!-- Whether to include debugging information.     -->
-          <encoding>UTF-8</encoding>       <!-- The -encoding argument for the Java compiler. -->
+          <source>1.5</source>               <!-- The -source argument for the Java compiler.   -->
+          <target>${target.version}</target> <!-- The -target argument for the Java compiler.   -->
+          <debug>false</debug>               <!-- Whether to include debugging information.     -->
+          <encoding>UTF-8</encoding>         <!-- The -encoding argument for the Java compiler. -->
         </configuration>
       </plugin>
 
