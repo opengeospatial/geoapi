@@ -46,12 +46,11 @@ import org.opengis.annotation.Extension;
 @Extension
 public interface ProgressListener {
     /**
-     * Returns the description current task being performed, or {@code null} if none.
-     * <p>
-     * It is assumed that if the task is {@code null} applications may simply report
-     * that the process is "in progress" or "working" as represented in the current locale.
+     * Returns the description of the current task being performed, or {@code null} if none.
+     * It is assumed that if the task is {@code null} applications may simply report that the
+     * process is "in progress" or "working" as represented in the current locale.
      *
-     * @return Description of the task being performed.
+     * @return Description of the task being performed, or {@code null} if none.
      */
     InternationalString getTask();
 
