@@ -21,7 +21,7 @@ Maven repositories
   <dependency>
     <groupId>org.opengis</groupId>
     <artifactId>geoapi</artifactId>
-    <version>2.2-SNAPSHOT</version>
+    <version>2.2-M2</version>
   </dependency>
 </dependencies>
 -----------------------------------------------------------------------------------

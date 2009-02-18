@@ -28,7 +28,7 @@
     <!-- ==================================================== -->
     <!--     Menus to appears on the left side of each page   -->
     <!-- ==================================================== -->
-    <menu name="GeoAPI 2.2-SNAPSHOT">
+    <menu name="GeoAPI 2.2-M2">
       <item name="Javadoc"    href="snapshot/javadoc/index.html"/>
       <item name="Reports"    href="geoapi/index.html"/>
       <item name="Examples"   href="examples/index.html"/>
