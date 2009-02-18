@@ -38,14 +38,12 @@
   <!--     Project description                              -->
   <!-- ==================================================== -->
   <groupId>org.opengis</groupId>
-  <artifactId>geoapi</artifactId>
+  <artifactId>geoapi-pending</artifactId>
   <packaging>jar</packaging>
-  <name>GeoAPI interfaces</name>
+  <name>GeoAPI pending interfaces</name>
   <description>
-    The development community in building GIS solutions is sustaining an enormous
-    level of effort. The GeoAPI project aims to reduce duplication and increase
-    interoperability by providing neutral, interface-only APIs derived from OGC/ISO
-    Standards.
+    Incubator for interfaces under development. Those interfaces will migrate to the
+    main geoapi module when they will be considered ready.
   </description>
 
 
@@ -152,14 +150,19 @@
   <!-- ==================================================== -->
   <dependencies>
     <dependency>
-      <groupId>org.opengis</groupId>
-      <artifactId>geoapi-dummy-pending</artifactId>
-      <version>${project.version}</version>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
       <groupId>net.java.dev.jsr-275</groupId>
       <artifactId>jsr-275</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.opengis</groupId>
+      <artifactId>geoapi</artifactId>
+      <version>${project.version}</version>
+      <exclusions>
+        <exclusion>
+          <groupId>org.opengis</groupId>
+          <artifactId>geoapi-dummy-pending</artifactId>
+        </exclusion>
+      </exclusions>
     </dependency>
     <dependency>
       <groupId>junit</groupId>

@@ -74,12 +74,15 @@ public final class CodeListTest {
             final Class<?> candidate = scanner.next();
             if (!base.equals(candidate) && base.isAssignableFrom(candidate)) {
                 // SimpleEnumeratioType is a special case to avoid for now.
-                if (!SimpleEnumerationType.class.equals(candidate) &&
-                    !org.opengis.filter.sort.SortOrder.class.equals(candidate))
-                {
-                    assertValid(candidate.asSubclass(CodeList.class));
-                    count++;
+                final String name = candidate.getName();
+                if (name.equals("org.opengis.util.SimpleEnumerationType")) {
+                    continue;
                 }
+                if (name.equals("org.opengis.filter.sort.SortOrder")) {
+                    continue;
+                }
+                assertValid(candidate.asSubclass(CodeList.class));
+                count++;
             }
         }
         LOGGER.fine("Found " + count + " code lists.");
