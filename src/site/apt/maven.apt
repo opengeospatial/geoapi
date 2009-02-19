@@ -2,6 +2,8 @@ Maven repositories
 
   Maven projects can use one of the following repositories:
 
+    * {{{http://download.osgeo.org/webdav/geotools/}http://download.osgeo.org/webdav/geotools/}}
+
     * {{{http://maven.geotools.fr/repository/org/opengis/geoapi/}http://maven.geotools.fr/repository/}}
 
     * {{{http://lists.refractions.net/m2/org/opengis/geoapi/}http://lists.refractions.net/m2/}}
@@ -11,9 +13,9 @@ Maven repositories
 -----------------------------------------------------------------------------------
 <repositories>
   <repository>
-    <id>refractions</id>
-    <name>Refractions Research Maven 2 Repository</name>
-    <url>http://lists.refractions.net/m2</url>
+    <id>osgeo</id>
+    <name>Open Source Geospatial Foundation</name>
+    <url>http://download.osgeo.org/webdav/geotools</url>
   </repository>
 </repositories>
 

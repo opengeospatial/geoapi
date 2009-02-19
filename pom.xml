@@ -487,12 +487,13 @@
       <id>osgeo</id>
       <name>Open Source Geospatial Foundation</name>
       <url>dav:http://download.osgeo.org/webdav/geotools</url>
+      <uniqueVersion>false</uniqueVersion>
     </repository>
     <site>
       <id>geomatys</id>
       <name>GeoAPI web site</name>
-      <!-- We are enable to deploy directly to SourceForge. So we deploy to a mirror,
-           and a daily  rsync task copies the content to SourceForge later. -->
+      <!-- We are not allowed to deploy directly to SourceForge. So we deploy to a
+           mirror, and a daily rsync task copies the content to SourceForge later. -->
       <url>dav:http://geoapi.geomatys.fr/</url>
     </site>
   </distributionManagement>
