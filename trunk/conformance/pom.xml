@@ -83,7 +83,7 @@
   <dependencies>
     <dependency>
       <groupId>org.opengis</groupId>
-      <artifactId>geoapi</artifactId>
+      <artifactId>geoapi-pending</artifactId>
       <version>${project.version}</version>
     </dependency>
     <dependency>
