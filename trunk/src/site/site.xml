@@ -28,21 +28,21 @@
     <!-- ==================================================== -->
     <!--     Menus to appears on the left side of each page   -->
     <!-- ==================================================== -->
-    <menu name="GeoAPI 2.3-SNAPSHOT">
+    <menu name="GeoAPI 2.3-SNAPSHOT" inherit="none">
       <item name="Javadoc"    href="snapshot/javadoc/index.html"/>
       <item name="Reports"    href="geoapi/index.html"/>
       <item name="Examples"   href="examples/index.html"/>
       <item name="Wiki pages" href="http://docs.codehaus.org/display/GEO/Home"/>
     </menu>
 
-    <menu name="GeoAPI 2.0.0">
+    <menu name="GeoAPI 2.0.0" inherit="none">
       <item name="Javadoc"  href="2.0/javadoc/index.html"/>
       <item name="Download" href="http://sourceforge.net/project/showfiles.php?group_id=70002&amp;package_id=69096&amp;release_id=333419"/>
       <item name="Charter"  href="charter.html"/>
       <item name="FAQ"      href="faq.html"/>
     </menu>
 
-    <menu name="Releases">
+    <menu name="Releases" inherit="none">
       <item name="GeoAPI 2.1" href="2.1/index.html"/>
       <item name="GeoAPI 2.0" href="2.0/index.html"/>
     </menu>

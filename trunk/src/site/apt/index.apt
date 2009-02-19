@@ -1,54 +1,57 @@
 The GeoAPI project
 
-  The development community in building GIS solutions is sustaining an enormous level of effort.
   The GeoAPI project aims to reduce duplication and increase interoperability by providing neutral,
   interface-only APIs derived from OGC/ISO Standards. GeoAPI is an OGC working group. See the
   {{{charter.html}charter}} for more informations.
 
-  Library vendors can test their GeoAPI implementation using the
-  {{{conformance/index.html}conformance module}}.
+  GeoAPI is not an implementation. This is a set of interfaces to be implemented by independant
+  vendors, in the same way than JDBC interfaces are implemented by various database vendors. See
+  the {{{implementations.html}list of known implementations}}.
 
-  {{{http://maven.apache.org/}Maven}} projects can download GeoAPI from the
-  {{{maven.html}repositories listed here}}.
+  The {{{http://www.opengeospatial.org}Open Geospatial Consortium}} (OGC) created the
+  {{{http://portal.opengeospatial.org/?m=projects&a=view&project_id=294}GeoAPI 3.0 Standard Working Group}}
+  (SWG) for proposing GeoAPI interfaces as an OGC standard. For the purpose of SWG work, GeoAPI is currently
+  splitted in two modules:
+
+    * The {{{geoapi}geoapi}} module provides the core interfaces submitted to the OGC Standard
+      Working Group. It focus on the most stable interfaces.
+
+    * The {{{geoapi-pending}geoapi-pending}} module provides additional interfaces not yet
+      submitted to the OGC SWG. Those interfaces will move to the above geoapi module when
+      they will be considered stable enough.
+
+  In addition, a {{{conformance}conformance}} module is provided for library vendors
+  wanting to test their GeoAPI implementation.
+
+  {{{http://maven.apache.org}Maven}} projects can download GeoAPI from the
+  {{{maven.html}repositories listed here}}. Questions or issues can be posted
+  to the public {{{mail-lists.html}mailing list}}.
 
 
-* Development version
+* Links
 
-  Development version is GeoAPI 2.3-SNAPSHOT. This version requires Java 5 or higher.
+    * {{{snapshot/javadoc}Browse javadoc}}
 
-    * {{{http://geoapi.sourceforge.net/snapshot/javadoc/index.html}Browse javadoc}}
+    * {{{snapshot/pending}Browse javadoc of pending interfaces}}
 
-    * {{{geoapi/index.html}Browse Maven reports}}
-
-    * {{{http://hudson.geomatys.fr/job/GeoAPI/}Nightly builds (last 2 weeks)}}
+    * {{{http://hudson.geomatys.fr/job/GeoAPI}Nightly builds (last 2 weeks)}}
 
     * {{{http://docs.codehaus.org/display/GEO/Home}News and discussions (wiki pages)}}
 
 
-* Milestone
+* Versions
 
-  Last unofficial milestone is GeoAPI 2.1.1. This milestone is provided as a transition between
-  GeoAPI 2.0 and what may be the next OGC official release. This version is provided in two flavors:
-  <<<geoapi-nogenerics.jar>>> requires Java 4 or higher while <<<geoapi.jar>>> requires Java 5 or
-  higher.
+  Development version is GeoAPI 2.3-SNAPSHOT. Last unofficial milestone is GeoAPI 2.1.1. The
+  last OGC official release was GeoAPI 2.0.
 
-    * {{{http://geoapi.sourceforge.net/2.1/javadoc/index.html}Browse javadoc}}
+    * {{{2.3}GeoAPI 2.3}} - current development version.
 
-    * Changes since GeoAPI 2.0 (PDF documents)
+    * {{{2.2}GeoAPI 2.2}} - unofficial milestone.
 
-        * {{{http://jira.codehaus.org/secure/attachment/30886/GeoAPI+alignment+with+standards.pdf}Alignment with standards}}
+    * {{{2.1}GeoAPI 2.1}} - unofficial milestone.
 
-        * {{{http://jira.codehaus.org/secure/attachment/30887/GeoAPI+specific+changes.pdf}GeoAPI specific changes}}
+    * {{{2.0}GeoAPI 2.0}} - last release from an OGC working group.
 
+    * {{{1.0}GeoAPI 1.0}} - unofficial milestone.
 
-* Open Geospatial Consortium
-
-  Last version derived from OGC working group is GeoAPI 2.0.0. This version is provided in two
-  flavors: <<<geoapi-nogenerics.jar>>> requires Java 4 or higher while <<<geoapi.jar>>> requires
-  Java 5 or higher.
-
-    * {{{http://www.opengeospatial.org/standards/go}OGC Geographic Objects Implementation Specification}}
-
-    * {{{http://geoapi.sourceforge.net/2.0/javadoc/index.html}Browse javadoc}}
-
-    * {{{http://sourceforge.net/project/showfiles.php?group_id=70002&package_id=69096&release_id=333419}Download sources and binaries}}
+    * {{{0.1}GeoAPI 0.1}} - first release from OGC.
