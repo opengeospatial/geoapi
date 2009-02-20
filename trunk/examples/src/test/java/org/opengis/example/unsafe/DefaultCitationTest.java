@@ -1,8 +1,5 @@
 package org.opengis.example.unsafe;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import junit.framework.TestCase;
 
 public class DefaultCitationTest extends TestCase {

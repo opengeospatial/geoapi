@@ -15,11 +15,7 @@ import org.opengis.referencing.operation.Conversion;
 import org.opengis.referencing.operation.MathTransform;
 import org.opengis.referencing.operation.TransformException;
 import org.opengis.geometry.DirectPosition;
-import org.opengis.annotation.UML;
 import org.opengis.annotation.Extension;
-
-import static org.opengis.annotation.Obligation.*;
-import static org.opengis.annotation.Specification.*;
 
 
 /**

@@ -34,5 +34,6 @@ public interface Boundary extends Complex {
      *
      * @return Always {@code true}.
      */
+    @UML(identifier="isCycle", obligation=MANDATORY, specification=ISO_19107)
     boolean isCycle();
 }

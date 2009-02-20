@@ -15,7 +15,6 @@ package org.opengis.geometry.aggregate;
 
 import java.util.Set;
 import org.opengis.geometry.primitive.OrientableCurve;
-import org.opengis.geometry.primitive.OrientableSurface;
 import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Obligation.*;
@@ -38,6 +37,8 @@ public interface MultiCurve extends MultiPrimitive {
      * Returns the set containing the {@linkplain OrientableCurve orientable curves}
      * that compose this {@code MultiCurve}. The set may be modified if this geometry
      * {@linkplain #isMutable is mutable}.
+     *
+     * @return The set containing the orientable curves.
      */
     @UML(identifier="element", obligation=MANDATORY, specification=ISO_19107)
     Set<OrientableCurve> getElements();
@@ -45,6 +46,8 @@ public interface MultiCurve extends MultiPrimitive {
     /**
      * Returns the accumulated length of all {@linkplain OrientableCurve orientable curves}
      * contained in this {@code MultiCurve}.
+     *
+     * @return The accumulated length.
      */
     @UML(identifier="length", obligation=MANDATORY, specification=ISO_19107)
     double length();

@@ -18,8 +18,6 @@ import org.opengis.geometry.Envelope;
 import org.opengis.geometry.MismatchedDimensionException;
 import org.opengis.geometry.MismatchedReferenceSystemException;
 import org.opengis.geometry.aggregate.MultiPrimitive;
-import org.opengis.geometry.coordinate.Position;
-import org.opengis.geometry.primitive.Ring;
 import org.opengis.geometry.primitive.Surface;
 import org.opengis.geometry.primitive.SurfaceBoundary;
 import org.opengis.annotation.UML;

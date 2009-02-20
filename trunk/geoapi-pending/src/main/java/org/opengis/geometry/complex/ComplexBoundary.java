@@ -13,7 +13,6 @@ package org.opengis.geometry.complex;
 import org.opengis.geometry.Boundary;
 import org.opengis.annotation.UML;
 
-import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
 
 

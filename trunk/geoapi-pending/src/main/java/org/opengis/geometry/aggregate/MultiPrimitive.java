@@ -12,7 +12,6 @@ package org.opengis.geometry.aggregate;
 
 import java.util.Set;
 
-import org.opengis.geometry.Geometry;
 import org.opengis.geometry.primitive.Primitive;
 import org.opengis.annotation.UML;
 
@@ -29,6 +28,10 @@ import static org.opengis.annotation.Specification.*;
  */
 @UML(identifier="GM_MultiPrimitive", specification=ISO_19107)
 public interface MultiPrimitive extends Aggregate {
-    // No additional methods or members.
+    /**
+     * Returns the set containing the primitives that compose this aggregate. The
+     * set may be modified if this geometry {@linkplain #isMutable is mutable}.
+     */
+    @UML(identifier="element", obligation=MANDATORY, specification=ISO_19107)
     Set<? extends Primitive> getElements();
 }
