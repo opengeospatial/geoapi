@@ -262,7 +262,7 @@ public interface Geometry extends TransfiniteSet {
      * @return The set of maximal complexes within which this {@code Geometry} is contained.
      */
     @UML(identifier="maximalComplex", obligation=MANDATORY, specification=ISO_19107)
-    Set getMaximalComplex();
+    Set<? extends Complex> getMaximalComplex();
 
     /**
      * Returns a new {@code Geometry} that is the coordinate transformation of this

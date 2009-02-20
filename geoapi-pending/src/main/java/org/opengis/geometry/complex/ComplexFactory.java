@@ -15,8 +15,6 @@ package org.opengis.geometry.complex;
 
 import java.util.List;
 import org.opengis.geometry.primitive.Point;
-import org.opengis.geometry.primitive.Primitive;
-import org.opengis.geometry.aggregate.Aggregate;
 import org.opengis.geometry.primitive.OrientableCurve;
 import org.opengis.geometry.primitive.OrientableSurface;
 
