@@ -26,7 +26,7 @@ GeoAPI
   development work.
 
   The GeoAPI interfaces provide a layer which separates client code, which would
-  call the API, from libraries code, which implements the API. These interfaces
+  call the API, from library code, which implements the API. These interfaces
   are not an implementation. This follows a similar pattern to the well known
   JDBC API which provides a standardized interface to databases. Clients can use
   the JDBC API without concern for the particular implementation which they will
@@ -49,28 +49,28 @@ GeoAPI
 
 * The GeoAPI code structure
 
-  GeoAPI consists of a series of independent packages, many of which follow a
+  GeoAPI consists of a series of independent packages, many of which follow one
   specific ISO/OGC specification document.
 
   The different packages have reached different levels of stablity so that the
   project has been split into two modules.
 
-    * The {{{geoapi}geoapi}} module contains only the interfaces which have
-      remained stable for a long period of time and have both been fully
+    * The {{{geoapi}geoapi/index.html}} module contains only the interfaces which
+      have remained stable for a long period of time and have both been fully
       implemented and had that implementation extensively tested. As packages
       mature, they will be moved to this module.
 
-    * The {{{geoapi-pending}geoapi-pending}} module provides additional
+    * The {{{geoapi-pending/index.html}geoapi-pending}} module provides additional
       interfaces with different levels of stablity ranging from the very trusted
       to modules which are experimental since they do not yet have any known
       implementation.
 
-  The project contains a {{{conformance}conformance}} module which can be run as
+  The project contains a {{{conformance/index.html}conformance}} module which can be run as
   a test harness to evaluate the correctness of any implementation.
 
   GeoAPI uses the {{{http://maven.apache.org}Maven}} build tool. External
   projects which also use this tool can integrate GeoAPI into their maven
-  dependencies using the module wish to {{{maven.html}repositories listed here}}.
+  dependencies using one of the {{{maven.html}repositories listed here}}.
 
   GeoAPI is {{{source-repository.html}hosted on a Subversion repository}}.
 
@@ -98,14 +98,14 @@ GeoAPI
 
     * <<<org.opengis.annotation>>> for internal, documentation markup
 
-    * <<<org.opengis.util>>> base utilities and structures from ISO-19103
+    * <<<org.opengis.util>>> with base utilities and structures from ISO-19103
       "Geographic Information --- Conceptual schema language"
 
     * <<<org.opengis.metadata>>> which describes ISO-19115 "Metadata"
 
     * <<<org.opengis.parameter>>> which is part of ISO-19111
 
-    * <<<org.opengis.referencing>>> matching ISO-19111 "Spatial referencing by Coordinates"
+    * <<<org.opengis.referencing>>> which matches ISO-19111 "Spatial referencing by Coordinates"
 
     * <<<org.opengis.geometry>>> (only <<<DirectPosition>>> and <<<Envelope>>>)
 
