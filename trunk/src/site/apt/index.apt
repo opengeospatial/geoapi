@@ -55,7 +55,7 @@ GeoAPI
   The different packages have reached different levels of stablity so that the
   project has been split into two modules.
 
-    * The {{{geoapi}geoapi/index.html}} module contains only the interfaces which
+    * The {{{geoapi/index.html}geoapi}} module contains only the interfaces which
       have remained stable for a long period of time and have both been fully
       implemented and had that implementation extensively tested. As packages
       mature, they will be moved to this module.
