@@ -94,6 +94,13 @@ public interface StyleVisitor {
      * @param raster the raster symbolizer to visit
      */
     Object visit(RasterSymbolizer rasterSymbolizer, Object data );
+
+    /**
+     * Called when accept is called on a extension symbolizer
+     *
+     * @param extension the extension symbolizer to visit
+     */
+    Object visit(ExtensionSymbolizer extension, Object data );
     
     /**
      * Called when accept is called on a description
