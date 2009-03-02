@@ -189,6 +189,10 @@ public interface StyleFactory {
     Font font(List<Expression> family, Expression style,
             Expression weight, Expression size);
 
+    Graphic graphic(List<GraphicalSymbol> symbols,
+            Expression opacity, Expression size, Expression rotation,
+            AnchorPoint anchor, Displacement disp);
+
     /**
      * 
      * @param symbols
@@ -199,8 +203,8 @@ public interface StyleFactory {
      * @return
      */
     GraphicFill graphicFill(List<GraphicalSymbol> symbols,
-            Expression opacity, Expression size, AnchorPoint anchorPoint,
-            Displacement displacement);
+            Expression opacity, Expression size, Expression rotation,
+            AnchorPoint anchorPoint, Displacement displacement);
 
     /**
      * 
@@ -212,8 +216,8 @@ public interface StyleFactory {
      * @return
      */
     GraphicLegend graphicLegend(List<GraphicalSymbol> symbols,
-            Expression opacity, Expression size, AnchorPoint anchorPoint,
-            Displacement displacement);
+            Expression opacity, Expression size, Expression rotation,
+            AnchorPoint anchorPoint, Displacement displacement);
     /**
      * 
      * @param symbols
@@ -226,8 +230,9 @@ public interface StyleFactory {
      * @return
      */
     GraphicStroke graphicStroke(List<GraphicalSymbol> symbols,
-            Expression opacity, Expression size, AnchorPoint anchorPoint,
-            Displacement displacement, Expression initialGap, Expression gap);
+            Expression opacity, Expression size, Expression rotation,
+            AnchorPoint anchorPoint, Displacement displacement,
+            Expression initialGap, Expression gap);
 
     /**
      * 
@@ -259,7 +264,7 @@ public interface StyleFactory {
      * @param offset
      * @return
      */
-    LineSymbolizer lineSymbolizer(Expression geometry,
+    LineSymbolizer lineSymbolizer(String name, String geometry,
             Description description, Unit<?> unit, Stroke stroke, Expression offset);
 
     /**
@@ -295,7 +300,7 @@ public interface StyleFactory {
      * @param graphic
      * @return
      */
-    PointSymbolizer pointSymbolizer(Expression geometry,
+    PointSymbolizer pointSymbolizer(String name, String geometry,
             Description description, Unit<?> unit, Graphic graphic);
     /**
      * 
@@ -308,7 +313,7 @@ public interface StyleFactory {
      * @param offset
      * @return
      */
-    PolygonSymbolizer polygonSymbolizer(Expression geometry,
+    PolygonSymbolizer polygonSymbolizer(String name, String geometry,
             Description description, Unit<?> unit, Stroke stroke, Fill fill,
             Displacement displacement, Expression offset);
     /**
@@ -325,12 +330,12 @@ public interface StyleFactory {
      * @param outline
      * @return RasterSymbolizer
      */
-    RasterSymbolizer rasterSymbolizer(Expression geometry,
+    RasterSymbolizer rasterSymbolizer(String name, String geometry,
             Description description, Unit<?> unit, Expression opacity,
             ChannelSelection channelSelection,
             OverlapBehavior overlapsBehaviour, ColorMap colorMap,
             ContrastEnhancement contrast, ShadedRelief shaded,
-            LineSymbolizer outline);
+            Symbolizer outline);
     /**
      * Used to represent a symbolizer intended for a vendor specific rendering process. This
      * facility should be used to control subject matter that is beyond the scope of the traditional
@@ -349,7 +354,7 @@ public interface StyleFactory {
      *            Named expressions used to configure the vendor specific rendering process
      * @return newly created ExtensionSymbolizer
      */
-    ExtensionSymbolizer extensionSymbolizer(Expression geometry, Description description,
+    ExtensionSymbolizer extensionSymbolizer(String name, String geometry, Description description,
             Unit<?> unit, String extensionName, Map<String, Expression> parameters);
 
     /**
@@ -368,19 +373,6 @@ public interface StyleFactory {
 
     /**
      * 
-     * @param name
-     * @param description
-     * @param legend
-     * @param min
-     * @param max
-     * @param symbolizers
-     * @return Rule
-     */
-    Rule rule(String name, Description description, GraphicLegend legend,
-            double min, double max, List<Symbolizer> symbolizers);
-
-    /**
-     * 
      * @param channelName
      * @param contrastEnhancement
      * @return SelectedChannelType
@@ -395,23 +387,34 @@ public interface StyleFactory {
     ShadedRelief shadedRelief(Expression reliefFactor,
             boolean brightnessOnly);
 
-    /**
-     * 
-     * @param stroke
-     * @param fill
-     * @param color
-     * @param opacity
-     * @param width
-     * @param lineJoin
-     * @param lineCap
-     * @param dashArray
-     * @param dashOffset
-     * @return
-     */
-    Stroke stroke(GraphicStroke stroke, GraphicFill fill,
-            Expression color, Expression opacity, Expression width,
-            Expression lineJoin, Expression lineCap, float dashArray[],
-            Expression dashOffset);
+    Stroke stroke(
+            Expression color,
+            Expression opacity,
+            Expression width,
+            Expression join,
+            Expression cap,
+            float[] dashes,
+            Expression offset);
+
+    Stroke stroke(
+            GraphicFill fill,
+            Expression color,
+            Expression opacity,
+            Expression width,
+            Expression join,
+            Expression cap,
+            float[] dashes,
+            Expression offset);
+
+    Stroke stroke(
+            GraphicStroke stroke,
+            Expression color,
+            Expression opacity,
+            Expression width,
+            Expression join,
+            Expression cap,
+            float[] dashes,
+            Expression offset);
 
     /**
      * 
@@ -437,7 +440,7 @@ public interface StyleFactory {
      * @param fill
      * @return
      */
-    TextSymbolizer textSymbolizer(Expression geometry,
+    TextSymbolizer textSymbolizer(String name, String geometry,
             Description description, Unit<?> unit, Expression label, Font font,
             LabelPlacement placement, Halo halo, Fill fill);
 }
