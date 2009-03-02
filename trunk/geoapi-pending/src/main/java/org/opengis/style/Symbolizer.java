@@ -68,19 +68,28 @@ public interface Symbolizer {
 
     /**
      * Returns the name of the geometry feature attribute to use for drawing.
-     * May return null if this symbol is to use the default geometry attribute,
-     * whatever it may be.
+     * May return null (or Expression.NIL) if this symbol is to use the default geometry attribute,
+     * whatever it may be. Using null in this fashion is similar to a PropertyName using 
+     * the XPath expression ".".
      * <p>                           
      * The content of the element gives the property name in XPath syntax. In principle, a fixed geometry
      * could be defined using GML or operators could be defined for computing the geometry
      * from references or literals. However, using a feature property directly is by far the most
      * commonly useful method.
      * </p>
-     * @return geometry attribut name
+     * @return Geometry attribute name, or <code>null</code> to indicate default geometry
      */
     @XmlElement("Geometry")
     String getGeometryPropertyName();
 
+    /**
+     * Exrepssion used to define a geometry for drawing. May return null if the default
+     * geometry attribute should be used. This expression is often a PropertyName.
+     * 
+     * @return Expression used to define a geometry for drawing, or Expression.NIL if the default geometry should be used.
+     */
+    /* Expression getGeometry(); */
+    
     /**
      * Returns a name for this symbolizer.
      * This can be any string that uniquely identifies this style within a given

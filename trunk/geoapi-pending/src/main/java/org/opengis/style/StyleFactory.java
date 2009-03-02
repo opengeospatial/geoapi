@@ -256,15 +256,15 @@ public interface StyleFactory {
             Expression gap, boolean repeated, boolean aligned,
             boolean generalizedLine);
     /**
-     * 
-     * @param geometry
+     * @param name handle used to refer to this symbolizer (machine readible)
+     * @param geometry Expression used to produce the Geometry to renderer; often a PropertyName
      * @param description
-     * @param unit
-     * @param stroke
-     * @param offset
-     * @return
+     * @param unit Unit of measure used to define this symbolizer
+     * @param stroke Definition of how to stroke linework
+     * @param offset Offset used to position line relative to origional
+     * @return Newly created Line Symbolizer
      */
-    LineSymbolizer lineSymbolizer(String name, String geometry,
+    LineSymbolizer lineSymbolizer(String name, Expression geometry, 
             Description description, Unit<?> unit, Stroke stroke, Expression offset);
 
     /**
@@ -293,34 +293,38 @@ public interface StyleFactory {
     PointPlacement pointPlacement(AnchorPoint anchor,
             Displacement displacement, Expression rotation);
     /**
+     * Creation of a PointSymbolizer to describe how geometry can be rendered as a point.
      * 
-     * @param geometry
-     * @param description
-     * @param unit
-     * @param graphic
-     * @return
+     * @param name handle used to refer to this symbolizer (machine readable)
+     * @param geometry Expression used to extract the Geometry rendered; usually a PropertyName
+     * @param description Human readable description of symboizer 
+     * @param unit Unit of Measure used to interpret symbolizer distances
+     * @param graphic Graphic used to represent the geometry when rendering
+     * @return Newly created PointSymbolizer
      */
-    PointSymbolizer pointSymbolizer(String name, String geometry,
+    PointSymbolizer pointSymbolizer(String name, Expression geometry,
             Description description, Unit<?> unit, Graphic graphic);
     /**
      * 
-     * @param geometry
-     * @param description
-     * @param unit
+     * @param name handle used to refer to this symbolizer (machine readable)
+     * @param geometry Expression used to extract the Geometry rendered; usually a PropertyName
+     * @param description Human readable description of symboizer 
+     * @param unit Unit of Measure used to interpret symbolizer distances
      * @param stroke
      * @param fill
      * @param displacement
      * @param offset
      * @return
      */
-    PolygonSymbolizer polygonSymbolizer(String name, String geometry,
+    PolygonSymbolizer polygonSymbolizer(String name, Expression geometry,
             Description description, Unit<?> unit, Stroke stroke, Fill fill,
             Displacement displacement, Expression offset);
     /**
      * 
-     * @param geometry
-     * @param description
-     * @param unit
+     * @param name handle used to refer to this symbolizer (machine readable)
+     * @param geometry Expression used to extract the Geometry rendered; usually a PropertyName
+     * @param description Human readable description of symboizer 
+     * @param unit Unit of Measure used to interpret symbolizer distances
      * @param opacity
      * @param channelSelection
      * @param overlapsBehaviour
@@ -330,7 +334,7 @@ public interface StyleFactory {
      * @param outline
      * @return RasterSymbolizer
      */
-    RasterSymbolizer rasterSymbolizer(String name, String geometry,
+    RasterSymbolizer rasterSymbolizer(String name, Expression geometry,
             Description description, Unit<?> unit, Expression opacity,
             ChannelSelection channelSelection,
             OverlapBehavior overlapsBehaviour, ColorMap colorMap,
@@ -342,6 +346,8 @@ public interface StyleFactory {
      * symbology encoding data structure (subject matter like wind barbs or extra deegrees of
      * freedom like temporal symbolizers are good examples of the use of this facility).
      * 
+     * @param name
+     *            handle used to refer to this symbolizer (machine readible)
      * @param geometry
      *            Geometry expression to renderer; formally a PropertyName
      * @param description
@@ -358,15 +364,16 @@ public interface StyleFactory {
             Unit<?> unit, String extensionName, Map<String, Expression> parameters);
 
     /**
+     * Create a rule from the provided definition.
      * 
-     * @param name
-     * @param description
-     * @param legend
-     * @param min
-     * @param max
+     * @param name handle used to refer to this rule (machine readable)
+     * @param description Human readable description of this rule
+     * @param legend Graphic used to indicate this rule in a legend or user interface
+     * @param min minimum scale denominator used to control when this rule is applied
+     * @param max maximum scale denominator used to control when this rule is applied
      * @param symbolizers
      * @param filter
-     * @return Rule
+     * @return Newly created Rule
      */
     Rule rule(String name, Description description, GraphicLegend legend,
             double min, double max, List<Symbolizer> symbolizers, Filter filter);
@@ -429,18 +436,20 @@ public interface StyleFactory {
             List<FeatureTypeStyle> featureTypeStyles,
             Symbolizer defaultSymbolizer);
     /**
-     * 
-     * @param geometry
-     * @param description
-     * @param unit
-     * @param label
-     * @param font
-     * @param placement
-     * @param halo
-     * @param fill
-     * @return
+     * Creation of a TextSymbolizer defining how labels are portrayed.
+     *  
+     * @param name Handle used to refer to this symbolizer (machine readable)
+     * @param geometry Geometry to be rendered
+     * @param description Human readable description
+     * @param unit Unit of measure used to interpret symbolizer sizes
+     * @param label Text displayed for this symbolizer
+     * @param font Font selected to renderer this symbolizer
+     * @param placement Placement information relative to orgiginal geometry
+     * @param halo definition of a halo or outline surrounding the symbolizer
+     * @param fill definition of fill used
+     * @return newly created TextSymbolizer
      */
-    TextSymbolizer textSymbolizer(String name, String geometry,
+    TextSymbolizer textSymbolizer(String name, Expression geometry,
             Description description, Unit<?> unit, Expression label, Font font,
             LabelPlacement placement, Halo halo, Fill fill);
 }
