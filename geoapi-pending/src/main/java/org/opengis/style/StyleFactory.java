@@ -12,6 +12,7 @@ package org.opengis.style;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import javax.measure.unit.Unit;
@@ -330,6 +331,27 @@ public interface StyleFactory {
             OverlapBehavior overlapsBehaviour, ColorMap colorMap,
             ContrastEnhancement contrast, ShadedRelief shaded,
             LineSymbolizer outline);
+    /**
+     * Used to represent a symbolizer intended for a vendor specific rendering process. This
+     * facility should be used to control subject matter that is beyond the scope of the traditional
+     * symbology encoding data structure (subject matter like wind barbs or extra deegrees of
+     * freedom like temporal symbolizers are good examples of the use of this facility).
+     * 
+     * @param geometry
+     *            Geometry expression to renderer; formally a PropertyName
+     * @param description
+     *            Description of this symbolizer; human readable
+     * @param unit
+     *            Unit of measure to use when interpretting this symbolizer
+     * @param extensionName
+     *            Extension name used to identify the vendor specific extension being controlled
+     * @param parameters
+     *            Named expressions used to configure the vendor specific rendering process
+     * @return newly created ExtensionSymbolizer
+     */
+    ExtensionSymbolizer extensionSymbolizer(Expression geometry, Description description,
+            Unit<?> unit, String extensionName, Map<String, Expression> parameters);
+
     /**
      * 
      * @param name
