@@ -155,7 +155,7 @@
       <groupId>org.opengis</groupId>
       <artifactId>geoapi-dummy-pending</artifactId>
       <version>${project.version}</version>
-      <scope>compile</scope>
+      <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>net.java.dev.jsr-275</groupId>
