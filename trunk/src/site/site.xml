@@ -5,7 +5,7 @@
   <!-- ========================================================= -->
   <bannerLeft>
     <name>GeoAPI</name>
-    <src>http://geoapi.sourceforge.net/resources/logo.png</src>
+    <src>http://geoapi.sourceforge.net/images/geoapi.png</src>
     <href>http://geoapi.sourceforge.net/</href>
   </bannerLeft>
 
@@ -30,6 +30,7 @@
     <!-- ==================================================== -->
     <menu name="GeoAPI 2.3-SNAPSHOT" inherit="none">
       <item name="Javadoc"    href="snapshot/javadoc/index.html"/>
+      <item name="Pending"    href="snapshot/pending/index.html"/>
       <item name="Reports"    href="geoapi/index.html"/>
       <item name="Examples"   href="examples/index.html"/>
       <item name="Wiki pages" href="http://docs.codehaus.org/display/GEO/Home"/>
