@@ -129,6 +129,12 @@ public final class TopicCategory extends CodeList<TopicCategory> {
     public static final TopicCategory HEALTH = new TopicCategory("HEALTH");
 
     /**
+     * @deprecated Renamed as {@link #HEALTH}.
+     */
+    @Deprecated
+    public static final TopicCategory HEALT = HEALTH;
+
+    /**
      * Base maps.
      *
      * Examples: land cover, topographic maps, imagery, unclassified images,

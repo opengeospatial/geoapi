@@ -50,7 +50,7 @@ public interface GridGeometry {
      * @return The valid coordinate range of a grid coverage.
      */
     @UML(identifier="gridRange", obligation=MANDATORY, specification=OGC_01004)
-    GridEnvelope getGridRange();
+    GridRange getGridRange();
 
     /**
      * Returns the conversion from grid coordinates to real world earth coordinates.

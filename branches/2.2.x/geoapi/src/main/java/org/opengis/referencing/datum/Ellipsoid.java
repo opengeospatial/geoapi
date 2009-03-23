@@ -93,7 +93,7 @@ public interface Ellipsoid extends IdentifiedObject {
      * <var>ivf</var>&nbsp;=&nbsp;<var>r</var><sub>e</sub>/(<var>r</var><sub>e</sub>-<var>r</var><sub>p</sub>).
      *
      * For perfect spheres (i.e. if {@link #isSphere} returns {@code true}),
-     * the {@link Double#POSITIVE_INFINITY POSITIVE_INFINITY} value is used.
+     * the {@link Double#POSITIVE_INFINITY} value is used.
      *
      * @return The inverse flattening value.
      * @unitof Scale

@@ -37,11 +37,12 @@ public interface MathTransform2D extends MathTransform {
      * If {@code ptSrc} and {@code ptDst} are the same object, the input point is
      * correctly overwritten with the transformed point.
      *
-     * @param  ptSrc the coordinate point to be transformed.
-     * @param  ptDst the coordinate point that stores the result of transforming {@code ptSrc},
-     *         or {@code null} if a new point should be created.
-     * @return the coordinate point after transforming {@code ptSrc} and stroring the result
-     *         in {@code ptDst} or in a new point if {@code ptDst} was null.
+     * @param ptSrc the specified coordinate point to be transformed.
+     * @param ptDst the specified coordinate point that stores the
+     *              result of transforming {@code ptSrc}, or
+     *              {@code null}.
+     * @return the coordinate point after transforming {@code ptSrc}
+     *         and stroring the result in {@code ptDst}.
      * @throws TransformException if the point can't be transformed.
      */
     Point2D transform(final Point2D ptSrc, final Point2D ptDst) throws TransformException;

@@ -229,7 +229,6 @@ public final class CodeListTest {
                     capacityFailed = true;
                     final LogRecord record = new LogRecord(Level.WARNING, e.toString());
                     record.setThrown(e);
-                    record.setLoggerName(LOGGER.getName());
                     LOGGER.log(record);
                     return;
                 }

@@ -73,7 +73,7 @@ public final class VerticalDatumType extends CodeList<VerticalDatumType> {
      *   The alternative would be to pass an arbitrary
      *   {@linkplain org.opengis.referencing.crs.CoordinateReferenceSystem Coordinate Reference System}
      *   and let the user extracts the vertical component himself.
-     *   <p>
+     *
      *   Furthermore the <A HREF="../doc-files/WKT.html">WKT format</A> still in wide use, and this
      *   format (defined before ISO 19111) does not treat ellipsoidal height in a special way. A WKT
      *   parser needs to get the vertical CRS separatly before to merge it with the geographic CRS.

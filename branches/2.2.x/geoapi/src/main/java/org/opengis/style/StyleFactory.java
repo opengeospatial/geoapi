@@ -8,6 +8,7 @@
  ** All Rights Reserved. http://www.opengis.org/legal/
  **
  *************************************************************************************************/
+
 package org.opengis.style;
 
 import java.util.Collection;
@@ -30,392 +31,142 @@ import org.opengis.util.InternationalString;
  * This factory is responsible for the production of style objects; where noted
  * these create methods are in agreement with the Symbology Encoding 1.1
  * specification.
- * 
- * @author Open Geospatial Consortium
- * @author Johann Sorel (Geomatys)
- * @since GeoAPI 2.2
  */
 public interface StyleFactory {
-    /**
-     * 
-     * @param x
-     * @param y
-     * @return
-     */
-    AnchorPoint anchorPoint(Expression x, Expression y);
-    /**
-     * 
-     * @param gray
-     * @return
-     */
-    ChannelSelection channelSelection(SelectedChannelType gray);
-    /**
-     * 
-     * @param red
-     * @param green
-     * @param blue
-     * @return
-     */
-    ChannelSelection channelSelection(SelectedChannelType red,
-            SelectedChannelType green, SelectedChannelType blue);
+	AnchorPoint createAnchorPoint(Expression x, Expression y);
 
-    /**
-     * Wrap up a "Categorize" function using the provided expressions.
-     * <p>
-     * The function will be created based on:
-     * <ol>
-     * <li>PropertyName; use "Rasterdata" to indicate this is a color map
-     * <li>Literal: lookup value
-     * <li>Literal: threshold 1
-     * <li>Literal: value 1
-     * <li>Literal: threshold 2
-     * <li>Literal: value 2
-     * <li>Literal: (Optional) succeeding or preceding
-     * </ol>
-     * @param propertyName
-     *            Property name to categorize, or use "Raster"
-     * @param mapping
-     *            Defined as a series of Expressions
-     * @return ColorMap wrapped around the "Cateogize" function
-     */
-    ColorMap colorMap(Expression propertyName, Expression... mapping);
+	ChannelSelection createChannelSelection(SelectedChannelType gray);
 
-    /**
-     * Wrap up a replacement function using the provided expressions.
-     * 
-     * @param propertyName
-     *            Property name to categorize, or use "Raster"
-     * @param mapping
-     *            Defined as a series of Expressions
-     * @return ColorReplacement wrapped around a Function
-     */
-    ColorReplacement colorReplacement(Expression propertyName,
-            Expression... mapping);
-    /**
-     * 
-     * @param gamma
-     * @param method
-     * @return
-     */
-    ContrastEnhancement contrastEnhancement(Expression gamma,
-            ContrastMethod method);
+	ChannelSelection createChannelSelection(SelectedChannelType red,
+			SelectedChannelType green, SelectedChannelType blue);
 
-    /**
-     * 
-     * @param title
-     * @param description
-     * @return
-     */
-    Description description(InternationalString title,
-            InternationalString description);
+	/**
+	 * Wrap up a "Categorize" function using the provided expressions.
+	 * 
+	 * @param propertyName
+	 *            Property name to categorize, or use "Raster"
+	 * @param mapping
+	 *            Defined as a series of Expressions
+	 * @return ColorMap wrapped around the "Cateogize" function
+	 */
+	ColorMap createColorMap(Expression propertyName, Expression... mapping);
 
-    /**
-     * 
-     * @param dx
-     * @param dy
-     * @return
-     */
-    Displacement displacement(Expression dx, Expression dy);
+	/**
+	 * Wrap up a replacement function using the provided expressions.
+	 * 
+	 * @param propertyName
+	 *            Property name to categorize, or use "Raster"
+	 * @param mapping
+	 *            Defined as a series of Expressions
+	 * @return ColorReplacement wrapped around a Function
+	 */
+	ColorReplacement createColorReplacement(Expression propertyName,
+			Expression... mapping);
 
-    /**
-     * 
-     * @param resource
-     * @param format
-     * @param replacements
-     * @return
-     */
-    ExternalGraphic externalGraphic(OnLineResource resource,
-            String format, Collection<ColorReplacement> replacements);
+	ContrastEnhancement createContrastEnhancement(Expression gamma,
+			ContrastMethod method);
 
-    /**
-     * 
-     * @param inline
-     * @param replacements
-     * @return
-     */
-    ExternalGraphic externalGraphic(Icon inline,
-            Collection<ColorReplacement> replacements);
+	Description createDescription(InternationalString title,
+			InternationalString description);
 
-    /**
-     * 
-     * @param resource
-     * @param format
-     * @param markIndex
-     * @return
-     */
-    ExternalMark externalMark(OnLineResource resource, String format,
-            int markIndex);
+	Displacement createDisplacement(Expression dx, Expression dy);
 
-    /**
-     * 
-     * @param inline
-     * @return
-     */
-    ExternalMark externalMark(Icon inline);
+	ExternalGraphic createExternalGraphic(OnLineResource resource,
+			String format, Collection<ColorReplacement> replacements);
 
-    /**
-     * 
-     * @param name
-     * @param description
-     * @param definedFor
-     * @param featureTypeNames
-     * @param types
-     * @param rules
-     *            May not be null or empty
-     * @return
-     */
-    FeatureTypeStyle featureTypeStyle(String name,
-            Description description, Id definedFor, Set<Name> featureTypeNames,
-            Set<SemanticType> types, List<Rule> rules);
+	ExternalGraphic createExternalGraphic(Icon inline,
+			Collection<ColorReplacement> replacements);
 
-    /**
-     * 
-     * @param fill
-     * @param color
-     * @param opacity
-     * @return
-     */
-    Fill fill(GraphicFill fill, Expression color, Expression opacity);
+	ExternalMark createExternalMark(OnLineResource resource, String format,
+			int markIndex);
 
-    /**
-     * 
-     * @param family
-     * @param style
-     * @param weight
-     * @param size
-     * @return
-     */
-    Font font(List<Expression> family, Expression style,
-            Expression weight, Expression size);
+	ExternalMark createExternalMark(Icon inline);
 
-    /**
-     * 
-     * @param symbols
-     * @param opacity
-     * @param size
-     * @param anchorPoint
-     * @param displacement
-     * @return
-     */
-    GraphicFill graphicFill(List<GraphicalSymbol> symbols,
-            Expression opacity, Expression size, AnchorPoint anchorPoint,
-            Displacement displacement);
+	/**
+	 * 
+	 * @param name
+	 * @param description
+	 * @param definedFor
+	 * @param featureTypeNames
+	 * @param types
+	 * @param rules
+	 *            May not be null or empty
+	 * @return
+	 */
+	FeatureTypeStyle createFeatureTypeStyle(String name,
+			Description description, Id definedFor, Set<Name> featureTypeNames,
+			Set<SemanticType> types, List<Rule> rules);
 
-    /**
-     * 
-     * @param symbols
-     * @param opacity
-     * @param size
-     * @param anchorPoint
-     * @param displacement
-     * @return
-     */
-    GraphicLegend graphicLegend(List<GraphicalSymbol> symbols,
-            Expression opacity, Expression size, AnchorPoint anchorPoint,
-            Displacement displacement);
-    /**
-     * 
-     * @param symbols
-     * @param opacity
-     * @param size
-     * @param anchorPoint
-     * @param displacement
-     * @param initialGap
-     * @param gap
-     * @return
-     */
-    GraphicStroke graphicStroke(List<GraphicalSymbol> symbols,
-            Expression opacity, Expression size, AnchorPoint anchorPoint,
-            Displacement displacement, Expression initialGap, Expression gap);
+	Fill createFill(GraphicFill fill, Expression color, Expression opacity);
 
-    /**
-     * 
-     * @param fill
-     * @param radius
-     * @return
-     */
-    Halo halo(Fill fill, Expression radius);
+	Font createFont(List<Expression> family, Expression style,
+			Expression weight, Expression size);
 
-    /**
-     * 
-     * @param offset
-     * @param initialGap
-     * @param gap
-     * @param repeated
-     * @param aligned
-     * @param generalizedLine
-     * @return
-     */
-    LinePlacement linePlacement(Expression offset, Expression initialGap,
-            Expression gap, boolean repeated, boolean aligned,
-            boolean generalizedLine);
-    /**
-     * 
-     * @param geometry
-     * @param description
-     * @param unit
-     * @param stroke
-     * @param offset
-     * @return
-     */
-    LineSymbolizer lineSymbolizer(Expression geometry,
-            Description description, Unit<?> unit, Stroke stroke, Expression offset);
+	GraphicFill createGraphicFill(List<GraphicalSymbol> symbols,
+			Expression opacity, Expression size, AnchorPoint anchorPoint,
+			Displacement displacement);
 
-    /**
-     * 
-     * @param wellKnownName
-     * @param fill
-     * @param stroke
-     * @return
-     */
-    Mark mark(Expression wellKnownName, Fill fill, Stroke stroke);
-    /**
-     * 
-     * @param externalMark
-     * @param fill
-     * @param stroke
-     * @return
-     */
-    Mark mark(ExternalMark externalMark, Fill fill, Stroke stroke);
-    /**
-     * 
-     * @param anchor
-     * @param displacement
-     * @param rotation
-     * @return
-     */
-    PointPlacement pointPlacement(AnchorPoint anchor,
-            Displacement displacement, Expression rotation);
-    /**
-     * 
-     * @param geometry
-     * @param description
-     * @param unit
-     * @param graphic
-     * @return
-     */
-    PointSymbolizer pointSymbolizer(Expression geometry,
-            Description description, Unit<?> unit, Graphic graphic);
-    /**
-     * 
-     * @param geometry
-     * @param description
-     * @param unit
-     * @param stroke
-     * @param fill
-     * @param displacement
-     * @param offset
-     * @return
-     */
-    PolygonSymbolizer polygonSymbolizer(Expression geometry,
-            Description description, Unit<?> unit, Stroke stroke, Fill fill,
-            Displacement displacement, Expression offset);
-    /**
-     * 
-     * @param geometry
-     * @param description
-     * @param unit
-     * @param opacity
-     * @param channelSelection
-     * @param overlapsBehaviour
-     * @param colorMap
-     * @param contrast
-     * @param shaded
-     * @param outline
-     * @return RasterSymbolizer
-     */
-    RasterSymbolizer rasterSymbolizer(Expression geometry,
-            Description description, Unit<?> unit, Expression opacity,
-            ChannelSelection channelSelection,
-            OverlapBehavior overlapsBehaviour, ColorMap colorMap,
-            ContrastEnhancement contrast, ShadedRelief shaded,
-            LineSymbolizer outline);
-    /**
-     * 
-     * @param name
-     * @param description
-     * @param legend
-     * @param min
-     * @param max
-     * @param symbolizers
-     * @param filter
-     * @return Rule
-     */
-    Rule rule(String name, Description description, GraphicLegend legend,
-            double min, double max, List<Symbolizer> symbolizers, Filter filter);
+	GraphicLegend createGraphicLegend(List<GraphicalSymbol> symbols,
+			Expression opacity, Expression size, AnchorPoint anchorPoint,
+			Displacement displacement);
 
-    /**
-     * 
-     * @param name
-     * @param description
-     * @param legend
-     * @param min
-     * @param max
-     * @param symbolizers
-     * @return Rule
-     */
-    Rule rule(String name, Description description, GraphicLegend legend,
-            double min, double max, List<Symbolizer> symbolizers);
+	GraphicStroke createGraphicStroke(List<GraphicalSymbol> symbols,
+			Expression opacity, Expression size, AnchorPoint anchorPoint,
+			Displacement displacement, Expression initialGap, Expression gap);
 
-    /**
-     * 
-     * @param channelName
-     * @param contrastEnhancement
-     * @return SelectedChannelType
-     */
-    SelectedChannelType selectedChannelType(String channelName, ContrastEnhancement contrastEnhancement);
-    /**
-     * 
-     * @param reliefFactor
-     * @param brightnessOnly
-     * @return ShadedRelief
-     */
-    ShadedRelief shadedRelief(Expression reliefFactor,
-            boolean brightnessOnly);
+	Halo createHalo(Fill fill, Expression radius);
 
-    /**
-     * 
-     * @param stroke
-     * @param fill
-     * @param color
-     * @param opacity
-     * @param width
-     * @param lineJoin
-     * @param lineCap
-     * @param dashArray
-     * @param dashOffset
-     * @return
-     */
-    Stroke stroke(GraphicStroke stroke, GraphicFill fill,
-            Expression color, Expression opacity, Expression width,
-            Expression lineJoin, Expression lineCap, float dashArray[],
-            Expression dashOffset);
+	LinePlacement createLinePlacement(Expression offset, Expression initialGap,
+			Expression gap, boolean repeated, boolean aligned,
+			boolean generalizedLine);
 
-    /**
-     * 
-     * @param name
-     * @param description
-     * @param isDefault
-     * @param featureTypeStyles
-     * @param defaultSymbolizer
-     * @return
-     */
-    Style style(String name, Description description, boolean isDefault,
-            List<FeatureTypeStyle> featureTypeStyles,
-            Symbolizer defaultSymbolizer);
-    /**
-     * 
-     * @param geometry
-     * @param description
-     * @param unit
-     * @param label
-     * @param font
-     * @param placement
-     * @param halo
-     * @param fill
-     * @return
-     */
-    TextSymbolizer textSymbolizer(Expression geometry,
-            Description description, Unit<?> unit, Expression label, Font font,
-            LabelPlacement placement, Halo halo, Fill fill);
+	LineSymbolizer createLineSymbolizer(Expression geometry,
+			Description description, Unit unit, Stroke stroke, Expression offset);
+
+	Mark createMark(Expression wellKnownName, Fill fill, Stroke stroke);
+
+	Mark createMark(ExternalMark externalMark, Fill fill, Stroke stroke);
+
+	PointPlacement createPointPlacement(AnchorPoint anchor,
+			Displacement displacement, Expression rotation);
+
+	PointSymbolizer createPointSymbolizer(Expression geometry,
+			Description description, Unit unit, Graphic graphic);
+
+	PolygonSymbolizer createPolygonSymbolizer(Expression geometry,
+			Description description, Unit unit, Stroke stroke, Fill fill,
+			Displacement displacement, Expression offset);
+
+	RasterSymbolizer createRasterSymbolizer(Expression geometry,
+			Description description, Unit unit, Expression opacity,
+			ChannelSelection channelSelection,
+			OverlapBehavior overlapsBehaviour, ColorMap colorMap,
+			ContrastEnhancement contrast, ShadedRelief shaded,
+			LineSymbolizer outline);
+
+	Rule createRule(String name, Description description, GraphicLegend legend,
+			double min, double max, List<Symbolizer> symbolizers, Filter filter);
+
+	Rule createElse(String name, Description description, GraphicLegend legend,
+			double min, double max, List<Symbolizer> symbolizers);
+
+	SelectedChannelType createSelectedChannelType();
+
+	SemanticType createSemanticType(String name, ContrastEnhancement contrast);
+
+	ShadedRelief createShadedRelief(Expression reliefFactor,
+			boolean brightnessOnly);
+
+	Stroke createStroke(GraphicStroke stroke, GraphicFill fill,
+			Expression color, Expression opacity, Expression width,
+			Expression lineJoin, Expression lineCap, float dashArray[],
+			Expression dashOffset);
+
+	Style createStyle(String name, Description description, boolean isDefault,
+			List<FeatureTypeStyle> featureTypeStyles,
+			Symbolizer defaultSymbolizer);
+
+	TextSymbolizer createTextSymbolizer(Expression geometry,
+			Description description, Unit unit, Expression label, Font font,
+			LabelPlacement placement, Halo halo, Fill fill);
 }

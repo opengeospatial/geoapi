@@ -10,7 +10,7 @@
  *************************************************************************************************/
 package org.opengis.display.primitive;
 
-import org.opengis.display.container.GraphicsContainer;
+import org.opengis.display.renderer.Renderer;
 
 
 /**
@@ -37,7 +37,7 @@ public interface Graphic {
     void setVisible(boolean visible);
 
     /**
-     * Invoked by the {@linkplain GraphicsContainer container} when this graphic is no longer needed.
+     * Invoked by the {@linkplain Renderer renderer} when this graphic is no longer needed.
      * Implementations may use this method to release resources, if needed. Implementations
      * may also implement this method to return an object to an object pool. It is an error
      * to reference a {@code Graphic} in any way after its dispose method has been called.

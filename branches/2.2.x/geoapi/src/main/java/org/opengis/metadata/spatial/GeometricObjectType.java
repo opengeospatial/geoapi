@@ -85,6 +85,23 @@ public final class GeometricObjectType extends CodeList<GeometricObjectType> {
     public static final GeometricObjectType SURFACE = new GeometricObjectType("SURFACE");
 
     /**
+     * Set of geometric primitives such that their boundaries can be represented as a
+     * union of other primitives.
+     *
+     * @deprecated Renamed as {@link #COMPLEX}.
+     */
+    @Deprecated
+    public static final GeometricObjectType COMPLEXES = COMPLEX;
+
+    /**
+     * Connected set of curves, solids or surfaces.
+     *
+     * @deprecated Renamed as {@link #COMPOSITE}.
+     */
+    @Deprecated
+    public static final GeometricObjectType COMPOSITES = COMPOSITE;
+
+    /**
      * Constructs an enum with the given name. The new enum is
      * automatically added to the list returned by {@link #values}.
      *

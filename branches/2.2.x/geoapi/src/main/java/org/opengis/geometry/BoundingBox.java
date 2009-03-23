@@ -40,8 +40,6 @@ import org.opengis.annotation.Extension;
 public interface BoundingBox extends Envelope {
     /**
      * Sets this bounding box to be the same as the specified box.
-     *
-     * @param bounds The new bounds.
      */
     void setBounds(BoundingBox bounds);
 
@@ -50,8 +48,6 @@ public interface BoundingBox extends Envelope {
      * This is equivalent to <code>{@linkplain #getMinimum getMinimum}(0)</code>.
      * There is no guarantee that this axis is oriented toward
      * {@linkplain AxisDirection#EAST East}.
-     *
-     * @return The minimum ordinate along the first axis.
      */
     double getMinX();
 
@@ -60,8 +56,6 @@ public interface BoundingBox extends Envelope {
      * This is equivalent to <code>{@linkplain #getMaximum getMaximum}(0)</code>.
      * There is no guarantee that this axis is oriented toward
      * {@linkplain AxisDirection#EAST East}.
-     *
-     * @return The maximum ordinate along the first axis.
      */
     double getMaxX();
 
@@ -70,8 +64,6 @@ public interface BoundingBox extends Envelope {
      * This is equivalent to <code>{@linkplain #getMinimum getMinimum}(1)</code>.
      * There is no guarantee that this axis is oriented toward
      * {@linkplain AxisDirection#NORTH North}.
-     *
-     * @return The minimum ordinate along the second axis.
      */
     double getMinY();
 
@@ -80,8 +72,6 @@ public interface BoundingBox extends Envelope {
      * This is equivalent to <code>{@linkplain #getMaximum getMaximum}(1)</code>.
      * There is no guarantee that this axis is oriented toward
      * {@linkplain AxisDirection#NORTH North}.
-     *
-     * @return The maximum ordinate along the second axis.
      */
     double getMaxY();
 
@@ -91,8 +81,6 @@ public interface BoundingBox extends Envelope {
      * This is equivalent to <code>{@linkplain #getLength getLength}(0)</code>.
      * There is no guarantee that this axis is oriented toward
      * {@linkplain AxisDirection#EAST East}.
-     *
-     * @return The span along the first axis.
      */
     double getWidth();
 
@@ -102,71 +90,42 @@ public interface BoundingBox extends Envelope {
      * This is equivalent to <code>{@linkplain #getLength getLength}(1)</code>.
      * There is no guarantee that this axis is oriented toward
      * {@linkplain AxisDirection#NORTH North}.
-     *
-     * @return The span along the second axis.
      */
     double getHeight();
 
     /**
-     * Returns {@code true} if {@linkplain #getSpan spans} along all dimension are zero
-     * or negative.
-     *
-     * @return {@code true} if this bounding box is empty.
+     * Returns {@code true} if {@linkplain #getLength lengths} along all dimension are zero.
      */
     boolean isEmpty();
 
     /**
-     * Includes the provided bounding box, expanding as necesary.
-     *
-     * @param bounds The bounds to add to this geographic bounding box.
+     * Include the provided bounding box, expanding as necesary.
      */
     void include(BoundingBox bounds);
 
     /**
-     * Includes the provided coordinates, expanding as necessary. Note that there is no
-     * guarantee that the (<var>x</var>, <var>x</var>) values are oriented toward
-     * ({@linkplain AxisDirection#EAST East}, {@linkplain AxisDirection#NORTH North}),
-     * since it depends on the {@linkplain #getCoordinateReferenceSystem envelope CRS}.
-     *
-     * @param x The first ordinate value.
-     * @param y The second ordinate value.
+     * Include the provided coordinates, expanding as necessary.
      */
     void include(double x, double y);
 
     /**
      * Returns {@code true} if the interior of this bounds intersects the interior
      * of the provided bounds.
-     *
-     * @param  bounds The bounds to test for intersection.
-     * @return {@code true} if the two bounds intersect.
      */
     boolean intersects(BoundingBox bounds);
 
     /**
      * Returns {@code true} if the provided bounds are contained by this bounding box.
-     *
-     * @param  bounds The bounds to test for inclusion.
-     * @return {@code true} if the given bounds is inside this bounds.
      */
     boolean contains(BoundingBox bounds);
 
     /**
      * Returns {@code true} if the provided location is contained by this bounding box.
-     *
-     * @param  location The direct position to test for inclusion.
-     * @return {@code true} if the given position is inside this bounds.
      */
     boolean contains(DirectPosition location);
 
     /**
      * Returns {@code true} if the provided location is contained by this bounding box.
-     * Note that there is no guarantee that the (<var>x</var>, <var>x</var>) values are
-     * oriented toward ({@linkplain AxisDirection#EAST East}, {@linkplain AxisDirection#NORTH North}),
-     * since it depends on the {@linkplain #getCoordinateReferenceSystem envelope CRS}.
-     *
-     * @param x The first ordinate value.
-     * @param y The second ordinate value.
-     * @return {@code true} if the given position is inside this bounds.
      */
     boolean contains(double x, double y);
 

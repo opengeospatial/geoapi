@@ -77,7 +77,7 @@ public interface Datum extends IdentifiedObject {
     /**
      * Description, possibly including coordinates, of the point or points used to anchor the datum
      * to the Earth. Also known as the "origin", especially for Engineering and Image Datums.
-     * <p>
+     *
      * <ul>
      *   <li>For a geodetic datum, this point is also known as the fundamental point, which is
      *       traditionally the point where the relationship between geoid and ellipsoid is defined.

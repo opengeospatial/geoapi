@@ -12,20 +12,17 @@ package org.opengis.style;
 
 import javax.measure.quantity.Length;
 import javax.measure.unit.Unit;
-
-import org.opengis.annotation.Extension;
 import org.opengis.annotation.UML;
 import org.opengis.annotation.XmlElement;
 
 import static org.opengis.annotation.Specification.*;
 
 /**
- * Abstract superclass of the symbolizers defined by the Symbology Encoding specification.
- * <p>
- * Please note you are not free to create your own subtype o Symbolizer - we are limited to LineSymbolizer, PointSymbolizer, PolygonSymbolizer, RasterSymbolizer and TextSymbolizer.
- * <p>
+ * Abstract superclass of the various symbolizer classes.
+ *
  * <b>using a static geometry<b/>
- * you can use static geometry if needed, see {@link #getGeometryAttribute}
+ * <p>
+ * you can use static geometry if needed, see {@link #getGeometryAttribut}
  * </p>
  *
  * <b>Particular cases if the geometry is not the defined type of the symbolizer</b>
@@ -99,13 +96,12 @@ public interface Symbolizer {
      */
     @XmlElement("Description")
     Description getDescription();
-    
+
     /**
-     * Calls the visit method of a StyleVisitor
-     *  
+     * calls the visit method of a StyleVisitor
+     *
      * @param visitor the style visitor
-     * @return value produced 
      */
-    @Extension
-    Object accept(StyleVisitor visitor, Object extraData);
+    void accept(StyleVisitor visitor);
+    
 }

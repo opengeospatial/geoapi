@@ -31,7 +31,7 @@ import static org.opengis.annotation.Specification.*;
  * implementer may consider using the corresponding metadata values in the EPSG tables.
  *
  * @departure
- *   ISO 19111 defines also an {@code IdentifiedObjectBase} interface. The later is omitted in GeoAPI
+ *   ISO 19111 defines also an {@code IdentifiedObjectBase} interface. The later is ommited in GeoAPI
  *   because the split between {@code IdentifiedObject} and {@code IdentifiedObjectBase} in OGC/ISO
  *   specification was mostly a workaround for introducing {@code IdentifiedObject} in ISO 19111
  *   without changing the {@code ReferenceSystem} definition in ISO 19115.

@@ -46,29 +46,28 @@ import org.opengis.annotation.Extension;
 @Extension
 public interface ProgressListener {
     /**
-     * Returns the description of the current task being performed, or {@code null} if none.
-     * It is assumed that if the task is {@code null} applications may simply report that the
-     * process is "in progress" or "working" as represented in the current locale.
-     *
-     * @return Description of the task being performed, or {@code null} if none.
-     */
-    InternationalString getTask();
-
-    /**
      * Description for the lengthly operation to be reported, or {@code null} if none.
      *
-     * @return The task description.
-     *
-     * @deprecated Replaced by getTask().toString()
+     * @deprecated Please use getTask().toString()
      */
     @Deprecated
     String getDescription();
 
     /**
-     * Sets the description of the current task being performed. This method is usually invoked
-     * before any progress begins. However, it is legal to invoke this method at any time during
-     * the operation, in which case the description display is updated without any change to the
-     * percentage accomplished.
+     * Returns the current task being performed, or {@code null} if none.
+     * <p>
+     * It is assumed that if the task is {@code null} applications may simply report
+     * that the process is "in progress" or "working" as represented in the current locale.
+     *
+     * @return Description of the task being performed.
+     */
+    InternationalString getTask();
+
+    /**
+     * Sets the current task being performed. This method is usually invoked before any progress
+     * begins. However, it is legal to invoke this method at any time during the operation, in
+     * which case the description display is updated without any change to the percentage
+     * accomplished.
      *
      * @param task Description of the task being performed, or {@code null} if none.
      *
@@ -85,7 +84,7 @@ public interface ProgressListener {
      *
      * @param description The new description, or {@code null} if none.
      *
-     * @deprecated Replaced by setTask
+     * @deprecated please use setTask
      */
     @Deprecated
     void setDescription(String description);
@@ -98,10 +97,6 @@ public interface ProgressListener {
     /**
      * Notifies this listener of progress in the lengthly operation. Progress are reported
      * as a value between 0 and 100 inclusive. Values out of bounds will be clamped.
-     *
-     * @param percent The progress as a value between 0 and 100 inclusive.
-     *
-     * @todo Should be renamed setProgress(float) for consistency with getProgress().
      */
     void progress(float percent);
 
@@ -129,17 +124,11 @@ public interface ProgressListener {
 
     /**
      * Returns {@code true} if this job is cancelled.
-     *
-     * @return {@code true} if this job is cancelled.
      */
     boolean isCanceled();
 
     /**
      * Indicates that task should be cancelled.
-     *
-     * @param cancel {@code true} for cancelling the task.
-     *
-     * @todo Should be a {@code cancel()} method without arguments.
      */
     void setCanceled(boolean cancel);
 
@@ -163,8 +152,6 @@ public interface ProgressListener {
     /**
      * Reports an exception. This method may prints the stack trace to the {@linkplain System#err
      * standard error stream} or display it in a dialog box, at implementor choice.
-     *
-     * @param exception The exception to report.
      */
     void exceptionOccurred(Throwable exception);
 }

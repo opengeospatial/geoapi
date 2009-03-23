@@ -86,11 +86,8 @@ public interface CoordinateOperation extends IdentifiedObject {
      * {@link org.opengis.referencing.crs.GeneralDerivedCRS#getBaseCRS} instead.
      *
      * @return The source CRS, or {@code null} if not available.
-     *
-     * @see Conversion#getSourceCRS
-     * @see Transformation#getSourceCRS
      */
-    @UML(identifier="sourceCRS", obligation=CONDITIONAL, specification=ISO_19111)
+    @UML(identifier="sourceCRS", obligation=MANDATORY, specification=ISO_19111)
     CoordinateReferenceSystem getSourceCRS();
 
     /**
@@ -100,11 +97,8 @@ public interface CoordinateOperation extends IdentifiedObject {
      * {@link org.opengis.referencing.crs.GeneralDerivedCRS} instead.
      *
      * @return The target CRS, or {@code null} if not available.
-     *
-     * @see Conversion#getTargetCRS
-     * @see Transformation#getTargetCRS
      */
-    @UML(identifier="targetCRS", obligation=CONDITIONAL, specification=ISO_19111)
+    @UML(identifier="targetCRS", obligation=MANDATORY, specification=ISO_19111)
     CoordinateReferenceSystem getTargetCRS();
 
     /**

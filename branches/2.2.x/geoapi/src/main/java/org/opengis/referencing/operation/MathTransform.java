@@ -71,11 +71,13 @@ public interface MathTransform {
      * If {@code ptSrc} and {@code ptDst} are the same object,
      * the input point is correctly overwritten with the transformed point.
      *
-     * @param  ptSrc the specified coordinate point to be transformed.
-     * @param  ptDst the specified coordinate point that stores the result of transforming
-     *         {@code ptSrc}, or {@code null}.
-     * @return the coordinate point after transforming {@code ptSrc} and storing the result
-     *         in {@code ptDst}, or a newly created point if {@code ptDst} was null.
+     * @param ptSrc the specified coordinate point to be transformed.
+     * @param ptDst the specified coordinate point that stores the
+     *              result of transforming {@code ptSrc}, or
+     *              {@code null}.
+     * @return the coordinate point after transforming {@code ptSrc}
+     *         and storing the result in {@code ptDst}, or a newly
+     *         created point if {@code ptDst} was null.
      * @throws MismatchedDimensionException if {@code ptSrc} or
      *         {@code ptDst} doesn't have the expected dimension.
      * @throws TransformException if the point can't be transformed.
@@ -94,13 +96,16 @@ public interface MathTransform {
      * (<var>x<sub>0</sub></var>,<var>y<sub>0</sub></var>,<var>z<sub>0</sub></var>,
      *  <var>x<sub>1</sub></var>,<var>y<sub>1</sub></var>,<var>z<sub>1</sub></var> ...).
      *
-     * @param  srcPts the array containing the source point coordinates.
-     * @param  srcOff the offset to the first point to be transformed in the source array.
-     * @param  dstPts the array into which the transformed point coordinates are returned.
-     *                 May be the same than {@code srcPts}.
-     * @param  dstOff the offset to the location of the first transformed point that is
-     *                stored in the destination array.
-     * @param  numPts the number of point objects to be transformed.
+     * @param srcPts the array containing the source point coordinates.
+     * @param srcOff the offset to the first point to be transformed
+     *               in the source array.
+     * @param dstPts the array into which the transformed point
+     *               coordinates are returned. May be the same
+     *               than {@code srcPts}.
+     * @param dstOff the offset to the location of the first
+     *               transformed point that is stored in the
+     *               destination array.
+     * @param numPts the number of point objects to be transformed.
      * @throws TransformException if a point can't be transformed. Some implementations will stop
      *         at the first failure, wile some other implementations will fill the untransformable
      *         points with {@linkplain Double#NaN NaN} values, continue and throw the exception
@@ -109,7 +114,8 @@ public interface MathTransform {
      */
     @UML(identifier="transformList", specification=OGC_01009)
     void transform(double[] srcPts, int srcOff,
-                   double[] dstPts, int dstOff, int numPts) throws TransformException;
+                   double[] dstPts, int dstOff,
+                   int numPts) throws TransformException;
 
     /**
      * Transforms a list of coordinate point ordinal values.
@@ -121,13 +127,16 @@ public interface MathTransform {
      * (<var>x<sub>0</sub></var>,<var>y<sub>0</sub></var>,<var>z<sub>0</sub></var>,
      *  <var>x<sub>1</sub></var>,<var>y<sub>1</sub></var>,<var>z<sub>1</sub></var> ...).
      *
-     * @param  srcPts the array containing the source point coordinates.
-     * @param  srcOff the offset to the first point to be transformed in the source array.
-     * @param  dstPts the array into which the transformed point coordinates are returned.
-     *                May be the same than {@code srcPts}.
-     * @param  dstOff the offset to the location of the first transformed point that is
-     *                stored in the destination array.
-     * @param  numPts the number of point objects to be transformed.
+     * @param srcPts the array containing the source point coordinates.
+     * @param srcOff the offset to the first point to be transformed
+     *               in the source array.
+     * @param dstPts the array into which the transformed point
+     *               coordinates are returned. May be the same
+     *               than {@code srcPts}.
+     * @param dstOff the offset to the location of the first
+     *               transformed point that is stored in the
+     *               destination array.
+     * @param numPts the number of point objects to be transformed.
      * @throws TransformException if a point can't be transformed. Some implementations will stop
      *         at the first failure, wile some other implementations will fill the untransformable
      *         points with {@linkplain Double#NaN NaN} values, continue and throw the exception
@@ -135,61 +144,8 @@ public interface MathTransform {
      *         TransformException#getLastCompletedTransform last completed transform} to {@code this}.
      */
     void transform(float[] srcPts, int srcOff,
-                   float[] dstPts, int dstOff, int numPts) throws TransformException;
-
-    /**
-     * Transforms a list of coordinate point ordinal values.
-     * This method is provided for efficiently transforming many points.
-     * The supplied array of ordinal values will contain packed ordinal
-     * values.  For example, if the source dimension is 3, then the ordinals
-     * will be packed in this order:
-     *
-     * (<var>x<sub>0</sub></var>,<var>y<sub>0</sub></var>,<var>z<sub>0</sub></var>,
-     *  <var>x<sub>1</sub></var>,<var>y<sub>1</sub></var>,<var>z<sub>1</sub></var> ...).
-     *
-     * @param  srcPts the array containing the source point coordinates.
-     * @param  srcOff the offset to the first point to be transformed in the source array.
-     * @param  dstPts the array into which the transformed point coordinates are returned.
-     * @param  dstOff the offset to the location of the first transformed point that is
-     *                stored in the destination array.
-     * @param  numPts the number of point objects to be transformed.
-     * @throws TransformException if a point can't be transformed. Some implementations will stop
-     *         at the first failure, wile some other implementations will fill the untransformable
-     *         points with {@linkplain Double#NaN NaN} values, continue and throw the exception
-     *         only at end. Implementations that fall in the later case should set the {@linkplain
-     *         TransformException#getLastCompletedTransform last completed transform} to {@code this}.
-     *
-     * @since GeoAPI 2.2
-     */
-    void transform(float [] srcPts, int srcOff,
-                   double[] dstPts, int dstOff, int numPts) throws TransformException;
-
-    /**
-     * Transforms a list of coordinate point ordinal values.
-     * This method is provided for efficiently transforming many points.
-     * The supplied array of ordinal values will contain packed ordinal
-     * values.  For example, if the source dimension is 3, then the ordinals
-     * will be packed in this order:
-     *
-     * (<var>x<sub>0</sub></var>,<var>y<sub>0</sub></var>,<var>z<sub>0</sub></var>,
-     *  <var>x<sub>1</sub></var>,<var>y<sub>1</sub></var>,<var>z<sub>1</sub></var> ...).
-     *
-     * @param  srcPts the array containing the source point coordinates.
-     * @param  srcOff the offset to the first point to be transformed in the source array.
-     * @param  dstPts the array into which the transformed point coordinates are returned.
-     * @param  dstOff the offset to the location of the first transformed point that is
-     *                stored in the destination array.
-     * @param  numPts the number of point objects to be transformed.
-     * @throws TransformException if a point can't be transformed. Some implementations will stop
-     *         at the first failure, wile some other implementations will fill the untransformable
-     *         points with {@linkplain Double#NaN NaN} values, continue and throw the exception
-     *         only at end. Implementations that fall in the later case should set the {@linkplain
-     *         TransformException#getLastCompletedTransform last completed transform} to {@code this}.
-     *
-     * @since GeoAPI 2.2
-     */
-    void transform(double[] srcPts, int srcOff,
-                   float [] dstPts, int dstOff, int numPts) throws TransformException;
+                   float[] dstPts, int dstOff,
+                   int numPts) throws TransformException;
 
     /**
      * Gets the derivative of this transform at a point. The derivative is the

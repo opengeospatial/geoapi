@@ -51,7 +51,7 @@ public interface Medium {
      * @return Units of measure for the recording density, or {@code null}.
      */
     @UML(identifier="densityUnits", obligation=CONDITIONAL, specification=ISO_19115)
-    Unit<?> getDensityUnits();
+    Unit getDensityUnits();
 
     /**
      * Number of items in the media identified.

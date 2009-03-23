@@ -80,7 +80,7 @@ public interface CoordinateOperationFactory extends ObjectFactory {
      *
      * @param  sourceCRS Input coordinate reference system.
      * @param  targetCRS Output coordinate reference system.
-     * @param  method The algorithmic method for conversion or transformation.
+     * @param  method the algorithmic method for conversion or transformation
      * @return A coordinate operation from {@code sourceCRS} to {@code targetCRS}.
      * @throws OperationNotFoundException if no operation path was found from {@code sourceCRS}
      *         to {@code targetCRS}.

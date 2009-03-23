@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="GeoAPI">
   <body>
-    <menu name="GeoAPI">
-      <item name="Home" href="../index.html"/>
+    <menu name="Snapshot">
+      <item name="Javadoc"    href="../snapshot/javadoc/index.html"/>
+      <item name="Examples"   href="../examples/index.html"/>
+      <item name="Wiki pages" href="http://docs.codehaus.org/display/GEO/Home"/>
+      <item name="FAQ"        href="../faq.html"/>
     </menu>
 
-    <menu ref="reports"/>  <!-- Replaced by menus for any configured reports (mailing lists, etc.) -->
+    ${reports}  <!-- Replaced by menus for any configured reports (mailing lists, etc.) -->
+
   </body>
 </project>

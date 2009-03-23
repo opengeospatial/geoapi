@@ -51,7 +51,7 @@ public interface StyleVisitor {
      *
      * @param fts the feature type styler to visit
      */
-    Object visit(FeatureTypeStyle featureTypeStyle, Object data );
+    void visit(FeatureTypeStyle featureTypeStyle, Object data );
 
     /**
      * Called when accept is called on a rule
@@ -151,6 +151,13 @@ public interface StyleVisitor {
      */
     Object visit(GraphicStroke graphicStroke, Object data );
     
+    /**
+     * Called when accept is called on a graphic symbol
+     *
+     * @param gr the graphic symbol to visit
+     */
+    Object visit(GraphicalSymbol graphicSymbol, Object data );
+
     /**
      * Called when accept is called on a mark
      *

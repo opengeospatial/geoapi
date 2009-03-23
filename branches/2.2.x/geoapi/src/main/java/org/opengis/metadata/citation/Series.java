@@ -29,24 +29,18 @@ public interface Series {
     /**
      * Name of the series, or aggregate dataset, of which the dataset is a part.
      * Returns {@code null} if none.
-     *
-     * @return The name of the series or aggregate dataset.
      */
     @UML(identifier="name", obligation=OPTIONAL, specification=ISO_19115)
     InternationalString getName();
 
     /**
      * Information identifying the issue of the series.
-     *
-     * @return Information identifying the issue of the series.
      */
     @UML(identifier="issueIdentification", obligation=OPTIONAL, specification=ISO_19115)
     String getIssueIdentification();
 
     /**
      * Details on which pages of the publication the article was published.
-     *
-     * @return Details on which pages of the publication the article was published.
      */
     @UML(identifier="page", obligation=OPTIONAL, specification=ISO_19115)
     String getPage();

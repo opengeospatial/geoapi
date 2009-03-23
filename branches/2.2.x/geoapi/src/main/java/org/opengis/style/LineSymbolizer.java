@@ -10,7 +10,6 @@
  *************************************************************************************************/
 package org.opengis.style;
 
-import org.opengis.annotation.Extension;
 import org.opengis.annotation.XmlElement;
 import org.opengis.filter.expression.Expression;
 
@@ -48,13 +47,5 @@ public interface LineSymbolizer extends Symbolizer {
      */
     @XmlElement("PerpendicularOffset")
     Expression getPerpendicularOffset();
-    
-    /**
-     * Calls the visit method of a StyleVisitor
-     *
-     * @param visitor the style visitor
-     */
-    @Extension
-    Object accept(StyleVisitor visitor, Object extraData);
 
 }

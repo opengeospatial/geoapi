@@ -12,13 +12,11 @@ package org.opengis.style;
 
 import java.util.List;
 import java.util.Set;
-import org.opengis.annotation.Extension;
 import org.opengis.annotation.UML;
 import org.opengis.annotation.XmlElement;
 
 import org.opengis.feature.type.Name;
 import org.opengis.filter.Id;
-import org.opengis.metadata.citation.OnLineResource;
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
 
@@ -69,6 +67,8 @@ public interface FeatureTypeStyle {
     @UML(identifier="definedForInst", obligation=OPTIONAL, specification=ISO_19117)
     Id getFeatureInstanceIDs();
     
+    void setFeatureIntanceIDs(Id featureInstanceIds );
+    
     /**
      * <p>
      * Returns the names of the feature type that this style is meant to act
@@ -118,21 +118,10 @@ public interface FeatureTypeStyle {
     List<? extends Rule> rules();
 
     /**
-     * It is common to have a style coming from a external xml file, this method
-     * provide a way to get the original source if there is one.
-     * OGC SLD specification can use this method to know if a style must be
-     * written completely or if writing the online resource path is enough.
-     * 
-     * @return OnlineResource or null
-     */
-    OnLineResource getOnlineResource();
-    
-    /**
      * calls the visit method of a StyleVisitor
      *
      * @param visitor the style visitor
      */
-    @Extension
-    Object accept(StyleVisitor visitor, Object extraData);
+    void accept(StyleVisitor visitor);
 
 }

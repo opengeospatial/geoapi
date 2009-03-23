@@ -79,7 +79,7 @@ public final class Progress extends CodeList<Progress> {
     /**
      * Data is currently in the process of being created.
      */
-    @UML(identifier="underDevelopment", obligation=CONDITIONAL, specification=ISO_19115)
+    @UML(identifier="underdevelopment", obligation=CONDITIONAL, specification=ISO_19115)
     public static final Progress UNDER_DEVELOPMENT = new Progress("UNDER_DEVELOPMENT");
 
     /**

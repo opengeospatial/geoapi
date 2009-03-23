@@ -50,7 +50,7 @@ public interface Matrix extends Cloneable {
     // Same signature than GMatrix, for straightforward implementation.
 
     /**
-     * Returns the number of columns in this matrix.
+     * Returns the number of colmuns in this matrix.
      *
      * @return The number of columns in this matrix.
      */

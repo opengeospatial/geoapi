@@ -15,7 +15,7 @@ import org.opengis.referencing.crs.CoordinateReferenceSystem;
 import org.opengis.referencing.operation.MathTransform;
 import org.opengis.referencing.operation.TransformException;
 import org.opengis.geometry.complex.Complex;
-import org.opengis.util.Cloneable;
+import org.opengis.util.Cloneable; // For javadoc
 import org.opengis.annotation.UML;
 import org.opengis.annotation.Extension;
 
@@ -221,6 +221,17 @@ public interface Geometry extends TransfiniteSet {
     double distance(Geometry geometry);
 
     /**
+     * Returns the distance between this {@code Geometry} and another {@code Geometry}.
+     *
+     * @param  geometry The other object.
+     * @return The distance between the two objects.
+     *
+     * @deprecated use {@link #distance}.
+     */
+    @Deprecated
+    double getDistance(Geometry geometry);
+
+    /**
      * Returns the inherent dimension of this {@code Geometry}, which shall be less than or
      * equal to the {@linkplain #getCoordinateDimension coordinate dimension}. The dimension of
      * a collection of geometric objects shall be the largest dimension of any of its pieces.
@@ -383,8 +394,6 @@ public interface Geometry extends TransfiniteSet {
      *       </UL>
      *   </LI>
      * </UL>
-     *
-     * @return {@code true} if this geometry is mutable.
      */
     @Extension
     boolean isMutable();
@@ -398,8 +407,6 @@ public interface Geometry extends TransfiniteSet {
      * <p>
      * Implementors are free to return {@code this} if this object is
      * already immutable.
-     *
-     * @return An immutable copy of this geometry.
      */
     @Extension
     Geometry toImmutable();
@@ -423,7 +430,6 @@ public interface Geometry extends TransfiniteSet {
      *       the {@link Cloneable} interface.</P></LI>
      * </UL>
      *
-     * @return A clone of this geometry, which may or may not be mutable.
      * @throws CloneNotSupportedException if this object do not support clone. This exception is
      *         never throws if this object implements {@link Cloneable}.
      *

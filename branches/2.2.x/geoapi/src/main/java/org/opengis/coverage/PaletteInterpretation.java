@@ -30,7 +30,10 @@ import static org.opengis.annotation.Specification.*;
  *
  * @see ColorInterpretation
  * @see SampleDimension
+ *
+ * @deprecated No replacement.
  */
+@Deprecated
 @UML(identifier="CV_PaletteInterpretation", specification=OGC_01004)
 public final class PaletteInterpretation extends CodeList<PaletteInterpretation> {
     /**

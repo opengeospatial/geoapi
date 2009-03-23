@@ -10,7 +10,6 @@
  *************************************************************************************************/
 package org.opengis.style;
 
-import org.opengis.annotation.Extension;
 import org.opengis.annotation.XmlElement;
 
 
@@ -33,12 +32,4 @@ public interface PointSymbolizer extends Symbolizer {
     @XmlElement("Graphic")
     Graphic getGraphic();
 
-    /**
-     * calls the visit method of a StyleVisitor
-     *
-     * @param visitor the style visitor
-     */
-    @Extension
-    Object accept(StyleVisitor visitor, Object extraData);
-    
 }

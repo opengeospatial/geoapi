@@ -17,11 +17,7 @@ import org.opengis.feature.type.FeatureType;  // For javadoc
 
 
 /**
- * Defines a constraint that can be checked against an instance of an object (Usually a Feature).
- * <p?
- * This is an abstract super type of the Filters defined by the Filter specification; you are not
- * free to define your own filters. For extensibility please explore the definition of
- * your own {@link Function}.
+ * Fefines a constraint that can be checked against an instance of an Object (usually a Feature).
  * <p>
  * Often a filter is used to to define a set {@linkplain Feature feature} instances
  * that are to be operated upon. The operating set can be comprised of one or more

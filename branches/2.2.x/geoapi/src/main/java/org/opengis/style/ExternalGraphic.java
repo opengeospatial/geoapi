@@ -12,7 +12,6 @@ package org.opengis.style;
 
 import java.util.Collection;
 import javax.swing.Icon;
-import org.opengis.annotation.Extension;
 import org.opengis.annotation.XmlElement;
 import org.opengis.metadata.citation.OnLineResource;
 
@@ -64,12 +63,4 @@ public interface ExternalGraphic extends GraphicalSymbol {
     @XmlElement("ColorReplacement")
     Collection<ColorReplacement> getColorReplacements();
 
-    /**
-     * calls the visit method of a StyleVisitor
-     *
-     * @param visitor the style visitor
-     */
-    @Extension
-    Object accept(StyleVisitor visitor, Object extraData);
-    
 }

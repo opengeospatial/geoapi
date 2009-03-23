@@ -53,7 +53,7 @@ public interface QuantitativeResult extends Result {
      * @return Value unit for reporting a data quality result, or {@code null}.
      */
     @UML(identifier="valueUnit", obligation=MANDATORY, specification=ISO_19115)
-    Unit<?> getValueUnit();
+    Unit getValueUnit();
 
     /**
      * Statistical method used to determine the value, or {@code null} if none.

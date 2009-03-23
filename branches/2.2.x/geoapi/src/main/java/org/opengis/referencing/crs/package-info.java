@@ -152,7 +152,6 @@
  * <P ALIGN="justify">An example of a Derived CRS:
  * one of which the unit of measure has been modified with respect to an earlier
  * defined Geographic CRS, which then takes the role of Source CRS.</P>
- * </BLOCKQUOTE>
  *
  * @version <A HREF="http://portal.opengeospatial.org/files/?artifact_id=6716">Abstract specification 2.0</A>
  * @since   GeoAPI 1.0

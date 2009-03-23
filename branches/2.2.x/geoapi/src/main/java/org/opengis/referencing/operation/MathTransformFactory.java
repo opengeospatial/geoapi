@@ -231,10 +231,10 @@ public interface MathTransformFactory extends Factory {
 
     /**
      * Creates a transform which passes through a subset of ordinates to another transform.
-     * This allows transforms to operate on a subset of ordinates. For example giving
-     * (<var>latitude</var>, <var>longitude</var>, <var>height</var>) coordinates, a pass
-     * through transform can convert the height values from meters to feet without affecting
-     * the (<var>latitude</var>, <var>longitude</var>) values.
+     * This allows transforms to operate on a subset of ordinates. For example, if you have
+     * (<var>latitude</var>,<var>longitude</var>,<var>height</var>) coordinates, then you
+     * may wish to convert the height values from meters to feet without affecting the
+     * (<var>latitude</var>,<var>longitude</var>) values.
      *
      * @param  firstAffectedOrdinate The lowest index of the affected ordinates.
      * @param  subTransform Transform to use for affected ordinates.

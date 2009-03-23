@@ -29,7 +29,7 @@ import static org.opengis.annotation.Specification.*;
 public interface Constraints {
     /**
      * Limitation affecting the fitness for use of the resource.
-     * Example: "not to be used for navigation".
+     * Example, "not to be used for navigation".
      *
      * @return Limitation affecting the fitness for use of the resource.
      */

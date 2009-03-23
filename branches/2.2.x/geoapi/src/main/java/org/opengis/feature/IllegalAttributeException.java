@@ -1,8 +1,8 @@
 /*$************************************************************************************************
  **
- ** $Id$
+ ** $Id: IllegalAttributeException.java 1175 2008-03-26 16:10:11Z jgarnett $
  **
- ** $URL$
+ ** $URL: https://geoapi.svn.sourceforge.net/svnroot/geoapi/trunk/geoapi/src/main/java/org/opengis/feature/IllegalAttributeException.java $
  **
  ** Copyright (C) 2008 Open GIS Consortium, Inc.
  ** All Rights Reserved. http://www.opengis.org/legal/

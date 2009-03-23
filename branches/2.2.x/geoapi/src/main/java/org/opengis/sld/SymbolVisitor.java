@@ -19,8 +19,6 @@ import org.opengis.annotation.Extension;
  * @version <A HREF="http://portal.opengeospatial.org/files/?artifact_id=1188">Implementation specification 1.0</A>
  * @author Chris Dillard (SYS Technologies)
  * @since GeoAPI 2.0
- * 
- * @deprecated use interfaces from style package : org.opengis.style.StyleVisitor
  */
 @Extension
 public interface SymbolVisitor {

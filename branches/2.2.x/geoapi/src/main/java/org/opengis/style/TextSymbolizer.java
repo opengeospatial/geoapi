@@ -10,7 +10,6 @@
  *************************************************************************************************/
 package org.opengis.style;
 
-import org.opengis.annotation.Extension;
 import org.opengis.filter.expression.Expression;
 import org.opengis.annotation.XmlElement;
 
@@ -38,7 +37,10 @@ public interface TextSymbolizer extends Symbolizer {
     Expression getLabel();
 
     /**
-     * Returns the Font to apply on the text.
+     * Returns a list of Fonts to choose from when rendering this symbol.  The
+     * renderer must choose the first one in the list that it is capable of
+     * rendering.  The returned list is "live" and can be modified by the
+     * caller.  (This is why there is no {@code setFonts} method.)
      * @return Font
      */
     @XmlElement("Font")
@@ -68,12 +70,4 @@ public interface TextSymbolizer extends Symbolizer {
     @XmlElement("Fill")
     Fill getFill();
 
-    /**
-     * calls the visit method of a StyleVisitor
-     *
-     * @param visitor the style visitor
-     */
-    @Extension
-    Object accept(StyleVisitor visitor, Object extraData);
-    
 }
