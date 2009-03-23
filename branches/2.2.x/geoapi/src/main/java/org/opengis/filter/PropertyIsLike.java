@@ -75,4 +75,13 @@ public interface PropertyIsLike extends Filter {
     @XmlElement("escape")
     String getEscape();
 
+    /**
+     * Flag controlling wither comparisons are case sensitive.
+     * <p>
+     * The ability to match case is pending the Filter 2.0 specification.
+     *  
+     * @return <code>true</code> if the comparison is case sensetive, otherwise <code>false</code>.
+     */
+    @XmlElement("matchCase")
+    boolean isMatchingCase();
 }
