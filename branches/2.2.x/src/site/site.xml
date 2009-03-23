@@ -47,7 +47,7 @@
       <item name="GeoAPI 2.0" href="2.0/index.html"/>
     </menu>
 
-    <menu ref="reports"/>  <!-- Replaced by menus for any configured reports (mailing lists, etc.) -->
+    ${reports}  <!-- Replaced by menus for any configured reports (mailing lists, etc.) -->
 
   </body>
 </project>

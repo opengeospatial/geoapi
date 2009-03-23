@@ -5,6 +5,7 @@
       <item name="Home" href="../index.html"/>
     </menu>
 
-    <menu ref="reports"/>  <!-- Replaced by menus for any configured reports (mailing lists, etc.) -->
+    ${reports}  <!-- Replaced by menus for any configured reports (mailing lists, etc.) -->
+
   </body>
 </project>

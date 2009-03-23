@@ -91,7 +91,7 @@ public abstract class UmlProcessor extends SimpleDeclarationVisitor
      * Returns an annotation processor for a set of annotation types. This very simple factory
      * allow the creation of at most one processor instance.
      *
-     * @param  types       Declarations of the annotation types to be processed.
+     * @param  type        Declarations of the annotation types to be processed.
      * @param  environment Environment to use during processing.
      * @return This annotation processor.
      * @throws IllegalStateException if this method has already been invoked on this instance.

@@ -11,33 +11,6 @@
 
 
   <!-- ==================================================== -->
-  <!--     Profiles and properties                          -->
-  <!-- ==================================================== -->
-  <properties>
-    <target.version>1.5</target.version>
-  </properties>
-
-  <!-- Profiles set on the command-line overwrite default properties. -->
-  <profiles>
-    <profile>
-      <id>geotidy</id>
-      <properties>
-        <target.version>1.6</target.version>
-      </properties>
-      <distributionManagement>
-        <repository>
-           <id>geotidy</id>
-           <name>GeoTools 3.0 binaries</name>
-           <url>dav:http://geotidy.geomatys.fr/repository/</url>
-           <uniqueVersion>false</uniqueVersion>
-        </repository>
-      </distributionManagement>
-    </profile>
-  </profiles>
-
-
-
-  <!-- ==================================================== -->
   <!--     Project description (including license)          -->
   <!-- ==================================================== -->
   <groupId>org.opengis</groupId>
@@ -63,7 +36,7 @@
     <license>
       <name>OGC copyright</name>
       <url>https://geoapi.svn.sourceforge.net/svnroot/geoapi/trunk/LICENSE.txt</url>
-      <distribution>repo</distribution>
+      <distribution>manual</distribution>
     </license>
   </licenses>
 
@@ -157,7 +130,7 @@
       <id>jive</id>
       <name>Jody Garnett</name>
       <email>jive@users.sourceforge.net</email>
-      <organization>LISAsoft</organization>
+      <organization>Refractions Research</organization>
       <roles>
         <role>Java Developer</role>
       </roles>
@@ -219,21 +192,19 @@
   <!-- ==================================================== -->
   <!--     External dependencies                            -->
   <!-- ==================================================== -->
-  <dependencyManagement>
-    <dependencies>
-      <dependency>
-        <groupId>net.java.dev.jsr-275</groupId>
-        <artifactId>jsr-275</artifactId>
-        <version>1.0-beta-2</version>
-      </dependency>
-      <dependency>
-        <groupId>junit</groupId>
-        <artifactId>junit</artifactId>
-        <version>4.4</version>
-        <scope>test</scope>
-      </dependency>
-    </dependencies>
-  </dependencyManagement>
+  <dependencies>
+    <dependency>
+      <groupId>net.java.dev.jsr-275</groupId>
+      <artifactId>jsr-275</artifactId>
+      <version>1.0-beta-2</version>
+    </dependency>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.3.1</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
 
 
 
@@ -242,6 +213,7 @@
   <!-- ==================================================== -->
   <build>
     <plugins>
+
       <plugin>
         <inherited>true</inherited>
         <groupId>org.apache.maven.plugins</groupId>
@@ -260,10 +232,10 @@
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
         <configuration>
-          <source>1.5</source>               <!-- The -source argument for the Java compiler.   -->
-          <target>${target.version}</target> <!-- The -target argument for the Java compiler.   -->
-          <debug>false</debug>               <!-- Whether to include debugging information.     -->
-          <encoding>UTF-8</encoding>         <!-- The -encoding argument for the Java compiler. -->
+          <source>1.5</source>            <!-- The -source argument for the Java compiler.   -->
+          <target>1.5</target>            <!-- The -target argument for the Java compiler.   -->
+          <debug>false</debug>            <!-- Whether to include debugging information.     -->
+          <encoding>UTF-8</encoding>      <!-- The -encoding argument for the Java compiler. -->
         </configuration>
       </plugin>
 
@@ -342,7 +314,7 @@
             <tag>
               <name>departure</name>
               <placement>tfmc</placement>
-              <head>Departure from ISO specification:</head>
+              <head>Departure from ISO specification</head>
             </tag>
             <tag>
               <name>issue</name>
@@ -468,6 +440,27 @@
 
 
       <!-- ==================================================== -->
+      <!--     Source code                                      -->
+      <!-- ==================================================== -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jxr-plugin</artifactId>
+        <reportSets>
+          <reportSet>
+            <reports>
+              <report>jxr</report>   <!-- Want API sources only, not test sources. -->
+            </reports>
+          </reportSet>
+        </reportSets>
+        <configuration>
+          <inputEncoding>UTF-8</inputEncoding>
+          <outputEncoding>UTF-8</outputEncoding>
+        </configuration>
+      </plugin>
+
+
+
+      <!-- ==================================================== -->
       <!--     TODO tags                                        -->
       <!-- ==================================================== -->
       <plugin>
@@ -484,16 +477,19 @@
   <!-- ==================================================== -->
   <distributionManagement>
     <repository>
-      <id>osgeo</id>
-      <name>Open Source Geospatial Foundation</name>
-      <url>dav:http://download.osgeo.org/webdav/geotools</url>
+      <id>refractions</id>
+      <name>Refractions Research - Maven 2 Repository</name>
+      <url>dav:http://lists.refractions.net/m2/</url>
     </repository>
+    <snapshotRepository>
+      <id>refractions</id>
+      <name>Refractions Research - Maven 2 Repository</name>
+      <url>dav:http://lists.refractions.net/m2/</url>
+    </snapshotRepository>
     <site>
-      <id>geomatys</id>
+      <id>SourceForge</id>
       <name>GeoAPI web site</name>
-      <!-- We are enable to deploy directly to SourceForge. So we deploy to a mirror,
-           and a daily  rsync task copies the content to SourceForge later. -->
-      <url>dav:http://geoapi.geomatys.fr/</url>
+      <url>scp://geoapi.sourceforge.net:/home/groups/g/ge/geoapi/htdocs/</url>
     </site>
   </distributionManagement>
 
@@ -506,6 +502,5 @@
     <module>tools</module>
     <module>geoapi</module>
     <module>examples</module>
-    <module>conformance</module>
   </modules>
 </project>
