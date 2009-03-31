@@ -120,19 +120,46 @@ public interface FilterFactory {
     PropertyIsEqualTo equal(Expression expr1, Expression expr2, boolean matchCase);
 
     /** Checks that the first sub-expression is not equal to the second subexpression. */
+    PropertyIsNotEqualTo notEqual(Expression expr1, Expression expr2 );
+    
+    /**
+     * Checks that the first sub-expression is not equal to the second subexpression.
+     * 
+     * @param expr1 first expression
+     * @param expr2 second expression
+     * @param matchCase true if the comparison should be case insensitive
+     * @return evaluates to true of expr1 not equal to expr2 
+     */
     PropertyIsNotEqualTo notEqual(Expression expr1, Expression expr2, boolean matchCase);
 
     /** Checks that the first sub-expression is greater than the second subexpression. */
     PropertyIsGreaterThan greater(Expression expr1, Expression expr2);
+    
+    /**
+     * Checks that the first sub-expression is greater than the second subexpression.
+     * 
+     * @param expr1 first expression
+     * @param expr2 second expression
+     * @param matchCase true if the comparison should be case insensitive
+     * @return evaluates to true of expr1 is greater than expr2
+     */
+    PropertyIsGreaterThan greater(Expression expr1, Expression expr2, boolean matchCase);
 
     /** Checks that the first sub-expression is greater or equal to the second subexpression. */
     PropertyIsGreaterThanOrEqualTo greaterOrEqual(Expression expr1, Expression expr2);
+    
+    /** Checks that the first sub-expression is greater or equal to the second subexpression. */
+    PropertyIsGreaterThanOrEqualTo greaterOrEqual(Expression expr1, Expression expr2, boolean matchCase);
 
     /** Checks that its first sub-expression is less than its second subexpression. */
     PropertyIsLessThan less(Expression expr1, Expression expr2);
-
+    
+    PropertyIsLessThan less(Expression expr1, Expression expr2, boolean matchCase);
+    
     /** Checks that its first sub-expression is less than or equal to its second subexpression. */
     PropertyIsLessThanOrEqualTo lessOrEqual(Expression expr1, Expression expr2);
+    
+    PropertyIsLessThanOrEqualTo lessOrEqual(Expression expr1, Expression expr2, boolean matchCase);
 
     /** Character string comparison operator with pattern matching and default wildcards. */
     PropertyIsLike like(Expression expr, String pattern);
@@ -140,6 +167,9 @@ public interface FilterFactory {
     /** Character string comparison operator with pattern matching and specified wildcards. */
     PropertyIsLike like(Expression expr, String pattern, String wildcard, String singleChar, String escape);
 
+    /** Character string comparison operator with pattern matching and specified wildcards. */
+    PropertyIsLike like(Expression expr, String pattern, String wildcard, String singleChar, String escape, boolean matchCase);
+    
     /** Checks if an expression's value is {@code null}. */
     PropertyIsNull isNull(Expression expr);
 

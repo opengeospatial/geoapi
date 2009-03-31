@@ -49,6 +49,19 @@ public interface FilterFactory2 extends FilterFactory {
     /** Retrieves the value of a {@linkplain org.opengis.feature.Feature feature}'s property. */
     PropertyName property(Name name);
 
+    /**
+     * Character string comparison operator with pattern matching and specified wildcards.
+     *      
+     * @param expr
+     * @param pattern
+     * @param wildcard
+     * @param singleChar
+     * @param escape
+     * @param matchCase
+     * @return
+     */
+    PropertyIsLike like(Expression expr, String pattern, String wildcard, String singleChar, String escape, boolean matchCase);
+    
 ////////////////////////////////////////////////////////////////////////////////
 //
 //  SPATIAL FILTERS
