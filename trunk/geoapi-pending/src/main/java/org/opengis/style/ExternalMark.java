@@ -18,7 +18,7 @@ import org.opengis.metadata.citation.OnLineResource;
 /**
  * The alternative to a WellKnownName is an external mark format. The MarkIndex
  * allows an individual mark in a mark archive to be selected. An example format for an
- * external mark achive would be a TrueType font file, with MarkIndex being used to
+ * external mark archive would be a TrueType font file, with MarkIndex being used to
  * select an individual glyph from that file.
  *
  * @version <A HREF="http://www.opengeospatial.org/standards/symbol">Symbology Encoding Implementation Specification 1.1.0</A>
@@ -59,8 +59,8 @@ public interface ExternalMark {
     String getFormat();
 
     /**
-     * Returns an integer value that can used for accesing a particular
-     * Font caracter in a TTF file or a catalog for exemple.
+     * Returns an integer value that can used for accessing a particular
+     * Font character in a TTF file or a catalog for example.
      *
      * @return integer
      */
