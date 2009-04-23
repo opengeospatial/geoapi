@@ -16,7 +16,7 @@
   <groupId>org.opengis</groupId>
   <artifactId>parent</artifactId>
   <packaging>pom</packaging>
-  <version>2.2-SNAPSHOT</version>
+  <version>2.2.0</version>
   <name>GeoAPI</name>
   <url>http://geoapi.sourceforge.net/snapshot/</url>
   <description>
@@ -477,14 +477,16 @@
   <!-- ==================================================== -->
   <distributionManagement>
     <repository>
-      <id>refractions</id>
-      <name>Refractions Research - Maven 2 Repository</name>
-      <url>dav:http://lists.refractions.net/m2/</url>
-    </repository>
+      <id>osgeo</id>
+      <name>Open Source Geospatial Foundation</name>
+      <url>dav:http://download.osgeo.org/webdav/geotools</url>
+      <uniqueVersion>false</uniqueVersion>
+    </repository> 
     <snapshotRepository>
-      <id>refractions</id>
-      <name>Refractions Research - Maven 2 Repository</name>
-      <url>dav:http://lists.refractions.net/m2/</url>
+      <id>osgeo</id>
+      <name>Open Source Geospatial Foundation</name>
+      <url>dav:http://download.osgeo.org/webdav/geotools</url>
+      <uniqueVersion>false</uniqueVersion>
     </snapshotRepository>
     <site>
       <id>SourceForge</id>
