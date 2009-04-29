@@ -29,7 +29,7 @@ import static org.opengis.annotation.Obligation.*;
  * @since GeoAPI 2.3
  */
 @UML(identifier="samplingFeature", specification=OGC_07022)
-public interface SamplingFeature {
+public interface SamplingFeature extends AnyFeature{
 
     /**
      * Sampling features are frequently related to each other, as parts of complexes, networks, through sub-sampling, etc.

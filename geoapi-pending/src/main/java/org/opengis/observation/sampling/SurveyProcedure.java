@@ -38,7 +38,7 @@ public interface SurveyProcedure {
     Datum getElevationDatum();
 
     @UML(identifier="elevationMethod", obligation=OPTIONAL, specification=OGC_07022)
-    Process getElevationMethod();
+    org.opengis.observation.Process getElevationMethod();
 
     @UML(identifier="elevationAccuracy", obligation=OPTIONAL, specification=OGC_07022)
     Measure getElevationAccuracy();
@@ -47,7 +47,7 @@ public interface SurveyProcedure {
     Datum getGeodeticDatum();
 
     @UML(identifier="positionMethod", obligation=MANDATORY, specification=OGC_07022)
-    Process getPositionMethod();
+    org.opengis.observation.Process getPositionMethod();
 
     @UML(identifier="positionAccuracy", obligation=OPTIONAL, specification=OGC_07022)
     Measure getPositionAccuracy();
