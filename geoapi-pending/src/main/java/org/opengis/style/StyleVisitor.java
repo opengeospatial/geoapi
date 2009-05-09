@@ -198,14 +198,7 @@ public interface StyleVisitor {
      *
      * @param lp the line placement to visit
      */
-    Object visit(LinePlacement linePlacement, Object data );
-    
-    /**
-     * Called when accept is called on a Label Placement
-     *
-     * @param lp the label placement to visit
-     */
-    Object visit(LabelPlacement labelPlacement, Object data );
+    Object visit(LinePlacement linePlacement, Object data );   
     
     /**
      * Called when accept is called on a legend graphic
@@ -214,13 +207,6 @@ public interface StyleVisitor {
      */
     Object visit(GraphicLegend graphicLegend, Object data );
     
-    /**
-     * Called when accept is called on an online resource
-     *
-     * @param rs the online resource to visit
-     */
-    Object visit(OnLineResource onlineResource, Object data );
-
     /**
      * Called when accept is called on a halo
      *
@@ -253,12 +239,6 @@ public interface StyleVisitor {
      * @param cs the {@link ChannelSelection} to visit.
      */
     Object visit(ChannelSelection channelSelection, Object data );
-
-    /**
-     * Called when accept is called on a raster {@link OverlapBehavior} element
-     * @param cs the {@link OverlapBehavior} to visit.
-     */
-    Object visit(OverlapBehavior overlapBehavior, Object data );
 
     /**
      * Called when accept is called on a raster {@link SelectedChannelType} element

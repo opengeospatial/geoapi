@@ -120,8 +120,11 @@ public interface Graphic {
     Displacement getDisplacement();
 
     /**
-     * calls the visit method of a StyleVisitor
-     *
+     * Calls the visit method of a StyleVisitor
+     * <p>
+     * Please note StlyeVisitor does not have a method to directly visit a Graphic: it will visit one of the
+     * subtypes GraphicLegend, GraphicFill or Graphic stroke.
+     *  
      * @param visitor the style visitor
      */
     @Extension
