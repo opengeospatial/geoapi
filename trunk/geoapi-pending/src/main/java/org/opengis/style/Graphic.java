@@ -122,8 +122,8 @@ public interface Graphic {
     /**
      * Calls the visit method of a StyleVisitor
      * <p>
-     * Please note StlyeVisitor does not have a method to directly visit a Graphic: it will visit one of the
-     * subtypes GraphicLegend, GraphicFill or Graphic stroke.
+     * Please note StlyeVisitor has methods to directly visit a Graphic, GraphicLegend, or GraphicFill or GraphicStroke; please
+     * call the most appropriate method.
      *  
      * @param visitor the style visitor
      */
