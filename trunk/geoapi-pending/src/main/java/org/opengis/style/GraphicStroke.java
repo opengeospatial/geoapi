@@ -44,7 +44,7 @@ public interface GraphicStroke extends Graphic{
     Expression getGap();
     
     /**
-     * calls the visit method of a StyleVisitor
+     * Calls the visit method of a StyleVisitor
      *
      * @param visitor the style visitor
      */

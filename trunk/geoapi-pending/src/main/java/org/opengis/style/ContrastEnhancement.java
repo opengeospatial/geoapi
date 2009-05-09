@@ -50,11 +50,11 @@ public interface ContrastEnhancement {
     public ContrastMethod getMethod();
     
     /**
-     * A “GammaValue” tells how much to brighten (values
+     * A "GammaValue" tells how much to brighten (values
      * greater than 1.0) or dim (values less than 1.0) an image. The default GammaValue is 1.0
      * (no change).
      *
-     * @return expression or null
+     * @return Expression to control gamma adjustment, null or Expression.NIL handled as the value 1.0
      */
     @XmlElement("GammaValue")
     Expression getGammaValue();
