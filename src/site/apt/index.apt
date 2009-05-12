@@ -93,7 +93,7 @@ GeoAPI
   {{{http://portal.opengeospatial.org/?m=projects&a=view&project_id=294}GeoAPI 3.0 Standard Working Group}}
   has published its {{{charter.html}charter}}.
 
-  The working group currently aims to produce the inital 3.0 standard containing
+  The working group currently aims to produce the initial 3.0 standard containing
   only a few, highly tested and stable packages. These include:
 
     * <<<org.opengis.annotation>>> for internal, documentation markup

@@ -91,6 +91,7 @@
     <mailingList>
       <name>GeoAPI-devel</name>
       <subscribe>http://lists.sourceforge.net/lists/listinfo/geoapi-devel</subscribe>
+      <unsubscribe>http://lists.sourceforge.net/lists/listinfo/geoapi-devel</unsubscribe>
       <post>geoapi-devel@lists.sourceforge.net</post>
       <archive>http://sourceforge.net/mailarchive/forum.php?forum_name=geoapi-devel</archive>
     </mailingList>
@@ -264,6 +265,19 @@
           <target>${target.version}</target> <!-- The -target argument for the Java compiler.   -->
           <debug>false</debug>               <!-- Whether to include debugging information.     -->
           <encoding>UTF-8</encoding>         <!-- The -encoding argument for the Java compiler. -->
+        </configuration>
+      </plugin>
+
+
+
+      <!-- ======================================================= -->
+      <!--     Resources.                                          -->
+      <!-- ======================================================= -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-resources-plugin</artifactId>
+        <configuration>
+          <encoding>UTF-8</encoding>
         </configuration>
       </plugin>
 
