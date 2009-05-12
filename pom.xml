@@ -387,15 +387,9 @@
           <!-- Separates packages on the overview page into the groups  specified. -->
           <groups>
             <group>
-              <title>Spatial Referencing by Coordinates</title>
+              <title>Display and Styling</title>
               <packages>
-                org.opengis.referencing*:org.opengis.temporal*:org.opengis.parameter*
-              </packages>
-            </group>
-            <group>
-              <title>Geometry and topology</title>
-              <packages>
-                org.opengis.geometry*:org.opengis.topology*
+                org.opengis.display*:org.opengis.style*:org.opengis.layer*:org.opengis.sld*
               </packages>
             </group>
             <group>
@@ -405,9 +399,27 @@
               </packages>
             </group>
             <group>
-              <title>Feature and filter</title>
+              <title>Feature and Filter</title>
               <packages>
                 org.opengis.feature*:org.opengis.filter*
+              </packages>
+            </group>
+            <group>
+              <title>Geometry and Topology</title>
+              <packages>
+                org.opengis.geometry*:org.opengis.topology*
+              </packages>
+            </group>
+            <group>
+              <title>Spatial Referencing by Coordinates</title>
+              <packages>
+                org.opengis.referencing*:org.opengis.temporal*:org.opengis.parameter*
+              </packages>
+            </group>
+            <group>
+              <title>Observations and Measurements</title>
+              <packages>
+                org.opengis.observation*
               </packages>
             </group>
             <group>
@@ -423,21 +435,15 @@
               </packages>
             </group>
             <group>
-              <title>Styling</title>
-              <packages>
-                org.opengis.style*:org.opengis.layer*:org.opengis.sld*
-              </packages>
-            </group>
-            <group>
-              <title>Display objects</title>
-              <packages>
-                org.opengis.display*:org.opengis.go*
-              </packages>
-            </group>
-            <group>
-              <title>Web services</title>
+              <title>Web Services</title>
               <packages>
                 org.opengis.web*
+              </packages>
+            </group>
+            <group>
+              <title>Base package</title>
+              <packages>
+                org.opengis.util*:org.opengis.annotation*
               </packages>
             </group>
           </groups>
