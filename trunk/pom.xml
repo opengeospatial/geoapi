@@ -509,6 +509,12 @@
       <url>dav:http://download.osgeo.org/webdav/geotools</url>
       <uniqueVersion>false</uniqueVersion>
     </repository>
+    <snapshotRepository>
+        <id>opengeo</id>
+        <uniqueVersion>false</uniqueVersion>
+        <name>OpenGeo Maven Repository</name>
+        <url>dav:http://repo.opengeo.org</url>
+    </snapshotRepository>
     <site>
       <id>geomatys</id>
       <name>GeoAPI web site</name>
