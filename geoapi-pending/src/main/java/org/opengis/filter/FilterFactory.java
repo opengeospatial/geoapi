@@ -243,16 +243,7 @@ public interface FilterFactory {
     Subtract  subtract(Expression expr1, Expression expr2);
 
     /** Call into some implementation-specific function. */
-    Function  function(String name, Expression[] args);
-
-    /** Call into some implementation-specific function with one argument. */
-    Function  function(String name, Expression arg1);
-
-    /** Call into some implementation-specific function with two arguments. */
-    Function  function(String name, Expression arg1, Expression arg2);
-
-    /** Call into some implementation-specific function with three arguments. */
-    Function  function(String name, Expression arg1, Expression arg2, Expression arg3);
+    Function  function(String name, Expression ... args);
 
     /** A constant, literal value that can be used in expressions. */
     Literal  literal(Object obj);
