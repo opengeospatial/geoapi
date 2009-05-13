@@ -43,9 +43,12 @@ import static org.opengis.annotation.Specification.*;
  *        tile a plane (that is each point on the plane falls in precisely one polygon).
  *        The value returned by the coverage for a point is the value of an attribute of
  *        the polygon that contains the point.</li>
- *    <li>A coverage may be represented by a grid of values.
- *        The value returned by the coverage for a point is that of the grid value
- *        whose location is nearest the point.</li>
+ *    <li>A coverage may be represented by a grid of values
+ *        (a {@linkplain DiscreteGridPointCoverage Discrete Grid Point Coverage}).
+ *        If the coverage is a {@linkplain ContinuousQuadrilateralGridCoverage Continuous
+ *        Quadrilateral Grid Coverage} using {@linkplain InterpolationMethod#NEAREST_NEIGHBOUR
+ *        Nearest Neighbour} interpolation method, then the value returned by the coverage for
+ *        a point is that of the grid value whose location is nearest the point.</li>
  *    <li>Coverage may be represented by a mathematical function.
  *        The value returned by the coverage for a point is just the return value
  *        of the function when supplied the coordinates of the point as arguments.</li>

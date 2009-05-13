@@ -51,6 +51,8 @@ public interface ContinuousQuadrilateralGridCoverage extends ContinuousCoverage 
      * Returns a code that identifies the interpolation method that shall be used to derive a
      * feature attribute value at any direct position within the {@linkplain GridValueCell grid
      * value cell}. This value is often {@linkplain InterpolationMethod#BILINEAR bilinear}.
+     *
+     * @return The interpolation method.
      */
     @UML(identifier="interpolationType", obligation=MANDATORY, specification=ISO_19123)
     InterpolationMethod getInterpolationMethod();

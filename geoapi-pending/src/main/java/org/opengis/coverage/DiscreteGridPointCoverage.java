@@ -32,18 +32,17 @@ import static org.opengis.annotation.Specification.*;
  * values through a {@linkplain GridValuesMatrix grid values matrix}.
  * <p>
  * {@code DiscreteGridPointCoverage} inherits the {@linkplain #getElements elements} and the
- * operations {@linkplain #locate locate}, {@linkplain #find(DirectPosition,int) find}, and
- * {@linkplain #list list}, from {@link DiscreteCoverage}, with the restriction that the
+ * operations {@link #locate locate}, {@link #find(DirectPosition,int) find}, and
+ * {@link #list list}, from {@link DiscreteCoverage}, with the restriction that the
  * associated {@linkplain GeometryValuePair geometry-value pairs} and those returned by the
  * operations shall be limited to
- * {@linkplain GridPointValuePair (grid point)-value pairs}. The
+ * {@linkplain GridPointValuePair (grid point)-(value) pairs}. The
  * {@linkplain #getElements elements} may be generated from the
  * {@linkplain GridValuesMatrix grid values matrix} through the
  * {@linkplain #getValueAssignment value assignment}. The inherited operations
- * {@linkplain DiscreteCoverage#evaluate evaluate} and
- * {@linkplain #evaluateInverse evaluateInverse} use
+ * {@link #evaluate evaluate} and {@link #evaluateInverse evaluateInverse} use
  * {@linkplain GridValuesMatrix grid values matrix} to assign values to the
- * {@linkplain GeometryValuePair geometry value pairs}.
+ * {@linkplain GeometryValuePair geometry-value pairs}.
  *
  * @version ISO 19123:2004
  * @author  Wim Koolhoven
@@ -53,7 +52,7 @@ import static org.opengis.annotation.Specification.*;
  * @todo Should we restrict {@link DomainObject} to {@link GridPoint} as well? It sound like
  *       a logical consequence of {@link GridPointValuePair} restriction.
  * @todo Should we move this interface to org.opengis.coverage.grid as all the other grid interfaces,
- *       or should it remain in org.opengis.coverage to follow the ordering in ISO19123.
+ *       or should it remain in org.opengis.coverage to follow the ordering in ISO19123?
  */
 @UML(identifier="CV_DiscreteGridPointCoverage", specification=ISO_19123)
 public interface DiscreteGridPointCoverage extends DiscreteCoverage {
