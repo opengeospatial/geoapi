@@ -127,17 +127,17 @@ GeoAPI
 
 * Versions
 
-  Development version is GeoAPI 2.3-SNAPSHOT. Last unofficial milestone is GeoAPI 2.1.1. The
-  last OGC official release was GeoAPI 2.0.
+  The current development version is GeoAPI 2.3-SNAPSHOT. The last unofficial milestone is GeoAPI 
+  version 2.1.1. The last released matched by an OGC standard was GeoAPI 2.0.
 
-    * {{{2.3}GeoAPI 2.3}} - current development version.
+    * {{{2.3}GeoAPI 2.3}} - Current development version.
 
-    * {{{2.2}GeoAPI 2.2}} - unofficial milestone.
+    * {{{2.2}GeoAPI 2.2}} - Unofficial milestone.
 
-    * {{{2.1}GeoAPI 2.1}} - unofficial milestone.
+    * {{{2.1}GeoAPI 2.1}} - Unofficial milestone.
 
-    * {{{2.0}GeoAPI 2.0}} - last release from an OGC working group.
+    * {{{2.0}GeoAPI 2.0}} - Formal release, standardized by OGC 03-064r10, <GO-1 Application Objects>.
 
-    * {{{1.0}GeoAPI 1.0}} - unofficial milestone.
+    * {{{1.0}GeoAPI 1.0}} - Unofficial milestone, released with first draft of OGC 03-064.
 
-    * {{{0.1}GeoAPI 0.1}} - first release from OGC.
+    * {{{0.1}GeoAPI 0.1}} - First release, based on the interfaces defined in OGC 01-009 <Coordinate Transformation Services>.
