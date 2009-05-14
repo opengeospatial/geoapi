@@ -4,8 +4,11 @@
     <title>General</title>
 
     <faq id="start">
-      <question>How did the GeoAPI project get started, whats its history?</question>
+      <question>How did the GeoAPI project get started, and what is its history?</question>
       <answer>
+        <p>The GeoAPI project emerged from the collaboration of several free software projects and 
+        from the work on various specifications at the Open Geospatial Consortium (OGC).</p>
+        
         <p>You can follow the early, pre-history of GeoAPI by reading the following three posts to the
         DigitalEarth.org website; at this point it had no name, only a goal of bringing together multiple
         Java GIS projects.</p>
@@ -16,21 +19,46 @@
           <li><a href="http://web.archive.org/web/20030501122912/http://digitalearth.org/story/2002/12/12/121814/73">Java GeoSpatial API Part III</a></li>
         </ul>
 
-        <p>As you can see in part III the OGC had just anounced a Geographic Objects initiative, collaboration
-        with which ultimatly led to the GeoAPI working group within the OGC and the formation of an addopted
-        charter.</p>
+        <p>As you can see in part III, the OGC had just anounced a Geographic Objects initiative 
+        which intended to define Java interfaces for geographic software. This followed earlier work
+        on the OGC Implementation Specification 01-009 <i>Coordinate Transformation Services</i> 
+        which included interfaces defined in the <code>org.opengis</code> namespace ultimately
+        adopted by GeoAPI.</p>
+        
+        <p>The GeoAPI project eventually formed to persue this work. The interfaces defined in the 
+        OGC specification 01-009 became GeoAPI version 0.1. GeoAPI 1.0 was released with the draft 
+        of OGC specification 03-064 <i>GO-1 Application Objects</i>. In May 2005, the final draft 
+        of the GO-1 specification, which included GeoAPI interfaces, was accepted as an OGC standard
+        and the matching version of GeoAPI was released as version 2.0.</p>
+        
+        <p>The GeoAPI working group of the OGC has formed more recently to formalized and continue 
+        the work of standardizing the most stable interfaces produced by the GeoAPI project.</p>
       </answer>
     </faq>
 
     <faq id="OGC">
       <question>What is the relationship between GeoAPI and OGC?</question>
       <answer>
-        <p>GeoAPI was initially an initiative of various open source communities wanting to reduce work duplication.
-        The goal was to make it easier to exchange pieces of software between independent projects, so that a
-        project doesn't need to reinvent a wheel already provided by an other project. In 2004, GeoAPI merged with
-        the GO-1 initiative from OGC. In September 2004, the creation of a GeoAPI working group as been approved by
-        OGC voting members. In May 2005, the GO-1 final specification, which includes GeoAPI interfaces, has been
-        accepted as an OGC standard by electronic vote.</p>
+        <p>GeoAPI is closely tied to the OGC both in its origins and in its ongoing work.</p>
+        
+        <p>The GeoAPI project is a collaboration of participants from various institutions and 
+        software communities. The GeoAPI project is developing a set of interfaces in the Java 
+        language to help software projects produce high quality geospatial software. The core 
+        interfaces follow closely the specifications produced in the 19100 series of the 
+        International Organization for Standradization (ISO) and by the OGC. The interfaces use the 
+        <code>org.opengis</code> namespace and copyright to the code is assigned to the OGC. The 
+        project started with the code produced by the OGC Implementation Specification 01-009 
+        <i>Coordinate Transformation Services</i> and refactored this code in collaboration with the 
+        standradization work surrounding the OGC specification 03-064 
+        <i>GO-1 Application Objects</i>.</p>
+        
+        <p>The GeoAPI working group of the OGC is a separate effort made up principally of members 
+        of the OGC and formed to continue the work of formalizing the interfaces developed by the 
+        GeoAPI project as ratified standards of the OGC. The working group decided to start the 
+        <i>GeoAPI Implementation Specification</i> as a new standard focused exclusively on the 
+        interfaces produced by the GeoAPI project. In acknoledgement to the earlier work and to 
+        match the numbering scheme of GeoAPI, the first specification released under this name is 
+        expected to carry the 3.0 version number.</p>
       </answer>
     </faq>
 
@@ -110,7 +138,7 @@
     </faq>
 
     <faq id="collections">
-      <question>Why do you favor Collections over arrays as return type?</question>
+      <question>Why do you favor Collections over arrays as a return type?</question>
       <answer>
         <p>For performance, more orthogonal API and more freedom on the implementer side.</p>
 
