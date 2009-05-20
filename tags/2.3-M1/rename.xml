@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Rename" default="rename">
+  <target name="rename">
+    <replace dir=".">
+      <include name="**/*.txt"/>
+      <include name="**/*.apt"/>
+      <include name="**/*.fml"/>
+      <include name="**/*.xml"/>
+      <include name="**/*.html"/>
+      <include name="**/*.java"/>
+      <replacefilter token="2.3-SNAPSHOT" value="2.3-SNAPSHOT"/>
+    </replace>
+  </target>
+</project>
