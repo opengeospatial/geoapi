@@ -44,7 +44,10 @@ GeoAPI
   The project runs a public {{{mail-lists.html}mailing list}} for user and
   developer questions, other issues, and general discussion.
 
-  The project is hosted on sourceforge at {{http://geoapi.sourceforge.net/}}.
+  The project is hosted on sourceforge at {{http://geoapi.sourceforge.net/}} which
+  has a mostly unused project page at {{http://sourceforge.net/projects/geoapi}}.
+  
+  GeoAPI has a wiki available at {{http://docs.codehaus.org/display/GEO/Home}}.
 
 
 * The GeoAPI code structure

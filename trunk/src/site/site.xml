@@ -43,9 +43,15 @@
       <item name="FAQ"      href="faq.html"/>
     </menu>
 
-    <menu name="Releases" inherit="none">
-      <item name="GeoAPI 2.1" href="2.1/index.html"/>
+    <menu name="Formal Releases" inherit="none">
       <item name="GeoAPI 2.0" href="2.0/index.html"/>
+    </menu>
+
+    <menu name="Project Releases" inherit="none">
+      <item name="GeoAPI 2.2" href="2.2/index.html"/>
+      <item name="GeoAPI 2.1" href="2.1/index.html"/>
+      <item name="GeoAPI 1.0" href="1.0/index.html"/>
+      <item name="GeoAPI 0.1" href="0.1/index.html"/>
     </menu>
 
     <menu ref="reports"/>  <!-- Replaced by menus for any configured reports (mailing lists, etc.) -->
