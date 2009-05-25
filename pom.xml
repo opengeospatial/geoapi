@@ -94,7 +94,7 @@
 
   <ciManagement>
     <system>hudson</system>
-    <url>http://hudson.geomatys.fr/job/GeoAPI/</url>
+    <url>http://hudson.geomatys.com/job/GeoAPI/</url>
   </ciManagement>
 
   <issueManagement>
@@ -525,11 +525,11 @@
       <uniqueVersion>false</uniqueVersion>
     </repository>
     <site>
-      <id>geomatys</id>
+      <id>geoapi</id>
       <name>GeoAPI web site</name>
       <!-- We are not allowed to deploy directly to SourceForge. So we deploy to a
            mirror, and a daily rsync task copies the content to SourceForge later. -->
-      <url>dav:http://geoapi.geomatys.fr/</url>
+      <url>dav:http://www.geoapi.org/</url>
     </site>
   </distributionManagement>
 
