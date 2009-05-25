@@ -75,7 +75,8 @@ GeoAPI
   projects which also use this tool can integrate GeoAPI into their maven
   dependencies using one of the {{{maven.html}repositories listed here}}.
 
-  GeoAPI is {{{source-repository.html}hosted on a Subversion repository}}.
+  GeoAPI is hosted on a {{{source-repository.html}Subversion repository}}. The 
+  code is also available as a {{{http://hg.geomatys.com/geoapi/trunk/}Mercurial clone}}.
 
 
 * The GeoAPI license
@@ -123,7 +124,9 @@ GeoAPI
 
     * {{{snapshot/pending}Browse javadoc of pending interfaces}}
 
-    * {{{http://hudson.geomatys.fr/job/GeoAPI}Nightly builds (last 2 weeks)}}
+    * {{{http://hudson.geomatys.com/job/GeoAPI}Nightly builds (last 2 weeks)}}
+
+    * {{{http://www.geoapi.org/mail-lists.html}Mailing lists}}
 
     * {{{http://docs.codehaus.org/display/GEO/Home}News and discussions (wiki pages)}}
 
