@@ -44,7 +44,7 @@
     <menu name="GeoAPI 2.0.0" inherit="none">
       <item name="Defining Specification"  href="http://www.opengeospatial.org/standards/go"/>
       <item name="Javadoc"  href="2.0/javadoc/index.html"/>
-      <item name="Download" href="http://sourceforge.net/project/showfiles.php?group_id=70002%26package_id=69096%26release_id=333419"/>
+      <item name="Download" href="http://sourceforge.net/project/showfiles.php?group_id=70002&amp;package_id=69096&amp;release_id=333419"/>
     </menu>
 
 
@@ -61,7 +61,7 @@
       <item name="JIRA Task Tracker"          href="http://jira.codehaus.org/browse/GEO"/>
       <item name="Documentation Wiki"         href="http://docs.codehaus.org/display/GEO/Home"/>
       <item name="Frequently Asked Questions" href="faq.html"/>
-      <item name="OGC Working Group" href="http://portal.opengeospatial.org/?m%3Dprojects%26a%3Dview%26project_id%3D294"/>
+      <item name="OGC Working Group" href="http://portal.opengeospatial.org/?m&#61;projects&amp;a&#61;view&amp;project_id&#61;294&amp;tab&#61;0"/>
       <item name="OGC SWG Charter"            href="charter.html"/>
     </menu>
 
