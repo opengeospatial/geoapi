@@ -1,0 +1,17 @@
+GeoAPI 2.0
+
+  Release 2.0 of GeoAPI contains the interfaces developed by the GeoAPI project and accepted by the
+  Open Geospatial Consortium with the final draft of the implementation specification
+    <GO-1 Application Objects>
+  and therefore considered by the GeoAPI project as one of its <official> releases.
+  
+  The OGC provides access to the {{{http://www.opengeospatial.org/standards/go}GO-1 specification}}.
+
+  {{{javadoc/index.html}Browse javadoc}}.
+
+  This release comes in two flavours: <<<geoapi-nogenerics.jar>>> requires a Java environment
+  J2SE\ 1.4 or higher while <<<geoapi-nogenerics.jar>>> requires a Java environment Java\ 5 or
+  higher. Both can be obtained from the 
+  {{{http://sourceforge.net/project/showfiles.php?group_id=70002&package_id=69096&release_id=333419}download page}}.
+
+
