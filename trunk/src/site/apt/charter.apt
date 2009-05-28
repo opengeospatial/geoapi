@@ -1,166 +1,128 @@
-                                         --------------
-                                         GeoAPI Charter
-                                         --------------
+        ----------------------------------------------------------------------------------
+        Charter of the GeoAPI 3.0 Standard Working Group of the Open Geospatial Consortium
+        ----------------------------------------------------------------------------------
 
-Introduction
+1. Purpose
 
-  An ad-hoc meeting was held at the June 2004 Technical Committee meeting to discuss
-  the issue of GeoAPI Management as it applies to geospatial data and services.
-  Discussion at this meeting focused on the management and direction of GeoAPI.
-  After discussion, the ad-hoc approved a motion to establish the GeoAPI working
-  group within the Open GIS Consortium Technical Committee for the purpose of addressing
-  GeoAPI Management and the related OGC Specifications and Recommendation papers implemented
-  in GeoAPI that apply to geospatial applications.
-
-  This document establishes an operational Charter for a GeoAPI Working Group within the Open
-  GIS Consortium, Inc. (OGC) Technical Committee devoted to management and implementation of
-  applicable geospatial specifications.
+  The GeoAPI Standard Working Group (SWG) aims to create the GeoAPI 3.0 Standard which will define a
+  set of Java language interfaces along with an associated test suite, to provide a standardized,
+  programming language level realization of some core OGC specifications. These interfaces will
+  facilitate the creation of accurate, coherent, interoperable, and verifiable implementations of
+  those OGC standards.
 
 
-Mission and Objectives
+2. Scope of Work
 
-* Mission
+  The GeoAPI SWG Standard will propose the candidate GeoAPI 3.0 Standard, along with the Java
+  language interfaces described by the standard, and an associated test suite which can be run
+  against any implementation of the interfaces.
 
-  The development community in building GIS solutions is sustaining an enormous level of effort.
-  The GeoAPI project aims to reduce duplication by providing a neutral, interface-only Java API
-  based upon existing and proposed OGC Standards, that GIS projects can use to interoperate. While
-  the current GeoAPI project is primarily interested in Java, this does not preclude the use of other
-  languages in the future.
+  The candidate GeoAPI 3.0 standard will explain the work, document the interfaces and explain the
+  rationale for all the deviations from the OGC Standards.
 
+  The Java interfaces described in the GeoAPI 3.0 standard will cover the following OGC standards:
+    * (Dependency) ISO 19103: Conceptual schema language
+    * OGC Abs. Topic 11 Metadata (ISO 19115: Metadata)
+    * OGC Abs. Topic 2 Spatial Referencing by Coordinates (ISO 19111: Spatial Referencing by Coordinates)
 
-* Background and Problem Statement
+2.1 What is out of scope?
 
-  A wide range of GIS solutions are available in Java, but each of them uses their own API.
-  This leads to vendor and version lock-in situations, in which clients have to develop against
-  a particular implementation and cannot easily switch implementations. The variety of APIs is
-  also a barrier to interoperability at the Java object level. A set of interfaces accepted by
-  major vendors would help to free the client from lock-in, and would help to increase interoperability.
+  This work is not expected to cover all OGC standards.
 
-  The JDBC framework in Java 2 Standard Edition (J2SE) is a successful example of an interface-only
-  specification. Vendors provide implementations of those interfaces for their particular database
-  product. The same vendor can even provide many implementations targeting the same database, with
-  different performance, security and ease-of-deployment tradeoff. The clients interact through the
-  interfaces, no matter which particular implementation is actually used. The goal of GeoAPI is to
-  achieve for GIS what JDBC achieved for databases.
+  A reference implementation of the interfaces will exist but will not be part of the work of this 
+  SWG.
 
-  UML models provided in abstract specifications are the starting point, but they are not directly
-  useable in Java programs. Therefore UML must be expressed as Java interfaces. Since there is not
-  always a one-to-one relationship between entities found in abstract specifications and Java concepts,
-  some interpretations and manual re-work are required. Practical consideration related to interoperability
-  with existing libraries (e.g. Java2D, Java3D, Java Advanced Imaging) as well as performance issues (e.g.
-  avoiding garbage collection overhead) infrequently lead to minor departure and/or extensions to the abstract
-  specifications. At this point in time, projects perform their own interpretation of abstract specifications,
-  resulting in varying interpretations of the UML when it is rendered to API form.
+2.2 Specific Contribution of Existing Work as a Starting Point
 
+  Existing work by the GeoAPI project (http://geoapi.sourceforge.net), will be taken as a starting
+  point. Specifically, the Standard will only include the most stable interfaces of the GeoAPI
+  project, for which a reliable reference implementation exists and there is at least one other
+  implementation.
 
-* Objectives
+  This work emerges from the earlier OGC standard OpenGIS Geographic Objects Implementation
+  Specification version 1.0.0 (03-064r10) by re-using the non graphical elements of that earlier
+  work. This earlier specification defined GeoAPI 2.0.
 
-  The objectives for the GeoAPI Working Group are:
+2.3 How it is to be Determined when the Work of the SWG has been Completed
 
-    [[1]] Project management of the GeoAPI SourceForge project (as W3C manages web specifications).
-
-          * Insuring that everything that goes into this project is tied to OGC specifications and
-            recommended practices.
-
-          * Identifying project tasks and setting priorities and target dates for them.
-
-          * Grouping pending tasks for successive project release versions.
-
-    [[2]] Development of Java API's from geospatial specifications and recommendation papers.
-
-          * API's include but are not limited to; Topic 1 (ISO 19107), Topic 2 (ISO 19111),
-            Topic 11 (ISO 19115), Grid Coverage Services, OGC GO-1 Application Objects,
-            Topic 5: OGC Feature Model.
-
-          * Collaborate with related OGC Working Groups to ensure adherence to specifications
-            and two-way flow of information and ideas.
-
-          * Utilize available UML in translating to Java interfaces.
-
-    [[3]] Requirements management for the GeoAPI project.
-
-          * Solicit feedback on the utility and usability of GeoAPI interfaces.
-
-          * Solicit written change requests for modification or deprecation of existing or addition
-            of new GeoAPI interfaces.
-
-          * Discuss, accept, modify, or reject proposed changes to GeoAPI interfaces.
-
-    [[4]] UML model management for the GeoAPI SourceForge project.
-
-          * Create appropriate UML models for accepted GeoAPI interfaces.
-
-          * Modify UML models to conform to approved modifications to GeoAPI interfaces.
-
-    [[5]] Validation and verification of commercial and open source implementations of GeoAPI interfaces.
-
-          * Develop or make available Test Harnesses.
-
-          * Develop or make available appropriate Test Procedures.
-
-          * Incorporate tests in OGC CITE process.
-
-    [[6]] Manage the process of moving UML models through the spec process so they become OGC
-          (and ISO/TC211?) specifications.
-
-          * Identify appropriate TC/WG to propagate changes and new specifications.
-
-          * Prepare TC211 NWIPs.
-
-    [[7]] Following every TC meeting, a posting on the GeoAPI site with actions, recommendations,
-          and work items for the next quarter.
+  The work of the SWG will be completed when the candidate specification has been proposed to the
+  working group, all comments to that specification have been addressed, and a final revision has
+  been accepted by the SWG and approved by the OGC technical committee.
 
 
-Approach
+3. Description of the Deliverables
 
-  As a Working Group of the Open GIS Consortium Technical Committee, the GeoAPI Working Group will be
-  organized and operate in accordance with the Standard Operating Procedures of that body. Activities
-  of the GeoAPI Working Group related to the organization, coordination, and execution of interoperability
-  experiments will be performed in accordance with the Standard Operating Procedures of the Open GIS Consortium
-  Interoperability Program.
+  The GeoAPI 3.0 SWG will produce a standards document, a set of Java language interfaces and a test
+  suite through which groups implementing the Java interfaces can test their implementation.
 
 
-* Work Plan
+4. License Policy of the SWG
 
-  GeoAPI is an umbrella API incorporating several specifications and working groups. Progress in this domain
-  will be achieved as follows:
+  Since the work merely re-interprets other OGC specifications, it is not anticipated that the work
+  of the SWG would include any work which could be subject to trademark or patents.
 
-    [[1]] Development and maintenance of a GeoAPI roadmap including business objectives, requirements,
-          Measurements of Effectiveness (MOE), technologies, integration/architecture patterns, and
-          specifications/standards.
-
-          * Provide Java API's for geospatial specifications and recommendation papers to include but
-            not limited to the following: Topic 1 (ISO 19107), Topic 2 (ISO 19111), Topic 11 (ISO 19115),
-            Grid Coverage Services, OGC GO-1 Application Objects, Topic 5: OGC Feature Model.
-
-    [[2]] Managing partnerships with other organizations as appropriate, drawing on expertise from the
-          broader geospatial community.
-
-    [[3]] Identification of on-going efforts and organizations addressing issues identified in the roadmap.
-
-    [[4]] Formulation of rules for translating UML entities to Java interfaces.
-
-    [[5]] Application of rules to translate UML to Java, including interpretation and manual revision steps.
-
-    [[6]] Validate resulting Java interfaces against UML, using automated tools where possible.
-
-    [[7]] Establish, manage, and execute GeoAPI Interoperability Experiments and infrastructure to mature
-          and validate the roadmap. Test and validate the use of broad, standards-based technologies in
-          conjunction with adopted and in-work OpenGIS specifications.
-
-    [[8]] Promote the successful results of GeoAPI work for adoption and practical implementation in the
-          community.
+  The Java language interfaces and test suite will be distributed with OGC copyright under one of
+  the following license, to be determined by the working group:
+    * the current license documented at http://geoapi.sourceforge.net/license.html.
+    * the well known license, the GNU Lesser General Public License (LGPL) which is described at
+      (http://www.gnu.org/licenses/old-licenses/gpl-2.0.html). The license permits the use of the
+      code by anyone for any purpose but imposes only a minor restriction to those who wish to
+      re-distribute the code itself.
 
 
-* Coordination
+5. Anticipated Audience
 
-  Membership in the GeoAPI SourceForge project is encouraged, but not limited to OGC members. This
-  is to allow broader participation, and reflects the existing membership that is a cross section
-  between OGC, ISO, and non-member academics and organizations. The GeoAPI project is also related
-  to a number of existing open source GIS initiatives, including but not limited to GeoTools, degree,
-  uDig, GeoServer, Gnumeric, Seagis, and OpenMap. Coordination between this working group and these projects is planned.
+  The code interfaces produced by this working group should be useful to any group implementing OGC
+  standards using the Java language, or any users of those implementations.
+
+  It is expected that the deliberations of this working group will be followed mostly by those who
+  aim to create the above implementations.
 
 
-Membership
+6. Other informative information about the work of this RWG
 
-  The OGC GeoAPI Working Group is open for participation by all interested OGC members.
+6.1 Similar or applicable standards work
+
+  This work overlaps the work of the Architecture working group to the extent that this effort aims
+  to develop a coherent definition of all OGC standards. Any issues in harmonization which arrives
+  in the course of this working group's discussions will be brought to the attention of the
+  Architecture group for resolution.
+
+  The GeoAPI interfaces also aims to work harmoniously with the standard Java library. Where
+  necessary for smooth integration with the Java language, the GeoAPI interfaces favor the Java
+  models.
+
+6.2 Details of the first meeting
+
+  The SWG has not yet met. There have been a series of meetings by the GeoAPI ad-hoc working group
+  which have prepared the work for this SWG.
+
+6.3 Projected on-going meeting schedule
+
+  We expect two meetings per year.
+
+6.4 Supporters of the Proposal
+
+  The following contributors (listed in alphabetical order) are interested by this proposal:
+
+  Person                Organization
+  ------------------------------------------
+  Rob Atkinson          CSRIO (Australia)
+  Adrian Custer         Geomatys (France)
+  Martin Desruisseaux   Geomatys (France)
+  Jérôme Gaspéri        CNES (France)
+  Gilles Gesquiere      LSIS (France)
+  Max Martinez          ERDAS
+  Emmanuel Seguin       IGN (France)
+
+
+7. Future Work
+
+  The SWG is expected to continue meetings for expanding this work on the initial standard to
+  develop future revisions of the standard. A first set of expansions will lead to Java language
+  realizations of all the core OGC specifications such as OGC Abstract Topic 6 - Schema for coverage
+  geometry and functions, OGC Abstract Topic 1: Feature geometry, and OGC Abstract Topic 5: Features.
+  Subsequent revisions may expand this work to the OGC Web Services specifications or to other
+  programming languages.
+
+
