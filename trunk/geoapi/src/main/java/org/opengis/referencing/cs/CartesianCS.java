@@ -30,6 +30,11 @@ import static org.opengis.annotation.Specification.*;
  *   {@link org.opengis.referencing.crs.ImageCRS       Image}
  * </TD></TR></TABLE>
  *
+ * @departure
+ *   According ISO specification, this interface should extends directly {@code CoordinateSystem}.
+ *   GeoAPI defines this interface as a specialization of {@code AffineCS} instead. This avoid the
+ *   need for the {@code ImageCS} union defined in ISO 19111:2007.
+ *
  * @version <A HREF="http://portal.opengeospatial.org/files/?artifact_id=6716">Abstract specification 2.0</A>
  * @author  Martin Desruisseaux (IRD)
  * @since   GeoAPI 1.0

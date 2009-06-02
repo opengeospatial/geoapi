@@ -49,6 +49,8 @@ public final class AxisDirection extends CodeList<AxisDirection> {
 
     /**
      * Unknown or unspecified axis orientation.
+     *
+     * @category Other
      */
     @UML(identifier="CS_AxisOrientationEnum.CS_AO_Other", specification=OGC_01009)
     public static final AxisDirection OTHER = new AxisDirection("OTHER");
@@ -61,6 +63,8 @@ public final class AxisDirection extends CodeList<AxisDirection> {
      * north is defined through the geodetic datum. In an engineering CRS,
      * north may be defined with respect to an engineering object rather
      * than a geographical direction.
+     *
+     * @category Rose
      */
     @UML(identifier="north", obligation=CONDITIONAL, specification=ISO_19111)
     public static final AxisDirection NORTH = new AxisDirection("NORTH");
@@ -68,6 +72,7 @@ public final class AxisDirection extends CodeList<AxisDirection> {
     /**
      * Axis positive direction is approximately north-north-east.
      *
+     * @category Rose
      * @since GeoAPI 2.0
      */
     @UML(identifier="northNorthEast", obligation=CONDITIONAL, specification=ISO_19111)
@@ -76,6 +81,7 @@ public final class AxisDirection extends CodeList<AxisDirection> {
     /**
      * Axis positive direction is approximately north-east.
      *
+     * @category Rose
      * @since GeoAPI 2.0
      */
     @UML(identifier="northEast", obligation=CONDITIONAL, specification=ISO_19111)
@@ -84,6 +90,7 @@ public final class AxisDirection extends CodeList<AxisDirection> {
     /**
      * Axis positive direction is approximately east-north-east.
      *
+     * @category Rose
      * @since GeoAPI 2.0
      */
     @UML(identifier="eastNorthEast", obligation=CONDITIONAL, specification=ISO_19111)
@@ -92,6 +99,8 @@ public final class AxisDirection extends CodeList<AxisDirection> {
     /**
      * Axis positive direction is &pi;/2 radians clockwise from north.
      * This is usually used for Grid X coordinates and Longitude.
+     *
+     * @category Rose
      */
     @UML(identifier="east", obligation=CONDITIONAL, specification=ISO_19111)
     public static final AxisDirection EAST = new AxisDirection("EAST");
@@ -99,6 +108,7 @@ public final class AxisDirection extends CodeList<AxisDirection> {
     /**
      * Axis positive direction is approximately east-south-east.
      *
+     * @category Rose
      * @since GeoAPI 2.0
      */
     @UML(identifier="eastSouthEast", obligation=CONDITIONAL, specification=ISO_19111)
@@ -107,6 +117,7 @@ public final class AxisDirection extends CodeList<AxisDirection> {
     /**
      * Axis positive direction is approximately south-east.
      *
+     * @category Rose
      * @since GeoAPI 2.0
      */
     @UML(identifier="southEast", obligation=CONDITIONAL, specification=ISO_19111)
@@ -115,6 +126,7 @@ public final class AxisDirection extends CodeList<AxisDirection> {
     /**
      * Axis positive direction is approximately south-south-east.
      *
+     * @category Rose
      * @since GeoAPI 2.0
      */
     @UML(identifier="southSouthEast", obligation=CONDITIONAL, specification=ISO_19111)
@@ -122,6 +134,8 @@ public final class AxisDirection extends CodeList<AxisDirection> {
 
     /**
      * Axis positive direction is &pi; radians clockwise from north.
+     *
+     * @category Rose
      */
     @UML(identifier="south", obligation=CONDITIONAL, specification=ISO_19111)
     public static final AxisDirection SOUTH = new AxisDirection("SOUTH", NORTH);
@@ -129,6 +143,7 @@ public final class AxisDirection extends CodeList<AxisDirection> {
     /**
      * Axis positive direction is approximately south-south-west.
      *
+     * @category Rose
      * @since GeoAPI 2.0
      */
     @UML(identifier="southSouthWest", obligation=CONDITIONAL, specification=ISO_19111)
@@ -137,6 +152,7 @@ public final class AxisDirection extends CodeList<AxisDirection> {
     /**
      * Axis positive direction is approximately south-west.
      *
+     * @category Rose
      * @since GeoAPI 2.0
      */
     @UML(identifier="southWest", obligation=CONDITIONAL, specification=ISO_19111)
@@ -145,6 +161,7 @@ public final class AxisDirection extends CodeList<AxisDirection> {
     /**
      * Axis positive direction is approximately west-south-west.
      *
+     * @category Rose
      * @since GeoAPI 2.0
      */
     @UML(identifier="westSouthWest", obligation=CONDITIONAL, specification=ISO_19111)
@@ -153,6 +170,8 @@ public final class AxisDirection extends CodeList<AxisDirection> {
     /**
      * Axis positive direction is 3&pi;/2 radians clockwise from north.
      * This is usually used for Grid X coordinates and Longitude.
+     *
+     * @category Rose
      */
     @UML(identifier="west", obligation=CONDITIONAL, specification=ISO_19111)
     public static final AxisDirection WEST = new AxisDirection("WEST", EAST);
@@ -160,6 +179,7 @@ public final class AxisDirection extends CodeList<AxisDirection> {
     /**
      * Axis positive direction is approximately west-north-west.
      *
+     * @category Rose
      * @since GeoAPI 2.0
      */
     @UML(identifier="westNorthWest", obligation=CONDITIONAL, specification=ISO_19111)
@@ -168,6 +188,7 @@ public final class AxisDirection extends CodeList<AxisDirection> {
     /**
      * Axis positive direction is approximately north-west.
      *
+     * @category Rose
      * @since GeoAPI 2.0
      */
     @UML(identifier="northWest", obligation=CONDITIONAL, specification=ISO_19111)
@@ -176,6 +197,7 @@ public final class AxisDirection extends CodeList<AxisDirection> {
     /**
      * Axis positive direction is approximately north-north-west.
      *
+     * @category Rose
      * @since GeoAPI 2.0
      */
     @UML(identifier="northNorthWest", obligation=CONDITIONAL, specification=ISO_19111)
@@ -185,6 +207,8 @@ public final class AxisDirection extends CodeList<AxisDirection> {
      * Axis positive direction is up relative to gravity.
      * This is used for {@linkplain org.opengis.referencing.crs.VerticalCRS vertical}
      * coordinate reference systems.
+     *
+     * @category Vertical
      */
     @UML(identifier="up", obligation=CONDITIONAL, specification=ISO_19111)
     public static final AxisDirection UP = new AxisDirection("UP");
@@ -193,6 +217,8 @@ public final class AxisDirection extends CodeList<AxisDirection> {
      * Axis positive direction is down relative to gravity.
      * This is used for {@linkplain org.opengis.referencing.crs.VerticalCRS vertical}
      * coordinate reference systems.
+     *
+     * @category Vertical
      */
     @UML(identifier="down", obligation=CONDITIONAL, specification=ISO_19111)
     public static final AxisDirection DOWN = new AxisDirection("DOWN", UP);
@@ -201,6 +227,7 @@ public final class AxisDirection extends CodeList<AxisDirection> {
      * Axis positive direction is in the equatorial plane from the centre of the
      * modelled earth towards the intersection of the equator with the prime meridian.
      *
+     * @category Geocentric
      * @since GeoAPI 2.0
      */
     @UML(identifier="geocentricX", obligation=CONDITIONAL, specification=ISO_19111)
@@ -211,6 +238,7 @@ public final class AxisDirection extends CodeList<AxisDirection> {
      * modelled earth towards the intersection of the equator and the meridian &pi;/2
      * radians eastwards from the prime meridian.
      *
+     * @category Geocentric
      * @since GeoAPI 2.0
      */
     @UML(identifier="geocentricY", obligation=CONDITIONAL, specification=ISO_19111)
@@ -220,6 +248,7 @@ public final class AxisDirection extends CodeList<AxisDirection> {
      * Axis positive direction is from the centre of the modelled earth parallel to
      * its rotation axis and towards its north pole.
      *
+     * @category Geocentric
      * @since GeoAPI 2.0
      */
     @UML(identifier="geocentricZ", obligation=CONDITIONAL, specification=ISO_19111)
@@ -229,6 +258,12 @@ public final class AxisDirection extends CodeList<AxisDirection> {
      * Axis positive direction is towards the future.
      * This is used for {@linkplain org.opengis.referencing.crs.TemporalCRS temporal}
      * coordinate reference systems.
+     *
+     * @departure
+     *   This code was defined in an older specification (2003) and removed in more recent
+     *   edition (2007), but keeped in GeoAPI.
+     *
+     * @category Temporal
      */
     @UML(identifier="future", obligation=CONDITIONAL, specification=ISO_19111)
     public static final AxisDirection FUTURE = new AxisDirection("FUTURE");
@@ -237,6 +272,12 @@ public final class AxisDirection extends CodeList<AxisDirection> {
      * Axis positive direction is towards the past.
      * This is used for {@linkplain org.opengis.referencing.crs.TemporalCRS temporal}
      * coordinate reference systems.
+     *
+     * @departure
+     *   This code was defined in an older specification (2003) and removed in more recent
+     *   edition (2007), but keeped in GeoAPI.
+     *
+     * @category Temporal
      */
     @UML(identifier="past", obligation=CONDITIONAL, specification=ISO_19111)
     public static final AxisDirection PAST = new AxisDirection("PAST", FUTURE);
@@ -244,6 +285,7 @@ public final class AxisDirection extends CodeList<AxisDirection> {
     /**
      * Axis positive direction is towards higher pixel column.
      *
+     * @category Image
      * @since GeoAPI 2.0
      */
     @UML(identifier="columnPositive", obligation=CONDITIONAL, specification=ISO_19111)
@@ -252,6 +294,7 @@ public final class AxisDirection extends CodeList<AxisDirection> {
     /**
      * Axis positive direction is towards lower pixel column.
      *
+     * @category Image
      * @since GeoAPI 2.0
      */
     @UML(identifier="columnNegative", obligation=CONDITIONAL, specification=ISO_19111)
@@ -260,6 +303,7 @@ public final class AxisDirection extends CodeList<AxisDirection> {
     /**
      * Axis positive direction is towards higher pixel row.
      *
+     * @category Image
      * @since GeoAPI 2.0
      */
     @UML(identifier="rowPositive", obligation=CONDITIONAL, specification=ISO_19111)
@@ -268,6 +312,7 @@ public final class AxisDirection extends CodeList<AxisDirection> {
     /**
      * Axis positive direction is towards lower pixel row.
      *
+     * @category Image
      * @since GeoAPI 2.0
      */
     @UML(identifier="rowNegative", obligation=CONDITIONAL, specification=ISO_19111)
@@ -276,6 +321,7 @@ public final class AxisDirection extends CodeList<AxisDirection> {
     /**
      * Axis positive direction is right in display.
      *
+     * @category Display
      * @since GeoAPI 2.0
      */
     @UML(identifier="displayRight", obligation=CONDITIONAL, specification=ISO_19111)
@@ -284,6 +330,7 @@ public final class AxisDirection extends CodeList<AxisDirection> {
     /**
      * Axis positive direction is left in display.
      *
+     * @category Display
      * @since GeoAPI 2.0
      */
     @UML(identifier="displayLeft", obligation=CONDITIONAL, specification=ISO_19111)
@@ -292,6 +339,7 @@ public final class AxisDirection extends CodeList<AxisDirection> {
     /**
      * Axis positive direction is towards top of approximately vertical display surface.
      *
+     * @category Display
      * @since GeoAPI 2.0
      */
     @UML(identifier="displayUp", obligation=CONDITIONAL, specification=ISO_19111)
@@ -300,6 +348,7 @@ public final class AxisDirection extends CodeList<AxisDirection> {
     /**
      * Axis positive direction is towards bottom of approximately vertical display surface.
      *
+     * @category Display
      * @since GeoAPI 2.0
      */
     @UML(identifier="displayDown", obligation=CONDITIONAL, specification=ISO_19111)

@@ -71,6 +71,6 @@ public interface OperationMethod extends IdentifiedObject {
      *
      * @return The parameters, or an empty group if none.
      */
-    @UML(identifier="usesParameter", obligation=MANDATORY, specification=ISO_19111)
+    @UML(identifier="parameter", obligation=MANDATORY, specification=ISO_19111)
     ParameterDescriptorGroup getParameters();
 }

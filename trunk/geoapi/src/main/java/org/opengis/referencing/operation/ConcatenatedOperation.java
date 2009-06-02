@@ -38,6 +38,6 @@ public interface ConcatenatedOperation extends CoordinateOperation {
      *
      * @return The sequence of operations.
      */
-    @UML(identifier="usesOperation", obligation=MANDATORY, specification=ISO_19111)
+    @UML(identifier="coordOperation", obligation=MANDATORY, specification=ISO_19111)
     List<SingleOperation> getOperations();
 }

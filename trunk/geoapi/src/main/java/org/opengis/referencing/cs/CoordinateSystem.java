@@ -50,6 +50,6 @@ public interface CoordinateSystem extends IdentifiedObject {
      * @return The axis at the specified dimension.
      * @throws IndexOutOfBoundsException if {@code dimension} is out of bounds.
      */
-    @UML(identifier="usesAxis", obligation=MANDATORY, specification=ISO_19111)
+    @UML(identifier="axis", obligation=MANDATORY, specification=ISO_19111)
     CoordinateSystemAxis getAxis(int dimension) throws IndexOutOfBoundsException;
 }

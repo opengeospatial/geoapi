@@ -40,12 +40,12 @@ public interface ImageCRS extends SingleCRS {
     /**
      * Returns the cartesian coordinate system.
      */
-    @UML(identifier="usesObliqueCartesianCS, usesCartesianCS", obligation=MANDATORY, specification=ISO_19111)
+    @UML(identifier="coordinateSystem", obligation=MANDATORY, specification=ISO_19111)
     AffineCS getCoordinateSystem();
 
     /**
      * Returns the datum, which must be an image one.
      */
-    @UML(identifier="usesDatum", obligation=MANDATORY, specification=ISO_19111)
+    @UML(identifier="datum", obligation=MANDATORY, specification=ISO_19111)
     ImageDatum getDatum();
 }

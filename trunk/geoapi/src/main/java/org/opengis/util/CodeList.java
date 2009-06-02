@@ -19,7 +19,11 @@ import java.lang.reflect.Modifier;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
+
 import org.opengis.annotation.UML;
+import org.opengis.annotation.Extension;
+
+import static org.opengis.annotation.Specification.*;
 
 
 /**
@@ -34,6 +38,7 @@ import org.opengis.annotation.UML;
  * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 1.0
  */
+@UML(identifier="CodeList", specification=ISO_19103)
 public abstract class CodeList<E extends CodeList<E>> implements Comparable<E>, Serializable {
     /**
      * Serial number for compatibility with different versions.
@@ -111,6 +116,7 @@ public abstract class CodeList<E extends CodeList<E>> implements Comparable<E>, 
      * @param name The name of the code to obtain.
      * @return A code matching the given name.
      */
+    @Extension
     public static <T extends CodeList> T valueOf(final Class<T> codeType, String name) {
         if (name == null) {
             return null;
@@ -149,6 +155,7 @@ public abstract class CodeList<E extends CodeList<E>> implements Comparable<E>, 
      *
      * @return The position of this code constants in elements declaration.
      */
+    @Extension
     public final int ordinal() {
         return ordinal;
     }
@@ -161,6 +168,7 @@ public abstract class CodeList<E extends CodeList<E>> implements Comparable<E>, 
      *
      * @since GeoAPI 2.2
      */
+    @Extension
     public String identifier() {
         // Save the field in a local variable for protection against concurrent change (this
         // operation is garanteed atomic according Java specification). We don't synchronize
@@ -204,6 +212,7 @@ public abstract class CodeList<E extends CodeList<E>> implements Comparable<E>, 
      *
      * @return The name of this code constant.
      */
+    @Extension
     public final String name() {
         return name;
     }
@@ -218,6 +227,7 @@ public abstract class CodeList<E extends CodeList<E>> implements Comparable<E>, 
      *
      * @since GeoAPI 2.2
      */
+    @Extension
     public boolean matches(String name) {
         if (name == null) {
             return false;
@@ -234,6 +244,7 @@ public abstract class CodeList<E extends CodeList<E>> implements Comparable<E>, 
      *
      * @return The codes of the same kind than this code.
      */
+    @Extension
     public abstract E[] family();
 
     /**

@@ -49,7 +49,7 @@ public interface SingleCRS extends CoordinateReferenceSystem {
      *
      * @rename Expanded the "CS" abbreviation into "CoordinateSystem".
      */
-    @UML(identifier="usesCS", obligation=MANDATORY, specification=ISO_19111)
+    @UML(identifier="coordinateSystem", obligation=MANDATORY, specification=ISO_19111)
     CoordinateSystem getCoordinateSystem();
 
     /**
@@ -57,6 +57,6 @@ public interface SingleCRS extends CoordinateReferenceSystem {
      *
      * @return The datum.
      */
-    @UML(identifier="usesDatum", obligation=MANDATORY, specification=ISO_19111)
+    @UML(identifier="datum", obligation=OPTIONAL, specification=ISO_19111)
     Datum getDatum();
 }

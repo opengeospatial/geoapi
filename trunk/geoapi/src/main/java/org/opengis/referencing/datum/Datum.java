@@ -128,6 +128,12 @@ public interface Datum extends IdentifiedObject {
      * Description of domain of usage, or limitations of usage, for which this
      * datum object is valid.
      *
+     * @departure
+     *   This method is conform to the specification published in 2003. The revision
+     *   published in 2007 replaced the singleton by a collection and changed the obligation
+     *   from "optional" to "mandatory", requirying a return value of "<cite>not known</cite>"
+     *   if the scope is unknown.
+     *
      * @return A description of domain of usage, or {@code null} if none.
      */
     @UML(identifier="scope", obligation=OPTIONAL, specification=ISO_19111)

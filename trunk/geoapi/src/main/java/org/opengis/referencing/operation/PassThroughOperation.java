@@ -31,7 +31,7 @@ public interface PassThroughOperation extends SingleOperation {
      *
      * @return The operation to apply on the subset of a coordinate tuple.
      */
-    @UML(identifier="usesOperation", obligation=MANDATORY, specification=ISO_19111)
+    @UML(identifier="coordOperation", obligation=MANDATORY, specification=ISO_19111)
     Operation getOperation();
 
     /**
