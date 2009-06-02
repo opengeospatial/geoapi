@@ -50,11 +50,12 @@ public interface ProjectedCRS extends GeneralDerivedCRS {
     /**
      * Returns the coordinate system, which must be cartesian.
      */
-    @UML(identifier="usesCS", obligation=MANDATORY, specification=ISO_19111)
+    @UML(identifier="coordinateSystem", obligation=MANDATORY, specification=ISO_19111)
     CartesianCS getCoordinateSystem();
 
     /**
      * Returns the datum.
      */
+    @UML(identifier="datum", obligation=MANDATORY, specification=ISO_19111)
     GeodeticDatum getDatum();
 }

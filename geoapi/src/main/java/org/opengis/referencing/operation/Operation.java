@@ -27,7 +27,11 @@ import static org.opengis.annotation.Specification.*;
  * @since   GeoAPI 1.0
  *
  * @see OperationMethod
+ *
+ * @deprecated This interface has been removed from ISO 19111:2007. The methods
+ *             defined here moved to the {@link SingleCRS} parent interface.
  */
+@Deprecated
 @UML(identifier="CC_Operation", specification=ISO_19111)
 public interface Operation extends SingleOperation {
     /**
@@ -35,7 +39,7 @@ public interface Operation extends SingleOperation {
      *
      * @return The operation method.
      */
-    @UML(identifier="usesMethod", obligation=MANDATORY, specification=ISO_19111)
+    @UML(identifier="method", obligation=MANDATORY, specification=ISO_19111)
     OperationMethod getMethod();
 
     /**
@@ -45,6 +49,6 @@ public interface Operation extends SingleOperation {
      *
      * @rename Added "{@code Parameter}" prefix for more consistency with the return type.
      */
-    @UML(identifier="usesValue", obligation=MANDATORY, specification=ISO_19111)
+    @UML(identifier="value", obligation=MANDATORY, specification=ISO_19111)
     ParameterValueGroup getParameterValues();
 }

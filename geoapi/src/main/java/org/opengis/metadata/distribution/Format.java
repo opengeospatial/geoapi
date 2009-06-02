@@ -41,7 +41,7 @@ public interface Format {
     InternationalString getName();
 
     /**
-     * Version of the format (date, number, <cite>etc.</cite>).
+     * Version of the format (date, number, <i>etc</i>).
      *
      * @return Version of the format.
      */

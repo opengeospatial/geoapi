@@ -53,6 +53,8 @@ import static org.opengis.annotation.Specification.*;
  *       a logical consequence of {@link GridPointValuePair} restriction.
  * @todo Should we move this interface to org.opengis.coverage.grid as all the other grid interfaces,
  *       or should it remain in org.opengis.coverage to follow the ordering in ISO19123?
+ * @todo What should be the behavior of {@link #evaluate(DirectPosition)} when the position
+ *       is not exactly on a grid point? Current proposal is to return an empty set.
  */
 @UML(identifier="CV_DiscreteGridPointCoverage", specification=ISO_19123)
 public interface DiscreteGridPointCoverage extends DiscreteCoverage {

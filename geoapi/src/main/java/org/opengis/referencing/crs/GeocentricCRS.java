@@ -31,6 +31,12 @@ import static org.opengis.annotation.Specification.*;
  *   {@link org.opengis.referencing.cs.SphericalCS Spherical}
  * </TD></TR></TABLE>
  *
+ * @departure
+ *   This interface is conform to the specification published in 2003. Later revision of ISO 19111
+ *   removed the <code>GeographicCRS</code> and <code>GeocentricCRS</code> types, which are both
+ *   handled by the {@link GeodeticCRS} parent type. GeoAPI keeps them since the distinction between
+ *   those two types is in wide use.
+ *
  * @version <A HREF="http://portal.opengeospatial.org/files/?artifact_id=6716">Abstract specification 2.0</A>
  * @author  Martin Desruisseaux (IRD)
  * @since   GeoAPI 1.0
@@ -41,6 +47,6 @@ public interface GeocentricCRS extends GeodeticCRS {
      * Returns the coordinate system, which must be {@linkplain CartesianCS cartesian}
      * or {@linkplain SphericalCS spherical}.
      */
-    @UML(identifier="usesCartesianCS, usesSphericalCS", obligation=MANDATORY, specification=ISO_19111)
+    @UML(identifier="coordinateSystem", obligation=MANDATORY, specification=ISO_19111)
     CoordinateSystem getCoordinateSystem();
 }

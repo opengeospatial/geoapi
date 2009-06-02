@@ -11,7 +11,6 @@
 package org.opengis.util;
 
 import org.opengis.annotation.UML;
-import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
 
 
@@ -61,6 +60,8 @@ public final class UnlimitedInteger extends Number implements Comparable<Unlimit
      * Constructs a newly allocated {@code UnlimitedInteger} object that represents the specified
      * {@code int} value. {@link Integer#MAX_VALUE} and {@link Integer#MIN_VALUE MIN_VALUE} maps
      * to positive and negative infinities respectively.
+     *
+     * @param value The integer value to wrap in a {@code UnlimitedInteger}.
      */
     public UnlimitedInteger(final int value) {
         this.value = value;
@@ -68,6 +69,8 @@ public final class UnlimitedInteger extends Number implements Comparable<Unlimit
 
     /**
      * Returns {@code true} if this integer represents a positive or negative infinity.
+     *
+     * @return {@code true} if this integer represents a positive or negative infinity.
      */
     public boolean isInfinite(){
         return (value == Integer.MAX_VALUE) || (value == Integer.MIN_VALUE);
@@ -142,6 +145,9 @@ public final class UnlimitedInteger extends Number implements Comparable<Unlimit
 
     /**
      * Compares this number with the specified object for equality.
+     *
+     * @param  object The object to compare with this unlimited integer for equality.
+     * @return {@code true} if both objects are equal.
      */
     @Override
     public boolean equals(final Object object) {

@@ -105,19 +105,22 @@
  * <TABLE ALIGN="center" CELLPADDING='6' BORDER='1'>
  * <TR BGCOLOR="#EEEEFF"><TH>CS</TH><TH>CRS</TH><TH NOWRAP>Permitted coordinate system axis names</TH></TR>
  * <TR><TD>Cartesian</TD><TD>Geocentric</TD>
- *         <TD>Geocentric X, Geocentric Y, Geocentric Z</TD></TR>
+ *     <TD><cite>Geocentric X</cite>,
+ *         <cite>Geocentric Y</cite>,
+ *         <cite>Geocentric Z</cite></TD></TR>
  * <TR><TD>Spherical</TD><TD>Geocentric</TD>
- *         <TD>Spherical Latitude, Spherical Longitude, Geocentric Radius</TD></TR>
+ *     <TD><cite>Spherical Latitude</cite>,
+ *         <cite>Spherical Longitude</cite>,
+ *         <cite>Geocentric Radius</cite></TD></TR>
  * <TR><TD>Ellipsoidal</TD><TD>Geographic</TD>
- *         <TD>Geodetic Latitude, Geodetic Longitude, Ellipsoidal height (if 3D)</TD></TR>
+ *     <TD><cite>Geodetic Latitude</cite>,
+ *         <cite>Geodetic Longitude</cite>,
+ *         <cite>Ellipsoidal height</cite> (if 3D)</TD></TR>
  * <TR><TD>Vertical</TD><TD>Vertical</TD>
- *         <TD>Gravity-related height</TD></TR>
- * <TR><TD>Vertical</TD><TD>Vertical</TD>
- *         <TD>Depth</TD></TR>
+ *     <TD><cite>Gravity-related height</cite> or <cite>Depth</cite></TD></TR>
  * <TR><TD>Cartesian</TD><TD>Projected</TD>
- *         <TD>Easting, Northing</TD></TR>
- * <TR><TD>Cartesian</TD><TD>Projected</TD>
- *         <TD>Westing, Southing</TD></TR>
+ *     <TD><cite>Easting</cite> or <cite>Westing</cite>,
+ *         <cite>Northing</cite> or <cite>Southing</cite></TD></TR>
  * </TABLE>
  *
  * <P ALIGN="justify">Image and engineering coordinate reference systems may make

@@ -11,7 +11,6 @@
 package org.opengis.referencing.crs;
 
 import org.opengis.referencing.cs.EllipsoidalCS;
-import org.opengis.referencing.datum.GeodeticDatum;
 import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Obligation.*;
@@ -34,6 +33,12 @@ import static org.opengis.annotation.Specification.*;
  *   {@link org.opengis.referencing.cs.EllipsoidalCS Ellipsoidal}
  * </TD></TR></TABLE>
  *
+ * @departure
+ *   This interface is conform to the specification published in 2003. Later revision of ISO 19111
+ *   removed the <code>GeographicCRS</code> and <code>GeocentricCRS</code> types, which are both
+ *   handled by the {@link GeodeticCRS} parent type. GeoAPI keeps them since the distinction between
+ *   those two types is in wide use.
+ *
  * @version <A HREF="http://portal.opengeospatial.org/files/?artifact_id=6716">Abstract specification 2.0</A>
  * @author  Martin Desruisseaux (IRD)
  * @since   GeoAPI 1.0
@@ -43,6 +48,6 @@ public interface GeographicCRS extends GeodeticCRS {
     /**
      * Returns the coordinate system, which must be ellipsoidal.
      */
-    @UML(identifier="usesCS", obligation=MANDATORY, specification=ISO_19111)
+    @UML(identifier="coordinateSystem", obligation=MANDATORY, specification=ISO_19111)
     EllipsoidalCS getCoordinateSystem();
 }

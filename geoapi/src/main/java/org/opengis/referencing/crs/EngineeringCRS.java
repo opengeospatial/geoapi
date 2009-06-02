@@ -67,6 +67,6 @@ public interface EngineeringCRS extends SingleCRS {
     /**
      * Returns the datum, which must be an engineering one.
      */
-    @UML(identifier="usesDatum", obligation=MANDATORY, specification=ISO_19111)
+    @UML(identifier="datum", obligation=MANDATORY, specification=ISO_19111)
     EngineeringDatum getDatum();
 }

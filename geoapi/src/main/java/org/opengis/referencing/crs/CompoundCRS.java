@@ -58,8 +58,11 @@ public interface CompoundCRS extends CoordinateReferenceSystem {
     /**
      * The ordered list of coordinate reference systems.
      *
+     * @departure
+     *   ISO specification mandates {@link SingleCRS} components.
+     *
      * @return The ordered list of coordinate reference systems.
      */
-    @UML(identifier="includesCRS", obligation=MANDATORY, specification=ISO_19111)
+    @UML(identifier="componentReferenceSystem", obligation=MANDATORY, specification=ISO_19111)
     List<CoordinateReferenceSystem> getCoordinateReferenceSystems();
 }
