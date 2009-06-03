@@ -10,6 +10,8 @@
  *************************************************************************************************/
 package org.opengis.referencing;
 
+import org.opengis.metadata.Identifier;
+
 
 /**
  * Thrown when a {@linkplain org.opengis.referencing.operation.MathTransform math transform}

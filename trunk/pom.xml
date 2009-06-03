@@ -364,6 +364,16 @@
                should be a combinaison of the letters Xaoptcmf. -->
           <tags>
             <tag>
+              <name>category</name>
+              <placement>X</placement>
+              <head>Category:</head>
+            </tag>
+            <tag>
+              <name>condition</name>
+              <placement>tfmc</placement>
+              <head>Condition:</head>
+            </tag>
+            <tag>
               <name>todo</name>
               <placement>tfmc</placement>
               <head>TODO:</head>
@@ -386,7 +396,7 @@
             <tag>
               <name>rename</name>
               <placement>X</placement>
-              <head>Renamed from:</head>
+              <head>Name change:</head>
             </tag>
           </tags>
 

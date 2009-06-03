@@ -56,7 +56,7 @@ public interface RepresentativeFraction {
     /**
      * Returns the scale value in a form usable for computation.
      *
-     * @return {@code 1.0 / (double) {@linkplain #getDenominator()}.
+     * @return <code>1.0 / (double) {@linkplain #getDenominator()}</code>
      *
      * @since GeoAPI 2.2
      */
