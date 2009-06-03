@@ -27,6 +27,9 @@ import static org.opengis.annotation.Specification.*;
  * @since   GeoAPI 2.0
  *
  * @see GeneralParameterValue
+ *
+ * @rename Selected a name which contain the "Descriptor" word for consistency with other
+ *         libraries in Java (e.g. {@code ParameterList} in Java Advanced Imaging).
  */
 @UML(identifier="CC_GeneralOperationParameter", specification=ISO_19111)
 public interface GeneralParameterDescriptor extends IdentifiedObject {

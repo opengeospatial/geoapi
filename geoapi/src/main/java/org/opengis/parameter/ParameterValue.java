@@ -181,10 +181,8 @@ public interface ParameterValue<T> extends GeneralParameterValue {
      * @see #setValue(Object)
      * @see #intValue
      *
-     * @rename Renamed {@code valueList} as {@code doubleValueList} for consistency
-     *         with {@link #doubleValue()}. Also because, like {@code doubleValue()}, this
-     *         method returns a {@code double} value rather than a {@code Measure}
-     *         object.
+     * @rename Renamed {@code integerValueList} as {@code intValueList} for consistency
+     *         with {@link #intValue()}.
      */
     @UML(identifier="integerValueList", obligation=CONDITIONAL, specification=ISO_19111)
     int[] intValueList() throws InvalidParameterTypeException;

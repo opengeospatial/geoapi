@@ -29,7 +29,7 @@ import static org.opengis.annotation.Specification.*;
  * @see OperationMethod
  *
  * @deprecated This interface has been removed from ISO 19111:2007. The methods
- *             defined here moved to the {@link SingleCRS} parent interface.
+ *             defined here moved to the {@link SingleOperation} parent interface.
  */
 @Deprecated
 @UML(identifier="CC_Operation", specification=ISO_19111)
