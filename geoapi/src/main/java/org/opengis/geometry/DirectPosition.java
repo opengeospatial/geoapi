@@ -166,7 +166,7 @@ public interface DirectPosition extends Position {
      * Returns a hash code value for this direct position. This method should returns
      * the same value as:
      *
-     * <code>{@linkplain java.util.Arrays.hashCode(double[]) Arrays.hashCode}({@linkplain
+     * <code>{@linkplain java.util.Arrays#hashCode(double[]) Arrays.hashCode}({@linkplain
      * #getCoordinate()}) + {@linkplain #getCoordinateReferenceSystem()}.hashCode()</code>
      *
      * where the right hand side of the addition is omitted if the coordinate reference

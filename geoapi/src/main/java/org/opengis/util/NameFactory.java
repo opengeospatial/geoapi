@@ -114,7 +114,7 @@ public interface NameFactory {
      * {@code "4326"}).
      *
      * @param scope
-     *          The {@linkplain AbstractName#scope scope} of the generic name to
+     *          The {@linkplain GenericName#scope scope} of the generic name to
      *          be created, or {@code null} for a global namespace.
      * @param name
      *          The qualified name, as a sequence of names separated by a scope-dependant separator.
