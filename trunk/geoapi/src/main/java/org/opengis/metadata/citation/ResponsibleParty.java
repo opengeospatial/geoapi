@@ -36,6 +36,9 @@ public interface ResponsibleParty {
      * and {@link #getPositionName positionName} should be provided.
      *
      * @return Name, surname, given name and title of the responsible person, or {@code null}.
+     *
+     * @condition {@link #getOrganisationName Organisation name} and
+     *            {@link #getPositionName position name} not documented.
      */
     @UML(identifier="individualName", obligation=CONDITIONAL, specification=ISO_19115)
     String getIndividualName();
@@ -46,6 +49,9 @@ public interface ResponsibleParty {
      * and {@link #getPositionName positionName} should be provided.
      *
      * @return Name of the responsible organization, or {@code null}.
+     *
+     * @condition {@link #getIndividualName Individual name} and
+     *            {@link #getPositionName position name} not documented.
      */
     @UML(identifier="organisationName", obligation=CONDITIONAL, specification=ISO_19115)
     InternationalString getOrganisationName();
@@ -56,6 +62,9 @@ public interface ResponsibleParty {
      * and {@code positionName} should be provided.
      *
      * @return Role or position of the responsible person, or {@code null}
+     *
+     * @condition {@link #getIndividualName Individual name} and
+     *            {@link #getOrganisationName organisation name} not documented.
      */
     @UML(identifier="positionName", obligation=CONDITIONAL, specification=ISO_19115)
     InternationalString getPositionName();

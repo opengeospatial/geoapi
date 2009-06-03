@@ -48,6 +48,8 @@ public interface Distributor {
      * Provides information about the format used by the distributor.
      *
      * @return Information about the format used by the distributor.
+     *
+     * @condition {@link Distribution#getDistributionFormats()} not documented.
      */
     @UML(identifier="distributorFormat", obligation=CONDITIONAL, specification=ISO_19115)
     Collection<? extends Format> getDistributorFormats();

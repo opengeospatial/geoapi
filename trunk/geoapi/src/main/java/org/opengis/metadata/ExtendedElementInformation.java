@@ -44,6 +44,9 @@ public interface ExtendedElementInformation {
      *
      * @return Short form suitable for use in an implementation method such as XML or SGML,
      *         or {@code null}.
+     *
+     * @condition {@linkplain #getDataType Data type} not equal
+     *            {@link Datatype#CODE_LIST_ELEMENT CODE_LIST_ELEMENT}.
      */
     @UML(identifier="shortName", obligation=CONDITIONAL, specification=ISO_19115)
     String getShortName();
@@ -55,6 +58,9 @@ public interface ExtendedElementInformation {
      * {@link #getShortName} may be used instead.
      *
      * @return Three digit code assigned to the extended element, or {@code null}.
+     *
+     * @condition {@linkplain #getDataType Data type} not equal
+     *            {@link Datatype#CODE_LIST_ELEMENT CODE_LIST_ELEMENT}.
      */
     @UML(identifier="domainCode", obligation=CONDITIONAL, specification=ISO_19115)
     Integer getDomainCode();
@@ -71,6 +77,11 @@ public interface ExtendedElementInformation {
      * Obligation of the extended element.
      *
      * @return Obligation of the extended element, or {@code null}.
+     *
+     * @condition {@linkplain #getDataType Data type} not equal
+     *            {@link Datatype#CODE_LIST CODE_LIST} or
+     *            {@link Datatype#ENUMERATION ENUMERATION} or
+     *            {@link Datatype#CODE_LIST_ELEMENT CODE_LIST_ELEMENT}.
      */
     @UML(identifier="obligation", obligation=CONDITIONAL, specification=ISO_19115)
     Obligation getObligation();
@@ -81,6 +92,9 @@ public interface ExtendedElementInformation {
      * is {@linkplain Obligation#CONDITIONAL conditional}.
      *
      * @return The condition under which the extended element is mandatory, or {@code null}.
+     *
+     * @condition {@linkplain #getObligation Obligation} equals
+     *            {@link Obligation#CONDITIONAL CONDITIONAL}.
      */
     @UML(identifier="condition", obligation=CONDITIONAL, specification=ISO_19115)
     InternationalString getCondition();
@@ -113,6 +127,10 @@ public interface ExtendedElementInformation {
      * code list element}.
      *
      * @return Valid values that can be assigned to the extended element, or {@code null}.
+     *
+     * @condition {@linkplain #getDataType Data type} not {@link Datatype#ENUMERATION ENUMERATION},
+     *            {@link Datatype#CODE_LIST CODE_LIST} or {@link Datatype#CODE_LIST_ELEMENT
+     *            CODE_LIST_ELEMENT}.
      */
     @UML(identifier="domainValue", obligation=CONDITIONAL, specification=ISO_19115)
     InternationalString getDomainValue();

@@ -35,6 +35,8 @@ public interface Resolution {
      * {@linkplain #getDistance ground sample distance} may be provided.
      *
      * @return Level of detail expressed as the scale of a comparable hardcopy, or {@code null}.
+     *
+     * @condition {@linkplain #getDistance() Distance} not documented.
      */
     @Profile (level=CORE)
     @UML(identifier="equivalentScale", obligation=CONDITIONAL, specification=ISO_19115)
@@ -49,6 +51,8 @@ public interface Resolution {
      *
      * @todo change return type to ISO 19103 {@code Distance} or to JScience {@code Measure}.
      * @unitof Distance
+     *
+     * @condition {@linkplain #getEquivalentScale() Equivalent scale} not documented.
      */
     @Profile (level=CORE)
     @UML(identifier="distance", obligation=CONDITIONAL, specification=ISO_19115)

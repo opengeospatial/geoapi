@@ -56,6 +56,8 @@ public interface MetaData {
      * Language used for documenting metadata.
      *
      * @return Language used for documenting metadata, or {@code null}.
+     *
+     * @condition Not defined by encoding.
      */
     @Profile (level=CORE)
     @UML(identifier="language", obligation=CONDITIONAL, specification=ISO_19115)
@@ -65,6 +67,8 @@ public interface MetaData {
      * Full name of the character coding standard used for the metadata set.
      *
      * @return character coding standard used for the metadata, or {@code null}.
+     *
+     * @condition Not used and not defined by encoding.
      */
     @Profile (level=CORE)
     @UML(identifier="characterSet", obligation=CONDITIONAL, specification=ISO_19115)
@@ -74,6 +78,9 @@ public interface MetaData {
      * File identifier of the metadata to which this metadata is a subset (child).
      *
      * @return Identifier of the metadata to which this metadata is a subset, or {@code null}.
+     *
+     * @condition {@linkplain #getHierarchyLevels() Hierarchy level} is not equal to
+     *            {@link ScopeCode#DATASET}.
      */
     @UML(identifier="parentIdentifier", obligation=CONDITIONAL, specification=ISO_19115)
     String getParentIdentifier();
@@ -82,6 +89,9 @@ public interface MetaData {
      * Scope to which the metadata applies.
      *
      * @return Scope to which the metadata applies.
+     *
+     * @condition {@linkplain #getHierarchyLevels() Hierarchy level} is not equal to
+     *            {@link ScopeCode#DATASET}.
      */
     @UML(identifier="hierarchyLevel", obligation=CONDITIONAL, specification=ISO_19115)
     Collection<ScopeCode> getHierarchyLevels();
@@ -90,6 +100,9 @@ public interface MetaData {
      * Name of the hierarchy levels for which the metadata is provided.
      *
      * @return Hierarchy levels for which the metadata is provided.
+     *
+     * @condition {@linkplain #getHierarchyLevels() Hierarchy level} is not equal to
+     *            {@link ScopeCode#DATASET}.
      */
     @UML(identifier="hierarchyLevelName", obligation=CONDITIONAL, specification=ISO_19115)
     Collection<String> getHierarchyLevelNames();
