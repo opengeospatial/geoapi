@@ -56,6 +56,6 @@ public interface Conversion extends Operation {
      *
      * @return Always {@code null}.
      */
-    @UML(identifier="operationVersion", obligation=CONDITIONAL, specification=ISO_19111)
+    @UML(identifier="operationVersion", obligation=FORBIDDEN, specification=ISO_19111)
     String getOperationVersion();
 }
