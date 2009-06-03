@@ -44,6 +44,8 @@ public interface DataQuality {
      * {@linkplain org.opengis.metadata.maintenance.ScopeCode#DATASET dataset}.
      *
      * @return Quantitative quality information for the data.
+     *
+     * @condition {@linkplain #getLineage() Lineage} not provided.
      */
     @UML(identifier="report", obligation=CONDITIONAL, specification=ISO_19115)
     Collection<? extends Element> getReports();
@@ -55,6 +57,8 @@ public interface DataQuality {
      *
      * @return Non-quantitative quality information about the lineage of the data specified,
      *         or {@code null}.
+     *
+     * @condition {@linkplain #getReports() Report} not provided.
      */
     @Profile (level=CORE)
     @UML(identifier="lineage", obligation=CONDITIONAL, specification=ISO_19115)

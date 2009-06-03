@@ -37,6 +37,10 @@ public interface Extent {
      * Returns the spatial and temporal extent for the referring object.
      *
      * @return The spatial and temporal extent, or {@code null} in none.
+     *
+     * @condition {@linkplain #getGeographicElements Geographic element},
+     *            {@linkplain #getTemporalElements temporal element} and
+     *            {@linkplain #getVerticalElements vertical element} not documented.
      */
     @UML(identifier="description", obligation=CONDITIONAL, specification=ISO_19115)
     InternationalString getDescription();
@@ -45,6 +49,10 @@ public interface Extent {
      * Provides geographic component of the extent of the referring object
      *
      * @return The geographic extent, or an empty set if none.
+     *
+     * @condition {@linkplain #getDescription Description},
+     *            {@linkplain #getTemporalElements temporal element} and
+     *            {@linkplain #getVerticalElements vertical element} not documented.
      */
     @UML(identifier="geographicElement", obligation=CONDITIONAL, specification=ISO_19115)
     Collection<? extends GeographicExtent> getGeographicElements();
@@ -53,6 +61,10 @@ public interface Extent {
      * Provides temporal component of the extent of the referring object
      *
      * @return The temporal extent, or an empty set if none.
+     *
+     * @condition {@linkplain #getDescription Description},
+     *            {@linkplain #getGeographicElements geographic element} and
+     *            {@linkplain #getVerticalElements vertical element} not documented.
      */
     @UML(identifier="temporalElement", obligation=CONDITIONAL, specification=ISO_19115)
     Collection<? extends TemporalExtent> getTemporalElements();
@@ -61,6 +73,10 @@ public interface Extent {
      * Provides vertical component of the extent of the referring object
      *
      * @return The vertical extent, or an empty set if none.
+     *
+     * @condition {@linkplain #getDescription Description},
+     *            {@linkplain #getGeographicElements geographic element} and
+     *            {@linkplain #getTemporalElements temporal element} not documented.
      */
     @UML(identifier="verticalElement", obligation=CONDITIONAL, specification=ISO_19115)
     Collection<? extends VerticalExtent> getVerticalElements();

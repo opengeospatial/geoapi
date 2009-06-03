@@ -49,11 +49,12 @@ public interface Band extends RangeDimension {
     Double getMinValue();
 
     /**
-     * Units in which sensor wavelengths are expressed. Should be non-null if
-     * {@linkplain #getMinValue min value} or {@linkplain #getMaxValue max value}
-     * are provided.
+     * Units in which sensor wavelengths are expressed.
      *
      * @return Units in which sensor wavelengths are expressed, or {@code null}.
+     *
+     * @condition Should be non-null if {@linkplain #getMinValue min value} or
+     *            {@linkplain #getMaxValue max value} are provided.
      */
     @UML(identifier="units", obligation=CONDITIONAL, specification=ISO_19115)
     Unit<Length> getUnits();

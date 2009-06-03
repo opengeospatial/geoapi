@@ -33,6 +33,8 @@ public interface Distribution {
      * Provides a description of the format of the data to be distributed.
      *
      * @return Description of the format of the data to be distributed.
+     *
+     * @condition {@link Distributor#getDistributorFormats()} not documented.
      */
     @Profile (level=CORE)
     @UML(identifier="distributionFormat", obligation=CONDITIONAL, specification=ISO_19115)

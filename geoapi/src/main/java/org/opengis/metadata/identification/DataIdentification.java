@@ -12,7 +12,9 @@ package org.opengis.metadata.identification;
 
 import java.util.Collection;
 import java.util.Locale;
+import org.opengis.metadata.MetaData;
 import org.opengis.metadata.extent.Extent;
+import org.opengis.metadata.maintenance.ScopeCode;
 import org.opengis.metadata.spatial.SpatialRepresentationType;
 import org.opengis.util.InternationalString;
 import org.opengis.annotation.UML;
@@ -65,6 +67,8 @@ public interface DataIdentification extends Identification {
      * Full name of the character coding standard(s) used for the dataset.
      *
      * @return Name(s) of the character coding standard(s) used.
+     *
+     * @condition ISO/IEC 10646-1 not used.
      */
     @Profile (level=CORE)
     @UML(identifier="characterSet", obligation=CONDITIONAL, specification=ISO_19115)
@@ -74,9 +78,12 @@ public interface DataIdentification extends Identification {
      * Main theme(s) of the dataset.
      *
      * @return Main theme(s).
+     *
+     * @condition If {@linkplain MetaData#getHierarchyLevels() hierarchy level} equals
+     *            {@link ScopeCode#DATASET}.
      */
     @Profile (level=CORE)
-    @UML(identifier="topicCategory", obligation=MANDATORY, specification=ISO_19115)
+    @UML(identifier="topicCategory", obligation=CONDITIONAL, specification=ISO_19115)
     Collection<TopicCategory> getTopicCategories();
 
     /**
@@ -93,9 +100,12 @@ public interface DataIdentification extends Identification {
      * extent of the dataset.
      *
      * @return Additional extent information.
+     *
+     * @condition if hierarchyLevel equals dataset? either extent.geographicElement.EX_GeographicBoundingBox
+     *            or extent.geographicElement.EX_GeographicDescription is required.
      */
     @Profile (level=CORE)
-    @UML(identifier="extent", obligation=OPTIONAL, specification=ISO_19115)
+    @UML(identifier="extent", obligation=CONDITIONAL, specification=ISO_19115)
     Collection<? extends Extent> getExtent();
 
     /**

@@ -36,6 +36,8 @@ public interface Source {
      * Detailed description of the level of the source data.
      *
      * @return Description of the level of the source data, or {@code null}.
+     *
+     * @condition {@linkplain #getSourceExtents() Source extent} not provided.
      */
     @UML(identifier="description", obligation=CONDITIONAL, specification=ISO_19115)
     InternationalString getDescription();
@@ -68,6 +70,8 @@ public interface Source {
      * Information about the spatial, vertical and temporal extent of the source data.
      *
      * @return Information about the extent of the source data.
+     *
+     * @condition {@linkplain #getDescription() Description} not provided.
      */
     @UML(identifier="sourceExtent", obligation=CONDITIONAL, specification=ISO_19115)
     Collection<? extends Extent> getSourceExtents();
