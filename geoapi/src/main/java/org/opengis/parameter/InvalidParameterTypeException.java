@@ -10,6 +10,8 @@
  *************************************************************************************************/
 package org.opengis.parameter;
 
+import org.opengis.annotation.Extension;
+
 
 /**
  * Thrown when a parameter can't be cast to the requested type. For example this exception
@@ -27,6 +29,7 @@ package org.opengis.parameter;
  * @see ParameterValue#intValue
  * @see ParameterValue#doubleValue
  */
+@Extension
 public class InvalidParameterTypeException extends IllegalStateException {
     /**
      * Serial number for interoperability with different versions.

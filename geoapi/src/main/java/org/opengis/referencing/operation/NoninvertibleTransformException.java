@@ -10,6 +10,8 @@
  *************************************************************************************************/
 package org.opengis.referencing.operation;
 
+import org.opengis.annotation.Extension;
+
 
 /**
  * Thrown when {@link MathTransform#inverse} is
@@ -20,6 +22,7 @@ package org.opengis.referencing.operation;
  *
  * @see org.opengis.referencing.operation.CoordinateOperationFactory
  */
+@Extension
 public class NoninvertibleTransformException extends TransformException {
     /**
      * Serial number for interoperability with different versions.

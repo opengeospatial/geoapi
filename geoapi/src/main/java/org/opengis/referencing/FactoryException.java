@@ -10,6 +10,8 @@
  *************************************************************************************************/
 package org.opengis.referencing;
 
+import org.opengis.annotation.Extension;
+
 
 /**
  * Thrown when a {@linkplain Factory factory} can't create an instance
@@ -29,6 +31,7 @@ package org.opengis.referencing;
  *
  * @see org.opengis.referencing.operation.CoordinateOperationFactory
  */
+@Extension
 public class FactoryException extends Exception {
     /**
      * Serial number for interoperability with different versions.

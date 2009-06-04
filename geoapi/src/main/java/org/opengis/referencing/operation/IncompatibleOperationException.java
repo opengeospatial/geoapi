@@ -10,6 +10,8 @@
  *************************************************************************************************/
 package org.opengis.referencing.operation;
 
+import org.opengis.annotation.Extension;
+
 
 /**
  * Thrown when an operation is applied in a manner inconsistent with one or both of
@@ -18,6 +20,7 @@ package org.opengis.referencing.operation;
  * @author  Jesse Crossley (SYS Technologies)
  * @since   GeoAPI 1.0
  */
+@Extension
 public class IncompatibleOperationException extends Exception {
     /**
      * Serial number for interoperability with different versions.

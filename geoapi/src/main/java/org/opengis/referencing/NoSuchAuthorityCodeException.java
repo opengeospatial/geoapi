@@ -10,6 +10,8 @@
  *************************************************************************************************/
 package org.opengis.referencing;
 
+import org.opengis.annotation.Extension;
+
 
 /**
  * Thrown when an {@linkplain AuthorityFactory authority factory} can't find
@@ -21,6 +23,7 @@ package org.opengis.referencing;
  * @see org.opengis.referencing.datum.DatumAuthorityFactory
  * @see org.opengis.referencing.crs.CRSAuthorityFactory
  */
+@Extension
 public class NoSuchAuthorityCodeException extends FactoryException {
     /**
      * Serial number for interoperability with different versions.

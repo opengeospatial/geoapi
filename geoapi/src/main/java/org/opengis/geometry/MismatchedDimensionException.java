@@ -10,6 +10,8 @@
  *************************************************************************************************/
 package org.opengis.geometry;
 
+import org.opengis.annotation.Extension;
+
 
 /**
  * Indicates that an operation cannot be completed properly because
@@ -18,6 +20,7 @@ package org.opengis.geometry;
  * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 1.0
  */
+@Extension
 public class MismatchedDimensionException extends IllegalArgumentException {
     /**
      * Serial number for interoperability with different versions.

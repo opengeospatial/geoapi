@@ -10,9 +10,9 @@
  *************************************************************************************************/
 package org.opengis.feature;
 
-// J2SE direct dependencies
 import java.io.IOException;    // For javadoc
 import java.sql.SQLException;  // For javadoc
+import org.opengis.annotation.Extension;
 
 
 /**
@@ -27,6 +27,7 @@ import java.sql.SQLException;  // For javadoc
  * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 2.0
  */
+@Extension
 public class BackingStoreException extends RuntimeException {
     /**
      * Serial version UID allowing cross compiler use of {@code BackingStoreException}.
