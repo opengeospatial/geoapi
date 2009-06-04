@@ -10,6 +10,7 @@
  *************************************************************************************************/
 package org.opengis.referencing;
 
+import org.opengis.annotation.Extension;
 import org.opengis.metadata.Identifier;
 
 
@@ -23,6 +24,7 @@ import org.opengis.metadata.Identifier;
  *
  * @see org.opengis.referencing.operation.MathTransformFactory#createParameterizedTransform
  */
+@Extension
 public class NoSuchIdentifierException extends FactoryException {
     /**
      * Serial number for interoperability with different versions.

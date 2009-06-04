@@ -11,6 +11,7 @@
 package org.opengis.parameter;
 
 import java.util.List;
+import org.opengis.annotation.Extension;
 
 
 /**
@@ -33,6 +34,7 @@ import java.util.List;
  * @see ParameterDescriptor#getMinimumOccurs
  * @see ParameterDescriptor#getMaximumOccurs
  */
+@Extension
 public class InvalidParameterCardinalityException extends IllegalStateException {
     /**
      * Serial number for interoperability with different versions.

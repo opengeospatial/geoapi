@@ -10,6 +10,8 @@
  *************************************************************************************************/
 package org.opengis.parameter;
 
+import org.opengis.annotation.Extension;
+
 
 /**
  * Thrown when a required parameter was not found in a
@@ -21,6 +23,7 @@ package org.opengis.parameter;
  * @see ParameterDescriptorGroup#descriptor
  * @see ParameterValueGroup#parameter
  */
+@Extension
 public class ParameterNotFoundException extends IllegalArgumentException {
     /**
      * Serial number for interoperability with different versions.

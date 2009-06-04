@@ -10,6 +10,8 @@
  *************************************************************************************************/
 package org.opengis.geometry;
 
+import org.opengis.annotation.Extension;
+
 
 /**
  * Indicates that an operation is not allowed on a {@linkplain Geometry geometry} object
@@ -21,6 +23,7 @@ package org.opengis.geometry;
  * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 2.0
  */
+@Extension
 public class UnmodifiableGeometryException extends UnsupportedOperationException {
     /**
      * Serial number for interoperability with different versions.

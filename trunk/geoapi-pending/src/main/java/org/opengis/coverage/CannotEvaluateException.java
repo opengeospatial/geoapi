@@ -27,6 +27,7 @@ import org.opengis.annotation.Extension;
  * @see Coverage#evaluate(DirectPosition, byte[])
  * @see Coverage#evaluate(DirectPosition, double[])
  */
+@Extension
 public class CannotEvaluateException extends RuntimeException {
     /**
      * Serial number for interoperability with different versions.

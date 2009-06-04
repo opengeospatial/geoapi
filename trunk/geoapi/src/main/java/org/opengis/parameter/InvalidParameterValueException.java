@@ -25,7 +25,7 @@ import static org.opengis.annotation.Specification.*;
  * @see ParameterValue#setValue(double)
  * @see ParameterValue#setValue(Object)
  */
-@UML(identifier="GC_InvalidParameterValue", specification=ISO_19111)
+@UML(identifier="GC_InvalidParameterValue", specification=OGC_01004)
 public class InvalidParameterValueException extends IllegalArgumentException {
     /**
      * Serial number for interoperability with different versions.

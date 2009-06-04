@@ -10,6 +10,7 @@
  *************************************************************************************************/
 package org.opengis.referencing.operation;
 
+import org.opengis.annotation.Extension;
 import org.opengis.referencing.FactoryException;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 
@@ -23,6 +24,7 @@ import org.opengis.referencing.crs.CoordinateReferenceSystem;
  * @author  Martin Desruisseaux (IRD)
  * @since   GeoAPI 1.0
  */
+@Extension
 public class OperationNotFoundException extends FactoryException {
     /**
      * Serial number for interoperability with different versions.

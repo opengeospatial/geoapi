@@ -22,7 +22,7 @@ import static org.opengis.annotation.Specification.*;
  * @author  Martin Desruisseaux (IRD)
  * @since   GeoAPI 1.0
  */
-@UML(identifier="GC_InvalidParameterName", specification=ISO_19111)
+@UML(identifier="GC_InvalidParameterName", specification=OGC_01004)
 public class InvalidParameterNameException extends IllegalArgumentException {
     /**
      * Serial number for interoperability with different versions.
