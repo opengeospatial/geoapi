@@ -241,6 +241,12 @@ public abstract class CodeList<E extends CodeList<E>> implements Comparable<E>, 
 
     /**
      * Returns the list of codes of the same kind than this code.
+     * This is similar to the static {@code values()} method provided in {@code CodeList}
+     * subclasses, except that {@code family()} does not require the class to be known at
+     * compile-time - provided that at leat one instance of the familly is available. The
+     * static {@code values()} method has the opposite constraints (does not require a code
+     * instance, but the class needs to be known at compile time unless
+     * {@linkplain java.lang.reflect reflection} is used).
      *
      * @return The codes of the same kind than this code.
      */
@@ -257,7 +263,8 @@ public abstract class CodeList<E extends CodeList<E>> implements Comparable<E>, 
      * the constants are declared.
      *
      * @param other The code constant to compare with this code.
-     * @return -1 if the given code is less than this code, +1 if greater or 0 if equal.
+     * @return A negative value if the given code is less than this code,
+     *         a positive value if greater or 0 if equal.
      */
     public final int compareTo(final E other) {
         final Class<? extends CodeList> ct =  this.getClass();

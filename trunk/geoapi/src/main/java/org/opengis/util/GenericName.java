@@ -33,81 +33,90 @@ import static org.opengis.annotation.Specification.*;
  * Names are <em>immutables</em>. They may be {@linkplain #toFullyQualifiedName fully qualified}
  * like {@code "org.opengis.util.Record"}, or they may be relative to a {@linkplain #scope scope}
  * like {@code "util.Record"} in the {@code "org.opengis"} scope. The illustration below shows all
- * possible constructions for {@code "org.opengis.util.Record"}.
+ * possible constructions for {@code "org.opengis.util.Record"}. They are all instances of
+ * {@link ScopedName} except the last one which is a {@link LocalName}.
  *
  * <blockquote><table border="1" cellpadding="15"><tr><td><table border="0" cellspacing="0">
  *   <tr>
- *     <th align="right">org</th>
- *     <th>.</th><th>opengis</th>
- *     <th>.</th><th>util</th>
- *     <th>.</th><th>Record</th>
- *     <th width="50"></th>
- *     <th>{@link #scope}</th>
- *     <th>{@link #getParsedNames}</th>
+ *     <td align="right"><b>org</b></td>
+ *     <td><b>.</b></td><td><b>opengis</b></td>
+ *     <td><b>.</b></td><td><b>util</b></td>
+ *     <td><b>.</b></td><td><b>Record</b></td>
+ *     <td width="50"></td>
+ *     <td><b>{@link #scope}</b></td>
+ *     <td align="right"><b>{@link #getParsedNames}</b></td>
  *   </tr>
- *
  *   <tr align="center">
  *     <td bgcolor="palegoldenrod" colspan="1"><font size="-1">{@linkplain #head head}</font></td><td></td>
  *     <td bgcolor="palegoldenrod" colspan="5"><font size="-1">{@linkplain ScopedName#tail tail}</font></td>
- *     <td rowspan="3"></td>
- *     <td rowspan="3" bgcolor="beige" align="left">{@linkplain NameSpace#isGlobal global}</td>
- *     <td rowspan="3" bgcolor="beige" align="right">{@literal {"org", "opengis", "util", "Record"}}</td>
+ *     <td rowspan="2"></td>
+ *     <td rowspan="2" bgcolor="beige" align="left">{@linkplain NameSpace#isGlobal global}</td>
+ *     <td rowspan="2" bgcolor="beige" align="right">{{@code "org"}, {@code "opengis"}, {@code "util"}, {@code "Record"}}</td>
  *   </tr>
  *   <tr align="center">
  *     <td bgcolor="wheat" colspan="5"><font size="-1">{@linkplain ScopedName#path path}</font></td><td></td>
  *     <td bgcolor="wheat" colspan="1"><font size="-1">{@linkplain #tip tip}</font></td>
  *   </tr>
- *   <tr align="center">
- *     <td bgcolor="burlywood" colspan="7">{@linkplain ScopedName}</td>
- *   </tr>
  *
- *   <tr><td colspan="7" height="3"></td></tr>
+ *   <tr><td colspan="7" height="15"></td></tr>
+ *   <tr>
+ *     <td align="right">org</td>
+ *     <td>.</td><td><b>opengis</b></td>
+ *     <td><b>.</b></td><td><b>util</b></td>
+ *     <td><b>.</b></td><td><b>Record</b></td>
+ *     <td colspan="3"></td>
+ *   </tr>
  *   <tr align="center">
- *     <td bgcolor="palegoldenrod" colspan="1" rowspan="3"><font size="-1">{@linkplain #scope scope}</font></td><td rowspan="3"></td>
+ *     <td bgcolor="palegoldenrod" colspan="1" rowspan="2"><font size="-1">{@linkplain #scope scope}</font></td><td rowspan="3"></td>
  *     <td bgcolor="palegoldenrod" colspan="1"><font size="-1">head</font></td><td></td>
  *     <td bgcolor="palegoldenrod" colspan="3"><font size="-1">tail</font></td>
- *     <td rowspan="3"></td>
- *     <td rowspan="3" bgcolor="beige" align="left">{@literal "org"}</td>
- *     <td rowspan="3" bgcolor="beige" align="right">{@literal {"opengis", "util", "Record"}}</td>
+ *     <td rowspan="2"></td>
+ *     <td rowspan="2" bgcolor="beige" align="left">{@code "org"}</td>
+ *     <td rowspan="2" bgcolor="beige" align="right">{{@code "opengis"}, {@code "util"}, {@code "Record"}}</td>
  *   </tr>
  *   <tr align="center">
  *     <td bgcolor="wheat" colspan="3"><font size="-1">path</font></td><td></td>
  *     <td bgcolor="wheat" colspan="1"><font size="-1">tip</font></td>
  *   </tr>
- *   <tr align="center">
- *     <td bgcolor="burlywood" colspan="5">ScopedName</td>
- *   </tr>
  *
- *   <tr><td colspan="7" height="3"></td></tr>
+ *   <tr><td colspan="7" height="15"></td></tr>
+ *   <tr>
+ *     <td align="right">org</td>
+ *     <td>.</td><td>opengis</td>
+ *     <td>.</td><td><b>util</b></td>
+ *     <td><b>.</b></td><td><b>Record</b></td>
+ *     <td colspan="3"></td>
+ *   </tr>
  *   <tr align="center">
- *     <td bgcolor="palegoldenrod" colspan="3" rowspan="3"><font size="-1">scope</font></td><td rowspan="3"></td>
+ *     <td bgcolor="palegoldenrod" colspan="3" rowspan="2"><font size="-1">scope</font></td><td rowspan="3"></td>
  *     <td bgcolor="palegoldenrod" colspan="1"><font size="-1">head</font></td><td></td>
  *     <td bgcolor="palegoldenrod" colspan="1"><font size="-1">tail</font></td>
- *     <td rowspan="3"></td>
- *     <td rowspan="3" bgcolor="beige" align="left">{@literal "org.opengis"}</td>
- *     <td rowspan="3" bgcolor="beige" align="right">{@literal {"util", "Record"}}</td>
+ *     <td rowspan="2"></td>
+ *     <td rowspan="2" bgcolor="beige" align="left">{@code "org.opengis"}</td>
+ *     <td rowspan="2" bgcolor="beige" align="right">{{@code "util"}, {@code "Record"}}</td>
  *   </tr>
  *   <tr align="center">
  *     <td bgcolor="wheat" colspan="1"><font size="-1">path</font></td><td></td>
  *     <td bgcolor="wheat" colspan="1"><font size="-1">tip</font></td>
  *   </tr>
- *   <tr align="center">
- *     <td bgcolor="burlywood" colspan="3">ScopedName</td>
- *   </tr>
  *
- *   <tr><td colspan="7" height="3"></td></tr>
+ *   <tr><td colspan="7" height="15"></td></tr>
+ *   <tr>
+ *     <td align="right">org</td>
+ *     <td>.</td><td>opengis</td>
+ *     <td>.</td><td>util</td>
+ *     <td>.</td><td><b>Record</b></td>
+ *     <td colspan="3"></td>
+ *   </tr>
  *   <tr align="center">
- *     <td bgcolor="palegoldenrod" colspan="5" rowspan="3"><font size="-1">scope</font></td><td rowspan="3"></td>
+ *     <td bgcolor="palegoldenrod" colspan="5" rowspan="2"><font size="-1">scope</font></td><td rowspan="3"></td>
  *     <td bgcolor="palegoldenrod" colspan="1"><font size="-1">head</font></td>
- *     <td rowspan="3"></td>
- *     <td rowspan="3" bgcolor="beige" align="left">{@literal "org.opengis.util"}</td>
- *     <td rowspan="3" bgcolor="beige" align="right">{@literal {"Record"}}</td>
+ *     <td rowspan="2"></td>
+ *     <td rowspan="2" bgcolor="beige" align="left">{@code "org.opengis.util"}</td>
+ *     <td rowspan="2" bgcolor="beige" align="right">{{@code "Record"}}</td>
  *   </tr>
  *   <tr align="center">
  *     <td bgcolor="wheat" colspan="1"><font size="-1">tip</font></td>
- *   </tr>
- *   <tr align="center">
- *     <td bgcolor="burlywood" colspan="1">{@linkplain LocalName}</td>
  *   </tr>
  * </table></td></tr></table></blockquote>
  * <p>
