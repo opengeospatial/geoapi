@@ -19,6 +19,19 @@ import static org.opengis.annotation.Specification.*;
 
 /**
  * A domain in which {@linkplain GenericName names} given by character strings are defined.
+ * Every {@link GenericName} must be valid in a namespace. For a {@link LocalName}, this means
+ * that the name must exist in the current namespace. For a {@link ScopedName}, this means:
+ * <p>
+ * <ol>
+ *   <li>The {@linkplain ScopedName#head head} of a {@code ScopedName} must be a {@code LocalName}
+ *       which is valid in this namespace.</li>
+ *   <li>The {@linkplain ScopedName#tail tail} must either be:
+ *       <ul>
+ *         <li>a {@code LocalName} which is valid in the {@code NameSpace} associated with the head, or</li>
+ *         <li>another {@code ScopedName} with these same constraints on head and tail, applied to
+ *             the {@code NameSpace} associated with the head.</li>
+ *       </ul></li>
+ * </ol>
  *
  * @author Bryce Nordgren (USDA)
  * @author Martin Desruisseaux (IRD)
