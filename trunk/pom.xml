@@ -119,6 +119,16 @@
   <!-- ==================================================== -->
   <developers>
     <developer>
+      <id>acuster</id>
+      <name>Adrian Custer</name>
+      <organization>Geomatys</organization>
+      <organizationUrl>http://www.geomatys.fr/</organizationUrl>
+      <roles>
+        <role>Specification editor</role>
+      </roles>
+      <timezone>+1</timezone>
+    </developer>
+    <developer>
       <id>crossley</id>
       <name>Jesse Crossley</name>
       <email>jcrossley@systechnologies.com</email>
@@ -199,6 +209,22 @@
   </developers>
 
   <contributors>
+    <contributor>
+      <name>Cédric Briançon</name>
+      <organization>Geomatys</organization>
+      <organizationUrl>http://www.geomatys.fr/</organizationUrl>
+      <roles>
+        <role>Java Developer</role>
+      </roles>
+      <timezone>+1</timezone>
+    </contributor>
+    <contributor>
+      <name>Bryce Nordgren</name>
+      <organization>USDA</organization>
+      <roles>
+        <role>Java Developer</role>
+      </roles>
+    </contributor>
     <contributor>
       <name>Greg Reynolds</name>
       <email>gregreynolds@cox.net</email>
