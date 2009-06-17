@@ -10,7 +10,6 @@
  *************************************************************************************************/
 package org.opengis.coverage.grid;
 
-import org.opengis.util.Cloneable;
 import org.opengis.annotation.UML;
 import org.opengis.annotation.Extension;
 
@@ -29,7 +28,7 @@ import static org.opengis.annotation.Specification.*;
  * @since   GeoAPI 2.1
  */
 @UML(identifier="CV_GridCoordinates", specification=ISO_19123)
-public interface GridCoordinates extends Cloneable {
+public interface GridCoordinates {
     /**
      * Returns the number of dimensions. This method is equivalent to
      * <code>{@linkplain #getCoordinateValues()}.length</code>. It is

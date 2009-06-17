@@ -10,7 +10,6 @@
  *************************************************************************************************/
 package org.opengis.referencing.operation;
 
-import org.opengis.util.Cloneable;
 import org.opengis.annotation.UML;
 import org.opengis.annotation.Extension;
 
@@ -39,7 +38,7 @@ import static org.opengis.annotation.Specification.*;
  * @see <A HREF="http://jcp.org/jsr/detail/83.jsp">JSR-83 Multiarray package</A>
  */
 @UML(identifier="PT_Matrix", specification=OGC_01009)
-public interface Matrix extends Cloneable {
+public interface Matrix {
     /**
      * Returns the number of rows in this matrix.
      *

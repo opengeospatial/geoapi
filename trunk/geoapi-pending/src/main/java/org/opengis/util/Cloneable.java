@@ -35,7 +35,13 @@ package org.opengis.util;
  * @see java.lang.Cloneable
  * @see <A HREF="http://developer.java.sun.com/developer/bugParade/bugs/4098033.html">&quot;<cite>Cloneable
  *      doesn't define <code>clone()</code></cite>&quot; on Sun's bug parade</A>
+ *
+ * @deprecated The need for this interface in GeoAPI is weaker than it was at the begining of this
+ *      project, since the interfaces which were originally extending {@code Cloneable} do not
+ *      extend it anymore today. Consequently this interface will be removed and the handling
+ *      of the {@code Cloneable} issue left to implementors.
  */
+@Deprecated
 public interface Cloneable extends java.lang.Cloneable {
     /**
      * Creates and returns a copy of this object.

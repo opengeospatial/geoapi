@@ -19,8 +19,11 @@ import org.opengis.annotation.Extension;
  *
  * @author  Jesse Crossley (SYS Technologies)
  * @since   GeoAPI 1.0
+ *
+ * @deprecated This GeoAPI extension is not used in any GeoAPI interface.
  */
 @Extension
+@Deprecated
 public class IncompatibleOperationException extends Exception {
     /**
      * Serial number for interoperability with different versions.
