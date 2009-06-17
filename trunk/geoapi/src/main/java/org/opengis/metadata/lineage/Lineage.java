@@ -33,7 +33,6 @@ import static org.opengis.annotation.ComplianceLevel.*;
  * @author  Martin Desruisseaux (IRD)
  * @since   GeoAPI 2.0
  */
-@Profile (level=CORE)
 @UML(identifier="LI_Lineage", specification=ISO_19115)
 public interface Lineage {
     /**
@@ -44,7 +43,7 @@ public interface Lineage {
      * @condition Should be provided only if {@linkplain Scope#getLevel scope level} is
      *            {@link ScopeCode#DATASET} or {@link ScopeCode#SERIES}.
      */
-    @Profile (level=CORE)
+    @Profile(level=CORE)
     @UML(identifier="statement", obligation=CONDITIONAL, specification=ISO_19115)
     InternationalString getStatement();
 

@@ -14,11 +14,9 @@ import java.util.List;
 import java.util.ArrayList;
 import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
-import org.opengis.annotation.Profile;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
-import static org.opengis.annotation.ComplianceLevel.*;
 
 
 /**
@@ -28,7 +26,6 @@ import static org.opengis.annotation.ComplianceLevel.*;
  * @author  Martin Desruisseaux (IRD)
  * @since   GeoAPI 2.0
  */
-@Profile (level=CORE)
 @UML(identifier="MD_SpatialRepresentationTypeCode", specification=ISO_19115)
 public final class SpatialRepresentationType extends CodeList<SpatialRepresentationType> {
     /**

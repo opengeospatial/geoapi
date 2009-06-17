@@ -40,7 +40,6 @@ import static org.opengis.annotation.ComplianceLevel.*;
  * @author  Cory Horner (Refractions Research)
  * @since   GeoAPI 2.0
  */
-@Profile (level=CORE)
 @UML(identifier="MD_MetaData", specification=ISO_19115)
 public interface MetaData {
     /**
@@ -48,7 +47,7 @@ public interface MetaData {
      *
      * @return Unique identifier for this metadata file, or {@code null}.
      */
-    @Profile (level=CORE)
+    @Profile(level=CORE)
     @UML(identifier="fileIdentifier", obligation=OPTIONAL, specification=ISO_19115)
     String getFileIdentifier();
 
@@ -59,7 +58,7 @@ public interface MetaData {
      *
      * @condition Not defined by encoding.
      */
-    @Profile (level=CORE)
+    @Profile(level=CORE)
     @UML(identifier="language", obligation=CONDITIONAL, specification=ISO_19115)
     Locale getLanguage();
 
@@ -70,7 +69,7 @@ public interface MetaData {
      *
      * @condition Not used and not defined by encoding.
      */
-    @Profile (level=CORE)
+    @Profile(level=CORE)
     @UML(identifier="characterSet", obligation=CONDITIONAL, specification=ISO_19115)
     CharacterSet getCharacterSet();
 
@@ -114,7 +113,7 @@ public interface MetaData {
      *
      * @since GeoAPI 2.1
      */
-    @Profile (level=CORE)
+    @Profile(level=CORE)
     @UML(identifier="contact", obligation=MANDATORY, specification=ISO_19115)
     Collection<? extends ResponsibleParty> getContacts();
 
@@ -123,7 +122,7 @@ public interface MetaData {
      *
      * @return Date that the metadata was created.
      */
-    @Profile (level=CORE)
+    @Profile(level=CORE)
     @UML(identifier="dateStamp", obligation=MANDATORY, specification=ISO_19115)
     Date getDateStamp();
 
@@ -132,7 +131,7 @@ public interface MetaData {
      *
      * @return Name of the metadata standard used, or {@code null}.
      */
-    @Profile (level=CORE)
+    @Profile(level=CORE)
     @UML(identifier="metadataStandardName", obligation=OPTIONAL, specification=ISO_19115)
     String getMetadataStandardName();
 
@@ -141,7 +140,7 @@ public interface MetaData {
      *
      * @return Version of the metadata standard used, or {@code null}.
      */
-    @Profile (level=CORE)
+    @Profile(level=CORE)
     @UML(identifier="metadataStandardVersion", obligation=OPTIONAL, specification=ISO_19115)
     String getMetadataStandardVersion();
 
@@ -179,7 +178,7 @@ public interface MetaData {
      *
      * @return Spatial and temporal reference systems used in the dataset.
      */
-    @Profile (level=CORE)
+    @Profile(level=CORE)
     @UML(identifier="referenceSystemInfo", obligation=OPTIONAL, specification=ISO_19115)
     Collection<? extends ReferenceSystem> getReferenceSystemInfo();
 
@@ -196,7 +195,7 @@ public interface MetaData {
      *
      * @return The resource(s) to which the metadata applies.
      */
-    @Profile (level=CORE)
+    @Profile(level=CORE)
     @UML(identifier="identificationInfo", obligation=MANDATORY, specification=ISO_19115)
     Collection<? extends Identification> getIdentificationInfo();
 
@@ -214,7 +213,7 @@ public interface MetaData {
      *
      * @return The distributor of and options for obtaining the resource(s).
      */
-    @Profile (level=CORE)
+    @Profile(level=CORE)
     @UML(identifier="distributionInfo", obligation=OPTIONAL, specification=ISO_19115)
     Distribution getDistributionInfo();
 
@@ -223,7 +222,7 @@ public interface MetaData {
      *
      * @return Overall assessment of quality of a resource(s).
      */
-    @Profile (level=CORE)
+    @Profile(level=CORE)
     @UML(identifier="dataQualityInfo", obligation=OPTIONAL, specification=ISO_19115)
     Collection<? extends DataQuality> getDataQualityInfo();
 

@@ -26,7 +26,6 @@ import static org.opengis.annotation.ComplianceLevel.*;
  * @author  Martin Desruisseaux (IRD)
  * @since   GeoAPI 2.0
  */
-@Profile (level=CORE)
 @UML(identifier="CI_Date", specification=ISO_19115)
 public interface CitationDate {
     /**
@@ -34,7 +33,7 @@ public interface CitationDate {
      *
      * @return Reference date for the cited resource.
      */
-    @Profile (level=CORE)
+    @Profile(level=CORE)
     @UML(identifier="date", obligation=MANDATORY, specification=ISO_19115)
     Date getDate();
 
@@ -43,7 +42,7 @@ public interface CitationDate {
      *
      * @return Event used for reference date.
      */
-    @Profile (level=CORE)
+    @Profile(level=CORE)
     @UML(identifier="dateType", obligation=MANDATORY, specification=ISO_19115)
     DateType getDateType();
 }

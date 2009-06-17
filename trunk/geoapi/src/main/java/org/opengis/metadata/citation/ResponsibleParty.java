@@ -27,7 +27,6 @@ import static org.opengis.annotation.ComplianceLevel.*;
  * @author  Martin Desruisseaux (IRD)
  * @since   GeoAPI 1.0
  */
-@Profile (level=CORE)
 @UML(identifier="CI_ResponsibleParty", specification=ISO_19115)
 public interface ResponsibleParty {
     /**
@@ -40,6 +39,7 @@ public interface ResponsibleParty {
      * @condition {@link #getOrganisationName Organisation name} and
      *            {@link #getPositionName position name} not documented.
      */
+    @Profile(level=CORE)
     @UML(identifier="individualName", obligation=CONDITIONAL, specification=ISO_19115)
     String getIndividualName();
 
@@ -53,6 +53,7 @@ public interface ResponsibleParty {
      * @condition {@link #getIndividualName Individual name} and
      *            {@link #getPositionName position name} not documented.
      */
+    @Profile(level=CORE)
     @UML(identifier="organisationName", obligation=CONDITIONAL, specification=ISO_19115)
     InternationalString getOrganisationName();
 
@@ -66,6 +67,7 @@ public interface ResponsibleParty {
      * @condition {@link #getIndividualName Individual name} and
      *            {@link #getOrganisationName organisation name} not documented.
      */
+    @Profile(level=CORE)
     @UML(identifier="positionName", obligation=CONDITIONAL, specification=ISO_19115)
     InternationalString getPositionName();
 
@@ -82,6 +84,7 @@ public interface ResponsibleParty {
      *
      * @return Function performed by the responsible party.
      */
+    @Profile(level=CORE)
     @UML(identifier="role", obligation=MANDATORY, specification=ISO_19115)
     Role getRole();
 }
