@@ -23,7 +23,12 @@ import static org.opengis.annotation.Specification.*;
  * @author Jody Garnett (Refractions Research)
  * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 2.1
+ *
+ * @deprecated ISO uses this type only for the multiplicity of associations in UML models,
+ *      which is not something that we try to represent in GeoAPI. Even if we wanted this
+ *      information, custom class can not be used in Java annotations.
  */
+@Deprecated
 @UML(identifier="UnlimitedInteger", specification=ISO_19103)
 public final class UnlimitedInteger extends Number implements Comparable<UnlimitedInteger> {
     /**
