@@ -26,7 +26,6 @@ import static org.opengis.annotation.ComplianceLevel.*;
  * @author  Cory Horner (Refractions Research)
  * @since   GeoAPI 2.0
  */
-@Profile (level=CORE)
 @UML(identifier="MD_Resolution", specification=ISO_19115)
 public interface Resolution {
     /**
@@ -38,7 +37,7 @@ public interface Resolution {
      *
      * @condition {@linkplain #getDistance() Distance} not documented.
      */
-    @Profile (level=CORE)
+    @Profile(level=CORE)
     @UML(identifier="equivalentScale", obligation=CONDITIONAL, specification=ISO_19115)
     RepresentativeFraction getEquivalentScale();
 
@@ -54,7 +53,7 @@ public interface Resolution {
      *
      * @condition {@linkplain #getEquivalentScale() Equivalent scale} not documented.
      */
-    @Profile (level=CORE)
+    @Profile(level=CORE)
     @UML(identifier="distance", obligation=CONDITIONAL, specification=ISO_19115)
     Double getDistance();
 }

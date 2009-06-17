@@ -28,7 +28,6 @@ import static org.opengis.annotation.ComplianceLevel.*;
  * @author  Martin Desruisseaux (IRD)
  * @since   GeoAPI 2.0
  */
-@Profile (level=CORE)
 @UML(identifier="MD_Format", specification=ISO_19115)
 public interface Format {
     /**
@@ -36,7 +35,7 @@ public interface Format {
      *
      * @return Name of the data transfer format(s).
      */
-    @Profile (level=CORE)
+    @Profile(level=CORE)
     @UML(identifier="name", obligation=MANDATORY, specification=ISO_19115)
     InternationalString getName();
 
@@ -45,7 +44,7 @@ public interface Format {
      *
      * @return Version of the format.
      */
-    @Profile (level=CORE)
+    @Profile(level=CORE)
     @UML(identifier="version", obligation=MANDATORY, specification=ISO_19115)
     InternationalString getVersion();
 

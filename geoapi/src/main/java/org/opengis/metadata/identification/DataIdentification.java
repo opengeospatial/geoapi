@@ -32,7 +32,6 @@ import static org.opengis.annotation.ComplianceLevel.*;
  * @author  Martin Desruisseaux (IRD)
  * @since   GeoAPI 2.0
  */
-@Profile (level=CORE)
 @UML(identifier="MD_DataIdentification", specification=ISO_19115)
 public interface DataIdentification extends Identification {
     /**
@@ -40,7 +39,7 @@ public interface DataIdentification extends Identification {
      *
      * @return Method(s) used to spatially represent geographic information.
      */
-    @Profile (level=CORE)
+    @Profile(level=CORE)
     @UML(identifier="spatialRepresentationType", obligation=OPTIONAL, specification=ISO_19115)
     Collection<SpatialRepresentationType> getSpatialRepresentationTypes();
 
@@ -50,7 +49,7 @@ public interface DataIdentification extends Identification {
      *
      * @return Factor which provides a general understanding of the density of spatial data.
      */
-    @Profile (level=CORE)
+    @Profile(level=CORE)
     @UML(identifier="spatialResolution", obligation=OPTIONAL, specification=ISO_19115)
     Collection<? extends Resolution> getSpatialResolutions();
 
@@ -59,7 +58,7 @@ public interface DataIdentification extends Identification {
      *
      * @return Language(s) used.
      */
-    @Profile (level=CORE)
+    @Profile(level=CORE)
     @UML(identifier="language", obligation=MANDATORY, specification=ISO_19115)
     Collection<Locale> getLanguage();
 
@@ -70,7 +69,7 @@ public interface DataIdentification extends Identification {
      *
      * @condition ISO/IEC 10646-1 not used.
      */
-    @Profile (level=CORE)
+    @Profile(level=CORE)
     @UML(identifier="characterSet", obligation=CONDITIONAL, specification=ISO_19115)
     Collection<CharacterSet> getCharacterSets();
 
@@ -82,7 +81,7 @@ public interface DataIdentification extends Identification {
      * @condition If {@linkplain MetaData#getHierarchyLevels() hierarchy level} equals
      *            {@link ScopeCode#DATASET}.
      */
-    @Profile (level=CORE)
+    @Profile(level=CORE)
     @UML(identifier="topicCategory", obligation=CONDITIONAL, specification=ISO_19115)
     Collection<TopicCategory> getTopicCategories();
 
@@ -104,7 +103,7 @@ public interface DataIdentification extends Identification {
      * @condition if hierarchyLevel equals dataset? either extent.geographicElement.EX_GeographicBoundingBox
      *            or extent.geographicElement.EX_GeographicDescription is required.
      */
-    @Profile (level=CORE)
+    @Profile(level=CORE)
     @UML(identifier="extent", obligation=CONDITIONAL, specification=ISO_19115)
     Collection<? extends Extent> getExtent();
 

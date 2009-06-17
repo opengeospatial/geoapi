@@ -22,7 +22,7 @@ import static java.lang.annotation.ElementType.*;
  * @since   GeoAPI 2.0
  */
 @Documented
-@Target({TYPE, FIELD, METHOD})
+@Target(METHOD)
 public @interface Profile {
     /**
      * The level for the annoted element. {@link ComplianceLevel#CORE CORE} means

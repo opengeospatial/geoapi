@@ -12,10 +12,12 @@ package org.opengis.metadata.extent;
 
 import java.util.Collection;
 import org.opengis.util.InternationalString;
+import org.opengis.annotation.Profile;
 import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
+import static org.opengis.annotation.ComplianceLevel.*;
 
 
 /**
@@ -54,6 +56,7 @@ public interface Extent {
      *            {@linkplain #getTemporalElements temporal element} and
      *            {@linkplain #getVerticalElements vertical element} not documented.
      */
+    @Profile(level=CORE)
     @UML(identifier="geographicElement", obligation=CONDITIONAL, specification=ISO_19115)
     Collection<? extends GeographicExtent> getGeographicElements();
 
@@ -66,6 +69,7 @@ public interface Extent {
      *            {@linkplain #getGeographicElements geographic element} and
      *            {@linkplain #getVerticalElements vertical element} not documented.
      */
+    @Profile(level=CORE)
     @UML(identifier="temporalElement", obligation=CONDITIONAL, specification=ISO_19115)
     Collection<? extends TemporalExtent> getTemporalElements();
 
@@ -78,6 +82,7 @@ public interface Extent {
      *            {@linkplain #getGeographicElements geographic element} and
      *            {@linkplain #getTemporalElements temporal element} not documented.
      */
+    @Profile(level=CORE)
     @UML(identifier="verticalElement", obligation=CONDITIONAL, specification=ISO_19115)
     Collection<? extends VerticalExtent> getVerticalElements();
 }

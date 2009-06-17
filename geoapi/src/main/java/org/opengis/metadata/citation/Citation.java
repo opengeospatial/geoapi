@@ -30,7 +30,6 @@ import static org.opengis.annotation.ComplianceLevel.*;
  * @author  Cory Horner (Refractions Research)
  * @since   GeoAPI 1.0
  */
-@Profile (level=CORE)
 @UML(identifier="CI_Citation", specification=ISO_19115)
 public interface Citation {
     /**
@@ -38,7 +37,7 @@ public interface Citation {
      *
      * @return The cited resource name.
      */
-    @Profile (level=CORE)
+    @Profile(level=CORE)
     @UML(identifier="title", obligation=MANDATORY, specification=ISO_19115)
     InternationalString getTitle();
 
@@ -56,7 +55,7 @@ public interface Citation {
      *
      * @return The reference date.
      */
-    @Profile (level=CORE)
+    @Profile(level=CORE)
     @UML(identifier="date", obligation=MANDATORY, specification=ISO_19115)
     Collection<? extends CitationDate> getDates();
 

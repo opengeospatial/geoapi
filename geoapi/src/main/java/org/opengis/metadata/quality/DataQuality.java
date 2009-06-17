@@ -27,7 +27,6 @@ import static org.opengis.annotation.ComplianceLevel.*;
  * @author  Martin Desruisseaux (IRD)
  * @since   GeoAPI 2.0
  */
-@Profile (level=CORE)
 @UML(identifier="DQ_DataQuality", specification=ISO_19115)
 public interface DataQuality {
     /**
@@ -60,7 +59,7 @@ public interface DataQuality {
      *
      * @condition {@linkplain #getReports() Report} not provided.
      */
-    @Profile (level=CORE)
+    @Profile(level=CORE)
     @UML(identifier="lineage", obligation=CONDITIONAL, specification=ISO_19115)
     Lineage getLineage();
 }

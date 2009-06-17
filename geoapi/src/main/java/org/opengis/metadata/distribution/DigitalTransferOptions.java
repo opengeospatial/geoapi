@@ -29,7 +29,6 @@ import static org.opengis.annotation.ComplianceLevel.*;
  * @author  Cory Horner (Refractions Research)
  * @since   GeoAPI 2.0
  */
-@Profile (level=CORE)
 @UML(identifier="MD_DigitalTransferOptions", specification=ISO_19115)
 public interface DigitalTransferOptions {
     /**
@@ -55,7 +54,7 @@ public interface DigitalTransferOptions {
      *
      * @return Online sources from which the resource can be obtained.
      */
-    @Profile (level=CORE)
+    @Profile(level=CORE)
     @UML(identifier="onLine", obligation=OPTIONAL, specification=ISO_19115)
     Collection<? extends OnLineResource> getOnLines();
 

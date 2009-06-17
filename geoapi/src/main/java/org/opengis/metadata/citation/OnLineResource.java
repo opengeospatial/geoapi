@@ -29,7 +29,6 @@ import static org.opengis.annotation.Specification.*;
  * @author  Cory Horner (Refractions Research)
  * @since   GeoAPI 1.0
  */
-@Profile (level=CORE)
 @UML(identifier="CI_OnlineResource", specification=ISO_19115)
 public interface OnLineResource {
     /**
@@ -38,6 +37,7 @@ public interface OnLineResource {
      *
      * @return Location for on-line access using a Uniform Resource Locator address or similar scheme.
      */
+    @Profile(level=CORE)
     @UML(identifier="linkage", obligation=MANDATORY, specification=ISO_19115)
     URI getLinkage();
 
