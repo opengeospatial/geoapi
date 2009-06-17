@@ -49,6 +49,31 @@ public class NameTest extends TestCase {
     }
 
     /**
+     * Creates a namespace having the given name and separator.
+     *
+     * @param name
+     *          The name of the namespace to be returned. This argument can be created using
+     *          <code>{@linkplain #createGenericName createGenericName}(null, parsedNames)</code>.
+     * @param headSeparator
+     *          The separator to insert between the namespace and the {@linkplain AbstractName#head
+     *          head}. For HTTP namespace, it is {@code "://"}. For URN namespace, it is typically
+     *          {@code ":"}.
+     * @param separator
+     *          The separator to insert between {@linkplain AbstractName#getParsedNames parsed names}
+     *          in that namespace. For HTTP namespace, it is {@code "."}. For URN namespace, it is
+     *          typically {@code ":"}.
+     * @return A namespace having the given name and separator.
+     */
+    private NameSpace createNameSpace(final GenericName name,
+            final String headSeparator, final String separator)
+    {
+        final Map<String,String> properties = new HashMap<String,String>(4);
+        properties.put("separator", separator);
+        properties.put("separator.head", headSeparator);
+        return factory.createNameSpace(name, properties);
+    }
+
+    /**
      * Tests the creation of "My documents" folder name.
      * This test uses the following factory methods:
      * <p>
@@ -92,7 +117,7 @@ public class NameTest extends TestCase {
         assertEquals(EPSG, authority.toString());
         assertEquals(EPSG, authority.toInternationalString().toString());
 
-        final NameSpace ns = factory.createNameSpace(authority, ":", ":");
+        final NameSpace ns = createNameSpace(authority, ":", ":");
         validate(ns);
         assertEquals(authority, ns.name());
 
@@ -153,7 +178,7 @@ public class NameTest extends TestCase {
         assumeNotNull(factory);
         final LocalName urn = factory.createLocalName(null, "urn");
         validate(urn);
-        final NameSpace ns = factory.createNameSpace(urn, ":", ":");
+        final NameSpace ns = createNameSpace(urn, ":", ":");
         validate(ns);
         final GenericName name = factory.parseGenericName(ns, "ogc:def:crs:epsg:4326");
         validate(name);
@@ -180,21 +205,21 @@ public class NameTest extends TestCase {
         assertEquals(1, name.depth());
         assertEquals("http", name.head().toString());
         assertEquals("http", name.tip().toString());
-        NameSpace ns = factory.createNameSpace(name, "://", ".");
+        NameSpace ns = createNameSpace(name, "://", ".");
         validate(ns);
 
         name = factory.parseGenericName(ns, "www.opengis.net");
         assertEquals(3, name.depth());
         assertEquals("www", name.head().toString());
         assertEquals("net", name.tip().toString());
-        ns = factory.createNameSpace(name, "/", "/");
+        ns = createNameSpace(name, "/", "/");
         validate(ns);
 
         name = factory.parseGenericName(ns, "gml/srs/epsg.xml");
         assertEquals(3, name.depth());
         assertEquals("gml", name.head().toString());
         assertEquals("epsg.xml", name.tip().toString());
-        ns = factory.createNameSpace(name, "#", ":");
+        ns = createNameSpace(name, "#", ":");
         validate(ns);
 
         name = factory.createLocalName(ns, "4326");

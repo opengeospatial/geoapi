@@ -39,7 +39,34 @@ public interface NameFactory {
     InternationalString createInternationalString(Map<Locale,String> strings);
 
     /**
-     * Creates a namespace having the given name and separators.
+     * Creates a namespace having the given name and separators. The {@code properties} argument
+     * is optional: if non-null, the given properties may be given to the namespace to be created.
+     * The properties can include for example the separator character to be used between the
+     * {@linkplain GenericName#getParsedNames() parsed names}.
+     * <p>
+     * Implementations are encouraged to recognize at least the properties listed in the following
+     * table. Additional implementation-specific properties can be added. Unknown properties shall
+     * be ignored.
+     * <p>
+     * <table border='1'>
+     *   <tr bgcolor="#CCCCFF" class="TableHeadingColor">
+     *     <th nowrap>Property name</th>
+     *     <th nowrap>Purpose</th>
+     *   </tr>
+     *   <tr>
+     *     <td nowrap>&nbsp;{@code "separator"}&nbsp;</td>
+     *     <td nowrap>&nbsp;The separator to insert between {@linkplain GenericName#getParsedNames
+     *     parsed names} in that namespace. For HTTP namespace, it is {@code "."}. For URN namespace,
+     *     it is typically {@code ":"}.</td>
+     *   </tr>
+     *   <tr>
+     *     <td nowrap>&nbsp;{@code "separator.head"}&nbsp;</td>
+     *     <td nowrap>&nbsp;The separator to insert between the namespace and the
+     *     {@linkplain GenericName#head head}. For HTTP namespace, it is {@code "://"}.
+     *     For URN namespace, it is typically {@code ":"}. If this entry is omitted, then
+     *     the default shall be the same value than the {@code "separator"} entry.</td>
+     *   </tr>
+     * </table>
      * <p>
      * <blockquote><font size=-1><b>Implementation note:</b>
      * despite the "create" name, implementations may return existing instances.
@@ -48,6 +75,19 @@ public interface NameFactory {
      * @param name
      *          The name of the namespace to be returned. This argument can be created using
      *          <code>{@linkplain #createGenericName createGenericName}(null, parsedNames)</code>.
+     * @param properties
+     *          An optional map of properties to be assigned to the namespace.
+     * @return A namespace having the given name and separators.
+     *
+     * @since GeoAPI 2.3
+     */
+    NameSpace createNameSpace(GenericName name, Map<String,?> properties);
+
+    /**
+     * @deprecated Replaced by {@link #createNameSpace(GenericName, Map)}.
+     *
+     * @param name
+     *          The name of the namespace to be returned.
      * @param headSeparator
      *          The separator to insert between the namespace and the {@linkplain GenericName#head
      *          head}. For HTTP namespace, it is {@code "://"}. For URN namespace, it is typically
@@ -60,6 +100,7 @@ public interface NameFactory {
      *
      * @since GeoAPI 2.2
      */
+    @Deprecated
     NameSpace createNameSpace(GenericName name, String headSeparator, String separator);
 
     /**
