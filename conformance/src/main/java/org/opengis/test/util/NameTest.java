@@ -19,6 +19,8 @@ import org.opengis.util.*;
 
 import org.junit.*;
 import org.opengis.test.TestCase;
+
+import static org.junit.Assume.*;
 import static org.opengis.test.Validators.*;
 
 
@@ -31,12 +33,14 @@ import static org.opengis.test.Validators.*;
  */
 public class NameTest extends TestCase {
     /**
-     * The factory to be used for testing {@linkplain GenericName generic name} instances.
+     * The factory to be used for testing {@linkplain GenericName generic name} instances,
+     * or {@code null} if none.
      */
     protected final NameFactory factory;
 
     /**
-     * Creates a new test using the given factory.
+     * Creates a new test using the given factory. If the given factory is {@code null},
+     * then the tests will be skipped.
      *
      * @param factory The factory to be used for creation of instances to be tested.
      */
@@ -54,6 +58,7 @@ public class NameTest extends TestCase {
      */
     @Test
     public void testInternationalString() {
+        assumeNotNull(factory);
         final Map<Locale,String> names = new HashMap<Locale,String>();
         names.put(Locale.ENGLISH, "My documents");
         names.put(Locale.FRENCH,  "Mes documents");
@@ -79,6 +84,7 @@ public class NameTest extends TestCase {
      */
     @Test
     public void testLocalName() {
+        assumeNotNull(factory);
         final String EPSG = "EPSG";
         final LocalName authority = factory.createLocalName(null, EPSG);
         validate(authority);
@@ -108,6 +114,7 @@ public class NameTest extends TestCase {
      */
     @Test
     public void testScopedName() {
+        assumeNotNull(factory);
         final String[] parsed = new String[] {
             "urn","ogc","def","crs","epsg","4326"
         };
@@ -143,6 +150,7 @@ public class NameTest extends TestCase {
      */
     @Test
     public void testParsedURN() {
+        assumeNotNull(factory);
         final LocalName urn = factory.createLocalName(null, "urn");
         validate(urn);
         final NameSpace ns = factory.createNameSpace(urn, ":", ":");
@@ -167,6 +175,7 @@ public class NameTest extends TestCase {
      */
     @Test
     public void testParsedHTTP() {
+        assumeNotNull(factory);
         GenericName name = factory.createLocalName(null, "http");
         assertEquals(1, name.depth());
         assertEquals("http", name.head().toString());
