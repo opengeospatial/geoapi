@@ -47,6 +47,22 @@ import static org.opengis.annotation.Specification.*;
 public interface CRSFactory extends ObjectFactory {
     /**
      * Creates a compound coordinate reference system from an ordered
+     * list of {@code SingleCRS} objects.
+     *
+     * @param  properties Name and other properties to give to the new object.
+     *         Available properties are {@linkplain ObjectFactory listed there}.
+     * @param  components ordered array of {@code SingleCRS} components.
+     * @return The coordinate reference system for the given properties.
+     * @throws FactoryException if the object creation failed.
+     *
+     * @since GeoAPI 2.3
+     */
+    @UML(identifier="createCompoundCoordinateSystem", specification=OGC_01009)
+    CompoundCRS createCompoundCRS(Map<String, ?> properties,
+                                  SingleCRS... components) throws FactoryException;
+
+    /**
+     * Creates a compound coordinate reference system from an ordered
      * list of {@code CoordinateReferenceSystem} objects.
      *
      * @param  properties Name and other properties to give to the new object.
@@ -54,7 +70,10 @@ public interface CRSFactory extends ObjectFactory {
      * @param  elements ordered array of {@code CoordinateReferenceSystem} objects.
      * @return The coordinate reference system for the given properties.
      * @throws FactoryException if the object creation failed.
+     *
+     * @deprecated According ISO, the components must be restricted to {@link SingleCRS} instances.
      */
+    @Deprecated
     @UML(identifier="createCompoundCoordinateSystem", specification=OGC_01009)
     CompoundCRS createCompoundCRS(Map<String, ?>              properties,
                                   CoordinateReferenceSystem[] elements) throws FactoryException;

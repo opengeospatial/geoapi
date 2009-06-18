@@ -58,11 +58,23 @@ public interface CompoundCRS extends CoordinateReferenceSystem {
     /**
      * The ordered list of coordinate reference systems.
      *
-     * @departure
-     *   ISO specification mandates {@link SingleCRS} components.
+     * @return The ordered list of coordinate reference systems.
+     *
+     * @since GeoAPI 2.3
+     */
+    @UML(identifier="componentReferenceSystem", obligation=MANDATORY, specification=ISO_19111)
+    List<SingleCRS> getComponents();
+
+    /**
+     * The ordered list of coordinate reference systems.
      *
      * @return The ordered list of coordinate reference systems.
+     *
+     * @deprecated
+     *   Replaced by {@link #getComponents()} because
+     *   ISO specification mandates {@link SingleCRS} components.
      */
+    @Deprecated
     @UML(identifier="componentReferenceSystem", obligation=MANDATORY, specification=ISO_19111)
     List<CoordinateReferenceSystem> getCoordinateReferenceSystems();
 }
