@@ -10,10 +10,8 @@
  *************************************************************************************************/
 package org.opengis.referencing.operation;
 
-import org.opengis.parameter.ParameterValueGroup;
 import org.opengis.annotation.UML;
 
-import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
 
 
@@ -28,27 +26,9 @@ import static org.opengis.annotation.Specification.*;
  *
  * @see OperationMethod
  *
- * @deprecated This interface has been removed from ISO 19111:2007. The methods
- *             defined here moved to the {@link SingleOperation} parent interface.
+ * @deprecated This interface has been removed from ISO 19111:2007.
  */
 @Deprecated
 @UML(identifier="CC_Operation", specification=ISO_19111)
 public interface Operation extends SingleOperation {
-    /**
-     * Returns the operation method.
-     *
-     * @return The operation method.
-     */
-    @UML(identifier="method", obligation=MANDATORY, specification=ISO_19111)
-    OperationMethod getMethod();
-
-    /**
-     * Returns the parameter values.
-     *
-     * @return The parameter values.
-     *
-     * @rename Added "{@code Parameter}" prefix for more consistency with the return type.
-     */
-    @UML(identifier="value", obligation=MANDATORY, specification=ISO_19111)
-    ParameterValueGroup getParameterValues();
 }
