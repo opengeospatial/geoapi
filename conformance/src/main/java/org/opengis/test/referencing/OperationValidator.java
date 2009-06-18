@@ -51,8 +51,8 @@ public class OperationValidator extends ReferencingValidator {
             validate((ConcatenatedOperation) object);
         } else if (object instanceof PassThroughOperation) {
             validate((PassThroughOperation) object);
-        } else if (object instanceof Operation) {
-            validateOperation((Operation) object);
+        } else if (object instanceof SingleOperation) {
+            validateOperation((SingleOperation) object);
         } else {
             validateCoordinateOperation(object);
         }
@@ -71,7 +71,7 @@ public class OperationValidator extends ReferencingValidator {
         final MathTransform transform = object.getMathTransform();
         mandatory("PassThroughOperation: shall have a MathTransform.", transform);
 
-        final Operation operation = object.getOperation();
+        final SingleOperation operation = object.getOperation();
         mandatory("PassThroughOperation: getOperation() is mandatory.", operation);
         assertNotSame("PassThroughOperation: getOperation() can't be this.", object, operation);
         dispatch(operation);
@@ -216,7 +216,7 @@ public class OperationValidator extends ReferencingValidator {
      *
      * @param object The object to validate, or {@code null}.
      */
-    private void validateOperation(final Operation object) {
+    private void validateOperation(final SingleOperation object) {
         if (object == null) {
             return;
         }
