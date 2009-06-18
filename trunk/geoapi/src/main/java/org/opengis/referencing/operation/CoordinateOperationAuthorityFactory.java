@@ -16,6 +16,7 @@ import org.opengis.referencing.AuthorityFactory;
 import org.opengis.referencing.FactoryException;
 import org.opengis.referencing.NoSuchAuthorityCodeException;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
+import org.opengis.annotation.Extension;
 import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Specification.*;
@@ -33,12 +34,29 @@ import static org.opengis.annotation.Specification.*;
 @UML(identifier="CT_CoordinateTransformationAuthorityFactory", specification=OGC_01009)
 public interface CoordinateOperationAuthorityFactory extends AuthorityFactory {
     /**
+     * Creates an operation method from a single code. The "{@linkplain Identifier#getAuthority
+     * authority}" and "{@linkplain Identifier#getCode code}" values of the created object will be
+     * set to the authority of this object, and the code specified by the client, respectively. The
+     * other metadata values may or may not be set.
+     *
+     * @param  code Coded value for operation method.
+     * @return The operation method for the given code.
+     * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
+     * @throws FactoryException if the object creation failed for some other reason.
+     *
+     * @since GeoAPI 2.3
+     */
+    @Extension
+    OperationMethod createOperationMethod(String code)
+            throws NoSuchAuthorityCodeException, FactoryException;
+
+    /**
      * Creates an operation from a single operation code. The "{@linkplain Identifier#getAuthority
      * authority}" and "{@linkplain Identifier#getCode code}" values of the created object will be
      * set to the authority of this object, and the code specified by the client, respectively. The
      * other metadata values may or may not be set.
      *
-     * @param  code Coded value for transformation.
+     * @param  code Coded value for coordinate operation.
      * @return The operation for the given code.
      * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
      * @throws FactoryException if the object creation failed for some other reason.
