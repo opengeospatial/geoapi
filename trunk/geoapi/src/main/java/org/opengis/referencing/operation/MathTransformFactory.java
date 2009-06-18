@@ -82,7 +82,7 @@ public interface MathTransformFactory extends Factory {
      * @see #createParameterizedTransform
      */
     @Extension
-    Set<OperationMethod> getAvailableMethods(Class<? extends Operation> type);
+    Set<OperationMethod> getAvailableMethods(Class<? extends SingleOperation> type);
 
     /**
      * Returns the operation method used for the latest call to
