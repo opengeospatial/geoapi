@@ -67,7 +67,7 @@ public interface ScopedName extends GenericName {
      * scoped name. In other words, the following relationship must holds:
      * <p>
      * <ul>
-     *   <li><code>head().scope() {@linkplain NameSpace#equals equals}
+     *   <li><code>head().scope() {@linkplain Object#equals equals}
      *       this.{@linkplain #scope scope()}</code></li>
      * </ul>
      * <p>
