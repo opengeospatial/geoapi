@@ -261,13 +261,13 @@ public interface GenericName extends Comparable<GenericName> {
      * <p>
      * <ul>
      *   <li><code>push(</code><var>foo</var><code> : LocalName).{@linkplain #head}</code>
-     *       {@linkplain #equals equals} <var>foo</var></li>
+     *       {@linkplain Object#equals equals} <var>foo</var></li>
      *
      *   <li><code>push(</code><var>foo</var><code> : LocalName).{@linkplain ScopedName#tail tail()}</code>
-     *       {@linkplain #equals equals} <var>this</var></li>
+     *       {@linkplain Object#equals equals} <var>this</var></li>
      *
      *   <li><code>push(</code><var>foo</var><code> : GenericName).{@linkplain #scope}</code>
-     *       {@linkplain #equals equals} <var>foo</var>.{@link #scope()}</li>
+     *       {@linkplain Object#equals equals} <var>foo</var>.{@link #scope()}</li>
      *
      *   <li><code>push(</code><var>foo</var><code> : GenericName).{@linkplain #getParsedNames}</code>
      *       {@linkplain List#equals equals} <var>foo</var>.<code>getParsedNames().{@linkplain
