@@ -75,6 +75,8 @@ public abstract class UmlProcessor extends SimpleDeclarationVisitor
 
     /**
      * Returns the options recognized by this factory or by any of the processors it may create.
+     *
+     * @return The options recognized by this factory.
      */
     public Collection<String> supportedOptions() {
         return supportedOptions;
@@ -82,6 +84,8 @@ public abstract class UmlProcessor extends SimpleDeclarationVisitor
 
     /**
      * Returns the names of the annotation types supported by this factory.
+     *
+     * @return The annotation types recognized by this factory.
      */
     public Collection<String> supportedAnnotationTypes() {
         return supportedAnnotations;
@@ -121,6 +125,9 @@ public abstract class UmlProcessor extends SimpleDeclarationVisitor
     /**
      * Returns the UML identifier for the specified element, or {@code null}
      * if the specified element is not part of the UML model.
+     *
+     * @param  element The element for which to get the UML identifier.
+     * @return The identifier of the given element, or {@code null} if none.
      */
     protected static String getUmlIdentifier(final AnnotatedElement element) {
         return getUmlIdentifier(element.getAnnotation(UML.class));
@@ -129,6 +136,9 @@ public abstract class UmlProcessor extends SimpleDeclarationVisitor
     /**
      * Returns the UML identifier for the specified element, or {@code null}
      * if the specified element is not part of the UML model.
+     *
+     * @param  element The element for which to get the UML identifier.
+     * @return The identifier of the given element, or {@code null} if none.
      */
     protected static String getUmlIdentifier(final Declaration element) {
         return getUmlIdentifier(element.getAnnotation(UML.class));
@@ -137,6 +147,9 @@ public abstract class UmlProcessor extends SimpleDeclarationVisitor
     /**
      * Returns the UML identifier for the specified element, or {@code null}
      * if the specified element is not part of the UML model.
+     *
+     * @param  element The element for which to get the UML identifier.
+     * @return The identifier of the given element, or {@code null} if none.
      */
     protected static String getUmlIdentifier(final TypeMirror element) {
         return (element instanceof DeclaredType) ? getUmlIdentifier(((DeclaredType) element).getDeclaration()) : null;
@@ -164,6 +177,9 @@ public abstract class UmlProcessor extends SimpleDeclarationVisitor
 
     /**
      * Returns {@code true} if the specified declaration is a {@link CodeList}.
+     *
+     * @param  declaration The element to test.
+     * @return {@code true} if the given element is a code list.
      */
     protected final boolean isCodeList(final TypeDeclaration declaration) {
         return (declaration instanceof ClassDeclaration) &&
