@@ -103,7 +103,7 @@ public class Validators {
      * Tests the conformance of the given object.
      *
      * @param object The object to test, or {@code null}.
-     * @see ExtentValidator#validate(GeographicExtent)
+     * @see ExtentValidator#dispatch(GeographicExtent)
      */
     public static void validate(final GeographicExtent object) {
         DEFAULT.validate(object);
@@ -163,7 +163,7 @@ public class Validators {
      * Tests the conformance of the given object.
      *
      * @param object The object to test, or {@code null}.
-     * @see CRSValidator#validate(CoordinateReferenceSystem)
+     * @see CRSValidator#dispatch(CoordinateReferenceSystem)
      */
     public static void validate(final CoordinateReferenceSystem object) {
         DEFAULT.validate(object);
@@ -253,7 +253,7 @@ public class Validators {
      * Tests the conformance of the given object.
      *
      * @param object The object to test, or {@code null}.
-     * @see CSValidator#validate(CoordinateSystem)
+     * @see CSValidator#dispatch(CoordinateSystem)
      */
     public static void validate(final CoordinateSystem object) {
         DEFAULT.validate(object);
@@ -363,7 +363,7 @@ public class Validators {
      * Tests the conformance of the given object.
      *
      * @param object The object to test, or {@code null}.
-     * @see DatumValidator#validate(Datum)
+     * @see DatumValidator#dispatch(Datum)
      */
     public static void validate(final Datum object) {
         DEFAULT.validate(object);
@@ -443,7 +443,7 @@ public class Validators {
      * Tests the conformance of the given object.
      *
      * @param object The object to test, or {@code null}.
-     * @see OperationValidator#validate(CoordinateOperation)
+     * @see OperationValidator#dispatch(CoordinateOperation)
      */
     public static void validate(final CoordinateOperation object) {
         DEFAULT.validate(object);
@@ -513,7 +513,7 @@ public class Validators {
      * Tests the conformance of the given object.
      *
      * @param object The object to test, or {@code null}.
-     * @see ParameterValidator#validate(GeneralParameterDescriptor)
+     * @see ParameterValidator#dispatch(GeneralParameterDescriptor)
      */
     public static void validate(final GeneralParameterDescriptor object) {
         DEFAULT.validate(object);
@@ -543,7 +543,7 @@ public class Validators {
      * Tests the conformance of the given object.
      *
      * @param object The object to test, or {@code null}.
-     * @see ParameterValidator#validate(GeneralParameterValue)
+     * @see ParameterValidator#dispatch(GeneralParameterValue)
      */
     public static void validate(final GeneralParameterValue object) {
         DEFAULT.validate(object);
@@ -573,7 +573,7 @@ public class Validators {
      * Tests the conformance of the given object.
      *
      * @param object The object to test, or {@code null}.
-     * @see ReferencingValidator#validate(IdentifiedObject)
+     * @see ReferencingValidator#dispatchObject(IdentifiedObject)
      */
     public static void validate(final IdentifiedObject object) {
         DEFAULT.validate(object);
@@ -603,7 +603,7 @@ public class Validators {
      * Tests the conformance of the given object.
      *
      * @param object The object to test, or {@code null}.
-     * @see NameValidator#validate(GenericName)
+     * @see NameValidator#dispatch(GenericName)
      */
     public static void validate(final GenericName object) {
         DEFAULT.validate(object);

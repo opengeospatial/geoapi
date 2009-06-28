@@ -59,28 +59,28 @@ public strictfp abstract class TransformTestCase extends TestCase {
     protected MathTransform transform;
 
     /**
-     * {@code true} if {@link MathTransform#transform(double[],int,double[],int,int)
+     * {@code true} if {@link MathTransform#transform(double[],int,double[],int,int)}
      * is supported. The default value is {@code true}. Vendor can set this value to
      * {@code false} in order to test a transform which is not fully implemented.
      */
     protected boolean isDoubleToDoubleSupported = true;
 
     /**
-     * {@code true} if {@link MathTransform#transform(float[],int,float[],int,int)
+     * {@code true} if {@link MathTransform#transform(float[],int,float[],int,int)}
      * is supported. The default value is {@code true}. Vendor can set this value to
      * {@code false} in order to test a transform which is not fully implemented.
      */
     protected boolean isFloatToFloatSupported = true;
 
     /**
-     * {@code true} if {@link MathTransform#transform(double[],int,float[],int,int)
+     * {@code true} if {@link MathTransform#transform(double[],int,float[],int,int)}
      * is supported. The default value is {@code true}. Vendor can set this value to
      * {@code false} in order to test a transform which is not fully implemented.
      */
     protected boolean isDoubleToFloatSupported = true;
 
     /**
-     * {@code true} if {@link MathTransform#transform(float[],int,double[],int,int)
+     * {@code true} if {@link MathTransform#transform(float[],int,double[],int,int)}
      * is supported. The default value is {@code true}. Vendor can set this value to
      * {@code false} in order to test a transform which is not fully implemented.
      */

@@ -208,7 +208,7 @@ public class ValidatorContainer {
      * Tests the conformance of the given object.
      *
      * @param object The object to test, or {@code null}.
-     * @see ExtentValidator#validate(GeographicExtent)
+     * @see ExtentValidator#dispatch(GeographicExtent)
      */
     public final void validate(final GeographicExtent object) {
         extent.dispatch(object);
@@ -548,7 +548,7 @@ public class ValidatorContainer {
      * Tests the conformance of the given object.
      *
      * @param object The object to test, or {@code null}.
-     * @see OperationValidator#validate(CoordinateOperation)
+     * @see OperationValidator#dispatch(CoordinateOperation)
      */
     public final void validate(final CoordinateOperation object) {
         coordinateOperation.dispatch(object);
@@ -678,7 +678,7 @@ public class ValidatorContainer {
      * Tests the conformance of the given object.
      *
      * @param object The object to test, or {@code null}.
-     * @see ReferencingValidator#dispatch(IdentifiedObject)
+     * @see ReferencingValidator#dispatchObject(IdentifiedObject)
      */
     public final void validate(final IdentifiedObject object) {
         crs.dispatchObject(object);
@@ -708,7 +708,7 @@ public class ValidatorContainer {
      * Tests the conformance of the given object.
      *
      * @param object The object to test, or {@code null}.
-     * @see NameValidator#validate(GenericName)
+     * @see NameValidator#dispatch(GenericName)
      */
     public final void validate(final GenericName object) {
         naming.dispatch(object);

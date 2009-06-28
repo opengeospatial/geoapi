@@ -110,9 +110,9 @@ public class ModelComparator extends UmlProcessor {
     }
 
     /**
-     * Process all program elements supported by this annotation processor. This method scan
-     * all interfaces and their methods (as well as code lists and their fields) and write
-     * the comparaison result to a HTML file.
+     * Processes all program elements supported by this annotation processor. This method scans
+     * all interfaces and their methods (as well as code lists and their fields) and writes the
+     * comparison result to a HTML file.
      */
     @Override
     public void process() {
