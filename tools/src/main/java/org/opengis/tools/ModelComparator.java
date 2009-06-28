@@ -54,7 +54,7 @@ import org.opengis.geometry.coordinate.PointArray;
  * apt -nocompile -factory org.opengis.tools.ModelComparator @opengis.txt
  * </pre></blockquote>
  *
- * The HTML files will be stored in the <code>{@value #ROOT_PACKAGE}/doc-files</code> package.
+ * The HTML files will be stored in the <code>{@value #ROOT_PACKAGE}/annotation/doc-files</code> package.
  *
  * @author Martin Desruisseaux
  */
@@ -119,7 +119,7 @@ public class ModelComparator extends UmlProcessor {
         final Filer filer = environment.getFiler();
         try {
             classes = filer.createTextFile(Filer.Location.SOURCE_TREE, ROOT_PACKAGE,
-                        new File("doc-files/departures-list.html"), null);
+                        new File("annotation/doc-files/departures-list.html"), null);
         } catch (IOException exception) {
             printError(exception);
             return;
@@ -175,6 +175,8 @@ public class ModelComparator extends UmlProcessor {
     /**
      * Checks for class changes or additions. Will also checks for methods or fields
      * inside that class.
+     *
+     * @param declaration The class to check.
      */
     @Override
     public void visitTypeDeclaration(final TypeDeclaration declaration) {
@@ -321,7 +323,7 @@ scanMembers:
     }
 
     /**
-     * Drop the two letter prefix for the given OGC name. This prefix normally appears only
+     * Drops the two letter prefix for the given OGC name. This prefix normally appears only
      * in class name. However, it was also used in front of some code list in some pre-ISO
      * specifications.
      */
