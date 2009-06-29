@@ -99,23 +99,23 @@ GeoAPI 2.0
 
 ** Changes in Geometry packages
 
-    * Set <<<{{{javadoc/org/opengis/geometry/coordinate/Position.html}Position}}>>> as the super-interface
-      for <<<{{{javadoc/org/opengis/geometry/DirectPosition.html}DirectPosition}}>>> and
-      <<<{{{javadoc/org/opengis/geometry/primitive/Point.html}Point}}>>> interfaces instead
+    * Set <<<{{{javadoc/org/opengis/spatialschema/geometry/coordinate/Position.html}Position}}>>> as the super-interface
+      for <<<{{{javadoc/org/opengis/spatialschema/geometry/DirectPosition.html}DirectPosition}}>>> and
+      <<<{{{javadoc/org/opengis/spatialschema/geometry/primitive/Point.html}Point}}>>> interfaces instead
       of an union of them. The union type do no exists in Java and this change lead to a more object oriented
       approach. This change was done after a comment on the GeoAPI mailing list.
 
-    * In <<<{{{javadoc/org/opengis/geometry/Envelope.html}Envelope}}>>> interface,
+    * In <<<{{{javadoc/org/opengis/spatialschema/geometry/Envelope.html}Envelope}}>>> interface,
       added convenience methods <<<getMinimum>>>, <<<getMaximum>>>, <<<getCenter>>>
       and <<<getLength>>>.
 
-    * In <<<{{{javadoc/org/opengis/geometry/coordinate/GenericCurve.html}GenericCurve}}>>>, renamed the
+    * In <<<{{{javadoc/org/opengis/spatialschema/geometry/coordinate/GenericCurve.html}GenericCurve}}>>>, renamed the
       <<<getParam>>> and <<<getConstructiveParam>>> method as
       <<<forParam>>> and <<<forConstructiveParam>>> respectively.
       The former names was misleading since those methods do not return a constructive
       parameter; they expect it as argument instead.
 
-    * In <<<{{{javadoc/org/opengis/geometry/complex/Complex.html}Complex}}>>>, renamed the
+    * In <<<{{{javadoc/org/opengis/spatialschema/geometry/complex/Complex.html}Complex}}>>>, renamed the
       <<<getSuperComplexex>>> method as <<<getSuperComplexes>>>. The former was a typo.
 
     * Addition of more geometry interfaces from ISO 19107. The work is not finished however.
