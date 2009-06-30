@@ -95,14 +95,6 @@ final class SimpleDirectPosition implements DirectPosition {
     /**
      * {@inheritDoc}
      */
-    @Deprecated
-    public DirectPosition getPosition() {
-        return this;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
     public DirectPosition getDirectPosition() {
         return this;
     }
