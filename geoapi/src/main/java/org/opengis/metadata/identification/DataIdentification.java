@@ -57,10 +57,22 @@ public interface DataIdentification extends Identification {
      * Language(s) used within the dataset.
      *
      * @return Language(s) used.
+     *
+     * @deprecated Renamed as {@link #getLanguages()} (with an "s").
      */
+    @Deprecated
     @Profile(level=CORE)
     @UML(identifier="language", obligation=MANDATORY, specification=ISO_19115)
     Collection<Locale> getLanguage();
+
+    /**
+     * Language(s) used within the dataset.
+     *
+     * @return Language(s) used.
+     */
+    @Profile(level=CORE)
+    @UML(identifier="language", obligation=MANDATORY, specification=ISO_19115)
+    Collection<Locale> getLanguages();
 
     /**
      * Full name of the character coding standard(s) used for the dataset.
@@ -100,12 +112,28 @@ public interface DataIdentification extends Identification {
      *
      * @return Additional extent information.
      *
-     * @condition if hierarchyLevel equals dataset? either extent.geographicElement.EX_GeographicBoundingBox
+     * @condition If hierarchyLevel equals dataset? either extent.geographicElement.EX_GeographicBoundingBox
+     *            or extent.geographicElement.EX_GeographicDescription is required.
+     *
+     * @deprecated Renamed as {@link #getExtents()} (with an "s").
+     */
+    @Deprecated
+    @Profile(level=CORE)
+    @UML(identifier="extent", obligation=CONDITIONAL, specification=ISO_19115)
+    Collection<? extends Extent> getExtent();
+
+    /**
+     * Additional extent information including the bounding polygon, vertical, and temporal
+     * extent of the dataset.
+     *
+     * @return Additional extent information.
+     *
+     * @condition If hierarchyLevel equals dataset? either extent.geographicElement.EX_GeographicBoundingBox
      *            or extent.geographicElement.EX_GeographicDescription is required.
      */
     @Profile(level=CORE)
     @UML(identifier="extent", obligation=CONDITIONAL, specification=ISO_19115)
-    Collection<? extends Extent> getExtent();
+    Collection<? extends Extent> getExtents();
 
     /**
      * Any other descriptive information about the dataset.

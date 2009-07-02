@@ -92,9 +92,20 @@ public interface Identification {
      * Provides information about the frequency of resource updates, and the scope of those updates.
      *
      * @return Frequency and scope of resource updates.
+     *
+     * @deprecated Renamed as {@link #getResourceMaintenances()} (with an "s").
      */
+    @Deprecated
     @UML(identifier="resourceMaintenance", obligation=OPTIONAL, specification=ISO_19115)
     Collection<? extends MaintenanceInformation> getResourceMaintenance();
+
+    /**
+     * Provides information about the frequency of resource updates, and the scope of those updates.
+     *
+     * @return Frequency and scope of resource updates.
+     */
+    @UML(identifier="resourceMaintenance", obligation=OPTIONAL, specification=ISO_19115)
+    Collection<? extends MaintenanceInformation> getResourceMaintenances();
 
     /**
      * Provides a graphic that illustrates the resource(s) (should include a legend for the graphic).
@@ -108,9 +119,20 @@ public interface Identification {
      * Provides a description of the format of the resource(s).
      *
      * @return Description of the format.
+     *
+     * @deprecated Renamed as {@link #getResourceFormats()} (with an "s").
      */
+    @Deprecated
     @UML(identifier="resourceFormat", obligation=OPTIONAL, specification=ISO_19115)
     Collection<? extends Format> getResourceFormat();
+
+    /**
+     * Provides a description of the format of the resource(s).
+     *
+     * @return Description of the format.
+     */
+    @UML(identifier="resourceFormat", obligation=OPTIONAL, specification=ISO_19115)
+    Collection<? extends Format> getResourceFormats();
 
     /**
      * Provides category keywords, their type, and reference source.
