@@ -1,0 +1,11 @@
+GeoAPI 1.0
+
+  Release 1.0 of GeoAPI contains the interfaces developed by the GeoAPI project and presented with 
+  the first draft of the specification document OGC\ 03-064 of the Open Geospatial Consortium 
+    <GO-1 Application Objects>
+  for evaluation along with the draft standard.
+
+  {{{javadoc/index.html}Browse javadoc}}.
+
+  This release requires a Java environment J2SE\ 1.4 or higher and can be obtained from the 
+  {{{http://sourceforge.net/project/showfiles.php?group_id=70002&package_id=69096&release_id=239242}download page}}.

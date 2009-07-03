@@ -1,0 +1,8 @@
+GeoAPI snapshot
+
+   Contains interfaces under development for possible inclusion in a future GeoAPI release.
+   Changes need to be submitted to OGC before to be included in an official release (probably
+   3.0). Releases in the 2.x series (except 2.0.0) are milestones.
+
+   A page listing the GeoAPI content (interface and method names) together with the name used
+   in the OGC and ISO specifications is available {{{content.html}here}}.
