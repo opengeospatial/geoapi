@@ -65,24 +65,24 @@ public abstract class CRSTest extends TestCase {
         final GeographicCRS crs = factory.createGeographicCRS("EPSG:4326");
         validate(crs);
         assertNotNull(crs);
-        assertEquals("WGS 84", crs.getName().toString());
+        assertEquals("WGS 84", crs.getName().getCode());
         /*
          * Coordinate system validation.
          */
         final EllipsoidalCS cs = crs.getCoordinateSystem();
         final CoordinateSystemAxis latitude  = cs.getAxis(0);
         final CoordinateSystemAxis longitude = cs.getAxis(1);
-        assertEquals("Geodetic latitude",  latitude.getName().toString());
+        assertEquals("Geodetic latitude",  latitude.getName().getCode());
         assertEquals(AxisDirection.NORTH,  latitude.getDirection());
         assertEquals(NonSI.DEGREE_ANGLE,   latitude.getUnit());
-        assertEquals("Geodetic longitude", longitude.getName().toString());
+        assertEquals("Geodetic longitude", longitude.getName().getCode());
         assertEquals(AxisDirection.EAST,   longitude.getDirection());
         assertEquals(NonSI.DEGREE_ANGLE,   longitude.getUnit());
         /*
          * Datum validation.
          */
         final GeodeticDatum datum = crs.getDatum();
-        assertEquals("World Geodetic System 1984", datum.getName().toString());
+        assertEquals("World Geodetic System 1984", datum.getName().getCode());
         final PrimeMeridian pm = datum.getPrimeMeridian();
         assertEquals(0.0, pm.getGreenwichLongitude(), 0.0);
         assertEquals(NonSI.DEGREE_ANGLE, pm.getAngularUnit());
