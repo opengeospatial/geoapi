@@ -97,17 +97,6 @@ public interface Citation {
      * Mode in which the resource is represented, or an empty string if none.
      *
      * @return The presentation mode, or an empty collection if none.
-     *
-     * @deprecated Renamed as {@link #getPresentationForms()} (with an "s").
-     */
-    @Deprecated
-    @UML(identifier="presentationForm", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<PresentationForm> getPresentationForm();
-
-    /**
-     * Mode in which the resource is represented, or an empty string if none.
-     *
-     * @return The presentation mode, or an empty collection if none.
      */
     @UML(identifier="presentationForm", obligation=OPTIONAL, specification=ISO_19115)
     Collection<PresentationForm> getPresentationForms();

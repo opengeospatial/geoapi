@@ -57,18 +57,6 @@ public interface DataIdentification extends Identification {
      * Language(s) used within the dataset.
      *
      * @return Language(s) used.
-     *
-     * @deprecated Renamed as {@link #getLanguages()} (with an "s").
-     */
-    @Deprecated
-    @Profile(level=CORE)
-    @UML(identifier="language", obligation=MANDATORY, specification=ISO_19115)
-    Collection<Locale> getLanguage();
-
-    /**
-     * Language(s) used within the dataset.
-     *
-     * @return Language(s) used.
      */
     @Profile(level=CORE)
     @UML(identifier="language", obligation=MANDATORY, specification=ISO_19115)
@@ -105,22 +93,6 @@ public interface DataIdentification extends Identification {
      */
     @UML(identifier="environmentDescription", obligation=OPTIONAL, specification=ISO_19115)
     InternationalString getEnvironmentDescription();
-
-    /**
-     * Additional extent information including the bounding polygon, vertical, and temporal
-     * extent of the dataset.
-     *
-     * @return Additional extent information.
-     *
-     * @condition If hierarchyLevel equals dataset? either extent.geographicElement.EX_GeographicBoundingBox
-     *            or extent.geographicElement.EX_GeographicDescription is required.
-     *
-     * @deprecated Renamed as {@link #getExtents()} (with an "s").
-     */
-    @Deprecated
-    @Profile(level=CORE)
-    @UML(identifier="extent", obligation=CONDITIONAL, specification=ISO_19115)
-    Collection<? extends Extent> getExtent();
 
     /**
      * Additional extent information including the bounding polygon, vertical, and temporal
