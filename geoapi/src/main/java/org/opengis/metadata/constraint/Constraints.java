@@ -32,18 +32,6 @@ public interface Constraints {
      * Example: "not to be used for navigation".
      *
      * @return Limitation affecting the fitness for use of the resource.
-     *
-     * @deprecated Renamed as {@link #getUseLimitations()} (with an "s").
-     */
-    @Deprecated
-    @UML(identifier="useLimitation", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<? extends InternationalString> getUseLimitation();
-
-    /**
-     * Limitation affecting the fitness for use of the resource.
-     * Example: "not to be used for navigation".
-     *
-     * @return Limitation affecting the fitness for use of the resource.
      */
     @UML(identifier="useLimitation", obligation=OPTIONAL, specification=ISO_19115)
     Collection<? extends InternationalString> getUseLimitations();
