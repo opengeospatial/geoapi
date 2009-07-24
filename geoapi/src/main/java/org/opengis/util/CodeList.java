@@ -29,7 +29,7 @@ import static org.opengis.annotation.Specification.*;
 /**
  * Base class for all code lists. Subclasses shall provides a {@code values()} method
  * which returns all {@code CodeList} element in an array of the appropriate class.
- * Code list are extensible, i.e. invoking the public constructor in any subclass will
+ * Code lists are extensible, i.e. invoking the public constructor in any subclass will
  * automatically add the newly created {@code CodeList} element in the array to be
  * returned by {@code values()}.
  *
@@ -48,13 +48,14 @@ public abstract class CodeList<E extends CodeList<E>> implements Comparable<E>, 
     /**
      * The values for each code list.
      */
+    @SuppressWarnings("rawtypes")
     private static final Map<Class<? extends CodeList>, Collection<? extends CodeList>> VALUES =
             new HashMap<Class<? extends CodeList>, Collection<? extends CodeList>>();
 
     /**
      * The types expected in constructors.
      */
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked","rawtypes"})
     private static final Class<String>[] CONSTRUCTOR_PARAMETERS = new Class[] {
         String.class
     };
@@ -85,7 +86,7 @@ public abstract class CodeList<E extends CodeList<E>> implements Comparable<E>, 
      * @param name   The code name.
      * @param values The collection to add the element to.
      */
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked","rawtypes"})
     protected CodeList(String name, final Collection<E> values) {
         this.name = (name = name.trim());
         synchronized (values) {
@@ -105,6 +106,32 @@ public abstract class CodeList<E extends CodeList<E>> implements Comparable<E>, 
     }
 
     /**
+     * Used by {@link CodeList#valueOf(Class, Filter)} to select codes matching an arbitrary
+     * criterion.
+     *
+     * @since GeoAPI 2.3
+     */
+    public static interface Filter {
+        /**
+         * Returns {@code true} if the given code matches the criterion defined by this filter.
+         *
+         * @param code The code to test.
+         * @return {@code true} if the code matches the criterion.
+         */
+        boolean accept(CodeList<?> code);
+
+        /**
+         * Returns the name of the code being looked for, or {@code null} if unknown.
+         * This method is invoked by {@link CodeList#valueOf(Class, Filter)} if no code
+         * match the criterion defined by this filter. If this method returns a non-null
+         * name, then a new code of that name will be created.
+         *
+         * @return The name of the code being looked for, or {@code null} if none.
+         */
+        String codename();
+    }
+
+    /**
      * Returns the code of the given type that matches the given name, or returns a new one if none
      * match it. More specifically, this methods returns the first element of the given class where
      * <code>{@linkplain #matches matches}(name)</code> returned {@code true}. If no such element is
@@ -114,14 +141,49 @@ public abstract class CodeList<E extends CodeList<E>> implements Comparable<E>, 
      * @param <T> The compile-time type given as the {@code codeType} parameter.
      * @param codeType The type of code list.
      * @param name The name of the code to obtain.
-     * @return A code matching the given name.
+     * @return A code matching the given name, or {@code null} if the name is null.
      */
     @Extension
-    public static <T extends CodeList> T valueOf(final Class<T> codeType, String name) {
+    public static <T extends CodeList<T>> T valueOf(final Class<T> codeType, String name) {
         if (name == null) {
             return null;
         }
         name = name.trim();
+        final String n = name;
+        return valueOf(codeType, new Filter() {
+            @Override public boolean accept(CodeList<?> code) {
+                return code.matches(n);
+            }
+
+            @Override public String codename() {
+                return n;
+            }
+        });
+    }
+
+    /**
+     * Returns the code of the given type that matches the given criterion, or returns a new one
+     * if none match it. More specifically, this methods returns the first element (in declaration
+     * order) of the given class where <code>filter.{@linkplain Filter#accept accept}(code)</code>
+     * returns {@code true}. If no such element is found, then there is a choice:
+     * <p>
+     * <ul>
+     *   <li>If {@link Filter#codename()} returns {@code null}, then this method returns {@code null}.</li>
+     *   <li>Otherwise a new instance is created using the constructor expecting a single {@link String}
+     *       argument, which is given the value returned by {@code codename()}.</li>
+     * </ul>
+     *
+     * @param <T> The compile-time type given as the {@code codeType} parameter.
+     * @param codeType The type of code list.
+     * @param filter The criterion for the code to obtain.
+     * @return A code matching the given criterion, or {@code null} if their is no match and
+     *         {@link Filter#codename()} returns {@code null}.
+     *
+     * @since GeoAPI 2.3
+     */
+    @Extension
+    public static <T extends CodeList<T>> T valueOf(final Class<T> codeType, final Filter filter) {
+        @SuppressWarnings("rawtypes")
         final Collection<? extends CodeList> values;
         synchronized (VALUES) {
             values = VALUES.get(codeType);
@@ -134,10 +196,14 @@ public abstract class CodeList<E extends CodeList<E>> implements Comparable<E>, 
             }
         }
         synchronized (values) {
-            for (final CodeList code : values) {
-                if (code.matches(name)) {
+            for (final CodeList<?> code : values) {
+                if (filter.accept(code)) {
                     return codeType.cast(code);
                 }
+            }
+            final String name = filter.codename();
+            if (name == null) {
+                return null;
             }
             try {
                 final Constructor<T> constructor = codeType.getDeclaredConstructor(CONSTRUCTOR_PARAMETERS);
@@ -150,14 +216,57 @@ public abstract class CodeList<E extends CodeList<E>> implements Comparable<E>, 
     }
 
     /**
-     * Returns the ordinal of this code constant. This is its position in its elements declaration,
-     * where the initial constant is assigned an ordinal of zero.
+     * Returns the list of codes of the same kind than this code.
+     * This is similar to the static {@code values()} method provided in {@code CodeList}
+     * subclasses, except that {@code family()} does not require the class to be known at
+     * compile-time - provided that at leat one instance of the familly is available. The
+     * static {@code values()} method has the opposite constraints (does not require a code
+     * instance, but the class needs to be known at compile time unless
+     * {@linkplain java.lang.reflect reflection} is used).
      *
-     * @return The position of this code constants in elements declaration.
+     * @return The codes of the same kind than this code.
      */
     @Extension
-    public final int ordinal() {
-        return ordinal;
+    public abstract E[] family();
+
+    /**
+     * Returns all the names of this code. The returned array contains the
+     * following elements, with duplicated values and null values removed:
+     * <p>
+     * <ul>
+     *   <li>The programmatic {@linkplain #name() name}</li>
+     *   <li>The UML {@linkplain #identifier() identifier}</li>
+     *   <li>The {@linkplain org.opengis.metadata.identification.CharacterSet#toCharset() charset} name
+     *       ({@code CharacterSet} code list only)</li>
+     * </ul>
+     * <p>
+     * Those names are typically equal except for the case (programmatic names are upper case
+     * while UML names are lower case) and special characters like {@code '-'}.
+     *
+     * @return All names of this code constant. This array is never null and never empty.
+     *
+     * @since GeoAPI 2.3
+     */
+    @Extension
+    public String[] names() {
+        final String name = this.name;
+        final String identifier = identifier();
+        if (identifier != null && !identifier.equals(name)) {
+            return new String[] {name, identifier};
+        } else {
+            return new String[] {name};
+        }
+    }
+
+    /**
+     * Returns the programmatic name of this code list constant. This
+     * is the name of the public static field which declare the code.
+     *
+     * @return The name of this code constant.
+     */
+    @Extension
+    public final String name() {
+        return name;
     }
 
     /**
@@ -175,6 +284,7 @@ public abstract class CodeList<E extends CodeList<E>> implements Comparable<E>, 
         // since it is not a problem if this method is executed twice in concurrent threads.
         String identifier = this.identifier;
         if (identifier == null) {
+            @SuppressWarnings("rawtypes")
             final Class<? extends CodeList> codeType = getClass();
             Field field;
             try {
@@ -208,16 +318,6 @@ public abstract class CodeList<E extends CodeList<E>> implements Comparable<E>, 
     }
 
     /**
-     * Returns the name of this code list constant.
-     *
-     * @return The name of this code constant.
-     */
-    @Extension
-    public final String name() {
-        return name;
-    }
-
-    /**
      * Returns {@code true} if the given name matches the {@linkplain #name name},
      * {@linkplain #identifier identifier} or any other identification string of
      * this code list element. The comparison is case-insensitive.
@@ -226,32 +326,33 @@ public abstract class CodeList<E extends CodeList<E>> implements Comparable<E>, 
      * @return {@code true} if the given name matches the code name or identifier.
      *
      * @since GeoAPI 2.2
+     *
+     * @deprecated Ignoring case, whitespace or other special characters are arbitrary decisions.
+     *             Use {@link #names()} and {@link Filter} instead.
      */
     @Extension
+    @Deprecated
     public boolean matches(String name) {
-        if (name == null) {
-            return false;
+        if (name != null) {
+            for (final String n : names()) {
+                if (name.equalsIgnoreCase(n)) {
+                    return true;
+                }
+            }
         }
-        if (name.equalsIgnoreCase(this.name)) {
-            return true;
-        }
-        final String identifier = identifier();
-        return (identifier != null) && name.equalsIgnoreCase(identifier);
+        return false;
     }
 
     /**
-     * Returns the list of codes of the same kind than this code.
-     * This is similar to the static {@code values()} method provided in {@code CodeList}
-     * subclasses, except that {@code family()} does not require the class to be known at
-     * compile-time - provided that at leat one instance of the familly is available. The
-     * static {@code values()} method has the opposite constraints (does not require a code
-     * instance, but the class needs to be known at compile time unless
-     * {@linkplain java.lang.reflect reflection} is used).
+     * Returns the ordinal of this code constant. This is its position in its elements declaration,
+     * where the initial constant is assigned an ordinal of zero.
      *
-     * @return The codes of the same kind than this code.
+     * @return The position of this code constants in elements declaration.
      */
     @Extension
-    public abstract E[] family();
+    public final int ordinal() {
+        return ordinal;
+    }
 
     /**
      * Compares this code with the specified object for order. Returns a
@@ -266,13 +367,14 @@ public abstract class CodeList<E extends CodeList<E>> implements Comparable<E>, 
      * @return A negative value if the given code is less than this code,
      *         a positive value if greater or 0 if equal.
      */
+    @SuppressWarnings("rawtypes")
     public final int compareTo(final E other) {
         final Class<? extends CodeList> ct =  this.getClass();
         final Class<? extends CodeList> co = other.getClass();
         if (!ct.equals(co)) {
             throw new ClassCastException("Can't compare " + ct.getSimpleName() + " to " + co.getSimpleName());
         }
-        return ordinal - ((CodeList) other).ordinal;
+        return ordinal - ((CodeList<?>) other).ordinal;
     }
 
     /**
@@ -288,7 +390,7 @@ public abstract class CodeList<E extends CodeList<E>> implements Comparable<E>, 
     @Override
     public final boolean equals(final Object object) {
         if (object != null && object.getClass().equals(getClass())) {
-            return ordinal == ((CodeList) object).ordinal;
+            return ordinal == ((CodeList<?>) object).ordinal;
         }
         return false;
     }
@@ -308,6 +410,7 @@ public abstract class CodeList<E extends CodeList<E>> implements Comparable<E>, 
      * @return This code list as an unique instance.
      * @throws ObjectStreamException if the deserialization failed.
      */
+    @SuppressWarnings("rawtypes")
     protected Object readResolve() throws ObjectStreamException {
         final Class<? extends CodeList> codeType = getClass();
         final Collection<? extends CodeList> values;
@@ -316,14 +419,14 @@ public abstract class CodeList<E extends CodeList<E>> implements Comparable<E>, 
         }
         if (values != null) {
             synchronized (values) {
-                for (final CodeList code : values) {
+                for (final CodeList<?> code : values) {
                     if (!codeType.isInstance(code)) {
                         // Paranoiac check - should never happen unless the subclass
                         // modifies itself the collection given to the constructor,
                         // in which case we will not touch it.
                         return this;
                     }
-                    if (code.matches(name)) {
+                    if (code.name.equals(name)) {
                         return code;
                     }
                 }

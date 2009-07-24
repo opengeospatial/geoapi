@@ -269,6 +269,38 @@ public final class CharacterSet extends CodeList<CharacterSet> {
     }
 
     /**
+     * Returns all the names of this code. The returned array contains the
+     * following elements, with duplicated values and null values removed:
+     * <p>
+     * <ul>
+     *   <li>The programmatic {@linkplain #name() name}</li>
+     *   <li>The UML {@linkplain #identifier() identifier}</li>
+     *   <li>The {@linkplain #toCharset() charset} name</li>
+     * </ul>
+     * <p>
+     * Those names are typically equal except for the case (programmatic names are upper case
+     * while UML names are lower case) and special characters like {@code '-'}.
+     *
+     * @return All names of this code constant. This array is never null and never empty.
+     *
+     * @since GeoAPI 2.3
+     */
+    @Override
+    public String[] names() {
+        final String name = name();
+        final String charset = this.charset;
+        if (charset.equals(name)) {
+            return super.names();
+        }
+        final String identifier = identifier();
+        if (identifier != null && !identifier.equals(name)) {
+            return new String[] {name, identifier, charset};
+        } else {
+            return new String[] {name, charset};
+        }
+    }
+
+    /**
      * Returns the list of {@code CharacterSet}s.
      *
      * @return The list of codes declared in the current JVM.
@@ -277,17 +309,6 @@ public final class CharacterSet extends CodeList<CharacterSet> {
         synchronized (VALUES) {
             return VALUES.toArray(new CharacterSet[VALUES.size()]);
         }
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public boolean matches(final String name) {
-        if (super.matches(name)) {
-            return true;
-        }
-        return (name != null) && name.equalsIgnoreCase(charset);
     }
 
     /**
