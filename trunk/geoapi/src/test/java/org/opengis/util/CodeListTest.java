@@ -48,7 +48,7 @@ public final class CodeListTest {
      */
     @Test
     public void testCharacterSet() {
-        final CodeList code = CharacterSet.UTF_8;
+        final CodeList<CharacterSet> code = CharacterSet.UTF_8;
         assertEquals ("UTF_8", code.name());
         assertEquals ("utf8",  code.identifier());
         assertTrue   (code.matches("UTF8"));
@@ -68,6 +68,7 @@ public final class CodeListTest {
     @Test
     public void testAll() {
         int count = 0;
+        @SuppressWarnings("rawtypes")
         final Class<CodeList> base = CodeList.class;
         final ClassScanner scanner = new ClassScanner();
         while (scanner.hasNext()) {
@@ -81,7 +82,9 @@ public final class CodeListTest {
                 if (name.equals("org.opengis.filter.sort.SortOrder")) {
                     continue;
                 }
-                assertValid(candidate.asSubclass(CodeList.class));
+                @SuppressWarnings({"unchecked","rawtypes"})
+                final Class<? extends CodeList<?>> codeType = (Class) candidate.asSubclass(CodeList.class);
+                assertValid(codeType);
                 count++;
             }
         }
@@ -94,7 +97,7 @@ public final class CodeListTest {
     /**
      * Ensures that the name declared in the code list match the field names.
      */
-    private static void assertValid(final Class<? extends CodeList> classe) {
+    private static void assertValid(final Class<? extends CodeList<?>> classe) {
         Method method;
         int modifiers;
         String fullName;
@@ -105,7 +108,7 @@ public final class CodeListTest {
         final String className = classe.getName();
         fullName = className + ".values()";
         try {
-            method = classe.getMethod("values", (Class[]) null);
+            method = classe.getMethod("values", (Class<?>[]) null);
         } catch (NoSuchMethodException e) {
             fail(fullName + " method is missing.");
             return;
@@ -114,9 +117,9 @@ public final class CodeListTest {
         modifiers = method.getModifiers();
         assertTrue(fullName + " is not public.", Modifier.isPublic(modifiers));
         assertTrue(fullName + " is not static.", Modifier.isStatic(modifiers));
-        final CodeList[] values;
+        final CodeList<?>[] values;
         try {
-            values = (CodeList[]) method.invoke(null, (Object[]) null);
+            values = (CodeList<?>[]) method.invoke(null, (Object[]) null);
         } catch (IllegalAccessException e) {
             fail(fullName + " is not accessible.");
             return;
@@ -131,7 +134,7 @@ public final class CodeListTest {
          */
         fullName = className + ".family()";
         try {
-            method = classe.getMethod("family", (Class[]) null);
+            method = classe.getMethod("family", (Class<?>[]) null);
         } catch (NoSuchMethodException e) {
             fail(fullName + " method is missing.");
             return;
@@ -144,7 +147,7 @@ public final class CodeListTest {
          * Tests every CodeList instances returned by values().
          * Every field should be public, static and final.
          */
-        for (final CodeList value : values) {
+        for (final CodeList<?> value : values) {
             final String name = value.name();
             fullName = className + '.' + name;
             assertTrue(fullName + ": unexpected type.", classe.isInstance(value));
@@ -152,6 +155,7 @@ public final class CodeListTest {
             try {
                 field = classe.getField(name);
             } catch (NoSuchFieldException e) {
+                @SuppressWarnings("rawtypes")
                 final Class<? extends CodeList> valueClass = value.getClass();
                 if (!classe.equals(valueClass) && classe.isAssignableFrom(valueClass)) {
                     // Do not fails if valueClass is a subclass of classe.
@@ -174,9 +178,9 @@ public final class CodeListTest {
                 continue;
             }
             assertSame(fullName + " is not the expected instance.", value, constant);
-            final CodeList[] family;
+            final CodeList<?>[] family;
             try {
-                family = (CodeList[]) method.invoke(constant, (Object[]) null);
+                family = (CodeList<?>[]) method.invoke(constant, (Object[]) null);
             } catch (IllegalAccessException e) {
                 fail(className + ".family() is not accessible.");
                 return;
@@ -247,7 +251,7 @@ public final class CodeListTest {
         } catch (NoSuchMethodException e) {
             return;
         }
-        final CodeList value;
+        final CodeList<?> value;
         try {
             value = classe.cast(method.invoke(null, "Dummy"));
         } catch (IllegalAccessException e) {
