@@ -10,7 +10,11 @@
  *************************************************************************************************/
 package org.opengis.geometry.primitive;
 
+import javax.measure.unit.Unit;
+import javax.measure.quantity.Angle;
+
 import org.opengis.annotation.UML;
+import org.opengis.annotation.Extension;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -30,6 +34,16 @@ import static org.opengis.annotation.Specification.*;
 @UML(identifier="Bearing", specification=ISO_19107)
 public interface Bearing {
     /**
+     * Returns the unit of values returned by the {@link #getAngles()} method.
+     *
+     * @return The unit of angles.
+     *
+     * @since GeoAPI 2.3
+     */
+    @Extension
+    Unit<Angle> getAngleUnit();
+
+    /**
      * Returns the azimuth and (optionnaly) the altitude.
      * In this variant of bearing usually used for 2D coordinate systems, the first angle (azimuth)
      * is measured from the first coordinate axis (usually north) in a counterclockwise fashion
@@ -37,11 +51,8 @@ public interface Bearing {
      * (altitude) usually represents the angle above (for positive angles) or below (for negative
      * angles) a local plane parallel to the tangent plane of the reference surface.
      *
-     * @return An array of length 0, 1 or 2 containing the azimuth and altitude angles.
-     *
-     * @todo Should we split this method in {@code getAzimuth()} and
-     *       {@code getAltitude()} methods instead? Should we provides
-     *       a {@code getDimension()} method too?
+     * @return An array of length 0, 1 or 2 containing the azimuth and altitude angles,
+     *         in units of {@link #getAngleUnit()}.
      */
     @UML(identifier="angle", obligation=MANDATORY, specification=ISO_19107)
     double[] getAngles();

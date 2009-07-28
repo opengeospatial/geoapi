@@ -26,7 +26,7 @@ import static org.opengis.annotation.Specification.*;
  * (variant indirect).
  *
  * @departure
- *   ISO 19111 defines {@code Position} like a C/C++ {@code union} of {@code DirectPosition} and
+ *   ISO 19111 defines {@code Position} as a C/C++ {@code union} of {@code DirectPosition} and
  *   {@code Point}. Since unions are not allowed in Java, GeoAPI defines {@code Position} as the
  *   base interface of the above. This leads to a slightly different semantic since ISO defines
  *   {@link #getDirectPosition} as conditional, while GeoAPI defines it as mandatory by allowing
