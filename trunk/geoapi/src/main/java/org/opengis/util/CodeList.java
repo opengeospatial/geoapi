@@ -111,6 +111,7 @@ public abstract class CodeList<E extends CodeList<E>> implements Comparable<E>, 
      *
      * @since GeoAPI 2.3
      */
+    @Extension
     public static interface Filter {
         /**
          * Returns {@code true} if the given code matches the criterion defined by this filter.
@@ -137,6 +138,15 @@ public abstract class CodeList<E extends CodeList<E>> implements Comparable<E>, 
      * <code>{@linkplain #matches matches}(name)</code> returned {@code true}. If no such element is
      * found, then a new instance is created using the constructor expecting a single {@link String}
      * argument.
+     *
+     * <P>&nbsp;</P>
+     * <TABLE WIDTH="80%" ALIGN="center" CELLPADDING="18" BORDER="4" BGCOLOR="#FFE0B0">
+     *   <TR><TD>
+     *     <P align="justify"><STRONG>WARNING: IMPLEMENTATION WILL CHANGE.</STRONG> As of GeoAPI 2.3,
+     *     the <code>match</code> method has been deprecated. Future implementation of this method
+     *     will perform strict comparison of {@link CodeList#name()}, not ignoring case.</P>
+     *   </TD></TR>
+     * </TABLE>
      *
      * @param <T> The compile-time type given as the {@code codeType} parameter.
      * @param codeType The type of code list.
