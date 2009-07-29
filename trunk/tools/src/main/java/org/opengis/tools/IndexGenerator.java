@@ -37,7 +37,7 @@ import org.opengis.geometry.coordinate.PointArray;
 
 /**
  * Generates a list of all type and methods, together with their ISO identifier.
- * The list will be written in the {@code ../../site/resources/content.html} file.
+ * The list will be written in the {@code ../javadoc/content.html} file.
  * <p>
  * <b>How to use</b>
  * {@code chdir} to the root directory of source code. Then invoke the following command,
@@ -82,7 +82,7 @@ public class IndexGenerator extends UmlProcessor {
         final Filer filer = environment.getFiler();
         try {
             out = filer.createTextFile(Filer.Location.SOURCE_TREE, "",
-                        new File("../../site/resources/content.html"), null);
+                        new File("../javadoc/content.html"), null);
         } catch (IOException exception) {
             printError(exception);
             return;

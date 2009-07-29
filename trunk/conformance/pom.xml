@@ -64,6 +64,11 @@
   <dependencies>
     <dependency>
       <groupId>org.opengis</groupId>
+      <artifactId>geoapi</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.opengis</groupId>
       <artifactId>geoapi-pending</artifactId>
       <version>${project.version}</version>
     </dependency>

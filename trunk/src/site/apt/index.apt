@@ -120,9 +120,13 @@ GeoAPI
 
 * Links
 
-    * {{{snapshot/javadoc}Browse javadoc}}
+    * {{{snapshot/javadoc/index.html}Browse javadoc}}
 
-    * {{{snapshot/pending}Browse javadoc of pending interfaces}}
+    * {{{snapshot/pending/index.html}Browse javadoc of pending interfaces}}
+
+    * {{{changes/index.html}Changes compared to previous releases}}
+
+    * {{{snapshot/javadoc/content.html}GeoAPI compared to OGC/ISO UML}}
 
     * {{{http://hudson.geomatys.com/job/GeoAPI}Nightly builds (last 2 weeks)}}
 
