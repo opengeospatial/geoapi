@@ -60,7 +60,7 @@
   <packaging>pom</packaging>
   <version>2.3-SNAPSHOT</version>
   <name>GeoAPI</name>
-  <url>http://geoapi.sourceforge.net/snapshot/</url>
+  <url>http://www.geoapi.org/</url>
   <description>
     The development community in building GIS solutions is sustaining an enormous
     level of effort. The GeoAPI project aims to reduce duplication and increase
@@ -276,6 +276,17 @@
       </dependency>
     </dependencies>
   </dependencyManagement>
+
+  <dependencies>
+    <dependency>
+      <groupId>net.java.dev.jsr-275</groupId>
+      <artifactId>jsr-275</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+    </dependency>
+  </dependencies>
 
 
 

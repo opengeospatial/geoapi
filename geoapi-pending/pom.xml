@@ -131,10 +131,6 @@
   <!-- ==================================================== -->
   <dependencies>
     <dependency>
-      <groupId>net.java.dev.jsr-275</groupId>
-      <artifactId>jsr-275</artifactId>
-    </dependency>
-    <dependency>
       <groupId>org.opengis</groupId>
       <artifactId>geoapi</artifactId>
       <version>${project.version}</version>
@@ -144,10 +140,6 @@
           <artifactId>geoapi-dummy-pending</artifactId>
         </exclusion>
       </exclusions>
-    </dependency>
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
     </dependency>
   </dependencies>
 

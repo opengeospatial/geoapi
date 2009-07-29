@@ -5,8 +5,8 @@
   <!-- ========================================================= -->
   <bannerLeft>
     <name>GeoAPI</name>
-    <src>http://geoapi.sourceforge.net/images/geoapi.png</src>
-    <href>http://geoapi.sourceforge.net/</href>
+    <src>http://www.geoapi.org/images/geoapi.png</src>
+    <href>http://www.geoapi.org/</href>
   </bannerLeft>
 
   <bannerRight>
@@ -22,23 +22,23 @@
     <links>
       <item name="Open Geospatial Consortium (OGC)" href="http://www.opengeospatial.org/" />
       <item name="Open Source Geospatial (OSGEO)"   href="http://www.osgeo.org/"          />
-      <item name="GeoAPI home page"                 href="http://geoapi.sourceforge.net/" />
+      <item name="GeoAPI home page"                 href="http://www.geoapi.org/"         />
     </links>
 
     <!-- ==================================================== -->
     <!--     Menus to appears on the left side of each page   -->
     <!-- ==================================================== -->
     <menu name="GeoAPI 2.3-SNAPSHOT" inherit="none">
+      <item name="Reports"  href="geoapi/index.html"/>
       <item name="Javadoc"  href="snapshot/javadoc/index.html"/>
       <item name="Download" href="http://hudson.geomatys.com/job/GeoAPI/lastSuccessfulBuild/artifact/trunk/geoapi/target/geoapi-2.3-SNAPSHOT.jar"/>
-      <item name="Reports"  href="geoapi/index.html"/>
       <item name="Examples" href="examples/index.html"/>
     </menu>
 
     <menu name="Pending 2.3-SNAPSHOT" inherit="none">
+      <item name="Reports"  href="geoapi-pending/index.html"/>
       <item name="Javadoc"  href="snapshot/pending/index.html"/>
       <item name="Download" href="http://hudson.geomatys.com/job/GeoAPI/"/>
-      <item name="Reports"  href="geoapi-pending/index.html"/>
     </menu>
 
     <menu name="GeoAPI 2.0.0" inherit="none">
