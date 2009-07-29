@@ -13,6 +13,8 @@ package org.opengis.metadata;
 import java.util.Collection;
 import java.util.Date;
 import java.util.Locale;
+
+import org.opengis.metadata.acquisition.AcquisitionInformation;
 import org.opengis.metadata.quality.DataQuality;
 import org.opengis.metadata.maintenance.ScopeCode;
 import org.opengis.metadata.constraint.Constraints;
@@ -257,4 +259,12 @@ public interface MetaData {
      */
     @UML(identifier="metadataMaintenance", obligation=OPTIONAL, specification=ISO_19115)
     MaintenanceInformation getMetadataMaintenance();
+
+    /**
+     * Provides information about the acquisition of the data.
+     *
+     * @return The acquisition of data.
+     */
+    @UML(identifier="acquisitionInformation", obligation=OPTIONAL, specification=ISO_19115_2)
+    Collection<? extends AcquisitionInformation> getAcquisitionInformation();
 }

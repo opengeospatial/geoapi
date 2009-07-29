@@ -24,6 +24,7 @@ import static org.opengis.annotation.Specification.*;
  * @version <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
  * @author  Martin Desruisseaux (IRD)
  * @author  Cory Horner (Refractions Research)
+ * @author  Cédric Briançon (Geomatys)
  * @since   GeoAPI 2.0
  */
 @UML(identifier="MD_CoverageDescription", specification=ISO_19115)
@@ -53,4 +54,14 @@ public interface CoverageDescription extends ContentInformation {
      */
     @UML(identifier="dimension", obligation=OPTIONAL, specification=ISO_19115)
     Collection<? extends RangeDimension> getDimensions();
+
+    /**
+     * Provides the description of the specific range elements of a coverage.
+     *
+     * @return Description of the specific range elements.
+     *
+     * @since GeoAPI 2.3
+     */
+    @UML(identifier="rangeElementDescription", obligation=OPTIONAL, specification=ISO_19115_2)
+    Collection<? extends RangeElementDescription> getRangeElementDescriptions();
 }

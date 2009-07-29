@@ -17,6 +17,7 @@ import org.opengis.metadata.citation.Citation;
 import org.opengis.referencing.ReferenceSystem;
 import org.opengis.util.InternationalString;
 import org.opengis.annotation.UML;
+import org.opengis.metadata.Identifier;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -28,6 +29,7 @@ import static org.opengis.annotation.Specification.*;
  * @version <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
  * @author  Martin Desruisseaux (IRD)
  * @author  Cory Horner (Refractions Research)
+ * @author  Cédric Briançon (Geomatys)
  * @since   GeoAPI 2.0
  */
 @UML(identifier="LI_Source", specification=ISO_19115)
@@ -83,4 +85,25 @@ public interface Source {
      */
     @UML(identifier="sourceStep", obligation=OPTIONAL, specification=ISO_19115)
     Collection<? extends ProcessStep> getSourceSteps();
+
+    /**
+     * Processing level of the source data.
+     *
+     * @return Processing level of the source data.
+     *
+     * @since GeoAPI 2.3
+     */
+    @UML(identifier="processedLevel", obligation=OPTIONAL, specification=ISO_19115_2)
+    Identifier getProcessedLevel();
+
+    /**
+     * Distance between consistent parts (centre, left side, right side) of two adjacent
+     * pixels.
+     *
+     * @return Distance between consistent parts of two adjacent pixels.
+     *
+     * @since GeoAPI 2.3
+     */
+    @UML(identifier="resolution", obligation=OPTIONAL, specification=ISO_19115_2)
+    NominalResolution getResolution();
 }

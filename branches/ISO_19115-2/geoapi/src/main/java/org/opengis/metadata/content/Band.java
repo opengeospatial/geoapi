@@ -24,6 +24,7 @@ import static org.opengis.annotation.Specification.*;
  * @version <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
  * @author  Martin Desruisseaux (IRD)
  * @author  Cory Horner (Refractions Research)
+ * @author  Cédric Briançon (Geomatys)
  * @since   GeoAPI 2.0
  */
 @UML(identifier="MD_Band", specification=ISO_19115)
@@ -104,4 +105,57 @@ public interface Band extends RangeDimension {
      */
     @UML(identifier="offset", obligation=OPTIONAL, specification=ISO_19115)
     Double getOffset();
+
+    /**
+     * Designation of criterion for defining maximum and minimum wavelengths for a spectral band.
+     *
+     * @return Criterion for defining maximum and minimum wavelengths.
+     *
+     * @since GeoAPI 2.3
+     */
+    @UML(identifier="bandBoundaryDefinition", obligation=OPTIONAL, specification=ISO_19115_2)
+    BandDefinition getBandBoundaryDefinition();
+
+    /**
+     * Smallest distance between which separate points can be distinguished, as specified in
+     * instrument design.
+     *
+     * @return Smallest distance between which separate points can be distinguished.
+     *
+     * @unitOf Distance
+     *
+     * @since GeoAPI 2.3
+     */
+    @UML(identifier="nominalSpatialResolution", obligation=OPTIONAL, specification=ISO_19115_2)
+    Double getNominalSpatialResolution();
+
+    /**
+     * Type of transfer function to be used when scaling a physical value for a given element.
+     *
+     * @return Type of transfer function.
+     *
+     * @since GeoAPI 2.3
+     */
+    @UML(identifier="transferFunctionType", obligation=OPTIONAL, specification=ISO_19115_2)
+    TransferFunctionType getTransferFunctionType();
+
+    /**
+     * Polarization of the radiation transmitted.
+     *
+     * @return Polarization of the radiation transmitted.
+     *
+     * @since GeoAPI 2.3
+     */
+    @UML(identifier="transmittedPolarization", obligation=OPTIONAL, specification=ISO_19115_2)
+    PolarizationOrientation getTransmittedPolarization();
+
+    /**
+     * Polarization of the radiation detected.
+     *
+     * @return Polarization of the radiation detected.
+     *
+     * @since GeoAPI 2.3
+     */
+    @UML(identifier="detectedPolarization", obligation=OPTIONAL, specification=ISO_19115_2)
+    PolarizationOrientation getDetectedPolarization();
 }
