@@ -60,7 +60,7 @@ public interface Instrument {
      * @return Textual description.
      */
     @UML(identifier="description", obligation=OPTIONAL, specification=ISO_19115_2)
-    InternationalString getDecription();
+    InternationalString getDescription();
 
     /**
      * Platform on which the instrument is mounted.
