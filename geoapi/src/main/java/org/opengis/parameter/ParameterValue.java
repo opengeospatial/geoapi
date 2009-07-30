@@ -300,5 +300,5 @@ public interface ParameterValue<T> extends GeneralParameterValue {
      *
      * @return A copy of this parameter value.
      */
-    ParameterValue clone();
+    ParameterValue<T> clone();
 }
