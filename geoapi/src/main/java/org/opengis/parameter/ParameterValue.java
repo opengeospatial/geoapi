@@ -82,10 +82,11 @@ public interface ParameterValue<T> extends GeneralParameterValue {
      * @throws InvalidParameterTypeException if the value is not a numeric type.
      * @unitof Measure
      *
-     * @rename Renamed {@code value} to {@code doubleValue} for consistency with
-     *         {@link Number#doubleValue} and the other {@code fooValue} in this interface.
-     *         Also because {@link #getValue} is already used for an {@link Object} type, for
-     *         consistency with {@link #setValue(Object)}.
+     * @departure rename
+     *   Renamed the attribute from "{@code value}" to "{@code doubleValue}" for consistency
+     *   with <code>Number.doubleValue()</code> and the other {@code fooValue} in this interface.
+     *   Also because <code>getValue()</code> is already used for an <code>Object</code> type, for
+     *   consistency with the <code>setValue(Object)</code> method.
      *
      * @see #getUnit
      * @see #setValue(double)
@@ -101,8 +102,9 @@ public interface ParameterValue<T> extends GeneralParameterValue {
      * @return The numeric value represented by this parameter after conversion to type {@code int}.
      * @throws InvalidParameterTypeException if the value is not an integer type.
      *
-     * @rename Renamed {@code integerValue} to {@code intValue} for consistency with
-     *         {@link Number#intValue} and the Java primitive type {@code int}.
+     * @departure rename
+     *   Renamed the attribute from "<code>integerValue</code>" to "<code>intValue</code>" for
+     *   consistency with <code>Number.intValue()</code> and the <code>int</code>Java primitive type.
      *
      * @see #setValue(int)
      * @see #intValueList
@@ -163,10 +165,10 @@ public interface ParameterValue<T> extends GeneralParameterValue {
      * @see #setValue(Object)
      * @see #doubleValue()
      *
-     * @rename Renamed {@code valueList} as {@code doubleValueList} for consistency
-     *         with {@link #doubleValue()}. Also because, like {@code doubleValue()}, this
-     *         method returns a {@code double} value rather than a {@code Measure}
-     *         object.
+     * @departure rename
+     *   Renamed the attribute from "<code>valueList</code>" to "<code>doubleValueList</code>" for
+     *   consistency with <code>doubleValue()</code>. Also because, like <code>doubleValue()</code>,
+     *   this method returns a <code>double</code> value rather than a <code>Measure</code> object.
      */
     @UML(identifier="valueList", obligation=CONDITIONAL, specification=ISO_19111)
     double[] doubleValueList() throws InvalidParameterTypeException;
@@ -181,8 +183,9 @@ public interface ParameterValue<T> extends GeneralParameterValue {
      * @see #setValue(Object)
      * @see #intValue
      *
-     * @rename Renamed {@code integerValueList} as {@code intValueList} for consistency
-     *         with {@link #intValue()}.
+     * @departure rename
+     *   Renamed the attribute from "<code>integerValueList</code>" to "<code>intValueList</code>"
+     *   for consistency with <code>intValue()</code>.
      */
     @UML(identifier="integerValueList", obligation=CONDITIONAL, specification=ISO_19111)
     int[] intValueList() throws InvalidParameterTypeException;

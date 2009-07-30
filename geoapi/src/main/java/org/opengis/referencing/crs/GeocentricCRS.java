@@ -31,11 +31,11 @@ import static org.opengis.annotation.Specification.*;
  *   {@link org.opengis.referencing.cs.SphericalCS Spherical}
  * </TD></TR></TABLE>
  *
- * @departure
+ * @departure historic
  *   This interface is conform to the specification published in 2003. Later revision of ISO 19111
  *   removed the <code>GeographicCRS</code> and <code>GeocentricCRS</code> types, which are both
- *   handled by the {@link GeodeticCRS} parent type. GeoAPI keeps them since the distinction between
- *   those two types is in wide use.
+ *   handled by the <code>GeodeticCRS</code> parent type. GeoAPI keeps them since the distinction
+ *   between those two types is in wide use.
  *
  * @version <A HREF="http://portal.opengeospatial.org/files/?artifact_id=6716">Abstract specification 2.0</A>
  * @author  Martin Desruisseaux (IRD)

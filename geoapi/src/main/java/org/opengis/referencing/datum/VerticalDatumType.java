@@ -60,7 +60,7 @@ public final class VerticalDatumType extends CodeList<VerticalDatumType> {
      * A vertical datum for ellipsoidal heights that are measured along the
      * normal to the ellipsoid used in the definition of horizontal datum.
      *
-     * @departure
+     * @departure historic
      *   This code is a violation of ISO 19111 specification, which does not allow instantiation of
      *   {@linkplain org.opengis.referencing.crs.VerticalCRS Vertical CRS} for ellipsoidal height.
      *   More specifically {@linkplain org.opengis.referencing.crs.GeographicCRS Geographic CRS}

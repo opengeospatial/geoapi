@@ -38,13 +38,12 @@ public interface ParameterValueGroup extends GeneralParameterValue {
     /**
      * The abstract definition of this group of parameters.
      *
-     * @departure
-     *   The ISO name was {@code "valuesOfGroup"}. GeoAPI uses {@code "descriptor"} instead in order
-     *   to override the {@linkplain GeneralParameterValue#getDescriptor generic method provided in
-     *   the parent interface}. The "descriptor" name make more apparent that this method returns an
-     *   abstract definition of parameters - not their actual values - and is consistent with usage
-     *   in other Java libraries like {@link javax.media.jai.ParameterList#getParameterListDescriptor
-     *   ParameterList}.
+     * @departure rename
+     *   The ISO name was "<code>valuesOfGroup</code>". GeoAPI uses "<code>descriptor</code>" instead
+     *   in order to override the <code>getDescriptor()</code> generic method provided in the parent
+     *   interface. In addition the "descriptor" name makes more apparent that this method returns
+     *   an abstract definition of parameters - not their actual values - and is consistent with
+     *   usage in other Java libraries like <cite>Java Advanced Imaging</cite> (JAI).
      */
     @UML(identifier="valuesOfGroup", obligation=MANDATORY, specification=ISO_19111)
     ParameterDescriptorGroup getDescriptor();

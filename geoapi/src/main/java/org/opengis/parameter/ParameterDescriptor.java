@@ -34,8 +34,9 @@ import static org.opengis.annotation.Specification.*;
  * @see ParameterValue
  * @see ParameterDescriptorGroup
  *
- * @rename Selected a name which contain the "Descriptor" word for consistency with other
- *         libraries in Java (e.g. {@code ParameterList} in Java Advanced Imaging).
+ * @departure rename
+ *   Selected a name which contain the "<code>Descriptor</code>" word for consistency with other
+ *   libraries in Java (e.g. <code>ParameterListDescriptor</code> in Java Advanced Imaging).
  */
 @UML(identifier="CC_OperationParameter", specification=ISO_19111)
 public interface ParameterDescriptor<T> extends GeneralParameterDescriptor {

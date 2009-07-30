@@ -290,7 +290,7 @@ public interface GenericName extends Comparable<GenericName> {
      * <ul>
      *   <li><code>{@linkplain #toFullyQualifiedName}.toString()</code> is garanteed to
      *       contains the {@linkplain #scope scope} (if any).</li>
-     *   <li><code>{@linkplain #name}.toString()</code> is garanteed to <strong>not</strong>
+     *   <li><code>{@linkplain #tip}.toString()</code> is garanteed to <strong>not</strong>
      *       contains any scope.</li>
      * </ul>
      *

@@ -11,7 +11,6 @@
 package org.opengis.metadata.extent;
 
 import org.opengis.referencing.crs.VerticalCRS;
-import org.opengis.referencing.datum.VerticalDatum;
 import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Obligation.*;
@@ -49,16 +48,13 @@ public interface VerticalExtent {
      * which the maximum and minimum elevation values are measured. The CRS
      * identification includes unit of measure.
      *
-     * @departure
-     *   ISO 19115 specifies a generic {@linkplain org.opengis.referencing.crs.CoordinateReferenceSystem
-     *   Coordinate Reference System} instead than the more restrictive {@linkplain VerticalCRS Vertical
-     *   CRS}. It may be because ISO 19111 does not allows vertical CRS to express height above the ellipsoid,
-     *   so the full three-dimensional {@linkplain org.opengis.referencing.crs.GeographicCRS Geographic CRS}
-     *   is needed in such case. However GeoAPI allows such vertical CRS since it imported the
-     *   {@linkplain org.opengis.referencing.datum.VerticalDatumType#ELLIPSOIDAL ellipsoidal vertical datum type}
-     *   from OGC 01-009. Giving this capability, this method returns a vertical CRS in accordance
-     *   with the method name, documentation and historical version of ISO 19115 which used
-     *   {@linkplain org.opengis.referencing.datum.VerticalDatum vertical datum}.
+     * @departure integration
+     *   ISO 19115 specifies a generic <code>CoordinateReferenceSystem</code> instead than the more
+     *   restrictive <code>VerticalCRS</code>. GeoAPI uses the more specific type for type-safety and
+     *   consistency with <code>VerticalExtent</code> usage. However this restriction prevents usage
+     *   of <cite>Height above the ellipsoid</cite> when only the constants defined in the
+     *   <code>VerticalDatumType</code> code list are used. If such height is wanted, implementors
+     *   need to extend the above code list with their own <code>ELLIPSOIDAL</code> constant.
      *
      * @issue http://jira.codehaus.org/browse/GEO-134
      *

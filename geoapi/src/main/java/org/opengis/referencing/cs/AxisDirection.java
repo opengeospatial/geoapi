@@ -259,7 +259,7 @@ public final class AxisDirection extends CodeList<AxisDirection> {
      * This is used for {@linkplain org.opengis.referencing.crs.TemporalCRS temporal}
      * coordinate reference systems.
      *
-     * @departure
+     * @departure historic
      *   This code was defined in an older specification (2003) and removed in more recent
      *   edition (2007), but keeped in GeoAPI.
      *
@@ -273,7 +273,7 @@ public final class AxisDirection extends CodeList<AxisDirection> {
      * This is used for {@linkplain org.opengis.referencing.crs.TemporalCRS temporal}
      * coordinate reference systems.
      *
-     * @departure
+     * @departure historic
      *   This code was defined in an older specification (2003) and removed in more recent
      *   edition (2007), but keeped in GeoAPI.
      *

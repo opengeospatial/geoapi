@@ -142,7 +142,7 @@ public interface CoordinateOperation extends IdentifiedObject {
     /**
      * Description of domain of usage, or limitations of usage, for which this operation is valid.
      *
-     * @departure
+     * @departure historic
      *   This method is conform to the specification published in 2003. The revision
      *   published in 2007 replaced the singleton by a collection and changed the obligation
      *   from "optional" to "mandatory", requiring a return value of "<cite>not known</cite>"
