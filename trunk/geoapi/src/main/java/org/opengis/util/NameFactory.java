@@ -18,10 +18,8 @@ import org.opengis.annotation.Extension;
 /**
  * Factory for {@linkplain GenericName generic names} and
  * {@linkplain InternationalString international strings}.
- * <p>
- * <blockquote><font size=-1><b>Implementation note:</b>
- * despite the "create" name, implementations may return cached instances.
- * </font></blockquote>
+ *
+ * {@note Despite the "<code>create</code>" name, implementations may return cached instances.}
  *
  * @author Jesse Crossley (SYS Technologies)
  * @author Martin Desruisseaux (Geomatys)
@@ -67,10 +65,6 @@ public interface NameFactory {
      *     the default shall be the same value than the {@code "separator"} entry.</td>
      *   </tr>
      * </table>
-     * <p>
-     * <blockquote><font size=-1><b>Implementation note:</b>
-     * despite the "create" name, implementations may return existing instances.
-     * </font></blockquote>
      *
      * @param name
      *          The name of the namespace to be returned. This argument can be created using

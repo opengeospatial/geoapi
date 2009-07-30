@@ -32,7 +32,6 @@
           <version>1.5</version>
           <scope>system</scope>
           <systemPath>${java.home}/../lib/tools.jar</systemPath>
-          <!-- Note: a ${tools.jar} variable exists - we should try to use it. -->
         </dependency>
       </dependencies>
     </profile>

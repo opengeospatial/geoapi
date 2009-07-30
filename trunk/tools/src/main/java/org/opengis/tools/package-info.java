@@ -9,8 +9,7 @@
  *************************************************************************************************/
 
 /**
- * Javadoc taglets and annotation processing tools for processing GeoAPI
- * after compilation. Those tools are used mostly for javadoc generation.
- * They are not part of normal GeoAPI distributions.
+ * Annotation processing tools for processing GeoAPI after compilation. Those tools are
+ * used mostly for javadoc generation. They are not part of normal GeoAPI distributions.
  */
 package org.opengis.tools;

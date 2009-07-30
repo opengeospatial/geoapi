@@ -28,7 +28,7 @@
  * calculus. These rules cannot be specified in detail, but are implied in the
  * geometric properties of the coordinate space.</P>
  *
- * <BLOCKQUOTE><P ALIGN="justify"><FONT SIZE=2><STRONG>NOTE:</STRONG> The word "distances"
+ * <BLOCKQUOTE><P ALIGN="justify"><FONT SIZE=-1><B>NOTE:</B> The word "distances"
  * is used loosely in the above description. Strictly speaking distances are not invariant
  * quantities, as they are expressed in the unit of measure defined for the coordinate system;
  * ratios of distances are invariant.</FONT></P></BLOCKQUOTE>
