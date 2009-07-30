@@ -62,8 +62,9 @@ public interface CompoundCRS extends CoordinateReferenceSystem {
      *
      * @since GeoAPI 2.3
      *
-     * @departure The element type is consistent with OGC 01-009 but is a departure of ISO 19111:2007,
-     *    which restrict the component type to {@link SingleCRS}. This GeoAPI method is slightly more
+     * @departure generalization
+     *    The element type is consistent with OGC 01-009 but is a departure of ISO 19111:2007, which
+     *    restrict the component type to <code>SingleCRS</code>. This GeoAPI method is slightly more
      *    general.
      */
     @UML(identifier="componentReferenceSystem", obligation=MANDATORY, specification=ISO_19111)

@@ -21,7 +21,7 @@ import static org.opengis.annotation.Specification.*;
 /**
  * Description of a spatial and temporal reference system used by a dataset.
  *
- * @departure
+ * @departure historic
  *   This interface was initially derived from an ISO 19111 specification published in 2003. Later
  *   revisions (in 2005) rely on an interface defined in ISO 19115 instead. The annotations were
  *   updated accordingly, but this interface is still defined in the referencing package instead
@@ -62,11 +62,11 @@ public interface ReferenceSystem extends IdentifiedObject {
      *
      * @since GeoAPI 2.1
      *
-     * @departure
+     * @departure historic
      *   This method is conform to the specification published in 2003. Later revisions changed
      *   the multiplicity, so the return type should now be a collection. The singleton has been
-     *   preserved in GeoAPI for historical reasons, and also because {@code Extent} attributes
-     *   already allow collections.
+     *   preserved in GeoAPI for historical reasons, and also because the <code>Extent</code>
+     *   attributes already allow collections.
      */
     @UML(identifier="domainOfValidity", obligation=OPTIONAL, specification=ISO_19111)
     Extent getDomainOfValidity();
@@ -77,13 +77,13 @@ public interface ReferenceSystem extends IdentifiedObject {
      *
      * @return The domain of usage, or {@code null} if none.
      *
-     * @departure
+     * @departure historic
      *   This method is conform to the specification published in 2003. Later revision moved
-     *   this attribute to subclass, but GeoAPI keep this method here for historical reasons.
+     *   this attribute to subclasses, but GeoAPI keep this method here for historical reasons.
      *   The obligation still optional, as opposed to ISO 19111:2007 which make this attribute
      *   mandatory while mandating the text "<cite>not known</cite>" if the scope is unknown.
-     *   Finally the return value still a singleton as in the 2003 version, as opposed to the
-     *   2007 version which would mandate a collection.
+     *   In addition the return value of this method still a singleton as in the 2003 version,
+     *   as opposed to the 2007 version which would mandate a collection.
      */
     @UML(identifier="SC_CRS.scope", obligation=OPTIONAL, specification=ISO_19111)
     InternationalString getScope();

@@ -46,8 +46,6 @@ import static org.opengis.annotation.Specification.*;
 public interface SingleCRS extends CoordinateReferenceSystem {
     /**
      * Returns the coordinate system.
-     *
-     * @rename Expanded the "CS" abbreviation into "CoordinateSystem".
      */
     @UML(identifier="coordinateSystem", obligation=MANDATORY, specification=ISO_19111)
     CoordinateSystem getCoordinateSystem();

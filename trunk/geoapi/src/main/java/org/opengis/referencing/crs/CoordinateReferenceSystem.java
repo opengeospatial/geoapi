@@ -62,12 +62,11 @@ public interface CoordinateReferenceSystem extends ReferenceSystem {
      *       CRS.</p></li>
      * </ul>
      *
-     * @departure
-     *   ISO 19111 defines this method for {@linkplain SingleCRS Single CRS} only.
-     *   GeoAPI declares this method in this parent interface for user convenience, since CS
-     *   {@linkplain CoordinateSystem#getDimension dimension} and {@linkplain CoordinateSystem#getAxis axis}
-     *   are commonly requested information and shall be available, directly or indirectly, in all cases
-     *   (including {@linkplain CompoundCRS Compound CRS}).
+     * @departure generalization
+     *   ISO 19111 defines this method for <code>SingleCRS</code> only. GeoAPI declares this method
+     *   in this parent interface for user convenience, since CS dimension and axes are commonly
+     *   requested information and shall be available, directly or indirectly, in all cases
+     *   (including <code>CompoundCRS</code>).
      *
      * @return The coordinate system.
      */

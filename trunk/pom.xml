@@ -400,6 +400,7 @@
           <!-- Custom taglets implemented in Java. -->
           <taglets>
             <taglet><tagletClass>org.opengis.tools.taglet.Note</tagletClass></taglet>
+            <taglet><tagletClass>org.opengis.tools.taglet.Departure</tagletClass></taglet>
           </taglets>
           <tagletArtifact>
             <groupId>org.opengis</groupId>
@@ -427,11 +428,6 @@
               <head>TODO:</head>
             </tag>
             <tag>
-              <name>departure</name>
-              <placement>tfmc</placement>
-              <head>Departure from ISO specification:</head>
-            </tag>
-            <tag>
               <name>issue</name>
               <placement>X</placement>
               <head>JIRA:</head>
@@ -440,11 +436,6 @@
               <name>unitof</name>
               <placement>fm</placement>
               <head>Unit:</head>
-            </tag>
-            <tag>
-              <name>rename</name>
-              <placement>X</placement>
-              <head>Name change:</head>
             </tag>
           </tags>
 

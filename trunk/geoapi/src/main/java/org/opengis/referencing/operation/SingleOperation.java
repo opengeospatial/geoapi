@@ -44,7 +44,8 @@ public interface SingleOperation extends CoordinateOperation {
      *
      * @return The parameter values.
      *
-     * @rename Added "{@code Parameter}" prefix for more consistency with the return type.
+     * @departure rename
+     *   Added "<code>Parameter</code>" prefix to the method name for more consistency with the return type.
      *
      * @since GeoAPI 2.3
      */
