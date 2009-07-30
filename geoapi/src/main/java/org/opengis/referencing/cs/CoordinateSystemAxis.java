@@ -48,12 +48,13 @@ public interface CoordinateSystemAxis extends IdentifiedObject {
      * {@linkplain AxisDirection#NORTH north} or {@linkplain AxisDirection#SOUTH south},
      * {@linkplain AxisDirection#EAST  east}  or {@linkplain AxisDirection#WEST  west},
      * {@linkplain AxisDirection#UP    up}    or {@linkplain AxisDirection#DOWN  down}.
+     * <p>
      * Within any set of coordinate system axes, only one of each pair of terms
      * can be used. For earth-fixed coordinate reference systems, this direction is often
      * approximate and intended to provide a human interpretable meaning to the axis. When a
      * geodetic datum is used, the precise directions of the axes may therefore vary slightly
      * from this approximate direction.
-     *
+     * <p>
      * Note that an {@link org.opengis.referencing.crs.EngineeringCRS} often requires
      * specific descriptions of the directions of its coordinate system axes.
      *

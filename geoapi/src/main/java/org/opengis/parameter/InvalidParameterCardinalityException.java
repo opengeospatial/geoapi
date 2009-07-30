@@ -21,11 +21,10 @@ import org.opengis.annotation.Extension;
  * allowed. This operation may be throws during {@linkplain List#add} or
  * {@linkplain List#remove} operation on the list returned by
  * {@link ParameterValueGroup#values}.
- * <p>
- * <b>Note:</b> This exception is of kind "{@linkplain IllegalStateException illegal state}"
- * rather than "{@linkplain IllegalArgumentException illegal argument}" because it is not
- * caused by a bad argument; it is rather a consequence of an {@linkplain ParameterValueGroup
- * parameter value group} being "full".
+ *
+ * {@note This exception is of kind <code>IllegalStateException</code> instead than
+ *        <code>IllegalArgumentException</code> because it is not caused by a bad argument.
+ *        It is rather a consequence of an <code>ParameterValueGroup</code> being "full".}
  *
  * @author  Martin Desruisseaux (IRD)
  * @since   GeoAPI 2.0
