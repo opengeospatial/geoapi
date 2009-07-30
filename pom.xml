@@ -247,19 +247,15 @@
       <name>Java.net repository</name>
       <url>http://download.java.net/maven/2</url>
     </repository>
-  </repositories>
-
-  <!-- Following is used for javadoc taglets only. -->
-  <pluginRepositories>
-    <pluginRepository>
-      <id>geotoolkit</id>
+    <repository>
+      <id>geotoolkit</id> <!-- Used for javadoc taglets only. -->
       <name>Geotoolkit repository</name>
       <url>http://maven.geotoolkit.org/</url>
       <snapshots>
         <enabled>true</enabled>
       </snapshots>
-    </pluginRepository>
-  </pluginRepositories>
+    </repository>
+  </repositories>
 
 
 
