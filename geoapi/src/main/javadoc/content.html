@@ -68,7 +68,7 @@
   <TR><TD><CODE>&nbsp;&nbsp;&nbsp;&nbsp;getEditionDate</CODE></TD><TD><CODE>&nbsp;&nbsp;editionDate</CODE></TD><TD><FONT SIZE=-1>ISO 19115</FONT></TD></TR>
   <TR><TD><CODE>&nbsp;&nbsp;&nbsp;&nbsp;getIdentifiers</CODE></TD><TD><CODE>&nbsp;&nbsp;identifier</CODE></TD><TD><FONT SIZE=-1>ISO 19115</FONT></TD></TR>
   <TR><TD><CODE>&nbsp;&nbsp;&nbsp;&nbsp;getCitedResponsibleParties</CODE></TD><TD><CODE>&nbsp;&nbsp;citedResponsibleParty</CODE></TD><TD><FONT SIZE=-1>ISO 19115</FONT></TD></TR>
-  <TR><TD><CODE>&nbsp;&nbsp;&nbsp;&nbsp;getPresentationForm</CODE></TD><TD><CODE>&nbsp;&nbsp;presentationForm</CODE></TD><TD><FONT SIZE=-1>ISO 19115</FONT></TD></TR>
+  <TR><TD><CODE>&nbsp;&nbsp;&nbsp;&nbsp;getPresentationForms</CODE></TD><TD><CODE>&nbsp;&nbsp;presentationForm</CODE></TD><TD><FONT SIZE=-1>ISO 19115</FONT></TD></TR>
   <TR><TD><CODE>&nbsp;&nbsp;&nbsp;&nbsp;getSeries</CODE></TD><TD><CODE>&nbsp;&nbsp;series</CODE></TD><TD><FONT SIZE=-1>ISO 19115</FONT></TD></TR>
   <TR><TD><CODE>&nbsp;&nbsp;&nbsp;&nbsp;getOtherCitationDetails</CODE></TD><TD><CODE>&nbsp;&nbsp;otherCitationDetails</CODE></TD><TD><FONT SIZE=-1>ISO 19115</FONT></TD></TR>
   <TR><TD><CODE>&nbsp;&nbsp;&nbsp;&nbsp;getCollectiveTitle</CODE></TD><TD><CODE>&nbsp;&nbsp;collectiveTitle</CODE></TD><TD><FONT SIZE=-1>ISO 19115</FONT></TD></TR>
@@ -169,7 +169,7 @@
   <TR><TD><CODE>&nbsp;&nbsp;&nbsp;&nbsp;<CITE>TOP_SECRET</CITE></CODE></TD><TD><CODE>&nbsp;&nbsp;<CITE>topsecret</CITE></CODE></TD><TD><FONT SIZE=-1>ISO 19115</FONT></TD></TR>
   <TR><TD COLSPAN=3><HR></TD></TR>
   <TR><TD NOWRAP><STRONG><CODE>&nbsp;&nbsp;</CODE>Interface <CODE><A HREF="apidocs/org/opengis/metadata/constraint/Constraints.html">Constraints</A></CODE></STRONG></TD><TD><CODE>MD_Constraints</CODE></TD><TD NOWRAP>ISO 19115</TD></TR>
-  <TR><TD><CODE>&nbsp;&nbsp;&nbsp;&nbsp;getUseLimitation</CODE></TD><TD><CODE>&nbsp;&nbsp;useLimitation</CODE></TD><TD><FONT SIZE=-1>ISO 19115</FONT></TD></TR>
+  <TR><TD><CODE>&nbsp;&nbsp;&nbsp;&nbsp;getUseLimitations</CODE></TD><TD><CODE>&nbsp;&nbsp;useLimitation</CODE></TD><TD><FONT SIZE=-1>ISO 19115</FONT></TD></TR>
   <TR><TD COLSPAN=3><HR></TD></TR>
   <TR><TD NOWRAP><STRONG><CODE>&nbsp;&nbsp;</CODE>Interface <CODE><A HREF="apidocs/org/opengis/metadata/constraint/LegalConstraints.html">LegalConstraints</A></CODE></STRONG></TD><TD><CODE>MD_LegalConstraints</CODE></TD><TD NOWRAP>ISO 19115</TD></TR>
   <TR><TD><CODE>&nbsp;&nbsp;&nbsp;&nbsp;getAccessConstraints</CODE></TD><TD><CODE>&nbsp;&nbsp;accessConstraints</CODE></TD><TD><FONT SIZE=-1>ISO 19115</FONT></TD></TR>
@@ -460,11 +460,11 @@
   <TR><TD NOWRAP><STRONG><CODE>&nbsp;&nbsp;</CODE>Interface <CODE><A HREF="apidocs/org/opengis/metadata/identification/DataIdentification.html">DataIdentification</A></CODE></STRONG></TD><TD><CODE>MD_DataIdentification</CODE></TD><TD NOWRAP>ISO 19115</TD></TR>
   <TR><TD><CODE>&nbsp;&nbsp;&nbsp;&nbsp;getSpatialRepresentationTypes</CODE></TD><TD><CODE>&nbsp;&nbsp;spatialRepresentationType</CODE></TD><TD><FONT SIZE=-1>ISO 19115</FONT></TD></TR>
   <TR><TD><CODE>&nbsp;&nbsp;&nbsp;&nbsp;getSpatialResolutions</CODE></TD><TD><CODE>&nbsp;&nbsp;spatialResolution</CODE></TD><TD><FONT SIZE=-1>ISO 19115</FONT></TD></TR>
-  <TR><TD><CODE>&nbsp;&nbsp;&nbsp;&nbsp;getLanguage</CODE></TD><TD><CODE>&nbsp;&nbsp;language</CODE></TD><TD><FONT SIZE=-1>ISO 19115</FONT></TD></TR>
+  <TR><TD><CODE>&nbsp;&nbsp;&nbsp;&nbsp;getLanguages</CODE></TD><TD><CODE>&nbsp;&nbsp;language</CODE></TD><TD><FONT SIZE=-1>ISO 19115</FONT></TD></TR>
   <TR><TD><CODE>&nbsp;&nbsp;&nbsp;&nbsp;getCharacterSets</CODE></TD><TD><CODE>&nbsp;&nbsp;characterSet</CODE></TD><TD><FONT SIZE=-1>ISO 19115</FONT></TD></TR>
   <TR><TD><CODE>&nbsp;&nbsp;&nbsp;&nbsp;getTopicCategories</CODE></TD><TD><CODE>&nbsp;&nbsp;topicCategory</CODE></TD><TD><FONT SIZE=-1>ISO 19115</FONT></TD></TR>
   <TR><TD><CODE>&nbsp;&nbsp;&nbsp;&nbsp;getEnvironmentDescription</CODE></TD><TD><CODE>&nbsp;&nbsp;environmentDescription</CODE></TD><TD><FONT SIZE=-1>ISO 19115</FONT></TD></TR>
-  <TR><TD><CODE>&nbsp;&nbsp;&nbsp;&nbsp;getExtent</CODE></TD><TD><CODE>&nbsp;&nbsp;extent</CODE></TD><TD><FONT SIZE=-1>ISO 19115</FONT></TD></TR>
+  <TR><TD><CODE>&nbsp;&nbsp;&nbsp;&nbsp;getExtents</CODE></TD><TD><CODE>&nbsp;&nbsp;extent</CODE></TD><TD><FONT SIZE=-1>ISO 19115</FONT></TD></TR>
   <TR><TD><CODE>&nbsp;&nbsp;&nbsp;&nbsp;getSupplementalInformation</CODE></TD><TD><CODE>&nbsp;&nbsp;supplementalInformation</CODE></TD><TD><FONT SIZE=-1>ISO 19115</FONT></TD></TR>
   <TR><TD COLSPAN=3><HR></TD></TR>
   <TR><TD NOWRAP><STRONG><CODE>&nbsp;&nbsp;</CODE>Interface <CODE><A HREF="apidocs/org/opengis/metadata/identification/Identification.html">Identification</A></CODE></STRONG></TD><TD><CODE>MD_Identification</CODE></TD><TD NOWRAP>ISO 19115</TD></TR>
@@ -474,9 +474,9 @@
   <TR><TD><CODE>&nbsp;&nbsp;&nbsp;&nbsp;getCredits</CODE></TD><TD><CODE>&nbsp;&nbsp;credit</CODE></TD><TD><FONT SIZE=-1>ISO 19115</FONT></TD></TR>
   <TR><TD><CODE>&nbsp;&nbsp;&nbsp;&nbsp;getStatus</CODE></TD><TD><CODE>&nbsp;&nbsp;status</CODE></TD><TD><FONT SIZE=-1>ISO 19115</FONT></TD></TR>
   <TR><TD><CODE>&nbsp;&nbsp;&nbsp;&nbsp;getPointOfContacts</CODE></TD><TD><CODE>&nbsp;&nbsp;pointOfContact</CODE></TD><TD><FONT SIZE=-1>ISO 19115</FONT></TD></TR>
-  <TR><TD><CODE>&nbsp;&nbsp;&nbsp;&nbsp;getResourceMaintenance</CODE></TD><TD><CODE>&nbsp;&nbsp;resourceMaintenance</CODE></TD><TD><FONT SIZE=-1>ISO 19115</FONT></TD></TR>
+  <TR><TD><CODE>&nbsp;&nbsp;&nbsp;&nbsp;getResourceMaintenances</CODE></TD><TD><CODE>&nbsp;&nbsp;resourceMaintenance</CODE></TD><TD><FONT SIZE=-1>ISO 19115</FONT></TD></TR>
   <TR><TD><CODE>&nbsp;&nbsp;&nbsp;&nbsp;getGraphicOverviews</CODE></TD><TD><CODE>&nbsp;&nbsp;graphicOverview</CODE></TD><TD><FONT SIZE=-1>ISO 19115</FONT></TD></TR>
-  <TR><TD><CODE>&nbsp;&nbsp;&nbsp;&nbsp;getResourceFormat</CODE></TD><TD><CODE>&nbsp;&nbsp;resourceFormat</CODE></TD><TD><FONT SIZE=-1>ISO 19115</FONT></TD></TR>
+  <TR><TD><CODE>&nbsp;&nbsp;&nbsp;&nbsp;getResourceFormats</CODE></TD><TD><CODE>&nbsp;&nbsp;resourceFormat</CODE></TD><TD><FONT SIZE=-1>ISO 19115</FONT></TD></TR>
   <TR><TD><CODE>&nbsp;&nbsp;&nbsp;&nbsp;getDescriptiveKeywords</CODE></TD><TD><CODE>&nbsp;&nbsp;descriptiveKeywords</CODE></TD><TD><FONT SIZE=-1>ISO 19115</FONT></TD></TR>
   <TR><TD><CODE>&nbsp;&nbsp;&nbsp;&nbsp;getResourceSpecificUsages</CODE></TD><TD><CODE>&nbsp;&nbsp;resourceSpecificUsage</CODE></TD><TD><FONT SIZE=-1>ISO 19115</FONT></TD></TR>
   <TR><TD><CODE>&nbsp;&nbsp;&nbsp;&nbsp;getResourceConstraints</CODE></TD><TD><CODE>&nbsp;&nbsp;resourceConstraints</CODE></TD><TD><FONT SIZE=-1>ISO 19115</FONT></TD></TR>
@@ -810,7 +810,7 @@
   <TR><TD><CODE>&nbsp;&nbsp;&nbsp;&nbsp;<CITE>isOrientationParameterAvailable</CITE></CODE></TD><TD><CODE>&nbsp;&nbsp;<CITE>orientationParameterAvailability</CITE></CODE></TD><TD><FONT SIZE=-1>ISO 19115</FONT></TD></TR>
   <TR><TD><CODE>&nbsp;&nbsp;&nbsp;&nbsp;getOrientationParameterDescription</CODE></TD><TD><CODE>&nbsp;&nbsp;orientationParameterDescription</CODE></TD><TD><FONT SIZE=-1>ISO 19115</FONT></TD></TR>
   <TR><TD><CODE>&nbsp;&nbsp;&nbsp;&nbsp;getGeoreferencedParameters</CODE></TD><TD><CODE>&nbsp;&nbsp;georeferencedParameters</CODE></TD><TD><FONT SIZE=-1>ISO 19115</FONT></TD></TR>
-  <TR><TD><CODE>&nbsp;&nbsp;&nbsp;&nbsp;getParameterCitation</CODE></TD><TD><CODE>&nbsp;&nbsp;parameterCitation</CODE></TD><TD><FONT SIZE=-1>ISO 19115</FONT></TD></TR>
+  <TR><TD><CODE>&nbsp;&nbsp;&nbsp;&nbsp;getParameterCitations</CODE></TD><TD><CODE>&nbsp;&nbsp;parameterCitation</CODE></TD><TD><FONT SIZE=-1>ISO 19115</FONT></TD></TR>
   <TR><TD COLSPAN=3><HR></TD></TR>
   <TR><TD NOWRAP><STRONG><CODE>&nbsp;&nbsp;</CODE>Interface <CODE><A HREF="apidocs/org/opengis/metadata/spatial/GridSpatialRepresentation.html">GridSpatialRepresentation</A></CODE></STRONG></TD><TD><CODE>MD_GridSpatialRepresentation</CODE></TD><TD NOWRAP>ISO 19115</TD></TR>
   <TR><TD><CODE>&nbsp;&nbsp;&nbsp;&nbsp;getNumberOfDimensions</CODE></TD><TD><CODE>&nbsp;&nbsp;numberOfDimensions</CODE></TD><TD><FONT SIZE=-1>ISO 19115</FONT></TD></TR>
@@ -849,12 +849,6 @@
   <TR><TD NOWRAP><STRONG><CODE>&nbsp;&nbsp;</CODE>Interface <CODE><A HREF="apidocs/org/opengis/metadata/spatial/VectorSpatialRepresentation.html">VectorSpatialRepresentation</A></CODE></STRONG></TD><TD><CODE>MD_VectorSpatialRepresentation</CODE></TD><TD NOWRAP>ISO 19115</TD></TR>
   <TR><TD><CODE>&nbsp;&nbsp;&nbsp;&nbsp;getTopologyLevel</CODE></TD><TD><CODE>&nbsp;&nbsp;topologyLevel</CODE></TD><TD><FONT SIZE=-1>ISO 19115</FONT></TD></TR>
   <TR><TD><CODE>&nbsp;&nbsp;&nbsp;&nbsp;getGeometricObjects</CODE></TD><TD><CODE>&nbsp;&nbsp;geometricObjects</CODE></TD><TD><FONT SIZE=-1>ISO 19115</FONT></TD></TR>
-  <TR><TD COLSPAN=3><HR></TD></TR>
-  <TR><TD COLSPAN=3>&nbsp;</TD></TR>
-  <TR><TD COLSPAN=3 NOWRAP BGCOLOR="#DDDDFF"><STRONG>Package&nbsp; <CODE>org.opengis.metadata</CODE></STRONG></TD></TR>
-  <TR><TD COLSPAN=3><HR></TD></TR>
-  <TR><TD NOWRAP><STRONG><CODE>&nbsp;&nbsp;</CODE>Interface <CODE><A HREF="apidocs/org/opengis/metadata/SpatialAttributeSupplement.html">SpatialAttributeSupplement</A></CODE></STRONG></TD><TD><CODE>MD_SpatialAttributeSupplement</CODE></TD><TD NOWRAP>ISO 19115</TD></TR>
-  <TR><TD><CODE>&nbsp;&nbsp;&nbsp;&nbsp;<CITE>getFeatureTypeList</CITE></CODE></TD><TD><CODE>&nbsp;&nbsp;<CITE>theFeatureTypeList</CITE></CODE></TD><TD><FONT SIZE=-1>ISO 19115</FONT></TD></TR>
   <TR><TD COLSPAN=3><HR></TD></TR>
   <TR><TD COLSPAN=3>&nbsp;</TD></TR>
   <TR><TD COLSPAN=3 NOWRAP BGCOLOR="#DDDDFF"><STRONG>Package&nbsp; <CODE>org.opengis.parameter</CODE></STRONG></TD></TR>
@@ -1159,10 +1153,8 @@
   <TR><TD NOWRAP><STRONG><CODE>&nbsp;&nbsp;</CODE>Code list <CODE><A HREF="apidocs/org/opengis/referencing/datum/VerticalDatumType.html">VerticalDatumType</A></CODE></STRONG></TD><TD><CODE>CD_VerticalDatumType</CODE></TD><TD NOWRAP>ISO 19111</TD></TR>
   <TR><TD><CODE>&nbsp;&nbsp;&nbsp;&nbsp;OTHER_SURFACE</CODE></TD><TD><CODE>&nbsp;&nbsp;other surface</CODE></TD><TD><FONT SIZE=-1>ISO 19111</FONT></TD></TR>
   <TR><TD><CODE>&nbsp;&nbsp;&nbsp;&nbsp;GEOIDAL</CODE></TD><TD><CODE>&nbsp;&nbsp;geoidal</CODE></TD><TD><FONT SIZE=-1>ISO 19111</FONT></TD></TR>
-  <TR><TD><CODE>&nbsp;&nbsp;&nbsp;&nbsp;<CITE>ELLIPSOIDAL</CITE></CODE></TD><TD><CODE>&nbsp;&nbsp;<CITE>CS_VD_Ellipsoidal</CITE></CODE></TD><TD><FONT SIZE=-1>OGC 01009</FONT></TD></TR>
   <TR><TD><CODE>&nbsp;&nbsp;&nbsp;&nbsp;DEPTH</CODE></TD><TD><CODE>&nbsp;&nbsp;depth</CODE></TD><TD><FONT SIZE=-1>ISO 19111</FONT></TD></TR>
   <TR><TD><CODE>&nbsp;&nbsp;&nbsp;&nbsp;BAROMETRIC</CODE></TD><TD><CODE>&nbsp;&nbsp;barometric</CODE></TD><TD><FONT SIZE=-1>ISO 19111</FONT></TD></TR>
-  <TR><TD><CODE>&nbsp;&nbsp;&nbsp;&nbsp;<CITE>ORTHOMETRIC</CITE></CODE></TD><TD><CODE>&nbsp;&nbsp;<CITE>CS_VD_Orthometric</CITE></CODE></TD><TD><FONT SIZE=-1>OGC 01009</FONT></TD></TR>
   <TR><TD COLSPAN=3><HR></TD></TR>
   <TR><TD COLSPAN=3>&nbsp;</TD></TR>
   <TR><TD COLSPAN=3 NOWRAP BGCOLOR="#DDDDFF"><STRONG>Package&nbsp; <CODE>org.opengis.referencing</CODE></STRONG></TD></TR>
@@ -1281,7 +1273,7 @@
   <TR><TD COLSPAN=3><HR></TD></TR>
   <TR><TD NOWRAP><STRONG><CODE>&nbsp;&nbsp;</CODE>Interface <CODE><A HREF="apidocs/org/opengis/referencing/operation/SingleOperation.html">SingleOperation</A></CODE></STRONG></TD><TD><CODE>CC_SingleOperation</CODE></TD><TD NOWRAP>ISO 19111</TD></TR>
   <TR><TD><CODE>&nbsp;&nbsp;&nbsp;&nbsp;getMethod</CODE></TD><TD><CODE>&nbsp;&nbsp;method</CODE></TD><TD><FONT SIZE=-1>ISO 19111</FONT></TD></TR>
-  <TR><TD><CODE>&nbsp;&nbsp;&nbsp;&nbsp;<CITE>getParameterValues</CITE></CODE></TD><TD><CODE>&nbsp;&nbsp;<CITE>value</CITE></CODE></TD><TD><FONT SIZE=-1>ISO 19111</FONT></TD></TR>
+  <TR><TD><CODE>&nbsp;&nbsp;&nbsp;&nbsp;getParameterValues</CODE></TD><TD><CODE>&nbsp;&nbsp;parameterValue</CODE></TD><TD><FONT SIZE=-1>ISO 19111</FONT></TD></TR>
   <TR><TD COLSPAN=3><HR></TD></TR>
   <TR><TD NOWRAP><STRONG><CODE>&nbsp;&nbsp;</CODE>Interface <CODE><A HREF="apidocs/org/opengis/referencing/operation/Transformation.html">Transformation</A></CODE></STRONG></TD><TD><CODE>CC_Transformation</CODE></TD><TD NOWRAP>ISO 19111</TD></TR>
   <TR><TD><CODE>&nbsp;&nbsp;&nbsp;&nbsp;getSourceCRS</CODE></TD><TD><CODE>&nbsp;&nbsp;sourceCRS</CODE></TD><TD><FONT SIZE=-1>ISO 19111</FONT></TD></TR>
@@ -1307,6 +1299,16 @@
   <TR><TD COLSPAN=3 NOWRAP BGCOLOR="#DDDDFF"><STRONG>Package&nbsp; <CODE>org.opengis.util</CODE></STRONG></TD></TR>
   <TR><TD COLSPAN=3><HR></TD></TR>
   <TR><TD NOWRAP><STRONG><CODE>&nbsp;&nbsp;</CODE>Code list <CODE><A HREF="apidocs/org/opengis/util/CodeList.html">CodeList</A></CODE></STRONG></TD><TD><CODE>CodeList</CODE></TD><TD NOWRAP>ISO 19103</TD></TR>
+  <TR><TD COLSPAN=3><HR></TD></TR>
+  <TR><TD COLSPAN=3>&nbsp;</TD></TR>
+  <TR><TD COLSPAN=3 NOWRAP BGCOLOR="#DDDDFF"><STRONG>Package&nbsp; <CODE>org.opengis.util.CodeList</CODE></STRONG></TD></TR>
+  <TR><TD COLSPAN=3><HR></TD></TR>
+  <TR><TD NOWRAP><STRONG><CODE>&nbsp;&nbsp;</CODE>Interface <CODE><A HREF="apidocs/org/opengis/util/CodeList/Filter.html"><CITE>Filter</CITE></A></CODE></STRONG></TD></TR>
+  <TR><TD><CODE>&nbsp;&nbsp;&nbsp;&nbsp;<CITE>accept</CITE></CODE></TD></TR>
+  <TR><TD><CODE>&nbsp;&nbsp;&nbsp;&nbsp;<CITE>codename</CITE></CODE></TD></TR>
+  <TR><TD COLSPAN=3><HR></TD></TR>
+  <TR><TD COLSPAN=3>&nbsp;</TD></TR>
+  <TR><TD COLSPAN=3 NOWRAP BGCOLOR="#DDDDFF"><STRONG>Package&nbsp; <CODE>org.opengis.util</CODE></STRONG></TD></TR>
   <TR><TD COLSPAN=3><HR></TD></TR>
   <TR><TD NOWRAP><STRONG><CODE>&nbsp;&nbsp;</CODE>Interface <CODE><A HREF="apidocs/org/opengis/util/GenericName.html">GenericName</A></CODE></STRONG></TD><TD><CODE>GenericName</CODE></TD><TD NOWRAP>ISO 19103</TD></TR>
   <TR><TD><CODE>&nbsp;&nbsp;&nbsp;&nbsp;scope</CODE></TD><TD><CODE>&nbsp;&nbsp;scope</CODE></TD><TD><FONT SIZE=-1>ISO 19103</FONT></TD></TR>

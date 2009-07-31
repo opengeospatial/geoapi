@@ -191,7 +191,7 @@ public abstract class UmlProcessor extends SimpleDeclarationVisitor
      * then this method returns {@link Void#TYPE}. The later is not quite correct (but do
      * the trick for this package purpose), which is why this method is package-private.
      */
-    final Class getClass(final TypeDeclaration declaration) {
+    final Class<?> getClass(final TypeDeclaration declaration) {
         try {
             return Class.forName(declaration.getQualifiedName());
         } catch (ClassNotFoundException e) {
@@ -205,7 +205,7 @@ public abstract class UmlProcessor extends SimpleDeclarationVisitor
      * then this method returns {@link Void#TYPE}. The later is not quite correct (but do
      * the trick for this package purpose), which is why this method is package-private.
      */
-    final Class getClass(final TypeMirror type) {
+    final Class<?> getClass(final TypeMirror type) {
         if (type instanceof PrimitiveType) {
             switch (((PrimitiveType) type).getKind()) {
                 case BOOLEAN : return Boolean  .TYPE;
@@ -235,12 +235,12 @@ public abstract class UmlProcessor extends SimpleDeclarationVisitor
      * @param  classe The object class (may be <code>null</code>).
      * @return A short class name for the specified object.
      */
-    protected static String getShortName(Class classe) {
+    protected static String getShortName(Class<?> classe) {
         if (classe == null) {
             return "<*>";
         }
         int dimension = 0;
-        Class el;
+        Class<?> el;
         while ((el = classe.getComponentType()) != null) {
             classe = el;
             dimension++;

@@ -315,7 +315,7 @@ scan:   for (final MemberDeclaration attribute : attributes) {
          * For exceptions, the "Exception" suffix is always added after the class name.
          */
         if (declaration instanceof ClassDeclaration) {
-            final Class classe = getClass(declaration);
+            final Class<?> classe = getClass(declaration);
             if (Exception.class.isAssignableFrom(classe)) {
                 ogc += "Exception";
             }
@@ -359,7 +359,7 @@ scan:   for (final MemberDeclaration attribute : attributes) {
          * character is adjusted (usually to a lower case).
          */
         final boolean startWithLowerCase = Character.isLowerCase(ogc.charAt(0));
-        final Class returnClass = getClass(declaration.getReturnType());
+        final Class<?> returnClass = getClass(declaration.getReturnType());
         if (returnClass.equals(Boolean.TYPE) || returnClass.equals(Boolean.class)) {
             if (geoapi.startsWith("is") && !ogc.startsWith("is")) {
                 geoapi = geoapi.substring(2);
