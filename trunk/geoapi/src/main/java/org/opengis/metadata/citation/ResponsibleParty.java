@@ -26,6 +26,8 @@ import static org.opengis.annotation.ComplianceLevel.*;
  * @version <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
  * @author  Martin Desruisseaux (IRD)
  * @since   GeoAPI 1.0
+ *
+ * @navassoc 1 - - Role
  */
 @UML(identifier="CI_ResponsibleParty", specification=ISO_19115)
 public interface ResponsibleParty {
