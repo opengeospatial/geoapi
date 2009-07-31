@@ -47,11 +47,8 @@ public interface SingleOperation extends CoordinateOperation {
      *
      * @return The parameter values.
      *
-     * @departure rename
-     *   Added "<code>Parameter</code>" prefix to the method name for more consistency with the return type.
-     *
      * @since GeoAPI 2.3
      */
-    @UML(identifier="value", obligation=MANDATORY, specification=ISO_19111)
+    @UML(identifier="parameterValue", obligation=MANDATORY, specification=ISO_19111)
     ParameterValueGroup getParameterValues();
 }
