@@ -35,6 +35,8 @@ import static org.opengis.annotation.Specification.*;
  * @author Bryce Nordgren (USDA)
  * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 2.1
+ *
+ * @navassoc 1 - - LocalName
  */
 @UML(identifier="RecordSchema", specification=ISO_19103)
 public interface RecordSchema {

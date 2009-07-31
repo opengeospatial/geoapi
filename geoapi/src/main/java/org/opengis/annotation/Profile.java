@@ -20,6 +20,8 @@ import static java.lang.annotation.ElementType.*;
  *
  * @author  Martin Desruisseaux (IRD)
  * @since   GeoAPI 2.0
+ *
+ * @navassoc - - - ComplianceLevel
  */
 @Documented
 @Target(METHOD)

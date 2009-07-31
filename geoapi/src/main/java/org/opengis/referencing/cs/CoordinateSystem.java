@@ -32,6 +32,8 @@ import static org.opengis.annotation.Specification.*;
  * @see javax.measure.unit.Unit
  * @see org.opengis.referencing.datum.Datum
  * @see org.opengis.referencing.crs.CoordinateReferenceSystem
+ *
+ * @navassoc - - - CoordinateSystemAxis
  */
 @UML(identifier="CS_CoordinateSystem", specification=ISO_19111)
 public interface CoordinateSystem extends IdentifiedObject {

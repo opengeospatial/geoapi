@@ -32,6 +32,8 @@ import static org.opengis.annotation.Specification.*;
  *
  * @see ParameterDescriptorGroup
  * @see ParameterValue
+ *
+ * @navassoc - - - GeneralParameterValue
  */
 @UML(identifier="CC_ParameterValueGroup", specification=ISO_19111)
 public interface ParameterValueGroup extends GeneralParameterValue {

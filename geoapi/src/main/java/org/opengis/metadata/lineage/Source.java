@@ -29,6 +29,12 @@ import static org.opengis.annotation.Specification.*;
  * @author  Martin Desruisseaux (IRD)
  * @author  Cory Horner (Refractions Research)
  * @since   GeoAPI 2.0
+ *
+ * @navassoc & - - RepresentativeFraction
+ * @navassoc 1 - - ReferenceSystem
+ * @navassoc 1 - - Citation
+ * @navassoc - - - Extent
+ * @navassoc - - - ProcessStep
  */
 @UML(identifier="LI_Source", specification=ISO_19115)
 public interface Source {

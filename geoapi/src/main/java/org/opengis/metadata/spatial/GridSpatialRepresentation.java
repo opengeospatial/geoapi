@@ -24,6 +24,9 @@ import static org.opengis.annotation.Specification.*;
  * @author  Martin Desruisseaux (IRD)
  * @author  Cory Horner (Refractions Research)
  * @since   GeoAPI 2.0
+ *
+ * @navassoc - - - Dimension
+ * @navassoc 1 - - CellGeometry
  */
 @UML(identifier="MD_GridSpatialRepresentation", specification=ISO_19115)
 public interface GridSpatialRepresentation extends SpatialRepresentation {

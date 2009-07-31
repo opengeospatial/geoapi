@@ -28,6 +28,11 @@ import static org.opengis.annotation.Specification.*;
  * @author  Martin Desruisseaux (IRD)
  * @author  Cory Horner (Refractions Research)
  * @since   GeoAPI 2.0
+ *
+ * @navassoc 1 - - Identifier
+ * @navassoc 1 - - EvaluationMethodType
+ * @navassoc 1 - - Citation
+ * @navassoc - - - Result
  */
 @UML(identifier="DQ_Element", specification=ISO_19115)
 public interface Element {

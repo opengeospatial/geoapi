@@ -25,6 +25,9 @@ import static org.opengis.annotation.Specification.*;
  * @version <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
  * @author  Martin Desruisseaux (IRD)
  * @since   GeoAPI 2.0
+ *
+ * @navassoc 1 - - MediumName
+ * @navassoc - - - MediumFormat
  */
 @UML(identifier="MD_Medium", specification=ISO_19115)
 public interface Medium {

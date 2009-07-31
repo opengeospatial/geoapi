@@ -397,7 +397,7 @@
           <keywords>true</keywords>       <!-- Adds HTML meta keyword tags to the generated file for each class.  -->
           <breakiterator>true</breakiterator>
 
-          <!-- Generate the UML for each package and class. Credit: the configuration is copied from the following project:
+          <!-- Generate the UML for each package and class. Credit: the configuration is inspired from the following project:
                http://project.smartics.de/public/de.smartics.maven.plugin/maven-issues-plugin/0.2.4/references/credits.html -->
           <doclet>org.umlgraph.doclet.UmlGraphDoc</doclet>
           <docletArtifact>
@@ -406,7 +406,6 @@
             <version>5.2</version>
           </docletArtifact>
           <additionalparam>
-            -inferrel -inferdep -hide java.* -collpackages java.util.*
             -qualify -postfixpackage -nodefontsize 9 -nodefontpackagesize 7
           </additionalparam>
 
@@ -449,6 +448,11 @@
               <name>unitof</name>
               <placement>fm</placement>
               <head>Unit:</head>
+            </tag>
+            <tag>
+              <name>navassoc</name> <!-- Used by UmlGraph doclet. -->
+              <placement>X</placement>
+              <head>Associated to:</head>
             </tag>
           </tags>
 

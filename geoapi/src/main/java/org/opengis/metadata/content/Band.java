@@ -25,6 +25,8 @@ import static org.opengis.annotation.Specification.*;
  * @author  Martin Desruisseaux (IRD)
  * @author  Cory Horner (Refractions Research)
  * @since   GeoAPI 2.0
+ *
+ * @navassoc 1 - - Unit
  */
 @UML(identifier="MD_Band", specification=ISO_19115)
 public interface Band extends RangeDimension {

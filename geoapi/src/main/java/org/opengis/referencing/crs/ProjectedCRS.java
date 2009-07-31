@@ -34,6 +34,9 @@ import static org.opengis.annotation.Specification.*;
  * @version <A HREF="http://portal.opengeospatial.org/files/?artifact_id=6716">Abstract specification 2.0</A>
  * @author  Martin Desruisseaux (IRD)
  * @since   GeoAPI 1.0
+ *
+ * @navassoc 1 - - GeodeticDatum
+ * @navassoc 1 - - CartesianCS
  */
 @UML(identifier="SC_ProjectedCRS", specification=ISO_19111)
 public interface ProjectedCRS extends GeneralDerivedCRS {

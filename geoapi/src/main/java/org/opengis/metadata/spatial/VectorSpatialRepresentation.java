@@ -23,6 +23,9 @@ import static org.opengis.annotation.Specification.*;
  * @version <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
  * @author  Martin Desruisseaux (IRD)
  * @since   GeoAPI 2.0
+ *
+ * @navassoc 1 - - TopologyLevel
+ * @navassoc - - - GeometricObjects
  */
 @UML(identifier="MD_VectorSpatialRepresentation", specification=ISO_19115)
 public interface VectorSpatialRepresentation extends SpatialRepresentation {

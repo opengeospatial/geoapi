@@ -28,6 +28,9 @@ import static org.opengis.annotation.ComplianceLevel.*;
  * @author  Martin Desruisseaux (IRD)
  * @author  Cory Horner (Refractions Research)
  * @since   GeoAPI 2.0
+ *
+ * @navassoc - - - OnLineResource
+ * @navassoc 1 - - Medium
  */
 @UML(identifier="MD_DigitalTransferOptions", specification=ISO_19115)
 public interface DigitalTransferOptions {

@@ -32,6 +32,8 @@ import static org.opengis.annotation.Specification.*;
  * @since   GeoAPI 1.0
  *
  * @see org.opengis.referencing.crs.CoordinateReferenceSystem
+ *
+ * @navassoc 1 - - Extent
  */
 @UML(identifier="RS_ReferenceSystem", specification=ISO_19115)
 public interface ReferenceSystem extends IdentifiedObject {

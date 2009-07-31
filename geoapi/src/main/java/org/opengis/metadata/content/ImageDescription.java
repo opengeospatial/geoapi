@@ -24,6 +24,9 @@ import static org.opengis.annotation.Specification.*;
  * @author  Martin Desruisseaux (IRD)
  * @author  Cory Horner (Refractions Research)
  * @since   GeoAPI 2.0
+ *
+ * @navassoc 1 - - ImagingCondition
+ * @navassoc 1 - - Identifier
  */
 @UML(identifier="MD_ImageDescription", specification=ISO_19115)
 public interface ImageDescription extends CoverageDescription {

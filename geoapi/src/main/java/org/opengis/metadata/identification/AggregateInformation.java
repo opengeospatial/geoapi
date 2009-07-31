@@ -24,6 +24,11 @@ import static org.opengis.annotation.Specification.ISO_19115;
  * @version <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
  * @author  Ely Conn (Leica Geosystems Geospatial Imaging, LLC)
  * @since   GeoAPI 2.1
+ *
+ * @navassoc 1 - - Citation
+ * @navassoc 1 - - Identifier
+ * @navassoc 1 - - AssociationType
+ * @navassoc 1 - - InitiativeType
  */
 @UML(identifier="MD_AggregateInformation", specification=ISO_19115)
 public interface AggregateInformation {

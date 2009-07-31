@@ -32,6 +32,8 @@ import static org.opengis.annotation.Specification.*;
  * @version <A HREF="http://www.opengeospatial.org/standards/as">ISO 19107</A>
  * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 1.0
+ *
+ * @navassoc 1 - - CoordinateReferenceSystem
  */
 @UML(identifier="DirectPosition", specification=ISO_19107)
 public interface DirectPosition extends Position {

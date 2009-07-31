@@ -29,6 +29,12 @@ import static org.opengis.annotation.ComplianceLevel.*;
  * @author  Martin Desruisseaux (IRD)
  * @author  Cory Horner (Refractions Research)
  * @since   GeoAPI 1.0
+ *
+ * @navassoc - - - CitationDate
+ * @navassoc - - - Identifier
+ * @navassoc - - - ResponsibleParty
+ * @navassoc - - - PresentationForm
+ * @navassoc 1 - - Series
  */
 @UML(identifier="CI_Citation", specification=ISO_19115)
 public interface Citation {

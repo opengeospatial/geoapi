@@ -29,6 +29,8 @@ import static org.opengis.annotation.Specification.*;
  * @since   GeoAPI 1.0
  *
  * @see Operation
+ *
+ * @navassoc 1 - - ParameterDescriptorGroup
  */
 @UML(identifier="CC_OperationMethod", specification=ISO_19111)
 public interface OperationMethod extends IdentifiedObject {

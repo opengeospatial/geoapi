@@ -41,6 +41,8 @@ import static org.opengis.annotation.Specification.*;
  *
  * @see org.opengis.referencing.cs.CoordinateSystem
  * @see org.opengis.referencing.datum.Datum
+ *
+ * @navassoc 1 - - Datum
  */
 @UML(identifier="SC_SingleCRS", specification=ISO_19111)
 public interface SingleCRS extends CoordinateReferenceSystem {

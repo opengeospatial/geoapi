@@ -30,6 +30,8 @@ import static org.opengis.annotation.Specification.*;
  * @since GeoAPI 2.1
  *
  * @see RecordType
+ *
+ * @navassoc 1 - - RecordType
  */
 @UML(identifier="Record", specification=ISO_19103)
 public interface Record {

@@ -30,6 +30,9 @@ import static org.opengis.annotation.Specification.*;
  * @version <A HREF="http://portal.opengeospatial.org/files/?artifact_id=6716">Abstract specification 2.0</A>
  * @author  Martin Desruisseaux (IRD)
  * @since   GeoAPI 1.0
+ *
+ * @navassoc 1 - - TemporalDatum
+ * @navassoc 1 - - TimeCS
  */
 @UML(identifier="SC_TemporalCRS", specification=ISO_19111)
 public interface TemporalCRS extends SingleCRS {
