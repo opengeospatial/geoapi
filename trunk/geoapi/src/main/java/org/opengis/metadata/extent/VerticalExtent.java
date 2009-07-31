@@ -24,6 +24,8 @@ import static org.opengis.annotation.Specification.*;
  * @author  Martin Desruisseaux (IRD)
  * @author  Cory Horner (Refractions Research)
  * @since   GeoAPI 1.0
+ *
+ * @navassoc 1 - - VerticalCRS
  */
 @UML(identifier="EX_VerticalExtent", specification=ISO_19115)
 public interface VerticalExtent {

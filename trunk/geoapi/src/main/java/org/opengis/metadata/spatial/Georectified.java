@@ -29,6 +29,9 @@ import static org.opengis.annotation.Specification.*;
  * @version <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
  * @author  Martin Desruisseaux (IRD)
  * @since   GeoAPI 2.0
+ *
+ * @navassoc - - - Point
+ * @navassoc 1 - - PixelOrientation
  */
 @UML(identifier="MD_Georectified", specification=ISO_19115)
 public interface Georectified extends GridSpatialRepresentation {

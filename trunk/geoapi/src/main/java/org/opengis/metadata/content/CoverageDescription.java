@@ -25,6 +25,10 @@ import static org.opengis.annotation.Specification.*;
  * @author  Martin Desruisseaux (IRD)
  * @author  Cory Horner (Refractions Research)
  * @since   GeoAPI 2.0
+ *
+ * @navassoc 1 - - RecordType
+ * @navassoc 1 - - CoverageContentType
+ * @navassoc - - - RangeDimension
  */
 @UML(identifier="MD_CoverageDescription", specification=ISO_19115)
 public interface CoverageDescription extends ContentInformation {

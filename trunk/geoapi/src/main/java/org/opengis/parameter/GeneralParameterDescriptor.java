@@ -31,6 +31,8 @@ import static org.opengis.annotation.Specification.*;
  * @departure rename
  *   Selected a name which contain the "<code>Descriptor</code>" word for consistency with other
  *   libraries in Java (e.g. <code>ParameterListDescriptor</code> in Java Advanced Imaging).
+ *
+ * @navassoc 1 - - GeneralParameterValue
  */
 @UML(identifier="CC_GeneralOperationParameter", specification=ISO_19111)
 public interface GeneralParameterDescriptor extends IdentifiedObject {

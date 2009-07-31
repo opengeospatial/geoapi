@@ -24,6 +24,8 @@ import static org.opengis.annotation.Specification.*;
  * @since   GeoAPI 1.0
  *
  * @see GeneralParameterDescriptor
+ *
+ * @navassoc 1 - - GeneralParameterDescriptor
  */
 @UML(identifier="CC_GeneralParameterValue", specification=ISO_19111)
 public interface GeneralParameterValue {

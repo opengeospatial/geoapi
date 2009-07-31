@@ -25,6 +25,8 @@ import static org.opengis.annotation.Specification.*;
  * @author  Martin Desruisseaux (IRD)
  * @author  Cory Horner (Refractions Research)
  * @since   GeoAPI 2.0
+ *
+ * @navassoc - - - Restriction
  */
 @UML(identifier="MD_LegalConstraints", specification=ISO_19115)
 public interface LegalConstraints extends Constraints {

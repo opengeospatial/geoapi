@@ -26,6 +26,10 @@ import static org.opengis.annotation.Specification.*;
  * @author  Martin Desruisseaux (IRD)
  * @author  Cory Horner (Refractions Research)
  * @since   GeoAPI 2.0
+ *
+ * @navassoc - - - AttributeType
+ * @navassoc - - - FeatureType
+ * @navassoc - - - AttributeType
  */
 @UML(identifier="MD_ScopeDescription", specification=ISO_19115)
 public interface ScopeDescription {

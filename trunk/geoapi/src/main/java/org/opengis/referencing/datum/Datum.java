@@ -33,6 +33,8 @@ import static org.opengis.annotation.Specification.*;
  *
  * @see org.opengis.referencing.cs.CoordinateSystem
  * @see org.opengis.referencing.crs.CoordinateReferenceSystem
+ *
+ * @navassoc 1 - - Extent
  */
 @UML(identifier="CD_Datum", specification=ISO_19111)
 public interface Datum extends IdentifiedObject {

@@ -28,6 +28,10 @@ import static org.opengis.annotation.Specification.*;
  * @author  Martin Desruisseaux (IRD)
  * @author  Cory Horner (Refractions Research)
  * @since   GeoAPI 2.0
+ *
+ * @navassoc - - - Record
+ * @navassoc 1 - - RecordType
+ * @navassoc 1 - - Unit
  */
 @UML(identifier="DQ_QuantitativeResult", specification=ISO_19115)
 public interface QuantitativeResult extends Result {

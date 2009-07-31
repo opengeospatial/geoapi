@@ -32,6 +32,17 @@ import static org.opengis.annotation.ComplianceLevel.*;
  * @author  Martin Desruisseaux (IRD)
  * @author  Cory Horner (Refractions Research)
  * @since   GeoAPI 2.0
+ *
+ * @navassoc 1 - - Citation
+ * @navassoc - - - Progress
+ * @navassoc - - - ResponsibleParty
+ * @navassoc - - - MaintenanceInformation
+ * @navassoc - - - BrowseGraphic
+ * @navassoc - - - Format
+ * @navassoc - - - Keywords
+ * @navassoc - - - Usage
+ * @navassoc - - - Constraints
+ * @navassoc - - - AggregateInformation
  */
 @UML(identifier="MD_Identification", specification=ISO_19115)
 public interface Identification {

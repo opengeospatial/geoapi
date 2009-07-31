@@ -25,6 +25,8 @@ import static org.opengis.annotation.ComplianceLevel.*;
  * @author  Martin Desruisseaux (IRD)
  * @author  Cory Horner (Refractions Research)
  * @since   GeoAPI 2.0
+ *
+ * @navassoc - - - RepresentativeFraction
  */
 @UML(identifier="MD_Resolution", specification=ISO_19115)
 public interface Resolution {

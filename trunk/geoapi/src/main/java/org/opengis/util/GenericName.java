@@ -131,6 +131,8 @@ import static org.opengis.annotation.Specification.*;
  * @since GeoAPI 1.0
  *
  * @see javax.naming.Name
+ *
+ * @navassoc 1 - - NameSpace
  */
 @UML(identifier="GenericName", specification=ISO_19103)
 public interface GenericName extends Comparable<GenericName> {

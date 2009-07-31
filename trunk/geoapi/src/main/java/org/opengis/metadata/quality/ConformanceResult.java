@@ -26,6 +26,8 @@ import static org.opengis.annotation.Specification.*;
  * @author  Martin Desruisseaux (IRD)
  * @author  Cory Horner (Refractions Research)
  * @since   GeoAPI 2.0
+ *
+ * @navassoc 1 - - Citation
  */
 @UML(identifier="DQ_ConformanceResult", specification=ISO_19115)
 public interface ConformanceResult extends Result {

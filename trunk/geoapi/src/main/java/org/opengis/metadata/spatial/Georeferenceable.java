@@ -29,6 +29,9 @@ import static org.opengis.annotation.Specification.*;
  * @author  Martin Desruisseaux (IRD)
  * @author  Cory Horner (Refractions Research)
  * @since   GeoAPI 2.0
+ *
+ * @navassoc 1 - - Record
+ * @navassoc - - - Citation
  */
 @UML(identifier="MD_Georeferenceable", specification=ISO_19115)
 public interface Georeferenceable extends GridSpatialRepresentation {

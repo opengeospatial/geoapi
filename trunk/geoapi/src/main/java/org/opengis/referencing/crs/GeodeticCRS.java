@@ -31,6 +31,8 @@ import static org.opengis.annotation.Specification.*;
  * @version <A HREF="http://portal.opengeospatial.org/files/?artifact_id=6716">Abstract specification 2.0</A>
  * @author  Martin Desruisseaux (IRD)
  * @since   GeoAPI 2.1
+ *
+ * @navassoc 1 - - GeodeticDatum
  */
 @UML(identifier="SC_GeodeticCRS", specification=ISO_19111)
 public interface GeodeticCRS extends SingleCRS {

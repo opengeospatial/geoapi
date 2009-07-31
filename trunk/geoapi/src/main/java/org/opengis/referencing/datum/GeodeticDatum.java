@@ -27,6 +27,9 @@ import static org.opengis.annotation.Specification.*;
  *
  * @see Ellipsoid
  * @see PrimeMeridian
+ *
+ * @navassoc 1 - - Ellipsoid
+ * @navassoc 1 - - PrimeMeridian
  */
 @UML(identifier="CD_GeodeticDatum", specification=ISO_19111)
 public interface GeodeticDatum extends Datum {

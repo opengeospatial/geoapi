@@ -25,6 +25,10 @@ import static org.opengis.annotation.ComplianceLevel.*;
  * @version <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
  * @author  Martin Desruisseaux (IRD)
  * @since   GeoAPI 2.0
+ *
+ * @navassoc - - - Format
+ * @navassoc - - - Distributor
+ * @navassoc - - - DigitalTransferOptions
  */
 @UML(identifier="MD_Distribution", specification=ISO_19115)
 public interface Distribution {

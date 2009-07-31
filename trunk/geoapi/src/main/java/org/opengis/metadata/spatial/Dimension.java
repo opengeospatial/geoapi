@@ -23,6 +23,8 @@ import static org.opengis.annotation.Specification.*;
  * @author  Martin Desruisseaux (IRD)
  * @author  Cory Horner (Refractions Research)
  * @since   GeoAPI 2.0
+ *
+ * @navassoc 1 - - DimensionNameType
  */
 @UML(identifier="MD_Dimension", specification=ISO_19115)
 public interface Dimension {

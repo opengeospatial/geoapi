@@ -31,6 +31,9 @@ import static org.opengis.annotation.Specification.*;
  * @since   GeoAPI 1.0
  *
  * @see org.opengis.coverage.grid.GridEnvelope
+ *
+ * @navassoc 1 - - CoordinateReferenceSystem
+ * @navassoc 2 - - DirectPosition
  */
 @UML(identifier="GM_Envelope", specification=ISO_19107)
 public interface Envelope {

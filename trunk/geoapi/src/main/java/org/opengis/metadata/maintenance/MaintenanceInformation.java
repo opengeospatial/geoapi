@@ -28,6 +28,12 @@ import static org.opengis.annotation.Specification.*;
  * @author  Martin Desruisseaux (IRD)
  * @author  Cory Horner (Refractions Research)
  * @since   GeoAPI 2.0
+ *
+ * @navassoc 1 - - MaintenanceFrequency
+ * @navassoc 1 - - PeriodDuration
+ * @navassoc - - - ScopeCode
+ * @navassoc - - - ScopeDescription
+ * @navassoc - - - ResponsibleParty
  */
 @UML(identifier="MD_MaintenanceInformation", specification=ISO_19115)
 public interface MaintenanceInformation {

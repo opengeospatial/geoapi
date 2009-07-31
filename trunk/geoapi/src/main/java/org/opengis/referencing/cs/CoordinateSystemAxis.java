@@ -28,6 +28,10 @@ import static org.opengis.annotation.Specification.*;
  *
  * @see CoordinateSystem
  * @see Unit
+ *
+ * @navassoc 1 - - AxisDirection
+ * @navassoc 1 - - RangeMeaning
+ * @navassoc 1 - - Unit
  */
 @UML(identifier="CS_CoordinateSystemAxis", specification=ISO_19111)
 public interface CoordinateSystemAxis extends IdentifiedObject {

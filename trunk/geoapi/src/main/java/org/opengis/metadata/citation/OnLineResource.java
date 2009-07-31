@@ -28,6 +28,8 @@ import static org.opengis.annotation.Specification.*;
  * @author  Martin Desruisseaux (IRD)
  * @author  Cory Horner (Refractions Research)
  * @since   GeoAPI 1.0
+ *
+ * @navassoc 1 - - OnLineFunction
  */
 @UML(identifier="CI_OnlineResource", specification=ISO_19115)
 public interface OnLineResource {
