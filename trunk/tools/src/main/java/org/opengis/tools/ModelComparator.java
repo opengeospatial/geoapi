@@ -370,7 +370,7 @@ scanMembers:
          * For exceptions, the "Exception" suffix is always added after the class name.
          */
         if (declaration instanceof ClassDeclaration) {
-            final Class classe = getClass(declaration);
+            final Class<?> classe = getClass(declaration);
             if (Exception.class.isAssignableFrom(classe)) {
                 ogc += "Exception";
             }
@@ -395,6 +395,7 @@ scanMembers:
      * name change is not significant (e.g. addition of a {@code get} prefix).
      * Returns {@code false} otherwise.
      */
+    @SuppressWarnings("fallthrough")
     private boolean compareMethodName(final MethodDeclaration declaration, String geoapi, String ogc) {
         /*
          * Omit the "uses" or "includes" prefix used for associations in the UML.
@@ -410,7 +411,7 @@ scanMembers:
          * character is adjusted (usually to a lower case).
          */
         final boolean startWithLowerCase = Character.isLowerCase(ogc.charAt(0));
-        final Class returnClass = getClass(declaration.getReturnType());
+        final Class<?> returnClass = getClass(declaration.getReturnType());
         if (returnClass.equals(Boolean.TYPE) || returnClass.equals(Boolean.class)) {
             if (geoapi.startsWith("is") && !ogc.startsWith("is")) {
                 geoapi = geoapi.substring(2);
