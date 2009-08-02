@@ -5,6 +5,9 @@ Changes in API
 
     * {{{ISO-19115-2/changes.html}Changes introduced by the addition of ISO 19115-2}}
 
+    * {{{2.3-M3/changes.html}Changes between GeoAPI 2.3-M2 and 2.3-M3}}
+    * (see also {{{2.3-M3/M1/changes.html}changes since 2.3-M1}})
+
     * {{{2.3-M2/changes.html}Changes between GeoAPI 2.3-M1 and 2.3-M2}}
 
     * {{{../2.1/index.html}Changes between GeoAPI 2.0 and 2.1}}
