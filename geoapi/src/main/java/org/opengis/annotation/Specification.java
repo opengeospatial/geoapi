@@ -15,6 +15,7 @@ package org.opengis.annotation;
  * The specifications from which an interface, method or code list was derived.
  *
  * @author  Martin Desruisseaux (IRD)
+ * @author  Cédric Briançon (Geomatys)
  * @since   GeoAPI 2.0
  */
 public enum Specification {
@@ -56,6 +57,16 @@ public enum Specification {
     ISO_19115,
 
     /**
+     * ISO 19115-2, Metadata part 2: extensions for imagery and gridded data.
+     * This is the specification for package {@link org.opengis.metadata} and sub-packages.
+     *
+     * @todo add a link to the standard.
+     *
+     * @since GeoAPI 2.3
+     */
+    ISO_19115_2,
+
+    /**
      * ISO 19117, Portrayal.
      * This is an abstract specification for portraying features.
      *
@@ -78,6 +89,16 @@ public enum Specification {
      * @see <A HREF="http://portal.opengeospatial.org/files/?artifact_id=5316">Download from OGC</A>
      */
     ISO_19128,
+
+    /**
+     * ISO 19139, Metadata. XML schema implementation.
+     * This is the specification for package {@link org.opengis.metadata} and sub-packages.
+     *
+     * @todo add a link to the standard.
+     *
+     * @since GeoAPI 2.3
+     */
+    ISO_19139,
 
     /**
      * GO-1 Application Objects.

@@ -28,10 +28,12 @@ import static org.opengis.annotation.Specification.*;
  *
  * @version <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
  * @author  Martin Desruisseaux (IRD)
+ * @author  Cédric Briançon (Geomatys)
  * @since   GeoAPI 2.0
  *
  * @navassoc - - - Point
  * @navassoc 1 - - PixelOrientation
+ * @navassoc - - - GCP
  */
 @UML(identifier="MD_Georectified", specification=ISO_19115)
 public interface Georectified extends GridSpatialRepresentation {
@@ -99,4 +101,14 @@ public interface Georectified extends GridSpatialRepresentation {
      */
     @UML(identifier="transformationDimensionMapping", obligation=OPTIONAL, specification=ISO_19115)
     Collection<? extends InternationalString> getTransformationDimensionMapping();
+
+    /**
+     * Geographic references used to validate georectification of the data.
+     *
+     * @return Geographic references used to validate georectification.
+     *
+     * @since GeoAPI 2.3
+     */
+    @UML(identifier="checkPoint", obligation=OPTIONAL, specification=ISO_19115_2)
+    Collection<? extends GCP> getCheckPoints();
 }

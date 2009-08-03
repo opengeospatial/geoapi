@@ -28,10 +28,12 @@ import static org.opengis.annotation.Specification.*;
  * @version <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
  * @author  Martin Desruisseaux (IRD)
  * @author  Cory Horner (Refractions Research)
+ * @author  Cédric Briançon (Geomatys)
  * @since   GeoAPI 2.0
  *
  * @navassoc 1 - - Record
  * @navassoc - - - Citation
+ * @navassoc - - - GeolocationInformation
  */
 @UML(identifier="MD_Georeferenceable", specification=ISO_19115)
 public interface Georeferenceable extends GridSpatialRepresentation {
@@ -76,4 +78,14 @@ public interface Georeferenceable extends GridSpatialRepresentation {
      */
     @UML(identifier="parameterCitation", obligation=OPTIONAL, specification=ISO_19115)
     Collection<? extends Citation> getParameterCitations();
+
+    /**
+     * Information that can be used to geolocate the data.
+     *
+     * @return A geolocalisation of the data.
+     *
+     * @since GeoAPI 2.3
+     */
+    @UML(identifier="geolocationInformation", obligation=MANDATORY, specification=ISO_19115_2)
+    Collection<? extends GeolocationInformation> getGeolocationInformation();
 }
