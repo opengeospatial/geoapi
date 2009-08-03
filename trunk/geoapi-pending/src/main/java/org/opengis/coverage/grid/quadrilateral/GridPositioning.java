@@ -11,7 +11,7 @@
 package org.opengis.coverage.grid.quadrilateral;
 
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
-import org.opengis.referencing.operation.Operation;
+import org.opengis.referencing.operation.CoordinateOperation;
 import org.opengis.annotation.Extension;
 
 
@@ -60,7 +60,7 @@ public interface GridPositioning {
      * @return Information about the implemented coordinate operation.
      */
     @Extension
-    Operation getOperation();
+    CoordinateOperation getOperation();
 
     /**
      * Associates this {@code GridPositioning} object with descriptive information about the
@@ -69,11 +69,11 @@ public interface GridPositioning {
      * will be associated with a coordinate transformation operation.  All operations include
      * a reference to a {@link MathTransform} object, which actually performs the corodinate
      * conversion.  The {@code targetCRS} association of the {@code inverseOperation} attribute
-     * is considered mandatory in this context.  This attribute shall represent the {@link Operation}
+     * is considered mandatory in this context.  This attribute shall represent the {@link CoordinateOperation}
      * which is the inverse of the operation attribute.
      *
      * @return The inverse of {@link #getOperation}.
      */
     @Extension
-    Operation getInverseOperation();
+    CoordinateOperation getInverseOperation();
 }

@@ -10,7 +10,7 @@
  *************************************************************************************************/
 package org.opengis.coverage.grid.quadrilateral;
 
-import org.opengis.referencing.operation.Operation;
+import org.opengis.referencing.operation.CoordinateOperation;
 import org.opengis.referencing.operation.Conversion;
 import org.opengis.referencing.operation.MathTransform;
 import org.opengis.referencing.operation.TransformException;
@@ -34,7 +34,7 @@ import org.opengis.annotation.Extension;
 @Extension
 public interface RectifiableGrid  extends GridPositioning {
     /**
-     * This attribute shall contain only the {@link Conversion} subtype of the {@link Operation}
+     * This attribute shall contain only the {@link Conversion} subtype of the {@link CoordinateOperation}
      * interface, signifying that {@code RectifiableGrid} and children represent only coordinate
      * conversions as defined by ISO 19111.  This attribute shall be identical to the conversion
      * attribute.
@@ -44,7 +44,7 @@ public interface RectifiableGrid  extends GridPositioning {
 
     /**
      * This inherited attribute shall contain only the {@link Conversion} subtype of the
-     * {@link Operation} interface, signifying that {@code RectifiableGrid} and children
+     * {@link CoordinateOperation} interface, signifying that {@code RectifiableGrid} and children
      * represent only coordinate conversions as defined by ISO 19111.  This attribute shall
      * be identical to the conversion attribute.
      */

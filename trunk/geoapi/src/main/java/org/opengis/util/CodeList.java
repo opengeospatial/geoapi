@@ -135,18 +135,9 @@ public abstract class CodeList<E extends CodeList<E>> implements Comparable<E>, 
     /**
      * Returns the code of the given type that matches the given name, or returns a new one if none
      * match it. More specifically, this methods returns the first element of the given class where
-     * <code>{@linkplain #matches matches}(name)</code> returned {@code true}. If no such element is
-     * found, then a new instance is created using the constructor expecting a single {@link String}
-     * argument.
-     *
-     * <P>&nbsp;</P>
-     * <TABLE WIDTH="80%" ALIGN="center" CELLPADDING="18" BORDER="4" BGCOLOR="#FFE0B0">
-     *   <TR><TD>
-     *     <P align="justify"><STRONG>WARNING: IMPLEMENTATION WILL CHANGE.</STRONG> As of GeoAPI 2.3,
-     *     the <code>match</code> method has been deprecated. Future implementation of this method
-     *     will perform strict comparison of {@link CodeList#name()}, not ignoring case.</P>
-     *   </TD></TR>
-     * </TABLE>
+     * <code>{@linkplain #name()}.{@linkplain String#equals equals}(name)</code> returned {@code true}.
+     * If no such element is found, then a new instance is created using the constructor expecting a
+     * single {@link String} argument.
      *
      * @param <T> The compile-time type given as the {@code codeType} parameter.
      * @param codeType The type of code list.
@@ -162,7 +153,7 @@ public abstract class CodeList<E extends CodeList<E>> implements Comparable<E>, 
         final String n = name;
         return valueOf(codeType, new Filter() {
             @Override public boolean accept(CodeList<?> code) {
-                return code.matches(n);
+                return code.name().equals(n);
             }
 
             @Override public String codename() {
@@ -325,32 +316,6 @@ public abstract class CodeList<E extends CodeList<E>> implements Comparable<E>, 
             this.identifier = identifier;
         }
         return identifier.length() != 0 ? identifier : null;
-    }
-
-    /**
-     * Returns {@code true} if the given name matches the {@linkplain #name name},
-     * {@linkplain #identifier identifier} or any other identification string of
-     * this code list element. The comparison is case-insensitive.
-     *
-     * @param name The name to check.
-     * @return {@code true} if the given name matches the code name or identifier.
-     *
-     * @since GeoAPI 2.2
-     *
-     * @deprecated Ignoring case, whitespace or other special characters are arbitrary decisions.
-     *             Use {@link #names()} and {@link Filter} instead.
-     */
-    @Extension
-    @Deprecated
-    public boolean matches(String name) {
-        if (name != null) {
-            for (final String n : names()) {
-                if (name.equalsIgnoreCase(n)) {
-                    return true;
-                }
-            }
-        }
-        return false;
     }
 
     /**
