@@ -51,14 +51,7 @@ public final class CodeListTest {
         final CodeList<CharacterSet> code = CharacterSet.UTF_8;
         assertEquals ("UTF_8", code.name());
         assertEquals ("utf8",  code.identifier());
-        assertTrue   (code.matches("UTF8"));
-        assertTrue   (code.matches("UTF_8"));
-        assertTrue   (code.matches("UTF-8"));
-        assertFalse  (code.matches("UTF 8"));
         assertSame   (code, CharacterSet.valueOf("UTF_8"));
-        assertSame   (code, CharacterSet.valueOf("UTF-8"));
-        assertSame   (code, CharacterSet.valueOf("UTF8"));
-        assertSame   (code, CharacterSet.valueOf("utf8"));
         assertNotSame(code, CharacterSet.valueOf("UTF_7"));
     }
 

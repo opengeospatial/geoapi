@@ -45,7 +45,7 @@ public final class VerticalDatumType extends CodeList<VerticalDatumType> {
      * List of all enumerations of this type.
      * Must be declared before any enum declaration.
      */
-    private static final List<VerticalDatumType> VALUES = new ArrayList<VerticalDatumType>(6);
+    private static final List<VerticalDatumType> VALUES = new ArrayList<VerticalDatumType>(4);
 
     /**
      * In some cases, e.g. oil exploration and production, a geological feature, such as the top
@@ -63,20 +63,6 @@ public final class VerticalDatumType extends CodeList<VerticalDatumType> {
      */
     @UML(identifier="geoidal", obligation=CONDITIONAL, specification=ISO_19111)
     public static final VerticalDatumType GEOIDAL = new VerticalDatumType("GEOIDAL");
-
-    /**
-     * A vertical datum for ellipsoidal heights that are measured along the
-     * normal to the ellipsoid used in the definition of horizontal datum.
-     *
-     * @deprecated ISO 19111 ommits this type on intend. Implementors can use
-     *   <code>VerticalDatumType.valueOf("ELLIPSOIDAL")</code> instead, but should avoid
-     *   exposing this datum type in their public API.
-     *
-     * @issue http://jira.codehaus.org/browse/GEO-133
-     */
-    @Deprecated
-    @UML(identifier="CS_DatumType.CS_VD_Ellipsoidal", obligation=CONDITIONAL, specification=OGC_01009)
-    public static final VerticalDatumType ELLIPSOIDAL = new VerticalDatumType("ELLIPSOIDAL");
 
     /**
      * The zero point of the vertical axis is defined by a surface that has meaning for the
@@ -99,16 +85,6 @@ public final class VerticalDatumType extends CodeList<VerticalDatumType> {
      */
     @UML(identifier="barometric", obligation=CONDITIONAL, specification=ISO_19111)
     public static final VerticalDatumType BAROMETRIC = new VerticalDatumType("BAROMETRIC");
-
-    /**
-     * A vertical datum for orthometric heights that are measured along the plumb line.
-     *
-     * @deprecated Not part of ISO specification. If needed, use
-     *   <code>VerticalDatumType.valueOf("ORTHOMETRIC")</code>
-     */
-    @Deprecated
-    @UML(identifier="CS_DatumType.CS_VD_Orthometric", obligation=CONDITIONAL, specification=OGC_01009)
-    public static final VerticalDatumType ORTHOMETRIC = new VerticalDatumType("ORTHOMETRIC");
 
     /**
      * Constructs an enum with the given name. The new enum is

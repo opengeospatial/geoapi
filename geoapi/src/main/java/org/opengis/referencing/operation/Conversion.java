@@ -30,7 +30,7 @@ import static org.opengis.annotation.Specification.*;
  * @see Transformation
  */
 @UML(identifier="CC_Conversion", specification=ISO_19111)
-public interface Conversion extends Operation {
+public interface Conversion extends SingleOperation {
     /**
      * Returns the source CRS. Conversions may have a source CRS that
      * is not specified here, but through

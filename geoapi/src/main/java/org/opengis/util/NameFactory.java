@@ -78,26 +78,6 @@ public interface NameFactory {
     NameSpace createNameSpace(GenericName name, Map<String,?> properties);
 
     /**
-     * @deprecated Replaced by {@link #createNameSpace(GenericName, Map)}.
-     *
-     * @param name
-     *          The name of the namespace to be returned.
-     * @param headSeparator
-     *          The separator to insert between the namespace and the {@linkplain GenericName#head
-     *          head}. For HTTP namespace, it is {@code "://"}. For URN namespace, it is typically
-     *          {@code ":"}.
-     * @param separator
-     *          The separator to insert between {@linkplain GenericName#getParsedNames parsed names}
-     *          in that namespace. For HTTP namespace, it is {@code "."}. For URN namespace, it is
-     *          typically {@code ":"}.
-     * @return A namespace having the given name and separators.
-     *
-     * @since GeoAPI 2.2
-     */
-    @Deprecated
-    NameSpace createNameSpace(GenericName name, String headSeparator, String separator);
-
-    /**
      * Creates a local name from the given character sequence. The character sequence can be either
      * a {@link String} or an {@link InternationalString} instance. In the later case, implementations
      * can use an arbitrary {@linkplain Locale locale} (typically {@link Locale#ENGLISH ENGLISH},
@@ -158,50 +138,4 @@ public interface NameFactory {
      * @since GeoAPI 2.2
      */
     GenericName parseGenericName(NameSpace scope, CharSequence name);
-
-    /**
-     * Creates a local name from a {@linkplain LocalName#scope scope} and a
-     * {@linkplain LocalName#toString name}. The {@code scope} argument identifies the
-     * {@linkplain NameSpace name space} in which the local name will be created.
-     * The {@code name} argument is taken verbatism as the string representation
-     * of the local name.
-     * <p>
-     * This method
-     *
-     * @param scope
-     *          The scope, or {@code null} for the global one.
-     * @param name
-     *          The unlocalized name.
-     * @param localizedName
-     *          A localized version of the name, or {@code null} if none.
-     * @return The local name.
-     *
-     * @deprecated Replaced by {@link #createNameSpace createNameSpace} for the scope argument,
-     *             and {@link #createLocalName(NameSpace,CharSequence) createLocalName} for the
-     *             name and localized name arguments.
-     */
-    @Deprecated
-    LocalName createLocalName(GenericName scope, String name, InternationalString localizedName);
-
-    /**
-     * Creates a scoped name from a {@linkplain ScopedName#scope scope} and a
-     * {@linkplain ScopedName#toString name}. The {@code scope} argument identifies the
-     * {@linkplain NameSpace name space} in which the scoped name will be created.
-     * The {@code name} argument will be parsed in order to construct the list of
-     * {@linkplain ScopedName#getParsedNames parsed names}.
-     *
-     * @param scope
-     *          The scope, or {@code null} for the global one.
-     * @param name
-     *          The unlocalized name.
-     * @param localizedName
-     *          A localized version of the name, or {@code null} if none.
-     * @return The scoped name.
-     *
-     * @deprecated Replaced by {@link #createNameSpace createNameSpace} for the scope argument,
-     *             and {@link #parseGenericName parseGenericName} for the name and localized
-     *             name arguments.
-     */
-    @Deprecated
-    ScopedName createScopedName(GenericName scope, String name, InternationalString localizedName);
 }

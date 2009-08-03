@@ -71,16 +71,4 @@ public interface CompoundCRS extends CoordinateReferenceSystem {
      */
     @UML(identifier="componentReferenceSystem", obligation=MANDATORY, specification=ISO_19111)
     List<CoordinateReferenceSystem> getComponents();
-
-    /**
-     * The ordered list of coordinate reference systems.
-     *
-     * @return The ordered list of coordinate reference systems.
-     *
-     * @deprecated
-     *   Renamed as {@link #getComponents()} for matching the name in ISO 19111:2007.
-     */
-    @Deprecated
-    @UML(identifier="componentReferenceSystem", obligation=MANDATORY, specification=ISO_19111)
-    List<CoordinateReferenceSystem> getCoordinateReferenceSystems();
 }

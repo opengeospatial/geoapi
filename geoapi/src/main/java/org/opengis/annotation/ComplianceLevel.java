@@ -32,53 +32,5 @@ public enum ComplianceLevel {
      * allowing users to understand without ambiguity the geographic data and the related metadata
      * provided by either the producer or the distributor.
      */
-    CORE,
-
-    /**
-     * Indicates a required element of the spatial profile.
-     *
-     * @deprecated This enum is not defined by ISO.
-     */
-    @Deprecated
-    SPATIAL,
-
-    /**
-     * Indicates a required element of the feature profile.
-     *
-     * @deprecated This enum is not defined by ISO.
-     */
-    @Deprecated
-    FEATURE,
-
-    /**
-     * Indicates a required element of the data provider profile.
-     *
-     * @deprecated This enum is not defined by ISO.
-     */
-    @Deprecated
-    DATA_PROVIDER,
-
-    /**
-     * Indicates a required element of the display object profile.
-     *
-     * @deprecated This enum is not defined by ISO.
-     */
-    @Deprecated
-    DISPLAY_OBJECT,
-
-    /**
-     * Indicates a required element of the editable display object profile.
-     *
-     * @deprecated This enum is not defined by ISO.
-     */
-    @Deprecated
-    EDITABLE_DISPLAY_OBJECT,
-
-    /**
-     * Indicates a required element of the feature display object profile.
-     *
-     * @deprecated This enum is not defined by ISO.
-     */
-    @Deprecated
-    FEATURE_DISPLAY_OBJECT
+    CORE
 }
