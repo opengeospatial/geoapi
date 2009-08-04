@@ -56,6 +56,9 @@ mvn clean deploy
 
   Generate javadoc. This require a little bit of manual cleaning after javadoc generation.
   Note: <<<graphviz>>> and <<<optipng>>> must be installed and reachable on the path.
+  Note also that the content of <<<geoapi/src/main/javadoc/>>> is not copied automatically
+  (Maven documentation said that it should be copied, but it doesn't seem to be the case as
+  of Maven 2.1.0), so we need to copy ourself.
 
 ---------------------------------------------------------------------------------------------
 mvn javadoc:javadoc

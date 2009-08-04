@@ -37,9 +37,9 @@ public interface GridValueCell extends ValueObject {
      * of a feature attribute value at a {@linkplain DirectPosition direct position} within the
      * {@linkplain GridCell grid cell}.
      *
-     * @departure
-     *   ISO defines this method as a specialization of {@link #getGeometry}. We can
-     *   not reflect this association in Java because of incompatible return type.
+     * @departure constraint
+     *   ISO defines this method as a specialization of <code>getGeometry()</code>. We
+     *   can not reflect this association in Java because of incompatible return type.
      *
      * @return The structure of grid points.
      */

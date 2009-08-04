@@ -9,7 +9,9 @@
  *************************************************************************************************/
 package org.opengis.tools.taglet;
 
+import java.io.*;
 import java.util.*;
+import com.sun.javadoc.Doc;
 import com.sun.javadoc.Tag;
 import com.sun.tools.doclets.Taglet;
 import com.sun.tools.doclets.formats.html.ConfigurationImpl;
@@ -37,12 +39,50 @@ import com.sun.tools.doclets.formats.html.ConfigurationImpl;
  *
  * @author Martin Desruisseaux (Geomatys)
  */
-public final class Departure implements Taglet {
+public final class Departure implements Taglet, Runnable {
     /**
-     * The allowed departure categories.
+     * The allowed departure categories. Keys are the departure keyword, and values are descriptions
+     * of that departure category. The order of elements is the order of sections to be produced by
+     * {@link #summary}.
      */
-    private static final Set<String> CATEGORIES = new HashSet<String>(Arrays.asList(
-            "constraint", "integration", "generalization", "historic", "rename"));
+    private static final Map<String,String> CATEGORIES;
+    static {
+        final Map<String,String> c = new LinkedHashMap<String,String>();
+        c.put("constraint",     "Constraints of the Java language");
+        c.put("integration",    "Integration with the Java environment");
+        c.put("generalization", "Generalization");
+        c.put("historic",       "Historical raisons");
+        c.put("rename",         "Class or method renaming");
+        CATEGORIES = c;
+    }
+
+    /**
+     * All departures declared in javadoc tags. The keys are the category, and the value
+     * is a list of departure for that category.
+     */
+    private final Map<String,List<Element>> departures = new HashMap<String,List<Element>>();
+
+    /**
+     * An element in the {@link #departures} list.
+     */
+    private static final class Element {
+        /** The source file.           */ final File   file;
+        /** "Method", "Field" or null. */ final String type;
+        /** The class or method name.  */ final String name;
+        /** The departure text.        */ final String text;
+
+        /** Creates an element for the given tag. */
+        Element(final Tag tag, final String text) {
+            final Doc holder = tag.holder();
+            this.file = tag.position().file();
+            this.name = holder.name();
+            this.text = text;
+            if      (holder.isMethod()) type = "Method";
+            else if (holder.isField())  type = "Field";
+            else if (holder.isEnum())   type = "Enum";
+            else type = null;
+        }
+    }
 
     /**
      * Register this taglet.
@@ -59,6 +99,24 @@ public final class Departure implements Taglet {
      */
     private Departure() {
         super();
+        Runtime.getRuntime().addShutdownHook(new Thread(this));
+    }
+
+    /**
+     * Run the {@link #summary} method after the javadoc creation has been completed.
+     * We run this task as a JVM shutdown hook (which is far from ideal) because I'm
+     * not aware of any standard way to register an action to be executed at the end
+     * of javadoc generation.
+     */
+    public void run() {
+        try {
+            summary();
+        } catch (IOException e) {
+            // The stack trace is not of interrest since we are doing only trivial call
+            // to out.write("..."). The most likely cause is no write permission.
+            System.err.println("ERROR while writing the departures from OGC/ISO pages:");
+            System.err.println(e);
+        }
     }
 
     /**
@@ -178,13 +236,167 @@ public final class Departure implements Taglet {
                 break;
             }
         }
-        if (!CATEGORIES.contains(category)) {
+        if (!CATEGORIES.containsKey(category)) {
             ConfigurationImpl.getInstance().root.printWarning(tag.position(), "Unknown category: " + category);
+        }
+        /*
+         * Adds the current departure to the collection of departures.
+         * They will be processed later by the summary() method.
+         */
+        synchronized (departures) {
+            List<Element> forCategory = departures.get(category);
+            if (forCategory == null) {
+                forCategory = new ArrayList<Element>();
+                departures.put(category, forCategory);
+            }
+            forCategory.add(new Element(tag, text));
         }
         /*
          * Nows copies the text.
          */
         buffer.append("<blockquote><font color=\"firebrick\" size=-1><b>Departure from OGC/ISO specification:</b><br>").
                 append(text).append("</font></blockquote>");
+    }
+
+    /**
+     * Generates a summary of all departures.
+     *
+     * @throws IOException If an error occured while writing the summary page.
+     */
+    private void summary() throws IOException {
+        final BufferedWriter out = new BufferedWriter(new FileWriter("departures.html"));
+        out.write("<!DOCTYPE HTML PUBLIC -//W3C//DTD HTML 4.01 Transitional//EN>"); out.newLine();
+        out.newLine();
+        out.write("<HTML>"); out.newLine();
+        out.write("  <HEAD>"); out.newLine();
+        out.write("    <TITLE>Departures from OGC/ISO specifications</TITLE>"); out.newLine();
+        out.write("  </HEAD>"); out.newLine();
+        out.write("  <BODY>"); out.newLine();
+        out.write("  <H1>Departures from OGC/ISO specifications</H1>"); out.newLine();
+        out.write("  <P>The following sections list all the departures from the ISO " +
+                  "standards taken by the GeoAPI interface library. The rational for " +
+                  "departures fall in the following categories:</P>"); out.newLine();
+        final Set<String> categories = new LinkedHashSet<String>(CATEGORIES.keySet());
+        synchronized (departures) {
+            categories.addAll(departures.keySet());
+            /*
+             * Writes the table of content. The result should looks like:
+             *
+             *    • Constraints of the Java language
+             *    • Integration with the Java environment
+             *    • Generalization
+             *    • Historical raisons
+             *    • Class or method renaming
+             */
+            out.write("  <UL>");
+            out.newLine();
+            for (final String category : categories) {
+                if (!departures.containsKey(category)) {
+                    continue;
+                }
+                String description = CATEGORIES.get(category);
+                if (description == null) {
+                    description = category;
+                }
+                out.write("    <LI><A HREF=\"#");
+                out.write(category);
+                out.write("\">");
+                out.write(description);
+                out.write("</A></LI>");
+                out.newLine();
+            }
+            out.write("  </UL>");
+            out.newLine();
+            /*
+             * Write all sections. The result should looks like:
+             *
+             * Constraints of the Java language
+             *   Position
+             *     ISO 19107 defines Position as a C/C++ union (etc...)
+             */
+            for (final String category : categories) {
+                final List<Element> elements = departures.get(category);
+                if (elements == null) {
+                    continue;
+                }
+                String description = CATEGORIES.get(category);
+                if (description == null) {
+                    description = category;
+                }
+                out.newLine(); out.newLine();
+                out.write("  <P>&nbsp;</P><HR><P>&nbsp;</P>"); out.newLine();
+                out.write("  <H2><A NAME=\""); out.write(category); out.write("\">");
+                out.write(description); out.write("</A></H2>"); out.newLine();
+                out.write("  <BLOCKQUOTE>"); out.newLine();
+                File lastFile = null;
+                boolean isBlockquote = false;
+                for (final Element element : elements) {
+                    // Gets the filename without its path or extension.
+                    final File file = element.file;
+                    String name = file.getName();
+                    int s = name.lastIndexOf('.');
+                    if (s > 0) {
+                        name = name.substring(0, s);
+                    }
+                    // Gets the path relative to the javadoc root. We assume the standard
+                    // Maven directory layout, with source code under the "java" directory.
+                    String path = file.getParent().replace(File.separatorChar, '/');
+                    s = path.lastIndexOf("/java/");
+                    if (s >= 0) {
+                        path = path.substring(s + 6); // 6 is the length of "/java/".
+                    }
+                    path = path + '/' + name + ".html";
+                    if (file.equals(lastFile)) {
+                        // New method or field for the same interface than the
+                        // previous method or field. Just insert a new line,
+                        // do not repeat the interface name.
+                        out.newLine();
+                    } else {
+                        // New class or interface. Formats its name in a header.
+                        if (isBlockquote) {
+                            out.write("  </BLOCKQUOTE>");
+                            out.newLine();
+                            isBlockquote = false;
+                        }
+                        lastFile = file;
+                        out.newLine();
+                        out.write("  <H3><A HREF=\"");
+                        out.write(path);
+                        out.write("\">");
+                        out.write(name);
+                        out.write("</A></H3>");
+                        out.newLine();
+                    }
+                    if (element.type != null) {
+                        // Formats the method or field name. This will add one indentation
+                        // level if the text were not already indented.
+                        if (!isBlockquote) {
+                            out.write("  <BLOCKQUOTE>");
+                            out.newLine();
+                            isBlockquote = true;
+                        }
+                        out.write("    <H4>");
+                        out.write(element.type);
+                        out.write(' ');
+                        out.write(element.name);
+                        out.write("</H4>");
+                        out.newLine();
+                    }
+                    // Formats the text, for either interface, class, method or field.
+                    out.write("    <BLOCKQUOTE>");
+                    out.write(element.text);
+                    out.write("</BLOCKQUOTE>");
+                    out.newLine();
+                }
+                out.write("  </BLOCKQUOTE>");
+                if (isBlockquote) {
+                    out.write("</BLOCKQUOTE>");
+                }
+                out.newLine();
+            }
+        }
+        out.write("  </BODY>"); out.newLine();
+        out.write("</HTML>"); out.newLine();
+        out.close();
     }
 }
