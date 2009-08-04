@@ -161,11 +161,11 @@ public abstract class CodeList<E extends CodeList<E>> implements Comparable<E>, 
         name = name.trim();
         final String n = name;
         return valueOf(codeType, new Filter() {
-            @Override public boolean accept(CodeList<?> code) {
+            public boolean accept(CodeList<?> code) {
                 return code.matches(n);
             }
 
-            @Override public String codename() {
+            public String codename() {
                 return n;
             }
         });

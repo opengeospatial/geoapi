@@ -66,7 +66,6 @@ public final class Departure implements Taglet {
      *
      * @return The tag name.
      */
-    @Override
     public String getName() {
         return "departure";
     }
@@ -76,7 +75,6 @@ public final class Departure implements Taglet {
      *
      * @return Always {@code false}.
      */
-    @Override
     public boolean inOverview() {
         return false;
     }
@@ -86,7 +84,6 @@ public final class Departure implements Taglet {
      *
      * @return Always {@code true}.
      */
-    @Override
     public boolean inPackage() {
         return true;
     }
@@ -97,7 +94,6 @@ public final class Departure implements Taglet {
      *
      * @return Always {@code true}.
      */
-    @Override
     public boolean inType() {
         return true;
     }
@@ -107,7 +103,6 @@ public final class Departure implements Taglet {
      *
      * @return Always {@code true}.
      */
-    @Override
     public boolean inConstructor() {
         return true;
     }
@@ -117,7 +112,6 @@ public final class Departure implements Taglet {
      *
      * @return Always {@code true}.
      */
-    @Override
     public boolean inMethod() {
         return true;
     }
@@ -127,7 +121,6 @@ public final class Departure implements Taglet {
      *
      * @return Always {@code true}.
      */
-    @Override
     public boolean inField() {
         return true;
     }
@@ -137,7 +130,6 @@ public final class Departure implements Taglet {
      *
      * @return Always {@code false}.
      */
-    @Override
     public boolean isInlineTag() {
         return false;
     }
@@ -149,7 +141,6 @@ public final class Departure implements Taglet {
      * @param tags The tags to format.
      * @return A string representation of the given tags.
      */
-    @Override
     public String toString(final Tag[] tags) {
         final StringBuilder buffer = new StringBuilder();
         for (int i=0; i<tags.length; i++) {
@@ -164,7 +155,6 @@ public final class Departure implements Taglet {
      * @param tag The tag to format.
      * @return A string representation of the given tag.
      */
-    @Override
     public String toString(final Tag tag) {
         final StringBuilder buffer = new StringBuilder();
         toString(tag, buffer);
