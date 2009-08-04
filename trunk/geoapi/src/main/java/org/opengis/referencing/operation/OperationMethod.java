@@ -28,7 +28,7 @@ import static org.opengis.annotation.Specification.*;
  * @author  Martin Desruisseaux (IRD)
  * @since   GeoAPI 1.0
  *
- * @see Operation
+ * @see CoordinateOperation
  *
  * @navassoc 1 - - ParameterDescriptorGroup
  */
