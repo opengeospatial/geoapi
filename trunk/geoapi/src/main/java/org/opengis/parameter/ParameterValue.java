@@ -83,8 +83,8 @@ public interface ParameterValue<T> extends GeneralParameterValue {
      * @unitof Measure
      *
      * @departure rename
-     *   Renamed the attribute from "{@code value}" to "{@code doubleValue}" for consistency
-     *   with <code>Number.doubleValue()</code> and the other {@code fooValue} in this interface.
+     *   Renamed the attribute from "<code>value</code>" to "<code>doubleValue</code>" for consistency
+     *   with <code>Number.doubleValue()</code> and the other <code>fooValue</code> in this interface.
      *   Also because <code>getValue()</code> is already used for an <code>Object</code> type, for
      *   consistency with the <code>setValue(Object)</code> method.
      *
