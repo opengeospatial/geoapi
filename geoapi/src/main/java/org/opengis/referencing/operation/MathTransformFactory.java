@@ -73,9 +73,8 @@ public interface MathTransformFactory extends Factory {
      * must be known to the {@link #getDefaultParameters} method in this factory.
      * The set of available methods is implementation dependent.
      *
-     * @param  type <code>{@linkplain Operation}.class</code> for fetching all operation methods,
-     *           or <code>{@linkplain Projection}.class</code> for fetching only map projection
-     *           methods.
+     * @param  type <code>{@linkplain CoordinateOperation}.class</code> for fetching all operation methods,
+     *         or <code>{@linkplain Projection}.class</code> for fetching only map projection methods.
      * @return All {@linkplain MathTransform math transform} methods available in this factory.
      *
      * @see #getDefaultParameters
@@ -106,7 +105,7 @@ public interface MathTransformFactory extends Factory {
     /**
      * Returns the default parameter values for a math transform using the given method.
      * The {@code method} argument is the name of any operation method returned by
-     * <code>{@link #getAvailableMethods getAvailableMethods}({@linkplain Operation}.class)</code>.
+     * <code>{@link #getAvailableMethods getAvailableMethods}({@linkplain CoordinateOperation}.class)</code>.
      * A typical example is
      * <code>"<A HREF="http://www.remotesensing.org/geotiff/proj_list/transverse_mercator.html">Transverse_Mercator</A>"</code>).
      * <P>

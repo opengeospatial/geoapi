@@ -60,8 +60,7 @@ public interface CoordinateReferenceSystem extends ReferenceSystem {
      *   <li><p>If the CRS instance on which this method is invoked is an instance of the
      *       {@linkplain CompoundCRS compound CRS} interface, then the CS instance which is
      *       returned shall have dimension and axis components obtained from different
-     *       {@linkplain CompoundCRS#getCoordinateReferenceSystems components} of the instance
-     *       CRS.</p></li>
+     *       {@linkplain CompoundCRS#getComponents components} of the instance CRS.</p></li>
      * </ul>
      *
      * @departure generalization

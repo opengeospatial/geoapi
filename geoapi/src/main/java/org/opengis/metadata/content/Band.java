@@ -127,7 +127,7 @@ public interface Band extends RangeDimension {
      *
      * @return Smallest distance between which separate points can be distinguished.
      *
-     * @unitOf Distance
+     * @unitof Distance
      *
      * @since GeoAPI 2.3
      */
