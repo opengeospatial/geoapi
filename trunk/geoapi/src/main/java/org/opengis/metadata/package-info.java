@@ -99,5 +99,13 @@
  *
  * @version <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
  * @since   GeoAPI 2.0
+ *
+ * @departure harmonization
+ *   Omitted the reference system package, since it duplicates ISO 19111 / OGC Topic 2.
+ *   This follows the lead of ISO 19111, which states:
+ *
+ *   <BLOCKQUOTE>"Normative reference to ISO 19115 is restricted as follows: in this international
+ *   standard, normative reference to ISO 19111 excludes the <code>MD_CRS</code> class and its components
+ *   classes." <i><font size=-1>(ISO 19111:2007, section 3 "Normative References")</font></i></BLOCKQUOTE>
  */
 package org.opengis.metadata;

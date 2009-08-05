@@ -65,9 +65,13 @@ public interface CompoundCRS extends CoordinateReferenceSystem {
      * @since GeoAPI 2.3
      *
      * @departure generalization
-     *    The element type is consistent with OGC 01-009 but is a departure of ISO 19111:2007, which
-     *    restrict the component type to <code>SingleCRS</code>. This GeoAPI method is slightly more
-     *    general.
+     *    According ISO 19111, "<cite>A Compound CRS is a coordinate reference system that combines
+     *    two or more coordinate reference systems, <u>none of which can itself be compound</u></cite>".
+     *    However this constraint increase greatly the cost of extracting metadata (especially CRS
+     *    identifier) of the three-dimensional part of a spatio-temporal CRS. Note also that in
+     *    "<u>Coordinate Transformation Services</u>" (OGC document 01-009), compound CRS was
+     *    specified as a pair of arbitrary CRS ("head" and "tail"). Each of them can be an other
+     *    compound CRS, allowing the creation of a tree.
      */
     @UML(identifier="componentReferenceSystem", obligation=MANDATORY, specification=ISO_19111)
     List<CoordinateReferenceSystem> getComponents();

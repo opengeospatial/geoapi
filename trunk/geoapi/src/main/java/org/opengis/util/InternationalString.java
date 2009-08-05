@@ -23,6 +23,12 @@ import org.opengis.annotation.Extension;
  * lexicographical ordering of strings} in the default locale, as returned by {@link #toString()}.
  * This string also defines the {@linkplain CharSequence character sequence} for this object.</P>
  *
+ * @departure extension
+ *   Added this new type in order to distinguish between localizable and non-localizable character
+ *   strings. Not all character string should be localizable; for example <cite>Well Know Text</cite>
+ *   or code name should probably be language neutral. Since the OGC/ISO UML don't said which character
+ *   string are localizable and which one are not, we have done our own guess in GeoAPI.
+ *
  * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 2.0
  *
