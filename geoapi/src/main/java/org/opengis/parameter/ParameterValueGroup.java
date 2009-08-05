@@ -21,9 +21,9 @@ import static org.opengis.annotation.Specification.*;
 
 /**
  * A group of related parameter values. The same group can be repeated more than once in an
- * {@linkplain org.opengis.referencing.operation.Operation operation} or higher level {@code ParameterValueGroup},
- * if those instances contain different values of one or more {@link ParameterValue}s which suitably
- * distinquish among those groups.
+ * {@linkplain org.opengis.referencing.operation.CoordinateOperation coordinate operation}
+ * or higher level {@code ParameterValueGroup}, if those instances contain different values
+ * of one or more {@link ParameterValue}s which suitably distinquish among those groups.
  *
  * @version <A HREF="http://portal.opengeospatial.org/files/?artifact_id=6716">Abstract specification 2.0</A>
  * @author  Martin Desruisseaux (IRD)
@@ -41,13 +41,13 @@ public interface ParameterValueGroup extends GeneralParameterValue {
      * The abstract definition of this group of parameters.
      *
      * @departure rename
-     *   The ISO name was "<code>valuesOfGroup</code>". GeoAPI uses "<code>descriptor</code>" instead
-     *   in order to override the <code>getDescriptor()</code> generic method provided in the parent
+     *   The ISO name was "<code>group</code>". GeoAPI uses "<code>descriptor</code>" instead in
+     *   order to override the <code>getDescriptor()</code> generic method provided in the parent
      *   interface. In addition the "descriptor" name makes more apparent that this method returns
      *   an abstract definition of parameters - not their actual values - and is consistent with
-     *   usage in other Java libraries like <cite>Java Advanced Imaging</cite> (JAI).
+     *   usage in other Java libraries like <cite>Java Advanced Imaging</cite>.
      */
-    @UML(identifier="valuesOfGroup", obligation=MANDATORY, specification=ISO_19111)
+    @UML(identifier="group", obligation=MANDATORY, specification=ISO_19111)
     ParameterDescriptorGroup getDescriptor();
 
     /**
@@ -68,7 +68,7 @@ public interface ParameterValueGroup extends GeneralParameterValue {
      *
      * @return The values in this group.
      */
-    @UML(identifier="includesValue", obligation=MANDATORY, specification=ISO_19111)
+    @UML(identifier="parameterValue", obligation=MANDATORY, specification=ISO_19111)
     List<GeneralParameterValue> values();
 
     /**

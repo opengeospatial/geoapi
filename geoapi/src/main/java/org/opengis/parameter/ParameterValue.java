@@ -92,7 +92,6 @@ public interface ParameterValue<T> extends GeneralParameterValue {
      * @see #setValue(double)
      * @see #doubleValueList
      */
-    @UML(identifier="value", obligation=CONDITIONAL, specification=ISO_19111)
     double doubleValue() throws InvalidParameterTypeException;
 
     /**

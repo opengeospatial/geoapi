@@ -127,6 +127,16 @@
  * use of names specific to the local context or custom and are therefore not included
  * as constraints in the above list.</P>
  *
+ * @departure constraint
+ *   ISO 19111 defines <code>GeodeticCS</code>, <code>EngineeringCS</code> and <code>ImageCS</code>
+ *   unions for type safety, for example in order to make sure that <code>GeodeticCRS</code> is
+ *   associated only to <code>CartesianCS</code>, <code>EllipsoidalCS</code> or <code>SphericalCS</code>.
+ *   However the <code>union</code> construct found in some languages like C/C++ is not available
+ *   in Java. In the particular case of <code>ImageCS</code>, the same type-safety objective can
+ *   be obtained through a slight change in the interface hierarchy (see the departure documented
+ *   in <code>CartesianCS</code>). For other unions (<code>GeodeticCS</code> and <code>EngineeringCS</code>),
+ *   no workaround is proposed.
+ *
  * @version <A HREF="http://portal.opengeospatial.org/files/?artifact_id=6716">Abstract specification 2.0</A>
  * @since   GeoAPI 1.0
  */

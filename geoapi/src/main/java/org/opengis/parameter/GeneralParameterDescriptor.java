@@ -65,6 +65,11 @@ public interface GeneralParameterDescriptor extends IdentifiedObject {
      * the value is always 1. For a {@linkplain ParameterDescriptorGroup parameter group},
      * it may vary. The default value is one.
      *
+     * @departure generalization
+     *   Moved up (in the interface hierarchy) the <code>maximumOccurs</code> attribute from
+     *   <code>ParameterDescriptorGroup</code> into the <code>GeneralParameterDescriptor</code>
+     *   super-interface, in order to be on per with the <code>minimumOccurs</code> attribute.
+     *
      * @return The maximum occurence.
      *
      * @see #getMinimumOccurs

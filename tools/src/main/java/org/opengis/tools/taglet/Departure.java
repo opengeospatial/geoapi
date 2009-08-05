@@ -48,11 +48,13 @@ public final class Departure implements Taglet, Runnable {
     private static final Map<String,String> CATEGORIES;
     static {
         final Map<String,String> c = new LinkedHashMap<String,String>();
-        c.put("constraint",     "Constraints of the Java language");
-        c.put("integration",    "Integration with the Java environment");
-        c.put("generalization", "Generalization");
-        c.put("historic",       "Historical raisons");
-        c.put("rename",         "Class or method renaming");
+        c.put("constraint",     "Departures due to constraints of the Java language");
+        c.put("integration",    "Departures for closer integration with Java environment");
+        c.put("harmonization",  "Departures for harmonization of different specifications");
+        c.put("historic",       "Departures due to historical raisons");
+        c.put("rename",         "Renaming with no change in functionality");
+        c.put("generalization", "Generalizations (OGC/ISO restrictions relaxed)");
+        c.put("extension",      "Extensions (elements not in OGC/ISO specifications)");
         CATEGORIES = c;
     }
 
@@ -65,11 +67,12 @@ public final class Departure implements Taglet, Runnable {
     /**
      * An element in the {@link #departures} list.
      */
-    private static final class Element {
-        /** The source file.           */ final File   file;
-        /** "Method", "Field" or null. */ final String type;
-        /** The class or method name.  */ final String name;
-        /** The departure text.        */ final String text;
+    private static final class Element implements Comparable<Element> {
+        /** The source file.            */ final File    file;
+        /** "Method", "Field", etc.     */ final String  type;
+        /** The class or method name.   */ final String  name;
+        /** The departure text.         */ final String  text;
+        /** true if field or method.    */ final boolean member;
 
         /** Creates an element for the given tag. */
         Element(final Tag tag, final String text) {
@@ -77,10 +80,26 @@ public final class Departure implements Taglet, Runnable {
             this.file = tag.position().file();
             this.name = holder.name();
             this.text = text;
-            if      (holder.isMethod()) type = "Method";
-            else if (holder.isField())  type = "Field";
-            else if (holder.isEnum())   type = "Enum";
-            else type = null;
+            if      (holder.isMethod())    {member=true;  type = "Method";}
+            else if (holder.isField())     {member=true;  type = "Field";}
+            else if (holder.isEnum())      {member=true;  type = "Enum";}
+            else if (holder.isInterface()) {member=false; type = "Interface";}
+            else if (holder.isClass())     {member=false; type = "Class";}
+            else                           {member=false; type = "Package";}
+        }
+
+        /**
+         * For sorting in the order to be published on the HTML page.
+         */
+        public int compareTo(final Element other) {
+            final String  n1 =  this.file.getName();
+            final String  n2 = other.file.getName();
+            final boolean p1 = n1.startsWith("package");
+            final boolean p2 = n2.startsWith("package");
+            if (p1 != p2) {
+                return p1 ? -1 : +1; // Put packages first.
+            }
+            return n1.compareTo(n2);
         }
     }
 
@@ -319,6 +338,7 @@ public final class Departure implements Taglet, Runnable {
                 if (elements == null) {
                     continue;
                 }
+                Collections.sort(elements);
                 String description = CATEGORIES.get(category);
                 if (description == null) {
                     description = category;
@@ -333,10 +353,15 @@ public final class Departure implements Taglet, Runnable {
                 for (final Element element : elements) {
                     // Gets the filename without its path or extension.
                     final File file = element.file;
-                    String name = file.getName();
-                    int s = name.lastIndexOf('.');
+                    String typename = file.getName();
+                    int s = typename.lastIndexOf('.');
                     if (s > 0) {
-                        name = name.substring(0, s);
+                        typename = typename.substring(0, s);
+                    }
+                    String filename = typename;
+                    if (typename.equals("package-info")) {
+                        typename = element.name;
+                        filename = "package-summary";
                     }
                     // Gets the path relative to the javadoc root. We assume the standard
                     // Maven directory layout, with source code under the "java" directory.
@@ -345,7 +370,7 @@ public final class Departure implements Taglet, Runnable {
                     if (s >= 0) {
                         path = path.substring(s + 6); // 6 is the length of "/java/".
                     }
-                    path = path + '/' + name + ".html";
+                    path = path + '/' + filename + ".html";
                     if (file.equals(lastFile)) {
                         // New method or field for the same interface than the
                         // previous method or field. Just insert a new line,
@@ -360,14 +385,18 @@ public final class Departure implements Taglet, Runnable {
                         }
                         lastFile = file;
                         out.newLine();
-                        out.write("  <H3><A HREF=\"");
+                        out.write("  <H3>");
+                        // If we don't know the real type, assume interface.
+                        out.write(element.member ? "Interface" : element.type);
+                        out.write(' ');
+                        out.write("<A HREF=\"");
                         out.write(path);
                         out.write("\">");
-                        out.write(name);
+                        out.write(typename);
                         out.write("</A></H3>");
                         out.newLine();
                     }
-                    if (element.type != null) {
+                    if (element.member) {
                         // Formats the method or field name. This will add one indentation
                         // level if the text were not already indented.
                         if (!isBlockquote) {

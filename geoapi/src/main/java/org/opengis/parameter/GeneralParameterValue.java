@@ -12,6 +12,7 @@ package org.opengis.parameter;
 
 import org.opengis.annotation.UML;
 
+import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
 
 
@@ -34,6 +35,7 @@ public interface GeneralParameterValue {
      *
      * @return The abstract definition of this parameter or group of parameters.
      */
+    @UML(identifier="parameter", obligation=MANDATORY, specification=ISO_19111)
     GeneralParameterDescriptor getDescriptor();
 
     /**

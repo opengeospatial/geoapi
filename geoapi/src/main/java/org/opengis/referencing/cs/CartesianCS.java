@@ -30,10 +30,13 @@ import static org.opengis.annotation.Specification.*;
  *   {@link org.opengis.referencing.crs.ImageCRS       Image}
  * </TD></TR></TABLE>
  *
- * @departure integration
- *   According ISO specification, this interface should extends directly <code>CoordinateSystem</code>.
- *   GeoAPI defines this interface as a specialization of <code>AffineCS</code> instead. This avoid the
- *   need for the <code>ImageCS</code> union defined in ISO 19111:2007.
+ * @departure constraint
+ *   ISO 19111 defines <code>CartesianCS</code> as a direct sub-type of <code>CoordinateSystem</code>.
+ *   ISO also defines <code>ImageCS</code> as the union of <code>AffineCS</code> and <code>CartesianCS</code>,
+ *   for use by <code>ImageCRS</code>. Because the <code>union</code> construct found in some languages like
+ *   C/C++ doesn't exist in Java, GeoAPI defines <code>CartesianCS</code> as a sub-type of <code>AffineCS</code>
+ *   in order to achieve the same type safety. In this hierarchy, <code>CartesianCS</code> is considered
+ *   a special case of <code>AffineCS</code> where all axes are perpendicular to each other.
  *
  * @version <A HREF="http://portal.opengeospatial.org/files/?artifact_id=6716">Abstract specification 2.0</A>
  * @author  Martin Desruisseaux (IRD)

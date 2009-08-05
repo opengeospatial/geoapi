@@ -30,6 +30,15 @@
  * nested parameter groups. This way of modelling is not mandatory; all coordinate operation
  * parameters may be assigned directly to the coordinate operation method.</P>
  *
+ * @departure generalization
+ *   Moved the <code>GeneralParameterDescriptor</code>, <code>ParameterDescriptor</code>,
+ *   <code>ParameterDescriptorGroup</code>, <code>GeneralParameterValue</code>, <code>ParameterValue</code>,
+ *   <code>ParameterValueGroup</code>, <code>InvalidParameterNameException</code>,
+ *   <code>InvalidParameterTypeException</code> and <code>InvalidParameterValueException</code>
+ *   interfaces from <code>org.opengis.referencing.operation</code> to <code>org.opengis.parameter</code>.
+ *   With this move, GeoAPI has extended the use of these parameter classes to be shared across several
+ *   implementations with different needs.
+ *
  * @version <A HREF="http://portal.opengeospatial.org/files/?artifact_id=6716">Abstract specification 2.0</A>
  * @since   GeoAPI 1.0
  */

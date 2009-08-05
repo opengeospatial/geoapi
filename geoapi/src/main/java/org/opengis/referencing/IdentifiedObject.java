@@ -30,7 +30,7 @@ import static org.opengis.annotation.Specification.*;
  * respectively. The other values may or may not be set. If the authority is EPSG, the
  * implementer may consider using the corresponding metadata values in the EPSG tables.
  *
- * @departure historic
+ * @departure harmonization
  *   ISO 19111 defines also an <code>IdentifiedObjectBase</code> interface. The later is omitted in
  *   GeoAPI because the split between <code>IdentifiedObject</code> and <code>IdentifiedObjectBase</code>
  *   in OGC/ISO specification was mostly a workaround for introducing <code>IdentifiedObject</code>

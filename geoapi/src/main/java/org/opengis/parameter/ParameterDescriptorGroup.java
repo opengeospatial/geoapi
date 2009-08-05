@@ -66,7 +66,7 @@ public interface ParameterDescriptorGroup extends GeneralParameterDescriptor {
      *
      * @return The descriptor of this group.
      */
-    @UML(identifier="includesParameter", obligation=MANDATORY, specification=ISO_19111)
+    @UML(identifier="parameter", obligation=MANDATORY, specification=ISO_19111)
     List<GeneralParameterDescriptor> descriptors();
 
     /**
