@@ -46,6 +46,12 @@ public enum Obligation {
      * The element should always be {@code null}. This obligation code is used only when
      * a subinterface overrides an association and force it to a {@code null} value.
      * An example is {@link org.opengis.referencing.datum.TemporalDatum#getAnchorPoint}.
+     *
+     * @departure constraint
+     *   ISO specifications sometime override a method with a comment saying that a method is not
+     *   allowed for a particular class. Since there is no construct in Java for expressing this
+     *   constraint in the method signature, GeoAPI defines a <code>FORBIDDEN</code> obligation
+     *   (not in original ISO specifications) to be used with the <code>@UML</code> annotation.
      */
     @Extension
     FORBIDDEN
