@@ -30,6 +30,10 @@ import static org.opengis.annotation.Specification.*;
  * be regarded as an infinite set of points that satisfies the set operation interfaces for a set
  * of direct positions, {@link TransfiniteSet TransfiniteSet&lt;DirectPosition&gt;}.
  *
+ * @departure rename
+ *   Renamed <code>GM_Object</code> as <code>Geometry</code> in order to avoid ambiguity with
+ *   <code>java.lang.Object</code>.
+ *
  * @version <A HREF="http://www.opengeospatial.org/standards/as">ISO 19107</A>
  * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 1.0
