@@ -330,6 +330,11 @@ public interface GridCoverage extends Coverage {
      * <var>max</var> is the maximum ordinate in the grid range and
      * <VAR>N</VAR> is the number of dimensions in the grid coverage.
      *
+     * @departure integration
+     *   OGC 01-004 defines this method as <code>getValueBlockAsDouble(GridRange)</code>.
+     *   GeoAPI adds the <code>double[]</code> argument for reusing pre-allocated arrays,
+     *   which is consistent with usage in <code>java.awt.image.Raster</code>.
+     *
      * @param  range Grid range for block of data to be accessed.
      * @param  destination An optionally preallocated array in which to store the values,
      *         or {@code null} if none.

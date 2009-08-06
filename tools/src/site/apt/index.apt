@@ -64,7 +64,8 @@ mvn clean deploy
 mvn javadoc:javadoc
 find . -name "*.dot" -delete
 find . -name "*.png" -print | xargs optipng
-cp geoapi/src/main/javadoc/content.html geoapi/target/site/apidocs/
+cp geoapi/src/main/javadoc/content.html  geoapi/target/site/apidocs/
+cp geoapi/src/main/javadoc/UML-java.html geoapi/target/site/apidocs/
 ---------------------------------------------------------------------------------------------
 
   (todo: create ZIP files and deploy on which download area?)

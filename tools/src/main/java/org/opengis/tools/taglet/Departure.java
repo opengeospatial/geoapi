@@ -49,9 +49,9 @@ public final class Departure implements Taglet, Runnable {
     static {
         final Map<String,String> c = new LinkedHashMap<String,String>();
         c.put("constraint",     "Departures due to constraints of the Java language");
-        c.put("integration",    "Departures for closer integration with Java environment");
-        c.put("harmonization",  "Departures for harmonization of different specifications");
         c.put("historic",       "Departures due to historical raisons");
+        c.put("harmonization",  "Departures for harmonization of different specifications");
+        c.put("integration",    "Departures for closer integration with Java environment");
         c.put("rename",         "Renaming with no change in functionality");
         c.put("generalization", "Generalizations (OGC/ISO restrictions relaxed)");
         c.put("extension",      "Extensions (elements not in OGC/ISO specifications)");

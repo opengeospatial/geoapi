@@ -397,6 +397,11 @@ public interface Coverage {
      * The coordinate reference system of the point is the same as the grid coverage coordinate
      * reference system (specified by the {@link #getCoordinateReferenceSystem} method).
      *
+     * @departure integration
+     *   OGC 01-004 defines this method as <code>evaluate(DirectPosition)</code>. GeoAPI adds
+     *   the <code>double[]</code> argument for reusing pre-allocated arrays, which is consistent
+     *   with usage in <code>java.awt.image.Raster</code>.
+     *
      * @param  point Point at which to find the grid values.
      * @param  destination An optionally preallocated array in which to store the values,
      *         or {@code null} if none.
@@ -477,6 +482,14 @@ public interface Coverage {
      * specification and may be deprecated in a future version. We are for more experience
      * and feedbacks on the value of this method.
      *
+     * @departure generalization
+     *   Return type of <code>Coverage.getSource(int)</code> has been relaxed from <code>GridCoverage</code>
+     *   to <code>Coverage</code>. Instead, the return type has been constrained to <code>GridCoverage</code>
+     *   only in <code>GridCoverage.getSource(int)</code>. This approach (<cite>return type covariance</cite>)
+     *   was already used in "<cite>Spatial Referencing by Coordinates</cite>" (ISO 19111). It avoid forward
+     *   dependency of <code>Coverage</code> toward <code>GridCoverage</code> and give more flexibility for
+     *   use of <code>Coverage</code> with non-gridded sources.
+     *
      * @return The list of sources data for a coverage.
      */
     @UML(identifier="getSource, numSource", obligation=MANDATORY, specification=OGC_01004)
@@ -492,6 +505,9 @@ public interface Coverage {
      *
      * <code>getRenderableImage(0,1).{@linkplain RenderableImage#createDefaultRendering()
      * createDefaultRendering()}</code>
+     *
+     * @departure integration
+     *   Added this optional method for interoperability with Java2D.
      *
      * @param  xAxis Dimension to use for the <var>x</var> axis.
      * @param  yAxis Dimension to use for the <var>y</var> axis.
