@@ -62,46 +62,7 @@ public final class Departure implements Taglet, Runnable {
      * All departures declared in javadoc tags. The keys are the category, and the value
      * is a list of departure for that category.
      */
-    private final Map<String,List<Element>> departures = new HashMap<String,List<Element>>();
-
-    /**
-     * An element in the {@link #departures} list.
-     */
-    private static final class Element implements Comparable<Element> {
-        /** The source file.            */ final File    file;
-        /** "Method", "Field", etc.     */ final String  type;
-        /** The class or method name.   */ final String  name;
-        /** The departure text.         */ final String  text;
-        /** true if field or method.    */ final boolean member;
-
-        /** Creates an element for the given tag. */
-        Element(final Tag tag, final String text) {
-            final Doc holder = tag.holder();
-            this.file = tag.position().file();
-            this.name = holder.name();
-            this.text = text;
-            if      (holder.isMethod())    {member=true;  type = "Method";}
-            else if (holder.isField())     {member=true;  type = "Field";}
-            else if (holder.isEnum())      {member=true;  type = "Enum";}
-            else if (holder.isInterface()) {member=false; type = "Interface";}
-            else if (holder.isClass())     {member=false; type = "Class";}
-            else                           {member=false; type = "Package";}
-        }
-
-        /**
-         * For sorting in the order to be published on the HTML page.
-         */
-        public int compareTo(final Element other) {
-            final String  n1 =  this.file.getName();
-            final String  n2 = other.file.getName();
-            final boolean p1 = n1.startsWith("package");
-            final boolean p2 = n2.startsWith("package");
-            if (p1 != p2) {
-                return p1 ? -1 : +1; // Put packages first.
-            }
-            return n1.compareTo(n2);
-        }
-    }
+    private final Map<String,List<DepartureElement>> departures = new HashMap<String,List<DepartureElement>>();
 
     /**
      * Register this taglet.
@@ -263,12 +224,12 @@ public final class Departure implements Taglet, Runnable {
          * They will be processed later by the summary() method.
          */
         synchronized (departures) {
-            List<Element> forCategory = departures.get(category);
+            List<DepartureElement> forCategory = departures.get(category);
             if (forCategory == null) {
-                forCategory = new ArrayList<Element>();
+                forCategory = new ArrayList<DepartureElement>();
                 departures.put(category, forCategory);
             }
-            forCategory.add(new Element(tag, text));
+            forCategory.add(new DepartureElement(tag, text));
         }
         /*
          * Nows copies the text.
@@ -334,7 +295,7 @@ public final class Departure implements Taglet, Runnable {
              *     ISO 19107 defines Position as a C/C++ union (etc...)
              */
             for (final String category : categories) {
-                final List<Element> elements = departures.get(category);
+                final List<DepartureElement> elements = departures.get(category);
                 if (elements == null) {
                     continue;
                 }
@@ -350,34 +311,27 @@ public final class Departure implements Taglet, Runnable {
                 out.write("  <BLOCKQUOTE>"); out.newLine();
                 File lastFile = null;
                 boolean isBlockquote = false;
-                for (final Element element : elements) {
+                /*
+                 * Write the departure of all classes, interfaces, methods and fields for the
+                 * current section. The following code really needs to evaluate elements.size()
+                 * in the loop, because some elements may be removed ahead of time.
+                 */
+                for (int i=0; i<elements.size(); i++) {
+                    final DepartureElement element = elements.get(i);
                     // Gets the filename without its path or extension.
                     final File file = element.file;
-                    String typename = file.getName();
-                    int s = typename.lastIndexOf('.');
-                    if (s > 0) {
-                        typename = typename.substring(0, s);
-                    }
-                    String filename = typename;
-                    if (typename.equals("package-info")) {
-                        typename = element.name;
-                        filename = "package-summary";
-                    }
-                    // Gets the path relative to the javadoc root. We assume the standard
-                    // Maven directory layout, with source code under the "java" directory.
-                    String path = file.getParent().replace(File.separatorChar, '/');
-                    s = path.lastIndexOf("/java/");
-                    if (s >= 0) {
-                        path = path.substring(s + 6); // 6 is the length of "/java/".
-                    }
-                    path = path + '/' + filename + ".html";
                     if (file.equals(lastFile)) {
-                        // New method or field for the same interface than the
-                        // previous method or field. Just insert a new line,
-                        // do not repeat the interface name.
+                        /*
+                         * New method or field for the same interface than the previous method
+                         * or field. Just insert a new line, do not repeat the interface name.
+                         */
                         out.newLine();
                     } else {
-                        // New class or interface. Formats its name in a header.
+                        /*
+                         * New class or interface. Formats its name in a header. If the previous
+                         * class or interface had a list of methods or fields, we need to close
+                         * the previous blockquote.
+                         */
                         if (isBlockquote) {
                             out.write("  </BLOCKQUOTE>");
                             out.newLine();
@@ -386,32 +340,67 @@ public final class Departure implements Taglet, Runnable {
                         lastFile = file;
                         out.newLine();
                         out.write("  <H3>");
-                        // If we don't know the real type, assume interface.
-                        out.write(element.member ? "Interface" : element.type);
-                        out.write(' ');
-                        out.write("<A HREF=\"");
-                        out.write(path);
-                        out.write("\">");
-                        out.write(typename);
-                        out.write("</A></H3>");
+                        element.writeClassName(out);
+                        /*
+                         * If this class or interface do not have any member to document for
+                         * departure, and if an other class or interface has exactly the same
+                         * departure, merge their description in order to avoid repeating the
+                         * same text twice.
+                         */
+                        if (!element.member) {
+                            boolean alone = true;
+                            for (int j=i+1; j<elements.size(); j++) {
+                                if (file.equals(elements.get(j).file)) {
+                                    alone = false;
+                                    break;
+                                }
+                            }
+                            if (alone) {
+                                for (int j=i+1; j<elements.size();) {
+                                    final DepartureElement candidate = elements.get(j);
+                                    if (!candidate.member && element.text.equals(candidate.text)) {
+                                        out.write(",<BR>");
+                                        candidate.writeClassName(out);
+                                        elements.remove(j);
+                                    } else j++;
+                                }
+                            }
+                        }
+                        out.write("</H3>");
                         out.newLine();
                     }
+                    /*
+                     * Formats the method or field name. This will add one indentation
+                     * level if the text was not already indented.
+                     */
                     if (element.member) {
-                        // Formats the method or field name. This will add one indentation
-                        // level if the text were not already indented.
                         if (!isBlockquote) {
                             out.write("  <BLOCKQUOTE>");
                             out.newLine();
                             isBlockquote = true;
                         }
                         out.write("    <H4>");
-                        out.write(element.type);
-                        out.write(' ');
-                        out.write(element.name);
+                        element.writeFieldName(out);
+                        /*
+                         * If there is more elements in the same file with exactly the same
+                         * text, merge them together. This is similar to the merge done above
+                         * for classes or interfaces having the same departure, except that
+                         * this merge is performed at the field or methods level.
+                         */
+                        for (int j=i+1; j<elements.size();) {
+                            final DepartureElement candidate = elements.get(j);
+                            if (file.equals(candidate.file) && element.text.equals(candidate.text)) {
+                                out.write(",<BR>");
+                                candidate.writeFieldName(out);
+                                elements.remove(j);
+                            } else j++;
+                        }
                         out.write("</H4>");
                         out.newLine();
                     }
-                    // Formats the text, for either interface, class, method or field.
+                    /*
+                     * Formats the text for either interface, class, method or field.
+                     */
                     out.write("    <BLOCKQUOTE>");
                     out.write(element.text);
                     out.write("</BLOCKQUOTE>");
