@@ -103,7 +103,7 @@ public interface ParameterValue<T> extends GeneralParameterValue {
      *
      * @departure rename
      *   Renamed the attribute from "<code>integerValue</code>" to "<code>intValue</code>" for
-     *   consistency with <code>Number.intValue()</code> and the <code>int</code>Java primitive type.
+     *   consistency with <code>Number.intValue()</code> and the <code>int</code> Java primitive type.
      *
      * @see #setValue(int)
      * @see #intValueList

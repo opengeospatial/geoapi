@@ -9,14 +9,12 @@
  *************************************************************************************************/
 package org.opengis.tools;
 
-// J2SE dependencies
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Map;
 import java.util.Collection;
 
-// Annotation processing tools
 import com.sun.mirror.apt.Filer;
 import com.sun.mirror.type.InterfaceType;
 import com.sun.mirror.util.Declarations;
@@ -26,7 +24,6 @@ import com.sun.mirror.declaration.ClassDeclaration;
 import com.sun.mirror.declaration.MemberDeclaration;
 import com.sun.mirror.declaration.MethodDeclaration;
 
-// OpenGIS dependencies
 import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
 import org.opengis.parameter.ParameterValueGroup;
@@ -127,7 +124,7 @@ public class IndexGenerator extends UmlProcessor {
         String identifier         = getDisplayName(uml);
         String classname          = declaration.getSimpleName();
         String qualifiedClassname = declaration.getQualifiedName();
-        String pathToClassJavadoc = "apidocs/" + qualifiedClassname.replace('.', '/') + ".html";
+        String pathToClassJavadoc = qualifiedClassname.replace('.', '/') + ".html";
         boolean significantChange = !similarClassName(declaration, classname, identifier);
         final boolean isCodeList  = isCodeList(declaration);
         /*
@@ -247,7 +244,7 @@ scan:   for (final MemberDeclaration attribute : attributes) {
      * Returns the display name of the specification attribute in the given UML.
      */
     private static String getSpecification(final UML specification) {
-        return specification.specification().name().replace('_', ' ');
+        return specification.specification().name().replace("ISO_","ISO ").replace("OGC_","OGC ").replace('_', '-');
     }
 
     /**
