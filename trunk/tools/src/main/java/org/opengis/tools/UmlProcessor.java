@@ -192,12 +192,12 @@ public abstract class UmlProcessor extends SimpleDeclarationVisitor
      * the trick for this package purpose), which is why this method is package-private.
      */
     final Class<?> getClass(final TypeDeclaration declaration) {
-        try {
+        if (declaration != null) try {
             return Class.forName(declaration.getQualifiedName());
         } catch (ClassNotFoundException e) {
             environment.getMessager().printError("Class not found: " + e.getLocalizedMessage());
-            return Void.TYPE;
         }
+        return Void.TYPE;
     }
 
     /**
