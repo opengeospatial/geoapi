@@ -31,6 +31,10 @@ public interface GeographicExtent {
      * (<cite>inclusion</cite>) or an area where data is not present (<cite>exclusion</cite>).
      *
      * @return {@code true} for inclusion, {@code false} for exclusion, or {@code null} if unspecified.
+     *
+     * @departure rename
+     *   The ISO identifier is <code>"extentTypeCode"</code> and defines the value 1 for inclusion,
+     *   and 0 for exclusion. GeoAPI uses a name which said the meaning of <code>TRUE</code>.
      */
     @UML(identifier="extentTypeCode", obligation=OPTIONAL, specification=ISO_19115)
     Boolean getInclusion();
