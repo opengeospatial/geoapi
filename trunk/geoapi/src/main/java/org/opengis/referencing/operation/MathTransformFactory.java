@@ -73,7 +73,7 @@ public interface MathTransformFactory extends Factory {
      * must be known to the {@link #getDefaultParameters} method in this factory.
      * The set of available methods is implementation dependent.
      *
-     * @param  type <code>{@linkplain CoordinateOperation}.class</code> for fetching all operation methods,
+     * @param  type <code>{@linkplain SingleOperation}.class</code> for fetching all operation methods,
      *         or <code>{@linkplain Projection}.class</code> for fetching only map projection methods.
      * @return All {@linkplain MathTransform math transform} methods available in this factory.
      *
