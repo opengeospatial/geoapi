@@ -30,6 +30,7 @@ import static org.opengis.annotation.Specification.*;
  *
  * @see CoordinateOperation
  *
+ * @navassoc 1 - - Formula
  * @navassoc 1 - - ParameterDescriptorGroup
  */
 @UML(identifier="CC_OperationMethod", specification=ISO_19111)
@@ -49,36 +50,28 @@ public interface OperationMethod extends IdentifiedObject {
      *
      * @return The formula used by this method.
      */
-    @UML(identifier="formula", obligation=MANDATORY, specification=ISO_19111)
-    InternationalString getFormula();
+    @UML(identifier="formulaReference", obligation=MANDATORY, specification=ISO_19111)
+    Formula getFormula();
 
     /**
      * Number of dimensions in the source CRS of this operation method.
+     * Note that some operation methods work with an arbitrary number of
+     * dimensions (e.g. <cite>Affine Transform</cite>) and may return {@code null}.
      *
-     * @departure historic
-     *   This attribute was mandatory in ISO 19111:2003 but became optional in ISO 19111:2007.
-     *   It has been left mandatory in GeoAPI for historical reasons.  This is problematic for
-     *   a few operations like <cite>affine transform</cite> which can operate on an arbitrary
-     *   number of dimensions.
-     *
-     * @return The dimension of source CRS.
+     * @return The dimension of source CRS, or {@code null} if unknown.
      */
-    @UML(identifier="sourceDimensions", obligation=MANDATORY, specification=ISO_19111)
-    int getSourceDimensions();
+    @UML(identifier="sourceDimensions", obligation=OPTIONAL, specification=ISO_19111)
+    Integer getSourceDimensions();
 
     /**
      * Number of dimensions in the target CRS of this operation method.
+     * Note that some operation methods work with an arbitrary number of
+     * dimensions (e.g. <cite>Affine Transform</cite>) and may return {@code null}.
      *
-     * @departure historic
-     *   This attribute was mandatory in ISO 19111:2003 but became optional in ISO 19111:2007.
-     *   It has been left mandatory in GeoAPI for historical reasons.  This is problematic for
-     *   a few operations like <cite>affine transform</cite> which can operate on an arbitrary
-     *   number of dimensions.
-     *
-     * @return The dimension of target CRS.
+     * @return The dimension of target CRS, or {@code null} if unknown.
      */
-    @UML(identifier="targetDimensions", obligation=MANDATORY, specification=ISO_19111)
-    int getTargetDimensions();
+    @UML(identifier="targetDimensions", obligation=OPTIONAL, specification=ISO_19111)
+    Integer getTargetDimensions();
 
     /**
      * The set of parameters.

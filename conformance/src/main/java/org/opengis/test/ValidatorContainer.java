@@ -608,6 +608,16 @@ public class ValidatorContainer {
      * Tests the conformance of the given object.
      *
      * @param object The object to test, or {@code null}.
+     * @see OperationValidator#validate(OperationMethod)
+     */
+    public final void validate(final Formula object) {
+        coordinateOperation.validate(object);
+    }
+
+    /**
+     * Tests the conformance of the given object.
+     *
+     * @param object The object to test, or {@code null}.
      * @see OperationValidator#validate(MathTransform)
      */
     public final void validate(final MathTransform object) {

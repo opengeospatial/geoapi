@@ -84,10 +84,10 @@ public interface ImageDescription extends CoverageDescription {
     Identifier getProcessingLevelCode();
 
     /**
-     * Count of the number the number of lossy compression cycles performed on the image.
+     * Count of the number of lossy compression cycles performed on the image.
      * Returns {@code null} if the information is not provided.
      *
-     * @return The number the number of lossy compression cycles performed on the image,
+     * @return The number of lossy compression cycles performed on the image,
      *         or {@code null} if unknown.
      */
     @UML(identifier="compressionGenerationQuantity", obligation=OPTIONAL, specification=ISO_19115)

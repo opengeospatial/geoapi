@@ -503,6 +503,16 @@ public class Validators {
      * Tests the conformance of the given object.
      *
      * @param object The object to test, or {@code null}.
+     * @see OperationValidator#validate(Formula)
+     */
+    public static void validate(final Formula object) {
+        DEFAULT.validate(object);
+    }
+
+    /**
+     * Tests the conformance of the given object.
+     *
+     * @param object The object to test, or {@code null}.
      * @see OperationValidator#validate(MathTransform)
      */
     public static void validate(final MathTransform object) {
