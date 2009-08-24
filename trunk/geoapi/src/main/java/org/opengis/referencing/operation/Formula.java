@@ -1,8 +1,8 @@
 /*$************************************************************************************************
  **
- ** $Id: OperationMethod.java 1471 2009-08-04 12:05:17Z desruisseaux $
+ ** $Id$
  **
- ** $URL: https://geoapi.svn.sourceforge.net/svnroot/geoapi/trunk/geoapi/src/main/java/org/opengis/referencing/operation/OperationMethod.java $
+ ** $URL$
  **
  ** Copyright (C) 2009 Open GIS Consortium, Inc.
  ** All Rights Reserved. http://www.opengis.org/legal/
