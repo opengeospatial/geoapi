@@ -77,7 +77,7 @@ public class IllegalAttributeException extends IllegalArgumentException {
 
     @Override
     public String toString() {
-        String s = getClass().getName();
+        String s = getClass().getCanonicalName();
         String message = getLocalizedMessage();
         
         StringBuffer buf = new StringBuffer();

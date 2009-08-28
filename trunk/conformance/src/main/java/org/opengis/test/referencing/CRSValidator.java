@@ -99,7 +99,7 @@ public class CRSValidator extends ReferencingValidator {
         } else if (cs instanceof SphericalCS) {
             container.cs.validate((SphericalCS) cs);
         } else if (cs != null) {
-            fail("GeocentricCRS: unknown CoordinateSystem of type " + cs.getClass().getName() + '.');
+            fail("GeocentricCRS: unknown CoordinateSystem of type " + cs.getClass().getCanonicalName() + '.');
         }
         final GeodeticDatum datum = object.getDatum();
         mandatory("GeocentricCRS: must have a Datum.", datum);
