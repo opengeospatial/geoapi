@@ -68,7 +68,7 @@ public final class CodeListTest {
             final Class<?> candidate = scanner.next();
             if (!base.equals(candidate) && base.isAssignableFrom(candidate)) {
                 // SimpleEnumeratioType is a special case to avoid for now.
-                final String name = candidate.getName();
+                final String name = candidate.getCanonicalName();
                 if (name.equals("org.opengis.util.SimpleEnumerationType")) {
                     continue;
                 }
@@ -98,7 +98,7 @@ public final class CodeListTest {
          * Gets the values() method, which should public and static.
          * Then gets every CodeList instances returned by values().
          */
-        final String className = classe.getName();
+        final String className = classe.getCanonicalName();
         fullName = className + ".values()";
         try {
             method = classe.getMethod("values", (Class<?>[]) null);

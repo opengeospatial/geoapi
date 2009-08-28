@@ -226,46 +226,10 @@ public abstract class UmlProcessor extends SimpleDeclarationVisitor
     }
 
     /**
-     * Returns a short class name for the specified class. This method will
-     * omit the package name.  For example, it will return "String" instead
-     * of "java.lang.String" for a {@link String} object. It will also name
-     * array according Java language usage,  for example "double[]" instead
-     * of "[D".
-     *
-     * @param  classe The object class (may be <code>null</code>).
-     * @return A short class name for the specified object.
-     */
-    protected static String getShortName(Class<?> classe) {
-        if (classe == null) {
-            return "<*>";
-        }
-        int dimension = 0;
-        Class<?> el;
-        while ((el = classe.getComponentType()) != null) {
-            classe = el;
-            dimension++;
-        }
-        String name = classe.getName();
-        final int lower = name.lastIndexOf('.');
-        final int upper = name.length();
-        name = name.substring(lower+1, upper).replace('$','.');
-        if (dimension != 0) {
-            StringBuffer buffer = new StringBuffer(name);
-            do {
-                buffer.append("[]");
-            } while (--dimension != 0);
-            name = buffer.toString();
-        }
-        return name;
-    }
-
-    /**
-     * Print an error message after the failure to open a file.
+     * Prints an error message after the failure to open a file.
      */
     final void printError(final IOException exception) {
-        String name = exception.getClass().getName();
-        name = name.substring(name.lastIndexOf('.') + 1);
         environment.getMessager().printError("Unable to create output files. The cause is " +
-                                             name + ": " + exception.getLocalizedMessage());
+                exception.getClass().getSimpleName() + ": " + exception.getLocalizedMessage());
     }
 }
