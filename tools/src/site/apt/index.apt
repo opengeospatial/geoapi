@@ -22,10 +22,10 @@ svn commit -m "Updated the list of GeoAPI classes and methods."
 ---------------------------------------------------------------------------------------------
 
   Defines the version number for the GeoAPI milesone. The example below
-  uses 2.3-M4. Please edit as needed.
+  uses 2.3-M5. Please edit as needed.
 
 ---------------------------------------------------------------------------------------------
-export GEOAPI_VERSION=2.3-M4
+export GEOAPI_VERSION=2.3-M5
 ---------------------------------------------------------------------------------------------
 
   Create a SVN tag.
@@ -70,4 +70,12 @@ cp geoapi/src/main/javadoc/content.html  geoapi/target/site/apidocs/
 cp geoapi/src/main/javadoc/UML-java.html geoapi/target/site/apidocs/
 ---------------------------------------------------------------------------------------------
 
-  (todo: create ZIP files and deploy on which download area?)
+  Creates a ZIP file and deploy on the download area
+  (todo: which download area?)
+
+---------------------------------------------------------------------------------------------
+cd geoapi/target/site/
+zip -r9 ../geoapi-$GEOAPI_VERSION.zip apidocs/
+cd ..
+zip -9 geoapi-$GEOAPI_VERSION.zip geoapi-$GEOAPI_VERSION.jar
+---------------------------------------------------------------------------------------------

@@ -9,3 +9,5 @@ GeoAPI SNAPSHOT
   This release requires a Java environment Java\ 5 or higher. Nightly builds can be obtained from
   the Hudson automated build tool's {{{http://hudson.geomatys.com/job/GeoAPI/}output page}}.
 
+  A milestone is created every months. API changes compared to the previous versions are
+  documented in the {{{changes/index.html}changes page}}.

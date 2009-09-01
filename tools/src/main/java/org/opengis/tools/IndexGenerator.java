@@ -38,8 +38,7 @@ import org.opengis.geometry.coordinate.PointArray;
  * <p>
  * <b>How to use</b>
  * {@code chdir} to the root directory of source code. Then invoke the following command,
- * where {@code content.txt} is a file containing the path to all java classes to parse
- * in the {@value #ROOT_PACKAGE} package.
+ * where {@code content.txt} is a file containing the path to all java classes to parse.
  *
  * <blockquote><pre>
  * apt -nocompile -factory org.opengis.tools.IndexGenerator @content.txt
