@@ -207,13 +207,6 @@
   <TR><TD><CODE>&nbsp;&nbsp;&nbsp;&nbsp;getDate</CODE></TD><TD><CODE>&nbsp;&nbsp;date</CODE></TD><TD><FONT SIZE=-1>ISO 19115</FONT></TD></TR>
   <TR><TD><CODE>&nbsp;&nbsp;&nbsp;&nbsp;getDateType</CODE></TD><TD><CODE>&nbsp;&nbsp;dateType</CODE></TD><TD><FONT SIZE=-1>ISO 19115</FONT></TD></TR>
   <TR><TD COLSPAN=3><HR></TD></TR>
-  <TR><TD NOWRAP><STRONG><CODE>&nbsp;&nbsp;</CODE>Interface <CODE><A HREF="org/opengis/metadata/citation/CitationFactory.html"><CITE>CitationFactory</CITE></A></CODE></STRONG></TD></TR>
-  <TR><TD><CODE>&nbsp;&nbsp;&nbsp;&nbsp;<CITE>createAddress</CITE></CODE></TD></TR>
-  <TR><TD><CODE>&nbsp;&nbsp;&nbsp;&nbsp;<CITE>createContact</CITE></CODE></TD></TR>
-  <TR><TD><CODE>&nbsp;&nbsp;&nbsp;&nbsp;<CITE>createOnLineResource</CITE></CODE></TD></TR>
-  <TR><TD><CODE>&nbsp;&nbsp;&nbsp;&nbsp;<CITE>createResponsibleParty</CITE></CODE></TD></TR>
-  <TR><TD><CODE>&nbsp;&nbsp;&nbsp;&nbsp;<CITE>createTelephone</CITE></CODE></TD></TR>
-  <TR><TD COLSPAN=3><HR></TD></TR>
   <TR><TD NOWRAP><STRONG><CODE>&nbsp;&nbsp;</CODE>Interface <CODE><A HREF="org/opengis/metadata/citation/Contact.html">Contact</A></CODE></STRONG></TD><TD><CODE>CI_Contact</CODE></TD><TD NOWRAP>ISO 19115</TD></TR>
   <TR><TD><CODE>&nbsp;&nbsp;&nbsp;&nbsp;getPhone</CODE></TD><TD><CODE>&nbsp;&nbsp;phone</CODE></TD><TD><FONT SIZE=-1>ISO 19115</FONT></TD></TR>
   <TR><TD><CODE>&nbsp;&nbsp;&nbsp;&nbsp;getAddress</CODE></TD><TD><CODE>&nbsp;&nbsp;address</CODE></TD><TD><FONT SIZE=-1>ISO 19115</FONT></TD></TR>
@@ -1429,6 +1422,10 @@
   <TR><TD COLSPAN=3><HR></TD></TR>
   <TR><TD NOWRAP><STRONG><CODE>&nbsp;&nbsp;</CODE>Interface <CODE><A HREF="org/opengis/referencing/operation/CylindricalProjection.html"><CITE>CylindricalProjection</CITE></A></CODE></STRONG></TD></TR>
   <TR><TD COLSPAN=3><HR></TD></TR>
+  <TR><TD NOWRAP><STRONG><CODE>&nbsp;&nbsp;</CODE>Interface <CODE><A HREF="org/opengis/referencing/operation/Formula.html">Formula</A></CODE></STRONG></TD><TD><CODE>CC_Formula</CODE></TD><TD NOWRAP>ISO 19111</TD></TR>
+  <TR><TD><CODE>&nbsp;&nbsp;&nbsp;&nbsp;getFormula</CODE></TD><TD><CODE>&nbsp;&nbsp;formula</CODE></TD><TD><FONT SIZE=-1>ISO 19111</FONT></TD></TR>
+  <TR><TD><CODE>&nbsp;&nbsp;&nbsp;&nbsp;<CITE>getCitation</CITE></CODE></TD><TD><CODE>&nbsp;&nbsp;<CITE>formulaCitation</CITE></CODE></TD><TD><FONT SIZE=-1>ISO 19111</FONT></TD></TR>
+  <TR><TD COLSPAN=3><HR></TD></TR>
   <TR><TD NOWRAP><STRONG><CODE>&nbsp;&nbsp;</CODE>Interface <CODE><A HREF="org/opengis/referencing/operation/MathTransform.html">MathTransform</A></CODE></STRONG></TD><TD><CODE>CT_MathTransform</CODE></TD><TD NOWRAP>OGC 01009</TD></TR>
   <TR><TD><CODE>&nbsp;&nbsp;&nbsp;&nbsp;<CITE>getSourceDimensions</CITE></CODE></TD><TD><CODE>&nbsp;&nbsp;<CITE>getDimSource</CITE></CODE></TD><TD><FONT SIZE=-1>OGC 01009</FONT></TD></TR>
   <TR><TD><CODE>&nbsp;&nbsp;&nbsp;&nbsp;<CITE>getTargetDimensions</CITE></CODE></TD><TD><CODE>&nbsp;&nbsp;<CITE>getDimTarget</CITE></CODE></TD><TD><FONT SIZE=-1>OGC 01009</FONT></TD></TR>
@@ -1470,7 +1467,7 @@
   <TR><TD NOWRAP><STRONG><CODE>&nbsp;&nbsp;</CODE>Interface <CODE><A HREF="org/opengis/referencing/operation/NoninvertibleTransformException.html"><CITE>NoninvertibleTransformException</CITE></A></CODE></STRONG></TD></TR>
   <TR><TD COLSPAN=3><HR></TD></TR>
   <TR><TD NOWRAP><STRONG><CODE>&nbsp;&nbsp;</CODE>Interface <CODE><A HREF="org/opengis/referencing/operation/OperationMethod.html">OperationMethod</A></CODE></STRONG></TD><TD><CODE>CC_OperationMethod</CODE></TD><TD NOWRAP>ISO 19111</TD></TR>
-  <TR><TD><CODE>&nbsp;&nbsp;&nbsp;&nbsp;getFormula</CODE></TD><TD><CODE>&nbsp;&nbsp;formula</CODE></TD><TD><FONT SIZE=-1>ISO 19111</FONT></TD></TR>
+  <TR><TD><CODE>&nbsp;&nbsp;&nbsp;&nbsp;<CITE>getFormula</CITE></CODE></TD><TD><CODE>&nbsp;&nbsp;<CITE>formulaReference</CITE></CODE></TD><TD><FONT SIZE=-1>ISO 19111</FONT></TD></TR>
   <TR><TD><CODE>&nbsp;&nbsp;&nbsp;&nbsp;getSourceDimensions</CODE></TD><TD><CODE>&nbsp;&nbsp;sourceDimensions</CODE></TD><TD><FONT SIZE=-1>ISO 19111</FONT></TD></TR>
   <TR><TD><CODE>&nbsp;&nbsp;&nbsp;&nbsp;getTargetDimensions</CODE></TD><TD><CODE>&nbsp;&nbsp;targetDimensions</CODE></TD><TD><FONT SIZE=-1>ISO 19111</FONT></TD></TR>
   <TR><TD><CODE>&nbsp;&nbsp;&nbsp;&nbsp;getParameters</CODE></TD><TD><CODE>&nbsp;&nbsp;parameter</CODE></TD><TD><FONT SIZE=-1>ISO 19111</FONT></TD></TR>
