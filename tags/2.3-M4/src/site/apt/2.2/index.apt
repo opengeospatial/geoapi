@@ -1,0 +1,18 @@
+GeoAPI 2.2
+
+  Release 2.2 of GeoAPI contains the interfaces developed by the GeoAPI project but never formalized
+  in any standards document.
+  
+  ~~~The changes since GeoAPI\ 2.0 are collected in several PDF documents:
+  ~~~  * {{{http://jira.codehaus.org/secure/attachment/30886/GeoAPI+alignment+with+standards.pdf}Alignment with standards}}
+  ~~~  * {{{http://jira.codehaus.org/secure/attachment/30887/GeoAPI+specific+changes.pdf}GeoAPI specific changes}}
+  ~~~
+  
+  {{{javadoc/index.html}Browse javadoc}}.
+  
+  This release requires a Java environment Java\ 5 or higher.
+  
+  ~~~ and can be obtained from the 
+  ~~~{{{http://sourceforge.net/project/showfiles.php?group_id=70002&package_id=69096&release_id=606570}download page}}.
+  
+
