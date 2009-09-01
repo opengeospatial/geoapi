@@ -11,11 +11,13 @@ GeoAPI build tools
   directory (<<<pwd>>>) is the local copy of GeoAPI trunk.
 
 ---------------------------------------------------------------------------------------------
-export CLASSPATH=$PDW/geoapi/target/geoapi-2.3-SNAPSHOT.jar:\
-                 $PDW/geoapi-pending/target/geoapi-pending-2.3-SNAPSHOT.jar:\
-                 $PDW/tools/target/tools-2.3-SNAPSHOT.jar
+export CLASSPATH=\
+$PWD/geoapi/target/geoapi-2.3-SNAPSHOT.jar:\
+$PWD/geoapi-pending/target/geoapi-pending-2.3-SNAPSHOT.jar:\
+$PWD/tools/target/tools-2.3-SNAPSHOT.jar
 cd geoapi/src/main/java
 find . -name "*.java" -print | xargs apt -nocompile -factory org.opengis.tools.IndexGenerator
+cd -
 svn commit -m "Updated the list of GeoAPI classes and methods."
 ---------------------------------------------------------------------------------------------
 
