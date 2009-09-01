@@ -3,6 +3,10 @@ Changes in API
   The changes between different versions of GeoAPI are collected here
   (most recent changes are first):
 
+    * {{{2.3-M4/changes.html}Changes between GeoAPI 2.3-M3 and 2.3-M4}} (see also
+      {{{2.3-M4/M2/changes.html}changes since 2.3-M2}} and
+      {{{2.3-M4/M1/changes.html}changes since 2.3-M1}})
+
     * {{{ISO-19115-2/changes.html}Changes introduced by the addition of ISO 19115-2}}
 
     * {{{2.3-M3/changes.html}Changes between GeoAPI 2.3-M2 and 2.3-M3}}
