@@ -55,6 +55,7 @@ public final class Departure implements Taglet, Runnable {
         c.put("rename",         "Renaming with no change in functionality");
         c.put("generalization", "Generalizations (OGC/ISO restrictions relaxed)");
         c.put("extension",      "Extensions (elements not in OGC/ISO specifications)");
+        c.put("easeOfUse",      "Extensions added only for convenience, without new functionality");
         CATEGORIES = c;
     }
 

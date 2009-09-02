@@ -11,7 +11,6 @@
 package org.opengis.referencing.operation;
 
 import org.opengis.annotation.UML;
-import org.opengis.annotation.Extension;
 
 import static org.opengis.annotation.Specification.*;
 
@@ -43,19 +42,25 @@ public interface Matrix {
      * Returns the number of rows in this matrix.
      *
      * @return The number of rows in this matrix.
+     *
+     * @departure integration
+     *   Needed for making the matrix useable. The method signature matches the one of
+     *   <code>GMatrix</code> in the <cite>vecmath</cite> package, for straightforward
+     *   implementation.
      */
-    @Extension
     int getNumRow();
-    // Same signature than GMatrix, for straightforward implementation.
 
     /**
      * Returns the number of columns in this matrix.
      *
      * @return The number of columns in this matrix.
+     *
+     * @departure integration
+     *   Needed for making the matrix useable. The method signature matches the one of
+     *   <code>GMatrix</code> in the <cite>vecmath</cite> package, for straightforward
+     *   implementation.
      */
-    @Extension
     int getNumCol();
-    // Same signature than GMatrix, for straightforward implementation.
 
     /**
      * Retrieves the value at the specified row and column of this matrix.
@@ -63,10 +68,13 @@ public interface Matrix {
      * @param row    The row number to be retrieved (zero indexed).
      * @param column The column number to be retrieved (zero indexed).
      * @return The value at the indexed element.
+     *
+     * @departure integration
+     *   Needed for making the matrix useable. The method signature matches the one of
+     *   <code>GMatrix</code> in the <cite>vecmath</cite> package, for straightforward
+     *   implementation.
      */
-    @Extension
     double getElement(int row, int column);
-    // Same signature than GMatrix, for straightforward implementation.
 
     /**
      * Modifies the value at the specified row and column of this matrix.
@@ -74,17 +82,22 @@ public interface Matrix {
      * @param row    The row number to be retrieved (zero indexed).
      * @param column The column number to be retrieved (zero indexed).
      * @param value  The new matrix element value.
+     *
+     * @departure integration
+     *   Needed for making the matrix useable. The method signature matches the one of
+     *   <code>GMatrix</code> in the <cite>vecmath</cite> package, for straightforward
+     *   implementation.
      */
-    @Extension
     void setElement(int row, int column, double value);
-    // Same signature than GMatrix, for straightforward implementation.
 
     /**
      * Returns {@code true} if this matrix is an identity matrix.
      *
      * @return {@code true} if this matrix is an identity matrix.
+     *
+     * @departure extension
+     *   Added as a convenience for a frequently requested operation.
      */
-    @Extension
     boolean isIdentity();
 
     /**

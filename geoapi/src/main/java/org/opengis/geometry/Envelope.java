@@ -13,7 +13,6 @@ package org.opengis.geometry;
 import java.awt.geom.Rectangle2D; // Used in @see javadoc tags
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 import org.opengis.annotation.UML;
-import org.opengis.annotation.Extension;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -44,9 +43,15 @@ public interface Envelope {
      *
      * @return The envelope CRS, or {@code null} if unknown.
      *
+     * @departure easeOfUse
+     *   ISO does not define this method - the CRS or the dimension can be obtained only through
+     *   one of the corner <code>DirectPosition</code>. GeoAPI adds this method for convenience
+     *   (as a more direct way) and for freeing the user from the need to choose an arbitrary
+     *   corner (paranoiac codes get the CRS or dimension from both corners and ensure they are
+     *   the same).
+     *
      * @since GeoAPI 2.1
      */
-    @Extension
     CoordinateReferenceSystem getCoordinateReferenceSystem();
 
     /**
@@ -56,9 +61,15 @@ public interface Envelope {
      *
      * @return The dimensionality of this envelope.
      *
+     * @departure easeOfUse
+     *   ISO does not define this method - the CRS or the dimension can be obtained only through
+     *   one of the corner <code>DirectPosition</code>. GeoAPI adds this method for convenience
+     *   (as a more direct way) and for freeing the user from the need to choose an arbitrary
+     *   corner (paranoiac codes get the CRS or dimension from both corners and ensure they are
+     *   the same).
+     *
      * @since GeoAPI 2.0
      */
-    @Extension
     int getDimension();
 
     /**
@@ -92,12 +103,16 @@ public interface Envelope {
      * @throws IndexOutOfBoundsException If the given index is negative or is equals or greater
      *         than the {@linkplain #getDimension envelope dimension}.
      *
+     * @departure easeOfUse
+     *   This method is not part of ISO specification. GeoAPI adds this method for convenience and
+     *   efficiency, since some implementations store minimum and maximum ordinate values directly
+     *   in <code>Envelope</code> instead than indirectly in a <code>DirectPosition</code> corner.
+     *
      * @see Rectangle2D#getMinX
      * @see Rectangle2D#getMinY
      *
      * @since GeoAPI 2.0
      */
-    @Extension
     double getMinimum(int dimension) throws IndexOutOfBoundsException;
 
     /**
@@ -113,12 +128,16 @@ public interface Envelope {
      * @throws IndexOutOfBoundsException If the given index is negative or is equals or greater
      *         than the {@linkplain #getDimension envelope dimension}.
      *
+     * @departure easeOfUse
+     *   This method is not part of ISO specification. GeoAPI adds this method for convenience and
+     *   efficiency, since some implementations store minimum and maximum ordinate values directly
+     *   in <code>Envelope</code> instead than indirectly in a <code>DirectPosition</code> corner.
+     *
      * @see Rectangle2D#getMaxX
      * @see Rectangle2D#getMaxY
      *
      * @since GeoAPI 2.0
      */
-    @Extension
     double getMaximum(int dimension) throws IndexOutOfBoundsException;
 
     /**
@@ -134,12 +153,16 @@ public interface Envelope {
      * @throws IndexOutOfBoundsException If the given index is negative or is equals or greater
      *         than the {@linkplain #getDimension envelope dimension}.
      *
+     * @departure easeOfUse
+     *   This method is not part of ISO specification. GeoAPI adds this method for convenience and
+     *   efficiency, since some implementations store minimum and maximum ordinate values directly
+     *   in <code>Envelope</code> instead than indirectly in a <code>DirectPosition</code> corner.
+     *
      * @see Rectangle2D#getCenterX
      * @see Rectangle2D#getCenterY
      *
      * @since GeoAPI 2.2
      */
-    @Extension
     double getMedian(int dimension) throws IndexOutOfBoundsException;
 
     /**
@@ -155,11 +178,15 @@ public interface Envelope {
      * @throws IndexOutOfBoundsException If the given index is negative or is equals or greater
      *         than the {@linkplain #getDimension envelope dimension}.
      *
+     * @departure easeOfUse
+     *   This method is not part of ISO specification. GeoAPI adds this method for convenience and
+     *   efficiency, since some implementations store minimum and maximum ordinate values directly
+     *   in <code>Envelope</code> instead than indirectly in a <code>DirectPosition</code> corner.
+     *
      * @see Rectangle2D#getWidth
      * @see Rectangle2D#getHeight
      *
      * @since GeoAPI 2.2
      */
-    @Extension
     double getSpan(int dimension) throws IndexOutOfBoundsException;
 }

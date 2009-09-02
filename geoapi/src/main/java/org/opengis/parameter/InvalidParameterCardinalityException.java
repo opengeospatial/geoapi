@@ -11,7 +11,6 @@
 package org.opengis.parameter;
 
 import java.util.List;
-import org.opengis.annotation.Extension;
 
 
 /**
@@ -26,6 +25,9 @@ import org.opengis.annotation.Extension;
  *        <code>IllegalArgumentException</code> because it is not caused by a bad argument.
  *        It is rather a consequence of an <code>ParameterValueGroup</code> being "full".}
  *
+ * @departure extension
+ *   This exception is not part of OGC specification.
+ *
  * @author  Martin Desruisseaux (IRD)
  * @since   GeoAPI 2.0
  *
@@ -33,7 +35,6 @@ import org.opengis.annotation.Extension;
  * @see ParameterDescriptor#getMinimumOccurs
  * @see ParameterDescriptor#getMaximumOccurs
  */
-@Extension
 public class InvalidParameterCardinalityException extends IllegalStateException {
     /**
      * Serial number for interoperability with different versions.

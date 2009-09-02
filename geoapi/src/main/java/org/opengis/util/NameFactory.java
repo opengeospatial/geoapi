@@ -12,7 +12,6 @@ package org.opengis.util;
 
 import java.util.Map;
 import java.util.Locale;
-import org.opengis.annotation.Extension;
 
 
 /**
@@ -21,11 +20,13 @@ import org.opengis.annotation.Extension;
  *
  * {@note Despite the "<code>create</code>" name, implementations may return cached instances.}
  *
+ * @departure extension
+ *   Added in order to provide constructors for <code>GenericName</code> and related interfaces.
+ *
  * @author Jesse Crossley (SYS Technologies)
  * @author Martin Desruisseaux (Geomatys)
  * @since GeoAPI 2.0
  */
-@Extension
 public interface NameFactory {
     /**
      * Creates an international string from a set of strings in different locales.

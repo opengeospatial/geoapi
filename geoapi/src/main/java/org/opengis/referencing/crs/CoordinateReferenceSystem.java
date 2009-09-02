@@ -13,7 +13,6 @@ package org.opengis.referencing.crs;
 import org.opengis.referencing.ReferenceSystem;
 import org.opengis.referencing.cs.CoordinateSystem;
 import org.opengis.annotation.UML;
-import org.opengis.annotation.Extension;
 
 import static org.opengis.annotation.Specification.*;
 
@@ -63,14 +62,13 @@ public interface CoordinateReferenceSystem extends ReferenceSystem {
      *       {@linkplain CompoundCRS#getComponents components} of the instance CRS.</p></li>
      * </ul>
      *
+     * @return The coordinate system.
+     *
      * @departure generalization
      *   ISO 19111 defines this method for <code>SingleCRS</code> only. GeoAPI declares this method
      *   in this parent interface for user convenience, since CS dimension and axes are commonly
      *   requested information and shall be available, directly or indirectly, in all cases
      *   (including <code>CompoundCRS</code>).
-     *
-     * @return The coordinate system.
      */
-    @Extension
     CoordinateSystem getCoordinateSystem();
 }

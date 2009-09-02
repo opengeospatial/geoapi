@@ -14,7 +14,6 @@ import java.util.Set;
 import org.opengis.metadata.citation.Citation;
 import org.opengis.util.InternationalString;
 import org.opengis.annotation.UML;
-import org.opengis.annotation.Extension;
 import static org.opengis.annotation.Specification.*;
 
 
@@ -65,8 +64,11 @@ public interface AuthorityFactory extends Factory {
      *         If this factory doesn't contains any object of the given type, then this method
      *         returns an {@linkplain java.util.Collections#EMPTY_SET empty set}.
      * @throws FactoryException if access to the underlying database failed.
+     *
+     * @departure extension
+     *   This method is not part of OGC specification. It has been added as a way to publish
+     *   the capabilities of a factory.
      */
-    @Extension
     Set<String> getAuthorityCodes(Class<? extends IdentifiedObject> type) throws FactoryException;
 
     /**
@@ -97,9 +99,12 @@ public interface AuthorityFactory extends Factory {
      * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
      * @throws FactoryException if the object creation failed for some other reason.
      *
+     * @departure generalization
+     *   This method is not part of OGC specification. It has been added for leveraging the
+     *   capability of factories that can determine the type at runtime.
+     *
      * @see org.opengis.referencing.datum.DatumAuthorityFactory#createDatum
      * @see org.opengis.referencing.crs.CRSAuthorityFactory#createCoordinateReferenceSystem
      */
-    @Extension
     IdentifiedObject createObject(String code) throws NoSuchAuthorityCodeException, FactoryException;
 }

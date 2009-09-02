@@ -12,7 +12,6 @@ package org.opengis.util;
 
 import java.util.List;
 import org.opengis.annotation.UML;
-import org.opengis.annotation.Extension;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -207,6 +206,11 @@ public interface GenericName extends Comparable<GenericName> {
      *
      * @return The first element in the list of {@linkplain #getParsedNames parsed names}.
      *
+     * @departure generalization
+     *   ISO defines this method in <code>ScopedName</code> only. GeoAPI defines it in the base
+     *   class since <code>LocalName</code> can return a sensible value for it. This reduce the
+     *   need for casts.
+     *
      * @since GeoAPI 2.2
      */
     @UML(identifier="ScopedName.head", obligation=MANDATORY, specification=ISO_19103)
@@ -225,9 +229,13 @@ public interface GenericName extends Comparable<GenericName> {
      *
      * @return The last element in the list of {@linkplain #getParsedNames parsed names}.
      *
+     * @departure easeOfUse
+     *   This method is not part of ISO specification. It doesn't provide any additional
+     *   information compared to the one available though the standard methods defined by
+     *   ISO, but make easier to access a frequently requested one.
+     *
      * @since GeoAPI 2.1
      */
-    @Extension
     LocalName tip();
 
     /**
@@ -242,9 +250,13 @@ public interface GenericName extends Comparable<GenericName> {
      *
      * @return The fully-qualified name (never {@code null}).
      *
+     * @departure easeOfUse
+     *   This method is not part of ISO specification. It doesn't provide any additional
+     *   information compared to the one available though the standard methods defined by
+     *   ISO, but make easier to access a frequently requested one.
+     *
      * @since GeoAPI 2.1
      */
-    @Extension
     GenericName toFullyQualifiedName();
 
     /**
@@ -297,9 +309,13 @@ public interface GenericName extends Comparable<GenericName> {
      * </ul>
      *
      * @return A local-independant string representation of this name.
+     *
+     * @departure easeOfUse
+     *   This method is not part of ISO specification. It doesn't provide any additional
+     *   information compared to the one available though the standard methods defined by
+     *   ISO, but make easier to access a frequently requested one.
      */
 /// @Override
-    @Extension
     String toString();
 
     /**
@@ -314,7 +330,9 @@ public interface GenericName extends Comparable<GenericName> {
      * into {@code "Mes Documents"} on French installation of Windows operating system.
      *
      * @return A localizable string representation of this name.
+     *
+     * @departure extension
+     *   This method is not part of ISO specification. It provides a way to localize the name.
      */
-    @Extension
     InternationalString toInternationalString();
 }

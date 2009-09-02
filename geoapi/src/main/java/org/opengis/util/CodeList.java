@@ -21,7 +21,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.opengis.annotation.UML;
-import org.opengis.annotation.Extension;
 
 import static org.opengis.annotation.Specification.*;
 
@@ -109,9 +108,14 @@ public abstract class CodeList<E extends CodeList<E>> implements Comparable<E>, 
      * Used by {@link CodeList#valueOf(Class, Filter)} to select codes matching an arbitrary
      * criterion.
      *
+     * @departure extension
+     *   This interface is not part of OGC specification. It has been added because
+     *   <code>CodeList</code> is one of the few concrete classes in GeoAPI and there
+     *   is a need to gives some user control over the behavior of <code>CodeList</code>
+     *   implementation.
+     *
      * @since GeoAPI 2.3
      */
-    @Extension
     public static interface Filter {
         /**
          * Returns {@code true} if the given code matches the criterion defined by this filter.
@@ -143,8 +147,10 @@ public abstract class CodeList<E extends CodeList<E>> implements Comparable<E>, 
      * @param codeType The type of code list.
      * @param name The name of the code to obtain.
      * @return A code matching the given name, or {@code null} if the name is null.
+     *
+     * @departure integration
+     *   Provided by analogy with the methods in the JSE 5 <code>Enum</code> class.
      */
-    @Extension
     public static <T extends CodeList<T>> T valueOf(final Class<T> codeType, String name) {
         if (name == null) {
             return null;
@@ -180,9 +186,11 @@ public abstract class CodeList<E extends CodeList<E>> implements Comparable<E>, 
      * @return A code matching the given criterion, or {@code null} if their is no match and
      *         {@link Filter#codename()} returns {@code null}.
      *
+     * @departure integration
+     *   Provided by analogy with the methods in the JSE 5 <code>Enum</code> class.
+     *
      * @since GeoAPI 2.3
      */
-    @Extension
     public static <T extends CodeList<T>> T valueOf(final Class<T> codeType, final Filter filter) {
         @SuppressWarnings("rawtypes")
         final Collection<? extends CodeList> values;
@@ -226,8 +234,11 @@ public abstract class CodeList<E extends CodeList<E>> implements Comparable<E>, 
      * {@linkplain java.lang.reflect reflection} is used).
      *
      * @return The codes of the same kind than this code.
+     *
+     * @departure integration
+     *   Provided by analogy with <code>Enum.family()</code>, which was defined in a initial
+     *   draft of JSE 5 before the final release.
      */
-    @Extension
     public abstract E[] family();
 
     /**
@@ -246,9 +257,12 @@ public abstract class CodeList<E extends CodeList<E>> implements Comparable<E>, 
      *
      * @return All names of this code constant. This array is never null and never empty.
      *
+     * @departure extension
+     *   Defined because each <code>CodeList</code> has at least two names, the Java programmatic
+     *   name and the UML identifier, while some subclasses have additional names.
+     *
      * @since GeoAPI 2.3
      */
-    @Extension
     public String[] names() {
         final String name = this.name;
         final String identifier = identifier();
@@ -263,9 +277,11 @@ public abstract class CodeList<E extends CodeList<E>> implements Comparable<E>, 
      * Returns the programmatic name of this code list constant. This
      * is the name of the public static field which declare the code.
      *
+     * @departure integration
+     *   Provided by analogy with the methods in the JSE 5 <code>Enum</code> class.
+     *
      * @return The name of this code constant.
      */
-    @Extension
     public final String name() {
         return name;
     }
@@ -276,9 +292,12 @@ public abstract class CodeList<E extends CodeList<E>> implements Comparable<E>, 
      *
      * @return The ISO/OGC identifier for this code constant, or {@code null} if none.
      *
+     * @departure extension
+     *   Defined because each <code>CodeList</code> has a UML identifier in addition of the Java
+     *   programmatic name.
+     *
      * @since GeoAPI 2.2
      */
-    @Extension
     public String identifier() {
         // Save the field in a local variable for protection against concurrent change (this
         // operation is garanteed atomic according Java specification). We don't synchronize
@@ -323,8 +342,10 @@ public abstract class CodeList<E extends CodeList<E>> implements Comparable<E>, 
      * where the initial constant is assigned an ordinal of zero.
      *
      * @return The position of this code constants in elements declaration.
+     *
+     * @departure integration
+     *   Provided by analogy with the methods in the JSE 5 <code>Enum</code> class.
      */
-    @Extension
     public final int ordinal() {
         return ordinal;
     }

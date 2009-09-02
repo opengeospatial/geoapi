@@ -16,7 +16,6 @@ import org.opengis.referencing.FactoryException;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 import org.opengis.parameter.ParameterValueGroup;
 import org.opengis.annotation.UML;
-import org.opengis.annotation.Extension;
 
 import static org.opengis.annotation.Specification.*;
 
@@ -85,8 +84,11 @@ public interface CoordinateOperationFactory extends ObjectFactory {
      * @throws OperationNotFoundException if no operation path was found from {@code sourceCRS}
      *         to {@code targetCRS}.
      * @throws FactoryException if the operation creation failed for some other reason.
+     *
+     * @departure extension
+     *   This method has been added at user request, in order to specify the desired
+     *   transformation path when many are available.
      */
-    @Extension
     CoordinateOperation createOperation(CoordinateReferenceSystem sourceCRS,
                                         CoordinateReferenceSystem targetCRS,
                                         OperationMethod           method)
@@ -100,8 +102,11 @@ public interface CoordinateOperationFactory extends ObjectFactory {
      * @param  operations The sequence of operations.
      * @return The concatenated operation.
      * @throws FactoryException if the object creation failed.
+     *
+     * @departure extension
+     *   This method has been added because OGC 01-009 doesn't define a factory
+     *   method for creating such object.
      */
-    @Extension
     CoordinateOperation createConcatenatedOperation(Map<String, ?> properties,
                                                     CoordinateOperation[] operations)
             throws FactoryException;

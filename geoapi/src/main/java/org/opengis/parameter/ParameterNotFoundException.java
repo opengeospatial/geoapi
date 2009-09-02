@@ -10,12 +10,13 @@
  *************************************************************************************************/
 package org.opengis.parameter;
 
-import org.opengis.annotation.Extension;
-
 
 /**
  * Thrown when a required parameter was not found in a
  * {@linkplain ParameterDescriptorGroup parameter group}.
+ *
+ * @departure extension
+ *   This exception is not part of OGC specification.
  *
  * @author  Martin Desruisseaux (IRD)
  * @since   GeoAPI 1.0
@@ -23,7 +24,6 @@ import org.opengis.annotation.Extension;
  * @see ParameterDescriptorGroup#descriptor
  * @see ParameterValueGroup#parameter
  */
-@Extension
 public class ParameterNotFoundException extends IllegalArgumentException {
     /**
      * Serial number for interoperability with different versions.

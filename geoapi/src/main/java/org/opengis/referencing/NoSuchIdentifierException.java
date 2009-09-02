@@ -10,7 +10,6 @@
  *************************************************************************************************/
 package org.opengis.referencing;
 
-import org.opengis.annotation.Extension;
 import org.opengis.metadata.Identifier;
 
 
@@ -19,12 +18,14 @@ import org.opengis.metadata.Identifier;
  * as been requested with an unknow {@linkplain org.opengis.referencing.operation.OperationMethod
  * operation method} identifier.
  *
+ * @departure extension
+ *   This exception is not part of OGC specification.
+ *
  * @author  Martin Desruisseaux (IRD)
  * @since   GeoAPI 1.0
  *
  * @see org.opengis.referencing.operation.MathTransformFactory#createParameterizedTransform
  */
-@Extension
 public class NoSuchIdentifierException extends FactoryException {
     /**
      * Serial number for interoperability with different versions.

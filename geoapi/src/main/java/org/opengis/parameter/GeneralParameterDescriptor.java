@@ -12,7 +12,6 @@ package org.opengis.parameter;
 
 import org.opengis.referencing.IdentifiedObject;
 import org.opengis.annotation.UML;
-import org.opengis.annotation.Extension;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -21,16 +20,16 @@ import static org.opengis.annotation.Specification.*;
 /**
  * Abstract definition of a parameter or group of parameters used by an operation method.
  *
+ * @departure rename
+ *   Selected a name which contain the "<code>Descriptor</code>" word for consistency with other
+ *   libraries in Java (e.g. <code>ParameterListDescriptor</code> in Java Advanced Imaging).
+ *
  * @version <A HREF="http://portal.opengeospatial.org/files/?artifact_id=6716">Abstract specification 2.0</A>
  * @author  Martin Desruisseaux (IRD)
  * @author  Jody Garnett (Refractions Research)
  * @since   GeoAPI 2.0
  *
  * @see GeneralParameterValue
- *
- * @departure rename
- *   Selected a name which contain the "<code>Descriptor</code>" word for consistency with other
- *   libraries in Java (e.g. <code>ParameterListDescriptor</code> in Java Advanced Imaging).
  *
  * @navassoc 1 - - GeneralParameterValue
  */
@@ -43,8 +42,11 @@ public interface GeneralParameterDescriptor extends IdentifiedObject {
      * the created parameter value(s) will be {@code this} object.
      *
      * @return A new parameter initialized to its default value.
+     *
+     * @departure extension
+     *   This method is not part of ISO specification. It is provided in GeoAPI as a kind of
+     *   factory method.
      */
-    @Extension
     GeneralParameterValue createValue();
 
     /**

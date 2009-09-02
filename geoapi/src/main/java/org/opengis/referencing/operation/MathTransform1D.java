@@ -10,8 +10,6 @@
  *************************************************************************************************/
 package org.opengis.referencing.operation;
 
-import org.opengis.annotation.Extension;
-
 
 /**
  * Transforms one-dimensional coordinate points.
@@ -20,10 +18,15 @@ import org.opengis.annotation.Extension;
  * {@code MathTransform1D} extends {@link MathTransform} by adding a simple method
  * transforming a value without the overhead of creating data array.
  *
+ * @departure extension
+ *   This interface is not part of OGC specification. It has been added as a complement
+ *   of <code>MathTransform2D</code> and because the 1D case provides opportunities for
+ *   optimization through a <code>transform</code> method accepting a single <code>double</code>
+ *   primitive type.
+ *
  * @author  Martin Desruisseaux (IRD)
  * @since   GeoAPI 1.0
  */
-@Extension
 public interface MathTransform1D extends MathTransform {
     /**
      * Transforms the specified value.

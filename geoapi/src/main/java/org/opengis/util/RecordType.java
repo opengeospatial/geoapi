@@ -13,7 +13,6 @@ package org.opengis.util;
 import java.util.Map;
 import java.util.Set;
 import org.opengis.annotation.UML;
-import org.opengis.annotation.Extension;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -86,8 +85,11 @@ public interface RecordType {
      * members of this {@code RecordType}. There is no potential for conflict with subpackages.
      * <p>
      * This method can be think as the equivalent of the Java {@link Class#getFields()} method.
+     *
+     * @departure easeOfUse
+     *   This method provides no additional information compared to the ISO standard methods,
+     *   but is declared in GeoAPI as a convenient shortcut.
      */
-    @Extension
     Set<MemberName> getMembers();
 
     /**
@@ -117,7 +119,10 @@ public interface RecordType {
      * </ul>
      * <p>
      * This method can be think as the equivalent of the Java {@link Class#isInstance(Object)} method.
+     *
+     * @departure easeOfUse
+     *   This method provides no additional information compared to the ISO standard methods,
+     *   but is declared in GeoAPI as a convenient shortcut.
      */
-    @Extension
     boolean isInstance(Record record);
 }

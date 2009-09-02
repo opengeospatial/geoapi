@@ -13,7 +13,6 @@ package org.opengis.parameter;
 import java.util.List;
 import org.opengis.metadata.Identifier;
 import org.opengis.annotation.UML;
-import org.opengis.annotation.Extension;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -97,8 +96,11 @@ public interface ParameterValueGroup extends GeneralParameterValue {
      *              parameter to search for.
      * @return The parameter value for the given identifier code.
      * @throws ParameterNotFoundException if there is no parameter value for the given identifier code.
+     *
+     * @departure extension
+     *   This method is not part of ISO specification. It has been added in an attempt to make
+     *   this interface easier to use.
      */
-    @Extension
     ParameterValue<?> parameter(String name) throws ParameterNotFoundException;
 
     /**
@@ -112,8 +114,11 @@ public interface ParameterValueGroup extends GeneralParameterValue {
      * @return The set of all parameter group for the given identifier code.
      * @throws ParameterNotFoundException if no {@linkplain ParameterDescriptorGroup descriptor}
      *         was found for the given name.
+     *
+     * @departure extension
+     *   This method is not part of ISO specification. It has been added in an attempt to make
+     *   this interface easier to use.
      */
-    @Extension
     List<ParameterValueGroup> groups(String name) throws ParameterNotFoundException;
 
     /**
@@ -129,8 +134,11 @@ public interface ParameterValueGroup extends GeneralParameterValue {
      * @throws IllegalStateException if this parameter group already contains the
      *         {@linkplain ParameterDescriptorGroup#getMaximumOccurs maximum number of occurences}
      *         of subgroups of the given name.
+     *
+     * @departure extension
+     *   This method is not part of ISO specification. It has been added in an attempt to make
+     *   this interface easier to use.
      */
-    @Extension
     ParameterValueGroup addGroup(String name) throws ParameterNotFoundException, IllegalStateException;
 
     /**

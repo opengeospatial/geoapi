@@ -13,7 +13,6 @@ package org.opengis.util;
 import java.util.Map;
 import java.util.Set;  // For Javadoc
 import org.opengis.annotation.UML;
-import org.opengis.annotation.Extension;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -73,7 +72,7 @@ public interface Record {
     Object locate(MemberName name);
 
     /**
-     * Set the value for the attribute of the specified name. This is functionally equivalent
+     * Sets the value for the attribute of the specified name. This is functionally equivalent
      * to <code>{@linkplain #getAttributes()}.{@linkplain Map#put put}(name,value)</code>.
      * Remind that {@code name} keys are constrained to {@linkplain RecordType#getMembers
      * record type members} only.
@@ -81,7 +80,10 @@ public interface Record {
      * @param  name  The name of the attribute to modify.
      * @param  value The new value for the attribute.
      * @throws UnsupportedOperationException if this record is not modifiable.
+     *
+     * @departure easeOfUse
+     *   This method provides no additional information compared to the ISO standard methods,
+     *   but is declared in GeoAPI as a convenient shortcut.
      */
-    @Extension
     void set(MemberName name, Object value) throws UnsupportedOperationException;
 }

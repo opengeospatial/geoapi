@@ -10,8 +10,6 @@
  *************************************************************************************************/
 package org.opengis.referencing.operation;
 
-import org.opengis.annotation.Extension;
-
 
 /**
  * Base interface for for azimuthal (or planar) map projections.
@@ -19,12 +17,15 @@ import org.opengis.annotation.Extension;
  * <p>&nbsp;</p>
  * <p align="center"><img src="../doc-files/PlanarProjection.png"></p>
  *
+ * @departure extension
+ *   This interface is not part of ISO specification. It has been added in GeoAPI at user
+ *   request, in order to provide a way to known the kind of map projection.
+ *
  * @author  Martin Desruisseaux (IRD)
  * @since   GeoAPI 1.0
  *
  * @see org.opengis.referencing.crs.ProjectedCRS
  * @see <A HREF="http://mathworld.wolfram.com/AzimuthalProjection.html">Azimuthal projection on MathWorld</A>
  */
-@Extension
 public interface PlanarProjection extends Projection {
 }

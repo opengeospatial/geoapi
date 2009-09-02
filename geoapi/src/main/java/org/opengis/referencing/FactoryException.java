@@ -10,8 +10,6 @@
  *************************************************************************************************/
 package org.opengis.referencing;
 
-import org.opengis.annotation.Extension;
-
 
 /**
  * Thrown when a {@linkplain Factory factory} can't create an instance
@@ -20,18 +18,20 @@ import org.opengis.annotation.Extension;
  * {@linkplain org.opengis.referencing.cs.CoordinateSystem coordinate system}, a
  * {@linkplain org.opengis.referencing.ReferenceSystem reference system} or a
  * {@linkplain org.opengis.referencing.operation.CoordinateOperation coordinate operation}.
- *
+ * <p>
  * If the failure is caused by an illegal authority code, then the actual exception should
  * be {@link NoSuchAuthorityCodeException}. Otherwise, if the failure is caused by some
  * error in the underlying database (e.g. {@link java.io.IOException} or
  * {@link java.sql.SQLException}), then this cause should be specified.
+ *
+ * @departure extension
+ *   This exception is not part of OGC specification.
  *
  * @author  Martin Desruisseaux (IRD)
  * @since   GeoAPI 1.0
  *
  * @see org.opengis.referencing.operation.CoordinateOperationFactory
  */
-@Extension
 public class FactoryException extends Exception {
     /**
      * Serial number for interoperability with different versions.

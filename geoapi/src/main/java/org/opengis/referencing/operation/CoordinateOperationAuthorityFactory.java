@@ -16,7 +16,6 @@ import org.opengis.referencing.AuthorityFactory;
 import org.opengis.referencing.FactoryException;
 import org.opengis.referencing.NoSuchAuthorityCodeException;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
-import org.opengis.annotation.Extension;
 import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Specification.*;
@@ -44,9 +43,12 @@ public interface CoordinateOperationAuthorityFactory extends AuthorityFactory {
      * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
      * @throws FactoryException if the object creation failed for some other reason.
      *
+     * @departure extension
+     *   This method has been added because OGC 01-009 doesn't define a factory
+     *   method for creating such object.
+     *
      * @since GeoAPI 2.3
      */
-    @Extension
     OperationMethod createOperationMethod(String code)
             throws NoSuchAuthorityCodeException, FactoryException;
 
