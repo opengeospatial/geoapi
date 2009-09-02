@@ -53,6 +53,5 @@ public enum Obligation {
      *   constraint in the method signature, GeoAPI defines a <code>FORBIDDEN</code> obligation
      *   (not in original ISO specifications) to be used with the <code>@UML</code> annotation.
      */
-    @Extension
     FORBIDDEN
 }

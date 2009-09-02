@@ -15,7 +15,6 @@ import java.util.ArrayList;
 
 import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
-import org.opengis.annotation.Extension;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -410,8 +409,10 @@ public final class AxisDirection extends CodeList<AxisDirection> {
      * If this axis direction has no opposite, then this method returns {@code null}.
      *
      * @return The opposite direction, or {@code null} if none or unknown.
+     *
+     * @departure extension
+     *   This is a GeoAPI extension for an information which was believed often requested.
      */
-    @Extension
     public AxisDirection opposite() {
         return opposite;
     }
@@ -453,8 +454,10 @@ public final class AxisDirection extends CodeList<AxisDirection> {
      * </table>
      *
      * @return The direction from the above table.
+     *
+     * @departure extension
+     *   This is a GeoAPI extension for an information which was believed often requested.
      */
-    @Extension
     public AxisDirection absolute() {
         final AxisDirection opposite = this.opposite;
         if (opposite != null) {

@@ -10,8 +10,6 @@
  *************************************************************************************************/
 package org.opengis.parameter;
 
-import org.opengis.annotation.Extension;
-
 
 /**
  * Thrown when a parameter can't be cast to the requested type. For example this exception
@@ -22,13 +20,15 @@ import org.opengis.annotation.Extension;
  *        <code>IllegalArgumentException</code> because it is not caused by a bad argument.
  *        It is rather a consequence of wrong zero-argument method.}
  *
+ * @departure extension
+ *   This exception is not part of OGC specification.
+ *
  * @author  Martin Desruisseaux (IRD)
  * @since   GeoAPI 1.0
  *
  * @see ParameterValue#intValue
  * @see ParameterValue#doubleValue
  */
-@Extension
 public class InvalidParameterTypeException extends IllegalStateException {
     /**
      * Serial number for interoperability with different versions.

@@ -10,7 +10,6 @@
  *************************************************************************************************/
 package org.opengis.referencing.operation;
 
-import org.opengis.annotation.Extension;
 import org.opengis.referencing.FactoryException;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 
@@ -21,10 +20,12 @@ import org.opengis.referencing.crs.CoordinateReferenceSystem;
  * {@linkplain CoordinateReferenceSystem coordinate reference systems},
  * or because the requested operation is not available in the environment.
  *
+ * @departure extension
+ *   This exception is not part of OGC specification.
+ *
  * @author  Martin Desruisseaux (IRD)
  * @since   GeoAPI 1.0
  */
-@Extension
 public class OperationNotFoundException extends FactoryException {
     /**
      * Serial number for interoperability with different versions.

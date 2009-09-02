@@ -19,7 +19,6 @@ import org.opengis.referencing.datum.Ellipsoid;
 import org.opengis.referencing.crs.*; // Contains some import for javadoc.
 import org.opengis.parameter.*;       // Contains some import for javadoc.
 import org.opengis.annotation.UML;
-import org.opengis.annotation.Extension;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -77,10 +76,13 @@ public interface MathTransformFactory extends Factory {
      *         or <code>{@linkplain Projection}.class</code> for fetching only map projection methods.
      * @return All {@linkplain MathTransform math transform} methods available in this factory.
      *
+     * @departure extension
+     *   This method is not part of OGC specification. It has been added as a way to publish
+     *   the capabilities of a factory.
+     *
      * @see #getDefaultParameters
      * @see #createParameterizedTransform
      */
-    @Extension
     Set<OperationMethod> getAvailableMethods(Class<? extends SingleOperation> type);
 
     /**
@@ -97,9 +99,12 @@ public interface MathTransformFactory extends Factory {
      *
      * @return The last method used, or {@code null} if unknown of unsupported.
      *
+     * @departure extension
+     *   This method is not part of OGC specification. It has been added because this information
+     *   appears to be needed in practice.
+     *
      * @since GeoAPI 2.1
      */
-    @Extension
     OperationMethod getLastMethodUsed();
 
     /**
@@ -119,10 +124,13 @@ public interface MathTransformFactory extends Factory {
      * @return The default parameter values.
      * @throws NoSuchIdentifierException if there is no transform registered for the specified method.
      *
+     * @departure extension
+     *   This method is part of the GeoAPI mechanism for defining the math transform parameters
+     *   or deriving other transforms.
+     *
      * @see #getAvailableMethods
      * @see #createParameterizedTransform
      */
-    @Extension
     ParameterValueGroup getDefaultParameters(String method) throws NoSuchIdentifierException;
 
     /**
@@ -144,9 +152,12 @@ public interface MathTransformFactory extends Factory {
      * @throws FactoryException if the object creation failed. This exception is thrown
      *         if some required parameter has not been supplied, or has illegal value.
      *
+     * @departure extension
+     *   This method is part of the GeoAPI mechanism for defining the math transform parameters
+     *   or deriving other transforms.
+     *
      * @since GeoAPI 2.1
      */
-    @Extension
     MathTransform createBaseToDerived(CoordinateReferenceSystem baseCRS,
                                       ParameterValueGroup       parameters,
                                       CoordinateSystem          derivedCS)

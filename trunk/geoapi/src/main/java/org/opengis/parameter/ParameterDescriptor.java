@@ -14,7 +14,6 @@ import java.util.Set;
 import javax.measure.unit.Unit;
 import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
-import org.opengis.annotation.Extension;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -26,6 +25,10 @@ import static org.opengis.annotation.Specification.*;
  *
  * @param <T> The type of parameter values.
  *
+ * @departure rename
+ *   Selected a name which contain the "<code>Descriptor</code>" word for consistency with other
+ *   libraries in Java (e.g. <code>ParameterListDescriptor</code> in Java Advanced Imaging).
+ *
  * @version <A HREF="http://portal.opengeospatial.org/files/?artifact_id=6716">Abstract specification 2.0</A>
  * @author  Martin Desruisseaux (IRD)
  * @author  Jody Garnett (Refractions Research)
@@ -33,10 +36,6 @@ import static org.opengis.annotation.Specification.*;
  *
  * @see ParameterValue
  * @see ParameterDescriptorGroup
- *
- * @departure rename
- *   Selected a name which contain the "<code>Descriptor</code>" word for consistency with other
- *   libraries in Java (e.g. <code>ParameterListDescriptor</code> in Java Advanced Imaging).
  */
 @UML(identifier="CC_OperationParameter", specification=ISO_19111)
 public interface ParameterDescriptor<T> extends GeneralParameterDescriptor {
@@ -44,8 +43,11 @@ public interface ParameterDescriptor<T> extends GeneralParameterDescriptor {
      * Creates a new instance of {@linkplain ParameterValue parameter value} initialized with the
      * {@linkplain #getDefaultValue default value}. The {@linkplain ParameterValue#getDescriptor
      * parameter value descriptor} for the created parameter value will be {@code this} object.
+     *
+     * @departure extension
+     *   This method is not part of ISO specification. It is provided in GeoAPI as a kind of
+     *   factory method.
      */
-    @Extension
     ParameterValue<T> createValue();
 
     /**
@@ -63,8 +65,10 @@ public interface ParameterDescriptor<T> extends GeneralParameterDescriptor {
      *
      * @return A finite set of valid values (usually from a {@linkplain CodeList code list}),
      *         or {@code null} if it doesn't apply.
+     *
+     * @departure extension
+     *   This method is not part of ISO specification. It is provided as a complement of information.
      */
-    @Extension
     Set<T> getValidValues();
 
     /**
@@ -116,7 +120,9 @@ public interface ParameterDescriptor<T> extends GeneralParameterDescriptor {
      * of {@link Double}).
      *
      * @return The unit for numeric value, or {@code null} if it doesn't apply to the value type.
+     *
+     * @departure extension
+     *   This method is not part of ISO specification. It is provided as a complement of information.
      */
-    @Extension
     Unit<?> getUnit();
 }

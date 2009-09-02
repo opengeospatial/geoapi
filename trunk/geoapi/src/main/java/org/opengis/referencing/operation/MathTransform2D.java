@@ -12,7 +12,6 @@ package org.opengis.referencing.operation;
 
 import java.awt.Shape;
 import java.awt.geom.Point2D;
-import org.opengis.annotation.Extension;
 
 
 /**
@@ -24,10 +23,14 @@ import org.opengis.annotation.Extension;
  * If the transformation is affine, then {@code MathTransform} shall be an
  * immutable instance of {@link java.awt.geom.AffineTransform}.
  *
+ * @departure integration
+ *   This interface is not part of OGC specification. It has been added in GeoAPI for
+ *   close integration with the <cite>Java2D</cite> library. The API defined in this
+ *   interface matches the <code>java.awt.geom.AffineTransform</code> API.
+ *
  * @author  Martin Desruisseaux (IRD)
  * @since   GeoAPI 1.0
  */
-@Extension
 public interface MathTransform2D extends MathTransform {
     /**
      * Transforms the specified {@code ptSrc} and stores the result in {@code ptDst}.
@@ -56,7 +59,6 @@ public interface MathTransform2D extends MathTransform {
      *         {@code shape} unmodified if this transform is identity.
      * @throws TransformException if a transform failed.
      */
-    @Extension
     Shape createTransformedShape(final Shape shape) throws TransformException;
 
     /**

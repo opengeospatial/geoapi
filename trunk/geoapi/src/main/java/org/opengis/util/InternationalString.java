@@ -11,7 +11,6 @@
 package org.opengis.util;
 
 import java.util.Locale;
-import org.opengis.annotation.Extension;
 
 
 /**
@@ -35,7 +34,6 @@ import org.opengis.annotation.Extension;
  * @see javax.xml.registry.infomodel.InternationalString
  * @see NameFactory#createInternationalString
  */
-@Extension
 public interface InternationalString extends CharSequence, Comparable<InternationalString> {
     /**
      * Returns this string in the given locale. If no string is available in the given locale,

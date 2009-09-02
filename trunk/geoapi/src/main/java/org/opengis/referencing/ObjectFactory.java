@@ -14,11 +14,11 @@ import java.util.Map;
 import java.util.Locale;
 import java.util.Properties;
 import java.util.Collections;
+
 import org.opengis.metadata.Identifier;
 import org.opengis.metadata.citation.Citation;
 import org.opengis.util.InternationalString;
 import org.opengis.util.GenericName;
-import org.opengis.annotation.Extension;
 
 
 /**
@@ -92,10 +92,14 @@ import org.opengis.annotation.Extension;
  * {@code "remarks_fr"} property stands for remarks in {@linkplain Locale#FRENCH French} and the
  * {@code "remarks_fr_CA"} property stands for remarks in {@linkplain Locale#CANADA_FRENCH French Canadian}.
  *
+ * @departure harmonization
+ *   This interface is not part of OGC specification. It is added for uniformisation,
+ *   in order to provide a common base class for all referencing object factories.
+ *   The definition of key values in the javadoc are also GeoAPI-specific.
+ *
  * @version <A HREF="http://www.opengis.org/docs/01-009.pdf">Implementation specification 1.0</A>
  * @author  Martin Desruisseaux (IRD)
  * @since   GeoAPI 2.0
  */
-@Extension
 public interface ObjectFactory extends Factory {
 }

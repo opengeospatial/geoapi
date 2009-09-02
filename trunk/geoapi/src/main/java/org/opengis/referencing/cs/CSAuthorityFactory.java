@@ -15,7 +15,6 @@ import org.opengis.referencing.AuthorityFactory;
 import org.opengis.referencing.FactoryException;
 import org.opengis.referencing.NoSuchAuthorityCodeException;
 import org.opengis.annotation.UML;
-import org.opengis.annotation.Extension;
 
 import static org.opengis.annotation.Specification.*;
 
@@ -31,10 +30,14 @@ import static org.opengis.annotation.Specification.*;
  * @author  Martin Desruisseaux (IRD)
  * @since   GeoAPI 1.0
  *
+ * @departure historic
+ *   Added for consistency with CRS and datum factories. This CS factory was not defined in the
+ *   OGC specification because OGC 01-009 was created before ISO 19111 and had no equivalent of
+ *   ISO <cite>Coordinate System</cite>.
+ *
  * @see org.opengis.referencing.crs.CRSAuthorityFactory
  * @see org.opengis.referencing.datum.DatumAuthorityFactory
  */
-@Extension
 public interface CSAuthorityFactory extends AuthorityFactory {
     /**
      * Returns an arbitrary {@linkplain CoordinateSystem coordinate system} from a code.

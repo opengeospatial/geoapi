@@ -14,7 +14,6 @@ import java.util.Map;
 import javax.measure.unit.Unit;
 import org.opengis.referencing.ObjectFactory;
 import org.opengis.referencing.FactoryException;
-import org.opengis.annotation.Extension;
 
 
 /**
@@ -30,10 +29,14 @@ import org.opengis.annotation.Extension;
  * @author  Martin Desruisseaux (IRD)
  * @since   GeoAPI 1.0
  *
+ * @departure historic
+ *   Added for consistency with CRS and datum factories. This CS factory was not defined in the
+ *   OGC specification because OGC 01-009 was created before ISO 19111 and had no equivalent of
+ *   ISO <cite>Coordinate System</cite>.
+ *
  * @see org.opengis.referencing.crs.CRSFactory
  * @see org.opengis.referencing.datum.DatumFactory
  */
-@Extension
 public interface CSFactory extends ObjectFactory {
     /**
      * Creates a coordinate system axis from an abbreviation and a unit.

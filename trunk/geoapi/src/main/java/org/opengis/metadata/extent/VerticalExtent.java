@@ -50,6 +50,8 @@ public interface VerticalExtent {
      * which the maximum and minimum elevation values are measured. The CRS
      * identification includes unit of measure.
      *
+     * @return The vertical CRS.
+     *
      * @departure integration
      *   ISO 19115 specifies a generic <code>CoordinateReferenceSystem</code> instead than the more
      *   restrictive <code>VerticalCRS</code>. GeoAPI uses the more specific type for type-safety and
@@ -59,8 +61,6 @@ public interface VerticalExtent {
      *   need to extend the above code list with their own <code>ELLIPSOIDAL</code> constant.
      *
      * @issue http://jira.codehaus.org/browse/GEO-134
-     *
-     * @return The vertical CRS.
      *
      * @since GeoAPI 2.1
      */

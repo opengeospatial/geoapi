@@ -15,7 +15,6 @@ import java.util.Collection;
 import org.opengis.util.GenericName;
 import org.opengis.util.InternationalString;
 import org.opengis.annotation.UML;
-import org.opengis.annotation.Extension;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -122,7 +121,11 @@ public interface IdentifiedObject {
      *
      * @return The Well Know Text for this object.
      * @throws UnsupportedOperationException If this object can't be formatted as WKT.
+     *
+     * @departure extension
+     *   This method is not part of OGC specification. It has been added in order to provide the
+     *   converse of the <code>CRSFactory.createFromWKT(String)</code> method, which is defined
+     *   in OGC 01-009.
      */
-    @Extension
     String toWKT() throws UnsupportedOperationException;
 }

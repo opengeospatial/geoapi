@@ -13,7 +13,6 @@ package org.opengis.util;
 import java.util.Map;
 import java.util.Collection;
 import org.opengis.annotation.UML;
-import org.opengis.annotation.Extension;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;

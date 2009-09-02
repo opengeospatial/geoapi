@@ -10,19 +10,19 @@
  *************************************************************************************************/
 package org.opengis.referencing.operation;
 
-import org.opengis.annotation.Extension;
-
 
 /**
  * Thrown when {@link MathTransform#inverse} is
  * invoked but the transform can't be inverted.
+ *
+ * @departure extension
+ *   This exception is not part of OGC specification.
  *
  * @author  Martin Desruisseaux (IRD)
  * @since   GeoAPI 1.0
  *
  * @see org.opengis.referencing.operation.CoordinateOperationFactory
  */
-@Extension
 public class NoninvertibleTransformException extends TransformException {
     /**
      * Serial number for interoperability with different versions.

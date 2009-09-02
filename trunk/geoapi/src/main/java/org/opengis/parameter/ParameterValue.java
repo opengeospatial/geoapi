@@ -160,14 +160,14 @@ public interface ParameterValue<T> extends GeneralParameterValue {
      * @throws InvalidParameterTypeException if the value is not an array of {@code double}s.
      * @unitof Measure
      *
-     * @see #getUnit
-     * @see #setValue(Object)
-     * @see #doubleValue()
-     *
      * @departure rename
      *   Renamed the attribute from "<code>valueList</code>" to "<code>doubleValueList</code>" for
      *   consistency with <code>doubleValue()</code>. Also because, like <code>doubleValue()</code>,
      *   this method returns a <code>double</code> value rather than a <code>Measure</code> object.
+     *
+     * @see #getUnit
+     * @see #setValue(Object)
+     * @see #doubleValue()
      */
     @UML(identifier="valueList", obligation=CONDITIONAL, specification=ISO_19111)
     double[] doubleValueList() throws InvalidParameterTypeException;
@@ -179,12 +179,12 @@ public interface ParameterValue<T> extends GeneralParameterValue {
      * @return The sequence of values represented by this parameter.
      * @throws InvalidParameterTypeException if the value is not an array of {@code int}s.
      *
-     * @see #setValue(Object)
-     * @see #intValue
-     *
      * @departure rename
      *   Renamed the attribute from "<code>integerValueList</code>" to "<code>intValueList</code>"
      *   for consistency with <code>intValue()</code>.
+     *
+     * @see #setValue(Object)
+     * @see #intValue
      */
     @UML(identifier="integerValueList", obligation=CONDITIONAL, specification=ISO_19111)
     int[] intValueList() throws InvalidParameterTypeException;

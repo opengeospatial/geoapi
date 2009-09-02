@@ -10,12 +10,13 @@
  *************************************************************************************************/
 package org.opengis.referencing;
 
-import org.opengis.annotation.Extension;
-
 
 /**
  * Thrown when an {@linkplain AuthorityFactory authority factory} can't find
  * the requested authority code.
+ *
+ * @departure extension
+ *   This exception is not part of OGC specification.
  *
  * @author  Martin Desruisseaux (IRD)
  * @since   GeoAPI 1.0
@@ -23,7 +24,6 @@ import org.opengis.annotation.Extension;
  * @see org.opengis.referencing.datum.DatumAuthorityFactory
  * @see org.opengis.referencing.crs.CRSAuthorityFactory
  */
-@Extension
 public class NoSuchAuthorityCodeException extends FactoryException {
     /**
      * Serial number for interoperability with different versions.

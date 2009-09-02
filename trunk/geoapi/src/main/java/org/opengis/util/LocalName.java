@@ -13,7 +13,6 @@ package org.opengis.util;
 import java.util.List;
 import java.util.Collections;
 import org.opengis.annotation.UML;
-import org.opengis.annotation.Extension;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -60,7 +59,6 @@ public interface LocalName extends GenericName {
      * @since GeoAPI 2.1
      */
 /// @Override
-    @Extension
     LocalName tip();
 
     /**

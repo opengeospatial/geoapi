@@ -10,7 +10,6 @@
  *************************************************************************************************/
 package org.opengis.referencing.operation;
 
-import org.opengis.annotation.Extension;
 import org.opengis.geometry.DirectPosition;  // For javadoc
 
 
@@ -24,10 +23,12 @@ import org.opengis.geometry.DirectPosition;  // For javadoc
  * It is also thrown when {@link CoordinateOperationFactory} fails to find a path between two
  * {@linkplain org.opengis.referencing.crs.CoordinateReferenceSystem coordinate reference systems}.
  *
+ * @departure extension
+ *   This exception is not part of OGC specification.
+ *
  * @author  Martin Desruisseaux (IRD)
  * @since   GeoAPI 1.0
  */
-@Extension
 public class TransformException extends Exception {
     /**
      * Serial number for interoperability with different versions.

@@ -11,7 +11,6 @@
 package org.opengis.referencing;
 
 import org.opengis.metadata.citation.Citation;
-import org.opengis.annotation.Extension;
 
 
 /**
@@ -26,10 +25,13 @@ import org.opengis.annotation.Extension;
  *       easier to use.</LI>
  * </UL>
  *
+ * @departure harmonization
+ *   This interface is not part of OGC specification. It is added for uniformisation,
+ *   in order to provide a common base class for all factories.
+ *
  * @author  Martin Desruisseaux (IRD)
  * @since   GeoAPI 1.0
  */
-@Extension
 public interface Factory {
     /**
      * Returns the vendor responsible for creating this factory implementation. Many implementations
@@ -38,6 +40,5 @@ public interface Factory {
      *
      * @return The vendor for this factory implementation.
      */
-    @Extension
     Citation getVendor();
 }

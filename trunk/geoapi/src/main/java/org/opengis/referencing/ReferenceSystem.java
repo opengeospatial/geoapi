@@ -62,13 +62,13 @@ public interface ReferenceSystem extends IdentifiedObject {
      *
      * @return The reference system valid domain, or {@code null} if not available.
      *
-     * @since GeoAPI 2.1
-     *
      * @departure historic
      *   This method is conform to the specification published in 2003. Later revisions changed
      *   the multiplicity, so the return type should now be a collection. The singleton has been
      *   preserved in GeoAPI for historical reasons, and also because the <code>Extent</code>
      *   attributes already allow collections.
+     *
+     * @since GeoAPI 2.1
      */
     @UML(identifier="domainOfValidity", obligation=OPTIONAL, specification=ISO_19111)
     Extent getDomainOfValidity();

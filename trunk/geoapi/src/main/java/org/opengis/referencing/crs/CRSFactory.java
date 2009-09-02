@@ -27,10 +27,10 @@ import static org.opengis.annotation.Specification.*;
  * {@linkplain CoordinateReferenceSystem coordinate reference systems} that cannot be
  * created by a {@link CRSAuthorityFactory}. This factory is very flexible, whereas the
  * authority factory is easier to use.
- *
+ * <p>
  * So {@link CRSAuthorityFactory} can be used to make "standard" coordinate reference systems,
  * and {@code CRSFactory} can be used to make "special" coordinate reference systems.
- *
+ * <p>
  * For example, the EPSG authority has codes for USA state plane coordinate systems
  * using the NAD83 datum, but these coordinate systems always use meters.  EPSG does
  * not have codes for NAD83 state plane coordinate systems that use feet units.  This

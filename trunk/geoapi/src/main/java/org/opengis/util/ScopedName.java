@@ -12,7 +12,6 @@ package org.opengis.util;
 
 import java.util.List;
 import org.opengis.annotation.UML;
-import org.opengis.annotation.Extension;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -121,9 +120,12 @@ public interface ScopedName extends GenericName {
      * @return All elements except the last one in the in the list of
      *         {@linkplain #getParsedNames parsed names}.
      *
+     * @departure easeOfUse
+     *   This method is not part of ISO specification. It has been added in GeoAPI as a
+     *   complement of the ISO <code>tail()</code> method.
+     *
      * @since GeoAPI 2.1
      */
-    @Extension
     GenericName path();
 
     /**
@@ -137,7 +139,6 @@ public interface ScopedName extends GenericName {
      * @since GeoAPI 2.1
      */
 /// @Override
-    @Extension
     LocalName tip();
 
     /**
