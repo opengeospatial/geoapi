@@ -39,32 +39,43 @@ public interface Record {
      * in the returned record type. In other words, the following relationship must holds:
      * <p>
      * <ul>
-     *    <li><code>getRecordType().{@linkplain RecordType#getAttributeTypes
-     *        getAttributeTypes()}.{@linkplain Map#keySet keySet()}.{@linkplain
+     *    <li><code>getRecordType().{@linkplain RecordType#getMembers() getMemberTypes()}.{@linkplain
      *        Set#containsAll containsAll}({@linkplain #getAttributes()}.{@linkplain
      *        Map#keySet keySet()})</code></li>
      * </ul>
      * <p>
      * This method can be think as the equivalent of the Java {@link Object#getClass()} method.
+     *
+     * @return The type definition of this record, or {@code null}.
      */
     @UML(identifier="recordType", obligation=OPTIONAL, specification=ISO_19103)
     RecordType getRecordType();
 
     /**
      * Returns the dictionary of all (<var>name</var>, <var>value</var>) pairs in this record.
-     * The returned map shall not allows key addition. It may allows the replacement of existing
-     * keys only.
+     * The returned map shall not allows key addition. It may allows the replacement of values
+     * for existing keys only.
      *
-     * @see RecordType#getAttributeTypes
+     * @return The dictionary of all (<var>name</var>, <var>value</var>) pairs in this record.
+     *
+     * @see RecordType#getMemberTypes
+     *
+     * @departure generalization
+     *   Figure 15 in ISO 19103:2005 specifies a cardinality of 1. This seems contradictory
+     *   with <code>locate(name)</code> and <code>RecordType.getMemberTypes()</code>.
      */
-    @UML(identifier="attributes", obligation=MANDATORY, specification=ISO_19103)
+    @UML(identifier="memberValue", obligation=MANDATORY, specification=ISO_19103)
     Map<MemberName, Object> getAttributes();
 
     /**
      * Returns the value for an attribute of the specified name. This is functionnaly equivalent
      * to <code>{@linkplain #getAttributes()}.{@linkplain Map#get get}(name)</code>.
      * The type of the returned object is given by
-     * <code>{@linkplain #getRecordType()}.{@linkplain RecordType#locate locate}(name)</code>.
+     * <code>{@linkplain #getRecordType()}.{@linkplain RecordType#getMemberTypes()
+     * getMemberTypes()}.get(name)</code>.
+     *
+     * @param name The name of the attribute to lookup.
+     * @return The value of the attribute for the given name.
      *
      * @see RecordType#locate
      */

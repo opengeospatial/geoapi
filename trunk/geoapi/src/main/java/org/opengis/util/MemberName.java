@@ -31,8 +31,7 @@ public interface MemberName extends LocalName {
     /**
      * Returns the type of the data associated with the record member.
      *
-     * @todo Check in the specification if this association is really navigable that way.
-     *       This association seems redundant with {@link RecordType#locate}.
+     * @return The type of the data associated with the record member.
      */
     @UML(identifier="attributeType", obligation=MANDATORY, specification=ISO_19103)
     TypeName getAttributeType();

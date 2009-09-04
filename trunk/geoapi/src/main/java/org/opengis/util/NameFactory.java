@@ -79,6 +79,21 @@ public interface NameFactory {
     NameSpace createNameSpace(GenericName name, Map<String,?> properties);
 
     /**
+     * Creates a type name from the given character sequence. The character sequence shall
+     * complies to the same restriction than {@link #createLocalName createLocalName}.
+     *
+     * @param scope
+     *          The {@linkplain GenericName#scope scope} of the type name to be created,
+     *          or {@code null} for a global namespace.
+     * @param name
+     *          The type name as a string or an international string.
+     * @return The type name for the given character sequence.
+     *
+     * @since GeoAPI 2.3
+     */
+    TypeName createTypeName(NameSpace scope, CharSequence name);
+
+    /**
      * Creates a local name from the given character sequence. The character sequence can be either
      * a {@link String} or an {@link InternationalString} instance. In the later case, implementations
      * can use an arbitrary {@linkplain Locale locale} (typically {@link Locale#ENGLISH ENGLISH},
