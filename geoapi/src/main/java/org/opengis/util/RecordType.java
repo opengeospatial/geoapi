@@ -24,11 +24,8 @@ import static org.opengis.annotation.Specification.*;
  * add members.  This approach ensures that once a {@code RecordType} is constructed, it is immutable.
  * <p>
  * A {@code RecordType} is {@linkplain #getTypeName identified} by a {@link TypeName}. It contains
- * an arbitrary amount of {@linkplain #getAttributeTypes attribute types} which are also identified
- * by {@link TypeName}. A {@code RecordType} may therefore contain another {@code RecordType} as a
- * member.  This is a limited association because a named member may be defined to be a single
- * instance of some externally defined {@code RecordType}.  This does not permit aggregation of any
- * kind.
+ * an arbitrary amount of {@linkplain #getMemberTypes member types}. A {@code RecordType} may
+ * therefore contain another {@code RecordType} as a member.
  * <p>
  * This class can be think as the equivalent of the Java {@link Class} class.
  *
@@ -39,12 +36,11 @@ import static org.opengis.annotation.Specification.*;
  * @see Record
  * @see RecordSchema
  *
- * @navassoc 1 - - TypeName
  * @navassoc 1 - - RecordSchema
  * @navassoc - - - MemberName
  */
 @UML(identifier="RecordType", specification=ISO_19103)
-public interface RecordType {
+public interface RecordType extends Type {
     /**
      * Returns the name that identifies this record type.
      * If this {@code RecordType} is contained in a {@linkplain RecordSchema record schema},
@@ -57,34 +53,67 @@ public interface RecordType {
      * </code></blockquote>
      *
      * This method can be think as the equivalent of the Java {@link Class#getName()} method.
+     *
+     * @return The name that identifies this record type.
      */
+    ///@Override
     @UML(identifier="typeName", obligation=MANDATORY, specification=ISO_19103)
     TypeName getTypeName();
 
     /**
      * Returns the schema that contains this record type.
+     *
+     * @return The schema that contains this record type.
+     *
+     * @departure extension
+     *   This is the <code>TypeList</code> association in figure 15 of ISO 19103:2005,
+     *   but navigable in the opposite way. The navigation in the ISO way is represented
+     *   by the <code>RecordSchema.getDescription().values()</code>.
      */
-    @UML(identifier="container", obligation=OPTIONAL, specification=ISO_19103)
     RecordSchema getContainer();
 
     /**
      * Returns the dictionary of all (<var>name</var>, <var>type</var>) pairs in this record type.
      * The dictionary shall be {@linkplain java.util.Collections#unmodifiableMap unmodifiable}.
      *
+     * @return The dictionary of all (<var>name</var>, <var>type</var>) pairs in this record type.
+     *
      * @see Record#getAttributes
+     *
+     * @deprecated Figure 15 in ISO 19103:2005 does not define this association, but defines
+     *             instead a slightly different <code>memberTypes</code> association.
      */
-    @UML(identifier="attributeTypes", obligation=MANDATORY, specification=ISO_19103)
+    @Deprecated
     Map<MemberName, TypeName> getAttributeTypes();
 
     /**
-     * Returns the set of attribute names defined in this {@code RecordType}'s dictionary.
-     * If there are no attributes, this method returns the empty set. This method is functionally
-     * equivalent to <code>{@linkplain #getAttributeTypes()}.{@linkplain Map#keySet() keySet()}</code>.
+     * Returns the dictionary of all (<var>name</var>, <var>type</var>) pairs in this record type.
+     * If there are no attributes, this method returns the empty map.
+     * The dictionary shall be {@linkplain java.util.Collections#unmodifiableMap unmodifiable}.
      * <p>
      * The {@linkplain NameSpace name space} associated with a {@code RecordType} contains only
      * members of this {@code RecordType}. There is no potential for conflict with subpackages.
      * <p>
      * This method can be think as the equivalent of the Java {@link Class#getFields()} method.
+     *
+     * @return The dictionary of all (<var>name</var>, <var>type</var>) pairs in this record type.
+     *
+     * @see Record#getAttributes
+     */
+    @UML(identifier="memberTypes", obligation=MANDATORY, specification=ISO_19103)
+    Map<MemberName, Type> getMemberTypes();
+
+    /**
+     * Returns the set of member names defined in this {@code RecordType}'s dictionary.
+     * If there are no mambers, this method returns the empty set. This method is functionally
+     * equivalent to <code>{@linkplain #getMemberTypes()}.{@linkplain Map#keySet() keySet()}</code>.
+     * <p>
+     * The {@linkplain NameSpace name space} associated with a {@code RecordType} contains only
+     * members of this {@code RecordType}. There is no potential for conflict with subpackages.
+     * <p>
+     * This method can be think as the equivalent of the Java {@link Class#getFields()} method.
+     *
+     * @return The set of attribute names defined in this {@code RecordType}'s dictionary.
      *
      * @departure easeOfUse
      *   This method provides no additional information compared to the ISO standard methods,
@@ -95,14 +124,15 @@ public interface RecordType {
     /**
      * Looks up the provided attribute name and returns the associated type name. If the attribute name is
      * not defined in this record type, then this method returns {@code null}. This method is functionnaly
-     * equivalent to <code>{@linkplain #getAttributeTypes()}.{@linkplain Map#get get}(name)</code>.
+     * equivalent to <code>{@linkplain #getMemberTypes()}.{@linkplain Map#get get}(name).{@linkplain
+     * Type#getTypeName() getTypeName()}</code>.
      * <p>
      * This method can be think as the equivalent of the Java {@link Class#getField(String)} method.
      *
-     * @see Record#locate
+     * @param name The name of the attribute we are looking for.
+     * @return The type of of attribute of the given name, or {@code null}.
      *
-     * @todo Does it make sense given that {@link MemberName#getAttributeType} already provides
-     *       this information?
+     * @see Record#locate
      */
     @UML(identifier="locate", obligation=MANDATORY, specification=ISO_19103)
     TypeName locate(MemberName name);
@@ -119,6 +149,9 @@ public interface RecordType {
      * </ul>
      * <p>
      * This method can be think as the equivalent of the Java {@link Class#isInstance(Object)} method.
+     *
+     * @param record The record to test for compatibility.
+     * @return {@code true} if the given record is compatible with this record type.
      *
      * @departure easeOfUse
      *   This method provides no additional information compared to the ISO standard methods,

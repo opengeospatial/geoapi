@@ -36,6 +36,8 @@ import static org.opengis.annotation.Specification.*;
  * @since GeoAPI 2.1
  *
  * @navassoc 1 - - LocalName
+ * @navassoc - - - TypeName
+ * @navassoc - - - RecordType
  */
 @UML(identifier="RecordSchema", specification=ISO_19103)
 public interface RecordSchema {
@@ -43,6 +45,8 @@ public interface RecordSchema {
      * Returns the schema name. The {@linkplain LocalName#scope scope} of the schema name is
      * associated with a {@linkplain NameSpace name space} which fixes this schema to a specific
      * location in the type hierarchy.
+     *
+     * @return The schema name.
      */
     @UML(identifier="schemaName", obligation=MANDATORY, specification=ISO_19103)
     LocalName getSchemaName();
@@ -50,6 +54,8 @@ public interface RecordSchema {
     /**
      * Returns the dictionary of all (<var>name</var>, <var>record type</var>) pairs
      * in this schema.
+     *
+     * @return All (<var>name</var>, <var>record type</var>) pairs in this schema.
      */
     @UML(identifier="description", obligation=MANDATORY, specification=ISO_19103)
     Map<TypeName, RecordType> getDescription();
@@ -57,7 +63,13 @@ public interface RecordSchema {
     /**
      * Returns all record types declared in this schema. This is functionnaly equivalent to
      * <code>{@linkplain #getDescription()}.{@linkplain Map#values values()}</code>.
+     *
+     * @return {@code getDescription().values()}
+     *
+     * @deprecated This association is redundant with {@code getDescriptions()} and
+     *             does not appear in figure 15 "Record types" of ISO 19103:2005.
      */
+    @Deprecated
     @UML(identifier="element", obligation=OPTIONAL, specification=ISO_19103)
     Collection<RecordType> getElements();
 
@@ -65,6 +77,9 @@ public interface RecordSchema {
      * Looks up the provided type name and returns the associated record type. If the type name is not
      * defined within this schema, then this method returns {@code null}. This is functionnaly equivalent
      * to <code>{@linkplain #getDescription()}.{@linkplain Map#get get}(name)</code>.
+     *
+     * @param  name The name of type type to lookup.
+     * @return The type for the given name, or {@code null} if none.
      */
     @UML(identifier="locate", obligation=MANDATORY, specification=ISO_19103)
     RecordType locate(TypeName name);
