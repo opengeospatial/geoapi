@@ -28,6 +28,9 @@ import static org.opengis.annotation.Specification.*;
  * {@linkplain CoordinateReferenceSystem coordinate reference system}. In this case,
  * the cordinate reference system is implicitly assumed to take on the value of the containing
  * object's {@linkplain CoordinateReferenceSystem coordinate reference system}.
+ * 
+ * @departure easeOfUse
+ *   This interface was moved into the <code>org.opengis.geometry</code> package for convenience.
  *
  * @version <A HREF="http://www.opengeospatial.org/standards/as">ISO 19107</A>
  * @author Martin Desruisseaux (IRD)
