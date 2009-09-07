@@ -101,7 +101,14 @@ public interface MathTransformFactory extends Factory {
      *
      * @departure extension
      *   This method is not part of OGC specification. It has been added because this information
-     *   appears to be needed in practice.
+     *   appears to be needed in practice. A more object-oriented approach would have been to
+     *   return a {<code>MathTransform</code>, <code>OperationMethod</code>} tuple in the
+     *   <code>createParameterizedTransform(&hellip)</code> method, but we wanted to keep the
+     *   later unchanged for historical raison (it is inherited from OGC 01-009) and because
+     *   only a minority of use cases need the operation method.
+     *   <p>
+     *   Note that the existence of this method does not break thread-safety if the implementor
+     *   stores this information in a <code>ThreadLocal</code> variable.
      *
      * @since GeoAPI 2.1
      */
