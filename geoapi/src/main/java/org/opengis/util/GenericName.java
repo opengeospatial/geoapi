@@ -230,9 +230,9 @@ public interface GenericName extends Comparable<GenericName> {
      * @return The last element in the list of {@linkplain #getParsedNames parsed names}.
      *
      * @departure easeOfUse
-     *   This method is not part of ISO specification. It doesn't provide any additional
-     *   information compared to the one available though the standard methods defined by
-     *   ISO, but make easier to access a frequently requested one.
+     *   This method is not part of ISO specification. It does not provide any additional
+     *   information compared to that accessible though the standard methods defined by
+     *   ISO, but provides easier to access frequently requested information.
      *
      * @since GeoAPI 2.1
      */
@@ -251,9 +251,9 @@ public interface GenericName extends Comparable<GenericName> {
      * @return The fully-qualified name (never {@code null}).
      *
      * @departure easeOfUse
-     *   This method is not part of ISO specification. It doesn't provide any additional
-     *   information compared to the one available though the standard methods defined by
-     *   ISO, but make easier to access a frequently requested one.
+     *   This method is not part of ISO specification. It does not provide any additional
+     *   information compared to that accessible though the standard methods defined by
+     *   ISO, but provides easier to access frequently requested information.
      *
      * @since GeoAPI 2.1
      */
@@ -311,9 +311,9 @@ public interface GenericName extends Comparable<GenericName> {
      * @return A local-independant string representation of this name.
      *
      * @departure easeOfUse
-     *   This method is not part of ISO specification. It doesn't provide any additional
-     *   information compared to the one available though the standard methods defined by
-     *   ISO, but make easier to access a frequently requested one.
+     *   This method is not part of ISO specification. It does not provide any additional
+     *   information compared to that accessible though the standard methods defined by
+     *   ISO, but provides easier to access frequently requested information.
      */
 /// @Override
     String toString();

@@ -100,8 +100,9 @@ public interface AuthorityFactory extends Factory {
      * @throws FactoryException if the object creation failed for some other reason.
      *
      * @departure generalization
-     *   This method is not part of OGC specification. It has been added for leveraging the
-     *   capability of factories that can determine the type at runtime.
+     *   This method is not part of the OGC specification. It has been added to leverage the
+     *   capability of factories that can automatically determine the type of the requested
+     *   object at runtime.
      *
      * @see org.opengis.referencing.datum.DatumAuthorityFactory#createDatum
      * @see org.opengis.referencing.crs.CRSAuthorityFactory#createCoordinateReferenceSystem

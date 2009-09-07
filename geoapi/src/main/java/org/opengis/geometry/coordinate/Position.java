@@ -26,11 +26,14 @@ import static org.opengis.annotation.Specification.*;
  * (variant indirect).
  *
  * @departure constraint
- *   ISO 19107 defines <code>Position</code> as a <code>union</code> (like unions in C/C++) of
- *   <code>DirectPosition</code> and <code>Point</code>. Since unions are not allowed in Java,
- *   GeoAPI defines <code>Position</code> as the base interface of the above. This leads to a
- *   slightly different semantic since ISO defines <code>getDirectPosition()</code> as conditional,
- *   while GeoAPI defines it as mandatory by allowing the method to return <code>this</code>.
+ *   ISO 19107 defines <code>Position</code> as a <code>union</code> of
+ *   <code>DirectPosition</code> and <code>Point</code> but unions are not allowed in Java.
+ *   GeoAPI defines <code>Position</code> as the base interface of both types so the two
+ *   conditional accessor methods, <code>getPoint()</code> and <code>getDirectPosition()</code>,
+ *   can be replaced by an <code>instanceof</code> check. However, the
+ *   <code>getDirectPosition()</code> has been retained with different semantics, conceptually
+ *   returning a <code>DirectPosition</code> at the same location. The conditionality has also
+ *   been changed to mandatory since all three types conceptually have a well defined location.
  *
  * @version <A HREF="http://www.opengeospatial.org/standards/as">ISO 19107</A>
  * @author Martin Desruisseaux (IRD)

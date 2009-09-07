@@ -26,7 +26,7 @@ import org.opengis.metadata.citation.Citation;
  * </UL>
  *
  * @departure harmonization
- *   This interface is not part of OGC specification. It is added for uniformisation,
+ *   This interface is not part of the OGC specification. It is added for uniformity,
  *   in order to provide a common base class for all factories.
  *
  * @author  Martin Desruisseaux (IRD)

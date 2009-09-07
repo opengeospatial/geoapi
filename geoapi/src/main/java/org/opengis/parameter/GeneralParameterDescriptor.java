@@ -68,9 +68,9 @@ public interface GeneralParameterDescriptor extends IdentifiedObject {
      * it may vary. The default value is one.
      *
      * @departure generalization
-     *   Moved up (in the interface hierarchy) the <code>maximumOccurs</code> attribute from
-     *   <code>ParameterDescriptorGroup</code> into the <code>GeneralParameterDescriptor</code>
-     *   super-interface, in order to be on per with the <code>minimumOccurs</code> attribute.
+     *   Moved up (in the interface hierarchy) the <code>maximumOccurs</code> method from
+     *   <code>ParameterDescriptorGroup</code> into this  super-interface, for parallelism
+     *   with the <code>minimumOccurs</code> method.
      *
      * @return The maximum occurence.
      *

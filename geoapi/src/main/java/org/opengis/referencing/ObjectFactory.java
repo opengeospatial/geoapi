@@ -93,9 +93,8 @@ import org.opengis.util.GenericName;
  * {@code "remarks_fr_CA"} property stands for remarks in {@linkplain Locale#CANADA_FRENCH French Canadian}.
  *
  * @departure harmonization
- *   This interface is not part of OGC specification. It is added for uniformisation,
+ *   This interface is not part of any OGC specification. It is added for uniformity,
  *   in order to provide a common base class for all referencing object factories.
- *   The definition of key values in the javadoc are also GeoAPI-specific.
  *
  * @version <A HREF="http://www.opengis.org/docs/01-009.pdf">Implementation specification 1.0</A>
  * @author  Martin Desruisseaux (IRD)

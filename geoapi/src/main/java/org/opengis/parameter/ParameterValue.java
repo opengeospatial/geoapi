@@ -83,10 +83,9 @@ public interface ParameterValue<T> extends GeneralParameterValue {
      * @unitof Measure
      *
      * @departure rename
-     *   Renamed the attribute from "<code>value</code>" to "<code>doubleValue</code>" for consistency
-     *   with <code>Number.doubleValue()</code> and the other <code>fooValue</code> in this interface.
-     *   Also because <code>getValue()</code> is already used for an <code>Object</code> type, for
-     *   consistency with the <code>setValue(Object)</code> method.
+     *   Renamed the method from "<code>value</code>" to "<code>doubleValue</code>" for consistency
+     *   with <code>Number.doubleValue()</code> and the other "<code>*Value</code>" methods defined
+     *   in this interface.
      *
      * @see #getUnit
      * @see #setValue(double)
@@ -102,7 +101,7 @@ public interface ParameterValue<T> extends GeneralParameterValue {
      * @throws InvalidParameterTypeException if the value is not an integer type.
      *
      * @departure rename
-     *   Renamed the attribute from "<code>integerValue</code>" to "<code>intValue</code>" for
+     *   Renamed the method from "<code>integerValue</code>" to "<code>intValue</code>" for
      *   consistency with <code>Number.intValue()</code> and the <code>int</code> Java primitive type.
      *
      * @see #setValue(int)
@@ -161,8 +160,8 @@ public interface ParameterValue<T> extends GeneralParameterValue {
      * @unitof Measure
      *
      * @departure rename
-     *   Renamed the attribute from "<code>valueList</code>" to "<code>doubleValueList</code>" for
-     *   consistency with <code>doubleValue()</code>. Also because, like <code>doubleValue()</code>,
+     *   Renamed the method from "<code>valueList</code>" to "<code>doubleValueList</code>" both for
+     *   consistency with <code>doubleValue()</code> and also because, like <code>doubleValue()</code>,
      *   this method returns a <code>double</code> value rather than a <code>Measure</code> object.
      *
      * @see #getUnit

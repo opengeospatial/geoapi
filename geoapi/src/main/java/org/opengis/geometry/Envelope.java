@@ -24,6 +24,9 @@ import static org.opengis.annotation.Specification.*;
  * {@code Envelope}, it is sufficient to encode these two points. This is consistent with
  * all of the data types in this specification, their state is represented by their publicly
  * accessible attributes.
+ * 
+ * @departure easeOfUse
+ *   This interface was moved into the <code>org.opengis.geometry</code> package for convenience.
  *
  * @version <A HREF="http://www.opengeospatial.org/standards/as">ISO 19107</A>
  * @author  Martin Desruisseaux (IRD)
@@ -45,10 +48,10 @@ public interface Envelope {
      *
      * @departure easeOfUse
      *   ISO does not define this method - the CRS or the dimension can be obtained only through
-     *   one of the corner <code>DirectPosition</code>. GeoAPI adds this method for convenience
-     *   (as a more direct way) and for freeing the user from the need to choose an arbitrary
-     *   corner (paranoiac codes get the CRS or dimension from both corners and ensure they are
-     *   the same).
+     *   one of the corner <code>DirectPosition</code> objects. GeoAPI adds this method for
+     *   convenience as a more direct way of obtaining the information and to free the user from
+     *   the need to choose an arbitrary corner (very defensive code might feel the need to get
+     *   the value from both corners to check they were the same).
      *
      * @since GeoAPI 2.1
      */
@@ -63,10 +66,10 @@ public interface Envelope {
      *
      * @departure easeOfUse
      *   ISO does not define this method - the CRS or the dimension can be obtained only through
-     *   one of the corner <code>DirectPosition</code>. GeoAPI adds this method for convenience
-     *   (as a more direct way) and for freeing the user from the need to choose an arbitrary
-     *   corner (paranoiac codes get the CRS or dimension from both corners and ensure they are
-     *   the same).
+     *   one of the corner <code>DirectPosition</code> objects. GeoAPI adds this method for
+     *   convenience as a more direct way of obtaining the information and to free the user from
+     *   the need to choose an arbitrary corner (very defensive code might feel the need to get
+     *   the value from both corners to check they were the same).
      *
      * @since GeoAPI 2.0
      */
@@ -105,8 +108,9 @@ public interface Envelope {
      *
      * @departure easeOfUse
      *   This method is not part of ISO specification. GeoAPI adds this method for convenience and
-     *   efficiency, since some implementations store minimum and maximum ordinate values directly
-     *   in <code>Envelope</code> instead than indirectly in a <code>DirectPosition</code> corner.
+     *   efficiency, since some implementations might store the minimum and maximum ordinate values
+     *   directly in the <code>Envelope</code> itself rather than in a contained 
+     *   <code>DirectPosition</code> corner.
      *
      * @see Rectangle2D#getMinX
      * @see Rectangle2D#getMinY
@@ -130,8 +134,9 @@ public interface Envelope {
      *
      * @departure easeOfUse
      *   This method is not part of ISO specification. GeoAPI adds this method for convenience and
-     *   efficiency, since some implementations store minimum and maximum ordinate values directly
-     *   in <code>Envelope</code> instead than indirectly in a <code>DirectPosition</code> corner.
+     *   efficiency, since some implementations might store the minimum and maximum ordinate values
+     *   directly in the <code>Envelope</code> itself rather than in a contained 
+     *   <code>DirectPosition</code> corner.
      *
      * @see Rectangle2D#getMaxX
      * @see Rectangle2D#getMaxY
@@ -155,8 +160,9 @@ public interface Envelope {
      *
      * @departure easeOfUse
      *   This method is not part of ISO specification. GeoAPI adds this method for convenience and
-     *   efficiency, since some implementations store minimum and maximum ordinate values directly
-     *   in <code>Envelope</code> instead than indirectly in a <code>DirectPosition</code> corner.
+     *   efficiency, since some implementations might store the minimum and maximum ordinate values
+     *   directly in the <code>Envelope</code> itself rather than in a contained 
+     *   <code>DirectPosition</code> corner.
      *
      * @see Rectangle2D#getCenterX
      * @see Rectangle2D#getCenterY
@@ -180,8 +186,9 @@ public interface Envelope {
      *
      * @departure easeOfUse
      *   This method is not part of ISO specification. GeoAPI adds this method for convenience and
-     *   efficiency, since some implementations store minimum and maximum ordinate values directly
-     *   in <code>Envelope</code> instead than indirectly in a <code>DirectPosition</code> corner.
+     *   efficiency, since some implementations might store the minimum and maximum ordinate values
+     *   directly in the <code>Envelope</code> itself rather than in a contained 
+     *   <code>DirectPosition</code> corner.
      *
      * @see Rectangle2D#getWidth
      * @see Rectangle2D#getHeight
