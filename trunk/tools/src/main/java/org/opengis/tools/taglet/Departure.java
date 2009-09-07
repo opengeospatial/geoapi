@@ -35,7 +35,7 @@ import com.sun.tools.doclets.formats.html.ConfigurationImpl;
  *        without any change in the method purpose, arguments and return type.</li>
  * </ul>
  * <p>
- * The remainding is the explanation as HTML text (no javadoc tags).
+ * The remaining is the explanation as HTML text (no javadoc tags).
  *
  * @author Martin Desruisseaux (Geomatys)
  */
@@ -49,13 +49,13 @@ public final class Departure implements Taglet, Runnable {
     static {
         final Map<String,String> c = new LinkedHashMap<String,String>();
         c.put("constraint",     "Departures due to constraints of the Java language");
-        c.put("historic",       "Departures due to historical raisons");
-        c.put("harmonization",  "Departures for harmonization of different specifications");
-        c.put("integration",    "Departures for closer integration with Java environment");
-        c.put("rename",         "Renaming with no change in functionality");
-        c.put("generalization", "Generalizations (OGC/ISO restrictions relaxed)");
-        c.put("extension",      "Extensions (elements not in OGC/ISO specifications)");
-        c.put("easeOfUse",      "Extensions added only for convenience, without new functionality");
+        c.put("historic",       "Departures due to historical reasons");
+        c.put("harmonization",  "Departures for harmonization between the different specifications");
+        c.put("integration",    "Departures for closer integration with the Java environment");
+        c.put("rename",         "Changes of name without change in functionality");
+        c.put("generalization", "Generalizations due to relaxation of ISO/OGC restrictions");
+        c.put("extension",      "Addition of elements not in the ISO/OGC specifications");
+        c.put("easeOfUse",      "Extensions for convenience, without introduction of new functionality");
         CATEGORIES = c;
     }
 
@@ -250,13 +250,13 @@ public final class Departure implements Taglet, Runnable {
         out.newLine();
         out.write("<HTML>"); out.newLine();
         out.write("  <HEAD>"); out.newLine();
-        out.write("    <TITLE>Departures from OGC/ISO specifications</TITLE>"); out.newLine();
+        out.write("    <TITLE>Departures from the ISO/OGC specifications</TITLE>"); out.newLine();
         out.write("  </HEAD>"); out.newLine();
         out.write("  <BODY>"); out.newLine();
-        out.write("  <H1>Departures from OGC/ISO specifications</H1>"); out.newLine();
+        out.write("  <H1>Departures from the ISO/OGC specifications</H1>"); out.newLine();
         out.write("  <P>The following sections list all the departures from the ISO " +
-                  "standards taken by the GeoAPI interface library. The rational for " +
-                  "departures fall in the following categories:</P>"); out.newLine();
+                  "standards taken by the GeoAPI interface library. The rationale for " +
+                  "these departures fall into the following categories:</P>"); out.newLine();
         final Set<String> categories = new LinkedHashSet<String>(CATEGORIES.keySet());
         synchronized (departures) {
             categories.addAll(departures.keySet());

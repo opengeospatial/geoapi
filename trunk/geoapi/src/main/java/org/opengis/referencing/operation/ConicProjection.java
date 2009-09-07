@@ -19,7 +19,7 @@ package org.opengis.referencing.operation;
  *
  * @departure extension
  *   This interface is not part of ISO specification. It has been added in GeoAPI at user
- *   request, in order to provide a way to known the kind of map projection.
+ *   request, in order to provide a way to know the kind of map projection.
  *
  * @author  Martin Desruisseaux (IRD)
  * @since   GeoAPI 1.0

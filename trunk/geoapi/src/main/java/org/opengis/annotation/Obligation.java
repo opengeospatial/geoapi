@@ -48,10 +48,11 @@ public enum Obligation {
      * An example is {@link org.opengis.referencing.datum.TemporalDatum#getAnchorPoint}.
      *
      * @departure constraint
-     *   ISO specifications sometime override a method with a comment saying that a method is not
-     *   allowed for a particular class. Since there is no construct in Java for expressing this
+     *   ISO specifications sometime override a parent method with a comment saying that the method 
+     *   is not allowed for a particular class. Since there is no construct in Java for expressing this
      *   constraint in the method signature, GeoAPI defines a <code>FORBIDDEN</code> obligation
-     *   (not in original ISO specifications) to be used with the <code>@UML</code> annotation.
+     *   (not in original ISO specifications) to be used with the <code>@UML</code> annotation and
+     *   which adds a flag in the Java documentation.
      */
     FORBIDDEN
 }

@@ -24,9 +24,9 @@ import java.util.Locale;
  *
  * @departure extension
  *   Added this new type in order to distinguish between localizable and non-localizable character
- *   strings. Not all character string should be localizable; for example <cite>Well Know Text</cite>
- *   or code name should probably be language neutral. Since the OGC/ISO UML don't said which character
- *   string are localizable and which one are not, we have done our own guess in GeoAPI.
+ *   strings. Not all character strings should be localizable; for example <cite>Well Know Text</cite>
+ *   or code names should probably be language neutral. Since the ISO/OGC UML do not say which character
+ *   strings are localizable and which ones are not, we have done our own guesses in GeoAPI.
  *
  * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 2.0

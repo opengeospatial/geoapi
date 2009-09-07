@@ -34,10 +34,10 @@ import static org.opengis.annotation.Specification.*;
  * </TD></TR></TABLE>
  *
  * @departure historic
- *   This interface is conform to the specification published in 2003. Later revision of ISO 19111
- *   removed the <code>GeographicCRS</code> and <code>GeocentricCRS</code> types, which are both
- *   handled by the <code>GeodeticCRS</code> parent type. GeoAPI keeps them since the distinction
- *   between those two types is in wide use.
+ *   This interface is kept conformant with the specification published in 2003. 
+ *   The 2007 revision of ISO 19111 removed the <code>GeographicCRS</code> and 
+ *   <code>GeocentricCRS</code> types, handling both using the <code>GeodeticCRS</code> parent type.
+ *   GeoAPI keeps them since the distinction between those two types is in wide use.
  *
  * @version <A HREF="http://portal.opengeospatial.org/files/?artifact_id=6716">Abstract specification 2.0</A>
  * @author  Martin Desruisseaux (IRD)

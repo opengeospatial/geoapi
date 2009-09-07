@@ -260,7 +260,7 @@ public final class AxisDirection extends CodeList<AxisDirection> {
      *
      * @departure historic
      *   This code was defined in an older specification (2003) and removed in more recent
-     *   edition (2007), but keeped in GeoAPI.
+     *   edition (2007), but has been kept in GeoAPI.
      *
      * @category Temporal
      */
@@ -274,7 +274,7 @@ public final class AxisDirection extends CodeList<AxisDirection> {
      *
      * @departure historic
      *   This code was defined in an older specification (2003) and removed in more recent
-     *   edition (2007), but keeped in GeoAPI.
+     *   edition (2007), but has been kept in GeoAPI.
      *
      * @category Temporal
      */
@@ -411,7 +411,7 @@ public final class AxisDirection extends CodeList<AxisDirection> {
      * @return The opposite direction, or {@code null} if none or unknown.
      *
      * @departure extension
-     *   This is a GeoAPI extension for an information which was believed often requested.
+     *   This is a GeoAPI extension expected to be requested often.
      */
     public AxisDirection opposite() {
         return opposite;
@@ -456,7 +456,7 @@ public final class AxisDirection extends CodeList<AxisDirection> {
      * @return The direction from the above table.
      *
      * @departure extension
-     *   This is a GeoAPI extension for an information which was believed often requested.
+     *   This is a GeoAPI extension expected to be requested often.
      */
     public AxisDirection absolute() {
         final AxisDirection opposite = this.opposite;
