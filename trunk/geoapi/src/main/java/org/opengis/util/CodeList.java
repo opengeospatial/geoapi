@@ -109,7 +109,7 @@ public abstract class CodeList<E extends CodeList<E>> implements Comparable<E>, 
      * criterion.
      *
      * @departure extension
-     *   The internal <code>CodeList.Filter</code> interface is not part of the OGC specification.
+     *   The inner <code>CodeList.Filter</code> interface is not part of the OGC specification.
      *   It has been added because <code>CodeList</code> is one of the few concrete classes in
      *   GeoAPI and there is a need to give some user control over the behavior of the 
      *   <code>CodeList</code> implementation.

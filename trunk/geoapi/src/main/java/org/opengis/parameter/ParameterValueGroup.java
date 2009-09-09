@@ -97,7 +97,7 @@ public interface ParameterValueGroup extends GeneralParameterValue {
      * @return The parameter value for the given identifier code.
      * @throws ParameterNotFoundException if there is no parameter value for the given identifier code.
      *
-     * @departure extension
+     * @departure easeOfUse
      *   This method is not part of the ISO specification. It has been added in an attempt to make
      *   this interface easier to use.
      */
@@ -115,7 +115,7 @@ public interface ParameterValueGroup extends GeneralParameterValue {
      * @throws ParameterNotFoundException if no {@linkplain ParameterDescriptorGroup descriptor}
      *         was found for the given name.
      *
-     * @departure extension
+     * @departure easeOfUse
      *   This method is not part of the ISO specification. It has been added in an attempt to make
      *   this interface easier to use.
      */
@@ -135,7 +135,7 @@ public interface ParameterValueGroup extends GeneralParameterValue {
      *         {@linkplain ParameterDescriptorGroup#getMaximumOccurs maximum number of occurences}
      *         of subgroups of the given name.
      *
-     * @departure extension
+     * @departure easeOfUse
      *   This method is not part of the ISO specification. It has been added in an attempt to make
      *   this interface easier to use.
      */

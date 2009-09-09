@@ -94,7 +94,7 @@ public interface Record {
      * @throws UnsupportedOperationException if this record is not modifiable.
      *
      * @departure easeOfUse
-     *   This method provides no additional information compared to the ISO standard methods,
+     *   This method provides no additional functionality compared to the ISO standard methods,
      *   but is declared in GeoAPI as a convenient shortcut.
      */
     void set(MemberName name, Object value) throws UnsupportedOperationException;

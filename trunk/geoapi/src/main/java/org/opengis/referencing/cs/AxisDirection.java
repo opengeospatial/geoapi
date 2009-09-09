@@ -410,8 +410,8 @@ public final class AxisDirection extends CodeList<AxisDirection> {
      *
      * @return The opposite direction, or {@code null} if none or unknown.
      *
-     * @departure extension
-     *   This is a GeoAPI extension expected to be requested often.
+     * @departure easeOfUse
+     *   This is a GeoAPI extension for convenience.
      */
     public AxisDirection opposite() {
         return opposite;
@@ -455,8 +455,8 @@ public final class AxisDirection extends CodeList<AxisDirection> {
      *
      * @return The direction from the above table.
      *
-     * @departure extension
-     *   This is a GeoAPI extension expected to be requested often.
+     * @departure easeOfUse
+     *   This is a GeoAPI extension for convenience.
      */
     public AxisDirection absolute() {
         final AxisDirection opposite = this.opposite;
