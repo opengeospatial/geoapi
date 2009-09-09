@@ -36,8 +36,8 @@
  *   <code>ParameterValueGroup</code>, <code>InvalidParameterNameException</code>,
  *   <code>InvalidParameterTypeException</code> and <code>InvalidParameterValueException</code>
  *   interfaces from <code>org.opengis.referencing.operation</code> to <code>org.opengis.parameter</code>.
- *   With this move, GeoAPI has extended the use of these parameter classes more generally than just in 
- *   referencing operation types.
+ *   With this move, GeoAPI has extended the use of these parameter classes to a more general use rather
+ *   than only for referencing operation types.
  *
  * @version <A HREF="http://portal.opengeospatial.org/files/?artifact_id=6716">Abstract specification 2.0</A>
  * @since   GeoAPI 1.0

@@ -22,7 +22,7 @@ import static org.opengis.annotation.Specification.*;
  * The definition of a group of related parameters used by an operation method.
  *
  * @departure rename
- *   Selected a name which contain the "<code>Descriptor</code>" word for consistency with other
+ *   GeoAPI uses a name which contains the "<code>Descriptor</code>" word for consistency with other
  *   libraries in Java (e.g. <code>ParameterListDescriptor</code> in Java Advanced Imaging).
  *
  * @version <A HREF="http://portal.opengeospatial.org/files/?artifact_id=6716">Abstract specification 2.0</A>
@@ -58,7 +58,7 @@ public interface ParameterDescriptorGroup extends GeneralParameterDescriptor {
      * @return A new parameter instance initialized to the default value.
      *
      * @departure extension
-     *   This method is not part of ISO specification. It is provided in GeoAPI as a kind of
+     *   This method is not part of the ISO specification. It is provided in GeoAPI as a kind of
      *   factory method.
      */
     ParameterValueGroup createValue();
@@ -81,7 +81,7 @@ public interface ParameterDescriptorGroup extends GeneralParameterDescriptor {
      * @throws ParameterNotFoundException if there is no parameter for the given identifier code.
      *
      * @departure extension
-     *   This method is not part of ISO specification. It has been added in an attempt to make
+     *   This method is not part of the ISO specification. It has been added in an attempt to make
      *   this interface easier to use.
      */
     GeneralParameterDescriptor descriptor(String name) throws ParameterNotFoundException;

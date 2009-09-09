@@ -44,7 +44,7 @@ public interface ParameterValueGroup extends GeneralParameterValue {
      *   order to override the <code>getDescriptor()</code> generic method provided in the parent
      *   interface. In addition the "descriptor" name makes more apparent that this method returns
      *   an abstract definition of parameters - not their actual values - and is consistent with
-     *   usage in other Java libraries like <cite>Java Advanced Imaging</cite>.
+     *   usage in other Java libraries like the <cite>Java Advanced Imaging</cite> library.
      */
     @UML(identifier="group", obligation=MANDATORY, specification=ISO_19111)
     ParameterDescriptorGroup getDescriptor();
@@ -98,7 +98,7 @@ public interface ParameterValueGroup extends GeneralParameterValue {
      * @throws ParameterNotFoundException if there is no parameter value for the given identifier code.
      *
      * @departure extension
-     *   This method is not part of ISO specification. It has been added in an attempt to make
+     *   This method is not part of the ISO specification. It has been added in an attempt to make
      *   this interface easier to use.
      */
     ParameterValue<?> parameter(String name) throws ParameterNotFoundException;
@@ -116,7 +116,7 @@ public interface ParameterValueGroup extends GeneralParameterValue {
      *         was found for the given name.
      *
      * @departure extension
-     *   This method is not part of ISO specification. It has been added in an attempt to make
+     *   This method is not part of the ISO specification. It has been added in an attempt to make
      *   this interface easier to use.
      */
     List<ParameterValueGroup> groups(String name) throws ParameterNotFoundException;
@@ -136,7 +136,7 @@ public interface ParameterValueGroup extends GeneralParameterValue {
      *         of subgroups of the given name.
      *
      * @departure extension
-     *   This method is not part of ISO specification. It has been added in an attempt to make
+     *   This method is not part of the ISO specification. It has been added in an attempt to make
      *   this interface easier to use.
      */
     ParameterValueGroup addGroup(String name) throws ParameterNotFoundException, IllegalStateException;

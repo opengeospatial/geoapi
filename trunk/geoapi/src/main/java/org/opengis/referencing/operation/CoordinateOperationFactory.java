@@ -104,7 +104,7 @@ public interface CoordinateOperationFactory extends ObjectFactory {
      * @throws FactoryException if the object creation failed.
      *
      * @departure extension
-     *   This method has been added because OGC 01-009 doesn't define a factory
+     *   This method has been added because OGC 01-009 does not define a factory
      *   method for creating such object.
      */
     CoordinateOperation createConcatenatedOperation(Map<String, ?> properties,

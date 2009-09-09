@@ -30,10 +30,11 @@ import static org.opengis.annotation.Specification.*;
  * implementer may consider using the corresponding metadata values in the EPSG tables.
  *
  * @departure harmonization
- *   ISO 19111 also defines an <code>IdentifiedObjectBase</code> interface. The later is omitted in
+ *   ISO 19111 defines an <code>IdentifiedObjectBase</code> interface. The later is omitted in
  *   GeoAPI because the split between <code>IdentifiedObject</code> and <code>IdentifiedObjectBase</code>
- *   in the ISO/OGC specification was mostly a workaround for introducing <code>IdentifiedObject</code>
- *   in ISO 19111 without changing the <code>ReferenceSystem</code> definition in ISO 19115.
+ *   in the ISO/OGC specification was a workaround for introducing <code>IdentifiedObject</code>
+ *   in ISO 19111 without changing the <code>ReferenceSystem</code> definition in ISO 19115 but
+ *   GeoAPI does not need this workaround.
  *
  * @version <A HREF="http://portal.opengeospatial.org/files/?artifact_id=6716">Abstract specification 2.0</A>
  * @author  Martin Desruisseaux (IRD)
@@ -123,9 +124,9 @@ public interface IdentifiedObject {
      * @throws UnsupportedOperationException If this object can't be formatted as WKT.
      *
      * @departure extension
-     *   This method is not part of OGC specification. It has been added in order to provide the
-     *   converse of the <code>CRSFactory.createFromWKT(String)</code> method, which is defined
-     *   in OGC 01-009.
+     *   This method is not part of the OGC specification. It has been added in order to provide
+     *   the converse of the <code>CRSFactory.createFromWKT(String)</code> method, which is
+     *   defined in OGC 01-009.
      */
     String toWKT() throws UnsupportedOperationException;
 }

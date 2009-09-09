@@ -26,7 +26,7 @@ import java.util.List;
  *        It is rather a consequence of an <code>ParameterValueGroup</code> being "full".}
  *
  * @departure extension
- *   This exception is not part of OGC specification.
+ *   This exception is not part of the OGC specification.
  *
  * @author  Martin Desruisseaux (IRD)
  * @since   GeoAPI 2.0

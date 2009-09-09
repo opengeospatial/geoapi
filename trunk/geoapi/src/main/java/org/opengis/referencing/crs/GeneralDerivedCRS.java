@@ -45,10 +45,10 @@ public interface GeneralDerivedCRS extends SingleCRS {
      * @return The conversion from the base CRS.
      *
      * @departure rename
-     *   "<code>conversion</code>" may be confusing as a method name since it doesn't said which CRS
-     *   is the source or which one is the target. OGC document 01-009 used <code>toBase()</code>
-     *   method name. By analogy with 01-009, GeoAPI defines a method name which contains the
-     *   "<code>FromBase</code>" expression.
+     *   "<code>conversion</code>" may be confusing as a method name since it does not indicate 
+     *   which CRS is the source or which is the target. OGC document 01-009 used the 
+     *   <code>toBase()</code> method name. By analogy with 01-009, GeoAPI defines a method name
+     *   which contains the "<code>FromBase</code>" expression.
      */
     @UML(identifier="conversion", obligation=MANDATORY, specification=ISO_19111)
     Conversion getConversionFromBase();

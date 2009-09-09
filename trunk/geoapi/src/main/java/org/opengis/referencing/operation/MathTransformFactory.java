@@ -77,7 +77,7 @@ public interface MathTransformFactory extends Factory {
      * @return All {@linkplain MathTransform math transform} methods available in this factory.
      *
      * @departure extension
-     *   This method is not part of OGC specification. It has been added as a way to publish
+     *   This method is not part of the OGC specification. It has been added as a way to publish
      *   the capabilities of a factory.
      *
      * @see #getDefaultParameters
@@ -100,11 +100,11 @@ public interface MathTransformFactory extends Factory {
      * @return The last method used, or {@code null} if unknown of unsupported.
      *
      * @departure extension
-     *   This method is not part of OGC specification. It has been added because this information
+     *   This method is not part of the OGC specification. It has been added because this information
      *   appears to be needed in practice. A more object-oriented approach would have been to
      *   return a {<code>MathTransform</code>, <code>OperationMethod</code>} tuple in the
      *   <code>createParameterizedTransform(&hellip)</code> method, but we wanted to keep the
-     *   later unchanged for historical raison (it is inherited from OGC 01-009) and because
+     *   later unchanged for historical reasons (it is inherited from OGC 01-009) and because
      *   only a minority of use cases need the operation method.
      *   <p>
      *   Note that the existence of this method does not break thread-safety if the implementor

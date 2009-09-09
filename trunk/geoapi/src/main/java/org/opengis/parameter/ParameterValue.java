@@ -162,7 +162,8 @@ public interface ParameterValue<T> extends GeneralParameterValue {
      * @departure rename
      *   Renamed the method from "<code>valueList</code>" to "<code>doubleValueList</code>" both for
      *   consistency with <code>doubleValue()</code> and also because, like <code>doubleValue()</code>,
-     *   this method returns a <code>double</code> value rather than a <code>Measure</code> object.
+     *   this method returns an array of <code>double</code> values rather than a <code>Measure</code> 
+     *   object.
      *
      * @see #getUnit
      * @see #setValue(Object)

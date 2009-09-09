@@ -133,10 +133,10 @@ public interface Datum extends IdentifiedObject {
      * @return A description of domain of usage, or {@code null} if none.
      *
      * @departure historic
-     *   This method is conform to the specification published in 2003. The revision
+     *   This method has been kept conformant with the specification published in 2003. The revision
      *   published in 2007 replaced the singleton by a collection and changed the obligation
      *   from "optional" to "mandatory", requiring a return value of "<cite>not known</cite>"
-     *   if the scope is unknown.
+     *   if the scope is unknown. This change is still under review.
      */
     @UML(identifier="scope", obligation=OPTIONAL, specification=ISO_19111)
     InternationalString getScope();

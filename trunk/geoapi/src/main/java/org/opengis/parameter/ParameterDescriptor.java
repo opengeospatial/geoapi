@@ -26,7 +26,7 @@ import static org.opengis.annotation.Specification.*;
  * @param <T> The type of parameter values.
  *
  * @departure rename
- *   Selected a name which contain the "<code>Descriptor</code>" word for consistency with other
+ *   GeoAPI uses a name which contains the "<code>Descriptor</code>" word for consistency with other
  *   libraries in Java (e.g. <code>ParameterListDescriptor</code> in Java Advanced Imaging).
  *
  * @version <A HREF="http://portal.opengeospatial.org/files/?artifact_id=6716">Abstract specification 2.0</A>
@@ -45,7 +45,7 @@ public interface ParameterDescriptor<T> extends GeneralParameterDescriptor {
      * parameter value descriptor} for the created parameter value will be {@code this} object.
      *
      * @departure extension
-     *   This method is not part of ISO specification. It is provided in GeoAPI as a kind of
+     *   This method is not part of the ISO specification. It is provided in GeoAPI as a kind of
      *   factory method.
      */
     ParameterValue<T> createValue();
