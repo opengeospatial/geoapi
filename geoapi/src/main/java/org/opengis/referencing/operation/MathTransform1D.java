@@ -19,7 +19,7 @@ package org.opengis.referencing.operation;
  * transforming a value without the overhead of creating data array.
  *
  * @departure extension
- *   This interface is not part of OGC specification. It has been added as a complement
+ *   This interface is not part of the OGC specification. It has been added as a complement
  *   of <code>MathTransform2D</code> and because the 1D case provides opportunities for
  *   optimization through a <code>transform</code> method accepting a single <code>double</code>
  *   primitive type.

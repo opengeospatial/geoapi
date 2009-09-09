@@ -16,7 +16,7 @@ package org.opengis.referencing.operation;
  * invoked but the transform can't be inverted.
  *
  * @departure extension
- *   This exception is not part of OGC specification.
+ *   This exception is not part of the OGC specification.
  *
  * @author  Martin Desruisseaux (IRD)
  * @since   GeoAPI 1.0

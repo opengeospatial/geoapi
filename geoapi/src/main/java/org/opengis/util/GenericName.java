@@ -208,7 +208,7 @@ public interface GenericName extends Comparable<GenericName> {
      *
      * @departure generalization
      *   ISO defines this method in <code>ScopedName</code> only. GeoAPI defines it in the base
-     *   class since <code>LocalName</code> can return a sensible value for it. This reduce the
+     *   class since <code>LocalName</code> can return a sensible value for it. This reduces the
      *   need for casts.
      *
      * @since GeoAPI 2.2
@@ -332,7 +332,8 @@ public interface GenericName extends Comparable<GenericName> {
      * @return A localizable string representation of this name.
      *
      * @departure extension
-     *   This method is not part of ISO specification. It provides a way to localize the name.
+     *   This method is not part of the ISO specification. It has been added to provide
+     *   a way to localize the name.
      */
     InternationalString toInternationalString();
 }

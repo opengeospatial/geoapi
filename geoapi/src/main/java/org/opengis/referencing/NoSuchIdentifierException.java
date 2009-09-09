@@ -19,7 +19,7 @@ import org.opengis.metadata.Identifier;
  * operation method} identifier.
  *
  * @departure extension
- *   This exception is not part of OGC specification.
+ *   This exception is not part of the OGC specification.
  *
  * @author  Martin Desruisseaux (IRD)
  * @since   GeoAPI 1.0

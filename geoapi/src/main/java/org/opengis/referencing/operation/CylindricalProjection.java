@@ -18,7 +18,7 @@ package org.opengis.referencing.operation;
  * <p align="center"><img src="../doc-files/CylindricalProjection.png"></p>
  *
  * @departure extension
- *   This interface is not part of ISO specification. It has been added in GeoAPI at user
+ *   This interface is not part of the ISO specification. It has been added in GeoAPI at user
  *   request, in order to provide a way to know the kind of map projection.
  *
  * @author  Martin Desruisseaux (IRD)

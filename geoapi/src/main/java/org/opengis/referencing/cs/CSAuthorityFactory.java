@@ -33,7 +33,7 @@ import static org.opengis.annotation.Specification.*;
  * @departure historic
  *   Added for consistency with CRS and datum factories. This CS factory was not defined in the
  *   OGC specification because OGC 01-009 was created before ISO 19111 and had no equivalent of
- *   ISO <cite>Coordinate System</cite>.
+ *   the ISO <cite>Coordinate System</cite> types.
  *
  * @see org.opengis.referencing.crs.CRSAuthorityFactory
  * @see org.opengis.referencing.datum.DatumAuthorityFactory

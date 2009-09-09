@@ -61,8 +61,9 @@ public interface Record {
      * @see RecordType#getMemberTypes
      *
      * @departure generalization
-     *   Figure 15 in ISO 19103:2005 specifies a cardinality of 1. This seems contradictory
-     *   with <code>locate(name)</code> and <code>RecordType.getMemberTypes()</code>.
+     *   Figure 15 in ISO 19103:2005 specifies a cardinality of 1. However, this seems to 
+     *   contradict the semantics of the <code>locate(name)</code> and 
+     *   <code>RecordType.getMemberTypes()</code> methods.
      */
     @UML(identifier="memberValue", obligation=MANDATORY, specification=ISO_19103)
     Map<MemberName, Object> getAttributes();

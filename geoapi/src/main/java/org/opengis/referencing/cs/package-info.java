@@ -130,7 +130,7 @@
  * @departure constraint
  *   ISO 19111 defines <code>GeodeticCS</code>, <code>EngineeringCS</code> and <code>ImageCS</code>
  *   unions for type safety, which ensures, for example, that a <code>GeodeticCRS</code> only be
- *   associated to a <code>CartesianCS</code>, a <code>EllipsoidalCS</code> or a <code>SphericalCS</code>.
+ *   associated to a <code>CartesianCS</code>, an <code>EllipsoidalCS</code> or a <code>SphericalCS</code>.
  *   However the <code>union</code> construct found in some languages like C/C++ is not available
  *   in Java. In the particular case of <code>ImageCS</code>, the same type-safety objective can
  *   be obtained through a slight change in the interface hierarchy (see the departure documented

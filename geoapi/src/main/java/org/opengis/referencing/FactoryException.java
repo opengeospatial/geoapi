@@ -25,7 +25,7 @@ package org.opengis.referencing;
  * {@link java.sql.SQLException}), then this cause should be specified.
  *
  * @departure extension
- *   This exception is not part of OGC specification.
+ *   This exception is not part of the OGC specification.
  *
  * @author  Martin Desruisseaux (IRD)
  * @since   GeoAPI 1.0

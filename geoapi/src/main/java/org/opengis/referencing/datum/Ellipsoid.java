@@ -45,12 +45,13 @@ import static org.opengis.annotation.Specification.*;
  * @departure constraint
  *   ISO 19111 defines the union named <code>secondDefiningParameter</code> as being either
  *   <code>semiMinorAxis</code> or <code>inverseFlattening</code>. The <code>union</code>
- *   construct (defined in some languages like C/C++) does not exist in Java. GeoAPI requires
- *   all two methods (in addition of <code>semiMajorAxis</code> which is mandatory in any cases)
- *   like OGC 01-009 did, and implementors could provide different <code>Ellipsoid</code>
- *   subclasses computing one parameter on-the-fly from the other one.
- *   The <code>isIvfDefinitive</code> attribute has been imported from OGC 01-009 to enable
- *   users to distinguish between the two cases.
+ *   construct (defined in some languages like C/C++) does not exist in Java. GeoAPI changed the
+ *   interface to require both ellipsoidal parameters (in addition to the <code>semiMajorAxis</code> 
+ *   parameter which is mandatory in any case), as was done in OGC 01-009. However, implementors 
+ *   could readily permit users to only provide one of the two parameters by creating a class which
+ *   calculates the second parameter from the first. For precision, GeoAPI imports the 
+ *   <code>isIvfDefinitive</code> attribute from OGC 01-009 to enable the user to establish which of
+ *   the two parameters was used to define the instance.
  *
  * @version <A HREF="http://portal.opengeospatial.org/files/?artifact_id=6716">Abstract specification 2.0</A>
  * @author  Martin Desruisseaux (IRD)

@@ -21,7 +21,7 @@ package org.opengis.parameter;
  *        It is rather a consequence of wrong zero-argument method.}
  *
  * @departure extension
- *   This exception is not part of OGC specification.
+ *   This exception is not part of the OGC specification.
  *
  * @author  Martin Desruisseaux (IRD)
  * @since   GeoAPI 1.0

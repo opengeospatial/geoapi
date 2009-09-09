@@ -66,7 +66,7 @@ public interface AuthorityFactory extends Factory {
      * @throws FactoryException if access to the underlying database failed.
      *
      * @departure extension
-     *   This method is not part of OGC specification. It has been added as a way to publish
+     *   This method is not part of the OGC specification but has been added as a way to publish
      *   the capabilities of a factory.
      */
     Set<String> getAuthorityCodes(Class<? extends IdentifiedObject> type) throws FactoryException;
