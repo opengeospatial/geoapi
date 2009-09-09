@@ -95,7 +95,7 @@ public interface Matrix {
      *
      * @return {@code true} if this matrix is an identity matrix.
      *
-     * @departure extension
+     * @departure easeOfUse
      *   Added as a convenience for a frequently requested operation.
      */
     boolean isIdentity();

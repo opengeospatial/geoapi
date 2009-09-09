@@ -80,7 +80,7 @@ public interface ParameterDescriptorGroup extends GeneralParameterDescriptor {
      * @return The parameter for the given identifier code.
      * @throws ParameterNotFoundException if there is no parameter for the given identifier code.
      *
-     * @departure extension
+     * @departure easeOfUse
      *   This method is not part of the ISO specification. It has been added in an attempt to make
      *   this interface easier to use.
      */
