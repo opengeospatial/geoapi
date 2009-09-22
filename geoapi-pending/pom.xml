@@ -127,20 +127,27 @@
 
 
   <!-- ==================================================== -->
-  <!--     External dependencies                            -->
+  <!--     Compilation                                      -->
   <!-- ==================================================== -->
-  <dependencies>
-    <dependency>
-      <groupId>org.opengis</groupId>
-      <artifactId>geoapi</artifactId>
-      <version>${project.version}</version>
-      <exclusions>
-        <exclusion>
-          <groupId>org.opengis</groupId>
-          <artifactId>geoapi-dummy-pending</artifactId>
-        </exclusion>
-      </exclusions>
-    </dependency>
-  </dependencies>
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>build-helper-maven-plugin</artifactId>
+        <executions>
+          <execution>
+            <goals>
+              <goal>add-source</goal>
+            </goals>
+            <configuration>
+              <sources>
+                <source>src/external/java</source>
+              </sources>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
 
 </project>
