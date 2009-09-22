@@ -313,6 +313,7 @@
           <source>1.5</source>          <!-- The -source argument for the Java compiler.   -->
           <target>1.5</target>          <!-- The -target argument for the Java compiler.   -->
           <debug>false</debug>          <!-- Whether to include debugging information.     -->
+          <optimize>true</optimize>     <!-- Use the compiler's optimization methods.      -->
           <encoding>UTF-8</encoding>    <!-- The -encoding argument for the Java compiler. -->
         </configuration>
       </plugin>
@@ -604,7 +605,6 @@
     <module>tools</module>
     <module>geoapi</module>
     <module>geoapi-pending</module>
-    <module>geoapi-dummy-pending</module>
     <module>examples</module>
     <module>conformance</module>
   </modules>
