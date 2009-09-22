@@ -141,7 +141,7 @@
             </goals>
             <configuration>
               <sources>
-                <source>src/external/java</source>
+                <source>../geoapi/src/main/java</source>
               </sources>
             </configuration>
           </execution>
