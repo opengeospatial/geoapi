@@ -57,7 +57,16 @@ public interface Contact {
      * @return On-line information that can be used to contact the individual or organization,
      *         or {@code null}.
      */
-    @UML(identifier="onLineResource", obligation=OPTIONAL, specification=ISO_19115)
+    @UML(identifier="onlineResource", obligation=OPTIONAL, specification=ISO_19115)
+    OnLineResource getOnlineResource();
+
+    /**
+     * @deprecated Renamed {@link #getOnlineResource()}.
+     *
+     * @return On-line information that can be used to contact the individual or organization,
+     *         or {@code null}.
+     */
+    @Deprecated
     OnLineResource getOnLineResource();
 
     /**

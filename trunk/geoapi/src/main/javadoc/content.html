@@ -153,7 +153,7 @@
   <TR><TD><CODE>&nbsp;&nbsp;&nbsp;&nbsp;getPriority</CODE></TD><TD><CODE>&nbsp;&nbsp;priority</CODE></TD><TD><FONT SIZE=-1>ISO 19115-2</FONT></TD></TR>
   <TR><TD><CODE>&nbsp;&nbsp;&nbsp;&nbsp;getRequestedDate</CODE></TD><TD><CODE>&nbsp;&nbsp;requestedDate</CODE></TD><TD><FONT SIZE=-1>ISO 19115-2</FONT></TD></TR>
   <TR><TD><CODE>&nbsp;&nbsp;&nbsp;&nbsp;getExpiryDate</CODE></TD><TD><CODE>&nbsp;&nbsp;expiryDate</CODE></TD><TD><FONT SIZE=-1>ISO 19115-2</FONT></TD></TR>
-  <TR><TD><CODE>&nbsp;&nbsp;&nbsp;&nbsp;<CITE>getSatisifedPlans</CITE></CODE></TD><TD><CODE>&nbsp;&nbsp;<CITE>satisfiedPlan</CITE></CODE></TD><TD><FONT SIZE=-1>ISO 19115-2</FONT></TD></TR>
+  <TR><TD><CODE>&nbsp;&nbsp;&nbsp;&nbsp;getSatisfiedPlans</CODE></TD><TD><CODE>&nbsp;&nbsp;satisfiedPlan</CODE></TD><TD><FONT SIZE=-1>ISO 19115-2</FONT></TD></TR>
   <TR><TD COLSPAN=3><HR></TD></TR>
   <TR><TD NOWRAP><STRONG><CODE>&nbsp;&nbsp;</CODE>Code list <CODE><A HREF="org/opengis/metadata/acquisition/Sequence.html">Sequence</A></CODE></STRONG></TD><TD><CODE>MI_SequenceCode</CODE></TD><TD NOWRAP>ISO 19115-2</TD></TR>
   <TR><TD><CODE>&nbsp;&nbsp;&nbsp;&nbsp;START</CODE></TD><TD><CODE>&nbsp;&nbsp;start</CODE></TD><TD><FONT SIZE=-1>ISO 19115-2</FONT></TD></TR>
@@ -210,7 +210,7 @@
   <TR><TD NOWRAP><STRONG><CODE>&nbsp;&nbsp;</CODE>Interface <CODE><A HREF="org/opengis/metadata/citation/Contact.html">Contact</A></CODE></STRONG></TD><TD><CODE>CI_Contact</CODE></TD><TD NOWRAP>ISO 19115</TD></TR>
   <TR><TD><CODE>&nbsp;&nbsp;&nbsp;&nbsp;getPhone</CODE></TD><TD><CODE>&nbsp;&nbsp;phone</CODE></TD><TD><FONT SIZE=-1>ISO 19115</FONT></TD></TR>
   <TR><TD><CODE>&nbsp;&nbsp;&nbsp;&nbsp;getAddress</CODE></TD><TD><CODE>&nbsp;&nbsp;address</CODE></TD><TD><FONT SIZE=-1>ISO 19115</FONT></TD></TR>
-  <TR><TD><CODE>&nbsp;&nbsp;&nbsp;&nbsp;getOnLineResource</CODE></TD><TD><CODE>&nbsp;&nbsp;onLineResource</CODE></TD><TD><FONT SIZE=-1>ISO 19115</FONT></TD></TR>
+  <TR><TD><CODE>&nbsp;&nbsp;&nbsp;&nbsp;getOnlineResource</CODE></TD><TD><CODE>&nbsp;&nbsp;onlineResource</CODE></TD><TD><FONT SIZE=-1>ISO 19115</FONT></TD></TR>
   <TR><TD><CODE>&nbsp;&nbsp;&nbsp;&nbsp;getHoursOfService</CODE></TD><TD><CODE>&nbsp;&nbsp;hoursOfService</CODE></TD><TD><FONT SIZE=-1>ISO 19115</FONT></TD></TR>
   <TR><TD><CODE>&nbsp;&nbsp;&nbsp;&nbsp;getContactInstructions</CODE></TD><TD><CODE>&nbsp;&nbsp;contactInstructions</CODE></TD><TD><FONT SIZE=-1>ISO 19115</FONT></TD></TR>
   <TR><TD COLSPAN=3><HR></TD></TR>
@@ -826,7 +826,7 @@
   <TR><TD COLSPAN=3>&nbsp;</TD></TR>
   <TR><TD COLSPAN=3 NOWRAP BGCOLOR="#DDDDFF"><STRONG>Package&nbsp; <CODE>org.opengis.metadata</CODE></STRONG></TD></TR>
   <TR><TD COLSPAN=3><HR></TD></TR>
-  <TR><TD NOWRAP><STRONG><CODE>&nbsp;&nbsp;</CODE>Interface <CODE><A HREF="org/opengis/metadata/MetaData.html">MetaData</A></CODE></STRONG></TD><TD><CODE>MD_MetaData</CODE></TD><TD NOWRAP>ISO 19115</TD></TR>
+  <TR><TD NOWRAP><STRONG><CODE>&nbsp;&nbsp;</CODE>Interface <CODE><A HREF="org/opengis/metadata/MetaData.html"><CITE>MetaData</CITE></A></CODE></STRONG></TD><TD><CODE><CITE>MD_Metadata</CITE></CODE></TD><TD NOWRAP>ISO 19115</TD></TR>
   <TR><TD><CODE>&nbsp;&nbsp;&nbsp;&nbsp;getFileIdentifier</CODE></TD><TD><CODE>&nbsp;&nbsp;fileIdentifier</CODE></TD><TD><FONT SIZE=-1>ISO 19115</FONT></TD></TR>
   <TR><TD><CODE>&nbsp;&nbsp;&nbsp;&nbsp;getLanguage</CODE></TD><TD><CODE>&nbsp;&nbsp;language</CODE></TD><TD><FONT SIZE=-1>ISO 19115</FONT></TD></TR>
   <TR><TD><CODE>&nbsp;&nbsp;&nbsp;&nbsp;getCharacterSet</CODE></TD><TD><CODE>&nbsp;&nbsp;characterSet</CODE></TD><TD><FONT SIZE=-1>ISO 19115</FONT></TD></TR>
@@ -1021,7 +1021,7 @@
   <TR><TD COLSPAN=3><HR></TD></TR>
   <TR><TD NOWRAP><STRONG><CODE>&nbsp;&nbsp;</CODE>Interface <CODE><A HREF="org/opengis/metadata/spatial/GridSpatialRepresentation.html">GridSpatialRepresentation</A></CODE></STRONG></TD><TD><CODE>MD_GridSpatialRepresentation</CODE></TD><TD NOWRAP>ISO 19115</TD></TR>
   <TR><TD><CODE>&nbsp;&nbsp;&nbsp;&nbsp;getNumberOfDimensions</CODE></TD><TD><CODE>&nbsp;&nbsp;numberOfDimensions</CODE></TD><TD><FONT SIZE=-1>ISO 19115</FONT></TD></TR>
-  <TR><TD><CODE>&nbsp;&nbsp;&nbsp;&nbsp;getAxisDimensionsProperties</CODE></TD><TD><CODE>&nbsp;&nbsp;axisDimensionsProperties</CODE></TD><TD><FONT SIZE=-1>ISO 19115</FONT></TD></TR>
+  <TR><TD><CODE>&nbsp;&nbsp;&nbsp;&nbsp;getAxisDimensionProperties</CODE></TD><TD><CODE>&nbsp;&nbsp;axisDimensionProperties</CODE></TD><TD><FONT SIZE=-1>ISO 19115</FONT></TD></TR>
   <TR><TD><CODE>&nbsp;&nbsp;&nbsp;&nbsp;getCellGeometry</CODE></TD><TD><CODE>&nbsp;&nbsp;cellGeometry</CODE></TD><TD><FONT SIZE=-1>ISO 19115</FONT></TD></TR>
   <TR><TD><CODE>&nbsp;&nbsp;&nbsp;&nbsp;<CITE>isTransformationParameterAvailable</CITE></CODE></TD><TD><CODE>&nbsp;&nbsp;<CITE>transformationParameterAvailability</CITE></CODE></TD><TD><FONT SIZE=-1>ISO 19115</FONT></TD></TR>
   <TR><TD COLSPAN=3><HR></TD></TR>
@@ -1542,6 +1542,7 @@
   <TR><TD NOWRAP><STRONG><CODE>&nbsp;&nbsp;</CODE>Interface <CODE><A HREF="org/opengis/util/NameFactory.html"><CITE>NameFactory</CITE></A></CODE></STRONG></TD></TR>
   <TR><TD><CODE>&nbsp;&nbsp;&nbsp;&nbsp;<CITE>createInternationalString</CITE></CODE></TD></TR>
   <TR><TD><CODE>&nbsp;&nbsp;&nbsp;&nbsp;<CITE>createNameSpace</CITE></CODE></TD></TR>
+  <TR><TD><CODE>&nbsp;&nbsp;&nbsp;&nbsp;<CITE>createTypeName</CITE></CODE></TD></TR>
   <TR><TD><CODE>&nbsp;&nbsp;&nbsp;&nbsp;<CITE>createLocalName</CITE></CODE></TD></TR>
   <TR><TD><CODE>&nbsp;&nbsp;&nbsp;&nbsp;<CITE>createGenericName</CITE></CODE></TD></TR>
   <TR><TD><CODE>&nbsp;&nbsp;&nbsp;&nbsp;<CITE>parseGenericName</CITE></CODE></TD></TR>
@@ -1552,20 +1553,18 @@
   <TR><TD COLSPAN=3><HR></TD></TR>
   <TR><TD NOWRAP><STRONG><CODE>&nbsp;&nbsp;</CODE>Interface <CODE><A HREF="org/opengis/util/Record.html">Record</A></CODE></STRONG></TD><TD><CODE>Record</CODE></TD><TD NOWRAP>ISO 19103</TD></TR>
   <TR><TD><CODE>&nbsp;&nbsp;&nbsp;&nbsp;getRecordType</CODE></TD><TD><CODE>&nbsp;&nbsp;recordType</CODE></TD><TD><FONT SIZE=-1>ISO 19103</FONT></TD></TR>
-  <TR><TD><CODE>&nbsp;&nbsp;&nbsp;&nbsp;getAttributes</CODE></TD><TD><CODE>&nbsp;&nbsp;attributes</CODE></TD><TD><FONT SIZE=-1>ISO 19103</FONT></TD></TR>
+  <TR><TD><CODE>&nbsp;&nbsp;&nbsp;&nbsp;<CITE>getAttributes</CITE></CODE></TD><TD><CODE>&nbsp;&nbsp;<CITE>memberValue</CITE></CODE></TD><TD><FONT SIZE=-1>ISO 19103</FONT></TD></TR>
   <TR><TD><CODE>&nbsp;&nbsp;&nbsp;&nbsp;locate</CODE></TD><TD><CODE>&nbsp;&nbsp;locate</CODE></TD><TD><FONT SIZE=-1>ISO 19103</FONT></TD></TR>
   <TR><TD><CODE>&nbsp;&nbsp;&nbsp;&nbsp;<CITE>set</CITE></CODE></TD></TR>
   <TR><TD COLSPAN=3><HR></TD></TR>
   <TR><TD NOWRAP><STRONG><CODE>&nbsp;&nbsp;</CODE>Interface <CODE><A HREF="org/opengis/util/RecordSchema.html">RecordSchema</A></CODE></STRONG></TD><TD><CODE>RecordSchema</CODE></TD><TD NOWRAP>ISO 19103</TD></TR>
   <TR><TD><CODE>&nbsp;&nbsp;&nbsp;&nbsp;getSchemaName</CODE></TD><TD><CODE>&nbsp;&nbsp;schemaName</CODE></TD><TD><FONT SIZE=-1>ISO 19103</FONT></TD></TR>
   <TR><TD><CODE>&nbsp;&nbsp;&nbsp;&nbsp;getDescription</CODE></TD><TD><CODE>&nbsp;&nbsp;description</CODE></TD><TD><FONT SIZE=-1>ISO 19103</FONT></TD></TR>
-  <TR><TD><CODE>&nbsp;&nbsp;&nbsp;&nbsp;getElements</CODE></TD><TD><CODE>&nbsp;&nbsp;element</CODE></TD><TD><FONT SIZE=-1>ISO 19103</FONT></TD></TR>
   <TR><TD><CODE>&nbsp;&nbsp;&nbsp;&nbsp;locate</CODE></TD><TD><CODE>&nbsp;&nbsp;locate</CODE></TD><TD><FONT SIZE=-1>ISO 19103</FONT></TD></TR>
   <TR><TD COLSPAN=3><HR></TD></TR>
   <TR><TD NOWRAP><STRONG><CODE>&nbsp;&nbsp;</CODE>Interface <CODE><A HREF="org/opengis/util/RecordType.html">RecordType</A></CODE></STRONG></TD><TD><CODE>RecordType</CODE></TD><TD NOWRAP>ISO 19103</TD></TR>
-  <TR><TD><CODE>&nbsp;&nbsp;&nbsp;&nbsp;getTypeName</CODE></TD><TD><CODE>&nbsp;&nbsp;typeName</CODE></TD><TD><FONT SIZE=-1>ISO 19103</FONT></TD></TR>
-  <TR><TD><CODE>&nbsp;&nbsp;&nbsp;&nbsp;getContainer</CODE></TD><TD><CODE>&nbsp;&nbsp;container</CODE></TD><TD><FONT SIZE=-1>ISO 19103</FONT></TD></TR>
-  <TR><TD><CODE>&nbsp;&nbsp;&nbsp;&nbsp;getAttributeTypes</CODE></TD><TD><CODE>&nbsp;&nbsp;attributeTypes</CODE></TD><TD><FONT SIZE=-1>ISO 19103</FONT></TD></TR>
+  <TR><TD><CODE>&nbsp;&nbsp;&nbsp;&nbsp;<CITE>getContainer</CITE></CODE></TD></TR>
+  <TR><TD><CODE>&nbsp;&nbsp;&nbsp;&nbsp;getMemberTypes</CODE></TD><TD><CODE>&nbsp;&nbsp;memberTypes</CODE></TD><TD><FONT SIZE=-1>ISO 19103</FONT></TD></TR>
   <TR><TD><CODE>&nbsp;&nbsp;&nbsp;&nbsp;<CITE>getMembers</CITE></CODE></TD></TR>
   <TR><TD><CODE>&nbsp;&nbsp;&nbsp;&nbsp;locate</CODE></TD><TD><CODE>&nbsp;&nbsp;locate</CODE></TD><TD><FONT SIZE=-1>ISO 19103</FONT></TD></TR>
   <TR><TD><CODE>&nbsp;&nbsp;&nbsp;&nbsp;<CITE>isInstance</CITE></CODE></TD></TR>
@@ -1573,6 +1572,9 @@
   <TR><TD NOWRAP><STRONG><CODE>&nbsp;&nbsp;</CODE>Interface <CODE><A HREF="org/opengis/util/ScopedName.html">ScopedName</A></CODE></STRONG></TD><TD><CODE>ScopedName</CODE></TD><TD NOWRAP>ISO 19103</TD></TR>
   <TR><TD><CODE>&nbsp;&nbsp;&nbsp;&nbsp;tail</CODE></TD><TD><CODE>&nbsp;&nbsp;tail</CODE></TD><TD><FONT SIZE=-1>ISO 19103</FONT></TD></TR>
   <TR><TD><CODE>&nbsp;&nbsp;&nbsp;&nbsp;<CITE>path</CITE></CODE></TD></TR>
+  <TR><TD COLSPAN=3><HR></TD></TR>
+  <TR><TD NOWRAP><STRONG><CODE>&nbsp;&nbsp;</CODE>Interface <CODE><A HREF="org/opengis/util/Type.html"><CITE>Type</CITE></A></CODE></STRONG></TD></TR>
+  <TR><TD><CODE>&nbsp;&nbsp;&nbsp;&nbsp;getTypeName</CODE></TD><TD><CODE>&nbsp;&nbsp;typeName</CODE></TD><TD><FONT SIZE=-1>ISO 19103</FONT></TD></TR>
   <TR><TD COLSPAN=3><HR></TD></TR>
   <TR><TD NOWRAP><STRONG><CODE>&nbsp;&nbsp;</CODE>Interface <CODE><A HREF="org/opengis/util/TypeName.html">TypeName</A></CODE></STRONG></TD><TD><CODE>TypeName</CODE></TD><TD NOWRAP>ISO 19103</TD></TR>
   <TR><TD COLSPAN=3><HR></TD></TR>
