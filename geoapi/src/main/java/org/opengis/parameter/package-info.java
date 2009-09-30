@@ -30,7 +30,7 @@
  * nested parameter groups. This way of modelling is not mandatory; all coordinate operation
  * parameters may be assigned directly to the coordinate operation method.</P>
  *
- * @departure generalization
+ * @departure harmonization
  *   Moved the <code>GeneralParameterDescriptor</code>, <code>ParameterDescriptor</code>,
  *   <code>ParameterDescriptorGroup</code>, <code>GeneralParameterValue</code>, <code>ParameterValue</code>,
  *   <code>ParameterValueGroup</code>, <code>InvalidParameterNameException</code>,
