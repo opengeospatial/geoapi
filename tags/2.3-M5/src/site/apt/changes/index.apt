@@ -1,0 +1,25 @@
+Changes in API
+
+  The following table gives the links to all changes in the 2.3 series of milestones. The cell in
+  the upper-left corner links to the most recent API changes, from 2.3-M3 to 2.3-M4 milestone. The
+  last column links to the API changes in any milestone since 2.3-M1. The changes since 2.3-M1 give
+  the cleanest picture of what actually changed, because the changes since the previous version are
+  often "polluted" by the methods that are deprecated before to be removed.
+
+*--------------------------+-----------------------------*--------------------------------*--------------------------------*
+| Changes in <<M4>> since: | {{{2.3-M4/changes.html}M3}} | {{{2.3-M4/M2/changes.html}M2}} | {{{2.3-M4/M1/changes.html}M1}} |
+*--------------------------+-----------------------------*--------------------------------*--------------------------------*
+| Changes in <<M3>> since: |                             | {{{2.3-M3/changes.html}M2}}    | {{{2.3-M3/M1/changes.html}M1}} |
+*--------------------------+-----------------------------*--------------------------------*--------------------------------*
+| Changes in <<M2>> since: |                             |                                | {{{2.3-M2/changes.html}M1}}    |
+*--------------------------+-----------------------------*--------------------------------*--------------------------------*
+
+
+  The changes between other versions of GeoAPI are collected here
+  (most recent changes are first):
+
+    * {{{ISO-19115-2/changes.html}Changes introduced by the addition of ISO 19115-2}}
+
+    * {{{../2.1/index.html}Changes between GeoAPI 2.0 and 2.1}}
+
+    * {{{../2.0/index.html}Changes between GeoAPI 1.0 and 2.0}}

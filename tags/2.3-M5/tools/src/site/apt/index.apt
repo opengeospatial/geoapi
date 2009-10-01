@@ -1,0 +1,81 @@
+GeoAPI build tools
+
+  Javadoc taglets and annotation processing tools for processing GeoAPI
+  after compilation. Those tools are used mostly for javadoc generation.
+  They are internal to the GeoAPI project and may change at any time.
+
+* Steps for creating a GeoAPI milestone in a Unix environment
+
+  If not already done, ensure that the <<<geoapi/src/main/javadoc/content.html>>>
+  file on trunk is up to date. The following commands assume that the current
+  directory (<<<pwd>>>) is the local copy of GeoAPI trunk.
+
+---------------------------------------------------------------------------------------------
+export CLASSPATH=\
+$PWD/geoapi/target/geoapi-2.3-SNAPSHOT.jar:\
+$PWD/geoapi-pending/target/geoapi-pending-2.3-SNAPSHOT.jar:\
+$PWD/tools/target/tools-2.3-SNAPSHOT.jar
+cd geoapi/src/main/java
+find . -name "*.java" -print | xargs apt -nocompile -factory org.opengis.tools.IndexGenerator
+cd -
+svn commit -m "Updated the list of GeoAPI classes and methods."
+---------------------------------------------------------------------------------------------
+
+  Defines the version number for the GeoAPI milesone. The example below
+  uses 2.3-M5. Please edit as needed.
+
+---------------------------------------------------------------------------------------------
+export GEOAPI_VERSION=2.3-M5
+---------------------------------------------------------------------------------------------
+
+  Create a SVN tag.
+
+---------------------------------------------------------------------------------------------
+svn copy https://geoapi.svn.sourceforge.net/svnroot/geoapi/trunk \
+         https://geoapi.svn.sourceforge.net/svnroot/geoapi/tags/$GEOAPI_VERSION \
+         -m "Created the tag for GeoAPI $GEOAPI_VERSION milestone."
+---------------------------------------------------------------------------------------------
+
+  Get a local copy of the tag and edit the version number:
+
+---------------------------------------------------------------------------------------------
+cd ../tags
+svn checkout https://geoapi.svn.sourceforge.net/svnroot/geoapi/tags/$GEOAPI_VERSION
+cd $GEOAPI_VERSION
+find . -name "pom.xml" -print | xargs sed -i '' "s/2.3-SNAPSHOT/$GEOAPI_VERSION/g"
+svn diff
+---------------------------------------------------------------------------------------------
+
+  Test, commit and deploy. You may need to add <<<-Pgeotoolkit>>> or <<<-Popengeo>>>
+  to the <<<mvn deploy>>> command.
+
+---------------------------------------------------------------------------------------------
+mvn clean install
+svn status
+svn commit -m "Set the version number to $GEOAPI_VERSION."
+mvn clean deploy
+---------------------------------------------------------------------------------------------
+
+  Generate javadoc. This require a little bit of manual cleaning after javadoc generation.
+  Note: <<<graphviz>>> and <<<optipng>>> must be installed and reachable on the path.
+  Note also that the content of <<<geoapi/src/main/javadoc/>>> is not copied automatically
+  (Maven documentation said that it should be copied, but it doesn't seem to be the case as
+  of Maven 2.1.0), so we need to copy ourself.
+
+---------------------------------------------------------------------------------------------
+mvn javadoc:javadoc
+find . -name "*.dot" -delete
+find . -name "*.png" -print | xargs optipng
+cp geoapi/src/main/javadoc/content.html  geoapi/target/site/apidocs/
+cp geoapi/src/main/javadoc/UML-java.html geoapi/target/site/apidocs/
+---------------------------------------------------------------------------------------------
+
+  Creates a ZIP file and deploy on the download area
+  (todo: which download area?)
+
+---------------------------------------------------------------------------------------------
+cd geoapi/target/site/
+zip -r9 ../geoapi-$GEOAPI_VERSION.zip apidocs/
+cd ..
+zip -9 geoapi-$GEOAPI_VERSION.zip geoapi-$GEOAPI_VERSION.jar
+---------------------------------------------------------------------------------------------
