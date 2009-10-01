@@ -8,7 +8,7 @@
       <include name="**/*.xml"/>
       <include name="**/*.html"/>
       <include name="**/*.java"/>
-      <replacefilter token="2.3-SNAPSHOT" value="2.3-SNAPSHOT"/>
+      <replacefilter token="2.3-SNAPSHOT" value="2.3-M2"/>
     </replace>
   </target>
 </project>
