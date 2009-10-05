@@ -74,20 +74,6 @@ public interface RecordType extends Type {
 
     /**
      * Returns the dictionary of all (<var>name</var>, <var>type</var>) pairs in this record type.
-     * The dictionary shall be {@linkplain java.util.Collections#unmodifiableMap unmodifiable}.
-     *
-     * @return The dictionary of all (<var>name</var>, <var>type</var>) pairs in this record type.
-     *
-     * @see Record#getAttributes
-     *
-     * @deprecated Figure 15 in ISO 19103:2005 does not define this association, but defines
-     *             instead a slightly different <code>memberTypes</code> association.
-     */
-    @Deprecated
-    Map<MemberName, TypeName> getAttributeTypes();
-
-    /**
-     * Returns the dictionary of all (<var>name</var>, <var>type</var>) pairs in this record type.
      * If there are no attributes, this method returns the empty map.
      * The dictionary shall be {@linkplain java.util.Collections#unmodifiableMap unmodifiable}.
      * <p>

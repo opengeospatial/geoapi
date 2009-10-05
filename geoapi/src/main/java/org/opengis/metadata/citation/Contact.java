@@ -61,15 +61,6 @@ public interface Contact {
     OnLineResource getOnlineResource();
 
     /**
-     * @deprecated Renamed {@link #getOnlineResource()}.
-     *
-     * @return On-line information that can be used to contact the individual or organization,
-     *         or {@code null}.
-     */
-    @Deprecated
-    OnLineResource getOnLineResource();
-
-    /**
      * Time period (including time zone) when individuals can contact the organization or
      * individual. Returns {@code null} if unspecified.
      *

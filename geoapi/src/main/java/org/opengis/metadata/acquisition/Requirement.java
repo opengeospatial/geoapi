@@ -101,12 +101,4 @@ public interface Requirement {
      */
     @UML(identifier="satisfiedPlan", obligation=OPTIONAL, specification=ISO_19115_2)
     Collection<? extends Plan> getSatisfiedPlans();
-
-    /**
-     * @return Plan that identifies solution to satisfy the requirement.
-     *
-     * @deprecated Renamed as {@link #getSatisfiedPlans()}.
-     */
-    @Deprecated
-    Collection<? extends Plan> getSatisifedPlans();
 }
