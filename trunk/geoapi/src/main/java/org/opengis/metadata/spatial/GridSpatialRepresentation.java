@@ -47,14 +47,6 @@ public interface GridSpatialRepresentation extends SpatialRepresentation {
     List<? extends Dimension> getAxisDimensionProperties();
 
     /**
-     * @deprecated Renamed as {@link #getAxisDimensionProperties()}.
-     *
-     * @return Information about spatial-temporal axis properties.
-     */
-    @Deprecated
-    List<? extends Dimension> getAxisDimensionsProperties();
-
-    /**
      * Identification of grid data as point or cell.
      *
      * @return Identification of grid data as point or cell.

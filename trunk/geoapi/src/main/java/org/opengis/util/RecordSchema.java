@@ -61,19 +61,6 @@ public interface RecordSchema {
     Map<TypeName, RecordType> getDescription();
 
     /**
-     * Returns all record types declared in this schema. This is functionnaly equivalent to
-     * <code>{@linkplain #getDescription()}.{@linkplain Map#values values()}</code>.
-     *
-     * @return {@code getDescription().values()}
-     *
-     * @deprecated This association is redundant with {@code getDescriptions()} and
-     *             does not appear in figure 15 "Record types" of ISO 19103:2005.
-     */
-    @Deprecated
-    @UML(identifier="element", obligation=OPTIONAL, specification=ISO_19103)
-    Collection<RecordType> getElements();
-
-    /**
      * Looks up the provided type name and returns the associated record type. If the type name is not
      * defined within this schema, then this method returns {@code null}. This is functionnaly equivalent
      * to <code>{@linkplain #getDescription()}.{@linkplain Map#get get}(name)</code>.
