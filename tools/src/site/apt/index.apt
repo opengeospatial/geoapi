@@ -22,10 +22,10 @@ svn commit -m "Updated the list of GeoAPI classes and methods."
 ---------------------------------------------------------------------------------------------
 
   Defines the version number for the GeoAPI milesone. The example below
-  uses 2.3-M5. Please edit as needed.
+  uses 2.3-M6. Please edit as needed.
 
 ---------------------------------------------------------------------------------------------
-export GEOAPI_VERSION=2.3-M5
+export GEOAPI_VERSION=2.3-M6
 ---------------------------------------------------------------------------------------------
 
   Create a SVN tag.
