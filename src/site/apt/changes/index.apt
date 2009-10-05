@@ -25,3 +25,94 @@ Changes in API
     * {{{../2.1/index.html}Changes between GeoAPI 2.0 and 2.1}}
 
     * {{{../2.0/index.html}Changes between GeoAPI 1.0 and 2.0}}
+
+
+Release notes
+
+* Version 2.3-M5
+
+   * {{{http://jira.codehaus.org/browse/GEO-187}GEO-187}} - Typo in metadata method names or annotations
+
+   * {{{http://jira.codehaus.org/browse/GEO-72}GEO-072}}  - Proposal for RecordType/Record implementation
+
+   * {{{http://jira.codehaus.org/browse/GEO-183}GEO-183}} - Need to simplify the distribution (geoapi / geoapi-pending / geoapi-dummy-pending)
+
+
+* Version 2.3-M4
+
+   * {{{http://jira.codehaus.org/browse/GEO-168}GEO-168}} - Proposal implementation of the ISO 19115-2
+
+   * {{{http://jira.codehaus.org/browse/GEO-174}GEO-174}} - New ISO 19111:2007 interface: CC_Formula
+
+   * {{{http://jira.codehaus.org/browse/GEO-182}GEO-182}} - OperationMethod.[source|target]Dimensions now optional in latest ISO 19111
+
+
+* Version 2.3-M3
+
+   * {{{http://jira.codehaus.org/browse/GEO-175}GEO-175}} - Remove VerticalDatumType.ELLIPSOIDAL
+
+   * {{{http://jira.codehaus.org/browse/GEO-133}GEO-133}} - ISO 19111 departure in VerticalDatumType.ELLIPSOIDAL
+
+   * {{{http://jira.codehaus.org/browse/GEO-167}GEO-167}} - Move to plurial some getters that returns a collection
+
+   * {{{http://jira.codehaus.org/browse/GEO-85}GEO-085}}  - Bearing has angle with no units.
+
+   * {{{http://jira.codehaus.org/browse/GEO-156}GEO-156}} - NPE in org.opengis.feature.IllegalAttributeException.toString()
+
+   * {{{http://jira.codehaus.org/browse/GEO-169}GEO-169}} - Consider making CodeList.valueOf(String) to ignore whitespaces
+
+
+* Version 2.3-M2
+
+   * {{{http://jira.codehaus.org/browse/GEO-162}GEO-162}} - Util: Drop the Clonable interface since it's almost not used.
+
+   * {{{http://jira.codehaus.org/browse/GEO-163}GEO-163}} - Annotation: Drop the Profile annotation and Compliance enum
+
+   * {{{http://jira.codehaus.org/browse/GEO-166}GEO-166}} - Specifying the condition when an attribute is annotated with UML(obligation=CONDITIONAL)
+
+   * {{{http://jira.codehaus.org/browse/GEO-171}GEO-171}} - Move some interfaces from "geoapi" to "geoapi-pending"
+
+   * {{{http://jira.codehaus.org/browse/GEO-158}GEO-158}} - PropertyIsLike option to ignore case
+
+   * {{{http://jira.codehaus.org/browse/GEO-161}GEO-161}} - ISO 19111 departure in CompoundCRS
+
+   * {{{http://jira.codehaus.org/browse/GEO-178}GEO-178}} - IncompatibleOperationException is a checked exception, but not used anywhere
+
+   * {{{http://jira.codehaus.org/browse/GEO-170}GEO-170}} - NameFactory.createNameSpace(...) need to be more extensible
+
+   * {{{http://jira.codehaus.org/browse/GEO-176}GEO-176}} - Javadocs for all CodeLists need to distinguish family() and values()
+
+   * {{{http://jira.codehaus.org/browse/GEO-173}GEO-173}} - Drop org.opengis.referencing.operation.Operation
+
+   * {{{http://jira.codehaus.org/browse/GEO-177}GEO-177}} - Add CoordinateOperationAuthorityFactory.createOperationMethod(String);
+
+
+* Version 2.3-M1
+
+   * {{{http://jira.codehaus.org/browse/GEO-71}GEO-071}}  - Incorrect implementation of org.opengis.util.GenericName
+
+   * {{{http://jira.codehaus.org/browse/GEO-77}GEO-077}}  - Standardized mapping: ISO 19103 to Java/GeoAPI
+
+   * {{{http://jira.codehaus.org/browse/GEO-172}GEO-172}} - New ISO 19111:2007 interface: CS_GeodeticCS
+
+   * {{{http://jira.codehaus.org/browse/GEO-54}GEO-054}}  - Add setter methods to metadata interfaces
+
+   * {{{http://jira.codehaus.org/browse/GEO-83}GEO-083}}  - Metadata is missing the "application" package
+
+   * {{{http://jira.codehaus.org/browse/GEO-145}GEO-145}} - Make GeneralName easier to understand
+
+   * {{{http://jira.codehaus.org/browse/GEO-9}GEO-009}}   - Create a link toward JIRA from the GeoAPI main page
+
+   * {{{http://jira.codehaus.org/browse/GEO-42}GEO-042}}  - Publish a table of stable modules and modules in progress
+
+   * {{{http://jira.codehaus.org/browse/GEO-74}GEO-074}}  - Consider removing org.opengis.display.go.style package (to be replaced by org.opengis.sld).
+
+   * {{{http://jira.codehaus.org/browse/GEO-132}GEO-132}} - Document better the departure from OGC/ISO specifications
+
+   * {{{http://jira.codehaus.org/browse/GEO-140}GEO-140}} - Add a @pending javadoc annotation to any experimental interface
+
+   * {{{http://jira.codehaus.org/browse/GEO-157}GEO-157}} - Split geoapi in two modules: "geoapi" and "pending"
+
+   * {{{http://jira.codehaus.org/browse/GEO-160}GEO-160}} - Remove packages GO, Layer and clean deprecated sld packages classes
+
+   * {{{http://jira.codehaus.org/browse/GEO-164}GEO-164}} - Create a specification draft for June 2009 OGC meeting (Boston)
