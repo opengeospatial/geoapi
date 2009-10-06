@@ -12,9 +12,9 @@ package org.opengis.parameter;
 
 
 /**
- * Thrown when a parameter can't be cast to the requested type. For example this exception
- * is thrown when {@link ParameterValue#doubleValue} is invoked but the value is not
- * convertible to a {@code double}.
+ * Thrown by {@link ParameterValue} getter methods when a value can not be casted to the
+ * requested type. For example this exception is thrown when {@link ParameterValue#doubleValue()}
+ * is invoked but the value is not convertible to a {@code double}.
  *
  * {@note This exception is of kind <code>IllegalStateException</code> instead than
  *        <code>IllegalArgumentException</code> because it is not caused by a bad argument.
@@ -27,8 +27,11 @@ package org.opengis.parameter;
  * @author  Martin Desruisseaux (IRD)
  * @since   GeoAPI 1.0
  *
- * @see ParameterValue#intValue
- * @see ParameterValue#doubleValue
+ * @see ParameterValue#intValue()
+ * @see ParameterValue#doubleValue()
+ * @see ParameterValue#booleanValue()
+ * @see ParameterValue#stringValue()
+ * @see ParameterValue#valueFile()
  */
 public class InvalidParameterTypeException extends IllegalStateException {
     /**

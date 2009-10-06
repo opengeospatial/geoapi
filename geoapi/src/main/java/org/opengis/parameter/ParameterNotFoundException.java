@@ -12,8 +12,8 @@ package org.opengis.parameter;
 
 
 /**
- * Thrown when a required parameter was not found in a
- * {@linkplain ParameterDescriptorGroup parameter group}.
+ * Thrown by {@link ParameterValueGroup} and {@link ParameterDescriptorGroup}
+ * when a parameter is requested but not found in that group.
  *
  * @departure extension
  *   This exception is not part of OGC specification.
@@ -21,8 +21,8 @@ package org.opengis.parameter;
  * @author  Martin Desruisseaux (IRD)
  * @since   GeoAPI 1.0
  *
- * @see ParameterDescriptorGroup#descriptor
- * @see ParameterValueGroup#parameter
+ * @see ParameterValueGroup#parameter(String)
+ * @see ParameterDescriptorGroup#descriptor(String)
  */
 public class ParameterNotFoundException extends IllegalArgumentException {
     /**

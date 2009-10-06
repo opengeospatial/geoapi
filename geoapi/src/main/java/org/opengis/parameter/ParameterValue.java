@@ -56,8 +56,8 @@ public interface ParameterValue<T> extends GeneralParameterValue {
      * @return The unit of measure of the parameter value.
      *
      * @see #doubleValue()
-     * @see #doubleValueList
-     * @see #getValue
+     * @see #doubleValueList()
+     * @see #getValue()
      */
     Unit<?> getUnit();
 
@@ -72,7 +72,7 @@ public interface ParameterValue<T> extends GeneralParameterValue {
      * @throws InvalidParameterTypeException if the value is not a numeric type.
      * @throws IllegalStateException if the value can not be returned for an other raison.
      *
-     * @see #getUnit
+     * @see #getUnit()
      * @see #setValue(double,Unit)
      * @see #doubleValueList(Unit)
      */
@@ -92,9 +92,9 @@ public interface ParameterValue<T> extends GeneralParameterValue {
      *   with <code>Number.doubleValue()</code> and the other "<code>*Value</code>" methods defined
      *   in this interface.
      *
-     * @see #getUnit
+     * @see #getUnit()
      * @see #setValue(double)
-     * @see #doubleValueList
+     * @see #doubleValueList()
      */
     double doubleValue() throws IllegalStateException;
 
@@ -111,7 +111,7 @@ public interface ParameterValue<T> extends GeneralParameterValue {
      *   consistency with <code>Number.intValue()</code> and the <code>int</code> Java primitive type.
      *
      * @see #setValue(int)
-     * @see #intValueList
+     * @see #intValueList()
      */
     @UML(identifier="integerValue", obligation=CONDITIONAL, specification=ISO_19111)
     int intValue() throws IllegalStateException;
@@ -137,7 +137,7 @@ public interface ParameterValue<T> extends GeneralParameterValue {
      * @throws InvalidParameterTypeException if the value is not a string.
      * @throws IllegalStateException if the value can not be returned for an other raison.
      *
-     * @see #getValue
+     * @see #getValue()
      * @see #setValue(Object)
      */
     @UML(identifier="stringValue", obligation=CONDITIONAL, specification=ISO_19111)
@@ -154,7 +154,7 @@ public interface ParameterValue<T> extends GeneralParameterValue {
      * @throws InvalidParameterTypeException if the value is not an array of {@code double}s.
      * @throws IllegalStateException if the value can not be returned for an other raison.
      *
-     * @see #getUnit
+     * @see #getUnit()
      * @see #setValue(double[],Unit)
      * @see #doubleValue(Unit)
      */
@@ -175,7 +175,7 @@ public interface ParameterValue<T> extends GeneralParameterValue {
      *   this method returns an array of <code>double</code> values rather than a <code>Measure</code>
      *   object.
      *
-     * @see #getUnit
+     * @see #getUnit()
      * @see #setValue(Object)
      * @see #doubleValue()
      */
@@ -195,7 +195,7 @@ public interface ParameterValue<T> extends GeneralParameterValue {
      *   for consistency with <code>intValue()</code>.
      *
      * @see #setValue(Object)
-     * @see #intValue
+     * @see #intValue()
      */
     @UML(identifier="integerValueList", obligation=CONDITIONAL, specification=ISO_19111)
     int[] intValueList() throws IllegalStateException;
@@ -210,7 +210,7 @@ public interface ParameterValue<T> extends GeneralParameterValue {
      * @throws InvalidParameterTypeException if the value is not a reference to a file or an URI.
      * @throws IllegalStateException if the value can not be returned for an other raison.
      *
-     * @see #getValue
+     * @see #getValue()
      * @see #setValue(Object)
      */
     @UML(identifier="valueFile", obligation=CONDITIONAL, specification=ISO_19111)
@@ -275,7 +275,7 @@ public interface ParameterValue<T> extends GeneralParameterValue {
      * @throws InvalidParameterValueException if the integer type is inappropriate for this parameter,
      *         or if the value is illegal for some other reason (for example a value out of range).
      *
-     * @see #intValue
+     * @see #intValue()
      */
     void setValue(int value) throws InvalidParameterValueException;
 
@@ -285,7 +285,7 @@ public interface ParameterValue<T> extends GeneralParameterValue {
      * @param  value The parameter value.
      * @throws InvalidParameterValueException if the boolean type is inappropriate for this parameter.
      *
-     * @see #booleanValue
+     * @see #booleanValue()
      */
     void setValue(boolean value) throws InvalidParameterValueException;
 
@@ -304,7 +304,7 @@ public interface ParameterValue<T> extends GeneralParameterValue {
      *         for this parameter, or if the value is illegal for some other reason (for example
      *         the value is numeric and out of range).
      *
-     * @see #getValue
+     * @see #getValue()
      */
     void setValue(Object value) throws InvalidParameterValueException;
 
