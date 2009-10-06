@@ -19,11 +19,14 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * A parameter value used by an operation method. Most parameter values are numeric, but
- * other types of parameter values are possible. The parameter type can be fetch with the
- * <code>{@linkplain #getValue()}.{@linkplain Object#getClass() getClass()}</code> idiom.
- * The {@link #getValue()} and {@link #setValue(Object)} methods can be invoked at any time.
- * Others getters and setters are parameter-type dependents.
+ * A parameter value used by an operation method. Most parameter values are numeric and can be
+ * obtained by the {@link #intValue()} or {@link #doubleValue()} methods. But other types of
+ * parameter values are possible and can be handled by the more generic {@link #getValue()} and
+ * {@link #setValue(Object)} methods. The type and constraints on parameter values are given
+ * by the {@linkplain #getDescriptor() descriptor}.
+ * <p>
+ * Instances of {@code ParameterValue} are created by the {@link ParameterDescriptor#createValue()}
+ * method.
  *
  * @param <T> The type of parameter values.
  *
@@ -65,14 +68,15 @@ public interface ParameterValue<T> extends GeneralParameterValue {
      * @param  unit The unit of measure for the value to be returned.
      * @return The numeric value represented by this parameter after conversion to type
      *         {@code double} and conversion to {@code unit}.
-     * @throws InvalidParameterTypeException if the value is not a numeric type.
      * @throws IllegalArgumentException if the specified unit is invalid for this parameter.
+     * @throws InvalidParameterTypeException if the value is not a numeric type.
+     * @throws IllegalStateException if the value can not be returned for an other raison.
      *
      * @see #getUnit
      * @see #setValue(double,Unit)
      * @see #doubleValueList(Unit)
      */
-    double doubleValue(Unit<?> unit) throws InvalidParameterTypeException;
+    double doubleValue(Unit<?> unit) throws IllegalArgumentException, IllegalStateException;
 
     /**
      * Returns the numeric value of the coordinate operation parameter with its
@@ -80,6 +84,7 @@ public interface ParameterValue<T> extends GeneralParameterValue {
      *
      * @return The numeric value represented by this parameter after conversion to type {@code double}.
      * @throws InvalidParameterTypeException if the value is not a numeric type.
+     * @throws IllegalStateException if the value can not be returned for an other raison.
      * @unitof Measure
      *
      * @departure rename
@@ -91,7 +96,7 @@ public interface ParameterValue<T> extends GeneralParameterValue {
      * @see #setValue(double)
      * @see #doubleValueList
      */
-    double doubleValue() throws InvalidParameterTypeException;
+    double doubleValue() throws IllegalStateException;
 
     /**
      * Returns the positive integer value of an operation parameter, usually used
@@ -99,6 +104,7 @@ public interface ParameterValue<T> extends GeneralParameterValue {
      *
      * @return The numeric value represented by this parameter after conversion to type {@code int}.
      * @throws InvalidParameterTypeException if the value is not an integer type.
+     * @throws IllegalStateException if the value can not be returned for an other raison.
      *
      * @departure rename
      *   Renamed the method from "<code>integerValue</code>" to "<code>intValue</code>" for
@@ -108,7 +114,7 @@ public interface ParameterValue<T> extends GeneralParameterValue {
      * @see #intValueList
      */
     @UML(identifier="integerValue", obligation=CONDITIONAL, specification=ISO_19111)
-    int intValue() throws InvalidParameterTypeException;
+    int intValue() throws IllegalStateException;
 
     /**
      * Returns the boolean value of an operation parameter
@@ -116,11 +122,12 @@ public interface ParameterValue<T> extends GeneralParameterValue {
      *
      * @return The boolean value represented by this parameter.
      * @throws InvalidParameterTypeException if the value is not a boolean type.
+     * @throws IllegalStateException if the value can not be returned for an other raison.
      *
      * @see #setValue(boolean)
      */
     @UML(identifier="booleanValue", obligation=CONDITIONAL, specification=ISO_19111)
-    boolean booleanValue() throws InvalidParameterTypeException;
+    boolean booleanValue() throws IllegalStateException;
 
     /**
      * Returns the string value of an operation parameter.
@@ -128,12 +135,13 @@ public interface ParameterValue<T> extends GeneralParameterValue {
      *
      * @return The string value represented by this parameter.
      * @throws InvalidParameterTypeException if the value is not a string.
+     * @throws IllegalStateException if the value can not be returned for an other raison.
      *
      * @see #getValue
      * @see #setValue(Object)
      */
     @UML(identifier="stringValue", obligation=CONDITIONAL, specification=ISO_19111)
-    String stringValue() throws InvalidParameterTypeException;
+    String stringValue() throws IllegalStateException;
 
     /**
      * Returns an ordered sequence of numeric values in the specified unit of measure.
@@ -142,14 +150,15 @@ public interface ParameterValue<T> extends GeneralParameterValue {
      * @param  unit The unit of measure for the value to be returned.
      * @return The sequence of values represented by this parameter after conversion to type
      *         {@code double} and conversion to {@code unit}.
-     * @throws InvalidParameterTypeException if the value is not an array of {@code double}s.
      * @throws IllegalArgumentException if the specified unit is invalid for this parameter.
+     * @throws InvalidParameterTypeException if the value is not an array of {@code double}s.
+     * @throws IllegalStateException if the value can not be returned for an other raison.
      *
      * @see #getUnit
      * @see #setValue(double[],Unit)
      * @see #doubleValue(Unit)
      */
-    double[] doubleValueList(Unit<?> unit) throws InvalidParameterTypeException;
+    double[] doubleValueList(Unit<?> unit) throws IllegalArgumentException, IllegalStateException;
 
     /**
      * Returns an ordered sequence of two or more numeric values of an operation parameter
@@ -157,12 +166,13 @@ public interface ParameterValue<T> extends GeneralParameterValue {
      *
      * @return The sequence of values represented by this parameter.
      * @throws InvalidParameterTypeException if the value is not an array of {@code double}s.
+     * @throws IllegalStateException if the value can not be returned for an other raison.
      * @unitof Measure
      *
      * @departure rename
      *   Renamed the method from "<code>valueList</code>" to "<code>doubleValueList</code>" both for
      *   consistency with <code>doubleValue()</code> and also because, like <code>doubleValue()</code>,
-     *   this method returns an array of <code>double</code> values rather than a <code>Measure</code> 
+     *   this method returns an array of <code>double</code> values rather than a <code>Measure</code>
      *   object.
      *
      * @see #getUnit
@@ -170,7 +180,7 @@ public interface ParameterValue<T> extends GeneralParameterValue {
      * @see #doubleValue()
      */
     @UML(identifier="valueList", obligation=CONDITIONAL, specification=ISO_19111)
-    double[] doubleValueList() throws InvalidParameterTypeException;
+    double[] doubleValueList() throws IllegalStateException;
 
     /**
      * Returns an ordered sequence of two or more integer values of an operation parameter list,
@@ -178,6 +188,7 @@ public interface ParameterValue<T> extends GeneralParameterValue {
      *
      * @return The sequence of values represented by this parameter.
      * @throws InvalidParameterTypeException if the value is not an array of {@code int}s.
+     * @throws IllegalStateException if the value can not be returned for an other raison.
      *
      * @departure rename
      *   Renamed the attribute from "<code>integerValueList</code>" to "<code>intValueList</code>"
@@ -187,7 +198,7 @@ public interface ParameterValue<T> extends GeneralParameterValue {
      * @see #intValue
      */
     @UML(identifier="integerValueList", obligation=CONDITIONAL, specification=ISO_19111)
-    int[] intValueList() throws InvalidParameterTypeException;
+    int[] intValueList() throws IllegalStateException;
 
     /**
      * Returns a reference to a file or a part of a file containing one or more parameter
@@ -197,19 +208,22 @@ public interface ParameterValue<T> extends GeneralParameterValue {
      *
      * @return The reference to a file containing parameter values.
      * @throws InvalidParameterTypeException if the value is not a reference to a file or an URI.
+     * @throws IllegalStateException if the value can not be returned for an other raison.
      *
      * @see #getValue
      * @see #setValue(Object)
      */
     @UML(identifier="valueFile", obligation=CONDITIONAL, specification=ISO_19111)
-    URI valueFile() throws InvalidParameterTypeException;
+    URI valueFile() throws IllegalStateException;
 
     /**
      * Returns the parameter value as an object. The object type is typically a {@link Double},
      * {@link Integer}, {@link Boolean}, {@link String}, {@link URI}, {@code double[]} or
-     * {@code int[]}.
+     * {@code int[]}. If no value has been set, then this method returns the
+     * {@linkplain ParameterDescriptor#getDefaultValue() default value} (which may be null).
      *
-     * @return The parameter value as an object.
+     * @return The parameter value as an object, or {@code null} if no value has been set and
+     *         there is no default value.
      *
      * @see #setValue(Object)
      */

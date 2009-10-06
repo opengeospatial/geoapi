@@ -18,7 +18,8 @@ package org.opengis.parameter;
  *
  * {@note This exception is of kind <code>IllegalStateException</code> instead than
  *        <code>IllegalArgumentException</code> because it is not caused by a bad argument.
- *        It is rather a consequence of wrong zero-argument method.}
+ *        It is rather a consequence of a zero-argument method invoked in a context where
+ *        is it not allowed.}
  *
  * @departure extension
  *   This exception is not part of the OGC specification.
