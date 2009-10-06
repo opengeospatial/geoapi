@@ -14,12 +14,15 @@ import java.util.List;
 
 
 /**
- * Throws if adding a {@linkplain ParameterValue parameter value} to a
- * {@linkplain ParameterValueGroup group} would result in more parameters
- * than the {@linkplain ParameterDescriptor#getMaximumOccurs maximum occurence}
- * allowed. This operation may be throws during {@linkplain List#add} or
- * {@linkplain List#remove} operation on the list returned by
- * {@link ParameterValueGroup#values}.
+ * Thrown by {@link ParameterValueGroup} if adding or removing a {@linkplain ParameterValue
+ * parameter value} would result in more or less parameters than the expected range. The
+ * [{@linkplain ParameterDescriptor#getMinimumOccurs minimum} &hellip;
+ *  {@linkplain ParameterDescriptor#getMaximumOccurs maximum}] range is defined by
+ * the {@link ParameterDescriptorGroup} instance associated with the {@code ParameterValueGroup}.
+ * <p>
+ * This exception may be thrown directly by the {@link ParameterValueGroup#addGroup(String)}
+ * method, or indirectly during the {@linkplain List#add add} or {@linkplain List#remove remove}
+ * operations on the list returned by {@link ParameterValueGroup#values()}.
  *
  * {@note This exception is of kind <code>IllegalStateException</code> instead than
  *        <code>IllegalArgumentException</code> because it is not caused by a bad argument.
@@ -31,9 +34,8 @@ import java.util.List;
  * @author  Martin Desruisseaux (IRD)
  * @since   GeoAPI 2.0
  *
- * @see ParameterValueGroup#values
- * @see ParameterDescriptor#getMinimumOccurs
- * @see ParameterDescriptor#getMaximumOccurs
+ * @see ParameterValueGroup#values()
+ * @see ParameterValueGroup#addGroup(String)
  */
 public class InvalidParameterCardinalityException extends IllegalStateException {
     /**

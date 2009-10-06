@@ -15,7 +15,7 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * Thrown when an invalid value was given to a {@linkplain ParameterValue parameter}.
+ * Thrown by {@link ParameterValue} setter methods when they are given an invalid value.
  *
  * @version <A HREF="http://www.opengis.org/docs/01-004.pdf">Grid Coverage specification 1.0</A>
  * @author  Martin Desruisseaux (IRD)
