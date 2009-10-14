@@ -44,7 +44,7 @@ public interface AuthorityFactory extends Factory {
 
     /**
      * Returns the set of authority codes of the given type. The {@code type}
-     * argument specify the base class. For example if this factory is an instance
+     * argument specifies the base class. For example if this factory is an instance
      * of {@link org.opengis.referencing.crs.CRSAuthorityFactory}, then:
      * <ul>
      *   <li><b><code>{@linkplain org.opengis.referencing.crs.CoordinateReferenceSystem}.class&nbsp;</code></b>
@@ -53,7 +53,7 @@ public interface AuthorityFactory extends Factory {
      *       {@link org.opengis.referencing.crs.CRSAuthorityFactory#createProjectedCRS createProjectedCRS},
      *       {@link org.opengis.referencing.crs.CRSAuthorityFactory#createVerticalCRS createVerticalCRS},
      *       {@link org.opengis.referencing.crs.CRSAuthorityFactory#createTemporalCRS createTemporalCRS}
-     *       and their friends.</li>
+     *       and any other method returning a sub-type of {@code CoordinateReferenceSystem}.</li>
      *   <li><b><code>{@linkplain org.opengis.referencing.crs.ProjectedCRS}.class&nbsp;</code></b>
      *       asks only for authority codes accepted by
      *       {@link org.opengis.referencing.crs.CRSAuthorityFactory#createProjectedCRS createProjectedCRS}.</li>
