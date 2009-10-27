@@ -13,7 +13,7 @@ package org.opengis.sld;
 import org.opengis.annotation.Extension;
 import org.opengis.annotation.XmlElement;
 import org.opengis.annotation.XmlParameter;
-import org.opengis.metadata.citation.OnLineResource;
+import org.opengis.metadata.citation.OnlineResource;
 
 /**
  * The UseSLDLibrary element provides the ability of handling external SLD documents
@@ -37,7 +37,7 @@ public interface SLDLibrary {
      * The OnlineResource must refer to an SLD document.
      */
     @XmlParameter("OnlineResource")
-    OnLineResource getOnlineResource();
+    OnlineResource getOnlineResource();
 
     /**
      * This is a convinient method for the one using this interface.

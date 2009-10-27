@@ -10,7 +10,7 @@
  *************************************************************************************************/
 package org.opengis.observation;
 
-import org.opengis.metadata.MetaData;
+import org.opengis.metadata.Metadata;
 import org.opengis.metadata.quality.Element;
 import org.opengis.temporal.TemporalObject;
 import org.opengis.annotation.UML;
@@ -66,7 +66,7 @@ public interface Observation {
     Element getQuality();
 
     @UML(identifier="metadata", obligation=OPTIONAL, specification=OGC_07022)
-    MetaData getObservationMetadata();
+    Metadata getObservationMetadata();
 
     /**
     * The samplingTime is the time that the result applies to the feature-of-interest.

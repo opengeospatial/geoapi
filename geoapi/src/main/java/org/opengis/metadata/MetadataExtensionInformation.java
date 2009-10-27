@@ -11,7 +11,7 @@
 package org.opengis.metadata;
 
 import java.util.Collection;
-import org.opengis.metadata.citation.OnLineResource;
+import org.opengis.metadata.citation.OnlineResource;
 import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Obligation.*;
@@ -25,7 +25,7 @@ import static org.opengis.annotation.Specification.*;
  * @author  Martin Desruisseaux (IRD)
  * @since   GeoAPI 2.0
  *
- * @navassoc 1 - - OnLineResource
+ * @navassoc 1 - - OnlineResource
  * @navassoc - - - ExtendedElementInformation
  */
 @UML(identifier="MD_MetadataExtensionInformation", specification=ISO_19115)
@@ -37,7 +37,7 @@ public interface MetadataExtensionInformation {
      * @return On-line sources to community profile name and extended metadata elements.
      */
     @UML(identifier="extensionOnLineResource", obligation=OPTIONAL, specification=ISO_19115)
-    OnLineResource getExtensionOnLineResource();
+    OnlineResource getExtensionOnLineResource();
 
     /**
      * Provides information about a new metadata element, not found in ISO 19115, which is

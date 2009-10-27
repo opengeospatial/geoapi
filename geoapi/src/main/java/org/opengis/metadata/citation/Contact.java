@@ -26,7 +26,7 @@ import static org.opengis.annotation.Specification.*;
  *
  * @navassoc 1 - - Telephone
  * @navassoc 1 - - Address
- * @navassoc 1 - - OnLineResource
+ * @navassoc 1 - - OnlineResource
  */
 @UML(identifier="CI_Contact", specification=ISO_19115)
 public interface Contact {
@@ -58,7 +58,7 @@ public interface Contact {
      *         or {@code null}.
      */
     @UML(identifier="onlineResource", obligation=OPTIONAL, specification=ISO_19115)
-    OnLineResource getOnlineResource();
+    OnlineResource getOnlineResource();
 
     /**
      * Time period (including time zone) when individuals can contact the organization or

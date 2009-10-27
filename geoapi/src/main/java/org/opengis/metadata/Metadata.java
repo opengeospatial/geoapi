@@ -59,7 +59,7 @@ import static org.opengis.annotation.ComplianceLevel.*;
  * @navassoc - - - AcquisitionInformation
  */
 @UML(identifier="MD_Metadata", specification=ISO_19115)
-public interface MetaData {
+public interface Metadata {
     /**
      * Unique identifier for this metadata file, or {@code null} if none.
      *

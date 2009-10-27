@@ -12,7 +12,7 @@ package org.opengis.metadata.identification;
 
 import java.util.Collection;
 import java.util.Locale;
-import org.opengis.metadata.MetaData;
+import org.opengis.metadata.Metadata;
 import org.opengis.metadata.extent.Extent;
 import org.opengis.metadata.maintenance.ScopeCode;
 import org.opengis.metadata.spatial.SpatialRepresentationType;
@@ -84,7 +84,7 @@ public interface DataIdentification extends Identification {
      *
      * @return Main theme(s).
      *
-     * @condition If {@linkplain MetaData#getHierarchyLevels() hierarchy level} equals
+     * @condition If {@linkplain Metadata#getHierarchyLevels() hierarchy level} equals
      *            {@link ScopeCode#DATASET}.
      */
     @Profile(level=CORE)

@@ -59,7 +59,7 @@ public interface CitationFactory extends Factory {
     Contact createContact(
             Telephone           phone,
             Address             address,
-            OnLineResource      onLineResource,
+            OnlineResource      onLineResource,
             InternationalString hoursOfService,
             InternationalString contactInstructions);
 
@@ -74,7 +74,7 @@ public interface CitationFactory extends Factory {
      * @param function           Code for function performed by the online resource.
      * @return The online resource.
      */
-    OnLineResource createOnLineResource(
+    OnlineResource createOnLineResource(
             URI                 linkage,
             String              protocol,
             String              applicationProfile,

@@ -32,7 +32,7 @@ import static org.opengis.annotation.Specification.*;
  * @navassoc 1 - - OnLineFunction
  */
 @UML(identifier="CI_OnlineResource", specification=ISO_19115)
-public interface OnLineResource {
+public interface OnlineResource {
     /**
      * Location (address) for on-line access using a Uniform Resource Locator address or
      * similar addressing scheme such as http://www.statkart.no/isotc211.
