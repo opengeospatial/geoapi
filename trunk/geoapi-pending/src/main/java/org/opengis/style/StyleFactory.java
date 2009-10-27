@@ -22,7 +22,7 @@ import org.opengis.feature.type.Name;
 import org.opengis.filter.Filter;
 import org.opengis.filter.Id;
 import org.opengis.filter.expression.Expression;
-import org.opengis.metadata.citation.OnLineResource;
+import org.opengis.metadata.citation.OnlineResource;
 import org.opengis.util.InternationalString;
 
 /**
@@ -125,7 +125,7 @@ public interface StyleFactory {
      * @param replacements
      * @return
      */
-    ExternalGraphic externalGraphic(OnLineResource resource,
+    ExternalGraphic externalGraphic(OnlineResource resource,
             String format, Collection<ColorReplacement> replacements);
 
     /**
@@ -144,7 +144,7 @@ public interface StyleFactory {
      * @param markIndex
      * @return
      */
-    ExternalMark externalMark(OnLineResource resource, String format,
+    ExternalMark externalMark(OnlineResource resource, String format,
             int markIndex);
 
     /**

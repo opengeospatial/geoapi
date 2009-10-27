@@ -12,7 +12,7 @@ package org.opengis.sld;
 
 import org.opengis.annotation.Extension;
 import org.opengis.annotation.XmlElement;
-import org.opengis.metadata.citation.OnLineResource;
+import org.opengis.metadata.citation.OnlineResource;
 
 /**
  * OGC Web Service. Information about the remove serveur.
@@ -36,7 +36,7 @@ public interface RemoteOWS extends Source {
      * Online resource of the service.
      */
     @XmlElement("OnlineResource")
-    public OnLineResource getOnlineResource();
+    public OnlineResource getOnlineResource();
     
     /**
      * calls the visit method of a SLDVisitor

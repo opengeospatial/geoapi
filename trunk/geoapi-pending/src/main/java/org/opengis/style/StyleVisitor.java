@@ -11,7 +11,7 @@
 package org.opengis.style;
 
 import org.opengis.filter.expression.ExpressionVisitor;
-import org.opengis.metadata.citation.OnLineResource;
+import org.opengis.metadata.citation.OnlineResource;
 
 /**
  * An interface for classes that want to perform operations on a Style

@@ -14,7 +14,7 @@ import java.util.Collection;
 import javax.swing.Icon;
 import org.opengis.annotation.Extension;
 import org.opengis.annotation.XmlElement;
-import org.opengis.metadata.citation.OnLineResource;
+import org.opengis.metadata.citation.OnlineResource;
 
 
 /**
@@ -37,7 +37,7 @@ public interface ExternalGraphic extends GraphicalSymbol {
      * @return OnlineResource
      */
     @XmlElement("OnlineResource")
-    OnLineResource getOnlineResource();
+    OnlineResource getOnlineResource();
 
     /**
      * Returns the InlineContent that comprise the image.  This overrides the

@@ -12,7 +12,7 @@ package org.opengis.metadata.distribution;
 
 import java.util.Collection;
 import org.opengis.util.InternationalString;
-import org.opengis.metadata.citation.OnLineResource;
+import org.opengis.metadata.citation.OnlineResource;
 import org.opengis.annotation.UML;
 import org.opengis.annotation.Profile;
 
@@ -29,7 +29,7 @@ import static org.opengis.annotation.ComplianceLevel.*;
  * @author  Cory Horner (Refractions Research)
  * @since   GeoAPI 2.0
  *
- * @navassoc - - - OnLineResource
+ * @navassoc - - - OnlineResource
  * @navassoc 1 - - Medium
  */
 @UML(identifier="MD_DigitalTransferOptions", specification=ISO_19115)
@@ -59,7 +59,7 @@ public interface DigitalTransferOptions {
      */
     @Profile(level=CORE)
     @UML(identifier="onLine", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<? extends OnLineResource> getOnLines();
+    Collection<? extends OnlineResource> getOnLines();
 
     /**
      * Information about offline media on which the resource can be obtained.

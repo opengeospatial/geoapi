@@ -17,7 +17,7 @@ import java.util.List;
 import org.opengis.feature.Feature;
 import org.opengis.feature.type.Name;
 import org.opengis.filter.Filter;
-import org.opengis.metadata.citation.OnLineResource;
+import org.opengis.metadata.citation.OnlineResource;
 import org.opengis.style.Style;
 
 
@@ -45,9 +45,9 @@ public interface SLDFactory {
     /**
      * Create an SLD library, an SLD library holds a online
      * reference to a SLD file.
-     * @param online : OnLineResource, can not be null.
+     * @param online : OnlineResource, can not be null.
      */
-    SLDLibrary createSLDLibrary(OnLineResource online);
+    SLDLibrary createSLDLibrary(OnlineResource online);
     
     /**
      * Create a default named layer.
@@ -75,7 +75,7 @@ public interface SLDFactory {
      * @param service : can not be null
      * @param online : can not be null
      */
-    RemoteOWS createRemoteOWS(String service, OnLineResource online);
+    RemoteOWS createRemoteOWS(String service, OnlineResource online);
     
     /**
      * Create a Inline feature content.

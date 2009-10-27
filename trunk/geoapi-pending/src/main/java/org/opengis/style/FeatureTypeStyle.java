@@ -18,7 +18,7 @@ import org.opengis.annotation.XmlElement;
 
 import org.opengis.feature.type.Name;
 import org.opengis.filter.Id;
-import org.opengis.metadata.citation.OnLineResource;
+import org.opengis.metadata.citation.OnlineResource;
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
 
@@ -125,7 +125,7 @@ public interface FeatureTypeStyle {
      * 
      * @return OnlineResource or null
      */
-    OnLineResource getOnlineResource();
+    OnlineResource getOnlineResource();
     
     /**
      * calls the visit method of a StyleVisitor

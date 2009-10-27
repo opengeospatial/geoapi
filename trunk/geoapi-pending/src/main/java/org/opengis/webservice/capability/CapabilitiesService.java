@@ -45,7 +45,7 @@ package org.opengis.webservice.capability;
 // OpenGIS direct dependencies
 import org.opengis.util.InternationalString;
 import org.opengis.metadata.citation.Contact;
-import org.opengis.metadata.citation.OnLineResource;
+import org.opengis.metadata.citation.OnlineResource;
 import org.opengis.metadata.identification.Keywords;
 import org.opengis.metadata.constraint.Constraints;
 
@@ -104,7 +104,7 @@ public interface CapabilitiesService {
      * OnlineResource elements used for the URL prefix of each supported operation.
      */
     @UML(identifier="onlineResource", specification=UNSPECIFIED)
-    OnLineResource getOnlineResource();
+    OnlineResource getOnlineResource();
 
     /**
      * Returns informations who to contact for questions about the service. This
