@@ -31,6 +31,12 @@ Changes in API
 
 Release notes
 
+* Version 2.3-M6
+
+   * {{{http://jira.codehaus.org/browse/GEO-187}GEO-187}} - Typo in metadata method names or annotations.
+     This is completing the fix provided in 2.3-M5 by fixing the case of letters in class names.
+
+
 * Version 2.3-M5
 
    * {{{http://jira.codehaus.org/browse/GEO-187}GEO-187}} - Typo in metadata method names or annotations
