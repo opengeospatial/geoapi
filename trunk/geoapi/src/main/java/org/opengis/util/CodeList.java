@@ -111,7 +111,7 @@ public abstract class CodeList<E extends CodeList<E>> implements Comparable<E>, 
      * @departure extension
      *   The inner <code>CodeList.Filter</code> interface is not part of the OGC specification.
      *   It has been added because <code>CodeList</code> is one of the few concrete classes in
-     *   GeoAPI and there is a need to give some user control over the behavior of the 
+     *   GeoAPI and there is a need to give some user control over the behavior of the
      *   <code>CodeList</code> implementation.
      *
      * @since GeoAPI 2.3
@@ -128,10 +128,14 @@ public abstract class CodeList<E extends CodeList<E>> implements Comparable<E>, 
         /**
          * Returns the name of the code being looked for, or {@code null} if unknown.
          * This method is invoked by {@link CodeList#valueOf(Class, Filter)} if no code
-         * match the criterion defined by this filter. If this method returns a non-null
-         * name, then a new code of that name will be created.
+         * match the criterion defined by this filter. In such case, there is a choice:
+         * <p>
+         * <ul>
+         *   <li>If this method returns a non-null name, then a new code of that name is created.</li>
+         *   <li>Otherwise, no new code is created and {@code CodeList.valueOf} returns {@code null}.</li>
+         * </ul>
          *
-         * @return The name of the code being looked for, or {@code null} if none.
+         * @return The name of the code being looked for, or {@code null}.
          */
         String codename();
     }
