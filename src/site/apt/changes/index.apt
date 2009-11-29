@@ -1,10 +1,10 @@
 Changes in API
 
   The following table gives the links to all changes in the 2.3 series of milestones. The cell in
-  the upper-left corner links to the most recent API changes, from 2.3-M3 to 2.3-M4 milestone. The
-  last column links to the API changes in any milestone since 2.3-M1. The changes since 2.3-M1 give
-  the cleanest picture of what actually changed, because the changes since the previous version are
-  often "polluted" by the methods that are deprecated before to be removed.
+  the upper-left corner links to the most recent API changes. The last column links to the API
+  changes in any milestone since 2.3-M1. The changes since 2.3-M1 give the cleanest picture of
+  what actually changed, because the changes since the previous version are often "polluted" by
+  the methods that are deprecated before to be removed.
 
 *--------------------------+-----------------------------*--------------------------------*--------------------------------*--------------------------------*--------------------------------*
 | Changes in <<M6>> since: | {{{2.3-M6/changes.html}M5}} | {{{2.3-M6/M4/changes.html}M4}} | {{{2.3-M6/M3/changes.html}M3}} | {{{2.3-M6/M2/changes.html}M2}} | {{{2.3-M6/M1/changes.html}M1}} |
