@@ -134,7 +134,7 @@ public interface NameFactory {
 
     /**
      * Constructs a generic name from a qualified name. This method splits the given name around a
-     * separator inferred from the given scope, or an implementation-dependant default separator if
+     * separator inferred from the given scope, or an implementation-dependent default separator if
      * the given scope is null.
      * <p>
      * For example if the {@code scope} argument is the namespace {@code "urn:ogc:def"}
@@ -148,7 +148,7 @@ public interface NameFactory {
      *          The {@linkplain GenericName#scope scope} of the generic name to
      *          be created, or {@code null} for a global namespace.
      * @param name
-     *          The qualified name, as a sequence of names separated by a scope-dependant separator.
+     *          The qualified name, as a sequence of names separated by a scope-dependent separator.
      * @return A name parsed from the given string.
      *
      * @since GeoAPI 2.2
