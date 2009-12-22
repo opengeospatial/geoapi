@@ -24,7 +24,7 @@ package org.opengis.util;
  * interface instead of a list of particular cases.
  * <p>
  * Implementors of cloneable classes may consider implementing this interface, but this is not
- * mandatory. A large amount of independant classes like {@link java.util.Date} will continue to
+ * mandatory. A large amount of independent classes like {@link java.util.Date} will continue to
  * ignore this interface, so no rule can be enforced anyway. However this interface may help the
  * work of containers in some case. For example a container may checks for this interface first,
  * and uses Java reflection as a fallback.

@@ -62,7 +62,7 @@ public interface LocalName extends GenericName {
     LocalName tip();
 
     /**
-     * Returns a locale-independant string representation of this local name.
+     * Returns a locale-independent string representation of this local name.
      */
 /// @Override
     @UML(identifier="aName", obligation=MANDATORY, specification=ISO_19103)

@@ -31,7 +31,7 @@ import org.opengis.test.TestCase;
  * <p>
  * Once the fields are assigned their values, subclasses can invoke any of the {@code verify}
  * methods in their test methods. Callers must supply the input coordinate points to be used
- * for testing purpose, since the range of valid values is usually transform-dependant.
+ * for testing purpose, since the range of valid values is usually transform-dependent.
  * <p>
  * Methods in this class do not {@linkplain org.opengis.test.Validators#validate(MathTransform)
  * validate} the transform. It is caller responsability to validate the transform if wanted.
