@@ -31,6 +31,12 @@ Changes in API
 
 Release notes
 
+* Version 2.3-M7
+
+   * {{{http://jira.codehaus.org/browse/GEO-165}GEO-165}} - Upgrade the JSR-275 dependency.
+     There is no change in GeoAPI interfaces.
+
+
 * Version 2.3-M6
 
    * {{{http://jira.codehaus.org/browse/GEO-187}GEO-187}} - Typo in metadata method names or annotations.
