@@ -22,6 +22,6 @@ import static org.opengis.annotation.Specification.*;
  * @author  Martin Desruisseaux (IRD)
  * @since   GeoAPI 2.0
  */
-@UML(identifier="SV_ServiceIdentification", specification=ISO_19115)
+@UML(identifier="MD_ServiceIdentification", specification=ISO_19115)
 public interface ServiceIdentification extends Identification {
 }
