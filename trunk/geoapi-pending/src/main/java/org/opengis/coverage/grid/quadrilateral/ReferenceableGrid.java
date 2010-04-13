@@ -30,7 +30,7 @@ import static org.opengis.annotation.Specification.*;
  * @author  Alexander Petkov
  */
 @UML(identifier="CV_ReferenceableGrid", specification=ISO_19123)
-public interface ReferenceableGrid extends RectifiableGrid {
+public interface ReferenceableGrid extends GridPositioning {
     /**
      * This inherited association from GridPositioning specifies the coordinate system into which
      * this object transforms coordinates. ISO 19123 specifies this association directly on this class.
