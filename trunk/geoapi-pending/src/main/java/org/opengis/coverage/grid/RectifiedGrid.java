@@ -41,6 +41,15 @@ import static org.opengis.annotation.Specification.*;
  *       system, even if an offset vector is aligned with an axis of the external coordinate system.</li>
  * </ul>
  *
+ * @departure constraint
+ *   ISO 19123 defines <code>RectifiedGrid</code> as a direct sub-type of <code>Grid</code>.
+ *   In GeoAPI, <code>RectifiedGrid</code> extends <code>Grid</code> indirectly, through
+ *   <code>ReferenceableGrid</code>. In the GeoAPI hierarchy, <code>RectifiedGrid</code>
+ *   is considered as a special case of <code>ReferenceableGrid</code> where the <cite>grid
+ *   to CRS</cite> coordinate operation is affine. This hierarchy make easier to leverage
+ *   the same code for both the affine and non-affine cases when the code does not require
+ *   a strictly affine operation.
+ *
  * @version ISO 19123:2004
  * @author  Wim Koolhoven
  * @author  Martin Schouwenburg
@@ -48,7 +57,7 @@ import static org.opengis.annotation.Specification.*;
  * @since   GeoAPI 2.1
  */
 @UML(identifier="CV_RectifiedGrid", specification=ISO_19123)
-public interface RectifiedGrid extends Grid {
+public interface RectifiedGrid extends ReferenceableGrid {
     /**
      * Returns the origin of the rectified grid in an external coordinate reference system.
      *
@@ -69,24 +78,51 @@ public interface RectifiedGrid extends Grid {
     /**
      * Converts through an affine transform grid coordinates to a direct position.
      *
-     * @param  g The grid coordinates to transform.
+     * @param  g The grid coordinates to convert.
      * @return The "real world" coordinates.
+     *
+     * @departure rename
+     *   A <code>"convertCoordinates"</code> method name would match better the ISO identifier.
+     *   However since <code>RectifiedGrid</code> extends <code>ReferenceableGrid</code> in GeoAPI,
+     *   we have to use the same method names than the later. Here, <cite>transform</cite> is to be
+     *   understood as a term encompassing both <cite>transformation</cite> and <cite>conversion</cite>.
+     *   This is similar to the <code>MathTransform</code> name policy.
      */
     @UML(identifier="coordConv", obligation=MANDATORY, specification=ISO_19123)
+    DirectPosition transformCoordinates(GridCoordinates g);
+
+    /**
+     * @deprecated Renamed as {@link #transformCoordinates}.
+     *
+     * @param  g The grid coordinates to convert.
+     * @return The "real world" coordinates.
+     */
+    @Deprecated
     DirectPosition convertCoordinates(GridCoordinates g);
 
     /**
      * Converts through an affine transform a direct position to the grid coordinates of
      * the nearest grid point.
      *
-     * @param p The "real world" coordinates to transform.
+     * @param p The "real world" coordinates to convert.
      * @return The grid coordinates.
      *
-     * @todo Question (Wim): GridCoordinates are always integers, how to get
-     *       the not rounded results?<br>
-     *       Martin: The legacy OGC specification defined a "gridToCRS" math transform for
-     *       that. We may consider to import this element in the proposed set of interfaces.
+     * @departure rename
+     *   A <code>"inverseConvertCoordinates"</code> method name would match better the ISO identifier.
+     *   However since <code>RectifiedGrid</code> extends <code>ReferenceableGrid</code> in GeoAPI,
+     *   we have to use the same method names than the later. Here, <cite>transform</cite> is to be
+     *   understood as a term encompassing both <cite>transformation</cite> and <cite>conversion</cite>.
+     *   This is similar to the <code>MathTransform</code> name policy.
      */
     @UML(identifier="invCoordConv", obligation=MANDATORY, specification=ISO_19123)
+    GridCoordinates inverseTransformCoordinates(DirectPosition p);
+
+    /**
+     * @deprecated Renamed as {@link #inverseTransformCoordinates}.
+     *
+     * @param p The "real world" coordinates to convert.
+     * @return The grid coordinates.
+     */
+    @Deprecated
     GridCoordinates inverseConvertCoordinates(DirectPosition p);
 }
