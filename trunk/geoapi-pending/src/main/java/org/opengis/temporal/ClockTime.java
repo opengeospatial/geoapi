@@ -37,8 +37,7 @@ public interface ClockTime extends TemporalPosition {
      * unit used at the next lower level, and so on. All but the last number in the sequence shall be
      * integers; the last number may be integer or real.
      *
-     * @todo Should we returns an array of some primitive type instead?
-     * @todo Method name doesn't match the UML attribute name.
+     * @return Instance of the units, from highest level to lowest level of the clock hierarchy.
      */
     @UML(identifier="clkTime", obligation=MANDATORY, specification=ISO_19108)
     Number[] getClockTime();
