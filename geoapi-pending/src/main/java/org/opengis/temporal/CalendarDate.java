@@ -29,6 +29,8 @@ public interface CalendarDate extends TemporalPosition {
     /**
      * Provides the name of the {@linkplain CalendarEra calendar era}
      * to which the date is referenced.
+     *
+     * @return The name of the calendar era.
      */
     @UML(identifier="calendarEraName", obligation=MANDATORY, specification=ISO_19108)
     InternationalString getCalendarEraName();
@@ -40,8 +42,8 @@ public interface CalendarDate extends TemporalPosition {
      * and so on. The format defined in ISO 8601 for dates in the Gregorian calendar may be
      * used for any date that is composed of values for year, month and day.
      *
-     * @todo Should we returns an array of some primitive type instead?
+     * @return Instance of the units, from highest level to lowest level of the calendar hierarchy.
      */
     @UML(identifier="calDate", obligation=MANDATORY, specification=ISO_19108)
-    int[]  getCalendarDate();
+    int[] getCalendarDate();
 }

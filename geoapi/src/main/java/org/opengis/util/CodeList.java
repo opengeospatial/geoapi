@@ -28,9 +28,10 @@ import static org.opengis.annotation.Specification.*;
 /**
  * Base class for all code lists. Subclasses shall provides a {@code values()} method
  * which returns all {@code CodeList} element in an array of the appropriate class.
- * Code lists are extensible, i.e. invoking the public constructor in any subclass will
- * automatically add the newly created {@code CodeList} element in the array to be
- * returned by {@code values()}.
+ * <p>
+ * Code lists are extensible, i.e. invoking the {@code valueOf(String)} method in any subclass
+ * will automatically add the newly created {@code CodeList} element in the array to be returned
+ * by {@code values()}.
  *
  * @param <E> The type of this code list.
  *
