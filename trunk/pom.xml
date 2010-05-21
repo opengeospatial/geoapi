@@ -551,6 +551,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-project-info-reports-plugin</artifactId>
+        <version>2.1</version> <!-- Version 2.2 doesn't work. See http://www.mail-archive.com/users@maven.apache.org/msg109241.html -->
       </plugin>
 
 
