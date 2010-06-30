@@ -1,3 +1,9 @@
+GeoAPI - Java interfaces for OGC/ISO standards
+http://www.geoapi.org
+
+Copyright (C) 2003-2010 Open Geospatial Consortium, Inc.
+All Rights Reserved. http://www.opengeospatial.org/ogc/legal
+
 This OGC work (including software, documents, or other related items) is being
 provided by the copyright holders under the following license. By obtaining,
 using and/or copying this work, you (the licensee) agree that you have read,
@@ -10,16 +16,7 @@ and documentation or portions thereof, including modifications, that you make:
 
    1. The full text of this NOTICE in a location viewable to users of the
       redistributed or derivative work.
-
-   2. Any pre-existing intellectual property disclaimers, notices, or terms and
-      conditions. If none exist, a short notice of the following form (hypertext
-      is preferred, text is permitted) should be used within the body of any
-      redistributed or derivative code: "Copyright © [$date-of-document] Open
-      Geospatial Consortium, Inc. All Rights Reserved.
-      http://www.opengeospatial.org/Legal/
-      (Hypertext is preferred, but a textual representation is permitted.)
-
-   3. Notice of any changes or modifications to the OGC files, including the
+   2. Notice of any changes or modifications to the OGC files, including the
       date changes were made. (We recommend you provide URIs to the location
       from which the code is derived.)
 
