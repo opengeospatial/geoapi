@@ -433,7 +433,10 @@ public final class AxisDirection extends CodeList<AxisDirection> {
      *
      * @departure easeOfUse
      *   This is a GeoAPI extension for convenience.
+     *
+     * @deprecated Removed as of OGC 10-111.
      */
+    @Deprecated
     public AxisDirection opposite() {
         return opposite;
     }
@@ -478,7 +481,10 @@ public final class AxisDirection extends CodeList<AxisDirection> {
      *
      * @departure easeOfUse
      *   This is a GeoAPI extension for convenience.
+     *
+     * @deprecated Removed as of OGC 10-111.
      */
+    @Deprecated
     public AxisDirection absolute() {
         final AxisDirection opposite = this.opposite;
         if (opposite != null) {

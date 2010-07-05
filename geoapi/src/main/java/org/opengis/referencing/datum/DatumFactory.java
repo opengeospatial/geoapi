@@ -102,6 +102,14 @@ public interface DatumFactory extends ObjectFactory {
 
     /**
      * Creates a temporal datum from an enumerated type value.
+     * <p>
+     * <TABLE WIDTH="80%" ALIGN="center" CELLPADDING="18" BORDER="4" BGCOLOR="#FFE0B0">
+     *   <TR><TD>
+     *     <P align="justify"><B>Warning:</B> The argument type of this method may change
+     *     in GeoAPI 3.1 release. It may be replaced by a type matching more closely
+     *     either ISO 19108 (<cite>Temporal Schema</cite>) or ISO 19103.</P>
+     *   </TD></TR>
+     * </TABLE>
      *
      * @param  properties Name and other properties to give to the new object.
      *         Available properties are {@linkplain ObjectFactory listed there}.
