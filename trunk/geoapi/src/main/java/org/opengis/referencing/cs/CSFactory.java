@@ -34,7 +34,7 @@ package org.opengis.referencing.cs;
 import java.util.Map;
 import javax.measure.unit.Unit;
 import org.opengis.referencing.ObjectFactory;
-import org.opengis.referencing.FactoryException;
+import org.opengis.util.FactoryException;
 
 
 /**

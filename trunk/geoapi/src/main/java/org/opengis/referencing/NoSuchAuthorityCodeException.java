@@ -31,6 +31,8 @@
  */
 package org.opengis.referencing;
 
+import org.opengis.util.FactoryException;
+
 
 /**
  * Thrown when an {@linkplain AuthorityFactory authority factory} can't find

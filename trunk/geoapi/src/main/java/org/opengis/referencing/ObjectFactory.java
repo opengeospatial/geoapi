@@ -38,6 +38,7 @@ import java.util.Collections;
 
 import org.opengis.metadata.Identifier;
 import org.opengis.metadata.citation.Citation;
+import org.opengis.util.Factory;
 import org.opengis.util.InternationalString;
 import org.opengis.util.GenericName;
 

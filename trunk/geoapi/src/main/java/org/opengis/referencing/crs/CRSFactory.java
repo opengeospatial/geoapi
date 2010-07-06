@@ -36,7 +36,7 @@ import org.opengis.referencing.cs.*;
 import org.opengis.referencing.datum.*;
 import org.opengis.referencing.operation.*;
 import org.opengis.referencing.ObjectFactory;
-import org.opengis.referencing.FactoryException;
+import org.opengis.util.FactoryException;
 import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Specification.*;

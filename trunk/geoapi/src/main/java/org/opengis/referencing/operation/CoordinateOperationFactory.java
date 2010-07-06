@@ -33,8 +33,8 @@ package org.opengis.referencing.operation;
 
 import java.util.Map;
 import org.opengis.referencing.ObjectFactory;
-import org.opengis.referencing.FactoryException;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
+import org.opengis.util.FactoryException;
 import org.opengis.parameter.ParameterValueGroup;
 import org.opengis.annotation.UML;
 

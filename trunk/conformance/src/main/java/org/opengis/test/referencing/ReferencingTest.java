@@ -40,7 +40,7 @@ import org.opengis.referencing.cs.*;
 import org.opengis.referencing.crs.*;
 import org.opengis.referencing.datum.*;
 import org.opengis.referencing.IdentifiedObject;
-import org.opengis.referencing.FactoryException;
+import org.opengis.util.FactoryException;
 
 import org.junit.Test;
 import org.opengis.test.TestCase;
