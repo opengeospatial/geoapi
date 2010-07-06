@@ -29,53 +29,37 @@
  *    Title to copyright in this software and any associated documentation will at all
  *    times remain with copyright holders.
  */
-package org.opengis.referencing;
+package org.opengis.util;
 
-import org.opengis.metadata.Identifier;
+import org.opengis.metadata.citation.Citation;
 
 
 /**
- * Thrown when a {@linkplain org.opengis.referencing.operation.MathTransform math transform}
- * as been requested with an unknow {@linkplain org.opengis.referencing.operation.OperationMethod
- * operation method} identifier.
+ * Base interface for all factories. Factories can be grouped in two categories:
+ * <p>
+ * <UL>
+ *   <LI>{@linkplain org.opengis.referencing.AuthorityFactory Authority factories}
+ *       creates objects from a compact string defined by an authority.</LI>
+ *   <LI>{@linkplain org.opengis.referencing.ObjectFactory Object factories}
+ *       allows applications to make objects that cannot be created by an authority
+ *       factory. This factory is very flexible, whereas the authority factory is
+ *       easier to use.</LI>
+ * </UL>
  *
- * @departure extension
- *   This exception is not part of the OGC specification.
+ * @departure harmonization
+ *   This interface is not part of the OGC specification. It is added for uniformity,
+ *   in order to provide a common base class for all factories.
  *
  * @author  Martin Desruisseaux (IRD)
  * @since   GeoAPI 1.0
- *
- * @see org.opengis.referencing.operation.MathTransformFactory#createParameterizedTransform
  */
-public class NoSuchIdentifierException extends FactoryException {
+public interface Factory {
     /**
-     * Serial number for interoperability with different versions.
-     */
-    private static final long serialVersionUID = -6846799994429345902L;
-
-    /**
-     * The {@linkplain Identifier#getCode identifier code}.
-     */
-    private final String identifier;
-
-    /**
-     * Constructs an exception with the specified detail message and classification name.
+     * Returns the vendor responsible for creating this factory implementation. Many implementations
+     * may be available for the same factory interface. Implementations can be managed by a
+     * {@linkplain java.util.ServiceLoader service loader}.
      *
-     * @param  message The detail message. The detail message is saved
-     *         for later retrieval by the {@link #getMessage()} method.
-     * @param identifier {@linkplain ReferenceIdentifier#getCode identifier code}.
+     * @return The vendor for this factory implementation.
      */
-    public NoSuchIdentifierException(final String message, final String identifier) {
-        super(message);
-        this.identifier = identifier;
-    }
-
-    /**
-     * Returns the {@linkplain ReferenceIdentifier#getCode identifier code}.
-     *
-     * @return The identifier code.
-     */
-    public String getIdentifierCode() {
-        return identifier;
-    }
+    Citation getVendor();
 }

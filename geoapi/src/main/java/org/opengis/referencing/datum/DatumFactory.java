@@ -37,7 +37,7 @@ import javax.measure.unit.Unit;
 import javax.measure.quantity.Angle;
 import javax.measure.quantity.Length;
 import org.opengis.referencing.ObjectFactory;
-import org.opengis.referencing.FactoryException;
+import org.opengis.util.FactoryException;
 import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Specification.*;

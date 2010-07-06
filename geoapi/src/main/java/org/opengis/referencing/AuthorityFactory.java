@@ -33,6 +33,8 @@ package org.opengis.referencing;
 
 import java.util.Set;
 import org.opengis.metadata.citation.Citation;
+import org.opengis.util.Factory;
+import org.opengis.util.FactoryException;
 import org.opengis.util.InternationalString;
 import org.opengis.annotation.UML;
 import static org.opengis.annotation.Specification.*;

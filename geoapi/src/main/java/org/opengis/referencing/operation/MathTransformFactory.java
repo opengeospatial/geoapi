@@ -32,9 +32,9 @@
 package org.opengis.referencing.operation;
 
 import java.util.Set;
-import org.opengis.referencing.Factory;
-import org.opengis.referencing.FactoryException;
-import org.opengis.referencing.NoSuchIdentifierException;
+import org.opengis.util.Factory;
+import org.opengis.util.FactoryException;
+import org.opengis.util.NoSuchIdentifierException;
 import org.opengis.referencing.cs.CoordinateSystem;
 import org.opengis.referencing.datum.Ellipsoid;
 import org.opengis.referencing.crs.*; // Contains some import for javadoc.

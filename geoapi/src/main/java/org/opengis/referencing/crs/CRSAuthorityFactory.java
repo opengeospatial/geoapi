@@ -32,8 +32,8 @@
 package org.opengis.referencing.crs;
 
 import org.opengis.referencing.AuthorityFactory;
-import org.opengis.referencing.FactoryException;
 import org.opengis.referencing.NoSuchAuthorityCodeException;  // For javadoc
+import org.opengis.util.FactoryException;
 import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Specification.*;

@@ -35,7 +35,7 @@ import java.net.URI;
 import java.util.Collection;
 import org.opengis.util.InternationalString;
 import org.opengis.annotation.Obligation;
-import org.opengis.referencing.Factory;
+import org.opengis.util.Factory;
 
 
 /**
