@@ -74,5 +74,5 @@ public interface ConformanceResult extends Result {
      * @return Indication of the conformance result.
      */
     @UML(identifier="pass", obligation=MANDATORY, specification=ISO_19115)
-    boolean pass();
+    Boolean pass();
 }
