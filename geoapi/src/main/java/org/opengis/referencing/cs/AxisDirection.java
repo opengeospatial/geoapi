@@ -74,9 +74,6 @@ public final class AxisDirection extends CodeList<AxisDirection> {
      */
     @UML(identifier="CS_AxisOrientationEnum.CS_AO_Other", specification=OGC_01009)
     public static final AxisDirection OTHER = new AxisDirection("OTHER");
-    static {
-        OTHER.opposite = OTHER;
-    }
 
     /**
      * Axis positive direction is north. In a geographic or projected CRS,
@@ -158,7 +155,7 @@ public final class AxisDirection extends CodeList<AxisDirection> {
      * @category Rose
      */
     @UML(identifier="south", obligation=CONDITIONAL, specification=ISO_19111)
-    public static final AxisDirection SOUTH = new AxisDirection("SOUTH", NORTH);
+    public static final AxisDirection SOUTH = new AxisDirection("SOUTH");
 
     /**
      * Axis positive direction is approximately south-south-west.
@@ -167,7 +164,7 @@ public final class AxisDirection extends CodeList<AxisDirection> {
      * @since GeoAPI 2.0
      */
     @UML(identifier="southSouthWest", obligation=CONDITIONAL, specification=ISO_19111)
-    public static final AxisDirection SOUTH_SOUTH_WEST = new AxisDirection("SOUTH_SOUTH_WEST", NORTH_NORTH_EAST);
+    public static final AxisDirection SOUTH_SOUTH_WEST = new AxisDirection("SOUTH_SOUTH_WEST");
 
     /**
      * Axis positive direction is approximately south-west.
@@ -176,7 +173,7 @@ public final class AxisDirection extends CodeList<AxisDirection> {
      * @since GeoAPI 2.0
      */
     @UML(identifier="southWest", obligation=CONDITIONAL, specification=ISO_19111)
-    public static final AxisDirection SOUTH_WEST = new AxisDirection("SOUTH_WEST", NORTH_EAST);
+    public static final AxisDirection SOUTH_WEST = new AxisDirection("SOUTH_WEST");
 
     /**
      * Axis positive direction is approximately west-south-west.
@@ -185,7 +182,7 @@ public final class AxisDirection extends CodeList<AxisDirection> {
      * @since GeoAPI 2.0
      */
     @UML(identifier="westSouthWest", obligation=CONDITIONAL, specification=ISO_19111)
-    public static final AxisDirection WEST_SOUTH_WEST = new AxisDirection("WEST_SOUTH_WEST", EAST_NORTH_EAST);
+    public static final AxisDirection WEST_SOUTH_WEST = new AxisDirection("WEST_SOUTH_WEST");
 
     /**
      * Axis positive direction is 3&pi;/2 radians clockwise from north.
@@ -194,7 +191,7 @@ public final class AxisDirection extends CodeList<AxisDirection> {
      * @category Rose
      */
     @UML(identifier="west", obligation=CONDITIONAL, specification=ISO_19111)
-    public static final AxisDirection WEST = new AxisDirection("WEST", EAST);
+    public static final AxisDirection WEST = new AxisDirection("WEST");
 
     /**
      * Axis positive direction is approximately west-north-west.
@@ -203,7 +200,7 @@ public final class AxisDirection extends CodeList<AxisDirection> {
      * @since GeoAPI 2.0
      */
     @UML(identifier="westNorthWest", obligation=CONDITIONAL, specification=ISO_19111)
-    public static final AxisDirection WEST_NORTH_WEST = new AxisDirection("WEST_NORTH_WEST", EAST_SOUTH_EAST);
+    public static final AxisDirection WEST_NORTH_WEST = new AxisDirection("WEST_NORTH_WEST");
 
     /**
      * Axis positive direction is approximately north-west.
@@ -212,7 +209,7 @@ public final class AxisDirection extends CodeList<AxisDirection> {
      * @since GeoAPI 2.0
      */
     @UML(identifier="northWest", obligation=CONDITIONAL, specification=ISO_19111)
-    public static final AxisDirection NORTH_WEST = new AxisDirection("NORTH_WEST", SOUTH_EAST);
+    public static final AxisDirection NORTH_WEST = new AxisDirection("NORTH_WEST");
 
     /**
      * Axis positive direction is approximately north-north-west.
@@ -221,7 +218,7 @@ public final class AxisDirection extends CodeList<AxisDirection> {
      * @since GeoAPI 2.0
      */
     @UML(identifier="northNorthWest", obligation=CONDITIONAL, specification=ISO_19111)
-    public static final AxisDirection NORTH_NORTH_WEST = new AxisDirection("NORTH_NORTH_WEST", SOUTH_SOUTH_EAST);
+    public static final AxisDirection NORTH_NORTH_WEST = new AxisDirection("NORTH_NORTH_WEST");
 
     /**
      * Axis positive direction is up relative to gravity.
@@ -241,7 +238,7 @@ public final class AxisDirection extends CodeList<AxisDirection> {
      * @category Vertical
      */
     @UML(identifier="down", obligation=CONDITIONAL, specification=ISO_19111)
-    public static final AxisDirection DOWN = new AxisDirection("DOWN", UP);
+    public static final AxisDirection DOWN = new AxisDirection("DOWN");
 
     /**
      * Axis positive direction is in the equatorial plane from the centre of the
@@ -300,7 +297,7 @@ public final class AxisDirection extends CodeList<AxisDirection> {
      * @category Temporal
      */
     @UML(identifier="past", obligation=CONDITIONAL, specification=ISO_19111)
-    public static final AxisDirection PAST = new AxisDirection("PAST", FUTURE);
+    public static final AxisDirection PAST = new AxisDirection("PAST");
 
     /**
      * Axis positive direction is towards higher pixel column.
@@ -318,7 +315,7 @@ public final class AxisDirection extends CodeList<AxisDirection> {
      * @since GeoAPI 2.0
      */
     @UML(identifier="columnNegative", obligation=CONDITIONAL, specification=ISO_19111)
-    public static final AxisDirection COLUMN_NEGATIVE = new AxisDirection("COLUMN_NEGATIVE", COLUMN_POSITIVE);
+    public static final AxisDirection COLUMN_NEGATIVE = new AxisDirection("COLUMN_NEGATIVE");
 
     /**
      * Axis positive direction is towards higher pixel row.
@@ -336,7 +333,7 @@ public final class AxisDirection extends CodeList<AxisDirection> {
      * @since GeoAPI 2.0
      */
     @UML(identifier="rowNegative", obligation=CONDITIONAL, specification=ISO_19111)
-    public static final AxisDirection ROW_NEGATIVE = new AxisDirection("ROW_NEGATIVE", ROW_POSITIVE);
+    public static final AxisDirection ROW_NEGATIVE = new AxisDirection("ROW_NEGATIVE");
 
     /**
      * Axis positive direction is right in display.
@@ -354,7 +351,7 @@ public final class AxisDirection extends CodeList<AxisDirection> {
      * @since GeoAPI 2.0
      */
     @UML(identifier="displayLeft", obligation=CONDITIONAL, specification=ISO_19111)
-    public static final AxisDirection DISPLAY_LEFT = new AxisDirection("DISPLAY_LEFT", DISPLAY_RIGHT);
+    public static final AxisDirection DISPLAY_LEFT = new AxisDirection("DISPLAY_LEFT");
 
     /**
      * Axis positive direction is towards top of approximately vertical display surface.
@@ -372,13 +369,7 @@ public final class AxisDirection extends CodeList<AxisDirection> {
      * @since GeoAPI 2.0
      */
     @UML(identifier="displayDown", obligation=CONDITIONAL, specification=ISO_19111)
-    public static final AxisDirection DISPLAY_DOWN = new AxisDirection("DISPLAY_DOWN", DISPLAY_UP);
-
-    /**
-     * The opposite direction for this axis, or {@code null} if the opposite
-     * direction has not yet been specified.
-     */
-    private transient AxisDirection opposite;
+    public static final AxisDirection DISPLAY_DOWN = new AxisDirection("DISPLAY_DOWN");
 
     /**
      * Constructs an enum with the given name. The new enum is
@@ -388,18 +379,6 @@ public final class AxisDirection extends CodeList<AxisDirection> {
      */
     private AxisDirection(final String name) {
         super(name, VALUES);
-    }
-
-    /**
-     * Constructs an axis direction which is the opposite of the specified direction.
-     */
-    private AxisDirection(final String name, final AxisDirection opposite) {
-        this(name);
-        if (opposite.opposite != null) {
-            throw new IllegalArgumentException(String.valueOf(opposite));
-        }
-        this.opposite = opposite;
-        opposite.opposite = this;
     }
 
     /**
@@ -418,81 +397,6 @@ public final class AxisDirection extends CodeList<AxisDirection> {
      */
     public AxisDirection[] family() {
         return values();
-    }
-
-    /**
-     * Returns the opposite direction of this axis. The opposite direction of
-     * {@linkplain #NORTH North} is {@linkplain #SOUTH South}, and the opposite
-     * direction of {@linkplain #SOUTH South} is {@linkplain #NORTH North}.
-     * The same applies to {@linkplain #EAST East}-{@linkplain #WEST West},
-     * {@linkplain #UP Up}-{@linkplain #DOWN Down} and
-     * {@linkplain #FUTURE Future}-{@linkplain #PAST Past}, <cite>etc.</cite>
-     * If this axis direction has no opposite, then this method returns {@code null}.
-     *
-     * @return The opposite direction, or {@code null} if none or unknown.
-     *
-     * @departure easeOfUse
-     *   This is a GeoAPI extension for convenience.
-     *
-     * @deprecated Removed as of OGC 10-111.
-     */
-    @Deprecated
-    public AxisDirection opposite() {
-        return opposite;
-    }
-
-    /**
-     * Returns the "absolute" direction of this axis.
-     * This "absolute" operation is similar to the {@code Math.abs(int)}
-     * method in that "negative" directions like ({@link #SOUTH}, {@link #WEST},
-     * {@link #DOWN}, {@link #PAST}) are changed for their "positive" counterparts
-     * ({@link #NORTH}, {@link #EAST}, {@link #UP}, {@link #FUTURE}).
-     * More specifically, the following conversion table is applied:
-     * <br>&nbsp;
-     * <table cellpadding="9"><tr>
-     * <td width='50%'><table border="1" bgcolor="F4F8FF">
-     *   <tr bgcolor="#B9DCFF">
-     *     <th nowrap width='50%'>&nbsp;&nbsp;Direction&nbsp;&nbsp;</th>
-     *     <th nowrap width='50%'>&nbsp;&nbsp;Absolute value&nbsp;&nbsp;</th>
-     *   </tr>
-     *   <tr><td width='50%'>&nbsp;{@link #NORTH}</td> <td width='50%'>&nbsp;{@link #NORTH}</td> </tr>
-     *   <tr><td width='50%'>&nbsp;{@link #SOUTH}</td> <td width='50%'>&nbsp;{@link #NORTH}</td> </tr>
-     *   <tr><td width='50%'>&nbsp;{@link #EAST}</td>  <td width='50%'>&nbsp;{@link #EAST}</td>  </tr>
-     *   <tr><td width='50%'>&nbsp;{@link #WEST}</td>  <td width='50%'>&nbsp;{@link #EAST}</td>  </tr>
-     *   <tr><td width='50%'>&nbsp;{@link #UP}</td>    <td width='50%'>&nbsp;{@link #UP}</td>    </tr>
-     *   <tr><td width='50%'>&nbsp;{@link #DOWN}</td>  <td width='50%'>&nbsp;{@link #UP}</td>    </tr>
-     * </table></td>
-     * <td width='50%'><table border="1" bgcolor="F4F8FF">
-     *   <tr bgcolor="#B9DCFF">
-     *     <th nowrap width='50%'>&nbsp;&nbsp;Direction&nbsp;&nbsp;</th>
-     *     <th nowrap width='50%'>&nbsp;&nbsp;Absolute value&nbsp;&nbsp;</th>
-     *   </tr>
-     *   <tr><td width='50%'>&nbsp;{@link #DISPLAY_RIGHT}</td> <td width='50%'>&nbsp;{@link #DISPLAY_RIGHT}</td> </tr>
-     *   <tr><td width='50%'>&nbsp;{@link #DISPLAY_LEFT}</td>  <td width='50%'>&nbsp;{@link #DISPLAY_RIGHT}</td> </tr>
-     *   <tr><td width='50%'>&nbsp;{@link #DISPLAY_UP}</td>    <td width='50%'>&nbsp;{@link #DISPLAY_UP}</td>    </tr>
-     *   <tr><td width='50%'>&nbsp;{@link #DISPLAY_DOWN}</td>  <td width='50%'>&nbsp;{@link #DISPLAY_UP}</td>    </tr>
-     *   <tr><td width='50%'>&nbsp;{@link #FUTURE}</td>        <td width='50%'>&nbsp;{@link #FUTURE}</td>        </tr>
-     *   <tr><td width='50%'>&nbsp;{@link #PAST}</td>          <td width='50%'>&nbsp;{@link #FUTURE}</td>        </tr>
-     * </table></td></tr>
-     *   <tr align="center"><td width='50%'>{@link #OTHER}</td><td width='50%'>{@link #OTHER}</td></tr>
-     * </table>
-     *
-     * @return The direction from the above table.
-     *
-     * @departure easeOfUse
-     *   This is a GeoAPI extension for convenience.
-     *
-     * @deprecated Removed as of OGC 10-111.
-     */
-    @Deprecated
-    public AxisDirection absolute() {
-        final AxisDirection opposite = this.opposite;
-        if (opposite != null) {
-            if (opposite.ordinal() < ordinal()) {
-                return opposite;
-            }
-        }
-        return this;
     }
 
     /**
