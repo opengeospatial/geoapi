@@ -9,6 +9,7 @@
       <include name="**/*.xml"/>
       <include name="**/*.html"/>
       <include name="**/*.java"/>
+      <exclude name="3_00.xml"/>
       <replacefilter token="org.opengis.referencing.Factory"                   value="org.opengis.util.Factory"/>
       <replacefilter token="org.opengis.referencing.FactoryException"          value="org.opengis.util.FactoryException"/>
       <replacefilter token="org.opengis.referencing.NoSuchIdentifierException" value="org.opengis.util.NoSuchIdentifierException"/>
