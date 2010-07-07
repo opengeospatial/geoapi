@@ -31,7 +31,7 @@
  */
 package org.opengis.referencing;
 
-import org.opengis.util.FactoryException;
+import org.opengis.util.NoSuchIdentifierException;
 
 
 /**
@@ -44,10 +44,11 @@ import org.opengis.util.FactoryException;
  * @author  Martin Desruisseaux (IRD)
  * @since   GeoAPI 1.0
  *
- * @see org.opengis.referencing.datum.DatumAuthorityFactory
  * @see org.opengis.referencing.crs.CRSAuthorityFactory
+ * @see org.opengis.referencing.cs.CSAuthorityFactory
+ * @see org.opengis.referencing.datum.DatumAuthorityFactory
  */
-public class NoSuchAuthorityCodeException extends FactoryException {
+public class NoSuchAuthorityCodeException extends NoSuchIdentifierException {
     /**
      * Serial number for interoperability with different versions.
      */
@@ -72,7 +73,7 @@ public class NoSuchAuthorityCodeException extends FactoryException {
      * @param  code The invalid authority code.
      */
     public NoSuchAuthorityCodeException(String message, String authority, String code) {
-        super(message);
+        super(message, (authority == null) ? code : (code == null) ? authority : authority + ':' + code);
         this.authority = authority;
         this.code = code;
     }
