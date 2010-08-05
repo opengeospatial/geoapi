@@ -1,0 +1,231 @@
+/*
+ *    GeoAPI - Java interfaces for OGC/ISO standards
+ *    http://www.geoapi.org
+ *
+ *    Copyright (C) 2009-2010 Open Geospatial Consortium, Inc.
+ *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
+ *
+ *    Permission to use, copy, and modify this software and its documentation, with
+ *    or without modification, for any purpose and without fee or royalty is hereby
+ *    granted, provided that you include the following on ALL copies of the software
+ *    and documentation or portions thereof, including modifications, that you make:
+ *
+ *    1. The full text of this NOTICE in a location viewable to users of the
+ *       redistributed or derivative work.
+ *    2. Notice of any changes or modifications to the OGC files, including the
+ *       date changes were made.
+ *
+ *    THIS SOFTWARE AND DOCUMENTATION IS PROVIDED "AS IS," AND COPYRIGHT HOLDERS MAKE
+ *    NO REPRESENTATIONS OR WARRANTIES, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED
+ *    TO, WARRANTIES OF MERCHANTABILITY OR FITNESS FOR ANY PARTICULAR PURPOSE OR THAT
+ *    THE USE OF THE SOFTWARE OR DOCUMENTATION WILL NOT INFRINGE ANY THIRD PARTY
+ *    PATENTS, COPYRIGHTS, TRADEMARKS OR OTHER RIGHTS.
+ *
+ *    COPYRIGHT HOLDERS WILL NOT BE LIABLE FOR ANY DIRECT, INDIRECT, SPECIAL OR
+ *    CONSEQUENTIAL DAMAGES ARISING OUT OF ANY USE OF THE SOFTWARE OR DOCUMENTATION.
+ *
+ *    The name and trademarks of copyright holders may NOT be used in advertising or
+ *    publicity pertaining to the software without specific, written prior permission.
+ *    Title to copyright in this software and any associated documentation will at all
+ *    times remain with copyright holders.
+ */
+package org.opengis.metadata;
+
+import java.util.Set;
+import java.util.HashSet;
+import java.util.Enumeration;
+import java.util.ResourceBundle;
+import java.util.MissingResourceException;
+import java.util.Locale;
+import java.lang.reflect.Method;
+
+import org.opengis.annotation.UML;
+
+import org.junit.*;
+import static org.junit.Assert.*;
+
+
+/**
+ * Tests the content of {@code Descriptions.properties} file.
+ *
+ * @author Martin Desruisseaux (Geomatys)
+ */
+public final class DescriptionsTest {
+    /**
+     * List of metadata interfaces, excluding code lists.
+     */
+    private static final Class<?>[] METADATA = {
+        org.opengis.metadata.ApplicationSchemaInformation.class,
+        org.opengis.metadata.ExtendedElementInformation.class,
+        org.opengis.metadata.FeatureTypeList.class,
+        org.opengis.metadata.Identifier.class,
+        org.opengis.metadata.Metadata.class,
+        org.opengis.metadata.MetadataExtensionInformation.class,
+        org.opengis.metadata.PortrayalCatalogueReference.class,
+        org.opengis.metadata.acquisition.AcquisitionInformation.class,
+        org.opengis.metadata.acquisition.EnvironmentalRecord.class,
+        org.opengis.metadata.acquisition.Event.class,
+        org.opengis.metadata.acquisition.Instrument.class,
+        org.opengis.metadata.acquisition.Objective.class,
+        org.opengis.metadata.acquisition.Operation.class,
+        org.opengis.metadata.acquisition.Plan.class,
+        org.opengis.metadata.acquisition.Platform.class,
+        org.opengis.metadata.acquisition.PlatformPass.class,
+        org.opengis.metadata.acquisition.RequestedDate.class,
+        org.opengis.metadata.acquisition.Requirement.class,
+        org.opengis.metadata.citation.Address.class,
+        org.opengis.metadata.citation.Citation.class,
+        org.opengis.metadata.citation.CitationDate.class,
+        org.opengis.metadata.citation.Contact.class,
+        org.opengis.metadata.citation.OnlineResource.class,
+        org.opengis.metadata.citation.ResponsibleParty.class,
+        org.opengis.metadata.citation.Series.class,
+        org.opengis.metadata.citation.Telephone.class,
+        org.opengis.metadata.constraint.Constraints.class,
+        org.opengis.metadata.constraint.LegalConstraints.class,
+        org.opengis.metadata.constraint.SecurityConstraints.class,
+        org.opengis.metadata.content.Band.class,
+        org.opengis.metadata.content.ContentInformation.class,
+        org.opengis.metadata.content.CoverageDescription.class,
+        org.opengis.metadata.content.FeatureCatalogueDescription.class,
+        org.opengis.metadata.content.ImageDescription.class,
+        org.opengis.metadata.content.RangeDimension.class,
+        org.opengis.metadata.content.RangeElementDescription.class,
+        org.opengis.metadata.distribution.DataFile.class,
+        org.opengis.metadata.distribution.DigitalTransferOptions.class,
+        org.opengis.metadata.distribution.Distribution.class,
+        org.opengis.metadata.distribution.Distributor.class,
+        org.opengis.metadata.distribution.Format.class,
+        org.opengis.metadata.distribution.Medium.class,
+        org.opengis.metadata.distribution.StandardOrderProcess.class,
+        org.opengis.metadata.extent.BoundingPolygon.class,
+        org.opengis.metadata.extent.Extent.class,
+        org.opengis.metadata.extent.GeographicBoundingBox.class,
+        org.opengis.metadata.extent.GeographicDescription.class,
+        org.opengis.metadata.extent.GeographicExtent.class,
+        org.opengis.metadata.extent.SpatialTemporalExtent.class,
+        org.opengis.metadata.extent.TemporalExtent.class,
+        org.opengis.metadata.extent.VerticalExtent.class,
+        org.opengis.metadata.identification.AggregateInformation.class,
+        org.opengis.metadata.identification.BrowseGraphic.class,
+        org.opengis.metadata.identification.DataIdentification.class,
+        org.opengis.metadata.identification.Identification.class,
+        org.opengis.metadata.identification.Keywords.class,
+        org.opengis.metadata.identification.RepresentativeFraction.class,
+        org.opengis.metadata.identification.Resolution.class,
+        org.opengis.metadata.identification.ServiceIdentification.class,
+        org.opengis.metadata.identification.Usage.class,
+        org.opengis.metadata.lineage.Algorithm.class,
+        org.opengis.metadata.lineage.Lineage.class,
+        org.opengis.metadata.lineage.NominalResolution.class,
+        org.opengis.metadata.lineage.Processing.class,
+        org.opengis.metadata.lineage.ProcessStep.class,
+        org.opengis.metadata.lineage.ProcessStepReport.class,
+        org.opengis.metadata.lineage.Source.class,
+        org.opengis.metadata.maintenance.MaintenanceInformation.class,
+        org.opengis.metadata.maintenance.ScopeDescription.class,
+        org.opengis.metadata.quality.AbsoluteExternalPositionalAccuracy.class,
+        org.opengis.metadata.quality.AccuracyOfATimeMeasurement.class,
+        org.opengis.metadata.quality.Completeness.class,
+        org.opengis.metadata.quality.CompletenessCommission.class,
+        org.opengis.metadata.quality.CompletenessOmission.class,
+        org.opengis.metadata.quality.ConceptualConsistency.class,
+        org.opengis.metadata.quality.ConformanceResult.class,
+        org.opengis.metadata.quality.CoverageResult.class,
+        org.opengis.metadata.quality.DataQuality.class,
+        org.opengis.metadata.quality.DomainConsistency.class,
+        org.opengis.metadata.quality.Element.class,
+        org.opengis.metadata.quality.FormatConsistency.class,
+        org.opengis.metadata.quality.GriddedDataPositionalAccuracy.class,
+        org.opengis.metadata.quality.LogicalConsistency.class,
+        org.opengis.metadata.quality.NonQuantitativeAttributeAccuracy.class,
+        org.opengis.metadata.quality.PositionalAccuracy.class,
+        org.opengis.metadata.quality.QuantitativeAttributeAccuracy.class,
+        org.opengis.metadata.quality.QuantitativeResult.class,
+        org.opengis.metadata.quality.RelativeInternalPositionalAccuracy.class,
+        org.opengis.metadata.quality.Result.class,
+        org.opengis.metadata.quality.Scope.class,
+        org.opengis.metadata.quality.TemporalAccuracy.class,
+        org.opengis.metadata.quality.TemporalConsistency.class,
+        org.opengis.metadata.quality.TemporalValidity.class,
+        org.opengis.metadata.quality.ThematicAccuracy.class,
+        org.opengis.metadata.quality.ThematicClassificationCorrectness.class,
+        org.opengis.metadata.quality.TopologicalConsistency.class,
+        org.opengis.metadata.quality.Usability.class,
+        org.opengis.metadata.spatial.Dimension.class,
+        org.opengis.metadata.spatial.GCP.class,
+        org.opengis.metadata.spatial.GCPCollection.class,
+        org.opengis.metadata.spatial.GeolocationInformation.class,
+        org.opengis.metadata.spatial.GeometricObjects.class,
+        org.opengis.metadata.spatial.Georectified.class,
+        org.opengis.metadata.spatial.Georeferenceable.class,
+        org.opengis.metadata.spatial.GridSpatialRepresentation.class,
+        org.opengis.metadata.spatial.SpatialRepresentation.class,
+        org.opengis.metadata.spatial.VectorSpatialRepresentation.class
+    };
+
+    /**
+     * Asserts that the given key exists in the given resource bundle.
+     */
+    private static void assertResourceExists(final ResourceBundle resources, final String identifier) {
+        final String value;
+        try {
+            value = resources.getString(identifier);
+        } catch (MissingResourceException e) {
+            fail(e.toString());
+            return;
+        }
+        assertNotNull(identifier, value);
+    }
+
+    /**
+     * Ensures that every metadata interfaces have a description, and that there is
+     * no extra definitions. This test is theorically locale-sensitive since we search
+     * for the resources in the current locale. However it should works for every locales
+     * since the English locale is used as a fallback.
+     */
+    @Test
+    public void testAll() {
+        final ResourceBundle resources = ResourceBundle.getBundle("org.opengis.metadata.Descriptions");
+        /*
+         * Get the set of keys. We will remove entries from this set as we found them.
+         * When this test is finished, the set of keys should be empty.
+         */
+        final Set<String> keys = new HashSet<String>();
+        for (final Enumeration<String> e=resources.getKeys(); e.hasMoreElements();) {
+            final String key = e.nextElement();
+            assertTrue("Duplicated key" , keys.add(key));
+        }
+        for (final Class<?> type : METADATA) {
+            UML uml = type.getAnnotation(UML.class);
+            assertNotNull("Missing UML annotation", uml);
+            final String classIdentifier = uml.identifier();
+            assertResourceExists(resources, classIdentifier);
+            assertTrue("Key not found", keys.remove(classIdentifier));
+            /*
+             * The above code checked the class description. Now check the description
+             * for each methods. Note that a few methods are GeoAPI extensions without
+             * UML (e.g. explicit definition of hashCode()), which must be excluded.
+             */
+            for (final Method method : type.getDeclaredMethods()) {
+                uml = method.getAnnotation(UML.class);
+                if (uml != null) {
+                    final String identifier = classIdentifier + '.' + uml.identifier();
+                    assertResourceExists(resources, identifier);
+                    assertTrue("Key not found", keys.remove(identifier));
+                }
+            }
+        }
+        assertTrue("Some keys do not map any class or method", keys.isEmpty());
+    }
+
+    /**
+     * Tests the content of a few specific items in the English locale.
+     */
+    @Test
+    public void testEnglish() {
+        final ResourceBundle resources = ResourceBundle.getBundle("org.opengis.metadata.Descriptions", Locale.ENGLISH);
+        assertEquals("Unique identifier for the resource. Example: Universal Product Code (UPC), National Stock Number (NSN).",
+                resources.getString("CI_Citation.identifier"));
+    }
+}
