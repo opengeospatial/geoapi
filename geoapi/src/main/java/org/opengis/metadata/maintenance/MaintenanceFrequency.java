@@ -130,8 +130,14 @@ public final class MaintenanceFrequency extends CodeList<MaintenanceFrequency> {
     /**
      * Frequency of maintenance for the data is not known
      */
-    @UML(identifier="unknow", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final MaintenanceFrequency UNKNOW = new MaintenanceFrequency("UNKNOW");
+    @UML(identifier="unknown", obligation=CONDITIONAL, specification=ISO_19115)
+    public static final MaintenanceFrequency UNKNOWN = new MaintenanceFrequency("UNKNOWN");
+
+    /**
+     * @deprecated Renamed {@link #UNKNOWN}.
+     */
+    @Deprecated
+    public static final MaintenanceFrequency UNKNOW = UNKNOWN;
 
     /**
      * Constructs an enum with the given name. The new enum is
