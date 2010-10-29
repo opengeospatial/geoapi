@@ -31,7 +31,7 @@
  */
 
 /**
- * Root package for {@linkplain org.opengis.metadata.acquisition.AcquisitionInformation acquisition information}.
+ * {@linkplain org.opengis.metadata.acquisition.AcquisitionInformation Acquisition information}.
  *
  * @since GeoAPI 2.3
  */
