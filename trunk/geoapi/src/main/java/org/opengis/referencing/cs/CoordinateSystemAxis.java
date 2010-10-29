@@ -121,7 +121,7 @@ public interface CoordinateSystemAxis extends IdentifiedObject {
     RangeMeaning getRangeMeaning();
 
     /**
-     * The unit of measure used for this coordinate system axis. The value of this
+     * The unit of measure used for this coordinate system axis. The value of a
      * coordinate in a coordinate tuple shall be recorded using this unit of measure,
      * whenever those coordinates use a coordinate reference system that uses a
      * coordinate system that uses this axis.

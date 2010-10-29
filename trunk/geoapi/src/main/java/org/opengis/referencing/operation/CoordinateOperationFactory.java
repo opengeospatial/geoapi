@@ -129,7 +129,7 @@ public interface CoordinateOperationFactory extends ObjectFactory {
      *   method for creating such object.
      */
     CoordinateOperation createConcatenatedOperation(Map<String, ?> properties,
-                                                    CoordinateOperation[] operations)
+                                                    CoordinateOperation... operations)
             throws FactoryException;
 
     /**
