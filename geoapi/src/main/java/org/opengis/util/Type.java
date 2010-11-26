@@ -49,6 +49,7 @@ import static org.opengis.annotation.Specification.*;
  *
  * @navassoc 1 - - TypeName
  */
+@UML(identifier="Type", specification=ISO_19103)
 public interface Type {
     /**
      * Returns the name that identifies this type.

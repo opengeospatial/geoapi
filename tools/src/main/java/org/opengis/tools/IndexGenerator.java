@@ -35,7 +35,15 @@ import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Map;
+import java.util.Set;
+import java.util.List;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Comparator;
+import java.util.Collections;
+import java.util.LinkedHashMap;
 
 import com.sun.mirror.apt.Filer;
 import com.sun.mirror.type.InterfaceType;
@@ -56,23 +64,47 @@ import org.opengis.geometry.coordinate.PointArray;
 
 /**
  * Generates a list of all type and methods, together with their ISO identifier.
- * The list will be written in the {@code ../javadoc/content.html} file.
+ * The list will be written in the {@code ../javadoc/content.html} file, relative
+ * to the current directory. The result is published online at
+ * <a href="http://www.geoapi.org/snapshot/javadoc/content.html">http://www.geoapi.org/snapshot/javadoc/content.html</a>
  * <p>
- * <b>How to use</b>
- * {@code chdir} to the root directory of source code. Then invoke the following command,
- * where {@code content.txt} is a file containing the path to all java classes to parse.
+ * <b><u>How to use</u></b><br>
+ * {@code chdir} to the root directory of source code. Then invoke the {@code apt} command,
+ * where {@code content.txt} is a file containing the path to all java classes to parse:
  *
  * <blockquote><pre>
- * apt -nocompile -factory org.opengis.tools.IndexGenerator @content.txt
+ * cd geoapi/src/main/java
+ * find org -name "*.java" &gt; content.txt
+ * export CLASSPATH=~/.m2/repository/org/unitsofmeasurement/unit-api/0.6-RC1/unit-api-0.6-RC1.jar
+ * export CLASSPATH=$CLASSPATH:../../../../geoapi-pending/target/geoapi-pending-2.3-SNAPSHOT.jar
+ * export CLASSPATH=$CLASSPATH:../../../../tools/target/tools-2.3-SNAPSHOT.jar
+ * apt -classpath $CLASSPATH -nocompile -factory org.opengis.tools.IndexGenerator @content.txt
+ * rm content.txt
  * </pre></blockquote>
  *
  * @author Martin Desruisseaux
  */
-public class IndexGenerator extends UmlProcessor {
+public class IndexGenerator extends UmlProcessor implements Comparator<TypeDeclaration> {
     /**
      * Set to {@code true} for printing some debug information to the standard output.
      */
     private static final boolean DEBUG = false;
+
+    /**
+     * Method names that are part of Java specification.
+     */
+    private final Set<String> javaMethods;
+
+    /**
+     * Method names that are part of Java3D vecmath.
+     */
+    private final Set<String> vecmathMethods;
+
+    /**
+     * The list of all declarations. They will be collected before to be processed,
+     * in order to sort them by package name before to sort them by class name.
+     */
+    private final List<TypeDeclaration> declarations;
 
     /**
      * The writer where to write the list.
@@ -88,6 +120,9 @@ public class IndexGenerator extends UmlProcessor {
      * Creates a default processor.
      */
     public IndexGenerator() {
+        javaMethods    = new HashSet<String>(Arrays.asList("toString", "clone", "equals", "hashCode", "doubleValue"));
+        vecmathMethods = new HashSet<String>(Arrays.asList("getNumRow", "getNumCol", "getElement", "setElement"));
+        declarations   = new ArrayList<TypeDeclaration>(512);
     }
 
     /**
@@ -97,6 +132,11 @@ public class IndexGenerator extends UmlProcessor {
      */
     @Override
     public void process() {
+        // Collect all type declaration, then sort them.
+        super.process();
+        Collections.sort(declarations, this);
+
+        // Now write the HTML file.
         final Filer filer = environment.getFiler();
         try {
             out = filer.createTextFile(Filer.Location.SOURCE_TREE, "",
@@ -116,11 +156,10 @@ public class IndexGenerator extends UmlProcessor {
         out.println("  <TR><TH bgcolor=\"#CCCCFF\">GeoAPI identifier</TH>" +
                           "<TH bgcolor=\"#CCCCFF\">ISO identifier</TH>" +
                           "<TH bgcolor=\"#CCCCFF\">Standard</TH></TR>");
-        /*
-         * Performs the analysis.
-         */
         lastPackage = "";
-        super.process();
+        for (final TypeDeclaration declaration : declarations) {
+            writeTypeDeclaration(declaration);
+        }
         out.println("  </TABLE>");
         out.println("  </BODY>");
         out.println("</HTML>");
@@ -128,7 +167,36 @@ public class IndexGenerator extends UmlProcessor {
     }
 
     /**
-     * Checks for classes. Will also checks for methods or fields inside each class.
+     * Returns the simple name of the given class or interface, completed with the name of the
+     * outer class is any. The check for outer interface is mostly for {@code CodeList.Filter}.
+     */
+    private static String getSimpleName(TypeDeclaration declaration) {
+        String classname = declaration.getSimpleName();
+        while ((declaration = declaration.getDeclaringType()) != null) {
+            classname = declaration.getSimpleName() + '.' + classname;
+        }
+        return classname;
+    }
+
+    /**
+     * Compares the given declaration for order.
+     *
+     * @param  o1 The first declaration.
+     * @param  o2 The second declaration.
+     * @return A negative number if {@code o1} should be printed before {@code o2}, or
+     *         a positive number if {@code o1} should be printed after {@code o2}.
+     */
+    public int compare(final TypeDeclaration o1, final TypeDeclaration o2) {
+        int c = o1.getPackage().getQualifiedName().compareToIgnoreCase(o2.getPackage().getQualifiedName());
+        if (c == 0) {
+            c = getSimpleName(o1).compareToIgnoreCase(getSimpleName(o2));
+        }
+        return c;
+    }
+
+    /**
+     * Adds the given declaration to the list of types to be written, except if it
+     * is part of a package to be omitted.
      *
      * @param declaration The class to check.
      */
@@ -141,9 +209,16 @@ public class IndexGenerator extends UmlProcessor {
         if (declaration.getPackage().getQualifiedName().equals("org.opengis.annotation")) {
             return;
         }
+        declarations.add(declaration);
+    }
+
+    /**
+     * Write the HTML records for the given type, and for methods and fields inside that class.
+     */
+    private void writeTypeDeclaration(final TypeDeclaration declaration) {
         UML    uml                = declaration.getAnnotation(UML.class);
         String identifier         = getDisplayName(uml);
-        String classname          = declaration.getSimpleName();
+        String classname          = getSimpleName(declaration);
         String qualifiedClassname = declaration.getQualifiedName();
         String pathToClassJavadoc = qualifiedClassname.replace('.', '/') + ".html";
         boolean significantChange = !similarClassName(declaration, classname, identifier);
@@ -153,8 +228,7 @@ public class IndexGenerator extends UmlProcessor {
          * compared to the previous one, writes the package name first.
          */
         if (true) {
-            final int splitIndex = qualifiedClassname.lastIndexOf('.');
-            final String packageName = (splitIndex >= 0) ? qualifiedClassname.substring(0, splitIndex) : qualifiedClassname;
+            final String packageName = declaration.getPackage().getQualifiedName();
             if (!packageName.equals(lastPackage)) {
                 out.println("  <TR><TD COLSPAN=3>&nbsp;</TD></TR>");
                 out.print  ("  <TR><TD COLSPAN=3 NOWRAP BGCOLOR=\"#DDDDFF\"><STRONG>Package&nbsp; <CODE>");
@@ -164,7 +238,7 @@ public class IndexGenerator extends UmlProcessor {
                 lastPackage = packageName;
             }
             out.print("  <TR><TD NOWRAP><STRONG><CODE>&nbsp;&nbsp;</CODE>");
-            out.print(isCodeList ? "Code list" : "Interface");
+            out.print(isCodeList ? "Code list" : (declaration instanceof ClassDeclaration) ? "Class" : "Interface");
             out.print(" <CODE><A HREF=\"");
             out.print(pathToClassJavadoc);
             out.print("\">");
@@ -180,11 +254,12 @@ public class IndexGenerator extends UmlProcessor {
             out.println("</TR>");
         }
         /*
-         * Iterates over the attributes.
+         * Gets the attributes, ignoring deprecated and duplicated attributes.
+         * If an attribute is defined twice, the one with a UML annotation is
+         * selected (there should be only one).
          */
-        final Collection<? extends MemberDeclaration> attributes =
-                isCodeList ? declaration.getFields() : declaration.getMethods();
-scan:   for (final MemberDeclaration attribute : attributes) {
+        final Map<String,MemberDeclaration> attributes = new LinkedHashMap<String,MemberDeclaration>();
+scan:   for (final MemberDeclaration attribute : isCodeList ? declaration.getFields() : declaration.getMethods()) {
             /*
              * Skip non-public members, deprecated members and members
              * which are declared in a super-interface.
@@ -215,6 +290,30 @@ scan:   for (final MemberDeclaration attribute : attributes) {
                     }
                 }
             }
+            final String name = attribute.getSimpleName();
+            final MemberDeclaration old = attributes.put(name, attribute);
+            if (old != null) {
+                // Found a duplicated attribute. Restore the first attribute, unless
+                // the new one has a UML annotation while the older one had none.
+                final boolean oldHasUML = old      .getAnnotation(UML.class) != null;
+                final boolean newHasUML = attribute.getAnnotation(UML.class) != null;
+                if (oldHasUML || !newHasUML) {
+                    attributes.put(name, old);
+                    if (oldHasUML && newHasUML) {
+                        // Preserve also the new attribute using a generated key.
+                        int n = 0;
+                        String key;
+                        do key = name + '$' + (++n);
+                        while (attributes.containsKey(key));
+                        attributes.put(key, attribute);
+                    }
+                }
+            }
+        }
+        /*
+         * Writes the HTML lines for the attributes retained in the above iteration.
+         */
+scan:   for (final MemberDeclaration attribute : attributes.values()) {
             uml = attribute.getAnnotation(UML.class);
             identifier = getDisplayName(uml);
             final String name = attribute.getSimpleName();
@@ -235,6 +334,17 @@ scan:   for (final MemberDeclaration attribute : attributes) {
                 out.print("</CODE></TD><TD><FONT SIZE=-1>");
                 out.print(getSpecification(uml));
                 out.print("</FONT></TD>");
+            } else if (javaMethods.contains(name)) {
+                /*
+                 * The 'doubleValue()' method is considered a Java method only in the case of
+                 * the RepresentativeFraction interface, because the Javadoc of that interface
+                 * encourage implementors to extend java.lang.Number.
+                 */
+                if (!name.equals("doubleValue") || classname.equals("RepresentativeFraction")) {
+                    out.print("<TD></TD><TD><FONT SIZE=-1>Java</FONT></TD>");
+                }
+            } else if (vecmathMethods.contains(name) && classname.equals("Matrix")) {
+                out.print("<TD></TD><TD><FONT SIZE=-1>Vecmath</FONT></TD>");
             }
             out.println("</TR>");
         }
@@ -442,6 +552,10 @@ scan:   for (final MemberDeclaration attribute : attributes) {
         if (ogc == null) {
             return false;
         }
+        // Special cases that we don't want to consider as significant deviation.
+        geoapi = geoapi.replace("CODE_LIST",  "CODELIST");
+        geoapi = geoapi.replace("META_CLASS", "METACLASS");
+
         ogc = firstCharAsLowerCase(dropPrefix(ogc));
         /*
          * GeoAPI constants are always in upper-case.
