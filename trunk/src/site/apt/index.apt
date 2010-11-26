@@ -55,7 +55,7 @@ GeoAPI
   GeoAPI consists of a series of independent packages, many of which follow one
   specific ISO/OGC specification document.
 
-  The different packages have reached different levels of stablity so that the
+  The different packages have reached different levels of stability so that the
   project has been split into two modules.
 
     * The {{{geoapi/index.html}geoapi}} module contains only the interfaces which
@@ -64,7 +64,7 @@ GeoAPI
       mature, they will be moved to this module.
 
     * The {{{geoapi-pending/index.html}geoapi-pending}} module provides additional
-      interfaces with different levels of stablity ranging from the very trusted
+      interfaces with different levels of stability ranging from the very trusted
       to modules which are experimental since they do not yet have any known
       implementation.
 
@@ -72,7 +72,7 @@ GeoAPI
   a test harness to evaluate the correctness of any implementation.
 
   GeoAPI uses the {{{http://maven.apache.org}Maven}} build tool. External
-  projects which also use this tool can integrate GeoAPI into their maven
+  projects which also use this tool can integrate GeoAPI into their Maven
   dependencies using one of the {{{maven.html}repositories listed here}}.
 
   GeoAPI is hosted on a {{{source-repository.html}Subversion repository}}. The 
@@ -82,7 +82,7 @@ GeoAPI
 * The GeoAPI license
 
   GeoAPI is free software. GeoAPI may be used, modified and redistributed by
-  anyone for any purpose requring only maintaining the copyright and license
+  anyone for any purpose requiring only maintaining the copyright and license
   terms on the source code and derivative files. See
   {{{http://www.opengeospatial.org/ogc/legal}the OGC legal page}} for details.
 

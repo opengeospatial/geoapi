@@ -101,11 +101,18 @@
 
   <mailingLists>
     <mailingList>
-      <name>GeoAPI-devel</name>
+      <name>GeoAPI development (public)</name>
       <subscribe>http://lists.sourceforge.net/lists/listinfo/geoapi-devel</subscribe>
       <unsubscribe>http://lists.sourceforge.net/lists/listinfo/geoapi-devel</unsubscribe>
       <post>geoapi-devel@lists.sourceforge.net</post>
       <archive>http://sourceforge.net/mailarchive/forum.php?forum_name=geoapi-devel</archive>
+    </mailingList>
+    <mailingList>
+      <name>GeoAPI Standard Working Group (OGC)</name>
+      <subscribe>https://lists.opengeospatial.org/mailman/listinfo/geoapi-3.0.swg</subscribe>
+      <unsubscribe>https://lists.opengeospatial.org/mailman/listinfo/geoapi-3.0.swg</unsubscribe>
+      <post>geoapi-3.0.swg@lists.opengeospatial.org</post>
+      <archive>https://lists.opengeospatial.org/mailman/private/geoapi-3.0.swg</archive>
     </mailingList>
   </mailingLists>
 
@@ -144,6 +151,7 @@
       <organizationUrl>http://www.geomatys.fr/</organizationUrl>
       <roles>
         <role>Java Developer</role>
+        <role>Maintainer</role>
       </roles>
       <timezone>+1</timezone>
     </developer>
@@ -268,7 +276,7 @@
       <dependency>
         <groupId>junit</groupId>
         <artifactId>junit</artifactId>
-        <version>4.7</version>
+        <version>4.8.2</version>
         <scope>test</scope>
       </dependency>
     </dependencies>
@@ -282,6 +290,7 @@
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
+      <scope>test</scope>
     </dependency>
   </dependencies>
 
@@ -462,7 +471,7 @@
             <link>http://jscience.org/api/</link>
           </links>
 
-          <!-- Separates packages on the overview page into the groups  specified. -->
+          <!-- Separates packages on the overview page into the groups specified. -->
           <groups>
             <group>
               <title>Display and Styling</title>
