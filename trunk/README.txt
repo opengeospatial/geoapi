@@ -5,17 +5,20 @@ This is the root directory for the GeoAPI project.
 Modules
 ---------------------------------------------------------------------------------------------------
 
-  geoapi     Contains the next GeoAPI release being put forward for approval. In order to get early
-             feedback from implementors we will occasionally issue a milestone release. For details
-             please visit the project website.
+  geoapi          Contains the next GeoAPI release being put forward for approval. In order to get
+                  early feedback from implementors we will occasionally issue a milestone release.
+                  For details please visit the http://www.geoapi.org/ project website.
 
-  tools      Used for generating some special pages for javadoc.
+  geoapi-pending  Contains work in progress.
 
-  examples   Examples used as part of the guidelines for turning a specification into Java
-             interfaces. The same example is shown for a range of tradeoffs from a simple immutable
-             interface, through to data objects and finally objects with event notificaiton.
+  tools           Used for generating some special pages for javadoc.
 
-  compliance A test suite for testing vendor implementations.
+  examples        Examples used as part of the guidelines for turning a specification into Java
+                  interfaces. The same example is shown for a range of tradeoffs from a simple
+                  immutable interface, through to data objects and finally objects with event
+                  notification.
+
+  conformance     A test suite for testing vendor implementations.
 
 
 ---------------------------------------------------------------------------------------------------
