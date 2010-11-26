@@ -283,7 +283,7 @@ public final class CharacterSet extends CodeList<CharacterSet> {
      * @return The Java Charset.
      * @throws UnsupportedCharsetException If no support for the charset is available.
      *
-     * @see <A HREF="http://java.sun.com/javase/6/docs/technotes/guides/intl/encoding.doc.html">Supported encodings</A>
+     * @see <A HREF="http://download.oracle.com/javase/6/docs/technotes/guides/intl/encoding.doc.html">Supported encodings</A>
      */
     public Charset toCharset() throws UnsupportedCharsetException {
         return Charset.forName(charset);

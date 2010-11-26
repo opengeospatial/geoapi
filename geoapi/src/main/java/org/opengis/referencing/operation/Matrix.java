@@ -39,7 +39,7 @@ import static org.opengis.annotation.Specification.*;
 /**
  * A two dimensional array of numbers. Row and column numbering begins with zero. The API for
  * this interface matches closely the API in various {@linkplain javax.vecmath.GMatrix matrix}
- * implementations available in <A HREF="http://java.sun.com/products/java-media/3D/">Java3D</A>,
+ * implementations available in <A HREF="https://java3d.dev.java.net/">Java3D</A>,
  * which should enable straightforward implementations. Java3D provides matrix for the general
  * case and optimized versions for 3&times;3 and 4&times;4 cases, which are quite common in a
  * transformation package.

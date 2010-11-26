@@ -35,7 +35,7 @@ package org.opengis.util;
 /**
  * Indicates that it is legal to make a field-for-field copy of instances of implementing classes.
  * A cloneable class implements the J2SE's {@link java.lang.Cloneable} standard interface and
- * additionnaly overrides the {@link Object#clone()} method with public access.
+ * additionally overrides the {@link Object#clone()} method with public access.
  * <p>
  * Because the {@link Object#clone()} method has protected access, containers wanting to clone
  * theirs elements need to 1) use Java reflection (which is less efficient than standard method
@@ -54,10 +54,10 @@ package org.opengis.util;
  * @since GeoAPI 1.0
  *
  * @see java.lang.Cloneable
- * @see <A HREF="http://developer.java.sun.com/developer/bugParade/bugs/4098033.html">&quot;<cite>Cloneable
+ * @see <A HREF="http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=4098033">&quot;<cite>Cloneable
  *      doesn't define <code>clone()</code></cite>&quot; on Sun's bug parade</A>
  *
- * @deprecated The need for this interface in GeoAPI is weaker than it was at the begining of this
+ * @deprecated The need for this interface in GeoAPI is weaker than it was at the beginning of this
  *      project, since the interfaces which were originally extending {@code Cloneable} do not
  *      extend it anymore today. Consequently this interface will be removed and the handling
  *      of the {@code Cloneable} issue left to implementors.
