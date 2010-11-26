@@ -199,13 +199,18 @@ public abstract class UmlProcessor extends SimpleDeclarationVisitor
 
     /**
      * Returns {@code true} if the specified declaration is a {@link CodeList}.
+     * This method returns {@code true} for any subclass of {@code CodeList},
+     * but not for {@code CodeList} itself.
      *
      * @param  declaration The element to test.
      * @return {@code true} if the given element is a code list.
      */
     protected final boolean isCodeList(final TypeDeclaration declaration) {
-        return (declaration instanceof ClassDeclaration) &&
-               CodeList.class.isAssignableFrom(getClass(declaration));
+        if (declaration instanceof ClassDeclaration) {
+            final Class<?> type = getClass(declaration);
+            return CodeList.class.isAssignableFrom(type) && !CodeList.class.equals(type);
+        }
+        return false;
     }
 
     /**
