@@ -5,18 +5,19 @@ GeoAPI
 
   The interfaces developed by the GeoAPI project include many of the data
   structures and manipulation methods needed for geographic information system
-  applications. In a series of independent packages, GeoAPI defines a core set
+  applications. In a series of packages, GeoAPI defines a core set
   of interfaces for metadata handling, for geodetic referencing, projection and
   conversion, for the handling of georeferenced imagery, for the construction
-  and manipulation of vector geometry and tological data structures, and for the
-  description and use of geospatial 'feature' entities. Beyond this core, GeoAPI
+  and manipulation of vector geometry and topological data structures, and for the
+  description and use of geospatial "feature" entities. Beyond this core, GeoAPI
   further defines interfaces for data access and storage including sophisticated
   filter queries, and for display.
 
-  The GeoAPI interfaces closely follow the abstract model and concrete
-  specifications published collaboratively by the International Organization for
-  Standardization (ISO) in its 19100 series of documents and the Open
-  Geospatial Consortium (OGC) in its abstract and implementation specifications.
+  The GeoAPI interfaces closely follow the abstract model and concrete specifications
+  published collaboratively by the {{{http://www.isotc211.org/}International Organization
+  for Standardization}} (ISO) in its 19100 series of documents and the
+  {{{http://www.opengeospatial.org/}Open Geospatial Consortium}} (OGC) in its abstract
+  and implementation specifications.
   GeoAPI provides an interpretation and adaptation of these standards to match
   the expectations of Java programmers. These standards provide GeoAPI with the
   richness which comes from the expertise of the specification writers. Clients
@@ -28,8 +29,9 @@ GeoAPI
   The GeoAPI interfaces provide a layer which separates client code, which would
   call the API, from library code, which implements the API. These interfaces
   are not an implementation. This follows a similar pattern to the well known
-  JDBC API which provides a standardized interface to databases. Clients can use
-  the JDBC API without concern for the particular implementation which they will
+  {{{http://download.oracle.com/javase/6/docs/technotes/guides/jdbc/}JDBC}} API
+  which provides a standardized interface to databases. Clients can use the
+  JDBC API without concern for the particular implementation which they will
   use. Various groups have implemented different subsets of GeoAPI, see
   the {{{implementations.html}list of known implementations}} for details.
 
@@ -44,15 +46,14 @@ GeoAPI
   The project runs a public {{{mail-lists.html}mailing list}} for user and
   developer questions, other issues, and general discussion.
 
-  The project is hosted on sourceforge at {{http://geoapi.sourceforge.net/}} which
-  has a mostly unused project page at {{http://sourceforge.net/projects/geoapi}}.
+  The project is hosted on sourceforge at {{http://sourceforge.net/projects/geoapi}}.
   
   GeoAPI has a wiki available at {{http://docs.codehaus.org/display/GEO/Home}}.
 
 
 * The GeoAPI code structure
 
-  GeoAPI consists of a series of independent packages, many of which follow one
+  GeoAPI consists of a series of packages, many of which follow one
   specific ISO/OGC specification document.
 
   The different packages have reached different levels of stability so that the
@@ -76,7 +77,7 @@ GeoAPI
   dependencies using one of the {{{maven.html}repositories listed here}}.
 
   GeoAPI is hosted on a {{{source-repository.html}Subversion repository}}. The 
-  code is also available as a {{{http://hg.geomatys.com/geoapi/trunk/}Mercurial clone}}.
+  code is also available as a {{{http://hg.geomatys.com/mirror/geoapi/trunk/}Mercurial clone}}.
 
 
 * The GeoAPI license
@@ -84,7 +85,7 @@ GeoAPI
   GeoAPI is free software. GeoAPI may be used, modified and redistributed by
   anyone for any purpose requiring only maintaining the copyright and license
   terms on the source code and derivative files. See
-  {{{http://www.opengeospatial.org/ogc/legal}the OGC legal page}} for details.
+  {{{http://www.opengeospatial.org/ogc/software}the OGC legal page}} for details.
 
   The copyright to the GeoAPI interfaces is held by the Open Geospatial
   Consortium.
