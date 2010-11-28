@@ -29,16 +29,9 @@
     <!--     Menus to appears on the left side of each page   -->
     <!-- ==================================================== -->
     <menu name="GeoAPI 2.3-SNAPSHOT" inherit="none">
-      <item name="Reports"  href="geoapi/index.html"/>
-      <item name="Javadoc"  href="snapshot/javadoc/index.html"/>
-      <item name="Download" href="http://hudson.geomatys.com/job/GeoAPI/lastSuccessfulBuild/artifact/trunk/geoapi/target/geoapi-2.3-SNAPSHOT.jar"/>
-      <item name="Examples" href="examples/index.html"/>
-    </menu>
-
-    <menu name="Pending 2.3-SNAPSHOT" inherit="none">
-      <item name="Reports"  href="geoapi-pending/index.html"/>
-      <item name="Javadoc"  href="snapshot/pending/index.html"/>
-      <item name="Download" href="http://hudson.geomatys.com/job/GeoAPI/"/>
+      <item name="Javadoc (stable)"  href="snapshot/javadoc/index.html"/>
+      <item name="Javadoc (pending)" href="snapshot/pending/index.html"/>
+      <item name="Table of content"  href="snapshot/javadoc/content.html"/>
     </menu>
 
     <menu name="GeoAPI 2.0.0" inherit="none">
@@ -47,25 +40,14 @@
       <item name="Download" href="http://sourceforge.net/project/showfiles.php?group_id=70002&amp;package_id=69096&amp;release_id=333419"/>
     </menu>
 
-
     <menu name="Releases" inherit="none">
-      <item name="GeoAPI 2.2" href="2.2/index.html"/>
-      <item name="GeoAPI 2.1" href="2.1/index.html"/>
-      <item name="GeoAPI 2.0" href="2.0/index.html"/>
-      <item name="GeoAPI 1.0" href="1.0/index.html"/>
-      <item name="GeoAPI 0.1" href="0.1/index.html"/>
-    </menu>
-
-
-    <menu name="Project" inherit="none">
-      <item name="JIRA Task Tracker"          href="http://jira.codehaus.org/browse/GEO"/>
-      <item name="Documentation Wiki"         href="http://docs.codehaus.org/display/GEO/Home"/>
-      <item name="Frequently Asked Questions" href="faq.html"/>
-      <item name="OGC Working Group" href="http://portal.opengeospatial.org/?m&#61;projects&amp;a&#61;view&amp;project_id&#61;294&amp;tab&#61;0"/>
-      <item name="OGC SWG Charter"            href="charter.html"/>
+      <item name="All releases"  href="releases.html"/>
+      <item name="Download page" href="https://sourceforge.net/projects/geoapi/files/"/>
+      <item name="API changes"   href="changes/index.html"/>
     </menu>
 
     <menu ref="reports"/>  <!-- Replaced by menus for any configured reports (mailing lists, etc.) -->
+    <menu ref="modules"/>  <!-- Replaced by menu for submodules. -->
 
   </body>
 </project>
