@@ -1,4 +1,8 @@
-Conformance test
+                                      -----------------
+                                      Conformance tests
+                                      -----------------
+
+Conformance tests
 
   The GeoAPI conformance module provides two kind of Java classes:
 
@@ -27,7 +31,7 @@ public class MyTests {
 -----------------------------------------------------------
 
   Validators are thread-safe except for the configuration phase (which is optional and usually
-  executed only once before the tests begin). They test the logical consistency of their argument.
+  executed only once before the tests begin). Validators test the logical consistency of their argument.
   For example if given a chain of concatenated transforms, <<<validate(object)>>> will ensure that
   the source dimension of a transformation step is equals to the target dimension of the previous
   step. Dependencies are traversed recursively, for example validating a <<<CoordinateReferenceSystem>>>

@@ -6,7 +6,7 @@
   <bannerLeft>
     <name>GeoAPI</name>
     <src>http://www.geoapi.org/images/geoapi.png</src>
-    <href>http://www.geoapi.org/</href>
+    <href>http://www.geoapi.org/index.html</href>
   </bannerLeft>
 
   <bannerRight>
@@ -29,9 +29,9 @@
     <!--     Menus to appears on the left side of each page   -->
     <!-- ==================================================== -->
     <menu name="GeoAPI 2.3-SNAPSHOT" inherit="none">
-      <item name="Javadoc (stable)"  href="snapshot/javadoc/index.html"/>
-      <item name="Javadoc (pending)" href="snapshot/pending/index.html"/>
-      <item name="Table of content"  href="snapshot/javadoc/content.html"/>
+      <item name="Javadoc (normative)" href="snapshot/javadoc/index.html"/>
+      <item name="Javadoc (pending)"   href="snapshot/pending/index.html"/>
+      <item name="Table of content"    href="snapshot/javadoc/content.html"/>
     </menu>
 
     <menu name="GeoAPI 2.0.0" inherit="none">

@@ -1,11 +1,16 @@
-GeoAPI snapshot
+                                    --------------------
+                                    Normative interfaces
+                                    --------------------
 
-   Contains interfaces under development for possible inclusion in a future GeoAPI release.
-   Changes need to be submitted to OGC before to be included in an official release (probably
-   3.0). Releases in the 2.x series (except 2.0.0) are milestones.
+GeoAPI normative interfaces
 
-   A page listing the GeoAPI content (interface and method names) together with the name used
-   in the OGC and ISO specifications is available {{{../snapshot/javadoc/content.html}here}}.
+  Contains the GeoAPI interfaces under development for possible inclusion in a future GeoAPI
+  release. Changes need to be submitted to OGC before to be included in an official release
 
-   Changes since previous releases or milestones are documented
-   {{{../changes/index.html}here}}.
+  A page listing the GeoAPI content (interface and method names) together with the name used
+  in the OGC and ISO specifications is available {{{../snapshot/javadoc/content.html}here}}.
+
+  Changes since previous releases or milestones are documented
+  {{{../changes/index.html}here}}.
+
+    * {{{apidocs/index.html}Browse javadoc}}
