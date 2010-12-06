@@ -21,7 +21,7 @@
   <groupId>org.opengis</groupId>
   <artifactId>conformance</artifactId>
   <packaging>jar</packaging>
-  <name>Conformance tests</name>
+  <name>GeoAPI conformance</name>
   <description>
     Utility methods for testing conformance of a GeoAPI implementation.
     Provides Validators for testing the conformance of an existing instance,

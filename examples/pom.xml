@@ -21,7 +21,7 @@
   <groupId>org.opengis</groupId>
   <artifactId>examples</artifactId>
   <packaging>jar</packaging>
-  <name>Examples</name>
+  <name>GeoAPI examples</name>
   <description>
     The included examples explore the different trade-offs you
     can make when implementing geoapi interfaces for your

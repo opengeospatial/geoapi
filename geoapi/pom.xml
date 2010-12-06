@@ -21,7 +21,7 @@
   <groupId>org.opengis</groupId>
   <artifactId>geoapi</artifactId>
   <packaging>jar</packaging>
-  <name>GeoAPI interfaces</name>
+  <name>GeoAPI normative</name>
   <description>
     The development community in building GIS solutions is sustaining an enormous
     level of effort. The GeoAPI project aims to reduce duplication and increase
