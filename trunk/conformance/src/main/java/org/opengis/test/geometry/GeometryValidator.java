@@ -40,6 +40,7 @@ import org.opengis.referencing.crs.CoordinateReferenceSystem;
 
 import org.opengis.test.Validator;
 import org.opengis.test.ValidatorContainer;
+import static org.opengis.test.Assert.*;
 
 
 /**

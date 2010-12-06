@@ -43,6 +43,7 @@ import org.opengis.util.GenericName;
 
 import org.opengis.test.Validator;
 import org.opengis.test.ValidatorContainer;
+import static org.opengis.test.Assert.*;
 
 
 /**

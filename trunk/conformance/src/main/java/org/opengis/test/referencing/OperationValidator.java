@@ -38,6 +38,7 @@ import org.opengis.parameter.ParameterValueGroup;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 
 import org.opengis.test.ValidatorContainer;
+import static org.opengis.test.Assert.*;
 
 
 /**
@@ -59,7 +60,7 @@ public class OperationValidator extends ReferencingValidator {
     }
 
     /**
-     * Dispatchs the given object to one of {@code validate} methods.
+     * Dispatches the given object to one of {@code validate} methods.
      *
      * @param object The object to dispatch.
      */

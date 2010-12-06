@@ -32,6 +32,7 @@
 package org.opengis.test;
 
 import java.util.logging.Logger;
+import static org.opengis.test.Assert.*;
 
 
 /**
@@ -46,7 +47,7 @@ import java.util.logging.Logger;
  * @author Martin Desruisseaux (Geomatys)
  * @since GeoAPI 2.2
  */
-public abstract class Validator extends Assert {
+public abstract class Validator {
     /**
      * The default tolerance value for comparisons of floating point numbers.
      */
