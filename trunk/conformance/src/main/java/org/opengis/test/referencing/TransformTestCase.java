@@ -457,7 +457,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
 
     /**
      * Asserts that a single coordinate is equal to the expected one within a positive delta.
-     * If the comparaison fails, the given message is completed with the expected and actual
+     * If the comparison fails, the given message is completed with the expected and actual
      * values, and the index of the ordinate where the failure was found.
      *
      * @param message  The message to print in case of failure.
@@ -477,7 +477,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
 
     /**
      * Asserts that a single coordinate is equal to the expected one within a positive delta.
-     * If the comparaison fails, the given message is completed with the expected and actual
+     * If the comparison fails, the given message is completed with the expected and actual
      * values, and the index of the ordinate where the failure was found.
      *
      * @param message  The message to print in case of failure.
@@ -497,7 +497,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
 
     /**
      * Asserts that a single coordinate is equal to the expected one within a positive delta.
-     * If the comparaison fails, the given message is completed with the expected and actual
+     * If the comparison fails, the given message is completed with the expected and actual
      * values, and the index of the ordinate where the failure was found.
      *
      * @param message  The message to print in case of failure.
@@ -517,7 +517,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
 
     /**
      * Asserts that a single coordinate is equal to the expected one within a positive delta.
-     * If the comparaison fails, the given message is completed with the expected and actual
+     * If the comparison fails, the given message is completed with the expected and actual
      * values, and the index of the ordinate where the failure was found.
      *
      * @param message  The message to print in case of failure.
@@ -537,7 +537,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
 
     /**
      * Asserts that coordinate values are equal to the expected ones within a positive delta.
-     * If the comparaison fails, the given message is completed with the expected and actual
+     * If the comparison fails, the given message is completed with the expected and actual
      * values, and the index of the coordinate where the failure was found.
      *
      * @param message        The message to print in case of failure.
@@ -562,7 +562,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
 
     /**
      * Asserts that coordinate values are equal to the expected ones within a positive delta.
-     * If the comparaison fails, the given message is completed with the expected and actual
+     * If the comparison fails, the given message is completed with the expected and actual
      * values, and the index of the coordinate where the failure was found.
      *
      * @param message        The message to print in case of failure.
@@ -587,7 +587,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
 
     /**
      * Asserts that coordinate values are equal to the expected ones within a positive delta.
-     * If the comparaison fails, the given message is completed with the expected and actual
+     * If the comparison fails, the given message is completed with the expected and actual
      * values, and the index of the coordinate where the failure was found.
      *
      * @param message        The message to print in case of failure.
@@ -612,7 +612,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
 
     /**
      * Asserts that coordinate values are equal to the expected ones within a positive delta.
-     * If the comparaison fails, the given message is completed with the expected and actual
+     * If the comparison fails, the given message is completed with the expected and actual
      * values, and the index of the coordinate where the failure was found.
      *
      * @param message        The message to print in case of failure.
@@ -736,15 +736,15 @@ public strictfp abstract class TransformTestCase extends TestCase {
     }
 
     /**
-     * Formats an error message for a comparaison failure.
+     * Formats an error message for a comparison failure.
      *
      * @param message        The header part of the message to format.
      * @param dimension      The dimension of each coordinate points in the arrays.
      * @param expectedPts    The array of expected coordinate values.
-     * @param expectedOffset Index next to the point where the comparaison failed.
+     * @param expectedOffset Index next to the point where the comparison failed.
      * @param actualPts      The array of coordinate values to check against the expected ones.
-     * @param actualOffset   Index next to the point where the comparaison failed.
-     * @param failureIndex   Zero-based index where the comparaison failed.
+     * @param actualOffset   Index next to the point where the comparison failed.
+     * @param failureIndex   Zero-based index where the comparison failed.
      * @param delta          The absolute delta between the expected and actual ordinate values.
      * @param reportedIndex  Value to add to the coordinate index reported in the error message.
      */

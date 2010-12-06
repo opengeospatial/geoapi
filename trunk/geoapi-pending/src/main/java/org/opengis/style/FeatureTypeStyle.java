@@ -97,7 +97,7 @@ public interface FeatureTypeStyle {
      * </p>
      * <p>
      * In OGC Symbology Encoding define this method to return a single
-     * String, and ISO 19117 use a Collection of String. We've choosen
+     * String, and ISO 19117 use a Collection of String. We've chosen
      * ISO because it is more logic that a featureTypeStyle can be applied
      * to multiple featuretypes and not limited to a single one.
      * </p>
