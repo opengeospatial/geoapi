@@ -38,7 +38,7 @@ package org.opengis.test;
  * @author Martin Desruisseaux (Geomatys)
  * @since GeoAPI 2.2
  */
-public abstract class TestCase extends Assert {
+public abstract class TestCase {
     /**
      * Creates an unitialized test.
      */

@@ -40,6 +40,7 @@ import org.opengis.referencing.operation.TransformException;
 
 import org.junit.Before;
 import org.opengis.test.TestCase;
+import static org.opengis.test.Assert.*;
 
 
 /**
@@ -55,7 +56,7 @@ import org.opengis.test.TestCase;
  * for testing purpose, since the range of valid values is usually transform-dependent.
  * <p>
  * Methods in this class do not {@linkplain org.opengis.test.Validators#validate(MathTransform)
- * validate} the transform. It is caller responsability to validate the transform if wanted.
+ * validate} the transform. It is caller responsibility to validate the transform if wanted.
  *
  * @author Martin Desruisseaux (Geomatys)
  * @since GeoAPI 2.2
@@ -146,7 +147,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
     }
 
     /**
-     * Returns the tolerance theshold for comparing the given ordinate value. The default
+     * Returns the tolerance threshold for comparing the given ordinate value. The default
      * implementation returns the {@link #tolerance} value directly, thus implementing an
      * absolute tolerance threshold. If a subclass needs a relative tolerance threshold
      * instead, it can override this method as below:

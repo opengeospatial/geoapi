@@ -35,6 +35,7 @@ import java.util.List;
 import org.opengis.util.*;
 import org.opengis.test.Validator;
 import org.opengis.test.ValidatorContainer;
+import static org.opengis.test.Assert.*;
 
 
 /**
@@ -106,7 +107,7 @@ public class NameValidator extends Validator {
     }
 
     /**
-     * Dispatchs to {@link #validate(LocalName)} or {@link #validate(ScopedName)}.
+     * Dispatches to {@link #validate(LocalName)} or {@link #validate(ScopedName)}.
      * Other implementations are silently ignored.
      *
      * @param object The object to validate, or {@code null}.

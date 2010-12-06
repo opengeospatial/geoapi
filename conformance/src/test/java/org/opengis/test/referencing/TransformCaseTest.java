@@ -36,6 +36,8 @@ import org.opengis.referencing.operation.TransformException;
 import org.opengis.test.Validators;
 import org.junit.*;
 
+import static org.opengis.test.Assert.*;
+
 
 /**
  * Tests {@link TransformTestCase} using {@link AffineTransform} as a reference transform.

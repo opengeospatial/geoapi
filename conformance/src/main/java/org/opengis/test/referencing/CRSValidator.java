@@ -40,6 +40,7 @@ import org.opengis.referencing.datum.*;
 import org.opengis.referencing.operation.Conversion;
 
 import org.opengis.test.ValidatorContainer;
+import static org.opengis.test.Assert.*;
 
 
 /**
@@ -68,7 +69,7 @@ public class CRSValidator extends ReferencingValidator {
     }
 
     /**
-     * Dispatchs the given object to one of {@code validate} methods.
+     * Dispatches the given object to one of {@code validate} methods.
      *
      * @param object The object to dispatch.
      */

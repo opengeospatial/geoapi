@@ -36,6 +36,7 @@ import java.util.List;
 
 import org.opengis.parameter.*;
 import org.opengis.test.ValidatorContainer;
+import static org.opengis.test.Assert.*;
 
 
 /**
@@ -57,12 +58,12 @@ public class ParameterValidator extends ReferencingValidator {
     }
 
     /**
-     * Dispatchs the given object to one of {@code validate} methods.
+     * Dispatches the given object to one of {@code validate} methods.
      *
      * @param object The object to dispatch.
      */
     public void dispatch(final GeneralParameterDescriptor object) {
-        if (object instanceof ParameterDescriptor) {
+        if (object instanceof ParameterDescriptor<?>) {
             validate((ParameterDescriptor<?>) object);
         } else if (object instanceof ParameterDescriptorGroup) {
             validate((ParameterDescriptorGroup) object);
@@ -72,12 +73,12 @@ public class ParameterValidator extends ReferencingValidator {
     }
 
     /**
-     * Dispatchs the given object to one of {@code validate} methods.
+     * Dispatches the given object to one of {@code validate} methods.
      *
      * @param object The object to dispatch.
      */
     public void dispatch(final GeneralParameterValue object) {
-        if (object instanceof ParameterValue) {
+        if (object instanceof ParameterValue<?>) {
             validate((ParameterValue<?>) object);
         } else if (object instanceof ParameterValueGroup) {
             validate((ParameterValueGroup) object);
@@ -220,7 +221,7 @@ public class ParameterValidator extends ReferencingValidator {
                             " with value.getDescriptor().", descriptor, byName);
                 }
             }
-            if (value instanceof ParameterValue) {
+            if (value instanceof ParameterValue<?>) {
                 final ParameterValue<?> byName = object.parameter(name);
                 mandatory("ParameterValueGroup: parameter(String) should returns a value.", byName);
                 if (byName != null) {

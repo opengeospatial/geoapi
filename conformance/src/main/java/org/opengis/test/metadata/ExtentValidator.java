@@ -35,6 +35,7 @@ import java.util.Collection;
 import org.opengis.metadata.*;
 import org.opengis.metadata.extent.*;
 import org.opengis.test.ValidatorContainer;
+import static org.opengis.test.Assert.*;
 
 
 /**

@@ -33,6 +33,7 @@ package org.opengis.test.referencing;
 
 import org.opengis.referencing.cs.*;
 import org.opengis.test.ValidatorContainer;
+import static org.opengis.test.Assert.*;
 
 
 /**
@@ -54,7 +55,7 @@ public class CSValidator extends ReferencingValidator {
     }
 
     /**
-     * Dispatchs the given object to one of {@code validate} methods.
+     * Dispatches the given object to one of {@code validate} methods.
      *
      * @param object The object to dispatch.
      */

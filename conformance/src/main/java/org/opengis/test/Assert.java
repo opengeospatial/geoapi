@@ -35,7 +35,17 @@ import java.util.Collection;
 
 
 /**
- * Assertion methods to be used by GeoAPI tests.
+ * Assertion methods to be used by GeoAPI tests. This class inherits all assertion methods
+ * from the JUnit {@link org.junit.Assert} class. Consequently, developers can replace the
+ * following statement:
+ *
+ * <blockquote><pre>import static org.junit.Assert.*</pre></blockquote>
+ *
+ * by
+ *
+ * <blockquote><pre>import static org.opengis.test.Assert.*</pre></blockquote>
+ *
+ * if they wish to use the assertion methods defined here in addition of JUnit methods.
  *
  * @author Martin Desruisseaux (Geomatys)
  * @since GeoAPI 2.2

@@ -42,6 +42,7 @@ import org.junit.*;
 import org.opengis.test.TestCase;
 
 import static org.junit.Assume.*;
+import static org.opengis.test.Assert.*;
 import static org.opengis.test.Validators.*;
 
 

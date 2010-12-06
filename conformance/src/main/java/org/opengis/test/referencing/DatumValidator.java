@@ -40,6 +40,7 @@ import javax.measure.quantity.Length;
 
 import org.opengis.referencing.datum.*;
 import org.opengis.test.ValidatorContainer;
+import static org.opengis.test.Assert.*;
 
 
 /**
@@ -61,7 +62,7 @@ public class DatumValidator extends ReferencingValidator {
     }
 
     /**
-     * Dispatchs the given object to one of {@code validate} methods.
+     * Dispatches the given object to one of {@code validate} methods.
      *
      * @param object The object to dispatch.
      */
