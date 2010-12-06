@@ -304,7 +304,7 @@ public interface Geometry extends TransfiniteSet {
     /**
      * Returns a new {@code Geometry} that is the coordinate transformation of this
      * {@code Geometry} into the passed coordinate reference system, using the
-     * specified transform. It is the user responsability to ensure that the supplied
+     * specified transform. It is the user responsibility to ensure that the supplied
      * transform is appropriate for this geometry.
      *
      * @param  newCRS The new coordinate reference system.
