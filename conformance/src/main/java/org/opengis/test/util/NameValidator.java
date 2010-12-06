@@ -164,7 +164,7 @@ public class NameValidator extends Validator {
                     fullyQualified.toInternationalString().toString().endsWith(localized.toString()));
         }
         /*
-         * Validates comparaisons.
+         * Validates comparisons.
          */
         assertEquals("GenericName: should be equals to itself.", object, object);
         assertEquals("GenericName: should be comparable to itself.", 0, object.compareTo(object));

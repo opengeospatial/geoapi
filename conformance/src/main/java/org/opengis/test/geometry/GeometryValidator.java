@@ -52,7 +52,7 @@ import org.opengis.test.ValidatorContainer;
  */
 public class GeometryValidator extends Validator {
     /**
-     * Small tolerance values for comparaisons of floating point numbers.
+     * Small tolerance values for comparisons of floating point numbers.
      * The default value is {@value org.opengis.test.Validator#DEFAULT_TOLERANCE}.
      * Implementors can change this value before to run the tests.
      */
