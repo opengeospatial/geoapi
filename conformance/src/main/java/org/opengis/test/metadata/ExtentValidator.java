@@ -57,7 +57,7 @@ public class ExtentValidator extends MetadataValidator {
     }
 
     /**
-     * Dispatchs the given object to one of {@code validate} methods.
+     * Dispatches the given object to one of {@code validate} methods.
      *
      * @param object The object to dispatch.
      */

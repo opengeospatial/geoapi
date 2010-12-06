@@ -199,7 +199,7 @@ public interface CRSFactory extends ObjectFactory {
      * a transform is provided, this method may or may not use it at implementation choice.
      * Otherwise it shall creates the transform from the parameters.
      * <p>
-     * It is the user's responsability to ensure that the conversion performs all required steps,
+     * It is the user's responsibility to ensure that the conversion performs all required steps,
      * including unit conversions and change of axis order, if needed. Note that this behavior is
      * different than {@link #createProjectedCRS createProjectedCRS} because transforms other than
      * <cite>cartographic projections</cite> are not standardized.
