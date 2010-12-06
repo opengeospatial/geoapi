@@ -21,10 +21,10 @@
   <groupId>org.opengis</groupId>
   <artifactId>geoapi-pending</artifactId>
   <packaging>jar</packaging>
-  <name>GeoAPI pending interfaces</name>
+  <name>GeoAPI pending</name>
   <description>
     Incubator for interfaces under development. Those interfaces will migrate to the
-    main geoapi module when they will be considered ready.
+    GeoAPI normative module when they will be considered ready.
   </description>
 
 

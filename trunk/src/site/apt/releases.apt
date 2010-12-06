@@ -13,7 +13,7 @@ GeoAPI releases
 
   The current development version is GeoAPI 2.3, to be renamed GeoAPI 3.0 once released.
 
-  * {{{snapshot/javadoc/index.html}Browse Javadoc of stable interfaces}}
+  * {{{snapshot/javadoc/index.html}Browse Javadoc of normative interfaces}}
 
   * {{{snapshot/pending/index.html}Browse Javadoc of pending interfaces}}
     (not to be included in the official release)
