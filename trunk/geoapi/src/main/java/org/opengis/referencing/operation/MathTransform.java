@@ -238,10 +238,12 @@ public interface MathTransform {
      * are the matrix's elements):
      *
      * <pre>
-     * [ y<sub>0</sub> ]     [ e<sub>00</sub>  e<sub>01</sub>  e<sub>02</sub>  e<sub>03</sub> ] [ x<sub>0</sub> ]
-     * [ y<sub>1</sub> ]  =  [ e<sub>10</sub>  e<sub>11</sub>  e<sub>12</sub>  e<sub>13</sub> ] [ x<sub>1</sub> ]
-     * [ y<sub>2</sub> ]     [ e<sub>20</sub>  e<sub>21</sub>  e<sub>22</sub>  e<sub>23</sub> ] [ x<sub>2</sub> ]
-     *    <sub> </sub>          <sub>  </sub>   <sub>  </sub>   <sub>  </sub>   <sub>  </sub>   [ x<sub>3</sub> ]
+     * ┌  <sub> </sub> ┐     ┌  <sub>  </sub>   <sub>  </sub>   <sub>  </sub>   <sub>  </sub> ┐ ┌  <sub> </sub> ┐
+     * │ y<sub>0</sub> │     │ e<sub>00</sub>  e<sub>01</sub>  e<sub>02</sub>  e<sub>03</sub> │ │ x<sub>0</sub> │
+     * │ y<sub>1</sub> │  =  │ e<sub>10</sub>  e<sub>11</sub>  e<sub>12</sub>  e<sub>13</sub> │ │ x<sub>1</sub> │
+     * │ y<sub>2</sub> │     │ e<sub>20</sub>  e<sub>21</sub>  e<sub>22</sub>  e<sub>23</sub> │ │ x<sub>2</sub> │
+     * └  <sub> </sub> ┘     └  <sub>  </sub>   <sub>  </sub>   <sub>  </sub>   <sub>  </sub> ┘ │ x<sub>3</sub> │
+     *    <sub> </sub>          <sub>  </sub>   <sub>  </sub>   <sub>  </sub>   <sub>  </sub>   └  <sub> </sub> ┘
      * </pre>
      *
      * @param  point The coordinate point where to evaluate the derivative. Null
