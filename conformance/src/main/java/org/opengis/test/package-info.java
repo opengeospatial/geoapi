@@ -31,7 +31,7 @@
  */
 
 /**
- * Base class for validators and test suites for all GeoAPI objects. The
+ * Base classes for validators and test suites for all GeoAPI objects. The
  * {@link org.opengis.test.Validators} class provides static {@code validate} methods that can be
  * used for validating existing instances of various kind. Those methods can be conveniently
  * imported in a test class with the following Java statement:
