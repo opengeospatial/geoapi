@@ -228,22 +228,22 @@ public interface MathTransform {
      * For example, if the input dimension is 4 and the
      * output dimension is 3, then a small displacement
      *
-     * <code>(x<sub>0</sub>,&nbsp;x<sub>1</sub>,&nbsp;x<sub>2</sub>,&nbsp;x<sub>3</sub>)</code>
+     * <code>(x₀,&nbsp;x₁,&nbsp;x₂,&nbsp;x₃)</code>
      *
      * in the input space will result in a displacement
      *
-     * <code>(y<sub>0</sub>,&nbsp;y<sub>1</sub>,&nbsp;y<sub>2</sub>)</code>
+     * <code>(y₀,&nbsp;y₁,&nbsp;y₂)</code>
      *
      * in the output space computed as below (<code>e<sub>n,m</sub></code>
-     * are the matrix's elements):
+     * are the matrix elements):
      *
      * <pre>
-     * ┌  <sub> </sub> ┐     ┌  <sub>  </sub>   <sub>  </sub>   <sub>  </sub>   <sub>  </sub> ┐ ┌  <sub> </sub> ┐
-     * │ y<sub>0</sub> │     │ e<sub>00</sub>  e<sub>01</sub>  e<sub>02</sub>  e<sub>03</sub> │ │ x<sub>0</sub> │
-     * │ y<sub>1</sub> │  =  │ e<sub>10</sub>  e<sub>11</sub>  e<sub>12</sub>  e<sub>13</sub> │ │ x<sub>1</sub> │
-     * │ y<sub>2</sub> │     │ e<sub>20</sub>  e<sub>21</sub>  e<sub>22</sub>  e<sub>23</sub> │ │ x<sub>2</sub> │
-     * └  <sub> </sub> ┘     └  <sub>  </sub>   <sub>  </sub>   <sub>  </sub>   <sub>  </sub> ┘ │ x<sub>3</sub> │
-     *    <sub> </sub>          <sub>  </sub>   <sub>  </sub>   <sub>  </sub>   <sub>  </sub>   └  <sub> </sub> ┘
+     * ┌    ┐     ┌                    ┐ ┌    ┐
+     * │ y₀ │     │ e₀₀  e₀₁  e₀₂  e₀₃ │ │ x₀ │
+     * │ y₁ │  =  │ e₁₀  e₁₁  e₁₂  e₁₃ │ │ x₁ │
+     * │ y₂ │     │ e₂₀  e₂₁  e₂₂  e₂₃ │ │ x₂ │
+     * └    ┘     └                    ┘ │ x₃ │
+     *                                   └    ┘
      * </pre>
      *
      * @param  point The coordinate point where to evaluate the derivative. Null
