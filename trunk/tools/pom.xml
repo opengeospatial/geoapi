@@ -73,9 +73,9 @@
     <developer>
       <id>desruisseaux</id>
       <name>Martin Desruisseaux</name>
-      <email>desruisseaux@users.sourceforge.net</email>
+      <email>martin.desruisseaux@geomatys.fr</email>
       <organization>Geomatys</organization>
-      <organizationUrl>http://www.geomatys.fr/</organizationUrl>
+      <organizationUrl>http://www.geomatys.com</organizationUrl>
       <roles>
         <role>Java Developer</role>
       </roles>
