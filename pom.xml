@@ -252,12 +252,9 @@
       <url>http://download.java.net/maven/2</url>
     </repository>
     <repository>
-      <id>geotoolkit</id> <!-- Used for javadoc doclet only. -->
+      <id>geotoolkit</id>
       <name>Geotoolkit repository</name>
       <url>http://maven.geotoolkit.org/</url>
-      <snapshots>
-        <enabled>true</enabled>
-      </snapshots>
     </repository>
   </repositories>
 
@@ -268,6 +265,11 @@
   <!-- ==================================================== -->
   <dependencyManagement>
     <dependencies>
+      <dependency>
+        <groupId>org.unitsofmeasurement</groupId>
+        <artifactId>unit-api</artifactId>
+        <version>0.6-RC1</version>
+      </dependency>
       <dependency>
         <groupId>javax.measure</groupId>
         <artifactId>jsr-275</artifactId>
@@ -617,5 +619,6 @@
     <module>geoapi-pending</module>
     <module>examples</module>
     <module>conformance</module>
+    <module>jsr275-wrapper</module>
   </modules>
 </project>
