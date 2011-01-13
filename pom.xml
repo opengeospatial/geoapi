@@ -247,12 +247,12 @@
   <!-- ==================================================== -->
   <repositories>
     <repository>
-      <id>maven2-repository.dev.java.net</id>
+      <id>maven2-repository.dev.java.net</id> <!-- For JSR-275 -->
       <name>Java.net repository</name>
       <url>http://download.java.net/maven/2</url>
     </repository>
     <repository>
-      <id>geotoolkit</id>
+      <id>geotoolkit</id> <!-- For UnitOfMeasurement and UmlGraph -->
       <name>Geotoolkit repository</name>
       <url>http://maven.geotoolkit.org/</url>
     </repository>
@@ -411,7 +411,7 @@
           <docletArtifact>
             <groupId>org.umlgraph</groupId>
             <artifactId>UmlGraph</artifactId>
-            <version>5.2</version>
+            <version>5.4</version>
           </docletArtifact>
           <additionalparam>
             -collapsible -qualify -postfixpackage -nodefontsize 9 -nodefontpackagesize 7
