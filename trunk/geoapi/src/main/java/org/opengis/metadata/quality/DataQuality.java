@@ -64,7 +64,7 @@ public interface DataQuality {
 
     /**
      * Quantitative quality information for the data specified by the scope.
-     * Should be provided only if {@linkplain Scope#getLevel scope level} is
+     * Shall be provided only if {@linkplain Scope#getLevel scope level} is
      * {@linkplain org.opengis.metadata.maintenance.ScopeCode#DATASET dataset}.
      *
      * @return Quantitative quality information for the data.
@@ -76,7 +76,7 @@ public interface DataQuality {
 
     /**
      * Non-quantitative quality information about the lineage of the data specified by the scope.
-     * Should be provided only if {@linkplain Scope#getLevel scope level} is
+     * Shall be provided only if {@linkplain Scope#getLevel scope level} is
      * {@linkplain org.opengis.metadata.maintenance.ScopeCode#DATASET dataset}.
      *
      * @return Non-quantitative quality information about the lineage of the data specified,

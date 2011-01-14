@@ -48,7 +48,7 @@ import static org.opengis.annotation.ComplianceLevel.*;
  * the scope or lack of knowledge about lineage.
  *
  * Only one of {@linkplain #getStatement statement}, {@linkplain #getProcessSteps process steps}
- * and {@linkplain #getSources sources} should be provided.
+ * and {@linkplain #getSources sources} shall be provided.
  *
  * @version <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
  * @author  Martin Desruisseaux (IRD)
@@ -64,7 +64,7 @@ public interface Lineage {
      *
      * @return Explanation of the data producer's knowledge about the lineage, or {@code null}.
      *
-     * @condition Should be provided only if {@linkplain Scope#getLevel scope level} is
+     * @condition Shall be provided only if {@linkplain Scope#getLevel scope level} is
      *            {@link ScopeCode#DATASET} or {@link ScopeCode#SERIES}.
      */
     @Profile(level=CORE)

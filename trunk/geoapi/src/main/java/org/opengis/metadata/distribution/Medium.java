@@ -62,7 +62,7 @@ public interface Medium {
 
     /**
      * Density at which the data is recorded.
-     * The numbers should be greater than zero.
+     * The numbers shall be greater than zero.
      *
      * @return Density at which the data is recorded, or {@code null}.
      */

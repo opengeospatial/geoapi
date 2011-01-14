@@ -65,7 +65,7 @@ public interface Scope {
 
     /**
      * Detailed description about the level of the data specified by the scope.
-     * Should be defined only if the {@linkplain #getLevel level} is not equal
+     * Shall be defined only if the {@linkplain #getLevel level} is not equal
      * to {@link ScopeCode#DATASET DATASET} or {@link ScopeCode#SERIES SERIES}.
      *
      * @return Detailed description about the level of the data.

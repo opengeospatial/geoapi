@@ -39,7 +39,7 @@ import java.awt.geom.Point2D;
  * Transforms two-dimensional coordinate points. {@link CoordinateOperation#getMathTransform} may
  * returns instance of this interface when source and destination coordinate systems are both two
  * dimensional. {@code MathTransform2D} extends {@link MathTransform} by adding some methods for
- * easier interoperability with <A HREF="http://java.sun.com/products/java-media/2D/">Java2D</A>.
+ * easier inter-operability with <A HREF="http://java.sun.com/products/java-media/2D/">Java2D</A>.
  * <p>
  * If the transformation is affine, then {@code MathTransform} shall be an
  * immutable instance of {@link java.awt.geom.AffineTransform}.
@@ -63,8 +63,8 @@ public interface MathTransform2D extends MathTransform {
      *
      * @param  ptSrc the coordinate point to be transformed.
      * @param  ptDst the coordinate point that stores the result of transforming {@code ptSrc},
-     *         or {@code null} if a new point should be created.
-     * @return the coordinate point after transforming {@code ptSrc} and stroring the result
+     *         or {@code null} if a new point shall be created.
+     * @return the coordinate point after transforming {@code ptSrc} and storing the result
      *         in {@code ptDst} or in a new point if {@code ptDst} was null.
      * @throws TransformException if the point can't be transformed.
      */
@@ -106,7 +106,7 @@ public interface MathTransform2D extends MathTransform {
      * Creates the inverse transform of this object.
      *
      * @return The inverse transform.
-     * @throws NoninvertibleTransformException if the transform can't be inversed.
+     * @throws NoninvertibleTransformException if the transform can not be inverted.
      *
      * @since GeoAPI 2.2
      */
