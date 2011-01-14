@@ -337,7 +337,7 @@ public interface GenericName extends Comparable<GenericName> {
      *   information compared to that accessible though the standard methods defined by
      *   ISO, but provides easier to access frequently requested information.
      */
-/// @Override
+    @Override
     String toString();
 
     /**

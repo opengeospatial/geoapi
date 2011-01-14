@@ -101,7 +101,7 @@ public interface ScopedName extends GenericName {
      *
      * @since GeoAPI 2.2
      */
-/// @Override
+    @Override
     @UML(identifier="head", obligation=MANDATORY, specification=ISO_19103)
     LocalName head();
 
@@ -160,7 +160,7 @@ public interface ScopedName extends GenericName {
      *
      * @since GeoAPI 2.1
      */
-/// @Override
+    @Override
     LocalName tip();
 
     /**
@@ -172,7 +172,7 @@ public interface ScopedName extends GenericName {
      * and for {@linkplain org.opengis.referencing.crs.CoordinateReferenceSystem CRS}, it
      * will depend on the mode of expression: URN or {@code Authority:Identifier} notation.
      */
-/// @Override
+    @Override
     @UML(identifier="scopedName", obligation=MANDATORY, specification=ISO_19103)
     String toString();
 }
