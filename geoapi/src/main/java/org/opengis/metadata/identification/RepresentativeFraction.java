@@ -85,7 +85,7 @@ public interface RepresentativeFraction {
     /**
      * Compares this representative fraction with the specified object for equality.
      * {@code RepresentativeFraction} is a data object - {@code equals} is defined
-     * according to {@link #getDenominator};
+     * according to {@link #getDenominator()};
      * <p>
      * Implementations should match the following:
      *
@@ -109,7 +109,7 @@ public interface RepresentativeFraction {
     /**
      * Returns a hash value for this representative fraction.
      * {@code RepresentativeFraction} is a data object - {@code hashcode} is defined
-     * according to {@link #getDenominator}.
+     * according to {@link #getDenominator()}.
      * <p>
      * Implementations should match the following:
      *

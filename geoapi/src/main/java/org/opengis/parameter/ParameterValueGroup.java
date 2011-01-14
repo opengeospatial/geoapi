@@ -83,7 +83,7 @@ public interface ParameterValueGroup extends GeneralParameterValue {
      *       An {@link InvalidParameterCardinalityException} (or any other appropriate exception)
      *       shall be thrown if it is not the case.</P></LI>
      *   <LI><P>The list may also supports the {@link List#remove(Object) remove} operation as a
-     *       way to remove parameter created by the {@link #parameter} method.</P></LI>
+     *       way to remove parameter created by the {@link #parameter(String)} method.</P></LI>
      * </UL>
      *
      * @return The values in this group.

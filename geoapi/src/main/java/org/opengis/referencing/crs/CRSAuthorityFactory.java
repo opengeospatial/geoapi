@@ -32,7 +32,7 @@
 package org.opengis.referencing.crs;
 
 import org.opengis.referencing.AuthorityFactory;
-import org.opengis.referencing.NoSuchAuthorityCodeException;  // For javadoc
+import org.opengis.referencing.NoSuchAuthorityCodeException;
 import org.opengis.util.FactoryException;
 import org.opengis.annotation.UML;
 
@@ -68,11 +68,11 @@ public interface CRSAuthorityFactory extends AuthorityFactory {
      * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
      * @throws FactoryException if the object creation failed for some other reason.
      *
-     * @see #createGeographicCRS
-     * @see #createProjectedCRS
-     * @see #createVerticalCRS
-     * @see #createTemporalCRS
-     * @see #createCompoundCRS
+     * @see #createGeographicCRS(String)
+     * @see #createProjectedCRS(String)
+     * @see #createVerticalCRS(String)
+     * @see #createTemporalCRS(String)
+     * @see #createCompoundCRS(String)
      */
     @UML(identifier="createHorizontalCoordinateSystem", specification=OGC_01009)
     CoordinateReferenceSystem createCoordinateReferenceSystem(String code)

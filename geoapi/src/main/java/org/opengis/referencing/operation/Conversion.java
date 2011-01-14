@@ -55,7 +55,7 @@ public interface Conversion extends SingleOperation {
     /**
      * Returns the source CRS. Conversions may have a source CRS that
      * is not specified here, but through
-     * {@link org.opengis.referencing.crs.GeneralDerivedCRS#getBaseCRS} instead.
+     * {@link org.opengis.referencing.crs.GeneralDerivedCRS#getBaseCRS()} instead.
      *
      * @return The source CRS, or {@code null} if not available.
      */

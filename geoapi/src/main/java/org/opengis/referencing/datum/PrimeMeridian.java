@@ -42,7 +42,7 @@ import static org.opengis.annotation.Specification.*;
 
 /**
  * A prime meridian defines the origin from which longitude values are determined.
- * The {@link #getName name} initial value is "Greenwich", and that value shall be
+ * The default {@linkplain #getName name} is "Greenwich", and that value shall be
  * used when the {@linkplain #getGreenwichLongitude greenwich longitude} value is
  * zero.
  *

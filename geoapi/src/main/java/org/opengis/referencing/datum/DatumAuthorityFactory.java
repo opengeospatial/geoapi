@@ -67,9 +67,9 @@ public interface DatumAuthorityFactory extends AuthorityFactory {
      * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
      * @throws FactoryException if the object creation failed for some other reason.
      *
-     * @see #createGeodeticDatum
-     * @see #createVerticalDatum
-     * @see #createTemporalDatum
+     * @see #createGeodeticDatum(String)
+     * @see #createVerticalDatum(String)
+     * @see #createTemporalDatum(String)
      */
     Datum createDatum(String code)
             throws NoSuchAuthorityCodeException, FactoryException;
@@ -82,7 +82,7 @@ public interface DatumAuthorityFactory extends AuthorityFactory {
      * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
      * @throws FactoryException if the object creation failed for some other reason.
      *
-     * @see org.opengis.referencing.crs.CRSAuthorityFactory#createEngineeringCRS
+     * @see org.opengis.referencing.crs.CRSAuthorityFactory#createEngineeringCRS(String)
      */
     EngineeringDatum createEngineeringDatum(String code)
             throws NoSuchAuthorityCodeException, FactoryException;
@@ -95,7 +95,7 @@ public interface DatumAuthorityFactory extends AuthorityFactory {
      * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
      * @throws FactoryException if the object creation failed for some other reason.
      *
-     * @see org.opengis.referencing.crs.CRSAuthorityFactory#createImageCRS
+     * @see org.opengis.referencing.crs.CRSAuthorityFactory#createImageCRS(String)
      */
     ImageDatum createImageDatum(String code)
             throws NoSuchAuthorityCodeException, FactoryException;
@@ -108,7 +108,7 @@ public interface DatumAuthorityFactory extends AuthorityFactory {
      * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
      * @throws FactoryException if the object creation failed for some other reason.
      *
-     * @see org.opengis.referencing.crs.CRSAuthorityFactory#createVerticalCRS
+     * @see org.opengis.referencing.crs.CRSAuthorityFactory#createVerticalCRS(String)
      */
     @UML(identifier="createVerticalDatum", specification=OGC_01009)
     VerticalDatum createVerticalDatum(String code)
@@ -122,7 +122,7 @@ public interface DatumAuthorityFactory extends AuthorityFactory {
      * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
      * @throws FactoryException if the object creation failed for some other reason.
      *
-     * @see org.opengis.referencing.crs.CRSAuthorityFactory#createTemporalCRS
+     * @see org.opengis.referencing.crs.CRSAuthorityFactory#createTemporalCRS(String)
      */
     TemporalDatum createTemporalDatum(String code)
             throws NoSuchAuthorityCodeException, FactoryException;
@@ -135,10 +135,10 @@ public interface DatumAuthorityFactory extends AuthorityFactory {
      * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
      * @throws FactoryException if the object creation failed for some other reason.
      *
-     * @see #createEllipsoid
-     * @see #createPrimeMeridian
-     * @see org.opengis.referencing.crs.CRSAuthorityFactory#createGeographicCRS
-     * @see org.opengis.referencing.crs.CRSAuthorityFactory#createProjectedCRS
+     * @see #createEllipsoid(String)
+     * @see #createPrimeMeridian(String)
+     * @see org.opengis.referencing.crs.CRSAuthorityFactory#createGeographicCRS(String)
+     * @see org.opengis.referencing.crs.CRSAuthorityFactory#createProjectedCRS(String)
      */
     @UML(identifier="createHorizontalDatum", specification=OGC_01009)
     GeodeticDatum createGeodeticDatum(String code)
@@ -152,7 +152,7 @@ public interface DatumAuthorityFactory extends AuthorityFactory {
      * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
      * @throws FactoryException if the object creation failed for some other reason.
      *
-     * @see #createGeodeticDatum
+     * @see #createGeodeticDatum(String)
      */
     @UML(identifier="createEllipsoid", specification=OGC_01009)
     Ellipsoid createEllipsoid(String code)
@@ -166,7 +166,7 @@ public interface DatumAuthorityFactory extends AuthorityFactory {
      * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
      * @throws FactoryException if the object creation failed for some other reason.
      *
-     * @see #createGeodeticDatum
+     * @see #createGeodeticDatum(String)
      */
     @UML(identifier="createPrimeMeridian", specification=OGC_01009)
     PrimeMeridian createPrimeMeridian(String code)

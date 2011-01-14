@@ -57,9 +57,9 @@ import static org.opengis.annotation.Specification.*;
 public interface OperationMethod extends IdentifiedObject {
     /**
      * Key for the <code>{@value}</code> property.
-     * This is used for setting the value to be returned by {@link #getFormula}.
+     * This is used for setting the value to be returned by {@link #getFormula()}.
      *
-     * @see #getFormula
+     * @see #getFormula()
      */
     String FORMULA_KEY = "formula";
 

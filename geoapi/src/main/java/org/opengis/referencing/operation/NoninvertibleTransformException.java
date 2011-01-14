@@ -33,7 +33,7 @@ package org.opengis.referencing.operation;
 
 
 /**
- * Thrown when {@link MathTransform#inverse} is
+ * Thrown when {@link MathTransform#inverse()} is
  * invoked but the transform can't be inverted.
  *
  * @departure extension

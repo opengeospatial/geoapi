@@ -402,7 +402,7 @@ public abstract class CodeList<E extends CodeList<E>> implements Comparable<E>, 
 
     /**
      * Compares the specified object with this code list for equality. This method compares only
-     * {@linkplain #ordinal ordinal} values for consistency with the {@link #compareTo} method.
+     * {@linkplain #ordinal ordinal} values for consistency with the {@link #compareTo(CodeList)} method.
      * Ordinal values are unique for each code list element of the same class.
      *
      * @param object The object to compare with this code.

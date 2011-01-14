@@ -63,8 +63,8 @@ import static org.opengis.annotation.Specification.*;
  *     <td><b>.</b></td><td><b>util</b></td>
  *     <td><b>.</b></td><td><b>Record</b></td>
  *     <td width="50"></td>
- *     <td><b>{@link #scope}</b></td>
- *     <td align="right"><b>{@link #getParsedNames}</b></td>
+ *     <td><b>{@link #scope()}</b></td>
+ *     <td align="right"><b>{@link #getParsedNames()}</b></td>
  *   </tr>
  *   <tr align="center">
  *     <td bgcolor="palegoldenrod" colspan="1"><font size="-1">{@linkplain #head head}</font></td><td></td>
@@ -176,7 +176,7 @@ public interface GenericName extends Comparable<GenericName> {
 
     /**
      * Indicates the number of levels specified by this name. The depth is the {@linkplain List#size size}
-     * of the list returned by the {@link #getParsedNames} method. As such it is a derived parameter. For
+     * of the list returned by the {@link #getParsedNames()} method. As such it is a derived parameter. For
      * any {@link LocalName}, it is always one. For a {@link ScopedName} it is some number greater than or
      * equal to 2.
      * <p>
@@ -319,14 +319,14 @@ public interface GenericName extends Comparable<GenericName> {
 
     /**
      * Returns a string representation of this generic name. This string representation is
-     * local-independent. It contains all elements listed by {@link #getParsedNames} separated
+     * local-independent. It contains all elements listed by {@link #getParsedNames()} separated
      * by a namespace-dependent character (usually {@code :} or {@code /}). This rule implies
      * that the result may or may not be fully qualified. Special cases:
      * <p>
      * <ul>
-     *   <li><code>{@linkplain #toFullyQualifiedName}.toString()</code> is garanteed to
+     *   <li><code>{@linkplain #toFullyQualifiedName}.toString()</code> is guaranteed to
      *       contains the {@linkplain #scope scope} (if any).</li>
-     *   <li><code>{@linkplain #tip}.toString()</code> is garanteed to <strong>not</strong>
+     *   <li><code>{@linkplain #tip}.toString()</code> is guaranteed to <strong>not</strong>
      *       contains any scope.</li>
      * </ul>
      *
@@ -342,10 +342,10 @@ public interface GenericName extends Comparable<GenericName> {
 
     /**
      * Returns a local-dependent string representation of this generic name. This string
-     * is similar to the one returned by {@link #toString} except that each element has
+     * is similar to the one returned by {@link #toString()} except that each element has
      * been localized in the {@linkplain InternationalString#toString(java.util.Locale)
      * specified locale}. If no international string is available, then this method shall
-     * returns an implementation mapping to {@link #toString} for all locales.
+     * returns an implementation mapping to {@link #toString()} for all locales.
      * <p>
      * <b>Example</b>:
      * An implementation may want to localize the {@code "My Documents"} directory name

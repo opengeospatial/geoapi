@@ -157,7 +157,7 @@ public interface DirectPosition extends Position {
      *   <li>Both direct positions have the same or equal {@linkplain #getCoordinateReferenceSystem
      *       coordinate reference system}.</li>
      *   <li>For all dimension <var>i</var>, the {@linkplain #getOrdinate ordinate value} of both
-     *       direct positions at that dimension are equals in the sense of {@link Double#equals}.
+     *       direct positions at that dimension are equals in the sense of {@link Double#equals(Object)}.
      *       In other words, <code>{@linkplain java.util.Arrays#equals(double[],double[])
      *       Arrays.equals}({@linkplain #getCoordinate()}, object.getCoordinate())</code>
      *       returns {@code true}.</li>

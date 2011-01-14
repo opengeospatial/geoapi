@@ -65,7 +65,7 @@ public interface ExtendedElementInformation {
      * Short form suitable for use in an implementation method such as XML or SGML.
      * Returns {@code null} if the {@linkplain #getDataType data type}
      * is {@linkplain Datatype#CODE_LIST_ELEMENT code list element}, in which case
-     * {@link #getDomainCode} may be used instead.
+     * {@link #getDomainCode()} may be used instead.
      *
      * @return Short form suitable for use in an implementation method such as XML or SGML,
      *         or {@code null}.
@@ -80,7 +80,7 @@ public interface ExtendedElementInformation {
      * Three digit code assigned to the extended element.
      * Returns a non-null value only if the {@linkplain #getDataType data type}
      * is {@linkplain Datatype#CODE_LIST_ELEMENT code list element}, in which case
-     * {@link #getShortName} may be used instead.
+     * {@link #getShortName()} may be used instead.
      *
      * @return Three digit code assigned to the extended element, or {@code null}.
      *

@@ -40,7 +40,7 @@ import org.opengis.geometry.DirectPosition;  // For javadoc
  * when a coordinate transformation can't be {@linkplain MathTransform#inverse inverted}
  * ({@link NoninvertibleTransformException}), when the
  * {@linkplain MathTransform#derivative derivative} can't be computed or when a coordinate
- * can't be {@linkplain MathTransform#transform(DirectPosition,DirectPosition) transformed}.
+ * can't be {@linkplain MathTransform#transform(DirectPosition, DirectPosition) transformed}.
  * It is also thrown when {@link CoordinateOperationFactory} fails to find a path between two
  * {@linkplain org.opengis.referencing.crs.CoordinateReferenceSystem coordinate reference systems}.
  *
@@ -62,8 +62,8 @@ public class TransformException extends Exception {
      * untransformable coordinates with {@linkplain Double#NaN NaN} values. This information
      * is useful in the context of concatenated transforms. May be {@code null} if unknown.
      *
-     * @see #getLastCompletedTransform
-     * @see #setLastCompletedTransform
+     * @see #getLastCompletedTransform()
+     * @see #setLastCompletedTransform(MathTransform)
      *
      * @since GeoAPI 2.2
      */

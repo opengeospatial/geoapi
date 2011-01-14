@@ -36,6 +36,7 @@ import org.opengis.referencing.cs.*;
 import org.opengis.referencing.datum.*;
 import org.opengis.referencing.operation.*;
 import org.opengis.referencing.ObjectFactory;
+import org.opengis.parameter.ParameterValueGroup;  // For javadoc
 import org.opengis.util.FactoryException;
 import org.opengis.annotation.UML;
 
@@ -217,8 +218,8 @@ public interface CRSFactory extends ObjectFactory {
      * @return The coordinate reference system for the given properties.
      * @throws FactoryException if the object creation failed.
      *
-     * @see CoordinateOperationFactory#createDefiningConversion
-     * @see MathTransformFactory#createBaseToDerived
+     * @see CoordinateOperationFactory#createDefiningConversion(Map, OperationMethod, ParameterValueGroup)
+     * @see MathTransformFactory#createBaseToDerived(CoordinateReferenceSystem, ParameterValueGroup, CoordinateSystem)
      *
      * @since GeoAPI 2.1
      */
@@ -263,8 +264,8 @@ public interface CRSFactory extends ObjectFactory {
      * @return The coordinate reference system for the given properties.
      * @throws FactoryException if the object creation failed.
      *
-     * @see CoordinateOperationFactory#createDefiningConversion
-     * @see MathTransformFactory#createBaseToDerived
+     * @see CoordinateOperationFactory#createDefiningConversion(Map, OperationMethod, ParameterValueGroup)
+     * @see MathTransformFactory#createBaseToDerived(CoordinateReferenceSystem, ParameterValueGroup, CoordinateSystem)
      *
      * @since GeoAPI 2.1
      */

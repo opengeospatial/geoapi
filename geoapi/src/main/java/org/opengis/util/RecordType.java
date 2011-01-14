@@ -106,7 +106,7 @@ public interface RecordType extends Type {
      *
      * @return The dictionary of all (<var>name</var>, <var>type</var>) pairs in this record type.
      *
-     * @see Record#getAttributes
+     * @see Record#getAttributes()
      */
     @UML(identifier="memberTypes", obligation=MANDATORY, specification=ISO_19103)
     Map<MemberName, Type> getMemberTypes();
@@ -140,7 +140,7 @@ public interface RecordType extends Type {
      * @param name The name of the attribute we are looking for.
      * @return The type of of attribute of the given name, or {@code null}.
      *
-     * @see Record#locate
+     * @see Record#locate(MemberName)
      */
     @UML(identifier="locate", obligation=MANDATORY, specification=ISO_19103)
     TypeName locate(MemberName name);

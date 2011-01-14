@@ -31,6 +31,7 @@
  */
 package org.opengis.util;
 
+import java.util.Map;  // For javadoc
 import java.util.Locale;
 
 
@@ -54,7 +55,7 @@ import java.util.Locale;
  * @since   GeoAPI 2.0
  *
  * @see javax.xml.registry.infomodel.InternationalString
- * @see NameFactory#createInternationalString
+ * @see NameFactory#createInternationalString(Map)
  */
 public interface InternationalString extends CharSequence, Comparable<InternationalString> {
     /**

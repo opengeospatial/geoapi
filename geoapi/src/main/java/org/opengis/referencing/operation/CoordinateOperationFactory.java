@@ -33,7 +33,11 @@ package org.opengis.referencing.operation;
 
 import java.util.Map;
 import org.opengis.referencing.ObjectFactory;
+import org.opengis.referencing.cs.CartesianCS;  // For javadoc
+import org.opengis.referencing.cs.CoordinateSystem;  // For javadoc
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
+import org.opengis.referencing.crs.GeographicCRS;
+import org.opengis.referencing.datum.GeodeticDatum;
 import org.opengis.util.FactoryException;
 import org.opengis.parameter.ParameterValueGroup;
 import org.opengis.annotation.UML;
@@ -89,8 +93,8 @@ public interface CoordinateOperationFactory extends ObjectFactory {
      *       the exception is thrown.</li>
      * </ul>
      * <p>
-     * <b>Example:</b> A transformation between two {@linkplain org.opengis.referencing.crs.GeographicCRS
-     * geographic CRS} using different {@linkplain org.opengis.referencing.datum.GeodeticDatum datum}
+     * <b>Example:</b> A transformation between two {@linkplain GeographicCRS geographic CRS} using
+     * different {@linkplain GeodeticDatum datum}
      * requires a <cite>datum shift</cite>. Many methods exist for this purpose, including interpolations
      * in a grid, a scale/rotation/translation in geocentric coordinates or the Molodenski approximation.
      * When invoking {@code createOperation} without operation method, this factory may select by
@@ -141,7 +145,7 @@ public interface CoordinateOperationFactory extends ObjectFactory {
      * {@linkplain org.opengis.referencing.crs.CRSFactory#createProjectedCRS projected CRS} constructors.
      * <p>
      * Some available properties are {@linkplain ObjectFactory listed there}.
-     * Additionally, the following properties are understood by this construtor:
+     * Additionally, the following properties are understood by this constructor:
      * <p>
      * <table border='1'>
      *   <tr bgcolor="#CCCCFF" class="TableHeadingColor">
@@ -152,22 +156,22 @@ public interface CoordinateOperationFactory extends ObjectFactory {
      *   <tr>
      *     <td nowrap>&nbsp;{@value org.opengis.referencing.operation.CoordinateOperation#OPERATION_VERSION_KEY}&nbsp;</td>
      *     <td nowrap>&nbsp;{@link String}&nbsp;</td>
-     *     <td nowrap>&nbsp;{@link CoordinateOperation#getOperationVersion}</td>
+     *     <td nowrap>&nbsp;{@link CoordinateOperation#getOperationVersion()}</td>
      *   </tr>
      *   <tr>
      *     <td nowrap>&nbsp;{@value org.opengis.referencing.operation.CoordinateOperation#COORDINATE_OPERATION_ACCURACY_KEY}&nbsp;</td>
      *     <td nowrap>&nbsp;<code>{@linkplain org.opengis.metadata.quality.PositionalAccuracy}[]</code>&nbsp;</td>
-     *     <td nowrap>&nbsp;{@link CoordinateOperation#getCoordinateOperationAccuracy}</td>
+     *     <td nowrap>&nbsp;{@link CoordinateOperation#getCoordinateOperationAccuracy()}</td>
      *   </tr>
      *   <tr>
      *     <td nowrap>&nbsp;{@value org.opengis.referencing.operation.CoordinateOperation#DOMAIN_OF_VALIDITY_KEY}&nbsp;</td>
      *     <td nowrap>&nbsp;{@link org.opengis.metadata.extent.Extent}&nbsp;</td>
-     *     <td nowrap>&nbsp;{@link CoordinateOperation#getDomainOfValidity}</td>
+     *     <td nowrap>&nbsp;{@link CoordinateOperation#getDomainOfValidity()}</td>
      *   </tr>
      *   <tr>
      *     <td nowrap>&nbsp;{@value org.opengis.referencing.operation.CoordinateOperation#SCOPE_KEY}&nbsp;</td>
      *     <td nowrap>&nbsp;{@link String} or {@link org.opengis.util.InternationalString}&nbsp;</td>
-     *     <td nowrap>&nbsp;{@link CoordinateOperation#getScope}</td>
+     *     <td nowrap>&nbsp;{@link CoordinateOperation#getScope()}</td>
      *   </tr>
      * </table>
      *
@@ -177,8 +181,8 @@ public interface CoordinateOperationFactory extends ObjectFactory {
      * @return The defining conversion.
      * @throws FactoryException if the object creation failed.
      *
-     * @see org.opengis.referencing.crs.CRSFactory#createProjectedCRS
-     * @see org.opengis.referencing.crs.CRSFactory#createDerivedCRS
+     * @see org.opengis.referencing.crs.CRSFactory#createProjectedCRS(Map, GeographicCRS, Conversion, CartesianCS)
+     * @see org.opengis.referencing.crs.CRSFactory#createDerivedCRS(Map, CoordinateReferenceSystem, Conversion, CoordinateSystem)
      *
      * @since GeoAPI 2.1
      */

@@ -71,17 +71,17 @@ import static org.opengis.annotation.Specification.*;
 public interface CoordinateOperation extends IdentifiedObject {
     /**
      * Key for the <code>{@value}</code> property.
-     * This is used for setting the value to be returned by {@link #getOperationVersion}.
+     * This is used for setting the value to be returned by {@link #getOperationVersion()}.
      *
-     * @see #getOperationVersion
+     * @see #getOperationVersion()
      */
     String OPERATION_VERSION_KEY = "operationVersion";
 
     /**
      * Key for the <code>{@value}</code> property.
-     * This is used for setting the value to be returned by {@link #getCoordinateOperationAccuracy}.
+     * This is used for setting the value to be returned by {@link #getCoordinateOperationAccuracy()}.
      *
-     * @see #getCoordinateOperationAccuracy
+     * @see #getCoordinateOperationAccuracy()
      *
      * @since GeoAPI 2.1
      */
@@ -89,9 +89,9 @@ public interface CoordinateOperation extends IdentifiedObject {
 
     /**
      * Key for the <code>{@value}</code> property.
-     * This is used for setting the value to be returned by {@link #getDomainOfValidity}.
+     * This is used for setting the value to be returned by {@link #getDomainOfValidity()}.
      *
-     * @see #getDomainOfValidity
+     * @see #getDomainOfValidity()
      *
      * @since GeoAPI 2.1
      */
@@ -99,9 +99,9 @@ public interface CoordinateOperation extends IdentifiedObject {
 
     /**
      * Key for the <code>{@value}</code> property.
-     * This is used for setting the value to be returned by {@link #getScope}.
+     * This is used for setting the value to be returned by {@link #getScope()}.
      *
-     * @see #getScope
+     * @see #getScope()
      */
     String SCOPE_KEY = "scope";
 
@@ -109,12 +109,12 @@ public interface CoordinateOperation extends IdentifiedObject {
      * Returns the source CRS. The source CRS is mandatory for {@linkplain Transformation
      * transformations} only. {@linkplain Conversion Conversions} may have a source CRS that
      * is not specified here, but through
-     * {@link org.opengis.referencing.crs.GeneralDerivedCRS#getBaseCRS} instead.
+     * {@link org.opengis.referencing.crs.GeneralDerivedCRS#getBaseCRS()} instead.
      *
      * @return The source CRS, or {@code null} if not available.
      *
-     * @see Conversion#getSourceCRS
-     * @see Transformation#getSourceCRS
+     * @see Conversion#getSourceCRS()
+     * @see Transformation#getSourceCRS()
      */
     @UML(identifier="sourceCRS", obligation=CONDITIONAL, specification=ISO_19111)
     CoordinateReferenceSystem getSourceCRS();
@@ -127,8 +127,8 @@ public interface CoordinateOperation extends IdentifiedObject {
      *
      * @return The target CRS, or {@code null} if not available.
      *
-     * @see Conversion#getTargetCRS
-     * @see Transformation#getTargetCRS
+     * @see Conversion#getTargetCRS()
+     * @see Transformation#getTargetCRS()
      */
     @UML(identifier="targetCRS", obligation=CONDITIONAL, specification=ISO_19111)
     CoordinateReferenceSystem getTargetCRS();

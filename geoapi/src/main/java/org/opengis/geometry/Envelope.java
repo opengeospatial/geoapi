@@ -133,8 +133,8 @@ public interface Envelope {
      *   directly in the <code>Envelope</code> itself rather than in a contained 
      *   <code>DirectPosition</code> corner.
      *
-     * @see Rectangle2D#getMinX
-     * @see Rectangle2D#getMinY
+     * @see Rectangle2D#getMinX()
+     * @see Rectangle2D#getMinY()
      *
      * @since GeoAPI 2.0
      */
@@ -159,8 +159,8 @@ public interface Envelope {
      *   directly in the <code>Envelope</code> itself rather than in a contained 
      *   <code>DirectPosition</code> corner.
      *
-     * @see Rectangle2D#getMaxX
-     * @see Rectangle2D#getMaxY
+     * @see Rectangle2D#getMaxX()
+     * @see Rectangle2D#getMaxY()
      *
      * @since GeoAPI 2.0
      */
@@ -185,8 +185,8 @@ public interface Envelope {
      *   directly in the <code>Envelope</code> itself rather than in a contained 
      *   <code>DirectPosition</code> corner.
      *
-     * @see Rectangle2D#getCenterX
-     * @see Rectangle2D#getCenterY
+     * @see Rectangle2D#getCenterX()
+     * @see Rectangle2D#getCenterY()
      *
      * @since GeoAPI 2.2
      */
@@ -211,8 +211,8 @@ public interface Envelope {
      *   directly in the <code>Envelope</code> itself rather than in a contained 
      *   <code>DirectPosition</code> corner.
      *
-     * @see Rectangle2D#getWidth
-     * @see Rectangle2D#getHeight
+     * @see Rectangle2D#getWidth()
+     * @see Rectangle2D#getHeight()
      *
      * @since GeoAPI 2.2
      */
