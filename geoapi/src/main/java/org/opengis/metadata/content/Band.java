@@ -60,7 +60,7 @@ public interface Band extends RangeDimension {
      * Returns {@code null} if unspecified.
      *
      * @return Longest wavelength that the sensor is capable of collecting within a designated band,
-     *         or {@code null}.
+     *         or {@code null} if unknown. The units of measurement is given by {@link #getUnits()}.
      */
     @UML(identifier="maxValue", obligation=OPTIONAL, specification=ISO_19115)
     Double getMaxValue();
@@ -70,30 +70,31 @@ public interface Band extends RangeDimension {
      * Returns {@code null} if unspecified.
      *
      * @return Shortest wavelength that the sensor is capable of collecting within a designated band,
-     *         or {@code null}.
+     *         or {@code null} if unknown. The units of measurement is given by {@link #getUnits()}.
      */
     @UML(identifier="minValue", obligation=OPTIONAL, specification=ISO_19115)
     Double getMinValue();
+
+    /**
+     * Wavelength at which the response is the highest.
+     * Returns {@code null} if unspecified.
+     *
+     * @return Wavelength at which the response is the highest, or {@code null} if unknown.
+     *         The units of measurement is given by {@link #getUnits()}.
+     */
+    @UML(identifier="peakResponse", obligation=OPTIONAL, specification=ISO_19115)
+    Double getPeakResponse();
 
     /**
      * Units in which sensor wavelengths are expressed.
      *
      * @return Units in which sensor wavelengths are expressed, or {@code null}.
      *
-     * @condition Should be non-null if {@linkplain #getMinValue min value} or
-     *            {@linkplain #getMaxValue max value} are provided.
+     * @condition {@linkplain #getMinValue min value}, {@linkplain #getMaxValue max value}
+     *            or {@linkplain #getPeakResponse() peak response} is provided.
      */
     @UML(identifier="units", obligation=CONDITIONAL, specification=ISO_19115)
     Unit<Length> getUnits();
-
-    /**
-     * Wavelength at which the response is the highest.
-     * Returns {@code null} if unspecified.
-     *
-     * @return Wavelength at which the response is the highest, or {@code null}.
-     */
-    @UML(identifier="peakResponse", obligation=OPTIONAL, specification=ISO_19115)
-    Double getPeakResponse();
 
     /**
      * Maximum number of significant bits in the uncompressed representation for the value
@@ -145,9 +146,16 @@ public interface Band extends RangeDimension {
     /**
      * Smallest distance between which separate points can be distinguished, as specified in
      * instrument design.
+     * <p>
+     * <TABLE WIDTH="80%" ALIGN="center" CELLPADDING="18" BORDER="4" BGCOLOR="#FFE0B0">
+     *   <TR><TD>
+     *     <P align="justify"><B>Warning:</B> The return type of this method may change in GeoAPI
+     *     3.1. It may be replaced by the {@link javax.measure.quantity.Length} type in order to
+     *     provide unit of measurement together with the value.</P>
+     *   </TD></TR>
+     * </TABLE>
      *
      * @return Smallest distance between which separate points can be distinguished.
-     *
      * @unitof Distance
      *
      * @since GeoAPI 2.3
