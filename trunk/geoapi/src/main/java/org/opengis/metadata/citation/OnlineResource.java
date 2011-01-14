@@ -45,9 +45,9 @@ import static org.opengis.annotation.Specification.*;
  * Information about on-line sources from which the dataset, specification, or
  * community profile name and extended metadata elements can be obtained.
  *
- * @version <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
  * @author  Martin Desruisseaux (IRD)
  * @author  Cory Horner (Refractions Research)
+ * @version GeoAPI 3.0
  * @since   GeoAPI 1.0
  *
  * @navassoc 1 - - OnLineFunction
@@ -56,7 +56,7 @@ import static org.opengis.annotation.Specification.*;
 public interface OnlineResource {
     /**
      * Location (address) for on-line access using a Uniform Resource Locator address or
-     * similar addressing scheme such as http://www.statkart.no/isotc211.
+     * similar addressing scheme such as {@codde "http://www.statkart.no/isotc211"}.
      *
      * @return Location for on-line access using a Uniform Resource Locator address or similar scheme.
      */

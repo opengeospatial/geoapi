@@ -53,9 +53,10 @@ import static org.opengis.annotation.Specification.*;
  *       </ul></li>
  * </ol>
  *
- * @author Bryce Nordgren (USDA)
- * @author Martin Desruisseaux (IRD)
- * @since GeoAPI 2.1
+ * @author  Bryce Nordgren (USDA)
+ * @author  Martin Desruisseaux (IRD)
+ * @version GeoAPI 3.0
+ * @since   GeoAPI 2.1
  *
  * @navassoc 1 - - GenericName
  */

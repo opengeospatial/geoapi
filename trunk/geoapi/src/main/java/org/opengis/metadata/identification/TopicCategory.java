@@ -48,8 +48,8 @@ import static org.opengis.annotation.Specification.*;
  * {@note It is understood there are overlaps between general categories and the user
  *        is encouraged to select the one most appropriate.}
  *
- * @version <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
  * @author  Martin Desruisseaux (IRD)
+ * @version GeoAPI 3.0
  * @since   GeoAPI 2.0
  */
 @UML(identifier="MD_TopicCategoryCode", specification=ISO_19115)

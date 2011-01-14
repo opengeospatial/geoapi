@@ -42,9 +42,9 @@ import static org.opengis.annotation.Specification.*;
 /**
  * Range of date validity.
  *
- * @author Cédric Briançon (Geomatys)
- *
- * @since GeoAPI 2.3
+ * @author  Cédric Briançon (Geomatys)
+ * @version GeoAPI 3.0
+ * @since   GeoAPI 2.3
  */
 @UML(identifier="MI_RequestedDate", specification=ISO_19115_2)
 public interface RequestedDate {

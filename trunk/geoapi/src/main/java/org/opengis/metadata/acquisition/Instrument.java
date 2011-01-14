@@ -45,9 +45,9 @@ import static org.opengis.annotation.Specification.*;
 /**
  * Designations for the measuring instruments.
  *
- * @author Cédric Briançon (Geomatys)
- *
- * @since GeoAPI 2.3
+ * @author  Cédric Briançon (Geomatys)
+ * @version GeoAPI 3.0
+ * @since   GeoAPI 2.3
  *
  * @navassoc - - - Citation
  * @navassoc 1 - - Identifier

@@ -67,7 +67,9 @@
  * interoperating computer programs. The <A HREF="doc-files/WKT.html">definition for WKT</A> is
  * shown using Extended Backus Naur Form (EBNF).</P>
  *
- * @version <A HREF="http://portal.opengeospatial.org/files/?artifact_id=6716">Abstract specification 2.0</A>
+ * @author  Martin Desruisseaux (IRD)
+ * @author  Ely Conn (Leica Geosystems Geospatial Imaging, LLC)
+ * @version GeoAPI 3.0
  * @since   GeoAPI 1.0
  */
 package org.opengis.referencing;

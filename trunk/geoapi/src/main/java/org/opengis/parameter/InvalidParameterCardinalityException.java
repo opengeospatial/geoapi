@@ -53,6 +53,7 @@ import java.util.List;
  *   This exception is not part of the OGC specification.
  *
  * @author  Martin Desruisseaux (IRD)
+ * @version GeoAPI 3.0
  * @since   GeoAPI 2.0
  *
  * @see ParameterValueGroup#values()
@@ -60,7 +61,7 @@ import java.util.List;
  */
 public class InvalidParameterCardinalityException extends IllegalStateException {
     /**
-     * Serial number for interoperability with different versions.
+     * Serial number for inter-operability with different versions.
      */
     private static final long serialVersionUID = 4030549323541812311L;
 

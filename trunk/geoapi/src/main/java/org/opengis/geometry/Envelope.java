@@ -49,8 +49,8 @@ import static org.opengis.annotation.Specification.*;
  * @departure easeOfUse
  *   This interface was moved into the <code>org.opengis.geometry</code> package for convenience.
  *
- * @version <A HREF="http://www.opengeospatial.org/standards/as">ISO 19107</A>
  * @author  Martin Desruisseaux (IRD)
+ * @version GeoAPI 3.0
  * @since   GeoAPI 1.0
  *
  * @see org.opengis.coverage.grid.GridEnvelope

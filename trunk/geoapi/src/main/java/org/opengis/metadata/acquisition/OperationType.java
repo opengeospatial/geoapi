@@ -46,9 +46,9 @@ import static org.opengis.annotation.Specification.*;
  * or other non-simulated operational sources), simulated (originates from target simulator sources),
  * or synthesized (a mix of real and simulated data).
  *
- * @author Cédric Briançon (Geomatys)
- *
- * @since GeoAPI 2.3
+ * @author  Cédric Briançon (Geomatys)
+ * @version GeoAPI 3.0
+ * @since   GeoAPI 2.3
  */
 @UML(identifier="MI_OperationTypeCode", specification=ISO_19115_2)
 public final class OperationType extends CodeList<OperationType> {

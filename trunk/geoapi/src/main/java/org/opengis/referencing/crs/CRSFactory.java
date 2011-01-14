@@ -57,8 +57,8 @@ import static org.opengis.annotation.Specification.*;
  * not have codes for NAD83 state plane coordinate systems that use feet units.  This
  * factory lets an application create such a hybrid coordinate system.
  *
- * @version <A HREF="http://www.opengis.org/docs/01-009.pdf">Implementation specification 1.0</A>
  * @author  Martin Desruisseaux (IRD)
+ * @version GeoAPI 3.0
  * @since   GeoAPI 1.0
  *
  * @see org.opengis.referencing.cs.CSFactory

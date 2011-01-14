@@ -50,8 +50,8 @@ import static org.opengis.annotation.Specification.*;
  * East. This information is obviously relevant for algorithms converting
  * South African grid coordinates into Lat/Long.
  *
- * @version <A HREF="http://portal.opengeospatial.org/files/?artifact_id=6716">Abstract specification 2.0</A>
  * @author  Martin Desruisseaux (IRD)
+ * @version GeoAPI 3.0
  * @since   GeoAPI 1.0
  */
 @UML(identifier="CS_AxisDirection", specification=ISO_19111)

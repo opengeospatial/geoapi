@@ -41,8 +41,8 @@ import static org.opengis.annotation.Specification.*;
 /**
  * Information required to enable contact with the responsible person and/or organization.
  *
- * @version <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
  * @author  Martin Desruisseaux (IRD)
+ * @version GeoAPI 3.0
  * @since   GeoAPI 1.0
  *
  * @navassoc 1 - - Telephone

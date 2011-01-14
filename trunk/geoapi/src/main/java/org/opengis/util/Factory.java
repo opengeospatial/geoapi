@@ -51,6 +51,7 @@ import org.opengis.metadata.citation.Citation;
  *   in order to provide a common base class for all factories.
  *
  * @author  Martin Desruisseaux (IRD)
+ * @version GeoAPI 3.0
  * @since   GeoAPI 1.0
  */
 public interface Factory {

@@ -44,8 +44,8 @@ import static org.opengis.annotation.Specification.*;
 /**
  * Status of the dataset or progress of a review.
  *
- * @version <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
  * @author  Martin Desruisseaux (IRD)
+ * @version GeoAPI 3.0
  * @since   GeoAPI 2.0
  */
 @UML(identifier="MD_ProgressCode", specification=ISO_19115)

@@ -42,8 +42,8 @@ import static org.opengis.annotation.Specification.*;
 /**
  * A temporal datum defines the origin of a temporal coordinate reference system.
  *
- * @version <A HREF="http://portal.opengeospatial.org/files/?artifact_id=6716">Abstract specification 2.0</A>
  * @author  Martin Desruisseaux (IRD)
+ * @version GeoAPI 3.0
  * @since   GeoAPI 1.0
  */
 @UML(identifier="CD_TemporalDatum", specification=ISO_19111)

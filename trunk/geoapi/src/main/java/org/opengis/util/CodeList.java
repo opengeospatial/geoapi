@@ -56,8 +56,9 @@ import static org.opengis.annotation.Specification.*;
  *
  * @param <E> The type of this code list.
  *
- * @author Martin Desruisseaux (IRD)
- * @since GeoAPI 1.0
+ * @author  Martin Desruisseaux (IRD)
+ * @version GeoAPI 3.0
+ * @since   GeoAPI 1.0
  */
 @UML(identifier="CodeList", specification=ISO_19103)
 public abstract class CodeList<E extends CodeList<E>> implements Comparable<E>, Serializable {

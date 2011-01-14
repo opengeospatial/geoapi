@@ -50,8 +50,8 @@ import static org.opengis.annotation.Specification.*;
  * object has a code number ID. For example, the EPSG code for a WGS84 Lat/Lon coordinate
  * system is '4326'.
  *
- * @version <A HREF="http://www.opengis.org/docs/01-009.pdf">Implementation specification 1.0</A>
  * @author  Martin Desruisseaux (IRD)
+ * @version GeoAPI 3.0
  * @since   GeoAPI 1.0
  */
 @UML(identifier="CS_CoordinateSystemAuthorityFactory", specification=OGC_01009)
@@ -60,7 +60,7 @@ public interface AuthorityFactory extends Factory {
      * Returns the organization or party responsible for definition and maintenance of the
      * database.
      *
-     * @return The organization reponsible for definition of the database.
+     * @return The organization responsible for definition of the database.
      */
     @UML(identifier="getAuthority", specification=OGC_01009)
     Citation getAuthority();

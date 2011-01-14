@@ -45,9 +45,9 @@ import static org.opengis.annotation.Specification.*;
 /**
  * Information about the value (or set of values) obtained from applying a data quality measure.
  *
- * @version <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
  * @author  Martin Desruisseaux (IRD)
  * @author  Cory Horner (Refractions Research)
+ * @version GeoAPI 3.0
  * @since   GeoAPI 2.0
  *
  * @navassoc - - - Record

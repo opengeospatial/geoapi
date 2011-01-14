@@ -44,9 +44,10 @@ import java.util.Locale;
  * @departure extension
  *   Added in order to provide constructors for <code>GenericName</code> and related interfaces.
  *
- * @author Jesse Crossley (SYS Technologies)
- * @author Martin Desruisseaux (Geomatys)
- * @since GeoAPI 2.0
+ * @author  Jesse Crossley (SYS Technologies)
+ * @author  Martin Desruisseaux (Geomatys)
+ * @version GeoAPI 3.0
+ * @since   GeoAPI 2.0
  */
 public interface NameFactory {
     /**

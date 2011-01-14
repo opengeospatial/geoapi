@@ -47,15 +47,15 @@ import static org.opengis.annotation.Specification.*;
  * {@link #getCoordinateReferenceSystem} method may returns {@code null} if this particular
  * {@code DirectPosition} is included in a larger object with such a reference to a
  * {@linkplain CoordinateReferenceSystem coordinate reference system}. In this case,
- * the cordinate reference system is implicitly assumed to take on the value of the containing
+ * the coordinate reference system is implicitly assumed to take on the value of the containing
  * object's {@linkplain CoordinateReferenceSystem coordinate reference system}.
  * 
  * @departure easeOfUse
  *   This interface was moved into the <code>org.opengis.geometry</code> package for convenience.
  *
- * @version <A HREF="http://www.opengeospatial.org/standards/as">ISO 19107</A>
- * @author Martin Desruisseaux (IRD)
- * @since GeoAPI 1.0
+ * @author  Martin Desruisseaux (IRD)
+ * @version GeoAPI 3.0
+ * @since   GeoAPI 1.0
  *
  * @navassoc 1 - - CoordinateReferenceSystem
  */
@@ -65,7 +65,7 @@ public interface DirectPosition extends Position {
      * The coordinate reference system in which the coordinate is given. May be {@code null} if this
      * particular {@code DirectPosition} is included in a larger object with such a reference to a
      * {@linkplain CoordinateReferenceSystem coordinate reference system}. In this case, the
-     * cordinate reference system is implicitly assumed to take on the value of the containing
+     * coordinate reference system is implicitly assumed to take on the value of the containing
      * object's {@linkplain CoordinateReferenceSystem coordinate reference system}.
      *
      * @return The coordinate reference system, or {@code null}.
@@ -107,8 +107,8 @@ public interface DirectPosition extends Position {
      *   <li>We want an array of coordinates with the intend to modify it for computation purpose
      *       (without modifying the original {@code DirectPosition}), or we want to protect the
      *       array from future {@code DirectPosition} changes.</li>
-     *   <li>If {@code DirectPosition.getOrdinates()} is garanteed to not return the backing array,
-     *       then we can work directly on this array. If we don't have this garantee, then we must
+     *   <li>If {@code DirectPosition.getOrdinates()} is guaranteed to not return the backing array,
+     *       then we can work directly on this array. If we don't have this guarantee, then we must
      *       conservatively clone the array in every cases.</li>
      *   <li>Cloning the returned array is useless if the implementation cloned the array or was
      *       forced to returns a new array anyway (for example because the coordinates were

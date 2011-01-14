@@ -43,8 +43,8 @@ import static org.opengis.annotation.Specification.*;
  * The prefix was {@code MD} in a previous ISO 19115 specification, but
  * has been renamed {@code SV} in corrigendum 2006.</FONT></BLOCKQUOTE>
  *
- * @version <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
  * @author  Martin Desruisseaux (IRD)
+ * @version GeoAPI 3.0
  * @since   GeoAPI 2.0
  */
 @UML(identifier="SV_ServiceIdentification", specification=ISO_19115)

@@ -44,8 +44,8 @@ import static org.opengis.annotation.Specification.ISO_19115;
 /**
  * Justification for the correlation of two datasets.
  *
- * @version <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
  * @author  Ely Conn (Leica Geosystems Geospatial Imaging, LLC)
+ * @version GeoAPI 3.0
  * @since   GeoAPI 2.1
  */
 @UML(identifier="DS_AssociationTypeCode", specification=ISO_19115)

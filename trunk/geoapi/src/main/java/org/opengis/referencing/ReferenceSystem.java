@@ -48,8 +48,8 @@ import static org.opengis.annotation.Specification.*;
  *   updated accordingly, but this interface is still defined in the referencing package instead
  *   of the metadata package for this historical reason.
  *
- * @version <A HREF="http://portal.opengeospatial.org/files/?artifact_id=6716">Abstract specification 2.0</A>
  * @author  Martin Desruisseaux (IRD)
+ * @version GeoAPI 3.0
  * @since   GeoAPI 1.0
  *
  * @see org.opengis.referencing.crs.CoordinateReferenceSystem
@@ -84,7 +84,7 @@ public interface ReferenceSystem extends IdentifiedObject {
      * @return The reference system valid domain, or {@code null} if not available.
      *
      * @departure historic
-     *   This method has been kept conformant with the specification published in 2003. 
+     *   This method has been kept conformant with the specification published in 2003.
      *   Later revisions changed the multiplicity, so the return type should now be a 
      *   collection. The singleton has been preserved in GeoAPI for historical reasons, 
      *   and also because the <code>Extent</code> attributes already allow collections.

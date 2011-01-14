@@ -43,9 +43,10 @@ import static org.opengis.annotation.Specification.*;
  * <p>
  * This class can be think as the equivalent of the Java {@link Class} class.
  *
- * @author Bryce Nordgren (USDA)
- * @author Martin Desruisseaux (IRD)
- * @since GeoAPI 2.3
+ * @author  Bryce Nordgren (USDA)
+ * @author  Martin Desruisseaux (IRD)
+ * @version GeoAPI 3.0
+ * @since   GeoAPI 2.3
  *
  * @navassoc 1 - - TypeName
  */

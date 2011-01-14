@@ -51,8 +51,8 @@ import static org.opengis.annotation.Specification.*;
  * So {@link DatumAuthorityFactory} can be used to make "standard" datums, and
  * {@code DatumFactory} can be used to make "special" datums.
  *
- * @version <A HREF="http://www.opengis.org/docs/01-009.pdf">Implementation specification 1.0</A>
  * @author  Martin Desruisseaux (IRD)
+ * @version GeoAPI 3.0
  * @since   GeoAPI 1.0
  *
  * @see org.opengis.referencing.cs.CSFactory
@@ -73,7 +73,7 @@ public interface DatumFactory extends ObjectFactory {
             throws FactoryException;
 
     /**
-     * Creates geodetic datum from ellipsoid and (optionaly) Bursa-Wolf parameters.
+     * Creates geodetic datum from ellipsoid and (optionally) Bursa-Wolf parameters.
      *
      * @param  properties Name and other properties to give to the new object.
      *         Available properties are {@linkplain ObjectFactory listed there}.

@@ -50,9 +50,9 @@ import static org.opengis.annotation.Specification.*;
  *   GeoAPI uses a name which contains the "<code>Descriptor</code>" word for consistency with other
  *   libraries in Java (e.g. <code>ParameterListDescriptor</code> in Java Advanced Imaging).
  *
- * @version <A HREF="http://portal.opengeospatial.org/files/?artifact_id=6716">Abstract specification 2.0</A>
  * @author  Martin Desruisseaux (IRD)
  * @author  Jody Garnett (Refractions Research)
+ * @version GeoAPI 3.0
  * @since   GeoAPI 2.0
  *
  * @see ParameterValue
@@ -125,7 +125,7 @@ public interface ParameterDescriptor<T> extends GeneralParameterDescriptor {
      * this method returns {@code null}.
      * <p>
      * When the getValueClass() is an array or Collection getMaximumValue
-     * may be used to constratin the contained elements.
+     * may be used to constraint the contained elements.
      *
      * @return The minimum parameter value (often an instance of {@link Double}), or {@code null}.
      */

@@ -45,9 +45,10 @@ import static org.opengis.annotation.Specification.*;
  * <p>
  * This class can be think as the equivalent of the Java {@link Object} class.
  *
- * @author Bryce Nordgren (USDA)
- * @author Martin Desruisseaux (IRD)
- * @since GeoAPI 2.1
+ * @author  Bryce Nordgren (USDA)
+ * @author  Martin Desruisseaux (IRD)
+ * @version GeoAPI 3.0
+ * @since   GeoAPI 2.1
  *
  * @see RecordType
  *
@@ -90,7 +91,7 @@ public interface Record {
     Map<MemberName, Object> getAttributes();
 
     /**
-     * Returns the value for an attribute of the specified name. This is functionnaly equivalent
+     * Returns the value for an attribute of the specified name. This is functionally equivalent
      * to <code>{@linkplain #getAttributes()}.{@linkplain Map#get get}(name)</code>.
      * The type of the returned object is given by
      * <code>{@linkplain #getRecordType()}.{@linkplain RecordType#getMemberTypes()

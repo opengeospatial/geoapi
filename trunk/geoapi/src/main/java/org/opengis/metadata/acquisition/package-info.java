@@ -33,6 +33,8 @@
 /**
  * {@linkplain org.opengis.metadata.acquisition.AcquisitionInformation Acquisition information}.
  *
- * @since GeoAPI 2.3
+ * @author  Cédric Briançon (Geomatys)
+ * @version GeoAPI 3.0
+ * @since   GeoAPI 2.3
  */
 package org.opengis.metadata.acquisition;

@@ -45,9 +45,10 @@ import static org.opengis.annotation.Specification.*;
  * local to one and only one name space. The name space within which they are local is indicated by
  * the {@linkplain #scope scope}.
  *
- * @author Martin Desruisseaux (IRD)
- * @author Bryce Nordgren (USDA)
- * @since GeoAPI 2.0
+ * @author  Martin Desruisseaux (IRD)
+ * @author  Bryce Nordgren (USDA)
+ * @version GeoAPI 3.0
+ * @since   GeoAPI 2.0
  *
  * @see NameFactory#createLocalName
  */

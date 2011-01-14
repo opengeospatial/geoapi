@@ -58,8 +58,8 @@ import static org.opengis.annotation.Specification.*;
  * entirely different parameter values are needed, a different coordinate operation
  * shall be defined.
  *
- * @version <A HREF="http://portal.opengeospatial.org/files/?artifact_id=6716">Abstract specification 2.0</A>
  * @author  Martin Desruisseaux (IRD)
+ * @version GeoAPI 3.0
  * @since   GeoAPI 1.0
  *
  * @navassoc 2 - - CoordinateReferenceSystem

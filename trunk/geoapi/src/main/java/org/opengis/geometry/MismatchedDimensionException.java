@@ -39,12 +39,13 @@ package org.opengis.geometry;
  * @departure extension
  *   This exception is not part of the OGC specification.
  *
- * @author Martin Desruisseaux (IRD)
- * @since GeoAPI 1.0
+ * @author  Martin Desruisseaux (IRD)
+ * @version GeoAPI 3.0
+ * @since   GeoAPI 1.0
  */
 public class MismatchedDimensionException extends IllegalArgumentException {
     /**
-     * Serial number for interoperability with different versions.
+     * Serial number for inter-operability with different versions.
      */
     private static final long serialVersionUID = 3138484331425225155L;
 

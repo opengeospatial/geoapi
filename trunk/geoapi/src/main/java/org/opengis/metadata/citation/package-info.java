@@ -45,7 +45,9 @@
  * location ({@linkplain org.opengis.metadata.citation.Address address}) of the responsible person
  * or organization is also defined here.</P>
  *
- * @version <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
+ * @author  Martin Desruisseaux (IRD)
+ * @author  Cory Horner (Refractions Research)
+ * @version GeoAPI 3.0
  * @since   GeoAPI 1.0
  */
 package org.opengis.metadata.citation;

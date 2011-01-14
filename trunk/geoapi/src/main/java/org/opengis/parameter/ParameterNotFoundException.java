@@ -40,6 +40,7 @@ package org.opengis.parameter;
  *   This exception is not part of OGC specification.
  *
  * @author  Martin Desruisseaux (IRD)
+ * @version GeoAPI 3.0
  * @since   GeoAPI 1.0
  *
  * @see ParameterValueGroup#parameter(String)

@@ -146,9 +146,10 @@ import static org.opengis.annotation.Specification.*;
  * the name, such as how it treats case, may affect the ordering. In general, two names of
  * different classes may not be compared.
  *
- * @author Martin Desruisseaux (IRD)
- * @author Bryce Nordgren (USDA)
- * @since GeoAPI 1.0
+ * @author  Martin Desruisseaux (IRD)
+ * @author  Bryce Nordgren (USDA)
+ * @version GeoAPI 3.0
+ * @since   GeoAPI 1.0
  *
  * @see javax.naming.Name
  *
