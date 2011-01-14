@@ -210,7 +210,7 @@ public interface MathTransformFactory extends Factory {
      * <UL>
      *   <LI>Converts from (<var>longitude</var>,<var>latitude</var>) coordinates to (<var>x</var>,<var>y</var>).</LI>
      *   <LI>All angles are assumed to be degrees, and all distances are assumed to be meters.</LI>
-     *   <LI>The domain should be a subset of {[-180,180)&times;(-90,90)}.</LI>
+     *   <LI>The domain shall be a subset of {[-180,180)&times;(-90,90)}.</LI>
      * </UL>
      * <P>Although all cartographic projection transforms must have the properties listed above, many projected coordinate
      * reference systems have different properties. For example, in Europe some projected CRSs use grads instead of degrees,

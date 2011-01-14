@@ -74,8 +74,8 @@ public interface NameSpace {
 
     /**
      * Represents the identifier of this namespace. If the {@linkplain #isGlobal global} attribute is
-     * {@code true}, indicating that this is a top level {@code NameSpace}, then the name should be a
-     * {@linkplain LocalName local name}. If {@code false}, name should be a fully-qualified name where
+     * {@code true}, indicating that this is a top level {@code NameSpace}, then the name shall be a
+     * {@linkplain LocalName local name}. If {@code false}, name shall be a fully-qualified name where
      * <code>name.{@linkplain GenericName#scope() scope()}.{@linkplain #isGlobal} == true</code>.
      *
      * @return The identifier of this namespace.

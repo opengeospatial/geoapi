@@ -65,7 +65,7 @@ public interface RecordType extends Type {
     /**
      * Returns the name that identifies this record type.
      * If this {@code RecordType} is contained in a {@linkplain RecordSchema record schema},
-     * then the record type name should be a valid in the {@linkplain NameSpace name space}
+     * then the record type name shall be a valid in the {@linkplain NameSpace name space}
      * of the record schema:
      *
      * <blockquote><code>
