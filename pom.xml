@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- ==================================================== -->
-<!--     Maven 2 project configuration file               -->
-<!--     http://maven.apache.org/maven2/                  -->
-<!-- ==================================================== -->
+<!-- ====================================================
+         Maven 2 project configuration file
+         http://maven.apache.org/maven2/
+     ==================================================== -->
 
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
@@ -14,9 +14,9 @@
 
 
 
-  <!-- ==================================================== -->
-  <!--     Profiles and properties                          -->
-  <!-- ==================================================== -->
+  <!-- ====================================================
+           Profiles and properties
+       ==================================================== -->
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
@@ -49,9 +49,9 @@
 
 
 
-  <!-- ==================================================== -->
-  <!--     Project description (including license)          -->
-  <!-- ==================================================== -->
+  <!-- ====================================================
+           Project description (including license)
+       ==================================================== -->
   <groupId>org.opengis</groupId>
   <artifactId>parent</artifactId>
   <packaging>pom</packaging>
@@ -81,9 +81,9 @@
 
 
 
-  <!-- ==================================================== -->
-  <!--     Issue managements and mailing lists              -->
-  <!-- ==================================================== -->
+  <!-- ====================================================
+           Issue managements and mailing lists
+       ==================================================== -->
   <scm>
     <connection>scm:svn:https://geoapi.svn.sourceforge.net/svnroot/geoapi/trunk/</connection>
     <url>http://geoapi.svn.sourceforge.net/viewvc/geoapi/trunk/</url>
@@ -118,9 +118,9 @@
 
 
 
-  <!-- ==================================================== -->
-  <!--     Developers and contributors                      -->
-  <!-- ==================================================== -->
+  <!-- ====================================================
+           Developers and contributors
+       ==================================================== -->
   <developers>
     <developer>
       <id>acuster</id>
@@ -242,9 +242,9 @@
 
 
 
-  <!-- ==================================================== -->
-  <!--     Repositories (used for javax.units dependency)   -->
-  <!-- ==================================================== -->
+  <!-- ====================================================
+           Repositories (used for javax.units dependency)
+       ==================================================== -->
   <repositories>
     <repository>
       <id>maven2-repository.dev.java.net</id> <!-- For JSR-275 -->
@@ -260,9 +260,9 @@
 
 
 
-  <!-- ==================================================== -->
-  <!--     External dependencies                            -->
-  <!-- ==================================================== -->
+  <!-- ====================================================
+           External dependencies
+       ==================================================== -->
   <dependencyManagement>
     <dependencies>
       <dependency>
@@ -298,9 +298,9 @@
 
 
 
-  <!-- ==================================================== -->
-  <!--     Compilation                                      -->
-  <!-- ==================================================== -->
+  <!-- ====================================================
+           Compilation
+       ==================================================== -->
   <build>
     <plugins>
       <plugin>
@@ -331,9 +331,9 @@
 
 
 
-      <!-- ======================================================= -->
-      <!--     Resources.                                          -->
-      <!-- ======================================================= -->
+      <!-- =======================================================
+               Resources.
+           ======================================================= -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-resources-plugin</artifactId>
@@ -344,9 +344,9 @@
 
 
 
-      <!-- ==================================================== -->
-      <!--     JAR packaging                                    -->
-      <!-- ==================================================== -->
+      <!-- ====================================================
+               JAR packaging
+           ==================================================== -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-jar-plugin</artifactId>
@@ -362,9 +362,9 @@
 
 
 
-    <!-- ==================================================== -->
-    <!--     Required for deployment to the repository        -->
-    <!-- ==================================================== -->
+    <!-- ====================================================
+             Required for deployment to the repository
+         ==================================================== -->
     <extensions>
       <extension>
         <groupId>org.apache.maven.wagon</groupId>
@@ -375,9 +375,9 @@
 
 
 
-  <!-- ==================================================== -->
-  <!--     Web site and Javadoc generation                  -->
-  <!-- ==================================================== -->
+  <!-- ====================================================
+           Web site and Javadoc generation
+       ==================================================== -->
   <reporting>
     <plugins>
       <!-- NOTES: Do NOT enable deep copying of "doc-files" directories ("-docfilessubdirs" option),
@@ -432,36 +432,12 @@
                custom block tag tagname in doc comments. Note: <placement/>
                should be a combinaison of the letters Xaoptcmf. -->
           <tags>
-            <tag>
-              <name>category</name>
-              <placement>X</placement>
-              <head>Category:</head>
-            </tag>
-            <tag>
-              <name>condition</name>
-              <placement>tfmc</placement>
-              <head>Condition:</head>
-            </tag>
-            <tag>
-              <name>todo</name>
-              <placement>tfmc</placement>
-              <head>TODO:</head>
-            </tag>
-            <tag>
-              <name>issue</name>
-              <placement>X</placement>
-              <head>JIRA:</head>
-            </tag>
-            <tag>
-              <name>unitof</name>
-              <placement>fm</placement>
-              <head>Unit:</head>
-            </tag>
-            <tag>
-              <name>navassoc</name> <!-- Used by UmlGraph doclet. -->
-              <placement>X</placement>
-              <head>Associated to:</head>
-            </tag>
+            <tag><name>category</name>  <placement>X</placement>    <head>Category:</head></tag>
+            <tag><name>condition</name> <placement>tfmc</placement> <head>Condition:</head></tag>
+            <tag><name>todo</name>      <placement>tfmc</placement> <head>TODO:</head></tag>
+            <tag><name>issue</name>     <placement>X</placement>    <head>JIRA:</head></tag>
+            <tag><name>unitof</name>    <placement>fm</placement>   <head>Unit:</head></tag>
+            <tag><name>navassoc</name>  <placement>X</placement>    <head>Associated to:</head></tag> <!-- Used by UmlGraph doclet. -->
           </tags>
 
           <!-- Creates links to existing javadoc-generated
@@ -473,8 +449,29 @@
             <link>http://jscience.org/api/</link>
           </links>
 
-          <!-- Separates packages on the overview page into the groups specified. -->
+          <!-- Separates packages on the overview page into the groups specified.
+               Places the normative packages first, and the pending ones last. -->
           <groups>
+            <group>
+              <title>Base package</title>
+              <packages>
+                org.opengis.util*:org.opengis.annotation*
+              </packages>
+            </group>
+            <group>
+              <title>Metadata</title>
+              <packages>
+                org.opengis.metadata*
+              </packages>
+            </group>
+            <group>
+              <title>Spatial Referencing by Coordinates</title>
+              <packages>
+                org.opengis.referencing*:org.opengis.temporal*:org.opengis.parameter*
+              </packages>
+            </group>
+
+            <!-- Pending packages. -->
             <group>
               <title>Display and Styling</title>
               <packages>
@@ -500,12 +497,6 @@
               </packages>
             </group>
             <group>
-              <title>Spatial Referencing by Coordinates</title>
-              <packages>
-                org.opengis.referencing*:org.opengis.temporal*:org.opengis.parameter*
-              </packages>
-            </group>
-            <group>
               <title>Observations and Measurements</title>
               <packages>
                 org.opengis.observation*
@@ -518,21 +509,9 @@
               </packages>
             </group>
             <group>
-              <title>Metadata</title>
-              <packages>
-                org.opengis.metadata*
-              </packages>
-            </group>
-            <group>
               <title>Web Services</title>
               <packages>
                 org.opengis.web*
-              </packages>
-            </group>
-            <group>
-              <title>Base package</title>
-              <packages>
-                org.opengis.util*:org.opengis.annotation*
               </packages>
             </group>
           </groups>
@@ -541,9 +520,9 @@
 
 
 
-      <!-- ==================================================== -->
-      <!--     Web site generation                              -->
-      <!-- ==================================================== -->
+      <!-- ====================================================
+               Web site generation
+           ==================================================== -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-site-plugin</artifactId>
@@ -556,9 +535,9 @@
 
 
 
-      <!-- ==================================================== -->
-      <!--     Reports configuration for the web site           -->
-      <!-- ==================================================== -->
+      <!-- ====================================================
+               Reports configuration for the web site
+           ==================================================== -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-project-info-reports-plugin</artifactId>
@@ -567,9 +546,9 @@
 
 
 
-      <!-- ==================================================== -->
-      <!--     JUnit test results                               -->
-      <!-- ==================================================== -->
+      <!-- ====================================================
+               JUnit test results
+           ==================================================== -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-report-plugin</artifactId>
@@ -577,9 +556,9 @@
 
 
 
-      <!-- ==================================================== -->
-      <!--     TODO tags                                        -->
-      <!-- ==================================================== -->
+      <!-- ====================================================
+               TODO tags
+           ==================================================== -->
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>taglist-maven-plugin</artifactId>
@@ -589,9 +568,9 @@
 
 
 
-  <!-- ==================================================== -->
-  <!--     Deployment to public servers                     -->
-  <!-- ==================================================== -->
+  <!-- ====================================================
+           Deployment to public servers
+       ==================================================== -->
   <distributionManagement>
     <repository>
       <id>osgeo</id>
@@ -602,17 +581,15 @@
     <site>
       <id>geoapi</id>
       <name>GeoAPI web site</name>
-      <!-- We are not allowed to deploy directly to SourceForge. So we deploy to a
-           mirror, and a daily rsync task copies the content to SourceForge later. -->
       <url>dav:http://www.geoapi.org/</url>
     </site>
   </distributionManagement>
 
 
 
-  <!-- ==================================================== -->
-  <!--     All GeoAPI modules included in the build         -->
-  <!-- ==================================================== -->
+  <!-- ====================================================
+           All GeoAPI modules included in the build
+       ==================================================== -->
   <modules>
     <module>tools</module>
     <module>geoapi</module>

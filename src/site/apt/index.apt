@@ -54,7 +54,8 @@ GeoAPI
 
     * The project uses a {{{http://jira.codehaus.org/browse/GEO}JIRA task tracker}}.
 
-    * GeoAPI has a {{{http://docs.codehaus.org/display/GEO/Home}wiki}} available for news and discussions.
+    * GeoAPI has a {{{http://docs.codehaus.org/display/GEO/Home}wiki}} available for news and discussions
+      (currently obsolete).
 
   GeoAPI is free software. GeoAPI may be used, modified and redistributed by
   anyone for any purpose requiring only maintaining the copyright and license
@@ -102,5 +103,4 @@ GeoAPI
   projects which also use this tool can integrate GeoAPI into their Maven
   dependencies using one of the {{{maven.html}repositories listed here}}.
 
-  GeoAPI is hosted on a {{{source-repository.html}Subversion repository}}. The
-  code is also available as a {{{http://hg.geomatys.com/mirror/geoapi/trunk/}Mercurial clone}}.
+  GeoAPI is hosted on a {{{source-repository.html}Subversion repository}}.

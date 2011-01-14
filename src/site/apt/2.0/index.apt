@@ -9,7 +9,7 @@ GeoAPI 2.0
     <GO-1 Application Objects>
   and therefore considered by the GeoAPI project as one of its <official> releases.
 
-  The OGC provides access to the {{{http://www.opengeospatial.org/standards/go}GO-1 specification}}.
+    * {{{http://www.opengeospatial.org/standards/go}Defining specification}}.
 
     * {{{javadoc/index.html}Browse javadoc}}.
 
