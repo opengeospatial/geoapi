@@ -68,10 +68,16 @@ public interface Resolution {
      * Ground sample distance.
      * Only one of {@linkplain #getEquivalentScale equivalent scale} and
      * {@linkplain #getDistance ground sample distance} may be provided.
+     * <p>
+     * <TABLE WIDTH="80%" ALIGN="center" CELLPADDING="18" BORDER="4" BGCOLOR="#FFE0B0">
+     *   <TR><TD>
+     *     <P align="justify"><B>Warning:</B> The return type of this method may change in GeoAPI
+     *     3.1. It may be replaced by the {@link javax.measure.quantity.Length} type in order to
+     *     provide unit of measurement together with the value.</P>
+     *   </TD></TR>
+     * </TABLE>
      *
      * @return The ground sample distance, or {@code null}.
-     *
-     * @todo change return type to ISO 19103 {@code Distance} or to JScience {@code Measure}.
      * @unitof Distance
      *
      * @condition {@linkplain #getEquivalentScale() Equivalent scale} not documented.
