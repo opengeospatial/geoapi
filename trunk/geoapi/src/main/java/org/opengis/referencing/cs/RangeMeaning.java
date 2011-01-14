@@ -50,7 +50,7 @@ import static org.opengis.annotation.Specification.*;
  * @version GeoAPI 3.0
  * @since   GeoAPI 2.1
  *
- * @see CoordinateSystemAxis#getRangeMeaning
+ * @see CoordinateSystemAxis#getRangeMeaning()
  */
 @UML(identifier="CS_RangeMeaning", specification=ISO_19111)
 public final class RangeMeaning extends CodeList<RangeMeaning> {

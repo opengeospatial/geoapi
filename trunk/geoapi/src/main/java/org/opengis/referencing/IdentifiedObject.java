@@ -69,36 +69,36 @@ public interface IdentifiedObject {
     /**
      * Key for the <code>{@value}</code> property to be given to the
      * {@linkplain ObjectFactory object factory} <code>createFoo(&hellip;)</code> methods.
-     * This is used for setting the value to be returned by {@link #getName}.
+     * This is used for setting the value to be returned by {@link #getName()}.
      *
-     * @see #getName
+     * @see #getName()
      */
     String NAME_KEY = "name";
 
     /**
      * Key for the <code>{@value}</code> property to be given to the
      * {@linkplain ObjectFactory object factory} <code>createFoo(&hellip;)</code> methods.
-     * This is used for setting the value to be returned by {@link #getAlias}.
+     * This is used for setting the value to be returned by {@link #getAlias()}.
      *
-     * @see #getAlias
+     * @see #getAlias()
      */
     String ALIAS_KEY = "alias";
 
     /**
      * Key for the <code>{@value}</code> property to be given to the
      * {@linkplain ObjectFactory object factory} <code>createFoo(&hellip;)</code> methods.
-     * This is used for setting the value to be returned by {@link #getIdentifiers}.
+     * This is used for setting the value to be returned by {@link #getIdentifiers()}.
      *
-     * @see #getIdentifiers
+     * @see #getIdentifiers()
      */
     String IDENTIFIERS_KEY = "identifiers";
 
     /**
      * Key for the <code>{@value}</code> property to be given to the
      * {@linkplain ObjectFactory object factory} <code>createFoo(&hellip;)</code> methods.
-     * This is used for setting the value to be returned by {@link #getRemarks}.
+     * This is used for setting the value to be returned by {@link #getRemarks()}.
      *
-     * @see #getRemarks
+     * @see #getRemarks()
      */
     String REMARKS_KEY = "remarks";
 

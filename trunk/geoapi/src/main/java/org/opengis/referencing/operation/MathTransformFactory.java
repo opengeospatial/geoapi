@@ -90,7 +90,7 @@ public interface MathTransformFactory extends Factory {
     /**
      * Returns a set of available methods for {@linkplain MathTransform math transforms}. For
      * each element in this set, the {@linkplain OperationMethod#getName operation method name}
-     * must be known to the {@link #getDefaultParameters} method in this factory.
+     * must be known to the {@link #getDefaultParameters(String)} method in this factory.
      * The set of available methods is implementation dependent.
      *
      * @param  type <code>{@linkplain SingleOperation}.class</code> for fetching all operation methods,
@@ -101,8 +101,8 @@ public interface MathTransformFactory extends Factory {
      *   This method is not part of the OGC specification. It has been added as a way to publish
      *   the capabilities of a factory.
      *
-     * @see #getDefaultParameters
-     * @see #createParameterizedTransform
+     * @see #getDefaultParameters(String)
+     * @see #createParameterizedTransform(ParameterValueGroup)
      */
     Set<OperationMethod> getAvailableMethods(Class<? extends SingleOperation> type);
 
@@ -156,8 +156,8 @@ public interface MathTransformFactory extends Factory {
      *   This method is part of the GeoAPI mechanism for defining the math transform parameters
      *   or deriving other transforms.
      *
-     * @see #getAvailableMethods
-     * @see #createParameterizedTransform
+     * @see #getAvailableMethods(Class)
+     * @see #createParameterizedTransform(ParameterValueGroup)
      */
     ParameterValueGroup getDefaultParameters(String method) throws NoSuchIdentifierException;
 
@@ -224,8 +224,8 @@ public interface MathTransformFactory extends Factory {
      * @throws FactoryException if the object creation failed. This exception is thrown
      *         if some required parameter has not been supplied, or has illegal value.
      *
-     * @see #getDefaultParameters
-     * @see #getAvailableMethods
+     * @see #getDefaultParameters(String)
+     * @see #getAvailableMethods(Class)
      */
     @UML(identifier="createParameterizedTransform", obligation=MANDATORY, specification=OGC_01009)
     MathTransform createParameterizedTransform(ParameterValueGroup parameters)

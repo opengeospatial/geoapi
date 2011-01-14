@@ -32,6 +32,7 @@
 package org.opengis.util;
 
 import org.opengis.metadata.Identifier;
+import org.opengis.parameter.ParameterValueGroup;  // For javadoc
 
 
 /**
@@ -50,7 +51,7 @@ import org.opengis.metadata.Identifier;
  * @version GeoAPI 3.0
  * @since   GeoAPI 1.0
  *
- * @see org.opengis.referencing.operation.MathTransformFactory#createParameterizedTransform
+ * @see org.opengis.referencing.operation.MathTransformFactory#createParameterizedTransform(ParameterValueGroup)
  */
 public class NoSuchIdentifierException extends FactoryException {
     /**
@@ -68,7 +69,7 @@ public class NoSuchIdentifierException extends FactoryException {
      *
      * @param  message The detail message. The detail message is saved
      *         for later retrieval by the {@link #getMessage()} method.
-     * @param identifier {@linkplain Identifier#getCode() identifier code}.
+     * @param identifier The {@linkplain Identifier#getCode() identifier code}.
      */
     public NoSuchIdentifierException(final String message, final String identifier) {
         super(message);
@@ -76,7 +77,7 @@ public class NoSuchIdentifierException extends FactoryException {
     }
 
     /**
-     * Returns the {@linkplain ReferenceIdentifier#getCode identifier code}.
+     * Returns the {@linkplain Identifier#getCode identifier code}.
      *
      * @return The identifier code.
      */

@@ -62,27 +62,27 @@ public interface Datum extends IdentifiedObject {
     /**
      * Key for the <code>{@value}</code> property to be given to the
      * {@linkplain DatumFactory datum factory} <code>createFoo(&hellip;)</code> methods.
-     * This is used for setting the value to be returned by {@link #getAnchorPoint}.
+     * This is used for setting the value to be returned by {@link #getAnchorPoint()}.
      *
-     * @see #getAnchorPoint
+     * @see #getAnchorPoint()
      */
     String ANCHOR_POINT_KEY = "anchorPoint";
 
     /**
      * Key for the <code>{@value}</code> property to be given to the
      * {@linkplain DatumFactory datum factory} <code>createFoo(&hellip;)</code> methods.
-     * This is used for setting the value to be returned by {@link #getRealizationEpoch}.
+     * This is used for setting the value to be returned by {@link #getRealizationEpoch()}.
      *
-     * @see #getRealizationEpoch
+     * @see #getRealizationEpoch()
      */
     String REALIZATION_EPOCH_KEY = "realizationEpoch";
 
     /**
      * Key for the <code>{@value}</code> property to be given to the
      * {@linkplain DatumFactory datum factory} <code>createFoo(&hellip;)</code> methods.
-     * This is used for setting the value to be returned by {@link #getDomainOfValidity}.
+     * This is used for setting the value to be returned by {@link #getDomainOfValidity()}.
      *
-     * @see #getDomainOfValidity
+     * @see #getDomainOfValidity()
      *
      * @since GeoAPI 2.1
      */
@@ -91,9 +91,9 @@ public interface Datum extends IdentifiedObject {
     /**
      * Key for the <code>{@value}</code> property to be given to the
      * {@linkplain DatumFactory datum factory} <code>createFoo(&hellip;)</code> methods.
-     * This is used for setting the value to be returned by {@link #getScope}.
+     * This is used for setting the value to be returned by {@link #getScope()}.
      *
-     * @see #getScope
+     * @see #getScope()
      */
     String SCOPE_KEY = "scope";
 

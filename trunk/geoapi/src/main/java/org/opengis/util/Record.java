@@ -32,7 +32,7 @@
 package org.opengis.util;
 
 import java.util.Map;
-import java.util.Set;  // For Javadoc
+import java.util.Set;
 import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Obligation.*;
@@ -80,7 +80,7 @@ public interface Record {
      *
      * @return The dictionary of all (<var>name</var>, <var>value</var>) pairs in this record.
      *
-     * @see RecordType#getMemberTypes
+     * @see RecordType#getMemberTypes()
      *
      * @departure generalization
      *   Figure 15 in ISO 19103:2005 specifies a cardinality of 1. However, this seems to 
@@ -100,7 +100,7 @@ public interface Record {
      * @param name The name of the attribute to lookup.
      * @return The value of the attribute for the given name.
      *
-     * @see RecordType#locate
+     * @see RecordType#locate(MemberName)
      */
     @UML(identifier="locate", obligation=MANDATORY, specification=ISO_19103)
     Object locate(MemberName name);

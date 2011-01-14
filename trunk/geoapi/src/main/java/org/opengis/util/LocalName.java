@@ -50,7 +50,7 @@ import static org.opengis.annotation.Specification.*;
  * @version GeoAPI 3.0
  * @since   GeoAPI 2.0
  *
- * @see NameFactory#createLocalName
+ * @see NameFactory#createLocalName(NameSpace, CharSequence)
  */
 @UML(identifier="LocalName", specification=ISO_19103)
 public interface LocalName extends GenericName {

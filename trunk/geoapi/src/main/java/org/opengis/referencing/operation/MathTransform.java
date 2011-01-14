@@ -35,7 +35,6 @@ import org.opengis.geometry.DirectPosition;
 import org.opengis.geometry.MismatchedDimensionException;
 import org.opengis.annotation.UML;
 
-import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
 
 
@@ -63,7 +62,7 @@ import static org.opengis.annotation.Specification.*;
  * @see javax.media.jai.PerspectiveTransform
  * @see javax.media.j3d.Transform3D
  * @see MathTransformFactory
- * @see CoordinateOperation#getMathTransform
+ * @see CoordinateOperation#getMathTransform()
  */
 @UML(identifier="CT_MathTransform", specification=OGC_01009)
 public interface MathTransform {

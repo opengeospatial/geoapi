@@ -127,8 +127,8 @@ public interface AuthorityFactory extends Factory {
      *   capability of factories that can automatically determine the type of the requested
      *   object at runtime.
      *
-     * @see org.opengis.referencing.datum.DatumAuthorityFactory#createDatum
-     * @see org.opengis.referencing.crs.CRSAuthorityFactory#createCoordinateReferenceSystem
+     * @see org.opengis.referencing.datum.DatumAuthorityFactory#createDatum(String)
+     * @see org.opengis.referencing.crs.CRSAuthorityFactory#createCoordinateReferenceSystem(String)
      */
     IdentifiedObject createObject(String code) throws NoSuchAuthorityCodeException, FactoryException;
 }

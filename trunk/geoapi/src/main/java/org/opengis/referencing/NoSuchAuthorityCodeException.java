@@ -86,7 +86,7 @@ public class NoSuchAuthorityCodeException extends NoSuchIdentifierException {
      * @param  authority The authority, saved for retrieval by the {@link #getAuthority()} method.
      * @param  code The invalid authority code, saved for retrieval by the {@link #getAuthorityCode()} method.
      * @param  identifier The full identifier as a concatenation of the authority and the code,
-     *         saved for retrieval by the {@link #getIdentifier()} method.
+     *         saved for retrieval by the {@link #getIdentifierCode()} method.
      */
     public NoSuchAuthorityCodeException(String message, String authority, String code, String identifier) {
         super(message, identifier);

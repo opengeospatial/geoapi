@@ -50,18 +50,18 @@ public interface ReferenceIdentifier extends Identifier {
     /**
      * Key for the <code>{@value}</code> property to be given to the
      * {@linkplain org.opengis.referencing.ObjectFactory CRS factory} <code>createFoo(&hellip;)</code>
-     * methods. This is used for setting the value to be returned by {@link #getCodeSpace}.
+     * methods. This is used for setting the value to be returned by {@link #getCodeSpace()}.
      *
-     * @see #getCodeSpace
+     * @see #getCodeSpace()
      */
     String CODESPACE_KEY = "codespace";
 
     /**
      * Key for the <code>{@value}</code> property to be given to the
      * {@linkplain org.opengis.referencing.ObjectFactory CRS factory} <code>createFoo(&hellip;)</code>
-     * methods. This is used for setting the value to be returned by {@link #getVersion}.
+     * methods. This is used for setting the value to be returned by {@link #getVersion()}.
      *
-     * @see #getVersion
+     * @see #getVersion()
      */
     String VERSION_KEY = "version";
 

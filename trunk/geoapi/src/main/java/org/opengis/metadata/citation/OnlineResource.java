@@ -56,7 +56,7 @@ import static org.opengis.annotation.Specification.*;
 public interface OnlineResource {
     /**
      * Location (address) for on-line access using a Uniform Resource Locator address or
-     * similar addressing scheme such as {@codde "http://www.statkart.no/isotc211"}.
+     * similar addressing scheme such as {@code "http://www.statkart.no/isotc211"}.
      *
      * @return Location for on-line access using a Uniform Resource Locator address or similar scheme.
      */
