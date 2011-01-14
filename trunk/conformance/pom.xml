@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- ==================================================== -->
-<!--     Maven 2 project configuration file               -->
-<!--     http://maven.apache.org/maven2/                  -->
-<!-- ==================================================== -->
+<!-- ====================================================
+         Maven 2 project configuration file
+         http://maven.apache.org/maven2/
+     ==================================================== -->
 
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
@@ -15,9 +15,9 @@
 
 
 
-  <!-- ==================================================== -->
-  <!--     Project description                              -->
-  <!-- ==================================================== -->
+  <!-- ====================================================
+           Project description
+       ==================================================== -->
   <groupId>org.opengis</groupId>
   <artifactId>conformance</artifactId>
   <packaging>jar</packaging>
@@ -30,9 +30,9 @@
 
 
 
-  <!-- ==================================================== -->
-  <!--     Developers and contributors                      -->
-  <!-- ==================================================== -->
+  <!-- ====================================================
+           Developers and contributors
+       ==================================================== -->
   <developers>
     <developer>
       <id>desruisseaux</id>
@@ -58,9 +58,9 @@
 
 
 
-  <!-- ==================================================== -->
-  <!--     External dependencies                            -->
-  <!-- ==================================================== -->
+  <!-- ====================================================
+           Dependencies
+       ==================================================== -->
   <dependencies>
     <dependency>
       <groupId>org.opengis</groupId>
@@ -76,9 +76,9 @@
 
 
 
-  <!-- ==================================================== -->
-  <!--     Web site and Javadoc generation                  -->
-  <!-- ==================================================== -->
+  <!-- ====================================================
+           Web site and Javadoc generation
+       ==================================================== -->
   <reporting>
     <plugins>
       <plugin>
@@ -87,7 +87,7 @@
         <configuration>
           <linksource>true</linksource>
           <author>false</author>          <!-- Specifies whether or not the author text is included.              -->
-          <version>true</version>         <!-- Includes or not the version text in the generated docs.            -->
+          <version>false</version>        <!-- Includes or not the version text in the generated docs.            -->
           <encoding>UTF-8</encoding>      <!-- Specifies the encoding name of the source files.                   -->
           <charset>UTF-8</charset>        <!-- Specifies the HTML character set for this document.                -->
           <source>1.5</source>            <!-- Necessary to enable javadoc to handle J2SE 1.5 features.           -->

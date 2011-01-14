@@ -6,20 +6,20 @@ Maven repositories
 
   Maven projects can use one of the following repositories:
 
-    * {{{http://maven.geotoolkit.org/}http://maven.geotoolkit.org/}} (GeoAPI 3.0)
+    * {{{http://maven.geotoolkit.org/}http://maven.geotoolkit.org/}} (GeoAPI 3.0 and 2.3)
 
-    * {{{http://download.osgeo.org/webdav/geotools/}http://download.osgeo.org/webdav/geotools/}} (GeoAPI 2.x)
+    * {{{http://download.osgeo.org/webdav/geotools/}http://download.osgeo.org/webdav/geotools/}} (GeoAPI 2.2, 2.1 and 2.0)
 
-    * {{{http://repo.opengeo.org/}http://repo.opengeo.org/}} (GeoAPI 2.x)
+    * {{{http://repo.opengeo.org/}http://repo.opengeo.org/}} (GeoAPI 2.2, 2.1 and 2.0)
 
   Example:
 
 -----------------------------------------------------------------------------------
 <repositories>
   <repository>
-    <id>osgeo</id>
-    <name>Open Source Geospatial Foundation</name>
-    <url>http://download.osgeo.org/webdav/geotools</url>
+    <id>geotoolkit</id>
+    <name>Geotoolkit.org project</name>
+    <url>http://maven.geotoolkit.org</url>
   </repository>
 </repositories>
 

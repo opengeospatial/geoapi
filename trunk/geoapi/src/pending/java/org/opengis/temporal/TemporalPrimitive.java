@@ -34,7 +34,7 @@ package org.opengis.temporal;
 
 /**
  * Temporary placeholder for an interface defined in the
- * <a href="http://geoapi.sourceforge.net/geoapi-pending/">geoapi-pending</a> module.
+ * <a href="http://www.geoapi.org/geoapi-pending/">geoapi-pending</a> module.
  */
 public interface TemporalPrimitive {
 }

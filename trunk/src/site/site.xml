@@ -28,22 +28,16 @@
     <!-- ==================================================== -->
     <!--     Menus to appears on the left side of each page   -->
     <!-- ==================================================== -->
-    <menu name="GeoAPI 2.3-SNAPSHOT" inherit="none">
-      <item name="Javadoc (normative)" href="snapshot/javadoc/index.html"/>
-      <item name="Javadoc (pending)"   href="snapshot/pending/index.html"/>
-      <item name="Table of content"    href="snapshot/javadoc/content.html"/>
-    </menu>
-
-    <menu name="GeoAPI 2.0.0" inherit="none">
-      <item name="Defining Specification"  href="http://www.opengeospatial.org/standards/go"/>
-      <item name="Javadoc"  href="2.0/javadoc/index.html"/>
-      <item name="Download" href="http://sourceforge.net/project/showfiles.php?group_id=70002&amp;package_id=69096&amp;release_id=333419"/>
-    </menu>
-
     <menu name="Releases" inherit="none">
       <item name="All releases"  href="releases.html"/>
       <item name="Download page" href="https://sourceforge.net/projects/geoapi/files/"/>
       <item name="API changes"   href="changes/index.html"/>
+    </menu>
+
+    <menu name="Current development" inherit="none">
+      <item name="Table of content"    href="snapshot/javadoc/content.html"/>
+      <item name="Javadoc (normative)" href="snapshot/javadoc/index.html"/>
+      <item name="Javadoc (pending)"   href="snapshot/pending/index.html"/>
     </menu>
 
     <menu ref="reports"/>  <!-- Replaced by menus for any configured reports (mailing lists, etc.) -->
