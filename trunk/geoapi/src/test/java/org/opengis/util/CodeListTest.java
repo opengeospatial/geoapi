@@ -105,7 +105,7 @@ public final class CodeListTest {
                 count++;
             }
         }
-        LOGGER.fine("Found " + count + " code lists.");
+        LOGGER.log(Level.FINE, "Found {0} code lists.", count);
         if (count == 0) {
             LOGGER.warning("No CodeList found.");
         }

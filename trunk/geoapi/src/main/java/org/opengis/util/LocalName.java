@@ -72,7 +72,7 @@ public interface LocalName extends GenericName {
      *
      * @since GeoAPI 2.2
      */
-/// @Override
+    @Override
     LocalName head();
 
     /**
@@ -80,13 +80,13 @@ public interface LocalName extends GenericName {
      *
      * @since GeoAPI 2.1
      */
-/// @Override
+    @Override
     LocalName tip();
 
     /**
      * Returns a locale-independent string representation of this local name.
      */
-/// @Override
+    @Override
     @UML(identifier="aName", obligation=MANDATORY, specification=ISO_19103)
     String toString();
 }

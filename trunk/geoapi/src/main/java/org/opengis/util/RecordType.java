@@ -78,7 +78,7 @@ public interface RecordType extends Type {
      *
      * @return The name that identifies this record type.
      */
-    ///@Override
+    @Override
     @UML(identifier="typeName", obligation=MANDATORY, specification=ISO_19103)
     TypeName getTypeName();
 
@@ -100,7 +100,7 @@ public interface RecordType extends Type {
      * The dictionary shall be {@linkplain java.util.Collections#unmodifiableMap unmodifiable}.
      * <p>
      * The {@linkplain NameSpace name space} associated with a {@code RecordType} contains only
-     * members of this {@code RecordType}. There is no potential for conflict with subpackages.
+     * members of this {@code RecordType}. There is no potential for conflict with sub-packages.
      * <p>
      * This method can be think as the equivalent of the Java {@link Class#getFields()} method.
      *
@@ -113,11 +113,11 @@ public interface RecordType extends Type {
 
     /**
      * Returns the set of member names defined in this {@code RecordType}'s dictionary.
-     * If there are no mambers, this method returns the empty set. This method is functionally
+     * If there are no members, this method returns the empty set. This method is functionally
      * equivalent to <code>{@linkplain #getMemberTypes()}.{@linkplain Map#keySet() keySet()}</code>.
      * <p>
      * The {@linkplain NameSpace name space} associated with a {@code RecordType} contains only
-     * members of this {@code RecordType}. There is no potential for conflict with subpackages.
+     * members of this {@code RecordType}. There is no potential for conflict with sub-packages.
      * <p>
      * This method can be think as the equivalent of the Java {@link Class#getFields()} method.
      *
@@ -131,7 +131,7 @@ public interface RecordType extends Type {
 
     /**
      * Looks up the provided attribute name and returns the associated type name. If the attribute name is
-     * not defined in this record type, then this method returns {@code null}. This method is functionnaly
+     * not defined in this record type, then this method returns {@code null}. This method is functionally
      * equivalent to <code>{@linkplain #getMemberTypes()}.{@linkplain Map#get get}(name).{@linkplain
      * Type#getTypeName() getTypeName()}</code>.
      * <p>

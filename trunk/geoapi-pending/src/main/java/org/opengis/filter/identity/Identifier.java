@@ -68,20 +68,20 @@ public interface Identifier {
      * @param obj
      * @return true if obj is an Identifier with the same getID()
      */
-    ///@Override
+    @Override
     public boolean equals(Object obj);
     
     /**
      * Identifier is a data object, hashCode is based just on getID()
      * @return hashCode based on getID()
      */
-    ///@Override
+    @Override
     public int hashCode();
     
     /**
      * Returns a string representation of the identifier.
      * @return getID().toString()
      */
-    ///@Override 
+    @Override 
     String toString();
 }
