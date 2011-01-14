@@ -48,16 +48,17 @@ import org.opengis.geometry.DirectPosition;  // For javadoc
  *   This exception is not part of the OGC specification.
  *
  * @author  Martin Desruisseaux (IRD)
+ * @version GeoAPI 3.0
  * @since   GeoAPI 1.0
  */
 public class TransformException extends Exception {
     /**
-     * Serial number for interoperability with different versions.
+     * Serial number for inter-operability with different versions.
      */
     private static final long serialVersionUID = -8923944544398567533L;
 
     /**
-     * The last transform that either transformed successfuly all coordinates, or filled the
+     * The last transform that either transformed successfully all coordinates, or filled the
      * untransformable coordinates with {@linkplain Double#NaN NaN} values. This information
      * is useful in the context of concatenated transforms. May be {@code null} if unknown.
      *
@@ -97,7 +98,7 @@ public class TransformException extends Exception {
     }
 
     /**
-     * Returns the last transform that either transformed successfuly all coordinates, or filled
+     * Returns the last transform that either transformed successfully all coordinates, or filled
      * the untransformable coordinates with {@linkplain Double#NaN NaN} values. This information
      * is useful in the context of concatenated transforms. May be {@code null} if unknown.
      *
@@ -110,7 +111,7 @@ public class TransformException extends Exception {
     }
 
     /**
-     * Sets the last transform that either transformed successfuly all coordinates, or
+     * Sets the last transform that either transformed successfully all coordinates, or
      * filled the untransformable coordinates with {@linkplain Double#NaN NaN} values.
      *
      * @param transform The last reliable transform.

@@ -42,6 +42,7 @@ import org.opengis.util.NoSuchIdentifierException;
  *   This exception is not part of the OGC specification.
  *
  * @author  Martin Desruisseaux (IRD)
+ * @version GeoAPI 3.0
  * @since   GeoAPI 1.0
  *
  * @see org.opengis.referencing.crs.CRSAuthorityFactory
@@ -50,7 +51,7 @@ import org.opengis.util.NoSuchIdentifierException;
  */
 public class NoSuchAuthorityCodeException extends NoSuchIdentifierException {
     /**
-     * Serial number for interoperability with different versions.
+     * Serial number for inter-operability with different versions.
      */
     private static final long serialVersionUID = -1573748311981746573L;
 

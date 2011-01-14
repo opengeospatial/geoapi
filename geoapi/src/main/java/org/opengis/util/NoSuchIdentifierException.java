@@ -40,20 +40,21 @@ import org.opengis.metadata.Identifier;
  * <p>
  * <b>Example:</b> This exception is thrown when a
  * {@linkplain org.opengis.referencing.operation.MathTransform math transform}
- * as been requested with an unknow {@linkplain org.opengis.referencing.operation.OperationMethod
+ * as been requested with an unknown {@linkplain org.opengis.referencing.operation.OperationMethod
  * operation method} identifier.
  *
  * @departure extension
  *   This exception is not part of the OGC specification.
  *
  * @author  Martin Desruisseaux (IRD)
+ * @version GeoAPI 3.0
  * @since   GeoAPI 1.0
  *
  * @see org.opengis.referencing.operation.MathTransformFactory#createParameterizedTransform
  */
 public class NoSuchIdentifierException extends FactoryException {
     /**
-     * Serial number for interoperability with different versions.
+     * Serial number for inter-operability with different versions.
      */
     private static final long serialVersionUID = -6846799994429345902L;
 

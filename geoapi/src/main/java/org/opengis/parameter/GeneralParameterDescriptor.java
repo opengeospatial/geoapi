@@ -45,9 +45,9 @@ import static org.opengis.annotation.Specification.*;
  *   GeoAPI uses a name which contains the "<code>Descriptor</code>" word for consistency with other
  *   libraries in Java (e.g. <code>ParameterListDescriptor</code> in Java Advanced Imaging).
  *
- * @version <A HREF="http://portal.opengeospatial.org/files/?artifact_id=6716">Abstract specification 2.0</A>
  * @author  Martin Desruisseaux (IRD)
  * @author  Jody Garnett (Refractions Research)
+ * @version GeoAPI 3.0
  * @since   GeoAPI 2.0
  *
  * @see GeneralParameterValue
@@ -75,7 +75,7 @@ public interface GeneralParameterDescriptor extends IdentifiedObject {
      * parameter are required. The default value is one. A value of 0 means
      * an optional parameter.
      *
-     * @return The minimum occurence.
+     * @return The minimum occurrence.
      *
      * @see #getMaximumOccurs
      */
@@ -93,7 +93,7 @@ public interface GeneralParameterDescriptor extends IdentifiedObject {
      *   <code>ParameterDescriptorGroup</code> into this  super-interface, for parallelism
      *   with the <code>minimumOccurs</code> method.
      *
-     * @return The maximum occurence.
+     * @return The maximum occurrence.
      *
      * @see #getMinimumOccurs
      */

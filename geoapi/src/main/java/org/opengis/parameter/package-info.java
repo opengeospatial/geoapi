@@ -48,7 +48,7 @@
  * {@linkplain org.opengis.parameter.ParameterDescriptorGroup parameter groups}. Two or more parameter
  * groups are then associated with a particular operation method, and each parameter group consists
  * of a set of {@linkplain org.opengis.parameter.ParameterDescriptor operation parameters}, or other,
- * nested parameter groups. This way of modelling is not mandatory; all coordinate operation
+ * nested parameter groups. This way of modeling is not mandatory; all coordinate operation
  * parameters may be assigned directly to the coordinate operation method.</P>
  *
  * @departure harmonization
@@ -60,7 +60,9 @@
  *   With this move, GeoAPI has extended the use of these parameter classes to a more general use rather
  *   than only for referencing operation types.
  *
- * @version <A HREF="http://portal.opengeospatial.org/files/?artifact_id=6716">Abstract specification 2.0</A>
+ * @author  Martin Desruisseaux (IRD)
+ * @author  Jody Garnett (Refractions Research)
+ * @version GeoAPI 3.0
  * @since   GeoAPI 1.0
  */
 package org.opengis.parameter;

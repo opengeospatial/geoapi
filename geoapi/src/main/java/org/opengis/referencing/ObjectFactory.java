@@ -119,8 +119,8 @@ import org.opengis.util.GenericName;
  *   in order to provide a common base class for all referencing factories producing
  *   <code>IdentifiedObject</code> instances.
  *
- * @version <A HREF="http://www.opengis.org/docs/01-009.pdf">Implementation specification 1.0</A>
  * @author  Martin Desruisseaux (IRD)
+ * @version GeoAPI 3.0
  * @since   GeoAPI 2.0
  */
 public interface ObjectFactory extends Factory {

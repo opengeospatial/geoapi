@@ -31,9 +31,12 @@
  */
 
 /**
- * Set of annotations mapping <A HREF="http://geoapi.sourceforge.net">GeoAPI</A>
+ * Set of annotations mapping <A HREF="http://www.geoapi.org">GeoAPI</A>
  * interfaces to <A HREF="http://www.opengis.org">OpenGIS</A> UML or XML schemas.
  *
- * @since GeoAPI 2.0
+ * @author  Martin Desruisseaux (IRD)
+ * @author  Cédric Briançon (Geomatys)
+ * @version GeoAPI 3.0
+ * @since   GeoAPI 2.0
  */
 package org.opengis.annotation;

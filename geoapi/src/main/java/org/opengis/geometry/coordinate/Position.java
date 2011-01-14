@@ -56,9 +56,9 @@ import static org.opengis.annotation.Specification.*;
  *   returning a <code>DirectPosition</code> at the same location. The conditionality has also
  *   been changed to mandatory since all three types conceptually have a well defined location.
  *
- * @version <A HREF="http://www.opengeospatial.org/standards/as">ISO 19107</A>
- * @author Martin Desruisseaux (IRD)
- * @since GeoAPI 1.0
+ * @author  Martin Desruisseaux (IRD)
+ * @version GeoAPI 3.0
+ * @since   GeoAPI 1.0
  *
  * @issue http://jira.codehaus.org/browse/GEO-87
  */

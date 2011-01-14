@@ -46,9 +46,9 @@ import static org.opengis.annotation.Specification.*;
  * Comprehensive information about the procedure(s), process(es) and algorithm(s) applied
  * in the process step.
  *
- * @author Cédric Briançon (Geomatys)
- *
- * @since GeoAPI 2.3
+ * @author  Cédric Briançon (Geomatys)
+ * @version GeoAPI 3.0
+ * @since   GeoAPI 2.3
  *
  * @navassoc 1 - - Identifier
  * @navassoc - - - Citation

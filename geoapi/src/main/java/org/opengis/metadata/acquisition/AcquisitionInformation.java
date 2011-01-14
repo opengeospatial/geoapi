@@ -43,9 +43,9 @@ import static org.opengis.annotation.Specification.*;
  * Designations for the measuring instruments, the platform carrying them, and the mission to
  * which the data contributes.
  *
- * @author Cédric Briançon (Geomatys)
- *
- * @since GeoAPI 2.3
+ * @author  Cédric Briançon (Geomatys)
+ * @version GeoAPI 3.0
+ * @since   GeoAPI 2.3
  *
  * @navassoc - - - Plan
  * @navassoc - - - Requirement

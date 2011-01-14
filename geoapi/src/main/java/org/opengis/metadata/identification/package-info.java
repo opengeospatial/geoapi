@@ -58,7 +58,10 @@
  *       to be updated and the scope of the update</LI>
  * </UL>
  *
- * @version <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
+ * @author  Martin Desruisseaux (IRD)
+ * @author  Cory Horner (Refractions Research)
+ * @author  Ely Conn (Leica Geosystems Geospatial Imaging, LLC)
+ * @version GeoAPI 3.0
  * @since   GeoAPI 2.0
  */
 package org.opengis.metadata.identification;

@@ -44,9 +44,9 @@ import static org.opengis.annotation.Specification.*;
 /**
  * Designation of criterion for defining maximum and minimum wavelengths for a spectral band.
  *
- * @author Cédric Briançon (Geomatys)
- *
- * @since GeoAPI 2.3
+ * @author  Cédric Briançon (Geomatys)
+ * @version GeoAPI 3.0
+ * @since   GeoAPI 2.3
  */
 @UML(identifier="MI_BandDefinition", specification=ISO_19115_2)
 public final class BandDefinition extends CodeList<BandDefinition> {

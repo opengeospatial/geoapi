@@ -45,8 +45,8 @@ import static org.opengis.annotation.Specification.*;
  * the order in which the coordinate system axes associations are recorded, whenever those
  * coordinates use a coordinate reference system that uses this coordinate system.
  *
- * @version <A HREF="http://portal.opengeospatial.org/files/?artifact_id=6716">Abstract specification 2.0</A>
  * @author  Martin Desruisseaux (IRD)
+ * @version GeoAPI 3.0
  * @since   GeoAPI 1.0
  *
  * @see org.opengis.referencing.cs.CoordinateSystemAxis

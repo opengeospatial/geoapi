@@ -60,8 +60,8 @@ import static org.opengis.annotation.Specification.*;
  *   <code>AffineCS</code> instead. In this hierarchy, <code>CartesianCS</code> is considered
  *   a special case of <code>AffineCS</code> where all axes are perpendicular to each other.
  *
- * @version <A HREF="http://portal.opengeospatial.org/files/?artifact_id=6716">Abstract specification 2.0</A>
  * @author  Martin Desruisseaux (IRD)
+ * @version GeoAPI 3.0
  * @since   GeoAPI 1.0
  *
  * @see AffineCS

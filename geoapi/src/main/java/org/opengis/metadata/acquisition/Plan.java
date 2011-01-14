@@ -44,9 +44,9 @@ import static org.opengis.annotation.Specification.*;
 /**
  * Designations for the planning information related to meeting the data acquisition requirements.
  *
- * @author Cédric Briançon (Geomatys)
- *
- * @since GeoAPI 2.3
+ * @author  Cédric Briançon (Geomatys)
+ * @version GeoAPI 3.0
+ * @since   GeoAPI 2.3
  *
  * @navassoc 1 - - GeometryType
  * @navassoc 1 - - Progress

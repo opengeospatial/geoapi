@@ -56,8 +56,8 @@ import static org.opengis.annotation.Specification.*;
  * covered by that type of CRS with an acceptable degree of error. The exception to the rule is
  * the subtype "Temporal" which has been added by analogy.
  *
- * @version <A HREF="http://portal.opengeospatial.org/files/?artifact_id=6716">Abstract specification 2.0</A>
  * @author  Martin Desruisseaux (IRD)
+ * @version GeoAPI 3.0
  * @since   GeoAPI 2.0
  *
  * @see org.opengis.referencing.cs.CoordinateSystem

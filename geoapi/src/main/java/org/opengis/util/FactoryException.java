@@ -45,13 +45,14 @@ package org.opengis.util;
  *   This exception is not part of the OGC specification.
  *
  * @author  Martin Desruisseaux (IRD)
+ * @version GeoAPI 3.0
  * @since   GeoAPI 1.0
  *
  * @see org.opengis.referencing.operation.CoordinateOperationFactory
  */
 public class FactoryException extends Exception {
     /**
-     * Serial number for interoperability with different versions.
+     * Serial number for inter-operability with different versions.
      */
     private static final long serialVersionUID = -3414250034883898315L;
 

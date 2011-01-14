@@ -49,8 +49,9 @@ import java.util.Locale;
  *   or code names should probably be language neutral. Since the ISO/OGC UML does not say which character
  *   strings are localizable and which ones are not, we have done our own guesses in GeoAPI.
  *
- * @author Martin Desruisseaux (IRD)
- * @since GeoAPI 2.0
+ * @author  Martin Desruisseaux (IRD)
+ * @version GeoAPI 3.0
+ * @since   GeoAPI 2.0
  *
  * @see javax.xml.registry.infomodel.InternationalString
  * @see NameFactory#createInternationalString

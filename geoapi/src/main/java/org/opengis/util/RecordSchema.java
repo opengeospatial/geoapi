@@ -32,7 +32,6 @@
 package org.opengis.util;
 
 import java.util.Map;
-import java.util.Collection;
 import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Obligation.*;
@@ -52,9 +51,10 @@ import static org.opengis.annotation.Specification.*;
  *
  * <code>{@linkplain #getSchemaName()}.{@linkplain LocalName#scope scope()}.{@linkplain NameSpace#name name()}</code>.
  *
- * @author Bryce Nordgren (USDA)
- * @author Martin Desruisseaux (IRD)
- * @since GeoAPI 2.1
+ * @author  Bryce Nordgren (USDA)
+ * @author  Martin Desruisseaux (IRD)
+ * @version GeoAPI 3.0
+ * @since   GeoAPI 2.1
  *
  * @navassoc 1 - - LocalName
  * @navassoc - - - TypeName
@@ -83,7 +83,7 @@ public interface RecordSchema {
 
     /**
      * Looks up the provided type name and returns the associated record type. If the type name is not
-     * defined within this schema, then this method returns {@code null}. This is functionnaly equivalent
+     * defined within this schema, then this method returns {@code null}. This is functionally equivalent
      * to <code>{@linkplain #getDescription()}.{@linkplain Map#get get}(name)</code>.
      *
      * @param  name The name of type type to lookup.

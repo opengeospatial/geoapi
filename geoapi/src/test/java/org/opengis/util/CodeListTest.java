@@ -50,7 +50,9 @@ import static org.junit.Assert.*;
 /**
  * Tests every {@link CodeList}.
  *
- * @author Martin desruisseaux (IRD)
+ * @author  Martin Desruisseaux (IRD)
+ * @version GeoAPI 3.0
+ * @since   GeoAPI 2.0
  */
 public final class CodeListTest {
     /**
@@ -66,7 +68,7 @@ public final class CodeListTest {
 
     /**
      * Tests the {@link CharacterSet} code list. At the difference of other code lists,
-     * its {@link CodeList#matches} method is overriden.
+     * its {@link CodeList#matches} method is overridden.
      */
     @Test
     public void testCharacterSet() {

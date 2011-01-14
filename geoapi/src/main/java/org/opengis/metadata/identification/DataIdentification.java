@@ -49,8 +49,8 @@ import static org.opengis.annotation.ComplianceLevel.*;
 /**
  * Information required to identify a dataset.
  *
- * @version <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
  * @author  Martin Desruisseaux (IRD)
+ * @version GeoAPI 3.0
  * @since   GeoAPI 2.0
  *
  * @navassoc - - - SpatialRepresentationType

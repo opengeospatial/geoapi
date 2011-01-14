@@ -47,7 +47,10 @@
  * may be specified as {@linkplain org.opengis.metadata.spatial.Georectified georectified}. and/or
  * {@linkplain org.opengis.metadata.spatial.Georeferenceable georeferenceable} entity.</P>
  *
- * @version <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
+ * @author  Martin Desruisseaux (IRD)
+ * @author  Cory Horner (Refractions Research)
+ * @author  Cédric Briançon (Geomatys)
+ * @version GeoAPI 3.0
  * @since   GeoAPI 2.0
  */
 package org.opengis.metadata.spatial;

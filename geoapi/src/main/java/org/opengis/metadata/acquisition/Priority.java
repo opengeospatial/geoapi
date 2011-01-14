@@ -44,9 +44,9 @@ import static org.opengis.annotation.Specification.*;
 /**
  * Ordered list of priorities.
  *
- * @author Cédric Briançon (Geomatys)
- *
- * @since GeoAPI 2.3
+ * @author  Cédric Briançon (Geomatys)
+ * @version GeoAPI 3.0
+ * @since   GeoAPI 2.3
  */
 @UML(identifier="MI_PriorityCode", specification=ISO_19115_2)
 public final class Priority extends CodeList<Priority> {

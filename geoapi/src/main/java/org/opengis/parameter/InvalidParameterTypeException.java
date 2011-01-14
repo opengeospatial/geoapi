@@ -46,6 +46,7 @@ package org.opengis.parameter;
  *   This exception is not part of the OGC specification.
  *
  * @author  Martin Desruisseaux (IRD)
+ * @version GeoAPI 3.0
  * @since   GeoAPI 1.0
  *
  * @see ParameterValue#intValue()
@@ -56,7 +57,7 @@ package org.opengis.parameter;
  */
 public class InvalidParameterTypeException extends IllegalStateException {
     /**
-     * Serial number for interoperability with different versions.
+     * Serial number for inter-operability with different versions.
      */
     private static final long serialVersionUID = 2740762597003093176L;
 

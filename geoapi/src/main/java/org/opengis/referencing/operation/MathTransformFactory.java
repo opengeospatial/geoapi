@@ -79,8 +79,8 @@ import static org.opengis.annotation.Specification.*;
  * and target coordinate systems mean, it is not necessary or desirable for a math
  * transform object to keep information on its source and target coordinate systems.
  *
- * @version <A HREF="http://www.opengis.org/docs/01-009.pdf">Implementation specification 1.0</A>
  * @author  Martin Desruisseaux (IRD)
+ * @version GeoAPI 3.0
  * @since   GeoAPI 1.0
  *
  * @see <A HREF="http://www.remotesensing.org/geotiff/proj_list/">Projection transform list on RemoteSensing.org</A>
@@ -145,7 +145,7 @@ public interface MathTransformFactory extends Factory {
      * The {@linkplain ParameterDescriptorGroup#getName parameter group name} shall be the
      * method name, or an alias to be understood by <code>{@linkplain #createParameterizedTransform
      * createParameterizedTransform}(parameters)</code>. This method creates new parameter instances
-     * at every call. Parameters are intented to be modified by the user before to be given to the
+     * at every call. Parameters are intended to be modified by the user before to be given to the
      * above-cited {@code createParameterizedTransform} method.
      *
      * @param  method The case insensitive name of the method to search for.
@@ -236,7 +236,7 @@ public interface MathTransformFactory extends Factory {
      * If the transform's input dimension is {@code M}, and output dimension
      * is {@code N}, then the matrix will have size {@code [N+1][M+1]}.
      * The +1 in the matrix dimensions allows the matrix to do a shift, as well as
-     * a rotation. The {@code [M][j]} element of the matrix will be the j'th
+     * a rotation. The {@code [M][j]} element of the matrix will be the <var>j</var>'th
      * ordinate of the moved origin. The {@code [i][N]} element of the matrix
      * will be 0 for <var>i</var> less than {@code M}, and 1 for <var>i</var>
      * equals {@code M}.

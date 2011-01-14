@@ -37,6 +37,7 @@ package org.opengis.annotation;
  *
  * @author  Martin Desruisseaux (IRD)
  * @author  Cédric Briançon (Geomatys)
+ * @version GeoAPI 3.0
  * @since   GeoAPI 2.0
  */
 public enum Specification {

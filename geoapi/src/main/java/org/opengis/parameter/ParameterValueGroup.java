@@ -45,9 +45,9 @@ import static org.opengis.annotation.Specification.*;
  * or higher level {@code ParameterValueGroup}, if those instances contain different values
  * of one or more {@link ParameterValue}s which suitably distinquish among those groups.
  *
- * @version <A HREF="http://portal.opengeospatial.org/files/?artifact_id=6716">Abstract specification 2.0</A>
  * @author  Martin Desruisseaux (IRD)
  * @author  Jody Garnett (Refractions Research)
+ * @version GeoAPI 3.0
  * @since   GeoAPI 1.0
  *
  * @see ParameterDescriptorGroup

@@ -44,8 +44,8 @@ import static org.opengis.annotation.Specification.*;
 /**
  * Type of method for evaluating an identified data quality measure.
  *
- * @version <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
  * @author  Martin Desruisseaux (IRD)
+ * @version GeoAPI 3.0
  * @since   GeoAPI 2.0
  */
 @UML(identifier="DQ_EvaluationMethodTypeCode", specification=ISO_19115)

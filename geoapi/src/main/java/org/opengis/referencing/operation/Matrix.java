@@ -44,8 +44,8 @@ import static org.opengis.annotation.Specification.*;
  * case and optimized versions for 3&times;3 and 4&times;4 cases, which are quite common in a
  * transformation package.
  *
- * @version <A HREF="http://www.opengis.org/docs/01-009.pdf">Implementation specification 1.0</A>
  * @author  Martin Desruisseaux (IRD)
+ * @version GeoAPI 3.0
  * @since   GeoAPI 1.0
  *
  * @see javax.vecmath.Matrix3d
@@ -65,7 +65,7 @@ public interface Matrix {
      * @return The number of rows in this matrix.
      *
      * @departure integration
-     *   Needed for making the matrix useable. The method signature matches the one of
+     *   Needed for making the matrix usable. The method signature matches the one of
      *   <code>GMatrix</code> in the <cite>vecmath</cite> package, for straightforward
      *   implementation.
      */
@@ -77,7 +77,7 @@ public interface Matrix {
      * @return The number of columns in this matrix.
      *
      * @departure integration
-     *   Needed for making the matrix useable. The method signature matches the one of
+     *   Needed for making the matrix usable. The method signature matches the one of
      *   <code>GMatrix</code> in the <cite>vecmath</cite> package, for straightforward
      *   implementation.
      */
@@ -91,7 +91,7 @@ public interface Matrix {
      * @return The value at the indexed element.
      *
      * @departure integration
-     *   Needed for making the matrix useable. The method signature matches the one of
+     *   Needed for making the matrix usable. The method signature matches the one of
      *   <code>GMatrix</code> in the <cite>vecmath</cite> package, for straightforward
      *   implementation.
      */
@@ -105,7 +105,7 @@ public interface Matrix {
      * @param value  The new matrix element value.
      *
      * @departure integration
-     *   Needed for making the matrix useable. The method signature matches the one of
+     *   Needed for making the matrix usable. The method signature matches the one of
      *   <code>GMatrix</code> in the <cite>vecmath</cite> package, for straightforward
      *   implementation.
      */

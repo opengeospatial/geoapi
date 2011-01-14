@@ -39,8 +39,8 @@ import static org.opengis.annotation.Specification.*;
  * the code list elements declared in the {@link org.opengis.metadata.Obligation} code list
  * from the metadata package.
  *
- * @version <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
  * @author  Martin Desruisseaux (IRD)
+ * @version GeoAPI 3.0
  * @since   GeoAPI 2.0
  */
 @UML(identifier="MD_ObligationCode", specification=ISO_19115)
@@ -48,7 +48,7 @@ public enum Obligation {
     /**
      * Element is required when a specific condition is met.
      */
-    ///@UML(identifier="conditional", obligation=CONDITIONAL, specification=ISO_19115)
+/// @UML(identifier="conditional", obligation=CONDITIONAL, specification=ISO_19115)
     CONDITIONAL,
 
     /**
@@ -65,7 +65,7 @@ public enum Obligation {
 
     /**
      * The element should always be {@code null}. This obligation code is used only when
-     * a subinterface overrides an association and force it to a {@code null} value.
+     * a sub-interface overrides an association and force it to a {@code null} value.
      * An example is {@link org.opengis.referencing.datum.TemporalDatum#getAnchorPoint}.
      *
      * @departure constraint

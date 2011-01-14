@@ -47,8 +47,8 @@ import static org.opengis.annotation.Specification.*;
  * or {@linkplain Conversion conversions} between two
  * {@linkplain CoordinateReferenceSystem coordinate reference systems}.
  *
- * @version <A HREF="http://www.opengis.org/docs/01-009.pdf">Implementation specification 1.0</A>
  * @author  Martin Desruisseaux (IRD)
+ * @version GeoAPI 3.0
  * @since   GeoAPI 1.0
  */
 @UML(identifier="CT_CoordinateTransformationFactory", specification=OGC_01009)

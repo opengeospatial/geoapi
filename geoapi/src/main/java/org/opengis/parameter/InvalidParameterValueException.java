@@ -38,8 +38,8 @@ import static org.opengis.annotation.Specification.*;
 /**
  * Thrown by {@link ParameterValue} setter methods when they are given an invalid value.
  *
- * @version <A HREF="http://www.opengis.org/docs/01-004.pdf">Grid Coverage specification 1.0</A>
  * @author  Martin Desruisseaux (IRD)
+ * @version GeoAPI 3.0
  * @since   GeoAPI 1.0
  *
  * @see ParameterValue#setValue(int)
@@ -49,7 +49,7 @@ import static org.opengis.annotation.Specification.*;
 @UML(identifier="GC_InvalidParameterValue", specification=OGC_01004)
 public class InvalidParameterValueException extends IllegalArgumentException {
     /**
-     * Serial number for interoperability with different versions.
+     * Serial number for inter-operability with different versions.
      */
     private static final long serialVersionUID = 3814037056147642789L;
 

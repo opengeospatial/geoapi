@@ -33,7 +33,6 @@ package org.opengis.referencing.operation;
 
 import org.opengis.referencing.IdentifiedObject;
 import org.opengis.parameter.ParameterDescriptorGroup;
-import org.opengis.util.InternationalString;
 import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Obligation.*;
@@ -45,8 +44,8 @@ import static org.opengis.annotation.Specification.*;
  * methods use a number of operation parameters, although some coordinate conversions
  * use none. Each coordinate operation using the method assigns values to these parameters.
  *
- * @version <A HREF="http://portal.opengeospatial.org/files/?artifact_id=6716">Abstract specification 2.0</A>
  * @author  Martin Desruisseaux (IRD)
+ * @version GeoAPI 3.0
  * @since   GeoAPI 1.0
  *
  * @see CoordinateOperation

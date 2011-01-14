@@ -44,9 +44,9 @@ import static org.opengis.annotation.Specification.*;
 /**
  * Mechanism of activation.
  *
- * @author Cédric Briançon (Geomatys)
- *
- * @since GeoAPI 2.3
+ * @author  Cédric Briançon (Geomatys)
+ * @since   GeoAPI 2.3
+ * @version GeoAPI 3.0
  */
 @UML(identifier="MI_TriggerCode", specification=ISO_19115_2)
 public final class Trigger extends CodeList<Trigger> {

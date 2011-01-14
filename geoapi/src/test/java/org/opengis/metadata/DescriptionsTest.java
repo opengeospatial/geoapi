@@ -48,7 +48,9 @@ import static org.junit.Assert.*;
 /**
  * Tests the content of {@code Descriptions.properties} file.
  *
- * @author Martin Desruisseaux (Geomatys)
+ * @author  Martin Desruisseaux (Geomatys)
+ * @version GeoAPI 3.0
+ * @since   GeoAPI 2.3
  */
 public final class DescriptionsTest {
     /**
@@ -180,7 +182,7 @@ public final class DescriptionsTest {
 
     /**
      * Ensures that every metadata interfaces have a description, and that there is
-     * no extra definitions. This test is theorically locale-sensitive since we search
+     * no extra definitions. This test is theoretically locale-sensitive since we search
      * for the resources in the current locale. However it should works for every locales
      * since the English locale is used as a fallback.
      */

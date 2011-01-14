@@ -46,9 +46,9 @@ import static org.opengis.annotation.Specification.*;
 /**
  * Designations for the operation used to acquire the dataset.
  *
- * @author Cédric Briançon (Geomatys)
- *
- * @since GeoAPI 2.3
+ * @author  Cédric Briançon (Geomatys)
+ * @version GeoAPI 3.0
+ * @since   GeoAPI 2.3
  *
  * @navassoc 1 - - Citation
  * @navassoc 1 - - Identifier

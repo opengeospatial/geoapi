@@ -45,9 +45,9 @@ import static org.opengis.annotation.ComplianceLevel.*;
 /**
  * Technical means and media by which a resource is obtained from the distributor.
  *
- * @version <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
  * @author  Martin Desruisseaux (IRD)
  * @author  Cory Horner (Refractions Research)
+ * @version GeoAPI 3.0
  * @since   GeoAPI 2.0
  *
  * @navassoc - - - OnlineResource

@@ -175,7 +175,8 @@
  * defined Geographic CRS, which then takes the role of Source CRS.</P>
  * </BLOCKQUOTE>
  *
- * @version <A HREF="http://portal.opengeospatial.org/files/?artifact_id=6716">Abstract specification 2.0</A>
+ * @author  Martin Desruisseaux (IRD)
+ * @version GeoAPI 3.0
  * @since   GeoAPI 1.0
  */
 package org.opengis.referencing.crs;

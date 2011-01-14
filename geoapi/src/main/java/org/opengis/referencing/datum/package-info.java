@@ -62,7 +62,7 @@
  *   The zero value of the associated (vertical) coordinate system axis is defined
  *   to approximate a constant potential surface, usually the geoid. Such a reference
  *   surface is usually determined by a national or scientific authority and is then
- *   a wellknown, named datum. This is the default vertical datum type, because it is
+ *   a well known, named datum. This is the default vertical datum type, because it is
  *   the most common one encountered.</P></LI>
  *
  *   <LI><P ALIGN="justify"><STRONG>Depth</STRONG><BR>
@@ -170,12 +170,13 @@
  * ellipsoid the associated with any given geodetic datum.</P>
  *
  * <P ALIGN="justify">An ellipsoid is defined either by its semi-major axis and
- * inverse flattening, or by its semimajor axis and semi-minor axis. For some
+ * inverse flattening, or by its semi-major axis and semi-minor axis. For some
  * applications, for example small-scale mapping in atlases, a spherical approximation
  * of the geoid's surface is used, requiring only the radius of the sphere to be
  * specified.</P>
  *
- * @version <A HREF="http://portal.opengeospatial.org/files/?artifact_id=6716">Abstract specification 2.0</A>
+ * @author  Martin Desruisseaux (IRD)
+ * @version GeoAPI 3.0
  * @since   GeoAPI 1.0
  */
 package org.opengis.referencing.datum;

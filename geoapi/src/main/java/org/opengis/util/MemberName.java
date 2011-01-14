@@ -43,9 +43,10 @@ import static org.opengis.annotation.Specification.*;
  * instance, one implementation may apply to the in-memory model.  Another may apply to a shapefile
  * data store, etc.
  *
- * @author Bryce Nordgren (USDA)
- * @author Martin Desruisseaux (IRD)
- * @since GeoAPI 2.1
+ * @author  Bryce Nordgren (USDA)
+ * @author  Martin Desruisseaux (IRD)
+ * @version GeoAPI 3.0
+ * @since   GeoAPI 2.1
  */
 @UML(identifier="MemberName", specification=ISO_19103)
 public interface MemberName extends LocalName {

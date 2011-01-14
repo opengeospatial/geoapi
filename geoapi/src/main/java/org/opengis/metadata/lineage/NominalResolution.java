@@ -40,9 +40,9 @@ import static org.opengis.annotation.Specification.*;
 /**
  * Distance between consistent parts of (centre, left side, right side) adjacent pixels.
  *
- * @author Cédric Briançon (Geomatys)
- *
- * @since GeoAPI 2.3
+ * @author  Cédric Briançon (Geomatys)
+ * @version GeoAPI 3.0
+ * @since   GeoAPI 2.3
  */
 @UML(identifier="LE_NominalResolution", specification=ISO_19115_2)
 public interface NominalResolution {

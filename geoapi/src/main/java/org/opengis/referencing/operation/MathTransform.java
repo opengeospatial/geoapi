@@ -55,8 +55,8 @@ import static org.opengis.annotation.Specification.*;
  * of an operation, then it should keep hold of the {@link CoordinateOperation} interface,
  * and use the contained math transform object whenever it wishes to perform a transform.
  *
- * @version <A HREF="http://www.opengis.org/docs/01-009.pdf">Implementation specification 1.0</A>
  * @author  Martin Desruisseaux (IRD)
+ * @version GeoAPI 3.0
  * @since   GeoAPI 1.0
  *
  * @see java.awt.geom.AffineTransform
@@ -274,7 +274,7 @@ public interface MathTransform {
      * all cartographic projections should succeed.
      *
      * @return The inverse transform.
-     * @throws NoninvertibleTransformException if the transform can't be inversed.
+     * @throws NoninvertibleTransformException if the transform can't be inverted.
      */
     @UML(identifier="inverse", specification=OGC_01009)
     MathTransform inverse() throws NoninvertibleTransformException;

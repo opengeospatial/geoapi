@@ -43,8 +43,8 @@ import static org.opengis.annotation.Specification.*;
 /**
  * Code indicating whether grid data is point or area.
  *
- * @version <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
  * @author  Martin Desruisseaux (IRD)
+ * @version GeoAPI 3.0
  * @since   GeoAPI 2.0
  */
 @UML(identifier="MD_CellGeometryCode", specification=ISO_19115)

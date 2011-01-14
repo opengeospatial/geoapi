@@ -48,5 +48,11 @@
  * a {@code RECORD} in Pascal, or an attribute-only class in Java if it were stripped of all notions
  * of inheritance.  They are organized into named collections called Schemas. Both records and schemas
  * behave as dictionaries for their members and are similar to "packages" in Java.</p>
+ *
+ * @author  Martin Desruisseaux (IRD, Geomatys)
+ * @author  Jesse Crossley (SYS Technologies)
+ * @author  Bryce Nordgren (USDA)
+ * @version GeoAPI 3.0
+ * @since   GeoAPI 1.0
  */
 package org.opengis.util;
