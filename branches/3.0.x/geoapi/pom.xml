@@ -10,7 +10,7 @@
   <parent>
     <groupId>org.opengis</groupId>
     <artifactId>parent</artifactId>
-    <version>2.3-SNAPSHOT</version>
+    <version>3.0</version>
   </parent>
 
 
@@ -21,7 +21,7 @@
   <groupId>org.opengis</groupId>
   <artifactId>geoapi</artifactId>
   <packaging>jar</packaging>
-  <name>GeoAPI normative</name>
+  <name>GeoAPI</name>
   <description>
     The development community in building GIS solutions is sustaining an enormous
     level of effort. The GeoAPI project aims to reduce duplication and increase

@@ -35,8 +35,8 @@
     </menu>
 
     <menu name="Current development" inherit="none">
-      <item name="Table of content"    href="snapshot/javadoc/content.html"/>
-      <item name="Javadoc (normative)" href="snapshot/javadoc/index.html"/>
+      <item name="Table of content"    href="3.0/javadoc/content.html"/>
+      <item name="Javadoc (normative)" href="3.0/javadoc/index.html"/>
       <item name="Javadoc (pending)"   href="snapshot/pending/index.html"/>
     </menu>
 

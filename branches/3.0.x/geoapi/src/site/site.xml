@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="GeoAPI">
   <body>
-    <menu name="GeoAPI 2.3-SNAPSHOT" inherit="none">
-      <item name="Javadoc"            href="../snapshot/javadoc/index.html"/>
+    <menu name="GeoAPI 3.0" inherit="none">
+      <item name="Javadoc"            href="../3.0/javadoc/index.html"/>
       <item name="Pending interfaces" href="../geoapi-pending/index.html"/>
       <item name="Maven repositories" href="../maven.html"/>
     </menu>

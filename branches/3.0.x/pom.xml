@@ -55,7 +55,7 @@
   <groupId>org.opengis</groupId>
   <artifactId>parent</artifactId>
   <packaging>pom</packaging>
-  <version>2.3-SNAPSHOT</version>
+  <version>3.0</version>
   <name>GeoAPI</name>
   <url>http://www.geoapi.org/</url>
   <description>
@@ -74,7 +74,7 @@
   <licenses>
     <license>
       <name>OGC copyright</name>
-      <url>https://geoapi.svn.sourceforge.net/svnroot/geoapi/trunk/LICENSE.txt</url>
+      <url>https://geoapi.svn.sourceforge.net/svnroot/geoapi/branches/3.0.x/LICENSE.txt</url>
       <distribution>repo</distribution>
     </license>
   </licenses>
@@ -85,8 +85,8 @@
            Issue managements and mailing lists
        ==================================================== -->
   <scm>
-    <connection>scm:svn:https://geoapi.svn.sourceforge.net/svnroot/geoapi/trunk/</connection>
-    <url>http://geoapi.svn.sourceforge.net/viewvc/geoapi/trunk/</url>
+    <connection>scm:svn:https://geoapi.svn.sourceforge.net/svnroot/geoapi/branches/3.0.x</connection>
+    <url>http://geoapi.svn.sourceforge.net/viewvc/geoapi/branches/3.0.x/</url>
   </scm>
 
   <ciManagement>
@@ -388,6 +388,8 @@
           </reportSet>
         </reportSets>
         <configuration>
+          <doctitle>${project.name} ${project.version}</doctitle>
+          <windowtitle>${project.name} ${project.version}</windowtitle>
           <author>false</author>          <!-- Specifies whether or not the author text is included.              -->
           <version>false</version>        <!-- Includes or not the version text in the generated docs.            -->
           <encoding>UTF-8</encoding>      <!-- Specifies the encoding name of the source files.                   -->
@@ -399,18 +401,6 @@
           <locale>en</locale>             <!-- The locale that javadoc uses when generating documentation.        -->
           <keywords>true</keywords>       <!-- Adds HTML meta keyword tags to the generated file for each class.  -->
           <breakiterator>true</breakiterator>
-
-          <!-- Generate the UML for each package and class. Credit: the configuration is inspired from the following project:
-               http://project.smartics.de/public/de.smartics.maven.plugin/maven-issues-plugin/0.2.4/references/credits.html -->
-          <doclet>org.umlgraph.doclet.UmlGraphDoc</doclet>
-          <docletArtifact>
-            <groupId>org.umlgraph</groupId>
-            <artifactId>UmlGraph</artifactId>
-            <version>5.4</version>
-          </docletArtifact>
-          <additionalparam>
-            -collapsible -qualify -postfixpackage -nodefontsize 9 -nodefontpackagesize 7
-          </additionalparam>
 
           <!-- Custom taglets implemented in Java. -->
           <taglets>
@@ -468,18 +458,6 @@
 
             <!-- Pending packages. -->
             <group>
-              <title>Display and Styling</title>
-              <packages>
-                org.opengis.display*:org.opengis.style*:org.opengis.layer*:org.opengis.sld*
-              </packages>
-            </group>
-            <group>
-              <title>Coverage</title>
-              <packages>
-                org.opengis.coverage*
-              </packages>
-            </group>
-            <group>
               <title>Feature and Filter</title>
               <packages>
                 org.opengis.feature*:org.opengis.filter*
@@ -489,24 +467,6 @@
               <title>Geometry and Topology</title>
               <packages>
                 org.opengis.geometry*:org.opengis.topology*
-              </packages>
-            </group>
-            <group>
-              <title>Observations and Measurements</title>
-              <packages>
-                org.opengis.observation*
-              </packages>
-            </group>
-            <group>
-              <title>Catalog Services</title>
-              <packages>
-                org.opengis.catalog*
-              </packages>
-            </group>
-            <group>
-              <title>Web Services</title>
-              <packages>
-                org.opengis.web*
               </packages>
             </group>
           </groups>
@@ -588,8 +548,6 @@
   <modules>
     <module>tools</module>
     <module>geoapi</module>
-    <module>geoapi-pending</module>
-    <module>examples</module>
     <module>conformance</module>
   </modules>
 </project>
