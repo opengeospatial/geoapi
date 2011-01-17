@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="GeoAPI">
-  <!-- ========================================================= -->
-  <!--     Logo to appears in the banner on top of each pages    -->
-  <!-- ========================================================= -->
+  <!-- =========================================================
+           Logo to appears in the banner on top of each pages
+       ========================================================= -->
   <bannerLeft>
     <name>GeoAPI</name>
     <src>http://www.geoapi.org/images/geoapi.png</src>
@@ -16,28 +16,34 @@
   </bannerRight>
 
   <body>
-    <!-- ==================================================== -->
-    <!--     Links to appears just below the right banner     -->
-    <!-- ==================================================== -->
+    <!-- ====================================================
+             Links to appears just below the right banner
+         ==================================================== -->
     <links>
       <item name="Open Geospatial Consortium (OGC)" href="http://www.opengeospatial.org/" />
       <item name="Open Source Geospatial (OSGEO)"   href="http://www.osgeo.org/"          />
       <item name="GeoAPI home page"                 href="http://www.geoapi.org/"         />
     </links>
 
-    <!-- ==================================================== -->
-    <!--     Menus to appears on the left side of each page   -->
-    <!-- ==================================================== -->
-    <menu name="Releases" inherit="none">
-      <item name="All releases"  href="releases.html"/>
-      <item name="Download page" href="https://sourceforge.net/projects/geoapi/files/"/>
-      <item name="API changes"   href="changes/index.html"/>
+    <!-- ====================================================
+             Menus to appears on the left side of each page
+         ==================================================== -->
+    <menu name="Latest release" inherit="none">
+      <item name="Table of content"    href="3.0/javadoc/content.html"/>
+      <item name="Javadoc (normative)" href="3.0/javadoc/index.html"/>
+      <!-- item name="Download" href="https://sourceforge.net/projects/geoapi/files/"/ TODO -->
     </menu>
 
     <menu name="Current development" inherit="none">
-      <item name="Table of content"    href="3.0/javadoc/content.html"/>
-      <item name="Javadoc (normative)" href="3.0/javadoc/index.html"/>
+      <item name="Table of content"    href="snapshot/javadoc/content.html"/>
+      <item name="Javadoc (normative)" href="snapshot/javadoc/index.html"/>
       <item name="Javadoc (pending)"   href="snapshot/pending/index.html"/>
+    </menu>
+
+    <menu name="Previous releases" inherit="none">
+      <item name="All releases"  href="releases.html"/>
+      <item name="API changes"   href="changes/index.html"/>
+      <item name="Download page" href="https://sourceforge.net/projects/geoapi/files/"/>
     </menu>
 
     <menu ref="reports"/>  <!-- Replaced by menus for any configured reports (mailing lists, etc.) -->

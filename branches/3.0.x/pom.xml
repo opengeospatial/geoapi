@@ -388,8 +388,6 @@
           </reportSet>
         </reportSets>
         <configuration>
-          <doctitle>${project.name} ${project.version}</doctitle>
-          <windowtitle>${project.name} ${project.version}</windowtitle>
           <author>false</author>          <!-- Specifies whether or not the author text is included.              -->
           <version>false</version>        <!-- Includes or not the version text in the generated docs.            -->
           <encoding>UTF-8</encoding>      <!-- Specifies the encoding name of the source files.                   -->
@@ -401,6 +399,10 @@
           <locale>en</locale>             <!-- The locale that javadoc uses when generating documentation.        -->
           <keywords>true</keywords>       <!-- Adds HTML meta keyword tags to the generated file for each class.  -->
           <breakiterator>true</breakiterator>
+
+          <!-- Do not add the "API" word in document title, because it is already included in the "GeoAPI name. -->
+          <doctitle>${project.name} ${project.version}</doctitle>
+          <windowtitle>${project.name} ${project.version}</windowtitle>
 
           <!-- Custom taglets implemented in Java. -->
           <taglets>

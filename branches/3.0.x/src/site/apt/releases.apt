@@ -4,15 +4,29 @@
 
 GeoAPI releases
 
-  The current development version is GeoAPI SNAPSHOT.
-  The last release matched by an OGC standard was GeoAPI 3.0.
+  The current development version is GeoAPI-SNAPSHOT. The last stable release is GeoAPI version 3.0.
 
   All releases can be obtained from the {{{https://sourceforge.net/projects/geoapi/files/}SourceForge download area}}.
+  Snapshots and releases are also available from the {{{maven.html}Maven repositories}}.
+
+
+* Development snapshots
+
+  The current development version is GeoAPI-SNAPSHOT.
+
+  * {{{snapshot/javadoc/index.html}Browse Javadoc of normative interfaces}}
+
+  * {{{snapshot/pending/index.html}Browse Javadoc of pending interfaces}}
+    (not to be included in the official release)
+
+  * {{{maven.html}Maven repositories}} (recommended way to get the binaries)
+
+  * {{{http://hudson.geomatys.com/job/GeoAPI}Nightly builds (last 2 weeks)}}
 
 
 * Releases
 
-    * {{{3.0/index.html}GeoAPI 3.0}} - Formal release, standardized by OGC 09-083r3.
+    * {{{3.0/index.html}GeoAPI 3.0}} - Formal release, standardized by OGC 09-083, <GeoAPI specification>.
 
     * {{{2.3/index.html}GeoAPI 2.3}} - Unofficial milestones to GeoAPI 3.0.
 
