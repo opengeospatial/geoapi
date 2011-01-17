@@ -49,6 +49,14 @@ import static org.opengis.annotation.Specification.*;
 public interface EnvironmentalRecord {
     /**
      * Average air temperature along the flight pass during the photo flight.
+     * <p>
+     * <TABLE WIDTH="80%" ALIGN="center" CELLPADDING="18" BORDER="4" BGCOLOR="#FFE0B0">
+     *   <TR><TD>
+     *     <P align="justify"><B>Warning:</B> The return type of this method may change in GeoAPI
+     *     3.1. It may be replaced by the {@link javax.measure.quantity.Temperature} type in order
+     *     to provide unit of measurement together with the value.</P>
+     *   </TD></TR>
+     * </TABLE>
      *
      * @return Average air temperature along the flight pass during the photo flight.
      */
@@ -57,6 +65,14 @@ public interface EnvironmentalRecord {
 
     /**
      * Maximum relative humidity along the flight pass during the photo flight.
+     * <p>
+     * <TABLE WIDTH="80%" ALIGN="center" CELLPADDING="18" BORDER="4" BGCOLOR="#FFE0B0">
+     *   <TR><TD>
+     *     <P align="justify"><B>Warning:</B> The return type of this method may change in GeoAPI
+     *     3.1. It may be replaced by the {@link javax.measure.quantity.Dimensionless} type in
+     *     order to provide unit of measurement (typically a percentage) together with the value.</P>
+     *   </TD></TR>
+     * </TABLE>
      *
      * @return Maximum relative humidity along the flight pass during the photo flight.
      */
@@ -65,6 +81,14 @@ public interface EnvironmentalRecord {
 
     /**
      * Maximum altitude during the photo flight.
+     * <p>
+     * <TABLE WIDTH="80%" ALIGN="center" CELLPADDING="18" BORDER="4" BGCOLOR="#FFE0B0">
+     *   <TR><TD>
+     *     <P align="justify"><B>Warning:</B> The return type of this method may change in GeoAPI
+     *     3.1. It may be replaced by the {@link javax.measure.quantity.Length} type in order to
+     *     provide unit of measurement together with the value.</P>
+     *   </TD></TR>
+     * </TABLE>
      *
      * @return Maximum altitude during the photo flight.
      */

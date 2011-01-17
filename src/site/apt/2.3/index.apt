@@ -34,6 +34,16 @@ GeoAPI 2.3
 
 * Release notes
 
+** Version 2.3-M9
+
+   * {{{http://jira.codehaus.org/browse/GEO-184}GEO-184}} - Move Factory and related exception classes to org.opengis.util
+
+
+** Version 2.3-M8
+
+   * Minor compatible editions only.
+
+
 ** Version 2.3-M7
 
    * {{{http://jira.codehaus.org/browse/GEO-165}GEO-165}} - Upgrade the JSR-275 dependency.

@@ -109,8 +109,7 @@
   <P>&nbsp;</P>
   <H2>Javadoc tags</H2>
   <TABLE BORDER='2' CELLPADDING='12'>
-    <TR BGCOLOR="#EEEEFF"><TH NOWRAP>Javadoc tag</TH>
-                          <TH NOWRAP>Usage</TH></TR>
+    <TR BGCOLOR="#EEEEFF"><TH NOWRAP>Javadoc tag</TH><TH NOWRAP>Usage</TH></TR>
 
     <TR><TD NOWRAP><CODE>@author</CODE> <VAR>&lt;editor&gt;</VAR></TD>
         <TD><P ALIGN=justify>The person who wrote the interface. This is <U>not</U> the person who
@@ -120,27 +119,9 @@
             author work. The <CODE>@author</CODE> tag may be considered as a contact person for
             questions related to the Java expression of OGC/ISO specifications.</P></TD></TR>
 
-    <TR><TD NOWRAP><CODE>@rename</CODE> <VAR>&lt;reason&gt;</VAR></TD>
-        <TD><P ALIGN=justify>Some non-trivial name change has been applied in order to match
-            more closely Java usage. A description of the change and its rational shall
-            follow the <CODE>@rename</CODE> tag. Some main reasons for renaming are:</P>
-            <UL>
-              <LI><P ALIGN="justify">In some occasions, abbreviations are expanded.
-                  For example a <CODE>getCS()</CODE> method returning a <CODE>CoordinateSystem</CODE>
-                  object is renamed <CODE>getCoordinateSystem()</CODE>.</P>
-
-              <LI><P ALIGN=justify>In some occasions, supplementary prefix are
-                  omitted. For example, some UML attribute names are prefixed by
-                  some abbreviation of the enclosing class name (e.g. "<CODE>csName</CODE>"
-                  is <CODE>CoordinateSystem</CODE> and "<CODE>srsName</CODE>" in
-                  <CODE>ReferenceSystem</CODE>). For Java interfaces, the above-cited
-                  attributes map to a plain <CODE>getName()</CODE> method.
-                  The same apply to "<CODE>ID</CODE>".</P></LI>
-
-              <LI><P ALIGN=justify>Methods returning an array are renamed to
-                  their plural form (e.g. <CODE>getElement()</CODE> to
-                  <CODE>getElement<U>s</U>()</CODE>).</P></LI>
-            </UL></TD></TR>
+    <TR><TD NOWRAP><CODE>@departure</CODE> <VAR>&lt;category&gt;</VAR><BR><VAR>&lt;reason&gt;</VAR></TD>
+        <TD><P ALIGN=justify>Documents a departure from OGC/ISO specifications. All those
+        tags are collected in the <A HREF="departures.html">departures</A> page.</TD></TR>
 
     <TR><TD NOWRAP><CODE>@unitof</CODE> <VAR>&lt;quantity&gt;</VAR></TD>
         <TD><P ALIGN=justify>The method returns a <CODE>double</CODE> value which should be
