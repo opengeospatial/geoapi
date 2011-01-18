@@ -1,0 +1,27 @@
+                                        -----
+                                         3.0
+                                        -----
+
+GeoAPI 3.0
+
+  Release 3.0 of GeoAPI contains the interfaces developed by the GeoAPI project and accepted by the
+  Open Geospatial Consortium with the final draft of the engineering specification <GeoAPI specification>
+  and therefore considered by the GeoAPI project as one of its <official> releases.
+
+    * Defining specification (TODO)
+
+    * {{{javadoc/content.html}Table of content}}
+
+    * {{{javadoc/index.html}Browse javadoc}}
+
+    * {{{../maven.html}Maven repositories}} (recommended way to get the binaries)
+
+    * Download from SourceForge (TODO)
+
+  This release requires a Java environment Java\ 5 or higher.
+
+
+* Changes since GeoAPI 2.x
+
+  This release is identical to the latest GeoAPI 2.3 snapshot. For a list of changes compared to
+  previous versions, see the {{{../2.3/index.html}changes in the 2.3 series of milestones}}.

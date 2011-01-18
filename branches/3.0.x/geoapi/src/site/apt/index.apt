@@ -10,6 +10,8 @@ GeoAPI normative interfaces
   A page listing the GeoAPI content (interface and method names) together with the name used
   in the OGC and ISO specifications is available {{{../3.0/javadoc/content.html}here}}.
 
-    * {{{apidocs/index.html}Browse javadoc}}
+    * {{{../snapshot/javadoc/index.html}Browse javadoc of development branch}}
 
     * {{{../changes/index.html}Changes since previous releases or milestones}}
+
+    * {{{../3.0/index.html}Latest stable release}}
