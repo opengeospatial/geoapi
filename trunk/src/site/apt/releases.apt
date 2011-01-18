@@ -4,7 +4,7 @@
 
 GeoAPI releases
 
-  The current development version is GeoAPI-SNAPSHOT. The last stable release is GeoAPI version 3.0.
+  The current development version is GeoAPI-SNAPSHOT. The latest stable release is GeoAPI version 3.0.
 
   All releases can be obtained from the {{{https://sourceforge.net/projects/geoapi/files/}SourceForge download area}}.
   Snapshots and releases are also available from the {{{maven.html}Maven repositories}}.

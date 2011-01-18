@@ -9,9 +9,9 @@ GeoAPI 2.0
     <GO-1 Application Objects>
   and therefore considered by the GeoAPI project as one of its <official> releases.
 
-    * {{{http://www.opengeospatial.org/standards/go}Defining specification}}.
+    * {{{http://www.opengeospatial.org/standards/go}Defining specification}}
 
-    * {{{javadoc/index.html}Browse javadoc}}.
+    * {{{javadoc/index.html}Browse javadoc}}
 
     * {{{http://sourceforge.net/projects/geoapi/files/geoapi/2.0.0/GeoAPI-2_0_0.zip/download}Download from SourceForge}}
 

@@ -1,11 +1,15 @@
 GeoAPI SNAPSHOT
 
   The SNAPSHOT is the unreleased version of GeoAPI currently in development. Developers working on
-  projects who need long term stability should use a released version of the API rather than the 
+  projects who need long term stability should use a released version of the API rather than the
   SNAPSHOT, ideally one formalized with an OGC specification document.
-  
-  {{{javadoc/index.html}Browse javadoc}}.
-  
+
+    * {{{javadoc/content.html}Table of content}}
+
+    * {{{javadoc/index.html}Browse javadoc}}
+
+    * {{{../maven.html}Maven repositories}} (recommended way to get the binaries)
+
   This release requires a Java environment Java\ 5 or higher. Nightly builds can be obtained from
   the Hudson automated build tool's {{{http://hudson.geomatys.com/job/GeoAPI/}output page}}.
 
