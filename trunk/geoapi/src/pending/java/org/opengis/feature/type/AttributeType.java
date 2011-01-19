@@ -34,7 +34,7 @@ package org.opengis.feature.type;
 
 /**
  * Temporary placeholder for an interface defined in the
- * <a href="www.geoapi.org/geoapi-pending/">geoapi-pending</a> module.
+ * <a href="http://www.geoapi.org/geoapi-pending/">geoapi-pending</a> module.
  */
 public interface AttributeType {
 }
