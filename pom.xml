@@ -124,9 +124,19 @@
 
   <developers>
     <developer>
+      <name>GeoAPI contributors</name>
+      <organizationUrl>http://www.geoapi.org/</organizationUrl>
+      <roles>
+        <role>Java developers</role>
+      </roles>
+    </developer>
+    <developer>
       <name>GeoAPI 3.0 Standard Working Group</name>
       <organization>Open Geospatial Consortium</organization>
       <organizationUrl>http://www.opengeospatial.org/</organizationUrl>
+      <roles>
+        <role>Specification editors</role>
+      </roles>
     </developer>
   </developers>
 
