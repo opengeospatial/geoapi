@@ -41,13 +41,13 @@ import java.util.Collection;
  * <li>Not Thread-Safe: while we have setters we are trusting the application
  * to handle any and all synchronization issues. While this would be okay if we
  * were simply implementing an application, it is not okay from an
- * interoptability standpoint - an application working with a library would have
+ * inter-operability standpoint - an application working with a library would have
  * no assurances on how instances are used.
- * <li>No Notification: there is no way to recieve notificaitons when contents
+ * <li>No Notification: there is no way to receive notifications when contents
  *   are changed
  * </ul>
  *
- * @author Jody
+ * @author Jody Garnett (Refractions Research)
  */
 public interface Citation {
     String getISBN();

@@ -37,12 +37,12 @@ import java.util.Collection;
 /**
  * Implementation is responsible for making this thread safe. Two stratagies are recommended:
  * <ul>
- * <li>synchornized - use synchronized on all public methods
+ * <li>synchronized - use synchronized on all public methods
  * <li>lock - use an internal ReadWrite lock
  * </ul>
  * As usual it is recommended you use Java's PropertyChangeSupport class.
  *
- * @author Jody
+ * @author Jody Garnett (Refractions Research)
  */
 public interface Citation {
     String ISBN_PROPERTY = "ISBN";

@@ -82,7 +82,7 @@ import org.opengis.geometry.coordinate.PointArray;
  * rm content.txt
  * </pre></blockquote>
  *
- * @author Martin Desruisseaux
+ * @author Martin Desruisseaux (Geomatys)
  */
 public class IndexGenerator extends UmlProcessor implements Comparator<TypeDeclaration> {
     /**

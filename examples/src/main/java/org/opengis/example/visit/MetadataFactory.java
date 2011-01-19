@@ -39,7 +39,7 @@ import java.util.Set;
  * <p>
  * Please be kind and do not mix implementations from different factories.
  *
- * @author Jody
+ * @author Jody Garnett (Refractions Research)
  */
 public interface MetadataFactory {
     CitationDate createCitationDate( Date date );

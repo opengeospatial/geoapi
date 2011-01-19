@@ -36,7 +36,7 @@ import java.util.Date;
 /**
  * Implementation required to be thread-safe.
  *
- * @author Jody
+ * @author Jody Garnett (Refractions Research)
  */
 public interface CitationDate {
      Date getDate();

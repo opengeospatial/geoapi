@@ -34,7 +34,33 @@
        ==================================================== -->
   <developers>
     <developer>
-      <id>crossley</id>
+      <id>desruisseaux</id>
+      <name>Martin Desruisseaux</name>
+      <email>martin.desruisseaux@geomatys.fr</email>
+      <organization>Geomatys</organization>
+      <organizationUrl>http://www.geomatys.com</organizationUrl>
+      <roles>
+        <role>Java Developer</role>
+        <role>SWG chair</role>
+      </roles>
+      <timezone>+1</timezone>
+    </developer>
+    <developer>
+      <id>eclesia</id>
+      <name>Johann Sorel</name>
+      <email>johann.sorel@geomatys.fr</email>
+      <organization>Geomatys</organization>
+      <organizationUrl>http://www.geomatys.com</organizationUrl>
+      <roles>
+        <role>Java Developer</role>
+      </roles>
+      <timezone>+1</timezone>
+    </developer>
+  </developers>
+
+  <contributors>
+    <contributor>
+      <!-- <id>crossley</id> -->
       <name>Jesse Crossley</name>
       <email>jcrossley@systechnologies.com</email>
       <organization>SYS Technologies</organization>
@@ -43,20 +69,17 @@
         <role>Java Developer</role>
       </roles>
       <timezone>-8</timezone>
-    </developer>
-    <developer>
-      <id>desruisseaux</id>
-      <name>Martin Desruisseaux</name>
-      <email>martin.desruisseaux@geomatys.fr</email>
-      <organization>Geomatys</organization>
-      <organizationUrl>http://www.geomatys.com</organizationUrl>
+    </contributor>
+    <contributor>
+      <!-- id>jdeolive</id> -->
+      <name>Justin Deoliveira</name>
+      <organization>The Open Planning Project</organization>
       <roles>
         <role>Java Developer</role>
       </roles>
-      <timezone>+1</timezone>
-    </developer>
-    <developer>
-      <id>dillard</id>
+    </contributor>
+    <contributor>
+      <!-- id>dillard</id -->
       <name>Chris Dillard</name>
       <email>cdillard@systechnologies.com</email>
       <organization>SYS Technologies</organization>
@@ -65,36 +88,81 @@
         <role>Java Developer</role>
       </roles>
       <timezone>-6</timezone>
-    </developer>
-    <developer>
-      <id>fabiani</id>
+    </contributor>
+    <contributor>
+      <!-- <id>fabiani</id> -->
       <name>Alessio Fabiani</name>
       <email>alessio.fabiani@gmail.com</email>
       <roles>
         <role>Java Developer</role>
       </roles>
       <timezone>+1</timezone>
-    </developer>
-    <developer>
-      <id>fellah</id>
+    </contributor>
+    <contributor>
+      <!-- <id>fellah</id> -->
       <name>Stephane Fellah</name>
       <email>stephanef@imagemattersllc.com</email>
       <organization>Image Matters</organization>
       <roles>
         <role>Java Developer</role>
       </roles>
-    </developer>
-    <developer>
-      <id>jive</id>
+    </contributor>
+    <contributor>
+      <name>Torsten Friebe</name>
+      <email>tfr@users.sourceforge.net</email>
+      <organization>lat/lon</organization>
+      <roles>
+        <role>Java Developer</role>
+      </roles>
+    </contributor>
+    <contributor>
+      <!-- id>jive</id> -->
       <name>Jody Garnett</name>
       <email>jive@users.sourceforge.net</email>
       <organization>Refractions Research</organization>
       <roles>
         <role>Java Developer</role>
       </roles>
-    </developer>
-    <developer>
-      <id>jmacgill</id>
+    </contributor>
+    <contributor>
+      <!-- <id>cory2070</id> -->
+      <name>Cory Horner</name>
+      <organization>Refractions Research</organization>
+      <roles>
+        <role>Java Developer</role>
+      </roles>
+    </contributor>
+    <contributor>
+      <name>Sanjay Jena</name>
+    </contributor>
+    <contributor>
+      <!-- <id>koolhoven</id> -->
+      <name>Wim Koolhoven</name>
+      <email>koolhoven@users.sourceforge.net</email>
+      <roles>
+        <role>Java Developer</role>
+      </roles>
+    </contributor>
+    <contributor>
+      <name>Guilhem Legal</name>
+      <email>guilhem.legal@geomatys.fr</email>
+      <organization>Geomatys</organization>
+      <organizationUrl>http://www.geomatys.com</organizationUrl>
+      <roles>
+        <role>Java Developer</role>
+      </roles>
+      <timezone>+1</timezone>
+    </contributor>
+    <contributor>
+      <name>Katharina Lupp</name>
+      <email>k.lupp@web.de</email>
+      <organization>lat/lon</organization>
+      <roles>
+        <role>Java Developer</role>
+      </roles>
+    </contributor>
+    <contributor>
+      <!-- <id>jmacgill</id> -->
       <name>James Macgill</name>
       <email>jmacgill@users.sourceforge.net</email>
       <organization>PennState</organization>
@@ -102,24 +170,53 @@
         <role>Java Developer</role>
         <role>Project founder</role>
       </roles>
-    </developer>
-    <developer>
-      <id>koolhoven</id>
-      <name>Wim Koolhoven</name>
-      <email>koolhoven@users.sourceforge.net</email>
+    </contributor>
+    <contributor>
+      <name>Alexander Petkov</name>
+    </contributor>
+    <contributor>
+      <name>Andreas Poth</name>
+      <email>poth@lat-lon.de</email>
+      <organization>lat/lon</organization>
       <roles>
         <role>Java Developer</role>
       </roles>
-    </developer>
-  </developers>
-
-  <contributors>
+    </contributor>
     <contributor>
-      <name>Greg Reynolds</name>
-      <email>gregreynolds@cox.net</email>
+      <name>Jackson Roehrig</name>
+    </contributor>
+    <contributor>
+      <!-- <id>groldan</id> -->
+      <name>Gabriel Roldan</name>
+      <organization>Axios Engineering</organization>
       <roles>
-        <role>Chairman</role>
-        <role>Project manager</role>
+        <role>Java Developer</role>
+      </roles>
+    </contributor>
+    <contributor>
+      <name>Axel Schaefer</name>
+      <email>uzs6tr@uni-bonn.de</email>
+      <organization>lat/lon</organization>
+      <roles>
+        <role>Java Developer</role>
+      </roles>
+    </contributor>
+    <contributor>
+      <name>Markus Schneider</name>
+      <email>mschneider@lat-lon.de</email>
+      <organization>lat/lon</organization>
+      <roles>
+        <role>Java Developer</role>
+      </roles>
+    </contributor>
+    <contributor>
+      <name>Martin Schouwenburg</name>
+    </contributor>
+    <contributor>
+      <name>Ian Turton</name>
+      <organization>CCG</organization>
+      <roles>
+        <role>Java Developer</role>
       </roles>
     </contributor>
   </contributors>
