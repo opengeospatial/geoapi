@@ -46,6 +46,16 @@
     </developer>
   </developers>
 
+  <contributors>
+    <contributor>
+      <name>Chris Holmes</name>
+      <organization>Refractions Research</organization>
+      <roles>
+        <role>Java Developer</role>
+      </roles>
+    </contributor>
+  </contributors>
+
 
 
   <!-- ====================================================
