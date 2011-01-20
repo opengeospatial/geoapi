@@ -371,9 +371,9 @@
 
             <!-- Pending packages. -->
             <group>
-              <title>Display and Styling</title>
+              <title>Geometry and Topology</title>
               <packages>
-                org.opengis.display*:org.opengis.style*:org.opengis.layer*:org.opengis.sld*
+                org.opengis.geometry*:org.opengis.topology*
               </packages>
             </group>
             <group>
@@ -389,9 +389,9 @@
               </packages>
             </group>
             <group>
-              <title>Geometry and Topology</title>
+              <title>Display and Styling</title>
               <packages>
-                org.opengis.geometry*:org.opengis.topology*
+                org.opengis.display*:org.opengis.style*:org.opengis.layer*:org.opengis.sld*
               </packages>
             </group>
             <group>
