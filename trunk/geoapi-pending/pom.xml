@@ -40,8 +40,8 @@
       <organization>Geomatys</organization>
       <organizationUrl>http://www.geomatys.com</organizationUrl>
       <roles>
-        <role>Java Developer</role>
-        <role>SWG chair</role>
+        <role>Java developer</role>
+        <role>Maintainer</role>
       </roles>
       <timezone>+1</timezone>
     </developer>
@@ -52,7 +52,7 @@
       <organization>Geomatys</organization>
       <organizationUrl>http://www.geomatys.com</organizationUrl>
       <roles>
-        <role>Java Developer</role>
+        <role>Java developer</role>
       </roles>
       <timezone>+1</timezone>
     </developer>
@@ -66,7 +66,7 @@
       <organization>SYS Technologies</organization>
       <organizationUrl>http://www.systechnologies.com</organizationUrl>
       <roles>
-        <role>Java Developer</role>
+        <role>Java developer</role>
       </roles>
       <timezone>-8</timezone>
     </contributor>
@@ -75,7 +75,7 @@
       <name>Justin Deoliveira</name>
       <organization>The Open Planning Project</organization>
       <roles>
-        <role>Java Developer</role>
+        <role>Java developer</role>
       </roles>
     </contributor>
     <contributor>
@@ -85,7 +85,7 @@
       <organization>SYS Technologies</organization>
       <organizationUrl>http://www.systechnologies.com</organizationUrl>
       <roles>
-        <role>Java Developer</role>
+        <role>Java developer</role>
       </roles>
       <timezone>-6</timezone>
     </contributor>
@@ -94,7 +94,7 @@
       <name>Alessio Fabiani</name>
       <email>alessio.fabiani@gmail.com</email>
       <roles>
-        <role>Java Developer</role>
+        <role>Java developer</role>
       </roles>
       <timezone>+1</timezone>
     </contributor>
@@ -104,7 +104,7 @@
       <email>stephanef@imagemattersllc.com</email>
       <organization>Image Matters</organization>
       <roles>
-        <role>Java Developer</role>
+        <role>Java developer</role>
       </roles>
     </contributor>
     <contributor>
@@ -112,7 +112,7 @@
       <email>tfr@users.sourceforge.net</email>
       <organization>lat/lon</organization>
       <roles>
-        <role>Java Developer</role>
+        <role>Java developer</role>
       </roles>
     </contributor>
     <contributor>
@@ -121,7 +121,7 @@
       <email>jive@users.sourceforge.net</email>
       <organization>Refractions Research</organization>
       <roles>
-        <role>Java Developer</role>
+        <role>Java developer</role>
       </roles>
     </contributor>
     <contributor>
@@ -129,7 +129,7 @@
       <name>Cory Horner</name>
       <organization>Refractions Research</organization>
       <roles>
-        <role>Java Developer</role>
+        <role>Java developer</role>
       </roles>
     </contributor>
     <contributor>
@@ -140,7 +140,7 @@
       <name>Wim Koolhoven</name>
       <email>koolhoven@users.sourceforge.net</email>
       <roles>
-        <role>Java Developer</role>
+        <role>Java developer</role>
       </roles>
     </contributor>
     <contributor>
@@ -149,7 +149,7 @@
       <organization>Geomatys</organization>
       <organizationUrl>http://www.geomatys.com</organizationUrl>
       <roles>
-        <role>Java Developer</role>
+        <role>Java developer</role>
       </roles>
       <timezone>+1</timezone>
     </contributor>
@@ -158,7 +158,7 @@
       <email>k.lupp@web.de</email>
       <organization>lat/lon</organization>
       <roles>
-        <role>Java Developer</role>
+        <role>Java developer</role>
       </roles>
     </contributor>
     <contributor>
@@ -167,7 +167,7 @@
       <email>jmacgill@users.sourceforge.net</email>
       <organization>PennState</organization>
       <roles>
-        <role>Java Developer</role>
+        <role>Java developer</role>
         <role>Project founder</role>
       </roles>
     </contributor>
@@ -179,7 +179,7 @@
       <email>poth@lat-lon.de</email>
       <organization>lat/lon</organization>
       <roles>
-        <role>Java Developer</role>
+        <role>Java developer</role>
       </roles>
     </contributor>
     <contributor>
@@ -190,7 +190,7 @@
       <name>Gabriel Roldan</name>
       <organization>Axios Engineering</organization>
       <roles>
-        <role>Java Developer</role>
+        <role>Java developer</role>
       </roles>
     </contributor>
     <contributor>
@@ -198,7 +198,7 @@
       <email>uzs6tr@uni-bonn.de</email>
       <organization>lat/lon</organization>
       <roles>
-        <role>Java Developer</role>
+        <role>Java developer</role>
       </roles>
     </contributor>
     <contributor>
@@ -206,7 +206,7 @@
       <email>mschneider@lat-lon.de</email>
       <organization>lat/lon</organization>
       <roles>
-        <role>Java Developer</role>
+        <role>Java developer</role>
       </roles>
     </contributor>
     <contributor>
@@ -216,7 +216,7 @@
       <name>Ian Turton</name>
       <organization>CCG</organization>
       <roles>
-        <role>Java Developer</role>
+        <role>Java developer</role>
       </roles>
     </contributor>
   </contributors>

@@ -41,7 +41,7 @@
       <email>jive@users.sourceforge.net</email>
       <organization>Refractions Research</organization>
       <roles>
-        <role>Java Developer</role>
+        <role>Java developer</role>
       </roles>
     </developer>
   </developers>
@@ -51,7 +51,7 @@
       <name>Chris Holmes</name>
       <organization>Refractions Research</organization>
       <roles>
-        <role>Java Developer</role>
+        <role>Java developer</role>
       </roles>
     </contributor>
   </contributors>

@@ -41,7 +41,7 @@
       <organization>Geomatys</organization>
       <organizationUrl>http://www.geomatys.com</organizationUrl>
       <roles>
-        <role>Java Developer</role>
+        <role>Java developer</role>
       </roles>
       <timezone>+1</timezone>
     </developer>
@@ -53,7 +53,7 @@
       <organization>Geomatys</organization>
       <organizationUrl>http://www.geomatys.fr/</organizationUrl>
       <roles>
-        <role>Java Developer</role>
+        <role>Java developer</role>
       </roles>
       <timezone>+1</timezone>
     </contributor>
