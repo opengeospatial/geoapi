@@ -500,6 +500,21 @@
             <plugin>
               <groupId>org.codehaus.mojo</groupId>
               <artifactId>taglist-maven-plugin</artifactId>
+              <configuration>
+                <tagListOptions>
+                  <tagClasses>
+                    <tagClass>
+                      <displayName>TODO work</displayName>
+                      <tags>
+                        <tag>
+                          <matchString>@todo</matchString>
+                          <matchType>ignoreCase</matchType>
+                        </tag>
+                      </tags>
+                    </tagClass>
+                  </tagClasses>
+                </tagListOptions>
+              </configuration>
             </plugin>
           </reportPlugins>
         </configuration>
