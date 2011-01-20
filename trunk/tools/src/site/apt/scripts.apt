@@ -1,6 +1,6 @@
 Scripts used for generating the difference of API
 
-  The scripts below are used by the {{{release-instruction.html}release instruction}} page.
+  The scripts below are used by the {{{./release-instruction.html}release instruction}} page.
 
 
 * jdiff.sh
