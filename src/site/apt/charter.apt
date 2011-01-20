@@ -40,7 +40,7 @@ Charter of the GeoAPI 3.0 Standard Working Group of the Open Geospatial Consorti
 
 ** 2.2 Specific Contribution of Existing Work as a Starting Point
 
-  Existing work by the GeoAPI project ({{{index.html}http://www.geoapi.org}}), will be taken as a starting
+  Existing work by the GeoAPI project ({{{./index.html}http://www.geoapi.org}}), will be taken as a starting
   point. Specifically, the Standard will only include the most stable interfaces of the GeoAPI
   project, for which a reliable reference implementation exists and there is at least one other
   implementation.
@@ -70,7 +70,7 @@ Charter of the GeoAPI 3.0 Standard Working Group of the Open Geospatial Consorti
   The Java language interfaces and test suite will be distributed with OGC copyright under one of
   the following license, to be determined by the working group:
 
-    * the current license documented at {{{license.html}http://www.geoapi.org/license.html}}.
+    * the current license documented at {{{./license.html}http://www.geoapi.org/license.html}}.
 
     * the well known license, the GNU Lesser General Public License (LGPL) which is described at
       ({{http://www.gnu.org/licenses/old-licenses/gpl-2.0.html}}). The license permits the use of the

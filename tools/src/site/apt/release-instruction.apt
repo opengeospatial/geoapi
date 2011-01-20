@@ -101,7 +101,7 @@ svn export ../tags/$GEOAPI_VERSION/geoapi/src/main/java $GEOAPI_VERSION
   compared to each previous release that we support. During the execution of <<<nano>>>, make
   sure that the version number declared for the <<<OLD_VERSION>>> variable is correct.
 
-  The <<<jdiff.sh>>> and <<<fix-html.xml>>> scripts are defined {{{scripts.html}here}}.
+  The <<<jdiff.sh>>> and <<<fix-html.xml>>> scripts are defined {{{./scripts.html}here}}.
 
   The <<<user@server>>> shall be replaced by the appropriate value, and the files should be
   moved (typically in a <<<ssh>>> console) to their definitive location after each execution

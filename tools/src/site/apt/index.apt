@@ -6,4 +6,4 @@ GeoAPI build tools
 
 * Related material
 
-  * {{{release-instruction.html}Steps for creating a GeoAPI milestone in a Unix environment}}
+  * {{{./release-instruction.html}Steps for creating a GeoAPI milestone in a Unix environment}}

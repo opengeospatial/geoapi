@@ -9,7 +9,7 @@ GeoAPI 1.0
     <GO-1 Application Objects>
   for evaluation along with the draft standard.
 
-    * {{{javadoc/index.html}Browse javadoc}}
+    * {{{./javadoc/index.html}Browse javadoc}}
 
     * {{{http://sourceforge.net/projects/geoapi/files/geoapi/1.0.0/GeoAPI-1_0_0.zip/download}Download from SourceForge}}
 
