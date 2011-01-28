@@ -34,8 +34,8 @@
  * {@linkplain org.opengis.referencing.crs.CoordinateReferenceSystem Coordinate reference systems}
  * ({@linkplain org.opengis.referencing.cs.CoordinateSystem coordinate systems} with a
  * {@linkplain org.opengis.referencing.datum.Datum datum}). The following is adapted from
- * <A HREF="http://portal.opengeospatial.org/files/?artifact_id=6716">OpenGIS&reg;
- * Spatial Referencing by Coordinates (Topic 2)</A> specification.
+ * {@linkplain org.opengis.annotation.Specification#ISO_19111 OpenGIS&reg; Spatial Referencing by
+ * Coordinates (Topic 2)} specification.
  *
  * <P ALIGN="justify">A coordinate reference system consists of one coordinate
  * system that is related to the earth through one datum. The coordinate system

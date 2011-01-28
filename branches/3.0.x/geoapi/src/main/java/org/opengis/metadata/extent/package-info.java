@@ -32,7 +32,8 @@
 
 /**
  * {@linkplain org.opengis.metadata.extent.Extent} information. The following is adapted from
- * <A HREF="http://www.opengis.org/docs/01-111.pdf">OpenGIS&reg; Metadata (Topic 11)</A> specification.
+ * {@linkplain org.opengis.annotation.Specification#ISO_19115 OpenGIS&reg; Metadata (Topic 11)}
+ * specification.
  *
  * <P ALIGN="justify">The datatype in this package is an aggregate of the metadata
  * elements that describe the spatial and temporal extent of the referring entity.
