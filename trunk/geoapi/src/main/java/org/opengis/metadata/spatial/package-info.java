@@ -32,9 +32,9 @@
 
 /**
  * {@linkplain org.opengis.metadata.spatial.SpatialRepresentation Spatial representation} information
- * (includes grid and vector representation).
- * The following is adapted from <A HREF="http://www.opengis.org/docs/01-111.pdf">OpenGIS&reg;
- * Metadata (Topic 11)</A> specification.
+ * (includes grid and vector representation). The following is adapted from
+ * {@linkplain org.opengis.annotation.Specification#ISO_19115 OpenGIS&reg; Metadata (Topic 11)}
+ * specification.
  *
  * <P ALIGN="justify">This package contains information concerning the mechanisms used to represent
  * spatial information in a dataset. The {@linkplain org.opengis.metadata.spatial.SpatialRepresentation

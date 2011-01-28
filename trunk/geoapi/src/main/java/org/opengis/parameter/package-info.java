@@ -33,8 +33,8 @@
 /**
  * Description and storage of {@linkplain org.opengis.parameter.ParameterValue parameter values}.
  * The first two paragraphs below are adapted from
- * <A HREF="http://portal.opengeospatial.org/files/?artifact_id=6716">OpenGIS&reg;
- * Spatial Referencing by Coordinates (Topic 2)</A> specification.
+ * {@linkplain org.opengis.annotation.Specification#ISO_19111 OpenGIS&reg; Spatial Referencing by
+ * Coordinates (Topic 2)} specification.
  *
  * <P ALIGN="justify">Most {@linkplain org.opengis.parameter.ParameterValue parameter values} are
  * numeric, but for some operation methods, notably those implementing a grid interpolation
