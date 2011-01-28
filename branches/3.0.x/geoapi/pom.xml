@@ -42,8 +42,8 @@
       <organization>Geomatys</organization>
       <organizationUrl>http://www.geomatys.com</organizationUrl>
       <roles>
-        <role>Java Developer</role>
-        <role>SWG chair</role>
+        <role>Java developer</role>
+        <role>Maintainer</role>
       </roles>
       <timezone>+1</timezone>
     </developer>
@@ -55,7 +55,7 @@
       <organization>Geomatys</organization>
       <organizationUrl>http://www.geomatys.fr/</organizationUrl>
       <roles>
-        <role>Java Developer</role>
+        <role>Java developer</role>
       </roles>
       <timezone>+1</timezone>
     </contributor>
@@ -63,7 +63,7 @@
       <name>Ely Conn</name>
       <organization>Leica Geosystems Geospatial Imaging</organization>
       <roles>
-        <role>Java Developer</role>
+        <role>Java developer</role>
       </roles>
     </contributor>
     <contributor>
@@ -83,7 +83,7 @@
       <organization>SYS Technologies</organization>
       <organizationUrl>http://www.systechnologies.com</organizationUrl>
       <roles>
-        <role>Java Developer</role>
+        <role>Java developer</role>
       </roles>
       <timezone>-8</timezone>
     </contributor>
@@ -93,7 +93,7 @@
       <email>jive@users.sourceforge.net</email>
       <organization>Refractions Research</organization>
       <roles>
-        <role>Java Developer</role>
+        <role>Java developer</role>
       </roles>
     </contributor>
     <contributor>
@@ -101,14 +101,14 @@
       <name>Cory Horner</name>
       <organization>Refractions Research</organization>
       <roles>
-        <role>Java Developer</role>
+        <role>Java developer</role>
       </roles>
     </contributor>
     <contributor>
       <name>Bryce Nordgren</name>
       <organization>USDA</organization>
       <roles>
-        <role>Java Developer</role>
+        <role>Java developer</role>
       </roles>
     </contributor>
     <contributor>
