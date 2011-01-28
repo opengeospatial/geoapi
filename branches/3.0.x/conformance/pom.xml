@@ -45,16 +45,19 @@
       </roles>
       <timezone>+1</timezone>
     </developer>
-    <developer>
-      <id>jive</id>
-      <name>Jody Garnett</name>
-      <email>jive@users.sourceforge.net</email>
-      <organization>Refractions Research</organization>
+  </developers>
+
+  <contributors>
+    <contributor>
+      <name>Cédric Briançon</name>
+      <organization>Geomatys</organization>
+      <organizationUrl>http://www.geomatys.fr/</organizationUrl>
       <roles>
         <role>Java Developer</role>
       </roles>
-    </developer>
-  </developers>
+      <timezone>+1</timezone>
+    </contributor>
+  </contributors>
 
 
 

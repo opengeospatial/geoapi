@@ -121,125 +121,24 @@
   <!-- ====================================================
            Developers and contributors
        ==================================================== -->
+
   <developers>
     <developer>
-      <id>acuster</id>
-      <name>Adrian Custer</name>
-      <organization>Geomatys</organization>
-      <organizationUrl>http://www.geomatys.fr/</organizationUrl>
+      <name>GeoAPI contributors</name>
+      <organizationUrl>http://www.geoapi.org/</organizationUrl>
       <roles>
-        <role>Specification editor</role>
-      </roles>
-      <timezone>+1</timezone>
-    </developer>
-    <developer>
-      <id>crossley</id>
-      <name>Jesse Crossley</name>
-      <email>jcrossley@systechnologies.com</email>
-      <organization>SYS Technologies</organization>
-      <organizationUrl>http://www.systechnologies.com</organizationUrl>
-      <roles>
-        <role>Java Developer</role>
-      </roles>
-      <timezone>-8</timezone>
-    </developer>
-    <developer>
-      <id>desruisseaux</id>
-      <name>Martin Desruisseaux</name>
-      <email>martin.desruisseaux@geomatys.fr</email>
-      <organization>Geomatys</organization>
-      <organizationUrl>http://www.geomatys.com</organizationUrl>
-      <roles>
-        <role>Java Developer</role>
-        <role>Maintainer</role>
-      </roles>
-      <timezone>+1</timezone>
-    </developer>
-    <developer>
-      <id>dillard</id>
-      <name>Chris Dillard</name>
-      <email>cdillard@systechnologies.com</email>
-      <organization>SYS Technologies</organization>
-      <organizationUrl>http://www.systechnologies.com</organizationUrl>
-      <roles>
-        <role>Java Developer</role>
-      </roles>
-      <timezone>-6</timezone>
-    </developer>
-    <developer>
-      <id>fabiani</id>
-      <name>Alessio Fabiani</name>
-      <email>alessio.fabiani@gmail.com</email>
-      <roles>
-        <role>Java Developer</role>
-      </roles>
-      <timezone>+1</timezone>
-    </developer>
-    <developer>
-      <id>fellah</id>
-      <name>Stephane Fellah</name>
-      <email>stephanef@imagemattersllc.com</email>
-      <organization>Image Matters</organization>
-      <roles>
-        <role>Java Developer</role>
+        <role>Java developers</role>
       </roles>
     </developer>
     <developer>
-      <id>jive</id>
-      <name>Jody Garnett</name>
-      <email>jive@users.sourceforge.net</email>
-      <organization>LISAsoft</organization>
+      <name>GeoAPI 3.0 Standard Working Group</name>
+      <organization>Open Geospatial Consortium</organization>
+      <organizationUrl>http://www.opengeospatial.org/</organizationUrl>
       <roles>
-        <role>Java Developer</role>
-      </roles>
-    </developer>
-    <developer>
-      <id>jmacgill</id>
-      <name>James Macgill</name>
-      <email>jmacgill@users.sourceforge.net</email>
-      <organization>PennState</organization>
-      <roles>
-        <role>Java Developer</role>
-        <role>Project founder</role>
-      </roles>
-    </developer>
-    <developer>
-      <id>koolhoven</id>
-      <name>Wim Koolhoven</name>
-      <email>koolhoven@users.sourceforge.net</email>
-      <roles>
-        <role>Java Developer</role>
+        <role>Specification editors</role>
       </roles>
     </developer>
   </developers>
-
-  <contributors>
-    <contributor>
-      <name>Cédric Briançon</name>
-      <organization>Geomatys</organization>
-      <organizationUrl>http://www.geomatys.fr/</organizationUrl>
-      <roles>
-        <role>Java Developer</role>
-      </roles>
-      <timezone>+1</timezone>
-    </contributor>
-    <contributor>
-      <name>Bryce Nordgren</name>
-      <organization>USDA</organization>
-      <roles>
-        <role>Java Developer</role>
-      </roles>
-    </contributor>
-    <contributor>
-      <name>Greg Reynolds</name>
-      <email>gregreynolds@cox.net</email>
-      <roles>
-        <role>Chairman</role>
-        <role>Project manager</role>
-      </roles>
-    </contributor>
-  </contributors>
-
 
 
   <!-- ====================================================
@@ -460,15 +359,27 @@
 
             <!-- Pending packages. -->
             <group>
+              <title>Geometry and Topology</title>
+              <packages>
+                org.opengis.geometry*:org.opengis.topology*
+              </packages>
+            </group>
+            <group>
+              <title>Coverage</title>
+              <packages>
+                org.opengis.coverage*
+              </packages>
+            </group>
+            <group>
               <title>Feature and Filter</title>
               <packages>
                 org.opengis.feature*:org.opengis.filter*
               </packages>
             </group>
             <group>
-              <title>Geometry and Topology</title>
+              <title>Display and Styling</title>
               <packages>
-                org.opengis.geometry*:org.opengis.topology*
+                org.opengis.display*:org.opengis.style*:org.opengis.layer*:org.opengis.sld*
               </packages>
             </group>
           </groups>

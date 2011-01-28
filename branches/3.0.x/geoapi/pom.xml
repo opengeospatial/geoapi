@@ -36,7 +36,48 @@
        ==================================================== -->
   <developers>
     <developer>
-      <id>crossley</id>
+      <id>desruisseaux</id>
+      <name>Martin Desruisseaux</name>
+      <email>martin.desruisseaux@geomatys.fr</email>
+      <organization>Geomatys</organization>
+      <organizationUrl>http://www.geomatys.com</organizationUrl>
+      <roles>
+        <role>Java Developer</role>
+        <role>SWG chair</role>
+      </roles>
+      <timezone>+1</timezone>
+    </developer>
+  </developers>
+
+  <contributors>
+    <contributor>
+      <name>Cédric Briançon</name>
+      <organization>Geomatys</organization>
+      <organizationUrl>http://www.geomatys.fr/</organizationUrl>
+      <roles>
+        <role>Java Developer</role>
+      </roles>
+      <timezone>+1</timezone>
+    </contributor>
+    <contributor>
+      <name>Ely Conn</name>
+      <organization>Leica Geosystems Geospatial Imaging</organization>
+      <roles>
+        <role>Java Developer</role>
+      </roles>
+    </contributor>
+    <contributor>
+      <!-- <id>avcuster</id> -->
+      <name>Adrian Custer</name>
+      <organization>Geomatys</organization>
+      <organizationUrl>http://www.geomatys.fr/</organizationUrl>
+      <roles>
+        <role>Specification editor</role>
+      </roles>
+      <timezone>+1</timezone>
+    </contributor>
+    <contributor>
+      <!-- <id>crossley</id> -->
       <name>Jesse Crossley</name>
       <email>jcrossley@systechnologies.com</email>
       <organization>SYS Technologies</organization>
@@ -45,77 +86,31 @@
         <role>Java Developer</role>
       </roles>
       <timezone>-8</timezone>
-    </developer>
-    <developer>
-      <id>desruisseaux</id>
-      <name>Martin Desruisseaux</name>
-      <email>martin.desruisseaux@geomatys.fr</email>
-      <organization>Geomatys</organization>
-      <organizationUrl>http://www.geomatys.com</organizationUrl>
-      <roles>
-        <role>Java Developer</role>
-      </roles>
-      <timezone>+1</timezone>
-    </developer>
-    <developer>
-      <id>dillard</id>
-      <name>Chris Dillard</name>
-      <email>cdillard@systechnologies.com</email>
-      <organization>SYS Technologies</organization>
-      <organizationUrl>http://www.systechnologies.com</organizationUrl>
-      <roles>
-        <role>Java Developer</role>
-      </roles>
-      <timezone>-6</timezone>
-    </developer>
-    <developer>
-      <id>fabiani</id>
-      <name>Alessio Fabiani</name>
-      <email>alessio.fabiani@gmail.com</email>
-      <roles>
-        <role>Java Developer</role>
-      </roles>
-      <timezone>+1</timezone>
-    </developer>
-    <developer>
-      <id>fellah</id>
-      <name>Stephane Fellah</name>
-      <email>stephanef@imagemattersllc.com</email>
-      <organization>Image Matters</organization>
-      <roles>
-        <role>Java Developer</role>
-      </roles>
-    </developer>
-    <developer>
-      <id>jive</id>
+    </contributor>
+    <contributor>
+      <!-- <id>jive</id> -->
       <name>Jody Garnett</name>
       <email>jive@users.sourceforge.net</email>
       <organization>Refractions Research</organization>
       <roles>
         <role>Java Developer</role>
       </roles>
-    </developer>
-    <developer>
-      <id>jmacgill</id>
-      <name>James Macgill</name>
-      <email>jmacgill@users.sourceforge.net</email>
-      <organization>PennState</organization>
-      <roles>
-        <role>Java Developer</role>
-        <role>Project founder</role>
-      </roles>
-    </developer>
-    <developer>
-      <id>koolhoven</id>
-      <name>Wim Koolhoven</name>
-      <email>koolhoven@users.sourceforge.net</email>
+    </contributor>
+    <contributor>
+      <!-- <id>cory2070</id> -->
+      <name>Cory Horner</name>
+      <organization>Refractions Research</organization>
       <roles>
         <role>Java Developer</role>
       </roles>
-    </developer>
-  </developers>
-
-  <contributors>
+    </contributor>
+    <contributor>
+      <name>Bryce Nordgren</name>
+      <organization>USDA</organization>
+      <roles>
+        <role>Java Developer</role>
+      </roles>
+    </contributor>
     <contributor>
       <name>Greg Reynolds</name>
       <email>gregreynolds@cox.net</email>

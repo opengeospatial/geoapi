@@ -61,7 +61,7 @@ import org.opengis.annotation.UML;
 /**
  * Base classe for annotation processors working on the {@link UML} tag.
  *
- * @author Martin Desruisseaux
+ * @author Martin Desruisseaux (Geomatys)
  */
 public abstract class UmlProcessor extends SimpleDeclarationVisitor
         implements AnnotationProcessor, AnnotationProcessorFactory
