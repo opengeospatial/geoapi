@@ -33,8 +33,8 @@
 /**
  * {@linkplain org.opengis.referencing.cs.CoordinateSystem Coordinate systems} and their
  * {@linkplain org.opengis.referencing.cs.CoordinateSystemAxis axis}. The following is adapted from
- * <A HREF="http://portal.opengeospatial.org/files/?artifact_id=6716">OpenGIS&reg;
- * Spatial Referencing by Coordinates (Topic 2)</A> specification.
+ * {@linkplain org.opengis.annotation.Specification#ISO_19111 OpenGIS&reg; Spatial Referencing by
+ * Coordinates (Topic 2)} specification.
  *
  * <H3>Coordinate system</H3>
  * <P ALIGN="justify">The coordinates of points are recorded in a coordinate

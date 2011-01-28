@@ -34,8 +34,8 @@
  * {@linkplain org.opengis.referencing.operation.CoordinateOperation Coordinate operations} (relationship between
  * any two {@linkplain org.opengis.referencing.crs.CoordinateReferenceSystem coordinate reference systems}).
  * The following is adapted from
- * <A HREF="http://portal.opengeospatial.org/files/?artifact_id=6716">OpenGIS&reg;
- * Spatial Referencing by Coordinates (Topic 2)</A> specification.
+ * {@linkplain org.opengis.annotation.Specification#ISO_19111 OpenGIS&reg; Spatial Referencing by
+ * Coordinates (Topic 2)} specification.
  *
  * <P ALIGN="justify">If the relationship between any two coordinate reference
  * systems is known, coordinates can be transformed or converted to another
