@@ -165,8 +165,8 @@ public final class MediumName extends CodeList<MediumName> {
     /**
      * Pamphlet or leaflet giving descriptive information.
      */
-    @UML(identifier="hardCopy", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final MediumName HARD_COPY = new MediumName("HARD_COPY");
+    @UML(identifier="hardcopy", obligation=CONDITIONAL, specification=ISO_19115)
+    public static final MediumName HARDCOPY = new MediumName("HARDCOPY");
 
     /**
      * Constructs an enum with the given name. The new enum is
