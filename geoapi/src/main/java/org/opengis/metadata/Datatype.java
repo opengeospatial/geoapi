@@ -125,7 +125,7 @@ public final class Datatype extends CodeList<Datatype> {
     /**
      * Class whose instances are classes.
      */
-    @UML(identifier="metaclass", obligation=CONDITIONAL, specification=ISO_19115)
+    @UML(identifier="metaClass", obligation=CONDITIONAL, specification=ISO_19115)
     public static final Datatype META_CLASS = new Datatype("META_CLASS");
 
     /**
