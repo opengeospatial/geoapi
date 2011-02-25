@@ -88,7 +88,7 @@ public final class Classification extends CodeList<Classification> {
     /**
      * Of the highest secrecy.
      */
-    @UML(identifier="topsecret", obligation=CONDITIONAL, specification=ISO_19115)
+    @UML(identifier="topSecret", obligation=CONDITIONAL, specification=ISO_19115)
     public static final Classification TOP_SECRET = new Classification("TOP_SECRET");
 
     /**

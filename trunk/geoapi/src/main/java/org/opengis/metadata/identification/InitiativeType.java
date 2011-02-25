@@ -106,7 +106,7 @@ public final class InitiativeType extends CodeList<InitiativeType>{
     /**
      * Action that is part of a series of actions.
      */
-    @UML(identifier="oepration", obligation=CONDITIONAL, specification=ISO_19115)
+    @UML(identifier="operation", obligation=CONDITIONAL, specification=ISO_19115)
     public static final InitiativeType OPERATION = new InitiativeType("OPERATION");
 
     /**
