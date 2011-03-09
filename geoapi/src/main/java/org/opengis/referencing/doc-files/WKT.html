@@ -241,7 +241,35 @@ factor is the scalar value that converts the described units into meters. For an
 conversion factor is the scalar value that converts the described units into radians.</P>
 
 <H3><A NAME="VERT_DATUM">VERT_DATUM</A></H3>
-<P ALIGN="justify">This indicates the vertical datum, or method used for vertical measurements.</P>
+<P ALIGN="justify">This indicates the vertical datum, or method used for vertical measurements.
+The <CODE>&lt;datum type&gt;</CODE> should be one of the following predefined values:</CODE></P>
+<TABLE>
+<TR valign="top"><TH NOWRAP>2000 -</TH><TD><B>Other:</B>
+  Unspecified vertical datum type.</TD></TR>
+<TR valign="top"><TH NOWRAP>2001 -</TH><TD><B>Orthometric:</B>
+  A vertical datum for orthometric heights that are measured along the plumb line.</TD></TR>
+<TR valign="top"><TH NOWRAP>2002 -</TH><TD><B>Ellipsoidal:</B>
+  A vertical datum for ellipsoidal heights that are measured along the normal to the ellipsoid
+  used in the definition of horizontal datum.</TD></TR>
+<TR valign="top"><TH NOWRAP>2003 -</TH><TD><B>Barometric Altitude:</B>
+  The vertical datum of altitudes or heights in the atmosphere. These are approximations of
+  orthometric heights obtained with the help of a barometer or a barometric altimeter. These values
+  are usually expressed in one of the following units: meters, feet, millibars (used to measure
+  pressure levels), or theta value (units used to measure geopotential height).</TD></TR>
+<TR valign="top"><TH NOWRAP>2004 -</TH><TD><B>Normal:</B>
+  A normal height system.</TD></TR>
+<TR valign="top"><TH NOWRAP>2005 -</TH><TD><B>Geoid Model Derived:</B>
+  A vertical datum of geoid model derived heights, also called GPS-derived heights. These heights
+  are approximations of orthometric heights (<VAR>H</VAR>), constructed from the ellipsoidal heights
+  (<VAR>h</VAR>) by the use of the given geoid undulation model (<VAR>N</VAR>) through the equation:
+  <VAR>H</VAR>=<VAR>h</VAR>-<VAR>N</VAR>.</TD></TR>
+<TR valign="top"><TH NOWRAP>2006 -</TH><TD><B>Depth:</B>
+  This attribute is used to support the set of datums generated for hydrographic engineering
+  projects where depth measurements below sea level are needed. It is often called a hydrographic
+  or a marine datum. Depths are measured in the direction perpendicular (approximately) to the
+  actual equipotential surfaces of the earth's gravity field, using such procedures as
+  echo-sounding.</TD></TR>
+</TABLE>
 
 <H3><A NAME="VERT_CS">VERT_CS</A></H3>
 <P ALIGN="justify">This indicates a vertical coordinate system.</P>
