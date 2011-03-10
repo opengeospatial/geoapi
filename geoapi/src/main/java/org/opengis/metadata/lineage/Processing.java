@@ -93,8 +93,8 @@ public interface Processing {
      *
      * @return Parameters to control the processing operations.
      */
-    @UML(identifier="runTimeParameter", obligation=OPTIONAL, specification=ISO_19115_2)
-    InternationalString getRunTimeParameter();
+    @UML(identifier="runTimeParameters", obligation=OPTIONAL, specification=ISO_19115_2)
+    InternationalString getRunTimeParameters();
 
     /**
      * Details of the methodology by which geographic information was derived from the
