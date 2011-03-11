@@ -30,18 +30,6 @@
           <id>geotoolkit</id>
           <name>GeoToolkit repository</name>
           <url>dav:http://maven.geotoolkit.org</url>
-          <uniqueVersion>false</uniqueVersion>
-        </repository>
-      </distributionManagement>
-    </profile>
-    <profile>
-      <id>opengeo</id>
-      <distributionManagement>
-        <repository>
-          <id>opengeo</id>
-          <name>OpenGeo Maven Repository</name>
-          <url>dav:http://repo.opengeo.org</url>
-          <uniqueVersion>false</uniqueVersion>
         </repository>
       </distributionManagement>
     </profile>
@@ -484,7 +472,8 @@
     <extensions>
       <extension>
         <groupId>org.apache.maven.wagon</groupId>
-        <artifactId>wagon-webdav</artifactId>
+        <artifactId>wagon-webdav-jackrabbit</artifactId>
+        <version>1.0-beta-7</version>
       </extension>
     </extensions>
   </build>
@@ -499,7 +488,6 @@
       <id>osgeo</id>
       <name>Open Source Geospatial Foundation</name>
       <url>dav:http://download.osgeo.org/webdav/geotools</url>
-      <uniqueVersion>false</uniqueVersion>
     </repository>
     <site>
       <id>geoapi</id>
