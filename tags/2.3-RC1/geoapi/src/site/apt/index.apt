@@ -1,0 +1,17 @@
+                                    --------------------
+                                    Normative interfaces
+                                    --------------------
+
+GeoAPI normative interfaces
+
+  Contains the GeoAPI interfaces under development for possible inclusion in a future GeoAPI
+  release. Changes need to be submitted to OGC before to be included in an official release.
+
+  A page listing the GeoAPI content (interface and method names) together with the name used
+  in the OGC and ISO specifications is available {{{../snapshot/javadoc/content.html}here}}.
+
+    * {{{../snapshot/javadoc/index.html}Browse javadoc of development branch}}
+
+    * {{{../changes/index.html}Changes since previous releases or milestones}}
+
+    * {{{../3.0/index.html}Latest stable release}}
