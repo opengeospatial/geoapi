@@ -10,9 +10,9 @@ GeoAPI 3.0
 
     * Defining specification (<Coming soon - the final vote is in progress at OGC>)
 
-    * {{{javadoc/content.html}Table of content}}
+    * {{{./javadoc/content.html}Table of content}}
 
-    * {{{javadoc/index.html}Browse javadoc}}
+    * {{{./javadoc/index.html}Browse javadoc}}
 
     * {{{../maven.html}Maven repositories}} (<Coming soon - the final vote is in progress at OGC>)
 

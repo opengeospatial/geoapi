@@ -6,10 +6,10 @@ Conformance tests
 
   The GeoAPI conformance module provides two kind of Java classes:
 
-    * {{{apidocs/org/opengis/test/Validators.html}Validators}} for testing the conformance of
+    * {{{./apidocs/org/opengis/test/Validators.html}Validators}} for testing the conformance of
       existing instances of GeoAPI interfaces.
 
-    * {{{apidocs/org/opengis/test/TestCase.html}TestCases}} as suites of JUnit tests.
+    * {{{./apidocs/org/opengis/test/TestCase.html}TestCases}} as suites of JUnit tests.
 
   For example an implementor can test the validity of his Coordinate Reference System objects
   and related objects in a test suite like below:

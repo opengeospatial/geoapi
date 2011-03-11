@@ -4,9 +4,9 @@ GeoAPI SNAPSHOT
   projects who need long term stability should use a released version of the API rather than the
   SNAPSHOT, ideally one formalized with an OGC specification document.
 
-    * {{{javadoc/content.html}Table of content}}
+    * {{{./javadoc/content.html}Table of content}}
 
-    * {{{javadoc/index.html}Browse javadoc}}
+    * {{{./javadoc/index.html}Browse javadoc}}
 
     * {{{../maven.html}Maven repositories}} (recommended way to get the binaries)
 

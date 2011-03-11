@@ -37,7 +37,7 @@ GeoAPI
   which provides a standardized interface to databases. Clients can use the
   JDBC API without concern for the particular implementation which they will
   use. Various groups have implemented different subsets of GeoAPI, see
-  the {{{implementations.html}list of known implementations}} for details.
+  the {{{./implementations.html}list of known implementations}} for details.
 
 
 * The GeoAPI project
@@ -47,7 +47,7 @@ GeoAPI
   work on GeoAPI as part of their own efforts writing client applications which
   use the API or working on libraries which implement the API.
 
-    * The project runs a public {{{mail-lists.html}mailing list}} for user and
+    * The project runs a public {{{./mail-lists.html}mailing list}} for user and
       developer questions, other issues, and general discussion.
 
     * The code repository is {{{http://sourceforge.net/projects/geoapi}hosted on sourceforge}}.
@@ -69,7 +69,7 @@ GeoAPI
   Because of the close link between GeoAPI and the OGC, a working group has
   formed within the OGC to formalize GeoAPI as a published OGC standard. The
   {{{http://portal.opengeospatial.org/?m=projects&a=view&project_id=294}GeoAPI 3.0 Standard Working Group}}
-  has published its {{{charter.html}charter}}.
+  has published its {{{./charter.html}charter}}.
 
   The working group currently aims to produce the initial 3.0 standard containing
   only a few, highly tested and stable packages. These include ISO-19115 Metadata
@@ -86,21 +86,21 @@ GeoAPI
   The different packages have reached different levels of stability so that the
   project has been split into two modules.
 
-    * The {{{geoapi/index.html}geoapi}} module contains only the interfaces which
+    * The {{{./geoapi/index.html}geoapi}} module contains only the interfaces which
       have remained stable for a long period of time and have both been fully
       implemented and had that implementation extensively tested. As packages
       mature, they will be moved to this module.
 
-    * The {{{geoapi-pending/index.html}geoapi-pending}} module provides additional
+    * The {{{./geoapi-pending/index.html}geoapi-pending}} module provides additional
       interfaces with different levels of stability ranging from the very trusted
       to modules which are experimental since they do not yet have any known
       implementation.
 
-  The project contains a {{{conformance/index.html}conformance}} module which can be run as
+  The project contains a {{{./conformance/index.html}conformance}} module which can be run as
   a test harness to evaluate the correctness of any implementation.
 
   GeoAPI uses the {{{http://maven.apache.org}Maven}} build tool. External
   projects which also use this tool can integrate GeoAPI into their Maven
-  dependencies using one of the {{{maven.html}repositories listed here}}.
+  dependencies using one of the {{{./maven.html}repositories listed here}}.
 
-  GeoAPI is hosted on a {{{source-repository.html}Subversion repository}}.
+  GeoAPI is hosted on a {{{./source-repository.html}Subversion repository}}.

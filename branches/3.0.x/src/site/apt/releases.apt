@@ -7,35 +7,35 @@ GeoAPI releases
   The current development version is GeoAPI-SNAPSHOT. The latest stable release is GeoAPI version 3.0.
 
   All releases can be obtained from the {{{https://sourceforge.net/projects/geoapi/files/}SourceForge download area}}.
-  Snapshots and releases are also available from the {{{maven.html}Maven repositories}}.
+  Snapshots and releases are also available from the {{{./maven.html}Maven repositories}}.
 
 
 * Development snapshots
 
   The current development version is GeoAPI-SNAPSHOT.
 
-  * {{{snapshot/javadoc/index.html}Browse Javadoc of normative interfaces}}
+  * {{{./snapshot/javadoc/index.html}Browse Javadoc of normative interfaces}}
 
-  * {{{snapshot/pending/index.html}Browse Javadoc of pending interfaces}}
+  * {{{./snapshot/pending/index.html}Browse Javadoc of pending interfaces}}
     (not to be included in the official release)
 
-  * {{{maven.html}Maven repositories}} (recommended way to get the binaries)
+  * {{{./maven.html}Maven repositories}} (recommended way to get the binaries)
 
   * {{{http://hudson.geomatys.com/job/GeoAPI}Nightly builds (last 2 weeks)}}
 
 
 * Releases
 
-    * {{{3.0/index.html}GeoAPI 3.0}} - Formal release, standardized by OGC 09-083, <GeoAPI specification>.
+    * {{{./3.0/index.html}GeoAPI 3.0}} - Formal release, standardized by OGC 09-083, <GeoAPI specification>.
 
-    * {{{2.3/index.html}GeoAPI 2.3}} - Unofficial milestones to GeoAPI 3.0.
+    * {{{./2.3/index.html}GeoAPI 2.3}} - Unofficial milestones to GeoAPI 3.0.
 
-    * {{{2.2/index.html}GeoAPI 2.2}} - Unofficial milestone.
+    * {{{./2.2/index.html}GeoAPI 2.2}} - Unofficial milestone.
 
-    * {{{2.1/index.html}GeoAPI 2.1}} - Unofficial milestone.
+    * {{{./2.1/index.html}GeoAPI 2.1}} - Unofficial milestone.
 
-    * {{{2.0/index.html}GeoAPI 2.0}} - Formal release, standardized by OGC 03-064r10, <GO-1 Application Objects>.
+    * {{{./2.0/index.html}GeoAPI 2.0}} - Formal release, standardized by OGC 03-064r10, <GO-1 Application Objects>.
 
-    * {{{1.0/index.html}GeoAPI 1.0}} - Unofficial milestone, released with first draft of OGC 03-064.
+    * {{{./1.0/index.html}GeoAPI 1.0}} - Unofficial milestone, released with first draft of OGC 03-064.
 
-    * {{{0.1/index.html}GeoAPI 0.1}} - First release, based on the interfaces defined in OGC 01-009 <Coordinate Transformation Services>.
+    * {{{./0.1/index.html}GeoAPI 0.1}} - First release, based on the interfaces defined in OGC 01-009 <Coordinate Transformation Services>.
