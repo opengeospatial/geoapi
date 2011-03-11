@@ -554,7 +554,6 @@ scan:   for (final MemberDeclaration attribute : attributes.values()) {
         }
         // Special cases that we don't want to consider as significant deviation.
         geoapi = geoapi.replace("CODE_LIST",  "CODELIST");
-        geoapi = geoapi.replace("META_CLASS", "METACLASS");
 
         ogc = firstCharAsLowerCase(dropPrefix(ogc));
         /*
