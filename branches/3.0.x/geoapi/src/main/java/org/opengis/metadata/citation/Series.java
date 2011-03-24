@@ -42,8 +42,8 @@ import static org.opengis.annotation.Specification.*;
  * Information about the series, or aggregate dataset, to which a dataset belongs.
  *
  * @author  Martin Desruisseaux (IRD)
- * @version GeoAPI 3.0
- * @since   GeoAPI 1.0
+ * @version 3.0
+ * @since   1.0
  */
 @UML(identifier="CI_Series", specification=ISO_19115)
 public interface Series {

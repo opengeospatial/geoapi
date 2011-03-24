@@ -45,8 +45,8 @@ import static org.opengis.annotation.Specification.ISO_19115;
  * Justification for the correlation of two datasets.
  *
  * @author  Ely Conn (Leica Geosystems Geospatial Imaging, LLC)
- * @version GeoAPI 3.0
- * @since   GeoAPI 2.1
+ * @version 3.0
+ * @since   2.1
  */
 @UML(identifier="DS_AssociationTypeCode", specification=ISO_19115)
 public final class AssociationType extends CodeList<AssociationType> {

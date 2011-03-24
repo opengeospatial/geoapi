@@ -42,8 +42,8 @@ import static org.opengis.annotation.Specification.*;
  * ship or satellite).
  *
  * @author  Martin Desruisseaux (IRD)
- * @version GeoAPI 3.0
- * @since   GeoAPI 1.0
+ * @version 3.0
+ * @since   1.0
  */
 @UML(identifier="CD_EngineeringDatum", specification=ISO_19111)
 public interface EngineeringDatum extends Datum {

@@ -39,8 +39,8 @@ import static org.opengis.annotation.Specification.*;
  * Adherence to rules of the conceptual schema.
  *
  * @author  Martin Desruisseaux (IRD)
- * @version GeoAPI 3.0
- * @since   GeoAPI 2.0
+ * @version 3.0
+ * @since   2.0
  */
 @UML(identifier="DQ_ConceptualConsistency", specification=ISO_19115)
 public interface ConceptualConsistency extends LogicalConsistency {

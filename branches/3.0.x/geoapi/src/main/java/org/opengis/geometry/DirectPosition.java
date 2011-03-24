@@ -54,8 +54,8 @@ import static org.opengis.annotation.Specification.*;
  *   This interface was moved into the <code>org.opengis.geometry</code> package for convenience.
  *
  * @author  Martin Desruisseaux (IRD)
- * @version GeoAPI 3.0
- * @since   GeoAPI 1.0
+ * @version 3.0
+ * @since   1.0
  *
  * @navassoc 1 - - CoordinateReferenceSystem
  */
@@ -166,7 +166,7 @@ public interface DirectPosition extends Position {
      * @param object The object to compare with this direct position for equality.
      * @return {@code true} if the given object is equals to this direct position.
      *
-     * @since GeoAPI 2.1
+     * @since 2.1
      */
     @Override
     boolean equals(Object object);
@@ -183,7 +183,7 @@ public interface DirectPosition extends Position {
      *
      * @return A hash code value for this direct position.
      *
-     * @since GeoAPI 2.1
+     * @since 2.1
      */
     @Override
     int hashCode();

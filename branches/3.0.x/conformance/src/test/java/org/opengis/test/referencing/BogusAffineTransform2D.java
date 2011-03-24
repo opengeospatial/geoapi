@@ -39,8 +39,9 @@ import org.opengis.referencing.operation.NoninvertibleTransformException;
 /**
  * A math transform with intentional bugs.
  *
- * @author Martin Desruisseaux (Geomatys)
- * @since GeoAPI 2.2
+ * @author  Martin Desruisseaux (Geomatys)
+ * @version 3.0
+ * @since   2.2
  */
 @SuppressWarnings("serial")
 final class BogusAffineTransform2D extends AffineTransform2D {

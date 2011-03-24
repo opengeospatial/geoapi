@@ -47,8 +47,9 @@ import java.util.Collection;
  *
  * if they wish to use the assertion methods defined here in addition of JUnit methods.
  *
- * @author Martin Desruisseaux (Geomatys)
- * @since GeoAPI 2.2
+ * @author  Martin Desruisseaux (Geomatys)
+ * @version 3.0
+ * @since   2.2
  */
 public class Assert extends org.junit.Assert {
     /**

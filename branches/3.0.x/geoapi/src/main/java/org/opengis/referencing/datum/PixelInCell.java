@@ -47,8 +47,8 @@ import static org.opengis.annotation.Specification.*;
  * except that the later is more clearly restricted to the two-dimensional case.
  *
  * @author  Martin Desruisseaux (IRD)
- * @version GeoAPI 3.0
- * @since   GeoAPI 1.0
+ * @version 3.0
+ * @since   1.0
  *
  * @see org.opengis.metadata.spatial.PixelOrientation
  */

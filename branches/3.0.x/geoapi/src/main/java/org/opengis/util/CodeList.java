@@ -57,8 +57,8 @@ import static org.opengis.annotation.Specification.*;
  * @param <E> The type of this code list.
  *
  * @author  Martin Desruisseaux (IRD)
- * @version GeoAPI 3.0
- * @since   GeoAPI 1.0
+ * @version 3.0
+ * @since   1.0
  */
 @UML(identifier="CodeList", specification=ISO_19103)
 public abstract class CodeList<E extends CodeList<E>> implements Comparable<E>, Serializable {
@@ -137,7 +137,7 @@ public abstract class CodeList<E extends CodeList<E>> implements Comparable<E>, 
      *   GeoAPI and there is a need to give some user control over the behavior of the
      *   <code>CodeList</code> implementation.
      *
-     * @since GeoAPI 2.3
+     * @since 2.3
      */
     public static interface Filter {
         /**
@@ -216,7 +216,7 @@ public abstract class CodeList<E extends CodeList<E>> implements Comparable<E>, 
      * @departure integration
      *   Provided by analogy with the methods in the JSE 5 <code>Enum</code> class.
      *
-     * @since GeoAPI 2.3
+     * @since 2.3
      */
     public static <T extends CodeList<T>> T valueOf(final Class<T> codeType, final Filter filter) {
         @SuppressWarnings("rawtypes")
@@ -288,7 +288,7 @@ public abstract class CodeList<E extends CodeList<E>> implements Comparable<E>, 
      *   Defined because each <code>CodeList</code> has at least two names, the Java programmatic
      *   name and the UML identifier, while some subclasses have additional names.
      *
-     * @since GeoAPI 2.3
+     * @since 2.3
      */
     public String[] names() {
         final String name = this.name;
@@ -323,7 +323,7 @@ public abstract class CodeList<E extends CodeList<E>> implements Comparable<E>, 
      *   Defined because each <code>CodeList</code> has a UML identifier in addition of the Java
      *   programmatic name.
      *
-     * @since GeoAPI 2.2
+     * @since 2.2
      */
     public String identifier() {
         // Save the field in a local variable for protection against concurrent change (this
@@ -408,7 +408,7 @@ public abstract class CodeList<E extends CodeList<E>> implements Comparable<E>, 
      * @param object The object to compare with this code.
      * @return {@code true} if the given object is equals to this code.
      *
-     * @since GeoAPI 2.2
+     * @since 2.2
      */
     @Override
     public final boolean equals(final Object object) {

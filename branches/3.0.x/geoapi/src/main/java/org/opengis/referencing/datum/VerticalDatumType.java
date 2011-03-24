@@ -52,8 +52,8 @@ import static org.opengis.annotation.Specification.*;
  *        Implementors are encouraged to not expose that datum type in public API however.}
  *
  * @author  Martin Desruisseaux (IRD)
- * @version GeoAPI 3.0
- * @since   GeoAPI 1.0
+ * @version 3.0
+ * @since   1.0
  */
 @UML(identifier="CD_VerticalDatumType", specification=ISO_19111)
 public final class VerticalDatumType extends CodeList<VerticalDatumType> {

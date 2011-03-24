@@ -60,8 +60,8 @@ import static org.opengis.annotation.ComplianceLevel.*;
  *
  * @author  Martin Desruisseaux (IRD)
  * @author  Cory Horner (Refractions Research)
- * @version GeoAPI 3.0
- * @since   GeoAPI 2.0
+ * @version 3.0
+ * @since   2.0
  *
  * @navassoc 1 - - CharacterSet
  * @navassoc - - - ScopeCode
@@ -150,7 +150,7 @@ public interface Metadata {
      *
      * @return Parties responsible for the metadata information.
      *
-     * @since GeoAPI 2.1
+     * @since 2.1
      */
     @Profile(level=CORE)
     @UML(identifier="contact", obligation=MANDATORY, specification=ISO_19115)
@@ -196,7 +196,7 @@ public interface Metadata {
      *
      * @return Uniformed Resource Identifier of the dataset, or {@code null}.
      *
-     * @since GeoAPI 2.1
+     * @since 2.1
      */
     @UML(identifier="dataSetURI", obligation=OPTIONAL, specification=ISO_19115)
     String getDataSetUri();
@@ -207,7 +207,7 @@ public interface Metadata {
      *
      * @return Alternatively used localized character string for a linguistic extension.
      *
-     * @since GeoAPI 2.1
+     * @since 2.1
      */
     @UML(identifier="locale", obligation=OPTIONAL, specification=ISO_19115)
     Collection<Locale> getLocales();

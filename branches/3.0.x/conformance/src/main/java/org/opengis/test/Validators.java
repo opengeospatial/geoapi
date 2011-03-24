@@ -63,8 +63,9 @@ import org.opengis.test.referencing.*;
  * users can create a new instance of {@link ValidatorContainer} and use that instance
  * instead of this class.</p>
  *
- * @author Martin Desruisseaux (Geomatys)
- * @since GeoAPI 2.2
+ * @author  Martin Desruisseaux (Geomatys)
+ * @version 3.0
+ * @since   2.2
  */
 public class Validators {
     /**

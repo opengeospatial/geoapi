@@ -57,8 +57,8 @@ import static org.opengis.annotation.Specification.*;
  *   been changed to mandatory since all three types conceptually have a well defined location.
  *
  * @author  Martin Desruisseaux (IRD)
- * @version GeoAPI 3.0
- * @since   GeoAPI 1.0
+ * @version 3.0
+ * @since   1.0
  *
  * @issue http://jira.codehaus.org/browse/GEO-87
  */
@@ -70,7 +70,7 @@ public interface Position {
      *
      * @return The direct position (may be {@code this}).
      *
-     * @since GeoAPI 2.2
+     * @since 2.2
      */
     @UML(identifier="direct", obligation=CONDITIONAL, specification=ISO_19107)
     DirectPosition getDirectPosition();

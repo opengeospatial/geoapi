@@ -44,8 +44,8 @@ import static org.opengis.annotation.Specification.*;
  * (not by a {@linkplain org.opengis.referencing.datum.Datum datum}).
  *
  * @author  Martin Desruisseaux (IRD)
- * @version GeoAPI 3.0
- * @since   GeoAPI 1.0
+ * @version 3.0
+ * @since   1.0
  *
  * @navassoc 1 - - CoordinateReferenceSystem
  * @navassoc 1 - - Conversion

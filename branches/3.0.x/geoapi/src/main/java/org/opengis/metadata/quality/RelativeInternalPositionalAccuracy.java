@@ -40,8 +40,8 @@ import static org.opengis.annotation.Specification.*;
  * relative positions accepted as or being true.
  *
  * @author  Martin Desruisseaux (IRD)
- * @version GeoAPI 3.0
- * @since   GeoAPI 2.0
+ * @version 3.0
+ * @since   2.0
  */
 @UML(identifier="DQ_RelativeInternalPositionalAccuracy", specification=ISO_19115)
 public interface RelativeInternalPositionalAccuracy extends PositionalAccuracy {

@@ -40,8 +40,8 @@ import static org.opengis.annotation.Specification.*;
  * from the metadata package.
  *
  * @author  Martin Desruisseaux (IRD)
- * @version GeoAPI 3.0
- * @since   GeoAPI 2.0
+ * @version 3.0
+ * @since   2.0
  */
 @UML(identifier="MD_ObligationCode", specification=ISO_19115)
 public enum Obligation {

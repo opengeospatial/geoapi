@@ -45,8 +45,8 @@ import static org.opengis.annotation.Specification.*;
  * Temporal relation of activation.
  *
  * @author  Cédric Briançon (Geomatys)
- * @version GeoAPI 3.0
- * @since   GeoAPI 2.3
+ * @version 3.0
+ * @since   2.3
  */
 @UML(identifier="MI_SequenceCode", specification=ISO_19115_2)
 public final class Sequence extends CodeList<Sequence> {

@@ -59,7 +59,8 @@ import com.sun.tools.doclets.formats.html.ConfigurationImpl;
  * <p>
  * The remaining is the explanation as HTML text (no javadoc tags).
  *
- * @author Martin Desruisseaux (Geomatys)
+ * @author  Martin Desruisseaux (Geomatys)
+ * @version 3.0
  */
 public final class Departure implements Taglet, Runnable {
     /**

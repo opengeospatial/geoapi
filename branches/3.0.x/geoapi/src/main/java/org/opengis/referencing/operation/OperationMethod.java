@@ -45,8 +45,8 @@ import static org.opengis.annotation.Specification.*;
  * use none. Each coordinate operation using the method assigns values to these parameters.
  *
  * @author  Martin Desruisseaux (IRD)
- * @version GeoAPI 3.0
- * @since   GeoAPI 1.0
+ * @version 3.0
+ * @since   1.0
  *
  * @see CoordinateOperation
  *

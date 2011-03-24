@@ -46,8 +46,8 @@ import static org.opengis.annotation.Specification.*;
  * it is combined to create a {@linkplain org.opengis.referencing.crs.VerticalCRS Vertical CRS}.
  *
  * @author  Martin Desruisseaux (IRD)
- * @version GeoAPI 3.0
- * @since   GeoAPI 1.0
+ * @version 3.0
+ * @since   1.0
  *
  * @navassoc 1 - - VerticalDatumType
  */

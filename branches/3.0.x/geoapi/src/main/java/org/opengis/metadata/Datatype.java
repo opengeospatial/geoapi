@@ -44,8 +44,8 @@ import static org.opengis.annotation.Specification.*;
  * Datatype of element or entity.
  *
  * @author  Martin Desruisseaux (IRD)
- * @version GeoAPI 3.0
- * @since   GeoAPI 2.0
+ * @version 3.0
+ * @since   2.0
  */
 @UML(identifier="MD_DatatypeCode", specification=ISO_19115)
 public final class Datatype extends CodeList<Datatype> {

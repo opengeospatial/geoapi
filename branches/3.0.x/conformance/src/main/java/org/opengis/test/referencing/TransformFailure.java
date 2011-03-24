@@ -35,8 +35,9 @@ package org.opengis.test.referencing;
 /**
  * Thrown when a transform didn't produced the expected value.
  *
- * @author Martin Desruisseaux (Geomatys)
- * @since GeoAPI 2.2
+ * @author  Martin Desruisseaux (Geomatys)
+ * @version 3.0
+ * @since   2.2
  */
 @SuppressWarnings("serial")
 public class TransformFailure extends AssertionError {

@@ -38,8 +38,8 @@ package org.opengis.annotation;
  *
  * @author  Martin Desruisseaux (IRD)
  * @author  Cédric Briançon (Geomatys)
- * @version GeoAPI 3.0
- * @since   GeoAPI 2.0
+ * @version 3.0
+ * @since   2.0
  */
 public enum Specification {
     /**
@@ -194,7 +194,7 @@ public enum Specification {
      *
      * @see <A HREF="http://www.iso.org/iso/iso_catalogue/catalogue_tc/catalogue_detail.htm?csnumber=39229">Buy from ISO</A>
      *
-     * @since GeoAPI 2.3
+     * @since 2.3
      */
     ISO_19115_2,
 
@@ -273,7 +273,7 @@ public enum Specification {
      *
      * @see <A HREF="http://www.iso.org/iso/iso_catalogue/catalogue_tc/catalogue_detail.htm?csnumber=32557">Buy from ISO</A>
      *
-     * @since GeoAPI 2.3
+     * @since 2.3
      */
     ISO_19139,
 

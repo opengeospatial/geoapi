@@ -46,8 +46,8 @@ import static org.opengis.annotation.ComplianceLevel.*;
  * of data objects in a record, file, message, storage device or transmission channel.
  *
  * @author  Martin Desruisseaux (IRD)
- * @version GeoAPI 3.0
- * @since   GeoAPI 2.0
+ * @version 3.0
+ * @since   2.0
  *
  * @navassoc - - - Distributor
  */

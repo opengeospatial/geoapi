@@ -61,8 +61,8 @@ import static org.opengis.annotation.Specification.*;
  *   GeoAPI keeps them since the distinction between those two types is in wide use.
  *
  * @author  Martin Desruisseaux (IRD)
- * @version GeoAPI 3.0
- * @since   GeoAPI 1.0
+ * @version 3.0
+ * @since   1.0
  *
  * @navassoc 1 - - GeodeticDatum
  * @navassoc 1 - - EllipsoidalCS

@@ -45,8 +45,8 @@ import static org.opengis.annotation.Specification.*;
  * Geometric description of the collection.
  *
  * @author  Cédric Briançon (Geomatys)
- * @version GeoAPI 3.0
- * @since   GeoAPI 2.3
+ * @version 3.0
+ * @since   2.3
  */
 @UML(identifier="MI_GeometryTypeCode", specification=ISO_19115_2)
 public final class GeometryType extends CodeList<GeometryType> {

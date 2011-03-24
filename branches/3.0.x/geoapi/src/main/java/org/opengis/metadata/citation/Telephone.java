@@ -43,8 +43,8 @@ import static org.opengis.annotation.Specification.*;
  *
  * @author  Martin Desruisseaux (IRD)
  * @author  Cory Horner (Refractions Research)
- * @version GeoAPI 3.0
- * @since   GeoAPI 1.0
+ * @version 3.0
+ * @since   1.0
  */
 @UML(identifier="CI_Telephone", specification=ISO_19115)
 public interface Telephone {
@@ -53,7 +53,7 @@ public interface Telephone {
      *
      * @return Telephone numbers by which individuals can speak to the responsible organization or individual.
      *
-     * @since GeoAPI 2.1
+     * @since 2.1
      */
     @UML(identifier="voice", obligation=OPTIONAL, specification=ISO_19115)
     Collection<String> getVoices();
@@ -63,7 +63,7 @@ public interface Telephone {
      *
      * @return Telephone numbers of a facsimile machine for the responsible organization or individual.
      *
-     * @since GeoAPI 2.1
+     * @since 2.1
      */
     @UML(identifier="facsimile", obligation=OPTIONAL, specification=ISO_19115)
     Collection<String> getFacsimiles();

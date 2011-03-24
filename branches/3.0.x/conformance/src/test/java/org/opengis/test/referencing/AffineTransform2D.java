@@ -48,8 +48,9 @@ import static org.junit.Assert.*;
  * but this test class is not. It may be modified after construction, but should not be modified
  * anymore once the tests begin.
  *
- * @author Martin Desruisseaux (Geomatys)
- * @since GeoAPI 2.2
+ * @author  Martin Desruisseaux (Geomatys)
+ * @version 3.0
+ * @since   2.2
  */
 @SuppressWarnings("serial")
 class AffineTransform2D extends AffineTransform implements MathTransform2D {
