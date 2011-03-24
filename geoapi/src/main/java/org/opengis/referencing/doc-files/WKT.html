@@ -69,6 +69,10 @@
 
 
 <H2>Description of WKT keywords</H2>
+
+<P ALIGN="justify"><B>Note:</B> In this page, the term "<CITE>Coordinate System</CITE>" is not exactly equivalent to
+the ISO 19111 definition.</P>
+
 <H3><A NAME="AUTHORITY">AUTHORITY</A></H3>
 <P ALIGN="justify">This is an optional clause that allows an external authority to manage the
 definition of an entity.</P>
@@ -77,14 +81,21 @@ definition of an entity.</P>
 <P ALIGN="justify">The name of the axis is for human consumption. The enumerated value that
 follows is to allow software to correctly overlay different coordinate systems. If the optional
 <code>AXIS</code> terms are not present, then the default values are assumed. They are:</P>
-<TABLE cellpadding='0' cellspacing='0'>
-  <TR><TD nowrap>Geographic Coordinate System:&nbsp;</TD>
-      <TD nowrap><code>AXIS["Lon",EAST],AXIS["Lat",NORTH]</code></TD></TR>
-  <TR><TD nowrap>Projected Coordinate System:&nbsp;</TD>
-      <TD nowrap><code>AXIS["X",EAST],AXIS["Y",NORTH]</code></TD></TR>
-  <TR><TD nowrap>Geocentric Coordinate System:&nbsp;</TD>
-      <TD nowrap><code>AXIS["X",OTHER],AXIS["Y",EAST],AXIS["Z",NORTH]</code></TD></TR>
+<BLOCKQUOTE><TABLE>
+  <TR><TH colspan="2"><CODE>CS</CODE> type</TH><TH>Default <CODE>AXIS</CODE></TH><TH>ISO 19111 abbreviations</TH>
+  <TR><TD nowrap>Geographic Coordinate System</TD><TD>(<CODE>GEOGCS</CODE>):&nbsp;</TD>
+      <TD nowrap><code>AXIS["Lon",EAST],AXIS["Lat",NORTH]</code></TD>
+      <TD nowrap align="center">(<VAR>&lambda;</VAR>, <VAR>&phi;</VAR>)</TD></TR>
+  <TR><TD nowrap>Projected Coordinate System</TD><TD>(<CODE>PROJCS</CODE>):&nbsp;</TD>
+      <TD nowrap><code>AXIS["X",EAST],AXIS["Y",NORTH]</code></TD>
+      <TD nowrap align="center">(<VAR>x</VAR>, <VAR>y</VAR>) - lower case</TD></TR>
+  <TR><TD nowrap>Geocentric Coordinate System</TD><TD>(<CODE>GEOCCS</CODE>):&nbsp;</TD>
+      <TD nowrap><code>AXIS["X",OTHER],AXIS["Y",EAST],AXIS["Z",NORTH]</code></TD>
+      <TD nowrap align="center">(<VAR>X</VAR>, <VAR>Y</VAR>, <VAR>Z</VAR>) - upper case</TD></TR>
 </TABLE>
+<P><FONT size="-1"><B>Note:</B> Some default axis names are different than the abbreviations
+mandated by ISO 19111. The ISO abbreviations are shown in the above table for information purpose.</FONT></P></BLOCKQUOTE>
+
 <P ALIGN="justify">However, if these terms are present, and have non-default values, then
 implementations must be prepared to swap and reverse the coordinates of geometry before
 attempting to overlay graphics.</P>
@@ -242,8 +253,8 @@ conversion factor is the scalar value that converts the described units into rad
 
 <H3><A NAME="VERT_DATUM">VERT_DATUM</A></H3>
 <P ALIGN="justify">This indicates the vertical datum, or method used for vertical measurements.
-The <CODE>&lt;datum type&gt;</CODE> should be one of the following predefined values:</CODE></P>
-<TABLE>
+The <CODE>&lt;datum type&gt;</CODE> should be one of the following predefined values:</P>
+<BLOCKQUOTE><TABLE>
 <TR valign="top"><TH NOWRAP>2000 -</TH><TD><B>Other:</B>
   Unspecified vertical datum type.</TD></TR>
 <TR valign="top"><TH NOWRAP>2001 -</TH><TD><B>Orthometric:</B>
@@ -269,7 +280,7 @@ The <CODE>&lt;datum type&gt;</CODE> should be one of the following predefined va
   or a marine datum. Depths are measured in the direction perpendicular (approximately) to the
   actual equipotential surfaces of the earth's gravity field, using such procedures as
   echo-sounding.</TD></TR>
-</TABLE>
+</TABLE></BLOCKQUOTE>
 
 <H3><A NAME="VERT_CS">VERT_CS</A></H3>
 <P ALIGN="justify">This indicates a vertical coordinate system.</P>
