@@ -101,7 +101,7 @@
            Project description (including license)
        ==================================================== -->
   <groupId>org.opengis</groupId>
-  <artifactId>parent</artifactId>
+  <artifactId>geoapi-parent</artifactId>
   <packaging>pom</packaging>
   <version>3.0.0</version>
   <name>GeoAPI</name>
@@ -569,6 +569,6 @@
   <modules>
     <module>tools</module>
     <module>geoapi</module>
-    <module>conformance</module>
+    <module>geoapi-conformance</module>
   </modules>
 </project>

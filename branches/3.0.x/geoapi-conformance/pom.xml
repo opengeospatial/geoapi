@@ -9,7 +9,7 @@
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>org.opengis</groupId>
-    <artifactId>parent</artifactId>
+    <artifactId>geoapi-parent</artifactId>
     <version>3.0.0</version>
   </parent>
 
@@ -19,7 +19,7 @@
            Project description
        ==================================================== -->
   <groupId>org.opengis</groupId>
-  <artifactId>conformance</artifactId>
+  <artifactId>geoapi-conformance</artifactId>
   <packaging>jar</packaging>
   <name>GeoAPI conformance</name>
   <description>
