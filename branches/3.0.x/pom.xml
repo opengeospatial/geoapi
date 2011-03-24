@@ -21,8 +21,11 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
 
-  <!-- Profiles set on the command-line overwrite default properties. -->
   <profiles>
+    <!--
+      The "geotoolkit" profile is activated only for deployments of GeoAPI snapshots,
+      in order to test GeoAPI experimental features in an open source implementation.
+    -->
     <profile>
       <id>geotoolkit</id>
       <distributionManagement>
@@ -32,6 +35,63 @@
           <url>dav:http://maven.geotoolkit.org</url>
         </repository>
       </distributionManagement>
+    </profile>
+
+    <!--
+      The "sign-artifacts" profile shall be used for all final releases by OGC staff.
+      It is activated by a command line like below, where <pass> needs to be replaced
+      by the actual password or passphrase:
+
+      mvn install -Psign-artifacts -Djarsigner.storepass=pass -Dgpg.passphrase=pass
+    -->
+    <profile>
+      <id>sign-artifacts</id>
+      <activation>
+        <property>
+          <name>performRelease</name>
+          <value>true</value>
+        </property>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-jarsigner-plugin</artifactId>
+            <version>1.2</version>
+            <configuration>
+              <alias>geoapi</alias>
+            </configuration>
+            <executions>
+              <execution>
+                <id>sign</id>
+                <goals>
+                  <goal>sign</goal>
+                </goals>
+              </execution>
+              <execution>
+                <id>verify</id>
+                <goals>
+                  <goal>verify</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-gpg-plugin</artifactId>
+            <version>1.1</version>
+            <executions>
+              <execution>
+                <id>sign-artifacts</id>
+                <goals>
+                  <goal>sign</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
     </profile>
   </profiles>
 
@@ -236,14 +296,19 @@
           <artifactId>taglist-maven-plugin</artifactId>
           <version>2.4</version>
         </plugin>
+        <plugin>
+          <groupId>org.apache.felix</groupId>
+          <artifactId>maven-bundle-plugin</artifactId>
+          <version>2.2.0</version>
+        </plugin>
       </plugins>
     </pluginManagement>
 
 
 
-  <!-- ====================================================
-           Compilation
-       ==================================================== -->
+    <!-- ====================================================
+             Compilation
+         ==================================================== -->
     <plugins>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
@@ -485,9 +550,9 @@
        ==================================================== -->
   <distributionManagement>
     <repository>
-      <id>osgeo</id>
+      <id>sonatype-nexus-staging</id>
       <name>Open Source Geospatial Foundation</name>
-      <url>dav:http://download.osgeo.org/webdav/geotools</url>
+      <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
     </repository>
     <site>
       <id>geoapi</id>

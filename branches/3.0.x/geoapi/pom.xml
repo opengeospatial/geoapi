@@ -20,13 +20,14 @@
        ==================================================== -->
   <groupId>org.opengis</groupId>
   <artifactId>geoapi</artifactId>
-  <packaging>jar</packaging>
+  <packaging>bundle</packaging>
   <name>GeoAPI</name>
   <description>
-    The development community in building GIS solutions is sustaining an enormous
-    level of effort. The GeoAPI project aims to reduce duplication and increase
-    interoperability by providing neutral, interface-only APIs derived from OGC/ISO
-    Standards.
+<!-- Left alignment because this description will be copied in META-INF/MANIFEST.MF
+     The leading space after the first line is necessary for proper formatting. -->
+The development community in building GIS solutions is sustaining an enormous level
+ of effort. The GeoAPI project aims to reduce duplication and increase interoperability
+ by providing neutral, interface-only APIs derived from OGC/ISO Standards.
   </description>
 
 
@@ -124,7 +125,7 @@
 
 
   <!-- ====================================================
-           Compilation
+           Compilation and Packaging (OSGi bundle)
        ==================================================== -->
   <build>
     <plugins>
@@ -143,6 +144,17 @@
             </configuration>
           </execution>
         </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.felix</groupId>
+        <artifactId>maven-bundle-plugin</artifactId>
+        <extensions>true</extensions>
+        <configuration>
+          <instructions>
+            <Bundle-Name>GeoAPI</Bundle-Name>
+            <Bundle-DocURL>http://www.geoapi.org</Bundle-DocURL>
+          </instructions>
+        </configuration>
       </plugin>
     </plugins>
   </build>
