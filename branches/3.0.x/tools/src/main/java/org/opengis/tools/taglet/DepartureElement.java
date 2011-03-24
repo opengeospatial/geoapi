@@ -46,6 +46,7 @@ import com.sun.javadoc.Tag;
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.0
+ * @since   2.3
  */
 final class DepartureElement implements Comparable<DepartureElement> {
     /**

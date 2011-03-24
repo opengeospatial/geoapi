@@ -63,6 +63,7 @@ import org.opengis.annotation.UML;
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.0
+ * @since   2.0
  */
 public abstract class UmlProcessor extends SimpleDeclarationVisitor
         implements AnnotationProcessor, AnnotationProcessorFactory
