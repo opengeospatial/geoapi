@@ -96,8 +96,8 @@ GeoAPI
       to modules which are experimental since they do not yet have any known
       implementation.
 
-  The project contains a {{{./conformance/index.html}conformance}} module which can be run as
-  a test harness to evaluate the correctness of any implementation.
+  The project contains a {{{./geoapi-conformance/index.html}geoapi-conformance}} module
+  which can be run as a test harness to evaluate the correctness of any implementation.
 
   GeoAPI uses the {{{http://maven.apache.org}Maven}} build tool. External
   projects which also use this tool can integrate GeoAPI into their Maven
