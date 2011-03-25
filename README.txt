@@ -5,20 +5,20 @@ This is the root directory for the GeoAPI project.
 Modules
 ---------------------------------------------------------------------------------------------------
 
-  geoapi          Contains the next GeoAPI release being put forward for approval. In order to get
-                  early feedback from implementors we will occasionally issue a milestone release.
-                  For details please visit the http://www.geoapi.org/ project website.
+  geoapi              Contains the GeoAPI release. In order to get early feedback from implementors
+                      we will occasionally issue a milestone release.  For details please visit the
+                      http://www.geoapi.org/ project website.
 
-  geoapi-pending  Contains work in progress.
+  geoapi-pending      Contains work in progress.
 
-  tools           Used for generating some special pages for javadoc.
+  geoapi-examples     Examples used as part of the guidelines for turning a specification into Java
+                      interfaces. The same example is shown for a range of tradeoffs from a simple
+                      immutable interface, through to data objects and finally objects with event
+                      notification.
 
-  examples        Examples used as part of the guidelines for turning a specification into Java
-                  interfaces. The same example is shown for a range of tradeoffs from a simple
-                  immutable interface, through to data objects and finally objects with event
-                  notification.
+  geoapi-conformance  A test suite for testing vendor implementations.
 
-  conformance     A test suite for testing vendor implementations.
+  tools               Used for generating some special pages for javadoc.
 
 
 ---------------------------------------------------------------------------------------------------
@@ -32,4 +32,3 @@ How to build
 * Invoke "mvn install" from the command line in this directory.
 
 A jar for will be created in the geoapi/target/ directory.
-
