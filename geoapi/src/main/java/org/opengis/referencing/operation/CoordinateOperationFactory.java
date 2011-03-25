@@ -52,8 +52,8 @@ import static org.opengis.annotation.Specification.*;
  * {@linkplain CoordinateReferenceSystem coordinate reference systems}.
  *
  * @author  Martin Desruisseaux (IRD)
- * @version GeoAPI 3.0
- * @since   GeoAPI 1.0
+ * @version 3.0
+ * @since   1.0
  */
 @UML(identifier="CT_CoordinateTransformationFactory", specification=OGC_01009)
 public interface CoordinateOperationFactory extends ObjectFactory {
@@ -184,7 +184,7 @@ public interface CoordinateOperationFactory extends ObjectFactory {
      * @see org.opengis.referencing.crs.CRSFactory#createProjectedCRS(Map, GeographicCRS, Conversion, CartesianCS)
      * @see org.opengis.referencing.crs.CRSFactory#createDerivedCRS(Map, CoordinateReferenceSystem, Conversion, CoordinateSystem)
      *
-     * @since GeoAPI 2.1
+     * @since 2.1
      */
     Conversion createDefiningConversion(Map<String,?>       properties,
                                         OperationMethod     method,

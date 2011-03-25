@@ -40,8 +40,8 @@ import static org.opengis.annotation.Specification.*;
  * Number of objects, listed by geometric object type, used in the dataset.
  *
  * @author  Martin Desruisseaux (IRD)
- * @version GeoAPI 3.0
- * @since   GeoAPI 2.0
+ * @version 3.0
+ * @since   2.0
  *
  * @navassoc - - - GeometricObjectType
  */

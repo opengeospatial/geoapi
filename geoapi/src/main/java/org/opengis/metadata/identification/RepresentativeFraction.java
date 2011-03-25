@@ -60,8 +60,8 @@ import static org.opengis.annotation.Specification.ISO_19115;
  * </pre></blockquote>
  *
  * @author  Ely Conn (Leica Geosystems Geospatial Imaging, LLC)
- * @version GeoAPI 3.0
- * @since   GeoAPI 2.1
+ * @version 3.0
+ * @since   2.1
  */
 @UML(identifier="MD_RepresentativeFraction", specification=ISO_19115)
 public interface RepresentativeFraction {
@@ -70,7 +70,7 @@ public interface RepresentativeFraction {
      *
      * @return <code>1.0 / (double) {@linkplain #getDenominator()}</code>
      *
-     * @since GeoAPI 2.2
+     * @since 2.2
      */
     double doubleValue();
 

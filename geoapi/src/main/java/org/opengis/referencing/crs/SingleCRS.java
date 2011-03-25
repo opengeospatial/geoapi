@@ -57,8 +57,8 @@ import static org.opengis.annotation.Specification.*;
  * the subtype "Temporal" which has been added by analogy.
  *
  * @author  Martin Desruisseaux (IRD)
- * @version GeoAPI 3.0
- * @since   GeoAPI 2.0
+ * @version 3.0
+ * @since   2.0
  *
  * @see org.opengis.referencing.cs.CoordinateSystem
  * @see org.opengis.referencing.datum.Datum

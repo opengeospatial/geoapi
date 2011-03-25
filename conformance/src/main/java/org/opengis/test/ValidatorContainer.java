@@ -57,8 +57,9 @@ import org.opengis.test.referencing.*;
  * in various packages. Vendors can change the value of fields in this class if they wish to
  * override some validation process.
  *
- * @author Martin Desruisseaux (Geomatys)
- * @since GeoAPI 2.2
+ * @author  Martin Desruisseaux (Geomatys)
+ * @version 3.0
+ * @since   2.2
  */
 public class ValidatorContainer {
     /**

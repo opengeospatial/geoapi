@@ -40,8 +40,8 @@ import static org.opengis.annotation.Specification.*;
  *
  * @author  Martin Desruisseaux (IRD)
  * @author  Cory Horner (Refractions Research)
- * @version GeoAPI 3.0
- * @since   GeoAPI 2.1
+ * @version 3.0
+ * @since   2.1
  */
 @UML(identifier="DQ_NonQuantitativeAttributeAccuracy", specification=ISO_19115)
 public interface NonQuantitativeAttributeAccuracy extends ThematicAccuracy {

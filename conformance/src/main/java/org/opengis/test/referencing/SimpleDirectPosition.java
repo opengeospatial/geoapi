@@ -41,8 +41,9 @@ import org.opengis.referencing.crs.CoordinateReferenceSystem;
  * A trivial implementation of {@link DirectPosition} for internal usage by
  * {@link TransformTestCase}. Not public because strictly reserved to tests.
  *
- * @author Martin Desruisseaux (Geomatys)
- * @since GeoAPI 2.2
+ * @author  Martin Desruisseaux (Geomatys)
+ * @version 3.0
+ * @since   2.2
  */
 final class SimpleDirectPosition implements DirectPosition {
     /**

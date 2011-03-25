@@ -46,8 +46,8 @@ import static org.opengis.annotation.Specification.*;
  * Description of the data specified by the scope.
  *
  * @author  Martin Desruisseaux (IRD)
- * @version GeoAPI 3.0
- * @since   GeoAPI 2.0
+ * @version 3.0
+ * @since   2.0
  *
  * @navassoc 1 - - ScopeCode
  * @navassoc - - - ScopeDescription
@@ -70,7 +70,7 @@ public interface Scope {
      *
      * @return Detailed description about the level of the data.
      *
-     * @since GeoAPI 2.1
+     * @since 2.1
      */
     @UML(identifier="levelDescription", obligation=CONDITIONAL, specification=ISO_19115)
     Collection<? extends ScopeDescription> getLevelDescription();

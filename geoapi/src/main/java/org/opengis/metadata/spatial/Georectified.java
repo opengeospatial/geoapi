@@ -49,8 +49,8 @@ import static org.opengis.annotation.Specification.*;
  *
  * @author  Martin Desruisseaux (IRD)
  * @author  Cédric Briançon (Geomatys)
- * @version GeoAPI 3.0
- * @since   GeoAPI 2.0
+ * @version 3.0
+ * @since   2.0
  *
  * @navassoc - - - Point
  * @navassoc 1 - - PixelOrientation
@@ -128,7 +128,7 @@ public interface Georectified extends GridSpatialRepresentation {
      *
      * @return Geographic references used to validate georectification.
      *
-     * @since GeoAPI 2.3
+     * @since 2.3
      */
     @UML(identifier="checkPoint", obligation=OPTIONAL, specification=ISO_19115_2)
     Collection<? extends GCP> getCheckPoints();

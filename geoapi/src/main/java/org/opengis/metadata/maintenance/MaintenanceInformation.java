@@ -47,8 +47,8 @@ import static org.opengis.annotation.Specification.*;
  *
  * @author  Martin Desruisseaux (IRD)
  * @author  Cory Horner (Refractions Research)
- * @version GeoAPI 3.0
- * @since   GeoAPI 2.0
+ * @version 3.0
+ * @since   2.0
  *
  * @navassoc 1 - - MaintenanceFrequency
  * @navassoc 1 - - PeriodDuration
@@ -112,7 +112,7 @@ public interface MaintenanceInformation {
      *
      * @return Information regarding specific requirements for maintaining the resource.
      *
-     * @since GeoAPI 2.1
+     * @since 2.1
      */
     @UML(identifier="maintenanceNote", obligation=OPTIONAL, specification=ISO_19115)
     Collection<? extends InternationalString> getMaintenanceNotes();
@@ -124,7 +124,7 @@ public interface MaintenanceInformation {
      * @return Means of communicating with person(s) and organization(s) with responsibility
      *         for maintaining the metadata.
      *
-     * @since GeoAPI 2.1
+     * @since 2.1
      */
     @UML(identifier="contact", obligation=OPTIONAL, specification=ISO_19115)
     Collection<? extends ResponsibleParty> getContacts();

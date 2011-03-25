@@ -43,8 +43,8 @@ package org.opengis.referencing.operation;
  *   request, in order to provide a way to know the kind of map projection.
  *
  * @author  Martin Desruisseaux (IRD)
- * @version GeoAPI 3.0
- * @since   GeoAPI 1.0
+ * @version 3.0
+ * @since   1.0
  *
  * @see org.opengis.referencing.crs.ProjectedCRS
  * @see <A HREF="http://mathworld.wolfram.com/CylindricalProjection.html">Cylindrical projection on MathWorld</A>

@@ -45,8 +45,8 @@ import static org.opengis.annotation.Specification.*;
  *
  * @author  Martin Desruisseaux (IRD)
  * @author  Cory Horner (Refractions Research)
- * @version GeoAPI 3.0
- * @since   GeoAPI 2.0
+ * @version 3.0
+ * @since   2.0
  *
  * @see org.opengis.metadata.quality.Scope
  */
@@ -158,7 +158,7 @@ public final class ScopeCode extends CodeList<ScopeCode> {
     /**
      * Information applies to a copy or imitation of an existing or hypothetical object.
      *
-     * @since GeoAPI 2.1
+     * @since 2.1
      */
     @UML(identifier="tile", obligation=CONDITIONAL, specification=ISO_19115)
     public static final ScopeCode TILE = new ScopeCode("TILE");

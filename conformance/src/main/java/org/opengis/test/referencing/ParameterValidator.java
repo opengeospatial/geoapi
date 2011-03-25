@@ -44,8 +44,9 @@ import static org.opengis.test.Assert.*;
  * package. This class should not be used directly; use the {@link org.opengis.test.Validators}
  * convenience static methods instead.
  *
- * @author Martin Desruisseaux (Geomatys)
- * @since GeoAPI 2.2
+ * @author  Martin Desruisseaux (Geomatys)
+ * @version 3.0
+ * @since   2.2
  */
 public class ParameterValidator extends ReferencingValidator {
     /**

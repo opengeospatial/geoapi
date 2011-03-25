@@ -53,8 +53,8 @@ import java.util.List;
  *   This exception is not part of the OGC specification.
  *
  * @author  Martin Desruisseaux (IRD)
- * @version GeoAPI 3.0
- * @since   GeoAPI 2.0
+ * @version 3.0
+ * @since   2.0
  *
  * @see ParameterValueGroup#values()
  * @see ParameterValueGroup#addGroup(String)

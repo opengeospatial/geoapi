@@ -42,8 +42,8 @@ import static org.opengis.annotation.Specification.*;
  * Handling restrictions imposed on the resource for national security or similar security concerns.
  *
  * @author  Martin Desruisseaux (IRD)
- * @version GeoAPI 3.0
- * @since   GeoAPI 2.0
+ * @version 3.0
+ * @since   2.0
  *
  * @navassoc 1 - - Classification
  */

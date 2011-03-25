@@ -49,8 +49,8 @@ import static org.opengis.annotation.Specification.*;
  * @author  Martin Desruisseaux (IRD)
  * @author  Cory Horner (Refractions Research)
  * @author  Cédric Briançon (Geomatys)
- * @version GeoAPI 3.0
- * @since   GeoAPI 2.0
+ * @version 3.0
+ * @since   2.0
  *
  * @navassoc 1 - - Record
  * @navassoc - - - Citation
@@ -87,7 +87,7 @@ public interface Georeferenceable extends GridSpatialRepresentation {
      *
      * @return Terms which support grid data georeferencing.
      *
-     * @since GeoAPI 2.1
+     * @since 2.1
      */
     @UML(identifier="georeferencedParameters", obligation=MANDATORY, specification=ISO_19115)
     Record getGeoreferencedParameters();
@@ -105,7 +105,7 @@ public interface Georeferenceable extends GridSpatialRepresentation {
      *
      * @return A geolocalisation of the data.
      *
-     * @since GeoAPI 2.3
+     * @since 2.3
      */
     @UML(identifier="geolocationInformation", obligation=MANDATORY, specification=ISO_19115_2)
     Collection<? extends GeolocationInformation> getGeolocationInformation();

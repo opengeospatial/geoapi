@@ -42,8 +42,8 @@ import static org.opengis.annotation.Specification.*;
  * Value uniquely identifying an object within a namespace.
  *
  * @author  Martin Desruisseaux (IRD)
- * @version GeoAPI 3.0
- * @since   GeoAPI 2.0
+ * @version 3.0
+ * @since   2.0
  *
  * @navassoc 1 - - Citation
  */

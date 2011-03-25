@@ -44,8 +44,9 @@ import static org.opengis.test.Assert.*;
  * <p>Once the configuration is finished, all validators provided in GeoAPI are thread-safe
  * provided that their configuration is not modified.</p>
  *
- * @author Martin Desruisseaux (Geomatys)
- * @since GeoAPI 2.2
+ * @author  Martin Desruisseaux (Geomatys)
+ * @version 3.0
+ * @since   2.2
  */
 public abstract class Validator {
     /**

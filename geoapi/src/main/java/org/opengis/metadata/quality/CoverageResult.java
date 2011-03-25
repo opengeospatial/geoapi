@@ -46,8 +46,8 @@ import static org.opengis.annotation.Specification.*;
  * Result of a data quality measure organising the measured values as a coverage.
  *
  * @author  Cédric Briançon (Geomatys)
- * @version GeoAPI 3.0
- * @since   GeoAPI 2.3
+ * @version 3.0
+ * @since   2.3
  *
  * @navassoc 1 - - SpatialRepresentationType
  * @navassoc 1 - - SpatialRepresentation

@@ -42,8 +42,9 @@ import static org.opengis.test.Assert.*;
 /**
  * Tests {@link TransformTestCase} using {@link AffineTransform} as a reference transform.
  *
- * @author Martin Desruisseaux (Geomatys)
- * @since GeoAPI 2.2
+ * @author  Martin Desruisseaux (Geomatys)
+ * @version 3.0
+ * @since   2.2
  */
 public strictfp class TransformCaseTest extends TransformTestCase {
     /**

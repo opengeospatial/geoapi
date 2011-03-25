@@ -47,8 +47,8 @@ import org.opengis.util.FactoryException;
  * and {@code CSFactory} can be used to make "special" coordinate systems.
  *
  * @author  Martin Desruisseaux (IRD)
- * @version GeoAPI 3.0
- * @since   GeoAPI 1.0
+ * @version 3.0
+ * @since   1.0
  *
  * @departure historic
  *   Added for consistency with CRS and datum factories. This CS factory was not defined in the

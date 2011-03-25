@@ -59,8 +59,8 @@ import static org.opengis.annotation.Specification.*;
  * shall be defined.
  *
  * @author  Martin Desruisseaux (IRD)
- * @version GeoAPI 3.0
- * @since   GeoAPI 1.0
+ * @version 3.0
+ * @since   1.0
  *
  * @navassoc 2 - - CoordinateReferenceSystem
  * @navassoc - - - PositionalAccuracy
@@ -83,7 +83,7 @@ public interface CoordinateOperation extends IdentifiedObject {
      *
      * @see #getCoordinateOperationAccuracy()
      *
-     * @since GeoAPI 2.1
+     * @since 2.1
      */
     String COORDINATE_OPERATION_ACCURACY_KEY = "coordinateOperationAccuracy";
 
@@ -93,7 +93,7 @@ public interface CoordinateOperation extends IdentifiedObject {
      *
      * @see #getDomainOfValidity()
      *
-     * @since GeoAPI 2.1
+     * @since 2.1
      */
     String DOMAIN_OF_VALIDITY_KEY = "domainOfValidity";
 
@@ -150,7 +150,7 @@ public interface CoordinateOperation extends IdentifiedObject {
      *
      * @return The position error estimates, or an empty collection if not available.
      *
-     * @since GeoAPI 2.1
+     * @since 2.1
      */
     @UML(identifier="coordinateOperationAccuracy", obligation=OPTIONAL, specification=ISO_19111)
     Collection<PositionalAccuracy> getCoordinateOperationAccuracy();
@@ -160,7 +160,7 @@ public interface CoordinateOperation extends IdentifiedObject {
      *
      * @return The coordinate operation valid domain, or {@code null} if not available.
      *
-     * @since GeoAPI 2.1
+     * @since 2.1
      */
     @UML(identifier="domainOfValidity", obligation=OPTIONAL, specification=ISO_19111)
     Extent getDomainOfValidity();

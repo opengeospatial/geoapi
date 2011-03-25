@@ -43,8 +43,8 @@ import static org.opengis.annotation.Specification.*;
  *
  * @author  Martin Desruisseaux (IRD)
  * @author  Cory Horner (Refractions Research)
- * @version GeoAPI 3.0
- * @since   GeoAPI 1.0
+ * @version 3.0
+ * @since   1.0
  *
  * @navassoc 1 - - VerticalCRS
  */
@@ -83,7 +83,7 @@ public interface VerticalExtent {
      *
      * @issue http://jira.codehaus.org/browse/GEO-134
      *
-     * @since GeoAPI 2.1
+     * @since 2.1
      */
     @UML(identifier="verticalCRS", obligation=MANDATORY, specification=ISO_19115)
     VerticalCRS getVerticalCRS();

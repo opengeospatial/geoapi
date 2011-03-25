@@ -51,8 +51,8 @@ import java.util.Locale;
  *   strings are localizable and which ones are not, we have done our own guesses in GeoAPI.
  *
  * @author  Martin Desruisseaux (IRD)
- * @version GeoAPI 3.0
- * @since   GeoAPI 2.0
+ * @version 3.0
+ * @since   2.0
  *
  * @see javax.xml.registry.infomodel.InternationalString
  * @see NameFactory#createInternationalString(Map)

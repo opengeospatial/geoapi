@@ -43,8 +43,8 @@ import static org.opengis.annotation.Specification.*;
  * Specification of the coordinate operation method formula.
  *
  * @author  Martin Desruisseaux (Geomatys)
- * @version GeoAPI 3.0
- * @since   GeoAPI 2.3
+ * @version 3.0
+ * @since   2.3
  */
 @UML(identifier="CC_Formula", specification=ISO_19111)
 public interface Formula {

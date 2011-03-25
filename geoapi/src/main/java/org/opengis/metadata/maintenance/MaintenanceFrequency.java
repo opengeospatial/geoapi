@@ -45,8 +45,8 @@ import static org.opengis.annotation.Specification.*;
  * first produced.
  *
  * @author  Martin Desruisseaux (IRD)
- * @version GeoAPI 3.0
- * @since   GeoAPI 2.0
+ * @version 3.0
+ * @since   2.0
  */
 @UML(identifier="MD_MaintenanceFrequencyCode", specification=ISO_19115)
 public final class MaintenanceFrequency extends CodeList<MaintenanceFrequency> {

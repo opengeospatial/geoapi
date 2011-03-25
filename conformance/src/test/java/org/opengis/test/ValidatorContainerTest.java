@@ -41,8 +41,9 @@ import static org.junit.Assert.*;
 /**
  * Tests {@link ValidatorContainer}.
  *
- * @author Martin Desruisseaux (Geomatys)
- * @since GeoAPI 2.2
+ * @author  Martin Desruisseaux (Geomatys)
+ * @version 3.0
+ * @since   2.2
  */
 public class ValidatorContainerTest {
     /**

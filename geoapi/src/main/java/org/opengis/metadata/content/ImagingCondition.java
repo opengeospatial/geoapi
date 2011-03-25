@@ -45,8 +45,8 @@ import static org.opengis.annotation.Specification.*;
  * Code which indicates conditions which may affect the image.
  *
  * @author  Martin Desruisseaux (IRD)
- * @version GeoAPI 3.0
- * @since   GeoAPI 2.0
+ * @version 3.0
+ * @since   2.0
  */
 @UML(identifier="MD_ImagingConditionCode", specification=ISO_19115)
 public final class ImagingCondition extends CodeList<ImagingCondition> {

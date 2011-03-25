@@ -40,8 +40,8 @@ import static java.lang.annotation.ElementType.*;
  * An annotation mapping an interface, methods or fields to a profile.
  *
  * @author  Martin Desruisseaux (IRD)
- * @version GeoAPI 3.0
- * @since   GeoAPI 2.0
+ * @version 3.0
+ * @since   2.0
  *
  * @navassoc - - - ComplianceLevel
  */

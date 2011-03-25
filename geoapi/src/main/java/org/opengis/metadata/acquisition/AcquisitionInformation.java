@@ -44,8 +44,8 @@ import static org.opengis.annotation.Specification.*;
  * which the data contributes.
  *
  * @author  Cédric Briançon (Geomatys)
- * @version GeoAPI 3.0
- * @since   GeoAPI 2.3
+ * @version 3.0
+ * @since   2.3
  *
  * @navassoc - - - Plan
  * @navassoc - - - Requirement

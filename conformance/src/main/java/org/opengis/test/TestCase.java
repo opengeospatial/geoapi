@@ -35,8 +35,9 @@ package org.opengis.test;
 /**
  * Base class of GeoAPI tests.
  *
- * @author Martin Desruisseaux (Geomatys)
- * @since GeoAPI 2.2
+ * @author  Martin Desruisseaux (Geomatys)
+ * @version 3.0
+ * @since   2.2
  */
 public abstract class TestCase {
     /**

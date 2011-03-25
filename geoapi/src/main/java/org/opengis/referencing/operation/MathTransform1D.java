@@ -46,8 +46,8 @@ package org.opengis.referencing.operation;
  *   primitive type.
  *
  * @author  Martin Desruisseaux (IRD)
- * @version GeoAPI 3.0
- * @since   GeoAPI 1.0
+ * @version 3.0
+ * @since   1.0
  */
 public interface MathTransform1D extends MathTransform {
     /**
@@ -77,7 +77,7 @@ public interface MathTransform1D extends MathTransform {
      * @return The inverse transform.
      * @throws NoninvertibleTransformException if the transform can't be inverted.
      *
-     * @since GeoAPI 2.2
+     * @since 2.2
      */
     MathTransform1D inverse() throws NoninvertibleTransformException;
 }

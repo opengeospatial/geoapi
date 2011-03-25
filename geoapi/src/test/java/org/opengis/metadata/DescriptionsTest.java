@@ -52,8 +52,8 @@ import static org.junit.Assert.*;
  * Tests the content of {@code Descriptions.properties} file.
  *
  * @author  Martin Desruisseaux (Geomatys)
- * @version GeoAPI 3.0
- * @since   GeoAPI 2.3
+ * @version 3.0
+ * @since   2.3
  */
 public final class DescriptionsTest {
     /**

@@ -44,7 +44,9 @@ import com.sun.javadoc.Tag;
  * Note: {@link #compareTo} is inconsistent with {@link #equals}, but the
  * {@link Departure} taglet doesn't use the {@code equals} method anyway.
  *
- * @author Martin Desruisseaux (Geomatys)
+ * @author  Martin Desruisseaux (Geomatys)
+ * @version 3.0
+ * @since   2.3
  */
 final class DepartureElement implements Comparable<DepartureElement> {
     /**

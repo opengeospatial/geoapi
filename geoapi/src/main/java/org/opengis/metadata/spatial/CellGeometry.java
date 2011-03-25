@@ -44,8 +44,8 @@ import static org.opengis.annotation.Specification.*;
  * Code indicating whether grid data is point or area.
  *
  * @author  Martin Desruisseaux (IRD)
- * @version GeoAPI 3.0
- * @since   GeoAPI 2.0
+ * @version 3.0
+ * @since   2.0
  */
 @UML(identifier="MD_CellGeometryCode", specification=ISO_19115)
 public final class CellGeometry extends CodeList<CellGeometry> {
