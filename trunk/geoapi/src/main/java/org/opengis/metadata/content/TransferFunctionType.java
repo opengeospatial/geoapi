@@ -45,8 +45,8 @@ import static org.opengis.annotation.Specification.*;
  * Transform function to be used when scaling a physical value for a given element.
  *
  * @author  Cédric Briançon (Geomatys)
- * @version GeoAPI 3.0
- * @since   GeoAPI 2.3
+ * @version 3.0
+ * @since   2.3
  */
 @UML(identifier="MI_TransferFunctionTypeCode", specification=ISO_19115_2)
 public final class TransferFunctionType extends CodeList<TransferFunctionType> {

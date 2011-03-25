@@ -39,8 +39,8 @@ import static org.opengis.annotation.Specification.*;
  * Presence and absence of features, their attributes and their relationships.
  *
  * @author  Martin Desruisseaux (IRD)
- * @version GeoAPI 3.0
- * @since   GeoAPI 2.0
+ * @version 3.0
+ * @since   2.0
  */
 @UML(identifier="DQ_Completeness", specification=ISO_19115)
 public interface Completeness extends Element {

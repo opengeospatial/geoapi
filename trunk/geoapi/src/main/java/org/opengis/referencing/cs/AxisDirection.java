@@ -51,8 +51,8 @@ import static org.opengis.annotation.Specification.*;
  * South African grid coordinates into Lat/Long.
  *
  * @author  Martin Desruisseaux (IRD)
- * @version GeoAPI 3.0
- * @since   GeoAPI 1.0
+ * @version 3.0
+ * @since   1.0
  */
 @UML(identifier="CS_AxisDirection", specification=ISO_19111)
 public final class AxisDirection extends CodeList<AxisDirection> {
@@ -90,7 +90,7 @@ public final class AxisDirection extends CodeList<AxisDirection> {
      * Axis positive direction is approximately north-north-east.
      *
      * @category Rose
-     * @since GeoAPI 2.0
+     * @since 2.0
      */
     @UML(identifier="northNorthEast", obligation=CONDITIONAL, specification=ISO_19111)
     public static final AxisDirection NORTH_NORTH_EAST = new AxisDirection("NORTH_NORTH_EAST");
@@ -99,7 +99,7 @@ public final class AxisDirection extends CodeList<AxisDirection> {
      * Axis positive direction is approximately north-east.
      *
      * @category Rose
-     * @since GeoAPI 2.0
+     * @since 2.0
      */
     @UML(identifier="northEast", obligation=CONDITIONAL, specification=ISO_19111)
     public static final AxisDirection NORTH_EAST = new AxisDirection("NORTH_EAST");
@@ -108,7 +108,7 @@ public final class AxisDirection extends CodeList<AxisDirection> {
      * Axis positive direction is approximately east-north-east.
      *
      * @category Rose
-     * @since GeoAPI 2.0
+     * @since 2.0
      */
     @UML(identifier="eastNorthEast", obligation=CONDITIONAL, specification=ISO_19111)
     public static final AxisDirection EAST_NORTH_EAST = new AxisDirection("EAST_NORTH_EAST");
@@ -126,7 +126,7 @@ public final class AxisDirection extends CodeList<AxisDirection> {
      * Axis positive direction is approximately east-south-east.
      *
      * @category Rose
-     * @since GeoAPI 2.0
+     * @since 2.0
      */
     @UML(identifier="eastSouthEast", obligation=CONDITIONAL, specification=ISO_19111)
     public static final AxisDirection EAST_SOUTH_EAST = new AxisDirection("EAST_SOUTH_EAST");
@@ -135,7 +135,7 @@ public final class AxisDirection extends CodeList<AxisDirection> {
      * Axis positive direction is approximately south-east.
      *
      * @category Rose
-     * @since GeoAPI 2.0
+     * @since 2.0
      */
     @UML(identifier="southEast", obligation=CONDITIONAL, specification=ISO_19111)
     public static final AxisDirection SOUTH_EAST = new AxisDirection("SOUTH_EAST");
@@ -144,7 +144,7 @@ public final class AxisDirection extends CodeList<AxisDirection> {
      * Axis positive direction is approximately south-south-east.
      *
      * @category Rose
-     * @since GeoAPI 2.0
+     * @since 2.0
      */
     @UML(identifier="southSouthEast", obligation=CONDITIONAL, specification=ISO_19111)
     public static final AxisDirection SOUTH_SOUTH_EAST = new AxisDirection("SOUTH_SOUTH_EAST");
@@ -161,7 +161,7 @@ public final class AxisDirection extends CodeList<AxisDirection> {
      * Axis positive direction is approximately south-south-west.
      *
      * @category Rose
-     * @since GeoAPI 2.0
+     * @since 2.0
      */
     @UML(identifier="southSouthWest", obligation=CONDITIONAL, specification=ISO_19111)
     public static final AxisDirection SOUTH_SOUTH_WEST = new AxisDirection("SOUTH_SOUTH_WEST");
@@ -170,7 +170,7 @@ public final class AxisDirection extends CodeList<AxisDirection> {
      * Axis positive direction is approximately south-west.
      *
      * @category Rose
-     * @since GeoAPI 2.0
+     * @since 2.0
      */
     @UML(identifier="southWest", obligation=CONDITIONAL, specification=ISO_19111)
     public static final AxisDirection SOUTH_WEST = new AxisDirection("SOUTH_WEST");
@@ -179,7 +179,7 @@ public final class AxisDirection extends CodeList<AxisDirection> {
      * Axis positive direction is approximately west-south-west.
      *
      * @category Rose
-     * @since GeoAPI 2.0
+     * @since 2.0
      */
     @UML(identifier="westSouthWest", obligation=CONDITIONAL, specification=ISO_19111)
     public static final AxisDirection WEST_SOUTH_WEST = new AxisDirection("WEST_SOUTH_WEST");
@@ -197,7 +197,7 @@ public final class AxisDirection extends CodeList<AxisDirection> {
      * Axis positive direction is approximately west-north-west.
      *
      * @category Rose
-     * @since GeoAPI 2.0
+     * @since 2.0
      */
     @UML(identifier="westNorthWest", obligation=CONDITIONAL, specification=ISO_19111)
     public static final AxisDirection WEST_NORTH_WEST = new AxisDirection("WEST_NORTH_WEST");
@@ -206,7 +206,7 @@ public final class AxisDirection extends CodeList<AxisDirection> {
      * Axis positive direction is approximately north-west.
      *
      * @category Rose
-     * @since GeoAPI 2.0
+     * @since 2.0
      */
     @UML(identifier="northWest", obligation=CONDITIONAL, specification=ISO_19111)
     public static final AxisDirection NORTH_WEST = new AxisDirection("NORTH_WEST");
@@ -215,7 +215,7 @@ public final class AxisDirection extends CodeList<AxisDirection> {
      * Axis positive direction is approximately north-north-west.
      *
      * @category Rose
-     * @since GeoAPI 2.0
+     * @since 2.0
      */
     @UML(identifier="northNorthWest", obligation=CONDITIONAL, specification=ISO_19111)
     public static final AxisDirection NORTH_NORTH_WEST = new AxisDirection("NORTH_NORTH_WEST");
@@ -245,7 +245,7 @@ public final class AxisDirection extends CodeList<AxisDirection> {
      * modelled earth towards the intersection of the equator with the prime meridian.
      *
      * @category Geocentric
-     * @since GeoAPI 2.0
+     * @since 2.0
      */
     @UML(identifier="geocentricX", obligation=CONDITIONAL, specification=ISO_19111)
     public static final AxisDirection GEOCENTRIC_X = new AxisDirection("GEOCENTRIC_X");
@@ -256,7 +256,7 @@ public final class AxisDirection extends CodeList<AxisDirection> {
      * radians eastwards from the prime meridian.
      *
      * @category Geocentric
-     * @since GeoAPI 2.0
+     * @since 2.0
      */
     @UML(identifier="geocentricY", obligation=CONDITIONAL, specification=ISO_19111)
     public static final AxisDirection GEOCENTRIC_Y = new AxisDirection("GEOCENTRIC_Y");
@@ -266,7 +266,7 @@ public final class AxisDirection extends CodeList<AxisDirection> {
      * its rotation axis and towards its north pole.
      *
      * @category Geocentric
-     * @since GeoAPI 2.0
+     * @since 2.0
      */
     @UML(identifier="geocentricZ", obligation=CONDITIONAL, specification=ISO_19111)
     public static final AxisDirection GEOCENTRIC_Z = new AxisDirection("GEOCENTRIC_Z");
@@ -303,7 +303,7 @@ public final class AxisDirection extends CodeList<AxisDirection> {
      * Axis positive direction is towards higher pixel column.
      *
      * @category Image
-     * @since GeoAPI 2.0
+     * @since 2.0
      */
     @UML(identifier="columnPositive", obligation=CONDITIONAL, specification=ISO_19111)
     public static final AxisDirection COLUMN_POSITIVE = new AxisDirection("COLUMN_POSITIVE");
@@ -312,7 +312,7 @@ public final class AxisDirection extends CodeList<AxisDirection> {
      * Axis positive direction is towards lower pixel column.
      *
      * @category Image
-     * @since GeoAPI 2.0
+     * @since 2.0
      */
     @UML(identifier="columnNegative", obligation=CONDITIONAL, specification=ISO_19111)
     public static final AxisDirection COLUMN_NEGATIVE = new AxisDirection("COLUMN_NEGATIVE");
@@ -321,7 +321,7 @@ public final class AxisDirection extends CodeList<AxisDirection> {
      * Axis positive direction is towards higher pixel row.
      *
      * @category Image
-     * @since GeoAPI 2.0
+     * @since 2.0
      */
     @UML(identifier="rowPositive", obligation=CONDITIONAL, specification=ISO_19111)
     public static final AxisDirection ROW_POSITIVE = new AxisDirection("ROW_POSITIVE");
@@ -330,7 +330,7 @@ public final class AxisDirection extends CodeList<AxisDirection> {
      * Axis positive direction is towards lower pixel row.
      *
      * @category Image
-     * @since GeoAPI 2.0
+     * @since 2.0
      */
     @UML(identifier="rowNegative", obligation=CONDITIONAL, specification=ISO_19111)
     public static final AxisDirection ROW_NEGATIVE = new AxisDirection("ROW_NEGATIVE");
@@ -339,7 +339,7 @@ public final class AxisDirection extends CodeList<AxisDirection> {
      * Axis positive direction is right in display.
      *
      * @category Display
-     * @since GeoAPI 2.0
+     * @since 2.0
      */
     @UML(identifier="displayRight", obligation=CONDITIONAL, specification=ISO_19111)
     public static final AxisDirection DISPLAY_RIGHT = new AxisDirection("DISPLAY_RIGHT");
@@ -348,7 +348,7 @@ public final class AxisDirection extends CodeList<AxisDirection> {
      * Axis positive direction is left in display.
      *
      * @category Display
-     * @since GeoAPI 2.0
+     * @since 2.0
      */
     @UML(identifier="displayLeft", obligation=CONDITIONAL, specification=ISO_19111)
     public static final AxisDirection DISPLAY_LEFT = new AxisDirection("DISPLAY_LEFT");
@@ -357,7 +357,7 @@ public final class AxisDirection extends CodeList<AxisDirection> {
      * Axis positive direction is towards top of approximately vertical display surface.
      *
      * @category Display
-     * @since GeoAPI 2.0
+     * @since 2.0
      */
     @UML(identifier="displayUp", obligation=CONDITIONAL, specification=ISO_19111)
     public static final AxisDirection DISPLAY_UP = new AxisDirection("DISPLAY_UP");
@@ -366,7 +366,7 @@ public final class AxisDirection extends CodeList<AxisDirection> {
      * Axis positive direction is towards bottom of approximately vertical display surface.
      *
      * @category Display
-     * @since GeoAPI 2.0
+     * @since 2.0
      */
     @UML(identifier="displayDown", obligation=CONDITIONAL, specification=ISO_19111)
     public static final AxisDirection DISPLAY_DOWN = new AxisDirection("DISPLAY_DOWN");

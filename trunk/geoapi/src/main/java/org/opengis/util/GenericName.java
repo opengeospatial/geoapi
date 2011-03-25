@@ -148,8 +148,8 @@ import static org.opengis.annotation.Specification.*;
  *
  * @author  Martin Desruisseaux (IRD)
  * @author  Bryce Nordgren (USDA)
- * @version GeoAPI 3.0
- * @since   GeoAPI 1.0
+ * @version 3.0
+ * @since   1.0
  *
  * @see javax.naming.Name
  *
@@ -169,7 +169,7 @@ public interface GenericName extends Comparable<GenericName> {
      *
      * @return The scope of this name.
      *
-     * @since GeoAPI 2.1
+     * @since 2.1
      */
     @UML(identifier="scope", obligation=MANDATORY, specification=ISO_19103)
     NameSpace scope();
@@ -190,7 +190,7 @@ public interface GenericName extends Comparable<GenericName> {
      *
      * @return The depth of this name.
      *
-     * @since GeoAPI 2.1
+     * @since 2.1
      */
     @UML(identifier="depth", obligation=MANDATORY, specification=ISO_19103)
     int depth();
@@ -233,7 +233,7 @@ public interface GenericName extends Comparable<GenericName> {
      *   class since <code>LocalName</code> can return a sensible value for it. This reduces the
      *   need for casts.
      *
-     * @since GeoAPI 2.2
+     * @since 2.2
      */
     @UML(identifier="ScopedName.head", obligation=MANDATORY, specification=ISO_19103)
     LocalName head();
@@ -256,7 +256,7 @@ public interface GenericName extends Comparable<GenericName> {
      *   information compared to that accessible though the standard methods defined by
      *   ISO, but provides easier to access frequently requested information.
      *
-     * @since GeoAPI 2.1
+     * @since 2.1
      */
     LocalName tip();
 
@@ -277,7 +277,7 @@ public interface GenericName extends Comparable<GenericName> {
      *   information compared to that accessible though the standard methods defined by
      *   ISO, but provides easier to access frequently requested information.
      *
-     * @since GeoAPI 2.1
+     * @since 2.1
      */
     GenericName toFullyQualifiedName();
 
@@ -312,7 +312,7 @@ public interface GenericName extends Comparable<GenericName> {
      * @param scope The name to use as prefix.
      * @return A concatenation of the given name with this name.
      *
-     * @since GeoAPI 2.1
+     * @since 2.1
      */
     @UML(identifier="push", obligation=MANDATORY, specification=ISO_19103)
     ScopedName push(GenericName scope);

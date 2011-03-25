@@ -46,8 +46,8 @@ import static org.opengis.annotation.Specification.*;
  *
  * @author  Martin Desruisseaux (IRD)
  * @author  Cory Horner (Refractions Research)
- * @version GeoAPI 3.0
- * @since   GeoAPI 2.0
+ * @version 3.0
+ * @since   2.0
  */
 @UML(identifier="CI_RoleCode", specification=ISO_19115)
 public final class Role extends CodeList<Role> {
@@ -126,7 +126,7 @@ public final class Role extends CodeList<Role> {
     /**
      * Party who authored the resource.
      *
-     * @since GeoAPI 2.1
+     * @since 2.1
      */
     @UML(identifier="author", obligation=CONDITIONAL, specification=ISO_19115)
     public static final Role AUTHOR = new Role("AUTHOR");

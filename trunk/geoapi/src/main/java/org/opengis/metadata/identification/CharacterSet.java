@@ -47,8 +47,8 @@ import static org.opengis.annotation.Obligation.CONDITIONAL;
  * Name of the character coding standard used for the resource.
  *
  * @author  Ely Conn (Leica Geosystems Geospatial Imaging, LLC)
- * @version GeoAPI 3.0
- * @since   GeoAPI 2.1
+ * @version 3.0
+ * @since   2.1
  */
 @UML(identifier="MD_CharacterSetCode", specification=ISO_19115)
 public final class CharacterSet extends CodeList<CharacterSet> {
@@ -304,7 +304,7 @@ public final class CharacterSet extends CodeList<CharacterSet> {
      *
      * @return All names of this code constant. This array is never null and never empty.
      *
-     * @since GeoAPI 2.3
+     * @since 2.3
      */
     @Override
     public String[] names() {

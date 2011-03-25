@@ -39,8 +39,8 @@ import static org.opengis.annotation.Specification.*;
  * Comparison of the classes assigned to features or their attributes to a universe of discourse.
  *
  * @author  Martin Desruisseaux (IRD)
- * @version GeoAPI 3.0
- * @since   GeoAPI 2.0
+ * @version 3.0
+ * @since   2.0
  */
 @UML(identifier="DQ_ThematicClassificationCorrectness", specification=ISO_19115)
 public interface ThematicClassificationCorrectness extends ThematicAccuracy {

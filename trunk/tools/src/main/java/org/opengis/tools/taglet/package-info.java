@@ -34,6 +34,8 @@
 /**
  * Javadoc taglets for processing custom tags in GeoAPI source code comments.
  *
- * @author Martin Desruisseaux (Geomatys)
+ * @author  Martin Desruisseaux (Geomatys)
+ * @version 3.0
+ * @since   2.0
  */
 package org.opengis.tools.taglet;

@@ -44,8 +44,8 @@ import static org.opengis.annotation.Specification.*;
  * Specific type of information represented in the cell.
  *
  * @author  Martin Desruisseaux (IRD)
- * @version GeoAPI 3.0
- * @since   GeoAPI 2.0
+ * @version 3.0
+ * @since   2.0
  */
 @UML(identifier="MD_CoverageContentTypeCode", specification=ISO_19115)
 public final class CoverageContentType extends CodeList<CoverageContentType> {

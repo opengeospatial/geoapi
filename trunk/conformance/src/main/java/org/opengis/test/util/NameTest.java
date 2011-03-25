@@ -50,8 +50,9 @@ import static org.opengis.test.Validators.*;
  * Tests {@linkplain GenericName generic name} and related objects from the {@code org.opengis.util}
  * package. Name instances are created using a {@link NameFactory} given at construction time.
  *
- * @author Martin Desruisseaux (Geomatys)
- * @since GeoAPI 2.2
+ * @author  Martin Desruisseaux (Geomatys)
+ * @version 3.0
+ * @since   2.2
  */
 public class NameTest extends TestCase {
     /**

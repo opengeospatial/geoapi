@@ -42,8 +42,8 @@ import static org.opengis.annotation.Specification.*;
  * Identifier used for reference systems.
  *
  * @author  Ely Conn (Leica Geosystems Geospatial Imaging, LLC)
- * @version GeoAPI 3.0
- * @since   GeoAPI 2.1
+ * @version 3.0
+ * @since   2.1
  */
 @UML(identifier="RS_Identifier", specification=ISO_19115)
 public interface ReferenceIdentifier extends Identifier {

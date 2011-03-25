@@ -44,8 +44,8 @@ import static org.opengis.annotation.Specification.*;
  * New metadata element, not found in ISO 19115, which is required to describe geographic data.
  *
  * @author  Martin Desruisseaux (IRD)
- * @version GeoAPI 3.0
- * @since   GeoAPI 2.0
+ * @version 3.0
+ * @since   2.0
  *
  * @navassoc 1 - - Obligation
  * @navassoc 1 - - Datatype

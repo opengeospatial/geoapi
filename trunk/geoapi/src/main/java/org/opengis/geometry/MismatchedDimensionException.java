@@ -40,8 +40,8 @@ package org.opengis.geometry;
  *   This exception is not part of the OGC specification.
  *
  * @author  Martin Desruisseaux (IRD)
- * @version GeoAPI 3.0
- * @since   GeoAPI 1.0
+ * @version 3.0
+ * @since   1.0
  */
 public class MismatchedDimensionException extends IllegalArgumentException {
     /**

@@ -33,7 +33,6 @@ package org.opengis.tools.taglet;
 
 import java.io.*;
 import java.util.*;
-import com.sun.javadoc.Doc;
 import com.sun.javadoc.Tag;
 import com.sun.tools.doclets.Taglet;
 import com.sun.tools.doclets.formats.html.ConfigurationImpl;
@@ -59,7 +58,9 @@ import com.sun.tools.doclets.formats.html.ConfigurationImpl;
  * <p>
  * The remaining is the explanation as HTML text (no javadoc tags).
  *
- * @author Martin Desruisseaux (Geomatys)
+ * @author  Martin Desruisseaux (Geomatys)
+ * @version 3.0
+ * @since   2.3
  */
 public final class Departure implements Taglet, Runnable {
     /**

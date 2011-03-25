@@ -46,8 +46,8 @@ import java.util.Locale;
  *
  * @author  Jesse Crossley (SYS Technologies)
  * @author  Martin Desruisseaux (Geomatys)
- * @version GeoAPI 3.0
- * @since   GeoAPI 2.0
+ * @version 3.0
+ * @since   2.0
  */
 public interface NameFactory {
     /**
@@ -96,7 +96,7 @@ public interface NameFactory {
      *          An optional map of properties to be assigned to the namespace.
      * @return A namespace having the given name and separators.
      *
-     * @since GeoAPI 2.3
+     * @since 2.3
      */
     NameSpace createNameSpace(GenericName name, Map<String,?> properties);
 
@@ -111,7 +111,7 @@ public interface NameFactory {
      *          The type name as a string or an international string.
      * @return The type name for the given character sequence.
      *
-     * @since GeoAPI 2.3
+     * @since 2.3
      */
     TypeName createTypeName(NameSpace scope, CharSequence name);
 
@@ -128,7 +128,7 @@ public interface NameFactory {
      *          The local name as a string or an international string.
      * @return The local name for the given character sequence.
      *
-     * @since GeoAPI 2.2
+     * @since 2.2
      */
     LocalName createLocalName(NameSpace scope, CharSequence name);
 
@@ -150,7 +150,7 @@ public interface NameFactory {
      *          This array must contains at least one element.
      * @return The generic name for the given parsed names.
      *
-     * @since GeoAPI 2.2
+     * @since 2.2
      */
     GenericName createGenericName(NameSpace scope, CharSequence... parsedNames);
 
@@ -173,7 +173,7 @@ public interface NameFactory {
      *          The qualified name, as a sequence of names separated by a scope-dependent separator.
      * @return A name parsed from the given string.
      *
-     * @since GeoAPI 2.2
+     * @since 2.2
      */
     GenericName parseGenericName(NameSpace scope, CharSequence name);
 }

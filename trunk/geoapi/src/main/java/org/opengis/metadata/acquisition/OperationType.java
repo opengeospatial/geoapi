@@ -47,8 +47,8 @@ import static org.opengis.annotation.Specification.*;
  * or synthesized (a mix of real and simulated data).
  *
  * @author  Cédric Briançon (Geomatys)
- * @version GeoAPI 3.0
- * @since   GeoAPI 2.3
+ * @version 3.0
+ * @since   2.3
  */
 @UML(identifier="MI_OperationTypeCode", specification=ISO_19115_2)
 public final class OperationType extends CodeList<OperationType> {

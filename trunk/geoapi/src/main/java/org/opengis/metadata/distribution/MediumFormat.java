@@ -45,8 +45,8 @@ import static org.opengis.annotation.Specification.*;
  * Method used to write to the medium.
  *
  * @author  Martin Desruisseaux (IRD)
- * @version GeoAPI 3.0
- * @since   GeoAPI 2.0
+ * @version 3.0
+ * @since   2.0
  */
 @UML(identifier="MD_MediumFormatCode", specification=ISO_19115)
 public final class MediumFormat extends CodeList<MediumFormat> {

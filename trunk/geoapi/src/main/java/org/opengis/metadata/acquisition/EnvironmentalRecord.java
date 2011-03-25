@@ -42,8 +42,8 @@ import static org.opengis.annotation.Specification.*;
  * Information about the environmental conditions during the acquisition.
  *
  * @author  Cédric Briançon (Geomatys)
- * @version GeoAPI 3.0
- * @since   GeoAPI 2.3
+ * @version 3.0
+ * @since   2.3
  */
 @UML(identifier="MI_EnvironmentalRecord", specification=ISO_19115_2)
 public interface EnvironmentalRecord {

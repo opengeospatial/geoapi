@@ -47,8 +47,8 @@ import static org.opengis.annotation.Specification.*;
  * {@linkplain CoordinateSystemAxis#getMaximumValue maximum value}.
  *
  * @author  Martin Desruisseaux (IRD)
- * @version GeoAPI 3.0
- * @since   GeoAPI 2.1
+ * @version 3.0
+ * @since   2.1
  *
  * @see CoordinateSystemAxis#getRangeMeaning()
  */

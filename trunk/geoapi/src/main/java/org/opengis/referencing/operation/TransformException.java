@@ -48,8 +48,8 @@ import org.opengis.geometry.DirectPosition;  // For javadoc
  *   This exception is not part of the OGC specification.
  *
  * @author  Martin Desruisseaux (IRD)
- * @version GeoAPI 3.0
- * @since   GeoAPI 1.0
+ * @version 3.0
+ * @since   1.0
  */
 public class TransformException extends Exception {
     /**
@@ -65,7 +65,7 @@ public class TransformException extends Exception {
      * @see #getLastCompletedTransform()
      * @see #setLastCompletedTransform(MathTransform)
      *
-     * @since GeoAPI 2.2
+     * @since 2.2
      */
     private MathTransform lastCompletedTransform;
 
@@ -104,7 +104,7 @@ public class TransformException extends Exception {
      *
      * @return The last reliable transform.
      *
-     * @since GeoAPI 2.2
+     * @since 2.2
      */
     public MathTransform getLastCompletedTransform() {
         return lastCompletedTransform;
@@ -116,7 +116,7 @@ public class TransformException extends Exception {
      *
      * @param transform The last reliable transform.
      *
-     * @since GeoAPI 2.2
+     * @since 2.2
      */
     public void setLastCompletedTransform(final MathTransform transform) {
         lastCompletedTransform = transform;

@@ -52,8 +52,9 @@ import static org.opengis.test.Validators.*;
  * from the {@code org.opengis.referencing.crs} packages. CRS instances are created using the
  * authority factory given at construction time.
  *
- * @author Cédric Briançon (Geomatys)
- * @since GeoAPI 2.3
+ * @author  Cédric Briançon (Geomatys)
+ * @version 3.0
+ * @since   2.3
  */
 public abstract class CRSTest extends TestCase {
     /**

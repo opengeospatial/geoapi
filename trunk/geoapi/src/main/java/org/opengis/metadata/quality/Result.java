@@ -39,8 +39,8 @@ import static org.opengis.annotation.Specification.*;
  * Base interface of more specific result classes.
  *
  * @author  Martin Desruisseaux (IRD)
- * @version GeoAPI 3.0
- * @since   GeoAPI 2.0
+ * @version 3.0
+ * @since   2.0
  */
 @UML(identifier="DQ_Result", specification=ISO_19115)
 public interface Result {

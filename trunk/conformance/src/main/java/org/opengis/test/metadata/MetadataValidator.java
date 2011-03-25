@@ -42,8 +42,9 @@ import static org.opengis.test.Assert.*;
 /**
  * Base class for validators of {@code org.opengis.metadata} package.
  *
- * @author Martin Desruisseaux (Geomatys)
- * @since GeoAPI 2.2
+ * @author  Martin Desruisseaux (Geomatys)
+ * @version 3.0
+ * @since   2.2
  */
 public abstract class MetadataValidator extends Validator {
     /**

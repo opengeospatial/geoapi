@@ -46,8 +46,8 @@ import static org.opengis.annotation.Specification.*;
  *
  * @author  Martin Desruisseaux (IRD)
  * @author  Cory Horner (Refractions Research)
- * @version GeoAPI 3.0
- * @since   GeoAPI 2.0
+ * @version 3.0
+ * @since   2.0
  */
 @UML(identifier="MD_GeometricObjectTypeCode", specification=ISO_19115)
 public final class GeometricObjectType extends CodeList<GeometricObjectType> {
@@ -66,7 +66,7 @@ public final class GeometricObjectType extends CodeList<GeometricObjectType> {
      * Set of geometric primitives such that their boundaries can be represented as a
      * union of other primitives.
      *
-     * @since GeoAPI 2.1
+     * @since 2.1
      */
     @UML(identifier="complex", obligation=CONDITIONAL, specification=ISO_19115)
     public static final GeometricObjectType COMPLEX = new GeometricObjectType("COMPLEX");
@@ -74,7 +74,7 @@ public final class GeometricObjectType extends CodeList<GeometricObjectType> {
     /**
      * Connected set of curves, solids or surfaces.
      *
-     * @since GeoAPI 2.1
+     * @since 2.1
      */
     @UML(identifier="composite", obligation=CONDITIONAL, specification=ISO_19115)
     public static final GeometricObjectType COMPOSITE = new GeometricObjectType("COMPOSITE");

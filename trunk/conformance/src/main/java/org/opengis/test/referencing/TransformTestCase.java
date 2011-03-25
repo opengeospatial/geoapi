@@ -58,8 +58,9 @@ import static org.opengis.test.Assert.*;
  * Methods in this class do not {@linkplain org.opengis.test.Validators#validate(MathTransform)
  * validate} the transform. It is caller responsibility to validate the transform if wanted.
  *
- * @author Martin Desruisseaux (Geomatys)
- * @since GeoAPI 2.2
+ * @author  Martin Desruisseaux (Geomatys)
+ * @version 3.0
+ * @since   2.2
  */
 public strictfp abstract class TransformTestCase extends TestCase {
     /**

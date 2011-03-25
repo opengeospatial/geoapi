@@ -47,8 +47,8 @@ import static org.opengis.annotation.Specification.*;
  *
  * @author  Martin Desruisseaux (IRD)
  * @author  Cory Horner (Refractions Research)
- * @version GeoAPI 3.0
- * @since   GeoAPI 2.0
+ * @version 3.0
+ * @since   2.0
  *
  * @navassoc 1 - - Identifier
  * @navassoc 1 - - EvaluationMethodType
@@ -120,7 +120,7 @@ public interface Element {
      *
      * @return Date or range of dates on which a data quality measure was applied.
      *
-     * @since GeoAPI 2.1
+     * @since 2.1
      */
     @UML(identifier="dateTime", obligation=OPTIONAL, specification=ISO_19115)
     Collection<? extends Date> getDates();
@@ -132,7 +132,7 @@ public interface Element {
      *
      * @return Set of values obtained from applying a data quality measure.
      *
-     * @since GeoAPI 2.1
+     * @since 2.1
      */
     @UML(identifier="result", obligation=MANDATORY, specification=ISO_19115)
     Collection<? extends Result> getResults();

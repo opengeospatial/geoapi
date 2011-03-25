@@ -33,5 +33,9 @@
 /**
  * Annotation processing tools for processing GeoAPI after compilation. Those tools are
  * used mostly for javadoc generation. They are not part of normal GeoAPI distributions.
+ *
+ * @author  Martin Desruisseaux (Geomatys)
+ * @version 3.0
+ * @since   2.0
  */
 package org.opengis.tools;

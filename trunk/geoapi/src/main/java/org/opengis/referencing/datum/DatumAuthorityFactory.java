@@ -47,8 +47,8 @@ import static org.opengis.annotation.Specification.*;
  * standard.
  *
  * @author  Martin Desruisseaux (IRD)
- * @version GeoAPI 3.0
- * @since   GeoAPI 1.0
+ * @version 3.0
+ * @since   1.0
  *
  * @see org.opengis.referencing.cs.CSAuthorityFactory
  * @see org.opengis.referencing.crs.CRSAuthorityFactory

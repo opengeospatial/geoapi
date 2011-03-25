@@ -43,7 +43,8 @@
  * <p>No other validator class need to be considered, unless the validation process needs
  * to be customized.</p>
  *
- * @author Martin Desruisseaux (Geomatys)
- * @since GeoAPI 2.2
+ * @author  Martin Desruisseaux (Geomatys)
+ * @version 3.0
+ * @since   2.2
  */
 package org.opengis.test;
