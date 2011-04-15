@@ -105,7 +105,13 @@ public interface ParameterValueGroup extends GeneralParameterValue {
      * {@code "false_easting"} parameter:
      *
      * <blockquote><code>
-     * double value = parameter("false_easting").{@linkplain ParameterValue#doubleValue() doubleValue()};
+     * double value = <b>parameter</b>("false_easting").{@linkplain ParameterValue#doubleValue() doubleValue}();
+     * </code></blockquote>
+     *
+     * The following idiom sets a floating point value for the {@code "false_easting"} parameter:
+     *
+     * <blockquote><code>
+     * <b>parameter</b>("false_easting").{@linkplain ParameterValue#setValue(double) setValue}(500000.0);
      * </code></blockquote>
      *
      * This method do not search recursively in subgroups. This is because more than one
@@ -146,6 +152,10 @@ public interface ParameterValueGroup extends GeneralParameterValue {
      * Creates a new group of the specified name. The specified name must be the
      * {@linkplain Identifier#getCode identifier code} of a {@linkplain ParameterDescriptorGroup
      * descriptor group}.
+     * <p>
+     * There is no {@code removeGroup(String)} method. To remove a group, users shall inspect the
+     * {@link #values()} list, decide which occurrences to remove if there is many of them for the
+     * same name, and whatever to iterate recursively into sub-groups or not.
      *
      * @param  name The case insensitive {@linkplain Identifier#getCode identifier code} of the
      *              parameter group to create.
