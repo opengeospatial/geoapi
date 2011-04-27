@@ -4,16 +4,21 @@
 
 GeoAPI
 
-  GeoAPI provides a set of Java language programming interfaces for geospatial
-  applications.
+  GeoAPI provides a set of Java language programming interfaces for geospatial applications.
 
-  The interfaces developed by the GeoAPI project include many of the data
-  structures and manipulation methods needed for geographic information system
-  applications. In a series of packages, GeoAPI defines a core set
-  of interfaces for metadata handling, for geodetic referencing, projection and
-  conversion, for the handling of georeferenced imagery, for the construction
+  <<April 27, 2011: the GeoAPI 3.0.0 specification has been approved as an OGC standard
+  and is available on the {{{http://www.opengeospatial.org/standards/geoapi}OGC web site}}.
+  The deployment of JAR files to the Maven Central repository is under way. In the mean time,
+  developers can use the {{{http://maven.geotoolkit.org/org/opengis/geoapi/3.0-RC1/}3.0-RC1}}
+  interim release.>>
+
+  The interfaces developed by the GeoAPI project include many of the data structures and
+  manipulation methods needed for geographic information system applications. In a series
+  of packages, {{{./3.0/index.html}GeoAPI 3.0}} defines a core set of interfaces for metadata
+  handling, for geodetic referencing, projection and conversion. The "pending" part of GeoAPI
+  defines interfaces for the handling of georeferenced imagery, for the construction
   and manipulation of vector geometry and topological data structures, and for the
-  description and use of geospatial "feature" entities. Beyond this core, GeoAPI
+  description and use of geospatial "feature" entities. Beyond this core, GeoAPI-pending
   further defines interfaces for data access and storage including sophisticated
   filter queries, and for display.
 
@@ -54,8 +59,11 @@ GeoAPI
 
     * The project uses a {{{http://jira.codehaus.org/browse/GEO}JIRA task tracker}}.
 
-    * GeoAPI has a {{{http://docs.codehaus.org/display/GEO/Home}wiki}} available for news and discussions
-      (currently obsolete).
+    * GeoAPI has a public {{{http://docs.codehaus.org/display/GEO/Home}wiki}} available
+      for news and discussions (currently obsolete).
+
+    * GeoAPI has an {{{http://portal.opengeospatial.org/twiki/bin/view/Main/GeoAPI}OGC wiki}}
+      for Standard Working Group (SWG) tasks (not API development).
 
   GeoAPI is free software. GeoAPI may be used, modified and redistributed by
   anyone for any purpose requiring only maintaining the copyright and license
@@ -103,4 +111,5 @@ GeoAPI
   projects which also use this tool can integrate GeoAPI into their Maven
   dependencies using one of the {{{./maven.html}repositories listed here}}.
 
-  GeoAPI is hosted on a {{{./source-repository.html}Subversion repository}}.
+  GeoAPI source code is hosted on a {{{./source-repository.html}Subversion repository}}
+  on SourceForge.

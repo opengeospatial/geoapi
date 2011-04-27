@@ -6,11 +6,13 @@ Maven repositories
 
   Maven projects can use one of the following repositories:
 
-    * {{{http://maven.geotoolkit.org/}http://maven.geotoolkit.org/}} (GeoAPI 3.0 and 2.3)
+    * (<Coming soon: Maven central repository for GeoAPI 3.0.0 final>)
 
-    * {{{http://download.osgeo.org/webdav/geotools/}http://download.osgeo.org/webdav/geotools/}} (GeoAPI 2.2, 2.1 and 2.0)
+    * {{{http://maven.geotoolkit.org/}http://maven.geotoolkit.org/}} (GeoAPI 3.0-RC1, 3.1 development branch and legacy 2.3 milestones)
 
-    * {{{http://repo.opengeo.org/}http://repo.opengeo.org/}} (GeoAPI 2.2, 2.1 and 2.0)
+    * {{{http://download.osgeo.org/webdav/geotools/}http://download.osgeo.org/webdav/geotools/}} (legacy GeoAPI 2.2, 2.1 and 2.0)
+
+    * {{{http://repo.opengeo.org/}http://repo.opengeo.org/}} (legacy GeoAPI 2.2, 2.1 and 2.0)
 
   Example:
 
@@ -27,7 +29,7 @@ Maven repositories
   <dependency>
     <groupId>org.opengis</groupId>
     <artifactId>geoapi</artifactId>
-    <version>3.0</version>
+    <version>3.0-RC1</version>
   </dependency>
 </dependencies>
 -----------------------------------------------------------------------------------

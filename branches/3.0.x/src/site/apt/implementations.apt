@@ -6,9 +6,9 @@ Implementations
 
   Some projects that are known to implement subsets of GeoAPI are:
 
-    * {{{http://www.geotoolkit.org/}Geotoolkit}} (GeoAPI 3.0 implementation)
+    * {{{http://www.geotoolkit.org/}Geotoolkit.org}} version 3.18 or above (GeoAPI 3.0 implementation)
 
-    * {{{http://www.geotools.org/}GeoTools}} (GeoAPI 2.x implementation)
+    * {{{http://www.geotools.org/}GeoTools}} version 2.7 or before (GeoAPI 2.x implementation)
 
     * {{{http://oxygene-project.sourceforge.net/}GeOxygene}} (implementation of geometry)
 

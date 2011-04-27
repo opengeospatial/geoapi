@@ -8,15 +8,15 @@ GeoAPI 3.0
   Open Geospatial Consortium with the final draft of the engineering specification <GeoAPI specification>
   and therefore considered by the GeoAPI project as one of its <official> releases.
 
-    * Defining specification (<Coming soon - the final vote is in progress at OGC>)
+    * {{{http://www.opengeospatial.org/standards/geoapi}Defining specification}} from OGC web site.
 
     * {{{./javadoc/content.html}Table of content}}
 
     * {{{./javadoc/index.html}Browse javadoc}}
 
-    * {{{../maven.html}Maven repositories}} (<Coming soon - the final vote is in progress at OGC>)
+    * {{{../maven.html}Maven repositories}} (<Coming soon>)
 
-    * Download from SourceForge (<Coming soon - the final vote is in progress at OGC>)
+    * Download from SourceForge (<Coming soon>)
 
   This release requires a Java environment Java\ 5 or higher.
 

@@ -1,8 +1,9 @@
 GeoAPI SNAPSHOT
 
-  The SNAPSHOT is the unreleased version of GeoAPI currently in development. Developers working on
-  projects who need long term stability should use a released version of the API rather than the
-  SNAPSHOT, ideally one formalized with an OGC specification document.
+  The 3.1-SNAPSHOT is the unreleased version of GeoAPI currently in development. Developers working
+  on projects who need long term stability should use the released {{{../3.0/index.html}3.0.0}}
+  version of the API rather than the 3.1-SNAPSHOT, formalized with the
+  {{{http://www.opengeospatial.org/standards/geoapi}OGC 09-083}} specification document.
 
     * {{{./javadoc/content.html}Table of content}}
 
