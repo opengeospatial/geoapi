@@ -83,21 +83,4 @@
     </dependency>
   </dependencies>
 
-
-
-  <!-- ====================================================
-           Plugins configuration
-       ==================================================== -->
-  <build>
-    <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-deploy-plugin</artifactId>
-        <configuration>
-          <skip>false</skip> <!-- Need to be 'true' for release deployment. -->
-        </configuration>
-      </plugin>
-    </plugins>
-  </build>
-
 </project>
