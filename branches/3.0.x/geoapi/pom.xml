@@ -129,6 +129,8 @@ The development community in building GIS solutions is sustaining an enormous le
        ==================================================== -->
   <build>
     <plugins>
+
+      <!-- Add the minimal set of pending API. -->
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>build-helper-maven-plugin</artifactId>
@@ -145,6 +147,34 @@ The development community in building GIS solutions is sustaining an enormous le
           </execution>
         </executions>
       </plugin>
+
+      <!-- Copy some HTML files to the root of javadoc directory. -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-resources-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>copy-resources</id>
+            <phase>prepare-package</phase>
+            <goals>
+              <goal>copy-resources</goal>
+            </goals>
+            <configuration>
+              <resources>
+                <resource>
+                  <directory>${basedir}/src/main/javadoc/</directory>
+                  <excludes>
+                    <exclude>overview.html</exclude>
+                  </excludes>
+                </resource>
+              </resources>
+              <outputDirectory>${basedir}/target/apidocs/</outputDirectory>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+      <!-- Package the JAR file as an OSGi bundle. -->
       <plugin>
         <groupId>org.apache.felix</groupId>
         <artifactId>maven-bundle-plugin</artifactId>
