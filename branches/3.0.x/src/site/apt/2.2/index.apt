@@ -12,3 +12,6 @@ GeoAPI 2.2
     * {{{http://sourceforge.net/projects/geoapi/files/geoapi/2.2.0/geoapi-2_2_0.zip/download}Download from SourceForge}}
 
   This release requires a Java environment Java\ 5 or higher.
+
+  <<Note:>> GeoAPI 2.2 is a legacy release. The latest release is
+  {{{../3.0/index.html}GeoAPI 3.0}}.

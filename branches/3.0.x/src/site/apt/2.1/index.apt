@@ -22,3 +22,6 @@ GeoAPI 2.1
   This release comes in two flavours: <<<geoapi-nogenerics-*.jar>>> requires a Java environment
   J2SE\ 1.4 or higher while <<<geoapi-*.jar>>> requires a Java environment Java\ 5 or higher, where
   the asterisk is a wildcard.
+
+  <<Note:>> GeoAPI 2.1 is a legacy release. The latest release is
+  {{{../3.0/index.html}GeoAPI 3.0}}.

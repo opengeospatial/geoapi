@@ -14,3 +14,6 @@ GeoAPI 1.0
     * {{{http://sourceforge.net/projects/geoapi/files/geoapi/1.0.0/GeoAPI-1_0_0.zip/download}Download from SourceForge}}
 
   This release requires a Java environment J2SE\ 1.4 or higher.
+
+  <<Note:>> GeoAPI 1.0 is a legacy release. The latest release is
+  {{{../3.0/index.html}GeoAPI 3.0}}.

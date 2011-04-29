@@ -12,3 +12,6 @@ GeoAPI 0.1
     * {{{./javadoc/index.html}Browse javadoc}}
 
   This release requires a Java environment J2SE\ 1.3 or higher.
+
+  <<Note:>> GeoAPI 0.1 is a legacy release. The latest release is
+  {{{../3.0/index.html}GeoAPI 3.0}}.

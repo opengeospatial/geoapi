@@ -124,7 +124,6 @@
   <!-- ====================================================
            Developers and contributors
        ==================================================== -->
-
   <developers>
     <developer>
       <name>GeoAPI contributors</name>
@@ -298,7 +297,7 @@
 
 
       <!-- =======================================================
-               Resources.
+               Resources
            ======================================================= -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
@@ -306,6 +305,37 @@
         <configuration>
           <encoding>UTF-8</encoding>
         </configuration>
+        <!--
+          In addition to Maven standard behavior, also copy HTML files from the
+          source javadoc directory to the root of target javadoc directory. This
+          is different than the default behavior which is to store such files in
+          a "doc-files" subdirectory. This allows shorter permanent URL for top-
+          level pages like "content.html" which may be referenced from external
+          sites.
+        -->
+        <executions>
+          <execution>
+            <id>copy-resources</id>
+            <phase>prepare-package</phase>
+            <goals>
+              <goal>copy-resources</goal>
+            </goals>
+            <configuration>
+              <resources>
+                <resource>
+                  <directory>${basedir}/src/main/javadoc/</directory>
+                  <includes>
+                    <include>*.html</include>
+                  </includes>
+                  <excludes>
+                    <exclude>overview.html</exclude>
+                  </excludes>
+                </resource>
+              </resources>
+              <outputDirectory>${basedir}/target/apidocs/</outputDirectory>
+            </configuration>
+          </execution>
+        </executions>
       </plugin>
 
 
