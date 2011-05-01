@@ -62,7 +62,7 @@ GeoAPI
     * GeoAPI has a public {{{http://docs.codehaus.org/display/GEO/Home}wiki}} available
       for news and discussions (currently obsolete).
 
-    * GeoAPI has an {{{http://portal.opengeospatial.org/twiki/bin/view/Main/GeoAPI}OGC wiki}}
+    * GeoAPI has an {{{http://portal.opengeospatial.org/twiki/bin/view/Member/GeoAPI}OGC wiki}}
       for Standard Working Group (SWG) tasks (not API development).
 
   GeoAPI is free software. GeoAPI may be used, modified and redistributed by
