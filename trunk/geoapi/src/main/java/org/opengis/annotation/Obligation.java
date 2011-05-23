@@ -35,9 +35,9 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * Obligation of the element or entity. The enum values declared here are an exact copy of
- * the code list elements declared in the {@link org.opengis.metadata.Obligation} code list
- * from the metadata package.
+ * Obligation of the element or entity. The enum values declared here duplicate the code list
+ * elements declared in the {@link org.opengis.metadata.Obligation} code list from the metadata
+ * package.
  *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0
@@ -45,22 +45,30 @@ import static org.opengis.annotation.Specification.*;
  */
 @UML(identifier="MD_ObligationCode", specification=ISO_19115)
 public enum Obligation {
+    /*
+     * Implementation note: Enum or CodeList elements are usually declared with
+     * Obligation.CONDITIONAL.  However such declaration in the Obligation enum
+     * causes a recursive dependency. Some compilers (like Oracle javac) accept
+     * this recursive dependency while some other (Eclipse, Scala...) reject it.
+     * For better portability, we have to omit the Obligation declarations here.
+     */
+
     /**
      * Element is required when a specific condition is met.
      */
-    @UML(identifier="conditional", obligation=CONDITIONAL, specification=ISO_19115)
+    @UML(identifier="conditional", specification=ISO_19115)
     CONDITIONAL,
 
     /**
      * Element is not required.
      */
-    @UML(identifier="optional", obligation=CONDITIONAL, specification=ISO_19115)
+    @UML(identifier="optional", specification=ISO_19115)
     OPTIONAL,
 
     /**
      * Element is always required.
      */
-    @UML(identifier="mandatory", obligation=CONDITIONAL, specification=ISO_19115)
+    @UML(identifier="mandatory", specification=ISO_19115)
     MANDATORY,
 
     /**
@@ -69,7 +77,7 @@ public enum Obligation {
      * An example is {@link org.opengis.referencing.datum.TemporalDatum#getAnchorPoint()}.
      *
      * @departure constraint
-     *   ISO specifications sometime override a parent method with a comment saying that the method 
+     *   ISO specifications sometime override a parent method with a comment saying that the method
      *   is not allowed for a particular class. Since there is no construct in Java for expressing this
      *   constraint in the method signature, GeoAPI defines a <code>FORBIDDEN</code> obligation
      *   (not in original ISO specifications) to be used with the <code>@UML</code> annotation and
