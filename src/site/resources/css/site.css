@@ -1,6 +1,7 @@
 /* Override styles in maven-base.css */
-#banner img {
-  margin-left: 5px;
+#banner {
+  height: 90px;
+  background: url(../images/banner.png);
 }
 
 /* Override styles in maven-theme.css */
@@ -25,7 +26,6 @@ h4 {
   border: none;
   font-size: medium;
   font-weight: bold;
-  text-decoration: underline;
   padding-left: 0px;
   padding-bottom: 0px;
 }
