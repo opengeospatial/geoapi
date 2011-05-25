@@ -12,6 +12,9 @@ a {
 a:active, a:hover {
   text-decoration: underline;
 }
+p {
+  text-align: justify;
+}
 h2 {
   background: url(../../images/h2.png) repeat-x;
   -moz-border-radius: 10px;
