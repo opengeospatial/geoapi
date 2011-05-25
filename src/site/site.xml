@@ -22,9 +22,9 @@
              Links to appears just below the right banner
          ==================================================== -->
     <links>
-      <item name="Open Geospatial Consortium (OGC)" href="http://www.opengeospatial.org" />
-      <item name="Open Source Geospatial (OSGEO)"   href="http://www.osgeo.org"          />
-      <item name="GeoAPI home page"                 href="http://www.geoapi.org"         />
+      <item name="Open Geospatial Consortium (OGC)" href="http://www.opengeospatial.org"/>
+      <item name="Open Source Geospatial (OSGEO)"   href="http://www.osgeo.org"/>
+      <item name="Specification"                    href="http://www.opengeospatial.org/standards/geoapi"/>
     </links>
 
     <!-- ====================================================
