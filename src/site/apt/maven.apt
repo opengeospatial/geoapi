@@ -8,7 +8,7 @@ Maven repositories
 
     * (<Coming soon: Maven central repository for GeoAPI 3.0.0 final>)
 
-    * {{{http://maven.geotoolkit.org/}http://maven.geotoolkit.org/}} (GeoAPI 3.0-RC2, 3.1 development branch and legacy 2.3 milestones)
+    * {{{http://maven.geotoolkit.org/}http://maven.geotoolkit.org/}} (GeoAPI 3.0-RC1, 3.1 development branch and legacy 2.3 milestones)
 
     * {{{http://download.osgeo.org/webdav/geotools/}http://download.osgeo.org/webdav/geotools/}} (legacy GeoAPI 2.2, 2.1 and 2.0)
 
@@ -29,7 +29,7 @@ Maven repositories
   <dependency>
     <groupId>org.opengis</groupId>
     <artifactId>geoapi</artifactId>
-    <version>3.0-RC2</version>
+    <version>3.0-RC1</version>
   </dependency>
 </dependencies>
 -----------------------------------------------------------------------------------

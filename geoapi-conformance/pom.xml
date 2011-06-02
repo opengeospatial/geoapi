@@ -10,7 +10,7 @@
   <parent>
     <groupId>org.opengis</groupId>
     <artifactId>geoapi-parent</artifactId>
-    <version>3.1-SNAPSHOT</version>
+    <version>3.0.0</version>
   </parent>
 
 
@@ -67,7 +67,7 @@
   <dependencies>
     <dependency>
       <groupId>org.opengis</groupId>
-      <artifactId>geoapi-pending</artifactId>
+      <artifactId>geoapi</artifactId>
       <version>${project.version}</version>
     </dependency>
     <dependency>

@@ -10,7 +10,7 @@
   <parent>
     <groupId>org.opengis</groupId>
     <artifactId>geoapi-parent</artifactId>
-    <version>3.1-SNAPSHOT</version>
+    <version>3.0.0</version>
   </parent>
 
   <!-- ===========================================================
@@ -78,9 +78,40 @@
   <dependencies>
     <dependency>
       <groupId>org.opengis</groupId>
-      <artifactId>geoapi-pending</artifactId>
+      <artifactId>geoapi</artifactId>
       <version>${project.version}</version>
     </dependency>
   </dependencies>
+
+
+
+  <!-- ====================================================
+           Plugins configuration: skip deployment
+       ==================================================== -->
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-deploy-plugin</artifactId>
+        <configuration>
+          <skip>true</skip>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <configuration>
+          <skip>true</skip>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-source-plugin</artifactId>
+        <configuration>
+          <skip>true</skip>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
 
 </project>

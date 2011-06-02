@@ -306,57 +306,6 @@ public enum Specification {
     OGC_01004,
 
     /**
-     * Filter encoding implementation specification.
-     * This is the specification for package {@link org.opengis.filter} and sub-packages.
-     *
-     * @see <A HREF="http://www.opengeospatial.org/standards/filter">Download from OGC</A>
-     *
-     * @deprecated To be replaced by {@code OGC 09-026}.
-     */
-    @Deprecated
-    OGC_02059,
-
-    /**
-     * Styled Layer Descriptor (SLD) implementation specification.
-     * This is the specification for package {@link org.opengis.sld} and sub-packages.
-     *
-     * @see <A HREF="http://www.opengeospatial.org/standards/sld">Download from OGC</A>
-     *
-     * @deprecated To be replaced by {@code OGC 05-078}.
-     */
-    @Deprecated
-    OGC_02070,
-
-    /**
-     * Web Feature Service implementation specification.
-     * This is the specification for package {@link org.opengis.feature} and sub-packages.
-     *
-     * @see <A HREF="http://www.opengeospatial.org/standards/wfs">Download from OGC</A>
-     *
-     * @deprecated To be replaced by {@code OGC 09-025}.
-     */
-    @Deprecated
-    OGC_04094,
-
-    /**
-     * Observations and Measurements, part 1.
-     * This is the specification for package {@link org.opengis.observation}.
-     *
-     * @deprecated To be replaced by Topic 20: Observations and Measurements
-     */
-    @Deprecated
-    OGC_07022,
-
-    /**
-     * Observations and Measurements, part 2: Sampling Features.
-     * This is the specification for package {@link org.opengis.observation.sampling}.
-     *
-     * @deprecated To be replaced by Topic 20: Observations and Measurements
-     */
-    @Deprecated
-    OGC_07002,
-
-    /**
      * Specification not yet determined. This is a temporary enumeration
      * for the processing of API submitted by some contributors.
      */

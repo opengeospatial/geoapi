@@ -6,6 +6,7 @@ GeoAPI 2.3
 
   GeoAPI 2.3 was the development branch of {{{../3.0/index.html}GeoAPI 3.0}}, which is formalized in
   the {{{http://www.opengeospatial.org/standards/geoapi}OGC 09-083}} document.
+
   This release requires a Java environment Java\ 5 or higher.
 
 
