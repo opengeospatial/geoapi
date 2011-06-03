@@ -43,7 +43,7 @@ import static org.opengis.test.Assert.*;
  * Base class for validators of {@code org.opengis.metadata} package.
  *
  * @author  Martin Desruisseaux (Geomatys)
- * @version 3.0
+ * @version 3.1
  * @since   2.2
  */
 public abstract class MetadataValidator extends Validator {
@@ -67,6 +67,7 @@ public abstract class MetadataValidator extends Validator {
     final <T> void validateCollection(final Class<T> elementType, final Collection<? extends T> objects) {
         mandatory("Null collection. Should be an empty one if there is no elements.", objects);
         if (objects != null) {
+            validate(objects);
             for (final T element : objects) {
                 assertNotNull("Collection should not contain null element.", element);
                 assertInstanceOf("Wrong element type in the collection.", elementType, element);

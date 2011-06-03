@@ -45,7 +45,7 @@ import static org.opengis.test.Assert.*;
  * convenience static methods instead.
  *
  * @author  Martin Desruisseaux (Geomatys)
- * @version 3.0
+ * @version 3.1
  * @since   2.2
  */
 public class ParameterValidator extends ReferencingValidator {
@@ -101,6 +101,7 @@ public class ParameterValidator extends ReferencingValidator {
         mandatory("ParameterDescriptor: getValueClass() can not return null.", valueClass);
         Set<T> validValues = object.getValidValues();
         if (validValues != null) {
+            validate(validValues);
             for (final T value : validValues) {
                 if (value != null) {
                     assertInstanceOf("ParameterDescriptor: getValidValues() has unexpected element.", valueClass, value);
@@ -138,6 +139,7 @@ public class ParameterValidator extends ReferencingValidator {
         final List<GeneralParameterDescriptor> descriptors = object.descriptors();
         mandatory("ParameterDescriptorGroup: descriptors() should not return null.", descriptors);
         if (descriptors != null) {
+            validate(descriptors);
             for (final GeneralParameterDescriptor descriptor : descriptors) {
                 assertNotNull("ParameterDescriptorGroup: descriptors() can not contain null element.", descriptor);
                 dispatch(descriptor);
@@ -175,6 +177,7 @@ public class ParameterValidator extends ReferencingValidator {
                 assertInstanceOf("ParameterValue: getValue() returns unexpected value.", valueClass, value);
                 final Set<T> validValues = descriptor.getValidValues();
                 if (validValues != null) {
+                    validate(validValues);
                     assertContains("ParameterValue: getValue() not a member of getValidValues() set.",
                             validValues, value);
                 }
@@ -201,6 +204,7 @@ public class ParameterValidator extends ReferencingValidator {
         if (values == null) {
             return;
         }
+        validate(values);
         for (final GeneralParameterValue value : values) {
             assertNotNull("ParameterValueGroup: values() can not contain null element.", value);
             dispatch(value);

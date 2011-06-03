@@ -44,7 +44,7 @@ import static org.opengis.test.Assert.*;
  * use the {@link org.opengis.test.Validators} convenience static methods instead.
  *
  * @author  Martin Desruisseaux (Geomatys)
- * @version 3.0
+ * @version 3.1
  * @since   2.2
  */
 public class ExtentValidator extends MetadataValidator {
@@ -153,6 +153,7 @@ public class ExtentValidator extends MetadataValidator {
             final Collection<? extends GeographicExtent> elements = extent.getSpatialExtent();
             mandatory("SpatialTemporalExtent: must contains spatial extent.", elements);
             if (elements != null) {
+                validate(elements);
                 for (final GeographicExtent element : elements) {
                     assertNotNull("SpatialTemporalExtent: getSpatialExtent() can't contain null element.", element);
                     dispatch(element);

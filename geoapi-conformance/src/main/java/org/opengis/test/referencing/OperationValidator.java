@@ -47,7 +47,7 @@ import static org.opengis.test.Assert.*;
  * use the {@link org.opengis.test.Validators} convenience static methods instead.
  *
  * @author  Martin Desruisseaux (Geomatys)
- * @version 3.0
+ * @version 3.1
  * @since   2.2
  */
 public class OperationValidator extends ReferencingValidator {
@@ -144,6 +144,7 @@ public class OperationValidator extends ReferencingValidator {
         if (operations == null) {
             return;
         }
+        validate(operations);
         SingleOperation first=null, last=null;
         for (final SingleOperation single : operations) {
             assertNotNull("ConcatenatedOperation: getOperations() can't contain null element.", single);

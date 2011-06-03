@@ -52,7 +52,7 @@ import static org.opengis.test.Assert.*;
  * convenience static methods instead.
  *
  * @author  Martin Desruisseaux (Geomatys)
- * @version 3.0
+ * @version 3.1
  * @since   2.2
  */
 public abstract class ReferencingValidator extends Validator {
@@ -134,6 +134,7 @@ public abstract class ReferencingValidator extends Validator {
         validate(object.getName());
         final Collection<ReferenceIdentifier> identifiers = object.getIdentifiers();
         if (identifiers != null) {
+            validate(identifiers);
             for (final ReferenceIdentifier id : identifiers) {
                 assertNotNull("IdentifiedObject: getIdentifiers() can not contain null element.", id);
                 validate(id);
@@ -141,6 +142,7 @@ public abstract class ReferencingValidator extends Validator {
         }
         final Collection<GenericName> alias = object.getAlias();
         if (alias != null) {
+            validate(alias);
             for (final GenericName name : alias) {
                 assertNotNull("IdentifiedObject: getAlias() can not contain null element.", alias);
                 container.naming.dispatch(name);

@@ -44,7 +44,7 @@ import static org.opengis.test.Assert.*;
  * static methods instead.
  *
  * @author  Martin Desruisseaux (Geomatys)
- * @version 3.0
+ * @version 3.1
  * @since   2.2
  */
 public class NameValidator extends Validator {
@@ -132,6 +132,7 @@ public class NameValidator extends Validator {
     private void validate(final GenericName object, final List<? extends LocalName> parsedNames) {
         mandatory("GenericName: getParsedNames() should not return null.", parsedNames);
         if (parsedNames != null) {
+            validate(parsedNames);
             assertFalse("GenericName: getParsedNames() shall not return an empty list.", parsedNames.isEmpty());
             final int size = parsedNames.size();
             assertEquals("GenericName: getParsedNames() list size should be equals to depth().",
