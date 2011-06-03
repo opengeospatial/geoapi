@@ -50,7 +50,7 @@ import static org.opengis.test.Assert.*;
  * instead.
  *
  * @author  Martin Desruisseaux (Geomatys)
- * @version 3.0
+ * @version 3.1
  * @since   2.2
  */
 public class CRSValidator extends ReferencingValidator {
@@ -327,6 +327,7 @@ public class CRSValidator extends ReferencingValidator {
                 }
             }
         }
+        validate(directions);
         return directions;
     }
 }

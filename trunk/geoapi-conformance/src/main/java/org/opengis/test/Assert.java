@@ -67,7 +67,7 @@ public class Assert extends org.junit.Assert {
      * @param expectedType The expected parent class of the value, or {@code null}.
      * @param value        The value to test, or {@code null} (which is a failure).
      */
-    public static void assertInstanceOf(String message, Class<?> expectedType, Object value) {
+    public static void assertInstanceOf(final String message, final Class<?> expectedType, final Object value) {
         if (expectedType != null) {
             if (!expectedType.isInstance(value)) {
                 fail(message + " Value \"" + value + "\" is of type " + value.getClass().getSimpleName() +
@@ -82,7 +82,7 @@ public class Assert extends org.junit.Assert {
      * @param message The message to send in case of failure.
      * @param value   The value to test.
      */
-    public static void assertPositive(String message, int value) {
+    public static void assertPositive(final String message, final int value) {
         if (value < 0) {
             fail(message + " Value is " + value + '.');
         }
@@ -94,7 +94,7 @@ public class Assert extends org.junit.Assert {
      * @param message The message to send in case of failure.
      * @param value   The value to test.
      */
-    public static void assertStrictlyPositive(String message, int value) {
+    public static void assertStrictlyPositive(final String message, final int value) {
         if (value <= 0) {
             fail(message + " Value is " + value + '.');
         }
@@ -111,7 +111,7 @@ public class Assert extends org.junit.Assert {
      * @param maximum The upper bound of the range to test, or {@code null} if unbounded.
      */
     @SuppressWarnings("unchecked")
-    public static <T> void assertValidRange(String message, Comparable<T> minimum, Comparable<T> maximum) {
+    public static <T> void assertValidRange(final String message, final Comparable<T> minimum, final Comparable<T> maximum) {
         if (minimum != null && maximum != null) {
             if (minimum.compareTo((T) maximum) > 0) {
                 fail(message + " Range found is [" + minimum + " ... " + maximum + "].");
@@ -127,7 +127,7 @@ public class Assert extends org.junit.Assert {
      * @param minimum The lower bound of the range to test.
      * @param maximum The upper bound of the range to test.
      */
-    public static void assertValidRange(String message, int minimum, int maximum) {
+    public static void assertValidRange(final String message, final int minimum, final int maximum) {
         if (minimum > maximum) {
             fail(message + " Range found is [" + minimum + " ... " + maximum + "].");
         }
@@ -142,7 +142,7 @@ public class Assert extends org.junit.Assert {
      * @param minimum The lower bound of the range to test.
      * @param maximum The upper bound of the range to test.
      */
-    public static void assertValidRange(String message, double minimum, double maximum) {
+    public static void assertValidRange(final String message, final double minimum, final double maximum) {
         if (!(minimum <= maximum)) { // Use '!' for catching NaN.
             fail(message + " Range found is [" + minimum + " ... " + maximum + "].");
         }
@@ -158,7 +158,7 @@ public class Assert extends org.junit.Assert {
      * @param maximum The upper bound of the range (inclusive), or {@code null} if unbounded.
      * @param value   The value to test, or {@code null} (which is a failure).
      */
-    public static <T> void assertBetween(String message, Comparable<T> minimum, Comparable<T> maximum, T value) {
+    public static <T> void assertBetween(final String message, final Comparable<T> minimum, final Comparable<T> maximum, T value) {
         if (minimum != null) {
             if (minimum.compareTo(value) > 0) {
                 fail(message + " Value " + value + " is less than " + minimum + '.');
@@ -180,7 +180,7 @@ public class Assert extends org.junit.Assert {
      * @param maximum The upper bound of the range, inclusive.
      * @param value   The value to test.
      */
-    public static void assertBetween(String message, int minimum, int maximum, int value) {
+    public static void assertBetween(final String message, final int minimum, final int maximum, final int value) {
         if (value < minimum) {
             fail(message + " Value is " + value + " is less than " + minimum + '.');
         }
@@ -199,7 +199,7 @@ public class Assert extends org.junit.Assert {
      * @param maximum The upper bound of the range, inclusive.
      * @param value   The value to test.
      */
-    public static void assertBetween(String message, double minimum, double maximum, double value) {
+    public static void assertBetween(final String message, final double minimum, final double maximum, final double value) {
         if (value < minimum) {
             fail(message + " Value is " + value + " is less than " + minimum + '.');
         }
@@ -218,7 +218,7 @@ public class Assert extends org.junit.Assert {
      * @param collection The collection where to look for inclusion, or {@code null}.
      * @param value      The value to test for inclusion.
      */
-    public static void assertContains(String message, Collection<?> collection, Object value) {
+    public static void assertContains(final String message, final Collection<?> collection, final Object value) {
         if (collection != null) {
             if (!collection.contains(value)) {
                 fail(message + " Looked for value \"" + value + "\" in a collection of " +

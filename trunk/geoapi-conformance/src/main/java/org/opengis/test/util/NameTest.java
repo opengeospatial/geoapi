@@ -101,7 +101,7 @@ public class NameTest extends TestCase {
      * This test uses the following factory methods:
      * <p>
      * <ul>
-     *   <li>{@link NameFactory#createInternationalString}</li>
+     *   <li>{@link NameFactory#createInternationalString(Map)}</li>
      * </ul>
      */
     @Test
@@ -126,8 +126,8 @@ public class NameTest extends TestCase {
      * This test uses the following factory methods:
      * <p>
      * <ul>
-     *   <li>{@link NameFactory#createLocalName}</li>
-     *   <li>{@link NameFactory#createNameSpace}</li>
+     *   <li>{@link NameFactory#createLocalName(NameSpace, CharSequence)}</li>
+     *   <li>{@link NameFactory#createNameSpace(GenericName, Map)}</li>
      * </ul>
      */
     @Test
@@ -157,7 +157,7 @@ public class NameTest extends TestCase {
      * This test uses the following factory methods:
      * <p>
      * <ul>
-     *   <li>{@link NameFactory#createGenericName}</li>
+     *   <li>{@link NameFactory#createGenericName(NameSpace, CharSequence[])}</li>
      * </ul>
      */
     @Test
@@ -191,9 +191,9 @@ public class NameTest extends TestCase {
      * This test uses the following factory methods:
      * <p>
      * <ul>
-     *   <li>{@link NameFactory#createLocalName}</li>
-     *   <li>{@link NameFactory#createNameSpace}</li>
-     *   <li>{@link NameFactory#parseGenericName}</li>
+     *   <li>{@link NameFactory#createLocalName(NameSpace, CharSequence)}</li>
+     *   <li>{@link NameFactory#createNameSpace(GenericName, Map)}</li>
+     *   <li>{@link NameFactory#parseGenericName(NameSpace, CharSequence)}</li>
      * </ul>
      */
     @Test
@@ -216,9 +216,9 @@ public class NameTest extends TestCase {
      * This test uses the following factory methods:
      * <p>
      * <ul>
-     *   <li>{@link NameFactory#createLocalName}</li>
-     *   <li>{@link NameFactory#createNameSpace}</li>
-     *   <li>{@link NameFactory#parseGenericName}</li>
+     *   <li>{@link NameFactory#createLocalName(NameSpace, CharSequence)}</li>
+     *   <li>{@link NameFactory#createNameSpace(GenericName, Map)}</li>
+     *   <li>{@link NameFactory#parseGenericName(NameSpace, CharSequence)}</li>
      * </ul>
      */
     @Test

@@ -31,6 +31,8 @@
  */
 package org.opengis.test;
 
+import java.util.BitSet;
+import java.util.Collection;
 import java.util.logging.Logger;
 import static org.opengis.test.Assert.*;
 
@@ -45,7 +47,7 @@ import static org.opengis.test.Assert.*;
  * provided that their configuration is not modified.</p>
  *
  * @author  Martin Desruisseaux (Geomatys)
- * @version 3.0
+ * @version 3.1
  * @since   2.2
  */
 public abstract class Validator {
@@ -150,6 +152,68 @@ public abstract class Validator {
             assertNull(message, value);
         } else if (value != null) {
             logger.warning(message);
+        }
+    }
+
+    /**
+     * Ensures that the elements in the given collection are compliant with the {@link Object}
+     * {@code equals(Object)} and {@code hashCode()} contract. This method ensures that the
+     * {@code equals(Object)} methods implement <cite>reflexive</cite>, <cite>symmetric</cite>
+     * and <cite>transitive</cite> relations. It also ensures that if {@code A.equals(B)}, then
+     * {@code A.hashCode() == B.hashCode()}.
+     * <p>
+     * If the given collection is null, then this method does nothing.
+     * If the given collection contains null elements, then those elements are ignored.
+     * <p>
+     * This method does not invoke any other {@code validate} method on collection elements.
+     * It is caller responsibility to validates elements according their types.
+     *
+     * @param collection The collection of elements to validate, or {@code null}.
+     *
+     * @since 3.1
+     */
+    protected void validate(final Collection<?> collection) {
+        if (collection == null) {
+            return;
+        }
+        // Get an array with null elements omitted.
+        int count = 0;
+        final Object[] elements = collection.toArray();
+        for (int i=0; i<elements.length; i++) {
+            final Object element = elements[i];
+            if (element != null) {
+                elements[count++] = element;
+            }
+        }
+        // Store the hash code before to do any comparison,
+        // in order to detect unexpected changes.
+        final int[] hashCodes = new int[count];
+        for (int i=0; i<count; i++) {
+            hashCodes[i] = elements[i].hashCode();
+        }
+        // Marks every objects that are equal.
+        final BitSet[] equalMasks = new BitSet[count];
+        for (int i=0; i<count; i++) {
+            final Object toCompare = elements  [i];
+            final int    hashCode  = hashCodes [i];
+            final BitSet equalMask = equalMasks[i] = new BitSet(count);
+            for (int j=0; j<count; j++) {
+                final Object candidate = elements[j];
+                if (toCompare.equals(candidate)) {
+                    assertEquals("Inconsistent hash codes.", hashCode, candidate.hashCode());
+                    equalMask.set(j);
+                }
+            }
+            assertFalse("equals(null):", toCompare.equals(null));
+        }
+        // Now compare the sets of objects marked as equal.
+        for (int i=0; i<count; i++) {
+            final BitSet equalMask = equalMasks[i];
+            assertTrue("equals(this) shall be reflexive.", equalMask.get(i));
+            for (int j=0; (j=equalMask.nextSetBit(j)) >= 0; j++) {
+                assertEquals("A.equals(B) shall be symmetric and transitive.", equalMask, equalMasks[j]);
+            }
+            assertEquals("The hash code value has changed.", hashCodes[i], elements[i].hashCode());
         }
     }
 }
