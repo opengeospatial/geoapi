@@ -173,15 +173,26 @@ final class SimpleMatrix implements Matrix, Cloneable {
      */
     @Override
     public String toString() {
+        return toString(this);
+    }
+
+    /**
+     * Returns a string representation of the given matrix.
+     */
+    static String toString(final Matrix matrix) {
         /*
          * Get all numerical values as strings, and compute the column widths.
          */
-        final String[] values = new String[elements.length];
+        final int numCol = matrix.getNumCol();
+        final int numRow = matrix.getNumRow();
+        final String[] values = new String[numCol * numRow];
         final int[] columnWidths = new int[numCol];
-        for (int i=0; i<values.length; i++) {
-            final int column = i % numCol;
-            values[i] = String.valueOf(elements[i]);
-            columnWidths[column] = max(columnWidths[column], values[i].length());
+        for (int j=0,p=0; j<numRow; j++) {
+            for (int i=0; i<numCol; i++) {
+                final String value = String.valueOf(matrix.getElement(j,i));
+                columnWidths[i] = max(columnWidths[i], value.length());
+                values[p++] = value;
+            }
         }
         /*
          * Append the string values, with right-alignment.
