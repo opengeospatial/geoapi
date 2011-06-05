@@ -36,13 +36,15 @@ import java.awt.geom.Point2D;
 import org.opengis.geometry.DirectPosition;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 
+import static org.junit.Assert.*;
+
 
 /**
  * A trivial implementation of {@link DirectPosition} for internal usage by
  * {@link TransformTestCase}. Not public because strictly reserved to tests.
  *
  * @author  Martin Desruisseaux (Geomatys)
- * @version 3.0
+ * @version 3.1
  * @since   2.2
  */
 final class SimpleDirectPosition implements DirectPosition {
@@ -61,6 +63,18 @@ final class SimpleDirectPosition implements DirectPosition {
     }
 
     /**
+     * Creates a new direct position initialized to the given ordinate values.
+     *
+     * @param ordinates The ordinate values. This array is <strong>not</strong> cloned.
+     *
+     * @since 3.1
+     */
+    public SimpleDirectPosition(final double[] ordinates) {
+        assertNotNull("Array of ordinate values shall not be null.", ordinates);
+        this.ordinates = ordinates;
+    }
+
+    /**
      * Creates a new two-dimensional direct position initialized to the given point.
      */
     public SimpleDirectPosition(final Point2D point) {
@@ -74,6 +88,7 @@ final class SimpleDirectPosition implements DirectPosition {
      * Returns always {@code null}, since it is allowed by the specification
      * and {@link TransformTestCase} doesn't want to test the handling of CRS.
      */
+    @Override
     public CoordinateReferenceSystem getCoordinateReferenceSystem() {
         return null;
     }
@@ -81,6 +96,7 @@ final class SimpleDirectPosition implements DirectPosition {
     /**
      * {@inheritDoc}
      */
+    @Override
     public int getDimension() {
         return ordinates.length;
     }
@@ -88,21 +104,25 @@ final class SimpleDirectPosition implements DirectPosition {
     /**
      * {@inheritDoc}
      */
+    @Override
     public double[] getCoordinate() {
         return ordinates.clone();
     }
 
     /**
-     * {@inheritDoc}
+     * Sets all ordinate values. The array length must be equal to the number of dimensions.
+     *
+     * @since 3.1
      */
-    @Deprecated
-    public double[] getCoordinates() {
-        return ordinates.clone();
+    public void setCoordinate(final double... ordinates) {
+        assertEquals("Unexpected dimension.", this.ordinates.length, ordinates.length);
+        System.arraycopy(ordinates, 0, this.ordinates, 0, ordinates.length);
     }
 
     /**
      * {@inheritDoc}
      */
+    @Override
     public double getOrdinate(int dimension) throws IndexOutOfBoundsException {
         return ordinates[dimension];
     }
@@ -110,6 +130,7 @@ final class SimpleDirectPosition implements DirectPosition {
     /**
      * {@inheritDoc}
      */
+    @Override
     public void setOrdinate(int dimension, double value) throws IndexOutOfBoundsException {
         ordinates[dimension] = value;
     }
@@ -117,6 +138,7 @@ final class SimpleDirectPosition implements DirectPosition {
     /**
      * {@inheritDoc}
      */
+    @Override
     public DirectPosition getDirectPosition() {
         return this;
     }

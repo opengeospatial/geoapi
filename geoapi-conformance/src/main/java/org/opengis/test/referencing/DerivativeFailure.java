@@ -36,25 +36,26 @@ import org.opengis.referencing.operation.MathTransform;
 
 
 /**
- * Thrown by {@link TransformTestCase} when a {@link MathTransform} did not produced
- * the expected value.
+ * Thrown by {@link TransformTestCase#verifyDerivative(double[])} when a transform
+ * {@linkplain MathTransform#derivative(DirectPosition) derivative} did not produced
+ * the expected values.
  *
  * @author  Martin Desruisseaux (Geomatys)
- * @version 3.0
- * @since   2.2
+ * @version 3.1
+ * @since   3.1
  */
-public class TransformFailure extends ComputationFailure {
+public class DerivativeFailure extends ComputationFailure {
     /**
      * For cross-version compatibility.
      */
-    private static final long serialVersionUID = -7105975654433582652L;
+    private static final long serialVersionUID = -6513702144732051132L;
 
     /**
      * Creates a new exception with the given message.
      *
      * @param message The details message.
      */
-    public TransformFailure(final String message) {
+    public DerivativeFailure(final String message) {
         super(message);
     }
 }

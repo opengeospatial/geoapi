@@ -31,35 +31,56 @@
  */
 package org.opengis.test.referencing;
 
+import java.util.Random;
 import java.util.Arrays;
 import java.lang.reflect.Array;
 
 import org.opengis.geometry.DirectPosition;
+import org.opengis.referencing.operation.Matrix;
 import org.opengis.referencing.operation.MathTransform;
 import org.opengis.referencing.operation.TransformException;
 
 import org.junit.Before;
 import org.opengis.test.TestCase;
+
+import static java.lang.StrictMath.*;
 import static org.opengis.test.Assert.*;
 
 
 /**
- * Base class for tests of {@link MathTransform} implementations. Subclasses shall assign a value
- * to the {@link #transform} field before to invoke any method in this class. The assigned
- * transform must support the {@link MathTransform#transform(DirectPosition,DirectPosition)}
- * method. By default the other transform methods (working on arrays) are assumed supported,
- * but their tests can be disabled on a case-by-case basis by setting some
+ * Base class for {@link MathTransform} implementation tests. Subclasses shall assign a value
+ * to the {@link #transform} field before to invoke any method in this class. The specified
+ * math transform shall support the following mandatory operations:
+ * <p>
+ * <ul>
+ *   <li>{@link MathTransform#getSourceDimensions()}</li>
+ *   <li>{@link MathTransform#getTargetDimensions()}</li>
+ *   <li>{@link MathTransform#transform(DirectPosition, DirectPosition)}</li>
+ * </ul>
+ * <p>
+ * All other operations are optional. However subclasses shall declare which methods, if any, are
+ * unsupported since by default every operations except {@link MathTransform#derivative(DirectPosition)}
+ * are assumed supported. Tests can be disabled on a case-by-case basis by setting the appropriate
  * <code>is&lt;</code><var>Operation</var><code>&gt;Supported</code> fields to {@code false}.
  * <p>
- * Once the fields are assigned their values, subclasses can invoke any of the {@code verify}
- * methods in their test methods. Callers must supply the input coordinate points to be used
+ * After {@code TransformTestCase} has been setup, subclasses can invoke any of the {@code verify}
+ * methods in their JUnit test methods. Callers must supply the input coordinate points to be used
  * for testing purpose, since the range of valid values is usually transform-dependent.
  * <p>
- * Methods in this class do not {@linkplain org.opengis.test.Validators#validate(MathTransform)
- * validate} the transform. It is caller responsibility to validate the transform if wanted.
+ * Some general rules:
+ * <ul>
+ *   <li>Coordinate values, or information used for computing coordinate values, are always
+ *       specified as arguments to the {@code verify} methods. Everything else are fields in
+ *       the {@code TransformTestCase} object.</li>
+ *   <li>The methods in this class do not {@linkplain org.opengis.test.Validators#validate(MathTransform)
+ *       validate} the transform. It is caller responsibility to validate the transform if wanted.</li>
+ *   <li>Unless otherwise indicated, every {@code verify} methods are independent. For example invoking
+ *       {@link #verifyConsistency(float[])} does not imply a call to {@link #verifyInverse(float[])}
+ *       or {@link #verifyDerivative(double[])}. The later methods must be invoked explicitely if wanted.</li>
+ * </ul>
  *
  * @author  Martin Desruisseaux (Geomatys)
- * @version 3.0
+ * @version 3.1
  * @since   2.2
  */
 public strictfp abstract class TransformTestCase extends TestCase {
@@ -118,9 +139,21 @@ public strictfp abstract class TransformTestCase extends TestCase {
     protected boolean isOverlappingArraySupported = true;
 
     /**
-     * {@code true} if {@link MathTransform#inverse} is supported.
+     * {@code true} if {@link MathTransform#inverse()} is supported. The default value
+     * is {@code true}. Vendor can set this value to {@code false} in order to test a
+     * transform which is not fully implemented.
      */
     protected boolean isInverseTransformSupported = true;
+
+    /**
+     * The deltas to use for approximating {@linkplain MathTransform#derivative(DirectPosition)
+     * math transform derivatives} by the <cite>finite differences</cite> method. The default
+     * value is {@code null}, meaning that derivatives are not supported.
+     *
+     * @see #verifyDerivative(double[])
+     * @since 3.1
+     */
+    protected double[] derivativeDeltas;
 
     /**
      * Maximum difference to be accepted when comparing a transformed ordinate value with
@@ -275,7 +308,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
      * @param  coordinates The source coordinates to transform.
      * @throws TransformException if at least one coordinate can't be transformed.
      */
-    protected void verifyInverse(final double[] coordinates) throws TransformException {
+    protected void verifyInverse(final double... coordinates) throws TransformException {
         /*
          * Checks the state of this TransformTestCase object, including a shallow inspection of
          * the MathTransform. We check only the parts that are significant to this test method.
@@ -334,7 +367,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
      * @param  coordinates The source coordinates to transform.
      * @throws TransformException if at least one coordinate can't be transformed.
      */
-    protected void verifyInverse(final float[] coordinates) throws TransformException {
+    protected void verifyInverse(final float... coordinates) throws TransformException {
         final double[] sourceDoubles = new double[coordinates.length];
         for (int i=0; i<coordinates.length; i++) {
             sourceDoubles[i] = coordinates[i];
@@ -365,7 +398,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
      * @return The transformed coordinates, returned for convenience.
      * @throws TransformException if at least one coordinate can't be transformed.
      */
-    protected float[] verifyConsistency(final float[] sourceFloats) throws TransformException {
+    protected float[] verifyConsistency(final float... sourceFloats) throws TransformException {
         final MathTransform transform = this.transform; // Protect from changes.
         assertNotNull("TransformTestCase.transform shall be assigned a value.", transform);
         final int sourceDimension = transform.getSourceDimensions();
@@ -374,7 +407,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
                 0, sourceFloats.length % sourceDimension);
         final int numPts = sourceFloats.length / sourceDimension;
         final float [] transformed   = new float [targetDimension * numPts];
-        final float [] targetFloats  = new float [Math.max(sourceDimension, targetDimension) * (numPts + POINTS_OFFSET)];
+        final float [] targetFloats  = new float [max(sourceDimension, targetDimension) * (numPts + POINTS_OFFSET)];
         final double[] sourceDoubles = new double[sourceFloats.length];
         final double[] targetDoubles = new double[targetFloats.length];
         /*
@@ -455,6 +488,165 @@ public strictfp abstract class TransformTestCase extends TestCase {
             }
         }
         return transformed;
+    }
+
+    /**
+     * Computes the derivative at the given point, and compares the matrix values with estimations
+     * computed from the corners of a cube around the given point. This method uses the <cite>finite
+     * central differences</cite> approximation of derivatives in order to estimate the expected
+     * result of {@link MathTransform#derivative(DirectPosition)}.
+     * <p>
+     * The distance between 2 points to use for computing derivatives shall be specified
+     * by the {@link #derivativeDeltas} array, in units of the source CRS. If the length
+     * of the {@code derivativeDeltas} array is smaller than the number of source dimensions,
+     * then the last delta value is used for all additional dimensions. This allows specifying
+     * a single delta value (in an array of length 1) for all dimensions.
+     *
+     * @param  coordinate The point where to compute the derivative, in units of the source CRS.
+     * @throws TransformException If the derivative can not be computed, or a point can not be
+     *         transformed.
+     *
+     * @since 3.1
+     */
+    protected void verifyDerivative(final double... coordinate) throws TransformException {
+        final MathTransform   transform = this.transform; // Protect from changes.
+        final double[] derivativeDeltas = this.derivativeDeltas; // Protect from changes.
+        assertNotNull("TransformTestCase.transform shall be assigned a value.", transform);
+        assertNotNull("TransformTestCase.derivativeDeltas shall be assigned a value.", derivativeDeltas);
+        assertTrue   ("TransformTestCase.derivativeDeltas shall not be empty.", derivativeDeltas.length != 0);
+        assertEquals ("Coordinate dimension shall be equals to the transform source dimension.",
+                transform.getSourceDimensions(), coordinate.length);
+
+        final Matrix matrix = transform.derivative(new SimpleDirectPosition(coordinate));
+        final int sourceDim = matrix.getNumCol();
+        final int targetDim = matrix.getNumRow();
+        assertEquals("Unexpected number of columns.", transform.getSourceDimensions(), sourceDim);
+        assertEquals("Unexpected number of rows.",    transform.getTargetDimensions(), targetDim);
+
+        final Matrix approx = new SimpleMatrix(sourceDim, targetDim, new double[sourceDim * targetDim]);
+        final SimpleDirectPosition S1 = new SimpleDirectPosition(sourceDim);
+        final SimpleDirectPosition S2 = new SimpleDirectPosition(sourceDim);
+        final SimpleDirectPosition T1 = new SimpleDirectPosition(targetDim);
+        final SimpleDirectPosition T2 = new SimpleDirectPosition(targetDim);
+        for (int i=0; i<sourceDim; i++) {
+            S1.setCoordinate(coordinate);
+            S2.setCoordinate(coordinate);
+            final double ordinate = coordinate[i];
+            final double delta = derivativeDeltas[min(i, derivativeDeltas.length-1)];
+            S1.setOrdinate(i, ordinate - delta/2);
+            S2.setOrdinate(i, ordinate + delta/2);
+            assertSame(T1, transform.transform(S1, T1));
+            assertSame(T2, transform.transform(S2, T2));
+            for (int j=0; j<targetDim; j++) {
+                approx.setElement(j, i, (T2.getOrdinate(j) - T1.getOrdinate(j)) / delta);
+            }
+        }
+        for (int i=0; i<sourceDim; i++) {
+            for (int j=0; j<targetDim; j++) {
+                final double expected = approx.getElement(j, i);
+                final double actual   = matrix.getElement(j, i);
+                // Don't use the tolerance(double) method, because
+                // we are not comparing an ordinate value.
+                if (!(abs(expected - actual) <= tolerance)) {
+                    final String lineSeparator = System.getProperty("line.separator", "\n");
+                    throw new DerivativeFailure("MathTransform.derivative(" + i + ',' + j +
+                            "): expected " + expected + " but got " + actual + lineSeparator +
+                            lineSeparator + "Expected matrix (approximative):" + lineSeparator + approx +
+                            lineSeparator + "Actual matrix:" + lineSeparator + matrix);
+                }
+            }
+        }
+    }
+
+    /**
+     * Verifies all supported transform operations in the given domain. First, this method creates
+     * a grid of regularly spaced points along all source dimensions in the given envelope.
+     * Next, if the given random number generator is non-null, then this method adds small
+     * random displacements to every points and shuffle the coordinates in random order.
+     * Finally this method delegates the resulting array of coordinates to the following
+     * methods:
+     * <p>
+     * <ul>
+     *   <li>{@link #verifyConsistency(float[])}</li>
+     *   <li>{@link #verifyInverse(float[])}</li>
+     *   <li>{@link #verifyDerivative(double[])}</li>
+     * </ul>
+     *
+     * @param  minOrdinates The minimal ordinate values of the domain where to test the transform.
+     * @param  maxOrdinates The maximal ordinate values of the domain where to test the transform.
+     * @param  numOrdinates The number of points along each dimension.
+     * @param  randomGenerator An optional random number generator, or {@code null} for testing
+     *         using a regular grid.
+     * @throws TransformException If a transform or a derivative can not be computed.
+     *
+     * @since 3.1
+     */
+    protected void verifyInDomain(final double[] minOrdinates, final double[] maxOrdinates,
+            final int[] numOrdinates, final Random randomGenerator) throws TransformException
+    {
+        final MathTransform transform = this.transform; // Protect from changes.
+        assertNotNull("TransformTestCase.transform shall be assigned a value.", transform);
+        final int dimension = transform.getSourceDimensions();
+        assertEquals("The minOrdinates array doesn't have the expected length.", dimension, minOrdinates.length);
+        assertEquals("The maxOrdinates array doesn't have the expected length.", dimension, maxOrdinates.length);
+        assertEquals("The numOrdinates array doesn't have the expected length.", dimension, numOrdinates.length);
+        int numPoints = 1;
+        for (int i=0; i<dimension; i++) {
+            numPoints *= numOrdinates[i];
+            assertTrue("Invalid numOrdinates value.", numPoints >= 0);
+        }
+        final float[] coordinates = new float[numPoints * dimension];
+        /*
+         * Initialize the coordinate values for each dimension, and shuffle
+         * the result if a random numbers generator has been specified.
+         */
+        int step = 1;
+        for (int dim=0; dim<dimension; dim++) {
+            final int    n     =  numOrdinates[dim];
+            final double delta = (maxOrdinates[dim] - minOrdinates[dim]) / n;
+            final double start =  minOrdinates[dim] + delta/2;
+            int ordinateIndex=0, count=0;
+            float ordinate = (float) start;
+            for (int i=dim; i<coordinates.length; i+=dimension) {
+                coordinates[i] = ordinate;
+                if (randomGenerator != null) {
+                    coordinates[i] += (randomGenerator.nextFloat() - 0.5f) * delta;
+                }
+                if (++count == step) {
+                    count = 0;
+                    if (++ordinateIndex == n) {
+                        ordinateIndex = 0;
+                    }
+                    ordinate = (float) (ordinateIndex*delta + start);
+                }
+            }
+            step *= numOrdinates[dim];
+        }
+        if (randomGenerator != null) {
+            final float[] buffer = new float[dimension];
+            for (int i=coordinates.length; (i -= dimension) >= 0;) {
+                final int t = randomGenerator.nextInt(numPoints) * dimension;
+                System.arraycopy(coordinates, t, buffer,      0, dimension);
+                System.arraycopy(coordinates, i, coordinates, t, dimension);
+                System.arraycopy(buffer,      0, coordinates, i, dimension);
+            }
+        }
+        /*
+         * Delegate to other methods defined in this class.
+         */
+        verifyConsistency(coordinates);
+        if (isInverseTransformSupported) {
+            verifyInverse(coordinates);
+        }
+        if (derivativeDeltas != null) {
+            final double[] point = new double[dimension];
+            for (int i=0; i<coordinates.length; i+=dimension) {
+                for (int j=0; j<dimension; j++) {
+                    point[j] = coordinates[i+j];
+                }
+                verifyDerivative(point);
+            }
+        }
     }
 
     /**
@@ -655,12 +847,12 @@ public strictfp abstract class TransformTestCase extends TestCase {
              * This method uses !(a <= b) expressions instead than (a > b) for catching NaN.
              * The next condition working on bit patterns is for for NaN and Infinity values.
              */
-            if ((strict || !(Math.abs(actual - expected) <= (float) tolerance(expected)))
+            if ((strict || !(abs(actual - expected) <= (float) tolerance(expected)))
                 && (Float.floatToIntBits(actual) != Float.floatToIntBits(expected)))
             {
                 throw new TransformFailure(formatComparaisonFailure(message, dimension,
                         expectedPts, expectedOffset, actualPts, actualOffset, i,
-                        Math.abs(actual - expected), reportedIndex));
+                        abs(actual - expected), reportedIndex));
             }
         }
     }
@@ -679,12 +871,12 @@ public strictfp abstract class TransformTestCase extends TestCase {
         for (int i=0; i<numOrdinates; i++) {
             final float expected = expectedPts[expectedOffset++];
             final float actual   = (float) actualPts[actualOffset++];
-            if ((strict || !(Math.abs(actual - expected) <= (float) tolerance(expected)))
+            if ((strict || !(abs(actual - expected) <= (float) tolerance(expected)))
                 && (Float.floatToIntBits(actual) != Float.floatToIntBits(expected)))
             {
                 throw new TransformFailure(formatComparaisonFailure(message, dimension,
                         expectedPts, expectedOffset, actualPts, actualOffset, i,
-                        Math.abs(actual - expected), reportedIndex));
+                        abs(actual - expected), reportedIndex));
             }
         }
     }
@@ -703,12 +895,12 @@ public strictfp abstract class TransformTestCase extends TestCase {
         for (int i=0; i<numOrdinates; i++) {
             final float expected = (float) expectedPts[expectedOffset++];
             final float actual   = actualPts[actualOffset++];
-            if ((strict || !(Math.abs(actual - expected) <= (float) tolerance(expected)))
+            if ((strict || !(abs(actual - expected) <= (float) tolerance(expected)))
                 && (Float.floatToIntBits(actual) != Float.floatToIntBits(expected)))
             {
                 throw new TransformFailure(formatComparaisonFailure(message, dimension,
                         expectedPts, expectedOffset, actualPts, actualOffset, i,
-                        Math.abs(actual - expected), reportedIndex));
+                        abs(actual - expected), reportedIndex));
             }
         }
     }
@@ -727,12 +919,12 @@ public strictfp abstract class TransformTestCase extends TestCase {
         for (int i=0; i<numOrdinates; i++) {
             final double expected = expectedPts[expectedOffset++];
             final double actual   = actualPts[actualOffset++];
-            if ((strict || !(Math.abs(actual - expected) <= tolerance(expected)))
+            if ((strict || !(abs(actual - expected) <= tolerance(expected)))
                 && (Double.doubleToLongBits(actual) != Double.doubleToLongBits(expected)))
             {
                 throw new TransformFailure(formatComparaisonFailure(message, dimension,
                         expectedPts, expectedOffset, actualPts, actualOffset, i,
-                        Math.abs(actual - expected), reportedIndex));
+                        abs(actual - expected), reportedIndex));
             }
         }
     }

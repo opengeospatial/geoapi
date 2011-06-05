@@ -29,32 +29,29 @@
  *    Title to copyright in this software and any associated documentation will at all
  *    times remain with copyright holders.
  */
-package org.opengis.test.referencing;
-
-import org.opengis.test.ComputationFailure;
-import org.opengis.referencing.operation.MathTransform;
+package org.opengis.test;
 
 
 /**
- * Thrown by {@link TransformTestCase} when a {@link MathTransform} did not produced
+ * Base class for exceptions thrown when a numerical computation did not produced
  * the expected value.
  *
  * @author  Martin Desruisseaux (Geomatys)
- * @version 3.0
- * @since   2.2
+ * @version 3.1
+ * @since   3.1
  */
-public class TransformFailure extends ComputationFailure {
+public abstract class ComputationFailure extends AssertionError {
     /**
      * For cross-version compatibility.
      */
-    private static final long serialVersionUID = -7105975654433582652L;
+    private static final long serialVersionUID = 7082843147964652170L;
 
     /**
      * Creates a new exception with the given message.
      *
      * @param message The details message.
      */
-    public TransformFailure(final String message) {
+    public ComputationFailure(final String message) {
         super(message);
     }
 }

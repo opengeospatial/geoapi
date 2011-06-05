@@ -49,7 +49,7 @@ import static org.junit.Assert.*;
  * anymore once the tests begin.
  *
  * @author  Martin Desruisseaux (Geomatys)
- * @version 3.0
+ * @version 3.1
  * @since   2.2
  */
 @SuppressWarnings("serial")
@@ -155,7 +155,7 @@ class AffineTransform2D extends AffineTransform implements MathTransform2D {
      * @return The derivative at the given point.
      */
     public Matrix derivative(final Point2D point) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return new SimpleMatrix(2, 2, getScaleX(), getShearX(), getShearY(), getScaleY());
     }
 
     /**
