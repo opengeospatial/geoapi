@@ -523,7 +523,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
         assertEquals("Unexpected number of columns.", transform.getSourceDimensions(), sourceDim);
         assertEquals("Unexpected number of rows.",    transform.getTargetDimensions(), targetDim);
 
-        final Matrix approx = new SimpleMatrix(sourceDim, targetDim, new double[sourceDim * targetDim]);
+        final Matrix approx = new SimpleMatrix(targetDim, sourceDim, new double[sourceDim * targetDim]);
         final SimpleDirectPosition S1 = new SimpleDirectPosition(sourceDim);
         final SimpleDirectPosition S2 = new SimpleDirectPosition(sourceDim);
         final SimpleDirectPosition T1 = new SimpleDirectPosition(targetDim);
@@ -549,10 +549,11 @@ public strictfp abstract class TransformTestCase extends TestCase {
                 // we are not comparing an ordinate value.
                 if (!(abs(expected - actual) <= tolerance)) {
                     final String lineSeparator = System.getProperty("line.separator", "\n");
-                    throw new DerivativeFailure("MathTransform.derivative(" + i + ',' + j +
-                            "): expected " + expected + " but got " + actual + lineSeparator +
-                            lineSeparator + "Expected matrix (approximative):" + lineSeparator + approx +
-                            lineSeparator + "Actual matrix:" + lineSeparator + matrix);
+                    throw new DerivativeFailure("MathTransform.derivative(row=" + i + ", col=" + j + "):" +
+                            " expected " + expected + " but got " + actual +
+                            " (a difference of " + (float) abs(expected-actual) + ')' + lineSeparator +
+                            "Expected matrix (approximative):" + lineSeparator + approx + lineSeparator +
+                            "Actual matrix:" + lineSeparator + SimpleMatrix.toString(matrix));
                 }
             }
         }
