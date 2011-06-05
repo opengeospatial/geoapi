@@ -36,6 +36,7 @@ import org.opengis.referencing.operation.TransformException;
 import org.opengis.test.Validators;
 import org.junit.*;
 
+import static java.lang.StrictMath.*;
 import static org.opengis.test.Assert.*;
 
 
@@ -43,7 +44,7 @@ import static org.opengis.test.Assert.*;
  * Tests {@link TransformTestCase} using {@link AffineTransform} as a reference transform.
  *
  * @author  Martin Desruisseaux (Geomatys)
- * @version 3.0
+ * @version 3.1
  * @since   2.2
  */
 public strictfp class TransformCaseTest extends TransformTestCase {
@@ -55,7 +56,7 @@ public strictfp class TransformCaseTest extends TransformTestCase {
 
     /**
      * Random number generator. Initialized to a constant seed in order
-     * to make the tests more reproductible.
+     * to make the tests more reproducible.
      */
     private static final Random random = new Random(534546549);
 
@@ -72,7 +73,7 @@ public strictfp class TransformCaseTest extends TransformTestCase {
     @Before
     public void initTransform() {
         final BogusAffineTransform2D work = new BogusAffineTransform2D();
-        work.rotate(rotation += Math.toRadians(5));
+        work.rotate(rotation += toRadians(5));
         work.scale(10, 20);
         work.translate(4, 6);
         transform = work;
@@ -89,7 +90,7 @@ public strictfp class TransformCaseTest extends TransformTestCase {
     }
 
     /**
-     * Tests {@link #verifyTransform} using a valid transform.
+     * Tests {@link #verifyTransform(double[], double[])} using a valid transform.
      *
      * @throws TransformException Should never happen.
      */
@@ -111,7 +112,7 @@ public strictfp class TransformCaseTest extends TransformTestCase {
     }
 
     /**
-     * Tests {@link #verifyConsistency} using a valid transform.
+     * Tests {@link #verifyConsistency(float[])} using a valid transform.
      *
      * @throws TransformException Should never happen.
      */
@@ -124,7 +125,7 @@ public strictfp class TransformCaseTest extends TransformTestCase {
     }
 
     /**
-     * Tests {@link #verifyConsistency} using a bogus transform.
+     * Tests {@link #verifyConsistency(float[])} using a bogus transform.
      * A {@link TransformFailure} exception should be thrown.
      *
      * @throws TransformException Should never happen.
@@ -139,7 +140,7 @@ public strictfp class TransformCaseTest extends TransformTestCase {
     }
 
     /**
-     * Tests {@link #verifyInverse} using a valid transform.
+     * Tests {@link #verifyInverse(float[])} using a valid transform.
      *
      * @throws TransformException Should never happen.
      */
@@ -152,7 +153,7 @@ public strictfp class TransformCaseTest extends TransformTestCase {
     }
 
     /**
-     * Tests {@link #verifyInverse} using a bogus transform.
+     * Tests {@link #verifyInverse(float[])} using a bogus transform.
      * A {@link TransformFailure} exception should be thrown.
      *
      * @throws TransformException Should never happen.
@@ -164,5 +165,39 @@ public strictfp class TransformCaseTest extends TransformTestCase {
         Validators.validate(transform);
         ((BogusAffineTransform2D) transform).wrongInverse = true;
         verifyInverse(coordinates);
+    }
+
+    /**
+     * Tests {@link #verifyDerivative(double[])} using a bogus transform.
+     * A {@link TransformFailure} exception should be thrown.
+     *
+     * @throws TransformException Should never happen.
+     *
+     * @since 3.1
+     */
+    @Test(expected=DerivativeFailure.class)
+    public void testDerivativeUsingBogusTransform() throws TransformException {
+        tolerance = 1E-10;
+        derivativeDeltas = new double[] {0.1};
+        assertAllTestsEnabled();
+        Validators.validate(transform);
+        ((BogusAffineTransform2D) transform).wrongDerivative = true;
+        verifyDerivative(0, 0);
+    }
+
+    /**
+     * Tests {@link #verifyInDomain(double[], double[], int, Random)}.
+     *
+     * @throws TransformException Should never happen.
+     *
+     * @since 3.1
+     */
+    @Test
+    public void testVerifyInDomain() throws TransformException {
+        tolerance = 1E-10;
+        derivativeDeltas = new double[] {0.1};
+        assertAllTestsEnabled();
+        Validators.validate(transform);
+        verifyInDomain(new double[] {10, 100}, new double[] {20, 400}, new int[] {10, 30}, random);
     }
 }
