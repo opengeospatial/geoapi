@@ -541,13 +541,21 @@ public strictfp abstract class TransformTestCase extends TestCase {
                 approx.setElement(j, i, (T2.getOrdinate(j) - T1.getOrdinate(j)) / delta);
             }
         }
+        /*
+         * Now compare the matrixes elements. Note that we still invoke the tolerance(double)
+         * method even if the given arguments are not ordinate values. We do that because the
+         * matrix can be interpreted as the displacement in target CRS space when the ordinate
+         * values are increased by 1 in the source CRS space, so it still related to ordinates.
+         *
+         * The argument value given to the tolerance method is 'actual' rather than 'expected'
+         * because the actual value is probably more accurate than the one approximated from
+         * finite differences.
+         */
         for (int i=0; i<sourceDim; i++) {
             for (int j=0; j<targetDim; j++) {
                 final double expected = approx.getElement(j, i);
                 final double actual   = matrix.getElement(j, i);
-                // Don't use the tolerance(double) method, because
-                // we are not comparing an ordinate value.
-                if (!(abs(expected - actual) <= tolerance)) {
+                if (!(abs(expected - actual) <= tolerance(actual))) {
                     final String lineSeparator = System.getProperty("line.separator", "\n");
                     throw new DerivativeFailure("MathTransform.derivative(row=" + i + ", col=" + j + "):" +
                             " expected " + expected + " but got " + actual +
