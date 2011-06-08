@@ -22,10 +22,10 @@ svn commit -m "Updated the list of GeoAPI classes and methods."
 * Create the tag and deploy
 
   Defines the version number for the GeoAPI milesone. The example below
-  uses 2.3-M8. Please edit as needed.
+  uses 3.1-M1. Please edit as needed.
 
 ---------------------------------------------------------------------------------------------
-export GEOAPI_VERSION=2.3-M8
+export GEOAPI_VERSION=3.1-M1
 ---------------------------------------------------------------------------------------------
 
   Create a SVN tag.
@@ -113,7 +113,7 @@ nano jdiff.sh
 ant -f fix-html.xml
 scp -r changes/changes changes/changes.html user@server:geoapi/
 rm -r changes/*
-rm -r GeoAPI_2.3-M*
+rm -r GeoAPI_3.1-M*
 ---------------------------------------------------------------------------------------------
 
 

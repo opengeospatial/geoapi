@@ -58,9 +58,9 @@ import static org.opengis.test.Assert.*;
  *   <li>{@link MathTransform#transform(DirectPosition, DirectPosition)}</li>
  * </ul>
  * <p>
- * All other operations are optional. However subclasses shall declare which methods, if any, are
- * unsupported since by default every operations except {@link MathTransform#derivative(DirectPosition)}
- * are assumed supported. Tests can be disabled on a case-by-case basis by setting the appropriate
+ * All other operations are optional. However subclasses shall declare which methods, if any,
+ * are unsupported. By default every operations are assumed supported. Tests can be disabled
+ * on a case-by-case basis by setting the appropriate
  * <code>is&lt;</code><var>Operation</var><code>&gt;Supported</code> fields to {@code false}.
  * <p>
  * After {@code TransformTestCase} has been setup, subclasses can invoke any of the {@code verify}
@@ -106,6 +106,11 @@ public strictfp abstract class TransformTestCase extends TestCase {
      * {@code true} if {@link MathTransform#transform(double[],int,double[],int,int)}
      * is supported. The default value is {@code true}. Vendor can set this value to
      * {@code false} in order to test a transform which is not fully implemented.
+     *
+     * @see #isFloatToFloatSupported
+     * @see #isDoubleToFloatSupported
+     * @see #isFloatToDoubleSupported
+     * @see #verifyConsistency(float[])
      */
     protected boolean isDoubleToDoubleSupported = true;
 
@@ -113,6 +118,11 @@ public strictfp abstract class TransformTestCase extends TestCase {
      * {@code true} if {@link MathTransform#transform(float[],int,float[],int,int)}
      * is supported. The default value is {@code true}. Vendor can set this value to
      * {@code false} in order to test a transform which is not fully implemented.
+     *
+     * @see #isDoubleToDoubleSupported
+     * @see #isDoubleToFloatSupported
+     * @see #isFloatToDoubleSupported
+     * @see #verifyConsistency(float[])
      */
     protected boolean isFloatToFloatSupported = true;
 
@@ -120,6 +130,11 @@ public strictfp abstract class TransformTestCase extends TestCase {
      * {@code true} if {@link MathTransform#transform(double[],int,float[],int,int)}
      * is supported. The default value is {@code true}. Vendor can set this value to
      * {@code false} in order to test a transform which is not fully implemented.
+     *
+     * @see #isDoubleToDoubleSupported
+     * @see #isFloatToFloatSupported
+     * @see #isFloatToDoubleSupported
+     * @see #verifyConsistency(float[])
      */
     protected boolean isDoubleToFloatSupported = true;
 
@@ -127,6 +142,11 @@ public strictfp abstract class TransformTestCase extends TestCase {
      * {@code true} if {@link MathTransform#transform(float[],int,double[],int,int)}
      * is supported. The default value is {@code true}. Vendor can set this value to
      * {@code false} in order to test a transform which is not fully implemented.
+     *
+     * @see #isDoubleToDoubleSupported
+     * @see #isFloatToFloatSupported
+     * @see #isDoubleToFloatSupported
+     * @see #verifyConsistency(float[])
      */
     protected boolean isFloatToDoubleSupported = true;
 
@@ -135,6 +155,8 @@ public strictfp abstract class TransformTestCase extends TestCase {
      * and the source and target region of the array can overlap. The default value
      * is {@code true}. Vendor can set this value to {@code false} in order to test
      * a transform which is not fully implemented.
+     *
+     * @see #verifyConsistency(float[])
      */
     protected boolean isOverlappingArraySupported = true;
 
@@ -142,15 +164,31 @@ public strictfp abstract class TransformTestCase extends TestCase {
      * {@code true} if {@link MathTransform#inverse()} is supported. The default value
      * is {@code true}. Vendor can set this value to {@code false} in order to test a
      * transform which is not fully implemented.
+     *
+     * @see #verifyTransform(double[], double[])
      */
     protected boolean isInverseTransformSupported = true;
 
     /**
-     * The deltas to use for approximating {@linkplain MathTransform#derivative(DirectPosition)
-     * math transform derivatives} by the <cite>finite differences</cite> method. The default
-     * value is {@code null}, meaning that derivatives are not supported.
+     * {@code true} if {@link MathTransform#derivative(DirectPosition)} is supported. The
+     * default value is {@code true}. Vendor can set this value to {@code false} in order
+     * to test a transform which is not fully implemented.
      *
+     * @see #derivativeDeltas
      * @see #verifyDerivative(double[])
+     *
+     * @since 3.1
+     */
+    protected boolean isDerivativeSupported = true;
+
+    /**
+     * The deltas to use for approximating {@linkplain MathTransform#derivative(DirectPosition)
+     * math transform derivatives} by the <cite>finite differences</cite> method. Testers shall
+     * provide a non-null value if the {@link #isDerivativeSupported} flag is {@code true}.
+     *
+     * @see #isDerivativeSupported
+     * @see #verifyDerivative(double[])
+     *
      * @since 3.1
      */
     protected double[] derivativeDeltas;
@@ -209,6 +247,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
         assertTrue("isFloatToDoubleSupported",    isFloatToDoubleSupported   );
         assertTrue("isOverlappingArraySupported", isOverlappingArraySupported);
         assertTrue("isInverseTransformSupported", isInverseTransformSupported);
+        assertTrue("isDerivativeSupported",       isDerivativeSupported);
     }
 
     /**
@@ -225,6 +264,8 @@ public strictfp abstract class TransformTestCase extends TestCase {
      * @param  expected The expect result of the transformation, or
      *         {@code null} if {@code coordinates} is expected to be null.
      * @throws TransformException if the transformation failed.
+     *
+     * @see #isInverseTransformSupported
      */
     protected void verifyTransform(final double[] coordinates, final double[] expected)
             throws TransformException
@@ -309,6 +350,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
      * @throws TransformException if at least one coordinate can't be transformed.
      */
     protected void verifyInverse(final double... coordinates) throws TransformException {
+        assertTrue("isInverseTransformSupported == false.", isInverseTransformSupported);
         /*
          * Checks the state of this TransformTestCase object, including a shallow inspection of
          * the MathTransform. We check only the parts that are significant to this test method.
@@ -320,7 +362,6 @@ public strictfp abstract class TransformTestCase extends TestCase {
         final int targetDimension = transform.getTargetDimensions();
         assertStrictlyPositive("Source dimension must be positive.", sourceDimension);
         assertStrictlyPositive("Target dimension must be positive.", targetDimension);
-        assertTrue("isInverseTransformSupported == false.", isInverseTransformSupported);
         final MathTransform inverse = transform.inverse();
         assertNotNull("MathTransform.inverse() shall not return null.", inverse);
         assertEquals("Inconsistent source dimension of the inverse transform.",
@@ -368,6 +409,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
      * @throws TransformException if at least one coordinate can't be transformed.
      */
     protected void verifyInverse(final float... coordinates) throws TransformException {
+        assertTrue("isInverseTransformSupported == false.", isInverseTransformSupported);
         final double[] sourceDoubles = new double[coordinates.length];
         for (int i=0; i<coordinates.length; i++) {
             sourceDoubles[i] = coordinates[i];
@@ -397,6 +439,12 @@ public strictfp abstract class TransformTestCase extends TestCase {
      * @param  sourceFloats The source coordinates to transform as an array of {@code float} values.
      * @return The transformed coordinates, returned for convenience.
      * @throws TransformException if at least one coordinate can't be transformed.
+     *
+     * @see #isDoubleToDoubleSupported
+     * @see #isFloatToFloatSupported
+     * @see #isDoubleToFloatSupported
+     * @see #isFloatToDoubleSupported
+     * @see #isOverlappingArraySupported
      */
     protected float[] verifyConsistency(final float... sourceFloats) throws TransformException {
         final MathTransform transform = this.transform; // Protect from changes.
@@ -509,6 +557,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
      * @since 3.1
      */
     protected void verifyDerivative(final double... coordinate) throws TransformException {
+        assertTrue("isDerivativeSupported == false.", isDerivativeSupported);
         final MathTransform   transform = this.transform; // Protect from changes.
         final double[] derivativeDeltas = this.derivativeDeltas; // Protect from changes.
         assertNotNull("TransformTestCase.transform shall be assigned a value.", transform);
@@ -647,7 +696,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
         if (isInverseTransformSupported) {
             verifyInverse(coordinates);
         }
-        if (derivativeDeltas != null) {
+        if (isDerivativeSupported) {
             final double[] point = new double[dimension];
             for (int i=0; i<coordinates.length; i+=dimension) {
                 for (int j=0; j<dimension; j++) {
