@@ -53,7 +53,7 @@ svn diff
 mvn clean install
 svn status
 svn commit -m "Set the version number to $GEOAPI_VERSION."
-mvn clean deploy
+mvn clean deploy --activate-profiles geotoolkit
 ---------------------------------------------------------------------------------------------
 
 
