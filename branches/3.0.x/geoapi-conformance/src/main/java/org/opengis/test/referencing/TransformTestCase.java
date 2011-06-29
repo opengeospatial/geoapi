@@ -33,9 +33,11 @@ package org.opengis.test.referencing;
 
 import java.util.Arrays;
 import java.lang.reflect.Array;
+import java.awt.geom.Point2D;
 
 import org.opengis.geometry.DirectPosition;
 import org.opengis.referencing.operation.MathTransform;
+import org.opengis.referencing.operation.MathTransform2D;
 import org.opengis.referencing.operation.TransformException;
 
 import org.junit.Before;
@@ -373,10 +375,11 @@ public strictfp abstract class TransformTestCase extends TestCase {
         assertEquals("Source dimension is not a divisor of the coordinates array length.",
                 0, sourceFloats.length % sourceDimension);
         final int numPts = sourceFloats.length / sourceDimension;
-        final float [] transformed   = new float [targetDimension * numPts];
-        final float [] targetFloats  = new float [Math.max(sourceDimension, targetDimension) * (numPts + POINTS_OFFSET)];
-        final double[] sourceDoubles = new double[sourceFloats.length];
-        final double[] targetDoubles = new double[targetFloats.length];
+        final float [] targetFloats    = new float [Math.max(sourceDimension, targetDimension) * (numPts + POINTS_OFFSET)];
+        final float [] expectedFloats  = new float [targetDimension * numPts];
+        final double[] sourceDoubles   = new double[sourceFloats.length];
+        final double[] targetDoubles   = new double[targetFloats.length];
+        final double[] expectedDoubles = new double[expectedFloats.length];
         /*
          * Copies the source ordinates (to be used later) and performs the transformations using
          * MathTransform.transform(DirectPosition) method. Result is stored in the "transformed"
@@ -393,14 +396,17 @@ public strictfp abstract class TransformTestCase extends TestCase {
                 System.arraycopy(sourceDoubles, i, sourcePosition.ordinates, 0, sourceDimension);
                 targetPosition = transform.transform(sourcePosition, targetPosition);
                 assertNotNull("MathTransform.transform(DirectPosition,...) shall not return null.", targetPosition);
+                assertNotSame("MathTransform.transform(DirectPosition,...) shall not overwrite " +
+                        "the source position.", sourcePosition, targetPosition);
                 assertEquals("MathTransform.transform(DirectPosition) must return a position having " +
                         "the same dimension than MathTransform.getTargetDimension().",
                         targetDimension, targetPosition.getDimension());
                 for (int j=0; j<targetDimension; j++) {
-                    transformed[targetOffset++] = (float) targetPosition.getOrdinate(j);
+                    expectedFloats[targetOffset] = (float) (expectedDoubles[targetOffset] = targetPosition.getOrdinate(j));
+                    targetOffset++;
                 }
             }
-            assertEquals(transformed.length, targetOffset);
+            assertEquals(expectedFloats.length, targetOffset);
         }
         /*
          * Tests transformation in distincts (non-overlapping) arrays.
@@ -411,7 +417,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
             assertCoordinatesEqual("MathTransform.transform(double[],0,double[],0,n) modified a source coordinate.",
                     sourceDimension, sourceFloats, 0, sourceDoubles, 0, numPts, true);
             assertCoordinatesEqual("MathTransform.transform(double[],0,double[],0,n) error.",
-                    targetDimension, transformed, 0, targetDoubles, 0, numPts, false);
+                    targetDimension, expectedDoubles, 0, targetDoubles, 0, numPts, false);
         }
         if (isFloatToFloatSupported) {
             Arrays.fill(targetFloats, Float.NaN);
@@ -419,7 +425,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
             assertCoordinatesEqual("MathTransform.transform(float[],0,float[],0,n) modified a source coordinate.",
                     sourceDimension, sourceDoubles, 0, sourceFloats, 0, numPts, true);
             assertCoordinatesEqual("MathTransform.transform(float[],0,float[],0,n) error.",
-                    targetDimension, transformed, 0, targetFloats, 0, numPts, false);
+                    targetDimension, expectedFloats, 0, targetFloats, 0, numPts, false);
         }
         if (isDoubleToFloatSupported) {
             Arrays.fill(targetFloats, Float.NaN);
@@ -427,7 +433,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
             assertCoordinatesEqual("MathTransform.transform(double[],0,float[],0,n) modified a source coordinate.",
                     sourceDimension, sourceFloats, 0, sourceDoubles, 0, numPts, true);
             assertCoordinatesEqual("MathTransform.transform(double[],0,float[],0,n) error.",
-                    targetDimension, transformed, 0, targetFloats, 0, numPts, false);
+                    targetDimension, expectedFloats, 0, targetFloats, 0, numPts, false);
         }
         if (isFloatToDoubleSupported) {
             Arrays.fill(targetDoubles, Double.NaN);
@@ -435,7 +441,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
             assertCoordinatesEqual("MathTransform.transform(float[],0,double[],0,n) modified a source coordinate.",
                     sourceDimension, sourceDoubles, 0, sourceFloats, 0, numPts, true);
             assertCoordinatesEqual("MathTransform.transform(float[],0,double[],0,n) error.",
-                    targetDimension, transformed, 0, targetDoubles, 0, numPts, false);
+                    targetDimension, expectedDoubles, 0, targetDoubles, 0, numPts, false);
         }
         /*
          * Tests transformation in overlapping arrays.
@@ -448,13 +454,34 @@ public strictfp abstract class TransformTestCase extends TestCase {
                     transform.transform(targetFloats,  sourceOffset, targetFloats,  targetOffset, numPts);
                     transform.transform(targetDoubles, sourceOffset, targetDoubles, targetOffset, numPts);
                     assertCoordinatesEqual("MathTransform.transform(float[],0,float[],0,n) error.",
-                            targetDimension, transformed, 0, targetFloats, targetOffset, numPts, false);
+                            targetDimension, expectedFloats, 0, targetFloats, targetOffset, numPts, false);
                     assertCoordinatesEqual("MathTransform.transform(double[],0,double[],0,n) error.",
-                            targetDimension, transformed, 0, targetDoubles, targetOffset, numPts, false);
+                            targetDimension, expectedFloats, 0, targetDoubles, targetOffset, numPts, false);
                 }
             }
         }
-        return transformed;
+        /*
+         * Tests MathTransform2D methods.
+         */
+        if (transform instanceof MathTransform2D) {
+            assertEquals("MathTransform2D.getSourceDimension()", 2, sourceDimension);
+            assertEquals("MathTransform2D.getTargetDimension()", 2, targetDimension);
+            final MathTransform2D transform2D = (MathTransform2D) transform;
+            final Point2D.Float  source = new Point2D.Float();
+            final Point2D.Double target = new Point2D.Double();
+            for (int i=0; i<sourceFloats.length;) {
+                source.x = sourceFloats[i];
+                source.y = sourceFloats[i+1];
+                assertSame("MathTransform2D.transform(Point2D,...) shall use the given target.",
+                        target, transform2D.transform(source, target));
+                assertNotNull("MathTransform2D.transform(Point2D,...) shall not return null.", target);
+                targetDoubles[i++] = target.x;
+                targetDoubles[i++] = target.y;
+            }
+            assertCoordinatesEqual("MathTransform2D.transform(Point2D,Point2D) error.",
+                    2, expectedDoubles, 0, targetDoubles, 0, numPts, false);
+        }
+        return expectedFloats;
     }
 
     /**
