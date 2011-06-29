@@ -4,19 +4,23 @@
 
 Maven repositories
 
-  Maven projects can use one of the following repositories:
+  GeoAPI 3.0.0 is deployed on the {{{http://search.maven.org/}Maven Central Repository}} and can
+  be used in a Maven project as below:
 
-    * (<Coming soon: Maven central repository for GeoAPI 3.0.0 final>)
++------------------------------------------+
+<dependencies>
+  <dependency>
+    <groupId>org.opengis</groupId>
+    <artifactId>geoapi</artifactId>
+    <version>3.0.0</version>
+  </dependency>
+</dependencies>
++------------------------------------------+
 
-    * {{{http://maven.geotoolkit.org/}http://maven.geotoolkit.org/}} (GeoAPI 3.0-RC1, 3.1 development branch and legacy 2.3 milestones)
+  Development milestones (versions 2.3 and above) are deployed on an external repository,
+  which can be used as below:
 
-    * {{{http://download.osgeo.org/webdav/geotools/}http://download.osgeo.org/webdav/geotools/}} (legacy GeoAPI 2.2, 2.1 and 2.0)
-
-    * {{{http://repo.opengeo.org/}http://repo.opengeo.org/}} (legacy GeoAPI 2.2, 2.1 and 2.0)
-
-  Example:
-
------------------------------------------------------------------------------------
++------------------------------------------+
 <repositories>
   <repository>
     <id>geotoolkit</id>
@@ -29,7 +33,14 @@ Maven repositories
   <dependency>
     <groupId>org.opengis</groupId>
     <artifactId>geoapi</artifactId>
-    <version>3.0-RC1</version>
+    <version>3.1-SNAPSHOT</version>
   </dependency>
 </dependencies>
------------------------------------------------------------------------------------
++------------------------------------------+
+
+
+  Legacy informal releases (2.0, 2.1 and 2.2) are available on the following repositories:
+
+    * {{{http://download.osgeo.org/webdav/geotools/}http://download.osgeo.org/webdav/geotools/}}
+
+    * {{{http://repo.opengeo.org/}http://repo.opengeo.org/}}
