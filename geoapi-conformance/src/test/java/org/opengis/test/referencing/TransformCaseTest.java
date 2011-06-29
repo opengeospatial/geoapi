@@ -100,14 +100,21 @@ public strictfp class TransformCaseTest extends TransformTestCase {
         assertAllTestsEnabled();
         ((AffineTransform2D) transform).setToScale(10, 100);
         Validators.validate(transform);
-        verifyTransform(new double[] { 2,  3},
-                        new double[] { 20, 300});
+        verifyTransform(new double[] { 1,  4,   2,  3},
+                        new double[] { 10, 400, 20, 300});
         try {
-            verifyTransform(new double[] { 2,  3},
-                            new double[] { 20, 300.01});
+            verifyTransform(new double[] { 1,  4,   2,  3},
+                            new double[] { 10, 400, 20, 300.125});
             fail("Expected TransformFailure exception.");
         } catch (TransformFailure e) {
             // This is the expected exception.
+            final String message = e.getMessage();
+            assertTrue("Wrong or missing dimension and index in the error message.",
+                    message.contains("DirectPosition2D[1]"));
+            assertTrue("Wrong or missing coordinate values in the error message.",
+                    message.contains("Expected (20.0, 300.125) but got (20.0, 300.0)"));
+            assertTrue("Wrong or missing delta value in the error message.",
+                    message.contains("The delta at ordinate 1 is 0.125"));
         }
     }
 
