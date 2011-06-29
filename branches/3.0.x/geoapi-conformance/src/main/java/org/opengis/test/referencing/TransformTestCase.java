@@ -411,7 +411,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
             assertCoordinatesEqual("MathTransform.transform(double[],0,double[],0,n) modified a source coordinate.",
                     sourceDimension, sourceFloats, 0, sourceDoubles, 0, numPts, true);
             assertCoordinatesEqual("MathTransform.transform(double[],0,double[],0,n) error.",
-                    targetDimension, targetDoubles, 0, transformed, 0, numPts, false);
+                    targetDimension, transformed, 0, targetDoubles, 0, numPts, false);
         }
         if (isFloatToFloatSupported) {
             Arrays.fill(targetFloats, Float.NaN);
