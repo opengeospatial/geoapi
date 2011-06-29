@@ -33,6 +33,7 @@ package org.opengis.test.referencing;
 
 import java.util.Arrays;
 import java.awt.geom.Point2D;
+import java.lang.reflect.Array;
 import org.opengis.geometry.DirectPosition;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 
@@ -117,6 +118,25 @@ final class SimpleDirectPosition implements DirectPosition {
     public void setCoordinate(final double... ordinates) {
         assertEquals("Unexpected dimension.", this.ordinates.length, ordinates.length);
         System.arraycopy(ordinates, 0, this.ordinates, 0, ordinates.length);
+    }
+
+    /**
+     * Sets all ordinate values starting at the given offset in the given array.
+     * This method is for internal usage by {@link TransformTestCase} only.
+     *
+     * @param array     The {@code float[]} or {@code double[]} array.
+     * @param offset    Index of the first element to copy from the given array.
+     * @param useDouble If {@code false}, cast the values to floats.
+     */
+    final void setCoordinate(final Object ordinates, int offset, final boolean useDouble) {
+        final int dimension = this.ordinates.length;
+        for (int i=0; i<dimension; i++) {
+            double ordinate = Array.getDouble(ordinates, offset++);
+            if (!useDouble) {
+                ordinate = (float) ordinate;
+            }
+            this.ordinates[i] = ordinate;
+        }
     }
 
     /**
