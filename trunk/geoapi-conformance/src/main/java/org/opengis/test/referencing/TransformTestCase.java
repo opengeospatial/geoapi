@@ -34,10 +34,12 @@ package org.opengis.test.referencing;
 import java.util.Random;
 import java.util.Arrays;
 import java.lang.reflect.Array;
+import java.awt.geom.Point2D;
 
 import org.opengis.geometry.DirectPosition;
 import org.opengis.referencing.operation.Matrix;
 import org.opengis.referencing.operation.MathTransform;
+import org.opengis.referencing.operation.MathTransform2D;
 import org.opengis.referencing.operation.TransformException;
 
 import org.junit.Before;
@@ -436,8 +438,9 @@ public strictfp abstract class TransformTestCase extends TestCase {
      * The {@code double} values may show extra digits when formatted in base 10, but this is not
      * significant if their IEEE 754 representation (which use base 2) are equivalent.
      * <p>
-     * This method does not verify the inverse transform. The later can be verified with
-     * {@link #verifyInverse(float[])} if wanted.
+     * This method does not verify the inverse transform or the derivatives. If desired,
+     * those later methods can be verified with the {@link #verifyInverse(float[])} and
+     * {@link #verifyDerivative(double[])} methods respectively.
      *
      * @param  sourceFloats The source coordinates to transform as an array of {@code float} values.
      * @return The transformed coordinates, returned for convenience.
@@ -457,10 +460,11 @@ public strictfp abstract class TransformTestCase extends TestCase {
         assertEquals("Source dimension is not a divisor of the coordinates array length.",
                 0, sourceFloats.length % sourceDimension);
         final int numPts = sourceFloats.length / sourceDimension;
-        final float [] transformed   = new float [targetDimension * numPts];
-        final float [] targetFloats  = new float [max(sourceDimension, targetDimension) * (numPts + POINTS_OFFSET)];
-        final double[] sourceDoubles = new double[sourceFloats.length];
-        final double[] targetDoubles = new double[targetFloats.length];
+        final float [] targetFloats    = new float [max(sourceDimension, targetDimension) * (numPts + POINTS_OFFSET)];
+        final float [] expectedFloats  = new float [targetDimension * numPts];
+        final double[] sourceDoubles   = new double[sourceFloats.length];
+        final double[] targetDoubles   = new double[targetFloats.length];
+        final double[] expectedDoubles = new double[expectedFloats.length];
         /*
          * Copies the source ordinates (to be used later) and performs the transformations using
          * MathTransform.transform(DirectPosition) method. Result is stored in the "transformed"
@@ -477,14 +481,17 @@ public strictfp abstract class TransformTestCase extends TestCase {
                 System.arraycopy(sourceDoubles, i, sourcePosition.ordinates, 0, sourceDimension);
                 targetPosition = transform.transform(sourcePosition, targetPosition);
                 assertNotNull("MathTransform.transform(DirectPosition,...) shall not return null.", targetPosition);
+                assertNotSame("MathTransform.transform(DirectPosition,...) shall not overwrite " +
+                        "the source position.", sourcePosition, targetPosition);
                 assertEquals("MathTransform.transform(DirectPosition) must return a position having " +
                         "the same dimension than MathTransform.getTargetDimension().",
                         targetDimension, targetPosition.getDimension());
                 for (int j=0; j<targetDimension; j++) {
-                    transformed[targetOffset++] = (float) targetPosition.getOrdinate(j);
+                    expectedFloats[targetOffset] = (float) (expectedDoubles[targetOffset] = targetPosition.getOrdinate(j));
+                    targetOffset++;
                 }
             }
-            assertEquals(transformed.length, targetOffset);
+            assertEquals(expectedFloats.length, targetOffset);
         }
         /*
          * Tests transformation in distincts (non-overlapping) arrays.
@@ -495,7 +502,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
             assertCoordinatesEqual("MathTransform.transform(double[],0,double[],0,n) modified a source coordinate.",
                     sourceDimension, sourceFloats, 0, sourceDoubles, 0, numPts, ComparisonType.STRICT);
             assertCoordinatesEqual("MathTransform.transform(double[],0,double[],0,n) error.",
-                    targetDimension, targetDoubles, 0, transformed, 0, numPts, ComparisonType.DIRECT_TRANSFORM);
+                    targetDimension, expectedDoubles, 0, targetDoubles, 0, numPts, ComparisonType.DIRECT_TRANSFORM);
         }
         if (isFloatToFloatSupported) {
             Arrays.fill(targetFloats, Float.NaN);
@@ -503,7 +510,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
             assertCoordinatesEqual("MathTransform.transform(float[],0,float[],0,n) modified a source coordinate.",
                     sourceDimension, sourceDoubles, 0, sourceFloats, 0, numPts, ComparisonType.STRICT);
             assertCoordinatesEqual("MathTransform.transform(float[],0,float[],0,n) error.",
-                    targetDimension, transformed, 0, targetFloats, 0, numPts, ComparisonType.DIRECT_TRANSFORM);
+                    targetDimension, expectedFloats, 0, targetFloats, 0, numPts, ComparisonType.DIRECT_TRANSFORM);
         }
         if (isDoubleToFloatSupported) {
             Arrays.fill(targetFloats, Float.NaN);
@@ -511,7 +518,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
             assertCoordinatesEqual("MathTransform.transform(double[],0,float[],0,n) modified a source coordinate.",
                     sourceDimension, sourceFloats, 0, sourceDoubles, 0, numPts, ComparisonType.STRICT);
             assertCoordinatesEqual("MathTransform.transform(double[],0,float[],0,n) error.",
-                    targetDimension, transformed, 0, targetFloats, 0, numPts, ComparisonType.DIRECT_TRANSFORM);
+                    targetDimension, expectedFloats, 0, targetFloats, 0, numPts, ComparisonType.DIRECT_TRANSFORM);
         }
         if (isFloatToDoubleSupported) {
             Arrays.fill(targetDoubles, Double.NaN);
@@ -519,7 +526,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
             assertCoordinatesEqual("MathTransform.transform(float[],0,double[],0,n) modified a source coordinate.",
                     sourceDimension, sourceDoubles, 0, sourceFloats, 0, numPts, ComparisonType.STRICT);
             assertCoordinatesEqual("MathTransform.transform(float[],0,double[],0,n) error.",
-                    targetDimension, transformed, 0, targetDoubles, 0, numPts, ComparisonType.DIRECT_TRANSFORM);
+                    targetDimension, expectedDoubles, 0, targetDoubles, 0, numPts, ComparisonType.DIRECT_TRANSFORM);
         }
         /*
          * Tests transformation in overlapping arrays.
@@ -532,13 +539,34 @@ public strictfp abstract class TransformTestCase extends TestCase {
                     transform.transform(targetFloats,  sourceOffset, targetFloats,  targetOffset, numPts);
                     transform.transform(targetDoubles, sourceOffset, targetDoubles, targetOffset, numPts);
                     assertCoordinatesEqual("MathTransform.transform(float[],0,float[],0,n) error.",
-                            targetDimension, transformed, 0, targetFloats, targetOffset, numPts, ComparisonType.DIRECT_TRANSFORM);
+                            targetDimension, expectedFloats, 0, targetFloats, targetOffset, numPts, ComparisonType.DIRECT_TRANSFORM);
                     assertCoordinatesEqual("MathTransform.transform(double[],0,double[],0,n) error.",
-                            targetDimension, transformed, 0, targetDoubles, targetOffset, numPts, ComparisonType.DIRECT_TRANSFORM);
+                            targetDimension, expectedFloats, 0, targetDoubles, targetOffset, numPts, ComparisonType.DIRECT_TRANSFORM);
                 }
             }
         }
-        return transformed;
+        /*
+         * Tests MathTransform2D methods.
+         */
+        if (transform instanceof MathTransform2D) {
+            assertEquals("MathTransform2D.getSourceDimension()", 2, sourceDimension);
+            assertEquals("MathTransform2D.getTargetDimension()", 2, targetDimension);
+            final MathTransform2D transform2D = (MathTransform2D) transform;
+            final Point2D.Float  source = new Point2D.Float();
+            final Point2D.Double target = new Point2D.Double();
+            for (int i=0; i<sourceFloats.length;) {
+                source.x = sourceFloats[i];
+                source.y = sourceFloats[i+1];
+                assertSame("MathTransform2D.transform(Point2D,...) shall use the given target.",
+                        target, transform2D.transform(source, target));
+                assertNotNull("MathTransform2D.transform(Point2D,...) shall not return null.", target);
+                targetDoubles[i++] = target.x;
+                targetDoubles[i++] = target.y;
+            }
+            assertCoordinatesEqual("MathTransform2D.transform(Point2D,Point2D) error.",
+                    2, expectedDoubles, 0, targetDoubles, 0, numPts, ComparisonType.DIRECT_TRANSFORM);
+        }
+        return expectedFloats;
     }
 
     /**
@@ -594,28 +622,17 @@ public strictfp abstract class TransformTestCase extends TestCase {
             }
         }
         /*
-         * Now compare the matrixes elements. Note that we still invoke the tolerance(double)
-         * method even if the given arguments are not ordinate values. We do that because the
-         * matrix can be interpreted as the displacement in target CRS space when the ordinate
-         * values are increased by 1 in the source CRS space, so it still related to ordinates.
-         *
-         * The argument value given to the tolerance method is 'actual' rather than 'expected'
-         * because the actual value is probably more accurate than the one approximated from
-         * finite differences.
+         * Now compare the matrixes elements. If the transform implements
+         * the MathTransform2D interface, check also the consistency.
          */
-        for (int i=0; i<sourceDim; i++) {
-            for (int j=0; j<targetDim; j++) {
-                final double expected = approx.getElement(j, i);
-                final double actual   = matrix.getElement(j, i);
-                if (!(abs(expected - actual) <= tolerance(actual, j, ComparisonType.DERIVATIVE))) {
-                    final String lineSeparator = System.getProperty("line.separator", "\n");
-                    throw new DerivativeFailure("MathTransform.derivative(row=" + i + ", col=" + j + "):" +
-                            " expected " + expected + " but got " + actual +
-                            " (a difference of " + (float) abs(expected-actual) + ')' + lineSeparator +
-                            "Expected matrix (approximative):" + lineSeparator + approx + lineSeparator +
-                            "Actual matrix:" + lineSeparator + SimpleMatrix.toString(matrix));
-                }
-            }
+        assertMatrixEquals("MathTransform.derivative(DirectPosition) error.",
+                approx, matrix, ComparisonType.DERIVATIVE);
+        if (transform instanceof MathTransform2D) {
+            assertEquals("MathTransform2D.getSourceDimensions()", 2, sourceDim);
+            assertEquals("MathTransform2D.getTargetDimensions()", 2, targetDim);
+            assertMatrixEquals("MathTransform2D.derivative(Point2D) error.", matrix,
+                    ((MathTransform2D) transform).derivative(new Point2D.Double(coordinate[0], coordinate[1])),
+                    ComparisonType.STRICT);
         }
     }
 
@@ -1125,6 +1142,57 @@ public strictfp abstract class TransformTestCase extends TestCase {
         assertCoordinatesEqual(message, dimension,
                 expectedPts, expectedOffset, actualPts, actualOffset, numPoints,
                 strict ? ComparisonType.STRICT : ComparisonType.DIRECT_TRANSFORM);
+    }
+
+    /**
+     * Asserts that a matrix of derivatives is equals to the expected ones within a positive delta.
+     * If the comparison fails, the given message is completed with the expected and actual
+     * matrixes.
+     *
+     * @param message  The message to print in case of failure.
+     * @param expected The expected matrix.
+     * @param actual   The actual matrix.
+     * @param mode     Whatever the comparison should be {@linkplain ComparisonType#STRICT strict} or
+     *                 accept the {@linkplain ComparisonType#DERIVATIVE derivative} tolerance threshold.
+     *
+     * @since 3.1
+     */
+    protected final void assertMatrixEquals(final String message,
+            final Matrix expected, final Matrix actual, final ComparisonType mode)
+    {
+        final int numRow = expected.getNumRow();
+        final int numCol = expected.getNumCol();
+        assertEquals("Wrong number of rows.",    numRow, actual.getNumRow());
+        assertEquals("Wrong number of columns.", numCol, actual.getNumCol());
+        for (int i=0; i<numCol; i++) {
+            for (int j=0; j<numRow; j++) {
+                final double e = expected.getElement(j, i);
+                final double a = actual  .getElement(j, i);
+                final double d = abs(e - a);
+                /*
+                 * Now compare the matrixes elements. Note that we still invoke the tolerance(double)
+                 * method even if the given arguments are not ordinate values. We do that because the
+                 * matrix can be interpreted as the displacement in target CRS space when the ordinate
+                 * values are increased by 1 in the source CRS space, so it still related to ordinates.
+                 *
+                 * The argument value given to the tolerance method is 'actual' rather than 'expected'
+                 * because the actual value is probably more accurate than the one approximated from
+                 * finite differences.
+                 */
+                if (!(d <= tolerance(a, j, mode)) && Double.doubleToLongBits(a) != Double.doubleToLongBits(e)) {
+                    final StringBuilder buffer = new StringBuilder(512);
+                    final String lineSeparator = System.getProperty("line.separator", "\n");
+                    buffer.append(message).append(lineSeparator).append("Matrix(").append(j).append(',').append(i)
+                            .append("): expected ").append(e).append(" but got ").append(a)
+                            .append(" (a difference of ").append(d).append(')').append(lineSeparator)
+                            .append("Expected matrix (may be approximative):").append(lineSeparator);
+                    SimpleMatrix.toString(expected, buffer, lineSeparator);
+                    buffer.append(lineSeparator).append("Actual matrix:").append(lineSeparator);
+                    SimpleMatrix.toString(actual, buffer, lineSeparator);
+                    throw new DerivativeFailure(buffer.toString());
+                }
+            }
+        }
     }
 
     /**

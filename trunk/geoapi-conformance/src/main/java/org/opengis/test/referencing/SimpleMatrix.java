@@ -173,13 +173,15 @@ final class SimpleMatrix implements Matrix, Cloneable {
      */
     @Override
     public String toString() {
-        return toString(this);
+        final StringBuilder buffer = new StringBuilder(256);
+        toString(this, buffer, System.getProperty("line.separator", "\n"));
+        return buffer.toString();
     }
 
     /**
      * Returns a string representation of the given matrix.
      */
-    static String toString(final Matrix matrix) {
+    static void toString(final Matrix matrix, final StringBuilder appendTo, final String lineSeparator) {
         /*
          * Get all numerical values as strings, and compute the column widths.
          */
@@ -197,22 +199,19 @@ final class SimpleMatrix implements Matrix, Cloneable {
         /*
          * Append the string values, with right-alignment.
          */
-        final String lineSeparator = System.getProperty("line.separator", "\n");
-        final StringBuilder buffer = new StringBuilder();
         int column = 0;
         for (int i=0; i<values.length; i++) {
             final String value = values[i];
             for (int j=columnWidths[column]-value.length(); --j>=0;) {
-                buffer.append(' ');
+                appendTo.append(' ');
             }
-            buffer.append(value);
+            appendTo.append(value);
             if (++column == numCol) {
                 column = 0;
-                buffer.append(lineSeparator);
+                appendTo.append(lineSeparator);
             } else {
-                buffer.append(' ');
+                appendTo.append(' ');
             }
         }
-        return buffer.toString();
     }
 }
