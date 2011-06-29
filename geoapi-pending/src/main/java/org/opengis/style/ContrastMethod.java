@@ -41,7 +41,7 @@ import org.opengis.annotation.XmlElement;
 /**
  * The ContrastEnhancement element defines contrast enhancement for a channel of a
  * false-color image or for a color image.
- * 
+ *
  * In the case of a color image, the relative grayscale brightness of a pixel color is used.
  * “Normalize” means to stretch the contrast so that the dimmest color is stretched to black
  * and the brightest color is stretched to white, with all colors in between stretched out
@@ -122,7 +122,10 @@ public final class ContrastMethod extends CodeList<ContrastMethod> {
 
     /**
      * Returns the contrast type that matches the given string, or returns a
-     * new one if none match it.
+     * new one if none match it. More specifically, this methods returns the first instance for
+     * which <code>{@linkplain #name() name()}.{@linkplain String#equals equals}(code)</code>
+     * returns {@code true}. If no existing instance is found, then a new one is created for
+     * the given name.
      *
      * @param code The name of the code to fetch or to create.
      * @return A code matching the given name.

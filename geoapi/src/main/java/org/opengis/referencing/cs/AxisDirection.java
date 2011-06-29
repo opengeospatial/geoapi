@@ -401,7 +401,10 @@ public final class AxisDirection extends CodeList<AxisDirection> {
 
     /**
      * Returns the axis direction that matches the given string, or returns a
-     * new one if none match it.
+     * new one if none match it. More specifically, this methods returns the first instance for
+     * which <code>{@linkplain #name() name()}.{@linkplain String#equals equals}(code)</code>
+     * returns {@code true}. If no existing instance is found, then a new one is created for
+     * the given name.
      *
      * @param code The name of the code to fetch or to create.
      * @return A code matching the given name.

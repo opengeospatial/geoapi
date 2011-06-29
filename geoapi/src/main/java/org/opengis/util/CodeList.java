@@ -165,10 +165,15 @@ public abstract class CodeList<E extends CodeList<E>> implements Comparable<E>, 
 
     /**
      * Returns the code of the given type that matches the given name, or returns a new one if none
-     * match it. More specifically, this methods returns the first element of the given class where
-     * <code>{@linkplain #name()}.{@linkplain String#equals equals}(name)</code> returned {@code true}.
-     * If no such element is found, then a new instance is created using the constructor expecting a
+     * match it. More specifically, this methods returns the first instance of the given class for
+     * which <code>{@linkplain #name()}.{@linkplain String#equals equals}(name)</code> is {@code true}.
+     * If no such instance is found, then a new instance is created using the constructor expecting a
      * single {@link String} argument.
+     * <p>
+     * <b>Implementation note:</b> The {@code codeType} class needs to be initialized before to
+     * invoke this method. This is usually the case when the caller is a static method of the
+     * {@code codeType} class. However in other situations, callers may need to initialize
+     * explicitely the given class.
      *
      * @param <T> The compile-time type given as the {@code codeType} parameter.
      * @param codeType The type of code list.
