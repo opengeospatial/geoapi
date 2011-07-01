@@ -609,10 +609,10 @@
            All GeoAPI modules included in the build
        ==================================================== -->
   <modules>
-    <module>tools</module>
     <module>geoapi</module>
+    <module>geoapi-conformance</module>
     <module>geoapi-pending</module>
     <module>geoapi-examples</module>
-    <module>geoapi-conformance</module>
+    <module>tools</module>
   </modules>
 </project>
