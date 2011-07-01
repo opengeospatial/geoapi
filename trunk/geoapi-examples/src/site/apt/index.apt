@@ -1,0 +1,10 @@
+                                       ---------------
+                                       GeoAPI examples
+                                       ---------------
+
+GeoAPI examples
+
+  The included examples explore the different trade-offs you can make when implementing GeoAPI
+  interfaces for your environment. Currently, the examples explore mostly the interfaces defined
+  in the "pending" directory. For more extensive examples of GeoAPI normative interfaces, see the
+  source code of the "geoapi-conformance" module.
