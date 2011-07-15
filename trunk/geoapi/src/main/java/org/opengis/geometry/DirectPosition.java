@@ -49,7 +49,7 @@ import static org.opengis.annotation.Specification.*;
  * {@linkplain CoordinateReferenceSystem coordinate reference system}. In this case,
  * the coordinate reference system is implicitly assumed to take on the value of the containing
  * object's {@linkplain CoordinateReferenceSystem coordinate reference system}.
- * 
+ *
  * @departure easeOfUse
  *   This interface was moved into the <code>org.opengis.geometry</code> package for convenience.
  *
@@ -101,7 +101,7 @@ public interface DirectPosition extends Position {
      * position.{@linkplain #setOrdinate setOrdinate}(i, value); // edit in place
      * </pre></blockquote>
      *
-     * There are a couple reasons for requerying a copy:
+     * There are a couple reasons for requesting a copy:
      * <p>
      * <ul>
      *   <li>We want an array of coordinates with the intend to modify it for computation purpose

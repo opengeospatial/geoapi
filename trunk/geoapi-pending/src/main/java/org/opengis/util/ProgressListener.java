@@ -36,7 +36,7 @@ import org.opengis.annotation.Extension;
 
 /**
  * Monitor the progress of some lengthly operation, and allows cancelation.
- * This interface makes no assumption about the output device. Additionnaly, this
+ * This interface makes no assumption about the output device. Additionally, this
  * interface provides support for non-fatal warning and exception reports.
  * <p>
  * All implementations should be multi-thread safe, even the ones that provide
@@ -63,7 +63,11 @@ import org.opengis.annotation.Extension;
  * @since  GeoAPI 2.1
  * @author Martin Desruisseaux
  * @author Jody Garnet
+ *
+ * @deprecated This interface is not used anywhere in the GeoAPI project.
+ *             Its definition can be left to implementors.
  */
+@Deprecated
 @Extension
 public interface ProgressListener {
     /**

@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2004-2011 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2011 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -29,46 +29,33 @@
  *    Title to copyright in this software and any associated documentation will at all
  *    times remain with copyright holders.
  */
-package org.opengis.util;
+package org.opengis.annotation;
+
+import java.lang.annotation.Target;
+import java.lang.annotation.Retention;
+import java.lang.annotation.Documented;
+import static java.lang.annotation.ElementType.*;
+import static java.lang.annotation.RetentionPolicy.*;
 
 
 /**
- * Exception that is thrown when an invalid enumeration lookup is performed
- * in the {@link SimpleEnumerationType} class.
+ * An annotation for classes or method derived from a specification draft. This annotation
+ * is temporary by essence, since it is removed after the specification has been approved.
+ * For this reason, this annotation will never move to the <cite>GeoAPI normative</cite>
+ * module; it will stay in the <cite>GeoAPI pending</cite> module forever.
+ * <p>
+ * This annotation is used together with the following {@link UML#specification()} values:
+ * <p>
+ * <ul>
+ *   <li>{@link Specification#ISO_19107}: for geometric objects derived from the ISO 19107:2008 draft.</li>
+ *   <li>{@link Specification#ISO_19115}: for metadata objects derived from the ISO 19115:2011 draft.</li>
+ * </ul>
  *
- * @author Jesse Crossley (SYS Technologies)
- * @since GeoAPI 1.0
- *
- * @deprecated Not used.
+ * @author  Martin Desruisseaux (Geomatys)
+ * @since   GeoAPI 3.1
  */
-@Deprecated
-public class NoSuchEnumerationException extends Exception {
-    /**
-     * Serial number for interoperability with different versions.
-     */
-    private static final long serialVersionUID = 5827953825646995065L;
-
-    /**
-     * The invalid value.
-     */
-    private final int value;
-
-    /**
-     * Constructs an exception with the given invalid value.
-     *
-     * @param value The invalid value.
-     * @todo Localize the error message.
-     */
-    public NoSuchEnumerationException(final int value) {
-        super("No enumeration exists for the value " + value);
-        this.value = value;
-    }
-
-    /**
-     * Returns the invalid value.
-     */
-    public int getValue() {
-        return value;
-    }
+@Documented
+@Retention(SOURCE)
+@Target({TYPE, FIELD, METHOD})
+public @interface Draft {
 }
-

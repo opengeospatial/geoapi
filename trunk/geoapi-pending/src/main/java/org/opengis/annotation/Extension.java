@@ -44,7 +44,11 @@ import static java.lang.annotation.RetentionPolicy.*;
  *
  * @author  Martin Desruisseaux (IRD)
  * @since   GeoAPI 2.0
+ *
+ * @deprecated Since GeoAPI 2.3, we use the "departure" javadoc tag instead. This allow us
+ *             to document the reason for the extension or departure.
  */
+@Deprecated
 @Documented
 @Retention(SOURCE)
 @Target({TYPE, FIELD, METHOD})
