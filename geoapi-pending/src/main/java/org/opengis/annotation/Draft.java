@@ -55,7 +55,7 @@ import static java.lang.annotation.RetentionPolicy.*;
  * @since   GeoAPI 3.1
  */
 @Documented
-@Retention(SOURCE)
+@Retention(RUNTIME)
 @Target({TYPE, FIELD, METHOD})
 public @interface Draft {
 }
