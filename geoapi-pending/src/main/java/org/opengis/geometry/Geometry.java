@@ -36,7 +36,6 @@ import org.opengis.referencing.crs.CoordinateReferenceSystem;
 import org.opengis.referencing.operation.MathTransform;
 import org.opengis.referencing.operation.TransformException;
 import org.opengis.geometry.complex.Complex;
-import org.opengis.util.Cloneable;
 import org.opengis.annotation.UML;
 import org.opengis.annotation.Extension;
 

@@ -45,7 +45,10 @@ import static java.lang.annotation.RetentionPolicy.*;
  *
  * @author  Martin Desruisseaux (IRD)
  * @since   GeoAPI 2.1
+ *
+ * @deprecated Since GeoAPI 2.3, we use the UMLGraph tools with its "navassoc" javadoc tag instead.
  */
+@Deprecated
 @Documented
 @Target(METHOD)
 @Retention(SOURCE)
