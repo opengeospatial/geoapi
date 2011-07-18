@@ -45,9 +45,11 @@ import static org.opengis.annotation.Specification.*;
  * {@code Envelope}, it is sufficient to encode these two points. This is consistent with
  * all of the data types in this specification, their state is represented by their publicly
  * accessible attributes.
- * 
+ *
  * @departure easeOfUse
- *   This interface was moved into the <code>org.opengis.geometry</code> package for convenience.
+ *   The ISO specification defines this interface in the <code>coordinate</code> sub-package.
+ *   GeoAPI moved this interface into the <code>org.opengis.geometry</code> root package for
+ *   convenience, because it is extensively used.
  *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0
@@ -130,7 +132,7 @@ public interface Envelope {
      * @departure easeOfUse
      *   This method is not part of ISO specification. GeoAPI adds this method for convenience and
      *   efficiency, since some implementations might store the minimum and maximum ordinate values
-     *   directly in the <code>Envelope</code> itself rather than in a contained 
+     *   directly in the <code>Envelope</code> itself rather than in a contained
      *   <code>DirectPosition</code> corner.
      *
      * @see Rectangle2D#getMinX()
@@ -156,7 +158,7 @@ public interface Envelope {
      * @departure easeOfUse
      *   This method is not part of ISO specification. GeoAPI adds this method for convenience and
      *   efficiency, since some implementations might store the minimum and maximum ordinate values
-     *   directly in the <code>Envelope</code> itself rather than in a contained 
+     *   directly in the <code>Envelope</code> itself rather than in a contained
      *   <code>DirectPosition</code> corner.
      *
      * @see Rectangle2D#getMaxX()
@@ -182,7 +184,7 @@ public interface Envelope {
      * @departure easeOfUse
      *   This method is not part of ISO specification. GeoAPI adds this method for convenience and
      *   efficiency, since some implementations might store the minimum and maximum ordinate values
-     *   directly in the <code>Envelope</code> itself rather than in a contained 
+     *   directly in the <code>Envelope</code> itself rather than in a contained
      *   <code>DirectPosition</code> corner.
      *
      * @see Rectangle2D#getCenterX()
@@ -208,7 +210,7 @@ public interface Envelope {
      * @departure easeOfUse
      *   This method is not part of ISO specification. GeoAPI adds this method for convenience and
      *   efficiency, since some implementations might store the minimum and maximum ordinate values
-     *   directly in the <code>Envelope</code> itself rather than in a contained 
+     *   directly in the <code>Envelope</code> itself rather than in a contained
      *   <code>DirectPosition</code> corner.
      *
      * @see Rectangle2D#getWidth()
