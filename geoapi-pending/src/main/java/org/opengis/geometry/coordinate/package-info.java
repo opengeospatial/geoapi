@@ -56,7 +56,7 @@
  *
  * <P ALIGN="justify">All locations in a list or array shall use the same coordinate system and
  * shall reference reality in a manner representable by continuous functions from the coordinate
- * tuples ({@link org.opengis.geometry.DirectPositions})) to reality in such a manner that “nearby”
+ * tuples ({@link org.opengis.geometry.DirectPosition}s) to reality in such a manner that “nearby”
  * coordinates in the {@code DirectPosition}s map to “nearby” positions in reality. The ISO 19107
  * standard does not assume that these functions maintain topological dimension. See for example
  * {@linkplain org.opengis.geometry.coordinate.HomogeneousDirectPosition homogeneous direct position}.</P>
