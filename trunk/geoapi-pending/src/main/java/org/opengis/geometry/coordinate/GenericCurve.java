@@ -31,8 +31,10 @@
  */
 package org.opengis.geometry.coordinate;
 
-import org.opengis.geometry.DirectPosition;
 import org.opengis.annotation.UML;
+import org.opengis.annotation.Draft;
+import org.opengis.geometry.DirectPosition;
+import org.opengis.geometry.primitive.CurveBoundary;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -44,9 +46,16 @@ import static org.opengis.annotation.Specification.*;
  * and {@code CurveSegment} both represent sections of curvilinear
  * geometry, and therefore share a number of operation signatures.
  *
- * @version <A HREF="http://www.opengeospatial.org/standards/as">ISO 19107</A>
- * @author Martin Desruisseaux (IRD)
- * @since GeoAPI 1.0
+ * @author  Martin Desruisseaux (IRD)
+ * @author  Axel Francois (LSIS/Geomatys)
+ * @version 3.1
+ * @since   1.0
+ *
+ * @navassoc - - - DirectPosition
+ * @navassoc 1 - - ParamForPoint
+ * @navassoc 1 - - LineString
+ * @navassoc 1 - - PointArray
+ * @navassoc 1 - - CurveBoundary
  */
 @UML(identifier="GM_GenericCurve", specification=ISO_19107)
 public interface GenericCurve {
@@ -57,8 +66,8 @@ public interface GenericCurve {
      *
      * @return The first point on the {@code GenericCurve}.
      *
-     * @see #getStartParam
-     * @see #getEndPoint
+     * @see #getStartParam()
+     * @see #getEndPoint()
      */
     @UML(identifier="startPoint", obligation=MANDATORY, specification=ISO_19107)
     DirectPosition getStartPoint();
@@ -70,24 +79,24 @@ public interface GenericCurve {
      *
      * @return The last point on the {@code GenericCurve}.
      *
-     * @see #getEndParam
-     * @see #getStartPoint
+     * @see #getEndParam()
+     * @see #getStartPoint()
      */
     @UML(identifier="endPoint", obligation=MANDATORY, specification=ISO_19107)
     DirectPosition getEndPoint();
 
     /**
      * Returns the tangent vector along this {@code GenericCurve} at the passed parameter
-     * value. This vector approximates the derivative of the parameterization of the curve. The
-     * tangent shall be a unit vector (have length 1.0), which is consistent with the
+     * value. This vector approximates the derivative of the parameterization of the curve.
+     * The tangent shall be a unit vector (have length 1.0), which is consistent with the
      * parameterization by arc length.
      *
      * @param s The parameter value along this curve.
      * @return The tangent unit vector.
      * @unitof Distance
      *
-     * @see #getStartParam
-     * @see #getEndParam
+     * @see #getStartParam()
+     * @see #getEndParam()
      */
     @UML(identifier="tangent", obligation=MANDATORY, specification=ISO_19107)
     double[] getTangent(double s);
@@ -105,10 +114,10 @@ public interface GenericCurve {
      * @return The parameter for the {@linkplain #getStartPoint start point}.
      * @unitof Distance
      *
-     * @see #getStartPoint
-     * @see #getStartConstructiveParam
-     * @see #getEndParam
-     * @see #forParam
+     * @see #getStartPoint()
+     * @see #getStartConstructiveParam()
+     * @see #getEndParam()
+     * @see #forParam(double)
      */
     @UML(identifier="startParam", obligation=MANDATORY, specification=ISO_19107)
     double getStartParam();
@@ -126,10 +135,10 @@ public interface GenericCurve {
      * @return The parameter for the {@linkplain #getEndPoint end point}.
      * @unitof Distance
      *
-     * @see #getEndPoint
-     * @see #getEndConstructiveParam
-     * @see #getStartParam
-     * @see #forParam
+     * @see #getEndPoint()
+     * @see #getEndConstructiveParam()
+     * @see #getStartParam()
+     * @see #forParam(double)
      */
     @UML(identifier="endParam", obligation=MANDATORY, specification=ISO_19107)
     double getEndParam();
@@ -140,8 +149,8 @@ public interface GenericCurve {
      * {@code endConstructiveParam}, but the parameterization must be strictly monotonic
      * (strictly increasing, or strictly decreasing).
      *
-     * <blockquote><font size=2>
-     * <strong>NOTE:</strong> Constructive parameters are often chosen for convenience of
+     * <blockquote><font size=-1>
+     * <b>NOTE:</b> Constructive parameters are often chosen for convenience of
      * calculation, and seldom have any simple relation to arc distances, which are defined
      * as the default parameterization. Normally, geometric constructions will use constructive
      * parameters, as the programmer deems reasonable, and calculate arc length parameters when
@@ -150,9 +159,9 @@ public interface GenericCurve {
      *
      * @return The parameter used in the constructive paramerization for the start point.
      *
-     * @see #getStartParam
-     * @see #getEndConstructiveParam
-     * @see #forConstructiveParam
+     * @see #getStartParam()
+     * @see #getEndConstructiveParam()
+     * @see #forConstructiveParam(double)
      */
     @UML(identifier="startConstrParam", obligation=MANDATORY, specification=ISO_19107)
     double getStartConstructiveParam();
@@ -163,8 +172,8 @@ public interface GenericCurve {
      * {@code endConstructiveParam}, but the parameterization must be strictly monotonic
      * (strictly increasing, or strictly decreasing).
      *
-     * <blockquote><font size=2>
-     * <strong>NOTE:</strong> Constructive parameters are often chosen for convenience of
+     * <blockquote><font size=-1>
+     * <b>NOTE:</b> Constructive parameters are often chosen for convenience of
      * calculation, and seldom have any simple relation to arc distances, which are defined
      * as the default parameterization. Normally, geometric constructions will use constructive
      * parameters, as the programmer deems reasonable, and calculate arc length parameters when
@@ -173,9 +182,9 @@ public interface GenericCurve {
      *
      * @return The parameter used in the constructive paramerization for the end point.
      *
-     * @see #getEndParam
-     * @see #getStartConstructiveParam
-     * @see #forConstructiveParam
+     * @see #getEndParam()
+     * @see #getStartConstructiveParam()
+     * @see #forConstructiveParam(double)
      */
     @UML(identifier="endConstrParam", obligation=MANDATORY, specification=ISO_19107)
     double getEndConstructiveParam();
@@ -192,9 +201,9 @@ public interface GenericCurve {
      * @param cp The constructive parameter.
      * @return The direct position for the given constructive parameter.
      *
-     * @see #getStartConstructiveParam
-     * @see #getEndConstructiveParam
-     * @see #forParam
+     * @see #getStartConstructiveParam()
+     * @see #getEndConstructiveParam()
+     * @see #forParam(double)
      */
     @UML(identifier="constrParam", obligation=MANDATORY, specification=ISO_19107)
     DirectPosition forConstructiveParam(double cp);
@@ -209,9 +218,9 @@ public interface GenericCurve {
      * @param s The distance from the start point and added to the start parameter.
      * @return The direct position for the given parameter.
      *
-     * @see #getStartParam
-     * @see #getEndParam
-     * @see #forConstructiveParam
+     * @see #getStartParam()
+     * @see #getEndParam()
+     * @see #forConstructiveParam(double)
      */
     @UML(identifier="param", obligation=MANDATORY, specification=ISO_19107)
     DirectPosition forParam(double s);
@@ -223,9 +232,9 @@ public interface GenericCurve {
      * @param p The direct position on the curve.
      * @return The parameter closest to the given position.
      *
-     * @see #getStartPoint
-     * @see #getEndPoint
-     * @see #forParam
+     * @see #getStartPoint()
+     * @see #getEndPoint()
+     * @see #forParam(double)
      */
     @UML(identifier="paramForPoint", obligation=MANDATORY, specification=ISO_19107)
     ParamForPoint getParamForPoint(DirectPosition p);
@@ -242,6 +251,11 @@ public interface GenericCurve {
      * passes through either of the two points more than once, the distance shall be the minimal distance
      * between the two points on this {@linkplain org.opengis.geometry.primitive.Curve curve}.
      *
+     * @departure draft
+     *   In the ISO 19107:2003 specification, the arguments were
+     *   {@link org.opengis.geometry.coordinate.Position} objects. However in the ISO 19107:2008
+     *   draft specification, the type has been changed to {@link DirectPosition}.
+     *
      * @param point1 The first point, or {@code null} for the
      *               {@linkplain #getStartPoint start point}.
      * @param point2 The second point, or {@code null} for the
@@ -250,7 +264,7 @@ public interface GenericCurve {
      * @unitof Length
      */
     @UML(identifier="length", obligation=MANDATORY, specification=ISO_19107)
-    double length(Position point1, Position point2);
+    double length(DirectPosition point1, DirectPosition point2);
 
     /**
      * Returns the length between two constructive parameters.
@@ -263,7 +277,7 @@ public interface GenericCurve {
      * constructive parameter to the arc length parameter using the following idiom:
      * <p>
      * <center><code>
-     * param = length({@linkplain #getStartConstructiveParam startConstructiveParam}, constructiveParam)
+     * param=length({@linkplain #getStartConstructiveParam startConstructiveParam}, constructiveParam)
      *       + {@linkplain #getStartParam startParam}
      * </code></center>
      *
@@ -276,6 +290,53 @@ public interface GenericCurve {
     double length(double cparam1, double cparam2);
 
     /**
+     * Returns the geometry of the curve topological boundary. If the {@linkplain #getStartPoint()
+     * start point} is not equal to the {@linkplain #getEndPoint() end point}, the boundary is a
+     * two point array. If the start point is equal to the end point, the boundary is an empty array.
+     *
+     * <blockquote><font size=-1><b>NOTE:</b>
+     * The above point array will almost always be two distinct positions, but both
+     * {@linkplain org.opengis.geometry.primitive.Curve curves} and
+     * {@linkplain org.opengis.geometry.primitive.CurveSegment} can be cycles in themselves.
+     * The most likely scenario is that all of the points used will be transients (constructed
+     * to support the return value), except for the start point and end point of the aggregated
+     * curve. These two positions, in the case where the curve is involved in a
+     * {@linkplain org.opengis.geometry.complex.Complex complex}, will be represented as
+     * {@linkplain org.opengis.geometry.primitive.Point points} in the same complex.
+     * </font></blockquote>
+     *
+     * @return The sets of positions on the boundary.
+     */
+    @Draft
+    @UML(identifier="boundary", obligation=MANDATORY, specification=ISO_19107)
+    CurveBoundary getBoundary();
+
+    /**
+     * Returns an ordered array of point values that lie on the curve.
+     * In most cases, these will be related to control points used in the construction of the segment.
+     *
+     * <blockquote><font size=-1><b>NOTE:</b>
+     * The control points of a curve segment are used to control its shape, and are not always on the
+     * curve segment itself. For example in a spline curve, the curve segment is given as a weighted
+     * vector sum of the control points. Each weight function will have a maximum within the
+     * constructive parameter interval, which will roughly correspond to the point on the curve
+     * where it passes closest that the corresponding control point. These points, the values of
+     * the curve at the maxima of the weight functions, will be the sample points for the curve
+     * segment.
+     * </font></blockquote>
+     *
+     * @departure easeOfUse
+     *   The ISO 19107 specification returns an array of {@link org.opengis.geometry.primitive.Point}
+     *   object. GeoAPI returns a {@link PointArray} object instead, in order to allow deferred point
+     *   creation for implementors, and convenient access to the {@code PointArray} methods for users.
+     *
+     * @return The control points.
+     */
+    @Draft
+    @UML(identifier="samplePoints", obligation=MANDATORY, specification=ISO_19107)
+    PointArray getSamplePoints();
+
+    /**
      * Constructs a line string (sequence of line segments) where the control points (ends of
      * the segments) lie on this curve. If {@code maxSpacing} is given (not zero), then
      * the distance between control points along the generated curve shall be not more than
@@ -286,8 +347,9 @@ public interface GenericCurve {
      * in the returned {@linkplain LineString line string}'s control points. If both parameters are
      * set to zero, then the line string returned shall be constructed from the control points of the
      * original curve.
-     * <blockquote><font size=2>
-     * <strong>NOTE:</strong> This function is useful in creating linear approximations of the
+     *
+     * <blockquote><font size=-1>
+     * <b>NOTE:</b> This function is useful in creating linear approximations of the
      * curve for simple actions such as display. It is often referred to as a "stroked curve".
      * For this purpose, the {@code maxOffset} version is useful in maintaining a minimal
      * representation of the curve appropriate for the display device being targeted. This
@@ -307,4 +369,15 @@ public interface GenericCurve {
      */
     @UML(identifier="asLineString", obligation=MANDATORY, specification=ISO_19107)
     LineString asLineString(double maxSpacing, double maxOffset);
+
+    /**
+     * Reverses the orientation of the parameterizations of the curve. In most cases this involves
+     * a reversal of the ordering of parameters in the curve segments, and a reversal of the order
+     * of the segments with a curve.
+     *
+     * @return The reverse of the curve.
+     */
+    @Draft
+    @UML(identifier="reverse", obligation=MANDATORY, specification=ISO_19107)
+    GenericCurve reverse();
 }
