@@ -49,6 +49,8 @@ import static org.opengis.annotation.Specification.*;
  * @version <A HREF="http://www.opengeospatial.org/standards/as">ISO 19107</A>
  * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 2.0
+ *
+ * @todo Retrofit in {@link org.opengis.referencing.operation.MathTransform}?
  */
 @UML(identifier="GM_Placement", specification=ISO_19107)
 public interface Placement {
