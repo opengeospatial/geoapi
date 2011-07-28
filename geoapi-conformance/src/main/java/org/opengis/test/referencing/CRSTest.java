@@ -31,15 +31,19 @@
  */
 package org.opengis.test.referencing;
 
+import java.util.List;
 import javax.measure.unit.NonSI;
 
 import org.opengis.referencing.cs.*;
 import org.opengis.referencing.crs.*;
 import org.opengis.referencing.datum.*;
+import org.opengis.util.Factory;
 import org.opengis.util.FactoryException;
 import org.opengis.referencing.NoSuchAuthorityCodeException;
 
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
 import org.opengis.test.TestCase;
 
 import static org.junit.Assume.*;
@@ -52,11 +56,30 @@ import static org.opengis.test.Validators.*;
  * from the {@code org.opengis.referencing.crs} packages. CRS instances are created using the
  * authority factory given at construction time.
  *
+ * In order to specify their factory and run the tests in a JUnit framework, implementors can
+ * define a subclass as below:
+ *
+ * <blockquote><pre>import org.junit.runner.RunWith;
+ * import org.junit.runners.JUnit4;
+ * import org.opengis.test.referencing.CRSTest;
+ *
+ * &#64;RunWith(JUnit4.class)
+ * public class MyTest extends CRSTest {
+ *     public MyTest() {
+ *         super(new MyCRSAuthorityFactory());
+ *     }
+ * }</pre></blockquote>
+ *
+ * Alternatively this test class can also be used directly in the {@link org.opengis.test.TestSuite},
+ * which combine every tests defined in the GeoAPI conformance module.
+ *
  * @author  Cédric Briançon (Geomatys)
- * @version 3.0
+ * @author  Martin Desruisseaux (Geomatys)
+ * @version 3.1
  * @since   2.3
  */
-public abstract class CRSTest extends TestCase {
+@RunWith(Parameterized.class)
+public strictfp class CRSTest extends TestCase {
     /**
      * The authority factory for creating a {@link CoordinateReferenceSystem} from a code,
      * or {@code null} if none.
@@ -64,12 +87,28 @@ public abstract class CRSTest extends TestCase {
     protected final CRSAuthorityFactory factory;
 
     /**
+     * Returns a default set of factories to use for running the tests. Those factories are given
+     * in arguments to the constructor when this test class is instantiated directly by JUnit (for
+     * example as a {@linkplain org.junit.runners.Suite.SuiteClasses suite} element), instead than
+     * subclassed by the implementor. The factories are fetched as documented in the
+     * {@link #factories(Class[])} javadoc.
+     *
+     * @return The default set of arguments to be given to the {@code NameTest} constructor.
+     *
+     * @since 3.1
+     */
+    @Parameterized.Parameters
+    public static List<Factory[]> factories() {
+        return factories(CRSAuthorityFactory.class);
+    }
+
+    /**
      * Creates a new test using the given factory. If the given factory is {@code null},
      * then the tests will be skipped.
      *
      * @param factory Factory for creating a {@link CoordinateReferenceSystem}.
      */
-    protected CRSTest(final CRSAuthorityFactory factory) {
+    public CRSTest(final CRSAuthorityFactory factory) {
         this.factory = factory;
     }
 

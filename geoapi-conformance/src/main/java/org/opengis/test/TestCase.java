@@ -31,18 +31,78 @@
  */
 package org.opengis.test;
 
+import java.util.Map;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Arrays;
+import org.opengis.util.Factory;
+
 
 /**
- * Base class of GeoAPI tests.
+ * Base class of all GeoAPI tests. All concrete subclasses need at least one {@linkplain Factory
+ * factory} for instantiating the objects to test. The factories must be specified at subclasses
+ * construction time either directly by the implementor, or indirectly by calls to the
+ * {@link #factories(Class[])} method.
  *
  * @author  Martin Desruisseaux (Geomatys)
- * @version 3.0
+ * @version 3.1
  * @since   2.2
  */
-public abstract class TestCase {
+public strictfp abstract class TestCase {
     /**
-     * Creates an unitialized test.
+     * The factories specified explicitely by the implementors.
+     *
+     * @see TestSuite#setFactory(Class, Factory)
+     */
+    static final Map<Class<? extends Factory>, Factory> FACTORIES = new HashMap<Class<? extends Factory>, Factory>();
+
+    /**
+     * Creates a new test.
      */
     protected TestCase() {
+    }
+
+    /**
+     * Returns factory instances for given factory interfaces. Each element in the returned list
+     * is the arguments to give to the subclass constructor. There is typically only one element
+     * in the list, but more elements could be included if many factory implementations were
+     * found for the same interface.
+     * <p>
+     * This method is used by static methods having the {@link org.junit.runners.Parameterized.Parameters}
+     * annotation in subclasses. For example if a subclass constructor expects 3 factories of kind
+     * {@link org.opengis.referencing.crs.CRSFactory}, {@link org.opengis.referencing.cs.CSFactory}
+     * and {@link org.opengis.referencing.datum.DatumFactory} in that order, then that subclass
+     * would contains the following method:
+     *
+     * <blockquote><pre>&#64;Parameterized.Parameters
+     * public static List&lt;Factory[]&gt; factories() {
+     *     return factories(CRSFactory.class, CSFactory.class, DatumFactory.class);
+     * }</pre></blockquote>
+     *
+     * Note that the arrays may contain null elements if no factory implementation were found
+     * for a given interface. All GeoAPI test cases use {@link org.junit.Assume} checks in order
+     * to disable any tests that require a missing factory.
+     * <p>
+     * The current implementation returns the factories which were explicitely specified by calls
+     * to the {@link TestSuite#setFactory(Class, Factory)} method. A future GeoAPI version may
+     * leverage dependencies injection engine when present.
+     *
+     * @param  types The kind of factories to fetch.
+     * @return The factories of the given kind. Each list element is an array having the
+     *         same length than {@code types}, and the list length is typically (but not
+     *         necessarily) 1.
+     *
+     * @see TestSuite
+     *
+     * @since 3.1
+     */
+    protected static List<Factory[]> factories(final Class<? extends Factory>... types) {
+        final Factory[] instances = new Factory[types.length];
+        synchronized (FACTORIES) {
+            for (int i=0; i<types.length; i++) {
+                instances[i] = FACTORIES.get(types[i]);
+            }
+        }
+        return Arrays.<Factory[]>asList(instances);
     }
 }
