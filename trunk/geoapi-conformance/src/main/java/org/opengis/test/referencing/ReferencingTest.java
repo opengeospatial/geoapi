@@ -32,6 +32,7 @@
 package org.opengis.test.referencing;
 
 import java.util.Map;
+import java.util.List;
 import java.util.Collections;
 import javax.measure.unit.SI;
 import javax.measure.unit.NonSI;
@@ -40,9 +41,12 @@ import org.opengis.referencing.cs.*;
 import org.opengis.referencing.crs.*;
 import org.opengis.referencing.datum.*;
 import org.opengis.referencing.IdentifiedObject;
+import org.opengis.util.Factory;
 import org.opengis.util.FactoryException;
 
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
 import org.opengis.test.TestCase;
 
 import static org.junit.Assume.*;
@@ -55,11 +59,30 @@ import static org.opengis.test.Validators.*;
  * from the {@code org.opengis.referencing.crs}, {@code cs} and {@code datum} packages. CRS
  * instances are created using the factories given at construction time.
  *
+ * In order to specify their factories and run the tests in a JUnit framework, implementors can
+ * define a subclass as below:
+ *
+ * <blockquote><pre>import org.junit.runner.RunWith;
+ * import org.junit.runners.JUnit4;
+ * import org.opengis.test.referencing.ReferencingTest;
+ *
+ * &#64;RunWith(JUnit4.class)
+ * public class MyTest extends ReferencingTest {
+ *     public MyTest() {
+ *         super(new MyCRSFactory(), new MyCSFactory(), new MyDatumFactory());
+ *     }
+ * }</pre></blockquote>
+ *
+ * Alternatively this test class can also be used directly in the {@link org.opengis.test.TestSuite},
+ * which combine every tests defined in the GeoAPI conformance module.
+ *
  * @author  Cédric Briançon (Geomatys)
- * @version 3.0
+ * @author  Martin Desruisseaux (Geomatys)
+ * @version 3.1
  * @since   2.3
  */
-public abstract class ReferencingTest extends TestCase {
+@RunWith(Parameterized.class)
+public strictfp class ReferencingTest extends TestCase {
     /**
      * Factory to build a coordinate reference system, or {@code null} if none.
      */
@@ -76,6 +99,22 @@ public abstract class ReferencingTest extends TestCase {
     protected final DatumFactory datumFactory;
 
     /**
+     * Returns a default set of factories to use for running the tests. Those factories are given
+     * in arguments to the constructor when this test class is instantiated directly by JUnit (for
+     * example as a {@linkplain org.junit.runners.Suite.SuiteClasses suite} element), instead than
+     * subclassed by the implementor. The factories are fetched as documented in the
+     * {@link #factories(Class[])} javadoc.
+     *
+     * @return The default set of arguments to be given to the {@code NameTest} constructor.
+     *
+     * @since 3.1
+     */
+    @Parameterized.Parameters
+    public static List<Factory[]> factories() {
+        return factories(CRSFactory.class, CSFactory.class, DatumFactory.class);
+    }
+
+    /**
      * Creates a new test using the given factories. If a given factory is {@code null},
      * then the tests which depend on it will be skipped.
      *
@@ -83,7 +122,7 @@ public abstract class ReferencingTest extends TestCase {
      * @param csFactory    Factory for creating a {@link CoordinateSystem}.
      * @param datumFactory Factory for creating a {@link Datum}.
      */
-    protected ReferencingTest(final CRSFactory crsFactory, final CSFactory csFactory, final DatumFactory datumFactory) {
+    public ReferencingTest(final CRSFactory crsFactory, final CSFactory csFactory, final DatumFactory datumFactory) {
         this.crsFactory   = crsFactory;
         this.csFactory    = csFactory;
         this.datumFactory = datumFactory;

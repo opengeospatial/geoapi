@@ -185,8 +185,13 @@ public strictfp abstract class TransformTestCase extends TestCase {
 
     /**
      * The deltas to use for approximating {@linkplain MathTransform#derivative(DirectPosition)
-     * math transform derivatives} by the <cite>finite differences</cite> method. Testers shall
-     * provide a non-null value if the {@link #isDerivativeSupported} flag is {@code true}.
+     * math transform derivatives} by the <cite>finite differences</cite> method. The length of
+     * this array shall be equals to the {@linkplain MathTransform#getSourceDimensions() number
+     * of source dimensions} of the {@linkplain #transform} being tested. Each value in this
+     * array is the delta to use for the corresponding dimension.
+     * <p>
+     * Testers shall provide a non-null value if the {@link #isDerivativeSupported} flag is
+     * {@code true}.
      *
      * @see #isDerivativeSupported
      * @see #verifyDerivative(double[])

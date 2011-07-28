@@ -49,7 +49,7 @@ import java.util.Locale;
  * @version 3.0
  * @since   2.0
  */
-public interface NameFactory {
+public interface NameFactory extends Factory {
     /**
      * Creates an international string from a set of strings in different locales.
      *

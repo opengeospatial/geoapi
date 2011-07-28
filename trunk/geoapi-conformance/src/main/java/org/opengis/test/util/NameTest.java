@@ -32,14 +32,17 @@
 package org.opengis.test.util;
 
 import java.util.Map;
+import java.util.List;
 import java.util.Locale;
 import java.util.HashMap;
 import java.util.regex.Pattern;
 
 import org.opengis.util.*;
-
-import org.junit.*;
 import org.opengis.test.TestCase;
+
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
 
 import static org.junit.Assume.*;
 import static org.opengis.test.Assert.*;
@@ -50,11 +53,29 @@ import static org.opengis.test.Validators.*;
  * Tests {@linkplain GenericName generic name} and related objects from the {@code org.opengis.util}
  * package. Name instances are created using a {@link NameFactory} given at construction time.
  *
+ * In order to specify their factory and run the tests in a JUnit framework, implementors can
+ * define a subclass as below:
+ *
+ * <blockquote><pre>import org.junit.runner.RunWith;
+ * import org.junit.runners.JUnit4;
+ * import org.opengis.test.util.NameTest;
+ *
+ * &#64;RunWith(JUnit4.class)
+ * public class MyTest extends NameTest {
+ *     public MyTest() {
+ *         super(new MyNameFactory());
+ *     }
+ * }</pre></blockquote>
+ *
+ * Alternatively this test class can also be used directly in the {@link org.opengis.test.TestSuite},
+ * which combine every tests defined in the GeoAPI conformance module.
+ *
  * @author  Martin Desruisseaux (Geomatys)
- * @version 3.0
+ * @version 3.1
  * @since   2.2
  */
-public class NameTest extends TestCase {
+@RunWith(Parameterized.class)
+public strictfp class NameTest extends TestCase {
     /**
      * The factory to be used for testing {@linkplain GenericName generic name} instances,
      * or {@code null} if none.
@@ -62,12 +83,28 @@ public class NameTest extends TestCase {
     protected final NameFactory factory;
 
     /**
+     * Returns a default set of factories to use for running the tests. Those factories are given
+     * in arguments to the constructor when this test class is instantiated directly by JUnit (for
+     * example as a {@linkplain org.junit.runners.Suite.SuiteClasses suite} element), instead than
+     * subclassed by the implementor. The factories are fetched as documented in the
+     * {@link #factories(Class[])} javadoc.
+     *
+     * @return The default set of arguments to be given to the {@code NameTest} constructor.
+     *
+     * @since 3.1
+     */
+    @Parameterized.Parameters
+    public static List<Factory[]> factories() {
+        return factories(NameFactory.class);
+    }
+
+    /**
      * Creates a new test using the given factory. If the given factory is {@code null},
      * then the tests will be skipped.
      *
      * @param factory The factory to be used for creation of instances to be tested.
      */
-    protected NameTest(final NameFactory factory) {
+    public NameTest(final NameFactory factory) {
         this.factory = factory;
     }
 
