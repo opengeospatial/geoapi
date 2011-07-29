@@ -31,35 +31,18 @@
  */
 package org.opengis.test;
 
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.Collection;
+import java.util.ServiceLoader;
+import java.lang.reflect.Array;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import org.opengis.util.Factory;
 
 
 /**
- * The suite of every tests defined in the GeoAPI conformance module. Before to run those tests,
- * implementors must specify their {@linkplain Factory factory} instances to use. This setup can
- * be done in the static initializer of a subclass as below (note that there is no explicit JUnit
- * annotations, since they are inherited):
- *
- * <blockquote><pre>org.opengis.test.TestSuite;
- *
- * public class AllTests extends TestSuite {
- *     static {
- *         setFactory( NameFactory.class, new MyNameFactory());
- *         setFactory(  CRSFactory.class, new MyCRSFactory());
- *         setFactory(   CSFactory.class, new MyCSFactory());
- *         setFactory(DatumFactory.class, new MyDatumFactory());
- *         <i>// etc.</i>
- *     }
- * }</pre></blockquote>
- *
- * This {@code TestSuite} class is provided as a convenience for implementations that do not need
- * fine-grain control on the tests being executed. If more control is required (for example in
- * order to specify whatever {@link org.opengis.referencing.operation.MathTransform} instances
- * {@linkplain org.opengis.test.referencing.TransformTestCase#isDerivativeSupported support derivative}
- * functions), then the various {@link TestCase} subclasses shall be used directly.
- * <p>
+ * The suite of every tests defined in the GeoAPI conformance module.
  * The test cases included in this test suite are:
  * <p>
  * <ul>
@@ -67,6 +50,42 @@ import org.opengis.util.Factory;
  *   <li>{@link org.opengis.test.referencing.ReferencingTest}</li>
  *   <li>{@link org.opengis.test.referencing.CRSTest}</li>
  * </ul>
+ * <p>
+ * All tests use {@link Factory} instances that are specific to the implementation being tested.
+ * By default {@code TestSuite} fetches the factory implementations with {@link ServiceLoader},
+ * which will scan every <code>META-INF/services/org.opengis.<var>TheFactory</var></code> files
+ * on the classpath. However implementors can override this default mechanism with explicit calls
+ * to the {@link #setFactories(Class, T[])} method. The following example overrides the CRS and
+ * datum factories in its static initializer - all other factories will be fetch by the service
+ * loader:
+ *
+ * <blockquote><pre>org.opengis.test.TestSuite;
+ *
+ *public class AllTests extends TestSuite {
+ *    static {
+ *        setFactories(  CRSFactory.class, new MyCRSFactory());
+ *        setFactories(DatumFactory.class, new MyDatumFactory());
+ *        <i>// etc.</i>
+ *    }
+ *}</pre></blockquote>
+ *
+ * Notes:
+ * <p>
+ * <ul>
+ *   <li>There is no need for explicit JUnit annotations, because they are inherited from
+ *       this {@code TestSuite} class.</li>
+ *   <li>The above example works in NetBeans, but the static initializer is not executed
+ *       during a Maven build. In the later case, only the service loader is used.</li>
+ * </ul>
+ * <p>
+ * This {@code TestSuite} class is provided as a convenience for implementations that do not need
+ * fine-grain control on the tests being executed. If more control is required (for example in
+ * order to specify whatever {@link org.opengis.referencing.operation.MathTransform} instances
+ * {@linkplain org.opengis.test.referencing.TransformTestCase#isDerivativeSupported support derivative}
+ * functions), then the various {@link TestCase} subclasses shall be used directly.
+ *
+ * @see TestCase
+ * @see Factory
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
@@ -87,28 +106,72 @@ public strictfp class TestSuite {
     }
 
     /**
-     * Specifies the factory implementation to use for the given factory interface.
+     * Returns a new array of the given type and length.
+     *
+     * @param <T>    The compile-time type of the {@code type} class argument.
+     * @param type   The factory interface for which an array is desired.
+     * @param length The length of the array to create.
+     * @return A new array for components of the given type.
+     */
+    @SuppressWarnings("unchecked")
+    private static <T extends Factory> T[] newArray(final Class<T> type, final int length) {
+        return (T[]) Array.newInstance(type, length);
+    }
+
+    /**
+     * Specifies the factory implementations to use for the given factory interface.
      *
      * @param <T>     The compile-time type of the {@code type} class argument.
      * @param type    The factory interface for which an implementation is specified.
-     * @param factory The implementation to use for the given interface, or {@code null}.
+     * @param factory The implementations to use for the given interface.
      */
-    public static <T extends Factory> void setFactory(final Class<T> type, final T factory) {
+    public static <T extends Factory> void setFactories(final Class<T> type, final T... factory) {
+        final Iterable<? extends Factory> list = Arrays.asList(factory.clone());
         synchronized (TestCase.FACTORIES) {
-            TestCase.FACTORIES.put(type, factory);
+            TestCase.FACTORIES.put(type, list);
         }
     }
 
     /**
-     * Returns the factory implementation to use for the given factory interface, if any.
+     * Returns the factory implementations explicitely given by the last call to
+     * {@link #setFactories(Class, T[])} for the given interface. This method does
+     * not scan the {@code META-INF/services/<T>} entries.
      *
      * @param <T>  The compile-time type of the {@code type} class argument.
-     * @param type The factory interface for which an implementation is desired.
-     * @return     The implementation for the given interface, or {@code null} if none.
+     * @param type The factory interface for which an implementations is desired.
+     * @return     The implementations for the given interface, or {@code null} if none.
      */
-    public static <T extends Factory> T getFactory(final Class<T> type) {
+    public static <T extends Factory> T[] getFactories(final Class<T> type) {
+        final Iterable<? extends Factory> factories;
         synchronized (TestCase.FACTORIES) {
-            return type.cast(TestCase.FACTORIES.get(type));
+            factories = TestCase.FACTORIES.get(type);
+        }
+        if (factories instanceof Collection<?>) {
+            final Collection<? extends Factory> collection = (Collection<? extends Factory>) factories;
+            return collection.toArray(newArray(type, collection.size()));
+        }
+        return null;
+    }
+
+    /**
+     * Clears all factories specified to the {@link #setFactories(Class, T[])} method, and clears
+     * all {@linkplain ServiceLoader service loader} caches. After this method call, all factories
+     * will be reloaded when first needed. This method is intended for use in situations in which
+     * new factories can be installed or removed into a running Java virtual machine.
+     *
+     * @see ServiceLoader#reload()
+     */
+    public static void clear() {
+        synchronized (TestCase.FACTORIES) {
+            final Iterator<Iterable<? extends Factory>> it = TestCase.FACTORIES.values().iterator();
+            while (it.hasNext()) {
+                final Iterable<? extends Factory> factories = it.next();
+                if (factories instanceof ServiceLoader<?>) {
+                    ((ServiceLoader<? extends Factory>) factories).reload();
+                } else {
+                    it.remove();
+                }
+            }
         }
     }
 }
