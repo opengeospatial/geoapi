@@ -53,7 +53,7 @@ import static org.opengis.test.Validators.*;
 
 /**
  * Tests {@linkplain CoordinateReferenceSystem Coordinate Reference System} and related objects
- * from the {@code org.opengis.referencing.crs} packages. CRS instances are created using the
+ * from the {@code org.opengis.referencing.crs} package. CRS instances are created using the
  * authority factory given at construction time.
  *
  * In order to specify their factory and run the tests in a JUnit framework, implementors can
@@ -93,7 +93,7 @@ public strictfp class CRSTest extends TestCase {
      * subclassed by the implementor. The factories are fetched as documented in the
      * {@link #factories(Class[])} javadoc.
      *
-     * @return The default set of arguments to be given to the {@code NameTest} constructor.
+     * @return The default set of arguments to be given to the {@code CRSTest} constructor.
      *
      * @since 3.1
      */
@@ -106,7 +106,7 @@ public strictfp class CRSTest extends TestCase {
      * Creates a new test using the given factory. If the given factory is {@code null},
      * then the tests will be skipped.
      *
-     * @param factory Factory for creating a {@link CoordinateReferenceSystem}.
+     * @param factory Factory for creating {@link CoordinateReferenceSystem} instances.
      */
     public CRSTest(final CRSAuthorityFactory factory) {
         this.factory = factory;
