@@ -47,8 +47,9 @@ import org.opengis.util.Factory;
  * <p>
  * <ul>
  *   <li>{@link org.opengis.test.util.NameTest}</li>
- *   <li>{@link org.opengis.test.referencing.ReferencingTest}</li>
+ *   <li>{@link org.opengis.test.referencing.MathTransformTest}</li>
  *   <li>{@link org.opengis.test.referencing.CRSTest}</li>
+ *   <li>{@link org.opengis.test.referencing.ReferencingTest}</li>
  * </ul>
  * <p>
  * All tests use {@link Factory} instances that are specific to the implementation being tested.
@@ -94,8 +95,9 @@ import org.opengis.util.Factory;
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
   org.opengis.test.util.NameTest.class,
-  org.opengis.test.referencing.ReferencingTest.class,
-  org.opengis.test.referencing.CRSTest.class
+  org.opengis.test.referencing.MathTransformTest.class,
+  org.opengis.test.referencing.CRSTest.class,
+  org.opengis.test.referencing.ReferencingTest.class
 })
 public strictfp class TestSuite {
     /**

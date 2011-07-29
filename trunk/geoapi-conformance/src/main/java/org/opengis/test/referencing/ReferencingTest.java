@@ -55,9 +55,8 @@ import static org.opengis.test.Validators.*;
 
 
 /**
- * Tests {@linkplain CoordinateReferenceSystem Coordinate Reference System} and related objects
- * from the {@code org.opengis.referencing.crs}, {@code cs} and {@code datum} packages. CRS
- * instances are created using the factories given at construction time.
+ * Tests objects that combine all referencing sub-packages, especially {@code crs}, {@code cs} and
+ * {@code datum}. The instances are created using the various factories given at construction time.
  *
  * In order to specify their factories and run the tests in a JUnit framework, implementors can
  * define a subclass as below:
@@ -84,17 +83,17 @@ import static org.opengis.test.Validators.*;
 @RunWith(Parameterized.class)
 public strictfp class ReferencingTest extends TestCase {
     /**
-     * Factory to build a coordinate reference system, or {@code null} if none.
+     * Factory to build {@link CoordinateReferenceSystem} instances, or {@code null} if none.
      */
     protected final CRSFactory crsFactory;
 
     /**
-     * Factory to build a coordinate system, or {@code null} if none.
+     * Factory to build {@link CoordinateSystem} instances, or {@code null} if none.
      */
     protected final CSFactory csFactory;
 
     /**
-     * Factory to build a datum, or {@code null} if none.
+     * Factory to build {@link Datum} instances, or {@code null} if none.
      */
     protected final DatumFactory datumFactory;
 
@@ -105,7 +104,7 @@ public strictfp class ReferencingTest extends TestCase {
      * subclassed by the implementor. The factories are fetched as documented in the
      * {@link #factories(Class[])} javadoc.
      *
-     * @return The default set of arguments to be given to the {@code NameTest} constructor.
+     * @return The default set of arguments to be given to the {@code ReferencingTest} constructor.
      *
      * @since 3.1
      */
@@ -118,9 +117,9 @@ public strictfp class ReferencingTest extends TestCase {
      * Creates a new test using the given factories. If a given factory is {@code null},
      * then the tests which depend on it will be skipped.
      *
-     * @param crsFactory   Factory for creating a {@link CoordinateReferenceSystem}.
-     * @param csFactory    Factory for creating a {@link CoordinateSystem}.
-     * @param datumFactory Factory for creating a {@link Datum}.
+     * @param crsFactory   Factory for creating {@link CoordinateReferenceSystem} instances.
+     * @param csFactory    Factory for creating {@link CoordinateSystem} instances.
+     * @param datumFactory Factory for creating {@link Datum} instances.
      */
     public ReferencingTest(final CRSFactory crsFactory, final CSFactory csFactory, final DatumFactory datumFactory) {
         this.crsFactory   = crsFactory;
