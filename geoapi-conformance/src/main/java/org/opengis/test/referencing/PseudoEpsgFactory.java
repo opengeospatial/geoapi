@@ -49,7 +49,7 @@ import org.opengis.test.util.PseudoFactory;
  * @version 3.1
  * @since   3.1
  */
-public class PseudoEpsgFactory extends PseudoFactory {
+public strictfp class PseudoEpsgFactory extends PseudoFactory {
     /**
      * Number of US survey feet in 1 metre.
      */
@@ -72,13 +72,17 @@ public class PseudoEpsgFactory extends PseudoFactory {
     /**
      * Returns the projection parameters to use for creating a CRS of the given code.
      * The supported codes are determined from the set of examples published in the
-     * EPSG guidance document. They are:
+     * EPSG guidance document or other sources. They are:
      *
-     * <table>
-     *   <tr><th>Code</th>  <th>Name</th></tr>
-     *   <tr><td>24200</td> <td>JAD69 / Jamaica National Grid</td></tr>
-     *   <tr><td>32040</td> <td>NAD27 / Texas South Central</td></tr>
-     *   <tr><td>31300</td> <td>Belge 1972 / Belge Lambert 72</td></tr>
+     * <table border="1">
+     *   <tr><th>Code</th>      <th>CRS Name</th>                            <th>Operation method</th></tr>
+     *   <tr><td>3002</td>      <td>Makassar / NEIEZ</td>                    <td>Mercator (variant A)</td></tr>
+     *   <tr><td>3388</td>      <td>Pulkovo 1942 / Caspian Sea Mercator</td> <td>Mercator (variant B)</td></tr>
+     *   <tr><td>3857</td>      <td>WGS 84 / Pseudo-Mercator</td>            <td>Popular Visualisation Pseudo Mercator</td></tr>
+     *   <tr><td>24200</td>     <td>JAD69 / Jamaica National Grid</td>       <td>Lambert Conic Conformal (1SP)</td></tr>
+     *   <tr><td>32040</td>     <td>NAD27 / Texas South Central</td>         <td>Lambert Conic Conformal (2SP)</td></tr>
+     *   <tr><td>31300</td>     <td>Belge 1972 / Belge Lambert 72</td>       <td>Lambert Conic Conformal (2SP Belgium)</td></tr>
+     *   <tr><td>310642901</td> <td>IGNF:MILLER</td>                         <td>Miller_Cylindrical</td></tr>
      * </table>
      *
      * @param  code The EPSG code of the Coordinate Reference System to create.
@@ -98,6 +102,37 @@ public class PseudoEpsgFactory extends PseudoFactory {
     {
         final ParameterValueGroup parameters;
         switch (code) {
+            case 3002: { // "Makassar / NEIEZ" using operation method 9804
+                parameters = factory.getDefaultParameters("Mercator (variant A)"); // Alias "Mercator (1SP)"
+                parameters.parameter("semi-major axis").setValue(6377397.155); // Bessel 1841
+                parameters.parameter("semi-minor axis").setValue(6377397.155 * (1 - 1/299.1528128));
+                parameters.parameter("Latitude of natural origin")    .setValue(  0.0);
+                parameters.parameter("Longitude of natural origin")   .setValue(110.0);
+                parameters.parameter("Scale factor at natural origin").setValue(0.997);
+                parameters.parameter("False easting").setValue(3900000.0);
+                parameters.parameter("False northing").setValue(900000.0);
+                break;
+            }
+            case 3388: { // "Pulkovo 1942 / Caspian Sea Mercator" using operation method 9805
+                parameters = factory.getDefaultParameters("Mercator (variant B) "); // Alias "Mercator (2SP)"
+                parameters.parameter("semi-major axis").setValue(6378245.0); // Krassowski 1940
+                parameters.parameter("semi-minor axis").setValue(6378245.0 * (1 - 1/298.3));
+                parameters.parameter("Latitude of 1st standard parallel").setValue(42.0);
+                parameters.parameter("Longitude of natural origin")      .setValue(51.0);
+                break;
+            }
+            case 3857: { // "WGS 84 / Pseudo-Mercator" using operation method 1024
+                parameters = factory.getDefaultParameters("Popular Visualisation Pseudo Mercator");
+                parameters.parameter("semi-major axis").setValue(6378137.0); // WGS 84
+                parameters.parameter("semi-minor axis").setValue(6378137.0 * (1 - 1/298.2572236));
+                break;
+            }
+            case 310642901: { // "IGNF:MILLER" (not an official EPSG code)
+                parameters = factory.getDefaultParameters("Miller_Cylindrical");
+                parameters.parameter("semi-major axis").setValue(6378137);
+                parameters.parameter("semi-minor axis").setValue(6378137);
+                break;
+            }
             case 24200: { // "JAD69 / Jamaica National Grid" using operation method 9801
                 parameters = factory.getDefaultParameters("Lambert Conic Conformal (1SP)");
                 parameters.parameter("semi-major axis").setValue(6378206.4); // Clarke 1866
@@ -123,7 +158,7 @@ public class PseudoEpsgFactory extends PseudoFactory {
             }
             case 31300: { // "Belge 1972 / Belge Lambert 72" using operation method 9803
                 parameters = factory.getDefaultParameters("Lambert Conic Conformal (2SP Belgium)");
-                parameters.parameter("semi-major axis").setValue(6378388); // Ellipsoid International 1924
+                parameters.parameter("semi-major axis").setValue(6378388); // International 1924
                 parameters.parameter("semi-minor axis").setValue(6378388 * (1 - 1/297.0));
                 parameters.parameter("Latitude of 1st standard parallel").setValue(49 + 50.0/60); // 49°50'00"N
                 parameters.parameter("Latitude of 2nd standard parallel").setValue(51 + 10.0/60); // 51°10'00"N
@@ -134,7 +169,7 @@ public class PseudoEpsgFactory extends PseudoFactory {
                 break;
             }
             default: {
-                throw new FactoryException("No example implemented for EPSG:" + code);
+                throw new FactoryException("No case implemented for EPSG:" + code);
             }
         }
         return parameters;

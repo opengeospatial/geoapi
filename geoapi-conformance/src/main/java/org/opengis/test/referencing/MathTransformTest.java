@@ -35,6 +35,7 @@ import java.util.List;
 
 import org.opengis.util.Factory;
 import org.opengis.util.FactoryException;
+import org.opengis.geometry.DirectPosition;
 import org.opengis.referencing.operation.MathTransform;
 import org.opengis.referencing.operation.TransformException;
 import org.opengis.referencing.operation.MathTransformFactory;
@@ -43,6 +44,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
+import static java.lang.StrictMath.*;
 import static org.junit.Assume.*;
 import static org.opengis.test.Validators.*;
 import static org.opengis.test.referencing.PseudoEpsgFactory.FEET;
@@ -74,11 +76,26 @@ import static org.opengis.test.referencing.PseudoEpsgFactory.FEET;
  * @since   3.1
  */
 @RunWith(Parameterized.class)
-public class MathTransformTest extends TransformTestCase {
+public strictfp class MathTransformTest extends TransformTestCase {
     /**
      * The factory for creating {@link MathTransform} objects, or {@code null} if none.
      */
     protected final MathTransformFactory factory;
+
+    /**
+     * {@code true} if the {@linkplain #transform} being tested is a map projection
+     * from a geographic CRS to a projected CRS. This flag shall be set together
+     * with the {@link #tolerance} threshold before the {@code verify(...)} methods
+     * are invoked.
+     */
+    private transient boolean isProjection;
+
+    /**
+     * {@code true} if the longitude (which is assumed to be the first ordinate)
+     * should be ignored. This can be the case only if the latitude is at a pole,
+     * in which case the longitude has no meaning.
+     */
+    private transient boolean isAtPole;
 
     /**
      * Returns a default set of factories to use for running the tests. Those factories are given
@@ -120,6 +137,90 @@ public class MathTransformTest extends TransformTestCase {
     }
 
     /**
+     * Creates the "<cite>Mercator (variant A)</cite>" (EPSG:9804) projection documented
+     * in the EPSG guidance note and transform the example point given by EPSG.
+     * The {@link MathTransform} result is then compared with the expected result documented
+     * by EPSG.
+     *
+     * @throws FactoryException If the math transform can not be created.
+     * @throws TransformException If the example point can not be transformed.
+     */
+    @Test
+    public void testMercator1SP() throws FactoryException, TransformException {
+        createMathTransform(3002);  // "Makassar / NEIEZ"
+        final double[] point = new double[] {
+            110,  // Longitude of natural origin
+              0,  // Latitude of natural origin
+            120,
+             -3
+        };
+        final double[] expected = new double[] {
+            3900000.00,  // False easting
+             900000.00,  // False northing
+            5009726.58,
+             569150.82
+        };
+        tolerance = 0.005;
+        isProjection = true;
+        verifyTransform(point, expected);
+    }
+
+    /**
+     * Creates the "<cite>Mercator (variant B)</cite>" (EPSG:9805) projection documented
+     * in the EPSG guidance note and transform the example point given by EPSG.
+     * The {@link MathTransform} result is then compared with the expected result documented
+     * by EPSG.
+     *
+     * @throws FactoryException If the math transform can not be created.
+     * @throws TransformException If the example point can not be transformed.
+     */
+    @Test
+    public void testMercator2SP() throws FactoryException, TransformException {
+        createMathTransform(3388);  // "Pulkovo 1942 / Caspian Sea Mercator"
+        final double[] point = new double[] {
+            51, // Longitude of natural origin
+             0, // Latitude of natural origin
+            53,
+            53
+        };
+        final double[] expected = new double[] {
+                  0.00, // False easting
+                  0.00, // False northing
+             165704.29,
+            5171848.07};
+        tolerance = 0.005;
+        isProjection = true;
+        verifyTransform(point, expected);
+    }
+
+    /**
+     * Creates the "<cite>Mercator Popular Visualisation Pseudo Mercator" (EPSG:1024) projection
+     * documented in the EPSG guidance note and transform the example point given by EPSG.
+     * The {@link MathTransform} result is then compared with the expected result documented
+     * by EPSG.
+     *
+     * @throws FactoryException If the math transform can not be created.
+     * @throws TransformException If the example point can not be transformed.
+     */
+    @Test
+    public void testPseudoMercator() throws FactoryException, TransformException {
+        createMathTransform(3857);  // "WGS 84 / Pseudo-Mercator"
+        final double[] point = new double[] {
+                0,
+                0,
+            -(100 +  20.0/60),             // 100°20'00.000"W
+               24 + (22 + 54.433/60)/60};  //  24°22'54.433"N
+        final double[] expected = new double[] {
+                    0.00,
+                    0.00,
+            -11169055.58,
+              2800000.00};
+        tolerance = 0.005;
+        isProjection = true;
+        verifyTransform(point, expected);
+    }
+
+    /**
      * Creates the "<cite>Lambert Conic Conformal (1SP)</cite>" (EPSG:9801) projection
      * documented in the EPSG guidance note and transform the example point given by EPSG.
      * The {@link MathTransform} result is then compared with the expected result documented
@@ -132,12 +233,17 @@ public class MathTransformTest extends TransformTestCase {
     public void testLambertConicConformal1SP() throws FactoryException, TransformException {
         createMathTransform(24200);  // "JAD69 / Jamaica National Grid"
         final double[] point = new double[] {
+             -77.0,                       // Longitude of natural origin
+              18.0,                       // Latitude of natural origin
             -(76 + (56 + 37.26/60)/60),   // 76°56'37.26"W
               17 + (55 + 55.80/60)/60};   // 17°55'55.80"N
         final double[] expected = new double[] {
+            250000.00,  // False easting
+            150000.00,  // False northing
             255966.58,
             142493.51};
         tolerance = 0.005;
+        isProjection = true;
         verifyTransform(point, expected);
     }
 
@@ -154,12 +260,17 @@ public class MathTransformTest extends TransformTestCase {
     public void testLambertConicConformal2SP() throws FactoryException, TransformException {
         createMathTransform(32040);  // "NAD27 / Texas South Central"
         final double[] point = new double[] {
+            -99.0,           // Longitude of false origin
+             27 + 50.0/60,   // Latitude of false origin
             -96.0,           // 96°00'00.00"W
              28 + 30.0/60};  // 28°30'00.00"N
         final double[] expected = new double[] {
+            2000000.00/FEET, // Easting at false origin
+                  0.00/FEET, // Northing at false origin
             2963503.91/FEET,
              254759.80/FEET};
         tolerance = 0.005;
+        isProjection = true;
         verifyTransform(point, expected);
     }
 
@@ -176,12 +287,75 @@ public class MathTransformTest extends TransformTestCase {
     public void testLambertConicConformalBelgium() throws FactoryException, TransformException {
         createMathTransform(31300);  // "Belge 1972 / Belge Lambert 72"
         final double[] point = new double[] {
+             4 + (21 + 24.983/60)/60,   // Longitude of false origin
+            90.0,                       // Latitude of false origin
              5 + (48 + 26.533/60)/60,   //  5°48'26.533"E
             50 + (40 + 46.461/60)/60};  // 50°40'46.461"N
         final double[] expected = new double[] {
+            150000.01,  // Easting at false origin
+           5400088.44,  // Northing at false origin
             251763.20,
             153034.13};
         tolerance = 0.005;
+        isProjection = true;
         verifyTransform(point, expected);
+    }
+
+    /**
+     * Creates the "<cite>IGNF:MILLER</cite>" (EPSG:310642901) projection documented in the
+     * <a href="http://api.ign.fr/geoportail/api/doc/fr/developpeur/wmsc.html">IGN documentation</a>
+     * and transform the example point given by IGNF. The {@link MathTransform} result is then
+     * compared with the expected result documented by IGN.
+     *
+     * @throws FactoryException If the math transform can not be created.
+     * @throws TransformException If the example point can not be transformed.
+     */
+    @Test
+    public void testMiller() throws FactoryException, TransformException {
+        createMathTransform(310642901);  // "IGNF:MILLER"
+        final double[] point = new double[] {
+             0.0,
+             0.0,
+             2.478917,
+            48.805639};
+        final double[] expected = new double[] {
+                  0.00,
+                  0.00,
+             275951.78,
+            5910061.78};
+        tolerance = 0.005;
+        isProjection = true;
+        verifyTransform(point, expected);
+    }
+
+    /**
+     * Returns the index within the given position of an ordinate value which is not approximatively
+     * equals to the expected value. The default implementation performs the work documented in the
+     * {@linkplain TransformTestCase#indexOfMismatch parent class} except when the coordinate to
+     * compare is a geographic coordinate located at the North or South pole, in which case the
+     * longitude value is essentially ignored.
+     */
+    @Override
+    protected int indexOfMismatch(final DirectPosition expected, final DirectPosition actual, final ComparisonType mode) {
+        isAtPole = isProjection && mode == ComparisonType.INVERSE_TRANSFORM && abs(expected.getOrdinate(1)) == 90;
+        return super.indexOfMismatch(expected, actual, mode);
+    }
+
+    /**
+     * Returns the tolerance threshold for comparing the given ordinate value. The default
+     * implementation returns the {@link #tolerance} value, which shall be in metres, except
+     * during the inverse transform of a map projection, in which case the tolerance value
+     * is converted from metres to decimal degrees.
+     */
+    @Override
+    protected double tolerance(final double ordinate, final int dimension, final ComparisonType mode) {
+        double tolerance = super.tolerance(ordinate, dimension, mode);
+        if (isProjection && mode == ComparisonType.INVERSE_TRANSFORM) {
+            tolerance /= (1852 * 60); // 1 nautical miles = 1852 metres in 1 minute of angle.
+            if (dimension == 0 && isAtPole) {
+                tolerance = 360;
+            }
+        }
+        return tolerance;
     }
 }
