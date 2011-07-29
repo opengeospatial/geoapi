@@ -128,6 +128,9 @@ public strictfp class TestSuite {
      * @param factory The implementations to use for the given interface.
      */
     public static <T extends Factory> void setFactories(final Class<T> type, final T... factory) {
+        if (type == null) {
+            throw new NullPointerException("type must not be null"); // JDK7: Objects.requireNonNull
+        }
         final Iterable<? extends Factory> list = Arrays.asList(factory.clone());
         synchronized (TestCase.FACTORIES) {
             TestCase.FACTORIES.put(type, list);
@@ -144,6 +147,9 @@ public strictfp class TestSuite {
      * @return     The implementations for the given interface, or {@code null} if none.
      */
     public static <T extends Factory> T[] getFactories(final Class<T> type) {
+        if (type == null) {
+            throw new NullPointerException("type must not be null"); // JDK7: Objects.requireNonNull
+        }
         final Iterable<? extends Factory> factories;
         synchronized (TestCase.FACTORIES) {
             factories = TestCase.FACTORIES.get(type);
