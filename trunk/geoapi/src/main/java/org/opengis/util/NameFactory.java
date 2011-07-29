@@ -46,7 +46,7 @@ import java.util.Locale;
  *
  * @author  Jesse Crossley (SYS Technologies)
  * @author  Martin Desruisseaux (Geomatys)
- * @version 3.0
+ * @version 3.1
  * @since   2.0
  */
 public interface NameFactory extends Factory {

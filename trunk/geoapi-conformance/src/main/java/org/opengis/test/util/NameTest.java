@@ -57,15 +57,15 @@ import static org.opengis.test.Validators.*;
  * define a subclass as below:
  *
  * <blockquote><pre>import org.junit.runner.RunWith;
- * import org.junit.runners.JUnit4;
- * import org.opengis.test.util.NameTest;
+ *import org.junit.runners.JUnit4;
+ *import org.opengis.test.util.NameTest;
  *
- * &#64;RunWith(JUnit4.class)
- * public class MyTest extends NameTest {
- *     public MyTest() {
- *         super(new MyNameFactory());
- *     }
- * }</pre></blockquote>
+ *&#64;RunWith(JUnit4.class)
+ *public class MyTest extends NameTest {
+ *    public MyTest() {
+ *        super(new MyNameFactory());
+ *    }
+ *}</pre></blockquote>
  *
  * Alternatively this test class can also be used directly in the {@link org.opengis.test.TestSuite},
  * which combine every tests defined in the GeoAPI conformance module.

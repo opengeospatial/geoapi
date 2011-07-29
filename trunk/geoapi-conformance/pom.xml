@@ -110,6 +110,7 @@
                   <link>http://download.java.net/media/jai/javadoc/1.1.3/jai-apidocs/</link>
                   <link>http://download.java.net/media/java3d/javadoc/1.5.1/</link>
                   <link>http://jscience.org/api/</link>
+                  <link>http://junit.sourceforge.net/javadoc/</link>
                 </links>
               </configuration>
             </plugin>

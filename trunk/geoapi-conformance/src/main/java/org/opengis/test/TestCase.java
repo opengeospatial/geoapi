@@ -35,6 +35,8 @@ import java.util.Map;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.ServiceLoader;
 import org.opengis.util.Factory;
 
 
@@ -50,11 +52,13 @@ import org.opengis.util.Factory;
  */
 public strictfp abstract class TestCase {
     /**
-     * The factories specified explicitely by the implementors.
+     * The factories specified explicitely by the implementors, or the {@link ServiceLoader}
+     * to use for loading those factories.
      *
      * @see TestSuite#setFactory(Class, Factory)
      */
-    static final Map<Class<? extends Factory>, Factory> FACTORIES = new HashMap<Class<? extends Factory>, Factory>();
+    static final Map<Class<? extends Factory>, Iterable<? extends Factory>> FACTORIES =
+            new HashMap<Class<? extends Factory>, Iterable<? extends Factory>>();
 
     /**
      * Creates a new test.
@@ -65,44 +69,74 @@ public strictfp abstract class TestCase {
     /**
      * Returns factory instances for given factory interfaces. Each element in the returned list
      * is the arguments to give to the subclass constructor. There is typically only one element
-     * in the list, but more elements could be included if many factory implementations were
-     * found for the same interface.
+     * in the list, but more elements could be included if many factory implementations are found
+     * for the same interface.
      * <p>
      * This method is used by static methods having the {@link org.junit.runners.Parameterized.Parameters}
      * annotation in subclasses. For example if a subclass constructor expects 3 factories of kind
      * {@link org.opengis.referencing.crs.CRSFactory}, {@link org.opengis.referencing.cs.CSFactory}
      * and {@link org.opengis.referencing.datum.DatumFactory} in that order, then that subclass
-     * would contains the following method:
+     * contain the following method:
      *
      * <blockquote><pre>&#64;Parameterized.Parameters
-     * public static List&lt;Factory[]&gt; factories() {
-     *     return factories(CRSFactory.class, CSFactory.class, DatumFactory.class);
-     * }</pre></blockquote>
+     *public static List&lt;Factory[]&gt; factories() {
+     *    return factories(CRSFactory.class, CSFactory.class, DatumFactory.class);
+     *}</pre></blockquote>
      *
      * Note that the arrays may contain null elements if no factory implementation were found
      * for a given interface. All GeoAPI test cases use {@link org.junit.Assume} checks in order
      * to disable any tests that require a missing factory.
      * <p>
-     * The current implementation returns the factories which were explicitely specified by calls
-     * to the {@link TestSuite#setFactory(Class, Factory)} method. A future GeoAPI version may
-     * leverage dependencies injection engine when present.
+     * If many factory implementations were found for a given interface, then this method
+     * returns all possible combinations of those factories. For example if two instances
+     * of interface {code A} are found (named {@code A1} and {@code A2}), and two instances
+     * of interface {code B} are also found (named {@code B1} and {@code B2}), then this
+     * method returns a list containing:
+     *
+     * <blockquote><pre>{A1, B1}
+     *{A2, B1}
+     *{A1, B2}
+     *{A2, B2}</pre></blockquote>
+     *
+     * The current implementation first checks the factories explicitely specified by calls to
+     * the {@link TestSuite#setFactory(Class, Factory)} method. In no factories were explicitely
+     * specified, then this method searches the classpath using {@link ServiceLoader}.
      *
      * @param  types The kind of factories to fetch.
-     * @return The factories of the given kind. Each list element is an array having the
-     *         same length than {@code types}, and the list length is typically (but not
-     *         necessarily) 1.
+     * @return All combinations of factories of the given kind. Each list element is an array
+     *         having the same length than {@code types}.
      *
      * @see TestSuite
      *
      * @since 3.1
      */
     protected static List<Factory[]> factories(final Class<? extends Factory>... types) {
-        final Factory[] instances = new Factory[types.length];
+        final List<Factory[]> factories = new ArrayList<Factory[]>(4);
+        factories.add(new Factory[types.length]);
         synchronized (FACTORIES) {
             for (int i=0; i<types.length; i++) {
-                instances[i] = FACTORIES.get(types[i]);
+                final Class<? extends Factory> type = types[i];
+                Iterable<? extends Factory> choices = FACTORIES.get(type);
+                if (choices == null) {
+                    choices = ServiceLoader.load(type);
+                    FACTORIES.put(type, choices);
+                }
+                List<Factory[]> toUpdate = factories;
+                for (final Factory factory : choices) {
+                    if (toUpdate == factories) {
+                        toUpdate = Arrays.asList(factories.toArray(new Factory[factories.size()][]));
+                    } else {
+                        for (int j=toUpdate.size(); --j>=0;) {
+                            toUpdate.set(j, toUpdate.get(j).clone());
+                        }
+                        factories.addAll(toUpdate);
+                    }
+                    for (final Factory[] previous : toUpdate) {
+                        previous[i] = factory;
+                    }
+                }
             }
         }
-        return Arrays.<Factory[]>asList(instances);
+        return factories;
     }
 }
