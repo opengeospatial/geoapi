@@ -73,8 +73,8 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory {
      * Returns the projection parameters to use for creating a CRS of the given code.
      * The supported codes are determined from the set of examples published in the
      * EPSG guidance document or other sources. They are:
-     *
-     * <table border="1">
+     * <p>
+     * <table border="1" cellspacing="0" cellpadding="2">
      *   <tr><th>Code</th>      <th>CRS Name</th>                            <th>Operation method</th></tr>
      *   <tr><td>3002</td>      <td>Makassar / NEIEZ</td>                    <td>Mercator (variant A)</td></tr>
      *   <tr><td>3388</td>      <td>Pulkovo 1942 / Caspian Sea Mercator</td> <td>Mercator (variant B)</td></tr>

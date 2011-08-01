@@ -32,10 +32,15 @@
 package org.opengis.test.referencing;
 
 import java.util.List;
+import java.util.Arrays;
+import java.util.Random;
+import java.awt.geom.Rectangle2D;
 
 import org.opengis.util.Factory;
 import org.opengis.util.FactoryException;
 import org.opengis.geometry.DirectPosition;
+import org.opengis.parameter.ParameterValueGroup;
+import org.opengis.referencing.crs.ProjectedCRS;
 import org.opengis.referencing.operation.MathTransform;
 import org.opengis.referencing.operation.TransformException;
 import org.opengis.referencing.operation.MathTransformFactory;
@@ -47,7 +52,6 @@ import org.junit.runners.Parameterized;
 import static java.lang.StrictMath.*;
 import static org.junit.Assume.*;
 import static org.opengis.test.Validators.*;
-import static org.opengis.test.referencing.PseudoEpsgFactory.FEET;
 
 
 /**
@@ -122,18 +126,59 @@ public strictfp class MathTransformTest extends TransformTestCase {
     }
 
     /**
-     * Creates a {@linkplain MathTransform math transform} for the given EPSG Coordinate
-     * Reference System code, and stores the result in the {@link #transform} field. The
-     * set of allowed codes is documented in the {@link PseudoEpsgFactory#createParameters(int)}
-     * method.
+     * Creates a {@linkplain MathTransform math transform} for the
+     * {@linkplain ProjectedCRS#getConversionFromBase() conversion} used by the CRS identified
+     * by the given EPSG code, and stores the result in the {@link #transform} field. The set of
+     * allowed codes is documented in the {@link PseudoEpsgFactory#createParameters(int)} method.
+     * <p>
+     * This method shall also set the {@link #tolerance} threshold in units of the target CRS
+     * (typically metres), and the {@link #derivativeDeltas} in units of the source CRS
+     * (typically degrees).
+     * <p>
+     * Subclasses can override this method if they want to customize the math transform creations,
+     * or the tolerance and delta values.
      *
-     * @param  code The EPSG code of a Coordinate Reference System.
+     * @param  code The EPSG code of a target Coordinate Reference System.
      * @throws FactoryException If the math transform for the given projected CRS can not be created.
      */
     private void createMathTransform(final int code) throws FactoryException {
         assumeNotNull(factory);
-        transform = factory.createParameterizedTransform(PseudoEpsgFactory.createParameters(factory, code));
+        final ParameterValueGroup parameters = PseudoEpsgFactory.createParameters(factory, code);
+        validate(parameters);
+        transform = factory.createParameterizedTransform(parameters);
+        tolerance = 0.005;
+        derivativeDeltas = new double[transform.getSourceDimensions()];
+        Arrays.fill(derivativeDeltas, toRadians(1.0 / 60) / 1852); // Approximatively one metre.
+    }
+
+    /**
+     * Runs the test for the given EPSG Coordinate Reference System code. The set of allowed codes
+     * is documented in the {@link PseudoEpsgFactory#createParameters(int)} method.
+     *
+     * @param  code The EPSG code of a target Coordinate Reference System.
+     * @throws FactoryException If the math transform can not be created.
+     * @throws TransformException If the example point can not be transformed.
+     */
+    private void run(int code) throws FactoryException, TransformException {
+        final SamplePoints sample = SamplePoints.getSamplePoints(code);
+        createMathTransform(code);
         validate(transform);
+        verifyTransform(sample.sourcePoints, sample.targetPoints);
+        /*
+         * At this point, we have been able to transform the sample points.
+         * Now test the transform consistency using many random points inside
+         * the area of validity.
+         */
+        final Rectangle2D areaOfValidity = sample.areaOfValidity;
+        verifyInDomain(new double[] {
+            areaOfValidity.getMinX(),
+            areaOfValidity.getMinY()
+        }, new double[] {
+            areaOfValidity.getMaxX(),
+            areaOfValidity.getMaxY()
+        }, new int[] {
+            50, 50
+        }, new Random(code));
     }
 
     /**
@@ -141,28 +186,26 @@ public strictfp class MathTransformTest extends TransformTestCase {
      * in the EPSG guidance note and transform the example point given by EPSG.
      * The {@link MathTransform} result is then compared with the expected result documented
      * by EPSG.
+     * <p>
+     * The math transform parameters are:
+     * <table border="1" cellspacing="0" cellpadding="2">
+     * <tr><th>Parameter</th><th>Value</th></tr>
+     * <tr><td>semi-major axis</td><td>6377397.155</td></tr>
+     * <tr><td>semi-minor axis</td><td>6356078.962818189</td></tr>
+     * <tr><td>Latitude of natural origin</td><td>0.0</td></tr>
+     * <tr><td>Longitude of natural origin</td><td>110.0</td></tr>
+     * <tr><td>Scale factor at natural origin</td><td>0.997</td></tr>
+     * <tr><td>False easting</td><td>3900000.0</td></tr>
+     * <tr><td>False northing</td><td>900000.0</td></tr>
+     * </table>
      *
      * @throws FactoryException If the math transform can not be created.
      * @throws TransformException If the example point can not be transformed.
      */
     @Test
     public void testMercator1SP() throws FactoryException, TransformException {
-        createMathTransform(3002);  // "Makassar / NEIEZ"
-        final double[] point = new double[] {
-            110,  // Longitude of natural origin
-              0,  // Latitude of natural origin
-            120,
-             -3
-        };
-        final double[] expected = new double[] {
-            3900000.00,  // False easting
-             900000.00,  // False northing
-            5009726.58,
-             569150.82
-        };
-        tolerance = 0.005;
         isProjection = true;
-        verifyTransform(point, expected);
+        run(3002);  // "Makassar / NEIEZ"
     }
 
     /**
@@ -170,27 +213,25 @@ public strictfp class MathTransformTest extends TransformTestCase {
      * in the EPSG guidance note and transform the example point given by EPSG.
      * The {@link MathTransform} result is then compared with the expected result documented
      * by EPSG.
+     * <p>
+     * The math transform parameters are:
+     * <table border="1" cellspacing="0" cellpadding="2">
+     * <tr><th>Parameter</th><th>Value</th></tr>
+     * <tr><td>semi-major axis</td><td>6378245.0</td></tr>
+     * <tr><td>semi-minor axis</td><td>6356863.018773047</td></tr>
+     * <tr><td>Latitude of 1st standard parallel</td><td>42.0</td></tr>
+     * <tr><td>Longitude of natural origin</td><td>51.0</td></tr>
+     * <tr><td>False easting</td><td>0.0</td></tr>
+     * <tr><td>False northing</td><td>0.0</td></tr>
+     * </table>
      *
      * @throws FactoryException If the math transform can not be created.
      * @throws TransformException If the example point can not be transformed.
      */
     @Test
     public void testMercator2SP() throws FactoryException, TransformException {
-        createMathTransform(3388);  // "Pulkovo 1942 / Caspian Sea Mercator"
-        final double[] point = new double[] {
-            51, // Longitude of natural origin
-             0, // Latitude of natural origin
-            53,
-            53
-        };
-        final double[] expected = new double[] {
-                  0.00, // False easting
-                  0.00, // False northing
-             165704.29,
-            5171848.07};
-        tolerance = 0.005;
         isProjection = true;
-        verifyTransform(point, expected);
+        run(3388);  // "Pulkovo 1942 / Caspian Sea Mercator"
     }
 
     /**
@@ -198,26 +239,25 @@ public strictfp class MathTransformTest extends TransformTestCase {
      * documented in the EPSG guidance note and transform the example point given by EPSG.
      * The {@link MathTransform} result is then compared with the expected result documented
      * by EPSG.
+     * <p>
+     * The math transform parameters are:
+     * <table border="1" cellspacing="0" cellpadding="2">
+     * <tr><th>Parameter</th><th>Value</th></tr>
+     * <tr><td>semi-major axis</td><td>6378137.0</td></tr>
+     * <tr><td>semi-minor axis</td><td>6356752.314245179</td></tr>
+     * <tr><td>Latitude of natural origin</td><td>0.0</td></tr>
+     * <tr><td>Longitude of natural origin</td><td>0.0</td></tr>
+     * <tr><td>False easting</td><td>0.0</td></tr>
+     * <tr><td>False northing</td><td>0.0</td></tr>
+     * </table>
      *
      * @throws FactoryException If the math transform can not be created.
      * @throws TransformException If the example point can not be transformed.
      */
     @Test
     public void testPseudoMercator() throws FactoryException, TransformException {
-        createMathTransform(3857);  // "WGS 84 / Pseudo-Mercator"
-        final double[] point = new double[] {
-                0,
-                0,
-            -(100 +  20.0/60),             // 100°20'00.000"W
-               24 + (22 + 54.433/60)/60};  //  24°22'54.433"N
-        final double[] expected = new double[] {
-                    0.00,
-                    0.00,
-            -11169055.58,
-              2800000.00};
-        tolerance = 0.005;
         isProjection = true;
-        verifyTransform(point, expected);
+        run(3857);  // "WGS 84 / Pseudo-Mercator"
     }
 
     /**
@@ -225,26 +265,26 @@ public strictfp class MathTransformTest extends TransformTestCase {
      * documented in the EPSG guidance note and transform the example point given by EPSG.
      * The {@link MathTransform} result is then compared with the expected result documented
      * by EPSG.
+     * <p>
+     * The math transform parameters are:
+     * <table border="1" cellspacing="0" cellpadding="2">
+     * <tr><th>Parameter</th><th>Value</th></tr>
+     * <tr><td>semi-major axis</td><td>6378206.4</td></tr>
+     * <tr><td>semi-minor axis</td><td>6356583.8</td></tr>
+     * <tr><td>Latitude of natural origin</td><td>18.0</td></tr>
+     * <tr><td>Longitude of natural origin</td><td>-77.0</td></tr>
+     * <tr><td>Scale factor at natural origin</td><td>1.0</td></tr>
+     * <tr><td>False easting</td><td>250000.0</td></tr>
+     * <tr><td>False northing</td><td>150000.0</td></tr>
+     * </table>
      *
      * @throws FactoryException If the math transform can not be created.
      * @throws TransformException If the example point can not be transformed.
      */
     @Test
     public void testLambertConicConformal1SP() throws FactoryException, TransformException {
-        createMathTransform(24200);  // "JAD69 / Jamaica National Grid"
-        final double[] point = new double[] {
-             -77.0,                       // Longitude of natural origin
-              18.0,                       // Latitude of natural origin
-            -(76 + (56 + 37.26/60)/60),   // 76°56'37.26"W
-              17 + (55 + 55.80/60)/60};   // 17°55'55.80"N
-        final double[] expected = new double[] {
-            250000.00,  // False easting
-            150000.00,  // False northing
-            255966.58,
-            142493.51};
-        tolerance = 0.005;
         isProjection = true;
-        verifyTransform(point, expected);
+        run(24200);  // "JAD69 / Jamaica National Grid"
     }
 
     /**
@@ -252,26 +292,27 @@ public strictfp class MathTransformTest extends TransformTestCase {
      * documented in the EPSG guidance note and transform the example point given by EPSG.
      * The {@link MathTransform} result is then compared with the expected result documented
      * by EPSG.
+     * <p>
+     * The math transform parameters are:
+     * <table border="1" cellspacing="0" cellpadding="2">
+     * <tr><th>Parameter</th><th>Value</th></tr>
+     * <tr><td>semi-major axis</td><td>6378206.4</td></tr>
+     * <tr><td>semi-minor axis</td><td>6356583.8</td></tr>
+     * <tr><td>Latitude of false origin</td><td>27.833333333333333</td></tr>
+     * <tr><td>Longitude of false origin</td><td>-99.0</td></tr>
+     * <tr><td>Latitude of 1st standard parallel</td><td>28.383333333333333</td></tr>
+     * <tr><td>Latitude of 2nd standard parallel</td><td>30.283333333333333</td></tr>
+     * <tr><td>Easting at false origin</td><td>609601.2192024385</td></tr>
+     * <tr><td>Northing at false origin</td><td>0.0</td></tr>
+     * </table>
      *
      * @throws FactoryException If the math transform can not be created.
      * @throws TransformException If the example point can not be transformed.
      */
     @Test
     public void testLambertConicConformal2SP() throws FactoryException, TransformException {
-        createMathTransform(32040);  // "NAD27 / Texas South Central"
-        final double[] point = new double[] {
-            -99.0,           // Longitude of false origin
-             27 + 50.0/60,   // Latitude of false origin
-            -96.0,           // 96°00'00.00"W
-             28 + 30.0/60};  // 28°30'00.00"N
-        final double[] expected = new double[] {
-            2000000.00/FEET, // Easting at false origin
-                  0.00/FEET, // Northing at false origin
-            2963503.91/FEET,
-             254759.80/FEET};
-        tolerance = 0.005;
         isProjection = true;
-        verifyTransform(point, expected);
+        run(32040);  // "NAD27 / Texas South Central"
     }
 
     /**
@@ -279,26 +320,27 @@ public strictfp class MathTransformTest extends TransformTestCase {
      * documented in the EPSG guidance note and transform the example point given by EPSG.
      * The {@link MathTransform} result is then compared with the expected result documented
      * by EPSG.
+     * <p>
+     * The math transform parameters are:
+     * <table border="1" cellspacing="0" cellpadding="2">
+     * <tr><th>Parameter</th><th>Value</th></tr>
+     * <tr><td>semi-major axis</td><td>6378388.0</td></tr>
+     * <tr><td>semi-minor axis</td><td>6356911.9461279465</td></tr>
+     * <tr><td>Latitude of false origin</td><td>90.0</td></tr>
+     * <tr><td>Longitude of false origin</td><td>4.356939722222222</td></tr>
+     * <tr><td>Latitude of 1st standard parallel</td><td>49.83333333333333</td></tr>
+     * <tr><td>Latitude of 2nd standard parallel</td><td>51.16666666666667</td></tr>
+     * <tr><td>Easting at false origin</td><td>150000.01256</td></tr>
+     * <tr><td>Northing at false origin</td><td>5400088.4378</td></tr>
+     * </table>
      *
      * @throws FactoryException If the math transform can not be created.
      * @throws TransformException If the example point can not be transformed.
      */
     @Test
     public void testLambertConicConformalBelgium() throws FactoryException, TransformException {
-        createMathTransform(31300);  // "Belge 1972 / Belge Lambert 72"
-        final double[] point = new double[] {
-             4 + (21 + 24.983/60)/60,   // Longitude of false origin
-            90.0,                       // Latitude of false origin
-             5 + (48 + 26.533/60)/60,   //  5°48'26.533"E
-            50 + (40 + 46.461/60)/60};  // 50°40'46.461"N
-        final double[] expected = new double[] {
-            150000.01,  // Easting at false origin
-           5400088.44,  // Northing at false origin
-            251763.20,
-            153034.13};
-        tolerance = 0.005;
         isProjection = true;
-        verifyTransform(point, expected);
+        run(31300);  // "Belge 1972 / Belge Lambert 72"
     }
 
     /**
@@ -306,26 +348,25 @@ public strictfp class MathTransformTest extends TransformTestCase {
      * <a href="http://api.ign.fr/geoportail/api/doc/fr/developpeur/wmsc.html">IGN documentation</a>
      * and transform the example point given by IGNF. The {@link MathTransform} result is then
      * compared with the expected result documented by IGN.
+     * <p>
+     * The math transform parameters are:
+     * <table border="1" cellspacing="0" cellpadding="2">
+     * <tr><th>Parameter</th><th>Value</th></tr>
+     * <tr><td>semi_major</td><td>6378137.0</td></tr>
+     * <tr><td>semi_minor</td><td>6378137.0</td></tr>
+     * <tr><td>latitude_of_center</td><td>0.0</td></tr>
+     * <tr><td>longitude_of_center</td><td>0.0</td></tr>
+     * <tr><td>false_easting</td><td>0.0</td></tr>
+     * <tr><td>false_northing</td><td>0.0</td></tr>
+     * </table>
      *
      * @throws FactoryException If the math transform can not be created.
      * @throws TransformException If the example point can not be transformed.
      */
     @Test
     public void testMiller() throws FactoryException, TransformException {
-        createMathTransform(310642901);  // "IGNF:MILLER"
-        final double[] point = new double[] {
-             0.0,
-             0.0,
-             2.478917,
-            48.805639};
-        final double[] expected = new double[] {
-                  0.00,
-                  0.00,
-             275951.78,
-            5910061.78};
-        tolerance = 0.005;
         isProjection = true;
-        verifyTransform(point, expected);
+        run(310642901);  // "IGNF:MILLER"
     }
 
     /**
@@ -343,19 +384,46 @@ public strictfp class MathTransformTest extends TransformTestCase {
 
     /**
      * Returns the tolerance threshold for comparing the given ordinate value. The default
-     * implementation returns the {@link #tolerance} value, which shall be in metres, except
-     * during the inverse transform of a map projection, in which case the tolerance value
-     * is converted from metres to decimal degrees.
+     * implementation applies the following rules:
+     *
+     * <ul>
+     *   <li><p>For {@link TransformTestCase.ComparisonType#DIRECT_TRANSFORM direct transforms},
+     *       return directly the {@linkplain #tolerance tolerance} value. When the transform to
+     *       be tested is a map projection, this tolerance value is measured in metres.</p></li>
+     *   <li><p>For {@link TransformTestCase.ComparisonType#INVERSE_TRANSFORM inverse transforms},
+     *       if the transform being tested is a map projection, then the {@linkplain #tolerance
+     *       tolerance} value is converted from metres to decimal degrees except for longitudes
+     *       at a pole in which case the tolerance value is set to 360°.</p></li>
+     *   <li><p>For {@link TransformTestCase.ComparisonType#DERIVATIVE derivatives}, returns a
+     *       relative {@linkplain #tolerance tolerance} value instead than the absolute value.
+     *       Relative tolerance values are required because derivative values close to a pole
+     *       may tend toward infinity.</p></li>
+     *   <li><p>For {@link TransformTestCase.ComparisonType#STRICT strict} comparisons,
+     *       unconditionally returns 0.</p></li>
+     * </ul>
      */
     @Override
     protected double tolerance(final double ordinate, final int dimension, final ComparisonType mode) {
-        double tolerance = super.tolerance(ordinate, dimension, mode);
-        if (isProjection && mode == ComparisonType.INVERSE_TRANSFORM) {
-            tolerance /= (1852 * 60); // 1 nautical miles = 1852 metres in 1 minute of angle.
-            if (dimension == 0 && isAtPole) {
-                tolerance = 360;
+        double tol = tolerance;
+        switch (mode) {
+            case STRICT: {
+                tol = 0;
+                break;
+            }
+            case DERIVATIVE: {
+                tol = max(10*tol, tol * abs(ordinate));
+                break;
+            }
+            case INVERSE_TRANSFORM: {
+                if (isProjection) {
+                    tol /= (1852 * 60); // 1 nautical miles = 1852 metres in 1 minute of angle.
+                    if (dimension == 0 && isAtPole) {
+                        tol = 360;
+                    }
+                }
+                break;
             }
         }
-        return tolerance;
+        return tol;
     }
 }
