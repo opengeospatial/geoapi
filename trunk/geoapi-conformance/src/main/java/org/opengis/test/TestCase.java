@@ -46,6 +46,8 @@ import org.opengis.util.Factory;
  * construction time either directly by the implementor, or indirectly by calls to the
  * {@link #factories(Class[])} method.
  *
+ * @ee TestSuite
+ *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
  * @since   2.2
@@ -106,7 +108,10 @@ public strictfp abstract class TestCase {
      * @return All combinations of factories of the given kind. Each list element is an array
      *         having the same length than {@code types}.
      *
-     * @see TestSuite
+     * @see org.opengis.test.util.NameTest#factories()
+     * @see org.opengis.test.referencing.MathTransformTest#factories()
+     * @see org.opengis.test.referencing.CRSTest#factories()
+     * @see org.opengis.test.referencing.ReferencingTest#factories()
      *
      * @since 3.1
      */
