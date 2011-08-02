@@ -33,7 +33,6 @@ package org.opengis.test.referencing;
 
 import java.util.Random;
 import java.util.Arrays;
-import java.lang.reflect.Array;
 import java.awt.geom.Point2D;
 
 import org.opengis.geometry.DirectPosition;
@@ -205,14 +204,14 @@ public strictfp abstract class TransformTestCase extends TestCase {
      * the expected one. By default this threshold is absolute; no special computation is
      * performed for taking in account the magnitude of the ordinate being compared. If a
      * subclass needs to set a relative tolerance threshold instead than an absolute one,
-     * it should override the {@link #tolerance(double, int, ComparisonType)} method.
+     * it should override the {@link #tolerance(DirectPosition, int, ComparisonType)} method.
      * <p>
      * The default value is 0, which means that strict equality will be required. Subclasses
      * should set a more suitable tolerance threshold when {@linkplain #transform} is assigned
      * a value.
      *
      * @see #transform
-     * @see #tolerance(double, int, ComparisonType)
+     * @see #tolerance(DirectPosition, int, ComparisonType)
      */
     protected double tolerance;
 
@@ -238,7 +237,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
      * @param  ordinate The ordinate value being compared.
      * @return The absolute tolerance threshold to use for comparing the given ordinate.
      *
-     * @deprecated Replaced by {@link #tolerance(double, int, ComparisonType)}.
+     * @deprecated Replaced by {@link #tolerance(DirectPosition, int, ComparisonType)}.
      */
     @Deprecated
     protected double tolerance(final double ordinate) {
@@ -263,8 +262,8 @@ public strictfp abstract class TransformTestCase extends TestCase {
     /**
      * Transforms the given coordinates and verifies that the result is equals (within a positive
      * delta) to the expected ones. If the difference between an expected and actual ordinate value
-     * is greater than the {@linkplain #tolerance(double, int, ComparisonType) tolerance} threshold,
-     * then the assertion fails.
+     * is greater than the {@linkplain #tolerance(DirectPosition, int, ComparisonType) tolerance}
+     * threshold, then the assertion fails.
      * <p>
      * If {@link #isInverseTransformSupported} is {@code true}, then this method will also
      * transform the expected coordinate points using the {@linkplain MathTransform#inverse
@@ -349,8 +348,8 @@ public strictfp abstract class TransformTestCase extends TestCase {
     /**
      * Transforms the given coordinates, applies the inverse transform and compares with the
      * original values. If a difference between the expected and actual ordinate values is
-     * greater than the {@linkplain #tolerance(double, int, ComparisonType) tolerance} threshold,
-     * then the assertion fails.
+     * greater than the {@linkplain #tolerance(DirectPosition, int, ComparisonType) tolerance}
+     * threshold, then the assertion fails.
      * <p>
      * At the difference of {@link #verifyTransform(double[],double[])}, this method do
      * not require an array of expected values. The expected values are calculated from
@@ -410,8 +409,8 @@ public strictfp abstract class TransformTestCase extends TestCase {
     /**
      * Transforms the given coordinates, applies the inverse transform and compares with the
      * original values. If a difference between the expected and actual ordinate values is
-     * greater than the {@linkplain #tolerance(double, int, ComparisonType) tolerance} threshold,
-     * then the assertion fails.
+     * greater than the {@linkplain #tolerance(DirectPosition, int, ComparisonType) tolerance}
+     * threshold, then the assertion fails.
      * <p>
      * The default implementation delegates to {@link #verifyInverse(double[])}.
      *
@@ -939,38 +938,36 @@ public strictfp abstract class TransformTestCase extends TestCase {
         final SimpleDirectPosition actual   = new SimpleDirectPosition(dimension);
         final SimpleDirectPosition expected = new SimpleDirectPosition(dimension);
         for (int i=0; i<numPoints; i++) {
-            actual.setCoordinate(actualPts, actualOffset, useDouble);
+            actual  .setCoordinate(actualPts,   actualOffset,   useDouble);
             expected.setCoordinate(expectedPts, expectedOffset, useDouble);
-            final int mismatch = indexOfMismatch(expected, actual, mode);
-            if (mismatch >= 0) {
+            normalize(expected, actual, mode);
+            for (int mismatch=0; mismatch<dimension; mismatch++) {
+                final double a = actual  .getOrdinate(mismatch);
+                final double e = expected.getOrdinate(mismatch);
                 /*
-                 * Found a mismatched ordinate value. We are going to thrown an exception.
-                 * First, compute now (before we increment the offsets) the difference between
-                 * the expected ordinate value and the actual one.
+                 * This method uses !(a <= b) expressions instead than (a > b) for catching NaN.
+                 * The next condition working on bit patterns is for NaN and Infinity values.
                  */
-                final double diff  = abs(Array.getDouble(expectedPts, expectedOffset + mismatch)
-                                       - Array.getDouble(actualPts,   actualOffset   + mismatch));
-                final Number delta = useDouble ? Double.valueOf(diff) : Float.valueOf((float) diff);
-                /*
-                 * Format an error message with the coordinate values followed by the
-                 * difference with the expected value.
-                 */
-                final String lineSeparator = System.getProperty("line.separator", "\n");
-                final StringBuilder buffer = new StringBuilder(message).append(lineSeparator)
-                        .append("DirectPosition").append(dimension).append("D[")
-                        .append(reportedIndex + i).append("]: Expected (");
-                for (int j=0; j<dimension; j++) {
-                    if (j != 0) buffer.append(", ");
-                    buffer.append(Array.get(expectedPts, expectedOffset++));
+                final double delta = abs(e - a);
+                if (!(delta <= tolerance(expected, mismatch, mode)) &&
+                        Double.doubleToLongBits(a) != Double.doubleToLongBits(e))
+                {
+                    /*
+                     * Format an error message with the coordinate values followed by the
+                     * difference with the expected value.
+                     */
+                    final String lineSeparator = System.getProperty("line.separator", "\n");
+                    final StringBuilder buffer = new StringBuilder(message).append(lineSeparator)
+                            .append("DirectPosition").append(dimension).append("D[").append(reportedIndex + i)
+                            .append("]: Expected ").append(expected).append(" but got ").append(actual).append('.')
+                            .append(lineSeparator).append("The delta at ordinate ").append(mismatch).append(" is ");
+                    if (useDouble) {
+                        buffer.append(delta);
+                    } else {
+                        buffer.append((float) delta);
+                    }
+                    throw new TransformFailure(buffer.toString());
                 }
-                buffer.append(") but got (");
-                for (int j=0; j<dimension; j++) {
-                    if (j != 0) buffer.append(", ");
-                    buffer.append(Array.get(actualPts, actualOffset++));
-                }
-                throw new TransformFailure(buffer.append(").").append(lineSeparator)
-                        .append("The delta at ordinate ").append(mismatch).append(" is ")
-                        .append(delta).toString());
             }
             expectedOffset += dimension;
             actualOffset   += dimension;
@@ -1169,13 +1166,17 @@ public strictfp abstract class TransformTestCase extends TestCase {
         final int numCol = expected.getNumCol();
         assertEquals("Wrong number of rows.",    numRow, actual.getNumRow());
         assertEquals("Wrong number of columns.", numCol, actual.getNumCol());
+        final SimpleDirectPosition offset = new SimpleDirectPosition(numRow);
         for (int i=0; i<numCol; i++) {
+            for (int j=0; j<numRow; j++) {
+                offset.ordinates[j] = actual.getElement(j, i);
+            }
             for (int j=0; j<numRow; j++) {
                 final double e = expected.getElement(j, i);
                 final double a = actual  .getElement(j, i);
                 final double d = abs(e - a);
                 /*
-                 * Now compare the matrixes elements. Note that we still invoke the tolerance(double)
+                 * Now compare the matrixes elements. Note that we still invoke the tolerance(...)
                  * method even if the given arguments are not ordinate values. We do that because the
                  * matrix can be interpreted as the displacement in target CRS space when the ordinate
                  * values are increased by 1 in the source CRS space, so it still related to ordinates.
@@ -1184,7 +1185,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
                  * because the actual value is probably more accurate than the one approximated from
                  * finite differences.
                  */
-                if (!(d <= tolerance(a, j, mode)) && Double.doubleToLongBits(a) != Double.doubleToLongBits(e)) {
+                if (!(d <= tolerance(offset, j, mode)) && Double.doubleToLongBits(a) != Double.doubleToLongBits(e)) {
                     final StringBuilder buffer = new StringBuilder(512);
                     final String lineSeparator = System.getProperty("line.separator", "\n");
                     buffer.append(message).append(lineSeparator).append("Matrix(").append(j).append(',').append(i)
@@ -1208,18 +1209,36 @@ public strictfp abstract class TransformTestCase extends TestCase {
     }
 
     /**
-     * Returns the index within the given position of an ordinate value which is not approximatively
-     * equals to the expected value. If all ordinate values are approximatively equal to the expected
-     * values, then this method returns -1.
+     * Invoked by all {@code assertCoordinateEqual(...)} methods before two positions are compared.
+     * This method allows subclasses to replace some equivalent ordinate values by a unique value.
+     * For example subclasses may ensure that longitude values are contained in the ±180° range,
+     * applying 360° shifts if needed.
      * <p>
-     * The default implementation computes the {@linkplain StrictMath#abs(double) absolute}
-     * differences between the expected and actual ordinate values, and return the index of the first
-     * dimension having a difference greater than the {@linkplain #tolerance(double, int, ComparisonType)
-     * tolerance} threshold. The comparison implemented in this method is robust to
-     * {@linkplain Double#NaN NaN} and infinite values.
+     * The default implementation does nothing. Subclasses that override this method can modify the
+     * ordinate values directly using the {@link DirectPosition#setOrdinate(int, double)} method.
+     *
+     * @param expected The expected ordinate value provided by the test case.
+     * @param actual   The ordinate value computed by the {@linkplain #transform}.
+     * @param  mode    Whatever the coordinates being compared are the result of a direct
+     *                 or inverse transform, or whatever strict equality is requested.
+     *
+     * @since 3.1
+     */
+    protected void normalize(DirectPosition expected, DirectPosition actual, ComparisonType mode) {
+    }
+
+    /**
+     * Returns the tolerance threshold for comparing an ordinate value. The default
+     * implementation returns the {@link #tolerance} value directly (except for strict mode),
+     * thus implementing an absolute tolerance threshold. If a subclass needs a relative
+     * tolerance threshold instead, it can override this method as below:
+     *
+     * <blockquote><code>
+     * return super.tolerance(coordinate, dimension, mode) * Math.abs(coordinate.getOrdinate(dimension));
+     * </code></blockquote>
      * <p>
-     * This method can be overridden by subclasses wanting to handle some dimensions in a special
-     * way. Some typical special cases are:
+     * Subclasses can also override this method for handling some dimensions in a special way.
+     * Some typical special cases are:
      * <p>
      * <ul>
      *   <li>Allowing a greater tolerance threshold along the vertical axis compared to the
@@ -1228,66 +1247,19 @@ public strictfp abstract class TransformTestCase extends TestCase {
      *   <li>In a geographic CRS, ignoring the longitude value if the latitude is at a pole.</li>
      * </ul>
      * <p>
-     * This GeoAPI method does not implement any of the above special case.
+     * The default implementation does not implement any of the above special cases.
      * It is up to subclasses to implement their own special cases if they need to.
      *
-     * @param  expected The expected position.
-     * @param  actual   The actual position.
-     * @param  mode     Whatever the coordinates being compared are the result of a direct
-     *                  or inverse transform, or whatever strict equality is requested.
-     * @return Dimension where a mismatched value has been found, or -1 is all ordinate values
-     *         are approximatively equal.
-     *
-     * @since 3.1
-     *
-     * @see #tolerance(double, int, ComparisonType)
-     */
-    protected int indexOfMismatch(final DirectPosition expected, final DirectPosition actual, final ComparisonType mode) {
-        final int dimension = expected.getDimension();
-        assertEquals("The position does not have the expected number of dimensions.",
-                dimension, actual.getDimension());
-        for (int i=0; i<dimension; i++) {
-            final double a = actual.getOrdinate(i);
-            final double e = expected.getOrdinate(i);
-            /*
-             * This method uses !(a <= b) expressions instead than (a > b) for catching NaN.
-             * The next condition working on bit patterns is for NaN and Infinity values.
-             */
-            if (!(abs(a - e) <= tolerance(e, i, mode)) && Double.doubleToLongBits(a) != Double.doubleToLongBits(e)) {
-                return i;
-            }
-        }
-        return -1;
-    }
-
-    /**
-     * Returns the tolerance threshold for comparing the given ordinate value. The default
-     * implementation returns the {@link #tolerance} value directly (except for strict mode),
-     * thus implementing an absolute tolerance threshold. If a subclass needs a relative
-     * tolerance threshold instead, it can override this method as below:
-     *
-     * <blockquote><code>
-     * return super.tolerance(ordinate, dimension, mode) * Math.abs(ordinate);
-     * </code></blockquote>
-     *
-     * This method is provided as an alternative easier to override than the
-     * {@link #indexOfMismatch(DirectPosition, DirectPosition, ComparisonType) indexOfMismatch}
-     * method. However this alternative is suitable only for tolerance thresholds that do not
-     * depend on other dimensions. For example this method does not allow to ignore longitude
-     * when the latitude is ±90°.
-     *
-     * @param  ordinate  The ordinate value being compared.
-     * @param  dimension The dimension of the ordinate being compared. The first dimension is 0.
-     * @param  mode      Whatever the coordinates being compared are the result of a direct
-     *                   or inverse transform, or whatever strict equality is requested.
+     * @param  coordinate The coordinate being compared.
+     * @param  dimension  The dimension of the ordinate being compared. The first dimension is 0.
+     * @param  mode       Whatever the coordinates being compared are the result of a direct
+     *                    or inverse transform, or whatever strict equality is requested.
      * @return The absolute tolerance threshold to use for comparing the given ordinate.
      *
-     * @see #indexOfMismatch(DirectPosition, DirectPosition, ComparisonType)
-     *
      * @since 3.1
      */
-    protected double tolerance(final double ordinate, final int dimension, final ComparisonType mode) {
-        return (mode != ComparisonType.STRICT) ? tolerance : 0;
+    protected double tolerance(final DirectPosition coordinate, final int dimension, final ComparisonType mode) {
+        return (mode != ComparisonType.STRICT) ? tolerance(coordinate.getOrdinate(dimension)) : 0;
     }
 
 
@@ -1303,7 +1275,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
      * @version 3.1
      * @since   3.1
      *
-     * @see TransformTestCase#tolerance(double, int, ComparisonType)
+     * @see TransformTestCase#tolerance(DirectPosition, int, ComparisonType)
      */
     protected static enum ComparisonType {
         /**

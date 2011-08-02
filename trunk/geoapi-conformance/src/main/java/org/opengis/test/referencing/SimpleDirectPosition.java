@@ -186,10 +186,29 @@ final class SimpleDirectPosition implements DirectPosition {
     }
 
     /**
-     * Returns a string representation of this direct position.
+     * Returns the <cite>Well Known Test</cite> (WKT) representation of this direct position.
      */
     @Override
     public String toString() {
-        return Arrays.toString(ordinates);
+        boolean castToFloats = true;
+        for (final double ordinate : ordinates) {
+            if (Double.doubleToLongBits(ordinate) != Double.doubleToLongBits((float) ordinate)) {
+                castToFloats = false;
+                break;
+            }
+        }
+        final StringBuilder buffer = new StringBuilder("POINT(");
+        for (int i=0; i<ordinates.length; i++) {
+            if (i != 0) {
+                buffer.append(' ');
+            }
+            final double ordinate = ordinates[i];
+            if (castToFloats) {
+                buffer.append((float) ordinate);
+            } else {
+                buffer.append(ordinate);
+            }
+        }
+        return buffer.append(')').toString();
     }
 }
