@@ -40,6 +40,7 @@ import org.opengis.util.Factory;
 import org.opengis.util.FactoryException;
 import org.opengis.geometry.DirectPosition;
 import org.opengis.parameter.ParameterValueGroup;
+import org.opengis.referencing.operation.Matrix;
 import org.opengis.referencing.operation.CoordinateOperation;
 import org.opengis.referencing.operation.MathTransform;
 import org.opengis.referencing.operation.TransformException;
@@ -81,6 +82,35 @@ import static org.opengis.test.Validators.*;
  */
 @RunWith(Parameterized.class)
 public strictfp class MathTransformTest extends TransformTestCase {
+    /**
+     * The tolerance threshold for comparing the direct transforms result.
+     * This is set to half the precision of coordinate point givens in the
+     * EPSG and IGNF documentation.
+     */
+    private static final double TRANSFORM_TOLERANCE = 0.005;
+
+    /**
+     * The tolerance threshold for comparing the derivative coefficients. In each column of the
+     * derivative matrix of a map projection, there is typically one value greater than 100000
+     * (100 km - same order of magnitude than the transformed coordinate values) and all other
+     * values are close to zero. However we can not use the {@link #TRANSFORM_TOLERANCE} value
+     * in every cases because the expected derivative coefficients are computed using a numerical
+     * approximation. Some empirical tests have show that the difference between <cite>forward
+     * difference</cite> and <cite>backward difference</cite> can be close to 0.25, so we must
+     * be prepared to increase this tolerance threshold.
+     */
+    private static final double DERIVATIVE_TOLERANCE = 0.005;
+
+    /**
+     * The delta value to use for computing an approximation of the derivative by finite
+     * difference, in metres. The conversion from metres to degrees is performed using
+     * the standard length of a nautical mile.
+     * <p>
+     * Experience show that smaller values <em>decrease</em> the precision, because of
+     * floating point errors when subtracting big numbers that are close in magnitude.
+     */
+    private static final double DERIVATIVE_DELTA = 1;
+
     /**
      * The factory for creating {@link MathTransform} objects, or {@code null} if none.
      */
@@ -149,9 +179,9 @@ public strictfp class MathTransformTest extends TransformTestCase {
         final ParameterValueGroup parameters = PseudoEpsgFactory.createParameters(factory, code);
         validate(parameters);
         transform = factory.createParameterizedTransform(parameters);
-        tolerance = 0.005;
+        tolerance = TRANSFORM_TOLERANCE;
         derivativeDeltas = new double[transform.getSourceDimensions()];
-        Arrays.fill(derivativeDeltas, toRadians(1.0 / 60) / 1852); // Approximatively one metre.
+        Arrays.fill(derivativeDeltas, DERIVATIVE_DELTA / (60 * 1852));
     }
 
     /**
@@ -389,6 +419,23 @@ public strictfp class MathTransformTest extends TransformTestCase {
     }
 
     /**
+     * Asserts that a matrix of derivatives is equals to the expected ones within a positive delta.
+     */
+    @Override
+    protected void assertMatrixEquals(final String message, final Matrix expected, final Matrix actual, final Matrix tolmat) {
+        if (tolmat != null) {
+            final int numRow = tolmat.getNumRow();
+            final int numCol = tolmat.getNumCol();
+            for (int j=0; j<numRow; j++) {
+                for (int i=0; i<numCol; i++) {
+                    tolmat.setElement(j, i, DERIVATIVE_TOLERANCE);
+                }
+            }
+        }
+        super.assertMatrixEquals(message, expected, actual, tolmat);
+    }
+
+    /**
      * Returns the tolerance threshold for comparing the given ordinate value. The default
      * implementation applies the following rules:
      * <p>
@@ -400,10 +447,6 @@ public strictfp class MathTransformTest extends TransformTestCase {
      *       if the transform being tested is a map projection, then the {@linkplain #tolerance
      *       tolerance} value is converted from metres to decimal degrees except for longitudes
      *       at a pole in which case the tolerance value is set to 360°.</li>
-     *   <li>For {@linkplain CalculationType#DERIVATIVE derivatives}, returns a
-     *       relative {@linkplain #tolerance tolerance} value instead than the absolute value.
-     *       Relative tolerance values are required because derivative values close to a pole
-     *       may tend toward infinity.</li>
      *   <li>For {@linkplain CalculationType#STRICT strict} comparisons,
      *       unconditionally returns 0.</li>
      * </ul>
@@ -414,10 +457,6 @@ public strictfp class MathTransformTest extends TransformTestCase {
         switch (mode) {
             case STRICT: {
                 tol = 0;
-                break;
-            }
-            case DERIVATIVE: {
-                tol = max(10*tol, tol * abs(coordinate.getOrdinate(dimension)));
                 break;
             }
             case INVERSE_TRANSFORM: {

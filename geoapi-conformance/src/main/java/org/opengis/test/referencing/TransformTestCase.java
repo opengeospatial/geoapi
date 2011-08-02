@@ -183,14 +183,24 @@ public strictfp abstract class TransformTestCase extends TestCase {
     protected boolean isDerivativeSupported = true;
 
     /**
-     * The deltas to use for approximating {@linkplain MathTransform#derivative(DirectPosition)
-     * math transform derivatives} by the <cite>finite differences</cite> method. The length of
-     * this array shall be equals to the {@linkplain MathTransform#getSourceDimensions() number
-     * of source dimensions} of the {@linkplain #transform} being tested. Each value in this
-     * array is the delta to use for the corresponding dimension.
+     * The deltas to use for approximating {@linkplain MathTransform#derivative(DirectPosition) math
+     * transform derivatives} by the <a href="http://en.wikipedia.org/wiki/Finite_difference">finite
+     * differences</a> method. Each value in this array is the delta to use for the corresponding
+     * dimension, in units of the source ordinates of the {@linkplain #transform} being tested.
+     * The array length is theoretically the {@linkplain MathTransform#getSourceDimensions() number
+     * of source dimensions}, but different lengths are accepted for developers convenience. If the
+     * array is smaller than the number of dimensions, then the last delta value will be reused for
+     * all remaining dimensions.
      * <p>
-     * Testers shall provide a non-null value if the {@link #isDerivativeSupported} flag is
-     * {@code true}.
+     * Testers shall provide a non-null value if the {@link #isDerivativeSupported} flag is set to
+     * {@code true}. Smaller delta would theoretically increase the finite difference precision.
+     * However in practice too small deltas <em>decrease</em> the precision, because of floating
+     * point errors when subtracting big numbers that are close in magnitude. In the particular
+     * case of map projections, experience suggests that a distance of one metre converted to
+     * decimal degrees is a good compromise. The conversion from metre to degrees can be done
+     * using the standard nautical mile length (1852 metres by minute of angle) as below:
+     *
+     * <blockquote><pre>derivativeDeltas = new double[] {1.0 / (60 * 1852)}</pre></blockquote>
      *
      * @see #isDerivativeSupported
      * @see #verifyDerivative(double[])
@@ -574,20 +584,30 @@ public strictfp abstract class TransformTestCase extends TestCase {
     }
 
     /**
-     * Computes the derivative at the given point, and compares the matrix values with estimations
-     * computed from the corners of a cube around the given point. This method uses the <cite>finite
-     * central differences</cite> approximation of derivatives in order to estimate the expected
-     * result of {@link MathTransform#derivative(DirectPosition)}.
+     * Computes the {@linkplain MathTransform#derivative(DirectPosition) derivative at the given point}
+     * and compares the result with the <a href="http://en.wikipedia.org/wiki/Finite_difference">finite
+     * differences</a> approximation.
      * <p>
-     * The distance between 2 points to use for computing derivatives shall be specified
-     * by the {@link #derivativeDeltas} array, in units of the source CRS. If the length
-     * of the {@code derivativeDeltas} array is smaller than the number of source dimensions,
-     * then the last delta value is used for all additional dimensions. This allows specifying
-     * a single delta value (in an array of length 1) for all dimensions.
+     * All the three common forms of finite differences (<cite>forward difference</cite>,
+     * <cite>backward difference</cite> and <cite>central difference</cite>) are computed.
+     * For each matrix element, the tolerance value will be set to the largest difference
+     * between the results of the different forms. Developers can override the
+     * {@link #assertMatrixEquals(String, Matrix, Matrix, Matrix)} method in order to use
+     * different tolerance values.
+     * <p>
+     * The distance between the two points used by the <cite>central difference</cite>
+     * approximation shall be specified in the {@link #derivativeDeltas} array, in units
+     * of the source CRS. If the length of the {@code derivativeDeltas} array is smaller
+     * than the number of source dimensions, then the last delta value is used for all
+     * additional dimensions. This allows specifying a single delta value (in an array
+     * of length 1) for all dimensions.
      *
      * @param  coordinate The point where to compute the derivative, in units of the source CRS.
      * @throws TransformException If the derivative can not be computed, or a point can not be
      *         transformed.
+     *
+     * @see MathTransform#derivative(DirectPosition)
+     * @see #assertMatrixEquals(String, Matrix, Matrix, Matrix)
      *
      * @since 3.1
      */
@@ -600,14 +620,24 @@ public strictfp abstract class TransformTestCase extends TestCase {
         assertTrue   ("TransformTestCase.derivativeDeltas shall not be empty.", derivativeDeltas.length != 0);
         assertEquals ("Coordinate dimension shall be equals to the transform source dimension.",
                 transform.getSourceDimensions(), coordinate.length);
-
-        final Matrix matrix = transform.derivative(new SimpleDirectPosition(coordinate));
-        final int sourceDim = matrix.getNumCol();
-        final int targetDim = matrix.getNumRow();
-        assertEquals("Unexpected number of columns.", transform.getSourceDimensions(), sourceDim);
-        assertEquals("Unexpected number of rows.",    transform.getTargetDimensions(), targetDim);
-
+        /*
+         * Invoke the MathTransform.derivative(DirectPosition) method to test
+         * and validate the result.
+         */
+        final int sourceDim = transform.getSourceDimensions();
+        final int targetDim = transform.getTargetDimensions();
+        final SimpleDirectPosition S0 = new SimpleDirectPosition(sourceDim);
+        final SimpleDirectPosition T0 = new SimpleDirectPosition(targetDim);
+        S0.setCoordinate(coordinate);
+        assertSame(T0, transform.transform(S0, T0));
+        final Matrix matrix = transform.derivative(S0);
+        assertEquals("Unexpected number of columns.", sourceDim, matrix.getNumCol());
+        assertEquals("Unexpected number of rows.",    targetDim, matrix.getNumRow());
+        /*
+         * Compute an approximation of the expected derivative.
+         */
         final Matrix approx = new SimpleMatrix(targetDim, sourceDim, new double[sourceDim * targetDim]);
+        final Matrix tolmat = new SimpleMatrix(targetDim, sourceDim, new double[sourceDim * targetDim]);
         final SimpleDirectPosition S1 = new SimpleDirectPosition(sourceDim);
         final SimpleDirectPosition S2 = new SimpleDirectPosition(sourceDim);
         final SimpleDirectPosition T1 = new SimpleDirectPosition(targetDim);
@@ -622,21 +652,23 @@ public strictfp abstract class TransformTestCase extends TestCase {
             assertSame(T1, transform.transform(S1, T1));
             assertSame(T2, transform.transform(S2, T2));
             for (int j=0; j<targetDim; j++) {
-                approx.setElement(j, i, (T2.getOrdinate(j) - T1.getOrdinate(j)) / delta);
+                final double dc = (T2.getOrdinate(j) - T1.getOrdinate(j)) /  delta;    // Central difference
+                final double df = (T2.getOrdinate(j) - T0.getOrdinate(j)) / (delta/2); // Forward difference
+                final double db = (T0.getOrdinate(j) - T1.getOrdinate(j)) / (delta/2); // Backward difference
+                approx.setElement(j, i, dc);
+                tolmat.setElement(j, i, max(tolerance, max(abs(df - db), max(abs(dc - db), abs(dc - df)))));
             }
         }
         /*
          * Now compare the matrixes elements. If the transform implements
          * the MathTransform2D interface, check also the consistency.
          */
-        assertMatrixEquals("MathTransform.derivative(DirectPosition) error.",
-                approx, matrix, CalculationType.DERIVATIVE);
+        assertMatrixEquals("MathTransform.derivative(DirectPosition) error.", approx, matrix, tolmat);
         if (transform instanceof MathTransform2D) {
             assertEquals("MathTransform2D.getSourceDimensions()", 2, sourceDim);
             assertEquals("MathTransform2D.getTargetDimensions()", 2, targetDim);
             assertMatrixEquals("MathTransform2D.derivative(Point2D) error.", matrix,
-                    ((MathTransform2D) transform).derivative(new Point2D.Double(coordinate[0], coordinate[1])),
-                    CalculationType.STRICT);
+                    ((MathTransform2D) transform).derivative(new Point2D.Double(coordinate[0], coordinate[1])), null);
         }
     }
 
@@ -1148,20 +1180,24 @@ public strictfp abstract class TransformTestCase extends TestCase {
 
     /**
      * Asserts that a matrix of derivatives is equals to the expected ones within a positive delta.
-     * If the comparison fails, the given message is completed with the expected and actual
-     * matrixes.
+     * If the comparison fails, the given message is completed with the expected and actual matrixes
+     * values.
+     * <p>
+     * For each matrix element, the tolerance value is given by the corresponding element in the
+     * {@code tolmat} matrix. This tolerance matrix is initialized by the
+     * {@link #verifyDerivative(double[])} method to the differences found between the 3 forms of
+     * finite difference (<cite>forward</cite>, <cite>backward</cite>, <cite>central</cite>).
+     * Developers can override this method and overwrite the {@code tolmat} elements if they
+     * wish different tolerance values.
      *
      * @param message  The message to print in case of failure.
      * @param expected The expected matrix.
      * @param actual   The actual matrix.
-     * @param mode     Whatever the comparison should be {@linkplain CalculationType#STRICT strict} or
-     *                 accept the {@linkplain CalculationType#DERIVATIVE derivative} tolerance threshold.
+     * @param tolmat   The tolerance value for each matrix elements, or {@code null} for a strict comparison.
      *
      * @since 3.1
      */
-    protected final void assertMatrixEquals(final String message,
-            final Matrix expected, final Matrix actual, final CalculationType mode)
-    {
+    protected void assertMatrixEquals(final String message, final Matrix expected, final Matrix actual, final Matrix tolmat) {
         final int numRow = expected.getNumRow();
         final int numCol = expected.getNumCol();
         assertEquals("Wrong number of rows.",    numRow, actual.getNumRow());
@@ -1185,7 +1221,8 @@ public strictfp abstract class TransformTestCase extends TestCase {
                  * because the actual value is probably more accurate than the one approximated from
                  * finite differences.
                  */
-                if (!(d <= tolerance(offset, j, mode)) && Double.doubleToLongBits(a) != Double.doubleToLongBits(e)) {
+                final double tol = (tolmat != null) ? tolmat.getElement(j, i) : 0;
+                if (!(d <= tol) && Double.doubleToLongBits(a) != Double.doubleToLongBits(e)) {
                     final StringBuilder buffer = new StringBuilder(512);
                     final String lineSeparator = System.getProperty("line.separator", "\n");
                     buffer.append(message).append(lineSeparator).append("Matrix(").append(j).append(',').append(i)
@@ -1195,6 +1232,10 @@ public strictfp abstract class TransformTestCase extends TestCase {
                     SimpleMatrix.toString(expected, buffer, lineSeparator);
                     buffer.append(lineSeparator).append("Actual matrix:").append(lineSeparator);
                     SimpleMatrix.toString(actual, buffer, lineSeparator);
+                    if (tolmat != null) {
+                        buffer.append(lineSeparator).append("Tolerance matrix:").append(lineSeparator);
+                        SimpleMatrix.toString(tolmat, buffer, lineSeparator);
+                    }
                     throw new DerivativeFailure(buffer.toString());
                 }
             }
