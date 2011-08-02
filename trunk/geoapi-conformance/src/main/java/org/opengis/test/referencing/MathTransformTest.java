@@ -40,7 +40,7 @@ import org.opengis.util.Factory;
 import org.opengis.util.FactoryException;
 import org.opengis.geometry.DirectPosition;
 import org.opengis.parameter.ParameterValueGroup;
-import org.opengis.referencing.crs.ProjectedCRS;
+import org.opengis.referencing.operation.CoordinateOperation;
 import org.opengis.referencing.operation.MathTransform;
 import org.opengis.referencing.operation.TransformException;
 import org.opengis.referencing.operation.MathTransformFactory;
@@ -126,23 +126,33 @@ public strictfp class MathTransformTest extends TransformTestCase {
     }
 
     /**
-     * Creates a {@linkplain MathTransform math transform} for the
-     * {@linkplain ProjectedCRS#getConversionFromBase() conversion} used by the CRS identified
-     * by the given EPSG code, and stores the result in the {@link #transform} field. The set of
-     * allowed codes is documented in the {@link PseudoEpsgFactory#createParameters(int)} method.
+     * Creates a math transform for the {@linkplain CoordinateOperation coordinate operation}
+     * identified by the given EPSG code, and stores the result in the {@link #transform} field.
+     * The set of allowed codes is documented in the {@link PseudoEpsgFactory#createParameters(int)}
+     * method.
      * <p>
      * This method shall also set the {@link #tolerance} threshold in units of the target CRS
      * (typically metres), and the {@link #derivativeDeltas} in units of the source CRS
-     * (typically degrees).
+     * (typically degrees). The default implementation set the following values:
+     * <p>
+     * <ul>
+     *   <li>{@link #tolerance} is sets to half the precision of the sample coordinate points
+     *       given in the EPSG guidance document.</li>
+     *   <li>{@link #derivativeDeltas} is set to a value in degrees corresponding to
+     *       approximatively 1 metre on Earth (calculated using the standard nautical mile length).
+     *       A finer value can lead to more accurate derivative approximation by the
+     *       {@link #verifyDerivative(double[])} method, at the expense of more sensitivity
+     *       to the accuracy of the {@link MathTransform#transform MathTransform.transform(...)}
+     *       method being tested.</li>
+     * </ul>
      * <p>
      * Subclasses can override this method if they want to customize the math transform creations,
      * or the tolerance and delta values.
      *
-     * @param  code The EPSG code of a target Coordinate Reference System.
+     * @param  code The EPSG code of the {@linkplain CoordinateOperation coordinate operation} to create.
      * @throws FactoryException If the math transform for the given projected CRS can not be created.
      */
-    private void createMathTransform(final int code) throws FactoryException {
-        assumeNotNull(factory);
+    protected void createMathTransform(final int code) throws FactoryException {
         final ParameterValueGroup parameters = PseudoEpsgFactory.createParameters(factory, code);
         validate(parameters);
         transform = factory.createParameterizedTransform(parameters);
@@ -160,8 +170,9 @@ public strictfp class MathTransformTest extends TransformTestCase {
      * @throws TransformException If the example point can not be transformed.
      */
     private void run(int code) throws FactoryException, TransformException {
+        assumeNotNull(factory);
         final SamplePoints sample = SamplePoints.getSamplePoints(code);
-        createMathTransform(code);
+        createMathTransform(sample.operation);
         validate(transform);
         verifyTransform(sample.sourcePoints, sample.targetPoints);
         /*
@@ -182,10 +193,12 @@ public strictfp class MathTransformTest extends TransformTestCase {
     }
 
     /**
-     * Creates the "<cite>Mercator (variant A)</cite>" (EPSG:9804) projection documented
-     * in the EPSG guidance note and transform the example point given by EPSG.
-     * The {@link MathTransform} result is then compared with the expected result documented
-     * by EPSG.
+     * Testes the "<cite>Mercator (variant A)</cite>" (EPSG:9804) projection.
+     * First, this method transforms the point given in the <cite>Example</cite> section of the
+     * EPSG guidance note and compares the {@link MathTransform} result with the expected result.
+     * Next, this method transforms a random set of points in the projection area of validity
+     * and ensures that the {@linkplain MathTransform#inverse() inverse transform} and the
+     * {@linkplain MathTransform#derivative derivatives} are coherent.
      * <p>
      * The math transform parameters are:
      * <table border="1" cellspacing="0" cellpadding="2">
@@ -209,10 +222,12 @@ public strictfp class MathTransformTest extends TransformTestCase {
     }
 
     /**
-     * Creates the "<cite>Mercator (variant B)</cite>" (EPSG:9805) projection documented
-     * in the EPSG guidance note and transform the example point given by EPSG.
-     * The {@link MathTransform} result is then compared with the expected result documented
-     * by EPSG.
+     * Testes the "<cite>Mercator (variant B)</cite>" (EPSG:9805) projection.
+     * First, this method transforms the point given in the <cite>Example</cite> section of the
+     * EPSG guidance note and compares the {@link MathTransform} result with the expected result.
+     * Next, this method transforms a random set of points in the projection area of validity
+     * and ensures that the {@linkplain MathTransform#inverse() inverse transform} and the
+     * {@linkplain MathTransform#derivative derivatives} are coherent.
      * <p>
      * The math transform parameters are:
      * <table border="1" cellspacing="0" cellpadding="2">
@@ -235,10 +250,12 @@ public strictfp class MathTransformTest extends TransformTestCase {
     }
 
     /**
-     * Creates the "<cite>Mercator Popular Visualisation Pseudo Mercator" (EPSG:1024) projection
-     * documented in the EPSG guidance note and transform the example point given by EPSG.
-     * The {@link MathTransform} result is then compared with the expected result documented
-     * by EPSG.
+     * Testes the "<cite>Mercator Popular Visualisation Pseudo Mercator</cite>" (EPSG:1024) projection.
+     * First, this method transforms the point given in the <cite>Example</cite> section of the
+     * EPSG guidance note and compares the {@link MathTransform} result with the expected result.
+     * Next, this method transforms a random set of points in the projection area of validity
+     * and ensures that the {@linkplain MathTransform#inverse() inverse transform} and the
+     * {@linkplain MathTransform#derivative derivatives} are coherent.
      * <p>
      * The math transform parameters are:
      * <table border="1" cellspacing="0" cellpadding="2">
@@ -261,10 +278,12 @@ public strictfp class MathTransformTest extends TransformTestCase {
     }
 
     /**
-     * Creates the "<cite>Lambert Conic Conformal (1SP)</cite>" (EPSG:9801) projection
-     * documented in the EPSG guidance note and transform the example point given by EPSG.
-     * The {@link MathTransform} result is then compared with the expected result documented
-     * by EPSG.
+     * Testes the "<cite>Lambert Conic Conformal (1SP)</cite>" (EPSG:9801) projection.
+     * First, this method transforms the point given in the <cite>Example</cite> section of the
+     * EPSG guidance note and compares the {@link MathTransform} result with the expected result.
+     * Next, this method transforms a random set of points in the projection area of validity
+     * and ensures that the {@linkplain MathTransform#inverse() inverse transform} and the
+     * {@linkplain MathTransform#derivative derivatives} are coherent.
      * <p>
      * The math transform parameters are:
      * <table border="1" cellspacing="0" cellpadding="2">
@@ -288,10 +307,12 @@ public strictfp class MathTransformTest extends TransformTestCase {
     }
 
     /**
-     * Creates the "<cite>Lambert Conic Conformal (2SP)</cite>" (EPSG:9802) projection
-     * documented in the EPSG guidance note and transform the example point given by EPSG.
-     * The {@link MathTransform} result is then compared with the expected result documented
-     * by EPSG.
+     * Testes the "<cite>Lambert Conic Conformal (2SP)</cite>" (EPSG:9802) projection.
+     * First, this method transforms the point given in the <cite>Example</cite> section of the
+     * EPSG guidance note and compares the {@link MathTransform} result with the expected result.
+     * Next, this method transforms a random set of points in the projection area of validity
+     * and ensures that the {@linkplain MathTransform#inverse() inverse transform} and the
+     * {@linkplain MathTransform#derivative derivatives} are coherent.
      * <p>
      * The math transform parameters are:
      * <table border="1" cellspacing="0" cellpadding="2">
@@ -316,10 +337,12 @@ public strictfp class MathTransformTest extends TransformTestCase {
     }
 
     /**
-     * Creates the "<cite>Lambert Conic Conformal (2SP Belgium)</cite>" (EPSG:9803) projection
-     * documented in the EPSG guidance note and transform the example point given by EPSG.
-     * The {@link MathTransform} result is then compared with the expected result documented
-     * by EPSG.
+     * Testes the "<cite>Lambert Conic Conformal (2SP Belgium)</cite>" (EPSG:9803) projection.
+     * First, this method transforms the point given in the <cite>Example</cite> section of the
+     * EPSG guidance note and compares the {@link MathTransform} result with the expected result.
+     * Next, this method transforms a random set of points in the projection area of validity
+     * and ensures that the {@linkplain MathTransform#inverse() inverse transform} and the
+     * {@linkplain MathTransform#derivative derivatives} are coherent.
      * <p>
      * The math transform parameters are:
      * <table border="1" cellspacing="0" cellpadding="2">
@@ -344,10 +367,13 @@ public strictfp class MathTransformTest extends TransformTestCase {
     }
 
     /**
-     * Creates the "<cite>IGNF:MILLER</cite>" (EPSG:310642901) projection documented in the
+     * Testes the "<cite>IGNF:MILLER</cite>" (EPSG:310642901) projection.
+     * First, this method transforms the point given by the
      * <a href="http://api.ign.fr/geoportail/api/doc/fr/developpeur/wmsc.html">IGN documentation</a>
-     * and transform the example point given by IGNF. The {@link MathTransform} result is then
-     * compared with the expected result documented by IGN.
+     * and compares the {@link MathTransform} result with the expected result. Next, this method
+     * transforms a random set of points in the projection area of validity and ensures that the
+     * {@linkplain MathTransform#inverse() inverse transform} and the
+     * {@linkplain MathTransform#derivative derivatives} are coherent.
      * <p>
      * The math transform parameters are:
      * <table border="1" cellspacing="0" cellpadding="2">
@@ -385,21 +411,21 @@ public strictfp class MathTransformTest extends TransformTestCase {
     /**
      * Returns the tolerance threshold for comparing the given ordinate value. The default
      * implementation applies the following rules:
-     *
+     * <p>
      * <ul>
-     *   <li><p>For {@link TransformTestCase.ComparisonType#DIRECT_TRANSFORM direct transforms},
+     *   <li>For {@link TransformTestCase.ComparisonType#DIRECT_TRANSFORM direct transforms},
      *       return directly the {@linkplain #tolerance tolerance} value. When the transform to
-     *       be tested is a map projection, this tolerance value is measured in metres.</p></li>
-     *   <li><p>For {@link TransformTestCase.ComparisonType#INVERSE_TRANSFORM inverse transforms},
+     *       be tested is a map projection, this tolerance value is measured in metres.</li>
+     *   <li>For {@link TransformTestCase.ComparisonType#INVERSE_TRANSFORM inverse transforms},
      *       if the transform being tested is a map projection, then the {@linkplain #tolerance
      *       tolerance} value is converted from metres to decimal degrees except for longitudes
-     *       at a pole in which case the tolerance value is set to 360°.</p></li>
-     *   <li><p>For {@link TransformTestCase.ComparisonType#DERIVATIVE derivatives}, returns a
+     *       at a pole in which case the tolerance value is set to 360°.</li>
+     *   <li>For {@link TransformTestCase.ComparisonType#DERIVATIVE derivatives}, returns a
      *       relative {@linkplain #tolerance tolerance} value instead than the absolute value.
      *       Relative tolerance values are required because derivative values close to a pole
-     *       may tend toward infinity.</p></li>
-     *   <li><p>For {@link TransformTestCase.ComparisonType#STRICT strict} comparisons,
-     *       unconditionally returns 0.</p></li>
+     *       may tend toward infinity.</li>
+     *   <li>For {@link TransformTestCase.ComparisonType#STRICT strict} comparisons,
+     *       unconditionally returns 0.</li>
      * </ul>
      */
     @Override
