@@ -42,8 +42,8 @@ import org.opengis.test.util.PseudoFactory;
 
 
 /**
- * Creates Coordinate Reference System objects for a limited set of hard-coded EPSG codes
- * using only {@link ObjectFactory} and {@link MathTransformFactory}. This pseudo-factory
+ * Creates referencing objects for a limited set of hard-coded EPSG codes
+ * using {@link ObjectFactory} and {@link MathTransformFactory}. This pseudo-factory
  * can be used with implementation that do not support (or don't want to test) a "real"
  * {@link CRSAuthorityFactory} for the EPSG database.
  *
