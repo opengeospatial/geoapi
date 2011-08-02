@@ -204,14 +204,14 @@ public strictfp abstract class TransformTestCase extends TestCase {
      * the expected one. By default this threshold is absolute; no special computation is
      * performed for taking in account the magnitude of the ordinate being compared. If a
      * subclass needs to set a relative tolerance threshold instead than an absolute one,
-     * it should override the {@link #tolerance(DirectPosition, int, ComparisonType)} method.
+     * it should override the {@link #tolerance(DirectPosition, int, CalculationType)} method.
      * <p>
      * The default value is 0, which means that strict equality will be required. Subclasses
      * should set a more suitable tolerance threshold when {@linkplain #transform} is assigned
      * a value.
      *
      * @see #transform
-     * @see #tolerance(DirectPosition, int, ComparisonType)
+     * @see #tolerance(DirectPosition, int, CalculationType)
      */
     protected double tolerance;
 
@@ -237,7 +237,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
      * @param  ordinate The ordinate value being compared.
      * @return The absolute tolerance threshold to use for comparing the given ordinate.
      *
-     * @deprecated Replaced by {@link #tolerance(DirectPosition, int, ComparisonType)}.
+     * @deprecated Replaced by {@link #tolerance(DirectPosition, int, CalculationType)}.
      */
     @Deprecated
     protected double tolerance(final double ordinate) {
@@ -262,7 +262,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
     /**
      * Transforms the given coordinates and verifies that the result is equals (within a positive
      * delta) to the expected ones. If the difference between an expected and actual ordinate value
-     * is greater than the {@linkplain #tolerance(DirectPosition, int, ComparisonType) tolerance}
+     * is greater than the {@linkplain #tolerance(DirectPosition, int, CalculationType) tolerance}
      * threshold, then the assertion fails.
      * <p>
      * If {@link #isInverseTransformSupported} is {@code true}, then this method will also
@@ -328,9 +328,9 @@ public strictfp abstract class TransformTestCase extends TestCase {
             assertSame("MathTransform.transform(DirectPosition,...) shall use the given target.",
                     target, transform.transform(source, target));
             assertCoordinatesEqual("Unexpected transform result.", targetDimension,
-                    expected, targetOffset, target.ordinates, 0, 1, ComparisonType.DIRECT_TRANSFORM, i);
+                    expected, targetOffset, target.ordinates, 0, 1, CalculationType.DIRECT_TRANSFORM, i);
             assertCoordinatesEqual("Source coordinate has been modified.", sourceDimension,
-                    coordinates, sourceOffset, source.ordinates, 0, 1, ComparisonType.STRICT, i);
+                    coordinates, sourceOffset, source.ordinates, 0, 1, CalculationType.STRICT, i);
 
             if (inverse == null) {
                 continue;
@@ -339,16 +339,16 @@ public strictfp abstract class TransformTestCase extends TestCase {
             assertSame("MathTransform.transform(DirectPosition,...) shall use the given target.",
                     back, inverse.transform(target, back));
             assertCoordinateEquals("Unexpected result of inverse transform.",
-                    source.ordinates, back.ordinates, i, ComparisonType.INVERSE_TRANSFORM);
+                    source.ordinates, back.ordinates, i, CalculationType.INVERSE_TRANSFORM);
             assertCoordinatesEqual("Source coordinate has been modified.", targetDimension,
-                    expected, targetOffset, target.ordinates, 0, 1, ComparisonType.STRICT, i);
+                    expected, targetOffset, target.ordinates, 0, 1, CalculationType.STRICT, i);
         }
     }
 
     /**
      * Transforms the given coordinates, applies the inverse transform and compares with the
      * original values. If a difference between the expected and actual ordinate values is
-     * greater than the {@linkplain #tolerance(DirectPosition, int, ComparisonType) tolerance}
+     * greater than the {@linkplain #tolerance(DirectPosition, int, CalculationType) tolerance}
      * threshold, then the assertion fails.
      * <p>
      * At the difference of {@link #verifyTransform(double[],double[])}, this method do
@@ -400,16 +400,16 @@ public strictfp abstract class TransformTestCase extends TestCase {
             assertSame("MathTransform.transform(DirectPosition,...) shall use the given target.",
                     back, inverse.transform(target, back));
             assertCoordinateEquals("Unexpected result of inverse transform.",
-                    source.ordinates, back.ordinates, i, ComparisonType.INVERSE_TRANSFORM);
+                    source.ordinates, back.ordinates, i, CalculationType.INVERSE_TRANSFORM);
             assertCoordinatesEqual("Source coordinate has been modified.", sourceDimension,
-                    coordinates, offset, source.ordinates, 0, 1, ComparisonType.STRICT, i);
+                    coordinates, offset, source.ordinates, 0, 1, CalculationType.STRICT, i);
         }
     }
 
     /**
      * Transforms the given coordinates, applies the inverse transform and compares with the
      * original values. If a difference between the expected and actual ordinate values is
-     * greater than the {@linkplain #tolerance(DirectPosition, int, ComparisonType) tolerance}
+     * greater than the {@linkplain #tolerance(DirectPosition, int, CalculationType) tolerance}
      * threshold, then the assertion fails.
      * <p>
      * The default implementation delegates to {@link #verifyInverse(double[])}.
@@ -426,7 +426,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
         verifyInverse(sourceDoubles);
         final int dimension = transform.getSourceDimensions();
         assertCoordinatesEqual("Unexpected change in source coordinates.", dimension,
-                coordinates, 0, sourceDoubles, 0, coordinates.length / dimension, ComparisonType.STRICT);
+                coordinates, 0, sourceDoubles, 0, coordinates.length / dimension, CalculationType.STRICT);
     }
 
     /**
@@ -504,33 +504,33 @@ public strictfp abstract class TransformTestCase extends TestCase {
             Arrays.fill(targetDoubles, Double.NaN);
             transform.transform(sourceDoubles, 0, targetDoubles, 0, numPts);
             assertCoordinatesEqual("MathTransform.transform(double[],0,double[],0,n) modified a source coordinate.",
-                    sourceDimension, sourceFloats, 0, sourceDoubles, 0, numPts, ComparisonType.STRICT);
+                    sourceDimension, sourceFloats, 0, sourceDoubles, 0, numPts, CalculationType.STRICT);
             assertCoordinatesEqual("MathTransform.transform(double[],0,double[],0,n) error.",
-                    targetDimension, expectedDoubles, 0, targetDoubles, 0, numPts, ComparisonType.DIRECT_TRANSFORM);
+                    targetDimension, expectedDoubles, 0, targetDoubles, 0, numPts, CalculationType.DIRECT_TRANSFORM);
         }
         if (isFloatToFloatSupported) {
             Arrays.fill(targetFloats, Float.NaN);
             transform.transform(sourceFloats, 0, targetFloats, 0, numPts);
             assertCoordinatesEqual("MathTransform.transform(float[],0,float[],0,n) modified a source coordinate.",
-                    sourceDimension, sourceDoubles, 0, sourceFloats, 0, numPts, ComparisonType.STRICT);
+                    sourceDimension, sourceDoubles, 0, sourceFloats, 0, numPts, CalculationType.STRICT);
             assertCoordinatesEqual("MathTransform.transform(float[],0,float[],0,n) error.",
-                    targetDimension, expectedFloats, 0, targetFloats, 0, numPts, ComparisonType.DIRECT_TRANSFORM);
+                    targetDimension, expectedFloats, 0, targetFloats, 0, numPts, CalculationType.DIRECT_TRANSFORM);
         }
         if (isDoubleToFloatSupported) {
             Arrays.fill(targetFloats, Float.NaN);
             transform.transform(sourceDoubles, 0, targetFloats, 0, numPts);
             assertCoordinatesEqual("MathTransform.transform(double[],0,float[],0,n) modified a source coordinate.",
-                    sourceDimension, sourceFloats, 0, sourceDoubles, 0, numPts, ComparisonType.STRICT);
+                    sourceDimension, sourceFloats, 0, sourceDoubles, 0, numPts, CalculationType.STRICT);
             assertCoordinatesEqual("MathTransform.transform(double[],0,float[],0,n) error.",
-                    targetDimension, expectedFloats, 0, targetFloats, 0, numPts, ComparisonType.DIRECT_TRANSFORM);
+                    targetDimension, expectedFloats, 0, targetFloats, 0, numPts, CalculationType.DIRECT_TRANSFORM);
         }
         if (isFloatToDoubleSupported) {
             Arrays.fill(targetDoubles, Double.NaN);
             transform.transform(sourceFloats, 0, targetDoubles, 0, numPts);
             assertCoordinatesEqual("MathTransform.transform(float[],0,double[],0,n) modified a source coordinate.",
-                    sourceDimension, sourceDoubles, 0, sourceFloats, 0, numPts, ComparisonType.STRICT);
+                    sourceDimension, sourceDoubles, 0, sourceFloats, 0, numPts, CalculationType.STRICT);
             assertCoordinatesEqual("MathTransform.transform(float[],0,double[],0,n) error.",
-                    targetDimension, expectedDoubles, 0, targetDoubles, 0, numPts, ComparisonType.DIRECT_TRANSFORM);
+                    targetDimension, expectedDoubles, 0, targetDoubles, 0, numPts, CalculationType.DIRECT_TRANSFORM);
         }
         /*
          * Tests transformation in overlapping arrays.
@@ -543,9 +543,9 @@ public strictfp abstract class TransformTestCase extends TestCase {
                     transform.transform(targetFloats,  sourceOffset, targetFloats,  targetOffset, numPts);
                     transform.transform(targetDoubles, sourceOffset, targetDoubles, targetOffset, numPts);
                     assertCoordinatesEqual("MathTransform.transform(float[],0,float[],0,n) error.",
-                            targetDimension, expectedFloats, 0, targetFloats, targetOffset, numPts, ComparisonType.DIRECT_TRANSFORM);
+                            targetDimension, expectedFloats, 0, targetFloats, targetOffset, numPts, CalculationType.DIRECT_TRANSFORM);
                     assertCoordinatesEqual("MathTransform.transform(double[],0,double[],0,n) error.",
-                            targetDimension, expectedFloats, 0, targetDoubles, targetOffset, numPts, ComparisonType.DIRECT_TRANSFORM);
+                            targetDimension, expectedFloats, 0, targetDoubles, targetOffset, numPts, CalculationType.DIRECT_TRANSFORM);
                 }
             }
         }
@@ -568,7 +568,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
                 targetDoubles[i++] = target.y;
             }
             assertCoordinatesEqual("MathTransform2D.transform(Point2D,Point2D) error.",
-                    2, expectedDoubles, 0, targetDoubles, 0, numPts, ComparisonType.DIRECT_TRANSFORM);
+                    2, expectedDoubles, 0, targetDoubles, 0, numPts, CalculationType.DIRECT_TRANSFORM);
         }
         return expectedFloats;
     }
@@ -630,13 +630,13 @@ public strictfp abstract class TransformTestCase extends TestCase {
          * the MathTransform2D interface, check also the consistency.
          */
         assertMatrixEquals("MathTransform.derivative(DirectPosition) error.",
-                approx, matrix, ComparisonType.DERIVATIVE);
+                approx, matrix, CalculationType.DERIVATIVE);
         if (transform instanceof MathTransform2D) {
             assertEquals("MathTransform2D.getSourceDimensions()", 2, sourceDim);
             assertEquals("MathTransform2D.getTargetDimensions()", 2, targetDim);
             assertMatrixEquals("MathTransform2D.derivative(Point2D) error.", matrix,
                     ((MathTransform2D) transform).derivative(new Point2D.Double(coordinate[0], coordinate[1])),
-                    ComparisonType.STRICT);
+                    CalculationType.STRICT);
         }
     }
 
@@ -744,7 +744,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
      *                 inverse transform, or whatever strict equality is requested.
      */
     protected final void assertCoordinateEquals(final String message, final float[] expected,
-            final float[] actual, final int index, final ComparisonType mode)
+            final float[] actual, final int index, final CalculationType mode)
     {
         final int dimension = expected.length;
         assertEquals(dimension, actual.length);
@@ -764,7 +764,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
      *                 inverse transform, or whatever strict equality is requested.
      */
     protected final void assertCoordinateEquals(final String message, final float[] expected,
-            final double[] actual, final int index, final ComparisonType mode)
+            final double[] actual, final int index, final CalculationType mode)
     {
         final int dimension = expected.length;
         assertEquals(dimension, actual.length);
@@ -784,7 +784,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
      *                 inverse transform, or whatever strict equality is requested.
      */
     protected final void assertCoordinateEquals(final String message, final double[] expected,
-            final float[] actual, final int index, final ComparisonType mode)
+            final float[] actual, final int index, final CalculationType mode)
     {
         final int dimension = expected.length;
         assertEquals(dimension, actual.length);
@@ -804,7 +804,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
      *                 inverse transform, or whatever strict equality is requested.
      */
     protected final void assertCoordinateEquals(final String message, final double[] expected,
-            final double[] actual, final int index, final ComparisonType mode)
+            final double[] actual, final int index, final CalculationType mode)
     {
         final int dimension = expected.length;
         assertEquals(dimension, actual.length);
@@ -830,7 +830,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
             final String  message,     final int dimension,
             final float[] expectedPts, final int expectedOffset,
             final float[] actualPts,   final int actualOffset,
-            final int     numPoints,   final ComparisonType mode)
+            final int     numPoints,   final CalculationType mode)
     {
         assertCoordinatesEqual(message, dimension, expectedPts, expectedOffset,
                 actualPts, actualOffset, numPoints, mode, 0);
@@ -855,7 +855,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
             final String   message,     final int dimension,
             final float[]  expectedPts, final int expectedOffset,
             final double[] actualPts,   final int actualOffset,
-            final int      numPoints,   final ComparisonType mode)
+            final int      numPoints,   final CalculationType mode)
     {
         assertCoordinatesEqual(message, dimension, expectedPts, expectedOffset,
                 actualPts, actualOffset, numPoints, mode, 0);
@@ -880,7 +880,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
             final String   message,     final int dimension,
             final double[] expectedPts, final int expectedOffset,
             final float [] actualPts,   final int actualOffset,
-            final int      numPoints,   final ComparisonType mode)
+            final int      numPoints,   final CalculationType mode)
     {
         assertCoordinatesEqual(message, dimension, expectedPts, expectedOffset,
                 actualPts, actualOffset, numPoints, mode, 0);
@@ -905,7 +905,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
             final String   message,     final int dimension,
             final double[] expectedPts, final int expectedOffset,
             final double[] actualPts,   final int actualOffset,
-            final int      numPoints,   final ComparisonType mode)
+            final int      numPoints,   final CalculationType mode)
     {
         assertCoordinatesEqual(message, dimension, expectedPts, expectedOffset,
                 actualPts, actualOffset, numPoints, mode, 0);
@@ -932,7 +932,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
             final String   message,     final int dimension,
             final Object   expectedPts, int expectedOffset,
             final Object   actualPts,   int actualOffset,
-            final int      numPoints,   final ComparisonType mode, final int reportedIndex)
+            final int      numPoints,   final CalculationType mode, final int reportedIndex)
     {
         final boolean useDouble = isDoubleArray(expectedPts) && isDoubleArray(actualPts);
         final SimpleDirectPosition actual   = new SimpleDirectPosition(dimension);
@@ -975,7 +975,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
     }
 
     /**
-     * @deprecated The {@code boolean} argument has been replaced by a {@link ComparisonType} argument.
+     * @deprecated The {@code boolean} argument has been replaced by a {@link CalculationType} argument.
      *
      * @param message  The message to print in case of failure.
      * @param expected The array of expected ordinate values.
@@ -989,11 +989,11 @@ public strictfp abstract class TransformTestCase extends TestCase {
             final float[] actual, final int index, final boolean strict)
     {
         assertCoordinateEquals(message, expected, actual, index,
-                strict ? ComparisonType.STRICT : ComparisonType.DIRECT_TRANSFORM);
+                strict ? CalculationType.STRICT : CalculationType.DIRECT_TRANSFORM);
     }
 
     /**
-     * @deprecated The {@code boolean} argument has been replaced by a {@link ComparisonType} argument.
+     * @deprecated The {@code boolean} argument has been replaced by a {@link CalculationType} argument.
      *
      * @param message  The message to print in case of failure.
      * @param expected The array of expected ordinate values.
@@ -1007,11 +1007,11 @@ public strictfp abstract class TransformTestCase extends TestCase {
             final double[] actual, final int index, final boolean strict)
     {
         assertCoordinateEquals(message, expected, actual, index,
-                strict ? ComparisonType.STRICT : ComparisonType.DIRECT_TRANSFORM);
+                strict ? CalculationType.STRICT : CalculationType.DIRECT_TRANSFORM);
     }
 
     /**
-     * @deprecated The {@code boolean} argument has been replaced by a {@link ComparisonType} argument.
+     * @deprecated The {@code boolean} argument has been replaced by a {@link CalculationType} argument.
      *
      * @param message  The message to print in case of failure.
      * @param expected The array of expected ordinate values.
@@ -1025,11 +1025,11 @@ public strictfp abstract class TransformTestCase extends TestCase {
             final float[] actual, final int index, final boolean strict)
     {
         assertCoordinateEquals(message, expected, actual, index,
-                strict ? ComparisonType.STRICT : ComparisonType.DIRECT_TRANSFORM);
+                strict ? CalculationType.STRICT : CalculationType.DIRECT_TRANSFORM);
     }
 
     /**
-     * @deprecated The {@code boolean} argument has been replaced by a {@link ComparisonType} argument.
+     * @deprecated The {@code boolean} argument has been replaced by a {@link CalculationType} argument.
      *
      * @param message  The message to print in case of failure.
      * @param expected The array of expected ordinate values.
@@ -1043,11 +1043,11 @@ public strictfp abstract class TransformTestCase extends TestCase {
             final double[] actual, final int index, final boolean strict)
     {
         assertCoordinateEquals(message, expected, actual, index,
-                strict ? ComparisonType.STRICT : ComparisonType.DIRECT_TRANSFORM);
+                strict ? CalculationType.STRICT : CalculationType.DIRECT_TRANSFORM);
     }
 
     /**
-     * @deprecated The {@code boolean} argument has been replaced by a {@link ComparisonType} argument.
+     * @deprecated The {@code boolean} argument has been replaced by a {@link CalculationType} argument.
      *
      * @param message        The message to print in case of failure.
      * @param dimension      The dimension of each coordinate points in the arrays.
@@ -1068,11 +1068,11 @@ public strictfp abstract class TransformTestCase extends TestCase {
     {
         assertCoordinatesEqual(message, dimension,
                 expectedPts, expectedOffset, actualPts, actualOffset, numPoints,
-                strict ? ComparisonType.STRICT : ComparisonType.DIRECT_TRANSFORM);
+                strict ? CalculationType.STRICT : CalculationType.DIRECT_TRANSFORM);
     }
 
     /**
-     * @deprecated The {@code boolean} argument has been replaced by a {@link ComparisonType} argument.
+     * @deprecated The {@code boolean} argument has been replaced by a {@link CalculationType} argument.
      *
      * @param message        The message to print in case of failure.
      * @param dimension      The dimension of each coordinate points in the arrays.
@@ -1093,11 +1093,11 @@ public strictfp abstract class TransformTestCase extends TestCase {
     {
         assertCoordinatesEqual(message, dimension,
                 expectedPts, expectedOffset, actualPts, actualOffset, numPoints,
-                strict ? ComparisonType.STRICT : ComparisonType.DIRECT_TRANSFORM);
+                strict ? CalculationType.STRICT : CalculationType.DIRECT_TRANSFORM);
     }
 
     /**
-     * @deprecated The {@code boolean} argument has been replaced by a {@link ComparisonType} argument.
+     * @deprecated The {@code boolean} argument has been replaced by a {@link CalculationType} argument.
      *
      * @param message        The message to print in case of failure.
      * @param dimension      The dimension of each coordinate points in the arrays.
@@ -1118,11 +1118,11 @@ public strictfp abstract class TransformTestCase extends TestCase {
     {
         assertCoordinatesEqual(message, dimension,
                 expectedPts, expectedOffset, actualPts, actualOffset, numPoints,
-                strict ? ComparisonType.STRICT : ComparisonType.DIRECT_TRANSFORM);
+                strict ? CalculationType.STRICT : CalculationType.DIRECT_TRANSFORM);
     }
 
     /**
-     * @deprecated The {@code boolean} argument has been replaced by a {@link ComparisonType} argument.
+     * @deprecated The {@code boolean} argument has been replaced by a {@link CalculationType} argument.
      *
      * @param message        The message to print in case of failure.
      * @param dimension      The dimension of each coordinate points in the arrays.
@@ -1143,7 +1143,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
     {
         assertCoordinatesEqual(message, dimension,
                 expectedPts, expectedOffset, actualPts, actualOffset, numPoints,
-                strict ? ComparisonType.STRICT : ComparisonType.DIRECT_TRANSFORM);
+                strict ? CalculationType.STRICT : CalculationType.DIRECT_TRANSFORM);
     }
 
     /**
@@ -1154,13 +1154,13 @@ public strictfp abstract class TransformTestCase extends TestCase {
      * @param message  The message to print in case of failure.
      * @param expected The expected matrix.
      * @param actual   The actual matrix.
-     * @param mode     Whatever the comparison should be {@linkplain ComparisonType#STRICT strict} or
-     *                 accept the {@linkplain ComparisonType#DERIVATIVE derivative} tolerance threshold.
+     * @param mode     Whatever the comparison should be {@linkplain CalculationType#STRICT strict} or
+     *                 accept the {@linkplain CalculationType#DERIVATIVE derivative} tolerance threshold.
      *
      * @since 3.1
      */
     protected final void assertMatrixEquals(final String message,
-            final Matrix expected, final Matrix actual, final ComparisonType mode)
+            final Matrix expected, final Matrix actual, final CalculationType mode)
     {
         final int numRow = expected.getNumRow();
         final int numCol = expected.getNumCol();
@@ -1224,7 +1224,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
      *
      * @since 3.1
      */
-    protected void normalize(DirectPosition expected, DirectPosition actual, ComparisonType mode) {
+    protected void normalize(DirectPosition expected, DirectPosition actual, CalculationType mode) {
     }
 
     /**
@@ -1258,49 +1258,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
      *
      * @since 3.1
      */
-    protected double tolerance(final DirectPosition coordinate, final int dimension, final ComparisonType mode) {
-        return (mode != ComparisonType.STRICT) ? tolerance(coordinate.getOrdinate(dimension)) : 0;
-    }
-
-
-    /**
-     * The kind of comparison being performed. This information can be used by subclasses of
-     * {@link TransformTestCase} wanting finer grain tolerance threshold than the one provided
-     * by the default implementation. For example when testing the conversions from a geographic
-     * CRS (axes in degrees) to a projected CRS (axes in metres), a precision of 10 centimetres
-     * corresponds to a {@linkplain TransformTestCase#tolerance tolerance} value of 0.1 during
-     * direct conversions, but approximatively 1E-6 during inverse conversions.
-     *
-     * @author  Martin Desruisseaux (Geomatys)
-     * @version 3.1
-     * @since   3.1
-     *
-     * @see TransformTestCase#tolerance(DirectPosition, int, ComparisonType)
-     */
-    protected static enum ComparisonType {
-        /**
-         * Ignores the {@linkplain TransformTestCase#tolerance tolerance} threshold.
-         * Ordinate values are checked for strict equality.
-         */
-        STRICT,
-
-        /**
-         * The ordinate values to compare are the result of a direct calculation
-         * performed by the {@linkplain TransformTestCase#transform transform tested}.
-         */
-        DIRECT_TRANSFORM,
-
-        /**
-         * The ordinate values to compare are the result of the
-         * {@linkplain MathTransform#inverse() inverse transform}.
-         */
-        INVERSE_TRANSFORM,
-
-        /**
-         * The values to compare are {@linkplain MathTransform#derivative(DirectPosition) derivatives}.
-         * In case of doubt, implementations can use for the derivative values the same threshold than
-         * for the {@link #DIRECT_TRANSFORM} case.
-         */
-        DERIVATIVE
+    protected double tolerance(final DirectPosition coordinate, final int dimension, final CalculationType mode) {
+        return (mode != CalculationType.STRICT) ? tolerance(coordinate.getOrdinate(dimension)) : 0;
     }
 }

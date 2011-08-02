@@ -55,7 +55,7 @@ import static org.opengis.test.Validators.*;
 
 
 /**
- * Tests {@linkplain MathTransform} from the {@code org.opengis.referencing.operation} package.
+ * Tests {@link MathTransform}s from the {@code org.opengis.referencing.operation} package.
  * Math transform instances are created using the factory given at construction time.
  *
  * In order to specify their factory and run the tests in a JUnit framework, implementors can
@@ -393,23 +393,23 @@ public strictfp class MathTransformTest extends TransformTestCase {
      * implementation applies the following rules:
      * <p>
      * <ul>
-     *   <li>For {@linkplain TransformTestCase.ComparisonType#DIRECT_TRANSFORM direct transforms},
+     *   <li>For {@linkplain CalculationType#DIRECT_TRANSFORM direct transforms},
      *       return directly the {@linkplain #tolerance tolerance} value. When the transform to
      *       be tested is a map projection, this tolerance value is measured in metres.</li>
-     *   <li>For {@linkplain TransformTestCase.ComparisonType#INVERSE_TRANSFORM inverse transforms},
+     *   <li>For {@linkplain CalculationType#INVERSE_TRANSFORM inverse transforms},
      *       if the transform being tested is a map projection, then the {@linkplain #tolerance
      *       tolerance} value is converted from metres to decimal degrees except for longitudes
      *       at a pole in which case the tolerance value is set to 360°.</li>
-     *   <li>For {@linkplain TransformTestCase.ComparisonType#DERIVATIVE derivatives}, returns a
+     *   <li>For {@linkplain CalculationType#DERIVATIVE derivatives}, returns a
      *       relative {@linkplain #tolerance tolerance} value instead than the absolute value.
      *       Relative tolerance values are required because derivative values close to a pole
      *       may tend toward infinity.</li>
-     *   <li>For {@linkplain TransformTestCase.ComparisonType#STRICT strict} comparisons,
+     *   <li>For {@linkplain CalculationType#STRICT strict} comparisons,
      *       unconditionally returns 0.</li>
      * </ul>
      */
     @Override
-    protected double tolerance(final DirectPosition coordinate, final int dimension, final ComparisonType mode) {
+    protected double tolerance(final DirectPosition coordinate, final int dimension, final CalculationType mode) {
         double tol = tolerance;
         switch (mode) {
             case STRICT: {

@@ -52,7 +52,7 @@ import static org.opengis.test.Validators.*;
 
 
 /**
- * Tests {@linkplain CoordinateReferenceSystem Coordinate Reference System} and related objects
+ * Tests {@link CoordinateReferenceSystem} and related objects
  * from the {@code org.opengis.referencing.crs} package. CRS instances are created using the
  * authority factory given at construction time.
  *
