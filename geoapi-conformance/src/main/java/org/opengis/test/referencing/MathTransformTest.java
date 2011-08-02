@@ -95,13 +95,6 @@ public strictfp class MathTransformTest extends TransformTestCase {
     private transient boolean isProjection;
 
     /**
-     * {@code true} if the longitude (which is assumed to be the first ordinate)
-     * should be ignored. This can be the case only if the latitude is at a pole,
-     * in which case the longitude has no meaning.
-     */
-    private transient boolean isAtPole;
-
-    /**
      * Returns a default set of factories to use for running the tests. Those factories are given
      * in arguments to the constructor when this test class is instantiated directly by JUnit (for
      * example as a {@linkplain org.junit.runners.Suite.SuiteClasses suite} element), instead than
@@ -396,40 +389,27 @@ public strictfp class MathTransformTest extends TransformTestCase {
     }
 
     /**
-     * Returns the index within the given position of an ordinate value which is not approximatively
-     * equals to the expected value. The default implementation performs the work documented in the
-     * {@linkplain TransformTestCase#indexOfMismatch parent class} except when the coordinate to
-     * compare is a geographic coordinate located at the North or South pole, in which case the
-     * longitude value is essentially ignored.
-     */
-    @Override
-    protected int indexOfMismatch(final DirectPosition expected, final DirectPosition actual, final ComparisonType mode) {
-        isAtPole = isProjection && mode == ComparisonType.INVERSE_TRANSFORM && abs(expected.getOrdinate(1)) == 90;
-        return super.indexOfMismatch(expected, actual, mode);
-    }
-
-    /**
      * Returns the tolerance threshold for comparing the given ordinate value. The default
      * implementation applies the following rules:
      * <p>
      * <ul>
-     *   <li>For {@link TransformTestCase.ComparisonType#DIRECT_TRANSFORM direct transforms},
+     *   <li>For {@linkplain TransformTestCase.ComparisonType#DIRECT_TRANSFORM direct transforms},
      *       return directly the {@linkplain #tolerance tolerance} value. When the transform to
      *       be tested is a map projection, this tolerance value is measured in metres.</li>
-     *   <li>For {@link TransformTestCase.ComparisonType#INVERSE_TRANSFORM inverse transforms},
+     *   <li>For {@linkplain TransformTestCase.ComparisonType#INVERSE_TRANSFORM inverse transforms},
      *       if the transform being tested is a map projection, then the {@linkplain #tolerance
      *       tolerance} value is converted from metres to decimal degrees except for longitudes
      *       at a pole in which case the tolerance value is set to 360°.</li>
-     *   <li>For {@link TransformTestCase.ComparisonType#DERIVATIVE derivatives}, returns a
+     *   <li>For {@linkplain TransformTestCase.ComparisonType#DERIVATIVE derivatives}, returns a
      *       relative {@linkplain #tolerance tolerance} value instead than the absolute value.
      *       Relative tolerance values are required because derivative values close to a pole
      *       may tend toward infinity.</li>
-     *   <li>For {@link TransformTestCase.ComparisonType#STRICT strict} comparisons,
+     *   <li>For {@linkplain TransformTestCase.ComparisonType#STRICT strict} comparisons,
      *       unconditionally returns 0.</li>
      * </ul>
      */
     @Override
-    protected double tolerance(final double ordinate, final int dimension, final ComparisonType mode) {
+    protected double tolerance(final DirectPosition coordinate, final int dimension, final ComparisonType mode) {
         double tol = tolerance;
         switch (mode) {
             case STRICT: {
@@ -437,14 +417,15 @@ public strictfp class MathTransformTest extends TransformTestCase {
                 break;
             }
             case DERIVATIVE: {
-                tol = max(10*tol, tol * abs(ordinate));
+                tol = max(10*tol, tol * abs(coordinate.getOrdinate(dimension)));
                 break;
             }
             case INVERSE_TRANSFORM: {
                 if (isProjection) {
-                    tol /= (1852 * 60); // 1 nautical miles = 1852 metres in 1 minute of angle.
-                    if (dimension == 0 && isAtPole) {
+                    if (dimension == 0 && abs(coordinate.getOrdinate(1)) == 90) {
                         tol = 360;
+                    } else {
+                        tol /= (1852 * 60); // 1 nautical miles = 1852 metres in 1 minute of angle.
                     }
                 }
                 break;
