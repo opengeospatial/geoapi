@@ -175,6 +175,21 @@ public strictfp class TransformCaseTest extends TransformTestCase {
     }
 
     /**
+     * Tests {@link #verifyDerivative(double[])}.
+     *
+     * @throws TransformException Should never happen.
+     *
+     * @since 3.1
+     */
+    public void testDerivative() throws TransformException {
+        tolerance = 1E-10;
+        derivativeDeltas = new double[] {0.1};
+        assertAllTestsEnabled();
+        Validators.validate(transform);
+        verifyDerivative(10, 20);
+    }
+
+    /**
      * Tests {@link #verifyDerivative(double[])} using a bogus transform.
      * A {@link TransformFailure} exception should be thrown.
      *

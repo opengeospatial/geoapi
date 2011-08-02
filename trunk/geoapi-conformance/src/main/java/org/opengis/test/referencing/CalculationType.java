@@ -75,12 +75,5 @@ public enum CalculationType {
      * The ordinate values to compare are the result of the
      * {@linkplain MathTransform#inverse() inverse transform}.
      */
-    INVERSE_TRANSFORM,
-
-    /**
-     * The values to compare are {@linkplain MathTransform#derivative(DirectPosition) derivatives}.
-     * In case of doubt, implementations can use for the derivative values the same threshold than
-     * for the {@link #DIRECT_TRANSFORM} case.
-     */
-    DERIVATIVE
+    INVERSE_TRANSFORM
 }
