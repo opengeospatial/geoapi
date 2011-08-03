@@ -56,15 +56,15 @@ import org.opengis.util.Factory;
  * By default {@code TestSuite} fetches the factory implementations with {@link ServiceLoader},
  * which will scan every <code>META-INF/services/org.opengis.<var>TheFactory</var></code> files
  * on the classpath. However implementors can override this default mechanism with explicit calls
- * to the {@link #setFactories(Class, T[])} method. The following example overrides the CRS and
- * datum factories in its static initializer - all other factories will be fetch by the service
+ * to the {@link #setFactories(Class, Factory[])} method. The following example overrides the CRS
+ * and datum factories in its static initializer - all other factories will be fetch by the service
  * loader:
  *
  * <blockquote><pre>org.opengis.test.TestSuite;
  *
  *public class AllTests extends TestSuite {
  *    static {
- *        setFactories(  CRSFactory.class, new MyCRSFactory());
+ *        setFactories(CRSFactory.class,   new MyCRSFactory());
  *        setFactories(DatumFactory.class, new MyDatumFactory());
  *        <i>// etc.</i>
  *    }
@@ -139,7 +139,7 @@ public strictfp class TestSuite {
 
     /**
      * Returns the factory implementations explicitely given by the last call to
-     * {@link #setFactories(Class, T[])} for the given interface. This method does
+     * {@link #setFactories(Class, Factory[])} for the given interface. This method does
      * not scan the {@code META-INF/services/<T>} entries.
      *
      * @param <T>  The compile-time type of the {@code type} class argument.
@@ -162,7 +162,7 @@ public strictfp class TestSuite {
     }
 
     /**
-     * Clears all factories specified to the {@link #setFactories(Class, T[])} method, and clears
+     * Clears all factories specified to the {@link #setFactories(Class, Factory[])} method, and clears
      * all {@linkplain ServiceLoader service loader} caches. After this method call, all factories
      * will be reloaded when first needed. This method is intended for use in situations in which
      * new factories can be installed or removed into a running Java virtual machine.

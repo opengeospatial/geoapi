@@ -31,10 +31,30 @@
  */
 
 /**
- * Validators and test suites for the {@code org.opengis.referencing} package.
+ * Validators and test suites for the {@code org.opengis.referencing} package. The validator classes
+ * don't need to be used directly (use the static {@link org.opengis.test.Validators} methods instead),
+ * unless implementors want to alter the way referencing objects are validated.
+ *
+ * <p>This package provides a {@link org.opengis.test.referencing.TransformTestCase} base class
+ * with methods for testing {@link org.opengis.referencing.operation.MathTransform} instances.
+ * The various {@code TransformTestCase} fields control different aspects of the test to be run,
+ * like the {@linkplain org.opengis.test.referencing.TransformTestCase#tolerance tolerance}
+ * threshold for comparing ordinate values or whatever
+ * {@linkplain org.opengis.test.referencing.TransformTestCase#isDerivativeSupported math transform
+ * derivatives are supported}. Implementors can extend this class in order to define their own
+ * tests.</p>
+ *
+ * <p>The {@link org.opengis.test.referencing.CRSTest},
+ * {@link org.opengis.test.referencing.MathTransformTest} and
+ * {@link org.opengis.test.referencing.ReferencingTest} concrete classes can also be extended by
+ * implementors in order to inherit pre-defined test cases. Many of those test cases are derived
+ * from publications of authoritative sources like EPSG or national mapping agencies. By
+ * extending the test classes directly, implementors can control which factories are used
+ * and alter the way the tests are performed as documented in the above-cited
+ * {@link org.opengis.test.referencing.TransformTestCase} class.</p>
  *
  * @author  Martin Desruisseaux (Geomatys)
- * @version 3.0
+ * @version 3.1
  * @since   2.2
  */
 package org.opengis.test.referencing;

@@ -62,7 +62,7 @@ import static org.opengis.test.Assert.*;
  * All other operations are optional. However subclasses shall declare which methods, if any,
  * are unsupported. By default every operations are assumed supported. Tests can be disabled
  * on a case-by-case basis by setting the appropriate
- * <code>is&lt;</code><var>Operation</var><code>&gt;Supported</code> fields to {@code false}.
+ * <code>is&lt;<var>Operation</var>&gt;Supported</code> fields to {@code false}.
  * <p>
  * After {@code TransformTestCase} has been setup, subclasses can invoke any of the {@code verify}
  * methods in their JUnit test methods. Callers must supply the input coordinate points to be used

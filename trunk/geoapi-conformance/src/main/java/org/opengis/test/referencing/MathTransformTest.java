@@ -75,6 +75,17 @@ import static org.opengis.test.Validators.*;
  *
  * Alternatively this test class can also be used directly in the {@link org.opengis.test.TestSuite},
  * which combine every tests defined in the GeoAPI conformance module.
+ * <p>
+ * Implementors can extend this class and alter the way the tests are performed by setting some
+ * <code>is&lt;<var>Operation</var>&gt;Supported</code> fields to {@code false}, or by overriding
+ * any of the following methods:
+ * <p>
+ * <ul>
+ *   <li>{@link #createMathTransform(int)}</li>
+ *   <li>{@link #normalize(DirectPosition, DirectPosition, CalculationType) normalize(DirectPosition, DirectPosition, CalculationType)}</li>
+ *   <li>{@link #tolerance(DirectPosition, int, CalculationType)}</li>
+ *   <li>{@link #assertMatrixEquals(String, Matrix, Matrix, Matrix)}</li>
+ * </ul>
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
@@ -149,26 +160,27 @@ public strictfp class MathTransformTest extends TransformTestCase {
     }
 
     /**
-     * Creates a math transform for the {@linkplain CoordinateOperation coordinate operation}
-     * identified by the given EPSG code, and stores the result in the {@link #transform} field.
-     * The set of allowed codes is documented in the {@link PseudoEpsgFactory#createParameters(int)}
+     * Creates a math transform for the {@linkplain CoordinateOperation coordinate operation} identified
+     * by the given EPSG code, and stores the result in the {@link TransformTestCase#transform transform}
+     * field. The set of allowed codes is documented in the {@link PseudoEpsgFactory#createParameters(int)}
      * method.
      * <p>
-     * This method shall also set the {@link #tolerance} threshold in units of the target CRS
-     * (typically metres), and the {@link #derivativeDeltas} in units of the source CRS
-     * (typically degrees). The default implementation set the following values:
-     * <p>
+     * This method shall also set the {@linkplain TransformTestCase#tolerance tolerance} threshold
+     * in units of the target CRS (typically <var>metres</var> for map projections), and the
+     * {@linkplain #derivativeDeltas derivative deltas} in units of the source CRS (typically
+     * <var>degrees</var> for map projections). The default implementation sets the following values:
+     *
      * <ul>
-     *   <li>{@link #tolerance} is sets to half the precision of the sample coordinate points
-     *       given in the EPSG guidance document.</li>
-     *   <li>{@link #derivativeDeltas} is set to a value in degrees corresponding to
+     *   <li><p>{@link TransformTestCase#tolerance} is sets to half the precision of the sample
+     *       coordinate points given in the EPSG guidance document.</p></li>
+     *   <li><p>{@link #derivativeDeltas} is set to a value in degrees corresponding to
      *       approximatively 1 metre on Earth (calculated using the standard nautical mile length).
      *       A finer value can lead to more accurate derivative approximation by the
-     *       {@link #verifyDerivative(double[])} method, at the expense of more sensitivity
-     *       to the accuracy of the {@link MathTransform#transform MathTransform.transform(...)}
-     *       method being tested.</li>
+     *       {@link #verifyDerivative(double[]) verifyDerivative(double...)} method,
+     *       at the expense of more sensitivity to the accuracy of the
+     *       {@link MathTransform#transform MathTransform.transform(...)} method being tested.</p></li>
      * </ul>
-     * <p>
+     *
      * Subclasses can override this method if they want to customize the math transform creations,
      * or the tolerance and delta values.
      *

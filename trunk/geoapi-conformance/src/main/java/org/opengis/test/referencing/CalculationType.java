@@ -32,11 +32,12 @@
 package org.opengis.test.referencing;
 
 import org.opengis.geometry.DirectPosition;
+import org.opengis.referencing.operation.MathTransform;
 
 
 /**
  * The kind of calculation that produced the {@link DirectPosition}s being compared.
- * This enumeration is expected by all {@link assertCoordinateEquals(...)} methods in the
+ * This enumeration is expected by all {@code assertCoordinateEquals(...)} methods in the
  * {@link TransformTestCase} class. The enumeration values are consumed by the following
  * methods:
  * <p>
