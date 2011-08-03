@@ -46,7 +46,7 @@ import org.opengis.util.Factory;
  * construction time either directly by the implementor, or indirectly by calls to the
  * {@link #factories(Class[])} method.
  *
- * @ee TestSuite
+ * @see TestSuite
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
@@ -57,7 +57,7 @@ public strictfp abstract class TestCase {
      * The factories specified explicitely by the implementors, or the {@link ServiceLoader}
      * to use for loading those factories.
      *
-     * @see TestSuite#setFactory(Class, Factory)
+     * @see TestSuite#setFactories(Class, Factory[])
      */
     static final Map<Class<? extends Factory>, Iterable<? extends Factory>> FACTORIES =
             new HashMap<Class<? extends Factory>, Iterable<? extends Factory>>();
@@ -100,8 +100,8 @@ public strictfp abstract class TestCase {
      *{A1, B2}
      *{A2, B2}</pre></blockquote>
      *
-     * The current implementation first checks the factories explicitely specified by calls to
-     * the {@link TestSuite#setFactory(Class, Factory)} method. In no factories were explicitely
+     * The current implementation first checks the factories explicitely specified by calls to the
+     * {@link TestSuite#setFactories(Class, Factory[])} method. In no factories were explicitely
      * specified, then this method searches the classpath using {@link ServiceLoader}.
      *
      * @param  types The kind of factories to fetch.
