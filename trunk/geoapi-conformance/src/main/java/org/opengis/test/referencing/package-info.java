@@ -44,9 +44,9 @@
  * derivatives are supported}. Implementors can extend this class in order to define their own
  * tests.</p>
  *
- * <p>The {@link org.opengis.test.referencing.CRSTest},
- * {@link org.opengis.test.referencing.MathTransformTest} and
- * {@link org.opengis.test.referencing.ReferencingTest} concrete classes can also be extended by
+ * <p>The {@link org.opengis.test.referencing.ReferencingFactoryTest},
+ * {@link org.opengis.test.referencing.AuthorityFactoryTest} and
+ * {@link org.opengis.test.referencing.MathTransformTest} concrete classes can also be extended by
  * implementors in order to inherit pre-defined test cases. Many of those test cases are derived
  * from publications of authoritative sources like EPSG or national mapping agencies. By
  * extending the test classes directly, implementors can control which factories are used
