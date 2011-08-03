@@ -32,8 +32,12 @@
 package org.opengis.test.referencing;
 
 import java.util.List;
+import javax.measure.unit.NonSI;
 
+import org.opengis.referencing.cs.*;
 import org.opengis.referencing.crs.*;
+import org.opengis.referencing.datum.*;
+import org.opengis.referencing.AuthorityFactory;
 import org.opengis.util.Factory;
 import org.opengis.util.FactoryException;
 import org.opengis.referencing.NoSuchAuthorityCodeException;
@@ -43,23 +47,26 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.opengis.test.TestCase;
 
+import static org.junit.Assume.*;
+import static org.opengis.test.Assert.*;
+import static org.opengis.test.Validators.*;
+
 
 /**
- * Tests {@link CoordinateReferenceSystem} and related objects
- * from the {@code org.opengis.referencing.crs} package. CRS instances are created using the
- * authority factory given at construction time.
+ * Tests the creation of referencing objects from the {@linkplain AuthorityFactory authority
+ * factories} given at construction time.
  *
- * In order to specify their factory and run the tests in a JUnit framework, implementors can
+ * In order to specify their factories and run the tests in a JUnit framework, implementors can
  * define a subclass as below:
  *
  * <blockquote><pre>import org.junit.runner.RunWith;
  *import org.junit.runners.JUnit4;
- *import org.opengis.test.referencing.CRSTest;
+ *import org.opengis.test.referencing.AuthorityFactoryTest;
  *
  *&#64;RunWith(JUnit4.class)
- *public class MyTest extends CRSTest {
+ *public class MyTest extends AuthorityFactoryTest {
  *    public MyTest() {
- *        super(new MyCRSAuthorityFactory());
+ *        super(new MyCRSAuthorityFactory(), new MyCSAuthorityFactory(), new MyDatumAuthorityFactory());
  *    }
  *}</pre></blockquote>
  *
@@ -70,17 +77,23 @@ import org.opengis.test.TestCase;
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
  * @since   2.3
- *
- * @deprecated Renamed {@link AuthorityFactoryTest}.
  */
-@Deprecated
 @RunWith(Parameterized.class)
-public strictfp class CRSTest extends TestCase {
+public strictfp class AuthorityFactoryTest extends TestCase {
     /**
-     * The authority factory for creating a {@link CoordinateReferenceSystem} from a code,
-     * or {@code null} if none.
+     * Factory to build {@link CoordinateReferenceSystem} instances, or {@code null} if none.
      */
-    protected final CRSAuthorityFactory factory;
+    protected final CRSAuthorityFactory crsFactory;
+
+    /**
+     * Factory to build {@link CoordinateSystem} instances, or {@code null} if none.
+     */
+    protected final CSAuthorityFactory csFactory;
+
+    /**
+     * Factory to build {@link Datum} instances, or {@code null} if none.
+     */
+    protected final DatumAuthorityFactory datumFactory;
 
     /**
      * Returns a default set of factories to use for running the tests. Those factories are given
@@ -89,23 +102,29 @@ public strictfp class CRSTest extends TestCase {
      * subclassed by the implementor. The factories are fetched as documented in the
      * {@link #factories(Class[])} javadoc.
      *
-     * @return The default set of arguments to be given to the {@code CRSTest} constructor.
+     * @return The default set of arguments to be given to the {@code AuthorityFactoryTest} constructor.
      *
      * @since 3.1
      */
     @Parameterized.Parameters
     public static List<Factory[]> factories() {
-        return factories(CRSAuthorityFactory.class);
+        return factories(CRSAuthorityFactory.class, CSAuthorityFactory.class, DatumAuthorityFactory.class);
     }
 
     /**
-     * Creates a new test using the given factory. If the given factory is {@code null},
-     * then the tests will be skipped.
+     * Creates a new test using the given factories. If a given factory is {@code null},
+     * then the tests which depend on it will be skipped.
      *
-     * @param factory Factory for creating {@link CoordinateReferenceSystem} instances.
+     * @param crsFactory   Factory for creating {@link CoordinateReferenceSystem} instances.
+     * @param csFactory    Factory for creating {@link CoordinateSystem} instances.
+     * @param datumFactory Factory for creating {@link Datum} instances.
      */
-    public CRSTest(final CRSAuthorityFactory factory) {
-        this.factory = factory;
+    public AuthorityFactoryTest(final CRSAuthorityFactory crsFactory,
+            final CSAuthorityFactory csFactory, final DatumAuthorityFactory datumFactory)
+    {
+        this.crsFactory   = crsFactory;
+        this.csFactory    = csFactory;
+        this.datumFactory = datumFactory;
     }
 
     /**
@@ -118,7 +137,31 @@ public strictfp class CRSTest extends TestCase {
      *          If the creation of the {@link CoordinateReferenceSystem} failed for an other raison.
      */
     @Test
-    public void testCRSAuthorityCreation() throws NoSuchAuthorityCodeException, FactoryException {
-        new AuthorityFactoryTest(factory, null, null).testWGS84();
+    public void testWGS84() throws NoSuchAuthorityCodeException, FactoryException {
+        assumeNotNull(crsFactory);
+        final GeographicCRS crs = crsFactory.createGeographicCRS("EPSG:4326");
+        validate(crs);
+        assertNotNull(crs);
+        assertEquals("WGS 84", crs.getName().getCode());
+        /*
+         * Coordinate system validation.
+         */
+        final EllipsoidalCS cs = crs.getCoordinateSystem();
+        final CoordinateSystemAxis latitude  = cs.getAxis(0);
+        final CoordinateSystemAxis longitude = cs.getAxis(1);
+        assertEquals("Geodetic latitude",  latitude.getName().getCode());
+        assertEquals(AxisDirection.NORTH,  latitude.getDirection());
+        assertEquals(NonSI.DEGREE_ANGLE,   latitude.getUnit());
+        assertEquals("Geodetic longitude", longitude.getName().getCode());
+        assertEquals(AxisDirection.EAST,   longitude.getDirection());
+        assertEquals(NonSI.DEGREE_ANGLE,   longitude.getUnit());
+        /*
+         * Datum validation.
+         */
+        final GeodeticDatum datum = crs.getDatum();
+        assertEquals("World Geodetic System 1984", datum.getName().getCode());
+        final PrimeMeridian pm = datum.getPrimeMeridian();
+        assertEquals(0.0, pm.getGreenwichLongitude(), 0.0);
+        assertEquals(NonSI.DEGREE_ANGLE, pm.getAngularUnit());
     }
 }
