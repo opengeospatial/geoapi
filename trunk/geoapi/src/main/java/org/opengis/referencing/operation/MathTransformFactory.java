@@ -89,7 +89,7 @@ import static org.opengis.annotation.Specification.*;
 public interface MathTransformFactory extends Factory {
     /**
      * Returns a set of available methods for {@linkplain MathTransform math transforms}. For
-     * each element in this set, the {@linkplain OperationMethod#getName operation method name}
+     * each element in this set, the {@linkplain OperationMethod#getName() operation method name}
      * must be known to the {@link #getDefaultParameters(String)} method in this factory.
      * The set of available methods is implementation dependent.
      *
@@ -103,6 +103,7 @@ public interface MathTransformFactory extends Factory {
      *
      * @see #getDefaultParameters(String)
      * @see #createParameterizedTransform(ParameterValueGroup)
+     * @see CoordinateOperationFactory#getOperationMethod(String)
      */
     Set<OperationMethod> getAvailableMethods(Class<? extends SingleOperation> type);
 
