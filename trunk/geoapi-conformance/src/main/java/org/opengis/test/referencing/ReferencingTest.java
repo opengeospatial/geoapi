@@ -79,6 +79,6 @@ public strictfp class ReferencingTest extends ReferencingFactoryTest {
      * @param datumFactory Factory for creating {@link Datum} instances.
      */
     public ReferencingTest(final CRSFactory crsFactory, final CSFactory csFactory, final DatumFactory datumFactory) {
-        super(crsFactory, csFactory, datumFactory);
+        super(datumFactory, csFactory, crsFactory, null);
     }
 }
