@@ -64,7 +64,7 @@ import static org.opengis.annotation.Specification.*;
  * <code>OGC Common Implementation Specification 0.2</code>. This section
  * corresponds to and expands the SV_ServiceIdentification class in ISO 19119.
  * <p>
- * It consists of the following elements: <table border="1">
+ * It consists of the following elements: <table border="1" cellspacing="0" cellpadding="2">
  * <tr>
  * <th>Name</th>
  * <th>Occurences</th>

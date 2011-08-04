@@ -67,7 +67,7 @@ import static org.opengis.annotation.Specification.*;
  * reference system. The table below lists some possible pairs of types for these surface curves
  * (other representations of these same surfaces are possible).
  * <p>
- * <table border='1'>
+ * <table border="1" cellspacing="0" cellpadding="2">
  *   <tr bgcolor="#CCCCFF" class="TableHeadingColor">
  *     <th nowrap>&nbsp;Surface type&nbsp;</th>
  *     <th nowrap>&nbsp;Horizontal Curve type&nbsp;</th>

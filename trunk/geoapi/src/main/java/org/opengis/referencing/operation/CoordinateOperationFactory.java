@@ -152,7 +152,7 @@ public interface CoordinateOperationFactory extends ObjectFactory {
      * Some available properties are {@linkplain ObjectFactory listed there}.
      * Additionally, the following properties are understood by this constructor:
      * <p>
-     * <table border='1'>
+     * <table border="1" cellspacing="0" cellpadding="2">
      *   <tr bgcolor="#CCCCFF" class="TableHeadingColor">
      *     <th nowrap>Property name</th>
      *     <th nowrap>Value type</th>
@@ -180,7 +180,7 @@ public interface CoordinateOperationFactory extends ObjectFactory {
      *   </tr>
      * </table>
      *
-     * @param  properties Set of properties. Should contains at least {@code "name"}.
+     * @param  properties Set of properties. Shall contains at least {@code "name"}.
      * @param  method The operation method. A value can be obtained by {@link #getOperationMethod(String)}.
      * @param  parameters The parameter values. A default set of parameters can be obtained by
      *         {@code method.getParameters().createValue()} and modified before to be given to
@@ -213,7 +213,7 @@ public interface CoordinateOperationFactory extends ObjectFactory {
      * Some available properties are {@linkplain ObjectFactory listed there}.
      * Additionally, the following properties are understood by this constructor:
      * <p>
-     * <table border='1'>
+     * <table border="1" cellspacing="0" cellpadding="2">
      *   <tr bgcolor="#CCCCFF" class="TableHeadingColor">
      *     <th nowrap>Property name</th>
      *     <th nowrap>Value type</th>
@@ -226,7 +226,7 @@ public interface CoordinateOperationFactory extends ObjectFactory {
      *   </tr>
      * </table>
      *
-     * @param  properties Set of properties. Should contains at least {@code "name"}.
+     * @param  properties Set of properties. Shall contains at least {@code "name"}.
      * @param  sourceDimension Number of dimensions in the source CRS of the operation method, or {@code null}.
      * @param  targetDimension Number of dimensions in the target CRS of the operation method, or {@code null}.
      * @param  parameters A description of the parameters for the operation method.
@@ -255,7 +255,7 @@ public interface CoordinateOperationFactory extends ObjectFactory {
      * <p>
      * Examples of typical operation method names are:
      * <p>
-     * <table border='1'>
+     * <table border="1" cellspacing="0" cellpadding="2">
      *   <tr bgcolor="#CCCCFF" class="TableHeadingColor">
      *     <th nowrap>OGC name</th>
      *     <th nowrap>EPSG name</th>
