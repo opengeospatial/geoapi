@@ -53,7 +53,7 @@ package org.opengis.webservice.capability;
  * only defines the <code>GetCapabilities</code> operation, which all types of
  * <code>OWS Common</code> -compliant web services must implement.
  * <p>
- * It consists of the following elements: <table border="1">
+ * It consists of the following elements: <table border="1" cellspacing="0" cellpadding="2">
  * <tr>
  * <th>Name</th>
  * <th>Occurences</th>

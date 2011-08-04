@@ -50,7 +50,7 @@ package org.opengis.webservice.capability;
  * (and <code>owsOperationsMetadata.xsd</code>).
  * <p>
  * It consists of a mandatory <code>name</code> attribute and the following
- * elements: <table border="1">
+ * elements: <table border="1" cellspacing="0" cellpadding="2">
  * <tr>
  * <th>Name</th>
  * <th>Occurences</th>

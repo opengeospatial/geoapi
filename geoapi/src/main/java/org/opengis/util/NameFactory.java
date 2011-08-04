@@ -69,7 +69,7 @@ public interface NameFactory extends Factory {
      * table. Additional implementation-specific properties can be added. Unknown properties shall
      * be ignored.
      * <p>
-     * <table border='1'>
+     * <table border="1" cellspacing="0" cellpadding="2">
      *   <tr bgcolor="#CCCCFF" class="TableHeadingColor">
      *     <th nowrap>Property name</th>
      *     <th nowrap>Purpose</th>
