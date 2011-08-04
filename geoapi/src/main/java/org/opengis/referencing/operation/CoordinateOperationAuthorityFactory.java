@@ -64,6 +64,8 @@ public interface CoordinateOperationAuthorityFactory extends AuthorityFactory {
      * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
      * @throws FactoryException if the object creation failed for some other reason.
      *
+     * @see CoordinateOperationFactory#getOperationMethod(String)
+     *
      * @departure extension
      *   This method has been added because OGC 01-009 does not define a factory
      *   method for creating such object.

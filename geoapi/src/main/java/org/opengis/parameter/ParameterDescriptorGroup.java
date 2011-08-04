@@ -68,6 +68,7 @@ public interface ParameterDescriptorGroup extends GeneralParameterDescriptor {
      * {@linkplain ParameterDescriptor#getMinimumOccurs minimum} and
      * {@linkplain ParameterDescriptor#getMaximumOccurs maximum occurences} required.
      * For example:
+     * <p>
      * <ul>
      * <li>For {@link ParameterDescriptor} with cardinality 1:* a {@link ParameterValue} will
      *     be included with the {@linkplain ParameterDescriptor#getDefaultValue default value}
